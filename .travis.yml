@@ -1,0 +1,26 @@
+language: node_js
+
+node_js:
+  - 7
+  
+env:
+  global:
+    - CHROME_BIN=chromium-browser
+    - DISPLAY=:99.0
+    
+os:
+  - linux
+
+install:
+  - npm install
+  
+# script:
+#   - npm run build
+
+after_success:
+  - chmod ugo+x ./scripts/deploy.sh
+  - ./scripts/deploy.sh
+  
+cache:
+  directories:
+    - node_modules
