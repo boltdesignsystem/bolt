@@ -4,7 +4,9 @@
   "description": "Pega Digital's Design System",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified.\""
+    "test": "echo \"Error: no test specified.\"",
+    "styles:doc": "sassdoc packages/bolt-css/*/src/scss/*.scss --dest ./public/sassdoc --config packages/bolt-config-sassdoc/sassdoc.config.json",
+    "prepare": "patch-package"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,18 @@
   },
   "homepage": "https://github.com/pega-digital/bolt#readme",
   "dependencies": {
+    "@pegakit/pk-component-notifications": "^0.1.1",
+    "@theme-tools/core": "^0.4.0",
+    "@theme-tools/plugin-browser-sync": "^0.4.0",
+    "generator-theme": "^0.4.1",
+    "lerna": "https://github.com/evocateur/lerna/tarball/v2.0.0-rc.5",
+    "patch-package": "^3.0.0",
+    "sassdoc-theme-flippant": "^0.1.0",
+    "sassdoc-theme-herman": "^1.0.0-alpha.7",
     "surge": "^0.19.0"
+  },
+  "devDependencies": {
+    "gulp": "github:gulpjs/gulp#4.0",
+    "sassdoc": "^2.3.0"
   }
 }

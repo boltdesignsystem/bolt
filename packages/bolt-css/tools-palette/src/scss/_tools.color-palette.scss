@@ -1,0 +1,86 @@
+/* ==========================================================================
+   #TOOLS - COLOR PALETTE
+   ========================================================================== */
+
+/** Here is the description
+  * Here is the description
+  * @group Tools
+  */
+
+@import '@bolt/tools-sassy-maps';
+
+@include add-module(
+  $name:    'tools.color-palette',
+  $version: '0.1.0',
+  $dependencies: (
+    'settings.colors': '0.1.0',
+    'tools.sassy-maps': '0.1.0'
+  )
+);
+
+
+/** 
+  * @group Tools
+  * @param {String} $palette - Name of the color you want
+  * @param {String} $tone [base] - (Optional) - Color Swatch
+  * @example scss - Basic usage: use the default base color  from the shared color palette
+  *   .c-selector {
+  *     color: palette(blue);
+  *   }
+  *
+  * @example scss - Use a shade of a particular color 
+  *   .c-selector {
+  *     color: palette(blue, darker);
+  *   }
+  */
+@function palette($palette, $tone: 'base') {
+  @return map-get-deep($palettes, 'colors', $palette, $tone);
+}
+
+
+@function to-string($value) {
+  @return inspect($value);
+}
+
+@function convert-color-map($map-old, $map-new, $overwrite: true) {
+  $case: 'lower-case';
+  // Iterate through each value of the new map
+  @each $key, $new-value in $map-new {
+    // Check if that value already exists on the old map
+    @if type-of($new-value) == map and type-of($key) != color and map-has-key($map-old, $key) {
+      // There is an existing key
+      $old-value: map-get($map-old, $key);
+
+      @if type-of($new-value) == map and type-of($old-value) == map {
+        // If both are maps, recurse regardless of $overwrite
+        $merged-value: convert-color-map($old-value, $new-value);
+        $stringified-key: to-string($key);
+        $new-key: call('to-' + $case, $stringified-key);
+        $map-old: map-merge(map-remove($map-old, $key), (quote($new-key): $merged-value));
+
+      }
+      @else {
+        // Otherwise check $overwrite
+        @if $overwrite {
+          $stringified-key: to-string($key);
+          $new-key: call('to-' + $case, $stringified-key);
+          $map-old: map-merge(map-remove($map-old, $key), (quote($new-key): $new-value ));
+        }
+      }
+    }
+    @else {
+      // There is no existing key so add
+      $stringified-key: to-string($key);
+      $new-key: call('to-' + $case, $stringified-key);
+
+      $map-old: map-merge(
+        map-remove($map-old, $key), (quote($new-key): $new-value)
+      );
+    }
+  }
+  @return $map-old;
+}
+
+
+$json-colors: convert-color-map($palettes, $palettes);
+$json-colors: jsonexport('colors.sass.json', $json-colors);
