@@ -4,9 +4,17 @@
   "description": "Pega Digital's Design System",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified.\"",
+    "test2": "npm run build",
     "styles:doc": "sassdoc packages/bolt-css/*/src/scss/*.scss --dest ./public/sassdoc --config packages/bolt-config-sassdoc/sassdoc.config.json",
-    "prepare": "patch-package"
+    "prepare": "patch-package",
+    "lint": "stylelint 'packages/bolt-css/**/*.scss' --syntax scss",
+    "sass": "node-sass --output-style compressed --source-map true --include-path packages/**/* --importer node_modules/node-sass-magic-importer/dist/cli.js -o ./packages/bolt-css/core/demo ./packages/bolt-css/core/main.scss",
+    "sass2": "cd ./packages/bolt-css/core && node-sass --output-style compressed --source-map true --include-path node_modules --importer node_modules/node-sass-magic-importer/dist/cli.js -o demo main.scss",
+    "autoprefixer": "postcss -u autoprefixer --autoprefixer.browsers 'last 3 versions' 'ie 9-11' -r demo/main.css",
+    "build": "npm run lint && npm run sass && npm run autoprefixer",
+    "start": "npm run build && onchange 'packages/bolt-css/**/*.scss' -- npm run build",
+    "serve": "http-server demo",
+    "test": "bash test/test.sh"
   },
   "repository": {
     "type": "git",
@@ -23,14 +31,24 @@
   },
   "homepage": "https://github.com/pega-digital/bolt#readme",
   "dependencies": {
-    "@pegakit/pk-component-notifications": "^0.1.1",
+    "@patternkit/patternlab-pattern-sync": "^0.1.0",
     "@theme-tools/core": "^0.4.0",
     "@theme-tools/plugin-browser-sync": "^0.4.0",
+    "autoprefixer": "^7.1.1",
     "generator-theme": "^0.4.1",
+    "gulp-intermediate": "^3.0.1",
     "lerna": "https://github.com/evocateur/lerna/tarball/v2.0.0-rc.5",
+    "node-sass": "^4.5.3",
+    "node-sass-magic-importer": "^4.1.5",
+    "onchange": "^3.2.1",
     "patch-package": "^3.0.0",
+    "postcss-cli": "^4.1.0",
+    "pre-commit": "^1.2.2",
     "sassdoc-theme-flippant": "^0.1.0",
     "sassdoc-theme-herman": "^1.0.0-alpha.7",
+    "stylelint": "^7.11.1",
+    "stylelint-scss": "^1.4.4",
+    "stylelint-selector-bem-pattern": "^1.0.0",
     "surge": "^0.19.0"
   },
   "devDependencies": {
