@@ -1,0 +1,102 @@
+{% extends "@bolt/input.twig" %}
+{#
+/**
+ * @file
+ * Theme suggestion for button component.
+ *
+ * Available button variables:
+ * - button:
+ *   - attributes: HTML attributes to add to the button component.
+ *   - text: The text displayed inside the button. D8 sets this to the `label` variable by default.
+ *   - icon_only: (optional) flag to only display the icon and not the button text. Default ('false').
+ *     Accepts 'true' or 'false'
+ *   - icon_position: (optional) Position the icon should be displayed. Default ('left'). Accepts 'left' or 'right'.
+ *   - element: (optional) The type of HTML element we want our button to use of. Default ('button'). Accepts 'button' or 'a'.
+  *   - style: (optional) The overall button style / design. Default ('normal'). Accepts ('flat', 'subtle')
+ *   - behavior: (optional) The behavior of the button. Default ('normal'). Accepts ('full', 'full@only-xsmall', 'full@only-small') of HTML element we want our button to use of. Default ('button'). Accepts 'button' or 'a'.
+ *
+ *
+ * Available icon variables the button component also accepts:
+ * - icon:
+ *   - name: Name of the icon to pull in.
+ *   - attributes: HTML attributes passed into the nested icon component.
+ *
+ *
+ * - D8-SPECIFIC (Not used in Pattern Lab)
+ * - prefix: Markup to display before the input element.
+ * - suffix: Markup to display after the input element.
+ * - children: Optional additional rendered elements coming from Drupal.
+ *
+ * @ingroup templates
+ *
+ * @see \Drupal\bootstrap\Plugin\Preprocess\InputButton
+ * @see \Drupal\bootstrap\Plugin\Preprocess\Input
+ * @see template_preprocess_input()
+ */
+#}
+{% spaceless %}
+
+{% set button_styles = ['positive', 'flat', 'subtle', 'featured'] %}
+{% set button_sizes = ['small', 'medium', 'large'] %}
+{% set button_widths = ['', 'full', 'full@small', 'full@xsmall'] %}
+{% set button_elements = ['a', 'button'] %}
+{% set button_element = button.element in button_elements ? button.element : 'button' %}
+
+
+<!-- children -->
+<!-- attributes object -->
+<!-- tag -->
+
+
+
+
+
+  {% set button_classes = [
+    'c-button',
+    button.icon_position == 'left' ? 'c-button--rev' : '',
+    button.shadow ? 'c-button--raised' : '',
+    button.center ? 'c-button--center' : '',
+    button.disabled ? 'c-button--disabled' : '',
+    button.style in button_styles ? 'c-button--' ~ button.style : '',
+    button.size in button_sizes ? 'c-button--' ~ button.size : '',
+    button.width in button_widths ? 'c-button--' ~ button.width : ''
+  ] %}
+
+
+  {% set button_text_classes = [
+    'c-button__text',
+    button.icon_only ? 'u-visuallyhidden' : ''
+  ] %}
+
+  {% set button_icon_classes = [
+    'c-button__icon'
+  ] %}
+
+  {% set attributes = create_attribute(button.attributes | default(attributes) | default({})) %}
+  {% set icon_attributes = create_attribute(icon.attributes | default({})) %}
+  {% set button_text_attributes = create_attribute(button_text.attributes | default({})) %}
+
+  {% set icon_attributes = icon_attributes.addClass(button_icon_classes) %}
+
+
+  {% block input %}
+      <{{button_element }}{{ attributes.addClass(button_classes) }}>
+
+
+        <span {{ button_text_attributes.addClass(button_text_classes) }}>
+          {{ button.text | default(label) | default("Learn More") }}
+        </span>
+
+        {% if icon.name %}
+          {% include "@atoms/icons/icon.twig" with {
+            "icon": {
+              name: icon.name,
+              attributes: icon_attributes
+            }
+          } %}
+        {% endif %}
+
+      </{{ button_element}}>
+    {{ children }}
+  {% endblock %}
+{% endspaceless %}

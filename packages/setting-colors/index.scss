@@ -1,0 +1,79 @@
+/* ==========================================================================
+   #COLOR PALETTES
+   ========================================================================== */
+@import '../setting-colors/package.json';
+@import '~@bolt/setting-module-manager';
+// 
+// 
+
+@debug quote($name);
+@debug quote($version);
+@include add-module(
+  $module-name: $name,
+  $module-version: $version,
+  $module-dependencies: ()
+);
+
+
+
+
+
+$palettes: (
+  colors: (
+    red: (
+      base: #9d0606
+    ),
+    orange: (
+      base: #d25600
+    ),
+    yellow: (
+      base: #ddae25
+    ),
+    green: (
+      lighter: #7b9e02,
+      base:    #007330
+    ),
+    teal: (
+      base: #09929d
+    ),
+    blue: (
+      lighter: #b0dfff,
+      light:   #42b1ff,
+      base:    #0092f8,
+      dark:    #005c9c,
+      darker:  #003051
+    ),
+    navy: (
+      base: #132f8e
+    ),
+    royal-blue: (
+      lighter: #9dbacf, // Nested menu link
+      light: #5c6585, // Nested menu border
+      base: #474f68, // Nested menu background
+      dark: #3f465f,
+      darker: #344059, // Nested menu header
+      darkest: #262e3f // Nested menu header hover
+    ),
+    violet: (
+      base: #3c3376
+    ),
+    pink: (
+      base: #a30776
+    ),
+    gray: (
+      lightest: #f3f3f3, // Menu Header Background
+      lighter:  #dcd8d4, // Menu Header Border
+      light:    #d3cec9,
+      base:     #97a0a5,
+      dark:     #6a7980,
+      darker:   #4d575b,
+      darkest:  #2a3032
+    ),
+    black: (
+      base: #000
+    ),
+    white: (
+     base: #fff
+    )
+  )
+);

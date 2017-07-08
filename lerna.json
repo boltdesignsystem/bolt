@@ -1,18 +1,8 @@
 {
-  "lerna": "2.0.0-rc.5",
+  "lerna": "2.0.0",
   "version": "independent",
   "packages": [
-    "packages/bolt-assets/**/*",
-    "packages/bolt-ui-core/**/*",
-    "packages/bolt-config/**/*",
-    "packages/bolt-tools/**/*"
-  ],
-  "commands": {
-    "bootstrap": {
-      "ignore": [
-        "example/**",
-        "test/**"
-      ]
-    }
-  }
+    "packages/*",
+    "."
+  ]
 }

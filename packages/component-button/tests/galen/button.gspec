@@ -1,0 +1,48 @@
+@objects
+    botton      .c-bolt-button
+        label   .c-bolt-button__text
+        # input   .search__input
+        # button  .search__button
+
+@groups
+    image_diff_validation   button
+
+= Main section =
+  @on *
+    button:
+      contains button.text
+      # width 100% of viewport/width
+
+    button.text:
+      centered horizontally inside button 
+      # inside search 10px top, 10px left, 10px right
+
+  # @on narrow_screen
+  #   button.label:
+  #     aligned vertically all button.button 1px
+  #     aligned vertically all button.input 1px
+  # 
+  #   button.input:
+  #     inside search 10px left, 10px right
+  #     aligned vertically all button.button 1px
+  #     aligned vertically all button.label 1px
+  #     below button.label 10px
+  # 
+  #   button.button:
+  #     inside search 10px left, 10px right, 10px bottom
+  #     aligned vertically all button.input 1px
+  #     aligned vertically all button.label 1px
+  #     below button.input 10px
+  # 
+  # @on wide_screen
+  #   button.label:
+  #     aligned vertically left button.input 1px
+  #     aligned vertically right button.button 1px
+  # 
+  #     button.input:
+  #       inside search 10px left, 10px bottom
+  #       aligned horizontally all button.button 1px
+  #       below button.label 10px
+  # 
+  #     button.button:
+  #       right-of search.input 9 to 10px
