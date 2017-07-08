@@ -1,0 +1,37 @@
+/* ==========================================================================
+   #LIGHT THEME
+   ========================================================================== */
+
+/**
+  * When you have a light background or background image and want to have
+  * darker text inside that container.
+  */
+
+@include add-module(
+  $name:    'themes.light',
+  $version: '1.0.0',
+  $dependencies: (
+    'settings.colors':     '1.0.0',
+    'tools.color-palette': '1.0.0',
+  )
+);
+
+.t-light {
+  color: palette(black);
+  background-color: palette(gray, lightest);
+
+  a {
+    color: palette(black);
+
+    &:hover {
+      color: palette(gray);
+      text-decoration: underline;
+    }
+
+    &:focus,
+    &:active {
+      color: palette(gray, light);
+      text-decoration: underline;
+    }
+  }
+}

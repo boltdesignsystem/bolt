@@ -1,0 +1,21 @@
+/* ==========================================================================
+   #VIOLET THEME
+   ========================================================================== */
+
+@include add-module(
+  $name:    'themes.violet',
+  $version: '1.0.0',
+  $dependencies: (
+    'settings.colors':     '1.0.0',
+    'tools.color-palette': '1.0.0',
+  )
+);
+
+.t-violet {
+  color: palette(white);
+  background-color: palette(violet);
+
+  a {
+    color: palette(white);
+  }
+}

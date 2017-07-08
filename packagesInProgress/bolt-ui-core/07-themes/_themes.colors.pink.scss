@@ -1,0 +1,21 @@
+/* ==========================================================================
+   #PINK THEME
+   ========================================================================== */
+
+@include add-module(
+  $name:    'themes.pink',
+  $version: '1.0.0',
+  $dependencies: (
+    'settings.colors':     '1.0.0',
+    'tools.color-palette': '1.0.0',
+  )
+);
+
+.t-pink {
+  color: palette(white);
+  background-color: palette(pink);
+
+  a {
+    color: palette(white);
+  }
+}

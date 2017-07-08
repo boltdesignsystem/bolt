@@ -1,0 +1,148 @@
+/* ==========================================================================
+   #FONT-SIZE
+   ========================================================================== */
+@import 'tools.strip-unit.scss';
+
+@include add-module(
+  $name:    'tools.font-size',
+  $version: '1.0.0',
+  $dependencies: (
+    'settings.modular-scale': '1.0.0'
+  )
+);
+
+/**
+  * Abstracts how font sizes are grabbed and used via modular
+  * typography sizes.
+  */
+
+$base-line-height:    $global-line-height !default;
+
+
+// font-size of the regular font used
+$base-font-size: 	$global-font-size;
+
+// it is convenient to declare a fixed base-line-height,
+// so every other line-height is a simple multiple of base-line-height
+
+// allow fractional line-height as integer multiple of base-line-height / line-height-scale
+$line-height-scale: 1;
+
+// rhythm is that fraction of the base-line-height 
+$rhythm: $base-line-height / $line-height-scale;
+
+// The height of a capital letter for the typeface chosen (may vary)
+// https://en.wikipedia.org/wiki/Cap_height
+// Usually about 0.7em (see http://jsbin.com/gofexi/edit?html,css,output)
+$font-cap-height: 	0.7;
+
+// @mixin baseline($size, $line-height: 2, $below: 2) {
+//   
+//   $font-size: map-get-deep($modular-scale, 'font_sizes', $size);
+//   
+//   $font-size-px: strip-unit($font-size) * $global-font-size;
+//   
+//   // // number of rhythm units that can fit the font-size
+//   // 
+//   // 
+//   // // set the new line-height 
+//   // // to be the minimum integer multiple of $rythm exceeding current $font-size
+
+//   // 
+//   
+//   
+//   font-size: $font-size;
+//   // Set the line-height (if it isn’t set at 0).
+//   
+//   
+//   
+//   $baseline-shift: #{($font-size-px / 2 * (($line-height * $global-rootsize / $font-size-px) - $font-cap-height)) / $global-rootsize + 0.00001};
+//   
+//   $baseline-push: #{$below - (($font-size-px / 2 * (($line-height * $global-rootsize / $font-size-px) - $font-cap-height)) / $global-rootsize + 0.00001)};
+//   
+//   margin-bottom: #{$baseline-push}rem;
+//   padding-top: #{$baseline-shift}rem;
+//   
+//   // @if ($baseline-shift < 1){
+//   //   
+//   // }
+//   // 
+//   // @debug $baseline-shift;
+//   
+// 
+//   // 
+// 	// // use the results
+//   // font-size: 
+// 	// font-size: $font-size;
+// 	// line-height: $line-height;
+// 
+// 	// distance between current font's baseline and its box bottom edge 
+// 	// $baseline-distance: ($line-height - $font-cap-height) / 2;
+// 	
+// 	
+// 
+// 	// METHOD 1
+// 	/////////////////
+// 
+// 	// this method can relatively move down elements you may not want to
+// 	
+// 	// position: relative;
+// 	// top: $baseline-distance;
+// 
+// 
+//   // 
+// 	// // METHOD 2
+// 	// /////////////////
+//   // 
+// 	// // if you use this mixin only on elements that have one direction margins
+// 	// // http://csswizardry.com/2012/06/single-direction-margin-declarations/
+// 	// // you can use this method with no worries. 
+// 	// // this method assumes the direction is down and the margin is $base-line-height
+// 	// 
+// 	// // move current font baseline down to the previous position of the box bottom edge,
+// 	// // which is integer multiple of $rhytm away from the top,
+// 	// // assuming the mixing has been consistently applied above:
+// 	// padding-top: $baseline-distance;
+// 	// 
+// 	// // ensure the next box top edge is $line-height + $base-line-height below the current box top edge
+// 	// // in particular, the next box top edge falls onto our grid 
+// 	// // (i.e. integer multiple of $rhythm away from the top edge)
+// 	// margin-bottom: $base-line-height - $baseline-distance;
+// }
+
+
+@mixin font-size($size, $line-height: '', $important: '') {
+  $font-size: nth(map-get-deep($modular-scale, 'font_sizes', $size), 1);
+  $font-size-px: strip-unit($font-size) * $global-font-size;
+
+  $lines: ceil(($font-size-px + 0.001px) / $rhythm);
+
+
+  // @if ($font-size-px < 16px and $line-height > 1.3) {
+  //   $line-height: 1.1;
+  // } @elseif ($font-size-px > 24px and $line-height > 1.3) {
+  //   $line-height: 1.1;
+  // } @elseif ($font-size-px > 32px and $line-height < 1) {
+  //   $line-height: 1;
+  // }
+
+  @if ($line-height == '') {
+    $line-height: nth(map-get-deep($modular-scale, 'font_sizes', $size), 2);
+  }
+
+
+  @if ($important == 'important') {
+    font-size: $font-size + unquote('!important');
+
+    @if $line-height != 0 {
+      line-height: #{$line-height}rem + unquote('!important');
+    }
+  }
+  @else {
+    font-size: $font-size;
+
+    @if $line-height != 0 {
+      line-height: #{$line-height}rem;
+    }
+  }
+}

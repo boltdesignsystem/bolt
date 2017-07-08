@@ -1,0 +1,21 @@
+/* ==========================================================================
+   #NAVY THEME
+   ========================================================================== */
+
+@include add-module(
+  $name:    'themes.navy',
+  $version: '1.0.0',
+  $dependencies: (
+    'settings.colors':     '1.0.0',
+    'tools.color-palette': '1.0.0',
+  )
+);
+
+.t-navy {
+  color: palette(white);
+  background-color: palette(navy);
+
+  a {
+    color: palette(white);
+  }
+}

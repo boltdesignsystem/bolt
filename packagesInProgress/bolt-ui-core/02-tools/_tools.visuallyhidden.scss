@@ -1,0 +1,31 @@
+/* ==========================================================================
+   #VISUALLYHIDDEN MIXIN
+   ========================================================================== */
+
+@include add-module(
+  $name:    'tools.visuallyhidden',
+  $version: '1.0.0',
+  $dependencies: ()
+);
+
+@mixin visuallyhidden($focusable: true) {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+
+  @if ($focusable == true) {
+    &:focus {
+      position: relative;
+      overflow: visible;
+      clip: auto;
+      height: auto;
+      width: auto;
+    }
+  }
+}
+
+%visuallyhidden {
+  @include visuallyhidden();
+}

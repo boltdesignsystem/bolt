@@ -1,0 +1,43 @@
+/* ==========================================================================
+   #THEMES
+   ========================================================================== */
+
+/**
+  * Apply slight variations to background color and text color.
+  *
+  *
+  * All..................Theme rules that apply globally
+  * Green................`Green` Color Theme
+  * Light Green..........`Light Green` Color Theme
+  * Navy.................`Navy` Color Theme
+  * Orange...............`Orange` Color Theme
+  * Pink.................`Pink` Color Theme
+  * Red..................`Red` Color Theme
+  * Royal Blue...........`Royal Blue` Color Theme
+  * Teal.................`Teal` Color Theme
+  * Violet...............`Violet` Color Theme
+  * Light.................A basic light theme for content contrast.
+  * Dark..................A basic dark theme for content contrast.
+  * Gradients.............Automatically generate themes based on color
+  *                       gradients.
+  */
+
+[class^='t-'] {
+  * {
+    color: inherit;
+  }
+}
+
+@import 'themes.colors.green.scss';
+@import 'themes.colors.light-green.scss';
+@import 'themes.colors.navy.scss';
+@import 'themes.colors.orange.scss';
+@import 'themes.colors.pink.scss';
+@import 'themes.colors.red.scss';
+@import 'themes.colors.royal-blue.scss';
+@import 'themes.colors.teal.scss';
+@import 'themes.colors.violet.scss';
+@import 'themes.light-gray.scss';
+@import 'themes.light.scss';
+@import 'themes.dark.scss';
+@import 'themes.gradients.scss';

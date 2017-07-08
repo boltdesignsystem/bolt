@@ -1,0 +1,62 @@
+/* ==========================================================================
+   #COLOR GRADIENTS
+   ========================================================================== */
+
+/**
+  * Color gradient swatches. Used (primarily) in the context of
+  * product-specific branding.
+  *
+  * start = lighter color
+  * end   = darker color
+  */
+
+@include add-module(
+  $name:    'settings.gradients',
+  $version: '1.0.0',
+  $dependencies: ()
+);
+
+
+$gradients: (
+  gradients: (
+    'decisionHub': (
+      start: #6472af,
+      end: #3a4470
+    ),
+    'academy': (
+      start: #2fc1b4,
+      end: #1d756d
+    ),
+    'allPlatform': (
+      start: #0d4e9c,
+      end: #092045
+    ),
+    'coBrowse': (
+      start: #e80f98,
+      end: #c50c81
+    ),
+    'customerService': (
+      start: #eab02a,
+      end: #e35a35
+    ),
+    'fieldService': (
+      start: #2470c6,
+      end: #123e6f
+    ),
+    'marketing': (
+      start: #5132b1,
+      end: #2f1d67
+    ),
+    'operations': (
+      start: #437886,
+      end: #24424a
+    ),
+    'salesOnboarding': (
+      start: #bacc04,
+      end: #597e0a
+    )
+  )
+);
+
+$json-gradients: $gradients;
+$json-gradients: jsonexport('gradients.sass.json', $json-gradients);

@@ -1,0 +1,25 @@
+/* ==========================================================================
+   #BULLET LIST
+   ========================================================================== */
+
+.c-bullet-list,
+%c-bullet-list {
+  list-style: none;
+  margin-bottom: $spacing-unit-large;
+
+  > li {
+    margin-bottom: $spacing-unit-xsmall;
+    padding-left: $spacing-unit-large;
+
+    &:before {
+      margin-left: -$spacing-unit-large;
+      content: '';
+      display: inline-block;
+      height: 0.6em;
+      width: 1em;
+      padding-right: $spacing-unit-large;
+      background-image: url('../images//icons/list-bullet.svg');
+      background-repeat: no-repeat;
+    }
+  }
+}

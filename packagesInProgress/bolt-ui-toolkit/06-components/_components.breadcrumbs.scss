@@ -1,0 +1,29 @@
+/* ==========================================================================
+   #BREADCRUMBS
+   ========================================================================== */
+
+.c-breadcrumbs,
+.breadcrumb {
+  @extend %o-inline-list;
+  @include font-size(small);
+  margin-left: -$spacing-unit;
+  margin-right: -$spacing-unit;
+  color: $text-muted;
+  position: relative;
+  padding: $spacing-unit-small $spacing-unit;
+}
+
+
+.c-breadcrumbs__item,
+.breadcrumb > * {
+  @extend %o-inline-list__item;
+  position: relative;
+  z-index: 2; //Higher z-index than background color layer.
+}
+
+
+.c-breadcrumbs__item + .c-breadcrumbs__item:before,
+.breadcrumb li + .breadcrumb li:before {
+  content: '/ ';
+  padding: 0 $spacing-unit-xsmall;
+}

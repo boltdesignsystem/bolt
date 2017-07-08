@@ -1,0 +1,197 @@
+/* ==========================================================================
+   #HEADINGS
+   ========================================================================== */
+
+%c-heading,
+.c-heading {
+  @include font-weight(normal);
+  @include font-size(base);
+  margin-top: 0;
+  display: block;
+  display: flex; //so things nicely vertically center, if supported.
+  flex-flow: row;
+  align-items: center;
+}
+
+
+.c-heading--semibold {
+  @include font-weight(semibold);
+}
+
+.c-heading--light {
+  @include font-weight(light);
+}
+
+.c-heading--xxxxlarge,
+.c-heading--xxxlarge,
+.c-heading--xxlarge,
+.c-heading--xlarge {
+  @include font-family('heading');
+}
+
+
+%c-heading--xxxxlarge,
+.c-heading--xxxxlarge {
+  @include font-size(xxxxlarge);
+  margin-bottom: $spacing-unit-large;
+}
+
+%c-heading--xxxlarge,
+.c-heading--xxxlarge {
+  @include font-size(xxxlarge);
+  margin-bottom: $spacing-unit-large;
+}
+
+%c-heading--xxlarge,
+.c-heading--xxlarge {
+  @include font-size(xxlarge);
+  margin-bottom: $spacing-unit-large;
+}
+
+%c-heading--xlarge,
+.c-heading--xlarge {
+  @include font-size(xlarge);
+  margin-bottom: $spacing-unit;
+}
+
+
+%c-heading--large,
+.c-heading--large {
+  @include font-size(large);
+  margin-bottom: $spacing-unit;
+}
+
+%c-heading--medium,
+.c-heading--medium {
+  @include font-size(medium);
+  margin-bottom: $spacing-unit;
+}
+
+%c-heading--base,
+.c-heading--base {
+  @include font-size(base);
+  margin-bottom: $spacing-unit;
+}
+
+%c-heading--small,
+.c-heading--small {
+  @include font-size(small);
+  margin-bottom: $spacing-unit;
+}
+
+%c-heading--xsmall,
+.c-heading--xsmall {
+  @include font-size(xsmall);
+  margin-bottom: $spacing-unit;
+}
+
+
+%c-heading--sub,
+.c-heading--sub {
+  text-transform: uppercase;
+  color: palette(gray);
+  margin-bottom: 0;
+}
+
+
+.c-heading__text {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  flex: 0 1 auto;
+
+  /**
+    * 1. I know this might potentially counter-act any
+    *    line-heights set, however this + the whole
+    *    "overflow-hidden" piece can potential causes lines
+    *    with tigheter line heights to become unintentionally
+    *    chopped off the tops / bottoms of taller letters.
+    */
+
+  .c-heading--line & {
+    padding-right: $spacing-unit;
+    max-width: 80%;
+    line-height: initial; /** [1] **/
+  }
+
+}
+
+.c-heading__text:before,
+.c-heading__text:after {
+  background-color: palette(gray, lighter);
+  content: '';
+  height: 2px;
+  position: absolute;
+  top: 50%;
+  opacity: 0;
+  width: 600%;
+  width: 100vw;
+}
+
+.c-heading__text:before {
+  right: 100%;
+}
+
+.c-heading__text:after {
+  left: 100%;
+}
+
+
+.c-heading--uppercase {
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+
+//Default left alignment, with the line.
+.c-heading--line {
+  overflow: hidden;
+
+  .c-heading__text:after {
+    opacity: 1;
+  }
+}
+
+
+//Center alignment. With and without the lines showing up.
+.c-heading--center {
+  text-align: center;
+  justify-content: center; //In case we support flexbox, text-align cener wouldn't work here.
+
+  .c-heading__text {
+    padding-left: $spacing-unit;
+    padding-right: $spacing-unit;
+  }
+
+  &.c-heading--line .c-heading__text:before,
+  &.c-heading--line .c-heading__text:after {
+    opacity: 1;
+  }
+}
+
+//Right alignment. With and without the lines showing up.
+.c-heading--right {
+  text-align: right;
+
+  .c-heading__text {
+    padding-right: 0;
+    padding-left: $spacing-unit;
+  }
+
+  &.c-heading--line .c-heading__text:before {
+    opacity: 1;
+  }
+
+  &.c-heading--line .c-heading__text:after {
+    opacity: 0;
+  }
+}
+
+
+.c-heading__icon {
+  margin-right: $spacing-unit;
+  width: 2em;
+  height: 2em;
+  flex: 0 0.5 2em; //Allow the icon to shrink a little if it needs to (vs having text that overflows)
+  align-self: flex-start;
+}

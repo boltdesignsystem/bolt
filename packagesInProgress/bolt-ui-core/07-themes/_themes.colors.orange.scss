@@ -1,0 +1,21 @@
+/* ==========================================================================
+   #ORANGE THEME
+   ========================================================================== */
+
+@include add-module(
+  $name:    'themes.orange',
+  $version: '1.0.0',
+  $dependencies: (
+    'settings.colors':     '1.0.0',
+    'tools.color-palette': '1.0.0',
+  )
+);
+
+.t-orange {
+  color: palette(white);
+  background-color: palette(orange);
+
+  a {
+    color: palette(white);
+  }
+}

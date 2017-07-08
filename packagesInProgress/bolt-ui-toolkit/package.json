@@ -1,0 +1,67 @@
+{
+  "name": "@bolt/ui",
+  "version": "1.0.0-beta.1",
+  "description": "PegaKit's opinionated UI Toolkit. Builds on top of the CSS Framework-portion of Pegakit.",
+  "main": "_components.all.scss",
+  "scripts": {
+    "autoprefixer": "postcss -u autoprefixer --autoprefixer.browsers 'last 3 versions' 'ie 9-11' -r build/pk-toolkit.css",
+    "build": "npm run clean && npm run lint && mkdir -p ./build && cat ./tests/_pegakit.sass-build-test.scss | node-sass --include-path ./node_modules/ --output-style compressed > build/pk-toolkit.css",
+    "clean": "rm -rf build",
+    "lint": "stylelint '*/**/*.scss' --syntax scss",
+    "test": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pega-digital/pegakit-ui.git"
+  },
+  "keywords": [
+    "pegakit",
+    "css",
+    "ui-toolkit",
+    "itcss",
+    "bem",
+    "sass",
+    "oocss",
+    "bemit",
+    "design system"
+  ],
+  "author": "Salem Ghoweri",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pega-digital/pegakit-ui/issues"
+  },
+  "homepage": "https://github.com/pega-digital/pegakit-ui#readme",
+  "dependencies": {
+    "choices.js": "^2.7.6",
+    "stylelint-scss": "^1.4.3",
+    "stylelint-selector-bem-pattern": "^1.0.0",
+    "pegakit-css": "pega-digital/pegakit-css#develop"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.5",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.9.0",
+    "eslint": "^3.15.0",
+    "http-server": "^0.9.0",
+    "ncp": "^2.0.0",
+    "node-sass": "^3.4.2",
+    "onchange": "^2.2.0",
+    "postcss-cli": "^2.5.1",
+    "pre-commit": "^1.2.2",
+    "stylelint-config-guidelines": "^1.1.5",
+    "stylelint-selector-pattern": "0.0.1",
+    "stylelint": "^7.9.0"
+  },
+  "peerDependencies": {
+    "stylelint": "^7.9.0",
+    "stylelint-scss": "^1.4.3",
+    "stylelint-selector-bem-pattern": "^1.0.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "airbnb"
+    ]
+  }
+}

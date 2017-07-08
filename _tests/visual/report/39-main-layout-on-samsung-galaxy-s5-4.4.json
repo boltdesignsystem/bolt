@@ -1,0 +1,165 @@
+{
+  "testId" : "39-main-layout-on-samsung-galaxy-s5-4.4",
+  "name" : "Main layout on Samsung Galaxy S5 / 4.4",
+  "report" : {
+    "nodes" : [ {
+      "status" : "info",
+      "nodes" : [ {
+        "name" : "check test/visual/specs/layout.gspec --include \"narrow_screen,all\"",
+        "status" : "info",
+        "nodes" : [ {
+          "name" : "Check layout: test/visual/specs/layout.gspec included tags: narrow_screen,all",
+          "status" : "info",
+          "time" : 1496683730106,
+          "includedTags" : [ "narrow_screen", "all" ],
+          "excludedTags" : [ ],
+          "sections" : [ {
+            "name" : "Main section",
+            "objects" : [ {
+              "name" : "header",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 22
+                },
+                "name" : "width 100% of viewport/width",
+                "highlight" : [ "header" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 23
+                },
+                "name" : "inside viewport 0px top, 0px left, 0px right",
+                "highlight" : [ "header", "viewport" ]
+              } ]
+            }, {
+              "name" : "header.title",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 26
+                },
+                "name" : "inside header ~ 16px left",
+                "highlight" : [ "header.title", "header" ]
+              } ]
+            }, {
+              "name" : "layoutContainer",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 29
+                },
+                "name" : "width 100% of viewport/width",
+                "highlight" : [ "layoutContainer" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 30
+                },
+                "name" : "inside screen 0px left, 0px right",
+                "highlight" : [ "layoutContainer", "screen" ]
+              } ]
+            }, {
+              "name" : "header.menuButton",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 35
+                },
+                "name" : "inside header ~ 16px right",
+                "highlight" : [ "header.menuButton", "header" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 36
+                },
+                "name" : "aligned horizontally centered header.title 1px",
+                "highlight" : [ "header.menuButton", "header.title" ]
+              } ]
+            }, {
+              "name" : "nav",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 40
+                },
+                "name" : "absent",
+                "highlight" : [ ]
+              } ]
+            }, {
+              "name" : "main.content.title",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 43
+                },
+                "name" : "below header ~ 16px",
+                "highlight" : [ "main.content.title", "header" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 44
+                },
+                "name" : "inside viewport ~ 16px left, ~ 16px right",
+                "highlight" : [ "main.content.title", "viewport" ]
+              } ]
+            }, {
+              "name" : "main.content.para-1",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 47
+                },
+                "name" : "below main.content.title ~ 16px",
+                "highlight" : [ "main.content.para-1", "main.content.title" ]
+              } ]
+            } ]
+          } ],
+          "objects" : {
+            "header.title" : {
+              "area" : [ 16, 16, 152, 39 ]
+            },
+            "header.menuButton" : {
+              "area" : [ 283, 16, 61, 40 ]
+            },
+            "viewport" : {
+              "area" : [ 0, 0, 360, 563 ]
+            },
+            "layoutContainer" : {
+              "area" : [ 0, 72, 360, 795 ]
+            },
+            "main.content.para-1" : {
+              "area" : [ 16, 143, 328, 200 ]
+            },
+            "header" : {
+              "area" : [ 0, 0, 360, 72 ]
+            },
+            "screen" : {
+              "area" : [ 0, 0, 360, 867 ]
+            },
+            "main.content.title" : {
+              "area" : [ 16, 88, 328, 39 ]
+            }
+          },
+          "screenshot" : "layout-39-screenshot.png",
+          "type" : "layout"
+        } ],
+        "time" : 1496683716371,
+        "type" : "node"
+      } ],
+      "time" : 1496683349036,
+      "type" : "node"
+    } ]
+  }
+}

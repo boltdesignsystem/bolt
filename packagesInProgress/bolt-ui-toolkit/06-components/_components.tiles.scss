@@ -1,0 +1,98 @@
+/* ==========================================================================
+   #TILES
+   ========================================================================== */
+
+$tile-padding: ($spacing-unit * 4) ($spacing-unit * 2) !default;
+$tile-padding--large: ($spacing-unit * 4) ($spacing-unit * 3) !default;
+$tile-padding--small: ($spacing-unit * 2) !default;
+$tile-padding--xsmall: ($spacing-unit-small)  $spacing-unit !default;
+
+.c-tile {
+  align-items: stretch;
+  flex: 1 1 auto;
+  min-height: -webkit-min-content;
+  min-height: -moz-min-content;
+  min-height: min-content;
+  width: 100%;
+  position: relative;
+  padding: $tile-padding;
+  display: flex;
+  flex-direction: column;
+
+
+  margin-bottom: $spacing-unit; //Automatically provide some default spacing for surrounding siblings. Remove if this is either an only child and/or the last component inside a container (like in the case of a carousel tile).
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+
+.c-tile__content {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+}
+
+.c-tile__content--small,
+.c-tile--small {
+  padding: $tile-padding--small;
+}
+
+.c-tile__content--xsmall,
+.c-tile--xsmall {
+  padding: $tile-padding--xsmall;
+}
+
+.c-tile__content--spaceless,
+.c-tile--spaceless {
+  padding: 0;
+}
+
+
+// .c-tile--full-bleed {
+//   
+// }
+
+
+.c-tile--full {
+  @include full-bleed();
+  // padding-left: 0;
+  // padding-right: 0;
+  // margin-left: -$spacing-unit;
+  // margin-right: -$spacing-unit;
+  // width: auto;
+  // 
+  // @include respond-to(medium){
+  //   margin-left: auto;
+  //   margin-right: auto;
+  // }
+
+}
+
+.c-tile--large {
+  padding: $tile-padding--large;
+}
+
+
+.c-background-banner--floor-fade + .c-tile__content {
+  color: white;
+}
+
+
+.c-tile--center {
+  text-align: center;
+}
+
+.c-tile__split-background {
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.c-tile__split-background--left {
+  background-position: left center;
+}
+
+.c-tile__split-background--right {
+  background-position: right center;
+}

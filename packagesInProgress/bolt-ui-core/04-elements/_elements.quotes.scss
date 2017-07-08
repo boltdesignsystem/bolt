@@ -1,0 +1,49 @@
+/* ==========================================================================
+   #QUOTES
+   ========================================================================== */
+
+@include add-module(
+  $name:    'elements.quotes',
+  $version: '1.0.0',
+  $dependencies: (
+    'settings.global':     '1.0.0',
+    'tools.font-size':     '1.0.0',
+    'tools.color-palette': '1.0.0',
+  )
+);
+
+q {
+  font-style: italic;
+}
+
+figure {
+  margin-bottom: $spacing-unit-large;
+}
+
+figcaption {
+  @include font-size(small);
+  color: palette(gray);
+}
+
+blockquote {
+  margin-top: $spacing-unit;
+  margin-bottom: $spacing-unit;
+  position: relative;
+
+  footer {
+    @include font-weight(bold);
+    @include font-size(small);
+    font-style: normal;
+
+    &:before {
+      content: '-';
+      position: absolute;
+      left: 0;
+    }
+  }
+}
+
+blockquote p {
+  font-size: inherit;
+  margin-bottom: $spacing-unit-small;
+}

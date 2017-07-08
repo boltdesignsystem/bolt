@@ -1,0 +1,99 @@
+/* ==========================================================================
+   #ICONS
+   ========================================================================== */
+
+// Versioning
+$name: 'components.icons';
+$version: '1.0.0';
+$dependencies: (
+  ('tools.color-palette', '1.1.0'),
+);
+@include versioning-add( $name, $version, $dependencies );
+
+.c-icon {
+  display: inline-block;
+  vertical-align: middle;
+  height: $spacing-unit * 1.5;
+  width: $spacing-unit * 1.5;
+}
+
+.c-icon--huge {
+  height: $spacing-unit-xlarge * 1.5;
+  width: $spacing-unit-xlarge * 1.5;
+}
+
+.c-icon--large {
+  height: $spacing-unit-large * 1.5;
+  width: $spacing-unit-large * 1.5;
+}
+
+.c-icon--small {
+  height: $spacing-unit-small * 1.5;
+  width: $spacing-unit-small * 1.5;
+}
+
+.c-icon--tiny {
+  height: $spacing-unit-xsmall * 1.5;
+  width: $spacing-unit-xsmall * 1.5;
+}
+
+.c-icon--social {
+  color: palette(blue);
+}
+
+
+.c-icon[class*='colored'] {
+  color: palette(black);
+}
+
+
+.c-icon--border {
+  padding: $spacing-unit-large;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  overflow: visible; //Very important. Otherwise the border radius will almost always end up chopping off the icon's corners.
+}
+
+
+@mixin social-icon($color) {
+  color: palette(gray);
+  transition: inherit; //If these icons are already inside of a link, we should be able to inherit any transition effects already in place without needing to re-define anything.
+
+  &:hover {
+    color: mix(palette(black), $color, 30%);
+  }
+
+  &:active,
+  &:focus {
+    color: mix(palette(black), $color, 55%);
+  }
+}
+
+.c-icon--twitter {
+  @include social-icon(palette(twitter, $category: 'social'));
+}
+
+.c-icon--facebook {
+  @include social-icon(palette(facebook, $category: 'social'));
+}
+
+.c-icon--linkedin {
+  @include social-icon(palette(linkedin, $category: 'social'));
+}
+
+.c-icon--email {
+  @include social-icon(palette(email, $category: 'social'));
+}
+
+
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  @include font-family('glyphicon');
+  @include font-weight(normal);
+  font-style: normal;
+  // line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

@@ -1,0 +1,21 @@
+/* ==========================================================================
+   #TEAL THEME
+   ========================================================================== */
+
+@include add-module(
+  $name:    'themes.teal',
+  $version: '1.0.0',
+  $dependencies: (
+    'settings.colors':     '1.0.0',
+    'tools.color-palette': '1.0.0',
+  )
+);
+
+.t-teal {
+  color: palette(white);
+  background-color: palette(teal);
+
+  a {
+    color: palette(white);
+  }
+}

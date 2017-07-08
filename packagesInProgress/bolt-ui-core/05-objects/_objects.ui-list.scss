@@ -1,0 +1,40 @@
+/* ==========================================================================
+   #UI-LIST OBJECT
+   ========================================================================== */
+
+@include add-module(
+  $name:    'objects.ui-list',
+  $version: '1.0.0',
+  $dependencies: (
+    'settings.global':     '1.0.0',
+    'settings.colors':     '1.0.0',
+    'tools.color-palette': '1.0.0'
+  )
+);
+
+/**
+ * The UI list object creates blocky list items with a separator between each
+ * item
+ */
+
+$ui-list-padding: $spacing-unit 0 !default;
+$ui-list-border-width: 1px !default;
+$ui-list-border-style: solid !default;
+$ui-list-border-color: palette(gray, lighter) !default;
+
+.o-ui-list,
+%o-ui-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.o-ui-list__item,
+%o-ui-list__item {
+  padding: $ui-list-padding;
+  border-bottom: $ui-list-border-width $ui-list-border-style $ui-list-border-color;
+
+  &:last-child {
+    border-bottom-width: 0;
+  }
+}

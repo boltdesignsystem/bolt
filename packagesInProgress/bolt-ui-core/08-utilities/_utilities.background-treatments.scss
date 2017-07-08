@@ -1,0 +1,42 @@
+/* ==========================================================================
+   #BACKGROUND TREATMENTS
+   ========================================================================== */
+
+@include add-module(
+  $name:    'utilities.background-treatments',
+  $version: '1.0.0',
+  $dependencies: (
+    'settings.colors':     '1.0.0',
+    'tools.color-palette': '1.0.0',
+  )
+);
+
+//Nudge the background treatment to the top for art direction.
+.u-background-alignment-top {
+  background-position: 50% 10% unquote('!important');
+}
+
+.u-background-filter-blur {
+  filter: blur(5px) unquote('!important');
+}
+
+.u-background-color-gray {
+  background-color: palette(gray, lightest) unquote('!important');
+}
+
+.u-background-color-white {
+  background-color: palette(white) unquote('!important');
+}
+
+.u-background-color-black {
+  background-color: palette(black) unquote('!important');
+}
+
+
+.u-background-size-contain {
+  background-size: contain unquote('!important');
+}
+
+.u-background-size-cover {
+  background-size: cover unquote('!important');
+}

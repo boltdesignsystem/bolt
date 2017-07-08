@@ -1,0 +1,20 @@
+/* ==========================================================================
+   #TEXT CONTRAST
+   ========================================================================== */
+
+/** my contrast text awesome description */
+
+@include add-module(
+  $name:    'tools.text-contrast',
+  $version: '1.0.0',
+  $dependencies: ()
+);
+
+@function text-contrast($color) {
+  @if (lightness($color) > 50) {
+    @return palette(black); // Lighter backgorund, return dark color
+  }
+  @else {
+    @return palette(white); // Darker background, return light color
+  }
+}

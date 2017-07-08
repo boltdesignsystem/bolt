@@ -1,0 +1,46 @@
+/* ==========================================================================
+   #WAFFLE
+   ========================================================================== */
+
+.c-waffle {
+  margin-bottom: $spacing-unit-large;
+}
+
+.c-waffle__tile {
+
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background-color: palette(white);
+    z-index: 1;
+  }
+  &:hover:before {
+    opacity: 0.15;
+  }
+}
+
+.c-waffle__link {
+  display: block;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  padding: $spacing-unit-large;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.c-waffle__heading,
+.c-waffle__text {
+  &:hover {
+    text-decoration: none;
+  }
+}

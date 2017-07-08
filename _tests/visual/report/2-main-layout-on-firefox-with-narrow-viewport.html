@@ -1,0 +1,409 @@
+<html>
+    <head>
+        <title>Galen Reports</title>
+        <link rel="stylesheet" type="text/css" href="report.css"></link>
+        <script src="jquery-1.11.2.min.js"></script>
+        <script src="handlebars-v2.0.0.js"></script>
+        <script src="galen-report.js"></script>
+        <script>
+var reportData = {
+  "testId" : "2-main-layout-on-firefox-with-narrow-viewport",
+  "name" : "Main layout on Firefox with narrow viewport",
+  "report" : {
+    "nodes" : [ {
+      "status" : "info",
+      "nodes" : [ {
+        "name" : "check test/visual/specs/layout.gspec --include \"narrow_screen,all\"",
+        "status" : "info",
+        "nodes" : [ {
+          "name" : "Check layout: test/visual/specs/layout.gspec included tags: narrow_screen,all",
+          "status" : "info",
+          "time" : 1497369459615,
+          "includedTags" : [ "narrow_screen", "all" ],
+          "excludedTags" : [ ],
+          "sections" : [ {
+            "name" : "Main section",
+            "objects" : [ {
+              "name" : "header",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 22
+                },
+                "name" : "width 100% of viewport/width",
+                "highlight" : [ "header" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 23
+                },
+                "name" : "inside viewport 0px top, 0px left, 0px right",
+                "highlight" : [ "header", "viewport" ]
+              } ]
+            }, {
+              "name" : "header.title",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 26
+                },
+                "name" : "inside header ~ 16px left",
+                "highlight" : [ "header.title", "header" ]
+              } ]
+            }, {
+              "name" : "layoutContainer",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 29
+                },
+                "name" : "width 100% of viewport/width",
+                "highlight" : [ "layoutContainer" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 30
+                },
+                "name" : "inside screen 0px left, 0px right",
+                "highlight" : [ "layoutContainer", "screen" ]
+              } ]
+            }, {
+              "name" : "header.menuButton",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 35
+                },
+                "name" : "inside header ~ 16px right",
+                "highlight" : [ "header.menuButton", "header" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 36
+                },
+                "name" : "aligned horizontally centered header.title 1px",
+                "highlight" : [ "header.menuButton", "header.title" ]
+              } ]
+            }, {
+              "name" : "nav",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 40
+                },
+                "name" : "absent",
+                "highlight" : [ ]
+              } ]
+            }, {
+              "name" : "main.content.title",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 43
+                },
+                "name" : "below header ~ 16px",
+                "highlight" : [ "main.content.title", "header" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 44
+                },
+                "name" : "inside viewport ~ 16px left, ~ 16px right",
+                "highlight" : [ "main.content.title", "viewport" ]
+              } ]
+            }, {
+              "name" : "main.content.para-1",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 47
+                },
+                "name" : "below main.content.title ~ 16px",
+                "highlight" : [ "main.content.para-1", "main.content.title" ]
+              } ]
+            } ]
+          } ],
+          "objects" : {
+            "header.title" : {
+              "area" : [ 16, 17, 162, 38 ]
+            },
+            "header.menuButton" : {
+              "area" : [ 454, 16, 58, 39 ]
+            },
+            "viewport" : {
+              "area" : [ 0, 0, 528, 847 ]
+            },
+            "layoutContainer" : {
+              "area" : [ 0, 71, 528, 533 ]
+            },
+            "main.content.para-1" : {
+              "area" : [ 16, 141, 496, 114 ]
+            },
+            "header" : {
+              "area" : [ 0, 0, 528, 71 ]
+            },
+            "screen" : {
+              "area" : [ 0, 0, 528, 847 ]
+            },
+            "main.content.title" : {
+              "area" : [ 16, 87, 496, 38 ]
+            }
+          },
+          "screenshot" : "layout-2-screenshot.png",
+          "type" : "layout"
+        } ],
+        "time" : 1497369450146,
+        "type" : "node"
+      } ],
+      "time" : 1497369416369,
+      "type" : "node"
+    } ]
+  }
+};
+        </script>
+        <script>
+
+            $(function () {
+                var galenReport = createGalenReport();
+                galenReport.render("main", reportData);
+            });
+        </script>
+    </head>
+    <body>
+        <script id="report-tpl" type="text/x-handlebars-template">
+            <ul class="report-nodes">
+            {{#each report.nodes}}
+                {{renderNode this}}
+            {{/each}}
+            </ul>
+        </script>
+        <script id="report-node-tpl" type="text/x-handlebars-template">
+            <li>
+                <span class="report-time">{{formatReportTime time}}</span>
+                <a class="expand-link node-expand-button node-status-{{status}} contains-children-{{hasChildElements nodes}} collapsed" href="#">{{status}}</a>
+                <div class="node-name node-status-{{status}}">{{name}}</div>
+                {{#if extras}}
+                    {{renderNodeExtras extras}}
+                {{/if}}
+                {{#if stacktrace}}
+                    <div class="stacktrace">{{stacktrace}}</div>
+                {{/if}}
+                {{#if attachments}}
+                    <ul class="report-node-attachments">
+                        {{#each attachments}}
+                            <li>
+                                <a class="icon-sprite-before node-attachment" href="{{this}}">{{this}}</a>
+                            </li>
+                        {{/each}}
+                    </ul>
+                {{/if}}
+                <div class="node-details expand-container">
+                    {{#if nodes}}
+                        <ul class="report-nodes">
+                            {{#each nodes}}
+                                {{renderNode this}}
+                            {{/each}}
+                        </ul>
+                    {{/if}}
+                </div>
+            </li>
+        </script>
+        <script id="report-node-text-tpl" type="text/x-handlebars-template">
+            <li>
+                <div class="node-simple-text">
+                    {{name}}
+                </div>
+            </li>
+        </script>
+        <script id="report-layout-tpl" type="text/x-handlebars-template">
+            <li>
+                <span class="report-time">{{formatReportTime time}}</span>
+                <a class="expand-link node-expand-button node-status-label node-status-info contains-children-true collapsed" href="#">LAYOUT</a>
+                <div class="node-name">{{name}}</div>
+                <div class="node-horizontal-menu" data-layout-id="{{layoutId}}"><a class="layout-heatmap-link" href="#">Heat Map</a></div>
+                <div class="node-details expand-container">
+                    {{renderSublayout this}}
+                </div>
+            </li>
+        </script>
+        <script id="report-layout-sublayout-tpl" type="text/x-handlebars-template">
+            <div class="layout-report" data-layout-id="{{layoutId}}" {{#if screenshot}}data-screenshot="{{screenshot}}"{{/if}}>
+                <ul class="layout-sections">
+                    {{#each sections}}
+                        {{renderLayoutSection this}}
+                    {{/each}}
+                </ul>
+            </div>
+        </script>
+        <script id="report-layout-section-tpl" type="text/x-handlebars-template">
+            <li>
+                <a class="layout-section icon-sprite-before expand-link contains-children-true" href="#">{{name}}</a>
+                <div class="layout-details expand-container">
+                    {{#if sections}}
+                        <ul class="layout-sections">
+                        {{#each sections}}
+                            {{renderLayoutSection this}}
+                        {{/each}}
+                        </ul>
+                    {{/if}}
+                    {{#if objects}}
+                        <ul class="layout-objects">
+                            {{#each objects}}
+                                {{renderLayoutObject this}}
+                            {{/each}}
+                        </ul>
+                    {{/if}}
+                </div>
+            </li>
+        </script>
+
+        <script id="report-layout-object-tpl" type="text/x-handlebars-template">
+            <li>
+                <a class="layout-object icon-sprite-before expand-link contains-children-true" href="#">{{name}}</a>
+                <ul class="layout-checks expand-container">
+                    {{#each specs}}
+                        {{renderLayoutCheck this}}
+                    {{/each}}
+                    {{#each specGroups}}
+                    <li>
+                        <a class="layout-specgroup icon-sprite-before expand-link contains-children-true" href="#">{{name}}</a>
+                        <ul class="layout-checks expand-container">
+                            {{#each specs}}
+                                {{renderLayoutCheck this}}
+                            {{/each}}
+                        </ul>
+                    </li>
+                    {{/each}}
+                </ul>
+            </li>
+        </script>
+        <script id="report-layout-check-tpl" type="text/x-handlebars-template">
+            <li>
+            <a class="layout-check icon-sprite-before layout-check-status-{{status}}" href="#"
+                data-highlight-objects="{{commaSeparated highlight}}"
+                title="{{place.filePath}}#{{place.lineNumber}}"
+                >{{name}}</a>
+
+                {{#if errors}}
+                    <div class="layout-check-error-message">
+                        {{#if imageComparison}}
+                        <a class="image-comparison-link"
+                            data-actual-image="{{imageComparison.actualImage}}"
+                            data-expected-image="{{imageComparison.expectedImage}}"
+                            data-map-image="{{imageComparison.comparisonMapImage}}"
+                            href="#">Show image comparison</a>
+                        {{/if}}
+                        <div class="layout-check-error-message-text">
+                            <ul>
+                            {{#each errors}}
+                                <li>{{this}}</li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+                {{/if}}
+
+                {{#if subLayout}}
+                {{renderSublayout subLayout}}
+                {{/if}}
+            </li>
+        </script>
+        <script id="screenshot-popup-tpl" type="text/x-handlebars-template">
+            <div class="screenshot-canvas">
+                {{#if screenshot}}
+                <img src="{{screenshot}}"/>
+                {{else}}
+                <div class="empty-screenshot" style="width: {{width}}; height: {{height}};"></div>
+                {{/if}}
+                {{#each objects}}
+                <div class="canvas-rect" style="left: {{area.left}}px; top: {{area.top}}px; width: {{area.width}}px; height: {{area.height}}px; {{#if drawBorder}}border-color: {{color}};{{else}}border:none;{{/if}}{{#if fillBackground}}background: {{color}};{{else}}background:none;{{/if}}">
+                    <div class="canvas-rect-wrapper">
+                        <div class="canvas-rect-hint" style="background: {{color}};">{{name}}</div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </script>
+        <script id="image-comparison-tpl" type="text/x-handlebars-template">
+            <div class="image-comparison image-comparison-layout-{{layout}}">
+                <div class="actual-image">
+                    <h5>Actual</h5>
+                    <img src="{{actual}}"/>
+                </div>
+
+                <div class="expected-image">
+                    <h5>Expected</h5>
+                    <img src="{{expected}}"/>
+                </div>
+
+                <div class="comparison-map">
+                    <h5>Comparison map</h5>
+                    <img src="{{map}}"/>
+                </div>
+            </div>
+        </script>
+        <script id="node-extras-tpl" type="text/x-handlebars-template">
+            <div class="node-extras">
+                <a class="node-extras" href="#">extras</a>
+                <div class="node-extras-content">
+                    <table class="node-extras-table">
+                        <tbody>
+                        {{#each this}}
+                        <tr>
+                            <td><label>{{@key}}</label></td>
+                            {{#ifCond type 'text'}}
+                            <td>{{value}}</td>
+                            {{/ifCond}}
+                            {{#ifCond type 'link'}}
+                            <td><a href="{{value}}">{{value}}</a></td>
+                            {{/ifCond}}
+                            {{#ifCond type 'image'}}
+                            <td><a href="{{value}}"><img src="{{value}}"/></a></td>
+                            {{/ifCond}}
+                        </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </script>
+
+
+
+        <div id="menu">
+            <ul>
+                <li><a href="report.html">Back to Test Overview</a></li>
+                <li><a class="menu-op-expand-all" href="#">Expand All</a></li>
+                <li><a class="menu-op-collapse-all" href="#">Collapse All</a></li>
+                <li><a class="menu-op-expand-errors" href="#">Expand Errors</a></li>
+            </ul>
+        </div>
+        <h2>Main layout on Firefox with narrow viewport</h2>
+        <div id="main"></div>
+        <div id="screen-shadow"></div>
+        <div id="popup" class="popup">
+            <div class="popup-wrapper">
+                <a class="popup-close-link" href="#">close</a>
+                <div class="popup-content"></div>
+            </div>
+        </div>
+        <div id="notification" class="notification">
+            <div class="notification-wrapper">
+                <a class="notification-close-link" href="#">close</a>
+                <div class="notification-summary"></div>
+                <div class="notification-message"></div>
+            </div>
+        </div>
+    </body>
+</html>

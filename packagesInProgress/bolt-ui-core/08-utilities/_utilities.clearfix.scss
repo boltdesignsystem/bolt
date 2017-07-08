@@ -1,0 +1,15 @@
+/* ==========================================================================
+   #CLEARFIX
+   ========================================================================== */
+
+@include add-module(
+  $name:    'utilities.clearfix',
+  $version: '1.0.0',
+  $dependencies: (
+    'tools.clearfix': '1.0.0'
+  )
+);
+
+.u-clearfix {
+  @include clearfix();
+}

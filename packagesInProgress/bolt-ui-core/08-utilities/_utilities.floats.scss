@@ -1,0 +1,25 @@
+/* ==========================================================================
+   #FLOAT UTILITIES
+   ========================================================================== */
+
+/**
+ * Small utility classes to help with floating.
+ */
+
+@include add-module(
+  $name:    'utilities.floats',
+  $version: '1.0.0',
+  $dependencies: ()
+);
+
+.u-float-left {
+  float: left unquote('!important');
+}
+
+.u-float-right {
+  float: right unquote('!important');
+}
+
+.u-float-none {
+  float: none unquote('!important');
+}

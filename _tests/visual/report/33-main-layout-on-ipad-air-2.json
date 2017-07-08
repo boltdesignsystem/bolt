@@ -1,0 +1,167 @@
+{
+  "testId" : "33-main-layout-on-ipad-air-2",
+  "name" : "Main layout on iPad Air 2",
+  "report" : {
+    "nodes" : [ {
+      "status" : "info",
+      "nodes" : [ {
+        "name" : "check test/visual/specs/layout.gspec --include \"wide_screen,all\"",
+        "status" : "info",
+        "nodes" : [ {
+          "name" : "Check layout: test/visual/specs/layout.gspec included tags: wide_screen,all",
+          "status" : "info",
+          "time" : 1496683496977,
+          "includedTags" : [ "wide_screen", "all" ],
+          "excludedTags" : [ ],
+          "sections" : [ {
+            "name" : "Main section",
+            "objects" : [ {
+              "name" : "header",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 22
+                },
+                "name" : "width 100% of viewport/width",
+                "highlight" : [ "header" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 23
+                },
+                "name" : "inside viewport 0px top, 0px left, 0px right",
+                "highlight" : [ "header", "viewport" ]
+              } ]
+            }, {
+              "name" : "header.title",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 26
+                },
+                "name" : "inside header ~ 16px left",
+                "highlight" : [ "header.title", "header" ]
+              } ]
+            }, {
+              "name" : "layoutContainer",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 29
+                },
+                "name" : "width 100% of viewport/width",
+                "highlight" : [ "layoutContainer" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 30
+                },
+                "name" : "inside screen 0px left, 0px right",
+                "highlight" : [ "layoutContainer", "screen" ]
+              } ]
+            }, {
+              "name" : "header.menuButton",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 64
+                },
+                "name" : "absent",
+                "highlight" : [ ]
+              } ]
+            }, {
+              "name" : "nav",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 68
+                },
+                "name" : "below header ~ 0px",
+                "highlight" : [ "nav", "header" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 69
+                },
+                "name" : "inside viewport 0px left",
+                "highlight" : [ "nav", "viewport" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 70
+                },
+                "name" : "width 250px",
+                "highlight" : [ "nav" ]
+              } ]
+            }, {
+              "name" : "main",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 73
+                },
+                "name" : "right-of nav 0px",
+                "highlight" : [ "main", "nav" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 74
+                },
+                "name" : "aligned horizontally top nav",
+                "highlight" : [ "main", "nav" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 75
+                },
+                "name" : "inside viewport 0px right",
+                "highlight" : [ "main", "viewport" ]
+              } ]
+            } ]
+          } ],
+          "objects" : {
+            "header.title" : {
+              "area" : [ 16, 16, 160, 38 ]
+            },
+            "nav" : {
+              "area" : [ 0, 70, 250, 574 ]
+            },
+            "viewport" : {
+              "area" : [ 0, 0, 768, 960 ]
+            },
+            "layoutContainer" : {
+              "area" : [ 0, 70, 768, 574 ]
+            },
+            "header" : {
+              "area" : [ 0, 0, 768, 70 ]
+            },
+            "screen" : {
+              "area" : [ 0, 0, 768, 960 ]
+            },
+            "main" : {
+              "area" : [ 250, 70, 518, 574 ]
+            }
+          },
+          "screenshot" : "layout-33-screenshot.png",
+          "type" : "layout"
+        } ],
+        "time" : 1496683490601,
+        "type" : "node"
+      } ],
+      "time" : 1496683418144,
+      "type" : "node"
+    } ]
+  }
+}

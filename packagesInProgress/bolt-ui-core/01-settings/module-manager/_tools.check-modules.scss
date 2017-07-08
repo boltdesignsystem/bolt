@@ -1,0 +1,12 @@
+/* ==========================================================================
+   #ADD MODULE
+   ========================================================================== */
+
+@import 'tools.to-list';
+
+// Alias for versioning-check();
+@mixin check-modules ($params...) {
+  @if mixin-exists(versioning-check) {
+    @include versioning-check();
+  }
+}

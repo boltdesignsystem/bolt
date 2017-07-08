@@ -1,0 +1,14 @@
+/* ==========================================================================
+   #MODULE MANAGER
+   ========================================================================== */
+
+@import 'sass-versioning/dist/index';
+@import 'module-manager/tools.to-list';
+@import 'module-manager/tools.add-modules';
+@import 'module-manager/tools.check-modules';
+
+@include add-module(
+  $name:    'settings.vendor',
+  $version: '1.0.0',
+  $dependencies: ()
+);

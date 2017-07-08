@@ -1,0 +1,68 @@
+/* ==========================================================================
+   #INLINE-SVG
+   ========================================================================== */
+
+// @mixin aspect-ratio($arglist... /*$width/$ratio, $height*/){
+//     $map : keywords($arglist);
+//     $height: map-get($map, height) or nth-or-null($arglist, 2);
+//     $width:  map-get($map, width)  or nth-or-null($arglist, 1);
+//     $ratio:  map-get($map, ratio)  or if($width and $height, $width/$height, nth-or-null($arglist, 1)) or 1;
+//     $padding: 1/$ratio * 100%;
+//     &:before { content: ''; float:left; padding-bottom: $padding; }
+//     &:after  { content: ''; display:table; clear: both; }
+// }
+
+// Helper function 
+// Return null rather than throwing an error if index is outside list range.    
+@function nth-or-null($list, $index) {
+  @return if(length($list) >= $index, nth($list, $index), null);
+}
+
+
+//
+//  Function to replace characters in a string
+//
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+  @return $string;
+}
+
+//
+//  Function to create an optimized svg url
+//  (may need a few extra replacements)
+//
+@function old_svg-url($svg) {
+  $svg: str-replace($svg, '"', '\'');
+  $svg: str-replace($svg, '<', '%3C');
+  $svg: str-replace($svg, '>', '%3E');
+  $svg: str-replace($svg, '&', '%26');
+  $svg: str-replace($svg, '#', '%23');
+  @return url('data:image/svg+xml;charset=utf8,#{$svg}');
+}
+
+@mixin inline-svg($svg) {
+  //
+  // Chunk up string in order to avoid 
+  // "SystemStackError: stack level too deep"
+  // 
+  $encoded:'';
+  $slice: 2000;
+  $index: 0;
+  $loops: ceil(str-length($svg) / $slice);
+
+  @for $i from 1 through $loops {
+    $chunk: str-slice($svg, $index, $index + $slice - 1);
+    $chunk: str-replace($chunk, '"', '\'');
+    $chunk: str-replace($chunk, '<', '%3C');
+    $chunk: str-replace($chunk, '>', '%3E');
+    $chunk: str-replace($chunk, '&', '%26');
+    $chunk: str-replace($chunk, '#', '%23');
+    $encoded: #{$encoded}#{$chunk};
+    $index: $index + $slice;
+  }
+  background-image: url('data:image/svg+xml;charset=utf8,#{$encoded}');
+}

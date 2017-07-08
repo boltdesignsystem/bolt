@@ -1,0 +1,79 @@
+/* ==========================================================================
+   #BRIGHTCOVE-PLAYER
+   ========================================================================== */
+
+.c-brightcove-player,
+.c-video {
+  display: block;
+  background-color: palette(black);
+  margin-bottom: $spacing-unit-xxsmall;
+}
+// brightcove videos in overlay
+.c-brightcove-player--colorbox {
+  position: static;
+  &:after {
+    padding-bottom: 0;
+  }
+}
+
+// VideoJS overrides; requires higher specificity to override inlined styles from Video.js
+.video-js {
+  .vjs-time-control {
+    font-size: 1.5em;
+    line-height: 2;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .vjs-time-divider {
+    min-width: 1.2em;
+  }
+
+  .vjs-modal-dialog .vjs-modal-dialog-content {
+    box-sizing: border-box;
+  }
+
+  .vjs-social-embed-code {
+    display: none;
+  }
+
+  .vjs-modal-dialog-content {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .vjs-social-overlay .vjs-social-direct-link {
+    width: 100%;
+    padding-right: 0;
+  }
+
+  .vjs-social-overlay .vjs-social-share-links {
+    a:focus, a:hover {
+      color: #fff;
+    }
+  }
+  .vjs-captions-button {
+    display: none;
+  }
+
+  //hapyak-player override for o-ratio positioning
+  .hapyak-player.hapyak-player.hapyak-player {
+    position: absolute;
+  }
+
+  &[autoplay='true'].playing .vjs-big-play-button {
+    display: none;
+  }
+  .vjs-control {
+    width: 2em;
+    @include respond-to(tiny) {
+      width: 3em;
+    }
+    @include respond-to(small) {
+      width: 4em;
+    }
+  }
+  .vjs-control.vjs-progress-control {
+    width: 100%;
+  }
+}

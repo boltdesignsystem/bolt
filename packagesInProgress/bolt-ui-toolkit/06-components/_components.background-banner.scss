@@ -1,0 +1,56 @@
+/* ==========================================================================
+   #BACKGROUND BANNER
+   ========================================================================== */
+
+.c-background-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.c-background-banner__placeholder-image + .c-background-banner__image {
+  opacity: 0;
+  z-index: 2;
+
+  &.lazyloaded {
+    opacity: 1;
+  }
+}
+
+.c-background-banner__placeholder-image {
+  filter: blur(10px);
+  z-index: 1;
+}
+
+.c-background-banner__image,
+.c-background-banner__placeholder-image {
+  display: block;
+  position: absolute;
+  transition: all 0.2s ease;
+  top: -10px;
+  left: -10px;
+  bottom: -10px;
+  right: -10px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 60% center;
+}
+
+
+.c-background-banner--floor-fade:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  content: '';
+  background-size: cover;
+  background-image: linear-gradient(to bottom, rgba(23, 26, 27, 0) 0, rgba(23, 26, 27, 0.7) 100%);
+  background-position: center top;
+}

@@ -1,0 +1,14 @@
+/* ==========================================================================
+   #MODULE MANAGER
+   ========================================================================== */
+
+@import '~sass-versioning';
+@import 'tools.to-list';
+@import 'tools.add-modules';
+@import 'tools.check-modules';
+
+@include add-module(
+  $name:    'settings.module-manager',
+  $version: '0.1.0',
+  $dependencies: ()
+);

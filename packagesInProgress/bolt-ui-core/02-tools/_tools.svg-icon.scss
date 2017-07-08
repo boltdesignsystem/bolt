@@ -1,0 +1,16 @@
+/* ==========================================================================
+   #SVG-ICON
+   ========================================================================== */
+
+$images_path:     '/images/';
+$svg_sprite_name: 'icons.svg';
+
+@include add-module(
+  $name:    'tools.svg-icon',
+  $version: '1.0.0',
+  $dependencies: ()
+);
+
+@function svg-icon($name) {
+  @return unquote('url("' + $images_path + $svg_sprite_name + '#' + $name + '")');
+}

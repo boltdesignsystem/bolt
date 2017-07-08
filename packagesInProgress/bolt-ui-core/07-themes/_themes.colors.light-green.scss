@@ -1,0 +1,21 @@
+/* ==========================================================================
+   #LIGHT-GREEN THEME
+   ========================================================================== */
+
+@include add-module(
+  $name:    'themes.light-green',
+  $version: '1.0.0',
+  $dependencies: (
+    'settings.colors':     '1.0.0',
+    'tools.color-palette': '1.0.0',
+  )
+);
+
+.t-light-green {
+  color: palette(white);
+  background-color: palette(green, lighter);
+
+  a {
+    color: palette(white);
+  }
+}

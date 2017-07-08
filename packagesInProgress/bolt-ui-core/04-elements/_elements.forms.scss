@@ -1,0 +1,51 @@
+/* ==========================================================================
+   #FORM ELEMENTS
+   ========================================================================== */
+
+@include add-module(
+  $name:    'elements.forms',
+  $version: '1.0.0',
+  $dependencies: (
+    'settings.global':      '1.0.0',
+    'settings.colors':      '1.0.0',
+    'tools.color-palette':  '1.0.0',
+    'tools.font-size':      '1.0.0',
+    'tools.font-weight':    '1.0.0'
+  )
+);
+
+input, select, textarea {
+  @include font-size(base);
+  transition: all 0.1s ease;
+  background-color: palette(gray, lightest);
+  border: 1px solid palette(gray, lighter);
+  border-radius: 3px;
+  color: palette(gray, dark);
+  padding: 10px $spacing-unit;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 3px solid palette(blue);
+  background-color: palette(gray, lightest);
+  outline-offset: -3px;
+}
+
+label {
+  @include font-weight(bold);
+  @include font-size(small);
+}
+
+::-webkit-input-placeholder, /* Chrome/Opera/Safari */
+::-moz-placeholder, /* Firefox 19+ */
+:-ms-input-placeholder, /* IE 10+ */
+:-moz-placeholder { /* Firefox 18- */
+  color: palette(gray, dark);
+  opacity: 1;
+}
+
+button {
+  font: inherit;
+  -webkit-appearance: none;
+}

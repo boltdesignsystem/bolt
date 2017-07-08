@@ -1,0 +1,32 @@
+/* ==========================================================================
+   #TABLES
+   ========================================================================== */
+
+@include add-module(
+  $name:    'elements.tables',
+  $version: '1.0.0',
+  $dependencies: (
+    'settings.global':     '1.0.0',
+    'tools.color-palette': '1.0.0',
+    'tools.font-weight':   '1.0.0',
+  )
+);
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+tr:nth-child(even) {
+  background-color: palette(gray, lighter);
+}
+
+th {
+  @include font-weight('bold');
+}
+
+td, th {
+  border: 1px solid palette(gray);
+  text-align: left;
+  padding: $spacing-unit / 2;
+}

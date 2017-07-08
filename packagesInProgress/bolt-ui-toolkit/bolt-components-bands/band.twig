@@ -1,0 +1,52 @@
+
+
+
+<div class="c-band t-navy">
+  
+  <div class="o-wrapper">
+  
+    {% grid 'o-grid--flex o-grid--middle o-grid--matrix' %}
+    
+      {% cell 'u-1/1 u-3/4@small u-flex-grow' %}
+        {% include "@atoms/text/headings/h2.twig" with {
+          heading: {
+            text: 'Who is Pega?',
+            size: 'small',
+            weight: 'semibold'
+          }
+        } %}
+
+        {% include "@atoms/text/headings/heading.twig" with {
+          heading: {
+            element: 'p',
+            text: 'Pega is #1 in software for customer engagement and operational excellence. mwmwmwmwmw',
+            size: 'medium',
+            weight: 'bold',
+            attributes: {
+              class: [
+                "u-margin-bottom-none"
+              ]
+            }
+          }
+        } %}
+      {% endcell %}
+        
+        
+      {% cell 'u-1/1@only-small' %}
+        {% include "@atoms/buttons/button.twig" with {
+          button: {
+            text: 'About Us',
+            style: 'flat',
+            width: 'full'
+          }
+        } %}
+      {% endcell %}
+    {% endgrid %}
+        
+        
+  
+  
+  </div>
+</div>
+
+

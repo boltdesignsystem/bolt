@@ -1,0 +1,36 @@
+/* ==========================================================================
+   #NOTIFICATIONS
+   ========================================================================== */
+
+.c-notification {
+  padding: $spacing-unit;
+  border-radius: $global-border-radius;
+  margin-bottom: $spacing-unit-large;
+  background-color: palette(blue, lightest);
+}
+
+.c-notification--close {
+  @include font-weight(bold);
+  float: right;
+  cursor: pointer;
+  position: relative;
+  margin: 0 0 0 $spacing-unit;
+  color: palette(black);
+  opacity: 0.3;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.c-notification--error {
+  background-color: palette(red, light);
+}
+
+.c-notification--caution {
+  background-color: palette(yellow, light);
+}
+
+.c-notification--success {
+  background-color: palette(green, light);
+}

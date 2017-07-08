@@ -1,0 +1,54 @@
+/* ==========================================================================
+   #PAGE
+   ========================================================================== */
+
+@include add-module(
+  $name:    'elements.page',
+  $version: '1.0.0',
+  $dependencies: (
+    'settings.global':   '1.0.0',
+    'tools.font-family': '1.0.0',
+    'tools.font-weight': '1.0.0'
+  )
+);
+
+/** <html> and <body> tag base styles **/
+
+/**
+ * 1. Avoid the IE 10-11 `min-height` bug.
+ * 2. Set `flex-shrink` to `0` to prevent some browsers
+ *    from letting these items shrink to smaller than
+ *    their content's default
+ *    minimum size. See http://bit.ly/1Mn35US for details.
+ * 3. Use `%` instead of `vh` since `vh` is buggy in
+ *    older mobile Safari.
+ */
+
+
+html {
+  @include font-family('body', $is-root: true);
+  font-size: $global-font-size;
+  line-height: $global-line-height / $global-font-size;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  height: 100%;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  @include font-size(base);
+  @include font-weight(normal);
+  font-style: normal;
+  line-height: 1.5rem;
+  font-feature-settings: 'liga' 1, 'kern' 1;
+}
+
+main {
+  display: block;
+}

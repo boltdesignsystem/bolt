@@ -1,0 +1,20 @@
+/* ==========================================================================
+   #SASSY MAPS
+   ========================================================================== */
+
+/**
+  * Ported over from the stale https://github.com/at-import/Sassy-Maps project
+  */
+  
+@import 'sassy-maps/map-to-string';
+@import 'sassy-maps/map-get';
+@import 'sassy-maps/map-set';
+@import 'sassy-maps/memo';
+
+@include add-module(
+  $name:    'tools.sassy-maps',
+  $version: '1.0.0',
+  $dependencies: ()
+);
+
+

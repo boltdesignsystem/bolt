@@ -1,0 +1,346 @@
+/* ==========================================================================
+   #TABS
+   ========================================================================== */
+
+$tab-border-radius: $global-border-radius !default;
+$tab-background-color: palette(gray, lightest);
+$tab-focus-color: palette(gray, lighter);
+$max-number-of-tab: 6;
+
+
+$use_flex: true;
+
+
+.c-tabs {
+  @include clearfix();
+  margin-bottom: $spacing-unit * 2;
+  border-radius: $global-border-radius;
+  overflow: hidden;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+
+.c-tab {
+  @include clearfix();
+  display: inline;
+  // display: inline-block;
+}
+
+
+// Tab labels
+.c-tabs__labels {
+  width: 100%;
+  position: relative;
+  display: block;
+  display: flex;
+
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  white-space: nowrap;
+
+  /* snap to points */
+  -webkit-scroll-snap-type: mandatory;
+  -ms-scroll-snap-type: mandatory;
+  scroll-snap-type: mandatory;
+
+  /* x interval for snapping (100% of container width) */
+  -webkit-scroll-snap-points-x: repeat(100%);
+  -ms-scroll-snap-points-x: repeat(100%);
+  scroll-snap-points-x: repeat(100%);
+}
+
+
+// Tab label
+.c-tab__label {
+  @include font-size(base);
+  // @include hyphenate();
+  border-width: 0;
+  border-top-width: 6px;
+  border-right-width: 4px; //Fallback for separating labels if you don't support flexbox
+  border-style: solid;
+  border-color: palette(blue, darker);
+  border-right-color: white; //Fallback for separating labels if you don't support flexbox
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, outline-color 0.2s ease;
+  cursor: hand;
+  cursor: pointer;
+  padding: $spacing-unit $spacing-unit ($spacing-unit * 2) $spacing-unit;
+  color: palette(white);
+  background-color: palette(gray, dark);
+  text-align: left;
+
+  display: table-cell; // fixes IE9 issue.
+  display: inline-flex;
+
+  vertical-align: bottom;
+  margin-bottom: 0; // TODO: Remove once default label margin bottom removed.
+  margin-left: $spacing-unit / 4; //Note: if you don't support flexbox, this wouldn't apply
+  white-space: normal;
+
+  outline-style: solid;
+  outline-color: transparent;
+
+  outline-width: 4px;
+  outline-offset: -4px;
+
+  @supports (display: flex) {
+    border-right-width: 0;
+  }
+
+  @include respond-to(small) {
+    outline-width: 6px;
+    outline-offset: -6px;
+  }
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:hover {
+    background-color: palette(gray, darker);
+  }
+
+  &:active {
+    background-color: mix(black, palette(gray, darker), 25%);
+  }
+
+  &.is-selected {
+    background-color: $tab-background-color;
+    color: #fff;
+  }
+}
+
+
+//Specificity hacking.
+.c-tab__label.c-tab__label.c-tab__label:before {
+  display: none;
+}
+
+
+/**
+  * Tab input radio or checkbox input needed for toggling open
+  * panels without requiring JavaScript
+  */
+.c-tab__input {
+  position: absolute;
+  // left: -10000px;
+
+  width: 22px;
+  height: 22px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  opacity: 0;
+}
+
+
+.c-tab__input.c-tab__input.c-tab__input {
+  display: inline-block;
+}
+
+
+/**
+  * Wrapping container around all panels and labels for those
+  * panels.
+  */
+.c-tabs__panels {
+
+  //By default
+  .c-tab__label {
+    display: none;
+  }
+}
+
+
+.c-tab__panel {
+  display: none;
+  overflow: hidden;
+  position: relative;
+  transform: translate3d(0, 0, 0);
+  will-change: max-height, visibility, display;
+}
+
+
+/**
+  * The actual "thing" holding the content inside a single tab.
+  */
+.c-tab__content {
+  @include clearfix();
+  padding: ($spacing-unit);
+  background-color: $tab-background-color;
+  float: left;
+  margin-top: -1px;
+  width: 100%;
+}
+
+
+// Active states
+
+/**
+  * Tab label styling when active
+  */
+.c-tab__input:checked + .c-tab__label {
+  background-color: $tab-background-color;
+  border-color: palette(blue);
+  color: palette(black);
+  cursor: default;
+}
+
+
+.c-tab__input--1:focus ~ .c-tabs__labels .c-tab__label--1,
+.c-tab__input--1:focus ~ .c-tabs__panels .c-tab__label--1,
+.c-tab__input--2:focus ~ .c-tabs__labels .c-tab__label--2,
+.c-tab__input--2:focus ~ .c-tabs__panels .c-tab__label--2,
+.c-tab__input--3:focus ~ .c-tabs__labels .c-tab__label--3,
+.c-tab__input--3:focus ~ .c-tabs__panels .c-tab__label--3,
+.c-tab__input--4:focus ~ .c-tabs__labels .c-tab__label--4,
+.c-tab__input--4:focus ~ .c-tabs__panels .c-tab__label--4,
+.c-tab__input--5:focus ~ .c-tabs__labels .c-tab__label--5,
+.c-tab__input--5:focus ~ .c-tabs__panels .c-tab__label--5,
+.c-tab__input--6:focus ~ .c-tabs__labels .c-tab__label--6,
+.c-tab__input--6:focus ~ .c-tabs__panels .c-tab__label--6 {
+  background-color: $tab-focus-color;
+}
+
+
+[data-whatinput='keyboard'] {
+  .c-tab__input--1:focus ~ .c-tabs__labels .c-tab__label--1,
+  .c-tab__input--1:focus ~ .c-tabs__panels .c-tab__label--1,
+  .c-tab__input--2:focus ~ .c-tabs__labels .c-tab__label--2,
+  .c-tab__input--2:focus ~ .c-tabs__panels .c-tab__label--2,
+  .c-tab__input--3:focus ~ .c-tabs__labels .c-tab__label--3,
+  .c-tab__input--3:focus ~ .c-tabs__panels .c-tab__label--3,
+  .c-tab__input--4:focus ~ .c-tabs__labels .c-tab__label--4,
+  .c-tab__input--4:focus ~ .c-tabs__panels .c-tab__label--4,
+  .c-tab__input--5:focus ~ .c-tabs__labels .c-tab__label--5,
+  .c-tab__input--5:focus ~ .c-tabs__panels .c-tab__label--5,
+  .c-tab__input--6:focus ~ .c-tabs__labels .c-tab__label--6,
+  .c-tab__input--6:focus ~ .c-tabs__panels .c-tab__label--6 {
+    outline-color: palette(blue);
+  }
+}
+
+
+.c-tab__input--1:checked ~ .c-tabs__labels .c-tab__label--1,
+.c-tab__input--1:checked ~ .c-tabs__panels .c-tab__label--1,
+.c-tab__input--2:checked ~ .c-tabs__labels .c-tab__label--2,
+.c-tab__input--2:checked ~ .c-tabs__panels .c-tab__label--2,
+.c-tab__input--3:checked ~ .c-tabs__labels .c-tab__label--3,
+.c-tab__input--3:checked ~ .c-tabs__panels .c-tab__label--3,
+.c-tab__input--4:checked ~ .c-tabs__labels .c-tab__label--4,
+.c-tab__input--4:checked ~ .c-tabs__panels .c-tab__label--4,
+.c-tab__input--5:checked ~ .c-tabs__labels .c-tab__label--5,
+.c-tab__input--5:checked ~ .c-tabs__panels .c-tab__label--5,
+.c-tab__input--6:checked ~ .c-tabs__labels .c-tab__label--6,
+.c-tab__input--6:checked ~ .c-tabs__panels .c-tab__label--6 {
+  background-color: $tab-background-color;
+  border-color: palette(blue);
+  border-right-color: transparent;
+  color: palette(black);
+  cursor: default;
+
+  &:active {
+    outline-color: transparent;
+  }
+}
+
+
+/**
+  * Tab panel styling when active
+  */
+.c-tab__input--1:checked ~ .c-tabs__panels .c-tab__panel--1,
+.c-tab__input--2:checked ~ .c-tabs__panels .c-tab__panel--2,
+.c-tab__input--3:checked ~ .c-tabs__panels .c-tab__panel--3,
+.c-tab__input--4:checked ~ .c-tabs__panels .c-tab__panel--4,
+.c-tab__input--5:checked ~ .c-tabs__panels .c-tab__panel--5,
+.c-tab__input--6:checked ~ .c-tabs__panels .c-tab__panel--6 {
+  display: inline;
+  visibility: visible;
+  max-height: 9999px;
+  // transition: max-height .3s ease, visibility .3s ease;
+  transition: max-height 0s 0.4s ease-in-out, visibility 0s 0s linear;
+}
+
+
+// Tab variations - full widths
+
+/**
+  * Force the tab labels to 100% fill the horizontal space
+  * available
+  */
+.c-tabs--full .c-tab__label {
+
+  @if ($use_flex) {
+    flex-grow: 1;
+  }
+}
+
+
+// Tab variations - accordions on mobile
+.c-tabs--accordion {
+
+  .c-tabs__labels {
+    @include respond-to(only-small) {
+      display: none;
+    }
+  }
+
+  .c-tab:first-child .c-tab__label {
+    @include respond-to(only-small) {
+      border-top-width: 0;
+    }
+  }
+
+  .c-tabs__panels .c-tab__label {
+    @include respond-to(only-small) {
+      display: block;
+    }
+  }
+
+  .c-tab__panel {
+    @include respond-to(only-small) {
+      max-height: 0;
+      display: block;
+      width: 100%;
+      visibility: hidden;
+      transition: max-height 0s 0.2s ease-in-out, visibility 0.8s 0s linear;
+    }
+  }
+
+  .c-tab__label {
+    // @if ($use_flex){
+    //   flex-grow: 1;
+    // }
+
+    @include respond-to(only-small) {
+      border-top-width: 1px;
+      border-left-width: 5px;
+      padding: $spacing-unit;
+      margin-left: 0;
+      width: 100%;
+
+      @if ($use_flex) {
+        flex-basis: 100%;
+      }
+    }
+
+    @include respond-to(small) {
+      @if ($use_flex) {
+        flex-basis: auto;
+      }
+    }
+  }
+
+
+  @include respond-to(only-small) {
+    .c-tab__input:checked + .c-tab__label {
+      border-top-color: transparent;
+    }
+  }
+}
+

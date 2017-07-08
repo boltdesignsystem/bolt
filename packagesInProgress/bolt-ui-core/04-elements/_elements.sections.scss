@@ -1,0 +1,15 @@
+/* ==========================================================================
+   #SECTIONS
+   ========================================================================== */
+
+@include add-module(
+  $name:    'elements.sections',
+  $version: '1.0.0',
+  $dependencies: (
+    'settings.global':     '1.0.0',
+  )
+);
+
+section:not([class]) + section:not([class]) {
+  margin-top: $spacing-unit;
+}

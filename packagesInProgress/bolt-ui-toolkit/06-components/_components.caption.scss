@@ -1,0 +1,39 @@
+/* ==========================================================================
+   #CAPTION
+   ========================================================================== */
+
+.c-caption {
+  position: relative;
+  margin-bottom: 0;
+}
+
+.c-caption__text {
+  @include font-size(large);
+  position: absolute;
+  bottom: $spacing-unit;
+  left: 0;
+  color: palette(white);
+  text-transform: uppercase;
+  padding: ($spacing-unit-small) ($spacing-unit-large);
+  text-align: center;
+  display: inline-block;
+  font-weight: 300;
+  line-height: 1;
+  background-color: rgba(palette(black), 0.95);
+}
+
+
+.c-caption__header,
+.c-caption__subheader {
+  display: block;
+}
+
+.c-caption__subheader {
+  @include font-size(small);
+  margin-bottom: 0;
+}
+
+//Only decrease the size of the title IF a subheader already exists.
+.c-caption__subheader + .c-caption__header {
+  @include font-size(small);
+}

@@ -1,0 +1,28 @@
+/* ==========================================================================
+   #FONT STACKS
+   ========================================================================== */
+
+@include add-module(
+  $name:    'settings.font-stacks',
+  $version: '1.0.0',
+  $dependencies: ()
+);
+
+$font-stacks: (
+  'heading': (
+    font-family: '"Exo 2", Verdana, Tahoma, Segoe, sans-serif',
+    fallback: 'Verdana, Tahoma, Segoe, sans-serif'
+  ),
+  'body': (
+    font-family: '"Open Sans", Tahoma, Segoe, sans-serif',
+    fallback: 'Tahoma, Segoe, sans-serif'
+  ),
+  'font-awesome': (
+    font-family: 'FontAwesome',
+    fallback: 'sans'
+  ),
+  'glyphicon': (
+    font-family: 'Glyphicons Halflings',
+    fallback: 'sans'
+  )
+);
