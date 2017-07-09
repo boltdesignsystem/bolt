@@ -14,26 +14,27 @@ $module-namespace: '@bolt/' !default;
 
 @mixin _add-module($module-name, $module-version, $module-dependencies: ()) {
   $module-name: cleanModuleName($module-name);
+  $module-version: quote($module-version);
 
   
   $module-dependencies: to-list($module-dependencies); //Convert Sass Map to list
 
   //Check if this module already has a version registered.
-  $module-version: map-get($modules, $module-name);
+  $_module-version: map-get($modules, $module-name);
 
-  @if $module-version == null {
+  @if $_module-version == null {
 
-    $module-version: $module-version;
+    $_module-version: $module-version;
     $modules: map-merge($modules, ($module-name: $module-version)) !global;
 
-  } @elseif $module-version == $module-version {
+  } @elseif $_module-version == $module-version {
     @if ($duplicate_warning == true) {
       @warn 'Duplicate #{$module-name} module! You tried to import the same version of the same module more than once!';
     }
   } @else {
-    @warn 'Multiple module versions? It looks like you tried to import v#{module-version} and v#{$module-version} versions of the #{$module-name} module.';
+    @warn 'Multiple module versions? It looks like you tried to import v#{module-version} and v#{$_module-version} versions of the #{$module-name} module.';
   }
-
+  
   @include versioning-add( $module-name, $module-version, $module-dependencies );
 }
 

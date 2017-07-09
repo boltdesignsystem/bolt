@@ -5,6 +5,7 @@ require('babel-core/register');
 require('babel-polyfill');
 
 var cssTasks = require('./packages/build-styles')(gulp, {
+  root: 'demo',
   src: [
     'demo/bolt.scss'
   ],

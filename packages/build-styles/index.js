@@ -22,11 +22,12 @@ module.exports = (gulp, config, $) => {
 
   var magicImporterOptions = {
     // Defines the path in which your node_modules directory is found.
-    cwd: process.cwd(),
+    cwd: config.root || process.cwd(),
     // Paths in which to search for imported files.
     includePaths: [
-      process.cwd(), 
-      process.cwd() + '/' + 'packages'
+      // process.cwd(), 
+      // process.cwd() + '/' + 'packages'
+      config.root || process.cwd()
     ],
     // Allowed extensions.
     extensions: [
@@ -69,7 +70,7 @@ module.exports = (gulp, config, $) => {
     // .pipe($.env.development($.sourcemaps.init()))
     // .pipe(sourcemaps.init())
     .pipe(sass({
-      // includePaths: ['node_modules', 'packages'],
+      includePaths: ['node_modules', 'packages'],
       importer: [jsonImporter, magicImporter(magicImporterOptions)],
       outputStyle: 'expanded',
       // functions: jsonExporter(config.jsonDest, 'jsonexport')
