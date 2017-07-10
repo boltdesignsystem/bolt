@@ -7,7 +7,6 @@ const sass = require('gulp-sass');
 // const duration = require('gulp-duration');
 // const size = require('gulp-size');
 // const cleanCSS = require('gulp-clean-css');
-const jsonImporter = require('../node-sass-json-importer/src');
 const magicImporter = require('node-sass-magic-importer');
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
@@ -71,7 +70,7 @@ module.exports = (gulp, config, $) => {
     // .pipe(sourcemaps.init())
     .pipe(sass({
       includePaths: ['node_modules', 'packages'],
-      importer: [jsonImporter, magicImporter(magicImporterOptions)],
+      importer: [magicImporter(magicImporterOptions)],
       outputStyle: 'expanded',
       // functions: jsonExporter(config.jsonDest, 'jsonexport')
     }).on('error', sass.logError))
