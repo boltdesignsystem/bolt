@@ -50,6 +50,7 @@ var renderFile = require('node-twig').renderFile;
 
 gulp.task('test:compile-templates', function () {
   var twigFiles = glob.sync('./packages/*/tests/test.twig');
+  
   twigFiles.map(function(twigFile) {
     var varients;;
 

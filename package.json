@@ -6,7 +6,8 @@
     "bootstrap": "lerna bootstrap",
     "build": "npm run lint && npm run sass && npm run autoprefixer",
     "serve": "http-server demo",
-    "postinstall": "npm run bootstrap"
+    "postinstall": "npm run bootstrap",
+    "publish": "lerna publish --skip-git --always"
   },
   "repository": {
     "type": "git",
