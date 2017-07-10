@@ -1,6 +1,14 @@
 /* ------------------------------------ *\
   #BUTTONS
 \* ------------------------------------ */
+@import 'node_modules/@bolt/tools-button-color/index.scss';
+@import "node_modules/@bolt/setting-global/index";
+@import "node_modules/@bolt/tools-font-weight/index";
+@import "node_modules/@bolt/tools-no-select/index";
+@import "node_modules/@bolt/tools-font-size/index";
+@import "node_modules/@bolt/tools-spacing/index";
+
+// "@bolt/setting-global": "^0.1.0-alpha.1"
 
 $btn-border-radius: 4px   !default;
 
@@ -39,7 +47,7 @@ $btn-bg-color--flat: palette(blue) !default;
  * 6. Subtract the border size from the padding value so that buttons do not
  *    grow larger as we add borders.
  */
- @mixin bolt-button($btn-padding: 9px $btn-padding) {
+ @mixin button($btn-padding: 9px $btn-padding) {
    @include font-weight(semibold);
    @include no-select();
    @include font-size(base);
@@ -70,11 +78,11 @@ $btn-bg-color--flat: palette(blue) !default;
 }
 
 
-$bolt-component-namespace: 'c-bolt';
+$bolt-component-namespace: 'c-bolt-';
 
 .#{$bolt-component-namespace}button {
-  @include bolt-button();
-  @include bolt-button-color($btn-bg-color);
+  @include button();
+  @include button-color($btn-bg-color);
 }
 
 

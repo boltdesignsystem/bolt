@@ -1,6 +1,6 @@
 {
-  "name": "@bolt/setting-spacing",
-  "description": "Spacing Settings",
+  "name": "@bolt/tools-sassy-maps",
+  "description": "Alias for Sassy Maps Library",
   "keywords": [
     "bolt design system",
     "bolt",
@@ -9,11 +9,11 @@
   ],
   "version": "0.1.0-alpha.1",
   "author": "Salem Ghoweri",
-  "homepage": "https://boltdesignsystem.com",
+  "homepage": "'https://boltdesignsystem.com'",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pega-digital/bolt/tree/master/packages/bolt-css/setting-spacing"
+    "url": "https://github.com/pega-digital/bolt/tree/master/packages/bolt-css/tools-sassy-maps"
   },
   "bugs": {
     "url": "https://github.com/pega-digital/bolt/issues"
@@ -21,5 +21,9 @@
   "main": "index.scss",
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@bolt/setting-module-manager": "^0.1.0-alpha.1",
+    "sassy-maps": "github:at-import/Sassy-Maps#0.x.x"
   }
 }

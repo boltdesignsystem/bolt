@@ -4,18 +4,24 @@ const gulp = require('gulp');
 require('babel-core/register');
 require('babel-polyfill');
 
-var cssTasks = require('./packages/build-styles')(gulp, {
-  root: 'demo',
+var cssTasks = require('./packages/build-tools-styles')(gulp, {
+  root: 'packages/bolt',
   src: [
-    'demo/bolt.scss'
+    'packages/bolt/bolt.scss'
   ],
-  dest: './demo',
-  jsonDest: './demo'
+  dest: './packages/bolt',
+  jsonDest: './packages/bolt'
 });
 
-gulp.task('styles', cssTasks.compile);
+gulp.task('styles:compile', cssTasks.compile);
+gulp.task('styles:watch', cssTasks.watch);
 
-
+gulp.task('default', 
+  gulp.parallel([
+    'styles:compile',
+    'styles:watch'
+  ])
+);
 
 // Default config at `node_modules/@theme-tools/plugin-sass/config.default.js`
 // const cssTasks = require('@theme-tools/plugin-sass')({

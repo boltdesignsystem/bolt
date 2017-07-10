@@ -52,24 +52,24 @@
 
 
   {% set button_classes = [
-    'c-button',
-    button.icon_position == 'left' ? 'c-button--rev' : '',
-    button.shadow ? 'c-button--raised' : '',
-    button.center ? 'c-button--center' : '',
-    button.disabled ? 'c-button--disabled' : '',
-    button.style in button_styles ? 'c-button--' ~ button.style : '',
-    button.size in button_sizes ? 'c-button--' ~ button.size : '',
-    button.width in button_widths ? 'c-button--' ~ button.width : ''
+    'c-bolt-button',
+    button.icon_position == 'left' ? 'c-bolt-button--rev' : '',
+    button.shadow ? 'c-bolt-button--raised' : '',
+    button.center ? 'c-bolt-button--center' : '',
+    button.disabled ? 'c-bolt-button--disabled' : '',
+    button.style in button_styles ? 'c-bolt-button--' ~ button.style : '',
+    button.size in button_sizes ? 'c-bolt-button--' ~ button.size : '',
+    button.width in button_widths ? 'c-bolt-button--' ~ button.width : ''
   ] %}
 
 
   {% set button_text_classes = [
-    'c-button__text',
+    'c-bolt-button__text',
     button.icon_only ? 'u-visuallyhidden' : ''
   ] %}
 
   {% set button_icon_classes = [
-    'c-button__icon'
+    'c-bolt-button__icon'
   ] %}
 
   {% set attributes = create_attribute(button.attributes | default(attributes) | default({})) %}

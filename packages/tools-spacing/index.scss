@@ -1,0 +1,17 @@
+/* ------------------------------------ *\
+  #SPACING FUNCTION
+\* ------------------------------------ */
+
+/** Automatically grab the correct size from on our global spacing unit scale. **/
+
+// @include add-module(
+//   $name:    'settings.colors',
+//   $version: '0.1.0-alpha.1',
+//   $dependencies: ()
+// );
+@import 'node_modules/@bolt/setting-spacing/index.scss';
+@import 'node_modules/@bolt/tools-sassy-maps/index.scss';
+
+@function spacing($spacing-size, $spacing-type: 'default') {
+  @return map-get-deep($spacing-scale, 'spacing', $spacing-type, $spacing-size);
+}

@@ -1,0 +1,142 @@
+/* ------------------------------------ *  #BUTTONS
+\* ------------------------------------ */
+/* ==========================================================================
+   #BUTTON-COLOR
+   ========================================================================== */
+/** Generate different background and border color button interaction states based on the primary color passed in **/
+/* ==========================================================================
+   #TEXT CONTRAST
+   ========================================================================== */
+/** my contrast text awesome description */
+/* ==========================================================================
+   #COLOR PALETTE
+   ========================================================================== */
+/**
+  * Helper functions for applying global color swatches stored in Sass Maps
+  */
+/* ==========================================================================
+   #COLOR PALETTES
+   ========================================================================== */
+/* ==========================================================================
+   #SASSY MAPS
+   ========================================================================== */
+/* ==========================================================================
+   #GLOBAL SETTINGS
+   ========================================================================== */
+/* ==========================================================================
+   #FONT-WEIGHT
+   ========================================================================== */
+/* ==========================================================================
+   #NO SELECT
+   ========================================================================== */
+/* ==========================================================================
+   #FONT-WEIGHT
+   ========================================================================== */
+/* ==========================================================================
+   #GLOBAL SETTINGS
+   ========================================================================== */
+/* ==========================================================================
+   #MODULAR SCALE
+   ========================================================================== */
+/**
+  * Typography sizes based off of 1.2 MS Scale with a 16px base.
+  * http://www.modularscale.com/?16&px&1.2&sass&text
+  */
+/* ==========================================================================
+   #STRIP-UNIT
+   ========================================================================== */
+/* ==========================================================================
+   #SASSY MAPS
+   ========================================================================== */
+/**
+  * Abstracts how font sizes are grabbed and used via modular
+  * typography sizes.
+  */
+/* ------------------------------------ *  #SPACING FUNCTION
+\* ------------------------------------ */
+/** Automatically grab the correct size from on our global spacing unit scale. **/
+/* ------------------------------------ *  #SPACING SCALE
+\* ------------------------------------ */
+/**
+ * Read https://medium.com/eightshapes-llc/space-in-design-systems-188bcbae0d62 for more background into spacing scales for design systems.
+ */
+/* ==========================================================================
+   #SASSY MAPS
+   ========================================================================== */
+/**
+ * 1. Allow us to style box model properties.
+ * 2. Line different sized buttons up a little nicer.
+ * 3. Make buttons inherit font styles (often necessary when styling `input`s as
+ *    buttons).
+ * 4. Reset/normalize some styles.
+ * 5. Force all button-styled elements to appear clickable.
+ * 6. Subtract the border size from the padding value so that buttons do not
+ *    grow larger as we add borders.
+ */
+.c-bolt-button {
+  font-weight: 600;
+  -webkit-user-select: none;
+  /* Chrome all / Safari all */
+  -moz-user-select: none;
+  /* Firefox all */
+  -ms-user-select: none;
+  /* IE 10+ */
+  user-select: none;
+  /* Likely future */
+  font-size: 1rem;
+  line-height: 1.5rem;
+  display: inline-block;
+  /* [1] */
+  padding: 9px 32px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+  font: inherit;
+  /* [3] */
+  text-align: center;
+  /* [4] */
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  /* [2] */
+  cursor: pointer;
+  /* [5] */
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+  color: #fff;
+  background-color: #0092f8;
+  border-color: #006eba;
+}
+
+@supports (display: flex) {
+  .c-bolt-button {
+    display: inline-flex;
+    justify-content: center;
+  }
+}
+
+.c-bolt-button:hover, .c-bolt-button:focus, .c-bolt-button:active {
+  text-decoration: none;
+}
+
+.c-bolt-button:hover {
+  color: #fff;
+  background-color: #007cd3;
+  border-color: #005895;
+}
+
+.c-bolt-button:focus, .c-bolt-button:active {
+  color: #fff;
+  background-color: #0066ae;
+  border-color: #004270;
+}
+
+.c-bolt-button--disabled,
+.c-bolt-button[disabled] {
+  opacity: 0.3;
+  cursor: default;
+  pointer-events: none;
+}
+
+p {
+  color: red;
+}

@@ -1,14 +1,14 @@
 /* ==========================================================================
    #FONT-WEIGHT
    ========================================================================== */
-@import '../tools-font-weight/package.json';
-@import '~@bolt/setting-module-manager';
-  
-@include add-module(
-  $module-name: $name,
-  $module-version: $version,
-  $module-dependencies: ()
-);
+// @import '../tools-font-weight/package.json';
+// @import '~@bolt/setting-module-manager';
+//   
+// @include add-module(
+//   $module-name: $name,
+//   $module-version: $version,
+//   $module-dependencies: ()
+// );
 
 @mixin font-weight($font-weight) {
   @if ($font-weight == 'light') {

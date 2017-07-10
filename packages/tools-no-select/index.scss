@@ -1,0 +1,18 @@
+/* ==========================================================================
+   #NO SELECT
+   ========================================================================== */
+// @import '../tools-no-select/package.json';
+// @import '~@bolt/setting-module-manager';
+//   
+// @include add-module(
+//   $module-name: $name,
+//   $module-version: $version,
+//   $module-dependencies: ()
+// );
+
+@mixin no-select {
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */
+}
