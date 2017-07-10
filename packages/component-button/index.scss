@@ -93,6 +93,25 @@ $bolt-component-namespace: 'c-bolt-';
   pointer-events: none;
 }
 
+.c-bolt-button--flat {
+  color: currentColor;
+  background-color: transparent;
+  border-color: currentColor;
+
+  &:hover {
+    color: currentColor;
+    background-color: mix(black, rgba(palette(white), 0.1), 15%);
+    border-color: currentColor;
+  }
+
+  &:focus,
+  &:active {
+    color: currentColor;
+    background-color: mix(black, rgba(palette(white), 0.1), 30%);
+    border-color: currentColor;
+  }
+}
+
 
 // .c-button__icon {
 //   margin-right: 0.5em;
@@ -166,25 +185,7 @@ $bolt-component-namespace: 'c-bolt-';
 // }
 // 
 // 
-// %c-button--flat,
-// .c-button--flat {
-//   color: currentColor;
-//   background-color: transparent;
-//   border-color: currentColor;
-// 
-//   &:hover {
-//     color: currentColor;
-//     background-color: mix(black, rgba(palette(white), 0.1), 15%);
-//     border-color: currentColor;
-//   }
-// 
-//   &:focus,
-//   &:active {
-//     color: currentColor;
-//     background-color: mix(black, rgba(palette(white), 0.1), 30%);
-//     border-color: currentColor;
-//   }
-// }
+
 // 
 // 
 // %c-button--large,

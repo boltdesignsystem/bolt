@@ -23,6 +23,109 @@ gulp.task('default',
   ])
 );
 
+
+const twig = require('gulp-twig');
+const data = require('gulp-data');
+const path = require('path');
+const merge = require('merge');
+const glob = require('glob');
+const backstop = require('backstopjs');
+const flatten = require('gulp-flatten');
+const rename = require('gulp-rename');
+const fs = require('fs');
+
+
+// gulp.task('backstop_reference', () => backstopjs('reference'));
+
+
+var renderFile = require('node-twig').renderFile;
+// 
+// renderFile('/full/path/to/template.twig', options, (error, template) => {
+//   // ... do something with the rendered template. :)
+// });
+
+
+
+
+
+gulp.task('test:compile-templates', function () {
+  var twigFiles = glob.sync('./packages/*/tests/test.twig');
+  twigFiles.map(function(twigFile) {
+    var varients;;
+
+    var localTwigFileData = require(path.dirname(twigFile) + '/' + path.basename(path.parse(twigFile).name) + '.json');
+    
+     var varientPaths = glob.sync(path.join(path.dirname(twigFile), '../') + '*.varients.json');
+     
+    varientPaths.map(function(varient) {
+      varients = merge(varients, require(path.resolve(varient)));
+    });
+    
+    var mergedTwigFileData = merge(localTwigFileData, varients);
+    
+    renderFile(path.resolve(twigFile), {
+      context: mergedTwigFileData,
+      root: path.resolve(path.join(path.dirname(twigFile), '../'))
+    }, (error, template) => {
+      fs.writeFileSync(path.resolve(path.dirname(twigFile)) + '/tmp/test.html', template);
+    });
+
+  });
+  
+  // return gulp.src()
+  //   .pipe(data(function(file) {
+  //     var mergedData;
+  //     var localData = require(path.dirname(file.path) + '/' + path.basename(path.parse(file.path).name) + '.json');
+  //     
+  //     var varientPaths = glob.sync(path.join(path.dirname(file.path), '../') + '*.varients.json');
+  //     
+  //     var varients;
+  //     
+  //     varientPaths.map(function(varient) {
+  //       varients = merge(varients, require(varient));
+  //     });
+  //     
+  //     return merge(localData, varients);
+  //   }))
+  //   .pipe(twig({
+  //     data: {
+  //       title: 'Twig template test'
+  //     }
+  //   }))
+  //   .pipe(rename(function(path){
+  //     path.dirname += "/tmp";
+  //   }))
+  //   .pipe(gulp.dest('packages'));
+
+});
+
+
+
+
+gulp.task('test:compile-styles', function () {
+  var testStyles = glob.sync('./packages/*/tests/*test.scss', {
+    ignore: [
+      './packages/*/tests/_*test.scss'
+    ]
+  });
+  
+  testStyles.map(function(testStyle) {
+    var testFile = path.parse(testStyle).name;
+    var testDir = path.dirname(testStyle);
+    
+    var compileTestCSS = require('./packages/build-tools-styles')(gulp, {
+      root: testDir,
+      src: testStyle,
+      dest: testDir + '/tmp',
+      jsonDest: testDir + '/tmp'
+    });
+    compileTestCSS.compile();
+  });
+});
+
+
+
+
 // Default config at `node_modules/@theme-tools/plugin-sass/config.default.js`
 // const cssTasks = require('@theme-tools/plugin-sass')({
 //   src: [
