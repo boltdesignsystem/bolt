@@ -1,0 +1,152 @@
+{
+  "testId" : "12-search-form-on-ie11-with-narrow-viewport",
+  "name" : "Search form on IE11 with narrow viewport",
+  "report" : {
+    "nodes" : [ {
+      "status" : "info",
+      "nodes" : [ {
+        "name" : "check test/visual/specs/search.gspec --include \"narrow_screen,all\"",
+        "status" : "info",
+        "nodes" : [ {
+          "name" : "Check layout: test/visual/specs/search.gspec included tags: narrow_screen,all",
+          "status" : "info",
+          "time" : 1496683219883,
+          "includedTags" : [ "narrow_screen", "all" ],
+          "excludedTags" : [ ],
+          "sections" : [ {
+            "name" : "Main section",
+            "objects" : [ {
+              "name" : "search",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/search.gspec",
+                  "lineNumber" : 13
+                },
+                "name" : "width 100% of viewport/width",
+                "highlight" : [ "search" ]
+              } ]
+            }, {
+              "name" : "search.label",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/search.gspec",
+                  "lineNumber" : 16
+                },
+                "name" : "inside search 10px top, 10px left, 10px right",
+                "highlight" : [ "search.label", "search" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/search.gspec",
+                  "lineNumber" : 20
+                },
+                "name" : "aligned vertically all search.button 1px",
+                "highlight" : [ "search.label", "search.button" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/search.gspec",
+                  "lineNumber" : 21
+                },
+                "name" : "aligned vertically all search.input 1px",
+                "highlight" : [ "search.label", "search.input" ]
+              } ]
+            }, {
+              "name" : "search.input",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/search.gspec",
+                  "lineNumber" : 24
+                },
+                "name" : "inside search 10px left, 10px right",
+                "highlight" : [ "search.input", "search" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/search.gspec",
+                  "lineNumber" : 25
+                },
+                "name" : "aligned vertically all search.button 1px",
+                "highlight" : [ "search.input", "search.button" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/search.gspec",
+                  "lineNumber" : 26
+                },
+                "name" : "aligned vertically all search.label 1px",
+                "highlight" : [ "search.input", "search.label" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/search.gspec",
+                  "lineNumber" : 27
+                },
+                "name" : "below search.label 10px",
+                "highlight" : [ "search.input", "search.label" ]
+              } ]
+            }, {
+              "name" : "search.button",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/search.gspec",
+                  "lineNumber" : 30
+                },
+                "name" : "inside search 10px left, 10px right, 10px bottom",
+                "highlight" : [ "search.button", "search" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/search.gspec",
+                  "lineNumber" : 31
+                },
+                "name" : "aligned vertically all search.input 1px",
+                "highlight" : [ "search.button", "search.input" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/search.gspec",
+                  "lineNumber" : 32
+                },
+                "name" : "aligned vertically all search.label 1px",
+                "highlight" : [ "search.button", "search.label" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/search.gspec",
+                  "lineNumber" : 33
+                },
+                "name" : "below search.input 10px",
+                "highlight" : [ "search.button", "search.input" ]
+              } ]
+            } ]
+          } ],
+          "objects" : {
+            "search.label" : {
+              "area" : [ 10, 10, 504, 18 ]
+            },
+            "search" : {
+              "area" : [ 0, 0, 524, 128 ]
+            },
+            "search.button" : {
+              "area" : [ 10, 84, 504, 34 ]
+            },
+            "search.input" : {
+              "area" : [ 10, 38, 504, 36 ]
+            }
+          },
+          "screenshot" : "layout-11-screenshot.png",
+          "type" : "layout"
+        } ],
+        "time" : 1496683214457,
+        "type" : "node"
+      } ],
+      "time" : 1496683204998,
+      "type" : "node"
+    } ]
+  }
+}

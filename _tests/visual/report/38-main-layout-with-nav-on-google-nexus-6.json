@@ -1,0 +1,18 @@
+{
+  "testId" : "38-main-layout-with-nav-on-google-nexus-6",
+  "name" : "Main layout with nav on Google Nexus 6",
+  "report" : {
+    "nodes" : [ {
+      "status" : "info",
+      "nodes" : [ {
+        "name" : "RuntimeException: java.lang.ClassCastException: java.lang.String cannot be cast to java.util.List",
+        "status" : "error",
+        "time" : 1498758534481,
+        "stacktrace" : "java.lang.RuntimeException: java.lang.ClassCastException: java.lang.String cannot be cast to java.util.List\n\tat com.galenframework.browser.SeleniumGridBrowserFactory.openBrowser(SeleniumGridBrowserFactory.java:70)\n\tat com.galenframework.runner.GalenBasicTestRunner.runTest(GalenBasicTestRunner.java:73)\n\tat com.galenframework.tests.GalenBasicTest.execute(GalenBasicTest.java:55)\n\tat com.galenframework.TestRunnable.runTest(TestRunnable.java:75)\n\tat com.galenframework.TestRunnable.run(TestRunnable.java:101)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)\n\tat java.lang.Thread.run(Thread.java:748)\nCaused by: java.lang.ClassCastException: java.lang.String cannot be cast to java.util.List\n\tat org.openqa.selenium.remote.ErrorHandler.rebuildServerError(ErrorHandler.java:268)\n\tat org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:120)\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)\n\tat org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:249)\n\tat org.openqa.selenium.remote.RemoteWebDriver.<init>(RemoteWebDriver.java:131)\n\tat org.openqa.selenium.remote.RemoteWebDriver.<init>(RemoteWebDriver.java:158)\n\tat com.galenframework.browser.SeleniumGridBrowserFactory.openBrowser(SeleniumGridBrowserFactory.java:65)\n\t... 7 more\n",
+        "type" : "node"
+      } ],
+      "time" : 1498758534174,
+      "type" : "node"
+    } ]
+  }
+}

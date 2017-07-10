@@ -1,0 +1,72 @@
+/* ==========================================================================
+   #FONT-WEIGHT
+   ========================================================================== */
+// @import '~@bolt/setting-module-manager';
+@import 'node_modules/@bolt/setting-global/index';
+@import 'node_modules/@bolt/setting-modular-scale/index';
+
+
+@import 'node_modules/@bolt/tool-strip-unit/index';
+@import 'node_modules/@bolt/tools-sassy-maps/index';
+
+//   
+// @import '../tools-font-size/package.json';
+// @include add-module(
+//   $module-name: $name,
+//   $module-version: $version,
+//   $module-dependencies: (
+//     'setting-modular-scale': '0.1.0-alpha.1',
+//     'tool-strip-unit': '0.1.0-alpha.1'
+//   )
+// );
+
+/**
+  * Abstracts how font sizes are grabbed and used via modular
+  * typography sizes.
+  */
+
+$base-line-height:    $global-line-height !default;
+
+// font-size of the regular font used
+$base-font-size: 	$global-font-size;
+
+// it is convenient to declare a fixed base-line-height,
+// so every other line-height is a simple multiple of base-line-height
+
+// allow fractional line-height as integer multiple of base-line-height / line-height-scale
+$line-height-scale: 1;
+
+// rhythm is that fraction of the base-line-height 
+$rhythm: $base-line-height / $line-height-scale;
+
+// The height of a capital letter for the typeface chosen (may vary)
+// https://en.wikipedia.org/wiki/Cap_height
+// Usually about 0.7em (see http://jsbin.com/gofexi/edit?html,css,output)
+$font-cap-height: 	0.7;
+
+@mixin font-size($size, $line-height: '', $important: '') {
+  $font-size: nth(map-get-deep($modular-scale, 'font_sizes', $size), 1);
+  $font-size-px:  strip-unit($font-size) * $global-font-size;
+
+  $lines: ceil(($font-size-px + 0.001px) / $rhythm);
+
+  @if ($line-height == '') {
+    $line-height: nth(map-get-deep($modular-scale, 'font_sizes', $size), 2);
+  }
+
+
+  @if ($important == 'important') {
+    font-size: $font-size + unquote('!important');
+
+    @if $line-height != 0 {
+      line-height: #{$line-height}rem + unquote('!important');
+    }
+  }
+  @else {
+    font-size: $font-size;
+
+    @if $line-height != 0 {
+      line-height: #{$line-height}rem;
+    }
+  }
+}

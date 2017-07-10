@@ -1,0 +1,24 @@
+@@ parameterized using desktopBrowsers
+@@ parameterized using viewports
+@@ parameterized using components
+${componentName} on ${browser} with ${viewportName} viewport
+    selenium grid ${gridUrl} --page ${baseUrl}styleguide/${componentLabel}.html ${gridArgs} ${standardGridArgs} --size ${size}
+        check test/visual/specs/${componentLabel}.gspec --include "${tags},all"
+
+@@ parameterized using mobileBrowsers
+@@ parameterized using components
+${componentName} on ${browser}
+    selenium grid ${gridUrl} --page ${baseUrl}styleguide/${componentLabel}.html ${gridArgs} ${standardGridArgs}
+        check test/visual/specs/${componentLabel}.gspec --include "narrow_screen,all"
+
+@@ parameterized using tabletBrowsers
+@@ parameterized using components
+${componentName} on ${browser}
+    selenium grid ${gridUrl} --page ${baseUrl}styleguide/${componentLabel}.html ${gridArgs} ${standardGridArgs}
+        check test/visual/specs/${componentLabel}.gspec --include "wide_screen,all"
+
+@@ parameterized using mobileBrowsers
+Main layout with nav on ${browser}
+    selenium grid ${gridUrl} --page ${baseUrl}styleguide/layout.html ${gridArgs} ${standardGridArgs}
+        run test/visual/scripts/shownav.js
+        check test/visual/specs/layout.gspec --include "narrow_screen_nav"

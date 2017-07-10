@@ -1,0 +1,889 @@
+0 silly input [ 'publish' ]
+1 silly flags { _: [ 'publish' ], 'skip-git': true, skipGit: true }
+2 verbose rootPath /Users/sghoweri/sites/bolt-design-system/bolt
+3 info version 2.0.0
+4 info versioning independent
+5 silly isInitialized
+6 silly isInitialized true
+7 silly existsSync /Users/sghoweri/sites/bolt-design-system/bolt/VERSION
+8 silly initialize attempt
+9 silly getUpdates
+10 info Checking for updated packages...
+11 silly hasTags
+12 verbose hasTags false
+13 info Comparing with initial commit.
+14 verbose updated @bolt/setting-colors
+15 verbose updated @bolt/setting-global
+16 verbose updated @bolt/setting-modular-scale
+17 verbose updated @bolt/setting-module-manager
+18 verbose updated @bolt/setting-spacing
+19 verbose updated @bolt/tools-button-color
+20 verbose updated @bolt/tools-color-palette
+21 verbose updated @bolt/tools-font-size
+22 verbose updated @bolt/tools-font-weight
+23 verbose updated @bolt/tool-strip-unit
+24 verbose updated @bolt/tools-text-contrast
+25 verbose updated @bolt/tools-no-select
+26 verbose updated @bolt/tools-sassy-maps
+27 verbose updated @bolt/tools-spacing
+28 verbose updated @bolt/component-button
+29 verbose updated @bolt/build-styles
+30 verbose updated @bolt/bolt
+31 silly collectDependents
+32 silly isPackageDependentOf @bolt/setting-colors @bolt/setting-colors
+33 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-colors
+34 silly isPackageDependentOf @bolt/setting-colors @bolt/setting-global
+35 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-global
+36 silly isPackageDependentOf @bolt/setting-colors @bolt/setting-modular-scale
+37 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-modular-scale
+38 silly isPackageDependentOf @bolt/setting-colors @bolt/setting-module-manager
+39 verbose dependent @bolt/setting-colors depends on @bolt/setting-module-manager
+40 silly isPackageDependentOf @bolt/setting-colors @bolt/setting-spacing
+41 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-spacing
+42 silly isPackageDependentOf @bolt/setting-colors @bolt/tools-button-color
+43 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-button-color
+44 silly isPackageDependentOf @bolt/setting-colors @bolt/tools-color-palette
+45 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-color-palette
+46 silly isPackageDependentOf @bolt/setting-colors @bolt/tools-font-size
+47 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-font-size
+48 silly isPackageDependentOf @bolt/setting-colors @bolt/tools-font-weight
+49 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-font-weight
+50 silly isPackageDependentOf @bolt/setting-colors @bolt/tool-strip-unit
+51 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tool-strip-unit
+52 silly isPackageDependentOf @bolt/setting-colors @bolt/tools-text-contrast
+53 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-text-contrast
+54 silly isPackageDependentOf @bolt/setting-colors @bolt/tools-no-select
+55 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-no-select
+56 silly isPackageDependentOf @bolt/setting-colors @bolt/tools-sassy-maps
+57 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-sassy-maps
+58 silly isPackageDependentOf @bolt/setting-colors @bolt/tools-spacing
+59 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-spacing
+60 silly isPackageDependentOf @bolt/setting-colors @bolt/component-button
+61 silly isPackageDependentOf @bolt/setting-module-manager @bolt/component-button
+62 silly isPackageDependentOf @bolt/setting-colors @bolt/build-styles
+63 silly isPackageDependentOf @bolt/setting-module-manager @bolt/build-styles
+64 silly isPackageDependentOf @bolt/setting-colors @bolt/bolt
+65 silly isPackageDependentOf @bolt/setting-module-manager @bolt/bolt
+66 silly isPackageDependentOf @bolt/setting-global @bolt/setting-colors
+67 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-colors
+68 silly isPackageDependentOf @bolt/setting-global @bolt/setting-global
+69 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-global
+70 silly isPackageDependentOf @bolt/setting-global @bolt/setting-modular-scale
+71 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-modular-scale
+72 silly isPackageDependentOf @bolt/setting-global @bolt/setting-module-manager
+73 verbose dependent @bolt/setting-global depends on @bolt/setting-module-manager
+74 silly isPackageDependentOf @bolt/setting-global @bolt/setting-spacing
+75 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-spacing
+76 silly isPackageDependentOf @bolt/setting-global @bolt/tools-button-color
+77 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-button-color
+78 silly isPackageDependentOf @bolt/setting-global @bolt/tools-color-palette
+79 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-color-palette
+80 silly isPackageDependentOf @bolt/setting-global @bolt/tools-font-size
+81 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-font-size
+82 silly isPackageDependentOf @bolt/setting-global @bolt/tools-font-weight
+83 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-font-weight
+84 silly isPackageDependentOf @bolt/setting-global @bolt/tool-strip-unit
+85 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tool-strip-unit
+86 silly isPackageDependentOf @bolt/setting-global @bolt/tools-text-contrast
+87 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-text-contrast
+88 silly isPackageDependentOf @bolt/setting-global @bolt/tools-no-select
+89 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-no-select
+90 silly isPackageDependentOf @bolt/setting-global @bolt/tools-sassy-maps
+91 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-sassy-maps
+92 silly isPackageDependentOf @bolt/setting-global @bolt/tools-spacing
+93 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-spacing
+94 silly isPackageDependentOf @bolt/setting-global @bolt/component-button
+95 silly isPackageDependentOf @bolt/setting-module-manager @bolt/component-button
+96 silly isPackageDependentOf @bolt/setting-global @bolt/build-styles
+97 silly isPackageDependentOf @bolt/setting-module-manager @bolt/build-styles
+98 silly isPackageDependentOf @bolt/setting-global @bolt/bolt
+99 silly isPackageDependentOf @bolt/setting-module-manager @bolt/bolt
+100 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/setting-colors
+101 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/setting-global
+102 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/setting-modular-scale
+103 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/setting-module-manager
+104 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/setting-spacing
+105 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/tools-button-color
+106 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/tools-color-palette
+107 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/tools-font-size
+108 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/tools-font-weight
+109 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/tool-strip-unit
+110 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/tools-text-contrast
+111 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/tools-no-select
+112 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/tools-sassy-maps
+113 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/tools-spacing
+114 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/component-button
+115 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/build-styles
+116 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/bolt
+117 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-colors
+118 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-global
+119 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-modular-scale
+120 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-module-manager
+121 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-spacing
+122 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-button-color
+123 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-color-palette
+124 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-font-size
+125 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-font-weight
+126 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tool-strip-unit
+127 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-text-contrast
+128 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-no-select
+129 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-sassy-maps
+130 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-spacing
+131 silly isPackageDependentOf @bolt/setting-module-manager @bolt/component-button
+132 silly isPackageDependentOf @bolt/setting-module-manager @bolt/build-styles
+133 silly isPackageDependentOf @bolt/setting-module-manager @bolt/bolt
+134 silly isPackageDependentOf @bolt/setting-spacing @bolt/setting-colors
+135 silly isPackageDependentOf @bolt/setting-spacing @bolt/setting-global
+136 silly isPackageDependentOf @bolt/setting-spacing @bolt/setting-modular-scale
+137 silly isPackageDependentOf @bolt/setting-spacing @bolt/setting-module-manager
+138 silly isPackageDependentOf @bolt/setting-spacing @bolt/setting-spacing
+139 silly isPackageDependentOf @bolt/setting-spacing @bolt/tools-button-color
+140 silly isPackageDependentOf @bolt/setting-spacing @bolt/tools-color-palette
+141 silly isPackageDependentOf @bolt/setting-spacing @bolt/tools-font-size
+142 silly isPackageDependentOf @bolt/setting-spacing @bolt/tools-font-weight
+143 silly isPackageDependentOf @bolt/setting-spacing @bolt/tool-strip-unit
+144 silly isPackageDependentOf @bolt/setting-spacing @bolt/tools-text-contrast
+145 silly isPackageDependentOf @bolt/setting-spacing @bolt/tools-no-select
+146 silly isPackageDependentOf @bolt/setting-spacing @bolt/tools-sassy-maps
+147 silly isPackageDependentOf @bolt/setting-spacing @bolt/tools-spacing
+148 silly isPackageDependentOf @bolt/setting-spacing @bolt/component-button
+149 silly isPackageDependentOf @bolt/setting-spacing @bolt/build-styles
+150 silly isPackageDependentOf @bolt/setting-spacing @bolt/bolt
+151 silly isPackageDependentOf @bolt/tools-button-color @bolt/setting-colors
+152 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/setting-colors
+153 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-colors
+154 silly isPackageDependentOf @bolt/tools-color-palette @bolt/setting-colors
+155 verbose dependent @bolt/tools-button-color depends on @bolt/setting-colors
+156 silly isPackageDependentOf @bolt/tools-button-color @bolt/setting-global
+157 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/setting-global
+158 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-global
+159 silly isPackageDependentOf @bolt/tools-color-palette @bolt/setting-global
+160 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-global
+161 silly isPackageDependentOf @bolt/setting-colors @bolt/setting-global
+162 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/setting-global
+163 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-global
+164 silly isPackageDependentOf @bolt/tools-button-color @bolt/setting-modular-scale
+165 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/setting-modular-scale
+166 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-modular-scale
+167 silly isPackageDependentOf @bolt/tools-color-palette @bolt/setting-modular-scale
+168 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-modular-scale
+169 silly isPackageDependentOf @bolt/setting-colors @bolt/setting-modular-scale
+170 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/setting-modular-scale
+171 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-modular-scale
+172 silly isPackageDependentOf @bolt/tools-button-color @bolt/setting-module-manager
+173 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/setting-module-manager
+174 verbose dependent @bolt/tools-button-color depends on @bolt/setting-module-manager
+175 silly isPackageDependentOf @bolt/tools-button-color @bolt/setting-spacing
+176 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/setting-spacing
+177 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-spacing
+178 silly isPackageDependentOf @bolt/tools-color-palette @bolt/setting-spacing
+179 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-spacing
+180 silly isPackageDependentOf @bolt/setting-colors @bolt/setting-spacing
+181 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/setting-spacing
+182 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-spacing
+183 silly isPackageDependentOf @bolt/tools-button-color @bolt/tools-button-color
+184 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/tools-button-color
+185 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-button-color
+186 silly isPackageDependentOf @bolt/tools-color-palette @bolt/tools-button-color
+187 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-button-color
+188 silly isPackageDependentOf @bolt/setting-colors @bolt/tools-button-color
+189 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-button-color
+190 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-button-color
+191 silly isPackageDependentOf @bolt/tools-button-color @bolt/tools-color-palette
+192 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/tools-color-palette
+193 verbose dependent @bolt/tools-button-color depends on @bolt/tools-color-palette
+194 silly isPackageDependentOf @bolt/tools-button-color @bolt/tools-font-size
+195 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/tools-font-size
+196 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-font-size
+197 silly isPackageDependentOf @bolt/tools-color-palette @bolt/tools-font-size
+198 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-font-size
+199 silly isPackageDependentOf @bolt/setting-colors @bolt/tools-font-size
+200 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-font-size
+201 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-font-size
+202 silly isPackageDependentOf @bolt/tools-button-color @bolt/tools-font-weight
+203 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/tools-font-weight
+204 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-font-weight
+205 silly isPackageDependentOf @bolt/tools-color-palette @bolt/tools-font-weight
+206 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-font-weight
+207 silly isPackageDependentOf @bolt/setting-colors @bolt/tools-font-weight
+208 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-font-weight
+209 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-font-weight
+210 silly isPackageDependentOf @bolt/tools-button-color @bolt/tool-strip-unit
+211 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/tool-strip-unit
+212 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tool-strip-unit
+213 silly isPackageDependentOf @bolt/tools-color-palette @bolt/tool-strip-unit
+214 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tool-strip-unit
+215 silly isPackageDependentOf @bolt/setting-colors @bolt/tool-strip-unit
+216 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tool-strip-unit
+217 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tool-strip-unit
+218 silly isPackageDependentOf @bolt/tools-button-color @bolt/tools-text-contrast
+219 verbose dependent @bolt/tools-button-color depends on @bolt/tools-text-contrast
+220 silly isPackageDependentOf @bolt/tools-button-color @bolt/tools-no-select
+221 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/tools-no-select
+222 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-no-select
+223 silly isPackageDependentOf @bolt/tools-color-palette @bolt/tools-no-select
+224 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-no-select
+225 silly isPackageDependentOf @bolt/setting-colors @bolt/tools-no-select
+226 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-no-select
+227 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-no-select
+228 silly isPackageDependentOf @bolt/tools-button-color @bolt/tools-sassy-maps
+229 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/tools-sassy-maps
+230 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-sassy-maps
+231 silly isPackageDependentOf @bolt/tools-color-palette @bolt/tools-sassy-maps
+232 verbose dependent @bolt/tools-button-color depends on @bolt/tools-sassy-maps
+233 silly isPackageDependentOf @bolt/tools-button-color @bolt/tools-spacing
+234 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/tools-spacing
+235 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-spacing
+236 silly isPackageDependentOf @bolt/tools-color-palette @bolt/tools-spacing
+237 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-spacing
+238 silly isPackageDependentOf @bolt/setting-colors @bolt/tools-spacing
+239 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-spacing
+240 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-spacing
+241 silly isPackageDependentOf @bolt/tools-button-color @bolt/component-button
+242 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/component-button
+243 silly isPackageDependentOf @bolt/setting-module-manager @bolt/component-button
+244 silly isPackageDependentOf @bolt/tools-color-palette @bolt/component-button
+245 silly isPackageDependentOf @bolt/setting-module-manager @bolt/component-button
+246 silly isPackageDependentOf @bolt/setting-colors @bolt/component-button
+247 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/component-button
+248 silly isPackageDependentOf @bolt/setting-module-manager @bolt/component-button
+249 silly isPackageDependentOf @bolt/tools-button-color @bolt/build-styles
+250 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/build-styles
+251 silly isPackageDependentOf @bolt/setting-module-manager @bolt/build-styles
+252 silly isPackageDependentOf @bolt/tools-color-palette @bolt/build-styles
+253 silly isPackageDependentOf @bolt/setting-module-manager @bolt/build-styles
+254 silly isPackageDependentOf @bolt/setting-colors @bolt/build-styles
+255 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/build-styles
+256 silly isPackageDependentOf @bolt/setting-module-manager @bolt/build-styles
+257 silly isPackageDependentOf @bolt/tools-button-color @bolt/bolt
+258 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/bolt
+259 silly isPackageDependentOf @bolt/setting-module-manager @bolt/bolt
+260 silly isPackageDependentOf @bolt/tools-color-palette @bolt/bolt
+261 silly isPackageDependentOf @bolt/setting-module-manager @bolt/bolt
+262 silly isPackageDependentOf @bolt/setting-colors @bolt/bolt
+263 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/bolt
+264 silly isPackageDependentOf @bolt/setting-module-manager @bolt/bolt
+265 silly isPackageDependentOf @bolt/tools-color-palette @bolt/setting-colors
+266 verbose dependent @bolt/tools-color-palette depends on @bolt/setting-colors
+267 silly isPackageDependentOf @bolt/tools-color-palette @bolt/setting-global
+268 silly isPackageDependentOf @bolt/tools-color-palette @bolt/setting-modular-scale
+269 silly isPackageDependentOf @bolt/tools-color-palette @bolt/setting-module-manager
+270 verbose dependent @bolt/tools-color-palette depends on @bolt/setting-module-manager
+271 silly isPackageDependentOf @bolt/tools-color-palette @bolt/setting-spacing
+272 silly isPackageDependentOf @bolt/tools-color-palette @bolt/tools-button-color
+273 silly isPackageDependentOf @bolt/tools-color-palette @bolt/tools-color-palette
+274 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-color-palette
+275 silly isPackageDependentOf @bolt/setting-colors @bolt/tools-color-palette
+276 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-color-palette
+277 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-color-palette
+278 silly isPackageDependentOf @bolt/tools-color-palette @bolt/tools-font-size
+279 silly isPackageDependentOf @bolt/tools-color-palette @bolt/tools-font-weight
+280 silly isPackageDependentOf @bolt/tools-color-palette @bolt/tool-strip-unit
+281 silly isPackageDependentOf @bolt/tools-color-palette @bolt/tools-text-contrast
+282 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-text-contrast
+283 silly isPackageDependentOf @bolt/setting-colors @bolt/tools-text-contrast
+284 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-text-contrast
+285 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-text-contrast
+286 silly isPackageDependentOf @bolt/tools-color-palette @bolt/tools-no-select
+287 silly isPackageDependentOf @bolt/tools-color-palette @bolt/tools-sassy-maps
+288 verbose dependent @bolt/tools-color-palette depends on @bolt/tools-sassy-maps
+289 silly isPackageDependentOf @bolt/tools-color-palette @bolt/tools-spacing
+290 silly isPackageDependentOf @bolt/tools-color-palette @bolt/component-button
+291 silly isPackageDependentOf @bolt/tools-color-palette @bolt/build-styles
+292 silly isPackageDependentOf @bolt/tools-color-palette @bolt/bolt
+293 silly isPackageDependentOf @bolt/tools-font-size @bolt/setting-colors
+294 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-colors
+295 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/setting-colors
+296 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-colors
+297 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/setting-colors
+298 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-colors
+299 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/setting-colors
+300 silly isPackageDependentOf @bolt/setting-global @bolt/setting-colors
+301 silly isPackageDependentOf @bolt/tools-font-size @bolt/setting-global
+302 verbose dependent @bolt/tools-font-size depends on @bolt/setting-global
+303 silly isPackageDependentOf @bolt/tools-font-size @bolt/setting-modular-scale
+304 verbose dependent @bolt/tools-font-size depends on @bolt/setting-modular-scale
+305 silly isPackageDependentOf @bolt/tools-font-size @bolt/setting-module-manager
+306 verbose dependent @bolt/tools-font-size depends on @bolt/setting-module-manager
+307 silly isPackageDependentOf @bolt/tools-font-size @bolt/setting-spacing
+308 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-spacing
+309 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/setting-spacing
+310 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-spacing
+311 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/setting-spacing
+312 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/setting-spacing
+313 silly isPackageDependentOf @bolt/setting-global @bolt/setting-spacing
+314 silly isPackageDependentOf @bolt/tools-font-size @bolt/tools-button-color
+315 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-button-color
+316 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/tools-button-color
+317 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-button-color
+318 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-button-color
+319 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/tools-button-color
+320 silly isPackageDependentOf @bolt/setting-global @bolt/tools-button-color
+321 silly isPackageDependentOf @bolt/tools-font-size @bolt/tools-color-palette
+322 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-color-palette
+323 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/tools-color-palette
+324 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-color-palette
+325 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-color-palette
+326 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/tools-color-palette
+327 silly isPackageDependentOf @bolt/setting-global @bolt/tools-color-palette
+328 silly isPackageDependentOf @bolt/tools-font-size @bolt/tools-font-size
+329 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-font-size
+330 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/tools-font-size
+331 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-font-size
+332 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-font-size
+333 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/tools-font-size
+334 silly isPackageDependentOf @bolt/setting-global @bolt/tools-font-size
+335 silly isPackageDependentOf @bolt/tools-font-size @bolt/tools-font-weight
+336 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-font-weight
+337 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/tools-font-weight
+338 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-font-weight
+339 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-font-weight
+340 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/tools-font-weight
+341 silly isPackageDependentOf @bolt/setting-global @bolt/tools-font-weight
+342 silly isPackageDependentOf @bolt/tools-font-size @bolt/tool-strip-unit
+343 verbose dependent @bolt/tools-font-size depends on @bolt/tool-strip-unit
+344 silly isPackageDependentOf @bolt/tools-font-size @bolt/tools-text-contrast
+345 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-text-contrast
+346 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/tools-text-contrast
+347 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-text-contrast
+348 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-text-contrast
+349 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/tools-text-contrast
+350 silly isPackageDependentOf @bolt/setting-global @bolt/tools-text-contrast
+351 silly isPackageDependentOf @bolt/tools-font-size @bolt/tools-no-select
+352 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-no-select
+353 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/tools-no-select
+354 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-no-select
+355 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-no-select
+356 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/tools-no-select
+357 silly isPackageDependentOf @bolt/setting-global @bolt/tools-no-select
+358 silly isPackageDependentOf @bolt/tools-font-size @bolt/tools-sassy-maps
+359 verbose dependent @bolt/tools-font-size depends on @bolt/tools-sassy-maps
+360 silly isPackageDependentOf @bolt/tools-font-size @bolt/tools-spacing
+361 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-spacing
+362 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/tools-spacing
+363 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-spacing
+364 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-spacing
+365 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/tools-spacing
+366 silly isPackageDependentOf @bolt/setting-global @bolt/tools-spacing
+367 silly isPackageDependentOf @bolt/tools-font-size @bolt/component-button
+368 silly isPackageDependentOf @bolt/setting-module-manager @bolt/component-button
+369 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/component-button
+370 silly isPackageDependentOf @bolt/setting-module-manager @bolt/component-button
+371 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/component-button
+372 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/component-button
+373 silly isPackageDependentOf @bolt/setting-global @bolt/component-button
+374 silly isPackageDependentOf @bolt/tools-font-size @bolt/build-styles
+375 silly isPackageDependentOf @bolt/setting-module-manager @bolt/build-styles
+376 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/build-styles
+377 silly isPackageDependentOf @bolt/setting-module-manager @bolt/build-styles
+378 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/build-styles
+379 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/build-styles
+380 silly isPackageDependentOf @bolt/setting-global @bolt/build-styles
+381 silly isPackageDependentOf @bolt/tools-font-size @bolt/bolt
+382 silly isPackageDependentOf @bolt/setting-module-manager @bolt/bolt
+383 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/bolt
+384 silly isPackageDependentOf @bolt/setting-module-manager @bolt/bolt
+385 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/bolt
+386 silly isPackageDependentOf @bolt/setting-modular-scale @bolt/bolt
+387 silly isPackageDependentOf @bolt/setting-global @bolt/bolt
+388 silly isPackageDependentOf @bolt/tools-font-weight @bolt/setting-colors
+389 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-colors
+390 silly isPackageDependentOf @bolt/tools-font-weight @bolt/setting-global
+391 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-global
+392 silly isPackageDependentOf @bolt/tools-font-weight @bolt/setting-modular-scale
+393 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-modular-scale
+394 silly isPackageDependentOf @bolt/tools-font-weight @bolt/setting-module-manager
+395 verbose dependent @bolt/tools-font-weight depends on @bolt/setting-module-manager
+396 silly isPackageDependentOf @bolt/tools-font-weight @bolt/setting-spacing
+397 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-spacing
+398 silly isPackageDependentOf @bolt/tools-font-weight @bolt/tools-button-color
+399 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-button-color
+400 silly isPackageDependentOf @bolt/tools-font-weight @bolt/tools-color-palette
+401 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-color-palette
+402 silly isPackageDependentOf @bolt/tools-font-weight @bolt/tools-font-size
+403 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-font-size
+404 silly isPackageDependentOf @bolt/tools-font-weight @bolt/tools-font-weight
+405 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-font-weight
+406 silly isPackageDependentOf @bolt/tools-font-weight @bolt/tool-strip-unit
+407 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tool-strip-unit
+408 silly isPackageDependentOf @bolt/tools-font-weight @bolt/tools-text-contrast
+409 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-text-contrast
+410 silly isPackageDependentOf @bolt/tools-font-weight @bolt/tools-no-select
+411 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-no-select
+412 silly isPackageDependentOf @bolt/tools-font-weight @bolt/tools-sassy-maps
+413 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-sassy-maps
+414 silly isPackageDependentOf @bolt/tools-font-weight @bolt/tools-spacing
+415 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-spacing
+416 silly isPackageDependentOf @bolt/tools-font-weight @bolt/component-button
+417 silly isPackageDependentOf @bolt/setting-module-manager @bolt/component-button
+418 silly isPackageDependentOf @bolt/tools-font-weight @bolt/build-styles
+419 silly isPackageDependentOf @bolt/setting-module-manager @bolt/build-styles
+420 silly isPackageDependentOf @bolt/tools-font-weight @bolt/bolt
+421 silly isPackageDependentOf @bolt/setting-module-manager @bolt/bolt
+422 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/setting-colors
+423 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/setting-global
+424 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-global
+425 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/setting-modular-scale
+426 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-modular-scale
+427 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/setting-module-manager
+428 verbose dependent @bolt/tool-strip-unit depends on @bolt/setting-module-manager
+429 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/setting-spacing
+430 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/tools-button-color
+431 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/tools-color-palette
+432 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/tools-font-size
+433 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/tools-font-weight
+434 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/tool-strip-unit
+435 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tool-strip-unit
+436 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/tools-text-contrast
+437 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/tools-no-select
+438 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/tools-sassy-maps
+439 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-sassy-maps
+440 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/tools-spacing
+441 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/component-button
+442 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/build-styles
+443 silly isPackageDependentOf @bolt/tool-strip-unit @bolt/bolt
+444 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/setting-colors
+445 verbose dependent @bolt/tools-text-contrast depends on @bolt/setting-colors
+446 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/setting-global
+447 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/setting-modular-scale
+448 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/setting-module-manager
+449 verbose dependent @bolt/tools-text-contrast depends on @bolt/setting-module-manager
+450 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/setting-spacing
+451 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/tools-button-color
+452 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/tools-color-palette
+453 verbose dependent @bolt/tools-text-contrast depends on @bolt/tools-color-palette
+454 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/tools-font-size
+455 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/tools-font-weight
+456 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/tool-strip-unit
+457 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/tools-text-contrast
+458 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-text-contrast
+459 silly isPackageDependentOf @bolt/tools-color-palette @bolt/tools-text-contrast
+460 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/tools-no-select
+461 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/tools-sassy-maps
+462 verbose dependent @bolt/tools-text-contrast depends on @bolt/tools-sassy-maps
+463 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/tools-spacing
+464 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/component-button
+465 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/build-styles
+466 silly isPackageDependentOf @bolt/tools-text-contrast @bolt/bolt
+467 silly isPackageDependentOf @bolt/tools-no-select @bolt/setting-colors
+468 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-colors
+469 silly isPackageDependentOf @bolt/tools-no-select @bolt/setting-global
+470 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-global
+471 silly isPackageDependentOf @bolt/tools-no-select @bolt/setting-modular-scale
+472 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-modular-scale
+473 silly isPackageDependentOf @bolt/tools-no-select @bolt/setting-module-manager
+474 verbose dependent @bolt/tools-no-select depends on @bolt/setting-module-manager
+475 silly isPackageDependentOf @bolt/tools-no-select @bolt/setting-spacing
+476 silly isPackageDependentOf @bolt/setting-module-manager @bolt/setting-spacing
+477 silly isPackageDependentOf @bolt/tools-no-select @bolt/tools-button-color
+478 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-button-color
+479 silly isPackageDependentOf @bolt/tools-no-select @bolt/tools-color-palette
+480 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-color-palette
+481 silly isPackageDependentOf @bolt/tools-no-select @bolt/tools-font-size
+482 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-font-size
+483 silly isPackageDependentOf @bolt/tools-no-select @bolt/tools-font-weight
+484 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-font-weight
+485 silly isPackageDependentOf @bolt/tools-no-select @bolt/tool-strip-unit
+486 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tool-strip-unit
+487 silly isPackageDependentOf @bolt/tools-no-select @bolt/tools-text-contrast
+488 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-text-contrast
+489 silly isPackageDependentOf @bolt/tools-no-select @bolt/tools-no-select
+490 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-no-select
+491 silly isPackageDependentOf @bolt/tools-no-select @bolt/tools-sassy-maps
+492 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-sassy-maps
+493 silly isPackageDependentOf @bolt/tools-no-select @bolt/tools-spacing
+494 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-spacing
+495 silly isPackageDependentOf @bolt/tools-no-select @bolt/component-button
+496 silly isPackageDependentOf @bolt/setting-module-manager @bolt/component-button
+497 silly isPackageDependentOf @bolt/tools-no-select @bolt/build-styles
+498 silly isPackageDependentOf @bolt/setting-module-manager @bolt/build-styles
+499 silly isPackageDependentOf @bolt/tools-no-select @bolt/bolt
+500 silly isPackageDependentOf @bolt/setting-module-manager @bolt/bolt
+501 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/setting-colors
+502 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/setting-global
+503 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/setting-modular-scale
+504 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/setting-module-manager
+505 verbose dependent @bolt/tools-sassy-maps depends on @bolt/setting-module-manager
+506 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/setting-spacing
+507 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-button-color
+508 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-color-palette
+509 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-font-size
+510 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-font-weight
+511 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tool-strip-unit
+512 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-text-contrast
+513 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-no-select
+514 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-sassy-maps
+515 silly isPackageDependentOf @bolt/setting-module-manager @bolt/tools-sassy-maps
+516 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-spacing
+517 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/component-button
+518 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/build-styles
+519 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/bolt
+520 silly isPackageDependentOf @bolt/tools-spacing @bolt/setting-colors
+521 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/setting-colors
+522 silly isPackageDependentOf @bolt/setting-spacing @bolt/setting-colors
+523 silly isPackageDependentOf @bolt/tools-spacing @bolt/setting-global
+524 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/setting-global
+525 silly isPackageDependentOf @bolt/setting-spacing @bolt/setting-global
+526 silly isPackageDependentOf @bolt/tools-spacing @bolt/setting-modular-scale
+527 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/setting-modular-scale
+528 silly isPackageDependentOf @bolt/setting-spacing @bolt/setting-modular-scale
+529 silly isPackageDependentOf @bolt/tools-spacing @bolt/setting-module-manager
+530 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/setting-module-manager
+531 silly isPackageDependentOf @bolt/setting-spacing @bolt/setting-module-manager
+532 verbose dependent @bolt/tools-spacing depends on @bolt/setting-module-manager
+533 silly isPackageDependentOf @bolt/tools-spacing @bolt/setting-spacing
+534 verbose dependent @bolt/tools-spacing depends on @bolt/setting-spacing
+535 silly isPackageDependentOf @bolt/tools-spacing @bolt/tools-button-color
+536 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-button-color
+537 silly isPackageDependentOf @bolt/setting-spacing @bolt/tools-button-color
+538 silly isPackageDependentOf @bolt/tools-spacing @bolt/tools-color-palette
+539 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-color-palette
+540 silly isPackageDependentOf @bolt/setting-spacing @bolt/tools-color-palette
+541 silly isPackageDependentOf @bolt/tools-spacing @bolt/tools-font-size
+542 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-font-size
+543 silly isPackageDependentOf @bolt/setting-spacing @bolt/tools-font-size
+544 silly isPackageDependentOf @bolt/tools-spacing @bolt/tools-font-weight
+545 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-font-weight
+546 silly isPackageDependentOf @bolt/setting-spacing @bolt/tools-font-weight
+547 silly isPackageDependentOf @bolt/tools-spacing @bolt/tool-strip-unit
+548 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tool-strip-unit
+549 silly isPackageDependentOf @bolt/setting-spacing @bolt/tool-strip-unit
+550 silly isPackageDependentOf @bolt/tools-spacing @bolt/tools-text-contrast
+551 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-text-contrast
+552 silly isPackageDependentOf @bolt/setting-spacing @bolt/tools-text-contrast
+553 silly isPackageDependentOf @bolt/tools-spacing @bolt/tools-no-select
+554 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-no-select
+555 silly isPackageDependentOf @bolt/setting-spacing @bolt/tools-no-select
+556 silly isPackageDependentOf @bolt/tools-spacing @bolt/tools-sassy-maps
+557 verbose dependent @bolt/tools-spacing depends on @bolt/tools-sassy-maps
+558 silly isPackageDependentOf @bolt/tools-spacing @bolt/tools-spacing
+559 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/tools-spacing
+560 silly isPackageDependentOf @bolt/setting-spacing @bolt/tools-spacing
+561 silly isPackageDependentOf @bolt/tools-spacing @bolt/component-button
+562 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/component-button
+563 silly isPackageDependentOf @bolt/setting-spacing @bolt/component-button
+564 silly isPackageDependentOf @bolt/tools-spacing @bolt/build-styles
+565 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/build-styles
+566 silly isPackageDependentOf @bolt/setting-spacing @bolt/build-styles
+567 silly isPackageDependentOf @bolt/tools-spacing @bolt/bolt
+568 silly isPackageDependentOf @bolt/tools-sassy-maps @bolt/bolt
+569 silly isPackageDependentOf @bolt/setting-spacing @bolt/bolt
+570 silly isPackageDependentOf @bolt/component-button @bolt/setting-colors
+571 verbose dependent @bolt/component-button depends on @bolt/setting-colors
+572 silly isPackageDependentOf @bolt/component-button @bolt/setting-global
+573 verbose dependent @bolt/component-button depends on @bolt/setting-global
+574 silly isPackageDependentOf @bolt/component-button @bolt/setting-modular-scale
+575 silly isPackageDependentOf @bolt/setting-colors @bolt/setting-modular-scale
+576 silly isPackageDependentOf @bolt/tools-button-color @bolt/setting-modular-scale
+577 silly isPackageDependentOf @bolt/setting-global @bolt/setting-modular-scale
+578 silly isPackageDependentOf @bolt/tools-font-weight @bolt/setting-modular-scale
+579 silly isPackageDependentOf @bolt/tools-no-select @bolt/setting-modular-scale
+580 silly isPackageDependentOf @bolt/tools-font-size @bolt/setting-modular-scale
+581 silly isPackageDependentOf @bolt/tools-spacing @bolt/setting-modular-scale
+582 verbose dependent @bolt/component-button depends on @bolt/setting-modular-scale
+583 silly isPackageDependentOf @bolt/component-button @bolt/setting-module-manager
+584 silly isPackageDependentOf @bolt/setting-colors @bolt/setting-module-manager
+585 silly isPackageDependentOf @bolt/tools-button-color @bolt/setting-module-manager
+586 silly isPackageDependentOf @bolt/setting-global @bolt/setting-module-manager
+587 silly isPackageDependentOf @bolt/tools-font-weight @bolt/setting-module-manager
+588 silly isPackageDependentOf @bolt/tools-no-select @bolt/setting-module-manager
+589 silly isPackageDependentOf @bolt/tools-font-size @bolt/setting-module-manager
+590 silly isPackageDependentOf @bolt/tools-spacing @bolt/setting-module-manager
+591 verbose dependent @bolt/component-button depends on @bolt/setting-module-manager
+592 silly isPackageDependentOf @bolt/component-button @bolt/setting-spacing
+593 silly isPackageDependentOf @bolt/setting-colors @bolt/setting-spacing
+594 silly isPackageDependentOf @bolt/tools-button-color @bolt/setting-spacing
+595 silly isPackageDependentOf @bolt/setting-global @bolt/setting-spacing
+596 silly isPackageDependentOf @bolt/tools-font-weight @bolt/setting-spacing
+597 silly isPackageDependentOf @bolt/tools-no-select @bolt/setting-spacing
+598 silly isPackageDependentOf @bolt/tools-font-size @bolt/setting-spacing
+599 silly isPackageDependentOf @bolt/tools-spacing @bolt/setting-spacing
+600 verbose dependent @bolt/component-button depends on @bolt/setting-spacing
+601 silly isPackageDependentOf @bolt/component-button @bolt/tools-button-color
+602 verbose dependent @bolt/component-button depends on @bolt/tools-button-color
+603 silly isPackageDependentOf @bolt/component-button @bolt/tools-color-palette
+604 silly isPackageDependentOf @bolt/setting-colors @bolt/tools-color-palette
+605 silly isPackageDependentOf @bolt/tools-button-color @bolt/tools-color-palette
+606 silly isPackageDependentOf @bolt/setting-global @bolt/tools-color-palette
+607 silly isPackageDependentOf @bolt/tools-font-weight @bolt/tools-color-palette
+608 silly isPackageDependentOf @bolt/tools-no-select @bolt/tools-color-palette
+609 silly isPackageDependentOf @bolt/tools-font-size @bolt/tools-color-palette
+610 silly isPackageDependentOf @bolt/tools-spacing @bolt/tools-color-palette
+611 verbose dependent @bolt/component-button depends on @bolt/tools-color-palette
+612 silly isPackageDependentOf @bolt/component-button @bolt/tools-font-size
+613 verbose dependent @bolt/component-button depends on @bolt/tools-font-size
+614 silly isPackageDependentOf @bolt/component-button @bolt/tools-font-weight
+615 verbose dependent @bolt/component-button depends on @bolt/tools-font-weight
+616 silly isPackageDependentOf @bolt/component-button @bolt/tool-strip-unit
+617 silly isPackageDependentOf @bolt/setting-colors @bolt/tool-strip-unit
+618 silly isPackageDependentOf @bolt/tools-button-color @bolt/tool-strip-unit
+619 silly isPackageDependentOf @bolt/setting-global @bolt/tool-strip-unit
+620 silly isPackageDependentOf @bolt/tools-font-weight @bolt/tool-strip-unit
+621 silly isPackageDependentOf @bolt/tools-no-select @bolt/tool-strip-unit
+622 silly isPackageDependentOf @bolt/tools-font-size @bolt/tool-strip-unit
+623 silly isPackageDependentOf @bolt/tools-spacing @bolt/tool-strip-unit
+624 verbose dependent @bolt/component-button depends on @bolt/tool-strip-unit
+625 silly isPackageDependentOf @bolt/component-button @bolt/tools-text-contrast
+626 silly isPackageDependentOf @bolt/setting-colors @bolt/tools-text-contrast
+627 silly isPackageDependentOf @bolt/tools-button-color @bolt/tools-text-contrast
+628 silly isPackageDependentOf @bolt/setting-global @bolt/tools-text-contrast
+629 silly isPackageDependentOf @bolt/tools-font-weight @bolt/tools-text-contrast
+630 silly isPackageDependentOf @bolt/tools-no-select @bolt/tools-text-contrast
+631 silly isPackageDependentOf @bolt/tools-font-size @bolt/tools-text-contrast
+632 silly isPackageDependentOf @bolt/tools-spacing @bolt/tools-text-contrast
+633 verbose dependent @bolt/component-button depends on @bolt/tools-text-contrast
+634 silly isPackageDependentOf @bolt/component-button @bolt/tools-no-select
+635 verbose dependent @bolt/component-button depends on @bolt/tools-no-select
+636 silly isPackageDependentOf @bolt/component-button @bolt/tools-sassy-maps
+637 silly isPackageDependentOf @bolt/setting-colors @bolt/tools-sassy-maps
+638 silly isPackageDependentOf @bolt/tools-button-color @bolt/tools-sassy-maps
+639 silly isPackageDependentOf @bolt/setting-global @bolt/tools-sassy-maps
+640 silly isPackageDependentOf @bolt/tools-font-weight @bolt/tools-sassy-maps
+641 silly isPackageDependentOf @bolt/tools-no-select @bolt/tools-sassy-maps
+642 silly isPackageDependentOf @bolt/tools-font-size @bolt/tools-sassy-maps
+643 silly isPackageDependentOf @bolt/tools-spacing @bolt/tools-sassy-maps
+644 verbose dependent @bolt/component-button depends on @bolt/tools-sassy-maps
+645 silly isPackageDependentOf @bolt/component-button @bolt/tools-spacing
+646 verbose dependent @bolt/component-button depends on @bolt/tools-spacing
+647 silly isPackageDependentOf @bolt/component-button @bolt/component-button
+648 silly isPackageDependentOf @bolt/setting-colors @bolt/component-button
+649 silly isPackageDependentOf @bolt/tools-button-color @bolt/component-button
+650 silly isPackageDependentOf @bolt/setting-global @bolt/component-button
+651 silly isPackageDependentOf @bolt/tools-font-weight @bolt/component-button
+652 silly isPackageDependentOf @bolt/tools-no-select @bolt/component-button
+653 silly isPackageDependentOf @bolt/tools-font-size @bolt/component-button
+654 silly isPackageDependentOf @bolt/tools-spacing @bolt/component-button
+655 silly isPackageDependentOf @bolt/component-button @bolt/build-styles
+656 silly isPackageDependentOf @bolt/setting-colors @bolt/build-styles
+657 silly isPackageDependentOf @bolt/tools-button-color @bolt/build-styles
+658 silly isPackageDependentOf @bolt/setting-global @bolt/build-styles
+659 silly isPackageDependentOf @bolt/tools-font-weight @bolt/build-styles
+660 silly isPackageDependentOf @bolt/tools-no-select @bolt/build-styles
+661 silly isPackageDependentOf @bolt/tools-font-size @bolt/build-styles
+662 silly isPackageDependentOf @bolt/tools-spacing @bolt/build-styles
+663 silly isPackageDependentOf @bolt/component-button @bolt/bolt
+664 silly isPackageDependentOf @bolt/setting-colors @bolt/bolt
+665 silly isPackageDependentOf @bolt/tools-button-color @bolt/bolt
+666 silly isPackageDependentOf @bolt/setting-global @bolt/bolt
+667 silly isPackageDependentOf @bolt/tools-font-weight @bolt/bolt
+668 silly isPackageDependentOf @bolt/tools-no-select @bolt/bolt
+669 silly isPackageDependentOf @bolt/tools-font-size @bolt/bolt
+670 silly isPackageDependentOf @bolt/tools-spacing @bolt/bolt
+671 silly isPackageDependentOf @bolt/build-styles @bolt/setting-colors
+672 silly isPackageDependentOf @bolt/build-styles @bolt/setting-global
+673 silly isPackageDependentOf @bolt/build-styles @bolt/setting-modular-scale
+674 silly isPackageDependentOf @bolt/build-styles @bolt/setting-module-manager
+675 silly isPackageDependentOf @bolt/build-styles @bolt/setting-spacing
+676 silly isPackageDependentOf @bolt/build-styles @bolt/tools-button-color
+677 silly isPackageDependentOf @bolt/build-styles @bolt/tools-color-palette
+678 silly isPackageDependentOf @bolt/build-styles @bolt/tools-font-size
+679 silly isPackageDependentOf @bolt/build-styles @bolt/tools-font-weight
+680 silly isPackageDependentOf @bolt/build-styles @bolt/tool-strip-unit
+681 silly isPackageDependentOf @bolt/build-styles @bolt/tools-text-contrast
+682 silly isPackageDependentOf @bolt/build-styles @bolt/tools-no-select
+683 silly isPackageDependentOf @bolt/build-styles @bolt/tools-sassy-maps
+684 silly isPackageDependentOf @bolt/build-styles @bolt/tools-spacing
+685 silly isPackageDependentOf @bolt/build-styles @bolt/component-button
+686 silly isPackageDependentOf @bolt/build-styles @bolt/build-styles
+687 silly isPackageDependentOf @bolt/build-styles @bolt/bolt
+688 silly isPackageDependentOf @bolt/bolt @bolt/setting-colors
+689 silly isPackageDependentOf @bolt/component-button @bolt/setting-colors
+690 verbose dependent @bolt/bolt depends on @bolt/setting-colors
+691 silly isPackageDependentOf @bolt/bolt @bolt/setting-global
+692 silly isPackageDependentOf @bolt/component-button @bolt/setting-global
+693 verbose dependent @bolt/bolt depends on @bolt/setting-global
+694 silly isPackageDependentOf @bolt/bolt @bolt/setting-modular-scale
+695 silly isPackageDependentOf @bolt/component-button @bolt/setting-modular-scale
+696 verbose dependent @bolt/bolt depends on @bolt/setting-modular-scale
+697 silly isPackageDependentOf @bolt/bolt @bolt/setting-module-manager
+698 silly isPackageDependentOf @bolt/component-button @bolt/setting-module-manager
+699 verbose dependent @bolt/bolt depends on @bolt/setting-module-manager
+700 silly isPackageDependentOf @bolt/bolt @bolt/setting-spacing
+701 silly isPackageDependentOf @bolt/component-button @bolt/setting-spacing
+702 verbose dependent @bolt/bolt depends on @bolt/setting-spacing
+703 silly isPackageDependentOf @bolt/bolt @bolt/tools-button-color
+704 silly isPackageDependentOf @bolt/component-button @bolt/tools-button-color
+705 verbose dependent @bolt/bolt depends on @bolt/tools-button-color
+706 silly isPackageDependentOf @bolt/bolt @bolt/tools-color-palette
+707 silly isPackageDependentOf @bolt/component-button @bolt/tools-color-palette
+708 verbose dependent @bolt/bolt depends on @bolt/tools-color-palette
+709 silly isPackageDependentOf @bolt/bolt @bolt/tools-font-size
+710 silly isPackageDependentOf @bolt/component-button @bolt/tools-font-size
+711 verbose dependent @bolt/bolt depends on @bolt/tools-font-size
+712 silly isPackageDependentOf @bolt/bolt @bolt/tools-font-weight
+713 silly isPackageDependentOf @bolt/component-button @bolt/tools-font-weight
+714 verbose dependent @bolt/bolt depends on @bolt/tools-font-weight
+715 silly isPackageDependentOf @bolt/bolt @bolt/tool-strip-unit
+716 silly isPackageDependentOf @bolt/component-button @bolt/tool-strip-unit
+717 verbose dependent @bolt/bolt depends on @bolt/tool-strip-unit
+718 silly isPackageDependentOf @bolt/bolt @bolt/tools-text-contrast
+719 silly isPackageDependentOf @bolt/component-button @bolt/tools-text-contrast
+720 verbose dependent @bolt/bolt depends on @bolt/tools-text-contrast
+721 silly isPackageDependentOf @bolt/bolt @bolt/tools-no-select
+722 silly isPackageDependentOf @bolt/component-button @bolt/tools-no-select
+723 verbose dependent @bolt/bolt depends on @bolt/tools-no-select
+724 silly isPackageDependentOf @bolt/bolt @bolt/tools-sassy-maps
+725 silly isPackageDependentOf @bolt/component-button @bolt/tools-sassy-maps
+726 verbose dependent @bolt/bolt depends on @bolt/tools-sassy-maps
+727 silly isPackageDependentOf @bolt/bolt @bolt/tools-spacing
+728 silly isPackageDependentOf @bolt/component-button @bolt/tools-spacing
+729 verbose dependent @bolt/bolt depends on @bolt/tools-spacing
+730 silly isPackageDependentOf @bolt/bolt @bolt/component-button
+731 verbose dependent @bolt/bolt depends on @bolt/component-button
+732 silly isPackageDependentOf @bolt/bolt @bolt/build-styles
+733 silly isPackageDependentOf @bolt/component-button @bolt/build-styles
+734 silly isPackageDependentOf @bolt/bolt @bolt/bolt
+735 silly isPackageDependentOf @bolt/component-button @bolt/bolt
+736 silly collectUpdates
+737 verbose has filtered update @bolt/setting-colors
+738 verbose has filtered update @bolt/setting-global
+739 verbose has filtered update @bolt/setting-modular-scale
+740 verbose has filtered update @bolt/setting-module-manager
+741 verbose has filtered update @bolt/setting-spacing
+742 verbose has filtered update @bolt/tools-button-color
+743 verbose has filtered update @bolt/tools-color-palette
+744 verbose has filtered update @bolt/tools-font-size
+745 verbose has filtered update @bolt/tools-font-weight
+746 verbose has filtered update @bolt/tool-strip-unit
+747 verbose has filtered update @bolt/tools-text-contrast
+748 verbose has filtered update @bolt/tools-no-select
+749 verbose has filtered update @bolt/tools-sassy-maps
+750 verbose has filtered update @bolt/tools-spacing
+751 verbose has filtered update @bolt/component-button
+752 verbose has filtered update @bolt/build-styles
+753 verbose has filtered update @bolt/bolt
+754 silly initialize success
+755 silly execute attempt
+756 info publish Publishing packages to npm...
+757 silly existsSync /Users/sghoweri/sites/bolt-design-system/bolt/packages/setting-colors/scripts/prepublish.js
+758 verbose execScript No prepublish script found at /Users/sghoweri/sites/bolt-design-system/bolt/packages/setting-colors/scripts/prepublish.js
+759 silly existsSync /Users/sghoweri/sites/bolt-design-system/bolt/packages/setting-global/scripts/prepublish.js
+760 verbose execScript No prepublish script found at /Users/sghoweri/sites/bolt-design-system/bolt/packages/setting-global/scripts/prepublish.js
+761 silly existsSync /Users/sghoweri/sites/bolt-design-system/bolt/packages/setting-modular-scale/scripts/prepublish.js
+762 verbose execScript No prepublish script found at /Users/sghoweri/sites/bolt-design-system/bolt/packages/setting-modular-scale/scripts/prepublish.js
+763 silly existsSync /Users/sghoweri/sites/bolt-design-system/bolt/packages/setting-module-manager/scripts/prepublish.js
+764 verbose execScript No prepublish script found at /Users/sghoweri/sites/bolt-design-system/bolt/packages/setting-module-manager/scripts/prepublish.js
+765 silly existsSync /Users/sghoweri/sites/bolt-design-system/bolt/packages/setting-spacing/scripts/prepublish.js
+766 verbose execScript No prepublish script found at /Users/sghoweri/sites/bolt-design-system/bolt/packages/setting-spacing/scripts/prepublish.js
+767 silly existsSync /Users/sghoweri/sites/bolt-design-system/bolt/packages/tool-button-color/scripts/prepublish.js
+768 verbose execScript No prepublish script found at /Users/sghoweri/sites/bolt-design-system/bolt/packages/tool-button-color/scripts/prepublish.js
+769 silly existsSync /Users/sghoweri/sites/bolt-design-system/bolt/packages/tool-color-palette/scripts/prepublish.js
+770 verbose execScript No prepublish script found at /Users/sghoweri/sites/bolt-design-system/bolt/packages/tool-color-palette/scripts/prepublish.js
+771 silly existsSync /Users/sghoweri/sites/bolt-design-system/bolt/packages/tool-font-size/scripts/prepublish.js
+772 verbose execScript No prepublish script found at /Users/sghoweri/sites/bolt-design-system/bolt/packages/tool-font-size/scripts/prepublish.js
+773 silly existsSync /Users/sghoweri/sites/bolt-design-system/bolt/packages/tool-font-weight/scripts/prepublish.js
+774 verbose execScript No prepublish script found at /Users/sghoweri/sites/bolt-design-system/bolt/packages/tool-font-weight/scripts/prepublish.js
+775 silly existsSync /Users/sghoweri/sites/bolt-design-system/bolt/packages/tool-strip-unit/scripts/prepublish.js
+776 verbose execScript No prepublish script found at /Users/sghoweri/sites/bolt-design-system/bolt/packages/tool-strip-unit/scripts/prepublish.js
+777 silly existsSync /Users/sghoweri/sites/bolt-design-system/bolt/packages/tool-text-contrast/scripts/prepublish.js
+778 verbose execScript No prepublish script found at /Users/sghoweri/sites/bolt-design-system/bolt/packages/tool-text-contrast/scripts/prepublish.js
+779 silly existsSync /Users/sghoweri/sites/bolt-design-system/bolt/packages/tools-no-select/scripts/prepublish.js
+780 verbose execScript No prepublish script found at /Users/sghoweri/sites/bolt-design-system/bolt/packages/tools-no-select/scripts/prepublish.js
+781 silly existsSync /Users/sghoweri/sites/bolt-design-system/bolt/packages/tools-sassy-maps/scripts/prepublish.js
+782 verbose execScript No prepublish script found at /Users/sghoweri/sites/bolt-design-system/bolt/packages/tools-sassy-maps/scripts/prepublish.js
+783 silly existsSync /Users/sghoweri/sites/bolt-design-system/bolt/packages/tools-spacing/scripts/prepublish.js
+784 verbose execScript No prepublish script found at /Users/sghoweri/sites/bolt-design-system/bolt/packages/tools-spacing/scripts/prepublish.js
+785 silly existsSync /Users/sghoweri/sites/bolt-design-system/bolt/packages/component-button/scripts/prepublish.js
+786 verbose execScript No prepublish script found at /Users/sghoweri/sites/bolt-design-system/bolt/packages/component-button/scripts/prepublish.js
+787 silly existsSync /Users/sghoweri/sites/bolt-design-system/bolt/packages/build-tools-styles/scripts/prepublish.js
+788 verbose execScript No prepublish script found at /Users/sghoweri/sites/bolt-design-system/bolt/packages/build-tools-styles/scripts/prepublish.js
+789 silly existsSync /Users/sghoweri/sites/bolt-design-system/bolt/packages/bolt/scripts/prepublish.js
+790 verbose execScript No prepublish script found at /Users/sghoweri/sites/bolt-design-system/bolt/packages/bolt/scripts/prepublish.js
+791 verbose publishing @bolt/setting-modular-scale
+792 silly publishTaggedInDir latest setting-modular-scale
+793 silly getExecOpts { cwd: '/Users/sghoweri/sites/bolt-design-system/bolt/packages/setting-modular-scale' }
+794 verbose publishing @bolt/setting-module-manager
+795 silly publishTaggedInDir latest setting-module-manager
+796 silly getExecOpts { cwd: '/Users/sghoweri/sites/bolt-design-system/bolt/packages/setting-module-manager' }
+797 verbose publishing @bolt/setting-spacing
+798 silly publishTaggedInDir latest setting-spacing
+799 silly getExecOpts { cwd: '/Users/sghoweri/sites/bolt-design-system/bolt/packages/setting-spacing' }
+800 verbose publishing @bolt/build-styles
+801 silly publishTaggedInDir latest build-tools-styles
+802 silly getExecOpts { cwd: '/Users/sghoweri/sites/bolt-design-system/bolt/packages/build-tools-styles' }
+803 error publish Retrying failed publish: @bolt/build-styles
+804 verbose publish error Error: Command failed: npm publish --tag latest
+804 verbose publish error npm ERR! publish Failed PUT 402
+804 verbose publish error npm ERR! code E402
+804 verbose publish error npm ERR! You need a paid account to perform this action. For more info, visit: https://www.npmjs.com/private-modules : @bolt/build-styles
+804 verbose publish error
+804 verbose publish error npm ERR! A complete log of this run can be found in:
+804 verbose publish error npm ERR!     /Users/sghoweri/.npm/_logs/2017-07-10T01_36_59_425Z-debug.log
+804 verbose publish error
+804 verbose publish error     at Promise.all.then.arr (/usr/local/lib/node_modules/lerna/node_modules/execa/index.js:210:11)
+804 verbose publish error     at process._tickCallback (internal/process/next_tick.js:109:7)
+805 verbose publishing @bolt/build-styles
+806 silly publishTaggedInDir latest build-tools-styles
+807 silly getExecOpts { cwd: '/Users/sghoweri/sites/bolt-design-system/bolt/packages/build-tools-styles' }
+808 error publish Retrying failed publish: @bolt/build-styles
+809 verbose publish error Error: Command failed: npm publish --tag latest
+809 verbose publish error npm ERR! publish Failed PUT 402
+809 verbose publish error npm ERR! code E402
+809 verbose publish error npm ERR! You need a paid account to perform this action. For more info, visit: https://www.npmjs.com/private-modules : @bolt/build-styles
+809 verbose publish error
+809 verbose publish error npm ERR! A complete log of this run can be found in:
+809 verbose publish error npm ERR!     /Users/sghoweri/.npm/_logs/2017-07-10T01_37_00_997Z-debug.log
+809 verbose publish error
+809 verbose publish error     at Promise.all.then.arr (/usr/local/lib/node_modules/lerna/node_modules/execa/index.js:210:11)
+809 verbose publish error     at process._tickCallback (internal/process/next_tick.js:109:7)
+810 verbose publishing @bolt/build-styles
+811 silly publishTaggedInDir latest build-tools-styles
+812 silly getExecOpts { cwd: '/Users/sghoweri/sites/bolt-design-system/bolt/packages/build-tools-styles' }
+813 error publish Retrying failed publish: @bolt/build-styles
+814 verbose publish error Error: Command failed: npm publish --tag latest
+814 verbose publish error npm ERR! publish Failed PUT 402
+814 verbose publish error npm ERR! code E402
+814 verbose publish error npm ERR! You need a paid account to perform this action. For more info, visit: https://www.npmjs.com/private-modules : @bolt/build-styles
+814 verbose publish error
+814 verbose publish error npm ERR! A complete log of this run can be found in:
+814 verbose publish error npm ERR!     /Users/sghoweri/.npm/_logs/2017-07-10T01_37_02_582Z-debug.log
+814 verbose publish error
+814 verbose publish error     at Promise.all.then.arr (/usr/local/lib/node_modules/lerna/node_modules/execa/index.js:210:11)
+814 verbose publish error     at process._tickCallback (internal/process/next_tick.js:109:7)
+815 verbose publishing @bolt/build-styles
+816 silly publishTaggedInDir latest build-tools-styles
+817 silly getExecOpts { cwd: '/Users/sghoweri/sites/bolt-design-system/bolt/packages/build-tools-styles' }
+818 info published @bolt/setting-modular-scale
+819 silly existsSync /Users/sghoweri/sites/bolt-design-system/bolt/packages/setting-modular-scale/scripts/postpublish.js
+820 verbose execScript No postpublish script found at /Users/sghoweri/sites/bolt-design-system/bolt/packages/setting-modular-scale/scripts/postpublish.js
+821 info published @bolt/setting-module-manager
+822 silly existsSync /Users/sghoweri/sites/bolt-design-system/bolt/packages/setting-module-manager/scripts/postpublish.js
+823 verbose execScript No postpublish script found at /Users/sghoweri/sites/bolt-design-system/bolt/packages/setting-module-manager/scripts/postpublish.js
+824 info published @bolt/setting-spacing
+825 silly existsSync /Users/sghoweri/sites/bolt-design-system/bolt/packages/setting-spacing/scripts/postpublish.js
+826 verbose execScript No postpublish script found at /Users/sghoweri/sites/bolt-design-system/bolt/packages/setting-spacing/scripts/postpublish.js
+827 error publish Retrying failed publish: @bolt/build-styles
+828 verbose publish error Error: Command failed: npm publish --tag latest
+828 verbose publish error npm ERR! publish Failed PUT 402
+828 verbose publish error npm ERR! code E402
+828 verbose publish error npm ERR! You need a paid account to perform this action. For more info, visit: https://www.npmjs.com/private-modules : @bolt/build-styles
+828 verbose publish error
+828 verbose publish error npm ERR! A complete log of this run can be found in:
+828 verbose publish error npm ERR!     /Users/sghoweri/.npm/_logs/2017-07-10T01_37_04_122Z-debug.log
+828 verbose publish error
+828 verbose publish error     at Promise.all.then.arr (/usr/local/lib/node_modules/lerna/node_modules/execa/index.js:210:11)
+828 verbose publish error     at process._tickCallback (internal/process/next_tick.js:109:7)
+829 verbose publishing @bolt/build-styles
+830 silly publishTaggedInDir latest build-tools-styles
+831 silly getExecOpts { cwd: '/Users/sghoweri/sites/bolt-design-system/bolt/packages/build-tools-styles' }
+832 error publish Ran out of retries while publishing @bolt/build-styles Error: Command failed: npm publish --tag latest
+832 error publish npm ERR! publish Failed PUT 402
+832 error publish npm ERR! code E402
+832 error publish npm ERR! You need a paid account to perform this action. For more info, visit: https://www.npmjs.com/private-modules : @bolt/build-styles
+832 error publish
+832 error publish npm ERR! A complete log of this run can be found in:
+832 error publish npm ERR!     /Users/sghoweri/.npm/_logs/2017-07-10T01_37_05_657Z-debug.log
+832 error publish
+832 error publish     at Promise.all.then.arr (/usr/local/lib/node_modules/lerna/node_modules/execa/index.js:210:11)
+832 error publish     at process._tickCallback (internal/process/next_tick.js:109:7)
+833 error execute callback with error
+833 error execute  Error: Command failed: npm publish --tag latest
+833 error execute npm ERR! publish Failed PUT 402
+833 error execute npm ERR! code E402
+833 error execute npm ERR! You need a paid account to perform this action. For more info, visit: https://www.npmjs.com/private-modules : @bolt/build-styles
+833 error execute
+833 error execute npm ERR! A complete log of this run can be found in:
+833 error execute npm ERR!     /Users/sghoweri/.npm/_logs/2017-07-10T01_37_05_657Z-debug.log
+833 error execute
+833 error execute     at Promise.all.then.arr (/usr/local/lib/node_modules/lerna/node_modules/execa/index.js:210:11)
+833 error execute     at process._tickCallback (internal/process/next_tick.js:109:7)

@@ -1,0 +1,46 @@
+@objects
+    search      .search
+        label   .search__label
+        input   .search__input
+        button  .search__button
+
+@groups
+    image_diff_validation   search.button
+
+= Main section =
+    @on *
+        search:
+            width 100% of viewport/width
+
+        search.label:
+            inside search 10px top, 10px left, 10px right
+
+    @on narrow_screen
+        search.label:
+            aligned vertically all search.button 1px
+            aligned vertically all search.input 1px
+
+        search.input:
+            inside search 10px left, 10px right
+            aligned vertically all search.button 1px
+            aligned vertically all search.label 1px
+            below search.label 10px
+
+        search.button:
+            inside search 10px left, 10px right, 10px bottom
+            aligned vertically all search.input 1px
+            aligned vertically all search.label 1px
+            below search.input 10px
+
+    @on wide_screen
+        search.label:
+            aligned vertically left search.input 1px
+            aligned vertically right search.button 1px
+
+        search.input:
+            inside search 10px left, 10px bottom
+            aligned horizontally all search.button 1px
+            below search.label 10px
+
+        search.button:
+            right-of search.input 9 to 10px

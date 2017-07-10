@@ -1,0 +1,167 @@
+{
+  "testId" : "9-main-layout-on-firefox-with-wide-viewport",
+  "name" : "Main layout on Firefox with wide viewport",
+  "report" : {
+    "nodes" : [ {
+      "status" : "info",
+      "nodes" : [ {
+        "name" : "check test/visual/specs/layout.gspec --include \"wide_screen,all\"",
+        "status" : "info",
+        "nodes" : [ {
+          "name" : "Check layout: test/visual/specs/layout.gspec included tags: wide_screen,all",
+          "status" : "info",
+          "time" : 1496668133206,
+          "includedTags" : [ "wide_screen", "all" ],
+          "excludedTags" : [ ],
+          "sections" : [ {
+            "name" : "Main section",
+            "objects" : [ {
+              "name" : "header",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 22
+                },
+                "name" : "width 100% of viewport/width",
+                "highlight" : [ "header" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 23
+                },
+                "name" : "inside viewport 0px top, 0px left, 0px right",
+                "highlight" : [ "header", "viewport" ]
+              } ]
+            }, {
+              "name" : "header.title",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 26
+                },
+                "name" : "inside header ~ 16px left",
+                "highlight" : [ "header.title", "header" ]
+              } ]
+            }, {
+              "name" : "layoutContainer",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 29
+                },
+                "name" : "width 100% of viewport/width",
+                "highlight" : [ "layoutContainer" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 30
+                },
+                "name" : "inside screen 0px left, 0px right",
+                "highlight" : [ "layoutContainer", "screen" ]
+              } ]
+            }, {
+              "name" : "header.menuButton",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 64
+                },
+                "name" : "absent",
+                "highlight" : [ ]
+              } ]
+            }, {
+              "name" : "nav",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 68
+                },
+                "name" : "below header ~ 0px",
+                "highlight" : [ "nav", "header" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 69
+                },
+                "name" : "inside viewport 0px left",
+                "highlight" : [ "nav", "viewport" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 70
+                },
+                "name" : "width 250px",
+                "highlight" : [ "nav" ]
+              } ]
+            }, {
+              "name" : "main",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 73
+                },
+                "name" : "right-of nav 0px",
+                "highlight" : [ "main", "nav" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 74
+                },
+                "name" : "aligned horizontally top nav",
+                "highlight" : [ "main", "nav" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/visual/specs/layout.gspec",
+                  "lineNumber" : 75
+                },
+                "name" : "inside viewport 0px right",
+                "highlight" : [ "main", "viewport" ]
+              } ]
+            } ]
+          } ],
+          "objects" : {
+            "header.title" : {
+              "area" : [ 16, 16, 162, 38 ]
+            },
+            "nav" : {
+              "area" : [ 0, 70, 250, 343 ]
+            },
+            "viewport" : {
+              "area" : [ 0, 0, 1268, 869 ]
+            },
+            "layoutContainer" : {
+              "area" : [ 0, 70, 1268, 343 ]
+            },
+            "header" : {
+              "area" : [ 0, 0, 1268, 70 ]
+            },
+            "screen" : {
+              "area" : [ 0, 0, 1268, 869 ]
+            },
+            "main" : {
+              "area" : [ 250, 70, 1018, 343 ]
+            }
+          },
+          "screenshot" : "layout-8-screenshot.png",
+          "type" : "layout"
+        } ],
+        "time" : 1496668128183,
+        "type" : "node"
+      } ],
+      "time" : 1496668115795,
+      "type" : "node"
+    } ]
+  }
+}
