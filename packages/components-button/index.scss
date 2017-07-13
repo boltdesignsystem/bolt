@@ -1,39 +1,28 @@
 /* ------------------------------------ *\
   #BUTTONS
 \* ------------------------------------ */
-@import 'node_modules/@bolt/tools-button-color/index.scss';
-@import "node_modules/@bolt/setting-global/index";
-@import "node_modules/@bolt/tools-font-weight/index";
-@import "node_modules/@bolt/tools-no-select/index";
-@import "node_modules/@bolt/tools-font-size/index";
-@import "node_modules/@bolt/tools-spacing/index";
-
-// "@bolt/setting-global": "^0.1.0-alpha.1"
+@import '@bolt/tools-button-color';
+@import '@bolt/setting-global';
+@import '@bolt/tools-font-weight';
+@import '@bolt/tools-no-select';
+@import '@bolt/tools-font-size';
+@import '@bolt/tools-spacing';
 
 $btn-border-radius: 4px   !default;
-
-$btn-border-width:  1px   !default;
-$btn-border-style:  solid !default;
-$btn-border-color:  currentColor !default;
-$btn-bg-color:  palette(blue) !default;
+$btn-border-width: 1px   !default;
+$btn-border-style: solid !default;
+$btn-border-color: currentColor !default;
+$btn-bg-color: palette(blue) !default;
 // $btn-border-color:  transparent !default;
-
-$btn-padding:         spacing(large) !default;
-$btn-padding--small:  $spacing-unit * 0.5 !default;
-$btn-padding--large:  18px !default;
-
-
+$btn-padding: spacing(large) !default;
+$btn-padding--small: $spacing-unit * 0.5 !default;
+$btn-padding--large: 18px !default;
 $btn-subtle-color: palette(blue) !default;
 $btn-subtle-font-weight: bold !default;
 $btn-subtle-font-size: base;
 $btn-font-weight: bold !default;
-
-
-
-
 $btn-icon--size: 1.5em !default;
 $btn-icon--size--small: $btn-icon--size !default;
-
 $btn-bg-color--flat: palette(blue) !default;
 
 
@@ -47,37 +36,34 @@ $btn-bg-color--flat: palette(blue) !default;
  * 6. Subtract the border size from the padding value so that buttons do not
  *    grow larger as we add borders.
  */
- @mixin button($btn-padding: 9px $btn-padding) {
-   @include font-weight(semibold);
-   @include no-select();
-   @include font-size(base);
-   
-   display: inline-block; /* [1] */
-   @supports (display: flex){
-     display: inline-flex;
-     justify-content: center;
-   }
-   
-   padding: $btn-padding;
-   border-style: $btn-border-style;
-   border-width: $btn-border-width;
-   border-radius: $btn-border-radius;
-   font: inherit; /* [3] */
-   text-align: center; /* [4] */
-   text-decoration: none;
-   white-space: nowrap;
-   vertical-align: middle; /* [2] */
-   cursor: pointer; /* [5] */
-   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+@mixin button($btn-padding: 9px $btn-padding) {
+  @include font-weight(semibold);
+  @include no-select();
+  @include font-size(base);
+  @supports (display: flex) {
+    display: inline-flex;
+    justify-content: center;
+  }
+  display: inline-block; /* [1] */
 
-   &:hover,
-   &:focus,
-   &:active {
-     text-decoration: none;
-   }
+  padding: $btn-padding;
+  text-align: center; /* [4] */
+  cursor: pointer; /* [5] */
+  text-decoration: none;
+  vertical-align: middle; /* [2] */
+  border-style: $btn-border-style;
+  border-width: $btn-border-width;
+  border-radius: $btn-border-radius;
+  font: inherit; /* [3] */
+  white-space: nowrap;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
 }
-
-
 $bolt-component-namespace: 'c-bolt-';
 
 .#{$bolt-component-namespace}button {
@@ -85,11 +71,10 @@ $bolt-component-namespace: 'c-bolt-';
   @include button-color($btn-bg-color);
 }
 
-
 .#{$bolt-component-namespace}button--disabled,
 .#{$bolt-component-namespace}button[disabled] {
-  opacity: 0.3;
   cursor: default;
+  opacity: 0.3;
   pointer-events: none;
 }
 
@@ -111,6 +96,13 @@ $bolt-component-namespace: 'c-bolt-';
     border-color: currentColor;
   }
 }
+
+
+.o-grid {
+  background: red;
+}
+
+
 
 
 // .c-button__icon {

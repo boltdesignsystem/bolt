@@ -1,0 +1,32 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.7.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:marked:20170112':
+    - sassdoc-theme-default > sassdoc-extras > marked:
+        patched: '2017-07-12T18:51:15.297Z'
+    - sassdoc > sassdoc-theme-default > sassdoc-extras > marked:
+        patched: '2017-07-12T18:51:15.297Z'
+    - sassdoc-theme-herman > sassdoc-extras > marked:
+        patched: '2017-07-12T18:51:15.297Z'
+  'npm:minimatch:20160620':
+    - '@bolt/build-styles > json-sass > babel > chokidar > readdirp > minimatch':
+        patched: '2017-07-12T18:51:15.297Z'
+  'npm:moment:20161019':
+    - publish-please > nsp > joi > moment:
+        patched: '2017-07-12T18:51:15.297Z'
+  'npm:ms:20170412':
+    - publish-please > nsp > subcommand > debug > ms:
+        patched: '2017-07-12T18:51:15.297Z'
+    - publish-please > ban-sensitive-files > debug > ms:
+        patched: '2017-07-12T18:51:15.297Z'
+    - publish-please > ban-sensitive-files > ggit > debug > ms:
+        patched: '2017-07-12T18:51:15.297Z'
+    - publish-please > nsp > https-proxy-agent > debug > ms:
+        patched: '2017-07-12T18:51:15.297Z'
+  'npm:uglify-js:20151024':
+    - sassdoc-theme-default > swig > uglify-js:
+        patched: '2017-07-12T18:51:15.297Z'
+    - sassdoc > sassdoc-theme-default > swig > uglify-js:
+        patched: '2017-07-12T18:51:15.297Z'

@@ -10,18 +10,38 @@ var cssTasks = require('./packages/build-tools-styles')(gulp, {
     'packages/bolt/bolt.scss'
   ],
   dest: './packages/bolt',
-  jsonDest: './packages/bolt'
+  jsonDest: './packages/bolt',
+  extraWatches: './packages/*/*.scss'
+  // lint: true
 });
 
+
 gulp.task('styles:compile', cssTasks.compile);
+gulp.task('styles:lint', cssTasks.lint);
 gulp.task('styles:watch', cssTasks.watch);
 
-gulp.task('default', 
-  gulp.parallel([
-    'styles:compile',
-    'styles:watch'
+gulp.task('styles',
+  gulp.series([
+    cssTasks.compile,
+    gulp.parallel([
+      cssTasks.watch
+    ])
   ])
 );
+
+
+
+
+
+// var cssTestTasks = require('./packages/build-tools-styles')(gulp, {
+//   root: '/',
+//   src: [
+//     'test.scss'
+//   ],
+//   dest: './',
+//   jsonDest: './'
+// });
+// gulp.task('styles:testCompile', cssTestTasks.compile);
 
 
 const twig = require('gulp-twig');
@@ -50,7 +70,6 @@ var renderFile = require('node-twig').renderFile;
 
 gulp.task('test:compile-templates', function () {
   var twigFiles = glob.sync('./packages/*/tests/test.twig');
-  
   twigFiles.map(function(twigFile) {
     var varients;;
 
@@ -103,26 +122,26 @@ gulp.task('test:compile-templates', function () {
 
 
 
-gulp.task('test:compile-styles', function () {
-  var testStyles = glob.sync('./packages/*/tests/*test.scss', {
-    ignore: [
-      './packages/*/tests/_*test.scss'
-    ]
-  });
-  
-  testStyles.map(function(testStyle) {
-    var testFile = path.parse(testStyle).name;
-    var testDir = path.dirname(testStyle);
-    
-    var compileTestCSS = require('./packages/build-tools-styles')(gulp, {
-      root: testDir,
-      src: testStyle,
-      dest: testDir + '/tmp',
-      jsonDest: testDir + '/tmp'
-    });
-    compileTestCSS.compile();
-  });
-});
+// gulp.task('test:compile-styles', function () {
+//   var testStyles = glob.sync('./packages/*/tests/*test.scss', {
+//     ignore: [
+//       './packages/*/tests/_*test.scss'
+//     ]
+//   });
+//   
+//   testStyles.map(function(testStyle) {
+//     var testFile = path.parse(testStyle).name;
+//     var testDir = path.dirname(testStyle);
+//     
+//     var compileTestCSS = require('./packages/build-tools-styles')(gulp, {
+//       root: testDir,
+//       src: testStyle,
+//       dest: testDir + '/tmp',
+//       jsonDest: testDir + '/tmp'
+//     });
+//     compileTestCSS.compile();
+//   });
+// });
 
 
 

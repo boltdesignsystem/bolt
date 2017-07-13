@@ -1,10 +1,7 @@
 /* ------------------------------------ *\
    #FORM INPUT
 \* ------------------------------------ */
-
-
 $input-group-icon-size: 44px;
-
 
 .c-input-group {
   display: block;
@@ -13,94 +10,87 @@ $input-group-icon-size: 44px;
   margin-bottom: spacing(xsmall);
 }
 
-  .c-input-group__input {
-    display: inline-block;
-  }
-  
-  .c-input-group__icon {
-    color: $input-text-color;
-    cursor: default;
-    position: absolute;
-    line-height: 1;
-    text-align: center;
-    top: 0;
-    right: 0;
-    margin: 0;
-    height: 100%;
-    width: $input-group-icon-size;
-    opacity: .5;
-    transition: opacity .3s ease, transform .3s ease;
-    pointer-events: none;
-    padding: 10px;
-  }
-  
-  
-  // By default, hide both of the valid and invalid icons
-  .c-input-group__icon--valid,
-  .c-input-group__icon--invalid {
-    opacity: 0;
-    transform: scale(0, 0) rotate(-45deg);
-  }
-  
-  
-  
-  $validation-states: (
-    'valid': green,
-    'invalid': red
-  );
-  
-  @each $state, $color in $validation-states {
-    .c-input-group__icon--#{$state} {
-      color: palette($color);
-    }
-  }
+.c-input-group__input {
+  display: inline-block;
+}
 
+.c-input-group__icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: $input-group-icon-size;
+  height: 100%;
+  margin: 0;
+  padding: 10px;
+  text-align: center;
+  color: $input-text-color;
+  cursor: default;
+  line-height: 1;
+  opacity: 0.5;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+
+// By default, hide both of the valid and invalid icons
+.c-input-group__icon--valid,
+.c-input-group__icon--invalid {
+  opacity: 0;
+  transform: scale(0, 0) rotate(-45deg);
+}
+$validation-states: (
+  'valid': green, 'invalid': red
+);
+
+@each $state, $color in $validation-states {
+  .c-input-group__icon--#{$state} {
+    color: palette($color);
+  }
+}
 
 .is-invalid .c-input-group__field,
 .is-invalid.c-input-group__field {
   border-color: palette(red);
   padding-right: $input-group-icon-size;
-  
+
   &:focus {
-    box-shadow: 0 0 3px palette(red), inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: 0 0 3px palette(red), inset 0 1px 1px rgba(0, 0, 0, 0.075);
   }
 }
-  
+
 .is-invalid .c-input-group__icon--invalid {
-// .is-invalid ~ .c-input-group__icon--invalid {
+  // .is-invalid ~ .c-input-group__icon--invalid {
   opacity: 1;
   transform: scale(1, 1) rotate(0deg);
 }
 
 .is-invalid .c-input-group__icon--valid {
-// .is-invalid ~ .c-input-group__icon--valid {
+  // .is-invalid ~ .c-input-group__icon--valid {
   opacity: 0;
   transform: scale(0, 0) rotate(-45deg);
 }
 
+.c-input-group__field {
+    
+  @supports (display: flex) {
+    flex: 1;
+    // width: auto;
+  }
+  width: 100%;
+}
 
-  .c-input-group__field {
-    width: 100%;
-    
-    @supports (display: flex){
-      flex: 1;
-      // width: auto;
-    }
-  }
-  
-  .c-input-group__addon {
-    color: $input-text-color;
-    border: 1px solid palette(gray, lighter);
-    // border-radius: $global-border-radius;
-    padding: $input-padding-medium;
-    background-color: hsla(24,20%,100%,1);
-  }
-    
-    
+.c-input-group__addon {
+  // border-radius: $global-border-radius;
+  padding: $input-padding-medium;
+  color: $input-text-color;
+  border: 1px solid palette(gray, lighter);
+  background-color: hsla(24, 20%, 100%, 1);
+}
+
 .c-label--fieldtitle {
   @include font-weight(semibold);
-  letter-spacing: 1px;
   text-transform: capitalize;
+  letter-spacing: 1px;
 }
 
 .c-input--full {
@@ -108,8 +98,8 @@ $input-group-icon-size: 44px;
 }
 
 .c-label--required {
-  color: palette(red);
   display: none;
+  color: palette(red);
 }
 
 .form-required .c-label--required {

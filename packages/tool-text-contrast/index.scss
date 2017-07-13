@@ -2,17 +2,10 @@
    #TEXT CONTRAST
    ========================================================================== */
 
-/** my contrast text awesome description */
-
-// @include add-module(
-//   $name:    'tools.text-contrast',
-//   $version: '1.0.0',
-//   $dependencies: ()
-// );
-@import 'node_modules/@bolt/tools-color-palette/index.scss';
+@import '@bolt/tools-color-palette';
 
 @function text-contrast($color) {
-  @if (lightness($color) > 50) {
+  @if (lightness($color) > 60) {
     @return palette(black); // Lighter backgorund, return dark color
   }
   @else {
