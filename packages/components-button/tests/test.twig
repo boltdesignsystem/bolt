@@ -14,7 +14,7 @@
   {% if varients %}
     {% for varient in varients %}
       <h2>{{ varient.name }}</h2>
-      {% include "simple-button.twig" with varient.context %}
+      {% include "src/twig/simple-button.twig" with varient.context %}
      {% endfor %}
   {% endif %}
   

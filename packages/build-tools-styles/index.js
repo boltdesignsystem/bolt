@@ -104,7 +104,7 @@ module.exports = (gulp, userConfig, $) => {
         //   processImport: true
         // }))
         // .pipe(gulp.dest('./'))
-        .pipe(sourcemaps.write(config.dest))
+        .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(config.dest))
         .on('end', () => {
           // core.events.emit('reload', join(config.dest, '**/*.css'));

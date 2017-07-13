@@ -9,16 +9,13 @@
     "fix": "gulp fix",
     "fix:scripts": "gulp scripts:fix",
     "fix:scss": "gulp styles:fix",
-    
-    
     "bootstrap": "lerna bootstrap",
     "commitmsg": "validate-commit-msg",
     "publish": "lerna publish",
     "publish-please": "publish-please",
-    "prepublishOnly": "publish-please guard",
+    "prepublishOnly": "npm run snyk-protect",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "snyk-protect": "snyk protect"
   },
   "repository": {
     "type": "git",
@@ -81,9 +78,7 @@
     "stylelint-selector-bem-pattern": "^1.1.0",
     "validate-commit-msg": "^2.12.2"
   },
-  "pre-commit": [
-    
-  ],
+  "pre-commit": [],
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"

@@ -1,8 +1,8 @@
 'use strict';
 
 const gulp = require('gulp');
-require('babel-core/register');
-require('babel-polyfill');
+// require('babel-core/register');
+// require('babel-polyfill');
 
 var cssTasks = require('./packages/build-tools-styles')(gulp, {
   root: 'packages/bolt',
@@ -68,14 +68,14 @@ var renderFile = require('node-twig').renderFile;
 
 
 
-gulp.task('test:compile-templates', function () {
+gulp.task('test:compile-templates', function (done) {
   var twigFiles = glob.sync('./packages/*/tests/test.twig');
   twigFiles.map(function(twigFile) {
     var varients;;
 
     var localTwigFileData = require(path.dirname(twigFile) + '/' + path.basename(path.parse(twigFile).name) + '.json');
     
-     var varientPaths = glob.sync(path.join(path.dirname(twigFile), '../') + '*.varients.json');
+     var varientPaths = glob.sync(path.join(path.dirname(twigFile), '../') + '**/*.varients.json');
      
     varientPaths.map(function(varient) {
       varients = merge(varients, require(path.resolve(varient)));
@@ -88,6 +88,7 @@ gulp.task('test:compile-templates', function () {
       root: path.resolve(path.join(path.dirname(twigFile), '../'))
     }, (error, template) => {
       fs.writeFileSync(path.resolve(path.dirname(twigFile)) + '/tmp/test.html', template);
+      done();
     });
 
   });
@@ -122,26 +123,35 @@ gulp.task('test:compile-templates', function () {
 
 
 
-// gulp.task('test:compile-styles', function () {
-//   var testStyles = glob.sync('./packages/*/tests/*test.scss', {
-//     ignore: [
-//       './packages/*/tests/_*test.scss'
-//     ]
-//   });
-//   
-//   testStyles.map(function(testStyle) {
-//     var testFile = path.parse(testStyle).name;
-//     var testDir = path.dirname(testStyle);
-//     
-//     var compileTestCSS = require('./packages/build-tools-styles')(gulp, {
-//       root: testDir,
-//       src: testStyle,
-//       dest: testDir + '/tmp',
-//       jsonDest: testDir + '/tmp'
-//     });
-//     compileTestCSS.compile();
-//   });
-// });
+gulp.task('test:compile-styles', function (done) {
+  var testStyles = glob.sync('./packages/*/tests/*test.scss', {
+    ignore: [
+      './packages/*/tests/_*test.scss'
+    ]
+  });
+  
+  testStyles.map(function(testStyle) {
+    
+    var testFile = path.parse(testStyle).name;
+    var testDir = path.dirname(testStyle);
+    
+    var compileTestCSS = require('./packages/build-tools-styles')(gulp, {
+      root: testDir,
+      src: testStyle,
+      dest: testDir + '/tmp',
+      jsonDest: testDir + '/tmp'
+    });
+    compileTestCSS.compile(done);
+  });
+  
+});
+
+gulp.task('test', 
+  gulp.parallel([
+    'test:compile-templates',
+    'test:compile-styles'
+  ])
+);
 
 
 
