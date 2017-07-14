@@ -12,6 +12,7 @@
     "bootstrap": "lerna bootstrap",
     "commitmsg": "validate-commit-msg",
     "publish": "lerna publish",
+    "prerelease": "lerna publish --canary=prerelease",
     "publish-please": "publish-please",
     "prepublishOnly": "npm run snyk-protect",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
