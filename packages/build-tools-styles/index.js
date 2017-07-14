@@ -9,6 +9,7 @@ const jsonExporter = require('node-sass-export');
 const npmSass = require('npm-sass');
 const postcss = require('gulp-postcss');
 const path = require('path');
+const magicImporter = require('node-sass-magic-importer');
 // const scssSyntax = require('postcss-scss');
 // const immutableCss = require('immutable-css');
 
@@ -17,7 +18,6 @@ const path = require('path');
 // const size = require('gulp-size');
 // const cleanCSS = require('gulp-clean-css');
 // const path = require('path');
-const smartImport = require('postcss-smart-import');
 // const discardComments = require('postcss-discard-comments');
 // const importPostcss = require('import-postcss');
 
@@ -88,8 +88,7 @@ module.exports = (gulp, userConfig, $) => {
         .pipe(sourcemaps.init())
         .pipe(sass({
           includePaths: ['node_modules', 'packages'],
-          importer: npmSass.importer,
-          // importer: [magicImporter(magicImporterOptions)],
+          importer: [npmSass.importer, magicImporter],
           outputStyle: 'expanded'
         }).on('error', sass.logError))
         .pipe(postcss(config.postcss))

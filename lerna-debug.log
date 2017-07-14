@@ -1,35 +1,42 @@
-0 silly input []
-1 silly flags { _: [ 'bootstrap' ], args: [] }
+0 silly input [ 'publish' ]
+1 silly flags { _: [ 'publish' ], canary: 'beta', c: 'beta' }
 2 verbose rootPath /Users/sghoweri/sites/bolt-design-system/bolt
 3 info version 2.0.0
 4 info versioning independent
-5 silly existsSync /Users/sghoweri/sites/bolt-design-system/bolt/VERSION
-6 error EPACKAGES JSONError: Trailing comma in object at 21:3 in packages/bolt/package.json
-6 error EPACKAGES   },
-6 error EPACKAGES   ^
-6 error EPACKAGES     at module.exports (/usr/local/lib/node_modules/lerna/node_modules/parse-json/index.js:27:17)
-6 error EPACKAGES     at parse (/usr/local/lib/node_modules/lerna/node_modules/load-json-file/index.js:8:29)
-6 error EPACKAGES     at Function.module.exports.sync.fp [as sync] (/usr/local/lib/node_modules/lerna/node_modules/load-json-file/index.js:11:29)
-6 error EPACKAGES     at Function.module.exports.sync (/usr/local/lib/node_modules/lerna/node_modules/read-pkg/index.js:40:25)
-6 error EPACKAGES     at /usr/local/lib/node_modules/lerna/lib/PackageUtilities.js:125:47
-6 error EPACKAGES     at Array.forEach (native)
-6 error EPACKAGES     at /usr/local/lib/node_modules/lerna/lib/PackageUtilities.js:119:86
-6 error EPACKAGES     at Array.forEach (native)
-6 error EPACKAGES     at Function.getPackages (/usr/local/lib/node_modules/lerna/lib/PackageUtilities.js:118:22)
-6 error EPACKAGES     at Repository.buildPackageGraph (/usr/local/lib/node_modules/lerna/lib/Repository.js:82:51)
-6 error EPACKAGES  Errored while collecting packages and package graph { JSONError: Trailing comma in object at 21:3 in packages/bolt/package.json
-6 error EPACKAGES   },
-6 error EPACKAGES   ^
-6 error EPACKAGES     at module.exports (/usr/local/lib/node_modules/lerna/node_modules/parse-json/index.js:27:17)
-6 error EPACKAGES     at parse (/usr/local/lib/node_modules/lerna/node_modules/load-json-file/index.js:8:29)
-6 error EPACKAGES     at Function.module.exports.sync.fp [as sync] (/usr/local/lib/node_modules/lerna/node_modules/load-json-file/index.js:11:29)
-6 error EPACKAGES     at Function.module.exports.sync (/usr/local/lib/node_modules/lerna/node_modules/read-pkg/index.js:40:25)
-6 error EPACKAGES     at /usr/local/lib/node_modules/lerna/lib/PackageUtilities.js:125:47
-6 error EPACKAGES     at Array.forEach (native)
-6 error EPACKAGES     at /usr/local/lib/node_modules/lerna/lib/PackageUtilities.js:119:86
-6 error EPACKAGES     at Array.forEach (native)
-6 error EPACKAGES     at Function.getPackages (/usr/local/lib/node_modules/lerna/lib/PackageUtilities.js:118:22)
-6 error EPACKAGES     at Repository.buildPackageGraph (/usr/local/lib/node_modules/lerna/lib/Repository.js:82:51)
-6 error EPACKAGES   stack: 'JSONError: Trailing comma in object at 21:3 in packages/bolt/package.json\n  },\n  ^\n    at module.exports (/usr/local/lib/node_modules/lerna/node_modules/parse-json/index.js:27:17)\n    at parse (/usr/local/lib/node_modules/lerna/node_modules/load-json-file/index.js:8:29)\n    at Function.module.exports.sync.fp [as sync] (/usr/local/lib/node_modules/lerna/node_modules/load-json-file/index.js:11:29)\n    at Function.module.exports.sync (/usr/local/lib/node_modules/lerna/node_modules/read-pkg/index.js:40:25)\n    at /usr/local/lib/node_modules/lerna/lib/PackageUtilities.js:125:47\n    at Array.forEach (native)\n    at /usr/local/lib/node_modules/lerna/lib/PackageUtilities.js:119:86\n    at Array.forEach (native)\n    at Function.getPackages (/usr/local/lib/node_modules/lerna/lib/PackageUtilities.js:118:22)\n    at Repository.buildPackageGraph (/usr/local/lib/node_modules/lerna/lib/Repository.js:82:51)',
-6 error EPACKAGES   name: 'JSONError',
-6 error EPACKAGES   fileName: 'packages/bolt/package.json' }
+5 silly isInitialized
+6 silly isInitialized true
+7 silly existsSync /Users/sghoweri/sites/bolt-design-system/bolt/VERSION
+8 silly initialize attempt
+9 info canary enabled
+10 silly getUpdates
+11 info Checking for updated packages...
+12 silly hasTags
+13 verbose hasTags true
+14 info Comparing with beta^..beta.
+15 silly diffSinceIn beta^..beta /Users/sghoweri/sites/bolt-design-system/bolt/packages/setting-colors
+16 error initialize Error: fatal: bad revision 'beta^..beta'
+16 error initialize
+16 error initialize     at Function.module.exports.sync (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/execa/index.js:277:26)
+16 error initialize     at Function.execSync (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/ChildProcessUtilities.js:59:30)
+16 error initialize     at Function.diffSinceIn (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/GitUtilities.js:173:50)
+16 error initialize     at UpdatedPackagesCollector.hasDiffSinceThatIsntIgnored (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/UpdatedPackagesCollector.js:220:41)
+16 error initialize     at /Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/UpdatedPackagesCollector.js:128:26
+16 error initialize     at Array.filter (native)
+16 error initialize     at UpdatedPackagesCollector.collectUpdatedPackages (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/UpdatedPackagesCollector.js:124:23)
+16 error initialize     at UpdatedPackagesCollector.getUpdates (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/UpdatedPackagesCollector.js:77:35)
+16 error initialize     at PublishCommand.initialize (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/commands/PublishCommand.js:203:67)
+16 error initialize     at PublishCommand._attempt (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/Command.js:289:21)
+16 error initialize  caught error
+16 error initialize  { Error: fatal: bad revision 'beta^..beta'
+16 error initialize
+16 error initialize     at Function.module.exports.sync (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/execa/index.js:277:26)
+16 error initialize     at Function.execSync (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/ChildProcessUtilities.js:59:30)
+16 error initialize     at Function.diffSinceIn (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/GitUtilities.js:173:50)
+16 error initialize     at UpdatedPackagesCollector.hasDiffSinceThatIsntIgnored (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/UpdatedPackagesCollector.js:220:41)
+16 error initialize     at /Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/UpdatedPackagesCollector.js:128:26
+16 error initialize     at Array.filter (native)
+16 error initialize     at UpdatedPackagesCollector.collectUpdatedPackages (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/UpdatedPackagesCollector.js:124:23)
+16 error initialize     at UpdatedPackagesCollector.getUpdates (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/UpdatedPackagesCollector.js:77:35)
+16 error initialize     at PublishCommand.initialize (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/commands/PublishCommand.js:203:67)
+16 error initialize     at PublishCommand._attempt (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/Command.js:289:21)
+16 error initialize   stack: 'Error: fatal: bad revision \'beta^..beta\'\n\n    at Function.module.exports.sync (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/execa/index.js:277:26)\n    at Function.execSync (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/ChildProcessUtilities.js:59:30)\n    at Function.diffSinceIn (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/GitUtilities.js:173:50)\n    at UpdatedPackagesCollector.hasDiffSinceThatIsntIgnored (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/UpdatedPackagesCollector.js:220:41)\n    at /Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/UpdatedPackagesCollector.js:128:26\n    at Array.filter (native)\n    at UpdatedPackagesCollector.collectUpdatedPackages (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/UpdatedPackagesCollector.js:124:23)\n    at UpdatedPackagesCollector.getUpdates (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/UpdatedPackagesCollector.js:77:35)\n    at PublishCommand.initialize (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/commands/PublishCommand.js:203:67)\n    at PublishCommand._attempt (/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/lerna/lib/Command.js:289:21)' }
