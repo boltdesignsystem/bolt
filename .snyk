@@ -1,6 +1,24 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
 version: v1.7.1
-ignore: {}
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  'npm:concat-stream:20160901':
+    - backstopjs > phantomjs-prebuilt > extract-zip > concat-stream:
+        reason: None given
+        expires: '2017-08-16T16:52:38.351Z'
+  'npm:tunnel-agent:20170305':
+    - backstopjs > phantomjs-prebuilt > request > tunnel-agent:
+        reason: None given
+        expires: '2017-08-16T16:52:38.351Z'
+    - semantic-release > @semantic-release/condition-travis > travis-deploy-once > travis-ci > request > tunnel-agent:
+        reason: None given
+        expires: '2017-08-16T16:52:38.351Z'
+    - backstopjs > sharp > caw > tunnel-agent:
+        reason: None given
+        expires: '2017-08-16T16:52:38.351Z'
+    - backstopjs > chromy > sharp > caw > tunnel-agent:
+        reason: None given
+        expires: '2017-08-16T16:52:38.351Z'
 # patches apply the minimum changes required to fix a vulnerability
 patch:
   'npm:marked:20170112':
@@ -10,9 +28,17 @@ patch:
         patched: '2017-07-12T18:51:15.297Z'
     - sassdoc-theme-herman > sassdoc-extras > marked:
         patched: '2017-07-12T18:51:15.297Z'
+    - sassdoc-theme-default > sassdoc-extras > marked:
+        patched: '2017-07-17T16:52:38.359Z'
+    - sassdoc > sassdoc-theme-default > sassdoc-extras > marked:
+        patched: '2017-07-17T16:52:38.359Z'
+    - sassdoc-theme-herman > sassdoc-extras > marked:
+        patched: '2017-07-17T16:52:38.359Z'
   'npm:minimatch:20160620':
     - '@bolt/build-styles > json-sass > babel > chokidar > readdirp > minimatch':
         patched: '2017-07-12T18:51:15.297Z'
+    - '@bolt/build-styles > json-sass > babel > chokidar > readdirp > minimatch':
+        patched: '2017-07-17T16:52:38.359Z'
   'npm:moment:20161019':
     - publish-please > nsp > joi > moment:
         patched: '2017-07-12T18:51:15.297Z'
@@ -25,8 +51,18 @@ patch:
         patched: '2017-07-12T18:51:15.297Z'
     - publish-please > nsp > https-proxy-agent > debug > ms:
         patched: '2017-07-12T18:51:15.297Z'
+    - publish-please > ban-sensitive-files > debug > ms:
+        patched: '2017-07-17T16:52:38.359Z'
+    - publish-please > ban-sensitive-files > ggit > debug > ms:
+        patched: '2017-07-17T16:52:38.359Z'
+    - '@bolt/build-styles > gulp-sourcemaps > debug-fabulous > debug > ms':
+        patched: '2017-07-17T16:52:38.359Z'
   'npm:uglify-js:20151024':
     - sassdoc-theme-default > swig > uglify-js:
         patched: '2017-07-12T18:51:15.297Z'
     - sassdoc > sassdoc-theme-default > swig > uglify-js:
         patched: '2017-07-12T18:51:15.297Z'
+    - sassdoc-theme-default > swig > uglify-js:
+        patched: '2017-07-17T16:52:38.359Z'
+    - sassdoc > sassdoc-theme-default > swig > uglify-js:
+        patched: '2017-07-17T16:52:38.359Z'

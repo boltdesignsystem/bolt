@@ -16,7 +16,8 @@
     "publish-please": "publish-please",
     "prepublishOnly": "npm run snyk-protect",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "snyk-protect": "snyk protect"
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
