@@ -5,6 +5,7 @@
   "scripts": {
     "build": "gulp build",
     "serve": "gulp serve",
+    "init": "cd sandbox/pattern-library && composer install --no-interaction && php core/console --generate",
     "lint": "gulp lint",
     "fix": "gulp fix",
     "fix:scripts": "gulp scripts:fix",
