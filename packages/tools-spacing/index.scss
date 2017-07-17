@@ -9,8 +9,8 @@
 //   $version: '0.1.0-alpha.1',
 //   $dependencies: ()
 // );
-@import 'node_modules/@bolt/setting-spacing/index.scss';
-@import 'node_modules/@bolt/tools-sassy-maps/index.scss';
+@import '@bolt/settings-spacing';
+@import '@bolt/tools-sassy-maps';
 
 @function spacing($spacing-size, $spacing-type: 'default') {
   @return map-get-deep($spacing-scale, 'spacing', $spacing-type, $spacing-size);

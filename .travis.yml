@@ -3,13 +3,15 @@ language: node_js
 node_js:
   - 7
   
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.8
+
 env:
-  global:
-    - CHROME_BIN=chromium-browser
-    - DISPLAY=:99.0
-    
-os:
-  - linux
+  CXX=g++-4.8
 
 install:
   - npm install
@@ -17,10 +19,13 @@ install:
 # script:
 #   - npm run build
 
+before_install: 
+  if [[ `npm -v` != 5* ]]; then npm i -g npm@5; fi
+
 after_success:
   - chmod ugo+x ./scripts/deploy.sh
   - ./scripts/deploy.sh
   
 cache:
   directories:
-    - node_modules
+    - node_modules  

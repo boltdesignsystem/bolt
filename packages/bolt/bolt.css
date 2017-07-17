@@ -7,7 +7,6 @@
 /* ==========================================================================
    #TEXT CONTRAST
    ========================================================================== */
-/** my contrast text awesome description */
 /* ==========================================================================
    #COLOR PALETTE
    ========================================================================== */
@@ -75,36 +74,29 @@
  */
 .c-bolt-button {
   font-weight: 600;
-  -webkit-user-select: none;
-  /* Chrome all / Safari all */
-  -moz-user-select: none;
-  /* Firefox all */
-  -ms-user-select: none;
-  /* IE 10+ */
   user-select: none;
-  /* Likely future */
   font-size: 1rem;
   line-height: 1.5rem;
   display: inline-block;
   /* [1] */
   padding: 9px 32px;
+  text-align: center;
+  /* [4] */
+  cursor: pointer;
+  /* [5] */
+  text-decoration: none;
+  vertical-align: middle;
+  /* [2] */
   border-style: solid;
   border-width: 1px;
   border-radius: 4px;
   font: inherit;
   /* [3] */
-  text-align: center;
-  /* [4] */
-  text-decoration: none;
   white-space: nowrap;
-  vertical-align: middle;
-  /* [2] */
-  cursor: pointer;
-  /* [5] */
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
   color: #fff;
-  background-color: #0092f8;
-  border-color: #006eba;
+  background-color: #ff561d;
+  border-color: #bf4116;
 }
 
 @supports (display: flex) {
@@ -120,20 +112,20 @@
 
 .c-bolt-button:hover {
   color: #fff;
-  background-color: #007cd3;
-  border-color: #005895;
+  background-color: #d94919;
+  border-color: #993411;
 }
 
 .c-bolt-button:focus, .c-bolt-button:active {
   color: #fff;
-  background-color: #0066ae;
-  border-color: #004270;
+  background-color: #b33c14;
+  border-color: #73270d;
 }
 
 .c-bolt-button--disabled,
 .c-bolt-button[disabled] {
-  opacity: 0.3;
   cursor: default;
+  opacity: 0.3;
   pointer-events: none;
 }
 
@@ -155,6 +147,58 @@
   border-color: currentColor;
 }
 
-p {
-  color: red;
+.o-grid {
+  background: red;
 }
+
+.c-button {
+  font-weight: 600;
+  user-select: none;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  display: inline-block;
+  /* [1] */
+  padding: 9px 32px;
+  text-align: center;
+  /* [4] */
+  cursor: pointer;
+  /* [5] */
+  text-decoration: none;
+  vertical-align: middle;
+  /* [2] */
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+  font: inherit;
+  /* [3] */
+  white-space: nowrap;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+  color: #fff;
+  background-color: purple;
+  border-color: #600060;
+}
+
+@supports (display: flex) {
+  .c-button {
+    display: inline-flex;
+    justify-content: center;
+  }
+}
+
+.c-button:hover, .c-button:focus, .c-button:active {
+  text-decoration: none;
+}
+
+.c-button:hover {
+  color: #fff;
+  background-color: #6d006d;
+  border-color: #4d004d;
+}
+
+.c-button:focus, .c-button:active {
+  color: #fff;
+  background-color: #5a005a;
+  border-color: #3a003a;
+}
+
+/*# sourceMappingURL=bolt.css.map */

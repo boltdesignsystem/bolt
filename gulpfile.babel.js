@@ -1,8 +1,8 @@
 'use strict';
 
 const gulp = require('gulp');
-require('babel-core/register');
-require('babel-polyfill');
+// require('babel-core/register');
+// require('babel-polyfill');
 
 var cssTasks = require('./packages/build-tools-styles')(gulp, {
   root: 'packages/bolt',
@@ -10,18 +10,48 @@ var cssTasks = require('./packages/build-tools-styles')(gulp, {
     'packages/bolt/bolt.scss'
   ],
   dest: './packages/bolt',
-  jsonDest: './packages/bolt'
+  jsonDest: './packages/bolt',
+  extraWatches: './packages/*/*.scss'
+  // lint: true
 });
 
+
 gulp.task('styles:compile', cssTasks.compile);
+gulp.task('styles:lint', cssTasks.lint);
 gulp.task('styles:watch', cssTasks.watch);
 
-gulp.task('default', 
-  gulp.parallel([
-    'styles:compile',
-    'styles:watch'
+gulp.task('styles',
+  gulp.series([
+    cssTasks.compile,
+    gulp.parallel([
+      cssTasks.watch
+    ])
   ])
 );
+
+
+
+const symlinks = require('./packages/build-tools-symlinks')(gulp, {});
+
+gulp.task('symlinks:create', symlinks.compile);
+gulp.task('symlinks:clean', symlinks.clean);
+// 
+// 
+gulp.task('symlinks', gulp.series(
+  'symlinks:clean',
+  gulp.parallel(['symlinks:create'])
+));
+
+
+// var cssTestTasks = require('./packages/build-tools-styles')(gulp, {
+//   root: '/',
+//   src: [
+//     'test.scss'
+//   ],
+//   dest: './',
+//   jsonDest: './'
+// });
+// gulp.task('styles:testCompile', cssTestTasks.compile);
 
 
 const twig = require('gulp-twig');
@@ -48,15 +78,14 @@ var renderFile = require('node-twig').renderFile;
 
 
 
-gulp.task('test:compile-templates', function () {
+gulp.task('test:compile-templates', function (done) {
   var twigFiles = glob.sync('./packages/*/tests/test.twig');
-  
   twigFiles.map(function(twigFile) {
     var varients;;
 
     var localTwigFileData = require(path.dirname(twigFile) + '/' + path.basename(path.parse(twigFile).name) + '.json');
     
-     var varientPaths = glob.sync(path.join(path.dirname(twigFile), '../') + '*.varients.json');
+     var varientPaths = glob.sync(path.join(path.dirname(twigFile), '../') + '**/*.varients.json');
      
     varientPaths.map(function(varient) {
       varients = merge(varients, require(path.resolve(varient)));
@@ -69,6 +98,7 @@ gulp.task('test:compile-templates', function () {
       root: path.resolve(path.join(path.dirname(twigFile), '../'))
     }, (error, template) => {
       fs.writeFileSync(path.resolve(path.dirname(twigFile)) + '/tmp/test.html', template);
+      done();
     });
 
   });
@@ -103,7 +133,7 @@ gulp.task('test:compile-templates', function () {
 
 
 
-gulp.task('test:compile-styles', function () {
+gulp.task('test:compile-styles', function (done) {
   var testStyles = glob.sync('./packages/*/tests/*test.scss', {
     ignore: [
       './packages/*/tests/_*test.scss'
@@ -111,6 +141,7 @@ gulp.task('test:compile-styles', function () {
   });
   
   testStyles.map(function(testStyle) {
+    
     var testFile = path.parse(testStyle).name;
     var testDir = path.dirname(testStyle);
     
@@ -120,9 +151,17 @@ gulp.task('test:compile-styles', function () {
       dest: testDir + '/tmp',
       jsonDest: testDir + '/tmp'
     });
-    compileTestCSS.compile();
+    compileTestCSS.compile(done);
   });
+  
 });
+
+gulp.task('test', 
+  gulp.parallel([
+    'test:compile-templates',
+    'test:compile-styles'
+  ])
+);
 
 
 
