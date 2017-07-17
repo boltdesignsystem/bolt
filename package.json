@@ -16,8 +16,7 @@
     "publish-please": "publish-please",
     "prepublishOnly": "npm run snyk-protect",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "snyk-protect": "snyk protect"
   },
   "repository": {
     "type": "git",
@@ -43,6 +42,7 @@
     "babel-preset-es2015": "^6.24.1",
     "backstopjs": "^2.8.4",
     "cz-conventional-changelog": "^2.0.0",
+    "eslint-config-airbnb": "^15.0.2",
     "fs": "0.0.1-security",
     "glob": "^7.1.2",
     "gulp": "github:gulpjs/gulp#4.0",
@@ -78,7 +78,10 @@
     "stylelint": "^7.13.0",
     "stylelint-scss": "^1.5.1",
     "stylelint-selector-bem-pattern": "^1.1.0",
-    "validate-commit-msg": "^2.12.2"
+    "validate-commit-msg": "^2.12.2",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.7.0"
   },
   "pre-commit": [],
   "config": {
