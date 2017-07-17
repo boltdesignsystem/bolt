@@ -1,6 +1,6 @@
 {
-  "name": "@bolt/tools-sassy-maps",
-  "description": "Alias for Sassy Maps Library",
+  "name": "@bolt/tools-font-size",
+  "description": "Font Size Tool",
   "keywords": [
     "bolt design system",
     "bolt",
@@ -13,17 +13,20 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pega-digital/bolt/tree/master/packages/bolt-css/tools-sassy-maps"
+    "url": "'https://github.com/pega-digital/bolt/tree/master/packages/bolt-css/tools-font-size'"
   },
   "bugs": {
-    "url": "https://github.com/pega-digital/bolt/issues"
+    "url": "'https://github.com/pega-digital/bolt/issues'"
   },
   "main": "index.scss",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
+    "@bolt/settings-global": "^0.1.0",
+    "@bolt/settings-modular-scale": "^0.1.0",
     "@bolt/settings-module-manager": "^0.1.0",
-    "sassy-maps": "github:at-import/Sassy-Maps#0.x.x"
+    "@bolt/tools-strip-unit": "^0.1.0",
+    "@bolt/tools-sassy-maps": "^0.1.0"
   }
 }

@@ -31,6 +31,16 @@ gulp.task('styles',
 
 
 
+const symlinks = require('./packages/build-tools-symlinks')(gulp, {});
+
+gulp.task('symlinks:create', symlinks.compile);
+gulp.task('symlinks:clean', symlinks.clean);
+// 
+// 
+gulp.task('symlinks', gulp.series(
+  'symlinks:clean',
+  gulp.parallel(['symlinks:create'])
+));
 
 
 // var cssTestTasks = require('./packages/build-tools-styles')(gulp, {

@@ -1,10 +1,13 @@
 {
-  "name": "@bolt/tools-spacing",
-  "description": "Spacing Tools",
+  "name": "@bolt/components-input",
+  "type": "pattern",
+  "patternType": "atoms",
+  "patternSubType": "inputs",
+  "description": "Input Component",
   "keywords": [
     "bolt design system",
     "bolt",
-    "css framework",
+    "ui toolkit",
     "design system"
   ],
   "version": "0.1.0",
@@ -13,17 +16,14 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pega-digital/bolt/tree/master/packages/bolt-css/tools-spacing"
+    "url": "https://github.com/pega-digital/bolt/tree/master/packages/bolt-component-button"
   },
   "bugs": {
     "url": "https://github.com/pega-digital/bolt/issues"
   },
-  "main": "index.scss",
+  "style": "index.scss",
+  "twig": "input.twig",
   "publishConfig": {
     "access": "public"
-  },
-  "dependencies": {
-    "@bolt/settings-spacing": "^0.1.0",
-    "@bolt/tools-sassy-maps": "^0.1.0"
   }
 }
