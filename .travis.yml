@@ -1,5 +1,8 @@
 language: node_js
 
+node_js:
+- 7
+
 dist: trusty
 
 env:
@@ -22,8 +25,9 @@ before_install:
   - sudo apt-get install graphicsmagick
   - curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
   - composer clear-cache
-  - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && source ~/.nvm/nvm.sh && nvm install 7
-  # - if [[ `npm -v` != 5* ]]; then npm i -g npm@5; fi
+  - if [[ `npm -v` != 5* ]]; then npm i -g npm@5; fi
+ # - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && source ~/.nvm/nvm.sh && nvm install 7
+
 
 addons:
   apt:
