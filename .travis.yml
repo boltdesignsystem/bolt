@@ -1,11 +1,13 @@
 language: node_js
 
+dist: trusty
+
 env:
   global:
     - CXX=g++-4.8
   # - CXX=g++-4.8 PHP_OPTIONS="-d sendmail_path=`which true`"
   # - TRAVIS_NODE_VERSION="7"
-  
+
 script:
   - npm run bootstrap
 
@@ -30,7 +32,7 @@ addons:
 after_success:
   - chmod ugo+x ./scripts/deploy.sh
   - ./scripts/deploy.sh
-  
+
 cache:
   apt: true
   yarn: true
