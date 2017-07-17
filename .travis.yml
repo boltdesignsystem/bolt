@@ -17,6 +17,9 @@ install:
 # script:
 #   - npm run build
 
+before_install: 
+  if [[ `npm -v` != 5* ]]; then npm i -g npm@5; fi
+
 after_success:
   - chmod ugo+x ./scripts/deploy.sh
   - ./scripts/deploy.sh
