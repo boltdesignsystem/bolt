@@ -1,21 +1,17 @@
 language: node_js
+
 node_js:
   - 7
-  
-env:
-  - CXX=g++-4.8
   
 addons:
   apt:
     sources:
-      - ubuntu-toolchain-r-test
+    - ubuntu-toolchain-r-test
     packages:
-      - g++-4.8
-    # - CHROME_BIN=chromium-browser
-    # - DISPLAY=:99.0
-#     
-# os:
-#   - linux
+    - g++-4.8
+
+env:
+  CXX=g++-4.8
 
 install:
   - npm install
@@ -32,7 +28,4 @@ after_success:
   
 cache:
   directories:
-    - node_modules
-    - **/node_modules
-    - **/vendor
-  
+    - node_modules  
