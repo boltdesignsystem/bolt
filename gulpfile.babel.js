@@ -1,10 +1,11 @@
-'use strict';
+
 
 const gulp = require('gulp');
+const gulpConfig = require('./gulpconfig');
 // require('babel-core/register');
 // require('babel-polyfill');
 
-var cssTasks = require('./packages/build-tools-styles')(gulp, {
+const cssTasks = require('./packages/build-tools-styles')(gulp, {
   root: 'packages/bolt',
   src: [
     'packages/bolt/bolt.scss'
@@ -30,13 +31,38 @@ gulp.task('styles',
 );
 
 
+const browserSyncTasks = require('./packages/build-tools-server')(gulp);
+
+gulp.task('browsersync', gulp.series([browserSyncTasks.serve]));
+
+
+const patternLab = require('./packages/build-tools-pattern-lab')(gulp, {
+  browserSync: {
+    serverName: gulpConfig.browserSync.serverName
+  }
+});
+
+gulp.task('patternlab:compile', gulp.series([patternLab.compile]));
+
+// gulp.task('styles:lint', cssTasks.lint);
+// gulp.task('styles:watch', cssTasks.watch);
+//
+// gulp.task('styles',
+//   gulp.series([
+//     cssTasks.compile,
+//     gulp.parallel([
+//       cssTasks.watch
+//     ])
+//   ])
+// );
+
 
 const symlinks = require('./packages/build-tools-symlinks')(gulp, {});
 
 gulp.task('symlinks:create', symlinks.compile);
 gulp.task('symlinks:clean', symlinks.clean);
-// 
-// 
+//
+//
 gulp.task('symlinks', gulp.series(
   'symlinks:clean',
   gulp.parallel(['symlinks:create'])
@@ -68,54 +94,50 @@ const fs = require('fs');
 // gulp.task('backstop_reference', () => backstopjs('reference'));
 
 
-var renderFile = require('node-twig').renderFile;
-// 
+const renderFile = require('node-twig').renderFile;
+//
 // renderFile('/full/path/to/template.twig', options, (error, template) => {
 //   // ... do something with the rendered template. :)
 // });
 
 
+gulp.task('test:compile-templates', (done) => {
+  const twigFiles = glob.sync('./packages/*/tests/test.twig');
+  twigFiles.map((twigFile) => {
+    let varients;
 
+    const localTwigFileData = require(`${path.dirname(twigFile)}/${path.basename(path.parse(twigFile).name)}.json`);
 
+    const varientPaths = glob.sync(`${path.join(path.dirname(twigFile), '../')}**/*.varients.json`);
 
-gulp.task('test:compile-templates', function (done) {
-  var twigFiles = glob.sync('./packages/*/tests/test.twig');
-  twigFiles.map(function(twigFile) {
-    var varients;;
-
-    var localTwigFileData = require(path.dirname(twigFile) + '/' + path.basename(path.parse(twigFile).name) + '.json');
-    
-     var varientPaths = glob.sync(path.join(path.dirname(twigFile), '../') + '**/*.varients.json');
-     
-    varientPaths.map(function(varient) {
+    varientPaths.map((varient) => {
       varients = merge(varients, require(path.resolve(varient)));
     });
-    
-    var mergedTwigFileData = merge(localTwigFileData, varients);
-    
+
+    const mergedTwigFileData = merge(localTwigFileData, varients);
+
     renderFile(path.resolve(twigFile), {
       context: mergedTwigFileData,
       root: path.resolve(path.join(path.dirname(twigFile), '../'))
     }, (error, template) => {
-      fs.writeFileSync(path.resolve(path.dirname(twigFile)) + '/tmp/test.html', template);
+      fs.writeFileSync(`${path.resolve(path.dirname(twigFile))}/tmp/test.html`, template);
       done();
     });
-
   });
-  
+
   // return gulp.src()
   //   .pipe(data(function(file) {
   //     var mergedData;
   //     var localData = require(path.dirname(file.path) + '/' + path.basename(path.parse(file.path).name) + '.json');
-  //     
+  //
   //     var varientPaths = glob.sync(path.join(path.dirname(file.path), '../') + '*.varients.json');
-  //     
+  //
   //     var varients;
-  //     
+  //
   //     varientPaths.map(function(varient) {
   //       varients = merge(varients, require(varient));
   //     });
-  //     
+  //
   //     return merge(localData, varients);
   //   }))
   //   .pipe(twig({
@@ -127,43 +149,36 @@ gulp.task('test:compile-templates', function (done) {
   //     path.dirname += "/tmp";
   //   }))
   //   .pipe(gulp.dest('packages'));
-
 });
 
 
-
-
-gulp.task('test:compile-styles', function (done) {
-  var testStyles = glob.sync('./packages/*/tests/*test.scss', {
+gulp.task('test:compile-styles', (done) => {
+  const testStyles = glob.sync('./packages/*/tests/*test.scss', {
     ignore: [
       './packages/*/tests/_*test.scss'
     ]
   });
-  
-  testStyles.map(function(testStyle) {
-    
-    var testFile = path.parse(testStyle).name;
-    var testDir = path.dirname(testStyle);
-    
-    var compileTestCSS = require('./packages/build-tools-styles')(gulp, {
+
+  testStyles.map((testStyle) => {
+    const testFile = path.parse(testStyle).name;
+    const testDir = path.dirname(testStyle);
+
+    const compileTestCSS = require('./packages/build-tools-styles')(gulp, {
       root: testDir,
       src: testStyle,
-      dest: testDir + '/tmp',
-      jsonDest: testDir + '/tmp'
+      dest: `${testDir}/tmp`,
+      jsonDest: `${testDir}/tmp`
     });
     compileTestCSS.compile(done);
   });
-  
 });
 
-gulp.task('test', 
+gulp.task('test',
   gulp.parallel([
     'test:compile-templates',
     'test:compile-styles'
   ])
 );
-
-
 
 
 // Default config at `node_modules/@theme-tools/plugin-sass/config.default.js`
@@ -196,13 +211,13 @@ gulp.task('test',
 //     presets: ['babel-preset-es2015'].map(require.resolve)
 //   }
 // });
-// 
+//
 // gulp.task('validate:js', jsTasks.validate);
 // gulp.task('js', jsTasks.compile);
 // gulp.task('fix:js', jsTasks.fix);
 // gulp.task('clean:js', jsTasks.clean);
 // gulp.task('watch:js', jsTasks.watch);
-// 
+//
 // gulp.task('css', cssTasks.compile);
 // gulp.task('pl', patternLabTasks.compile);
 
@@ -244,7 +259,7 @@ gulp.task('test',
 //    });
 //    return twigNamespaceConfig;
 //  }
-// 
+//
 //  function addTwigNamespaceConfigToDrupal(done) {
 //    const twigNamespaceConfig = getTwigNamespaceConfig(path.dirname(config.drupal.themeFile));
 //    const drupalThemeFile = yaml.safeLoad(
@@ -255,7 +270,7 @@ gulp.task('test',
 //    fs.writeFileSync(config.drupal.themeFile, newThemeFile, 'utf8');
 //    done();
 //  }
-// 
+//
 //  function addTwigNamespaceConfigToPl(done) {
 //    const twigNamespaceConfig = getTwigNamespaceConfig(plRoot);
 //    plConfig = yaml.safeLoad(
@@ -279,7 +294,7 @@ gulp.task('test',
 //    fs.writeFileSync(config.patternLab.configFile, newConfigFile, 'utf8');
 //    done();
 //  }
-// 
+//
 //  if (config.patternLab.twigNamespaces) {
 //    gulp.task('twigNamespaces', (done) => {
 //     //  addTwigNamespaceConfigToDrupal(done),
@@ -294,32 +309,29 @@ gulp.task('test',
 //   //  plFullDependencies.push('twigNamespaces');
 //   //  watchTriggeredTasks.push('twigNamespaces');
 //  }
- 
- 
- 
 
 
- // gulp.task('default', gulp.series([
- //   // 'compile',
- //   gulp.parallel([
- //     // patternLabTasks.watch,
- //     // cssTasks.watch,
- //     // jsTasks.watch,
- //     browserSyncTasks.serve
- //   ])
- // ]));
- // 
- 
- 
-// 
+// gulp.task('default', gulp.series([
+//   // 'compile',
+//   gulp.parallel([
+//     // patternLabTasks.watch,
+//     // cssTasks.watch,
+//     // jsTasks.watch,
+//     browserSyncTasks.serve
+//   ])
+// ]));
+//
+
+
+//
 // var spawn = require('child-process').spawn;
 // var intermediate = require('gulp-intermediate');
-//  
+//
 // gulp.task('default', function () {
 //   return gulp.src('app/**/*.jade')
 //     .pipe(intermediate({ output: '_site' }, function (tempDir, cb) {
-//       // Run a command on the files in tempDir and write the results to 
-//       // the specified output directory. 
+//       // Run a command on the files in tempDir and write the results to
+//       // the specified output directory.
 //       var command = spawn('a_command', ['--dest', '_site'], {cwd: tempDir});
 //       command.on('close', cb);
 //     }))
