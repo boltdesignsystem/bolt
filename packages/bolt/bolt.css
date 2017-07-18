@@ -1,3 +1,86 @@
+/*------------------------------------*  Settings
+\*------------------------------------*/
+/*------------------------------------*  Typography variables
+\*------------------------------------*/
+/*
+ * Font
+ */
+/*
+ * Font Size
+ */
+/*
+ * Heading Size
+ */
+/*
+ * Spacing
+ */
+/*
+ * Width
+ */
+/*------------------------------------*  Tools
+\*------------------------------------*/
+/*------------------------------------*  Font Stack
+\*------------------------------------*/
+/*------------------------------------*  Font Rendering
+\*------------------------------------*/
+/*------------------------------------*  Generic
+\*------------------------------------*/
+/*------------------------------------*  Border box and text rendering fix
+\*------------------------------------*/
+*, *:before, *:after {
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale !important;
+  -webkit-font-smoothing: antialiased !important;
+  font-smoothing: antialiased !important;
+  -moz-font-feature-settings: "kern";
+  -ms-font-feature-settings: "kern";
+  -o-font-feature-settings: "kern";
+  -webkit-font-feature-settings: "kern";
+  font-feature-settings: "kern";
+  font-kerning: normal;
+  /* Safari 7+, Firefox 24+, Chrome 33(?)+, Opera 21+*/
+}
+
+html.touch *, html.touch *:before, html.touch *:after {
+  text-rendering: optimizeSpeed;
+}
+
+/*------------------------------------*  Body and heading declaration
+\*------------------------------------*/
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+/*------------------------------------*  Font Size
+\*------------------------------------*/
+html {
+  font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+}
+
+/*------------------------------------*  Link
+\*------------------------------------*/
+a {
+  text-decoration: none;
+}
+
+/*------------------------------------*  Elements
+\*------------------------------------*/
+/*------------------------------------*  Objects
+\*------------------------------------*/
+/*------------------------------------*  Components
+\*------------------------------------*/
 /* ------------------------------------ *  #BUTTONS
 \* ------------------------------------ */
 /* ==========================================================================
@@ -151,6 +234,12 @@
   background: red;
 }
 
+/*------------------------------------*  Themes
+\*------------------------------------*/
+/*------------------------------------*  Utilities
+\*------------------------------------*/
+/*------------------------------------*  Shame
+\*------------------------------------*/
 .c-button {
   font-weight: 600;
   user-select: none;

@@ -1,0 +1,43 @@
+/*------------------------------------*\
+  Font Stack
+\*------------------------------------*/
+
+$font-stack:
+  (group: body, id: regular, font: ($font-body), weight: $font-weight-regular, style: normal),
+  (group: body, id: italic, font: ($font-body), weight: $font-weight-regular, style: italic),
+  (group: body, id: bold, font: ($font-body), weight: $font-weight-bold, style: normal),
+  (group: body, id: bold-italic, font: ($font-body), weight: $font-weight-bold, style: italic),
+  (group: heading, id: regular, font: ($font-heading), weight: $font-weight-regular, style: normal),
+  (group: heading, id: bold, font: ($font-heading), weight: $font-weight-bold, style: normal),
+  (group: code, id: regular, font: ($font-code), weight: $font-weight-code, style: normal);
+
+@mixin font($group, $id:regular){
+  @each $font in $font-stack{
+    @if($group == map-get($font, group) and $id == map-get($font, id)){
+      font-family: map-get($font, font);
+      font-weight: map-get($font, weight);
+      font-style: map-get($font, style);
+    }
+  }
+}
+
+
+/*------------------------------------*\
+  Font Rendering
+\*------------------------------------*/
+
+@mixin antialiased {
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale !important;
+  -webkit-font-smoothing: antialiased !important;
+  font-smoothing: antialiased !important;
+}
+
+@mixin kerning {
+  -moz-font-feature-settings: "kern";
+  -ms-font-feature-settings: "kern";
+  -o-font-feature-settings: "kern";
+  -webkit-font-feature-settings: "kern";
+  font-feature-settings: "kern";
+  font-kerning: normal; /* Safari 7+, Firefox 24+, Chrome 33(?)+, Opera 21+*/
+}

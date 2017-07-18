@@ -1,0 +1,66 @@
+/*------------------------------------*\
+  Typography variables
+\*------------------------------------*/
+
+/*
+ * Font
+ */
+
+$ui-fonts-default: -apple-system, BlinkMacSystemFont; // This maps to the system’s UI font.
+$ui-fonts-known: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans"; // This is for known system UI fonts and requires frequent updates.
+
+$font-sans: $ui-fonts-default, $ui-fonts-known, "Helvetica Neue", sans-serif; // I got sans-serif. Perfect.
+$font-serif: "Georgia", serif; // How do I get system serif fonts???
+$font-monospace: "Courier New", monospace; // What about monospace???
+
+$font-heading: $font-sans;
+$font-body: $font-sans;
+$font-code: $font-monospace;
+
+$font-weight-regular: 300;
+$font-weight-bold: 600;
+$font-weight-code: 700;
+
+
+/*
+ * Font Size
+ */
+
+$base-font-size-min: 14;
+$base-font-size-min-px: 14px;
+$base-font-size-max: 18;
+$base-font-size-max-px: 18px;
+
+$small-font-size: .8;
+
+
+/*
+ * Heading Size
+ */
+
+$heading-size-xxl: 3.083;
+$heading-size-xl: 1.781;
+$heading-size-l: 1.417;
+$heading-size-m: 1.111;
+$heading-size-s: .9;
+
+$heading-leading-xxl: 1.297;
+$heading-leading-xl: 1.123;
+$heading-leading-l: 1.411;
+$heading-leading-m: 1.5;
+$heading-leading-s: 1.667;
+
+/*
+ * Spacing
+ */
+
+$leading: 1.45;
+$gutter: 2;
+
+$article-leading: 1.65;
+
+/*
+ * Width
+ */
+
+$article-line-length: 60;

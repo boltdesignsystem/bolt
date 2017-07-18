@@ -1,0 +1,51 @@
+/*------------------------------------*\
+  Border box and text rendering fix
+\*------------------------------------*/
+
+*, *:before, *:after {
+  @include antialiased;
+  @include kerning;
+}
+
+html.touch *, html.touch *:before, html.touch *:after {
+  // Optimized for touch devices using modernizr
+  text-rendering: optimizeSpeed;
+}
+
+
+/*------------------------------------*\
+  Body and heading declaration
+\*------------------------------------*/
+
+body {
+  @include font(body,regular);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @include font(heading,bold);
+}
+
+
+/*------------------------------------*\
+  Font Size
+\*------------------------------------*/
+
+html {
+  // Base type
+  font-size: $base-font-size-min-px;
+
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+}
+
+
+/*------------------------------------*\
+  Link
+\*------------------------------------*/
+
+a {
+  text-decoration: none;
+}
