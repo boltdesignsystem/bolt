@@ -5,7 +5,7 @@
 # SSL certs for local HTTPS + HTTP2 + libs for responsive images.
 # https://www.npmjs.com/package/devcert
 
-HOMEBREW_DEPENDENCIES=("nss" "imagemagick" "graphicsmagick" "wget")
+HOMEBREW_DEPENDENCIES="nss imagemagick graphicsmagick wget"
 UNAMESTR=`uname`
 
 
