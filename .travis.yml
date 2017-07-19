@@ -14,7 +14,7 @@ env:
 script:
   - npm run bootstrap
   - npm run init
-
+  - npm run build
 
 before_install:
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
@@ -29,17 +29,17 @@ before_install:
 
 after_success:
   - chmod ugo+x ./scripts/deploy.sh
-  # - ./scripts/deploy.sh
+  - ./scripts/deploy.sh
 
 
-deploy:
-  provider: surge
-  scripts: ./scripts/deploy.sh
-  project: ./sandbox/pattern-library/public/
-  domain: https://boltdesignsystem.surge.sh
-  skip_cleanup: true
-  on:
-    all_branches: true
+# deploy:
+#   provider: surge
+#   # scripts: ./scripts/deploy.sh
+#   project: ./sandbox/pattern-library/public/
+#   domain: https://boltdesignsystem.surge.sh
+#   skip_cleanup: true
+#   on:
+#     all_branches: true
 
 cache:
   apt: true

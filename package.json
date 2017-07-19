@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "description": "Pega Digital Design System",
   "scripts": {
-    "deploy:surge": "gulp build && surge sandbox/pattern-library/public $npm_package_config_surgeDomain",
-    "build": "gulp build",
+    "deploy:surge": "npm run build && surge sandbox/pattern-library/public $npm_package_config_surgeDomain",
+    "build": "gulp build:patternlab",
     "setup:homebrew": "sh scripts/install-homebrew.sh",
     "serve": "gulp serve",
-    "init": "cd sandbox/pattern-library && composer install --no-interaction && php core/console --generate",
+    "init": "cd sandbox/pattern-library && composer install --no-interaction",
     "lint": "gulp lint",
     "fix": "gulp fix",
     "fix:scripts": "gulp scripts:fix",
@@ -22,8 +22,26 @@
     "snyk-protect": "snyk protect"
   },
   "config": {
-    "surgeDomain": "boltdesignsystem.surge.sh",
-    "surgeBaseUrl": "-DbaseUrl=https://boltdesignsystem.surge.sh/"
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    },
+    "validate-commit-msg": {
+      "maxSubjectLength": 100,
+      "subjectPattern": ".+",
+      "subjectPatternErrorMsg": "Subject does not match subject pattern!",
+      "types": [
+        "chore",
+        "docs",
+        "feat",
+        "fix",
+        "perf",
+        "refactor",
+        "revert",
+        "style",
+        "test"
+      ],
+      "warnOnFail": false
+    }
   },
   "repository": {
     "type": "git",
@@ -90,27 +108,5 @@
     "validate-commit-msg": "^2.12.2"
   },
   "pre-commit": [],
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    },
-    "validate-commit-msg": {
-      "maxSubjectLength": 100,
-      "subjectPattern": ".+",
-      "subjectPatternErrorMsg": "Subject does not match subject pattern!",
-      "types": [
-        "chore",
-        "docs",
-        "feat",
-        "fix",
-        "perf",
-        "refactor",
-        "revert",
-        "style",
-        "test"
-      ],
-      "warnOnFail": false
-    }
-  },
   "snyk": true
 }

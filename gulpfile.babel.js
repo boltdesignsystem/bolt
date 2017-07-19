@@ -85,7 +85,6 @@ const data = require('gulp-data');
 const path = require('path');
 const merge = require('merge');
 const glob = require('glob');
-const backstop = require('backstopjs');
 const flatten = require('gulp-flatten');
 const rename = require('gulp-rename');
 const fs = require('fs');
