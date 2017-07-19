@@ -2,29 +2,79 @@
   Font Stack
 \*------------------------------------*/
 
-$font-stack:
-  (group: body, id: regular, font: ($font-body), weight: $font-weight-regular, style: normal),
-  (group: body, id: italic, font: ($font-body), weight: $font-weight-regular, style: italic),
-  (group: body, id: bold, font: ($font-body), weight: $font-weight-bold, style: normal),
-  (group: body, id: bold-italic, font: ($font-body), weight: $font-weight-bold, style: italic),
-  (group: heading, id: regular, font: ($font-heading), weight: $font-weight-regular, style: normal),
-  (group: heading, id: bold, font: ($font-heading), weight: $font-weight-bold, style: normal),
-  (group: code, id: regular, font: ($font-code), weight: $font-weight-code, style: normal);
 
-@mixin font($group, $id:regular){
-  @each $font in $font-stack{
-    @if($group == map-get($font, group) and $id == map-get($font, id)){
-      font-family: map-get($font, font);
-      font-weight: map-get($font, weight);
-      font-style: map-get($font, style);
+$font-stack:
+  (group: body--system, id: regular, font: ($font-body--system), weight: $font-weight--regular, style: normal),
+  (group: body--system, id: italic, font: ($font-body--system), weight: $font-weight--regular, style: italic),
+  (group: body--system, id: bold, font: ($font-body--system), weight: $font-weight--bold, style: normal),
+  (group: body--system, id: bold-italic, font: ($font-body--system), weight: $font-weight--bold, style: italic),
+  (group: heading--system, id: regular, font: ($font-heading--system), weight: $font-weight--regular, style: normal),
+  (group: heading--system, id: italic, font: ($font-heading--system), weight: $font-weight--regular, style: italic),
+  (group: heading--system, id: bold, font: ($font-heading--system), weight: $font-weight--bold, style: normal),
+  (group: heading--system, id: bold-italic, font: ($font-heading--system), weight: $font-weight--bold, style: italic),
+  (group: code--system, id: regular, font: ($font-code--system), weight: $font-weight--code, style: normal),
+
+  (group: body, id: regular, font: ($font-body), weight: $font-weight--regular, style: normal),
+  (group: body, id: italic, font: ($font-body), weight: $font-weight--regular, style: italic),
+  (group: body, id: bold, font: ($font-body), weight: $font-weight--bold, style: normal),
+  (group: body, id: bold-italic, font: ($font-body), weight: $font-weight--bold, style: italic),
+  (group: heading, id: regular, font: ($font-heading), weight: $font-weight--regular, style: normal),
+  (group: heading, id: italic, font: ($font-heading), weight: $font-weight--regular, style: italic),
+  (group: heading, id: bold, font: ($font-heading), weight: $font-weight--bold, style: normal),
+  (group: heading, id: bold-italic, font: ($font-heading), weight: $font-weight--bold, style: italic),
+  (group: code, id: regular, font: ($font-code), weight: $font-weight--code, style: normal);
+
+@mixin font-stack($group, $id:regular){
+  @each $stack in $font-stack{
+    @if($group == map-get($stack, group) and $id == map-get($stack, id)){
+      font-family: map-get($stack, font);
+      font-weight: map-get($stack, weight);
+      font-style: map-get($stack, style);
     }
   }
 }
 
 
+
+
+/*------------------------------------*\
+  Font Size
+\*------------------------------------*/
+
+
+$font-size:
+  (name: xxlarge, scale: $font-scale--xxlarge, leading: $font-leading--xxlarge),
+  (name: xlarge, scale: $font-scale--xlarge, leading: $font-leading--xlarge),
+  (name: large, scale: $font-scale--large, leading: $font-leading--large),
+  (name: medium, scale: $font-scale--medium, leading: $font-leading--medium),
+  (name: base, scale: $font-scale--base, leading: $font-leading--base),
+  (name: small, scale: $font-scale--small, leading: $font-leading--small),
+  (name: xsmall, scale: $font-scale--xsmall, leading: $font-leading--xsmall),
+
+  (name: xxlarge--tight, scale: $font-scale--xxlarge, leading: $font-leading--tight),
+  (name: xlarge--tight, scale: $font-scale--xlarge, leading: $font-leading--tight),
+  (name: large--tight, scale: $font-scale--large, leading: $font-leading--tight),
+  (name: medium--tight, scale: $font-scale--medium, leading: $font-leading--tight),
+  (name: base--tight, scale: $font-scale--base, leading: $font-leading--tight),
+  (name: small--tight, scale: $font-scale--small, leading: $font-leading--tight),
+  (name: xsmall--tight, scale: $font-scale--xsmall, leading: $font-leading--tight);
+
+@mixin font-size($size-group){
+  @each $size in $font-size {
+    @if($size-group == map-get($size, name)) {
+      line-height: map-get($size, leading);
+      font-size: map-get($size, scale) + rem;
+    }
+  }
+}
+
+
+
+
 /*------------------------------------*\
   Font Rendering
 \*------------------------------------*/
+
 
 @mixin antialiased {
   text-rendering: optimizeLegibility;

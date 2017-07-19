@@ -1,66 +1,101 @@
 /*------------------------------------*\
-  Typography variables
+  Main variables
 \*------------------------------------*/
 
+
 /*
- * Font
+ * System UI Fonts
  */
 
-$ui-fonts-default: -apple-system, BlinkMacSystemFont; // This maps to the system’s UI font.
-$ui-fonts-known: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans"; // This is for known system UI fonts and requires frequent updates.
+$font-ui-default: -apple-system, BlinkMacSystemFont; // This maps to the system UI font.
+$font-ui-known: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans'; // This is for known system UI fonts and requires frequent updates.
 
-$font-sans: $ui-fonts-default, $ui-fonts-known, "Helvetica Neue", sans-serif; // I got sans-serif. Perfect.
-$font-serif: "Georgia", serif; // How do I get system serif fonts???
-$font-monospace: "Courier New", monospace; // What about monospace???
+
+/*
+ * Font types
+ */
+
+$font-sans--system: $font-ui-default, $font-ui-known, 'Helvetica Neue', sans-serif;
+$font-serif--system: serif;
+$font-monospace--system: monospace;
+
+$font-sans: 'Open Sans', 'Helvetica Neue', sans-serif;
+$font-serif: 'Georgia', serif;
+$font-monospace: 'Courier New', monospace;
+
+
+
+
+/*------------------------------------*\
+  Configurations
+\*------------------------------------*/
+
+
+/*
+ * System Fonts (fallback and no-script)
+ */
+
+$font-heading--system: $font-sans--system;
+$font-body--system: $font-sans--system;
+$font-code--system: $font-monospace--system;
+
+
+/*
+ * Custom fonts
+ */
 
 $font-heading: $font-sans;
 $font-body: $font-sans;
 $font-code: $font-monospace;
 
-$font-weight-regular: 300;
-$font-weight-bold: 600;
-$font-weight-code: 700;
+
+
+
+/*------------------------------------*\
+  Weights
+\*------------------------------------*/
+
+
+$font-weight--regular: 300;
+$font-weight--bold: 700;
+$font-weight--code: 700;
+
+
+
+
+/*------------------------------------*\
+  Sizing
+\*------------------------------------*/
 
 
 /*
- * Font Size
+ * Base Font Size
  */
 
-$base-font-size-min: 14;
-$base-font-size-min-px: 14px;
-$base-font-size-max: 18;
-$base-font-size-max-px: 18px;
-
-$small-font-size: .8;
+$font-size--min: 15;
+$font-size--min-px: 15px;
+$font-size--max: 18;
+$font-size--max-px: 18px;
 
 
 /*
- * Heading Size
+ * Font Size Scale
  */
 
-$heading-size-xxl: 3.083;
-$heading-size-xl: 1.781;
-$heading-size-l: 1.417;
-$heading-size-m: 1.111;
-$heading-size-s: .9;
+$font-scale--xxlarge: 3.083;
+$font-scale--xlarge: 1.781;
+$font-scale--large: 1.417;
+$font-scale--medium: 1.111;
+$font-scale--base: 1;
+$font-scale--small: .9;
+$font-scale--xsmall: .8;
 
-$heading-leading-xxl: 1.297;
-$heading-leading-xl: 1.123;
-$heading-leading-l: 1.411;
-$heading-leading-m: 1.5;
-$heading-leading-s: 1.667;
+$font-leading--xxlarge: 1.297;
+$font-leading--xlarge: 1.123;
+$font-leading--large: 1.411;
+$font-leading--medium: 1.5;
+$font-leading--base: 1.65;
+$font-leading--small: 1.667;
+$font-leading--xsmall: 1.45;
 
-/*
- * Spacing
- */
-
-$leading: 1.45;
-$gutter: 2;
-
-$article-leading: 1.65;
-
-/*
- * Width
- */
-
-$article-line-length: 60;
+$font-leading--tight: 1.111;

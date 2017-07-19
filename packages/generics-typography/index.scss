@@ -1,5 +1,5 @@
 /*------------------------------------*\
-  Border box and text rendering fix
+  Text rendering fix
 \*------------------------------------*/
 
 *, *:before, *:after {
@@ -8,38 +8,65 @@
 }
 
 html.touch *, html.touch *:before, html.touch *:after {
-  // Optimized for touch devices using modernizr
+  // Optimize speed for touch devices using modernizr
   text-rendering: optimizeSpeed;
 }
+
+
 
 
 /*------------------------------------*\
   Body and heading declaration
 \*------------------------------------*/
 
+
 body {
-  @include font(body,regular);
+  @include font-stack(body--system,regular);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @include font(heading,bold);
+  @include font-stack(heading--system,bold);
 }
+
+html.fonts-loaded {
+  body{
+    @include font-stack(body,regular);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @include font-stack(heading,bold);
+  }
+}
+
+
 
 
 /*------------------------------------*\
   Font Size
 \*------------------------------------*/
 
+
 html {
   // Base type
-  font-size: $base-font-size-min-px;
+  font-size: $font-size--min-px;
 
+  // Responsive type
+  @include respond-to(small) {
+    font-size: calc(#{$font-size--min-px} + #{$font-size--max - $font-size--min} * (100vw - #{$bp-small-px}) / (#{$bp-large - $bp-small}));
+  }
+
+  // Large type
+  @include respond-to(large) {
+    font-size: $font-size--max-px;
+  }
 
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-size: inherit;
+body, h1, h2, h3, h4, h5, h6 {
+  @include font-size(base);
 }
+
+
 
 
 /*------------------------------------*\
