@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "description": "Pega Digital Design System",
   "scripts": {
+    "deploy:surge": "gulp build && surge sandbox/pattern-library/public $npm_package_config_surgeDomain",
     "build": "gulp build",
-    "postinstall": "sh scripts/install-homebrew.sh",
+    "setup:homebrew": "sh scripts/install-homebrew.sh",
     "serve": "gulp serve",
     "init": "cd sandbox/pattern-library && composer install --no-interaction && php core/console --generate",
     "lint": "gulp lint",
@@ -19,6 +20,10 @@
     "prepublishOnly": "npm run snyk-protect",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "snyk-protect": "snyk protect"
+  },
+  "config": {
+    "surgeDomain": "boltdesignsystem.surge.sh",
+    "surgeBaseUrl": "-DbaseUrl=https://boltdesignsystem.surge.sh/"
   },
   "repository": {
     "type": "git",
@@ -35,6 +40,7 @@
   },
   "homepage": "https://github.com/pega-digital/bolt#readme",
   "dependencies": {
+    "surge": "^0.18.0",
     "@bolt/build-styles": "^0.1.2",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.25.0",
