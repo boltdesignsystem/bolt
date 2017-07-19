@@ -42,6 +42,10 @@ do
   # https://en.wikipedia.org/wiki/Domain_Name_System#Domain_name_syntax
   DEPLOY_SUBDOMAIN=`echo "$DEPLOY_SUBDOMAIN_UNFORMATTED" | sed -r 's/[\/|\.]+/\-/g'`
   DEPLOY_DOMAIN=https://${DEPLOY_SUBDOMAIN}.boltdesignsystem.com
+
+  echo SURGE_DEPLOY_URL=$DEPLOY_DOMAIN > .env
+  echo "SURGE_DEPLOY_URL has been set to: $DEPLOY_DOMAIN"
+
   surge --project ${DEPLOY_PATH} --domain $DEPLOY_DOMAIN;
   if [ "$TRAVIS_PULL_REQUEST" != "false" ]
   then

@@ -45,7 +45,7 @@ module.exports = (gulp, userConfig) => {
   // console.log(consolePath);
 
   function buildPatternLab(done) {
-    notify.sh(`php ${consolePath} --generate --gpn`, false, () => {
+    notify.sh(`php ${consolePath} --generate`, false, () => {
       if (config.browserSync.enabled) {
         browserSync.reload;
       }

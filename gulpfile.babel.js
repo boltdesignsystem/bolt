@@ -69,6 +69,48 @@ gulp.task('symlinks', gulp.series(
 ));
 
 
+// var gulp = require('gulp');
+// const Slack = require('node-slack');
+// const slack = new Slack(process.env.SLACKURL);
+//
+//
+// /*-------------------------------------------------------------------
+// Post to Slack
+// -------------------------------------------------------------------*/
+require('dotenv').config();
+const Slack = require('node-slack');
+
+const slack = new Slack('https://hooks.slack.com/services/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');
+
+gulp.task('slack:surge', (done) => {
+  console.log(process.env.DEPLOY_PATH);
+  slack.send({
+    channel: '#design-system-ci',
+    text: `Bolt deployed to ${process.env.SURGE_DEPLOY_URL}`,
+    icon_emoji: ':bolt:',
+    attachments: {
+      fallback: `Latest Bolt build available <${process.env.SURGE_DEPLOY_URL}|here>`,
+      pretext: `Latest build available <${process.env.SURGE_DEPLOY_URL}|here>`,
+      color: '#FFCC4C'
+    }
+    //
+    // text: `Bolt deployed to ${process.env.SURGE_DEPLOY_URL}`,
+    // // username: process.env.SLACKUSERNAME,
+    // icon_emoji: process.env.SLACKICONEMOJI,
+  });
+
+  done();
+});
+//
+// var slack = require('gulp-slack')({
+//   url: '*Your Webhook URL*',
+//   channel: '#design-system-ci', // Optional
+//   // user: 'bar', // Optional
+//   // icon_url: 'http://foo.com/bar.jpg', // Optional
+//   // icon_emoji: ':bowtie:' // Optional
+// });
+
+
 // var cssTestTasks = require('./packages/build-tools-styles')(gulp, {
 //   root: '/',
 //   src: [
