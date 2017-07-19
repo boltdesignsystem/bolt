@@ -4,7 +4,7 @@
   "description": "Pega Digital Design System",
   "scripts": {
     "deploy:surge": "npm run build && surge sandbox/pattern-library/public $npm_package_config_surgeDomain",
-    "build": "gulp build:patternlab",
+    "build": "gulp patternlab:compile",
     "setup:homebrew": "sh scripts/install-homebrew.sh",
     "serve": "gulp serve",
     "init": "cd sandbox/pattern-library && composer install --no-interaction",
