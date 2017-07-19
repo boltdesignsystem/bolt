@@ -30,6 +30,7 @@ before_install:
 after_success:
   - chmod ugo+x ./scripts/deploy.sh
   - ./scripts/deploy.sh
+  - gulp slack:surge
 
 
 # deploy:
