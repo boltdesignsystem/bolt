@@ -30,8 +30,8 @@ before_install:
   - composer global require hirak/prestissimo
   - if [[ `npm -v` != 5* ]]; then npm i -g npm@5; fi
   - npm install --global lerna
-  # - composer clear-cache
-  # - npm install --global npm@5
+  - npm install gulpjs/gulp-cli -g
+  - npm install gulpjs/gulp#4.0
  # - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && source ~/.nvm/nvm.sh && nvm install 7
 
 ## disable xdebug
@@ -53,6 +53,7 @@ cache:
   yarn: true
   directories:
     - node_modules
+    - sandbox/pattern-library/vendor
 
 notifications:
   email:
