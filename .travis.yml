@@ -12,6 +12,7 @@ env:
 before_install:
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   - sudo add-apt-repository ppa:ondrej/php -y
+  - sudo apt-get update -qq
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
   - export PATH="$HOME/.yarn/bin:$PATH"
   - sudo apt-get install php7.1  gcc-4.8 g++-4.8 graphicsmagick python-software-properties -y
