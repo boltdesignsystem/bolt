@@ -105,7 +105,6 @@ gulp.task('build',
     'styles:compile'
   ],
   gulp.parallel([
-    'styles:watch',
     'patternlab'
   ])
 ));
