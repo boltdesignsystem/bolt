@@ -4,24 +4,34 @@
 
 
 $font-stack:
+
+  // System stack
+
   (group: body--system, id: regular, font: ($font-body--system), weight: $font-weight--regular, style: normal),
   (group: body--system, id: italic, font: ($font-body--system), weight: $font-weight--regular, style: italic),
   (group: body--system, id: bold, font: ($font-body--system), weight: $font-weight--bold, style: normal),
   (group: body--system, id: bold-italic, font: ($font-body--system), weight: $font-weight--bold, style: italic),
+
   (group: heading--system, id: regular, font: ($font-heading--system), weight: $font-weight--regular, style: normal),
   (group: heading--system, id: italic, font: ($font-heading--system), weight: $font-weight--regular, style: italic),
   (group: heading--system, id: bold, font: ($font-heading--system), weight: $font-weight--bold, style: normal),
   (group: heading--system, id: bold-italic, font: ($font-heading--system), weight: $font-weight--bold, style: italic),
+
   (group: code--system, id: regular, font: ($font-code--system), weight: $font-weight--code, style: normal),
+
+
+  // Custom stack
 
   (group: body, id: regular, font: ($font-body), weight: $font-weight--regular, style: normal),
   (group: body, id: italic, font: ($font-body), weight: $font-weight--regular, style: italic),
   (group: body, id: bold, font: ($font-body), weight: $font-weight--bold, style: normal),
   (group: body, id: bold-italic, font: ($font-body), weight: $font-weight--bold, style: italic),
+
   (group: heading, id: regular, font: ($font-heading), weight: $font-weight--regular, style: normal),
   (group: heading, id: italic, font: ($font-heading), weight: $font-weight--regular, style: italic),
   (group: heading, id: bold, font: ($font-heading), weight: $font-weight--bold, style: normal),
   (group: heading, id: bold-italic, font: ($font-heading), weight: $font-weight--bold, style: italic),
+
   (group: code, id: regular, font: ($font-code), weight: $font-weight--code, style: normal);
 
 @mixin font-stack($group, $id:regular){

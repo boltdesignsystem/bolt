@@ -2,8 +2,13 @@
   Settings
 \*------------------------------------*/
 
+@import '@bolt/settings-global';
 @import '@bolt/settings-breakpoints';
 @import '@bolt/settings-typography';
+@import '@bolt/settings-colors';
+@import '@bolt/settings-spacing';
+
+
 
 
 /*------------------------------------*\
@@ -11,14 +16,24 @@
 \*------------------------------------*/
 
 @import '@bolt/tools-breakpoints';
+@import '@bolt/tools-button-colors';
+@import '@bolt/tools-color-palette';
+@import '@bolt/tools-sassy-maps';
+@import '@bolt/tools-spacing';
+@import '@bolt/tools-strip-unit';
+@import '@bolt/tools-text-contrast';
 @import '@bolt/tools-typography';
+
+
 
 
 /*------------------------------------*\
   Generic
 \*------------------------------------*/
 
-@import '@bolt/generics-typography';
+@import '@bolt/generic-typography';
+
+
 
 
 /*------------------------------------*\
@@ -26,19 +41,25 @@
 \*------------------------------------*/
 
 
+
+
+
+
 /*------------------------------------*\
   Objects
 \*------------------------------------*/
 
-// @import '@bolt/objects-grid';
+
+
+
 
 
 /*------------------------------------*\
   Components
 \*------------------------------------*/
 
-$btn-bg-color: #ff561d;
-@import '@bolt/components-button';
+
+
 
 
 /*------------------------------------*\
@@ -46,17 +67,19 @@ $btn-bg-color: #ff561d;
 \*------------------------------------*/
 
 
+
+
+
+
 /*------------------------------------*\
   Utilities
 \*------------------------------------*/
 
 
+
+
+
+
 /*------------------------------------*\
   Shame
 \*------------------------------------*/
-
-.c-button {
-  @include button();
-  @include button-color(purple);
-}
-

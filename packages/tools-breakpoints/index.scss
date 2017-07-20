@@ -6,27 +6,28 @@
   $type: type-of($min);
 
   @if $type == string {
+
+    // Proprietary breakpoints
+
     @if $min == xsmall {
       @media only screen and (min-width: $bp-xsmall-px) { @content; }
     }
-
     @else if $min == small {
       @media only screen and (min-width: $bp-small-px) { @content; }
     }
-
     @else if $min == medium {
       @media only screen and (min-width: $bp-medium-px) { @content; }
     }
-
     @else if $min == large {
       @media only screen and (min-width: $bp-large-px) { @content; }
     }
 
-    // Otherwise pass a warning to the compiler as to the appropriate options
+    // Warning for using invalid breakpoint names
 
     @else {
       @warn "The breakpoint mixin supports the following attributes: xsmall, small, medium, large";
     }
+
   }
 
   @else if $type == number {
@@ -39,6 +40,7 @@
     @else if $min != 0 and $max == 0 { $query: "(min-width: #{$min})"; } // set just min
     @else if $min == 0 and $max != 0 { $query: "(max-width: #{$max})"; } // set just max
     @media #{$query} { @content; }
+
   }
 }
 
