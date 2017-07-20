@@ -11,7 +11,7 @@ id:
     - scripts
     - styles
     - images
-cleanPublic: 'true'
+cleanPublic: false
 patternStates:
     - inprogress
     - inreview
@@ -28,6 +28,8 @@ ishMinimum: '240'
 ishMaximum: '2600'
 ishControlsHide:
     - hay
+    - disco
+    - random
 styleguideKit: pattern-lab/styleguidekit-twig-default
 styleguideKitPath: vendor/pattern-lab/styleguidekit-twig-default
 lineageMatch: '{%([ ]+)?(?:include|extends|embed)( |\()[&quot;\&#039;]([\/.@A-Za-z0-9-_]+)[&quot;\&#039;]([\s\S+]*?)%}'

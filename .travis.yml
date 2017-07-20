@@ -8,13 +8,6 @@ dist: trusty
 env:
   global:
     - CXX=g++-4.8
-  # - CXX=g++-4.8 PHP_OPTIONS="-d sendmail_path=`which true`"
-  # - TRAVIS_NODE_VERSION="7"
-
-script:
-  - npm run bootstrap
-  - npm run init
-  - npm run build
 
 before_install:
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
@@ -27,20 +20,15 @@ before_install:
   # - npm install --global npm@5
  # - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && source ~/.nvm/nvm.sh && nvm install 7
 
+script:
+  - npm run bootstrap
+  - npm run setup:composer
+  - npm run build
+
 after_success:
-  - chmod ugo+x ./scripts/deploy.sh
-  - ./scripts/deploy.sh
+  - chmod ugo+x ./scripts/deploy-pattern-lab.sh
+  - ./scripts/deploy-pattern-lab.sh
   - gulp slack:surge
-
-
-# deploy:
-#   provider: surge
-#   # scripts: ./scripts/deploy.sh
-#   project: ./sandbox/pattern-library/public/
-#   domain: https://boltdesignsystem.surge.sh
-#   skip_cleanup: true
-#   on:
-#     all_branches: true
 
 cache:
   apt: true

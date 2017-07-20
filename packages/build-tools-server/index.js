@@ -5,7 +5,6 @@ const browserSync = require('browser-sync');
 // const autoClose = require('browser-sync-close-hook');
 
 import getDevelopmentCertificate from 'devcert-with-localhost';
-// brew install nss
 
 
 module.exports = (gulp, userConfig) => {
@@ -17,7 +16,13 @@ module.exports = (gulp, userConfig) => {
 
   const options = {
     server: {
-      baseDir: './sandbox/pattern-library/public'
+      baseDir: './sandbox/pattern-library/public',
+
+      // Enable CORS locally
+      middleware(req, res, next) {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        next();
+      }
     },
     httpModule: 'http2',
     https: {

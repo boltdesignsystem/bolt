@@ -10,21 +10,24 @@ module.exports = {
           paths: ['node_modules/@bolt', 'packages/bolt-ui-toolkit'],
         },
         {
-          namespace: 'atoms',
-          paths: ['sandbox/pattern-/source/_patterns/00-atoms'],
+          namespace: 'settings',
+          paths: ['sandbox/pattern-library/source/_patterns/00-settings'],
         }, {
-          namespace: 'molecules',
-          paths: ['sandbox/pattern-/source/_patterns/01-molecules'],
+          namespace: 'elements',
+          paths: ['sandbox/pattern-library/source/_patterns/01-elements'],
         }, {
-          namespace: 'organisms',
-          paths: ['sandbox/pattern-/source/_patterns/02-organisms'],
+          namespace: 'objects',
+          paths: ['sandbox/pattern-library/source/_patterns/02-objects'],
+        }, {
+          namespace: 'components',
+          paths: ['sandbox/pattern-library/source/_patterns/03-components'],
         }, {
           namespace: 'templates',
-          paths: ['sandbox/pattern-/source/_patterns/03-templates'],
+          paths: ['sandbox/pattern-library/source/_patterns/04-templates'],
         }, {
           namespace: 'pages',
-          paths: ['sandbox/pattern-/source/_patterns/04-pages'],
-        },
+          paths: ['sandbox/pattern-library/source/_patterns/05-pages'],
+        }
       ],
     },
   },

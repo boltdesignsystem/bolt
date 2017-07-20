@@ -8,7 +8,12 @@ module.exports = {
   packageFolders: [
     // `./node_modules/${npmNamespace}/${symlinkPrefix}*`,
     // `./packages/ui-*/bolt-`,
-    `./packages/components-*`
+    './packages/elements-*',
+    './packages/objects-*',
+    './packages/settings-*',
+    './packages/components-*',
+    './packages/templates-*',
+    './packages/pages-*'
   ],
   defaultPatternName: 'default'
-}
+};

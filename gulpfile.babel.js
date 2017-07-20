@@ -1,22 +1,35 @@
-
-
 const gulp = require('gulp');
 const gulpConfig = require('./gulpconfig');
-// require('babel-core/register');
-// require('babel-polyfill');
 
+
+/*-------------------------------------------------------------------
+// Pull in tasks + customize configuration
+-------------------------------------------------------------------*/
+const browserSyncTasks = require('./packages/build-tools-server')(gulp, {
+  serverName: gulpConfig.browserSync.serverName
+});
+const slackTasks = require('./packages/build-tools-slack')(gulp, {});
+const symlinkTasks = require('./packages/build-tools-symlinks')(gulp, {});
 const cssTasks = require('./packages/build-tools-styles')(gulp, {
-  root: 'packages/bolt',
+  root: 'sandbox/pattern-library',
   src: [
-    'packages/bolt/bolt.scss'
+    'sandbox/pattern-library/source/styles/**/*.scss'
   ],
-  dest: './packages/bolt',
-  jsonDest: './packages/bolt',
+  dest: './sandbox/pattern-library/public/styles',
+  jsonDest: './sandbox/pattern-library/source/_data',
   extraWatches: './packages/*/*.scss'
   // lint: true
 });
+const patternLabTasks = require('./packages/build-tools-pattern-lab')(gulp, {
+  browserSync: {
+    serverName: gulpConfig.browserSync.serverName
+  }
+});
 
 
+/*-------------------------------------------------------------------
+// Styles Gulp Tasks
+-------------------------------------------------------------------*/
 gulp.task('styles:compile', cssTasks.compile);
 gulp.task('styles:lint', cssTasks.lint);
 gulp.task('styles:watch', cssTasks.watch);
@@ -31,86 +44,68 @@ gulp.task('styles',
 );
 
 
-const browserSyncTasks = require('./packages/build-tools-server')(gulp);
-
+/*-------------------------------------------------------------------
+// Browsersync
+-------------------------------------------------------------------*/
 gulp.task('browsersync', gulp.series([browserSyncTasks.serve]));
 
 
-const patternLab = require('./packages/build-tools-pattern-lab')(gulp, {
-  browserSync: {
-    serverName: gulpConfig.browserSync.serverName
-  }
-});
+/*-------------------------------------------------------------------
+// Compile Pattern Lab
+-------------------------------------------------------------------*/
+gulp.task('patternlab:compile', gulp.series([patternLabTasks.compile]));
 
-gulp.task('patternlab:compile', gulp.series([patternLab.compile]));
-
-// gulp.task('styles:lint', cssTasks.lint);
-// gulp.task('styles:watch', cssTasks.watch);
-//
-// gulp.task('styles',
-//   gulp.series([
-//     cssTasks.compile,
-//     gulp.parallel([
-//       cssTasks.watch
-//     ])
-//   ])
-// );
+gulp.task('patternlab', gulp.series(
+  'patternlab:compile',
+  // gulp.parallel([
+  //   // patternlab.watch
+  // ])
+));
 
 
-const symlinks = require('./packages/build-tools-symlinks')(gulp, {});
+/*-------------------------------------------------------------------
+// Manage Symlinks
+-------------------------------------------------------------------*/
+gulp.task('symlinks:create', symlinkTasks.compile);
+gulp.task('symlinks:clean', symlinkTasks.clean);
 
-gulp.task('symlinks:create', symlinks.compile);
-gulp.task('symlinks:clean', symlinks.clean);
-//
-//
 gulp.task('symlinks', gulp.series(
   'symlinks:clean',
   gulp.parallel(['symlinks:create'])
 ));
 
 
-// var gulp = require('gulp');
-// const Slack = require('node-slack');
-// const slack = new Slack(process.env.SLACKURL);
-//
-//
-// /*-------------------------------------------------------------------
-// Post to Slack
-// -------------------------------------------------------------------*/
-require('dotenv').config();
-const Slack = require('node-slack');
-
-const slack = new Slack('https://hooks.slack.com/services/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');
-
-gulp.task('slack:surge', (done) => {
-  console.log(process.env.DEPLOY_PATH);
-  slack.send({
-    channel: '#design-system-ci',
-    text: `Bolt deployed to ${process.env.SURGE_DEPLOY_URL}`,
-    icon_emoji: ':bolt:',
-    attachments: {
-      fallback: `Latest Bolt build available <${process.env.SURGE_DEPLOY_URL}|here>`,
-      pretext: `Latest build available <${process.env.SURGE_DEPLOY_URL}|here>`,
-      color: '#FFCC4C'
-    }
-    //
-    // text: `Bolt deployed to ${process.env.SURGE_DEPLOY_URL}`,
-    // // username: process.env.SLACKUSERNAME,
-    // icon_emoji: process.env.SLACKICONEMOJI,
-  });
-
-  done();
-});
-//
-// var slack = require('gulp-slack')({
-//   url: '*Your Webhook URL*',
-//   channel: '#design-system-ci', // Optional
-//   // user: 'bar', // Optional
-//   // icon_url: 'http://foo.com/bar.jpg', // Optional
-//   // icon_emoji: ':bowtie:' // Optional
-// });
+/*-------------------------------------------------------------------
+// Slack Notifications
+-------------------------------------------------------------------*/
+gulp.task('slack:surge', slackTasks.notify);
+gulp.task('slack:test', require('./packages/build-tools-slack')(gulp, {
+  slackText: 'Hello! This is a slack notification test.'
+}).notify);
 
 
+gulp.task('default',
+  gulp.series([
+    'symlinks:clean',
+    'symlinks:create',
+    'styles:compile'
+    // gulp.task('styles:compile', cssTasks.compile);
+    // gulp.task('styles:lint', cssTasks.lint);
+    // gulp.task('styles:watch', cssTasks.watch);
+  ],
+  gulp.parallel([
+    'styles:watch',
+    'patternlab',
+    'browsersync'
+  ])
+));
+
+// gulp.series([
+//   cssTasks.compile,
+//   gulp.parallel([
+//     cssTasks.watch
+//   ])
+// ])
 // var cssTestTasks = require('./packages/build-tools-styles')(gulp, {
 //   root: '/',
 //   src: [
@@ -122,13 +117,9 @@ gulp.task('slack:surge', (done) => {
 // gulp.task('styles:testCompile', cssTestTasks.compile);
 
 
-const twig = require('gulp-twig');
-const data = require('gulp-data');
 const path = require('path');
 const merge = require('merge');
 const glob = require('glob');
-const flatten = require('gulp-flatten');
-const rename = require('gulp-rename');
 const fs = require('fs');
 
 
