@@ -79,9 +79,9 @@ gulp.task('symlinks', gulp.series(
 // Slack Notifications
 -------------------------------------------------------------------*/
 gulp.task('slack:surge', slackTasks.notify);
-gulp.task('slack:test', require('./packages/build-tools-slack')(gulp, {
-  slackText: 'Hello! This is a slack notification test.'
-}).notify);
+// gulp.task('slack:test', require('./packages/build-tools-slack')(gulp, {
+//   slackText: 'Hello! This is a slack notification test.'
+// }).notify);
 
 
 gulp.task('default',
