@@ -29,6 +29,7 @@ before_install:
   - sudo apt-get install graphicsmagick
   - composer global require hirak/prestissimo
   - if [[ `npm -v` != 5* ]]; then npm i -g npm@5; fi
+  - npm install --global lerna
   # - composer clear-cache
   # - npm install --global npm@5
  # - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && source ~/.nvm/nvm.sh && nvm install 7
