@@ -4,7 +4,7 @@
   "description": "Pega Digital Design System",
   "scripts": {
     "bootstrap": "lerna bootstrap --no-sort --concurrency 8",
-    "build": "gulp patternlab:compile",
+    "build": "gulp build",
     "commitmsg": "validate-commit-msg",
     "deploy:surge": "npm run build && surge sandbox/pattern-library/public $npm_package_config_surgeDomain",
     "fix:scripts": "gulp scripts:fix",
@@ -78,7 +78,6 @@
     "gulp-flatten": "^0.3.1",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
-    "gulp-slack": "^0.1.2",
     "gulp-twig": "^0.7.0",
     "gulp-twig-php": "^0.2.1",
     "html-minifier": "^3.5.2",

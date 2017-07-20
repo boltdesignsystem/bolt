@@ -89,14 +89,24 @@ gulp.task('default',
     'symlinks:clean',
     'symlinks:create',
     'styles:compile'
-    // gulp.task('styles:compile', cssTasks.compile);
-    // gulp.task('styles:lint', cssTasks.lint);
-    // gulp.task('styles:watch', cssTasks.watch);
   ],
   gulp.parallel([
     'styles:watch',
     'patternlab',
     'browsersync'
+  ])
+));
+
+
+gulp.task('build',
+  gulp.series([
+    'symlinks:clean',
+    'symlinks:create',
+    'styles:compile'
+  ],
+  gulp.parallel([
+    'styles:watch',
+    'patternlab'
   ])
 ));
 
