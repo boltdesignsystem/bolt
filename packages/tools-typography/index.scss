@@ -77,27 +77,3 @@ $font-size:
     }
   }
 }
-
-
-
-
-/*------------------------------------*\
-  Font Rendering
-\*------------------------------------*/
-
-
-@mixin antialiased {
-  text-rendering: optimizeLegibility;
-  -moz-osx-font-smoothing: grayscale !important;
-  -webkit-font-smoothing: antialiased !important;
-  font-smoothing: antialiased !important;
-}
-
-@mixin kerning {
-  -moz-font-feature-settings: "kern";
-  -ms-font-feature-settings: "kern";
-  -o-font-feature-settings: "kern";
-  -webkit-font-feature-settings: "kern";
-  font-feature-settings: "kern";
-  font-kerning: normal; /* Safari 7+, Firefox 24+, Chrome 33(?)+, Opera 21+*/
-}

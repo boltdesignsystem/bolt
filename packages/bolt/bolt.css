@@ -4,7 +4,7 @@
 \*------------------------------------*/
 /*------------------------------------*  Breakpoint variables
 \*------------------------------------*/
-/*------------------------------------*  Main variables
+/*------------------------------------*  Defining system and custom fonts
 \*------------------------------------*/
 /*
  * System UI Fonts
@@ -12,24 +12,12 @@
 /*
  * Font types
  */
-/*------------------------------------*  Configurations (design token --- settings-tokens-typography)
+/*------------------------------------*  Base Font Size
 \*------------------------------------*/
-/*
- * System Fonts (fallback and no-script)
- */
-/*
- * Custom fonts
- */
-/*------------------------------------*  Weights (settings-font-weight)
+/*------------------------------------*  Scale
 \*------------------------------------*/
-/*------------------------------------*  Sizing (move to settings-modular-scale)
+/*------------------------------------*  Weights
 \*------------------------------------*/
-/*
- * Base Font Size
- */
-/*
- * Font Size Scale (rem)
- */
 /*------------------------------------*  Color Palettes
 \*------------------------------------*/
 /*------------------------------------*  Spacing Scale
@@ -37,7 +25,17 @@
 /**
  * Read https://medium.com/eightshapes-llc/space-in-design-systems-188bcbae0d62 for more background into spacing scales for design systems.
  */
+/*------------------------------------*  Defining body and heading fonts
+\*------------------------------------*/
+/*
+ * System Fonts (fallback and no-script)
+ */
+/*
+ * Custom fonts
+ */
 /*------------------------------------*  Tools
+\*------------------------------------*/
+/*------------------------------------*  Text Rendering
 \*------------------------------------*/
 /*------------------------------------*  Breakpoints
 \*------------------------------------*/
@@ -95,57 +93,18 @@
 \*------------------------------------*/
 /*------------------------------------*  Font Size
 \*------------------------------------*/
-/*------------------------------------*  Font Rendering
-\*------------------------------------*/
 /*------------------------------------*  Generic
 \*------------------------------------*/
-/*------------------------------------*  Text rendering fix
+/*------------------------------------*  Consistent text rendering
 \*------------------------------------*/
 *, *:before, *:after {
-  text-rendering: optimizeLegibility;
-  -moz-osx-font-smoothing: grayscale !important;
-  -webkit-font-smoothing: antialiased !important;
-  font-smoothing: antialiased !important;
-  -moz-font-feature-settings: "kern";
-  -ms-font-feature-settings: "kern";
-  -o-font-feature-settings: "kern";
-  -webkit-font-feature-settings: "kern";
+  box-sizing: border-box;
   font-feature-settings: "kern";
   font-kerning: normal;
   /* Safari 7+, Firefox 24+, Chrome 33(?)+, Opera 21+*/
 }
 
-html.touch *, html.touch *:before, html.touch *:after {
-  text-rendering: optimizeSpeed;
-}
-
 /*------------------------------------*  Body and heading declaration
-\*------------------------------------*/
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  font-weight: 300;
-  font-style: normal;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  font-weight: 600;
-  font-style: normal;
-}
-
-html.fonts-loaded body {
-  font-family: "Open Sans", "Helvetica Neue", sans-serif;
-  font-weight: 300;
-  font-style: normal;
-}
-
-html.fonts-loaded h1, html.fonts-loaded h2, html.fonts-loaded h3, html.fonts-loaded h4, html.fonts-loaded h5, html.fonts-loaded h6 {
-  font-family: "Open Sans", "Helvetica Neue", sans-serif;
-  font-weight: 600;
-  font-style: normal;
-}
-
-/*------------------------------------*  Font Size
 \*------------------------------------*/
 html {
   font-size: 15px;
@@ -164,13 +123,33 @@ html {
 }
 
 body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
   line-height: 1.65;
   font-size: 1rem;
+  margin: 0;
+  padding: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-weight: 800;
+  font-style: normal;
   line-height: 1.111;
   font-size: 1rem;
+}
+
+html.fonts-loaded body {
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+html.fonts-loaded h1, html.fonts-loaded h2, html.fonts-loaded h3, html.fonts-loaded h4, html.fonts-loaded h5, html.fonts-loaded h6 {
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 800;
+  font-style: normal;
 }
 
 /*------------------------------------*  Link

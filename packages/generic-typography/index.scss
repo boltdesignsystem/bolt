@@ -1,48 +1,5 @@
 /*------------------------------------*\
-  Text rendering fix
-\*------------------------------------*/
-
-*, *:before, *:after {
-  @include antialiased;
-  @include kerning;
-}
-
-html.touch *, html.touch *:before, html.touch *:after {
-  // Optimize speed for touch devices using modernizr
-  text-rendering: optimizeSpeed;
-}
-
-
-
-
-/*------------------------------------*\
   Body and heading declaration
-\*------------------------------------*/
-
-
-body {
-  @include font-stack(body--system,regular);
-}
-
-h1, h2, h3, h4, h5, h6 {
-  @include font-stack(heading--system,bold);
-}
-
-html.fonts-loaded {
-  body{
-    @include font-stack(body,regular);
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    @include font-stack(heading,bold);
-  }
-}
-
-
-
-
-/*------------------------------------*\
-  Font Size
 \*------------------------------------*/
 
 
@@ -59,16 +16,31 @@ html {
   @include respond-to(large) {
     font-size: $font-size--max-px;
   }
-
 }
 
-body{
+body {
+  @include font-stack(body--system,regular);
   @include font-size(base);
+
+  margin: 0;
+  padding: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
+  @include font-stack(heading--system,bold);
   @include font-size(base--tight);
 }
+
+html.fonts-loaded {
+  body{
+    @include font-stack(body,regular);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @include font-stack(heading,bold);
+  }
+}
+
 
 
 

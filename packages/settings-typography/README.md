@@ -1,3 +1,0 @@
----
-title: Typography Settings
----
