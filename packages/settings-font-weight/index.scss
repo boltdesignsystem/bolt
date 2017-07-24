@@ -1,13 +1,17 @@
+////
+/// @group Settings: font weight mapping
+/// @author Mike Mai
+////
+
+
 /*------------------------------------*\
   Weights
 \*------------------------------------*/
-/// Description: what this file actually does
 
 
 $font-weight--regular:   400 !default;
 $font-weight--semibold:  700 !default;
 $font-weight--bold:      800 !default;
-
 
 @if ($font-weight--regular < 400){
   @error "Bolt's regular font weight can't be lighter than 400";
@@ -29,7 +33,8 @@ $font-weight--bold:      800 !default;
   @error "Sorry, but your bold and semi-bold font weights have values that are too close together. Please choose values that are at least 100 or more apart`!";
 }
 
-
+/// Bolt's definition of all options of possible text weights.
+/// @type Map
 $font-weights: (
   font-weights: (
     bold:     $font-weight--bold,
