@@ -9,6 +9,7 @@ const jsonExporter = require('node-sass-export');
 const npmSass = require('npm-sass');
 const postcss = require('gulp-postcss');
 const path = require('path');
+const sassdoc = require('sassdoc');
 const magicImporter = require('node-sass-magic-importer');
 // const scssSyntax = require('postcss-scss');
 // const immutableCss = require('immutable-css');
@@ -34,21 +35,40 @@ const autoprefixer = require('autoprefixer');
 
 
 
+const sassdocConfig = {
+  theme: 'flippant',
+  dest: 'sassdoc',
+  verbose: true,
+  display: {
+    access: ['public', 'private'],
+    alias: true,
+    watermark: true,
+  },
+  groups: {
+    'undefined': 'Ungrouped',
+    // foo: 'Foo group',
+    // bar: 'Bar group',
+  },
+  basePath: 'https://github.com/boltdesignsystem/bolt',
+}
+
+
+
 module.exports = (gulp, userConfig, $) => {
-  
+
   const tasks = {};
   const config = merge({
     postcss: [
-      
+
     ]
   }, defaultConfig, userConfig);
-  
-  
+
+
   var processors = [
     stylelint(),
     postcssReporter({ clearReportedMessages: true })
   ];
-  
+
   function lintCSS() {
     gulp.src([
       'packages/**/*.scss',
@@ -70,11 +90,28 @@ module.exports = (gulp, userConfig, $) => {
     // });
   }
   tasks.lint = lintCSS;
-  
-  
-  
+
+
+
+
+  function sassDoc(done) {
+    gulp.src(['packages/**/*.scss', '!packages/**/node_modules/**/*'])
+      .pipe(sassdoc(sassdocConfig))
+      .on('end', () => {
+        done();
+      });
+  }
+  sassDoc.description = 'Generate SassDoc docs';
+  sassDoc.displayName = 'sassdoc';
+
+  tasks.sassdoc = sassDoc;
+
+
+
+
+
   function compileCSS(done) {
-      
+
       gulp.src(config.src)
         .pipe(plumber({
           errorHandler: function (error) {
@@ -86,6 +123,7 @@ module.exports = (gulp, userConfig, $) => {
         }))
         // .pipe($.env.development($.sourcemaps.init()))
         .pipe(sourcemaps.init())
+        .pipe(sassdoc(sassdocConfig))
         .pipe(sass({
           includePaths: ['node_modules', 'packages'],
           importer: [npmSass.importer, magicImporter],
@@ -93,7 +131,7 @@ module.exports = (gulp, userConfig, $) => {
         }).on('error', sass.logError))
         .pipe(postcss(config.postcss))
         // .pipe(duration('CSS Compile Time'))
-        
+
         // .pipe(size({title: 'Total CSS Size'}))
         // .pipe(gulp.dest('./styles'))
         // .pipe(cleanCSS({
@@ -111,23 +149,28 @@ module.exports = (gulp, userConfig, $) => {
         });
   }
   tasks.compile = compileCSS;
-  
-  
-  
+
+
+
   function watchCSS() {
     let watchTasks = [compileCSS];
     if (config.lint === true){
       watchTasks.push(lintCSS);
     }
+
+    if (config.docs === true){
+      watchTasks.push(sassDoc);
+    }
+
     const src = config.extraWatches
         ? [].concat(config.src, config.extraWatches)
         : config.src;
     // console.log(watchTasks);
-    
+
     return gulp.watch(src, gulp.parallel(watchTasks));
   }
   tasks.watch = watchCSS;
-  
-  
+
+
   return tasks;
 }

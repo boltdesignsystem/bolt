@@ -1,14 +1,16 @@
-/* ==========================================================================
-   #GLOBAL SETTINGS
-   ========================================================================== */
+/*------------------------------------*\
+  Global Settings
+\*------------------------------------*/
+
 // @import '../setting-global/package.json';
 // @import '~@bolt/setting-module-manager';
-//    
+//
 // @include add-module(
 //   $module-name: $name,
 //   $module-version: $version,
 //   $module-dependencies: ()
 // );
+
 $global-font-size: 16px;
 $global-line-height: 1.5 * $global-font-size;
 $global-border-radius: 4px;
@@ -21,14 +23,10 @@ $spacing-unit-large: $spacing-unit * 2;
 $spacing-unit-xlarge: $spacing-unit * 4;
 $global-page-max-width: 1200px;
 $shadow-size: 0 0 5px;
-$fonts-subset-loaded-class: 'fonts-subset-loaded';
-$fonts-loaded-class: 'fonts-loaded';
-$header-height--small-breakpoint: 50px;
-$header-height--large-breakpoint: 76px;
-$admin-menu-height: $spacing-unit * 2;
-$admin-menu-small-breakpoint: 335px;
-$admin-menu-medium-breakpoint: 466px;
-$admin-menu-large-breakpoint: 900px;
+
+// Async font loading classes
+$fonts-subset-loaded-class: 'js-fonts-subset-loaded' !default;
+$fonts-loaded-class: 'js-fonts-loaded' !default;
 
 // $global-rootsize: 12;
 $global-breakpoint-separator: \@ !default;

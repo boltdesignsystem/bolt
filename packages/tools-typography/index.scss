@@ -1,0 +1,88 @@
+////
+/// @group Tools: font-stack
+/// @author Mike Mai
+////
+
+
+@import '@bolt/settings-font-family';
+@import '@bolt/settings-font-size';
+@import '@bolt/settings-font-weight';
+@import '@bolt/tools-sassy-maps'; // So map-get-deep works
+
+
+/*------------------------------------*\
+  Font Stack
+\*------------------------------------*/
+
+
+/// This returns the font-family for a specific element. Brand fonts are the default, with system fonts as the fallback.
+///
+/// @param {string} $type
+///   Defines the font-family being used for each type of text: heading, body, or code.
+///
+@mixin font-family($type, $is_root: false) {
+  $fallback-font-family: map-get-deep($font-families, 'font-families', $type, 'system');
+  $custom-font-family: map-get-deep($font-families, 'font-families', $type, 'custom');
+
+  font-family: $fallback-font-family;
+
+  @if $is_root == false {
+    .#{$fonts-loaded-class} & {
+      font-family: $custom-font-family;
+    }
+  }
+  @else {
+    &.#{$fonts-loaded-class} {
+      font-family: $custom-font-family;
+    }
+  }
+}
+
+
+
+
+
+/*------------------------------------*\
+  Font Size
+\*------------------------------------*/
+
+
+/// This returns the font-size and relevant line-height for a specific element.
+///
+/// @param {string} $size
+///   Defines the size of the text: xsmall, small, base, medium, large, xlarge, or xxlarge.
+///
+/// @param {string} $leading
+///   Defines the line-height of the text: regular or tight.
+///
+@mixin font-size($size, $leading: regular) {
+  $font-size: map-get-deep($font-sizes, 'font-sizes', $size, 'font-size');
+  $line-height: map-get-deep($font-sizes, 'font-sizes', $size, 'line-height', 'regular');
+  $line-height--tight: map-get-deep($font-sizes, 'font-sizes', $size, 'line-height', 'tight');
+
+  font-size: $font-size;
+  line-height: $line-height;
+
+  @if $leading == 'tight' {
+    line-height: $line-height--tight;
+  }
+}
+
+
+
+
+/*------------------------------------*\
+  Font weight
+\*------------------------------------*/
+
+
+/// This returns the font-weight for a specific element.
+///
+/// @param {string} $weight
+///   Defines the weight of the text: bold or regular.
+///
+@mixin font-weight($weight) {
+  $font-weight: map-get-deep($font-weights, 'font-weights', $weight);
+
+  font-weight: $font-weight;
+}

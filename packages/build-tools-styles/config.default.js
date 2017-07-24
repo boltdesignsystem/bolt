@@ -5,5 +5,6 @@ module.exports = {
   ],
   dest: './packages/bolt',
   jsonDest: './packages/bolt',
-  lint: false
+  lint: false,
+  docs: true
 }

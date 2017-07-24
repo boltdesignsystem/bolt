@@ -1,0 +1,44 @@
+/*------------------------------------*\
+  Body and heading declaration
+\*------------------------------------*/
+
+
+html {
+  // Base type
+  font-size: $font-size--min-px;
+
+  // Responsive type
+  @include respond-to(small) {
+    font-size: calc(#{$font-size--min-px} + #{$font-size--max - $font-size--min} * (100vw - #{$bp-small-px}) / (#{$bp-large - $bp-small}));
+  }
+
+  // Large type
+  @include respond-to(large) {
+    font-size: $font-size--max-px;
+  }
+}
+
+body {
+  @include font-family(body);
+  @include font-size(base);
+
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @include font-family(heading);
+  @include font-size(base,tight);
+  @include font-weight(bold);
+}
+
+
+
+
+/*------------------------------------*\
+  Link
+\*------------------------------------*/
+
+a {
+  text-decoration: none;
+}

@@ -19,12 +19,14 @@ var cssTasks = require('./packages/build-tools-styles')(gulp, {
 gulp.task('styles:compile', cssTasks.compile);
 gulp.task('styles:lint', cssTasks.lint);
 gulp.task('styles:watch', cssTasks.watch);
+gulp.task('styles:sassdoc', cssTasks.sassdoc);
 
 gulp.task('styles',
   gulp.series([
-    cssTasks.compile,
+    'styles:compile',
+    'styles:sassdoc',
     gulp.parallel([
-      cssTasks.watch
+      'styles:watch'
     ])
   ])
 );
@@ -35,8 +37,8 @@ const symlinks = require('./packages/build-tools-symlinks')(gulp, {});
 
 gulp.task('symlinks:create', symlinks.compile);
 gulp.task('symlinks:clean', symlinks.clean);
-// 
-// 
+//
+//
 gulp.task('symlinks', gulp.series(
   'symlinks:clean',
   gulp.parallel(['symlinks:create'])
@@ -69,7 +71,7 @@ const fs = require('fs');
 
 
 var renderFile = require('node-twig').renderFile;
-// 
+//
 // renderFile('/full/path/to/template.twig', options, (error, template) => {
 //   // ... do something with the rendered template. :)
 // });
@@ -84,15 +86,15 @@ gulp.task('test:compile-templates', function (done) {
     var varients;;
 
     var localTwigFileData = require(path.dirname(twigFile) + '/' + path.basename(path.parse(twigFile).name) + '.json');
-    
+
      var varientPaths = glob.sync(path.join(path.dirname(twigFile), '../') + '**/*.varients.json');
-     
+
     varientPaths.map(function(varient) {
       varients = merge(varients, require(path.resolve(varient)));
     });
-    
+
     var mergedTwigFileData = merge(localTwigFileData, varients);
-    
+
     renderFile(path.resolve(twigFile), {
       context: mergedTwigFileData,
       root: path.resolve(path.join(path.dirname(twigFile), '../'))
@@ -102,20 +104,20 @@ gulp.task('test:compile-templates', function (done) {
     });
 
   });
-  
+
   // return gulp.src()
   //   .pipe(data(function(file) {
   //     var mergedData;
   //     var localData = require(path.dirname(file.path) + '/' + path.basename(path.parse(file.path).name) + '.json');
-  //     
+  //
   //     var varientPaths = glob.sync(path.join(path.dirname(file.path), '../') + '*.varients.json');
-  //     
+  //
   //     var varients;
-  //     
+  //
   //     varientPaths.map(function(varient) {
   //       varients = merge(varients, require(varient));
   //     });
-  //     
+  //
   //     return merge(localData, varients);
   //   }))
   //   .pipe(twig({
@@ -139,12 +141,12 @@ gulp.task('test:compile-styles', function (done) {
       './packages/*/tests/_*test.scss'
     ]
   });
-  
+
   testStyles.map(function(testStyle) {
-    
+
     var testFile = path.parse(testStyle).name;
     var testDir = path.dirname(testStyle);
-    
+
     var compileTestCSS = require('./packages/build-tools-styles')(gulp, {
       root: testDir,
       src: testStyle,
@@ -153,10 +155,10 @@ gulp.task('test:compile-styles', function (done) {
     });
     compileTestCSS.compile(done);
   });
-  
+
 });
 
-gulp.task('test', 
+gulp.task('test',
   gulp.parallel([
     'test:compile-templates',
     'test:compile-styles'
@@ -196,13 +198,13 @@ gulp.task('test',
 //     presets: ['babel-preset-es2015'].map(require.resolve)
 //   }
 // });
-// 
+//
 // gulp.task('validate:js', jsTasks.validate);
 // gulp.task('js', jsTasks.compile);
 // gulp.task('fix:js', jsTasks.fix);
 // gulp.task('clean:js', jsTasks.clean);
 // gulp.task('watch:js', jsTasks.watch);
-// 
+//
 // gulp.task('css', cssTasks.compile);
 // gulp.task('pl', patternLabTasks.compile);
 
@@ -244,7 +246,7 @@ gulp.task('test',
 //    });
 //    return twigNamespaceConfig;
 //  }
-// 
+//
 //  function addTwigNamespaceConfigToDrupal(done) {
 //    const twigNamespaceConfig = getTwigNamespaceConfig(path.dirname(config.drupal.themeFile));
 //    const drupalThemeFile = yaml.safeLoad(
@@ -255,7 +257,7 @@ gulp.task('test',
 //    fs.writeFileSync(config.drupal.themeFile, newThemeFile, 'utf8');
 //    done();
 //  }
-// 
+//
 //  function addTwigNamespaceConfigToPl(done) {
 //    const twigNamespaceConfig = getTwigNamespaceConfig(plRoot);
 //    plConfig = yaml.safeLoad(
@@ -279,7 +281,7 @@ gulp.task('test',
 //    fs.writeFileSync(config.patternLab.configFile, newConfigFile, 'utf8');
 //    done();
 //  }
-// 
+//
 //  if (config.patternLab.twigNamespaces) {
 //    gulp.task('twigNamespaces', (done) => {
 //     //  addTwigNamespaceConfigToDrupal(done),
@@ -294,9 +296,9 @@ gulp.task('test',
 //   //  plFullDependencies.push('twigNamespaces');
 //   //  watchTriggeredTasks.push('twigNamespaces');
 //  }
- 
- 
- 
+
+
+
 
 
  // gulp.task('default', gulp.series([
@@ -308,18 +310,18 @@ gulp.task('test',
  //     browserSyncTasks.serve
  //   ])
  // ]));
- // 
- 
- 
-// 
+ //
+
+
+//
 // var spawn = require('child-process').spawn;
 // var intermediate = require('gulp-intermediate');
-//  
+//
 // gulp.task('default', function () {
 //   return gulp.src('app/**/*.jade')
 //     .pipe(intermediate({ output: '_site' }, function (tempDir, cb) {
-//       // Run a command on the files in tempDir and write the results to 
-//       // the specified output directory. 
+//       // Run a command on the files in tempDir and write the results to
+//       // the specified output directory.
 //       var command = spawn('a_command', ['--dest', '_site'], {cwd: tempDir});
 //       command.on('close', cb);
 //     }))

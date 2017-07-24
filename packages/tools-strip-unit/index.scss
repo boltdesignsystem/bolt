@@ -1,17 +1,19 @@
-/* ==========================================================================
-   #STRIP-UNIT
-   ========================================================================== */
+////
+/// @group Tools: strip-unit
+/// @author Mike Mai
+////
 
-/// Remove the unit of a length
+
+/*------------------------------------*\
+  Strip Unit
+\*------------------------------------*/
+
+
+/// Remove the unit of a length.
+///
 /// @param {Number} $number - Number to remove unit from
 /// @return {Number} - Unitless number
-
-// @include add-module(
-//   $name:    'tools.strip-unit',
-//   $version: '1.0.0',
-//   $dependencies: ()
-// );
-
+///
 @function strip-unit($number) {
   @if type-of($number) == 'number' and not unitless($number) {
     @return $number / ($number * 0 + 1);
