@@ -1,0 +1,101 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Bolt - v0.1.0</title><link rel="stylesheet" href="assets/css/main.css"><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,500,700" rel="stylesheet" type="text/css"><meta name="viewport" content="width=device-width"><meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible"><!-- Open Graph tags --><meta property="og:title" content="Bolt - SassDoc"><meta property="og:type" content="website"><meta property="og:description" content="<p>Pega Digital Design System</p>
+"><!-- Thanks to Sass-lang.com for the icons --><link href="assets/images/favicon.png" rel="shortcut icon"></head><body><aside class="sidebar" role="nav"><div class="sidebar__header"><h1 class="sidebar__title"><a href="https://github.com/pega-digital/bolt#readme">Bolt - v0.1.0</a></h1></div><div class="sidebar__body"><button type="button" class="btn-toggle js-btn-toggle" data-alt="Open all">Close all</button><p class="sidebar__item sidebar__item--heading" data-slug="setting: font-families"><a href="#setting: font-families">setting: font-families</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="setting: font-families-mixin"><a href="#setting: font-families-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="font-family" data-type="mixin"><a href="#mixin-font-family">font-family</a></li><li class="sidebar__item sassdoc__item" data-name="font-size" data-type="mixin"><a href="#mixin-font-size">font-size</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="setting: font-sizes"><a href="#setting: font-sizes">setting: font-sizes</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="setting: font-sizes-variable"><a href="#setting: font-sizes-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="font-sizes" data-type="variable"><a href="#variable-font-sizes">font-sizes</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="setting: font-stacks"><a href="#setting: font-stacks">setting: font-stacks</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="setting: font-stacks-variable"><a href="#setting: font-stacks-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="font-stacks" data-type="variable"><a href="#variable-font-stacks">font-stacks</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="tools: strip unit"><a href="#tools: strip unit">tools: strip unit</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="tools: strip unit-function"><a href="#tools: strip unit-function">functions</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="strip-unit" data-type="function"><a href="#function-strip-unit">strip-unit</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="undefined"><a href="#undefined">Ungrouped</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="undefined-variable"><a href="#undefined-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="font-weight--regular" data-type="variable"><a href="#variable-font-weight--regular">font-weight--regular</a></li></ul></div></div></aside><article class="main" role="main"><header class="header" role="banner"><div class="container"><div class="sassdoc__searchbar searchbar"><label for="js-search-input" class="visually-hidden">Search</label><div class="searchbar__form" id="js-search"><input name="search" type="search" class="searchbar__field" autocomplete="off" autofocus id="js-search-input" placeholder="Search"><ul class="searchbar__suggestions" id="js-search-suggestions"></ul></div></div></div></header><section class="main__section"><h1 class="main__heading" id="setting: font-families"><div class="container">setting: font-families</div></h1><section class="main__sub-section" id="setting: font-families-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="mixin-font-family"><h3 class="item__heading"><a class="item__name" href="#mixin-font-family">font-family</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin font-family($font-family) { 
+  $fallback-font-family: map-get-deep($font-stacks, &#39;font-stacks&#39;, $type, &#39;system&#39;);
+  $custom-font-family: map-get-deep($font-stacks, &#39;font-stacks&#39;, $type, &#39;custom&#39;);
+
+  font-family: $fallback-font-family;
+
+  @if $is_root == false {
+    .#{$fonts-loaded-class} &amp; {
+      font-family: $custom-font-family;
+    }
+  }
+  @else {
+    &amp;.#{$fonts-loaded-class} {
+      font-family: $custom-font-family;
+    }
+  }
+ }" data-collapsed="@mixin font-family($font-family) { ... }"><code>@mixin font-family($font-family) { ... }</code></pre><a href="https://github.com/boltdesignsystem/bolt/tools-typography/index.scss#L19-L35" class="item__source-link" target="_blank">View source</a></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Returns font family.</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$font-family</code></th><td data-label="desc"><p>Font family (a or b).</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-font-stacks"><code>font-stacks</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-font-stacks"><code>font-stacks</code></a></li></ul><h3 class="item__sub-heading">Author</h3><ul class="list-unstyled"><li><p>Mike Mai</p></li></ul></section><section class="main__item container item" id="mixin-font-size"><h3 class="item__heading"><a class="item__name" href="#mixin-font-size">font-size</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin font-size($font-size) { 
+  $font-size: map-get-deep($font-sizes, &#39;font-sizes&#39;, $type, &#39;font-size&#39;);
+  $line-height: map-get-deep($font-sizes, &#39;font-sizes&#39;, $type, &#39;line-height&#39;, &#39;regular&#39;);
+  $line-height--tight: map-get-deep($font-sizes, &#39;font-sizes&#39;, $type, &#39;line-height&#39;, &#39;tight&#39;);
+
+  font-size: $font-size;
+  line-height: $line-height;
+
+  @if $leading == &#39;tight&#39; {
+    line-height: $line-height--tight;
+  }
+ }" data-collapsed="@mixin font-size($font-size) { ... }"><code>@mixin font-size($font-size) { ... }</code></pre><a href="https://github.com/boltdesignsystem/bolt/tools-typography/index.scss#L48-L59" class="item__source-link" target="_blank">View source</a></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Returns font size.</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$font-size</code></th><td data-label="desc"><p>Font size (a or b).</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-font-sizes"><code>font-sizes</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-font-sizes"><code>font-sizes</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-font-sizes"><code>font-sizes</code></a></li></ul><h3 class="item__sub-heading">Author</h3><ul class="list-unstyled"><li><p>Mike Mai</p></li></ul></section></section></section><section class="main__section"><h1 class="main__heading" id="setting: font-sizes"><div class="container">setting: font-sizes</div></h1><section class="main__sub-section" id="setting: font-sizes-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="variable-font-sizes"><h3 class="item__heading"><a class="item__name" href="#variable-font-sizes">font-sizes</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$font-sizes: (
+  font-sizes: (
+    xxlarge: (
+      font-size: $font-scale--xxlarge + rem,
+      line-height: (
+        regular: $font-leading--xxlarge,
+        tight: $font-leading--tight
+      )
+    ),
+    xlarge: (
+      font-size: $font-scale--xlarge + rem,
+      line-height: (
+        regular: $font-leading--xlarge,
+        tight: $font-leading--tight
+      )
+    ),
+    large: (
+      font-size: $font-scale--large + rem,
+      line-height: (
+        regular: $font-leading--large,
+        tight: $font-leading--tight
+      )
+    ),
+    medium: (
+      font-size: $font-scale--medium + rem,
+      line-height: (
+        regular: $font-leading--medium,
+        tight: $font-leading--tight
+      )
+    ),
+    base: (
+      font-size: $font-scale--base + rem,
+      line-height: (
+        regular: $font-leading--base,
+        tight: $font-leading--tight
+      )
+    ),
+    small: (
+      font-size: $font-scale--small + rem,
+      line-height: (
+        regular: $font-leading--small,
+        tight: $font-leading--tight
+      )
+    ),
+    xsmall: (
+      font-size: $font-scale--xsmall + rem,
+      line-height: (
+        regular: $font-leading--xsmall,
+        tight: $font-leading--tight
+      )
+    )
+  )
+);</code></pre><a href="https://github.com/boltdesignsystem/bolt/settings-font-size/index.scss#L44-L96" class="item__source-link" target="_blank">View source</a></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Font Size.</p></div><h3 class="item__sub-heading">Type</h3><p><code>Map</code></p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-font-size"><code>font-size</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-font-size"><code>font-size</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-font-size"><code>font-size</code></a></li></ul><h3 class="item__sub-heading">Author</h3><ul class="list-unstyled"><li><p>Mike Mai</p></li></ul></section></section></section><section class="main__section"><h1 class="main__heading" id="setting: font-stacks"><div class="container">setting: font-stacks</div></h1><section class="main__sub-section" id="setting: font-stacks-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="variable-font-stacks"><h3 class="item__heading"><a class="item__name" href="#variable-font-stacks">font-stacks</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$font-stacks: (
+  font-stacks: (
+    body: (
+      system: $font-sans--system,
+      custom: $font-sans
+    ),
+    heading: (
+      system: $font-sans--system,
+      custom: $font-sans
+    ),
+    code: (
+      system: $font-monospace--system,
+      custom: $font-monospace
+    )
+  )
+);</code></pre><a href="https://github.com/boltdesignsystem/bolt/settings-font-stack/index.scss#L42-L57" class="item__source-link" target="_blank">View source</a></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Font Stack.</p></div><h3 class="item__sub-heading">Type</h3><p><code>Map</code></p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-font-family"><code>font-family</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-font-family"><code>font-family</code></a></li></ul><h3 class="item__sub-heading">Author</h3><ul class="list-unstyled"><li><p>Mike Mai</p></li></ul></section></section></section><section class="main__section"><h1 class="main__heading" id="tools: strip unit"><div class="container">tools: strip unit</div></h1><section class="main__sub-section" id="tools: strip unit-function"><h2 class="main__heading--secondary"><div class="container">functions</div></h2><section class="main__item container item" id="function-strip-unit"><h3 class="item__heading"><a class="item__name" href="#function-strip-unit">strip-unit</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function strip-unit($number) { 
+  @if type-of($number) == &#39;number&#39; and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+ }" data-collapsed="@function strip-unit($number) { ... }"><code>@function strip-unit($number) { ... }</code></pre><a href="https://github.com/boltdesignsystem/bolt/tools-strip-unit/index.scss#L9-L14" class="item__source-link" target="_blank">View source</a></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Remove the unit of a length</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$number</code></th><td data-label="desc"><p>Number to remove unit from</p></td><td data-label="type"><code>Number</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>Number</code> &mdash;<p>Unitless number</p></div></section></section></section><section class="main__section"><h1 class="main__heading" id="undefined"><div class="container">Ungrouped</div></h1><section class="main__sub-section" id="undefined-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="variable-font-weight--regular"><h3 class="item__heading"><a class="item__name" href="#variable-font-weight--regular">font-weight--regular</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$font-weight--regular: 400 !default;</code></pre><a href="https://github.com/boltdesignsystem/bolt/settings-font-weight/index.scss#L6-L7" class="item__source-link" target="_blank">View source</a></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Description: what this file actually does</p></div></section></section></section><footer class="footer" role="contentinfo"><div class="container"><div class="footer__project-info project-info"><!-- Name and URL --><a class="project-info__name" href="https://github.com/pega-digital/bolt#readme">Bolt</a><!-- Version --> <span class="project-info__version">- v0.1.0</span><!-- License --> <span class="project-info__license">, under MIT</span></div><a class="footer__watermark" href="http://sassdoc.com"><img src="assets/images/logo_light_inline.svg" alt="SassDoc Logo"></a></div></footer></article><script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script><script src="assets/js/main.min.js"></script></body></html>

@@ -1,3 +1,9 @@
+////
+/// @group Setting: font-sizes
+/// @author Mike Mai
+////
+
+
 /*------------------------------------*\
   Base Font Size
 \*------------------------------------*/
@@ -32,3 +38,59 @@ $font-leading--small: 1.667;
 $font-leading--xsmall: 1.45;
 
 $font-leading--tight: 1.111;
+
+/// Font Size.
+/// @type Map
+$font-sizes: (
+  font-sizes: (
+    xxlarge: (
+      font-size: $font-scale--xxlarge + rem,
+      line-height: (
+        regular: $font-leading--xxlarge,
+        tight: $font-leading--tight
+      )
+    ),
+    xlarge: (
+      font-size: $font-scale--xlarge + rem,
+      line-height: (
+        regular: $font-leading--xlarge,
+        tight: $font-leading--tight
+      )
+    ),
+    large: (
+      font-size: $font-scale--large + rem,
+      line-height: (
+        regular: $font-leading--large,
+        tight: $font-leading--tight
+      )
+    ),
+    medium: (
+      font-size: $font-scale--medium + rem,
+      line-height: (
+        regular: $font-leading--medium,
+        tight: $font-leading--tight
+      )
+    ),
+    base: (
+      font-size: $font-scale--base + rem,
+      line-height: (
+        regular: $font-leading--base,
+        tight: $font-leading--tight
+      )
+    ),
+    small: (
+      font-size: $font-scale--small + rem,
+      line-height: (
+        regular: $font-leading--small,
+        tight: $font-leading--tight
+      )
+    ),
+    xsmall: (
+      font-size: $font-scale--xsmall + rem,
+      line-height: (
+        regular: $font-leading--xsmall,
+        tight: $font-leading--tight
+      )
+    )
+  )
+);

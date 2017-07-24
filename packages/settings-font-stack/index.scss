@@ -1,3 +1,8 @@
+////
+/// @group Setting: font-stacks
+/// @author Mike Mai
+////
+
 /*------------------------------------*\
   Defining system and custom fonts
 \*------------------------------------*/
@@ -6,19 +11,49 @@
 /*
  * System UI Fonts
  */
-
 $font-ui-default: -apple-system, BlinkMacSystemFont; // This maps to the system UI font.
 $font-ui-known: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans'; // This is for known system UI fonts and requires frequent updates.
 
 
 /*
- * Font types
+ * System font types
  */
 
 $font-sans--system: $font-ui-default, $font-ui-known, 'Helvetica Neue', sans-serif;
 $font-serif--system: serif;
 $font-monospace--system: monospace;
 
+
+/*
+ * Custom font types
+ */
+
 $font-sans: 'Open Sans', 'Helvetica Neue', sans-serif;
 $font-serif: 'Georgia', serif;
 $font-monospace: 'Courier New', monospace;
+
+
+/*
+ * Mapping font types to Bolt's body, heading, and code.
+ */
+
+/// Font Stack.
+/// @type Map
+$font-stacks: (
+  font-stacks: (
+    body: (
+      system: $font-sans--system,
+      custom: $font-sans
+    ),
+    heading: (
+      system: $font-sans--system,
+      custom: $font-sans
+    ),
+    code: (
+      system: $font-monospace--system,
+      custom: $font-monospace
+    )
+  )
+);
+
+

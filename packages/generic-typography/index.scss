@@ -19,7 +19,7 @@ html {
 }
 
 body {
-  @include font-stack(body--system,regular);
+  @include font-family(body);
   @include font-size(base);
 
   margin: 0;
@@ -27,18 +27,10 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @include font-stack(heading--system,bold);
-  @include font-size(base--tight);
-}
+  @include font-family(heading);
+  @include font-size(base,tight);
 
-html.fonts-loaded {
-  body{
-    @include font-stack(body,regular);
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    @include font-stack(heading,bold);
-  }
+  // @TODO: @include font-weight(bold);
 }
 
 

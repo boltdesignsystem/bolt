@@ -10,7 +10,13 @@
  * System UI Fonts
  */
 /*
- * Font types
+ * System font types
+ */
+/*
+ * Custom font types
+ */
+/*
+ * Mapping font types to Bolt's body, heading, and code.
  */
 /*------------------------------------*  Base Font Size
 \*------------------------------------*/
@@ -89,6 +95,26 @@
 \*------------------------------------*/
 /*------------------------------------*  Sassy Maps
 \*------------------------------------*/
+/*------------------------------------*  Defining system and custom fonts
+\*------------------------------------*/
+/*
+ * System UI Fonts
+ */
+/*
+ * System font types
+ */
+/*
+ * Custom font types
+ */
+/*
+ * Mapping font types to Bolt's body, heading, and code.
+ */
+/*------------------------------------*  Base Font Size
+\*------------------------------------*/
+/*------------------------------------*  Scale
+\*------------------------------------*/
+/*------------------------------------*  Sassy Maps
+\*------------------------------------*/
 /*------------------------------------*  Font Stack
 \*------------------------------------*/
 /*------------------------------------*  Font Size
@@ -124,32 +150,25 @@ html {
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 1.65;
   font-size: 1rem;
+  line-height: 1.65;
   margin: 0;
   padding: 0;
 }
 
+.js-fonts-loaded body {
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  font-weight: 800;
-  font-style: normal;
-  line-height: 1.111;
   font-size: 1rem;
+  line-height: 1.65;
+  line-height: 1.111;
 }
 
-html.fonts-loaded body {
+.js-fonts-loaded h1, .js-fonts-loaded h2, .js-fonts-loaded h3, .js-fonts-loaded h4, .js-fonts-loaded h5, .js-fonts-loaded h6 {
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-html.fonts-loaded h1, html.fonts-loaded h2, html.fonts-loaded h3, html.fonts-loaded h4, html.fonts-loaded h5, html.fonts-loaded h6 {
-  font-family: "Open Sans", "Helvetica Neue", sans-serif;
-  font-weight: 800;
-  font-style: normal;
 }
 
 /*------------------------------------*  Link

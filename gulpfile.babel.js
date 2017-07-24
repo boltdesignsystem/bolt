@@ -19,12 +19,14 @@ var cssTasks = require('./packages/build-tools-styles')(gulp, {
 gulp.task('styles:compile', cssTasks.compile);
 gulp.task('styles:lint', cssTasks.lint);
 gulp.task('styles:watch', cssTasks.watch);
+gulp.task('styles:sassdoc', cssTasks.sassdoc);
 
 gulp.task('styles',
   gulp.series([
-    cssTasks.compile,
+    'styles:compile',
+    'styles:sassdoc',
     gulp.parallel([
-      cssTasks.watch
+      'styles:watch'
     ])
   ])
 );
