@@ -22,8 +22,6 @@ module.exports = (gulp, userConfig) => {
   const tasks = {};
   const config = merge(defaultConfig, userConfig);
 
-  console.log(config.browserSync.serverName);
-
   const options = {
     continueOnError: false, // default = false, true means don't emit error event
     pipeStdout: false, // default = false, true means stdout is written to file.contents
@@ -35,61 +33,49 @@ module.exports = (gulp, userConfig) => {
   	stdout: true // default = true, false means don't write stdout
   };
 
-  // const patternLabConfig = yaml.safeLoad(
-  //   fs.readFileSync(config.configFile, 'utf8')
-  // );
-  // const plRoot = path.join(config.configFile, '../..');
-  // const plSource = path.join(plRoot, plConfig.sourceDir);
-  // const plPublic = path.join(plRoot, plConfig.publicDir);
-  // const consolePath = path.join(plRoot, 'core/console');
-  // console.log(consolePath);
 
-  function buildPatternLab(done) {
-    notify.sh(`php ${consolePath} --generate`, false, () => {
-      if (config.browserSync.enabled) {
-        browserSync.reload;
-      }
-      done();
+  // Build Pattern Lab via CLI command -- can exit or not based on 2nd param passed in
+  function buildPatternLab(done, errorShouldExit) {
+    notify.sh(`php ${consolePath} --generate`, errorShouldExit, (err) => {
+      browserSync.reload;
+      done(err);
     });
-    // return gulp.src('.')
-    //   .pipe(plumber({
-    //     errorHandler: notify.onError({
-    //       title: 'Pattern Lab Error',
-    //       message: 'Error: <%= error.message %>'
-    //     })
-    //   }))
-    //   .pipe(notify.sh(`php ${consolePath} --generate --gpn`, options))
-    //   .pipe(exec.reporter(reportOptions))
-    //   .on('end', () => {
-    //     if (config.browserSync.enabled) {
-    //       const server = browserSync.get(config.browserSync.serverName);
-    //       if (server.active) {
-    //         server.reload();
-    //       }
-    //     }
-    //     // core.events.emit('reload', join(config.dest, '**/*.css'));
-    //     done();
-    //   });
-    // .pipe($.exec.reporter(reportOptions));
-    // shell.task(`php ${consolePath} --generate`, (err) => {
-    //   // core.events.emit('reload');
-    //   if (config.browserSync.enabled) {
-    //     const server = browserSync.get(config.browserSync.serverName);
-    //     if (server.active) {
-    //       server.reload();
-    //     }
-    //   }
-    //
-    //   // done(err);
-    // });
   }
 
-  // function compile(done) {
-  //   plBuild(done, true);
-  // }
-  // compile.description = 'Compile Pattern Lab';
-  // compile.displayName = 'pattern-lab:compile';
-  tasks.compile = buildPatternLab;
 
-  return tasks;
+  // Initial PL build - exits if error
+  function compilePatternLab(done) {
+    buildPatternLab(done, true);
+  }
+  compilePatternLab.description = 'Compile Pattern Lab -- Exit If Error';
+  compilePatternLab.displayName = 'pattern-lab:compile';
+
+
+  // Recompile PL -- doesn't exit if error
+  function recompilePatternLab(done) {
+    buildPatternLab(done, false);
+  }
+  recompilePatternLab.description = 'Recompile Pattern Lab w/ Error Handling';
+  recompilePatternLab.displayName = 'pattern-lab:recompile';
+
+
+  function watchPatternLab() {
+    const watchedExtensions = config.watchedExtensions.join(',');
+    const patternLabGlob = [path.normalize(`${patternLabSource}/**/*.{${watchedExtensions}}`)];
+    const watchedSources = config.extraWatches
+      ? [].concat(patternLabGlob, config.extraWatches)
+      : patternLabGlob;
+    gulp.watch(watchedSources, recompilePatternLab);
+  }
+  watchPatternLab.description = 'Watch and rebuild Pattern Lab';
+  watchPatternLab.displayName = 'pattern-lab:watch';
+
+  console.log(compilePatternLab);
+
+  return {
+    compilePatternLab,
+    watchPatternLab,
+  };
+
+  // return tasks;
 };

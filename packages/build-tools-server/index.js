@@ -1,47 +1,28 @@
-const defaultConfig = require('./config.default');
-const merge = require('merge').recursive;
-const browserSync = require('browser-sync');
-// var bs = require("browser-sync").create('BrowserSync Server');
-// const autoClose = require('browser-sync-close-hook');
-
+import merge from 'merge';
 import getDevelopmentCertificate from 'devcert-with-localhost';
+import browserSync from 'browser-sync';
+import defaultConfig from './config.default';
 
+function server(userConfig) {
+  function serveTask() {
+    const config = merge({}, defaultConfig, userConfig);
 
-module.exports = (gulp, userConfig) => {
-  const tasks = {};
-  const config = merge(defaultConfig, userConfig);
+    browserSync.create(config.serverName);
 
-  browserSync.create(config.serverName);
+    getDevelopmentCertificate(config.certNames, {
+      installCertutil: config.installCert
+    }).then((ssl) => {
+      config.https.key = ssl.keyPath;
+      config.https.cert = ssl.certPath;
 
-
-  const options = {
-    server: {
-      baseDir: './sandbox/pattern-library/public',
-
-      // Enable CORS locally
-      middleware(req, res, next) {
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        next();
-      }
-    },
-    httpModule: 'http2',
-    https: {
-      key: `${__dirname}/certs/key.pem`,
-      cert: `${__dirname}/certs/cert.pem`
-    }
-  };
-
-  function browserSyncServer() {
-    getDevelopmentCertificate('bolt', { installCertutil: true }).then((ssl) => {
-      options.https.key = ssl.keyPath;
-      options.https.cert = ssl.certPath;
-
-      browserSync.init(options);
+      browserSync.init(config);
     });
   }
 
-  tasks.serve = browserSyncServer;
+  serveTask.displayName = 'browsersync:serve';
+  serveTask.description = 'Spin up a local server environment w/ live reloading.';
 
+  return serveTask;
+}
 
-  return tasks;
-};
+export { server };
