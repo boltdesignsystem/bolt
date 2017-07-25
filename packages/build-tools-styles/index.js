@@ -1,4 +1,3 @@
-const gulp = require('gulp');
 const core = require('@bolt/build-core');
 const sourcemaps = require('gulp-sourcemaps');
 const sass = require('gulp-sass');
@@ -7,16 +6,22 @@ const notify = require('gulp-notify');
 const exportJson = require('node-sass-export');
 const npmSass = require('npm-sass');
 const postcss = require('gulp-postcss');
-const magicImporter = require('node-sass-magic-importer');
-const postcssReporter = require('postcss-reporter');
 const stylelint = require('stylelint');
-const scssSyntax = require('postcss-scss');
-const merge = require('merge');
+const join = require('path').join;
+const debug = require('debug')('@bolt/build-styles');
 
-const autoprefixer = require('autoprefixer');
+import { utils, events } from '@bolt/build-core';
+import gulp from 'gulp';
+import merge from 'merge';
+import autoprefixer from 'autoprefixer';
+import defaultConfig from './config.default';
+import postcssReporter from 'postcss-reporter';
+import duration from 'gulp-duration';
+import size from 'gulp-size';
 
-
-// import config, { getConfig } from '../config';
+import cleanCSS from 'gulp-clean-css';
+// const magicImporter = require('node-sass-magic-importer');
+// const scssSyntax = require('postcss-scss');
 
 
 // const atImport = require('postcss-import');
@@ -24,9 +29,7 @@ const autoprefixer = require('autoprefixer');
 // const immutableCss = require('immutable-css');
 
 // const postCssImport = require('postcss-import');
-// const duration = require('gulp-duration');
-// const size = require('gulp-size');
-// const cleanCSS = require('gulp-clean-css');
+
 // const path = require('path');
 // const discardComments = require('postcss-discard-comments');
 // const importPostcss = require('import-postcss');
@@ -36,8 +39,8 @@ const autoprefixer = require('autoprefixer');
 // const config = core.utils.merge({}, defaultConfig, userConfig);
 //
 
-const processors = [
-  stylelint(),
+const postCSS = [
+  // stylelint(),
   postcssReporter({ clearReportedMessages: true }),
   autoprefixer()
 ];
@@ -47,7 +50,6 @@ const processors = [
 
 // const defaultConfig = require('./config.default');
 
-import defaultConfig from './config.default';
 
 // module.exports = (userConfig) => {
 //   const config = core.utils.merge({}, defaultConfig, userConfig);
@@ -55,32 +57,85 @@ import defaultConfig from './config.default';
 // }
 
 
-export function compileStyles(userConfig) {
-  console.log('hello');
+function compileCSS(userConfig) {
+  const config = merge({
+    postCSS
+  }, defaultConfig, userConfig);
+
+  function _compileCSS(done) {
+    gulp.src(config.src)
+     .pipe(plumber({
+       errorHandler(error) {
+         notify.onError({
+           title: 'CSS <%= error.name %> - Line <%= error.line %>',
+           message: '<%= error.message %>'
+         })(error);
+       }
+     }))
+       // .pipe($.env.development($.sourcemaps.init()))
+     .pipe(sourcemaps.init())
+     .pipe(sass({
+       includePaths: ['node_modules', 'packages'],
+       importer: [npmSass.importer],
+       functions: exportJson(config.dataDest, 'json'),
+       outputStyle: 'expanded'
+     }).on('error', sass.logError))
+     .pipe(postcss(config.postCSS))
+     .pipe(duration('CSS Compile Time'))
+     .pipe(size({ title: 'Total CSS Size' }))
+     .pipe(cleanCSS({
+       aggressiveMerging: false,
+       advanced: false,
+       keepSpecialComments: 0,
+       processImport: true
+     }))
+     .pipe(sourcemaps.write('./'))
+     .pipe(gulp.dest(config.dest))
+     .on('end', () => {
+       events.emit('reload', join(config.dest, '**/*.css'));
+       done();
+     });
+  }
+
+
+  function compileCssTask(done) {
+    _compileCSS(done);
+  }
+  compileCssTask.displayName = 'styles:compile';
+  compileCssTask.description = 'Compile Sass to CSS';
+
+  return compileCssTask;
 }
 
-//
-//   return del([
-//     `${config.dist}/**`,
-//     `!${config.dist}`,
-//     `!${config.dist}/static/**`,
-//     '.sass-cache'
-//   ], done);
-// }
-//
-//
-// export function Styles(userConfig) = {
-//
-//   config: StylesConfig
+
+function watchCSS(userConfig) {
+  function watchCssTask(done) {
+    const config = merge({
+      postCSS
+    }, defaultConfig, userConfig);
+
+    const watchTasks = [compileCSS(userConfig)];
 
 
-compileStyles.description = 'Compile Styles';
-compileStyles.displayName = 'styles:compile';
+    // if (config.lint === true) {
+    //   watchTasks.push(lintCSS);
+    // }
+    const src = config.extraWatches
+      ? [].concat(config.src, config.extraWatches)
+      : config.src;
+    // console.log(watchTasks);
 
-// var gulpSass = function gulpSass(options, sync) {
+    return gulp.watch(src, gulp.parallel(watchTasks));
+  }
+
+  watchCssTask.displayName = 'styles:watch';
+  watchCssTask.description = 'Watch Sass files for changes to auto-recompile.';
+
+  return watchCssTask;
+}
 
 
-export default compileStyles;
+export { compileCSS, watchCSS };
 
 
 // export { Styles as default };
@@ -119,58 +174,12 @@ export default compileStyles;
 //
 //
 //   function compileCSS(done) {
-//     gulp.src(config.src)
-//       .pipe(plumber({
-//         errorHandler(error) {
-//           notify.onError({
-//             title: 'CSS <%= error.name %> - Line <%= error.line %>',
-//             message: '<%= error.message %>'
-//           })(error);
-//         }
-//       }))
-//     // .pipe($.env.development($.sourcemaps.init()))
-//       .pipe(sourcemaps.init())
-//       .pipe(sass({
-//         includePaths: ['node_modules', 'packages'],
-//         importer: [npmSass.importer, magicImporter],
-//         functions: exportJson(config.dataDest, 'json'),
-//         outputStyle: 'expanded'
-//       }).on('error', sass.logError))
-//       .pipe(postcss(config.postcss))
-//     // .pipe(duration('CSS Compile Time'))
 //
-//     // .pipe(size({title: 'Total CSS Size'}))
-//     // .pipe(gulp.dest('./styles'))
-//     // .pipe(cleanCSS({
-//     //   aggressiveMerging: false,
-//     //   advanced: false,
-//     //   keepSpecialComments: 0,
-//     //   processImport: true
-//     // }))
-//     // .pipe(gulp.dest('./'))
-//       .pipe(sourcemaps.write('./'))
-//       .pipe(gulp.dest(config.dest))
-//       .on('end', () => {
-//         // core.events.emit('reload', join(config.dest, '**/*.css'));
-//         done();
-//       });
-//   }
 //   compileCSS.description = 'Compile CSS';
 //   compileCSS.displayName = 'styles:compile';
 //   // tasks.compile = compileCSS;
 //
-//   function watchCSS() {
-//     const watchTasks = [compileCSS];
-//     if (config.lint === true) {
-//       watchTasks.push(lintCSS);
-//     }
-//     const src = config.extraWatches
-//       ? [].concat(config.src, config.extraWatches)
-//       : config.src;
-//     // console.log(watchTasks);
-//
-//     return gulp.watch(src, gulp.parallel(watchTasks));
-//   }
+
 //   watchCSS.description = 'Watch CSS for changes';
 //   // tasks.watch = watchCSS;
 //

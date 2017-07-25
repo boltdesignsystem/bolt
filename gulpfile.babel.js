@@ -1,34 +1,50 @@
 import gulp from 'gulp';
 import { server, bar } from './packages/build-tools-server';
+import { compileCSS, watchCSS } from './packages/build-tools-styles';
 
 
 /*-------------------------------------------------------------------
 // Browsersync Tasks
 -------------------------------------------------------------------*/
+
+// Browser Sync - Bolt Starterkit Example
 const browserSyncBoltConfig = {
-  server: {
-    baseDir: 'packages/bolt'
-  }
+  server: 'packages/bolt'
 };
 const boltServer = server(browserSyncBoltConfig);
 gulp.task(boltServer);
 
 
+// Browser Sync - Pattern Lab
 const browserSyncPLConfig = {
-  server: {
-    baseDir: 'sandbox/pattern-library/public'
-  }
+  server: 'sandbox/pattern-library/public'
 };
 const patternLabServer = server(browserSyncPLConfig);
 patternLabServer.displayName = 'patternlab:serve';
 patternLabServer.description = 'Serve Pattern Lab sandbox';
 gulp.task(patternLabServer);
 
+
 /*-------------------------------------------------------------------
 // CSS Tasks
 -------------------------------------------------------------------*/
 
-import compileStyles from './packages/build-tools-styles';
+// Compile Pattern Lab CSS
+const patternLabCSSConfig = {
+  root: 'sandbox/pattern-library',
+  src: [
+    'sandbox/pattern-library/source/styles/**/*.scss'
+  ],
+  dest: './sandbox/pattern-library/public/styles',
+  jsonDest: './sandbox/pattern-library/source/_data',
+  extraWatches: './packages/**/*.scss'
+};
+const compilePatternLabCSS = compileCSS(patternLabCSSConfig);
+gulp.task(compilePatternLabCSS);
+
+
+gulp.task('styles:watch', watchCSS(patternLabCSSConfig));
+
 // const slackTasks = require('./packages/build-tools-slack')(gulp, {});
 // const symlinkTasks = require('./packages/build-tools-symlinks')(gulp, {});
 
@@ -38,15 +54,6 @@ import compileStyles from './packages/build-tools-styles';
 /*-------------------------------------------------------------------
 // Pull in tasks + customize configuration
 -------------------------------------------------------------------*/
-const stylesConfig = {
-  root: 'sandbox/pattern-library',
-  src: [
-    'sandbox/pattern-library/source/styles/**/*.scss'
-  ],
-  dest: './sandbox/pattern-library/public/styles',
-  jsonDest: './sandbox/pattern-library/source/_data',
-  extraWatches: './packages/*/*.scss'
-};
 
 
 /*-------------------------------------------------------------------
@@ -67,12 +74,13 @@ const stylesConfig = {
 // const serverTest =; };
 
 
-//   gulp.series([
-//     cssTasks.compile
-//     // gulp.parallel([
-//     //   cssTasks.watch
-//     // ])
-//   ])
+gulp.series([
+  'styles:compile',
+  gulp.parallel([
+    'patternlab:serve',
+    'styles:watch'
+  ])
+]);
 // );
 
 // const patternLabTasks = require('./packages/build-tools-pattern-lab')(gulp, {
@@ -120,7 +128,7 @@ const stylesConfig = {
 // console.log(typeof (cssTasks.lint));
 // console.log(cssTasks.lint);
 // gulp.task('styles:lint', cssTasks.lint);
-// gulp.task('styles:watch', cssTasks.watch);
+
 
 // gulp.task('styles'
 //   gulp.series([

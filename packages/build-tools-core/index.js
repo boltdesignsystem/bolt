@@ -1,5 +1,3 @@
-const stampit = require('stampit');
-
 const events = require('./events');
 const utils = require('./utils');
 
@@ -25,6 +23,5 @@ function showTasks(tasks) {
 module.exports = {
   events,
   utils,
-  showTasks,
-  stampit
+  showTasks
 };

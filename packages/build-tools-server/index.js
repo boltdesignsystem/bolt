@@ -2,6 +2,9 @@ import merge from 'merge';
 import getDevelopmentCertificate from 'devcert-with-localhost';
 import browserSync from 'browser-sync';
 import defaultConfig from './config.default';
+import { utils, events } from '@bolt/build-core';
+
+const debug = require('debug')('@bolt/build-server');
 
 function server(userConfig) {
   function serveTask() {
@@ -25,4 +28,30 @@ function server(userConfig) {
   return serveTask;
 }
 
-export { server };
+
+/**
+  * Reload BrowserSync
+  * @param {(string|string[])=} files - File paths to reload
+  */
+function _reload(files) {
+  browserSync.reload(files);
+}
+
+function reload(files) {
+  function reloadTask() {
+    _reload(files);
+  }
+
+  reloadTask.displayName = 'browsersync:reload';
+  reloadTask.description = 'Abstraction to reload BrowserSync when something changes';
+
+  return reloadTask;
+}
+
+events.on('reload', (files) => {
+  debug('Event triggered: "reload"', files);
+  _reload(files);
+});
+
+
+export { server, reload };
