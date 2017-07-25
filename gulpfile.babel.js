@@ -45,6 +45,17 @@ gulp.task(compilePatternLabCSS);
 
 gulp.task('styles:watch', watchCSS(patternLabCSSConfig));
 
+
+gulp.task('default',
+  gulp.series([
+    'styles:compile',
+    gulp.parallel([
+      'patternlab:serve',
+      'styles:watch'
+    ])
+  ])
+);
+
 // const slackTasks = require('./packages/build-tools-slack')(gulp, {});
 // const symlinkTasks = require('./packages/build-tools-symlinks')(gulp, {});
 

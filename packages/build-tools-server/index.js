@@ -37,15 +37,15 @@ function _reload(files) {
   browserSync.reload(files);
 }
 
-function reload(files) {
-  function reloadTask() {
+function reloadTask(files) {
+  function reload() {
     _reload(files);
   }
 
-  reloadTask.displayName = 'browsersync:reload';
-  reloadTask.description = 'Abstraction to reload BrowserSync when something changes';
+  reload.displayName = 'browsersync:reload';
+  reload.description = 'Abstraction to reload BrowserSync when something changes';
 
-  return reloadTask;
+  return reload;
 }
 
 events.on('reload', (files) => {
@@ -54,4 +54,4 @@ events.on('reload', (files) => {
 });
 
 
-export { server, reload };
+export { server, reloadTask as reload };
