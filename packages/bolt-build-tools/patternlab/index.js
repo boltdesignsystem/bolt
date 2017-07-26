@@ -1,3 +1,4 @@
+/* eslint no-unused-vars: ["error", { "args": "none" }]*/
 import gulp from 'gulp';
 import { notify, events } from '@bolt/build-core';
 
@@ -7,9 +8,6 @@ const merge = require('merge').recursive;
 const gulpConfig = require('../../../gulpconfig.js');
 const fs = require('fs-extra');
 const path = require('path');
-const join = require('path').join;
-const debug = require('debug')('@bolt/build-tools-pattern-lab');
-const plumber = require('gulp-plumber');
 
 const patternLabConfig = yaml.safeLoad(
   fs.readFileSync(gulpConfig.patternLab.configFile, 'utf8')
@@ -19,18 +17,6 @@ const patternLabSource = path.join(patternLabRoot, patternLabConfig.sourceDir);
 const consolePath = path.join(patternLabRoot, 'core/console');
 // const notify = require('./notifier.js');
 // const patternLabPublic = path.join(patternLabRoot, patternLabConfig.publicDir);
-
-
-const options = {
-  continueOnError: false, // default = false, true means don't emit error event
-  pipeStdout: false, // default = false, true means stdout is written to file.contents
-  // customTemplatingThing: 'test' // content passed to gutil.template()
-};
-const reportOptions = {
-  err: true, // default = true, false means don't write err
-  stderr: true, // default = true, false means don't write stderr
-  stdout: true // default = true, false means don't write stdout
-};
 
 
 // Build Pattern Lab via CLI command -- can exit or not based on 2nd param passed in
@@ -85,12 +71,5 @@ function watchPatternLab(userConfig) {
   watchPatternLabTask.displayName = 'patternlab:watch';
   return watchPatternLabTask;
 }
-
-// events.on('symlinked', (files) => {
-//   console.log('symlinked!');
-//   debug('Event triggered: "symlinked"', files);
-//   compileWithNoExit;
-// });
-
 
 export { compilePatternLab, recompilePatternLab, watchPatternLab };
