@@ -101,7 +101,7 @@ function compileCSS(userConfig) {
        keepSpecialComments: 0,
        processImport: true
      }))
-     //.pipe(sourcemaps.write('./'))
+     // .pipe(sourcemaps.write('./'))
     .pipe(gulpif(config.sourceMaps, sourcemaps.write('./')))
      .pipe(gulp.dest(config.dest))
      .on('end', () => {
