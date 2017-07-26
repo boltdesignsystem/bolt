@@ -4,7 +4,7 @@ import { compileCSS, watchCSS, lintCSS } from '@bolt/build-styles';
 import { compilePatternLab, recompilePatternLab, watchPatternLab } from '@bolt/build-patternlab';
 import { createSymlinks, cleanSymlinks, watchSymlinks } from '@bolt/build-symlinks';
 import { slack } from '@bolt/build-slack';
-import { default as lerna } from '@bolt/build-lerna';
+import lerna from '@bolt/build-lerna';
 
 export {
   server, bar,

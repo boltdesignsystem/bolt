@@ -1,12 +1,10 @@
 import gulp from 'gulp';
-import { notify, utils, events } from '@bolt/build-core';
+import { notify, events } from '@bolt/build-core';
 
 const defaultConfig = require('./config.default');
 const yaml = require('js-yaml');
 const merge = require('merge').recursive;
-const exec = require('gulp-exec');
 const gulpConfig = require('../../../gulpconfig.js');
-const browserSync = require('browser-sync');
 const fs = require('fs-extra');
 const path = require('path');
 const join = require('path').join;
@@ -38,7 +36,6 @@ const reportOptions = {
 // Build Pattern Lab via CLI command -- can exit or not based on 2nd param passed in
 function patternLab(done, errorShouldExit) {
   notify.sh(`php ${consolePath} --generate`, errorShouldExit, (err) => {
-    // browserSync.reload;
     events.emit('reload');
     done(err);
   });

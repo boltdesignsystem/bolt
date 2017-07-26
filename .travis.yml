@@ -23,7 +23,7 @@ before_install:
 - export PATH="$HOME/.yarn/bin:$PATH"
 - sudo apt-get install graphicsmagick
 - composer global require hirak/prestissimo
-- if [[ -n "$GITHUB_TOKEN" ]]; then composer config github-oauth.github.com ${GITHUB_TOKEN}; fi;
+- if [[ -n "$GITHUB_TOKEN" ]]; then composer config -g github-oauth.github.com ${GITHUB_TOKEN}; fi;
 - if [[ `npm -v` != 5* ]]; then npm i -g npm@5; fi
 - npm install --global lerna
 - npm install gulpjs/gulp-cli -g
