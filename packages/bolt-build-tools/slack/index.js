@@ -30,4 +30,4 @@ function slackNotification(userConfig) {
 }
 
 
-export { slackNotification as slack };
+export { slackNotification as default };

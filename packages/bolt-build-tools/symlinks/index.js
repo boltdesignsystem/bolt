@@ -1,3 +1,5 @@
+import { events } from '@bolt/build-core';
+
 const gulp = require('gulp');
 const delSymlinks = require('del-symlinks');
 const vfs = require('vinyl-fs');
@@ -5,16 +7,10 @@ const globby = require('globby');
 const fs = require('fs');
 const gulpConfig = require('../../../gulpconfig.js');
 const path = require('path');
-const join = require('path').join;
 const yaml = require('js-yaml');
 const merge = require('merge');
 const defaultConfig = require('./config.default');
-const debug = require('debug')('@bolt/build-tools-symlinks');
-const watch = require('gulp-watch');
-const changedInPlace = require('gulp-changed-in-place');
-
-
-import { utils, events } from '@bolt/build-core';
+const gutil = require('gulp-util');
 
 const twigPaths = gulpConfig.patternLab.twigNamespaces.sets;
 const patternLabConfig = yaml.safeLoad(
@@ -22,7 +18,6 @@ const patternLabConfig = yaml.safeLoad(
 );
 const patternLabRoot = path.join(gulpConfig.patternLab.configFile, '../..');
 const patternLabSource = path.join(patternLabRoot, patternLabConfig.sourceDir);
-const patternLabPublic = path.join(patternLabRoot, patternLabConfig.publicDir);
 
 
 function findPatternLabFolder(patternType) {
@@ -33,9 +28,8 @@ function findPatternLabFolder(patternType) {
   if (patternConfig.paths[0]) {
     return patternConfig.paths[0];
   }
+  return false;
 }
-
-let userConfig;
 
 function createSymlinks(userConfig) {
   const config = merge.recursive(defaultConfig, userConfig);
@@ -52,20 +46,25 @@ function createSymlinks(userConfig) {
           let patternName = pjson.patternName ? `/${pjson.patternName}` : '';
 
           const patternType = pjson.patternType ? findPatternLabFolder(pjson.patternType) : `${patternsFolder}${config.defaultPatternType}`;
-          const patternSubtype = pjson.patternSubtype ? pjson.patternSubtype : (
-            pjson.patternSubtype ? pjson.patternSubtype : config.defaultPatternSubtype
-          );
+
+          let patternSubtype;
+          if (pjson.patternSubtype) {
+            patternSubtype = pjson.patternSubtype;
+          } else {
+            patternSubtype = config.defaultPatternSubtype;
+          }
 
           if (fs.existsSync(`${patternType}/${config.symlinkPrefix}${patternSubtype}${patternName}`)) {
+            const oldName = `${patternType}/${config.symlinkPrefix}${patternSubtype}${patternName}`;
+
             if (patternName === '') {
-              const oldName = `${patternType}/${config.symlinkPrefix}${patternSubtype}${patternName}`;
               patternName = `/${config.defaultPatternName}`;
 
               const newName = `${patternType}/${config.symlinkPrefix}${patternSubtype}${patternName}`;
 
-              console.warn(`Warning: you're trying to combine two similarly named folder structures that would result in one folder overriding the other. Automatically updating the ${oldName} path to now be ${newName}.`);
+              gutil.log(`Warning: you're trying to combine two similarly named folder structures that would result in one folder overriding the other. Automatically updating the ${oldName} path to now be ${newName}.`);
             } else {
-              console.warn(`Error: you're trying to combine two similarly named folder structures that would result in one folder overriding the other. Automatically updating the path of ${oldName} won't work here...`);
+              gutil.log(`Error: you're trying to combine two similarly named folder structures that would result in one folder overriding the other. Automatically updating the path of ${oldName} won't work here...`);
               return false;
             }
           }
@@ -80,7 +79,10 @@ function createSymlinks(userConfig) {
                 done();
               });
           }
+          gutil.log(`${pkg}/${twigPath}/ does not exist...`);
         }
+
+        return true;
       });
     });
     done();
@@ -97,12 +99,7 @@ function cleanSymlinks(userConfig) {
   const patternsFolder = `${patternLabSource}/${config.patternsFolder}/`;
 
   function cleanSymlinksTask(done) {
-    delSymlinks([`${patternsFolder}**/*`]).then((symlinks) => {
-      // if (symlinks.length) {
-      //   console.log('Removing the existing symlinks before trying to create any new ones:\n', symlinks.join('\n'));
-      // } else {
-      //   console.log('No symlinks to delete!');
-      // }
+    delSymlinks([`${patternsFolder}**/*`]).then(() => {
       done();
     });
   }
@@ -114,17 +111,7 @@ function cleanSymlinks(userConfig) {
 
 
 function watchSymlinks(userConfig) {
-  function watchSymlinksTask(done) {
-    const config = merge.recursive(defaultConfig, userConfig);
-    const patternsFolder = `${patternLabSource}/${config.patternsFolder}/`;
-
-    const watchedExtensions = config.watchedExtensions.join(',');
-    const patternLabGlob = [path.normalize(`${patternLabSource}/**/*.{${watchedExtensions}}`)];
-    const watchedSources = config.extraWatches
-        ? [].concat(patternLabGlob, config.extraWatches)
-        : patternLabGlob;
-
-
+  function watchSymlinksTask() {
     return gulp.watch([
       './packages/**/*.{md,twig,yaml,yml,json}',
       '!./packages/*/node_modules'
@@ -132,19 +119,6 @@ function watchSymlinks(userConfig) {
       cleanSymlinks(userConfig),
       createSymlinks(userConfig)
     ]));
-
-    // return gulp.watch(watchedSources, () => {
-    //   delSymlinks([`${patternsFolder}**/*`]).then((symlinks) => {
-    //     console.log('symlinks being deleted and recreated');
-    //     console.log(symlinks));
-    //
-    //     // console.log(createSymlinks);
-    //     // var symlinks = createSymlinks(userConfig);
-    //     // symlinks.createSymlinksTask();
-    //     createSymlinks(userConfig).then(done());
-    //     // .createSymlinks(userConfig);
-    //   });
-    // });
   }
 
   watchSymlinksTask.displayName = 'symlinks:watch';

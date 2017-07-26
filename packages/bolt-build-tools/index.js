@@ -3,7 +3,7 @@ import { server, bar } from '@bolt/build-server';
 import { compileCSS, watchCSS, lintCSS } from '@bolt/build-styles';
 import { compilePatternLab, recompilePatternLab, watchPatternLab } from '@bolt/build-patternlab';
 import { createSymlinks, cleanSymlinks, watchSymlinks } from '@bolt/build-symlinks';
-import { slack } from '@bolt/build-slack';
+import slackNotification from '@bolt/build-slack';
 import lerna from '@bolt/build-lerna';
 
 export {
@@ -11,6 +11,6 @@ export {
   compileCSS, watchCSS, lintCSS,
   compilePatternLab, recompilePatternLab, watchPatternLab,
   createSymlinks, cleanSymlinks, watchSymlinks,
-  slack,
+  slackNotification as slack,
   lerna
 };

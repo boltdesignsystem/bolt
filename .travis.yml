@@ -33,7 +33,7 @@ before_script:
 script:
 - npm run bootstrap
 - npm run setup:composer
-- npm run build
+- npm run test && npm run build
 after_success:
 - chmod ugo+x ./scripts/deploy-pattern-lab.sh
 - "./scripts/deploy-pattern-lab.sh"

@@ -18,17 +18,11 @@ const postcss = require('gulp-postcss');
 const stylelint = require('stylelint');
 const join = require('path').join;
 const scssSyntax = require('postcss-scss');
-const del = require('del');
-const sassdoc = require('sassdoc');
+// const sassdoc = require('sassdoc');
 const debug = require('debug')('@bolt/build-styles');
-// const glopImporter = require('node-sass-glob-importer');
-// const magicImporter = require('node-sass-magic-importer');
 const eyeglass = require('eyeglass');
 const sassGlob = require('gulp-sass-glob');
-const globby = require('globby');
 const rimraf = require('rimraf');
-
-import moduleImporter from 'sass-module-importer';
 
 const postCSS = [
   postcssReporter({ clearReportedMessages: true }),

@@ -1,8 +1,8 @@
+import { events } from '@bolt/build-core';
 import merge from 'merge';
 import getDevelopmentCertificate from 'devcert-with-localhost';
 import browserSync from 'browser-sync';
 import defaultConfig from './config.default';
-import { utils, events } from '@bolt/build-core';
 
 const debug = require('debug')('@bolt/build-server');
 
@@ -33,13 +33,13 @@ function server(userConfig) {
   * Reload BrowserSync
   * @param {(string|string[])=} files - File paths to reload
   */
-function _reload(files) {
+function reloadBrowserSync(files) {
   browserSync.reload(files);
 }
 
 function reloadTask(files) {
   function reload() {
-    _reload(files);
+    reloadBrowserSync(files);
   }
 
   reload.displayName = 'browsersync:reload';
@@ -50,7 +50,7 @@ function reloadTask(files) {
 
 events.on('reload', (files) => {
   debug('Event triggered: "reload"', files);
-  _reload(files);
+  reloadBrowserSync(files);
 });
 
 
