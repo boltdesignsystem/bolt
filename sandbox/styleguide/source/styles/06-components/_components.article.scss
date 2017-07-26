@@ -93,18 +93,6 @@
     & + * {
       @include null-spacing;
     }
-
-    & + aside > *:first-child,
-    & + aside > small > *:first-child {
-      @include null-spacing;
-    }
-
-    & + aside + * {
-      @include respond-to(small)
-      {
-        @include null-spacing;
-      }
-    }
   }
 
   ol, ul {
@@ -186,12 +174,22 @@
   }
 
   aside {
+    @include paragraph-spacing;
+
     @include respond-to(small) {
       @include float(right);
-      @include margin(0,0,($font-leading--base + rem),($gutter + rem));
+      @include margin(($font-leading--base + rem),0,($font-leading--base + rem),($gutter + rem));
 
       width: $golden-aside-width + vw;
       max-width: $article-line-length/2 + ch;
+
+      &:first-child {
+        margin-top: 0;
+
+        & + * {
+          @include null-spacing;
+        }
+      }
     }
   }
 
