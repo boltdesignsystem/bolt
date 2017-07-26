@@ -23,6 +23,7 @@ const debug = require('debug')('@bolt/build-styles');
 const eyeglass = require('eyeglass');
 const sassGlob = require('gulp-sass-glob');
 const rimraf = require('rimraf');
+const gulpif = require('gulp-if');
 
 const postCSS = [
   postcssReporter({ clearReportedMessages: true }),
@@ -72,7 +73,8 @@ function compileCSS(userConfig) {
        }
      }))
        // .pipe($.env.development($.sourcemaps.init()))
-     .pipe(sourcemaps.init())
+    // .pipe(sourcemaps.init())
+    .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
      .pipe(sassGlob())
      .pipe(sass(eyeglass({
       //  includePaths: globbedIncludePaths,
@@ -99,7 +101,8 @@ function compileCSS(userConfig) {
        keepSpecialComments: 0,
        processImport: true
      }))
-     .pipe(sourcemaps.write('./'))
+     //.pipe(sourcemaps.write('./'))
+    .pipe(gulpif(config.sourceMaps, sourcemaps.write('./')))
      .pipe(gulp.dest(config.dest))
      .on('end', () => {
        events.emit('reload', join(config.dest, '**/*.css'));
