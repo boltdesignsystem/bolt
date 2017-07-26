@@ -56,17 +56,19 @@
   }
 
   h3 {
-    @include padding(($article-leading*1.15 + rem),0,($article-leading*.4 + rem),0);
+    @include padding(($article-leading*1.35 + rem),0,($article-leading*.4 + rem),0);
     @include font-size(large);
   }
 
+  h4, h5, h6 {
+    @include padding(($article-leading*1.15 + rem),0,($article-leading*.4 + rem),0);
+  }
+
   h4 {
-    @include padding(($article-leading + rem),0,($article-leading*.4 + rem),0);
     @include font-size(medium);
   }
 
   h5, h6 {
-    @include padding(($article-leading + rem),0,($article-leading*.4 + rem),0);
     @include font-size(small);
 
     text-transform: uppercase;
