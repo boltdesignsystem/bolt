@@ -5,6 +5,7 @@
   "patternSubtype": "button",
   "description": "Button Component",
   "keywords": [
+    "eyeglass-module",
     "bolt design system",
     "bolt",
     "ui toolkit",
@@ -30,8 +31,14 @@
     "@bolt/tools-no-select": "^0.1.0",
     "@bolt/tools-spacing": "^0.1.0"
   },
+  "main": "src/scss/index.scss",
   "style": "src/scss/index.scss",
   "twig": "src/twig/button.twig",
+  "eyeglass": {
+    "sassDir": "src/scss",
+    "exports": false,
+    "needs": "*"
+  },
   "publishConfig": {
     "access": "public"
   }

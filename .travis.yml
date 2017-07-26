@@ -41,7 +41,7 @@ script:
 after_success:
   - chmod ugo+x ./scripts/deploy-pattern-lab.sh
   - ./scripts/deploy-pattern-lab.sh
-  - gulp slack:surge
+  - gulp slack
 
 cache:
   apt: true

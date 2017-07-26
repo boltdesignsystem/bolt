@@ -1,0 +1,41 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn install --mutex network:42424 --non-interactive
+
+PATH: 
+  /Users/sghoweri/sites/bolt-design-system/bolt/packages/bolt-build-tools/node_modules/.bin:/Users/sghoweri/sites/bolt-design-system/bolt/packages/node_modules/.bin:/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/.bin:/Users/sghoweri/sites/bolt-design-system/node_modules/.bin:/Users/sghoweri/sites/node_modules/.bin:/Users/sghoweri/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/usr/local/bin:/usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/sghoweri/sites/bolt-design-system/bolt/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/sghoweri/.antigen/bundles/robbyrussell/oh-my-zsh/lib:/Users/sghoweri/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/git:/Users/sghoweri/.antigen/bundles/akoenig/gulp-autocompletion-zsh
+
+Yarn version: 
+  0.24.6
+
+Node version: 
+  7.10.0
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+  	"dependencies": {
+  		"@bolt/build-symlinks": "0.0.0",
+  		"gulp": "github:gulpjs/gulp#4.0"
+  	}
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: https://registry.npmjs.org/@bolt%2fbuild-symlinks: Not found
+      at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/util/request-manager.js:326:18)
+      at Request.self.callback (/usr/local/lib/node_modules/yarn/node_modules/request/request.js:188:22)
+      at emitTwo (events.js:106:13)
+      at Request.emit (events.js:194:7)
+      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/node_modules/request/request.js:1171:10)
+      at emitOne (events.js:96:13)
+      at Request.emit (events.js:191:7)
+      at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/yarn/node_modules/request/request.js:1091:12)
+      at Object.onceWrapper (events.js:293:19)
+      at emitNone (events.js:91:20)

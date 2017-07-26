@@ -1,7 +1,5 @@
 import gulp from 'gulp';
-import { server, bar } from './packages/build-tools-server';
-import { compileCSS, watchCSS } from './packages/build-tools-styles';
-
+import * as bolt from './packages/bolt-build-tools';
 
 /*-------------------------------------------------------------------
 // Browsersync Tasks
@@ -11,7 +9,7 @@ import { compileCSS, watchCSS } from './packages/build-tools-styles';
 const browserSyncBoltConfig = {
   server: 'packages/bolt'
 };
-const boltServer = server(browserSyncBoltConfig);
+const boltServer = bolt.server(browserSyncBoltConfig);
 gulp.task(boltServer);
 
 
@@ -19,10 +17,40 @@ gulp.task(boltServer);
 const browserSyncPLConfig = {
   server: 'sandbox/pattern-library/public'
 };
-const patternLabServer = server(browserSyncPLConfig);
+const patternLabServer = bolt.server(browserSyncPLConfig);
 patternLabServer.displayName = 'patternlab:serve';
 patternLabServer.description = 'Serve Pattern Lab sandbox';
 gulp.task(patternLabServer);
+
+/*-------------------------------------------------------------------
+// Pattern Lab Tasks
+-------------------------------------------------------------------*/
+gulp.task(bolt.slack());
+
+
+/*-------------------------------------------------------------------
+// Watch Lerna-related Files for Changes
+-------------------------------------------------------------------*/
+gulp.task(bolt.lerna());
+
+/*-------------------------------------------------------------------
+// Slack Notification
+-------------------------------------------------------------------*/
+gulp.task(bolt.compilePatternLab());
+gulp.task(bolt.recompilePatternLab());
+gulp.task(bolt.watchPatternLab({
+  extraWatches: [
+    './packages/**/*.twig'
+  ]
+}));
+
+
+/*-------------------------------------------------------------------
+// Symlink Tasks
+-------------------------------------------------------------------*/
+gulp.task(bolt.createSymlinks());
+gulp.task(bolt.cleanSymlinks());
+gulp.task(bolt.watchSymlinks());
 
 
 /*-------------------------------------------------------------------
@@ -39,24 +67,47 @@ const patternLabCSSConfig = {
   jsonDest: './sandbox/pattern-library/source/_data',
   extraWatches: './packages/**/*.scss'
 };
-const compilePatternLabCSS = compileCSS(patternLabCSSConfig);
+const compilePatternLabCSS = bolt.compileCSS(patternLabCSSConfig);
 gulp.task(compilePatternLabCSS);
 
+// Watch PL styles for changes
+gulp.task('styles:watch', bolt.watchCSS(patternLabCSSConfig));
+gulp.task('patternlab:stylelint', bolt.lintCSS(patternLabCSSConfig));
 
-gulp.task('styles:watch', watchCSS(patternLabCSSConfig));
 
+/*-------------------------------------------------------------------
+// Default (Main) Gulp Task -- Serves PL, Compiles & Watches for Changes
+-------------------------------------------------------------------*/
+gulp.task('symlinks', gulp.series([
+  'symlinks:clean',
+  'symlinks:create'
+]));
 
 gulp.task('default',
   gulp.series([
     'styles:compile',
+    'symlinks',
+    'patternlab:compile',
     gulp.parallel([
       'patternlab:serve',
-      'styles:watch'
+      'patternlab:watch',
+      'styles:watch',
+      'symlinks:watch'
     ])
   ])
 );
 
-// const slackTasks = require('./packages/build-tools-slack')(gulp, {});
+
+gulp.task('build',
+  gulp.series([
+    'styles:compile',
+    'symlinks',
+    'patternlab:compile'
+  ])
+);
+
+
+//
 // const symlinkTasks = require('./packages/build-tools-symlinks')(gulp, {});
 
 // const gulpConfig = require('./gulpconfig');
@@ -84,14 +135,6 @@ gulp.task('default',
 
 // const serverTest =; };
 
-
-gulp.series([
-  'styles:compile',
-  gulp.parallel([
-    'patternlab:serve',
-    'styles:watch'
-  ])
-]);
 // );
 
 // const patternLabTasks = require('./packages/build-tools-pattern-lab')(gulp, {
