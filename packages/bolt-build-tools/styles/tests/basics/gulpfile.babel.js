@@ -6,7 +6,7 @@ const config = {
     'scss/**/*.scss',
     '!scss/**/_*.scss'
   ],
-  dest: 'dest/',
+  dest: 'dest',
   sassdoc: {
     enabled: false,
   }

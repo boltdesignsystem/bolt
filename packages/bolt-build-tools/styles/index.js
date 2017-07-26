@@ -26,6 +26,7 @@ const debug = require('debug')('@bolt/build-styles');
 const eyeglass = require('eyeglass');
 const sassGlob = require('gulp-sass-glob');
 const globby = require('globby');
+const rimraf = require('rimraf');
 
 import moduleImporter from 'sass-module-importer';
 
@@ -149,13 +150,18 @@ function watchCSS(userConfig) {
 function cleanStyles(userConfig) {
   const config = merge(defaultConfig, userConfig);
 
-  function cleanStylesTask(done) {
-    // debug('CSS Cleaned');
-    console.log(config.dest);
-    del([
-      join(config.dest, '*.{css,css.map}'),
-      config.sassdoc.dest,
-    ], { force: true }).then(() => done());
+  function cleanStylesTask(cb) {
+    debug('CSS Cleaned');
+
+    rimraf(`${config.dest}/*`, cb);
+    // return del().then((paths) => {
+    //   console.log('Cleaning out old CSS:\n', paths.join('\n'));
+    // });
+
+    // pathExists('foo.js').then((exists) => {
+    //   console.log(exists);
+    //     //= > true
+    // });
   }
 
   cleanStylesTask.description = 'Clean compiled CSS';

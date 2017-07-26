@@ -8,7 +8,7 @@ const assert = chai.assert;
 chai.use(require('chai-fs'));
 
 describe('Sass Basics', function () {
-  this.timeout(5000);
+  this.timeout(10000);
   let output = '';
   before(() => {
     try {

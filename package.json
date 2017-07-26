@@ -23,7 +23,8 @@
     "mocha": "mocha packages/**/*/tests",
     "test": "npm run mocha && npm run lint",
     "precommit": "npm test",
-    "lint:watch": "nodemon --ignore node_modules -w packages/ --exec 'npm test'"
+    "lint:watch": "nodemon --ignore node_modules -w packages/ --exec 'npm test'",
+    "lint:fix": "eslint --fix ./packages/bolt-build-tools"
   },
   "config": {
     "commitizen": {

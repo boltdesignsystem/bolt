@@ -10,6 +10,6 @@ module.exports = {
   jsonDest: './packages/bolt',
   lint: false,
   sassdoc: {
-    dest: './sandbox/sassdoc'
+    dest: 'sandbox/sassdoc'
   }
 };
