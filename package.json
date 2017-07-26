@@ -17,7 +17,7 @@
     "publish": "lerna publish",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "serve": "gulp serve",
-    "setup:composer": "cd sandbox/pattern-library && rm composer.lock && rm -rf vendor && composer config -g github-oauth.github.com GITHUB_TOKEN && composer install --no-interaction",
+    "setup:composer": "cd sandbox/pattern-library && rm composer.lock && rm -rf vendor && composer install --no-interaction",
     "setup:homebrew": "sh scripts/install-homebrew.sh",
     "snyk-protect": "snyk protect",
     "mocha": "mocha packages/**/*/tests",
