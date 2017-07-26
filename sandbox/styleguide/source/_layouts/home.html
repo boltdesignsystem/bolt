@@ -4,22 +4,28 @@ layout: default
 <div class="o-layout o-layout--fullscreen-hero">
   <div class="o-layout__main t-dark">
     <div class="o-inset">
-      <main>
-        <article>
-          {{ content }}
-        </article>
-      </main>
+      <div class="o-wrapper">
+        <main>
+          <article>
+            {{ content }}
+          </article>
+        </main>
+      </div>
     </div>
   </div>
   <div class="o-layout__footer">
     <div class="o-inset">
-      <footer role="contentinfo">
-        <small>
-          <p>
-            <strong>&copy; Pegasystems, Inc.</strong>
-          </p>
-        </small>
-      </footer>
+      <div class="o-wrapper">
+        <footer role="contentinfo">
+          <div class="c-article">
+            <small>
+              <p>
+                <strong>&copy; Pegasystems, Inc.</strong>
+              </p>
+            </small>
+          </div>
+        </footer>
+      </div>
     </div>
   </div>
 </div>

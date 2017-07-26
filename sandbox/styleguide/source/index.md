@@ -21,9 +21,7 @@ layout: home
       </div>
       <p>
         <strong>
-        {% for post in site.posts %}
-          <a href="{{ post.url | relative_url }}">Explore the System (v0.1) &raquo;</a>
-        {% endfor %}
+          <a href="getting-started">Explore the System (v0.1) &raquo;</a>
         </strong>
       </p>
     </header>

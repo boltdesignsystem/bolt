@@ -110,13 +110,13 @@ body {
 
 .o-golden-two-column {
   @include respond-to(small) {
-    @include margin(0,(-$gutter/2 + rem),0,(-$gutter/2 + rem));
+    @include margin(0,(-$gutter + rem),0,(-$gutter + rem));
 
     display: flex;
     flex-wrap: wrap;
 
     > * {
-      @include margin(0,($gutter/2 + rem),0,($gutter/2 + rem));
+      @include margin(0,($gutter + rem),0,($gutter + rem));
 
       flex-grow: 1;
 
@@ -157,6 +157,12 @@ body {
   @include respond-to(small) {
     align-items: center;
   }
+}
+
+.o-wrapper {
+  @include margin(0,auto,0,auto);
+
+  max-width: $bp-medium-px;
 }
 
 .o-inset {

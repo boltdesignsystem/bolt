@@ -12,6 +12,17 @@
     @include font-weight(regular);
   }
 
+  p,
+  hr,
+  figure,
+  blockquote,
+  ol, ul, dl,
+  details, summary {
+    &:first-child {
+      @include null-spacing;
+    }
+  }
+
   h1, h2, h3, h4, h5, h6 {
     @include null-spacing;
   }
