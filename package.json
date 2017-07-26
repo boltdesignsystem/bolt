@@ -22,10 +22,12 @@
     "snyk-protect": "snyk protect",
     "mocha": "mocha packages/**/*/tests",
     "test": "npm run mocha && npm run lint",
-    "precommit": "npm test",
     "lint:watch": "nodemon --ignore node_modules -w packages/ --exec 'npm test'",
     "lint:fix": "eslint --fix ./packages/bolt-build-tools"
   },
+  "pre-commit": [
+    "test"
+  ],
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
@@ -111,7 +113,6 @@
     "path": "^0.12.7",
     "postcss-cli": "^4.1.0",
     "postcss-smart-import": "^0.7.5",
-    "pre-commit": "^1.2.2",
     "precommit": "^1.2.2",
     "publish-please": "^2.3.1",
     "request": "^2.81.0",
@@ -127,6 +128,8 @@
     "surge": "^0.18.0",
     "validate-commit-msg": "^2.12.2"
   },
-  "pre-commit": [],
-  "snyk": true
+  "snyk": true,
+  "devDependencies": {
+    "pre-commit": "^1.2.2"
+  }
 }
