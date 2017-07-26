@@ -9,7 +9,6 @@
 Installing Composer
 
 
-
 Speeding up Composer installs / updates:
 ```
 composer global require hirak/prestissimo
