@@ -1,11 +1,7 @@
-const gulp = require('gulp');
-const merge = require('merge');
-const defaultConfig = require('./config.default');
-// const debug = require('debug')('@bolt/build-tools-symlinks');
-// const changedInPlace = require('gulp-changed-in-place');
-
-import { notify, utils, events } from '@bolt/build-core';
-
+import { notify, events } from '@bolt/build-core';
+import gulp from 'gulp';
+import merge from 'merge';
+import * as defaultConfig from './config.default';
 
 function lernaBootstrap(done, errorShouldExit) {
   notify.sh('npm run bootstrap', errorShouldExit, (err) => {
@@ -14,7 +10,7 @@ function lernaBootstrap(done, errorShouldExit) {
   });
 }
 
-function lernaReload(userConfig) {
+function lerna(userConfig) {
   const config = merge(defaultConfig, userConfig);
 
   function lernaReloadTask(done) {
@@ -29,4 +25,4 @@ function lernaReload(userConfig) {
   return lernaReloadTask;
 }
 
-export { lernaReload as lerna };
+export { lerna as default };
