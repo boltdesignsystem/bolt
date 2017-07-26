@@ -21,7 +21,8 @@ $font-size--max-px: 18px;
   Scale
 \*------------------------------------*/
 
-$font-scale--xxlarge: 3.083;
+$font-scale--xxxlarge: 3.083;
+$font-scale--xxlarge: 2.475;
 $font-scale--xlarge: 1.781;
 $font-scale--large: 1.417;
 $font-scale--medium: 1.111;
@@ -29,6 +30,7 @@ $font-scale--base: 1;
 $font-scale--small: .9;
 $font-scale--xsmall: .8;
 
+$font-leading--xxxlarge: 1.14;
 $font-leading--xxlarge: 1.14;
 $font-leading--xlarge: 1.13;
 $font-leading--large: 1.21;
@@ -43,6 +45,13 @@ $font-leading--tight: 1.111;
 /// @type Map
 $font-sizes: (
   font-sizes: (
+    xxxlarge: (
+      font-size: $font-scale--xxxlarge + rem,
+      line-height: (
+        regular: $font-leading--xxxlarge,
+        tight: $font-leading--tight
+      )
+    ),
     xxlarge: (
       font-size: $font-scale--xxlarge + rem,
       line-height: (

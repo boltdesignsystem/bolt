@@ -10,26 +10,36 @@
 }
 
 .c-heading--xxlarge, .c-heading--xlarge {
-  @include padding(($article-leading*2 + rem),0,($article-leading*.65 + rem),0);
-
-  letter-spacing: -.05rem;
+  @include padding(($font-leading--base*2 + rem),0,($font-leading--base*.65 + rem),0);
 }
 
 .c-heading--xxlarge {
-  @include font-size(xxlarge);
+  @include font-size(xxxlarge);
+
+  letter-spacing: -.15rem;
+
+  @include respond-to($max: $bp-small-px) {
+    @include font-size(xxlarge);
+
+    letter-spacing: -.1rem;
+  }
 }
 
 .c-heading--xlarge {
   @include font-size(xlarge);
+
+  letter-spacing: -.1rem;
 }
 
 .c-heading--large {
-  @include padding(($article-leading*1.35 + rem),0,($article-leading*.4 + rem),0);
+  @include padding(($font-leading--base*1.35 + rem),0,($font-leading--base*.4 + rem),0);
   @include font-size(large);
+
+  letter-spacing: -.05rem;
 }
 
 .c-heading--medium, .c-heading--small {
-  @include padding(($article-leading*1.15 + rem),0,($article-leading*.4 + rem),0);
+  @include padding(($font-leading--base*1.15 + rem),0,($font-leading--base*.4 + rem),0);
 }
 
 .c-heading--medium {
@@ -44,7 +54,7 @@
 }
 
 .c-heading--eyebrow {
-  @include padding(($article-leading + rem),0,($article-leading*.125 + rem),0);
+  @include padding(($font-leading--base + rem),0,($font-leading--base*.125 + rem),0);
   @include font-size(xsmall);
   @include font-weight(regular);
 
@@ -62,19 +72,25 @@
 
 .c-heading-group {
   .c-eyebrow {
-    @include padding(0,0,($article-leading*.125 + rem),0);
+    @include padding(0,0,($font-leading--base*.125 + rem),0);
   }
 
   .c-heading--xxlarge {
-    @include padding(0,0,($article-leading*.325 + rem),0);
+    @include padding(0,0,($font-leading--base*.325 + rem),0);
   }
 
   .c-heading--xlarge {
-    @include padding(0,0,($article-leading*.65 + rem),0);
+    @include padding(0,0,($font-leading--base*.65 + rem),0);
     @include font-weight(regular);
 
-    line-height: 1.35;
+    line-height: 1.45;
     letter-spacing: 0;
+
+    @include respond-to($max: $bp-small-px) {
+      @include font-size(large);
+
+      letter-spacing: -.05rem;
+    }
   }
 
   &:only-child {

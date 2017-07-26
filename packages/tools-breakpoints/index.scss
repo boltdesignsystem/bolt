@@ -10,16 +10,16 @@
     // Proprietary breakpoints
 
     @if $min == xsmall {
-      @media only screen and (min-width: $bp-xsmall-px) { @content; }
+      @media only screen and (min-width: $bp-xsmall-px + 1px) { @content; }
     }
     @else if $min == small {
-      @media only screen and (min-width: $bp-small-px) { @content; }
+      @media only screen and (min-width: $bp-small-px + 1px) { @content; }
     }
     @else if $min == medium {
-      @media only screen and (min-width: $bp-medium-px) { @content; }
+      @media only screen and (min-width: $bp-medium-px + 1px) { @content; }
     }
     @else if $min == large {
-      @media only screen and (min-width: $bp-large-px) { @content; }
+      @media only screen and (min-width: $bp-large-px + 1px) { @content; }
     }
 
     // Warning for using invalid breakpoint names

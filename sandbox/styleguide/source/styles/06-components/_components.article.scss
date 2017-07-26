@@ -1,7 +1,7 @@
 .c-article {
   @include clearfix;
 
-  line-height: $article-leading;
+  line-height: $font-leading--base;
 
   address {
     display: inline-block;
@@ -27,41 +27,55 @@
     @include null-spacing;
   }
 
-  h1, h2 {
-    @include padding(($article-leading*2 + rem),0,($article-leading*.65 + rem),0);
-
-    letter-spacing: -.05rem;
-  }
-
   h1 {
-    @include font-size(xxlarge);
+    @include padding(0,0,($font-leading--base*.65 + rem),0);
+    @include font-size(xxxlarge);
+
+    letter-spacing: -.15rem;
+
+    @include respond-to($max: $bp-small-px) {
+      @include font-size(xxlarge);
+
+      letter-spacing: -.1rem;
+    }
   }
 
   h2 {
+    @include padding(($font-leading--base*2 + rem),0,($font-leading--base*.65 + rem),0);
     @include font-size(xlarge);
+
+    letter-spacing: -.1rem;
   }
 
   hgroup {
     h1 {
-      @include padding(($article-leading*2 + rem),0,($article-leading*.325 + rem),0);
+      @include padding(0,0,($font-leading--base*.325 + rem),0);
     }
 
     h1 + h2 {
-      @include padding(0,0,($article-leading*.65 + rem),0);
+      @include padding(0,0,($font-leading--base*.65 + rem),0);
       @include font-weight(regular);
 
-      line-height: 1.35;
+      line-height: 1.45;
       letter-spacing: 0;
+
+      @include respond-to($max: $bp-small-px) {
+        @include font-size(large);
+
+        letter-spacing: -.05rem;
+      }
     }
   }
 
   h3 {
-    @include padding(($article-leading*1.35 + rem),0,($article-leading*.4 + rem),0);
+    @include padding(($font-leading--base*1.35 + rem),0,($font-leading--base*.4 + rem),0);
     @include font-size(large);
+
+    letter-spacing: -.05rem;
   }
 
   h4, h5, h6 {
-    @include padding(($article-leading*1.15 + rem),0,($article-leading*.4 + rem),0);
+    @include padding(($font-leading--base*1.15 + rem),0,($font-leading--base*.4 + rem),0);
   }
 
   h4 {
@@ -98,13 +112,13 @@
   }
 
   figure {
-    @include padding(($article-leading/4 + rem),0,0,0);
+    @include padding(($font-leading--base/4 + rem),0,0,0);
     @include text-align(center);
 
     > div,
     > img,
     > a {
-      @include margin(0,0,($article-leading/4 + rem),0);
+      @include margin(0,0,($font-leading--base/4 + rem),0);
     }
 
     > div,
@@ -137,7 +151,7 @@
   }
 
   blockquote {
-    @include padding(($article-leading + rem),($gutter + rem),($article-leading + rem),($gutter + rem));
+    @include padding(($font-leading--base + rem),($gutter + rem),($font-leading--base + rem),($gutter + rem));
     @include border(left,($gutter/2 + rem) solid);
 
     @include font-size(large);
@@ -149,7 +163,7 @@
 
   pre
   {
-    @include padding(($article-leading + rem),($gutter + rem),($article-leading + rem),($gutter + rem));
+    @include padding(($font-leading--base + rem),($gutter + rem),($font-leading--base + rem),($gutter + rem));
     @include null-spacing;
     @include text-align(left);
     @include horizontal-scroll;
@@ -174,7 +188,7 @@
   aside {
     @include respond-to(small) {
       @include float(right);
-      @include margin(0,0,($article-leading + rem),($gutter + rem));
+      @include margin(0,0,($font-leading--base + rem),($gutter + rem));
 
       width: $golden-aside-width + vw;
       max-width: $article-line-length/2 + ch;
@@ -187,7 +201,7 @@
     }
 
     p:last-child {
-      @include padding(0,0,($article-leading*.65 + rem),0);
+      @include padding(0,0,($font-leading--base*.65 + rem),0);
     }
   }
 }
@@ -197,7 +211,7 @@
     header[role="banner"] {
       p:first-of-type {
         &:first-letter {
-          @include padding(($article-leading/2 + rem),($gutter/2 + rem),($article-leading/2 + rem),($gutter/2 + rem));
+          @include padding(($font-leading--base/2 + rem),($gutter/2 + rem),($font-leading--base/2 + rem),($gutter/2 + rem));
         }
       }
     }

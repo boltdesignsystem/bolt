@@ -1,9 +1,9 @@
 .c-nav {
   nav {
-    @include padding(($leading*2 + rem),($gutter + rem),($leading*2 + rem),($gutter + rem));
+    @include padding(($font-leading--base*2 + rem),($gutter + rem),($font-leading--base*2 + rem),($gutter + rem));
 
     h1, h2 {
-      @include margin(0,0,($leading + rem),0);
+      @include margin(0,0,($font-leading--base + rem),0);
       @include font-size(small);
 
       text-transform: uppercase;
@@ -23,7 +23,7 @@
   nav {
     ul {
       li {
-        @include margin(0,0,($leading + rem),0);
+        @include margin(0,0,($font-leading--base + rem),0);
         @include padding(0,0,0,0);
 
         &:last-of-type {

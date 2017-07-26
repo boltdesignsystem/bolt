@@ -4,20 +4,7 @@ layout: default
 <div class="o-layout o-layout--article">
   <aside>
     <div class="c-nav c-nav--vertical">
-      <nav>
-        <header role="heading">
-          <h2>Bolt</h2>
-        </header>
-        <ul>
-          <li><a href="javascript:">Get Started</a></li>
-          <li><a href="javascript:">Principles</a></li>
-          <li><a href="javascript:">Elements</a></li>
-          <li><a href="javascript:">Objects</a></li>
-          <li><a href="javascript:">Components</a></li>
-          <li><a href="javascript:">Themes</a></li>
-          <li><a href="javascript:">Utilities</a></li>
-        </ul>
-      </nav>
+      {% include doc-nav.html %}
     </div>
   </aside>
   <main>
@@ -45,11 +32,5 @@ layout: default
       </article>
     </div>
   </main>
-  <footer role="contentinfo">
-    <small>
-      <p>
-        <strong>&copy; Pegasystems, Inc.</strong>
-      </p>
-    </small>
-  </footer>
+  {% include footer.html %}
 </div>

@@ -65,7 +65,7 @@ body {
 
       small {
         @include position(fixed,0,0,auto,auto);
-        @include padding(($leading*2 + rem),0,($leading*2 + rem),0);
+        @include padding(($font-leading--base*2 + rem),0,($font-leading--base*2 + rem),0);
 
         height: 100%;
         line-height: $gutter*1.5/$font-scale--xsmall;
@@ -83,7 +83,7 @@ body {
       max-width: $article-line-length + ch;
 
       aside {
-        @include margin(0,calc(#{$gutter*1.5 + rem} - #{$golden-aside-width + vw}),($leading + rem),($gutter + rem));
+        @include margin(0,calc(#{$gutter*1.5 + rem} - #{$golden-aside-width + vw}),($font-leading--base + rem),($gutter + rem));
       }
     }
   }
@@ -162,10 +162,10 @@ body {
 }
 
 .o-inset {
-  @include padding(($leading + rem),($gutter + rem),($leading + rem),($gutter + rem));
+  @include padding(($font-leading--base + rem),($gutter + rem),($font-leading--base + rem),($gutter + rem));
 
   @include respond-to(small) {
-    @include padding(($leading*2 + rem),($gutter*2 + rem),($leading*2 + rem),($gutter*2 + rem));
+    @include padding(($font-leading--base*2 + rem),($gutter*2 + rem),($font-leading--base*2 + rem),($gutter*2 + rem));
   }
 }
 
