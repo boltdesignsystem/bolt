@@ -6,7 +6,7 @@ layout: default
     <div class="c-nav c-nav--vertical">
       <nav>
         <header role="heading">
-          <h2>Bolt</h2>
+          <h2>Bolt v0.1</h2>
         </header>
         <ul>
           <li><a href="javascript:">Get Started</a></li>
@@ -24,9 +24,14 @@ layout: default
     <div class="o-inset">
       <article class="c-article">
         <header role="banner">
-          <h1>
-            {{ page.title | escape }}
-          </h1>
+          <hgroup>
+            <h1>
+              {{ page.title | escape }}
+            </h1>
+            <h2>
+              {{ page.intro | escape }}
+            </h2>
+          </hgroup>
         </header>
         <div itemprop="articleBody">
           {{ content }}

@@ -1,3 +1,14 @@
+.c-heading {
+  @include null-spacing;
+  @include font-family(heading);
+  @include font-weight(bold);
+
+  &:only-child {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
 .c-heading--xxlarge, .c-heading--xlarge {
   @include padding(($article-leading*2 + rem),0,($article-leading*.65 + rem),0);
 
@@ -17,23 +28,29 @@
   @include font-size(large);
 }
 
-.c-heading--medium {
+.c-heading--medium, .c-heading--small {
   @include padding(($article-leading + rem),0,($article-leading*.4 + rem),0);
+}
+
+.c-heading--medium {
   @include font-size(medium);
 }
 
 .c-heading--small {
-  @include padding(($article-leading + rem),0,($article-leading*.4 + rem),0);
   @include font-size(small);
 
   text-transform: uppercase;
   letter-spacing: .1rem;
 }
 
-.c-heading {
-  @include null-spacing;
-  @include font-family(heading);
-  @include font-weight(bold);
+.c-heading--eyebrow {
+  @include padding(($article-leading + rem),0,($article-leading*.125 + rem),0);
+  @include font-size(xsmall);
+  @include font-weight(regular);
+
+  & + .c-heading {
+    padding-top: 0;
+  }
 }
 
   .c-heading__text {
@@ -44,26 +61,26 @@
   }
 
 .c-heading-group {
-  .c-heading--xxlarge {
-    @include padding(($article-leading*2 + rem),0,($article-leading*.325 + rem),0);
+  .c-eyebrow {
+    @include padding(0,0,($article-leading*.125 + rem),0);
   }
 
-  .c-heading--xxlarge + .c-heading--xlarge {
+  .c-heading--xxlarge {
+    @include padding(0,0,($article-leading*.325 + rem),0);
+  }
+
+  .c-heading--xlarge {
     @include padding(0,0,($article-leading*.65 + rem),0);
     @include font-weight(regular);
 
-    line-height: 1.45;
+    line-height: 1.35;
     letter-spacing: 0;
   }
-}
 
-.c-heading-group--collapse {
-  > .c-heading:first-child {
-    padding-top: 0;
-  }
-
-  > .c-heading:last-child {
-    padding-bottom: 0;
+  &:only-child {
+    .c-heading--xlarge {
+      @include padding(0,0,0,0);
+    }
   }
 }
 

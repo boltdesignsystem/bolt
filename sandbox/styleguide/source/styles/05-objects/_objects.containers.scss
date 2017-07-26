@@ -136,10 +136,6 @@ body {
         &:first-child {
           padding-top: 0;
         }
-
-        &:last-child {
-          padding-bottom: 0;
-        }
       }
     }
 
@@ -167,6 +163,10 @@ body {
 
 .o-inset {
   @include padding(($leading + rem),($gutter + rem),($leading + rem),($gutter + rem));
+
+  @include respond-to(small) {
+    @include padding(($leading*2 + rem),($gutter*2 + rem),($leading*2 + rem),($gutter*2 + rem));
+  }
 }
 
 .o-inset--x {

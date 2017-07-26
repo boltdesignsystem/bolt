@@ -1,13 +1,16 @@
 ---
-# You don't need to edit this file, it's empty on purpose.
-# Edit theme's home layout instead if you wanna make some changes
-# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 layout: home
+title: Bolt Design System
 ---
 <div class="o-golden-two-column o-golden-two-column--center">
   <div class="o-golden-two-column__main">
     <header role="banner">
       <div class="c-heading-group">
+        <div class="c-heading c-heading--eyebrow">
+          <span class="c-heading__text">
+            v0.1
+          </span>
+        </div>
         <h1 class="c-heading c-heading--xxlarge">
           <span class="c-heading__text">
             Bolt Design System
@@ -19,11 +22,11 @@ layout: home
           </span>
         </h2>
       </div>
-      <p>
-        <strong>
-          <a href="getting-started">Explore the System (v0.1) &raquo;</a>
-        </strong>
-      </p>
+      <div class="c-heading c-heading--large">
+        <span class="c-heading__text">
+          <a href="getting-started">Explore the System</a> &raquo;
+        </span>
+      </div>
     </header>
   </div>
   <div class="o-golden-two-column__aside">
