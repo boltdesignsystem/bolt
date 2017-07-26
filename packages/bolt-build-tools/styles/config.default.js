@@ -11,5 +11,6 @@ module.exports = {
   lint: false,
   sassdoc: {
     dest: 'sandbox/sassdoc'
-  }
+  },
+  sourceMaps: !util.env.production
 };
