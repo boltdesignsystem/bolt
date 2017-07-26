@@ -1,0 +1,174 @@
+$bp-layout--article: 55rem;
+
+
+body {
+  width: 100%;
+}
+
+.o-layout {
+  @include clearfix;
+
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.o-layout--article {
+  @include respond-to($max: $bp-layout--article) {
+    > footer {
+      @include padding(0,($gutter + rem),0,($gutter + rem));
+      @include border(top);
+
+      p {
+        @include margin(0,0,0,0);
+
+        line-height: $gutter*1.5;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  @include respond-to($min: $bp-layout--article) {
+    width: 100vw;
+    height: 100vh;
+
+    > * {
+      float: left;
+    }
+
+    > aside,
+    > aside .c-nav--vertical {
+      width: $golden-aside-width*1%;
+      height: 100%;
+    }
+
+    > aside {
+      &:before {
+        display: block;
+        content: '';
+        height: 1px;
+      }
+
+      .c-nav--vertical {
+        @include position(fixed,0,auto,auto,0);
+        @include vertical-scroll;
+        @include text-align(right);
+        @include border(right);
+      }
+    }
+
+    > main {
+      width: $golden-main-width*1%;
+    }
+
+    > footer {
+      writing-mode: vertical-rl;
+
+      small {
+        @include position(fixed,0,0,auto,auto);
+        @include padding(($leading*2 + rem),0,($leading*2 + rem),0);
+
+        height: 100%;
+        line-height: $gutter*1.5/$font-scale--xsmall;
+        white-space: nowrap;
+      }
+
+      p {
+        @include null-spacing;
+      }
+    }
+
+    article {
+      @include margin(0,auto,0,auto);
+
+      max-width: $article-line-length + ch;
+
+      aside {
+        @include margin(0,calc(#{$gutter*1.5 + rem} - #{$golden-aside-width + vw}),($leading + rem),($gutter + rem));
+      }
+    }
+  }
+}
+
+.o-layout--fullscreen-hero {
+  display: flex;
+  flex-direction: column;
+
+  .o-layout__main {
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+
+    > * {
+      @include margin(auto,0,auto,0);
+    }
+  }
+
+  .o-layout__footer {
+    @include margin(auto,0,0,0);
+  }
+}
+
+.o-golden-two-column {
+  @include respond-to(small) {
+    @include margin(0,(-$gutter/2 + rem),0,(-$gutter/2 + rem));
+
+    display: flex;
+    flex-wrap: wrap;
+
+    > * {
+      @include margin(0,($gutter/2 + rem),0,($gutter/2 + rem));
+
+      flex-grow: 1;
+
+      p,
+      hr,
+      figure,
+      blockquote,
+      ol, ul, dl,
+      details, summary,
+      h1, h2, h3, h4, h5, h6 {
+        &:first-child {
+          @include null-spacing;
+        }
+      }
+
+      .c-heading {
+        &:first-child {
+          padding-top: 0;
+        }
+
+        &:last-child {
+          padding-bottom: 0;
+        }
+      }
+    }
+
+    .o-golden-two-column__main {
+      flex-basis: $golden-main-width * 1%;
+    }
+
+    .o-golden-two-column__aside {
+      flex-basis: $golden-aside-width * 1%;
+    }
+  }
+}
+
+.o-golden-two-column--center {
+  @include respond-to(small) {
+    align-items: center;
+  }
+}
+
+.o-inset {
+  @include padding(($leading + rem),($gutter + rem),($leading + rem),($gutter + rem));
+}
+
+.o-inset--x {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.o-inset--y {
+  padding-right: 0;
+  padding-left: 0;
+}

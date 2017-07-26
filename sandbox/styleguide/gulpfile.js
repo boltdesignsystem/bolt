@@ -11,19 +11,22 @@ const jekyllTasks = require('@theme-tools/plugin-jekyll')({
   cwd: 'source',
   watch: [
     'source/**',
-    '!source/_site/**',
+    //'!source/_site/**',
     '!source/.sass-cache/**',
   ],
 });
 
-const cssTasks = require('@theme-tools/plugin-sass')({
+
+
+var cssTasks = require('../../packages/build-tools-styles')(gulp, {
+  root: '.',
   src: [
-    'source/styles/**/*.scss',
+    'source/**/*.scss'
   ],
-  dest: 'public/styles',
-  lint: {
-    enabled: false,
-  },
+  dest: './public',
+  jsonDest: './source/_data',
+  extraWatches: '../../packages/*/*.scss'
+  // lint: true
 });
 
 gulp.task('css', cssTasks.compile);

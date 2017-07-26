@@ -1,0 +1,74 @@
+.c-heading--xxlarge, .c-heading--xlarge {
+  @include padding(($article-leading*2 + rem),0,($article-leading*.65 + rem),0);
+
+  letter-spacing: -.05rem;
+}
+
+.c-heading--xxlarge {
+  @include font-size(xxlarge);
+}
+
+.c-heading--xlarge {
+  @include font-size(xlarge);
+}
+
+.c-heading--large {
+  @include padding(($article-leading*1.15 + rem),0,($article-leading*.4 + rem),0);
+  @include font-size(large);
+}
+
+.c-heading--medium {
+  @include padding(($article-leading + rem),0,($article-leading*.4 + rem),0);
+  @include font-size(medium);
+}
+
+.c-heading--small {
+  @include padding(($article-leading + rem),0,($article-leading*.4 + rem),0);
+  @include font-size(small);
+
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+}
+
+.c-heading {
+  @include null-spacing;
+  @include font-family(heading);
+  @include font-weight(bold);
+}
+
+  .c-heading__text {
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+.c-heading-group {
+  .c-heading--xxlarge {
+    @include padding(($article-leading*2 + rem),0,($article-leading*.325 + rem),0);
+  }
+
+  .c-heading--xxlarge + .c-heading--xlarge {
+    @include padding(0,0,($article-leading*.65 + rem),0);
+    @include font-weight(regular);
+
+    line-height: 1.45;
+    letter-spacing: 0;
+  }
+}
+
+.c-heading-group--collapse {
+  > .c-heading:first-child {
+    padding-top: 0;
+  }
+
+  > .c-heading:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.c-heading, .c-heading-group {
+  & + * {
+    @include null-spacing;
+  }
+}

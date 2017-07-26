@@ -1,0 +1,132 @@
+@mixin text-align($text-align)
+{
+  @if $text-align == right {
+    text-align: right;
+
+    [dir=rtl] &
+    {
+      text-align: left;
+    }
+  }
+
+  @else if $text-align == left {
+    text-align: left;
+
+    [dir=rtl] &
+    {
+      text-align: right;
+    }
+  }
+
+  @else if $text-align == center {
+    text-align: center;
+  }
+}
+
+@mixin margin($margin-top, $margin-right, $margin-bottom, $margin-left)
+{
+  margin-top: $margin-top;
+  margin-right: $margin-right;
+  margin-bottom: $margin-bottom;
+  margin-left: $margin-left;
+
+  [dir=rtl] &
+  {
+    margin-right: $margin-left;
+    margin-left: $margin-right;
+  }
+}
+
+@mixin padding($padding-top, $padding-right, $padding-bottom, $padding-left)
+{
+  padding-top: $padding-top;
+  padding-right: $padding-right;
+  padding-bottom: $padding-bottom;
+  padding-left: $padding-left;
+
+  [dir=rtl] &
+  {
+    padding-right: $padding-left;
+    padding-left: $padding-right;
+  }
+}
+
+@mixin position($pos, $pos-top, $pos-right, $pos-bottom, $pos-left)
+{
+  position: $pos;
+  top: $pos-top;
+  right: $pos-right;
+  bottom: $pos-bottom;
+  left: $pos-left;
+
+  [dir=rtl] &
+  {
+    right: $pos-left;
+    left: $pos-right;
+  }
+}
+
+@mixin float($float)
+{
+  @if $float == left {
+    float: left;
+
+    [dir=rtl] &
+    {
+      float: right;
+    }
+  }
+
+  @else if $float == right {
+    float: right;
+
+    [dir=rtl] &
+    {
+      float: left;
+    }
+  }
+
+  @else if $float == none {
+    float: none;
+
+    [dir=rtl] &
+    {
+      float: none;
+    }
+  }
+}
+
+@mixin border($border-dir, $border-styles: $border)
+{
+  @if $border-dir == left {
+    border: none;
+    border-left: $border-styles;
+
+    [dir=rtl] &
+    {
+      border-right: $border-styles;
+      border-left: none;
+    }
+  }
+
+  @else if $border-dir == right {
+    border: none;
+    border-right: $border-styles;
+
+    [dir=rtl] &
+    {
+      border-right: none;
+      border-left: $border-styles;
+    }
+  }
+
+  @else if $border-dir == top {
+    border: none;
+    border-top: $border-styles;
+  }
+
+  @else if $border-dir == bottom {
+    border: none;
+    border-bottom: $border-styles;
+  }
+}

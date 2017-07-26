@@ -1,26 +1,25 @@
 ---
 layout: default
 ---
-
-<div class="home">
-
-  <h1 class="page-heading">Posts</h1>
-  
-  {{ content }}
-
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
-
+<div class="o-layout o-layout--fullscreen-hero">
+  <div class="o-layout__main t-dark">
+    <div class="o-inset">
+      <main>
+        <article>
+          {{ content }}
+        </article>
+      </main>
+    </div>
+  </div>
+  <div class="o-layout__footer">
+    <div class="o-inset">
+      <footer role="contentinfo">
+        <small>
+          <p>
+            <strong>&copy; Pegasystems, Inc.</strong>
+          </p>
+        </small>
+      </footer>
+    </div>
+  </div>
 </div>

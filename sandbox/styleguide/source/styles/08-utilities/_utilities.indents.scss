@@ -1,0 +1,113 @@
+article.u-indented {
+
+  // Conditional indents
+
+  p + p,
+  figure + p,
+  blockquote + p,
+  aside + p,
+  pre + p,
+  ul + p,
+  ol + p {
+    text-indent: $gutter*2/3 + rem;
+  }
+
+  p {
+    &:first-of-type {
+      text-indent: 0;
+    }
+  }
+
+  ul, ol {
+    @include padding(0,0,0,($gutter*4/3 + rem));
+  }
+
+  // Reset spacing
+
+  p {
+    @include null-spacing;
+  }
+
+  aside {
+    @include respond-to(small) {
+      > *:first-child,
+      > small > *:first-child {
+        @include null-spacing;
+      }
+    }
+  }
+
+  // Conditional add spacing
+
+  /* These are here for comparison only
+    p,
+    h1, h2, h3, h4, h5, h6, header, hgroup {
+      & + p {
+        @include null-spacing;
+      }
+    }
+  */
+
+  figure,
+  blockquote,
+  pre,
+  ul, ol,
+  aside {
+    & + p {
+      @include paragraph-spacing;
+    }
+  }
+
+  // Conditionally nullify spacing again
+
+  aside:first-child {
+    & + p {
+      @include null-spacing;
+    }
+  }
+
+  // Condiontally add spacing again
+
+  figure,
+  blockquote,
+  pre,
+  ul, ol {
+    & + aside {
+      > *:first-child,
+      > small > *:first-child {
+        @include respond-to(small) {
+          @include paragraph-spacing;
+        }
+      }
+
+      /* These are here for comparison only
+        & + p {
+          @include respond-to(small) {
+            @include paragraph-spacing;
+          }
+        }
+      */
+    }
+  }
+
+  p,
+  h1, h2, h3, h4, h5, h6, header, hgroup {
+    & + aside {
+      /* These are here for comparison only
+        > *:first-child,
+        > small > *:first-child {
+          @include respond-to(small) {
+            @include null-spacing;
+          }
+        }
+      */
+
+      & + p {
+        @include respond-to(small) {
+          @include null-spacing;
+        }
+      }
+    }
+  }
+
+}

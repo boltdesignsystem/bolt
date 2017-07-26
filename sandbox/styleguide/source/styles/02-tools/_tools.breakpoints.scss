@@ -1,0 +1,55 @@
+/*------------------------------------*\
+  Breakpoints
+\*------------------------------------*/
+
+@mixin bp($min: 0, $max: 0) {
+  $type: type-of($min);
+
+  @if $type == string {
+    @if $min == xsmall {
+      @media only screen and (min-width: $bp-xsmall-px) { @content; }
+    }
+
+    @else if $min == small {
+      @media only screen and (min-width: $bp-small-px) { @content; }
+    }
+
+    @else if $min == medium {
+      @media only screen and (min-width: $bp-medium-px) { @content; }
+    }
+
+    @else if $min == large {
+      @media only screen and (min-width: $bp-large-px) { @content; }
+    }
+
+    // Otherwise pass a warning to the compiler as to the appropriate options
+
+    @else {
+      @warn "The breakpoint mixin supports the following attributes: xsmall, small, medium, large";
+    }
+  }
+
+  @else if $type == number {
+
+    // Allow for custom parameters for min and max size
+
+    $query: "all" !default;
+
+    @if      $min != 0 and $max != 0 { $query: "(min-width: #{$min}) and (max-width: #{$max})"; } // set both min and max
+    @else if $min != 0 and $max == 0 { $query: "(min-width: #{$min})"; } // set just min
+    @else if $min == 0 and $max != 0 { $query: "(max-width: #{$max})"; } // set just max
+    @media #{$query} { @content; }
+  }
+}
+
+
+/*------------------------------------*\
+  Screen Resolution
+\*------------------------------------*/
+
+@mixin highres {
+  @media print,
+  (-webkit-min-device-pixel-ratio: 1.25),
+  (min-resolution: 1.25dppx),
+  (min-resolution: 120dpi) { @content; }
+}

@@ -1,0 +1,74 @@
+.t-dark {
+  color: $inverse-body-text-color;
+  background-color: $inverse-background-color;
+
+  h1, h2, h3, h4, h5, h6,
+  .c-heading {
+    color: $inverse-heading-color;
+  }
+
+  a {
+    &:link {
+      color: $inverse-link-color;
+
+      &:hover, &:active, &:focus {
+        color: lighten($inverse-link-color,15%);
+      }
+    }
+
+    &:visited {
+      color: $inverse-link-color-visited;
+
+      &:hover, &:active, &:focus {
+        color: lighten($inverse-link-color-visited,15%);
+      }
+    }
+  }
+
+  ::-moz-selection {
+    color: $inverse-highlight-text-color;
+    background: $inverse-highlight-background-color;
+  }
+
+  ::selection {
+    color: $inverse-highlight-text-color;
+    background: $inverse-highlight-background-color;
+  }
+
+  .c-article {
+    blockquote {
+      border-color: $inverse-subtle-background-color;
+    }
+
+    pre {
+      background-color: $inverse-subtle-background-color;
+    }
+
+    hr {
+      border-color: $inverse-border-color;
+    }
+
+    header[role="banner"] {
+      p:first-of-type {
+        &:first-letter {
+          border-color: $inverse-border-color;
+        }
+      }
+    }
+  }
+
+  .o-layout--article {
+    @include respond-to($max: $bp-layout--article) {
+      > footer {
+        border-color: $inverse-border-color;
+      }
+    }
+
+    @include respond-to($min: $bp-layout--article) {
+      .c-nav {
+        border-color: $inverse-border-color;
+      }
+    }
+  }
+
+}
