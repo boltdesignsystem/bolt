@@ -59,14 +59,22 @@
 
   .o-layout--article {
     @include respond-to($max: $bp-layout--article) {
+      > aside {
+        .c-nav {
+          border-color: $inverse-border-color;
+        }
+      }
+
       > footer {
         border-color: $inverse-border-color;
       }
     }
 
     @include respond-to($min: $bp-layout--article) {
-      .c-nav {
-        border-color: $inverse-border-color;
+      > aside {
+        .c-nav {
+          border-color: $inverse-border-color;
+        }
       }
     }
   }

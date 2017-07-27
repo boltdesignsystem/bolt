@@ -13,7 +13,8 @@
 
   code {
     @include font-family(code);
-    @include font-weight(regular);
+
+    font-weight: $font-weight--semibold; // This is an edge case to use semibold.
   }
 
   p,

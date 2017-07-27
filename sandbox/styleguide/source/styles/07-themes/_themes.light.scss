@@ -60,14 +60,22 @@ body,
 
   .o-layout--article {
     @include respond-to($max: $bp-layout--article) {
+      > aside {
+        .c-nav {
+          border-color: $border-color;
+        }
+      }
+
       > footer {
         border-color: $border-color;
       }
     }
 
     @include respond-to($min: $bp-layout--article) {
-      .c-nav {
-        border-color: $border-color;
+      > aside {
+        .c-nav {
+          border-color: $border-color;
+        }
       }
     }
   }

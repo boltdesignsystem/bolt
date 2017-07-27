@@ -14,6 +14,13 @@ body {
 
 .o-layout--article {
   @include respond-to($max: $bp-layout--article) {
+    > aside {
+      .c-nav--vertical {
+        @include text-align(center);
+        @include border(bottom);
+      }
+    }
+
     > footer {
       @include padding(0,($gutter + rem),0,($gutter + rem));
       @include border(top);
