@@ -1,31 +1,44 @@
 language: node_js
 
 node_js:
-  - 7
-  
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-4.8
+- 7
+
+dist: trusty
 
 env:
-  CXX=g++-4.8
+  global:
+    - CXX=g++-4.8
+  # - CXX=g++-4.8 PHP_OPTIONS="-d sendmail_path=`which true`"
+  # - TRAVIS_NODE_VERSION="7"
 
-install:
-  - npm install
-  
-# script:
-#   - npm run build
+script:
+  - npm run bootstrap
+  - npm run init
 
-before_install: 
-  if [[ `npm -v` != 5* ]]; then npm i -g npm@5; fi
+before_install:
+  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+  - sudo add-apt-repository ppa:ondrej/php -y
+  - sudo apt-get update -qq
+  - sudo apt-get install php7.1  gcc-4.8 g++-4.8 graphicsmagick python-software-properties -y
+  - curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+  # - composer clear-cache
+  - if [[ `npm -v` != 5* ]]; then npm i -g npm@5; fi
+  # - npm install --global npm@5
+ # - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && source ~/.nvm/nvm.sh && nvm install 7
 
 after_success:
   - chmod ugo+x ./scripts/deploy.sh
   - ./scripts/deploy.sh
-  
+
 cache:
+  apt: true
+  yarn: true
   directories:
-    - node_modules  
+    - node_modules
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
+  slack:
+    secure: cNto+gWAoK1JM9jBNG4i4rMSybv3twMbqlFSCohQFBDMwKFMdlyWqFDX6iYKtHxWEDzrZyRz3qiJ8/S44mgjeKJ/xHbHDtPchp/KL2P1htipvwD2EZXobcBEGl83v2rmtFO1WNJUPB3RIJE2yt1wJsX7NIXpDw82hePmaIvNJmtbLpK/J5uaFqGNHIsctmULgVmGSNSTyK4nYxxjNNLd0EvO37Y6VN8FhsKNu2NHMKeeQxinEvETDUh8XuqXZYNWE3PBvVa4OiDhgnr5K27jsnWX+wEmqg0xY+CMf7mUSTqVN61fA7LnHyM0qcGGmB6YTv4QYLMwPydp+nsjDcm3St9D+KOTsQ4ExOaEAL/6EnAEpl8GtxST+ytdqswhCC4yMCO61Hy+M5AoXgDSGrrXHgZakDMAcEVcJdH38791hRxcuM3ldVmHAlAWFdgRLG5rRMVh3qoXz7jbraoTdjyKMegQIQdKR2SX7O9Dv0EEtLz4lTFN2RENvAjLggUPPU+ESoUHmSbwmPGnt7jy3ra2AI3nnYpfn/0e6Op/A3z7HLbdm3XyuNWoTPhy1mc4Adca+HosJ37UPv7nDRIGds1sKYAeWq94+rEk+/6IQ/oRIDRhSYsQbLLWnU6DH4o7iOj7D+X/ngjqmF75nW2s5+7rtdBHFvNzOJalCKHiDTMfdlQ=
