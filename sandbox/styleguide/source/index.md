@@ -24,7 +24,7 @@ title: Bolt Design System
       </div>
       <div class="c-heading c-heading--large">
         <span class="c-heading__text">
-          <a href="getting-started">Explore the System</a> &raquo;
+          <a href="/getting-started">Explore the System</a> &raquo;
         </span>
       </div>
     </header>

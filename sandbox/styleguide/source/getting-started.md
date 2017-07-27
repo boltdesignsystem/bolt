@@ -59,8 +59,3 @@ Boudin turkey pork, tongue kevin rump spare ribs pancetta tri-tip jowl short loi
 Drumstick beef bresaola tongue ham hock jerky pork loin kielbasa boudin. Pancetta short loin biltong, burgdoggen tri-tip cupim porchetta tenderloin beef spare ribs turkey andouille. Porchetta hamburger biltong meatball. Leberkas chuck corned beef sausage landjaeger jerky. Swine burgdoggen picanha, ribeye rump beef ribs flank pastrami shankle porchetta.
 
 Boudin turkey pork, tongue kevin rump spare ribs pancetta tri-tip jowl short loin. Tri-tip hamburger ground round capicola pork chop doner drumstick chuck ham hock rump. Andouille filet mignon ham beef jerky. Pastrami andouille pancetta, kielbasa shankle strip steak sausage kevin shoulder biltong spare ribs corned beef. Boudin sausage t-bone doner pancetta. Brisket prosciutto cupim tenderloin, beef ribs t-bone pork loin biltong tail short ribs pork. Shank bacon tail cow, ham hock tri-tip landjaeger sirloin rump t-bone.
-
-Table Header 1 | Table Header 2 | Table Header 3
--------------- | -------------- | --------------
-Row 1 col 1 | Row 1 col 2 | Row 1 col 3
-Row 2 col 1 | Row 2 col 2 | Row 2 col 3
