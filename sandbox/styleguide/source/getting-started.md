@@ -16,6 +16,35 @@ permalink: /getting-started/
 
 Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla.
 
+<figure>
+  <table>
+    <thead>
+      <tr>
+        <th>Tables</th>
+        <th>Are</th>
+        <th>Cool</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>col 1 is</td>
+        <td>col 2 is</td>
+        <td>col 3 is</td>
+      </tr>
+      <tr>
+        <td>awesome</td>
+        <td>awesome, too</td>
+        <td>awesome, three</td>
+      </tr>
+      <tr>
+        <td>$1600</td>
+        <td>$12</td>
+        <td>$1</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
 {% highlight ruby %}
 $ npm install bolt
 {% endhighlight %}
