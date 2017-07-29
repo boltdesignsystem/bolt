@@ -130,36 +130,52 @@ The *Bolt Design System* team has gone through vigorous testing to make sure all
       <tr>
         <th>Param</th>
         <th>Size</th>
+        <th>Min</th>
+        <th>Max</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><code>xxlarge</code></td>
-        <td>[min: 2.375rem] [max: 3.083rem]*</td>
+        <td>3.083 rem</td>
+        <td>2.375 rem</td>
+        <td>3.083 rem</td>
       </tr>
       <tr>
         <td><code>xlarge</code></td>
-        <td>1.781rem</td>
+        <td>1.781 rem</td>
+        <td></td>
+        <td></td>
       </tr>
       <tr>
         <td><code>large</code></td>
-        <td>1.417rem</td>
+        <td>1.417 rem</td>
+        <td></td>
+        <td></td>
       </tr>
       <tr>
         <td><code>medium</code></td>
-        <td>1.111rem</td>
+        <td>1.111 rem</td>
+        <td></td>
+        <td></td>
       </tr>
       <tr>
         <td><code>base</code></td>
-        <td>[min: 15px] [max: 18px]*</td>
+        <td>1 rem</td>
+        <td>15 px</td>
+        <td>18 px</td>
       </tr>
       <tr>
         <td><code>small</code></td>
-        <td>0.9rem</td>
+        <td>0.9 rem</td>
+        <td></td>
+        <td></td>
       </tr>
       <tr>
         <td><code>xsmall</code></td>
-        <td>0.8rem</td>
+        <td>0.8 rem</td>
+        <td></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
