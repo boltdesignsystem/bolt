@@ -1,6 +1,7 @@
 {
   "lerna": "2.0.0",
   "version": "independent",
+  "npmClient": "yarn",
   "packages": [
     "packages/setting*",
     "packages/tool*",
@@ -11,10 +12,8 @@
     "packages/utilities*",
     "packages/build*",
     "packages/bolt",
-    "packages/bolt-config/*",
-    "packages/bolt-core/**/*",
-    "packages/bolt-ui/**/*",
+    "packages/bolt-build-tools",
     "packages/**/*",
-    "sandbox/styleguide"
+    "sandbox/pattern-library"
   ]
 }

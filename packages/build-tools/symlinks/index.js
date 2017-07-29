@@ -1,4 +1,4 @@
-'use strict';
+import { events } from '@bolt/build-core';
 
 const gulp = require('gulp');
 const delSymlinks = require('del-symlinks');
@@ -10,92 +10,121 @@ const path = require('path');
 const yaml = require('js-yaml');
 const merge = require('merge');
 const defaultConfig = require('./config.default');
+const gutil = require('gulp-util');
+
 const twigPaths = gulpConfig.patternLab.twigNamespaces.sets;
 const patternLabConfig = yaml.safeLoad(
   fs.readFileSync(gulpConfig.patternLab.configFile, 'utf8')
 );
-const patternLabRoot =   path.join(gulpConfig.patternLab.configFile, '../..');
+const patternLabRoot = path.join(gulpConfig.patternLab.configFile, '../..');
 const patternLabSource = path.join(patternLabRoot, patternLabConfig.sourceDir);
-const patternLabPublic = path.join(patternLabRoot, patternLabConfig.publicDir);
 
-module.exports = (gulp, userConfig, $) => {
 
-  const tasks = {};
+function findPatternLabFolder(patternType) {
+  const patternConfig = twigPaths.find(
+    element => element.namespace === patternType
+  );
+
+  if (patternConfig.paths[0]) {
+    return patternConfig.paths[0];
+  }
+  return false;
+}
+
+function createSymlinks(userConfig) {
   const config = merge.recursive(defaultConfig, userConfig);
-
   const patternsFolder = `${patternLabSource}/${config.patternsFolder}/`;
 
-
-  function findPatternLabFolder(patternType) {
-    var patternConfig = twigPaths.find(
-      element => element.namespace === patternType
-    );
-
-    if (patternConfig.paths[0]){
-      return patternConfig.paths[0];
-    }
-  }
-
-
-
-
-  function createSymlinks(done) {
-    globby(config.packageFolders).then(packages => {
-
-      packages.forEach(pkg => {
+  function createSymlinksTask(done) {
+    globby(config.packageFolders).then((packages) => {
+      packages.forEach((pkg) => {
         const pkgJson = `${pkg}/package.json`;
 
         if (fs.existsSync(pkgJson)) {
           const pjson = JSON.parse(fs.readFileSync(pkgJson));
           const twigPath = pjson.twig ? path.dirname(pjson.twig) : config.defaultTwigPath;
-          let patternName = pjson.patternName ? `/${pjson.patternName}`  : '';
+          let patternName = pjson.patternName ? `/${pjson.patternName}` : '';
 
           const patternType = pjson.patternType ? findPatternLabFolder(pjson.patternType) : `${patternsFolder}${config.defaultPatternType}`;
-          const patternSubtype = pjson.patternSubtype ? pjson.patternSubtype : (
-            pjson.patternSubtype ? pjson.patternSubtype : config.defaultPatternSubtype
-          );
+
+          let patternSubtype;
+          if (pjson.patternSubtype) {
+            patternSubtype = pjson.patternSubtype;
+          } else {
+            patternSubtype = config.defaultPatternSubtype;
+          }
 
           if (fs.existsSync(`${patternType}/${config.symlinkPrefix}${patternSubtype}${patternName}`)) {
-            if (patternName  === ''){
-              const oldName = `${patternType}/${config.symlinkPrefix}${patternSubtype}${patternName}`;
+            const oldName = `${patternType}/${config.symlinkPrefix}${patternSubtype}${patternName}`;
+
+            if (patternName === '') {
               patternName = `/${config.defaultPatternName}`;
 
               const newName = `${patternType}/${config.symlinkPrefix}${patternSubtype}${patternName}`;
 
-              console.warn(`Warning: you're trying to combine two similarly named folder structures that would result in one folder overriding the other. Automatically updating the ${oldName} path to now be ${newName}.`);
+              gutil.log(`Warning: you're trying to combine two similarly named folder structures that would result in one folder overriding the other. Automatically updating the ${oldName} path to now be ${newName}.`);
             } else {
-              console.warn(`Error: you're trying to combine two similarly named folder structures that would result in one folder overriding the other. Automatically updating the path of ${oldName} won't work here...`);
+              gutil.log(`Error: you're trying to combine two similarly named folder structures that would result in one folder overriding the other. Automatically updating the path of ${oldName} won't work here...`);
               return false;
             }
           }
 
-
-          return vfs.src(`${pkg}/${twigPath}/`, {
+          if (fs.existsSync(`${pkg}/${twigPath}/`)) {
+            return vfs.src(`${pkg}/${twigPath}/`, {
               followSymlinks: false
             })
-            .pipe(vfs.symlink(`${patternType}/${config.symlinkPrefix}${patternSubtype}${patternName}`));
+              .pipe(vfs.symlink(`${patternType}/${config.symlinkPrefix}${patternSubtype}${patternName}`))
+              .on('end', () => {
+                events.emit('symlinked');
+                done();
+              });
+          }
+          gutil.log(`${pkg}/${twigPath}/ does not exist...`);
         }
+
+        return true;
       });
     });
     done();
   }
-  tasks.compile = createSymlinks;
+
+  createSymlinksTask.description = 'Automatically create symlinks';
+  createSymlinksTask.displayName = 'symlinks:create';
+  return createSymlinksTask;
+}
 
 
+function cleanSymlinks(userConfig) {
+  const config = merge.recursive(defaultConfig, userConfig || {});
+  const patternsFolder = `${patternLabSource}/${config.patternsFolder}/`;
 
-
-  function cleanSymlinks(done) {
-    delSymlinks([`${patternsFolder}**/*`]).then(symlinks => {
-      if (symlinks.length){
-        console.log('Removing the existing symlinks before trying to create any new ones:\n', symlinks.join('\n'));
-      } else {
-        console.log('No symlinks to delete!');
-      }
+  function cleanSymlinksTask(done) {
+    delSymlinks([`${patternsFolder}**/*`]).then(() => {
       done();
     });
   }
-  tasks.clean = cleanSymlinks;
+  cleanSymlinksTask.description = 'Automatically clean up symlinks';
+  cleanSymlinksTask.displayName = 'symlinks:clean';
 
-
-  return tasks;
+  return cleanSymlinksTask;
 }
+
+
+function watchSymlinks(userConfig) {
+  function watchSymlinksTask() {
+    return gulp.watch([
+      './packages/**/*.{md,twig,yaml,yml,json}',
+      '!./packages/*/node_modules'
+    ], gulp.series([
+      cleanSymlinks(userConfig),
+      createSymlinks(userConfig)
+    ]));
+  }
+
+  watchSymlinksTask.displayName = 'symlinks:watch';
+  watchSymlinksTask.description = 'Watch symlink-related files for changes';
+  //
+  return watchSymlinksTask;
+}
+
+export { cleanSymlinks, createSymlinks, watchSymlinks };

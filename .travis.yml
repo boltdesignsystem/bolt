@@ -1,31 +1,52 @@
-language: node_js
-
-node_js:
-  - 7
-  
+sudo: required
+dist: trusty
+language: php
+php:
+- 7
+env:
+  matrix:
+  - NODE_RELEASE=7.x
+  - CXX=g++-4.8
+  global:
+    secure: gIGVQIJrOUgl2FuxUXer9FMBDSj+YqH7SiuNVXmZDy4krfQfrdMN/3oRQpIuPjYporjwi6Y31kppmW/d92WKB7JUJ+oWhhnUN0kDU23oVC2RsSIj6ic4rT08N0fYUEHEg77P+E+oX85lRLtr90HJN+jA2o+MHy3ACkaQWt9LVgsX7nu2IOl3ZCFecaCyNWidr0kKFDxQ15eh6kN5xXtDB0jnxPv9Ghf4chjgDzcTYsfhnuHbUfvEsJCRPdBc8itjEpYuA+QPziRxp4nQaRwiG/ltoUfbhuZiUZrctD58Y/a6N8cxEkQjJyJGV+BfUjYdu9ZRzwOVOYZsUbOktAwoPUESm0BLZylnNWUkBs6CjELQ7yCFJmu9vIu4CoOIrbjw3OqY6ZSdItV3HrfbPWC7tOsXCHqscUVvPUgKK5un8psZdFZltijs7lHS4qjj1B25uBvB+rGFk4lvFfUsR4lf3RGW2/xSIEg+QxMc4hmriE7b0YLTUfAVxBIT4EnTpAQoS+jrIv6Lrg9FTc8s1L7UA0Re10XrbRb4+dfkVGnttRvpZlh7yF/gWH30gfprpmCnropqNjtqxfUlRn6AgOS5xo8kl/ov+aYSe8M3T7dWW51S3rrPpCiNTVBm2udPRmtu0VK2Eh4804dYeVOiJo4j5cpFfzC7J7BbIWS9ETSsxUk=
 addons:
   apt:
     sources:
     - ubuntu-toolchain-r-test
     packages:
     - g++-4.8
-
-env:
-  CXX=g++-4.8
-
-install:
-  - npm install
-  
-# script:
-#   - npm run build
-
-before_install: 
-  if [[ `npm -v` != 5* ]]; then npm i -g npm@5; fi
-
+before_install:
+- sudo rm -rf ~/.nvm - curl -sL "https://deb.nodesource.com/setup_${NODE_RELEASE}"
+  | sudo -E bash -
+- sudo apt-get install -y nodejs
+- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
+- export PATH="$HOME/.yarn/bin:$PATH"
+- sudo apt-get install graphicsmagick
+- composer global require hirak/prestissimo
+- if [[ -n "$GITHUB_TOKEN" ]]; then composer config -g github-oauth.github.com ${GITHUB_TOKEN}; fi;
+- if [[ `npm -v` != 5* ]]; then npm i -g npm@5; fi
+- npm install --global lerna
+- npm install gulpjs/gulp-cli -g
+- npm install gulpjs/gulp#4.0
+before_script:
+- phpenv config-rm xdebug.ini
+script:
+- npm run bootstrap
+- npm run setup:composer
+- npm run test && npm run build
 after_success:
-  - chmod ugo+x ./scripts/deploy.sh
-  - ./scripts/deploy.sh
-  
+- chmod ugo+x ./scripts/deploy-pattern-lab.sh
+- "./scripts/deploy-pattern-lab.sh"
+- gulp slack
 cache:
+  apt: true
+  yarn: true
   directories:
-    - node_modules  
+  - node_modules
+  - sandbox/pattern-library/vendor
+notifications:
+  email:
+    on_success: never
+    on_failure: always
+  slack:
+    secure: cNto+gWAoK1JM9jBNG4i4rMSybv3twMbqlFSCohQFBDMwKFMdlyWqFDX6iYKtHxWEDzrZyRz3qiJ8/S44mgjeKJ/xHbHDtPchp/KL2P1htipvwD2EZXobcBEGl83v2rmtFO1WNJUPB3RIJE2yt1wJsX7NIXpDw82hePmaIvNJmtbLpK/J5uaFqGNHIsctmULgVmGSNSTyK4nYxxjNNLd0EvO37Y6VN8FhsKNu2NHMKeeQxinEvETDUh8XuqXZYNWE3PBvVa4OiDhgnr5K27jsnWX+wEmqg0xY+CMf7mUSTqVN61fA7LnHyM0qcGGmB6YTv4QYLMwPydp+nsjDcm3St9D+KOTsQ4ExOaEAL/6EnAEpl8GtxST+ytdqswhCC4yMCO61Hy+M5AoXgDSGrrXHgZakDMAcEVcJdH38791hRxcuM3ldVmHAlAWFdgRLG5rRMVh3qoXz7jbraoTdjyKMegQIQdKR2SX7O9Dv0EEtLz4lTFN2RENvAjLggUPPU+ESoUHmSbwmPGnt7jy3ra2AI3nnYpfn/0e6Op/A3z7HLbdm3XyuNWoTPhy1mc4Adca+HosJ37UPv7nDRIGds1sKYAeWq94+rEk+/6IQ/oRIDRhSYsQbLLWnU6DH4o7iOj7D+X/ngjqmF75nW2s5+7rtdBHFvNzOJalCKHiDTMfdlQ=

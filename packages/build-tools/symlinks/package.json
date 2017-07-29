@@ -1,8 +1,8 @@
 {
   "name": "@bolt/build-symlinks",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "license": "MIT",
-  "description": "Manage symlinks between Pattern Lab and lerna-versioned Packages in a monorepo project.",
+  "description": "Automatically create symlinks between PL and Packages",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -14,15 +14,16 @@
     "build tools",
     "gulp",
     "pattern lab",
-    "lerna",
-    "symlinks"
+    "lerna"
   ],
   "author": "Salem Ghoweri",
   "dependencies": {
+    "@bolt/build-core": "0.0.0",
     "del-symlinks": "^0.1.2",
     "fs": "0.0.1-security",
     "globby": "^6.1.0",
     "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-util": "^3.0.8",
     "js-yaml": "^3.9.0",
     "merge": "^1.2.0",
     "path": "^0.12.7",

@@ -1,90 +1,16 @@
-/*------------------------------------*\
-  Settings
-\*------------------------------------*/
-
-@import '@bolt/settings-global';
-@import '@bolt/settings-breakpoints';
-
-@import '@bolt/settings-font-family';
-@import '@bolt/settings-font-size';
-@import '@bolt/settings-font-weight';
-
-@import '@bolt/settings-colors';
-@import '@bolt/settings-spacing';
+@import '@bolt/components-button';
+// $btn-bg-color: #ff561d;
+// @import '@bolt/components-button';
+// // @import '@bolt/objects-grid';
+// //
+//
+//
+.c-button {
+  @include button();
+  @include button-color(purple);
+}
 
 
-
-
-/*------------------------------------*\
-  Tools
-\*------------------------------------*/
-
-@import '@bolt/tools-global';
-@import '@bolt/tools-button-colors';
-@import '@bolt/tools-color-palette';
-@import '@bolt/tools-sassy-maps';
-@import '@bolt/tools-spacing';
-@import '@bolt/tools-strip-unit';
-@import '@bolt/tools-text-contrast';
-@import '@bolt/tools-typography';
-
-
-
-
-/*------------------------------------*\
-  Generic
-\*------------------------------------*/
-
-@import '@bolt/generic-global';
-@import '@bolt/generic-typography';
-
-
-
-
-/*------------------------------------*\
-  Elements
-\*------------------------------------*/
-
-
-
-
-
-
-/*------------------------------------*\
-  Objects
-\*------------------------------------*/
-
-
-
-
-
-
-/*------------------------------------*\
-  Components
-\*------------------------------------*/
-
-
-
-
-
-/*------------------------------------*\
-  Themes
-\*------------------------------------*/
-
-
-
-
-
-
-/*------------------------------------*\
-  Utilities
-\*------------------------------------*/
-
-
-
-
-
-
-/*------------------------------------*\
-  Shame
-\*------------------------------------*/
+p {
+  color: red;
+}
