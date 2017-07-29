@@ -15,50 +15,108 @@ We are dedicated to creating accessible design, that is why the following fonts 
 
 Studies have shown that *Open Sans* is the most suitable font for user interface design due to its versatility and legibility.
 
-1. Heading: Open Sans 800
-2. Body: Open Sans 400
+<figure>
+  <table>
+    <thead>
+      <tr>
+        <th>Font</th>
+        <th>Category</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Open Sans</td>
+        <td>Heading text</td>
+      </tr>
+      <tr>
+        <td>Open Sans</td>
+        <td>Body text</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
 
 ### Fallback Fonts
 
 When our **Brand Fonts** are not available due to funky connections, the following system fonts will be loaded instead:
 
-1. San Francisco
-2. Segoe UI
-3. Roboto
-4. Oxygen
-5. Ubuntu
-6. Cantarell
-7. Fira Sans
-8. Droid Sans
+<figure>
+  <table>
+    <thead>
+      <tr>
+        <th>Font</th>
+        <th>Device</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>San Francisco</td>
+        <td>Mac OS X and iOS</td>
+      </tr>
+      <tr>
+        <td>Segoe UI</td>
+        <td>Windows and Windows Phone</td>
+      </tr>
+      <tr>
+        <td>Roboto</td>
+        <td>Android and newer Chrome OS</td>
+      </tr>
+      <tr>
+        <td>Oxygen</td>
+        <td>KDE</td>
+      </tr>
+      <tr>
+        <td>Ubuntu</td>
+        <td>Ubuntu</td>
+      </tr>
+      <tr>
+        <td>Cantarell</td>
+        <td>GNOME</td>
+      </tr>
+      <tr>
+        <td>Fira Sans</td>
+        <td>Firefox OS</td>
+      </tr>
+      <tr>
+        <td>Droid Sans</td>
+        <td>Older versions of Android</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
 
 ### Sass Mixin
 
 Call the specific fonts using the following Sass mixins.
 
-#### Params
-
-* heading
-* body
-
 {% highlight ruby %}
 @include font-family($param);
 {% endhighlight %}
 
+<figure>
+  <table>
+    <thead>
+      <tr>
+        <th>Param</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>heading</code></td>
+        <td>Calls the font being defined for heading text</td>
+      </tr>
+      <tr>
+        <td><code>body</code></td>
+        <td>Calls the font being defined for body text</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
 ## Font Size
 
-The *Bolt Design System* team has gone through vigorous testing to make sure all types are legible on all devices. We have created the following range of sizes to be used for headings and body text.
-
-### Params
-
-* xxlarge - 3.083rem
-* xlarge - 1.781rem
-* large - 1.417rem
-* medium - 1.111rem
-* **base - min: 15px; max: 18px.***
-* small - 0.9rem
-* xsmall - 0.8rem
-
-**All font sizes are responsive in relation to device screen size. Base has min and max values, while others scale according to base.*
+The *Bolt Design System* team has gone through vigorous testing to make sure all types are legible on all devices. We have created the following range of sizes to be used for headings and body text. All font sizes are responsive in relation to device screen size.
 
 ### Sass Mixin
 
@@ -66,17 +124,76 @@ The *Bolt Design System* team has gone through vigorous testing to make sure all
 @include font-size($param);
 {% endhighlight %}
 
+<figure>
+  <table>
+    <thead>
+      <tr>
+        <th>Param</th>
+        <th>Size</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>xxlarge</code></td>
+        <td>[min: 2.375rem] [max: 3.083rem]*</td>
+      </tr>
+      <tr>
+        <td><code>xlarge</code></td>
+        <td>1.781rem</td>
+      </tr>
+      <tr>
+        <td><code>large</code></td>
+        <td>1.417rem</td>
+      </tr>
+      <tr>
+        <td><code>medium</code></td>
+        <td>1.111rem</td>
+      </tr>
+      <tr>
+        <td><code>base</code></td>
+        <td>[min: 15px] [max: 18px]*</td>
+      </tr>
+      <tr>
+        <td><code>small</code></td>
+        <td>0.9rem</td>
+      </tr>
+      <tr>
+        <td><code>xsmall</code></td>
+        <td>0.8rem</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
+**In addition to scaling according to base, xxlarge has another scaling that takes care of devices with narrow screen.*
+
 ## Font Weight
 
 Less is more, that is part of *Bolt's* design principles. As for font weights, we are only using 2 options to create clean and intuitive information architecture.
-
-### Params
-
-* regular - 400
-* bold - 800
 
 ### Sass Mixin
 
 {% highlight ruby %}
 @include font-weight($param);
 {% endhighlight %}
+
+<figure>
+  <table>
+    <thead>
+      <tr>
+        <th>Param</th>
+        <th>Weight</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>regular</code></td>
+        <td>400</td>
+      </tr>
+      <tr>
+        <td><code>bold</code></td>
+        <td>800</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>

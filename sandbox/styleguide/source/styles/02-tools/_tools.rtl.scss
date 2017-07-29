@@ -96,37 +96,65 @@
   }
 }
 
-@mixin border($border-dir, $border-styles: $border)
+@mixin border($border-dir, $style: $border-style, $width: $border-width)
 {
   @if $border-dir == left {
-    border: none;
-    border-left: $border-styles;
+    border-top-style: none;
+    border-top-width: 0;
+    border-right-style: none;
+    border-right-width: 0;
+    border-bottom-style: none;
+    border-bottom-width: 0;
+    border-left-style: $style;
+    border-left-width: $width;
 
     [dir=rtl] &
     {
-      border-right: $border-styles;
-      border-left: none;
+      border-right-style: $style;
+      border-right-width: $width;
+      border-left-style: none;
+      border-left-width: 0;
     }
   }
 
   @else if $border-dir == right {
-    border: none;
-    border-right: $border-styles;
+    border-top-style: none;
+    border-top-width: 0;
+    border-right-style: $style;
+    border-right-width: $width;
+    border-bottom-style: none;
+    border-bottom-width: 0;
+    border-left-style: none;
+    border-left-width: 0;
 
     [dir=rtl] &
     {
-      border-right: none;
-      border-left: $border-styles;
+      border-right-style: none;
+      border-right-width: 0;
+      border-left-style: $style;
+      border-left-width: $width;
     }
   }
 
   @else if $border-dir == top {
-    border: none;
-    border-top: $border-styles;
+    border-top-style: $style;
+    border-top-width: $width;
+    border-right-style: none;
+    border-right-width: 0;
+    border-bottom-style: none;
+    border-bottom-width: 0;
+    border-left-style: none;
+    border-left-width: 0;
   }
 
   @else if $border-dir == bottom {
-    border: none;
-    border-bottom: $border-styles;
+    border-top-style: none;
+    border-top-width: 0;
+    border-right-style: none;
+    border-right-width: 0;
+    border-bottom-style: $style;
+    border-bottom-width: $width;
+    border-left-style: none;
+    border-left-width: 0;
   }
 }
