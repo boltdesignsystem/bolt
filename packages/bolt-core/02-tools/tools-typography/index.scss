@@ -61,10 +61,11 @@
   $line-height--tight: map-get-deep($font-sizes, 'font-sizes', $size, 'line-height', 'tight');
 
   font-size: $font-size;
-  line-height: $line-height;
 
   @if $leading == 'tight' {
     line-height: $line-height--tight;
+  } @else {
+    line-height: $line-height;
   }
 }
 

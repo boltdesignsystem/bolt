@@ -1,6 +1,8 @@
 /*------------------------------------*\
   Body and heading declaration
 \*------------------------------------*/
+$breakpoint--min: map-get($breakpoints, small);
+$breakpoint--max: map-get($breakpoints, large);
 
 
 html {
@@ -9,7 +11,7 @@ html {
 
   // Responsive type
   @include respond-to(small) {
-    font-size: calc(#{$font-size--min-px} + #{$font-size--max - $font-size--min} * (100vw - #{$bp-small-px}) / (#{$bp-large - $bp-small}));
+    font-size: calc(#{$font-size--min-px} + #{$font-size--max - $font-size--min} * (100vw - #{$breakpoint--min}) / (#{$breakpoint--max - $breakpoint--min}));
   }
 
   // Large type
@@ -26,9 +28,14 @@ body {
   padding: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   @include font-family(heading);
-  @include font-size(base,tight);
+  @include font-size(base, tight);
   @include font-weight(bold);
 }
 
@@ -38,7 +45,6 @@ h1, h2, h3, h4, h5, h6 {
 /*------------------------------------*\
   Link
 \*------------------------------------*/
-
 
 a {
   text-decoration: none;

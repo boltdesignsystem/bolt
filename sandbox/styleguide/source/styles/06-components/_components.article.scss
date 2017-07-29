@@ -33,20 +33,23 @@
   }
 
   h1 {
-    @include padding(0,0,($font-leading--base*.65 + rem),0);
-    @include font-size(xxxlarge);
+    @include padding(0,0,($font-leading--base * 0.65 + rem),0);
 
-    letter-spacing: -.15rem;
+    // @include respond-to($max: $bp-small-px) {
+    @include font-size(xxlarge);
 
-    @include respond-to($max: $bp-small-px) {
-      @include font-size(xxlarge);
+    letter-spacing: -.1rem;
+  // }
 
-      letter-spacing: -.1rem;
+    @include respond-to(medium) {
+      @include font-size(xxxlarge);
+
+      letter-spacing: -.15rem;
     }
   }
 
   h2 {
-    @include padding(($font-leading--base*2 + rem),0,($font-leading--base*.65 + rem),0);
+    @include padding(($font-leading--base * 2 + rem),0,($font-leading--base * 0.65 + rem),0);
     @include font-size(xlarge);
 
     letter-spacing: -.1rem;
@@ -54,7 +57,7 @@
 
   hgroup {
     h1 {
-      @include padding(0,0,($font-leading--base*.325 + rem),0);
+      @include padding(0,0,($font-leading--base * 0.325 + rem),0);
     }
 
     h1 + h2 {
@@ -64,7 +67,7 @@
       line-height: 1.45;
       letter-spacing: 0;
 
-      @include respond-to($max: $bp-small-px) {
+      @include to(medium) {
         @include font-size(large);
       }
     }

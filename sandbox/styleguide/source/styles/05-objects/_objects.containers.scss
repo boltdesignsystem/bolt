@@ -1,4 +1,5 @@
-$bp-layout--article: 55rem;
+$bp-layout--article: 55rem; //magic for bill murray image positioning
+$wrapper--max-width: map-get($breakpoints, xlarge);
 
 
 body {
@@ -13,7 +14,7 @@ body {
 }
 
 .o-layout--article {
-  @include respond-to($max: $bp-layout--article) {
+  @include breakpoint(max-width $bp-layout--article) {
     > aside {
       .c-nav--vertical {
         @include text-align(center);
@@ -34,7 +35,7 @@ body {
     }
   }
 
-  @include respond-to($min: $bp-layout--article) {
+  @include breakpoint(min-width $bp-layout--article) {
     width: 100vw;
     height: 100vh;
 
@@ -169,7 +170,7 @@ body {
 .o-wrapper {
   @include margin(0,auto,0,auto);
 
-  max-width: $bp-medium-px;
+  max-width: $wrapper--max-width;
 }
 
 .o-inset {

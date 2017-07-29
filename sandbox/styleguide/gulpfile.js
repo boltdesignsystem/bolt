@@ -18,7 +18,7 @@ const jekyllTasks = require('@theme-tools/plugin-jekyll')({
 
 
 
-var cssTasks = require('../../packages/build-tools-styles')(gulp, {
+var cssTasks = require('../../packages/build-tools/styles')(gulp, {
   root: '.',
   src: [
     'source/**/*.scss'

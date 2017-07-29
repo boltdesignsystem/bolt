@@ -21,6 +21,13 @@ $font-size--max-px: 18px;
   Scale
 \*------------------------------------*/
 
+
+// $font-scale--xxxlarge--min: 2.275;
+
+
+$font-scale--xxlarge--max: 3.083;
+$font-scale--xxlarge--min: 2.275;
+
 $font-scale--xxxlarge: 3.083;
 $font-scale--xxlarge: 2.275;
 $font-scale--xlarge: 1.781;
@@ -41,6 +48,7 @@ $font-leading--xsmall: 1.45;
 
 $font-leading--tight: 1.111;
 
+
 /// Bolt's definition of all options of possible text sizes.
 /// @type Map
 $font-sizes: (
@@ -50,7 +58,7 @@ $font-sizes: (
       line-height: (
         regular: $font-leading--xxxlarge,
         tight: $font-leading--tight
-      )
+      ),
     ),
     xxlarge: (
       font-size: $font-scale--xxlarge + rem,
@@ -58,6 +66,18 @@ $font-sizes: (
         regular: $font-leading--xxlarge,
         tight: $font-leading--tight
       )
+      // min: (
+      //
+      //   // letter-spacing: (
+      // ),
+      // max: (
+      //   font-size: $font-scale--xxlarge--max + rem,
+      //   line-height: (
+      //     regular: $font-leading--xxlarge,
+      //     tight: $font-leading--tight
+      //   ),
+      //   letter-spacing:
+      // )
     ),
     xlarge: (
       font-size: $font-scale--xlarge + rem,

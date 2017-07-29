@@ -59,7 +59,7 @@ body,
   }
 
   .o-layout--article {
-    @include respond-to($max: $bp-layout--article) {
+    @include breakpoint(0 $bp-layout--article) {
       > aside {
         .c-nav {
           border-color: $border-color;
@@ -71,7 +71,7 @@ body,
       }
     }
 
-    @include respond-to($min: $bp-layout--article) {
+    @include breakpoint($bp-layout--article) {
       > aside {
         .c-nav {
           border-color: $border-color;

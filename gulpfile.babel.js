@@ -4,7 +4,7 @@ const gulp = require('gulp');
 // require('babel-core/register');
 // require('babel-polyfill');
 
-var cssTasks = require('./packages/build-tools-styles')(gulp, {
+var cssTasks = require('./packages/build-tools/styles')(gulp, {
   root: 'packages/bolt',
   src: [
     'packages/bolt/bolt.scss'
@@ -33,7 +33,7 @@ gulp.task('styles',
 
 
 
-const symlinks = require('./packages/build-tools-symlinks')(gulp, {});
+const symlinks = require('./packages/build-tools/symlinks')(gulp, {});
 
 gulp.task('symlinks:create', symlinks.compile);
 gulp.task('symlinks:clean', symlinks.clean);
@@ -147,7 +147,7 @@ gulp.task('test:compile-styles', function (done) {
     var testFile = path.parse(testStyle).name;
     var testDir = path.dirname(testStyle);
 
-    var compileTestCSS = require('./packages/build-tools-styles')(gulp, {
+    var compileTestCSS = require('./packages/build-tools/styles')(gulp, {
       root: testDir,
       src: testStyle,
       dest: testDir + '/tmp',
