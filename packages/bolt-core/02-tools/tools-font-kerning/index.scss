@@ -1,0 +1,15 @@
+/* ------------------------------------ *\
+  TOOLS - FONT KERNING
+\* ------------------------------------ */
+
+////
+/// @group Tools: Typography
+/// @author Mike Mai
+////
+
+
+/// This applies default font kerning styles for supporting browsers
+@mixin kerning() {
+  font-feature-settings: 'kern';
+  font-kerning: normal; // Safari 7+, Firefox 24+, Chrome 33(?)
+}
