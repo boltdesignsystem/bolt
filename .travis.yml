@@ -36,6 +36,7 @@ before_script:
 - phpenv config-rm xdebug.ini
 
 install:
+- npm install -g surge
 - npm install gulpjs/gulp-cli -g
 - npm install gulpjs/gulp#4.0
 - npm install --global lerna
