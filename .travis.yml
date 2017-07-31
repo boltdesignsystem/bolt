@@ -1,49 +1,65 @@
-sudo: required
+sudo: false
+
 dist: trusty
+
 language: php
+
 php:
-- 7
+  - 7.1
+
 env:
-  matrix:
-  - NODE_RELEASE=7.x
-  - CXX=g++-4.8
   global:
-    secure: gIGVQIJrOUgl2FuxUXer9FMBDSj+YqH7SiuNVXmZDy4krfQfrdMN/3oRQpIuPjYporjwi6Y31kppmW/d92WKB7JUJ+oWhhnUN0kDU23oVC2RsSIj6ic4rT08N0fYUEHEg77P+E+oX85lRLtr90HJN+jA2o+MHy3ACkaQWt9LVgsX7nu2IOl3ZCFecaCyNWidr0kKFDxQ15eh6kN5xXtDB0jnxPv9Ghf4chjgDzcTYsfhnuHbUfvEsJCRPdBc8itjEpYuA+QPziRxp4nQaRwiG/ltoUfbhuZiUZrctD58Y/a6N8cxEkQjJyJGV+BfUjYdu9ZRzwOVOYZsUbOktAwoPUESm0BLZylnNWUkBs6CjELQ7yCFJmu9vIu4CoOIrbjw3OqY6ZSdItV3HrfbPWC7tOsXCHqscUVvPUgKK5un8psZdFZltijs7lHS4qjj1B25uBvB+rGFk4lvFfUsR4lf3RGW2/xSIEg+QxMc4hmriE7b0YLTUfAVxBIT4EnTpAQoS+jrIv6Lrg9FTc8s1L7UA0Re10XrbRb4+dfkVGnttRvpZlh7yF/gWH30gfprpmCnropqNjtqxfUlRn6AgOS5xo8kl/ov+aYSe8M3T7dWW51S3rrPpCiNTVBm2udPRmtu0VK2Eh4804dYeVOiJo4j5cpFfzC7J7BbIWS9ETSsxUk=
+    - secure: gIGVQIJrOUgl2FuxUXer9FMBDSj+YqH7SiuNVXmZDy4krfQfrdMN/3oRQpIuPjYporjwi6Y31kppmW/d92WKB7JUJ+oWhhnUN0kDU23oVC2RsSIj6ic4rT08N0fYUEHEg77P+E+oX85lRLtr90HJN+jA2o+MHy3ACkaQWt9LVgsX7nu2IOl3ZCFecaCyNWidr0kKFDxQ15eh6kN5xXtDB0jnxPv9Ghf4chjgDzcTYsfhnuHbUfvEsJCRPdBc8itjEpYuA+QPziRxp4nQaRwiG/ltoUfbhuZiUZrctD58Y/a6N8cxEkQjJyJGV+BfUjYdu9ZRzwOVOYZsUbOktAwoPUESm0BLZylnNWUkBs6CjELQ7yCFJmu9vIu4CoOIrbjw3OqY6ZSdItV3HrfbPWC7tOsXCHqscUVvPUgKK5un8psZdFZltijs7lHS4qjj1B25uBvB+rGFk4lvFfUsR4lf3RGW2/xSIEg+QxMc4hmriE7b0YLTUfAVxBIT4EnTpAQoS+jrIv6Lrg9FTc8s1L7UA0Re10XrbRb4+dfkVGnttRvpZlh7yF/gWH30gfprpmCnropqNjtqxfUlRn6AgOS5xo8kl/ov+aYSe8M3T7dWW51S3rrPpCiNTVBm2udPRmtu0VK2Eh4804dYeVOiJo4j5cpFfzC7J7BbIWS9ETSsxUk=
+    - NODE_RELEASE=7.x
+    - CXX=g++-4.8
+
 addons:
   apt:
     sources:
     - ubuntu-toolchain-r-test
     packages:
     - g++-4.8
+    - graphicsmagick
+
 before_install:
-- sudo rm -rf ~/.nvm - curl -sL "https://deb.nodesource.com/setup_${NODE_RELEASE}"
-  | sudo -E bash -
-- sudo apt-get install -y nodejs
 - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
-- export PATH="$HOME/.yarn/bin:$PATH"
-- sudo apt-get install graphicsmagick
+- export PATH=$HOME/.yarn/bin:$PATH
 - composer global require hirak/prestissimo
 - if [[ -n "$GITHUB_TOKEN" ]]; then composer config -g github-oauth.github.com ${GITHUB_TOKEN}; fi;
-- if [[ `npm -v` != 5* ]]; then npm i -g npm@5; fi
-- npm install --global lerna
-- npm install gulpjs/gulp-cli -g
-- npm install gulpjs/gulp#4.0
+# - sudo apt-get install graphicsmagick
+# - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && source ~/.nvm/nvm.sh && nvm install 7
+# - sudo apt-get install -y nodejs
+#- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
+#- export PATH="$HOME/.yarn/bin:$PATH"
+
 before_script:
 - phpenv config-rm xdebug.ini
-script:
-- npm run bootstrap
+
+install:
+- npm install -g surge
+- npm install gulpjs/gulp-cli -g
+# - npm install gulpjs/gulp#4.0
+- npm install --global lerna
 - npm run setup:composer
+- npm run bootstrap
+
+script:
 - npm run test && npm run build
+
 after_success:
 - chmod ugo+x ./scripts/deploy-pattern-lab.sh
 - "./scripts/deploy-pattern-lab.sh"
 - gulp slack
+
 cache:
   apt: true
   yarn: true
   directories:
+  - $HOME/.cache/yarn
   - node_modules
   - sandbox/pattern-library/vendor
+
+
 notifications:
   email:
     on_success: never

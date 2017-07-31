@@ -18,7 +18,7 @@
     "publish": "lerna run build && lerna run publish-please && lerna publish",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "serve": "gulp serve",
-    "setup:composer": "cd sandbox/pattern-library && rm composer.lock && rm -rf vendor && composer install --no-interaction",
+    "setup:composer": "cd sandbox/pattern-library && rm composer.lock && rm -rf vendor && composer install --no-interaction --prefer-dist --no-dev",
     "setup:homebrew": "sh scripts/install-homebrew.sh",
     "snyk-protect": "snyk protect",
     "mocha": "mocha packages/**/*/tests",
@@ -27,7 +27,8 @@
     "lint:fix": "eslint --fix ./packages/bolt-build-tools"
   },
   "pre-commit": [
-    "test"
+    "test",
+    "build"
   ],
   "config": {
     "commitizen": {
