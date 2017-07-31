@@ -1,8 +1,11 @@
-sudo: required
+# sudo: required
 dist: trusty
+
 language: php
+
 php:
-- 7
+  - 7.0
+  - 7.1
 
 env:
   global:
@@ -16,7 +19,7 @@ addons:
     - ubuntu-toolchain-r-test
     packages:
     - g++-4.8
-    - nodejs
+    - graphicsmagick
 
 before_install:
 # - sudo rm -rf ~/.nvm - curl -sL "https://deb.nodesource.com/setup_${NODE_RELEASE}"
@@ -24,10 +27,10 @@ before_install:
 # - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $NODE_RELEASE
 - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
 - export PATH="$HOME/.yarn/bin:$PATH"
-- sudo apt-get install graphicsmagick
+# - sudo apt-get install graphicsmagick
 - composer global require hirak/prestissimo
 - if [[ -n "$GITHUB_TOKEN" ]]; then composer config -g github-oauth.github.com ${GITHUB_TOKEN}; fi;
-- sudo apt-get install graphicsmagick
+# - sudo apt-get install graphicsmagick
 # - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && source ~/.nvm/nvm.sh && nvm install 7
 # - sudo apt-get install -y nodejs
 #- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
