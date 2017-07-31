@@ -1,52 +1,14 @@
-/* ------------------------------------ *\
-  Font Size
-\* ------------------------------------ */
+/*------------------------------------*\
+  Font weight
+\*------------------------------------*/
 
 ////
 /// @group Tools: Typography
 /// @author Mike Mai
 ////
 
-@import '@bolt/settings-font-size';
+@import '@bolt/settings-font-weight';
 @import '@bolt/tools-sassy-maps'; // required so `map-get-deep` works
-
-
-
-
-/// This returns the font-size and relevant line-height for a specific element.
-///
-/// @param {string} $size
-///   Defines the size of the text: xsmall, small, base, medium, large, xlarge, or xxlarge.
-///
-/// @param {string} $leading
-///   Defines the line-height of the text: regular or tight.
-///
-@mixin font-size($size, $leading: regular) {
-  $font-size: map-get-deep($font-sizes, 'font-sizes', $size, 'font-size');
-  $line-height: map-get-deep($font-sizes, 'font-sizes', $size, 'line-height', 'regular');
-  $line-height--tight: map-get-deep($font-sizes, 'font-sizes', $size, 'line-height', 'tight');
-
-  font-size: $font-size;
-
-  @if $leading == 'tight' {
-    line-height: $line-height--tight;
-  } @else {
-    line-height: $line-height;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-/*------------------------------------*\
-  Font weight
-\*------------------------------------*/
 
 
 /// This returns the font-weight for a specific element.

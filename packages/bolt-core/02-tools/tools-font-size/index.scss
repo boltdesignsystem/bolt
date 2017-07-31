@@ -34,26 +34,3 @@
     line-height: $line-height;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-/// This returns the font-weight for a specific element.
-///
-/// @param {string} $weight
-///   Defines the weight of the text: bold or regular.
-///
-@mixin font-weight($weight) {
-  $font-weight: map-get-deep($font-weights, 'font-weights', $weight);
-
-  font-weight: $font-weight;
-}

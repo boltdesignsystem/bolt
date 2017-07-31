@@ -1,6 +1,6 @@
-'use strict';
+import gulp from 'gulp';
+import { compileCSS, watchCSS } from '@bolt/build-styles';
 
-const gulp = require('gulp');
 // Default config at `node_modules/@theme-tools/plugin-browser-sync/config.default.js`
 const browserSyncTasks = require('@theme-tools/plugin-browser-sync')({
   baseDir: 'public',
@@ -11,34 +11,44 @@ const jekyllTasks = require('@theme-tools/plugin-jekyll')({
   cwd: 'source',
   watch: [
     'source/**',
-    //'!source/_site/**',
+    // '!source/_site/**',
     '!source/.sass-cache/**',
   ],
 });
 
 
-
-var cssTasks = require('../../packages/build-tools/styles')(gulp, {
-  root: '.',
+const jekyllCssConfig = {
+  // root: '.',
+  // src: [
+  //   'source/**/*.scss'
+  // ],
+  // dest: './public',
+  // jsonDest: './source/_data',
+  // extraWatches: '../../packages/*/*.scss'
+  root: './',
   src: [
-    'source/**/*.scss'
+    './source/styles/**/*.scss'
   ],
-  dest: './public',
+  dest: './public/styles',
   jsonDest: './source/_data',
-  extraWatches: '../../packages/*/*.scss'
+  extraWatches: '../../packages/**/*.scss'
   // lint: true
-});
+};
 
-gulp.task('css', cssTasks.compile);
+const compileJekyllCSS = compileCSS(jekyllCssConfig);
+const watchJekyllCSS = watchCSS(jekyllCssConfig);
+
+
+gulp.task('css', compileJekyllCSS);
 gulp.task('jekyll', jekyllTasks.build);
 gulp.task('watch:jekyll', jekyllTasks.watch);
 
 gulp.task('default', gulp.series([
   jekyllTasks.build,
-  cssTasks.compile,
+  compileJekyllCSS,
   gulp.parallel([
     jekyllTasks.watch,
-    cssTasks.watch,
+    watchJekyllCSS,
     browserSyncTasks.serve,
   ]),
 ]));

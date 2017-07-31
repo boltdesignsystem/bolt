@@ -1,5 +1,5 @@
 import gulp from 'gulp';
-import * as bolt from './packages/build-tools';
+import * as bolt from './packages/bolt-build';
 
 /*-------------------------------------------------------------------
 // Browsersync Tasks
@@ -61,7 +61,7 @@ gulp.task(bolt.watchSymlinks());
 const patternLabCSSConfig = {
   root: 'sandbox/pattern-library',
   src: [
-    'sandbox/pattern-library/source/styles/**/*.scss'
+    'sandbox/pattern-library/source/styles/bolt-styleguide.scss'
   ],
   dest: './sandbox/pattern-library/public/styles',
   jsonDest: './sandbox/pattern-library/source/_data',
