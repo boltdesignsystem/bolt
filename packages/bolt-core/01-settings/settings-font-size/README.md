@@ -1,7 +1,7 @@
 # @bolt/settings-font-size
 Standardized font sizes in Bolt.
 
-- [Sass Docs](https://www.boltdesignsystem.com/docs/#settings: font-sizes)
+- [Sass Docs](https://www.boltdesignsystem.com/docs/#settings: font-size)
 
 ## Install
 ```bash

@@ -1,5 +1,5 @@
 # @bolt/settings-font-family
-Standardized font sizes in Bolt.
+Standardized font families in Bolt.
 
 - [Sass Docs](https://www.boltdesignsystem.com/docs/#settings: font-family)
 
