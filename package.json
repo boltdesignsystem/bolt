@@ -22,7 +22,7 @@
     "setup:homebrew": "sh scripts/install-homebrew.sh",
     "snyk-protect": "snyk protect",
     "mocha": "mocha packages/**/*/tests",
-    "test": "npm run mocha && npm run lint",
+    "test": "npm run build && npm run mocha && npm run lint",
     "lint:watch": "nodemon --ignore node_modules -w packages/ --exec 'npm test'",
     "lint:fix": "eslint --fix ./packages/bolt-build-tools"
   },
