@@ -16,11 +16,12 @@ addons:
     - ubuntu-toolchain-r-test
     packages:
     - g++-4.8
+    - nodejs
 
 before_install:
 # - sudo rm -rf ~/.nvm - curl -sL "https://deb.nodesource.com/setup_${NODE_RELEASE}"
 #   | sudo -E bash -
-- rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $NODE_RELEASE
+# - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $NODE_RELEASE
 - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
 - export PATH="$HOME/.yarn/bin:$PATH"
 - sudo apt-get install graphicsmagick
