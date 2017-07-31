@@ -36,6 +36,7 @@ const jekyllCssConfig = {
 };
 
 const compileJekyllCSS = compileCSS(jekyllCssConfig);
+const jekyllSassDoc = sassDoc(jekyllCssConfig);
 const watchJekyllCSS = watchCSS(jekyllCssConfig);
 
 
@@ -46,6 +47,7 @@ gulp.task('watch:jekyll', jekyllTasks.watch);
 gulp.task('default', gulp.series([
   jekyllTasks.build,
   compileJekyllCSS,
+  jekyllSassDoc,
   gulp.parallel([
     jekyllTasks.watch,
     watchJekyllCSS,
