@@ -18,7 +18,7 @@ const postcss = require('gulp-postcss');
 const stylelint = require('stylelint');
 const join = require('path').join;
 const scssSyntax = require('postcss-scss');
-// const sassdoc = require('sassdoc');
+const sassdoc = require('sassdoc');
 const debug = require('debug')('@bolt/build-styles');
 const eyeglass = require('eyeglass');
 const sassGlob = require('gulp-sass-glob');
@@ -30,31 +30,25 @@ const postCSS = [
   autoprefixer()
 ];
 
-// const nodeModulesPaths = [
-//   'packages/',
-//   '**/@bolt/*',
-//   'node_modules/',
-//   'packages/*component*',
-//   'packages/*object*',
-//   'packages/*setting*',
-//   'packages/*tool*',
-//   'packages/*generic*',
-//   'packages/*element*',
-//   'packages/*util*',
-//   'sandbox/*/node_modules',
-//   // '!packages/*/node_modules/*/node_modules',
-//   '!packages/_*',
-//   '!packages/*/node_modules/**/node_modules'
-// ];
-//
-// const globbedIncludePaths = globby.sync(nodeModulesPaths);
 
-// console.log(globbedIncludePaths);
-// const lintCSS = [
-//   ,
-//   postcssReporter({ clearReportedMessages: true }),
-//   autoprefixer()
-// ];
+function compileSassDoc(done, userConfig) {
+  const config = merge(defaultConfig, userConfig);
+
+  return gulp.src(['packages/**/*.scss', '!packages/**/node_modules/**/*'])
+    .pipe(sassdoc(config.sassdoc))
+    .on('end', () => {
+      done();
+    });
+}
+
+function sassDoc(userConfig) {
+  function sassDocTask(done) {
+    compileSassDoc(done, userConfig);
+  }
+  sassDocTask.description = 'Generate SassDoc docs';
+  sassDocTask.displayName = 'styles:sassdoc';
+  return sassDocTask;
+}
 
 
 function compileCSS(userConfig) {
@@ -126,9 +120,9 @@ function watchCSS(userConfig) {
     const watchTasks = [compileCSS(userConfig)];
 
 
-    // if (config.lint === true) {
-    //   watchTasks.push(lintCSS);
-    // }
+    if (config.sassdoc !== false) {
+      watchTasks.push(sassDoc(userConfig));
+    }
     const src = config.extraWatches
       ? [].concat(config.src, config.extraWatches)
       : config.src;
@@ -201,7 +195,7 @@ function lintCSS(userConfig) {
   return lintCssTask;
 }
 
-export { compileCSS, watchCSS, lintCSS, cleanStyles as cleanCSS };
+export { compileCSS, watchCSS, lintCSS, cleanStyles as cleanCSS, sassDoc };
 
 
 // export { Styles as default };

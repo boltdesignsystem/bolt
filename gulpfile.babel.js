@@ -61,7 +61,7 @@ gulp.task(bolt.watchSymlinks());
 const patternLabCSSConfig = {
   root: 'sandbox/pattern-library',
   src: [
-    'sandbox/pattern-library/source/styles/bolt-styleguide.scss'
+    'sandbox/pattern-library/source/styles/*.scss'
   ],
   dest: './sandbox/pattern-library/public/styles',
   jsonDest: './sandbox/pattern-library/source/_data',
@@ -72,8 +72,8 @@ gulp.task(compilePatternLabCSS);
 
 // Watch PL styles for changes
 gulp.task('styles:watch', bolt.watchCSS(patternLabCSSConfig));
+gulp.task('styles:sassdoc', bolt.sassDoc(patternLabCSSConfig));
 gulp.task('patternlab:stylelint', bolt.lintCSS(patternLabCSSConfig));
-
 
 /*-------------------------------------------------------------------
 // Default (Main) Gulp Task -- Serves PL, Compiles & Watches for Changes
