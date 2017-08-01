@@ -5,7 +5,7 @@ REPO_SLUG_ARRAY=(${TRAVIS_REPO_SLUG//\// })
 REPO_OWNER=
 # REPO_NAME=${REPO_SLUG_ARRAY[1]}
 REPO_NAME=boltdesignsystem
-DEPLOY_PATH=./.bolt-website
+DEPLOY_PATH=.bolt-website
 
 
 DEPLOY_SUBDOMAIN_UNFORMATTED_LIST=()
@@ -41,7 +41,15 @@ do
   # The length is limited to 253 characters
   # https://en.wikipedia.org/wiki/Domain_Name_System#Domain_name_syntax
   DEPLOY_SUBDOMAIN=`echo "$DEPLOY_SUBDOMAIN_UNFORMATTED" | sed -r 's/[\/|\.]+/\-/g'`
-  DEPLOY_DOMAIN=https://${DEPLOY_SUBDOMAIN}-${REPO_NAME}.surge.sh
+
+
+
+  if [ "$DEPLOY_SUBDOMAIN" == "" ]
+  then
+    DEPLOY_DOMAIN=https://${DEPLOY_SUBDOMAIN}${REPO_NAME}.surge.sh
+  else
+    DEPLOY_DOMAIN=https://${DEPLOY_SUBDOMAIN}-${REPO_NAME}.surge.sh
+  fi
 
   echo SURGE_DEPLOY_URL=$DEPLOY_DOMAIN > .env
   echo "SURGE_DEPLOY_URL has been set to: $DEPLOY_DOMAIN"
