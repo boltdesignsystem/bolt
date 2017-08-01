@@ -1,10 +1,8 @@
 #!/bin/bash
 # Split on "/", ref: http://stackoverflow.com/a/5257398/689223
 REPO_SLUG_ARRAY=(${TRAVIS_REPO_SLUG//\// })
-#REPO_OWNER=${REPO_SLUG_ARRAY[0]}
-REPO_OWNER=
-# REPO_NAME=${REPO_SLUG_ARRAY[1]}
-REPO_NAME=
+REPO_OWNER=${REPO_SLUG_ARRAY[0]}
+REPO_NAME=boltdesignsystem
 DEPLOY_PATH=./bolt-website
 
 
@@ -43,12 +41,11 @@ do
   DEPLOY_SUBDOMAIN=`echo "$DEPLOY_SUBDOMAIN_UNFORMATTED" | sed -r 's/[\/|\.]+/\-/g'`
 
 
-
   if [ "$DEPLOY_SUBDOMAIN" == "" ]
   then
-    DEPLOY_DOMAIN=https://${DEPLOY_SUBDOMAIN}${REPO_NAME}.pegabolt.io
+    DEPLOY_DOMAIN=https://${DEPLOY_SUBDOMAIN}${REPO_NAME}.surge.sh
   else
-    DEPLOY_DOMAIN=https://${DEPLOY_SUBDOMAIN}-${REPO_NAME}.pegabolt.io
+    DEPLOY_DOMAIN=https://${DEPLOY_SUBDOMAIN}-${REPO_NAME}.surge.sh
   fi
 
   echo SURGE_DEPLOY_URL=$DEPLOY_DOMAIN > .env
@@ -62,6 +59,6 @@ do
     # Done so because every PR is an issue, and the issues api allows to post general comments,
     # while the PR api requires that comments are made to specific files and specific commits
     GITHUB_PR_COMMENTS=https://api.github.com/repos/${TRAVIS_REPO_SLUG}/issues/${TRAVIS_PULL_REQUEST}/comments
-    curl -H "Authorization: token ${GITHUB_API_TOKEN}" --request POST ${GITHUB_PR_COMMENTS} --data '{"body":"Travis automatic deployment: '${DEPLOY_DOMAIN}'"}'
+    curl -H "Authorization: token ${GITHUB_TOKEN}" --request POST ${GITHUB_PR_COMMENTS} --data '{"body":"Travis automatic deployment: '${DEPLOY_DOMAIN}'"}'
   fi
 done
