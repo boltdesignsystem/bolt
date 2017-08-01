@@ -86,6 +86,7 @@ gulp.task('symlinks', gulp.series([
 gulp.task('default',
   gulp.series([
     'styles:compile',
+    'styles:sassdoc',
     'symlinks',
     'patternlab:compile',
     gulp.parallel([
@@ -101,6 +102,7 @@ gulp.task('default',
 gulp.task('build',
   gulp.series([
     'styles:compile',
+    'styles:sassdoc',
     'symlinks',
     'patternlab:compile'
   ])

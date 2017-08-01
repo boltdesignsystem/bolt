@@ -4,7 +4,7 @@ REPO_SLUG_ARRAY=(${TRAVIS_REPO_SLUG//\// })
 #REPO_OWNER=${REPO_SLUG_ARRAY[0]}
 REPO_OWNER=
 # REPO_NAME=${REPO_SLUG_ARRAY[1]}
-REPO_NAME=
+REPO_NAME=boltdesignsystem
 DEPLOY_PATH=./sandbox/pattern-library/public
 
 
@@ -41,12 +41,13 @@ do
   # The length is limited to 253 characters
   # https://en.wikipedia.org/wiki/Domain_Name_System#Domain_name_syntax
   DEPLOY_SUBDOMAIN=`echo "$DEPLOY_SUBDOMAIN_UNFORMATTED" | sed -r 's/[\/|\.]+/\-/g'`
-  DEPLOY_DOMAIN=https://${DEPLOY_SUBDOMAIN}.boltdesignsystem.com
+  DEPLOY_DOMAIN=https://${DEPLOY_SUBDOMAIN}-${REPO_NAME}.surge.sh
 
   echo SURGE_DEPLOY_URL=$DEPLOY_DOMAIN > .env
   echo "SURGE_DEPLOY_URL has been set to: $DEPLOY_DOMAIN"
 
   surge --project ${DEPLOY_PATH} --domain $DEPLOY_DOMAIN;
+
   if [ "$TRAVIS_PULL_REQUEST" != "false" ]
   then
     # Using the Issues api instead of the PR api

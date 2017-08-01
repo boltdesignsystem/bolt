@@ -1,5 +1,5 @@
 import gulp from 'gulp';
-import { compileCSS, watchCSS } from '@bolt/build-styles';
+import { compileCSS, watchCSS, sassDoc } from '@bolt/build-styles';
 
 // Default config at `node_modules/@theme-tools/plugin-browser-sync/config.default.js`
 const browserSyncTasks = require('@theme-tools/plugin-browser-sync')({
@@ -36,6 +36,7 @@ const jekyllCssConfig = {
 };
 
 const compileJekyllCSS = compileCSS(jekyllCssConfig);
+const jekyllSassDoc = sassDoc(jekyllCssConfig);
 const watchJekyllCSS = watchCSS(jekyllCssConfig);
 
 
@@ -46,9 +47,16 @@ gulp.task('watch:jekyll', jekyllTasks.watch);
 gulp.task('default', gulp.series([
   jekyllTasks.build,
   compileJekyllCSS,
+  jekyllSassDoc,
   gulp.parallel([
     jekyllTasks.watch,
     watchJekyllCSS,
     browserSyncTasks.serve,
   ]),
+]));
+
+gulp.task('build', gulp.series([
+  jekyllTasks.build,
+  compileJekyllCSS,
+  jekyllSassDoc
 ]));
