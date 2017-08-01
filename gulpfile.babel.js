@@ -15,7 +15,7 @@ gulp.task(boltServer);
 
 // Browser Sync - Pattern Lab
 const browserSyncPLConfig = {
-  server: '.bolt-website'
+  server: 'bolt-website'
 };
 const patternLabServer = bolt.server(browserSyncPLConfig);
 patternLabServer.displayName = 'patternlab:serve';
@@ -25,7 +25,7 @@ gulp.task(patternLabServer);
 
 // Browser Sync - Pattern Lab
 const browserSyncJekyllConfig = {
-  server: '.bolt-website'
+  server: 'bolt-website'
 };
 const jekyllServer = bolt.server(browserSyncJekyllConfig);
 jekyllServer.displayName = 'jekyll:serve';
@@ -73,7 +73,7 @@ const patternLabCSSConfig = {
   src: [
     'sandbox/pattern-library/source/styles/*.scss'
   ],
-  dest: '.bolt-website/styles',
+  dest: 'bolt-website/styles',
   jsonDest: './sandbox/pattern-library/source/_data',
   extraWatches: './packages/**/*.scss'
 };
@@ -132,7 +132,7 @@ const jekyllCssConfig = {
   src: [
     './sandbox/styleguide/source/styles/**/*.scss'
   ],
-  dest: './.bolt-website/styles',
+  dest: './bolt-website/styles',
   jsonDest: './sandbox/styleguide/source/_data',
   extraWatches: './packages/**/*.scss'
 };
