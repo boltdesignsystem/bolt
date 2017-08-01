@@ -41,7 +41,7 @@ do
   DEPLOY_SUBDOMAIN=`echo "$DEPLOY_SUBDOMAIN_UNFORMATTED" | sed -r 's/[\/|\.]+/\-/g'`
 
 
-  if [ "$DEPLOY_SUBDOMAIN" == "" ]
+  if [ "$DEPLOY_SUBDOMAIN" == "" ] || [ "$TRAVIS_BRANCH" == "master" ]
   then
     DEPLOY_DOMAIN=https://${DEPLOY_SUBDOMAIN}${REPO_NAME}.surge.sh
   else
