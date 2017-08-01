@@ -34,12 +34,9 @@
 
   h1 {
     @include padding(0,0,($font-leading--base * 0.65 + rem),0);
-
-    // @include respond-to($max: $bp-small-px) {
     @include font-size(xxlarge);
 
     letter-spacing: -.1rem;
-  // }
 
     @include respond-to(medium) {
       @include font-size(xxxlarge);
@@ -62,13 +59,15 @@
 
     h1 + h2 {
       @include padding(0,0,($font-leading--base*.65 + rem),0);
+      @include font-size(large);
       @include font-weight(regular);
 
-      line-height: 1.45;
       letter-spacing: 0;
 
-      @include to(medium) {
-        @include font-size(large);
+      @include respond-to(medium) {
+        @include font-size(xlarge);
+
+        line-height: 1.45;
       }
     }
   }
@@ -183,7 +182,7 @@
   aside {
     @include paragraph-spacing;
 
-    @include respond-to(small) {
+    @include respond-to(medium) {
       @include float(right);
       @include margin(($font-leading--base + rem),0,($font-leading--base + rem),($gutter + rem));
 

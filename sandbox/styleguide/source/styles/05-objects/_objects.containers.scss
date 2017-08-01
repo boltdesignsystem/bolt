@@ -121,7 +121,7 @@ body {
 }
 
 .o-golden-two-column {
-  @include respond-to(small) {
+  @include respond-to(medium) {
     @include margin(0,(-$gutter + rem),0,(-$gutter + rem));
 
     display: flex;
@@ -162,7 +162,7 @@ body {
 }
 
 .o-golden-two-column--center {
-  @include respond-to(small) {
+  @include respond-to(medium) {
     align-items: center;
   }
 }
@@ -176,7 +176,7 @@ body {
 .o-inset {
   @include padding(($font-leading--base + rem),($gutter + rem),($font-leading--base + rem),($gutter + rem));
 
-  @include respond-to(small) {
+  @include respond-to(medium) {
     @include padding(($font-leading--base*2 + rem),($gutter*2 + rem),($font-leading--base*2 + rem),($gutter*2 + rem));
   }
 }
