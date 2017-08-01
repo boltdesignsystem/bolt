@@ -1,0 +1,43 @@
+/* ------------------------------------ *\
+  SETTINGS - FONT WEIGHTS
+\* ------------------------------------ */
+
+////
+/// @group Settings: Typography
+/// @author Mike Mai
+////
+$font-weight--regular:   400 !default;
+$font-weight--semibold:  700 !default;
+$font-weight--bold:      800 !default;
+
+@if ($font-weight--regular < 400){
+  @error "Bolt's regular font weight can't be lighter than 400";
+}
+
+@if ($font-weight--bold < 700){
+  @error "Bolt's bold font weight can't be lighter than 700";
+}
+
+@if ($font-weight--bold < $font-weight--regular){
+  @error "Sorry, but your bold font weight, `#{$font-weight--bold}` can't be lighter than your regular font weight, `#{$font-weight--regular}`!";
+}
+
+@if ($font-weight--bold - $font-weight--regular < 300){
+  @error "Sorry, but your bold and regular font weights have values that are too close together. Please choose values that are at least 300 or more apart`!";
+}
+
+@if ($font-weight--bold - $font-weight--semibold < 100){
+  @error "Sorry, but your bold and semi-bold font weights have values that are too close together. Please choose values that are at least 100 or more apart`!";
+}
+
+/// Bolt's definition of all options of possible text weights.
+/// @type Map
+$font-weights: (
+  font-weights: (
+    bold:     $font-weight--bold,
+    semibold: $font-weight--bold,
+    normal:   $font-weight--regular,
+    regular:  $font-weight--regular,
+    light:    $font-weight--regular
+  )
+) !default;

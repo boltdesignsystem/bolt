@@ -1,0 +1,14 @@
+/*------------------------------------*\
+  Text Contrast
+\*------------------------------------*/
+
+@import '@bolt/tools-color-palette';
+
+@function text-contrast($color) {
+  @if (lightness($color) > 60) {
+    @return palette(black); // Lighter backgorund, return dark color
+  }
+  @else {
+    @return palette(white); // Darker background, return light color
+  }
+}
