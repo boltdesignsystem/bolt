@@ -85,17 +85,13 @@ body {
       }
     }
 
-    article {
+    .c-article {
       @include margin(0,auto,0,auto);
 
       max-width: $article-line-length + ch;
 
       aside {
         @include margin(0,calc(#{$gutter*1.5 + rem} - #{$golden-aside-width + vw}),($font-leading--base + rem),($gutter + rem));
-
-        /*&:first-child {
-          margin-top: 0;
-        }*/
       }
     }
   }

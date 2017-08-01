@@ -24,7 +24,7 @@
   ol, ul, dl,
   details, summary {
     &:first-child {
-      @include null-spacing;
+      margin-top: 0;
     }
   }
 
@@ -94,30 +94,7 @@
     letter-spacing: .1rem;
   }
 
-  h1, h2, h3, h4, h5, h6, header, hgroup {
-    & + * {
-      @include null-spacing;
-    }
-  }
-
-  header[role="banner"] {
-    p:first-of-type {
-      @include font-size(large);
-    }
-
-    p:last-child {
-      @include padding(0,0,($font-leading--base*.65 + rem),0);
-    }
-  }
-
   aside {
-    /*@include paragraph-spacing;
-
-    &:first-child {
-      @include null-spacing;
-    }
-*/
-
     p,
     hr,
     figure,
@@ -129,28 +106,55 @@
       }
     }
 
+    &:first-child {
+      p,
+      hr,
+      figure,
+      blockquote,
+      ol, ul, dl,
+      details, summary {
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+    }
+
     @include respond-to(medium) {
       @include float(right);
-      @include margin(($font-leading--base + rem),0,($font-leading--base + rem),($gutter + rem));
+      @include margin(0,0,($font-leading--base + rem),($gutter + rem));
 
       width: $golden-aside-width + vw;
       max-width: $article-line-length/2 + ch;
 
       &:first-child {
-        p,
-        hr,
-        figure,
-        blockquote,
-        ol, ul, dl,
-        details, summary {
-          &:first-child {
-            @include null-spacing;
-          }
-        }
-
         & + * {
-          @include null-spacing;
+          margin-top: 0;
         }
+      }
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6, header, hgroup {
+    & + * {
+      margin-top: 0;
+    }
+
+    & + aside {
+      p,
+      hr,
+      figure,
+      blockquote,
+      ol, ul, dl,
+      details, summary {
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+    }
+
+    @include respond-to(medium) {
+      & + aside + * {
+        margin-top: 0;
       }
     }
   }
@@ -201,12 +205,11 @@
 
   blockquote {
     @include padding(($font-leading--base + rem),($gutter + rem),($font-leading--base + rem),($gutter + rem));
+    @include font-size(large);
     @include border(left,($gutter/2 + rem) solid);
 
-    @include font-size(large);
-
     > *:first-child {
-      @include null-spacing;
+      margin-top: 0;
     }
   }
 
@@ -232,17 +235,5 @@
     @include border(top);
 
     display: block;
-  }
-}
-
-@-moz-document url-prefix() {
-  .c-article {
-    header[role="banner"] {
-      p:first-of-type {
-        &:first-letter {
-          @include padding(($font-leading--base/2 + rem),($gutter/2 + rem),($font-leading--base/2 + rem),($gutter/2 + rem));
-        }
-      }
-    }
   }
 }
