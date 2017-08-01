@@ -6,7 +6,7 @@
     "bootstrap": "lerna bootstrap --hoist",
     "build": "gulp build",
     "commitmsg": "validate-commit-msg",
-    "deploy:surge": "npm run build && surge .bolt-website $npm_package_config_surgeDomain",
+    "deploy:surge": "npm run build && surge bolt-website $npm_package_config_surgeDomain",
     "fix:scripts": "gulp scripts:fix",
     "fix:scss": "gulp styles:fix",
     "fix": "gulp fix",
