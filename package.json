@@ -14,7 +14,7 @@
     "prepublishOnly": "npm run snyk-protect",
     "publish-please": "publish-please",
     "publish-canary": "lerna run build && lerna run publish-please && lerna publish --canary --yes",
-    "publish-next": "lerna run build && lerna run publish-please && lerna publish --npm-tag=next",
+    "publish-beta": "lerna run build && lerna publish --npm-tag=beta --skip-git",
     "publish": "lerna run build && lerna run publish-please && lerna publish",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "serve": "gulp serve",

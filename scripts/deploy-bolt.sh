@@ -4,7 +4,7 @@ REPO_SLUG_ARRAY=(${TRAVIS_REPO_SLUG//\// })
 #REPO_OWNER=${REPO_SLUG_ARRAY[0]}
 REPO_OWNER=
 # REPO_NAME=${REPO_SLUG_ARRAY[1]}
-REPO_NAME=boltdesignsystem
+REPO_NAME=
 DEPLOY_PATH=./bolt-website
 
 
@@ -46,9 +46,9 @@ do
 
   if [ "$DEPLOY_SUBDOMAIN" == "" ]
   then
-    DEPLOY_DOMAIN=https://${DEPLOY_SUBDOMAIN}${REPO_NAME}.surge.sh
+    DEPLOY_DOMAIN=https://${DEPLOY_SUBDOMAIN}${REPO_NAME}.pegabolt.io
   else
-    DEPLOY_DOMAIN=https://${DEPLOY_SUBDOMAIN}-${REPO_NAME}.surge.sh
+    DEPLOY_DOMAIN=https://${DEPLOY_SUBDOMAIN}-${REPO_NAME}.pegabolt.io
   fi
 
   echo SURGE_DEPLOY_URL=$DEPLOY_DOMAIN > .env
