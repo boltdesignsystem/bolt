@@ -37,6 +37,10 @@ install:
 - npm run setup:composer
 - npm run bootstrap
 
+
+deploy:
+  skip_cleanup: true
+
 script:
 - npm run test && npm run build
 
