@@ -12,7 +12,7 @@ module.exports = {
   jsonDest: './packages/bolt',
   lint: false,
   sassdoc: {
-    dest: './.bolt-website/docs'
+    dest: './bolt-website/docs'
   },
   sourceMaps: !util.env.production
 };
