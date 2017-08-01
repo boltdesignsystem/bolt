@@ -6,7 +6,7 @@
     "bootstrap": "lerna bootstrap --hoist",
     "build": "gulp build",
     "commitmsg": "validate-commit-msg",
-    "deploy:surge": "npm run build && surge sandbox/pattern-library/public $npm_package_config_surgeDomain",
+    "deploy:surge": "npm run build && surge .bolt-website $npm_package_config_surgeDomain",
     "fix:scripts": "gulp scripts:fix",
     "fix:scss": "gulp styles:fix",
     "fix": "gulp fix",
@@ -69,6 +69,7 @@
   "dependencies": {
     "@bolt/tool-strip-unit": "^0.2.0-alpha.b42df1b9",
     "@bolt/tools-strip-unit": "^0.2.0-alpha.40b17e25",
+    "@theme-tools/plugin-jekyll": "^0.4.2",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",

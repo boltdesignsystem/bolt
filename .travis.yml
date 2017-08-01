@@ -26,11 +26,6 @@ before_install:
 - export PATH=$HOME/.yarn/bin:$PATH
 - composer global require hirak/prestissimo
 - if [[ -n "$GITHUB_TOKEN" ]]; then composer config -g github-oauth.github.com ${GITHUB_TOKEN}; fi;
-# - sudo apt-get install graphicsmagick
-# - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && source ~/.nvm/nvm.sh && nvm install 7
-# - sudo apt-get install -y nodejs
-#- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
-#- export PATH="$HOME/.yarn/bin:$PATH"
 
 before_script:
 - phpenv config-rm xdebug.ini
@@ -38,7 +33,6 @@ before_script:
 install:
 - npm install -g surge
 - npm install gulpjs/gulp-cli -g
-# - npm install gulpjs/gulp#4.0
 - npm install --global lerna
 - npm run setup:composer
 - npm run bootstrap
@@ -47,8 +41,8 @@ script:
 - npm run test && npm run build
 
 after_success:
-- chmod ugo+x ./scripts/deploy-pattern-lab.sh
-- "./scripts/deploy-pattern-lab.sh"
+- chmod ugo+x ./scripts/deploy-bolt.sh
+- "./scripts/deploy-bolt.sh"
 - gulp slack
 
 cache:
