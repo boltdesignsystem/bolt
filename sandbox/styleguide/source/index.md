@@ -18,7 +18,7 @@ title: Bolt Design System
         </h1>
         <h2 class="c-heading c-heading--xlarge">
           <span class="c-heading__text">
-            Bolt provides tools, <a href="/patterns">patterns</a>, services, and <a href="/docs">guidelines</a> that systematically improve quality, timeliness, and consistency to the Pega ecosystem so that you can focus on what really matters.
+            Bolt provides tools, patterns, services, and guidelines that systematically improve quality, timeliness, and consistency to the Pega ecosystem so that you can focus on what really matters.
           </span>
         </h2>
       </div>
