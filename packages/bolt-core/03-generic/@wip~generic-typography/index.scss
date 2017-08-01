@@ -1,0 +1,33 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @include font-family(heading);
+  @include font-size(base, tight);
+  @include font-weight(bold);
+}
+
+
+
+
+/*------------------------------------*\
+  Link
+\*------------------------------------*/
+
+a {
+  text-decoration: none;
+}
+
+
+
+
+/*------------------------------------*\
+  Small text
+\*------------------------------------*/
+
+
+small {
+  @include font-size(xsmall);
+}

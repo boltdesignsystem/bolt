@@ -1,15 +1,40 @@
 {
   "lerna": "2.0.0",
   "version": "independent",
+  "npmClient": "yarn",
   "packages": [
-    "packages/setting*",
-    "packages/tool*",
-    "packages/generic*",
-    "packages/object*",
-    "packages/component*",
-    "packages/theme*",
-    "packages/utilities*",
-    "packages/build*",
-    "packages/bolt"
-  ]
+    "packages/bolt-core",
+    "packages/bolt-core/01-settings",
+    "packages/bolt-core/01-settings/settings-*",
+    "packages/bolt-core/02-tools",
+    "packages/bolt-core/02-tools/tools-*",
+    "packages/bolt-core/03-generic",
+    "packages/bolt-core/03-generic/generic-*",
+    "packages/bolt-core/04-elements",
+    "packages/bolt-core/04-elements/elements-*",
+    "packages/bolt-core/XX-deprecated/*",
+    "packages/bolt-config/config-*",
+    "packages/bolt-build",
+    "packages/bolt-build/*",
+    "packages/bolt-build/**/*",
+    "sandbox/**/*"
+  ],
+  "commands": {
+    "publish": {
+      "ignore": [
+        "ignored-file",
+        "styleguidekit-assets-default",
+        "@bolt/setting-colors",
+        "@bolt/tool-strip-unit",
+        "@bolt/tools-typography"
+      ]
+    },
+    "bootstrap": {
+      "ignore": [
+        "styleguidekit-assets-default",
+        "@theme-tools"
+      ]
+    }
+  },
+  "hoist": false
 }

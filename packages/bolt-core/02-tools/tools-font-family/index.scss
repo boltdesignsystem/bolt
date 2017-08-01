@@ -1,0 +1,37 @@
+/* ------------------------------------ *\
+  TOOLS - FONT FAMILY
+\* ------------------------------------ */
+
+////
+/// @group Tools: Typography
+/// @author Mike Mai
+////
+
+@import '@bolt/settings-font-family';
+@import '@bolt/tools-sassy-maps'; // required so `map-get-deep` works
+
+
+
+
+/// This returns the font-family for a specific element. Brand fonts are the default, with system fonts as the fallback.
+///
+/// @param {string} $type
+///   Defines the font-family being used for each type of text: heading, body, or code.
+///
+@mixin font-family($type, $is_root: false) {
+  $fallback-font-family: map-get-deep($font-families, 'font-families', $type, 'system');
+  $custom-font-family: map-get-deep($font-families, 'font-families', $type, 'custom');
+
+  font-family: $fallback-font-family;
+
+  @if $is_root == false {
+    .#{$fonts-loaded-class} & {
+      font-family: $custom-font-family;
+    }
+  }
+  @else {
+    &.#{$fonts-loaded-class} {
+      font-family: $custom-font-family;
+    }
+  }
+}

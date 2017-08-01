@@ -1,0 +1,23 @@
+/* ------------------------------------ *\
+  SETTINGS - BREAKPOINTS
+\* ------------------------------------ */
+@import 'breakpoint-sass';
+@import 'breakpoint-slicer/stylesheets/breakpoint-slicer';
+
+
+$breakpoints: (
+  xsmall:  400px,
+  small:   600px,
+  medium:  800px,
+  large:   1200px,
+  xlarge:  1400px
+);
+
+@each $breakpoint in $breakpoints {
+  $name:     nth($breakpoint, 1);
+  $value:    nth($breakpoint, 2);
+  @include add-breakpoint(quote($name), $value);
+
+  $slicer-breakpoint-names: append($slicer-breakpoint-names, $name);
+  $slicer-breakpoints:      append($slicer-breakpoints, $value);
+}

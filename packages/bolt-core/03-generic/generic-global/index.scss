@@ -1,0 +1,14 @@
+/* ------------------------------------ *\
+  GENERIC - TAP COLOR
+\* ------------------------------------ */
+
+/**
+ * 1. Remove default "touch" color behavior globally
+ */
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* [1] */
+}

@@ -1,0 +1,1 @@
+**WE'VE MOVED!** This package has been moved / renamed to [@bolt/settings-colors](https://www.npmjs.com/package/@bolt/settings-colors) for consistency with the rest of the [Bolt Design System](https://github.com/bolt-design-system/bolt).
