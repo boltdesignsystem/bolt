@@ -16,6 +16,18 @@ permalink: /getting-started/
 
 Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla.
 
+## Main System Website
+
+[www.boltdesignsystem.com](https://www.boltdesignsystem.com)
+
+## Supplementary Docs
+
+1. [Travis Status](https://travis-ci.org/bolt-design-system/bolt/builds/259741882)
+2. [Pattern Library](https://www.boltdesignsystem.com/patterns/)
+3. [Sassdocs](https://www.boltdesignsystem.com/docs/)
+4. [NPM Org](https://www.npmjs.com/org/bolt)
+5. [Github repo](https://github.com/bolt-design-system/bolt)
+
 <figure>
   <table>
     <thead>
