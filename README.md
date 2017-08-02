@@ -1,3 +1,4 @@
+
 [![Known Vulnerabilities](https://snyk.io/test/github/pega-digital/bolt/badge.svg)](https://snyk.io/test/github/pega-digital/bolt)
 
 ## Requirements
