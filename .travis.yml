@@ -42,14 +42,14 @@ deploy:
   skip_cleanup: true
   provider: surge
   project: ./bolt-website/
-  domain: boltdesignsystem.surge.sh  
+  domain: boltdesignsystem.surge.sh
 
 script:
 - npm run test && npm run build
 
 after_success:
 - chmod ugo+x ./scripts/deploy-bolt.sh
-- "./scripts/deploy-bolt.sh"
+- "cd scripts && deploy-bolt.sh"
 - gulp slack
 
 cache:

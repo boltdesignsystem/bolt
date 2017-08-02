@@ -3,7 +3,7 @@
 REPO_SLUG_ARRAY=(${TRAVIS_REPO_SLUG//\// })
 REPO_OWNER=${REPO_SLUG_ARRAY[0]}
 REPO_NAME=boltdesignsystem
-DEPLOY_PATH=./bolt-website
+DEPLOY_PATH="../bolt-website"
 
 
 DEPLOY_SUBDOMAIN_UNFORMATTED_LIST=()
@@ -41,7 +41,7 @@ do
   DEPLOY_SUBDOMAIN=`echo "$DEPLOY_SUBDOMAIN_UNFORMATTED" | sed -r 's/[\/|\.]+/\-/g'`
 
 
-  if [ "$DEPLOY_SUBDOMAIN" == "" ] || [ "$TRAVIS_BRANCH" == "master" ]
+  if [ "$DEPLOY_SUBDOMAIN" == "" ] ]
   then
     DEPLOY_DOMAIN=https://${DEPLOY_SUBDOMAIN}${REPO_NAME}.surge.sh
   else
