@@ -15,7 +15,7 @@
     "publish-please": "publish-please",
     "publish-canary": "lerna run build && lerna run publish-please && lerna publish --canary --yes",
     "publish-beta": "lerna run build && lerna publish --npm-tag=beta --skip-git",
-    "publish": "lerna run build && lerna run publish-please && lerna publish",
+    "publish": "lerna run build && lerna run publish-please && lerna publish --skip-git --force-publish=*",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "serve": "gulp serve",
     "setup:composer": "cd sandbox/pattern-library && rm composer.lock && rm -rf vendor && composer install --no-interaction --prefer-dist --no-dev",
