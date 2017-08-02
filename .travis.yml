@@ -1,18 +1,13 @@
 sudo: false
-
 dist: trusty
-
 language: php
-
 php:
-  - 7.1
-
+- 7.1
 env:
   global:
-    - secure: gIGVQIJrOUgl2FuxUXer9FMBDSj+YqH7SiuNVXmZDy4krfQfrdMN/3oRQpIuPjYporjwi6Y31kppmW/d92WKB7JUJ+oWhhnUN0kDU23oVC2RsSIj6ic4rT08N0fYUEHEg77P+E+oX85lRLtr90HJN+jA2o+MHy3ACkaQWt9LVgsX7nu2IOl3ZCFecaCyNWidr0kKFDxQ15eh6kN5xXtDB0jnxPv9Ghf4chjgDzcTYsfhnuHbUfvEsJCRPdBc8itjEpYuA+QPziRxp4nQaRwiG/ltoUfbhuZiUZrctD58Y/a6N8cxEkQjJyJGV+BfUjYdu9ZRzwOVOYZsUbOktAwoPUESm0BLZylnNWUkBs6CjELQ7yCFJmu9vIu4CoOIrbjw3OqY6ZSdItV3HrfbPWC7tOsXCHqscUVvPUgKK5un8psZdFZltijs7lHS4qjj1B25uBvB+rGFk4lvFfUsR4lf3RGW2/xSIEg+QxMc4hmriE7b0YLTUfAVxBIT4EnTpAQoS+jrIv6Lrg9FTc8s1L7UA0Re10XrbRb4+dfkVGnttRvpZlh7yF/gWH30gfprpmCnropqNjtqxfUlRn6AgOS5xo8kl/ov+aYSe8M3T7dWW51S3rrPpCiNTVBm2udPRmtu0VK2Eh4804dYeVOiJo4j5cpFfzC7J7BbIWS9ETSsxUk=
-    - NODE_RELEASE=7.x
-    - CXX=g++-4.8
-
+  - secure: gIGVQIJrOUgl2FuxUXer9FMBDSj+YqH7SiuNVXmZDy4krfQfrdMN/3oRQpIuPjYporjwi6Y31kppmW/d92WKB7JUJ+oWhhnUN0kDU23oVC2RsSIj6ic4rT08N0fYUEHEg77P+E+oX85lRLtr90HJN+jA2o+MHy3ACkaQWt9LVgsX7nu2IOl3ZCFecaCyNWidr0kKFDxQ15eh6kN5xXtDB0jnxPv9Ghf4chjgDzcTYsfhnuHbUfvEsJCRPdBc8itjEpYuA+QPziRxp4nQaRwiG/ltoUfbhuZiUZrctD58Y/a6N8cxEkQjJyJGV+BfUjYdu9ZRzwOVOYZsUbOktAwoPUESm0BLZylnNWUkBs6CjELQ7yCFJmu9vIu4CoOIrbjw3OqY6ZSdItV3HrfbPWC7tOsXCHqscUVvPUgKK5un8psZdFZltijs7lHS4qjj1B25uBvB+rGFk4lvFfUsR4lf3RGW2/xSIEg+QxMc4hmriE7b0YLTUfAVxBIT4EnTpAQoS+jrIv6Lrg9FTc8s1L7UA0Re10XrbRb4+dfkVGnttRvpZlh7yF/gWH30gfprpmCnropqNjtqxfUlRn6AgOS5xo8kl/ov+aYSe8M3T7dWW51S3rrPpCiNTVBm2udPRmtu0VK2Eh4804dYeVOiJo4j5cpFfzC7J7BbIWS9ETSsxUk=
+  - NODE_RELEASE=7.x
+  - CXX=g++-4.8
 addons:
   apt:
     sources:
@@ -20,43 +15,48 @@ addons:
     packages:
     - g++-4.8
     - graphicsmagick
-
 before_install:
 - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
 - export PATH=$HOME/.yarn/bin:$PATH
 - composer global require hirak/prestissimo
-- if [[ -n "$GITHUB_TOKEN" ]]; then composer config -g github-oauth.github.com ${GITHUB_TOKEN}; fi;
-
+- if [[ -n "$GITHUB_TOKEN" ]]; then composer config -g github-oauth.github.com ${GITHUB_TOKEN};
+  fi;
 before_script:
 - phpenv config-rm xdebug.ini
-
 install:
 - npm install -g surge
 - npm install gulpjs/gulp-cli -g
 - npm install --global lerna
 - npm run setup:composer
 - npm run bootstrap
-
 script:
 - npm run test && npm run build
-
 after_success:
-- chmod ugo+x ./scripts/deploy-bolt.sh
-- "./scripts/deploy-bolt.sh"
+- chmod ugo+x ./scripts/deploy-s3.sh
+- "./scripts/deploy-s3.sh"
 - gulp slack
-
 cache:
   apt: true
   yarn: true
   directories:
-  - $HOME/.cache/yarn
+  - "$HOME/.cache/yarn"
   - node_modules
   - sandbox/pattern-library/vendor
-
-
 notifications:
   email:
     on_success: never
     on_failure: always
   slack:
     secure: cNto+gWAoK1JM9jBNG4i4rMSybv3twMbqlFSCohQFBDMwKFMdlyWqFDX6iYKtHxWEDzrZyRz3qiJ8/S44mgjeKJ/xHbHDtPchp/KL2P1htipvwD2EZXobcBEGl83v2rmtFO1WNJUPB3RIJE2yt1wJsX7NIXpDw82hePmaIvNJmtbLpK/J5uaFqGNHIsctmULgVmGSNSTyK4nYxxjNNLd0EvO37Y6VN8FhsKNu2NHMKeeQxinEvETDUh8XuqXZYNWE3PBvVa4OiDhgnr5K27jsnWX+wEmqg0xY+CMf7mUSTqVN61fA7LnHyM0qcGGmB6YTv4QYLMwPydp+nsjDcm3St9D+KOTsQ4ExOaEAL/6EnAEpl8GtxST+ytdqswhCC4yMCO61Hy+M5AoXgDSGrrXHgZakDMAcEVcJdH38791hRxcuM3ldVmHAlAWFdgRLG5rRMVh3qoXz7jbraoTdjyKMegQIQdKR2SX7O9Dv0EEtLz4lTFN2RENvAjLggUPPU+ESoUHmSbwmPGnt7jy3ra2AI3nnYpfn/0e6Op/A3z7HLbdm3XyuNWoTPhy1mc4Adca+HosJ37UPv7nDRIGds1sKYAeWq94+rEk+/6IQ/oRIDRhSYsQbLLWnU6DH4o7iOj7D+X/ngjqmF75nW2s5+7rtdBHFvNzOJalCKHiDTMfdlQ=
+
+deploy:
+  provider: s3
+  bucket: "boltdesignsystem"
+  skip_cleanup: true
+  local_dir: bolt-website
+  on:
+    all_branches: true
+  secret_access_key:
+    secure: Du2ed4yhX2g3y+U9Ryy+NR8sniooN/ievLkbL4fbwe/nXHK/gyk0dzCohtLqocZJEjTqt2zmIdBlW5AtAd7048pznY8NkvcsJ6VQZ08hIRGYv7W/QxsQsmlrjjtCabJ6d17r4P00QvaOjd6AoLXeWCr6DF2ArH1nk1dWZaPEXDgE+BMvJM/VJTTZ3Y3ALFoaQHwfZJ3sRMeXcrwPT7KGz9VJj73jMh8mmEjifvRc/0G6Xl+ZP/LWiWWXf/2sVVL22qc4bfdOu7ZmOHN2mBp9ewGZG+PaYkGErxXtGrsroam6n/GzxfFXeFW6iXStD8sBOfPsLIVMlGSCJIrHBlaRQhzX0h5y0Tf4jk3+n09vcmYn1qWsJJtrOhLJc90ZCWLMeMKQXkPHxcc9P3W1tRH+vFyEtUJ1dZ9W8OYCob0JFYGm3ac6CdvCRQUyM/FiymqSqLbNrpYPbJSwkSk63Yy+EuIZoAVaiIf3Vo434k+2U0wnB/tSTJW6Qly2kmsK5M/+cwVwP5hoQ61TQpg9oQsnOMainFcNcKrvbfZLVeHLEIACf0f6YQgGy8I1JmbpcbfTBk3esQ+FydbmIkK7RcY5mvkPaYlorC/GR2qUdMHZFVD6Yqglq1uoixlUjDUi8qxsTh/WFTAWXmkPCQoJkddrcYWCucFFjrT9K/ZXbjatvxQ=
+  access_key_id:
+    secure: RcQY0D/qRNhDCHbpkA8EGGagiB7cmY9XVHNRsr1BzmNwOhA6nNcmvRy9xyr2reoKdQK1xJPVyRSOd1jbKWy9fBO4Q59p19yamNoGJbN6bKT+lz2hlwzVbfx31bMOWVrdO5MDS9jgiL9GbyUvDvHqlZ50HINbO+gDfewsSX3j9kUjkXQfdR6wlo4pDJqCJLMqqsmkgZWlIB7yML1/XzDZXgBVW3mYDFCEURAS8mmWGac3Dx4lUvaqUwjxRQ4fKH9FrcNuu5o2L40Y0GjZZ+RQ6WYWUAwwq2/hAGtQynqtvgyXmT8XZVBDnRFNIYzDWLv4ZMDKuNzlbiJsOW7lWenQJG55M6EZS9XsqvHxNGEfcxxbZ1QD5rMB3ZalqJQJYrkyW2AHqyVBFbCtDWRf+v8j0JeZhefCL5CLdB/A5skG1XD9ZajKIFrShG9FagTq9ZZrGJBPDXLYsWmIZetF8KtTLXpUsBdGdWQ5+/aqw6eGM1eb3RS7b0Uvq3e1gemmGadgrOmaAM95Pi36Vrl+td8Rwh4zCgsUV4hSHNBJNScE05jkuAxGBbcmWYBQAjARcZuHWF7x93Pz0Kkpe7tqCPIwnZZgX1XDrk5nQ4ADqUKQNeDzZ23sJxr2WdUgUddjsq1JMTEKE0MWpAY1FKKQMGA5Dl5bONE5fJUCKeg7d/kq5EI=

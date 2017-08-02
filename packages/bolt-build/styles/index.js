@@ -1,4 +1,4 @@
-import { events } from '@bolt/build-core';
+import { events, reportError as utils } from '@bolt/build-core';
 import gulp from 'gulp';
 import merge from 'merge';
 import autoprefixer from 'autoprefixer';
@@ -58,14 +58,18 @@ function compileCSS(userConfig) {
 
   function compileCssTask(done) {
     gulp.src(config.src)
-     .pipe(plumber({
-       errorHandler(error) {
-         notify.onError({
-           title: 'CSS <%= error.name %> - Line <%= error.line %>',
-           message: '<%= error.message %>'
-         })(error);
-       }
-     }))
+    .pipe(plumber({
+      errorHandler: utils.reportError
+    }))
+    //  .pipe(plumber({
+    //
+    //    errorHandler(error) {
+    //      notify.onError({
+    //        title: 'CSS <%= error.name %> - Line <%= error.line %>',
+    //        message: '<%= error.message %>'
+    //      })(error);
+    //    }
+    //  }))
        // .pipe($.env.development($.sourcemaps.init()))
     // .pipe(sourcemaps.init())
     .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
@@ -85,7 +89,8 @@ function compileCSS(userConfig) {
        ],
        functions: exportJson(config.dataDest, 'json'),
        outputStyle: 'expanded'
-     })).on('error', sass.logError))
+     })))
+    //  .on('error', sass.logError))
      .pipe(postcss(config.postCSS))
      .pipe(duration('CSS Compile Time'))
      .pipe(size({ title: 'Total CSS Size' }))

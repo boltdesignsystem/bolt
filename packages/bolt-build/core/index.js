@@ -7,6 +7,7 @@
 const events = require('./events');
 const utils = require('./utils');
 const notify = require('./notifier');
+const reportError = require('./report-error');
 
 /**
  * Show Tasks from a Plugin along with Description.
@@ -31,5 +32,6 @@ module.exports = {
   events,
   utils,
   notify,
-  showTasks
+  showTasks,
+  reportError
 };

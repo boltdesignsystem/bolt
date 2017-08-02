@@ -1,8 +1,7 @@
 /* ------------------------------------ *\
   SETTINGS - BREAKPOINTS
 \* ------------------------------------ */
-@import 'breakpoint-sass';
-@import 'breakpoint-slicer/stylesheets/breakpoint-slicer';
+// @import 'breakpoint-slicer/stylesheets/breakpoint-slicer';
 
 
 $breakpoints: (
@@ -13,11 +12,79 @@ $breakpoints: (
   xlarge:  1400px
 );
 
-@each $breakpoint in $breakpoints {
-  $name:     nth($breakpoint, 1);
-  $value:    nth($breakpoint, 2);
-  @include add-breakpoint(quote($name), $value);
+// @each $breakpoint in $breakpoints {
+//   $name:     nth($breakpoint, 1);
+//   $value:    nth($breakpoint, 2);
+//   // @include add-breakpoint(quote($name), $value);
+//
+//   // $slicer-breakpoint-names: append($slicer-breakpoint-names, $name);
+//   // $slicer-breakpoints:      append($slicer-breakpoints, $value);
+// }
 
-  $slicer-breakpoint-names: append($slicer-breakpoint-names, $name);
-  $slicer-breakpoints:      append($slicer-breakpoints, $value);
+
+
+
+@import 'mappy-breakpoints/mappy-breakpoints';
+
+/**
+  * Very lightweight wrapper over https://github.com/zellwk/mappy-breakpoints
+  *
+  * 1. Override the default `mappy-em` internal function to allow us to output px-based
+  *    breakpoints instead of rems
+  * 2. Lightweight alias over the mappy-bp mixin. Allows existing `@include respond-to`
+  *    and `@include breakpoint` calls to continue to work as expected
+  */
+$mappy-output: 'px' !default;
+
+
+@function mappy-em($target, $context: 16px) {
+  @if $target == 0 {
+    @return 0;
+  }
+
+  @if ($mappy-output == 'px') { /* [1] */
+    @return $target;
+  } @else {
+    @return $target / $context * 1em;
+  }
+}
+
+
+@mixin breakpoint($args...) { /* [2] */
+  @error "The `@include breakpoint` is being phased out. Please use the `@include respond-to()` mixin instead.";
+  @include mappy-bp($args...) {
+    @content;
+  }
+}
+
+@mixin respond-to($args...) { /* [2] */
+  @include mappy-bp($args...) {
+    @content;
+  }
+}
+
+//
+// @mixin breakpoint($queries, $type: all, $query-fallback: null, $breakpoints: $breakpoints) {
+//   // Gets mappy map through mappy-bp fn
+//   $mappy-map: mappy-bp($queries, $type, $query-fallback, $breakpoints);
+//
+//   // Outputs media string
+//   @media #{map-get($mappy-map, type)} and #{map-get($mappy-map, media-string)} {
+//     @content;
+//   }
+//
+//   // If a query fallback is provided
+//   @if $query-fallback {
+//     #{$query-fallback} & {
+//       @content;
+//     }
+//   }
+// }
+
+
+
+h2 {
+  @include breakpoint(medium){
+    background-color: red;
+  }
 }
