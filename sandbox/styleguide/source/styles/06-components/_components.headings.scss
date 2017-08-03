@@ -14,14 +14,14 @@
 }
 
 .c-heading--xxlarge {
-  @include font-size(xxxlarge);
+  @include font-size(xxlarge);
 
-  letter-spacing: -.15rem;
+  letter-spacing: -.1rem;
 
-  @include respond-to(max medium) {
-    @include font-size(xxlarge);
+  @include respond-to(medium) {
+    @include font-size(xxxlarge);
 
-    letter-spacing: -.1rem;
+    letter-spacing: -.15rem;
   }
 }
 
@@ -71,7 +71,7 @@
   }
 
 .c-heading-group {
-  .c-eyebrow {
+  .c-heading--eyebrow {
     @include padding(0,0,($font-leading--base*.125 + rem),0);
   }
 
@@ -81,13 +81,15 @@
 
   .c-heading--xlarge {
     @include padding(0,0,($font-leading--base*.65 + rem),0);
+    @include font-size(large);
     @include font-weight(regular);
 
-    line-height: 1.45;
     letter-spacing: 0;
 
-    @include respond-to(max medium) {
-      @include font-size(large);
+    @include respond-to(medium) {
+      @include font-size(xlarge);
+
+      line-height: 1.45;
     }
   }
 

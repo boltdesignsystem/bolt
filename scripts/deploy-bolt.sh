@@ -41,19 +41,12 @@ do
   DEPLOY_SUBDOMAIN=`echo "$DEPLOY_SUBDOMAIN_UNFORMATTED" | sed -r 's/[\/|\.]+/\-/g'`
 
 
-
   if [ "$DEPLOY_SUBDOMAIN" == "" ]
   then
     DEPLOY_DOMAIN=https://${DEPLOY_SUBDOMAIN}${REPO_NAME}.surge.sh
-    BUCKET_NAME=${DEPLOY_SUBDOMAIN}
   else
     DEPLOY_DOMAIN=https://${DEPLOY_SUBDOMAIN}-${REPO_NAME}.surge.sh
-    BUCKET_NAME=${DEPLOY_SUBDOMAIN}.
   fi
-
-  stout create --bucket ${BUCKET_NAME}boltdesignsystem.com --key AKIAI3MDF6GGEW5FH3RA --secret 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
-
-  stout deploy --bucket ${BUCKET_NAME}boltdesignsystem.com --key AKIAI3MDF6GGEW5FH3RA --secret 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 --root ./bolt-website
 
   echo SURGE_DEPLOY_URL=$DEPLOY_DOMAIN > .env
   echo "SURGE_DEPLOY_URL has been set to: $DEPLOY_DOMAIN"

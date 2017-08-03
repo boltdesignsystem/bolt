@@ -1,8 +1,8 @@
 /*------------------------------------*\
   Body and heading declaration
 \*------------------------------------*/
-$breakpoint--min: map-get($breakpoints, small);
-$breakpoint--max: map-get($breakpoints, large);
+$breakpoint--min: map-get($breakpoints, medium);
+$breakpoint--max: map-get($breakpoints, xlarge);
 
 
 html {
@@ -10,12 +10,12 @@ html {
   font-size: $font-size--min-px;
 
   // Responsive type
-  @include respond-to(small) {
-    font-size: calc(#{$font-size--min-px} + #{$font-size--max - $font-size--min} * (100vw - #{$breakpoint--min}) / (#{$breakpoint--max - $breakpoint--min}));
+  @include respond-to(medium) {
+    font-size: calc(#{$font-size--min-px} + (#{$font-size--max - $font-size--min} * (100vw - #{$breakpoint--min}) / #{strip-unit($breakpoint--max) - strip-unit($breakpoint--min)}));
   }
 
   // Large type
-  @include respond-to(large) {
+  @include respond-to(xlarge) {
     font-size: $font-size--max-px;
   }
 }
