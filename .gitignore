@@ -22,6 +22,14 @@ vendor
 bolt-website
 .env
 
+
+
+
+
+# built version of sassdoc should only get committed to the bolt-website folder in the root
+sandbox/sassdoc
+
+
 scripts/deploy.pem
 packages/bolt-build/server/certs
 packages/bolt-build/server/_certs
@@ -34,6 +42,3 @@ packages/_pegakit-ui
 
 !**/node_modules/@bolt-test/*
 !**/@bolt-test
-
-# Ignore any Pattern Lab --> packages folders being symlinked
-sandbox/pattern-library/source/_patterns/**/bolt-*

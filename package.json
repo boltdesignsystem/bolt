@@ -4,7 +4,7 @@
   "description": "Pega Digital Design System",
   "scripts": {
     "bootstrap": "lerna bootstrap --hoist",
-    "build": "gulp build",
+    "build": "if [ ! -f ./bolt-website/patterns/index.html ]; then npm run setup:composer; fi && gulp build",
     "commitmsg": "validate-commit-msg",
     "deploy:surge": "npm run build && surge bolt-website $npm_package_config_surgeDomain",
     "fix:scripts": "gulp scripts:fix",
@@ -68,6 +68,7 @@
   "homepage": "https://github.com/pega-digital/bolt#readme",
   "dependencies": {
     "@bolt/tool-strip-unit": "^0.2.0-alpha.b42df1b9",
+    "@bolt/config-global": "^0.1.0-alpha",
     "@bolt/tools-strip-unit": "^0.2.0-alpha.40b17e25",
     "@theme-tools/plugin-jekyll": "^0.4.2",
     "autoprefixer": "^7.1.2",

@@ -63,25 +63,6 @@ $mappy-output: 'px' !default;
   }
 }
 
-//
-// @mixin breakpoint($queries, $type: all, $query-fallback: null, $breakpoints: $breakpoints) {
-//   // Gets mappy map through mappy-bp fn
-//   $mappy-map: mappy-bp($queries, $type, $query-fallback, $breakpoints);
-//
-//   // Outputs media string
-//   @media #{map-get($mappy-map, type)} and #{map-get($mappy-map, media-string)} {
-//     @content;
-//   }
-//
-//   // If a query fallback is provided
-//   @if $query-fallback {
-//     #{$query-fallback} & {
-//       @content;
-//     }
-//   }
-// }
-
-
 
 h2 {
   @include breakpoint(medium){

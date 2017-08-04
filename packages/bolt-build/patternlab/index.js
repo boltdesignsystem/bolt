@@ -1,6 +1,6 @@
 /* eslint no-unused-vars: ["error", { "args": "none" }]*/
 import gulp from 'gulp';
-import { notify, events } from '@bolt/build-core';
+import { shell, events } from '@bolt/build-core';
 
 const defaultConfig = require('./config.default');
 const yaml = require('js-yaml');
@@ -21,7 +21,7 @@ const consolePath = path.join(patternLabRoot, 'core/console');
 
 // Build Pattern Lab via CLI command -- can exit or not based on 2nd param passed in
 function patternLab(done, errorShouldExit) {
-  notify.sh(`php ${consolePath} --generate`, errorShouldExit, (err) => {
+  shell.sh(`php ${consolePath} --generate`, errorShouldExit, (err) => {
     events.emit('reload');
     done(err);
   });

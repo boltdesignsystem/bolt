@@ -6,7 +6,7 @@
 
 const events = require('./events');
 const utils = require('./utils');
-const notify = require('./notifier');
+const shell = require('./shell');
 const reportError = require('./report-error');
 
 /**
@@ -31,7 +31,7 @@ function showTasks(tasks) {
 module.exports = {
   events,
   utils,
-  notify,
+  shell,
   showTasks,
   reportError
 };
