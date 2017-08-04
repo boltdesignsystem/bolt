@@ -5,6 +5,18 @@ intro: Bolt was designed to help developers and designers quickly create the mos
 permalink: /getting-started/
 ---
 
+<div style="display: flex">
+  <span class="inline">1</span> <span class="inline">2</span> <span class="inline">3</span>
+</div>
+
+<div class="inset">
+  xxlarge
+</div>
+
+<div class="stack">
+  base
+</div>
+
 <aside>
   <small>
     <figure>

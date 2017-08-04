@@ -1,0 +1,118 @@
+/*------------------------------------*\
+  Spacing Scale
+\*------------------------------------*/
+
+$spacing-leading: 1.65;
+$spacing-gutter: 2;
+
+
+/**
+ * Read https://medium.com/eightshapes-llc/space-in-design-systems-188bcbae0d62 for more background into spacing scales for design systems.
+ */
+/*
+$spacing-scale: (
+  spacing: (
+    'default': (
+      xlarge: 64px,
+      large:  32px,
+      medium: 16px,
+      small:   8px,
+      xsmall:  4px,
+      xxsmall: 2px
+    ),
+    'squished': (
+      large:  16px 32px,
+      medium:  7px 16px,
+      small:   5px  8px
+    ),
+    'stretched': (
+      large:   64px 32px,
+      medium:  32px 16px,
+      small:   16px  8px
+    )
+  )
+);*/
+
+$spacing-insets: (
+  spacing-insets: (
+    'xxlarge': (
+      vertical:   $spacing-leading + rem,
+      horizontal: $spacing-gutter + rem
+    ),
+    'xlarge': (
+      vertical:   $spacing-leading * 0.875 + rem,
+      horizontal: $spacing-gutter * 0.875 + rem
+    ),
+    'large': (
+      vertical:   $spacing-leading * 0.75 + rem,
+      horizontal: $spacing-gutter * 0.75 + rem
+    ),
+    'medium': (
+      vertical:   $spacing-leading * 0.625 + rem,
+      horizontal: $spacing-gutter * 0.625 + rem
+    ),
+    'base': (
+      vertical:   $spacing-leading * 0.5 + rem,
+      horizontal: $spacing-gutter * 0.5 + rem
+    ),
+    'small': (
+      vertical:   $spacing-leading * 0.375 + rem,
+      horizontal: $spacing-gutter * 0.375 + rem
+    ),
+    'xsmall': (
+      vertical:   $spacing-leading * 0.25 + rem,
+      horizontal: $spacing-gutter * 0.25 + rem
+    )
+  )
+);
+
+$spacing-stacks: (
+  spacing-stacks: (
+    xxlarge:  $spacing-leading * 2 + rem,
+    xlarge:   $spacing-leading * 1.75 + rem,
+    large:    $spacing-leading * 1.5 + rem,
+    medium:   $spacing-leading * 1.25 + rem,
+    base:     $spacing-leading + rem,
+    small:    $spacing-leading * 0.75 + rem,
+    xsmall:   $spacing-leading * 0.5 + rem
+  )
+);
+
+$spacing-inlines: (
+  spacing-inlines: (
+    xxlarge:  $spacing-gutter + rem,
+    xlarge:   $spacing-gutter / 2 + rem,
+    large:    $spacing-gutter / 4 + rem,
+    medium:   $spacing-gutter / 6 + rem,
+    base:     $spacing-gutter / 8 + rem,
+    small:    $spacing-gutter / 10 + rem,
+    xsmall:   $spacing-gutter / 12 + rem
+  )
+);
+
+@mixin inset($inset-size) {
+  $vertical-padding: map-get-deep($spacing-insets, 'spacing-insets', $inset-size, 'vertical');
+  $horizontal-padding: map-get-deep($spacing-insets, 'spacing-insets', $inset-size, 'horizontal');
+
+  padding-top: $vertical-padding;
+  padding-right: $horizontal-padding;
+  padding-bottom: $vertical-padding;
+  padding-left: $horizontal-padding;
+}
+
+@mixin stack($stack) {
+  $margin-size: map-get-deep($spacing-stacks, 'spacing-stacks', $stack);
+
+  margin-bottom: $margin-size;
+}
+
+@mixin inline($inline) {
+  $margin-size: map-get-deep($spacing-inlines, 'spacing-inlines', $inline);
+
+  margin-right: $margin-size;
+
+  [dir=rtl] & {
+    margin-right: auto;
+    margin-left: $margin-size;
+  }
+}
