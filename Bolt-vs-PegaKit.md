@@ -8,7 +8,7 @@ Bolt is the next **evolution** of PegaKit, our first generation Design System at
 
 ### So then what's different?
 
-In short, we're taking the feedback we've received over the past year, the things we've learned rolling PegaKit out on our pega.com, accounts.pega.com, blog.pega.com, and accounts.pega.com, and the growing needs of our growing team to iterate and improve upon v1 of our existing design system.
+In short, we're taking the feedback we've received over the past year, the things we've learned rolling PegaKit out on our pega.com, accounts.pega.com, blog.pega.com, and academy.pega.com, and the growing needs of our growing team to iterate and improve upon v1 of our existing design system.
 
 That's precisely why things like having the ability to version and publish individual components, documenting new additions to the system as they become available, server-side front-end builds, and incorporating continuous testing coverage are some of the very first new things being actively worked on.
 
