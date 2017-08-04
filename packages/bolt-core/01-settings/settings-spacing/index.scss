@@ -33,60 +33,93 @@ $spacing-scale: (
   )
 );*/
 
+$v-spacing-sizes: (
+  xxlarge:  $spacing-leading * 8 + rem,
+  xlarge:   $spacing-leading * 4 + rem,
+  large:    $spacing-leading * 2 + rem,
+  medium:   $spacing-leading * 1 + rem,
+  small:    $spacing-leading * 0.5 + rem,
+  xsmall:   $spacing-leading * 0.25 + rem,
+  xxsmall:  $spacing-leading * 0.125 + rem,
+  xxxsmall: $spacing-leading * 0.0625 + rem,
+  none:     0
+) !default;
+
+@function v-spacing($v-spacing-size) {
+  @return map-get-deep($v-spacing-sizes, $v-spacing-size);
+}
+
+$h-spacing-sizes: (
+  xxlarge:  $spacing-gutter * 8 + rem,
+  xlarge:   $spacing-gutter * 4 + rem,
+  large:    $spacing-gutter * 2 + rem,
+  medium:   $spacing-gutter * 1 + rem,
+  small:    $spacing-gutter * 0.5 + rem,
+  xsmall:   $spacing-gutter * 0.25 + rem,
+  xxsmall:  $spacing-gutter * 0.125 + rem,
+  xxxsmall: $spacing-gutter * 0.0625 + rem,
+  none:     0
+) !default;
+
+@function h-spacing($h-spacing-size) {
+  @return map-get-deep($h-spacing-sizes, $h-spacing-size);
+}
+
+
 $spacing-insets: (
   spacing-insets: (
-    'xxlarge': (
-      vertical:   $spacing-leading + rem,
-      horizontal: $spacing-gutter + rem
+    xxlarge: (
+      vertical:   $spacing-leading * 4 + rem,
+      horizontal: $spacing-gutter * 4 + rem
     ),
-    'xlarge': (
-      vertical:   $spacing-leading * 0.875 + rem,
-      horizontal: $spacing-gutter * 0.875 + rem
+    xlarge: (
+      vertical:   $spacing-leading * 2 + rem,
+      horizontal: $spacing-gutter * 2 + rem
     ),
-    'large': (
-      vertical:   $spacing-leading * 0.75 + rem,
-      horizontal: $spacing-gutter * 0.75 + rem
+    large: (
+      vertical:   $spacing-leading * 1 + rem,
+      horizontal: $spacing-gutter * 1 + rem
     ),
-    'medium': (
-      vertical:   $spacing-leading * 0.625 + rem,
-      horizontal: $spacing-gutter * 0.625 + rem
-    ),
-    'base': (
+    medium: (
       vertical:   $spacing-leading * 0.5 + rem,
       horizontal: $spacing-gutter * 0.5 + rem
     ),
-    'small': (
-      vertical:   $spacing-leading * 0.375 + rem,
-      horizontal: $spacing-gutter * 0.375 + rem
-    ),
-    'xsmall': (
+    small: (
       vertical:   $spacing-leading * 0.25 + rem,
       horizontal: $spacing-gutter * 0.25 + rem
+    ),
+    xsmall: (
+      vertical:   $spacing-leading * 0.125 + rem,
+      horizontal: $spacing-gutter * 0.125 + rem
+    ),
+    xxsmall: (
+      vertical:   $spacing-leading * 0.0625 + rem,
+      horizontal: $spacing-gutter * 0.0625 + rem
     )
   )
 );
 
 $spacing-stacks: (
   spacing-stacks: (
-    xxlarge:  $spacing-leading * 2 + rem,
-    xlarge:   $spacing-leading * 1.75 + rem,
-    large:    $spacing-leading * 1.5 + rem,
-    medium:   $spacing-leading * 1.25 + rem,
-    base:     $spacing-leading + rem,
-    small:    $spacing-leading * 0.75 + rem,
-    xsmall:   $spacing-leading * 0.5 + rem
+    xxlarge:  $spacing-leading * 4 + rem,
+    xlarge:   $spacing-leading * 2 + rem,
+    large:    $spacing-leading * 1 + rem,
+    medium:   $spacing-leading * 0.5 + rem,
+    small:    $spacing-leading * 0.25 + rem,
+    xsmall:   $spacing-leading * 0.125 + rem,
+    xxsmall:  $spacing-leading * 0.0625 + rem
   )
 );
 
 $spacing-inlines: (
   spacing-inlines: (
-    xxlarge:  $spacing-gutter + rem,
-    xlarge:   $spacing-gutter / 2 + rem,
-    large:    $spacing-gutter / 4 + rem,
-    medium:   $spacing-gutter / 6 + rem,
-    base:     $spacing-gutter / 8 + rem,
-    small:    $spacing-gutter / 10 + rem,
-    xsmall:   $spacing-gutter / 12 + rem
+    xxlarge:  $spacing-gutter * 4 + rem,
+    xlarge:   $spacing-gutter * 2 + rem,
+    large:    $spacing-gutter * 1 + rem,
+    medium:   $spacing-gutter * 0.5 + rem,
+    small:    $spacing-gutter * 0.25 + rem,
+    xsmall:   $spacing-gutter * 0.125 + rem,
+    xxsmall:  $spacing-gutter * 0.0625 + rem
   )
 );
 
@@ -110,9 +143,4 @@ $spacing-inlines: (
   $margin-size: map-get-deep($spacing-inlines, 'spacing-inlines', $inline);
 
   margin-right: $margin-size;
-
-  [dir=rtl] & {
-    margin-right: auto;
-    margin-left: $margin-size;
-  }
 }

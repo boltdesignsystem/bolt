@@ -5,16 +5,56 @@ intro: Bolt was designed to help developers and designers quickly create the mos
 permalink: /getting-started/
 ---
 
-<div style="display: flex">
-  <span class="inline">1</span> <span class="inline">2</span> <span class="inline">3</span>
-</div>
-
-<div class="inset">
-  xxlarge
-</div>
-
-<div class="stack">
-  base
+<div class="o-grid">
+  <div class="o-grid__item c-card c-card--flex">
+    <figure class="c-card__media">
+      <img src="http://fillmurray.com/g/640/320" alt="Bill">
+    </figure>
+    <div class="c-card__content">
+      <div class="o-inset">
+        <div class="o-stack">
+          <strong>Brisket prosciutto</strong>
+        </div>
+        <div class="o-stack">
+          Hamburger pancetta biltong tail beef landjaeger cupim ribeye filet mignon jerky bresaola bacon drumstick beef ribs.
+        </div>
+        <div class="o-stack">
+          Pastrami tongue salami leberkas shankle prosciutto swine.
+        </div>
+      </div>
+    </div>
+    <div class="c-card__actions">
+      <a href="javascript:" class="c-button c-button--expand">Button</a>
+    </div>
+  </div>
+  <div class="o-grid__item c-card c-card--flex">
+    <figure class="c-card__media">
+      <img src="http://fillmurray.com/g/320/160" alt="Bill">
+    </figure>
+    <div class="c-card__content">
+      <div class="o-inset">
+        <div class="o-stack">
+          <strong>Corned beef</strong>
+        </div>
+        <div class="o-stack">
+          Boudin turkey pork, tongue kevin rump spare ribs pancetta tri-tip jowl short loin.
+        </div>
+        <div class="o-stack">
+          <ul class="o-inline-list">
+            <li class="o-inline-list__item">
+              <a href="javascript:">Link 1</a>
+            </li>
+            <li class="o-inline-list__item">
+              <a href="javascript:">Link 2</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="c-card__actions">
+      <a href="javascript:" class="c-button c-button--expand">Button</a>
+    </div>
+  </div>
 </div>
 
 <aside>
