@@ -33,7 +33,7 @@ $spacing-scale: (
   )
 );*/
 
-$v-spacing-sizes: (
+$spacing-sizes--vertical: (
   xxlarge:  $spacing-leading * 8 + rem,
   xlarge:   $spacing-leading * 4 + rem,
   large:    $spacing-leading * 2 + rem,
@@ -45,11 +45,11 @@ $v-spacing-sizes: (
   none:     0
 ) !default;
 
-@function v-spacing($v-spacing-size) {
-  @return map-get-deep($v-spacing-sizes, $v-spacing-size);
+@function spacing-vertical($size) {
+  @return map-get-deep($spacing-sizes--vertical, $size);
 }
 
-$h-spacing-sizes: (
+$spacing-sizes--horizontal: (
   xxlarge:  $spacing-gutter * 8 + rem,
   xlarge:   $spacing-gutter * 4 + rem,
   large:    $spacing-gutter * 2 + rem,
@@ -61,43 +61,124 @@ $h-spacing-sizes: (
   none:     0
 ) !default;
 
-@function h-spacing($h-spacing-size) {
-  @return map-get-deep($h-spacing-sizes, $h-spacing-size);
+@function spacing-horizontal($size) {
+  @return map-get-deep($spacing-sizes--horizontal, $size);
 }
 
 
-$spacing-insets: (
-  spacing-insets: (
+
+
+$spacing-scales: (
+  spacing-scales: (
     xxlarge: (
+      vertical:   $spacing-leading * 8 + rem,
+      horizontal: $spacing-gutter * 8 + rem
+    ),
+    xlarge: (
       vertical:   $spacing-leading * 4 + rem,
       horizontal: $spacing-gutter * 4 + rem
     ),
-    xlarge: (
+    large: (
       vertical:   $spacing-leading * 2 + rem,
       horizontal: $spacing-gutter * 2 + rem
     ),
-    large: (
+    medium: (
       vertical:   $spacing-leading * 1 + rem,
       horizontal: $spacing-gutter * 1 + rem
     ),
-    medium: (
+    small: (
       vertical:   $spacing-leading * 0.5 + rem,
       horizontal: $spacing-gutter * 0.5 + rem
     ),
-    small: (
+    xsmall: (
       vertical:   $spacing-leading * 0.25 + rem,
       horizontal: $spacing-gutter * 0.25 + rem
     ),
-    xsmall: (
+    xxsmall: (
       vertical:   $spacing-leading * 0.125 + rem,
       horizontal: $spacing-gutter * 0.125 + rem
-    ),
-    xxsmall: (
-      vertical:   $spacing-leading * 0.0625 + rem,
-      horizontal: $spacing-gutter * 0.0625 + rem
     )
   )
 );
+
+@mixin spacing-margin($size, $direction: bottom) {
+  $vertical-size:   map-get-deep($spacing-scales, 'spacing-scales', $size, 'vertical');
+  $horizontal-size: map-get-deep($spacing-scales, 'spacing-scales', $size, 'horizontal');
+
+  @if $direction == 'all' {
+    margin-top:    $vertical-size;
+    margin-right:  $horizontal-size;
+    margin-bottom: $vertical-size;
+    margin-left:   $horizontal-size;
+  }
+
+  @elseif $direction == 'top' {
+    margin-top:    $vertical-size;
+  }
+
+  @elseif $direction == 'right' {
+    margin-right:  $horizontal-size;
+  }
+
+  @elseif $direction == 'bottom' {
+    margin-bottom: $vertical-size;
+  }
+
+  @elseif $direction == 'left' {
+    margin-left:   $horizontal-size;
+  }
+
+  @elseif $direction == 'horizontal' {
+    margin-right:   $horizontal-size;
+    margin-left:   $horizontal-size;
+  }
+
+  @elseif $direction == 'vertical' {
+    margin-top: $vertical-size;
+    margin-bottom: $vertical-size;
+  }
+}
+
+@mixin spacing-padding($size, $direction: all) {
+  $vertical-size:   map-get-deep($spacing-scales, 'spacing-scales', $size, 'vertical');
+  $horizontal-size: map-get-deep($spacing-scales, 'spacing-scales', $size, 'horizontal');
+
+  @if $direction == 'all' {
+    padding-top:    $vertical-size;
+    padding-right:  $horizontal-size;
+    padding-bottom: $vertical-size;
+    padding-left:   $horizontal-size;
+  }
+
+  @elseif $direction == 'top' {
+    padding-top:    $vertical-size;
+  }
+
+  @elseif $direction == 'right' {
+    padding-right:  $horizontal-size;
+  }
+
+  @elseif $direction == 'bottom' {
+    padding-bottom: $vertical-size;
+  }
+
+  @elseif $direction == 'left' {
+    padding-left:   $horizontal-size;
+  }
+
+  @elseif $direction == 'horizontal' {
+    padding-right:   $horizontal-size;
+    padding-left:   $horizontal-size;
+  }
+
+  @elseif $direction == 'vertical' {
+    padding-top: $vertical-size;
+    padding-bottom: $vertical-size;
+  }
+}
+
+
+
 
 $spacing-stacks: (
   spacing-stacks: (
@@ -111,6 +192,15 @@ $spacing-stacks: (
   )
 );
 
+@mixin stack($stack) {
+  $margin-size: map-get-deep($spacing-stacks, 'spacing-stacks', $stack);
+
+  margin-bottom: $margin-size;
+}
+
+
+
+
 $spacing-inlines: (
   spacing-inlines: (
     xxlarge:  $spacing-gutter * 4 + rem,
@@ -122,22 +212,6 @@ $spacing-inlines: (
     xxsmall:  $spacing-gutter * 0.0625 + rem
   )
 );
-
-@mixin inset($inset-size) {
-  $vertical-padding: map-get-deep($spacing-insets, 'spacing-insets', $inset-size, 'vertical');
-  $horizontal-padding: map-get-deep($spacing-insets, 'spacing-insets', $inset-size, 'horizontal');
-
-  padding-top: $vertical-padding;
-  padding-right: $horizontal-padding;
-  padding-bottom: $vertical-padding;
-  padding-left: $horizontal-padding;
-}
-
-@mixin stack($stack) {
-  $margin-size: map-get-deep($spacing-stacks, 'spacing-stacks', $stack);
-
-  margin-bottom: $margin-size;
-}
 
 @mixin inline($inline) {
   $margin-size: map-get-deep($spacing-inlines, 'spacing-inlines', $inline);

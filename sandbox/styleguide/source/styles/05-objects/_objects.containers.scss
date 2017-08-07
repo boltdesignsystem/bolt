@@ -188,7 +188,7 @@ body {
 }*/
 
 .o-inset {
-  @include inset(medium);
+  @include spacing-padding(medium, bottom);
 }
 
 .o-stack {
@@ -216,14 +216,47 @@ body {
 
 .o-grid {
   display: flex;
-  margin-right: -(h-spacing(small));
-  margin-left: -(h-spacing(small));
+  margin-right: -(spacing-horizontal(small));
+  margin-left: -(spacing-horizontal(small));
 }
 
 .o-grid__item {
+  @include spacing-margin(small, horizontal);
+
   flex: 1;
-  margin-right: h-spacing(small);
-  margin-left: h-spacing(small);
+
+
+
+
+/*
+  @include margin(medium);
+  @include margin(medium, all);
+  @include margin(medium, top);
+  @include margin(medium, right);
+  @include margin(medium, bottom);
+  @include margin(medium, left);
+  @include margin(medium, vertical);
+  @include margin(medium, horizontal);
+
+
+
+  @include padding(medium);
+  @include padding(medium, all);
+  @include padding(medium, top);
+  @include padding(medium, right);
+  @include padding(medium, bottom);
+  @include padding(medium, left);
+  @include padding(medium, vertical);
+  @include padding(medium, horizontal);
+
+  @include padding(medium, all, squish);
+  @include padding(medium, all, squished);
+  @include padding(medium, all, stretch);
+  @include padding(medium, all, stretched);
+
+  @include squish();
+  @include stretch();*/
+
 }
 
 .c-card {
@@ -250,6 +283,7 @@ body {
 }
 
 .c-card__content {
+  @include spacing-padding(medium);
 }
 
 .c-card__actions {
@@ -258,7 +292,7 @@ body {
 
 
 .c-button {
-  @include inset(medium);
+  @include spacing-padding(medium);
 
   color: white !important;
   text-align: center;
