@@ -84,6 +84,7 @@ $spacing-scales: (
   )
 );
 
+
 @mixin margin($size: medium, $sides: all, $reset: null) {
   $size-vertical:   map-get-deep($spacing-scales, 'spacing-scales', $size, 'vertical');
   $size-horizontal: map-get-deep($spacing-scales, 'spacing-scales', $size, 'horizontal');
@@ -180,17 +181,17 @@ $spacing-scales: (
   }
 
   @else if $sides == 'squish' {
-    padding-top:    $size-vertical;
-    padding-right:  calc(#{$size-horizontal} * 2);
-    padding-bottom: $size-vertical;
-    padding-left:   calc(#{$size-horizontal} * 2);
+    padding-top:    calc(#{$size-vertical} * 0.5);
+    padding-right:  $size-horizontal;
+    padding-bottom: calc(#{$size-vertical} * 0.5);
+    padding-left:   $size-horizontal;
   }
 
   @else if $sides == 'stretch' {
-    padding-top:    $size-vertical;
-    padding-right:  calc(#{$size-horizontal} * 0.5);
-    padding-bottom: $size-vertical;
-    padding-left:   calc(#{$size-horizontal} * 0.5);
+    padding-top:    calc(#{$size-vertical} * 0.5);
+    padding-right:  calc(#{$size-horizontal} * 0.25);
+    padding-bottom: calc(#{$size-vertical} * 0.5);
+    padding-left:   calc(#{$size-horizontal} * 0.25);
   }
 
   @else if $sides == 'top' {
@@ -273,6 +274,12 @@ $spacing-scales: (
   padding-bottom: $size-vertical;
   padding-left:   calc(#{$size-horizontal} * 0.5);
 }
+
+
+
+
+
+
 
 
 

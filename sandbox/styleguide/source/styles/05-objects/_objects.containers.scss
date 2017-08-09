@@ -180,7 +180,7 @@ body {
 
 
 .o-inset {
-  @include padding(medium);
+  /*@include padding(medium);*/
 }
 
 .o-stack {
@@ -213,12 +213,56 @@ body {
 }
 
 .o-grid__item {
-  @include margin(small, horizontal);
+  /*@include margin(small, horizontal);*/
 
   flex: 1;
 }
 
 .testing {
+  /* [TODO] Ability to use shorthand
+    eg:
+      10px 20px 10px 20px
+      10px 20px 10px
+      10px 20px
+
+      small medium small medium
+      small medium small
+      small medium
+
+      @include margin(10px);
+      @include margin(medium);
+      @include margin(0 medium);
+      @include margin(auto medium);
+      @include margin(small 0);
+      @include margin(small auto);
+      @include margin(small medium);
+      @include margin(small medium small);
+      @include margin(small medium small medium);
+      @include margin-right(10px);
+      @include margin-right(medium);
+
+      @include padding(10px);
+      @include padding(medium);
+      @include padding(0 medium);
+      @include padding(auto medium);
+      @include padding(small 0);
+      @include padding(small auto);
+      @include padding(small medium);
+      @include padding(small medium small);
+      @include padding(small medium small medium);
+      @include padding(medium, squish);
+      @include padding(medium, stretch);
+      @include padding-right(10px);
+      @include padding-right(medium);
+  */
+
+  /*
+    Bourbon
+
+    @include margin(spacing-vertical(small) auto);
+  */
+
+
   /*@include margin;*/
   /*@include margin(0);*/
   /*@include margin(none);*/
@@ -234,6 +278,7 @@ body {
   /*@include margin(medium, left);*/
   /*@include margin(medium, vertical);*/
   /*@include margin(medium, horizontal);*/
+
 
   /*@include padding;*/
   /*@include padding(0);*/
@@ -284,7 +329,7 @@ body {
 }
 
 .c-card__content {
-  @include padding(medium);
+  /*@include padding(medium);*/
 }
 
 .c-card__actions {
@@ -293,7 +338,7 @@ body {
 
 
 .c-button {
-  @include padding(medium);
+  /*@include padding(medium);*/
 
   color: white !important;
   text-align: center;
