@@ -73,7 +73,7 @@ Once installed, you should  `@import`  the main Sass partial into your project�
 @import ‘@bolt/tools-...’
 ```
 
-Since Bolt's CSS architecture is based on [ITCSS (Inverted Triangle CSS)](http://www.creativebloq.com/web-design/manage-large-css-projects-itcss-101517528)[^1], what Sass partials you import, and in what order, makes a whole world of difference. That’s why importing any Settings packages from Bolt in your project’s Settings layer (prior to any Sass mixins, resets, base HTML element styles, etc) is so important. 
+Since Bolt's CSS architecture is based on [ITCSS (Inverted Triangle CSS)](http://www.creativebloq.com/web-design/manage-large-css-projects-itcss-101517528)<sup>[1](#learn-about-itcss)</sup>, what Sass partials you import, and in what order, makes a whole world of difference. That’s why importing any Settings packages from Bolt in your project’s Settings layer (prior to any Sass mixins, resets, base HTML element styles, etc) is so important. 
 
 ### Compiling
 We recommend using Bolt’s Gulp-based [front-end build tools](https://www.npmjs.com/package/@bolt/build-tools) to compile your Sass as we're pre-packaging many of the latest tools and add-ons to help you write your very best: LibSass, Autoprefixer, PostCSS, CleanCSS, Sassdoc, Stylelint, Gulp Plumber, npm-sass, and BrowserSync live reloading.
@@ -83,16 +83,16 @@ We recommend using Bolt’s Gulp-based [front-end build tools](https://www.npmjs
 ## Font Size Features
 The *Bolt Design System* team has gone through vigorous testing to make sure all types are legible on all devices. We have created the following range of sizes to be used for headings and body text. All font sizes are responsive in relation to device screen size.
 
-### **Font Sizes Defined as rems vs px**[^2]
+### **Font Sizes Defined as rems vs px** <sup>[2](#font-sizes-rems)</sup>
 Bolt’s font sizes are defined in rems and and are organized in a structured Sass Map for consistency and maintainability.
 
 > Rem “represents the font-size of the root element (e.g., the font-size of the <html> element). When used within the root elements font-size, it represents its initial value (common browser default is 16px, but changes based upon users preferences).”  
 > -- [<length> - CSS | MDN](https://developer.mozilla.org/en/docs/Web/CSS/length)  
 
-### Line heights Included [^3]
+### Line heights Included <sup>[3](#line-heights-included)</sup>
 Each font size includes two pre-defined `unitless` line-heights: the default `regular` line-height for more editorial-focused designs and a `tight` shorter line height option for more interface-focused designs.
 
-### Responsive Ready [^4]
+### Responsive Ready <sup>[4](#fluid-typography-modular-scale)</sup>
 By defining our font sizes in REMs and by using unit-less line-heights, Bolt’s font sizes are responsive-ready out of the box. This responsive fluid typographic behavior is automatically included in the separate `bolt/elements-page` package (which gets @imported in the ITCSS elements layer)
 
 ```
@@ -117,32 +117,31 @@ html {
 }
 ```
 
-### Defined as T-shirt Sizes [^5]
+### Defined as T-shirt Sizes <sup>[5](#naming-things-using-t-shirt-sizes)</sup>
 As with most sizing options in Bolt, font sizes are categorized and referenced as `t-shirt` sizes, with `medium` being the default base font size (ie. the font size on the <body> or <html> tag), with each t-shirt size option being one step larger/smaller in the typographic modular scale.
 
 
-
 ## Further Reading:
-[^1]: Learn more about ITCSS
+<h3 id="learn-about-itcss">1. Learn more about ITCSS</h3>
 	- [Harry Roberts - Managing CSS Projects with ITCSS - YouTube](https://www.youtube.com/watch?v=1OKZOV-iLj4)
 	- [ITCSS: Scalable and Maintainable CSS Architecture - Xfive](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/)
 	- [Manage large CSS projects with ITCSS | Creative Bloq](http://www.creativebloq.com/web-design/manage-large-css-projects-itcss-101517528)
 	- [How I Shrank my CSS by 84kb by Refactoring with ITCSS](https://medium.com/@jordankoschei/how-i-shrank-my-css-by-84kb-by-refactoring-with-itcss-2e8dafee123a)
 
-[^2]: Rems for Font Sizes
+<h3 id="font-size-rems">2. Rems for Font Sizes</h3>
 	- [There’s more to the CSS rem unit than font sizing | CSS-Tricks](https://css-tricks.com/theres-more-to-the-css-rem-unit-than-font-sizing/)	
 	- [Font Size Idea: px at the Root, rem for Components, em for Text Elements | CSS-Tricks](https://css-tricks.com/rems-ems/)
 	- [Guide: EM vs REM vs PX. Which should you use? | Engage](http://engageinteractive.co.uk/blog/em-vs-rem-vs-px)
 
-[^3]: Unit-less Line Heights
+<h3 id="line-heights-included">3. Unitless Line Heights</h3>
 	- [line-height | CSS-Tricks](https://css-tricks.com/almanac/properties/l/line-height/#article-header-id-0)
 	- [Nope, nope, nope, line-height is unitless · Matt Smith](http://allthingssmitty.com/2017/01/30/nope-nope-nope-line-height-is-unitless/)
 
-[^4]: Fluid typography / modular scale
-	- [Fluid Responsive Typography With CSS Poly Fluid Sizing – Smashing Magazine](https://www.smashingmagazine.com/2017/05/fluid-responsive-typography-css-poly-fluid-sizing/)
-	- [Responsive Typography with Sass Maps](https://www.smashingmagazine.com/2015/06/responsive-typography-with-sass-maps/#organizing-font-sizes-with-sass-maps)
-	- [GitHub - modularscale/modularscale-sass: Modular scale calculator built into your Sass](https://github.com/modularscale/modularscale-sass)
+<h3 id="fluid-typography-modular-scale">4. Fluid typography / modular scale</h3>
+  - [Fluid Responsive Typography With CSS Poly Fluid Sizing – Smashing Magazine](https://www.smashingmagazine.com/2017/05/fluid-responsive-typography-css-poly-fluid-sizing/)
+  - [Responsive Typography with Sass Maps](https://www.smashingmagazine.com/2015/06/responsive-typography-with-sass-maps/#organizing-font-sizes-with-sass-maps)
+  - [GitHub - modularscale/modularscale-sass: Modular scale calculator built into your Sass](https://github.com/modularscale/modularscale-sass)
 
-[^5]: Naming things using t-shirt sizes
-	- [Space in Design Systems – EightShapes – Medium](https://medium.com/eightshapes-llc/space-in-design-systems-188bcbae0d62)
+<h3 id="naming-things-using-t-shirt-sizes">5. Naming things using t-shirt</h3>
+  - [Space in Design Systems – EightShapes – Medium](https://medium.com/eightshapes-llc/space-in-design-systems-188bcbae0d62)
 
