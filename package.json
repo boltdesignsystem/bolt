@@ -137,5 +137,11 @@
   "snyk": true,
   "devDependencies": {
     "pre-commit": "^1.2.2"
+  },
+  "now": {
+    "alias": "branch=$(git rev-parse --abbrev-ref HEAD | sed -e 's/\//-/g') | echo '${branch}-boltdesignsystem'",
+    "files": [
+      "bold-website"
+    ]
   }
 }
