@@ -123,25 +123,28 @@ As with most sizing options in Bolt, font sizes are categorized and referenced a
 
 ## Further Reading:
 <h3 id="learn-about-itcss">1. Learn more about ITCSS</h3>
-	- [Harry Roberts - Managing CSS Projects with ITCSS - YouTube](https://www.youtube.com/watch?v=1OKZOV-iLj4)
-	- [ITCSS: Scalable and Maintainable CSS Architecture - Xfive](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/)
-	- [Manage large CSS projects with ITCSS | Creative Bloq](http://www.creativebloq.com/web-design/manage-large-css-projects-itcss-101517528)
-	- [How I Shrank my CSS by 84kb by Refactoring with ITCSS](https://medium.com/@jordankoschei/how-i-shrank-my-css-by-84kb-by-refactoring-with-itcss-2e8dafee123a)
+
+- [Harry Roberts - Managing CSS Projects with ITCSS - YouTube](https://www.youtube.com/watch?v=1OKZOV-iLj4)
+- [ITCSS: Scalable and Maintainable CSS Architecture - Xfive](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/)
+- [Manage large CSS projects with ITCSS | Creative Bloq](http://www.creativebloq.com/web-design/manage-large-css-projects-itcss-101517528)
+- [How I Shrank my CSS by 84kb by Refactoring with ITCSS](https://medium.com/@jordankoschei/how-i-shrank-my-css-by-84kb-by-refactoring-with-itcss-2e8dafee123a)
+
 
 <h3 id="font-size-rems">2. Rems for Font Sizes</h3>
-	- [There’s more to the CSS rem unit than font sizing | CSS-Tricks](https://css-tricks.com/theres-more-to-the-css-rem-unit-than-font-sizing/)	
-	- [Font Size Idea: px at the Root, rem for Components, em for Text Elements | CSS-Tricks](https://css-tricks.com/rems-ems/)
-	- [Guide: EM vs REM vs PX. Which should you use? | Engage](http://engageinteractive.co.uk/blog/em-vs-rem-vs-px)
+
+- [There’s more to the CSS rem unit than font sizing | CSS-Tricks](https://css-tricks.com/theres-more-to-the-css-rem-unit-than-font-sizing/)	
+- [Font Size Idea: px at the Root, rem for Components, em for Text Elements | CSS-Tricks](https://css-tricks.com/rems-ems/)
+- [Guide: EM vs REM vs PX. Which should you use? | Engage](http://engageinteractive.co.uk/blog/em-vs-rem-vs-px)
 
 <h3 id="line-heights-included">3. Unitless Line Heights</h3>
-	- [line-height | CSS-Tricks](https://css-tricks.com/almanac/properties/l/line-height/#article-header-id-0)
-	- [Nope, nope, nope, line-height is unitless · Matt Smith](http://allthingssmitty.com/2017/01/30/nope-nope-nope-line-height-is-unitless/)
+- [line-height | CSS-Tricks](https://css-tricks.com/almanac/properties/l/line-height/#article-header-id-0)
+- [Nope, nope, nope, line-height is unitless · Matt Smith](http://allthingssmitty.com/2017/01/30/nope-nope-nope-line-height-is-unitless/)
 
 <h3 id="fluid-typography-modular-scale">4. Fluid typography / modular scale</h3>
-  - [Fluid Responsive Typography With CSS Poly Fluid Sizing – Smashing Magazine](https://www.smashingmagazine.com/2017/05/fluid-responsive-typography-css-poly-fluid-sizing/)
-  - [Responsive Typography with Sass Maps](https://www.smashingmagazine.com/2015/06/responsive-typography-with-sass-maps/#organizing-font-sizes-with-sass-maps)
-  - [GitHub - modularscale/modularscale-sass: Modular scale calculator built into your Sass](https://github.com/modularscale/modularscale-sass)
+- [Fluid Responsive Typography With CSS Poly Fluid Sizing – Smashing Magazine](https://www.smashingmagazine.com/2017/05/fluid-responsive-typography-css-poly-fluid-sizing/)
+- [Responsive Typography with Sass Maps](https://www.smashingmagazine.com/2015/06/responsive-typography-with-sass-maps/#organizing-font-sizes-with-sass-maps)
+- [GitHub - modularscale/modularscale-sass: Modular scale calculator built into your Sass](https://github.com/modularscale/modularscale-sass)
 
 <h3 id="naming-things-using-t-shirt-sizes">5. Naming things using t-shirt</h3>
-  - [Space in Design Systems – EightShapes – Medium](https://medium.com/eightshapes-llc/space-in-design-systems-188bcbae0d62)
+- [Space in Design Systems – EightShapes – Medium](https://medium.com/eightshapes-llc/space-in-design-systems-188bcbae0d62)
 
