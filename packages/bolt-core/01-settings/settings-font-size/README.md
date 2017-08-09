@@ -137,14 +137,17 @@ As with most sizing options in Bolt, font sizes are categorized and referenced a
 - [Guide: EM vs REM vs PX. Which should you use? | Engage](http://engageinteractive.co.uk/blog/em-vs-rem-vs-px)
 
 <h3 id="line-heights-included">3. Unitless Line Heights</h3>
+
 - [line-height | CSS-Tricks](https://css-tricks.com/almanac/properties/l/line-height/#article-header-id-0)
 - [Nope, nope, nope, line-height is unitless · Matt Smith](http://allthingssmitty.com/2017/01/30/nope-nope-nope-line-height-is-unitless/)
 
 <h3 id="fluid-typography-modular-scale">4. Fluid typography / modular scale</h3>
+
 - [Fluid Responsive Typography With CSS Poly Fluid Sizing – Smashing Magazine](https://www.smashingmagazine.com/2017/05/fluid-responsive-typography-css-poly-fluid-sizing/)
 - [Responsive Typography with Sass Maps](https://www.smashingmagazine.com/2015/06/responsive-typography-with-sass-maps/#organizing-font-sizes-with-sass-maps)
 - [GitHub - modularscale/modularscale-sass: Modular scale calculator built into your Sass](https://github.com/modularscale/modularscale-sass)
 
 <h3 id="naming-things-using-t-shirt-sizes">5. Naming things using t-shirt</h3>
+
 - [Space in Design Systems – EightShapes – Medium](https://medium.com/eightshapes-llc/space-in-design-systems-188bcbae0d62)
 
