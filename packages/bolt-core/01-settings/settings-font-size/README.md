@@ -73,7 +73,7 @@ Once installed, you should  `@import`  the main Sass partial into your project�
 @import ‘@bolt/tools-...’
 ```
 
-Since Bolt's CSS architecture is based on [ITCSS (Inverted Triangle CSS)](http://www.creativebloq.com/web-design/manage-large-css-projects-itcss-101517528)<sup>[1](#learn-about-itcss)</sup>, what Sass partials you import, and in what order, makes a whole world of difference. That’s why importing any Settings packages from Bolt in your project’s Settings layer (prior to any Sass mixins, resets, base HTML element styles, etc) is so important. 
+Since Bolt's CSS architecture is based on [ITCSS (Inverted Triangle CSS)](http://www.creativebloq.com/web-design/manage-large-css-projects-itcss-101517528)<sup>[1](#1-learn-more-about-itcss)</sup>, what Sass partials you import, and in what order, makes a whole world of difference. That’s why importing any Settings packages from Bolt in your project’s Settings layer (prior to any Sass mixins, resets, base HTML element styles, etc) is so important. 
 
 ### Compiling
 We recommend using Bolt’s Gulp-based [front-end build tools](https://www.npmjs.com/package/@bolt/build-tools) to compile your Sass as we're pre-packaging many of the latest tools and add-ons to help you write your very best: LibSass, Autoprefixer, PostCSS, CleanCSS, Sassdoc, Stylelint, Gulp Plumber, npm-sass, and BrowserSync live reloading.
@@ -83,16 +83,16 @@ We recommend using Bolt’s Gulp-based [front-end build tools](https://www.npmjs
 ## Font Size Features
 The *Bolt Design System* team has gone through vigorous testing to make sure all types are legible on all devices. We have created the following range of sizes to be used for headings and body text. All font sizes are responsive in relation to device screen size.
 
-### **Font Sizes Defined as rems vs px** <sup>[2](#font-sizes-rems)</sup>
+### **Font Sizes Defined as rems vs px** <sup>[2](#2-rems-for-font-sizes)</sup>
 Bolt’s font sizes are defined in rems and and are organized in a structured Sass Map for consistency and maintainability.
 
 > Rem “represents the font-size of the root element (e.g., the font-size of the <html> element). When used within the root elements font-size, it represents its initial value (common browser default is 16px, but changes based upon users preferences).”  
 > -- [<length> - CSS | MDN](https://developer.mozilla.org/en/docs/Web/CSS/length)  
 
-### Line heights Included <sup>[3](#line-heights-included)</sup>
+### Line heights Included <sup>[3](#3-unitless-line-heights)</sup>
 Each font size includes two pre-defined `unitless` line-heights: the default `regular` line-height for more editorial-focused designs and a `tight` shorter line height option for more interface-focused designs.
 
-### Responsive Ready <sup>[4](#fluid-typography-modular-scale)</sup>
+### Responsive Ready <sup>[4](#4-fluid-typography--modular-scale)</sup>
 By defining our font sizes in REMs and by using unit-less line-heights, Bolt’s font sizes are responsive-ready out of the box. This responsive fluid typographic behavior is automatically included in the separate `bolt/elements-page` package (which gets @imported in the ITCSS elements layer)
 
 ```
@@ -117,7 +117,7 @@ html {
 }
 ```
 
-### Defined as T-shirt Sizes <sup>[5](#naming-things-using-t-shirt-sizes)</sup>
+### Defined as T-shirt Sizes <sup>[5](#5-naming-things-using-t-shirt)</sup>
 As with most sizing options in Bolt, font sizes are categorized and referenced as `t-shirt` sizes, with `medium` being the default base font size (ie. the font size on the <body> or <html> tag), with each t-shirt size option being one step larger/smaller in the typographic modular scale.
 
 
