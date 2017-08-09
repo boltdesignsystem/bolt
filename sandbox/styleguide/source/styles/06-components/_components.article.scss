@@ -33,7 +33,7 @@
   }
 
   h1 {
-    @include padding(0,0,($font-leading--base * 0.65 + rem),0);
+    @include mm-padding(0,0,($font-leading--base * 0.65 + rem),0);
     @include font-size(xxlarge);
 
     letter-spacing: -.1rem;
@@ -46,7 +46,7 @@
   }
 
   h2 {
-    @include padding(($font-leading--base*2 + rem),0,($font-leading--base*.5 + rem),0);
+    @include mm-padding(($font-leading--base*2 + rem),0,($font-leading--base*.5 + rem),0);
     @include font-size(xlarge);
 
     letter-spacing: -.1rem;
@@ -54,11 +54,11 @@
 
   hgroup {
     h1 {
-      @include padding(0,0,($font-leading--base * 0.325 + rem),0);
+      @include mm-padding(0,0,($font-leading--base * 0.325 + rem),0);
     }
 
     h1 + h2 {
-      @include padding(0,0,($font-leading--base*.65 + rem),0);
+      @include mm-padding(0,0,($font-leading--base*.65 + rem),0);
       @include font-size(large);
       @include font-weight(regular);
 
@@ -73,14 +73,14 @@
   }
 
   h3 {
-    @include padding(($font-leading--base*1.35 + rem),0,($font-leading--base*.3 + rem),0);
+    @include mm-padding(($font-leading--base*1.35 + rem),0,($font-leading--base*.3 + rem),0);
     @include font-size(large);
 
     letter-spacing: -.05rem;
   }
 
   h4, h5, h6 {
-    @include padding(($font-leading--base*1.15 + rem),0,($font-leading--base*.2 + rem),0);
+    @include mm-padding(($font-leading--base*1.15 + rem),0,($font-leading--base*.2 + rem),0);
   }
 
   h4 {
@@ -121,7 +121,7 @@
 
     @include respond-to(medium) {
       @include float(right);
-      @include margin(0,0,($font-leading--base + rem),($gutter + rem));
+      @include mm-margin(0,0,($font-leading--base + rem),($gutter + rem));
 
       width: $golden-aside-width + vw;
       max-width: $article-line-length/2 + ch;
@@ -160,18 +160,18 @@
   }
 
   ol, ul {
-    @include padding(0,0,0,0);
+    @include mm-padding(0,0,0,0);
   }
 
   figure {
-    @include padding(($font-leading--base/4 + rem),0,0,0);
+    @include mm-padding(($font-leading--base/4 + rem),0,0,0);
     @include text-align(center);
     @include horizontal-scroll;
 
     > div,
     > img,
     > a {
-      @include margin(0,0,($font-leading--base/4 + rem),0);
+      @include mm-margin(0,0,($font-leading--base/4 + rem),0);
     }
 
     > div,
@@ -181,7 +181,7 @@
 
     > div {
       @include position(relative,auto,auto,auto,auto);
-      @include padding(30px,0,56.25%,0);
+      @include mm-padding(30px,0,56.25%,0);
 
       height: 0;
       overflow: hidden;
@@ -204,7 +204,7 @@
   }
 
   blockquote {
-    @include padding(($font-leading--base + rem),($gutter + rem),($font-leading--base + rem),($gutter + rem));
+    @include mm-padding(($font-leading--base + rem),($gutter + rem),($font-leading--base + rem),($gutter + rem));
     @include font-size(large);
     @include border(left,($gutter/2 + rem) solid);
 
@@ -215,7 +215,7 @@
 
   pre
   {
-    @include padding(($font-leading--base + rem),($gutter + rem),($font-leading--base + rem),($gutter + rem));
+    @include mm-padding(($font-leading--base + rem),($gutter + rem),($font-leading--base + rem),($gutter + rem));
     @include null-spacing;
     @include text-align(left);
     @include horizontal-scroll;
@@ -231,7 +231,7 @@
   }
 
   hr {
-    @include padding(0,0,0,0);
+    @include mm-padding(0,0,0,0);
     @include border(top);
 
     display: block;

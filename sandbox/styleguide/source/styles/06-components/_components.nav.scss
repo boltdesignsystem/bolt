@@ -1,9 +1,9 @@
 .c-nav {
   nav {
-    @include padding(($font-leading--base*2 + rem),($gutter + rem),($font-leading--base*2 + rem),($gutter + rem));
+    @include mm-padding(($font-leading--base*2 + rem),($gutter + rem),($font-leading--base*2 + rem),($gutter + rem));
 
     h1, h2 {
-      @include margin(0,0,($font-leading--base + rem),0);
+      @include mm-margin(0,0,($font-leading--base + rem),0);
       @include font-size(small);
 
       text-transform: uppercase;
@@ -11,8 +11,8 @@
     }
 
     ul {
-      @include margin(0,0,0,0);
-      @include padding(0,0,0,0);
+      @include mm-margin(0,0,0,0);
+      @include mm-padding(0,0,0,0);
 
       list-style: none;
     }
@@ -23,11 +23,11 @@
   nav {
     ul {
       li {
-        @include margin(0,0,($font-leading--base + rem),0);
-        @include padding(0,0,0,0);
+        @include mm-margin(0,0,($font-leading--base + rem),0);
+        @include mm-padding(0,0,0,0);
 
         &:last-of-type {
-          @include margin(0,0,0,0);
+          @include mm-margin(0,0,0,0);
         }
       }
     }

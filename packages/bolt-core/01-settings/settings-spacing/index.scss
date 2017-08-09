@@ -6,32 +6,7 @@ $spacing-leading: 1.65;
 $spacing-gutter: 2;
 
 
-/**
- * Read https://medium.com/eightshapes-llc/space-in-design-systems-188bcbae0d62 for more background into spacing scales for design systems.
- */
-/*
-$spacing-scale: (
-  spacing: (
-    'default': (
-      xlarge: 64px,
-      large:  32px,
-      medium: 16px,
-      small:   8px,
-      xsmall:  4px,
-      xxsmall: 2px
-    ),
-    'squished': (
-      large:  16px 32px,
-      medium:  7px 16px,
-      small:   5px  8px
-    ),
-    'stretched': (
-      large:   64px 32px,
-      medium:  32px 16px,
-      small:   16px  8px
-    )
-  )
-);*/
+
 
 $spacing-sizes--vertical: (
   xxlarge:  $spacing-leading * 8 + rem,
@@ -72,111 +47,232 @@ $spacing-scales: (
   spacing-scales: (
     xxlarge: (
       vertical:   $spacing-leading * 8 + rem,
-      horizontal: $spacing-gutter * 8 + rem
+      horizontal: $spacing-gutter * 8 + rem,
     ),
     xlarge: (
       vertical:   $spacing-leading * 4 + rem,
-      horizontal: $spacing-gutter * 4 + rem
+      horizontal: $spacing-gutter * 4 + rem,
     ),
     large: (
       vertical:   $spacing-leading * 2 + rem,
-      horizontal: $spacing-gutter * 2 + rem
+      horizontal: $spacing-gutter * 2 + rem,
     ),
     medium: (
       vertical:   $spacing-leading * 1 + rem,
-      horizontal: $spacing-gutter * 1 + rem
+      horizontal: $spacing-gutter * 1 + rem,
     ),
     small: (
       vertical:   $spacing-leading * 0.5 + rem,
-      horizontal: $spacing-gutter * 0.5 + rem
+      horizontal: $spacing-gutter * 0.5 + rem,
     ),
     xsmall: (
       vertical:   $spacing-leading * 0.25 + rem,
-      horizontal: $spacing-gutter * 0.25 + rem
+      horizontal: $spacing-gutter * 0.25 + rem,
     ),
     xxsmall: (
       vertical:   $spacing-leading * 0.125 + rem,
-      horizontal: $spacing-gutter * 0.125 + rem
+      horizontal: $spacing-gutter * 0.125 + rem,
+    ),
+    none: (
+      vertical:   0,
+      horizontal: 0
+    ),
+    auto: (
+      vertical:   auto,
+      horizontal: auto
     )
   )
 );
 
-@mixin spacing-margin($size, $direction: bottom) {
-  $vertical-size:   map-get-deep($spacing-scales, 'spacing-scales', $size, 'vertical');
-  $horizontal-size: map-get-deep($spacing-scales, 'spacing-scales', $size, 'horizontal');
+@mixin margin($size: medium, $sides: all, $reset: null) {
+  $size-vertical:   map-get-deep($spacing-scales, 'spacing-scales', $size, 'vertical');
+  $size-horizontal: map-get-deep($spacing-scales, 'spacing-scales', $size, 'horizontal');
+  $size-type:       type-of($size);
 
-  @if $direction == 'all' {
-    margin-top:    $vertical-size;
-    margin-right:  $horizontal-size;
-    margin-bottom: $vertical-size;
-    margin-left:   $horizontal-size;
+  @if $size-type == number {
+    $size-vertical:   $size;
+    $size-horizontal: $size;
   }
 
-  @elseif $direction == 'top' {
-    margin-top:    $vertical-size;
+  @if $sides == 'all' {
+    margin-top:    $size-vertical;
+    margin-right:  $size-horizontal;
+    margin-bottom: $size-vertical;
+    margin-left:   $size-horizontal;
   }
 
-  @elseif $direction == 'right' {
-    margin-right:  $horizontal-size;
+  @else if $sides == 'top' {
+    margin-top:    $size-vertical;
+
+    @if $reset == 'reset' {
+      margin-right:  0;
+      margin-bottom: 0;
+      margin-left:   0;
+    }
   }
 
-  @elseif $direction == 'bottom' {
-    margin-bottom: $vertical-size;
+  @else if $sides == 'right' {
+    margin-right:  $size-horizontal;
+
+    @if $reset == 'reset' {
+      margin-top:    0;
+      margin-bottom: 0;
+      margin-left:   0;
+    }
   }
 
-  @elseif $direction == 'left' {
-    margin-left:   $horizontal-size;
+  @else if $sides == 'bottom' {
+    margin-bottom: $size-vertical;
+
+    @if $reset == 'reset' {
+      margin-top:    0;
+      margin-right:  0;
+      margin-left:   0;
+    }
   }
 
-  @elseif $direction == 'horizontal' {
-    margin-right:   $horizontal-size;
-    margin-left:   $horizontal-size;
+  @else if $sides == 'left' {
+    margin-left:   $size-horizontal;
+
+    @if $reset == 'reset' {
+      margin-top:    0;
+      margin-right:  0;
+      margin-bottom: 0;
+    }
   }
 
-  @elseif $direction == 'vertical' {
-    margin-top: $vertical-size;
-    margin-bottom: $vertical-size;
+  @else if $sides == 'horizontal' {
+    margin-right:  $size-horizontal;
+    margin-left:   $size-horizontal;
+
+    @if $reset == 'reset' {
+      margin-top:    0;
+      margin-bottom: 0;
+    }
+  }
+
+  @else if $sides == 'vertical' {
+    margin-top:    $size-vertical;
+    margin-bottom: $size-vertical;
+
+    @if $reset == 'reset' {
+      margin-right:  0;
+      margin-left:   0;
+    }
   }
 }
 
-@mixin spacing-padding($size, $direction: all) {
-  $vertical-size:   map-get-deep($spacing-scales, 'spacing-scales', $size, 'vertical');
-  $horizontal-size: map-get-deep($spacing-scales, 'spacing-scales', $size, 'horizontal');
+@mixin padding($size: medium, $sides: all, $reset: null) {
+  $size-vertical:   map-get-deep($spacing-scales, 'spacing-scales', $size, 'vertical');
+  $size-horizontal: map-get-deep($spacing-scales, 'spacing-scales', $size, 'horizontal');
+  $size-type:       type-of($size);
 
-  @if $direction == 'all' {
-    padding-top:    $vertical-size;
-    padding-right:  $horizontal-size;
-    padding-bottom: $vertical-size;
-    padding-left:   $horizontal-size;
+  @if $size-type == number {
+    $size-vertical:   $size;
+    $size-horizontal: $size;
   }
 
-  @elseif $direction == 'top' {
-    padding-top:    $vertical-size;
+  @if $sides == 'all' {
+    padding-top:    $size-vertical;
+    padding-right:  $size-horizontal;
+    padding-bottom: $size-vertical;
+    padding-left:   $size-horizontal;
   }
 
-  @elseif $direction == 'right' {
-    padding-right:  $horizontal-size;
+  @else if $sides == 'squish' {
+    padding-top:    $size-vertical;
+    padding-right:  calc(#{$size-horizontal} * 2);
+    padding-bottom: $size-vertical;
+    padding-left:   calc(#{$size-horizontal} * 2);
   }
 
-  @elseif $direction == 'bottom' {
-    padding-bottom: $vertical-size;
+  @else if $sides == 'stretch' {
+    padding-top:    $size-vertical;
+    padding-right:  calc(#{$size-horizontal} * 0.5);
+    padding-bottom: $size-vertical;
+    padding-left:   calc(#{$size-horizontal} * 0.5);
   }
 
-  @elseif $direction == 'left' {
-    padding-left:   $horizontal-size;
+  @else if $sides == 'top' {
+    padding-top:    $size-vertical;
+
+    @if $reset == 'reset' {
+      padding-right:  0;
+      padding-bottom: 0;
+      padding-left:   0;
+    }
   }
 
-  @elseif $direction == 'horizontal' {
-    padding-right:   $horizontal-size;
-    padding-left:   $horizontal-size;
+  @else if $sides == 'right' {
+    padding-right:  $size-horizontal;
+
+    @if $reset == 'reset' {
+      padding-top:    0;
+      padding-bottom: 0;
+      padding-left:   0;
+    }
   }
 
-  @elseif $direction == 'vertical' {
-    padding-top: $vertical-size;
-    padding-bottom: $vertical-size;
+  @else if $sides == 'bottom' {
+    padding-bottom: $size-vertical;
+
+    @if $reset == 'reset' {
+      padding-top:    0;
+      padding-right:  0;
+      padding-left:   0;
+    }
+  }
+
+  @else if $sides == 'left' {
+    padding-left:   $size-horizontal;
+
+    @if $reset == 'reset' {
+      padding-top:    0;
+      padding-right:  0;
+      padding-bottom: 0;
+    }
+  }
+
+  @else if $sides == 'horizontal' {
+    padding-right:  $size-horizontal;
+    padding-left:   $size-horizontal;
+
+    @if $reset == 'reset' {
+      padding-top:    0;
+      padding-bottom: 0;
+    }
+  }
+
+  @else if $sides == 'vertical' {
+    padding-top:    $size-vertical;
+    padding-bottom: $size-vertical;
+
+    @if $reset == 'reset' {
+      padding-right:  0;
+      padding-left:   0;
+    }
   }
 }
 
+@mixin squish($size: medium) {
+  $size-vertical:   map-get-deep($spacing-scales, 'spacing-scales', $size, 'vertical');
+  $size-horizontal: map-get-deep($spacing-scales, 'spacing-scales', $size, 'horizontal');
+
+  padding-top:    $size-vertical;
+  padding-right:  calc(#{$size-horizontal} * 2);
+  padding-bottom: $size-vertical;
+  padding-left:   calc(#{$size-horizontal} * 2);
+}
+
+@mixin stretch($size: medium) {
+  $size-vertical:   map-get-deep($spacing-scales, 'spacing-scales', $size, 'vertical');
+  $size-horizontal: map-get-deep($spacing-scales, 'spacing-scales', $size, 'horizontal');
+
+  padding-top:    $size-vertical;
+  padding-right:  calc(#{$size-horizontal} * 0.5);
+  padding-bottom: $size-vertical;
+  padding-left:   calc(#{$size-horizontal} * 0.5);
+}
 
 
 

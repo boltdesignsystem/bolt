@@ -5,16 +5,7 @@ intro: Bolt was designed to help developers and designers quickly create the mos
 permalink: /getting-started/
 ---
 
-<aside>
-  <small>
-    <figure>
-      <img src="http://fillmurray.com/g/320/320" alt="Bill">
-      <figcaption>Fig 1: This is Bill.</figcaption>
-    </figure>
-  </small>
-</aside>
-
-Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla.
+<div class="testing">testing</div>
 
 ## Main System Website
 
@@ -28,7 +19,7 @@ Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
 4. [NPM Org](https://www.npmjs.com/org/bolt)
 5. [Github repo](https://github.com/bolt-design-system/bolt)
 
-<figure>
+<!-- <figure>
   <table>
     <thead>
       <tr>
@@ -100,3 +91,4 @@ Boudin turkey pork, tongue kevin rump spare ribs pancetta tri-tip jowl short loi
 Drumstick beef bresaola tongue ham hock jerky pork loin kielbasa boudin. Pancetta short loin biltong, burgdoggen tri-tip cupim porchetta tenderloin beef spare ribs turkey andouille. Porchetta hamburger biltong meatball. Leberkas chuck corned beef sausage landjaeger jerky. Swine burgdoggen picanha, ribeye rump beef ribs flank pastrami shankle porchetta.
 
 Boudin turkey pork, tongue kevin rump spare ribs pancetta tri-tip jowl short loin. Tri-tip hamburger ground round capicola pork chop doner drumstick chuck ham hock rump. Andouille filet mignon ham beef jerky. Pastrami andouille pancetta, kielbasa shankle strip steak sausage kevin shoulder biltong spare ribs corned beef. Boudin sausage t-bone doner pancetta. Brisket prosciutto cupim tenderloin, beef ribs t-bone pork loin biltong tail short ribs pork. Shank bacon tail cow, ham hock tri-tip landjaeger sirloin rump t-bone.
+ -->

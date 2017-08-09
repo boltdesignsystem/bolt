@@ -23,11 +23,11 @@ body {
     }
 
     > footer {
-      @include padding(0,($gutter + rem),0,($gutter + rem));
+      @include mm-padding(0,($gutter + rem),0,($gutter + rem));
       @include border(top);
 
       p {
-        @include margin(0,0,0,0);
+        @include mm-margin(0,0,0,0);
 
         line-height: $gutter*1.5;
         white-space: nowrap;
@@ -73,7 +73,7 @@ body {
 
       small {
         @include position(fixed,0,0,auto,auto);
-        @include padding(($font-leading--base*2 + rem),0,($font-leading--base*2 + rem),0);
+        @include mm-padding(($font-leading--base*2 + rem),0,($font-leading--base*2 + rem),0);
 
         height: 100%;
         line-height: $gutter*1.5/$font-scale--xsmall;
@@ -86,14 +86,22 @@ body {
     }
 
     .c-article {
-      @include margin(0,auto,0,auto);
+      @include mm-margin(0,auto,0,auto);
 
       max-width: $article-line-length + ch;
 
       aside {
-        @include margin(0,calc(#{$gutter*1.5 + rem} - #{$golden-aside-width + vw}),($font-leading--base + rem),($gutter + rem));
+        @include mm-margin(0,calc(#{$gutter*1.5 + rem} - #{$golden-aside-width + vw}),($font-leading--base + rem),($gutter + rem));
       }
     }
+  }
+}
+
+.o-layout--article__inset {
+  @include mm-padding(($font-leading--base + rem),($gutter + rem),($font-leading--base + rem),($gutter + rem));
+
+  @include respond-to(medium) {
+    @include mm-padding(($font-leading--base*2 + rem),($gutter*2 + rem),($font-leading--base*2 + rem),($gutter*2 + rem));
   }
 }
 
@@ -107,24 +115,24 @@ body {
     flex: auto;
 
     > * {
-      @include margin(auto,auto,auto,auto);
+      @include mm-margin(auto,auto,auto,auto);
     }
   }
 
   .o-layout__footer {
-    @include margin(auto,0,0,0);
+    @include mm-margin(auto,0,0,0);
   }
 }
 
 .o-golden-two-column {
   @include respond-to(medium) {
-    @include margin(0,(-$gutter + rem),0,(-$gutter + rem));
+    @include mm-margin(0,(-$gutter + rem),0,(-$gutter + rem));
 
     display: flex;
     flex-wrap: wrap;
 
     > * {
-      @include margin(0,($gutter + rem),0,($gutter + rem));
+      @include mm-margin(0,($gutter + rem),0,($gutter + rem));
 
       flex-grow: 1;
 
@@ -164,31 +172,15 @@ body {
 }
 
 .o-wrapper {
-  @include margin(0,auto,0,auto);
+  @include mm-margin(0,auto,0,auto);
 
   max-width: $wrapper--max-width;
 }
 
-/*.o-inset {
-  @include padding(($font-leading--base + rem),($gutter + rem),($font-leading--base + rem),($gutter + rem));
 
-  @include respond-to(medium) {
-    @include padding(($font-leading--base*2 + rem),($gutter*2 + rem),($font-leading--base*2 + rem),($gutter*2 + rem));
-  }
-}
-
-.o-inset--x {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-.o-inset--y {
-  padding-right: 0;
-  padding-left: 0;
-}*/
 
 .o-inset {
-  @include spacing-padding(medium, bottom);
+  @include padding(medium);
 }
 
 .o-stack {
@@ -221,42 +213,51 @@ body {
 }
 
 .o-grid__item {
-  @include spacing-margin(small, horizontal);
+  @include margin(small, horizontal);
 
   flex: 1;
+}
 
+.testing {
+  /*@include margin;*/
+  /*@include margin(0);*/
+  /*@include margin(none);*/
+  /*@include margin(auto);*/
+  /*@include margin(10px);*/
+  /*@include margin(10px, right);*/
+  /*@include margin(10px, right, reset);*/
+  /*@include margin(medium);*/
+  /*@include margin(medium, all);*/
+  /*@include margin(medium, top);*/
+  /*@include margin(medium, right);*/
+  /*@include margin(medium, bottom);*/
+  /*@include margin(medium, left);*/
+  /*@include margin(medium, vertical);*/
+  /*@include margin(medium, horizontal);*/
 
+  /*@include padding;*/
+  /*@include padding(0);*/
+  /*@include padding(none);*/
+  /*@include padding(auto);*/
+  /*@include padding(10px);*/
+  /*@include padding(10px, right);*/
+  /*@include padding(10px, right, reset);*/
+  /*@include padding(medium);*/
+  /*@include padding(medium, all);*/
+  /*@include padding(medium, top);*/
+  /*@include padding(medium, right);*/
+  /*@include padding(medium, bottom);*/
+  /*@include padding(medium, left);*/
+  /*@include padding(medium, vertical);*/
+  /*@include padding(medium, horizontal);*/
 
+  /*@include padding(medium, squish);*/
+  /*@include padding(medium, stretch);*/
 
-/*
-  @include margin(medium);
-  @include margin(medium, all);
-  @include margin(medium, top);
-  @include margin(medium, right);
-  @include margin(medium, bottom);
-  @include margin(medium, left);
-  @include margin(medium, vertical);
-  @include margin(medium, horizontal);
-
-
-
-  @include padding(medium);
-  @include padding(medium, all);
-  @include padding(medium, top);
-  @include padding(medium, right);
-  @include padding(medium, bottom);
-  @include padding(medium, left);
-  @include padding(medium, vertical);
-  @include padding(medium, horizontal);
-
-  @include padding(medium, all, squish);
-  @include padding(medium, all, squished);
-  @include padding(medium, all, stretch);
-  @include padding(medium, all, stretched);
-
-  @include squish();
-  @include stretch();*/
-
+  /*@include squish;*/
+  /*@include squish(xxlarge);*/
+  /*@include stretch;*/
+  /*@include stretch(xxlarge);*/
 }
 
 .c-card {
@@ -283,7 +284,7 @@ body {
 }
 
 .c-card__content {
-  @include spacing-padding(medium);
+  @include padding(medium);
 }
 
 .c-card__actions {
@@ -292,7 +293,7 @@ body {
 
 
 .c-button {
-  @include spacing-padding(medium);
+  @include padding(medium);
 
   color: white !important;
   text-align: center;

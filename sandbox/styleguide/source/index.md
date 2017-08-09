@@ -4,7 +4,7 @@ title: Bolt Design System
 ---
 <div class="o-golden-two-column o-golden-two-column--center">
   <div class="o-golden-two-column__main">
-    <!-- <header role="banner">
+    <header role="banner">
       <div class="c-heading-group">
         <div class="c-heading c-heading--eyebrow">
           <span class="c-heading__text">
@@ -27,9 +27,8 @@ title: Bolt Design System
           <a href="/getting-started">Explore the System</a> &raquo;
         </span>
       </div>
-    </header> -->
-
-    <div class="o-grid">
+    </header>
+    <!-- <div class="o-grid">
       <div class="o-grid__item c-card c-card--flex">
         <figure class="c-card__media">
           <img src="http://fillmurray.com/g/640/320" alt="Bill">
@@ -75,7 +74,7 @@ title: Bolt Design System
           <a href="javascript:" class="c-button c-button--expand">Button</a>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
   <div class="o-golden-two-column__aside">
     <section role="region">
