@@ -1,0 +1,26 @@
+// Given a mixed list of t-shirt sizes
+
+@function calculatesizes($sizes, $spacingType: 'default') {
+  $compiledSizes: (); // By default, setup empty list to store compiled t-shirt sizes (ex. `xsmall`)
+
+  @if (length($sizes) == 1) {
+    $compiledSizes: '';
+  }
+
+  @for $i from 1 through length($sizes) {
+    $size: nth($sizes, $i);
+
+    @debug $size;
+
+    @if (type-of($size) == string) {
+      $size: getshirtsize($size, $spacingType);
+    }
+
+    @if (type-of($compiledSizes) == string) {
+      $compiledSizes: $size;
+    } @else {
+      $compiledSizes: append($compiledSizes, $size);
+    }
+  }
+  @return $compiledSizes;
+}

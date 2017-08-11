@@ -1,0 +1,36 @@
+// via https://github.com/oddbird/accoutrement-color/blob/master/sass/_utils.scss
+
+// Get Function
+// ------------
+/// Get a first-class function in Sass 3.5+,
+/// or the function name string (unchanged)
+/// in older Sass versions.
+/// This is safe to use internally,
+/// as it allows users to pass in
+/// either a string, or a previously-captured function.
+///
+/// @access private
+///
+/// @param {String | Function} $function -
+///   The name (string) of a function,
+///   or the function to be called.
+/// @return {String | Function} -
+///   Returns a first-class function in Sass 3.5+,
+///   or the function name string in older Sass versions.
+@function _bolt-get-function(
+  $function
+) {
+  $type: type-of($function);
+
+  @if ($type == 'function') {
+    @return $function;
+  } @else if ($type == 'string') {
+    @if function-exists('get-function') {
+      @return get-function($function);
+    }
+
+    @return $function;
+  }
+
+  @error 'Invalid function-name, [#{$type}] `#{$function}` must be a function or string';
+}

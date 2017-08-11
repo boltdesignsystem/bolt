@@ -1,0 +1,15 @@
+// Look up and return value for a t-shirt spacing size, if available.
+
+@function getshirtsize($spacingSize, $spacingType: 'default') {
+  @if (type-of($spacingSize) == 'string' and $spacingSize != 'auto' and $spacingSize != 'none') {
+    // @return map-get-deep($spacing-scales, 'spacing-scales', $spacingSize, $spacingType);
+
+    @return map-get-deep($bolt-spacing-sizes, 'bolt-spacing-sizes', $spacingSize);
+
+
+
+
+  } @else {
+    @return $spacingSize;
+  }
+}

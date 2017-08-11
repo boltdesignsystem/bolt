@@ -174,19 +174,19 @@ gulp.task('build',
 
 gulp.task('default',
   gulp.series([
-    'styles:compile',
-    'styles:sassdoc',
-    'symlinks',
-    'patternlab:compile',
+    // 'styles:compile',
+    // 'styles:sassdoc',
+    // 'symlinks',
+    // 'patternlab:compile',
     compileJekyllCSS,
-    jekyllTasks.build,
+    // jekyllTasks.build,
     gulp.parallel([
       'patternlab:serve',
-      'patternlab:watch',
-      jekyllTasks.watch,
+      // 'patternlab:watch',
+      // jekyllTasks.watch,
       watchJekyllCSS,
-      'styles:watch',
-      'symlinks:watch'
+      // 'styles:watch'
+      // 'symlinks:watch'
     ])
   ])
 );

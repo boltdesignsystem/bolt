@@ -1,0 +1,21 @@
+@function normalizeSpacingName($spacingName) {
+
+  @if ($spacingName == 'stack' or $spacingName == 'stacked' or $spacingName == 'vertical') {
+    @return 'stacked';
+  }
+  @elseif ($spacingName == 'inset') {
+    @return 'inset';
+  }
+  @elseif ($spacingName == 'squished' or $spacingName == 'squish') {
+    @return 'squished';
+  }
+  @elseif ($spacingName == 'stretch' or $spacingName == 'stretched') {
+    @return 'stretched';
+  }
+  @elseif ($spacingName == 'inline' or $spacingName == 'horizontal' or $spacingName == '' or $spacingName == 'default' or $spacingName == null) {
+    @return 'inline';
+  }
+  @else {
+    @error "Sorry but the spacing scale #{$spacingName} isn't valid...";
+  }
+}

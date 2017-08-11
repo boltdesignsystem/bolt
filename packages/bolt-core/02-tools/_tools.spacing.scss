@@ -1,0 +1,132 @@
+// https://github.com/oddbird/accoutrement-color/blob/30d4b62a51d737c20294bea62abd14c8f466bf50/sass/_api.scss
+
+
+//https://github.com/TxHawks/jigsass-tools-maps/blob/d95126c44c5126debe0d6e8e5354667ecc1c2dc9/scss/index.scss#L168
+// -------------------------------------
+// Deep has-key
+// -------------------------------------
+/// Checks whether a map has a value associated with a given nested key.
+/// ---
+/// @param {map} $map - The map to search in
+/// @param {arglist} $key - the key hierarchy to look for
+/// ---
+/// @returns {boolean}
+/// ---
+@function bolt-deep-has-key($map, $keys...) {
+  @each $key in $keys {
+    @if (not map-has-key($map, $key)) {
+      @return false;
+    }
+    $map: map-get($map, $key);
+  }
+  @return true;
+}
+
+
+
+
+@function multiply($spacingValue, $multiplier, $map, $mapName) {
+  $value: map-get-deep($map, $mapName, $spacingValue);
+  @return $value * $multiplier;
+}
+
+
+
+
+
+
+
+@function calculateSpacingModifier(
+  $spacingType: 'inset',
+  $spacingDirection: 'default'
+){
+
+  $spacingType: map-get-deep($bolt-spacing-modifiers, 'bolt-spacing-modifiers', $spacingType, $spacingDirection) or $spacingType;
+  // Parse arguments
+
+  $base: nth($spacingType, 1);
+  $adjust: if(length($spacingType) > 1, nth($spacingType, 2), ());
+
+  // @debug 'adjust';
+  // Recursive check
+  $spacingType: if(bolt-deep-has-key($bolt-spacing-modifiers, 'bolt-spacing-modifiers', $spacingType, $base), calculateSpacingModifier($spacingType, $base), $base);
+
+  // Adjustments
+  @each $function, $value in $adjust {
+    $function: _bolt-get-function($function);
+    @debug $function;
+    @debug $value;
+    @debug $adjust;
+    $spacingType: call($function, $spacingType, $value, $bolt-spacing-modifiers, 'bolt-spacing-modifiers');
+  }
+
+  // @debug $spacingType;
+  @return $spacingType;
+}
+
+// Color API
+// =========
+
+
+// Color
+// -----
+/// Access any color in your palette,
+/// or generate new colors on the fly.
+///
+/// @group colors
+///
+/// @parameter {string | list} $color -
+///   The name of a color in your palette,
+///   or a valid css color-value,
+///   with optional adjustments
+///   in the form of `<origin-color> (<function>: <args...>)`.
+///
+/// @parameter {Map} $palette [$colors] -
+///   A map containing the source color-palette
+///   for accessing previously-defined colors.
+///
+/// @return {Color} -
+///   A calculated css-ready color,
+///   based on your global color palette and adjustments.
+@function spacing(
+  $size,
+  $spacingType: 'inset',
+  $spacingDirection: 'default'
+) {
+  $scale: $bolt-spacing-sizes;
+  $scaleName: 'bolt-spacing-sizes';
+
+
+
+
+
+  // Parse arguments
+  $size: map-get-deep($scale, $scaleName, $size) or $size;
+
+  $base: nth($size, 1);
+  $adjust: if(length($size) > 1, nth($size, 2), ());
+
+  // Recursive check
+  $size: if(bolt-deep-has-key($scale, $scaleName, $size, $base), spacing($base), $base);
+
+  // Adjustments
+  @each $function, $value in $adjust {
+    $function: _bolt-get-function($function);
+    $size: call($function, $size, $value, $scale, $scaleName);
+  }
+
+
+  $spacingType: normalizeSpacingName($spacingType);
+
+  @debug calculateSpacingModifier($spacingType);
+
+  // @debug $modifier;
+  // @if ($direction) {
+  // $multiplier: map-get-deep($bolt-spacing-modifiers, 'bolt-spacing-modifiers', $spacingType, $spacingDirection);
+
+  @return $size;// * $multiplier;
+  // }
+  // @else {
+  // @return $size;
+  // }
+}

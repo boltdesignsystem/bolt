@@ -1,0 +1,212 @@
+// Unit on which all spacing is based
+// $spacing-gutter: 2rem !default;
+$spacing-leading: 1.65 !default;
+$SQUISHED_RATIO: 0.5;
+$STRETCHED_RATIO: 1.5;
+
+// Modular spacing scale
+$SPACING_SIZES: (
+  xxsmall: 0.125,
+  xsmall:  0.25,
+  small:   0.5,
+  medium:  1,
+  large:   2,
+  xlarge:  4,
+  xxlarge: 8
+);
+$SPACING_MAP: ();
+
+
+/*
+ * Generate default spacing scale, based off of the base font size
+ **/
+@function make-spacing-map($levels: $SPACING_SIZES) {
+  $map: ();
+  @each $name, $value in $levels {
+    $keyName: $name;
+    $keyValue: $value * $spacing-gutter;
+    $map: map-merge($map, ($keyName: $keyValue));
+  }
+  @return $map;
+}
+$SPACING_MAP: make-spacing-map($levels: $SPACING_SIZES);
+
+
+
+/*
+ * CONVENIENCE FUNCTIONS
+ **/
+@function spacing($size) {
+  @return map-get($SPACING_MAP, nth($size, 1));
+}
+
+
+// Convert shirt sizes in baseline-optimized sizes
+@function v-spacing($size) {
+  $name: nth($size, 1);
+  $modifier: 1;
+
+  @if (type-of($size) == list) {
+    $modifier: nth($size, 2);
+  }
+
+  @if ($modifier == 'squish' or $modifier == 'squished') {
+    $modifier: $SQUISHED_RATIO;
+  } @elseif ($modifier == 'stretch' or $modifier == 'stretched') {
+    $modifier: $stretched_RATIO;
+  }
+
+  @return (spacing($name) / strip-unit($spacing-gutter)) * $spacing-leading * $modifier;
+}
+
+
+@function vertical-spacing($size) {
+  @return v-spacing($size);
+}
+
+
+
+
+/*
+ * MIXINS
+ **/
+@mixin _bolt-spacing-inset($size, $important: null) {
+  @if ( $important != null ) {
+    $important: !important;
+  }
+  padding-top: v-spacing($size) $important;
+  padding-bottom: v-spacing($size) $important;
+  padding-left: spacing($size) $important;
+  padding-right: spacing($size) $important;
+}
+
+
+@mixin _bolt-spacing-inset-squish($size, $important: false) {
+  @include _bolt-spacing-inset(($size, squished), $important);
+}
+
+@mixin _bolt-inset-stretch($size, $important: false) {
+  @include _bolt-spacing-inset(($size, stretched), $important);
+}
+
+
+
+@mixin padding($size, $important: null) {
+  @include _bolt-spacing-inset($size, $important);
+}
+
+@mixin padding-top($size, $important: null) {
+  @if ( $important != null ) {
+    $important: !important;
+  }
+  padding-top: v-spacing($size) $important;
+}
+
+@mixin padding-bottom($size, $important: null) {
+  @if ( $important != null ) {
+    $important: !important;
+  }
+  padding-bottom: v-spacing($size) $important;
+}
+
+@mixin padding-right($size, $important: null) {
+  @if ( $important != null ) {
+    $important: !important;
+  }
+  padding-right: spacing($size) $important;
+}
+
+@mixin padding-left($size, $important: null) {
+  @if ( $important != null ) {
+    $important: !important;
+  }
+  padding-left: spacing($size) $important;
+}
+
+
+
+
+
+// @mixin stack($level, $isImportant: false) {
+//   margin-bottom: spacing-level($level) if($isImportant, !important, null);
+// }
+//
+// @mixin inline($level, $isImportant: false) {
+//   margin-right: spacing-level($level) if($isImportant, !important, null);
+// }
+
+
+.c-button {
+  // @include _bolt-spacing-inset(small squished);
+}
+
+.c-button {
+  @include padding(small squished);
+}
+
+.c-button {
+  padding-top: v-spacing(small squished);
+  padding-bottom: v-spacing(small squished);
+  padding-left: spacing(small);
+  padding-right: spacing(small);
+}
+
+.c-button {
+  @include padding-top(small squished);
+  @include padding-bottom(small squished);
+  @include padding-left(small);
+  @include padding-right(small);
+
+  position: relative;
+  right: spacing(medium) * -1;
+}
+
+.u-padding,
+.u-padding-medium {
+  @include padding(medium, important);
+}
+
+.u-padding-squished,
+.u-padding-medium-squished {
+  @include padding(medium squished, important);
+}
+// //
+// .u-inset {
+//   @include _bolt-spacing-inset(medium, important);
+// }
+//
+// .u-inset-small-squish {
+//   @include _bolt-spacing-inset(small, important);
+// }
+//
+// .u-inset-large {
+//   @include _bolt-spacing-inset(large, important);
+// }
+// //
+// .u-inset-squish {
+//   @include _bolt-spacing-inset-squish(medium, important);
+// }
+//
+// .u-inset-large-squish {
+//   @include _bolt-spacing-inset-squish(large, important);
+// }
+//
+// .u-inset-stretch {
+//   @include _bolt-spacing-inset-stretch(medium, important);
+// }
+//
+// .u-inset-large-stretch {
+//   @include _bolt-spacing-inset-stretch(large, important);
+// }
+// //
+// // .u-inset-large {
+// //   @include _bolt-spacing-inset(large, important);
+// // }
+//
+// p:after {
+//   $size: spacing(large);
+//   content: "#{$size}";
+//
+//   display: block;
+//   color: black;
+// }

@@ -1,0 +1,28 @@
+// Squish
+// -----
+/// Take a size value and return the `squished` variation of it
+///
+/// @group tools
+///
+/// @param {String | list} $size -
+///   The size of the value of a  in your palette,
+///   with optional adjustments in the form of `(<function-name>: <args>)`.
+/// @param {Percentage} $percentage -
+///   The percentage of black to mix in.
+///   Higher percentages will result in a darker shade.
+/// @return {Color} -
+///   A calculated css-ready color-value based on your global color palette.
+@function squish($size) {
+  @if (length($size) != 2) {
+    @warn "You need to pass in at least two size values in order to make one of them 'squished'";
+    @return $size;
+  }
+  @else {
+    $spacingMultiplier: map-get-deep($bolt-spacing-modifiers, 'bolt-spacing-modifiers', 'squished');
+
+    $verticalSpacingMultiplier: nth($spacingMultiplier, 1);
+    $horizontalSpacingMultiplier: nth($spacingMultiplier, 2);
+
+    @return ($size * $verticalSpacingMultiplier) ($horizontalSpacingMultiplier * 1);
+  }
+}
