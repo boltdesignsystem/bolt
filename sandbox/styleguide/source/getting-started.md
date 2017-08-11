@@ -5,7 +5,9 @@ intro: Bolt was designed to help developers and designers quickly create the mos
 permalink: /getting-started/
 ---
 
-<div class="testing" style="background: red">testing</div>
+<div class="t-red">
+  <div class="testing">testing</div>
+</div>
 
 ## Main System Website
 
