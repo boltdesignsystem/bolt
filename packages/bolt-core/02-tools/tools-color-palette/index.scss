@@ -1,0 +1,122 @@
+/*------------------------------------*\
+  Color Palette
+\*------------------------------------*/
+
+/**
+  * Helper functions for applying global color swatches stored in Sass Maps
+  */
+@import '@bolt/settings-colors';
+@import '@bolt/tools-sassy-maps'; //So map-get-deep works
+
+
+@function palette($color, $tone: 'base') {
+  @return map-get-deep($palettes, $color, $tone);
+}
+
+@function to-string($value) {
+  @return inspect($value);
+}
+
+@function convert-color-map($map-old, $map-new, $overwrite: true) {
+  $case: "lower-case";
+  // Iterate through each value of the new map
+  @each $key, $new-value in $map-new {
+    // Check if that value already exists on the old map
+    @if type-of($new-value) == map and type-of($key) != color and map-has-key($map-old, $key) {
+      // There is an existing key
+      $old-value: map-get($map-old, $key);
+      @if type-of($new-value) == map and type-of($old-value) == map {
+        // If both are maps, recurse regardless of $overwrite
+        $merged-value: convert-color-map($old-value, $new-value);
+        $stringified-key: to-string($key);
+        $new-key: call("to-" + $case, $stringified-key);
+        $map-old: map-merge(map-remove($map-old, $key), (
+          quote($new-key): $merged-value
+        ));
+
+      }@else{
+        // Otherwise check $overwrite
+        @if $overwrite{
+          $stringified-key: to-string($key);
+          $new-key: call("to-" + $case, $stringified-key);
+          $map-old: map-merge(map-remove($map-old, $key), (
+            quote($new-key): $new-value
+          ));
+        }
+      }
+    }@else{
+      // There is no existing key so add
+      $stringified-key: to-string($key);
+      $new-key: call("to-" + $case, $stringified-key);
+
+      $map-old: map-merge(map-remove($map-old, $key), (
+        quote($new-key): $new-value
+      ));
+    }
+  }
+  @return $map-old;
+}
+
+
+/*
+$color-text-link: palette(blue);
+$color-text-link--var: var(--bolt-text-link-color, $color-text-link);
+*/
+
+@mixin color($name, $tone: 'base', $type: null) {
+  $color: map-get-deep($palettes, $name, $tone);
+
+  color: $color;
+
+  @if $type == 'button' {
+    color: var(--bolt-color-button-text, $color);
+  }
+  @elseif $type == 'link' {
+    color: var(--bolt-color-link, $color);
+  }
+  @elseif $type == null {
+    color: var(--bolt-color-text, $color);
+  }
+}
+
+@mixin background-color($name, $tone: 'base', $type: null) {
+  $background-color: map-get-deep($palettes, $name, $tone);
+
+  background-color: $background-color;
+
+  @if $type == 'button' {
+    background-color: var(--bolt-color-button-background, $background-color);
+  }
+  @elseif $type == null {
+    background-color: var(--bolt-color-background, $background-color);
+  }
+}
+
+.testing {
+  @include color(gray);
+  /*@include color(gray, dark);*/
+  /*@include color(gray, dark, button);*/
+  /*@include color(gray, dark, link);*/
+
+
+  @include background-color(teal);
+  /*@include background-color(teal, xdark);*/
+  /*@include background-color(teal, xdark, button);*/
+
+
+
+
+
+
+  /*color: $color-text-link;*/
+  /*color: var(--bolt-text-link-color, $color-text-link);*/
+}
+
+
+.t-red {
+  --bolt-color-text: black;
+  --bolt-color-background: red;
+  --bolt-color-link: white;
+  --bolt-color-button-text: red;
+  --bolt-color-button-background: white;
+}

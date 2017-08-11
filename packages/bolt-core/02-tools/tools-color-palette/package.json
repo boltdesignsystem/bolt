@@ -1,13 +1,13 @@
 {
-  "name": "@bolt/settings-all",
-  "description": "Collection of ITCSS settings in the Bolt Design System `Core` CSS Framework",
+  "name": "@bolt/tools-color-palette",
+  "description": "Color Palette Picker",
   "keywords": [
     "bolt design system",
     "bolt",
     "css framework",
     "design system"
   ],
-  "version": "0.1.0-beta.2",
+  "version": "0.1.0-alpha.1",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -24,22 +24,18 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bolt-design-system/bolt/tree/master/packages/"
+    "url": "https://github.com/bolt-design-system/bolt/tree/master/packages/tools-color-palette"
   },
   "bugs": {
     "url": "https://github.com/pega-digital/bolt/issues"
   },
-  "main": "settings-all.scss",
+  "main": "index.scss",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@bolt/settings-breakpoints": "^0.1.0-beta.2",
-    "@bolt/settings-font-family": "^0.1.0-beta.2",
-    "@bolt/settings-font-size": "^0.1.0-beta.2",
-    "@bolt/settings-font-weight": "^0.1.0-beta.2",
-    "@bolt/settings-global": "^0.1.0-beta.2",
-    "@bolt/settings-spacing": "^0.1.0-alpha.1",
-    "@bolt/settings-colors": "^0.1.0-alpha.1"
-  }
+    "@bolt/settings-colors": "0.1.0-alpha.1",
+    "@bolt/tools-sassy-maps": "0.1.0-beta.2"
+  },
+  "private": true
 }
