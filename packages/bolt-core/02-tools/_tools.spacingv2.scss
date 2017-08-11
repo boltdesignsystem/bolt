@@ -1,127 +1,156 @@
-// Unit on which all spacing is based
-// $spacing-gutter: 2rem !default;
-$spacing-leading: 1.65 !default;
-$SQUISHED_RATIO: 0.5;
-$STRETCHED_RATIO: 1.5;
-
-// Modular spacing scale
-$SPACING_SIZES: (
-  xxsmall: 0.125,
-  xsmall:  0.25,
-  small:   0.5,
-  medium:  1,
-  large:   2,
-  xlarge:  4,
-  xxlarge: 8
-);
-$SPACING_MAP: ();
-
+// @import 'tools-spacing/tools.get-shirt-size';
+// @import 'tools-spacing/tools.calculate-sizes';
+// @import 'tools-spacing/tools.normalize-spacing-name';
+@import 'tools-spacing/tools.contains-falsy';
+@import 'tools-spacing/tools.normalize-spacing-sizes';
+@import 'tools-spacing/tools.collapse-directionals';
+@import 'tools-spacing/tools.directional-property';
+@import 'tools-spacing/tools.spacing-margin';
+@import 'tools-spacing/tools.spacing-padding';
 
 /*
  * Generate default spacing scale, based off of the base font size
  **/
-@function make-spacing-map($levels: $SPACING_SIZES) {
+@function _bolt-create-spacing-map($sizes, $char: '') {
   $map: ();
-  @each $name, $value in $levels {
+  @each $name, $value in $sizes {
     $keyName: $name;
-    $keyValue: $value * $spacing-gutter;
+    @if ($char != '' and $keyName != null){
+      $keyName: $char + $keyName;
+    }
+    $keyValue: $value * $bolt-spacing-gutter;
     $map: map-merge($map, ($keyName: $keyValue));
   }
   @return $map;
 }
-$SPACING_MAP: make-spacing-map($levels: $SPACING_SIZES);
-
-
-
+$bolt-spacing-sizes: _bolt-create-spacing-map($bolt-spacing-values);
+@debug $bolt-spacing-sizes;
 /*
  * CONVENIENCE FUNCTIONS
  **/
 @function spacing($size) {
-  @return map-get($SPACING_MAP, nth($size, 1));
+  @return map-get($bolt-spacing-sizes, nth($size, 1));
 }
 
 
 // Convert shirt sizes in baseline-optimized sizes
-@function v-spacing($size) {
-  $name: nth($size, 1);
-  $modifier: 1;
-
-  @if (type-of($size) == list) {
-    $modifier: nth($size, 2);
-  }
-
+@function v-spacing($sizes, $modifier) {
   @if ($modifier == 'squish' or $modifier == 'squished') {
-    $modifier: $SQUISHED_RATIO;
+    $modifier: $spacing-squished;
   } @elseif ($modifier == 'stretch' or $modifier == 'stretched') {
     $modifier: $stretched_RATIO;
+  } @else {
+    $modifier: 1;
   }
 
-  @return (spacing($name) / strip-unit($spacing-gutter)) * $spacing-leading * $modifier;
+  @return (spacing($sizes) / strip-unit($bolt-spacing-gutter)) * $bolt-spacing-leading * $modifier;
 }
 
-
+// Alias for v-spacing function
 @function vertical-spacing($size) {
   @return v-spacing($size);
 }
 
 
+// @mixin spacing(){
+//   $sizes: _bolt-normalize-spacing-sizes($sizes, null);
+//   $sizes: nth($sizes, 1) null null null;
+//   @include _bolt-directional-property(padding, false, $sizes, $important);
+// }
+@debug $bolt-spacing-directions;
+$direction-index: 0;
+@each $property in $bolt-spacing-properties {
+  @for $i from 1 through length($bolt-spacing-directions) {
+    $direction: nth($bolt-spacing-directions, $i);
+
+    @each $type in $bolt-spacing-types {
+      @each $size, $value in $bolt-spacing-sizes {
+
+        $sizeText: $size;
+
+        @if ($direction != null and $direction != ''){
+          $type: null;
+          $sizeText: '-' + $size;
+        }
+
+        .u-#{$property}#{$direction}#{$sizeText}#{$type} {
+
+          $sizes: null null null null;
 
 
-/*
- * MIXINS
- **/
-@mixin _bolt-spacing-inset($size, $important: null) {
-  @if ( $important != null ) {
-    $important: !important;
+          $size-index: index($bolt-spacing-directions, $direction);
+
+          @if ($direction != null){
+            $sizes: set-nth($sizes, $size-index - 1, $size);
+          } @else {
+            // @debug #{$property}#{$direction}#{$size}#{$type};
+            $sizes: $size $size $size $size;
+          }
+
+          $normalizedSizes: _bolt-normalize-spacing-sizes($sizes, null);
+          //
+
+          @include _bolt-directional-property(#{$property}, false, $normalizedSizes, important);
+          // @debug $i - 1;
+
+
+          // @debug $list;
+
+
+
+          //@include #{$property}#{$direction}($size, $type, important);
+        }
+      }
+    }
   }
-  padding-top: v-spacing($size) $important;
-  padding-bottom: v-spacing($size) $important;
-  padding-left: spacing($size) $important;
-  padding-right: spacing($size) $important;
 }
+//
 
-
-@mixin _bolt-spacing-inset-squish($size, $important: false) {
-  @include _bolt-spacing-inset(($size, squished), $important);
-}
-
-@mixin _bolt-inset-stretch($size, $important: false) {
-  @include _bolt-spacing-inset(($size, stretched), $important);
-}
-
-
-
-@mixin padding($size, $important: null) {
-  @include _bolt-spacing-inset($size, $important);
-}
-
-@mixin padding-top($size, $important: null) {
-  @if ( $important != null ) {
-    $important: !important;
-  }
-  padding-top: v-spacing($size) $important;
-}
-
-@mixin padding-bottom($size, $important: null) {
-  @if ( $important != null ) {
-    $important: !important;
-  }
-  padding-bottom: v-spacing($size) $important;
-}
-
-@mixin padding-right($size, $important: null) {
-  @if ( $important != null ) {
-    $important: !important;
-  }
-  padding-right: spacing($size) $important;
-}
-
-@mixin padding-left($size, $important: null) {
-  @if ( $important != null ) {
-    $important: !important;
-  }
-  padding-left: spacing($size) $important;
-}
+// /*
+//  * MIXINS
+//  **/
+// @mixin padding($spacing-sizes, $spacing-type: null, $important: null) {
+//   $sizes: _bolt-normalize-spacing-sizes($spacing-sizes, $spacing-type);
+//   @include _bolt-directional-property(padding, false, $sizes, $important);
+// }
+//
+// @mixin margin($spacing-sizes, $spacing-type: null, $important: null) {
+//   $sizes: _bolt-normalize-spacing-sizes($spacing-sizes, $spacing-type);
+//   @include _bolt-directional-property(margin, false, $sizes, $important);
+// }
+//
+// @mixin spacing()
+//
+//
+// @mixin _bolt-spacing-inset-squish($size, $important) {
+//   @include _bolt-spacing-inset(($size, squished), $important);
+// }
+//
+// @mixin _bolt-inset-stretch($size, $important) {
+//   @include _bolt-spacing-inset(($size, stretched), $important);
+// }
+//
+//
+//
+// @mixin padding($sizes, $important: null) {
+//   @include _bolt-spacing-inset($sizes, $important);
+// }
+//
+// @mixin padding-top($size, $important: null) {
+//   padding-top: v-spacing($size) $important;
+// }
+//
+// @mixin padding-bottom($size, $important: null) {
+//   padding-bottom: v-spacing($size) $important;
+// }
+//
+// @mixin padding-right($size, $important: null) {
+//   padding-right: spacing($size) $important;
+// }
+//
+// @mixin padding-left($size, $important: null) {
+//   padding-left: spacing($size) $important;
+// }
 
 
 
@@ -141,35 +170,44 @@ $SPACING_MAP: make-spacing-map($levels: $SPACING_SIZES);
 }
 
 .c-button {
-  @include padding(small squished);
+  @include padding(small);
 }
+//
+// .c-button {
+//   padding-top: v-spacing(small, squished);
+//   padding-bottom: v-spacing(small, squished);
+//   padding-left: spacing(small);
+//   padding-right: spacing(small);
+// }
+//
+// .c-button {
+//   @include padding-top(small);
+//   @include padding-bottom(small);
+//   @include padding-left(small);
+//   @include padding-right(small);
+//
+//   position: relative;
+//   right: spacing(medium) * -1;
+// }
 
-.c-button {
-  padding-top: v-spacing(small squished);
-  padding-bottom: v-spacing(small squished);
-  padding-left: spacing(small);
-  padding-right: spacing(small);
-}
+// .c-button {
+//   @include padding(10px);
+//   @include padding-top(small);
+// }
 
-.c-button {
-  @include padding-top(small squished);
-  @include padding-bottom(small squished);
-  @include padding-left(small);
-  @include padding-right(small);
+// .u-padding,
+// .u-padding-medium {
+//   @include padding(medium, null, important);
+// }
 
-  position: relative;
-  right: spacing(medium) * -1;
-}
+// .u-padding-squished,
+// .u-padding-medium-squished {
+//   @include padding(medium, squished, important);
+// }
 
-.u-padding,
-.u-padding-medium {
-  @include padding(medium, important);
-}
 
-.u-padding-squished,
-.u-padding-medium-squished {
-  @include padding(medium squished, important);
-}
+
+
 // //
 // .u-inset {
 //   @include _bolt-spacing-inset(medium, important);

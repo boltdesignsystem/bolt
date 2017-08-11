@@ -2,170 +2,43 @@
   Spacing Scale
 \*------------------------------------*/
 
-$spacing-leading: 1.65;
-$spacing-gutter: 2rem;
+// Unit on which all spacing is based
+$bolt-spacing-gutter: 2rem;
+$bolt-spacing-leading: 1.65;
+$bolt-spacing-squished: 0.5;
+$bolt-spacing-stretched: 1.5;
 
+// Modular spacing scale
+$bolt-spacing-values: (
+  '':        1,
+  'xxsmall': 0.125,
+  'xsmall':  0.25,
+  'small':   0.5,
+  'medium':  1,
+  'large':   2,
+  'xlarge':  4,
+  'xxlarge': 8
+);
+$bolt-spacing-sizes: ();
 
-
-// $spacing-sizes--vertical: (
-//   xxlarge:  $spacing-leading * 8 + rem,
-//   xlarge:   $spacing-leading * 4 + rem,
-//   large:    $spacing-leading * 2 + rem,
-//   medium:   $spacing-leading * 1 + rem,
-//   small:    $spacing-leading * 0.5 + rem,
-//   xsmall:   $spacing-leading * 0.25 + rem,
-//   xxsmall:  $spacing-leading * 0.125 + rem,
-//   xxxsmall: $spacing-leading * 0.0625 + rem,
-//   none:     0
-// ) !default;
-//
-//
-//
-// $spacing-sizes--horizontal: (
-//   xxlarge:  $spacing-gutter * 8 + rem,
-//   xlarge:   $spacing-gutter * 4 + rem,
-//   large:    $spacing-gutter * 2 + rem,
-//   medium:   $spacing-gutter * 1 + rem,
-//   small:    $spacing-gutter * 0.5 + rem,
-//   xsmall:   $spacing-gutter * 0.25 + rem,
-//   xxsmall:  $spacing-gutter * 0.125 + rem,
-//   xxxsmall: $spacing-gutter * 0.0625 + rem,
-//   none:     0
-// ) !default;
-$bolt-spacing-sizes: (
-  bolt-spacing-sizes: (
-    xxlarge: medium ('multiply': 8),
-    xlarge:  medium ('multiply': 4),
-    large:   medium ('multiply': 2),
-    medium:  1rem,
-    small:   large  ('multiply': 0.5),
-    xsmall:  medium ('multiply': 0.25),
-    xxsmall: medium ('multiply': 0.125)
-  )
+$bolt-spacing-properties: (
+  'padding',
+  'margin'
 );
 
-$bolt-spacing-modifiers: (
-  bolt-spacing-modifiers: (
-    stretched: (
-      vertical:    1.5 * $spacing-leading,
-      horizontal:  1.0 * $spacing-gutter
-    ),
-    squished: (
-      vertical:    0.5 * $spacing-leading,
-      horizontal:  1.0 * $spacing-gutter
-    ),
-    stacked: (
-      default:    vertical,
-      vertical:    1.0 * $spacing-leading
-    ),
-    inline: (
-      default:  1.0 * $spacing-gutter,
-      horizontal:  1.0 * $spacing-gutter
-    ),
-    inset: (
-      default:     horizontal ('multiply': 1),
-      vertical:    1.0 * $spacing-leading,
-      horizontal:  1.0 * $spacing-gutter
-    )
-  )
+$bolt-spacing-directions: (
+  null,
+  '-top',
+  '-right',
+  '-bottom',
+  '-left',
 );
 
-// $sizes: map-get-deep($cards, "card_options", "sizes");
-    // xxlarge: (
-    //   vertical:      ($spacing-leading * 8rem),
-    //   horizontal:    ($spacing-gutter  * 8rem),
-    //   inset:         ($spacing-leading * 8rem)       ($spacing-gutter * 8rem),
-    //   inset-squish:  ($spacing-leading * 8rem / 2)   ($spacing-gutter * 8rem),
-    //   inset-stretch: ($spacing-leading * 8rem * 1.5) ($spacing-gutter * 8rem),
-    //   inline:        ($spacing-gutter  * 8rem),
-    //   // inline:        ($spacing-gutter  * 4rem),
-    //   stack:    $spacing-leading * 4rem
-    //   default:          $spacing-gutter  * 8rem,
-    // ),
-    //
-    // xlarge: (
-    //   vertical:   $spacing-leading * 4 + rem,
-    //   default:    $spacing-gutter * 4 + rem,
-    //   horizontal: $spacing-gutter * 4 + rem,
-    //   inline:     $spacing-gutter * 2 + rem
-    // ),
-    // large: (
-    // vertical:   $spacing-leading * 2 + rem,
-    // horizontal: $spacing-gutter * 2 + rem,
-    // default:    $spacing-gutter * 2 + rem,
-    // squished:   ($spacing-leading  * 1rem) ($spacing-gutter  * 2rem),
-    // ),
-
-    // medium: (
-    //   vertical:   $spacing-leading * 1 + rem,
-    //   horizontal: $spacing-gutter * 1 + rem,
-    //   default: $spacing-gutter * 1 + rem
-    // ),
-    // small: (
-    //   vertical:   $spacing-leading * 0.5 + rem,
-    //   horizontal: $spacing-gutter * 0.5 + rem,
-    //   default: $spacing-gutter * 0.5 + rem
-    // ),
-    // xsmall: (
-    //   vertical:   $spacing-leading * 0.25 + rem,
-    //   horizontal: $spacing-gutter * 0.25 + rem,
-    //   default: $spacing-gutter * 0.25 + rem,
-    // ),
-    // xxsmall: (
-    //   vertical:   $spacing-leading * 0.125 + rem,
-    //   horizontal: $spacing-gutter * 0.125 + rem,
-    //   default: $spacing-gutter * 0.125 + rem,
-    // )
-    // none: (
-    //   vertical:   0,
-    //   horizontal: 0
-    // ),
-    // auto: (
-    //   vertical:   auto,
-    //   horizontal: auto
-    // )
-//   )
-// );
-
-//
-// $spacing-stacks: (
-//   spacing-stacks: (
-//     xlarge:   $spacing-leading * 2 + rem,
-//     large:    $spacing-leading * 1 + rem,
-//     medium:   $spacing-leading * 0.5 + rem,
-//     small:    $spacing-leading * 0.25 + rem,
-//     xsmall:   $spacing-leading * 0.125 + rem,
-//     xxsmall:  $spacing-leading * 0.0625 + rem
-//   )
-// );
-
-
-
-
-
-//
-// p {
-//   @include margin-right(medium);
-//   // @include margin-right(medium);
-// }
-//
-
-
-
-
-// @mixin margin($args...) {
-//   $newArgs: ();
-//
-//   @each $item in $args {
-//     //$newArgs = // get
-//     @debug $item;
-//
-//
-//     //if type-of()
-//   }
-//
-// }
-
+$bolt-spacing-types: (
+  null,
+  '-squished',
+  '-stretched'
+);
 
 
 // @mixin margin($size: medium, $sides: all, $reset: null) {

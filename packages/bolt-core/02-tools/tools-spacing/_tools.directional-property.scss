@@ -2,46 +2,54 @@
 ///
 /// @access private
 ///
-/// @param {String} $pre
+/// @param {String} $prefix
 ///   Prefix to use
-/// @param {String} $suf
+/// @param {String} $suffix
 ///   Suffix to use
-/// @param {List} $vals
+/// @param {List} $values
 ///   List of values
 ///
-/// @require {function} collapse-directionals
+/// @require {function} _bolt-collapse-directional-values
 /// @require {function} contains-falsy
 
-@mixin directional-property($pre, $suf, $vals) {
+@mixin _bolt-directional-property($prefix, $suffix, $values, $important) {
+  @if $important == important {
+    $important: !important;
+  }
+
   // Property Names
-  $top:    $pre + "-top"    + if($suf, "-#{$suf}", "");
-  $bottom: $pre + "-bottom" + if($suf, "-#{$suf}", "");
-  $left:   $pre + "-left"   + if($suf, "-#{$suf}", "");
-  $right:  $pre + "-right"  + if($suf, "-#{$suf}", "");
-  $all:    $pre +             if($suf, "-#{$suf}", "");
+  $top:    $prefix + "-top"    + if($suffix, "-#{$suffix}", "");
+  $bottom: $prefix + "-bottom" + if($suffix, "-#{$suffix}", "");
+  $left:   $prefix + "-left"   + if($suffix, "-#{$suffix}", "");
+  $right:  $prefix + "-right"  + if($suffix, "-#{$suffix}", "");
+  $all:    $prefix +             if($suffix, "-#{$suffix}", "");
 
-  $vals: collapse-directionals($vals);
+  $values: _bolt-collapse-directional-values($values);
 
-  @if contains-falsy($vals) {
-    @if nth($vals, 1) { #{$top}: nth($vals, 1); }
+  @if _bolt-contains-falsy($values) {
+    @if nth($values, 1) { #{$top}: nth($values, 1) $important; }
 
-    @if length($vals) == 1 {
-      @if nth($vals, 1) { #{$right}: nth($vals, 1); }
+    @if length($values) == 1 {
+      @if nth($values, 1) {
+        #{$right}: nth($values, 1) $important;
+        #{$bottom}: nth($values, 1) $important;
+        #{$left}: nth($values, 1) $important;
+      }
     } @else {
-      @if nth($vals, 2) { #{$right}: nth($vals, 2); }
+      @if nth($values, 2) { #{$right}: nth($values, 2) $important; }
     }
 
-    @if length($vals) == 2 {
-      @if nth($vals, 1) { #{$bottom}: nth($vals, 1); }
-      @if nth($vals, 2) { #{$left}:   nth($vals, 2); }
-    } @else if length($vals) == 3 {
-      @if nth($vals, 3) { #{$bottom}: nth($vals, 3); }
-      @if nth($vals, 2) { #{$left}:   nth($vals, 2); }
-    } @else if length($vals) == 4 {
-      @if nth($vals, 3) { #{$bottom}: nth($vals, 3); }
-      @if nth($vals, 4) { #{$left}:   nth($vals, 4); }
+    @if length($values) == 2 {
+      @if nth($values, 1) { #{$bottom}: nth($values, 1) $important; }
+      @if nth($values, 2) { #{$left}:   nth($values, 2) $important; }
+    } @else if length($values) == 3 {
+      @if nth($values, 3) { #{$bottom}: nth($values, 3) $important; }
+      @if nth($values, 2) { #{$left}:   nth($values, 2) $important; }
+    } @else if length($values) == 4 {
+      @if nth($values, 3) { #{$bottom}: nth($values, 3) $important; }
+      @if nth($values, 4) { #{$left}:   nth($values, 4) $important; }
     }
   } @else {
-    #{$all}: $vals;
+    #{$all}: $values;
   }
 }
