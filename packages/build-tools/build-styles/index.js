@@ -99,7 +99,7 @@ function compileCSS(userConfig) {
     .pipe(gulpif(config.sourceMaps, sourcemaps.write('./')))
      .pipe(gulp.dest(config.dest))
      .on('end', () => {
-      //  events.emit('reload', join(config.dest, '**/*.css'));
+       events.emit('reload', join(config.dest, '**/*.css'));
        done();
      });
   }

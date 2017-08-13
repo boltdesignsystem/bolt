@@ -1,0 +1,108 @@
+.c-heading {
+  @include font-family(heading);
+  @include font-weight(bold);
+  // @include null-spacing;
+  //
+  // &:only-child {
+  //   padding-top: 0;
+  //   padding-bottom: 0;
+  // }
+}
+
+// .c-heading--xxlarge, .c-heading--xlarge {
+//   @include mm-padding(($font-leading--base*2 + rem),0,($font-leading--base*.5 + rem),0);
+// }
+
+.c-heading--xxlarge {
+  @include font-size(xxlarge);
+
+  // letter-spacing: -.1rem;
+
+  @include respond-to(medium) {
+    @include font-size(xxxlarge);
+    // letter-spacing: -.15rem;
+  }
+}
+
+.c-heading--xlarge {
+  @include font-size(xlarge);
+  // letter-spacing: -.1rem;
+}
+
+.c-heading--large {
+  @include font-size(large);
+  // @include mm-padding(($font-leading--base*1.35 + rem),0,($font-leading--base*.3 + rem),0);
+  // letter-spacing: -.05rem;
+}
+
+.c-heading--medium, .c-heading--small {
+  // @include mm-padding(($font-leading--base*1.15 + rem),0,($font-leading--base*.2 + rem),0);
+}
+
+.c-heading--medium {
+  @include font-size(medium);
+}
+
+.c-heading--small {
+  @include font-size(small);
+
+  // text-transform: uppercase;
+  // letter-spacing: .1rem;
+}
+
+.c-heading--eyebrow {
+  // @include mm-padding(($font-leading--base + rem),0,($font-leading--base*.125 + rem),0);
+  @include font-size(xsmall);
+  @include font-weight(regular);
+
+  // & + .c-heading {
+  //   padding-top: 0;
+  // }
+}
+
+  // .c-heading__text {
+  //   color: inherit;
+  //   font-family: inherit;
+  //   font-size: inherit;
+  //   font-weight: inherit;
+  // }
+
+// .c-heading-group {
+//   .c-heading--eyebrow {
+//     @include mm-padding(0,0,($font-leading--base*.125 + rem),0);
+//   }
+//
+//   .c-heading--xxlarge {
+//     @include mm-padding(0,0,($font-leading--base*.325 + rem),0);
+//   }
+//
+//   .c-heading--xlarge {
+//     @include mm-padding(0,0,($font-leading--base*.65 + rem),0);
+//     @include font-size(large);
+//     @include font-weight(regular);
+//
+//     letter-spacing: 0;
+//
+//     @include respond-to(medium) {
+//       @include font-size(xlarge);
+//
+//       line-height: 1.45;
+//     }
+//   }
+//
+//   &:only-child {
+//     .c-heading--xlarge {
+//       @include mm-padding(0,0,0,0);
+//     }
+//   }
+// }
+//
+// .c-heading, .c-heading-group {
+//   & + * {
+//     @include null-spacing;
+//   }
+//
+//   & + .c-heading {
+//     padding-top: 0;
+//   }
+// }

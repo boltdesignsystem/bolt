@@ -2,8 +2,8 @@
 layout: home
 title: Bolt Design System
 ---
-<div class="o-golden-two-column o-golden-two-column--center">
-  <div class="o-golden-two-column__main">
+<div class="o-grid o-grid--center">
+  <div class="o-grid__item">
     <header role="banner">
       <div class="c-heading-group">
         <div class="c-heading c-heading--eyebrow">
@@ -76,7 +76,7 @@ title: Bolt Design System
       </div>
     </div> -->
   </div>
-  <div class="o-golden-two-column__aside">
+  <div class="o-grid__item">
     <section role="region">
       <h3 class="c-heading c-heading--small">
         <span class="c-heading__text">

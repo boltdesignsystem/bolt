@@ -1,0 +1,9 @@
+$wrapper--max-width: map-get($breakpoints, xlarge) !default;
+
+.o-wrapper {
+  @include padding-left(small);
+  @include padding-right(small);
+  @include margin-left(auto);
+  @include margin-right(auto);
+  max-width: $wrapper--max-width;
+}
