@@ -1,41 +1,45 @@
 import gulp from 'gulp';
-import * as bolt from './packages/bolt-build';
+import * as bolt from './packages/build-tools/build-all';
 
 /*-------------------------------------------------------------------
 // Browsersync Tasks
 -------------------------------------------------------------------*/
 
 // Browser Sync - Bolt Starterkit Example
-const browserSyncBoltConfig = {
-  server: 'packages/bolt'
-};
-const boltServer = bolt.server(browserSyncBoltConfig);
-gulp.task(boltServer);
+// const browserSyncBoltConfig = {
+//   server: 'packages/bolt'
+// };
+// const boltServer = bolt.server(browserSyncBoltConfig);
+// gulp.task(boltServer);
 
 
 // Browser Sync - Pattern Lab
-const browserSyncPLConfig = {
+const browsersyncConfig = {
   server: 'bolt-website'
 };
-const patternLabServer = bolt.server(browserSyncPLConfig);
-patternLabServer.displayName = 'patternlab:serve';
-patternLabServer.description = 'Serve Pattern Lab sandbox';
-gulp.task(patternLabServer);
+const browserSyncServer = bolt.server(browsersyncConfig);
+browserSyncServer.displayName = 'browsersync:serve';
+browserSyncServer.description = 'Serve Jekyll and Pattern Lab sites';
+gulp.task(browserSyncServer);
 
 
-// Browser Sync - Pattern Lab
-const browserSyncJekyllConfig = {
-  server: 'bolt-website'
-};
-const jekyllServer = bolt.server(browserSyncJekyllConfig);
-jekyllServer.displayName = 'jekyll:serve';
-jekyllServer.description = 'Serve Jekyll sandbox';
-gulp.task(jekyllServer);
+// // Browser Sync - Pattern Lab
+// const browserSyncJekyllConfig = {
+//   server: 'bolt-website'
+// };
+// const jekyllServer = bolt.server(browserSyncJekyllConfig);
+// jekyllServer.displayName = 'jekyll:serve';
+// jekyllServer.description = 'Serve Jekyll sandbox';
+// gulp.task(jekyllServer);
 
 /*-------------------------------------------------------------------
 // Pattern Lab Tasks
 -------------------------------------------------------------------*/
 gulp.task(bolt.slack());
+
+
+gulp.task(bolt.compileJekyll());
+gulp.task(bolt.watchJekyll());
 
 
 /*-------------------------------------------------------------------
@@ -50,7 +54,7 @@ gulp.task(bolt.compilePatternLab());
 gulp.task(bolt.recompilePatternLab());
 gulp.task(bolt.watchPatternLab({
   extraWatches: [
-    './packages/**/*.twig'
+    // './packages/**/*.twig'
   ]
 }));
 
@@ -68,22 +72,26 @@ gulp.task(bolt.watchSymlinks());
 -------------------------------------------------------------------*/
 
 // Compile Pattern Lab CSS
-const patternLabCSSConfig = {
-  root: 'sandbox/pattern-library',
+const boltCSSConfig = {
+  // root: 'packages/website-pattern-lab',
   src: [
-    'sandbox/pattern-library/source/styles/*.scss'
+    'packages/website-pattern-lab/source/styles/*.scss',
+    'packages/website-jekyll/source/styles/*.scss'
   ],
   dest: 'bolt-website/styles',
-  jsonDest: './sandbox/pattern-library/source/_data',
-  extraWatches: './packages/**/*.scss'
+  extraWatches: [
+    './packages/**/*.scss',
+    '!./**/node_modules/**/*'
+  ]
+  // jsonDest: './sandbox/pattern-library/source/_data',
 };
-const compilePatternLabCSS = bolt.compileCSS(patternLabCSSConfig);
-gulp.task(compilePatternLabCSS);
+const compileBoltCSS = bolt.compileCSS(boltCSSConfig);
+gulp.task(compileBoltCSS);
 
 // Watch PL styles for changes
-gulp.task('styles:watch', bolt.watchCSS(patternLabCSSConfig));
-gulp.task('styles:sassdoc', bolt.sassDoc(patternLabCSSConfig));
-gulp.task('patternlab:stylelint', bolt.lintCSS(patternLabCSSConfig));
+gulp.task('styles:watch', bolt.watchCSS(boltCSSConfig));
+gulp.task('styles:sassdoc', bolt.sassDoc(boltCSSConfig));
+// gulp.task('patternlab:stylelint', bolt.lintCSS(patternLabCSSConfig));
 
 /*-------------------------------------------------------------------
 // Default (Main) Gulp Task -- Serves PL, Compiles & Watches for Changes
@@ -93,100 +101,98 @@ gulp.task('symlinks', gulp.series([
   'symlinks:create'
 ]));
 
-gulp.task('patternlab:default',
-  gulp.series([
-    'styles:compile',
-    'styles:sassdoc',
-    'symlinks',
-    'patternlab:compile',
-    gulp.parallel([
-      'patternlab:serve',
-      'patternlab:watch',
-      'styles:watch',
-      'symlinks:watch'
-    ])
-  ])
-);
+// gulp.task('patternlab:default',
+//   gulp.series([
+//     'styles:compile',
+//     'styles:sassdoc',
+//     'symlinks',
+//     'patternlab:compile',
+//     gulp.parallel([
+//       'patternlab:serve',
+//       'patternlab:watch',
+//       'styles:watch',
+//       'symlinks:watch'
+//     ])
+//   ])
+// );
+
+//
+// gulp.task('patternlab:build',
+//   gulp.series([
+//     'styles:compile',
+//     'styles:sassdoc',
+//     'symlinks',
+//     'patternlab:compile'
+//   ])
+// );
+
+// const jekyllTasks = require('@theme-tools/plugin-jekyll')({
+//   cwd: 'sandbox/styleguide/source',
+//   watch: [
+//     './sandbox/styleguide/source/**',
+//     '!./sandbox/styleguide/source/.sass-cache/**',
+//   ],
+// });
+//
+//
+// const jekyllCssConfig = {
+//   root: './sandbox/styleguide',
+//   src: [
+//     './sandbox/styleguide/source/styles/**/*.scss'
+//   ],
+//   dest: './bolt-website/styles',
+//   jsonDest: './sandbox/styleguide/source/_data',
+//   extraWatches: './packages/**/*.scss'
+// };
+//
+// const compileJekyllCSS = bolt.compileCSS(jekyllCssConfig);
+// const jekyllSassDoc = bolt.sassDoc(jekyllCssConfig);
+// const watchJekyllCSS = bolt.watchCSS(jekyllCssConfig);
+//
+//
+// gulp.task('jekyll:css', compileJekyllCSS);
+// gulp.task('jekyll:build', jekyllTasks.build);
+// gulp.task('jekyll:watch', jekyllTasks.watch);
+//
+// gulp.task('jekyll:default', gulp.series([
+//   jekyllTasks.build,
+//   compileJekyllCSS,
+//   jekyllSassDoc,
+//   gulp.parallel([
+//     jekyllTasks.watch,
+//     watchJekyllCSS,
+//     'jekyll:serve',
+//   ]),
+// ]));
+//
+// gulp.task('jekyll', gulp.series([
+//   jekyllTasks.build,
+//   compileJekyllCSS,
+//   jekyllSassDoc
+// ]));
 
 
-gulp.task('patternlab:build',
-  gulp.series([
-    'styles:compile',
-    'styles:sassdoc',
-    'symlinks',
-    'patternlab:compile'
-  ])
-);
-
-const jekyllTasks = require('@theme-tools/plugin-jekyll')({
-  cwd: 'sandbox/styleguide/source',
-  watch: [
-    './sandbox/styleguide/source/**',
-    '!./sandbox/styleguide/source/.sass-cache/**',
-  ],
-});
-
-
-const jekyllCssConfig = {
-  root: './sandbox/styleguide',
-  src: [
-    './sandbox/styleguide/source/styles/**/*.scss'
-  ],
-  dest: './bolt-website/styles',
-  jsonDest: './sandbox/styleguide/source/_data',
-  extraWatches: './packages/**/*.scss'
-};
-
-const compileJekyllCSS = bolt.compileCSS(jekyllCssConfig);
-const jekyllSassDoc = bolt.sassDoc(jekyllCssConfig);
-const watchJekyllCSS = bolt.watchCSS(jekyllCssConfig);
-
-
-gulp.task('jekyll:css', compileJekyllCSS);
-gulp.task('jekyll:build', jekyllTasks.build);
-gulp.task('jekyll:watch', jekyllTasks.watch);
-
-gulp.task('jekyll:default', gulp.series([
-  jekyllTasks.build,
-  compileJekyllCSS,
-  jekyllSassDoc,
-  gulp.parallel([
-    jekyllTasks.watch,
-    watchJekyllCSS,
-    'jekyll:serve',
-  ]),
-]));
-
-gulp.task('jekyll', gulp.series([
-  jekyllTasks.build,
-  compileJekyllCSS,
-  jekyllSassDoc
-]));
-
-
-gulp.task('build',
-  gulp.series([
-    'jekyll',
-    'patternlab:build'
-  ])
-);
+// gulp.task('build',
+//   gulp.series([
+//     'jekyll',
+//     'patternlab:build'
+//   ])
+// );
 
 
 gulp.task('default',
   gulp.series([
-    'styles:compile',
-    'styles:sassdoc',
-    'symlinks',
+    // 'styles:compile',
+    // 'styles:sassdoc',
+    // 'symlinks',
     'patternlab:compile',
-    compileJekyllCSS,
-    jekyllTasks.build,
+    'jekyll:compile',
     gulp.parallel([
-      'patternlab:serve',
-      'patternlab:watch',
-      jekyllTasks.watch,
-      watchJekyllCSS,
+      'browsersync:serve',
+      // 'patternlab:watch',
+      // 'jekyll:watch',
       'styles:watch',
-      'symlinks:watch'
+      // 'symlinks:watch'
     ])
   ])
 );

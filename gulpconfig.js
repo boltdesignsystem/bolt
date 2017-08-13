@@ -1,7 +1,7 @@
 module.exports = {
   patternLab: {
     enabled: true,
-    configFile: 'sandbox/pattern-library/config/config.yml',
+    configFile: 'packages/website-pattern-lab/config/config.yml',
     twigNamespaces: {
       addToDrupalThemeFile: true,
       sets: [
@@ -11,22 +11,22 @@ module.exports = {
         },
         {
           namespace: 'settings',
-          paths: ['sandbox/pattern-library/source/_patterns/00-settings'],
+          paths: ['packages/website-pattern-lab/source/_patterns/00-settings'],
         }, {
           namespace: 'elements',
-          paths: ['sandbox/pattern-library/source/_patterns/01-elements'],
+          paths: ['packages/website-pattern-lab/source/_patterns/01-elements'],
         }, {
           namespace: 'objects',
-          paths: ['sandbox/pattern-library/source/_patterns/02-objects'],
+          paths: ['packages/website-pattern-lab/source/_patterns/02-objects'],
         }, {
           namespace: 'components',
-          paths: ['sandbox/pattern-library/source/_patterns/03-components'],
+          paths: ['packages/website-pattern-lab/source/_patterns/03-components'],
         }, {
           namespace: 'templates',
-          paths: ['sandbox/pattern-library/source/_patterns/04-templates'],
+          paths: ['packages/website-pattern-lab/source/_patterns/04-templates'],
         }, {
           namespace: 'pages',
-          paths: ['sandbox/pattern-library/source/_patterns/05-pages'],
+          paths: ['packages/website-pattern-lab/source/_patterns/05-pages'],
         }
       ],
     },
