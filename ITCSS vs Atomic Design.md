@@ -1,6 +1,8 @@
 # ITCSS (Inverted Triangle CSS) vs Atomic Design
 
-TLDR; ITCSS = CSS Architecture. Atomic Design = HTML Architecture. And yes, <a href="https://twitter.com/salem_ghoweri/status/607575527373873153">they ARE different and both compliment eachother</a>.
+TLDR; ITCSS = CSS Architecture. Atomic Design = HTML Architecture. 
+
+But wait, aren't they both the same thing? Nope! Atomic Design !== CSS, even though they <a href="https://twitter.com/salem_ghoweri/status/607575527373873153">both involve modular code and compliment eachother</a>.
 
 ## CSS Architecture:
 How things get styled. BEM classes, ITCSS, BEMIT prefixes, responsive suffixes
