@@ -2,7 +2,8 @@
 
 TLDR; ITCSS = CSS Architecture. Atomic Design = HTML Architecture. And yes, <a href="https://twitter.com/salem_ghoweri/status/607575527373873153">they ARE different and both compliment eachother</a>.
 
-## CSS Architecture (how things get styled). BEM classes, ITCSS, BEMIT 
+## CSS Architecture:
+How things get styled. BEM classes, ITCSS, BEMIT prefixes, responsive suffixes
 1. __settings__: variables and settings. lots of Sass maps.
 2. __tools__: Sass mixins and functions; helpers to grab settings.
 3. __generic__: global resets (box sizing border box, normalize, etc)
@@ -14,7 +15,8 @@ TLDR; ITCSS = CSS Architecture. Atomic Design = HTML Architecture. And yes, <a h
 
 <hr>
 
-## HTML Architecture (how UI gets composed together to build something reusable), aka Atomic Design
+## HTML Architecture
+How UI gets composed together to build something reusable, aka Atomic Design
 1. __atoms__: smallest reusable chunk of UI. text. buttons. icons. lists. input elements. vanilla HTML elements. Grid. Wrapper. Doesn’t require or expect any particular class or classes (or any classes at all).
 2. __molecules__: Reusable collection of Atoms. For example, a card = image + headline + paragraph + button
 3. __organisms__: Reusable collection of Molecules: ex. A card row (3 cards in a 3 column grid). Or a global footer (nav lists + grid + social icons, etc).
