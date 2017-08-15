@@ -1,0 +1,239 @@
+/*------------------------------------*\
+  Spacing Scale
+\*------------------------------------*/
+
+// Unit on which all spacing is based
+$bolt-spacing-gutter: 2rem;
+$bolt-spacing-leading: 1.65;
+$bolt-spacing-squished: 0.5;
+$bolt-spacing-stretched: 1.5;
+
+// Modular spacing scale
+$bolt-spacing-values: (
+  '':        1,
+  'xxsmall': 0.125,
+  'xsmall':  0.25,
+  'small':   0.5,
+  'medium':  1,
+  'large':   2,
+  'xlarge':  4,
+  'xxlarge': 8
+);
+$bolt-spacing-sizes: ();
+
+$bolt-spacing-properties: (
+  'padding',
+  'margin'
+);
+
+$bolt-spacing-directions: (
+  null,
+  '-top',
+  '-right',
+  '-bottom',
+  '-left',
+);
+
+$bolt-spacing-types: (
+  null,
+  '-squished',
+  '-stretched'
+);
+
+
+// @mixin margin($size: medium, $sides: all, $reset: null) {
+//   $size-vertical:   map-get-deep($spacing-scales, 'spacing-scales', $size, 'vertical');
+//   $size-horizontal: map-get-deep($spacing-scales, 'spacing-scales', $size, 'horizontal');
+//   $size-type:       type-of($size);
+//
+//   @if $size-type == number {
+//     $size-vertical:   $size;
+//     $size-horizontal: $size;
+//   }
+//
+//   @if $sides == 'all' {
+//     margin-top:    $size-vertical;
+//     margin-right:  $size-horizontal;
+//     margin-bottom: $size-vertical;
+//     margin-left:   $size-horizontal;
+//   }
+//
+//   @else if $sides == 'top' {
+//     margin-top:    $size-vertical;
+//
+//     @if $reset == 'reset' {
+//       margin-right:  0;
+//       margin-bottom: 0;
+//       margin-left:   0;
+//     }
+//   }
+//
+//   @else if $sides == 'right' {
+//     margin-right:  $size-horizontal;
+//
+//     @if $reset == 'reset' {
+//       margin-top:    0;
+//       margin-bottom: 0;
+//       margin-left:   0;
+//     }
+//   }
+//
+//   @else if $sides == 'bottom' {
+//     margin-bottom: $size-vertical;
+//
+//     @if $reset == 'reset' {
+//       margin-top:    0;
+//       margin-right:  0;
+//       margin-left:   0;
+//     }
+//   }
+//
+//   @else if $sides == 'left' {
+//     margin-left:   $size-horizontal;
+//
+//     @if $reset == 'reset' {
+//       margin-top:    0;
+//       margin-right:  0;
+//       margin-bottom: 0;
+//     }
+//   }
+//
+//   @else if $sides == 'horizontal' {
+//     margin-right:  $size-horizontal;
+//     margin-left:   $size-horizontal;
+//
+//     @if $reset == 'reset' {
+//       margin-top:    0;
+//       margin-bottom: 0;
+//     }
+//   }
+//
+//   @else if $sides == 'vertical' {
+//     margin-top:    $size-vertical;
+//     margin-bottom: $size-vertical;
+//
+//     @if $reset == 'reset' {
+//       margin-right:  0;
+//       margin-left:   0;
+//     }
+//   }
+// }
+//
+// @mixin padding($size: medium, $sides: all, $reset: null) {
+//   $size-vertical:   map-get-deep($spacing-scales, 'spacing-scales', $size, 'vertical');
+//   $size-horizontal: map-get-deep($spacing-scales, 'spacing-scales', $size, 'horizontal');
+//   $size-type:       type-of($size);
+//
+//   @if $size-type == number {
+//     $size-vertical:   $size;
+//     $size-horizontal: $size;
+//   }
+//
+//   @if $sides == 'all' {
+//     padding-top:    $size-vertical;
+//     padding-right:  $size-horizontal;
+//     padding-bottom: $size-vertical;
+//     padding-left:   $size-horizontal;
+//   }
+//
+//   @else if $sides == 'squish' {
+//     padding-top:    calc(#{$size-vertical} * 0.5);
+//     padding-right:  $size-horizontal;
+//     padding-bottom: calc(#{$size-vertical} * 0.5);
+//     padding-left:   $size-horizontal;
+//   }
+//
+//   @else if $sides == 'stretch' {
+//     padding-top:    calc(#{$size-vertical} * 0.5);
+//     padding-right:  calc(#{$size-horizontal} * 0.25);
+//     padding-bottom: calc(#{$size-vertical} * 0.5);
+//     padding-left:   calc(#{$size-horizontal} * 0.25);
+//   }
+//
+//   @else if $sides == 'top' {
+//     padding-top:    $size-vertical;
+//
+//     @if $reset == 'reset' {
+//       padding-right:  0;
+//       padding-bottom: 0;
+//       padding-left:   0;
+//     }
+//   }
+//
+//   @else if $sides == 'right' {
+//     padding-right:  $size-horizontal;
+//
+//     @if $reset == 'reset' {
+//       padding-top:    0;
+//       padding-bottom: 0;
+//       padding-left:   0;
+//     }
+//   }
+//
+//   @else if $sides == 'bottom' {
+//     padding-bottom: $size-vertical;
+//
+//     @if $reset == 'reset' {
+//       padding-top:    0;
+//       padding-right:  0;
+//       padding-left:   0;
+//     }
+//   }
+//
+//   @else if $sides == 'left' {
+//     padding-left:   $size-horizontal;
+//
+//     @if $reset == 'reset' {
+//       padding-top:    0;
+//       padding-right:  0;
+//       padding-bottom: 0;
+//     }
+//   }
+//
+//   @else if $sides == 'horizontal' {
+//     padding-right:  $size-horizontal;
+//     padding-left:   $size-horizontal;
+//
+//     @if $reset == 'reset' {
+//       padding-top:    0;
+//       padding-bottom: 0;
+//     }
+//   }
+//
+//   @else if $sides == 'vertical' {
+//     padding-top:    $size-vertical;
+//     padding-bottom: $size-vertical;
+//
+//     @if $reset == 'reset' {
+//       padding-right:  0;
+//       padding-left:   0;
+//     }
+//   }
+// }
+//
+// @mixin squish($size: medium) {
+//   $size-vertical:   map-get-deep($spacing-scales, 'spacing-scales', $size, 'vertical');
+//   $size-horizontal: map-get-deep($spacing-scales, 'spacing-scales', $size, 'horizontal');
+//
+//   padding-top:    $size-vertical;
+//   padding-right:  calc(#{$size-horizontal} * 2);
+//   padding-bottom: $size-vertical;
+//   padding-left:   calc(#{$size-horizontal} * 2);
+// }
+//
+// @mixin stretch($size: medium) {
+//   $size-vertical:   map-get-deep($spacing-scales, 'spacing-scales', $size, 'vertical');
+//   $size-horizontal: map-get-deep($spacing-scales, 'spacing-scales', $size, 'horizontal');
+//
+//   padding-top:    $size-vertical;
+//   padding-right:  calc(#{$size-horizontal} * 0.5);
+//   padding-bottom: $size-vertical;
+//   padding-left:   calc(#{$size-horizontal} * 0.5);
+// }
+//
+//
+//
+//
+//
+//
+//

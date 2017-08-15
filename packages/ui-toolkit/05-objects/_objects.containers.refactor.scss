@@ -1,0 +1,347 @@
+$bp-layout--article: 55rem; //magic for bill murray image positioning
+
+
+
+// body {
+//   width: 100%;
+// }
+
+.o-layout {
+  @include clearfix;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.o-layout--article {
+  @include breakpoint(max-width $bp-layout--article) {
+    > aside {
+      .c-nav--vertical {
+        @include text-align(center);
+        @include border(bottom);
+      }
+    }
+
+    > footer {
+      @include padding(0 medium);
+      // @include mm-padding(0,($gutter + rem),0,($gutter + rem));
+      @include border(top);
+
+      p {
+        @include mm-margin(0,0,0,0);
+
+        line-height: $gutter*1.5;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  @include breakpoint(min-width $bp-layout--article) {
+    width: 100vw;
+    height: 100vh;
+
+    > * {
+      float: left;
+    }
+
+    > aside,
+    > aside .c-nav--vertical {
+      width: $golden-aside-width*1%;
+      height: 100%;
+    }
+
+    > aside {
+      &:before {
+        display: block;
+        content: '';
+        height: 1px;
+      }
+
+      .c-nav--vertical {
+        @include position(fixed,0,auto,auto,0);
+        @include vertical-scroll;
+        @include text-align(right);
+        @include border(right);
+      }
+    }
+
+    > main {
+      width: $golden-main-width*1%;
+    }
+
+    > footer {
+      writing-mode: vertical-rl;
+
+      small {
+        @include position(fixed,0,0,auto,auto);
+        // @include mm-padding(($font-leading--base*2 + rem),0,($font-leading--base*2 + rem),0);
+        @include padding(small 0);
+
+        height: 100%;
+        line-height: $gutter*1.5/$font-scale--xsmall;
+        white-space: nowrap;
+      }
+
+      p {
+        @include null-spacing;
+      }
+    }
+
+    .c-article {
+      // @include mm-margin(0,auto,0,auto);
+      @include margin(0 auto);
+
+      max-width: $article-line-length + ch;
+
+      aside {
+        @include mm-margin(0,calc(#{$gutter*1.5 + rem} - #{$golden-aside-width + vw}),($font-leading--base + rem),($gutter + rem));
+      }
+    }
+  }
+}
+
+.o-layout--article__inset {
+  // @include mm-padding(($font-leading--base + rem),($gutter + rem),($font-leading--base + rem),($gutter + rem));
+  @include padding(small);
+
+  @include respond-to(medium) {
+    @include padding(medium);
+    // @include mm-padding(($font-leading--base*2 + rem),($gutter*2 + rem),($font-leading--base*2 + rem),($gutter*2 + rem));
+  }
+}
+
+.o-layout--fullscreen-hero {
+  display: flex;
+  flex-direction: column;
+
+  .o-layout__main {
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+
+    > * {
+      @incude margin(auto);
+    }
+  }
+
+  .o-layout__footer {
+    @include mm-margin(auto,0,0,0);
+  }
+}
+
+
+
+
+// .o-golden-two-column {
+//   @include respond-to(medium) {
+//     @include mm-margin(0,(-$gutter + rem),0,(-$gutter + rem));
+//
+//     display: flex;
+//     flex-wrap: wrap;
+//
+//     > * {
+//       // @include mm-margin(0,($gutter + rem),0,($gutter + rem));
+//       // @include margin(0 medium);
+//       @include margin-right(medium);
+//       @include margin-left(medium);
+//       flex-grow: 1;
+//
+//       // p,
+//       // hr,
+//       // figure,
+//       // blockquote,
+//       // ol, ul, dl,
+//       // details, summary,
+//       // h1, h2, h3, h4, h5, h6 {
+//       //   &:first-child {
+//       //     @include null-spacing;
+//       //   }
+//       // }
+//
+//       // .c-heading {
+//       //   &:first-child {
+//       //     padding-top: 0;
+//       //   }
+//       // }
+//     }
+//
+//     // .o-golden-two-column__main {
+//     //   flex-basis: $golden-main-width * 1%;
+//     // }
+//     //
+//     // .o-golden-two-column__aside {
+//     //   flex-basis: $golden-aside-width * 1%;
+//     // }
+//   }
+// }
+//
+// // .o-golden-two-column--center {
+// //   @include respond-to(medium) {
+// //     align-items: center;
+// //   }
+// // }
+
+
+
+
+
+
+
+
+
+
+
+
+// .o-stack {
+//   @include margin-bottom(medium);
+//
+//   &:last-child {
+//     margin-bottom: 0;
+//   }
+// }
+
+
+
+// .o-grid {
+//   display: flex;
+//   margin-right: spacing(small) * -1;
+//   margin-left: spacing(small) * -1;
+// }
+//
+// .o-grid__item {
+//   flex: 1;
+// }
+
+
+
+
+
+.testing {
+  /* [TODO] Ability to use shorthand
+    eg:
+      10px 20px 10px 20px
+      10px 20px 10px
+      10px 20px
+
+      small medium small medium
+      small medium small
+      small medium
+
+      @include margin(10px);
+      @include margin(medium);
+      @include margin(0 medium);
+      @include margin(auto medium);
+      @include margin(small 0);
+      @include margin(small auto);
+      @include margin(small medium);
+      @include margin(small medium small);
+      @include margin(small medium small medium);
+      @include margin-right(10px);
+      @include margin-right(medium);
+
+      @include padding(10px);
+      @include padding(medium);
+      @include padding(0 medium);
+      @include padding(auto medium);
+      @include padding(small 0);
+      @include padding(small auto);
+      @include padding(small medium);
+      @include padding(small medium small);
+      @include padding(small medium small medium);
+      @include padding(medium, squish);
+      @include padding(medium, stretch);
+      @include padding-right(10px);
+      @include padding-right(medium);
+  */
+
+  /*
+    Bourbon
+
+    @include margin(spacing-vertical(small) auto);
+  */
+
+
+  /*@include margin;*/
+  /*@include margin(0);*/
+  /*@include margin(none);*/
+  /*@include margin(auto);*/
+  /*@include margin(10px);*/
+  /*@include margin(10px, right);*/
+  /*@include margin(10px, right, reset);*/
+  /*@include margin(medium);*/
+  /*@include margin(medium, all);*/
+  /*@include margin(medium, top);*/
+  /*@include margin(medium, right);*/
+  /*@include margin(medium, bottom);*/
+  /*@include margin(medium, left);*/
+  /*@include margin(medium, vertical);*/
+  /*@include margin(medium, horizontal);*/
+
+
+  /*@include padding;*/
+  /*@include padding(0);*/
+  /*@include padding(none);*/
+  /*@include padding(auto);*/
+  /*@include padding(10px);*/
+  /*@include padding(10px, right);*/
+  /*@include padding(10px, right, reset);*/
+  /*@include padding(medium);*/
+  /*@include padding(medium, all);*/
+  /*@include padding(medium, top);*/
+  /*@include padding(medium, right);*/
+  /*@include padding(medium, bottom);*/
+  /*@include padding(medium, left);*/
+  /*@include padding(medium, vertical);*/
+  /*@include padding(medium, horizontal);*/
+
+  /*@include padding(medium, squish);*/
+  /*@include padding(medium, stretch);*/
+
+  /*@include squish;*/
+  /*@include squish(xxlarge);*/
+  /*@include stretch;*/
+  /*@include stretch(xxlarge);*/
+}
+
+// .c-card {
+//   padding: 0;
+//   border: 1px solid;
+//   border-radius: .5rem;
+//   overflow: hidden;
+// }
+//
+// .c-card--flex {
+//   display: flex;
+//   flex-direction: column;
+// }
+//
+// .c-card__media {
+//   margin: 0 !important;
+//   padding: 0 !important;
+//
+//   img {
+//     display: block !important;
+//     margin: 0 !important;
+//     max-width: 100% !important;
+//   }
+// }
+//
+// .c-card__content {
+//   /*@include padding(medium);*/
+// }
+//
+// .c-card__actions {
+//   margin-top: auto;
+// }
+//
+//
+// .c-button {
+//   /*@include padding(medium);*/
+//
+//   color: white !important;
+//   text-align: center;
+//   background-color: black;
+// }
+//
+// .c-button--expand {
+//   display: block;
+// }
