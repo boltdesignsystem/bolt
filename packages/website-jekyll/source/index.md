@@ -2,11 +2,11 @@
 layout: home
 title: Bolt Design System
 ---
-<div class="o-grid o-grid--center">
-  <div class="o-grid__item">
+<div class="o-grid o-grid--center o-grid--large">
+  <div class="o-grid__item u-width-1/1 u-width-8/12@medium">
     <header role="banner">
       <div class="c-heading-group">
-        <div class="c-heading c-heading--eyebrow">
+        <div class="c-heading c-heading--medium c-heading--normal">
           <span class="c-heading__text">
             v0.1
           </span>
@@ -16,7 +16,7 @@ title: Bolt Design System
             Bolt Design System
           </span>
         </h1>
-        <h2 class="c-heading c-heading--xlarge">
+        <h2 class="c-heading c-heading--xlarge c-heading--normal">
           <span class="c-heading__text">
             Bolt provides tools, patterns, services, and guidelines that systematically improve quality, timeliness, and consistency to the Pega ecosystem so that you can focus on what really matters.
           </span>
@@ -28,57 +28,11 @@ title: Bolt Design System
         </span>
       </div>
     </header>
-    <!-- <div class="o-grid">
-      <div class="o-grid__item c-card c-card--flex">
-        <figure class="c-card__media">
-          <img src="http://fillmurray.com/g/640/320" alt="Bill">
-        </figure>
-        <div class="c-card__content">
-          <div class="o-stack">
-            <strong>Brisket prosciutto</strong>
-          </div>
-          <div class="o-stack">
-            Hamburger pancetta biltong tail beef landjaeger cupim ribeye filet mignon jerky bresaola bacon drumstick beef ribs.
-          </div>
-          <div class="o-stack">
-            Pastrami tongue salami leberkas shankle prosciutto swine.
-          </div>
-        </div>
-        <div class="c-card__actions">
-          <a href="javascript:" class="c-button c-button--expand">Button</a>
-        </div>
-      </div>
-      <div class="o-grid__item c-card c-card--flex">
-        <figure class="c-card__media">
-          <img src="http://fillmurray.com/g/960/480" alt="Bill">
-        </figure>
-        <div class="c-card__content">
-          <div class="o-stack">
-            <strong>Corned beef</strong>
-          </div>
-          <div class="o-stack">
-            Boudin turkey pork, tongue kevin rump spare ribs pancetta tri-tip jowl short loin.
-          </div>
-          <div class="o-stack">
-            <ul class="o-inline-list">
-              <li class="o-inline-list__item">
-                <a href="javascript:">Link 1</a>
-              </li>
-              <li class="o-inline-list__item">
-                <a href="javascript:">Link 2</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="c-card__actions">
-          <a href="javascript:" class="c-button c-button--expand">Button</a>
-        </div>
-      </div>
-    </div> -->
+
   </div>
-  <div class="o-grid__item">
+  <div class="o-grid__item u-width-1/1 u-width-4/12@medium">
     <section role="region">
-      <h3 class="c-heading c-heading--small">
+      <h3 class="c-heading c-heading--small c-heading--uppercase">
         <span class="c-heading__text">
           Speed
         </span>
@@ -86,7 +40,7 @@ title: Bolt Design System
       <p>
         Design and develop faster.
       </p>
-      <h3 class="c-heading c-heading--small">
+      <h3 class="c-heading c-heading--small c-heading--uppercase">
         <span class="c-heading__text">
           Stable
         </span>
@@ -94,7 +48,7 @@ title: Bolt Design System
       <p>
         Predictable, automated testing coverage, and scalable.
       </p>
-      <h3 class="c-heading c-heading--small">
+      <h3 class="c-heading c-heading--small c-heading--uppercase">
         <span class="c-heading__text">
           Stunning
         </span>

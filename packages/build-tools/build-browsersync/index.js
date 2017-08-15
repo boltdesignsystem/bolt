@@ -38,7 +38,12 @@ function server(userConfig) {
   * @param {(string|string[])=} files - File paths to reload
   */
 function reloadBrowserSync(files) {
-  browserSync.reload(files);
+
+  if (files){
+    browserSync.reload(files);
+  } else {
+    browserSync.reload;
+  }
 }
 
 function reloadTask(files) {
@@ -53,6 +58,7 @@ function reloadTask(files) {
 }
 
 events.on('reload', (files) => {
+  console.log('Event triggered: "reload"', files);
   debug('Event triggered: "reload"', files);
   reloadBrowserSync(files);
 });

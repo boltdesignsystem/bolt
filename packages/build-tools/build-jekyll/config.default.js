@@ -1,6 +1,8 @@
 module.exports = {
-  cwd: './packages/website-jekyll/source',
+  source: './packages/website-jekyll/source',
+  dest: './bolt-website',
   commandPrefix: 'bundle exec jekyll',
   incremental: false,
-  watch: true
+  watch: true,
+  drafts: true
 };

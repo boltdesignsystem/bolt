@@ -4,8 +4,7 @@ import { notify, events } from '@bolt/build-core';
 
 const merge = require('merge').recursive;
 const defaultConfig = require('./config.default');
-
-
+const join = require('path').join;
 const path = require('path');
 
 
@@ -16,15 +15,18 @@ const path = require('path');
    * @param errorShouldExit {Boolean} [false] - Should it stop the script if an error happens?
    * @param watchTask {Boolean} [false] - Is this a watch task?
    */
-function build(done, userConfig, errorShouldExit, shouldWatch) {
-  const config = merge(defaultConfig, userConfig);
 
-  const cd = config.cwd ? `cd ${config.cwd} && ` : '';
-    // core.utils.sh(`${cd}${config.commandPrefix} build --incremental${watchTask ? ' --watch' : ''}`, errorShouldExit, (err) => {
-    //   done(err);
-    // });
 
-  notify.sh(`${cd}${config.commandPrefix} build ${config.incremental} ${shouldWatch ? ' --watch' : ''}`, errorShouldExit, (err) => {
+  //  gulp.task('jekyll', () => {
+  //
+  //  });
+
+
+
+function build(done, config, errorShouldExit) {
+  const cd = config.source ? `cd ${config.source} && ` : '';
+
+  notify.sh(`${cd} jekyll build ${config.incremental ? '--incremental' : '' } ${config.drafts ? '--drafts' : '' }`, errorShouldExit, (err) => {
     events.emit('reload');
     done(err);
   });
@@ -32,7 +34,10 @@ function build(done, userConfig, errorShouldExit, shouldWatch) {
 
 function compileJekyll(done, userConfig) {
   function compileJekyllTask(done, userConfig) {
-    build(done, userConfig, true, false);
+    const config = merge(defaultConfig, userConfig, {
+      watch: false
+    });
+    build(done, config, false);
   }
   compileJekyllTask.description = 'Build Jekyll';
   compileJekyllTask.displayName = 'jekyll:compile';
@@ -41,9 +46,45 @@ function compileJekyll(done, userConfig) {
 }
 
 
+//
+// function rebuildJekyll(done, config){
+//   build(done, config, true);
+// }
+//
+//
+// function watchJekyll(done, userConfig) {
+//   function watchJekyllTask(done, userConfig) {
+//     const config = merge(defaultConfig, userConfig, {
+//       watch: true
+//     });
+//
+//
+//     gulp.watch(config.source + '**/*', gulp.parallel([rebuildJekyll]));
+//   }
+//   watchJekyllTask.description = 'Watch Jekyll';
+//   watchJekyllTask.displayName = 'jekyll:watch';
+//
+//   return watchJekyllTask;
+// }
+
+//
+// function recompileJekyll(done, userConfig) {
+//   function recompileJekyllTask(done, userConfig) {
+//     build(done, userConfig, false, false);
+//   }
+//   recompileJekyllTask.description = 'Rebuild Jekyll';
+//   recompileJekyllTask.displayName = 'jekyll:recompile';
+//
+//   return recompileJekyllTask;
+// }
+//
+//
 function watchJekyll(done, userConfig) {
   function watchJekyllTask(done, userConfig) {
-    build(done, userConfig, true, true);
+    const config = merge(defaultConfig, userConfig, {
+      watch: true
+    });
+    build(done, config, true);
   }
   watchJekyllTask.description = 'Watch Jekyll';
   watchJekyllTask.displayName = 'jekyll:watch';

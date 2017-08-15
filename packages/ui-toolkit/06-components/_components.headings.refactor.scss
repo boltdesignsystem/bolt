@@ -9,6 +9,26 @@
   // }
 }
 
+.c-heading--normal {
+  @include font-weight(normal);
+  // @include null-spacing;
+  //
+  // &:only-child {
+  //   padding-top: 0;
+  //   padding-bottom: 0;
+  // }
+}
+
+.c-heading--uppercase {
+  @include uppercase();
+  // @include null-spacing;
+  //
+  // &:only-child {
+  //   padding-top: 0;
+  //   padding-bottom: 0;
+  // }
+}
+
 // .c-heading--xxlarge, .c-heading--xlarge {
 //   @include mm-padding(($font-leading--base*2 + rem),0,($font-leading--base*.5 + rem),0);
 // }
@@ -50,15 +70,15 @@
   // letter-spacing: .1rem;
 }
 
-.c-heading--eyebrow {
-  // @include mm-padding(($font-leading--base + rem),0,($font-leading--base*.125 + rem),0);
-  @include font-size(xsmall);
-  @include font-weight(regular);
-
-  // & + .c-heading {
-  //   padding-top: 0;
-  // }
-}
+// .c-heading--eyebrow {
+//   // @include mm-padding(($font-leading--base + rem),0,($font-leading--base*.125 + rem),0);
+//   @include font-size(xsmall);
+//   @include font-weight(regular);
+//
+//   // & + .c-heading {
+//   //   padding-top: 0;
+//   // }
+// }
 
   // .c-heading__text {
   //   color: inherit;
