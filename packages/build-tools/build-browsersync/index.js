@@ -1,16 +1,46 @@
 import { events } from '@bolt/build-core';
 import merge from 'merge';
+import gulp from 'gulp';
 import getDevelopmentCertificate from 'devcert-with-localhost';
-import browserSync from 'browser-sync';
 import defaultConfig from './config.default';
+
+const historyApiFallback = require('connect-history-api-fallback');
+const autoClose = require('browser-sync-close-hook');
+const browserSync = require('browser-sync');
 
 const debug = require('debug')('@bolt/build-server');
 
 function server(userConfig) {
   function serveTask() {
-    const config = merge({}, defaultConfig, userConfig);
+    const config = merge({}, defaultConfig, userConfig, {
+      middleware: [
+        // historyApiFallback()
+      ]
+    });
+
+
+    config.files = config.files.map(pattern => {
+      return {
+        match: pattern,
+        fn: event => {
+          if (!['add', 'change'].includes(event)) {
+            return;
+          }
+          browserSync.reload('*.html');
+        }
+      };
+    });
+
+
+    // browserSync.use({
+    //   plugin() {},
+    //   hooks: {
+    //     'client:js': autoClose, // <-- important part
+    //   },
+    // });
 
     browserSync.create(config.serverName);
+    // const browserSyncReuseTab = require('browser-sync-reuse-tab')(browserSync, 'localhost:3000');
 
     if (config.installCert) {
       getDevelopmentCertificate(config.certNames, {
@@ -38,11 +68,8 @@ function server(userConfig) {
   * @param {(string|string[])=} files - File paths to reload
   */
 function reloadBrowserSync(files) {
-
   if (files){
     browserSync.reload(files);
-  } else {
-    browserSync.reload;
   }
 }
 

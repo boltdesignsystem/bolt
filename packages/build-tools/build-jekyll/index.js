@@ -26,7 +26,7 @@ const path = require('path');
 function build(done, config, errorShouldExit) {
   const cd = config.source ? `cd ${config.source} && ` : '';
 
-  notify.sh(`${cd} jekyll build ${config.incremental ? '--incremental' : '' } ${config.drafts ? '--drafts' : '' }`, errorShouldExit, (err) => {
+  notify.sh(`${cd} jekyll build ${config.incremental ? '--incremental' : '' } ${config.drafts ? '--drafts' : '' } ${config.watch ? '--watch' : '' }`, errorShouldExit, (err) => {
     events.emit('reload');
     done(err);
   });
@@ -82,7 +82,8 @@ function compileJekyll(done, userConfig) {
 function watchJekyll(done, userConfig) {
   function watchJekyllTask(done, userConfig) {
     const config = merge(defaultConfig, userConfig, {
-      watch: true
+      watch: true,
+      incremental: true
     });
     build(done, config, true);
   }

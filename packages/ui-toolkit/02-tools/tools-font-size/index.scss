@@ -23,14 +23,14 @@
 ///
 @mixin font-size($size, $leading: regular) {
   $font-size: map-get-deep($font-sizes, 'font-sizes', $size, 'font-size');
-  $line-height: map-get-deep($font-sizes, 'font-sizes', $size, 'line-height', 'regular');
-  $line-height--tight: map-get-deep($font-sizes, 'font-sizes', $size, 'line-height', 'tight');
-
   font-size: $font-size;
 
-  @if $leading == 'tight' {
-    line-height: $line-height--tight;
-  } @else {
-    line-height: $line-height;
+  @if ($leading != '' and  $leading != null){
+    @if (type-of($leading) == number){
+      $leading: $leading;
+    } @elseif (type-of($leading) == string) {
+      $leading: map-get-deep($font-sizes, 'font-sizes', $size, 'line-height', $leading);
+    }
+    line-height: $leading;
   }
 }

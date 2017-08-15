@@ -70,59 +70,365 @@
   // letter-spacing: .1rem;
 }
 
-// .c-heading--eyebrow {
-//   // @include mm-padding(($font-leading--base + rem),0,($font-leading--base*.125 + rem),0);
-//   @include font-size(xsmall);
-//   @include font-weight(regular);
+
+
+.c-page-intro {
+
+}
+
+
+// .c-page-intro__header {
+//   display: flex;
+//   flex-direction: column-reverse;
+// }
+
+
+
+.c-page-intro__title {
+  @include font-size(xxxlarge);
+  @include margin-bottom(xsmall);
+}
+
+.c-page-intro__subtitle {
+  @include font-size(xlarge, 1.45);
+  @include font-weight(normal);
+  @include margin-bottom(medium);
+}
+
+.c-page-intro__label {
+  @include font-size(xsmall);
+  @include font-weight(normal);
+  @include margin-bottom(xxsmall);
+}
+
+.c-page-intro__link {
+  @include font-size(large);
+  @include font-weight(bold);
+}
+
+
+
 //
-//   // & + .c-heading {
-//   //   padding-top: 0;
+// // .c-heading--eyebrow {
+// //   // @include mm-padding(($font-leading--base + rem),0,($font-leading--base*.125 + rem),0);
+// //   @include font-size(xsmall);
+// //   @include font-weight(regular);
+// //
+// //   // & + .c-heading {
+// //   //   padding-top: 0;
+// //   // }
+// // }
+//
+//   // .c-heading__text {
+//   //   color: inherit;
+//   //   font-family: inherit;
+//   //   font-size: inherit;
+//   //   font-weight: inherit;
 //   // }
+//
+// // .c-heading-group {
+// //   .c-heading--eyebrow {
+// //     @include mm-padding(0,0,($font-leading--base*.125 + rem),0);
+// //   }
+// //
+// //   .c-heading--xxlarge {
+// //     @include mm-padding(0,0,($font-leading--base*.325 + rem),0);
+// //   }
+// //
+// //   .c-heading--xlarge {
+// //     @include mm-padding(0,0,($font-leading--base*.65 + rem),0);
+// //     @include font-size(large);
+// //     @include font-weight(regular);
+// //
+// //     letter-spacing: 0;
+// //
+// //     @include respond-to(medium) {
+// //       @include font-size(xlarge);
+// //
+// //       line-height: 1.45;
+// //     }
+// //   }
+// //
+// //   &:only-child {
+// //     .c-heading--xlarge {
+// //       @include mm-padding(0,0,0,0);
+// //     }
+// //   }
+// // }
+// //
+// // .c-heading, .c-heading-group {
+// //   & + * {
+// //     @include null-spacing;
+// //   }
+// //
+// //   & + .c-heading {
+// //     padding-top: 0;
+// //   }
+// // }
+//
+//
+// .c-heading--xxlarge + .c-heading--xlarge {
+//   line-height: 1.45;
 // }
-
-  // .c-heading__text {
-  //   color: inherit;
-  //   font-family: inherit;
-  //   font-size: inherit;
-  //   font-weight: inherit;
-  // }
-
-// .c-heading-group {
-//   .c-heading--eyebrow {
-//     @include mm-padding(0,0,($font-leading--base*.125 + rem),0);
-//   }
 //
-//   .c-heading--xxlarge {
-//     @include mm-padding(0,0,($font-leading--base*.325 + rem),0);
-//   }
 //
-//   .c-heading--xlarge {
-//     @include mm-padding(0,0,($font-leading--base*.65 + rem),0);
-//     @include font-size(large);
-//     @include font-weight(regular);
 //
-//     letter-spacing: 0;
 //
-//     @include respond-to(medium) {
-//       @include font-size(xlarge);
-//
-//       line-height: 1.45;
-//     }
-//   }
-//
-//   &:only-child {
-//     .c-heading--xlarge {
-//       @include mm-padding(0,0,0,0);
-//     }
-//   }
+// //https://projects.invisionapp.com/d/main#/console/10688071/231739981/inspect
+// .c-page-intro__title {
+//   font-size: 40px;
+//   line-height: 48px;
+//   font-weight: 800;
+//   margin-bottom: 24px;
 // }
 //
-// .c-heading, .c-heading-group {
-//   & + * {
-//     @include null-spacing;
-//   }
+// //https://projects.invisionapp.com/d/main#/console/10688071/237444511/inspect
+// .c-page-intro__title {
+//   font-size: 40px;
+//   line-height: 48px;
+//   font-weight: 800;
+//   margin-bottom: 12px;
+// }
 //
-//   & + .c-heading {
-//     padding-top: 0;
-//   }
+//
+//
+//
+// // https://projects.invisionapp.com/d/main#/console/11589104/246479928/inspect
+// .c-page-intro__title {
+//   font-size: 40px;
+//   line-height: 48px;
+//   font-weight: 800;
+// }
+//
+// // https://projects.invisionapp.com/d/main#/console/11589104/246479927/inspect
+// .c-page-intro__title--large {
+//   font-size: 59px;
+//   line-height: 69px;
+//   font-weight: 800;
+// }
+//
+// //https://projects.invisionapp.com/d/main#/console/11589104/246479926/inspect
+// .c-page-intro__title--large {
+//   font-size: 59px;
+//   line-height: 56px;
+//   font-weight: 800;
+//   margin-bottom: 32px;
+// }
+//
+// // https://projects.invisionapp.com/d/main#/console/11589104/247238762/inspect
+// .c-page-intro__title--large {
+//   font-size: 49px;
+//   line-height: 69px;
+//   font-weight: 800;
+//   margin-bottom: 16px;
+// }
+//
+// // https://projects.invisionapp.com/d/main#/console/11589104/246478604/inspect
+// .c-page-intro__title {
+//   font-size: 49px;
+//   line-height: 56px;
+//   font-weight: 800;
+//   margin-bottom: 16px;
+// }
+//
+//
+// // https://projects.invisionapp.com/d/main#/console/11589104/247842955/inspect
+// .c-page-intro__title {
+//   font-size: 49px;
+//   line-height: 56px;
+//   font-weight: 800;
+//   margin-bottom: 32px;
+// }
+//
+//
+// // https://projects.invisionapp.com/d/main#/console/11589104/248152492/inspect
+// .c-page-intro__title {
+//   font-size: 49px;
+//   line-height: 56px;
+//   font-weight: 800;
+//   margin-bottom: 16px;
+// }
+//
+//
+//
+// // https://projects.invisionapp.com/d/main#/console/11589104/248528785/inspect
+// .c-page-intro__title {
+//   font-size: 49px;
+//   line-height: 56px;
+//   font-weight: 800;
+//   margin-bottom: 64px;
+// }
+//
+//
+//
+//
+//
+//
+// // https://projects.invisionapp.com/d/main#/console/11589104/246479928/inspect
+// .c-page-intro__subtitle {
+//   font-size: 33px;
+//   line-height: 41px;
+// }
+//
+//
+// // https://projects.invisionapp.com/d/main#/console/11589104/246479926/inspect
+// .c-page-intro__subtitle {
+//   font-size: 28px;
+//   line-height: 36px;
+//   margin-bottom: 8px;
+// }
+//
+// // https://projects.invisionapp.com/d/main#/console/11589104/247242700/inspect
+// .c-page-intro__subtitle {
+//   font-size: 23px;
+//   line-height: 27px;
+//   margin-bottom: 8px;
+// }
+//
+//
+//
+//
+//
+//
+// // .c-text {
+// //
+// // }
+// //
+// // .c-text--uppercase...
+// // .c-text--bold..
+// //
+// //
+// // .c-text--xxlarge {
+// //
+// // }
+//
+// // <div class="c-page-intro">
+// //
+// //   <h1>Exceed expectations of empowered customers across the customer journey with</h1>
+// //
+// //   <h1 class="c-page-intro__title">
+// //     <span class="c-page-intro__subtitle">
+// //       Exceed expectations of empowered customers across the customer journey.
+// //     </span>
+// //
+// //     Pega Marketing for Financial Services
+// //   </h1>
+// //
+// //
+// //
+// //
+// //   <h1>
+// //     <span class="c-page-intro__subtitle">
+// //       Exceed expectations of empowered customers across the customer journey.
+// //     </span>
+// //
+// //     Pega Marketing for Financial Services
+// //   </h1>
+// //
+// //
+// //
+// //
+// //
+// //   <header>
+// //     <h1 class="c-page-intro__title">
+// //       <span class="c-page-intro__title-text">
+// //         Pega Marketing for Financial Services
+// //       </span>
+// //     </h1>
+// //
+// //     <h2 class="c-page-intro__subtitle">
+// //       <span class="c-page-intro__subtitle-text">
+// //         Exceed expectations of empowered customers across the customer journey.
+// //       </span>
+// //     </h2>
+// //   </header>
+// //
+// //
+// //
+// //
+// // //.js-supports-flex
+// //   <div class="c-page-intro__title">
+// //     <h1 class="c-page-intro__title-text c-page-intro__title-text--primary">
+// //       Pega Marketing for Financial Services
+// //     </h1>
+// //
+// //     <h2 class="c-page-intro__title-text c-page-intro__title-text--secondary">
+// //       Exceed expectations of empowered customers across the customer journey.
+// //     </h2>
+// //   </div>
+// //
+// //
+// //   <p class="c-page-intro__meta">Customer Service</p>
+// //
+// //   <p class="c-page-intro__text">...</p>
+// //
+// //   <p class="c-page-intro__lead">Deliver intelligent and personalized marketing interactions with your banking customers.</p>
+// //
+// //   <a href="#" class="c-page-intro__link">Learn more</a>
+// //
+// //   <div class="o-ratio c-page-intro__logo" style="padding-bottom: 56.25%">
+// //     <img class="o-ratio__item" src="foobar.svg">
+// //   </div>
+// //
+// //   <a href="#" class="c-page-intro__button">Learn more</a>
+// //
+// // </div>
+//
+//
+//
+// .c- {
+//
+// }
+//
+//
+// .c-page-hero__meta {
+//
+// }
+//
+// .c-page-hero__primary
+//
+//
+// .c-page-hero__secondary {
+//
+// }
+//
+// .c-page-hero__button {
+//
+// }
+//
+// .c-page-hero__link {
+//
+// }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// .c-heading {
+//
+// }
+//
+// .c-heading + .c-heading {
+//   margin-top: -.5rem;
+// }
+//
+// // .c-heading--meta {
+// //
+// // }
+//
+// .c-heading--title {
+//
+// }
+//
+// .c-heading--subtitle {
+//
+// }
+//
+// .c-heading--large {
+//   // ...
 // }
