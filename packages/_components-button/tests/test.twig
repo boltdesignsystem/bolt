@@ -1,0 +1,21 @@
+{# index.twig #}
+{% extends "tests/default.twig" %}
+ 
+{% block page %}
+  <div>
+    <button class="c-bolt-button">Button tag</button>
+    <a class="c-bolt-button">Anchor tag</a>
+  </div>
+  
+  
+    
+  
+    
+  {% if varients %}
+    {% for varient in varients %}
+      <h2>{{ varient.name }}</h2>
+      {% include "src/twig/simple-button.twig" with varient.context %}
+     {% endfor %}
+  {% endif %}
+  
+{% endblock %}

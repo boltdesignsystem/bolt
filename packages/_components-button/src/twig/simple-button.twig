@@ -1,0 +1,24 @@
+{% set button_styles = ['positive', 'flat', 'subtle', 'featured'] %}
+{% set button_sizes = ['small', 'medium', 'large'] %}
+{% set button_widths = ['', 'full', 'full@small', 'full@xsmall'] %}
+{% set button_elements = ['a', 'button'] %}
+{% set button_element = html_tag in button_elements ? html_tag : 'button' %}
+
+  {% set button_classes = [
+    'c-bolt-button',
+    icon_position == 'left' ? 'c-bolt-button--rev' : '',
+    shadow ? 'c-bolt-button--raised' : '',
+    center ? 'c-bolt-button--center' : '',
+    disabled ? 'c-bolt-button--disabled' : '',
+    style in button_styles ? 'c-bolt-button--' ~ style : '',
+    size in button_sizes ? 'c-bolt-button--' ~ size : '',
+    width in button_widths ? 'c-bolt-button--' ~ width : ''
+  ] %}
+
+
+  <{{button_element }} class="{{ button_classes | join(' ') }}">
+    <span class="c-bolt-button__text">
+      {{ text | default(label) }}
+    </span>
+  </{{ button_element}}>
+{{ children }}
