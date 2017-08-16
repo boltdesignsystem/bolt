@@ -76,7 +76,8 @@ const boltCSSConfig = {
   // root: 'packages/website-pattern-lab',
   src: [
     // 'packages/ui-toolkit/bolt/*.scss',
-    'packages/ui-toolkit/bolt/bolt.scss'
+    'packages/ui-toolkit/bolt/bolt.scss',
+    'packages/ui-toolkit/bolt/bolt.v0.1.scss'
     // 'packages/ui-toolkit/bolt/bolt-styleguide.scss'
   ],
   dest: 'bolt-website/styles',
@@ -93,6 +94,14 @@ gulp.task(compileBoltCSS);
 // Watch PL styles for changes
 gulp.task('styles:watch', bolt.watchCSS(boltCSSConfig));
 gulp.task('styles:sassdoc', bolt.sassDoc(boltCSSConfig));
+
+
+gulp.task('copy:temp', function(){
+  return gulp.src([
+  './packages/**/feature-toggle.js'
+  ])
+  .pipe(gulp.dest('./bolt-website/scripts'));
+});
 // gulp.task('patternlab:stylelint', bolt.lintCSS(patternLabCSSConfig));
 
 /*-------------------------------------------------------------------
@@ -189,6 +198,7 @@ gulp.task('default',
     'symlinks',
     'patternlab:compile',
     'jekyll:compile',
+    'copy:temp',
     gulp.parallel([
       'browsersync:serve',
       // 'lerna:watch',

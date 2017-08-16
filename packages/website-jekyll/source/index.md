@@ -1,15 +1,18 @@
 ---
 layout: home
 title: Bolt Design System
+custom_css:
+  - bolt
+  - bolt.v0.1
 ---
-<div class="o-grid o-grid--center o-grid--large">
+<div class="o-grid o-grid--center o-grid--large o-grid--middle">
   <div class="o-grid__item u-width-1/1 u-width-8/12@medium">
     <header role="banner">
 
       <div class="c-page-intro">
 
         <div class="c-page-intro__header">
-          <p class="c-page-intro__label">v0.1</p>
+          <p class="c-page-intro__label">{{ site.version }}</p>
 
           <h1 class="c-page-intro__title">
             <span class="c-page-intro__title-text">
@@ -24,7 +27,14 @@ title: Bolt Design System
           </span>
         </h2>
 
-        <a href="/getting-started" class="c-page-intro__link">Explore the System</a> &raquo;
+        <a href="/getting-started" class="c-page-intro__link">
+          <span class="c-page-intro__link-text">
+            Explore the System
+          </span>
+          <span class="c-page-intro__link-icon">
+            &raquo;
+          </span>
+        </a>
 
       </div>
     </header>
@@ -41,9 +51,7 @@ title: Bolt Design System
               Speed
             </span>
           </h3>
-          <p>
-            Design and develop faster.
-          </p>
+          <p>Design and develop faster.</p>
         </li>
 
         <li class="o-ui-list__item">
