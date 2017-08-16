@@ -1,8 +1,10 @@
 ---
-layout: page
+layout: page2
 title: Getting Started
 intro: Bolt was designed to help developers and designers quickly create the most accessible and consistent web experience.
 permalink: /getting-started/
+custom_css:
+- bolt
 ---
 
 <div class="testing">
