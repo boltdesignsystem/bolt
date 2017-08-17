@@ -58,81 +58,131 @@
 }
 
 
-/*
-$color-text-link: palette(blue);
-$color-text-link--var: var(--bolt-text-link-color, $color-text-link);
-
-$color-text: palette(gray, xxdark);
-$color-background: palette(white);
-*/
-
-@mixin color($name, $tone: 'base', $type: null) {
+@mixin test-color($name, $tone: 'base', $type: 'text') {
   $color: map-get-deep($palettes, $name, $tone);
 
   color: $color;
 
-  @if $type == 'ui' {
-    color: var(--bolt-color-ui-text, $color);
-  }
-  @elseif $type == 'link' {
-    color: var(--bolt-color-link, $color);
-  }
-  @elseif $type == null {
+  @if $type == null {
     color: var(--bolt-color-text, $color);
+  }
+  @else {
+    color: var(--bolt-color-#{$type}, $color);
   }
 }
 
-@mixin background-color($name, $tone: 'base', $type: null) {
+@mixin test-background-color($name, $tone: 'base', $type: 'background') {
   $background-color: map-get-deep($palettes, $name, $tone);
 
   background-color: $background-color;
 
-  @if $type == 'ui' {
-    background-color: var(--bolt-color-ui-background, $background-color);
-  }
-  @elseif $type == null {
+  @if $type == null {
     background-color: var(--bolt-color-background, $background-color);
+  }
+  @else {
+    background-color: var(--bolt-color-#{$type}, $background-color);
   }
 }
 
-@mixin theme($name: 'xlight') {
+@mixin test-border-color($name, $tone: 'base', $type: 'border') {
+  $border-color: map-get-deep($palettes, $name, $tone);
+
+  border-color: $border-color;
+
+  @if $type == null {
+    border-color: var(--bolt-color-border, $border-color);
+  }
+  @else {
+    border-color: var(--bolt-color-#{$type}, $border-color);
+  }
+}
+
+@function text-contrast($color) {
+  @if (lightness($color) > 60) {
+    @return palette(black); // Lighter backgorund, return dark color
+  }
+  @else {
+    @return palette(white); // Darker background, return light color
+  }
+}
+
+@mixin _theme-settings(
+  $background,          // Background
+  $primary,             // Button background
+  $secondary,           // Link
+  $text: null,          // Text - Defaults to text-contrast($background) if not defined
+  $heading: null,       // Heading - Defaults to $text if not defined
+  $button-text: null,   // Button text - Defaults to text-contrast($primary) if not defined
+  $border: null         // Border - Defaults to $text if not defined
+  ) {
+
+  --bolt-color-background: $background;
+  --bolt-color-primary: $primary;
+  --bolt-color-secondary: $secondary;
+
+  @if $text == null {
+    --bolt-color-text: text-contrast($background);
+  }
+  @else {
+    --bolt-color-text: $text;
+  }
+
+  @if $heading == null {
+    --bolt-color-heading: $text;
+  }
+  @else {
+    --bolt-color-heading: $heading;
+  }
+
+  @if $button-text == null {
+    --bolt-color-tertiary: text-contrast($primary);
+  }
+  @else {
+    --bolt-color-tertiary: $button-text;
+  }
+
+  @if $border == null {
+    --bolt-color-border: $text;
+  }
+  @else {
+    --bolt-color-border: $border;
+  }
+}
+
+@mixin test-theme($name: 'xlight') {
   @if $name == 'xlight' {
-    --bolt-color-text: palette(gray, xxdark);
-    --bolt-color-background: palette(white);
-    --bolt-color-link: palette(blue);
-    --bolt-color-ui-text: palette(white);
-    --bolt-color-ui-background: palette(blue);
+    @include _theme-settings(palette(white), palette(blue), palette(blue, dark));
   }
   @elseif $name == 'light' {
-    --bolt-color-text: palette(gray, xxdark);
-    --bolt-color-background: palette(gray, xlight);
-    --bolt-color-link: palette(blue);
-    --bolt-color-ui-text: palette(white);
-    --bolt-color-ui-background: palette(blue);
+    @include _theme-settings(palette(gray, xlight), palette(blue), palette(blue, dark));
   }
   @elseif $name == 'dark' {
-    --bolt-color-text: palette(white);
-    --bolt-color-background: palette(teal);
-    --bolt-color-link: palette(blue, xlight);
-    --bolt-color-ui-text: palette(white);
-    --bolt-color-ui-background: palette(orange);
+    @include _theme-settings(palette(teal), palette(orange), palette(blue, light));
   }
   @elseif $name == 'xdark' {
-    --bolt-color-text: palette(white);
-    --bolt-color-background: palette(indigo);
-    --bolt-color-link: palette(blue, xlight);
-    --bolt-color-ui-text: palette(white);
-    --bolt-color-ui-background: palette(blue);
+    @include _theme-settings(palette(indigo), palette(blue), palette(blue, light));
+  }
+  @elseif $name == 'notification' {
+    @include _theme-settings(palette(blue, light), palette(blue, dark), palette(blue));
+  }
+  @elseif $name == 'success' {
+    @include _theme-settings(palette(success, light), palette(success, dark), palette(success));
+  }
+  @elseif $name == 'warning' {
+    @include _theme-settings(palette(warning, light), palette(warning, dark), palette(warning));
+  }
+  @elseif $name == 'error' {
+    @include _theme-settings(palette(error, light), palette(error, dark), palette(error, dark));
   }
 }
 
 .testing {
-  @include color(gray, xxdark);
-  @include background-color(white);
+  @include test-color(black, base, text);
+  @include test-background-color(white, base, background);
 
   * {
-    @include color(inherit);
-    @include background-color(inherit);
+    @include test-color(inherit);
+    @include test-background-color(inherit);
   }
 
 
@@ -147,42 +197,72 @@ $color-background: palette(white);
   /*@include background-color(teal, xdark, ui);*/
 }
 
+hr {
+  @include margin(0 0 medium 0);
+  @include padding(0);
+  @include test-border-color(black, base, border);
+
+  border-top: 1px solid;
+  border-bottom: 0;
+}
+
 .mm-link {
-  @include color(blue, base, link);
+  @include test-color(blue, base, secondary);
 }
 
 .mm-button {
-  @include color(white, base, ui);
-  @include background-color(blue, base, ui);
+  @include padding(small);
+  @include test-color(white, base, button-text);
+  @include test-background-color(blue, base, primary);
+  @include test-border-color(blue, base, primary);
 
-  padding: 1em;
+  display: inline-block;
+  border-width: 1px;
+  border-style: solid;
 }
 
 .mm-button--secondary {
-  @include color(white, base, ui);
-  @include background-color(blue, base, ui);
+  @include test-color(black, base, text);
+  @include test-background-color(white, base, background);
+  @include test-border-color(black, base, text);
 }
 
 .t-xlight {
-  @include theme(xlight);
-
-  padding: 2em;
+  @include padding(medium);
+  @include test-theme(xlight);
 }
 
 .t-light {
-  @include theme(light);
-
-  padding: 2em;
+  @include padding(medium);
+  @include test-theme(light);
 }
 
 .t-dark {
-  @include theme(dark);
-
-  padding: 2em;
+  @include padding(medium);
+  @include test-theme(dark);
 }
 
 .t-xdark {
-  @include theme(xdark);
+  @include padding(medium);
+  @include test-theme(xdark);
+}
 
-  padding: 2em;
+.t-success {
+  @include padding(medium);
+  @include test-theme(success);
+}
+
+.t-warning {
+  @include padding(medium);
+  @include test-theme(warning);
+}
+
+.t-error {
+  @include padding(medium);
+  @include test-theme(error);
+}
+
+.t-notification {
+  @include padding(medium);
+  @include test-theme(notification);
 }

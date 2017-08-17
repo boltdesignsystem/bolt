@@ -8,11 +8,72 @@ custom_css:
 ---
 
 <div class="testing">
+  <h2>Success</h2>
+  <div class="t-success">
+    <p>
+      Hamburger doner andouille, capicola pork loin spare ribs bacon corned beef chicken. Pig turkey tail fatback meatloaf, chicken pastrami ball tip tongue swine beef ribs drumstick tri-tip jerky. Turducken biltong kevin, jerky shoulder chicken turkey beef strip steak cupim ground round brisket. Meatloaf jerky prosciutto tenderloin strip steak, brisket venison sausage kevin. <a class="mm-link" href="javascript:">Link</a>
+    </p>
+    <hr>
+    <p>
+      <a class="mm-button" href="javascript:">
+        Primary
+      </a>
+      <a class="mm-button mm-button--secondary" href="javascript:">
+        Secondary
+      </a>
+    </p>
+  </div>
+  <h2>Warning</h2>
+  <div class="t-warning">
+    <p>
+      Hamburger doner andouille, capicola pork loin spare ribs bacon corned beef chicken. Pig turkey tail fatback meatloaf, chicken pastrami ball tip tongue swine beef ribs drumstick tri-tip jerky. Turducken biltong kevin, jerky shoulder chicken turkey beef strip steak cupim ground round brisket. Meatloaf jerky prosciutto tenderloin strip steak, brisket venison sausage kevin. <a class="mm-link" href="javascript:">Link</a>
+    </p>
+    <hr>
+    <p>
+      <a class="mm-button" href="javascript:">
+        Primary
+      </a>
+      <a class="mm-button mm-button--secondary" href="javascript:">
+        Secondary
+      </a>
+    </p>
+  </div>
+  <h2>Error</h2>
+  <div class="t-error">
+    <p>
+      Hamburger doner andouille, capicola pork loin spare ribs bacon corned beef chicken. Pig turkey tail fatback meatloaf, chicken pastrami ball tip tongue swine beef ribs drumstick tri-tip jerky. Turducken biltong kevin, jerky shoulder chicken turkey beef strip steak cupim ground round brisket. Meatloaf jerky prosciutto tenderloin strip steak, brisket venison sausage kevin. <a class="mm-link" href="javascript:">Link</a>
+    </p>
+    <hr>
+    <p>
+      <a class="mm-button" href="javascript:">
+        Primary
+      </a>
+      <a class="mm-button mm-button--secondary" href="javascript:">
+        Secondary
+      </a>
+    </p>
+  </div>
+  <h2>Notification</h2>
+  <div class="t-notification">
+    <p>
+      Hamburger doner andouille, capicola pork loin spare ribs bacon corned beef chicken. Pig turkey tail fatback meatloaf, chicken pastrami ball tip tongue swine beef ribs drumstick tri-tip jerky. Turducken biltong kevin, jerky shoulder chicken turkey beef strip steak cupim ground round brisket. Meatloaf jerky prosciutto tenderloin strip steak, brisket venison sausage kevin. <a class="mm-link" href="javascript:">Link</a>
+    </p>
+    <hr>
+    <p>
+      <a class="mm-button" href="javascript:">
+        Primary
+      </a>
+      <a class="mm-button mm-button--secondary" href="javascript:">
+        Secondary
+      </a>
+    </p>
+  </div>
   <h2>XLight</h2>
   <div class="t-xlight">
     <p>
       Hamburger doner andouille, capicola pork loin spare ribs bacon corned beef chicken. Pig turkey tail fatback meatloaf, chicken pastrami ball tip tongue swine beef ribs drumstick tri-tip jerky. Turducken biltong kevin, jerky shoulder chicken turkey beef strip steak cupim ground round brisket. Meatloaf jerky prosciutto tenderloin strip steak, brisket venison sausage kevin. <a class="mm-link" href="javascript:">Link</a>
     </p>
+    <hr>
     <p>
       <a class="mm-button" href="javascript:">
         Primary
@@ -22,12 +83,12 @@ custom_css:
       </a>
     </p>
   </div>
-  <hr>
   <h2>Light</h2>
   <div class="t-light">
     <p>
       Hamburger doner andouille, capicola pork loin spare ribs bacon corned beef chicken. Pig turkey tail fatback meatloaf, chicken pastrami ball tip tongue swine beef ribs drumstick tri-tip jerky. Turducken biltong kevin, jerky shoulder chicken turkey beef strip steak cupim ground round brisket. Meatloaf jerky prosciutto tenderloin strip steak, brisket venison sausage kevin. <a class="mm-link" href="javascript:">Link</a>
     </p>
+    <hr>
     <p>
       <a class="mm-button" href="javascript:">
         Primary
@@ -37,12 +98,12 @@ custom_css:
       </a>
     </p>
   </div>
-  <hr>
   <h2>Dark</h2>
   <div class="t-dark">
     <p>
       Hamburger doner andouille, capicola pork loin spare ribs bacon corned beef chicken. Pig turkey tail fatback meatloaf, chicken pastrami ball tip tongue swine beef ribs drumstick tri-tip jerky. Turducken biltong kevin, jerky shoulder chicken turkey beef strip steak cupim ground round brisket. Meatloaf jerky prosciutto tenderloin strip steak, brisket venison sausage kevin. <a class="mm-link" href="javascript:">Link</a>
     </p>
+    <hr>
     <p>
       <a class="mm-button" href="javascript:">
         Primary
@@ -52,12 +113,12 @@ custom_css:
       </a>
     </p>
   </div>
-  <hr>
   <h2>XDark</h2>
   <div class="t-xdark">
     <p>
       Hamburger doner andouille, capicola pork loin spare ribs bacon corned beef chicken. Pig turkey tail fatback meatloaf, chicken pastrami ball tip tongue swine beef ribs drumstick tri-tip jerky. Turducken biltong kevin, jerky shoulder chicken turkey beef strip steak cupim ground round brisket. Meatloaf jerky prosciutto tenderloin strip steak, brisket venison sausage kevin. <a class="mm-link" href="javascript:">Link</a>
     </p>
+    <hr>
     <p>
       <a class="mm-button" href="javascript:">
         Primary
