@@ -58,7 +58,7 @@
 }
 
 
-@mixin test-color($name, $tone: 'base', $type: 'text') {
+@mixin test-color($name, $tone: 'base', $type: null) {
   $color: map-get-deep($palettes, $name, $tone);
 
   color: $color;
@@ -71,7 +71,7 @@
   }
 }
 
-@mixin test-background-color($name, $tone: 'base', $type: 'background') {
+@mixin test-background-color($name, $tone: 'base', $type: null) {
   $background-color: map-get-deep($palettes, $name, $tone);
 
   background-color: $background-color;
@@ -84,7 +84,7 @@
   }
 }
 
-@mixin test-border-color($name, $tone: 'base', $type: 'border') {
+@mixin test-border-color($name, $tone: 'base', $type: null) {
   $border-color: map-get-deep($palettes, $name, $tone);
 
   border-color: $border-color;
@@ -128,21 +128,21 @@
   }
 
   @if $heading == null {
-    --bolt-color-heading: $text;
+    --bolt-color-heading: text-contrast($background);
   }
   @else {
     --bolt-color-heading: $heading;
   }
 
   @if $button-text == null {
-    --bolt-color-tertiary: text-contrast($primary);
+    --bolt-color-button-text: text-contrast($primary);
   }
   @else {
-    --bolt-color-tertiary: $button-text;
+    --bolt-color-button-text: $button-text;
   }
 
   @if $border == null {
-    --bolt-color-border: $text;
+    --bolt-color-border: text-contrast($background);
   }
   @else {
     --bolt-color-border: $border;
@@ -172,7 +172,14 @@
     @include _theme-settings(palette(warning, light), palette(warning, dark), palette(warning));
   }
   @elseif $name == 'error' {
-    @include _theme-settings(palette(error, light), palette(error, dark), palette(error, dark));
+    @include _theme-settings(
+      palette(error, light),
+      palette(error, dark),
+      palette(warning, dark),
+      null,
+      palette(warning, dark),
+      null,
+      palette(error));
   }
 }
 
@@ -197,12 +204,17 @@
   /*@include background-color(teal, xdark, ui);*/
 }
 
-hr {
+.mm-heading {
+  @include test-color(black, base, heading);
+}
+
+.mm-hr {
   @include margin(0 0 medium 0);
   @include padding(0);
-  @include test-border-color(black, base, border);
+  @include test-border-color(black);
 
-  border-top: 1px solid;
+  border-width: solid;
+  border-style: solid;
   border-bottom: 0;
 }
 
@@ -222,9 +234,9 @@ hr {
 }
 
 .mm-button--secondary {
-  @include test-color(black, base, text);
+  @include test-color(black, base, secondary);
   @include test-background-color(white, base, background);
-  @include test-border-color(black, base, text);
+  @include test-border-color(black, base, secondary);
 }
 
 .t-xlight {
