@@ -69,7 +69,7 @@ function compileCSS(userConfig) {
        // .pipe($.env.development($.sourcemaps.init()))
     // .pipe(sourcemaps.init())
     .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
-    //  .pipe(sassGlob())
+     .pipe(sassGlob())
      .pipe(sass(eyeglass({
       //  includePaths: globbedIncludePaths,
        includePaths: [

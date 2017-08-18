@@ -209,6 +209,26 @@ gulp.task('default',
     ])
   ])
 );
+
+
+gulp.task('build',
+  gulp.series([
+    'styles:compile',
+    'styles:sassdoc',
+    'symlinks',
+    'patternlab:compile',
+    'jekyll:compile'
+    // 'copy:temp',
+    // gulp.parallel([
+    //   'browsersync:serve',
+    //   // 'lerna:watch',
+    //   'jekyll:watch',
+    //   'patternlab:watch',
+    //   'styles:watch',
+    //   'symlinks:watch'
+    // ])
+  ])
+);
 //
 // const symlinkTasks = require('./packages/build-tools-symlinks')(gulp, {});
 
