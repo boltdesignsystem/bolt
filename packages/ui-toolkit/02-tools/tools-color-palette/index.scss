@@ -17,8 +17,8 @@
   @return inspect($value);
 }
 
-@function convert-color-map($map-old, $map-new, $overwrite: true) {
-  $case: "lower-case";
+@function convert-color-map($map-old, $map-new, $override: true) {
+  $case: 'lower-case';
   // Iterate through each value of the new map
   @each $key, $new-value in $map-new {
     // Check if that value already exists on the old map
@@ -26,17 +26,17 @@
       // There is an existing key
       $old-value: map-get($map-old, $key);
       @if type-of($new-value) == map and type-of($old-value) == map {
-        // If both are maps, recurse regardless of $overwrite
+        // If both are maps, recurse regardless of $override
         $merged-value: convert-color-map($old-value, $new-value);
         $stringified-key: to-string($key);
-        $new-key: call("to-" + $case, $stringified-key);
+        $new-key: call('to-' + $case, $stringified-key);
         $map-old: map-merge(map-remove($map-old, $key), (
           quote($new-key): $merged-value
         ));
 
       }@else{
-        // Otherwise check $overwrite
-        @if $overwrite{
+        // Otherwise check $override
+        @if $override{
           $stringified-key: to-string($key);
           $new-key: call("to-" + $case, $stringified-key);
           $map-old: map-merge(map-remove($map-old, $key), (
@@ -61,6 +61,9 @@
 /*
 $color-text-link: palette(blue);
 $color-text-link--var: var(--bolt-text-link-color, $color-text-link);
+
+$color-text: palette(gray, xxdark);
+$color-background: palette(white);
 */
 
 @mixin color($name, $tone: 'base', $type: null) {
@@ -68,8 +71,8 @@ $color-text-link--var: var(--bolt-text-link-color, $color-text-link);
 
   color: $color;
 
-  @if $type == 'button' {
-    color: var(--bolt-color-button-text, $color);
+  @if $type == 'ui' {
+    color: var(--bolt-color-ui-text, $color);
   }
   @elseif $type == 'link' {
     color: var(--bolt-color-link, $color);
@@ -84,39 +87,102 @@ $color-text-link--var: var(--bolt-text-link-color, $color-text-link);
 
   background-color: $background-color;
 
-  @if $type == 'button' {
-    background-color: var(--bolt-color-button-background, $background-color);
+  @if $type == 'ui' {
+    background-color: var(--bolt-color-ui-background, $background-color);
   }
   @elseif $type == null {
     background-color: var(--bolt-color-background, $background-color);
   }
 }
 
-.testing {
-  @include color(gray);
-  /*@include color(gray, dark);*/
-  /*@include color(gray, dark, button);*/
-  /*@include color(gray, dark, link);*/
-
-
-  @include background-color(teal);
-  /*@include background-color(teal, xdark);*/
-  /*@include background-color(teal, xdark, button);*/
-
-
-
-
-
-
-  /*color: $color-text-link;*/
-  /*color: var(--bolt-text-link-color, $color-text-link);*/
+@mixin theme($name: 'xlight') {
+  @if $name == 'xlight' {
+    --bolt-color-text: palette(gray, xxdark);
+    --bolt-color-background: palette(white);
+    --bolt-color-link: palette(blue);
+    --bolt-color-ui-text: palette(white);
+    --bolt-color-ui-background: palette(blue);
+  }
+  @elseif $name == 'light' {
+    --bolt-color-text: palette(gray, xxdark);
+    --bolt-color-background: palette(gray, xlight);
+    --bolt-color-link: palette(blue);
+    --bolt-color-ui-text: palette(white);
+    --bolt-color-ui-background: palette(blue);
+  }
+  @elseif $name == 'dark' {
+    --bolt-color-text: palette(white);
+    --bolt-color-background: palette(teal);
+    --bolt-color-link: palette(blue, xlight);
+    --bolt-color-ui-text: palette(white);
+    --bolt-color-ui-background: palette(orange);
+  }
+  @elseif $name == 'xdark' {
+    --bolt-color-text: palette(white);
+    --bolt-color-background: palette(indigo);
+    --bolt-color-link: palette(blue, xlight);
+    --bolt-color-ui-text: palette(white);
+    --bolt-color-ui-background: palette(blue);
+  }
 }
 
+.testing {
+  @include color(gray, xxdark);
+  @include background-color(white);
 
-.t-red {
-  --bolt-color-text: black;
-  --bolt-color-background: red;
-  --bolt-color-link: white;
-  --bolt-color-button-text: red;
-  --bolt-color-button-background: white;
+  * {
+    @include color(inherit);
+    @include background-color(inherit);
+  }
+
+
+  /*@include color(yellow);*/
+  /*@include color(yellow, dark);*/
+  /*@include color(yellow, dark, ui);*/
+  /*@include color(yellow, dark, link);*/
+
+
+  /*@include background-color(teal);*/
+  /*@include background-color(teal, xdark);*/
+  /*@include background-color(teal, xdark, ui);*/
+}
+
+.mm-link {
+  @include color(blue, base, link);
+}
+
+.mm-button {
+  @include color(white, base, ui);
+  @include background-color(blue, base, ui);
+
+  padding: 1em;
+}
+
+.mm-button--secondary {
+  @include color(white, base, ui);
+  @include background-color(blue, base, ui);
+}
+
+.t-xlight {
+  @include theme(xlight);
+
+  padding: 2em;
+}
+
+.t-light {
+  @include theme(light);
+
+  padding: 2em;
+}
+
+.t-dark {
+  @include theme(dark);
+
+  padding: 2em;
+}
+
+.t-xdark {
+  @include theme(xdark);
+
+  padding: 2em;
 }

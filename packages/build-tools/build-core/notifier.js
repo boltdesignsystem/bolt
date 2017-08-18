@@ -7,7 +7,7 @@ const gutil = require('gulp-util');
 function sh(cmd, exitOnError, cb) {
   const child = exec(cmd, {
     encoding: 'utf8',
-    timeout: false
+    timeout: 0
     // 1000 * 60 * 2, // 2 min; just want to make sure nothing gets detached forever.
   });
   let stdout = '';

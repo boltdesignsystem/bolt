@@ -39,7 +39,7 @@ $btn-bg-color--flat: palette(blue);
 @mixin button($btn-padding: 9px $btn-padding) {
   @include font-weight(semibold);
   @include no-select();
-  @include font-size(base);
+  @include font-size(medium);
   @supports (display: flex) {
     display: inline-flex;
     justify-content: center;
@@ -111,37 +111,37 @@ $bolt-component-namespace: 'c-bolt-';
 //   height: $btn-icon--size;
 //   flex-shrink: 0;
 // }
-// 
+//
 // .c-button__icon--small {
 //  width: $btn-icon--size--small;
 //  height: $btn-icon--size--small;
 // }
-// 
-// 
-// 
-// 
-// 
+//
+//
+//
+//
+//
 // .c-button__text {
 //   vertical-align: middle;
 //   white-space: normal;
 //   display: inline-block;
 // }
-// 
+//
 // %c-button--subtle,
 // .c-button--subtle {
 //   background-color: transparent;
 //   border-color: transparent;
 //   color: $btn-subtle-color;
 //   @include font-size($btn-subtle-font-size);
-// 
+//
 //   @include font-weight($btn-subtle-font-weight);
-// 
+//
 //   &:hover {
 //     background-color: rgba(palette(white), 0.2);
 //     color: palette(blue, dark);
 //     border-color: transparent;
 //   }
-// 
+//
 //   &:active,
 //   &:focus {
 //     background-color: rgba(palette(white), 0.3);
@@ -149,16 +149,16 @@ $bolt-component-namespace: 'c-bolt-';
 //     border-color: transparent;
 //   }
 // }
-// 
+//
 
-// 
-// 
+//
+//
 // %c-button--full,
 // .c-button--full {
 //   width: 100%;
 // }
-// 
-// 
+//
+//
 // %c-button--full\@only-xsmall,
 // .c-button--full\@only-xsmall {
 //     @include respond-to('only-xsmall') {
@@ -167,7 +167,7 @@ $bolt-component-namespace: 'c-bolt-';
 //       display: block;
 //     }
 // }
-// 
+//
 // %c-button--full\@only-small,
 // .c-button--full\@only-small {
 //   @include respond-to('only-small') {
@@ -175,34 +175,34 @@ $bolt-component-namespace: 'c-bolt-';
 //     display: block;
 //   }
 // }
-// 
-// 
+//
+//
 
-// 
-// 
+//
+//
 // %c-button--large,
 // .c-button--large {
 //   padding-top: $btn-padding--large - $btn-border-width;
 //   padding-bottom: $btn-padding--large - $btn-border-width;
 //   padding-left: ($btn-padding--large * 2) - $btn-border-width;
 //   padding-right: ($btn-padding--large * 2) - $btn-border-width;
-// 
+//
 //   @include respond-to(small) {
 //     padding-left: ($btn-padding--large * 4) - $btn-border-width;
 //     padding-right: ($btn-padding--large * 4) - $btn-border-width;
 //   }
 // }
-// 
+//
 // %c-button--small,
 // .c-button--small {
 //   padding: ($btn-padding--small - $btn-border-width) (($btn-padding--small * 2) - $btn-border-width);
 // }
-// 
+//
 // %c-button--xsmall,
 // .c-button--xsmall {
 //   padding: 0 (($btn-padding--small) - $btn-border-width);
 // }
-// 
+//
 // %c-button--center,
 // .c-button--center {
 //   display: block;
@@ -211,28 +211,28 @@ $bolt-component-namespace: 'c-bolt-';
 //   margin-left: auto;
 //   margin-right: auto;
 // }
-// 
-// 
+//
+//
 // %c-button--raised,
 // .c-button--raised {
 //   box-shadow: 0 0 6px palette(gray);
 // }
-// 
+//
 // %c-button--inverted,
 // .c-button--inverted {
 //   @include button-color(palette(white));
 // }
-// 
+//
 // %c-button--success,
 // .c-button--success {
 //   @include button-color(palette(green));
 // }
-// 
+//
 // %c-button--warning,
 // .c-button--warning {
 //   @include button-color(palette(orange));
 // }
-// 
+//
 // %c-button--error,
 // .c-button--error {
 //   @include button-color(palette(red));

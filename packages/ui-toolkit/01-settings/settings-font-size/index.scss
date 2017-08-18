@@ -28,28 +28,28 @@ $font-size--max-px: 18px;
 $font-scale--xxlarge--max: 3.083;
 $font-scale--xxlarge--min: 2.275;
 
-$font-scale--xxxlarge: 3.083;
-$font-scale--xxlarge: 2.275;
-$font-scale--xlarge: 1.781;
-$font-scale--large: 1.417;
-$font-scale--medium: 1.111;
-$font-scale--base: 1;
+$font-scale--xxxxlarge: 3.083;
+$font-scale--xxxlarge: 2.275;
+$font-scale--xxlarge: 1.781;
+$font-scale--xlarge: 1.417;
+$font-scale--large: 1.111;
+$font-scale--medium: 1;
 $font-scale--small: .9;
 $font-scale--xsmall: .8;
 
 
 
-
-$font-leading--base: 1.65;
+$font-leading--xxxxlarge: 1.14;
+$font-leading--xxxlarge: 1.14;
+$font-leading--xxlarge: 1.13;
+$font-leading--xlarge: 1.21;
+$font-leading--large: 1.31;
+$font-leading--medium: 1.65;
 $font-leading--small: 1.51;
 $font-leading--xsmall: 1.45;
 
-$font-leading--medium: 1.31;
-$font-leading--large: 1.21;
 
-$font-leading--xxxlarge: 1.14;
-$font-leading--xxlarge: 1.14;
-$font-leading--xlarge: 1.13;
+
 $font-leading--tight: 1.111;
 
 
@@ -61,6 +61,13 @@ $font-leading--tight: 1.111;
 /// @type Map
 $font-sizes: (
   font-sizes: (
+    xxxxlarge: (
+      font-size: $font-scale--xxxxlarge + rem,
+      line-height: (
+        regular: $font-leading--xxxxlarge,
+        tight: $font-leading--tight
+      ),
+    ),
     xxxlarge: (
       font-size: $font-scale--xxxlarge + rem,
       line-height: (
@@ -74,18 +81,6 @@ $font-sizes: (
         regular: $font-leading--xxlarge,
         tight: $font-leading--tight
       )
-      // min: (
-      //
-      //   // letter-spacing: (
-      // ),
-      // max: (
-      //   font-size: $font-scale--xxlarge--max + rem,
-      //   line-height: (
-      //     regular: $font-leading--xxlarge,
-      //     tight: $font-leading--tight
-      //   ),
-      //   letter-spacing:
-      // )
     ),
     xlarge: (
       font-size: $font-scale--xlarge + rem,
@@ -105,13 +100,6 @@ $font-sizes: (
       font-size: $font-scale--medium + rem,
       line-height: (
         regular: $font-leading--medium,
-        tight: $font-leading--tight
-      )
-    ),
-    base: (
-      font-size: $font-scale--base + rem,
-      line-height: (
-        regular: $font-leading--base,
         tight: $font-leading--tight
       )
     ),

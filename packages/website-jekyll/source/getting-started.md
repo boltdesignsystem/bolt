@@ -5,8 +5,66 @@ intro: Bolt was designed to help developers and designers quickly create the mos
 permalink: /getting-started/
 ---
 
-<div class="t-red">
-  <div class="testing">testing</div>
+<div class="testing">
+  <h2>XLight</h2>
+  <div class="t-xlight">
+    <p>
+      Hamburger doner andouille, capicola pork loin spare ribs bacon corned beef chicken. Pig turkey tail fatback meatloaf, chicken pastrami ball tip tongue swine beef ribs drumstick tri-tip jerky. Turducken biltong kevin, jerky shoulder chicken turkey beef strip steak cupim ground round brisket. Meatloaf jerky prosciutto tenderloin strip steak, brisket venison sausage kevin. <a class="mm-link" href="javascript:">Link</a>
+    </p>
+    <p>
+      <a class="mm-button" href="javascript:">
+        Primary
+      </a>
+      <a class="mm-button mm-button--secondary" href="javascript:">
+        Secondary
+      </a>
+    </p>
+  </div>
+  <hr>
+  <h2>Light</h2>
+  <div class="t-light">
+    <p>
+      Hamburger doner andouille, capicola pork loin spare ribs bacon corned beef chicken. Pig turkey tail fatback meatloaf, chicken pastrami ball tip tongue swine beef ribs drumstick tri-tip jerky. Turducken biltong kevin, jerky shoulder chicken turkey beef strip steak cupim ground round brisket. Meatloaf jerky prosciutto tenderloin strip steak, brisket venison sausage kevin. <a class="mm-link" href="javascript:">Link</a>
+    </p>
+    <p>
+      <a class="mm-button" href="javascript:">
+        Primary
+      </a>
+      <a class="mm-button mm-button--secondary" href="javascript:">
+        Secondary
+      </a>
+    </p>
+  </div>
+  <hr>
+  <h2>Dark</h2>
+  <div class="t-dark">
+    <p>
+      Hamburger doner andouille, capicola pork loin spare ribs bacon corned beef chicken. Pig turkey tail fatback meatloaf, chicken pastrami ball tip tongue swine beef ribs drumstick tri-tip jerky. Turducken biltong kevin, jerky shoulder chicken turkey beef strip steak cupim ground round brisket. Meatloaf jerky prosciutto tenderloin strip steak, brisket venison sausage kevin. <a class="mm-link" href="javascript:">Link</a>
+    </p>
+    <p>
+      <a class="mm-button" href="javascript:">
+        Primary
+      </a>
+      <a class="mm-button mm-button--secondary" href="javascript:">
+        Secondary
+      </a>
+    </p>
+  </div>
+  <hr>
+  <h2>XDark</h2>
+  <div class="t-xdark">
+    <p>
+      Hamburger doner andouille, capicola pork loin spare ribs bacon corned beef chicken. Pig turkey tail fatback meatloaf, chicken pastrami ball tip tongue swine beef ribs drumstick tri-tip jerky. Turducken biltong kevin, jerky shoulder chicken turkey beef strip steak cupim ground round brisket. Meatloaf jerky prosciutto tenderloin strip steak, brisket venison sausage kevin. <a class="mm-link" href="javascript:">Link</a>
+    </p>
+    <p>
+      <a class="mm-button" href="javascript:">
+        Primary
+      </a>
+      <a class="mm-button mm-button--secondary" href="javascript:">
+        Secondary
+      </a>
+    </p>
+  </div>
 </div>
 
 ## Main System Website

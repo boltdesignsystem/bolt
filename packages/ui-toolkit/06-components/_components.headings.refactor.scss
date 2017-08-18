@@ -1,32 +1,14 @@
 .c-heading {
   @include font-family(heading);
   @include font-weight(bold);
-  // @include null-spacing;
-  //
-  // &:only-child {
-  //   padding-top: 0;
-  //   padding-bottom: 0;
-  // }
 }
 
 .c-heading--normal {
   @include font-weight(normal);
-  // @include null-spacing;
-  //
-  // &:only-child {
-  //   padding-top: 0;
-  //   padding-bottom: 0;
-  // }
 }
 
 .c-heading--uppercase {
   @include uppercase();
-  // @include null-spacing;
-  //
-  // &:only-child {
-  //   padding-top: 0;
-  //   padding-bottom: 0;
-  // }
 }
 
 // .c-heading--xxlarge, .c-heading--xlarge {
@@ -35,7 +17,6 @@
 
 .c-heading--xxlarge {
   @include font-size(xxlarge);
-
   // letter-spacing: -.1rem;
 
   @include respond-to(medium) {
@@ -72,25 +53,19 @@
 
 
 
+
+
 .c-page-intro {
 
 }
 
-
-// .c-page-intro__header {
-//   display: flex;
-//   flex-direction: column-reverse;
-// }
-
-
-
 .c-page-intro__title {
-  @include font-size(xxxlarge);
+  @include font-size(xxxxlarge);
   @include margin-bottom(xsmall);
 }
 
 .c-page-intro__subtitle {
-  @include font-size(xlarge, 1.45);
+  @include font-size(xxlarge, 1.45);
   @include font-weight(normal);
   @include margin-bottom(medium);
 }
@@ -102,7 +77,7 @@
 }
 
 .c-page-intro__link {
-  @include font-size(large);
+  @include font-size(xlarge);
   @include font-weight(bold);
   @include margin-bottom(small);
   display: inline-block;
