@@ -24,7 +24,6 @@
   @return $map;
 }
 $bolt-spacing-sizes: _bolt-create-spacing-map($bolt-spacing-values);
-// @debug $bolt-spacing-sizes;
 /*
  * CONVENIENCE FUNCTIONS
  **/
@@ -35,10 +34,10 @@ $bolt-spacing-sizes: _bolt-create-spacing-map($bolt-spacing-values);
 
 // Convert shirt sizes in baseline-optimized sizes
 @function v-spacing($sizes, $modifier) {
-  @if ($modifier == 'squish' or $modifier == 'squished') {
+  @if ($modifier == 'squished') {
     $modifier: $bolt-spacing-squished;
-  } @elseif ($modifier == 'stretch' or $modifier == 'stretched') {
-    $modifier: $stretched_RATIO;
+  } @elseif ($modifier == 'stretched') {
+    $modifier: $bolt-spacing-stretched;
   } @else {
     $modifier: 1;
   }
