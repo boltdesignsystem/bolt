@@ -1,16 +1,79 @@
 ---
-layout: page
+layout: page2
 title: Getting Started
 intro: Bolt was designed to help developers and designers quickly create the most accessible and consistent web experience.
 permalink: /getting-started/
+custom_css:
+- bolt
 ---
 
 <div class="testing">
-  <h2>XLight</h2>
+  <div class="t-success">
+    <h2 class="mm-heading">Success</h2>
+    <p>
+      Hamburger doner andouille, capicola pork loin spare ribs bacon corned beef chicken. Pig turkey tail fatback meatloaf, chicken pastrami ball tip tongue swine beef ribs drumstick tri-tip jerky. Turducken biltong kevin, jerky shoulder chicken turkey beef strip steak cupim ground round brisket. Meatloaf jerky prosciutto tenderloin strip steak, brisket venison sausage kevin. <a class="mm-link" href="javascript:">Link</a>
+    </p>
+    <hr class="mm-hr">
+    <p>
+      <a class="mm-button" href="javascript:">
+        Primary
+      </a>
+      <a class="mm-button mm-button--secondary" href="javascript:">
+        Secondary
+      </a>
+    </p>
+  </div>
+  <div class="t-warning">
+    <h2 class="mm-heading">Warning</h2>
+    <p>
+      Hamburger doner andouille, capicola pork loin spare ribs bacon corned beef chicken. Pig turkey tail fatback meatloaf, chicken pastrami ball tip tongue swine beef ribs drumstick tri-tip jerky. Turducken biltong kevin, jerky shoulder chicken turkey beef strip steak cupim ground round brisket. Meatloaf jerky prosciutto tenderloin strip steak, brisket venison sausage kevin. <a class="mm-link" href="javascript:">Link</a>
+    </p>
+    <hr class="mm-hr">
+    <p>
+      <a class="mm-button" href="javascript:">
+        Primary
+      </a>
+      <a class="mm-button mm-button--secondary" href="javascript:">
+        Secondary
+      </a>
+    </p>
+  </div>
+  <div class="t-error">
+    <h2 class="mm-heading">Error</h2>
+    <p>
+      Hamburger doner andouille, capicola pork loin spare ribs bacon corned beef chicken. Pig turkey tail fatback meatloaf, chicken pastrami ball tip tongue swine beef ribs drumstick tri-tip jerky. Turducken biltong kevin, jerky shoulder chicken turkey beef strip steak cupim ground round brisket. Meatloaf jerky prosciutto tenderloin strip steak, brisket venison sausage kevin. <a class="mm-link" href="javascript:">Link</a>
+    </p>
+    <hr class="mm-hr">
+    <p>
+      <a class="mm-button" href="javascript:">
+        Primary
+      </a>
+      <a class="mm-button mm-button--secondary" href="javascript:">
+        Secondary
+      </a>
+    </p>
+  </div>
+  <div class="t-notification">
+    <h2 class="mm-heading">Notification</h2>
+    <p>
+      Hamburger doner andouille, capicola pork loin spare ribs bacon corned beef chicken. Pig turkey tail fatback meatloaf, chicken pastrami ball tip tongue swine beef ribs drumstick tri-tip jerky. Turducken biltong kevin, jerky shoulder chicken turkey beef strip steak cupim ground round brisket. Meatloaf jerky prosciutto tenderloin strip steak, brisket venison sausage kevin. <a class="mm-link" href="javascript:">Link</a>
+    </p>
+    <hr class="mm-hr">
+    <p>
+      <a class="mm-button" href="javascript:">
+        Primary
+      </a>
+      <a class="mm-button mm-button--secondary" href="javascript:">
+        Secondary
+      </a>
+    </p>
+  </div>
   <div class="t-xlight">
+    <h2 class="mm-heading">XLight</h2>
     <p>
       Hamburger doner andouille, capicola pork loin spare ribs bacon corned beef chicken. Pig turkey tail fatback meatloaf, chicken pastrami ball tip tongue swine beef ribs drumstick tri-tip jerky. Turducken biltong kevin, jerky shoulder chicken turkey beef strip steak cupim ground round brisket. Meatloaf jerky prosciutto tenderloin strip steak, brisket venison sausage kevin. <a class="mm-link" href="javascript:">Link</a>
     </p>
+    <hr class="mm-hr">
     <p>
       <a class="mm-button" href="javascript:">
         Primary
@@ -20,12 +83,12 @@ permalink: /getting-started/
       </a>
     </p>
   </div>
-  <hr>
-  <h2>Light</h2>
   <div class="t-light">
+    <h2 class="mm-heading">Light</h2>
     <p>
       Hamburger doner andouille, capicola pork loin spare ribs bacon corned beef chicken. Pig turkey tail fatback meatloaf, chicken pastrami ball tip tongue swine beef ribs drumstick tri-tip jerky. Turducken biltong kevin, jerky shoulder chicken turkey beef strip steak cupim ground round brisket. Meatloaf jerky prosciutto tenderloin strip steak, brisket venison sausage kevin. <a class="mm-link" href="javascript:">Link</a>
     </p>
+    <hr class="mm-hr">
     <p>
       <a class="mm-button" href="javascript:">
         Primary
@@ -35,12 +98,12 @@ permalink: /getting-started/
       </a>
     </p>
   </div>
-  <hr>
-  <h2>Dark</h2>
   <div class="t-dark">
+    <h2 class="mm-heading">Dark</h2>
     <p>
       Hamburger doner andouille, capicola pork loin spare ribs bacon corned beef chicken. Pig turkey tail fatback meatloaf, chicken pastrami ball tip tongue swine beef ribs drumstick tri-tip jerky. Turducken biltong kevin, jerky shoulder chicken turkey beef strip steak cupim ground round brisket. Meatloaf jerky prosciutto tenderloin strip steak, brisket venison sausage kevin. <a class="mm-link" href="javascript:">Link</a>
     </p>
+    <hr class="mm-hr">
     <p>
       <a class="mm-button" href="javascript:">
         Primary
@@ -50,12 +113,12 @@ permalink: /getting-started/
       </a>
     </p>
   </div>
-  <hr>
-  <h2>XDark</h2>
   <div class="t-xdark">
     <p>
+    <h2 class="mm-heading">XDark</h2>
       Hamburger doner andouille, capicola pork loin spare ribs bacon corned beef chicken. Pig turkey tail fatback meatloaf, chicken pastrami ball tip tongue swine beef ribs drumstick tri-tip jerky. Turducken biltong kevin, jerky shoulder chicken turkey beef strip steak cupim ground round brisket. Meatloaf jerky prosciutto tenderloin strip steak, brisket venison sausage kevin. <a class="mm-link" href="javascript:">Link</a>
     </p>
+    <hr class="mm-hr">
     <p>
       <a class="mm-button" href="javascript:">
         Primary
