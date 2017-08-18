@@ -9,7 +9,7 @@
 @import '@bolt/tools-sassy-maps'; //So map-get-deep works
 
 
-@function palette($color, $tone: 'base') {
+@function palette($color, $tone: 'initial') {
   @return map-get-deep($palettes, $color, $tone);
 }
 
@@ -58,7 +58,7 @@
 }
 
 
-@mixin test-color($name, $tone: 'base', $type: null) {
+@mixin test-color($name, $tone: 'initial', $type: null) {
   $color: map-get-deep($palettes, $name, $tone);
 
   color: $color;
@@ -71,7 +71,7 @@
   }
 }
 
-@mixin test-background-color($name, $tone: 'base', $type: null) {
+@mixin test-background-color($name, $tone: 'initial', $type: null) {
   $background-color: map-get-deep($palettes, $name, $tone);
 
   background-color: $background-color;
@@ -84,7 +84,7 @@
   }
 }
 
-@mixin test-border-color($name, $tone: 'base', $type: null) {
+@mixin test-border-color($name, $tone: 'initial', $type: null) {
   $border-color: map-get-deep($palettes, $name, $tone);
 
   border-color: $border-color;
@@ -151,25 +151,46 @@
 
 @mixin test-theme($name: 'xlight') {
   @if $name == 'xlight' {
-    @include _theme-settings(palette(white), palette(blue), palette(blue, dark));
+    @include _theme-settings(
+      palette(white),
+      palette(blue),
+      palette(blue, dark));
   }
   @elseif $name == 'light' {
-    @include _theme-settings(palette(gray, xlight), palette(blue), palette(blue, dark));
+    @include _theme-settings(
+      palette(gray, xlight),
+      palette(blue),
+      palette(blue, dark));
   }
   @elseif $name == 'dark' {
-    @include _theme-settings(palette(teal), palette(orange), palette(blue, light));
+    @include _theme-settings(
+      palette(teal),
+      palette(blue, dark),
+      palette(blue, light));
   }
   @elseif $name == 'xdark' {
-    @include _theme-settings(palette(indigo), palette(blue), palette(blue, light));
+    @include _theme-settings(
+      palette(indigo),
+      palette(orange),
+      palette(blue, light));
   }
   @elseif $name == 'notification' {
-    @include _theme-settings(palette(blue, light), palette(blue, dark), palette(blue));
+    @include _theme-settings(
+      palette(blue, light),
+      palette(blue, dark),
+      palette(blue));
   }
   @elseif $name == 'success' {
-    @include _theme-settings(palette(success, light), palette(success, dark), palette(success));
+    @include _theme-settings(
+      palette(success, light),
+      palette(success, dark),
+      palette(success));
   }
   @elseif $name == 'warning' {
-    @include _theme-settings(palette(warning, light), palette(warning, dark), palette(warning));
+    @include _theme-settings(
+      palette(warning, light),
+      palette(warning, dark),
+      palette(warning));
   }
   @elseif $name == 'error' {
     @include _theme-settings(
@@ -184,8 +205,8 @@
 }
 
 .testing {
-  @include test-color(black, base, text);
-  @include test-background-color(white, base, background);
+  @include test-color(black, initial, text);
+  @include test-background-color(white, initial, background);
 
   * {
     @include test-color(inherit);
@@ -205,7 +226,7 @@
 }
 
 .mm-heading {
-  @include test-color(black, base, heading);
+  @include test-color(black, initial, heading);
 }
 
 .mm-hr {
@@ -219,14 +240,14 @@
 }
 
 .mm-link {
-  @include test-color(blue, base, secondary);
+  @include test-color(blue, initial, secondary);
 }
 
 .mm-button {
   @include padding(small);
-  @include test-color(white, base, button-text);
-  @include test-background-color(blue, base, primary);
-  @include test-border-color(blue, base, primary);
+  @include test-color(white, initial, button-text);
+  @include test-background-color(blue, initial, primary);
+  @include test-border-color(blue, initial, primary);
 
   display: inline-block;
   border-width: 1px;
@@ -234,9 +255,9 @@
 }
 
 .mm-button--secondary {
-  @include test-color(black, base, secondary);
-  @include test-background-color(white, base, background);
-  @include test-border-color(black, base, secondary);
+  @include test-color(black, initial, secondary);
+  @include test-background-color(white, initial, background);
+  @include test-border-color(black, initial, secondary);
 }
 
 .t-xlight {
@@ -275,6 +296,6 @@
 }
 
 .t-notification {
-  @include padding(medium);
+  @include padding(medium, squished);
   @include test-theme(notification);
 }
