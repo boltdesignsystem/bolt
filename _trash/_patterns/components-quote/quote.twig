@@ -1,0 +1,53 @@
+<blockquote class="{{ schema.quote }}">
+  <p class="{{ schema.quotation }}">{{quotation}}</p>
+  <footer class="{{ schema.reference }}">
+    <span class="{{ schema.attribution_name }}">{{attribution.name}}</span>{% if attribution.title %}, <span class="{{ schema.attribution_title }}">{{attribution.title}}</span>{% endif %}
+  </footer>
+</blockquote>
+
+
+{#
+
+data-esb-mark data-esb-mark="{{ mark.quote.title }}" data-esb-mark-text="{{ mark.quote.comment }}"
+
+schema.quote
+schema.quotation
+schema.reference
+schema.attribution_name
+schema.attribution_title
+
+
+c-quote
+c-quote__quotation
+c-quote__reference
+c-quote__attribution-name
+c-quote__attribution-title
+
+#}
+
+<!-- "marks": {
+	"group": "project-specific-group-class",
+	"visible-on-load": false,
+	"outline": false,
+	"mark-position": "bottom-right"
+} -->
+
+{# mark({
+  'position': 'bottom-right',
+  'group': 'components',
+  'visible': false,
+  'outline': false,
+  id: mark.id
+})
+
+
+
+mark({
+  'position': 'bottom-right',
+  'group': 'components',
+  'visible': false,
+  'outline': false,
+  id: mark.id
+})
+
+#}

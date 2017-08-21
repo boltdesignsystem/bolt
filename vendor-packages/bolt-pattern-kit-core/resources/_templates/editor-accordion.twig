@@ -1,0 +1,21 @@
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+{% for tab in tabs %}
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading{{loop.index}}">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{loop.index}}" aria-expanded="true" aria-controls="collapse{{loop.index}}">
+          {{tab.title}}
+        </a>
+      </h4>
+    </div>
+    <div id="collapse{{loop.index}}" class="panel-collapse collapse {{ tab.active ? 'in' }}" role="tabpanel" aria-labelledby="heading{{loop.index}}">
+      <div class="panel-body">
+        {{tab.content|raw}}
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
+
+
+

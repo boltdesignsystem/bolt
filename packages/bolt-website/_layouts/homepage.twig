@@ -1,0 +1,38 @@
+{% extends '@layouts/default.twig' %}
+
+
+{% block navigation %}
+  {# include '@includes/navigation.twig' with nav only #}
+{% endblock %}
+
+{% block secondary_nav %}
+  {# include '@includes/secondary-nav.twig' #}
+{% endblock %}
+
+{% block main_content %}
+  <!-- <div class="docs-wrapper"> -->
+      <!-- <h1>{{sg_yaml.title}}</h1> -->
+  <div class="c-site__content c-site__content--middle"><!-- vertically center -->
+    <div class="o-wrapper">
+      <main>
+        <article>
+          {{ sg_content|raw }}
+        </article>
+      </main>
+    </div>
+  </div>
+
+  <!-- </div> -->
+{% endblock %}
+
+
+{% block footer %}
+  <div class="c-site__footer c-page-footer">
+    <div class="o-wrapper">
+        {% include "@includes/footer.twig" %}
+    </div>
+  </div>
+{% endblock %}
+
+
+{% block footer_scripts %}{% endblock %}

@@ -1,0 +1,23 @@
+{% extends '@layouts/default.twig' %}
+
+
+{% block navigation %}
+  {% include '@includes/navigation.twig' with nav only %}
+{% endblock %}
+
+{% block secondary_nav %}
+  {% include '@includes/secondary-nav.twig' %}
+{% endblock %}
+
+{% block left %}
+    <div class="docs-wrapper">
+        <h1>{{sg_yaml.title}}</h1>
+
+        {{sg_content|raw}}
+    </div>
+{% endblock %}
+
+
+{% block footer %}
+
+{% endblock %}

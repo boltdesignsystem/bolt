@@ -1,9 +1,71 @@
 import gulp from 'gulp';
 import * as bolt from './packages/build-tools/build-all';
 
+
+
+gulp.task(bolt.slack());
+gulp.task(bolt.lerna());
+
+
 /*-------------------------------------------------------------------
 // Browsersync Tasks
 -------------------------------------------------------------------*/
+
+// Browser Sync
+const browsersyncConfig = {
+  server: 'bolt-website'
+};
+const browserSyncServer = bolt.server(browsersyncConfig);
+browserSyncServer.displayName = 'browsersync:serve';
+browserSyncServer.description = 'Serves the Bolt Pattern Library & Docs Site';
+gulp.task(browserSyncServer);
+
+
+
+// Compile CSS
+const boltCSSConfig = {
+  src: ['packages/ui-toolkit/bolt/bolt.scss'],
+  dest: 'bolt-website/styles'
+};
+const compileBoltCSS = bolt.compileCSS(boltCSSConfig);
+gulp.task(compileBoltCSS);
+
+// Watch CSS for changes
+gulp.task('styles:watch', bolt.watchCSS(boltCSSConfig));
+gulp.task('styles:sassdoc', bolt.sassDoc(boltCSSConfig));
+
+
+gulp.task('build',
+  gulp.series([
+    'styles:compile',
+    'styles:sassdoc',
+    'symlinks',
+    'patternlab:compile',
+    'jekyll:compile'
+  ])
+);
+
+gulp.task('default',
+  gulp.series([
+    'styles:compile',
+    // 'styles:sassdoc',
+    'symlinks',
+    'patternlab:compile',
+    'jekyll:compile',
+    // 'copy:temp',
+    gulp.parallel([
+      'browsersync:serve',
+      // 'lerna:watch',
+      'jekyll:watch',
+      'patternlab:watch',
+      'styles:watch',
+      'symlinks:watch'
+    ])
+  ])
+);
+
+
+
 
 // Browser Sync - Bolt Starterkit Example
 // const browserSyncBoltConfig = {
@@ -13,87 +75,47 @@ import * as bolt from './packages/build-tools/build-all';
 // gulp.task(boltServer);
 
 
-// Browser Sync - Pattern Lab
-const browsersyncConfig = {
-  server: 'bolt-website'
-};
-const browserSyncServer = bolt.server(browsersyncConfig);
-browserSyncServer.displayName = 'browsersync:serve';
-browserSyncServer.description = 'Serve Jekyll and Pattern Lab sites';
-gulp.task(browserSyncServer);
 
-
-// // Browser Sync - Pattern Lab
-// const browserSyncJekyllConfig = {
-//   server: 'bolt-website'
-// };
-// const jekyllServer = bolt.server(browserSyncJekyllConfig);
-// jekyllServer.displayName = 'jekyll:serve';
-// jekyllServer.description = 'Serve Jekyll sandbox';
-// gulp.task(jekyllServer);
 
 /*-------------------------------------------------------------------
 // Pattern Lab Tasks
 -------------------------------------------------------------------*/
-gulp.task(bolt.slack());
 
 
-gulp.task(bolt.compileJekyll());
-gulp.task(bolt.watchJekyll());
+// gulp.task(bolt.compileJekyll());
+// gulp.task(bolt.watchJekyll());
 
 
 /*-------------------------------------------------------------------
 // Watch Lerna-related Files for Changes
 -------------------------------------------------------------------*/
-gulp.task(bolt.lerna());
+
 
 /*-------------------------------------------------------------------
 // Slack Notification
 -------------------------------------------------------------------*/
-gulp.task(bolt.compilePatternLab());
-gulp.task(bolt.recompilePatternLab());
-gulp.task(bolt.watchPatternLab({
-  extraWatches: [
-    // './packages/**/*.twig'
-  ]
-}));
+// gulp.task(bolt.compilePatternLab());
+// gulp.task(bolt.recompilePatternLab());
+// gulp.task(bolt.watchPatternLab({
+//   extraWatches: [
+//     // './packages/**/*.twig'
+//   ]
+// }));
 
 
 /*-------------------------------------------------------------------
 // Symlink Tasks
 -------------------------------------------------------------------*/
-gulp.task(bolt.createSymlinks());
-gulp.task(bolt.cleanSymlinks());
-gulp.task(bolt.watchSymlinks());
+// gulp.task(bolt.createSymlinks());
+// gulp.task(bolt.cleanSymlinks());
+// gulp.task(bolt.watchSymlinks());
 
 
 /*-------------------------------------------------------------------
 // CSS Tasks
 -------------------------------------------------------------------*/
 
-// Compile Pattern Lab CSS
-const boltCSSConfig = {
-  // root: 'packages/website-pattern-lab',
-  src: [
-    // 'packages/ui-toolkit/bolt/*.scss',
-    'packages/ui-toolkit/bolt/bolt.scss'
-    // 'packages/ui-toolkit/bolt/bolt.v0.1.scss'
-    // 'packages/ui-toolkit/bolt/bolt-styleguide.scss'
-  ],
-  dest: 'bolt-website/styles',
-  extraWatches: [
-    './packages/**/*.scss'
-    // '!./packages/**/node_modules/**/*',
-    // '!./**/node_modules/**/*'
-  ]
-  // jsonDest: './sandbox/pattern-library/source/_data',
-};
-const compileBoltCSS = bolt.compileCSS(boltCSSConfig);
-gulp.task(compileBoltCSS);
 
-// Watch PL styles for changes
-gulp.task('styles:watch', bolt.watchCSS(boltCSSConfig));
-gulp.task('styles:sassdoc', bolt.sassDoc(boltCSSConfig));
 
 
 // gulp.task('copy:temp', function(){
@@ -107,10 +129,10 @@ gulp.task('styles:sassdoc', bolt.sassDoc(boltCSSConfig));
 /*-------------------------------------------------------------------
 // Default (Main) Gulp Task -- Serves PL, Compiles & Watches for Changes
 -------------------------------------------------------------------*/
-gulp.task('symlinks', gulp.series([
-  'symlinks:clean',
-  'symlinks:create'
-]));
+// gulp.task('symlinks', gulp.series([
+//   'symlinks:clean',
+//   'symlinks:create'
+// ]));
 
 // gulp.task('patternlab:default',
 //   gulp.series([
@@ -191,44 +213,8 @@ gulp.task('symlinks', gulp.series([
 // );
 
 
-gulp.task('default',
-  gulp.series([
-    'styles:compile',
-    // 'styles:sassdoc',
-    'symlinks',
-    'patternlab:compile',
-    'jekyll:compile',
-    // 'copy:temp',
-    gulp.parallel([
-      'browsersync:serve',
-      // 'lerna:watch',
-      'jekyll:watch',
-      'patternlab:watch',
-      'styles:watch',
-      'symlinks:watch'
-    ])
-  ])
-);
 
 
-gulp.task('build',
-  gulp.series([
-    'styles:compile',
-    'styles:sassdoc',
-    'symlinks',
-    'patternlab:compile',
-    'jekyll:compile'
-    // 'copy:temp',
-    // gulp.parallel([
-    //   'browsersync:serve',
-    //   // 'lerna:watch',
-    //   'jekyll:watch',
-    //   'patternlab:watch',
-    //   'styles:watch',
-    //   'symlinks:watch'
-    // ])
-  ])
-);
 //
 // const symlinkTasks = require('./packages/build-tools-symlinks')(gulp, {});
 

@@ -1,0 +1,80 @@
+/*
+***********
+Global
+***********
+*/
+
+body {
+  margin: 0;
+}
+
+
+/*
+***********
+Image Component
+***********
+*/
+
+.image {
+  margin: 0 0 1em;
+}
+.quote:last-child {
+  margin-bottom: 0;
+}
+
+.image-src{
+  width: 100%;
+  height: auto;
+}
+
+/*
+***********
+Quote Component
+***********
+*/
+
+.quote {
+  background: #efefef;
+  padding: 20px;
+  margin: 0 0 1em;
+}
+.quote:last-child {
+  margin-bottom: 0;
+}
+
+.quote-quotation {
+  color: #333;
+  margin-top: 0;
+  font-family: times;
+}
+.quote-reference {
+  color: #c00;
+  font-family: helvetica, arial, sans-serif;
+  font-size: 12px;
+}
+.quote-attribution-name {
+  font-weight: bold;
+}
+
+
+/*
+***********
+Card Layout
+***********
+*/
+
+.card {
+  padding: 1em;
+}
+
+.card[data-background="white"]{
+  background: white;
+}
+
+.card[data-background="gray"]{
+  background: #888;
+}
+
+.card[data-background="black"]{
+  background: #333;
+}

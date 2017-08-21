@@ -1,0 +1,7 @@
+<div id="snippet-{{ name }}" data-default-overflow="scroll">
+    {% if (name) or (template) %}
+        {% include template ?: name ~ '.twig' %}
+    {% else %}
+        <h1>Data does not include required "name" property</h1>
+    {% endif %}
+</div>

@@ -1,0 +1,9 @@
+<div class="card" data-background="{{background}}">
+  {% for item in body %}
+    {% include item.name ~ '.twig' with item only %}
+    {% else %}{% block body %}{% endblock %}
+  {% endfor %}
+</div>
+
+
+{% include "button.twig" %}

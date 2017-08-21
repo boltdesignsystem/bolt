@@ -1,0 +1,65 @@
+<html class="{{ htmlClass }} is-unenhanced no-js" lang="en" dir="ltr">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- <meta name="iconPath"  content="https://accounts.pega.com/assets/images/icons/icons.svg"> -->
+
+    <style>
+      {# if criticalCSS != false #}
+        {# inline("public/" ~ criticalCSS) #}
+      {# endif #}
+      {# inline("/styles/critical.fonts.css") #}
+    </style>
+
+    {% if site_specific_meta.css %}
+      <!-- <link rel="stylesheet" href="{{ site_specific_meta.css }}?{{ cacheBuster }}" media="all" /> -->
+    {% endif %}
+
+
+      {# if criticalCSS != false #}
+        <!-- <link rel="preload" href="../../styles/pegakit/pegakit.css" as="style" onload="this.rel='stylesheet'"> -->
+      {# else #}
+        <!-- <link rel="stylesheet" href="../../styles/www-redesign/www-redesign.css?{{ cacheBuster }}" media="all" /> -->
+      {# endif #}
+    {# endif #}
+
+    <!--[if !IE]><!-->
+      <!-- <link rel="stylesheet" href="../../styles/academy/academy.css?{{ cacheBuster }}" media="all" /> -->
+      <!--<![endif]-->
+
+    <!--[if lte IE 9]>
+      <link rel="stylesheet" href="../../styles/www-redesign/www-redesign.blessed.css?{{ cacheBuster }}" media="all" />
+    <![endif]-->
+
+
+
+    <!-- Begin Pattern Lab (Required for Pattern Lab to run properly) -->
+    {{ patternLabHead | raw }}
+    <!-- End Pattern Lab -->
+
+    {% if patternLabHead is defined %}
+        <script>
+          window.patternlab = true;
+        </script>
+
+        <link rel="preload" href="/styles/patterns.pega.com/patternlab.css?{{ cacheBuster }}" as="style" onload="this.rel='stylesheet'">
+    {% endif %}
+
+    <title>{{ title }}</title>
+
+    {% if site_specific_meta %}
+      {% include site_specific_meta.head %}
+    {% endif %}
+
+    <script>
+      <!--# include file="scripts/critical.built.js" -->
+      {{ inline("public/scripts/critical.built.js") }}
+    </script>
+
+    <script></script><!-- here to ensure a non-blocking load still occurs in IE and Edge, even if scripts follow loadCSS in head -->
+
+  </head>
+
+<body class="{{ bodyClass }} c-site">

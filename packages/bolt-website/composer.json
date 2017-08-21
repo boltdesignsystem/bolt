@@ -1,0 +1,68 @@
+{
+	"name":             "drupal-pattern-lab/edition-twig-standard",
+	"description":      "Standard Edition of Pattern Lab for Twig. Installs all Twig-related assets except for a StarterKit.",
+	"keywords":         ["pattern lab"],
+	"homepage":         "http://drupal-pattern-lab.github.io",
+	"license":          "MIT",
+	"type":             "project",
+	"authors": [
+		{
+			"name":         "Dave Olsen",
+			"email":        "dmolsen@gmail.com",
+			"homepage":     "http://dmolsen.com",
+			"role":         "Lead Developer"
+		}
+	],
+	"support": {
+		"issues":         "https://github.com/drupal-pattern-lab/edition-php-twig-standard/issues",
+		"source":         "https://github.com/drupal-pattern-lab/edition-php-twig-standard/releases"
+	},
+	"autoload": {
+		"psr-0": {
+			"PatternLab":   "core/src/"
+		}
+	},
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../../vendor-packages/bolt-pattern-kit-core"
+    }
+  ],
+	"require": {
+		"bolt/pattern-kit-core": "*"
+	},
+  "minimum-stability": "dev",
+	"scripts": {
+		"post-install-cmd": [
+			"PatternLab\\Installer::postInstallCmd"
+		],
+		"post-update-cmd": [
+			"PatternLab\\Installer::postUpdateCmd"
+		],
+		"post-root-package-install": [
+			"PatternLab\\Installer::setProjectInstall",
+			"PatternLab\\Installer::getSuggestedStarterKits",
+			"PatternLab\\Installer::getConfigOverrides"
+		],
+		"post-package-install": [
+			"PatternLab\\Installer::postPackageInstall"
+		],
+		"post-package-update": [
+			"PatternLab\\Installer::postPackageUpdate"
+		],
+		"pre-package-uninstall": [
+			"PatternLab\\Installer::prePackageUninstall"
+		]
+	},
+	"extra": {
+		"patternlab": {
+			"starterKitSuggestions": [
+				"drupal-pattern-lab/starterkit-twig-demo",
+				"drupal-pattern-lab/starterkit-twig-base"
+			],
+      "config": {
+        "overrideConfig": false
+      }
+		}
+	}
+}

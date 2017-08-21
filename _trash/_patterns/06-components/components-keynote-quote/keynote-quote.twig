@@ -1,0 +1,20 @@
+{% embed 'card.twig' with
+  {
+    "global": _context,
+    "background": "gray"
+  }
+ only %}
+
+  {% block body %}
+    {% include 'image.twig' with global.logo only %}
+
+    {% include 'quote.twig' with {
+      "quotation": global.quote.text,
+      "attribution": {
+        "name": global.quote.name,
+        "title": "Keynote Speaker"
+      }
+    } only %}
+  {% endblock %}
+
+{% endembed %}

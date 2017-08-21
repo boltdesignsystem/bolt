@@ -1,0 +1,42 @@
+{
+    "name": "bolt/pattern-kit-core",
+    "authors": [
+        {
+          "name": "Micah Godbolt",
+          "email": "micahgodbolt@gmail.com"
+        },
+        {
+          "name": "Salem Ghoweri",
+          "email": "me@salemghoweri.com"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.3.3",
+        "deralex/yaml-config-service-provider": "@dev",
+        "erusev/parsedown": "^1.6",
+        "justinrainbow/json-schema": "~1.4",
+        "mnapoli/front-yaml": "^1.5",
+        "monolog/monolog": "~1.6",
+        "nesbot/Carbon": "~1.6",
+        "psr/log": "^1.0",
+        "silex/silex": "=1.2.5",
+        "symfony/twig-bridge": "^2.3",
+        "symfony/yaml": "=2.6.13",
+        "twig/twig": "1.24.*"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2"
+    },
+    "autoload": {
+        "psr-0": {
+            "PatternKit\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "cs": "php-cs-fixer fix src"
+    }
+}

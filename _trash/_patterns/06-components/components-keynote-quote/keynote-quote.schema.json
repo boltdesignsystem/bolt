@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Keynote Quote",
+    "category": "pattern",
+    "type": "object",
+    "format": "grid",
+    "properties": {
+      "name": {
+        "type": "string",
+        "enum": ["keynote-quote"],
+        "options": {
+          "hidden": true
+        }
+      },
+      "logo": {
+        "title": "Company Logo",
+        "description": "Upload a 300x300 logo",
+        "type": "object",
+        "properties": {
+          "src": {
+            "title": "Image Source",
+            "type": "string",
+            "format": "url"
+          },
+          "alt": {
+            "title": "Image Alt Text",
+            "type": "string"
+          }
+        }
+      },
+      "quote": {
+        "title": "Quote",
+        "type": "object",
+        "properties": {
+          "text": {
+            "title": "Quote Text",
+            "type": "string"
+          },
+          "name": {
+            "title": "Quote Author",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "required": ["quote", "logo"],
+    "additionalProperties": false
+}
