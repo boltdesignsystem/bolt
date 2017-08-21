@@ -30,6 +30,7 @@ $font-monospace--system: monospace;
  * Custom font categories
  */
 
+$font-sans-subset: 'OpenSansSubset', 'Helvetica Neue', sans-serif;
 $font-sans: 'Open Sans', 'Helvetica Neue', sans-serif;
 $font-serif: 'Georgia', serif;
 $font-monospace: 'Courier New', monospace;
@@ -45,17 +46,23 @@ $font-families: (
   font-families: (
     body: (
       system: $font-sans--system,
-      custom: $font-sans
+      custom: $font-sans,
+      loaded-class: $fonts-loaded-class
+    ),
+    bodySubset: (
+      system: $font-sans--system,
+      custom: $font-sans-subset,
+      loaded-class: $fonts-subset-loaded-class
     ),
     heading: (
       system: $font-sans--system,
-      custom: $font-sans
+      custom: $font-sans,
+      loaded-class: $fonts-loaded-class
     ),
     code: (
       system: $font-monospace--system,
-      custom: $font-monospace
+      custom: $font-monospace,
+      loaded-class: $fonts-loaded-class
     )
   )
 );
-
-

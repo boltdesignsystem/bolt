@@ -2,6 +2,14 @@
    #FONT STACKS
    ========================================================================== */
 
+@font-face {
+  font-family: OpenSansSubset;
+  src: url('/fonts/opensans-subset.woff2') format('woff2'), url('/fonts/opensans-subset.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  unicode-range: U+65-U+90, U+97-122;
+}
+
 
 @include font-face('Open Sans', '/fonts/opensans-regular', 400);
 @include font-face('Open Sans', '/fonts/opensans-italic', 400, italic);

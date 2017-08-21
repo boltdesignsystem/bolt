@@ -97,6 +97,7 @@ function compileCSS(userConfig) {
      }))
      // .pipe(sourcemaps.write('./'))
     .pipe(gulpif(config.sourceMaps, sourcemaps.write('./')))
+      .pipe(gulpif(config.altDest, gulp.dest(config.altDest)))
      .pipe(gulp.dest(config.dest))
      .on('end', () => {
        events.emit('reload', join(config.dest, '**/*.css'));

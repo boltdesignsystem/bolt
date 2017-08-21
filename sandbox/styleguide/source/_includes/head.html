@@ -10,13 +10,22 @@
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/feed.xml" | relative_url }}">
 
-  <link rel="stylesheet" href="{{ "/styles/boltdesignsystem.com.css" | relative_url }}">
+  <link rel="preload" href="/fonts/opensans-subset.woff2" as="font" type="font/woff2" crossorigin>
+
+  <style>
+    {% include critical-path/bolt-critical-fonts.css %}
+  </style>
 
   {% if jekyll.environment == 'production' and site.google_analytics %}
   {% include google-analytics.html %}
   {% endif %}
 
 
-  <script src="/scripts/bolt-critical-path.min.js" async></script>
+  <script>
+    {% include critical-path/bolt-critical-path.min.js %}
+  </script>
+
+  <link rel="stylesheet" href="{{ "/styles/boltdesignsystem.com.css" | relative_url }}">
+  <!-- <script src="/scripts/bolt-critical-path.min.js" async></script> -->
 
 </head>

@@ -21,6 +21,7 @@
 @mixin font-family($type, $is_root: false) {
   $fallback-font-family: map-get-deep($font-families, 'font-families', $type, 'system');
   $custom-font-family: map-get-deep($font-families, 'font-families', $type, 'custom');
+  $fonts-loaded-class: map-get-deep($font-families, 'font-families', $type, 'loaded-class');
 
   font-family: $fallback-font-family;
 

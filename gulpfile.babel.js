@@ -33,14 +33,11 @@ jekyllServer.description = 'Serve Jekyll sandbox';
 gulp.task(jekyllServer);
 
 
-
 const webpackConfig = require('./webpack.config');
 const webpackProdConfig = require('./webpack.config.release');
+const webpackCriticalConfig = require('./webpack.config.critical');
 
-const webpack = require('./packages/bolt-build/webpack/webpack.js')(gulp, webpackConfig, webpackProdConfig);
-
-
-
+const webpack = require('./packages/bolt-build/webpack/webpack.js')(gulp, webpackConfig, webpackProdConfig, webpackCriticalConfig);
 
 
 /*-------------------------------------------------------------------
@@ -82,9 +79,11 @@ gulp.task(bolt.watchSymlinks());
 const patternLabCSSConfig = {
   root: 'sandbox/pattern-library',
   src: [
-    'sandbox/pattern-library/source/styles/*.scss'
+    'sandbox/pattern-library/source/styles/*.scss',
+    'packages/bolt-core/bolt-critical-fonts.scss'
   ],
   dest: 'bolt-website/styles',
+  altDest: 'sandbox/styleguide/source/_includes',
   jsonDest: './sandbox/pattern-library/source/_data',
   extraWatches: './packages/**/*.scss'
 };
