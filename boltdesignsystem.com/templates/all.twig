@@ -1,0 +1,44 @@
+<blockquote class="quote">
+  <p class="quote-quotation">{{quotation}}</p>
+  <footer class="quote-reference">
+    <span class="quote-attribution-name">{{attribution.name}}</span>
+    {% if attribution.title %},
+      <span class="quote-attribution-title">{{attribution.title}}</span>
+    {% endif %}
+  </footer>
+</blockquote>
+i class="c-action-block__item">
+  <a href="{{ item.action_block.url }}" class="o-block o-block--center c-action-block">
+
+    {% if item.icon.name %}
+      {% include "@atoms/icons/icon.twig" with {
+        icon: {
+          name: "{{ item.icon.name }}",
+          attributes: {
+            class: [
+              "o-block__image",
+              "c-action-block__icon"
+            ]
+          }
+        }
+      } %}
+    {% endif %}
+
+    {% if item.action_block.text %}
+      <span class="o-block__body c-action-block__text">
+        {{ item.action_block.text }}
+      </span>
+    {% endif %}
+
+  </a>
+</li>
+
+
+{# Notes
+action_block: // paragraph type
+  - action_block_item (array) // Field item
+
+#}
+
+
+{{ link('title', 'url', ) }}

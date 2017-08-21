@@ -32,6 +32,17 @@ jekyllServer.displayName = 'jekyll:serve';
 jekyllServer.description = 'Serve Jekyll sandbox';
 gulp.task(jekyllServer);
 
+
+
+const webpackConfig = require('./webpack.config');
+const webpackProdConfig = require('./webpack.config.release');
+
+const webpack = require('./packages/bolt-build/webpack/webpack.js')(gulp, webpackConfig, webpackProdConfig);
+
+
+
+
+
 /*-------------------------------------------------------------------
 // Pattern Lab Tasks
 -------------------------------------------------------------------*/
