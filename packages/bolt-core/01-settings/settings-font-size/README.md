@@ -6,10 +6,10 @@ Fluid, font size settings based on a typographic modular scale. Part of the Bolt
 
 - - - -
 ## Table of Contents
-- [Cheat Sheet](#cheatsheet)
-- [Getting Started](#gettingstarted)
-- [Font Size Features](#fontsizefeatures)
-- [Further Reading](#furtherreading)
+- [Cheat Sheet](#cheat-sheet)
+- [Getting Started](#getting-started)
+- [Font Size Features](#font-size-features)
+- [Further Reading](#further-reading)
 
 ## Cheat Sheet
 ### Install via NPM
