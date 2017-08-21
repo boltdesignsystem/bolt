@@ -45,7 +45,7 @@ npm install @bolt/settings-breakpoints
 > **TIP:**: Don’t have a `package.json` file? Need a little help getting started? Check out our [Getting Started](https://www.boltdesignsystem.com/getting-started) guide for some tips to help get you up to speed.
 
 ### Usage
-Once installed, you should  `@import`  the main Sass partial into your project’s main `.scss` file to make the included variables available to the rest of your code.
+Once installed, you should  `@import`  the main Sass partial into your project’s main `.scss` file to make the included variables and Sass mixins available to use in the rest of your code.
 
 ```
 // Settings
@@ -55,6 +55,7 @@ Once installed, you should  `@import`  the main Sass partial into your project�
 // Tools
 @import ‘@bolt/tools-...’
 ```
+
 
 Since Bolt's CSS architecture is based on [ITCSS (Inverted Triangle CSS)](http://www.creativebloq.com/web-design/manage-large-css-projects-itcss-101517528)<sup>[1](#1-learn-more-about-itcss)</sup>, what Sass partials you import, and in what order, makes a whole world of difference. That’s why importing any Settings packages from Bolt in your project’s Settings layer (prior to any Sass mixins, resets, base HTML element styles, etc) is so important.
 
