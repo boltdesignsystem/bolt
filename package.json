@@ -24,7 +24,8 @@
     "mocha": "mocha packages/**/*/tests",
     "test": "npm run mocha && npm run lint",
     "lint:watch": "nodemon --ignore node_modules -w packages/ --exec 'npm test'",
-    "lint:fix": "eslint --fix ./packages/bolt-build-tools"
+    "lint:fix": "eslint --fix ./packages/bolt-build-tools",
+    "postinstall": "npm run bootstrap"
   },
   "pre-commit": [
     "test",
