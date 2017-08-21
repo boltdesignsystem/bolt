@@ -166,19 +166,19 @@
     @include _theme-settings(
       palette(teal),
       palette(blue, dark),
-      palette(blue, light));
+      palette(white));
   }
   @elseif $name == 'xdark' {
     @include _theme-settings(
       palette(indigo),
       palette(orange),
-      palette(blue, light));
+      palette(white));
   }
   @elseif $name == 'notification' {
     @include _theme-settings(
       palette(blue, light),
       palette(blue, dark),
-      palette(blue));
+      palette(blue, dark));
   }
   @elseif $name == 'success' {
     @include _theme-settings(
@@ -196,11 +196,7 @@
     @include _theme-settings(
       palette(error, light),
       palette(error, dark),
-      palette(warning, dark),
-      null,
-      palette(warning, dark),
-      null,
-      palette(error));
+      palette(error, dark));
   }
 }
 
@@ -213,16 +209,9 @@
     @include test-background-color(inherit);
   }
 
-
-  /*@include color(yellow);*/
-  /*@include color(yellow, dark);*/
-  /*@include color(yellow, dark, ui);*/
-  /*@include color(yellow, dark, link);*/
-
-
-  /*@include background-color(teal);*/
-  /*@include background-color(teal, xdark);*/
-  /*@include background-color(teal, xdark, ui);*/
+  *:last-child {
+    @include margin-bottom(0);
+  }
 }
 
 .mm-heading {
@@ -245,6 +234,8 @@
 
 .mm-button {
   @include padding(small);
+  @include font-size(small, tight);
+  @include font-weight(bold);
   @include test-color(white, initial, button-text);
   @include test-background-color(blue, initial, primary);
   @include test-border-color(blue, initial, primary);
@@ -256,8 +247,14 @@
 
 .mm-button--secondary {
   @include test-color(black, initial, secondary);
-  @include test-background-color(white, initial, background);
+  @include test-background-color(transparent, initial, background);
   @include test-border-color(black, initial, secondary);
+}
+
+.mm-button--tertiary {
+  @include test-color(black, initial, secondary);
+  @include test-background-color(transparent, initial, background);
+  @include test-border-color(transparent, initial, background);
 }
 
 .t-xlight {
@@ -296,6 +293,6 @@
 }
 
 .t-notification {
-  @include padding(medium, squished);
+  @include padding(medium);
   @include test-theme(notification);
 }
