@@ -1,39 +1,32 @@
 {
   "lerna": "2.0.0",
   "version": "independent",
-  "packages": [
-    "packages/bolt-core",
-    "packages/bolt-core/01-settings",
-    "packages/bolt-core/01-settings/settings-*",
-    "packages/bolt-core/02-tools",
-    "packages/bolt-core/02-tools/tools-*",
-    "packages/bolt-core/03-generic",
-    "packages/bolt-core/03-generic/generic-*",
-    "packages/bolt-core/04-elements",
-    "packages/bolt-core/04-elements/elements-*",
-    "packages/bolt-core/XX-deprecated/*",
-    "packages/bolt-config/config-*",
-    "packages/bolt-build",
-    "packages/bolt-build/*",
-    "packages/bolt-build/**/*",
-    "sandbox/**/*"
-  ],
-  "commands": {
-    "publish": {
-      "ignore": [
-        "ignored-file",
-        "styleguidekit-assets-default",
-        "@bolt/setting-colors",
-        "@bolt/tool-strip-unit",
-        "@bolt/tools-typography"
-      ]
+  "npmClient": "yarn",
+  "changelog": {
+    "repo": "ec-europa/europa-component-library",
+    "labels": {
+      "tag: new feature": ":rocket: New Feature",
+      "tag: breaking change": ":boom: Breaking Change",
+      "tag: bug fix": ":bug: Bug Fix",
+      "tag: enhancement": ":nail_care: Enhancement",
+      "tag: documentation": ":memo: Documentation",
+      "tag: internal": ":house: Internal"
     },
-    "bootstrap": {
-      "ignore": [
-        "styleguidekit-assets-default",
-        "@theme-tools"
-      ]
-    }
+    "cacheDir": ".changelog"
   },
-  "hoist": false
+  "packages": [
+    "packages/build-tools/**",
+    "packages/config/**",
+    "packages/ui-toolkit/01-settings/**",
+    "packages/ui-toolkit/02-tools/**",
+    "packages/ui-toolkit/03-generic/**",
+    "packages/ui-toolkit/04-elements/**",
+    "packages/ui-toolkit/05-objects/**",
+    "packages/ui-toolkit/06-components/**",
+    "packages/ui-toolkit/07-themes/**",
+    "packages/ui-toolkit/08-utilities/**",
+    "packages/ui-toolkit/bolt",
+    "packages/exec-php",
+    "packages/frctl-twig"
+  ]
 }
