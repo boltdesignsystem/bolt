@@ -24,7 +24,8 @@
     "mocha": "mocha packages/**/*/tests",
     "test": "npm run mocha && npm run lint",
     "lint:watch": "nodemon --ignore node_modules -w packages/ --exec 'npm test'",
-    "lint:fix": "eslint --fix ./packages/bolt-build-tools"
+    "lint:fix": "eslint --fix ./packages/bolt-build-tools",
+    "prepare": "npm run snyk-protect"
   },
   "pre-commit": [
     "test",
@@ -125,7 +126,7 @@
     "sassdoc-theme-default": "^2.6.1",
     "sassdoc-theme-herman": "^1.0.0-alpha.9",
     "semantic-release": "^6.3.6",
-    "snyk": "^1.36.2",
+    "snyk": "^1.38.2",
     "stylefmt": "^6.0.0",
     "stylelint": "^7.13.0",
     "stylelint-scss": "^1.5.1",
