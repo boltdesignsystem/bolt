@@ -194,7 +194,7 @@ gulp.task('symlinks', gulp.series([
 gulp.task('default',
   gulp.series([
     'styles:compile',
-    // 'styles:sassdoc',
+    'styles:sassdoc',
     'symlinks',
     'patternlab:compile',
     'jekyll:compile',

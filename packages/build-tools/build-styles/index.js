@@ -120,9 +120,9 @@ function watchCSS(userConfig) {
     const watchTasks = [compileCSS(userConfig)];
 
 
-    // if (config.sassdoc !== false) {
-    //   watchTasks.push(sassDoc(userConfig));
-    // }
+    if (config.sassdoc !== false) {
+      watchTasks.push(sassDoc(userConfig));
+    }
     const src = config.extraWatches
       ? [].concat(config.src, config.extraWatches)
       : config.src;
