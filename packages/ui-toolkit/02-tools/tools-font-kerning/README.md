@@ -11,7 +11,6 @@ Font kerning tools based on design fundamentals. The tools enable the browser to
 
 - [Cheat Sheet](#cheat-sheet)
 - [Getting Started](#getting-started)
-- [Font Kerning Features](#font-kerning-features)
 - [Further Reading](#further-reading)
 
 ## Cheat Sheet
@@ -78,7 +77,7 @@ We recommend using Bolt’s Gulp-based [front-end build tools](https://www.npmjs
 
 - [Butterick’s Practical Typography](http://practicaltypography.com/)
 
-### 3. UI system fonts
+### 3. Kerning
 
 - [font-kerning - CSS | MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/font-kerning)
 - [Methods for Controlling Spacing in Web Typography | CSS Tricks](https://css-tricks.com/methods-controlling-spacing-web-typography/)
