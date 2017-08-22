@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Pega Digital Design System",
   "scripts": {
-    "bootstrap": "lerna bootstrap --concurrency 30",
+    "bootstrap": "lerna bootstrap --hoist",
     "build": "gulp build",
     "commitmsg": "validate-commit-msg",
     "deploy:surge": "npm run build && surge bolt-website $npm_package_config_surgeDomain",
