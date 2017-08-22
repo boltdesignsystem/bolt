@@ -9,11 +9,11 @@
 @import '@bolt/tools-sassy-maps'; //So map-get-deep works
 
 
-@function palette($color, $tone: 'initial') {
+@function _bolt-palette($color, $tone: 'initial') {
   @return map-get-deep($palettes, $color, $tone);
 }
 
-@function to-string($value) {
+@function bolt-to-string($value) {
   @return inspect($value);
 }
 
@@ -34,17 +34,17 @@
           quote($new-key): $merged-value
         ));
 
-      }@else{
+      } @else {
         // Otherwise check $override
-        @if $override{
+        @if $override {
           $stringified-key: to-string($key);
-          $new-key: call("to-" + $case, $stringified-key);
+          $new-key: call('to-' + $case, $stringified-key);
           $map-old: map-merge(map-remove($map-old, $key), (
             quote($new-key): $new-value
           ));
         }
       }
-    }@else{
+    }@else {
       // There is no existing key so add
       $stringified-key: to-string($key);
       $new-key: call("to-" + $case, $stringified-key);

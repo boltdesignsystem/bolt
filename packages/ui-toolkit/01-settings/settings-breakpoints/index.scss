@@ -1,23 +1,48 @@
-/* ------------------------------------ *\
-  SETTINGS - BREAKPOINTS
-\* ------------------------------------ */
+////
+/// @group Settings:Breakpoints
+/// @author Salem Ghoweri
+/// @link https://github.com/at-import/breakpoint Breakpoint Sass
+/// @link https://github.com/lolmaus/breakpoint-slicer Breakpoint Slicer
+/// @todo Replace the Breakpoint Sass and Breakpoint Slicer libraries with a more flexible alternative such as [Mappy Breakpoints](https://github.com/zellwk/mappy-breakpoints). This isn't expected to any breaking changes to the existing API.
+////
+
+
 @import 'breakpoint-sass';
 @import 'breakpoint-slicer/stylesheets/breakpoint-slicer';
 
 
-$breakpoints: (
+/// Major breakpoints used globally in Bolt. Uses breakpoint-sass and breakpoint-slicer to handle some of the heavier lifting.
+/// @type Map
+$bolt-breakpoints: (
   xsmall:  400px,
   small:   600px,
   medium:  800px,
-  large:   1200px,
-  xlarge:  1400px
+  large:   1000px,
+  xlarge:  1200px
 );
 
-@each $breakpoint in $breakpoints {
-  $name:     nth($breakpoint, 1);
-  $value:    nth($breakpoint, 2);
+// Re-map Bolt's namespaced Sassmap to the Breakpoint Sass's `$breakpoints` default
+/* stylelint-disable scss/dollar-variable-pattern  */
+$breakpoints: $bolt-breakpoints;
+/* stylelint-enable */
+
+
+@each $breakpoint in $bolt-breakpoints {
+  $name: nth($breakpoint, 1);
+  $value: nth($breakpoint, 2);
   @include add-breakpoint(quote($name), $value);
 
   $slicer-breakpoint-names: append($slicer-breakpoint-names, $name);
-  $slicer-breakpoints:      append($slicer-breakpoints, $value);
+  $slicer-breakpoints: append($slicer-breakpoints, $value);
 }
+
+
+/// @example
+///   For example, do this at medium sized screens or larger
+///
+///   .c-card {
+///      @include respond-to(medium){
+///         flex-direction: column; /* [1] */
+///      }
+///   }
+///

@@ -2,7 +2,15 @@
   #SITE WRAPPER
 \* ------------------------------------ */
 
-// Provides over-arching page wrapper + sticky footer functionality
+/**
+ * Bolt > Components > Site Wrapper
+ * Provides page wrapper + sticky footer functionality
+ *
+ * @define c-bolt-site
+ *
+ */
+
+
 /**
  * 1. Avoid the IE 10-11 `min-height` bug.
  * 2. Set `flex-shrink` to `0` to prevent some browsers from
@@ -17,7 +25,11 @@
 //   // --bg-color: hsl(150, 45%, 50%);
 // }
 
-.c-site {
+.website {
+  background: red;
+}
+
+.c-bolt-site {
   display: grid;
   // display: flex;
   // flex-direction: column;
@@ -38,21 +50,25 @@
 
 
 
-.c-site__header {
+.c-bolt-site__header {
   grid-area: header;
 }
 
-.c-site__footer {
+.c-bolt-site__header {
+
+}
+
+.c-bolt-site__footer {
   grid-area: footer;
 }
 
-.c-site__content {
+.c-bolt-site__content {
   grid-area: content;
   width: 100%;
   // grid-column: 2 / -2;
 }
 
-.c-site__content--middle {
+.c-bolt-site__content--middle {
   display: flex;
   justify-content: center;
   align-items: center;

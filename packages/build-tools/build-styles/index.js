@@ -24,17 +24,36 @@ const eyeglass = require('eyeglass');
 const sassGlob = require('gulp-sass-glob');
 const rimraf = require('rimraf');
 const gulpif = require('gulp-if');
+const immutableCss = require('immutable-css');
+const postcssImport = require('postcss-import');
+const globby = require('globby');
+// const postcssSmartImport = require('postcss-smart-import');
+// const postcssEasyImport = require('postcss-easy-import');
+// const atImport = require('postcss-import-sync');
+
+
+const preCSS = [
+  // postcssReporter({ clearReportedMessages: true }),
+  // autoprefixer(),
+  postcssReporter({ clearMessages: true, throwError: true })
+];
 
 const postCSS = [
-  postcssReporter({ clearReportedMessages: true }),
-  autoprefixer()
+  // postcssImport,
+  // immutableCss({
+  //   strict: true
+  // }),
+  // postcssReporter({ clearReportedMessages: true }),
+  autoprefixer(),
+  // postcssReporter({ clearMessages: true, throwError: true })
 ];
 
 
 function compileSassDoc(done, userConfig) {
   const config = merge(defaultConfig, userConfig);
 
-  return gulp.src(['packages/**/*.scss', '!packages/**/node_modules/**/*'])
+  return gulp.src(['packages/**/*.scss', '!packages/**/node_modules/**/*'
+  ])
     .pipe(sassdoc(config.sassdoc))
     .on('end', () => {
       done();
@@ -53,6 +72,7 @@ function sassDoc(userConfig) {
 
 function compileCSS(userConfig) {
   const config = merge({
+    preCSS,
     postCSS
   }, defaultConfig, userConfig);
 
@@ -69,6 +89,9 @@ function compileCSS(userConfig) {
        // .pipe($.env.development($.sourcemaps.init()))
     // .pipe(sourcemaps.init())
     .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
+      .pipe(postcss(config.preCSS, {
+        parser: scssSyntax
+      }))
      .pipe(sassGlob())
      .pipe(sass(eyeglass({
       //  includePaths: globbedIncludePaths,
