@@ -34,7 +34,8 @@ const postCSS = [
 function compileSassDoc(done, userConfig) {
   const config = merge(defaultConfig, userConfig);
 
-  return gulp.src(['packages/**/*.scss', '!packages/**/node_modules/**/*'])
+  return gulp.src(['packages/**/*.scss', '!packages/**/node_modules/@bolt/**/*'
+  ])
     .pipe(sassdoc(config.sassdoc))
     .on('end', () => {
       done();
