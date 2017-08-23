@@ -24,35 +24,17 @@ const eyeglass = require('eyeglass');
 const sassGlob = require('gulp-sass-glob');
 const rimraf = require('rimraf');
 const gulpif = require('gulp-if');
-const immutableCss = require('immutable-css');
-const postcssImport = require('postcss-import');
-const globby = require('globby');
-// const postcssSmartImport = require('postcss-smart-import');
-// const postcssEasyImport = require('postcss-easy-import');
-// const atImport = require('postcss-import-sync');
-
-
-// const preCSS = [
-//   // postcssReporter({ clearReportedMessages: true }),
-//   // autoprefixer(),
-//   postcssReporter({ clearMessages: true, throwError: true })
-// ];
 
 const postCSS = [
-  // postcssImport,
-  // immutableCss({
-  //   strict: true
-  // }),
-  // postcssReporter({ clearReportedMessages: true }),
-  autoprefixer(),
-  // postcssReporter({ clearMessages: true, throwError: true })
+  postcssReporter({ clearReportedMessages: true }),
+  autoprefixer()
 ];
 
 
 function compileSassDoc(done, userConfig) {
   const config = merge(defaultConfig, userConfig);
 
-  return gulp.src(['packages/**/*.scss', '!packages/**/node_modules/**/*'
+  return gulp.src(['packages/**/*.scss', '!packages/**/node_modules/@bolt/**/*'
   ])
     .pipe(sassdoc(config.sassdoc))
     .on('end', () => {
@@ -77,50 +59,50 @@ function compileCSS(userConfig) {
 
   function compileCssTask(done) {
     gulp.src(config.src)
-      .pipe(plumber({
-        errorHandler(error) {
-          notify.onError({
-            title: 'CSS <%= error.name %> - Line <%= error.line %>',
-            message: '<%= error.message %>'
-          })(error);
-        }
-      }))
-    // .pipe($.env.development($.sourcemaps.init()))
+     .pipe(plumber({
+       errorHandler(error) {
+         notify.onError({
+           title: 'CSS <%= error.name %> - Line <%= error.line %>',
+           message: '<%= error.message %>'
+         })(error);
+       }
+     }))
+       // .pipe($.env.development($.sourcemaps.init()))
     // .pipe(sourcemaps.init())
-      .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
-      .pipe(sassGlob())
-      .pipe(sass(eyeglass({
+    .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
+     .pipe(sassGlob())
+     .pipe(sass(eyeglass({
       //  includePaths: globbedIncludePaths,
-        includePaths: [
-          'node_modules',
-          'packages',
-          'sandbox/pattern-library/node_modules',
-          'sandbox/styleguide/node_modules'
-        ],
-        importer: [
-          npmSass.importer
+       includePaths: [
+         'node_modules',
+         'packages',
+         'sandbox/pattern-library/node_modules',
+         'sandbox/styleguide/node_modules'
+       ],
+       importer: [
+         npmSass.importer
         //  moduleImporter(),
         //  glopImporter()
-        ],
-        functions: exportJson(config.dataDest, 'json'),
-        outputStyle: 'expanded'
-      })).on('error', sass.logError))
-      .pipe(postcss(config.postCSS))
-      .pipe(duration('CSS Compile Time'))
-      .pipe(size({ title: 'Total CSS Size' }))
-    //  .pipe(cleanCSS({
-    //    aggressiveMerging: false,
-    //    advanced: false,
-    //    keepSpecialComments: 0,
-    //    processImport: true
-    //  }))
-    // .pipe(sourcemaps.write('./'))
-      .pipe(gulpif(config.sourceMaps, sourcemaps.write('./')))
-      .pipe(gulp.dest(config.dest))
-      .on('end', () => {
-        events.emit('reload', join(config.dest, '**/*.css'));
-        done();
-      });
+       ],
+       functions: exportJson(config.dataDest, 'json'),
+       outputStyle: 'expanded'
+     })).on('error', sass.logError))
+     .pipe(postcss(config.postCSS))
+     .pipe(duration('CSS Compile Time'))
+     .pipe(size({ title: 'Total CSS Size' }))
+     .pipe(cleanCSS({
+       aggressiveMerging: false,
+       advanced: false,
+       keepSpecialComments: 0,
+       processImport: true
+     }))
+     // .pipe(sourcemaps.write('./'))
+    .pipe(gulpif(config.sourceMaps, sourcemaps.write('./')))
+     .pipe(gulp.dest(config.dest))
+     .on('end', () => {
+       events.emit('reload', join(config.dest, '**/*.css'));
+       done();
+     });
   }
 
   compileCssTask.displayName = 'styles:compile';
@@ -139,9 +121,9 @@ function watchCSS(userConfig) {
     const watchTasks = [compileCSS(userConfig)];
 
 
-    // if (config.sassdoc !== false) {
-    //   watchTasks.push(sassDoc(userConfig));
-    // }
+    if (config.sassdoc !== false) {
+      watchTasks.push(sassDoc(userConfig));
+    }
     const src = config.extraWatches
       ? [].concat(config.src, config.extraWatches)
       : config.src;
