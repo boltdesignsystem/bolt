@@ -1,13 +1,13 @@
-@mixin bolt-vertical-scroll
+@mixin vertical-scroll
 {
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
-@mixin bolt-horizontal-scroll
+@mixin horizontal-scroll
 {
-  overflow-x: auto;
   overflow-y: hidden;
+  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }

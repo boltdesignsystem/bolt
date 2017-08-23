@@ -3,36 +3,30 @@
   "version": "0.1.0",
   "description": "Pega Digital Design System",
   "scripts": {
+    "now:deploy": "originalurl=$(now boltdesignsystem) | branch=$(git rev-parse --abbrev-ref HEAD | sed -e 's///-/g') | now alias $originalurl $branch'-boltdesignsystem'",
     "bootstrap": "lerna bootstrap --concurrency 12",
-    "build": "npm run setup:composer && gulp build",
-    "changelog": "lerna-changelog",
     "commitmsg": "validate-commit-msg",
     "fix:scripts": "gulp scripts:fix",
     "fix:scss": "gulp styles:fix",
     "fix": "gulp fix",
-    "_lint:fix": "eslint --fix ./packages/bolt-build-tools",
-    "lint:js": "eslint .",
-    "lint:md": "remark . --quiet --frail",
-    "lint:scss": "stylelint ./packages/**/*.scss",
-    "clean:lerna": "lerna clean -Y",
-    "clean:git": "git clean -xdf",
-    "clean:all": "npm run clean:git && npm run clean:lerna",
-    "lint": "npm-run-all --parallel lint:* -c",
-    "mocha": "mocha packages/**/*/tests",
-    "now:deploy": "originalurl=$(now boltdesignsystem) | branch=$(git rev-parse --abbrev-ref HEAD | sed -e 's///-/g') | now alias $originalurl $branch'-boltdesignsystem'",
-    "postinstall": "npm run bootstrap && npm run setup:composer",
+    "lint": "eslint ./packages/bolt-build-tools",
     "prepublishOnly": "npm run snyk-protect",
-    "publish-beta": "lerna run build && lerna publish --npm-tag=beta --skip-git",
-    "publish-canary": "lerna run build && lerna run publish-please && lerna publish --canary --yes",
     "publish-please": "publish-please",
+    "publish-canary": "lerna run build && lerna run publish-please && lerna publish --canary --yes",
+    "publish-beta": "lerna run build && lerna publish --npm-tag=beta --skip-git",
     "publish": "lerna run build && lerna run publish-please && lerna publish",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "start": "serve ./boltdesignsystem --single",
+    "build": "if [ ! -f ./bolt-website/patterns/index.html ]; then npm run setup:composer; fi && gulp build",
     "serve": "gulp serve",
-    "setup:composer": "if [ ! -f ./bolt-website/patterns/index.html ]; then cd packages/website-pattern-lab && rm -rf composer.lock && rm -rf vendor && composer install --no-interaction --prefer-dist --no-dev; fi",
+    "setup:composer": "cd packages/website-pattern-lab && rm -rf composer.lock && rm -rf vendor && composer install --no-interaction --prefer-dist --no-dev",
     "setup:homebrew": "sh scripts/install-homebrew.sh",
     "snyk-protect": "snyk protect",
-    "start": "serve ./boltdesignsystem --single",
-    "test": "npm run mocha"
+    "mocha": "mocha packages/**/*/tests",
+    "test": "npm run mocha && npm run lint",
+    "lint:watch": "nodemon --ignore node_modules -w packages/ --exec 'npm test'",
+    "lint:fix": "eslint --fix ./packages/bolt-build-tools",
+    "postinstall": "npm run bootstrap"
   },
   "pre-commit": [
     "test"
@@ -83,46 +77,20 @@
     "chai-fs": "^1.0.0",
     "cz-conventional-changelog": "^2.0.0",
     "eslint": "^4.5.0",
-    "eslint-config-airbnb-base": "^11.3.1",
-    "eslint-plugin-import": "^2.7.0",
     "feature-toggle": "^0.3.0",
     "gulp": "gulpjs/gulp#4.0",
     "husky": "^0.14.3",
     "inquirer": "^3.2.0",
     "lerna": "^2.0.0",
-    "lerna-changelog": "0.6.0",
     "mocha": "^3.4.2",
-    "nodemon": "^1.11.0",
-    "npm-run-all": "^4.0.2",
     "precommit": "^1.2.2",
-    "prettier-eslint-cli": "^4.2.1",
     "publish-please": "^2.3.1",
-    "remark-cli": "4.0.0",
-    "remark-lint": "6.0.1",
-    "remark-preset-lint-consistent": "2.0.1",
-    "remark-preset-lint-markdown-style-guide": "2.1.1",
-    "remark-preset-lint-recommended": "3.0.1",
     "serve": "latest",
     "snyk": "^1.36.2",
-    "stylefmt": "6.0.0",
-    "stylelint": "8.0.0",
-    "stylelint-scss": "^2.0.1",
     "validate-commit-msg": "^2.12.2"
   },
   "snyk": true,
   "devDependencies": {
     "pre-commit": "^1.2.2"
-  },
-  "lint-staged": {
-    "*.md": [
-      "remark --quiet --frail --no-stdout"
-    ],
-    "*.js": [
-      "prettier-eslint --write",
-      "git add"
-    ],
-    "*.scss": [
-      "stylelint"
-    ]
   }
 }
