@@ -2,26 +2,26 @@
    #GRID
    ========================================================================== */
 
-.o-grid {
+.o-bolt-grid {
   margin: 0;
   padding: 0;
   list-style: none;
-  margin-left: spacing(medium) * -1;
-  letter-spacing: spacing(medium) * -1;
+  margin-left: bolt-spacing(medium) * -1;
+  letter-spacing: bolt-spacing(medium) * -1;
   flex: 1 1 auto; //Automatically auto fill any available space, in case a grid is nested inside of a flexbox-friendly parent container.
 }
 
-.o-grid__item {
+.o-bolt-grid__item {
   display: inline-block;
   vertical-align: top;
-  padding-left: spacing(medium);
+  padding-left: bolt-spacing(medium);
   letter-spacing: normal;
 }
 
-.o-grid--rev {
+.o-bolt-grid--rev {
   direction: rtl;
 
-  > .o-grid__item {
+  > .o-bolt-grid__item {
     direction: ltr;
   }
 }
@@ -29,46 +29,46 @@
 
 /**
  * Gutterless grids have all the properties of regular grids, minus any spacing.
- * Extends `.o-grid`.
+ * Extends `.o-bolt-grid`.
  */
-.o-grid--full {
+.o-bolt-grid--full {
   margin-left: 0;
 
-  > .o-grid__item {
+  > .o-bolt-grid__item {
     padding-left: 0;
   }
 }
 
 /**
  * Centered grids align grid items centrally without needing to use push or pull
- * classes. Extends `.o-grid`.
+ * classes. Extends `.o-bolt-grid`.
  */
-.o-grid--center {
+.o-bolt-grid--center {
   text-align: center;
   justify-content: center;
 
-  > .o-grid__item {
+  > .o-bolt-grid__item {
     text-align: left;
   }
 }
 
 
 /**
- * Align grid cells vertically (`.o-grid--middle` or `.o-grid--bottom`). Extends
- * `.o-grid`.
+ * Align grid cells vertically (`.o-bolt-grid--middle` or `.o-bolt-grid--bottom`). Extends
+ * `.o-bolt-grid`.
  */
-.o-grid--middle {
-  // &.o-grid--flex,{
+.o-bolt-grid--middle {
+  // &.o-bolt-grid--flex,{
   //   align-items: center;
   // }
 
-  > .o-grid__item {
+  > .o-bolt-grid__item {
     vertical-align: middle;
   }
 }
 
-.o-grid--bottom {
-  > .o-grid__item {
+.o-bolt-grid--bottom {
+  > .o-bolt-grid__item {
     vertical-align: bottom;
   }
 }
@@ -77,26 +77,26 @@
 /**
  * Align the entire grid to the right. Extends `.grid`.
  */
-.o-grid--right {
+.o-bolt-grid--right {
   text-align: right;
   justify-content: flex-end;
 
-  > .o-grid__item {
+  > .o-bolt-grid__item {
     text-align: left;
   }
 }
 
-// .o-grid__item--middle {
+// .o-bolt-grid__item--middle {
 //   vertical-align: middle;
 //   align-self: center;
 // }
 
-// .o-grid__item--top {
+// .o-bolt-grid__item--top {
 //   vertical-align: top;
 //   align-self: flex-start;
 // }
 //
-// .o-grid__item--bottom {
+// .o-bolt-grid__item--bottom {
 //   vertical-align: bottom;
 //   align-self: flex-end;
 // }
@@ -105,41 +105,41 @@
 
 
 // Grid gutter sizes
-// .o-grid--xsmall {
-//   margin-left: spacing(xsmall) * -1;
+// .o-bolt-grid--xsmall {
+//   margin-left: bolt-spacing(xsmall) * -1;
 //
-//   > .o-grid__item {
-//     padding-left: spacing(xsmall);
+//   > .o-bolt-grid__item {
+//     padding-left: bolt-spacing(xsmall);
 //   }
 // }
 
-.o-grid--small {
-  margin-left: spacing(small) * -1;
+.o-bolt-grid--small {
+  margin-left: bolt-spacing(small) * -1;
 
-  > .o-grid__item {
-    padding-left: spacing(small);
+  > .o-bolt-grid__item {
+    padding-left: bolt-spacing(small);
   }
 }
 
 /**
  * Large gutters
  */
-.o-grid--large {
-  margin-left: spacing(large) * -1;
+.o-bolt-grid--large {
+  margin-left: bolt-spacing(large) * -1;
 
-  > .o-grid__item {
-    padding-left: spacing(large);
+  > .o-bolt-grid__item {
+    padding-left: bolt-spacing(large);
   }
 }
 
 /**
  * Extra wide gutters
  */
-.o-grid--xlarge {
-  margin-left: spacing(large) * -1;
+.o-bolt-grid--xlarge {
+  margin-left: bolt-spacing(large) * -1;
 
-  > .o-grid__item {
-    padding-left: spacing(large);
+  > .o-bolt-grid__item {
+    padding-left: bolt-spacing(large);
   }
 }
 
@@ -148,7 +148,7 @@
 //  * Extra extra wide gutters
 //  */
 // %o-grid--xxlarge,
-// .o-grid--xxlarge {
+// .o-bolt-grid--xxlarge {
 //
 //   @include respond-to(small) {
 //     margin-left: -$spacing-unit-xlarge * 2;
@@ -156,7 +156,7 @@
 //   margin-left: -$spacing-unit-large * 2;
 //
 //   > %o-grid__item,
-//   > .o-grid__item {
+//   > .o-bolt-grid__item {
 //
 //     @include respond-to(small) {
 //       padding-left: $spacing-unit-xlarge * 2;
@@ -165,11 +165,11 @@
 //   }
 // }
 
-.o-grid--flex {
+.o-bolt-grid--flex {
   display: flex;
   flex-flow: row wrap;
 
-  > .o-grid__item {
+  > .o-bolt-grid__item {
     display: flex;
     flex-direction: column;
   }

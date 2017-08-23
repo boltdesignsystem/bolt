@@ -1,15 +1,18 @@
-// $wrapper--max-width: map-get($breakpoints, large) !default;
-$wrapper--max-width: 1400px !default;
+/**
+  * @define o-bolt-wrapper
+  */
 
-.o-wrapper {
-  @include padding-left(small);
-  @include padding-right(small);
-  @include margin-left(auto);
-  @include margin-right(auto);
-  max-width: $wrapper--max-width;
+$bolt-wrapper--max-width: 1400px !default;
 
-  @include respond-to(medium){
-    @include padding-left(large);
-    @include padding-right(large);
+.o-bolt-wrapper {
+  @include bolt-padding-left(small);
+  @include bolt-padding-right(small);
+  @include bolt-margin-left(auto);
+  @include bolt-margin-right(auto);
+  max-width: $bolt-wrapper--max-width;
+
+  @include respond-to(medium) {
+    @include bolt-padding-left(large);
+    @include bolt-padding-right(large);
   }
 }

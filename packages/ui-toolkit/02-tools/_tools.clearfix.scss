@@ -1,7 +1,7 @@
-@mixin clearfix {
+@mixin bolt-clearfix {
   &:before,
   &:after {
-    content: " ";
+    content: ' ';
     display: table;
   }
 
@@ -9,11 +9,3 @@
     clear: both;
   }
 }
-
-// @mixin paragraph-spacing {
-//   @include mm-margin(($font-leading--base + rem),0,0,0);
-// }
-//
-// @mixin null-spacing {
-//   @include mm-margin(0,0,0,0);
-// }

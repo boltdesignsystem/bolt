@@ -1,0 +1,31 @@
+/* ------------------------------------ *\
+  GENERIC - SHARED
+\* ------------------------------------ */
+
+/**
+ * Always declare margins in the same direction:
+ * csswizardry.com/2012/06/single-direction-margin-declarations
+ */
+@import '@bolt/settings-spacing';
+@import '@bolt/tools-spacing';
+
+/* stylelint-disable selector-list-comma-newline-after */
+address,
+h1, h2, h3, h4, h5, h6,
+blockquote, p, pre,
+dl, ol, ul,
+figure,
+hr,
+table,
+fieldset {
+  @include bolt-margin-bottom(medium);
+}
+
+
+/**
+ * Consistent indentation for lists.
+ */
+dd, ol, ul {
+  @include bolt-margin-left(medium);
+}
+/* stylelint-enable selector-list-comma-newline-after */
