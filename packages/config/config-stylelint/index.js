@@ -79,7 +79,7 @@ module.exports = {
     // 'scss/dollar-variable-colon-space-before': 'never',
     // // 'scss/dollar-variable-pattern': '^[_]?[a-z]+([a-z0-9-]+[a-z0-9]+)?$',
     'scss/dollar-variable-pattern': ['^(bolt-|_bolt-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$', {
-      // ignore: ['local']
+      ignore: ['local']
     }],
     'scss/percent-placeholder-pattern': '^(bolt-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$',
     //
@@ -166,10 +166,10 @@ module.exports = {
     'block-opening-brace-newline-after': 'always-multi-line',
     'block-opening-brace-space-after': 'always-single-line',
 
-    'comment-empty-line-before': ['always', {
-      except: ['first-nested'],
-      ignore: ['stylelint-commands'],
-    }],
+    // 'comment-empty-line-before': ['never', {
+    //   // except: ['first-nested'],
+    //   ignore: ['stylelint-commands'],
+    // }],
     'comment-whitespace-inside': 'always',
     // 'declaration-block-no-shorthand-property-overrides': true,
 
@@ -203,7 +203,7 @@ module.exports = {
     // 'no-empty-source': true,
     // 'no-eol-whitespace': true,
     // 'no-extra-semicolons': true,
-    // 'no-invalid-double-slash-comments': true,
+    'no-invalid-double-slash-comments': true,
     // 'property-case': 'lower',
     //
     // 'selector-attribute-brackets-space-inside': 'never',

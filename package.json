@@ -32,11 +32,10 @@
     "setup:homebrew": "sh scripts/install-homebrew.sh",
     "snyk-protect": "snyk protect",
     "start": "serve ./boltdesignsystem --single",
-    "test": "npm run mocha && npm run lint"
+    "test": "npm run mocha"
   },
   "pre-commit": [
-    "test",
-    "lint-staged"
+    "test"
   ],
   "config": {
     "commitizen": {

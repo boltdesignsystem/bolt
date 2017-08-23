@@ -14,7 +14,7 @@
 /// @param {Number} $number - Number to remove unit from
 /// @return {Number} - Unitless number
 ///
-@function strip-unit($number) {
+@function bolt-strip-unit($number) {
   @if type-of($number) == 'number' and not unitless($number) {
     @return $number / ($number * 0 + 1);
   }

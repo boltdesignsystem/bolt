@@ -12,14 +12,14 @@ $bolt-ui-list-border-style: solid !default;
 // $ui-list-border-color: palette(gray, lighter) !default;
 $bolt-ui-list-border-color: var(--bolt-ui-border-color, currentColor);
 
-.o-ui-list {
+.o-bolt-ui-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.o-ui-list__item {
-  @include padding($bolt-ui-list-padding);
+.o-bolt-ui-list__item {
+  @include bolt-padding($bolt-ui-list-padding);
   border-bottom-color: $bolt-ui-list-border-color;
   border-bottom-style: $bolt-ui-list-border-style;
 
@@ -32,6 +32,6 @@ $bolt-ui-list-border-color: var(--bolt-ui-border-color, currentColor);
   }
 }
 
-.o-ui-list--borderless {
+.o-bolt-ui-list--borderless {
   --bolt-ui-border-color: transparent;
 }

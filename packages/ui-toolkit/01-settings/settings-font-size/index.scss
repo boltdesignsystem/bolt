@@ -10,9 +10,9 @@
 
 
 $bolt-font-size--min: 15;
-$bolt-font-size--min-px: 15px;
+// $bolt-font-size--min-px: 15px;
 $bolt-font-size--max: 18;
-$bolt-font-size--max-px: 18px;
+// $bolt-font-size--max-px: 18px;
 
 
 
@@ -24,35 +24,35 @@ $bolt-font-size--max-px: 18px;
 \* ------------------------------------ */
 
 
-// $bolt-font-scale--xxxlarge--min: 2.275;
+// $bolt-font-size--xxxlarge--min: 2.275;
 
 
-$bolt-font-scale--xxlarge--max: 3.083;
-$bolt-font-scale--xxlarge--min: 2.275;
+$bolt-font-size--xxlarge--max: 3.083;
+$bolt-font-size--xxlarge--min: 2.275;
 
-$bolt-font-scale--xxxxlarge: 3.083;
-$bolt-font-scale--xxxlarge: 2.275;
-$bolt-font-scale--xxlarge: 1.781;
-$bolt-font-scale--xlarge: 1.417;
-$bolt-font-scale--large: 1.111;
-$bolt-font-scale--medium: 1;
-$bolt-font-scale--small: 0.9;
-$bolt-font-scale--xsmall: 0.8;
-
-
-
-$bolt-font-leading--xxxxlarge: 1.14;
-$bolt-font-leading--xxxlarge: 1.14;
-$bolt-font-leading--xxlarge: 1.13;
-$bolt-font-leading--xlarge: 1.21;
-$bolt-font-leading--large: 1.31;
-$bolt-font-leading--medium: 1.65;
-$bolt-font-leading--small: 1.51;
-$bolt-font-leading--xsmall: 1.45;
+$bolt-font-size--xxxxlarge: 3.083;
+$bolt-font-size--xxxlarge: 2.275;
+$bolt-font-size--xxlarge: 1.781;
+$bolt-font-size--xlarge: 1.417;
+$bolt-font-size--large: 1.111;
+$bolt-font-size--medium: 1;
+$bolt-font-size--small: 0.9;
+$bolt-font-size--xsmall: 0.8;
 
 
 
-$bolt-font-leading--tight: 1.111;
+$bolt-line-height--xxxxlarge: 1.14;
+$bolt-line-height--xxxlarge: 1.14;
+$bolt-line-height--xxlarge: 1.13;
+$bolt-line-height--xlarge: 1.21;
+$bolt-line-height--large: 1.31;
+$bolt-line-height--medium: 1.65;
+$bolt-line-height--small: 1.51;
+$bolt-line-height--xsmall: 1.45;
+
+$bolt-line-height--tight: 1.111;
+
+
 
 
 
@@ -64,59 +64,59 @@ $bolt-font-leading--tight: 1.111;
 $bolt-font-sizes: (
   font-sizes: (
     xxxxlarge: (
-      font-size: $bolt-font-scale--xxxxlarge + rem,
+      font-size: $bolt-font-size--xxxxlarge + rem,
       line-height: (
-        regular: $bolt-font-leading--xxxxlarge,
-        tight: $bolt-font-leading--tight
+        regular: $bolt-line-height--xxxxlarge,
+        tight: $bolt-line-height--tight
       ),
     ),
     xxxlarge: (
-      font-size: $bolt-font-scale--xxxlarge + rem,
+      font-size: $bolt-font-size--xxxlarge + rem,
       line-height: (
-        regular: $bolt-font-leading--xxxlarge,
-        tight: $bolt-font-leading--tight
+        regular: $bolt-line-height--xxxlarge,
+        tight: $bolt-line-height--tight
       ),
     ),
     xxlarge: (
-      font-size: $bolt-font-scale--xxlarge + rem,
+      font-size: $bolt-font-size--xxlarge + rem,
       line-height: (
-        regular: $bolt-font-leading--xxlarge,
-        tight: $bolt-font-leading--tight
+        regular: $bolt-line-height--xxlarge,
+        tight: $bolt-line-height--tight
       )
     ),
     xlarge: (
-      font-size: $bolt-font-scale--xlarge + rem,
+      font-size: $bolt-font-size--xlarge + rem,
       line-height: (
-        regular: $bolt-font-leading--xlarge,
-        tight: $bolt-font-leading--tight
+        regular: $bolt-line-height--xlarge,
+        tight: $bolt-line-height--tight
       )
     ),
     large: (
-      font-size: $bolt-font-scale--large + rem,
+      font-size: $bolt-font-size--large + rem,
       line-height: (
-        regular: $bolt-font-leading--large,
-        tight: $bolt-font-leading--tight
+        regular: $bolt-line-height--large,
+        tight: $bolt-line-height--tight
       )
     ),
     medium: (
-      font-size: $bolt-font-scale--medium + rem,
+      font-size: $bolt-font-size--medium + rem,
       line-height: (
-        regular: $bolt-font-leading--medium,
-        tight: $bolt-font-leading--tight
+        regular: $bolt-line-height--medium,
+        tight: $bolt-line-height--tight
       )
     ),
     small: (
-      font-size: $bolt-font-scale--small + rem,
+      font-size: $bolt-font-size--small + rem,
       line-height: (
-        regular: $bolt-font-leading--small,
-        tight: $bolt-font-leading--tight
+        regular: $bolt-line-height--small,
+        tight: $bolt-line-height--tight
       )
     ),
     xsmall: (
-      font-size: $bolt-font-scale--xsmall + rem,
+      font-size: $bolt-font-size--xsmall + rem,
       line-height: (
-        regular: $bolt-font-leading--xsmall,
-        tight: $bolt-font-leading--tight
+        regular: $bolt-line-height--xsmall,
+        tight: $bolt-line-height--tight
       )
     )
   )

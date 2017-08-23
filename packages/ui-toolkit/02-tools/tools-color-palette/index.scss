@@ -1,6 +1,6 @@
-/*------------------------------------*\
+/* ------------------------------------ *\
   Color Palette
-\*------------------------------------*/
+\* ------------------------------------ */
 
 /**
   * Helper functions for applying global color swatches stored in Sass Maps
@@ -8,15 +8,18 @@
 @import '@bolt/settings-colors';
 @import '@bolt/tools-sassy-maps'; //So map-get-deep works
 
+// Assign which Sassmap should be referenced
+$bolt-color-map: $bolt-colors;
 
-@function _bolt-palette($color, $tone: 'initial') {
-  @return map-get-deep($palettes, $color, $tone);
+
+@function bolt-palette($color, $tone: 'initial') {
+  @return map-get-deep($bolt-color-map, $color, $tone);
 }
 
 @function bolt-to-string($value) {
   @return inspect($value);
 }
-
+//
 @function convert-color-map($map-old, $map-new, $override: true) {
   $case: "lower-case";
   // Iterate through each value of the new map
@@ -59,7 +62,7 @@
 
 
 @mixin test-color($name, $tone: 'initial', $type: null) {
-  $color: map-get-deep($palettes, $name, $tone);
+  $color: map-get-deep($bolt-color-map, $name, $tone);
 
   color: $color;
 
@@ -72,7 +75,7 @@
 }
 
 @mixin test-background-color($name, $tone: 'initial', $type: null) {
-  $background-color: map-get-deep($palettes, $name, $tone);
+  $background-color: map-get-deep($bolt-color-map, $name, $tone);
 
   background-color: $background-color;
 
@@ -85,7 +88,7 @@
 }
 
 @mixin test-border-color($name, $tone: 'initial', $type: null) {
-  $border-color: map-get-deep($palettes, $name, $tone);
+  $border-color: map-get-deep($bolt-color-map, $name, $tone);
 
   border-color: $border-color;
 
@@ -99,10 +102,10 @@
 
 @function text-contrast($color) {
   @if (lightness($color) > 60) {
-    @return palette(black); // Lighter backgorund, return dark color
+    @return bolt-palette(black); // Lighter backgorund, return dark color
   }
   @else {
-    @return palette(white); // Darker background, return light color
+    @return bolt-palette(white); // Darker background, return light color
   }
 }
 
@@ -152,55 +155,55 @@
 @mixin test-theme($name: 'xlight') {
   @if $name == 'xlight' {
     @include _theme-settings(
-      palette(white),
-      palette(blue),
-      palette(blue, dark));
+      bolt-palette(white),
+      bolt-palette(blue),
+      bolt-palette(blue, dark));
   }
   @elseif $name == 'light' {
     @include _theme-settings(
-      palette(gray, xlight),
-      palette(blue),
-      palette(blue, dark));
+      bolt-palette(gray, xlight),
+      bolt-palette(blue),
+      bolt-palette(blue, dark));
   }
   @elseif $name == 'dark' {
     @include _theme-settings(
-      palette(teal),
-      palette(blue, dark),
-      palette(blue, light));
+      bolt-palette(teal),
+      bolt-palette(blue, dark),
+      bolt-palette(blue, light));
   }
   @elseif $name == 'xdark' {
     @include _theme-settings(
-      palette(indigo),
-      palette(orange),
-      palette(blue, light));
+      bolt-palette(indigo),
+      bolt-palette(orange),
+      bolt-palette(blue, light));
   }
   @elseif $name == 'notification' {
     @include _theme-settings(
-      palette(blue, light),
-      palette(blue, dark),
-      palette(blue));
+      bolt-palette(blue, light),
+      bolt-palette(blue, dark),
+      bolt-palette(blue));
   }
   @elseif $name == 'success' {
     @include _theme-settings(
-      palette(success, light),
-      palette(success, dark),
-      palette(success));
+      bolt-palette(success, light),
+      bolt-palette(success, dark),
+      bolt-palette(success));
   }
   @elseif $name == 'warning' {
     @include _theme-settings(
-      palette(warning, light),
-      palette(warning, dark),
-      palette(warning));
+      bolt-palette(warning, light),
+      bolt-palette(warning, dark),
+      bolt-palette(warning));
   }
   @elseif $name == 'error' {
     @include _theme-settings(
-      palette(error, light),
-      palette(error, dark),
-      palette(warning, dark),
+      bolt-palette(error, light),
+      bolt-palette(error, dark),
+      bolt-palette(warning, dark),
       null,
-      palette(warning, dark),
+      bolt-palette(warning, dark),
       null,
-      palette(error));
+      bolt-palette(error));
   }
 }
 
@@ -230,8 +233,8 @@
 }
 
 .mm-hr {
-  @include margin(0 0 medium 0);
-  @include padding(0);
+  @include bolt-margin(0 0 medium 0);
+  @include bolt-padding(0);
   @include test-border-color(black);
 
   border-width: solid;
@@ -244,7 +247,7 @@
 }
 
 .mm-button {
-  @include padding(small);
+  @include bolt-padding(small);
   @include test-color(white, initial, button-text);
   @include test-background-color(blue, initial, primary);
   @include test-border-color(blue, initial, primary);
@@ -261,41 +264,41 @@
 }
 
 .t-xlight {
-  @include padding(medium);
+  @include bolt-padding(medium);
   @include test-theme(xlight);
 }
 
 .t-light {
-  @include padding(medium);
+  @include bolt-padding(medium);
   @include test-theme(light);
 }
 
 .t-dark {
-  @include padding(medium);
+  @include bolt-padding(medium);
   @include test-theme(dark);
 }
 
 .t-xdark {
-  @include padding(medium);
+  @include bolt-padding(medium);
   @include test-theme(xdark);
 }
 
 .t-success {
-  @include padding(medium);
+  @include bolt-padding(medium);
   @include test-theme(success);
 }
 
 .t-warning {
-  @include padding(medium);
+  @include bolt-padding(medium);
   @include test-theme(warning);
 }
 
 .t-error {
-  @include padding(medium);
+  @include bolt-padding(medium);
   @include test-theme(error);
 }
 
 .t-notification {
-  @include padding(medium, squished);
+  @include bolt-padding(medium, squished);
   @include test-theme(notification);
 }

@@ -5,14 +5,14 @@
 $bolt-wrapper--max-width: 1400px !default;
 
 .o-bolt-wrapper {
-  @include padding-left(small);
-  @include padding-right(small);
-  @include margin-left(auto);
-  @include margin-right(auto);
+  @include bolt-padding-left(small);
+  @include bolt-padding-right(small);
+  @include bolt-margin-left(auto);
+  @include bolt-margin-right(auto);
   max-width: $bolt-wrapper--max-width;
 
   @include respond-to(medium) {
-    @include padding-left(large);
-    @include padding-right(large);
+    @include bolt-padding-left(large);
+    @include bolt-padding-right(large);
   }
 }

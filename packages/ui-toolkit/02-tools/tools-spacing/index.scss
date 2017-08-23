@@ -43,7 +43,7 @@ $_bolt-spacing-sizes: _bolt-create-spacing-map($bolt-spacing-values);
     $modifier: 1;
   }
 
-  @return (spacing($sizes) / strip-unit($bolt-spacing-gutter)) * $bolt-spacing-leading * $modifier;
+  @return (bolt-spacing($sizes) / bolt-strip-unit($bolt-spacing-gutter)) * $bolt-spacing-leading * $modifier;
 }
 
 // Alias for v-spacing function

@@ -1,87 +1,10 @@
-.c-heading {
-  @include font-family(heading);
-  @include font-weight(bold);
-}
-
-.c-heading--normal {
-  @include font-weight(normal);
-}
-
-.c-heading--uppercase {
-  @include uppercase();
-}
-
-// .c-heading--xxlarge, .c-heading--xlarge {
-//   @include mm-padding(($font-leading--base*2 + rem),0,($font-leading--base*.5 + rem),0);
-// }
-
-.c-heading--xxlarge {
-  @include font-size(xxlarge);
-  // letter-spacing: -.1rem;
-
-  @include respond-to(medium) {
-    @include font-size(xxxlarge);
-    // letter-spacing: -.15rem;
-  }
-}
-
-.c-heading--xlarge {
-  @include font-size(xlarge);
-  // letter-spacing: -.1rem;
-}
-
-.c-heading--large {
-  @include font-size(large);
-  // @include mm-padding(($font-leading--base*1.35 + rem),0,($font-leading--base*.3 + rem),0);
-  // letter-spacing: -.05rem;
-}
-
-.c-heading--medium, .c-heading--small {
-  // @include mm-padding(($font-leading--base*1.15 + rem),0,($font-leading--base*.2 + rem),0);
-}
-
-.c-heading--medium {
-  @include font-size(medium);
-}
-
-.c-heading--small {
-  @include font-size(small);
-
-  // text-transform: uppercase;
-  // letter-spacing: .1rem;
-}
 
 
 
 
 
-.c-page-intro {
 
-}
 
-.c-page-intro__title {
-  @include font-size(xxxxlarge);
-  @include margin-bottom(xsmall);
-}
-
-.c-page-intro__subtitle {
-  @include font-size(xxlarge, 1.45);
-  @include font-weight(normal);
-  @include margin-bottom(medium);
-}
-
-.c-page-intro__label {
-  @include font-size(xsmall);
-  @include font-weight(normal);
-  @include margin-bottom(xxsmall);
-}
-
-.c-page-intro__link {
-  @include font-size(xlarge);
-  @include font-weight(bold);
-  @include margin-bottom(small);
-  display: inline-block;
-}
 
 
 

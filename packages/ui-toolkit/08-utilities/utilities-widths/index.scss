@@ -18,7 +18,7 @@ $bolt-width-sizes: 1 2 3 4 5 6 7 8 9 10 11 12 !default;
     // denominator.
     @for $bolt-widths-numerator from 1 through $bolt-widths-denominator {
       // Build a class in the format `.u-3/4` or `.u-3-of-4`.
-      .u-width-#{$bolt-widths-numerator}\/#{$bolt-widths-denominator}#{$bolt-widths-breakpoint} {
+      .u-bolt-width-#{$bolt-widths-numerator}\/#{$bolt-widths-denominator}#{$bolt-widths-breakpoint} {
         width: ($bolt-widths-numerator / $bolt-widths-denominator) * 100% !important;
       }
     }

@@ -1,10 +1,16 @@
-.c-article {
-  // @include clearfix;
+/**
+  * Buttons
+  *
+  * @define c-bolt-button
+  */
 
-  // line-height: $font-leading--base;
+.c-boltsg-article {
+    // @include clearfix;
+
+    // line-height: $font-leading--base;
 
   strong {
-    @include font-weight(semibold);
+    @include bolt-font-weight(semibold);
     // font-weight: $font-weight--semibold; // This is an edge case to use semibold.
   }
 
@@ -13,35 +19,35 @@
   }
 
   code {
-    @include font-family(code);
-    @include font-weight(semibold);
+    @include bolt-font-family(code);
+    @include bolt-font-weight(semibold);
 
     // font-weight: $font-weight--semibold; // This is an edge case to use semibold.
   }
 
-  // p,
-  // hr,
-  // figure,
-  // blockquote,
-  // ol, ul, dl,
-  // details, summary {
-  //   &:first-child {
-  //     margin-top: 0;
-  //   }
-  // }
+    // p,
+    // hr,
+    // figure,
+    // blockquote,
+    // ol, ul, dl,
+    // details, summary {
+    //   &:first-child {
+    //     margin-top: 0;
+    //   }
+    // }
 
-  // h1, h2, h3, h4, h5, h6 {
-  //   @include null-spacing;
-  // }
+    // h1, h2, h3, h4, h5, h6 {
+    //   @include null-spacing;
+    // }
 
   h1 {
     // @include mm-padding(0,0,($font-leading--base * 0.65 + rem),0);
-    @include font-size(xxlarge);
+    @include bolt-font-size(xxlarge);
 
     // letter-spacing: -.1rem;
 
     @include respond-to(medium) {
-      @include font-size(xxxlarge);
+      @include bolt-font-size(xxxlarge);
 
       // letter-spacing: -.15rem;
     }
@@ -49,7 +55,7 @@
 
   h2 {
     // @include mm-padding(($font-leading--base*2 + rem),0,($font-leading--base*.5 + rem),0);
-    @include font-size(xlarge);
+    @include bolt-font-size(xlarge);
 
     // letter-spacing: -.1rem;
   }
@@ -60,14 +66,14 @@
     }
 
     h1 + h2 {
-      @include padding-bottom(small);
-      @include font-size(large);
-      @include font-weight(regular);
+      @include bolt-padding-bottom(small);
+      @include bolt-font-size(large);
+      @include bolt-font-weight(regular);
 
       // letter-spacing: 0;
 
       @include respond-to(medium) {
-        @include font-size(xlarge);
+        @include bolt-font-size(xlarge);
         // line-height: 1.45;
 
       }
@@ -76,7 +82,7 @@
 
   h3 {
     // @include mm-padding(($font-leading--base*1.35 + rem),0,($font-leading--base*.3 + rem),0);
-    @include font-size(large);
+    @include bolt-font-size(large);
 
     // letter-spacing: -.05rem;
   }
@@ -86,11 +92,11 @@
   }
 
   h4 {
-    @include font-size(medium);
+    @include bolt-font-size(medium);
   }
 
   h5, h6 {
-    @include font-size(small);
+    @include bolt-font-size(small);
 
     text-transform: uppercase;
     letter-spacing: .1rem;
@@ -124,8 +130,8 @@
     @include respond-to(medium) {
       float: right;
       // @include mm-margin(0,0,($font-leading--base + rem),($gutter + rem));
-      @include margin-bottom(medium);
-      @include margin-left(medium);
+      @include bolt-margin-bottom(medium);
+      @include bolt-margin-left(medium);
 
       // width: $golden-aside-width + vw;
       // max-width: $article-line-length/2 + ch;
@@ -164,20 +170,20 @@
   }
 
   ol, ul {
-    @include padding(0);
+    // @include padding(0);
     // @include mm-padding(0,0,0,0);
   }
 
   figure {
     text-align: center;
     // @include mm-padding(($font-leading--base/4 + rem),0,0,0);
-    @include text-align(center);
-    @include horizontal-scroll;
+    // @include text-align(center);
+    // @include horizontal-scroll;
 
     > div,
     > img,
     > a {
-      @include mm-margin(0,0,($font-leading--base/4 + rem),0);
+      // @include mm-margin(0,0,($font-leading--base/4 + rem),0);
     }
 
     > div,
@@ -186,14 +192,14 @@
     }
 
     > div {
-      @include position(relative,auto,auto,auto,auto);
-      @include mm-padding(30px,0,56.25%,0);
+      // @include position(relative,auto,auto,auto,auto);
+      // @include mm-padding(30px,0,56.25%,0);
 
       height: 0;
       overflow: hidden;
 
       iframe,object,embed {
-        @include position(absolute,0,auto,auto,0);
+        // @include position(absolute,0,auto,auto,0);
 
         width: 100%;
         height: 100%;
@@ -206,29 +212,28 @@
   }
 
   figcaption {
-    @include font-size(xsmall);
+    @include bolt-font-size(xsmall);
   }
 
   blockquote {
-    @include mm-padding(($font-leading--base + rem),($gutter + rem),($font-leading--base + rem),($gutter + rem));
-    @include font-size(large);
-    @include border(left,($gutter/2 + rem) solid);
+    // @include mm-padding(($font-leading--base + rem),($gutter + rem),($font-leading--base + rem),($gutter + rem));
+    @include bolt-font-size(large);
+    // @include border(left,($gutter/2 + rem) solid);
+    border-left: 2px solid bolt-spacing(small);
 
     > *:first-child {
       margin-top: 0;
     }
   }
 
-  pre
-  {
-    @include mm-padding(($font-leading--base + rem),($gutter + rem),($font-leading--base + rem),($gutter + rem));
-    @include null-spacing;
-    @include text-align(left);
-    @include horizontal-scroll;
+  pre {
+    // @include mm-padding(($font-leading--base + rem),($gutter + rem),($font-leading--base + rem),($gutter + rem));
+    // @include null-spacing;
+    // @include text-align(left);
+    // @include horizontal-scroll;
 
-    code
-    {
-      @include font-size(xsmall);
+    code {
+      @include bolt-font-size(xsmall);
 
       display: block;
       letter-spacing: .05rem;
@@ -237,8 +242,8 @@
   }
 
   hr {
-    @include mm-padding(0,0,0,0);
-    @include border(top);
+    // @include mm-padding(0,0,0,0);
+    // @include border(top);
 
     display: block;
   }
