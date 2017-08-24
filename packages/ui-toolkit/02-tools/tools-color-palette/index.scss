@@ -1,6 +1,6 @@
-/* ------------------------------------ *\
+/*------------------------------------*\
   Color Palette
-\* ------------------------------------ */
+\*------------------------------------*/
 
 /**
   * Helper functions for applying global color swatches stored in Sass Maps
@@ -8,18 +8,15 @@
 @import '@bolt/settings-colors';
 @import '@bolt/tools-sassy-maps'; //So map-get-deep works
 
-// Assign which Sassmap should be referenced
-$bolt-color-map: $bolt-colors;
 
-
-@function bolt-palette($color, $tone: 'initial') {
-  @return map-get-deep($bolt-color-map, $color, $tone);
+@function palette($color, $tone: 'initial') {
+  @return map-get-deep($palettes, $color, $tone);
 }
 
-@function bolt-to-string($value) {
+@function to-string($value) {
   @return inspect($value);
 }
-//
+
 @function convert-color-map($map-old, $map-new, $override: true) {
   $case: "lower-case";
   // Iterate through each value of the new map
@@ -37,17 +34,17 @@ $bolt-color-map: $bolt-colors;
           quote($new-key): $merged-value
         ));
 
-      } @else {
+      }@else{
         // Otherwise check $override
-        @if $override {
+        @if $override{
           $stringified-key: to-string($key);
-          $new-key: call('to-' + $case, $stringified-key);
+          $new-key: call("to-" + $case, $stringified-key);
           $map-old: map-merge(map-remove($map-old, $key), (
             quote($new-key): $new-value
           ));
         }
       }
-    }@else {
+    }@else{
       // There is no existing key so add
       $stringified-key: to-string($key);
       $new-key: call("to-" + $case, $stringified-key);
@@ -62,7 +59,7 @@ $bolt-color-map: $bolt-colors;
 
 
 @mixin test-color($name, $tone: 'initial', $type: null) {
-  $color: map-get-deep($bolt-color-map, $name, $tone);
+  $color: map-get-deep($palettes, $name, $tone);
 
   color: $color;
 
@@ -75,7 +72,7 @@ $bolt-color-map: $bolt-colors;
 }
 
 @mixin test-background-color($name, $tone: 'initial', $type: null) {
-  $background-color: map-get-deep($bolt-color-map, $name, $tone);
+  $background-color: map-get-deep($palettes, $name, $tone);
 
   background-color: $background-color;
 
@@ -88,7 +85,7 @@ $bolt-color-map: $bolt-colors;
 }
 
 @mixin test-border-color($name, $tone: 'initial', $type: null) {
-  $border-color: map-get-deep($bolt-color-map, $name, $tone);
+  $border-color: map-get-deep($palettes, $name, $tone);
 
   border-color: $border-color;
 
@@ -102,10 +99,10 @@ $bolt-color-map: $bolt-colors;
 
 @function text-contrast($color) {
   @if (lightness($color) > 60) {
-    @return bolt-palette(black); // Lighter backgorund, return dark color
+    @return palette(black); // Lighter backgorund, return dark color
   }
   @else {
-    @return bolt-palette(white); // Darker background, return light color
+    @return palette(white); // Darker background, return light color
   }
 }
 
@@ -155,55 +152,51 @@ $bolt-color-map: $bolt-colors;
 @mixin test-theme($name: 'xlight') {
   @if $name == 'xlight' {
     @include _theme-settings(
-      bolt-palette(white),
-      bolt-palette(blue),
-      bolt-palette(blue, dark));
+      palette(white),
+      palette(blue),
+      palette(blue, dark));
   }
   @elseif $name == 'light' {
     @include _theme-settings(
-      bolt-palette(gray, xlight),
-      bolt-palette(blue),
-      bolt-palette(blue, dark));
+      palette(gray, xlight),
+      palette(blue),
+      palette(blue, dark));
   }
   @elseif $name == 'dark' {
     @include _theme-settings(
-      bolt-palette(teal),
-      bolt-palette(blue, dark),
-      bolt-palette(blue, light));
+      palette(teal),
+      palette(blue, dark),
+      palette(white));
   }
   @elseif $name == 'xdark' {
     @include _theme-settings(
-      bolt-palette(indigo),
-      bolt-palette(orange),
-      bolt-palette(blue, light));
+      palette(indigo),
+      palette(orange),
+      palette(white));
   }
   @elseif $name == 'notification' {
     @include _theme-settings(
-      bolt-palette(blue, light),
-      bolt-palette(blue, dark),
-      bolt-palette(blue));
+      palette(blue, light),
+      palette(blue, dark),
+      palette(blue, dark));
   }
   @elseif $name == 'success' {
     @include _theme-settings(
-      bolt-palette(success, light),
-      bolt-palette(success, dark),
-      bolt-palette(success));
+      palette(success, light),
+      palette(success, dark),
+      palette(success));
   }
   @elseif $name == 'warning' {
     @include _theme-settings(
-      bolt-palette(warning, light),
-      bolt-palette(warning, dark),
-      bolt-palette(warning));
+      palette(warning, light),
+      palette(warning, dark),
+      palette(warning));
   }
   @elseif $name == 'error' {
     @include _theme-settings(
-      bolt-palette(error, light),
-      bolt-palette(error, dark),
-      bolt-palette(warning, dark),
-      null,
-      bolt-palette(warning, dark),
-      null,
-      bolt-palette(error));
+      palette(error, light),
+      palette(error, dark),
+      palette(error, dark));
   }
 }
 
@@ -216,16 +209,9 @@ $bolt-color-map: $bolt-colors;
     @include test-background-color(inherit);
   }
 
-
-  /*@include color(yellow);*/
-  /*@include color(yellow, dark);*/
-  /*@include color(yellow, dark, ui);*/
-  /*@include color(yellow, dark, link);*/
-
-
-  /*@include background-color(teal);*/
-  /*@include background-color(teal, xdark);*/
-  /*@include background-color(teal, xdark, ui);*/
+  *:last-child {
+    @include margin-bottom(0);
+  }
 }
 
 .mm-heading {
@@ -233,8 +219,8 @@ $bolt-color-map: $bolt-colors;
 }
 
 .mm-hr {
-  @include bolt-margin(0 0 medium 0);
-  @include bolt-padding(0);
+  @include margin(0 0 medium 0);
+  @include padding(0);
   @include test-border-color(black);
 
   border-width: solid;
@@ -247,7 +233,9 @@ $bolt-color-map: $bolt-colors;
 }
 
 .mm-button {
-  @include bolt-padding(small);
+  @include padding(small);
+  @include font-size(small, tight);
+  @include font-weight(bold);
   @include test-color(white, initial, button-text);
   @include test-background-color(blue, initial, primary);
   @include test-border-color(blue, initial, primary);
@@ -259,46 +247,52 @@ $bolt-color-map: $bolt-colors;
 
 .mm-button--secondary {
   @include test-color(black, initial, secondary);
-  @include test-background-color(white, initial, background);
+  @include test-background-color(transparent, initial, background);
   @include test-border-color(black, initial, secondary);
 }
 
+.mm-button--tertiary {
+  @include test-color(black, initial, secondary);
+  @include test-background-color(transparent, initial, background);
+  @include test-border-color(transparent, initial, background);
+}
+
 .t-xlight {
-  @include bolt-padding(medium);
+  @include padding(medium);
   @include test-theme(xlight);
 }
 
 .t-light {
-  @include bolt-padding(medium);
+  @include padding(medium);
   @include test-theme(light);
 }
 
 .t-dark {
-  @include bolt-padding(medium);
+  @include padding(medium);
   @include test-theme(dark);
 }
 
 .t-xdark {
-  @include bolt-padding(medium);
+  @include padding(medium);
   @include test-theme(xdark);
 }
 
 .t-success {
-  @include bolt-padding(medium);
+  @include padding(medium);
   @include test-theme(success);
 }
 
 .t-warning {
-  @include bolt-padding(medium);
+  @include padding(medium);
   @include test-theme(warning);
 }
 
 .t-error {
-  @include bolt-padding(medium);
+  @include padding(medium);
   @include test-theme(error);
 }
 
 .t-notification {
-  @include bolt-padding(medium, squished);
+  @include padding(medium);
   @include test-theme(notification);
 }
