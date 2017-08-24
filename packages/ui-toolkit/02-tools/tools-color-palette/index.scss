@@ -10,7 +10,7 @@
 
 
 @function palette($color, $tone: 'initial') {
-  @return map-get-deep($palettes, $color, $tone);
+  @return map-get-deep($bolt-colors, $color, $tone);
 }
 
 @function to-string($value) {
@@ -59,7 +59,7 @@
 
 
 @mixin test-color($name, $tone: 'initial', $type: null) {
-  $color: map-get-deep($palettes, $name, $tone);
+  $color: map-get-deep($bolt-colors, $name, $tone);
 
   color: $color;
 
@@ -72,7 +72,7 @@
 }
 
 @mixin test-background-color($name, $tone: 'initial', $type: null) {
-  $background-color: map-get-deep($palettes, $name, $tone);
+  $background-color: map-get-deep($bolt-colors, $name, $tone);
 
   background-color: $background-color;
 
@@ -85,7 +85,7 @@
 }
 
 @mixin test-border-color($name, $tone: 'initial', $type: null) {
-  $border-color: map-get-deep($palettes, $name, $tone);
+  $border-color: map-get-deep($bolt-colors, $name, $tone);
 
   border-color: $border-color;
 
@@ -105,6 +105,12 @@
     @return palette(white); // Darker background, return light color
   }
 }
+
+
+// @function get-color($color, $tone: 'initial', $type: null){
+//   @return map-get-deep($bolt-colors, $name, $tone);;
+// }
+
 
 @mixin _theme-settings(
   $background,          // Background
@@ -210,7 +216,7 @@
   }
 
   *:last-child {
-    @include margin-bottom(0);
+    @include bolt-margin-bottom(0);
   }
 }
 
@@ -219,8 +225,8 @@
 }
 
 .mm-hr {
-  @include margin(0 0 medium 0);
-  @include padding(0);
+  @include bolt-margin(0 0 medium 0);
+  @include bolt-padding(0);
   @include test-border-color(black);
 
   border-width: solid;
@@ -233,9 +239,9 @@
 }
 
 .mm-button {
-  @include padding(small);
-  @include font-size(small, tight);
-  @include font-weight(bold);
+  @include bolt-padding(small);
+  @include bolt-font-size(small, tight);
+  @include bolt-font-weight(bold);
   @include test-color(white, initial, button-text);
   @include test-background-color(blue, initial, primary);
   @include test-border-color(blue, initial, primary);
@@ -258,41 +264,41 @@
 }
 
 .t-xlight {
-  @include padding(medium);
+  @include bolt-padding(medium);
   @include test-theme(xlight);
 }
 
 .t-light {
-  @include padding(medium);
+  @include bolt-padding(medium);
   @include test-theme(light);
 }
 
 .t-dark {
-  @include padding(medium);
+  @include bolt-padding(medium);
   @include test-theme(dark);
 }
 
 .t-xdark {
-  @include padding(medium);
+  @include bolt-padding(medium);
   @include test-theme(xdark);
 }
 
 .t-success {
-  @include padding(medium);
+  @include bolt-padding(medium);
   @include test-theme(success);
 }
 
 .t-warning {
-  @include padding(medium);
+  @include bolt-padding(medium);
   @include test-theme(warning);
 }
 
 .t-error {
-  @include padding(medium);
+  @include bolt-padding(medium);
   @include test-theme(error);
 }
 
 .t-notification {
-  @include padding(medium);
+  @include bolt-padding(medium);
   @include test-theme(notification);
 }
