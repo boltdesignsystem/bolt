@@ -1,0 +1,13 @@
+/*------------------------------------*\
+  TOOLS - STRING REPLACE
+\*------------------------------------*/
+
+@function bolt-string-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + bolt-string-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}

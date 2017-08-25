@@ -1,0 +1,55 @@
+/* ------------------------------------ *\
+  SETTINGS - FONT WEIGHTS
+\* ------------------------------------ */
+
+@import '@bolt/tools-sassy-maps'; // required so `map-get-deep` works
+////
+/// @group Settings: Typography
+/// @author Mike Mai
+////
+
+/// Bolt's definition of all options of possible text weights.
+/// @type Map
+$bolt-font-weights: (
+  regular: 400,
+  semibold: 700,
+  bold: 800
+);
+
+// $bolt-font-styles
+//
+//
+// $path: '/fonts/opensans-subset'
+//
+// $weight: 400, $style: 'normal', $unicode-range: 'U+65-U+90, U+97-122'
+//
+// style:
+// weight:
+// name:
+// unicode-range:
+//
+// $bolt-font
+
+--bolt-font-weight--regular:  map-get($bolt-font-weights, regular);
+--bolt-font-weight--bold:     map-get($bolt-font-weights, bold);
+--bolt-font-weight--semibold: map-get($bolt-font-weights, semibold);
+
+// @if ( < 400) {
+//   @error "Bolt's regular font weight can't be lighter than 400";
+// }
+//
+// @if (map-get($bolt-font-weights, bold) < 700) {
+//   @error "Bolt's bold font weight can't be lighter than 700";
+// }
+//
+// @if (map-get($bolt-font-weights, bold) < map-get($bolt-font-weights, regular)) {
+//   @error "Sorry, but your bold font weight, `#{map-get($bolt-font-weights, bold)}` can't be lighter than your regular font weight, `#{map-get($bolt-font-weights, regular)}`!";
+// }
+//
+// @if (map-get($bolt-font-weights, bold) - map-get($bolt-font-weights, regular) < 300) {
+//   @error "Sorry, but your bold and regular font weights have values that are too close together. Please choose values that are at least 300 or more apart`!";
+// }
+//
+// @if (map-get($bolt-font-weights, bold) - $bolt-font-weight--semibold < 100) {
+//   @error "Sorry, but your bold and semi-bold font weights have values that are too close together. Please choose values that are at least 100 or more apart`!";
+// }
