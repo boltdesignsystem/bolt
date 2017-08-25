@@ -59,50 +59,51 @@ function compileCSS(userConfig) {
 
   function compileCssTask(done) {
     gulp.src(config.src)
-     .pipe(plumber({
-       errorHandler(error) {
-         notify.onError({
-           title: 'CSS <%= error.name %> - Line <%= error.line %>',
-           message: '<%= error.message %>'
-         })(error);
-       }
-     }))
-       // .pipe($.env.development($.sourcemaps.init()))
+      .pipe(plumber({
+        errorHandler(error) {
+          notify.onError({
+            title: 'CSS <%= error.name %> - Line <%= error.line %>',
+            message: '<%= error.message %>'
+          })(error);
+        }
+      }))
+    // .pipe($.env.development($.sourcemaps.init()))
     // .pipe(sourcemaps.init())
-    .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
-     .pipe(sassGlob())
-     .pipe(sass(eyeglass({
+      .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
+      .pipe(sassGlob())
+      .pipe(sass(eyeglass({
       //  includePaths: globbedIncludePaths,
-       includePaths: [
-         'node_modules',
-         'packages',
-         'sandbox/pattern-library/node_modules',
-         'sandbox/styleguide/node_modules'
-       ],
-       importer: [
-         npmSass.importer
+        includePaths: [
+          'node_modules',
+          'packages',
+          'sandbox/pattern-library/node_modules',
+          'sandbox/styleguide/node_modules'
+        ],
+        importer: [
+          npmSass.importer
         //  moduleImporter(),
         //  glopImporter()
-       ],
-       functions: exportJson(config.dataDest, 'json'),
-       outputStyle: 'expanded'
-     })).on('error', sass.logError))
-     .pipe(postcss(config.postCSS))
-     .pipe(duration('CSS Compile Time'))
-     .pipe(size({ title: 'Total CSS Size' }))
-     .pipe(cleanCSS({
-       aggressiveMerging: false,
-       advanced: false,
-       keepSpecialComments: 0,
-       processImport: true
-     }))
-     // .pipe(sourcemaps.write('./'))
-    .pipe(gulpif(config.sourceMaps, sourcemaps.write('./')))
-     .pipe(gulp.dest(config.dest))
-     .on('end', () => {
-       events.emit('reload', join(config.dest, '**/*.css'));
-       done();
-     });
+        ],
+        functions: exportJson(config.data, 'export_data'),
+        outputStyle: 'expanded',
+        precision: 2
+      })).on('error', sass.logError))
+      .pipe(postcss(config.postCSS))
+      .pipe(duration('CSS Compile Time'))
+      .pipe(size({ title: 'Total CSS Size' }))
+      .pipe(cleanCSS({
+        aggressiveMerging: false,
+        advanced: false,
+        keepSpecialComments: 0,
+        processImport: true
+      }))
+    // .pipe(sourcemaps.write('./'))
+      .pipe(gulpif(config.sourceMaps, sourcemaps.write('./')))
+      .pipe(gulp.dest(config.dest))
+      .on('end', () => {
+        events.emit('reload', join(config.dest, '**/*.css'));
+        done();
+      });
   }
 
   compileCssTask.displayName = 'styles:compile';

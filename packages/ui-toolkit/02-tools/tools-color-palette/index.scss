@@ -13,292 +13,250 @@
   @return map-get-deep($bolt-colors, $color, $tone);
 }
 
-@function to-string($value) {
-  @return inspect($value);
-}
 
-@function convert-color-map($map-old, $map-new, $override: true) {
-  $case: "lower-case";
-  // Iterate through each value of the new map
-  @each $key, $new-value in $map-new {
-    // Check if that value already exists on the old map
-    @if type-of($new-value) == map and type-of($key) != color and map-has-key($map-old, $key) {
-      // There is an existing key
-      $old-value: map-get($map-old, $key);
-      @if type-of($new-value) == map and type-of($old-value) == map {
-        // If both are maps, recurse regardless of $override
-        $merged-value: convert-color-map($old-value, $new-value);
-        $stringified-key: to-string($key);
-        $new-key: call("to-" + $case, $stringified-key);
-        $map-old: map-merge(map-remove($map-old, $key), (
-          quote($new-key): $merged-value
-        ));
-
-      }@else{
-        // Otherwise check $override
-        @if $override{
-          $stringified-key: to-string($key);
-          $new-key: call("to-" + $case, $stringified-key);
-          $map-old: map-merge(map-remove($map-old, $key), (
-            quote($new-key): $new-value
-          ));
-        }
-      }
-    }@else{
-      // There is no existing key so add
-      $stringified-key: to-string($key);
-      $new-key: call("to-" + $case, $stringified-key);
-
-      $map-old: map-merge(map-remove($map-old, $key), (
-        quote($new-key): $new-value
-      ));
-    }
-  }
-  @return $map-old;
-}
-
-
-@mixin test-color($name, $tone: 'initial', $type: null) {
-  $color: map-get-deep($bolt-colors, $name, $tone);
-
-  color: $color;
-
-  @if $type == null {
-    color: var(--bolt-color-text, $color);
-  }
-  @else {
-    color: var(--bolt-color-#{$type}, $color);
-  }
-}
-
-@mixin test-background-color($name, $tone: 'initial', $type: null) {
-  $background-color: map-get-deep($bolt-colors, $name, $tone);
-
-  background-color: $background-color;
-
-  @if $type == null {
-    background-color: var(--bolt-color-background, $background-color);
-  }
-  @else {
-    background-color: var(--bolt-color-#{$type}, $background-color);
-  }
-}
-
-@mixin test-border-color($name, $tone: 'initial', $type: null) {
-  $border-color: map-get-deep($bolt-colors, $name, $tone);
-
-  border-color: $border-color;
-
-  @if $type == null {
-    border-color: var(--bolt-color-border, $border-color);
-  }
-  @else {
-    border-color: var(--bolt-color-#{$type}, $border-color);
-  }
-}
-
-@function text-contrast($color) {
-  @if (lightness($color) > 60) {
-    @return palette(black); // Lighter backgorund, return dark color
-  }
-  @else {
-    @return palette(white); // Darker background, return light color
-  }
-}
-
-
-// @function get-color($color, $tone: 'initial', $type: null){
-//   @return map-get-deep($bolt-colors, $name, $tone);;
+//
+//
+// @mixin test-color($name, $tone: 'initial', $type: null) {
+//   $color: map-get-deep($bolt-colors, $name, $tone);
+//
+//   color: $color;
+//
+//   @if $type == null {
+//     color: var(--bolt-color-text, $color);
+//   }
+//   @else {
+//     color: var(--bolt-color-#{$type}, $color);
+//   }
 // }
-
-
-@mixin _theme-settings(
-  $background,          // Background
-  $primary,             // Button background
-  $secondary,           // Link
-  $text: null,          // Text - Defaults to text-contrast($background) if not defined
-  $heading: null,       // Heading - Defaults to $text if not defined
-  $button-text: null,   // Button text - Defaults to text-contrast($primary) if not defined
-  $border: null         // Border - Defaults to $text if not defined
-  ) {
-
-  --bolt-color-background: $background;
-  --bolt-color-primary: $primary;
-  --bolt-color-secondary: $secondary;
-
-  @if $text == null {
-    --bolt-color-text: text-contrast($background);
-  }
-  @else {
-    --bolt-color-text: $text;
-  }
-
-  @if $heading == null {
-    --bolt-color-heading: text-contrast($background);
-  }
-  @else {
-    --bolt-color-heading: $heading;
-  }
-
-  @if $button-text == null {
-    --bolt-color-button-text: text-contrast($primary);
-  }
-  @else {
-    --bolt-color-button-text: $button-text;
-  }
-
-  @if $border == null {
-    --bolt-color-border: text-contrast($background);
-  }
-  @else {
-    --bolt-color-border: $border;
-  }
-}
-
-@mixin test-theme($name: 'xlight') {
-  @if $name == 'xlight' {
-    @include _theme-settings(
-      palette(white),
-      palette(blue),
-      palette(blue, dark));
-  }
-  @elseif $name == 'light' {
-    @include _theme-settings(
-      palette(gray, xlight),
-      palette(blue),
-      palette(blue, dark));
-  }
-  @elseif $name == 'dark' {
-    @include _theme-settings(
-      palette(teal),
-      palette(blue, dark),
-      palette(white));
-  }
-  @elseif $name == 'xdark' {
-    @include _theme-settings(
-      palette(indigo),
-      palette(orange),
-      palette(white));
-  }
-  @elseif $name == 'notification' {
-    @include _theme-settings(
-      palette(blue, light),
-      palette(blue, dark),
-      palette(blue, dark));
-  }
-  @elseif $name == 'success' {
-    @include _theme-settings(
-      palette(success, light),
-      palette(success, dark),
-      palette(success));
-  }
-  @elseif $name == 'warning' {
-    @include _theme-settings(
-      palette(warning, light),
-      palette(warning, dark),
-      palette(warning));
-  }
-  @elseif $name == 'error' {
-    @include _theme-settings(
-      palette(error, light),
-      palette(error, dark),
-      palette(error, dark));
-  }
-}
-
-.testing {
-  @include test-color(black, initial, text);
-  @include test-background-color(white, initial, background);
-
-  * {
-    @include test-color(inherit);
-    @include test-background-color(inherit);
-  }
-
-  *:last-child {
-    @include bolt-margin-bottom(0);
-  }
-}
-
-.mm-heading {
-  @include test-color(black, initial, heading);
-}
-
-.mm-hr {
-  @include bolt-margin(0 0 medium 0);
-  @include bolt-padding(0);
-  @include test-border-color(black);
-
-  border-width: solid;
-  border-style: solid;
-  border-bottom: 0;
-}
-
-.mm-link {
-  @include test-color(blue, initial, secondary);
-}
-
-.mm-button {
-  @include bolt-padding(small);
-  @include bolt-font-size(small, tight);
-  @include bolt-font-weight(bold);
-  @include test-color(white, initial, button-text);
-  @include test-background-color(blue, initial, primary);
-  @include test-border-color(blue, initial, primary);
-
-  display: inline-block;
-  border-width: 1px;
-  border-style: solid;
-}
-
-.mm-button--secondary {
-  @include test-color(black, initial, secondary);
-  @include test-background-color(transparent, initial, background);
-  @include test-border-color(black, initial, secondary);
-}
-
-.mm-button--tertiary {
-  @include test-color(black, initial, secondary);
-  @include test-background-color(transparent, initial, background);
-  @include test-border-color(transparent, initial, background);
-}
-
-.t-xlight {
-  @include bolt-padding(medium);
-  @include test-theme(xlight);
-}
-
-.t-light {
-  @include bolt-padding(medium);
-  @include test-theme(light);
-}
-
-.t-dark {
-  @include bolt-padding(medium);
-  @include test-theme(dark);
-}
-
-.t-xdark {
-  @include bolt-padding(medium);
-  @include test-theme(xdark);
-}
-
-.t-success {
-  @include bolt-padding(medium);
-  @include test-theme(success);
-}
-
-.t-warning {
-  @include bolt-padding(medium);
-  @include test-theme(warning);
-}
-
-.t-error {
-  @include bolt-padding(medium);
-  @include test-theme(error);
-}
-
-.t-notification {
-  @include bolt-padding(medium);
-  @include test-theme(notification);
-}
+//
+// @mixin test-background-color($name, $tone: 'initial', $type: null) {
+//   $background-color: map-get-deep($bolt-colors, $name, $tone);
+//
+//   background-color: $background-color;
+//
+//   @if $type == null {
+//     background-color: var(--bolt-color-background, $background-color);
+//   }
+//   @else {
+//     background-color: var(--bolt-color-#{$type}, $background-color);
+//   }
+// }
+//
+// @mixin test-border-color($name, $tone: 'initial', $type: null) {
+//   $border-color: map-get-deep($bolt-colors, $name, $tone);
+//
+//   border-color: $border-color;
+//
+//   @if $type == null {
+//     border-color: var(--bolt-color-border, $border-color);
+//   }
+//   @else {
+//     border-color: var(--bolt-color-#{$type}, $border-color);
+//   }
+// }
+//
+// @function text-contrast($color) {
+//   @if (lightness($color) > 60) {
+//     @return palette(black); // Lighter backgorund, return dark color
+//   }
+//   @else {
+//     @return palette(white); // Darker background, return light color
+//   }
+// }
+//
+//
+// // @function get-color($color, $tone: 'initial', $type: null){
+// //   @return map-get-deep($bolt-colors, $name, $tone);;
+// // }
+//
+//
+// @mixin _theme-settings(
+//   $background,          // Background
+//   $primary,             // Button background
+//   $secondary,           // Link
+//   $text: null,          // Text - Defaults to text-contrast($background) if not defined
+//   $heading: null,       // Heading - Defaults to $text if not defined
+//   $button-text: null,   // Button text - Defaults to text-contrast($primary) if not defined
+//   $border: null         // Border - Defaults to $text if not defined
+//   ) {
+//
+//   --bolt-color-background: $background;
+//   --bolt-color-primary: $primary;
+//   --bolt-color-secondary: $secondary;
+//
+//   @if $text == null {
+//     --bolt-color-text: text-contrast($background);
+//   }
+//   @else {
+//     --bolt-color-text: $text;
+//   }
+//
+//   @if $heading == null {
+//     --bolt-color-heading: text-contrast($background);
+//   }
+//   @else {
+//     --bolt-color-heading: $heading;
+//   }
+//
+//   @if $button-text == null {
+//     --bolt-color-button-text: text-contrast($primary);
+//   }
+//   @else {
+//     --bolt-color-button-text: $button-text;
+//   }
+//
+//   @if $border == null {
+//     --bolt-color-border: text-contrast($background);
+//   }
+//   @else {
+//     --bolt-color-border: $border;
+//   }
+// }
+//
+// @mixin test-theme($name: 'xlight') {
+//   @if $name == 'xlight' {
+//     @include _theme-settings(
+//       palette(white),
+//       palette(blue),
+//       palette(blue, dark));
+//   }
+//   @elseif $name == 'light' {
+//     @include _theme-settings(
+//       palette(gray, xlight),
+//       palette(blue),
+//       palette(blue, dark));
+//   }
+//   @elseif $name == 'dark' {
+//     @include _theme-settings(
+//       palette(teal),
+//       palette(blue, dark),
+//       palette(white));
+//   }
+//   @elseif $name == 'xdark' {
+//     @include _theme-settings(
+//       palette(indigo),
+//       palette(orange),
+//       palette(white));
+//   }
+//   @elseif $name == 'notification' {
+//     @include _theme-settings(
+//       palette(blue, light),
+//       palette(blue, dark),
+//       palette(blue, dark));
+//   }
+//   @elseif $name == 'success' {
+//     @include _theme-settings(
+//       palette(success, light),
+//       palette(success, dark),
+//       palette(success));
+//   }
+//   @elseif $name == 'warning' {
+//     @include _theme-settings(
+//       palette(warning, light),
+//       palette(warning, dark),
+//       palette(warning));
+//   }
+//   @elseif $name == 'error' {
+//     @include _theme-settings(
+//       palette(error, light),
+//       palette(error, dark),
+//       palette(error, dark));
+//   }
+// }
+//
+// .testing {
+//   @include test-color(black, initial, text);
+//   @include test-background-color(white, initial, background);
+//
+//   * {
+//     @include test-color(inherit);
+//     @include test-background-color(inherit);
+//   }
+//
+//   *:last-child {
+//     @include bolt-margin-bottom(0);
+//   }
+// }
+//
+// .mm-heading {
+//   @include test-color(black, initial, heading);
+// }
+//
+// .mm-hr {
+//   @include bolt-margin(0 0 medium 0);
+//   @include bolt-padding(0);
+//   @include test-border-color(black);
+//
+//   border-width: solid;
+//   border-style: solid;
+//   border-bottom: 0;
+// }
+//
+// .mm-link {
+//   @include test-color(blue, initial, secondary);
+// }
+//
+// .mm-button {
+//   @include bolt-padding(small);
+//   @include bolt-font-size(small, tight);
+//   @include bolt-font-weight(bold);
+//   @include test-color(white, initial, button-text);
+//   @include test-background-color(blue, initial, primary);
+//   @include test-border-color(blue, initial, primary);
+//
+//   display: inline-block;
+//   border-width: 1px;
+//   border-style: solid;
+// }
+//
+// .mm-button--secondary {
+//   @include test-color(black, initial, secondary);
+//   @include test-background-color(transparent, initial, background);
+//   @include test-border-color(black, initial, secondary);
+// }
+//
+// .mm-button--tertiary {
+//   @include test-color(black, initial, secondary);
+//   @include test-background-color(transparent, initial, background);
+//   @include test-border-color(transparent, initial, background);
+// }
+//
+// .t-xlight {
+//   @include bolt-padding(medium);
+//   @include test-theme(xlight);
+// }
+//
+// .t-light {
+//   @include bolt-padding(medium);
+//   @include test-theme(light);
+// }
+//
+// .t-dark {
+//   @include bolt-padding(medium);
+//   @include test-theme(dark);
+// }
+//
+// .t-xdark {
+//   @include bolt-padding(medium);
+//   @include test-theme(xdark);
+// }
+//
+// .t-success {
+//   @include bolt-padding(medium);
+//   @include test-theme(success);
+// }
+//
+// .t-warning {
+//   @include bolt-padding(medium);
+//   @include test-theme(warning);
+// }
+//
+// .t-error {
+//   @include bolt-padding(medium);
+//   @include test-theme(error);
+// }
+//
+// .t-notification {
+//   @include bolt-padding(medium);
+//   @include test-theme(notification);
+// }

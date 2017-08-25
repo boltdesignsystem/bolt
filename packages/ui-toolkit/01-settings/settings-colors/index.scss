@@ -3,6 +3,7 @@
 \* ------------------------------------ */
 
 /* These are not up to date. */
+@import '@bolt/tools-export-data'; //So we can export sass maps
 
 $bolt-colors: (
   indigo: (
@@ -63,11 +64,12 @@ $bolt-colors: (
   ),
   white: (
     initial: #ffffff
-  ),
-  transparent: (
-    initial: transparent
-  ),
-  inherit: (
-    initial: inherit
   )
 );
+
+
+$bolt-colors: bolt-export-data('bolt-colors.json', $bolt-colors, $prefix: '{ "bolt_colors":', $suffix: '}');
+// , (
+//   // prefix:'var breakpoints = ',
+//   // suffix:';')
+// );

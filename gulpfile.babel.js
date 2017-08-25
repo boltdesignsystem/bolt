@@ -82,6 +82,7 @@ const boltCSSConfig = {
     // 'packages/ui-toolkit/bolt/bolt.v0.1.scss'
     // 'packages/ui-toolkit/bolt/bolt-styleguide.scss'
   ],
+  data: './packages/website-pattern-lab/source/_data',
   dest: 'bolt-website/styles',
   extraWatches: [
     './packages/ui-toolkit/**/*.scss',

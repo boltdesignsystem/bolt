@@ -18,6 +18,8 @@
   letter-spacing: normal;
 }
 
+
+
 .o-bolt-grid--rev {
   direction: rtl;
 
@@ -86,20 +88,20 @@
   }
 }
 
-// .o-bolt-grid__item--middle {
-//   vertical-align: middle;
-//   align-self: center;
-// }
+.o-bolt-grid__item--middle {
+  vertical-align: middle;
+  align-self: center;
+}
 
-// .o-bolt-grid__item--top {
-//   vertical-align: top;
-//   align-self: flex-start;
-// }
-//
-// .o-bolt-grid__item--bottom {
-//   vertical-align: bottom;
-//   align-self: flex-end;
-// }
+.o-bolt-grid__item--top {
+  vertical-align: top;
+  align-self: flex-start;
+}
+
+.o-bolt-grid__item--bottom {
+  vertical-align: bottom;
+  align-self: flex-end;
+}
 
 
 
@@ -173,4 +175,14 @@
     display: flex;
     flex-direction: column;
   }
+}
+
+
+
+.o-bolt-grid--matrix {
+  margin-bottom: bolt-spacing(medium) * -1;
+}
+
+.o-bolt-grid--matrix > .o-bolt-grid__item {
+  padding-bottom: bolt-spacing(medium);
 }
