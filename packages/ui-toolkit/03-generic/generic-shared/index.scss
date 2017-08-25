@@ -10,17 +10,9 @@
 @import '@bolt/tools-spacing';
 
 /* stylelint-disable selector-list-comma-newline-after */
-address,
-h1, h2, h3, h4, h5, h6,
-blockquote, p, pre,
-dl, ol, ul,
-figure,
-hr,
-table,
-fieldset {
+#{$bolt-all-block-elements} {
   @include bolt-margin-bottom(medium);
 }
-
 
 /**
  * Consistent indentation for lists.
