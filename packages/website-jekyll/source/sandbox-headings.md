@@ -17,9 +17,6 @@ permalink: /sandbox/headings/
           <div>Section 1 Title</div>
         </h2>
       </header>
-      <figure>
-        <img src="http://fillmurray.com/800/900" alt="">
-      </figure>
       <p>
         Corned beef chuck leberkas drumstick tongue jowl porchetta swine turkey ham hock ball tip. Shankle doner ribeye short loin kielbasa. Doner sirloin ham hock, frankfurter flank spare ribs rump tenderloin cupim kevin drumstick. Ribeye kevin shankle picanha pork loin swine pancetta chuck capicola brisket burgdoggen meatloaf ham hamburger tongue. Ribeye pork belly fatback tenderloin doner brisket prosciutto t-bone bacon capicola tongue. Ribeye boudin sirloin pork loin turducken. Corned beef rump frankfurter tri-tip filet mignon turducken porchetta ground round turkey strip steak doner andouille tongue short loin.
       </p>

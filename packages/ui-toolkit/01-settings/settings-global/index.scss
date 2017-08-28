@@ -1,8 +1,14 @@
+////
+/// @group Settings: Global
+/// @author Mike Mai
+////
+
+
 /* ------------------------------------ *\
    Global Settings
 \* ------------------------------------ */
 
-// Async font loading classes
+// Async font loading classes.
 $bolt-fonts--subset-loaded-class: 'js-fonts-subset-loaded' !default;
 $bolt-fonts--loaded-class: 'js-fonts-loaded' !default;
 
@@ -11,20 +17,20 @@ $bolt-fonts--loaded-class: 'js-fonts-loaded' !default;
    All block elements
 \* ------------------------------------ */
 
-$bolt-block-elements-list:
-  'p',
-  'pre',
-  'blockquote',
-  'table',
-  'ol',
-  'ul',
-  'dl',
-  'fieldset',
-  'legend',
-  'details',
-  'summary',
-  'hr',
-  'address';
+/// Bolt's definition of block level elements.
+$bolt-block-elements-list: 'p',
+                           'pre',
+                           'blockquote',
+                           'table',
+                           'ol',
+                           'ul',
+                           'dl',
+                           'fieldset',
+                           'legend',
+                           'details',
+                           'summary',
+                           'hr',
+                           'address';
 
 $bolt-unquoted-block-elements-list: ();
 
@@ -36,16 +42,16 @@ $bolt-all-block-elements: $bolt-unquoted-block-elements-list;
 @debug $bolt-all-block-elements;
 
 /* ------------------------------------ *\
-   All headings
+   All heading elements
 \* ------------------------------------ */
 
-$bolt-heading-elements-list:
-  'h1',
-  'h2',
-  'h3',
-  'h4',
-  'h5',
-  'h6';
+/// Bolt's definition of heading elements.
+$bolt-heading-elements-list: 'h1',
+                             'h2',
+                             'h3',
+                             'h4',
+                             'h5',
+                             'h6';
 
 $bolt-unquoted-heading-elements-list: ();
 
