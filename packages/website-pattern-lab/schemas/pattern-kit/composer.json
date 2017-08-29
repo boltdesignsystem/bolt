@@ -1,0 +1,33 @@
+{
+    "name": "bolt/pattern-kit",
+    "authors": [
+      {
+        "name": "Micah Godbolt",
+        "email": "micahgodbolt@gmail.com"
+      },
+      {
+        "name": "Salem Ghoweri",
+        "url": "https://github.com/sghoweri"
+      }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.3.3",
+        "psr/log": "^1.0",
+        "twig/twig": "1.24.*",
+        "silex/silex": "=1.2.5",
+        "justinrainbow/json-schema": "~1.4",
+        "deralex/yaml-config-service-provider": "@dev",
+        "monolog/monolog": "~1.6",
+        "nesbot/Carbon": "~1.6",
+        "erusev/parsedown": "^1.6",
+        "mnapoli/front-yaml": "^1.5",
+        "symfony/twig-bridge": "^2.3",
+        "symfony/yaml": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "PatternKit\\": "src"
+        }
+    }
+}

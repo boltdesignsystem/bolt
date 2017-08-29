@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% for css in app_config.assets.css %}
+        <link rel="stylesheet" type="text/css" href="{{css}}">
+    {% endfor %}
+
+    {% for js in app_config.assets.js %}
+        <script type="text/javascript" src="{{js}}"></script>
+    {% endfor %}
+</head>
+<body>
+    <div id="snippet" data-default-overflow="scroll">
+        {% if (name) or (template) %}
+            {% include template ?: name ~ '.twig' %}
+        {% else %}
+            <h1>Data does not include required "name" property</h1>
+        {% endif %}
+    </div>
+{% for js in app_config.assets.footer_js %}
+   <script type="text/javascript" src="{{js}}"></script>
+{% endfor %}
+</body>
+</html>

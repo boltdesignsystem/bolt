@@ -1,83 +1,306 @@
 import gulp from 'gulp';
-import * as bolt from './packages/build-tools/build-all';
+import * as bolt from './packages/bolt-build-tools/build-all';
 
-/*-------------------------------------------------------------------
-// Browsersync Tasks
--------------------------------------------------------------------*/
+const flatten = require('gulp-flatten');
+const globby = require('globby');
+const path = require('path');
+const readPkgUp = require('read-pkg-up');
+const yaml = require('js-yaml');
+const fs = require('fs-extra');
 
-// Browser Sync - Bolt Starterkit Example
-// const browserSyncBoltConfig = {
-//   server: 'packages/bolt'
-// };
-// const boltServer = bolt.server(browserSyncBoltConfig);
-// gulp.task(boltServer);
+const config = yaml.safeLoad(fs.readFileSync('packages/website-pattern-lab/schemas/.pk-config.yml', 'utf8'));
+const rename = require('gulp-rename');
+const browserSync = require('browser-sync');// .get('bolt-server');
+// const findParentDir = require('find-parent-dir');
+// const pkgDir = require('pkg-dir');
+// const pkgUp = require('pkg-up');
+// const findUp = require('find-up');
+
+// const merge = require('merge').recursive;
+
+
+// gulp.task( "data", () => {
+//   return gulp.src( [
+//     options.paths.src + "/ui-components/**/docs/*.{json,yaml}",
+//     options.paths.src + "/ui-components/**/tests/*.json"
+//   ] )
+//   .pipe( plugins.flatten() )
+//   .pipe( gulp.dest( options.paths.dist + "/ui-components/data/" ) )
+//   .pipe( plugins.browserSync.reload( {
+//     stream: true
+// }));
+
+
+gulp.task('pk:templates', () =>
+  gulp.src([
+    './packages/ui-toolkit/**/*.twig',
+    '!node_modules',
+    '!./packages/ui-toolkit/**/node_modules/**/*',
+    '!./packages/ui-toolkit/*/node_modules/**/*'
+  ])
+    .pipe(flatten())
+    .pipe(gulp.dest(config.paths.templates[0]))
+    // .pipe( browserSync.reload( {
+    //     stream: true
+    // } ) );
+);
+
+//
+// gulp.task('pk:data', () =>
+//   gulp.src([
+//     `./packages/ui-toolkit/**/*${config.extensions.data}`,
+//     '!node_modules',
+//     '!./packages/ui-toolkit/**/node_modules/**/*',
+//     '!./packages/ui-toolkit/*/node_modules/**/*'
+//   ])
+//     .pipe(flatten())
+//     .pipe(gulp.dest(config.paths.data[0]))
+//   // .pipe( browserSync.reload( {
+//   //     stream: true
+//   // } ) );
+// );
+//
+//
+// gulp.task('pk:schema', () =>
+//   gulp.src([
+//     `./packages/ui-toolkit/**/*${config.extensions.schemas}`,
+//     '!node_modules',
+//     '!./packages/ui-toolkit/**/node_modules/**/*',
+//     '!./packages/ui-toolkit/*/node_modules/**/*'
+//   ])
+//     .pipe(flatten())
+//     .pipe(gulp.dest(config.paths.schemas[0]))
+//     // .pipe( browserSync.reload( {
+//     //     stream: true
+//     // } ) );
+// );
+//
+//
+// gulp.task('pk:sg', () =>
+//   gulp.src([
+//     `./packages/ui-toolkit/**/*${config.extensions.sg}`,
+//     '!node_modules',
+//     '!./packages/ui-toolkit/**/node_modules/**/*',
+//     '!./packages/ui-toolkit/*/node_modules/**/*'
+//   ])
+//     .pipe(flatten())
+//     .pipe(gulp.dest(config.paths.sg[0]))
+//   // .pipe( browserSync.reload( {
+//   //     stream: true
+//   // } ) );
+// );
+//
+//
+// // gulp.task('pattern-templates:copy', (done) => {
+// //   globby(['./source/ui-toolkit/**/*.twig', '!node_modules']).then((patterns) => {
+// //     patterns.map((patternName) => {
+// //       const dirName = path.dirname(patternName);
+// //
+// //       readPkgUp({ cwd: dirName }).then((result) => {
+// //         let name = result.pkg.name;
+// //         const splitName = name.split('/');
+// //         name = splitName[splitName.length - 1];
+// //         name = name.split(/-(.+)/)[1]; // Throw away the 1st half of the string that contains a dash.
+// //
+// //         if (name) {
+// //           return gulp.src([patternName])
+// //             .pipe(flatten())
+// //             .pipe(rename(name + config.extensions.templates))
+// //             .pipe(gulp.dest(config.paths.templates[0]))
+// //             .pipe(browserSync.reload({
+// //               stream: true
+// //             }));
+// //         }
+// //       });
+// //     });
+// //     done();
+// //   });
+// // });
+// //
+// //
+//
+// // ]
+// //
+gulp.task('pk:schema', (done) => {
+  globby([
+    // './packages/ui-toolkit/**/README.md',
+    `./packages/bolt-toolkit-ui/**/*${config.extensions.schemas}`,
+    `./packages/bolt-toolkit-core/**/*${config.extensions.schemas}`,
+    '!node_modules',
+    '!./packages/bolt-ui-toolkit/**/node_modules/**/*',
+    '!./packages/bolt-ui-toolkit/*/node_modules/**/*'
+  ]).then((patterns) => {
+    patterns.map((patternName) => {
+      const dirName = path.dirname(patternName);
+
+      readPkgUp({ cwd: dirName }).then((result) => {
+        let name = result.pkg.name;
+        const splitName = name.split('/');
+        name = splitName[splitName.length - 1];
+        name = name.split(/-(.+)/)[1]; // Throw away the 1st half of the string that contains a dash.
+
+        console.log(dirName);
+        console.log(name);
+
+        // if (result.pkg.twig) {
+        //   // console.log(`${dirName}/${result.pkg.twig}`);
+        //   if (fs.existsSync(`${dirName}/${result.pkg.twig}`)) {
+        //     // Do something
+        //     // console.log(`${dirName}/${result.pkg.twig}`);
+        //   }
+        // }
+        console.log(config.paths.schemas[0]);
+
+        return gulp.src([patternName])
+          .pipe(flatten())
+          .pipe(gulp.dest(config.paths.schemas[0]))
+          .pipe(rename(`${name}.json`))
+          .pipe(gulp.dest('./bolt-website/pattern-lab/schemas'))
+          .pipe(browserSync.reload({
+            stream: true
+          }));
+      });
+    });
+    done();
+  });
+});
+//
+//
+// gulp.task('pk:docs', (done) => {
+//   globby(['./packages/ui-toolkit/**/README.md', '!node_modules',
+//     '!node_modules',
+//     '!./packages/ui-toolkit/**/node_modules/**/*',
+//     '!./packages/ui-toolkit/*/node_modules/**/*'
+//   ]).then((patterns) => {
+//     patterns.map((patternName) => {
+//       const dirName = path.dirname(patternName);
+//
+//       readPkgUp({ cwd: dirName }).then((result) => {
+//         let name = result.pkg.name;
+//         const splitName = name.split('/');
+//         name = splitName[splitName.length - 1];
+//         name = name.split(/-(.+)/)[1]; // Throw away the 1st half of the string that contains a dash.
+//
+//         // console.log(dirName);
+//         // console.log(name);
+//
+//         // if (result.pkg.twig) {
+//         //   // console.log(`${dirName}/${result.pkg.twig}`);
+//         //   if (fs.existsSync(`${dirName}/${result.pkg.twig}`)) {
+//         //     // Do something
+//         //     // console.log(`${dirName}/${result.pkg.twig}`);
+//         //   }
+//         // }
+//
+//
+//         return gulp.src([patternName])
+//           .pipe(flatten())
+//           .pipe(rename(name + config.extensions.docs))
+//           .pipe(gulp.dest(config.paths.docs[0]))
+//           .pipe(browserSync.reload({
+//             stream: true
+//           }));
+//       });
+//     });
+//     done();
+//   });
+// });
+//
+// gulp.task('pattern-schema:compile', (done) => {
+//   globby(['./source/_framework/**/*.config.js', '!node_modules']).then((patterns) => {
+//     patterns.map((patternName) => {
+//       const dirName = path.dirname(patternName);
+//       const file = require(patternName);
+//
+//
+//       const dataFile = file.context;
+//       const schemaFile = file.schema;
+//       // const fileVariations = file.variants;
+//
+//       const schemaFilePath = `${config.paths.schemas[0]}/${schemaFile.title.toLowerCase()}${config.extensions.schemas}`;
+//
+//       const dataFilePath = `${config.paths.data[0]}/${schemaFile.title.toLowerCase()}${config.extensions.data}`;
+//
+//
+//       fs.outputFile(schemaFilePath, JSON.stringify(schemaFile, null, 2), 'utf-8');
+//       fs.outputFile(dataFilePath, JSON.stringify(dataFile, null, 2), 'utf-8');
+//
+//
+//       // console.log();
+//
+//
+//       // readPkgUp({cwd: dirName}).then(result => {
+//       //   var name = result.pkg.name;
+//       //   var splitName = name.split('/');
+//       //   name = splitName[splitName.length - 1];
+//       //   name = name.split(/-(.+)/)[1]; // Throw away the 1st half of the string that contains a dash.
+//       //
+//       //   return gulp.src( [ patternName ] )
+//       //     .pipe( flatten() )
+//       //     .pipe( rename( name + config.extensions.docs ) )
+//       //     .pipe( gulp.dest( config.paths.docs[0] ) )
+//       //     .pipe( browserSync.reload( {
+//       //       stream: true
+//       //     }));
+//       // });
+//     });
+//     done();
+//   });
+// });
+//
+//
+// // Copy all twig templates to the dist directory
+// gulp.task('templates', () =>
+//   gulp.src('source/**/*.twig')
+//     .pipe(flatten())
+//     .pipe(gulp.dest('public/templates/'))
+//   // .pipe( browserSync.reload( {
+//   //     stream: true
+//   // } ) );
+// );
+
+
+// const patternkit = require('./packages/bolt-build-tools/build-patternkit')();
 
 
 // Browser Sync - Pattern Lab
 const browsersyncConfig = {
-  server: 'bolt-website'
+  // server: 'bolt-website',
+  // serveStatic: [{
+  //   route: '/',
+  //   dir: './bolt-website'
+  // }]
 };
 const browserSyncServer = bolt.server(browsersyncConfig);
 browserSyncServer.displayName = 'browsersync:serve';
 browserSyncServer.description = 'Serve Jekyll and Pattern Lab sites';
 gulp.task(browserSyncServer);
 
-
-// // Browser Sync - Pattern Lab
-// const browserSyncJekyllConfig = {
-//   server: 'bolt-website'
-// };
-// const jekyllServer = bolt.server(browserSyncJekyllConfig);
-// jekyllServer.displayName = 'jekyll:serve';
-// jekyllServer.description = 'Serve Jekyll sandbox';
-// gulp.task(jekyllServer);
-
-/*-------------------------------------------------------------------
-// Pattern Lab Tasks
--------------------------------------------------------------------*/
+//
+// // // Browser Sync - Pattern Lab
+// // const browserSyncJekyllConfig = {
+// //   server: 'bolt-website'
+// // };
+// // const jekyllServer = bolt.server(browserSyncJekyllConfig);
+// // jekyllServer.displayName = 'jekyll:serve';
+// // jekyllServer.description = 'Serve Jekyll sandbox';
+// // gulp.task(jekyllServer);
+//
+// /*-------------------------------------------------------------------
+// // Pattern Lab Tasks
+// -------------------------------------------------------------------*/
 gulp.task(bolt.slack());
-
-
 gulp.task(bolt.compileJekyll());
 gulp.task(bolt.watchJekyll());
-
-
-/*-------------------------------------------------------------------
-// Watch Lerna-related Files for Changes
--------------------------------------------------------------------*/
-gulp.task(bolt.lerna());
-
-/*-------------------------------------------------------------------
-// Slack Notification
--------------------------------------------------------------------*/
 gulp.task(bolt.compilePatternLab());
 gulp.task(bolt.recompilePatternLab());
-gulp.task(bolt.watchPatternLab({
-  extraWatches: [
-    // './packages/**/*.twig'
-  ]
-}));
 
-
-/*-------------------------------------------------------------------
-// Symlink Tasks
--------------------------------------------------------------------*/
-gulp.task(bolt.createSymlinks());
-gulp.task(bolt.cleanSymlinks());
-gulp.task(bolt.watchSymlinks());
-
-
-/*-------------------------------------------------------------------
-// CSS Tasks
--------------------------------------------------------------------*/
-
-// Compile Pattern Lab CSS
 const boltCSSConfig = {
   // root: 'packages/website-pattern-lab',
   src: [
     // './packages/ui-toolkit/bolt/*',
-    'packages/ui-toolkit/bolt/bolt.scss',
-    'packages/ui-toolkit/bolt/bolt-styleguide.scss'
+    'packages/bolt-toolkit/bolt.scss',
+    'packages/bolt-toolkit/bolt-styleguide.scss'
     // 'packages/ui-toolkit/bolt/*.scss',
     // 'packages/ui-toolkit/bolt/bolt.v0.1.scss'
     // 'packages/ui-toolkit/bolt/bolt-styleguide.scss'
@@ -85,36 +308,62 @@ const boltCSSConfig = {
   data: './packages/website-pattern-lab/source/_data',
   dest: 'bolt-website/styles',
   extraWatches: [
-    './packages/ui-toolkit/**/*.scss',
-    '!./packages/ui-toolkit/**/node_modules/**/*'
-    // '!./**/node_modules/**/*'
+    './packages/bolt-toolkit/**/*.scss',
+    './packages/bolt-toolkit-core/**/*.scss',
+    './packages/bolt-toolkit-ui/**/*.scss',
+    '!./packages/**/node_modules/**/*'
   ]
   // jsonDest: './sandbox/pattern-library/source/_data',
 };
 const compileBoltCSS = bolt.compileCSS(boltCSSConfig);
 gulp.task(compileBoltCSS);
-
-// Watch PL styles for changes
 gulp.task('styles:watch', bolt.watchCSS(boltCSSConfig));
 gulp.task('styles:sassdoc', bolt.sassDoc(boltCSSConfig));
 
 
-// gulp.task('copy:temp', function(){
-//   return gulp.src([
-//   './packages/**/feature-toggle.js'
-//   ])
-//   .pipe(gulp.dest('./bolt-website/scripts'));
-// });
-// gulp.task('patternlab:stylelint', bolt.lintCSS(patternLabCSSConfig));
-
-/*-------------------------------------------------------------------
-// Default (Main) Gulp Task -- Serves PL, Compiles & Watches for Changes
--------------------------------------------------------------------*/
+gulp.task(bolt.createSymlinks());
+gulp.task(bolt.cleanSymlinks());
+// gulp.task(bolt.watchSymlinks());
+// gulp.task(bolt.lerna());
+gulp.task(bolt.watchPatternLab({
+  extraWatches: [
+    // './packages/**/*.twig'
+  ]
+}));
 gulp.task('symlinks', gulp.series([
   'symlinks:clean',
   'symlinks:create'
 ]));
 
+
+gulp.task('default',
+  gulp.series([
+    'symlinks:clean',
+    'symlinks:create',
+    'styles:compile',
+    // 'styles:sassdoc',
+    'patternlab:compile',
+    'jekyll:compile',
+    // 'copy:temp',
+    gulp.parallel([
+      'browsersync:serve',
+      // 'lerna:watch',
+      'jekyll:watch',
+      'patternlab:watch',
+      'styles:watch'
+      // 'symlinks:watch'
+    ])
+  ])
+);
+
+
+// // gulp.task('patternlab:stylelint', bolt.lintCSS(patternLabCSSConfig));
+//
+// /*-------------------------------------------------------------------
+// // Default (Main) Gulp Task -- Serves PL, Compiles & Watches for Changes
+// -------------------------------------------------------------------*/
+
+//
 // gulp.task('patternlab:default',
 //   gulp.series([
 //     'styles:compile',
@@ -129,109 +378,92 @@ gulp.task('symlinks', gulp.series([
 //     ])
 //   ])
 // );
-
 //
-// gulp.task('patternlab:build',
+// //
+// // gulp.task('patternlab:build',
+// //   gulp.series([
+// //     'styles:compile',
+// //     'styles:sassdoc',
+// //     'symlinks',
+// //     'patternlab:compile'
+// //   ])
+// // );
+//
+// // const jekyllTasks = require('@theme-tools/plugin-jekyll')({
+// //   cwd: 'sandbox/styleguide/source',
+// //   watch: [
+// //     './sandbox/styleguide/source/**',
+// //     '!./sandbox/styleguide/source/.sass-cache/**',
+// //   ],
+// // });
+// //
+// //
+// // const jekyllCssConfig = {
+// //   root: './sandbox/styleguide',
+// //   src: [
+// //     './sandbox/styleguide/source/styles/**/*.scss'
+// //   ],
+// //   dest: './bolt-website/styles',
+// //   jsonDest: './sandbox/styleguide/source/_data',
+// //   extraWatches: './packages/**/*.scss'
+// // };
+// //
+// // const compileJekyllCSS = bolt.compileCSS(jekyllCssConfig);
+// // const jekyllSassDoc = bolt.sassDoc(jekyllCssConfig);
+// // const watchJekyllCSS = bolt.watchCSS(jekyllCssConfig);
+// //
+// //
+// // gulp.task('jekyll:css', compileJekyllCSS);
+// // gulp.task('jekyll:build', jekyllTasks.build);
+// // gulp.task('jekyll:watch', jekyllTasks.watch);
+// //
+// // gulp.task('jekyll:default', gulp.series([
+// //   jekyllTasks.build,
+// //   compileJekyllCSS,
+// //   jekyllSassDoc,
+// //   gulp.parallel([
+// //     jekyllTasks.watch,
+// //     watchJekyllCSS,
+// //     'jekyll:serve',
+// //   ]),
+// // ]));
+// //
+// // gulp.task('jekyll', gulp.series([
+// //   jekyllTasks.build,
+// //   compileJekyllCSS,
+// //   jekyllSassDoc
+// // ]));
+//
+//
+// // gulp.task('build',
+// //   gulp.series([
+// //     'jekyll',
+// //     'patternlab:build'
+// //   ])
+// // );
+//
+//
+//
+//
+//
+// gulp.task('build',
 //   gulp.series([
 //     'styles:compile',
 //     'styles:sassdoc',
 //     'symlinks',
-//     'patternlab:compile'
+//     'patternlab:compile',
+//     'jekyll:compile'
+//     // 'copy:temp',
+//     // gulp.parallel([
+//     //   'browsersync:serve',
+//     //   // 'lerna:watch',
+//     //   'jekyll:watch',
+//     //   'patternlab:watch',
+//     //   'styles:watch',
+//     //   'symlinks:watch'
+//     // ])
 //   ])
 // );
-
-// const jekyllTasks = require('@theme-tools/plugin-jekyll')({
-//   cwd: 'sandbox/styleguide/source',
-//   watch: [
-//     './sandbox/styleguide/source/**',
-//     '!./sandbox/styleguide/source/.sass-cache/**',
-//   ],
-// });
-//
-//
-// const jekyllCssConfig = {
-//   root: './sandbox/styleguide',
-//   src: [
-//     './sandbox/styleguide/source/styles/**/*.scss'
-//   ],
-//   dest: './bolt-website/styles',
-//   jsonDest: './sandbox/styleguide/source/_data',
-//   extraWatches: './packages/**/*.scss'
-// };
-//
-// const compileJekyllCSS = bolt.compileCSS(jekyllCssConfig);
-// const jekyllSassDoc = bolt.sassDoc(jekyllCssConfig);
-// const watchJekyllCSS = bolt.watchCSS(jekyllCssConfig);
-//
-//
-// gulp.task('jekyll:css', compileJekyllCSS);
-// gulp.task('jekyll:build', jekyllTasks.build);
-// gulp.task('jekyll:watch', jekyllTasks.watch);
-//
-// gulp.task('jekyll:default', gulp.series([
-//   jekyllTasks.build,
-//   compileJekyllCSS,
-//   jekyllSassDoc,
-//   gulp.parallel([
-//     jekyllTasks.watch,
-//     watchJekyllCSS,
-//     'jekyll:serve',
-//   ]),
-// ]));
-//
-// gulp.task('jekyll', gulp.series([
-//   jekyllTasks.build,
-//   compileJekyllCSS,
-//   jekyllSassDoc
-// ]));
-
-
-// gulp.task('build',
-//   gulp.series([
-//     'jekyll',
-//     'patternlab:build'
-//   ])
-// );
-
-
-gulp.task('default',
-  gulp.series([
-    'styles:compile',
-    // 'styles:sassdoc',
-    'symlinks',
-    'patternlab:compile',
-    'jekyll:compile',
-    // 'copy:temp',
-    gulp.parallel([
-      'browsersync:serve',
-      // 'lerna:watch',
-      'jekyll:watch',
-      'patternlab:watch',
-      'styles:watch',
-      'symlinks:watch'
-    ])
-  ])
-);
-
-
-gulp.task('build',
-  gulp.series([
-    'styles:compile',
-    'styles:sassdoc',
-    'symlinks',
-    'patternlab:compile',
-    'jekyll:compile'
-    // 'copy:temp',
-    // gulp.parallel([
-    //   'browsersync:serve',
-    //   // 'lerna:watch',
-    //   'jekyll:watch',
-    //   'patternlab:watch',
-    //   'styles:watch',
-    //   'symlinks:watch'
-    // ])
-  ])
-);
 //
 // const symlinkTasks = require('./packages/build-tools-symlinks')(gulp, {});
 

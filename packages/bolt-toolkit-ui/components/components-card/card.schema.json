@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Card",
+  "category": "components",
+  "type": "object",
+  "format": "grid",
+  "properties": {
+    "name": {
+      "type": "string",
+      "enum": ["card"],
+      "options": {
+        "hidden": true
+      }
+    },
+    "theme": {
+      "title": "Card Background",
+      "type": "string",
+      "enum": ["white"],
+      "default": "white"
+    },
+    "body": {
+      "title": "Card Contents",
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 4,
+      "items": {
+        "oneOf": [
+          {"$ref": "image.json"},
+          {"$ref": "headline.json"},
+          {"$ref": "paragraph.json"},
+          {"$ref": "button.json"},
+          {"$ref": "logo.json"},
+          {"$ref": "quote.json"}
+        ]
+      }
+    }
+  },
+  "required": ["body", "theme"],
+  "additionalProperties": false
+}

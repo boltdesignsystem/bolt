@@ -1,0 +1,6 @@
+<div class="c-bolt-card" data-background="{{background}}">
+  {% for item in body %}
+    {% include item.name ~ '.twig' with item only %}
+    {% else %}{% block body %}{% endblock %}
+  {% endfor %}
+</div>
