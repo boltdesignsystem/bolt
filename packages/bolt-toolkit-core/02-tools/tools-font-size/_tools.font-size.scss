@@ -7,8 +7,8 @@
 /// @author Mike Mai
 ////
 
-@import '@bolt/tools-sassy-maps'; // required so `map-get-deep` works
 @import '@bolt/settings-font-size';
+@import '@bolt/tools-sassy-maps'; // required so `map-get-deep` works
 
 
 
@@ -21,15 +21,15 @@
 /// @param {string} $leading
 ///   Defines the line-height of the text: regular or tight.
 ///
-@mixin font-size($size, $leading: regular) {
-  $font-size: map-get-deep($font-sizes, 'font-sizes', $size, 'font-size');
+@mixin bolt-font-size($size, $leading: regular) {
+  $font-size: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'font-size');
   font-size: $font-size;
 
   @if ($leading != '' and  $leading != null){
     @if (type-of($leading) == number){
       $leading: $leading;
     } @elseif (type-of($leading) == string) {
-      $leading: map-get-deep($font-sizes, 'font-sizes', $size, 'line-height', $leading);
+      $leading: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'line-height', $leading);
     }
     line-height: $leading;
   }

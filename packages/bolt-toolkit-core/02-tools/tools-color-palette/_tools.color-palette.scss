@@ -9,6 +9,6 @@
 @import '@bolt/tools-sassy-maps'; //So map-get-deep works
 
 
-@function palette($color, $tone: 'initial') {
+@function bolt-palette($color, $tone: 'initial') {
   @return map-get-deep($bolt-colors, $color, $tone);
 }

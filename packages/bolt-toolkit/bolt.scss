@@ -2,72 +2,61 @@
   Settings
 \* ------------------------------------ */
 @import '@bolt/settings-all';
-//
-//
-// /* ------------------------------------ *\
-//   Tools
-// \* ------------------------------------ */
+
+
+/* ------------------------------------ *\
+  Tools
+\* ------------------------------------ */
 @import '@bolt/tools-all';
-//
-//
-// /* ------------------------------------ *\
-//   Generic
-// \* ------------------------------------ */
+
+
+/* ------------------------------------ *\
+  Generic
+\* ------------------------------------ */
 @import '@bolt/generic-all';
-//
-//
-// /* ------------------------------------ *\
-//   Elements
-// \* ------------------------------------ */
+
+
+/* ------------------------------------ *\
+  Elements
+\* ------------------------------------ */
 @import '@bolt/elements-all';
-//
-//
-// /* ------------------------------------ *\
-//   Objects
-// \* ------------------------------------ */
+
+
+/* ------------------------------------ *\
+  Objects
+\* ------------------------------------ */
 @import '@bolt/objects-all';
-//
-//
-// /* ------------------------------------ *\
-//   Components
-// \* ------------------------------------ */
+
+
+/* ------------------------------------ *\
+  Components
+\* ------------------------------------ */
 @import '@bolt/components-all';
-@import '@bolt/components-page-intro';
-@import '@bolt/components-sg-article';
-@import '@bolt/components-sg-navigation';
-
-// body {
-//   background: red;
-// }
-
-
+// @import '@bolt/components-page-intro';
+// @import '@bolt/components-sg-article';
 // @import '@bolt/components-sg-navigation';
-// @import '../06-components/components.headings.refactor';
 // @import '../06-components/components.article.refactor';
-//
-// /* ------------------------------------ *\
-//   Themes
-// \* ------------------------------------ */
+
+
+
+/* ------------------------------------ *\
+  Themes
+\* ------------------------------------ */
 @import '@bolt/themes-all';
-//
-//
-// /* ------------------------------------ *\
-//   Utilities
-// \* ------------------------------------ */
+
+
+/* ------------------------------------ *\
+  Utilities
+\* ------------------------------------ */
 @import '@bolt/utilities-all';
 
 
 
 
 
-
-//
-//
 @mixin test-color($name, $tone: 'initial', $type: null) {
   $color: map-get-deep($bolt-colors, $name, $tone);
-
   color: $color;
-
   @if $type == null {
     color: var(--bolt-color-text, $color);
   }
@@ -75,12 +64,9 @@
     color: var(--bolt-color-#{$type}, $color);
   }
 }
-
 @mixin test-background-color($name, $tone: 'initial', $type: null) {
   $background-color: map-get-deep($bolt-colors, $name, $tone);
-
   background-color: $background-color;
-
   @if $type == null {
     background-color: var(--bolt-color-background, $background-color);
   }
@@ -88,12 +74,9 @@
     background-color: var(--bolt-color-#{$type}, $background-color);
   }
 }
-
 @mixin test-border-color($name, $tone: 'initial', $type: null) {
   $border-color: map-get-deep($bolt-colors, $name, $tone);
-
   border-color: $border-color;
-
   @if $type == null {
     border-color: var(--bolt-color-border, $border-color);
   }
@@ -101,22 +84,14 @@
     border-color: var(--bolt-color-#{$type}, $border-color);
   }
 }
-
 @function text-contrast($color) {
   @if (lightness($color) > 60) {
-    @return palette(black); // Lighter backgorund, return dark color
+    @return bolt-palette(black); // Lighter backgorund, return dark color
   }
   @else {
-    @return palette(white); // Darker background, return light color
+    @return bolt-palette(white); // Darker background, return light color
   }
 }
-
-
-// @function get-color($color, $tone: 'initial', $type: null){
-//   @return map-get-deep($bolt-colors, $name, $tone);;
-// }
-
-
 @mixin _theme-settings(
   $background,          // Background
   $primary,             // Button background
@@ -126,32 +101,27 @@
   $button-text: null,   // Button text - Defaults to text-contrast($primary) if not defined
   $border: null         // Border - Defaults to $text if not defined
   ) {
-
   --bolt-color-background: $background;
   --bolt-color-primary: $primary;
   --bolt-color-secondary: $secondary;
-
   @if $text == null {
     --bolt-color-text: text-contrast($background);
   }
   @else {
     --bolt-color-text: $text;
   }
-
   @if $heading == null {
     --bolt-color-heading: text-contrast($background);
   }
   @else {
     --bolt-color-heading: $heading;
   }
-
   @if $button-text == null {
     --bolt-color-button-text: text-contrast($primary);
   }
   @else {
     --bolt-color-button-text: $button-text;
   }
-
   @if $border == null {
     --bolt-color-border: text-contrast($background);
   }
@@ -159,151 +129,132 @@
     --bolt-color-border: $border;
   }
 }
-
 @mixin test-theme($name: 'xlight') {
   @if $name == 'xlight' {
     @include _theme-settings(
-      palette(white),
-      palette(blue),
-      palette(blue, dark));
+      bolt-palette(white),
+      bolt-palette(blue),
+      bolt-palette(blue, dark));
   }
   @elseif $name == 'light' {
     @include _theme-settings(
-      palette(gray, xlight),
-      palette(blue),
-      palette(blue, dark));
+      bolt-palette(gray, xlight),
+      bolt-palette(blue),
+      bolt-palette(blue, dark));
   }
   @elseif $name == 'dark' {
     @include _theme-settings(
-      palette(teal),
-      palette(blue, dark),
-      palette(white));
+      bolt-palette(teal),
+      bolt-palette(blue, dark),
+      bolt-palette(blue, light));
   }
   @elseif $name == 'xdark' {
     @include _theme-settings(
-      palette(indigo),
-      palette(orange),
-      palette(white));
+      bolt-palette(indigo),
+      bolt-palette(orange),
+      bolt-palette(blue, light));
   }
   @elseif $name == 'notification' {
     @include _theme-settings(
-      palette(blue, light),
-      palette(blue, dark),
-      palette(blue, dark));
+      bolt-palette(blue, light),
+      bolt-palette(blue, dark),
+      bolt-palette(blue));
   }
   @elseif $name == 'success' {
     @include _theme-settings(
-      palette(success, light),
-      palette(success, dark),
-      palette(success));
+      bolt-palette(success, light),
+      bolt-palette(success, dark),
+      bolt-palette(success));
   }
   @elseif $name == 'warning' {
     @include _theme-settings(
-      palette(warning, light),
-      palette(warning, dark),
-      palette(warning));
+      bolt-palette(warning, light),
+      bolt-palette(warning, dark),
+      bolt-palette(warning));
   }
   @elseif $name == 'error' {
     @include _theme-settings(
-      palette(error, light),
-      palette(error, dark),
-      palette(error, dark));
+      bolt-palette(error, light),
+      bolt-palette(error, dark),
+      bolt-palette(warning, dark),
+      null,
+      bolt-palette(warning, dark),
+      null,
+      bolt-palette(error));
   }
 }
-
 .testing {
   @include test-color(black, initial, text);
   @include test-background-color(white, initial, background);
-
   * {
     @include test-color(inherit);
     @include test-background-color(inherit);
   }
-
-  *:last-child {
-    @include bolt-margin-bottom(0);
-  }
+  /*@include color(yellow);*/
+  /*@include color(yellow, dark);*/
+  /*@include color(yellow, dark, ui);*/
+  /*@include color(yellow, dark, link);*/
+  /*@include background-color(teal);*/
+  /*@include background-color(teal, xdark);*/
+  /*@include background-color(teal, xdark, ui);*/
 }
-
 .mm-heading {
   @include test-color(black, initial, heading);
 }
-
 .mm-hr {
   @include bolt-margin(0 0 medium 0);
   @include bolt-padding(0);
   @include test-border-color(black);
-
   border-width: solid;
   border-style: solid;
   border-bottom: 0;
 }
-
 .mm-link {
   @include test-color(blue, initial, secondary);
 }
-
 .mm-button {
   @include bolt-padding(small);
-  @include bolt-font-size(small, tight);
-  @include bolt-font-weight(bold);
   @include test-color(white, initial, button-text);
   @include test-background-color(blue, initial, primary);
   @include test-border-color(blue, initial, primary);
-
   display: inline-block;
   border-width: 1px;
   border-style: solid;
 }
-
 .mm-button--secondary {
   @include test-color(black, initial, secondary);
-  @include test-background-color(transparent, initial, background);
+  @include test-background-color(white, initial, background);
   @include test-border-color(black, initial, secondary);
 }
-
-.mm-button--tertiary {
-  @include test-color(black, initial, secondary);
-  @include test-background-color(transparent, initial, background);
-  @include test-border-color(transparent, initial, background);
-}
-
 .t-xlight {
   @include bolt-padding(medium);
   @include test-theme(xlight);
 }
-
 .t-light {
   @include bolt-padding(medium);
   @include test-theme(light);
 }
-
 .t-dark {
   @include bolt-padding(medium);
   @include test-theme(dark);
 }
-
 .t-xdark {
   @include bolt-padding(medium);
   @include test-theme(xdark);
 }
-
 .t-success {
   @include bolt-padding(medium);
   @include test-theme(success);
 }
-
 .t-warning {
   @include bolt-padding(medium);
   @include test-theme(warning);
 }
-
 .t-error {
   @include bolt-padding(medium);
   @include test-theme(error);
 }
-
 .t-notification {
-  @include bolt-padding(medium);
+  @include bolt-padding(medium, squished);
   @include test-theme(notification);
 }

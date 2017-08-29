@@ -1,0 +1,34 @@
+/* ------------------------------------ *\
+  Body and heading declaration
+\* ------------------------------------ */
+$bolt-breakpoint--min: map-get($bolt-breakpoints, medium);
+$bolt-breakpoint--max: map-get($bolt-breakpoints, xlarge);
+
+
+
+html {
+  // Base type
+  font-size: $bolt-font-size--min;
+
+  // Responsive type
+  @include respond-to(medium) {
+    font-size: calc(#{$bolt-font-size--min} + (#{$bolt-font-size--max - $bolt-font-size--min} * (100vw - #{$bolt-breakpoint--min}) / #{strip-unit($bolt-breakpoint--max) - strip-unit($bolt-breakpoint--min)}));
+  }
+
+  // Large type
+  @include respond-to(xlarge) {
+    font-size: $bolt-font-size--max;
+  }
+}
+
+body {
+  width: 100%;
+  @include bolt-font-family(body);
+  @include bolt-font-size(medium);
+  // background-image: linear-gradient(to bottom,#0ff 0,rgba(255,255,255,0)1px);
+  // background-repeat: repeat-y;
+  // background-size: 100% 1rem;
+  margin: 0;
+  // margin: 0;
+  // padding: 0;
+}

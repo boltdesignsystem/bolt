@@ -19,7 +19,7 @@
     "clean:all": "npm run clean:git && npm run clean:lerna",
     "lint": "npm-run-all --parallel lint:* -c",
     "mocha": "mocha packages/**/*/tests",
-    "now:deploy": "originalurl=$(now bolt-website) | branch=$(git rev-parse --abbrev-ref HEAD | sed -e 's/\//-/g') | now alias $originalurl $branch'-boltdesignsystem'",
+    "now:deploy": "originalurl=$(now bolt-website) | branch=$(git rev-parse --abbrev-ref HEAD | sed -e 's///-/g') | now alias $originalurl $branch'-boltdesignsystem'",
     "postinstall": "npm run bootstrap && npm run setup:composer",
     "prepublishOnly": "npm run snyk-protect",
     "publish-beta": "lerna run build && lerna publish --npm-tag=beta --skip-git",

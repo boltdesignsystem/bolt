@@ -1,239 +1,239 @@
-/* ------------------------------------ *\
-  #BUTTONS
-\* ------------------------------------ */
-@import '@bolt/tools-button-color';
-@import '@bolt/settings-global';
-@import '@bolt/tools-font-weight';
-@import '@bolt/tools-no-select';
-@import '@bolt/tools-font-size';
-@import '@bolt/tools-spacing';
-
-$btn-border-radius: 4px   !default;
-$btn-border-width: 1px   !default;
-$btn-border-style: solid !default;
-$btn-border-color: currentColor !default;
-$btn-bg-color: palette(blue) !default;
-// $btn-border-color:  transparent !default;
-$btn-padding: spacing(large) !default;
-$btn-padding--small: $spacing-unit * 0.5 !default;
-$btn-padding--large: 18px !default;
-$btn-subtle-color: palette(blue) !default;
-$btn-subtle-font-weight: bold !default;
-$btn-subtle-font-size: base;
-$btn-font-weight: bold !default;
-$btn-icon--size: 1.5em !default;
-$btn-icon--size--small: $btn-icon--size !default;
-$btn-bg-color--flat: palette(blue);
-
-
-/**
- * 1. Allow us to style box model properties.
- * 2. Line different sized buttons up a little nicer.
- * 3. Make buttons inherit font styles (often necessary when styling `input`s as
- *    buttons).
- * 4. Reset/normalize some styles.
- * 5. Force all button-styled elements to appear clickable.
- * 6. Subtract the border size from the padding value so that buttons do not
- *    grow larger as we add borders.
- */
-@mixin button($btn-padding: 9px $btn-padding) {
-  @include font-weight(semibold);
-  @include no-select();
-  @include font-size(medium);
-  @supports (display: flex) {
-    display: inline-flex;
-    justify-content: center;
-  }
-  display: inline-block; /* [1] */
-
-  padding: $btn-padding;
-  text-align: center; /* [4] */
-  cursor: pointer; /* [5] */
-  text-decoration: none;
-  vertical-align: middle; /* [2] */
-  border-style: $btn-border-style;
-  border-width: $btn-border-width;
-  border-radius: $btn-border-radius;
-  font: inherit; /* [3] */
-  white-space: nowrap;
-  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
-
-  &:hover,
-  &:focus,
-  &:active {
-    text-decoration: none;
-  }
-}
-$bolt-component-namespace: 'c-bolt-';
-
-.#{$bolt-component-namespace}button {
-  @include button();
-  @include button-color($btn-bg-color);
-}
-
-.#{$bolt-component-namespace}button--disabled,
-.#{$bolt-component-namespace}button[disabled] {
-  cursor: default;
-  opacity: 0.3;
-  pointer-events: none;
-}
-
-.c-bolt-button--flat {
-  color: currentColor;
-  background-color: transparent;
-  border-color: currentColor;
-
-  &:hover {
-    color: currentColor;
-    background-color: mix(black, rgba(palette(white), 0.1), 15%);
-    border-color: currentColor;
-  }
-
-  &:focus,
-  &:active {
-    color: currentColor;
-    background-color: mix(black, rgba(palette(white), 0.1), 30%);
-    border-color: currentColor;
-  }
-}
-
-
-.o-grid {
-  background: red;
-}
-
-
-
-
-// .c-button__icon {
-//   margin-right: 0.5em;
-//   width: $btn-icon--size;
-//   height: $btn-icon--size;
-//   flex-shrink: 0;
+// /* ------------------------------------ *\
+//   #BUTTONS
+// \* ------------------------------------ */
+// @import '@bolt/tools-button-color';
+// @import '@bolt/settings-global';
+// @import '@bolt/tools-font-weight';
+// @import '@bolt/tools-no-select';
+// @import '@bolt/tools-font-size';
+// @import '@bolt/tools-spacing';
+//
+// $btn-border-radius: 4px   !default;
+// $btn-border-width: 1px   !default;
+// $btn-border-style: solid !default;
+// $btn-border-color: currentColor !default;
+// $btn-bg-color: palette(blue) !default;
+// // $btn-border-color:  transparent !default;
+// $btn-padding: spacing(large) !default;
+// $btn-padding--small: $spacing-unit * 0.5 !default;
+// $btn-padding--large: 18px !default;
+// $btn-subtle-color: palette(blue) !default;
+// $btn-subtle-font-weight: bold !default;
+// $btn-subtle-font-size: base;
+// $btn-font-weight: bold !default;
+// $btn-icon--size: 1.5em !default;
+// $btn-icon--size--small: $btn-icon--size !default;
+// $btn-bg-color--flat: palette(blue);
+//
+//
+// /**
+//  * 1. Allow us to style box model properties.
+//  * 2. Line different sized buttons up a little nicer.
+//  * 3. Make buttons inherit font styles (often necessary when styling `input`s as
+//  *    buttons).
+//  * 4. Reset/normalize some styles.
+//  * 5. Force all button-styled elements to appear clickable.
+//  * 6. Subtract the border size from the padding value so that buttons do not
+//  *    grow larger as we add borders.
+//  */
+// @mixin button($btn-padding: 9px $btn-padding) {
+//   @include bolt-font-weight(semibold);
+//   @include no-select();
+//   @include bolt-font-size(medium);
+//   @supports (display: flex) {
+//     display: inline-flex;
+//     justify-content: center;
+//   }
+//   display: inline-block; /* [1] */
+//
+//   padding: $btn-padding;
+//   text-align: center; /* [4] */
+//   cursor: pointer; /* [5] */
+//   text-decoration: none;
+//   vertical-align: middle; /* [2] */
+//   border-style: $btn-border-style;
+//   border-width: $btn-border-width;
+//   border-radius: $btn-border-radius;
+//   font: inherit; /* [3] */
+//   white-space: nowrap;
+//   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+//
+//   &:hover,
+//   &:focus,
+//   &:active {
+//     text-decoration: none;
+//   }
+// }
+// $bolt-component-namespace: 'c-bolt-';
+//
+// .#{$bolt-component-namespace}button {
+//   @include button();
+//   @include button-color($btn-bg-color);
 // }
 //
-// .c-button__icon--small {
-//  width: $btn-icon--size--small;
-//  height: $btn-icon--size--small;
+// .#{$bolt-component-namespace}button--disabled,
+// .#{$bolt-component-namespace}button[disabled] {
+//   cursor: default;
+//   opacity: 0.3;
+//   pointer-events: none;
 // }
 //
-//
-//
-//
-//
-// .c-button__text {
-//   vertical-align: middle;
-//   white-space: normal;
-//   display: inline-block;
-// }
-//
-// %c-button--subtle,
-// .c-button--subtle {
+// .c-bolt-button--flat {
+//   color: currentColor;
 //   background-color: transparent;
-//   border-color: transparent;
-//   color: $btn-subtle-color;
-//   @include font-size($btn-subtle-font-size);
-//
-//   @include font-weight($btn-subtle-font-weight);
+//   border-color: currentColor;
 //
 //   &:hover {
-//     background-color: rgba(palette(white), 0.2);
-//     color: palette(blue, dark);
-//     border-color: transparent;
+//     color: currentColor;
+//     background-color: mix(black, rgba(palette(white), 0.1), 15%);
+//     border-color: currentColor;
 //   }
 //
-//   &:active,
-//   &:focus {
-//     background-color: rgba(palette(white), 0.3);
-//     color: palette(blue, darker);
-//     border-color: transparent;
-//   }
-// }
-//
-
-//
-//
-// %c-button--full,
-// .c-button--full {
-//   width: 100%;
-// }
-//
-//
-// %c-button--full\@only-xsmall,
-// .c-button--full\@only-xsmall {
-//     @include respond-to('only-xsmall') {
-//     // @media screen and (max-width: 479px){
-//       width: 100%;
-//       display: block;
-//     }
-// }
-//
-// %c-button--full\@only-small,
-// .c-button--full\@only-small {
-//   @include respond-to('only-small') {
-//     width: 100%;
-//     display: block;
+//   &:focus,
+//   &:active {
+//     color: currentColor;
+//     background-color: mix(black, rgba(palette(white), 0.1), 30%);
+//     border-color: currentColor;
 //   }
 // }
 //
 //
-
-//
-//
-// %c-button--large,
-// .c-button--large {
-//   padding-top: $btn-padding--large - $btn-border-width;
-//   padding-bottom: $btn-padding--large - $btn-border-width;
-//   padding-left: ($btn-padding--large * 2) - $btn-border-width;
-//   padding-right: ($btn-padding--large * 2) - $btn-border-width;
-//
-//   @include respond-to(small) {
-//     padding-left: ($btn-padding--large * 4) - $btn-border-width;
-//     padding-right: ($btn-padding--large * 4) - $btn-border-width;
-//   }
-// }
-//
-// %c-button--small,
-// .c-button--small {
-//   padding: ($btn-padding--small - $btn-border-width) (($btn-padding--small * 2) - $btn-border-width);
-// }
-//
-// %c-button--xsmall,
-// .c-button--xsmall {
-//   padding: 0 (($btn-padding--small) - $btn-border-width);
-// }
-//
-// %c-button--center,
-// .c-button--center {
-//   display: block;
-//   max-width: 300px;
-//   max-width: calc(100vw - #{$spacing-unit * 4});
-//   margin-left: auto;
-//   margin-right: auto;
+// .o-grid {
+//   background: red;
 // }
 //
 //
-// %c-button--raised,
-// .c-button--raised {
-//   box-shadow: 0 0 6px palette(gray);
-// }
 //
-// %c-button--inverted,
-// .c-button--inverted {
-//   @include button-color(palette(white));
-// }
 //
-// %c-button--success,
-// .c-button--success {
-//   @include button-color(palette(green));
-// }
+// // .c-button__icon {
+// //   margin-right: 0.5em;
+// //   width: $btn-icon--size;
+// //   height: $btn-icon--size;
+// //   flex-shrink: 0;
+// // }
+// //
+// // .c-button__icon--small {
+// //  width: $btn-icon--size--small;
+// //  height: $btn-icon--size--small;
+// // }
+// //
+// //
+// //
+// //
+// //
+// // .c-button__text {
+// //   vertical-align: middle;
+// //   white-space: normal;
+// //   display: inline-block;
+// // }
+// //
+// // %c-button--subtle,
+// // .c-button--subtle {
+// //   background-color: transparent;
+// //   border-color: transparent;
+// //   color: $btn-subtle-color;
+// //   @include font-size($btn-subtle-font-size);
+// //
+// //   @include font-weight($btn-subtle-font-weight);
+// //
+// //   &:hover {
+// //     background-color: rgba(palette(white), 0.2);
+// //     color: palette(blue, dark);
+// //     border-color: transparent;
+// //   }
+// //
+// //   &:active,
+// //   &:focus {
+// //     background-color: rgba(palette(white), 0.3);
+// //     color: palette(blue, darker);
+// //     border-color: transparent;
+// //   }
+// // }
+// //
 //
-// %c-button--warning,
-// .c-button--warning {
-//   @include button-color(palette(orange));
-// }
+// //
+// //
+// // %c-button--full,
+// // .c-button--full {
+// //   width: 100%;
+// // }
+// //
+// //
+// // %c-button--full\@only-xsmall,
+// // .c-button--full\@only-xsmall {
+// //     @include respond-to('only-xsmall') {
+// //     // @media screen and (max-width: 479px){
+// //       width: 100%;
+// //       display: block;
+// //     }
+// // }
+// //
+// // %c-button--full\@only-small,
+// // .c-button--full\@only-small {
+// //   @include respond-to('only-small') {
+// //     width: 100%;
+// //     display: block;
+// //   }
+// // }
+// //
+// //
 //
-// %c-button--error,
-// .c-button--error {
-//   @include button-color(palette(red));
-// }
+// //
+// //
+// // %c-button--large,
+// // .c-button--large {
+// //   padding-top: $btn-padding--large - $btn-border-width;
+// //   padding-bottom: $btn-padding--large - $btn-border-width;
+// //   padding-left: ($btn-padding--large * 2) - $btn-border-width;
+// //   padding-right: ($btn-padding--large * 2) - $btn-border-width;
+// //
+// //   @include respond-to(small) {
+// //     padding-left: ($btn-padding--large * 4) - $btn-border-width;
+// //     padding-right: ($btn-padding--large * 4) - $btn-border-width;
+// //   }
+// // }
+// //
+// // %c-button--small,
+// // .c-button--small {
+// //   padding: ($btn-padding--small - $btn-border-width) (($btn-padding--small * 2) - $btn-border-width);
+// // }
+// //
+// // %c-button--xsmall,
+// // .c-button--xsmall {
+// //   padding: 0 (($btn-padding--small) - $btn-border-width);
+// // }
+// //
+// // %c-button--center,
+// // .c-button--center {
+// //   display: block;
+// //   max-width: 300px;
+// //   max-width: calc(100vw - #{$spacing-unit * 4});
+// //   margin-left: auto;
+// //   margin-right: auto;
+// // }
+// //
+// //
+// // %c-button--raised,
+// // .c-button--raised {
+// //   box-shadow: 0 0 6px palette(gray);
+// // }
+// //
+// // %c-button--inverted,
+// // .c-button--inverted {
+// //   @include button-color(palette(white));
+// // }
+// //
+// // %c-button--success,
+// // .c-button--success {
+// //   @include button-color(palette(green));
+// // }
+// //
+// // %c-button--warning,
+// // .c-button--warning {
+// //   @include button-color(palette(orange));
+// // }
+// //
+// // %c-button--error,
+// // .c-button--error {
+// //   @include button-color(palette(red));
+// // }

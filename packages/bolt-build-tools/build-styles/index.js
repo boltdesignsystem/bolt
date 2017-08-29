@@ -20,14 +20,11 @@ const join = require('path').join;
 const scssSyntax = require('postcss-scss');
 const sassdoc = require('sassdoc');
 const debug = require('debug')('@bolt/build-styles');
-const eyeglass = require('eyeglass');
 const sassGlob = require('gulp-sass-glob');
 const rimraf = require('rimraf');
 const gulpif = require('gulp-if');
-const magicImporter = require('node-sass-magic-importer');
 const path = require('path');
 
-import moduleImporter from 'sass-module-importer';
 // const packageImporter = require('node-sass-package-importer');
 
 const postCSS = [
@@ -75,7 +72,7 @@ function compileCSS(userConfig) {
     // .pipe($.env.development($.sourcemaps.init()))
     // .pipe(sourcemaps.init())
       .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
-      // .pipe(sassGlob())
+      .pipe(sassGlob())
       // .pipe(sass(eyeglass({
       .pipe(sass({
         // includePaths: [
