@@ -1,7 +1,7 @@
-# bolt/objects-wrapper
+# bolt/objects-ratio
 
-Wrapper object in Bolt.
+Ratio object in Bolt.
 
 ```
-npm install @bolt/objects-wrapper
+npm install @bolt/objects-ratio
 ```

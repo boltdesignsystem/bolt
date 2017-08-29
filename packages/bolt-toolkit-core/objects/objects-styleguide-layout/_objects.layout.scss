@@ -1,0 +1,187 @@
+// $boltsg-layout--article: 55rem; //magic for bill murray image positioning
+//
+//
+//
+// // body {
+// //   width: 100%;
+// // }
+//
+// .o-boltsg-layout {
+//   // @include clearfix;
+//   width: 100vw;
+//   min-height: 100vh;
+// }
+//
+// .o-boltsg-layout--article {
+//   @include breakpoint(max-width $boltsg-layout--article) {
+//     > aside {
+//       .c-boltsg-nav--vertical {
+//         text-align: center;
+//         text-align: center;
+//         border-bottom: 1px solid black;
+//       }
+//     }
+//
+//     > footer {
+//       @include bolt-padding(0 medium);
+//       // @include mm-padding(0,($gutter + rem),0,($gutter + rem));
+//       border-top: 1px solid black;
+//
+//       p {
+//         // @include mm-margin(0,0,0,0);
+//
+//         // line-height: $gutter*1.5;
+//         white-space: nowrap;
+//       }
+//     }
+//   }
+//
+//   @include breakpoint(min-width $boltsg-layout--article) {
+//     width: 100vw;
+//     height: 100vh;
+//
+//     > * {
+//       float: left;
+//     }
+//
+//     > aside,
+//     > aside .c-boltsg-nav--vertical {
+//       // width: $golden-aside-width * 1%;
+//       width: 21.6447%;
+//       height: 100%;
+//     }
+//
+//     > aside {
+//       &:before {
+//         display: block;
+//         content: '';
+//         height: 1px;
+//       }
+//
+//       .c-boltsg-nav--vertical {
+//         // @include position(fixed,0,auto,auto,0);
+//         position: fixed;
+//         // top: 0;
+//         // right: auto;
+//         // bottom:
+//         // @include vertical-scroll;
+//         // @include text-align(right);
+//         // @include border(right);
+//       }
+//     }
+//
+//     > main {
+//       width: 56.7106%;
+//     }
+//
+//     > footer {
+//       writing-mode: vertical-rl;
+//
+//       small {
+//         // @include position(fixed,0,0,auto,auto);
+//         // @include mm-padding(($font-leading--base*2 + rem),0,($font-leading--base*2 + rem),0);
+//         @include bolt-padding(small 0);
+//
+//         height: 100%;
+//         // line-height: $gutter*1.5/$font-scale--xsmall;
+//         white-space: nowrap;
+//       }
+//
+//       p {
+//         // @include null-spacing;
+//       }
+//     }
+//
+//     .c-boltsg-article {
+//       // @include mm-margin(0,auto,0,auto);
+//       @include bolt-margin(0 auto);
+//
+//       max-width: $boltsg-layout--article + ch;
+//
+//       aside {
+//         // @include mm-margin(0,calc(#{$gutter*1.5 + rem} - #{$golden-aside-width + vw}),($font-leading--base + rem),($gutter + rem));
+//       }
+//     }
+//   }
+// }
+//
+// .o-boltsg-layout--article__inset {
+//   // @include mm-padding(($font-leading--base + rem),($gutter + rem),($font-leading--base + rem),($gutter + rem));
+//   @include bolt-padding(small);
+//
+//   @include respond-to(medium) {
+//     @include bolt-padding(medium);
+//     // @include mm-padding(($font-leading--base*2 + rem),($gutter*2 + rem),($font-leading--base*2 + rem),($gutter*2 + rem));
+//   }
+// }
+//
+// .o-boltsg-layout--fullscreen-hero {
+//   display: flex;
+//   flex-direction: column;
+//
+//   .o-boltsg-layout__main {
+//     display: flex;
+//     flex-direction: column;
+//     flex: auto;
+//
+//     > * {
+//       @incude margin(auto);
+//     }
+//   }
+//
+//   .o-boltsg-layout__footer {
+//     // @include mm-margin(auto,0,0,0);
+//   }
+// }
+//
+//
+//
+//
+// .c-boltsg-golden-two-column {
+//   @include respond-to(medium) {
+//     // @include mm-margin(0,(-$gutter + rem),0,(-$gutter + rem));
+//
+//     display: flex;
+//     flex-wrap: wrap;
+//
+//     > * {
+//       // @include mm-margin(0,($gutter + rem),0,($gutter + rem));
+//       // @include margin(0 medium);
+//       @include bolt-margin-right(medium);
+//       @include bolt-margin-left(medium);
+//       flex-grow: 1;
+//
+//       // p,
+//       // hr,
+//       // figure,
+//       // blockquote,
+//       // ol, ul, dl,
+//       // details, summary,
+//       // h1, h2, h3, h4, h5, h6 {
+//       //   &:first-child {
+//       //     @include null-spacing;
+//       //   }
+//       // }
+//
+//       // .c-heading {
+//       //   &:first-child {
+//       //     padding-top: 0;
+//       //   }
+//       // }
+//     }
+//
+//     .c-boltsg-golden-two-column__main {
+//       flex-basis: 56.7106%;
+//     }
+//
+//     .c-boltsg-golden-two-column__aside {
+//       flex-basis: 21.6447%;
+//     }
+//   }
+// }
+//
+// .c-boltsg-golden-two-column--center {
+//   @include respond-to(medium) {
+//     align-items: center;
+//   }
+// }

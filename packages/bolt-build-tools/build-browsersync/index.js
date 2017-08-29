@@ -8,7 +8,7 @@ const historyApiFallback = require('connect-history-api-fallback');
 const autoClose = require('browser-sync-close-hook');
 const browserSync = require('browser-sync');
 const connect = require('gulp-connect-php');
-
+const htmlInjector = require('bs-html-injector');
 
 const debug = require('debug')('@bolt/build-server');
 
@@ -18,31 +18,51 @@ function server(userConfig) {
       middleware: [
         // historyApiFallback()
       ],
-      // baseDir: ['./bolt-website', 'bolt-website/'],
+      server: './bolt-website',
+      baseDir: ['./bolt-website', 'bolt-website/'],
+      notify: false,
+      // notify: {
+      //   styles: [
+      //     'display: none',
+      //     'padding: 5px 15px',
+      //     'font-family: sans-serif',
+      //     'position: fixed',
+      //     'font-size: 0.9em',
+      //     'z-index: 9999',
+      //     'bottom: 0px',
+      //     'right: 0px',
+      //     'border-top-right-radius: 5px',
+      //     'border-top-left-radius: 5px',
+      //     'background-color: #1B2032',
+      //     'margin: 0',
+      //     'color: white',
+      //     'text-align: center',
+      //   ],
+      // },
       // routes: {
       //   '/bower_components': 'bower_components'
       // }
-      serveStatic: [{
-        route: ['/'],
-        dir: './bolt-website'
-      }, {
-        route: ['/schemas'],
-        dir: './packages/website-pattern-lab/schemas'
-      }, {
-        route: ['/pattern-lab'],
-        dir: './bolt-website/pattern-lab'
-      }, {
-        route: ['/vendor/pattern-builder/pattern-kit/web'],
-        dir: './packages/website-pattern-lab/schemas/pattern-kit/web'
-      }, {
-        route: ['/styles'],
-        dir: './bolt-website/styles'
-      }],
-      proxy: '127.0.0.1:8000',
+      // serveStatic: [{
+      //   route: ['/'],
+      //   dir: './bolt-website'
+      // }, {
+      //   route: ['/schemas'],
+      //   dir: './packages/website-pattern-lab/schemas'
+      // }, {
+      //   route: ['/pattern-lab'],
+      //   dir: './bolt-website/pattern-lab'
+      // }, {
+      //   route: ['/vendor/pattern-builder/pattern-kit/web'],
+      //   dir: './packages/website-pattern-lab/schemas/pattern-kit/web'
+      // }, {
+      //   route: ['/styles'],
+      //   dir: './bolt-website/styles'
+      // }],
+      // proxy: '127.0.0.1:8000',
       // serveStatic: [{
       //   route: ['/patterns'],
-      //   dir: './bolt-website/patterns'
-      // },
+      //   dir: './bolt-website/pattern-lab'
+      // }]
       // {
       //   route: ['/schemas'],
       //   dir: './packages/website-pattern-lab/schemas'
@@ -52,15 +72,15 @@ function server(userConfig) {
     });
 
 
-    config.files = config.files.map(pattern => ({
-      match: pattern,
-      fn: (event) => {
-        if (!['add', 'change'].includes(event)) {
-          return;
-        }
-        browserSync.reload('*.html');
-      }
-    }));
+    // config.files = config.files.map(pattern => ({
+    //   match: pattern,
+    //   fn: (event) => {
+    //     if (!['add', 'change'].includes(event)) {
+    //
+    //     }
+    //     // browserSync.reload('*.html');
+    //   }
+    // }));
 
 
     // browserSync.use({
@@ -71,6 +91,10 @@ function server(userConfig) {
     // });
 
     browserSync.create(config.serverName);
+
+    browserSync.use(htmlInjector, {
+      files: './bolt-website/**/*.html'
+    });
     // const browserSyncReuseTab = require('browser-sync-reuse-tab')(browserSync, 'localhost:3000');
 
     // if (config.installCert) {
@@ -85,14 +109,14 @@ function server(userConfig) {
     // } else {
 
 
-    connect.server({
-      base: './packages/website-pattern-lab/schemas'
-    }, () => {
-      browserSync.init(config);
-      // browserSync({
-      //
-      // });
-    });
+    // connect.server({
+    //   base: './packages/website-pattern-lab/schemas'
+    // }, () => {
+    browserSync.init(config);
+    // browserSync({
+    //
+    // });
+    // });
 
     // gulp.task('connect-sync', () => {
 

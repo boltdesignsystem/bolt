@@ -19,7 +19,7 @@
     "clean:all": "npm run clean:git && npm run clean:lerna",
     "lint": "npm-run-all --parallel lint:* -c",
     "mocha": "mocha packages/**/*/tests",
-    "now:deploy": "originalurl=$(now boltdesignsystem) | branch=$(git rev-parse --abbrev-ref HEAD | sed -e 's///-/g') | now alias $originalurl $branch'-boltdesignsystem'",
+    "now:deploy": "originalurl=$(now bolt-website) | branch=$(git rev-parse --abbrev-ref HEAD | sed -e 's/\//-/g') | now alias $originalurl $branch'-boltdesignsystem'",
     "postinstall": "npm run bootstrap && npm run setup:composer",
     "prepublishOnly": "npm run snyk-protect",
     "publish-beta": "lerna run build && lerna publish --npm-tag=beta --skip-git",
@@ -34,9 +34,7 @@
     "start": "serve ./boltdesignsystem --single",
     "test": "npm run mocha"
   },
-  "pre-commit": [
-    "test"
-  ],
+  "pre-commit": [],
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
@@ -132,6 +130,12 @@
     ],
     "*.scss": [
       "stylelint"
+    ]
+  },
+  "now": {
+    "files": [
+      "bolt-website",
+      "bolt-website/pattern-lab/styleguide/bower_components/**/*"
     ]
   }
 }

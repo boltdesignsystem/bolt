@@ -6,7 +6,7 @@ custom_css:
   - bolt.v0.1
 ---
 <div class="o-bolt-grid o-bolt-grid--center o-bolt-grid--large o-bolt-grid--middle">
-  <div class="o-bolt-grid__item u-bolt-width-1/1 u-bolt-width-8/12@medium">
+  <div class="o-bolt-grid__cell u-bolt-width-1/1 u-bolt-width-8/12@medium">
     <header role="banner">
 
       <div class="c-bolt-page-intro">
@@ -42,7 +42,7 @@ custom_css:
   </div>
 
 
-  <div class="o-bolt-grid__item u-bolt-width-1/1 u-bolt-width-4/12@medium">
+  <div class="o-bolt-grid__cell u-bolt-width-1/1 u-bolt-width-4/12@medium">
     <section role="region">
       <ul class="o-bolt-ui-list o-bolt-ui-list--borderless">
         <li class="o-bolt-ui-list__item">

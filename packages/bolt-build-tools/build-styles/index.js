@@ -24,6 +24,11 @@ const eyeglass = require('eyeglass');
 const sassGlob = require('gulp-sass-glob');
 const rimraf = require('rimraf');
 const gulpif = require('gulp-if');
+const magicImporter = require('node-sass-magic-importer');
+const path = require('path');
+
+import moduleImporter from 'sass-module-importer';
+// const packageImporter = require('node-sass-package-importer');
 
 const postCSS = [
   postcssReporter({ clearReportedMessages: true }),
@@ -73,17 +78,27 @@ function compileCSS(userConfig) {
       // .pipe(sassGlob())
       // .pipe(sass(eyeglass({
       .pipe(sass({
-        includePaths: [
-          'node_modules',
-          'packages',
-          'sandbox/pattern-library/node_modules',
-          'sandbox/styleguide/node_modules'
-        ],
-        importer: [
-          npmSass.importer
-        //  moduleImporter(),
-        //  glopImporter()
-        ],
+        // includePaths: [
+        //   'node_modules',
+        //   'packages',
+        //   'sandbox/pattern-library/node_modules',
+        //   'packages/bolt-toolkit/node_modules',
+        //   'sandbox/styleguide/node_modules'
+        // ],
+        // importer: moduleImporter(),
+        // importer: magicImporter({
+        //   disableImportOnce: true
+        // }),
+        // importer: packageImporter({
+        //   disableImportOnce: true
+        // }),
+        importer: require('npm-sass').importer,
+        //         importer: [
+        // magicImporter()
+        //           // npmSass.importer
+        //         //  moduleImporter(),
+        //         //  glopImporter()
+        //         ],
         functions: exportJson(config.data, 'export_data'),
         outputStyle: 'expanded',
         precision: 2
@@ -123,7 +138,7 @@ function watchCSS(userConfig) {
 
 
     if (config.sassdoc !== false) {
-      watchTasks.push(sassDoc(userConfig));
+      // watchTasks.push(sassDoc(userConfig));
     }
     const src = config.extraWatches
       ? [].concat(config.src, config.extraWatches)

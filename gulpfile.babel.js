@@ -297,21 +297,29 @@ gulp.task(bolt.recompilePatternLab());
 
 const boltCSSConfig = {
   // root: 'packages/website-pattern-lab',
+  // src: [
+  //   // './packages/ui-toolkit/bolt/*',
+  //   ,
+  //   'packages/bolt-toolkit/bolt-styleguide.scss'
+  //   // 'packages/ui-toolkit/bolt/*.scss',
+  //   // 'packages/ui-toolkit/bolt/bolt.v0.1.scss'
+  //   // 'packages/ui-toolkit/bolt/bolt-styleguide.scss'
+  // ],
   src: [
-    // './packages/ui-toolkit/bolt/*',
-    'packages/bolt-toolkit/bolt.scss',
-    'packages/bolt-toolkit/bolt-styleguide.scss'
-    // 'packages/ui-toolkit/bolt/*.scss',
-    // 'packages/ui-toolkit/bolt/bolt.v0.1.scss'
-    // 'packages/ui-toolkit/bolt/bolt-styleguide.scss'
+    './packages/bolt-toolkit/**/*.scss',
+    './packages/bolt-toolkit-core/**/*.scss',
+    './packages/bolt-toolkit-ui/**/*.scss',
+    '!./packages/**/node_modules/**/*',
+
+
   ],
   data: './packages/website-pattern-lab/source/_data',
   dest: 'bolt-website/styles',
   extraWatches: [
-    './packages/bolt-toolkit/**/*.scss',
-    './packages/bolt-toolkit-core/**/*.scss',
-    './packages/bolt-toolkit-ui/**/*.scss',
-    '!./packages/**/node_modules/**/*'
+    // './packages/bolt-toolkit/**/*.scss',
+    // './packages/bolt-toolkit-core/**/*.scss',
+    // './packages/bolt-toolkit-ui/**/*.scss',
+    // '!./packages/**/node_modules/**/*'
   ]
   // jsonDest: './sandbox/pattern-library/source/_data',
 };
@@ -319,6 +327,14 @@ const compileBoltCSS = bolt.compileCSS(boltCSSConfig);
 gulp.task(compileBoltCSS);
 gulp.task('styles:watch', bolt.watchCSS(boltCSSConfig));
 gulp.task('styles:sassdoc', bolt.sassDoc(boltCSSConfig));
+
+//
+// return gulp.src('path/to/source/**/*.scss')
+//     .pipe(sassdoc())
+//     // Either trigger `resume` event.
+//     .resume();
+//     // Or attach a noop `data` event listener.
+//     .on('data', function () {});
 
 
 gulp.task(bolt.createSymlinks());
