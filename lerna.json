@@ -1,9 +1,9 @@
 {
-  "lerna": "2.0.0",
+  "lerna": "2.1.0",
   "version": "independent",
   "npmClient": "yarn",
   "changelog": {
-    "repo": "ec-europa/europa-component-library",
+    "repo": "bolt-design-system/bolt",
     "labels": {
       "tag: new feature": ":rocket: New Feature",
       "tag: breaking change": ":boom: Breaking Change",
@@ -15,18 +15,6 @@
     "cacheDir": ".changelog"
   },
   "packages": [
-    "packages/build-tools/**",
-    "packages/config/**",
-    "packages/ui-toolkit/01-settings/**",
-    "packages/ui-toolkit/02-tools/**",
-    "packages/ui-toolkit/03-generic/**",
-    "packages/ui-toolkit/04-elements/**",
-    "packages/ui-toolkit/05-objects/**",
-    "packages/ui-toolkit/06-components/**",
-    "packages/ui-toolkit/07-themes/**",
-    "packages/ui-toolkit/08-utilities/**",
-    "packages/ui-toolkit/bolt",
-    "packages/exec-php",
-    "packages/frctl-twig"
+    "packages/bolt-*/**"
   ]
 }

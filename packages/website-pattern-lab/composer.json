@@ -30,6 +30,14 @@
     },
     "repositories": [
       {
+        "type": "path",
+        "url": "../styleguidekit-assets-default"
+      },
+      {
+        "type": "path",
+        "url": "../pattern-kit"
+      },
+      {
         "type": "vcs",
         "url": "https://github.com/drupal-pattern-lab/patternlab-php-core"
       },
@@ -42,13 +50,16 @@
         "url": "https://github.com/drupal-pattern-lab/styleguidekit-twig-default"
       }
     ],
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.5.9",
-        "pattern-lab/core": "^2.7.0",
+        "pattern-lab/core": "dev-feature/resilient-public-dir as 2.8.0",
         "pattern-lab/patternengine-twig": "^2.0.0",
         "pattern-lab/styleguidekit-twig-default": "^3.0.0",
         "pattern-lab/drupal-twig-components": "^2.0.0",
-        "aleksip/plugin-data-transform": "^1.0.0"
+        "bolt/styleguidekit-assets-default": "*",
+        "aleksip/plugin-data-transform": "^1.1.0",
+        "mexitek/phpcolors": "^0.4.0"
     },
     "config": {
         "process-timeout": 0,
