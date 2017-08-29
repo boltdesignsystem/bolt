@@ -1,8 +1,7 @@
-# bolt/settings-global
+# bolt/generic-shared
 
-Global settings. Part of the Bolt “Core” CSS framework that powers the [Bolt Design System](https://www.boltdesignsystem.com).
+Generic shared. Part of the Bolt “Core” CSS framework that powers the [Bolt Design System](https://www.boltdesignsystem.com).
 
-- [Sassdocs](https://www.boltdesignsystem.com/docs/#settings:%20global)
 - Demo (Coming Soon)
 
 - - - -
@@ -11,7 +10,6 @@ Global settings. Part of the Bolt “Core” CSS framework that powers the [Bolt
 
 - [Cheat Sheet](#cheat-sheet)
 - [Getting Started](#getting-started)
-- [Global Features](#global-features)
 - [Further Reading](#further-reading)
 
 ## Cheat Sheet
@@ -19,35 +17,16 @@ Global settings. Part of the Bolt “Core” CSS framework that powers the [Bolt
 ### Install via NPM
 
 ```
-npm install @bolt/settings-global
+npm install @bolt/generic-shared
 ```
 
-### Global Chart*
+### Declare Margins In the Same Direction
 
-#### Block Elements
+All generic block level elements have been set to use `margin-bottom` for spacing.
 
-- `p`
-- `pre`
-- `blockquote`
-- `table`
-- `ol`
-- `ul`
-- `dl`
-- `fieldset`
-- `legend`
-- `details`
-- `summary`
-- `hr`
-- `address`
+### Consistent Indentation for Lists
 
-#### Heading Elements
-
-- `h1`
-- `h2`
-- `h3`
-- `h4`
-- `h5`
-- `h6`
+Generic ordered list, unordered list, and definition list’s indentation have been reset to be consistent across (medium spacing).
 
 - - - -
 
@@ -57,10 +36,10 @@ The best way to start using Bolt is via the *Bolt Starterkit* (coming soon), a p
 
 You can also use the full [Bolt Core](https://www.npmjs.com/package/@bolt/core) CSS framework on its own, or, install just the parts you need and fold the different ITCSS layers of Bolt into your existing codebase.
 
-Installing Bolt’s global settings is as easy as running NPM install:
+Installing Bolt’s generic shared is as easy as running NPM install:
 
 ```
-npm install @bolt/settings-global
+npm install @bolt/generic-shared
 ```
 
 > **TIP:**: Don’t have a `package.json` file? Need a little help getting started? Check out our [Getting Started](https://www.boltdesignsystem.com/getting-started) guide for some tips to help get you up to speed.
@@ -71,7 +50,7 @@ Once installed, you should  `@import`  the main Sass partial into your project�
 
 ```
 // Settings
-@import ‘@bolt/settings-global’
+@import ‘@bolt/generic-shared’
 ...
 
 // Tools
@@ -85,25 +64,6 @@ Since Bolt's CSS architecture is based on [ITCSS (Inverted Triangle CSS)](http:/
 We recommend using Bolt’s Gulp-based [front-end build tools](https://www.npmjs.com/package/@bolt/build-tools) to compile your Sass as we're pre-packaging many of the latest tools and add-ons to help you write your very best: LibSass, Autoprefixer, PostCSS, CleanCSS, Sassdoc, Stylelint, Gulp Plumber, npm-sass, and BrowserSync live reloading.
 
 - - - -
-
-## Global Features
-
-
-### Using Block Elements Variable
-
-```
-#{$bolt-all-block-elements} {
-  ...
-}
-```
-
-### Using Heading Elements Variable
-
-```
-#{$bolt-all-heading-elements} {
-  ...
-}
-```
 
 ## Further Reading:
 
