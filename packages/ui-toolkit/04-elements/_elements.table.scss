@@ -1,6 +1,3 @@
-/* ------------------------------------ *\
-  Basic Table Elements
-\* ------------------------------------ */
 table {
   // @include null-spacing;
 
@@ -16,15 +13,15 @@ tfoot {
 
 th,
 td {
-  @include bolt-font-size(small);
+  @include font-size(small);
   // @include mm-padding(($font-leading--tight/2 + rem),($gutter/2 + rem),($font-leading--tight/2 + rem),($gutter/2 + rem));
   // @include text-align(left);
 }
 
 thead th,
 tfoot td {
-  @include bolt-font-family(heading);
-  @include bolt-font-weight(bold);
+  @include font-family(heading);
+  @include font-weight(bold);
 }
 
 td {

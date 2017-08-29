@@ -1,6 +1,11 @@
-/* ------------------------------------ *\
+////
+/// @group Settings: Layout
+/// @author Mike Mai
+////
+
+/*------------------------------------*\
   Spacing Scale
-\* ------------------------------------ */
+\*------------------------------------*/
 
 // Unit on which all spacing is based
 $bolt-spacing-gutter: 2rem;
@@ -8,7 +13,8 @@ $bolt-spacing-leading: 1.65;
 $bolt-spacing-squished: 0.5;
 $bolt-spacing-stretched: 1.5;
 
-// Modular spacing scale
+/// Bolt's definition of spacing scale
+/// @type Map
 $bolt-spacing-values: (
   '':        1,
   'xxsmall': 0.125,
@@ -19,6 +25,7 @@ $bolt-spacing-values: (
   'xlarge':  4,
   'xxlarge': 8
 );
+
 $bolt-spacing-sizes: ();
 
 $bolt-spacing-properties: (

@@ -1,17 +1,17 @@
-.o-bolt-inline-list {
+.o-inline-list {
   display: inline-block;
   display: inline-flex;
-  letter-spacing: bolt-spacing(small) * -1;
+  letter-spacing: spacing(small) * -1;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.o-bolt-inline-list > .o-bolt-inline-list__item {
+.o-inline-list > .o-inline-list__item {
   letter-spacing: normal;
 
   &:not(:last-child) {
-    @include bolt-padding-right(medium);
+    @include padding-right(medium);
     // margin-left: 0;
   }
 }

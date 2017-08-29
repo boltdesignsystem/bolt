@@ -74,10 +74,10 @@ function compileCSS(userConfig) {
      .pipe(sass(eyeglass({
       //  includePaths: globbedIncludePaths,
        includePaths: [
-         'node_modules',
-         'packages',
-         'sandbox/pattern-library/node_modules',
-         'sandbox/styleguide/node_modules'
+        //  'node_modules',
+        //  'packages',
+        //  'sandbox/pattern-library/node_modules',
+        //  'sandbox/styleguide/node_modules'
        ],
        importer: [
          npmSass.importer
@@ -90,12 +90,12 @@ function compileCSS(userConfig) {
      .pipe(postcss(config.postCSS))
      .pipe(duration('CSS Compile Time'))
      .pipe(size({ title: 'Total CSS Size' }))
-     .pipe(cleanCSS({
-       aggressiveMerging: false,
-       advanced: false,
-       keepSpecialComments: 0,
-       processImport: true
-     }))
+    //  .pipe(cleanCSS({
+    //    aggressiveMerging: false,
+    //    advanced: false,
+    //    keepSpecialComments: 0,
+    //    processImport: true
+    //  }))
      // .pipe(sourcemaps.write('./'))
     .pipe(gulpif(config.sourceMaps, sourcemaps.write('./')))
      .pipe(gulp.dest(config.dest))

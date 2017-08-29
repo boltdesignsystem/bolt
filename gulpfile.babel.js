@@ -75,17 +75,15 @@ gulp.task(bolt.watchSymlinks());
 const boltCSSConfig = {
   // root: 'packages/website-pattern-lab',
   src: [
-    // './packages/ui-toolkit/bolt/*',
-    'packages/ui-toolkit/bolt/bolt.scss',
-    'packages/ui-toolkit/bolt/bolt-styleguide.scss'
     // 'packages/ui-toolkit/bolt/*.scss',
+    'packages/ui-toolkit/bolt/bolt.scss'
     // 'packages/ui-toolkit/bolt/bolt.v0.1.scss'
     // 'packages/ui-toolkit/bolt/bolt-styleguide.scss'
   ],
   dest: 'bolt-website/styles',
   extraWatches: [
-    './packages/ui-toolkit/**/*.scss',
-    '!./packages/ui-toolkit/**/node_modules/**/*'
+    './packages/**/*.scss'
+    // '!./packages/**/node_modules/**/*',
     // '!./**/node_modules/**/*'
   ]
   // jsonDest: './sandbox/pattern-library/source/_data',
@@ -196,7 +194,7 @@ gulp.task('symlinks', gulp.series([
 gulp.task('default',
   gulp.series([
     'styles:compile',
-    // 'styles:sassdoc',
+    'styles:sassdoc',
     'symlinks',
     'patternlab:compile',
     'jekyll:compile',

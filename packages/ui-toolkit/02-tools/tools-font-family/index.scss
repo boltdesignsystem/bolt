@@ -18,19 +18,19 @@
 /// @param {string} $type
 ///   Defines the font-family being used for each type of text: heading, body, or code.
 ///
-@mixin bolt-font-family($type, $is_root: false) {
-  $fallback-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'fallback-font');
-  $custom-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'custom-font');
+@mixin font-family($type, $is_root: false) {
+  $fallback-font-family: map-get-deep($font-families, 'font-families', $type, 'system');
+  $custom-font-family: map-get-deep($font-families, 'font-families', $type, 'custom');
 
   font-family: $fallback-font-family;
 
   @if $is_root == false {
-    .#{$bolt-fonts--loaded-class} & {
+    .#{$fonts-loaded-class} & {
       font-family: $custom-font-family;
     }
   }
   @else {
-    &.#{$bolt-fonts--loaded-class} {
+    &.#{$fonts-loaded-class} {
       font-family: $custom-font-family;
     }
   }

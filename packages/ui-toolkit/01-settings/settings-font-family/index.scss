@@ -4,52 +4,58 @@
 ////
 
 
-/* ------------------------------------ *\
-  Default Fallback + Custom Web Font Stacks
-\* ------------------------------------ */
+/*------------------------------------*\
+  Defining system and custom fonts
+\*------------------------------------*/
 
 
 /*
- * Default Font Family Stacks
- *
- * 1. This maps to the system UI font.
- * 2. This is for known system UI fonts & requires updates
+ * System UI Fonts
  */
-$bolt-font-family--sans-fallback:
-  -apple-system, BlinkMacSystemFont, /* [1] */
-  'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', /* [2] */
-  'Helvetica Neue', sans-serif;
-$bolt-font-family--serif: 'Georgia', serif;
-$bolt-font-family--mono-fallback: monospace;
+
+$font-ui-default: -apple-system, BlinkMacSystemFont; // This maps to the system UI font.
+$font-ui-known: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans'; // This is for known system UI fonts and requires frequent updates.
 
 
 /*
- * Custom web font stacks
+ * System font categories
  */
-$bolt-font-family--sans:  'Open Sans', 'Helvetica Neue', sans-serif;
-$bolt-font-family--serif: 'Georgia', serif;
-$bolt-font-family--mono:  'Courier New', monospace;
+
+$font-sans--system: $font-ui-default, $font-ui-known, 'Helvetica Neue', sans-serif;
+$font-serif--system: serif;
+$font-monospace--system: monospace;
 
 
 /*
- * Map font stack categories to Bolt's body, heading, and code.
+ * Custom font categories
+ */
+
+$font-sans: 'Open Sans', 'Helvetica Neue', sans-serif;
+$font-serif: 'Georgia', serif;
+$font-monospace: 'Courier New', monospace;
+
+
+/*
+ * Mapping font categories to Bolt's body, heading, and code.
  */
 
 /// Bolt's definition of body, heading, and code text.
 /// @type Map
-$bolt-font-families: (
+$font-families: (
   font-families: (
     body: (
-      fallback-font: $bolt-font-family--sans-fallback,
-      custom-font:   $bolt-font-family--sans
+      system: $font-sans--system,
+      custom: $font-sans
     ),
     heading: (
-      fallback-font: $bolt-font-family--sans-fallback,
-      custom-font:   $bolt-font-family--sans
+      system: $font-sans--system,
+      custom: $font-sans
     ),
     code: (
-      fallback-font: $bolt-font-family--mono-fallback,
-      custom-font:   $bolt-font-family--mono
+      system: $font-monospace--system,
+      custom: $font-monospace
     )
   )
 );
+
+
