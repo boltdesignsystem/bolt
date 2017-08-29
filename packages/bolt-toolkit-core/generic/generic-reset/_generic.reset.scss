@@ -1,18 +1,16 @@
 /* ------------------------------------ *\
   GENERIC - RESET
 \* ------------------------------------ */
-
+/* stylelint-disable selector-list-comma-newline-after */
 body,
-h1, h2, h3, h4, h5, h6,
-blockquote, p, pre,
-dl, dd, ol, ul,
+dd,
 figure,
-hr,
-fieldset, legend {
-  margin: 0;
-  padding: 0;
+#{$bolt-all-block-elements},
+#{$bolt-all-heading-elements} {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
 }
-
+/* stylelint-enable selector-list-comma-newline-after */
 
 /*
 * Remove text-shadow in selection highlight:
@@ -23,23 +21,22 @@ fieldset, legend {
 */
 ::-moz-selection {
   text-shadow: none;
+  background-color: #b3d4fc;
 }
 
 ::selection {
   text-shadow: none;
+  background-color: #b3d4fc;
 }
-
-
 
 
 /**
  * Remove trailing margins from nested lists.
  */
-
 li > {
   ol,
   ul {
-    margin-bottom: 0;
+    @include bolt-margin-bottom(0);
   }
 }
 

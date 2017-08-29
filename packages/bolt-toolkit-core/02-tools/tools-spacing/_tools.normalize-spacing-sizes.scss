@@ -15,9 +15,9 @@
 
     @if (type-of($size) == string and $size != 'auto' and $size != 'none') {
       @if ($i % 2 == 1) {
-        $size: bolt-v-spacing($size, $spacing-type);
+        $size: v-spacing($size, $spacing-type);
       } @else {
-        $size: bolt-spacing($size);
+        $size: spacing($size);
       }
     }
     $list: append($list, $size);
