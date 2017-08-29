@@ -1,13 +1,10 @@
 /* ------------------------------------ *\
   ELEMENTS - HEADINGS
 \* ------------------------------------ */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @include font-family(heading);
-  @include font-size(large, tight);
-  @include font-weight(bold);
+/* stylelint-disable selector-list-comma-newline-after */
+#{$bolt-all-heading-elements} {
+  @include bolt-font-family(heading);
+  @include bolt-font-size(large, tight);
+  @include bolt-font-weight(bold);
 }
+/* stylelint-enable selector-list-comma-newline-after */
