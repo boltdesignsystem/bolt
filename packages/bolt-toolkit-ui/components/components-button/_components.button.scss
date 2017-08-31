@@ -34,7 +34,21 @@ $bolt-border-width--button: 1px;
 
 // Placeholder for colors.
 @mixin bolt-link-color {
-  color: var(--bolt-color-secondary, $bolt-color-secondary);
+  &:link {
+    color: var(--bolt-color-secondary, $bolt-color-secondary);
+  }
+
+  &:visited {
+    color: var(--bolt-color-secondary, inherit);
+  }
+
+  &:hover {
+    color: var(--bolt-color-secondary, mix(white, $bolt-color-secondary, 35%));
+  }
+
+  &:active {
+    color: var(--bolt-color-secondary, $bolt-color-secondary);
+  }
 }
 
 @mixin bolt-button-color($hiarchy) {
@@ -70,15 +84,15 @@ $bolt-border-width--button: 1px;
   @elseif $hiarchy == 'secondary' {
     &:link,
     &:visited {
-      color:            var(--bolt-color-primary, $bolt-color-secondary);
+      color:            var(--bolt-color-primary, $bolt-color-primary);
       border-color:     var(--bolt-color-button-text, $bolt-color-button-text);
       background-color: var(--bolt-color-button-text, $bolt-color-button-text);
       box-shadow:       $bolt-shadow;
     }
 
     &:hover {
-      border-color:     var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 1%));
-      background-color: var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 1%));
+      border-color:     var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 2%));
+      background-color: var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 2%));
       box-shadow:       $bolt-shadow--raised;
     }
 
@@ -95,13 +109,40 @@ $bolt-border-width--button: 1px;
       box-shadow:       $bolt-shadow--raised;
     }
   }
+
+  @elseif $hiarchy == 'tertiary' {
+    &:link,
+    &:visited {
+      color:            var(--bolt-color-secondary, $bolt-color-secondary);
+      border-color:     transparent;
+      background-color: transparent;
+      box-shadow:       none;
+    }
+
+    &:hover {
+      border-color:     transparent;
+      background-color: transparent;
+      box-shadow:       none;
+    }
+
+    &:active {
+      border-color:     transparent;
+      background-color: transparent;
+    }
+
+    &:focus {
+      box-shadow:       none;
+    }
+
+    &:focus:hover {
+      box-shadow:       none;
+    }
+  }
 }
 
 @mixin bolt-button {
   @include bolt-reset-button-styles;
-  @include bolt-padding(medium, squished);
   @include bolt-no-select();
-  @include bolt-font-size(xsmall);
   @include bolt-font-weight(semibold);
 
   display: inline-block;
@@ -128,25 +169,70 @@ $bolt-border-width--button: 1px;
   }
 }
 
-.c-bolt-button {
+.t-test-theme {
+  color: var(--bolt-color-text, inherit);
+  background-color: var(--bolt-color-background, inherit);
+  * {
+    color: var(--bolt-color-text, inherit);
+    background-color: var(--bolt-color-background, inherit);
+  }
+}
+
+.c-test-button {
   @include bolt-button();
 }
 
-.c-bolt-button,
-.c-bolt-button--primary {
+.c-test-button,
+.c-test-button--primary {
   @include bolt-button-color(primary);
 }
 
-.c-bolt-button--secondary {
+.c-test-button--secondary {
   @include bolt-button-color(secondary);
 }
 
-.c-bolt-button--tertiary {
+.c-test-button--tertiary {
   @include bolt-button-color(tertiary);
+
+  &:after {
+    @include bolt-font-size(medium);
+
+    width: 1rem;
+    content: '\00BB';
+    line-height: 1;
+  }
 }
 
-.c-bolt-link {
+.c-test-button,
+.c-test-button--medium {
+  @include bolt-padding(medium, squished);
+  @include bolt-font-size(xsmall);
+}
+
+.c-test-button--xsmall {
+  @include bolt-padding(xsmall, squished);
+  @include bolt-font-size(xsmall);
+}
+
+.c-test-button--small {
+  @include bolt-padding(small, squished);
+  @include bolt-font-size(xsmall);
+}
+
+.c-test-button--large {
+  @include bolt-padding(medium, squished);
+  @include bolt-font-size(medium);
+}
+
+.c-test-button--xlarge {
+  @include bolt-padding(large, squished);
+  @include bolt-font-size(large);
+}
+
+.c-test-link {
+  @include bolt-reset-button-styles;
   @include bolt-link-color;
 
   text-decoration: underline;
+  transition: all $bolt-transition;
 }

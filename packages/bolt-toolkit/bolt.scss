@@ -51,6 +51,7 @@
 @import '@bolt/utilities-all';
 
 
+
 /* ------------------------------------ *\
    Theme testing
 \* ------------------------------------ */
@@ -151,13 +152,21 @@
     @include _test-theme-settings(
       bolt-palette(indigo, light),
       bolt-palette(yellow),
-      bolt-palette(white));
+      bolt-palette(yellow),
+      null,
+      null,
+      null,
+      null);
   }
   @elseif $name == 'xdark' {
     @include _test-theme-settings(
       bolt-palette(indigo),
       bolt-palette(blue),
-      bolt-palette(white));
+      bolt-palette(white),
+      null,
+      null,
+      null,
+      null);
   }
   @elseif $name == 'notification' {
     @include _test-theme-settings(
@@ -186,15 +195,6 @@
       bolt-palette(warning, dark),
       null,
       bolt-palette(error));
-  }
-}
-
-.t-test-body {
-  color: var(--bolt-color-text, inherit);
-  background-color: var(--bolt-color-background, inherit);
-  * {
-    color: var(--bolt-color-text, inherit);
-    background-color: var(--bolt-color-background, inherit);
   }
 }
 
@@ -236,4 +236,14 @@
 .t-test-notification {
   @include bolt-padding(medium, squished);
   @include test-theme(notification);
+}
+
+
+/* ------------------------------------ *\
+   Pattern Lab Styleguidekit Style
+   Overrides -- @TODO: Move to
+   external PL-specific Sass file
+\* ------------------------------------ */
+.sg-main {
+  @include bolt-padding(medium);
 }
