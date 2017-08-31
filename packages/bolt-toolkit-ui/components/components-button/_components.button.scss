@@ -1,0 +1,152 @@
+/* ------------------------------------ *\
+   Buttons
+\* ------------------------------------ */
+@import '@bolt/settings-global';
+@import '@bolt/tools-button-color';
+@import '@bolt/tools-font-size';
+@import '@bolt/tools-font-weight';
+@import '@bolt/tools-spacing';
+@import '@bolt/tools-no-select';
+
+$bolt-color-white: bolt-palette(white);
+$bolt-color-button-text: bolt-palette(white);
+$bolt-color-primary: bolt-palette(blue);
+$bolt-color-secondary: bolt-palette(blue);
+
+$bolt-color--shadow: bolt-palette(black);
+
+$bolt-shadow: 0 .04rem .15rem rgba($bolt-color--shadow, .5);
+$bolt-shadow--raised:
+  $bolt-shadow,
+  0 .35rem .6rem rgba($bolt-color--shadow, .18);
+
+$bolt-transition: ease-in-out 200ms;
+$bolt-border-radius: 3px;
+$bolt-border-width--button: 1px;
+
+@mixin bolt-reset-button-styles {
+  @include bolt-padding(0);
+  @include bolt-font-family(body);
+
+  border: none;
+  background: none;
+}
+
+// Placeholder for colors.
+@mixin bolt-link-color {
+  color: var(--bolt-color-secondary, $bolt-color-secondary);
+}
+
+@mixin bolt-button-color($hiarchy) {
+  @if $hiarchy == 'primary' {
+    &:link,
+    &:visited {
+      color:            var(--bolt-color-button-text, $bolt-color-button-text);
+      border-color:     var(--bolt-color-primary, $bolt-color-primary);
+      background-color: var(--bolt-color-primary, $bolt-color-primary);
+      box-shadow:       $bolt-shadow;
+    }
+
+    &:hover {
+      border-color:     var(--bolt-color-primary, mix(white, $bolt-color-primary, 15%));
+      background-color: var(--bolt-color-primary, mix(white, $bolt-color-primary, 15%));
+      box-shadow:       $bolt-shadow--raised;
+    }
+
+    &:active {
+      border-color:     var(--bolt-color-primary, mix(black, $bolt-color-primary, 25%));
+      background-color: var(--bolt-color-primary, mix(black, $bolt-color-primary, 25%));
+    }
+
+    &:focus {
+      box-shadow:       $bolt-shadow;
+    }
+
+    &:focus:hover {
+      box-shadow:       $bolt-shadow--raised;
+    }
+  }
+
+  @elseif $hiarchy == 'secondary' {
+    &:link,
+    &:visited {
+      color:            var(--bolt-color-primary, $bolt-color-secondary);
+      border-color:     var(--bolt-color-button-text, $bolt-color-button-text);
+      background-color: var(--bolt-color-button-text, $bolt-color-button-text);
+      box-shadow:       $bolt-shadow;
+    }
+
+    &:hover {
+      border-color:     var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 1%));
+      background-color: var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 1%));
+      box-shadow:       $bolt-shadow--raised;
+    }
+
+    &:active {
+      border-color:     var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 15%));
+      background-color: var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 15%));
+    }
+
+    &:focus {
+      box-shadow:       $bolt-shadow;
+    }
+
+    &:focus:hover {
+      box-shadow:       $bolt-shadow--raised;
+    }
+  }
+}
+
+@mixin bolt-button {
+  @include bolt-reset-button-styles;
+  @include bolt-padding(medium, squished);
+  @include bolt-no-select();
+  @include bolt-font-size(xsmall);
+  @include bolt-font-weight(semibold);
+
+  display: inline-block;
+  @supports (display: flex) {
+    display: inline-flex;
+    justify-content: center;
+  }
+
+  text-decoration: none;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border-style: solid;
+  border-width: $bolt-border-width--button;
+  border-radius: $bolt-border-radius;
+  transition: all $bolt-transition;
+
+  &:hover {
+    transform: translate3d(0, -1px, 0);
+  }
+
+  &:active {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.c-bolt-button {
+  @include bolt-button();
+}
+
+.c-bolt-button,
+.c-bolt-button--primary {
+  @include bolt-button-color(primary);
+}
+
+.c-bolt-button--secondary {
+  @include bolt-button-color(secondary);
+}
+
+.c-bolt-button--tertiary {
+  @include bolt-button-color(tertiary);
+}
+
+.c-bolt-link {
+  @include bolt-link-color;
+
+  text-decoration: underline;
+}
