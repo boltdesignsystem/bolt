@@ -37,7 +37,7 @@
   "pre-commit": [],
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "./node_modules/cz-lerna-changelog"
     },
     "validate-commit-msg": {
       "maxSubjectLength": 100,
@@ -96,6 +96,7 @@
     "js-yaml": "^3.9.1",
     "lerna": "^2.1.0",
     "lerna-changelog": "0.6.0",
+    "lerna-semantic-release": "^9.1.0",
     "mocha": "^3.4.2",
     "nodemon": "^1.11.0",
     "npm-run-all": "^4.0.2",
@@ -118,6 +119,7 @@
   },
   "snyk": true,
   "devDependencies": {
+    "cz-lerna-changelog": "^1.2.1",
     "pre-commit": "^1.2.2"
   },
   "lint-staged": {
