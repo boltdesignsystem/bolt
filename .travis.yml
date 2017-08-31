@@ -33,10 +33,16 @@ before_script:
 install:
 - npm install -g surge
 - npm install gulpjs/gulp-cli -g
-- npm install mocha -g
 - npm install --global lerna
 - npm run setup:composer
 - npm run bootstrap
+
+
+deploy:
+  skip_cleanup: true
+  provider: surge
+  project: ./bolt-website/
+  domain: boltdesignsystem.surge.sh  
 
 script:
 - npm run test && npm run build

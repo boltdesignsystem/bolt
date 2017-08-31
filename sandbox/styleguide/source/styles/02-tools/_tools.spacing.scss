@@ -1,0 +1,23 @@
+@mixin border-box {
+  box-sizing: border-box;
+}
+
+@mixin clearfix {
+  &:before,
+  &:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin paragraph-spacing {
+  @include margin(($font-leading--base + em),0,0,0);
+}
+
+@mixin null-spacing {
+  @include margin(0,0,0,0);
+}
