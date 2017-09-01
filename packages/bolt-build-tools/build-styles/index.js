@@ -118,7 +118,7 @@ function compile(userConfig) {
       .pipe(gulpif(config.sourceMaps, sourcemaps.write('./')))
       .pipe(gulp.dest(config.dest))
       .on('end', () => {
-        core.events.emit('reload', join(config.dest, '**/*.css'));
+        // core.events.emit('reload', join(config.dest, '**/*.css'));
         done();
       });
   }
@@ -137,7 +137,7 @@ function watch(userConfig) {
       postCSS
     }, defaultConfig, userConfig);
 
-    const watchTasks = [compile(userConfig)];
+    // const watchTasks = [compile(userConfig)];
 
 
     if (config.sassdoc !== false) {
@@ -148,7 +148,14 @@ function watch(userConfig) {
       : config.src;
     // console.log(watchTasks);
 
-    return gulp.watch(src, gulp.parallel(watchTasks));
+    // console.log(src);
+    const watcher = gulp.watch(src, gulp.parallel(compile(userConfig)));
+
+    watcher.on('change', (path, stats) => {
+      console.log(`File ${path} was changed`);
+    });
+
+    // return gulp.watch(src, gulp.parallel(watchTasks));
   }
 
   watchCssTask.displayName = 'styles:watch';
@@ -182,7 +189,6 @@ function clean(userConfig) {
   return cleanStylesTask;
 }
 module.exports.clean = clean;
-
 
 
 function lint(userConfig) {

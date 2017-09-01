@@ -1,5 +1,5 @@
 const gulp = require('gulp');
-import { compileCSS, watchCSS, cleanCSS } from '../../index.js';
+const styles = require('../../index.js');
 
 const config = {
   src: [
@@ -13,9 +13,9 @@ const config = {
 };
 
 
-gulp.task('styles:compile', compileCSS(config));
-gulp.task('styles:watch', watchCSS(config));
-gulp.task('styles:clean', cleanCSS(config));
+gulp.task('styles:compile', styles.compile(config));
+gulp.task('styles:watch', styles.watch(config));
+gulp.task('styles:clean', styles.clean(config));
 
 gulp.task('compile', gulp.series([
   'styles:clean',
