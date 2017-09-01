@@ -36,17 +36,13 @@ install:
 - npm install gulpjs/gulp#4.0
 - npm install --global now
 - npm install --global lerna
-- npm run setup:composer
 - npm install
 
 script:
 - npm run test && npm run build
 
 after_success:
-- node packages/bolt-build-tools/build-slack/index.js
-#  - gulp slack
-#- chmod ugo+x ./scripts/deploy-bolt.sh
-#- "./scripts/deploy-bolt.sh"
+- npm run deploy
 
 cache:
   apt: true
