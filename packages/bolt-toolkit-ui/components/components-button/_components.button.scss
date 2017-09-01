@@ -53,7 +53,7 @@ $bolt-border-width--button: 1px;
 
 @mixin bolt-button-color($hiarchy) {
   @if $hiarchy == 'primary' {
-    &:link,
+    &,
     &:visited {
       color:            var(--bolt-color-button-text, $bolt-color-button-text);
       border-color:     var(--bolt-color-primary, $bolt-color-primary);
@@ -82,7 +82,7 @@ $bolt-border-width--button: 1px;
   }
 
   @elseif $hiarchy == 'secondary' {
-    &:link,
+    &,
     &:visited {
       color:            var(--bolt-color-primary, $bolt-color-primary);
       border-color:     var(--bolt-color-button-text, $bolt-color-button-text);
@@ -111,7 +111,7 @@ $bolt-border-width--button: 1px;
   }
 
   @elseif $hiarchy == 'tertiary' {
-    &:link,
+    &,
     &:visited {
       color:            var(--bolt-color-secondary, $bolt-color-secondary);
       border-color:     transparent;
@@ -167,14 +167,14 @@ $bolt-border-width--button: 1px;
   &:active {
     transform: translate3d(0, 0, 0);
   }
-}
 
-.t-test-theme {
-  color: var(--bolt-color-text, inherit);
-  background-color: var(--bolt-color-background, inherit);
-  * {
-    color: var(--bolt-color-text, inherit);
-    background-color: var(--bolt-color-background, inherit);
+  > * {
+    display: inline-flex;
+    align-self: center;
+
+    & + * {
+      @include bolt-margin-left(xsmall);
+    }
   }
 }
 
@@ -193,14 +193,6 @@ $bolt-border-width--button: 1px;
 
 .c-test-button--tertiary {
   @include bolt-button-color(tertiary);
-
-  &:after {
-    @include bolt-font-size(medium);
-
-    width: 1rem;
-    content: '\00BB';
-    line-height: 1;
-  }
 }
 
 .c-test-button,
@@ -235,4 +227,14 @@ $bolt-border-width--button: 1px;
 
   text-decoration: underline;
   transition: all $bolt-transition;
+}
+
+.c-test-button-group {
+  @include bolt-margin-bottom(medium);
+
+  display: flex;
+
+  > * + * {
+    @include bolt-margin-left(xsmall);
+  }
 }

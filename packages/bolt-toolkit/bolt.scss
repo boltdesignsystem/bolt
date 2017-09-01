@@ -125,6 +125,11 @@
   @else {
     --bolt-color-border: $border;
   }
+
+  @include bolt-padding(medium);
+
+  color: var(--bolt-color-text, inherit);
+  background-color: var(--bolt-color-background, inherit);
 }
 
 @mixin test-theme($name: 'xlight') {
@@ -199,42 +204,34 @@
 }
 
 .t-test-xlight {
-  @include bolt-padding(medium);
   @include test-theme(xlight);
 }
 
 .t-test-light {
-  @include bolt-padding(medium);
   @include test-theme(light);
 }
 
 .t-test-dark {
-  @include bolt-padding(medium);
   @include test-theme(dark);
 }
 
 .t-test-xdark {
-  @include bolt-padding(medium);
   @include test-theme(xdark);
 }
 
 .t-test-success {
-  @include bolt-padding(medium);
   @include test-theme(success);
 }
 
 .t-test-warning {
-  @include bolt-padding(medium);
   @include test-theme(warning);
 }
 
 .t-test-error {
-  @include bolt-padding(medium);
   @include test-theme(error);
 }
 
 .t-test-notification {
-  @include bolt-padding(medium, squished);
   @include test-theme(notification);
 }
 

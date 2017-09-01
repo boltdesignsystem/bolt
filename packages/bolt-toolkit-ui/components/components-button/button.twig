@@ -1,35 +1,58 @@
-<div class="t-test-theme">
-  <div class="{{ theme }}">
-    <p>
-      Hamburger doner andouille, capicola pork loin spare ribs bacon corned beef chicken. Pig turkey tail fatback meatloaf, chicken pastrami ball tip tongue swine beef ribs drumstick tri-tip jerky. Turducken biltong kevin, jerky shoulder chicken turkey beef strip steak cupim ground round brisket. Meatloaf jerky prosciutto tenderloin strip steak, brisket venison sausage kevin. <a class="c-test-link" href="javascript:">Link</a> <a class="c-test-link" href="">Visited</a>
-    </p>
-    <p>
-      <a href="" class="c-test-button">
-        {{ button.text }}
-      </a>
-      <a href="" class="c-test-button c-test-button--secondary">
-        {{ button.text }}
-      </a>
-      <a href="" class="c-test-button c-test-button--tertiary">
-        {{ button.text }}
-      </a>
-    </p>
-    <p>
-      <a href="" class="c-test-button c-test-button--xsmall">
-        XSmall {{ button.text }}
-      </a>
-      <a href="" class="c-test-button c-test-button--small">
-        Small {{ button.text }}
-      </a>
-      <a href="" class="c-test-button c-test-button--medium">
-        Medium {{ button.text }}
-      </a>
-      <a href="" class="c-test-button c-test-button--large">
-        Large {{ button.text }}
-      </a>
-      <a href="" class="c-test-button c-test-button--xlarge">
-        XLarge {{ button.text }}
-      </a>
-    </p>
+<div class="{{ theme }}">
+  <p>
+    Hamburger doner andouille, capicola pork loin spare ribs bacon corned beef chicken. Pig turkey tail fatback meatloaf, chicken pastrami ball tip tongue swine beef ribs drumstick tri-tip jerky. Turducken biltong kevin, jerky shoulder chicken turkey beef strip steak cupim ground round brisket. Meatloaf jerky prosciutto tenderloin strip steak, brisket venison sausage kevin. <a class="c-test-link" href="javascript:">Link</a> <a class="c-test-link" href="">Visited</a>
+  </p>
+  <h5>All button elements</h5>
+  <div class="c-test-button-group">
+    <a href="" class="c-test-button c-test-button--xsmall">
+      <span class="c-test-button__text">anchor</span>
+    </a>
+    <button class="c-test-button c-test-button--xsmall">
+      <span class="c-test-button__text">button</span>
+    </button>
+    <input type="submit" class="c-test-button c-test-button--xsmall" value="input submit">
+    <input type="reset" class="c-test-button c-test-button--xsmall" value="input reset">
+    <input type="button" class="c-test-button c-test-button--xsmall" value="input button">
+  </div>
+  <h5>Button styles</h5>
+  <div class="c-test-button-group">
+    <a href="" class="c-test-button">
+      <span class="c-test-button__text">{{ button.text }}</span>
+    </a>
+    <a href="" class="c-test-button c-test-button--secondary">
+      <span class="c-test-button__text">{{ button.text }}</span>
+      <svg id="search" viewBox="0 0 26 28" width="1em" height="1em"><path d="M18 13c0-3.859-3.141-7-7-7s-7 3.141-7 7 3.141 7 7 7 7-3.141 7-7zm8 13c0 1.094-.906 2-2 2a1.96 1.96 0 0 1-1.406-.594l-5.359-5.344a10.971 10.971 0 0 1-6.234 1.937c-6.078 0-11-4.922-11-11s4.922-11 11-11 11 4.922 11 11c0 2.219-.672 4.406-1.937 6.234l5.359 5.359c.359.359.578.875.578 1.406z"></path></svg>
+    </a>
+    <a href="" class="c-test-button c-test-button--tertiary">
+      <span class="c-test-button__text">{{ button.text }}</span>
+      <svg id="search" viewBox="0 0 26 28" width="1em" height="1em"><path d="M18 13c0-3.859-3.141-7-7-7s-7 3.141-7 7 3.141 7 7 7 7-3.141 7-7zm8 13c0 1.094-.906 2-2 2a1.96 1.96 0 0 1-1.406-.594l-5.359-5.344a10.971 10.971 0 0 1-6.234 1.937c-6.078 0-11-4.922-11-11s4.922-11 11-11 11 4.922 11 11c0 2.219-.672 4.406-1.937 6.234l5.359 5.359c.359.359.578.875.578 1.406z"></path></svg>
+    </a>
+  </div>
+  <h5>Button sizes</h5>
+  <p>
+    <a href="" class="c-test-button c-test-button--xsmall">
+      <span class="c-test-button__text">XSmall {{ button.text }}</span>
+    </a>
+    <a href="" class="c-test-button c-test-button--small">
+      <span class="c-test-button__text">Small {{ button.text }}</span>
+    </a>
+    <a href="" class="c-test-button c-test-button--medium">
+      <span class="c-test-button__text">Medium {{ button.text }}</span>
+    </a>
+    <a href="" class="c-test-button c-test-button--large">
+      <span class="c-test-button__text">Large {{ button.text }}</span>
+    </a>
+    <a href="" class="c-test-button c-test-button--xlarge">
+      <span class="c-test-button__text">XLarge {{ button.text }}</span>
+    </a>
+  </p>
+  <h5>Button group</h5>
+  <div class="c-test-button-group">
+    <a href="" class="c-test-button">
+      <span class="c-test-button__text">Nulla Facilisi. Duis Aliquet Egestas Purus In Blandit. Curabitur Vulputate, Ligula Lacinia Scelerisque Tempor, Lacus</span>
+    </a>
+    <a href="" class="c-test-button">
+      <span class="c-test-button__text">{{ button.text }}</span>
+    </a>
   </div>
 </div>
