@@ -22,6 +22,7 @@ addons:
 before_install:
 - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && source ~/.nvm/nvm.sh
 - nvm install node
+- nvm install 7
 - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
 - export PATH=$HOME/.yarn/bin:$PATH
 - composer global require hirak/prestissimo
@@ -36,7 +37,7 @@ install:
 - npm install gulpjs/gulp#4.0
 - npm install --global now
 - npm install --global lerna
-- npm install
+- npm install && npm run bootstrap && npm run setup:composer
 
 script:
 - npm run test && npm run build
