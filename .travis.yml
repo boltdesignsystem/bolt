@@ -1,10 +1,11 @@
-sudo: true
-dist: trusty
+#sudo: true
+#dist: trusty
 language: php
 php:
-  - '7.1'
+  - 7.0
 
 env:
+  - TRAVIS_NODE_VERSION="7"
   global:
   - secure: gIGVQIJrOUgl2FuxUXer9FMBDSj+YqH7SiuNVXmZDy4krfQfrdMN/3oRQpIuPjYporjwi6Y31kppmW/d92WKB7JUJ+oWhhnUN0kDU23oVC2RsSIj6ic4rT08N0fYUEHEg77P+E+oX85lRLtr90HJN+jA2o+MHy3ACkaQWt9LVgsX7nu2IOl3ZCFecaCyNWidr0kKFDxQ15eh6kN5xXtDB0jnxPv9Ghf4chjgDzcTYsfhnuHbUfvEsJCRPdBc8itjEpYuA+QPziRxp4nQaRwiG/ltoUfbhuZiUZrctD58Y/a6N8cxEkQjJyJGV+BfUjYdu9ZRzwOVOYZsUbOktAwoPUESm0BLZylnNWUkBs6CjELQ7yCFJmu9vIu4CoOIrbjw3OqY6ZSdItV3HrfbPWC7tOsXCHqscUVvPUgKK5un8psZdFZltijs7lHS4qjj1B25uBvB+rGFk4lvFfUsR4lf3RGW2/xSIEg+QxMc4hmriE7b0YLTUfAVxBIT4EnTpAQoS+jrIv6Lrg9FTc8s1L7UA0Re10XrbRb4+dfkVGnttRvpZlh7yF/gWH30gfprpmCnropqNjtqxfUlRn6AgOS5xo8kl/ov+aYSe8M3T7dWW51S3rrPpCiNTVBm2udPRmtu0VK2Eh4804dYeVOiJo4j5cpFfzC7J7BbIWS9ETSsxUk=
   - NODE_RELEASE=7.x
@@ -20,9 +21,7 @@ addons:
     - graphicsmagick
 
 before_install:
-- rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && source ~/.nvm/nvm.sh
-- nvm install node
-- nvm install 7
+- rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
 - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
 - export PATH=$HOME/.yarn/bin:$PATH
 - composer global require hirak/prestissimo
