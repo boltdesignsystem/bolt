@@ -13,7 +13,7 @@ function build(done, config, errorShouldExit) {
 }
 
 function compileJekyll(done, userConfig) {
-  function compileJekyllTask() {
+  function compileJekyllTask(done, userConfig) {
     const config = merge(defaultConfig, userConfig, {
       watch: false
     });
@@ -28,7 +28,7 @@ module.exports.compile = compileJekyll;
 
 
 function watchJekyll(done, userConfig) {
-  function watchJekyllTask() {
+  function watchJekyllTask(done, userConfig) {
     const config = merge(defaultConfig, userConfig, {
       watch: true,
       incremental: true
