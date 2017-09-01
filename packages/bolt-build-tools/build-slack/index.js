@@ -4,30 +4,41 @@
 require('dotenv').config();
 const Slack = require('node-slack');
 const merge = require('merge').recursive;
-const defaultConfig = require('./config.default');
+const config = require('./config.default');
+const slack = new Slack(config.hookUrl);
+const shell = require('shelljs');
 
-function slackNotification(userConfig) {
-  const config = merge(defaultConfig, userConfig);
-  const slack = new Slack(config.hookUrl);
+var originalUrl = shell('now --static $DEPLOY_PATH -t $NOW_TOKEN');
+console.log(originalUrl);
+// if (!shell.which('git')) {
+//   shell.echo('Sorry, this script requires git');
+//   shell.exit(1);
+// }
 
-  function slackNotificationTask(done) {
-    slack.send({
-      channel: config.slackChannel,
-      text: config.slackText,
-      icon_emoji: config.slackEmoji,
-      attachments: {
-        fallback: `Success! Bolt deployed to <${process.env.SURGE_DEPLOY_URL}|here>`,
-        pretext: `Success! Bolt deployed to <${process.env.SURGE_DEPLOY_URL}|here>`,
-        color: '#FFCC4C'
-      }
-    });
-    done();
-  }
+// shell.echo($originalUrl)
 
-  slackNotificationTask.displayName = 'slack';
-  slackNotificationTask.description = 'Send notification via Slack';
-  return slackNotificationTask;
-}
-
-
-export { slackNotification as default };
+// ORIGINAL_URL=$()
+// BRANCH=$(git rev-parse --abbrev-ref HEAD | tr '.' '-' | tr '/' '-')
+// NEW_URL=$BRANCH'-boltdesignsystem'
+// now alias $ORIGINAL_URL $NEW_URL
+//
+// FULL_URL='https://'$NEW_URL'.now.sh';
+//
+// echo FULL_URL=$FULL_URL > .env
+// echo "Bolt has been set to: $FULL_URL"
+//
+//
+//
+//
+//
+// slack.send({
+//   channel: config.slackChannel,
+//   text: config.slackText,
+//   icon_emoji: config.slackEmoji,
+//   attachments: {
+//     fallback: `Success! Bolt deployed to <${process.env.BOLT_DEPLOY_URL}|here>`,
+//     pretext: `Success! Bolt deployed to <${process.env.BOLT_DEPLOY_URL}|here>`,
+//     color: '#FFCC4C'
+//   }
+// });
+// done();

@@ -13,8 +13,7 @@
     "bolt design system",
     "build tools",
     "gulp",
-    "server",
-    "http2"
+    "server"
   ],
   "maintainers": [
     {
@@ -29,24 +28,8 @@
   "dependencies": {
     "@bolt/build-core": "^0.2.0",
     "browser-sync": "^2.18.12",
-    "browser-sync-close-hook": "latest",
-    "browser-sync-reuse-tab": "latest",
     "bs-html-injector": "^3.0.3",
-    "connect-history-api-fallback": "latest",
     "debug": "^2.6.8",
-    "devcert": "^0.3.2",
-    "devcert-with-localhost": "^0.3.3",
-    "fs-extra": "^4.0.0",
-    "gulp-connect-php": "^1.0.1",
-    "http2": "^3.3.6",
-    "merge": "^1.2.0",
-    "path": "^0.12.7",
-    "spdy": "^3.4.7",
-    "static-http2-server": "^1.5.6"
-  },
-  "scripts": {
-    "_postinstall": "if [ ! -d 'certs' ]; then rm -rf certs && npm run setup; fi",
-    "_setup": "http2-server --generate-cert"
-  },
-  "private": false
+    "merge": "^1.2.0"
+  }
 }

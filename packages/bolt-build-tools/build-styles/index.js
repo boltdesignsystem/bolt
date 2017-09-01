@@ -1,13 +1,17 @@
-import { events } from '@bolt/build-core';
-import gulp from 'gulp';
-import merge from 'merge';
-import autoprefixer from 'autoprefixer';
-import postcssReporter from 'postcss-reporter';
-import duration from 'gulp-duration';
-import size from 'gulp-size';
-import cleanCSS from 'gulp-clean-css';
-import defaultConfig from './config.default';
-
+const core = require('@bolt/build-core');
+const gulp = require('gulp');
+const merge = require('merge').recursive;
+const postcssReporter = require('postcss-reporter');
+const duration = require('gulp-duration');
+const size = require('gulp-size');
+const cleanCSS = require('gulp-clean-css');
+// import postcssReporter from 'postcss-reporter';
+// import duration from 'gulp-duration';
+// import size from 'gulp-size';
+// import cleanCSS from 'gulp-clean-css';
+// import defaultConfig from './config.default';
+const defaultConfig = require('./config.default');
+const autoprefixer = require('autoprefixer');
 const sourcemaps = require('gulp-sourcemaps');
 const sass = require('gulp-sass');
 const plumber = require('gulp-plumber');
@@ -44,7 +48,7 @@ function compileSassDoc(done, userConfig) {
     });
 }
 
-function sassDoc(userConfig) {
+function docs(userConfig) {
   function sassDocTask(done) {
     compileSassDoc(done, userConfig);
   }
@@ -52,9 +56,10 @@ function sassDoc(userConfig) {
   sassDocTask.displayName = 'styles:sassdoc';
   return sassDocTask;
 }
+module.exports.docs = docs;
 
 
-function compileCSS(userConfig) {
+function compile(userConfig) {
   const config = merge({
     postCSS
   }, defaultConfig, userConfig);
@@ -113,7 +118,7 @@ function compileCSS(userConfig) {
       .pipe(gulpif(config.sourceMaps, sourcemaps.write('./')))
       .pipe(gulp.dest(config.dest))
       .on('end', () => {
-        events.emit('reload', join(config.dest, '**/*.css'));
+        core.events.emit('reload', join(config.dest, '**/*.css'));
         done();
       });
   }
@@ -123,15 +128,16 @@ function compileCSS(userConfig) {
 
   return compileCssTask;
 }
+module.exports.compile = compile;
 
 
-function watchCSS(userConfig) {
+function watch(userConfig) {
   function watchCssTask() {
     const config = merge({
       postCSS
     }, defaultConfig, userConfig);
 
-    const watchTasks = [compileCSS(userConfig)];
+    const watchTasks = [compile(userConfig)];
 
 
     if (config.sassdoc !== false) {
@@ -150,9 +156,10 @@ function watchCSS(userConfig) {
 
   return watchCssTask;
 }
+module.exports.watch = watch;
 
 
-function cleanStyles(userConfig) {
+function clean(userConfig) {
   const config = merge(defaultConfig, userConfig);
 
   function cleanStylesTask(cb) {
@@ -174,9 +181,11 @@ function cleanStyles(userConfig) {
 
   return cleanStylesTask;
 }
+module.exports.clean = clean;
 
 
-function lintCSS(userConfig) {
+
+function lint(userConfig) {
   const config = merge({
     postCSS: [
       stylelint(),
@@ -208,68 +217,4 @@ function lintCSS(userConfig) {
   lintCssTask.description = 'List CSS description';
   return lintCssTask;
 }
-
-export { compileCSS, watchCSS, lintCSS, cleanStyles as cleanCSS, sassDoc };
-
-
-// export { Styles as default };
-//
-// module.exports = (userConfig) => {
-//   const tasks = {};
-//   const config = merge({
-//     postcss: [
-//
-//     ]
-//   }, defaultConfig, userConfig);
-//
-//
-//   function lintCSS() {
-//     gulp.src([
-//       'packages/**/*.scss',
-//       '!packages/_*/**/*'
-//     ])
-//       .pipe(plumber({
-//         errorHandler(error) {
-//           notify.onError({
-//             title: 'CSS <%= error.name %> - Line <%= error.line %>',
-//             message: '<%= error.message %>'
-//           })(error);
-//         }
-//       }))
-//       .pipe(postcss(processors, {
-//         syntax: scssSyntax
-//       }));
-//     // .on('end', () => {
-//     //   done();
-//     // });
-//   }
-//   lintCSS.description = 'List CSS description';
-//   // tasks.lint = lintCSS;
-//
-//
-//   function compileCSS(done) {
-//
-//   compileCSS.description = 'Compile CSS';
-//   compileCSS.displayName = 'styles:compile';
-//   // tasks.compile = compileCSS;
-//
-
-//   watchCSS.description = 'Watch CSS for changes';
-//   // tasks.watch = watchCSS;
-//
-//
-//   return {
-//     lintCSS,
-//     compileCSS,
-//     watchCSS
-//   };
-// };
-
-
-//
-//
-//
-//
-// export function compile() {
-//
-// }
+module.exports.lint = lint;

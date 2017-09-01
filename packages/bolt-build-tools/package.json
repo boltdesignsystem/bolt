@@ -1,8 +1,8 @@
 {
-  "name": "@bolt/build-jekyll",
+  "name": "@bolt/build-tools",
   "version": "0.2.0",
   "license": "MIT",
-  "description": "Compile Jekyll",
+  "description": "Curated collection of front-end build tools in the Bolt Design System.",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -12,7 +12,8 @@
     "bolt",
     "bolt design system",
     "build tools",
-    "jekyll"
+    "gulp",
+    "lerna"
   ],
   "maintainers": [
     {
@@ -23,16 +24,15 @@
   ],
   "dependencies": {
     "@bolt/build-core": "^0.2.0",
-    "child_process": "^1.0.2",
-    "debug": "^2.6.8",
-    "fs-extra": "^4.0.0",
-    "gulp-notify": "^3.0.0",
-    "gulp-shell": "^0.6.3",
-    "merge": "^1.2.0",
-    "node-notifier": "^5.1.2"
+    "@bolt/build-jekyll": "^0.2.0",
+    "@bolt/build-lerna": "^0.2.0",
+    "@bolt/build-patternlab": "^0.2.0",
+    "@bolt/build-server": "^0.2.0",
+    "@bolt/build-slack": "^0.2.0",
+    "@bolt/build-styles": "^0.2.0",
+    "@bolt/build-symlinks": "^0.2.0"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "private": false
+  }
 }

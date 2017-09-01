@@ -1,6 +1,6 @@
 {
   "name": "bolt",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Pega Digital Design System",
   "scripts": {
     "bootstrap": "lerna bootstrap",
@@ -11,7 +11,7 @@
     "fix:scss": "gulp styles:fix",
     "fix": "gulp fix",
     "_lint:fix": "eslint --fix ./packages/bolt-build-tools",
-    "lint:js": "eslint .",
+    "lint:js": "eslint ./packages/bolt-build-tools",
     "lint:md": "remark . --quiet --frail",
     "lint:scss": "stylelint ./packages/**/*.scss",
     "clean:lerna": "lerna clean -Y",
@@ -19,7 +19,7 @@
     "clean:all": "npm run clean:git && npm run clean:lerna",
     "lint": "npm-run-all --parallel lint:* -c",
     "mocha": "mocha packages/**/*/tests",
-    "now:deploy": "originalurl=$(now bolt-website) | branch=$(git rev-parse --abbrev-ref HEAD | sed -e 's///-/g') | now alias $originalurl $branch'-boltdesignsystem'",
+    "now:deploy": "originalurl=$(now bolt-website) && branch=$(git rev-parse --abbrev-ref HEAD | tr '.' '-' | tr '/' '-') && now alias $originalurl $branch'-boltdesignsystem' && echo $originalurl && echo $branch'-boltdesignsystem'",
     "postinstall": "npm run bootstrap && npm run setup:composer",
     "prepublishOnly": "npm run snyk-protect",
     "publish-beta": "lerna run build && lerna publish --npm-tag=beta --skip-git",
@@ -32,7 +32,9 @@
     "setup:homebrew": "sh scripts/install-homebrew.sh",
     "snyk-protect": "snyk protect",
     "start": "serve ./boltdesignsystem --single",
-    "test": "npm run mocha"
+    "test": "npm run mocha",
+    "_pretest": "npm run lint && node scripts/check-imports.js",
+    "pretest": "node scripts/check-imports.js"
   },
   "pre-commit": [],
   "config": {
@@ -72,25 +74,26 @@
   },
   "homepage": "https://github.com/pega-digital/bolt#readme",
   "dependencies": {
-    "babel-core": "^6.25.0",
-    "babel-loader": "^7.1.1",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-polyfill": "^6.23.0",
-    "babel-preset-es2015": "^6.24.1",
+    "babel-core": "^6.22.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-object-assign": "^6.8.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-traverse": "^6.24.1",
+    "babel-types": "^6.24.1",
+    "babylon": "^6.16.1",
     "browser-sync": "^2.18.13",
     "chai": "^4.1.0",
     "chai-fs": "^1.0.0",
     "cz-conventional-changelog": "^2.0.0",
+    "cz-lerna-changelog": "^1.2.1",
     "eslint": "^4.5.0",
     "eslint-config-airbnb-base": "^11.3.1",
     "eslint-plugin-import": "^2.7.0",
     "feature-toggle": "^0.3.0",
     "fs-extra": "^4.0.1",
+    "glob": "^7.1.2",
     "globby": "^6.1.0",
-    "gulp": "gulpjs/gulp#4.0",
-    "gulp-connect-php": "^1.0.1",
-    "gulp-flatten": "^0.3.1",
-    "gulp-rename": "^1.2.2",
+    "gulp": "github:gulpjs/gulp#4.0",
     "husky": "^0.14.3",
     "inquirer": "^3.2.0",
     "js-yaml": "^3.9.1",
@@ -99,8 +102,10 @@
     "lerna-semantic-release": "^9.1.0",
     "mocha": "^3.4.2",
     "nodemon": "^1.11.0",
+    "now-travis": "^1.0.1",
     "npm-run-all": "^4.0.2",
     "path": "^0.12.7",
+    "pre-commit": "^1.2.2",
     "precommit": "^1.2.2",
     "prettier-eslint-cli": "^4.2.1",
     "publish-please": "^2.3.1",
@@ -117,11 +122,27 @@
     "stylelint-scss": "^2.0.1",
     "validate-commit-msg": "^2.12.2"
   },
-  "snyk": true,
-  "devDependencies": {
-    "cz-lerna-changelog": "^1.2.1",
-    "pre-commit": "^1.2.2"
+  "babel": {
+    "presets": [
+      [
+        "es2015",
+        {
+          "modules": false
+        }
+      ]
+    ],
+    "plugins": [
+      "transform-object-assign"
+    ],
+    "env": {
+      "test": {
+        "presets": [
+          "es2015"
+        ]
+      }
+    }
   },
+  "snyk": true,
   "lint-staged": {
     "*.md": [
       "remark --quiet --frail --no-stdout"

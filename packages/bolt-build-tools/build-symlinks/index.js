@@ -1,5 +1,4 @@
-import { events } from '@bolt/build-core';
-
+const core = require('@bolt/build-core');
 const gulp = require('gulp');
 const delSymlinks = require('del-symlinks');
 const vfs = require('vinyl-fs');
@@ -8,10 +7,9 @@ const fs = require('fs');
 const gulpConfig = require('../../../gulpconfig.js');
 const path = require('path');
 const yaml = require('js-yaml');
-const merge = require('merge');
+const merge = require('merge').recursive;
 const defaultConfig = require('./config.default');
 const gutil = require('gulp-util');
-
 const twigPaths = gulpConfig.patternLab.twigNamespaces.sets;
 const patternLabConfig = yaml.safeLoad(
   fs.readFileSync(gulpConfig.patternLab.configFile, 'utf8')
@@ -32,7 +30,7 @@ function findPatternLabFolder(patternType) {
 }
 
 function createSymlinks(userConfig) {
-  const config = merge.recursive(defaultConfig, userConfig);
+  const config = merge(defaultConfig, userConfig);
   const patternsFolder = `${patternLabSource}/${config.patternsFolder}/`;
 
   function createSymlinksTask(done) {
@@ -75,7 +73,7 @@ function createSymlinks(userConfig) {
             })
               .pipe(vfs.symlink(`${patternType}/${config.symlinkPrefix}${patternSubtype}${patternName}`))
               .on('end', () => {
-                events.emit('symlinked');
+                core.events.emit('symlinked');
                 done();
               });
           }
@@ -92,10 +90,11 @@ function createSymlinks(userConfig) {
   createSymlinksTask.displayName = 'symlinks:create';
   return createSymlinksTask;
 }
+module.exports.create = createSymlinks;
 
 
 function cleanSymlinks(userConfig) {
-  const config = merge.recursive(defaultConfig, userConfig || {});
+  const config = merge(defaultConfig, userConfig || {});
   const patternsFolder = `${patternLabSource}/${config.patternsFolder}/`;
 
   function cleanSymlinksTask(done) {
@@ -108,6 +107,8 @@ function cleanSymlinks(userConfig) {
 
   return cleanSymlinksTask;
 }
+module.exports.clean = cleanSymlinks;
+
 
 
 function watchSymlinks(userConfig) {
@@ -126,5 +127,4 @@ function watchSymlinks(userConfig) {
   //
   return watchSymlinksTask;
 }
-
-export { cleanSymlinks, createSymlinks, watchSymlinks };
+module.exports.watch = watchSymlinks;

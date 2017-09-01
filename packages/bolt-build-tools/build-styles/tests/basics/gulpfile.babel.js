@@ -1,4 +1,4 @@
-import gulp from 'gulp';
+const gulp = require('gulp');
 import { compileCSS, watchCSS, cleanCSS } from '../../index.js';
 
 const config = {

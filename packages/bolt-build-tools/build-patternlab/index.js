@@ -1,28 +1,25 @@
 /* eslint no-unused-vars: ["error", { "args": "none" }]*/
-import gulp from 'gulp';
-import { notify, events } from '@bolt/build-core';
-
+const gulp = require('gulp');
+const core = require('@bolt/build-core');
 const defaultConfig = require('./config.default');
 const yaml = require('js-yaml');
 const merge = require('merge').recursive;
 const gulpConfig = require('../../../gulpconfig.js');
 const fs = require('fs-extra');
 const path = require('path');
-
 const patternLabConfig = yaml.safeLoad(
   fs.readFileSync(gulpConfig.patternLab.configFile, 'utf8')
 );
 const patternLabRoot = path.join(gulpConfig.patternLab.configFile, '../..');
 const patternLabSource = path.join(patternLabRoot, patternLabConfig.sourceDir);
 const consolePath = path.join(patternLabRoot, 'core/console');
-// const notify = require('./notifier.js');
 // const patternLabPublic = path.join(patternLabRoot, patternLabConfig.publicDir);
 
 
 // Build Pattern Lab via CLI command -- can exit or not based on 2nd param passed in
 function patternLab(done, errorShouldExit) {
-  notify.sh(`php ${consolePath} --generate`, errorShouldExit, (err) => {
-    events.emit('reload');
+  core.notify.sh(`php ${consolePath} --generate`, errorShouldExit, (err) => {
+    core.events.emit('reload');
     done(err);
   });
 }
@@ -42,6 +39,7 @@ function compilePatternLab() {
   compilePatternLabTask.displayName = 'patternlab:compile';
   return compilePatternLabTask;
 }
+module.exports.compile = compilePatternLab;
 
 // Recompile PL -- doesn't exit if error
 function recompilePatternLab() {
@@ -52,6 +50,7 @@ function recompilePatternLab() {
   recompilePatternLabTask.displayName = 'patternlab:recompile';
   return recompilePatternLabTask;
 }
+module.exports.recompile = recompilePatternLab;
 
 
 // Watch PL for changes
@@ -71,5 +70,4 @@ function watchPatternLab(userConfig) {
   watchPatternLabTask.displayName = 'patternlab:watch';
   return watchPatternLabTask;
 }
-
-export { compilePatternLab, recompilePatternLab, watchPatternLab };
+module.exports.watch = watchPatternLab;
