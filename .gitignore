@@ -10,27 +10,14 @@ _tests
 *.psd
 *.tmp
 bower_components
-css-framework
 lerna-debug.log
 node_modules
-node_modules/*
-packages/_*
-packages/**/package-lock.json
-packages/*/tests/tmp
 public
 vendor
 bolt-website
+boltdesignsystem
+.eyeglass_cache
 .env
 
-scripts/deploy.pem
-packages/bolt-build/server/certs
-packages/bolt-build/server/_certs
-yarn-error.log
-**/*/yarn-error.log
-
-packages/_bolt-build-tools
-packages/_pegakit-css
-packages/_pegakit-ui
-
-!**/node_modules/@bolt-test/*
-!**/@bolt-test
+# Ignore any Pattern Lab --> packages folders being symlinked
+sandbox/pattern-library/source/_patterns/**/bolt-*

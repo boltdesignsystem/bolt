@@ -1,9 +1,16 @@
 #!/bin/bash
 # Split on "/", ref: http://stackoverflow.com/a/5257398/689223
 REPO_SLUG_ARRAY=(${TRAVIS_REPO_SLUG//\// })
-REPO_OWNER=${REPO_SLUG_ARRAY[0]}
-REPO_NAME=boltdesignsystem
-DEPLOY_PATH=./bolt-website
+DEPLOY_PATH=bolt-website
+
+
+
+
+
+
+
+
+
 
 
 DEPLOY_SUBDOMAIN_UNFORMATTED_LIST=()
@@ -41,15 +48,15 @@ do
   DEPLOY_SUBDOMAIN=`echo "$DEPLOY_SUBDOMAIN_UNFORMATTED" | sed -r 's/[\/|\.]+/\-/g'`
 
 
-  if [ "$DEPLOY_SUBDOMAIN" == "" ] || [ "$TRAVIS_BRANCH" == "master" ]
-  then
-    DEPLOY_DOMAIN=https://${DEPLOY_SUBDOMAIN}${REPO_NAME}.surge.sh
-  else
-    DEPLOY_DOMAIN=https://${DEPLOY_SUBDOMAIN}-${REPO_NAME}.surge.sh
-  fi
+  ORIGINAL_URL=$(now --static $DEPLOY_PATH -t $NOW_TOKEN)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD | tr '.' '-' | tr '/' '-')
+  NEW_URL=$BRANCH'-boltdesignsystem'
+  now alias $ORIGINAL_URL $NEW_URL
 
-  echo SURGE_DEPLOY_URL=$DEPLOY_DOMAIN > .env
-  echo "SURGE_DEPLOY_URL has been set to: $DEPLOY_DOMAIN"
+  FULL_URL='https://'$NEW_URL'.now.sh';
+
+  echo FULL_URL=$FULL_URL > .env
+  echo "Bolt has been set to: $FULL_URL"
 
   surge --project ${DEPLOY_PATH} --domain $DEPLOY_DOMAIN;
 

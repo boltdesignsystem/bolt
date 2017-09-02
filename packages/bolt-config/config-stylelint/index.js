@@ -14,6 +14,7 @@ module.exports = {
     'color-named': ['never', {
       ignore: ['inside-function']
     }],
+    'selector-max-id': 0,
     'color-no-invalid-hex': true,
     'selector-class-pattern': '',
     'selector-no-qualifying-type': [true, {

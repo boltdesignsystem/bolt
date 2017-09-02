@@ -1,3 +1,0 @@
----
-title: Breakpoint Settings
----

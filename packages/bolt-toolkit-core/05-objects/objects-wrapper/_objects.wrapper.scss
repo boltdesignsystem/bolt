@@ -1,0 +1,19 @@
+/**
+  * @define o-bolt-wrapper
+  */
+
+$bolt-wrapper--max-width: 1400px !default;
+
+.o-bolt-wrapper {
+  display: block;
+  @include bolt-padding-left(small);
+  @include bolt-padding-right(small);
+  @include bolt-margin-left(auto);
+  @include bolt-margin-right(auto);
+  max-width: $bolt-wrapper--max-width;
+
+  @include respond-to(medium) {
+    @include bolt-padding-left(large);
+    @include bolt-padding-right(large);
+  }
+}

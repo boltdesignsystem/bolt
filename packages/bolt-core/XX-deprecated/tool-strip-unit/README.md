@@ -1,1 +1,0 @@
-**WE'VE MOVED!** This package has been moved / renamed to [@bolt/tools-strip-unit](https://www.npmjs.com/package/@bolt/tools-strip-unit) for consistency with the rest of the [Bolt Design System](https://github.com/bolt-design-system/bolt).

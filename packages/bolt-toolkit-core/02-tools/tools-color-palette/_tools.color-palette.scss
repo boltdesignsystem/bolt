@@ -1,0 +1,14 @@
+/*------------------------------------*\
+  Color Palette
+\*------------------------------------*/
+
+/**
+  * Helper functions for applying global color swatches stored in Sass Maps
+  */
+@import '@bolt/settings-colors';
+@import '@bolt/tools-sassy-maps'; //So map-get-deep works
+
+
+@function bolt-palette($color, $tone: 'initial') {
+  @return map-get-deep($bolt-colors, $color, $tone);
+}

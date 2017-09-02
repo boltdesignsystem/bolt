@@ -1,0 +1,30 @@
+---
+layout: default
+---
+<div class="o-layout o-layout--article">
+  <aside>
+    <div class="c-nav c-nav--vertical">
+      {% include doc-nav.html %}
+    </div>
+  </aside>
+  <main>
+    <div class="o-layout--article__inset">
+      <article class="c-article">
+        <header role="banner">
+          <hgroup>
+            <h1>
+              {{ page.title | escape }}
+            </h1>
+            <h2>
+              {{ page.intro | escape }}
+            </h2>
+          </hgroup>
+        </header>
+        <div itemprop="articleBody">
+          {{ content }}
+        </div>
+      </article>
+    </div>
+  </main>
+  {% include footer.html %}
+</div>
