@@ -30,6 +30,7 @@ install:
 - npm install --global now
 - npm install --global lerna
 - npm install && npm run bootstrap && npm run setup:composer
+# - gem install --file packages/website-jekyll/Gemfile
 
 script:
 - npm run test && npm run build

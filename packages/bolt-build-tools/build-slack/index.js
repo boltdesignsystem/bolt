@@ -13,6 +13,7 @@ const branch = require('git-branch');
 const exec = require('child_process').exec;
 const core = require('@bolt/build-core');
 const config = require('./config.default');
+const travisStatus = require('travis-status');
 
 const slack = new Slack(config.hookUrl);
 // const nowCli = require.resolve('now/bin/now');
@@ -132,10 +133,8 @@ function deploy(context, sha) {
         process.stdout.write(data);
       });
 
-
       childAlias.on('close', (code) => {
         const final_url = `https://${target_url}.now.sh`;
-
 
         if (sha) {
           ghRepo.status(sha, {
@@ -159,14 +158,28 @@ function deploy(context, sha) {
 }
 
 
+// Note:  Most options match camelized command-line option names
+// var options = {
+//   branch: 'master',
+//   wait: 60000
+// };
+// travisStatus(options).then(function(apiObject) {
+//   console.log(apiObject);
+// });
+
 if (process.env.CI || process.env.TRAVIS) {
-  travisAfterAll((code, err) => {
-  // Don't do anything if there was an error of if the build returned a failing code
-    if (err || code) {
+  // travisAfterAll((code, err) => {
+
+  travisStatus(options).then((response) => {
+    console.log(response);
+
+    // Don't do anything if there was an error of if the build returned a failing code
+    if (response.code !== 0) {
       return;
     }
 
-    switch (process.env.TRAVIS_EVENT_TYPE) {
+
+    switch (response.event_type) {
       case 'pull_request': return deploy('staging', process.env.TRAVIS_PULL_REQUEST_SHA);
       case 'push': return deploy('production', process.env.TRAVIS_COMMIT);
     }

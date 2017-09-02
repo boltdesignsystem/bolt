@@ -20,7 +20,7 @@
     "lint": "npm-run-all --parallel lint:* -c",
     "mocha": "mocha packages/**/*/tests",
     "deploy": "node packages/bolt-build-tools/build-slack/index.js",
-    "postinstall": "npm run bootstrap && npm run setup:composer",
+    "postinstall": "npm run bootstrap && npm run setup:composer && gem install --file packages/website-jekyll/Gemfile",
     "prepublishOnly": "npm run snyk-protect",
     "publish-beta": "lerna run build && lerna publish --npm-tag=beta --skip-git",
     "publish-canary": "lerna run build && lerna run publish-please && lerna publish --canary --yes",
