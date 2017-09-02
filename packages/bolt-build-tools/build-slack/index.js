@@ -182,6 +182,7 @@ if (process.env.CI || process.env.TRAVIS) {
     switch (response.event_type) {
       case 'pull_request': return deploy('staging', process.env.TRAVIS_PULL_REQUEST_SHA);
       case 'push': return deploy('production', process.env.TRAVIS_COMMIT);
+      default: return deploy('production', process.env.TRAVIS_COMMIT);
     }
   });
 } else {
