@@ -54,7 +54,7 @@ const sha = null;
 function deploy(context, sha) {
   let client;
   let ghRepo;
-  const githubToken = process.env.GH_TOKEN;
+  const githubToken = process.env.GITHUB_TOKEN;
 
   if (githubToken) {
     // throw new Error('Missing required environment variable GH_TOKEN');
