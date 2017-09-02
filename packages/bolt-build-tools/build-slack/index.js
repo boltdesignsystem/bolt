@@ -171,17 +171,18 @@ if (process.env.CI || process.env.TRAVIS) {
   // travisAfterAll((code, err) => {
 
   travisStatus().then((response) => {
-    console.log(response);
+    // console.log(response);
 
     // Don't do anything if there was an error of if the build returned a failing code
-    if (response.code !== 0) {
-      return;
-    }
+    // if (response.code !== 0) {
+    //   return;
+    // }
 
 
     switch (response.event_type) {
       case 'pull_request': return deploy('staging', process.env.TRAVIS_PULL_REQUEST_SHA);
       case 'push': return deploy('production', process.env.TRAVIS_COMMIT);
+      default: return deploy('production', process.env.TRAVIS_COMMIT);
     }
   });
 } else {
