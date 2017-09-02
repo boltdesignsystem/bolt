@@ -36,7 +36,9 @@
     "_pretest": "npm run lint && node scripts/check-imports.js",
     "pretest": "node scripts/check-imports.js"
   },
-  "pre-commit": [],
+  "pre-commit": [
+    "test"
+  ],
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-lerna-changelog"
