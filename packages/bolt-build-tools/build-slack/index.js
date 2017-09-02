@@ -170,7 +170,7 @@ function deploy(context, sha) {
 if (process.env.CI || process.env.TRAVIS) {
   // travisAfterAll((code, err) => {
 
-  travisStatus(options).then((response) => {
+  travisStatus().then((response) => {
     console.log(response);
 
     // Don't do anything if there was an error of if the build returned a failing code
