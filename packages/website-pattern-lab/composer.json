@@ -31,16 +31,17 @@
     "repositories": [
       {
         "type": "path",
-        "url": "../styleguidekit-assets-default"
+        "url": "../pattern-lab/patternlab-php-core"
+      },
+      {
+        "type": "path",
+        "url": "../pattern-lab/styleguidekit-assets-default"
       },
       {
         "type": "path",
         "url": "../pattern-kit"
       },
-      {
-        "type": "vcs",
-        "url": "https://github.com/drupal-pattern-lab/patternlab-php-core"
-      },
+
       {
         "type": "vcs",
         "url": "https://github.com/drupal-pattern-lab/patternengine-php-twig"
@@ -52,20 +53,22 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": ">=5.5.9",
-        "pattern-lab/core": "dev-feature/resilient-public-dir as 2.8.0",
-        "pattern-lab/patternengine-twig": "^2.0.0",
-        "pattern-lab/styleguidekit-twig-default": "^3.0.0",
-        "pattern-lab/drupal-twig-components": "^2.0.0",
-        "bolt/styleguidekit-assets-default": "*",
-        "aleksip/plugin-data-transform": "^1.1.0",
-        "mexitek/phpcolors": "^0.4.0"
+      "php": ">=7.0",
+       "cweagans/composer-patches": "~1.0",
+      "pattern-lab/core": "dev-feature/php7 as 2.7.0",
+      "pattern-lab/patternengine-twig": "^2.0.0",
+      "pattern-lab/styleguidekit-twig-default": "^3.0.0",
+      "pattern-lab/drupal-twig-components": "^2.0.0",
+      "pattern-lab/styleguidekit-assets-default": "*",
+      "aleksip/plugin-data-transform": "^1.1.0",
+      "mexitek/phpcolors": "^0.4.0"
     },
     "config": {
-        "process-timeout": 0,
-        "github-oauth": {
-          "github.com": "99b8ce633d5fe3c5db9a4855f6a7146c3793885e"
-        }
+      "process-timeout": 0,
+      "github-oauth": {
+        "github.com": "99b8ce633d5fe3c5db9a4855f6a7146c3793885e"
+      },
+      "preferred-install": "source"
     },
     "scripts": {
         "server": "php core/console --server",
@@ -94,13 +97,14 @@
         ]
       },
     "extra": {
-        "patternlab": {
-            "starterKitSuggestions": [
-                "pattern-lab/starterkit-twig-demo",
-                "pattern-lab/starterkit-twig-drupal-minimal",
-                "aleksip/starterkit-shila-drupal-theme",
-                "forumone/starterkit-twig-drupal-gesso"
-            ]
-        }
+      "patternlab": {
+        "starterKitSuggestions": [
+          "pattern-lab/starterkit-twig-demo",
+          "pattern-lab/starterkit-twig-drupal-minimal",
+          "aleksip/starterkit-shila-drupal-theme",
+          "forumone/starterkit-twig-drupal-gesso"
+        ]
+      },
+      "patches-file": "composer.patches.json"
     }
 }

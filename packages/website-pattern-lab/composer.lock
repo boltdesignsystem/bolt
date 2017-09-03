@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2d6aa84d4da78d20ed07fff068c89c29",
+    "content-hash": "b1c237a3ad848bca9d453e734280fd01",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -116,92 +116,80 @@
             "time": "2017-01-02T14:14:09+00:00"
         },
         {
-            "name": "bolt/styleguidekit-assets-default",
-            "version": "dev-develop",
-            "dist": {
-                "type": "path",
-                "url": "../styleguidekit-assets-default",
-                "reference": "eef37684f6647b908aeabd2e2fda9ae08e86ecb1",
-                "shasum": null
-            },
-            "type": "patternlab-styleguidekit",
-            "extra": {
-                "patternlab": {
-                    "dist": {
-                        "publicDir": [
-                            {
-                                "*": "*"
-                            }
-                        ]
-                    },
-                    "config": {
-                        "ishMinimum": "240",
-                        "ishMaximum": "2600",
-                        "ishControlsHide": [
-                            "hay"
-                        ]
-                    }
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dave Olsen",
-                    "email": "dmolsen@gmail.com",
-                    "homepage": "http://dmolsen.com",
-                    "role": "Lead Developer"
-                },
-                {
-                    "name": "Brad Frost",
-                    "homepage": "http://bradfrostweb.com",
-                    "role": "Creator"
-                }
-            ],
-            "description": "The assets for the default StyleguideKit for Pattern Lab. Contains styles and mark-up for Pattern Lab's front-end.",
-            "homepage": "http://patternlab.io",
-            "keywords": [
-                "mustache",
-                "pattern lab",
-                "styleguide"
-            ],
-            "support": {
-                "issues": "https://github.com/pattern-lab/styleguidekit-assets-default/issues",
-                "wiki": "http://patternlab.io/docs/",
-                "source": "https://github.com/pattern-lab/styleguidekit-assets-default/releases"
-            }
-        },
-        {
-            "name": "doctrine/collections",
-            "version": "v1.4.0",
+            "name": "cweagans/composer-patches",
+            "version": "1.6.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/doctrine/collections.git",
-                "reference": "1a4fb7e902202c33cce8c55989b945612943c2ba"
+                "url": "https://github.com/cweagans/composer-patches.git",
+                "reference": "014e968ca2ce4342476b3f2f6779b274fff8ae9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/collections/zipball/1a4fb7e902202c33cce8c55989b945612943c2ba",
-                "reference": "1a4fb7e902202c33cce8c55989b945612943c2ba",
+                "url": "https://api.github.com/repos/cweagans/composer-patches/zipball/014e968ca2ce4342476b3f2f6779b274fff8ae9e",
+                "reference": "014e968ca2ce4342476b3f2f6779b274fff8ae9e",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.6 || ^7.0"
+                "composer-plugin-api": "^1.0",
+                "php": ">=5.3.0"
             },
             "require-dev": {
-                "doctrine/coding-standard": "~0.1@dev",
-                "phpunit/phpunit": "^5.7"
+                "composer/composer": "~1.0",
+                "phpunit/phpunit": "~4.6"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "cweagans\\Composer\\Patches"
+            },
+            "autoload": {
+                "psr-4": {
+                    "cweagans\\Composer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Cameron Eagans",
+                    "email": "me@cweagans.net"
+                }
+            ],
+            "description": "Provides a way to patch Composer packages.",
+            "time": "2017-08-30T16:41:23+00:00"
+        },
+        {
+            "name": "doctrine/collections",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/collections.git",
+                "reference": "42c4039eca9535e4f201f50d2695648658e9e5a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/collections/zipball/42c4039eca9535e4f201f50d2695648658e9e5a8",
+                "reference": "42c4039eca9535e4f201f50d2695648658e9e5a8",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^1.0",
+                "phpunit/phpunit": "^6.3",
+                "squizlabs/php_codesniffer": "^3.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3.x-dev"
+                    "dev-master": "1.6.x-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Doctrine\\Common\\Collections\\": "lib/"
+                "psr-4": {
+                    "Doctrine\\Common\\Collections\\": "lib/Doctrine/Common/Collections"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -237,7 +225,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2017-01-03T10:49:41+00:00"
+            "time": "2017-08-30 09:16:50"
         },
         {
             "name": "kevinlebrun/colors.php",
@@ -388,23 +376,18 @@
         },
         {
             "name": "pattern-lab/core",
-            "version": "dev-feature/resilient-public-dir",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/drupal-pattern-lab/patternlab-php-core.git",
-                "reference": "0eace9ea6b2926c1126d1437b923298225851f27"
-            },
+            "version": "dev-feature/php7",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/drupal-pattern-lab/patternlab-php-core/zipball/0eace9ea6b2926c1126d1437b923298225851f27",
-                "reference": "0eace9ea6b2926c1126d1437b923298225851f27",
-                "shasum": ""
+                "type": "path",
+                "url": "../pattern-lab/patternlab-php-core",
+                "reference": "031b0bb3fab37957d63981dce4c68aeb9515ef6b",
+                "shasum": null
             },
             "require": {
                 "alchemy/zippy": "^0.3",
                 "kevinlebrun/colors.php": "^1.0",
                 "michelf/php-markdown": "^1.6",
-                "php": ">=5.4",
+                "php": ">=7.0",
                 "seld/jsonlint": "^1.0",
                 "shudrum/array-finder": "^1.0",
                 "symfony/event-dispatcher": "^3.0",
@@ -414,6 +397,12 @@
                 "symfony/yaml": "^3.0"
             },
             "type": "library",
+            "extra": {
+                "patches_applied": {
+                    "[FEATURE] Compile embedded templates in Markdown files": "patches/compileTemplatesInMarkdownFiles.patch",
+                    "[FEATURE] Allow default Pattern Data configuration rules to be disabled. Also adds ability to add on extra Pattern Data rules to customize and extend default Pattern Lab behavior.": "patches/configurablePatternDataRules.patch"
+                }
+            },
             "autoload": {
                 "psr-0": {
                     "PatternLab": "src/"
@@ -448,8 +437,7 @@
                 "issues": "https://github.com/drupal-pattern-lab/patternlab-php-core/issues",
                 "wiki": "http://patternlab.io/docs/",
                 "source": "https://github.com/drupal-pattern-lab/patternlab-php-core/releases"
-            },
-            "time": "2017-08-28T18:33:00+00:00"
+            }
         },
         {
             "name": "pattern-lab/drupal-twig-components",
@@ -831,7 +819,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2017-08-03T09:34:20+00:00"
+            "time": "2017-08-03 09:34:20"
         },
         {
             "name": "symfony/filesystem",
@@ -880,7 +868,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2017-08-03T09:34:20+00:00"
+            "time": "2017-08-03 09:34:20"
         },
         {
             "name": "symfony/finder",
@@ -929,7 +917,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2017-08-03T09:34:20+00:00"
+            "time": "2017-08-03 09:34:20"
         },
         {
             "name": "symfony/process",
@@ -978,7 +966,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2017-08-03T09:34:20+00:00"
+            "time": "2017-08-03 09:34:20"
         },
         {
             "name": "symfony/yaml",
@@ -1036,7 +1024,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-08-30T06:19:03+00:00"
+            "time": "2017-08-30 06:19:03"
         },
         {
             "name": "twig/twig",
@@ -1101,15 +1089,15 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-08-19T17:37:14+00:00"
+            "time": "2017-08-19 17:37:14"
         }
     ],
     "packages-dev": [],
     "aliases": [
         {
-            "alias": "2.8.0",
-            "alias_normalized": "2.8.0.0",
-            "version": "dev-feature/resilient-public-dir",
+            "alias": "2.7.0",
+            "alias_normalized": "2.7.0.0",
+            "version": "dev-feature/php7",
             "package": "pattern-lab/core"
         }
     ],
@@ -1120,7 +1108,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.5.9"
+        "php": ">=7.0"
     },
     "platform-dev": []
 }

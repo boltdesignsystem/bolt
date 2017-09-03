@@ -1,0 +1,44 @@
+diff --git a/src/PatternLab/PatternData/Rules/DocumentationRule.php b/src/PatternLab/PatternData/Rules/DocumentationRule.php
+index 4e9ef3f..1432e72 100644
+--- a/src/PatternLab/PatternData/Rules/DocumentationRule.php
++++ b/src/PatternLab/PatternData/Rules/DocumentationRule.php
+@@ -33,6 +33,17 @@ class DocumentationRule extends \PatternLab\PatternData\Rule {
+ 	}
+ 
+ 	public function run($depth, $ext, $path, $pathName, $name) {
++		// default vars
++		$patternSourceDir = Config::getOption("patternSourceDir");
++
++		// parse data
++		$text = file_get_contents($patternSourceDir.DIRECTORY_SEPARATOR.$pathName);
++		list($yaml,$markdown) = Documentation::parse($text);
++
++		if (isset($yaml["patternType"])) {
++			$name = $yaml["patternType"];
++			unset($yaml["patternType"]);
++		}
+ 
+ 		// load default vars
+ 		$patternType        = PatternData::getPatternType();
+@@ -44,13 +55,6 @@ class DocumentationRule extends \PatternLab\PatternData\Rule {
+ 		$docDash    = $this->getPatternName(str_replace("_","",$doc),false); // colors
+ 		$docPartial = $patternTypeDash."-".$docDash;
+ 
+-		// default vars
+-		$patternSourceDir = Config::getOption("patternSourceDir");
+-		
+-		// parse data
+-		$text = file_get_contents($patternSourceDir.DIRECTORY_SEPARATOR.$pathName);
+-		list($yaml,$markdown) = Documentation::parse($text);
+-		
+ 		// grab the title and unset it from the yaml so it doesn't get duped in the meta
+ 		if (isset($yaml["title"])) {
+ 			$title = $yaml["title"];
+@@ -68,7 +72,6 @@ class DocumentationRule extends \PatternLab\PatternData\Rule {
+ 					break;
+ 				}
+ 			}
+-			
+ 		}
+ 
+ 		$category         = ($patternSubtypeDoc) ? "patternSubtype" : "pattern";
