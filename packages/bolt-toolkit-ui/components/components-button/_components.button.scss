@@ -8,7 +8,6 @@
 @import '@bolt/tools-spacing';
 @import '@bolt/tools-no-select';
 
-$bolt-color-white: bolt-palette(white);
 $bolt-color-button-text: bolt-palette(white);
 $bolt-color-primary: bolt-palette(blue);
 $bolt-color-secondary: bolt-palette(blue);
@@ -138,6 +137,122 @@ $bolt-border-width--button: 1px;
       box-shadow:       none;
     }
   }
+
+  @elseif $hiarchy == 'success' {
+    &,
+    &:visited {
+      color:            bolt-palette(white);
+      border-color:     bolt-palette(success);
+      background-color: bolt-palette(success);
+      box-shadow:       $bolt-shadow;
+    }
+
+    &:hover {
+      border-color:     bolt-palette(success, dark);
+      background-color: bolt-palette(success, dark);
+      box-shadow:       $bolt-shadow;
+    }
+
+    &:active {
+      border-color:     bolt-palette(success, dark);
+      background-color: bolt-palette(success, dark);
+    }
+
+    &:focus {
+      box-shadow:       $bolt-shadow;
+    }
+
+    &:focus:hover {
+      box-shadow:       $bolt-shadow;
+    }
+  }
+
+  @elseif $hiarchy == 'warning' {
+    &,
+    &:visited {
+      color:            bolt-palette(black);
+      border-color:     bolt-palette(warning);
+      background-color: bolt-palette(warning);
+      box-shadow:       $bolt-shadow;
+    }
+
+    &:hover {
+      border-color:     bolt-palette(warning, dark);
+      background-color: bolt-palette(warning, dark);
+      box-shadow:       $bolt-shadow;
+    }
+
+    &:active {
+      border-color:     bolt-palette(warning, dark);
+      background-color: bolt-palette(warning, dark);
+    }
+
+    &:focus {
+      box-shadow:       $bolt-shadow;
+    }
+
+    &:focus:hover {
+      box-shadow:       $bolt-shadow;
+    }
+  }
+
+  @elseif $hiarchy == 'error' {
+    &,
+    &:visited {
+      color:            bolt-palette(white);
+      border-color:     bolt-palette(error);
+      background-color: bolt-palette(error);
+      box-shadow:       $bolt-shadow;
+    }
+
+    &:hover {
+      border-color:     bolt-palette(error, dark);
+      background-color: bolt-palette(error, dark);
+      box-shadow:       $bolt-shadow;
+    }
+
+    &:active {
+      border-color:     bolt-palette(error, dark);
+      background-color: bolt-palette(error, dark);
+    }
+
+    &:focus {
+      box-shadow:       $bolt-shadow;
+    }
+
+    &:focus:hover {
+      box-shadow:       $bolt-shadow;
+    }
+  }
+
+  @elseif $hiarchy == 'disabled' {
+    &,
+    &:visited {
+      color:            bolt-palette(gray);
+      border-color:     bolt-palette(gray, light);
+      background-color: bolt-palette(gray, light);
+      box-shadow:       $bolt-shadow;
+    }
+
+    &:hover {
+      border-color:     bolt-palette(gray, light);
+      background-color: bolt-palette(gray, light);
+      box-shadow:       $bolt-shadow;
+    }
+
+    &:active {
+      border-color:     bolt-palette(gray, light);
+      background-color: bolt-palette(gray, light);
+    }
+
+    &:focus {
+      box-shadow:       $bolt-shadow;
+    }
+
+    &:focus:hover {
+      box-shadow:       $bolt-shadow;
+    }
+  }
 }
 
 @mixin bolt-button {
@@ -193,6 +308,24 @@ $bolt-border-width--button: 1px;
 
 .c-test-button--tertiary {
   @include bolt-button-color(tertiary);
+}
+
+.c-test-button--success {
+  @include bolt-button-color(success);
+}
+
+.c-test-button--warning {
+  @include bolt-button-color(warning);
+}
+
+.c-test-button--error {
+  @include bolt-button-color(error);
+}
+
+.c-test-button--disabled {
+  @include bolt-button-color(disabled);
+
+  cursor: not-allowed;
 }
 
 .c-test-button,

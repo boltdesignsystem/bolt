@@ -126,7 +126,7 @@
     --bolt-color-border: $border;
   }
 
-  @include bolt-padding(medium);
+  @include bolt-padding(medium); // Remove this when utility classes are fixed.
 
   color: var(--bolt-color-text, inherit);
   background-color: var(--bolt-color-background, inherit);
@@ -135,71 +135,67 @@
 @mixin test-theme($name: 'xlight') {
   @if $name == 'xlight' {
     @include _test-theme-settings(
-      bolt-palette(white),
-      bolt-palette(blue),
-      bolt-palette(blue),
-      null,
-      bolt-palette(indigo),
-      null,
-      null);
+      $background:  bolt-palette(white),
+      $primary:     bolt-palette(blue),
+      $secondary:   bolt-palette(blue),
+      $text:        null,
+      $heading:     bolt-palette(indigo),
+      $button-text: null,
+      $border:      null);
   }
   @elseif $name == 'light' {
     @include _test-theme-settings(
-      bolt-palette(gray, xlight),
-      bolt-palette(blue),
-      bolt-palette(blue),
-      null,
-      bolt-palette(indigo),
-      null,
-      null);
+      $background:  bolt-palette(gray, xlight),
+      $primary:     bolt-palette(blue),
+      $secondary:   bolt-palette(blue),
+      $text:        null,
+      $heading:     bolt-palette(indigo),
+      $button-text: null,
+      $border:      null);
   }
   @elseif $name == 'dark' {
     @include _test-theme-settings(
-      bolt-palette(indigo, light),
-      bolt-palette(yellow),
-      bolt-palette(yellow),
-      null,
-      null,
-      null,
-      null);
+      $background:  bolt-palette(indigo, light),
+      $primary:     bolt-palette(yellow),
+      $secondary:   bolt-palette(yellow),
+      $text:        null,
+      $heading:     null,
+      $button-text: null,
+      $border:      null);
   }
   @elseif $name == 'xdark' {
     @include _test-theme-settings(
-      bolt-palette(indigo),
-      bolt-palette(blue),
-      bolt-palette(white),
-      null,
-      null,
-      null,
-      null);
+      $background:  bolt-palette(indigo),
+      $primary:     bolt-palette(blue),
+      $secondary:   bolt-palette(white),
+      $text:        null,
+      $heading:     null,
+      $button-text: null,
+      $border:      null);
   }
   @elseif $name == 'notification' {
     @include _test-theme-settings(
-      bolt-palette(blue, light),
-      bolt-palette(blue, dark),
-      bolt-palette(blue));
+      $background:  bolt-palette(blue, light),
+      $primary:     bolt-palette(blue, dark),
+      $secondary:   bolt-palette(blue));
   }
   @elseif $name == 'success' {
     @include _test-theme-settings(
-      bolt-palette(success, light),
-      bolt-palette(success, dark),
-      bolt-palette(success));
+      $background:  bolt-palette(success, light),
+      $primary:     bolt-palette(success, dark),
+      $secondary:   bolt-palette(success));
   }
   @elseif $name == 'warning' {
     @include _test-theme-settings(
-      bolt-palette(warning, light),
-      bolt-palette(warning, dark),
-      bolt-palette(warning));
+      $background:  bolt-palette(warning, light),
+      $primary:     bolt-palette(warning, dark),
+      $secondary:   bolt-palette(warning));
   }
   @elseif $name == 'error' {
     @include _test-theme-settings(
-      bolt-palette(error, light),
-      bolt-palette(error, dark),
-      bolt-palette(warning, dark),
-      null,
-      bolt-palette(warning, dark),
-      null,
-      bolt-palette(error));
+      $background:  bolt-palette(error, light),
+      $primary:     bolt-palette(error, dark),
+      $secondary:   bolt-palette(warning, dark));
   }
 }
 
