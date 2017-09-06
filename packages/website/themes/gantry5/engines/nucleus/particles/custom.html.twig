@@ -1,0 +1,6 @@
+{% extends '@nucleus/partials/particle.html.twig' %}
+
+{% block particle %}
+    {% set html = particle.twig ? gantry.theme.compile(particle.html) : particle.html %}
+    {{ (particle.filter ? gantry.platform.filter(html) : html)|html|raw }}
+{% endblock %}

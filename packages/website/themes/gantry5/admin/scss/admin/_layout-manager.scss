@@ -1,0 +1,1089 @@
+$particle: #2A82B7;
+$position: #359AD9;
+$spacer: #eee;
+$system: #20A085;
+$atom: #9055AF;
+
+#g5-container {
+    // wrapper
+
+    .layout-title {
+        margin-bottom: 0.5rem;
+    }
+
+    .title ~ .fa-pencil {
+        cursor: pointer;
+    }
+
+    .title[contenteditable] {
+        padding: 4px;
+    }
+
+    .lm-blocks {
+        &.empty {
+            min-height: 150px;
+            border: 2px dashed #dfdfdf;
+        }
+
+        .g-grid, .g-block {
+            position: relative;
+        }
+
+        // resizers
+        .g-grid > .g-block {
+            &:after {
+                content: "";
+                position: absolute;
+                top: 0;
+                right: -8px;
+                bottom: 0;
+                width: 8px;
+                background: red;
+                z-index: 3;
+                cursor: col-resize;
+                display: none;
+            }
+
+            &:last-child:after {
+                display: none;
+            }
+        }
+
+        &.moving .g-grid > .g-block:after, &.moving .g-grid > .g-block > [data-lm-blocktype]:after,
+        &.moving .g-grid:hover > .g-block [data-lm-blocktype]:not(:empty):after {
+            display: none;
+        }
+
+        [data-lm-blocktype="container"] {
+            position: relative;
+            padding: 8px;
+            background: #e0e0e0;
+
+            .container-wrapper {
+                padding: 0 4px 8px;
+                color: #888;
+
+                .container-title {
+                    @extend .float-left;
+                    text-transform: capitalize;
+                    font-size: 0.95rem;
+
+                    .changes-indicator {
+                        margin-right: 5px;
+                    }
+                }
+
+                .container-actions {
+                    @extend .float-right;
+
+                    .g-tooltip {
+                        &:before {
+                            right: 0.1rem;
+                        }
+
+                        &:after {
+                            right: -0.2rem;
+                        }
+                    }
+
+                    .g-tooltip, i {
+                        cursor: pointer;
+                        @include transition(color 0.2s);
+                        &:hover {
+                            color: darken($core-text, 10%);
+                        }
+                    }
+                }
+            }
+        }
+
+        .g-grid .g-block {
+            .section:first-child {
+                margin-top: 0;
+            }
+
+            .section:last-child {
+                margin-bottom: 0;
+            }
+
+            > .section {
+                position: static !important;
+            }
+        }
+
+        .section, .atoms-section, .offcanvas-section, .wrapper-section {
+            padding: 8px;
+        }
+
+        .section, .atoms-section, .offcanvas-section {
+            margin: 14px 0;
+            background: $white;
+
+            .section-header {
+                font-size: 22px;
+                line-height: 2em;
+                padding: 0 4px;
+
+                h4 {
+                    margin: 0;
+                    padding: 0;
+                    font-weight: $font-weight-regular;
+                    font-family: $font-family-default;
+                    font-size: 24px;
+                    @include ellipsis();
+                }
+
+                i {
+                    pointer-events: visible;
+                    color: #999;
+                    margin: 0 4px;
+                }
+            }
+
+            .section-actions {
+                opacity: 0.5;
+                @include transition(opacity 0.2s ease-out);
+
+                i {
+                    cursor: pointer;
+                    @include transition(color 0.2s);
+                    &:hover {
+                        color: darken($core-text, 10%);
+                    }
+                }
+            }
+
+            &:hover {
+                .section-actions {
+                    opacity: 1;
+                    @include transition(opacity 0.2s ease-in);
+                }
+            }
+
+            @mixin inheritance-actions() {
+                position: relative;
+                z-index: 6;
+                i {
+                    color: lighten($core-text, 5%);
+
+                    &:hover {
+                        color: darken($core-text, 10%);
+                    }
+                }
+            }
+
+            &.g-inheriting {
+                h4 {
+                    z-index: 6;
+                    position: relative;
+                }
+
+                .section-actions {
+                    opacity: 1;
+                    .section-settings {
+                        @include inheritance-actions();
+                    }
+                }
+
+                &:not(.g-inheriting-children) .section-addrow {
+                    @include inheritance-actions();
+                }
+
+                &:hover {
+                    .section-actions {
+                        opacity: 1;
+                    }
+                }
+
+                &.g-inheriting-children > .g-grid:not(:empty) {
+                    &:before, &:after {
+                        display: none !important;
+                    }
+                }
+            }
+
+            .g-grid {
+                margin: 8px 0;
+                padding: 4px;
+                border: 0;
+                box-shadow: none;
+                background-color: #f6f6f6;
+                min-height: 58px;
+
+                &.original-placeholder {
+                    margin-top: 0;
+                }
+
+                // handles
+                &:not(:empty):not(.no-hover):before, &:not(:empty):not(.no-hover):not(.no-gear):after {
+                    display: block;
+                    position: absolute;
+                    background: #f6f6f6;
+                    top: -1px;
+                    bottom: -1px;
+                    width: 25px;
+                    vertical-align: middle;
+                    line-height: 58px;
+                    text-align: center;
+                    z-index: 5;
+                    color: #aaa;
+                    border: 1px solid #ddd;
+                    opacity: 0;
+                }
+
+                &:not(:empty):not(.no-hover):before {
+                    font-family: FontAwesome, sans-serif;
+                    content: "\f0c9";
+                    border-radius: 3px 0 0 3px;
+                    left: -21px;
+                    cursor: move;
+                    border-right: 0 !important;
+                }
+
+                &:not(:empty):not(.no-hover):not(.no-gear):after {
+                    font-family: FontAwesome, sans-serif;
+                    content: "\f0db";
+                    border-radius: 0 3px 3px 0;
+                    right: -21px;
+                    border-left: 0 !important;
+                    cursor: pointer;
+                }
+
+                &:hover:not(:empty) {
+                    box-shadow: 0 0 0 1px #ddd;
+                }
+
+                &:hover:not(:empty):not(.no-hover):before, &:hover:not(:empty):not(.no-hover):not(.no-gear):after {
+                    opacity: 1;
+                }
+
+                &:first-child {
+                    margin-top: 0;
+                }
+
+                .g-block:after {
+                    display: none;
+                }
+
+                &:empty:after {
+                    content: "Drop particles here...";
+                    display: block;
+                    text-align: center;
+                    margin: 0 auto;
+                    position: relative;
+                    vertical-align: middle;
+                    line-height: 47px;
+                    color: #bababa;
+                    @include ellipsis();
+                }
+            }
+        }
+
+        .atoms-section, .offcanvas-section {
+            background-color: transparent;
+            margin-top: 28px;
+            border-top: 1px solid #ddd;
+
+            .g-grid {
+                background: $white;
+            }
+        }
+
+        .atoms-section {
+            &:empty:after {
+                content: "Drop atoms here...";
+            }
+
+            .g-grid {
+                &:not(:empty):not(.no-hover):before, &:not(:empty):not(.no-hover):not(.no-gear):after {
+                    display: none;
+                    opacity: 0;
+                    visibility: hidden;
+                }
+
+                > .g-tooltip {
+                    display: none;
+                }
+            }
+
+            .g-block {
+                min-width: 20%;
+            }
+
+            > .g-block {
+                > .particle, > .position, > .spacer, > .system {
+                    &:after {
+                        display: none;
+                        opacity: 0;
+                        visibility: hidden;
+                    }
+                }
+            }
+
+            /* sets the atoms margin-right to 0 for the last item or in case of nowrap to every 5th
+            .g-block
+                &:nth-child(5n+5) .atom {
+                    margin-right: 0;
+                }
+
+                &:last-child {
+                .particle, .position, .spacer, .system {
+                    margin-right: 0;
+                }
+            }
+            */
+        }
+
+        .atoms-notice {
+            background-color: $atom;
+            border: 4px solid $white;
+            color: $white;
+            padding: $content-padding;
+            margin: $content-margin;
+            text-align: center;
+
+            a {
+                color: lighten($atom, 30);
+                border-bottom: 1px dotted lighten($atom, 30);
+                font-weight: bold;
+
+                &:hover {
+                    color: lighten($atom, 60);
+                }
+            }
+        }
+
+        .offcanvas-section, .wrapper-section {
+            .g-grid:empty:after {
+                content: "Drop particles here...";
+                @include ellipsis();
+            }
+        }
+
+        > .g-grid > .g-block, .g-lm-container > .g-grid {
+            border-bottom: 8px solid #e0e0e0;
+
+            &:last-child {
+                border-bottom: 0;
+            }
+
+            > .g-block {
+                margin-right: 14px;
+                background: $white;
+                padding-bottom: 50px;
+
+                > .section {
+                    border-bottom: 14px solid #eee;
+                    margin-top: 0;
+                    margin-bottom: 0;
+
+                    &:last-child {
+                        border-bottom: 0;
+                    }
+                }
+
+                > .particle-size {
+                    margin-right: 0;
+                    position: absolute;
+                    bottom: 12px;
+                    right: 12px;
+
+                    i {
+                        margin-right: 5px;
+                    }
+                }
+            }
+        }
+
+        .g-grid {
+            &:hover > .g-block {
+                > .particle, > .position, > .spacer, > .system {
+                    &:after {
+                        content: "";
+                        top: 0;
+                        bottom: 0;
+                        width: 4px;
+                        background: #00baaa;
+                        position: absolute;
+                        right: -5px;
+                        cursor: col-resize;
+                        z-index: 10;
+                    }
+                }
+            }
+        }
+
+        .section > .g-grid > .g-block:last-child, .section > .g-lm-container > .g-grid > .g-block:last-child, .offcanvas-section > .g-grid > .g-block:last-child, .wrapper-section > .g-grid > .g-block:last-child {
+            .particle, .position, .spacer, .system, .atom {
+                margin-right: 0;
+            }
+
+            > .particle, > .position, > .spacer, > .system {
+                &:after {
+                    display: none;
+                }
+            }
+
+        }
+
+        .g-grid > .g-block {
+            &:last-child {
+                margin-right: 0;
+            }
+
+            .in-between-sections:first-child, .in-between-sections:last-child {
+                margin: 6px;
+            }
+
+            &:after {
+                content: "";
+                display: block;
+                position: absolute;
+                right: -10px;
+                width: 6px;
+                background: #00baaa;
+                z-index: 0;
+                cursor: col-resize;
+            }
+
+            &:last-child:after {
+                display: none;
+            }
+        }
+
+        .particle, .position, .spacer, .system, .atom {
+            cursor: move;
+            padding: 6px 13px;
+            color: $white;
+            background: $position;
+            margin-right: 6px;
+            position: relative;
+            white-space: nowrap;
+
+
+            &.g-inheriting {
+                @include stripes-background($position);
+            }
+
+            &[data-lm-nodrag] {
+                cursor: default;
+            }
+
+            .particle-size {
+                color: rgba($white, 0.7);
+            }
+
+            strong {
+                font-weight: bold;
+                color: $white;
+            }
+
+            > span {
+                position: relative;
+                z-index: 2;
+                display: inline-block;
+                width: 100%;
+
+                span {
+                    display: block;
+
+                    &:last-child {
+                        color: rgba($white, 0.7);
+                    }
+                }
+
+                .title {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .icon {
+                    width: auto;
+                    float: left;
+                    line-height: 2.5rem;
+                    margin-right: 13px;
+                    opacity: 0.7;
+                }
+
+
+                .font-small {
+                    line-height: $core-line-height - 0.2;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    margin-top: -3px;
+                    margin-bottom: -3px;
+                }
+            }
+
+            .float-right {
+                position: absolute;
+                right: 13px;
+                top: 0;
+                bottom: 0;
+                line-height: 50px;
+                float: inherit;
+
+                i {
+                    line-height: 52px;
+                    cursor: pointer;
+                    position: relative;
+                    z-index: 2;
+                }
+            }
+
+            &.g-inheriting.particle-disabled {
+                @include stripes-background(#ccc, 50px, 45deg);
+            }
+        }
+
+        .atom {
+            margin: 0 6px 6px 0px;
+        }
+
+        .particle-size {
+            font-weight: 300;
+            font-size: $core-font-size + 0.2;
+            vertical-align: middle;
+            color: $core-text;
+            display: inline-block;
+            margin-top: -5px;
+            margin-right: 5px;
+            text-shadow: none;
+            @include breakpoint(tablet-range) {
+                font-size: $core-font-size;
+            }
+        }
+
+        .particle {
+            background-color: $particle;
+
+            &.g-inheriting {
+                @include stripes-background($particle);
+            }
+        }
+
+        .spacer {
+            background-color: $spacer;
+            color: rgba($dark-gray, 0.8);
+
+            &.g-inheriting {
+                @include stripes-background($spacer);
+            }
+
+            .particle-size {
+                color: rgba($dark-gray, 0.8);
+            }
+
+            > span {
+                span {
+                    &:last-child {
+                        color: rgba($dark-gray, 0.8);
+                    }
+                }
+            }
+        }
+
+        .atom {
+            background-color: $atom;
+
+            &.g-inheriting {
+                @include stripes-background($atom);
+            }
+        }
+
+        .system {
+            background-color: $system;
+
+            &.g-inheriting {
+                @include stripes-background($system);
+            }
+        }
+
+        .placeholder {
+            text-align: center;
+            color: rgb(89, 135, 160);
+            text-shadow: 0 0 4px rgba(255, 255, 255, 0.7);
+            background-color: #ddd;
+            border: 0;
+            padding: 1px;
+            @include flex(0 1 100%);
+
+            &.in-between {
+                display: block;
+                margin: 0 2px 0 -4px;
+                width: 0;
+                padding: 1px;
+                text-indent: -10000px;
+                font-size: 0;
+                @include flex(0 1 0);
+                background-color: #555;
+            }
+
+            &.in-between-grids {
+                background-color: #555;
+                margin: -5px 0;
+
+                &.in-between-grids-first {
+                    margin: 0 0 -2px;
+                }
+
+                &.in-between-grids-last {
+                    margin: -2px 0 0;
+                }
+            }
+
+            &.in-between.in-between-sections {
+                width: auto;
+            }
+        }
+
+        .particle-disabled, [data-lm-disabled], .g-inheriting .particle-disabled {
+            @include stripes-background(#ccc, 50px, 45deg);
+        }
+
+        .atoms-section .placeholder.in-between {
+            margin-bottom: 6px;
+        }
+
+        .block-has-changes {
+            &:not(.section):not(.atoms-section):not(.offcanvas-section):not(.wrapper-section):not(.g-lm-container) {
+                box-shadow: inset 20px 0 rgba(0, 0, 0, 0.2);
+            }
+
+            &.g-lm-container {
+                box-shadow: inset 0 2px rgba(0, 0, 0, 0.2);
+            }
+
+            > span > .changes-indicator {
+                position: absolute;
+                left: -10px;
+                top: 12px;
+            }
+
+            > span .title, > span .font-small, > span .icon {
+                margin-left: 15px;
+            }
+        }
+    }
+
+    /* history */
+    #history {
+        display: inline-block;
+        float: right;
+        span {
+            display: inline-block;
+            background: #eee;
+            border-radius: 30px;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            margin-left: 5px;
+            font-size: 16px;
+            color: #777;
+            text-shadow: 0 1px $white;
+
+            &.disabled {
+                color: #ccc;
+            }
+        }
+    }
+
+    .sidebar [data-lm-blocktype] {
+        position: relative;
+        z-index: 5;
+    }
+
+    /* new blocks */
+    .lm-newblocks {
+        padding-bottom: 8px;
+
+        .g-block {
+            display: inline-block;
+            text-align: center;
+            background: $navbar-bg;
+            padding: 4px 8px;
+            border-radius: 3px;
+            margin-right: 8px;
+        }
+
+        .button {
+            i {
+                line-height: $core-line-height + 0.1;
+            }
+        }
+    }
+
+    /* deletion */
+    #trash {
+        position: fixed;
+        top: 0; // 0 = flushed to the top of viewport, use + px for offset, ie. 30px
+        right: 0;
+        left: 0;
+        z-index: 1200;
+        text-align: center;
+        font-weight: bold;
+        color: $white;
+        padding: $content-padding;
+        background: rgba(255,255,255,0.8);
+        display: none;
+
+        .trash-zone {
+            background-color: $red;
+            font-size: $core-font-size * 2;
+            border-radius: 100px;
+            @include size(50px 50px);
+            line-height: 50px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        span {
+            font-size: $navbar-font-size;
+            color: $dark-gray;
+            text-shadow: 0 0 1px $white;
+        }
+    }
+
+    .g5-dialog > .g-tabs, .g5-popover-content > .g-tabs,
+    .g5-dialog form > .g-tabs, .g5-popover-content form > .g-tabs,
+    .g5-dialog .g5-content > .g-tabs, .g5-popover-content .g5-content > .g-tabs {
+        @extend #navbar;
+
+        &, i {
+            margin-right: 0 !important;
+        }
+
+        ul {
+            background-color: $navbar-bg;
+            margin: -1rem -1rem 1rem !important;
+            border-radius: $core-border-radius $core-border-radius 0 0;
+
+            li:first-child, li:first-child a {
+                border-radius: $core-border-radius 0 0 0;
+            }
+        }
+    }
+
+    .g5-popover-content .g-tabs {
+        ul {
+            margin: -0.55rem -0.9rem 1rem !important;
+            background-color: $light-gray;
+
+            li.active {
+                background-color: $white !important;
+            }
+
+            li:hover:not(.active) {
+                background-color: darken($light-gray, 5%) !important;
+            }
+        }
+    }
+
+    .g5-dialog .g-pane, .g5-popover-content .g-pane {
+        display: none;
+
+        &.active {
+            display: block;
+        }
+
+        li[data-switch] {
+            padding: 0.4rem;
+
+            i {
+                color: #aaa;
+            }
+
+            &:not(.g-switch-title) {
+                cursor: pointer;
+            }
+
+            &:hover:not(.g-switch-title) {
+                background-color: $light-gray;
+                border-radius: $core-border-radius;
+            }
+        }
+
+        .settings-block {
+            position: relative;
+        }
+    }
+
+    .g5-popover-content .g-pane {
+        .g-switch-title {
+            padding-bottom: 7px;
+            font-weight: bold;
+            font-size: 0.85em;
+            color: #ccc;
+            text-transform: uppercase;
+        }
+
+        ul {
+            @extend %list-reset;
+            word-wrap: break-word;
+            width: 50%;
+        }
+    }
+
+    .g-preserve-particles {
+        padding-bottom: 0.5rem;
+        font-size: 0.8rem;
+        color: $dark-gray;
+        border-bottom: 1px solid lighten($light-gray, 2%);
+        margin-bottom: 0.5rem;
+
+        label {
+            @include user-select(none);
+            padding-left: 20px;
+        }
+
+        input {
+            margin-left: -20px !important;
+        }
+    }
+
+    .sidebar-block {
+        $negate: -($content-padding + $content-margin);
+        $compensate: $content-padding + $content-margin;
+        margin: $negate $compensate $negate $negate;
+        padding: $compensate $content-padding;
+        background-color: darken($main-bg, 2);
+        border-right: 1px solid darken($main-bg, 5);
+        position: relative;
+    }
+
+    .particles-sidebar-block {
+        @include flex(0 200px);
+        width: 200px;
+
+        @include breakpoint(mobile-only) {
+            @include flex(0 100%);
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: inherit;
+            border: 0;
+
+            .particles-container {
+                max-height: 300px;
+                overflow: auto;
+                margin-bottom: 1rem;
+            }
+        }
+    }
+
+    @include breakpoint(no-mobile) {
+        .particles-container.has-scrollbar {
+            padding-right: $content-padding / 2;
+        }
+    }
+
+    .g5-lm-particles-picker, .g5-mm-particles-picker, .g5-mm-modules-picker, .g5-mm-widgets-picker, #positions {
+
+        ul, li {
+            @extend %list-reset;
+        }
+
+        ul {
+            padding: 1px;
+            margin-bottom: 1em;
+        }
+
+        &:not(.menu-editor-particles) {
+            @extend .font-small;
+        }
+
+        &.menu-editor-particles {
+            li {
+                margin: 0.3rem 0.15rem;
+                cursor: pointer !important;
+            }
+        }
+
+        li {
+            padding: $content-padding / 2;
+            margin: ($content-padding / 2) 0;
+            text-align: left;
+            border-radius: $core-border-radius;
+            cursor: move;
+            position: relative;
+
+            &[data-lm-nodrag], &[data-mm-nodrag] {
+                cursor: default;
+            }
+
+            @include breakpoint(tablet-range) {
+                font-size: $core-font-size - 0.2;
+            }
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &[data-lm-blocktype="spacer"], &[data-mm-blocktype="spacer"], &[data-pm-blocktype="spacer"] {
+                color: $dark-gray;
+                border: 2px solid darken($medium-gray, 5);
+
+                &.original-placeholder {
+                    background-color: $spacer;
+                }
+
+                .particle-icon {
+                    background-color: darken($medium-gray, 5);
+                }
+            }
+
+            &.g5-lm-particle-spacer[data-lm-disabled], &.g5-mm-particle-spacer[data-mm-disabled] {
+                color: #fff;
+            }
+
+            .particle-icon {
+                float: left;
+                margin: (-$content-padding / 2) ($content-padding / 2) (-$content-padding / 2) (-$content-padding / 2);
+                display: inline-block;
+                height: 2.2rem;
+                vertical-align: middle;
+                width: 1.7em;
+                text-align: center;
+                line-height: 1.5rem;
+
+                i {
+                    position: relative;
+                    top: 50%;
+                    transform: translateY(-100%);
+                }
+            }
+
+            &.original-placeholder .particle-icon {
+                border-radius: 3px;
+            }
+
+            &[data-lm-blocktype="position"], &[data-mm-blocktype="position"], &[data-pm-blocktype="position"],
+            &[data-lm-blocktype="module"], &[data-mm-blocktype="module"], &[data-pm-blocktype="module"],
+            &[data-lm-blocktype="widget"], &[data-mm-blocktype="widget"], &[data-pm-blocktype="widget"] {
+                color: $position;
+                border: 2px solid $position;
+
+                &.original-placeholder, .particle-icon {
+                    border: 0;
+                    background-color: $position;
+                    color: #fff;
+                }
+            }
+
+            &[data-lm-blocktype="particle"], &[data-mm-blocktype="particle"], &[data-pm-blocktype="particle"] {
+                color: $particle;
+                border: 2px solid $particle;
+
+                &.original-placeholder, .particle-icon {
+                    border: 0;
+                    background-color: $particle;
+                    color: #fff;
+                }
+            }
+
+            &[data-lm-blocktype="system"] {
+                color: $system;
+                border: 2px solid $system;
+
+                &.original-placeholder, .particle-icon {
+                    border: 0;
+                    background-color: $system;
+                    color: #fff;
+                }
+            }
+
+            &[data-lm-blocktype="atom"] {
+                color: #fff;
+                background-color: $atom;
+            }
+
+            &[data-lm-disabled] {
+                color: #666;
+                border: 2px solid #aaa;
+                @include stripes-background(#ccc, 50px, 45deg);
+
+                .particle-icon {
+                    border: 0;
+                    background-color: #aaa;
+                    color: #fff;
+                }
+            }
+        }
+
+        .settings-block {
+            width: 100% !important;
+        }
+
+        .search {
+            position: relative;
+            margin-bottom: 10px;
+        }
+    }
+
+    [data-lm-blocktype] {
+        position: relative;
+    }
+
+    .g-inherit {
+        //@include background($section-stripes !important);
+        @include stripes-background(transparentize(#ccc, 0.4), 'auto' !important);
+        z-index: 5;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+
+        .g-inherit-content {
+            position: absolute;
+            text-align: center;
+            transform: translateX(-50%);
+            top: 0;
+            left: 50%;
+            background-color: $white;
+            padding: 0.5rem;
+            border-radius: 0 0 3px 3px;
+            opacity: 0.7;
+        }
+    }
+
+    [data-lm-blocktype="container"] .section .g-inherit .g-inherit-content {
+        top: auto;
+        bottom: 0;
+        border-radius: 3px 3px 0 0;
+        padding: 8px 16px;
+    }
+
+    .g-inheriting:not(.g-inheriting-children) .g-inherit {
+        z-index: 0;
+    }
+
+    .g-inheriting:not(.g-inheriting-children) .g-grid {
+        z-index: inherit;
+    }
+
+    @include breakpoint(no-mobile) {
+        // fixed sidebar in LM
+        .g5-lm-particles-picker.particles-fixed, .g5-lm-particles-picker.particles-absolute {
+            z-index: 5;
+
+            .search input {
+                width: inherit;
+                margin-right: -($content-padding + ($content-padding / 2) + $content-margin + rem(1px));
+            }
+        }
+
+        .g5-lm-particles-picker.particles-fixed {
+            position: fixed;
+        }
+
+        .g5-lm-particles-picker.particles-absolute {
+            position: absolute;
+        }
+    }
+}

@@ -1,0 +1,87 @@
+#g5-container {//wrapper
+    font-size: $core-font-size;
+    line-height: $core-line-height;
+
+    h1 {
+        font-size: $h1-font-size;
+    }
+
+    h2 {
+        font-size: $h2-font-size;
+    }
+
+    h3 {
+        font-size: $h3-font-size;
+    }
+
+    h4 {
+        font-size: $h4-font-size;
+    }
+
+    h5 {
+        font-size: $h5-font-size;
+    }
+
+    h6 {
+        font-size: $h6-font-size;
+    }
+
+    small {
+        font-size: $core-font-size - 0.125;
+    }
+
+    cite {
+        font-size: $core-font-size - 0.125;
+    }
+
+    sub,
+    sup {
+        font-size: $core-font-size - 0.250;
+    }
+
+    code,
+    kbd,
+    pre,
+    samp {
+        font-size: $core-font-size;
+    }
+
+    font-weight: 300;
+    font-family: $font-family-default;
+
+    // Headings
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: $font-weight-medium;
+    }
+
+    h1, h2 {
+        margin: $leading-margin 0;
+    }
+
+    h6 {
+        text-transform: uppercase;
+    }
+
+    // Strong
+    b, strong {
+        font-weight: $font-weight-bold;
+    }
+
+    .page-title {
+        margin-top: 0.5rem;
+        display: inline-block;
+        color: inherit;
+    }
+
+    .new {
+        display: none;
+    }
+
+    // invalid fields
+    input:invalid, textarea:invalid, select:invalid, .invalid-field {
+        color: $red;
+        text-decoration: underline;
+        border-bottom: 1px dotted $red;
+    }
+
+}//endwrapper

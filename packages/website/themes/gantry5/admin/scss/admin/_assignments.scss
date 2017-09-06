@@ -1,0 +1,79 @@
+#g5-container {
+    #assignments, .settings-assignments {
+        .enabler {
+            float: right;
+        }
+
+        .settings-param-wrapper {
+            min-width: 100%;
+            max-height: 455px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            margin: 0 -10px -10px;
+        }
+
+        .settings-param {
+            display: block;
+            border-bottom: 0;
+            border-top: 1px solid #f4f4f4;
+            margin: 0;
+            padding: 10px 15px;
+            @include backface-visibility(hidden);
+
+            .settings-param-title {
+                line-height: 1em;
+                vertical-align: middle;
+
+                .changes-indicator {
+                    margin-left: -1em;
+                }
+            }
+        }
+
+        .g-panel-filters {
+
+            [data-g-assignments-check], [data-g-assignments-uncheck] {
+                background-color: transparent;
+                font-size: 0.85rem;
+                line-height: 1;
+                border-left: 1px solid $medium-gray;
+                padding: 0 0.5rem;
+
+                &:last-child {
+                    padding-right: 0;
+                }
+            }
+
+            .g-tooltip:hover:before {
+                left: 2px;
+            }
+        }
+
+        .card .g-panel-filters .search {
+            width: 40%;
+        }
+
+        h4 {
+            padding: 0 6px;
+            line-height: 2;
+        }
+    }
+
+    .settings-assignments {
+        width: 100%;
+        margin-top: 0;
+
+        .enabler {
+            float: right;
+        }
+
+        .cards-wrapper {
+            margin: 0 0 -10px;
+
+            &.only-child {
+                @include column-count(1);
+            }
+        }
+    }
+
+}

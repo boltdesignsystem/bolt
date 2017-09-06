@@ -1,0 +1,413 @@
+@import "selectize";
+
+#g5-container {//wrapper
+
+#settings {
+    h2 {
+        &:first-child {
+            margin-top: 0.5rem;
+        }
+    }
+}
+
+.settings-block {
+    width: 100%;
+
+    min-width: inherit;
+
+    &.card {
+        .badge {
+            margin-left: 4px;
+        }
+    }
+
+    &.disabled {
+        opacity: 0.6;
+    }
+
+    .advanced {
+        color: $orange;
+    }
+
+    .alert {
+        margin: $content-margin 0;
+    }
+
+    h4.card-overrideable {
+        padding: 4px 8px;
+        .enabler {
+            margin-right: 2rem;
+        }
+    }
+
+    .settings-param {
+        @extend .clearfix;
+        padding: 10px 5px;
+        clear: both;
+        position: relative;
+        border-bottom: 1px solid #f4f4f4;
+
+        &.input-hidden {
+            display: none;
+            @extend %list-reset;
+        }
+
+        &:last-child {
+            border-bottom: 0;
+        }
+
+        .button.button-simple {
+            background-color: $light-gray;
+            color: darken($light-gray, 30%);
+            padding: 6px 8px;
+
+            &:hover {
+                background-color: darken($light-gray, 10%);
+                color: darken($light-gray, 50%);
+            }
+        }
+    }
+
+    .g-instancepicker-title {
+        margin-right: 0.5rem;
+        font-style: italic;
+        vertical-align: middle;
+        display: inline-block;
+        &:empty {
+            margin: 0;
+        }
+
+        + .button {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+
+    .input-small {
+        width: 120px !important;
+    }
+
+    input.settings-param-toggle {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        margin: -7px 15px 0 0;
+        z-index: 5;
+
+        &:checked {
+            + .settings-param-override {
+                opacity: 0;
+                z-index: -1;
+            }
+        }
+    }
+
+    .settings-param-override {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: 0;
+        padding: 0;
+        background-color: transparentize(#f4f4f4, 0.5);
+        z-index: 4;
+        opacity: 1;
+        @include transition(opacity 0.3s ease-in-out, z-index 0.3s ease-in-out);
+        @include backface-visibility(hidden);
+        /*@include linear-gradient(90deg, transparentize($white, 0.7) 0%, transparentize($white, 0.7) 150px, transparentize($white, 0.4) 150px, transparentize($white, 0.4) 100%);*/
+    }
+
+    .settings-param-field {
+        margin-left: 175px;
+
+        // fields reset
+        .g-reset-field {
+            display: inline-block;
+            opacity: 0;
+            cursor: pointer;
+            margin: 0 5px;
+            vertical-align: middle;
+
+            @include transition(opacity 0.2s ease-in-out);
+        }
+
+        .input-group .g-reset-field {
+            display: table-cell;
+            vertical-align: middle;
+            padding-left: 4px; // 4px is the display: inline-block gap
+        }
+
+        textarea + .g-reset-field {
+            vertical-align: top;
+        }
+
+        &:hover {
+            .g-reset-field {
+                opacity: 1;
+
+                @include transition(opacity 0.2s ease-in-out);
+            }
+        }
+    }
+
+    .settings-param-title {
+        max-width: 175px;
+        margin: 5px;
+
+        .particle-label-subtype {
+            margin-left: 0;
+        }
+    }
+
+
+    i {
+        line-height: inherit;
+    }
+
+    .fa {
+        width: 1rem;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .fa-lg {
+        font-size: inherit;
+        vertical-align: inherit;
+    }
+
+    input, textarea, select {
+        padding: 6px 12px;
+        border: 1px solid $medium-gray;
+        margin: 0;
+        height: auto;
+        max-width: 100%;
+        font-size: $core-font-size;
+        line-height: $core-line-height + 0.1;
+        border-radius: $core-border-radius;
+        vertical-align: middle;
+
+        &:focus {
+            border-color: rgba($core-accent, .5);
+        }
+    }
+
+    .g-colorpicker {
+        input {
+            &:focus {
+                border-color: $medium-gray;
+            }
+        }
+    }
+
+    select {
+        margin: 0;
+        display: inline-block;
+        height: 38px;
+    }
+
+    input:not(.settings-param-toggle):not(.g-keyvalue-input-key):not(.g-keyvalue-input-value):not([type="checkbox"]):not([type="radio"]), select, .collection-list ul, .g-colorpicker, .g-multi.g-selectize-control {
+        width: 250px;
+        @include breakpoint(no-desktop) {
+            width: 100%;
+        }
+    }
+
+    textarea {
+        width: 90%;
+        min-height: 150px;
+    }
+
+    .input-group {
+        &.append, &.prepend {
+            input {
+                width: 210px !important;
+                @include breakpoint(tablet-range) {
+                    width: 100% !important;
+                }
+                @include breakpoint(mobile-only) {
+                    width: 100% !important;
+                }
+            }
+        }
+    }
+
+    .g-selectize-control.g-single {
+        width: 250px !important;
+        @include breakpoint(tablet-range) {
+            width: 100% !important;
+        }
+        @include breakpoint(mobile-only) {
+            width: 92% !important;
+        }
+    }
+
+    img {
+        display: block;
+    }
+
+    &.search {
+        position: relative;
+        margin-bottom: 10px;
+
+        i {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            margin-top: -2px;
+        }
+    }
+}
+
+.g-panel-filters {
+    position: relative;
+    margin-bottom: 1rem;
+    display: inline-block;
+
+    .search.settings-block {
+        width: auto;
+        display: inline-block;
+        margin-bottom: 0;
+        margin-right: 5px;
+    }
+
+    .search, input, .button {
+        font-size: 0.85rem;
+        display: inline-block;
+    }
+}
+
+.g-filters-bar {
+    label, a {
+        @extend .font-small;
+        display: inline-block;
+        margin: 0 0 0 0.5rem;
+        border-left: 1px solid $medium-gray;
+        padding-left: 0.5rem;
+        line-height: 1;
+        // line-height: 30px;
+
+        input {
+            display: inline-block;
+        }
+    }
+
+    label {
+        padding-left: 0;
+        border: 0;
+    }
+}
+
+// modal
+.g5-dialog {
+
+    .settings-block {
+        width: 100%;
+        margin: 0 0 15px;
+    }
+
+    .g-modal-body {
+        overflow-x: hidden;
+        overflow-y: scroll;
+        max-height: 650px;
+    }
+
+    .settings-param {
+        padding: 5px;
+        @include breakpoint(no-desktop) {
+            padding: 2px 5px;
+            border: 0;
+        }
+    }
+}
+
+// fields styles
+.settings-param-field-colorpicker {
+    position: relative;
+
+    .settings-param-field-colorpicker-preview {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        bottom: 2px;
+        width: $core-line-height + em(1px);
+        border-radius: 3px;
+    }
+}
+
+// collections
+.collection-list .settings-param-field, .collection-keyvalue .settings-param-field .g-keyvalue-field {
+    ul {
+        &:empty {
+            margin-top: -8px;
+        }
+
+        @extend %list-reset;
+        margin: 0 0 5px;
+        border-spacing: 0 5px;
+        display: table;
+
+        li {
+            //padding: 0.1rem 0;
+            position: relative;
+            display: table-row;
+            line-height: $core-line-height - 0.2;
+
+            &:only-child {
+                .fa-reorder {
+                    display: none;
+                }
+
+                a {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+
+    .item-reorder {
+        cursor: row-resize;
+        color: lighten($dark-gray, 20%);
+        display: table-cell;
+    }
+}
+
+.g5-collection-wrapper {
+    max-height: 350px;
+    overflow: auto;
+}
+
+.collection-list .settings-param-field {
+    ul:not(.collection-sorting) li {
+        &:hover [data-title-edit], &:hover [data-collection-remove], &:hover [data-collection-duplicate] {
+            color: $dark-gray;
+            opacity: 1;
+        }
+
+        &[data-collection-item]:hover a {
+            color: $black;
+        }
+    }
+
+    [data-collection-item] a {
+        color: $core-text;
+        margin-left: 5px;
+        vertical-align: middle;
+        display: table-cell;
+        padding: 0.3rem 0.4rem;
+    }
+
+    [data-title-edit], [data-collection-remove], [data-collection-duplicate] {
+        cursor: pointer;
+        color: lighten($dark-gray, 40%);
+        //float: right;
+        //margin-top: 0.4rem;
+        opacity: 0;
+        display: table-cell;
+        padding-left: 0.4rem;
+        //@include transition(all 0.2s ease-in-out);
+    }
+}
+
+}//endwrapper

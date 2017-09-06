@@ -1,0 +1,23 @@
+{% set attr_extra = segment.attributes.extra|attribute_array %}
+
+{% set class = 'g-block ' ~ segment.attributes.size|toGrid
+    ~ (segment.attributes.variations ? ' ' ~ segment.attributes.variations|join(' '))
+    ~ (segment.attributes.class ? ' ' ~ segment.attributes.class|join(' ')) %}
+
+{% set html %}
+    {% if segment.children %}
+        {% for segment in segments %}
+            {% if segment.content %}
+                {{ segment.content|raw }}
+            {% else %}
+                {% include ['@nucleus/content/' ~ segment.type ~ '.html.twig', '@nucleus/layout/' ~ segment.type ~ '.html.twig'] with { 'segments': segment.children } %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endset %}
+
+{%- if html|trim %}
+        <div {% if segment.attributes.id %}id="{{ segment.attributes.id }}" {% endif %}class="{{ class }}" {{- attr_extra|raw }}>
+             {{ html|trim|raw }}
+        </div>
+{% endif -%}

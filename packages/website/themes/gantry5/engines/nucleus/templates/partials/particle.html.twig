@@ -1,0 +1,15 @@
+{% assets %}
+    {% block stylesheets %}
+    {% endblock %}
+
+    {% block javascript %}
+    {% endblock %}
+{% endassets -%}
+
+{% assets in 'footer' %}
+    {% block javascript_footer %}
+    {% endblock %}
+{% endassets -%}
+
+{% block particle %}
+{% endblock %}

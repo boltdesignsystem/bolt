@@ -1,0 +1,76 @@
+#g-offcanvas {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+	text-align: left;
+    display: none;
+    -webkit-overflow-scrolling: touch
+}
+
+.g-offcanvas-toggle {
+	display: block;
+	position: absolute;
+	top: 0.7rem;
+	left: 0.7rem;
+	z-index: 10;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.g-offcanvas-active {
+	overflow-x: hidden;
+}
+
+.g-offcanvas-open {
+    overflow: hidden;
+
+    body, #g-page-surround {
+        overflow: hidden;
+    }
+
+    .g-nav-overlay {
+        z-index: 15;
+        position: absolute;
+        opacity: 1;
+        height: 100%;
+    }
+
+    #g-offcanvas {
+        display: block;
+    }
+}
+
+body .g-offcanvas-hide {
+    @extend .hide;
+}
+
+.g-offcanvas-left {
+    #g-page-surround {
+        left: 0;
+    }
+}
+
+// Right Positioning
+.g-offcanvas-right {
+	#g-offcanvas {
+		left: inherit;
+	}
+	.g-offcanvas-toggle {
+		left: inherit;
+		right: 0.7rem;
+	}
+	#g-page-surround {
+		right: 0;
+	}
+}
+
+// Left Positioning
+.g-offcanvas-left {
+	#g-offcanvas {
+		right: inherit;
+	}
+}

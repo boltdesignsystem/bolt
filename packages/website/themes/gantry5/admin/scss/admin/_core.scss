@@ -1,0 +1,370 @@
+html {
+    width:100vw;
+    overflow-x:hidden;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+}
+
+body.g-prime {
+    color: $white;
+    background-color: $body-bg;
+    font-family: $font-family-default;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#g5-container { // wrapper
+    font-size: $core-font-size;
+    line-height: $core-line-height;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: $font-family-default;
+    position: relative;
+
+    .g-php-outdated {
+        line-height: 1em;
+        font-size: 0.9rem;
+        text-align: center;
+        padding: 8px 0;
+        margin: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+
+        a {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+    }
+
+    a {
+        color: $core-accent;
+    }
+
+    .g-block {
+        position: relative;
+        @include breakpoint(mobile-only) {
+            @include flex(0 100%);
+        }
+    }
+
+    .g-content {
+        margin: $content-margin;
+        padding: $content-padding;
+    }
+
+    .inner-container {
+        margin: 1.5rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        color: $core-text;
+
+        @include breakpoint(mobile-only) {
+            margin: 0;
+        }
+    }
+
+    // fast spin for fontawesome
+    .fa-spin-fast {
+        @include animation(fa-spin 1s infinite linear);
+    }
+
+    // save indicator
+    .changes-indicator {
+        opacity: 0;
+        @include animation(pulsate 1s ease-out infinite);
+    }
+
+    // collapse
+    .g-collapsed {
+        .g-collapse {
+            i {
+                @include transform(rotate(180deg));
+                @include backface-visibility(hidden);
+            }
+        }
+
+        &.card .inner-params, &:not(.card) {
+            overflow: hidden;
+            height: 0;
+        }
+    }
+
+    // badges
+    .badge {
+        border-radius: 100px;
+        background-color: $light-gray;
+        color: darken($medium-gray, 25);
+        padding: 3px 6px;
+        text-shadow: none;
+    }
+
+    // cards
+    .cards-wrapper {
+        margin: -10px 0;
+        display: block;
+        width: 100%;
+        @include column-count(2);
+        @include column-gap(20px);
+
+        @include breakpoint(mobile-only) {
+            @include column-count(1);
+        }
+
+        .card h4, .card input {
+            @include transform(translateZ(0));
+        }
+    }
+
+    .themes {
+        &.cards-wrapper {
+            @include column-count(initial);
+            @include column-gap(initial);
+        }
+    }
+
+    .card {
+        display: inline-block;
+        background: $white;
+        border-radius: 3px;
+        border: 1px solid $medium-gray;
+        padding: 10px;
+        min-width: 250px;
+        vertical-align: top;
+        margin: 10px 0;
+        @include backface-visibility(hidden);
+
+        //@include transform(translateZ(0)); // FIXME : Causes z-index issue in selectize but fixes WebKit rendering issues with Columns
+
+        &.full-width {
+            margin: 0;
+            display: block;
+        }
+
+        h4 {
+            margin: 0;
+
+            > * {
+                vertical-align: middle;
+            }
+
+            &[data-g-collapse] {
+                .g-collapse {
+                    @extend .font-small;
+                    cursor: pointer;
+                    display: inline-block;
+                    border: 1px solid #ddd;
+                    color: #bbb;
+                    border-radius: 3px;
+                    line-height: 1rem;
+                    padding: 2px;
+                    margin-right: 5px;
+                    position: relative;
+                    z-index: 5;
+
+                    &:hover:before {
+                        bottom: 1.65rem;
+                        left: 0.25rem;
+                    }
+
+                    &:hover:after {
+                        left: -0.5rem;
+                        bottom: 2rem;
+                    }
+                }
+            }
+
+            .enabler {
+                float: right;
+            }
+        }
+
+        .inner-params > :first-child:not(.alert) {
+            margin: $content-margin 0 0;
+            padding-top: $content-margin * 2;
+            border-top: 1px solid $light-gray;
+        }
+
+        .theme-id {
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: $font-weight-medium;
+        }
+
+        .theme-name {
+            text-align: center;
+        }
+
+        .theme-screenshot {
+            img {
+                margin: 0 auto 10px auto;
+                display: block;
+            }
+
+            a {
+                display: block;
+            }
+        }
+    }
+
+    .enabler {
+        @include enabler($green, $red);
+    }
+
+    .themes {
+        .card {
+            max-width: 300px;
+        }
+        .theme-info {
+            display: block;
+            text-align: center;
+            font-size: $core-font-size - 0.15;
+        }
+    }
+
+    .g-footer-actions {
+        padding: 1rem 0;
+        margin-top: 1rem;
+        border-top: 1px solid $medium-gray;
+    }
+
+} // end wrapper
+
+// Footer
+.com_gantry5, .gantry5, .admin-block {
+    #footer {
+        background-color: #e7e7e7;
+        padding: 1em 0 3rem;
+        margin-bottom: 0;
+        color: #aaa;
+        text-align: center;
+        font-weight: $font-weight-medium;
+        border-top: 1px solid #dedede;
+        font-family: $font-family-default;
+        font-size: $core-font-size;
+        line-height: $core-line-height;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
+        .g-version, .g-version-date {
+            color: $update-header-bg;
+        }
+
+        a {
+            color: $core-accent !important;
+            text-decoration: none;
+            &:hover {
+                color: darken($core-accent, 20%) !important;
+            }
+        }
+    }
+}
+
+// Whoops Debug
+.Whoops.container {
+    position: inherit;
+    @include clearfix;
+}
+
+// Keyframes
+@include keyframes(pulsate) {
+    0% {
+        @include transform(scale(0.1, 0.1));
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        @include transform(scale(1.2, 1.2));
+        opacity: 0;
+    }
+}
+
+// Tooltips
+.g-tooltip {
+    display: inline;
+    position: relative;
+
+    &:before, &:after {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+}
+
+.g-tooltip:hover, .g-tooltip.g-tooltip-force {
+    color: $core-accent;
+    text-decoration: none;
+}
+
+.g-tooltip:hover:after, .g-tooltip.g-tooltip-force:after {
+    background: rgba(0,0,0,0.8);
+    border-radius: $core-border-radius;
+    bottom: 1.45rem;
+    color: $white;
+    content: attr(data-title);
+    display: block;
+    left: 0;
+    padding: .3rem 1rem;
+    position: absolute;
+    white-space: nowrap;
+    z-index: 99;
+    font-size: $core-font-size - 0.2;
+}
+
+.g-tooltip:hover:before, .g-tooltip.g-tooltip-force:before {
+    border: solid;
+    border-color: rgba(0,0,0,0.8) transparent;
+    border-width: .4rem .4rem 0 .4rem;
+    bottom: 1.1rem;
+    content: "";
+    display: block;
+    left: 1rem;
+    position: absolute;
+    z-index: 100;
+}
+
+.g-tooltip.g-tooltip-right:hover:after, .g-tooltip.g-tooltip-right.g-tooltip-force:after {
+    left: inherit;
+    right: 0;
+}
+
+.g-tooltip.g-tooltip-right:hover:before, .g-tooltip.g-tooltip-right.g-tooltip-force:before {
+    left: inherit;
+    right: 1rem;
+}
+
+.g-tooltip.g-tooltip-bottom:hover:after, .g-tooltip.g-tooltip-bottom.g-tooltip-force:after {
+    bottom: auto;
+}
+
+.g-tooltip.g-tooltip-bottom:hover:before, .g-tooltip.g-tooltip-bottom.g-tooltip-force:before {
+    border-width: 0 .4rem .4rem .4rem;
+    bottom: -0.1rem;
+}
+
+
+// Save tooltips
+.button-save.g-tooltip:hover:after {
+    bottom: 3rem;
+}
+
+.button-save.g-tooltip:hover:before {
+    bottom: 2.6rem;
+}
+
+// Section actions tooltips
+.section-actions .g-tooltip:hover:before {
+    right: 7px;
+    bottom: 1.5rem;
+}
+.section-actions .g-tooltip:hover:after {
+    bottom: 1.9rem;
+}

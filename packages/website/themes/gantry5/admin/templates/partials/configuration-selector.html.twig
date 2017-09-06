@@ -1,0 +1,37 @@
+<li class="config-select-wrap">
+    {% set selected_title = configuration == 'default' ? 'GANTRY5_PLATFORM_BASE_OUTLINE'|trans : '' %}
+    {% set selected_value = configuration == 'default' ? 'default' : '' %}
+    {% set selected_editable = true %}
+    <select id="configuration-selector" class="config-select" data-selectize-ajaxify data-selectize="{{ {allowEmptyOption: true}|json_encode|e('html_attr') }}">
+        {% include 'partials/outlines-list.html.twig' %}
+    </select>
+
+    {% for name, title in gantry.outlines.user %}
+        {% if name == configuration %}
+            {% set selected_title = title %}
+            {% set selected_value = name %}
+        {% endif %}
+    {% endfor %}
+    {% for name, title in gantry.outlines.system %}
+        {% if name == configuration %}
+            {% set selected_title = title %}
+            {% set selected_value = name %}
+            {% set selected_editable = false %}
+        {% endif %}
+    {% endfor %}
+
+    {% if selected_editable and gantry.authorize('outline.rename') and configuration != 'default' %}
+    <span data-title-editable="{{ selected_title }}"
+          data-g-config-href="{{ gantry.route('configurations', selected_value, 'rename') }}"
+          class="title g-conf-title-edit"
+    >
+        {{ selected_title }}
+    </span>
+    <i class="fa fa-pencil font-small"
+       aria-hidden="true"
+       tabindex="0"
+       aria-label="{{ 'GANTRY5_PLATFORM_EDIT_TITLE'|trans(selected_title) }}"
+       data-title-editable="{{ selected_title }}"
+       data-title-edit=""></i>
+    {% endif %}
+</li>

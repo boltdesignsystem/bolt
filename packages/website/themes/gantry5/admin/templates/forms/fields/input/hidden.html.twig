@@ -1,0 +1,27 @@
+{% extends default ? "partials/field.html.twig" : 'forms/' ~ layout|default('field') ~ '.html.twig' %}
+
+{# Not overridable #}
+{% block overridable %}
+{% endblock %}
+
+{# No label #}
+{% block label %}
+{% endblock %}
+
+{% block input %}
+    {% if field.array %}
+        {% set name = name ~ '._json' %}
+        {% set value = value|default([])|json_encode %}
+        {% else %}
+        {% set value = value|join(', ') %}
+    {% endif %}
+
+    <input
+        {# required attribute structures #}
+        type="hidden"
+        name="{{ (scope ~ name)|fieldName }}"
+        value="{{ value }}"
+        {# global attribute structures #}
+        {{ block('global_attributes') }}
+    />
+{% endblock %}

@@ -21,8 +21,12 @@ $bolt-breakpoints: (
   xlarge:  1200px
 );
 
+
 // Re-map Bolt's namespaced Sassmap to the Breakpoint Sass's `$breakpoints` default
+
+/* stylelint-disable-next-line scss/dollar-variable-pattern */
 $breakpoints: $bolt-breakpoints;
+/* stylelint-enable */
 
 @each $breakpoint in $breakpoints {
   $name:     nth($breakpoint, 1);
@@ -32,6 +36,7 @@ $breakpoints: $bolt-breakpoints;
   $slicer-breakpoint-names: append($slicer-breakpoint-names, $name);
   $slicer-breakpoints:      append($slicer-breakpoints, $value);
 }
+
 
 
 /// @example

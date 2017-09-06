@@ -11,8 +11,6 @@
 @import '@bolt/tools-sassy-maps'; // required so `map-get-deep` works
 
 
-
-
 /// This returns the font-family for a specific element. Brand fonts are the default, with system fonts as the fallback.
 ///
 /// @param {string} $type
@@ -35,3 +33,11 @@
     }
   }
 }
+
+/* stylelint-disable-next-line scss/at-mixin-pattern */
+@mixin font-family($args...) {
+  @warn 'PegaKit\'s `font-family` mixin is deprecated and will be removed in v1.0.0 of Bolt. Use the new @bolt-font-family mixin instead.';
+
+  @include bolt-font-family($args);
+}
+/* stylelint-enable */
