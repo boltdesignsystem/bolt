@@ -59,3 +59,27 @@
   text-transform: uppercase;
   letter-spacing: 0.15rem;
 }
+
+
+
+.c-bolt-subheadline {
+  @include bolt-margin-bottom(xsmall);
+  @include bolt-font-family(heading);
+  @include bolt-font-weight(regular);
+
+  &:not([class*="c-bolt-subheadline--"]) {
+    @include bolt-font-size(large);
+  }
+}
+
+.c-bolt-subheadline--xxlarge {
+  @include bolt-font-size(xxlarge);
+}
+
+.c-bolt-subheadline--xlarge {
+  @include bolt-font-size(xlarge);
+}
+
+.c-bolt-subheadline--large {
+  @include bolt-font-size(large);
+}
