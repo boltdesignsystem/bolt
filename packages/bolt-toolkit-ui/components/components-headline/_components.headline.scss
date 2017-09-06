@@ -5,59 +5,54 @@
 
 .c-bolt-headline {
   @include bolt-font-family(heading);
-  @include bolt-font-weight(bold);
+
+  &:not([class*="c-bolt-headline--"]) {
+    @include bolt-font-size(large);
+  }
+
+  &:not([class*="c-bolt-headline--eyebrow"]) {
+    @include bolt-margin-bottom(xsmall);
+    @include bolt-font-weight(bold);
+  }
 }
 
 .c-bolt-headline--xxxlarge {
-  /*@include bolt-padding-top(0);*/
-  /*@include bolt-padding-bottom($bolt-spacing-leading * 0.17 + rem);*/
   @include bolt-font-size(xxxlarge);
-
-  letter-spacing: -0.2rem;
-}
-
-.c-bolt-headline--xxlarge {
-  /*@include bolt-padding-top($bolt-spacing-leading * 1.5 + rem);*/
-  /*@include bolt-padding-bottom($bolt-spacing-leading * 0.28 + rem);*/
-  @include bolt-font-size(xxlarge);
 
   letter-spacing: -0.15rem;
 }
 
-.c-bolt-headline--xlarge {
-  /*@include bolt-padding-top($bolt-spacing-leading * 0.5 + rem);*/
-  /*@include bolt-padding-bottom($bolt-spacing-leading * 0.28 + rem);*/
-  @include bolt-font-size(xlarge);
+.c-bolt-headline--xxlarge {
+  @include bolt-font-size(xxlarge);
 
   letter-spacing: -0.1rem;
 }
 
-.c-bolt-headline--large {
-  /*@include bolt-padding-top($bolt-spacing-leading * 0.25 + rem);*/
-  /*@include bolt-padding-bottom($bolt-spacing-leading * 0.35 + rem);*/
-  @include bolt-font-size(large);
+.c-bolt-headline--xlarge {
+  @include bolt-font-size(xlarge);
 
   letter-spacing: -0.05rem;
 }
 
-.c-bolt-headline--medium {
-  /*@include bolt-padding-top($bolt-spacing-leading * 0.0625 + rem);*/
-  /*@include bolt-padding-bottom($bolt-spacing-leading * 0.35 + rem);*/
-  @include bolt-font-size(medium);
+.c-bolt-headline--large {
+  @include bolt-font-size(large);
 }
 
 .c-bolt-headline--small {
-  /*@include bolt-padding-top($bolt-spacing-leading * 0.0625 + rem);*/
-  /*@include bolt-padding-bottom($bolt-spacing-leading * 0.35 + rem);*/
   @include bolt-font-size(small);
 
   text-transform: uppercase;
   letter-spacing: 0.1rem;
 }
 
+.c-bolt-headline--xsmall {
+  @include bolt-font-size(xsmall);
+
+  letter-spacing: 0.05rem;
+}
+
 .c-bolt-headline--eyebrow {
-  /*@include bolt-padding-top($bolt-spacing-leading * 0.0625 + rem);*/
-  /*@include bolt-padding-bottom($bolt-spacing-leading * 0.35 + rem);*/
+  @include bolt-margin-bottom(0.1rem);
   @include bolt-font-size(xsmall);
   @include bolt-font-weight(regular);
 

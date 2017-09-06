@@ -12,7 +12,7 @@ html {
 
   // Responsive type
   @include respond-to(medium) {
-    font-size: calc(#{$bolt-font-size--min} + (#{$bolt-font-size--max - $bolt-font-size--min} * (100vw - #{$bolt-breakpoint--min}) / #{strip-unit($bolt-breakpoint--max) - strip-unit($bolt-breakpoint--min)}));
+    font-size: calc(#{$bolt-font-size--min} + (#{bolt-strip-unit($bolt-font-size--max) - bolt-strip-unit($bolt-font-size--min)} * (100vw - #{$bolt-breakpoint--min}) / #{bolt-strip-unit($bolt-breakpoint--max) - bolt-strip-unit($bolt-breakpoint--min)}));
   }
 
   // Large type
