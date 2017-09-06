@@ -1,0 +1,19 @@
+/**
+  * @define o-bolt-band
+  */
+
+.o-bolt-band {
+  @include bolt-padding-top(large);
+  @include bolt-padding-bottom(large);
+  display: block;
+}
+
+.o-bolt-band--large {
+  @include bolt-padding-top(xlarge);
+  @include bolt-padding-bottom(xlarge);
+}
+
+.o-bolt-band--small {
+  @include bolt-padding-top(medium);
+  @include bolt-padding-bottom(medium);
+}

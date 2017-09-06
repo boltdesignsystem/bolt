@@ -6,11 +6,11 @@
 .c-bolt-headline {
   @include bolt-font-family(heading);
 
-  &:not([class*="c-bolt-headline--"]) {
+  &:not([class*='c-bolt-headline--']) {
     @include bolt-font-size(large);
   }
 
-  &:not([class*="c-bolt-headline--eyebrow"]) {
+  &:not([class*='c-bolt-headline--eyebrow']) {
     @include bolt-margin-bottom(xsmall);
     @include bolt-font-weight(bold);
   }
@@ -67,7 +67,7 @@
   @include bolt-font-family(heading);
   @include bolt-font-weight(regular);
 
-  &:not([class*="c-bolt-subheadline--"]) {
+  &:not([class*='c-bolt-subheadline--']) {
     @include bolt-font-size(large);
   }
 }

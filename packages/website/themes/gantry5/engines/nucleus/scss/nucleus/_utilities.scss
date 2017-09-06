@@ -1,0 +1,157 @@
+// Float Classes
+.float-left {
+	float: left !important;
+}
+
+.float-right {
+	float: right !important;
+}
+
+.hide {
+	display: none;
+}
+
+// Clearfix
+.clearfix {
+	@include clearfix;
+}
+
+// Alignment
+.center {
+	text-align: center !important;
+}
+
+.align-right {
+	text-align: right !important;
+}
+
+.align-left {
+	text-align: left !important;
+}
+
+// Full Height Section
+.full-height {
+	min-height: 100vh;
+}
+
+// Padding and Margin Adjustments
+.nomarginall {
+	margin: 0 !important;
+	.g-content {
+		margin: 0 !important;
+	}
+}
+
+.nomargintop {
+	margin-top: 0 !important;
+	.g-content {
+		margin-top: 0 !important;
+	}
+}
+
+.nomarginbottom {
+	margin-bottom: 0 !important;
+	.g-content {
+		margin-bottom: 0 !important;
+	}
+}
+
+.nomarginleft {
+    margin-left: 0 !important;
+    .g-content {
+        margin-left: 0 !important;
+    }
+}
+
+.nomarginright {
+    margin-right: 0 !important;
+    .g-content {
+        margin-right: 0 !important;
+    }
+}
+
+.nopaddingall {
+	padding: 0 !important;
+	.g-content {
+		padding: 0 !important;
+	}
+}
+
+.nopaddingtop {
+	padding-top: 0 !important;
+	.g-content {
+		padding-top: 0 !important;
+	}
+}
+
+.nopaddingbottom {
+	padding-bottom: 0 !important;
+	.g-content {
+		padding-bottom: 0 !important;
+	}
+}
+
+.nopaddingleft {
+    padding-left: 0 !important;
+    .g-content {
+        padding-left: 0 !important;
+    }
+}
+
+.nopaddingright {
+    padding-right: 0 !important;
+    .g-content {
+        padding-right: 0 !important;
+    }
+}
+
+.g-flushed {
+	padding: 0 !important;
+
+	.g-content {
+		padding: 0;
+		margin: 0;
+	}
+
+	.g-container {
+		width: 100%;
+	}
+}
+
+
+// Size Adjustment
+.full-width {
+	@include flex-grow(0);
+	@include flex-basis(100%);
+	.g-block {
+		@include flex-grow(0);
+		@include flex-basis(100%);
+	}
+}
+
+// Hidden Classes
+.hidden {
+	display: none;
+	visibility: hidden;
+}
+
+@media print {
+	.visible-print {
+	   display: inherit !important;
+	}
+    .g-block.visible-print {
+        display: block !important;
+    }
+	.hidden-print {
+	   display: none !important;
+	}
+}
+
+// Same Height for Box Variations
+.equal-height {
+    @include display(flex);
+
+	.g-content {
+		width: 100%;
+	}
+}

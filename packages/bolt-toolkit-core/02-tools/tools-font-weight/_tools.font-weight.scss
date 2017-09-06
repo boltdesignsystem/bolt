@@ -1,6 +1,6 @@
-/*------------------------------------*\
+/* ------------------------------------ *\
   Font weight
-\*------------------------------------*/
+\* ------------------------------------ */
 
 ////
 /// @group Tools: Typography
@@ -21,3 +21,11 @@
 
   font-weight: $font-weight;
 }
+
+/* stylelint-disable-next-line scss/at-mixin-pattern */
+@mixin font-weight($args...) {
+  @warn 'PegaKit\'s `font-weight` mixin is deprecated and will be removed in v1.0.0 of Bolt. Use the new @bolt-font-weight mixin instead.';
+
+  @include bolt-font-weight($args);
+}
+/* stylelint-enable */

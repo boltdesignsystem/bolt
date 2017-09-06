@@ -1,0 +1,19 @@
+/* ------------------------------------ *\
+  ELEMENTS - CODE
+\* ------------------------------------ */
+
+pre {
+  @include bolt-padding(medium);
+  @include bolt-horizontal-scroll;
+  text-align: left;
+}
+
+code {
+  @include bolt-font-family(code);
+  @include bolt-font-weight(semibold); // This is an edge case to use semibold.
+  @include bolt-font-size(xsmall);
+
+  display: block;
+  letter-spacing: 0.05rem;
+  white-space: inherit;
+}

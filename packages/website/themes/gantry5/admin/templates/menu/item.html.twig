@@ -1,0 +1,39 @@
+{% set ajaxTarget = (item.level > 1) ? 'data-g5-ajaxify-target-parent=".submenu-column"' : 'data-g5-ajaxify-target="[data-g5-menu-columns]"' %}
+
+{% set attributes = 'data-g5-ajaxify="" data-g5-ajaxify-params="' ~ ('{"inline":1}'|escape('html_attr')) ~ '" ' ~ ajaxTarget %}
+
+{% if item.path %}
+<a {{ attributes|raw }} href="{{ gantry.route('menu', id, item.path) }}" class="menu-item">
+{% else %}
+<span class="menu-item">
+{% endif %}
+{% if item.type == 'particle' %}
+    <span class="menu-item-content">
+        <span class="menu-item-title">{{ item.title }}</span>
+        {% if item.subtitle %}<span class="menu-item-subtitle">{{ item.subtitle }}</span>{% endif %}
+    </span>
+    <span class="badge menu-item-type">{{ item.particle }}</span>
+{% else %}
+    {% if item.image %}
+        <img src="{{ url(item.image) }}" />
+    {% elseif item.icon %}
+        <i class="{{ item.icon }}"></i>
+    {% endif %}
+    {% if not item.icon_only or not (item.image or item.icon) %}
+        <span class="menu-item-content">
+            <span class="menu-item-title">{{ item.title }}</span>
+                {% if item.subtitle %}<span class="menu-item-subtitle">{{ item.subtitle }}</span>{% endif %}
+        </span>
+    {% endif %}
+    {% if (item.children) -%}
+        <span class="parent-indicator"></span>
+    {%- endif %}
+{% endif %}
+{% if not item.path %}
+</span>
+{% else %}
+</a>
+{% endif %}
+<a class="config-cog" href="{{ item.type == 'particle' ? gantry.route('menu/particle') : gantry.route('menu/edit', id, item.path) }}">
+    <i aria-label="{{ 'GANTRY5_PLATFORM_MENU_ITEM_SETTINGS'|trans }}" class="fa fa-cog" aria-hidden="true"></i>
+</a>

@@ -1,0 +1,59 @@
+// Headings
+h1, h2, h3, h4, h5, h6 {
+	margin: $leading-margin / 2 0 $leading-margin 0;
+	text-rendering: optimizeLegibility;
+}
+
+// Paragraph
+p {
+	margin: $leading-margin 0;
+}
+
+// Lists
+ul, ol, dl {
+	margin-top: $leading-margin;
+	margin-bottom: $leading-margin;
+	ul, ol, dl {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+}
+
+ul {
+	margin-left: $leading-margin;
+	padding: 0;
+}
+
+dl {
+    padding: 0;
+}
+
+ol {
+	padding-left: $leading-margin;
+}
+
+// Blockquote
+blockquote {
+	margin: $leading-margin 0;
+	padding-left: $leading-margin / 2;
+}
+
+cite {
+	display: block;
+	&:before {
+      content: "\2014 \0020";
+    }
+}
+
+// Inline and Code
+pre {
+	margin: $leading-margin 0;
+ 	padding: $content-padding;
+}
+
+hr {
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	margin: $leading-margin 0;
+}

@@ -1,0 +1,34 @@
+<div class="g-particles-header icons-header settings-block clearfix">
+    <div class="float-left particle-search-wrapper">
+        <input type="text" placeholder="{{ 'GANTRY5_PLATFORM_SEARCH_ELI'|trans }}"/>
+        <span class="particle-search-total">{{ total }}</span>
+    </div>
+    <div class="float-right">
+        {% for type,option in options %}
+            {% if option is iterable %}
+                <select name="type">
+                {% for key,value in option %}
+                    <option value="fa-{{ key }}">{{ value }}</option>
+                {% endfor %}
+                </select>
+            {% else %}
+                <label><input type="checkbox" name="fa-{{ type }}" value="fa-{{ type }}"/> {{ option }}</label>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<div class="g-particles-main icons-wrapper">
+    <ul>
+        {% for icon in icons %}
+            <li data-g-icon="{{ icon }}"><i class="fa fa-fw {{ icon }}" aria-hidden="true"></i> {{ icon }}</li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="g-particles-footer settings-block clearfix">
+    <div class="float-left g-icon-preview"></div>
+    <div class="float-right">
+        <button href="#" class="button button-primary" data-g-select="">{{ 'GANTRY5_PLATFORM_SELECT'|trans }}</button>
+        <button href="#" class="button g5-dialog-close">{{ 'GANTRY5_PLATFORM_CANCEL'|trans }}</button>
+    </div>
+</div>

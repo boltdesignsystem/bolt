@@ -1,0 +1,59 @@
+{% macro bytesToSize(bytes) -%}
+    {% spaceless %}
+        {% set kilobyte = 1024 %}
+        {% set megabyte = kilobyte * 1024 %}
+        {% set gigabyte = megabyte * 1024 %}
+        {% set terabyte = gigabyte * 1024 %}
+
+        {% if bytes < kilobyte %}
+            {{ bytes ~ ' B' }}
+        {% elseif bytes < megabyte %}
+            {{ (bytes / kilobyte)|number_format(2, '.') ~ ' KB' }}
+        {% elseif bytes < gigabyte %}
+            {{ (bytes / megabyte)|number_format(2, '.') ~ ' MB' }}
+        {% elseif bytes < terabyte %}
+            {{ (bytes / gigabyte)|number_format(2, '.') ~ ' GB' }}
+        {% else %}
+            {{ (bytes / terabyte)|number_format(2, '.') ~ ' TB' }}
+        {% endif %}
+    {% endspaceless %}
+{%- endmacro %}
+
+<ul class="g-list-labels">
+    <li>
+        <span class="g-file-thumb"></span>
+        <span class="g-file-name">{{ 'GANTRY5_PLATFORM_NAME'|trans }}</span>
+        <span class="g-file-size">{{ 'GANTRY5_PLATFORM_SIZE'|trans }}</span>
+        <span class="g-file-mtime">{{ 'GANTRY5_PLATFORM_LATEST_MODIFIED'|trans }}</span>
+    </li>
+</ul>
+<ul>
+    {% for index,file in files %}
+        <li data-file="{{ file|json_encode()|e('html_attr') }}" data-file-url="{{ file.pathname }}"{{ file.pathname == value ? ' class="selected"' : '' }}
+            title="{{ file.filename }} ({{ _self.bytesToSize(file.size) }})">
+            {% if file.isInCustom %}
+                <span class="g-file-delete" data-g-file-delete data-dz-remove title="{{ 'GANTRY5_PLATFORM_FILE_REMOVE'|trans }}">
+                    <i class="fa fa-fw fa-trash-o" aria-hidden="true"></i>
+                </span>
+            {% endif %}
+            {% if file.isImage %}
+                <span class="g-file-preview" data-g-file-preview title="{{ 'GANTRY5_PLATFORM_FILE_PREVIEW'|trans }}">
+                    <i class="fa fa-fw fa-eye" aria-hidden="true"></i>
+                </span>
+                <div class="g-thumb g-image g-image-{{ file.extension }}">
+                    <div style="background-image: url('{{ url(file.pathname) }}')"></div>
+                </div>
+            {% else %}
+                <div class="g-thumb">{{ file.extension }}</div>
+            {% endif %}
+
+            <span class="g-file-name">{{ file.filename }}</span>
+            <span class="g-file-size">{{ _self.bytesToSize(file.size) }}</span>
+            <span class="g-file-mtime">{{ file.mtime|date('j M o') }}</span>
+        </li>
+    {% endfor %}
+
+    {% if files|length == 0 %}
+        <li class="no-files-found"><h2>{{ 'GANTRY5_PLATFORM_FOLDER_EMPTY'|trans }}</h2></li>
+    {% endif %}
+</ul>

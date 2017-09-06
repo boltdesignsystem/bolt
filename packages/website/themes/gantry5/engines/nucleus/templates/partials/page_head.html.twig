@@ -1,0 +1,18 @@
+{% extends "@nucleus/page_head.html.twig" %}
+
+{% block head_title %}
+    <meta charset="utf-8" />
+    <title>{% if header.title %}{{ header.title }} | {% endif %}{{ site.title }}</title>
+    {% include 'partials/metadata.html.twig' %}
+    <link rel="canonical" href="{{ page.url(true, true) }}" />
+    {% if header.robots %}
+        <meta name="robots" content="{{ header.robots }}">
+    {% endif %}
+{% endblock %}
+
+{% block head_application %}
+    {% do gantry.platform.finalize %}
+    {{ assets.css()|raw }}
+
+    {{ assets.js()|raw }}
+{% endblock %}

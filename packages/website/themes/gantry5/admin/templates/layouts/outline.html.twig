@@ -1,0 +1,66 @@
+{% try %}
+{% set preset = gantry.outlines.layoutPreset(name) %}
+{% catch %}
+{% set preset = gantry.outlines.layoutPreset('default') %}
+{% endtry %}
+
+<div id="outline-{{ name }}" class="page">
+    <h4>
+        {% if name == 'default' %}
+            <span>{{ 'GANTRY5_PLATFORM_BASE_OUTLINE'|trans }}</span>
+        {% else %}
+            {% if gantry.authorize('outline.rename') %}
+            <span data-g-config-href="{{ gantry.route('configurations', name, 'rename') }}" data-g-config-method="post"
+                  data-title-editable="{{ title }}" class="title" data-tip="{{ title }}" data-tip-place="top-right">
+                {{ title }}
+            </span>
+            <i class="fa fa-fw fa-pencil font-small" aria-hidden="true" tabindex="0" aria-label="{{ 'GANTRY5_PLATFORM_EDIT_TITLE'|trans(title|e) }}" data-title-edit=""></i>
+            {% else %}
+                {{ title }}
+            {% endif %}
+        {% endif %}
+        <span class="float-right font-small">({{ 'GANTRY5_PLATFORM_ID_X'|trans(name) }})</span>
+    </h4>
+    <div class="inner-params">
+        <img src="{{ url(preset.image|default('gantry-admin://images/layouts/default.png')) }}" />
+    </div>
+    <div class="inner-params">
+        <div class="center outline-actions">
+            <a data-title="{{ 'GANTRY5_PLATFORM_EDIT'|trans }}"
+               data-tip="{{ 'GANTRY5_PLATFORM_EDIT'|trans }}"
+               role="button"
+               aria-label="{{ 'GANTRY5_PLATFORM_EDIT_X'|trans(title) }}"
+               title="{{ 'GANTRY5_PLATFORM_EDIT_X'|trans(title) }}"
+               data-g5-ajaxify=""
+               data-g5-ajaxify-target="[data-g5-content-wrapper]"
+               data-g5-ajaxify-params="{{ {"navbar": true}|json_encode|e('html_attr') }}"
+               href="{{ gantry.route('configurations', name, 'styles') }}"
+               class="button button-primary"
+            >
+                <i class="fa fa-fw fa-pencil" aria-hidden="true"></i>
+            </a>
+            {% if gantry.authorize('outline.create') and gantry.outlines.canDuplicate(name) %}
+            <a href="{{ gantry.route('configurations', name, 'duplicate') }}"
+               data-tip="{{ 'GANTRY5_PLATFORM_DUPLICATE'|trans }}"
+               title="{{ 'GANTRY5_PLATFORM_DUPLICATE_X'|trans(title) }}"
+               aria-label="{{ 'GANTRY5_PLATFORM_DUPLICATE_X'|trans(title) }}"
+               data-g5-outline-duplicate class="button button-secondary">
+                <i class="fa fa-fw fa-copy" aria-hidden="true"></i>
+            </a>
+            {% endif %}
+            {% if name != 'default' and gantry.authorize('outline.delete') and gantry.outlines.canDelete(name) %}
+            <button data-title="{{ 'GANTRY5_PLATFORM_DELETE'|trans }}"
+                    data-tip="{{ 'GANTRY5_PLATFORM_DELETE'|trans }}"
+                    title="{{ 'GANTRY5_PLATFORM_DELETE_X'|trans(title) }}"
+                    aria-label="{{ 'GANTRY5_PLATFORM_DELETE_X'|trans(title) }}"
+                    data-g-config="delete"
+                    data-g-config-href="{{ gantry.route('configurations', name, 'delete') }}"
+                    data-g-config-href-confirm="{{ gantry.route('configurations', name, 'delete/confirm') }}"
+                    data-g-config-method="POST" class="button red"
+            >
+                <i class="fa fa-fw fa-trash-o" aria-hidden="true"></i>
+            </button>
+            {% endif %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+{% extends "partials/page.html.twig" %}
+
+{% block content %}
+    {{ content|raw }}
+
+    <div class="alert">{{ form.message }}</div>
+
+    <p>{{ 'GANTRY5_ENGINE_FORM_SUMMARY'|trans }}</p>
+
+    {% include "forms/data.html.twig" %}
+{% endblock %}

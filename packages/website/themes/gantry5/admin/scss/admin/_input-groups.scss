@@ -1,0 +1,142 @@
+//Most of these topography controls are taken from http://getbootstrap.com/components/#input-groups
+
+#g5-container {//wrapper
+
+    .input-group {
+        position: relative;
+        display: table;
+        border-collapse: separate;
+        @include breakpoint(mobile-only) {
+            width: 90%;
+        }
+        input {
+            position: relative;
+            z-index: 2;
+        }
+    }
+
+    .input-group input, .input-group-addon, .input-group-btn {
+        display: table-cell;
+    }
+
+    .input-group-addon:first-child {
+        border-right: 0 none;
+    }
+
+    .input-group-addon:last-child {
+        border-left: 0 none;
+    }
+
+    .input-group-addon, .input-group-btn {
+        white-space: nowrap;
+        vertical-align: middle;
+    }
+
+    .input-group-addon {
+        padding: 6px 0;
+        width: 42px;
+        font-size: $core-font-size - 0.1;
+        font-weight: 400;
+        color: $core-text;
+        text-align: center;
+        background-color: #f6f6f6;
+        border: 1px solid $medium-gray;
+        border-left: 0;
+        border-radius: $core-border-radius;
+    }
+
+    .input-group-btn {
+        position: relative;
+        font-size: 0;
+        white-space: nowrap;
+        z-index: 1;
+        @include breakpoint(mobile-only) {
+            width: 42px;
+        }
+
+        button {
+            outline: 0;
+        }
+
+        .button {
+            position: relative;
+            border: 1px solid $medium-gray;
+            border-radius: $core-border-radius;
+            margin: -1px;
+
+            &:focus {
+                box-shadow: none;
+            }
+        }
+    }
+
+    .input-group.append {
+        input {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        .input-group-addon, .button {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .button {
+            border-left: 0
+        }
+    }
+
+    .input-group.prepend {
+        input {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        .input-group-addon, .button {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        .button {
+            border-right: 0;
+        }
+    }
+
+    .input-multicheckbox .input-group, .input-radios .input-group, #g-inherit-particle .input-group, #g-inherit-atom .input-group, .g-preserve-particles {
+        width: 100%;
+        input, span {
+            vertical-align: middle;
+        }
+
+        span {
+            line-height: 1.5rem;
+            margin-left: 5px;
+        }
+
+        label {
+            display: block;
+        }
+    }
+
+    .input-radios .radios {
+        margin-right: 1rem;
+
+        input, label {
+            display: inline-block;
+            margin-bottom: 0;
+        }
+
+        label {
+            margin-left: 0.2rem;
+        }
+    }
+
+    #g-inherit-particle, #g-inherit-atom {
+        label {
+            .fa {
+                color: $medium-gray;
+                &:hover {
+                    color: $dark-gray;
+                }
+            }
+        }
+    }
+
+}//endwrapper

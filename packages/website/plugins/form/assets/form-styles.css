@@ -1,0 +1,69 @@
+.form-errors {
+    background: #fdf7f7;
+    color: #b52b27;
+    padding: 0 5px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.form-errors p {
+    margin: 0;
+    line-height: 2;
+}
+
+.form-field.has-errors .form-errors {
+    margin-top: -5px;
+}
+
+.form-field.has-errors label {
+    color: #b52b27;
+}
+
+.form-field.has-errors .form-input-wrapper input,
+.form-field.has-errors .form-input-wrapper select,
+.form-field.has-errors .form-input-wrapper textarea {
+    border: 1px solid #d9534f;
+}
+
+.form-input-file.dropzone {
+    position: relative;
+    min-height: 70px;
+    border-radius: 3px;
+    margin-bottom: .85rem;
+    border: 2px dashed #ccc;
+    color: #aaa;
+    padding: 0.5rem;
+}
+
+.form-input-file input {
+    display: none;
+}
+
+.form-input-file .dz-default.dz-message {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+}
+
+.form-input-file.dropzone .dz-preview {
+    margin: 0.5rem;
+}
+
+.form-input-file.dropzone .dz-preview:hover {
+    z-index: 2;
+}
+
+.form-input-file.dropzone .dz-preview .dz-error-message {
+    min-width: 140px;
+    width: auto;
+}
+
+.form-input-file.dropzone .dz-preview .dz-image,
+.form-input-file.dropzone .dz-preview.dz-file-preview .dz-image {
+    border-radius: 3px;
+    z-index: 1;
+}

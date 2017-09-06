@@ -1,0 +1,39 @@
+{% macro render_field(form, fields) %}
+    {% for index, field in fields %}
+        {% set input = attribute(field, "input@") %}
+        {% if input is null or input == true %}
+            {% if form.value(field.name) %}
+                {% block field %}
+                    <div>
+                        {% block field_label %}
+                            <strong>{{ field.label|t|e }}</strong>:
+                        {% endblock %}
+
+                        {% block field_value %}
+                            {% if field.type == 'checkboxes' %}
+                                <ul>
+                                    {% for value in form.value(field.name) %}
+                                        <li>{{ field.options[value]|e }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% elseif field.type == 'checkbox' %}
+                                {{ (form.value(field.name) == 1) ? "PLUGIN_FORM.YES"|t|e : "PLUGIN_FORM.NO"|t|e }}
+                            {% elseif field.type == 'select' %}
+                                {{ field.options[form.value(field.name)]|e }}
+                            {% else %}
+                                {{ string(form.value(field.name))|nl2br }}
+                            {% endif %}
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+            {% endif %}
+        {% else %}
+            {% if field.fields %}
+                {{ _self.render_field(form, field.fields) }}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+
+{{ _self.render_field(form, form.fields) }}
+

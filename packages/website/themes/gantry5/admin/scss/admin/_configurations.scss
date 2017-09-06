@@ -1,0 +1,120 @@
+#g5-container {//wrapper
+
+#configurations, #positions {
+
+    .card {
+        margin: 10px 1%;
+    }
+
+    .outline-is-default {
+        border-color: $tertiary-accent;
+
+        .float-right.font-small {
+            color: $tertiary-accent;
+        }
+
+        &:after {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: $tertiary-accent;
+            content: "Default";
+            padding: 2px 6px;
+            color: white;
+            font-size: 0.7rem;
+            border-radius: 3px 0 0 0;
+        }
+    }
+
+    h4 {
+        display: block;
+        > * {
+            vertical-align: middle;
+
+            &[data-g-config-href] {
+                @include ellipsis(70%);
+            }
+
+            &.float-right {
+                margin-top: 5px;
+                color: lighten($dark-gray, 20%);
+            }
+        }
+    }
+
+    ul {
+        @extend %list-reset;
+        margin: -10px -1%;
+        .size-1-4 {
+            @include flex(0 23%);
+
+            @include breakpoint(small-mobile-range) {
+                @include flex(0 100%);
+            }
+        }
+    }
+
+    img {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .add-new {
+        cursor: pointer;
+        a {
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+        }
+
+        i {
+            @include transform(translate(-50%, -50%));
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 70px;
+            color: #ddd;
+            display: block;
+
+            &.fa-spinner {
+                margin-left: -0.642857145em;
+                margin-top: -0.642857145em;
+            }
+        }
+
+        .page {
+            vertical-align: middle;
+            height: 357px;
+            line-height: 343px + 35px;
+            text-align: center;
+            position: relative;
+        }
+    }
+
+    .card .inner-params {
+        margin: $content-margin 0 0;
+        padding-top: $content-margin;
+        border-top: 1px solid $light-gray;
+
+        & > :first-child {
+            border-top: 0;
+            padding-top: 0;
+            margin: 0 auto;
+        }
+    }
+
+    .g-tooltip {
+        &:before {
+            bottom: 2.6rem;
+        }
+
+        &:after {
+            bottom: 3rem;
+        }
+    }
+}
+
+} //endwrapper

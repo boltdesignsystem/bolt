@@ -1,0 +1,881 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "2db9c997c50187f5fbfbaf9ced529d63",
+    "content-hash": "8af9120786d6781ebb176d6aa67e0a02",
+    "packages": [
+        {
+            "name": "alchemy/zippy",
+            "version": "0.3.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alchemy-fr/Zippy.git",
+                "reference": "92c773f7bbe47fdb30c61dbaea3dcbf4dd13a40a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alchemy-fr/Zippy/zipball/92c773f7bbe47fdb30c61dbaea3dcbf4dd13a40a",
+                "reference": "92c773f7bbe47fdb30c61dbaea3dcbf4dd13a40a",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/collections": "~1.0",
+                "ext-mbstring": "*",
+                "php": ">=5.3.3",
+                "symfony/filesystem": "^2.0.5|^3.0",
+                "symfony/process": "^2.1|^3.0"
+            },
+            "require-dev": {
+                "ext-zip": "*",
+                "guzzle/guzzle": "~3.0",
+                "phpunit/phpunit": "^4.0|^5.0",
+                "symfony/finder": "^2.0.5|^3.0"
+            },
+            "suggest": {
+                "ext-zip": "To use the ZipExtensionAdapter",
+                "guzzle/guzzle": "To use the GuzzleTeleporter"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Alchemy\\Zippy\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alchemy",
+                    "email": "dev.team@alchemy.fr",
+                    "homepage": "http://www.alchemy.fr/"
+                }
+            ],
+            "description": "Zippy, the archive manager companion",
+            "keywords": [
+                "bzip",
+                "compression",
+                "tar",
+                "zip"
+            ],
+            "time": "2016-02-15 22:46:40"
+        },
+        {
+            "name": "doctrine/collections",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/collections.git",
+                "reference": "6c1e4eef75f310ea1b3e30945e9f06e652128b8a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/collections/zipball/6c1e4eef75f310ea1b3e30945e9f06e652128b8a",
+                "reference": "6c1e4eef75f310ea1b3e30945e9f06e652128b8a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Doctrine\\Common\\Collections\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "Collections Abstraction library",
+            "homepage": "http://www.doctrine-project.org",
+            "keywords": [
+                "array",
+                "collections",
+                "iterator"
+            ],
+            "time": "2015-04-14 22:21:58"
+        },
+        {
+            "name": "kevinlebrun/colors.php",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kevinlebrun/colors.php.git",
+                "reference": "6d7140aeedef46c97c2324f09b752c599ef17dac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kevinlebrun/colors.php/zipball/6d7140aeedef46c97c2324f09b752c599ef17dac",
+                "reference": "6d7140aeedef46c97c2324f09b752c599ef17dac",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*",
+                "satooshi/php-coveralls": "1.0.*",
+                "squizlabs/php_codesniffer": "1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Colors": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Le Brun",
+                    "email": "lebrun.k@gmail.com",
+                    "homepage": "http://kevinlebrun.fr",
+                    "role": "developer"
+                }
+            ],
+            "description": "Colors for PHP CLI scripts",
+            "homepage": "https://github.com/kevinlebrun/colors.php",
+            "keywords": [
+                "cli",
+                "color",
+                "colors",
+                "console",
+                "shell"
+            ],
+            "time": "2016-04-12 20:58:34"
+        },
+        {
+            "name": "michelf/php-markdown",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/michelf/php-markdown.git",
+                "reference": "156e56ee036505ec637d761ee62dc425d807183c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/michelf/php-markdown/zipball/156e56ee036505ec637d761ee62dc425d807183c",
+                "reference": "156e56ee036505ec637d761ee62dc425d807183c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-lib": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Michelf": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Michel Fortin",
+                    "email": "michel.fortin@michelf.ca",
+                    "homepage": "https://michelf.ca/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "John Gruber",
+                    "homepage": "https://daringfireball.net/"
+                }
+            ],
+            "description": "PHP Markdown",
+            "homepage": "https://michelf.ca/projects/php-markdown/",
+            "keywords": [
+                "markdown"
+            ],
+            "time": "2015-12-24 01:37:31"
+        },
+        {
+            "name": "pattern-lab/core",
+            "version": "v2.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pattern-lab/patternlab-php-core.git",
+                "reference": "f5f0ed390fc7c092ab96e97722cdaac4104c6827"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pattern-lab/patternlab-php-core/zipball/f5f0ed390fc7c092ab96e97722cdaac4104c6827",
+                "reference": "f5f0ed390fc7c092ab96e97722cdaac4104c6827",
+                "shasum": ""
+            },
+            "require": {
+                "alchemy/zippy": "^0.3",
+                "kevinlebrun/colors.php": "^1.0",
+                "michelf/php-markdown": "^1.6",
+                "php": ">=5.4",
+                "seld/jsonlint": "^1.0",
+                "shudrum/array-finder": "^1.0",
+                "symfony/event-dispatcher": "^3.0",
+                "symfony/filesystem": "^3.0",
+                "symfony/finder": "^3.0",
+                "symfony/process": "^3.1",
+                "symfony/yaml": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PatternLab": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dave Olsen",
+                    "email": "dmolsen@gmail.com",
+                    "homepage": "http://dmolsen.com",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Brad Frost",
+                    "homepage": "http://bradfrostweb.com",
+                    "role": "Creator"
+                }
+            ],
+            "description": "The core functionality for Pattern Lab.",
+            "homepage": "http://patternlab.io",
+            "keywords": [
+                "atomic",
+                "atomic design",
+                "pattern lab",
+                "style guide",
+                "styleguide"
+            ],
+            "time": "2016-07-02 23:46:20"
+        },
+        {
+            "name": "pattern-lab/patternengine-twig",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pattern-lab/patternengine-php-twig.git",
+                "reference": "fd6d8e2fd2a98efdc0c070788a8ad9aceb5e724b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pattern-lab/patternengine-php-twig/zipball/fd6d8e2fd2a98efdc0c070788a8ad9aceb5e724b",
+                "reference": "fd6d8e2fd2a98efdc0c070788a8ad9aceb5e724b",
+                "shasum": ""
+            },
+            "require": {
+                "pattern-lab/core": "^2.0.0",
+                "twig/twig": "~1.0"
+            },
+            "type": "patternlab-patternengine",
+            "extra": {
+                "patternlab": {
+                    "config": {
+                        "lineageMatch": "{%([ ]+)?include( |\\()[&quot;\\&#039;]([A-Za-z0-9-_]+)[&quot;\\&#039;](\\))?(.*)%}",
+                        "lineageMatchKey": 3,
+                        "patternExtension": "twig",
+                        "twigDebug": false,
+                        "twigAutoescape": "html",
+                        "twigDefaultDateFormat": "",
+                        "twigDefaultIntervalFormat": "",
+                        "twigMacroExt": "macro.twig",
+                        "twigFilterExt": "filter.php",
+                        "twigFunctionExt": "function.php",
+                        "twigTagExt": "tag.php",
+                        "twigTestExt": "test.php"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "PatternLab\\PatternEngine\\Twig": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dave Olsen",
+                    "email": "dmolsen@gmail.com",
+                    "homepage": "http://dmolsen.com",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "Twig-based PatternEngine for Pattern Lab.",
+            "homepage": "http://patternlab.io",
+            "keywords": [
+                "pattern engine",
+                "pattern lab",
+                "twig"
+            ],
+            "time": "2016-05-19 03:02:14"
+        },
+        {
+            "name": "pattern-lab/styleguidekit-assets-default",
+            "version": "v3.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pattern-lab/styleguidekit-assets-default.git",
+                "reference": "714fae28f838920bc6b712a469359f073a87c12f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pattern-lab/styleguidekit-assets-default/zipball/714fae28f838920bc6b712a469359f073a87c12f",
+                "reference": "714fae28f838920bc6b712a469359f073a87c12f",
+                "shasum": ""
+            },
+            "type": "patternlab-styleguidekit",
+            "extra": {
+                "patternlab": {
+                    "dist": {
+                        "publicDir": [
+                            {
+                                "*": "*"
+                            }
+                        ]
+                    },
+                    "config": {
+                        "ishMinimum": "240",
+                        "ishMaximum": "2600",
+                        "ishControlsHide": [
+                            "hay"
+                        ]
+                    }
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dave Olsen",
+                    "email": "dmolsen@gmail.com",
+                    "homepage": "http://dmolsen.com",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Brad Frost",
+                    "homepage": "http://bradfrostweb.com",
+                    "role": "Creator"
+                }
+            ],
+            "description": "The assets for the default StyleguideKit for Pattern Lab. Contains styles and mark-up for Pattern Lab's front-end.",
+            "homepage": "http://patternlab.io",
+            "keywords": [
+                "mustache",
+                "pattern lab",
+                "styleguide"
+            ],
+            "time": "2016-07-03 00:23:42"
+        },
+        {
+            "name": "pattern-lab/styleguidekit-twig-default",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pattern-lab/styleguidekit-twig-default.git",
+                "reference": "7b38bfe2fb60cde3850cfe8f4f948cdc206d7188"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pattern-lab/styleguidekit-twig-default/zipball/7b38bfe2fb60cde3850cfe8f4f948cdc206d7188",
+                "reference": "7b38bfe2fb60cde3850cfe8f4f948cdc206d7188",
+                "shasum": ""
+            },
+            "require": {
+                "pattern-lab/styleguidekit-assets-default": "^3.0.0"
+            },
+            "type": "patternlab-styleguidekit",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dave Olsen",
+                    "email": "dmolsen@gmail.com",
+                    "homepage": "http://dmolsen.com",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Brad Frost",
+                    "homepage": "http://bradfrostweb.com",
+                    "role": "Creator"
+                }
+            ],
+            "description": "The default Twig-based StyleguideKit for Pattern Lab. Contains styles and mark-up for Pattern Lab's front-end.",
+            "homepage": "http://patternlab.io",
+            "keywords": [
+                "pattern lab",
+                "styleguide",
+                "twig"
+            ],
+            "time": "2016-07-04 01:24:27"
+        },
+        {
+            "name": "seld/jsonlint",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Seldaek/jsonlint.git",
+                "reference": "66834d3e3566bb5798db7294619388786ae99394"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/66834d3e3566bb5798db7294619388786ae99394",
+                "reference": "66834d3e3566bb5798db7294619388786ae99394",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3 || ^7.0"
+            },
+            "bin": [
+                "bin/jsonlint"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Seld\\JsonLint\\": "src/Seld/JsonLint/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be",
+                    "homepage": "http://seld.be"
+                }
+            ],
+            "description": "JSON Linter",
+            "keywords": [
+                "json",
+                "linter",
+                "parser",
+                "validator"
+            ],
+            "time": "2015-11-21 02:21:41"
+        },
+        {
+            "name": "shudrum/array-finder",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Shudrum/ArrayFinder.git",
+                "reference": "42380f01017371b7a1e8e02b0bf12cb534e454d7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Shudrum/ArrayFinder/zipball/42380f01017371b7a1e8e02b0bf12cb534e454d7",
+                "reference": "42380f01017371b7a1e8e02b0bf12cb534e454d7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Shudrum\\Component\\ArrayFinder\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Julien Martin",
+                    "email": "martin.julien82@gmail.com"
+                }
+            ],
+            "description": "ArrayFinder component",
+            "homepage": "https://github.com/Shudrum/ArrayFinder",
+            "time": "2016-02-01 12:23:32"
+        },
+        {
+            "name": "symfony/event-dispatcher",
+            "version": "v3.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/event-dispatcher.git",
+                "reference": "7f9839ede2070f53e7e2f0849b9bd14748c434c5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/7f9839ede2070f53e7e2f0849b9bd14748c434c5",
+                "reference": "7f9839ede2070f53e7e2f0849b9bd14748c434c5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "psr/log": "~1.0",
+                "symfony/config": "~2.8|~3.0",
+                "symfony/dependency-injection": "~2.8|~3.0",
+                "symfony/expression-language": "~2.8|~3.0",
+                "symfony/stopwatch": "~2.8|~3.0"
+            },
+            "suggest": {
+                "symfony/dependency-injection": "",
+                "symfony/http-kernel": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\EventDispatcher\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony EventDispatcher Component",
+            "homepage": "https://symfony.com",
+            "time": "2016-06-29 05:41:56"
+        },
+        {
+            "name": "symfony/filesystem",
+            "version": "v3.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/filesystem.git",
+                "reference": "322da5f0910d8aa0b25fa65ffccaba68dbddb890"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/322da5f0910d8aa0b25fa65ffccaba68dbddb890",
+                "reference": "322da5f0910d8aa0b25fa65ffccaba68dbddb890",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Filesystem\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Filesystem Component",
+            "homepage": "https://symfony.com",
+            "time": "2016-06-29 05:41:56"
+        },
+        {
+            "name": "symfony/finder",
+            "version": "v3.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/finder.git",
+                "reference": "8201978de88a9fa0923e18601bb17f1df9c721e7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/8201978de88a9fa0923e18601bb17f1df9c721e7",
+                "reference": "8201978de88a9fa0923e18601bb17f1df9c721e7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Finder\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Finder Component",
+            "homepage": "https://symfony.com",
+            "time": "2016-06-29 05:41:56"
+        },
+        {
+            "name": "symfony/process",
+            "version": "v3.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/process.git",
+                "reference": "5c11a1a4d4016662eeaf0f8757958c7de069f9a0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/process/zipball/5c11a1a4d4016662eeaf0f8757958c7de069f9a0",
+                "reference": "5c11a1a4d4016662eeaf0f8757958c7de069f9a0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Process\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Process Component",
+            "homepage": "https://symfony.com",
+            "time": "2016-06-29 05:42:25"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "v3.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "2884c26ce4c1d61aebf423a8b912950fe7c764de"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/2884c26ce4c1d61aebf423a8b912950fe7c764de",
+                "reference": "2884c26ce4c1d61aebf423a8b912950fe7c764de",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Yaml\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Yaml Component",
+            "homepage": "https://symfony.com",
+            "time": "2016-06-29 05:41:56"
+        },
+        {
+            "name": "twig/twig",
+            "version": "v1.24.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twigphp/Twig.git",
+                "reference": "3566d311a92aae4deec6e48682dc5a4528c4a512"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3566d311a92aae4deec6e48682dc5a4528c4a512",
+                "reference": "3566d311a92aae4deec6e48682dc5a4528c4a512",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.7"
+            },
+            "require-dev": {
+                "symfony/debug": "~2.7",
+                "symfony/phpunit-bridge": "~2.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.24-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Twig_": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Armin Ronacher",
+                    "email": "armin.ronacher@active-4.com",
+                    "role": "Project Founder"
+                },
+                {
+                    "name": "Twig Team",
+                    "homepage": "http://twig.sensiolabs.org/contributors",
+                    "role": "Contributors"
+                }
+            ],
+            "description": "Twig, the flexible, fast, and secure template language for PHP",
+            "homepage": "http://twig.sensiolabs.org",
+            "keywords": [
+                "templating"
+            ],
+            "time": "2016-05-30 09:11:59"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=5.4"
+    },
+    "platform-dev": []
+}

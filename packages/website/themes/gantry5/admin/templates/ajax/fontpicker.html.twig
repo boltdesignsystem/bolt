@@ -1,0 +1,82 @@
+<div id="g-fonts" class="g-grid">
+    <div class="g-particles-header settings-block">
+        <input class="float-left font-preview" type="text" data-font-preview="" placeholder="{{ 'GANTRY5_PLATFORM_FONTS_PREVIEW'|trans }}"
+               value="{{ 'GANTRY5_PLATFORM_FONTS_SAMPLE'|trans }}">
+        <span class="float-right particle-search-wrapper">
+            <input class="font-search" type="text" data-font-search="" placeholder="{{ 'GANTRY5_PLATFORM_SEARCH_FONT_ELI'|trans }}">
+            <span class="particle-search-total">{{ fonts.count }}</span>
+        </span>
+    </div>
+    <div class="g-particles-main">
+        <ul class="g-fonts-list">
+            {% if fonts.local_families|length %}
+                <li class="g-font-heading">{{ 'GANTRY5_PLATFORM_FONTS_LOCAL'|trans }}</li>
+            {% for font in fonts.local_families %}
+                <li class="g-local-font" data-font="{{ font.family }}" data-variant data-variants="{{ font.variants|join(',') }}"
+                    data-subsets="{{ font.subsets|join(',') }}" data-category="{{ font.category }}">
+                    <input type="checkbox" value="{{ font.family }}" />
+                    <div class="family">
+                        <strong>{{ font.family }}</strong>,
+                        <span class="g-font-variants-list">
+                            {% if font.variants|length > 1 %}
+                                {{ 'GANTRY5_PLATFORM_FONTS_X_STYLES'|trans(font.variants|length) }}
+                            {% else %}
+                                {{ 'GANTRY5_PLATFORM_FONTS_X_STYLE'|trans(font.variants|length) }}
+                            {% endif %}
+                        </span>
+                    </div>
+                </li>
+            {% endfor %}
+                <li class="g-font-heading">{{ 'GANTRY5_PLATFORM_FONTS_REMOTE'|trans }}</li>
+            {% endif %}
+            {% for font in fonts.families %}
+                <li data-font="{{ font.family }}" data-variant="{{ font.variants|first }}"
+                    data-variants="{{ font.variants|join(',')|replace({ 'regular': 'normal' }) }}"
+                    data-subsets="{{ font.subsets|join(',') }}" data-category="{{ font.category }}">
+                    <div class="family">
+                        <strong>{{ font.family }}</strong>,
+                        {% if font.variants|length > 1 %}
+                            {{ 'GANTRY5_PLATFORM_FONTS_X_STYLES'|trans(font.variants|length) }}
+                        {% else %}
+                            {{ 'GANTRY5_PLATFORM_FONTS_X_STYLE'|trans(font.variants|length) }}
+                        {% endif %}
+                        {%- if font.subsets|length > 1 -%}
+                        , <span class="font-charsets">{{ 'GANTRY5_PLATFORM_FONTS_X_CHARSETS'|trans(font.subsets|length) }}
+                            <span class="font-charsets-selected">(<i class="fa fa-fw fa-check-square-o" aria-hidden="true"></i>
+                                <span class="font-charsets-details">{{ 'GANTRY5_PLATFORM_FONTS_X_OF_Y'|trans(1, font.subsets|length) }}</span>
+                                {{ 'GANTRY5_PLATFORM_FONTS_SELECTED'|trans }})
+                            </span>
+                        </span>
+                        {% endif %}
+                    </div>
+                    <ul>
+                        {% for variant in font.variants %}
+                            <li data-font="{{ font.family }}" data-variant="{{ variant }}"{% if variant != font.variants|first %}
+                                class="g-variant-hide"{% endif %}>
+                                <input type="checkbox" value="{{ variant }}" />
+                                <div class="variant"><small>{{ variantsMap[variant] | default('GANTRY5_PLATFORM_FONTS_UNKNOWN_VARIANT'|trans) }}</small></div>
+                                <div class="preview">{{ 'GANTRY5_PLATFORM_FONTS_SAMPLE'|trans }}</div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="g-particles-footer settings-block">
+        <div class="float-left font-left-container">
+            <span class="button font-category" data-font-categories="{{ fonts.categories|join(',') }}">
+                {{ 'GANTRY5_PLATFORM_CATEGORIES'|trans }} (<small>{{ fonts.categories|length }}</small>) <i class="fa fa-caret-down" aria-hidden="true"></i>
+            </span>
+            <span class="button font-subsets" data-font-subsets="{{ fonts.subsets|join(',') }}">
+                {{ 'GANTRY5_PLATFORM_SUBSETS'|trans }} (<small>{{ 'GANTRY5_PLATFORM_LATIN'|trans }}</small>) <i class="fa fa-caret-down" aria-hidden="true"></i>
+            </span>
+        </div>
+        <div class="float-right font-right-container">
+            <span class="font-selected"></span>
+            <button class="button button-primary">{{ 'GANTRY5_PLATFORM_SELECT'|trans }}</button>
+            <span>&nbsp;</span>
+            <button class="button g5-dialog-close">{{ 'GANTRY5_PLATFORM_CANCEL'|trans }}</button>
+        </div>
+    </div>
+</div>

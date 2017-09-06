@@ -1,0 +1,15 @@
+{% extends 'forms/' ~ layout|default('field') ~ '.html.twig' %}
+
+{% block input %}
+    <button
+            {# required attribute structures #}
+            name="{{ (scope ~ name)|fieldName }}"
+            {# non-global attribute structures #}
+            type="{{ field.type }}"
+            {# global attribute structures #}
+            {{ block('global_attributes') }}
+            >
+        {{ field.value }}
+        {% if field.icon is defined %} <i class="{{ field.icon }}" aria-hidden="true"></i> {% endif %}
+    </button>
+{% endblock %}
