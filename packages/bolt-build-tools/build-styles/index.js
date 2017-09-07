@@ -85,7 +85,7 @@ function compile(userConfig) {
   const config = merge(defaultConfig, userConfig);
 
   function compileCssTask(done) {
-    const colors = require('../../website-pattern-lab/source/_data/bolt-colors.json').bolt_colors;
+    const colors = require('../../website/user/themes/bolt/pattern-lab/source/_data/bolt-colors.json').bolt_colors;
 
     const allColors = [];
 
@@ -120,7 +120,6 @@ function compile(userConfig) {
     }
 
 
-    console.log();
     // rgb2Hex(colors.white.base)
 
 
