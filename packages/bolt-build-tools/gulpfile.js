@@ -12,7 +12,7 @@ module.exports = (gulp) => {
       './packages/bolt-toolkit-ui/**/*.scss',
       '!./packages/**/node_modules/**/*',
     ],
-    data: './packages/website-pattern-lab/source/_data',
+    data: './packages/website/user/themes/bolt/pattern-lab/source/_data',
     dest: 'bolt-website/styles'
   };
 
@@ -27,6 +27,8 @@ module.exports = (gulp) => {
   gulp.task('symlinks:create', symlinks.create());
   gulp.task('symlinks:clean', symlinks.clean());
   gulp.task('symlinks:watch', symlinks.watch());
+  gulp.task('symlinks:gravpl', symlinks.patternLabGrav());
+
   gulp.task('symlinks', gulp.series([
     'symlinks:clean',
     'symlinks:create'
@@ -45,17 +47,18 @@ module.exports = (gulp) => {
 
   gulp.task('default',
     gulp.series([
+      'symlinks:gravpl',
       'symlinks:clean',
       'symlinks:create',
-      'patternlab:compile',
-      'jekyll:compile',
-      'styles:compile',
       gulp.parallel([
-        'jekyll:watch',
+        'patternlab:compile',
+        'jekyll:compile',
+        'styles:compile',
         'patternlab:watch',
+        'jekyll:watch',
         'styles:watch',
         'browsersync:serve'
-      ])
+      ]),
     ])
   );
 
