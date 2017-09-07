@@ -7,9 +7,9 @@ module.exports = {
   patternsFolder: '_patterns',
   packageFolders: [
     // `./node_modules/${npmNamespace}/${symlinkPrefix}*`,
-    './packages/bolt-ui/**/*',
-    './packages/bolt-core/**/*',
-    './packages/ui-toolkit/**/*',
+    './packages/bolt-toolkit/**/*',
+    './packages/bolt-toolkit-core/**/*',
+    './packages/bolt-toolkit-ui/**/*',
     '!./packages/**/node_modules/**/*',
     // './packages/elements-*',
     // './packages/objects-*',

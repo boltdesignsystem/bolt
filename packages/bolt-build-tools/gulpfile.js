@@ -26,6 +26,7 @@ module.exports = (gulp) => {
 
   gulp.task('symlinks:create', symlinks.create());
   gulp.task('symlinks:clean', symlinks.clean());
+  gulp.task('symlinks:watch', symlinks.watch());
   gulp.task('symlinks', gulp.series([
     'symlinks:clean',
     'symlinks:create'
@@ -46,16 +47,14 @@ module.exports = (gulp) => {
     gulp.series([
       'symlinks:clean',
       'symlinks:create',
+      'patternlab:compile',
+      'jekyll:compile',
+      'styles:compile',
       gulp.parallel([
-        'patternlab:compile',
-        'jekyll:compile',
-        'styles:compile',
-      ]),
-      gulp.parallel([
-        'browsersync:serve',
         'jekyll:watch',
         'patternlab:watch',
-        'styles:watch'
+        'styles:watch',
+        'browsersync:serve'
       ])
     ])
   );

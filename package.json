@@ -13,7 +13,7 @@
     "_lint:fix": "eslint --fix ./packages/bolt-build-tools",
     "lint:js": "eslint ./packages/bolt-build-tools",
     "lint:md": "remark . --quiet --frail",
-    "lint:scss": "stylelint ./packages/**/*.scss",
+    "lint:scss": "gulp styles:lint",
     "clean:lerna": "lerna clean -Y",
     "clean:git": "git clean -xdf",
     "clean:all": "npm run clean:git && npm run clean:lerna",
@@ -37,7 +37,8 @@
     "pretest": "node scripts/check-imports.js"
   },
   "pre-commit": [
-    "test"
+    "test",
+    "lint:scss"
   ],
   "config": {
     "commitizen": {
