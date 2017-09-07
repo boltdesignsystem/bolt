@@ -28,7 +28,7 @@
     "publish": "lerna run build && lerna run publish-please && lerna publish",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "serve": "gulp serve",
-    "setup:composer": "if [ ! -f ./bolt-website/pattern-lab/index.html ]; then cd packages/website-pattern-lab && rm -rf composer.lock && rm -rf vendor && composer install --no-interaction --prefer-dist --no-dev; fi",
+    "setup:composer": "if [ ! -f ./bolt-website/pattern-lab/index.html ]; then cd packages/website/user/themes/bolt/pattern-lab && rm -rf composer.lock && rm -rf vendor && composer install --no-interaction --prefer-dist --no-dev; fi",
     "setup:homebrew": "sh scripts/install-homebrew.sh",
     "snyk-protect": "snyk protect",
     "start": "serve ./boltdesignsystem --single",
