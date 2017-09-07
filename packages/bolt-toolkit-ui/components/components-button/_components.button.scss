@@ -286,12 +286,11 @@ $bolt-border-width--button: 1px;
   > * {
     display: inline-flex;
     align-self: center;
-
-    & + * {
-      @include bolt-margin-left(xsmall);
-    }
   }
 }
+
+
+// Button colors
 
 .c-test-button {
   @include bolt-button();
@@ -328,6 +327,9 @@ $bolt-border-width--button: 1px;
   cursor: not-allowed;
 }
 
+
+// Button sizes
+
 .c-test-button,
 .c-test-button--medium {
   @include bolt-padding(medium, squished);
@@ -354,20 +356,97 @@ $bolt-border-width--button: 1px;
   @include bolt-font-size(large);
 }
 
+
+// Button widths
+
+@mixin bolt-button--stacked {
+  width: 100%;
+
+  &:not(:last-child) {
+    @include bolt-margin-bottom(xsmall);
+  }
+}
+
+.c-test-button--stacked {
+  @include bolt-button--stacked;
+}
+
+.c-test-button--stacked\@bp-xsmall {
+  @media screen and (max-width: map-get($bolt-breakpoints, xsmall)) {
+    @include bolt-button--stacked;
+  }
+}
+
+
+// Button content
+
+.c-test-button__text {
+  & + .c-test-button__icon {
+    @include bolt-margin-left(xsmall);
+  }
+}
+
+.c-test-button__icon {
+  width: 1em;
+  height: 1em;
+
+  svg {
+    width: 1em;
+    height: auto;
+    fill: currentColor;
+  }
+
+  & + .c-test-button__text {
+    @include bolt-margin-left(xsmall);
+  }
+}
+
+
+// Button group
+
+.c-test-button-group {
+  display: flex;
+
+  > * + * {
+    @include bolt-margin-left(xsmall);
+  }
+}
+
+.c-test-button-group--even {
+  > * {
+    flex: 1;
+  }
+}
+
+.c-test-button-group--stacked {
+  flex-wrap: wrap;
+
+  > * {
+    @include bolt-margin-left(0);
+    @include bolt-button--stacked;
+  }
+}
+
+.c-test-button-group--stacked\@bp-xsmall {
+  @media screen and (max-width: map-get($bolt-breakpoints, xsmall)) {
+    flex-wrap: wrap;
+
+    > * {
+      @include bolt-margin-left(0);
+      @include bolt-button--stacked;
+
+      flex: none;
+    }
+  }
+}
+
+
+// Links
+
 .c-test-link {
   @include bolt-reset-button-styles;
   @include bolt-link-color;
 
   text-decoration: underline;
   transition: all $bolt-transition;
-}
-
-.c-test-button-group {
-  @include bolt-margin-bottom(medium);
-
-  display: flex;
-
-  > * + * {
-    @include bolt-margin-left(xsmall);
-  }
 }
