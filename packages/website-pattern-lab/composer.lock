@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b1c237a3ad848bca9d453e734280fd01",
+    "content-hash": "04f5b6a7358c7b8e43f0b0ed0e78b877",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -225,7 +225,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2017-08-30 09:16:50"
+            "time": "2017-08-30T09:16:50+00:00"
         },
         {
             "name": "kevinlebrun/colors.php",
@@ -376,18 +376,23 @@
         },
         {
             "name": "pattern-lab/core",
-            "version": "dev-feature/php7",
+            "version": "v2.8.1",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:drupal-pattern-lab/patternlab-php-core.git",
+                "reference": "ed89147c334acc576191bdd3462b4b2e6a5f8b31"
+            },
             "dist": {
-                "type": "path",
-                "url": "../pattern-lab/patternlab-php-core",
-                "reference": "031b0bb3fab37957d63981dce4c68aeb9515ef6b",
-                "shasum": null
+                "type": "zip",
+                "url": "https://api.github.com/repos/drupal-pattern-lab/patternlab-php-core/zipball/ed89147c334acc576191bdd3462b4b2e6a5f8b31",
+                "reference": "ed89147c334acc576191bdd3462b4b2e6a5f8b31",
+                "shasum": ""
             },
             "require": {
                 "alchemy/zippy": "^0.3",
                 "kevinlebrun/colors.php": "^1.0",
                 "michelf/php-markdown": "^1.6",
-                "php": ">=7.0",
+                "php": ">=5.4",
                 "seld/jsonlint": "^1.0",
                 "shudrum/array-finder": "^1.0",
                 "symfony/event-dispatcher": "^3.0",
@@ -399,7 +404,6 @@
             "type": "library",
             "extra": {
                 "patches_applied": {
-                    "[FEATURE] Compile embedded templates in Markdown files": "patches/compileTemplatesInMarkdownFiles.patch",
                     "[FEATURE] Allow default Pattern Data configuration rules to be disabled. Also adds ability to add on extra Pattern Data rules to customize and extend default Pattern Lab behavior.": "patches/configurablePatternDataRules.patch"
                 }
             },
@@ -437,7 +441,8 @@
                 "issues": "https://github.com/drupal-pattern-lab/patternlab-php-core/issues",
                 "wiki": "http://patternlab.io/docs/",
                 "source": "https://github.com/drupal-pattern-lab/patternlab-php-core/releases"
-            }
+            },
+            "time": "2017-09-03T18:20:59+00:00"
         },
         {
             "name": "pattern-lab/drupal-twig-components",
@@ -500,7 +505,7 @@
             "version": "v2.2.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/drupal-pattern-lab/patternengine-php-twig.git",
+                "url": "git@github.com:drupal-pattern-lab/patternengine-php-twig.git",
                 "reference": "f3254de28b9f0a0a1e1015070209a1e06908a829"
             },
             "dist": {
@@ -626,7 +631,7 @@
             "version": "v3.0.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/drupal-pattern-lab/styleguidekit-twig-default.git",
+                "url": "git@github.com:drupal-pattern-lab/styleguidekit-twig-default.git",
                 "reference": "5eed2e583d4e3d320c6b13aa926fefe9d0e10ee7"
             },
             "dist": {
@@ -819,7 +824,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2017-08-03 09:34:20"
+            "time": "2017-08-03T09:34:20+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -868,7 +873,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2017-08-03 09:34:20"
+            "time": "2017-08-03T09:34:20+00:00"
         },
         {
             "name": "symfony/finder",
@@ -917,7 +922,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2017-08-03 09:34:20"
+            "time": "2017-08-03T09:34:20+00:00"
         },
         {
             "name": "symfony/process",
@@ -966,7 +971,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2017-08-03 09:34:20"
+            "time": "2017-08-03T09:34:20+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -1024,7 +1029,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-08-30 06:19:03"
+            "time": "2017-08-30T06:19:03+00:00"
         },
         {
             "name": "twig/twig",
@@ -1089,22 +1094,13 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-08-19 17:37:14"
+            "time": "2017-08-19T17:37:14+00:00"
         }
     ],
     "packages-dev": [],
-    "aliases": [
-        {
-            "alias": "2.7.0",
-            "alias_normalized": "2.7.0.0",
-            "version": "dev-feature/php7",
-            "package": "pattern-lab/core"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "pattern-lab/core": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
