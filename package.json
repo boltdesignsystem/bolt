@@ -4,7 +4,7 @@
   "description": "Pega Digital Design System",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "npm run setup:composer && gulp build",
+    "build": "npm run setup:composer && gulp build --production",
     "changelog": "lerna-changelog",
     "commitmsg": "validate-commit-msg",
     "fix:scripts": "gulp scripts:fix",
@@ -38,7 +38,8 @@
   },
   "pre-commit": [
     "test",
-    "lint:scss"
+    "lint:scss",
+    "build"
   ],
   "config": {
     "commitizen": {
