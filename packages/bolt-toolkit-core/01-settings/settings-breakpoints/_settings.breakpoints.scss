@@ -14,6 +14,7 @@
 /// Major breakpoints used globally in Bolt. Uses breakpoint-sass and breakpoint-slicer to handle some of the heavier lifting.
 /// @type Map
 $bolt-breakpoints: (
+  xxsmall: 320px,
   xsmall:  400px,
   small:   600px,
   medium:  800px,
@@ -31,7 +32,7 @@ $breakpoints: $bolt-breakpoints;
 @each $breakpoint in $breakpoints {
   $name:     nth($breakpoint, 1);
   $value:    nth($breakpoint, 2);
-  @include add-breakpoint(quote($name), $value);
+  @include add-breakpoint(quote($name), $value, $overwrite: true);
 
   $slicer-breakpoint-names: append($slicer-breakpoint-names, $name);
   $slicer-breakpoints:      append($slicer-breakpoints, $value);
