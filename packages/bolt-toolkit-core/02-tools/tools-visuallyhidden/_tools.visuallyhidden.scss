@@ -1,8 +1,8 @@
-/* ------------------------------------ *\
+/*------------------------------------*\
   VISUALLY HIDDEN MIXIN
-\* ------------------------------------ */
+\*------------------------------------*/
 
-@mixin bolt-visuallyhidden(important) {
+@mixin bolt-visuallyhidden($important: null){
   @if $important == important {
     $important: !important;
   }
@@ -10,11 +10,11 @@
   border: 0 $important;
   clip: rect(0 0 0 0) $important;
   clip-path: inset(50%) $important;
-  position: absolute $important;
-  width: 1px $important;
   height: 1px $important;
+  width: 1px $important;
   margin: -1px $important;
   padding: 0 $important;
   overflow: hidden $important;
+  position: absolute $important;
   white-space: nowrap $important;
 }
