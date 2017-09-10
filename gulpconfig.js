@@ -7,12 +7,13 @@ module.exports = {
       sets: [
         {
           namespace: 'bolt',
-          paths: ['node_modules/@bolt', 'packages/bolt-ui-toolkit'],
+          paths: [
+            'packages/bolt-toolkit-core/04-elements',
+            'packages/bolt-toolkit-core/05-objects',
+            'packages/bolt-toolkit-ui'
+          ],
         },
         {
-          namespace: 'quarks',
-          paths: ['packages/website/user/themes/bolt/pattern-lab/source/_patterns/00-quarks'],
-        }, {
           namespace: 'atoms',
           paths: ['packages/website/user/themes/bolt/pattern-lab/source/_patterns/01-atoms'],
         }, {

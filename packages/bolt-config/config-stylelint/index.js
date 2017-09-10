@@ -16,7 +16,7 @@ module.exports = {
   rules: {
     'scale-unlimited/declaration-strict-value': [
       [
-        '/color/',
+        // '/color/',
         'font-size',
       ]
     ],

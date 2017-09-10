@@ -1,0 +1,51 @@
+{
+  "compilerOptions": {
+    "module": "es2015",
+    "target": "es5",
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noEmitHelpers": true,
+    "importHelpers": true,
+    "stripInternal": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "outDir": "ts-output",
+    "rootDir": "./",
+    "jsx": "react",
+    "jsxFactory": "h",
+    "pretty": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "declaration": true,
+    "declarationDir": "definitions",
+    "typeRoots": [
+      "node_modules/@types",
+      "manual_definitions"
+    ],
+    "types": [
+      "mocha",
+      "sinon-chai",
+      "node"
+    ],
+    "lib": [
+      "dom",
+      "es2015"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "definitions",
+    "packages/*/node_modules",
+    "packages/*/definitions",
+    "packages/styleguidekit-assets-default/*",
+    "packages/website/*",
+    "packages/website-jekyll/*",
+    "packages/website-pattern-lab/*",
+    "vendor",
+    "packages/bolt-build-tools/*",
+    "packages/bolt-toolkit-ui/components/components-all/*",
+    "packages/bolt-toolkit-ui/components/components-all/node_modules"
+  ]
+}

@@ -18,90 +18,109 @@
   letter-spacing: normal;
 }
 
-
-
-.o-bolt-grid--rev {
-  direction: rtl;
+.o-bolt-grid--flex {
+  display: flex;
+  flex-flow: row wrap;
 
   > .o-bolt-grid__cell {
-    direction: ltr;
+    display: flex;
+    flex-direction: column;
   }
 }
+
+
+
+.o-bolt-grid--matrix {
+  margin-bottom: bolt-spacing(medium) * -1;
+}
+
+.o-bolt-grid--matrix > .o-bolt-grid__cell {
+  padding-bottom: bolt-spacing(medium);
+}
+
+
+// .o-bolt-grid--rev {
+//   direction: rtl;
+//
+//   > .o-bolt-grid__cell {
+//     direction: ltr;
+//   }
+// }
 
 
 /**
  * Gutterless grids have all the properties of regular grids, minus any spacing.
  * Extends `.o-bolt-grid`.
  */
-.o-bolt-grid--full {
-  margin-left: 0;
-
-  > .o-bolt-grid__cell {
-    padding-left: 0;
-  }
-}
+// .o-bolt-grid--full {
+//   margin-left: 0;
+//
+//   > .o-bolt-grid__cell {
+//     padding-left: 0;
+//   }
+// }
 
 /**
  * Centered grids align grid cells centrally without needing to use push or pull
  * classes. Extends `.o-bolt-grid`.
  */
-.o-bolt-grid--center {
-  text-align: center;
-  justify-content: center;
-
-  > .o-bolt-grid__cell {
-    text-align: left;
-  }
-}
+// .o-bolt-grid--center {
+//   text-align: center;
+//   justify-content: center;
+//
+//   > .o-bolt-grid__cell {
+//     text-align: left;
+//   }
+// }
 
 
 /**
  * Align grid cells vertically (`.o-bolt-grid--middle` or `.o-bolt-grid--bottom`). Extends
  * `.o-bolt-grid`.
  */
-.o-bolt-grid--middle {
-  // &.o-bolt-grid--flex,{
-  //   align-cells: center;
-  // }
+// .o-bolt-grid--middle {
+//   // &.o-bolt-grid--flex,{
+//   //   align-cells: center;
+//   // }
+//
+//   > .o-bolt-grid__cell {
+//     vertical-align: middle;
+//   }
+// }
 
-  > .o-bolt-grid__cell {
-    vertical-align: middle;
-  }
-}
+// .o-bolt-grid--bottom {
+//   > .o-bolt-grid__cell {
+//     vertical-align: bottom;
+//   }
+// }
 
-.o-bolt-grid--bottom {
-  > .o-bolt-grid__cell {
-    vertical-align: bottom;
-  }
-}
+//
+// /**
+//  * Align the entire grid to the right. Extends `.grid`.
+//  */
+// .o-bolt-grid--right {
+//   text-align: right;
+//   justify-content: flex-end;
+//
+//   > .o-bolt-grid__cell {
+//     text-align: left;
+//   }
+// }
 
-
-/**
- * Align the entire grid to the right. Extends `.grid`.
- */
-.o-bolt-grid--right {
-  text-align: right;
-  justify-content: flex-end;
-
-  > .o-bolt-grid__cell {
-    text-align: left;
-  }
-}
-
-.o-bolt-grid__cell--middle {
-  vertical-align: middle;
-  align-self: center;
-}
-
-.o-bolt-grid__cell--top {
-  vertical-align: top;
-  align-self: flex-start;
-}
-
-.o-bolt-grid__cell--bottom {
-  vertical-align: bottom;
-  align-self: flex-end;
-}
+// .o-bolt-grid__cell--middle {
+//   vertical-align: middle;
+//   align-self: center;
+// }
+//
+// .o-bolt-grid__cell--top {
+//   vertical-align: top;
+//   align-self: flex-start;
+// }
+//
+// .o-bolt-grid__cell--bottom {
+//   vertical-align: bottom;
+//   align-self: flex-end;
+// }
 
 
 
@@ -115,35 +134,35 @@
 //   }
 // }
 
-.o-bolt-grid--small {
-  margin-left: bolt-spacing(small) * -1;
-
-  > .o-bolt-grid__cell {
-    padding-left: bolt-spacing(small);
-  }
-}
-
-/**
- * Large gutters
- */
-.o-bolt-grid--large {
-  margin-left: bolt-spacing(large) * -1;
-
-  > .o-bolt-grid__cell {
-    padding-left: bolt-spacing(large);
-  }
-}
-
-/**
- * Extra wide gutters
- */
-.o-bolt-grid--xlarge {
-  margin-left: bolt-spacing(large) * -1;
-
-  > .o-bolt-grid__cell {
-    padding-left: bolt-spacing(large);
-  }
-}
+// .o-bolt-grid--small {
+//   margin-left: bolt-spacing(small) * -1;
+//
+//   > .o-bolt-grid__cell {
+//     padding-left: bolt-spacing(small);
+//   }
+// }
+//
+// /**
+//  * Large gutters
+//  */
+// .o-bolt-grid--large {
+//   margin-left: bolt-spacing(large) * -1;
+//
+//   > .o-bolt-grid__cell {
+//     padding-left: bolt-spacing(large);
+//   }
+// }
+//
+// /**
+//  * Extra wide gutters
+//  */
+// .o-bolt-grid--xlarge {
+//   margin-left: bolt-spacing(large) * -1;
+//
+//   > .o-bolt-grid__cell {
+//     padding-left: bolt-spacing(large);
+//   }
+// }
 
 
 // /**
@@ -166,23 +185,3 @@
 //     padding-left: $spacing-unit-large * 2;
 //   }
 // }
-
-.o-bolt-grid--flex {
-  display: flex;
-  flex-flow: row wrap;
-
-  > .o-bolt-grid__cell {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-
-
-.o-bolt-grid--matrix {
-  margin-bottom: bolt-spacing(medium) * -1;
-}
-
-.o-bolt-grid--matrix > .o-bolt-grid__cell {
-  padding-bottom: bolt-spacing(medium);
-}

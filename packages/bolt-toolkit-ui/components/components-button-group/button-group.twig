@@ -1,0 +1,14 @@
+<ul class="c-button-group">
+  {% if block('button_item_primary') is defined %}
+    <li class="c-button-group__item">
+      {{ block('button_item_primary')|raw }}
+    </li>
+  {% endif %}
+
+
+  {% if block('button_item_secondary') is defined %}
+    <li class="c-button-group__item">
+      {{ block('button_item_secondary')|raw }}
+    </li>
+  {% endif %}
+</ul>

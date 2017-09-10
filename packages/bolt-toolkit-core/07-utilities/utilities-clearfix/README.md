@@ -1,7 +1,7 @@
-# @bolt/utilities-flex
-Collection of flex utility classes in Bolt.
+# @bolt/utilities-clearfix
+Clearfix helper utility class
 
 ## Install
 ```bash
-npm install @bolt/utilities-flex
+npm install @bolt/utilities-clearfix
 ```

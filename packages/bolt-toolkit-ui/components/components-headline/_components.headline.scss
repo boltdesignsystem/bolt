@@ -12,9 +12,28 @@
 
   &:not([class*='c-bolt-headline--eyebrow']) {
     @include bolt-margin-bottom(xsmall);
-    @include bolt-font-weight(bold);
+    // @include bolt-font-weight(bold);
   }
 }
+
+
+// Weight
+.c-bolt-headline--regular {
+  @include bolt-font-weight(regular);
+}
+
+.c-bolt-headline--bold {
+  @include bolt-font-weight(bold);
+}
+
+
+// Layout -- inline-block vs inline vs block
+.c-bolt-headline--inline-block {
+  display: inline-block;
+}
+
+
+
 
 .c-bolt-headline--xxxlarge {
   @include bolt-font-size(xxxlarge);

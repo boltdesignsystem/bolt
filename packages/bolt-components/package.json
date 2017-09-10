@@ -1,0 +1,31 @@
+{
+  "name": "bolt-components",
+  "version": "0.0.0",
+  "main": "dist/index.min.js",
+  "typings": "definitions/packages/bolt-components/index.d.ts",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "definitions",
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bolt-design-system/bolt.git"
+  },
+  "scripts": {
+    "start": "../../node_modules/.bin/webpack-dev-server --config ../../webpack.config.js --env.dev --env.element=bolt-components --hot",
+    "test": "npm run build:test && ../../node_modules/.bin/wct",
+    "test:watch": "../../node_modules/.bin/concurrently \"npm run build:test:watch\" \"WCT_INDEX=./index.watch.test.html ../../node_modules/.bin/wct -p\"",
+    "test:watch:firefox": "../../node_modules/.bin/concurrently \"npm run build:test:watch\" \"WCT_INDEX=./index.watch.test.html ../../node_modules/.bin/wct -p -l firefox\"",
+    "build": "npm run build:cleanup && ../../node_modules/.bin/webpack --config ../../webpack.config.js --env.prod --env.element=bolt-components",
+    "build:test": "npm run build:cleanup && ../../node_modules/.bin/webpack --config ../../webpack.config.js --env.test --env.element=bolt-components",
+    "build:test:watch": "../../node_modules/.bin/webpack-dev-server --config ../../webpack.config.js --env.test --env.element=bolt-components",
+    "build:cleanup": "../../node_modules/.bin/rimraf dist definitions"
+  },
+  "dependencies": {
+    "@bolt/components-band": "^0.0.0"
+  }
+}

@@ -8,276 +8,84 @@
 @import '@bolt/tools-spacing';
 @import '@bolt/tools-no-select';
 
-$bolt-color-button-text: bolt-palette(white);
-$bolt-color-primary: bolt-palette(blue);
-$bolt-color-secondary: bolt-palette(blue);
+$bolt-primary-button-background-color--default: bolt-color(blue);
+$bolt-secondary-button-background-color--default: bolt-color(white);
+$bolt-power-button-background-color--default: bolt-color(orange);
 
-$bolt-color--shadow: bolt-palette(black);
+$bolt-button-transition: ease 200ms;
+$bolt-button-border-radius: 3px;
+$bolt-button-border-width: 1px;
 
-$bolt-shadow: 0 .04rem .15rem rgba($bolt-color--shadow, .5);
-$bolt-shadow--raised:
-  $bolt-shadow,
-  0 .35rem .6rem rgba($bolt-color--shadow, .18);
+$bolt-button-shadow-color: bolt-color(black);
+$bolt-button-shadow: 0 0.04rem 0.15rem rgba($bolt-button-shadow-color, 0.5);
 
-$bolt-transition: ease-in-out 200ms;
-$bolt-border-radius: 3px;
-$bolt-border-width--button: 1px;
 
-@mixin bolt-reset-button-styles {
-  @include bolt-padding(0);
-  @include bolt-font-family(body);
+// $bolt-color-button-text: bolt-color(white);
+// $bolt-color-secondary: bolt-color(blue);
+//
+// $bolt-shadow--raised:
+//   $bolt-shadow,
+//   0 0.35rem 0.6rem rgba($bolt-color--shadow, 0.18);
 
-  border: none;
-  background: none;
-}
 
-// Placeholder for colors.
-@mixin bolt-link-color {
-  &:link {
-    color: var(--bolt-color-secondary, $bolt-color-secondary);
-  }
 
-  &:visited {
-    color: var(--bolt-color-secondary, inherit);
-  }
+// @mixin bolt-button {
+//   // @include bolt-reset-button-styles;
+//   // @include bolt-no-select();
+//   // @include bolt-font-weight(semibold);
+//
+//
+// }
 
-  &:hover {
-    color: var(--bolt-color-secondary, mix(white, $bolt-color-secondary, 35%));
-  }
 
-  &:active {
-    color: var(--bolt-color-secondary, $bolt-color-secondary);
-  }
-}
+// Button colors
 
-@mixin bolt-button-color($hiarchy) {
-  @if $hiarchy == 'primary' {
-    &,
-    &:visited {
-      color:            var(--bolt-color-button-text, $bolt-color-button-text);
-      border-color:     var(--bolt-color-primary, $bolt-color-primary);
-      background-color: var(--bolt-color-primary, $bolt-color-primary);
-      box-shadow:       $bolt-shadow;
-    }
+// .c-test-button {
+//   @include bolt-button();
+// }
 
-    &:hover {
-      border-color:     var(--bolt-color-primary, mix(white, $bolt-color-primary, 15%));
-      background-color: var(--bolt-color-primary, mix(white, $bolt-color-primary, 15%));
-      box-shadow:       $bolt-shadow--raised;
-    }
 
-    &:active {
-      border-color:     var(--bolt-color-primary, mix(black, $bolt-color-primary, 25%));
-      background-color: var(--bolt-color-primary, mix(black, $bolt-color-primary, 25%));
-    }
-
-    &:focus {
-      box-shadow:       $bolt-shadow;
-    }
-
-    &:focus:hover {
-      box-shadow:       $bolt-shadow--raised;
-    }
-  }
-
-  @elseif $hiarchy == 'secondary' {
-    &,
-    &:visited {
-      color:            var(--bolt-color-primary, $bolt-color-primary);
-      border-color:     var(--bolt-color-button-text, $bolt-color-button-text);
-      background-color: var(--bolt-color-button-text, $bolt-color-button-text);
-      box-shadow:       $bolt-shadow;
-    }
-
-    &:hover {
-      border-color:     var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 2%));
-      background-color: var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 2%));
-      box-shadow:       $bolt-shadow--raised;
-    }
-
-    &:active {
-      border-color:     var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 15%));
-      background-color: var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 15%));
-    }
-
-    &:focus {
-      box-shadow:       $bolt-shadow;
-    }
-
-    &:focus:hover {
-      box-shadow:       $bolt-shadow--raised;
-    }
-  }
-
-  @elseif $hiarchy == 'tertiary' {
-    &,
-    &:visited {
-      color:            var(--bolt-color-secondary, $bolt-color-secondary);
-      border-color:     transparent;
-      background-color: transparent;
-      box-shadow:       none;
-    }
-
-    &:hover {
-      border-color:     transparent;
-      background-color: transparent;
-      box-shadow:       none;
-    }
-
-    &:active {
-      border-color:     transparent;
-      background-color: transparent;
-    }
-
-    &:focus {
-      box-shadow:       none;
-    }
-
-    &:focus:hover {
-      box-shadow:       none;
-    }
-  }
-
-  @elseif $hiarchy == 'success' {
-    &,
-    &:visited {
-      color:            bolt-palette(white);
-      border-color:     bolt-palette(success);
-      background-color: bolt-palette(success);
-      box-shadow:       $bolt-shadow;
-    }
-
-    &:hover {
-      border-color:     bolt-palette(success, dark);
-      background-color: bolt-palette(success, dark);
-      box-shadow:       $bolt-shadow;
-    }
-
-    &:active {
-      border-color:     bolt-palette(success, dark);
-      background-color: bolt-palette(success, dark);
-    }
-
-    &:focus {
-      box-shadow:       $bolt-shadow;
-    }
-
-    &:focus:hover {
-      box-shadow:       $bolt-shadow;
-    }
-  }
-
-  @elseif $hiarchy == 'warning' {
-    &,
-    &:visited {
-      color:            bolt-palette(black);
-      border-color:     bolt-palette(warning);
-      background-color: bolt-palette(warning);
-      box-shadow:       $bolt-shadow;
-    }
-
-    &:hover {
-      border-color:     bolt-palette(warning, dark);
-      background-color: bolt-palette(warning, dark);
-      box-shadow:       $bolt-shadow;
-    }
-
-    &:active {
-      border-color:     bolt-palette(warning, dark);
-      background-color: bolt-palette(warning, dark);
-    }
-
-    &:focus {
-      box-shadow:       $bolt-shadow;
-    }
-
-    &:focus:hover {
-      box-shadow:       $bolt-shadow;
-    }
-  }
-
-  @elseif $hiarchy == 'error' {
-    &,
-    &:visited {
-      color:            bolt-palette(white);
-      border-color:     bolt-palette(error);
-      background-color: bolt-palette(error);
-      box-shadow:       $bolt-shadow;
-    }
-
-    &:hover {
-      border-color:     bolt-palette(error, dark);
-      background-color: bolt-palette(error, dark);
-      box-shadow:       $bolt-shadow;
-    }
-
-    &:active {
-      border-color:     bolt-palette(error, dark);
-      background-color: bolt-palette(error, dark);
-    }
-
-    &:focus {
-      box-shadow:       $bolt-shadow;
-    }
-
-    &:focus:hover {
-      box-shadow:       $bolt-shadow;
-    }
-  }
-
-  @elseif $hiarchy == 'disabled' {
-    &,
-    &:visited {
-      color:            bolt-palette(gray);
-      border-color:     bolt-palette(gray, light);
-      background-color: bolt-palette(gray, light);
-      box-shadow:       $bolt-shadow;
-    }
-
-    &:hover {
-      border-color:     bolt-palette(gray, light);
-      background-color: bolt-palette(gray, light);
-      box-shadow:       $bolt-shadow;
-    }
-
-    &:active {
-      border-color:     bolt-palette(gray, light);
-      background-color: bolt-palette(gray, light);
-    }
-
-    &:focus {
-      box-shadow:       $bolt-shadow;
-    }
-
-    &:focus:hover {
-      box-shadow:       $bolt-shadow;
-    }
+@function _bolt-button-mix-color($color) {
+  @if (lightness($color) > 50) {
+    @return #b1b1d8; // Lighter background, return light color
+  } @else {
+    @return #000000; // Darker backgorund, return dark color
   }
 }
 
-@mixin bolt-button {
-  @include bolt-reset-button-styles;
-  @include bolt-no-select();
+//--bolt-primary-interactive-background-color--default
+//--bolt-primary-interactive-border-color--default
+//--bolt-primary-interactive-text-color--default
+
+//--bolt-primary-interactive-background-color--hover
+//--bolt-primary-interactive-border-color--hover
+//--bolt-primary-interactive-text-color--hover
+
+
+
+.c-bolt-button {
+  @include bolt-padding(medium, squished);
+  @include bolt-font-size(xsmall);
   @include bolt-font-weight(semibold);
 
   display: inline-block;
-  @supports (display: flex) {
-    display: inline-flex;
-    justify-content: center;
-  }
+  display: inline-flex;
+  justify-content: center;
 
-  text-decoration: none;
   text-align: center;
-  vertical-align: middle;
   cursor: pointer;
+  text-decoration: none;
+  vertical-align: middle;
   border-style: solid;
-  border-width: $bolt-border-width--button;
-  border-radius: $bolt-border-radius;
-  transition: all $bolt-transition;
+  border-width: $bolt-button-border-width;
+  border-radius: $bolt-button-border-radius;
+  transition: all $bolt-button-transition;
+  transform: translate3d(0, -1px, 0);
 
-  &:hover {
-    transform: translate3d(0, -1px, 0);
-  }
+
+  // &:hover {
+  //   transform: translate3d(0, -1px, 0);
+  // }
 
   &:active {
     transform: translate3d(0, 0, 0);
@@ -289,159 +97,320 @@ $bolt-border-width--button: 1px;
   }
 }
 
+.c-bolt-button,
+.c-bolt-button--primary {
+  $mix-amount: 15%;
+  $bg-color--default: $bolt-primary-button-background-color--default;
+  $mix-color: _bolt-button-mix-color($bg-color--default); //Black or white
+  $text-color--default: bolt-text-contrast($bg-color--default);
+  $border-color--default: mix($mix-color, $bg-color--default, $mix-amount);
 
-// Button colors
+  $bg-color--hover: mix($mix-color, $bg-color--default, $mix-amount);
+  $text-color--hover: bolt-text-contrast($bg-color--hover);
+  $border-color--hover: mix($mix-color, $bg-color--default, $mix-amount * 2);
 
-.c-test-button {
-  @include bolt-button();
-}
+  $bg-color--active: mix($mix-color, $bg-color--default, $mix-amount * 2);
+  $text-color--active: bolt-text-contrast($bg-color--active);
+  $border-color--active: mix($mix-color, $bg-color--default, $mix-amount * 3);
 
-.c-test-button,
-.c-test-button--primary {
-  @include bolt-button-color(primary);
-}
+  box-shadow: $bolt-button-shadow;
+  background-color: var(--bolt-primary-interactive-background-color--default, $bg-color--default);
+  color: var(--bolt-primary-interactive-text-color--default, $text-color--default);
+  border-color: var(--bolt-primary-interactive-border-color--default, $border-color--default);
 
-.c-test-button--secondary {
-  @include bolt-button-color(secondary);
-}
+  &:hover {
+    background-color: var(--bolt-primary-interactive-background-color--hover, $bg-color--hover);
+    color: var(--bolt-primary-interactive-text-color--hover, $text-color--hover);
+    border-color: var(--bolt-primary-interactive-border-color--hover, $border-color--hover);
+  }
 
-.c-test-button--tertiary {
-  @include bolt-button-color(tertiary);
-}
-
-.c-test-button--success {
-  @include bolt-button-color(success);
-}
-
-.c-test-button--warning {
-  @include bolt-button-color(warning);
-}
-
-.c-test-button--error {
-  @include bolt-button-color(error);
-}
-
-.c-test-button--disabled {
-  @include bolt-button-color(disabled);
-
-  cursor: not-allowed;
-}
-
-
-// Button sizes
-
-.c-test-button,
-.c-test-button--medium {
-  @include bolt-padding(medium, squished);
-  @include bolt-font-size(xsmall);
-}
-
-.c-test-button--xsmall {
-  @include bolt-padding(xsmall, squished);
-  @include bolt-font-size(xsmall);
-}
-
-.c-test-button--small {
-  @include bolt-padding(small, squished);
-  @include bolt-font-size(xsmall);
-}
-
-.c-test-button--large {
-  @include bolt-padding(medium, squished);
-  @include bolt-font-size(medium);
-}
-
-.c-test-button--xlarge {
-  @include bolt-padding(large, squished);
-  @include bolt-font-size(large);
-}
-
-
-// Button widths
-
-.c-test-button--full-width {
-  width: 100%;
-}
-
-.c-test-button--full-width\@bp-xsmall {
-  @media screen and (max-width: map-get($bolt-breakpoints, xsmall)) {
-    width: 100%;
+  &:active {
+    background-color: var(--bolt-primary-interactive-background-color--active, $bg-color--active);
+    color: var(--bolt-primary-interactive-text-color--active, $text-color--active);
+    border-color: var(--bolt-primary-interactive-border-color--active, $border-color--active);
   }
 }
 
 
-// Button content
 
-.c-test-button__text {
-  & + .c-test-button__icon {
-    @include bolt-margin-left(xsmall);
+.c-bolt-button--secondary {
+  $mix-amount: 15%;
+  $bg-color--default: $bolt-secondary-button-background-color--default;
+  $mix-color: _bolt-button-mix-color($bg-color--default); //Black or white
+  $text-color--default: bolt-text-contrast($bg-color--default);
+  $border-color--default: mix($mix-color, $bg-color--default, $mix-amount);
+
+  $bg-color--hover: mix($mix-color, $bg-color--default, $mix-amount);
+  $text-color--hover: bolt-text-contrast($bg-color--hover);
+  $border-color--hover: mix($mix-color, $bg-color--default, $mix-amount * 2);
+
+  $bg-color--active: mix($mix-color, $bg-color--default, $mix-amount * 2);
+  $text-color--active: bolt-text-contrast($bg-color--active);
+  $border-color--active: mix($mix-color, $bg-color--default, $mix-amount * 3);
+
+  box-shadow: $bolt-button-shadow;
+  background-color: var(--bolt-secondary-interactive-background-color--default, $bg-color--default);
+  color: var(--bolt-secondary-interactive-text-color--default, $text-color--default);
+  border-color: var(--bolt-secondary-interactive-border-color--default, $border-color--default);
+
+  &:hover {
+    background-color: var(--bolt-secondary-interactive-background-color--hover, $bg-color--hover);
+    color: var(--bolt-secondary-interactive-text-color--hover, $text-color--hover);
+    border-color: var(--bolt-secondary-interactive-border-color--hover, $border-color--hover);
   }
-}
 
-.c-test-button__icon {
-  width: 1em;
-  height: 1em;
-
-  svg {
-    width: 1em;
-    height: auto;
-    fill: currentColor;
-  }
-
-  & + .c-test-button__text {
-    @include bolt-margin-left(xsmall);
-  }
-}
-
-
-// Button group
-
-.c-test-button-group {
-  display: flex;
-
-  > * + * {
-    @include bolt-margin-left(xsmall);
-  }
-}
-
-.c-test-button-group--even {
-  > * {
-    flex: 1;
-  }
-}
-
-@mixin bolt-button-group--stacked {
-  flex-wrap: wrap;
-
-  > * {
-    @include bolt-margin(0, horizontal);
-
-    flex: none;
-    width: 100%;
-
-    &:not(:last-child) {
-      @include bolt-margin-bottom(xsmall);
-    }
-  }
-}
-
-.c-test-button-group--stacked {
-  @include bolt-button-group--stacked;
-}
-
-.c-test-button-group--stacked\@bp-xsmall {
-  @media screen and (max-width: map-get($bolt-breakpoints, xsmall)) {
-    @include bolt-button-group--stacked;
+  &:active {
+    background-color: var(--bolt-secondary-interactive-background-color--active, $bg-color--active);
+    color: var(--bolt-secondary-interactive-text-color--active, $text-color--active);
+    border-color: var(--bolt-secondary-interactive-border-color--active, $border-color--active);
   }
 }
 
 
-// Links
+.c-bolt-button--power {
+  $mix-amount: 15%;
+  $bg-color--default: $bolt-power-button-background-color--default;
+  $mix-color: _bolt-button-mix-color($bg-color--default); //Black or white
+  $text-color--default: bolt-text-contrast($bg-color--default);
+  $border-color--default: mix($mix-color, $bg-color--default, $mix-amount);
 
-.c-test-link {
-  @include bolt-reset-button-styles;
-  @include bolt-link-color;
+  $bg-color--hover: mix($mix-color, $bg-color--default, $mix-amount);
+  $text-color--hover: bolt-text-contrast($bg-color--hover);
+  $border-color--hover: mix($mix-color, $bg-color--default, $mix-amount * 2);
 
-  text-decoration: underline;
-  transition: all $bolt-transition;
+  $bg-color--active: mix($mix-color, $bg-color--default, $mix-amount * 2);
+  $text-color--active: bolt-text-contrast($bg-color--active);
+  $border-color--active: mix($mix-color, $bg-color--default, $mix-amount * 3);
+
+  box-shadow: $bolt-button-shadow;
+  background-color: var(--bolt-power-interactive-background-color--default, $bg-color--default);
+  color: var(--bolt-power-interactive-text-color--default, $text-color--default);
+  border-color: var(--bolt-power-interactive-border-color--default, $border-color--default);
+
+  &:hover {
+    background-color: var(--bolt-power-interactive-background-color--hover, $bg-color--hover);
+    color: var(--bolt-power-interactive-text-color--hover, $text-color--hover);
+    border-color: var(--bolt-power-interactive-border-color--hover, $border-color--hover);
+  }
+
+  &:active {
+    background-color: var(--bolt-power-interactive-background-color--active, $bg-color--active);
+    color: var(--bolt-power-interactive-text-color--active, $text-color--active);
+    border-color: var(--bolt-power-interactive-border-color--active, $border-color--active);
+  }
 }
+  //
+  //
+  // &:hover {
+  //   // background-color: var(--bolt-primary-interactive-border-color--hover, mix(black, $bolt-primary-button-background-color--default, 15%));
+  //   // border-color: var(--bolt-color-primary, mix(black, $bolt-primary-button-background-color--default, 30%));
+  //   // border-color:     var(--bolt-color-primary, mix(white, $bolt-color-primary, 15%));
+  //   // box-shadow:       $bolt-shadow--raised;
+  //
+  //   background-color:
+  //     var(
+  //       --bolt-primary-interactive-background-color--hover,
+  //       mix($button-mix-color, $bolt-primary-button-background-color--default, 15%)
+  //     );
+  //
+  //   color:
+  //     var(
+  //       --bolt-primary-interactive-text-color--hover,
+  //       bolt-text-contrast(mix($button-mix-color, $bolt-primary-button-background-color--default, 15%))
+  //     );
+  //
+  //   border-color:
+  //     var(
+  //       --bolt-primary-interactive-border-color--hover,
+  //       mix($button-mix-color, mix($button-mix-color, $bolt-primary-button-background-color--default, 15%), 15%)
+  //     );
+  // }
+  //
+  //
+  // &:active {
+  //   // background-color: var(--bolt-primary-interactive-border-color--hover, mix(black, $bolt-primary-button-background-color--default, 15%));
+  //   // border-color: var(--bolt-color-primary, mix(black, $bolt-primary-button-background-color--default, 30%));
+  //   // border-color:     var(--bolt-color-primary, mix(white, $bolt-color-primary, 15%));
+  //   // box-shadow:       $bolt-shadow--raised;
+  //   background-color:
+  //     var(
+  //       --bolt-primary-interactive-background-color--active,
+  //       mix($button-mix-color, $bolt-primary-button-background-color--default, 15%)
+  //     );
+  //
+  //   color:
+  //     var(
+  //       --bolt-primary-interactive-text-color--active,
+  //       bolt-text-contrast(mix($button-mix-color, $bolt-primary-button-background-color--default, 15%))
+  //     );
+  //
+  //   border-color:
+  //     var(
+  //       --bolt-primary-interactive-border-color--active,
+  //       mix($button-mix-color, mix($button-mix-color, $bolt-primary-button-background-color--default, 15%), 15%)
+  //     );
+  // }
+  // & {
+  //   color:            var(--bolt-color-button-text, $bolt-color-button-text);
+  //   border-color:     var(--bolt-color-primary, $bolt-color-primary);
+  //
+  // }
+
+
+  //
+  // &:active {
+  //   border-color:     var(--bolt-color-primary, mix(black, $bolt-color-primary, 25%));
+  //   background-color: var(--bolt-color-primary, mix(black, $bolt-color-primary, 25%));
+  // }
+
+  // &:focus {
+  //   box-shadow:       $bolt-shadow;
+  // }
+
+  // &:focus:hover {
+  //   box-shadow:       $bolt-shadow--raised;
+  // }
+  // @include bolt-button-color(primary);
+
+  // --bolt-theme-background-color: inherit;
+  // --bolt-theme-text-color: inherit;
+  // --bolt-theme-link-color: inherit;
+  // --bolt-theme-border-color: inherit;
+  // --bolt-theme-heading-color: inherit;
+  // --bolt-theme-primary-ui-background-color: inherit;
+  // --bolt-theme-secondary-ui-background-color: inherit;
+  // --bolt-theme-icon-color: inherit;
+
+// .c-test-button--secondary {
+//   @include bolt-button-color(secondary);
+// }
+//
+// .c-test-button--tertiary {
+//   @include bolt-button-color(tertiary);
+// }
+//
+// .c-test-button--success {
+//   @include bolt-button-color(success);
+// }
+//
+// .c-test-button--warning {
+//   @include bolt-button-color(warning);
+// }
+//
+// .c-test-button--error {
+//   @include bolt-button-color(error);
+// }
+//
+// .c-test-button--disabled {
+//   @include bolt-button-color(disabled);
+//
+//   cursor: not-allowed;
+// }
+
+//
+// // Button sizes
+//
+// .c-test-button,
+// .c-test-button--medium {
+//   @include bolt-padding(medium, squished);
+//   @include bolt-font-size(xsmall);
+// }
+//
+// .c-test-button--xsmall {
+//   @include bolt-padding(xsmall, squished);
+//   @include bolt-font-size(xsmall);
+// }
+//
+// .c-test-button--small {
+//   @include bolt-padding(small, squished);
+//   @include bolt-font-size(xsmall);
+// }
+//
+// .c-test-button--large {
+//   @include bolt-padding(medium, squished);
+//   @include bolt-font-size(medium);
+// }
+//
+// .c-test-button--xlarge {
+//   @include bolt-padding(large, squished);
+//   @include bolt-font-size(large);
+// }
+//
+//
+// // Button widths
+//
+// .c-test-button--full-width {
+//   width: 100%;
+// }
+//
+// .c-test-button--full-width\@bp-xsmall {
+//   @media screen and (max-width: map-get($bolt-breakpoints, xsmall)) {
+//     width: 100%;
+//   }
+// }
+//
+//
+// // Button content
+//
+// .c-test-button__text {
+//   & + .c-test-button__icon {
+//     @include bolt-margin-left(xsmall);
+//   }
+// }
+//
+// .c-test-button__icon {
+//   width: 1em;
+//   height: 1em;
+//
+//   svg {
+//     width: 1em;
+//     height: auto;
+//     fill: currentColor;
+//   }
+//
+//   & + .c-test-button__text {
+//     @include bolt-margin-left(xsmall);
+//   }
+// }
+//
+//
+// // Button group
+//
+// .c-test-button-group {
+//   display: flex;
+//
+//   > * + * {
+//     @include bolt-margin-left(xsmall);
+//   }
+// }
+//
+// .c-test-button-group--even {
+//   > * {
+//     flex: 1;
+//   }
+// }
+//
+// @mixin bolt-button-group--stacked {
+//   flex-wrap: wrap;
+//
+//   > * {
+//     @include bolt-margin(0, horizontal);
+//
+//     flex: none;
+//     width: 100%;
+//
+//     &:not(:last-child) {
+//       @include bolt-margin-bottom(xsmall);
+//     }
+//   }
+// }
+//
+// .c-test-button-group--stacked {
+//   @include bolt-button-group--stacked;
+// }
+//
+// .c-test-button-group--stacked\@bp-xsmall {
+//   @media screen and (max-width: map-get($bolt-breakpoints, xsmall)) {
+//     @include bolt-button-group--stacked;
+//   }
+// }

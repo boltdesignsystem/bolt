@@ -11,7 +11,7 @@
     "design system",
     "objects"
   ],
-  "version": "0.2.0",
+  "version": "0.0.0",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -37,5 +37,21 @@
   "twig": "band.twig",
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "start": "../../../../node_modules/.bin/webpack-dev-server --config ../../../../webpack.config.js --env.dev --env.element=bolt-toolkit-ui/components/components-band --hot",
+    "test": "npm run build:test && ../../../../node_modules/.bin/wct",
+    "test:watch": "../../../../node_modules/.bin/concurrently \"npm run build:test:watch\" \"WCT_INDEX=./index.watch.test.html ../../../../node_modules/.bin/wct -p\"",
+    "test:watch:firefox": "../../../../node_modules/.bin/concurrently \"npm run build:test:watch\" \"WCT_INDEX=./index.watch.test.html ../../../../node_modules/.bin/wct -p -l firefox\"",
+    "build": "npm run build:cleanup && ../../../../node_modules/.bin/webpack --config ../../../../webpack.config.js --env.prod --env.element=bolt-toolkit-ui/components/components-band",
+    "build:test": "npm run build:cleanup && ../../../../node_modules/.bin/webpack --config ../../../../webpack.config.js --env.test --env.element=bolt-toolkit-ui/components/components-band",
+    "build:test:watch": "../../../../node_modules/.bin/webpack-dev-server --config ../../../../webpack.config.js --env.test --env.element=bolt-toolkit-ui/components/components-band",
+    "build:cleanup": "../../../../node_modules/.bin/rimraf dist definitions"
+  },
+  "dependencies": {
+    "@bolt/tools-spacing": "^0.2.0",
+    "@bolt/tools-strip-unit": "^0.2.0",
+    "@bolt/ui-core": "^0.0.0",
+    "skatejs": "4.6.7"
   }
 }

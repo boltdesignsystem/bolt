@@ -10,11 +10,11 @@
 
     @if ($colorShade == $bolt-color-default) {
       .u-bolt-color-#{$colorName} {
-        color: bolt-color($colorName, $colorShade, important);
+        @include bolt-color($colorName, $colorShade, important);
       }
     } @else {
       .u-bolt-color-#{$colorName}-#{$colorShade} {
-        color: bolt-color($colorName, $colorShade, important);
+        @include bolt-color($colorName, $colorShade, important);
       }
     }
 

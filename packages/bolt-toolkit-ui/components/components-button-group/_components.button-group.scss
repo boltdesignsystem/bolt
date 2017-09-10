@@ -1,0 +1,14 @@
+.c-button-group {
+  margin: 0;
+  list-style: none;
+  letter-spacing: -0.35em;
+}
+
+.c-button-group__item {
+  letter-spacing: normal;
+  display: inline-block;
+}
+
+.c-button-group__item + .c-button-group__item {
+  @include bolt-padding-left(small);
+}

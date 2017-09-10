@@ -1,5 +1,9 @@
-<div class="o-bolt-band">
+{% set attributes = create_attribute(attributes|default({})) %}
+
+
+
+<bolt-band size="medium">
   {% block band_content %}
     Default Test Band
   {% endblock %}
-</div>
+</bolt-band>

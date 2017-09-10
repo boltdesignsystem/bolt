@@ -1,0 +1,196 @@
+/* ==========================================================================
+   #LAYOUT OBJECT
+   ========================================================================== */
+
+.o-bolt-layout {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-left: bolt-spacing(medium) * -1;
+  letter-spacing: bolt-spacing(medium) * -1;
+  flex: 1 1 auto; //Automatically auto fill any available space, in case a layout is nested inside of a flexbox-friendly parent container.
+}
+
+.o-bolt-layout__item {
+  display: inline-block;
+  vertical-align: top;
+  padding-left: bolt-spacing(medium);
+  letter-spacing: normal;
+}
+
+
+
+.o-bolt-layout--rev {
+  direction: rtl;
+
+  > .o-bolt-layout__item {
+    direction: ltr;
+  }
+}
+
+
+/**
+ * Gutterless layouts have all the properties of regular layouts, minus any spacing.
+ * Extends `.o-bolt-layout`.
+ */
+.o-bolt-layout--full {
+  margin-left: 0;
+
+  > .o-bolt-layout__item {
+    padding-left: 0;
+  }
+}
+
+/**
+ * Centered layouts align layout items centrally without needing to use push or pull
+ * classes. Extends `.o-bolt-layout`.
+ */
+.o-bolt-layout--center {
+  text-align: center;
+  justify-content: center;
+
+  > .o-bolt-layout__item {
+    text-align: left;
+  }
+}
+
+
+/**
+ * Align layout items vertically (`.o-bolt-layout--middle` or `.o-bolt-layout--bottom`). Extends
+ * `.o-bolt-layout`.
+ */
+.o-bolt-layout--middle {
+  // &.o-bolt-layout--flex,{
+  //   align-items: center;
+  // }
+
+  > .o-bolt-layout__item {
+    vertical-align: middle;
+  }
+}
+
+.o-bolt-layout--bottom {
+  > .o-bolt-layout__item {
+    vertical-align: bottom;
+  }
+}
+
+
+/**
+ * Align the entire layout to the right. Extends `.layout`.
+ */
+.o-bolt-layout--right {
+  text-align: right;
+  justify-content: flex-end;
+
+  > .o-bolt-layout__item {
+    text-align: left;
+  }
+}
+
+.o-bolt-layout__item--middle {
+  vertical-align: middle;
+  align-self: center;
+}
+
+.o-bolt-layout__item--top {
+  vertical-align: top;
+  align-self: flex-start;
+}
+
+.o-bolt-layout__item--bottom {
+  vertical-align: bottom;
+  align-self: flex-end;
+}
+
+
+
+
+// Grid gutter sizes
+.o-bolt-layout--xsmall {
+  margin-left: bolt-spacing(xsmall) * -1;
+
+  > .o-bolt-layout__item {
+    padding-left: bolt-spacing(xsmall);
+  }
+}
+
+.o-bolt-layout--small {
+  margin-left: bolt-spacing(small) * -1;
+
+  > .o-bolt-layout__item {
+    padding-left: bolt-spacing(small);
+  }
+}
+
+.o-bolt-layout--medium {
+  margin-left: bolt-spacing(medium) * -1;
+
+  > .o-bolt-layout__item {
+    padding-left: bolt-spacing(medium);
+  }
+}
+
+/**
+ * Large gutters
+ */
+.o-bolt-layout--large {
+  margin-left: bolt-spacing(large) * -1;
+
+  > .o-bolt-layout__item {
+    padding-left: bolt-spacing(large);
+  }
+}
+
+/**
+ * Extra wide gutters
+ */
+.o-bolt-layout--xlarge {
+  margin-left: bolt-spacing(large) * -1;
+
+  > .o-bolt-layout__item {
+    padding-left: bolt-spacing(large);
+  }
+}
+
+
+// /**
+//  * Extra extra wide gutters
+//  */
+// %o-layout--xxlarge,
+// .o-bolt-layout--xxlarge {
+//
+//   @include respond-to(small) {
+//     margin-left: -$spacing-unit-xlarge * 2;
+//   }
+//   margin-left: -$spacing-unit-large * 2;
+//
+//   > %o-layout__item,
+//   > .o-bolt-layout__item {
+//
+//     @include respond-to(small) {
+//       padding-left: $spacing-unit-xlarge * 2;
+//     }
+//     padding-left: $spacing-unit-large * 2;
+//   }
+// }
+
+.o-bolt-layout--flex {
+  display: flex;
+  flex-flow: row wrap;
+
+  > .o-bolt-layout__item {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+
+
+.o-bolt-layout--matrix {
+  margin-bottom: bolt-spacing(medium) * -1;
+}
+
+.o-bolt-layout--matrix > .o-bolt-layout__item {
+  padding-bottom: bolt-spacing(medium);
+}

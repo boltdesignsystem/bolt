@@ -11,13 +11,22 @@
 
 @function bolt-color(
   $color,
+  $tone: $bolt-color-default
+) {
+  @return map-get-deep($bolt-colors, $color, $tone);
+}
+
+
+@mixin bolt-color(
+  $color,
   $tone: $bolt-color-default,
   $important: null
 ) {
   @if $important == important {
     $important: !important;
   }
-  @return map-get-deep($bolt-colors, $color, $tone) $important;
+
+  color: bolt-color($color, $tone) $important;
 }
 
 /* stylelint-disable-next-line scss/at-function-pattern */

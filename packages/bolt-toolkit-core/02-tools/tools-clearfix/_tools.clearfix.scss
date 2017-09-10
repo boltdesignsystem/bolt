@@ -2,15 +2,19 @@
   Text Contrast
 \* ------------------------------------ */
 
-@mixin bolt-clearfix {
+@mixin bolt-clearfix($important: null) {
+  @if $important == important {
+    $important: !important;
+  }
+
   &:before,
   &:after {
-    content: ' ';
-    display: table;
+    content: ' ' $important;
+    display: table $important;
   }
 
   &:after {
-    clear: both;
+    clear: both $important;
   }
 }
 

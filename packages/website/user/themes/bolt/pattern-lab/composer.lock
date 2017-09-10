@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "04f5b6a7358c7b8e43f0b0ed0e78b877",
+    "content-hash": "10569e28258aaf540262afaaa47c26b3",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -225,7 +225,61 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2017-08-30T09:16:50+00:00"
+            "time": "2017-08-30 09:16:50"
+        },
+        {
+            "name": "evanlovely/plugin-twig-namespaces",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/EvanLovely/plugin-twig-namespaces.git",
+                "reference": "c6c3494d19732d2e7db6a6d277c887334cf78935"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/EvanLovely/plugin-twig-namespaces/zipball/c6c3494d19732d2e7db6a6d277c887334cf78935",
+                "reference": "c6c3494d19732d2e7db6a6d277c887334cf78935",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "type": "patternlab-plugin",
+            "extra": {
+                "patternlab": {
+                    "config": {
+                        "plugins": {
+                            "twigNamespaces": {
+                                "enabled": false,
+                                "roots": []
+                            }
+                        }
+                    }
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "PatternLab\\TwigNamespaces": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Evan Lovely",
+                    "homepage": "http://evanlovely.com",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "Twig Namespaces for Pattern Lab",
+            "homepage": "http://patternlab.io",
+            "keywords": [
+                "pattern lab",
+                "twig"
+            ],
+            "time": "2017-09-01 18:45:52"
         },
         {
             "name": "kevinlebrun/colors.php",
@@ -379,7 +433,7 @@
             "version": "v2.8.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:drupal-pattern-lab/patternlab-php-core.git",
+                "url": "https://github.com/drupal-pattern-lab/patternlab-php-core.git",
                 "reference": "ed89147c334acc576191bdd3462b4b2e6a5f8b31"
             },
             "dist": {
@@ -505,7 +559,7 @@
             "version": "v2.2.3",
             "source": {
                 "type": "git",
-                "url": "git@github.com:drupal-pattern-lab/patternengine-php-twig.git",
+                "url": "https://github.com/drupal-pattern-lab/patternengine-php-twig.git",
                 "reference": "f3254de28b9f0a0a1e1015070209a1e06908a829"
             },
             "dist": {
@@ -631,7 +685,7 @@
             "version": "v3.0.3",
             "source": {
                 "type": "git",
-                "url": "git@github.com:drupal-pattern-lab/styleguidekit-twig-default.git",
+                "url": "https://github.com/drupal-pattern-lab/styleguidekit-twig-default.git",
                 "reference": "5eed2e583d4e3d320c6b13aa926fefe9d0e10ee7"
             },
             "dist": {
@@ -824,7 +878,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2017-08-03T09:34:20+00:00"
+            "time": "2017-08-03 09:34:20"
         },
         {
             "name": "symfony/filesystem",
@@ -873,7 +927,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2017-08-03T09:34:20+00:00"
+            "time": "2017-08-03 09:34:20"
         },
         {
             "name": "symfony/finder",
@@ -922,7 +976,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2017-08-03T09:34:20+00:00"
+            "time": "2017-08-03 09:34:20"
         },
         {
             "name": "symfony/process",
@@ -971,7 +1025,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2017-08-03T09:34:20+00:00"
+            "time": "2017-08-03 09:34:20"
         },
         {
             "name": "symfony/yaml",
@@ -1029,7 +1083,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-08-30T06:19:03+00:00"
+            "time": "2017-08-30 06:19:03"
         },
         {
             "name": "twig/twig",
@@ -1094,13 +1148,15 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-08-19T17:37:14+00:00"
+            "time": "2017-08-19 17:37:14"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "evanlovely/plugin-twig-namespaces": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

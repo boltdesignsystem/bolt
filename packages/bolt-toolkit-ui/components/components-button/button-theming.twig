@@ -1,0 +1,86 @@
+{% embed "@bolt/band.twig" with {
+  size: "medium",
+  theme: "dark"
+} %}
+  {% block band_content %}
+
+
+    {% embed "@bolt/wrapper.twig" %}
+      {% block wrapper_content %}
+
+        <div class="o-bolt-grid">
+          <div class="o-bolt-grid__cell u-bolt-width-1/1 u-bolt-width-2/3@small u-bolt-width-1/2@medium">
+
+            <h2 class="c-bolt-headline c-bolt-headline--regular c-bolt-headline--xxlarge">Maximize Value with <span class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--inline-block">Next Best Action Intelligence</span></h2>
+
+            <p class="c-bolt-paragraph">Blow away your customer's expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.</p>
+
+
+            {% embed "@bolt/button-group.twig" %}
+              {% block button_item_primary %}
+                {% include "@bolt/button.twig" with {
+                  text: "Primary Button"
+                } %}
+              {% endblock button_item_primary %}
+
+              {% block button_item_secondary %}
+                {% include "@bolt/button.twig" with {
+                  text: "Secondary Button",
+                  style: "secondary"
+                } %}
+              {% endblock button_item_secondary %}
+            {% endembed %}
+
+
+          </div>
+        </div>
+      {% endblock wrapper_content %}
+    {% endembed %}
+
+  {% endblock band_content %}
+{% endembed %}
+
+
+<div style="padding: 32px;" class="t-bolt-xlight">
+  {% include "@bolt/button.twig" with {
+    text: "Primary Button"
+  } %}
+
+  {% include "@bolt/button.twig" with {
+    text: "Secondary Button",
+  } %}
+</div>
+
+
+<div style="padding: 32px;" class="t-bolt-light">
+  {% include "@bolt/button.twig" with {
+    text: "Primary Button"
+  } %}
+
+  {% include "@bolt/button.twig" with {
+    text: "Secondary Button",
+  } %}
+</div>
+
+
+<div style="padding: 32px;" class="t-bolt-dark">
+  {% include "@bolt/button.twig" with {
+    text: "Primary Button"
+  } %}
+
+  {% include "@bolt/button.twig" with {
+    text: "Secondary Button",
+  } %}
+</div>
+
+
+
+<div style="padding: 32px;" class="t-bolt-xdark">
+  {% include "@bolt/button.twig" with {
+    text: "Primary Button"
+  } %}
+
+  {% include "@bolt/button.twig" with {
+    text: "Secondary Button",
+  } %}
+</div>
