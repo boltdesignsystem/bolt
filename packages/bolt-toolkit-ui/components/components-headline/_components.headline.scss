@@ -1,41 +1,41 @@
 /* ------------------------------------ *\
    Headlines
 \* ------------------------------------ */
-
-$test-color-secondary: blue; // needs to map to our palette
-$test-transition: ease-in-out 200ms;
+/* stylelint-disable-next-line color-named */
+$bolt-test-color-secondary: blue; // TODO: needs to map to our palette
+$bolt-test-transition: ease-in-out 200ms;
 
 // Placeholder for colors.
-@mixin test-link-color {
+@mixin bolt-test-link-color {
   &:link {
-    color: var(--test-color-secondary, $test-color-secondary);
+    color: var(--bolt-test-color-secondary, $bolt-test-color-secondary);
   }
 
   &:visited {
-    color: var(--test-color-secondary, inherit);
+    color: var(--bolt-test-color-secondary, inherit);
   }
 
   &:hover {
-    color: var(--test-color-secondary, mix(white, $test-color-secondary, 35%));
+    color: var(--bolt-test-color-secondary, mix(white, $bolt-test-color-secondary, 35%));
   }
 
   &:active {
-    color: var(--test-color-secondary, $test-color-secondary);
+    color: var(--bolt-test-color-secondary, $bolt-test-color-secondary);
   }
 }
 
 // Placeholder for links
 
 a {
-  @include test-link-color;
+  @include bolt-test-link-color;
 
-  transition: all $test-transition;
+  transition: all $bolt-test-transition;
 }
 
 
 // Headline styles.
 
-.c-test-headline {
+.c-bolt-test-headline {
   @include bolt-font-family(heading);
 
   display: block;
@@ -44,12 +44,12 @@ a {
     align-items: center;
   }
 
-  &:not([class*='c-test-headline--']) {
+  &:not([class*='c-bolt-test-headline--']) {
     @include bolt-margin-bottom(xsmall);
     @include bolt-font-size(large);
   }
 
-  &:not([class*='c-test-headline--eyebrow']) {
+  &:not([class*='c-bolt-test-headline--eyebrow']) {
     @include bolt-font-weight(bold);
   }
 
@@ -59,33 +59,33 @@ a {
   }
 }
 
-.c-test-headline--xxxlarge {
+.c-bolt-test-headline--xxxlarge {
   @include bolt-margin-bottom(small);
   @include bolt-font-size(xxxlarge);
 
   letter-spacing: -0.15rem;
 }
 
-.c-test-headline--xxlarge {
+.c-bolt-test-headline--xxlarge {
   @include bolt-margin-bottom(xsmall);
   @include bolt-font-size(xxlarge);
 
   letter-spacing: -0.1rem;
 }
 
-.c-test-headline--xlarge {
+.c-bolt-test-headline--xlarge {
   @include bolt-margin-bottom(xsmall);
   @include bolt-font-size(xlarge);
 
   letter-spacing: -0.05rem;
 }
 
-.c-test-headline--large {
+.c-bolt-test-headline--large {
   @include bolt-margin-bottom(xsmall);
   @include bolt-font-size(large);
 }
 
-.c-test-headline--small {
+.c-bolt-test-headline--small {
   @include bolt-margin-bottom(xsmall);
   @include bolt-font-size(small);
 
@@ -93,14 +93,14 @@ a {
   letter-spacing: 0.1rem;
 }
 
-.c-test-headline--xsmall {
+.c-bolt-test-headline--xsmall {
   @include bolt-margin-bottom(xsmall);
   @include bolt-font-size(xsmall);
 
   letter-spacing: 0.05rem;
 }
 
-.c-test-headline--eyebrow {
+.c-bolt-test-headline--eyebrow {
   @include bolt-margin-bottom(0.1rem);
   @include bolt-font-size(xsmall);
   @include bolt-font-weight(regular);
@@ -111,13 +111,13 @@ a {
 
 // Headline content
 
-.c-test-headline__text {
-  ~ .c-test-headline__icon {
+.c-bolt-test-headline__text {
+  ~ .c-bolt-test-headline__icon {
     @include bolt-margin-left(small);
   }
 }
 
-.c-test-headline__icon {
+.c-bolt-test-headline__icon {
   width: 0.75em;
   height: 0.75em;
 
@@ -127,17 +127,18 @@ a {
     fill: currentColor;
   }
 
-  ~ .c-test-headline__text {
+  ~ .c-bolt-test-headline__text {
     @include bolt-margin-left(small);
   }
 }
 
-.c-test-headline__line {
+.c-bolt-test-headline__line {
   flex: 1 0 1rem;
   align-self: center;
   height: 1px;
   border-width: 0;
   border-style: none;
+  /* stylelint-disable-next-line scale-unlimited/declaration-strict-value */
   background-color: currentColor;
   opacity: 0.2;
 
@@ -153,24 +154,24 @@ a {
 
 // Subheadline styles.
 
-.c-test-subheadline {
+.c-bolt-test-subheadline {
   @include bolt-margin-bottom(xsmall);
   @include bolt-font-family(heading);
   @include bolt-font-weight(regular);
 
-  &:not([class*='c-test-subheadline--']) {
+  &:not([class*='c-bolt-test-subheadline--']) {
     @include bolt-font-size(large);
   }
 }
 
-.c-test-subheadline--xxlarge {
+.c-bolt-test-subheadline--xxlarge {
   @include bolt-font-size(xxlarge);
 }
 
-.c-test-subheadline--xlarge {
+.c-bolt-test-subheadline--xlarge {
   @include bolt-font-size(xlarge);
 }
 
-.c-test-subheadline--large {
+.c-bolt-test-subheadline--large {
   @include bolt-font-size(large);
 }
