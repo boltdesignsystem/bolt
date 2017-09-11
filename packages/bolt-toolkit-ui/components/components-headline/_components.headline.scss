@@ -2,47 +2,90 @@
    Headlines
 \* ------------------------------------ */
 
+$test-color-secondary: blue; // needs to map to our palette
+$test-transition: ease-in-out 200ms;
 
-.c-bolt-headline {
+// Placeholder for colors.
+@mixin test-link-color {
+  &:link {
+    color: var(--test-color-secondary, $test-color-secondary);
+  }
+
+  &:visited {
+    color: var(--test-color-secondary, inherit);
+  }
+
+  &:hover {
+    color: var(--test-color-secondary, mix(white, $test-color-secondary, 35%));
+  }
+
+  &:active {
+    color: var(--test-color-secondary, $test-color-secondary);
+  }
+}
+
+// Placeholder for links
+
+a {
+  @include test-link-color;
+
+  transition: all $test-transition;
+}
+
+
+// Headline styles.
+
+.c-test-headline {
   @include bolt-font-family(heading);
 
-  &:not([class*='c-bolt-headline--']) {
+  display: block;
+  @supports (display: flex) {
+    display: flex;
+    align-items: center;
+  }
+
+  &:not([class*='c-test-headline--']) {
     @include bolt-margin-bottom(xsmall);
     @include bolt-font-size(large);
   }
 
-  &:not([class*='c-bolt-headline--eyebrow']) {
+  &:not([class*='c-test-headline--eyebrow']) {
     @include bolt-font-weight(bold);
+  }
+
+  > * {
+    display: inline-flex;
+    align-self: baseline;
   }
 }
 
-.c-bolt-headline--xxxlarge {
+.c-test-headline--xxxlarge {
   @include bolt-margin-bottom(small);
   @include bolt-font-size(xxxlarge);
 
   letter-spacing: -0.15rem;
 }
 
-.c-bolt-headline--xxlarge {
+.c-test-headline--xxlarge {
   @include bolt-margin-bottom(xsmall);
   @include bolt-font-size(xxlarge);
 
   letter-spacing: -0.1rem;
 }
 
-.c-bolt-headline--xlarge {
+.c-test-headline--xlarge {
   @include bolt-margin-bottom(xsmall);
   @include bolt-font-size(xlarge);
 
   letter-spacing: -0.05rem;
 }
 
-.c-bolt-headline--large {
+.c-test-headline--large {
   @include bolt-margin-bottom(xsmall);
   @include bolt-font-size(large);
 }
 
-.c-bolt-headline--small {
+.c-test-headline--small {
   @include bolt-margin-bottom(xsmall);
   @include bolt-font-size(small);
 
@@ -50,14 +93,14 @@
   letter-spacing: 0.1rem;
 }
 
-.c-bolt-headline--xsmall {
+.c-test-headline--xsmall {
   @include bolt-margin-bottom(xsmall);
   @include bolt-font-size(xsmall);
 
   letter-spacing: 0.05rem;
 }
 
-.c-bolt-headline--eyebrow {
+.c-test-headline--eyebrow {
   @include bolt-margin-bottom(0.1rem);
   @include bolt-font-size(xsmall);
   @include bolt-font-weight(regular);
@@ -66,26 +109,68 @@
   letter-spacing: 0.1rem;
 }
 
+// Headline content
+
+.c-test-headline__text {
+  ~ .c-test-headline__icon {
+    @include bolt-margin-left(small);
+  }
+}
+
+.c-test-headline__icon {
+  width: 0.75em;
+  height: 0.75em;
+
+  svg {
+    width: 1em;
+    height: auto;
+    fill: currentColor;
+  }
+
+  ~ .c-test-headline__text {
+    @include bolt-margin-left(small);
+  }
+}
+
+.c-test-headline__line {
+  flex: 1 0 1rem;
+  align-self: center;
+  height: 1px;
+  border-width: 0;
+  border-style: none;
+  background-color: currentColor;
+  opacity: 0.2;
+
+  &:first-child {
+    @include bolt-margin(0 small 0 0);
+  }
+
+  &:last-child {
+    @include bolt-margin(0 0 0 small);
+  }
+}
 
 
-.c-bolt-subheadline {
+// Subheadline styles.
+
+.c-test-subheadline {
   @include bolt-margin-bottom(xsmall);
   @include bolt-font-family(heading);
   @include bolt-font-weight(regular);
 
-  &:not([class*='c-bolt-subheadline--']) {
+  &:not([class*='c-test-subheadline--']) {
     @include bolt-font-size(large);
   }
 }
 
-.c-bolt-subheadline--xxlarge {
+.c-test-subheadline--xxlarge {
   @include bolt-font-size(xxlarge);
 }
 
-.c-bolt-subheadline--xlarge {
+.c-test-subheadline--xlarge {
   @include bolt-font-size(xlarge);
 }
 
-.c-bolt-subheadline--large {
+.c-test-subheadline--large {
   @include bolt-font-size(large);
 }
