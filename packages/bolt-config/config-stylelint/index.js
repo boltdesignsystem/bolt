@@ -47,6 +47,7 @@ module.exports = {
     'color-named': ['never', {
       ignore: ['inside-function']
     }],
+    'selector-max-id': 0,
     'color-no-invalid-hex': true,
     'color-no-hex': true,
     'selector-max-id': 0,
