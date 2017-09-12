@@ -19,16 +19,17 @@
 @mixin bolt-font-family($type, $is_root: false) {
   $fallback-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'fallback-font');
   $custom-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'custom-font');
+  $fonts-loaded-class: map-get-deep($bolt-font-families, 'font-families', $type, 'loaded-class');
 
   font-family: $fallback-font-family;
 
   @if $is_root == false {
-    .#{$bolt-fonts--loaded-class} & {
+    .#{$fonts-loaded-class} & {
       font-family: $custom-font-family;
     }
   }
   @else {
-    &.#{$bolt-fonts--loaded-class} {
+    &.#{$fonts-loaded-class} {
       font-family: $custom-font-family;
     }
   }
