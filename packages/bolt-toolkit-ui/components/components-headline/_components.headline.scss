@@ -35,7 +35,7 @@ a {
 
 // Headline styles.
 
-.c-bolt-test-headline {
+.c-bolt-headline {
   @include bolt-font-family(heading);
 
   display: block;
@@ -44,12 +44,12 @@ a {
     align-items: center;
   }
 
-  &:not([class*='c-bolt-test-headline--']) {
+  &:not([class*='c-bolt-headline--']) {
     @include bolt-margin-bottom(xsmall);
     @include bolt-font-size(large);
   }
 
-  &:not([class*='c-bolt-test-headline--eyebrow']) {
+  &:not([class*='c-bolt-headline--eyebrow']) {
     @include bolt-font-weight(bold);
   }
 
@@ -59,33 +59,33 @@ a {
   }
 }
 
-.c-bolt-test-headline--xxxlarge {
+.c-bolt-headline--xxxlarge {
   @include bolt-margin-bottom(small);
   @include bolt-font-size(xxxlarge);
 
   letter-spacing: -0.15rem;
 }
 
-.c-bolt-test-headline--xxlarge {
+.c-bolt-headline--xxlarge {
   @include bolt-margin-bottom(xsmall);
   @include bolt-font-size(xxlarge);
 
   letter-spacing: -0.1rem;
 }
 
-.c-bolt-test-headline--xlarge {
+.c-bolt-headline--xlarge {
   @include bolt-margin-bottom(xsmall);
   @include bolt-font-size(xlarge);
 
   letter-spacing: -0.05rem;
 }
 
-.c-bolt-test-headline--large {
+.c-bolt-headline--large {
   @include bolt-margin-bottom(xsmall);
   @include bolt-font-size(large);
 }
 
-.c-bolt-test-headline--small {
+.c-bolt-headline--small {
   @include bolt-margin-bottom(xsmall);
   @include bolt-font-size(small);
 
@@ -93,14 +93,14 @@ a {
   letter-spacing: 0.1rem;
 }
 
-.c-bolt-test-headline--xsmall {
+.c-bolt-headline--xsmall {
   @include bolt-margin-bottom(xsmall);
   @include bolt-font-size(xsmall);
 
   letter-spacing: 0.05rem;
 }
 
-.c-bolt-test-headline--eyebrow {
+.c-bolt-headline--eyebrow {
   @include bolt-margin-bottom(0.1rem);
   @include bolt-font-size(xsmall);
   @include bolt-font-weight(regular);
@@ -111,13 +111,13 @@ a {
 
 // Headline content
 
-.c-bolt-test-headline__text {
-  ~ .c-bolt-test-headline__icon {
+.c-bolt-headline__text {
+  ~ .c-bolt-headline__icon {
     @include bolt-margin-left(small);
   }
 }
 
-.c-bolt-test-headline__icon {
+.c-bolt-headline__icon {
   width: 0.75em;
   height: 0.75em;
 
@@ -127,12 +127,12 @@ a {
     fill: currentColor;
   }
 
-  ~ .c-bolt-test-headline__text {
+  ~ .c-bolt-headline__text {
     @include bolt-margin-left(small);
   }
 }
 
-.c-bolt-test-headline__line {
+.c-bolt-headline__line {
   flex: 1 0 1rem;
   align-self: center;
   height: 1px;
@@ -154,24 +154,24 @@ a {
 
 // Subheadline styles.
 
-.c-bolt-test-subheadline {
+.c-bolt-subheadline {
   @include bolt-margin-bottom(xsmall);
   @include bolt-font-family(heading);
   @include bolt-font-weight(regular);
 
-  &:not([class*='c-bolt-test-subheadline--']) {
+  &:not([class*='c-bolt-subheadline--']) {
     @include bolt-font-size(large);
   }
 }
 
-.c-bolt-test-subheadline--xxlarge {
+.c-bolt-subheadline--xxlarge {
   @include bolt-font-size(xxlarge);
 }
 
-.c-bolt-test-subheadline--xlarge {
+.c-bolt-subheadline--xlarge {
   @include bolt-font-size(xlarge);
 }
 
-.c-bolt-test-subheadline--large {
+.c-bolt-subheadline--large {
   @include bolt-font-size(large);
 }
