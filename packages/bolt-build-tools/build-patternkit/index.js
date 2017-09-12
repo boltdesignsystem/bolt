@@ -1,5 +1,5 @@
-import gulp from 'gulp';
-
+const gulp = require('gulp');
+const merge = require('merge').recursive;
 const flatten = require('gulp-flatten');
 const globby = require('globby');
 const path = require('path');

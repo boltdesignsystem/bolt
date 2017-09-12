@@ -1,13 +1,17 @@
-import { events } from '@bolt/build-core';
-import gulp from 'gulp';
-import merge from 'merge';
-import autoprefixer from 'autoprefixer';
-import postcssReporter from 'postcss-reporter';
-import duration from 'gulp-duration';
-import size from 'gulp-size';
-import cleanCSS from 'gulp-clean-css';
-import defaultConfig from './config.default';
-
+const core = require('@bolt/build-core');
+const gulp = require('gulp');
+const merge = require('merge').recursive;
+const postcssReporter = require('postcss-reporter');
+const duration = require('gulp-duration');
+const size = require('gulp-size');
+const cleanCSS = require('gulp-clean-css');
+// import postcssReporter from 'postcss-reporter';
+// import duration from 'gulp-duration';
+// import size from 'gulp-size';
+// import cleanCSS from 'gulp-clean-css';
+// import defaultConfig from './config.default';
+const defaultConfig = require('./config.default');
+const autoprefixer = require('autoprefixer');
 const sourcemaps = require('gulp-sourcemaps');
 const sass = require('gulp-sass');
 const plumber = require('gulp-plumber');
@@ -15,7 +19,6 @@ const notify = require('gulp-notify');
 const exportJson = require('node-sass-export');
 const npmSass = require('npm-sass');
 const postcss = require('gulp-postcss');
-const stylelint = require('stylelint');
 const join = require('path').join;
 const scssSyntax = require('postcss-scss');
 const sassdoc = require('sassdoc');
@@ -24,13 +27,36 @@ const sassGlob = require('gulp-sass-glob');
 const rimraf = require('rimraf');
 const gulpif = require('gulp-if');
 const path = require('path');
-
-// const packageImporter = require('node-sass-package-importer');
+// const colorguard = require('./colorguard');
+const colorguard = require('colorguard');
+const kindOf = require('kind-of');
+const rgb2Hex = require('rgb-hex');
+const stylelint = require('gulp-stylelint');
+const stylelintFormatter = require('stylelint-formatter-pretty');
 
 const postCSS = [
-  postcssReporter({ clearReportedMessages: true }),
-  autoprefixer()
+  autoprefixer(),
+  postcssReporter({ clearReportedMessages: true })
+  // stylelint()
+  // colorguard2({
+  //   threshold: 20,
+  //   // whitelist: [allColors],
+  //   logOk: true,
+  //   allowEquivalentNotation: true
+  // })
 ];
+
+
+// console.log(colors);
+
+
+// console.log(allColors);
+
+
+// for (const key in colors) {
+//   console.log(key); // key1 and etc...
+//   console.log(colors[key]); // val1 and etc...
+// }
 
 
 function compileSassDoc(done, userConfig) {
@@ -44,7 +70,7 @@ function compileSassDoc(done, userConfig) {
     });
 }
 
-function sassDoc(userConfig) {
+function docs(userConfig) {
   function sassDocTask(done) {
     compileSassDoc(done, userConfig);
   }
@@ -52,14 +78,60 @@ function sassDoc(userConfig) {
   sassDocTask.displayName = 'styles:sassdoc';
   return sassDocTask;
 }
+module.exports.docs = docs;
 
 
-function compileCSS(userConfig) {
-  const config = merge({
-    postCSS
-  }, defaultConfig, userConfig);
+function compile(userConfig) {
+  const config = merge(defaultConfig, userConfig);
 
   function compileCssTask(done) {
+    const colors = require('../../website/user/themes/bolt/pattern-lab/source/_data/bolt-colors.json').bolt_colors;
+
+    const allColors = [];
+
+    for (const key of Object.keys(colors)) {
+      const val = colors[key];
+      // console.log(val);
+
+      if (kindOf(val) === 'object') {
+        for (const nestedKey of Object.keys(val)) {
+          const nestedVal = val[nestedKey];
+          // console.log(val2);
+
+
+          if (kindOf(nestedVal) === 'object') {
+            for (const doubleNestedKey of Object.keys(nestedVal)) {
+              const doubleNestedVal = nestedVal[doubleNestedKey];
+              // doubleNestedVal = rgb2hex(doubleNestedVal);
+              allColors.push(`#${rgb2Hex(doubleNestedVal)}`);
+              // allColors.push(doubleNestedVal);
+            }
+          } else {
+            allColors.push(`#${rgb2Hex(nestedVal)}`);
+            // allColors.push(nestedVal);
+          }
+          //
+        }
+      } else {
+        // val
+        allColors.push(`#${rgb2Hex(val)}`);
+        // allColors.push(val);
+      }
+    }
+
+
+    // rgb2Hex(colors.white.base)
+
+
+    //     config.postCSS.concat([
+    //       colorguard()
+    //     ]);
+    //
+    //     console.log(config.postCSS);
+    //
+    // var plugins = old_array.concat(value1[, value2[, ...[, valueN]]])
+
+
     gulp.src(config.src)
       .pipe(plumber({
         errorHandler(error) {
@@ -73,6 +145,13 @@ function compileCSS(userConfig) {
     // .pipe(sourcemaps.init())
       .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
       .pipe(sassGlob())
+      .pipe(stylelint({
+        reporters: [{
+          formatter: stylelintFormatter,
+          console: true
+        }],
+        failAfterError: config.failAfterError
+      }))
       // .pipe(sass(eyeglass({
       .pipe(sass({
         // includePaths: [
@@ -82,25 +161,23 @@ function compileCSS(userConfig) {
         //   'packages/bolt-toolkit/node_modules',
         //   'sandbox/styleguide/node_modules'
         // ],
-        // importer: moduleImporter(),
-        // importer: magicImporter({
-        //   disableImportOnce: true
-        // }),
-        // importer: packageImporter({
-        //   disableImportOnce: true
-        // }),
         importer: require('npm-sass').importer,
-        //         importer: [
-        // magicImporter()
-        //           // npmSass.importer
-        //         //  moduleImporter(),
-        //         //  glopImporter()
-        //         ],
         functions: exportJson(config.data, 'export_data'),
         outputStyle: 'expanded',
         precision: 2
       }).on('error', sass.logError))
-      .pipe(postcss(config.postCSS))
+      .pipe(postcss(
+        postCSS.concat([
+          colorguard({
+            threshold: 4,
+            whitelist: [
+              [`#${rgb2Hex(colors.gray.xlight)}`, `#${rgb2Hex(colors.white.base)}`],
+              [`#${rgb2Hex(colors.warning.light)}`, `#${rgb2Hex(colors.yellow.xlight)}`]
+            ],
+            allowEquivalentNotation: true
+          })
+        ])
+      ))
       .pipe(duration('CSS Compile Time'))
       .pipe(size({ title: 'Total CSS Size' }))
       // .pipe(cleanCSS({
@@ -113,7 +190,7 @@ function compileCSS(userConfig) {
       .pipe(gulpif(config.sourceMaps, sourcemaps.write('./')))
       .pipe(gulp.dest(config.dest))
       .on('end', () => {
-        events.emit('reload', join(config.dest, '**/*.css'));
+        // core.events.emit('reload', join(config.dest, '**/*.css'));
         done();
       });
   }
@@ -123,15 +200,16 @@ function compileCSS(userConfig) {
 
   return compileCssTask;
 }
+module.exports.compile = compile;
 
 
-function watchCSS(userConfig) {
+function watch(userConfig) {
   function watchCssTask() {
     const config = merge({
       postCSS
     }, defaultConfig, userConfig);
 
-    const watchTasks = [compileCSS(userConfig)];
+    // const watchTasks = [compile(userConfig)];
 
 
     if (config.sassdoc !== false) {
@@ -142,7 +220,14 @@ function watchCSS(userConfig) {
       : config.src;
     // console.log(watchTasks);
 
-    return gulp.watch(src, gulp.parallel(watchTasks));
+    // console.log(src);
+    const watcher = gulp.watch(src, gulp.parallel(compile(userConfig)));
+
+    watcher.on('change', (path, stats) => {
+      // console.log(`File ${path} was changed`);
+    });
+
+    // return gulp.watch(src, gulp.parallel(watchTasks));
   }
 
   watchCssTask.displayName = 'styles:watch';
@@ -150,9 +235,10 @@ function watchCSS(userConfig) {
 
   return watchCssTask;
 }
+module.exports.watch = watch;
 
 
-function cleanStyles(userConfig) {
+function clean(userConfig) {
   const config = merge(defaultConfig, userConfig);
 
   function cleanStylesTask(cb) {
@@ -174,12 +260,12 @@ function cleanStyles(userConfig) {
 
   return cleanStylesTask;
 }
+module.exports.clean = clean;
 
 
-function lintCSS(userConfig) {
+function lint(userConfig) {
   const config = merge({
     postCSS: [
-      stylelint(),
       postcssReporter({ clearReportedMessages: true }),
       autoprefixer()
     ]
@@ -196,6 +282,13 @@ function lintCSS(userConfig) {
           })(error);
         }
       }))
+      .pipe(stylelint({
+        reporters: [{
+          formatter: stylelintFormatter,
+          console: true
+        }],
+        failAfterError: true
+      }))
       .pipe(postcss(config.postCSS, {
         syntax: scssSyntax
       }))
@@ -208,68 +301,4 @@ function lintCSS(userConfig) {
   lintCssTask.description = 'List CSS description';
   return lintCssTask;
 }
-
-export { compileCSS, watchCSS, lintCSS, cleanStyles as cleanCSS, sassDoc };
-
-
-// export { Styles as default };
-//
-// module.exports = (userConfig) => {
-//   const tasks = {};
-//   const config = merge({
-//     postcss: [
-//
-//     ]
-//   }, defaultConfig, userConfig);
-//
-//
-//   function lintCSS() {
-//     gulp.src([
-//       'packages/**/*.scss',
-//       '!packages/_*/**/*'
-//     ])
-//       .pipe(plumber({
-//         errorHandler(error) {
-//           notify.onError({
-//             title: 'CSS <%= error.name %> - Line <%= error.line %>',
-//             message: '<%= error.message %>'
-//           })(error);
-//         }
-//       }))
-//       .pipe(postcss(processors, {
-//         syntax: scssSyntax
-//       }));
-//     // .on('end', () => {
-//     //   done();
-//     // });
-//   }
-//   lintCSS.description = 'List CSS description';
-//   // tasks.lint = lintCSS;
-//
-//
-//   function compileCSS(done) {
-//
-//   compileCSS.description = 'Compile CSS';
-//   compileCSS.displayName = 'styles:compile';
-//   // tasks.compile = compileCSS;
-//
-
-//   watchCSS.description = 'Watch CSS for changes';
-//   // tasks.watch = watchCSS;
-//
-//
-//   return {
-//     lintCSS,
-//     compileCSS,
-//     watchCSS
-//   };
-// };
-
-
-//
-//
-//
-//
-// export function compile() {
-//
-// }
+module.exports.lint = lint;

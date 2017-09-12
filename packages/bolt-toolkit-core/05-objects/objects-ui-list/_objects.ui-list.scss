@@ -6,11 +6,11 @@
  * The UI list object creates blocky list items with a separator between each
  * item
  */
-$ui-list-padding: (small 0) !default;
-$ui-list-border-width: 2px !default;
-$ui-list-border-style: solid !default;
+$bolt-ui-list-padding: (small 0) !default;
+$bolt-ui-list-border-width: 2px !default;
+$bolt-ui-list-border-style: solid !default;
 // $ui-list-border-color: palette(gray, lighter) !default;
-$ui-list-border-color: var(--bolt-ui-border-color, currentColor);
+$bolt-ui-list-border-color: var(--bolt-ui-border-color, currentColor);
 
 .o-bolt-ui-list {
   margin: 0;
@@ -19,12 +19,12 @@ $ui-list-border-color: var(--bolt-ui-border-color, currentColor);
 }
 
 .o-bolt-ui-list__item {
-  @include bolt-padding($ui-list-padding);
-  border-bottom-style: $ui-list-border-style;
-  border-bottom-color: $ui-list-border-color;
+  @include bolt-padding($bolt-ui-list-padding);
+  border-bottom-style: $bolt-ui-list-border-style;
+  border-bottom-color: $bolt-ui-list-border-color;
 
   &:not(:last-child) {
-    border-bottom-width: $ui-list-border-width;
+    border-bottom-width: $bolt-ui-list-border-width;
   }
 
   > *:last-child {

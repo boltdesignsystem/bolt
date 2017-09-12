@@ -8,16 +8,18 @@
 @import '@bolt/tools-spacing';
 @import '@bolt/tools-no-select';
 
-$bolt-color-button-text: bolt-palette(white);
-$bolt-color-primary: bolt-palette(blue);
-$bolt-color-secondary: bolt-palette(blue);
+$bolt-color-button-text: bolt-color(white);
+$bolt-color-primary: bolt-color(blue);
+$bolt-color-secondary: bolt-color(blue);
 
-$bolt-color--shadow: bolt-palette(black);
+$bolt-color--shadow: bolt-color(black);
 
-$bolt-shadow: 0 .04rem .15rem rgba($bolt-color--shadow, .5);
+@debug $bolt-color--shadow;
+
+$bolt-shadow: 0 0.04rem 0.15rem rgba($bolt-color--shadow, 0.5);
 $bolt-shadow--raised:
   $bolt-shadow,
-  0 .35rem .6rem rgba($bolt-color--shadow, .18);
+  0 0.35rem 0.6rem rgba($bolt-color--shadow, 0.18);
 
 $bolt-transition: ease-in-out 200ms;
 $bolt-border-radius: 3px;
@@ -54,210 +56,210 @@ $bolt-border-width--button: 1px;
   @if $hiarchy == 'primary' {
     &,
     &:visited {
-      color:            var(--bolt-color-button-text, $bolt-color-button-text);
-      border-color:     var(--bolt-color-primary, $bolt-color-primary);
+      color: var(--bolt-color-button-text, $bolt-color-button-text);
+      border-color: var(--bolt-color-primary, $bolt-color-primary);
       background-color: var(--bolt-color-primary, $bolt-color-primary);
-      box-shadow:       $bolt-shadow;
+      box-shadow: $bolt-shadow;
     }
 
     &:hover {
-      border-color:     var(--bolt-color-primary, mix(white, $bolt-color-primary, 15%));
+      border-color: var(--bolt-color-primary, mix(white, $bolt-color-primary, 15%));
       background-color: var(--bolt-color-primary, mix(white, $bolt-color-primary, 15%));
-      box-shadow:       $bolt-shadow--raised;
+      box-shadow: $bolt-shadow--raised;
     }
 
     &:active {
-      border-color:     var(--bolt-color-primary, mix(black, $bolt-color-primary, 25%));
+      border-color: var(--bolt-color-primary, mix(black, $bolt-color-primary, 25%));
       background-color: var(--bolt-color-primary, mix(black, $bolt-color-primary, 25%));
     }
 
     &:focus {
-      box-shadow:       $bolt-shadow;
+      box-shadow: $bolt-shadow;
     }
 
     &:focus:hover {
-      box-shadow:       $bolt-shadow--raised;
+      box-shadow: $bolt-shadow--raised;
     }
   }
 
   @elseif $hiarchy == 'secondary' {
     &,
     &:visited {
-      color:            var(--bolt-color-primary, $bolt-color-primary);
-      border-color:     var(--bolt-color-button-text, $bolt-color-button-text);
+      color: var(--bolt-color-primary, $bolt-color-primary);
+      border-color: var(--bolt-color-button-text, $bolt-color-button-text);
       background-color: var(--bolt-color-button-text, $bolt-color-button-text);
-      box-shadow:       $bolt-shadow;
+      box-shadow: $bolt-shadow;
     }
 
     &:hover {
-      border-color:     var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 2%));
+      border-color: var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 2%));
       background-color: var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 2%));
-      box-shadow:       $bolt-shadow--raised;
+      box-shadow: $bolt-shadow--raised;
     }
 
     &:active {
-      border-color:     var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 15%));
+      border-color: var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 15%));
       background-color: var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 15%));
     }
 
     &:focus {
-      box-shadow:       $bolt-shadow;
+      box-shadow: $bolt-shadow;
     }
 
     &:focus:hover {
-      box-shadow:       $bolt-shadow--raised;
+      box-shadow: $bolt-shadow--raised;
     }
   }
 
   @elseif $hiarchy == 'tertiary' {
     &,
     &:visited {
-      color:            var(--bolt-color-secondary, $bolt-color-secondary);
-      border-color:     transparent;
+      color: var(--bolt-color-secondary, $bolt-color-secondary);
+      border-color: transparent;
       background-color: transparent;
-      box-shadow:       none;
+      box-shadow: none;
     }
 
     &:hover {
-      border-color:     transparent;
+      border-color: transparent;
       background-color: transparent;
-      box-shadow:       none;
+      box-shadow: none;
     }
 
     &:active {
-      border-color:     transparent;
+      border-color: transparent;
       background-color: transparent;
     }
 
     &:focus {
-      box-shadow:       none;
+      box-shadow: none;
     }
 
     &:focus:hover {
-      box-shadow:       none;
+      box-shadow: none;
     }
   }
 
   @elseif $hiarchy == 'success' {
     &,
     &:visited {
-      color:            bolt-palette(white);
-      border-color:     bolt-palette(success);
-      background-color: bolt-palette(success);
-      box-shadow:       $bolt-shadow;
+      color: bolt-color(white);
+      border-color: bolt-color(success);
+      background-color: bolt-color(success);
+      box-shadow: $bolt-shadow;
     }
 
     &:hover {
-      border-color:     bolt-palette(success, dark);
-      background-color: bolt-palette(success, dark);
-      box-shadow:       $bolt-shadow;
+      border-color: bolt-color(success, dark);
+      background-color: bolt-color(success, dark);
+      box-shadow: $bolt-shadow;
     }
 
     &:active {
-      border-color:     bolt-palette(success, dark);
-      background-color: bolt-palette(success, dark);
+      border-color: bolt-color(success, dark);
+      background-color: bolt-color(success, dark);
     }
 
     &:focus {
-      box-shadow:       $bolt-shadow;
+      box-shadow: $bolt-shadow;
     }
 
     &:focus:hover {
-      box-shadow:       $bolt-shadow;
+      box-shadow: $bolt-shadow;
     }
   }
 
   @elseif $hiarchy == 'warning' {
     &,
     &:visited {
-      color:            bolt-palette(black);
-      border-color:     bolt-palette(warning);
-      background-color: bolt-palette(warning);
-      box-shadow:       $bolt-shadow;
+      color: bolt-color(black);
+      border-color: bolt-color(warning);
+      background-color: bolt-color(warning);
+      box-shadow: $bolt-shadow;
     }
 
     &:hover {
-      border-color:     bolt-palette(warning, dark);
-      background-color: bolt-palette(warning, dark);
-      box-shadow:       $bolt-shadow;
+      border-color: bolt-color(warning, dark);
+      background-color: bolt-color(warning, dark);
+      box-shadow: $bolt-shadow;
     }
 
     &:active {
-      border-color:     bolt-palette(warning, dark);
-      background-color: bolt-palette(warning, dark);
+      border-color: bolt-color(warning, dark);
+      background-color: bolt-color(warning, dark);
     }
 
     &:focus {
-      box-shadow:       $bolt-shadow;
+      box-shadow: $bolt-shadow;
     }
 
     &:focus:hover {
-      box-shadow:       $bolt-shadow;
+      box-shadow: $bolt-shadow;
     }
   }
 
   @elseif $hiarchy == 'error' {
     &,
     &:visited {
-      color:            bolt-palette(white);
-      border-color:     bolt-palette(error);
-      background-color: bolt-palette(error);
-      box-shadow:       $bolt-shadow;
+      color: bolt-color(white);
+      border-color: bolt-color(error);
+      background-color: bolt-color(error);
+      box-shadow: $bolt-shadow;
     }
 
     &:hover {
-      border-color:     bolt-palette(error, dark);
-      background-color: bolt-palette(error, dark);
-      box-shadow:       $bolt-shadow;
+      border-color: bolt-color(error, dark);
+      background-color: bolt-color(error, dark);
+      box-shadow: $bolt-shadow;
     }
 
     &:active {
-      border-color:     bolt-palette(error, dark);
-      background-color: bolt-palette(error, dark);
+      border-color: bolt-color(error, dark);
+      background-color: bolt-color(error, dark);
     }
 
     &:focus {
-      box-shadow:       $bolt-shadow;
+      box-shadow: $bolt-shadow;
     }
 
     &:focus:hover {
-      box-shadow:       $bolt-shadow;
+      box-shadow: $bolt-shadow;
     }
   }
 
   @elseif $hiarchy == 'disabled' {
     &,
     &:visited {
-      color:            bolt-palette(gray);
-      border-color:     bolt-palette(gray, light);
-      background-color: bolt-palette(gray, light);
-      box-shadow:       $bolt-shadow;
+      color: bolt-color(gray);
+      border-color: bolt-color(gray, light);
+      background-color: bolt-color(gray, light);
+      box-shadow: $bolt-shadow;
     }
 
     &:hover {
-      border-color:     bolt-palette(gray, light);
-      background-color: bolt-palette(gray, light);
-      box-shadow:       $bolt-shadow;
+      border-color: bolt-color(gray, light);
+      background-color: bolt-color(gray, light);
+      box-shadow: $bolt-shadow;
     }
 
     &:active {
-      border-color:     bolt-palette(gray, light);
-      background-color: bolt-palette(gray, light);
+      border-color: bolt-color(gray, light);
+      background-color: bolt-color(gray, light);
     }
 
     &:focus {
-      box-shadow:       $bolt-shadow;
+      box-shadow: $bolt-shadow;
     }
 
     &:focus:hover {
-      box-shadow:       $bolt-shadow;
+      box-shadow: $bolt-shadow;
     }
   }
 }
 
 @mixin bolt-button {
   @include bolt-reset-button-styles;
-  @include bolt-no-select();
+  @include bolt-no-select;
   @include bolt-font-weight(semibold);
 
   display: inline-block;
@@ -266,10 +268,10 @@ $bolt-border-width--button: 1px;
     justify-content: center;
   }
 
-  text-decoration: none;
   text-align: center;
-  vertical-align: middle;
   cursor: pointer;
+  text-decoration: none;
+  vertical-align: middle;
   border-style: solid;
   border-width: $bolt-border-width--button;
   border-radius: $bolt-border-radius;
@@ -293,7 +295,7 @@ $bolt-border-width--button: 1px;
 // Button colors
 
 .c-test-button {
-  @include bolt-button();
+  @include bolt-button;
 }
 
 .c-test-button,
@@ -372,10 +374,8 @@ $bolt-border-width--button: 1px;
 
 // Button content
 
-.c-test-button__text {
-  & + .c-test-button__icon {
-    @include bolt-margin-left(xsmall);
-  }
+.c-test-button__text + .c-test-button__icon {
+  @include bolt-margin-left(xsmall);
 }
 
 .c-test-button__icon {
@@ -387,15 +387,15 @@ $bolt-border-width--button: 1px;
     height: auto;
     fill: currentColor;
   }
+}
 
-  & + .c-test-button__text {
-    @include bolt-margin-left(xsmall);
-  }
+.c-test-button__icon + .c-test-button__text {
+  @include bolt-margin-left(xsmall);
 }
 
 
-// Button group
 
+// Button group
 .c-test-button-group {
   display: flex;
 

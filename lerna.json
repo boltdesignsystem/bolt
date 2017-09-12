@@ -1,7 +1,6 @@
 {
-  "lerna": "2.1.0",
+  "lerna": "2.1.2",
   "version": "independent",
-  "npmClient": "yarn",
   "changelog": {
     "repo": "bolt-design-system/bolt",
     "labels": {
@@ -15,6 +14,10 @@
     "cacheDir": ".changelog"
   },
   "packages": [
-    "packages/bolt-*/**"
+    "packages/bolt-build-tools/**",
+    "packages/bolt-config/**",
+    "packages/bolt-toolkit/**",
+    "packages/bolt-toolkit-core/**",
+    "packages/bolt-toolkit-ui/**"
   ]
 }

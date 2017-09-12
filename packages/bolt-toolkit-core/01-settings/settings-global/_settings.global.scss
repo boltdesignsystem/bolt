@@ -8,6 +8,14 @@
    Global Settings
 \* ------------------------------------ */
 
+
+// Global Min / Max Base Font Size
+$bolt-base-font-size--min: 14px;
+$bolt-base-font-size--max: 18px;
+
+
+
+
 // Async font loading classes.
 $bolt-fonts--subset-loaded-class: 'js-fonts-subset-loaded' !default;
 $bolt-fonts--loaded-class: 'js-fonts-loaded' !default;
@@ -19,18 +27,18 @@ $bolt-fonts--loaded-class: 'js-fonts-loaded' !default;
 
 /// Bolt's definition of block level elements.
 $bolt-block-elements-list: 'p',
-                           'pre',
-                           'blockquote',
-                           'table',
-                           'ol',
-                           'ul',
-                           'dl',
-                           'fieldset',
-                           'legend',
-                           'details',
-                           'summary',
-                           'hr',
-                           'address';
+  'pre',
+  'blockquote',
+  'table',
+  'ol',
+  'ul',
+  'dl',
+  'fieldset',
+  'legend',
+  'details',
+  'summary',
+  'hr',
+  'address';
 
 $bolt-unquoted-block-elements-list: ();
 
@@ -39,7 +47,6 @@ $bolt-unquoted-block-elements-list: ();
 }
 
 $bolt-all-block-elements: $bolt-unquoted-block-elements-list;
-@debug $bolt-all-block-elements;
 
 /* ------------------------------------ *\
    All heading elements
@@ -47,11 +54,11 @@ $bolt-all-block-elements: $bolt-unquoted-block-elements-list;
 
 /// Bolt's definition of heading elements.
 $bolt-heading-elements-list: 'h1',
-                             'h2',
-                             'h3',
-                             'h4',
-                             'h5',
-                             'h6';
+  'h2',
+  'h3',
+  'h4',
+  'h5',
+  'h6';
 
 $bolt-unquoted-heading-elements-list: ();
 

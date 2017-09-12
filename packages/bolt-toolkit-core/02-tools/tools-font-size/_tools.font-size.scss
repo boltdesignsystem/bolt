@@ -9,8 +9,8 @@
 
 @import '@bolt/settings-font-size';
 @import '@bolt/tools-sassy-maps'; // required so `map-get-deep` works
-
-
+@import '@bolt/tools-poly-fluid-sizing';
+@import '@bolt/tools-px-to-rem';
 
 
 /// This returns the font-size and relevant line-height for a specific element.
@@ -23,14 +23,46 @@
 ///
 @mixin bolt-font-size($size, $leading: regular) {
   $font-size: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'font-size');
-  font-size: $font-size;
 
-  @if ($leading != '' and  $leading != null){
-    @if (type-of($leading) == number){
+  //@debug $font-size;
+  // $map: (576px: 22px, 320px: 18px, 992px: 34px, 768px: 24px);
+  @if (type-of($font-size) == 'map') {
+    $length: length(map-keys($font-size));
+
+    @if ($length < 2) {
+      font-size: nth($font-size, 2);
+    } @else {
+      @include bolt-poly-fluid-sizing('font-size', $font-size);
+    }
+  } @else {
+    font-size: $font-size;
+  }
+
+  @if ($leading != '' and  $leading != null) {
+    @if (type-of($leading) == number) {
       $leading: $leading;
     } @elseif (type-of($leading) == string) {
       $leading: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'line-height', $leading);
     }
-    line-height: $leading;
+
+    @if (type-of($leading) == 'map') {
+      $length: length(map-keys($leading));
+
+      @if ($length < 2) {
+        line-height: nth($leading, 2);
+      } @else {
+        @include bolt-poly-fluid-sizing('line-height', $leading);
+      }
+    } @else {
+      line-height: $leading;
+    }
   }
 }
+
+/* stylelint-disable-next-line scss/at-mixin-pattern */
+@mixin font-size($args...) {
+  @warn 'PegaKit\'s `font-size` mixin is deprecated and will be removed in v1.0.0 of Bolt. Use the new @bolt-font-size mixin instead.';
+
+  @include bolt-font-size($args);
+}
+/* stylelint-enable */

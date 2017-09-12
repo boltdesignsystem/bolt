@@ -1,0 +1,22 @@
+/* ------------------------------------ *\
+  COLOR UTILITIES
+\* ------------------------------------ */
+
+// Color utility classes
+@each $color in $bolt-colors {
+  $colorName: nth($color, 1);
+
+  @each $colorShade, $colorValue in nth($color, 2) {
+
+    @if ($colorShade == $bolt-color-default) {
+      .u-bolt-color-#{$colorName} {
+        @include bolt-color($colorName, $colorShade, important);
+      }
+    } @else {
+      .u-bolt-color-#{$colorName}-#{$colorShade} {
+        @include bolt-color($colorName, $colorShade, important);
+      }
+    }
+
+  }
+}

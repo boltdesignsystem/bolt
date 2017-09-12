@@ -1,4 +1,4 @@
-$direction-index: 0;
+
 @each $property in $bolt-spacing-properties {
   @for $i from 1 through length($bolt-spacing-directions) {
     $direction: nth($bolt-spacing-directions, $i);
@@ -8,7 +8,7 @@ $direction-index: 0;
 
         $sizeText: $size;
 
-        @if ($direction != null and $direction != ''){
+        @if ($direction != null and $direction != '') {
           $type: null;
           $sizeText: '-' + $size;
         }
@@ -20,26 +20,15 @@ $direction-index: 0;
 
           $size-index: index($bolt-spacing-directions, $direction);
 
-          @if ($direction != null){
+          @if ($direction != null) {
             $sizes: set-nth($sizes, $size-index - 1, $size);
           } @else {
-            // @debug #{$property}#{$direction}#{$size}#{$type};
             $sizes: $size $size $size $size;
           }
 
           $normalizedSizes: _bolt-normalize-spacing-sizes($sizes, null);
-          //
-          @debug $property;
 
           @include _bolt-directional-property(#{$property}, false, $normalizedSizes, important);
-          // @debug $i - 1;
-
-
-          // @debug $list;
-
-
-
-          //@include #{$property}#{$direction}($size, $type, important);
         }
       }
     }

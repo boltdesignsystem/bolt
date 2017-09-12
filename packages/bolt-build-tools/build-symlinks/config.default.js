@@ -7,8 +7,10 @@ module.exports = {
   patternsFolder: '_patterns',
   packageFolders: [
     // `./node_modules/${npmNamespace}/${symlinkPrefix}*`,
+    './packages/bolt-toolkit/**/*',
     './packages/bolt-toolkit-core/**/*',
     './packages/bolt-toolkit-ui/**/*',
+    './packages/bolt-toolkit-ui/components/*',
     '!./packages/**/node_modules/**/*',
     // './packages/elements-*',
     // './packages/objects-*',
@@ -23,13 +25,5 @@ module.exports = {
     'yaml',
     'yml',
     'md'
-  ],
-  extraWatches: [
-    './packages/**/*.twig',
-    './packages/**/*.json',
-    './packages/**/*.md',
-    './packages/**/*.yaml',
-    './packages/**/*.yml',
-    '!./packages/**/node_modules/**/*'
   ]
 };

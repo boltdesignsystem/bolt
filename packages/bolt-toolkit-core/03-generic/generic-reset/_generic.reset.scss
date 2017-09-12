@@ -1,6 +1,10 @@
 /* ------------------------------------ *\
   GENERIC - RESET
 \* ------------------------------------ */
+/* stylelint-disable-next-line color-no-hex */
+$bolt-color-selection-background-color: #b3d4fc;
+
+
 /* stylelint-disable selector-list-comma-newline-after */
 body,
 dd,
@@ -21,12 +25,12 @@ figure,
 */
 ::-moz-selection {
   text-shadow: none;
-  background-color: #b3d4fc;
+  background-color: $bolt-color-selection-background-color;
 }
 
 ::selection {
   text-shadow: none;
-  background-color: #b3d4fc;
+  background-color: $bolt-color-selection-background-color;
 }
 
 
