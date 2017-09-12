@@ -4,7 +4,7 @@
   "description": "Pega Digital Design System",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "npm run setup:composer && gulp build",
+    "build": "npm run setup:composer && gulp build --production",
     "changelog": "lerna-changelog",
     "commitmsg": "validate-commit-msg",
     "fix:scripts": "gulp scripts:fix",
@@ -13,7 +13,7 @@
     "_lint:fix": "eslint --fix ./packages/bolt-build-tools",
     "lint:js": "eslint ./packages/bolt-build-tools",
     "lint:md": "remark . --quiet --frail",
-    "lint:scss": "stylelint ./packages/**/*.scss",
+    "lint:scss": "gulp styles:lint",
     "clean:lerna": "lerna clean -Y",
     "clean:git": "git clean -xdf",
     "clean:all": "npm run clean:git && npm run clean:lerna",
@@ -28,7 +28,7 @@
     "publish": "lerna run build && lerna run publish-please && lerna publish",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "serve": "gulp serve",
-    "setup:composer": "if [ ! -f ./bolt-website/pattern-lab/index.html ]; then cd packages/website-pattern-lab && rm -rf composer.lock && rm -rf vendor && composer install --no-interaction --prefer-dist --no-dev; fi",
+    "setup:composer": "if [ ! -f ./bolt-website/pattern-lab/index.html ]; then cd packages/website/user/themes/bolt/pattern-lab && rm -rf composer.lock && rm -rf vendor && composer install --no-interaction --prefer-dist --no-dev; fi",
     "setup:homebrew": "sh scripts/install-homebrew.sh",
     "snyk-protect": "snyk protect",
     "start": "serve ./boltdesignsystem --single",
@@ -37,7 +37,9 @@
     "pretest": "node scripts/check-imports.js"
   },
   "pre-commit": [
-    "test"
+    "test",
+    "lint:scss",
+    "build"
   ],
   "config": {
     "commitizen": {
@@ -99,7 +101,7 @@
     "husky": "^0.14.3",
     "inquirer": "^3.2.0",
     "js-yaml": "^3.9.1",
-    "lerna": "^2.1.0",
+    "lerna": "^2.1.2",
     "lerna-changelog": "0.6.0",
     "lerna-semantic-release": "^9.1.0",
     "mocha": "^3.4.2",
@@ -117,6 +119,7 @@
     "remark-preset-lint-consistent": "2.0.1",
     "remark-preset-lint-markdown-style-guide": "2.1.1",
     "remark-preset-lint-recommended": "3.0.1",
+    "sass-toolkit": "^2.10.2",
     "serve": "latest",
     "snyk": "^1.36.2",
     "stylefmt": "6.0.0",

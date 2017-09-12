@@ -1,0 +1,39 @@
+{
+  "name": "@bolt/components-headline",
+  "type": "pattern",
+  "patternType": "atoms",
+  "patternSubtype": "text",
+  "description": "Headline Component",
+  "keywords": [
+    "eyeglass-module",
+    "bolt design system",
+    "bolt",
+    "ui toolkit",
+    "design system"
+  ],
+  "version": "0.2.0",
+  "author": "Salem Ghoweri",
+  "homepage": "https://boltdesignsystem.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pega-digital/bolt/tree/master/packages/bolt-component-headline"
+  },
+  "bugs": {
+    "url": "https://github.com/pega-digital/bolt/issues"
+  },
+  "dependencies": {
+    "@bolt/settings-all": "^0.4.0",
+    "@bolt/tools-all": "^0.2.0"
+  },
+  "style": "_components.headline.scss",
+  "twig": "headline.twig",
+  "eyeglass": {
+    "sassDir": "src/scss",
+    "exports": false,
+    "needs": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

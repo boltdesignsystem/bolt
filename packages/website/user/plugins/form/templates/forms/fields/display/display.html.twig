@@ -1,0 +1,19 @@
+{% extends "forms/field.html.twig" %}
+
+{% block input %}
+    <div class="form-display-wrapper {{ field.size }}">
+        {% if field.markdown %}
+            {% if grav.twig.twig.filters['tu'] is defined %}
+                {{ field.content|tu|markdown|raw }}
+            {% else %}
+                {{ field.content|t|markdown|raw }}
+            {% endif %}
+        {% else %}
+            {% if grav.twig.twig.filters['tu'] is defined %}
+                {{ field.content|tu|raw }}
+            {% else %}
+                {{ field.content|t|raw }}
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}

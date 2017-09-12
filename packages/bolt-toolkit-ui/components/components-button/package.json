@@ -1,8 +1,7 @@
 {
   "name": "@bolt/components-button",
   "type": "pattern",
-  "patternType": "components",
-  "patternSubtype": "button",
+  "patternType": "atoms",
   "description": "Button Component",
   "keywords": [
     "eyeglass-module",
@@ -31,14 +30,8 @@
     "@bolt/tools-no-select": "^0.1.0-alpha.1",
     "@bolt/tools-spacing": "^0.2.0"
   },
-  "main": "src/scss/index.scss",
-  "style": "src/scss/index.scss",
-  "twig": "src/twig/button.twig",
-  "eyeglass": {
-    "sassDir": "src/scss",
-    "exports": false,
-    "needs": "*"
-  },
+  "style": "index.scss",
+  "twig": "button.twig",
   "publishConfig": {
     "access": "public"
   }

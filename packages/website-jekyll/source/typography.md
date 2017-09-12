@@ -121,7 +121,7 @@ The *Bolt Design System* team has gone through vigorous testing to make sure all
 ### Sass Mixin
 
 {% highlight ruby %}
-@include font-size($param);
+@include bolt-font-size($param);
 {% endhighlight %}
 
 <figure>
