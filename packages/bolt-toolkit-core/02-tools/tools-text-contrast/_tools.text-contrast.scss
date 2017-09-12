@@ -6,9 +6,9 @@
 
 @function bolt-text-contrast($color) {
   @if (lightness($color) > 60) {
-    @return bolt-palette(black); // Lighter backgorund, return dark color
+    @return bolt-color(black); // Lighter backgorund, return dark color
   }
   @else {
-    @return bolt-palette(white); // Darker background, return light color
+    @return bolt-color(white); // Darker background, return light color
   }
 }

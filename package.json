@@ -25,7 +25,7 @@
     "publish-beta": "lerna run build && lerna publish --npm-tag=beta --skip-git",
     "publish-canary": "lerna run build && lerna run publish-please && lerna publish --canary --yes",
     "publish-please": "publish-please",
-    "publish": "lerna run build && lerna run publish-please && lerna publish",
+    "publish": "lerna run build && lerna run publish-please && lerna publish --no-git",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "serve": "gulp serve",
     "setup:composer": "if [ ! -f ./bolt-website/pattern-lab/index.html ]; then cd packages/website/user/themes/bolt/pattern-lab && rm -rf composer.lock && rm -rf vendor && composer install --no-interaction --prefer-dist --no-dev; fi",
@@ -33,8 +33,7 @@
     "snyk-protect": "snyk protect",
     "start": "serve ./boltdesignsystem --single",
     "test": "npm run mocha",
-    "_pretest": "npm run lint && node scripts/check-imports.js",
-    "pretest": "node scripts/check-imports.js"
+    "pretest": "npm run lint:scss && node scripts/check-imports.js"
   },
   "pre-commit": [
     "test",

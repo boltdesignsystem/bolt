@@ -8,15 +8,15 @@ $bolt-breakpoint--max: map-get($bolt-breakpoints, xlarge);
 
 html {
   // Base type
-  font-size: $bolt-base-font-size--min;
+  font-size: $bolt-font-size--min;
 
   // Responsive type
   /* stylelint-disable scale-unlimited/declaration-strict-value */
   @media screen and (min-width: 400px) {
     font-size:
       calc(
-        #{$bolt-base-font-size--min} +
-        (#{bolt-strip-unit($bolt-base-font-size--max)} - #{bolt-strip-unit($bolt-base-font-size--min)}) *
+        #{$bolt-font-size--min} +
+        (#{bolt-strip-unit($bolt-font-size--max)} - #{bolt-strip-unit($bolt-font-size--min)}) *
         (100vw - #{$bolt-breakpoint--min}) / (#{bolt-strip-unit($bolt-breakpoint--max) - bolt-strip-unit($bolt-breakpoint--min)})
       );
   }
@@ -24,7 +24,7 @@ html {
 
   // Large type
   @include respond-to(xlarge) {
-    font-size: $bolt-base-font-size--max;
+    font-size: $bolt-font-size--max;
   }
 }
 

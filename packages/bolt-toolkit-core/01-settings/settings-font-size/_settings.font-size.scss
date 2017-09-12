@@ -2,14 +2,14 @@
 /// @group Settings: Typography
 /// @author Mike Mai
 ////
-@import '@bolt/settings-breakpoints';
-@import '@bolt/settings-global';
-@import '@bolt/tools-breakpoint';
-@import '@bolt/tools-px-to-rem';
 
 
-$bolt-font-size--small-bp: bolt-rem(bolt-breakpoint(xxsmall));
-$bolt-font-size--medium-bp: bolt-rem(bolt-breakpoint(medium));
+/* ------------------------------------ *\
+  Base Font Size
+\* ------------------------------------ */
+$bolt-font-size--min: 14px;
+$bolt-font-size--max: 18px;
+
 
 
 
@@ -17,18 +17,16 @@ $bolt-font-size--medium-bp: bolt-rem(bolt-breakpoint(medium));
   Scale
 \* ------------------------------------ */
 // TODO: Create max and min for big display headline. (1)
-// $bolt-font-size--xxxlarge--max: 3.083rem;
-// $bolt-font-size--xxxlarge--min: 2.275;
+$bolt-font-size--xxxlarge--max: 3.083;
+$bolt-font-size--xxxlarge--min: 2.275;
 // These is the regular scale.
-$bolt-font-size--xxxlarge--max: 3.083rem;
-$bolt-font-size--xxxlarge--min: 2.275rem;
-$bolt-font-size--xxlarge: 1.781rem;
-$bolt-font-size--xlarge: 1.417rem;
-$bolt-font-size--large: 1.111rem;
-$bolt-font-size--medium: 1rem;
-$bolt-font-size--small: 0.9rem;
-$bolt-font-size--xsmall: 0.8rem;
-
+$bolt-font-size--xxxlarge: 2.275;
+$bolt-font-size--xxlarge: 1.781;
+$bolt-font-size--xlarge: 1.417;
+$bolt-font-size--large: 1.111;
+$bolt-font-size--medium: 1;
+$bolt-font-size--small: 0.9;
+$bolt-font-size--xsmall: 0.8;
 
 $bolt-line-height--xxxlarge: 1.14;
 $bolt-line-height--xxlarge: 1.13;
@@ -40,7 +38,7 @@ $bolt-line-height--xsmall: 1.45;
 $bolt-line-height--tight: 1.111;
 
 // TODO: Remove these hacks once (1) is taken care of.
-
+$bolt-font-size--xxxxlarge: 3.083;
 $bolt-line-height--xxxxlarge: 1.14;
 
 
@@ -48,53 +46,57 @@ $bolt-line-height--xxxxlarge: 1.14;
 /// @type Map
 $bolt-font-sizes: (
   font-sizes: (
-    xxxlarge: (
-      font-size: (
-        $bolt-font-size--small-bp: $bolt-font-size--xxxlarge--min,
-        $bolt-font-size--medium-bp: $bolt-font-size--xxxlarge--max
+    xxxxlarge: (
+      font-size: $bolt-font-size--xxxxlarge + rem,
+      line-height: (
+        regular: $bolt-line-height--xxxxlarge,
+        tight: $bolt-line-height--tight
       ),
+    ),
+    xxxlarge: (
+      font-size: $bolt-font-size--xxxlarge + rem,
       line-height: (
         regular: $bolt-line-height--xxxlarge,
         tight: $bolt-line-height--tight
       ),
     ),
     xxlarge: (
-      font-size: $bolt-font-size--xxlarge,
+      font-size: $bolt-font-size--xxlarge + rem,
       line-height: (
         regular: $bolt-line-height--xxlarge,
         tight: $bolt-line-height--tight
       )
     ),
     xlarge: (
-      font-size: $bolt-font-size--xlarge,
+      font-size: $bolt-font-size--xlarge + rem,
       line-height: (
         regular: $bolt-line-height--xlarge,
         tight: $bolt-line-height--tight
       )
     ),
     large: (
-      font-size: $bolt-font-size--large,
+      font-size: $bolt-font-size--large + rem,
       line-height: (
         regular: $bolt-line-height--large,
         tight: $bolt-line-height--tight
       )
     ),
     medium: (
-      font-size: $bolt-font-size--medium,
+      font-size: $bolt-font-size--medium + rem,
       line-height: (
         regular: $bolt-line-height--medium,
         tight: $bolt-line-height--tight
       )
     ),
     small: (
-      font-size: $bolt-font-size--small,
+      font-size: $bolt-font-size--small + rem,
       line-height: (
         regular: $bolt-line-height--small,
         tight: $bolt-line-height--tight
       )
     ),
     xsmall: (
-      font-size: $bolt-font-size--xsmall,
+      font-size: $bolt-font-size--xsmall + rem,
       line-height: (
         regular: $bolt-line-height--xsmall,
         tight: $bolt-line-height--tight
