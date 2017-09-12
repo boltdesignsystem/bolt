@@ -1,0 +1,110 @@
+{
+    "name":             "pattern-lab/edition-drupal-standard",
+    "description":      "Standard Edition of Pattern Lab for Drupal.",
+    "keywords":         ["pattern lab", "drupal"],
+    "homepage":         "http://patternlab.io",
+    "license":          "GPL-2.0+",
+    "type":             "project",
+    "authors": [
+        {
+            "name":         "Dave Olsen",
+            "email":        "dmolsen@gmail.com",
+            "homepage":     "http://dmolsen.com",
+            "role":         "Lead Developer"
+        },
+        {
+            "name":         "Evan Lovely",
+            "homepage":     "http://evanlovely.com",
+            "role":         "Developer"
+        }
+    ],
+    "support": {
+        "issues":         "https://github.com/pattern-lab/edition-drupal-standard/issues",
+        "wiki":           "http://patternlab.io/docs/",
+        "source":         "https://github.com/pattern-lab/edition-drupal-standard/releases"
+    },
+    "autoload": {
+        "psr-0": {
+            "PatternLab":   "core/src/"
+        }
+    },
+    "repositories": [
+      {
+        "type": "vcs",
+        "url": "https://github.com/drupal-pattern-lab/patternlab-php-core"
+      },
+      {
+        "type": "path",
+        "url": "../pattern-lab/styleguidekit-assets-default"
+      },
+      {
+        "type": "path",
+        "url": "../pattern-kit"
+      },
+
+      {
+        "type": "vcs",
+        "url": "https://github.com/drupal-pattern-lab/patternengine-php-twig"
+      },
+      {
+        "type": "vcs",
+        "url": "https://github.com/drupal-pattern-lab/styleguidekit-twig-default"
+      }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+      "php": ">=7.0",
+       "cweagans/composer-patches": "~1.0",
+      "pattern-lab/core": "^2.7.1",
+      "pattern-lab/patternengine-twig": "^2.0.0",
+      "pattern-lab/styleguidekit-twig-default": "^3.0.0",
+      "pattern-lab/drupal-twig-components": "^2.0.0",
+      "pattern-lab/styleguidekit-assets-default": "*",
+      "aleksip/plugin-data-transform": "^1.1.0",
+      "mexitek/phpcolors": "^0.4.0"
+    },
+    "config": {
+      "process-timeout": 0,
+      "github-oauth": {
+        "github.com": "99b8ce633d5fe3c5db9a4855f6a7146c3793885e"
+      },
+      "preferred-install": "source"
+    },
+    "scripts": {
+        "server": "php core/console --server",
+        "generate": "php core/console --generate",
+        "watch": "php core/console --watch",
+        "start": "php core/console --server --quiet & php core/console --watch",
+        "post-install-cmd": [
+          "PatternLab\\Installer::postInstallCmd"
+        ],
+        "post-update-cmd": [
+          "PatternLab\\Installer::postUpdateCmd"
+        ],
+        "post-root-package-install": [
+          "PatternLab\\Installer::setProjectInstall",
+          "PatternLab\\Installer::getSuggestedStarterKits",
+          "PatternLab\\Installer::getConfigOverrides"
+        ],
+        "post-package-install": [
+          "PatternLab\\Installer::postPackageInstall"
+        ],
+        "post-package-update": [
+          "PatternLab\\Installer::postPackageUpdate"
+        ],
+        "pre-package-uninstall": [
+          "PatternLab\\Installer::prePackageUninstall"
+        ]
+      },
+    "extra": {
+      "patternlab": {
+        "starterKitSuggestions": [
+          "pattern-lab/starterkit-twig-demo",
+          "pattern-lab/starterkit-twig-drupal-minimal",
+          "aleksip/starterkit-shila-drupal-theme",
+          "forumone/starterkit-twig-drupal-gesso"
+        ]
+      },
+      "patches-file": "composer.patches.json"
+    }
+}

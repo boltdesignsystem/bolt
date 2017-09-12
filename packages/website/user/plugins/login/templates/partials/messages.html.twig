@@ -1,0 +1,3 @@
+{% for message in grav.messages.fetch %}
+<div class="{{ message.scope|e }} alert">{{ message.message|raw }}</div>
+{% endfor %}

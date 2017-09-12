@@ -8,6 +8,5 @@ module.exports = {
     'md'
   ],
   extraWatches: [
-    './packages/**/*.twig'
   ],
 };

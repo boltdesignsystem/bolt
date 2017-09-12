@@ -1,6 +1,6 @@
-/*------------------------------------*\
+/* ------------------------------------ *\
   TOOLS - EXPORT JSON
-\*------------------------------------*/
+\* ------------------------------------ */
 
 /** Wrapper to help format and export Sass maps as JSON files **/
 
@@ -11,7 +11,7 @@
 
 // recursively take a sass map passed in and convert any keys / values to strings to make it possible to export colors as JSON
 @function bolt-normalize-data($map-old, $map-new, $override: true) {
-  $case: "lower-case";
+  $case: 'lower-case';
   // Iterate through each value of the new map
   @each $key, $new-value in $map-new {
     // Check if that value already exists on the old map
@@ -22,29 +22,32 @@
         // If both are maps, recurse regardless of $override
         $merged-value: bolt-normalize-data($old-value, $new-value);
         $stringified-key: bolt-to-string($key);
-        $new-key: call("to-" + $case, $stringified-key);
-        $map-old: map-merge(map-remove($map-old, $key), (
-          quote($new-key): $merged-value
-        ));
+        $new-key: call('to-' + $case, $stringified-key);
+        $map-old: map-merge(
+          map-remove($map-old, $key),
+          ( quote($new-key): $merged-value )
+        );
 
-      }@else{
+      } @else {
         // Otherwise check $override
-        @if $override{
+        @if $override {
           $stringified-key: bolt-to-string($key);
-          $new-key: call("to-" + $case, $stringified-key);
-          $map-old: map-merge(map-remove($map-old, $key), (
-            quote($new-key): $new-value
-          ));
+          $new-key: call('to-' + $case, $stringified-key);
+          $map-old: map-merge(
+            map-remove($map-old, $key),
+            ( quote($new-key): $new-value )
+          );
         }
       }
-    }@else{
+    }@else {
       // There is no existing key so add
       $stringified-key: bolt-to-string($key);
-      $new-key: call("to-" + $case, $stringified-key);
+      $new-key: call('to-' + $case, $stringified-key);
 
-      $map-old: map-merge(map-remove($map-old, $key), (
-        quote($new-key): $new-value
-      ));
+      $map-old: map-merge(
+        map-remove($map-old, $key),
+        ( quote($new-key): $new-value)
+      );
     }
   }
   @return $map-old;
@@ -57,13 +60,17 @@
   $prefix: '',
   $suffix: '',
   $extend: false
-){
+) {
   $sass-map: bolt-normalize-data($map, $map);
-  $sass-map: export_data($filename, $sass-map, (
-    prefix: $prefix,
-    suffix: $suffix,
-    extend: $extend
-  ));
+  $sass-map: export_data(
+    $filename,
+    $sass-map,
+    (
+      prefix: $prefix,
+      suffix: $suffix,
+      extend: $extend
+    )
+  );
 
   // $json-colors: bolt-normalize-data($palettes, $palettes);
   // $json-colors: jsonexport('colors.sass.json', $json-colors);

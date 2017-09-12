@@ -25,8 +25,8 @@
   $font-size: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'font-size');
   font-size: $font-size;
 
-  @if ($leading != '' and  $leading != null){
-    @if (type-of($leading) == number){
+  @if ($leading != '' and  $leading != null) {
+    @if (type-of($leading) == number) {
       $leading: $leading;
     } @elseif (type-of($leading) == string) {
       $leading: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'line-height', $leading);
@@ -34,3 +34,11 @@
     line-height: $leading;
   }
 }
+
+/* stylelint-disable-next-line scss/at-mixin-pattern */
+@mixin font-size($args...) {
+  @warn 'PegaKit\'s `font-size` mixin is deprecated and will be removed in v1.0.0 of Bolt. Use the new @bolt-font-size mixin instead.';
+
+  @include bolt-font-size($args);
+}
+/* stylelint-enable */
