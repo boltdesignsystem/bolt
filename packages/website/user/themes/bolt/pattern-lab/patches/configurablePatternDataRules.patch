@@ -1,0 +1,60 @@
+diff --git a/src/PatternLab/PatternData.php b/src/PatternLab/PatternData.php
+index 7980305..f3d05a0 100644
+--- a/src/PatternLab/PatternData.php
++++ b/src/PatternLab/PatternData.php
+@@ -386,18 +386,52 @@ class PatternData {
+ 
+ 	}
+ 
+-	/**
+-	* Load all of the rules related to Pattern Data
++
++/**
++	* Load all of the rules related to Pattern Data, plus any extra add-ons
+ 	*/
+ 	public static function loadRules($options) {
++		// First handle default PL rules, minus any being disabled
+ 		foreach (glob(__DIR__."/PatternData/Rules/*.php") as $filename) {
+ 			$ruleName = str_replace(".php","",str_replace(__DIR__."/PatternData/Rules/","",$filename));
+-			if ($ruleName[0] != "_") {
++
++			$disabledRules = array();
++			if (Config::getOption("disabledPatternRules")) {
++				$disabledRules = Config::getOption("disabledPatternRules");
++			}
++
++			// Load all rules that aren't on the disabledPatternRules list
++			if (($ruleName[0] != "_") && (!in_array($ruleName, $disabledRules))) {
+ 				$ruleClass = "\PatternLab\PatternData\Rules\\".$ruleName;
+ 				$rule      = new $ruleClass($options);
+ 				self::setRule($ruleName, $rule);
+ 			}
+ 		}
++
++		// Then handle any extra rules to add on top of the default PL rules
++		$extraPatternRulesDir = Config::getOption("sourceDir") . '/_extensions/rules'; // Default extra rules location to check
++		if (Config::getOption("extraPatternRulesDir")) {
++			$extraPatternRulesDir = Config::getOption("extraPatternRulesDir");
++		}
++
++		if (is_dir($extraPatternRulesDir)){
++			foreach (glob($extraPatternRulesDir . "/*.php") as $filename) {
++				$ruleName = str_replace(".php","",str_replace($extraPatternRulesDir . "/","",$filename));
++
++				$extraRules = array();
++				if (Config::getOption("extraPatternRules")) {
++					$extraRules = Config::getOption("extraPatternRules");
++				}
++
++				// Only load extra rules that are on the extraPatternRules list
++				if (($ruleName[0] != "_") && (in_array($ruleName, $extraRules))) {
++					require_once($filename); // Pull in extra rule so we can use it
++					$ruleClass = "\PatternLab\PatternData\Rules\\".$ruleName;
++					$rule      = new $ruleClass($options);
++					self::setRule($ruleName, $rule);
++				}
++			}
++		}
+ 	}
+ 
+ 	/**

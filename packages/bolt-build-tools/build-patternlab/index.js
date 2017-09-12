@@ -1,4 +1,4 @@
-/* eslint no-unused-vars: ["error", { "args": "none" }]*/
+/* eslint no-unused-vars: ["error", { "args": "none" }] */
 const gulp = require('gulp');
 const core = require('@bolt/build-core');
 const defaultConfig = require('./config.default');
@@ -7,6 +7,7 @@ const merge = require('merge').recursive;
 const gulpConfig = require('../../../gulpconfig.js');
 const fs = require('fs-extra');
 const path = require('path');
+
 const patternLabConfig = yaml.safeLoad(
   fs.readFileSync(gulpConfig.patternLab.configFile, 'utf8')
 );
@@ -59,10 +60,13 @@ function watchPatternLab(userConfig) {
 
   function watchPatternLabTask() {
     const watchedExtensions = config.watchedExtensions.join(',');
-    const patternLabGlob = [path.normalize(`${patternLabSource}/**/*.{${watchedExtensions}}`)];
+    const patternLabGlob = [
+      path.normalize(`${patternLabSource}/**/*.{${watchedExtensions}}`),
+      '!**/package.json'
+    ];
     const watchedSources = config.extraWatches
-        ? [].concat(patternLabGlob, config.extraWatches)
-        : patternLabGlob;
+      ? [].concat(patternLabGlob, config.extraWatches)
+      : patternLabGlob;
 
     gulp.watch(watchedSources, compileWithNoExit);
   }

@@ -1,0 +1,27 @@
+name: Pattern Lab Twig Namespaces
+version: 1.0.0
+description: Add namespaces to Grav Twig instance
+icon: filter
+author:
+  name: Salem Ghoweri
+  email: me@salemghoweri.com
+homepage: https://github.com/bolt-design-system/grav-plugin-patternlab-twig-namespaces
+keywords: grav, plugin, twig, namespaces, pattern lab
+bugs: https://github.com/bolt-design-system/grav-plugin-patternlab-twig-namespaces/issues
+docs: https://github.com/bolt-design-system/grav-plugin-patternlab-twig-namespaces/blob/master/README.md
+#demo: https://perlkonig.com/demos/twig-extensions
+license: MIT
+
+form:
+  validation: strict
+  fields:
+    enabled:
+      type: toggle
+      label: Plugin status
+      highlight: 1
+      default: 0
+      options:
+        1: Enabled
+        0: Disabled
+      validate:
+        type: bool

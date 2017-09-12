@@ -118,7 +118,7 @@ function deploy(context, sha) {
       });
     } else {
     // For non-local deployments, automatically create a pretty alias based off of the current branch
-      currentBranch = branch.sync();
+      currentBranch = process.env.TRAVIS_BRANCH;
       currentBranch = currentBranch.replace('/', '-').replace('.', '-');
       const target_url = `${currentBranch}-boltdesignsystem`;
 

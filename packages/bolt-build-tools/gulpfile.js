@@ -5,7 +5,6 @@ const styles = require('@bolt/build-styles');
 const symlinks = require('@bolt/build-symlinks');
 
 module.exports = (gulp) => {
-
   const cssConfig = {
     src: [
       './packages/bolt-toolkit/**/*.scss',
@@ -13,12 +12,13 @@ module.exports = (gulp) => {
       './packages/bolt-toolkit-ui/**/*.scss',
       '!./packages/**/node_modules/**/*',
     ],
-    data: './packages/website-pattern-lab/source/_data',
+    data: './packages/website/user/themes/bolt/pattern-lab/source/_data',
     dest: 'bolt-website/styles'
   };
 
   gulp.task('styles:compile', styles.compile(cssConfig));
   gulp.task('styles:watch', styles.watch(cssConfig));
+  gulp.task('styles:lint', styles.lint(cssConfig));
   gulp.task('styles:sassdoc', styles.docs(cssConfig));
 
   gulp.task('jekyll:compile', jekyll.compile());
@@ -26,6 +26,9 @@ module.exports = (gulp) => {
 
   gulp.task('symlinks:create', symlinks.create());
   gulp.task('symlinks:clean', symlinks.clean());
+  gulp.task('symlinks:watch', symlinks.watch());
+  gulp.task('symlinks:gravpl', symlinks.patternLabGrav());
+
   gulp.task('symlinks', gulp.series([
     'symlinks:clean',
     'symlinks:create'
@@ -44,19 +47,18 @@ module.exports = (gulp) => {
 
   gulp.task('default',
     gulp.series([
+      'symlinks:gravpl',
       'symlinks:clean',
       'symlinks:create',
       gulp.parallel([
         'patternlab:compile',
         'jekyll:compile',
         'styles:compile',
-      ]),
-      gulp.parallel([
-        'browsersync:serve',
-        'jekyll:watch',
         'patternlab:watch',
-        'styles:watch'
-      ])
+        'jekyll:watch',
+        'styles:watch',
+        'browsersync:serve'
+      ]),
     ])
   );
 
@@ -70,172 +72,170 @@ module.exports = (gulp) => {
   );
 
 
-
-// const flatten = require('gulp-flatten');
-// const globby = require('globby');
-// const path = require('path');
-// const readPkgUp = require('read-pkg-up');
-// const yaml = require('js-yaml');
-// const fs = require('fs-extra');
-// const config = yaml.safeLoad(fs.readFileSync('packages/website-pattern-lab/schemas/.pk-config.yml', 'utf8'));
-// const rename = require('gulp-rename');
-// const browserSync = require('browser-sync');// .get('bolt-server');
-
+  // const flatten = require('gulp-flatten');
+  // const globby = require('globby');
+  // const path = require('path');
+  // const readPkgUp = require('read-pkg-up');
+  // const yaml = require('js-yaml');
+  // const fs = require('fs-extra');
+  // const config = yaml.safeLoad(fs.readFileSync('packages/website-pattern-lab/schemas/.pk-config.yml', 'utf8'));
+  // const rename = require('gulp-rename');
+  // const browserSync = require('browser-sync');// .get('bolt-server');
 
 
-// const findParentDir = require('find-parent-dir');
-// const pkgDir = require('pkg-dir');
-// const pkgUp = require('pkg-up');
-// const findUp = require('find-up');
+  // const findParentDir = require('find-parent-dir');
+  // const pkgDir = require('pkg-dir');
+  // const pkgUp = require('pkg-up');
+  // const findUp = require('find-up');
 
-// const merge = require('merge').recursive;
-
-
-// gulp.task( "data", () => {
-//   return gulp.src( [
-//     options.paths.src + "/ui-components/**/docs/*.{json,yaml}",
-//     options.paths.src + "/ui-components/**/tests/*.json"
-//   ] )
-//   .pipe( plugins.flatten() )
-//   .pipe( gulp.dest( options.paths.dist + "/ui-components/data/" ) )
-//   .pipe( plugins.browserSync.reload( {
-//     stream: true
-// }));
+  // const merge = require('merge').recursive;
 
 
-gulp.task('pk:templates', () =>
-  gulp.src([
-    './packages/ui-toolkit/**/*.twig',
-    '!node_modules',
-    '!./packages/ui-toolkit/**/node_modules/**/*',
-    '!./packages/ui-toolkit/*/node_modules/**/*'
-  ])
-    .pipe(flatten())
-    .pipe(gulp.dest(config.paths.templates[0]))
+  // gulp.task( "data", () => {
+  //   return gulp.src( [
+  //     options.paths.src + "/ui-components/**/docs/*.{json,yaml}",
+  //     options.paths.src + "/ui-components/**/tests/*.json"
+  //   ] )
+  //   .pipe( plugins.flatten() )
+  //   .pipe( gulp.dest( options.paths.dist + "/ui-components/data/" ) )
+  //   .pipe( plugins.browserSync.reload( {
+  //     stream: true
+  // }));
+
+
+  gulp.task('pk:templates', () =>
+    gulp.src([
+      './packages/ui-toolkit/**/*.twig',
+      '!node_modules',
+      '!./packages/ui-toolkit/**/node_modules/**/*',
+      '!./packages/ui-toolkit/*/node_modules/**/*'
+    ])
+      .pipe(flatten())
+      .pipe(gulp.dest(config.paths.templates[0]))
     // .pipe( browserSync.reload( {
     //     stream: true
     // } ) );
-);
+  );
 
-//
-// gulp.task('pk:data', () =>
-//   gulp.src([
-//     `./packages/ui-toolkit/**/*${config.extensions.data}`,
-//     '!node_modules',
-//     '!./packages/ui-toolkit/**/node_modules/**/*',
-//     '!./packages/ui-toolkit/*/node_modules/**/*'
-//   ])
-//     .pipe(flatten())
-//     .pipe(gulp.dest(config.paths.data[0]))
-//   // .pipe( browserSync.reload( {
-//   //     stream: true
-//   // } ) );
-// );
-//
-//
-// gulp.task('pk:schema', () =>
-//   gulp.src([
-//     `./packages/ui-toolkit/**/*${config.extensions.schemas}`,
-//     '!node_modules',
-//     '!./packages/ui-toolkit/**/node_modules/**/*',
-//     '!./packages/ui-toolkit/*/node_modules/**/*'
-//   ])
-//     .pipe(flatten())
-//     .pipe(gulp.dest(config.paths.schemas[0]))
-//     // .pipe( browserSync.reload( {
-//     //     stream: true
-//     // } ) );
-// );
-//
-//
-// gulp.task('pk:sg', () =>
-//   gulp.src([
-//     `./packages/ui-toolkit/**/*${config.extensions.sg}`,
-//     '!node_modules',
-//     '!./packages/ui-toolkit/**/node_modules/**/*',
-//     '!./packages/ui-toolkit/*/node_modules/**/*'
-//   ])
-//     .pipe(flatten())
-//     .pipe(gulp.dest(config.paths.sg[0]))
-//   // .pipe( browserSync.reload( {
-//   //     stream: true
-//   // } ) );
-// );
-//
-//
-// // gulp.task('pattern-templates:copy', (done) => {
-// //   globby(['./source/ui-toolkit/**/*.twig', '!node_modules']).then((patterns) => {
-// //     patterns.map((patternName) => {
-// //       const dirName = path.dirname(patternName);
-// //
-// //       readPkgUp({ cwd: dirName }).then((result) => {
-// //         let name = result.pkg.name;
-// //         const splitName = name.split('/');
-// //         name = splitName[splitName.length - 1];
-// //         name = name.split(/-(.+)/)[1]; // Throw away the 1st half of the string that contains a dash.
-// //
-// //         if (name) {
-// //           return gulp.src([patternName])
-// //             .pipe(flatten())
-// //             .pipe(rename(name + config.extensions.templates))
-// //             .pipe(gulp.dest(config.paths.templates[0]))
-// //             .pipe(browserSync.reload({
-// //               stream: true
-// //             }));
-// //         }
-// //       });
-// //     });
-// //     done();
-// //   });
-// // });
-// //
-// //
-//
-// // ]
-// //
-gulp.task('pk:schema', (done) => {
-  globby([
+  //
+  // gulp.task('pk:data', () =>
+  //   gulp.src([
+  //     `./packages/ui-toolkit/**/*${config.extensions.data}`,
+  //     '!node_modules',
+  //     '!./packages/ui-toolkit/**/node_modules/**/*',
+  //     '!./packages/ui-toolkit/*/node_modules/**/*'
+  //   ])
+  //     .pipe(flatten())
+  //     .pipe(gulp.dest(config.paths.data[0]))
+  //   // .pipe( browserSync.reload( {
+  //   //     stream: true
+  //   // } ) );
+  // );
+  //
+  //
+  // gulp.task('pk:schema', () =>
+  //   gulp.src([
+  //     `./packages/ui-toolkit/**/*${config.extensions.schemas}`,
+  //     '!node_modules',
+  //     '!./packages/ui-toolkit/**/node_modules/**/*',
+  //     '!./packages/ui-toolkit/*/node_modules/**/*'
+  //   ])
+  //     .pipe(flatten())
+  //     .pipe(gulp.dest(config.paths.schemas[0]))
+  //     // .pipe( browserSync.reload( {
+  //     //     stream: true
+  //     // } ) );
+  // );
+  //
+  //
+  // gulp.task('pk:sg', () =>
+  //   gulp.src([
+  //     `./packages/ui-toolkit/**/*${config.extensions.sg}`,
+  //     '!node_modules',
+  //     '!./packages/ui-toolkit/**/node_modules/**/*',
+  //     '!./packages/ui-toolkit/*/node_modules/**/*'
+  //   ])
+  //     .pipe(flatten())
+  //     .pipe(gulp.dest(config.paths.sg[0]))
+  //   // .pipe( browserSync.reload( {
+  //   //     stream: true
+  //   // } ) );
+  // );
+  //
+  //
+  // // gulp.task('pattern-templates:copy', (done) => {
+  // //   globby(['./source/ui-toolkit/**/*.twig', '!node_modules']).then((patterns) => {
+  // //     patterns.map((patternName) => {
+  // //       const dirName = path.dirname(patternName);
+  // //
+  // //       readPkgUp({ cwd: dirName }).then((result) => {
+  // //         let name = result.pkg.name;
+  // //         const splitName = name.split('/');
+  // //         name = splitName[splitName.length - 1];
+  // //         name = name.split(/-(.+)/)[1]; // Throw away the 1st half of the string that contains a dash.
+  // //
+  // //         if (name) {
+  // //           return gulp.src([patternName])
+  // //             .pipe(flatten())
+  // //             .pipe(rename(name + config.extensions.templates))
+  // //             .pipe(gulp.dest(config.paths.templates[0]))
+  // //             .pipe(browserSync.reload({
+  // //               stream: true
+  // //             }));
+  // //         }
+  // //       });
+  // //     });
+  // //     done();
+  // //   });
+  // // });
+  // //
+  // //
+  //
+  // // ]
+  // //
+  gulp.task('pk:schema', (done) => {
+    globby([
     // './packages/ui-toolkit/**/README.md',
-    `./packages/bolt-toolkit-ui/**/*${config.extensions.schemas}`,
-    `./packages/bolt-toolkit-core/**/*${config.extensions.schemas}`,
-    '!node_modules',
-    '!./packages/bolt-ui-toolkit/**/node_modules/**/*',
-    '!./packages/bolt-ui-toolkit/*/node_modules/**/*'
-  ]).then((patterns) => {
-    patterns.map((patternName) => {
-      const dirName = path.dirname(patternName);
+      `./packages/bolt-toolkit-ui/**/*${config.extensions.schemas}`,
+      `./packages/bolt-toolkit-core/**/*${config.extensions.schemas}`,
+      '!node_modules',
+      '!./packages/bolt-ui-toolkit/**/node_modules/**/*',
+      '!./packages/bolt-ui-toolkit/*/node_modules/**/*'
+    ]).then((patterns) => {
+      patterns.map((patternName) => {
+        const dirName = path.dirname(patternName);
 
-      readPkgUp({ cwd: dirName }).then((result) => {
-        let name = result.pkg.name;
-        const splitName = name.split('/');
-        name = splitName[splitName.length - 1];
-        name = name.split(/-(.+)/)[1]; // Throw away the 1st half of the string that contains a dash.
+        readPkgUp({ cwd: dirName }).then((result) => {
+          let name = result.pkg.name;
+          const splitName = name.split('/');
+          name = splitName[splitName.length - 1];
+          name = name.split(/-(.+)/)[1]; // Throw away the 1st half of the string that contains a dash.
 
-        console.log(dirName);
-        console.log(name);
+          console.log(dirName);
+          console.log(name);
 
-        // if (result.pkg.twig) {
-        //   // console.log(`${dirName}/${result.pkg.twig}`);
-        //   if (fs.existsSync(`${dirName}/${result.pkg.twig}`)) {
-        //     // Do something
-        //     // console.log(`${dirName}/${result.pkg.twig}`);
-        //   }
-        // }
-        console.log(config.paths.schemas[0]);
+          // if (result.pkg.twig) {
+          //   // console.log(`${dirName}/${result.pkg.twig}`);
+          //   if (fs.existsSync(`${dirName}/${result.pkg.twig}`)) {
+          //     // Do something
+          //     // console.log(`${dirName}/${result.pkg.twig}`);
+          //   }
+          // }
+          console.log(config.paths.schemas[0]);
 
-        return gulp.src([patternName])
-          .pipe(flatten())
-          .pipe(gulp.dest(config.paths.schemas[0]))
-          .pipe(rename(`${name}.json`))
-          .pipe(gulp.dest('./bolt-website/pattern-lab/schemas'))
-          .pipe(browserSync.reload({
-            stream: true
-          }));
+          return gulp.src([patternName])
+            .pipe(flatten())
+            .pipe(gulp.dest(config.paths.schemas[0]))
+            .pipe(rename(`${name}.json`))
+            .pipe(gulp.dest('./bolt-website/pattern-lab/schemas'))
+            .pipe(browserSync.reload({
+              stream: true
+            }));
+        });
       });
+      done();
     });
-    done();
   });
-});
 //
 //
 // gulp.task('pk:docs', (done) => {
@@ -335,8 +335,6 @@ gulp.task('pk:schema', (done) => {
 // const patternkit = require('./packages/bolt-build-tools/build-patternkit')();
 
 
-
-
 //
 // // // Browser Sync - Pattern Lab
 // // const browserSyncJekyllConfig = {
@@ -353,9 +351,6 @@ gulp.task('pk:schema', (done) => {
 // gulp.task(bolt.slack());
 
 
-
-
-
 //
 // return gulp.src('path/to/source/**/*.scss')
 //     .pipe(sassdoc())
@@ -365,7 +360,6 @@ gulp.task('pk:schema', (done) => {
 //     .on('data', function () {});
 
 
-
 // gulp.task(bolt.watchSymlinks());
 // gulp.task(bolt.lerna());
 // gulp.task(bolt.watchPatternLab({
@@ -373,9 +367,6 @@ gulp.task('pk:schema', (done) => {
 //     // './packages/**/*.twig'
 //   ]
 // }));
-
-
-
 
 
 // // gulp.task('patternlab:stylelint', bolt.lintCSS(patternLabCSSConfig));
@@ -467,11 +458,7 @@ gulp.task('pk:schema', (done) => {
 //
 //
 //
-
-
-
-
-}
+};
 //
 // const symlinkTasks = require('./packages/build-tools-symlinks')(gulp, {});
 

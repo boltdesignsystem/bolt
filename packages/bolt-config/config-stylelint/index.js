@@ -7,15 +7,50 @@ module.exports = {
   plugins: [
     'stylelint-order',
     'stylelint-scss',
-    'stylelint-selector-pattern'
+    'stylelint-selector-pattern',
+    'stylelint-declaration-block-order',
+    'stylelint-declaration-use-variable',
+    'stylelint-selector-bem-pattern',
+    'stylelint-declaration-strict-value'
   ],
   rules: {
+    'scale-unlimited/declaration-strict-value': [
+      [
+        '/color/',
+        'font-size',
+      ]
+    ],
+    // 'sh-waqar/declaration-use-variable': [
+    //   // '/color/',
+    //   // '((?!-webkit-tap-highlight-).*color)*',
+    //   // '/^((?!-webkit-tap-highlight-)color/',
+    //   'font-size',
+    //   'font-weight'
+    // ],
+    'plugin/declaration-block-order': [
+      'custom-properties',
+      {
+        type: 'at-rule',
+        name: 'include',
+        hasBlock: false
+      },
+      'declarations',
+      {
+        type: 'at-rule',
+        name: 'include',
+        hasBlock: true
+      },
+      'rules'
+    ],
+
     'color-hex-case': 'lower',
     'color-named': ['never', {
       ignore: ['inside-function']
     }],
     'selector-max-id': 0,
     'color-no-invalid-hex': true,
+    'color-no-hex': true,
+    'selector-max-id': 0,
     'selector-class-pattern': '',
     'selector-no-qualifying-type': [true, {
       ignore: ['attribute']
@@ -25,6 +60,25 @@ module.exports = {
     'scss/dollar-variable-no-missing-interpolation': true,
     'scss/at-mixin-argumentless-call-parentheses': 'never',
     'selector-max-class': 2,
+    'plugin/selector-bem-pattern': {
+      preset: 'bem',
+      componentName: '(((o-|c-|u-|t-|s-|is-|has-|no-|_|js-|qa-)(bolt-)[a-z0-9]+(?!-$)-?)+)',
+      componentSelectors: {
+        initial: "\\.{componentName}(((__|--)(([a-z0-9\\[\\]'=]+(?!-$)-?)+))+)?$"
+      },
+      // componentSelectors: '^\\.ns-{componentName}(?:-[a-zA-Z]+)?$'
+      // ignoreSelectors: [
+      //   '.*\\.no-js.*',
+      //   '.*\\.js-.*',
+      //   '.*\\.lt-ie.*'
+      // ]
+    },
+    'scss/dollar-variable-pattern': ['^(bolt-|_bolt-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$', {
+      ignore: ['local']
+    }],
+    'scss/percent-placeholder-pattern': '^(bolt-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$',
+    'scss/at-function-pattern': '^(bolt-|_bolt-)[a-z0-9\\-]+$',
+    'scss/at-mixin-pattern': '^(bolt-|_bolt-)[a-z0-9\\-]+$',
     // https://github.com/davidtheclark/stylelint-selector-bem-pattern
     // https://github.com/xi/stylelint-selector-pattern/blob/master/lib/presets.js
     // "xi/selector-pattern": ["^\.(o-|c-|u-|t-|s-|is-|has-|_|js-|qa-)[a-z0-9-_\>\. \%]+$", {
@@ -40,7 +94,7 @@ module.exports = {
     'at-rule-name-space-after': 'always-single-line',
     'at-rule-semicolon-newline-after': 'always',
     'block-closing-brace-newline-after': ['always', {
-      ignoreAtRules: ['if', 'else'],
+      ignoreAtRules: ['if', 'else', 'elseif'],
     }],
     'block-closing-brace-newline-before': 'always-multi-line',
     'block-closing-brace-space-before': 'always-single-line',
@@ -124,7 +178,12 @@ module.exports = {
     'max-empty-lines': 4,
     'max-nesting-depth': [1, {
       ignore: ['blockless-at-rules'],
-      ignoreAtRules: ['media', 'function'],
+      ignoreAtRules: [
+        'media',
+        'function',
+        'if',
+        'for'
+      ],
     }],
     'media-feature-colon-space-after': 'always',
     'media-feature-colon-space-before': 'never',

@@ -1,7 +1,7 @@
 module.exports = {
   patternLab: {
     enabled: true,
-    configFile: 'packages/website-pattern-lab/config/config.yml',
+    configFile: 'packages/website/user/themes/bolt/pattern-lab/config/config.yml',
     twigNamespaces: {
       addToDrupalThemeFile: true,
       sets: [
@@ -10,23 +10,23 @@ module.exports = {
           paths: ['node_modules/@bolt', 'packages/bolt-ui-toolkit'],
         },
         {
-          namespace: 'settings',
-          paths: ['packages/website-pattern-lab/source/_patterns/00-settings'],
+          namespace: 'quarks',
+          paths: ['packages/website/user/themes/bolt/pattern-lab/source/_patterns/00-quarks'],
         }, {
-          namespace: 'elements',
-          paths: ['packages/website-pattern-lab/source/_patterns/01-elements'],
+          namespace: 'atoms',
+          paths: ['packages/website/user/themes/bolt/pattern-lab/source/_patterns/01-atoms'],
         }, {
-          namespace: 'objects',
-          paths: ['packages/website-pattern-lab/source/_patterns/02-objects'],
+          namespace: 'molecules',
+          paths: ['packages/website/user/themes/bolt/pattern-lab/source/_patterns/02-molecules'],
         }, {
-          namespace: 'components',
-          paths: ['packages/website-pattern-lab/source/_patterns/03-components'],
+          namespace: 'organisms',
+          paths: ['packages/website/user/themes/bolt/pattern-lab/source/_patterns/03-organisms'],
         }, {
           namespace: 'templates',
-          paths: ['packages/website-pattern-lab/source/_patterns/04-templates'],
+          paths: ['packages/website/user/themes/bolt/pattern-lab/source/_patterns/04-templates'],
         }, {
           namespace: 'pages',
-          paths: ['packages/website-pattern-lab/source/_patterns/05-pages'],
+          paths: ['packages/website/user/themes/bolt/pattern-lab/source/_patterns/05-pages'],
         }
       ],
     },
