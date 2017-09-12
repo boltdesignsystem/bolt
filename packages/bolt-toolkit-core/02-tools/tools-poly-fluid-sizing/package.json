@@ -1,6 +1,6 @@
 {
-  "name": "@bolt/tools-font-size",
-  "description": "Font Size Mixin",
+  "name": "@bolt/tools-poly-fluid-sizing",
+  "description": "Poly Fluid Sizing Mixin",
   "keywords": [
     "bolt design system",
     "bolt",
@@ -8,7 +8,7 @@
     "design system",
     "typography"
   ],
-  "version": "0.3.0",
+  "version": "0.0.0",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -25,20 +25,22 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bolt-design-system/bolt/tree/master/packages/tools-typography"
+    "url": "https://github.com/bolt-design-system/bolt"
   },
   "bugs": {
     "url": "https://github.com/bolt-design-system/bolt/issues"
   },
-  "style": "_tools.font-size.scss",
+  "style": "_tools.poly-fluid-sizing.scss",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@bolt/settings-font-size": "^0.6.0",
-    "@bolt/tools-sassy-maps": "^0.3.0",
-    "@bolt/tools-poly-fluid-sizing": "^0.0.0",
-    "@bolt/tools-px-to-rem": "^0.0.0"
-  },
-  "private": false
+    "@bolt/settings-font-size": "^0.5.0",
+    "@bolt/tools-sassy-maps": "^0.2.0",
+    "@bolt/tools-linear-interpolation": "^0.0.0",
+    "@bolt/tools-map-sort": "^0.0.0",
+    "@bolt/tools-list-sort": "^0.0.0",
+    "@bolt/tools-list-remove": "^0.0.0",
+    "@bolt/tools-breakpoint": "^0.0.0"
+  }
 }
