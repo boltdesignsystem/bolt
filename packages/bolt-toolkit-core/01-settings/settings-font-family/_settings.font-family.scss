@@ -27,6 +27,7 @@ $bolt-font-family--mono-fallback: monospace;
  * Custom web font stacks
  */
 $bolt-font-family--sans:  'Open Sans', 'Helvetica Neue', sans-serif;
+$bolt-font-family--sans-subset: 'OpenSansSubset', 'Helvetica Neue', sans-serif;
 $bolt-font-family--serif: 'Georgia', serif;
 $bolt-font-family--mono:  'Courier New', monospace;
 
@@ -41,15 +42,23 @@ $bolt-font-families: (
   font-families: (
     body: (
       fallback-font: $bolt-font-family--sans-fallback,
-      custom-font:   $bolt-font-family--sans
+      custom-font:   $bolt-font-family--sans,
+      loaded-class:  $bolt-fonts--loaded-class
+    ),
+    bodySubset: (
+      system: $bolt-font-family--sans-fallback,
+      custom: $bolt-font-family--sans-subset,
+      loaded-class: $bolt-fonts--subset-loaded-class
     ),
     heading: (
       fallback-font: $bolt-font-family--sans-fallback,
-      custom-font:   $bolt-font-family--sans
+      custom-font:   $bolt-font-family--sans,
+      loaded-class:  $bolt-fonts--loaded-class
     ),
     code: (
       fallback-font: $bolt-font-family--mono-fallback,
-      custom-font:   $bolt-font-family--mono
+      custom-font:   $bolt-font-family--mono,
+      loaded-class:  $bolt-fonts--loaded-class
     )
   )
 );

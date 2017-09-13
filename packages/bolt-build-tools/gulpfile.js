@@ -3,17 +3,20 @@ const jekyll = require('@bolt/build-jekyll');
 const patternlab = require('@bolt/build-patternlab');
 const styles = require('@bolt/build-styles');
 const symlinks = require('@bolt/build-symlinks');
+const webpackTask = require('@bolt/build-webpack');
 
 module.exports = (gulp) => {
   const cssConfig = {
     src: [
-      './packages/bolt-toolkit/**/*.scss',
-      './packages/bolt-toolkit-core/**/*.scss',
-      './packages/bolt-toolkit-ui/**/*.scss',
+      './packages/bolt-toolkit/*.scss',
+      // './packages/bolt-toolkit-core/**/*.scss',
+      // './packages/bolt-toolkit-ui/**/*.scss',
+      // './packages/bolt-toolkit/bolt-critical-fonts.scss',
       '!./packages/**/node_modules/**/*',
     ],
     data: './packages/website/user/themes/bolt/pattern-lab/source/_data',
-    dest: 'bolt-website/styles'
+    dest: 'bolt-website/styles',
+    altDest: './packages/website-jekyll/source/_includes',
   };
 
   gulp.task('styles:compile', styles.compile(cssConfig));
@@ -45,12 +48,42 @@ module.exports = (gulp) => {
   gulp.task(browserSyncServer);
 
 
+  // Webpack Config
+  const webpackConfig = webpackTask.devConfig;
+  const webpackProdConfig = webpackTask.releaseConfig;
+  const webpackCriticalConfig = webpackTask.critialPathConfig;
+  const webpack = webpackTask.webpack(gulp, webpackConfig, webpackProdConfig, webpackCriticalConfig);
+
+
+  gulp.task('copy:fonts', () =>
+    gulp.src([
+      './packages/bolt-static-assets/bolt-web-fonts/**.woff',
+      './packages/bolt-static-assets/bolt-web-fonts/**.woff2'
+    ])
+      .pipe(gulp.dest('./bolt-website/fonts'))
+    // .pipe( gulp.dest( '../../website-jekyll/fonts' ) )
+  );
+
+  // gulp.task( "data", () => {
+  //   return gulp.src( [
+  //     options.paths.src + "/ui-components/**/docs/*.{json,yaml}",
+  //     options.paths.src + "/ui-components/**/tests/*.json"
+  //   ] )
+  //   .pipe( plugins.flatten() )
+  //   .pipe( gulp.dest( options.paths.dist + "/ui-components/data/" ) )
+  //   .pipe( plugins.browserSync.reload( {
+  //     stream: true
+  // }));
+
   gulp.task('default',
     gulp.series([
       'symlinks:gravpl',
       'symlinks:clean',
       'symlinks:create',
+      'copy:fonts',
       gulp.parallel([
+        'webpack:dev',
+        'webpack:critical',
         'patternlab:compile',
         'jekyll:compile',
         'styles:compile',

@@ -3,7 +3,8 @@ const util = require('gulp-util');
 module.exports = {
   root: 'packages/bolt',
   src: [
-    'packages/bolt/bolt.scss'
+    'packages/bolt/bolt.scss',
+    'packages/bolt/bolt-critical-fonts.scss'
   ],
   eyeglass: {
     enableImportOnce: false

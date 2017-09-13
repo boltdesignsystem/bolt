@@ -189,6 +189,7 @@ function compile(userConfig) {
     // .pipe(sourcemaps.write('./'))
       .pipe(gulpif(config.sourceMaps, sourcemaps.write('./')))
       .pipe(gulp.dest(config.dest))
+      .pipe(gulpif(config.altDest, gulp.dest(config.altDest)))
       .on('end', () => {
         // core.events.emit('reload', join(config.dest, '**/*.css'));
         done();
