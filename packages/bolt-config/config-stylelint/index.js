@@ -18,7 +18,9 @@ module.exports = {
       [
         '/color/',
         'font-size',
-      ]
+      ], {
+        ignoreKeywords: ['currentColor', 'transparent', 'inherit'],
+      }
     ],
     // 'sh-waqar/declaration-use-variable': [
     //   // '/color/',
@@ -171,7 +173,9 @@ module.exports = {
     'function-parentheses-space-inside': 'never-single-line',
     'function-url-quotes': 'always',
     'function-whitespace-after': 'always',
-    indentation: 2,
+    indentation: [2, {
+      ignore: ['inside-parens', 'param', 'value']
+    }],
     'keyframe-declaration-no-important': true,
     'length-zero-no-unit': true,
     'max-empty-lines': 4,
