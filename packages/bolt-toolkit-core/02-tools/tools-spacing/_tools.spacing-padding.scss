@@ -1,6 +1,6 @@
 // @mixin spacing($)
 
-@mixin bolt-padding($sizes, $type: false, $important: false) {
+@mixin bolt-padding($sizes, $type: false, $important: null) {
   $sizes: _bolt-normalize-spacing-sizes($sizes, $type);
   @include _bolt-directional-property(padding, false, $sizes, $important);
 }

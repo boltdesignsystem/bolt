@@ -294,36 +294,36 @@ $bolt-border-width--button: 1px;
 
 // Button colors
 
-.c-test-button {
+.c-bolt-button {
   @include bolt-button;
 }
 
-.c-test-button,
-.c-test-button--primary {
+.c-bolt-button,
+.c-bolt-button--primary {
   @include bolt-button-color(primary);
 }
 
-.c-test-button--secondary {
+.c-bolt-button--secondary {
   @include bolt-button-color(secondary);
 }
 
-.c-test-button--tertiary {
+.c-bolt-button--tertiary {
   @include bolt-button-color(tertiary);
 }
 
-.c-test-button--success {
+.c-bolt-button--success {
   @include bolt-button-color(success);
 }
 
-.c-test-button--warning {
+.c-bolt-button--warning {
   @include bolt-button-color(warning);
 }
 
-.c-test-button--error {
+.c-bolt-button--error {
   @include bolt-button-color(error);
 }
 
-.c-test-button--disabled {
+.c-bolt-button--disabled {
   @include bolt-button-color(disabled);
 
   cursor: not-allowed;
@@ -332,28 +332,28 @@ $bolt-border-width--button: 1px;
 
 // Button sizes
 
-.c-test-button,
-.c-test-button--medium {
+.c-bolt-button,
+.c-bolt-button--medium {
   @include bolt-padding(medium, squished);
   @include bolt-font-size(xsmall);
 }
 
-.c-test-button--xsmall {
+.c-bolt-button--xsmall {
   @include bolt-padding(xsmall, squished);
   @include bolt-font-size(xsmall);
 }
 
-.c-test-button--small {
+.c-bolt-button--small {
   @include bolt-padding(small, squished);
   @include bolt-font-size(xsmall);
 }
 
-.c-test-button--large {
+.c-bolt-button--large {
   @include bolt-padding(medium, squished);
   @include bolt-font-size(medium);
 }
 
-.c-test-button--xlarge {
+.c-bolt-button--xlarge {
   @include bolt-padding(large, squished);
   @include bolt-font-size(large);
 }
@@ -361,12 +361,12 @@ $bolt-border-width--button: 1px;
 
 // Button widths
 
-.c-test-button--full-width {
+.c-bolt-button--full {
   width: 100%;
 }
 
-.c-test-button--full-width\@bp-xsmall {
-  @media screen and (max-width: map-get($bolt-breakpoints, xsmall)) {
+.c-bolt-button--full\@small {
+  @media screen and (max-width: map-get($bolt-breakpoints, small)) {
     width: 100%;
   }
 }
@@ -374,11 +374,11 @@ $bolt-border-width--button: 1px;
 
 // Button content
 
-.c-test-button__text + .c-test-button__icon {
+.c-bolt-button__text + .c-bolt-button__icon {
   @include bolt-margin-left(xsmall);
 }
 
-.c-test-button__icon {
+.c-bolt-button__icon {
   width: 1em;
   height: 1em;
 
@@ -389,14 +389,14 @@ $bolt-border-width--button: 1px;
   }
 }
 
-.c-test-button__icon + .c-test-button__text {
+.c-bolt-button__icon + .c-bolt-button__text {
   @include bolt-margin-left(xsmall);
 }
 
 
 
 // Button group
-.c-test-button-group {
+.c-bolt-button-group {
   display: flex;
 
   > * + * {
@@ -404,7 +404,7 @@ $bolt-border-width--button: 1px;
   }
 }
 
-.c-test-button-group--even {
+.c-bolt-button-group--even {
   > * {
     flex: 1;
   }
@@ -425,11 +425,11 @@ $bolt-border-width--button: 1px;
   }
 }
 
-.c-test-button-group--stacked {
+.c-bolt-button-group--stacked {
   @include bolt-button-group--stacked;
 }
 
-.c-test-button-group--stacked\@bp-xsmall {
+.c-bolt-button-group--stacked\@bp-xsmall {
   @media screen and (max-width: map-get($bolt-breakpoints, xsmall)) {
     @include bolt-button-group--stacked;
   }
@@ -438,7 +438,7 @@ $bolt-border-width--button: 1px;
 
 // Links
 
-.c-test-link {
+.c-bolt-link {
   @include bolt-reset-button-styles;
   @include bolt-link-color;
 

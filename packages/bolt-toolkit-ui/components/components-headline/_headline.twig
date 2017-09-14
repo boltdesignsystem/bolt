@@ -1,0 +1,14 @@
+{% extends "@atoms/bolt-headline/_typography.twig" %}
+{% set type = "headline" %}
+{% set sizes = [
+  "xsmall",
+  "small",
+  "medium",
+  "large",
+  "xlarge",
+  "xxlarge",
+  "xxxlarge"
+] %}
+{% set size = size | default("xlarge") %}
+{% set weight = weight | default("bold") %}
+{% set tag = tag | default("h2") %}

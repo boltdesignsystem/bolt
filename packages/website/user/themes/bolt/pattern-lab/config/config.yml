@@ -1,21 +1,21 @@
 v: 2.6.0
 overrideConfig: q
 ie:
-    - DS_Store
-    - less
-    - scss
+  - DS_Store
+  - less
+  - scss
 id:
-    - scss
-    - .svn
-    - .sass-cache
-    - scripts
-    - styles
-    - images
+  - scss
+  - .svn
+  - .sass-cache
+  - scripts
+  - styles
+  - images
 cleanPublic: true
 patternStates:
-    - inprogress
-    - inreview
-    - complete
+  - inprogress
+  - inreview
+  - complete
 styleGuideExcludes: ''
 cacheBusterOn: 'true'
 exportDir: export
@@ -26,14 +26,16 @@ defaultShowPatternInfo: false
 ishMinimum: '240'
 ishMaximum: '2600'
 ishControlsHide:
-    - hay
+  - hay
 styleguideKit: pattern-lab/styleguidekit-twig-default
 styleguideKitPath: vendor/pattern-lab/styleguidekit-twig-default
-lineageMatch: '{%([ ]+)?(?:include|extends|embed)( |\()[&quot;\&#039;]([\/.@A-Za-z0-9-_]+)[&quot;\&#039;]([\s\S+]*?)%}'
+lineageMatch: >-
+  {%([ ]+)?(?:include|extends|embed)(
+  |\()[&quot;\&#039;]([\/.@A-Za-z0-9-_]+)[&quot;\&#039;]([\s\S+]*?)%}
 lineageMatchKey: 3
 patternExtension: twig
 twigDebug: false
-twigAutoescape: html
+twigAutoescape: false
 twigDefaultDateFormat: ''
 twigDefaultIntervalFormat: ''
 twigMacroExt: macro.twig
@@ -42,8 +44,87 @@ twigFunctionExt: function.php
 twigTagExt: tag.php
 twigTestExt: test.php
 extensions:
-    data: .data.json
-    schemas: .json
-    templates: .twig
-    docs: .docs.md
-    sg: .md
+  data: .data.json
+  schemas: .json
+  templates: .twig
+  docs: .docs.md
+  sg: .md
+twigNamespaces:
+  enabled: true
+plugins:
+  twigNamespaces:
+    enabled: true
+    roots: {}
+    namespaces:
+      bolt:
+        paths:
+          - ../../../../../bolt-toolkit-core/04-elements
+          - >-
+            ../../../../../bolt-toolkit-core/04-elements/elements-all/node_modules/@bolt/elements-headings
+          - >-
+            ../../../../../bolt-toolkit-core/04-elements/elements-all/node_modules/@bolt/elements-images
+          - >-
+            ../../../../../bolt-toolkit-core/04-elements/elements-all/node_modules/@bolt/elements-links
+          - >-
+            ../../../../../bolt-toolkit-core/04-elements/elements-all/node_modules/@bolt/elements-small
+          - ../../../../../bolt-toolkit-core/04-elements/elements-headings
+          - ../../../../../bolt-toolkit-core/04-elements/elements-images
+          - ../../../../../bolt-toolkit-core/04-elements/elements-links
+          - ../../../../../bolt-toolkit-core/04-elements/elements-small
+          - ../../../../../bolt-toolkit-core/04-elements/elements-tables
+          - ../../../../../bolt-toolkit-core/05-objects
+          - >-
+            ../../../../../bolt-toolkit-core/05-objects/objects-all/node_modules/@bolt/objects-grid
+          - >-
+            ../../../../../bolt-toolkit-core/05-objects/objects-all/node_modules/@bolt/objects-ui-list
+          - >-
+            ../../../../../bolt-toolkit-core/05-objects/objects-all/node_modules/@bolt/objects-wrapper
+          - ../../../../../bolt-toolkit-core/05-objects/objects-grid
+          - ../../../../../bolt-toolkit-core/05-objects/objects-ratio
+          - ../../../../../bolt-toolkit-core/05-objects/objects-ui-list
+          - ../../../../../bolt-toolkit-core/05-objects/objects-wrapper
+          - ../../../../../bolt-toolkit-ui
+          - >-
+            ../../../../../bolt-toolkit-ui/components/@wip~components-action-block
+          - ../../../../../bolt-toolkit-ui/components/@wip~components-image
+          - ../../../../../bolt-toolkit-ui/components/@wip~components-quote
+          - >-
+            ../../../../../bolt-toolkit-ui/components/components-all/node_modules/@bolt/components-band
+          - >-
+            ../../../../../bolt-toolkit-ui/components/components-all/node_modules/@bolt/components-button
+          - >-
+            ../../../../../bolt-toolkit-ui/components/components-all/node_modules/@bolt/components-headline
+          - ../../../../../bolt-toolkit-ui/components/components-band
+          - ../../../../../bolt-toolkit-ui/components/components-button
+          - ../../../../../bolt-toolkit-ui/components/components-card
+          - ../../../../../bolt-toolkit-ui/components/components-headline
+          - >-
+            ../../../../../bolt-toolkit-ui/components/components-headline/examples
+          - ../../../../../bolt-toolkit-ui/components/components-teaser
+      atoms:
+        paths:
+          - source/_patterns/01-atoms
+          - source/_patterns/01-atoms/00-colors
+          - source/_patterns/01-atoms/background-shapes
+          - source/_patterns/01-atoms/bolt-button
+          - source/_patterns/01-atoms/bolt-headline
+          - source/_patterns/01-atoms/bolt-images
+          - source/_patterns/01-atoms/bolt-links
+          - source/_patterns/01-atoms/text/bolt-small
+      molecules:
+        paths:
+          - source/_patterns/02-molecules
+          - source/_patterns/02-molecules/bolt-card
+          - source/_patterns/02-molecules/layout/bolt-band
+          - source/_patterns/02-molecules/layout/bolt-grid
+          - source/_patterns/02-molecules/layout/bolt-ratio
+          - source/_patterns/02-molecules/layout/bolt-ui-list
+          - source/_patterns/02-molecules/layout/bolt-wrapper
+      templates:
+        paths:
+          - source/_patterns/04-templates
+          - source/_patterns/04-templates/default
+      pages:
+        paths:
+          - source/_patterns/05-pages
+          - source/_patterns/05-pages/example-page

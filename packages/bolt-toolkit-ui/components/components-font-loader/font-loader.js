@@ -37,20 +37,20 @@ if (sessionStorage.criticalFoftFontsLoaded) {
       style: 'italic'
     });
 
-    var openSansSemiBold = new FontFaceObserver('Open Sans', {
-      weight: 600
-    });
-
-    var openSansSemiBoldItalic = new FontFaceObserver('Open Sans', {
-      weight: 600,
-      style: 'italic'
-    });
-
     var openSansBold = new FontFaceObserver('Open Sans', {
+      weight: 700
+    });
+
+    // var openSansBoldItalic = new FontFaceObserver('Open Sans', {
+    //   weight: 700,
+    //   style: 'italic'
+    // });
+
+    var openSansExtraBold = new FontFaceObserver('Open Sans', {
       weight: 800
     });
 
-    var openSansBoldItalic = new FontFaceObserver('Open Sans', {
+    var openSansExtraBoldItalic = new FontFaceObserver('Open Sans', {
       weight: 800,
       style: 'italic'
     });
@@ -58,10 +58,10 @@ if (sessionStorage.criticalFoftFontsLoaded) {
 		Promise.all([
       openSansRegular.load(),
       openSansItalic.load(),
-      openSansSemiBold.load(),
-      openSansSemiBoldItalic.load(),
       openSansBold.load(),
-      openSansBoldItalic.load()
+      // openSansBoldItalic.load(),
+      openSansExtraBold.load(),
+      openSansExtraBoldItalic.load()
     ]).then(function () {
 			document.documentElement.className += ' ' + fontsLoadedClass;
 

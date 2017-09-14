@@ -50,6 +50,6 @@
       @if nth($values, 4) { #{$left}: nth($values, 4) $important; }
     }
   } @else {
-    #{$all}: $values;
+    #{$all}: $values $important;
   }
 }

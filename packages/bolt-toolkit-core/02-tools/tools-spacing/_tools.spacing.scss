@@ -24,18 +24,18 @@
   }
   @return $map;
 }
-$_bolt-spacing-sizes: _bolt-create-spacing-map($bolt-spacing-values);
+$bolt-spacing-sizes: _bolt-create-spacing-map($bolt-spacing-values);
 
 /*
  * CONVENIENCE FUNCTIONS
  **/
 @function bolt-spacing($size) {
-  @return map-get($_bolt-spacing-sizes, nth($size, 1));
+  @return map-get($bolt-spacing-sizes, nth($size, 1));
 }
 
 
 // Convert shirt sizes in baseline-optimized sizes
-@function bolt-v-spacing($sizes, $modifier) {
+@function bolt-v-spacing($sizes, $modifier: null) {
   @if ($modifier == 'squished') {
     $modifier: $bolt-spacing-squished;
   } @elseif ($modifier == 'stretched') {

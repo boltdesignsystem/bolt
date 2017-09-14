@@ -222,11 +222,11 @@ function watch(userConfig) {
     // console.log(watchTasks);
 
     // console.log(src);
-    const watcher = gulp.watch(src, gulp.parallel(compile(userConfig)));
+    gulp.watch(src, gulp.parallel(compile(userConfig)));
 
-    watcher.on('change', (path, stats) => {
-      // console.log(`File ${path} was changed`);
-    });
+    // watcher.on('change', (path, stats) => {
+    //   // console.log(`File ${path} was changed`);
+    // });
 
     // return gulp.watch(src, gulp.parallel(watchTasks));
   }

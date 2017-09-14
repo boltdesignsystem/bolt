@@ -7,10 +7,12 @@ const merge = require('merge').recursive;
 const gulpConfig = require('../../../gulpconfig.js');
 const fs = require('fs-extra');
 const path = require('path');
+const glob = require('glob');
 
 const patternLabConfig = yaml.safeLoad(
   fs.readFileSync(gulpConfig.patternLab.configFile, 'utf8')
 );
+const twigNamespaces = gulpConfig.patternLab.twigNamespaces;
 const patternLabRoot = path.join(gulpConfig.patternLab.configFile, '../..');
 const patternLabSource = path.join(patternLabRoot, patternLabConfig.sourceDir);
 const consolePath = path.join(patternLabRoot, 'core/console');
@@ -19,7 +21,8 @@ const consolePath = path.join(patternLabRoot, 'core/console');
 
 // Build Pattern Lab via CLI command -- can exit or not based on 2nd param passed in
 function patternLab(done, errorShouldExit) {
-  core.notify.sh(`php ${consolePath} --generate`, errorShouldExit, (err) => {
+  core.events.emit('pattern-lab:precompile');
+  core.notify.sh(`php -d memory_limit=1024M ${consolePath} --generate`, errorShouldExit, (err) => {
     core.events.emit('reload');
     done(err);
   });
@@ -29,6 +32,78 @@ function patternLab(done, errorShouldExit) {
 function compileWithNoExit(done) {
   patternLab(done, false);
 }
+
+function getTwigNamespaceConfig(workingDir) {
+  workingDir = workingDir || process.cwd(); // eslint-disable-line no-param-reassign
+  const twigNamespaceConfig = {};
+  twigNamespaces.sets.forEach((namespaceSet) => {
+    const pathArray = namespaceSet.paths.map((pathBase) => {
+      const results = glob.sync(path.join(pathBase, '**/*.twig')).map((pathItem) => { // eslint-disable-line arrow-body-style
+        return path.relative(workingDir, path.dirname(pathItem));
+      });
+      results.unshift(path.relative(workingDir, pathBase));
+      return results;
+    });
+    twigNamespaceConfig[namespaceSet.namespace] = {
+      paths: core.utils.uniqueArray(core.utils.flattenArray(pathArray)),
+    };
+  });
+  return twigNamespaceConfig;
+}
+
+function addTwigNamespaceConfigToDrupal(done) {
+  if (!twigNamespaces.drupalThemeFile) {
+    done();
+  } else {
+    const twigNamespaceConfig = getTwigNamespaceConfig(
+      path.dirname(twigNamespaces.drupalThemeFile)
+    );
+    const drupalThemeFile = yaml.safeLoad(
+      fs.readFileSync(twigNamespaces.drupalThemeFile, 'utf8')
+    );
+    Object.assign(drupalThemeFile['component-libraries'], twigNamespaceConfig);
+    const newThemeFile = yaml.safeDump(drupalThemeFile);
+    fs.writeFileSync(twigNamespaces.drupalThemeFile, newThemeFile, 'utf8');
+    done();
+  }
+}
+
+function addTwigNamespaceConfigToPl(done) {
+  const twigNamespaceConfig = getTwigNamespaceConfig(patternLabRoot);
+  // plConfig = yaml.safeLoad(
+  //   fs.readFileSync(config.configFile, 'utf8')
+  // );
+  if (!patternLabConfig.plugins) {
+    Object.assign(patternLabConfig, {
+      plugins: {
+        twigNamespaces: { enabled: true, namespaces: {} },
+      },
+    });
+  } else if (!patternLabConfig.plugins.twigNamespaces) {
+    Object.assign(patternLabConfig.plugins, {
+      twigNamespaces: { enabled: true, namespaces: {} },
+    });
+  } else if (!patternLabConfig.plugins.twigNamespaces.namespaces) {
+    patternLabConfig.plugins.twigNamespaces.namespaces = {};
+  }
+  Object.assign(patternLabConfig.plugins.twigNamespaces.namespaces, twigNamespaceConfig);
+
+  const newConfigFile = yaml.safeDump(patternLabConfig);
+
+  // console.log(newConfigFile);
+  // console.log(patternLabConfig);
+
+  fs.writeFileSync(gulpConfig.patternLab.configFile, newConfigFile, 'utf8');
+  done();
+}
+
+core.events.on('pattern-lab:precompile', () => {
+  if (patternLabConfig.twigNamespaces) {
+    addTwigNamespaceConfigToPl(() => {
+      addTwigNamespaceConfigToDrupal(() => {});
+    });
+  }
+});
 
 
 // Initial PL build - exits if error

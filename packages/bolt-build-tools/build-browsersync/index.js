@@ -14,9 +14,9 @@ function server(userConfig) {
     });
 
     browserSync.create(config.serverName);
-    browserSync.use(htmlInjector, {
-      files: './bolt-website/**/*.html'
-    });
+    // browserSync.use(htmlInjector, {
+    //   files: './bolt-website/**/*.html'
+    // });
     browserSync.init(config);
   }
 

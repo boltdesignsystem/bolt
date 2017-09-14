@@ -15,7 +15,7 @@ if (!class_exists("Project_cell_Node", false)) {
       public function compile(Twig_Compiler $compiler)
       {
           $compiler->addDebugInfo($this);
-          $compiler->write("echo \"<div class='o-grid__item ");
+          $compiler->write("echo \"<div class='o-bolt-grid__item ");
 
           $class = "";
           if($this->class instanceof \Twig_Node_Expression_Constant) {

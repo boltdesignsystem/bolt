@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html class="pl js-fonts-loaded js-fonts-subset-loaded">
+  <head>
+    <title>Pattern Lab</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+
+    <link rel="stylesheet" href="../../../styles/bolt.css?1505417032" media="all" />
+    <link rel="stylesheet" href="../../../styles/bolt-styleguide.css?1505417032" media="all" />
+
+    <!-- Begin Pattern Lab (Required for Pattern Lab to run properly) -->
+    <!-- never cache patterns -->
+<meta http-equiv="cache-control" content="max-age=0" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+<meta http-equiv="pragma" content="no-cache" />
+
+<link rel="stylesheet" href="../../styleguide/css/styleguide.min.css?1505417032" media="all">
+<link rel="stylesheet" href="../../styleguide/css/prism-typeahead.min.css?1505417032" media="all" />
+    <!-- End Pattern Lab -->
+
+  </head>
+  <body class="body">
+<!-- View All Patterns in a Pattern Sub-Type -->
+<div class="sg-main" role="main">
+  <!-- Patterns -->
+  <div id="sg-patterns">
+                  <div id="viewall-templates-default" class="sg-subtype">
+  <h2>
+    <a href="../../patterns/04-templates-default/index.html" class="patternLink" data-patternpartial="viewall-templates-default">
+      default
+    </a>
+  </h2>
+  
+  <div class="sg-pattern-body">
+    
+  </div>
+</div>                        <div id="templates-default-template" class="sg-pattern">
+  <div class="sg-pattern-head">
+    <h3 class="sg-pattern-title">
+      <a href="../../patterns/04-templates-default-default-template/04-templates-default-default-template.html" class="patternLink" data-patternpartial="templates-default-template" title="Link to Pattern">
+        default template
+        
+              </a>
+    </h3>
+    
+    <div class="sg-pattern-breadcrumb">
+      
+    </div>
+    
+    <a href="#" data-patternpartial="templates-default-template" title="View Pattern Info" id="sg-pattern-extra-toggle-templates-default-template" class="sg-pattern-extra-toggle">
+      <span>&#9660;</span>
+    </a>
+  </div>
+  
+  <div class="sg-pattern-extra" id="sg-pattern-extra-templates-default-template"></div>
+    
+  <div class="sg-pattern-example">
+    Example default template.
+
+  <!-- <p>Example main content block.</p> -->
+
+  </div>
+  
+  <script type="text/json" id="sg-pattern-data-templates-default-template" class="sg-pattern-data">
+    {"lineage":[],"lineageR":[{"lineagePattern":"pages-example-page-with-body","lineagePath":"..\/..\/patterns\/05-pages-example-page-example-page-with-body\/05-pages-example-page-example-page-with-body.html"},{"lineagePattern":"pages-example-page","lineagePath":"..\/..\/patterns\/05-pages-example-page-example-page\/05-pages-example-page-example-page.html"}],"patternBreadcrumb":{"patternType":"templates","patternSubtype":"default"},"patternDesc":"","patternExtension":"twig","patternName":"default template","patternPartial":"templates-default-template","patternState":""}
+  </script>
+</div><!--end .sg-pattern-->            </div> <!--end #sg-patterns-->
+</div><!--end .sg-main-->
+  <!--DO NOT REMOVE-->
+  <script type="text/json" id="sg-pattern-data-footer" class="sg-pattern-data">
+  {"patternPartial":"viewall-templates-all"}
+</script>
+
+<script>
+  /*!
+  * scriptLoader - v0.1
+  *
+  * Copyright (c) 2014 Dave Olsen, http://dmolsen.com
+  * Licensed under the MIT license
+  *
+  */
+  
+  var scriptLoader = {
+    run: function(js,cb,target) {
+      var s  = document.getElementById(target+'-'+cb);
+      for (var i = 0; i < js.length; i++) {
+        var src = (typeof js[i] != 'string') ? js[i].src : js[i];
+        var c   = document.createElement('script');
+        c.src   = '../../'+src+'?'+cb;
+        if (typeof js[i] != 'string') {
+          if (js[i].dep !== undefined) {
+            c.onload = function(dep,cb,target) {
+              return function() {
+                scriptLoader.run(dep,cb,target);
+              }
+            }(js[i].dep,cb,target);
+          }
+        }
+        s.parentNode.insertBefore(c,s);
+      }
+    }
+  }
+</script>
+
+<script id="pl-js-polyfill-insert-1505417032">
+  (function() {
+    if (self != top) {
+      var cb = '1505417032';
+      var js = [];
+      if (typeof document !== 'undefined' && !('classList' in document.documentElement)) {
+        js.push('styleguide/bower_components/classList.min.js');
+      }
+      scriptLoader.run(js,cb,'pl-js-polyfill-insert');
+    }
+  })();
+</script>
+
+<script id="pl-js-insert-1505417032">
+  (function() {
+    if (self != top) {
+      var cb = '1505417032';
+      var js = [ { 'src': 'styleguide/bower_components/jwerty.min.js', 'dep': [ 'styleguide/js/patternlab-pattern.min.js' ] } ];
+      scriptLoader.run(js,cb,'pl-js-insert');
+    }
+  })();
+</script>
+
+  </body>
+</html>

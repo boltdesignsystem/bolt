@@ -85,7 +85,7 @@
     --bolt-color-border: $border;
   }
 
-  @include bolt-padding(medium); // Remove this when utility classes are fixed.
+  // @include bolt-padding(medium); // Remove this when utility classes are fixed.
 
   color: var(--bolt-color-text, inherit);
   background-color: var(--bolt-color-background, inherit);
@@ -114,7 +114,7 @@
   }
   @elseif $name == 'dark' {
     @include _bolt-theme-settings(
-      $background:  bolt-color(indigo, light),
+      $background:  bolt-color(indigo),
       $primary:     bolt-color(yellow),
       $secondary:   bolt-color(yellow),
       $text:        null,
@@ -124,7 +124,7 @@
   }
   @elseif $name == 'xdark' {
     @include _bolt-theme-settings(
-      $background:  bolt-color(indigo),
+      $background:  bolt-color(indigo, dark),
       $primary:     bolt-color(blue),
       $secondary:   bolt-color(white),
       $text:        null,

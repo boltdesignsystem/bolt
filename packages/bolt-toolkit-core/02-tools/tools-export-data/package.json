@@ -32,5 +32,11 @@
   "style": "_tools.export-data.scss",
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "getName": "echo $npm_package_name",
+    "getVersion": "npm view $npm_package_name version",
+    "getVersions": "npm view $npm_package_name versions",
+    "getInstallCmd": "npm run getName | npm run getVersion"
   }
 }

@@ -12,20 +12,22 @@ custom_css:
       <div class="c-bolt-page-intro">
 
         <div class="c-bolt-page-intro__header">
-          <p class="c-bolt-page-intro__label">{{ site.version }}</p>
-
-          <h1 class="c-bolt-page-intro__title">
-            <span class="c-bolt-page-intro__title-text">
+          <p class="c-bolt-headline c-bolt-headline--xsmall c-bolt-headline--regular">{{ site.version }}</p>
+          
+          <h1 class="c-bolt-headline c-bolt-headline--xxxlarge">
+            <span class="c-bolt-headline__text">
               Bolt Design System
             </span>
           </h1>
+          
+          <h2 class="c-bolt-subheadline c-bolt-subheadline--xxlarge u-bolt-margin-bottom">
+            <span class="c-bolt-subheadline__text">
+              Bolt provides tools, patterns, services, and guidelines that systematically improve quality, timeliness, and consistency to the Pega ecosystem so that you can focus on what really matters.
+            </span>
+          </h2>
         </div>
 
-        <h2 class="c-bolt-page-intro__subtitle">
-          <span class="c-bolt-page-intro__subtitle-text">
-            Bolt provides tools, patterns, services, and guidelines that systematically improve quality, timeliness, and consistency to the Pega ecosystem so that you can focus on what really matters.
-          </span>
-        </h2>
+        
 
         <a href="/getting-started" class="c-bolt-page-intro__link">
           <span class="c-bolt-page-intro__link-text">
@@ -46,8 +48,8 @@ custom_css:
     <section role="region">
       <ul class="o-bolt-ui-list o-bolt-ui-list--borderless">
         <li class="o-bolt-ui-list__item">
-          <h3 class="c-bolt-heading c-bolt-heading--small c-bolt-heading--uppercase u-bolt-margin-bottom-xxsmall">
-            <span class="c-bolt-heading__text">
+        <h3 class="c-bolt-eyebrow c-bolt-eyebrow--bold">
+          <span class="c-bolt-eyebrow__text">
               Speed
             </span>
           </h3>
@@ -55,15 +57,15 @@ custom_css:
         </li>
 
         <li class="o-bolt-ui-list__item">
-          <h3 class="c-bolt-heading c-bolt-heading--small c-bolt-heading--uppercase u-bolt-margin-bottom-xxsmall">
-            <span class="c-bolt-heading__text">Stable</span>
+        <h3 class="c-bolt-eyebrow c-bolt-eyebrow--bold">
+          <span class="c-bolt-eyebrow__text">Stable</span>
           </h3>
           <p>Predictable, automated testing coverage, and scalable.</p>
         </li>
 
         <li class="o-bolt-ui-list__item">
-          <h3 class="c-bolt-heading c-bolt-heading--small c-bolt-heading--uppercase u-bolt-margin-bottom-xxsmall">
-            <span class="c-bolt-heading__text">Stunning</span>
+        <h3 class="c-bolt-eyebrow c-bolt-eyebrow--bold">
+          <span class="c-bolt-eyebrow__text">Stunning</span>
           </h3>
           <p>On brand, consistent, elegant.</p>
         </li>

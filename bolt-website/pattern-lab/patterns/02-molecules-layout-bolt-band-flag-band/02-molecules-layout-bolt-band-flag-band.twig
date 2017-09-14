@@ -1,0 +1,136 @@
+<div class="c-bolt-band c-bolt-band--large {{ theme | default("t-bolt-dark")}}">
+
+  <div class="o-bolt-wrapper">
+    {% grid 'o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--large o-bolt-grid--matrix' %}
+
+
+      {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@small' %}
+        {% include "@bolt/eyebrow.twig" with {
+          text: 'Customer Service'
+        } %}
+
+        {% include "@atoms/h1.twig" with {
+          text: "Deliver game-changing results with real artificial intelligence.",
+          size: 'xxxlarge'
+        } %}
+        <p>Pega is #1 in software for customer engagement and operational excellence.</p>
+
+        {% include "@bolt/button.twig" with {
+          text: 'Call to Action'
+        } %}
+
+      {% endcell %}
+
+
+      {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@small' %}
+        <ul class="o-bolt-ui-list">
+          <li class="o-bolt-ui-list__item">
+            {% include "@atoms/eyebrow.twig" with {
+              text: 'Customer Service'
+            } %}
+            {% include "@atoms/h3.twig" with {
+              text: "Personalized. Not Creepy.",
+              size: 'medium'
+            } %}
+          </li>
+
+          <li class="o-bolt-ui-list__item">
+            {% include "@atoms/eyebrow.twig" with {
+              text: 'Sales Effectiveness'
+            } %}
+            {% include "@atoms/h3.twig" with {
+              text: "Create Sales Superstars.",
+              size: 'medium'
+            } %}
+          </li>
+
+          <li class="o-bolt-ui-list__item">
+            {% include "@atoms/eyebrow.twig" with {
+              text: 'Operations & IT'
+            } %}
+            {% include "@atoms/h3.twig" with {
+              text: "Stop Coding. Start Designing.",
+              size: 'medium'
+            } %}
+          </li>
+        </ul>
+      {% endcell %}
+    {% endgrid %}
+
+
+
+
+  </div>
+</div>
+
+
+
+<div class="c-bolt-band c-bolt-band--large {{ theme | default("t-bolt-dark")}}">
+
+  <div class="o-bolt-wrapper">
+    {% grid 'o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--large o-bolt-grid--matrix' %}
+
+
+      {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@small' %}
+        {% include "@bolt/eyebrow.twig" with {
+          text: 'Customer Service'
+        } %}
+
+        {% include "@atoms/h1.twig" with {
+          text: "Deliver game-changing results with real artificial intelligence.",
+          size: 'xxxlarge'
+        } %}
+
+        {% include "@atoms/h2.twig" with {
+          text: "Pega is #1 in software for customer engagement and operational excellence.",
+          size: 'xlarge'
+        } %}
+
+        {% include "@bolt/button.twig" with {
+          text: 'Call to Action'
+        } %}
+
+      {% endcell %}
+
+
+      {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@small' %}
+        <ul class="o-bolt-ui-list">
+          <li class="o-bolt-ui-list__item">
+            {% include "@atoms/eyebrow.twig" with {
+              text: 'Customer Service'
+            } %}
+            {% include "@atoms/headline.twig" with {
+              text: "Personalized. Not Creepy.",
+              size: 'medium'
+            } %}
+          </li>
+
+          <li class="o-bolt-ui-list__item">
+            {% include "@atoms/eyebrow.twig" with {
+              text: 'Sales Effectiveness'
+            } %}
+            {% include "@atoms/headline.twig" with {
+              text: "Create Sales Superstars.",
+              size: 'medium'
+            } %}
+          </li>
+
+          <li class="o-bolt-ui-list__item">
+            {% include "@atoms/eyebrow.twig" with {
+              text: 'Operations & IT'
+            } %}
+            {% include "@atoms/headline.twig" with {
+              text: "Stop Coding. Start Designing.",
+              size: 'medium'
+            } %}
+          </li>
+        </ul>
+      {% endcell %}
+    {% endgrid %}
+
+
+
+
+  </div>
+</div>
+

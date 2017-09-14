@@ -1,4 +1,4 @@
-@mixin bolt-margin($sizes, $type: false, $important: false) {
+@mixin bolt-margin($sizes, $type: false, $important: null) {
   $sizes: _bolt-normalize-spacing-sizes($sizes, $type);
   @include _bolt-directional-property(margin, false, $sizes, $important);
 }

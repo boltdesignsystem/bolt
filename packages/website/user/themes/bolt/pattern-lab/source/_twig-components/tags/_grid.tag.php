@@ -14,13 +14,13 @@ if (!class_exists("Project_grid_Node", false)) {
 
       public function compile(Twig_Compiler $compiler){
         // $compiler->addDebugInfo($this);
-        // $compiler->write("echo \"<div class='o-grid'>\";")->raw(PHP_EOL);
+        // $compiler->write("echo \"<div class='o-bolt-grid'>\";")->raw(PHP_EOL);
         // parent::compile($compiler);
         // $compiler->write("echo \"</div>\";")->raw(PHP_EOL);
 
 
         $compiler->addDebugInfo($this);
-        $compiler->write("echo \"<div class='o-grid ");
+        $compiler->write("echo \"<div class='o-bolt-grid ");
 
         $class = " ";
         if($this->class instanceof \Twig_Node_Expression_Constant) {

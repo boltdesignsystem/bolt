@@ -9,10 +9,10 @@ module.exports = (gulp) => {
   const cssConfig = {
     src: [
       './packages/bolt-toolkit/*.scss',
-      // './packages/bolt-toolkit-core/**/*.scss',
-      // './packages/bolt-toolkit-ui/**/*.scss',
+      './packages/bolt-toolkit-core/**/_*.*.scss',
+      './packages/bolt-toolkit-ui/**/_*.*.scss'
       // './packages/bolt-toolkit/bolt-critical-fonts.scss',
-      '!./packages/**/node_modules/**/*',
+      // '!./packages/**/node_modules/**/*',
     ],
     data: './packages/website/user/themes/bolt/pattern-lab/source/_data',
     dest: 'bolt-website/styles',
@@ -52,7 +52,7 @@ module.exports = (gulp) => {
   const webpackConfig = webpackTask.devConfig;
   const webpackProdConfig = webpackTask.releaseConfig;
   const webpackCriticalConfig = webpackTask.critialPathConfig;
-  const webpack = webpackTask.webpack(gulp, webpackConfig, webpackProdConfig, webpackCriticalConfig);
+  webpackTask.webpack(gulp, webpackConfig, webpackProdConfig, webpackCriticalConfig);
 
 
   gulp.task('copy:fonts', () =>
@@ -78,17 +78,17 @@ module.exports = (gulp) => {
   gulp.task('default',
     gulp.series([
       'symlinks:gravpl',
-      'symlinks:clean',
+      // 'symlinks:clean',
       'symlinks:create',
       'copy:fonts',
+      'patternlab:compile',
+      'jekyll:compile',
       gulp.parallel([
+        'styles:compile',
         'webpack:dev',
         'webpack:critical',
-        'patternlab:compile',
-        'jekyll:compile',
-        'styles:compile',
         'patternlab:watch',
-        'jekyll:watch',
+        // 'jekyll:watch',
         'styles:watch',
         'browsersync:serve'
       ]),
