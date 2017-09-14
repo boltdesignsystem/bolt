@@ -2113,7 +2113,7 @@ a:active {
   line-height: 1.45;
   font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.1rem;
+  letter-spacing: 0.05rem;
   opacity: 0.8;
 }
 
@@ -2215,6 +2215,11 @@ a:active {
   margin-top: -0.82rem;
 }
 
+.c-bolt-headline--xxxlarge,
+.c-bolt-headline--xxlarge {
+  letter-spacing: -0.03rem;
+}
+
 .c-bolt-text--xxxlarge,
 .c-bolt-headline--xxxlarge {
   font-size: 2.27rem;
@@ -2264,6 +2269,10 @@ a:active {
 .c-bolt-headline--small {
   font-size: 0.9rem;
   line-height: 1.51;
+}
+
+.c-bolt-text--uppercase,
+.c-bolt-headline--small {
   text-transform: uppercase;
   letter-spacing: 0.1rem;
 }
@@ -2272,6 +2281,10 @@ a:active {
 .c-bolt-headline--xsmall {
   font-size: 0.8rem;
   line-height: 1.45;
+}
+
+.c-bolt-headline--small,
+.c-bolt-headline--xsmall {
   letter-spacing: 0.05rem;
 }
 
@@ -2281,7 +2294,6 @@ a:active {
   font-weight: 800;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  letter-spacing: -0.025rem;
 }
 
 .c-bolt-text--regular,
@@ -2314,6 +2326,16 @@ a:active {
 .c-bolt-band--small {
   padding-top: 1.65rem;
   padding-bottom: 1.65rem;
+}
+
+.c-bolt-band--full {
+  width: 100%;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
 /* ------------------------------------ *  Themes

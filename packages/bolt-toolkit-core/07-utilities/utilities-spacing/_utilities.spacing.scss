@@ -1,7 +1,5 @@
 $bolt-direction-index: 0;
 
-@debug $bolt-spacing-properties;
-
 @each $property in $bolt-spacing-properties {
   @for $i from 1 through length($bolt-spacing-directions) {
     $direction: nth($bolt-spacing-directions, $i);
@@ -26,8 +24,6 @@ $bolt-direction-index: 0;
 
         $propertyName: $property;
         $propertyName: '-' + $propertyName;
-
-        // @debug $propertyName;
 
         .u-bolt#{$propertyName}#{$directionName}#{$sizeName}#{$typeName} {
 

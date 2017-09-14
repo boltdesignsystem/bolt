@@ -11,12 +11,20 @@ function server(userConfig) {
       server: './bolt-website',
       baseDir: ['./bolt-website', 'bolt-website/'],
       notify: false,
+      snippetOptions: {
+        // Ignore all HTML files within the templates folder
+        blacklist: ['./bolt-website/pattern-lab/index.html', './bolt-website/pattern-lab/']
+      }
     });
 
     browserSync.create(config.serverName);
-    // browserSync.use(htmlInjector, {
-    //   files: './bolt-website/**/*.html'
-    // });
+    browserSync.use(htmlInjector, {
+      files: './bolt-website/**/*.html',
+      snippetOptions: {
+        // Ignore all HTML files within the templates folder
+        blacklist: ['./bolt-website/pattern-lab/index.html', './bolt-website/pattern-lab/']
+      }
+    });
     browserSync.init(config);
   }
 

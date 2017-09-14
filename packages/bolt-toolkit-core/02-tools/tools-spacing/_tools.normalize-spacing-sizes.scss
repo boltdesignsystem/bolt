@@ -8,8 +8,6 @@
     $sizes: append($sizes, $spacing-sizes);
   }
 
-  // @debug $spacing-sizes;
-
   @for $i from 1 through length($sizes) {
     $size: nth($sizes, $i);
 
@@ -21,11 +19,6 @@
       }
     }
     $list: append($list, $size);
-
-    // @if (type-of($list) == string) {
-    //   $list: $size;
-    // } @else {
-    // }
   }
 
   @return $list;

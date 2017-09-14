@@ -2,6 +2,16 @@
   * @define c-bolt-band
   */
 
+@mixin bolt-full-bleed() {
+  width: 100%; //fallback if vw not supported.
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
 .c-bolt-band {
   @include bolt-padding-top(large);
   @include bolt-padding-bottom(large);
@@ -16,4 +26,8 @@
 .c-bolt-band--small {
   @include bolt-padding-top(medium);
   @include bolt-padding-bottom(medium);
+}
+
+.c-bolt-band--full {
+  @include bolt-full-bleed;
 }

@@ -24,8 +24,6 @@
 @mixin bolt-font-size($size, $leading: regular) {
   $font-size: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'font-size');
 
-  //@debug $font-size;
-  // $map: (576px: 22px, 320px: 18px, 992px: 34px, 768px: 24px);
   @if (type-of($font-size) == 'map') {
     $length: length(map-keys($font-size));
 
