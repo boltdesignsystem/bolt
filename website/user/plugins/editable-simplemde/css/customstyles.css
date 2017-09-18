@@ -1,0 +1,47 @@
+
+.editable {
+  margin-top: 20px;
+  position: relative;
+}
+
+.editor-toolbar a.active, .editor-toolbar a:focus {
+  outline: none;
+}
+
+.edit_btn {
+  background-color: rgba(0,0,0,.04);
+  padding: 4px 7px 4px 7px;
+  font-size: smaller;
+  color: rgba(0,0,0,.45);
+  position: absolute;
+  text-align: right;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+}
+
+.save_btn {
+  background-color: rgba(0,0,0,.04);
+  padding: 4px 7px 4px 7px;
+  font-size: smaller;
+  color: rgba(0,0,0,.45);
+  position: absolute;
+  text-align: right;
+  top: 10px;
+  right: 90px;
+  z-index: 1000;
+}
+
+.simplemde_response {
+  font-size: 128px;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.CodeMirror {
+height: auto; //comment this out to avoid scroll and sizing issues;
+}

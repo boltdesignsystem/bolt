@@ -22,7 +22,7 @@ const postcss = require('gulp-postcss');
 const join = require('path').join;
 const scssSyntax = require('postcss-scss');
 const sassdoc = require('sassdoc');
-const debug = require('debug')('@bolt/build-styles');
+// const debug = require('debug')('@bolt/build-styles');
 const sassGlob = require('gulp-sass-glob');
 const rimraf = require('rimraf');
 const gulpif = require('gulp-if');
@@ -33,6 +33,12 @@ const kindOf = require('kind-of');
 const rgb2Hex = require('rgb-hex');
 const stylelint = require('gulp-stylelint');
 const stylelintFormatter = require('stylelint-formatter-pretty');
+
+const sassInheritance = require('gulp-sass-inheritance');
+const cached = require('gulp-cached');
+const filter = require('gulp-filter');
+const debug = require('gulp-debug');
+const flatten = require('gulp-flatten');
 
 const postCSS = [
   autoprefixer(),
@@ -85,39 +91,39 @@ function compile(userConfig) {
   const config = merge(defaultConfig, userConfig);
 
   function compileCssTask(done) {
-    const colors = require('../../website/user/themes/bolt/pattern-lab/source/_data/bolt-colors.json').bolt_colors;
-
-    const allColors = [];
-
-    for (const key of Object.keys(colors)) {
-      const val = colors[key];
-      // console.log(val);
-
-      if (kindOf(val) === 'object') {
-        for (const nestedKey of Object.keys(val)) {
-          const nestedVal = val[nestedKey];
-          // console.log(val2);
-
-
-          if (kindOf(nestedVal) === 'object') {
-            for (const doubleNestedKey of Object.keys(nestedVal)) {
-              const doubleNestedVal = nestedVal[doubleNestedKey];
-              // doubleNestedVal = rgb2hex(doubleNestedVal);
-              allColors.push(`#${rgb2Hex(doubleNestedVal)}`);
-              // allColors.push(doubleNestedVal);
-            }
-          } else {
-            allColors.push(`#${rgb2Hex(nestedVal)}`);
-            // allColors.push(nestedVal);
-          }
-          //
-        }
-      } else {
-        // val
-        allColors.push(`#${rgb2Hex(val)}`);
-        // allColors.push(val);
-      }
-    }
+    // const colors = require('../../website/user/themes/bolt/pattern-lab/source/_data/bolt-colors.json').bolt_colors;
+    //
+    // const allColors = [];
+    //
+    // for (const key of Object.keys(colors)) {
+    //   const val = colors[key];
+    //   // console.log(val);
+    //
+    //   if (kindOf(val) === 'object') {
+    //     for (const nestedKey of Object.keys(val)) {
+    //       const nestedVal = val[nestedKey];
+    //       // console.log(val2);
+    //
+    //
+    //       if (kindOf(nestedVal) === 'object') {
+    //         for (const doubleNestedKey of Object.keys(nestedVal)) {
+    //           const doubleNestedVal = nestedVal[doubleNestedKey];
+    //           // doubleNestedVal = rgb2hex(doubleNestedVal);
+    //           allColors.push(`#${rgb2Hex(doubleNestedVal)}`);
+    //           // allColors.push(doubleNestedVal);
+    //         }
+    //       } else {
+    //         allColors.push(`#${rgb2Hex(nestedVal)}`);
+    //         // allColors.push(nestedVal);
+    //       }
+    //       //
+    //     }
+    //   } else {
+    //     // val
+    //     allColors.push(`#${rgb2Hex(val)}`);
+    //     // allColors.push(val);
+    //   }
+    // }
 
 
     // rgb2Hex(colors.white.base)
@@ -141,18 +147,17 @@ function compile(userConfig) {
           })(error);
         }
       }))
-    // .pipe($.env.development($.sourcemaps.init()))
-    // .pipe(sourcemaps.init())
       .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
-      .pipe(sassGlob())
-      .pipe(stylelint({
-        reporters: [{
-          formatter: stylelintFormatter,
-          console: true
-        }],
-        failAfterError: config.failAfterError
-      }))
-      // .pipe(sass(eyeglass({
+      .pipe(gulpif(config.glob, sassGlob()))
+      // .pipe(stylelint({
+      //   reporters: [{
+      //     formatter: stylelintFormatter,
+      //     console: true
+      //   }],
+      //   failAfterError: config.failAfterError
+      // }))
+      .pipe(filter(file => !/\/_/.test(file.path) || !/^_/.test(file.relative)))
+      .pipe(debug({ title: 'Sass file: ' }))
       .pipe(sass({
         // includePaths: [
         //   'node_modules',
@@ -168,30 +173,29 @@ function compile(userConfig) {
       }).on('error', sass.logError))
       .pipe(postcss(
         postCSS.concat([
-          colorguard({
-            threshold: 4,
-            whitelist: [
-              [`#${rgb2Hex(colors.gray.xlight)}`, `#${rgb2Hex(colors.white.base)}`],
-              [`#${rgb2Hex(colors.warning.light)}`, `#${rgb2Hex(colors.yellow.xlight)}`]
-            ],
-            allowEquivalentNotation: true
-          })
+          // colorguard({
+          //   threshold: 4,
+          //   whitelist: [
+          //     [`#${rgb2Hex(colors.gray.xlight)}`, `#${rgb2Hex(colors.white.base)}`],
+          //     [`#${rgb2Hex(colors.warning.light)}`, `#${rgb2Hex(colors.yellow.xlight)}`]
+          //   ],
+          //   allowEquivalentNotation: true
+          // })
         ])
       ))
       .pipe(duration('CSS Compile Time'))
       .pipe(size({ title: 'Total CSS Size' }))
-      // .pipe(cleanCSS({
-      //   aggressiveMerging: false,
-      //   advanced: false,
-      //   keepSpecialComments: 0,
-      //   processImport: true
-      // }))
-    // .pipe(sourcemaps.write('./'))
+      .pipe(cleanCSS({
+        aggressiveMerging: false,
+        advanced: false,
+        keepSpecialComments: 0,
+        processImport: true
+      }))
       .pipe(gulpif(config.sourceMaps, sourcemaps.write('./')))
+      .pipe(flatten())
       .pipe(gulp.dest(config.dest))
-      .pipe(gulpif(config.altDest, gulp.dest(config.altDest)))
       .on('end', () => {
-        // core.events.emit('reload', join(config.dest, '**/*.css'));
+        core.events.emit('reload', join(config.dest, '**/*.css'));
         done();
       });
   }

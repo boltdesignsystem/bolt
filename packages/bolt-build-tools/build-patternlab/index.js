@@ -8,6 +8,7 @@ const gulpConfig = require('../../../gulpconfig.js');
 const fs = require('fs-extra');
 const path = require('path');
 const glob = require('glob');
+const debug = require('gulp-debug');
 
 const patternLabConfig = yaml.safeLoad(
   fs.readFileSync(gulpConfig.patternLab.configFile, 'utf8')
@@ -23,7 +24,7 @@ const consolePath = path.join(patternLabRoot, 'core/console');
 function patternLab(done, errorShouldExit) {
   core.events.emit('pattern-lab:precompile');
   core.notify.sh(`php -d memory_limit=1024M ${consolePath} --generate`, errorShouldExit, (err) => {
-    core.events.emit('reload');
+    core.events.emit('reload', '**/*.html', true);
     done(err);
   });
 }
@@ -136,9 +137,18 @@ function watchPatternLab(userConfig) {
   function watchPatternLabTask() {
     const watchedExtensions = config.watchedExtensions.join(',');
     const patternLabGlob = [
-      path.normalize(`${patternLabSource}/**/*.{${watchedExtensions}}`),
-      '!**/package.json'
+      'packages/website/user/themes/bolt/pattern-lab/source/_patterns/01-atoms/bolt-*/*.json',
+      'packages/website/user/themes/bolt/pattern-lab/source/_patterns/02-molecules/bolt-*/*.json'
+      // 'packages/website/user/themes/bolt/pattern-lab/source/_patterns/*/*.json',
+      // 'packages/website-pattern-lab/source/_patterns/*/*/*.json'
     ];
+    //   path.normalize(`${patternLabSource}/**/*.{${watchedExtensions}}`),
+    //   '!**/package.json'
+    // ];
+    // const patternLabGlob = [
+    //   path.normalize(`${patternLabSource}/**/*.{${watchedExtensions}}`),
+    //   '!**/package.json'
+    // ];
     const watchedSources = config.extraWatches
       ? [].concat(patternLabGlob, config.extraWatches)
       : patternLabGlob;

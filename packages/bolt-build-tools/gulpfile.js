@@ -1,23 +1,63 @@
+// const gulp = require('gulp');
 const server = require('@bolt/build-server').server;
 const jekyll = require('@bolt/build-jekyll');
 const patternlab = require('@bolt/build-patternlab');
 const styles = require('@bolt/build-styles');
 const symlinks = require('@bolt/build-symlinks');
 const webpackTask = require('@bolt/build-webpack');
+const cache = require('gulp-cached');
+const remember = require('gulp-remember');
+const changed = require('gulp-changed');
+const changedInPlace = require('gulp-changed-in-place');
+
 
 module.exports = (gulp) => {
   const cssConfig = {
     src: [
-      './packages/bolt-toolkit/*.scss',
-      './packages/bolt-toolkit-core/**/_*.*.scss',
-      './packages/bolt-toolkit-ui/**/_*.*.scss'
+      './pattern-lab/src/scss/**/*.scss',
+      // './packages/bolt-toolkit/**/*.scss',
+      // './packages/bolt-toolkit-core/**/_*.*.scss',
+      // './packages/bolt-toolkit-ui/**/_*.*.scss',
+      '!./node_modules/**',
+      '!./packages/**/node_modules/**',
+      '!./packages/**/node_modules/**/*',
       // './packages/bolt-toolkit/bolt-critical-fonts.scss',
-      // '!./packages/**/node_modules/**/*',
     ],
-    data: './packages/website/user/themes/bolt/pattern-lab/source/_data',
-    dest: 'bolt-website/styles',
-    altDest: './packages/website-jekyll/source/_includes',
+    data: './pattern-lab/dist/_data',
+    dest: './pattern-lab/dist/styles',
+    extraWatches: [
+      './packages/bolt-toolkit-core/**/_*.scss',
+      './packages/bolt-toolkit-ui/**/_*.scss',
+      '!./packages/**/node_modules/**',
+      '!./packages/**/node_modules/**/*'
+    ]
+    // altDest: './packages/website-jekyll/source/_includes',
   };
+
+
+  // const jsonToGlob = './.patternlab/_data/**/*.json';
+  //
+  // // gulp.task('watch:json', () => {
+  // //   gulp.watch('./tmp/_data/**/*.json', gulp.series('copy:json'));
+  // //   // .on('change', cache.update('json'));
+  // // });''
+  //
+  // gulp.task('copy:json', () => gulp.src(jsonToGlob)
+  //   .pipe(changedInPlace())
+  //   // .pipe(changed('./packages/website/user/themes/bolt/pattern-lab/source/_data', { hasChanged: changed.compareContents }))
+  //   // .pipe(remember('json'))
+  //   .pipe(gulp.dest('./packages/website/user/themes/bolt/pattern-lab/source/_data')));
+  //
+  // gulp.task('watch:json', () => {
+  //   const watcher = gulp.watch(jsonToGlob, gulp.parallel('copy:json')); // watch the same files in our scripts task
+  //   // watcher.on('change', (event) => {
+  //   //   if (event.type === 'deleted') { // if a file is deleted, forget about it
+  //   //     delete cache.caches.json[event.path];
+  //   //     remember.forget('json', event.path);
+  //   //   }
+  //   // });
+  // });
+
 
   gulp.task('styles:compile', styles.compile(cssConfig));
   gulp.task('styles:watch', styles.watch(cssConfig));
@@ -31,6 +71,9 @@ module.exports = (gulp) => {
   gulp.task('symlinks:clean', symlinks.clean());
   gulp.task('symlinks:watch', symlinks.watch());
   gulp.task('symlinks:gravpl', symlinks.patternLabGrav());
+
+  gulp.task('bolt:packages', symlinks.boltPackages());
+
 
   gulp.task('symlinks', gulp.series([
     'symlinks:clean',
@@ -55,14 +98,14 @@ module.exports = (gulp) => {
   webpackTask.webpack(gulp, webpackConfig, webpackProdConfig, webpackCriticalConfig);
 
 
-  gulp.task('copy:fonts', () =>
-    gulp.src([
-      './packages/bolt-static-assets/bolt-web-fonts/**.woff',
-      './packages/bolt-static-assets/bolt-web-fonts/**.woff2'
-    ])
-      .pipe(gulp.dest('./bolt-website/fonts'))
-    // .pipe( gulp.dest( '../../website-jekyll/fonts' ) )
-  );
+  // gulp.task('copy:fonts', () =>
+  //   gulp.src([
+  //     './packages/bolt-static-assets/bolt-web-fonts/**.woff',
+  //     './packages/bolt-static-assets/bolt-web-fonts/**.woff2'
+  //   ])
+  //     .pipe(gulp.dest('./bolt-website/fonts'))
+  //   // .pipe( gulp.dest( '../../website-jekyll/fonts' ) )
+  // );
 
   // gulp.task( "data", () => {
   //   return gulp.src( [
@@ -74,20 +117,30 @@ module.exports = (gulp) => {
   //   .pipe( plugins.browserSync.reload( {
   //     stream: true
   // }));
+  // gulp.task('setWatch', (done) => {
+  //   global.isWatching = true;
+  //   done();
+  // });
+  // gulp.task('watch', ['setWatch', 'styles:compile'], gulp.series([]));
+
 
   gulp.task('default',
     gulp.series([
-      'symlinks:gravpl',
-      // 'symlinks:clean',
-      'symlinks:create',
-      'copy:fonts',
-      'patternlab:compile',
-      'jekyll:compile',
+      // 'setWatch',
+      // 'symlinks:gravpl',
+      // // 'symlinks:clean',
+      // 'symlinks:create',
+      // 'copy:fonts',
+      // 'patternlab:compile',
+      // 'jekyll:compile',
+      // 'copy:json',
       gulp.parallel([
-        'styles:compile',
-        'webpack:dev',
-        'webpack:critical',
+        // 'watch',
+        // 'styles:compile',
+        // 'webpack:dev',
+        // 'webpack:critical',
         'patternlab:watch',
+        // 'watch:json',
         // 'jekyll:watch',
         'styles:watch',
         'browsersync:serve'

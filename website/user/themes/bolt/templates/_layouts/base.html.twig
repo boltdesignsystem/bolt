@@ -1,0 +1,54 @@
+{% set theme_config = attribute(config.themes, config.system.pages.theme) %}
+<!DOCTYPE html>
+<html lang="{{ grav.language.getLanguage ?: 'en' }}">
+<head>
+    {% block head %}
+        <meta charset="utf-8" />
+        <title>{% if header.title %}{{ header.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
+        {# include '@bolt/metadata.html.twig' #}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="shortcut icon" href="{{ url('theme://assets/favicon.ico') }}" />
+        <link rel="canonical" href="{{ page.url(true, true) }}" />
+
+        {% block stylesheets %}
+            {# {% do assets.addCss('theme://css/somefile.css', 102) %} #}
+        {% endblock %}
+        {{ assets.css() }}
+
+        {% block javascripts %}
+            {# {% do assets.addJs('jquery') %} #}
+            {# {% do assets.addJs('theme://js/somefile.js') %} #}
+        {% endblock %}
+        {{ assets.js() }}
+    {% endblock head %}
+</head>
+
+<body>
+<div class="site">
+
+    <header class="site__header" role="banner">
+        {% block header %}
+        {% endblock %}
+    </header>
+
+
+
+    {% block body %}
+    {% include "@bolt/button.twig" with {
+      text: "Example button"
+    } %}
+
+        {% block content %}{% endblock %}
+    {% endblock %}
+
+    {% block footer %}
+        <footer class="site__footer" role="contentinfo">
+        </footer>
+    {% endblock %}
+
+    {% block bottom %}
+        {{ assets.js('bottom') }}
+    {% endblock %}
+</div>
+</body>
+</html>

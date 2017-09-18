@@ -8,6 +8,7 @@ const path = require('path');
 const yaml = require('js-yaml');
 const merge = require('merge').recursive;
 const defaultConfig = require('./config.default');
+const argv = require('yargs').argv;
 
 const twigPaths = gulpConfig.patternLab.twigNamespaces.sets;
 const patternLabConfig = yaml.safeLoad(
@@ -77,6 +78,77 @@ function createSymlinks(userConfig) {
   return createSymlinksTask;
 }
 module.exports.create = createSymlinks;
+
+
+function boltPackages(userConfig) {
+  const config = merge(defaultConfig, userConfig);
+  const patternsFolder = `${patternLabRoot}/`;
+
+
+  // let packageTypes = [
+  //   'settings',
+  //   'tools',
+  //   'generic',
+  //   'elements',
+  //   'objects',
+  //   'components',
+  //   'themes',
+  //   'utilities'
+  // ];
+  let packageTypes = [
+    '@bolt'
+    // 'tools',
+    // 'generic',
+    // 'elements',
+    // 'objects',
+    // 'components',
+    // 'themes',
+    // 'utilities'
+  ];
+
+  if (argv.filter) {
+    packageTypes = [];
+    packageTypes.push(argv.filter);
+  }
+
+  const unorderedMatches = {};
+  const orderedMatches = {};
+
+
+  const isProduction = argv.production !== undefined;
+
+  function boltPackagesTask(done) {
+    globby(config.packageFolders).then((packages) => {
+      packages.forEach((pkg) => {
+        const pkgJson = `${pkg}/package.json`;
+
+        if (fs.existsSync(pkgJson)) {
+          const pjson = JSON.parse(fs.readFileSync(pkgJson));
+
+          if (packageTypes.some(v => pjson.name.indexOf(v) >= 0)) {
+            unorderedMatches[pjson.name] = pjson.version;
+          }
+        }
+      });
+      Object.keys(unorderedMatches).sort().forEach((key) => {
+        orderedMatches[key] = unorderedMatches[key];
+      });
+      console.log(JSON.stringify(orderedMatches, null, 4));
+      console.log(`Showing ${Object.keys(orderedMatches).length} packages.`);
+      // console.log(JSON.stringify(orderedMatches), null, '');
+      done();
+    });
+  }
+
+  boltPackagesTask.description = 'Lists out all packages in Bolt';
+  boltPackagesTask.displayName = 'bolt:packages';
+
+  boltPackagesTask.flags = {
+    '--filter': 'Only display Bolt packages that contain these strings. `ex. gulp bolt:packages --filter=objects --filter=components`'
+  };
+  return boltPackagesTask;
+}
+module.exports.boltPackages = boltPackages;
 
 
 function patternLabGrav() {

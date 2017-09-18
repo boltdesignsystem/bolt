@@ -1,0 +1,58 @@
+{% set tags = ["h1", "h2", "h3", "h4", "h5", "h6", "p"] %} {# Allowed Tags #}
+{% set weights = ["bold", "regular", "semibold"] %} {# Allowed Weights #}
+{% set types = ["headline", "subheadline", "eyebrow", "text"] %} {# Pre-defined types #}
+{% set transformProps = ["none", "uppercase", "lowercase", "capitalize"] %} {# Pre-defined text transform options #}
+{% set sizes = [
+  "xsmall",
+  "small",
+  "medium",
+  "large",
+  "xlarge",
+  "xxlarge",
+  "xxxlarge"
+] %}
+
+
+{% set _defaultTag = "p" %}
+{% set _defaultWeight = "regular" %}
+{% set _defaultType = "text" %}
+{% set _defaultSize = "medium" %}
+
+
+
+{% set tag = tag in tags ? tag : _defaultTag %}
+{% set weight = weight | default(_defaultWeight) %}
+{% set type = type in types ? type : _defaultType %}
+{% set size = size | default(_defaultSize) %}
+{% set transform = transform | default("") %}
+
+
+
+{% set prefix = "c-bolt-" %}
+{% set baseClass = prefix ~ type %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+
+{% set classes = [
+  baseClass,
+  weight in weights and type == "text" ? baseClass ~ "--" ~ weight : "",
+  size in sizes and type != "eyebrow" ? baseClass ~ "--" ~ size : "",
+  transform in transformProps and transform != "" ? baseClass ~ "--" ~ transform : ""
+] %}
+
+
+<{{ tag }} {{ attributes.addClass(classes | raw) }}>
+  <span class="{{ "#{baseClass}__text" }}">{{ text }}</span>
+</{{ tag }}>
+
+
+
+{# set iconpos = iconpos | default("right") #}
+
+{# <bolt-headline
+    size="{{ size }}"
+    weight="{{ weight }}"
+    type="{{ type }}"
+    level="{{ level }}"
+    bolt-component
+  > </bolt-headline> #}

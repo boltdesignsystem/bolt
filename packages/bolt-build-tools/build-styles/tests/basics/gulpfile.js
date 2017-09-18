@@ -9,7 +9,8 @@ const config = {
   dest: 'dest',
   sassdoc: {
     enabled: false,
-  }
+  },
+  glob: true
 };
 
 

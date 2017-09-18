@@ -1,11 +1,11 @@
 module.exports = {
   configFile: 'pattern-lab/config/config.yml',
   watchedExtensions: [
-    'twig',
+    // 'twig',
     'json',
-    'yaml',
-    'yml',
-    'md'
+    // 'yaml',
+    // 'yml',
+    // 'md'
   ],
   extraWatches: [
   ],

@@ -1,7 +1,7 @@
 module.exports = {
   patternLab: {
     enabled: true,
-    configFile: 'packages/website/user/themes/bolt/pattern-lab/config/config.yml',
+    configFile: 'pattern-lab/config/config.yml',
     twigNamespaces: {
       addToDrupalThemeFile: true,
       sets: [
