@@ -1,41 +1,39 @@
 v: 2.6.0
 overrideConfig: q
 ie:
-  - DS_Store
-  - less
-  - scss
+    - DS_Store
+    - less
+    - scss
 id:
-  - scss
-  - .svn
-  - .sass-cache
-  - scripts
-  - styles
-  - images
+    - scss
+    - .svn
+    - .sass-cache
+    - scripts
+    - styles
+    - images
 cleanPublic: false
 patternStates:
-  - inprogress
-  - inreview
-  - complete
+    - inprogress
+    - inreview
+    - complete
 styleGuideExcludes: ''
 cacheBusterOn: 'true'
 exportDir: export
-publicDir: public
+publicDir: ../bolt-website/pattern-lab
 sourceDir: src
 defaultPattern: all
 defaultShowPatternInfo: false
 ishMinimum: '240'
 ishMaximum: '2600'
 ishControlsHide:
-  - hay
+    - hay
 styleguideKit: pattern-lab/styleguidekit-twig-default
 styleguideKitPath: vendor/pattern-lab/styleguidekit-twig-default
-lineageMatch: >-
-  {%([ ]+)?(?:include|extends|embed)(
-  |\()[&quot;\&#039;]([\/.@A-Za-z0-9-_]+)[&quot;\&#039;]([\s\S+]*?)%}
+lineageMatch: '{%([ ]+)?(?:include|extends|embed)( |\()[&quot;\&#039;]([\/.@A-Za-z0-9-_]+)[&quot;\&#039;]([\s\S+]*?)%}'
 lineageMatchKey: 3
 patternExtension: twig
 twigDebug: false
-twigAutoescape: false
+twigAutoescape: html
 twigDefaultDateFormat: ''
 twigDefaultIntervalFormat: ''
 twigMacroExt: macro.twig
@@ -43,17 +41,14 @@ twigFilterExt: filter.php
 twigFunctionExt: function.php
 twigTagExt: tag.php
 twigTestExt: test.php
-
 extensions:
-  data: .data.json
-  schemas: .json
-  templates: .twig
-  docs: .docs.md
-  sg: .md
-# twigNamespaces:
-#   enabled: true
+    data: .data.json
+    schemas: .json
+    templates: .twig
+    docs: .docs.md
+    sg: .md
 plugins:
-  twigNamespaces:
-    enabled: true
-    roots: {}
-    namespaces:
+    twigNamespaces:
+        enabled: false
+        namespaces: { bolt: { paths: [node_modules/@bolt, node_modules/@bolt/components-band, node_modules/@bolt/components-card, node_modules/@bolt/components-headline, node_modules/@bolt/elements-headings, node_modules/@bolt/elements-images, node_modules/@bolt/elements-links, node_modules/@bolt/elements-paragraphs, node_modules/@bolt/elements-small, node_modules/@bolt/elements-tables, node_modules/@bolt/objects-grid, node_modules/@bolt/objects-ratio, node_modules/@bolt/objects-ui-list, node_modules/@bolt/objects-wrapper, node_modules/@bolt/settings-colors, node_modules/@bolt/templates-default] }, base: { paths: [src/_patterns/01-base] }, components: { paths: [src/_patterns/02-components, src/_patterns/02-components/bolt-buttons] }, collections: { paths: [src/_patterns/03-collections] }, templates: { paths: [src/_patterns/04-templates] }, pages: { paths: [src/_patterns/05-pages] } }
+        roots: {  }

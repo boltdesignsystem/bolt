@@ -159,13 +159,10 @@ function compile(userConfig) {
       .pipe(filter(file => !/\/_/.test(file.path) || !/^_/.test(file.relative)))
       .pipe(debug({ title: 'Sass file: ' }))
       .pipe(sass({
-        // includePaths: [
-        //   'node_modules',
-        //   'packages',
-        //   'sandbox/pattern-library/node_modules',
-        //   'packages/bolt-toolkit/node_modules',
-        //   'sandbox/styleguide/node_modules'
-        // ],
+        includePaths: [
+          'node_modules',
+          'pattern-lab/node_modules'
+        ],
         importer: require('npm-sass').importer,
         functions: exportJson(config.data, 'export_data'),
         outputStyle: 'expanded',

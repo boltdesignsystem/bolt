@@ -8,23 +8,38 @@ module.exports = {
         {
           namespace: 'bolt',
           paths: [
-            'packages/bolt-toolkit-core/04-elements',
-            'packages/bolt-toolkit-core/05-objects',
-            'packages/bolt-toolkit-ui'
-          ],
+            'pattern-lab/node_modules/@bolt'
+          ]
         },
         {
-          namespace: 'atoms',
-          paths: ['packages/website/user/themes/bolt/pattern-lab/source/_patterns/01-atoms'],
-        }, {
-          namespace: 'molecules',
-          paths: ['packages/website/user/themes/bolt/pattern-lab/source/_patterns/02-molecules'],
-        }, {
+          namespace: 'base',
+          paths: [
+            'pattern-lab/src/_patterns/01-base'
+          ]
+        },
+        {
+          namespace: 'components',
+          paths: [
+            'pattern-lab/src/_patterns/02-components'
+          ]
+        },
+        {
+          namespace: 'collections',
+          paths: [
+            'pattern-lab/src/_patterns/03-collections'
+          ]
+        },
+        {
           namespace: 'templates',
-          paths: ['packages/website/user/themes/bolt/pattern-lab/source/_patterns/04-templates'],
-        }, {
+          paths: [
+            'pattern-lab/src/_patterns/04-templates'
+          ]
+        },
+        {
           namespace: 'pages',
-          paths: ['packages/website/user/themes/bolt/pattern-lab/source/_patterns/05-pages'],
+          paths: [
+            'pattern-lab/src/_patterns/05-pages'
+          ]
         }
       ],
     },

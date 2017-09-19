@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "10569e28258aaf540262afaaa47c26b3",
+    "content-hash": "f35c03481ee1b9f4b7822875685ea3f7",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -114,6 +114,154 @@
                 "plugin"
             ],
             "time": "2017-01-02T14:14:09+00:00"
+        },
+        {
+            "name": "bolt/twig-extensions",
+            "version": "dev-feature/v0.3.0-alpha.3",
+            "dist": {
+                "type": "path",
+                "url": "../packages/bolt-twig-extensions",
+                "reference": "74202f1ef01711d86a7df6147cee66c6fbbe2200",
+                "shasum": null
+            },
+            "require": {
+                "gregwar/image": "*",
+                "ksubileau/color-thief-php": "^1.3",
+                "mexitek/phpcolors": "^0.4.0"
+            },
+            "type": "patternlab-plugin",
+            "extra": {
+                "installer-name": "_twig-components"
+            },
+            "autoload": {
+                "psr-0": {
+                    "PatternLab\\TwigExtensions": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Salem Ghoweri",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Custom Twig Extensions Used By Bolt"
+        },
+        {
+            "name": "composer/installers",
+            "version": "v1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/installers.git",
+                "reference": "9ce17fb70e9a38dd8acff0636a29f5cf4d575c1b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/installers/zipball/9ce17fb70e9a38dd8acff0636a29f5cf4d575c1b",
+                "reference": "9ce17fb70e9a38dd8acff0636a29f5cf4d575c1b",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0"
+            },
+            "replace": {
+                "roundcube/plugin-installer": "*",
+                "shama/baton": "*"
+            },
+            "require-dev": {
+                "composer/composer": "1.0.*@dev",
+                "phpunit/phpunit": "4.1.*"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Composer\\Installers\\Plugin",
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Composer\\Installers\\": "src/Composer/Installers"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kyle Robinson Young",
+                    "email": "kyle@dontkry.com",
+                    "homepage": "https://github.com/shama"
+                }
+            ],
+            "description": "A multi-framework Composer library installer",
+            "homepage": "https://composer.github.io/installers/",
+            "keywords": [
+                "Craft",
+                "Dolibarr",
+                "Eliasis",
+                "Hurad",
+                "ImageCMS",
+                "Kanboard",
+                "Lan Management System",
+                "MODX Evo",
+                "Mautic",
+                "Maya",
+                "OXID",
+                "Plentymarkets",
+                "Porto",
+                "RadPHP",
+                "SMF",
+                "Thelia",
+                "WolfCMS",
+                "agl",
+                "aimeos",
+                "annotatecms",
+                "attogram",
+                "bitrix",
+                "cakephp",
+                "chef",
+                "cockpit",
+                "codeigniter",
+                "concrete5",
+                "croogo",
+                "dokuwiki",
+                "drupal",
+                "eZ Platform",
+                "elgg",
+                "expressionengine",
+                "fuelphp",
+                "grav",
+                "installer",
+                "itop",
+                "joomla",
+                "kohana",
+                "laravel",
+                "lavalite",
+                "lithium",
+                "magento",
+                "mako",
+                "mediawiki",
+                "modulework",
+                "moodle",
+                "osclass",
+                "phpbb",
+                "piwik",
+                "ppi",
+                "puppet",
+                "reindex",
+                "roundcube",
+                "shopware",
+                "silverstripe",
+                "sydes",
+                "symfony",
+                "typo3",
+                "wordpress",
+                "yawik",
+                "zend",
+                "zikula"
+            ],
+            "time": "2017-08-09T07:53:48+00:00"
         },
         {
             "name": "cweagans/composer-patches",
@@ -279,7 +427,102 @@
                 "pattern lab",
                 "twig"
             ],
-            "time": "2017-09-01 18:45:52"
+            "time": "2017-09-01T18:45:52+00:00"
+        },
+        {
+            "name": "gregwar/cache",
+            "version": "v1.0.12",
+            "target-dir": "Gregwar/Cache",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Gregwar/Cache.git",
+                "reference": "305d0f5a12c0beecbbd7e1de236f59f39e0c0ac3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Gregwar/Cache/zipball/305d0f5a12c0beecbbd7e1de236f59f39e0c0ac3",
+                "reference": "305d0f5a12c0beecbbd7e1de236f59f39e0c0ac3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Gregwar\\Cache": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gregwar",
+                    "email": "g.passault@gmail.com"
+                }
+            ],
+            "description": "A lightweight file-system cache system",
+            "keywords": [
+                "cache",
+                "caching",
+                "file-system",
+                "system"
+            ],
+            "time": "2016-09-23T08:16:04+00:00"
+        },
+        {
+            "name": "gregwar/image",
+            "version": "dev-master",
+            "target-dir": "Gregwar/Image",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Gregwar/Image.git",
+                "reference": "0630a2442daccc75046e650ded5f02410e9489eb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Gregwar/Image/zipball/0630a2442daccc75046e650ded5f02410e9489eb",
+                "reference": "0630a2442daccc75046e650ded5f02410e9489eb",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "gregwar/cache": "^1.0.6",
+                "php": "^5.3 || ^7.0"
+            },
+            "require-dev": {
+                "sllh/php-cs-fixer-styleci-bridge": "~1.0",
+                "symfony/phpunit-bridge": "^2.7.4 || ^3.0"
+            },
+            "suggest": {
+                "behat/transliterator": "Transliterator provides ability to set non-latin1 pretty names"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Gregwar\\Image": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Grégoire Passault",
+                    "email": "g.passault@gmail.com",
+                    "homepage": "http://www.gregwar.com/"
+                }
+            ],
+            "description": "Image handling",
+            "homepage": "https://github.com/Gregwar/Image",
+            "keywords": [
+                "gd",
+                "image"
+            ],
+            "time": "2017-04-09T10:02:48+00:00"
         },
         {
             "name": "kevinlebrun/colors.php",
@@ -331,6 +574,59 @@
                 "shell"
             ],
             "time": "2016-04-12T20:58:34+00:00"
+        },
+        {
+            "name": "ksubileau/color-thief-php",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ksubileau/color-thief-php.git",
+                "reference": "a673d7d3fa815c70fa4bebdee74d337e9e6944fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ksubileau/color-thief-php/zipball/a673d7d3fa815c70fa4bebdee74d337e9e6944fa",
+                "reference": "a673d7d3fa815c70fa4bebdee74d337e9e6944fa",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8|~5.7",
+                "squizlabs/php_codesniffer": "~2.7"
+            },
+            "suggest": {
+                "ext-gd": "to use the GD image adapter.",
+                "ext-gmagick": "to use the Gmagick image adapter.",
+                "ext-imagick": "to use the Imagick image adapter."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ColorThief\\": "lib/ColorThief"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "CC-BY-2.5"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Subileau",
+                    "homepage": "http://www.kevinsubileau.fr"
+                }
+            ],
+            "description": "Grabs the dominant color or a representative color palette from an image.",
+            "homepage": "http://www.kevinsubileau.fr/projets/color-thief-php",
+            "keywords": [
+                "color",
+                "dominant",
+                "palette",
+                "php",
+                "thief"
+            ],
+            "time": "2016-12-18T03:12:25+00:00"
         },
         {
             "name": "mexitek/phpcolors",
@@ -429,6 +725,48 @@
             "time": "2016-10-29T18:58:20+00:00"
         },
         {
+            "name": "oomphinc/composer-installers-extender",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oomphinc/composer-installers-extender.git",
+                "reference": "ca1c4b16b0905c81d1e77e608f36a2eff1a56f56"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oomphinc/composer-installers-extender/zipball/ca1c4b16b0905c81d1e77e608f36a2eff1a56f56",
+                "reference": "ca1c4b16b0905c81d1e77e608f36a2eff1a56f56",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "composer/installers": "^1.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "OomphInc\\ComposerInstallersExtender\\Plugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "OomphInc\\ComposerInstallersExtender\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stephen Beemsterboer",
+                    "email": "stephen@oomphinc.com",
+                    "homepage": "https://github.com/balbuf"
+                }
+            ],
+            "description": "Extend the composer/installers plugin to accept any arbitrary package type.",
+            "homepage": "http://www.oomphinc.com/",
+            "time": "2017-03-31T16:57:39+00:00"
+        },
+        {
             "name": "pattern-lab/core",
             "version": "v2.8.1",
             "source": {
@@ -458,7 +796,7 @@
             "type": "library",
             "extra": {
                 "patches_applied": {
-                    "[FEATURE] Allow default Pattern Data configuration rules to be disabled. Also adds ability to add on extra Pattern Data rules to customize and extend default Pattern Lab behavior.": "patches/configurablePatternDataRules.patch"
+                    "[FEATURE] Allow default Pattern Data configuration rules to be disabled. Also adds ability to add on extra Pattern Data rules to customize and extend default Pattern Lab behavior.": ".patches/configurablePatternDataRules.patch"
                 }
             },
             "autoload": {
@@ -823,12 +1161,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "807df6df951dba375fc8dc766a36a012360e9ce8"
+                "reference": "2766c22a2a7d2a8317c575c2912f61ed39684107"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/807df6df951dba375fc8dc766a36a012360e9ce8",
-                "reference": "807df6df951dba375fc8dc766a36a012360e9ce8",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/2766c22a2a7d2a8317c575c2912f61ed39684107",
+                "reference": "2766c22a2a7d2a8317c575c2912f61ed39684107",
                 "shasum": ""
             },
             "require": {
@@ -878,7 +1216,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2017-09-11T20:45:17+00:00"
+            "time": "2017-09-15T10:12:22+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -886,12 +1224,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "e4d366b620c8b6e2d4977c154f6a1d5b416db4dd"
+                "reference": "9cc3a81095fae8ec0654f7b568108e78ef893fc9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/e4d366b620c8b6e2d4977c154f6a1d5b416db4dd",
-                "reference": "e4d366b620c8b6e2d4977c154f6a1d5b416db4dd",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/9cc3a81095fae8ec0654f7b568108e78ef893fc9",
+                "reference": "9cc3a81095fae8ec0654f7b568108e78ef893fc9",
                 "shasum": ""
             },
             "require": {
@@ -927,7 +1265,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2017-08-03T09:34:20+00:00"
+            "time": "2017-09-15T10:12:22+00:00"
         },
         {
             "name": "symfony/finder",
@@ -935,12 +1273,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "c661886c5a8f6398300812ae31445cd078af2a57"
+                "reference": "985b4788f55362bb73e632c431221d5887bded12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/c661886c5a8f6398300812ae31445cd078af2a57",
-                "reference": "c661886c5a8f6398300812ae31445cd078af2a57",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/985b4788f55362bb73e632c431221d5887bded12",
+                "reference": "985b4788f55362bb73e632c431221d5887bded12",
                 "shasum": ""
             },
             "require": {
@@ -976,7 +1314,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2017-09-11T20:45:17+00:00"
+            "time": "2017-09-15T10:12:22+00:00"
         },
         {
             "name": "symfony/process",
@@ -984,12 +1322,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "19d5369c0b38820685adeb119e717e292df2b46b"
+                "reference": "7e63d481ba38355ee24039a029fb0e1ce7251e79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/19d5369c0b38820685adeb119e717e292df2b46b",
-                "reference": "19d5369c0b38820685adeb119e717e292df2b46b",
+                "url": "https://api.github.com/repos/symfony/process/zipball/7e63d481ba38355ee24039a029fb0e1ce7251e79",
+                "reference": "7e63d481ba38355ee24039a029fb0e1ce7251e79",
                 "shasum": ""
             },
             "require": {
@@ -1025,7 +1363,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2017-09-11T21:23:16+00:00"
+            "time": "2017-09-15T10:12:22+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -1033,12 +1371,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "c076a2d6f809130a84f99616b425b9665b3ce0a5"
+                "reference": "a0e15688972f012156cf1ffa076fe1203bce6bc9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/c076a2d6f809130a84f99616b425b9665b3ce0a5",
-                "reference": "c076a2d6f809130a84f99616b425b9665b3ce0a5",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/a0e15688972f012156cf1ffa076fe1203bce6bc9",
+                "reference": "a0e15688972f012156cf1ffa076fe1203bce6bc9",
                 "shasum": ""
             },
             "require": {
@@ -1083,7 +1421,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-09-04T13:18:59+00:00"
+            "time": "2017-09-17T10:10:45+00:00"
         },
         {
             "name": "twig/twig",
@@ -1155,7 +1493,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "evanlovely/plugin-twig-namespaces": 20
+        "evanlovely/plugin-twig-namespaces": 20,
+        "oomphinc/composer-installers-extender": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

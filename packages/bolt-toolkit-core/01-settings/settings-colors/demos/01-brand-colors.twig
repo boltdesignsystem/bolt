@@ -1,0 +1,10 @@
+<div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small">
+  {% for colorName, palette in bolt_brand_colors %}
+    {% include "_color.twig" with {
+      color_swatch: {
+        colorName: colorName,
+        palette: palette
+      }
+    } %}
+  {% endfor %}
+</div>

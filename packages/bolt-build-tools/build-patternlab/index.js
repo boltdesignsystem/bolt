@@ -74,6 +74,7 @@ function addTwigNamespaceConfigToPl(done) {
   // plConfig = yaml.safeLoad(
   //   fs.readFileSync(config.configFile, 'utf8')
   // );
+  console.log(twigNamespaceConfig);
   if (!patternLabConfig.plugins) {
     Object.assign(patternLabConfig, {
       plugins: {
@@ -99,7 +100,7 @@ function addTwigNamespaceConfigToPl(done) {
 }
 
 core.events.on('pattern-lab:precompile', () => {
-  if (patternLabConfig.twigNamespaces) {
+  if (patternLabConfig.plugins.twigNamespaces) {
     addTwigNamespaceConfigToPl(() => {
       addTwigNamespaceConfigToDrupal(() => {});
     });

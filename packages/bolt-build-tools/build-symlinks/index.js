@@ -107,8 +107,10 @@ function boltPackages(userConfig) {
   ];
 
   if (argv.filter) {
-    packageTypes = [];
-    packageTypes.push(argv.filter);
+    // packageTypes = [];
+    packageTypes = argv.filter;
+    console.log(packageTypes);
+    // packageTypes.push(argv.filter);
   }
 
   const unorderedMatches = {};

@@ -16,6 +16,7 @@ module.exports = {
     dest: './bolt-website/sassdoc'
   },
   sourceMaps: !util.env.production,
-  failAfterError: false
+  failAfterError: false,
+  glob: true
   // failAfterError: util.env.production
 };

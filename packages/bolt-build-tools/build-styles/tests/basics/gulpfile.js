@@ -1,5 +1,5 @@
 const gulp = require('gulp');
-const styles = require('../../index.js');
+const styles = require('@bolt/build-styles');
 
 const config = {
   src: [
