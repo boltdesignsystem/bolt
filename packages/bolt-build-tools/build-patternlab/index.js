@@ -39,9 +39,10 @@ function getTwigNamespaceConfig(workingDir) {
   const twigNamespaceConfig = {};
   twigNamespaces.sets.forEach((namespaceSet) => {
     const pathArray = namespaceSet.paths.map((pathBase) => {
-      const results = glob.sync(path.join(pathBase, '**/*.twig')).map((pathItem) => { // eslint-disable-line arrow-body-style
+      const results = glob.sync(path.join(pathBase, '**/**/*.twig')).map((pathItem) => { // eslint-disable-line arrow-body-style
         return path.relative(workingDir, path.dirname(pathItem));
       });
+
       results.unshift(path.relative(workingDir, pathBase));
       return results;
     });
@@ -74,7 +75,6 @@ function addTwigNamespaceConfigToPl(done) {
   // plConfig = yaml.safeLoad(
   //   fs.readFileSync(config.configFile, 'utf8')
   // );
-  console.log(twigNamespaceConfig);
   if (!patternLabConfig.plugins) {
     Object.assign(patternLabConfig, {
       plugins: {
@@ -92,8 +92,6 @@ function addTwigNamespaceConfigToPl(done) {
 
   const newConfigFile = yaml.safeDump(patternLabConfig);
 
-  // console.log(newConfigFile);
-  // console.log(patternLabConfig);
 
   fs.writeFileSync(gulpConfig.patternLab.configFile, newConfigFile, 'utf8');
   done();
@@ -138,12 +136,8 @@ function watchPatternLab(userConfig) {
   function watchPatternLabTask() {
     const watchedExtensions = config.watchedExtensions.join(',');
     const patternLabGlob = [
-      'packages/website/user/themes/bolt/pattern-lab/source/_patterns/01-atoms/bolt-*/*.json',
-      'packages/website/user/themes/bolt/pattern-lab/source/_patterns/02-molecules/bolt-*/*.json'
-      // 'packages/website/user/themes/bolt/pattern-lab/source/_patterns/*/*.json',
-      // 'packages/website-pattern-lab/source/_patterns/*/*/*.json'
+      path.normalize(`${patternLabSource}/**/*.{${watchedExtensions}}`)
     ];
-    //   path.normalize(`${patternLabSource}/**/*.{${watchedExtensions}}`),
     //   '!**/package.json'
     // ];
     // const patternLabGlob = [

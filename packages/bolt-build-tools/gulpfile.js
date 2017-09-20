@@ -131,7 +131,7 @@ module.exports = (gulp) => {
       // // 'symlinks:clean',
       // 'symlinks:create',
       // 'copy:fonts',
-      'patternlab:compile',
+      'patternlab:recompile',
       // 'jekyll:compile',
       // 'copy:json',
       gulp.parallel([

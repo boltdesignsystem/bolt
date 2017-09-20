@@ -19,8 +19,9 @@
     "clean:git": "git clean -xdf",
     "clean:all": "npm run clean:git && npm run clean:lerna",
     "lint": "npm-run-all --parallel lint:* -c",
-    "mocha": "mocha packages/**/*/tests",
-    "mocha:compile": "mocha packages/**/*/tests/compile",
+    "mocha": "npm run mocha:settings && npm run mocha:build-tools",
+    "mocha:build-tools": "mocha ./packages/**/build-*/tests/*.test.js",
+    "mocha:settings": "mocha **/settings-*/tests/*.test.js",
     "deploy": "node packages/bolt-build-tools/build-slack/index.js",
     "postinstall": "npm run bootstrap && npm run setup:composer",
     "prepublishOnly": "npm run snyk-protect",
@@ -35,7 +36,6 @@
     "snyk-protect": "snyk protect",
     "start": "serve ./boltdesignsystem --single",
     "test": "npm run mocha",
-    "test:scss": "./packages/**/*/tests/scss/sass*.test.js",
     "pretest": "npm run lint:scss && node scripts/check-imports.js"
   },
   "pre-commit": [

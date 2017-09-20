@@ -34,33 +34,36 @@
       {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
         <ul class="o-bolt-ui-list">
           <li class="o-bolt-ui-list__item">
-            {% include "@bolt/h3.twig" with {
+            {% include "@bolt/headline.twig" with {
               text: "Speed",
-              size: "small"
+              size: "small",
+              tag: "h3"
             } %}
-            {% include "@bolt/p.twig" with {
+            {% include "@bolt/paragraph.twig" with {
               text: "Design and develop faster.",
               size: "medium"
             } %}
           </li>
 
           <li class="o-bolt-ui-list__item">
-            {% include "@bolt/h3.twig" with {
+            {% include "@bolt/headline.twig" with {
               text: "Stable",
-              size: "small"
+              size: "small",
+              tag: "h3"
             } %}
-            {% include "@bolt/p.twig" with {
+            {% include "@bolt/paragraph.twig" with {
               text: "Predictable, automated testing coverage, and scalable.",
               size: "medium"
             } %}
           </li>
 
           <li class="o-bolt-ui-list__item">
-            {% include "@bolt/h3.twig" with {
+            {% include "@bolt/headline.twig" with {
               text: "Stunning",
-              size: "small"
+              size: "small",
+              tag: "h3"
             } %}
-            {% include "@bolt/p.twig" with {
+            {% include "@bolt/paragraph.twig" with {
               text: "On brand, consistent, elegant.",
               size: "medium"
             } %}

@@ -1,0 +1,37 @@
+{% set tags = ["ul", "ol"] %} {# Available Headline Types #}
+{% set prefix = "o-bolt-" %}
+
+{% set sizes = [
+  "small",
+  "medium",
+  "large"
+] %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set componentName = "ui-list" %}
+{% set baseClass = prefix ~ componentName %}
+{% set size = size | default("medium") %}
+{% set tag = tag in tags ? tag: "ul" %}
+
+
+{% set classes = [
+  baseClass,
+  size in sizes ? baseClass ~ "--" ~ size : "",
+] %}
+
+
+{% if items %}
+  <bolt-ui-list
+    size="{{ size }}"
+    bolt-object
+  >
+    <{{ tag }} {{ attributes.addClass(classes) }}>
+      {% for item in items %}
+        <li class="{{ "#{baseClass}__item" }}">
+          {{ item.text | raw }}
+        </li>
+      {% endfor %}
+    </{{ tag }}>
+  </bolt-ui-list>
+{% endif %}

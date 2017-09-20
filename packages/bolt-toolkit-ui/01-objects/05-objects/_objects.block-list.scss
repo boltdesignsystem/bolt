@@ -1,0 +1,41 @@
+/* ==========================================================================
+   #BLOCK-LIST
+   ========================================================================== */
+
+/**
+ * The block-list object creates blocky list items out of a `ul` or `ol`.
+ */
+
+@include add-module(
+  $name:    'objects.block-list',
+  $version: '1.0.0',
+  $dependencies: ()
+);
+
+$block-list-spacing:          $spacing-unit !default;
+
+.o-block-list,
+%o-block-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  > li {
+    @extend %o-block-list__item;
+  }
+}
+
+
+%o-block-list__item,
+.o-block-list__item {
+  padding: $block-list-spacing;
+}
+
+
+%o-block-list--small,
+.o-block-list--small {
+  > %o-block-list__item,
+  > .o-block-list__item {
+    padding: ($block-list-spacing / 2) $block-list-spacing;
+  }
+}

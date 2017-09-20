@@ -1,0 +1,35 @@
+{% extends "@molecules/lists/ui-list/ui-list.twig" %}
+
+{% block ui_list_item %}
+  {% if item.title %}
+    <h4 class="c-headline c-headline--xsmall c-headline--uppercase c-headline--muted c-headline--semibold">
+      {{ item.title }}
+    </h4>
+  {% endif %}
+  
+  {% if item.excert.text %}
+    {% if item.excert.href %}
+      {% include "@atoms/text/paragraph/paragraph.twig" with {
+        paragraph: {
+          text: link(item.excert.text, item.excert.href, "")
+        }
+      } %}
+    {% else %}
+      {% include "@atoms/text/paragraph/paragraph.twig" with {
+        paragraph: {
+          text: item.excert.text
+        }
+      } %}
+    {% endif %}
+  {% endif %}
+  
+  {% if item.link.text %}
+    {% include "@atoms/links/link.twig" with {
+      link: {
+        text: item.link.text,
+        classes: "c-text--loud u-font-size-small",
+        href: item.link.href
+      }
+    } %}
+  {% endif %}
+{% endblock %}

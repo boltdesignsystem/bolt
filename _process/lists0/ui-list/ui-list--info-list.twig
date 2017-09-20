@@ -1,0 +1,43 @@
+{% extends "@molecules/lists/ui-list/ui-list.twig" %}
+
+{% block ui_list_item %}
+  {% if item.title %}
+    {% include "@atoms/text/headings/h4.twig" with {
+      heading: {
+        text_transform: "uppercase",
+        size: "small",
+        style: "muted",
+        weight: "semibold",
+        attributes: {
+          class: [
+            "u-margin-bottom-xsmall"
+          ]
+        },
+        text: item.title
+      }
+    } only %}    
+  {% endif %}
+  
+  {% if item.excert.text %}
+    {% if item.excert.href %}
+      {% include "@atoms/text/paragraph/paragraph.twig" with {
+        paragraph: {
+          text: link(item.excert.text, item.excert.href, "")
+        }
+      } only %}
+    {% else %}
+      {% include "@atoms/text/paragraph/paragraph.twig" with {
+        paragraph: {
+          text: item.excert.text
+        }
+      } only %}
+    {% endif %}
+  {% endif %}
+  
+  {% if item.link %}
+    {% include "@atoms/links/link.twig" with {
+      link: item.link
+    } only %}
+  {% endif %}
+  
+{% endblock %}

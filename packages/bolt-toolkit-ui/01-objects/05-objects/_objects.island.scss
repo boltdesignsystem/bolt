@@ -1,0 +1,62 @@
+/* ==========================================================================
+   #ISLAND
+   ========================================================================== */
+
+/**
+ * Simple, boxed off content, as per: csswizardry.com/2011/10/the-island-object
+ * E.g.:
+ *
+   <div class="o-island">
+       I am boxed off.
+   </div>
+ *
+ * Demo: jsfiddle.net/inuitcss/u8pV3
+ *
+ */
+
+@include add-module(
+  $name:    'objects.island',
+  $version: '1.0.0',
+  $dependencies: (
+    'settings.global': '1.0.0'
+  )
+);
+
+%o-island,
+.o-island {
+  @include clearfix();
+  padding: $spacing-unit;
+  display: block;
+  width: 100%;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+
+/**
+ * Just like `.o-island`, only smaller.
+ */
+.o-island--small,
+%o-island--small {
+  padding: $spacing-unit / 2;
+}
+
+
+/**
+ * Just like `.o-island`, only larger.
+ */
+.o-island--large,
+%o-island--large {
+  padding: $spacing-unit-large;
+}
+
+
+/**
+ * Just like `.o-island`, only larger.
+ */
+.o-island--huge,
+%o-island--huge {
+  padding: $spacing-unit-xlarge;
+}

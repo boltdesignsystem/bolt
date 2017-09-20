@@ -1,0 +1,7 @@
+{% extends "@molecules/lists/inline-list/inline-list.twig" %}
+
+{% block inline_list_item %}
+  {% if item.text %}
+    {{ item.text }}
+  {% endif %}
+{% endblock %}

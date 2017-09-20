@@ -1,0 +1,40 @@
+{% set fullBleed = [true, false] %}
+{% set themes = ["", "xlight", "light", "dark", "xdark"] %}
+{% set prefix = "c-bolt-" %}
+
+{# Allowed Band Sizes #}
+{% set sizes = [
+  "small",
+  "medium",
+  "large"
+] %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Defaults for a vanilla `Button` component #}
+{% set componentName = "band" %}
+{% set baseClass = prefix ~ componentName %}
+{% set size = size | default("medium") %}
+{% set fullBleed = fullBleed | default(false) %}
+{% set theme = theme | default("") %}
+
+{% set classes = [
+  baseClass,
+  size in sizes ? baseClass ~ "--" ~ size : "",
+  fullBleed == true ? baseClass ~ "--" ~ "full" : "",
+  theme in themes ? "t-bolt-" ~ theme : ""
+] %}
+
+<bolt-band
+  size="{{ size }}"
+  theme="{{ theme }}"
+  bolt-component>
+  <div {{ attributes.addClass(classes) }}>
+    <div class="o-bolt-wrapper">
+      <div class="{{ "#{baseClass}__content" }}">
+        {% block band_background %}{% endblock %}
+        {% block band_content %}{% endblock %}
+      </div>
+    </div>
+  </div>
+</bolt-band>
