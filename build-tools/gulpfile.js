@@ -131,7 +131,7 @@ module.exports = (gulp) => {
       // // 'symlinks:clean',
       // 'symlinks:create',
       // 'copy:fonts',
-      // 'styles:compile',
+      'styles:compile',
       'patternlab:recompile',
       // 'jekyll:compile',
       // 'copy:json',
@@ -140,9 +140,8 @@ module.exports = (gulp) => {
         // 'webpack:dev',
         // 'webpack:critical',
         'patternlab:watch',
-        // 'watch:json',
         // 'jekyll:watch',
-        // 'styles:watch',
+        'styles:watch',
         'browsersync:serve'
       ]),
     ])
