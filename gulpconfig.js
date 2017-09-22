@@ -1,47 +1,18 @@
 module.exports = {
   patternLab: {
     enabled: true,
-    configFile: 'pattern-lab/config/config.yml',
+    configFile: 'config/config.yml',
     twigNamespaces: {
       addToDrupalThemeFile: true,
       sets: [
         {
           namespace: 'bolt',
           paths: [
-            'pattern-lab/node_modules/@bolt'
-          ]
-        },
-        {
-          namespace: 'base',
-          paths: [
-            'pattern-lab/src/_patterns/01-base'
-          ]
-        },
-        {
-          namespace: 'components',
-          paths: [
-            'pattern-lab/src/_patterns/02-components'
-          ]
-        },
-        {
-          namespace: 'collections',
-          paths: [
-            'pattern-lab/src/_patterns/03-collections'
-          ]
-        },
-        {
-          namespace: 'templates',
-          paths: [
-            'pattern-lab/src/_patterns/04-templates'
-          ]
-        },
-        {
-          namespace: 'pages',
-          paths: [
-            'pattern-lab/src/_patterns/05-pages'
+            // 'node_modules/@bolt',
+            'src/_patterns'
           ]
         }
-      ],
+      ]
     },
   },
   browserSync: {

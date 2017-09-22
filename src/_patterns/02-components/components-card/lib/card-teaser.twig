@@ -1,0 +1,10 @@
+{% extends "@bolt/_card.twig" %}
+
+{% block card_content %}
+  {% if image %}
+    {% include "@bolt/image.twig" with image only %}
+  {% endif %}
+  {% if teaser %}
+    {% include "@bolt/teaser.twig" with teaser only %}
+  {% endif %}
+{% endblock %}

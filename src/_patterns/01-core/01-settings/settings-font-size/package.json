@@ -1,0 +1,47 @@
+{
+  "name": "@bolt/settings-font-size",
+  "description": "Font Size Settings",
+  "keywords": [
+    "bolt design system",
+    "bolt",
+    "css framework",
+    "design system",
+    "typography",
+    "modular scale"
+  ],
+  "version": "0.6.0",
+  "maintainers": [
+    {
+      "name": "Salem Ghoweri",
+      "email": "me@salemghoweri.com",
+      "web": "https://github.com/sghoweri"
+    },
+    {
+      "name": "Mike Mai",
+      "email": "boss@mikemai.net",
+      "web": "http://mikemai.net/"
+    }
+  ],
+  "homepage": "https://boltdesignsystem.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bolt-design-system/bolt/tree/master/packages/bolt-toolkit-core/settings/settings-font-size"
+  },
+  "bugs": {
+    "url": "https://github.com/bolt-design-system/bolt/issues"
+  },
+  "style": "_settings.font-size.scss",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@bolt/settings-breakpoints": "^0.5.0",
+    "@bolt/settings-global": "^0.5.0",
+    "@bolt/tools-breakpoint": "^0.0.0",
+    "@bolt/tools-px-to-rem": "^0.0.0"
+  },
+  "scripts": {
+    "getName": "echo $npm_package_name"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Quote",
+  "category": "component",
+  "type": "object",
+  "format": "grid",
+  "properties": {
+    "name": {
+      "type": "string",
+      "enum": ["quote"],
+      "options": {
+        "hidden": true
+      }
+    },
+    "quotation": {
+      "title": "Quote Text",
+      "type": "string",
+      "format": "textarea"
+    },
+    "attribution": {
+      "title": "Attribution",
+      "required": ["name"],
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Attribution",
+          "description": "Who said it?",
+          "type": "string"
+        },
+        "title": {
+          "title": "Attribution Title",
+          "description": "What is their job title?",
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": ["quotation", "attribution"],
+  "additionalProperties": false
+}

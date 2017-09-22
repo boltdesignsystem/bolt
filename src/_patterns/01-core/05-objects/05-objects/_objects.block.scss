@@ -1,0 +1,85 @@
+/* ==========================================================================
+   #BLOCK
+   ========================================================================== */
+
+/**
+ * Stacked image-with-text object. A simple abstraction to cover a very commonly
+ * occurring design pattern.
+ */
+
+@include add-module(
+  $name:    'objects.block',
+  $version: '1.0.0',
+  $dependencies: (
+    'settings.global': '1.0.0'
+  )
+);
+
+$block-gutter:           $spacing-unit        !default;
+$block-gutter--tiny:     $spacing-unit * 0.25 !default;
+$block-gutter--small:    $spacing-unit * 0.5  !default;
+$block-gutter--large:    $spacing-unit * 2    !default;
+$block-gutter--huge:     $spacing-unit * 4    !default;
+
+
+.o-block,
+%o-block {
+  display: block;
+}
+
+
+.o-block__image,
+%o-block__image {
+  margin-bottom: $block-gutter;
+
+  // No space between the image and the text content.
+  .o-block--flush > &,
+  %o-block--flush > & {
+    margin-bottom: 0;
+  }
+
+  // Tiny space between the image and the text content.
+  .o-block--tiny > &,
+  %o-block--tiny > & {
+    margin-bottom: $block-gutter--tiny;
+  }
+
+  // Small space between the image and the text content.
+  .o-block--small > &,
+  %o-block--small > & {
+    margin-bottom: $block-gutter--small;
+  }
+
+  // Large space between the image and the text content.
+  .o-block--large > &,
+  %o-block--large > & {
+    margin-bottom: $block-gutter--large;
+  }
+
+  // Huge space between the image and the text content.
+  .o-block--huge > &,
+  %o-block--huge > & {
+    margin-bottom: $block-gutter--huge;
+  }
+}
+
+
+// Text-content.
+.o-block__body,
+%o-block__body {
+  display: block;
+}
+
+
+// Right-aligned blocks.
+.o-block--right,
+%o-block--right {
+  text-align: right;
+}
+
+
+// Center-aligned blocks.
+.o-block--center,
+%o-block--center {
+  text-align: center;
+}

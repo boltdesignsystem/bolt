@@ -1,0 +1,46 @@
+/* ==========================================================================
+   #LIST-INLINE
+   ========================================================================== */
+
+@include add-module(
+  $name:    'objects.inline-list',
+  $version: '1.0.0',
+  $dependencies: ()
+);
+
+/**
+ * The inline-list object simply displays a list of items in one line.
+ */
+
+// Predefine the variables below in order to alter and enable specific features.
+$inuit-inline-list-delimit-character:   '|\00A0' !default;
+
+.o-inline-list,
+%o-inline-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+%o-inline-list__item,
+.o-inline-list__item {
+  display: inline-block; //vs. using display: inline which can cause individual characters to wrap in inexpected (or unwanted) ways 
+}
+
+
+/**
+ * Comma delimited list to semantically mark up lists of tags, etc.
+ *
+ * N.B. This component requires that you remove the whitespace between LIs.
+ *      The simplest (and valid) way to achieve this is by omitting the
+ *      closing `</li>` tag.
+ */
+
+.o-inline-list--delimited,
+%o-inline-list--delimited {
+  > * + * {
+    &:before {
+      content: '#{$inuit-inline-list-delimit-character}';
+    }
+  }
+}

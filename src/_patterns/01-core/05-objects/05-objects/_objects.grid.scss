@@ -1,0 +1,231 @@
+/* ==========================================================================
+   #GRID
+   ========================================================================== */
+
+@include add-module(
+  $name:    'objects.grid',
+  $version: '1.1.0',
+  $dependencies: (
+    'settings.global': '1.0.0'
+  )
+);
+
+%o-grid,
+.o-grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-left: -$spacing-unit;
+  letter-spacing: -0.32em;
+  flex: 1 1 auto; //Automatically auto fill any available space, in case a grid is nested inside of a flexbox-friendly parent container.
+
+  // //Fallback in case some piece of inner content inside an o-grid container isn't in an o-grid__item. This should prevent text from breaking in case this should ever occur.
+  // > *:not(.o-grid__item){
+  //   letter-spacing: normal;
+  // }
+}
+
+%o-grid--rev
+%o-grid__item,
+.o-grid__item {
+  display: inline-block;
+  vertical-align: top;
+  padding-left: $spacing-unit;
+  letter-spacing: normal;
+}
+
+
+%o-grid--rev,
+.o-grid--rev {
+  direction: rtl;
+
+  > %o-grid__item,
+  > .o-grid__item {
+    direction: ltr;
+  }
+}
+
+
+/**
+ * Gutterless grids have all the properties of regular grids, minus any spacing.
+ * Extends `.o-grid`.
+ */
+%o-grid--full,
+.o-grid--full {
+  margin-left: 0;
+}
+
+%o-grid__item--full,
+.o-grid--full > .o-grid__item {
+  padding-left: 0;
+}
+
+
+/**
+ * Centered grids align grid items centrally without needing to use push or pull
+ * classes. Extends `.o-grid`.
+ */
+%o-grid--center,
+.o-grid--center {
+  text-align: center;
+  justify-content: center;
+
+  > %o-grid__item,
+  > .o-grid__item {
+    text-align: left;
+  }
+}
+
+
+/**
+ * Align grid cells vertically (`.o-grid--middle` or `.o-grid--bottom`). Extends
+ * `.o-grid`.
+ */
+%o-grid--middle,
+.o-grid--middle {
+  &.o-grid--flex,
+  &%o-grid--flex {
+    align-items: center;
+  }
+
+  > %o-grid__item,
+  > .o-grid__item {
+    vertical-align: middle;
+  }
+}
+
+%o-grid--bottom,
+.o-grid--bottom {
+  > %o-grid__item,
+  > .o-grid__item {
+    vertical-align: bottom;
+  }
+}
+
+
+/**
+ * Align the entire grid to the right. Extends `.grid`.
+ */
+%o-grid--right,
+.o-grid--right {
+  text-align: right;
+  justify-content: flex-end;
+
+  > %o-grid__item,
+  > .o-grid__item {
+    text-align: left;
+  }
+}
+
+
+.o-grid__item--middle {
+  align-self: center;
+  vertical-align: middle;
+}
+
+
+.o-grid__item--top {
+  align-self: flex-start;
+  vertical-align: top;
+}
+
+.o-grid__item--bottom {
+  align-self: flex-end;
+  vertical-align: bottom;
+}
+
+
+%o-grid--xsmall,
+.o-grid--xsmall {
+  margin-left: -$spacing-unit-xsmall;
+
+  > %o-grid__item,
+  > .o-grid__item {
+    padding-left: $spacing-unit-xsmall;
+  }
+}
+
+%o-grid--small,
+.o-grid--small {
+  margin-left: -$spacing-unit-small;
+
+  > %o-grid__item,
+  > .o-grid__item {
+    padding-left: $spacing-unit-small;
+  }
+}
+
+/**
+ * Extra wide gutters
+ */
+%o-grid--large,
+.o-grid--large {
+  margin-left: -$spacing-unit-medium;
+
+  @include respond-to(small) {
+    margin-left: -$spacing-unit-large;
+  }
+
+  > %o-grid__item,
+  > .o-grid__item {
+    padding-left: $spacing-unit-medium;
+
+    @include respond-to(small) {
+      padding-left: $spacing-unit-large;
+    }
+  }
+}
+
+/**
+ * Extra wide gutters
+ */
+%o-grid--xlarge,
+.o-grid--xlarge {
+  margin-left: -$spacing-unit-large;
+
+  @include respond-to(small) {
+    margin-left: -$spacing-unit-xlarge;
+  }
+
+  > %o-grid__item,
+  > .o-grid__item {
+    padding-left: $spacing-unit-large;
+
+    @include respond-to(small) {
+      padding-left: $spacing-unit-xlarge;
+    }
+  }
+}
+
+/**
+ * Extra extra wide gutters
+ */
+%o-grid--xxlarge,
+.o-grid--xxlarge {
+  margin-left: -$spacing-unit-large * 2;
+
+  @include respond-to(small) {
+    margin-left: -$spacing-unit-xlarge * 2;
+  }
+
+  > %o-grid__item,
+  > .o-grid__item {
+    padding-left: $spacing-unit-large * 2;
+
+    @include respond-to(small) {
+      padding-left: $spacing-unit-xlarge * 2;
+    }
+  }
+}
+
+
+%o-grid--flex,
+.o-grid--flex {
+  display: flex;
+  flex-flow: row wrap;
+
+  > .o-grid__item {
+    display: flex;
+    flex-direction: column;
+  }
+}

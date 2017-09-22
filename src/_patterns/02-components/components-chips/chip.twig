@@ -1,0 +1,38 @@
+
+{% set tags = ["span", "a"] %} {# Available Headline Types #}
+{% set prefix = "c-bolt-" %}
+{% set sizes = [
+  "small",
+  "medium",
+  "large",
+] %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+
+{% set componentName = "chip" %}
+{% set baseClass = prefix ~ componentName %}
+{% set size = size | default("medium") %}
+{% set tag = tag in tags ? tag: "a" %}
+
+
+{% set classes = [
+  baseClass,
+  size in sizes ? baseClass ~ "--" ~ size : "",
+  style in styles ? baseClass ~ "--" ~ style : ""
+] %}
+
+
+{% if url %}
+  {% set attributes = attributes.setAttribute("href", url) %}
+{% endif %}
+
+
+<bolt-chip
+  size="{{ size }}"
+  bolt-component
+>
+  <{{ tag }} {{ attributes.addClass(classes | raw) }}>
+    <span class="{{ "#{baseClass}__text" }}">{{ text }}</span>
+  </{{ tag }}>
+</bolt-chip>
