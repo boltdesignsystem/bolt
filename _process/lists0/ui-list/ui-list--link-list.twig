@@ -1,9 +1,0 @@
-{% extends "@molecules/lists/ui-list/ui-list.twig" %}
-
-{% block ui_list_item %}
-  {% if item.link %}
-    {% include "@atoms/links/link.twig" with {
-      link: item.link
-    } %}
-  {% endif %}
-{% endblock %}

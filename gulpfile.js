@@ -1,6 +1,6 @@
 const gulp = require('gulp');
 
-require('./packages/bolt-build-tools/gulpfile.js')(gulp);
+require('./build-tools/gulpfile.js')(gulp);
 
 
 //

@@ -1,0 +1,14 @@
+{% extends "@bolt/button-group.twig" %}
+
+{% block button_item_primary %}
+  {% include "@bolt/button.twig" with {
+    text: "Primary Button"
+  } %}
+{% endblock %}
+
+{% block button_item_secondary %}
+  {% include "@bolt/button.twig" with {
+    text: "Text Button",
+    style: "text"
+  } %}
+{% endblock %}

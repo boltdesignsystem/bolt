@@ -1,0 +1,44 @@
+diff --git src/PatternLab/PatternData.php src/PatternLab/PatternData.php
+index 7980305..4ed0f63 100644
+--- src/PatternLab/PatternData.php
++++ src/PatternLab/PatternData.php
+@@ -25,6 +25,7 @@ use \PatternLab\PatternData\Helpers\PatternCodeHelper;
+ use \PatternLab\PatternData\Helpers\PatternStateHelper;
+ use \PatternLab\PatternData\Helpers\RawPatternHelper;
+ use \PatternLab\Timer;
++use \Symfony\Component\Finder\Finder;
+
+ class PatternData {
+
+@@ -118,10 +119,29 @@ class PatternData {
+ 		}
+
+ 		$patternSourceDir = Config::getOption("patternSourceDir");
+-		$patternObjects = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($patternSourceDir, \RecursiveDirectoryIterator::FOLLOW_SYMLINKS | \FilesystemIterator::SKIP_DOTS), \RecursiveIteratorIterator::SELF_FIRST);
++		// $directory = '../admin';
++
++
++		$finder = new Finder();
++		$patternObjects = $finder->files()
++                      ->in($patternSourceDir)
++											->ignoreDotFiles(true)
++											->notName('package.json')
++											->notName('package-lock.json')
++											->notName('*.scss')
++											->notName('*.lock')
++											->notName('_*.twig')
++											->notName('_*.json')
++											->notName('_*.md')
++											->notName('_*.yml')
++											->notName('_*.yaml')
++                      ->exclude(array('node_modules', '.git'));
++
+
+-		// sort the returned objects
+ 		$patternObjects = iterator_to_array($patternObjects);
++
++
++		// sort the returned objects
+ 		ksort($patternObjects);
+
+ 		foreach ($patternObjects as $name => $object) {
