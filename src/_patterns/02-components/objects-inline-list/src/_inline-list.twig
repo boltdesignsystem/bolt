@@ -11,13 +11,14 @@
 
 {% set componentName = "inline-list" %}
 {% set baseClass = prefix ~ componentName %}
-{% set size = size | default("medium") %}
+{% set size = size | default("small") %}
 {% set tag = tag in tags ? tag: "ul" %}
 
 
 {% set classes = [
   baseClass,
   size in sizes ? baseClass ~ "--" ~ size : "",
+  delimeted ? baseClass ~ "--" ~ "delimited" : ""
 ] %}
 
 

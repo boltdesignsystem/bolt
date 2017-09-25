@@ -15,7 +15,8 @@
   {% endfor %}
 
   {% set chipParams = chipParams | merge({
-    "items": inlineListItems
+    "items": inlineListItems,
+    size: "small"
   }) %}
 
   {% include "@bolt/inline-list.twig" with chipParams only %}

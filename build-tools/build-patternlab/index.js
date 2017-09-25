@@ -26,7 +26,7 @@ const consolePath = path.join(patternLabRoot, 'core/console');
 function patternLab(done, errorShouldExit) {
   core.events.emit('pattern-lab:precompile');
   core.notify.sh(`php -d memory_limit=4048M ${consolePath} --generate`, errorShouldExit, (err) => {
-    core.events.emit('reload', null, true);
+    core.events.emit('reload', '**/*.html', true);
     done(err);
   });
 }

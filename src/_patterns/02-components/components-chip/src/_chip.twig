@@ -13,7 +13,12 @@
 {% set componentName = "chip" %}
 {% set baseClass = prefix ~ componentName %}
 {% set size = size | default("medium") %}
-{% set tag = tag in tags ? tag: "a" %}
+
+{% if url %}
+  {% set tag = "a" %}
+{% else %}
+  {% set tag = tag in tags ? tag: "span" %}
+{% endif %}
 
 
 {% set classes = [
