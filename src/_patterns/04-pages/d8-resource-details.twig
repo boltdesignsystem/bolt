@@ -39,6 +39,7 @@
             }
           ]
         } only %}
+        
         {% include "@bolt/button.twig" with {
           text: "Download Now",
           url: "https://www.pega.com/download-now",
@@ -134,7 +135,7 @@
       {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@medium' %}
 
 
-        {% include "@bolt/card-teaser-list.twig" with {
+        {% include "@bolt/card-w-teaser-list.twig" with {
           teasers: [
             {
               eyebrow: {
@@ -179,7 +180,7 @@
       {% endcell %}
 
       {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@medium' %}
-         {% include "@bolt/card-teaser.twig" with {
+         {% include "@bolt/card-w-teaser.twig" with {
             "image": {
               "src": "https://www.fillmurray.com/g/1200/660"
             },

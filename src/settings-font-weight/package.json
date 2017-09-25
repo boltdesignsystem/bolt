@@ -1,13 +1,16 @@
 {
-  "name": "@bolt/tools-spacing",
-  "description": "Spacing tools and mixins",
+  "name": "@bolt/settings-font-weight",
+  "description": "Font Weight Settings",
   "keywords": [
     "bolt design system",
     "bolt",
+    "bolt core",
     "css framework",
-    "design system"
+    "design system",
+    "typography",
+    "font weight"
   ],
-  "version": "0.4.0-alpha.bdfcf9e9",
+  "version": "0.7.0-alpha.bdfcf9e9",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -24,17 +27,16 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bolt-design-system/bolt"
+    "url": "https://github.com/bolt-design-system/bolt/tree/master/packages/bolt-toolkit-core/settings/settings-font-weight"
   },
   "bugs": {
-    "url": "https://github.com/pega-digital/bolt/issues"
+    "url": "https://github.com/bolt-design-system/bolt/issues"
   },
-  "style": "src/scss/_tools.spacing.scss",
+  "style": "_settings.font-weight.scss",
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "@bolt/settings-spacing": "^0.6.0-alpha.bdfcf9e9",
-    "@bolt/tools-strip-unit": "^0.4.0-alpha.bdfcf9e9"
+  "scripts": {
+    "getName": "echo $npm_package_name"
   }
 }

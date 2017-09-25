@@ -1,3 +1,7 @@
+{% if logo %}
+  {% include "@bolt/logo.twig" with logo only %}
+{% endif %}
+
 
 {% if eyebrow %}
   {% include "@bolt/eyebrow.twig" with eyebrow only %}
@@ -5,7 +9,7 @@
 
 {% if headlines %}
   {% for headline in headlines %}
-    {% include "@bolt/" ~ headline.type ~ ".twig" with headline only %}
+    {% include "@bolt/" ~ headline.type | default("headline") ~ ".twig" with headline only %}
   {% endfor %}
 {% endif %}
 

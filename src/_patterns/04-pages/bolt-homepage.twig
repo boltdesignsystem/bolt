@@ -11,18 +11,19 @@
       {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small" %}
         {% include "@bolt/eyebrow.twig" with {
           text: bolt.version
-        } %}
+        } only %}
 
-        {% include "@bolt/h1.twig" with {
+        {% include "@bolt/headline.twig" with {
           text: "Bolt Design System",
+          tag: "h1",
           size: "xxxlarge"
-        } %}
+        } only %}
 
-        {% include "@bolt/h2.twig" with {
-          type: "subheadline",
+        {% include "@bolt/subheadline.twig" with {
+          tag: "h2",
           text: "Bolt provides tools, patterns, services, and guidelines that systematically improve quality, timeliness, and consistency to the Pega ecosystem so that you can focus on what really matters.",
           size: "xxlarge"
-        } %}
+        } only %}
 
         {# include "@bolt/button.twig" with {
           text: "Call to Action"
@@ -38,11 +39,11 @@
               text: "Speed",
               size: "small",
               tag: "h3"
-            } %}
-            {% include "@bolt/paragraph.twig" with {
+            } only %}
+            {% include "@bolt/text.twig" with {
               text: "Design and develop faster.",
               size: "medium"
-            } %}
+            } only %}
           </li>
 
           <li class="o-bolt-ui-list__item">
@@ -50,11 +51,11 @@
               text: "Stable",
               size: "small",
               tag: "h3"
-            } %}
-            {% include "@bolt/paragraph.twig" with {
+            } only %}
+            {% include "@bolt/text.twig" with {
               text: "Predictable, automated testing coverage, and scalable.",
               size: "medium"
-            } %}
+            } only %}
           </li>
 
           <li class="o-bolt-ui-list__item">
@@ -62,11 +63,11 @@
               text: "Stunning",
               size: "small",
               tag: "h3"
-            } %}
-            {% include "@bolt/paragraph.twig" with {
+            } only %}
+            {% include "@bolt/text.twig" with {
               text: "On brand, consistent, elegant.",
               size: "medium"
-            } %}
+            } only %}
           </li>
         </ul>
       {% endcell %}

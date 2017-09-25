@@ -1,0 +1,70 @@
+@import '@bolt/tools-spacing';
+
+.c-bolt-button-group {
+  margin-left: bolt-spacing(small) * -1;
+  margin-bottom: bolt-spacing(small) * -1;
+  display: inline-flex;
+  list-style: none;
+  letter-spacing: -0.35em;
+  flex-flow: row wrap;
+  list-style: none;
+}
+
+.c-bolt-button-group__item {
+  @include bolt-padding-left(small);
+  @include bolt-padding-bottom(small);
+  letter-spacing: normal;
+  display: inline-block;
+  display: inline-flex;
+  flex-basis: auto;
+  flex-shrink: 1;
+  flex-grow: 1;
+
+  // @include respond-to(small) {
+  //   max-width: 300px;
+  // }
+}
+
+
+
+
+
+// // Button group
+// .c-bolt-button-group {
+//   display: flex;
+
+//   > * + * {
+//     @include bolt-margin-left(xsmall);
+//   }
+// }
+
+// .c-bolt-button-group--even {
+//   > * {
+//     flex: 1;
+//   }
+// }
+
+// @mixin bolt-button-group--stacked {
+//   flex-wrap: wrap;
+
+//   > * {
+//     @include bolt-margin(0, horizontal);
+
+//     flex: none;
+//     width: 100%;
+
+//     &:not(:last-child) {
+//       @include bolt-margin-bottom(xsmall);
+//     }
+//   }
+// }
+
+// .c-bolt-button-group--stacked {
+//   @include bolt-button-group--stacked;
+// }
+
+// .c-bolt-button-group--stacked\@bp-xsmall {
+//   @media screen and (max-width: map-get($bolt-breakpoints, xsmall)) {
+//     @include bolt-button-group--stacked;
+//   }
+// }

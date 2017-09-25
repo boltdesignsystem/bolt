@@ -19,7 +19,7 @@ index 7980305..4ed0f63 100644
 +
 +
 +		$finder = new Finder();
-+		$patternObjects = $finder->files()
++		$patternObjects = $finder
 +                      ->in($patternSourceDir)
 +											->ignoreDotFiles(true)
 +											->notName('package.json')
