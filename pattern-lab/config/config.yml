@@ -31,12 +31,11 @@ styleguideKit: pattern-lab/styleguidekit-twig-default
 styleguideKitPath: vendor/pattern-lab/styleguidekit-twig-default
 lineageMatch: >-
   {%([ ]+)?(?:include|extends|embed)(
-  |\()[&quot;\&#039;]([\/.@A-Za-z0-9-_]+)[&quot;\&#039;]([
-  A-Za-z0-9-&\}_\n\{&quot;:\&#039;,\/. \[\]]+)%}
+  |\()[&quot;\&#039;]([\/.@A-Za-z0-9-_]+)[&quot;\&#039;]([\s\S+]*?)%}
 lineageMatchKey: 3
 patternExtension: twig
-twigDebug: true
-twigAutoescape: false
+twigDebug: false
+twigAutoescape: html
 twigDefaultDateFormat: ''
 twigDefaultIntervalFormat: ''
 twigMacroExt: macro.twig
@@ -52,11 +51,12 @@ extensions:
   sg: .md
 plugins:
   twigNamespaces:
-    enabled: true
+    enabled: false
     namespaces:
       bolt:
         paths:
           - node_modules/@bolt
+          - node_modules/@bolt/components-background
           - node_modules/@bolt/components-band/examples
           - node_modules/@bolt/components-band/src/twig
           - node_modules/@bolt/components-button
@@ -103,86 +103,6 @@ plugins:
             node_modules/@bolt/settings-font-size/node_modules/@bolt/settings-breakpoints
           - node_modules/@bolt/templates-default
           - node_modules/@bolt/tools-spacing/demos
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/demos
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/demos
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/demos
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/demos
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/demos
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/demos
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/demos
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/demos
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/demos
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/demos
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/demos
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/demos
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/demos
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/demos
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/demos
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/demos
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/demos
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/demos
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/demos
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors
-          - >-
-            node_modules/@bolt/tools-spacing/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/tests/node_modules/@bolt/settings-colors/demos
       base:
         paths:
           - src/_patterns/01-base
@@ -199,3 +119,4 @@ plugins:
       pages:
         paths:
           - src/_patterns/05-pages
+    roots: {}
