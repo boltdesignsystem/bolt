@@ -55,10 +55,12 @@
 
 
 
-  {% include "@bolt/band--feature.twig" with {
+  {% embed "@bolt/band--feature.twig" with {
     teaserPosition: "left",
     teaserWidth: "2/3",
     size: "medium",
+    full: true,
+    theme: "dark",
     primaryTeaser: {
       eyebrow: {
         text: "Customer Service"
@@ -86,8 +88,7 @@
     },
     content: feature_band.content | default(content),
    
-  } only %}
-
+  } only %}{% endembed %}
 
 
 
