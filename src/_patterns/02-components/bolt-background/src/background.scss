@@ -6,7 +6,7 @@
 @import '@bolt/tools-spacing';
 
 $bolt-test-color-background-gradient--primary: bolt-color(black);
-$bolt-test-color-background-gradient--secondary: rgba($bolt-test-color-background-gradient--primary, 0.9);
+$bolt-test-color-background-gradient--secondary: rgba($bolt-test-color-background-gradient--primary, 0.1);
 
 .c-bolt-background {
   position: absolute;
@@ -69,23 +69,15 @@ $bolt-test-color-background-gradient--secondary: rgba($bolt-test-color-backgroun
 
 .c-bolt-background__overlay,
 .c-bolt-background__overlay--medium {
-  opacity: 0.75;
+  opacity: 0.55;
 }
 
 .c-bolt-background__overlay--heavy {
   opacity: 0.8;
 }
 
-.c-bolt-background__overlay--xheavy {
-  opacity: 0.85;
-}
-
 .c-bolt-background__overlay--light {
-  opacity: 0.65;
-}
-
-.c-bolt-background__overlay--xlight {
-  opacity: 0.55;
+  opacity: 0.3;
 }
 
 .c-bolt-background__overlay,
@@ -94,7 +86,12 @@ $bolt-test-color-background-gradient--secondary: rgba($bolt-test-color-backgroun
   background-color: var(--bolt-color-background-gradient--primary, $bolt-test-color-background-gradient--primary);
 }
 
-.c-bolt-background__overlay--gradient-to-center {
+.c-bolt-background__overlay--gradient {
+  background: linear-gradient(-35deg, $bolt-test-color-background-gradient--secondary, $bolt-test-color-background-gradient--primary 50%);
+  background: linear-gradient(-35deg, var(--bolt-color-background-gradient--secondary, $bolt-test-color-background-gradient--secondary), var(--bolt-color-background-gradient--primary, $bolt-test-color-background-gradient--primary) 50%);
+}
+
+/*.c-bolt-background__overlay--gradient-to-center {
   background: linear-gradient(to bottom, $bolt-test-color-background-gradient--secondary, $bolt-test-color-background-gradient--primary 25%, $bolt-test-color-background-gradient--primary 75%, $bolt-test-color-background-gradient--secondary);
   background: linear-gradient(to bottom, var(--bolt-color-background-gradient--secondary, $bolt-test-color-background-gradient--secondary), var(--bolt-color-background-gradient--primary, $bolt-test-color-background-gradient--primary) 25%, var(--bolt-color-background-gradient--primary, $bolt-test-color-background-gradient--primary) 75%, var(--bolt-color-background-gradient--secondary, $bolt-test-color-background-gradient--secondary));
 }
@@ -117,7 +114,7 @@ $bolt-test-color-background-gradient--secondary: rgba($bolt-test-color-backgroun
 .c-bolt-background__overlay--gradient-to-left {
   background: linear-gradient(to left, $bolt-test-color-background-gradient--secondary, $bolt-test-color-background-gradient--primary);
   background: linear-gradient(to left, var(--bolt-color-background-gradient--secondary, $bolt-test-color-background-gradient--secondary), var(--bolt-color-background-gradient--primary, $bolt-test-color-background-gradient--primary));
-}
+}*/
 
 .c-bolt-background__overlay--horizontal-stripes {
   background-color: $bolt-test-color-background-gradient--secondary;
