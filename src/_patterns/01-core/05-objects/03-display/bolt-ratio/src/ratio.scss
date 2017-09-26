@@ -1,0 +1,62 @@
+/**
+  * @define o-bolt-ratio
+  */
+
+/* ==========================================================================
+   #BOLT RATIO OBJECT
+   ========================================================================== */
+
+.o-bolt-ratio {
+  display: block; //In case it's applied to a non-block element.
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 0;
+  }
+}
+
+.o-bolt-ratio__item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+@mixin bolt-aspect-ratio($width, $height) {
+  padding-bottom: ($height / $width) * 100%;
+}
+
+.o-bolt-ratio--16x9:after {
+  @include bolt-aspect-ratio(16,9);
+}
+
+.o-bolt-ratio--2x1:after {
+  @include bolt-aspect-ratio(16,8);
+}
+
+.o-bolt-ratio--16x7:after {
+  @include bolt-aspect-ratio(16,7);
+}
+
+.o-bolt-ratio--20x9:after {
+  @include bolt-aspect-ratio(20,9);
+}
+
+.o-bolt-ratio--1x1:after {
+  @include bolt-aspect-ratio(1,1);
+}
+
+.o-bolt-ratio--3x4:after {
+  @include bolt-aspect-ratio(3,4);
+}
+
+.o-bolt-ratio--4x3:after {
+  @include bolt-aspect-ratio(4,3);
+}

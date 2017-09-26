@@ -1,0 +1,50 @@
+/* ==========================================================================
+   #UI-LIST OBJECT
+   ========================================================================== */
+
+@import '@bolt/tools-spacing';
+
+/**
+ * The UI list object creates blocky list items with a separator between each
+ * item
+ */
+$bolt-ui-list-padding: (medium 0) !default;
+$bolt-ui-list-border-width: 1px !default;
+$bolt-ui-list-border-style: solid !default;
+$bolt-ui-list-border-color: var(--bolt-ui-border-color, currentColor);
+
+.o-bolt-ui-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.o-bolt-ui-list__item {
+  @include bolt-padding($bolt-ui-list-padding);
+  position: relative;
+
+  &:after {
+    content: '';
+    display: block;
+    border-bottom-style: $bolt-ui-list-border-style;
+    border-bottom-color: $bolt-ui-list-border-color;
+    border-bottom-width: 0;
+    opacity: 0.2;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  &:not(:last-child):after {
+    border-bottom-width: $bolt-ui-list-border-width;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.o-bolt-ui-list--borderless {
+  --bolt-ui-border-color: transparent;
+}

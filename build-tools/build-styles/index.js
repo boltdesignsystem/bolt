@@ -149,15 +149,15 @@ function compile(userConfig) {
       }))
       .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
       .pipe(gulpif(config.glob, sassGlob()))
-      // .pipe(stylelint({
-      //   reporters: [{
-      //     formatter: stylelintFormatter,
-      //     console: true
-      //   }],
-      //   failAfterError: config.failAfterError
-      // }))
+      .pipe(stylelint({
+        reporters: [{
+          formatter: stylelintFormatter,
+          console: true
+        }],
+        failAfterError: config.failAfterError
+      }))
       .pipe(filter(file => !/\/_/.test(file.path) || !/^_/.test(file.relative)))
-      .pipe(debug({ title: 'Sass file: ' }))
+      // .pipe(debug({ title: 'Sass file: ' }))
       .pipe(sass({
         includePaths: [
           'node_modules',

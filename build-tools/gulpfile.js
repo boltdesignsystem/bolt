@@ -69,7 +69,7 @@ module.exports = (gulp) => {
 
   // gulp.task('symlinks:create', symlinks.create());
   // gulp.task('symlinks:clean', symlinks.clean());
-  // gulp.task('symlinks:watch', symlinks.watch());
+  gulp.task('symlinks:watch', symlinks.watch());
   // gulp.task('symlinks:gravpl', symlinks.patternLabGrav());
 
   gulp.task('bolt:packages', symlinks.boltPackages());
@@ -139,6 +139,7 @@ module.exports = (gulp) => {
         // 'watch',
         // 'webpack:dev',
         // 'webpack:critical',
+        // 'symlinks:watch',
         'patternlab:watch',
         // 'jekyll:watch',
         'styles:watch',

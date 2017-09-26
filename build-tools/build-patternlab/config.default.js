@@ -8,6 +8,7 @@ module.exports = {
     'md'
   ],
   extraWatches: [
+    '!**/package.json'
     // 'packages/bolt-toolkit-*/**/*.twig'
   ]
 };

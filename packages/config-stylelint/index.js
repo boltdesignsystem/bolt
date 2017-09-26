@@ -225,7 +225,10 @@ module.exports = {
     'selector-pseudo-element-colon-notation': 'single',
     'selector-pseudo-element-no-unknown': true,
     'selector-type-case': 'lower',
-    'selector-type-no-unknown': true,
+    'selector-type-no-unknown': [true, {
+      ignore: ['custom-elements']
+    }
+    ],
     'shorthand-property-no-redundant-values': true,
     'string-no-newline': null,
     'string-quotes': 'single',

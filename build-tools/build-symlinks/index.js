@@ -9,6 +9,7 @@ const yaml = require('js-yaml');
 const merge = require('merge').recursive;
 const defaultConfig = require('./config.default');
 const argv = require('yargs').argv;
+const core = require('@bolt/build-core');
 
 const twigPaths = gulpConfig.patternLab.twigNamespaces.sets;
 const patternLabConfig = yaml.safeLoad(
@@ -190,15 +191,16 @@ function cleanSymlinks(userConfig) {
 module.exports.clean = cleanSymlinks;
 
 
-function watchSymlinks(userConfig) {
-  function watchSymlinksTask() {
-    return gulp.watch([
-      './packages/**/*.{md,twig,yaml,yml,json}',
-      '!./packages/*/node_modules'
-    ], gulp.series([
-      cleanSymlinks(userConfig),
-      createSymlinks(userConfig)
-    ]));
+function watchSymlinks() {
+  function watchSymlinksTask(done) {
+    gulp.watch([
+      './src/_patterns/**/package.json',
+      '!**/node_modules/**'
+    ], () =>
+      core.notify.sh('lerna link', true, (err) => {
+      // core.events.emit('reload', '**/*.html', true);
+        done(err);
+      }));
   }
 
   watchSymlinksTask.displayName = 'symlinks:watch';

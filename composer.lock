@@ -117,7 +117,7 @@
         },
         {
             "name": "bolt/twig-extensions",
-            "version": "dev-feature/v0.3.0-alpha.3",
+            "version": "dev-feature/v0.3.0-alpha.4",
             "dist": {
                 "type": "path",
                 "url": "packages/bolt-twig-extensions",
@@ -796,7 +796,8 @@
             "type": "library",
             "extra": {
                 "patches_applied": {
-                    "[FIX] Allow PL to Ignore Certain Folders like Node Modules.": ".patches/ignoreCertainFolders.patch"
+                    "[FIX] Allow PL to Ignore Certain Folders like Node Modules.": ".patches/ignoreCertainFolders.patch",
+                    "[FEATURE] Allow default Pattern Data configuration rules to be disabled. Also adds ability to add on extra Pattern Data rules to customize and extend default Pattern Lab behavior.": ".patches/configurablePatternDataRules.patch"
                 }
             },
             "autoload": {
@@ -1371,12 +1372,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "a0e15688972f012156cf1ffa076fe1203bce6bc9"
+                "reference": "eaa08afe947cb5affdf2b5fd39e7de92bd96c872"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/a0e15688972f012156cf1ffa076fe1203bce6bc9",
-                "reference": "a0e15688972f012156cf1ffa076fe1203bce6bc9",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/eaa08afe947cb5affdf2b5fd39e7de92bd96c872",
+                "reference": "eaa08afe947cb5affdf2b5fd39e7de92bd96c872",
                 "shasum": ""
             },
             "require": {
@@ -1421,7 +1422,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-09-17T10:10:45+00:00"
+            "time": "2017-09-25 19:23:20"
         },
         {
             "name": "twig/twig",
