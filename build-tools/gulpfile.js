@@ -1,10 +1,10 @@
 // const gulp = require('gulp');
-const server = require('@bolt/build-server').server;
+const server = require('./build-server').server;
 // const jekyll = require('@bolt/build-jekyll');
-const patternlab = require('@bolt/build-patternlab');
-const styles = require('@bolt/build-styles');
-const symlinks = require('@bolt/build-symlinks');
-const webpackTask = require('@bolt/build-webpack');
+const patternlab = require('./build-patternlab');
+const styles = require('./build-styles');
+const symlinks = require('./build-symlinks');
+const webpackTask = require('./build-webpack');
 // const cache = require('gulp-cached');
 // const remember = require('gulp-remember');
 // const changed = require('gulp-changed');
