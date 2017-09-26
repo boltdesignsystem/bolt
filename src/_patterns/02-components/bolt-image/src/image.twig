@@ -1,3 +1,71 @@
 <div class="image">
   <img class="image-src" src="{{src}}" {% if alt %} alt="{{alt}}" {% endif %} {% if title %} title="{{title}}" {% endif %}>
 </div>
+
+
+
+
+{% set attributes = create_attribute(attributes | default({})) %}
+{% set wrapper_attributes = create_attribute(wrapper_attributes | default({})) %}
+
+
+{% set image_classes = [
+  image.lazyload ? 'js-lazyload' : '',
+] %}
+
+{% set wrapper_classes = [
+  'o-ratio'
+] %}
+
+{% set lazyload_placeholder = lazyload_placeholder ??  "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" %}
+{% set sizes = [50, 100, 200, 320, 480, 640, 800, 1024, 1366, 1536, 1920, 2560] %}
+{% set srcset = image.srcset ?? "" %}
+{% set imageWidth = imagesize(image.src) %}
+{% set ext = image.src|split('.')|last %}
+{#{% set path = publicpath(image.src|split('.' ~ ext)|first) %}#}
+{% set path = publicpath(image.src|split('.' ~ ext)|first) %}
+
+{% if srcset == "" %}
+  {% for size in sizes if (size <= imageWidth) %}
+    {% if size == imageWidth %}
+      {% set srcset = srcset ~ '../..' ~ path ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}
+    {% else %}
+      {% set srcset = srcset ~ '../..' ~ path ~ '-' ~ size ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}
+    {% endif %}
+  {% endfor %}
+  {% set srcset = srcset|trim(', ') %}
+{% endif %}
+
+{% if ext == "svg" %}
+  {% set srcset = path ~ '.' ~ ext %}
+{% endif %}
+
+
+{% if image.src starts with '/' and ext != "svg" %}
+  {% set placeholder_color = ' background-color: ' ~ bgcolor(image.src) ~ ';' %}
+{% endif %}
+
+
+{% if image.placeholder_image == true %}
+  {% set placeholder_image = "background-image: url('" ~  base64(image.src) ~ "'); " %}
+{% endif %}
+
+<div {{ wrapper_attributes.addClass(wrapper_classes) }} style="
+padding-bottom: {{ ratio(image.src) }}; 
+{{ placeholder_image }}
+{{ placeholder_color }}
+">
+  <img {{ attributes.addClass(image_classes) }}
+  {% if image.lazyload %}
+    data-sizes="auto" data-srcset="{{ srcset }}"
+    src="{{ lazyload_placeholder }}"
+    {#src="{{ image.src }}"#}
+  {% else %}
+    src="{{ path ~ '.' ~ ext | default(publicpath("/images/placeholders/fpo_16x9.png")) }}" srcset="{{ srcset }}"
+  {% endif %}>
+
+
+  <noscript>
+    <img src="{{ path ~ '.' ~ ext }}">
+  </noscript>
+</div>

@@ -26,9 +26,15 @@
     bolt-object
   >
     <{{ tag }} {{ attributes.addClass(classes) }}>
-      {% for item in items %}
+      {% for listItem in items %}
         <li class="{{ "#{baseClass}__item" }}">
-          {{ item.text }}
+          {% if listItem.text %}
+            {{ listItem.text }}
+          {% elseif listItem.items %}
+            {% for item in listItem.items %}
+              {% include "@bolt/" ~ item.name ~ ".twig" with item only %}
+            {% endfor %}
+          {% endif %}
         </li>
       {% endfor %}
     </{{ tag }}>

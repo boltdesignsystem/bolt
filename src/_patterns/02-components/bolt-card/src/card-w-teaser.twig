@@ -1,0 +1,16 @@
+{% extends "@bolt/card.twig" %}
+
+{% if image %}
+  {% set items = items | default([]) | merge([{
+    "name": "image",
+    "src": image.src
+  }]) %}
+{% endif %}
+
+{% block card_content %}
+  
+  
+  {% if teaser %}
+    {% include "@bolt/teaser.twig" with teaser only %}
+  {% endif %}
+{% endblock %}

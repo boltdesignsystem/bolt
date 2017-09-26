@@ -154,7 +154,7 @@ function compile(userConfig) {
           formatter: stylelintFormatter,
           console: true
         }],
-        failAfterError: config.failAfterError
+        failAfterError: false
       }))
       .pipe(filter(file => !/\/_/.test(file.path) || !/^_/.test(file.relative)))
       // .pipe(debug({ title: 'Sass file: ' }))

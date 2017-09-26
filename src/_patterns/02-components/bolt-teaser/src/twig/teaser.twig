@@ -1,6 +1,4 @@
-{% if logo %}
-  {% include "@bolt/logo.twig" with logo only %}
-{% endif %}
+
 
 
 {% if eyebrow %}
@@ -13,9 +11,16 @@
   {% endfor %}
 {% endif %}
 
+{% if logo %}
+  {% include "@bolt/logo.twig" with logo only %}
+{% endif %}
+
 
 {% if content %}
-  <p>{{ content }}</p>
+  {% include "@bolt/text.twig" with {
+    text: content | striptags,
+    tag: "p"
+  } only %}
 {% endif %}
 
 {# TODO: only allow max of 2 buttons #}
