@@ -1,3 +1,5 @@
+{% set tags = ["div", "article", "section", "heading", "footer", "nav", "figure"] %} {# Available overall container tags #}
+{% set contentTags = ["div", "article", "section", "heading", "footer", "nav", "figcaption"] %} {# Available content container tags #}
 {% set fullBleed = [true, false] %}
 {% set themes = ["", "xlight", "light", "dark", "xdark"] %}
 {% set prefix = "c-bolt-" %}
@@ -11,12 +13,14 @@
 
 {% set attributes = create_attribute(attributes|default({})) %}
 
-{# Defaults for a vanilla `Button` component #}
+{# Defaults for a vanilla `Band` component #}
 {% set componentName = "band" %}
 {% set baseClass = prefix ~ componentName %}
 {% set size = size | default("medium") %}
 {% set fullBleed = fullBleed | default(false) %}
 {% set theme = theme | default("") %}
+{% set tag = tag in tags ? tag: "div" %}
+{% set contentTag = contentTag in contentTags ? contentTag: "div" %}
 
 {% set classes = [
   baseClass,
@@ -29,14 +33,12 @@
   size="{{ size }}"
   theme="{{ theme }}"
   bolt-component>
-  <div {{ attributes.addClass(classes) }}>
+  <{{ tag }} {{ attributes.addClass(classes) }}>
     <div class="o-bolt-wrapper">
       {% block band_background %}{% endblock %}
-      <div class="{{ "#{baseClass}__content" }}">
-        {% block band_content %}
-          {{ content }}
-        {% endblock %}
-      </div>
+      <{{ contentTag }} class="{{ "#{baseClass}__content" }}">
+        {% block band_content %}{% endblock %}
+      </{{ contentTag }}>
     </div>
-  </div>
+  </{{ tag }}>
 </bolt-band>
