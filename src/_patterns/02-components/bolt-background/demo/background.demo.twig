@@ -13,20 +13,90 @@
     {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--large o-bolt-grid--matrix" %}
       {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small" %}
         {% include "@bolt/headline.twig" with {
-          text: "Bill Murray",
+          text: "Visualization & Simulation",
           size: "xxxlarge",
           tag: "h1"
         } only %}
         {% include "@bolt/subheadline.twig" with {
-          text: "American actor, comedian, and writer.",
+          text: "Imagine the Future with Decision Hub",
           size: "xxlarge",
           tag: "h2"
         } only %}
         {% include "@bolt/text.twig" with {
-          text: "Murray garnered additional critical acclaim later in his career, starring in <em>Lost in Translation</em> (2003), which earned him a <em>Golden Globe</em> and a <em>BAFTA Award</em> for Best Actor, as well as an <em>Academy Award</em> nomination for Best Actor. He also received <em>Golden Globe</em> nominations for his roles in <em>Ghostbusters</em>, <em>Rushmore</em> (1998), <em>Hyde Park on Hudson</em> (2012), <em>St. Vincent</em> (2014), and the <em>HBO</em> miniseries <em>Olive Kitteridge</em> (2014), for which he later won his second <em>Primetime Emmy Award</em>."
+          text: "Continuously improve results by visualizing how future adjustments to your strategies can impact business performance. Simulate and test your ideas, evaluate the results using intuitive views, and then deploy optimal alterations."
         } only %}
         {% include "@bolt/button.twig" with {
-          text: "See Filmography"
+          text: "View the data sheet"
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endblock band_content %}
+{% endembed %}
+<div style="height: 2em"></div>
+{% embed "@bolt/band.twig" with {
+  size: size | default("large"),
+  theme: theme | default("dark"),
+  fullBleed: true,
+  tag: "figure",
+  contentTag: "figcaption"
+} %}
+  {% block band_background %}
+    {% include "@bolt/background--overlay-solid.twig" only %}
+  {% endblock band_background %}
+
+  {% block band_content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--large o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small" %}
+        {% include "@bolt/headline.twig" with {
+          text: "Visualization & Simulation",
+          size: "xxxlarge",
+          tag: "h1"
+        } only %}
+        {% include "@bolt/subheadline.twig" with {
+          text: "Imagine the Future with Decision Hub",
+          size: "xxlarge",
+          tag: "h2"
+        } only %}
+        {% include "@bolt/text.twig" with {
+          text: "Continuously improve results by visualizing how future adjustments to your strategies can impact business performance. Simulate and test your ideas, evaluate the results using intuitive views, and then deploy optimal alterations."
+        } only %}
+        {% include "@bolt/button.twig" with {
+          text: "View the data sheet"
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endblock band_content %}
+{% endembed %}
+<div style="height: 2em"></div>
+{% embed "@bolt/band.twig" with {
+  size: size | default("large"),
+  theme: theme | default("dark"),
+  fullBleed: true,
+  tag: "figure",
+  contentTag: "figcaption"
+} %}
+  {% block band_background %}
+    {% include "@bolt/background--overlay-gradient.twig" only %}
+  {% endblock band_background %}
+
+  {% block band_content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--large o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small" %}
+        {% include "@bolt/headline.twig" with {
+          text: "Visualization & Simulation",
+          size: "xxxlarge",
+          tag: "h1"
+        } only %}
+        {% include "@bolt/subheadline.twig" with {
+          text: "Imagine the Future with Decision Hub",
+          size: "xxlarge",
+          tag: "h2"
+        } only %}
+        {% include "@bolt/text.twig" with {
+          text: "Continuously improve results by visualizing how future adjustments to your strategies can impact business performance. Simulate and test your ideas, evaluate the results using intuitive views, and then deploy optimal alterations."
+        } only %}
+        {% include "@bolt/button.twig" with {
+          text: "View the data sheet"
         } only %}
       {% endcell %}
     {% endgrid %}
