@@ -24,6 +24,8 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 @mixin bolt-headline() {
   @include bolt-font-family(heading);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   display: block;
   max-width: 55ch;
 
@@ -41,11 +43,10 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 
 
+
 .c-bolt-headline {
   @include bolt-headline;
   @include bolt-font-weight(bold);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 
   &:not(:last-child) {
     @include bolt-margin-bottom(medium);
@@ -114,6 +115,7 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 // Subheadline styles.
 .c-bolt-subheadline {
+  @include bolt-headline;
   @include bolt-margin-bottom(medium);
   @include bolt-font-family(heading);
   @include bolt-font-weight(regular);
