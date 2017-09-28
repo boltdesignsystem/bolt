@@ -1,7 +1,7 @@
 {% set tags = ["div", "article", "section", "heading", "footer", "nav", "figure"] %} {# Available overall container tags #}
 {% set contentTags = ["div", "article", "section", "heading", "footer", "nav", "figcaption"] %} {# Available content container tags #}
 {% set fullBleed = [true, false] %}
-{% set themes = ["", "xlight", "light", "dark", "xdark"] %}
+{% set themes = ["dark", "xlight", "light", "dark", "xdark"] %}
 {% set prefix = "c-bolt-" %}
 
 {# Allowed Band Sizes #}
@@ -18,7 +18,7 @@
 {% set baseClass = prefix ~ componentName %}
 {% set size = size | default("medium") %}
 {% set fullBleed = fullBleed | default(false) %}
-{% set theme = theme | default("") %}
+{% set theme = theme | default("dark") %}
 {% set tag = tag in tags ? tag: "div" %}
 {% set contentTag = contentTag in contentTags ? contentTag: "div" %}
 

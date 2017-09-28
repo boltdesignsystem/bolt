@@ -1,7 +1,9 @@
 /* eslint-disable */
 
-var fontsLoadedClass = 'js-fonts-loaded',
-    fontsSubsetLoadedClass = 'js-fonts-subset-loaded';
+import styles from '../../../styles/bolt-critical-fonts.scss';
+
+var fontsLoadedClass = styles['js-fonts-loaded'],
+  fontsSubsetLoadedClass = styles['js-fonts-subset-loaded'];
 
 if (sessionStorage.criticalFoftFontsLoaded) {
   document.documentElement.className += ' ' + fontsLoadedClass + ' ' +  fontsSubsetLoadedClass;
@@ -17,17 +19,6 @@ if (sessionStorage.criticalFoftFontsLoaded) {
 	Promise.all([openSansSubset.load()]).then(function () {
 		document.documentElement.className += ' ' + fontsSubsetLoadedClass;
 
-		// var fontA = new FontFaceObserver('Lato');
-		// var fontB = new FontFaceObserver('LatoBold', {
-		// 		weight: 700
-		// 	});
-		// var fontC = new FontFaceObserver('LatoItalic', {
-		// 		style: 'italic'
-		// 	});
-		// var fontD = new FontFaceObserver('LatoBoldItalic', {
-		// 		weight: 700,
-		// 		style: 'italic'
-		// 	});
     var openSansRegular = new FontFaceObserver('Open Sans', {
       weight: 400
     });
@@ -40,11 +31,6 @@ if (sessionStorage.criticalFoftFontsLoaded) {
     var openSansBold = new FontFaceObserver('Open Sans', {
       weight: 700
     });
-
-    // var openSansBoldItalic = new FontFaceObserver('Open Sans', {
-    //   weight: 700,
-    //   style: 'italic'
-    // });
 
     var openSansExtraBold = new FontFaceObserver('Open Sans', {
       weight: 800

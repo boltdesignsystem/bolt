@@ -8,6 +8,29 @@
 $bolt-test-color-background-gradient--primary: bolt-color(black);
 $bolt-test-color-background-gradient--secondary: rgba($bolt-test-color-background-gradient--primary, 0.1);
 
+
+$bolt-gradient-angle--default: -35deg;
+$bolt-gradient-angle--reversed: 180deg - abs($bolt-gradient-angle--default);
+
+
+// Zoom animation treatment
+@keyframes a-bolt-zoom-in-out {
+  0% {
+    transform: scale(1.05);
+  }
+
+  50% {
+    transform: scale(1.25);
+  }
+
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+
+
+
 .c-bolt-background {
   position: absolute;
   top: 0;
@@ -18,12 +41,27 @@ $bolt-test-color-background-gradient--secondary: rgba($bolt-test-color-backgroun
   overflow: hidden;
 }
 
+
 .c-bolt-background__item {
   display: block;
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
+
+.c-bolt-background__item--blur {
+  transform: scale(1.05);
+  filter: blur(0.5rem);
+}
+
+.c-bolt-background__item--grayscale {
+  filter: grayscale(100%);
+}
+
+.c-bolt-background__item--zoom-in-out {
+  animation: a-bolt-zoom-in-out 45s ease-in-out infinite both;
+}
+
 
 .c-bolt-background__image {
   @include bolt-margin(auto);
@@ -44,18 +82,6 @@ $bolt-test-color-background-gradient--secondary: rgba($bolt-test-color-backgroun
   }
 }
 
-.c-bolt-background__item--blur {
-  transform: scale(1.05);
-  filter: blur(0.5rem);
-}
-
-.c-bolt-background__item--grayscale {
-  filter: grayscale(100%);
-}
-
-.c-bolt-background__item--zoom-in-out {
-  animation: a-bolt-zoom-in-out 45s ease-in-out infinite both;
-}
 
 .c-bolt-background__overlay {
   display: block;
@@ -67,85 +93,35 @@ $bolt-test-color-background-gradient--secondary: rgba($bolt-test-color-backgroun
   content: '';
 }
 
-.c-bolt-background__overlay,
-.c-bolt-background__overlay--medium {
+.c-bolt-background__overlay--medium-opacity {
   opacity: 0.55;
 }
 
-.c-bolt-background__overlay--heavy {
+.c-bolt-background__overlay--heavy-opacity {
   opacity: 0.8;
 }
 
-.c-bolt-background__overlay--light {
+.c-bolt-background__overlay--light-opacity {
   opacity: 0.3;
 }
 
-.c-bolt-background__overlay,
-.c-bolt-background__overlay--solid {
+
+.c-bolt-background__overlay--color-fill {
   background-color: $bolt-test-color-background-gradient--primary;
   background-color: var(--bolt-color-background-gradient--primary, $bolt-test-color-background-gradient--primary);
 }
 
-.c-bolt-background__overlay--gradient {
-  background: linear-gradient(-35deg, $bolt-test-color-background-gradient--secondary, $bolt-test-color-background-gradient--primary 50%);
-  background: linear-gradient(-35deg, var(--bolt-color-background-gradient--secondary, $bolt-test-color-background-gradient--secondary), var(--bolt-color-background-gradient--primary, $bolt-test-color-background-gradient--primary) 50%);
+
+
+
+// Default gradient if the image focal point (point of interest) is in the center or on the right side
+.c-bolt-background__overlay--gradient-fill {
+  background: linear-gradient($bolt-gradient-angle--default, $bolt-test-color-background-gradient--secondary, $bolt-test-color-background-gradient--primary 50%);
+  background: linear-gradient($bolt-gradient-angle--default, var(--bolt-color-background-gradient--secondary, $bolt-test-color-background-gradient--secondary), var(--bolt-color-background-gradient--primary, $bolt-test-color-background-gradient--primary) 50%);
 }
 
-/*.c-bolt-background__overlay--gradient-to-center {
-  background: linear-gradient(to bottom, $bolt-test-color-background-gradient--secondary, $bolt-test-color-background-gradient--primary 25%, $bolt-test-color-background-gradient--primary 75%, $bolt-test-color-background-gradient--secondary);
-  background: linear-gradient(to bottom, var(--bolt-color-background-gradient--secondary, $bolt-test-color-background-gradient--secondary), var(--bolt-color-background-gradient--primary, $bolt-test-color-background-gradient--primary) 25%, var(--bolt-color-background-gradient--primary, $bolt-test-color-background-gradient--primary) 75%, var(--bolt-color-background-gradient--secondary, $bolt-test-color-background-gradient--secondary));
-}
-
-.c-bolt-background__overlay--gradient-to-top {
-  background: linear-gradient(to top, $bolt-test-color-background-gradient--secondary, $bolt-test-color-background-gradient--primary);
-  background: linear-gradient(to top, var(--bolt-color-background-gradient--secondary, $bolt-test-color-background-gradient--secondary), var(--bolt-color-background-gradient--primary, $bolt-test-color-background-gradient--primary));
-}
-
-.c-bolt-background__overlay--gradient-to-right {
-  background: linear-gradient(to right, $bolt-test-color-background-gradient--secondary, $bolt-test-color-background-gradient--primary);
-  background: linear-gradient(to right, var(--bolt-color-background-gradient--secondary, $bolt-test-color-background-gradient--secondary), var(--bolt-color-background-gradient--primary, $bolt-test-color-background-gradient--primary));
-}
-
-.c-bolt-background__overlay--gradient-to-bottom {
-  background: linear-gradient(to bottom, $bolt-test-color-background-gradient--secondary, $bolt-test-color-background-gradient--primary);
-  background: linear-gradient(to bottom, var(--bolt-color-background-gradient--secondary, $bolt-test-color-background-gradient--secondary), var(--bolt-color-background-gradient--primary, $bolt-test-color-background-gradient--primary));
-}
-
-.c-bolt-background__overlay--gradient-to-left {
-  background: linear-gradient(to left, $bolt-test-color-background-gradient--secondary, $bolt-test-color-background-gradient--primary);
-  background: linear-gradient(to left, var(--bolt-color-background-gradient--secondary, $bolt-test-color-background-gradient--secondary), var(--bolt-color-background-gradient--primary, $bolt-test-color-background-gradient--primary));
-}*/
-
-.c-bolt-background__overlay--horizontal-stripes {
-  background-color: $bolt-test-color-background-gradient--secondary;
-  background-color: var(--bolt-color-background-gradient--secondary, $bolt-test-color-background-gradient--secondary);
-  background-image: linear-gradient(transparent 50%, $bolt-test-color-background-gradient--secondary 50%);
-  background-image: linear-gradient(transparent 50%, var(--bolt-color-background-gradient--secondary, $bolt-test-color-background-gradient--secondary) 50%);
-  background-size: 0.25rem 0.25rem;
-}
-
-.c-bolt-background__overlay--diagonal-stripes {
-  background-color: $bolt-test-color-background-gradient--secondary;
-  background-color: var(--bolt-color-background-gradient--secondary, $bolt-test-color-background-gradient--secondary);
-  background-image: repeating-linear-gradient(35deg, transparent, transparent 0.125rem, var(--bolt-color-background-gradient--secondary, $bolt-test-color-background-gradient--secondary) 0.125rem, var(--bolt-color-background-gradient--secondary, $bolt-test-color-background-gradient--secondary) 0.25rem);
-  background-image: repeating-linear-gradient(35deg, transparent, transparent 0.125rem, var(--bolt-color-background-gradient--secondary, $bolt-test-color-background-gradient--secondary) 0.125rem, var(--bolt-color-background-gradient--secondary, $bolt-test-color-background-gradient--secondary) 0.25rem);
-}
-
-@keyframes a-bolt-zoom-in-out {
-  0% {
-    transform: scale(1.05);
-  }
-
-  50% {
-    transform: scale(1.25);
-  }
-
-  100% {
-    transform: scale(1.05);
-  }
-}
-
-// TODO: add this to band component
-.c-bolt-band__content {
-  position: relative;
+// Alt gradient used if the image focal point (point of interest) is on the left side
+.c-bolt-background__overlay--gradient-reversed-fill {
+  background: linear-gradient($bolt-gradient-angle--reversed, $bolt-test-color-background-gradient--secondary, $bolt-test-color-background-gradient--primary 50%);
+  background: linear-gradient($bolt-gradient-angle--reversed, var(--bolt-color-background-gradient--secondary, $bolt-test-color-background-gradient--secondary), var(--bolt-color-background-gradient--primary, $bolt-test-color-background-gradient--primary) 50%);
 }

@@ -1,9 +1,9 @@
 <?php
 
-$function = new Twig_SimpleFunction('inline', function ($fileName, $remote = false) {
+$function = new Twig_SimpleFunction('inline', function ($fileName, $prefix = '/bolt-website') {
 
   $documentRoot = trim(getcwd(), "");
-  $filePath = $documentRoot . $fileName;
+  $filePath = $documentRoot . $prefix . $fileName;
 
   if ($fileName !== '' && file_exists($filePath)) {
     $content = file_get_contents($filePath);

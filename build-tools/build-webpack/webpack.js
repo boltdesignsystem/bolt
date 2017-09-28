@@ -3,12 +3,11 @@ const webpack = require('webpack');
 
 module.exports.devConfig = require('./webpack.config');
 module.exports.releaseConfig = require('./webpack.config.release');
-module.exports.critialPathConfig = require('./webpack.config.critical');
 
 // const devConfig = require('webpack.config');
 // const releaseConfig = require('webpack.config.release');
 
-function webpackTask(gulp, devConfig, releaseConfig, critialPathConfig) {
+function webpackTask(gulp, devConfig, releaseConfig) {
   const getDevCompiler = options => webpack(devConfig(options));
   const getReleaseCompiler = options => webpack(releaseConfig(options));
 
@@ -30,17 +29,17 @@ function webpackTask(gulp, devConfig, releaseConfig, critialPathConfig) {
   });
 
 
-  if (critialPathConfig) {
-    const getCriticalCompile = options => webpack(critialPathConfig(options));
+  // if (critialPathConfig) {
+  //   const getCriticalCompile = options => webpack(critialPathConfig(options));
 
-    gulp.task('webpack:critical', (done) => {
-      const compiler = getCriticalCompile(critialPathConfig);
-      compiler.run((err, stats) => {
-        handleWebpackOutput(err, stats);
-        done();
-      });
-    });
-  }
+  //   gulp.task('webpack:critical', (done) => {
+  //     const compiler = getCriticalCompile(critialPathConfig);
+  //     compiler.run((err, stats) => {
+  //       handleWebpackOutput(err, stats);
+  //       done();
+  //     });
+  //   });
+  // }
 
 
   gulp.task('webpack:prod', (done) => {
@@ -49,6 +48,15 @@ function webpackTask(gulp, devConfig, releaseConfig, critialPathConfig) {
       handleWebpackOutput(err, stats);
       done();
     });
+  });
+
+
+  // Watch webpack-compiled files for changes
+  gulp.task('webpack:watch', () => {
+    gulp.watch([
+      'src/**/*.js',
+      '!**/node_modules/**'
+    ], gulp.parallel('webpack:dev'));
   });
 }
 module.exports.webpack = webpackTask;

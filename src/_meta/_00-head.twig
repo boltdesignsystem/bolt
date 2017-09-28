@@ -1,12 +1,22 @@
 <!DOCTYPE html>
-<html class="{{ htmlClass }} js-fonts-loaded js-fonts-subset-loaded">
+<html class="{{ htmlClass }}">
   <head>
     <title>{{ title }}</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" />
 
     <link rel="stylesheet" href="../../../styles/bolt.css?{{ cacheBuster }}" media="all" />
-    <link rel="stylesheet" href="../../../styles/bolt-styleguide.css?{{ cacheBuster }}" media="all" />
+    
+
+    {# Inline Critical Font-specific CSS automatically #}
+    <style>
+    {{ inline('bolt-critical-fonts.css' | webpack) }}
+    </style>
+
+    {# Inline Critical JS automatically using references to the file manifest webpack generates #}
+    <script>
+    {{ inline('bolt-critical-path.js' | webpack) }}
+    </script>
 
     <!-- Begin Pattern Lab (Required for Pattern Lab to run properly) -->
     {{ patternLabHead | raw }}

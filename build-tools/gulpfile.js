@@ -94,8 +94,7 @@ module.exports = (gulp) => {
   // Webpack Config
   const webpackConfig = webpackTask.devConfig;
   const webpackProdConfig = webpackTask.releaseConfig;
-  const webpackCriticalConfig = webpackTask.critialPathConfig;
-  webpackTask.webpack(gulp, webpackConfig, webpackProdConfig, webpackCriticalConfig);
+  webpackTask.webpack(gulp, webpackConfig, webpackProdConfig);
 
 
   // gulp.task('copy:fonts', () =>
@@ -133,11 +132,12 @@ module.exports = (gulp) => {
       // 'copy:fonts',
       'styles:compile',
       'patternlab:recompile',
+      'webpack:dev',
       // 'jekyll:compile',
       // 'copy:json',
       gulp.parallel([
         // 'watch',
-        // 'webpack:dev',
+        'webpack:watch',
         // 'webpack:critical',
         // 'symlinks:watch',
         'patternlab:watch',

@@ -1,6 +1,73 @@
-<div class="c-bolt-background">
-  <div class="c-bolt-background__item">
-    <img class="c-bolt-background__image" src="https://www.pega.com/sites/pega.com/files/styles/max_width_2560/public/insurance-banner.jpg" alt="Hero">
+{% set prefix = "c-bolt-" %}
+{% set componentName = "background" %}
+{% set baseClass = prefix ~ componentName %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set overlayAttributes = create_attribute({}) %}
+
+{% set overlayStates = ["enabled", "disabled"] %}
+
+{% set opacities = ["light", "medium", "heavy"] %}
+{% set fills = {
+  "color": "color",
+  "gradient": "gradient"
+} %}
+
+{% if focalPoint and focalPoint.horizontal == "left" %}
+  {% set fills = fills|merge({"gradient": "gradient-reversed"}) %}
+{% endif %}
+
+
+
+{% set overlay = overlay in overlayStates ? overlay : "enabled" %}
+
+{% set classes = [
+  baseClass
+] %}
+
+{% set overlayClasses = [
+  baseClass ~ "__overlay",
+  opacity in opacities ? baseClass ~ "__overlay--" ~ opacity ~ "-opacity" : baseClass ~ "__overlay--medium-opacity",
+  fill in fills|keys ? baseClass ~ "__overlay--" ~ fills[fill] ~ "-fill" : baseClass ~ "__overlay--color-fill"
+] %}
+
+
+
+<bolt-background bolt-component>
+  <div {{ attributes.addClass(classes) }}>
+    <div class="{{ "#{baseClass}__item" }}">
+      {% if items %}
+        {% for item in items %}
+          {% if loop.first %}
+            {% include "@bolt/#{item.name}.twig" with item | merge({
+              attributes: {
+                class: ["c-bolt-background__#{item.name}"]
+              }
+            }) only %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+      {% if overlay == "enabled" %}
+        <div {{ overlayAttributes.addClass(overlayClasses) }} ></div>
+      {% endif %}
+    </div>
   </div>
-  <div class="c-bolt-background__overlay"></div>
-</div>
+</bolt-background>
+
+
+
+
+
+
+
+
+<!-- https://www.pega.com/sites/pega.com/files/styles/max_width_2560/public/ind-government-hero-img.jpg -->
+
+<!-- 
+gradient: 
+c-bolt-background__overlay--gradient
+heavy: c-bolt-background__overlay--heavy
+
+solid: 
+c-bolt-background__overlay--solid -->

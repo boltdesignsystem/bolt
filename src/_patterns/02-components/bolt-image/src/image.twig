@@ -1,13 +1,35 @@
-<div class="image">
-  <img class="image-src" src="{{src}}" {% if alt %} alt="{{alt}}" {% endif %} {% if title %} title="{{title}}" {% endif %}>
-</div>
-
 
 
 
 {% set attributes = create_attribute(attributes | default({})) %}
-{% set wrapper_attributes = create_attribute(wrapper_attributes | default({})) %}
+{# set wrapper_attributes = create_attribute(wrapper_attributes | default({})) #}
 
+
+
+{% set classes = [
+  "c-bolt-image"
+] %}
+
+{% set attributes = attributes.addClass(classes) %}
+
+
+
+{% if alt %}
+  {% set attributes = attributes.setAttribute("alt", alt) %}
+{% endif %}
+
+{% if title %}
+  {% set attributes = attributes.setAttribute("title", title) %}
+{% endif %}
+
+
+{% if src %}
+  {% set attributes = attributes.setAttribute("src", src) %}
+{% endif %}
+
+<img {{ attributes }} >
+
+{#
 
 {% set image_classes = [
   image.lazyload ? 'js-lazyload' : '',
@@ -22,7 +44,6 @@
 {% set srcset = image.srcset ?? "" %}
 {% set imageWidth = imagesize(image.src) %}
 {% set ext = image.src|split('.')|last %}
-{#{% set path = publicpath(image.src|split('.' ~ ext)|first) %}#}
 {% set path = publicpath(image.src|split('.' ~ ext)|first) %}
 
 {% if srcset == "" %}
@@ -59,7 +80,6 @@ padding-bottom: {{ ratio(image.src) }};
   {% if image.lazyload %}
     data-sizes="auto" data-srcset="{{ srcset }}"
     src="{{ lazyload_placeholder }}"
-    {#src="{{ image.src }}"#}
   {% else %}
     src="{{ path ~ '.' ~ ext | default(publicpath("/images/placeholders/fpo_16x9.png")) }}" srcset="{{ srcset }}"
   {% endif %}>
@@ -69,3 +89,7 @@ padding-bottom: {{ ratio(image.src) }};
     <img src="{{ path ~ '.' ~ ext }}">
   </noscript>
 </div>
+
+
+
+#}

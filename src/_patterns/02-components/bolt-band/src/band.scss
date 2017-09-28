@@ -19,6 +19,12 @@
   display: block;
 }
 
+
+.c-bolt-band__content {
+  position: relative; //Needed for absolutely positioned inner elements, like the background component.
+}
+
+
 .c-bolt-band--large {
   @include bolt-padding-top(xlarge);
   @include bolt-padding-bottom(xlarge);
