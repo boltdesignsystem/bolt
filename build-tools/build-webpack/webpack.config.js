@@ -1,5 +1,3 @@
-
-
 module.exports = (options) => {
   const webpack = require('webpack');
   const path = require('path');
@@ -7,13 +5,16 @@ module.exports = (options) => {
   const ExtractTextPlugin = require('extract-text-webpack-plugin');
   const exportJson = require('node-sass-export');
   const npmSass = require('npm-sass');
+  const fs = require('fs-extra');
 
   // const extractSass = new ExtractTextPlugin({
   //   filename: '[name].[contenthash].css'
   //   // disable: process.env.NODE_ENV === "development"
   // });
-
   const sassDataExport = `${process.cwd()}/bolt-website/data`;
+  if (!fs.existsSync(sassDataExport)) {
+    fs.mkdirp(sassDataExport);
+  }
 
   const config = {
     resolve: {
@@ -68,11 +69,20 @@ module.exports = (options) => {
                 }
               },
               {
+                loader: 'clean-css-loader',
+                options: {
+                  skipWarn: true,
+                  compatibility: 'ie9',
+                  level: 2,
+                  inline: ['remote']
+                }
+              },
+              {
                 loader: 'sass-loader',
                 options: {
                   importer: require('npm-sass').importer,
                   functions: exportJson(sassDataExport, 'export_data'),
-                  outputStyle: 'expanded',
+                  outputStyle: 'compressed',
                   precision: 2
                 }
               }

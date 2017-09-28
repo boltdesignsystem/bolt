@@ -5,6 +5,7 @@ const patternlab = require('./build-patternlab');
 const styles = require('./build-styles');
 const symlinks = require('./build-symlinks');
 const webpackTask = require('./build-webpack');
+const gutil = require('gulp-util');
 // const cache = require('gulp-cached');
 // const remember = require('gulp-remember');
 // const changed = require('gulp-changed');
@@ -20,18 +21,10 @@ const webpackTask = require('./build-webpack');
 module.exports = (gulp) => {
   const cssConfig = {
     src: [
-      './src/styles/**/*.scss',
-      './src/_patterns/**/*.scss',
-      '!./src/_patterns/**/tests/**',
-      '!**/node_modules/**',
+      './src/styles/bolt.scss'
     ],
     data: './src/_data',
-    dest: './bolt-website/styles',
-    // extraWatches: [
-    //   '!./packages/**/node_modules/**',
-    //   '!./packages/**/node_modules/**/*'
-    // ]
-    // altDest: './packages/website-jekyll/source/_includes',
+    dest: './bolt-website/styles'
   };
 
 
@@ -131,17 +124,12 @@ module.exports = (gulp) => {
       // 'symlinks:create',
       // 'copy:fonts',
       'styles:compile',
-      'patternlab:recompile',
-      'webpack:dev',
-      // 'jekyll:compile',
+      gutil.env.prod ? 'webpack:prod' : 'webpack:dev',
+      'patternlab:compile',
       // 'copy:json',
       gulp.parallel([
-        // 'watch',
         'webpack:watch',
-        // 'webpack:critical',
-        // 'symlinks:watch',
         'patternlab:watch',
-        // 'jekyll:watch',
         'styles:watch',
         'browsersync:serve'
       ]),
@@ -151,9 +139,8 @@ module.exports = (gulp) => {
   gulp.task('build',
     gulp.series([
       'styles:compile',
-      // 'symlinks',
-      'patternlab:compile',
-      // 'jekyll:compile'
+      'webpack:prod',
+      'patternlab:compile'
     ])
   );
 

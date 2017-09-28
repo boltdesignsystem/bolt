@@ -56,7 +56,9 @@ function webpackTask(gulp, devConfig, releaseConfig) {
     gulp.watch([
       'src/**/*.js',
       '!**/node_modules/**'
-    ], gulp.parallel('webpack:dev'));
+    ], gulp.parallel([
+        gutil.env.prod ? 'webpack:prod' : 'webpack:dev',
+    ]));
   });
 }
 module.exports.webpack = webpackTask;

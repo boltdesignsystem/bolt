@@ -14,8 +14,12 @@ module.exports = {
   sassdoc: {
     dest: './bolt-website/sassdoc'
   },
-  sourceMaps: !util.env.production,
+  sourceMaps: !util.env.prod,
   failAfterError: false,
-  glob: false
-  // failAfterError: util.env.production
+  glob: false,
+  extraWatches: [
+    './src/_patterns/**/*.scss',
+    '!./src/_patterns/**/tests/**',
+    '!**/node_modules/**'
+  ]
 };
