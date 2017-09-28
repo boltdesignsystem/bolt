@@ -31,7 +31,7 @@
     "publish": "lerna run build && lerna run publish-please && lerna publish --no-git",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "serve": "gulp serve",
-    "setup:composer": "if [ ! -f ./bolt-website/index.html ]; then rm -rf composer.lock && rm -rf vendor && rm -rf src/_twig-components && composer update --no-interaction; fi",
+    "setup:composer": "if [ ! -f ./bolt-website/index.html ]; then rm -rf composer.lock && rm -rf vendor && rm -rf src/_twig-components && composer install --no-interaction; fi",
     "setup:homebrew": "sh scripts/install-homebrew.sh",
     "snyk-protect": "snyk protect",
     "start": "serve ./boltdesignsystem --single",
