@@ -1,0 +1,54 @@
+// @import 'tools-spacing/tools.get-shirt-size';
+// @import 'tools-spacing/tools.calculate-sizes';
+// @import 'tools-spacing/tools.normalize-spacing-name';
+@import '@bolt/settings-spacing';
+@import '@bolt/tools-strip-unit';
+@import 'libs/tools.contains-falsy';
+@import 'libs/tools.normalize-spacing-sizes';
+@import 'libs/tools.collapse-directionals';
+@import 'libs/tools.directional-property';
+@import 'libs/tools.spacing-margin';
+@import 'libs/tools.spacing-padding';
+
+/*
+ * Generate default spacing scale, based off of the base font size
+ **/
+@function _bolt-create-spacing-map($sizes, $char: '') {
+  $map: ();
+  @each $name, $value in $sizes {
+    $keyName: $name;
+    @if ($char != '' and $keyName != null) {
+      $keyName: $char + $keyName;
+    }
+    $keyValue: $value * $bolt-spacing-gutter;
+    $map: map-merge($map, ($keyName: $keyValue));
+  }
+  @return $map;
+}
+$bolt-spacing-sizes: _bolt-create-spacing-map($bolt-spacing-values);
+
+/*
+ * CONVENIENCE FUNCTIONS
+ **/
+@function bolt-spacing($size) {
+  @return map-get($bolt-spacing-sizes, nth($size, 1));
+}
+
+
+// Convert shirt sizes in baseline-optimized sizes
+@function bolt-v-spacing($sizes, $modifier: null) {
+  @if ($modifier == 'squished') {
+    $modifier: $bolt-spacing-squished;
+  } @elseif ($modifier == 'stretched') {
+    $modifier: $bolt-spacing-stretched;
+  } @else {
+    $modifier: 1;
+  }
+
+  @return (bolt-spacing($sizes) / bolt-strip-unit($bolt-spacing-gutter)) * $bolt-spacing-leading * $modifier;
+}
+
+// Alias for v-spacing function
+@function bolt-vertical-spacing($size) {
+  @return bolt-v-spacing($size);
+}

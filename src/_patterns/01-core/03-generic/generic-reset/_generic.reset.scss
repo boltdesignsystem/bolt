@@ -1,0 +1,69 @@
+/* ------------------------------------ *\
+  GENERIC - RESET
+\* ------------------------------------ */
+
+@import '@bolt/settings-global';
+@import '@bolt/tools-spacing';
+
+
+/* stylelint-disable-next-line color-no-hex */
+$bolt-color-selection-background-color: #b3d4fc;
+
+
+/* stylelint-disable selector-list-comma-newline-after */
+body,
+dd,
+figure,
+#{$bolt-all-block-elements},
+#{$bolt-all-heading-elements} {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
+}
+/* stylelint-enable selector-list-comma-newline-after */
+
+/*
+* Remove text-shadow in selection highlight:
+* https://twitter.com/miketaylr/status/12228805301
+*
+* These selection rule sets have to be separate.
+* Customize the background color to match your design.
+*/
+::-moz-selection {
+  text-shadow: none;
+  background-color: $bolt-color-selection-background-color;
+}
+
+::selection {
+  text-shadow: none;
+  background-color: $bolt-color-selection-background-color;
+}
+
+
+/**
+ * Remove trailing margins from nested lists.
+ */
+li > {
+  ol,
+  ul {
+    @include bolt-margin-bottom(0);
+  }
+}
+
+
+/**
+ * Remove default table spacing.
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+/**
+ * 1. Reset Chrome and Firefox behaviour which sets a `min-width: min-content;`
+ *    on fieldsets.
+ */
+fieldset {
+  min-width: 0; /* [1] */
+  border: 0;
+}

@@ -1,0 +1,44 @@
+{% set tags = ["div", "article", "section", "heading", "footer", "nav", "figure"] %} {# Available overall container tags #}
+{% set contentTags = ["div", "article", "section", "heading", "footer", "nav", "figcaption"] %} {# Available content container tags #}
+{% set fullBleed = [true, false] %}
+{% set themes = ["dark", "xlight", "light", "dark", "xdark"] %}
+{% set prefix = "c-bolt-" %}
+
+{# Allowed Band Sizes #}
+{% set sizes = [
+  "small",
+  "medium",
+  "large"
+] %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Defaults for a vanilla `Band` component #}
+{% set componentName = "band" %}
+{% set baseClass = prefix ~ componentName %}
+{% set size = size | default("medium") %}
+{% set fullBleed = fullBleed | default(false) %}
+{% set theme = theme | default("dark") %}
+{% set tag = tag in tags ? tag: "div" %}
+{% set contentTag = contentTag in contentTags ? contentTag: "div" %}
+
+{% set classes = [
+  baseClass,
+  size in sizes ? baseClass ~ "--" ~ size : "",
+  fullBleed == true ? baseClass ~ "--" ~ "full" : "",
+  theme in themes ? "t-bolt-" ~ theme : ""
+] %}
+
+<bolt-band
+  size="{{ size }}"
+  theme="{{ theme }}"
+  bolt-component>
+  <{{ tag }} {{ attributes.addClass(classes) }}>
+    <div class="o-bolt-wrapper">
+      {% block band_background %}{% endblock %}
+      <{{ contentTag }} class="{{ "#{baseClass}__content" }}">
+        {% block band_content %}{% endblock %}
+      </{{ contentTag }}>
+    </div>
+  </{{ tag }}>
+</bolt-band>

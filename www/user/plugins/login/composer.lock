@@ -1,0 +1,113 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "540c2e320c9819de1b7c90b59f17263d",
+    "packages": [
+        {
+            "name": "birke/rememberme",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gbirke/rememberme.git",
+                "reference": "810473852eb4823098e47e23376a19b77ba0c165"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gbirke/rememberme/zipball/810473852eb4823098e47e23376a19b77ba0c165",
+                "reference": "810473852eb4823098e47e23376a19b77ba0c165",
+                "shasum": ""
+            },
+            "require": {
+                "paragonie/random_compat": "^1.1.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Birke\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gabriel Birke",
+                    "email": "gb@birke-software.de"
+                }
+            ],
+            "description": "Secure \"Remember Me\" functionality",
+            "homepage": "https://github.com/gbirke/rememberme",
+            "keywords": [
+                "cookie",
+                "remember",
+                "security"
+            ],
+            "time": "2017-02-12T12:43:00+00:00"
+        },
+        {
+            "name": "paragonie/random_compat",
+            "version": "v1.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paragonie/random_compat.git",
+                "reference": "965cdeb01fdcab7653253aa81d40441d261f1e66"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/965cdeb01fdcab7653253aa81d40441d261f1e66",
+                "reference": "965cdeb01fdcab7653253aa81d40441d261f1e66",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*|5.*"
+            },
+            "suggest": {
+                "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "lib/random.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paragon Initiative Enterprises",
+                    "email": "security@paragonie.com",
+                    "homepage": "https://paragonie.com"
+                }
+            ],
+            "description": "PHP 5.x polyfill for random_bytes() and random_int() from PHP 7",
+            "keywords": [
+                "csprng",
+                "pseudorandom",
+                "random"
+            ],
+            "time": "2017-03-13T16:22:52+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=5.4.0"
+    },
+    "platform-dev": []
+}

@@ -1,0 +1,20 @@
+/* ------------------------------------ *\
+  TOOLS - MAP SORT
+  via https://gist.github.com/Jakobud/a0ac11e80a1de453cd86f0d3fc0a1410
+\* ------------------------------------ */
+
+@import '@bolt/tools-list-sort';
+
+/// bolt-map-sort
+/// Sort map by keys
+/// @param $map - A SASS map
+/// @return {Map} A SASS map sorted by keys
+/// @requires {function} bolt-list-sort
+@function bolt-map-sort($map) {
+  $keys: bolt-list-sort(map-keys($map));
+  $sortedMap: ();
+  @each $key in $keys {
+    $sortedMap: map-merge($sortedMap, ($key: map-get($map, $key)));
+  }
+  @return $sortedMap;
+}

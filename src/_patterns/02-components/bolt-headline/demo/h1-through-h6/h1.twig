@@ -1,0 +1,5 @@
+{% include "@bolt/#{type | default('headline')}.twig" with {
+  size: size | default("xxxlarge"),
+  weight: weight | default("bold"),
+  tag: "h1"
+} %}

@@ -1,0 +1,25 @@
+{% set tags = ["ul", "ol"] %} {# Available Headline Types #}
+{% set prefix = "o-bolt-" %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set componentName = "bare-list" %}
+{% set baseClass = prefix ~ componentName %}
+{% set tag = tag in tags ? tag: "ul" %}
+
+
+{% set classes = [
+  baseClass
+] %}
+
+
+  <bolt-bare-list bolt-object>
+    <{{ tag }} {{ attributes.addClass(classes) }}>
+      {% for item in items %}
+        {% set item_attributes = create_attribute(item.attributes|default({})) %}
+        <li {{ item_attributes }}>
+          {{ item.text }}
+        </li>
+      {% endfor %}
+    </{{ tag }}>
+  </bolt-bare-list>

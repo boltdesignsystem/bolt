@@ -1,0 +1,74 @@
+@import '@bolt/tools-color-palette';
+@import '@bolt/tools-spacing';
+
+$bolt-card-shadow-color: bolt-color(gray, dark); //#3f3f44;
+$bolt-card-border-radius: 4px;
+
+bolt-card {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; //If used in a flex box container, grow to fill available space.
+}
+
+.c-bolt-card {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; //If used in a flex box container, grow to fill available space.
+  border-radius: $bolt-card-border-radius;
+  transform: translate3d(0, 0, 0) scale(1, 1);
+  box-shadow: 0 0 0 1px rgba($bolt-card-shadow-color, 0.08), 0 1px 3px 0 rgba($bolt-card-shadow-color, 0.15);
+  position: relative;
+  transition: transform 0.2s ease-in-out;
+  background-image: linear-gradient(var(--bolt-color-background, bolt-color(white)), var(--bolt-color-background, bolt-color(white)));
+  // , linear-gradient(bolt-color(white), bolt-color(white)));
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(bolt-color(white), 0.1);
+    pointer-events: none;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border-radius: $bolt-card-border-radius;
+    box-shadow: 0 5px 15px rgba($bolt-card-shadow-color, 0.15);
+    transition: opacity 0.2s ease-in-out;
+  }
+}
+
+.c-bolt-card__image {
+  /* stylelint-disable-next-line */
+  font-size: 0;
+}
+
+.c-bolt-card__body {
+  @include bolt-padding(medium);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  > bolt-button:last-child {
+    margin-top: auto;
+  }
+}
+
+.c-bolt-card:hover {
+  transform: translate3d(0, 0, 0) scale(1.006, 1.006);
+}
+
+.c-bolt-card:hover:after {
+  opacity: 0.5;
+}

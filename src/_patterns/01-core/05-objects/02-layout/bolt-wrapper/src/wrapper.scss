@@ -1,0 +1,21 @@
+/**
+  * @define o-bolt-wrapper
+  */
+@import '@bolt/tools-spacing';
+@import '@bolt/settings-breakpoints';
+
+$bolt-wrapper--max-width: 1400px !default;
+
+.o-bolt-wrapper {
+  @include bolt-padding-left(medium);
+  @include bolt-padding-right(medium);
+  @include bolt-margin-left(auto);
+  @include bolt-margin-right(auto);
+  display: block;
+  max-width: $bolt-wrapper--max-width;
+
+  @include respond-to(medium) {
+    @include bolt-padding-left(large);
+    @include bolt-padding-right(large);
+  }
+}
