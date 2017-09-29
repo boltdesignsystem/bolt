@@ -1,5 +1,5 @@
 {
-  "lerna": "2.1.2",
+  "lerna": "2.2.0",
   "version": "independent",
   "changelog": {
     "repo": "bolt-design-system/bolt",
@@ -13,12 +13,12 @@
     },
     "cacheDir": ".changelog"
   },
+  "npmClient": "yarn",
   "packages": [
-    "packages/bolt-build-tools/**",
-    "packages/bolt-static-assets/**",
-    "packages/bolt-config/**",
-    "packages/bolt-toolkit/**",
-    "packages/bolt-toolkit-core/**",
-    "packages/bolt-toolkit-ui/**"
+    "packages/bolt-*/**",
+    "src/_patterns/**/*",
+    "build-tools/**/*",
+    "src",
+    "src/fonts"
   ]
 }

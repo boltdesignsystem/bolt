@@ -1,0 +1,108 @@
+{% set attributes = create_attribute(background.attributes ? background.attributes : []) %}
+
+{% set placeholder_attributes = create_attribute(background.placeholder_attributes ? background.placeholder_attributes : []) %}
+{% set image_attributes = create_attribute(background.image_attributes ? background.placeholder_attributes : []) %}
+
+
+{% set classes = [
+    'c-bolt-background-banner',
+    background["floor-fade"] ? 'c-bolt-background-banner--floor-fade',
+    background.parallax and background.source ? 'js-parallax'
+  ]
+%}
+
+{% set image_classes = [
+  'c-bolt-background-banner__image',
+  background.alignment ? "u-background-alignment-" ~ background.alignment,
+  background.filter ? "u-background-filter-" ~ background.filter,
+  background.color ? "u-background-color-" ~ background.color,
+  background.lazyload ? "" : "js-lazyload js-lazypreload",
+  background.parallax and background.source ? 'c-bolt-background-banner__image--parallax' ~ ' js-parallax__image'
+] %}
+
+{% set placeholder_classes = [
+  'c-bolt-background-banner__placeholder-image',
+  background.alignment ? 'u-background-alignment-' ~ background.alignment,
+  background.filter ? "u-background-filter-" ~ background.filter,
+  background.color ? "u-background-color-" ~ background.color,
+  background.parallax and background.source ? 'c-bolt-background-banner__placeholder-image--parallax' ~ ' js-parallax__image'
+] %}
+
+{% set attributes = attributes.addClass(classes) %}
+
+{% set image_attributes = image_attributes.addClass(image_classes) %}
+
+{% set placeholder_attributes = placeholder_attributes.addClass(placeholder_classes) %}
+
+{% set sizes = [50, 100, 200, 320, 480, 640, 800, 1024, 1366, 1536, 1920, 2560, 2880] %}
+{% set srcset = background.srcset ?? "" %}
+
+{% if background.source and srcset == "" %}
+
+
+  {% set imageWidth = imagesize(background.source) %}
+
+  {% set ext = background.source|split('.')|last %}
+  {% set path = publicpath(background.source|split('.' ~ ext)|first) %}
+
+  {% if imageWidth %}
+
+    {% for size in sizes if (size <= imageWidth) %}
+      {% if size == imageWidth %}
+        {% set srcset = srcset ~ '../..' ~ path ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}
+      {% else %}
+        {% set srcset = srcset ~ '../..' ~ path ~ '-' ~ size ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}
+      {% endif %}
+    {% endfor %}
+    {% set srcset = srcset|trim(', ') %}
+  {% else %}
+    {% set srcset = background.source %}
+  {% endif %}
+
+{% endif %}
+
+
+{% if ext == "svg" %}
+  {% set srcset = path ~ '.' ~ ext %}
+{% endif %}
+
+
+
+{% if background.placeholder_image == true %}
+  {% set placeholder_image = "background-image: url('" ~  base64(background.source) ~ "'); " %}
+{% endif %}
+
+
+{# if background.source #}
+  {# if background.source is iterable #}
+    {# set image_src = background["source"] | first #}
+  {# else #}
+    {# set image_src = background["source"] #}
+  {# endif #}
+{# endif #}
+
+
+
+{% if background.source starts with '/' %}
+  {% set placeholder_color = ' background-color: ' ~ bgcolor(background.source) ~ ';' %}
+{% endif %}
+
+
+
+{% if background.parallax and background.source %}
+  {% set attributes = attributes.setAttribute('data-parallax', 'absolute') %}
+  {% set attributes = attributes.addClass('c-bolt-background-banner--parallax') %}
+  {% set attributes = attributes.setAttribute('data-speed', '0.2') %}
+{% endif %}
+
+
+<div {{ attributes }}>
+  {% block background_body %}
+      <span {{ placeholder_attributes }} style="{{ placeholder_image }} {{ placeholder_color }}"
+      ></span>
+
+      <span {{ image_attributes }} data-bgset="{{ srcset }}" data-sizes="auto"></span>
+  {% endblock %}
+
+
+</div>

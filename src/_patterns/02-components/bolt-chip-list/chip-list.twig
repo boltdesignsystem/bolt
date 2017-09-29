@@ -1,0 +1,24 @@
+{# chip-list = inline-list w/ included chips #}
+
+{% if items %}
+  {% set chipParams = {} %}
+  {% set inlineListItems = [] %}
+
+  {% for chip in items %}
+    {% set chipItem %}
+      {% include "@bolt/chip.twig" with chip only %}
+    {% endset %}
+
+    {% set inlineListItems = inlineListItems | merge([{
+      "text": chipItem
+    }]) %}
+  {% endfor %}
+
+  {% set chipParams = chipParams | merge({
+    "items": inlineListItems,
+    size: "small"
+  }) %}
+
+  {% include "@bolt/inline-list.twig" with chipParams only %}
+
+{% endif %}

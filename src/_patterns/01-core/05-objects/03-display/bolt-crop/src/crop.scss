@@ -1,0 +1,101 @@
+/* ==========================================================================
+   #BOLT CROP OBJECT
+   ========================================================================== */
+
+// A list of cropping ratios that get generated as modifier classes.
+
+$bolt-crops: (
+  (1:1),
+  (4:3),
+  (3:4),
+  (16:9)
+) !default;
+
+
+/**
+ * Provide a cropping container in order to display media (usually images)
+ * cropped to certain ratios.
+ *
+ * 1. Set up a positioning context in which the image can sit.
+ * 2. This is the crucial part: where the cropping happens.
+ */
+.o-bolt-crop {
+  display: block;
+  position: relative; /* [1] */
+  overflow: hidden; /* [2] */
+}
+
+
+/**
+ * Apply this class to the content (usually `img`) that needs cropping.
+ *
+ * 1. Image’s default positioning is top-left in the cropping box.
+ * 2. Make sure the media doesn’t stop itself too soon.
+ */
+.o-bolt-crop__content {
+  position: absolute;
+  top: 0; /* [1] */
+  left: 0; /* [1] */
+  min-width: 100%;
+  min-height: 100%;
+  max-width: none; /* [2] */
+}
+
+
+// We can position the media in different locations within the cropping area.
+.o-bolt-crop--right > .o-bolt-crop__content {
+  right: 0;
+  left: auto;
+}
+
+.o-bolt-crop--bottom > .o-bolt-crop__content {
+  top: auto;
+  bottom: 0;
+}
+
+.o-bolt-crop--center > .o-bolt-crop__content {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+/* Crop-ratio variants.
+   ========================================================================== */
+
+/**
+ * Generate a series of crop classes to be used like so:
+ *
+ *   <div class="o-crop  o-crop--16:9">
+ *
+ */
+@mixin bolt-generate-crops($breakpoint: null) {
+  @each $crop in $bolt-crops {
+    @each $antecedent, $consequent in $crop {
+      @if (type-of($antecedent) != number) {
+        @error '`#{$antecedent}` needs to be a number.';
+      }
+
+      @if (type-of($consequent) != number) {
+        @error '`#{$consequent}` needs to be a number.';
+      }
+
+      .o-bolt-crop--#{$antecedent}\:#{$consequent}#{$breakpoint} {
+        padding-bottom: ($consequent/$antecedent) * 100%;
+      }
+    }
+  }
+}
+
+@include bolt-generate-crops;
+
+
+// @if (variable-exists(bolt-breakpoints)) {
+//   @each $breakpoint-name in $breakpoints {
+//     $bp: nth($breakpoint-name, 1);
+
+//     @include respond-to($bp) {
+//       @include generate-crops(#{$global-breakpoint-separator}#{$bp});
+//     }
+//   }
+// }

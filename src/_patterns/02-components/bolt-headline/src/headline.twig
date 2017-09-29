@@ -1,0 +1,13 @@
+{% extends "@bolt/_typography.twig" %}
+{% set type = "headline" %}
+{% set sizes = [
+  "xsmall",
+  "small",
+  "large",
+  "xlarge",
+  "xxlarge",
+  "xxxlarge"
+] %}
+{% set size = size | default("xlarge") %}
+{% set weight = "bold" %}
+{% set tag = tag | default("h2") %}

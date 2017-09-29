@@ -1,0 +1,45 @@
+/* ==========================================================================
+   #BOLT BLOCK OBJECT
+   ========================================================================== */
+
+/**
+ * Stacked image-with-text object. A simple abstraction to cover a very commonly
+ * occurring design pattern.
+ */
+
+@import '@bolt/tools-spacing';
+
+
+
+
+$bolt-block-sizes: (
+  'flush':  0,
+  'xsmall': xsmall,
+  'small':  small,
+  'medium': medium,
+  'large':  large
+);
+$bolt-block-alignments: ('left', 'center', 'right');
+
+
+
+
+.o-bolt-block,
+.o-bolt-block__body {
+  display: block;
+}
+
+
+@each $key in map-keys($bolt-block-sizes) {
+  $value: map-get($bolt-block-sizes, $key);
+
+  .o-bolt-block--#{$key} > .o-bolt-block__image {
+    @include bolt-margin-bottom($value);
+  }
+}
+
+@each $alignment in $bolt-block-alignments {
+  .o-bolt-block--#{$alignment} {
+    text-align: $alignment;
+  }
+}
