@@ -15,7 +15,6 @@ const slack = new Slack(config.hookUrl);
 // const nowCli = require.resolve('now/bin/now');
 
 const repoSlug = 'bolt-design-system/bolt';
-let currentBranch = '';
 
 // const shell = require('shelljs');
 const execConfig = {
@@ -80,7 +79,6 @@ function deploy(context, sha) {
   });
 
   child.on('error', (err) => {
-    console.log(err);
     slack.send(merge(config, {
       text: `Oh snap! Δ Now deployment failed 😞.  ${err}`
     }));
@@ -95,7 +93,7 @@ function deploy(context, sha) {
   });
 
 
-  child.on('close', (code) => {
+  child.on('close', () => {
     const originalUrl = getUrl(stdout);
 
     if (!originalUrl) {
@@ -113,41 +111,40 @@ function deploy(context, sha) {
         username: 'bolt-bot'
       });
     } else {
-    // For non-local deployments, automatically create a pretty alias based off of the current branch
-      currentBranch = process.env.TRAVIS_BRANCH;
-      currentBranch = currentBranch.replace('/', '-').replace('.', '-');
-      const target_url = `${currentBranch}-boltdesignsystem`;
+      // For non-local deployments, automatically create a pretty alias based off of the current branch
+      // currentBranch = process.env.TRAVIS_BRANCH;
+      // currentBranch = currentBranch.replace('/', '-').replace('.', '-');
+      // const target_url = `${currentBranch}-boltdesignsystem`;
 
-      let original_url = getUrl(stdout);
-      original_url = original_url.replace('https://', '').replace('.now.sh', '');
+      const finalUrl = getUrl(stdout);
+      // original_url = original_url.replace('https://', '').replace('.now.sh', '');
 
-      let stdoutAlias = '';
-      const childAlias = exec(`now alias ${original_url} ${target_url}`, execConfig);
+      // let stdoutAlias = '';
+      // const childAlias = exec(`now alias ${original_url} ${target_url}`, execConfig);
 
-      childAlias.stdout.on('data', (data) => {
-        stdoutAlias += data;
-        process.stdout.write(data);
-      });
+      // childAlias.stdout.on('data', (data) => {
+      //   stdoutAlias += data;
+      //   process.stdout.write(data);
+      // });
 
-      childAlias.on('close', (code) => {
-        const final_url = `https://${target_url}.now.sh`;
+      // childAlias.on('close', (code) => {
+      // const final_url = original_url;
 
-        if (sha) {
-          ghRepo.status(sha, {
-            context,
-            final_url,
-            state: 'success',
-            description: `Δ Now ${final_url} deployment complete`
-          }, noop);
-        }
+      if (sha) {
+        ghRepo.status(sha, {
+          context,
+          finalUrl,
+          state: 'success',
+          description: `Δ Now ${finalUrl} deployment complete`
+        }, noop);
+      }
 
-        slack.send({
-          channel: config.slackChannel,
-          text: `Huzzah 😀! Bolt has successfully deployed to <${final_url}|${target_url}>!`,
-          icon_emoji: config.slackEmoji,
-          link_names: 1,
-          username: 'bolt-bot'
-        });
+      slack.send({
+        channel: config.slackChannel,
+        text: `Huzzah 😀! Bolt has successfully deployed to <${finalUrl}|${finalUrl}>!`,
+        icon_emoji: config.slackEmoji,
+        link_names: 1,
+        username: 'bolt-bot'
       });
     }
   });
