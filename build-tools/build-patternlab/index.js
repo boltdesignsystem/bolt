@@ -123,8 +123,11 @@ function addTwigNamespaceConfigToPl(done) {
       twigNamespaces: { enabled: true, namespaces: {} },
     });
   } else if (!patternLabConfig.plugins.twigNamespaces.namespaces) {
+    patternLabConfig.plugins.twigNamespaces.enabled = true;
     patternLabConfig.plugins.twigNamespaces.namespaces = {};
   }
+  patternLabConfig.plugins.twigNamespaces.enabled = true;
+
   Object.assign(patternLabConfig.plugins.twigNamespaces.namespaces, twigNamespaceConfig);
 
   const newConfigFile = yaml.safeDump(patternLabConfig);
