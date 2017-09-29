@@ -6,12 +6,8 @@ const Slack = require('node-slack');
 const merge = require('merge').recursive;
 const github = require('octonode');
 const normalizeUrl = require('normalize-url');
-const spawn = require('cross-spawn');
-const travisAfterAll = require('travis-after-all');
 const urlRegex = require('url-regex');
-const branch = require('git-branch');
 const exec = require('child_process').exec;
-const core = require('@bolt/build-core');
 const config = require('./config.default');
 const travisStatus = require('travis-status');
 
