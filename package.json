@@ -36,7 +36,8 @@
     "snyk-protect": "snyk protect",
     "start": "serve ./boltdesignsystem --single",
     "_test": "npm run mocha",
-    "pretest": "npm run lint:scss && node scripts/check-imports.js"
+    "pretest": "npm run lint:scss && node scripts/check-imports.js",
+    "prepare": "npm run snyk-protect"
   },
   "pre-commit": [
     "lint:scss",
@@ -131,7 +132,7 @@
     "sass-loader": "^6.0.6",
     "sass-toolkit": "^2.10.2",
     "serve": "latest",
-    "snyk": "^1.36.2",
+    "snyk": "^1.41.1",
     "style-loader": "^0.18.2",
     "stylefmt": "6.0.0",
     "stylelint": "8.0.0",
