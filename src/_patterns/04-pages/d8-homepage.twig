@@ -2,53 +2,47 @@
 
 {% block main_content %}
 
-
-{#   eyebrow: {
-    text: "Example eyebrow text",
-    link: {
-      text: "Example Eyebrow Link",
-      url: "https://www.google.com"
-    },
-    icon: {
-      name: "chevron-right",
-      size: "medium"
-    },
-    attributes: primaryTeaser.eyebrow.attributes
-  },
-  _primaryTeaser: {
-
-    headlines: [{
-      text: "Deliver game-changing results with real artificial intelligence."
-    }, {
-      text: "Example eyebrow text",
-      link: {
-        text: "Example Eyebrow Link",
-        url: "https://www.google.com"
-      },
-      icon: {
-        name: "chevron-right",
-        size: "medium"
-      },
-    }]
-  }
-#}
-
-
-
   {% set feature_band_content %}
     {% include "@bolt/ui-list.twig" with {
       items : [
         {
-          text: "Do not include any data or information in your posts that are confidential! yo"
+          items: [
+            {
+              "name": "eyebrow",
+              "text": "Customer Retention"
+            },
+            {
+              "name": "headline",
+              "text": "Personalized. Not Creepy.",
+              "size": "large"
+            }
+          ]
         },
         {
-          text: "Apply basic practices for collaborative work."
+          items: [
+            {
+              "name": "eyebrow",
+              "text": "Sales Effectiveness"
+            },
+            {
+              "name": "headline",
+              "text": "Create Sales Superstars",
+              "size": "large"
+            }
+          ]
         },
         {
-          text: "Be honest, respectful, trustworthy and helpful."
-        },
-        {
-          text: "Answer questions authoritatively and concisely. Avoid cluttering discussions with noise."
+          items: [
+            {
+              "name": "eyebrow",
+              "text": "Operations &amp; IT"
+            },
+            {
+              "name": "headline",
+              "text": "Stop Coding. Start Designing.",
+              "size": "large"
+            }
+          ]
         }
       ]
     } %}
@@ -61,50 +55,49 @@
 
 
 
-  {% include "@bolt/band--feature.twig" with {
+  {% embed "@bolt/band--feature.twig" with {
     teaserPosition: "left",
     teaserWidth: "2/3",
+    size: "medium",
+    full: true,
+    theme: "dark",
     primaryTeaser: {
       eyebrow: {
-        text: "Customer Service Yo"
+        text: "Customer Service"
       },
       headlines: [
         {
           "type": "headline",
-          "text": "Deliver game-changing results with real artificial intelligence!",
-          "size": "xxxlarge",
-          "tag": "h1"
-        },
-        {
-          "type": "subheadline",
-          "text": "Powered by real AI, Pega Customer Service delivers game-changing results for enterprises!!!",
+          "text": "We're able to predict that you're going to call before you need to actually contact us.",
           "size": "xxlarge",
-          "tag": "h2"
+          "tag": "h1"
         }
       ],
-      content: "Powered by real AI, Pega Customer Service delivers game-changing results for enterprises. Get Real",
+      logo: {
+        src: "/images/sample/PayPal-logo.svg",
+        invert: true
+      },
+      content: "Powered by real AI, Pega Customer Service delivers game-changing results for enterprises.",
       buttons: [
         {
-          text: "Example button",
+          text: "Get Real",
           style: "primary",
           url: "https://www.google.com"
         }
       ]
     },
-    content: feature_band.content | default(content)
-  } only %}
-
+    content: feature_band.content | default(content),
+   
+  } only %}{% endembed %}
 
 
 
 {% embed "@bolt/band.twig" with {
-  size: "medium",
+  size: "small",
   theme: "xdark",
   fullBleed: true
 } only %}
   {% block band_content %}
-
-
 
     {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
 
@@ -112,9 +105,9 @@
 
         {% grid %}
           {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
-            {% include "@bolt/paragraph.twig" with {
+            {% include "@bolt/text.twig" with {
               text: "Pega is #1 in software for customer engagement and operational excellence.",
-              size: "xlarge",
+              size: "large",
               weight: "regular"
             } only %}
           {% endcell %}
@@ -139,110 +132,101 @@
 
 
 
-{% embed "@bolt/band.twig" with {
-  size: "medium",
-  theme: "light",
-  fullBleed: true
-} only %}
+{% embed "@bolt/band--collection.twig" with {
+  "theme": "light",
+  "size": "medium",
+  "layout": "card",
+  "items": [
+    {
+      "items": [
+        {
+          "name": "image",
+          "src": "https://www.pega.com/sites/pega.com/files/thumbnail-forrester-prevcard.jpg"
+        },
+        {
+          "name": "headline",
+          "text": "2017 Forrester Wave Report",
+          "size": "large",
+          "tag": "h3"
+        },
+        {
+          "name": "text",
+          "text": "Pega cited as a Leader in The Forrester Wave™: Digital Process Automation Software, Q3 2017."
+        },
+        {
+          "name": "button",
+          "width": "full",
+          "text": "Get the report",
+          "style": "secondary"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "name": "image",
+          "src": "/images/sample/anthem-video.jpg"
+        },
+        {
+          "name": "teaser",
+          "headlines": [
+            {
+              "type": "headline",
+              "text": "Headline #2",
+              "size": "large"
+            }
+          ],
+          "content": "Simplify and automate to reduce costs and improve agility.",
+          "buttons": [
+            {
+              "text": "Learn More About Pega 7",
+              "style": "secondary",
+              "url": "www.google.com/pega7",
+              "width": "full"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "name": "image",
+          "src": "/images/sample/artificial-intelligence-image.jpg"
+        },
+        {
+          "name": "teaser",
+          "headlines": [
+            {
+              "type": "headline",
+              "text": "Headline #3",
+              "size": "large"
+            }
+          ],
+          "content": "Simplify and automate to reduce costs and improve agility.",
+          "buttons": [
+            {
+              "text": "Learn More About Pega 7",
+              "style": "secondary",
+              "url": "www.google.com/pega7",
+              "width": "full"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+} %}
   {% block band_content %}
-
-
-
-    {% include "@bolt/h2.twig" with {
-      text: "What's Trending"
+    {% include "@bolt/headline.twig" with {
+      text: "What's Trending",
+      size: "xlarge",
+      tag: "h3"
     } only %}
-
-    {% grid "o-bolt-grid--matrix" %}
-
-      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-        {% include "@bolt/image.twig" with {
-          src: "http://via.placeholder.com/1242x510"
-        } only %}
-
-        {% include "@bolt/eyebrow.twig" with {
-          text: "Operations & IT"
-        } only %}
-
-        {% include "@bolt/headline.twig" with {
-          text: "Executive Series: Thought Leaders Discuss a New Era of Marketing",
-          size: "large",
-          tag: "h3"
-        } only %}
-
-        {% include "@bolt/paragraph.twig" with {
-          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna."
-        } only %}
-
-        {% include "@bolt/button.twig" with {
-          text: "Call to Action",
-          style: "secondary",
-          width: "full"
-        } only %}
-
-      {% endcell %}
-
-
-      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-          {% include "@bolt/image.twig" with {
-            src: "http://via.placeholder.com/1242x510"
-          } only %}
-
-          {% include "@bolt/eyebrow.twig" with {
-            text: "Operations & IT"
-          } only %}
-
-          {% include "@bolt/headline.twig" with {
-            text: "Executive Series: Thought Leaders Discuss a New Era of Marketing",
-            size: "large",
-            tag: "h3"
-          } only %}
-
-          {% include "@bolt/paragraph.twig" with {
-            text: content | default("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.")
-          } only %}
-
-          {% include "@bolt/button.twig" with {
-            text: "Call to Action",
-            style: "secondary",
-            width: "full"
-          } only %}
-
-
-
-
-
-      {% endcell %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-        {% include "@bolt/image.twig" with {
-          src: "http://via.placeholder.com/1242x510"
-        } only %}
-
-        {% include "@bolt/eyebrow.twig" with {
-          text: "Operations & IT"
-        } only %}
-
-        {% include "@bolt/h3.twig" with {
-          text: "Executive Series: Thought Leaders Discuss a New Era of Marketing",
-          size: "large"
-        } only %}
-
-        {% include "@bolt/paragraph.twig" with {
-          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna."
-        } only %}
-
-        {% include "@bolt/button.twig" with {
-          text: "Call to Action",
-          style: "secondary",
-          width: "full"
-        } only %}
-
-      {% endcell %}
-    {% endgrid %}
-
-
-
-  {% endblock %}
+    {{ parent() }}
+  {% endblock band_content %}
 {% endembed %}
+
 
 
 

@@ -25,9 +25,11 @@
           size: "xxlarge"
         } only %}
 
-        {# include "@bolt/button.twig" with {
-          text: "Call to Action"
-        } #}
+        {% include "@bolt/button.twig" with {
+          text: "Explore the System",
+          url: "/styleguide/html/styleguide.html",
+          style: "primary"
+        } %}
 
       {% endcell %}
 

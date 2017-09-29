@@ -127,6 +127,7 @@ function addTwigNamespaceConfigToPl(done) {
     patternLabConfig.plugins.twigNamespaces.namespaces = {};
   }
   patternLabConfig.plugins.twigNamespaces.enabled = true;
+  patternLabConfig.twigAutoescape = false;
 
   Object.assign(patternLabConfig.plugins.twigNamespaces.namespaces, twigNamespaceConfig);
 
