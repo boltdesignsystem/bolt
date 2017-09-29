@@ -68,7 +68,9 @@ const postCSS = [
 function compileSassDoc(done, userConfig) {
   const config = merge(defaultConfig, userConfig);
 
-  return gulp.src(['packages/**/*.scss', '!packages/**/node_modules/@bolt/**/*'
+  return gulp.src([
+    'src/_patterns/**/*.scss',
+    '!**/node_modules/**/*'
   ])
     .pipe(sassdoc(config.sassdoc))
     .on('end', () => {
@@ -223,13 +225,10 @@ function watch(userConfig) {
     // console.log(watchTasks);
 
     // console.log(src);
-    gulp.watch(src, gulp.parallel(compile(userConfig)));
-
-    // watcher.on('change', (path, stats) => {
-    //   // console.log(`File ${path} was changed`);
-    // });
-
-    // return gulp.watch(src, gulp.parallel(watchTasks));
+    gulp.watch(src, gulp.parallel([
+      compile(userConfig),
+      docs(userConfig)
+    ]));
   }
 
   watchCssTask.displayName = 'styles:watch';
@@ -247,14 +246,6 @@ function clean(userConfig) {
     debug('CSS Cleaned');
 
     rimraf(`${config.dest}/*`, cb);
-    // return del().then((paths) => {
-    //   console.log('Cleaning out old CSS:\n', paths.join('\n'));
-    // });
-
-    // pathExists('foo.js').then((exists) => {
-    //   console.log(exists);
-    //     //= > true
-    // });
   }
 
   cleanStylesTask.description = 'Clean compiled CSS';

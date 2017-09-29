@@ -8,15 +8,14 @@
 @import '@bolt/tools-list-remove';
 @import '@bolt/tools-breakpoint';
 
-/// poly-fluid-sizing
+/// bolt-poly-fluid-sizing
 /// Generate linear interpolated size values through multiple break points
 /// @param $property - A string CSS property name
 /// @param $map - A Sass map of viewport unit and size value pairs
-/// @requires function linear-interpolation
-/// @requires function map-sort
+/// @requires bolt-linear-interpolation
+/// @requires bolt-map-sort
 /// @example
-///   @include poly-fluid-sizing('font-size', (576px: 22px, 768px: 24px, 992px: 34px));
-/// @author Jake Wilson <jake.e.wilson@gmail.com>
+///   @include bolt-poly-fluid-sizing('font-size', (576px: 22px, 768px: 24px, 992px: 34px));
 @mixin bolt-poly-fluid-sizing($property, $map) {
   // Get the number of provided breakpoints
   $length: length(map-keys($map));

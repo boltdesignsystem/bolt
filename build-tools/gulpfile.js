@@ -124,6 +124,7 @@ module.exports = (gulp) => {
       // 'symlinks:create',
       // 'copy:fonts',
       'styles:compile',
+      'styles:sassdoc',
       gutil.env.prod ? 'webpack:prod' : 'webpack:dev',
       'patternlab:compile',
       // 'copy:json',
@@ -139,6 +140,7 @@ module.exports = (gulp) => {
   gulp.task('build',
     gulp.series([
       'styles:compile',
+      'styles:sassdoc',
       'webpack:prod',
       'patternlab:compile'
     ])

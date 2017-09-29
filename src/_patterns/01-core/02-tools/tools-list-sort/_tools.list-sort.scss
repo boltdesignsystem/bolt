@@ -8,9 +8,8 @@
 /// bolt-list-sort
 /// Sort a SASS list
 /// @param $list - A SASS list
-/// @returns A sorted SASS list
-/// @requires function list-remove
-/// @author Jake Wilson <jake.e.wilson@gmail.com>
+/// @return {List} A sorted SASS list
+/// @requires {function} bolt-list-remove
 @function bolt-list-sort($list) {
   $sortedlist: ();
   @while length($list) > 0 {

@@ -12,7 +12,7 @@ describe('Sass Basics', function () {
   let output = '';
   before(() => {
     try {
-      output = execSync('gulp compile --production', {
+      output = execSync('gulp compile --prod', {
         cwd: join(__dirname, 'basics'),
         encoding: 'utf8',
       });

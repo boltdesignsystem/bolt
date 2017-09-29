@@ -20,7 +20,7 @@
     "clean:all": "npm run clean:git && npm run clean:lerna",
     "lint": "npm-run-all --parallel lint:* -c",
     "mocha": "npm run mocha:settings && npm run mocha:build-tools",
-    "mocha:build-tools": "mocha ./packages/**/build-*/tests/*.test.js",
+    "mocha:build-tools": "mocha ./build-tools/**/tests/*.test.js",
     "mocha:settings": "mocha **/settings-*/tests/*.test.js",
     "deploy": "node build-tools/build-slack/index.js",
     "postinstall": "npm run bootstrap && npm run setup:composer",
@@ -35,11 +35,12 @@
     "setup:homebrew": "sh scripts/install-homebrew.sh",
     "snyk-protect": "snyk protect",
     "start": "serve ./boltdesignsystem --single",
-    "_test": "npm run mocha",
+    "test": "npm run mocha",
     "pretest": "npm run lint:scss && node scripts/check-imports.js",
     "prepare": "npm run snyk-protect"
   },
   "pre-commit": [
+    "test",
     "lint:scss",
     "build"
   ],

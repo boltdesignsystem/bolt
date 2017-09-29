@@ -6,10 +6,9 @@
 /// bolt-linear-interpolation
 /// Calculate the definition of a line between two points
 /// @param $map - A SASS map of viewport widths and size value pairs
-/// @returns A linear equation as a calc() function
+/// @return {Number} A linear equation as a calc() function
 /// @example
-///   font-size: linear-interpolation((320px: 18px, 768px: 26px));
-/// @author Jake Wilson <jake.e.wilson@gmail.com>
+///   font-size: bolt-linear-interpolation((320px: 18px, 768px: 26px));
 @function bolt-linear-interpolation($map) {
   $keys: map-keys($map);
   @if (length($keys) != 2) {
