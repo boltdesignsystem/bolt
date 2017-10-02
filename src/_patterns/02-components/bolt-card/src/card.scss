@@ -1,8 +1,14 @@
 @import '@bolt/tools-color-palette';
 @import '@bolt/tools-spacing';
 
-$bolt-card-shadow-color: bolt-color(gray, dark); //#3f3f44;
-$bolt-card-border-radius: 4px;
+$bolt-color--shadow: bolt-color(black);
+$bolt-shadow: 0 0.04rem 0.15rem rgba($bolt-color--shadow, 0.5);
+$bolt-shadow--raised: 0 0.35rem 0.6rem rgba($bolt-color--shadow, 0.18);
+
+$bolt-card-transform--raised: translate3d(0, -0.25rem, 0);
+
+$bolt-transition: ease-in-out 200ms;
+$bolt-border-radius: 3px;
 
 bolt-card {
   display: flex;
@@ -14,44 +20,59 @@ bolt-card {
   display: flex;
   flex-direction: column;
   flex-grow: 1; //If used in a flex box container, grow to fill available space.
-  border-radius: $bolt-card-border-radius;
-  transform: translate3d(0, 0, 0) scale(1, 1);
-  box-shadow: 0 0 0 1px rgba($bolt-card-shadow-color, 0.08), 0 1px 3px 0 rgba($bolt-card-shadow-color, 0.15);
   position: relative;
+  color: currentColor;
+  border-radius: $bolt-border-radius;
+  box-shadow: $bolt-shadow;
+  transform: translate3d(0, 0, 0) scale(1, 1);
   transition: transform 0.2s ease-in-out;
-  background-image: linear-gradient(var(--bolt-color-background, bolt-color(white)), var(--bolt-color-background, bolt-color(white)));
-  // , linear-gradient(bolt-color(white), bolt-color(white)));
 
-  &:before {
-    content: '';
+  &:before, &:after {
     display: block;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(bolt-color(white), 0.1);
+    content: '';
+    border-radius: $bolt-border-radius;
     pointer-events: none;
+    z-index: -1;
+  }
+
+  &:before {
+    background-color: rgba(bolt-color(white), 0.1);
   }
 
   &:after {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    box-shadow: $bolt-shadow--raised;
     opacity: 0;
-    border-radius: $bolt-card-border-radius;
-    box-shadow: 0 5px 15px rgba($bolt-card-shadow-color, 0.15);
-    transition: opacity 0.2s ease-in-out;
+    transition: opacity $bolt-transition;
+  }
+
+  &:hover, &:focus {
+    transform: $bolt-card-transform--raised;
+
+    &:after {
+      opacity: 1;
+    }
+  }
+
+  &:active {
+    transform: translate3d(0, 0, 0);
+
+    &:after {
+      opacity: 0;
+    }
   }
 }
 
 .c-bolt-card__image {
+  overflow: hidden;
   /* stylelint-disable-next-line */
   font-size: 0;
+  border-top-right-radius: $bolt-border-radius;
+  border-top-left-radius: $bolt-border-radius;
 }
 
 .c-bolt-card__body {
@@ -61,14 +82,52 @@ bolt-card {
   flex-grow: 1;
 
   > bolt-button:last-child {
-    margin-top: auto;
+    @include bolt-margin-top(auto);
   }
 }
 
-.c-bolt-card:hover {
-  transform: translate3d(0, 0, 0) scale(1.006, 1.006);
+.c-bolt-card__footer {
+  position: relative;
+  display: flex;
+
+  &:before {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    content: '';
+    background-color: currentColor;
+    opacity: 0.1;
+  }
 }
 
-.c-bolt-card:hover:after {
-  opacity: 0.5;
+.c-bolt-card__footer-item {
+  &:not(:only-child) {
+    display: inline-flex;
+    flex: 1;
+    justify-content: center;
+    position: relative;
+    color: currentColor;
+    text-align: center;
+  }
+
+  &:only-child {
+    width: 100%;
+  }
+
+  & + .c-bolt-card__footer-item {
+    &:before {
+      display: block;
+      position: absolute;
+      top: 1px;
+      left: 0;
+      width: 1px;
+      height: 100%;
+      content: '';
+      background-color: currentColor;
+      opacity: 0.1;
+    }
+  }
 }

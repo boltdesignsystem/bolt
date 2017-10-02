@@ -1,5 +1,5 @@
 {% set themes = ["", "xlight", "light", "dark", "xdark"] %}
-{% set tags = ["div"] %} {# Available overall container tags #}
+{% set tags = ["div", "a"] %} {# Available overall container tags #}
 {% set themes = ["", "xlight", "light", "dark", "xdark"] %}
 {% set prefix = "c-bolt-" %}
 
@@ -8,7 +8,7 @@
 {# Defaults for a vanilla `Band` component #}
 {% set componentName = "card" %}
 {% set baseClass = prefix ~ componentName %}
-{% set theme = theme | default("xlight") %}
+{% set theme = theme %}
 {% set tag = tag in tags ? tag: "div" %}
 
 {% set classes = [

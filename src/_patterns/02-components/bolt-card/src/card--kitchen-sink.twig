@@ -1,0 +1,303 @@
+{% embed "@bolt/band.twig" with {
+  size: size | default("medium"),
+  theme: theme | default("xlight"),
+  fullBleed: true,
+} %}
+  {% block band_content %}
+    {% grid with {
+      attributes: {
+        class: [
+          "o-bolt-grid--flex",
+          "o-bolt-grid--matrix"
+        ]
+      }
+    } %}
+
+      {% cell with {
+        attributes: {
+          class: [
+            "u-bolt-width-1/1",
+            "u-bolt-width-1/3@small"
+          ]
+        }
+      } %}
+        <div class="c-bolt-card">
+          <div class="c-bolt-card__image">
+            {% include "@bolt/image.twig" with {
+              src: "https://www.pega.com/sites/pega.com/files/thumbnail-forrester-prevcard.jpg"
+            } only %}
+          </div>
+          <div class="c-bolt-card__body">
+            {% include "@bolt/eyebrow.twig" with {
+              text: "Eyebrow"
+            } only %}
+
+            {% include "@bolt/headline.twig" with {
+              text: "2017 Forrester Wave Report",
+              size: "large",
+              tag: "h2"
+            } only %}
+
+            {% include "@bolt/text.twig" with {
+              text: "Pega cited as a Leader in The Forrester Wave™: Digital Process Automation Software, Q3 2017."
+            } only %}
+
+            {% include "@bolt/button.twig" with {
+              text: "Get the report",
+              width: "full",
+              style: "secondary"
+            } only %}
+          </div>
+        </div>
+      {% endcell %}
+
+      {% cell with {
+        attributes: {
+          class: [
+            "u-bolt-width-1/1",
+            "u-bolt-width-1/3@small"
+          ]
+        }
+      } %}
+        <a href="" class="c-bolt-card">
+          <div class="c-bolt-card__image">
+            {% include "@bolt/image.twig" with {
+              src: "/images/sample/anthem-video.jpg"
+            } only %}
+          </div>
+          <div class="c-bolt-card__body">
+            {% include "@bolt/eyebrow.twig" with {
+              text: "Eyebrow"
+            } only %}
+
+            {% include "@bolt/headline.twig" with {
+              text: "Anthem: Service Desktop",
+              size: "large",
+              tag: "h2"
+            } only %}
+
+            {% include "@bolt/text.twig" with {
+              text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
+            } only %}
+          </div>
+          <div class="c-bolt-card__footer">
+            <div class="c-bolt-card__footer-item">
+              {% include "@bolt/button.twig" with {
+                text: "Call to action",
+                width: "full",
+                style: "tertiary",
+                tag: "div"
+              } only %}
+            </div>
+          </div>
+        </a>
+      {% endcell %}
+
+      {% cell with {
+        attributes: {
+          class: [
+            "u-bolt-width-1/1",
+            "u-bolt-width-1/3@small"
+          ]
+        }
+      } %}
+        <div class="c-bolt-card">
+          <div class="c-bolt-card__image">
+            {% include "@bolt/image.twig" with {
+              src: "/images/sample/artificial-intelligence-image.jpg"
+            } only %}
+          </div>
+          <div class="c-bolt-card__body">
+            {% include "@bolt/eyebrow.twig" with {
+              text: "Eyebrow"
+            } only %}
+
+            {% include "@bolt/headline.twig" with {
+              text: "Nulla Facilisi Duis Aliquet Egestas Purus In Blandit Curabitur Vulputate Ligula Lacinia",
+              size: "large",
+              tag: "h2"
+            } only %}
+
+            {% include "@bolt/text.twig" with {
+              text: "Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor."
+            } only %}
+          </div>
+          <div class="c-bolt-card__footer">
+            <div class="c-bolt-card__footer-item">
+              {% include "@bolt/button.twig" with {
+                text: "Call to action 1",
+                width: "full",
+                style: "tertiary",
+              } only %}
+            </div>
+            <div class="c-bolt-card__footer-item">
+              {% include "@bolt/button.twig" with {
+                text: "Call to action 2",
+                width: "full",
+                style: "tertiary",
+              } only %}
+            </div>
+          </div>
+        </div>
+      {% endcell %}
+    {% endgrid %}
+
+  {% endblock band_content %}
+{% endembed %}
+
+
+{% embed "@bolt/band.twig" with {
+  size: size | default("medium"),
+  theme: theme | default("xdark"),
+  fullBleed: true,
+} %}
+  {% block band_background %}
+    <div class="c-bolt-background">
+      <div class="c-bolt-background__item">
+        <img class="c-bolt-background__image c-bolt-image" src="https://www.pega.com/sites/pega.com/files/styles/max_width_2560/public/ind-government-hero-img.jpg">
+        <div class="c-bolt-background__overlay c-bolt-background__overlay--medium-opacity c-bolt-background__overlay--color-fill"></div>
+      </div>
+    </div>
+  {% endblock band_background %}
+
+  {% block band_content %}
+    {% grid with {
+      attributes: {
+        class: [
+          "o-bolt-grid--flex",
+          "o-bolt-grid--matrix"
+        ]
+      }
+    } %}
+
+      {% cell with {
+        attributes: {
+          class: [
+            "u-bolt-width-1/1",
+            "u-bolt-width-1/3@small"
+          ]
+        }
+      } %}
+        <div class="c-bolt-card">
+          <div class="c-bolt-card__image">
+            {% include "@bolt/image.twig" with {
+              src: "https://www.pega.com/sites/pega.com/files/thumbnail-forrester-prevcard.jpg"
+            } only %}
+          </div>
+          <div class="c-bolt-card__body">
+            {% include "@bolt/eyebrow.twig" with {
+              text: "Eyebrow"
+            } only %}
+
+            {% include "@bolt/headline.twig" with {
+              text: "2017 Forrester Wave Report",
+              size: "large",
+              tag: "h2"
+            } only %}
+
+            {% include "@bolt/text.twig" with {
+              text: "Pega cited as a Leader in The Forrester Wave™: Digital Process Automation Software, Q3 2017."
+            } only %}
+
+            {% include "@bolt/button.twig" with {
+              text: "Get the report",
+              width: "full",
+              style: "secondary"
+            } only %}
+          </div>
+        </div>
+      {% endcell %}
+
+      {% cell with {
+        attributes: {
+          class: [
+            "u-bolt-width-1/1",
+            "u-bolt-width-1/3@small"
+          ]
+        }
+      } %}
+        <a href="" class="c-bolt-card">
+          <div class="c-bolt-card__image">
+            {% include "@bolt/image.twig" with {
+              src: "/images/sample/anthem-video.jpg"
+            } only %}
+          </div>
+          <div class="c-bolt-card__body">
+            {% include "@bolt/eyebrow.twig" with {
+              text: "Eyebrow"
+            } only %}
+
+            {% include "@bolt/headline.twig" with {
+              text: "Anthem: Service Desktop",
+              size: "large",
+              tag: "h2"
+            } only %}
+
+            {% include "@bolt/text.twig" with {
+              text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
+            } only %}
+          </div>
+          <div class="c-bolt-card__footer">
+            <div class="c-bolt-card__footer-item">
+              {% include "@bolt/button.twig" with {
+                text: "Call to action",
+                width: "full",
+                style: "tertiary",
+                tag: "div"
+              } only %}
+            </div>
+          </div>
+        </a>
+      {% endcell %}
+
+      {% cell with {
+        attributes: {
+          class: [
+            "u-bolt-width-1/1",
+            "u-bolt-width-1/3@small"
+          ]
+        }
+      } %}
+        <div class="c-bolt-card">
+          <div class="c-bolt-card__image">
+            {% include "@bolt/image.twig" with {
+              src: "/images/sample/artificial-intelligence-image.jpg"
+            } only %}
+          </div>
+          <div class="c-bolt-card__body">
+            {% include "@bolt/eyebrow.twig" with {
+              text: "Eyebrow"
+            } only %}
+
+            {% include "@bolt/headline.twig" with {
+              text: "Nulla Facilisi Duis Aliquet Egestas Purus In Blandit Curabitur Vulputate Ligula Lacinia",
+              size: "large",
+              tag: "h2"
+            } only %}
+
+            {% include "@bolt/text.twig" with {
+              text: "Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor."
+            } only %}
+          </div>
+          <div class="c-bolt-card__footer">
+            <div class="c-bolt-card__footer-item">
+              {% include "@bolt/button.twig" with {
+                text: "Call to action 1",
+                width: "full",
+                style: "tertiary",
+              } only %}
+            </div>
+            <div class="c-bolt-card__footer-item">
+              {% include "@bolt/button.twig" with {
+                text: "Call to action 2",
+                width: "full",
+                style: "tertiary",
+              } only %}
+            </div>
+          </div>
+        </div>
+      {% endcell %}
+    {% endgrid %}
+
+  {% endblock band_content %}
+{% endembed %}
