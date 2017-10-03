@@ -30,7 +30,8 @@ styleguideKit: pattern-lab/styleguidekit-twig-default
 styleguideKitPath: vendor/pattern-lab/styleguidekit-twig-default
 lineageMatch: >-
   {%([ ]+)?(?:include|extends|embed)(
-  |\()[&quot;\&#039;]([\/.@A-Za-z0-9-_]+)[&quot;\&#039;]([\s\S+]*?)%}
+  |\()[&quot;&#39;]([\/.@\#\|;A-Za-z\(\)™’\?0-9\-_]+)[&quot;&#39;]([
+  &#39;\(\)\|\#;A-Za-z™’\?0-9\-&\}_\n\{&quot;:&#39;,\/. \[\]]+)%}
 lineageMatchKey: 3
 patternExtension: twig
 twigDebug: false
@@ -72,18 +73,17 @@ plugins:
           - src/_patterns/01-core/05-objects/02-layout/bolt-wrapper/src
           - src/_patterns/01-core/05-objects/03-display/bolt-crop/src
           - src/_patterns/01-core/05-objects/03-display/bolt-ratio/src
+          - src/_patterns/02-components/01-bolt-button/demos
+          - src/_patterns/02-components/01-bolt-button/src
+          - src/_patterns/02-components/02-bolt-button-group/src
           - src/_patterns/02-components/bolt-action-block/lib
           - src/_patterns/02-components/bolt-action-block/src
           - src/_patterns/02-components/bolt-background/demo
           - src/_patterns/02-components/bolt-background/src
           - src/_patterns/02-components/bolt-band/demo
           - src/_patterns/02-components/bolt-band/src
-          - src/_patterns/02-components/bolt-button-group/src
-          - src/_patterns/02-components/bolt-button/demos
-          - src/_patterns/02-components/bolt-button/src
           - src/_patterns/02-components/bolt-card/src
           - src/_patterns/02-components/bolt-chip-list
-          - src/_patterns/02-components/bolt-chip/lib
           - src/_patterns/02-components/bolt-chip/src
           - src/_patterns/02-components/bolt-headline/demo
           - src/_patterns/02-components/bolt-headline/demo/h1-through-h6
@@ -96,7 +96,6 @@ plugins:
           - src/_patterns/02-components/bolt-page-footer/src
           - src/_patterns/02-components/bolt-quote
           - src/_patterns/02-components/bolt-teaser/src/twig
-          - src/_patterns/02-components/components-card/lib
           - src/_patterns/03-templates/templates-default
           - src/_patterns/04-pages
     roots: {}
