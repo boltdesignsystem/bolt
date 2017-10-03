@@ -1,5 +1,5 @@
 diff --git a/src/PatternLab/PatternData/Rules/DocumentationRule.php b/src/PatternLab/PatternData/Rules/DocumentationRule.php
-index 4e9ef3f..ceee57e 100644
+index 4e9ef3f..0636c5f 100644
 --- a/src/PatternLab/PatternData/Rules/DocumentationRule.php
 +++ b/src/PatternLab/PatternData/Rules/DocumentationRule.php
 @@ -16,6 +16,9 @@ use \PatternLab\Config;
@@ -9,22 +9,26 @@ index 4e9ef3f..ceee57e 100644
 +use \PatternLab\Data;
 +use \PatternLab\PatternData\Exporters\PatternPathSrcExporter;
 +use \PatternLab\PatternEngine;
-
+ 
  class DocumentationRule extends \PatternLab\PatternData\Rule {
-
+ 	
 @@ -49,7 +52,6 @@ class DocumentationRule extends \PatternLab\PatternData\Rule {
-
+ 		
  		// parse data
  		$text = file_get_contents($patternSourceDir.DIRECTORY_SEPARATOR.$pathName);
 -		list($yaml,$markdown) = Documentation::parse($text);
-
+ 		
  		// grab the title and unset it from the yaml so it doesn't get duped in the meta
  		if (isset($yaml["title"])) {
-@@ -74,6 +76,41 @@ class DocumentationRule extends \PatternLab\PatternData\Rule {
+@@ -70,10 +72,48 @@ class DocumentationRule extends \PatternLab\PatternData\Rule {
+ 			}
+ 			
+ 		}
+-		
  		$category         = ($patternSubtypeDoc) ? "patternSubtype" : "pattern";
  		$patternStoreKey  = ($patternSubtypeDoc) ? $docPartial."-plsubtype" : $docPartial;
-
-+		/**
+ 		
++	/**
 +		* Setup the Pattern Loader so we can pre-render template markup used
 +		* in our markdown files, prior to any markup getting parsed.
 +		* Taken from Builder.php
@@ -36,14 +40,18 @@ index 4e9ef3f..ceee57e 100644
 +		$patternEngineBasePath   = PatternEngine::getInstance()->getBasePath();
 +		$patternLoaderClass      = $patternEngineBasePath . "\Loaders\PatternLoader";
 +		$patternLoader           = new $patternLoaderClass($options);
-+
-+
++		
++		
 +		// Combine local + global pattern data.
 +		$data = array();
 +		$globalData = Data::getPatternSpecificData($docPartial);
-+		$localData = PatternData::getOption($docPartial)["data"];
-+
-+		if ($localData){
++		$localData = array();
++		
++		if (PatternData::getOption($docPartial) && isset(PatternData::getOption($docPartial)["data"])){
++			$localData = PatternData::getOption($docPartial)["data"];
++		}
++		
++		if (!empty($localData)){
 +			$data = array_replace_recursive($globalData, $localData);
 +		} else {
 +			$data = $globalData;

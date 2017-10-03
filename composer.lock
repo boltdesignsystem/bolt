@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "37a0f4856343d4cbfb5eb15243282242",
+    "content-hash": "14cf8bc63e5e9e328b5d208ff13ce5ba",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -117,7 +117,7 @@
         },
         {
             "name": "bolt/twig-extensions",
-            "version": "dev-feature/v0.3.0-demo",
+            "version": "dev-feature/fix-lineages",
             "dist": {
                 "type": "path",
                 "url": "packages/bolt-twig-extensions",
@@ -373,7 +373,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2017-08-30T09:16:50+00:00"
+            "time": "2017-08-30 09:16:50"
         },
         {
             "name": "evanlovely/plugin-twig-namespaces",
@@ -427,7 +427,53 @@
                 "pattern lab",
                 "twig"
             ],
-            "time": "2017-09-01T18:45:52+00:00"
+            "time": "2017-09-01 18:45:52"
+        },
+        {
+            "name": "gajus/dindent",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gajus/dindent.git",
+                "reference": "6638930af0a22a40e2574e8d50248237f27994c5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gajus/dindent/zipball/6638930af0a22a40e2574e8d50248237f27994c5",
+                "reference": "6638930af0a22a40e2574e8d50248237f27994c5",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Gajus\\Dindent\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Gajus Kuizinas",
+                    "email": "gk@anuary.com"
+                }
+            ],
+            "description": "HTML indentation library for development and testing.",
+            "homepage": "https://github.com/gajus/dindent",
+            "keywords": [
+                "format",
+                "html",
+                "indent"
+            ],
+            "time": "2017-06-05 10:29:29"
         },
         {
             "name": "gregwar/cache",
@@ -522,7 +568,7 @@
                 "gd",
                 "image"
             ],
-            "time": "2017-04-09T10:02:48+00:00"
+            "time": "2017-04-09 10:02:48"
         },
         {
             "name": "kevinlebrun/colors.php",
@@ -764,7 +810,7 @@
             ],
             "description": "Extend the composer/installers plugin to accept any arbitrary package type.",
             "homepage": "http://www.oomphinc.com/",
-            "time": "2017-03-31T16:57:39+00:00"
+            "time": "2017-03-31 16:57:39"
         },
         {
             "name": "pattern-lab/core",
@@ -796,6 +842,10 @@
             "type": "library",
             "extra": {
                 "patches_applied": {
+                    "[FIX] Fix PL Lineages when using Twig namespaces plugin.": ".patches/fixPatternLabLineagesWhenUsingTwigNamespaces.patch",
+                    "[FIX] Fix Psuedo Pattern Template Paths If Organized In Different Folder From Base Template. Addresses https://github.com/drupal-pattern-lab/patternlab-php-core/issues/22": ".patches/fixPsuedoPatternTemplatePaths.patch",
+                    "[FEATURE] Beautify raw HTML output": ".patches/beautifyHTML.patch",
+                    "[FEATURE] Compile embedded templates in Markdown files": ".patches/compileTemplatesInMarkdownFiles.patch",
                     "[FIX] Allow PL to Ignore Certain Folders like Node Modules.": ".patches/ignoreCertainFolders.patch",
                     "[FEATURE] Allow default Pattern Data configuration rules to be disabled. Also adds ability to add on extra Pattern Data rules to customize and extend default Pattern Lab behavior.": ".patches/configurablePatternDataRules.patch"
                 }
@@ -1106,12 +1156,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "2766c22a2a7d2a8317c575c2912f61ed39684107"
+                "reference": "a2a1e29f332c3989a0e2c592707885f452eb6857"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/2766c22a2a7d2a8317c575c2912f61ed39684107",
-                "reference": "2766c22a2a7d2a8317c575c2912f61ed39684107",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/a2a1e29f332c3989a0e2c592707885f452eb6857",
+                "reference": "a2a1e29f332c3989a0e2c592707885f452eb6857",
                 "shasum": ""
             },
             "require": {
@@ -1161,7 +1211,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2017-09-15T10:12:22+00:00"
+            "time": "2017-10-02 06:49:52"
         },
         {
             "name": "symfony/filesystem",
@@ -1169,12 +1219,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "c5a19a202c0df68e6a30ca0336c9b474b13591d1"
+                "reference": "30531a799857406cf13cefe9121417e8cfe92c24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/c5a19a202c0df68e6a30ca0336c9b474b13591d1",
-                "reference": "c5a19a202c0df68e6a30ca0336c9b474b13591d1",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/30531a799857406cf13cefe9121417e8cfe92c24",
+                "reference": "30531a799857406cf13cefe9121417e8cfe92c24",
                 "shasum": ""
             },
             "require": {
@@ -1210,7 +1260,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2017-09-18T08:06:42+00:00"
+            "time": "2017-10-02 07:56:07"
         },
         {
             "name": "symfony/finder",
@@ -1218,12 +1268,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "e5f4d261720507565ff68235a70136fc662f727e"
+                "reference": "6db4a8ddcd86146761130989eb348451de03de74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/e5f4d261720507565ff68235a70136fc662f727e",
-                "reference": "e5f4d261720507565ff68235a70136fc662f727e",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/6db4a8ddcd86146761130989eb348451de03de74",
+                "reference": "6db4a8ddcd86146761130989eb348451de03de74",
                 "shasum": ""
             },
             "require": {
@@ -1259,7 +1309,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2017-09-26T14:59:44+00:00"
+            "time": "2017-10-02 06:49:52"
         },
         {
             "name": "symfony/process",
@@ -1267,12 +1317,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "7e63d481ba38355ee24039a029fb0e1ce7251e79"
+                "reference": "6a5ea9d28704e1e8e5fce55b5680398073cb3bcb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/7e63d481ba38355ee24039a029fb0e1ce7251e79",
-                "reference": "7e63d481ba38355ee24039a029fb0e1ce7251e79",
+                "url": "https://api.github.com/repos/symfony/process/zipball/6a5ea9d28704e1e8e5fce55b5680398073cb3bcb",
+                "reference": "6a5ea9d28704e1e8e5fce55b5680398073cb3bcb",
                 "shasum": ""
             },
             "require": {
@@ -1308,7 +1358,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2017-09-15T10:12:22+00:00"
+            "time": "2017-10-02 06:49:52"
         },
         {
             "name": "symfony/yaml",
@@ -1316,12 +1366,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "50c33cf46180f07d75cbec473cdcacacc316b266"
+                "reference": "56b7cf3671ccd10ece8c278992c8ae89cf448e23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/50c33cf46180f07d75cbec473cdcacacc316b266",
-                "reference": "50c33cf46180f07d75cbec473cdcacacc316b266",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/56b7cf3671ccd10ece8c278992c8ae89cf448e23",
+                "reference": "56b7cf3671ccd10ece8c278992c8ae89cf448e23",
                 "shasum": ""
             },
             "require": {
@@ -1366,7 +1416,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-09-29T11:19:35+00:00"
+            "time": "2017-10-02 06:49:52"
         },
         {
             "name": "twig/twig",
@@ -1431,7 +1481,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-09-27T18:07:18+00:00"
+            "time": "2017-09-27 18:07:18"
         }
     ],
     "packages-dev": [],
@@ -1439,7 +1489,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "evanlovely/plugin-twig-namespaces": 20,
-        "oomphinc/composer-installers-extender": 20
+        "oomphinc/composer-installers-extender": 20,
+        "gajus/dindent": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

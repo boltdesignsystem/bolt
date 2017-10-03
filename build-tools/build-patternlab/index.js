@@ -101,7 +101,9 @@ function addTwigNamespaceConfigToDrupal(done) {
       fs.readFileSync(twigNamespaces.drupalThemeFile, 'utf8')
     );
     Object.assign(drupalThemeFile['component-libraries'], twigNamespaceConfig);
-    const newThemeFile = yaml.safeDump(drupalThemeFile);
+    const newThemeFile = yaml.safeDump(drupalThemeFile, {
+      noCompatMode: true
+    });
     fs.writeFileSync(twigNamespaces.drupalThemeFile, newThemeFile, 'utf8');
     done();
   }
@@ -131,7 +133,9 @@ function addTwigNamespaceConfigToPl(done) {
 
   Object.assign(patternLabConfig.plugins.twigNamespaces.namespaces, twigNamespaceConfig);
 
-  const newConfigFile = yaml.safeDump(patternLabConfig);
+  const newConfigFile = yaml.safeDump(patternLabConfig, {
+    noCompatMode: true
+  });
 
 
   fs.writeFileSync(gulpConfig.patternLab.configFile, newConfigFile, 'utf8');
