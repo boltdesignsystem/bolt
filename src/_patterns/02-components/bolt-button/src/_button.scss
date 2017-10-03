@@ -262,10 +262,8 @@ $bolt-border-width--button: 1px;
   display: inline-block;
   @supports (display: flex) {
     display: inline-flex;
-    justify-content: center;
   }
 
-  text-align: center;
   cursor: pointer;
   text-decoration: none;
   vertical-align: middle;
@@ -370,6 +368,20 @@ $bolt-border-width--button: 1px;
 
 
 // Button content
+
+.c-bolt-button--item-align-center {
+  @supports (display: flex) {
+    justify-content: center;
+  }
+  text-align: center;
+}
+
+.c-bolt-button--item-align-start {
+  @supports (display: flex) {
+    justify-content: flex-start;
+  }
+  text-align: left;
+}
 
 .c-bolt-button__text + .c-bolt-button__icon {
   @include bolt-margin-left(xsmall);

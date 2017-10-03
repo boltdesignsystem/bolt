@@ -24,7 +24,7 @@
         <div class="c-bolt-card">
           <div class="c-bolt-card__image">
             {% include "@bolt/image.twig" with {
-              src: "https://www.pega.com/sites/pega.com/files/thumbnail-forrester-prevcard.jpg"
+              src: "/images/sample/artificial-intelligence-image.jpg"
             } only %}
           </div>
           <div class="c-bolt-card__body">
@@ -33,13 +33,13 @@
             } only %}
 
             {% include "@bolt/headline.twig" with {
-              text: "2017 Forrester Wave Report",
+              text: "Old Card Is Old: Class Aptent Taciti Sociosqu",
               size: "large",
               tag: "h2"
             } only %}
 
             {% include "@bolt/text.twig" with {
-              text: "Pega cited as a Leader in The Forrester Wave™: Digital Process Automation Software, Q3 2017."
+              text: "Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor."
             } only %}
 
             {% include "@bolt/button.twig" with {
@@ -59,7 +59,40 @@
           ]
         }
       } %}
-        <a href="" class="c-bolt-card">
+        {% include "@bolt/card.twig" with {
+          tag: "a",
+          url: "javascript:",
+          items: [
+            {
+              name: "image",
+              src: "/images/sample/anthem-video.jpg",
+              alt: "Anthem Video"
+            },
+            {
+              name: "eyebrow",
+              text: "Eyebrow"
+            },
+            {
+              name: "headline",
+              tag: "h3",
+              size: "large",
+              text: "Anthem: Service Desktop"
+            },
+            {
+              name: "text",
+              text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
+            },
+            {
+              name: "button",
+              style: "tertiary",
+              width: "full",
+              tag: "div",
+              itemAlignment: "start",
+              text: "Call to action"
+            }
+          ]
+        } only %}
+        {# <a href="" class="c-bolt-card">
           <div class="c-bolt-card__image">
             {% include "@bolt/image.twig" with {
               src: "/images/sample/anthem-video.jpg"
@@ -90,7 +123,7 @@
               } only %}
             </div>
           </div>
-        </a>
+        </a> #}
       {% endcell %}
 
       {% cell with {
@@ -104,39 +137,19 @@
         <div class="c-bolt-card">
           <div class="c-bolt-card__image">
             {% include "@bolt/image.twig" with {
-              src: "/images/sample/artificial-intelligence-image.jpg"
+              src: "https://www.pega.com/sites/pega.com/files/thumbnail-forrester-prevcard.jpg"
             } only %}
           </div>
           <div class="c-bolt-card__body">
-            {% include "@bolt/eyebrow.twig" with {
-              text: "Eyebrow"
-            } only %}
-
             {% include "@bolt/headline.twig" with {
-              text: "Nulla Facilisi Duis Aliquet Egestas Purus In Blandit Curabitur Vulputate Ligula Lacinia",
+              text: "2017 Forrester Wave Report",
               size: "large",
               tag: "h2"
             } only %}
 
             {% include "@bolt/text.twig" with {
-              text: "Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor."
+              text: "Pega cited as a Leader in The Forrester Wave™: Digital Process Automation Software, Q3 2017."
             } only %}
-          </div>
-          <div class="c-bolt-card__footer">
-            <div class="c-bolt-card__footer-item">
-              {% include "@bolt/button.twig" with {
-                text: "Call to action 1",
-                width: "full",
-                style: "tertiary",
-              } only %}
-            </div>
-            <div class="c-bolt-card__footer-item">
-              {% include "@bolt/button.twig" with {
-                text: "Call to action 2",
-                width: "full",
-                style: "tertiary",
-              } only %}
-            </div>
           </div>
         </div>
       {% endcell %}
@@ -202,7 +215,8 @@
             {% include "@bolt/button.twig" with {
               text: "Get the report",
               width: "full",
-              style: "secondary"
+              style: "secondary",
+              center: false
             } only %}
           </div>
         </div>

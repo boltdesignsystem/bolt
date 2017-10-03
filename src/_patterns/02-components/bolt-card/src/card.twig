@@ -1,20 +1,25 @@
-{% set themes = ["", "xlight", "light", "dark", "xdark"] %}
-{% set tags = ["div", "a"] %} {# Available overall container tags #}
-{% set themes = ["", "xlight", "light", "dark", "xdark"] %}
+{% set tags = ["div", "a", "article", "section", "figure"] %} {# Available overall container tags #}
+{% set contentTags = ["div", "article", "section", "figcaption"] %} {# Available content container tags #}
+{% set themes = ["xlight", "light", "dark", "xdark"] %}
 {% set prefix = "c-bolt-" %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
 
-{# Defaults for a vanilla `Band` component #}
+{# Defaults for a vanilla `Card` component #}
 {% set componentName = "card" %}
 {% set baseClass = prefix ~ componentName %}
 {% set theme = theme %}
 {% set tag = tag in tags ? tag: "div" %}
+{% set contentTag = contentTag in contentTags ? contentTag: "div" %}
 
 {% set classes = [
   baseClass,
   theme in themes ? "t-bolt-" ~ theme : ""
 ] %}
+
+{% if url %}
+  {% set attributes = attributes.setAttribute("href", url) %}
+{% endif %}
 
 <bolt-card
   theme="{{ theme }}"
@@ -30,20 +35,26 @@
       {% endblock %}
     </div>
 
-    <div class="{{ "#{baseClass}__body" }}">
-      {% block card_content %}
-        {% block card_header %}{% endblock card_header %}
+    <{{ contentTag }} class="{{ "#{baseClass}__body" }}">
+      {% block card_body %}
+        {% if items %}
+          {% for item in items if item.name != "image" and item.name != "button" %}
+            {% include "@bolt/" ~ item.name ~ ".twig" with item only %}
+          {% endfor %}
+        {% endif %}
+      {% endblock card_body %}
+    </{{ contentTag }}>
 
-        {% block card_body %}
-          {% if items %}
-            {% for item in items if item.name != "image" %}
+    <div class="{{ "#{baseClass}__footer" }}">
+      {% block card_footer %}
+        {% if items %}
+          {% for item in items if item.name == "button" %}
+            <div class="{{ "#{baseClass}__footer-item" }}">
               {% include "@bolt/" ~ item.name ~ ".twig" with item only %}
-            {% endfor %}
-          {% endif %}
-        {% endblock card_body %}
-
-        {% block card_footer %}{% endblock card_footer %}
-      {% endblock %}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endblock card_footer %}
     </div>
   </{{ tag }}>
 </bolt-card>

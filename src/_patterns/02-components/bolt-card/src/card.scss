@@ -1,14 +1,15 @@
 @import '@bolt/tools-color-palette';
 @import '@bolt/tools-spacing';
 
+// These need to be global variables, can be used for buttons as well
 $bolt-color--shadow: bolt-color(black);
 $bolt-shadow: 0 0.04rem 0.15rem rgba($bolt-color--shadow, 0.5);
 $bolt-shadow--raised: 0 0.35rem 0.6rem rgba($bolt-color--shadow, 0.18);
-
-$bolt-card-transform--raised: translate3d(0, -0.25rem, 0);
-
 $bolt-transition: ease-in-out 200ms;
 $bolt-border-radius: 3px;
+
+// Card specific raised effect
+$bolt-card-transform--raised: translate3d(0, -0.25rem, 0);
 
 bolt-card {
   display: flex;
@@ -24,6 +25,7 @@ bolt-card {
   color: currentColor;
   border-radius: $bolt-border-radius;
   box-shadow: $bolt-shadow;
+  background-color: rgba(bolt-color(white), 0.5);
   transform: translate3d(0, 0, 0) scale(1, 1);
   transition: transform 0.2s ease-in-out;
 
@@ -41,7 +43,8 @@ bolt-card {
   }
 
   &:before {
-    background-color: rgba(bolt-color(white), 0.1);
+    background-color: var(--bolt-color-background);
+    opacity: 0.8;
   }
 
   &:after {
