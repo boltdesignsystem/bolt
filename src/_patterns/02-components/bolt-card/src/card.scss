@@ -2,14 +2,16 @@
 @import '@bolt/tools-spacing';
 
 // These need to be global variables, can be used for buttons as well
-$bolt-color--shadow: bolt-color(black);
-$bolt-shadow: 0 0.04rem 0.15rem rgba($bolt-color--shadow, 0.5);
-$bolt-shadow--raised: 0 0.35rem 0.6rem rgba($bolt-color--shadow, 0.18);
-$bolt-transition: ease-in-out 200ms;
+$bolt-color-shadow: bolt-color(black);
+$bolt-shadow--small: 0 1px 0.15rem rgba($bolt-color-shadow, 0.5);
+$bolt-shadow--medium: 0 0.15rem 0.3rem rgba($bolt-color-shadow, 0.35);
+$bolt-shadow--large: 0 0.35rem 0.6rem rgba($bolt-color-shadow, 0.18);
 $bolt-border-radius: 3px;
-
-// Card specific raised effect
-$bolt-card-transform--raised: translate3d(0, -0.25rem, 0);
+$bolt-transition: ease-in-out 200ms;
+$bolt-effect-translate-raised--large: translate3d(0, -0.25rem, 0);
+$bolt-effect-translate-raised--medium: translate3d(0, -0.125rem, 0);
+$bolt-effect-translate-raised--small: translate3d(0, -1px, 0);
+$bolt-effect-translate-raised--reset: translate3d(0, 0, 0);
 
 bolt-card {
   display: flex;
@@ -24,7 +26,7 @@ bolt-card {
   position: relative;
   color: currentColor;
   border-radius: $bolt-border-radius;
-  box-shadow: $bolt-shadow;
+  box-shadow: $bolt-shadow--small;
   background-color: rgba(bolt-color(white), 0.5);
   transform: translate3d(0, 0, 0) scale(1, 1);
   transition: transform 0.2s ease-in-out;
@@ -48,14 +50,14 @@ bolt-card {
   }
 
   &:after {
-    box-shadow: $bolt-shadow--raised;
+    box-shadow: $bolt-shadow--large;
     opacity: 0;
     transition: opacity $bolt-transition;
   }
 
   @at-root a#{&} {
     &:hover, &:focus {
-      transform: $bolt-card-transform--raised;
+      transform: $bolt-effect-translate-raised--large;
 
       &:after {
         opacity: 1;
@@ -63,7 +65,7 @@ bolt-card {
     }
 
     &:active {
-      transform: translate3d(0, 0, 0);
+      transform: $bolt-effect-translate-raised--reset;
 
       &:after {
         opacity: 0;

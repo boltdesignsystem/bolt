@@ -24,8 +24,6 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 @mixin bolt-headline() {
   @include bolt-font-family(heading);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   display: block;
   max-width: 55ch;
 
@@ -239,8 +237,6 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 .c-bolt-eyebrow--bold,
 .c-bolt-headline--bold {
   @include bolt-font-weight(bold);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 .c-bolt-text--regular,
@@ -248,8 +244,6 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 .c-bolt-headline--regular,
 .c-bolt-subheadline--regular {
   @include bolt-font-weight(regular);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 .c-bolt-text--semibold {

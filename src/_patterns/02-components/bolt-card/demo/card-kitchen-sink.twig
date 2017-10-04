@@ -5,6 +5,12 @@
 } %}
   {% block band_content %}
 
+    {% include "@bolt/headline.twig" with {
+      text: "Cards in a band",
+      size: "xxlarge",
+      tag: "h2"
+    } only %}
+
     {% grid with {
       attributes: {
         class: [
@@ -44,9 +50,9 @@
             } only %}
 
             {% include "@bolt/button.twig" with {
-              text: "Get the report",
+              text: "Primary Button",
               width: "full",
-              style: "secondary"
+              style: "primary"
             } only %}
           </div>
         </div>
@@ -89,7 +95,7 @@
               width: "full",
               tag: "div",
               itemAlignment: "start",
-              text: "Call to action"
+              text: "Get the report"
             }
           ]
         } only %}
@@ -135,6 +141,18 @@
   fullBleed: true,
 } %}
   {% block band_background %}
+    {# {% include "@bolt/background.twig" with {
+      fill: "color",
+      focalPoint: {
+        vertical: "center",
+        horizontal: "center"
+      },
+      image: [
+        {
+          src: "https://www.pega.com/sites/pega.com/files/styles/max_width_2560/public/ind-government-hero-img.jpg",
+        }
+      ]
+    } only %} #}
     <div class="c-bolt-background">
       <div class="c-bolt-background__item">
         <img class="c-bolt-background__image c-bolt-image" src="https://www.pega.com/sites/pega.com/files/styles/max_width_2560/public/ind-government-hero-img.jpg">
@@ -144,6 +162,12 @@
   {% endblock band_background %}
 
   {% block band_content %}
+
+    {% include "@bolt/headline.twig" with {
+      text: "Cards in a band with a background image",
+      size: "xxlarge",
+      tag: "h2"
+    } only %}
 
     {% grid with {
       attributes: {
@@ -184,9 +208,9 @@
             } only %}
 
             {% include "@bolt/button.twig" with {
-              text: "Get the report",
+              text: "Primary Button",
               width: "full",
-              style: "secondary"
+              style: "primary"
             } only %}
           </div>
         </div>
@@ -229,7 +253,7 @@
               width: "full",
               tag: "div",
               itemAlignment: "start",
-              text: "Call to action"
+              text: "Get the report"
             }
           ]
         } only %}
