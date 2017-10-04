@@ -53,29 +53,46 @@ bolt-card {
     transition: opacity $bolt-transition;
   }
 
-  &:hover, &:focus {
-    transform: $bolt-card-transform--raised;
+  @at-root a#{&} {
+    &:hover, &:focus {
+      transform: $bolt-card-transform--raised;
 
-    &:after {
-      opacity: 1;
+      &:after {
+        opacity: 1;
+      }
     }
-  }
 
-  &:active {
-    transform: translate3d(0, 0, 0);
+    &:active {
+      transform: translate3d(0, 0, 0);
 
-    &:after {
-      opacity: 0;
+      &:after {
+        opacity: 0;
+      }
     }
   }
 }
 
 .c-bolt-card__image {
+  position: relative;
   overflow: hidden;
   /* stylelint-disable-next-line */
   font-size: 0;
   border-top-right-radius: $bolt-border-radius;
   border-top-left-radius: $bolt-border-radius;
+
+  &:before {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    pointer-events: none;
+    background-color: currentColor;
+    z-index: -1;
+    opacity: 0.1;
+  }
 }
 
 .c-bolt-card__body {
