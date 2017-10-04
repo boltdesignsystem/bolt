@@ -1,7 +1,7 @@
 @import '@bolt/tools-color-palette';
 @import '@bolt/tools-spacing';
 
-// These need to be global variables, can be used for buttons as well
+// TODO: These need to be global variables, can be used for buttons as well
 $bolt-color-shadow: bolt-color(black);
 $bolt-shadow--small: 0 1px 0.15rem rgba($bolt-color-shadow, 0.5);
 $bolt-shadow--medium: 0 0.15rem 0.3rem rgba($bolt-color-shadow, 0.35);
@@ -11,7 +11,7 @@ $bolt-transition: ease-in-out 200ms;
 $bolt-effect-translate-raised--large: translate3d(0, -0.25rem, 0);
 $bolt-effect-translate-raised--medium: translate3d(0, -0.125rem, 0);
 $bolt-effect-translate-raised--small: translate3d(0, -1px, 0);
-$bolt-effect-translate-raised--reset: translate3d(0, 0, 0);
+$bolt-effect-translate-none: translate3d(0, 0, 0);
 
 bolt-card {
   display: flex;
@@ -45,7 +45,7 @@ bolt-card {
   }
 
   &:before {
-    background-color: var(--bolt-color-background);
+    background-color: var(--bolt-color-background); // TODO: This needs to map to the theme's background color
     opacity: 0.8;
   }
 
@@ -65,7 +65,7 @@ bolt-card {
     }
 
     &:active {
-      transform: $bolt-effect-translate-raised--reset;
+      transform: $bolt-effect-translate-none;
 
       &:after {
         opacity: 0;
