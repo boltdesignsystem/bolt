@@ -1,17 +1,22 @@
+/* ------------------------------------ *\
+   Cards
+\* ------------------------------------ */
+
 @import '@bolt/tools-color-palette';
 @import '@bolt/tools-spacing';
 
-// TODO: These need to be global variables, can be used for buttons as well
-$bolt-color-shadow: bolt-color(black);
-$bolt-shadow--small: 0 1px 0.15rem rgba($bolt-color-shadow, 0.5);
-$bolt-shadow--medium: 0 0.15rem 0.3rem rgba($bolt-color-shadow, 0.35);
-$bolt-shadow--large: 0 0.35rem 0.6rem rgba($bolt-color-shadow, 0.18);
-$bolt-border-radius: 3px;
-$bolt-transition: ease-in-out 200ms;
-$bolt-effect-translate-raised--large: translate3d(0, -0.25rem, 0);
-$bolt-effect-translate-raised--medium: translate3d(0, -0.125rem, 0);
-$bolt-effect-translate-raised--small: translate3d(0, -1px, 0);
-$bolt-effect-translate-none: translate3d(0, 0, 0);
+$bolt-card-shadow: $bolt-shadow--small;
+$bolt-card-shadow--hover: $bolt-shadow--large;
+$bolt-card-border-width: $bolt-border-width;
+$bolt-card-border-style: $bolt-border-style;
+$bolt-card-border-color: currentColor; // TODO: needs to map this to theme text color at 0.1 opacity.
+$bolt-card-border-radius: $bolt-border-radius;
+$bolt-card-transition: $bolt-transition;
+$bolt-card-translate--hover: $bolt-translate-raised--large;
+$bolt-card-translate--active: $bolt-translate-none;
+
+
+
 
 bolt-card {
   display: flex;
@@ -25,8 +30,8 @@ bolt-card {
   flex-grow: 1; //If used in a flex box container, grow to fill available space.
   position: relative;
   color: currentColor;
-  border-radius: $bolt-border-radius;
-  box-shadow: $bolt-shadow--small;
+  border-radius: $bolt-card-border-radius;
+  box-shadow: $bolt-card-shadow;
   background-color: rgba(bolt-color(white), 0.5);
   transform: translate3d(0, 0, 0) scale(1, 1);
   transition: transform 0.2s ease-in-out;
@@ -39,25 +44,26 @@ bolt-card {
     width: 100%;
     height: 100%;
     content: '';
-    border-radius: $bolt-border-radius;
     pointer-events: none;
+    border-radius: $bolt-card-border-radius;
     z-index: -1;
   }
 
   &:before {
-    background-color: var(--bolt-color-background); // TODO: This needs to map to the theme's background color
+    background-color: var(--bolt-color-background); // TODO: needs to map this to theme background color.
     opacity: 0.8;
   }
 
   &:after {
-    box-shadow: $bolt-shadow--large;
+    box-shadow: $bolt-card-shadow--hover;
     opacity: 0;
-    transition: opacity $bolt-transition;
+    transition: opacity $bolt-card-transition;
   }
 
-  @at-root a#{&} {
+  &.is-actionable {
+    // TODO: This class needs to be added when the entire card is clickable.
     &:hover, &:focus {
-      transform: $bolt-effect-translate-raised--large;
+      transform: $bolt-card-translate--hover;
 
       &:after {
         opacity: 1;
@@ -65,7 +71,7 @@ bolt-card {
     }
 
     &:active {
-      transform: $bolt-effect-translate-none;
+      transform: $bolt-card-translate--active;
 
       &:after {
         opacity: 0;
@@ -74,27 +80,13 @@ bolt-card {
   }
 }
 
-.c-bolt-card__image {
+.c-bolt-card__media {
   position: relative;
   overflow: hidden;
   /* stylelint-disable-next-line */
   font-size: 0;
-  border-top-right-radius: $bolt-border-radius;
-  border-top-left-radius: $bolt-border-radius;
-
-  &:before {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    content: '';
-    pointer-events: none;
-    background-color: currentColor;
-    z-index: -1;
-    opacity: 0.1;
-  }
+  border-top-right-radius: $bolt-card-border-radius;
+  border-top-left-radius: $bolt-card-border-radius;
 }
 
 .c-bolt-card__body {
@@ -102,27 +94,14 @@ bolt-card {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-
-  > bolt-button:last-child {
-    @include bolt-margin-top(auto);
-  }
 }
 
 .c-bolt-card__footer {
   position: relative;
   display: flex;
-
-  &:before {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    content: '';
-    background-color: currentColor;
-    opacity: 0.1;
-  }
+  border-top-width: $bolt-card-border-width;
+  border-top-style: $bolt-card-border-style;
+  border-top-color: $bolt-card-border-color;
 }
 
 .c-bolt-card__footer-item {
@@ -140,16 +119,8 @@ bolt-card {
   }
 
   & + .c-bolt-card__footer-item {
-    &:before {
-      display: block;
-      position: absolute;
-      top: 1px;
-      left: 0;
-      width: 1px;
-      height: 100%;
-      content: '';
-      background-color: currentColor;
-      opacity: 0.1;
-    }
+    border-left-width: $bolt-card-border-width;
+    border-left-style: $bolt-card-border-style;
+    border-left-color: $bolt-card-border-color;
   }
 }

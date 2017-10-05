@@ -1,4 +1,4 @@
-{% set tags = ["div", "a", "article", "section", "figure"] %} {# Available overall container tags #}
+{% set tags = ["div", "article", "section", "figure"] %} {# Available overall container tags #}
 {% set contentTags = ["div", "article", "section", "figcaption"] %} {# Available content container tags #}
 {% set themes = ["xlight", "light", "dark", "xdark"] %}
 {% set prefix = "c-bolt-" %}
@@ -25,8 +25,8 @@
   theme="{{ theme }}"
   bolt-component>
   <{{ tag }} {{ attributes.addClass(classes) }}>
-    <div class="{{ "#{baseClass}__image" }}">
-      {% block card_image %}
+    <div class="{{ "#{baseClass}__media" }}">
+      {% block card_media %}
         {% if items %}
           {% for item in items if item.name == "image" %}
             {% include "@bolt/" ~ item.name ~ ".twig" with item only %}

@@ -1,6 +1,6 @@
-{% set tags = ["button", "a", "div", "span"] %} {# Available Headline Types #}
+{% set tags = ["button", "a"] %} {# Available Headline Types #}
 {% set widths = ["full", "full@small"] %}
-{% set styles = ["primary", "secondary", "tertiary"] %}
+{% set styles = ["primary", "secondary", "text"] %}
 {% set prefix = "c-bolt-" %}
 
 {% set itemAlignments = {
@@ -49,6 +49,6 @@
   size="{{ size }}"
   bolt-component>
   <{{ tag }} {{ attributes.addClass(classes | raw) }}>
-    <span class="{{ "#{baseClass}__text" }}">{{ text }}</span>
+    <span class="{{ "#{baseClass}__item #{baseClass}__item-text" }}">{{ text }}</span>
   </{{ tag }}>
 </bolt-button>

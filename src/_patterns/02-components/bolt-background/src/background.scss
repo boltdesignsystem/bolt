@@ -12,6 +12,10 @@ $bolt-test-color-background-gradient--secondary: rgba($bolt-test-color-backgroun
 $bolt-gradient-angle--default: -35deg;
 $bolt-gradient-angle--reversed: 180deg - abs($bolt-gradient-angle--default);
 
+$bolt-background-dark-overlay-opacity--light: 0.3;
+$bolt-background-dark-overlay-opacity--medium: 0.55;
+$bolt-background-dark-overlay-opacity--heavy: 0.8;
+
 
 // Zoom animation treatment
 @keyframes a-bolt-zoom-in-out {
@@ -94,15 +98,15 @@ $bolt-gradient-angle--reversed: 180deg - abs($bolt-gradient-angle--default);
 }
 
 .c-bolt-background__overlay--medium-opacity {
-  opacity: 0.55; // TODO: This number is only working for dark colors, it does not work for light colors. Therefore light and xlight themes with a background image would not be accessible yet.
+  opacity: $bolt-background-dark-overlay-opacity--medium; // TODO: This number is only working for dark colors, it does not work for light colors. Therefore light and xlight themes with a background image would not be accessible yet.
 }
 
 .c-bolt-background__overlay--heavy-opacity {
-  opacity: 0.8; // TODO: This number is only working for dark colors, it does not work for light colors. Therefore light and xlight themes with a background image would not be accessible yet.
+  opacity: $bolt-background-dark-overlay-opacity--heavy; // TODO: This number is only working for dark colors, it does not work for light colors. Therefore light and xlight themes with a background image would not be accessible yet.
 }
 
 .c-bolt-background__overlay--light-opacity {
-  opacity: 0.3; // TODO: This number is only working for dark colors, it does not work for light colors. Therefore light and xlight themes with a background image would not be accessible yet.
+  opacity: $bolt-background-dark-overlay-opacity--light; // TODO: This number is only working for dark colors, it does not work for light colors. Therefore light and xlight themes with a background image would not be accessible yet.
 }
 
 
