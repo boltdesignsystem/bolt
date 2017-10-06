@@ -39,9 +39,12 @@
         "url": "packages/bolt-twig-extensions"
       },
       {
-        "type": "vcs",
-        "url": "https://github.com/drupal-pattern-lab/patternengine-php-twig",
-        "no-api": true
+        "type": "path",
+        "url": "packages/plugin-data-transform"
+      },
+      {
+        "type": "path",
+        "url": "packages/patternengine-twig"
       },
       {
         "type": "vcs",
@@ -52,16 +55,17 @@
     "minimum-stability": "dev",
     "require": {
       "php": ">=7.0",
+      "twig/twig": "^1.35.0",
       "cweagans/composer-patches": "~1.0",
       "pattern-lab/core": "^2.7.1",
-      "pattern-lab/patternengine-twig": "^2.0.0",
+      "pattern-lab/patternengine-twig": "*",
       "pattern-lab/styleguidekit-twig-default": "^3.0.0",
       "pattern-lab/styleguidekit-assets-default": "*",
-      "aleksip/plugin-data-transform": "^1.1.0",
+      "aleksip/plugin-data-transform": "*",
       "evanlovely/plugin-twig-namespaces": "dev-master",
       "oomphinc/composer-installers-extender": "dev-master",
       "bolt/twig-extensions": "*",
-        "gajus/dindent": "dev-master"
+      "gajus/dindent": "dev-master"
     },
     "config": {
         "process-timeout": 0,

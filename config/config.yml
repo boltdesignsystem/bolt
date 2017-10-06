@@ -33,12 +33,13 @@ lineageMatch: >-
   |\()[&quot;\&#039;]([\/.@A-Za-z0-9-_]+)[&quot;\&#039;]([\s\S+]*?)%}
 lineageMatchKey: 3
 patternExtension: twig
-twigDebug: false
+twigDebug: true
 twigAutoescape: false
 twigDefaultDateFormat: ''
 twigDefaultIntervalFormat: ''
 twigMacroExt: macro.twig
 twigFilterExt: filter.php
+twigGlobalExt: global.php
 twigFunctionExt: function.php
 twigTagExt: tag.php
 twigTestExt: test.php
@@ -54,8 +55,10 @@ plugins:
     namespaces:
       bolt:
         paths:
-          - src/_patterns/01-core/01-settings/settings-colors/demos
-          - src/_patterns/01-core/01-settings/settings-colors/src/twig
+          - >-
+            src/_patterns/01-core/01-settings/settings-breakpoints/settings-colors/demos
+          - >-
+            src/_patterns/01-core/01-settings/settings-breakpoints/settings-colors/src/twig
           - src/_patterns/01-core/02-tools/tools-spacing/demos
           - src/_patterns/01-core/04-elements/elements-headings
           - src/_patterns/01-core/04-elements/elements-links

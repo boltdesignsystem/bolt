@@ -33,10 +33,7 @@
 {% endif %}
 
 
-<bolt-chip
-  size="{{ size }}"
-  bolt-component
->
+<bolt-chip size="{{ size }}" bolt-component>
   <{{ tag }} {{ attributes.addClass(classes | raw) }}>
     <span class="{{ "#{baseClass}__text" }}">{{ text }}</span>
   </{{ tag }}>

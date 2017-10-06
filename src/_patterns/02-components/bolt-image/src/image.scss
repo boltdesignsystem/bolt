@@ -1,1 +1,42 @@
 // Image Component Styling (if any)
+
+
+// .js-lazyload {
+//   opacity: 0;
+// }
+bolt-image {
+  display: inline;
+}
+
+// .c-bolt-image {
+//   display: inline-block;
+//   position: relative;
+// }
+
+// Building on top of o-bolt-ratio__item
+.c-bolt-image__img {
+  transition: opacity 0.1s ease;
+
+  &.is-lazyloading {
+    opacity: 0;
+  }
+
+  &.is-lazyloaded {
+    opacity: 1;
+  }
+}
+
+.c-bolt-image__placeholder {
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  filter: blur(3px);
+}
+
+
+
+

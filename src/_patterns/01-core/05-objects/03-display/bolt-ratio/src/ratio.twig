@@ -1,5 +1,12 @@
+{% set classes = [
+  "o-bolt-ratio"
+] %}
+
+{% set attributes = create_attribute(attributes | default({})) %}
+{% set attributes = attributes.addClass(classes) %}
+
 <bolt-ratio>
-  <div class="o-bolt-ratio">
+  <div {{ attributes }}>
     {% block ratio_content %}
       {{ children }}
     {% endblock %}
