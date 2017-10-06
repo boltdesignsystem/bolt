@@ -35,7 +35,7 @@
     "setup:composer": "if [ ! -f ./bolt-website/index.html ]; then rm -rf composer.lock && rm -rf vendor && rm -rf src/_twig-components && composer install --no-interaction --prefer-dist --no-dev; fi",
     "setup:homebrew": "sh scripts/install-homebrew.sh",
     "snyk-protect": "snyk protect",
-    "start": "serve ./boltdesignsystem --single",
+    "now-start": "serve ./bolt-website --single",
     "start:server": "nodemon --watch packages/bolt-common src/json-server.js",
     "test": "npm run mocha",
     "pretest": "npm run lint:scss && node scripts/check-imports.js",
