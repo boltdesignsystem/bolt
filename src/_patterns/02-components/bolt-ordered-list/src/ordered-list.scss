@@ -1,0 +1,23 @@
+.c-bolt-ordered-list {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
+
+  list-style: none;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: currentColor;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: currentColor;
+}
+
+.c-bolt-ordered-list__item {
+  @include bolt-margin(0);
+  @include bolt-padding(medium, squished);
+
+  & + #{&} {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: currentColor;
+  }
+}
