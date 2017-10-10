@@ -1,0 +1,56 @@
+/* ------------------------------------ *\
+   Blockquote
+\* ------------------------------------ */
+
+.c-bolt-blockquote {
+  @include bolt-padding(0 medium);
+
+  border-left-width: .25rem;
+  border-left-style: solid;
+  border-left-color: bolt-color(teal);
+}
+
+.c-bolt-blockquote__quote {
+  @include bolt-margin-bottom(medium);
+  @include bolt-font-size(large);
+  @include bolt-font-weight(semibold);
+
+  display: block;
+  position: relative;
+  color: var(--bolt-color-heading, bolt-color(indigo)); // TODO: refactor this after theming is done.
+
+  > *:first-child:before,
+  > *:first-child:after {
+    position: absolute;
+    color: currentColor;
+  }
+
+  > *:first-child:before {
+    content: '\201C';
+    transform: translate3d(-105%, 0 ,0);
+  }
+
+  > *:last-child:after {
+    content: '\201D';
+    transform: translate3d(5%, 0 ,0);
+  }
+}
+
+.c-bolt-blockquote__footer {
+  @include bolt-font-size(small);
+}
+
+.c-bolt-blockquote__footer-item {
+  display: block;
+}
+
+.c-bolt-blockquote__footer-item--cite {
+  @include bolt-font-weight(semibold);
+
+  color: var(--bolt-color-heading, bolt-color(indigo)); // TODO: refactor this after theming is done.
+  font-style: normal;
+}
+
+.c-bolt-blockquote__footer-item--text {
+  font-style: italic;
+}
