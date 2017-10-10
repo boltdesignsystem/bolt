@@ -1,18 +1,5 @@
-diff --git a/composer.json b/composer.json
-index 56458f0..3bb5dc3 100644
---- a/composer.json
-+++ b/composer.json
-@@ -38,6 +38,7 @@
-     "symfony/filesystem": "^3.0",
-     "symfony/finder": "^3.0",
-     "symfony/process": "^3.1",
--    "symfony/yaml": "^3.0"
-+    "symfony/yaml": "^3.0",
-+    "gajus/dindent": "^2.0"
-   }
- }
 diff --git a/src/PatternLab/Builder.php b/src/PatternLab/Builder.php
-index bceb814..11fd778 100644
+index bceb814..62604aa 100644
 --- a/src/PatternLab/Builder.php
 +++ b/src/PatternLab/Builder.php
 @@ -27,6 +27,7 @@ use \PatternLab\PatternEngine;
@@ -23,7 +10,7 @@ index bceb814..11fd778 100644
  
  class Builder {
  
-@@ -271,6 +272,13 @@ class Builder {
+@@ -271,6 +272,14 @@ class Builder {
  				// write out the various pattern files
  				file_put_contents($patternPublicDir."/".$path."/".$path.$suffixRendered.".html",$markupFull);
  				if (!$exportFiles) {
