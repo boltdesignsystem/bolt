@@ -1,11 +1,41 @@
-<blockquote class="c-bolt-blockquote">
-  <div class="c-bolt-blockquote__quote">
-    <p>
-      Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus.
-    </p>
-  </div>
-  <footer class="c-bolt-blockquote__footer">
-    <cite class="c-bolt-blockquote__footer-item c-bolt-blockquote__footer-item--cite">Mike Mai</cite>
-    <em class="c-bolt-blockquote__footer-item c-bolt-blockquote__footer-item--text">Pegasystems</em>
-  </footer>
-</blockquote>
+<bolt-blockquote bolt-component>
+  <blockquote class="c-bolt-blockquote">
+    <div class="c-bolt-blockquote__quote">
+      {% block blockquote_quote %}
+        {% if texts %}
+          {% for text in texts %}
+            {% include "@bolt/text.twig" with text | merge({
+              tag: "p",
+              size: "large",
+              weight: "semibold"
+            }) only %}
+          {% endfor %}
+        {% endif %}
+      {% endblock %}
+    </div>
+    {% if author %}
+      {% block blockquote_footer %}
+        <footer class="c-bolt-blockquote__footer">
+          <div class="c-bolt-blockquote__footer-item">
+            {% include "@bolt/text.twig" with {
+              text: author,
+              tag: "cite",
+              size: "xsmall",
+              weight: "semibold"
+            } only %}
+          </div>
+          {% if association %}
+            <div class="c-bolt-blockquote__footer-item">
+              {% include "@bolt/text.twig" with {
+                text: association,
+                tag: "em",
+                size: "xsmall",
+                style: "italic"
+              } only %}
+            </div>
+          {% endif %}
+        </footer>
+      {% endblock %}
+    {% endif %}
+  </blockquote>
+</bolt-blockquote>

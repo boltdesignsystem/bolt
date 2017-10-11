@@ -1,5 +1,6 @@
-{% set tags = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "span"] %} {# Allowed Tags #}
-{% set weights = ["bold", "regular", "semibold"] %} {# Allowed Weights #}
+{% set tags = "any" %} {# Allowed Tags #}
+{% set weights = ["bold", "regular", "semibold"] %} {# Allowed Font-weights #}
+{% set styles = ["italic", "normal"] %} {# Allowed Font-styles #}
 {% set types = ["headline", "subheadline", "eyebrow", "text"] %} {# Pre-defined types #}
 {% set transformProps = ["none", "uppercase", "lowercase", "capitalize"] %} {# Pre-defined text transform options #}
 {% set sizes = [
@@ -15,13 +16,15 @@
 
 {% set _defaultTag = "p" %}
 {% set _defaultWeight = "regular" %}
+{% set _defaultStyle = "normal" %}
 {% set _defaultType = "text" %}
 {% set _defaultSize = "medium" %}
 
 
 
-{% set tag = tag in tags ? tag : _defaultTag %}
+{% set tag = tag in tags or tags == "any" ? tag : _defaultTag %}
 {% set weight = weight | default(_defaultWeight) %}
+{% set style = style | default(_defaultStyle) %}
 {% set type = type in types ? type : _defaultType %}
 {% set size = size | default(_defaultSize) %}
 {% set transform = transform | default("") %}
@@ -37,6 +40,7 @@
   baseClass,
   quoted ? baseClass ~ "--" ~ "quoted" : "",
   weight in weights and type == "text" ? baseClass ~ "--" ~ weight : "",
+  style in styles and type == "text" ? baseClass ~ "--" ~ style : "",
   size in sizes and type != "eyebrow" ? baseClass ~ "--" ~ size : "",
   transform in transformProps and transform != "" ? baseClass ~ "--" ~ transform : ""
 ] %}
@@ -58,6 +62,7 @@
 {# <bolt-headline
     size="{{ size }}"
     weight="{{ weight }}"
+    style="{{ style }}"
     type="{{ type }}"
     level="{{ level }}"
     bolt-component
