@@ -29,9 +29,16 @@ $bolt-wrapper--max-width: 1400px !default;
 // Used for handling ideal content line length
 .o-bolt-wrapper--medium {
   max-width: bolt-breakpoint(medium);
-}
-
-// Temp hack if wrapper inside a wrapper
-.o-bolt-wrapper .o-bolt-wrapper {
   padding: 0;
 }
+
+// @TODO: make mixin for bands + wrappers
+// .o-bolt-wrapper--full {
+//   padding-left: 0;
+//   padding-right: 0;
+// }
+
+// Temp hack if wrapper inside a wrapper
+// .o-bolt-wrapper .o-bolt-wrapper {
+//   padding: 0;
+// }
