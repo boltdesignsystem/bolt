@@ -76,3 +76,16 @@ $bolt-ui-list-border-color: var(--bolt-ui-border-color, currentColor);
 .o-bolt-ui-list--borderless {
   --bolt-ui-border-color: transparent;
 }
+
+.o-bolt-ui-list--small > .o-bolt-ui-list__item {
+  @include bolt-padding($bolt-ui-list-padding--small);
+}
+
+.o-bolt-ui-list--medium > .o-bolt-ui-list__item {
+  @include bolt-padding($bolt-ui-list-padding--medium);
+}
+
+.o-bolt-ui-list--large > .o-bolt-ui-list__item {
+  @include bolt-padding($bolt-ui-list-padding--large);
+}
+
