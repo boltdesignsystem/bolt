@@ -73,6 +73,7 @@ $bolt-gradient-angle--reversed: 180deg - abs($bolt-gradient-angle--default);
   left: -9999px;
   min-width: 100%;
   min-height: 100%;
+  max-width: none; //Required to handle instances where a max-width is previously set.
 
   @supports (object-fit: cover) {
     display: block;

@@ -1,6 +1,13 @@
+
+{# 
+  Bolt Image - Structure:
+  - .c-bolt-image: uses the ratio object as a base if enabled
+    - .c-bolt-image__img: lazyloaded img tag
+    - .c-bolt-image__placeholder: lazyloader span while the img is lazyloaded.
+#}
+
+
 {% set srcset = srcset ?? "" %}
-
-
 {% set shouldLazyload = lazyload | default(true) %}
 
 {% set sizes = globalBoltImageSizes %}
@@ -16,6 +23,9 @@
 {% set imageHeightRatio = ratio(src, 'height') %}
 {% set imageWidthRatio = ratio(src, 'width') %}
 {% set imageWidth = imagesize(src) %}
+
+{# By default, include a ratio unless set to false #}
+{% set ratio = (ratio == "false" ? false : true) %}
 
 {# macro srcset(srcset, imageWidth, path, ext, sizes) #}
   {% if srcset == "" and ext != "svg" %}
@@ -34,16 +44,6 @@
 {# import _self as bolt #}
 
 
-
-
-{# 
-  Bolt Image - Structure:
-  - .c-bolt-image: uses the ratio object as a base
-    - .c-bolt-image__img: lazyloaded img tag
-    - .c-bolt-image__placeholder: lazyloader span while the img is lazyloaded.
-#}
-
-
 {# Main bolt-image component #}
 {% set imageAttributes = create_attribute({
   class: [
@@ -53,20 +53,21 @@
     "--aspect-ratio-h: #{imageHeightRatio};",
     "--aspect-ratio-w: #{imageWidthRatio};"
   ]
-}) | merge(attributes | default({})) %}
-
+}) %}
 
 
 
 {# child img tag #}
-{% set imgTagAttributes = create_attribute({
+{% set imgTagAttributes = deep_merge({
   class: [
     "c-bolt-image__img",
     shouldLazyload ? "js-lazyload" : "",
     shouldLazyload ? "is-lazyloading" : ""
   ],
   alt: alt ?? ""
-}) %}
+}, attributes | default({})) %}
+{% set imgTagAttributes = create_attribute(imgTagAttributes) %}
+
 
 {% if shouldLazyload %}
   {% set imgTagAttributes = imgTagAttributes.setAttribute("data-srcset", srcset) %}
@@ -77,8 +78,7 @@
 
 
 
-{# img placeholder #}
-{% set imgPlaceholderAttributes = create_attribute({
+{% set imgPlaceholderAttributes = deep_merge({
   class: [
     "c-bolt-image__placeholder"
   ],
@@ -86,27 +86,15 @@
     placeholderColor ? "background-color: #{placeholderColor};" : "",
     placeholderImage ? "background-image: url(#{placeholderImage});" : ""
   ]
-}) %}
+}, attributes | default({})) %}
+{% set imgPlaceholderAttributes = create_attribute(imgPlaceholderAttributes) %}
 
-
-  {# src: shouldLazyload ? "" : src #}
-
-
-
-
-
-
-{# if image.src starts with '/' and ext != "svg" %}
-  {% set placeholder_color = ' background-color: ' ~ bgcolor(image.src) ~ ';' %}
-{% endif #}
-
-
-{# if image.placeholder_image == true %}
-  {% set placeholder_image = "background-image: url('" ~   ~ "'); " %}
-{% endif #}
 
 {% set imageTag %}
   <img {{ imgTagAttributes }}>
+  <noscript>
+    <img {{ imgTagAttributes.removeClass(["js-lazyload", "is-lazyloading"]) }}>
+  </noscript>
 {% endset %}
 
 {% set imagePlaceholder %}
@@ -114,26 +102,19 @@
 {% endset %}
 
 <bolt-image>
-{% embed "@bolt/ratio.twig" with {
-  attributes: imageAttributes
-} %}
-  {% block ratio_content %}
-    {{ imagePlaceholder }}
-    {{ imageTag }}
+  {% block image_content %}
+    {% if ratio == true %}
+      {% embed "@bolt/ratio.twig" with {
+        attributes: imageAttributes
+      } %}
+        {% block ratio_content %}
+          {{ imagePlaceholder }}
+          {{ imageTag }}
+        {% endblock %}
+      {% endembed %}
+    {% else %}
+      {{ imagePlaceholder }}
+      {{ imageTag }}
+    {% endif %}
   {% endblock %}
-{% endembed %}
 </bolt-image>
-
-  <!-- <noscript>
-    <img src="{{ path ~ '.' ~ ext }}">
-  </noscript> -->
-<!-- </div> -->
-
-
-
-
-{# 
-{% if ext == "svg" %}
-  {% set srcset = path ~ '.' ~ ext %}
-{% endif %}
-#}

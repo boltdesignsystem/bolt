@@ -42,7 +42,8 @@
             {% include "@bolt/#{item.name}.twig" with item | merge({
               attributes: {
                 class: ["c-bolt-background__#{item.name}"]
-              }
+              },
+              ratio: false
             }) only %}
           {% endif %}
         {% endfor %}
