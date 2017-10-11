@@ -9,9 +9,26 @@
 #}
 
 
+{% set prefix = "c-bolt-" %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set componentName = "blockquote" %}
+{% set baseClass = prefix ~ componentName %}
+
+
+{% set classes = [
+  baseClass
+] %}
+
+{% include "@bolt/lead.twig" with {
+  text: "lead paragraph",
+  tag: "div"
+} only %}
+
 <bolt-blockquote bolt-component>
-  <blockquote class="c-bolt-blockquote">
-    <div class="c-bolt-blockquote__quote">
+  <blockquote {{ attributes.addClass(classes) }}>
+    <div class="{{ "#{baseClass}__quote" }}">
       {% block blockquote_quote %}
         {% if content %}
           {% include "@bolt/text.twig" with {
@@ -25,8 +42,8 @@
     </div>
     {% if author %}
       {% block blockquote_footer %}
-        <footer class="c-bolt-blockquote__footer">
-          <div class="c-bolt-blockquote__footer-item">
+        <footer class="{{ "#{baseClass}__footer" }}">
+          <div class="{{ "#{baseClass}__footer-item" }}">
             {% include "@bolt/text.twig" with {
               text: author.name,
               tag: "cite",
@@ -35,7 +52,7 @@
             } only %}
           </div>
           {% if author.title %}
-            <div class="c-bolt-blockquote__footer-item">
+            <div class="{{ "#{baseClass}__footer-item" }}">
               {% include "@bolt/text.twig" with {
                 text: author.title,
                 tag: "em",

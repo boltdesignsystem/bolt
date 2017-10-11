@@ -4,10 +4,6 @@
 
 /*$bolt-ordered-list-item-number-font-size: xsmall;*/
 
-$bolt-ordered-list-border-width: $bolt-border-width;
-$bolt-ordered-list-border-style: $bolt-border-style;
-$bolt-ordered-list-border-color: currentColor; // TODO: needs to map this to theme text color at 0.1 opacity.
-
 
 .c-bolt-ordered-list {
   @include bolt-margin-left(0);
@@ -23,9 +19,6 @@ $bolt-ordered-list-border-color: currentColor; // TODO: needs to map this to the
 
   position: relative;
   counter-increment: li;
-  border-bottom-width: $bolt-ordered-list-border-width;
-  border-bottom-style: $bolt-ordered-list-border-style;
-  border-bottom-color: $bolt-ordered-list-border-color;
 
   &:before {
     @include bolt-font-size(xsmall);
@@ -39,12 +32,10 @@ $bolt-ordered-list-border-color: currentColor; // TODO: needs to map this to the
     left: bolt-spacing(medium) * -1;
     width: $bolt-line-height--xsmall + rem;
     height: $bolt-line-height--xsmall + rem;
+    color: var(--bolt-color-heading, bolt-color(indigo)); // TODO: refactor this after theming is done.
     content: counter(li);
     text-align: center;
     border-radius: 100em;
-
-    // TODO: refactor these after theming is done.
-    color: var(--bolt-color-heading, bolt-color(white));
-    background-color: var(--bolt-color-heading, bolt-color(indigo));
+    background-color: rgba(bolt-color(gray), 0.2);
   }
 }

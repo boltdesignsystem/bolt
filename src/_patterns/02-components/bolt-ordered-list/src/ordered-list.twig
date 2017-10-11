@@ -1,14 +1,44 @@
-<ol class="c-bolt-ordered-list">
-  <li class="c-bolt-ordered-list__item">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-  <li class="c-bolt-ordered-list__item">Aliquam tincidunt mauris eu risus.</li>
-  <li class="c-bolt-ordered-list__item">Vestibulum auctor dapibus neque.</li>
-  <li class="c-bolt-ordered-list__item">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-  <li class="c-bolt-ordered-list__item">Aliquam tincidunt mauris eu risus.</li>
-  <li class="c-bolt-ordered-list__item">Vestibulum auctor dapibus neque.</li>
-  <li class="c-bolt-ordered-list__item">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-  <li class="c-bolt-ordered-list__item">Aliquam tincidunt mauris eu risus.</li>
-  <li class="c-bolt-ordered-list__item">Vestibulum auctor dapibus neque.</li>
-  <li class="c-bolt-ordered-list__item">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-  <li class="c-bolt-ordered-list__item">Aliquam tincidunt mauris eu risus.</li>
-  <li class="c-bolt-ordered-list__item">Vestibulum auctor dapibus neque.</li>
-</ol>
+{# Sample Data
+  {
+    "items" : [
+      {
+        "text": "Item 1"
+      },
+      {
+        "text": "Item 2"
+      },
+      {
+        "text": "Item 3"
+      }
+    ]
+  }
+#}
+
+{% set prefix = "c-bolt-" %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set componentName = "ordered-list" %}
+{% set baseClass = prefix ~ componentName %}
+
+
+{% set classes = [
+  baseClass
+] %}
+
+
+<bolt-ordered-list bolt-component>
+  <ol {{ attributes.addClass(classes) }}>
+    {% for listItem in items %}
+      <li class="{{ "#{baseClass}__item" }}">
+        {% if listItem.text %}
+          {{ listItem.text }}
+        {% elseif listItem.items %}
+          {% for item in listItem.items %}
+            {% include "@bolt/text.twig" with item only %}
+          {% endfor %}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+</bolt-ordered-list>
