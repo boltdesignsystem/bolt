@@ -28,10 +28,7 @@
 ] %}
 
 {% if items %}
-  <bolt-inline-list
-    size="{{ size }}"
-    bolt-object
-  >
+  <bolt-inline-list size="{{ size }}" bolt-object>
     <{{ tag }} {{ attributes.addClass(classes) }}>
       {% for item in items %}
         <li class="{{ "#{baseClass}__item" }}">
