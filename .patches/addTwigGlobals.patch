@@ -1,0 +1,106 @@
+diff --git a/composer.json b/composer.json
+index 08b3a46..6d59ee4 100644
+--- a/composer.json
++++ b/composer.json
+@@ -25,7 +25,7 @@
+ 	},
+ 	"require": {
+ 		"pattern-lab/core": "^2.0.0",
+-		"twig/twig":        "~1.0"
++		"twig/twig": "^1.35.0"
+ 	},
+ 	"extra": {
+ 		"patternlab": {
+diff --git a/src/PatternLab/PatternEngine/Twig/Loaders/FilesystemLoader.php b/src/PatternLab/PatternEngine/Twig/Loaders/FilesystemLoader.php
+index 38f99bd..93c9832 100644
+--- a/src/PatternLab/PatternEngine/Twig/Loaders/FilesystemLoader.php
++++ b/src/PatternLab/PatternEngine/Twig/Loaders/FilesystemLoader.php
+@@ -52,6 +52,7 @@ class FilesystemLoader extends Loader {
+ 		TwigUtil::setInstance($instance);
+ 		TwigUtil::loadFilters();
+ 		TwigUtil::loadFunctions();
++		TwigUtil::loadGlobals();
+ 		TwigUtil::loadTags();
+ 		TwigUtil::loadTests();
+ 		TwigUtil::loadDateFormats();
+diff --git a/src/PatternLab/PatternEngine/Twig/Loaders/PatternLoader.php b/src/PatternLab/PatternEngine/Twig/Loaders/PatternLoader.php
+index fa2ce2f..326eba8 100644
+--- a/src/PatternLab/PatternEngine/Twig/Loaders/PatternLoader.php
++++ b/src/PatternLab/PatternEngine/Twig/Loaders/PatternLoader.php
+@@ -94,6 +94,7 @@ class PatternLoader extends Loader {
+ 		TwigUtil::setInstance($instance);
+ 		TwigUtil::loadFilters();
+ 		TwigUtil::loadFunctions();
++		TwigUtil::loadGlobals();
+ 		TwigUtil::loadTags();
+ 		TwigUtil::loadTests();
+ 		TwigUtil::loadDateFormats();
+diff --git a/src/PatternLab/PatternEngine/Twig/Loaders/StringLoader.php b/src/PatternLab/PatternEngine/Twig/Loaders/StringLoader.php
+index e81c9b7..ce1e917 100644
+--- a/src/PatternLab/PatternEngine/Twig/Loaders/StringLoader.php
++++ b/src/PatternLab/PatternEngine/Twig/Loaders/StringLoader.php
+@@ -58,6 +58,7 @@ class StringLoader extends Loader {
+ 		TwigUtil::setInstance($instance);
+ 		TwigUtil::loadFilters();
+ 		TwigUtil::loadFunctions();
++		TwigUtil::loadGlobals();
+ 		TwigUtil::loadTags();
+ 		TwigUtil::loadTests();
+ 		TwigUtil::loadDateFormats();
+diff --git a/src/PatternLab/PatternEngine/Twig/TwigUtil.php b/src/PatternLab/PatternEngine/Twig/TwigUtil.php
+index 64f97da..ad20281 100644
+--- a/src/PatternLab/PatternEngine/Twig/TwigUtil.php
++++ b/src/PatternLab/PatternEngine/Twig/TwigUtil.php
+@@ -244,7 +244,51 @@ class TwigUtil {
+ 		}
+ 		
+ 	}
+-	
++
++
++	/**
++	* Load Twig Globals for the Twig PatternEngine
++	*/
++	public static function loadGlobals() {
++
++		// load defaults
++		$globalDir = Config::getOption("sourceDir").DIRECTORY_SEPARATOR."_twig-components/globals";
++		$globalExt = Config::getOption("twigGlobalExt");
++		$globalExt = $globalExt ? $globalExt : "global.php";
++
++		if (is_dir($globalDir)) {
++
++			// loop through the global dir...
++			$finder = new Finder();
++			$finder->files()->name("*\.".$globalExt)->in($globalDir);
++			$finder->sortByName();
++			foreach ($finder as $file) {
++
++				// see if the file should be ignored or not
++				$baseName = $file->getBasename();
++				if ($baseName[0] != "_") {
++
++					include_once($file->getPathname());
++
++					$twigExtensionName = 'Twig_Extension_' . $file->getBasename('.' . $globalExt);
++					$twigExtensionName = str_replace('-', '_', $twigExtensionName); //Replace dashes with underscores for Class name
++
++					$extension = new $twigExtensionName('xyz');
++					$globals = $extension->getGlobals();
++
++					if (isset($globals)) {
++						// If global Twig values exist, loop through and add to Pattern Lab
++						foreach ($globals as $name => $value) {
++							self::$instance->addGlobal($name, $value);
++						}
++						unset($globals);
++					}
++				}
++			}
++		}
++	}
++
++
+ 	/**
+ 	* Load tags for the Twig PatternEngine
+ 	*/
