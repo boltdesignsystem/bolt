@@ -12,50 +12,54 @@
   } only %}
 {% endmacro %}
 {% import _self as bolt %}
+  
 
-
-
-    {% grid "o-bolt-grid--center o-bolt-grid--large" %}
-      {% cell 'u-bolt-width-1/1 u-bolt-width-2/4@medium' %}
-
-        {% include "@bolt/eyebrow.twig" with {
-          text: "White Paper"
-        } only %}
-        {% include "@bolt/headline.twig" with {
-          text: "Unlock the Power of Your DMP",
-          size: "xxxlarge"
-        } only %}
-
-
-
-        {% include "@bolt/inline-list.twig" with {
-          delimeted: true,
-          items: [
-            {
-              "text": bolt.text("30 Pages", "small", "span")
-            },
-            {
-              "text": bolt.text("128kb PDF", "small", "span")
-            }
-          ]
-        } only %}
+      {% grid "o-bolt-grid--center o-bolt-grid--large o-bolt-grid--matrix o-bolt-grid--rev" %}
         
-        {% include "@bolt/button.twig" with {
-          text: "Download Now",
-          url: "https://www.pega.com/download-now",
-          style: "primary"
-        } only %}
+        {# TODO: check if image exists #}
+        {% cell 'u-bolt-width-1/1 u-bolt-width-4/12@medium' %}
+          {% include "@bolt/image.twig" with {
+            src: "/images/sample/anthem-video.jpg"
+          } only %}
+        {% endcell %}
+        
+        
+        {% cell 'u-bolt-width-1/1 u-bolt-width-7/12@medium' %}
+
+          {% include "@bolt/eyebrow.twig" with {
+            text: "White Paper"
+          } only %}
+          {% include "@bolt/headline.twig" with {
+            text: feature_band.title | default("Unlock the Power of Your DMP"),
+            size: "xxxlarge"
+          } only %}
+
+
+
+          {% include "@bolt/inline-list.twig" with {
+            delimeted: true,
+            items: [
+              {
+                "text": bolt.text("30 Pages", "xsmall", "span")
+              },
+              {
+                "text": bolt.text("128kb PDF", "xsmall", "span")
+              }
+            ]
+          } only %}
+          
+          {% include "@bolt/button.twig" with {
+            text: "Download Now",
+            url: "https://www.pega.com/download-now",
+            style: "primary"
+          } only %}
+
+          
+        {% endcell %}
 
         
-      {% endcell %}
-
-      {% cell 'u-bolt-width-1/1 u-bolt-width-1/4@medium' %}
-        {% include "@bolt/image.twig" with {
-          src: "/images/placeholders/732x945.jpg"
-        } only %}
-      {% endcell %}
-        
-    {% endgrid %}
+          
+      {% endgrid %}
 
   {% endblock %}
 {% endembed %}
@@ -68,8 +72,17 @@
   size: "medium"
 } %}
   {% block band_content %}
+
+
+  
+
     {% grid "o-bolt-grid--center" %}
-      {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}
+      {% cell 'u-bolt-width-1/1' %}
+      
+      {% embed "@bolt/wrapper.twig" with {
+        size: "medium"
+      } only %}
+      {% block wrapper_content %}
 
         {% include "@bolt/subheadline.twig" with {
           text: "The foundational use cases that are unifying the worlds of adtech and martech.",
@@ -93,10 +106,10 @@
 
         <hr>
 
-
-        {% include "@bolt/eyebrow.twig" with {
+        {% include "@bolt/headline.twig" with {
           text: "Category:",
-          weight: "bold"
+          size: "small",
+          transform: "uppercase"
         } only %}
       
         {% include "@bolt/chip-list.twig" with {
@@ -106,13 +119,25 @@
               "url": "yahoo.com"
             },
             {
-              "text": "second tag"
+              "text": "Sales Automation and Stuff"
+            },
+            {
+              "text": "CRM"
+            },
+            {
+              "text": "White Paper"
+            },
+            {
+              "text": "Pega.com"
             }
           ]
         } %}
+        {% endblock wrapper_content %}
+      {% endembed %}
 
       {% endcell %}
     {% endgrid %}
+
 
   {% endblock %}
 {% endembed %}
@@ -124,6 +149,11 @@
   size: "small"
 } %}
   {% block band_content %}
+
+  {% embed "@bolt/wrapper.twig" with {
+    size: "medium"
+  } only %}
+    {% block wrapper_content %}
     
     {% include "@bolt/headline.twig" with {
       text: "Related resources",
@@ -131,7 +161,7 @@
       tag: "h3"
     } only %}
 
-    {% grid 'o-bolt-grid--flex' %}
+    {% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
       {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@medium' %}
 
 
@@ -206,6 +236,9 @@
       {% endcell %}
     {% endgrid %}
 
+    {% endblock wrapper_content %}
+  {% endembed %}
+
   {% endblock %}
 {% endembed %}
 
@@ -229,111 +262,3 @@
 {% include "@bolt/ui-list.twig" with {
   items: items
 } only %}
-
-
-
-{# include "@bolt/ui-list.twig" with {
-  items: [
-    {
-      text: ecm_content
-    },
-    {
-      text: {
-
-      }
-    }
-  ]
-} #}
-
-
-
-
-
-
-
-
-
-{# include "@bolt/asset-card.twig" with {
-  size: "medium",
-  theme: "xlight",
-  shadow: true,
-  body: [  
-    {
-      "pattern": "icon",
-      "name": "pdf"
-    },
-    {
-      "pattern": "eyebrow",
-      "text": "asset name"
-    }
-  ]
-  
-  "media": {
-    "image"
-     "icon"
-  }
-
-
-  "layout": "vertical" or "horizontal" or "responsive"
-  "icon": {
-    
-  },
-  "eyebrow": {
-    "text": "",
-    "icon": {
-
-    }
-  },
-  "headline": {
-    "text": "Buying used electronic test equipment..."
-  },
-  "button": {
-    "text": "Download PDF",
-    "url": "google.com"
-  }
-} #}
-
-
-
-
-
-
-
-
-
-{# include "@bolt/card-collection.twig" {
-  cards: [
-    {
-      "featured": true,
-      "image": {
-        "src": "soup.jpg"
-      },
-      "headline": {
-        "text": "Asian Chicken Noodle Soup"
-      },
-      "button": {
-        "text": "my cta",
-        "url": "google.com"
-      }
-    },
-
-    {
-      "image": {
-        "src": "salsa.jpg"
-      },
-      "headline": {
-        "text": "Mango Salsa"
-      },
-      "button": {
-        "text": "my cta",
-        "url": "google.com"
-      }
-    }
-  ]
-} #}
-
-
-
-{# include "@bolt/default-card.twig"}
-{% include "@bolt/promo-card.twig"}
-{% include "@bolt/asset-card.twig" #}

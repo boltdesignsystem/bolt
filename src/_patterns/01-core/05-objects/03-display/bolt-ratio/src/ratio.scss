@@ -19,7 +19,7 @@ bolt-ratio {
   overflow: hidden; //So blurred inner content, etc. don't leak out
 }
 
-
+// If the user supports custom props, enhance with the intrinsic ratio of the media before it loads.
 @supports (--custom-props: 'true') {
   .o-bolt-ratio {
     > * {
@@ -31,7 +31,7 @@ bolt-ratio {
       width: 100%;
       height: 100%;
     }
-    
+
     &:before {
       display: block;
       padding-top: calc( var(--aspect-ratio-h, 1) / var(--aspect-ratio-w, 1) * 100%);

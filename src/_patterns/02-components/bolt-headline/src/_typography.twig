@@ -12,7 +12,6 @@
   "xxxlarge"
 ] %}
 
-
 {% set _defaultTag = "p" %}
 {% set _defaultWeight = "regular" %}
 {% set _defaultType = "text" %}
@@ -31,6 +30,10 @@
 {% set prefix = "c-bolt-" %}
 {% set baseClass = prefix ~ type %}
 {% set attributes = create_attribute(attributes|default({})) %}
+
+{% if (size == "xxxlarge") and (text|length >= 55) %}
+  {% set size = "xxlarge" %}
+{% endif %}
 
 
 {% set classes = [

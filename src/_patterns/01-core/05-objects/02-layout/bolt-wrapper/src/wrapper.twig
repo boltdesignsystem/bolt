@@ -3,17 +3,23 @@
 
 {% set attributes = create_attribute(attributes|default({})) %}
 
+{% set sizes = [
+  "medium",
+  "xxlarge"
+] %}
+
 {% set componentName = "wrapper" %}
 {% set baseClass = prefix ~ componentName %}
 {% set tag = tag in tags ? tag: "div" %}
+{% set size = size | default("xxlarge") %}
 
 
 {% set classes = [
-  baseClass
+  baseClass,
+  size in sizes ? baseClass ~ "--" ~ size : "",
 ] %}
 
 
-{% if items %}
   <bolt-wrapper
     size="{{ size }}"
     bolt-object
@@ -24,4 +30,3 @@
       {% endblock %}
     </{{ tag }}>
   </bolt-wrapper>
-{% endif %}

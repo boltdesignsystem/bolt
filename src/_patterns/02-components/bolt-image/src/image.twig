@@ -18,7 +18,7 @@
 {% set imageWidth = imagesize(src) %}
 
 {# macro srcset(srcset, imageWidth, path, ext, sizes) #}
-  {% if srcset == "" %}
+  {% if srcset == "" and ext != "svg" %}
     {% for size in sizes if (size <= imageWidth) %}
       {% if size == imageWidth %}
         {% set srcset = srcset ~ '../..' ~ path ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}
@@ -27,6 +27,8 @@
       {% endif %}
     {% endfor %}
     {% set srcset = srcset|trim(', ') %}
+  {% elseif ext == "svg" %}
+    {% set srcset = src %}
   {% endif %}
 {# endmacro #}
 {# import _self as bolt #}
@@ -51,7 +53,7 @@
     "--aspect-ratio-h: #{imageHeightRatio};",
     "--aspect-ratio-w: #{imageWidthRatio};"
   ]
-}) %}
+}) | merge(attributes | default({})) %}
 
 
 
@@ -81,7 +83,7 @@
     "c-bolt-image__placeholder"
   ],
   style: [
-    "background-color: #{placeholderColor};",
+    placeholderColor ? "background-color: #{placeholderColor};" : "",
     placeholderImage ? "background-image: url(#{placeholderImage});" : ""
   ]
 }) %}

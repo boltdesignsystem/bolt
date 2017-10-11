@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "488752237c8a8efa631c502d4a8c497d",
+    "content-hash": "5cbc400a5039b6935dea74d43a1e5d68",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -69,56 +69,12 @@
             "time": "2016-02-15T22:46:40+00:00"
         },
         {
-            "name": "aleksip/plugin-data-transform",
-            "version": "dev-dev",
-            "dist": {
-                "type": "path",
-                "url": "packages/plugin-data-transform",
-                "reference": "0d2419e3172e88afe8d6d96b6f99a90ce3e65d18",
-                "shasum": null
-            },
-            "require": {
-                "pattern-lab/core": "*",
-                "pattern-lab/patternengine-twig": "*",
-                "php": ">=5.5.9"
-            },
-            "type": "patternlab-plugin",
-            "autoload": {
-                "psr-0": {
-                    "aleksip\\DataTransformPlugin\\": "src/",
-                    "Drupal\\Component\\Render\\": "src/",
-                    "Drupal\\Component\\Utility\\": "src/",
-                    "Drupal\\Core\\": "src/",
-                    "Drupal\\Core\\Template\\": "src/"
-                }
-            },
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Aleksi Peebles"
-                }
-            ],
-            "description": "Data Transform Plugin for Pattern Lab PHP",
-            "homepage": "https://github.com/aleksip/plugin-data-transform",
-            "keywords": [
-                "drupal",
-                "pattern lab",
-                "plugin"
-            ],
-            "support": {
-                "issues": "https://github.com/aleksip/plugin-data-transform/issues",
-                "source": "https://github.com/aleksip/plugin-data-transform/releases"
-            }
-        },
-        {
             "name": "bolt/twig-extensions",
             "version": "dev-feature/responsive-images",
             "dist": {
                 "type": "path",
                 "url": "packages/bolt-twig-extensions",
-                "reference": "74202f1ef01711d86a7df6147cee66c6fbbe2200",
+                "reference": "6e903bc65b52899e4444f95641f5118c75b05c85",
                 "shasum": null
             },
             "require": {
@@ -132,7 +88,10 @@
             },
             "autoload": {
                 "psr-0": {
-                    "PatternLab\\TwigExtensions": "src/"
+                    "Drupal\\Component\\Render\\": "/libs",
+                    "Drupal\\Component\\Utility\\": "/libs",
+                    "Drupal\\Core\\": "/libs",
+                    "Drupal\\Core\\Template\\": "/libs"
                 }
             },
             "authors": [
@@ -842,7 +801,7 @@
                     "[FIX] Fix PL Lineages when using Twig namespaces plugin.": ".patches/fixPatternLabLineagesWhenUsingTwigNamespaces.patch",
                     "[FIX] Fix Psuedo Pattern Template Paths If Organized In Different Folder From Base Template. Addresses https://github.com/drupal-pattern-lab/patternlab-php-core/issues/22": ".patches/fixPsuedoPatternTemplatePaths.patch",
                     "[FEATURE] Beautify raw HTML output": ".patches/beautifyHTML.patch",
-                    "[FEATURE] Compile embedded templates in Markdown files": ".patches/compileTemplatesInMarkdownFiles.patch",
+                    "[FEATURE] Allow markdown files to specify associated pattern + also includes compiling embedded templates in .md files": ".patches/allowMarkdownFilesToSpecifyAssociatedPattern.patch",
                     "[FIX] Allow PL to Ignore Certain Folders like Node Modules.": ".patches/ignoreCertainFolders.patch",
                     "[FEATURE] Allow default Pattern Data configuration rules to be disabled. Also adds ability to add on extra Pattern Data rules to customize and extend default Pattern Lab behavior.": ".patches/configurablePatternDataRules.patch"
                 }
@@ -1357,12 +1316,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "70b09b998ad1310e6a60541dbc9b5133701198de"
+                "reference": "e99024f324a7fa927c3a7992ed6f359e3a5ccc3b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/70b09b998ad1310e6a60541dbc9b5133701198de",
-                "reference": "70b09b998ad1310e6a60541dbc9b5133701198de",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/e99024f324a7fa927c3a7992ed6f359e3a5ccc3b",
+                "reference": "e99024f324a7fa927c3a7992ed6f359e3a5ccc3b",
                 "shasum": ""
             },
             "require": {
@@ -1407,7 +1366,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-05T14:46:27+00:00"
+            "time": "2017-10-09 14:52:13"
         },
         {
             "name": "twig/twig",
