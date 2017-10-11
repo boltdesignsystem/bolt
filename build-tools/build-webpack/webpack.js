@@ -54,8 +54,8 @@ function webpackTask(gulp, devConfig, releaseConfig) {
   // Watch webpack-compiled files for changes
   gulp.task('webpack:watch', () => {
     gulp.watch([
-      'src/**/*.js',
-      '!**/node_modules/**'
+      'src/scripts/**/*.js',
+      'src/_patterns/**/src/*.js'
     ], gulp.parallel([
         gutil.env.prod ? 'webpack:prod' : 'webpack:dev',
     ]));

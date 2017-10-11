@@ -7,26 +7,28 @@
   "large"
 ] %}
 
+{% set matrixOptions = [
+  true
+] %}
+
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {% set componentName = "inline-list" %}
 {% set baseClass = prefix ~ componentName %}
 {% set size = size | default("small") %}
 {% set tag = tag in tags ? tag: "ul" %}
+{% set matrix = matrix | default(false) %}
 
 
 {% set classes = [
   baseClass,
   size in sizes ? baseClass ~ "--" ~ size : "",
-  delimeted ? baseClass ~ "--" ~ "delimited" : ""
+  delimeted ? baseClass ~ "--" ~ "delimited" : "",
+  matrix in matrixOptions ? baseClass ~ "--matrix" : ""
 ] %}
 
-
 {% if items %}
-  <bolt-inline-list
-    size="{{ size }}"
-    bolt-object
-  >
+  <bolt-inline-list size="{{ size }}" bolt-object>
     <{{ tag }} {{ attributes.addClass(classes) }}>
       {% for item in items %}
         <li class="{{ "#{baseClass}__item" }}">
