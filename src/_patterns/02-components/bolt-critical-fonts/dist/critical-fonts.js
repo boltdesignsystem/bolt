@@ -149,7 +149,8 @@ if (sessionStorage.criticalFoftFontsLoaded) {
 /* 1 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: ModuleBuildError: Module build failed: \n@import '@bolt/settings-all';\n^\n      File to import not found or unreadable: @bolt/settings-all.\nParent style sheet: stdin\n      in /Users/sghoweri/sites/bolt/src/_patterns/02-components/bolt-critical-fonts/src/critical-fonts.scss (line 2, column 1)\n    at runLoaders (/Users/sghoweri/sites/bolt/build-tools/build-webpack/node_modules/webpack/lib/NormalModule.js:195:19)\n    at /Users/sghoweri/sites/bolt/build-tools/build-webpack/node_modules/loader-runner/lib/LoaderRunner.js:364:11\n    at /Users/sghoweri/sites/bolt/build-tools/build-webpack/node_modules/loader-runner/lib/LoaderRunner.js:230:18\n    at context.callback (/Users/sghoweri/sites/bolt/build-tools/build-webpack/node_modules/loader-runner/lib/LoaderRunner.js:111:13)\n    at Object.asyncSassJobQueue.push [as callback] (/Users/sghoweri/sites/bolt/node_modules/sass-loader/lib/loader.js:55:13)\n    at Object.<anonymous> (/Users/sghoweri/sites/bolt/node_modules/sass-loader/node_modules/async/dist/async.js:2244:31)\n    at Object.callback (/Users/sghoweri/sites/bolt/node_modules/sass-loader/node_modules/async/dist/async.js:906:16)\n    at options.error (/Users/sghoweri/sites/bolt/node_modules/node-sass/lib/index.js:294:32)");
+// removed by extract-text-webpack-plugin
+module.exports = {"js-fonts-loaded":"critical-fonts__js-fonts-loaded___Xr-ma","js-fonts-subset-loaded":"critical-fonts__js-fonts-subset-loaded___36Dkd"};
 
 /***/ }),
 /* 2 */
