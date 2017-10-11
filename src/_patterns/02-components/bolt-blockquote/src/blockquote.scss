@@ -5,11 +5,14 @@
 $bolt-blockquote-border-width: 0.25rem;
 $bolt-blockquote-border-style: $bolt-border-style;
 $bolt-blockquote-border-color: currentColor; // TODO: needs to map this to theme text color at 0.1 opacity.
+$bolt-blockquote-footer-line-height: $bolt-line-height--tight;
+
 
 .c-bolt-blockquote {
   @include bolt-padding(0 medium);
 
   color: var(--bolt-color-heading, bolt-color(indigo)); // TODO: refactor this after theming is done.
+
   border-left-width: $bolt-blockquote-border-width;
   border-left-style: $bolt-blockquote-border-style;
   border-left-color: $bolt-blockquote-border-color;
@@ -21,38 +24,21 @@ $bolt-blockquote-border-color: currentColor; // TODO: needs to map this to theme
   display: block;
   position: relative;
 
-  > *:first-child:before,
-  > *:first-child:after {
+  p:first-child:before{
     position: absolute;
-    color: currentColor;
-  }
-
-  > *:first-child:before {
     content: '\201C';
-    transform: translate3d(-130%, 0 ,0);
+    transform: translate3d(-110%, 0 ,0);
   }
 
-  > *:last-child:after {
+  p:last-child:after {
     content: '\201D';
-    transform: translate3d(30%, 0 ,0);
   }
 }
 
 .c-bolt-blockquote__footer {
-  @include bolt-font-size(small);
+  line-height: $bolt-blockquote-footer-line-height;
 }
 
 .c-bolt-blockquote__footer-item {
   display: block;
-  font-style: inherit;
-}
-
-.c-bolt-blockquote__footer-item--author {
-  @include bolt-font-weight(semibold);
-
-  font-style: normal;
-}
-
-.c-bolt-blockquote__footer-item--association {
-  font-style: italic;
 }

@@ -1,15 +1,25 @@
+{# Sample Data
+  {
+    "author": {
+      "name": "Full Name",
+      "title": "Title and/or organization"
+    },
+    "content": "<p>One paragraph.</p> <p>And another paragraph.</p>"
+  }
+#}
+
+
 <bolt-blockquote bolt-component>
   <blockquote class="c-bolt-blockquote">
     <div class="c-bolt-blockquote__quote">
       {% block blockquote_quote %}
-        {% if texts %}
-          {% for text in texts %}
-            {% include "@bolt/text.twig" with text | merge({
-              tag: "p",
-              size: "large",
-              weight: "semibold"
-            }) only %}
-          {% endfor %}
+        {% if content %}
+          {% include "@bolt/text.twig" with {
+            text: content,
+            tag: "div",
+            size: "large",
+            weight: "semibold"
+          } only %}
         {% endif %}
       {% endblock %}
     </div>
@@ -18,16 +28,16 @@
         <footer class="c-bolt-blockquote__footer">
           <div class="c-bolt-blockquote__footer-item">
             {% include "@bolt/text.twig" with {
-              text: author,
+              text: author.name,
               tag: "cite",
               size: "xsmall",
               weight: "semibold"
             } only %}
           </div>
-          {% if association %}
+          {% if author.title %}
             <div class="c-bolt-blockquote__footer-item">
               {% include "@bolt/text.twig" with {
-                text: association,
+                text: author.title,
                 tag: "em",
                 size: "xsmall",
                 style: "italic"
