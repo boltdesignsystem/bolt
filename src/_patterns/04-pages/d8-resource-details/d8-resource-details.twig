@@ -241,24 +241,3 @@
 
   {% endblock %}
 {% endembed %}
-
-
-
-
-
-
-
-
-
-
-{% set items = [] %}
-{% for key, tag in tags %}
-  {% set chip %}
-    {% include '@bolt/chip.twig' with tag %}
-  {% endset %}
-  {% set items  = items | merge([chip]) %}
-{% endfor %}
-
-{% include "@bolt/ui-list.twig" with {
-  items: items
-} only %}
