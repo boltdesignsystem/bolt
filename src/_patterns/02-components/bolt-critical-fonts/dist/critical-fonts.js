@@ -60,17 +60,18 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */
+/* 0 */,
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _criticalFonts = __webpack_require__(1);
+var _criticalFonts = __webpack_require__(2);
 
 var _criticalFonts2 = _interopRequireDefault(_criticalFonts);
 
@@ -83,7 +84,7 @@ if (sessionStorage.criticalFoftFontsLoaded) {
   document.documentElement.className += ' ' + fontsLoadedClass + ' ' + fontsSubsetLoadedClass;
 } else {
 
-  var FontFaceObserver = __webpack_require__(2);
+  var FontFaceObserver = __webpack_require__(3);
 
   var openSansSubset = new FontFaceObserver('OpenSansSubset');
 
@@ -146,13 +147,14 @@ if (sessionStorage.criticalFoftFontsLoaded) {
 }
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: ModuleBuildError: Module build failed: \n@import '@bolt/settings-all';\n^\n      File to import not found or unreadable: @bolt/settings-all.\nParent style sheet: stdin\n      in /Users/sghoweri/sites/bolt/src/_patterns/02-components/bolt-critical-fonts/src/critical-fonts.scss (line 2, column 1)\n    at runLoaders (/Users/sghoweri/sites/bolt/build-tools/build-webpack/node_modules/webpack/lib/NormalModule.js:195:19)\n    at /Users/sghoweri/sites/bolt/build-tools/build-webpack/node_modules/loader-runner/lib/LoaderRunner.js:364:11\n    at /Users/sghoweri/sites/bolt/build-tools/build-webpack/node_modules/loader-runner/lib/LoaderRunner.js:230:18\n    at context.callback (/Users/sghoweri/sites/bolt/build-tools/build-webpack/node_modules/loader-runner/lib/LoaderRunner.js:111:13)\n    at Object.asyncSassJobQueue.push [as callback] (/Users/sghoweri/sites/bolt/node_modules/sass-loader/lib/loader.js:55:13)\n    at Object.<anonymous> (/Users/sghoweri/sites/bolt/node_modules/sass-loader/node_modules/async/dist/async.js:2244:31)\n    at Object.callback (/Users/sghoweri/sites/bolt/node_modules/sass-loader/node_modules/async/dist/async.js:906:16)\n    at options.error (/Users/sghoweri/sites/bolt/node_modules/node-sass/lib/index.js:294:32)");
+// removed by extract-text-webpack-plugin
+module.exports = {"js-fonts-loaded":"critical-fonts__js-fonts-loaded___Xr-ma","js-fonts-subset-loaded":"critical-fonts__js-fonts-subset-loaded___36Dkd"};
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* Font Face Observer v2.0.13 - © Bram Stein. License: BSD-3-Clause */(function(){'use strict';var f,g=[];function l(a){g.push(a);1==g.length&&f()}function m(){for(;g.length;)g[0](),g.shift()}f=function(){setTimeout(m)};function n(a){this.a=p;this.b=void 0;this.f=[];var b=this;try{a(function(a){q(b,a)},function(a){r(b,a)})}catch(c){r(b,c)}}var p=2;function t(a){return new n(function(b,c){c(a)})}function u(a){return new n(function(b){b(a)})}function q(a,b){if(a.a==p){if(b==a)throw new TypeError;var c=!1;try{var d=b&&b.then;if(null!=b&&"object"==typeof b&&"function"==typeof d){d.call(b,function(b){c||q(a,b);c=!0},function(b){c||r(a,b);c=!0});return}}catch(e){c||r(a,e);return}a.a=0;a.b=b;v(a)}}

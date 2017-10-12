@@ -18,8 +18,11 @@
 {% set _defaultSize = "medium" %}
 
 
-
-{% set tag = tag in tags or tags == "any" ? tag : _defaultTag %}
+{% if tags != "any" %}
+  {% set tag = tag in tags ? tag : _defaultTag %}
+{% else %}
+  {% set tag = tag ?? _defaultTag %}
+{% endif %}
 {% set weight = weight | default(_defaultWeight) %}
 {% set type = type in types ? type : _defaultType %}
 {% set size = size | default(_defaultSize) %}

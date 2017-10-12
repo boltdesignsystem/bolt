@@ -1,8 +1,22 @@
+/* ------------------------------------ *\
+   Cards
+\* ------------------------------------ */
+
 @import '@bolt/tools-color-palette';
 @import '@bolt/tools-spacing';
 
-$bolt-card-shadow-color: bolt-color(gray, dark); //#3f3f44;
-$bolt-card-border-radius: 4px;
+$bolt-card-shadow: $bolt-shadow--small;
+$bolt-card-shadow--hover: $bolt-shadow--large;
+$bolt-card-border-width: $bolt-border-width;
+$bolt-card-border-style: $bolt-border-style;
+$bolt-card-border-color: currentColor; // TODO: needs to map this to theme text color at 0.1 opacity.
+$bolt-card-border-radius: $bolt-border-radius;
+$bolt-card-transition: $bolt-transition;
+$bolt-card-translate--hover: $bolt-translate-raised--large;
+$bolt-card-translate--active: $bolt-translate-none;
+
+
+
 
 bolt-card {
   display: flex;
@@ -14,45 +28,65 @@ bolt-card {
   display: flex;
   flex-direction: column;
   flex-grow: 1; //If used in a flex box container, grow to fill available space.
-  border-radius: $bolt-card-border-radius;
-  transform: translate3d(0, 0, 0) scale(1, 1);
-  box-shadow: 0 0 0 1px rgba($bolt-card-shadow-color, 0.08), 0 1px 3px 0 rgba($bolt-card-shadow-color, 0.15);
   position: relative;
+  color: currentColor;
+  border-radius: $bolt-card-border-radius;
+  box-shadow: $bolt-card-shadow;
+  background-color: rgba(bolt-color(white), 0.5);
+  transform: translate3d(0, 0, 0) scale(1, 1);
   transition: transform 0.2s ease-in-out;
-  background-image: linear-gradient(var(--bolt-color-background, bolt-color(white)), var(--bolt-color-background, bolt-color(white)));
-  // , linear-gradient(bolt-color(white), bolt-color(white)));
 
-  &:before {
-    content: '';
+  &:before, &:after {
     display: block;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(bolt-color(white), 0.1);
+    content: '';
     pointer-events: none;
+    border-radius: $bolt-card-border-radius;
+    z-index: -1;
+  }
+
+  &:before {
+    background-color: var(--bolt-color-background); // TODO: needs to map this to theme background color.
+    opacity: 0.8;
   }
 
   &:after {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    box-shadow: $bolt-card-shadow--hover;
     opacity: 0;
-    border-radius: $bolt-card-border-radius;
-    box-shadow: 0 5px 15px rgba($bolt-card-shadow-color, 0.15);
-    transition: opacity 0.2s ease-in-out;
+    transition: opacity $bolt-card-transition;
+  }
+
+  &.is-actionable {
+    // TODO: This class needs to be added when the entire card is clickable.
+    &:hover, &:focus {
+      transform: $bolt-card-translate--hover;
+
+      &:after {
+        opacity: 1;
+      }
+    }
+
+    &:active {
+      transform: $bolt-card-translate--active;
+
+      &:after {
+        opacity: 0;
+      }
+    }
   }
 }
 
-
-.c-bolt-card__image {
+.c-bolt-card__media {
+  position: relative;
+  overflow: hidden;
   /* stylelint-disable-next-line */
   font-size: 0;
+  border-top-right-radius: $bolt-card-border-radius;
+  border-top-left-radius: $bolt-card-border-radius;
 }
 
 .c-bolt-card__body {
@@ -60,16 +94,33 @@ bolt-card {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+}
 
-  > bolt-button:last-child {
-    margin-top: auto;
+.c-bolt-card__footer {
+  position: relative;
+  display: flex;
+  border-top-width: $bolt-card-border-width;
+  border-top-style: $bolt-card-border-style;
+  border-top-color: $bolt-card-border-color;
+}
+
+.c-bolt-card__footer-item {
+  &:not(:only-child) {
+    display: inline-flex;
+    flex: 1;
+    justify-content: center;
+    position: relative;
+    color: currentColor;
+    text-align: center;
   }
-}
 
-.c-bolt-card:hover {
-  transform: translate3d(0, 0, 0) scale(1.006, 1.006);
-}
+  &:only-child {
+    width: 100%;
+  }
 
-.c-bolt-card:hover:after {
-  opacity: 0.5;
+  & + .c-bolt-card__footer-item {
+    border-left-width: $bolt-card-border-width;
+    border-left-style: $bolt-card-border-style;
+    border-left-color: $bolt-card-border-color;
+  }
 }

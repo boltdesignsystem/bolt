@@ -7,6 +7,8 @@
 #}
 
 
+
+
 {% set srcset = srcset ?? "" %}
 {% set shouldLazyload = lazyload | default(true) %}
 
@@ -16,7 +18,6 @@
 
 {% set placeholderDummySrc = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" %}
 
-
 {% set placeholderColor = bgcolor(src) %}
 {% set placeholderImage = base64(src) %}
 
@@ -25,7 +26,7 @@
 {% set imageWidth = imagesize(src) %}
 
 {# By default, include a ratio unless set to false #}
-{% set ratio = (ratio == "false" ? false : true) %}
+{% set ratio = ratio is defined and ratio == false ? false : true %}
 
 {# macro srcset(srcset, imageWidth, path, ext, sizes) #}
   {% if srcset == "" and ext != "svg" %}
@@ -42,7 +43,6 @@
   {% endif %}
 {# endmacro #}
 {# import _self as bolt #}
-
 
 {# Main bolt-image component #}
 {% set imageAttributes = create_attribute({
@@ -70,7 +70,7 @@
 
 
 {% if shouldLazyload %}
-  {% set imgTagAttributes = imgTagAttributes.setAttribute("data-srcset", srcset) %}
+  {% set imgTagAttributes = imgTagAttributes.setAttribute("data-srcset", srcset).setAttribute("srcset", placeholderDummySrc).setAttribute("data-sizes", "auto") %}
 {% else %}
   {% set imgTagAttributes = imgTagAttributes.setAttribute("srcset", srcset) %}
 {% endif %}
@@ -93,7 +93,7 @@
 {% set imageTag %}
   <img {{ imgTagAttributes }}>
   <noscript>
-    <img {{ imgTagAttributes.removeClass(["js-lazyload", "is-lazyloading"]) }}>
+    <img {{ imgTagAttributes.removeClass(["js-lazyload", "is-lazyloading"]).setAttribute("srcset", srcset) }}>
   </noscript>
 {% endset %}
 

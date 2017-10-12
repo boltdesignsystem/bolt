@@ -16,12 +16,14 @@
 {% endif %}
 
 
-{% if content %}
-  {% include "@bolt/text.twig" with {
-    text: content | striptags,
-    tag: "p"
-  } only %}
-{% endif %}
+{% block teaser_content %}
+  {% if content %}
+    {% include "@bolt/text.twig" with {
+      text: content | striptags,
+      tag: "p"
+    } only %}
+  {% endif %}
+{% endblock teaser_content %}
 
 {# TODO: only allow max of 2 buttons #}
 {% if buttons %}

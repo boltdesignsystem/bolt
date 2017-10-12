@@ -20,7 +20,7 @@ index bceb814..62604aa 100644
 +						'indentation_character' => '  '
 +					));
 +					$markup = $indenter->indent($markup);
-+					$markupEngine = $indenter->indent($markupEngine);
++					//$markupEngine = $indenter->indent($markupEngine);
 +
  					file_put_contents($patternPublicDir."/".$path."/".$path.$suffixMarkupOnly.".html",$markup);
  					file_put_contents($patternPublicDir."/".$path."/".$path.$suffixRaw.".".$patternExtension,$markupEngine);

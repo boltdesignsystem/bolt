@@ -5,12 +5,16 @@
 @import '@bolt/tools-color-palette';
 @import '@bolt/tools-spacing';
 
-$bolt-test-color-background-gradient--primary: bolt-color(black);
+$bolt-test-color-background-gradient--primary: bolt-color(black); // This needs to map to the theme's background color.
 $bolt-test-color-background-gradient--secondary: rgba($bolt-test-color-background-gradient--primary, 0.1);
 
 
 $bolt-gradient-angle--default: -35deg;
 $bolt-gradient-angle--reversed: 180deg - abs($bolt-gradient-angle--default);
+
+$bolt-background-dark-overlay-opacity--light: 0.3;
+$bolt-background-dark-overlay-opacity--medium: 0.55;
+$bolt-background-dark-overlay-opacity--heavy: 0.8;
 
 
 // Zoom animation treatment
@@ -95,25 +99,26 @@ $bolt-gradient-angle--reversed: 180deg - abs($bolt-gradient-angle--default);
 }
 
 .c-bolt-background__overlay--medium-opacity {
-  opacity: 0.55;
+  opacity: $bolt-background-dark-overlay-opacity--medium; // TODO: This number is only working for dark colors, it does not work for light colors. Therefore light and xlight themes with a background image would not be accessible yet.
 }
 
 .c-bolt-background__overlay--heavy-opacity {
-  opacity: 0.8;
+  opacity: $bolt-background-dark-overlay-opacity--heavy; // TODO: This number is only working for dark colors, it does not work for light colors. Therefore light and xlight themes with a background image would not be accessible yet.
 }
 
 .c-bolt-background__overlay--light-opacity {
-  opacity: 0.3;
+  opacity: $bolt-background-dark-overlay-opacity--light; // TODO: This number is only working for dark colors, it does not work for light colors. Therefore light and xlight themes with a background image would not be accessible yet.
 }
 
 
 .c-bolt-background__overlay--color-fill {
-  background-color: $bolt-test-color-background-gradient--primary;
-  background-color: var(--bolt-color-background-gradient--primary, $bolt-test-color-background-gradient--primary);
+  background-color: var(--bolt-color-background);
 }
 
 
 
+
+// TODO: The gradient option is only working for the dark and xdark themes. It needs to map to the theme colors in order for it to work for the light and xlight themes.
 
 // Default gradient if the image focal point (point of interest) is in the center or on the right side
 .c-bolt-background__overlay--gradient-fill {
