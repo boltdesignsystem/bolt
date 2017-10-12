@@ -3,25 +3,34 @@
 
 {% set attributes = create_attribute(attributes|default({})) %}
 
+{% set sizes = [
+  "medium",
+  "xxlarge"
+] %}
+
+{% set fullSizeOptions %}
+  true,
+  false
+{% endset %}
+
 {% set componentName = "wrapper" %}
 {% set baseClass = prefix ~ componentName %}
 {% set tag = tag in tags ? tag: "div" %}
+{% set full = full in fullSizeOptions ? full : size == "xxlarge" ? false : true %}
+{% set size = size | default("xxlarge") %}
 
 
 {% set classes = [
-  baseClass
+  baseClass,
+  size in sizes ? baseClass ~ "--" ~ size : "",
+  full == "true" ? baseClass ~ "--full" : ""
 ] %}
 
 
-{% if items %}
-  <bolt-wrapper
-    size="{{ size }}"
-    bolt-object
-  >
+  <bolt-wrapper size="{{ size }}" full="{% if full == true %}true{% else %}false{% endif %}" bolt-object>
     <{{ tag }} {{ attributes.addClass(classes) }}>
       {% block wrapper_content %}
-        Default wrapper content
-      {% endblock %}
+        {{ content }}
+      {% endblock wrapper_content %}
     </{{ tag }}>
   </bolt-wrapper>
-{% endif %}

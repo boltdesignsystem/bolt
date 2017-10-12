@@ -13,7 +13,6 @@
   "xxxlarge"
 ] %}
 
-
 {% set _defaultTag = "p" %}
 {% set _defaultWeight = "regular" %}
 {% set _defaultStyle = "normal" %}
@@ -21,8 +20,11 @@
 {% set _defaultSize = "medium" %}
 
 
-
-{% set tag = tag in tags or tags == "any" ? tag : _defaultTag %}
+{% if tags != "any" %}
+  {% set tag = tag in tags ? tag : _defaultTag %}
+{% else %}
+  {% set tag = tag ?? _defaultTag %}
+{% endif %}
 {% set weight = weight | default(_defaultWeight) %}
 {% set style = style | default(_defaultStyle) %}
 {% set type = type in types ? type : _defaultType %}
@@ -34,6 +36,10 @@
 {% set prefix = "c-bolt-" %}
 {% set baseClass = prefix ~ type %}
 {% set attributes = create_attribute(attributes|default({})) %}
+
+{% if (size == "xxxlarge") and (text|length >= 55) %}
+  {% set size = "xxlarge" %}
+{% endif %}
 
 
 {% set classes = [

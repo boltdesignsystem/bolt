@@ -21,40 +21,55 @@
   {% set attributes = attributes.setAttribute("href", url) %}
 {% endif %}
 
+
+{% set _card_footer_block = block('card_footer') %}
+
 <bolt-card
   theme="{{ theme }}"
   bolt-component>
   <{{ tag }} {{ attributes.addClass(classes) }}>
-    <div class="{{ "#{baseClass}__media" }}">
-      {% block card_media %}
-        {% if items %}
-          {% for item in items if item.name == "image" %}
-            {% include "@bolt/" ~ item.name ~ ".twig" with item only %}
-          {% endfor %}
-        {% endif %}
-      {% endblock %}
-    </div>
 
-    <{{ contentTag }} class="{{ "#{baseClass}__body" }}">
+    {% if block('card_media') is not empty %}
+      <div class="{{ "#{baseClass}__media" }}">{% spaceless %}
+        {% block card_media %}
+          {%- if items -%}
+            {% for item in items if item.name == "image" %}
+              {% include "@bolt/" ~ item.name ~ ".twig" with item only %}
+            {% endfor %}
+          {%- endif -%}
+        {% endblock %}
+      {% endspaceless %}</div>
+    {% endif %}
+
+    
+    {% if block('card_body') is not empty %}
+    <{{ contentTag }} class="{{ "#{baseClass}__body" }}">{% spaceless %}
       {% block card_body %}
-        {% if items %}
+        {%- if items -%}
           {% for item in items if item.name != "image" and item.name != "button" %}
             {% include "@bolt/" ~ item.name ~ ".twig" with item only %}
           {% endfor %}
-        {% endif %}
+        {%- endif -%}
       {% endblock card_body %}
-    </{{ contentTag }}>
+    {% endspaceless %}</{{ contentTag }}>
+    {% endif %}
 
-    <div class="{{ "#{baseClass}__footer" }}">
-      {% block card_footer %}
-        {% if items %}
-          {% for item in items if item.name == "button" %}
-            <div class="{{ "#{baseClass}__footer-item" }}">
-              {% include "@bolt/" ~ item.name ~ ".twig" with item only %}
-            </div>
-          {% endfor %}
-        {% endif %}
-      {% endblock card_footer %}
-    </div>
+    {% if block('card_footer') is not empty %}
+      <div class="{{ "#{baseClass}__footer" }}">{% spaceless %}
+        {% block card_footer %}
+          {%- if items -%}
+            {% for item in items if item.name == "button" %}
+              <div class="{{ "#{baseClass}__footer-item" }}">
+                {% include "@bolt/" ~ item.name ~ ".twig" with item only %}
+              </div>
+            {% endfor %}
+          {%- endif -%}
+        {% endblock card_footer %}
+      {% endspaceless %}</div>
+    {% endif %}
+
+      
+      
+          
   </{{ tag }}>
 </bolt-card>

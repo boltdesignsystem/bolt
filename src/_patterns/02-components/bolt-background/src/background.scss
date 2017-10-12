@@ -77,6 +77,7 @@ $bolt-background-dark-overlay-opacity--heavy: 0.8;
   left: -9999px;
   min-width: 100%;
   min-height: 100%;
+  max-width: none; //Required to handle instances where a max-width is previously set.
 
   @supports (object-fit: cover) {
     display: block;

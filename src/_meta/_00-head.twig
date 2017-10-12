@@ -10,12 +10,15 @@
 
     {# Inline Critical Font-specific CSS automatically #}
     <style>
-    {{ inline('bolt-critical-fonts.css' | webpack) }}
+    {{ inline("_patterns/02-components/bolt-critical-fonts/dist/critical-fonts.css", "/src/") }}
     </style>
+
+
+    
 
     {# Inline Critical JS automatically using references to the file manifest webpack generates #}
     <script>
-    {{ inline('bolt-critical-path.js' | webpack) }}
+    {{ inline("_patterns/02-components/bolt-critical-fonts/dist/critical-fonts.min.js", "/src/") }}
     </script>
 
     <!-- Begin Pattern Lab (Required for Pattern Lab to run properly) -->

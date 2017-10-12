@@ -6,7 +6,9 @@
   contentTag: "figcaption"
 } %}
   {% block band_background %}
-    {% include "@bolt/background.twig" %}
+    {% if background %}
+      {% include "@bolt/background.twig" with background only %}
+    {% endif %}
   {% endblock band_background %}
 
   {% block band_content %}

@@ -148,6 +148,7 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 .c-bolt-headline,
 .c-bolt-subheadline,
 .c-bolt-text {
+
   &:last-child {
     @include bolt-margin-bottom(0);
   }
@@ -158,7 +159,8 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 // Headline spacing with other elements.
 .c-bolt-headline + .c-bolt-subheadline,
-.c-bolt-headline:not(.c-bolt-headline--xxxlarge) + .c-bolt-text {
+.c-bolt-headline:not(.c-bolt-headline--xxxlarge) + .c-bolt-text,
+.c-bolt-headline + bolt-inline-list {
   margin-top: (-1 * bolt-v-spacing(medium)) + bolt-v-spacing(xsmall);
 }
 
