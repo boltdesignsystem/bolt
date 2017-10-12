@@ -7,6 +7,8 @@
 #}
 
 
+
+
 {% set srcset = srcset ?? "" %}
 {% set shouldLazyload = lazyload | default(true) %}
 
@@ -15,7 +17,6 @@
 {% set path = publicpath(src|split('.' ~ ext)|first) %}
 
 {% set placeholderDummySrc = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" %}
-
 
 {% set placeholderColor = bgcolor(src) %}
 {% set placeholderImage = base64(src) %}
@@ -42,7 +43,6 @@
   {% endif %}
 {# endmacro #}
 {# import _self as bolt #}
-
 
 {# Main bolt-image component #}
 {% set imageAttributes = create_attribute({

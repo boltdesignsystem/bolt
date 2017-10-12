@@ -3,23 +3,39 @@
 /// @author Mike Mai
 ////
 
+@import '@bolt/tools-color-palette';
 
 /* ------------------------------------ *\
    Global Settings
 \* ------------------------------------ */
 
-
 // Global Min / Max Base Font Size
 $bolt-base-font-size--min: 14px;
 $bolt-base-font-size--max: 18px;
-
-
-
 
 // Async font loading classes.
 $bolt-fonts--subset-loaded-class: 'js-fonts-subset-loaded' !default;
 $bolt-fonts--loaded-class: 'js-fonts-loaded' !default;
 
+// Shadows
+$bolt-shadow-color: bolt-color(black);
+$bolt-shadow--small: 0 1px 0.15rem rgba($bolt-shadow-color, 0.5);
+$bolt-shadow--medium: 0 0.15rem 0.3rem rgba($bolt-shadow-color, 0.35);
+$bolt-shadow--large: 0 0.35rem 0.6rem rgba($bolt-shadow-color, 0.18);
+
+// Border
+$bolt-border-width: 1px;
+$bolt-border-style: solid;
+$bolt-border-radius: 3px;
+
+// Transition
+$bolt-transition: ease-in-out 200ms;
+
+// Effects
+$bolt-translate-none: translate3d(0, 0, 0);
+$bolt-translate-raised--small: translate3d(0, -1px, 0);
+$bolt-translate-raised--medium: translate3d(0, -0.125rem, 0);
+$bolt-translate-raised--large: translate3d(0, -0.25rem, 0);
 
 /* ------------------------------------ *\
    All block elements

@@ -95,8 +95,8 @@
   @if $name == 'xlight' {
     @include _bolt-theme-settings(
       $background:  bolt-color(white),
-      $primary:     bolt-color(blue),
-      $secondary:   bolt-color(blue),
+      $primary:     bolt-color(indigo, light),
+      $secondary:   bolt-color(indigo, light),
       $text:        null,
       $heading:     bolt-color(indigo),
       $button-text: null,
@@ -105,8 +105,8 @@
   @elseif $name == 'light' {
     @include _bolt-theme-settings(
       $background:  bolt-color(gray, xlight),
-      $primary:     bolt-color(blue),
-      $secondary:   bolt-color(blue),
+      $primary:     bolt-color(indigo, light),
+      $secondary:   bolt-color(indigo, light),
       $text:        null,
       $heading:     bolt-color(indigo),
       $button-text: null,
@@ -125,7 +125,7 @@
   @elseif $name == 'xdark' {
     @include _bolt-theme-settings(
       $background:  bolt-color(indigo, dark),
-      $primary:     bolt-color(blue),
+      $primary:     bolt-color(indigo, light),
       $secondary:   bolt-color(white),
       $text:        null,
       $heading:     null,

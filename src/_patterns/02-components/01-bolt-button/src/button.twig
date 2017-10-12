@@ -3,9 +3,12 @@
 {% set styles = ["primary", "secondary", "text"] %}
 {% set prefix = "c-bolt-" %}
 
+{% set itemAlignments = {
+  "center": "center",
+  "left": "start"
+} %}
 
-
-{# Allowed Headline Sizes #}
+{# Allowed Button Sizes #}
 {% set sizes = [
   "xsmall",
   "small",
@@ -21,6 +24,7 @@
 {% set size = size | default("medium") %}
 {% set width = width | default("") %}
 {% set style = style | default("") %}
+{% set itemAlignment = itemAlignment | default("center") %}
 
 {% set tag = tag in tags ? tag: "a" %}
 
@@ -29,7 +33,8 @@
   baseClass,
   size in sizes ? baseClass ~ "--" ~ size : "",
   width in widths ? baseClass ~ "--" ~ width : "",
-  style in styles ? baseClass ~ "--" ~ style : ""
+  style in styles ? baseClass ~ "--" ~ style : "",
+  itemAlignment in itemAlignments|keys ? baseClass ~ "--item-align-" ~ itemAlignments[itemAlignment]
 ] %}
 
 
@@ -44,6 +49,6 @@
   size="{{ size }}"
   bolt-component>
   <{{ tag }} {{ attributes.addClass(classes | raw) }}>
-    <span class="{{ "#{baseClass}__text" }}">{{ text }}</span>
+    <span class="{{ "#{baseClass}__item #{baseClass}__item-text" }}">{{ text }}</span>
   </{{ tag }}>
 </bolt-button>
