@@ -7,6 +7,7 @@ module.exports = {
   //   key: `${__dirname}/certs/key.pem`,
   //   cert: `${__dirname}/certs/cert.pem`
   // },
+  ghostMode: false,
   open: true,
   installCert: false,
   serverName: 'bolt-server',

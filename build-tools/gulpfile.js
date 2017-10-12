@@ -5,6 +5,7 @@ const patternlab = require('./build-patternlab');
 const styles = require('./build-styles');
 const symlinks = require('./build-symlinks');
 const webpackTask = require('./build-webpack');
+const images = require('./build-images');
 const gutil = require('gulp-util');
 // const cache = require('gulp-cached');
 // const remember = require('gulp-remember');
@@ -16,6 +17,9 @@ const gutil = require('gulp-util');
 // emitter.setMaxListeners(100);
 // or 0 to turn off the limit
 // emitter.setMaxListeners(0);
+
+// const imageSizes = require('../packages/bolt-common/image-sizes/image-sizes.js');
+// console.log(imageSizes);
 
 
 module.exports = (gulp) => {
@@ -50,6 +54,19 @@ module.exports = (gulp) => {
   //   //   }
   //   // });
   // });
+
+  const imagesConfig = {
+    src: './src/images/**/*',
+    dest: './bolt-website/images'
+  };
+
+  gulp.task('images:resize', images.resize(gulp, imagesConfig));
+  gulp.task('images:clean', images.clean(gulp, imagesConfig));
+
+  gulp.task('images', gulp.series([
+    'images:clean',
+    'images:resize'
+  ]));
 
 
   gulp.task('styles:compile', styles.compile(cssConfig));
@@ -116,6 +133,7 @@ module.exports = (gulp) => {
   // gulp.task('watch', ['setWatch', 'styles:compile'], gulp.series([]));
 
 
+  
   gulp.task('default',
     gulp.series([
       // 'setWatch',
@@ -123,15 +141,18 @@ module.exports = (gulp) => {
       // // 'symlinks:clean',
       // 'symlinks:create',
       // 'copy:fonts',
-      'styles:compile',
-      'styles:sassdoc',
-      gutil.env.prod ? 'webpack:prod' : 'webpack:dev',
-      'patternlab:compile',
+      // gulp.parallel([
+       
+      // ]),
       // 'copy:json',
       gulp.parallel([
+        'patternlab:compile',
         'webpack:watch',
         'patternlab:watch',
         'styles:watch',
+        'styles:compile',
+        'styles:sassdoc',
+        gutil.env.prod ? 'webpack:prod' : 'webpack:dev',
         'browsersync:serve'
       ]),
     ])

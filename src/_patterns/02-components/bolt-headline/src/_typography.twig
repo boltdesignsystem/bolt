@@ -1,4 +1,4 @@
-{% set tags = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "span"] %} {# Allowed Tags #}
+{% set tags = "any" %} {# Allowed Tags #}
 {% set weights = ["bold", "regular", "semibold"] %} {# Allowed Weights #}
 {% set types = ["headline", "subheadline", "eyebrow", "text"] %} {# Pre-defined types #}
 {% set transformProps = ["none", "uppercase", "lowercase", "capitalize"] %} {# Pre-defined text transform options #}
@@ -12,15 +12,17 @@
   "xxxlarge"
 ] %}
 
-
 {% set _defaultTag = "p" %}
 {% set _defaultWeight = "regular" %}
 {% set _defaultType = "text" %}
 {% set _defaultSize = "medium" %}
 
 
-
-{% set tag = tag in tags ? tag : _defaultTag %}
+{% if tags != "any" %}
+  {% set tag = tag in tags ? tag : _defaultTag %}
+{% else %}
+  {% set tag = tag ?? _defaultTag %}
+{% endif %}
 {% set weight = weight | default(_defaultWeight) %}
 {% set type = type in types ? type : _defaultType %}
 {% set size = size | default(_defaultSize) %}
@@ -31,6 +33,10 @@
 {% set prefix = "c-bolt-" %}
 {% set baseClass = prefix ~ type %}
 {% set attributes = create_attribute(attributes|default({})) %}
+
+{% if (size == "xxxlarge") and (text|length >= 55) %}
+  {% set size = "xxlarge" %}
+{% endif %}
 
 
 {% set classes = [

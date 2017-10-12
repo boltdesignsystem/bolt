@@ -1,5 +1,14 @@
 {% extends "@bolt/_typography.twig" %}
 {% set type = "subheadline" %}
+{% set tags = [
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "p",
+] %}
 {% set sizes = ["xxlarge", "xlarge"] %}
 {% set size = size | default("xlarge") %}
 {% set weight = "regular" %}

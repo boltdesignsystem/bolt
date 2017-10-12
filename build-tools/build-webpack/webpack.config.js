@@ -16,6 +16,8 @@ module.exports = (options) => {
     fs.mkdirp(sassDataExport);
   }
 
+  const workingDir = process.cwd();
+
   const config = {
     resolve: {
       alias: {
@@ -27,15 +29,17 @@ module.exports = (options) => {
       extensions: ['.js', '.jsx', '.json', '.svg', '.scss']
     },
     entry: {
+      './src/_patterns/02-components/bolt-critical-fonts/dist/critical-fonts': './src/_patterns/02-components/bolt-critical-fonts/src/critical-fonts',
+      './bolt-website/scripts/bolt-app': './src/scripts/bolt-app',
+      // 'bolt-app': `${process.cwd()}/src/scripts/bolt-app`,
       // 'patternlab-pattern': `${__dirname}/src/scripts/patternlab-pattern.js`,
       // 'patternlab-viewer': `${__dirname}/src/scripts/patternlab-viewer.js`,
-      'bolt-critical-path': `${process.cwd()}/src/scripts/bolt-critical-path`,
-      'bolt-critical-fonts': './src/styles/bolt-critical-fonts'
+      // 'bolt-critical-fonts-css': `${process.cwd()}/src/_patterns/02-components/bolt-critical-fonts/src/critical-fonts.scss`
     },
     output: {
-      path: `${process.cwd()}/bolt-website/`,
-      filename: 'scripts/[name].min.js',
-      publicPath: `${process.cwd()}/bolt-website/scripts/`
+      path: `${process.cwd()}`,
+      filename: '[name].js',
+      // publicPath: `${process.cwd()}/bolt-website/scripts/`
     },
     module: {
       rules: [
@@ -127,7 +131,7 @@ module.exports = (options) => {
     plugins: [
       new webpack.optimize.ModuleConcatenationPlugin(),
       new ExtractTextPlugin({
-        filename: 'styles/[name].css?[hash]-[chunkhash]-[contenthash]-[name]',
+        filename: '[name].css?[hash]-[chunkhash]-[contenthash]-[name]',
         disable: false,
         allChunks: true
       }),

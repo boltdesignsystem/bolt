@@ -5,28 +5,63 @@
 /* ==========================================================================
    #BOLT RATIO OBJECT
    ========================================================================== */
+bolt-ratio {
+  display: inline;
+}
 
 .o-bolt-ratio {
-  display: block; //In case it's applied to a non-block element.
+  /* aspect-ratio custom properties */
+  /* The width portion of the aspect ratio, e.g. 16 in 16:9. */
+  --aspect-ratio-w: 1;
+  /* The height portion of the aspect ratio, e.g. 9 in 16:9. */
+  --aspect-ratio-h: 1;
   position: relative;
-  width: 100%;
-  overflow: hidden;
+  overflow: hidden; //So blurred inner content, etc. don't leak out
+}
 
-  &:after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 0;
+// If the user supports custom props, enhance with the intrinsic ratio of the media before it loads.
+@supports (--custom-props: 'true') {
+  .o-bolt-ratio {
+    > * {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    &:before {
+      display: block;
+      padding-top: calc( var(--aspect-ratio-h, 1) / var(--aspect-ratio-w, 1) * 100%);
+      content: '';
+    }
   }
 }
 
-.o-bolt-ratio__item {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
+// .o-bolt-ratio {
+//   display: block; //In case it's applied to a non-block element.
+//   position: relative;
+//   width: 100%;
+//   overflow: hidden;
+
+//   &:after {
+//     content: '';
+//     display: block;
+//     width: 100%;
+//     height: 0;
+//   }
+// }
+
+
+// .o-bolt-ratio__item {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+// }
 
 
 @mixin bolt-aspect-ratio($width, $height) {

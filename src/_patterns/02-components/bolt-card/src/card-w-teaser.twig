@@ -7,10 +7,33 @@
   }]) %}
 {% endif %}
 
-{% block card_content %}
   
-  
+{% block card_body %}
   {% if teaser %}
-    {% include "@bolt/teaser.twig" with teaser only %}
+    {% set cardBodyContent = teaser %}
+    {% if teaser.buttons %}
+      {% set cardBodyContent = cardBodyContent|merge({
+        buttons: null
+       }) %}
+    {% endif %}
+
+    {% include "@bolt/teaser.twig" with cardBodyContent only %}
+  {% endif %}
+{% endblock %}
+
+{% block card_footer %}
+  {% if teaser.buttons %}
+    {% set buttons = [] %}
+    {% for button in teaser.buttons %}
+      {% set button = button | merge({
+        style: "text"
+      }) %}
+      {% set buttons = buttons | merge([button]) %}
+    {% endfor %}
+    {% set teaserParams = {
+      buttons: buttons
+    } %}
+
+    {% include "@bolt/teaser.twig" with teaserParams only %}
   {% endif %}
 {% endblock %}

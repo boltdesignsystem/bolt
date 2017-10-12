@@ -31,34 +31,36 @@
     "repositories": [
       {
         "type": "vcs",
-        "url": "https://github.com/drupal-pattern-lab/patternlab-php-core"
+        "url": "https://github.com/drupal-pattern-lab/patternlab-php-core",
+        "no-api": true
       },
       {
         "type": "path",
         "url": "packages/bolt-twig-extensions"
       },
       {
-        "type": "vcs",
-        "url": "https://github.com/drupal-pattern-lab/patternengine-php-twig"
+        "type": "path",
+        "url": "packages/patternengine-twig"
       },
       {
         "type": "vcs",
-        "url": "https://github.com/drupal-pattern-lab/styleguidekit-twig-default"
+        "url": "https://github.com/drupal-pattern-lab/styleguidekit-twig-default",
+        "no-api": true
       }
     ],
     "minimum-stability": "dev",
     "require": {
       "php": ">=7.0",
+      "twig/twig": "^1.35.0",
       "cweagans/composer-patches": "~1.0",
       "pattern-lab/core": "^2.7.1",
-      "pattern-lab/patternengine-twig": "^2.0.0",
+      "pattern-lab/patternengine-twig": "*",
       "pattern-lab/styleguidekit-twig-default": "^3.0.0",
       "pattern-lab/styleguidekit-assets-default": "*",
-      "aleksip/plugin-data-transform": "^1.1.0",
       "evanlovely/plugin-twig-namespaces": "dev-master",
       "oomphinc/composer-installers-extender": "dev-master",
       "bolt/twig-extensions": "*",
-        "gajus/dindent": "dev-master"
+      "gajus/dindent": "dev-master"
     },
     "config": {
         "process-timeout": 0,

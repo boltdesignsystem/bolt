@@ -12,10 +12,33 @@ $bolt-wrapper--max-width: 1400px !default;
   @include bolt-margin-left(auto);
   @include bolt-margin-right(auto);
   display: block;
-  max-width: $bolt-wrapper--max-width;
 
   @include respond-to(medium) {
     @include bolt-padding-left(large);
     @include bolt-padding-right(large);
   }
 }
+
+// Default wrapper component used virtually everywhere
+.o-bolt-wrapper,
+.o-bolt-wrapper--xxlarge {
+  max-width: $bolt-wrapper--max-width;
+}
+
+
+// Used for handling ideal content line length
+.o-bolt-wrapper--medium {
+  max-width: bolt-breakpoint(medium);
+  padding: 0;
+}
+
+// @TODO: make mixin for bands + wrappers
+// .o-bolt-wrapper--full {
+//   padding-left: 0;
+//   padding-right: 0;
+// }
+
+// Temp hack if wrapper inside a wrapper
+// .o-bolt-wrapper .o-bolt-wrapper {
+//   padding: 0;
+// }

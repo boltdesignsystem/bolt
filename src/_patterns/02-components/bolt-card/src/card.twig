@@ -1,119 +1,75 @@
-{% set themes = ["", "xlight", "light", "dark", "xdark"] %}
-{% set tags = ["div"] %} {# Available overall container tags #}
-{% set themes = ["", "xlight", "light", "dark", "xdark"] %}
+{% set tags = ["div", "article", "section", "figure"] %} {# Available overall container tags #}
+{% set contentTags = ["div", "article", "section", "figcaption"] %} {# Available content container tags #}
+{% set themes = ["xlight", "light", "dark", "xdark"] %}
 {% set prefix = "c-bolt-" %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
 
-{# Defaults for a vanilla `Band` component #}
+{# Defaults for a vanilla `Card` component #}
 {% set componentName = "card" %}
 {% set baseClass = prefix ~ componentName %}
-{% set theme = theme | default("xlight") %}
+{% set theme = theme %}
 {% set tag = tag in tags ? tag: "div" %}
+{% set contentTag = contentTag in contentTags ? contentTag: "div" %}
 
 {% set classes = [
   baseClass,
   theme in themes ? "t-bolt-" ~ theme : ""
 ] %}
 
+{% if url %}
+  {% set attributes = attributes.setAttribute("href", url) %}
+{% endif %}
+
+
+{% set _card_footer_block = block('card_footer') %}
+
 <bolt-card
   theme="{{ theme }}"
   bolt-component>
   <{{ tag }} {{ attributes.addClass(classes) }}>
-    <div class="{{ "#{baseClass}__image" }}">
-      {% block card_image %}
-        {% if items %}
-          {% for item in items if item.name == "image" %}
-            {% include "@bolt/" ~ item.name ~ ".twig" with item only %}
-          {% endfor %}
-        {% endif %}
-      {% endblock %}
-    </div>
 
-    <div class="{{ "#{baseClass}__body" }}">
-      {% block card_content %}
-        {% block card_header %}{% endblock card_header %}
-
-        {% block card_body %}
-          {% if items %}
-            {% for item in items if item.name != "image" %}
+    {% if block('card_media') is not empty %}
+      <div class="{{ "#{baseClass}__media" }}">{% spaceless %}
+        {% block card_media %}
+          {%- if items -%}
+            {% for item in items if item.name == "image" %}
               {% include "@bolt/" ~ item.name ~ ".twig" with item only %}
             {% endfor %}
-          {% endif %}
-        {% endblock card_body %}
+          {%- endif -%}
+        {% endblock %}
+      {% endspaceless %}</div>
+    {% endif %}
 
-        {% block card_footer %}{% endblock card_footer %}
-      {% endblock %}
-    </div>
+    
+    {% if block('card_body') is not empty %}
+    <{{ contentTag }} class="{{ "#{baseClass}__body" }}">{% spaceless %}
+      {% block card_body %}
+        {%- if items -%}
+          {% for item in items if item.name != "image" and item.name != "button" %}
+            {% include "@bolt/" ~ item.name ~ ".twig" with item only %}
+          {% endfor %}
+        {%- endif -%}
+      {% endblock card_body %}
+    {% endspaceless %}</{{ contentTag }}>
+    {% endif %}
+
+    {% if block('card_footer') is not empty %}
+      <div class="{{ "#{baseClass}__footer" }}">{% spaceless %}
+        {% block card_footer %}
+          {%- if items -%}
+            {% for item in items if item.name == "button" %}
+              <div class="{{ "#{baseClass}__footer-item" }}">
+                {% include "@bolt/" ~ item.name ~ ".twig" with item only %}
+              </div>
+            {% endfor %}
+          {%- endif -%}
+        {% endblock card_footer %}
+      {% endspaceless %}</div>
+    {% endif %}
+
+      
+      
+          
   </{{ tag }}>
 </bolt-card>
-
-
-
-
-
-{# include "@bolt/default-card.twig" with {
-  size: "medium",
-  theme: "xlight",
-  shadow: true,
-  items: [
-    {
-      "icon": {
-        "name": "pdf"
-      },
-      "teaser": {
-        "headline": "my headline",
-        "content": "content goes here.",
-        "buttons": [
-          {
-            "button": {
-              "url": "google.com",
-              "text": "Learn more"
-            }
-          }
-        ]
-      }
-    },
-    {
-      "image": {
-        "src": "foobar.jpg"
-      },
-      "teaser": {
-        "headline": "my headline",
-        "content": "content goes here.",
-        "buttons": [
-          {
-            "button": {
-              "url": "google.com",
-              "text": "Learn more"
-            }
-          }
-        ]
-      }
-    },
-    {
-      "image": {
-        "src": "foobar.jpg"
-      },
-      "teaser": {
-        "headline": "my headline",
-        "content": "content goes here.",
-        "buttons": [
-          {
-            "button": {
-              "url": "google.com",
-              "text": "Learn more"
-            }
-          }
-        ]
-      }
-    }
-  ]
-#}
-
-{# <div class="c-bolt-card" data-background="{{background}}">
-  {% for item in body %}
-    {% include item.name ~ '.twig' with item only %}
-    {% else %}{% block body %}{% endblock %}
-  {% endfor %}
-</div> #}
