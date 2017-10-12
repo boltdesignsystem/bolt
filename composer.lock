@@ -70,7 +70,7 @@
         },
         {
             "name": "bolt/twig-extensions",
-            "version": "dev-feature/bolt-285-cards",
+            "version": "dev-feature/icons",
             "dist": {
                 "type": "path",
                 "url": "packages/bolt-twig-extensions",
@@ -329,7 +329,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2017-08-30 09:16:50"
+            "time": "2017-08-30T09:16:50+00:00"
         },
         {
             "name": "evanlovely/plugin-twig-namespaces",
@@ -383,7 +383,7 @@
                 "pattern lab",
                 "twig"
             ],
-            "time": "2017-09-01 18:45:52"
+            "time": "2017-09-01T18:45:52+00:00"
         },
         {
             "name": "gajus/dindent",
@@ -429,7 +429,7 @@
                 "html",
                 "indent"
             ],
-            "time": "2017-06-05 10:29:29"
+            "time": "2017-06-05T10:29:29+00:00"
         },
         {
             "name": "gregwar/cache",
@@ -524,7 +524,7 @@
                 "gd",
                 "image"
             ],
-            "time": "2017-04-09 10:02:48"
+            "time": "2017-04-09T10:02:48+00:00"
         },
         {
             "name": "kevinlebrun/colors.php",
@@ -766,7 +766,7 @@
             ],
             "description": "Extend the composer/installers plugin to accept any arbitrary package type.",
             "homepage": "http://www.oomphinc.com/",
-            "time": "2017-03-31 16:57:39"
+            "time": "2017-03-31T16:57:39+00:00"
         },
         {
             "name": "pattern-lab/core",
@@ -846,20 +846,15 @@
         {
             "name": "pattern-lab/patternengine-twig",
             "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pattern-lab/patternengine-php-twig.git",
-                "reference": "f402a2f3e9aff0ead34fa9e8d0c3119d74e51997"
-            },
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pattern-lab/patternengine-php-twig/zipball/f402a2f3e9aff0ead34fa9e8d0c3119d74e51997",
-                "reference": "f402a2f3e9aff0ead34fa9e8d0c3119d74e51997",
-                "shasum": ""
+                "type": "path",
+                "url": "packages/patternengine-twig",
+                "reference": "f3254de28b9f0a0a1e1015070209a1e06908a829",
+                "shasum": null
             },
             "require": {
                 "pattern-lab/core": "^2.0.0",
-                "twig/twig": "~1.0"
+                "twig/twig": "^1.35.0"
             },
             "type": "patternlab-patternengine",
             "extra": {
@@ -879,16 +874,13 @@
                         "twigTestExt": "test.php"
                     }
                 },
-                "patches_applied": {
-                    "[FEATURE] Add Twig Globals to Pattern Engine.": ".patches/addTwigGlobals.patch"
-                }
+                "patches_applied": []
             },
             "autoload": {
                 "psr-0": {
                     "PatternLab\\PatternEngine\\Twig": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -907,7 +899,11 @@
                 "pattern lab",
                 "twig"
             ],
-            "time": "2017-10-09 17:51:14"
+            "support": {
+                "issues": "https://github.com/drupal-pattern-lab/patternengine-php-twig/issues",
+                "wiki": "http://patternlab.io/docs/",
+                "source": "https://github.com/drupal-pattern-lab/patternengine-php-twig/releases"
+            }
         },
         {
             "name": "pattern-lab/styleguidekit-assets-default",
@@ -1166,7 +1162,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-05 10:20:28"
+            "time": "2017-10-05T10:20:28+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -1215,7 +1211,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-03 13:54:22"
+            "time": "2017-10-03T13:54:22+00:00"
         },
         {
             "name": "symfony/finder",
@@ -1264,7 +1260,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-02 06:49:52"
+            "time": "2017-10-02T06:49:52+00:00"
         },
         {
             "name": "symfony/process",
@@ -1313,7 +1309,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-05 22:24:36"
+            "time": "2017-10-05T22:24:36+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -1371,7 +1367,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-09 14:52:13"
+            "time": "2017-10-09T14:52:13+00:00"
         },
         {
             "name": "twig/twig",
@@ -1436,7 +1432,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-09-27 18:07:18"
+            "time": "2017-09-27T18:07:18+00:00"
         }
     ],
     "packages-dev": [],

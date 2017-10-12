@@ -5,6 +5,7 @@ const patternlab = require('./build-patternlab');
 const styles = require('./build-styles');
 const symlinks = require('./build-symlinks');
 const webpackTask = require('./build-webpack');
+const icons = require('./build-icons');
 const images = require('./build-images');
 const gutil = require('gulp-util');
 // const cache = require('gulp-cached');
@@ -55,6 +56,8 @@ module.exports = (gulp) => {
   //   // });
   // });
 
+
+  // id
   const imagesConfig = {
     src: './src/images/**/*',
     dest: './bolt-website/images'
@@ -67,6 +70,9 @@ module.exports = (gulp) => {
     'images:clean',
     'images:resize'
   ]));
+
+  gulp.task('icons:build', icons.build(gulp));
+
 
 
   gulp.task('styles:compile', styles.compile(cssConfig));
