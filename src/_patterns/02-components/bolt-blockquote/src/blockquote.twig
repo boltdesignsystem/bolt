@@ -1,11 +1,11 @@
-{# Sample Data
-  {
-    "author": {
-      "name": "Full Name",
-      "title": "Title and/or organization"
+{# Sample Usage
+  {% include "@bolt/blockquote.twig" with {
+    author: {
+      name: "Full Name",
+      title: "Title and/or organization"
     },
-    "content": "<p>One paragraph.</p> <p>And another paragraph.</p>"
-  }
+    content: "<p>One paragraph.</p> <p>And another paragraph.</p>"
+  } only %}
 #}
 
 
@@ -21,10 +21,6 @@
   baseClass
 ] %}
 
-{% include "@bolt/lead.twig" with {
-  text: "lead paragraph",
-  tag: "div"
-} only %}
 
 <bolt-blockquote bolt-component>
   <blockquote {{ attributes.addClass(classes) }}>

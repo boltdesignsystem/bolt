@@ -1,18 +1,19 @@
-{# Sample Data
-  {
-    "items" : [
+{# Sample Usage
+  {% include "@bolt/ordered-list.twig" with {
+    items : [
       {
-        "text": "Item 1"
+        text: "Item 1"
       },
       {
-        "text": "Item 2"
+        text: "Item 2"
       },
       {
-        "text": "Item 3"
+        text: "Item 3"
       }
     ]
-  }
+  } only %}
 #}
+
 
 {% set prefix = "c-bolt-" %}
 
