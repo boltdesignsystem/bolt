@@ -2,9 +2,14 @@
    Blockquote
 \* ------------------------------------ */
 
+@import '@bolt/settings-global';
+@import '@bolt/settings-colors';
+@import '@bolt/tools-spacing';
+@import '@bolt/tools-color-palette';
+
 $bolt-blockquote-border-width: 0.25rem;
 $bolt-blockquote-border-style: $bolt-border-style;
-$bolt-blockquote-border-color: bolt-color(teal); // TODO: needs to map this to theme text color at 0.1 opacity.
+$bolt-blockquote-border-color: bolt-color(teal);
 $bolt-blockquote-footer-line-height: $bolt-line-height--tight;
 
 

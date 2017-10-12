@@ -30,11 +30,10 @@ styleguideKit: pattern-lab/styleguidekit-twig-default
 styleguideKitPath: vendor/pattern-lab/styleguidekit-twig-default
 lineageMatch: >-
   {%([ ]+)?(?:include|extends|embed)(
-  |\()[&quot;&#39;]([\/.@\#\|;A-Za-z\(\)™’\?0-9\-_]+)[&quot;&#39;]([
-  &#39;\(\)\|\#;A-Za-z™’\?0-9\-&\}_\n\{&quot;:&#39;,\/. \[\]]+)%}
+  |\()[&quot;\&#039;]([\/.@A-Za-z0-9-_]+)[&quot;\&#039;]([\s\S+]*?)%}
 lineageMatchKey: 3
 patternExtension: twig
-twigDebug: true
+twigDebug: false
 twigAutoescape: false
 twigDefaultDateFormat: ''
 twigDefaultIntervalFormat: ''
