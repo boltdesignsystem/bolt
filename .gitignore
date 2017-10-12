@@ -1,4 +1,6 @@
 _tests
+.eyeglass_cache
+.env
 !*.map
 !*/*.map
 .DS_Store
@@ -10,15 +12,14 @@ cache
 *.psb
 *.psd
 *.tmp
-#bower_components
+
+## installed to src/_twig-components via composer
+src/_twig-components
+
 lerna-debug.log
 node_modules
-#public
+bower_components
 vendor
-bolt-website
-.eyeglass_cache
-.env
 
-# Ignore any Pattern Lab --> packages folders being symlinked
-#packages/website-pattern-lab/source/_patterns/**/bolt-*
-#packages/website-pattern-lab
+## static bolt site / pattern lab instance built locally
+bolt-website
