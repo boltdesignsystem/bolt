@@ -4,17 +4,6 @@
   - .c-bolt-image: uses the ratio object as a base if enabled
     - .c-bolt-image__img: lazyloaded img tag
     - .c-bolt-image__placeholder: lazyloader span while the img is lazyloaded.
-
-  pattern('image', {
-    lazyload: true,
-    src: public_image_path,
-    placeholder: true,
-    placeholderColor: '#imagecolor...',
-    placeholderImage: 'base64image...',
-    width: 200,
-    height: 200,
-    ratio: true
-  })
 #}
 
 {% set srcset = srcset ?? "" %}
