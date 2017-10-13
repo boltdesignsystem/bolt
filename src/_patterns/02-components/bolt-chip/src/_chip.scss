@@ -1,7 +1,71 @@
+/* ------------------------------------ *\
+   Chips
+\* ------------------------------------ */
+
+@import '@bolt/settings-global';
+@import '@bolt/settings-font-size';
+@import '@bolt/tools-font-size';
+@import '@bolt/tools-spacing';
+@import '@bolt/tools-color-palette';
+
+
+$bolt-chip-border-radius: $bolt-border-radius;
+$bolt-chip-color: var(--bolt-color-text-color, bolt-color(black));
+$bolt-chip-background-color: rgba(bolt-color(gray), 0.2);
+
+
 .c-bolt-chip {
-  @include bolt-font-size(small);
   @include bolt-padding(xsmall, squished);
-  border-radius: 4px;
-  background-color: bolt-color(gray, light);
+
   display: inline-block;
+  @supports (display: flex) {
+    display: inline-flex;
+  }
+
+  color: $bolt-chip-color;
+  border-radius: $bolt-chip-border-radius;
+  background-color: $bolt-chip-background-color;
+}
+
+
+// Chip sizes
+
+.c-bolt-chip,
+.c-bolt-chip--xsmall {
+  @include bolt-font-size(xsmall);
+}
+
+.c-bolt-chip--small {
+  @include bolt-font-size(xsmall);
+}
+
+.c-bolt-chip--medium {
+  @include bolt-font-size(medium);
+}
+
+
+// Chip items
+
+.c-bolt-chip__item {
+  display: inline-flex;
+  align-self: center;
+}
+
+.c-bolt-chip__item-text + .c-bolt-chip__item-icon {
+  @include bolt-margin-left(xsmall);
+}
+
+.c-bolt-chip__item-icon {
+  width: 1em;
+  height: 1em;
+
+  svg {
+    width: 1em;
+    height: auto;
+    fill: currentColor;
+  }
+}
+
+.c-bolt-chip__item-icon + .c-bolt-chip__item-text {
+  @include bolt-margin-left(xsmall);
 }
