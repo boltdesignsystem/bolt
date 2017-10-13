@@ -152,6 +152,7 @@ module.exports = (gulp) => {
         'styles:watch',
         'styles:compile',
         'styles:sassdoc',
+        'images',
         gutil.env.prod ? 'webpack:prod' : 'webpack:dev',
         'browsersync:serve'
       ]),
@@ -160,6 +161,7 @@ module.exports = (gulp) => {
 
   gulp.task('build',
     gulp.series([
+      'images',
       'styles:compile',
       'styles:sassdoc',
       'webpack:prod',

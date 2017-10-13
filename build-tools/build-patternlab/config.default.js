@@ -1,5 +1,6 @@
 module.exports = {
   configFile: 'pattern-lab/config/config.yml',
+  manifestFile: 'bolt-manifest.yml',
   watchedExtensions: [
     'twig',
     'json',

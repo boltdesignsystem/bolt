@@ -36,52 +36,67 @@ function compileWithNoExit(done) {
   patternLab(done, false);
 }
 
-function getTwigNamespaceConfig(workingDir) {
+
+
+
+function createTwigManifest(workingDir) {
   workingDir = workingDir || process.cwd(); // eslint-disable-line no-param-reassign
-  const twigNamespaceConfig = {};
+  const twigManifestConfig = {};
   twigNamespaces.sets.forEach((namespaceSet) => {
     const pathArray = namespaceSet.paths.map((pathBase) => {
       const results = globby.sync([path.join(pathBase, '**/*.twig'), '!**/node_modules/**/*']);
-      // console.log(results);
-      // arr.forEach(object, index, array), function(){
-      //   a[i] = myNewVal
-      // };
+
+      var unorderedResults = {};
+
+      results.forEach(function (result, index, results) {
+        var originalFilename = path.basename(result);
+        var filename = originalFilename
+        filename = filename.replace(/\.[^/.]+$/, ""); // w/o extension
+
+        filename = filename.replace(/^[0-9\-]+/, ''); // remove 00- prefix if it exists
+        filename = filename.replace(/^\_/, ''); // remove _ prefix from start of name if it exists
+        filename = filename.replace(/\-/g, '_'); // replace dashes with underscores
+        filename = filename.replace(/\./g, '_'); // replace dots with underscores
+
+        unorderedResults[filename] = {};
+
+        unorderedResults[filename].filename = originalFilename;
+        unorderedResults[filename].path = result;
+        unorderedResults[filename].namespace = `@${namespaceSet.namespace}/${originalFilename}`;
+      });
+
+
+      const orderedResults = {};
+      Object.keys(unorderedResults).sort().forEach(function (key) {
+        orderedResults[key] = unorderedResults[key];
+      });
+
+      return orderedResults;
+    });
+
+    twigManifestConfig[namespaceSet.namespace] = {
+      paths: core.utils.uniqueArray(core.utils.flattenArray(pathArray)),
+    };
+  });
+
+  // Only return the Bolt-specific namespaces for now
+  return twigManifestConfig.bolt.paths[0];
+}
+
+
+function getTwigNamespaceConfig(workingDir) {
+  workingDir = workingDir || process.cwd(); // eslint-disable-line no-param-reassign
+  const twigNamespaceConfig = {}; 
+  twigNamespaces.sets.forEach((namespaceSet) => {
+    const pathArray = namespaceSet.paths.map((pathBase) => {
+      const results = globby.sync([path.join(pathBase, '**/*.twig'), '!**/node_modules/**/*']);
+
       results.forEach(function (result, index, results) {
         results[index] = path.relative(workingDir, path.dirname(result));
       });
 
       const uniqEs6 = results.filter((elem, pos, arr) => arr.indexOf(elem) == pos);
-
-      // console.log(uniqEs6);
-   
-      // results.forEach(function (value, index) {
-      //   console.log(value);
-        
-      // });
-
-      // results.forEach(function (part, index, theArray) {
-      //   theArray[index] = "hello world";
-      // });
       return uniqEs6;
-      
-      
-      // const results = glob.sync(path.join(pathBase, '**/*.twig')).map((pathItem) => { // eslint-disable-line arrow-body-style
-      //   return path.relative(workingDir, path.dirname(pathItem));
-      // });
-      // results.unshift(path.relative(workingDir, pathBase));
-      // console.log(results);
-      // return results;
-
-
-      // const results = glob.sync(path.join(pathBase, '**/*.twig'), {
-      //   // cache: resultsCache,
-      //   // ignore: 'src/_patterns/01-core/03-generic/generic-normalize/node_modules'
-      // }).then((pathItem) => { // eslint-disable-line arrow-body-style
-      //   return path.relative(workingDir, path.dirname(pathItem));
-      // });
-      // 
-      // results.unshift(path.relative(workingDir, pathBase));
-      // return results;
     });
     twigNamespaceConfig[namespaceSet.namespace] = {
       paths: core.utils.uniqueArray(core.utils.flattenArray(pathArray)),
@@ -110,7 +125,10 @@ function addTwigNamespaceConfigToDrupal(done) {
 }
 
 function addTwigNamespaceConfigToPl(done) {
+  const config = defaultConfig;
   const twigNamespaceConfig = getTwigNamespaceConfig(patternLabRoot);
+
+  const twigManifestConfig = createTwigManifest(patternLabRoot);
   // plConfig = yaml.safeLoad(
   //   fs.readFileSync(config.configFile, 'utf8')
   // );
@@ -133,12 +151,17 @@ function addTwigNamespaceConfigToPl(done) {
 
   Object.assign(patternLabConfig.plugins.twigNamespaces.namespaces, twigNamespaceConfig);
 
+  const newManifestFile = yaml.safeDump(twigManifestConfig, {
+    noCompatMode: true
+  });
+
   const newConfigFile = yaml.safeDump(patternLabConfig, {
     noCompatMode: true
   });
 
-
   fs.writeFileSync(gulpConfig.patternLab.configFile, newConfigFile, 'utf8');
+  fs.writeFileSync(config.manifestFile, newManifestFile, 'utf8');
+
   done();
 }
 
