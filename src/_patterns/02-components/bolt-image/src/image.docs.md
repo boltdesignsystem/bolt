@@ -1,3 +1,6 @@
+---
+patternType: "image"
+---
 ## Can I haz images?
 
 This is how you can include a image in a template.

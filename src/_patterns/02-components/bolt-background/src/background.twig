@@ -39,9 +39,9 @@
       {% if items %}
         {% for item in items %}
           {% if loop.first %}
-            {% include "@bolt/#{item.name}.twig" with item | merge({
+            {% include pattern_template(item.pattern) with item | merge({
               attributes: {
-                class: ["c-bolt-background__#{item.name}"]
+                class: ["c-bolt-background__#{item.pattern}"]
               },
               ratio: false
             }) only %}
