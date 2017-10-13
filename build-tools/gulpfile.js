@@ -152,7 +152,7 @@ module.exports = (gulp) => {
         'styles:watch',
         'styles:compile',
         'styles:sassdoc',
-        'images',
+        'images:resize', // Don't wipe images unless doing a full build
         gutil.env.prod ? 'webpack:prod' : 'webpack:dev',
         'browsersync:serve'
       ]),

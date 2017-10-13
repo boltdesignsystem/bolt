@@ -34,7 +34,7 @@
             {{ listItem.text }}
           {% elseif listItem.items %}
             {% for item in listItem.items %}
-              {% include "@bolt/" ~ item.name ~ ".twig" with item only %}
+              {% include pattern_template(item.pattern) with item only %}
             {% endfor %}
           {% endif %}
         </li>

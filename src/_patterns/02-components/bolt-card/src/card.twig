@@ -58,9 +58,18 @@
       <div class="{{ "#{baseClass}__footer" }}">{% spaceless %}
         {% block card_footer %}
           {%- if items -%}
-            {% for item in items if item.name == "button" %}
+          {% if item.pattern == "teaser" and item.buttons %}
+            {% set items = item.buttons %}
+            {% set isTeaser = true %}
+          {% endif %}
+
+
+            {% for item in items if item.pattern == "button" or isTeaser == true %}
               <div class="{{ "#{baseClass}__footer-item" }}">
-                {% include pattern_template(item.pattern) with item only %}
+              {% set itemParams = item | merge({
+                itemAlignment: "left"
+              }) %}
+                {% include pattern_template(item.pattern) with itemParams only %}
               </div>
             {% endfor %}
           {%- endif -%}

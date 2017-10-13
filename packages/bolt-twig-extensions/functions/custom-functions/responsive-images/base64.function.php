@@ -6,29 +6,6 @@ use PHPExif\Reader\Reader as ExifReader;
 
 $function = new Twig_SimpleFunction('base64', function ($relativeImagePath) {
 
-  // if (class_exists('Drupal')) {
-  //   $filePath = getcwd() . $fileName;
-
-  //   if (file_exists($filePath)) {
-  //     $fileExtension = substr(strrchr($fileName,'.'),1);
-
-  //     if ($fileExtension == 'png') {
-  //       $tempb64 = Image::open($filePath)
-  //         ->resize('32,32')
-  //         ->smooth('5')
-  //         ->guess($quality = 50);
-  //     }
-  //     else {
-  //       $tempb64 = Image::open($filePath)
-  //         ->resize('32,32')
-  //         ->smooth('5')
-  //         ->jpeg($quality = 50);
-  //     }
-
-  //     return Image::open($tempb64)->inline();
-  //   }
-  // }
-  // else {
   $publicDir = '/bolt-website';
   $absoluteImagePath = getcwd() . $publicDir . $relativeImagePath;
 
