@@ -6,32 +6,40 @@
     - .c-bolt-image__placeholder: lazyloader span while the img is lazyloaded.
 #}
 
-
-
-
 {% set srcset = srcset ?? "" %}
-{% set shouldLazyload = lazyload | default(true) %}
+{% set lazyload = lazyload | default(true) %}
+{% set placeholderColor = placeholderColor | default(bgcolor(src)) %}
+{% set placeholderImage = placeholderImage | default(base64(src)) %}
+{% set height = height | default(ratio(src, 'height')) %}
+{% set width = width | default(ratio(src, 'width')) %}
+{% set ratio = ratio | default(true) %}
 
-{% set sizes = globalBoltImageSizes %}
+{# Get a whole number aspect ratio #}
+{% set gcd %}
+  {% include '@bolt/_gcd.twig' with {
+    a: width,
+    b: height
+  } only %}
+{% endset %}
+{% set gcd = gcd | escape %}
+{% if gcd != 0 %}
+  {% set imageHeightRatio = (height / gcd) | round %}
+  {% set imageWidthRatio = (width / gcd) | round %}
+{% else %}
+  {% set imageHeightRatio = 1 %}
+  {% set imageWidthRatio = 1 %}
+{% endif %}
+
 {% set ext = src|split('.')|last %}
-{% set path = publicpath(src|split('.' ~ ext)|first) %}
 
 {% set placeholderDummySrc = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" %}
 
-{% set placeholderColor = bgcolor(src) %}
-{% set placeholderImage = base64(src) %}
-
-{% set imageHeightRatio = ratio(src, 'height') %}
-{% set imageWidthRatio = ratio(src, 'width') %}
-{% set imageWidth = imagesize(src) %}
-
-{# By default, include a ratio unless set to false #}
-{% set ratio = ratio is defined and ratio == false ? false : true %}
-
-{# macro srcset(srcset, imageWidth, path, ext, sizes) #}
+{# macro srcset(srcset, width, path, ext, sizes) #}
   {% if srcset == "" and ext != "svg" %}
-    {% for size in sizes if (size <= imageWidth) %}
-      {% if size == imageWidth %}
+    {% set path = publicpath(src|split('.' ~ ext)|first) %}
+    {% set sizes = globalBoltImageSizes %}
+    {% for size in sizes if (size <= width) %}
+      {% if size == width %}
         {% set srcset = srcset ~ '../..' ~ path ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}
       {% else %}
         {% set srcset = srcset ~ '../..' ~ path ~ '-' ~ size ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}
@@ -45,67 +53,55 @@
 {# import _self as bolt #}
 
 {# Main bolt-image component #}
-{% set imageAttributes = create_attribute({
-  class: [
-    "c-bolt-image"
-  ],
-  style: [
-    "--aspect-ratio-h: #{imageHeightRatio};",
-    "--aspect-ratio-w: #{imageWidthRatio};"
-  ]
-}) %}
-
-
+{% set attributes = create_attribute(attributes | default([])).addClass('c-bolt-image') %}
+{% set styles = attributes.getAttribute('style') | split(' ') | merge([
+  "--aspect-ratio-h: #{height};",
+  "--aspect-ratio-w: #{width};"
+]) %}
+{% set attributes = attributes.setAttribute('style', styles | join(' ')) %}
 
 {# child img tag #}
-{% set imgTagAttributes = deep_merge({
-  class: [
+{% set imgAttributes = create_attribute([]).addClass([
     "c-bolt-image__img",
-    shouldLazyload ? "js-lazyload" : "",
-    shouldLazyload ? "is-lazyloading" : ""
-  ],
-  alt: alt ?? ""
-}, attributes | default({})) %}
-{% set imgTagAttributes = create_attribute(imgTagAttributes) %}
+    lazyload ? "js-lazyload" : "",
+    lazyload ? "is-lazyloading" : ""
+  ])
+  .setAttribute('alt', alt)
+%}
 
-
-{% if shouldLazyload %}
-  {% set imgTagAttributes = imgTagAttributes.setAttribute("data-srcset", srcset).setAttribute("srcset", placeholderDummySrc).setAttribute("data-sizes", "auto") %}
+{% if lazyload %}
+  {% set imgAttributes = imgAttributes
+    .setAttribute("data-srcset", srcset)
+    .setAttribute("srcset", placeholderDummySrc)
+    .setAttribute("data-sizes", "auto")
+  %}
 {% else %}
-  {% set imgTagAttributes = imgTagAttributes.setAttribute("srcset", srcset) %}
+  {% set imgAttributes = imgAttributes.setAttribute("srcset", srcset) %}
 {% endif %}
 
-
-
-
-{% set imgPlaceholderAttributes = deep_merge({
-  class: [
-    "c-bolt-image__placeholder"
-  ],
-  style: [
+{% set imgPlaceholderAttributes = create_attribute([]).addClass("c-bolt-image__placeholder") %}
+{% set styles = imgPlaceholderAttributes.getAttribute('style') | split(' ') | merge([
     placeholderColor ? "background-color: #{placeholderColor};" : "",
     placeholderImage ? "background-image: url(#{placeholderImage});" : ""
-  ]
-}, attributes | default({})) %}
-{% set imgPlaceholderAttributes = create_attribute(imgPlaceholderAttributes) %}
-
+  ])
+%}
+{% set imgPlaceholderAttributes = imgPlaceholderAttributes.setAttribute('style', styles) %}
 
 {% set imageTag %}
-  <img {{ imgTagAttributes }}>
+  <img {{ imgAttributes }}>
   <noscript>
-    <img {{ imgTagAttributes.removeClass(["js-lazyload", "is-lazyloading"]).setAttribute("srcset", srcset) }}>
+    <img {{ imgAttributes.removeClass(["js-lazyload", "is-lazyloading"]).setAttribute("srcset", srcset) }}>
   </noscript>
 {% endset %}
 
 {% set imagePlaceholder %}
   <span {{ imgPlaceholderAttributes }}></span>
 {% endset %}
-
 <bolt-image>
   {% block image_content %}
     {% if ratio == true %}
       {% embed "@bolt/ratio.twig" with {
-        attributes: imageAttributes
+        attributes: attributes
       } %}
         {% block ratio_content %}
           {{ imagePlaceholder }}
