@@ -64,7 +64,7 @@ module.exports = (gulp) => {
   gulp.task('images:clean', images.clean(gulp, imagesConfig));
 
   gulp.task('images', gulp.series([
-    'images:clean',
+    //'images:clean',
     'images:resize'
   ]));
 
