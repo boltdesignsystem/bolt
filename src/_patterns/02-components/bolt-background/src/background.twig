@@ -36,8 +36,8 @@
 <bolt-background bolt-component>
   <div {{ attributes.addClass(classes) }}>
     <div class="{{ "#{baseClass}__item" }}">
-      {% if items %}
-        {% for item in items %}
+      {% if contentItems %}
+        {% for item in contentItems %}
           {% if loop.first %}
             {% include pattern_template(item.pattern) with item | merge({
               attributes: {

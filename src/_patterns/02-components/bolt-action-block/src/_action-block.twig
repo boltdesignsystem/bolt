@@ -33,7 +33,7 @@
     {% if children %}
       {{ children }}
     {% else %}
-      {% for item in items %}
+      {% for item in contentItems %}
         {% include "@bolt/action-block__item.twig" %}
       {% endfor %}
     {% endif %}

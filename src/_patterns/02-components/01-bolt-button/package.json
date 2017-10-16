@@ -1,7 +1,18 @@
 {
   "name": "@bolt/components-button",
-  "type": "pattern",
-  "patternType": "atoms",
+  "patternName": "button",
+  "patternType": "components",
+  "patternSubType": "buttons",
+
+  "style": "src/_button.scss",
+  "main": "src/button.js",
+  "templates": {
+    "button": {
+      "filename": "button.twig",
+      "path": "src/button.twig",
+      "namespace": "@bolt/button.twig"
+    }
+  },
   "description": "Button Component",
   "keywords": [
     "eyeglass-module",
@@ -21,8 +32,6 @@
   "bugs": {
     "url": "https://github.com/pega-digital/bolt/issues"
   },
-  "style": "src/_button.scss",
-  "twig": "button.twig",
   "publishConfig": {
     "access": "public"
   }

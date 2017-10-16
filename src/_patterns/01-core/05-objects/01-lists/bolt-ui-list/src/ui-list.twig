@@ -28,12 +28,12 @@
     bolt-object
   >
     <{{ tag }} {{ attributes.addClass(classes) }}>
-      {% for listItem in items %}
+      {% for item in contentItems %}
         <li class="{{ "#{baseClass}__item" }}">
-          {% if listItem.text %}
-            {{ listItem.text }}
-          {% elseif listItem.items %}
-            {% for item in listItem.items %}
+          {% if item.text %}
+            {{ item.text }}
+          {% elseif item.contentItems %}
+            {% for item in item.contentItems %}
               {% include pattern_template(item.pattern) with item only %}
             {% endfor %}
           {% endif %}
