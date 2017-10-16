@@ -22,11 +22,36 @@
           text: "Bolt provides tools, patterns, services, and guidelines that systematically improve quality, timeliness, and consistency to the Pega ecosystem so that you can focus on what really matters.",
           size: "xxlarge"
         } only %}
+      
 
-        {% include "@bolt/button.twig" with {
-          text: "Explore the System",
-          url: "/styleguide/html/styleguide.html",
-          style: "primary"
+        {% include "@bolt/button-group.twig" with {
+          buttons: [
+            {
+              text: "Explore the System",
+              url: "/styleguide/html/styleguide.html",
+              style: "primary",
+              width: "full@small"
+            },
+            {
+              text: "Get Started <br>(Coming Soon)",
+              url: link["get-started"],
+              style: "secondary",
+              width: "full@small",
+              disabled: true,
+              size: "small"
+            }
+          ],
+          contentItems: [
+            {
+              pattern: "text",
+              tag: "p",
+              text: "View the #{link("source", "https://github.com/bolt-design-system/bolt", {
+                attributes: {
+                  target: "_blank"
+                }
+              })} on Github"
+            }
+          ]
         } %}
 
       {% endcell %}

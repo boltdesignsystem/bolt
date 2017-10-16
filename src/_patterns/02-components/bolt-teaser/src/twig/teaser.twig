@@ -31,8 +31,8 @@
 
 {# TODO: only allow max of 2 buttons #}
 {% if buttons %}
-  {% for button in buttons %}
-    {% include pattern_template("button") with button only %}
-  {% endfor %}
+  {% include pattern_template("button_group") with {
+    "buttons": buttons
+  } only %}
 {% endif %}
 </bolt-teaser>
