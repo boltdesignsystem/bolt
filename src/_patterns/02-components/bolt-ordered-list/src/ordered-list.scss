@@ -5,8 +5,13 @@
 @import '@bolt/settings-colors';
 @import '@bolt/settings-font-size';
 @import '@bolt/settings-font-weight';
+@import '@bolt/tools-font-size';
+@import '@bolt/tools-font-weight';
 @import '@bolt/tools-spacing';
 @import '@bolt/tools-color-palette';
+
+
+$bolt-ordered-list-bullet-size: $bolt-line-height--xsmall + rem;
 
 
 .c-bolt-ordered-list {
@@ -19,7 +24,7 @@
 
 .c-bolt-ordered-list__item {
   @include bolt-margin(0 0 small medium);
-  @include bolt-padding(0 0 small 0);
+  @include bolt-padding(0);
 
   position: relative;
   counter-increment: li;
@@ -34,12 +39,12 @@
     position: absolute;
     top: 0.125em;
     left: bolt-spacing(medium) * -1;
-    width: $bolt-line-height--xsmall + rem;
-    height: $bolt-line-height--xsmall + rem;
-    color: var(--bolt-color-heading, bolt-color(indigo)); // TODO: refactor this after theming is done.
+    width: $bolt-ordered-list-bullet-size;
+    height: $bolt-ordered-list-bullet-size;
     content: counter(li);
+    color: var(--bolt-color-heading, bolt-color(indigo)); // TODO: refactor this after theming is done.
     text-align: center;
-    border-radius: 100em;
+    border-radius: $bolt-ordered-list-bullet-size;
     background-color: rgba(bolt-color(gray), 0.2);
   }
 }
