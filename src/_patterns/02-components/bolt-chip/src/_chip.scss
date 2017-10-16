@@ -1,7 +1,3 @@
-/* ------------------------------------ *\
-   Chips
-\* ------------------------------------ */
-
 @import '@bolt/settings-global';
 @import '@bolt/settings-font-size';
 @import '@bolt/tools-font-size';
@@ -9,11 +5,25 @@
 @import '@bolt/tools-color-palette';
 
 
+/* ------------------------------------ *\
+   Chips
+\* ------------------------------------ */
+
+// Sample Usage
+// <bolt-chip size="xsmall" bolt-component="">
+//   <span class="c-bolt-chip c-bolt-chip--xsmall">
+//     <span class="c-bolt-chip__item-text">This is a chip</span>
+//   </span>
+// </bolt-chip>
+
+
+// Chip Variables
 $bolt-chip-border-radius: $bolt-border-radius;
-$bolt-chip-color: var(--bolt-color-text-color, bolt-color(black));
+$bolt-chip-color: var(--bolt-color-text-color, bolt-color(black)); // TODO: Map this to theme text color when theming is done.
 $bolt-chip-background-color: rgba(bolt-color(gray), 0.2);
 
 
+// Base Chip Styles
 .c-bolt-chip {
   @include bolt-padding(xsmall, squished);
 
@@ -29,8 +39,6 @@ $bolt-chip-background-color: rgba(bolt-color(gray), 0.2);
 
 
 // Chip sizes
-
-.c-bolt-chip,
 .c-bolt-chip--xsmall {
   @include bolt-font-size(xsmall);
 }
@@ -45,7 +53,6 @@ $bolt-chip-background-color: rgba(bolt-color(gray), 0.2);
 
 
 // Chip items
-
 .c-bolt-chip__item {
   display: inline-flex;
   align-self: center;

@@ -1,9 +1,9 @@
 {# Sample Usage
   {% include "@bolt/chip.twig" with {
-    size: "small",
-    text: "Chip",
-    tag: "a",
-    url: "http://google.com"
+    text: "This is a chip",
+    size: "small",            // Optional; Default is `xsmall`.
+    tag: "a",                 // Optional; Default is `span`.
+    url: "http://google.com"  // Required if tag equals `a`.
   } only %}
 #}
 
@@ -13,7 +13,7 @@
   "xsmall",
   "small",
   "medium",
-] %}
+] %} {# Available Chip Sizes #}
 
 {% set attributes = create_attribute(attributes|default({})) %}
 
