@@ -50,8 +50,8 @@ bolt-card {
   }
 
   &:before {
-    background-color: var(--bolt-color-background); // TODO: needs to map this to theme background color.
-    opacity: 0.8;
+    background-color: var(--bolt-color-background, bolt-color(white)); // TODO: needs to map this to theme background color.
+    opacity: 0.2;
   }
 
   &:after {
@@ -99,9 +99,20 @@ bolt-card {
 .c-bolt-card__footer {
   position: relative;
   display: flex;
-  border-top-width: $bolt-card-border-width;
-  border-top-style: $bolt-card-border-style;
-  border-top-color: $bolt-card-border-color;
+
+  &:before {
+    content: '';
+    border-top-color: var(--bolt-color-border, currentColor);
+    border-top-width: $bolt-card-border-width;
+    border-top-style: solid;
+    opacity: 0.2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    height: 1px;
+  }
 }
 
 .c-bolt-card__footer-item {
@@ -110,17 +121,25 @@ bolt-card {
     flex: 1;
     justify-content: center;
     position: relative;
-    color: currentColor;
     text-align: center;
+    color: currentColor;
   }
 
   &:only-child {
     width: 100%;
   }
+}
 
-  & + .c-bolt-card__footer-item {
-    border-left-width: $bolt-card-border-width;
-    border-left-style: $bolt-card-border-style;
-    border-left-color: $bolt-card-border-color;
-  }
+.c-bolt-card__footer-item + .c-bolt-card__footer-item:before {
+  display: block;
+  content: '';
+  border-left-color: var(--bolt-color-border, currentColor);
+  border-left-width: $bolt-card-border-width;
+  border-left-style: solid;
+  opacity: 0.2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
 }

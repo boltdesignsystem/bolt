@@ -4,7 +4,9 @@
 
     {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small" %}
       {% if primaryTeaser %}
-        {% include "@bolt/teaser.twig" with primaryTeaser only %}
+        {% block primary_teaser %}
+          {% include pattern_template("teaser") with primaryTeaser only %}
+        {% endblock primary_teaser %}
       {% endif %}
     {% endcell %}
 

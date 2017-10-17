@@ -1,0 +1,45 @@
+{# Sample Usage
+  {% include "@bolt/unordered-list.twig" with {
+    contentItems : [
+      {
+        text: "Item 1"
+      },
+      {
+        text: "Item 2"
+      },
+      {
+        text: "Item 3"
+      }
+    ]
+  } only %}
+#}
+
+
+{% set prefix = "c-bolt-" %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set componentName = "unordered-list" %}
+{% set baseClass = prefix ~ componentName %}
+
+
+{% set classes = [
+  baseClass
+] %}
+
+
+<bolt-unordered-list bolt-component>
+  <ol {{ attributes.addClass(classes) }}>
+    {% for listItem in contentItems %}
+      <li class="{{ "#{baseClass}__item" }}">
+        {% if listItem.text %}
+          {{ listItem.text }}
+        {% elseif listItem.contentItems %}
+          {% for item in listItem.contentItems %}
+            {% include "@bolt/text.twig" with item only %}
+          {% endfor %}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+</bolt-unordered-list>

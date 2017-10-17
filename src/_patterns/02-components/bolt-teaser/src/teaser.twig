@@ -1,0 +1,38 @@
+
+
+<bolt-teaser>
+{% if eyebrow %}
+  {% include "@bolt/eyebrow.twig" with eyebrow only %}
+{% endif %}
+
+{% if headlines %}
+  {% for headline in headlines %}
+    {% include "@bolt/" ~ headline.type | default("headline") ~ ".twig" with headline only %}
+  {% endfor %}
+{% endif %}
+
+{% if logo %}
+  {% include "@bolt/logo.twig" with logo only %}
+{% endif %}
+
+{% block teaser_content %}
+  {% for item in contentItems if item.pattern %}
+    {% include pattern_template(item.pattern) with item only %}
+  {% endfor %}
+  
+  {% if content %}
+    {% include "@bolt/text.twig" with {
+      text: content | striptags,
+      tag: "p"
+    } only %}
+  {% endif %}
+{% endblock teaser_content %}
+
+
+{# TODO: only allow max of 2 buttons #}
+{% if buttons %}
+  {% include pattern_template("button_group") with {
+    "buttons": buttons
+  } only %}
+{% endif %}
+</bolt-teaser>

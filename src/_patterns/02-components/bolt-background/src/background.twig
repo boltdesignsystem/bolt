@@ -36,12 +36,12 @@
 <bolt-background bolt-component>
   <div {{ attributes.addClass(classes) }}>
     <div class="{{ "#{baseClass}__item" }}">
-      {% if items %}
-        {% for item in items %}
+      {% if contentItems %}
+        {% for item in contentItems %}
           {% if loop.first %}
-            {% include "@bolt/#{item.name}.twig" with item | merge({
+            {% include pattern_template(item.pattern) with item | merge({
               attributes: {
-                class: ["c-bolt-background__#{item.name}"]
+                class: ["c-bolt-background__#{item.pattern}"]
               },
               ratio: false
             }) only %}

@@ -1,0 +1,14 @@
+{# Sample Usage
+  {% include "@bolt/lead.twig" with {
+    text: "This is a lead paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula."
+  } only %}
+#}
+
+
+{% extends "@bolt/_typography.twig" %}
+{% set type = "lead" %}
+{% set sizes = ["large"] %}
+{% set weights = ["regular"] %}
+{% set tag = "p" %}
+{% set size = size | default("large") %}
+{% set weight = weight | default("regular") %}

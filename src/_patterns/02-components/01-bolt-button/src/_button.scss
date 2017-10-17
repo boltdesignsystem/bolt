@@ -225,26 +225,33 @@ $bolt-button-translate--active: $bolt-translate-none;
     transition: opacity $bolt-button-transition;
   }
 
-  &:hover, &:focus {
-    transform: $bolt-button-translate--hover;
+  &:not([disabled]){
+    &:hover, &:focus {
+      transform: $bolt-button-translate--hover;
 
-    &:before {
-      opacity: 1;
+      &:before {
+        opacity: 1;
+      }
     }
-  }
 
-  &:active {
-    transform: $bolt-button-translate--active;
+    &:active {
+      transform: $bolt-button-translate--active;
 
-    &:before {
-      opacity: 0;
+      &:before {
+        opacity: 0;
+      }
     }
   }
 }
 
 
-// Button colors
+bolt-button {
+  display: inline-block; // Fallback
+  display: inline-flex; // So equal height works
+  flex-grow: 1;
+}
 
+// Button colors
 .c-bolt-button {
   @include bolt-button;
 }
@@ -274,9 +281,9 @@ $bolt-button-translate--active: $bolt-translate-none;
   @include bolt-button-color(error);
 }
 
+.c-bolt-button[disabled],
 .c-bolt-button--disabled {
   @include bolt-button-color(disabled);
-
   cursor: not-allowed;
 }
 

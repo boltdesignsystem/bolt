@@ -1,65 +1,42 @@
 <?php
 
 $function = new Twig_SimpleFunction('ratio', function ($fileName, $heightOrWidthRatio = 'width') {
-
-  // if (class_exists('Drupal')) {
-  //       $filePath = getcwd() . $fileName;
-
-  //       if (file_exists($filePath)){
-  //         $path_parts = pathinfo($filePath);
-      
-  //         if (isset($path_parts['extension']) && $path_parts['extension'] == "svg") {
-  //           $svgfile = simplexml_load_file($filePath);
-        
-  //           $viewport = explode(" ", $svgfile['viewBox']);
-  //           $height = $viewport[3];
-  //           $width = $viewport[2];
-  //           $ratio = (($height / $width) * 100);
-  //         } elseif (!empty($fileName)) {
-  //           // Get the dimensions of the image
-  //           $size = getimagesize($filePath);
-  //           $ratio = (($size[1] / $size[0]) * 100);
-  //         }
-  //         else {
-  //           $ratio = '';
-  //         }
-  //       } else {
-  //         $ratio = '56.251';
-  //       }
-  
-  //       return $ratio . '%';
-  // }
-  // else {
-  
-  // $documentRoot = trim(getcwd(), "pattern-lab") . '/source';
   $filePath = getcwd() . '/bolt-website' . $fileName;
   
-  
-  
   if (file_exists($filePath)){
-    // echo $filePath;
     $fileExt = pathinfo($filePath, PATHINFO_EXTENSION);
     
     if ($fileExt == "svg"){
       $svgfile = simplexml_load_file($filePath);
       
       $viewport = explode(" ", $svgfile['viewBox']);
+      $svgHeight = $svgfile['height']; // if it exists
+      $svgWidth = $svgfile['width']; // if it exists
+      $height = '';
+      $width = '';
       
-      $height = $viewport[3];
-      $width = $viewport[2];
+      // If the SVG height / width values exist, use those first
+      if ($svgHeight && $svgWidth) {
+        $height = $svgHeight;
+        $width = $svgWidth;
 
-      if ($heightOrWidthRatio == 'width'){
-        return $width;
-      } else {
-        return $height;
+      // Otherwise try to calculate the aspect ratio via the viewport
+      } else if ($viewport[3] && $viewport[2]){
+        $height = $viewport[3];
+        $width = $viewport[2];
       }
-      // return $height . '/' . $width;
       
-      // $ratio = (($height / $width) * 100);
-
+      // Only return a ratio value if we have the data to back it up
+      if ($height != '' && $width != ''){
+        if ($heightOrWidthRatio == 'width'){
+          return $width;
+        } else {
+          return $height;
+        }
+      }
+      
     } else if (($fileExt == "jpg") || ($fileExt == "png")){
       // Get the dimensions of the image
-
       $size = getimagesize($filePath);
 
       if ($heightOrWidthRatio == 'width'){
@@ -67,14 +44,8 @@ $function = new Twig_SimpleFunction('ratio', function ($fileName, $heightOrWidth
       } else {
         return $size[1];
       }
-      // $ratio = (($size[1] / $size[0]) * 100);
-      // return '--aspect-ratio-h: ' .  . '/' . $size[1];
     }
   } else {
     // $ratio = '56.251';
   }
-  
-  // return $ratio . '%';
-
-  // }
 });

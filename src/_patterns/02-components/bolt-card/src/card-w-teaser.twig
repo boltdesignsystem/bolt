@@ -2,7 +2,7 @@
 
 {% if image %}
   {% set items = items | default([]) | merge([{
-    "name": "image",
+    "pattern": "image",
     "src": image.src
   }]) %}
 {% endif %}

@@ -38,7 +38,7 @@ module.exports = (options) => {
     },
     output: {
       path: `${process.cwd()}`,
-      filename: '[name].js',
+      filename: '[name].min.js',
       // publicPath: `${process.cwd()}/bolt-website/scripts/`
     },
     module: {

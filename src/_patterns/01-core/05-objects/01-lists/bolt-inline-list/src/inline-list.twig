@@ -27,10 +27,10 @@
   matrix in matrixOptions ? baseClass ~ "--matrix" : ""
 ] %}
 
-{% if items %}
+{% if contentItems %}
   <bolt-inline-list size="{{ size }}" bolt-object>
     <{{ tag }} {{ attributes.addClass(classes) }}>
-      {% for item in items %}
+      {% for item in contentItems %}
         <li class="{{ "#{baseClass}__item" }}">
           {{ item.text | raw }}
         </li>
