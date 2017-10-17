@@ -31,6 +31,7 @@
 
 {% set classes = [
   baseClass,
+  disabled ? baseClass ~ "--disabled" : "",
   size in sizes ? baseClass ~ "--" ~ size : "",
   width in widths ? baseClass ~ "--" ~ width : "",
   style in styles ? baseClass ~ "--" ~ style : "",
@@ -40,6 +41,10 @@
 
 {% if url %}
   {% set attributes = attributes.setAttribute("href", url) %}
+{% endif %}
+
+{% if disabled %}
+  {% set attributes = attributes.setAttribute("disabled", true) %}
 {% endif %}
 
 

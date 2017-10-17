@@ -15,7 +15,7 @@
 
   <bolt-bare-list bolt-object>
     <{{ tag }} {{ attributes.addClass(classes) }}>
-      {% for item in items %}
+      {% for item in contentItems %}
         {% set item_attributes = create_attribute(item.attributes|default({})) %}
         <li {{ item_attributes }}>
           {{ item.text }}

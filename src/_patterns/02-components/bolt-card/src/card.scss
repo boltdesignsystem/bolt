@@ -113,10 +113,6 @@ bolt-card {
     display: block;
     height: 1px;
   }
-  // border-top-width: ;
-  // border-top-style: $bolt-card-border-style;
-  // border-top-color: $bolt-card-border-color;
-
 }
 
 .c-bolt-card__footer-item {
@@ -125,17 +121,25 @@ bolt-card {
     flex: 1;
     justify-content: center;
     position: relative;
-    color: currentColor;
     text-align: center;
+    color: currentColor;
   }
 
   &:only-child {
     width: 100%;
   }
+}
 
-  & + .c-bolt-card__footer-item {
-    border-left-width: $bolt-card-border-width;
-    border-left-style: $bolt-card-border-style;
-    border-left-color: $bolt-card-border-color;
-  }
+.c-bolt-card__footer-item + .c-bolt-card__footer-item:before {
+  display: block;
+  content: '';
+  border-left-color: var(--bolt-color-border, currentColor);
+  border-left-width: $bolt-card-border-width;
+  border-left-style: solid;
+  opacity: 0.2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
 }
