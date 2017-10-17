@@ -7,12 +7,20 @@
 #}
 
 {% set srcset = srcset ?? "" %}
-{% set lazyload = lazyload | default(true) %}
-{% set placeholderColor = placeholderColor | default(bgcolor(src)) %}
-{% set placeholderImage = placeholderImage | default(base64(src)) %}
-{% set height = height | default(ratio(src, 'height')) %}
-{% set width = width | default(ratio(src, 'width')) %}
-{% set ratio = ratio | default(true) %}
+{% set lazyload = lazyload ?? true %}
+{% if placeholderColor is empty %}
+  {% set placeholderColor = bgcolor(src) %}
+{% endif %}
+{% if placeholderImage is empty %}
+  {% set placeholderImage = base64(src) %}
+{% endif %}
+{% if height is empty %}
+  {% set height = ratio(src, 'height') %}
+{% endif %}
+{% if width is empty %}
+  {% set width = ratio(src, 'width') %}
+{% endif %}
+{% set ratio = ratio ?? true %}
 
 {# Get a whole number aspect ratio #}
 {% if width > 0 and height > 0 and ratio == true %}
