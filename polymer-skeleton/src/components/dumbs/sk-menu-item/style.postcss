@@ -1,0 +1,32 @@
+:host {
+  contain: content;
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  padding: 8px;
+  user-select: none;
+  color: #091629;
+}
+
+
+:host::after {
+  content: '';
+  pointer-events: none;
+  background-color: #BDF6E9;
+  mix-blend-mode: soft-light;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -50%;
+  width: 100%;
+  opacity: 0.3;
+  transform-origin: 50% 50%;
+  transform: skew(-38deg, 0deg) scaleX(0);
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+:host(:hover)::after {
+  transform: skew(-38deg, 0deg) scaleX(2);
+}

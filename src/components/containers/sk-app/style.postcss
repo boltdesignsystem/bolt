@@ -1,0 +1,89 @@
+:host {
+  display: block;
+  overflow: auto;
+  height: 100vh;
+}
+
+
+.Header {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 100%;
+  padding-right: 40px;
+  box-sizing: border-box;
+}
+
+
+.Logo {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+}
+
+
+.Logo:hover {
+  animation: HueRotate 1s infinite linear;
+}
+
+
+sk-menu {
+  margin-left: 16px;
+}
+
+
+.MenuLink:hover {
+  color: #091629;
+}
+
+
+@media (min-width: 60em) {
+  .Header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  sk-menu {
+    margin-left: 0;
+  }
+}
+
+
+.Welcome {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10vh;
+  padding: 0 40px;
+  user-select: none;
+  cursor: default;
+}
+
+
+.Title {
+  font-size: 3em;
+  text-align: center;
+  font-weight: 800;
+  margin-top: 0;
+  margin-bottom: 90px;
+}
+
+
+.Welcome p {
+  text-align: center;
+  margin-top: 0;
+  max-width: 60%;
+}
+
+
+.Meta {
+  font-size: 0.5em;
+  opacity: 0.5;
+  user-select: none;
+  cursor: default;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+}

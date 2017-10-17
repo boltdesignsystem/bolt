@@ -1,5 +1,6 @@
 {
   "presets": [
+    "react",
     [
       "env",
       {
@@ -14,6 +15,19 @@
     ]
   ],
   "plugins": [
+    "transform-custom-element-classes",
+    "transform-es2015-classes",
+    "babel-plugin-transform-es2015-classes",
+    [
+      "babel-plugin-transform-builtin-classes",
+      {
+        "globals": [
+          "Array",
+          "Error",
+          "HTMLElement"
+        ]
+      }
+    ],
     [
       "transform-react-jsx",
       {
