@@ -17,7 +17,7 @@
 {# Get a whole number aspect ratio #}
 {% if width > 0 and height > 0 and ratio == true %}
   {% set gcd %}
-    {% include '@bolt/_gcd.twig' with {
+    {% include '@bolt/gcd.twig' with {
       a: width,
       b: height
     } only %}
