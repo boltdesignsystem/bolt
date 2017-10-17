@@ -4,8 +4,8 @@ Stylistic tags for displaying meta data. Part of the Bolt “Components” CSS f
 ## Demo
 
 ```
-<bolt-chip size="xsmall" bolt-component>
-  <span class="c-bolt-chip c-bolt-chip--xsmall">
+<bolt-chip bolt-component>
+  <span class="c-bolt-chip">
     <span class="c-bolt-chip__text">This is a chip</span>
   </span>
 </bolt-chip>
@@ -23,14 +23,6 @@ Stylistic tags for displaying meta data. Part of the Bolt “Components” CSS f
 ```
 npm install @bolt/chip
 ```
-
-### Chip Sizing Chart*
-
-| Chip Size     | Chip Font Size (rems)  |
-| :-----------: | :--------------------: |
-| medium        | `1.00rem`              |
-| small         | `0.90rem`              |
-| xsmall (base) | `0.80rem`              |
 
 - - - -
 

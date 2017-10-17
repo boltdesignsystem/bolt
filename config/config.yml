@@ -22,8 +22,16 @@ publicDir: bolt-website
 sourceDir: src
 defaultPattern: pages-bolt-homepage
 defaultShowPatternInfo: false
-ishMinimum: '240'
-ishMaximum: '2600'
+ishViewportRange:
+  s:
+    - 320
+    - 600
+  m:
+    - 600
+    - 1000
+  l:
+    - 1000
+    - 2600
 ishControlsHide:
   - hay
 styleguideKit: pattern-lab/styleguidekit-twig-default
@@ -100,3 +108,5 @@ plugins:
           - src/_patterns/04-pages/d8-homepage
           - src/_patterns/04-pages/d8-resource-details
     roots: {}
+ishMinimum: '240'
+ishMaximum: '2600'

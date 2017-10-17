@@ -1,10 +1,10 @@
-{% set tags = ["ul", "ol"] %} {# Available Headline Types #}
+{% set tags = ["ul", "ol"] %} {# Available Inline List Tags #}
 {% set prefix = "o-bolt-" %}
 
 {% set sizes = [
+  "xsmall",
   "small",
-  "medium",
-  "large"
+  "medium"
 ] %}
 
 {% set matrixOptions = [
@@ -15,7 +15,7 @@
 
 {% set componentName = "inline-list" %}
 {% set baseClass = prefix ~ componentName %}
-{% set size = size | default("small") %}
+{% set size = size | default("xsmall") %}
 {% set tag = tag in tags ? tag: "ul" %}
 {% set matrix = matrix | default(false) %}
 

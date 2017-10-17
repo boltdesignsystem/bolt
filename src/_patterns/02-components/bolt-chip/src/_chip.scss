@@ -10,50 +10,51 @@
 \* ------------------------------------ */
 
 // Sample Usage
-// <bolt-chip size="xsmall" bolt-component="">
-//   <span class="c-bolt-chip c-bolt-chip--xsmall">
+// <bolt-chip bolt-component="">
+//   <span class="c-bolt-chip">
 //     <span class="c-bolt-chip__item-text">This is a chip</span>
 //   </span>
 // </bolt-chip>
 
 
 // Chip Variables
-$bolt-chip-border-radius: $bolt-border-radius;
-$bolt-chip-color: var(--bolt-color-text-color, bolt-color(black)); // TODO: Map this to theme text color when theming is done.
-$bolt-chip-background-color: rgba(bolt-color(gray), 0.2);
+$bolt-chip-border-radius: 100em;
+$bolt-chip-color: var(--bolt-color-text-color); // TODO: Map this to theme text color when theming is done.
+$bolt-chip-background-color: rgba(bolt-color(gray), 0.22);
+$bolt-chip-background-color--hover: rgba(bolt-color(gray), 0.30);
+$bolt-chip-transition: $bolt-transition;
 
 
 // Base Chip Styles
+bolt-chip {
+  display: inline-block;
+}
+
 .c-bolt-chip {
-  @include bolt-padding(xsmall, squished);
+  @include bolt-padding(small, squished);
+  @include bolt-font-size(xsmall);
 
   display: inline-block;
-  @supports (display: flex) {
-    display: inline-flex;
-  }
-
+  display: inline-flex;
   color: $bolt-chip-color;
   border-radius: $bolt-chip-border-radius;
   background-color: $bolt-chip-background-color;
-}
+  transform: scale(1);
+  transition: all $bolt-chip-transition;
 
+  &:hover, &:focus {
+    background-color: $bolt-chip-background-color--hover;
+  }
 
-// Chip sizes
-.c-bolt-chip--xsmall {
-  @include bolt-font-size(xsmall);
-}
-
-.c-bolt-chip--small {
-  @include bolt-font-size(xsmall);
-}
-
-.c-bolt-chip--medium {
-  @include bolt-font-size(medium);
+  &:active {
+    transform: scale(0.98);
+  }
 }
 
 
 // Chip items
 .c-bolt-chip__item {
+  display: inline-block;
   display: inline-flex;
   align-self: center;
 }
