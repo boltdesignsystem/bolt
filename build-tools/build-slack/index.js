@@ -36,10 +36,9 @@ if (!nowToken) {
 }
 
 const args = [
-  './bolt-website --static',
+  '--static ./bolt-website',
   '--token', nowToken,
-  '--no-clipboard',
-  '--force'
+  '--no-clipboard'
 ];
 
 

@@ -1,6 +1,6 @@
 {
   "name": "bolt",
-  "version": "0.3.0-alpha.4",
+  "version": "0.4.0-alpha.1",
   "description": "Pega Digital Design System",
   "private": true,
   "scripts": {
@@ -30,13 +30,13 @@
     "publish-please": "publish-please",
     "publish": "lerna run build && lerna run publish-please && lerna publish --no-git",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "serve": "gulp serve",
+    "start": "gulp",
+    "setup": "npm run bootstrap && npm run setup:composer",
     "install:composer": "if [ -f ./bolt-website/index.html ]; then rm ./bolt-website/index.html; fi && npm run setup:composer",
     "setup:composer": "if [ ! -f ./bolt-website/index.html ]; then rm -rf composer.lock && rm -rf vendor && rm -rf src/_twig-components && composer install --no-interaction --prefer-dist --no-dev; fi",
     "setup:homebrew": "sh scripts/install-homebrew.sh",
     "snyk-protect": "snyk protect",
     "now-start": "serve ./bolt-website --single",
-    "start:server": "nodemon --watch packages/bolt-common src/json-server.js",
     "test": "npm run mocha",
     "pretest": "npm run lint:scss && node scripts/check-imports.js",
     "prepare": "npm run snyk-protect"

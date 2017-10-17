@@ -3,7 +3,7 @@
 $bolt-logo-max-width: bolt-spacing(xlarge);
 
 bolt-logo {
-  display: inline-block;
+  display: block; // to force break to new line by default
   max-width: $bolt-logo-max-width;
 
   &:not(:last-child) {

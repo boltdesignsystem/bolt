@@ -22,8 +22,16 @@ publicDir: bolt-website
 sourceDir: src
 defaultPattern: pages-bolt-homepage
 defaultShowPatternInfo: false
-ishMinimum: '240'
-ishMaximum: '2600'
+ishViewportRange:
+  s:
+    - 320
+    - 600
+  m:
+    - 600
+    - 1000
+  l:
+    - 1000
+    - 2600
 ishControlsHide:
   - hay
 styleguideKit: pattern-lab/styleguidekit-twig-default
@@ -33,7 +41,7 @@ lineageMatch: >-
   |\()[&quot;\&#039;]([\/.@A-Za-z0-9-_]+)[&quot;\&#039;]([\s\S+]*?)%}
 lineageMatchKey: 3
 patternExtension: twig
-twigDebug: false
+twigDebug: true
 twigAutoescape: false
 twigDefaultDateFormat: ''
 twigDefaultIntervalFormat: ''
@@ -54,6 +62,7 @@ plugins:
     namespaces:
       bolt:
         paths:
+          - src/_patterns/00-utils
           - src/_patterns/01-core/01-settings/settings-colors/demos
           - src/_patterns/01-core/01-settings/settings-colors/src/twig
           - src/_patterns/01-core/02-tools/tools-spacing/demos
@@ -75,12 +84,17 @@ plugins:
           - src/_patterns/02-components/01-bolt-button/demos
           - src/_patterns/02-components/01-bolt-button/src
           - src/_patterns/02-components/02-bolt-button-group/src
+          - src/_patterns/02-components/03-bolt-ordered-list/demo/theming
+          - src/_patterns/02-components/03-bolt-ordered-list/src
+          - src/_patterns/02-components/04-bolt-unordered-list/demo/theming
+          - src/_patterns/02-components/04-bolt-unordered-list/src
           - src/_patterns/02-components/bolt-action-block/lib
           - src/_patterns/02-components/bolt-action-block/src
           - src/_patterns/02-components/bolt-background/demo
           - src/_patterns/02-components/bolt-background/src
           - src/_patterns/02-components/bolt-band/demo
           - src/_patterns/02-components/bolt-band/src
+          - src/_patterns/02-components/bolt-blockquote/demo/theming
           - src/_patterns/02-components/bolt-blockquote/src
           - src/_patterns/02-components/bolt-card/demo
           - src/_patterns/02-components/bolt-card/src
@@ -92,14 +106,14 @@ plugins:
           - src/_patterns/02-components/bolt-image/src
           - src/_patterns/02-components/bolt-link
           - src/_patterns/02-components/bolt-logo/src
-          - src/_patterns/02-components/bolt-ordered-list/src
           - src/_patterns/02-components/bolt-page-footer/lib
           - src/_patterns/02-components/bolt-page-footer/src
           - src/_patterns/02-components/bolt-quote
           - src/_patterns/02-components/bolt-teaser/src/twig
-          - src/_patterns/02-components/bolt-unordered-list/src
           - src/_patterns/03-templates/templates-default
           - src/_patterns/04-pages/bolt-homepage
           - src/_patterns/04-pages/d8-homepage
           - src/_patterns/04-pages/d8-resource-details
     roots: {}
+ishMinimum: '240'
+ishMaximum: '2600'

@@ -9,12 +9,6 @@ module.exports = (options) => {
   const releaseConfig = Object.create(commonConfig(options));
   releaseConfig.devtool = 'sourcemap';
 
-  releaseConfig.output = {
-    path: `${process.cwd()}/src/_patterns/02-components/bolt-critical-fonts/dist`,
-    filename: '[name].min.js',
-    // publicPath: `${process.cwd()}/bolt-website/scripts/`
-  }
-
   releaseConfig.plugins = releaseConfig.plugins.concat(
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"'

@@ -1,13 +1,21 @@
 @import '@bolt/tools-spacing';
 
+bolt-button-group:not(:last-child) {
+  @include bolt-margin-bottom(medium);
+}
+
 .c-bolt-button-group {
+  @include bolt-margin-bottom(0);
   margin-left: bolt-spacing(small) * -1;
-  margin-bottom: bolt-spacing(small) * -1;
   display: inline-flex;
   list-style: none;
   letter-spacing: -0.35em;
   flex-flow: row wrap;
   list-style: none;
+
+  &:last-child {
+    margin-bottom: bolt-v-spacing(small) * -1;
+  }
 }
 
 .c-bolt-button-group__item {

@@ -64,7 +64,6 @@ module.exports = (gulp) => {
   gulp.task('images:clean', images.clean(gulp, imagesConfig));
 
   gulp.task('images', gulp.series([
-    'images:clean',
     'images:resize'
   ]));
 
@@ -152,6 +151,7 @@ module.exports = (gulp) => {
         'styles:watch',
         'styles:compile',
         'styles:sassdoc',
+        'images:resize', // Don't wipe images unless doing a full build
         gutil.env.prod ? 'webpack:prod' : 'webpack:dev',
         'browsersync:serve'
       ]),
@@ -160,6 +160,7 @@ module.exports = (gulp) => {
 
   gulp.task('build',
     gulp.series([
+      'images',
       'styles:compile',
       'styles:sassdoc',
       'webpack:prod',

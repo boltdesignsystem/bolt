@@ -1,0 +1,8 @@
+{% set demo = create_attribute(
+  demoAttributes|default({})
+) %}
+<bolt-demo {{ demo }}>
+  {% block demo_content %}
+    <!-- Demo content goes here -->
+  {% endblock demo_content %}
+</bolt-demo>

@@ -1,7 +1,17 @@
 {
   "name": "@bolt/components-button",
-  "type": "pattern",
-  "patternType": "atoms",
+  "patternName": "button",
+  "patternType": "components",
+  "patternSubType": "buttons",
+  "style": "src/_button.scss",
+  "main": "src/button.js",
+  "templates": {
+    "button": {
+      "filename": "button.twig",
+      "path": "src/button.twig",
+      "namespace": "@bolt/button.twig"
+    }
+  },
   "description": "Button Component",
   "keywords": [
     "eyeglass-module",
@@ -10,7 +20,7 @@
     "ui toolkit",
     "design system"
   ],
-  "version": "0.6.0-alpha.7f2394d7",
+  "version": "0.6.0-alpha.1ad5601e",
   "author": "Salem Ghoweri",
   "homepage": "https://boltdesignsystem.com",
   "license": "MIT",
@@ -21,8 +31,6 @@
   "bugs": {
     "url": "https://github.com/pega-digital/bolt/issues"
   },
-  "style": "src/_button.scss",
-  "twig": "button.twig",
   "publishConfig": {
     "access": "public"
   }

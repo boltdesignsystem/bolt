@@ -1,0 +1,36 @@
+{% if description %}
+  <blockquote><p>{{ description }}</p></blockquote>
+{% endif %}
+<ul>
+  {% for key, prop in properties %}
+    <li>
+      <code>{{ key }}</code>
+      {% if prop.title %} - <strong>{{ prop.title }}</strong> {% endif %}
+      {% if prop.description %} - <span>{{ prop.description }}</span> {% endif %}
+      <ul>
+        {% set enum %}
+          {% for x in prop.enum %}
+            <code>{{ x }}</code>{% if not loop.last %},{% endif %}
+          {% endfor %}
+        {% endset %}
+        <li>
+          Type: <code>{{ prop.type }}</code>
+          {% if prop.oneOf %}
+            Must be one of:
+            <ul>
+              {% for item in prop.oneOf %}
+                <li><code>{{ item.enum|join(',') }}</code>
+                  {%- if item.title %} - <strong>{{ item.title }}</strong> {% endif -%}
+                {%- if item.description %} - {{ item.description }} {% endif -%}
+                </li>
+              {% endfor %}
+            </ul>
+          {%- elseif prop.enum %} - Must be one of: {{ enum }}
+          {% endif %}
+        </li>
+        {% if key in loop.parent.required %} <li><strong>Required</strong></li> {% endif %}
+        {% if prop.default %} <li>Default: <code>{{ prop.default }}</code></li> {% endif %}
+      </ul>
+    </li>
+  {% endfor %}
+</ul>

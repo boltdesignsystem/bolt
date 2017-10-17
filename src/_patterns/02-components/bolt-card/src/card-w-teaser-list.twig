@@ -21,7 +21,7 @@
 
 
     {% set teaserItems = teaserItems | merge({
-      "items": items
+      "contentItems": items
     }) %}
 
     {% include "@bolt/ui-list.twig" with teaserItems only %}
