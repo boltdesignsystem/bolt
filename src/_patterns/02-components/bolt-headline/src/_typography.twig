@@ -37,7 +37,7 @@
 {% set baseClass = prefix ~ type %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
-{% if (size == "xxxlarge") and (text|length >= 55) %}
+{% if (size == "xxxlarge") and (text|length >= 60) %}
   {% set size = "xxlarge" %}
 {% endif %}
 
