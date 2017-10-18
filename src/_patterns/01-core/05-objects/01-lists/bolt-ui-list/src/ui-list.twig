@@ -10,6 +10,7 @@
 ] %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
+{% set itemAttributes = create_attribute(itemAttributes|default({})) %}
 
 {% set componentName = "ui-list" %}
 {% set baseClass = prefix ~ componentName %}
@@ -29,7 +30,7 @@
   >
     <{{ tag }} {{ attributes.addClass(classes) }}>
       {% for item in contentItems %}
-        <li class="{{ "#{baseClass}__item" }}">
+        <li {{ itemAttributes.addClass("#{baseClass}__item") }}>
           {% if item.text %}
             {{ item.text }}
           {% elseif item.contentItems %}
