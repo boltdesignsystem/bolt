@@ -1,6 +1,5 @@
 {
   "presets": [
-    "react",
     [
       "env",
       {
@@ -12,27 +11,19 @@
           ]
         }
       }
-    ]
+    ],
+    "flow",
+    "react",
+    "stage-0"
   ],
   "plugins": [
-    "transform-custom-element-classes",
-    "transform-es2015-classes",
-    "babel-plugin-transform-es2015-classes",
-    [
-      "babel-plugin-transform-builtin-classes",
-      {
-        "globals": [
-          "Array",
-          "Error",
-          "HTMLElement"
-        ]
+    "transform-skate-flow-props",
+    ["transform-react-jsx",
+      { "pragma": "h"
       }
     ],
-    [
-      "transform-react-jsx",
-      {
-        "pragma": "h"
-      }
-    ]
+    "transform-class-properties",
+    "transform-custom-element-classes",
+    "transform-es2015-classes"
   ]
 }

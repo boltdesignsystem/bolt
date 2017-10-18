@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import styles from './critical-fonts.scss';
+import styles from './critical-fonts.scoped.scss';
 
 var fontsLoadedClass = styles['js-fonts-loaded'],
   fontsSubsetLoadedClass = styles['js-fonts-subset-loaded'];

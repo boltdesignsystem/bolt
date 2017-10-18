@@ -65,6 +65,7 @@ export default function StyledMixin(superclass) {
     // static styleSheet = ''
 
     renderedCallback() {
+      // super.render();
       // super.renderedCallback();
 
       const styleElement = style(this, this.constructor.styleSheet);

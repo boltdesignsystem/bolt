@@ -14,7 +14,6 @@ function resize(el) {
     }
 
     const gmfile = gm(file.contents, file.path);
-    console.log(gmfile);
     gmfile.size((err, size) => {
       if (typeof el !== 'undefined' && el.width < size.width) {
         gmfile

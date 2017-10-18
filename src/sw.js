@@ -23,6 +23,38 @@ const fileManifest = [
     "revision": "a1efcd860c24232b55ed9f11021dac0f"
   },
   {
+    "url": "_data/spacing-sizes.js",
+    "revision": "2cb18089aea4842d12869452f3422f2e"
+  },
+  {
+    "url": "_patterns/00-utils/util/css.js",
+    "revision": "27555d3b015074056b8cb2e86a801ea4"
+  },
+  {
+    "url": "_patterns/00-utils/util/environment.js",
+    "revision": "01a84c2f002741224ad03b6a080bc978"
+  },
+  {
+    "url": "_patterns/00-utils/util/mixins.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "_patterns/00-utils/util/sizes.js",
+    "revision": "ea69e1749280ff2976e5c9377dab1286"
+  },
+  {
+    "url": "_patterns/00-utils/util/spacing-sizes.js",
+    "revision": "15b58b8559e308f1dfddf73d847b2183"
+  },
+  {
+    "url": "_patterns/00-utils/util/style.js",
+    "revision": "e8addf7be529914b03ca6940140608ab"
+  },
+  {
+    "url": "_patterns/00-utils/util/styled-mixin.js",
+    "revision": "2e665d3ada3c106169bf1b511db9661b"
+  },
+  {
     "url": "_patterns/01-core/01-settings/settings-all/node_modules/abbrev/abbrev.js",
     "revision": "295cdcca75c99f4bc11113aca4cc9dac"
   },
@@ -58436,19 +58468,47 @@ const fileManifest = [
   },
   {
     "url": "_patterns/02-components/bolt-critical-fonts/dist/critical-fonts.css",
-    "revision": "fbc55fa3eb1070744cfe2cbc119420d0"
+    "revision": "f1e48eeb236f0dccf98ec4f1fead97e9"
   },
   {
     "url": "_patterns/02-components/bolt-critical-fonts/dist/critical-fonts.min.css",
-    "revision": "94c7e409ed2122dc92e5d68845bf9672"
+    "revision": "b8a9f2dae8ef368dd8af687fd7cb83b6"
   },
   {
     "url": "_patterns/02-components/bolt-critical-fonts/dist/critical-fonts.min.js",
-    "revision": "d56105e9af95575c34619c9c940a1c2e"
+    "revision": "941b92e2f9d67fa69ccf2ce585e00ba2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-critical-fonts/node_modules/fontfaceobserver/externs.js",
+    "revision": "53c2bce765257a6402fdc803c9a8be7a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-critical-fonts/node_modules/fontfaceobserver/fontfaceobserver.js",
+    "revision": "156041e62054ffdbcf4eebc1e67de808"
+  },
+  {
+    "url": "_patterns/02-components/bolt-critical-fonts/node_modules/fontfaceobserver/fontfaceobserver.standalone.js",
+    "revision": "54e80c2e24a6b77c4d5f7f746631900a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-critical-fonts/node_modules/fontfaceobserver/src/descriptors.js",
+    "revision": "d3f776e7a7c0860aff97609ad557337e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-critical-fonts/node_modules/fontfaceobserver/src/observer.js",
+    "revision": "77679dfd27a8779d9ac1780611d83632"
+  },
+  {
+    "url": "_patterns/02-components/bolt-critical-fonts/node_modules/fontfaceobserver/src/ruler.js",
+    "revision": "f1379fd05bde487fa92c68d8c8c368ee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-critical-fonts/node_modules/fontfaceobserver/src/test.js",
+    "revision": "f410b39e75303c2faedd2752e183d93a"
   },
   {
     "url": "_patterns/02-components/bolt-critical-fonts/src/critical-fonts.js",
-    "revision": "e710841bc566093191ad673d71bb5f36"
+    "revision": "b2f67c0d8b5cd94bd2c331d237efe410"
   },
   {
     "url": "_patterns/02-components/bolt-critical-path/critical-path.js",
@@ -58499,12 +58559,16 @@ const fileManifest = [
     "revision": "f410b39e75303c2faedd2752e183d93a"
   },
   {
+    "url": "_patterns/02-components/bolt-icon/src/Bolt.js",
+    "revision": "5af04a87192bed1f805a5f07f862b366"
+  },
+  {
     "url": "_patterns/02-components/bolt-icon/src/Button.js",
     "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
     "url": "_patterns/02-components/bolt-icon/src/Icon.js",
-    "revision": "0968d3266fc498d7c2c611fd4324c0f6"
+    "revision": "57c33af46087d99a9fad2e0558f7654c"
   },
   {
     "url": "_patterns/02-components/bolt-image/node_modules/lazysizes/lazysizes-umd.js",
@@ -58748,11 +58812,11 @@ const fileManifest = [
   },
   {
     "url": "index.html",
-    "revision": "cd21196d7ab7c3706bd7d240742570fc"
+    "revision": "805e77ab91088cca4cdc08d436445aca"
   },
   {
     "url": "index.js",
-    "revision": "6c5501a38ba6181665e52bd8c03e135e"
+    "revision": "469c33a4d2288a672583619c4bf037a5"
   },
   {
     "url": "scripts/bolt-app.js",
