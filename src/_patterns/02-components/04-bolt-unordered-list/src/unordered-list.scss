@@ -2,12 +2,17 @@
    unordered List
 \* ------------------------------------ */
 
+/*@import '@bolt/settings-global'; // TODO: Comment out for now. Need to include only once.*/
+
 @import '@bolt/settings-colors';
 @import '@bolt/tools-spacing';
 @import '@bolt/tools-color-palette';
 
 
-$bolt-unordered-list-bullet-size: 8px;
+$bolt-unordered-list-bullet-size: 8px; // Using px here because I need to make a perfect circle without subpixel issues.
+$bolt-unordered-list-bullet-bg-color: var(--bolt-color-heading, bolt-color(indigo)); // TODO: refactor this after theming is done.
+
+@include bolt-register-element('bolt-unordered-list', 'block');
 
 
 .c-bolt-unordered-list {
@@ -26,13 +31,17 @@ $bolt-unordered-list-bullet-size: 8px;
   &:before {
     display: block;
     position: absolute;
-    top: $bolt-unordered-list-bullet-size;
+    top: .55rem;
     left: bolt-spacing(medium) * -1;
     width: $bolt-unordered-list-bullet-size;
     height: $bolt-unordered-list-bullet-size;
     content: '';
     border-radius: $bolt-unordered-list-bullet-size;
-    background-color: var(--bolt-color-heading, bolt-color(indigo)); // TODO: refactor this after theming is done.
-    line-height: 1;
+    background-color: $bolt-unordered-list-bullet-bg-color;
+    line-height: $bolt-unordered-list-bullet-size;
+  }
+
+  &:last-child {
+    @include bolt-margin-bottom(0);
   }
 }
