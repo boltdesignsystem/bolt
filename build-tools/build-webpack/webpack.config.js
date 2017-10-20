@@ -149,26 +149,26 @@ module.exports = (options) => {
       // 'window.customElements': '@webcomponents/custom-elements'
     }),
 
-    new webpack.optimize.UglifyJsPlugin({
-      mangle: false,
-      compress: true,
-      // compress: {
-      //   warnings: false,
-      //   screw_ie8: true,
-      //   conditionals: true,
-      //   unused: true,
-      //   comparisons: true,
-      //   sequences: true,
-      //   dead_code: true,
-      //   evaluate: true,
-      //   if_return: true,
-      //   join_vars: true,
-      // },
-      output: {
-        comments: false,
-      },
-      exclude: /\.native-shim\.js/i
-    })
+    // new webpack.optimize.UglifyJsPlugin({
+    //   mangle: false,
+    //   compress: true,
+    //   // compress: {
+    //   //   warnings: false,
+    //   //   screw_ie8: true,
+    //   //   conditionals: true,
+    //   //   unused: true,
+    //   //   comparisons: true,
+    //   //   sequences: true,
+    //   //   dead_code: true,
+    //   //   evaluate: true,
+    //   //   if_return: true,
+    //   //   join_vars: true,
+    //   // },
+    //   output: {
+    //     comments: false,
+    //   },
+    //   exclude: /\.native-shim\.js/i
+    // })
   ];
   //  : [
   //     new WorkboxPlugin({

@@ -8,24 +8,24 @@ const AssetText = ({ color, size, ...otherProps }) => {
       <defs>
         <path id="a" d="M0 1V0h20v2H0V1z" />
       </defs>
-      <g fill="none" fill-rule="evenodd">
+      <g fill="currentColor" fill-rule="evenodd">
         <path
           d="M3 11h14c.55 0 1-.45 1-1s-.45-1-1-1H3c-.55 0-1 .45-1 1s.45 1 1 1"
-          fill="#1F2555"
+          fill="currentColor"
         />
         <g transform="translate(2 5)">
-          <mask id="b" fill="#fff">
+          <mask id="b" fill="currentColor">
             <use xlinkHref="#a" />
           </mask>
           <path
             d="M1 2h18c.55 0 1-.45 1-1s-.45-1-1-1H1C.45 0 0 .45 0 1s.45 1 1 1"
-            fill="#1F2555"
+            fill="currentColor"
             mask="url(#b)"
           />
         </g>
         <path
           d="M21 13H3c-.55 0-1 .45-1 1s.45 1 1 1h18c.55 0 1-.45 1-1s-.45-1-1-1M17 17H3c-.55 0-1 .45-1 1s.45 1 1 1h14c.55 0 1-.45 1-1s-.45-1-1-1"
-          fill="#1F2555"
+          fill="currentColor"
         />
       </g>
     </svg>

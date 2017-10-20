@@ -28,8 +28,8 @@ if (sessionStorage.criticalFoftFontsLoaded) {
       style: 'italic'
     });
 
-    var openSansBold = new FontFaceObserver('Open Sans', {
-      weight: 700
+    var openSansSemiBold = new FontFaceObserver('Open Sans', {
+      weight: 600
     });
 
     var openSansExtraBold = new FontFaceObserver('Open Sans', {
@@ -44,7 +44,7 @@ if (sessionStorage.criticalFoftFontsLoaded) {
 		Promise.all([
       openSansRegular.load(),
       openSansItalic.load(),
-      openSansBold.load(),
+      openSansSemiBold.load(),
       // openSansBoldItalic.load(),
       openSansExtraBold.load(),
       openSansExtraBoldItalic.load()

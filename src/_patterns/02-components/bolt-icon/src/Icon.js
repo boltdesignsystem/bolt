@@ -10,6 +10,10 @@ import styles from './icon.scss';
 import { sizes as spacingSizes } from '../../../00-utils/util/spacing-sizes.js';
 import * as Icon from '../../bolt-icons/dist';
 
+const backgroundStyles = [
+  'circle'
+];
+
 
 const Component = withComponent(withPreact());
 
@@ -24,7 +28,8 @@ export default class BoltIcon extends StyledMixin(Component) {
 
   static props = {
     name: props.string,
-    size: props.string
+    size: props.string,
+    background: props.string
   }
 
   renderCallback({ props }) {
@@ -32,7 +37,8 @@ export default class BoltIcon extends StyledMixin(Component) {
     const classes = css(
       'c-bolt-icon',
       props.size && spacingSizes[props.size]  ? `c-bolt-icon--${props.size}` : `c-bolt-icon--medium`,
-      props.name ? `c-bolt-icon--${props.name}` : ''
+      props.name ? `c-bolt-icon--${props.name}` : '',
+      props.background && backgroundStyles.includes(props.background) ? `c-bolt-icon--has-${props.background}-background` : ''
     );
 
     const iconName = props.name ? upperCamelCase(props.name) : '';

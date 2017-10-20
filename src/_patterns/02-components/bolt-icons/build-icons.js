@@ -28,7 +28,6 @@ glob(`${rootDir}/src/svgs/**/*.svg`, (err, icons) => {
     
     svgo.optimize(svg, function (result) {
       
-      console.log(result);
       const optimizedSVG = result.data;
       const id = path.basename(i, '.svg');
       const $ = cheerio.load(optimizedSVG, {
@@ -42,7 +41,12 @@ glob(`${rootDir}/src/svgs/**/*.svg`, (err, icons) => {
           if (x === 'stroke') {
             $(el).attr(x, 'currentColor');
           }
+
+          if (x === 'fill') {
+            $(el).attr(x, 'currentColor');
+          }
         });
+        
 
         if (el.name === 'svg') {
           $(el).attr('otherProps', '...');

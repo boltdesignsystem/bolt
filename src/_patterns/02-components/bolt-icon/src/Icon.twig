@@ -1,3 +1,12 @@
 <!-- Icon JS + twig integration -->
 
-<bolt-icon name="{{ name }}"></bolt-icon>
+{% set attributes = create_attribute(attributes | default({})) %}
+
+
+{% set attributes = attributes
+  .setAttribute("name", name)
+  .setAttribute("background", background)
+  .setAttribute("size", size)
+%}
+
+<bolt-icon {{ attributes }}></bolt-icon>

@@ -158,20 +158,29 @@
   }
 }
 
+
 .t-bolt-xlight {
   @include _bolt-theme(xlight);
+  --bolt-theme-icon-background-opacity: 1;
+  --bolt-theme-icon-background-color: bolt-color(gray, xlight);
 }
 
 .t-bolt-light {
   @include _bolt-theme(light);
+  --bolt-theme-icon-background-opacity: 1;
+  --bolt-theme-icon-background-color: bolt-color(white);
 }
 
 .t-bolt-dark {
   @include _bolt-theme(dark);
+  --bolt-theme-icon-background-opacity: 0.25;
+  --bolt-theme-icon-background-color: bolt-color(indigo, xdark);
 }
 
 .t-bolt-xdark {
   @include _bolt-theme(xdark);
+  --bolt-theme-icon-background-opacity: 0.5;
+  --bolt-theme-icon-background-color: bolt-color(indigo, xdark);
 }
 
 .t-bolt-success {
