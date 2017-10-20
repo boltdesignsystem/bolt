@@ -1,0 +1,51 @@
+{# Sample Usage
+  {% include "@bolt/action-blocks.twig" with {
+    contentItems: [
+      {
+        icon: "icon-name",
+        text: "Item 1",
+        url: "http://google.com"
+      },
+      {
+        icon: "icon-name",
+        text: "Item 2",
+        url: "http://google.com"
+      },
+      {
+        icon: "icon-name",
+        text: "Item 3",
+        url: "http://google.com"
+      }
+    ]
+  } only %}
+#}
+
+{% set prefix = "c-bolt-" %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set componentName = "action-blocks" %}
+{% set baseClass = prefix ~ componentName %}
+{% set componentItemName = "action-block" %}
+{% set itemClass = prefix ~ componentItemName %}
+
+
+{% set classes = [
+  baseClass
+] %}
+
+
+<bolt-{{ componentName }} bolt-component>
+  <ul {{ attributes.addClass(classes) }}>
+    {% if children %}
+      {{ children }}
+    {% else %}
+      {% for item in contentItems %}
+        <li class="{{ "#{baseClass}__item" }}">
+          {% include "@bolt/action-block.twig" with item only %}
+        </li>
+      {% endfor %}
+    {% endif %}
+  </ul>
+</bolt-{{ componentName }}>
+

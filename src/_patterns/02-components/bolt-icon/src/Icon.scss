@@ -52,9 +52,16 @@ bolt-icon {
   opacity: 0;
 }
 
+.c-bolt-icon--circle-background {
+  .c-bolt-icon--xlarge & {
+    transform: scale(0.37, 0.37);
+    transform-origin: -18px -18px;
+  }
+}
+
 .c-bolt-icon--has-circle-background .c-bolt-icon--circle-background {
-  opacity: 0.5;
-  opacity: var(--bolt-theme-icon-background-opacity, 0.5);
+  opacity: 0.1;
+  opacity: var(--bolt-theme-icon-background-opacity, 0.1);
 
   fill: currentColor;
   fill: var(--bolt-theme-icon-background-color, currentColor);

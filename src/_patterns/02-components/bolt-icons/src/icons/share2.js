@@ -9,7 +9,10 @@ const Share2 = ({ color, size, ...otherProps }) => {
         <path id="a" d="M22 0v17.586H0V0h22z" />
       </defs>
       <g fill="currentColor" fill-rule="evenodd">
-        <path d="M0 0h24v24H0z" />
+        <path
+          d="M0,64a64,64 0 1,0 128,0a64,64 0 1,0 -128,0"
+          class="c-bolt-icon--background c-bolt-icon--circle-background"
+        />
         <g transform="translate(1 3)">
           <mask id="b" fill="currentColor">
             <use xlinkHref="#a" />

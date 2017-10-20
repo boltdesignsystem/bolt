@@ -1,0 +1,41 @@
+{# Sample Usage
+  {% include "@bolt/action-block.twig" with {
+    icon: "icon-name",
+    text: "Block Text",
+    url: "http://google.com"
+  } only %}
+#}
+
+
+{% set prefix = "c-bolt-" %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+
+{% set componentName = "action-block" %}
+{% set baseClass = prefix ~ componentName %}
+
+
+{% set classes = [
+  baseClass
+] %}
+
+
+<bolt-{{ componentName }} bolt-component>
+  <a href="{{ url }}" {{ attributes.addClass(classes | raw) }}>
+    {% if icon %}
+      <div class="{{ "#{baseClass}__item" }}">
+        {% set icon = icon | merge({
+          size: size | default("xlarge")
+        }) %}
+        {% include "@bolt/icon.twig" with icon only %}
+      </div>
+    {% endif %}
+
+    {% if text %}
+      <div class="{{ "#{baseClass}__item" }}">
+        {{ text }}
+      </div>
+    {% endif %}
+  </a>
+</bolt-{{ componentName }}>

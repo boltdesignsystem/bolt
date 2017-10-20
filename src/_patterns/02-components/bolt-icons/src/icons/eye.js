@@ -9,7 +9,10 @@ const Eye = ({ color, size, ...otherProps }) => {
         <path id="a" d="M0 .006h24V18H0z" />
       </defs>
       <g fill="currentColor" fill-rule="evenodd">
-        <path d="M0 0h24v24H0z" />
+        <path
+          d="M0,64a64,64 0 1,0 128,0a64,64 0 1,0 -128,0"
+          class="c-bolt-icon--background c-bolt-icon--circle-background"
+        />
         <g transform="translate(0 2.994)">
           <mask id="b" fill="currentColor">
             <use xlinkHref="#a" />

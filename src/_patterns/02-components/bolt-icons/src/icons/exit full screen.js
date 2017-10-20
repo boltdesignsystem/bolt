@@ -10,7 +10,10 @@ const ExitFullScreen = ({ color, size, ...otherProps }) => {
         <path id="c" d="M0 9h8.996V0H0z" />
       </defs>
       <g fill="currentColor" fill-rule="evenodd">
-        <path d="M0 0h24v24H0z" />
+        <path
+          d="M0,64a64,64 0 1,0 128,0a64,64 0 1,0 -128,0"
+          class="c-bolt-icon--background c-bolt-icon--circle-background"
+        />
         <g transform="translate(12 3)">
           <mask id="b" fill="currentColor">
             <use xlinkHref="#a" />

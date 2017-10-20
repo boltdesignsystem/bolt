@@ -6,7 +6,7 @@ const AddSolid = ({ color, size, ...otherProps }) => {
     <svg width={size} height={size} viewBox="0 0 24 24" {...otherProps}>
       <title>Icon/utility/Indigo/24px/Add-solid</title>
       <g fill="currentColor" fill-rule="evenodd">
-        <path d="M0 0h24v24H0z" />
+        <circle class="c-bolt-icon--circle-background" cx="64" cy="64" r="64" />
         <circle
           cx="11"
           cy="11"

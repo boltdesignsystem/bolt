@@ -9,7 +9,10 @@ const Download = ({ color, size, ...otherProps }) => {
         <path id="a" d="M15.998.049v1.95H.001V.05h15.997z" />
       </defs>
       <g fill="currentColor" fill-rule="evenodd">
-        <path d="M0 0h24v24H0z" />
+        <path
+          d="M0,64a64,64 0 1,0 128,0a64,64 0 1,0 -128,0"
+          class="c-bolt-icon--background c-bolt-icon--circle-background"
+        />
         <g transform="translate(4 19.5)">
           <mask id="b" fill="currentColor">
             <use xlinkHref="#a" />
