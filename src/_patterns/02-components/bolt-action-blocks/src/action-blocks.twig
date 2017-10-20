@@ -2,16 +2,19 @@
   {% include "@bolt/action-blocks.twig" with {
     contentItems : [
       {
-        icon: "icon name"
-        text: "Item 1"
+        icon: "icon name",
+        text: "Item 1",
+        url: "http://google.com"
       },
       {
-        icon: "icon name"
-        text: "Item 2"
+        icon: "icon name",
+        text: "Item 2",
+        url: "http://google.com"
       },
       {
-        icon: "icon name"
-        text: "Item 3"
+        icon: "icon name",
+        text: "Item 3",
+        url: "http://google.com"
       }
     ]
   } only %}
@@ -33,126 +36,127 @@
   baseClass
 ] %}
 
-<div class="t-bolt-xdark">
+
+<div class="c-bolt-band c-bolt-band--large t-bolt-light">
   <div class="o-bolt-wrapper">
     <bolt-action-blocks bolt-component>
       <{{ tag }} {{ attributes.addClass(classes) }}>
         <a href="" class="{{ "#{baseClass}__item" }}">
           <div class="{{ "#{itemClass}" }}">
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-media" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               <img src="https://www.fillmurray.com/1600/900" alt="placeholder+image">
             </div>
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-text" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               Calendar
             </div>
           </div>
         </a>
         <a href="" class="{{ "#{baseClass}__item" }}">
           <div class="{{ "#{itemClass}" }}">
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-media #{itemClass}__item-media--circle" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               <bolt-icon name="calendar" size="large"></bolt-icon>
             </div>
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-text" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               Calendar
             </div>
           </div>
         </a>
         <a href="" class="{{ "#{baseClass}__item" }}">
           <div class="{{ "#{itemClass}" }}">
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-media #{itemClass}__item-media--circle" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               <bolt-icon name="calendar" size="large"></bolt-icon>
             </div>
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-text" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               Calendar
             </div>
           </div>
         </a>
         <a href="" class="{{ "#{baseClass}__item" }}">
           <div class="{{ "#{itemClass}" }}">
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-media #{itemClass}__item-media--circle" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               <bolt-icon name="copy-to-clipboard" size="large"></bolt-icon>
             </div>
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-text" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               Copy
             </div>
           </div>
         </a>
         <a href="" class="{{ "#{baseClass}__item" }}">
           <div class="{{ "#{itemClass}" }}">
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-media #{itemClass}__item-media--circle" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               <bolt-icon name="copy-to-clipboard" size="large"></bolt-icon>
             </div>
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-text" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               Copy
             </div>
           </div>
         </a>
         <a href="" class="{{ "#{baseClass}__item" }}">
           <div class="{{ "#{itemClass}" }}">
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-media #{itemClass}__item-media--circle" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               <bolt-icon name="download" size="large"></bolt-icon>
             </div>
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-text" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               Download Suspendisse Dictum Feugiat Nisl Ut Dapibus. Mauris Iaculis Porttitor
             </div>
           </div>
         </a>
         <a href="" class="{{ "#{baseClass}__item" }}">
           <div class="{{ "#{itemClass}" }}">
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-media" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               <img src="https://www.fillmurray.com/1600/900" alt="placeholder+image">
             </div>
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-text" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               Calendar
             </div>
           </div>
         </a>
         <a href="" class="{{ "#{baseClass}__item" }}">
           <div class="{{ "#{itemClass}" }}">
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-media #{itemClass}__item-media--circle" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               <bolt-icon name="calendar" size="large"></bolt-icon>
             </div>
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-text" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               Calendar
             </div>
           </div>
         </a>
         <a href="" class="{{ "#{baseClass}__item" }}">
           <div class="{{ "#{itemClass}" }}">
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-media #{itemClass}__item-media--circle" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               <bolt-icon name="calendar" size="large"></bolt-icon>
             </div>
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-text" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               Calendar
             </div>
           </div>
         </a>
         <a href="" class="{{ "#{baseClass}__item" }}">
           <div class="{{ "#{itemClass}" }}">
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-media #{itemClass}__item-media--circle" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               <bolt-icon name="copy-to-clipboard" size="large"></bolt-icon>
             </div>
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-text" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               Copy
             </div>
           </div>
         </a>
         <a href="" class="{{ "#{baseClass}__item" }}">
           <div class="{{ "#{itemClass}" }}">
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-media #{itemClass}__item-media--circle" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               <bolt-icon name="copy-to-clipboard" size="large"></bolt-icon>
             </div>
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-text" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               Copy
             </div>
           </div>
         </a>
         <a href="" class="{{ "#{baseClass}__item" }}">
           <div class="{{ "#{itemClass}" }}">
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-media #{itemClass}__item-media--circle" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               <bolt-icon name="download" size="large"></bolt-icon>
             </div>
-            <div class="{{ "#{itemClass}__item #{itemClass}__item-text" }}">
+            <div class="{{ "#{itemClass}__item" }}">
               Download Suspendisse Dictum Feugiat Nisl Ut Dapibus. Mauris Iaculis Porttitor
             </div>
           </div>
@@ -161,6 +165,7 @@
     </bolt-action-blocks>
   </div>
 </div>
+
 
 
 
