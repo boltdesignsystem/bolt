@@ -1,8 +1,14 @@
+/* ------------------------------------ *\
+   Action Blocks
+\* ------------------------------------ */
+
+$bolt-action-blocks-text-color: var(--bolt-color-heading, bolt-color(indigo));
 $bolt-action-blocks-border-width: $bolt-border-width;
 $bolt-action-blocks-border-style: $bolt-border-style;
-$bolt-action-blocks-border-color: rgba(bolt-color(gray), 0.2);
+$bolt-action-blocks-border-color: $bolt-border-color;
 $bolt-action-blocks-transition-ease: $bolt-transition-ease;
 $bolt-action-blocks-transition-timing: 300ms;
+
 
 bolt-action-blocks {
   display: block; // TODO: This needs to use the global block element mixin.
@@ -20,16 +26,101 @@ bolt-action-blocks {
 
 .c-bolt-action-blocks__item {
   display: block;
-  flex: 1 0 calc(100% / 6 - 1px);
+  flex: 1 0 calc(100% / 3 - #{$bolt-action-blocks-border-width});
   position: relative;
   min-width: 150px;
-  color: var(--bolt-color-text);
   border-bottom-width: $bolt-action-blocks-border-width;
   border-bottom-style: $bolt-action-blocks-border-style;
   border-bottom-color: $bolt-action-blocks-border-color;
   border-right-width: $bolt-action-blocks-border-width;
   border-right-style: $bolt-action-blocks-border-style;
   border-right-color: $bolt-action-blocks-border-color;
+}
+
+.c-bolt-action-blocks--borderless {
+  .c-bolt-action-blocks__item {
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+  }
+}
+
+.c-bolt-action-blocks--max-2 {
+  .c-bolt-action-blocks__item {
+    flex: 1 0 calc(100% / 2 - #{$bolt-action-blocks-border-width});
+  }
+}
+
+.c-bolt-action-blocks--max-3 {
+  .c-bolt-action-blocks__item {
+    flex: 1 0 calc(100% / 3 - #{$bolt-action-blocks-border-width});
+  }
+}
+
+.c-bolt-action-blocks--max-4 {
+  .c-bolt-action-blocks__item {
+    flex: 1 0 calc(100% / 4 - #{$bolt-action-blocks-border-width});
+  }
+}
+
+.c-bolt-action-blocks--max-5 {
+  .c-bolt-action-blocks__item {
+    flex: 1 0 calc(100% / 5 - #{$bolt-action-blocks-border-width});
+  }
+}
+
+.c-bolt-action-blocks--max-6 {
+  .c-bolt-action-blocks__item {
+    flex: 1 0 calc(100% / 6 - #{$bolt-action-blocks-border-width});
+  }
+}
+
+.c-bolt-action-blocks--max-7 {
+  .c-bolt-action-blocks__item {
+    flex: 1 0 calc(100% / 7 - #{$bolt-action-blocks-border-width});
+  }
+}
+
+.c-bolt-action-blocks--max-8 {
+  .c-bolt-action-blocks__item {
+    flex: 1 0 calc(100% / 8 - #{$bolt-action-blocks-border-width});
+  }
+}
+
+.c-bolt-action-blocks--max-9 {
+  .c-bolt-action-blocks__item {
+    flex: 1 0 calc(100% / 9 - #{$bolt-action-blocks-border-width});
+  }
+}
+
+.c-bolt-action-blocks--max-10 {
+  .c-bolt-action-blocks__item {
+    flex: 1 0 calc(100% / 10 - #{$bolt-action-blocks-border-width});
+  }
+}
+
+.c-bolt-action-blocks--max-11 {
+  .c-bolt-action-blocks__item {
+    flex: 1 0 calc(100% / 11 - #{$bolt-action-blocks-border-width});
+  }
+}
+
+.c-bolt-action-blocks--max-12 {
+  .c-bolt-action-blocks__item {
+    flex: 1 0 calc(100% / 12 - #{$bolt-action-blocks-border-width});
+  }
+}
+
+.c-bolt-action-block {
+  @include bolt-padding(medium, stretched);
+
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: $bolt-action-blocks-text-color;
+  outline: none;
 
   &:before {
     display: block;
@@ -52,99 +143,15 @@ bolt-action-blocks {
   }
 }
 
-.c-bolt-action-blocks--borderless {
-  .c-bolt-action-blocks__item {
-    border-bottom-color: transparent;
-    border-right-color: transparent;
-  }
-}
-
-.c-bolt-action-blocks--max-2 {
-  .c-bolt-action-blocks__item {
-    flex: 1 0 calc(100% / 2 - 1px);
-  }
-}
-
-.c-bolt-action-blocks--max-3 {
-  .c-bolt-action-blocks__item {
-    flex: 1 0 calc(100% / 3 - 1px);
-  }
-}
-
-.c-bolt-action-blocks--max-4 {
-  .c-bolt-action-blocks__item {
-    flex: 1 0 calc(100% / 4 - 1px);
-  }
-}
-
-.c-bolt-action-blocks--max-5 {
-  .c-bolt-action-blocks__item {
-    flex: 1 0 calc(100% / 5 - 1px);
-  }
-}
-
-.c-bolt-action-blocks--max-6 {
-  .c-bolt-action-blocks__item {
-    flex: 1 0 calc(100% / 6 - 1px);
-  }
-}
-
-.c-bolt-action-blocks--max-7 {
-  .c-bolt-action-blocks__item {
-    flex: 1 0 calc(100% / 7 - 1px);
-  }
-}
-
-.c-bolt-action-blocks--max-8 {
-  .c-bolt-action-blocks__item {
-    flex: 1 0 calc(100% / 8 - 1px);
-  }
-}
-
-.c-bolt-action-blocks--max-9 {
-  .c-bolt-action-blocks__item {
-    flex: 1 0 calc(100% / 9 - 1px);
-  }
-}
-
-.c-bolt-action-blocks--max-10 {
-  .c-bolt-action-blocks__item {
-    flex: 1 0 calc(100% / 10 - 1px);
-  }
-}
-
-.c-bolt-action-blocks--max-11 {
-  .c-bolt-action-blocks__item {
-    flex: 1 0 calc(100% / 11 - 1px);
-  }
-}
-
-.c-bolt-action-blocks--max-12 {
-  .c-bolt-action-blocks__item {
-    flex: 1 0 calc(100% / 12 - 1px);
-  }
-}
-
-.c-bolt-action-block {
-  @include bolt-padding(medium, stretched);
-
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
 .c-bolt-action-block__item {
   @include bolt-margin(0 auto small auto);
   @include bolt-font-size(xsmall);
   @include bolt-font-weight(bold);
 
   display: block;
+  position: relative;
   width: 100%;
   max-width: 20ch;
-  color: var(--bolt-color-heading, bolt-color(indigo));
   text-align: center;
 
   &:last-child {
