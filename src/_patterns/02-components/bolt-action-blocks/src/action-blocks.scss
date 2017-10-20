@@ -1,0 +1,95 @@
+// Placeholder for Action Block Styles
+
+
+.c-bolt-action-blocks {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
+
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  overflow: hidden;
+}
+
+.c-bolt-action-blocks__item {
+  display: block;
+  flex: 1 0 calc(100% / 12 - 1px);
+  position: relative;
+  min-width: 200px;
+  color: var(--bolt-color-text);
+  text-align: center;
+
+  &:before {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    pointer-events: none;
+    background-color: bolt-color(gray);
+    opacity: 0;
+  }
+
+  &:after {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -1px;
+    width: 1px;
+    height: 100%;
+    content: '';
+    background-color: bolt-color(gray);
+    opacity: 0.15;
+  }
+
+  &:hover, &:focus {
+    &:before {
+      opacity: 0.1;
+    }
+  }
+}
+
+.c-bolt-action-block {
+  @include bolt-padding(medium, stretched);
+
+  position: relative;
+}
+
+.c-bolt-action-block__item {
+  @include bolt-margin(0 auto small auto);
+  @include bolt-font-size(xsmall);
+
+  display: block;
+  width: 100%;
+  max-width: 20ch;
+
+  &:last-child {
+    @include bolt-margin-bottom(0);
+  }
+}
+
+.c-bolt-action-block__item-media {
+}
+
+.c-bolt-action-block__item-media--circle {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 100em;
+  background-color: bolt-color(black);
+
+  > * {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+
+.c-bolt-action-block__item-text {
+  @include bolt-font-weight(bold);
+
+  color: var(--bolt-color-text);
+}
