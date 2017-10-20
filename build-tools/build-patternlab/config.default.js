@@ -10,6 +10,7 @@ module.exports = {
   ],
   extraWatches: [
     '!**/package.json',
+    '!**/dist/**/*',
     './bolt-website/bolt-manifest.json'
     // 'packages/bolt-toolkit-*/**/*.twig'
   ]

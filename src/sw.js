@@ -24,7 +24,7 @@ const fileManifest = [
   },
   {
     "url": "_data/spacing-sizes.js",
-    "revision": "2cb18089aea4842d12869452f3422f2e"
+    "revision": "9c71409a76520cbf8e101b94527e0cdf"
   },
   {
     "url": "_patterns/00-utils/util/css.js",
@@ -44,7 +44,7 @@ const fileManifest = [
   },
   {
     "url": "_patterns/00-utils/util/spacing-sizes.js",
-    "revision": "15b58b8559e308f1dfddf73d847b2183"
+    "revision": "7ccb8dfbb0a3c348b08b8411d1819eda"
   },
   {
     "url": "_patterns/00-utils/util/style.js",
@@ -52,7 +52,7 @@ const fileManifest = [
   },
   {
     "url": "_patterns/00-utils/util/styled-mixin.js",
-    "revision": "2e665d3ada3c106169bf1b511db9661b"
+    "revision": "0967009ab563a21c9b6165877d2fd0a2"
   },
   {
     "url": "_patterns/01-core/01-settings/settings-all/node_modules/abbrev/abbrev.js",
@@ -58468,7 +58468,7 @@ const fileManifest = [
   },
   {
     "url": "_patterns/02-components/bolt-critical-fonts/dist/critical-fonts.css",
-    "revision": "f1e48eeb236f0dccf98ec4f1fead97e9"
+    "revision": "ba104291e62bfcea3ea9931c33100ab6"
   },
   {
     "url": "_patterns/02-components/bolt-critical-fonts/dist/critical-fonts.min.css",
@@ -58476,7 +58476,7 @@ const fileManifest = [
   },
   {
     "url": "_patterns/02-components/bolt-critical-fonts/dist/critical-fonts.min.js",
-    "revision": "941b92e2f9d67fa69ccf2ce585e00ba2"
+    "revision": "ed8ebaf348d3f789221367cd2aef7e7b"
   },
   {
     "url": "_patterns/02-components/bolt-critical-fonts/node_modules/fontfaceobserver/externs.js",
@@ -58559,16 +58559,17072 @@ const fileManifest = [
     "revision": "f410b39e75303c2faedd2752e183d93a"
   },
   {
-    "url": "_patterns/02-components/bolt-icon/src/Bolt.js",
+    "url": "_patterns/02-components/bolt-icon/src/bolt.js",
     "revision": "5af04a87192bed1f805a5f07f862b366"
   },
   {
-    "url": "_patterns/02-components/bolt-icon/src/Button.js",
+    "url": "_patterns/02-components/bolt-icon/src/button.js",
     "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
-    "url": "_patterns/02-components/bolt-icon/src/Icon.js",
-    "revision": "57c33af46087d99a9fad2e0558f7654c"
+    "url": "_patterns/02-components/bolt-icon/src/icon.js",
+    "revision": "5f487401918d6558edbc1d3168142059"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/build-icons.js",
+    "revision": "15aadde169cecf129a2a1096107566fc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/add-open.js",
+    "revision": "a82e7d222f802249dba65de4d96ca41f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/add-solid.js",
+    "revision": "97fa8c76db8e3f9c2507a70daddd9fb7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/arrow-left.js",
+    "revision": "5587e0d56be2e68be2ac9301850831fe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/asset-data.js",
+    "revision": "119fb327d301642468cbefba958429b2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/asset-infographic.js",
+    "revision": "63f7a57328fe658240cca4467ea1656f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/asset-interactive.js",
+    "revision": "fd0b98a6317fcf8243111c1ad2f4812a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/asset-presentation.js",
+    "revision": "ebc0c004ae40d430b9f696cf1a032832"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/asset-text.js",
+    "revision": "35e396b12340bffdf63c13b59fb68802"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/calendar.js",
+    "revision": "56b196217e3200514b0fc8ee2f589222"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/check-circle.js",
+    "revision": "d9d9bb6400fa174ff55eb6852a1d0295"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/check-solid.js",
+    "revision": "e44a7100cfbccdea1054a5aa7ed75eb8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/check.js",
+    "revision": "87b01cc58c29a761d01ce7869090c67b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/chevron-right.js",
+    "revision": "0c07687f586450dee9943153d0a52437"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/close-open.js",
+    "revision": "a51c5bc32b7cf9bc61292157fb10d5d5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/close-solid.js",
+    "revision": "519fd5f429eb9afdc1350ea9cff6aa2f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/close.js",
+    "revision": "854b1e4c8255ecd0e108c333031b73ab"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/copy-to-clipboard.js",
+    "revision": "cb87a27e14d6a064b40385f099d44f01"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/download.js",
+    "revision": "b5965e72cd397c4d305def496e57aa1f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/email.js",
+    "revision": "009d69af2d51c0336f3f692508c10334"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/exit full screen.js",
+    "revision": "3e48af7b394a0ff95869cda0753f45a3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/external link.js",
+    "revision": "8f2a5d11006eb32eaf39db4d922df338"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/eye-off.js",
+    "revision": "887f0f8c345b96ab9ba5db6e0b77e764"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/eye.js",
+    "revision": "e6c06e0a7229babe45e43a73cfaecd53"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/full screen.js",
+    "revision": "d5b0c9ef9b5573c5fe6a00d9358bafe4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/global.js",
+    "revision": "e4cfcccce0eb33ee10429ed6e0ff240f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/info-open.js",
+    "revision": "616a7217c9ba613992ae10b8569dd247"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/info-solid.js",
+    "revision": "9630e3b973a4b195e5969fac3d28dd35"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/lock.js",
+    "revision": "540090ddf53e4b4dd73195e5c1935fba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/map-pin-solid.js",
+    "revision": "ccc438466898da2c0371097c7061ad6d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/map-pin.js",
+    "revision": "e7030961182381cf9ab46d99eb049e1f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/menu.js",
+    "revision": "3b4e40db708f0f0057a2009db0fc24ea"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/minus-open.js",
+    "revision": "cc254d6d19ba44f3ca7c4c0d6195c854"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/minus-solid.js",
+    "revision": "1f3ee5284dd106df6e3c97125bf03cb7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/more.js",
+    "revision": "aedbc3a692ce7fdc2c0689e4c92a821c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/pencil.js",
+    "revision": "c7e777bf70f434d3f3101cdbc27395ff"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/podcast.js",
+    "revision": "2449c3c1dcd805738305714cea9b73ce"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/print.js",
+    "revision": "d1e5c8a242281d999aa5b422b81e7a58"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/refresh.js",
+    "revision": "8bb2b72deed0fbd5c1db37934d183f9c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/search.js",
+    "revision": "71b4481f1f4e351c1eccb78a7cd0a5c1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/share1.js",
+    "revision": "98334950d1b3d5137e2f684e7a766b17"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/share2.js",
+    "revision": "def256c5bebea6e5732621e3b2e7f74c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/unlock.js",
+    "revision": "dfe3122edc2f1112273ee2921ed8ff84"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/upload.js",
+    "revision": "7ffa3449fd28fda003a241b0cc8557cd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/user.js",
+    "revision": "25970f8599f53dfa1a05ddfe2032641a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/video.js",
+    "revision": "a4fa424302669cc03bdef3ba5ee2cac6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/warning.js",
+    "revision": "5d58e7e614eda9a9b800bdab73a3d687"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/icons/watch.js",
+    "revision": "fb29f81c6104be86b82bd54284a8f526"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/dist/index.js",
+    "revision": "03e0ecbaa2c49e790c3a438bdb4200c5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/ansi-regex/index.js",
+    "revision": "df3213a53f3ce3092379ca771e98af7c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/ansi-styles/index.js",
+    "revision": "2cc6b53cf1be1f65e12fb445f9670099"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/anymatch/index.js",
+    "revision": "362fc758d3594637f33e8969496b3aa3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/argparse/index.js",
+    "revision": "52e7dbc0e6ff81bc2638110beb50aa8c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/argparse/lib/action_container.js",
+    "revision": "641012824fcc0f1219e99c7a2b7dad9c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/argparse/lib/action.js",
+    "revision": "4901a31d569f0812d795e1cf102dce8c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/argparse/lib/action/append.js",
+    "revision": "5a03551d1e0bb75b522538b036b97cfb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/argparse/lib/action/append/constant.js",
+    "revision": "7f88d8d9f3f3d5a2928fdd55894a176a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/argparse/lib/action/count.js",
+    "revision": "324376c29824d93023617b4239fa5819"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/argparse/lib/action/help.js",
+    "revision": "3b6af72f86a0ebdbbb6555b3591b2cb2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/argparse/lib/action/store.js",
+    "revision": "6461dab25a3db31c1f6b725a04b6baef"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/argparse/lib/action/store/constant.js",
+    "revision": "4637efaceb1b1df8b0fdc458b008325e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/argparse/lib/action/store/false.js",
+    "revision": "da3e6eb89705ab696eab376525444e74"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/argparse/lib/action/store/true.js",
+    "revision": "733ce8a0ef1da22243f75a20e5aceb67"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/argparse/lib/action/subparsers.js",
+    "revision": "be9b86a86bb1526318b53348f8d822d6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/argparse/lib/action/version.js",
+    "revision": "6242ce6f45061cd07b70dca2d73524c8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/argparse/lib/argparse.js",
+    "revision": "83343c17d0571fcbf6e51a9b0bb310a5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/argparse/lib/argument_parser.js",
+    "revision": "568981d0c711d7f1c20ebf55f57b9060"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/argparse/lib/argument/error.js",
+    "revision": "41c1404004fc4ee9aa1dda65549193c8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/argparse/lib/argument/exclusive.js",
+    "revision": "1bb5f11370cc2f6ba1feec6d23a17ce0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/argparse/lib/argument/group.js",
+    "revision": "28bef6de9aee72497343dd5c1649488d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/argparse/lib/const.js",
+    "revision": "6ae421fd39366ff71a7f0b98b8088826"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/argparse/lib/help/added_formatters.js",
+    "revision": "75482e0b8d6be9ebe618574971afd31d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/argparse/lib/help/formatter.js",
+    "revision": "689fc7707ff7bcd1b206932d4c596512"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/argparse/lib/namespace.js",
+    "revision": "265ca4528cbc85bdb709e19e0ee10562"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/argparse/lib/utils.js",
+    "revision": "e85701464fea226ddcd7b229cb1759cf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/arr-diff/index.js",
+    "revision": "5faf9fbe0e3acc0a1ea8d89b2b6fbce7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/arr-flatten/index.js",
+    "revision": "5a2f9842b803213c4354cfda21e7a78e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/array-unique/index.js",
+    "revision": "30919908fb2fd66b76529a2c298a1e3b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/async-each/index.js",
+    "revision": "e8266dd2961bb68d3607f34bbb465775"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-cli/bin/babel-doctor.js",
+    "revision": "f850f4e384e4e9ea02612b355f541bce"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-cli/bin/babel-external-helpers.js",
+    "revision": "fa43bb048fd46c293052ea601e8f0d4a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-cli/bin/babel-node.js",
+    "revision": "e0d0122405f39e97ae7751d9aedcfaa1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-cli/bin/babel.js",
+    "revision": "837de144080d0fcc160993da7baa73de"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-cli/index.js",
+    "revision": "f771ba0d83669c6a8eccac2028b6384f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-cli/lib/_babel-node.js",
+    "revision": "752589e9d334cd6ff9db75cc1e05b2f9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-cli/lib/babel-external-helpers.js",
+    "revision": "40e995a1ec2ad698fb9c5db041626724"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-cli/lib/babel-node.js",
+    "revision": "2af5aec29a7992c98fe1e1e72cb8670c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-cli/lib/babel/dir.js",
+    "revision": "a7b199d7e7760183dfc6aca6c9787069"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-cli/lib/babel/file.js",
+    "revision": "1cc69abfd6afc00cff61ca2d256bb016"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-cli/lib/babel/index.js",
+    "revision": "a43538edcf52f65433748969ba2bd9df"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-cli/lib/babel/util.js",
+    "revision": "bf912e20374420115188ff20e1bc1cbc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-code-frame/lib/index.js",
+    "revision": "d401f8be699f41a9afc2ce38be232fe4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/index.js",
+    "revision": "11c18f894a4b638e02f88ff935c38aa9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/api/browser.js",
+    "revision": "c93a998873a7036e5c6f0d5e7cde646f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/api/node.js",
+    "revision": "9708592d1d97a548d22b277e03ff1a3d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/helpers/get-possible-plugin-names.js",
+    "revision": "26d25b6520a898bdd1acc0d0f1c913e4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/helpers/get-possible-preset-names.js",
+    "revision": "b72bdb0b2f50c3de9d319b63f6b45ae8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/helpers/merge.js",
+    "revision": "38e43cdba6f1a36f399bebd6d1a2e095"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/helpers/normalize-ast.js",
+    "revision": "65eab5042bb769e278d8b9bc4171166a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/helpers/resolve-from-possible-names.js",
+    "revision": "af66c36585edae8017e862562d76b590"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/helpers/resolve-plugin.js",
+    "revision": "5f7a13af3021022e3dcf0b736f6913a2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/helpers/resolve-preset.js",
+    "revision": "ca55717c97aee17eb3ba96fde7645be3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/helpers/resolve.js",
+    "revision": "39c3e1ee85368be7dbfb788e7fac9fe0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/store.js",
+    "revision": "3de485862f38088fa1d0559b170b8088"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/tools/build-external-helpers.js",
+    "revision": "d917f39dbe92bb6793d7050bc321f143"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/transformation/file/index.js",
+    "revision": "efd15180518e81d77809f25cc65b6cb6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/transformation/file/logger.js",
+    "revision": "359c70032320430420295a3315ade772"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/transformation/file/metadata.js",
+    "revision": "ff09a9277d3b6cc24e2bbbc87c09d0bd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/transformation/file/options/build-config-chain.js",
+    "revision": "a4a8a620a646ee3f3286054a62a366dd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/transformation/file/options/config.js",
+    "revision": "39b8b49be27b7ebff5b56347b0a2db2b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/transformation/file/options/index.js",
+    "revision": "8a7b185066729a370546c68df947d336"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/transformation/file/options/option-manager.js",
+    "revision": "c34da02678d7c6b8c75afa646ea1c7b6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/transformation/file/options/parsers.js",
+    "revision": "986ba17edf59a1c08f2b778fdf8c2acc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/transformation/file/options/removed.js",
+    "revision": "ef2246210a46fd7f80c73ee640f61ba6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/transformation/internal-plugins/block-hoist.js",
+    "revision": "12aade991077472bf330c0bd6aeaacd9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/transformation/internal-plugins/shadow-functions.js",
+    "revision": "282283102c11003b39d9bb82805e1305"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/transformation/pipeline.js",
+    "revision": "84b362ce458c89854aa6bf8f324e5116"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/transformation/plugin-pass.js",
+    "revision": "8cd66808a06723625b08e4e572700f0d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/transformation/plugin.js",
+    "revision": "c7b961be9e6d793e2ab94e6e098cf290"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/lib/util.js",
+    "revision": "a67ff387e9ca572e42fbb24103f17e13"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-core/register.js",
+    "revision": "063f8180a31fbdcbcabf62b45f9ee3f5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/babylon-to-espree/attachComments.js",
+    "revision": "610e206a30aa0b32c14327fff4bd0345"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/babylon-to-espree/convertComments.js",
+    "revision": "c034e849caa9553cedb724df82d5de58"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/babylon-to-espree/convertTemplateType.js",
+    "revision": "7c1c1e78e718d4f5ef61afa4428f0879"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/babylon-to-espree/index.js",
+    "revision": "d61531d461f0f33a51fc4b783647ea95"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/babylon-to-espree/toAST.js",
+    "revision": "e39f1fe3a69b110996c83770e9f3414e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/babylon-to-espree/toToken.js",
+    "revision": "244f62f24ec91643f59b31e8f6cb73a4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/babylon-to-espree/toTokens.js",
+    "revision": "1e9c3c4699cb4556a7bfcf469d5e1573"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/index.js",
+    "revision": "46021f6114deaad1a35f725c4212b3b9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/ansi-styles/index.js",
+    "revision": "b55216015700e72a8a7b09ed4e4fb384"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-code-frame/lib/index.js",
+    "revision": "92ddd52cc48541f388fd4fc065e39839"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-messages/lib/index.js",
+    "revision": "61a703e6c4fa9ddd4a132e790bc7992b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/cache.js",
+    "revision": "8ca43f15b621d4b3174d436bbf280eb2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/context.js",
+    "revision": "f98393edfb7e5d6afe386722061d4710"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/hub.js",
+    "revision": "01f825e1b806fe4d19ba35bdd0eac8a2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/index.js",
+    "revision": "b7ff0ffe466c9fc43ce5a7c1ea790c23"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/path/ancestry.js",
+    "revision": "4ee8739e3271a4fa38a5daa15637d0f2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/path/comments.js",
+    "revision": "d123432d1a917cebdfd44a6fcc808eeb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/path/context.js",
+    "revision": "9ca1ba4809b443cacfb8709012ad7523"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/path/conversion.js",
+    "revision": "6571f9cd7456e3e432bddbe4ec517c52"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/path/evaluation.js",
+    "revision": "5718ab049f866e38ad1fc47a4a02aa26"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/path/family.js",
+    "revision": "a67a0bab239ba816874128e27a28ed09"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/path/index.js",
+    "revision": "3a3e96c817319b4c8eb668d7830d76ba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/path/inference/index.js",
+    "revision": "11db477e5d214ce3a1588d7ed83250bd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/path/inference/inferer-reference.js",
+    "revision": "b469bfb3fc44546d868aa93b0db0e197"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/path/inference/inferers.js",
+    "revision": "e0abced9955b8b83ccd4f63fb88cc075"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/path/introspection.js",
+    "revision": "dd2c749fe9c248c06f4820a64fc93851"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/path/lib/hoister.js",
+    "revision": "fe5c766e7fe2b356f44400e58e75c654"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/path/lib/removal-hooks.js",
+    "revision": "fbfa6818dd96f1128bd370840d968595"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/path/lib/virtual-types.js",
+    "revision": "abfd9cd48885fe5e49566329ced22b29"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/path/modification.js",
+    "revision": "b6edb665350c6e4aa2fbd29bb859a2fe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/path/removal.js",
+    "revision": "616b0a52bcde4b63433a56fe0c8d2b97"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/path/replacement.js",
+    "revision": "70675e7710068eb17b486cc827a0d6ae"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/scope/binding.js",
+    "revision": "1b6ff29e6a657891b3691ed676f6d691"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/scope/index.js",
+    "revision": "623b5540cf9a4f68934d369f5f9a23a9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/scope/lib/renamer.js",
+    "revision": "6ee0049ada50da56efcd813d88a1615e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-traverse/lib/visitors.js",
+    "revision": "03af50b1c32d6012d669ae92e338a6b2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-types/lib/constants.js",
+    "revision": "81fddf4f8690f529fa6d05b0bddc2881"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-types/lib/converters.js",
+    "revision": "07ee3f70fe24159df1b18d52c2c4ce97"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-types/lib/definitions/core.js",
+    "revision": "166006a82201fbe01bef93362e2c8e8f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-types/lib/definitions/es2015.js",
+    "revision": "36dfde9ba7d8b82b623be8647586835b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-types/lib/definitions/experimental.js",
+    "revision": "7aa0a46005c37a79a8ca1a53fb2e2723"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-types/lib/definitions/flow.js",
+    "revision": "160ad1c3cdf4050e397c75418861dad6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-types/lib/definitions/index.js",
+    "revision": "79edfa84e70f4f18987e31e63841429c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-types/lib/definitions/init.js",
+    "revision": "b10cb8111d5b8e7213511ece3692c628"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-types/lib/definitions/jsx.js",
+    "revision": "77494901c4ead1258805191518497770"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-types/lib/definitions/misc.js",
+    "revision": "a5eb6058fb4f0b743b7980ffe8e320d2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-types/lib/definitions/tsFlowCommon.js",
+    "revision": "693ebe383ca955fa70810a30e685546e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-types/lib/definitions/typescript.js",
+    "revision": "f44be542f6ae2e4f22868e96d3c6f56b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-types/lib/flow.js",
+    "revision": "53e9ca498a90124e8893efb4bc0e6c13"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-types/lib/index.js",
+    "revision": "23ff40a9ed9709f4ee711d0174abbd11"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-types/lib/react.js",
+    "revision": "7c3ce7b3698b0ac5d334dbffe19c4048"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-types/lib/retrievers.js",
+    "revision": "a1716044830dfaa8c60dbbc93588af60"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babel-types/lib/validators.js",
+    "revision": "0b74fe22a4533d3cd3cb3a8ad2aa53bb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babylon/bin/babylon.js",
+    "revision": "a3b7b7b96555f120ae979d44917918da"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babylon/bin/generate-identifier-regex.js",
+    "revision": "b4e056c19236326e7e871f46c1925278"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/babylon/lib/index.js",
+    "revision": "0cb694af86bb2a497b4a183a14ab995b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/chalk/index.js",
+    "revision": "fccd04e4f21b07bfa618ed55265844d7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/chalk/templates.js",
+    "revision": "4b69ee87432f991d3f1f1e90d5facd1e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/debug/karma.conf.js",
+    "revision": "06f3babbdc43c6c4dd1493b6c1af32e2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/debug/node.js",
+    "revision": "79f3814f32362c1c6f9dbb8a1e3b01bf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/debug/src/browser.js",
+    "revision": "23d5a69338855f953a919ce32b53a2d2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/debug/src/debug.js",
+    "revision": "140d46ef8644efa440cd8b602d56b1e0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/debug/src/index.js",
+    "revision": "afd4620d6095583cdae71b234c60c13a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/debug/src/node.js",
+    "revision": "2754f6e90cbac39ee063f9b010b135f3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/globals/index.js",
+    "revision": "3e3a6be0a398d188e14e631562b99e8a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/supports-color/browser.js",
+    "revision": "23fd7fc568bb694e3c27b121e37a3df0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/supports-color/index.js",
+    "revision": "f41b297da6583905558fb9d60353ef16"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-eslint/node_modules/to-fast-properties/index.js",
+    "revision": "804a9c776ef707d1a3ab0fc31b0aab72"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-generator/lib/buffer.js",
+    "revision": "d5374f058f82170ae041567f1e4412ff"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-generator/lib/generators/base.js",
+    "revision": "0e396dbbdec882fb0b9261aafe6acad7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-generator/lib/generators/classes.js",
+    "revision": "e6b3cd43bb36e7e202f52cbeffbc63f1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-generator/lib/generators/expressions.js",
+    "revision": "8da643f0516285e74dfdbdc38cc1c2ce"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-generator/lib/generators/flow.js",
+    "revision": "60b67b4f0824f4a6a83aa860ab5f235b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-generator/lib/generators/jsx.js",
+    "revision": "6be9744f6d841a4de334125e4bfdccd8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-generator/lib/generators/methods.js",
+    "revision": "7ad4ebd595f5fa82bbf5922449e196c8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-generator/lib/generators/modules.js",
+    "revision": "e0b58bbb2713d80516b088be1a2abdd3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-generator/lib/generators/statements.js",
+    "revision": "29c7c604cb084eb866e3845c716c54dd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-generator/lib/generators/template-literals.js",
+    "revision": "79dc3b305ae060b4229b42626462d5df"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-generator/lib/generators/types.js",
+    "revision": "e85cbc52f6e24dcd91b34425d49013f8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-generator/lib/index.js",
+    "revision": "d7dff849edbf095f1f41b7103585ee70"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-generator/lib/node/index.js",
+    "revision": "c7a87f4b149a0bd317f00ec1ca84d976"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-generator/lib/node/parentheses.js",
+    "revision": "f4e4568f7f213c508d583f833b380cee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-generator/lib/node/whitespace.js",
+    "revision": "19071a154a6ec71e8e95ef97425cd16b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-generator/lib/printer.js",
+    "revision": "1dc326dcd5e94ef1081a2f22bfed8c29"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-generator/lib/source-map.js",
+    "revision": "d5c60a2fea3d602546853d1c53280f42"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-generator/lib/whitespace.js",
+    "revision": "df51d698766c7e58ded423eb33b7df16"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-bindify-decorators/lib/index.js",
+    "revision": "b844273129a33fd3e4f0360a44a7eb80"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-builder-binary-assignment-operator-visitor/lib/index.js",
+    "revision": "33465beb4593f3e15a41bfeb6ef3d9d3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-builder-react-jsx/lib/index.js",
+    "revision": "73e2ae568a98bc52f9b9f7d35a23f811"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-call-delegate/lib/index.js",
+    "revision": "a9128f90d978347b805d82d8328cf31e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-define-map/lib/index.js",
+    "revision": "44c51755bd75b2e803d29fad363d5ee0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-define-map/node_modules/babel-helper-function-name/lib/index.js",
+    "revision": "1181a26784e767b1e0779751a88264d9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-define-map/node_modules/babel-helper-get-function-arity/lib/index.js",
+    "revision": "5a5472abb670d6b0118f873fce403b96"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-explode-assignable-expression/lib/index.js",
+    "revision": "4e73418d244cbaa62523b9bb0515f103"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-explode-class/lib/index.js",
+    "revision": "3c52f26ed481c9c27e72fe08e7579069"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/lib/index.js",
+    "revision": "2459448c047981e52ce4884dc79cf0a9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/ansi-styles/index.js",
+    "revision": "b55216015700e72a8a7b09ed4e4fb384"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-code-frame/lib/index.js",
+    "revision": "92ddd52cc48541f388fd4fc065e39839"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-messages/lib/index.js",
+    "revision": "61a703e6c4fa9ddd4a132e790bc7992b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-template/lib/index.js",
+    "revision": "de09b949df5f1b4c3a3ef47a15d82ec1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/cache.js",
+    "revision": "8ca43f15b621d4b3174d436bbf280eb2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/context.js",
+    "revision": "f98393edfb7e5d6afe386722061d4710"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/hub.js",
+    "revision": "01f825e1b806fe4d19ba35bdd0eac8a2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/index.js",
+    "revision": "b7ff0ffe466c9fc43ce5a7c1ea790c23"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/path/ancestry.js",
+    "revision": "4ee8739e3271a4fa38a5daa15637d0f2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/path/comments.js",
+    "revision": "d123432d1a917cebdfd44a6fcc808eeb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/path/context.js",
+    "revision": "9ca1ba4809b443cacfb8709012ad7523"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/path/conversion.js",
+    "revision": "6571f9cd7456e3e432bddbe4ec517c52"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/path/evaluation.js",
+    "revision": "5718ab049f866e38ad1fc47a4a02aa26"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/path/family.js",
+    "revision": "a67a0bab239ba816874128e27a28ed09"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/path/index.js",
+    "revision": "3a3e96c817319b4c8eb668d7830d76ba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/path/inference/index.js",
+    "revision": "11db477e5d214ce3a1588d7ed83250bd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/path/inference/inferer-reference.js",
+    "revision": "b469bfb3fc44546d868aa93b0db0e197"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/path/inference/inferers.js",
+    "revision": "e0abced9955b8b83ccd4f63fb88cc075"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/path/introspection.js",
+    "revision": "dd2c749fe9c248c06f4820a64fc93851"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/path/lib/hoister.js",
+    "revision": "fe5c766e7fe2b356f44400e58e75c654"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/path/lib/removal-hooks.js",
+    "revision": "fbfa6818dd96f1128bd370840d968595"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/path/lib/virtual-types.js",
+    "revision": "abfd9cd48885fe5e49566329ced22b29"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/path/modification.js",
+    "revision": "b6edb665350c6e4aa2fbd29bb859a2fe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/path/removal.js",
+    "revision": "616b0a52bcde4b63433a56fe0c8d2b97"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/path/replacement.js",
+    "revision": "70675e7710068eb17b486cc827a0d6ae"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/scope/binding.js",
+    "revision": "1b6ff29e6a657891b3691ed676f6d691"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/scope/index.js",
+    "revision": "623b5540cf9a4f68934d369f5f9a23a9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/scope/lib/renamer.js",
+    "revision": "6ee0049ada50da56efcd813d88a1615e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-traverse/lib/visitors.js",
+    "revision": "03af50b1c32d6012d669ae92e338a6b2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-types/lib/constants.js",
+    "revision": "81fddf4f8690f529fa6d05b0bddc2881"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-types/lib/converters.js",
+    "revision": "07ee3f70fe24159df1b18d52c2c4ce97"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-types/lib/definitions/core.js",
+    "revision": "166006a82201fbe01bef93362e2c8e8f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-types/lib/definitions/es2015.js",
+    "revision": "36dfde9ba7d8b82b623be8647586835b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-types/lib/definitions/experimental.js",
+    "revision": "7aa0a46005c37a79a8ca1a53fb2e2723"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-types/lib/definitions/flow.js",
+    "revision": "160ad1c3cdf4050e397c75418861dad6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-types/lib/definitions/index.js",
+    "revision": "79edfa84e70f4f18987e31e63841429c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-types/lib/definitions/init.js",
+    "revision": "b10cb8111d5b8e7213511ece3692c628"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-types/lib/definitions/jsx.js",
+    "revision": "77494901c4ead1258805191518497770"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-types/lib/definitions/misc.js",
+    "revision": "a5eb6058fb4f0b743b7980ffe8e320d2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-types/lib/definitions/tsFlowCommon.js",
+    "revision": "693ebe383ca955fa70810a30e685546e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-types/lib/definitions/typescript.js",
+    "revision": "f44be542f6ae2e4f22868e96d3c6f56b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-types/lib/flow.js",
+    "revision": "53e9ca498a90124e8893efb4bc0e6c13"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-types/lib/index.js",
+    "revision": "23ff40a9ed9709f4ee711d0174abbd11"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-types/lib/react.js",
+    "revision": "7c3ce7b3698b0ac5d334dbffe19c4048"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-types/lib/retrievers.js",
+    "revision": "a1716044830dfaa8c60dbbc93588af60"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babel-types/lib/validators.js",
+    "revision": "0b74fe22a4533d3cd3cb3a8ad2aa53bb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babylon/bin/babylon.js",
+    "revision": "a3b7b7b96555f120ae979d44917918da"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babylon/bin/generate-identifier-regex.js",
+    "revision": "b4e056c19236326e7e871f46c1925278"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/babylon/lib/index.js",
+    "revision": "0cb694af86bb2a497b4a183a14ab995b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/chalk/index.js",
+    "revision": "fccd04e4f21b07bfa618ed55265844d7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/chalk/templates.js",
+    "revision": "4b69ee87432f991d3f1f1e90d5facd1e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/debug/karma.conf.js",
+    "revision": "06f3babbdc43c6c4dd1493b6c1af32e2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/debug/node.js",
+    "revision": "79f3814f32362c1c6f9dbb8a1e3b01bf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/debug/src/browser.js",
+    "revision": "23d5a69338855f953a919ce32b53a2d2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/debug/src/debug.js",
+    "revision": "140d46ef8644efa440cd8b602d56b1e0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/debug/src/index.js",
+    "revision": "afd4620d6095583cdae71b234c60c13a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/debug/src/node.js",
+    "revision": "2754f6e90cbac39ee063f9b010b135f3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/globals/index.js",
+    "revision": "3e3a6be0a398d188e14e631562b99e8a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/supports-color/browser.js",
+    "revision": "23fd7fc568bb694e3c27b121e37a3df0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/supports-color/index.js",
+    "revision": "f41b297da6583905558fb9d60353ef16"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-function-name/node_modules/to-fast-properties/index.js",
+    "revision": "804a9c776ef707d1a3ab0fc31b0aab72"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-get-function-arity/lib/index.js",
+    "revision": "f0d42d1d618d9bf643b4408247885cdf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-get-function-arity/node_modules/babel-types/lib/constants.js",
+    "revision": "81fddf4f8690f529fa6d05b0bddc2881"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-get-function-arity/node_modules/babel-types/lib/converters.js",
+    "revision": "07ee3f70fe24159df1b18d52c2c4ce97"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-get-function-arity/node_modules/babel-types/lib/definitions/core.js",
+    "revision": "166006a82201fbe01bef93362e2c8e8f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-get-function-arity/node_modules/babel-types/lib/definitions/es2015.js",
+    "revision": "36dfde9ba7d8b82b623be8647586835b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-get-function-arity/node_modules/babel-types/lib/definitions/experimental.js",
+    "revision": "7aa0a46005c37a79a8ca1a53fb2e2723"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-get-function-arity/node_modules/babel-types/lib/definitions/flow.js",
+    "revision": "160ad1c3cdf4050e397c75418861dad6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-get-function-arity/node_modules/babel-types/lib/definitions/index.js",
+    "revision": "79edfa84e70f4f18987e31e63841429c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-get-function-arity/node_modules/babel-types/lib/definitions/init.js",
+    "revision": "b10cb8111d5b8e7213511ece3692c628"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-get-function-arity/node_modules/babel-types/lib/definitions/jsx.js",
+    "revision": "77494901c4ead1258805191518497770"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-get-function-arity/node_modules/babel-types/lib/definitions/misc.js",
+    "revision": "a5eb6058fb4f0b743b7980ffe8e320d2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-get-function-arity/node_modules/babel-types/lib/definitions/tsFlowCommon.js",
+    "revision": "693ebe383ca955fa70810a30e685546e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-get-function-arity/node_modules/babel-types/lib/definitions/typescript.js",
+    "revision": "f44be542f6ae2e4f22868e96d3c6f56b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-get-function-arity/node_modules/babel-types/lib/flow.js",
+    "revision": "53e9ca498a90124e8893efb4bc0e6c13"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-get-function-arity/node_modules/babel-types/lib/index.js",
+    "revision": "23ff40a9ed9709f4ee711d0174abbd11"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-get-function-arity/node_modules/babel-types/lib/react.js",
+    "revision": "7c3ce7b3698b0ac5d334dbffe19c4048"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-get-function-arity/node_modules/babel-types/lib/retrievers.js",
+    "revision": "a1716044830dfaa8c60dbbc93588af60"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-get-function-arity/node_modules/babel-types/lib/validators.js",
+    "revision": "0b74fe22a4533d3cd3cb3a8ad2aa53bb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-get-function-arity/node_modules/to-fast-properties/index.js",
+    "revision": "804a9c776ef707d1a3ab0fc31b0aab72"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-hoist-variables/lib/index.js",
+    "revision": "b6ebd606ca9c3e2591354874f3f26fd3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-optimise-call-expression/lib/index.js",
+    "revision": "34857163a1d979917de44f7d959a8cc5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-regex/lib/index.js",
+    "revision": "bf7df70ba504029a27c342fe7c7f4652"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-remap-async-to-generator/lib/for-await.js",
+    "revision": "dd874bec1490e6176c9378634af402ac"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-remap-async-to-generator/lib/index.js",
+    "revision": "c21e54dfa95f205810f040802077bba9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-remap-async-to-generator/node_modules/babel-helper-function-name/lib/index.js",
+    "revision": "1181a26784e767b1e0779751a88264d9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-remap-async-to-generator/node_modules/babel-helper-get-function-arity/lib/index.js",
+    "revision": "5a5472abb670d6b0118f873fce403b96"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helper-replace-supers/lib/index.js",
+    "revision": "38a34d1f7c167f5763ac944050116b9a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helpers/lib/helpers.js",
+    "revision": "8a0e5b7b7532f8eaad8edb9e39823b12"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-helpers/lib/index.js",
+    "revision": "1ea7bdc7912410f60cc3820390c9cd91"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-messages/lib/index.js",
+    "revision": "377db886ffa976de96c56d71bd47e09d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-check-es2015-constants/lib/index.js",
+    "revision": "fe9a380a1059f128c37596e1565651f4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-jsx-pragmatic/jsx-pragmatic.js",
+    "revision": "9d8f2d1e03b79480026ca492ffae07de"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-syntax-async-functions/lib/index.js",
+    "revision": "589fc2a35d79dfb57bb0924fd65b110a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-syntax-async-generators/lib/index.js",
+    "revision": "056d85f8b6432bcb6208aea828528f56"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-syntax-class-constructor-call/lib/index.js",
+    "revision": "a05cd063a88817dcac9357fa44376081"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-syntax-class-properties/lib/index.js",
+    "revision": "d870ea6adc22433a8cc39d22626d3fd5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-syntax-decorators/lib/index.js",
+    "revision": "3af2ab94c5f7750cefb477ea7ab0f69a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-syntax-do-expressions/lib/index.js",
+    "revision": "b6a94cdf44c91ab1215f55382d487e9e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-syntax-dynamic-import/lib/index.js",
+    "revision": "cbf7dfb23198c09a8675c4f8aac1389b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-syntax-exponentiation-operator/lib/index.js",
+    "revision": "5a06ab9972f30498f359b831cbc0b9da"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-syntax-export-extensions/lib/index.js",
+    "revision": "c3d8bc2699577823a9e612d1e848482d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-syntax-function-bind/lib/index.js",
+    "revision": "22def9779c7eeb75a922fcff7942a1aa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-syntax-jsx/lib/index.js",
+    "revision": "e76cc9b9572f41b2d9bd3f4cabff6e15"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-syntax-object-rest-spread/lib/index.js",
+    "revision": "59e7dbc6fc076346cc731607138818c1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-syntax-trailing-function-commas/lib/index.js",
+    "revision": "6189c8a9b88ef8e82c8a5fc2270484ad"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-async-generator-functions/lib/index.js",
+    "revision": "13d166eb40a3cd4af5a51f624881efd9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-async-to-generator/lib/index.js",
+    "revision": "218a024a086516b15a65d0f48b700de1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-class-constructor-call/lib/index.js",
+    "revision": "7861dea2c121b4bd41725ba4a4c2628a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-class-properties/lib/index.js",
+    "revision": "bbb3b28c54138c7dc8a1ac853c52fbea"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-class-properties/node_modules/babel-helper-function-name/lib/index.js",
+    "revision": "1181a26784e767b1e0779751a88264d9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-class-properties/node_modules/babel-helper-get-function-arity/lib/index.js",
+    "revision": "5a5472abb670d6b0118f873fce403b96"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-decorators/lib/index.js",
+    "revision": "e701916ae3a058492851c5de060144b2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-do-expressions/lib/index.js",
+    "revision": "d0fa4d95903a92063f5e4c8ec2a74f8c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-arrow-functions/lib/index.js",
+    "revision": "d03ea4966f9368dd0005ecccfb696059"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-block-scoped-functions/lib/index.js",
+    "revision": "cabe48949848a15b1faf3573350bd332"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-block-scoping/lib/index.js",
+    "revision": "fc6335915f5ce5fafe8cff145e13a4a5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-block-scoping/lib/tdz.js",
+    "revision": "297082287025a5ba2a324b581a33f197"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-classes/lib/index.js",
+    "revision": "e4ed3828f3038c3347c5e0808535b699"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-classes/lib/lib/memoise-decorators.js",
+    "revision": "7bb299d1c5936279b30cc066f9ab11bc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-classes/lib/loose.js",
+    "revision": "785dfe62a0b2596500385b9fc4933216"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-classes/lib/vanilla.js",
+    "revision": "7236edc0ad5f307ff97466c7ecd7d5bd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-classes/node_modules/babel-helper-function-name/lib/index.js",
+    "revision": "1181a26784e767b1e0779751a88264d9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-classes/node_modules/babel-helper-get-function-arity/lib/index.js",
+    "revision": "5a5472abb670d6b0118f873fce403b96"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-computed-properties/lib/index.js",
+    "revision": "9334700ac23df3c4cc5da9303968cfbc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-destructuring/lib/index.js",
+    "revision": "2d3e2b2dbcad92c3db75ca88abfd39e7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-duplicate-keys/lib/index.js",
+    "revision": "6d1c5097d075a4b51ce1e73574e2134d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-for-of/lib/index.js",
+    "revision": "ce2d22bc704d3a916f4d3dbdac59c503"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-function-name/lib/index.js",
+    "revision": "adcdba044163ae8cf05ed4a1503ac2b8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-function-name/node_modules/babel-helper-function-name/lib/index.js",
+    "revision": "1181a26784e767b1e0779751a88264d9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-function-name/node_modules/babel-helper-get-function-arity/lib/index.js",
+    "revision": "5a5472abb670d6b0118f873fce403b96"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-literals/lib/index.js",
+    "revision": "e6171e7219140907c9c39f8d7fbed430"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-modules-amd/lib/index.js",
+    "revision": "376f72185385c6d93f38acb8fb9dfe2d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-modules-commonjs/lib/index.js",
+    "revision": "7470e4114824275b377924a31a613c70"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-modules-systemjs/lib/index.js",
+    "revision": "488c8ec143c741a07a1d5dcfd484f723"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-modules-umd/lib/index.js",
+    "revision": "8e9bbe77354ca8d91c9da3167f9af1b0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-object-super/lib/index.js",
+    "revision": "4fdf97b8160f4388c17d001289317680"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-parameters/lib/default.js",
+    "revision": "de2b55ff7976580dc4286212661ba2f3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-parameters/lib/destructuring.js",
+    "revision": "098208bb03b52ad2cbab89b22227cee6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-parameters/lib/index.js",
+    "revision": "eb8223ce292b7e3fd405ec6ad6ba3c43"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-parameters/lib/rest.js",
+    "revision": "7d6a797179a61cb41f0140135bb7c066"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-parameters/node_modules/babel-helper-get-function-arity/lib/index.js",
+    "revision": "5a5472abb670d6b0118f873fce403b96"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-shorthand-properties/lib/index.js",
+    "revision": "245d44245948c13635b2e06c9e1d0a1d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-spread/lib/index.js",
+    "revision": "565c2945023990eaf22d038eff35aa90"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-sticky-regex/lib/index.js",
+    "revision": "be645f848b5b47d203f1c3c3a5b677f6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-template-literals/lib/index.js",
+    "revision": "68cde8440f992c2217d0439bbdbb6202"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-typeof-symbol/lib/index.js",
+    "revision": "936a71a32f1c6366dfdf8b01e2260431"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-es2015-unicode-regex/lib/index.js",
+    "revision": "b54bd408ed1ca985fcc0eaf7a27004cc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-exponentiation-operator/lib/index.js",
+    "revision": "0f26d2d85a9f94fe3c95fe15b6e53105"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-export-extensions/lib/index.js",
+    "revision": "727f92b82d45ebb243cd29baf80a6b51"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-function-bind/lib/index.js",
+    "revision": "1eec8fe301532f9e7aaab5149893d12f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-object-rest-spread/lib/index.js",
+    "revision": "7fbb362fc7a3ba2733c7405d06e19565"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-react-jsx/lib/index.js",
+    "revision": "023da1878bf089f75455e89cf9bfc8a1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-regenerator/lib/index.js",
+    "revision": "405d6138fed26d87dfdb2010000f5397"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-plugin-transform-strict-mode/lib/index.js",
+    "revision": "d386b071324c387f27ddaba5094a4144"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-polyfill/browser.js",
+    "revision": "45b9836beb16da615f0a74ead7c4b40c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-polyfill/dist/polyfill.js",
+    "revision": "fee503682b74da598db17f6298b53c67"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-polyfill/dist/polyfill.min.js",
+    "revision": "45b9836beb16da615f0a74ead7c4b40c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-polyfill/lib/index.js",
+    "revision": "984ec8f235aa944d847eed2b48b874ba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-polyfill/node_modules/regenerator-runtime/path.js",
+    "revision": "17a67d007fe87c76d5ef9c486ec3ff41"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime-module.js",
+    "revision": "0d42f689b9ed5494ad113fcd2e160147"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js",
+    "revision": "2d6aeefab0408083711f5794e99a44b7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-polyfill/scripts/postpublish.js",
+    "revision": "9abe2719d20bc13c6de44f5277889caf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-polyfill/scripts/prepublish.js",
+    "revision": "88cf7bbb52a86ededdec89add4894d0f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-preset-es2015/lib/index.js",
+    "revision": "e0c7ea13c26b056b97e58773190a75cd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-preset-stage-0/lib/index.js",
+    "revision": "fedf02cb6bbcceb7610d88bfcb6888d2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-preset-stage-1/lib/index.js",
+    "revision": "c0024adf7817e8b5e1065704f5f7031d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-preset-stage-2/lib/index.js",
+    "revision": "7c7f8eaddd57321379718c00e456ea3a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-preset-stage-3/lib/index.js",
+    "revision": "3806350a6bd2fe8a5bf809894d52ec28"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-register/lib/browser.js",
+    "revision": "bffee06f8bab18e76a6bd2de1e0d6e63"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-register/lib/cache.js",
+    "revision": "95b9366e52a02689278e13cef64f11cb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-register/lib/node.js",
+    "revision": "808e8dbea0d1069fe801248e0d321833"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js.js",
+    "revision": "2cd3b3fb91d023f0378ac82fd2d80009"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/concat.js",
+    "revision": "554850b012f27578f066f98fcb419424"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/copy-within.js",
+    "revision": "fddac8334cf75b1cceddf0371e6c9fa8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/entries.js",
+    "revision": "139b322f6d9cb648200d50516ff18f0f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/every.js",
+    "revision": "07a2fd4649ff7473fd2ca0d1562092d2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/fill.js",
+    "revision": "6b64c5f1fde67599d71cc90df0a14023"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/filter.js",
+    "revision": "0f133fa4be2ca84a9fc03fcab22c6345"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/find-index.js",
+    "revision": "0e0023b45108880af0af74a78908e19f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/find.js",
+    "revision": "7e8a4225634007d422e5715e0744e11e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/for-each.js",
+    "revision": "aae23947f90e772f36f8bdef768bff3c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/from.js",
+    "revision": "297c2501b556dbff2e7fee6f539d07b7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/includes.js",
+    "revision": "3ed6e80cb12419863aadf10cec25b8d8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/index-of.js",
+    "revision": "459a93bdd6a81235703fda74696e6e47"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/join.js",
+    "revision": "03536d78cd58589fe4186268ea0a2eb0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/keys.js",
+    "revision": "5acb07601c1a18f0f3f54efc7380335c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/last-index-of.js",
+    "revision": "759c42a619c7d8f0f7b2fdb3e644e2d9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/map.js",
+    "revision": "980630fca15dccf6d7aeceee5836cbea"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/of.js",
+    "revision": "c63646fd5bc275fb8d572ef7e904bca1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/pop.js",
+    "revision": "caa40e168231d04aaa6a89b43fdc3461"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/push.js",
+    "revision": "ca935bf2e0fd69bb260a2336dbe3d093"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/reduce-right.js",
+    "revision": "5b7936429a5f80c57e9d8e532284a1bf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/reduce.js",
+    "revision": "102275470f480b4757fff6f382ec2b45"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/reverse.js",
+    "revision": "81bec8d5ffc37c7a482a4bd8b1199eeb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/shift.js",
+    "revision": "cdc8d4a0ff9a2270ee7968bb0949813d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/slice.js",
+    "revision": "cf860ee34eab410a4a2088d5256a5319"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/some.js",
+    "revision": "68b658aa5c9f5e29924868ba7158f7e8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/sort.js",
+    "revision": "ce828cfa8efcd6a1dd1b68b902a4ab3f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/splice.js",
+    "revision": "241ee2cf9162025fd50945ad4dc0df6d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/unshift.js",
+    "revision": "c9a9e496693c35e16a661001f75ba3ff"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/array/values.js",
+    "revision": "ea34bb54dba3218d075ea81c4059f5d5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/asap.js",
+    "revision": "572a5ffd3f20c0277bde4a1cb5c2485d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/clear-immediate.js",
+    "revision": "ada715ffc4a5028715200bed7d444848"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/error/is-error.js",
+    "revision": "0db386c93f1d4f9ec2a1d278a8a4a947"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/get-iterator.js",
+    "revision": "90f9249416353ed22a0d47b725427ab2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/is-iterable.js",
+    "revision": "5288adfd375dc976c27438cff8353d71"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/json/stringify.js",
+    "revision": "a455c323aac3d0984b158641563071e7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/map.js",
+    "revision": "e40bb622c1c707ebfff263258a2d8227"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/math/acosh.js",
+    "revision": "2f3e998e419a7e1c263f4ea71a93c508"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/math/asinh.js",
+    "revision": "d9e035a5b166013831eb78db3220f168"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/math/atanh.js",
+    "revision": "96b1b06b8212fc378abbf9224558ab43"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/math/cbrt.js",
+    "revision": "ff0faa12fda6abda7d26652ec5d651f5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/math/clz32.js",
+    "revision": "e395da5b8128e8f7c47ccb637843f179"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/math/cosh.js",
+    "revision": "a0b3eabd82793683a8b9fca0be338838"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/math/expm1.js",
+    "revision": "0e54f0ed1feeb9dbba9a7a8ee191f229"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/math/fround.js",
+    "revision": "e3984984f2f880e566b7734ed456dd43"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/math/hypot.js",
+    "revision": "bce591c76188bd0fea802112b4b96331"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/math/iaddh.js",
+    "revision": "0326a043a64ad6d97f0499a541fd4f6b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/math/imul.js",
+    "revision": "c3f7ae4eb386aafb009557581ad7f00b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/math/imulh.js",
+    "revision": "42c9c70d369a81858c5a7b51d878f0d9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/math/isubh.js",
+    "revision": "0940767388aa4eceaf6b74f012f51c4b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/math/log10.js",
+    "revision": "fa891197e4ee07d38376e7ac232b73af"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/math/log1p.js",
+    "revision": "93d2b9138a03a53d304d8ca7276160dd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/math/log2.js",
+    "revision": "770e929917ee164fa54a5b74cd182e30"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/math/sign.js",
+    "revision": "67545a349a4c42d5dc355010f72a0dba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/math/sinh.js",
+    "revision": "6b163cf20f86bdb383291299c4704347"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/math/tanh.js",
+    "revision": "3a3e1b5dc6afabd7e5d641c1572df690"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/math/trunc.js",
+    "revision": "41b8421e52a116410e07c2be65413e00"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/math/umulh.js",
+    "revision": "b7c3525f4f1046c79b2292434f64f155"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/number/epsilon.js",
+    "revision": "106871a318ed64440b59445401fe632e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/number/is-finite.js",
+    "revision": "866a17b0b32ad6d90e24f2b1bea931fe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/number/is-integer.js",
+    "revision": "86ac765fc1a00c3b27a45fe0d70c4b16"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/number/is-nan.js",
+    "revision": "feeacc4a0092672a5d25d9ae8ae51a1c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/number/is-safe-integer.js",
+    "revision": "3a6e3307ca9ca85f5812a7215379f0e9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/number/max-safe-integer.js",
+    "revision": "21ee8b23e97012dc9fc76a4ee4177dbd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/number/min-safe-integer.js",
+    "revision": "95a58b12e5d370298efc041310c0510a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/number/parse-float.js",
+    "revision": "d92dddbd673acb4e583a106dc88b54b4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/number/parse-int.js",
+    "revision": "52d02c8f76c40f4fb02b1711d29b402c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/object/assign.js",
+    "revision": "aaec0c8a183ddd624b340c4022db0a38"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/object/create.js",
+    "revision": "d78abb33c5bce74c8cd4979aa22ff2f8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/object/define-properties.js",
+    "revision": "dc79f1e5e85445b75333a9547a79de36"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/object/define-property.js",
+    "revision": "3bd3765c62b75ab53a2c9a63952c757e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/object/entries.js",
+    "revision": "23d4f481c1633dd9e366f1f6ac2e933a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/object/freeze.js",
+    "revision": "863c81f8578263b350c074530867db4a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/object/get-own-property-descriptor.js",
+    "revision": "afdc5fa098ba898186d569a5309c5dee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/object/get-own-property-descriptors.js",
+    "revision": "1c98b2c3b3fa90b7600c9dfccffc4e5e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/object/get-own-property-names.js",
+    "revision": "971099df8c7424c85d1421c2cbcf704d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/object/get-own-property-symbols.js",
+    "revision": "53e64fd7e1628fec10a9b0f2f95eafa3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/object/get-prototype-of.js",
+    "revision": "22c34b3d7fc1a992fac47d45bc65e988"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/object/is-extensible.js",
+    "revision": "bf8941ceb4b8bcbb75feb11b12750d74"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/object/is-frozen.js",
+    "revision": "c401457386034e6e747a4dc992a7041a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/object/is-sealed.js",
+    "revision": "f482b5672c025ab75a453db151322bec"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/object/is.js",
+    "revision": "a0601df60ccf36bbc77eb9ac01eb51ac"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/object/keys.js",
+    "revision": "66655f5df915c8c43f3558142a99e42a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/object/prevent-extensions.js",
+    "revision": "965e42a21314a720da5b0f83075ada09"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/object/seal.js",
+    "revision": "16b3bd97b2adc24ba9516f561ae3cbe4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/object/set-prototype-of.js",
+    "revision": "08c2472c952689194da39a8e931b099e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/object/values.js",
+    "revision": "4d21954158f522002634325895ae717b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/observable.js",
+    "revision": "204e89f30880e891a4c21d35be16dcc1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/promise.js",
+    "revision": "d006f04eee0c1f5107ba17c53646aa1c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/reflect/apply.js",
+    "revision": "0e625c64baf790a42193de570d33ef45"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/reflect/construct.js",
+    "revision": "fa3ccafddac66d93c9b8f852e6ec58d5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/reflect/define-metadata.js",
+    "revision": "f7589533c871637af6a12f7cfad0a170"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/reflect/define-property.js",
+    "revision": "59797c52dc4c3f3afcdb890d5ba2ef69"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/reflect/delete-metadata.js",
+    "revision": "fa7639ad34d1a231ee122c03d2227c5d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/reflect/delete-property.js",
+    "revision": "2f3b088d647c2d46f616ebb80a0f41a3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/reflect/enumerate.js",
+    "revision": "b0f9a76a2aa5d446c115e8fe27a48edd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/reflect/get-metadata-keys.js",
+    "revision": "429db4e8710be823ce3786b7c21f1486"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/reflect/get-metadata.js",
+    "revision": "20cba5d87cafeea2083a405efe34cbc4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/reflect/get-own-metadata-keys.js",
+    "revision": "65a80e9e42080d7524568e2f54d023b5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/reflect/get-own-metadata.js",
+    "revision": "0df9d74816b137b8fa5cc2ca7d54f603"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/reflect/get-own-property-descriptor.js",
+    "revision": "43d9696aca4b8eb21ecd7fe0cd7b1ff1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/reflect/get-prototype-of.js",
+    "revision": "3ea218789acca5b50efe8af622c1af6e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/reflect/get.js",
+    "revision": "e92fa4e03799ef73c3c7fce1c1da783a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/reflect/has-metadata.js",
+    "revision": "91b16d7a398db937c3ba089bdc83bd24"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/reflect/has-own-metadata.js",
+    "revision": "f54ee90b144984eda0aebb10fc9bff0a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/reflect/has.js",
+    "revision": "9ff4a12a9c14b3d94bc52f89723b4941"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/reflect/is-extensible.js",
+    "revision": "fa58586693551cdc9152af742586f29d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/reflect/metadata.js",
+    "revision": "cb0d6f1dd604fce91f30d6d48a48b3fd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/reflect/own-keys.js",
+    "revision": "7150f98ee9c17c37a57576b752838fce"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/reflect/prevent-extensions.js",
+    "revision": "c8229e327efabcdefcb95c1468228c7e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/reflect/set-prototype-of.js",
+    "revision": "4af440aa5ee972b5c43d93d7ec0820ec"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/reflect/set.js",
+    "revision": "e80179f188c548e3d350f561cf42b63d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/regexp/escape.js",
+    "revision": "509258cbbe549ca668028f4ee54843fe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/set-immediate.js",
+    "revision": "1f02037a36e537855e71be49ee017ff8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/set.js",
+    "revision": "ec3b4af8c46772e727c7801c7299990e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/string/at.js",
+    "revision": "9628330bcceeaff8a9bd61f1549a2738"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/string/code-point-at.js",
+    "revision": "7836b2d84e5076b46aceca9c96e08480"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/string/ends-with.js",
+    "revision": "db5dca1574b64e31ab6620f40f435ee5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/string/from-code-point.js",
+    "revision": "d7a46b83a9828c2638b956aa6110ae5e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/string/includes.js",
+    "revision": "69b24407195d46a66e6620a6548ae306"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/string/match-all.js",
+    "revision": "5cd0bf3c70782ee24ab10f874be01c37"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/string/pad-end.js",
+    "revision": "5f63574dba270c0ef8a6bf90b7f0cf97"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/string/pad-left.js",
+    "revision": "5534a294f960210426271c0e40e01bcd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/string/pad-right.js",
+    "revision": "5f63574dba270c0ef8a6bf90b7f0cf97"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/string/pad-start.js",
+    "revision": "5534a294f960210426271c0e40e01bcd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/string/raw.js",
+    "revision": "cb3af40359fde7041bdbc544e310ad77"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/string/repeat.js",
+    "revision": "69f5133042e0e228dfe44a2db46bc166"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/string/starts-with.js",
+    "revision": "e2562a00c49785bb561aaec8edaf15b8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/string/trim-end.js",
+    "revision": "a3466d89c40f1cc0cda35e0ca80303f9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/string/trim-left.js",
+    "revision": "f8e96706c0210848fde1c72a732514ba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/string/trim-right.js",
+    "revision": "49ebbcc3782dd207e94c93d31c212dac"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/string/trim-start.js",
+    "revision": "2c1106dfa939a88da4480a88100caba2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/string/trim.js",
+    "revision": "695b7bb294877bda3fee0cef6b7418ea"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/symbol.js",
+    "revision": "86a17d75eba311ee643c7d6c3fa53156"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/symbol/async-iterator.js",
+    "revision": "2b2241d540178c27a15b3c42ecda3707"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/symbol/for.js",
+    "revision": "f81a16e6f6b5bf83f6474552fdcbb857"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/symbol/has-instance.js",
+    "revision": "3609434a22ef91ef8b1c252bcd44c806"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/symbol/is-concat-spreadable.js",
+    "revision": "3a976c460f1fbb98f34b2cdb4820a824"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/symbol/iterator.js",
+    "revision": "4e72d9e2e5b5860c49177e69b6548de2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/symbol/key-for.js",
+    "revision": "6de5d5af98911253ad8b2b36961649bc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/symbol/match.js",
+    "revision": "acd3c4d9b5bda7cfc678547785be233f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/symbol/observable.js",
+    "revision": "650229322d4da6f4b0d50e8e58414973"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/symbol/replace.js",
+    "revision": "a1b1474fa6f123469cbee2581f549177"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/symbol/search.js",
+    "revision": "f5a5a8302f60fc1851b1a3727a38db93"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/symbol/species.js",
+    "revision": "715e76a547929c5d86d0a8c04cd5242f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/symbol/split.js",
+    "revision": "43784a5ef6311d5e7b62b076becdd259"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/symbol/to-primitive.js",
+    "revision": "fcccc38b6a83ed8ad10fd1aad834b265"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/symbol/to-string-tag.js",
+    "revision": "72c150fe43ad36ddd94c3f2aaef33bc5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/symbol/unscopables.js",
+    "revision": "2532e0661e371e4e1622759e94de9a74"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/system/global.js",
+    "revision": "53d0abbd01b9096fddbd9eceda81df15"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/weak-map.js",
+    "revision": "a3779e4f82f5ee274c5b5d9f83e8de3d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/core-js/weak-set.js",
+    "revision": "5cbc21b980ee70797c3b8ba9bba91965"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_async-generator-delegate.js",
+    "revision": "cc2bc5e3d9d25a46dea402aaa838be0c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_async-generator.js",
+    "revision": "92680f81a30e85084751a1a74783b1fd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_async-iterator.js",
+    "revision": "4f0184af365ba3976ec05fa5637668d4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_async-to-generator.js",
+    "revision": "f22b019bec672c6ea451f16b302062de"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_class-call-check.js",
+    "revision": "0a56264f7dc79aa52c9aa43ae8ed8f0b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_create-class.js",
+    "revision": "9a7b36f17e8c2327d97fa875a769c5f5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_defaults.js",
+    "revision": "14a4cbf645b2aa866a0915629846daf4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_define-enumerable-properties.js",
+    "revision": "9955ca5f63b04a46994b1d519a8e4fd0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_define-property.js",
+    "revision": "ee955616c285ec109b758a2eb529349e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_extends.js",
+    "revision": "90a9d3ea46e69f56b2aac7313f776bca"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_get.js",
+    "revision": "2539cc94230160b10a2d63bef28d25f4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_inherits.js",
+    "revision": "74a30dc18a198f1b7fb635b547fd0bc6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_instanceof.js",
+    "revision": "f49a7c77c83e64991f1a03223ace6421"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_interop-require-default.js",
+    "revision": "eb1d33a1afc9f0f2e48b87b3dc711808"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_interop-require-wildcard.js",
+    "revision": "03c5850baa8f38c6cdf2abbb76a71da5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_jsx.js",
+    "revision": "936ae3fa6d6c6f79cc5af1494fc08f0b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_new-arrow-check.js",
+    "revision": "cf441e6d780525a512da37aeef0a9251"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_object-destructuring-empty.js",
+    "revision": "8b00230a1ca1dd3e5803987cbef6f8c4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_object-without-properties.js",
+    "revision": "c6019f1b97a41366fb876476243b8372"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_possible-constructor-return.js",
+    "revision": "14b0dfa22ba5ca535eb999ad0c6304f5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_self-global.js",
+    "revision": "7e940733d5e65b6145dae2bf084b5dbd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_set.js",
+    "revision": "0b2cddfd98ad4d6242d8186f583bdde1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_sliced-to-array-loose.js",
+    "revision": "16bb3a04b6d8b6769f1c059448edff02"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_sliced-to-array.js",
+    "revision": "5a5a9e21fdbdfa21d97be52ef03b0547"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_tagged-template-literal-loose.js",
+    "revision": "2c268dcde2631cf19042abb205d17d19"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_tagged-template-literal.js",
+    "revision": "32e4c94ff15ddd15beb43cbe15d5f9cb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_temporal-ref.js",
+    "revision": "629808c46135ae223ad07e2563596b7e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_temporal-undefined.js",
+    "revision": "1112e90d1e3bcb0ff1d99aa9b707ebbb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_to-array.js",
+    "revision": "05abca4836045c7fe9254243638e501c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_to-consumable-array.js",
+    "revision": "fa55fc3aa968b8426dc8bd4912c842e7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/_typeof.js",
+    "revision": "dd1b66a18153c72eef68bb0ed94368e5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/async-generator-delegate.js",
+    "revision": "cc2bc5e3d9d25a46dea402aaa838be0c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/async-generator.js",
+    "revision": "92680f81a30e85084751a1a74783b1fd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/async-iterator.js",
+    "revision": "4f0184af365ba3976ec05fa5637668d4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/async-to-generator.js",
+    "revision": "f22b019bec672c6ea451f16b302062de"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/asyncGenerator.js",
+    "revision": "a693b0512e31335a6d40f2643eb8e4e2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/asyncGeneratorDelegate.js",
+    "revision": "21ab24ee08116418efc78fe2ce4bdd9e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/asyncIterator.js",
+    "revision": "28815d131a7e02adf1292e76927a66cb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/asyncToGenerator.js",
+    "revision": "417ffe76f8b16112c3862c87021ffc17"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/class-call-check.js",
+    "revision": "0a56264f7dc79aa52c9aa43ae8ed8f0b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/classCallCheck.js",
+    "revision": "b7a2709567b57f2b2e65a5923fbecc5b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/create-class.js",
+    "revision": "9a7b36f17e8c2327d97fa875a769c5f5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/createClass.js",
+    "revision": "d73e0c18a1ff9cf840c304941b4e863f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/defaults.js",
+    "revision": "af42c2fc7ae9178d6a978a8ef6887a06"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/define-enumerable-properties.js",
+    "revision": "9955ca5f63b04a46994b1d519a8e4fd0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/define-property.js",
+    "revision": "ee955616c285ec109b758a2eb529349e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/defineEnumerableProperties.js",
+    "revision": "8bc3effc3635a1bfc2510de11f56b532"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/defineProperty.js",
+    "revision": "b436dc48f9678fa053d2bdc20efc75f8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/extends.js",
+    "revision": "430f61a4b880d58aa950e616cbdf514e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/get.js",
+    "revision": "e643af679759ed67a563574f36cd2c5a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/inherits.js",
+    "revision": "87886ef97b41ee05e5aa0277ba7b4eda"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/instanceof.js",
+    "revision": "1271a3077eefa35766d4b3cc2391f488"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/interop-require-default.js",
+    "revision": "eb1d33a1afc9f0f2e48b87b3dc711808"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/interop-require-wildcard.js",
+    "revision": "03c5850baa8f38c6cdf2abbb76a71da5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/interopRequireDefault.js",
+    "revision": "733ecc7f383f3d6872cb436d4a5cf926"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/interopRequireWildcard.js",
+    "revision": "2da0140d85e9cbeaeb4645377dd7e5e7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/jsx.js",
+    "revision": "0ba780e72e691175030e70f1843302be"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/new-arrow-check.js",
+    "revision": "cf441e6d780525a512da37aeef0a9251"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/newArrowCheck.js",
+    "revision": "f3a47f848fdcb44493f45ad35312990e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/object-destructuring-empty.js",
+    "revision": "8b00230a1ca1dd3e5803987cbef6f8c4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/object-without-properties.js",
+    "revision": "c6019f1b97a41366fb876476243b8372"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/objectDestructuringEmpty.js",
+    "revision": "67b982791192ee123688e9ffe6a36464"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/objectWithoutProperties.js",
+    "revision": "c2d78dd5f581bcafaae448458eebb0f2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/possible-constructor-return.js",
+    "revision": "14b0dfa22ba5ca535eb999ad0c6304f5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/possibleConstructorReturn.js",
+    "revision": "a07f4c753946547ae4820629cc46cf60"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/self-global.js",
+    "revision": "7e940733d5e65b6145dae2bf084b5dbd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/selfGlobal.js",
+    "revision": "df980bae62f6f9cd06c172a9fae31c01"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/set.js",
+    "revision": "c725eab94721bb005474d7b54a1972aa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/sliced-to-array-loose.js",
+    "revision": "16bb3a04b6d8b6769f1c059448edff02"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/sliced-to-array.js",
+    "revision": "5a5a9e21fdbdfa21d97be52ef03b0547"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/slicedToArray.js",
+    "revision": "7cac28f7a985b417b7094b82677c8a76"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/slicedToArrayLoose.js",
+    "revision": "27be25a9091f772510a2722fb9df6629"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/tagged-template-literal-loose.js",
+    "revision": "2c268dcde2631cf19042abb205d17d19"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/tagged-template-literal.js",
+    "revision": "32e4c94ff15ddd15beb43cbe15d5f9cb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/taggedTemplateLiteral.js",
+    "revision": "82a81078a04b3e7a3793b9d48a483902"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/taggedTemplateLiteralLoose.js",
+    "revision": "9c44d62d4cc05efa999977f3093f052a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/temporal-ref.js",
+    "revision": "629808c46135ae223ad07e2563596b7e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/temporal-undefined.js",
+    "revision": "1112e90d1e3bcb0ff1d99aa9b707ebbb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/temporalRef.js",
+    "revision": "4d986eba745123a83c150cbbdf0c5414"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/temporalUndefined.js",
+    "revision": "7ea5937b834c280f36c26920ae722fa7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/to-array.js",
+    "revision": "05abca4836045c7fe9254243638e501c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/to-consumable-array.js",
+    "revision": "fa55fc3aa968b8426dc8bd4912c842e7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/toArray.js",
+    "revision": "17772b55f35b871e3f880b15ef7018cf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/toConsumableArray.js",
+    "revision": "0d7faca8ca091a2287a4abae22a9d643"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/helpers/typeof.js",
+    "revision": "afa11dd42e3ca5eaa416e7d1c2db85bf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-runtime/regenerator/index.js",
+    "revision": "ad8a50a9fe4377284831ce798e873096"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-template/lib/index.js",
+    "revision": "91dbb6144c3e85bb36c75cded12e3c7b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/cache.js",
+    "revision": "a9694bd219079abd407d7d756d711bba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/context.js",
+    "revision": "3d350fb5ba73fafb37f3d8b5a315bb1d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/hub.js",
+    "revision": "e572d4d66687f63f0cd5be3c1905dbce"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/index.js",
+    "revision": "88929674efa3855a9c9daa38bbd9fa73"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/path/ancestry.js",
+    "revision": "11caad894eb1addcab9e494d447251f7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/path/comments.js",
+    "revision": "e5be5e559f5fa3839f7c4db6c7bb6f10"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/path/context.js",
+    "revision": "cc6c57b40faea975fa7386a1ddc3041d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/path/conversion.js",
+    "revision": "d9eaa98f967691f3e29407ad1921f4dd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/path/evaluation.js",
+    "revision": "e559b16a3281cf12b9e69a77ad149603"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/path/family.js",
+    "revision": "3a4af1bda74362f6030ed296d258f97d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/path/index.js",
+    "revision": "e38d84b3b9ad0513d16e27b041ad304d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/path/inference/index.js",
+    "revision": "dcc812eeb6d362f48c35cae0d97e0ce6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/path/inference/inferer-reference.js",
+    "revision": "b5a6800ed155ac5908a1d00659111e93"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/path/inference/inferers.js",
+    "revision": "d47d8c22eab000d4014db1a785a502c2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/path/introspection.js",
+    "revision": "7cef08349b0cc29d1fa6d30e9adece52"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/path/lib/hoister.js",
+    "revision": "a22aa4c39f691a854bba7b03bf04e69a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/path/lib/removal-hooks.js",
+    "revision": "7eb2f869b592d41c91b76497f6cb8f34"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/path/lib/virtual-types.js",
+    "revision": "3803be2a48becb0c389c7962db4ed966"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/path/modification.js",
+    "revision": "857c461ee1e175acb9bbd85ee45f3d60"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/path/removal.js",
+    "revision": "de38e8053cbe13ba099585e7e0ec95d8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/path/replacement.js",
+    "revision": "9976724c750e012b2398e76043055f55"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/scope/binding.js",
+    "revision": "465dc79bcdd383299620cbccc8034f69"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/scope/index.js",
+    "revision": "a9da448b380a00764c6044223b6f528e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/scope/lib/renamer.js",
+    "revision": "2aed63b374d9f141e96ae7f34e66c36c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-traverse/lib/visitors.js",
+    "revision": "8260a9d0cb6e84e44a9f8a2d2a70d209"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-types/lib/constants.js",
+    "revision": "d52e197a7836eeb2070949925aed3ba5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-types/lib/converters.js",
+    "revision": "59e30c451463de917b70e838dbf1daad"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-types/lib/definitions/core.js",
+    "revision": "84965d4e49674f0c13dc61bc4dc4f8a9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-types/lib/definitions/es2015.js",
+    "revision": "c59900812f69f0e1ea6086b38c49e62d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-types/lib/definitions/experimental.js",
+    "revision": "7079a89094150b093764c679159af6c3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-types/lib/definitions/flow.js",
+    "revision": "a52b62a3c1abd84acc0922cb90315d7a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-types/lib/definitions/index.js",
+    "revision": "2445079b5b7f1f5f7283cd588347e963"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-types/lib/definitions/init.js",
+    "revision": "0949293387813619257f460dc7b8a477"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-types/lib/definitions/jsx.js",
+    "revision": "ec859c732fcb589bf817224fa6b7f5ef"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-types/lib/definitions/misc.js",
+    "revision": "f108533e9c9ac0a8b3ffc3706c3261a4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-types/lib/flow.js",
+    "revision": "f0da2d7dbf5319de67dbc195f0eeadaa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-types/lib/index.js",
+    "revision": "efbdeed1a80ce1732cd7107475c59741"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-types/lib/react.js",
+    "revision": "c947ebb62adfa232544a286b3105826c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-types/lib/retrievers.js",
+    "revision": "735ba5be82320a8a7a4deafc7074e840"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babel-types/lib/validators.js",
+    "revision": "f2a959508a103d267c26a60fc8cfaab4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babylon/bin/babylon.js",
+    "revision": "aee927098ac5f8fe3487bfa47a09864f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babylon/bin/generate-identifier-regex.js",
+    "revision": "e21b7b58a53a8b933d89ae3cc0bf6fc9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/babylon/lib/index.js",
+    "revision": "c2ba1122b91536f0556822eb510ce7a2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/balanced-match/index.js",
+    "revision": "ca7939972f730b534187f79544919e4e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/boolbase/index.js",
+    "revision": "a0de92a49fc428388ff6e2cd74b40bee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/brace-expansion/index.js",
+    "revision": "2e265baed5f4147160f144389684af9c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/braces/index.js",
+    "revision": "a366bb0adfda2ee9daf45c136b59fd99"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/camelcase/index.js",
+    "revision": "e68852f4b0f58cdc886aa9d92bd7e171"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/chalk/index.js",
+    "revision": "678265834c631a999022893686def9c2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/cheerio/index.js",
+    "revision": "e0681e83badc07daf9ec16c295e7c005"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/cheerio/lib/api/attributes.js",
+    "revision": "55e26844dbbfafd7a257b5fd4b7e53b2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/cheerio/lib/api/css.js",
+    "revision": "66ca315b869516d6d8d2b580a3b6599b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/cheerio/lib/api/forms.js",
+    "revision": "8139eefeb9f795809f6fab3af91b19cf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/cheerio/lib/api/manipulation.js",
+    "revision": "61097c6cb2d752aacebc941482faf5d4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/cheerio/lib/api/traversing.js",
+    "revision": "9fb3c553e754fdc8a2a2fce70665c28c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/cheerio/lib/cheerio.js",
+    "revision": "ee3af46f51e8bcc3fbd43ea30016b361"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/cheerio/lib/options.js",
+    "revision": "4c2fffbf9453d2bc584a31bbc84c31e2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/cheerio/lib/parse.js",
+    "revision": "8bbe2b0e2e8f180b5d4529877bc6acf5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/cheerio/lib/static.js",
+    "revision": "d4e1f79d530392e013811a6b591436a2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/cheerio/lib/utils.js",
+    "revision": "ff3a6f8d1a27196ed24e5403a5a7e62b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/chokidar/index.js",
+    "revision": "59e89a1bb6617355eaa84b3c634accc8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/chokidar/lib/fsevents-handler.js",
+    "revision": "3e4e4ee4c0bc4ab68628f2613e105deb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/chokidar/lib/nodefs-handler.js",
+    "revision": "84aceca5b779530d5c795bb584ae3a61"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/clap/index.js",
+    "revision": "a8b30d13ee5c01f0d53e2275625a6f05"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/coverage/base.css",
+    "revision": "31d745d917e15e49443ddf799f1e5669"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/coverage/coa/index.html",
+    "revision": "6e9ec5f3ed74701ee0b64f8588269b59"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/coverage/coa/index.js.html",
+    "revision": "b001581b8f59f25451b4cf8020c6459a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/coverage/coa/lib/arg.js.html",
+    "revision": "fd941a5bc4c57132b45363640139e782"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/coverage/coa/lib/cmd.js.html",
+    "revision": "ddf718c871e8159fab066f93bdb86ee4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/coverage/coa/lib/coaobject.js.html",
+    "revision": "a89250905d7ed0ff8a1826fadd7c9372"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/coverage/coa/lib/coaparam.js.html",
+    "revision": "22c1b5aa8d9ad62ea72aa5397fd047e6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/coverage/coa/lib/color.js.html",
+    "revision": "c2c42be8a510f543dda7237ca03ef8d5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/coverage/coa/lib/completion.js.html",
+    "revision": "78df9f60a86c7928238b8fc1e2e18875"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/coverage/coa/lib/index.html",
+    "revision": "3dd9586904bba4215f67bf383be4d576"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/coverage/coa/lib/index.js.html",
+    "revision": "b0d3c06749faf7247ee42f807edcdd60"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/coverage/coa/lib/opt.js.html",
+    "revision": "19505241f76f95803dfdca2bfa3098cd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/coverage/coa/lib/shell.js.html",
+    "revision": "f07d42146db7f689608d03d483f9235c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/coverage/index.html",
+    "revision": "8b0687f4db066895fd531582f63645cb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/coverage/prettify.css",
+    "revision": "31f0c9da5ac09f2563cab46ebc6e445a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/coverage/prettify.js",
+    "revision": "fdaf2510a4125a409882ed554f89c039"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/coverage/sorter.js",
+    "revision": "2451f54f011e7d0295be5a4c6fd597f5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/index.js",
+    "revision": "5a94457e382ff73d4d7a3e62aec8c687"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/lib/arg.js",
+    "revision": "1eae84f9be1948da2e11b2d1d32a4f52"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/lib/cmd.js",
+    "revision": "ffc7d671a6f648c1be697b2cb6f220e1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/lib/color.js",
+    "revision": "ece2d43194297a701c0b76739f2c279f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/lib/completion.js",
+    "revision": "7204d6968f5625c14a378f886db16436"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/lib/index.js",
+    "revision": "54fc6c0916f075b9c1172c9009fd7b22"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/lib/opt.js",
+    "revision": "48d0b9e51d3189438703e958619489d9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/lib/shell.js",
+    "revision": "1650c1e0361e9f85f6c5aa696c02b876"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/qq.js",
+    "revision": "f41229b121a69b2824a3bffaea4e43b1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/test/coa.js",
+    "revision": "de4059e925c55c61a1b44aa5828419ec"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/test/shell-test.js",
+    "revision": "0e2b151f8faf69f3348e212cc1e845e0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/tests/api-h.js",
+    "revision": "2eee95e5faaaa9cc745695b995e2af39"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/coa/tests/h.js",
+    "revision": "1491334fa52bb20d4a7157caccacda85"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/color-convert/conversions.js",
+    "revision": "bc7d36768e1bcc20aeb5e2007a80ea96"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/color-convert/index.js",
+    "revision": "3dd0a1f66c1d90dd2692e1bfa7eeb05a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/color-convert/route.js",
+    "revision": "4cac66dbfd36fdb5abff39ebbf34d301"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/color-name/index.js",
+    "revision": "405840ec3052209f357288fe4c0f4414"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/color-name/test.js",
+    "revision": "4d018d689a1a257a1c4e09bb296dbb9e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/colors/examples/normal-usage.js",
+    "revision": "c0b05aa5df8703a3e6bfbc3850025ef2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/colors/examples/safe-string.js",
+    "revision": "75741ef1a3ae3b2b7a943cee9603864b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/colors/lib/colors.js",
+    "revision": "ac75aaa2acbd4f2d2893a79540a0a72e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/colors/lib/custom/trap.js",
+    "revision": "f2ee7bb09ae20fa870de29e5f4005ccc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/colors/lib/custom/zalgo.js",
+    "revision": "60bdc0fd294bbe9816364085aa9d55c3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/colors/lib/extendStringPrototype.js",
+    "revision": "28953b03cedacabc04b20f274b61585d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/colors/lib/index.js",
+    "revision": "ede95a1863e308990d4d6a9304a33969"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/colors/lib/maps/america.js",
+    "revision": "c5db7181a898205c5a11d574d2547505"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/colors/lib/maps/rainbow.js",
+    "revision": "ed9f81fd564e13f7f700934d402e1295"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/colors/lib/maps/random.js",
+    "revision": "215190c55bec091e76d4ab23d2e800f0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/colors/lib/maps/zebra.js",
+    "revision": "4c17884a7b48ac35a55cae719706e16e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/colors/lib/styles.js",
+    "revision": "cea3b4a8ea9ddc87024a0b1144f22e89"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/colors/lib/system/supports-colors.js",
+    "revision": "3b2eb2b3f23d060b03e22594975e8b65"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/colors/safe.js",
+    "revision": "063c215cd884513a25751997f5114a14"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/colors/themes/generic-logging.js",
+    "revision": "8ae0394cb9f1165729513b6c35767b27"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/commander/index.js",
+    "revision": "e1aa79336dfe7b0c5cf522726b502a0e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/concat-map/example/map.js",
+    "revision": "42b2341e75e2e29012793c31222c2783"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/concat-map/index.js",
+    "revision": "8ef754ba23fdd37b3e8a1c52739ace80"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/concat-map/test/map.js",
+    "revision": "a8e1d80e4629945216de220e4b580cf5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/convert-source-map/example/comment-to-json.js",
+    "revision": "6e9cbe0df1d949101c0e03700379e595"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/convert-source-map/index.js",
+    "revision": "fa0967b51d8b3129f99ff6d1d70968e9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/convert-source-map/test/comment-regex.js",
+    "revision": "117d622a5a47d552ed5a5c5e31a5eb01"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/convert-source-map/test/convert-source-map.js",
+    "revision": "01e2c031d2b14f0b731192310243d43a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/convert-source-map/test/fixtures/map-file-comment-double-slash.css",
+    "revision": "df401cff69e0bb190f470341e07f2b7a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/convert-source-map/test/fixtures/map-file-comment-inline.css",
+    "revision": "96e8ec046fae1124b74c691216f22f74"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/convert-source-map/test/fixtures/map-file-comment.css",
+    "revision": "9b351c092467778bb41af255ae511f9d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/convert-source-map/test/map-file-comment.js",
+    "revision": "ec593dbdb0e6e40b2dd9fb70800b10e4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/build/config.js",
+    "revision": "914179678e0ee69ec57886b4469e93e7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/build/index.js",
+    "revision": "eb17d8a28d424d693d0e7ff3b820e80f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/client/core.js",
+    "revision": "60f3aa9ae017bd4bf91777f9a1ad3171"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/client/core.min.js",
+    "revision": "f1a91ba5e0855921d0b7aa851a6d7992"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/client/library.js",
+    "revision": "965fae8af7b82f77f1cb690182d27b42"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/client/library.min.js",
+    "revision": "95eab1863a6bf0283cc6509819262c20"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/client/shim.js",
+    "revision": "7027ed83f3543ed4e9c71dae1813bc1b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/client/shim.min.js",
+    "revision": "3b5507fed36bedde623b49216566ff61"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/core/_.js",
+    "revision": "d861fb3b00fb776dcb6fc4887c4ac80c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/core/delay.js",
+    "revision": "63aac485c8a03510b81a0a4c2bd18336"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/core/dict.js",
+    "revision": "feba9cdeebb0c7261fab886a8170c624"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/core/function.js",
+    "revision": "46886353516d24fb4414f321d36cf9a6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/core/index.js",
+    "revision": "abb9dc227fbadd623e74c0c5a465b3aa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/core/number.js",
+    "revision": "adf880999fd3cabd4f64f4e927815437"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/core/object.js",
+    "revision": "76af80c939e60629f14f596a1b8eb9ed"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/core/regexp.js",
+    "revision": "5e0ca2533af67317672788ecf5b82e80"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/core/string.js",
+    "revision": "04e348d899e56e08d88ac493807758cc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es5/index.js",
+    "revision": "b601e9a4d163a5815b9880a071334392"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es6/array.js",
+    "revision": "20abcbd3de867deb826705c5667421b3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es6/date.js",
+    "revision": "608561d457627d904bbea76992c3d808"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es6/function.js",
+    "revision": "cc126fb54312a39f2d86e6a0b3d507ec"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es6/index.js",
+    "revision": "e09da02807184be298ecfd71e4337d75"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es6/map.js",
+    "revision": "305b71c8276cbbce53ae7f297215e390"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es6/math.js",
+    "revision": "4d3bbd5b266f086a3373a2deda1a7935"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es6/number.js",
+    "revision": "99871ca41478c8c3f8d4bdcf5864ce46"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es6/object.js",
+    "revision": "80e47083af80d3485e866f0c0c9c0bc9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es6/parse-float.js",
+    "revision": "f97592318c11d79ac384a28eb3373eda"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es6/parse-int.js",
+    "revision": "e9475584baa3e867e8bd82b5149bc3aa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es6/promise.js",
+    "revision": "e03f4984e81dd04008ab177f847e4f11"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es6/reflect.js",
+    "revision": "4008590633906e22b5763115e67aa10c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es6/regexp.js",
+    "revision": "db341e37c7a7bf327afc9a0390d75b60"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es6/set.js",
+    "revision": "7cf4da26032fe6e2c5eeb441e01433a2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es6/string.js",
+    "revision": "7cf5208f0dc6f04add0ce357e8943d39"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es6/symbol.js",
+    "revision": "020580235db81807a9c47ff455990552"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es6/typed.js",
+    "revision": "63eca3b8637d85042923bf61b3da1344"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es6/weak-map.js",
+    "revision": "2be678e93f8464defc551657586abb2d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es6/weak-set.js",
+    "revision": "11edddbf1bdfdb48206f3a7fb5d5f5ce"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es7/array.js",
+    "revision": "564aca8f25aeb0705ec691ba4ed744e6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es7/asap.js",
+    "revision": "23332027d2dd56a4d6c979819e53dbf9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es7/error.js",
+    "revision": "5fd7e4980af3243104164372a35a22cc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es7/global.js",
+    "revision": "8b496bc0ff982b0ccf81f5842ad9c525"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es7/index.js",
+    "revision": "37d8c2f68c4020cc5961a13a2faa05be"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es7/map.js",
+    "revision": "03eb71cfc1c2ee99a9d0c7e3dbfc8384"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es7/math.js",
+    "revision": "75bab07b317005cb73c8ff70f686beb9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es7/object.js",
+    "revision": "c8dbf0400584e4e70bf1f43afe3da69a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es7/observable.js",
+    "revision": "2f3b12af0c02ed1a6e3ffc65938a2ff4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es7/promise.js",
+    "revision": "3aafeea1f244e8adca1e23d0d49c11e9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es7/reflect.js",
+    "revision": "b6cb32ff150b93852787e754708342d7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es7/set.js",
+    "revision": "2a1fd91aac0844e1c625c3120bc08e24"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es7/string.js",
+    "revision": "b1d3a55182678f5796c53578f4c14857"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es7/symbol.js",
+    "revision": "b549137a6431804d5371cc849d77cd10"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es7/system.js",
+    "revision": "31740ccee94e931d648e08f4e342ce05"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es7/weak-map.js",
+    "revision": "2931951f89c5fccbdf0775b47514db7e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/es7/weak-set.js",
+    "revision": "56355ad52f0b921d6a216def46a50c5e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/_.js",
+    "revision": "d861fb3b00fb776dcb6fc4887c4ac80c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/concat.js",
+    "revision": "eb6b76e9e7d1409c269be21b157f9ddf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/copy-within.js",
+    "revision": "3f0183f2dacebbbafddb49effee86127"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/entries.js",
+    "revision": "89eb10fe1e27167114dd343f85855026"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/every.js",
+    "revision": "960b642298c4a886ea83a261a9dfea95"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/fill.js",
+    "revision": "1030d038afc3d7bf0cef74624a937be2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/filter.js",
+    "revision": "ff51b28183760c1d86656b8c6b3f6210"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/find-index.js",
+    "revision": "b2f35155fecaee264e4a665db539627c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/find.js",
+    "revision": "fbca513d68cf75a4cd0e62eb9f005868"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/flat-map.js",
+    "revision": "997376e282ce68fae0d32eb13a477aef"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/flatten.js",
+    "revision": "2b1b5dfae0e05c0042a154287b6c051a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/for-each.js",
+    "revision": "1a7dad3a3fc7435c4b71e2f541d4d7fc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/from.js",
+    "revision": "96d3408129cde575c2460ef03cd81ac3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/includes.js",
+    "revision": "dd13924b59d0b674dd0130c6a85c8480"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/index-of.js",
+    "revision": "2399b220d5573663b3cbd4ec058f3991"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/index.js",
+    "revision": "a83ac777f2257aada297d7d3c1e220eb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/is-array.js",
+    "revision": "3444da69be55221c679cf9ce45c0c38b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/iterator.js",
+    "revision": "8af75261a9d4acd038eebe3e14f3e4c0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/join.js",
+    "revision": "e7bdb66d4b80b8f82845533c3e6aefd9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/keys.js",
+    "revision": "6c50135bb40a1803d220785279e479b2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/last-index-of.js",
+    "revision": "a53c0525662897d5c54aa35d4e968f79"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/map.js",
+    "revision": "a249aa09b1d9dbcfdb4e0f926b524d20"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/of.js",
+    "revision": "c0113df2aa6e8d55bc797e83e08e1339"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/pop.js",
+    "revision": "6c4ce382f28e2cd086a85e3064b366c5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/push.js",
+    "revision": "8a96bbac8b6e447f1f9640bcc3d18a0d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/reduce-right.js",
+    "revision": "b7c82bb72091352ab119e1769dbfdc01"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/reduce.js",
+    "revision": "f4ea3c17852f61949cc0c6dba1fffb71"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/reverse.js",
+    "revision": "e6f0ed1c385148cc8a4bb9c2d2b3f60f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/shift.js",
+    "revision": "4da3ff4573ec16da16a7da024bedadf9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/slice.js",
+    "revision": "c6d276a55fcb5bf0fc320983c9ca71af"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/some.js",
+    "revision": "f27d93483cdd03d53b3fa840b0494675"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/sort.js",
+    "revision": "f7f78f350e7dbfa47b2a17f23352e352"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/splice.js",
+    "revision": "8487f1dc023c3aadecdb0de7eb6a2125"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/unshift.js",
+    "revision": "fe04accdb50143ea1989c9987ea77986"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/values.js",
+    "revision": "8af75261a9d4acd038eebe3e14f3e4c0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/copy-within.js",
+    "revision": "4ab3ee6e4332ec1467dfee12f79bef79"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/entries.js",
+    "revision": "95f01e50ab946bba35aaee33f0595fc6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/every.js",
+    "revision": "5b129272b8fbe40319d17f3ac9ac26b2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/fill.js",
+    "revision": "93a98c4f3a13435e8d6829dbc8c5b53b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/filter.js",
+    "revision": "6a96ee3f846868bd4493f077e02da9aa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/find-index.js",
+    "revision": "f09442108ed18c6aee7032e4e319317b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/find.js",
+    "revision": "2182272b5d3c3e2ab18cbc5e979bc47e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/flat-map.js",
+    "revision": "f85b37806f75352a3f9672d6a069c564"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/flatten.js",
+    "revision": "ae688ab7449f30da97ecf416689929fb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/for-each.js",
+    "revision": "96ec6397bbcbf5753f782c38464c736b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/includes.js",
+    "revision": "94624aefa956d487b4a185885cb0661b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/index-of.js",
+    "revision": "6a918b2da47fdaf783199bbe6d69760b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/index.js",
+    "revision": "a061397c27d8f8812aedcf7c1b0f4e3b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/iterator.js",
+    "revision": "1dcae10ca0ff8eb66e087f2e4d7f965b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/join.js",
+    "revision": "834d5a9a9b947c619b8a749d16d00bfe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/keys.js",
+    "revision": "834ed505cb506e5830687dc898d01ae0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/last-index-of.js",
+    "revision": "fdc9fc21f6e7ee7ea5a5c605acfb0d58"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/map.js",
+    "revision": "2c584c27c443972460bc51e53e3650ec"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/reduce-right.js",
+    "revision": "3f7352fb79ff4f8a2f14d702c0965be3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/reduce.js",
+    "revision": "8748f935145decad7743fbd17dd37470"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/slice.js",
+    "revision": "ef096cab63e72c5499c3ce36a5347f68"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/some.js",
+    "revision": "900b96dd3a6971db3f0d8798361fbe08"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/sort.js",
+    "revision": "aaae2e6c02e02f0ac2053c09173a2252"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/array/virtual/values.js",
+    "revision": "1dcae10ca0ff8eb66e087f2e4d7f965b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/asap.js",
+    "revision": "23332027d2dd56a4d6c979819e53dbf9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/clear-immediate.js",
+    "revision": "1b52fe54c53bae9b9d0961a2c5a1c732"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/date/index.js",
+    "revision": "f0f6cd7346abfcf8cf4c4326e80f0b2b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/date/now.js",
+    "revision": "6820cb1564c10f51dc11e3a8830d4537"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/date/to-iso-string.js",
+    "revision": "ce0f1608ac7ce097dcf437e58c5dba50"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/date/to-json.js",
+    "revision": "8a1e3e0369f2b1a455c4669968ab4e61"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/date/to-primitive.js",
+    "revision": "f4c3d6388f1bb26a154ff8a9f0d13425"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/date/to-string.js",
+    "revision": "4efc8f8aecc100a2fee852d7aad74d03"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/delay.js",
+    "revision": "63aac485c8a03510b81a0a4c2bd18336"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/dict.js",
+    "revision": "feba9cdeebb0c7261fab886a8170c624"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/dom-collections/index.js",
+    "revision": "824614e2f498d51f3defb818860fb891"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/dom-collections/iterator.js",
+    "revision": "c77545b5edcdde2e39e7459b6ea6fa89"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/error/index.js",
+    "revision": "8d547a4bced81c9c94308c2d745ea14b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/error/is-error.js",
+    "revision": "f940d8ce7ccaadead23d091dbe46e441"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/function/bind.js",
+    "revision": "c0e80f1c8431a332ac59bbcaa19f0d5f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/function/has-instance.js",
+    "revision": "985093e7dcddc6297129876f7ced8533"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/function/index.js",
+    "revision": "c610d9548be90dbcbbbd36fe18d2cb77"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/function/name.js",
+    "revision": "4ba513dc96e60ef02c117c0a750cfaf1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/function/part.js",
+    "revision": "f923789a5ae3335c7678044adfbbdc62"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/function/virtual/bind.js",
+    "revision": "e323da9fca0bdb8e019dc6fb33dcc334"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/function/virtual/index.js",
+    "revision": "15bd7d727b1f917171e92d249abc9eba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/function/virtual/part.js",
+    "revision": "38a01005b8ede951157cf69ba92335de"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/get-iterator-method.js",
+    "revision": "3eaed6da0a633074b67b3f9bc592a789"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/get-iterator.js",
+    "revision": "0b03fca8e8d17c973563b81cbbb03c1c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/global.js",
+    "revision": "8b496bc0ff982b0ccf81f5842ad9c525"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/is-iterable.js",
+    "revision": "839a4cd6fb3e9e690e038172ed00ae59"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/json/index.js",
+    "revision": "230a30a9fa2d5baee377d147ba208de5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/json/stringify.js",
+    "revision": "1fc6bbd820629f23b0b2a86a765564f4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/map.js",
+    "revision": "1894284b81749ff2289d3d6e02ee33e2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/map/from.js",
+    "revision": "61de102c5dd9a8e62e0392deb8d5afed"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/map/index.js",
+    "revision": "bb2e01e637159d777c57ad995e7f3c9d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/map/of.js",
+    "revision": "a686f07e426444e0098f1e8c9d95e1fc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/acosh.js",
+    "revision": "5c7a848e7b4346b3be0bbc03abef4037"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/asinh.js",
+    "revision": "35be8431278bfd13d4b0f67b9505b790"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/atanh.js",
+    "revision": "1cafc13b5ca6608d6af9a624eaa539d8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/cbrt.js",
+    "revision": "9999df1afe174e2e56723e0a3624d66c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/clamp.js",
+    "revision": "fb26a9fc34ee9611c083f981c73f9533"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/clz32.js",
+    "revision": "33592ba208cd6e9e285451f9acef0019"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/cosh.js",
+    "revision": "d2e2455b268237af749f349e92f2714c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/deg-per-rad.js",
+    "revision": "e6ffc02337b9eaf677551dbe9a3b429e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/degrees.js",
+    "revision": "65baf58937c1cca6f266257a2f096636"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/expm1.js",
+    "revision": "fca863651582fa13d0c8888842eb97a5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/fround.js",
+    "revision": "50f377152e2d2cc40c1b2e5fdd1fc6ba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/fscale.js",
+    "revision": "087d78f1cea5c96fc7c6f4da0ce68449"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/hypot.js",
+    "revision": "1bfba6f1962fa31e616a57cd5d440f55"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/iaddh.js",
+    "revision": "427d2c47e017a6aa5fbbf770aa1d329f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/imul.js",
+    "revision": "64314ef68b4fe8b7db8c794cee30b2a8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/imulh.js",
+    "revision": "bca2dccd8aeeaed6c3a8e96e8d2cf9bf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/index.js",
+    "revision": "a38ab15c635cd21e1d2599677ed5872a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/isubh.js",
+    "revision": "7052fda1bc3021554372d331efbc2ccf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/log10.js",
+    "revision": "53144fd497de236999816ca2bed72ef2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/log1p.js",
+    "revision": "d65cf0a22c9c5f9349cb49b5016c945d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/log2.js",
+    "revision": "175487f06779511436565885be6af6e1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/rad-per-deg.js",
+    "revision": "5d72189271f167ee1d3c02b71124b570"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/radians.js",
+    "revision": "f0cac0dd4bf685ba55e304df0f3198f5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/scale.js",
+    "revision": "d10b1432ace9b83c84eb6d4df736849a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/sign.js",
+    "revision": "de15ea053190713fbbc95d3b355583fc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/signbit.js",
+    "revision": "492df517718b01b4a3954e3e1ed9ada8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/sinh.js",
+    "revision": "c461b7ccb6176a57c5781436524c42fb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/tanh.js",
+    "revision": "ce1513f479987e2327b8f2d3aeaeab98"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/trunc.js",
+    "revision": "e2093ddd329ad307acaec1f4ea679e4f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/math/umulh.js",
+    "revision": "d7d33c652282979eb37958a5f398ed53"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/number/constructor.js",
+    "revision": "3955be84a8bddd6d97472922d11030af"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/number/epsilon.js",
+    "revision": "1e67b765050199f058f6fc5d8dfa2da1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/number/index.js",
+    "revision": "3b4ec37669ded6dd8c5b0c6f1f3617ab"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/number/is-finite.js",
+    "revision": "adbe2c5627e9c2d9a1d6178e4fe75038"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/number/is-integer.js",
+    "revision": "1bff19285e07d68b66371142714e6195"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/number/is-nan.js",
+    "revision": "e88f071ea6ff4f1319b4fcd393f144d5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/number/is-safe-integer.js",
+    "revision": "9ed1313fac50b63313c585d56d50e3f0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/number/iterator.js",
+    "revision": "afb135aa80b2ac1322a5b5742ce478d9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/number/max-safe-integer.js",
+    "revision": "9e8c022f3df62bb29e56e6d67b25edad"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/number/min-safe-integer.js",
+    "revision": "aff60ecd79bf25eaf74ab669be8264e5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/number/parse-float.js",
+    "revision": "1ee9b17242739ca8d8a68aaf24ced751"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/number/parse-int.js",
+    "revision": "22f0da2935b41b60eca6328bfc4c1213"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/number/to-fixed.js",
+    "revision": "a773a3a274c1c990aa79facb9f8a489f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/number/to-precision.js",
+    "revision": "63e8869ee5fde196fffed7952ae6a777"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/number/virtual/index.js",
+    "revision": "a00875158615969ca8def0a874bd20bf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/number/virtual/iterator.js",
+    "revision": "40a889e9d379f3403a8fdcef65719f4d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/number/virtual/to-fixed.js",
+    "revision": "7e8e416629b1e89c94622b3171dd9d0f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/number/virtual/to-precision.js",
+    "revision": "b78dbf579241dab93fb07c5eb79ac57a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/assign.js",
+    "revision": "ac61060aedb105110720d9c834cfddfc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/classof.js",
+    "revision": "65a2ed7517bc95488f93f80479211c60"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/create.js",
+    "revision": "a9be649691d4a2ea329fcd0e8285116a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/define-getter.js",
+    "revision": "df92e3d5521ae7fe751903f50c7adf26"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/define-properties.js",
+    "revision": "354a2a2f1c62140f76f27b07ccb4e019"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/define-property.js",
+    "revision": "19f17ef86d10c20ef05b18a91ad0876c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/define-setter.js",
+    "revision": "f8a7c340d9c3b835c7ec7c1fdb833c01"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/define.js",
+    "revision": "a889f3987df91e7b4f99d02f412f4ada"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/entries.js",
+    "revision": "b2a27a14033a20ba21794950c9bbd254"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/freeze.js",
+    "revision": "70d102cd81ed45bce436bed1c78a2c09"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/get-own-property-descriptor.js",
+    "revision": "09fdf7717f39c13b00308ec55bd831ad"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/get-own-property-descriptors.js",
+    "revision": "93ce74bec08b35998fdd9bdbf1fd9dad"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/get-own-property-names.js",
+    "revision": "0f0e9694f7124f9a45cbef138c9fbd5f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/get-own-property-symbols.js",
+    "revision": "6bfd4d0f1338371a2c28b112bc3d0096"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/get-prototype-of.js",
+    "revision": "8c1936033e5c35bdcafc6bf45e3bd369"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/index.js",
+    "revision": "b7e162c137ce1158b4cdd79226f099ea"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/is-extensible.js",
+    "revision": "b486b8f9a76b7d178fa886abffca5545"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/is-frozen.js",
+    "revision": "475e9ea69e5f1b378710fef34a9d5f16"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/is-object.js",
+    "revision": "0584692f26f8fb88662883a8d80fd711"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/is-sealed.js",
+    "revision": "f243dfca39d868cf32748d9ff5810422"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/is.js",
+    "revision": "6dfd7d93ae2d9786ea3a51ee5e3642b1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/keys.js",
+    "revision": "fba80dea74945d4b9326186f8e46e18f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/lookup-getter.js",
+    "revision": "f56ad874c6550624f82d4b627b689b30"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/lookup-setter.js",
+    "revision": "ed9be32dde904317b657af594d5bc502"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/make.js",
+    "revision": "ed0c64dcbd18c3aef40e84dedfd65a38"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/prevent-extensions.js",
+    "revision": "5677f50ec7da17c7e8d0f7695981e200"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/seal.js",
+    "revision": "21db9ece5af702d1ff7faedfb74bdf7b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/set-prototype-of.js",
+    "revision": "3bfb01559edbaab3da3af237d0d4960a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/object/values.js",
+    "revision": "0ebc399570bb459952b4899670175d18"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/observable.js",
+    "revision": "2f3b12af0c02ed1a6e3ffc65938a2ff4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/parse-float.js",
+    "revision": "f97592318c11d79ac384a28eb3373eda"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/parse-int.js",
+    "revision": "e9475584baa3e867e8bd82b5149bc3aa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/promise.js",
+    "revision": "055abe855919aef194fca303761f569a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/promise/finally.js",
+    "revision": "f942f79161a543b931aa905939e23737"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/promise/index.js",
+    "revision": "698c1556a31798d852972ab76804946f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/promise/try.js",
+    "revision": "013cb63b0766beb17b9d403722481c3c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/apply.js",
+    "revision": "6c01fe021a40a5fe7410b391798ba4f4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/construct.js",
+    "revision": "3e66bccfefe8e3054729c7393d7c1598"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/define-metadata.js",
+    "revision": "da8e68664a72a95f876c836ab6e43743"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/define-property.js",
+    "revision": "6816d57b8164800e82abfedc8b53c961"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/delete-metadata.js",
+    "revision": "b82aa06f8303a017b4679073a05801a9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/delete-property.js",
+    "revision": "20f7c6dfbedaecb5c0a9c4d27f365985"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/enumerate.js",
+    "revision": "8eb4ceb1c6c05e61c42df68b9ce0959d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/get-metadata-keys.js",
+    "revision": "390bbf30855454b747fa164772183271"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/get-metadata.js",
+    "revision": "2fa2be6e8a8032487b51accd6fe2ada0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/get-own-metadata-keys.js",
+    "revision": "f17455f453f6bf195fd6a978769e22bf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/get-own-metadata.js",
+    "revision": "1ef93ba656d30927a1925a7b34c4ce0b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/get-own-property-descriptor.js",
+    "revision": "fa30396fa2a8964d143f0cb4a4fffbb6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/get-prototype-of.js",
+    "revision": "69a43ac9982cdbe87bc31eb629930e65"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/get.js",
+    "revision": "376e9183f6533ab6e48e9f02f6b7badb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/has-metadata.js",
+    "revision": "92e3819eae853ff105e019ebc18e82de"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/has-own-metadata.js",
+    "revision": "589030ab17a92f4afb05f18aab22144c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/has.js",
+    "revision": "267e587668c53ff375afc710288f7b5c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/index.js",
+    "revision": "0301e8461f59c63734f09ba0724cafe8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/is-extensible.js",
+    "revision": "e259db1520d663541f20a2bd272be33d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/metadata.js",
+    "revision": "5c12c0a90ebc9976cb66c9ddff47c745"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/own-keys.js",
+    "revision": "14437de8e5e27162c897d96a3f4735ea"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/prevent-extensions.js",
+    "revision": "fdeb67a0db2e7a8bc21bcf90cab14c29"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/set-prototype-of.js",
+    "revision": "35a2a64a648a8e5ccaf9859b3548534f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/reflect/set.js",
+    "revision": "255b5163cc9206c0361f0d7b99d4b129"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/regexp/constructor.js",
+    "revision": "65d29e5b908db8c369496e0d1543931f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/regexp/escape.js",
+    "revision": "ebddd0be53a6938cf80e35834ea86a61"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/regexp/flags.js",
+    "revision": "fac88e8b146ed260f2a6f19946b1e5d3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/regexp/index.js",
+    "revision": "2af23de1847567de179743515ad1da03"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/regexp/match.js",
+    "revision": "97038c3b650854c2050be0ca0351c018"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/regexp/replace.js",
+    "revision": "ebf19d935bbae5afbd3db92663797a14"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/regexp/search.js",
+    "revision": "4c7de4f46b9a3593f26b10b03efe6934"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/regexp/split.js",
+    "revision": "c2678e00786611012ad78a29a02204cf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/regexp/to-string.js",
+    "revision": "8c442634967671ecef6e8f7b31e9162c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/set-immediate.js",
+    "revision": "7060bc152c15ef011c07ba71dfa41d76"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/set-interval.js",
+    "revision": "9f39d230179eb8f918ca32027edbeba1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/set-timeout.js",
+    "revision": "0a5e3e56a00fba9801270d26222f00d8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/set.js",
+    "revision": "6dac2c5a6e2e3e27dd79a630bc53faa5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/set/from.js",
+    "revision": "2cf8c1a841e549036086cba909f33b1b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/set/index.js",
+    "revision": "9e20747440815d599530b69b9aa98d12"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/set/of.js",
+    "revision": "acee086ff35a7d8456e38f740f1c977f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/anchor.js",
+    "revision": "ea0bc117838b39edca20845ea4a56b9e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/at.js",
+    "revision": "3b17c976c30ab920fff8f332a23b5278"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/big.js",
+    "revision": "d19e351a0b28117e9eb1087ec7b31e01"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/blink.js",
+    "revision": "5465c6afdcc41d226e1b4ae497bfc08b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/bold.js",
+    "revision": "ae347387e95f3210d03989bb2accfad4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/code-point-at.js",
+    "revision": "5f68431c5826ece8e55ce09433020716"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/ends-with.js",
+    "revision": "23f77b9988ac7c06bd241d7d73ada9e5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/escape-html.js",
+    "revision": "c872541789391c62d3b95ec7b5d6372f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/fixed.js",
+    "revision": "739af5751d32e600ec0636751ea12631"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/fontcolor.js",
+    "revision": "c4b87e0f593b815cd3d0d33b0a2f435d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/fontsize.js",
+    "revision": "4c40bbc50852e55fef20afbd5c330c57"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/from-code-point.js",
+    "revision": "e5a9fab93dd9c292e672d21b444f44ad"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/includes.js",
+    "revision": "a435fadbaf1926d741e7d02dc0aa5ee2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/index.js",
+    "revision": "372a7f0daf578143fc4772699134edf7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/italics.js",
+    "revision": "100cd4476606c859febeb0c6e51193ae"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/iterator.js",
+    "revision": "407ace7282ac4ed9515f46d38a84d6e7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/link.js",
+    "revision": "8b69ebd86bd7cc75890f35af7ab4a221"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/match-all.js",
+    "revision": "2315ca44a55b8dbe2aff9b69cd69c758"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/pad-end.js",
+    "revision": "e8af7c445a161e337ce4cb6d1c9a8fcd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/pad-start.js",
+    "revision": "819056ced72d95a6ff0676cdb25bbcc4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/raw.js",
+    "revision": "4a3053935b0fa409e7af4c75958a0f5f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/repeat.js",
+    "revision": "5dd7a9801d124a52e5c10f810a1e9cb8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/small.js",
+    "revision": "6bdfdc577db7e425b9a24c98cdf5d6cc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/starts-with.js",
+    "revision": "673096d2eeed1326a5fda85746a613ed"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/strike.js",
+    "revision": "6f8ff4e819888fcd0a29714e723dd565"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/sub.js",
+    "revision": "e72e666fe1531ca70e8f346053b91864"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/sup.js",
+    "revision": "53ad7413fa76fbc843f00d7c40633557"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/trim-end.js",
+    "revision": "8d512324b9d6076af859b59db71d9cf0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/trim-left.js",
+    "revision": "c20d7e5fe76586da1ca03eb874dadcfd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/trim-right.js",
+    "revision": "8d512324b9d6076af859b59db71d9cf0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/trim-start.js",
+    "revision": "c20d7e5fe76586da1ca03eb874dadcfd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/trim.js",
+    "revision": "a93ba6f0cbb22f9fc89641a29df99c1a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/unescape-html.js",
+    "revision": "14ade3767f08846364a9dfa693303dec"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/anchor.js",
+    "revision": "cf2ac77de476c4ffbaa8250f391d2562"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/at.js",
+    "revision": "8a5ff0e9ebfef034cf72744411597655"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/big.js",
+    "revision": "eb9d9a5044d8c1e4d6fc15349c6d5511"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/blink.js",
+    "revision": "b3ac7c768db5b4357c00f127d843fb9a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/bold.js",
+    "revision": "c4019173caa6e86056a5801b3d4c8d67"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/code-point-at.js",
+    "revision": "49bc9b6fbb205a12ee069acd82663d59"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/ends-with.js",
+    "revision": "51fa826d1f4055ce6d6e7fcdcdcb151e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/escape-html.js",
+    "revision": "d61cbba43d6a9f9d6f176a4a945d17bc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/fixed.js",
+    "revision": "cbd6a71e60fce5e311d8bd50fdba2f3e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/fontcolor.js",
+    "revision": "52fef929a0aeb57c8c8d6953362e45f4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/fontsize.js",
+    "revision": "1d84eae08677676e2042a3a97eb128b7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/includes.js",
+    "revision": "04dbba0303ccbc12e77d17b70637093a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/index.js",
+    "revision": "5e700e1f7049ba0bb702cd5bc997e79f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/italics.js",
+    "revision": "82e184b4935c3c1f6a197c9e27a7b119"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/iterator.js",
+    "revision": "fcb6a9ecd8c1a03e63ac98909829be53"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/link.js",
+    "revision": "3a981419f296188021e77988360cafe5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/match-all.js",
+    "revision": "17c734e727ecf1b03b71f8cc6352e05c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/pad-end.js",
+    "revision": "3c4f219f6dba50c890460309a1929c1f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/pad-start.js",
+    "revision": "36b30de705833f24c94fdad53862eb8f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/repeat.js",
+    "revision": "b1b393bf61456baebcfd5efbc5c56eb1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/small.js",
+    "revision": "5cbf95596cf9bf326ce0eb16fd66974f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/starts-with.js",
+    "revision": "d4297a6a1fa0b788462b934db9ff8a6c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/strike.js",
+    "revision": "2e214717325e3f19e99d0099fbed6ac7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/sub.js",
+    "revision": "ec581e4ea4b837117e22c6898b6209ba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/sup.js",
+    "revision": "a6bc1467378ef992a05c585763deccad"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/trim-end.js",
+    "revision": "12c991cc36c539d9bff707683095cc51"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/trim-left.js",
+    "revision": "1ddc49fc1cb2ecdc2bdabdd87203a8a8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/trim-right.js",
+    "revision": "12c991cc36c539d9bff707683095cc51"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/trim-start.js",
+    "revision": "1ddc49fc1cb2ecdc2bdabdd87203a8a8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/trim.js",
+    "revision": "8f78fee13b4d628f656a32b76d2f3568"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/string/virtual/unescape-html.js",
+    "revision": "7324a1e54db89f491a5918468226a9bf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/symbol/async-iterator.js",
+    "revision": "014e4152810670e7f88cae512de78151"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/symbol/for.js",
+    "revision": "901862070a2950a0753f7f6f4e71a1f9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/symbol/has-instance.js",
+    "revision": "94d0831a2afaf5d8e68e3452980932f0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/symbol/index.js",
+    "revision": "de8d715adbaf86f71eea8dce5ccfcad1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/symbol/is-concat-spreadable.js",
+    "revision": "d23d2e7f1896d9a5b40ea8487833d218"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/symbol/iterator.js",
+    "revision": "bed041783a5a9857dd304fa938be579b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/symbol/key-for.js",
+    "revision": "a13204f688c6de66d47dc05970fa9b6d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/symbol/match.js",
+    "revision": "b01f2285a086dd21753d09bc37f02bf5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/symbol/observable.js",
+    "revision": "47268087600fe7a7457c9666e545c81b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/symbol/replace.js",
+    "revision": "b547fc0ce0ce685560d4b94e5aef5d93"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/symbol/search.js",
+    "revision": "864ffc1476289caa87756f6b0f41b879"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/symbol/species.js",
+    "revision": "335d2038eee27753bea6b9f5a8b97022"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/symbol/split.js",
+    "revision": "4e5acfe0db58adadd3374f4af2317238"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/symbol/to-primitive.js",
+    "revision": "149b15460f4be2d30835bfd5e2fda2ae"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/symbol/to-string-tag.js",
+    "revision": "7318b530b56ae95cd2c0b1c33e6e00f3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/symbol/unscopables.js",
+    "revision": "f3ae786f03231147472b6d4f446679ef"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/system/global.js",
+    "revision": "d7813eb573381fb9601b86382156f516"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/system/index.js",
+    "revision": "75ab3c927fe1394bb6088face72aea4a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/typed/array-buffer.js",
+    "revision": "2ce0961c658336f90eefe78c3922d121"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/typed/data-view.js",
+    "revision": "75a77ebaf8f75f77178f41892a46d16b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/typed/float32-array.js",
+    "revision": "8503cae6bdb37822292dc04af56991bc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/typed/float64-array.js",
+    "revision": "616116a4e0cb4a13e52036320fd132ce"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/typed/index.js",
+    "revision": "7485160d8434163ee9034a6db6388af9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/typed/int16-array.js",
+    "revision": "58e03c2c00e8b13b03a40ffaf35e49f7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/typed/int32-array.js",
+    "revision": "0299a3d1748681c8461dc7777aa9c493"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/typed/int8-array.js",
+    "revision": "346de28733d71040f7047ef529a4191e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/typed/uint16-array.js",
+    "revision": "fd28c999dea646fa871e9829a48a1dae"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/typed/uint32-array.js",
+    "revision": "233628098e30cbb00f98ca824d7fa559"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/typed/uint8-array.js",
+    "revision": "a5a8a1c9155b88355a3d3158524319e3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/typed/uint8-clamped-array.js",
+    "revision": "21c4df5f3da9d8cc0d4a7bf4c8e14139"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/weak-map.js",
+    "revision": "66ac4afb69fa86194500ff185188be68"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/weak-map/from.js",
+    "revision": "178672fa4c6728d59188db80db41edfd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/weak-map/index.js",
+    "revision": "6c50bfa3eca812fe13e1b10ee52089da"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/weak-map/of.js",
+    "revision": "860bfad38b85ea55396b2ab44c37e30a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/weak-set.js",
+    "revision": "11b9fb88e4ed9b9c9532819bcf7862c7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/weak-set/from.js",
+    "revision": "e677172e4c6003d4a5902aff6d9a96b5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/weak-set/index.js",
+    "revision": "60f236378c086673da9a5af09bf83ae2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/fn/weak-set/of.js",
+    "revision": "0a7c8935af0c05f001316f2bff2543f2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/Gruntfile.js",
+    "revision": "302ce2632df53b064a21c6c060f64ba2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/index.js",
+    "revision": "0e22a3114e8b4c49e2ad9d1dd81df8a5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/core/_.js",
+    "revision": "d861fb3b00fb776dcb6fc4887c4ac80c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/core/delay.js",
+    "revision": "63aac485c8a03510b81a0a4c2bd18336"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/core/dict.js",
+    "revision": "feba9cdeebb0c7261fab886a8170c624"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/core/function.js",
+    "revision": "46886353516d24fb4414f321d36cf9a6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/core/index.js",
+    "revision": "abb9dc227fbadd623e74c0c5a465b3aa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/core/number.js",
+    "revision": "adf880999fd3cabd4f64f4e927815437"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/core/object.js",
+    "revision": "76af80c939e60629f14f596a1b8eb9ed"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/core/regexp.js",
+    "revision": "5e0ca2533af67317672788ecf5b82e80"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/core/string.js",
+    "revision": "04e348d899e56e08d88ac493807758cc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es5/index.js",
+    "revision": "b601e9a4d163a5815b9880a071334392"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es6/array.js",
+    "revision": "20abcbd3de867deb826705c5667421b3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es6/date.js",
+    "revision": "608561d457627d904bbea76992c3d808"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es6/function.js",
+    "revision": "cc126fb54312a39f2d86e6a0b3d507ec"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es6/index.js",
+    "revision": "e09da02807184be298ecfd71e4337d75"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es6/map.js",
+    "revision": "305b71c8276cbbce53ae7f297215e390"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es6/math.js",
+    "revision": "4d3bbd5b266f086a3373a2deda1a7935"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es6/number.js",
+    "revision": "99871ca41478c8c3f8d4bdcf5864ce46"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es6/object.js",
+    "revision": "80e47083af80d3485e866f0c0c9c0bc9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es6/parse-float.js",
+    "revision": "f97592318c11d79ac384a28eb3373eda"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es6/parse-int.js",
+    "revision": "e9475584baa3e867e8bd82b5149bc3aa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es6/promise.js",
+    "revision": "e03f4984e81dd04008ab177f847e4f11"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es6/reflect.js",
+    "revision": "4008590633906e22b5763115e67aa10c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es6/regexp.js",
+    "revision": "db341e37c7a7bf327afc9a0390d75b60"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es6/set.js",
+    "revision": "7cf4da26032fe6e2c5eeb441e01433a2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es6/string.js",
+    "revision": "7cf5208f0dc6f04add0ce357e8943d39"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es6/symbol.js",
+    "revision": "020580235db81807a9c47ff455990552"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es6/typed.js",
+    "revision": "63eca3b8637d85042923bf61b3da1344"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es6/weak-map.js",
+    "revision": "2be678e93f8464defc551657586abb2d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es6/weak-set.js",
+    "revision": "11edddbf1bdfdb48206f3a7fb5d5f5ce"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es7/array.js",
+    "revision": "564aca8f25aeb0705ec691ba4ed744e6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es7/asap.js",
+    "revision": "23332027d2dd56a4d6c979819e53dbf9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es7/error.js",
+    "revision": "5fd7e4980af3243104164372a35a22cc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es7/global.js",
+    "revision": "8b496bc0ff982b0ccf81f5842ad9c525"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es7/index.js",
+    "revision": "37d8c2f68c4020cc5961a13a2faa05be"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es7/map.js",
+    "revision": "03eb71cfc1c2ee99a9d0c7e3dbfc8384"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es7/math.js",
+    "revision": "75bab07b317005cb73c8ff70f686beb9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es7/object.js",
+    "revision": "c8dbf0400584e4e70bf1f43afe3da69a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es7/observable.js",
+    "revision": "2f3b12af0c02ed1a6e3ffc65938a2ff4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es7/promise.js",
+    "revision": "3aafeea1f244e8adca1e23d0d49c11e9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es7/reflect.js",
+    "revision": "b6cb32ff150b93852787e754708342d7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es7/set.js",
+    "revision": "2a1fd91aac0844e1c625c3120bc08e24"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es7/string.js",
+    "revision": "b1d3a55182678f5796c53578f4c14857"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es7/symbol.js",
+    "revision": "b549137a6431804d5371cc849d77cd10"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es7/system.js",
+    "revision": "31740ccee94e931d648e08f4e342ce05"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es7/weak-map.js",
+    "revision": "2931951f89c5fccbdf0775b47514db7e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/es7/weak-set.js",
+    "revision": "56355ad52f0b921d6a216def46a50c5e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/_.js",
+    "revision": "d861fb3b00fb776dcb6fc4887c4ac80c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/concat.js",
+    "revision": "eb6b76e9e7d1409c269be21b157f9ddf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/copy-within.js",
+    "revision": "3f0183f2dacebbbafddb49effee86127"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/entries.js",
+    "revision": "89eb10fe1e27167114dd343f85855026"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/every.js",
+    "revision": "960b642298c4a886ea83a261a9dfea95"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/fill.js",
+    "revision": "1030d038afc3d7bf0cef74624a937be2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/filter.js",
+    "revision": "ff51b28183760c1d86656b8c6b3f6210"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/find-index.js",
+    "revision": "b2f35155fecaee264e4a665db539627c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/find.js",
+    "revision": "fbca513d68cf75a4cd0e62eb9f005868"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/flat-map.js",
+    "revision": "997376e282ce68fae0d32eb13a477aef"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/flatten.js",
+    "revision": "2b1b5dfae0e05c0042a154287b6c051a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/for-each.js",
+    "revision": "1a7dad3a3fc7435c4b71e2f541d4d7fc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/from.js",
+    "revision": "96d3408129cde575c2460ef03cd81ac3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/includes.js",
+    "revision": "dd13924b59d0b674dd0130c6a85c8480"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/index-of.js",
+    "revision": "2399b220d5573663b3cbd4ec058f3991"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/index.js",
+    "revision": "a83ac777f2257aada297d7d3c1e220eb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/is-array.js",
+    "revision": "3444da69be55221c679cf9ce45c0c38b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/iterator.js",
+    "revision": "8af75261a9d4acd038eebe3e14f3e4c0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/join.js",
+    "revision": "e7bdb66d4b80b8f82845533c3e6aefd9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/keys.js",
+    "revision": "6c50135bb40a1803d220785279e479b2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/last-index-of.js",
+    "revision": "a53c0525662897d5c54aa35d4e968f79"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/map.js",
+    "revision": "a249aa09b1d9dbcfdb4e0f926b524d20"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/of.js",
+    "revision": "c0113df2aa6e8d55bc797e83e08e1339"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/pop.js",
+    "revision": "6c4ce382f28e2cd086a85e3064b366c5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/push.js",
+    "revision": "8a96bbac8b6e447f1f9640bcc3d18a0d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/reduce-right.js",
+    "revision": "b7c82bb72091352ab119e1769dbfdc01"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/reduce.js",
+    "revision": "f4ea3c17852f61949cc0c6dba1fffb71"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/reverse.js",
+    "revision": "e6f0ed1c385148cc8a4bb9c2d2b3f60f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/shift.js",
+    "revision": "4da3ff4573ec16da16a7da024bedadf9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/slice.js",
+    "revision": "c6d276a55fcb5bf0fc320983c9ca71af"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/some.js",
+    "revision": "f27d93483cdd03d53b3fa840b0494675"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/sort.js",
+    "revision": "f7f78f350e7dbfa47b2a17f23352e352"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/splice.js",
+    "revision": "8487f1dc023c3aadecdb0de7eb6a2125"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/unshift.js",
+    "revision": "fe04accdb50143ea1989c9987ea77986"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/values.js",
+    "revision": "8af75261a9d4acd038eebe3e14f3e4c0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/copy-within.js",
+    "revision": "4ab3ee6e4332ec1467dfee12f79bef79"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/entries.js",
+    "revision": "95f01e50ab946bba35aaee33f0595fc6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/every.js",
+    "revision": "5b129272b8fbe40319d17f3ac9ac26b2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/fill.js",
+    "revision": "93a98c4f3a13435e8d6829dbc8c5b53b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/filter.js",
+    "revision": "6a96ee3f846868bd4493f077e02da9aa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/find-index.js",
+    "revision": "f09442108ed18c6aee7032e4e319317b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/find.js",
+    "revision": "2182272b5d3c3e2ab18cbc5e979bc47e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/flat-map.js",
+    "revision": "f85b37806f75352a3f9672d6a069c564"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/flatten.js",
+    "revision": "ae688ab7449f30da97ecf416689929fb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/for-each.js",
+    "revision": "96ec6397bbcbf5753f782c38464c736b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/includes.js",
+    "revision": "94624aefa956d487b4a185885cb0661b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/index-of.js",
+    "revision": "6a918b2da47fdaf783199bbe6d69760b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/index.js",
+    "revision": "a061397c27d8f8812aedcf7c1b0f4e3b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/iterator.js",
+    "revision": "1dcae10ca0ff8eb66e087f2e4d7f965b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/join.js",
+    "revision": "834d5a9a9b947c619b8a749d16d00bfe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/keys.js",
+    "revision": "834ed505cb506e5830687dc898d01ae0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/last-index-of.js",
+    "revision": "fdc9fc21f6e7ee7ea5a5c605acfb0d58"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/map.js",
+    "revision": "2c584c27c443972460bc51e53e3650ec"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/reduce-right.js",
+    "revision": "3f7352fb79ff4f8a2f14d702c0965be3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/reduce.js",
+    "revision": "8748f935145decad7743fbd17dd37470"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/slice.js",
+    "revision": "ef096cab63e72c5499c3ce36a5347f68"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/some.js",
+    "revision": "900b96dd3a6971db3f0d8798361fbe08"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/sort.js",
+    "revision": "aaae2e6c02e02f0ac2053c09173a2252"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/array/virtual/values.js",
+    "revision": "1dcae10ca0ff8eb66e087f2e4d7f965b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/asap.js",
+    "revision": "23332027d2dd56a4d6c979819e53dbf9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/clear-immediate.js",
+    "revision": "1b52fe54c53bae9b9d0961a2c5a1c732"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/date/index.js",
+    "revision": "f0f6cd7346abfcf8cf4c4326e80f0b2b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/date/now.js",
+    "revision": "6820cb1564c10f51dc11e3a8830d4537"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/date/to-iso-string.js",
+    "revision": "ce0f1608ac7ce097dcf437e58c5dba50"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/date/to-json.js",
+    "revision": "8a1e3e0369f2b1a455c4669968ab4e61"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/date/to-primitive.js",
+    "revision": "f4c3d6388f1bb26a154ff8a9f0d13425"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/date/to-string.js",
+    "revision": "4efc8f8aecc100a2fee852d7aad74d03"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/delay.js",
+    "revision": "63aac485c8a03510b81a0a4c2bd18336"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/dict.js",
+    "revision": "feba9cdeebb0c7261fab886a8170c624"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/dom-collections/index.js",
+    "revision": "824614e2f498d51f3defb818860fb891"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/dom-collections/iterator.js",
+    "revision": "c77545b5edcdde2e39e7459b6ea6fa89"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/error/index.js",
+    "revision": "8d547a4bced81c9c94308c2d745ea14b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/error/is-error.js",
+    "revision": "f940d8ce7ccaadead23d091dbe46e441"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/function/bind.js",
+    "revision": "c0e80f1c8431a332ac59bbcaa19f0d5f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/function/has-instance.js",
+    "revision": "985093e7dcddc6297129876f7ced8533"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/function/index.js",
+    "revision": "c610d9548be90dbcbbbd36fe18d2cb77"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/function/name.js",
+    "revision": "4ba513dc96e60ef02c117c0a750cfaf1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/function/part.js",
+    "revision": "f923789a5ae3335c7678044adfbbdc62"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/function/virtual/bind.js",
+    "revision": "e323da9fca0bdb8e019dc6fb33dcc334"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/function/virtual/index.js",
+    "revision": "15bd7d727b1f917171e92d249abc9eba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/function/virtual/part.js",
+    "revision": "38a01005b8ede951157cf69ba92335de"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/get-iterator-method.js",
+    "revision": "3eaed6da0a633074b67b3f9bc592a789"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/get-iterator.js",
+    "revision": "0b03fca8e8d17c973563b81cbbb03c1c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/global.js",
+    "revision": "8b496bc0ff982b0ccf81f5842ad9c525"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/is-iterable.js",
+    "revision": "839a4cd6fb3e9e690e038172ed00ae59"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/json/index.js",
+    "revision": "230a30a9fa2d5baee377d147ba208de5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/json/stringify.js",
+    "revision": "1fc6bbd820629f23b0b2a86a765564f4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/map.js",
+    "revision": "1894284b81749ff2289d3d6e02ee33e2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/map/from.js",
+    "revision": "61de102c5dd9a8e62e0392deb8d5afed"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/map/index.js",
+    "revision": "bb2e01e637159d777c57ad995e7f3c9d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/map/of.js",
+    "revision": "a686f07e426444e0098f1e8c9d95e1fc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/acosh.js",
+    "revision": "5c7a848e7b4346b3be0bbc03abef4037"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/asinh.js",
+    "revision": "35be8431278bfd13d4b0f67b9505b790"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/atanh.js",
+    "revision": "1cafc13b5ca6608d6af9a624eaa539d8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/cbrt.js",
+    "revision": "9999df1afe174e2e56723e0a3624d66c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/clamp.js",
+    "revision": "fb26a9fc34ee9611c083f981c73f9533"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/clz32.js",
+    "revision": "33592ba208cd6e9e285451f9acef0019"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/cosh.js",
+    "revision": "d2e2455b268237af749f349e92f2714c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/deg-per-rad.js",
+    "revision": "e6ffc02337b9eaf677551dbe9a3b429e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/degrees.js",
+    "revision": "65baf58937c1cca6f266257a2f096636"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/expm1.js",
+    "revision": "fca863651582fa13d0c8888842eb97a5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/fround.js",
+    "revision": "50f377152e2d2cc40c1b2e5fdd1fc6ba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/fscale.js",
+    "revision": "087d78f1cea5c96fc7c6f4da0ce68449"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/hypot.js",
+    "revision": "1bfba6f1962fa31e616a57cd5d440f55"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/iaddh.js",
+    "revision": "427d2c47e017a6aa5fbbf770aa1d329f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/imul.js",
+    "revision": "64314ef68b4fe8b7db8c794cee30b2a8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/imulh.js",
+    "revision": "bca2dccd8aeeaed6c3a8e96e8d2cf9bf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/index.js",
+    "revision": "a38ab15c635cd21e1d2599677ed5872a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/isubh.js",
+    "revision": "7052fda1bc3021554372d331efbc2ccf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/log10.js",
+    "revision": "53144fd497de236999816ca2bed72ef2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/log1p.js",
+    "revision": "d65cf0a22c9c5f9349cb49b5016c945d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/log2.js",
+    "revision": "175487f06779511436565885be6af6e1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/rad-per-deg.js",
+    "revision": "5d72189271f167ee1d3c02b71124b570"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/radians.js",
+    "revision": "f0cac0dd4bf685ba55e304df0f3198f5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/scale.js",
+    "revision": "d10b1432ace9b83c84eb6d4df736849a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/sign.js",
+    "revision": "de15ea053190713fbbc95d3b355583fc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/signbit.js",
+    "revision": "492df517718b01b4a3954e3e1ed9ada8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/sinh.js",
+    "revision": "c461b7ccb6176a57c5781436524c42fb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/tanh.js",
+    "revision": "ce1513f479987e2327b8f2d3aeaeab98"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/trunc.js",
+    "revision": "e2093ddd329ad307acaec1f4ea679e4f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/math/umulh.js",
+    "revision": "d7d33c652282979eb37958a5f398ed53"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/number/constructor.js",
+    "revision": "3955be84a8bddd6d97472922d11030af"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/number/epsilon.js",
+    "revision": "1e67b765050199f058f6fc5d8dfa2da1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/number/index.js",
+    "revision": "3b4ec37669ded6dd8c5b0c6f1f3617ab"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/number/is-finite.js",
+    "revision": "adbe2c5627e9c2d9a1d6178e4fe75038"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/number/is-integer.js",
+    "revision": "1bff19285e07d68b66371142714e6195"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/number/is-nan.js",
+    "revision": "e88f071ea6ff4f1319b4fcd393f144d5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/number/is-safe-integer.js",
+    "revision": "9ed1313fac50b63313c585d56d50e3f0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/number/iterator.js",
+    "revision": "afb135aa80b2ac1322a5b5742ce478d9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/number/max-safe-integer.js",
+    "revision": "9e8c022f3df62bb29e56e6d67b25edad"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/number/min-safe-integer.js",
+    "revision": "aff60ecd79bf25eaf74ab669be8264e5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/number/parse-float.js",
+    "revision": "1ee9b17242739ca8d8a68aaf24ced751"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/number/parse-int.js",
+    "revision": "22f0da2935b41b60eca6328bfc4c1213"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/number/to-fixed.js",
+    "revision": "a773a3a274c1c990aa79facb9f8a489f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/number/to-precision.js",
+    "revision": "63e8869ee5fde196fffed7952ae6a777"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/number/virtual/index.js",
+    "revision": "a00875158615969ca8def0a874bd20bf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/number/virtual/iterator.js",
+    "revision": "40a889e9d379f3403a8fdcef65719f4d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/number/virtual/to-fixed.js",
+    "revision": "7e8e416629b1e89c94622b3171dd9d0f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/number/virtual/to-precision.js",
+    "revision": "b78dbf579241dab93fb07c5eb79ac57a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/assign.js",
+    "revision": "ac61060aedb105110720d9c834cfddfc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/classof.js",
+    "revision": "65a2ed7517bc95488f93f80479211c60"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/create.js",
+    "revision": "a9be649691d4a2ea329fcd0e8285116a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/define-getter.js",
+    "revision": "df92e3d5521ae7fe751903f50c7adf26"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/define-properties.js",
+    "revision": "354a2a2f1c62140f76f27b07ccb4e019"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/define-property.js",
+    "revision": "19f17ef86d10c20ef05b18a91ad0876c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/define-setter.js",
+    "revision": "f8a7c340d9c3b835c7ec7c1fdb833c01"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/define.js",
+    "revision": "a889f3987df91e7b4f99d02f412f4ada"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/entries.js",
+    "revision": "b2a27a14033a20ba21794950c9bbd254"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/freeze.js",
+    "revision": "70d102cd81ed45bce436bed1c78a2c09"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/get-own-property-descriptor.js",
+    "revision": "09fdf7717f39c13b00308ec55bd831ad"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/get-own-property-descriptors.js",
+    "revision": "93ce74bec08b35998fdd9bdbf1fd9dad"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/get-own-property-names.js",
+    "revision": "0f0e9694f7124f9a45cbef138c9fbd5f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/get-own-property-symbols.js",
+    "revision": "6bfd4d0f1338371a2c28b112bc3d0096"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/get-prototype-of.js",
+    "revision": "8c1936033e5c35bdcafc6bf45e3bd369"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/index.js",
+    "revision": "b7e162c137ce1158b4cdd79226f099ea"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/is-extensible.js",
+    "revision": "b486b8f9a76b7d178fa886abffca5545"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/is-frozen.js",
+    "revision": "475e9ea69e5f1b378710fef34a9d5f16"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/is-object.js",
+    "revision": "0584692f26f8fb88662883a8d80fd711"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/is-sealed.js",
+    "revision": "f243dfca39d868cf32748d9ff5810422"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/is.js",
+    "revision": "6dfd7d93ae2d9786ea3a51ee5e3642b1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/keys.js",
+    "revision": "fba80dea74945d4b9326186f8e46e18f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/lookup-getter.js",
+    "revision": "f56ad874c6550624f82d4b627b689b30"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/lookup-setter.js",
+    "revision": "ed9be32dde904317b657af594d5bc502"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/make.js",
+    "revision": "ed0c64dcbd18c3aef40e84dedfd65a38"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/prevent-extensions.js",
+    "revision": "5677f50ec7da17c7e8d0f7695981e200"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/seal.js",
+    "revision": "21db9ece5af702d1ff7faedfb74bdf7b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/set-prototype-of.js",
+    "revision": "3bfb01559edbaab3da3af237d0d4960a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/object/values.js",
+    "revision": "0ebc399570bb459952b4899670175d18"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/observable.js",
+    "revision": "2f3b12af0c02ed1a6e3ffc65938a2ff4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/parse-float.js",
+    "revision": "f97592318c11d79ac384a28eb3373eda"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/parse-int.js",
+    "revision": "e9475584baa3e867e8bd82b5149bc3aa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/promise.js",
+    "revision": "055abe855919aef194fca303761f569a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/promise/finally.js",
+    "revision": "f942f79161a543b931aa905939e23737"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/promise/index.js",
+    "revision": "698c1556a31798d852972ab76804946f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/promise/try.js",
+    "revision": "013cb63b0766beb17b9d403722481c3c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/apply.js",
+    "revision": "6c01fe021a40a5fe7410b391798ba4f4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/construct.js",
+    "revision": "3e66bccfefe8e3054729c7393d7c1598"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/define-metadata.js",
+    "revision": "da8e68664a72a95f876c836ab6e43743"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/define-property.js",
+    "revision": "6816d57b8164800e82abfedc8b53c961"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/delete-metadata.js",
+    "revision": "b82aa06f8303a017b4679073a05801a9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/delete-property.js",
+    "revision": "20f7c6dfbedaecb5c0a9c4d27f365985"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/enumerate.js",
+    "revision": "8eb4ceb1c6c05e61c42df68b9ce0959d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/get-metadata-keys.js",
+    "revision": "390bbf30855454b747fa164772183271"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/get-metadata.js",
+    "revision": "2fa2be6e8a8032487b51accd6fe2ada0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/get-own-metadata-keys.js",
+    "revision": "f17455f453f6bf195fd6a978769e22bf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/get-own-metadata.js",
+    "revision": "1ef93ba656d30927a1925a7b34c4ce0b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/get-own-property-descriptor.js",
+    "revision": "fa30396fa2a8964d143f0cb4a4fffbb6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/get-prototype-of.js",
+    "revision": "69a43ac9982cdbe87bc31eb629930e65"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/get.js",
+    "revision": "376e9183f6533ab6e48e9f02f6b7badb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/has-metadata.js",
+    "revision": "92e3819eae853ff105e019ebc18e82de"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/has-own-metadata.js",
+    "revision": "589030ab17a92f4afb05f18aab22144c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/has.js",
+    "revision": "267e587668c53ff375afc710288f7b5c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/index.js",
+    "revision": "0301e8461f59c63734f09ba0724cafe8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/is-extensible.js",
+    "revision": "e259db1520d663541f20a2bd272be33d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/metadata.js",
+    "revision": "5c12c0a90ebc9976cb66c9ddff47c745"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/own-keys.js",
+    "revision": "14437de8e5e27162c897d96a3f4735ea"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/prevent-extensions.js",
+    "revision": "fdeb67a0db2e7a8bc21bcf90cab14c29"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/set-prototype-of.js",
+    "revision": "35a2a64a648a8e5ccaf9859b3548534f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/reflect/set.js",
+    "revision": "255b5163cc9206c0361f0d7b99d4b129"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/regexp/constructor.js",
+    "revision": "65d29e5b908db8c369496e0d1543931f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/regexp/escape.js",
+    "revision": "ebddd0be53a6938cf80e35834ea86a61"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/regexp/flags.js",
+    "revision": "fac88e8b146ed260f2a6f19946b1e5d3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/regexp/index.js",
+    "revision": "2af23de1847567de179743515ad1da03"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/regexp/match.js",
+    "revision": "97038c3b650854c2050be0ca0351c018"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/regexp/replace.js",
+    "revision": "ebf19d935bbae5afbd3db92663797a14"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/regexp/search.js",
+    "revision": "4c7de4f46b9a3593f26b10b03efe6934"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/regexp/split.js",
+    "revision": "c2678e00786611012ad78a29a02204cf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/regexp/to-string.js",
+    "revision": "8c442634967671ecef6e8f7b31e9162c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/set-immediate.js",
+    "revision": "7060bc152c15ef011c07ba71dfa41d76"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/set-interval.js",
+    "revision": "9f39d230179eb8f918ca32027edbeba1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/set-timeout.js",
+    "revision": "0a5e3e56a00fba9801270d26222f00d8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/set.js",
+    "revision": "6dac2c5a6e2e3e27dd79a630bc53faa5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/set/from.js",
+    "revision": "2cf8c1a841e549036086cba909f33b1b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/set/index.js",
+    "revision": "9e20747440815d599530b69b9aa98d12"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/set/of.js",
+    "revision": "acee086ff35a7d8456e38f740f1c977f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/anchor.js",
+    "revision": "ea0bc117838b39edca20845ea4a56b9e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/at.js",
+    "revision": "3b17c976c30ab920fff8f332a23b5278"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/big.js",
+    "revision": "d19e351a0b28117e9eb1087ec7b31e01"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/blink.js",
+    "revision": "5465c6afdcc41d226e1b4ae497bfc08b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/bold.js",
+    "revision": "ae347387e95f3210d03989bb2accfad4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/code-point-at.js",
+    "revision": "5f68431c5826ece8e55ce09433020716"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/ends-with.js",
+    "revision": "23f77b9988ac7c06bd241d7d73ada9e5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/escape-html.js",
+    "revision": "c872541789391c62d3b95ec7b5d6372f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/fixed.js",
+    "revision": "739af5751d32e600ec0636751ea12631"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/fontcolor.js",
+    "revision": "c4b87e0f593b815cd3d0d33b0a2f435d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/fontsize.js",
+    "revision": "4c40bbc50852e55fef20afbd5c330c57"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/from-code-point.js",
+    "revision": "e5a9fab93dd9c292e672d21b444f44ad"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/includes.js",
+    "revision": "a435fadbaf1926d741e7d02dc0aa5ee2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/index.js",
+    "revision": "372a7f0daf578143fc4772699134edf7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/italics.js",
+    "revision": "100cd4476606c859febeb0c6e51193ae"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/iterator.js",
+    "revision": "407ace7282ac4ed9515f46d38a84d6e7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/link.js",
+    "revision": "8b69ebd86bd7cc75890f35af7ab4a221"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/match-all.js",
+    "revision": "2315ca44a55b8dbe2aff9b69cd69c758"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/pad-end.js",
+    "revision": "e8af7c445a161e337ce4cb6d1c9a8fcd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/pad-start.js",
+    "revision": "819056ced72d95a6ff0676cdb25bbcc4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/raw.js",
+    "revision": "4a3053935b0fa409e7af4c75958a0f5f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/repeat.js",
+    "revision": "5dd7a9801d124a52e5c10f810a1e9cb8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/small.js",
+    "revision": "6bdfdc577db7e425b9a24c98cdf5d6cc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/starts-with.js",
+    "revision": "673096d2eeed1326a5fda85746a613ed"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/strike.js",
+    "revision": "6f8ff4e819888fcd0a29714e723dd565"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/sub.js",
+    "revision": "e72e666fe1531ca70e8f346053b91864"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/sup.js",
+    "revision": "53ad7413fa76fbc843f00d7c40633557"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/trim-end.js",
+    "revision": "8d512324b9d6076af859b59db71d9cf0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/trim-left.js",
+    "revision": "c20d7e5fe76586da1ca03eb874dadcfd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/trim-right.js",
+    "revision": "8d512324b9d6076af859b59db71d9cf0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/trim-start.js",
+    "revision": "c20d7e5fe76586da1ca03eb874dadcfd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/trim.js",
+    "revision": "a93ba6f0cbb22f9fc89641a29df99c1a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/unescape-html.js",
+    "revision": "14ade3767f08846364a9dfa693303dec"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/anchor.js",
+    "revision": "cf2ac77de476c4ffbaa8250f391d2562"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/at.js",
+    "revision": "8a5ff0e9ebfef034cf72744411597655"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/big.js",
+    "revision": "eb9d9a5044d8c1e4d6fc15349c6d5511"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/blink.js",
+    "revision": "b3ac7c768db5b4357c00f127d843fb9a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/bold.js",
+    "revision": "c4019173caa6e86056a5801b3d4c8d67"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/code-point-at.js",
+    "revision": "49bc9b6fbb205a12ee069acd82663d59"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/ends-with.js",
+    "revision": "51fa826d1f4055ce6d6e7fcdcdcb151e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/escape-html.js",
+    "revision": "d61cbba43d6a9f9d6f176a4a945d17bc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/fixed.js",
+    "revision": "cbd6a71e60fce5e311d8bd50fdba2f3e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/fontcolor.js",
+    "revision": "52fef929a0aeb57c8c8d6953362e45f4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/fontsize.js",
+    "revision": "1d84eae08677676e2042a3a97eb128b7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/includes.js",
+    "revision": "04dbba0303ccbc12e77d17b70637093a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/index.js",
+    "revision": "5e700e1f7049ba0bb702cd5bc997e79f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/italics.js",
+    "revision": "82e184b4935c3c1f6a197c9e27a7b119"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/iterator.js",
+    "revision": "fcb6a9ecd8c1a03e63ac98909829be53"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/link.js",
+    "revision": "3a981419f296188021e77988360cafe5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/match-all.js",
+    "revision": "17c734e727ecf1b03b71f8cc6352e05c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/pad-end.js",
+    "revision": "3c4f219f6dba50c890460309a1929c1f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/pad-start.js",
+    "revision": "36b30de705833f24c94fdad53862eb8f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/repeat.js",
+    "revision": "b1b393bf61456baebcfd5efbc5c56eb1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/small.js",
+    "revision": "5cbf95596cf9bf326ce0eb16fd66974f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/starts-with.js",
+    "revision": "d4297a6a1fa0b788462b934db9ff8a6c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/strike.js",
+    "revision": "2e214717325e3f19e99d0099fbed6ac7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/sub.js",
+    "revision": "ec581e4ea4b837117e22c6898b6209ba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/sup.js",
+    "revision": "a6bc1467378ef992a05c585763deccad"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/trim-end.js",
+    "revision": "12c991cc36c539d9bff707683095cc51"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/trim-left.js",
+    "revision": "1ddc49fc1cb2ecdc2bdabdd87203a8a8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/trim-right.js",
+    "revision": "12c991cc36c539d9bff707683095cc51"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/trim-start.js",
+    "revision": "1ddc49fc1cb2ecdc2bdabdd87203a8a8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/trim.js",
+    "revision": "8f78fee13b4d628f656a32b76d2f3568"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/string/virtual/unescape-html.js",
+    "revision": "7324a1e54db89f491a5918468226a9bf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/symbol/async-iterator.js",
+    "revision": "014e4152810670e7f88cae512de78151"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/symbol/for.js",
+    "revision": "901862070a2950a0753f7f6f4e71a1f9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/symbol/has-instance.js",
+    "revision": "94d0831a2afaf5d8e68e3452980932f0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/symbol/index.js",
+    "revision": "de8d715adbaf86f71eea8dce5ccfcad1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/symbol/is-concat-spreadable.js",
+    "revision": "d23d2e7f1896d9a5b40ea8487833d218"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/symbol/iterator.js",
+    "revision": "bed041783a5a9857dd304fa938be579b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/symbol/key-for.js",
+    "revision": "a13204f688c6de66d47dc05970fa9b6d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/symbol/match.js",
+    "revision": "b01f2285a086dd21753d09bc37f02bf5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/symbol/observable.js",
+    "revision": "47268087600fe7a7457c9666e545c81b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/symbol/replace.js",
+    "revision": "b547fc0ce0ce685560d4b94e5aef5d93"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/symbol/search.js",
+    "revision": "864ffc1476289caa87756f6b0f41b879"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/symbol/species.js",
+    "revision": "335d2038eee27753bea6b9f5a8b97022"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/symbol/split.js",
+    "revision": "4e5acfe0db58adadd3374f4af2317238"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/symbol/to-primitive.js",
+    "revision": "149b15460f4be2d30835bfd5e2fda2ae"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/symbol/to-string-tag.js",
+    "revision": "7318b530b56ae95cd2c0b1c33e6e00f3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/symbol/unscopables.js",
+    "revision": "f3ae786f03231147472b6d4f446679ef"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/system/global.js",
+    "revision": "d7813eb573381fb9601b86382156f516"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/system/index.js",
+    "revision": "75ab3c927fe1394bb6088face72aea4a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/typed/array-buffer.js",
+    "revision": "2ce0961c658336f90eefe78c3922d121"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/typed/data-view.js",
+    "revision": "75a77ebaf8f75f77178f41892a46d16b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/typed/float32-array.js",
+    "revision": "8503cae6bdb37822292dc04af56991bc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/typed/float64-array.js",
+    "revision": "616116a4e0cb4a13e52036320fd132ce"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/typed/index.js",
+    "revision": "7485160d8434163ee9034a6db6388af9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/typed/int16-array.js",
+    "revision": "58e03c2c00e8b13b03a40ffaf35e49f7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/typed/int32-array.js",
+    "revision": "0299a3d1748681c8461dc7777aa9c493"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/typed/int8-array.js",
+    "revision": "346de28733d71040f7047ef529a4191e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/typed/uint16-array.js",
+    "revision": "fd28c999dea646fa871e9829a48a1dae"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/typed/uint32-array.js",
+    "revision": "233628098e30cbb00f98ca824d7fa559"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/typed/uint8-array.js",
+    "revision": "a5a8a1c9155b88355a3d3158524319e3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/typed/uint8-clamped-array.js",
+    "revision": "21c4df5f3da9d8cc0d4a7bf4c8e14139"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/weak-map.js",
+    "revision": "66ac4afb69fa86194500ff185188be68"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/weak-map/from.js",
+    "revision": "178672fa4c6728d59188db80db41edfd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/weak-map/index.js",
+    "revision": "6c50bfa3eca812fe13e1b10ee52089da"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/weak-map/of.js",
+    "revision": "860bfad38b85ea55396b2ab44c37e30a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/weak-set.js",
+    "revision": "11b9fb88e4ed9b9c9532819bcf7862c7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/weak-set/from.js",
+    "revision": "e677172e4c6003d4a5902aff6d9a96b5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/weak-set/index.js",
+    "revision": "60f236378c086673da9a5af09bf83ae2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/fn/weak-set/of.js",
+    "revision": "0a7c8935af0c05f001316f2bff2543f2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/index.js",
+    "revision": "0e22a3114e8b4c49e2ad9d1dd81df8a5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_a-function.js",
+    "revision": "1a8c44abf9eede775fc53fb2bdebf783"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_a-number-value.js",
+    "revision": "9f4026d0ffb90f39628b050835307a24"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_add-to-unscopables.js",
+    "revision": "cd98384ea99b8e60a7fb5f4551e6d288"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_an-instance.js",
+    "revision": "cb8e94b8a9aca97c2155b496ddaad573"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_an-object.js",
+    "revision": "c01966c68f05e6feb18b528a74393625"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_array-copy-within.js",
+    "revision": "19fe972416aced2848be3e5b20e79fa5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_array-fill.js",
+    "revision": "eac0158d8ec8e4acfe54b76f92145e2f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_array-from-iterable.js",
+    "revision": "71bc2918e2df31605cafd19c42e77535"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_array-includes.js",
+    "revision": "921f878797c27ded0e522898f237739e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_array-methods.js",
+    "revision": "42af3850ff4c3e722875906f191899e7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_array-reduce.js",
+    "revision": "f4fedc28d7a324cd394157073854f8f0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_array-species-constructor.js",
+    "revision": "c964fa58b9d2896863a56e4b1cb53d8f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_array-species-create.js",
+    "revision": "f1e77bb73497f4cdb9dcee88c54d358d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_bind.js",
+    "revision": "a7658563c5d8f469d2589300e13dd042"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_classof.js",
+    "revision": "9a1a89ed6610c2a428cdb802b36d9f9c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_cof.js",
+    "revision": "b53bafd789ab20665e75c8c72aabbc8d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_collection-strong.js",
+    "revision": "254e319eb699daf783b0ef8a06578d92"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_collection-to-json.js",
+    "revision": "2954f76c723d19d231a0f1fc6ef96465"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_collection-weak.js",
+    "revision": "84d8491be2829326d6954b6d7db2224c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_collection.js",
+    "revision": "71762722e0c4ea44b7d93f3d44c76a85"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_core.js",
+    "revision": "52d21133256011af1ad99d6cfb86d502"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_create-property.js",
+    "revision": "56dae10156acbb8dd55a808f5d8a8314"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_ctx.js",
+    "revision": "0ae16d9a2f51152d65249dbc969a2563"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_date-to-iso-string.js",
+    "revision": "c62ec266ef2e5dbb423b97ced0a477bd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_date-to-primitive.js",
+    "revision": "e9a7a91cce1f34e2247d3dd43a7315d1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_defined.js",
+    "revision": "eff77270b95a2441e1de628fcce9ddb7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_descriptors.js",
+    "revision": "8338ed7effd66a4e95b551cd85b0a4fa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_dom-create.js",
+    "revision": "eb6024459ae980183997d8f5d6fb73ac"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_entry-virtual.js",
+    "revision": "2579c503a9cbe9ac6b0458f13e46b123"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_enum-bug-keys.js",
+    "revision": "239ab95023e4d20ff0b255c8532dfe69"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_enum-keys.js",
+    "revision": "a0fe03e3e79ed44b1512966230d06950"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_export.js",
+    "revision": "164a8e1b3c6edab284676e600de2eb86"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_fails-is-regexp.js",
+    "revision": "dca1c0412ce96f46d5f2952f8372a616"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_fails.js",
+    "revision": "ee9da5f3087fb099e0073fbbc3f3aace"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_fix-re-wks.js",
+    "revision": "c6260c8b9188a807e70c8bd2512a7cc5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_flags.js",
+    "revision": "746a4661d465f994e502ddb8e405ab30"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_flatten-into-array.js",
+    "revision": "b1f6c5799795294b9fc8d9e16f8b0ba6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_for-of.js",
+    "revision": "6ccb897dacaea7befbfd2d1ae60f9766"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_global.js",
+    "revision": "9ea9cbbb7b320f8dad8441cc48ebbbf2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_has.js",
+    "revision": "bd5bfea3f3fbd5884967d2f639449f65"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_hide.js",
+    "revision": "451bdb6f7a04c6c1fd8a96daa915036a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_html.js",
+    "revision": "46c3141a482a16a207650fce90225ea3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_ie8-dom-define.js",
+    "revision": "24b8311e55b5ea85346654651258071b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_inherit-if-required.js",
+    "revision": "9ee05dcc592070a4a2ec10112a55093d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_invoke.js",
+    "revision": "af0bf3b70898fa8d34d3325162e0cbbb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_iobject.js",
+    "revision": "582d5f9c7199a276676d51cab9e7014a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_is-array-iter.js",
+    "revision": "22dfb8e252ec63320160fd31deb3ccaf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_is-array.js",
+    "revision": "2393e877d2e70b3f5cc4f12377c900dd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_is-integer.js",
+    "revision": "2a4dc5a60a3ac00415e098d0021209df"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_is-object.js",
+    "revision": "7cfd7caad6a0b5dbd003d34acaf96716"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_is-regexp.js",
+    "revision": "5a81d0c83712dd0fbfb4161054fb3959"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_iter-call.js",
+    "revision": "5ff33ae554cb3593fa814ada19b627db"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_iter-create.js",
+    "revision": "eab6c54abd3a75580e9fb01c23c5455f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_iter-define.js",
+    "revision": "c40c8b512f6687ab730831ea7af8adb8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_iter-detect.js",
+    "revision": "4de37588a3e0b7c3c5056ab01a2c8fad"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_iter-step.js",
+    "revision": "260cd482596bb6ee3cfaa7f59cdda454"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_iterators.js",
+    "revision": "2f3d1a73eac1104259f9bfd70dd740d3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_keyof.js",
+    "revision": "19ae38eb32d597d65fcbb5938307edb4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_library.js",
+    "revision": "ca7387f12f47f3fed132030515b54fb0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_math-expm1.js",
+    "revision": "59b0518f7a002fd00b1af30ba3b05b72"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_math-fround.js",
+    "revision": "7ce904aaa1c46b40a0cf55bfe2457b72"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_math-log1p.js",
+    "revision": "9315d6f81216469cc97424bd09f611b1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_math-scale.js",
+    "revision": "1cfc14855ce5d5712b5341b90da6d23a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_math-sign.js",
+    "revision": "475bf10f0516ee7dbd1fe4e4ca60e4ec"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_meta.js",
+    "revision": "f746038c84057d82d47ae815437497ee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_metadata.js",
+    "revision": "ed0bd4267e01c19ab0280e258dacc68b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_microtask.js",
+    "revision": "4cfb6ff7b63be6adaa62408d5be14482"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_new-promise-capability.js",
+    "revision": "664eb09f1e4ae6c28fe9ea1020d4c769"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_object-assign.js",
+    "revision": "efeac43990cf39dc5860eaeee3d5dbf1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_object-create.js",
+    "revision": "080f7867c90d175bbb81b0d621e59e89"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_object-define.js",
+    "revision": "1dd8a394497a988875e61bd8564b3613"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_object-dp.js",
+    "revision": "5540ba925f8e0f13a6cdf51e3ff55c8f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_object-dps.js",
+    "revision": "3d20241ac8b5b3a5962df76335856243"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_object-forced-pam.js",
+    "revision": "b22653ef9f9122bbeb471f79f4c6a525"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_object-gopd.js",
+    "revision": "5ba685c859b616a5705f0fdaadcbb7fe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_object-gopn-ext.js",
+    "revision": "d07fa309266d7597d1f5c011505732cd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_object-gopn.js",
+    "revision": "8257cf9c5eff33cfa9f7cc5814d31192"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_object-gops.js",
+    "revision": "202593fd715e7785384a247bfe8eeb95"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_object-gpo.js",
+    "revision": "c808bb9bc86b0f7cf39c69ca236ce717"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_object-keys-internal.js",
+    "revision": "7ae5c52ba32d0ab9d06518c7e0643c4a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_object-keys.js",
+    "revision": "583091fc4d88813f55b488040284d9a7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_object-pie.js",
+    "revision": "d362cdc2df0c6b7e4507a27bc331b207"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_object-sap.js",
+    "revision": "b181d541ec9c654ed2bc73afd90e635f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_object-to-array.js",
+    "revision": "1ddfe4f67c2c0c4c6be78422c12389fc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_own-keys.js",
+    "revision": "9c303b175eab1fdf6cc17eb1920c3a9c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_parse-float.js",
+    "revision": "6ea43faf4b3a6c86f541c54a4908e62b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_parse-int.js",
+    "revision": "ee9408d787bbe58415bd57a4d3d6d23b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_partial.js",
+    "revision": "2550b5891faa17f54af95f9f5b5841dd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_path.js",
+    "revision": "b355766fc5597475d9085cd833b0705b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_perform.js",
+    "revision": "b19d96e6f92aff543424f29d308cc9bb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_promise-resolve.js",
+    "revision": "1528244208420216d8ad40600697503d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_property-desc.js",
+    "revision": "e0fb2cbe9529b3d3138c8a7d48464d99"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_redefine-all.js",
+    "revision": "e9239e9a155194a91b15cb1e9c9479ff"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_redefine.js",
+    "revision": "65dfcea31b3ef7e926f4b682e728bb91"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_replacer.js",
+    "revision": "8a5595a560dd271d420eabc0ea1e0660"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_same-value.js",
+    "revision": "ea6d312141dc50e1edb647c4584e2ebb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_set-collection-from.js",
+    "revision": "7c8aeae6b99d412750b4212de414f0e1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_set-collection-of.js",
+    "revision": "dce835ea14b1ff6bd9f57e038acdf33a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_set-proto.js",
+    "revision": "8a804a760af89576e3af3ea32c4b3d29"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_set-species.js",
+    "revision": "fa61898fdb62da27496d5a6cd67fe8cf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_set-to-string-tag.js",
+    "revision": "8597a0bc619302916d5231f63910d890"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_shared-key.js",
+    "revision": "7d7cf55a67f4e78fdbd96881dfdc1de8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_shared.js",
+    "revision": "8a29e933f46b4fb2d97a40525d9612fc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_species-constructor.js",
+    "revision": "0d2da90cd1f85fcd3891005fa29615a4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_strict-method.js",
+    "revision": "01f75b91df53ef74f56bf0ab626a395b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_string-at.js",
+    "revision": "ba406f78032dc96e91b08ed9871d4a2c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_string-context.js",
+    "revision": "cd4b091845b50ec2ddfe318556b6c443"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_string-html.js",
+    "revision": "976c56b911c641cc03408f85c98952c0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_string-pad.js",
+    "revision": "99fa0555347b0861e11ebf06a6554fab"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_string-repeat.js",
+    "revision": "28d500829e70c2642eccb41227663a5a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_string-trim.js",
+    "revision": "7b5d40323e09e1bb7a071abe10416d5e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_string-ws.js",
+    "revision": "53d75392e54d0974150fc2e48e579cde"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_task.js",
+    "revision": "fffc260a9ff9f185294d288f0c146db0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_to-absolute-index.js",
+    "revision": "219c8e7b098f1aab77738b0b1e703369"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_to-index.js",
+    "revision": "f6e4f1c1d9acff4e7a5c672812ad7c54"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_to-integer.js",
+    "revision": "790e452139269cf2060e208cb01e667a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_to-iobject.js",
+    "revision": "103456a7fa97ff2468e4c7fa1c26ed9d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_to-length.js",
+    "revision": "7ebe46bfc0d49509ab3bf2b376580c8d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_to-object.js",
+    "revision": "48d3ce5c8bcd0c45ec3ece14b21785c4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_to-primitive.js",
+    "revision": "17937961361e9bead036928dc1663206"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_typed-array.js",
+    "revision": "e138e79757688246e2517b74c1851d40"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_typed-buffer.js",
+    "revision": "191cb2739ae54abf20fd69faa53b9aa0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_typed.js",
+    "revision": "55689c5c4b707f9b955a15154cb30f34"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_uid.js",
+    "revision": "d1e8b5f4ba244c3861f07d44c2128c2f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_validate-collection.js",
+    "revision": "f6d420ceac33c9b2d8798e622ff22b27"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_wks-define.js",
+    "revision": "ac682690de1ecdc2aadf6749b18d02d0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_wks-ext.js",
+    "revision": "177791284c1e0cd4424789b92e3110b7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/_wks.js",
+    "revision": "7f60dcddd9199f0c09efa3c85164ed7b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/core.delay.js",
+    "revision": "6ff7593b350c5ee5b912065e09378545"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/core.dict.js",
+    "revision": "5deb89aeb2b4f989e86d7d90a556b7ec"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/core.function.part.js",
+    "revision": "c555f8d5b41e88236d4ca708ca91a068"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/core.get-iterator-method.js",
+    "revision": "9d67525fc2765d7494e44abc96fd2d64"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/core.get-iterator.js",
+    "revision": "76d719758d361dc6f2140a196622b5dd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/core.is-iterable.js",
+    "revision": "f8f092d75af9a800b6b36aaefa3023a7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/core.number.iterator.js",
+    "revision": "2bd6b32e1baaa56f352883b6e9bfe58b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/core.object.classof.js",
+    "revision": "6d99d5323b9ff0fc94baa5ce352834d4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/core.object.define.js",
+    "revision": "217095ca73085fb921531f1c71e94862"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/core.object.is-object.js",
+    "revision": "574490b7f9397c61d91ac6893d440e70"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/core.object.make.js",
+    "revision": "5b5ee508ce00f12d5e094623aa211c9c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/core.regexp.escape.js",
+    "revision": "e97752f7f9a8130c3d433dd5d2b0a8ff"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/core.string.escape-html.js",
+    "revision": "773edb24828d459ebf830eccb3ad0be3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/core.string.unescape-html.js",
+    "revision": "30f95f06818277454743bbb9405e0fe3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es5.js",
+    "revision": "cdb78ba3e2d3e9d064280d3fdf8ee2df"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.array.copy-within.js",
+    "revision": "db46da88bde5139eea23088654f5962f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.array.every.js",
+    "revision": "df0f5ec13bff8ad8fb549ca2d4d0a9e5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.array.fill.js",
+    "revision": "4e04c4670fd0cd7661c9e494becb1c15"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.array.filter.js",
+    "revision": "f7e6452baaa908dcc3d6cb07c0611959"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.array.find-index.js",
+    "revision": "34c9f77ecebe6328a6b220afcbc5d759"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.array.find.js",
+    "revision": "939a0f2876031da97a8d5db59eb01242"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.array.for-each.js",
+    "revision": "ecd9ab859d28a8e59f18a744e7d2fb62"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.array.from.js",
+    "revision": "f04f2e021bedb0b88bfa739aae3fa0aa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.array.index-of.js",
+    "revision": "016b84eac005b6702c4eda4c461fd530"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.array.is-array.js",
+    "revision": "4369e6dfe985667083d406e04d5ee949"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.array.iterator.js",
+    "revision": "b267681e56556042dce19ffecf9cc596"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.array.join.js",
+    "revision": "f52bfd3b631ae76217b5d0382798e6a0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.array.last-index-of.js",
+    "revision": "a505824ba0502c2c003225a08d7f695c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.array.map.js",
+    "revision": "3ddd99f1fe607ef48259e2239e5410fa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.array.of.js",
+    "revision": "72b98f21a9ff9a4c78b9cbd440e9e239"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.array.reduce-right.js",
+    "revision": "c0d8fada9c36e94810c07b7efb0dc4eb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.array.reduce.js",
+    "revision": "c1ff16014f1f669b8bd22079aab394d1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.array.slice.js",
+    "revision": "6fa3de49d7f5f93544743d2933204aba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.array.some.js",
+    "revision": "065671be7c31635d7c4a4467fc8bfdda"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.array.sort.js",
+    "revision": "40d51bdd5ffc55151c15f535260c7c6e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.array.species.js",
+    "revision": "0656901a55e46ffb99563d776d8b8bcc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.date.now.js",
+    "revision": "d175ba87230bc0b09a65b119088720d9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.date.to-iso-string.js",
+    "revision": "32025f60b1b585433831f707d7ab21ce"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.date.to-json.js",
+    "revision": "3c48d256fcba8d0f64e87a16c73d1e5d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.date.to-primitive.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.date.to-string.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.function.bind.js",
+    "revision": "cd6bd5cdeebaaf506bd06cd28c00d8c4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.function.has-instance.js",
+    "revision": "2860024eaea6b403a692497ef4c803b3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.function.name.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.map.js",
+    "revision": "4c598937c833f20f09a704b1dfad9e1f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.math.acosh.js",
+    "revision": "a71a6d5e364ba8a40c77101528054774"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.math.asinh.js",
+    "revision": "ccb7d5bebf1f5281cefe06121dd5329b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.math.atanh.js",
+    "revision": "ebccd2e395dc269cc42786583bfdf8a9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.math.cbrt.js",
+    "revision": "00a043b186ec62fc1689c1a0d815b192"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.math.clz32.js",
+    "revision": "31703f74c9eabb451348a273c45c6ec4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.math.cosh.js",
+    "revision": "886ed6a9d4a94981184f17b9fc3ad8b5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.math.expm1.js",
+    "revision": "5e41ee61b1e527efb7cee93ff2ad22ab"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.math.fround.js",
+    "revision": "723ad2433e8f6f1e9fb164c2754ee405"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.math.hypot.js",
+    "revision": "b9ab3ce64cf06689be44735a9e226f02"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.math.imul.js",
+    "revision": "c02a4e0a9c0d414a51042a485ea5cd2c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.math.log10.js",
+    "revision": "29f01adfc7b2c33c0b29c22f00eccc32"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.math.log1p.js",
+    "revision": "4f53bae9574437f8465278ca6b1809ab"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.math.log2.js",
+    "revision": "2020d6a42df6f1764b2502508e0b0c26"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.math.sign.js",
+    "revision": "c8758e459ffd8c4496e8b6ef4ab3a10a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.math.sinh.js",
+    "revision": "2461c367dca4246ae5c4c13a60250d36"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.math.tanh.js",
+    "revision": "869b03f33d28f409fc23cb012dcdda02"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.math.trunc.js",
+    "revision": "9abcd28266feca1b764902a13fc8b10b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.number.constructor.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.number.epsilon.js",
+    "revision": "45dbb57617e6fd60ad3e103dee3b75b8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.number.is-finite.js",
+    "revision": "76862b9d271d02bb1bebc939f0cdb478"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.number.is-integer.js",
+    "revision": "d7027a111c9f323625d55c62fe279720"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.number.is-nan.js",
+    "revision": "5d09406a4fe520789c3422869295b98b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.number.is-safe-integer.js",
+    "revision": "1e930b2435f732163651e5b3ef64c768"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.number.max-safe-integer.js",
+    "revision": "1cd03e34c8c59e952f9e58d2264b07df"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.number.min-safe-integer.js",
+    "revision": "bde891252157d1db73e5253320dba2c9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.number.parse-float.js",
+    "revision": "65d28d98428d7a84e0025334048e959a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.number.parse-int.js",
+    "revision": "3af3e48dd8d09f8bb67847a2bcd956df"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.number.to-fixed.js",
+    "revision": "46a2b20e220da13e4faf878336b0370c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.number.to-precision.js",
+    "revision": "659c903e3114ec21e544bcf519050998"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.object.assign.js",
+    "revision": "94324d45d13a0ad50a8b74b7d3a0a2d1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.object.create.js",
+    "revision": "13ebec63e0a3411b7d21d687ac44adee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.object.define-properties.js",
+    "revision": "6205410296e0d47dbdc113e77f2715b8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.object.define-property.js",
+    "revision": "6bc178b2098934a80b7c6770edef2099"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.object.freeze.js",
+    "revision": "3c13938dcef7fa20f54d14b9a55cea5e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.object.get-own-property-descriptor.js",
+    "revision": "7f59fface79fe09c2b5ce6b79d60c945"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.object.get-own-property-names.js",
+    "revision": "f48d57477193ef0bf6895180edbae3a6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.object.get-prototype-of.js",
+    "revision": "8a53d406d05574ca36dd755f0dbe91a0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.object.is-extensible.js",
+    "revision": "85c03ec475d1089e811d1c9664cde6a8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.object.is-frozen.js",
+    "revision": "d130bb8dcf9983c0e7cfc0acb06dad38"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.object.is-sealed.js",
+    "revision": "e134a79335e7ac5f39dde3281f5c299b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.object.is.js",
+    "revision": "9d6ef3084e889d327507fe469bfb75ab"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.object.keys.js",
+    "revision": "e5431b4437929a9f72d728ddc19d6f23"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.object.prevent-extensions.js",
+    "revision": "a9f336fe1bd7b483296ec6a5010d4d69"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.object.seal.js",
+    "revision": "dc2c376a0d7b4e0c63464e492523d4ea"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.object.set-prototype-of.js",
+    "revision": "5ea8f1531068227c522f86e924b0370f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.object.to-string.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.parse-float.js",
+    "revision": "b4a01ed83c87b5b2a5ab97af8a54cdc2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.parse-int.js",
+    "revision": "29214d21f94c27c4131e79c7e682ad65"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.promise.js",
+    "revision": "adf1e860ab810769f934203dfa462839"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.reflect.apply.js",
+    "revision": "d8fe733aa4c9207ac321feaeb13d4568"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.reflect.construct.js",
+    "revision": "0569fd1832221fe030d44d7b3be4afee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.reflect.define-property.js",
+    "revision": "bc3af1a1c5e7ebee07ac1dca8ff8d36d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.reflect.delete-property.js",
+    "revision": "e4633ed5a0597737e2d29fe845792a1d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.reflect.enumerate.js",
+    "revision": "767702f26835aaff91d81d63e2104865"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.reflect.get-own-property-descriptor.js",
+    "revision": "395492859dcae4ff2456dd93ca6c250e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.reflect.get-prototype-of.js",
+    "revision": "514d9f7cb45b1f719027f017cbad5a46"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.reflect.get.js",
+    "revision": "dbe3df5f8647179efba92c5b785b7090"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.reflect.has.js",
+    "revision": "91b02c777cd6a5f59b6c2c531aaaea11"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.reflect.is-extensible.js",
+    "revision": "d9a00d9d45d660ed35402d08f4928758"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.reflect.own-keys.js",
+    "revision": "dda9b86a193fd3e345dfa980558355f8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.reflect.prevent-extensions.js",
+    "revision": "ca6a34f90eb111d04ccdb38acb5d9f44"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.reflect.set-prototype-of.js",
+    "revision": "1b9115891c3e8109e9ca88e2e5fc1725"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.reflect.set.js",
+    "revision": "a8d4c6da0a5eda6bee6ca6df52ae780f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.regexp.constructor.js",
+    "revision": "279dcbea9d09a41f5fce489aea6fb11d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.regexp.flags.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.regexp.match.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.regexp.replace.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.regexp.search.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.regexp.split.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.regexp.to-string.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.set.js",
+    "revision": "0b0ae5ea6dcaecd901125e4ea4ad2a40"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.string.anchor.js",
+    "revision": "c66dc51691844d53cca3791346d10cfd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.string.big.js",
+    "revision": "48db021cef77e50c3e3415cd76a63a01"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.string.blink.js",
+    "revision": "d75010cfca14a1c6288e79c03e5164fe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.string.bold.js",
+    "revision": "aa7155b82500e3ff657d34dce7c130a9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.string.code-point-at.js",
+    "revision": "58ac5fa8b5d00dc0d2521fec10973d3d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.string.ends-with.js",
+    "revision": "78b1a0917364535854f612e2cdae8b42"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.string.fixed.js",
+    "revision": "163c15b8b915cad2efcca9f850565354"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.string.fontcolor.js",
+    "revision": "fbe704d830239bafa494bd4f7abf32e3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.string.fontsize.js",
+    "revision": "eb9e3ee7ffb42a83079630b48fdd0b47"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.string.from-code-point.js",
+    "revision": "1646300b9667a3ecd67015ef464ad7f4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.string.includes.js",
+    "revision": "86ea1c7aa5469e950e9375bfac36c524"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.string.italics.js",
+    "revision": "c21d752644e6db1fb07ee1e4ea2b9a3f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.string.iterator.js",
+    "revision": "d9929e169119615031937bed12b6f491"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.string.link.js",
+    "revision": "ff2c6ff2509e5f622f148048fb7c5b0f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.string.raw.js",
+    "revision": "ae766eb1bffdb127acc7c6375bfd3852"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.string.repeat.js",
+    "revision": "5af4f79ace993dcbf7657bd16441926c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.string.small.js",
+    "revision": "3c666f79d8369b2bdeb223cbcaf0fbbf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.string.starts-with.js",
+    "revision": "0b74b806354686d2c681c481bdc663af"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.string.strike.js",
+    "revision": "837d27ee81254b3369241e85bc607646"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.string.sub.js",
+    "revision": "9781bbfdd2b9ab982039c20c03600f19"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.string.sup.js",
+    "revision": "9da2ff8e6da222800073315a9e622184"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.string.trim.js",
+    "revision": "02fdba9d40448457fd3c1a6d815e4e16"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.symbol.js",
+    "revision": "b24dfffe647fe7b4913c6a6d046f77c5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.typed.array-buffer.js",
+    "revision": "7f4f696fa05ca4951f69276a43b16bc3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.typed.data-view.js",
+    "revision": "599a752bf9b93e41e14b3bfb8627b829"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.typed.float32-array.js",
+    "revision": "6046a34090ef5b5e537ec1df235f9c70"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.typed.float64-array.js",
+    "revision": "13b8652c429aced383c8a08ddfed616b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.typed.int16-array.js",
+    "revision": "f0b255260759260c8a8d55a11edfcf54"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.typed.int32-array.js",
+    "revision": "09b6678fb31e1add02a4f41cd04281a9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.typed.int8-array.js",
+    "revision": "c11d9c777aaff36ce84365f76fb61928"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.typed.uint16-array.js",
+    "revision": "2485752347e61c3f8c501156f2f0798d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.typed.uint32-array.js",
+    "revision": "885c4cc11925dd4787378052dfcfefe6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.typed.uint8-array.js",
+    "revision": "53e644f750d6c093ce62478bf92a49d3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.typed.uint8-clamped-array.js",
+    "revision": "2dd6e433652fa436bbe47c3fb102febe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.weak-map.js",
+    "revision": "5253fc2d1b14f30886ada45bed866df2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es6.weak-set.js",
+    "revision": "8d1df11862954bc6cce49b1f69abbcba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.array.flat-map.js",
+    "revision": "90ed07f989a41513a26508eb8e866b21"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.array.flatten.js",
+    "revision": "128c5d49b6a764245322055a5ee8364a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.array.includes.js",
+    "revision": "35001b8822796668c88399278add3e1a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.asap.js",
+    "revision": "024c60c8d8b3c246cbb5ca409bc7ada7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.error.is-error.js",
+    "revision": "f09428a80644e0e997dbd7571f8c4b2b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.global.js",
+    "revision": "ba8e62e0902432f39a21a6987be41241"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.map.from.js",
+    "revision": "62926a1967289e6bc055df7ea0b3c3e8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.map.of.js",
+    "revision": "5e446a3ecc17b6827f57e393efaab39e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.map.to-json.js",
+    "revision": "f07f0b1a1f4d0b8ac4505abcb4466641"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.math.clamp.js",
+    "revision": "60d32106e7903d95cbd820f67a4f65e5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.math.deg-per-rad.js",
+    "revision": "3e9225eecdbbe0304054c3dd5e3f84a3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.math.degrees.js",
+    "revision": "873f8401547688e866fdf0352957c346"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.math.fscale.js",
+    "revision": "987a218b00489a846104b60035271c63"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.math.iaddh.js",
+    "revision": "998905d816463d307e2f325f9af4667f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.math.imulh.js",
+    "revision": "d3e01b4e63f9b9d47f418c0d95da9b04"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.math.isubh.js",
+    "revision": "e062901706ec388f757d71b105c6b5e6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.math.rad-per-deg.js",
+    "revision": "150ecaedbcb457106c8e1c4877a7c3a0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.math.radians.js",
+    "revision": "27c43a61e6fcb048196595cf10018e80"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.math.scale.js",
+    "revision": "d6344a612f7d78eb07538699aa33faf9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.math.signbit.js",
+    "revision": "abb0f9a52f7e396d946f59ef8fb208be"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.math.umulh.js",
+    "revision": "b1e2286b49a08cbb5ff765362883301e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.object.define-getter.js",
+    "revision": "28009e59cbd7de49cd1d6b18dde098e2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.object.define-setter.js",
+    "revision": "93835304f006c3d154b5580e22b3bcfa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.object.entries.js",
+    "revision": "3d5638be4e5307b8dbdabcd25674ba42"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.object.get-own-property-descriptors.js",
+    "revision": "49e18808b6a91bd40e7aac398188cb89"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.object.lookup-getter.js",
+    "revision": "7333a950839825d4d265c0cc798aaae8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.object.lookup-setter.js",
+    "revision": "c873a78a7d5710ef37d8e59430dc8ea9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.object.values.js",
+    "revision": "364996b34f4c91c4955412e1121c6254"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.observable.js",
+    "revision": "11e1805f1d3048095aa7a91b6c021992"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.promise.finally.js",
+    "revision": "c0dda2b81d27c35b97857ee9d2bfef94"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.promise.try.js",
+    "revision": "0f08e16885175ad201186efdd65eb0ee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.reflect.define-metadata.js",
+    "revision": "11bbfe9e5ea42787a2cf6e197313d84f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.reflect.delete-metadata.js",
+    "revision": "c510cc5265f32fb1fbe6712b11b4c6f0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.reflect.get-metadata-keys.js",
+    "revision": "5736cd8bc4282007a2369dfccbb6393e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.reflect.get-metadata.js",
+    "revision": "cf002fad3e6227159f0a3ff7aa094f48"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.reflect.get-own-metadata-keys.js",
+    "revision": "e7bc387675d6ebb2851e88ec3c753b53"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.reflect.get-own-metadata.js",
+    "revision": "e96d39866e545c36a4cdb245cee3a5b2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.reflect.has-metadata.js",
+    "revision": "bd0877f019b3ff34b2a4f4c65b681650"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.reflect.has-own-metadata.js",
+    "revision": "097e9a071b480d7fec23affb5e6d909f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.reflect.metadata.js",
+    "revision": "6e91029be2a3b78c008110f28858f236"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.set.from.js",
+    "revision": "bc670c9d83eaa8f749de8ed0be843a38"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.set.of.js",
+    "revision": "93f1d65faa65225e548529565ec1577a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.set.to-json.js",
+    "revision": "b6d3e5e8a67ba5ee7dd4cfd029adc585"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.string.at.js",
+    "revision": "6299770783e113f9167541baa159723b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.string.match-all.js",
+    "revision": "552bd95f879e48c5e2088853ac1afdac"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.string.pad-end.js",
+    "revision": "66f8eb9faf203e0b305c33e1aae0aa5a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.string.pad-start.js",
+    "revision": "9648c53588e4788dcc00a2baa3cfdc93"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.string.trim-left.js",
+    "revision": "221a88303295ae14ef50af6806e885ef"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.string.trim-right.js",
+    "revision": "f22117211d1ee2aad5ce4cf127d15bba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.symbol.async-iterator.js",
+    "revision": "894f1f44705ed4ecf58d814b7bc8e12b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.symbol.observable.js",
+    "revision": "ed602c13e0feb76e360b6ad1a8846049"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.system.global.js",
+    "revision": "f1354f603f9260c7a7db3cdcf8abe768"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.weak-map.from.js",
+    "revision": "bf1a3fd5ff88a4eb3b729d9295db8781"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.weak-map.of.js",
+    "revision": "fe93707819613272d017d078488da327"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.weak-set.from.js",
+    "revision": "86d51a2dad74b281284af9a5910b5656"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/es7.weak-set.of.js",
+    "revision": "021781ea984605516037dae87b09440b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/web.dom.iterable.js",
+    "revision": "f30af3558d9052eeda81908329d27197"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/web.immediate.js",
+    "revision": "c47c942a52f07cf4766ba6c890699e8f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/modules/web.timers.js",
+    "revision": "b3e6d4161e9f82d051f1733afca9818b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/shim.js",
+    "revision": "82588e0e7f5232dda563ba8fdabe4670"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/stage/0.js",
+    "revision": "5282edd0d2c440df0d0272bfc22e8b3e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/stage/1.js",
+    "revision": "0fa16f5a1305b4cce516b637d30b35de"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/stage/2.js",
+    "revision": "6a0ae69a6f76014a2ef831e0a4fe1d79"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/stage/3.js",
+    "revision": "0686ddcf35b7196207c82ce9bea483d5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/stage/4.js",
+    "revision": "1917a3df37474b69dcad73409d0fca22"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/stage/index.js",
+    "revision": "b84183f18340b4754651f9b1461c1686"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/stage/pre.js",
+    "revision": "f7a8686987173313c20c41997df94622"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/web/dom-collections.js",
+    "revision": "30d1ee32e10d16e0bd8f32ae2f133d5d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/web/immediate.js",
+    "revision": "86c3189c65a0cbc9d436ec93b703d046"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/web/index.js",
+    "revision": "0cb9010be480a35ab01d75864135a930"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/library/web/timers.js",
+    "revision": "5c230934edd01b6bdd0dad96951cac21"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_a-function.js",
+    "revision": "1a8c44abf9eede775fc53fb2bdebf783"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_a-number-value.js",
+    "revision": "9f4026d0ffb90f39628b050835307a24"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_add-to-unscopables.js",
+    "revision": "7a2ab60be9db983a0623fb7139b33af6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_an-instance.js",
+    "revision": "cb8e94b8a9aca97c2155b496ddaad573"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_an-object.js",
+    "revision": "c01966c68f05e6feb18b528a74393625"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_array-copy-within.js",
+    "revision": "19fe972416aced2848be3e5b20e79fa5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_array-fill.js",
+    "revision": "eac0158d8ec8e4acfe54b76f92145e2f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_array-from-iterable.js",
+    "revision": "71bc2918e2df31605cafd19c42e77535"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_array-includes.js",
+    "revision": "921f878797c27ded0e522898f237739e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_array-methods.js",
+    "revision": "42af3850ff4c3e722875906f191899e7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_array-reduce.js",
+    "revision": "f4fedc28d7a324cd394157073854f8f0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_array-species-constructor.js",
+    "revision": "c964fa58b9d2896863a56e4b1cb53d8f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_array-species-create.js",
+    "revision": "f1e77bb73497f4cdb9dcee88c54d358d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_bind.js",
+    "revision": "a7658563c5d8f469d2589300e13dd042"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_classof.js",
+    "revision": "9a1a89ed6610c2a428cdb802b36d9f9c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_cof.js",
+    "revision": "b53bafd789ab20665e75c8c72aabbc8d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_collection-strong.js",
+    "revision": "254e319eb699daf783b0ef8a06578d92"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_collection-to-json.js",
+    "revision": "2954f76c723d19d231a0f1fc6ef96465"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_collection-weak.js",
+    "revision": "84d8491be2829326d6954b6d7db2224c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_collection.js",
+    "revision": "416927a1ebde74ac6ea74de5bf090790"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_core.js",
+    "revision": "52d21133256011af1ad99d6cfb86d502"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_create-property.js",
+    "revision": "56dae10156acbb8dd55a808f5d8a8314"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_ctx.js",
+    "revision": "0ae16d9a2f51152d65249dbc969a2563"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_date-to-iso-string.js",
+    "revision": "c62ec266ef2e5dbb423b97ced0a477bd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_date-to-primitive.js",
+    "revision": "e9a7a91cce1f34e2247d3dd43a7315d1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_defined.js",
+    "revision": "eff77270b95a2441e1de628fcce9ddb7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_descriptors.js",
+    "revision": "8338ed7effd66a4e95b551cd85b0a4fa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_dom-create.js",
+    "revision": "eb6024459ae980183997d8f5d6fb73ac"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_entry-virtual.js",
+    "revision": "2579c503a9cbe9ac6b0458f13e46b123"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_enum-bug-keys.js",
+    "revision": "239ab95023e4d20ff0b255c8532dfe69"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_enum-keys.js",
+    "revision": "a0fe03e3e79ed44b1512966230d06950"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_export.js",
+    "revision": "d1564dfdf9036490f45eee951239362e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_fails-is-regexp.js",
+    "revision": "dca1c0412ce96f46d5f2952f8372a616"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_fails.js",
+    "revision": "ee9da5f3087fb099e0073fbbc3f3aace"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_fix-re-wks.js",
+    "revision": "c6260c8b9188a807e70c8bd2512a7cc5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_flags.js",
+    "revision": "746a4661d465f994e502ddb8e405ab30"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_flatten-into-array.js",
+    "revision": "b1f6c5799795294b9fc8d9e16f8b0ba6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_for-of.js",
+    "revision": "6ccb897dacaea7befbfd2d1ae60f9766"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_global.js",
+    "revision": "9ea9cbbb7b320f8dad8441cc48ebbbf2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_has.js",
+    "revision": "bd5bfea3f3fbd5884967d2f639449f65"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_hide.js",
+    "revision": "451bdb6f7a04c6c1fd8a96daa915036a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_html.js",
+    "revision": "46c3141a482a16a207650fce90225ea3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_ie8-dom-define.js",
+    "revision": "24b8311e55b5ea85346654651258071b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_inherit-if-required.js",
+    "revision": "9ee05dcc592070a4a2ec10112a55093d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_invoke.js",
+    "revision": "af0bf3b70898fa8d34d3325162e0cbbb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_iobject.js",
+    "revision": "582d5f9c7199a276676d51cab9e7014a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_is-array-iter.js",
+    "revision": "22dfb8e252ec63320160fd31deb3ccaf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_is-array.js",
+    "revision": "2393e877d2e70b3f5cc4f12377c900dd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_is-integer.js",
+    "revision": "2a4dc5a60a3ac00415e098d0021209df"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_is-object.js",
+    "revision": "7cfd7caad6a0b5dbd003d34acaf96716"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_is-regexp.js",
+    "revision": "5a81d0c83712dd0fbfb4161054fb3959"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_iter-call.js",
+    "revision": "5ff33ae554cb3593fa814ada19b627db"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_iter-create.js",
+    "revision": "eab6c54abd3a75580e9fb01c23c5455f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_iter-define.js",
+    "revision": "c40c8b512f6687ab730831ea7af8adb8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_iter-detect.js",
+    "revision": "4de37588a3e0b7c3c5056ab01a2c8fad"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_iter-step.js",
+    "revision": "260cd482596bb6ee3cfaa7f59cdda454"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_iterators.js",
+    "revision": "2f3d1a73eac1104259f9bfd70dd740d3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_keyof.js",
+    "revision": "19ae38eb32d597d65fcbb5938307edb4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_library.js",
+    "revision": "f74b6fd2e3222c91240eb74b29184af3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_math-expm1.js",
+    "revision": "59b0518f7a002fd00b1af30ba3b05b72"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_math-fround.js",
+    "revision": "7ce904aaa1c46b40a0cf55bfe2457b72"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_math-log1p.js",
+    "revision": "9315d6f81216469cc97424bd09f611b1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_math-scale.js",
+    "revision": "1cfc14855ce5d5712b5341b90da6d23a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_math-sign.js",
+    "revision": "475bf10f0516ee7dbd1fe4e4ca60e4ec"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_meta.js",
+    "revision": "f746038c84057d82d47ae815437497ee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_metadata.js",
+    "revision": "ed0bd4267e01c19ab0280e258dacc68b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_microtask.js",
+    "revision": "4cfb6ff7b63be6adaa62408d5be14482"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_new-promise-capability.js",
+    "revision": "664eb09f1e4ae6c28fe9ea1020d4c769"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_object-assign.js",
+    "revision": "efeac43990cf39dc5860eaeee3d5dbf1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_object-create.js",
+    "revision": "080f7867c90d175bbb81b0d621e59e89"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_object-define.js",
+    "revision": "1dd8a394497a988875e61bd8564b3613"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_object-dp.js",
+    "revision": "5540ba925f8e0f13a6cdf51e3ff55c8f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_object-dps.js",
+    "revision": "3d20241ac8b5b3a5962df76335856243"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_object-forced-pam.js",
+    "revision": "b22653ef9f9122bbeb471f79f4c6a525"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_object-gopd.js",
+    "revision": "5ba685c859b616a5705f0fdaadcbb7fe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_object-gopn-ext.js",
+    "revision": "d07fa309266d7597d1f5c011505732cd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_object-gopn.js",
+    "revision": "8257cf9c5eff33cfa9f7cc5814d31192"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_object-gops.js",
+    "revision": "202593fd715e7785384a247bfe8eeb95"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_object-gpo.js",
+    "revision": "c808bb9bc86b0f7cf39c69ca236ce717"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_object-keys-internal.js",
+    "revision": "7ae5c52ba32d0ab9d06518c7e0643c4a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_object-keys.js",
+    "revision": "583091fc4d88813f55b488040284d9a7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_object-pie.js",
+    "revision": "d362cdc2df0c6b7e4507a27bc331b207"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_object-sap.js",
+    "revision": "b181d541ec9c654ed2bc73afd90e635f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_object-to-array.js",
+    "revision": "1ddfe4f67c2c0c4c6be78422c12389fc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_own-keys.js",
+    "revision": "9c303b175eab1fdf6cc17eb1920c3a9c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_parse-float.js",
+    "revision": "6ea43faf4b3a6c86f541c54a4908e62b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_parse-int.js",
+    "revision": "ee9408d787bbe58415bd57a4d3d6d23b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_partial.js",
+    "revision": "2550b5891faa17f54af95f9f5b5841dd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_path.js",
+    "revision": "52cf6f0a16e28d16afaf29b3334c379b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_perform.js",
+    "revision": "b19d96e6f92aff543424f29d308cc9bb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_promise-resolve.js",
+    "revision": "1528244208420216d8ad40600697503d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_property-desc.js",
+    "revision": "e0fb2cbe9529b3d3138c8a7d48464d99"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_redefine-all.js",
+    "revision": "6c1763f3a92468195b54abfd599b4617"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_redefine.js",
+    "revision": "5cd69c9bd8d66dcd9ea3e528e5481049"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_replacer.js",
+    "revision": "8a5595a560dd271d420eabc0ea1e0660"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_same-value.js",
+    "revision": "ea6d312141dc50e1edb647c4584e2ebb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_set-collection-from.js",
+    "revision": "7c8aeae6b99d412750b4212de414f0e1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_set-collection-of.js",
+    "revision": "dce835ea14b1ff6bd9f57e038acdf33a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_set-proto.js",
+    "revision": "8a804a760af89576e3af3ea32c4b3d29"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_set-species.js",
+    "revision": "b096528b0633cd0f803b88e8c7ec0d19"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_set-to-string-tag.js",
+    "revision": "8597a0bc619302916d5231f63910d890"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_shared-key.js",
+    "revision": "7d7cf55a67f4e78fdbd96881dfdc1de8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_shared.js",
+    "revision": "8a29e933f46b4fb2d97a40525d9612fc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_species-constructor.js",
+    "revision": "0d2da90cd1f85fcd3891005fa29615a4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_strict-method.js",
+    "revision": "01f75b91df53ef74f56bf0ab626a395b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_string-at.js",
+    "revision": "ba406f78032dc96e91b08ed9871d4a2c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_string-context.js",
+    "revision": "cd4b091845b50ec2ddfe318556b6c443"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_string-html.js",
+    "revision": "976c56b911c641cc03408f85c98952c0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_string-pad.js",
+    "revision": "99fa0555347b0861e11ebf06a6554fab"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_string-repeat.js",
+    "revision": "28d500829e70c2642eccb41227663a5a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_string-trim.js",
+    "revision": "7b5d40323e09e1bb7a071abe10416d5e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_string-ws.js",
+    "revision": "53d75392e54d0974150fc2e48e579cde"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_task.js",
+    "revision": "fffc260a9ff9f185294d288f0c146db0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_to-absolute-index.js",
+    "revision": "219c8e7b098f1aab77738b0b1e703369"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_to-index.js",
+    "revision": "f6e4f1c1d9acff4e7a5c672812ad7c54"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_to-integer.js",
+    "revision": "790e452139269cf2060e208cb01e667a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_to-iobject.js",
+    "revision": "103456a7fa97ff2468e4c7fa1c26ed9d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_to-length.js",
+    "revision": "7ebe46bfc0d49509ab3bf2b376580c8d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_to-object.js",
+    "revision": "48d3ce5c8bcd0c45ec3ece14b21785c4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_to-primitive.js",
+    "revision": "17937961361e9bead036928dc1663206"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_typed-array.js",
+    "revision": "e138e79757688246e2517b74c1851d40"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_typed-buffer.js",
+    "revision": "191cb2739ae54abf20fd69faa53b9aa0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_typed.js",
+    "revision": "55689c5c4b707f9b955a15154cb30f34"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_uid.js",
+    "revision": "d1e8b5f4ba244c3861f07d44c2128c2f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_validate-collection.js",
+    "revision": "f6d420ceac33c9b2d8798e622ff22b27"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_wks-define.js",
+    "revision": "ac682690de1ecdc2aadf6749b18d02d0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_wks-ext.js",
+    "revision": "177791284c1e0cd4424789b92e3110b7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/_wks.js",
+    "revision": "7f60dcddd9199f0c09efa3c85164ed7b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/core.delay.js",
+    "revision": "6ff7593b350c5ee5b912065e09378545"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/core.dict.js",
+    "revision": "5deb89aeb2b4f989e86d7d90a556b7ec"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/core.function.part.js",
+    "revision": "c555f8d5b41e88236d4ca708ca91a068"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/core.get-iterator-method.js",
+    "revision": "9d67525fc2765d7494e44abc96fd2d64"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/core.get-iterator.js",
+    "revision": "76d719758d361dc6f2140a196622b5dd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/core.is-iterable.js",
+    "revision": "f8f092d75af9a800b6b36aaefa3023a7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/core.number.iterator.js",
+    "revision": "2bd6b32e1baaa56f352883b6e9bfe58b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/core.object.classof.js",
+    "revision": "6d99d5323b9ff0fc94baa5ce352834d4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/core.object.define.js",
+    "revision": "217095ca73085fb921531f1c71e94862"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/core.object.is-object.js",
+    "revision": "574490b7f9397c61d91ac6893d440e70"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/core.object.make.js",
+    "revision": "5b5ee508ce00f12d5e094623aa211c9c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/core.regexp.escape.js",
+    "revision": "e97752f7f9a8130c3d433dd5d2b0a8ff"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/core.string.escape-html.js",
+    "revision": "773edb24828d459ebf830eccb3ad0be3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/core.string.unescape-html.js",
+    "revision": "30f95f06818277454743bbb9405e0fe3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es5.js",
+    "revision": "cdb78ba3e2d3e9d064280d3fdf8ee2df"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.array.copy-within.js",
+    "revision": "db46da88bde5139eea23088654f5962f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.array.every.js",
+    "revision": "df0f5ec13bff8ad8fb549ca2d4d0a9e5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.array.fill.js",
+    "revision": "4e04c4670fd0cd7661c9e494becb1c15"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.array.filter.js",
+    "revision": "f7e6452baaa908dcc3d6cb07c0611959"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.array.find-index.js",
+    "revision": "34c9f77ecebe6328a6b220afcbc5d759"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.array.find.js",
+    "revision": "939a0f2876031da97a8d5db59eb01242"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.array.for-each.js",
+    "revision": "ecd9ab859d28a8e59f18a744e7d2fb62"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.array.from.js",
+    "revision": "f04f2e021bedb0b88bfa739aae3fa0aa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.array.index-of.js",
+    "revision": "016b84eac005b6702c4eda4c461fd530"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.array.is-array.js",
+    "revision": "4369e6dfe985667083d406e04d5ee949"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.array.iterator.js",
+    "revision": "b267681e56556042dce19ffecf9cc596"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.array.join.js",
+    "revision": "f52bfd3b631ae76217b5d0382798e6a0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.array.last-index-of.js",
+    "revision": "a505824ba0502c2c003225a08d7f695c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.array.map.js",
+    "revision": "3ddd99f1fe607ef48259e2239e5410fa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.array.of.js",
+    "revision": "72b98f21a9ff9a4c78b9cbd440e9e239"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.array.reduce-right.js",
+    "revision": "c0d8fada9c36e94810c07b7efb0dc4eb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.array.reduce.js",
+    "revision": "c1ff16014f1f669b8bd22079aab394d1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.array.slice.js",
+    "revision": "6fa3de49d7f5f93544743d2933204aba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.array.some.js",
+    "revision": "065671be7c31635d7c4a4467fc8bfdda"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.array.sort.js",
+    "revision": "40d51bdd5ffc55151c15f535260c7c6e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.array.species.js",
+    "revision": "0656901a55e46ffb99563d776d8b8bcc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.date.now.js",
+    "revision": "d175ba87230bc0b09a65b119088720d9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.date.to-iso-string.js",
+    "revision": "32025f60b1b585433831f707d7ab21ce"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.date.to-json.js",
+    "revision": "a5b5e3733cbd1cf12a8326c90f458a66"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.date.to-primitive.js",
+    "revision": "052535c86b1eeb047a9816a278b016da"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.date.to-string.js",
+    "revision": "218f082e131bb860168bb1d99b1519d3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.function.bind.js",
+    "revision": "cd6bd5cdeebaaf506bd06cd28c00d8c4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.function.has-instance.js",
+    "revision": "2860024eaea6b403a692497ef4c803b3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.function.name.js",
+    "revision": "dc24d33db1bb5a7982a5083b40c91300"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.map.js",
+    "revision": "4c598937c833f20f09a704b1dfad9e1f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.math.acosh.js",
+    "revision": "a71a6d5e364ba8a40c77101528054774"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.math.asinh.js",
+    "revision": "ccb7d5bebf1f5281cefe06121dd5329b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.math.atanh.js",
+    "revision": "ebccd2e395dc269cc42786583bfdf8a9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.math.cbrt.js",
+    "revision": "00a043b186ec62fc1689c1a0d815b192"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.math.clz32.js",
+    "revision": "31703f74c9eabb451348a273c45c6ec4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.math.cosh.js",
+    "revision": "886ed6a9d4a94981184f17b9fc3ad8b5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.math.expm1.js",
+    "revision": "5e41ee61b1e527efb7cee93ff2ad22ab"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.math.fround.js",
+    "revision": "723ad2433e8f6f1e9fb164c2754ee405"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.math.hypot.js",
+    "revision": "b9ab3ce64cf06689be44735a9e226f02"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.math.imul.js",
+    "revision": "c02a4e0a9c0d414a51042a485ea5cd2c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.math.log10.js",
+    "revision": "29f01adfc7b2c33c0b29c22f00eccc32"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.math.log1p.js",
+    "revision": "4f53bae9574437f8465278ca6b1809ab"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.math.log2.js",
+    "revision": "2020d6a42df6f1764b2502508e0b0c26"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.math.sign.js",
+    "revision": "c8758e459ffd8c4496e8b6ef4ab3a10a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.math.sinh.js",
+    "revision": "2461c367dca4246ae5c4c13a60250d36"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.math.tanh.js",
+    "revision": "869b03f33d28f409fc23cb012dcdda02"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.math.trunc.js",
+    "revision": "9abcd28266feca1b764902a13fc8b10b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.number.constructor.js",
+    "revision": "7ccdd524dec20fd91132a0d5ef6d097e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.number.epsilon.js",
+    "revision": "45dbb57617e6fd60ad3e103dee3b75b8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.number.is-finite.js",
+    "revision": "76862b9d271d02bb1bebc939f0cdb478"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.number.is-integer.js",
+    "revision": "d7027a111c9f323625d55c62fe279720"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.number.is-nan.js",
+    "revision": "5d09406a4fe520789c3422869295b98b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.number.is-safe-integer.js",
+    "revision": "1e930b2435f732163651e5b3ef64c768"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.number.max-safe-integer.js",
+    "revision": "1cd03e34c8c59e952f9e58d2264b07df"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.number.min-safe-integer.js",
+    "revision": "bde891252157d1db73e5253320dba2c9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.number.parse-float.js",
+    "revision": "65d28d98428d7a84e0025334048e959a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.number.parse-int.js",
+    "revision": "3af3e48dd8d09f8bb67847a2bcd956df"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.number.to-fixed.js",
+    "revision": "46a2b20e220da13e4faf878336b0370c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.number.to-precision.js",
+    "revision": "659c903e3114ec21e544bcf519050998"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.object.assign.js",
+    "revision": "94324d45d13a0ad50a8b74b7d3a0a2d1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.object.create.js",
+    "revision": "13ebec63e0a3411b7d21d687ac44adee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.object.define-properties.js",
+    "revision": "6205410296e0d47dbdc113e77f2715b8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.object.define-property.js",
+    "revision": "6bc178b2098934a80b7c6770edef2099"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.object.freeze.js",
+    "revision": "3c13938dcef7fa20f54d14b9a55cea5e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.object.get-own-property-descriptor.js",
+    "revision": "7f59fface79fe09c2b5ce6b79d60c945"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.object.get-own-property-names.js",
+    "revision": "f48d57477193ef0bf6895180edbae3a6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.object.get-prototype-of.js",
+    "revision": "8a53d406d05574ca36dd755f0dbe91a0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.object.is-extensible.js",
+    "revision": "85c03ec475d1089e811d1c9664cde6a8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.object.is-frozen.js",
+    "revision": "d130bb8dcf9983c0e7cfc0acb06dad38"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.object.is-sealed.js",
+    "revision": "e134a79335e7ac5f39dde3281f5c299b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.object.is.js",
+    "revision": "9d6ef3084e889d327507fe469bfb75ab"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.object.keys.js",
+    "revision": "e5431b4437929a9f72d728ddc19d6f23"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.object.prevent-extensions.js",
+    "revision": "a9f336fe1bd7b483296ec6a5010d4d69"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.object.seal.js",
+    "revision": "dc2c376a0d7b4e0c63464e492523d4ea"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.object.set-prototype-of.js",
+    "revision": "5ea8f1531068227c522f86e924b0370f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.object.to-string.js",
+    "revision": "f86ab8cbae6226d64d1fa28b2e038c36"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.parse-float.js",
+    "revision": "b4a01ed83c87b5b2a5ab97af8a54cdc2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.parse-int.js",
+    "revision": "29214d21f94c27c4131e79c7e682ad65"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.promise.js",
+    "revision": "adf1e860ab810769f934203dfa462839"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.reflect.apply.js",
+    "revision": "d8fe733aa4c9207ac321feaeb13d4568"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.reflect.construct.js",
+    "revision": "0569fd1832221fe030d44d7b3be4afee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.reflect.define-property.js",
+    "revision": "bc3af1a1c5e7ebee07ac1dca8ff8d36d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.reflect.delete-property.js",
+    "revision": "e4633ed5a0597737e2d29fe845792a1d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.reflect.enumerate.js",
+    "revision": "767702f26835aaff91d81d63e2104865"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.reflect.get-own-property-descriptor.js",
+    "revision": "395492859dcae4ff2456dd93ca6c250e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.reflect.get-prototype-of.js",
+    "revision": "514d9f7cb45b1f719027f017cbad5a46"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.reflect.get.js",
+    "revision": "dbe3df5f8647179efba92c5b785b7090"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.reflect.has.js",
+    "revision": "91b02c777cd6a5f59b6c2c531aaaea11"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.reflect.is-extensible.js",
+    "revision": "d9a00d9d45d660ed35402d08f4928758"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.reflect.own-keys.js",
+    "revision": "dda9b86a193fd3e345dfa980558355f8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.reflect.prevent-extensions.js",
+    "revision": "ca6a34f90eb111d04ccdb38acb5d9f44"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.reflect.set-prototype-of.js",
+    "revision": "1b9115891c3e8109e9ca88e2e5fc1725"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.reflect.set.js",
+    "revision": "a8d4c6da0a5eda6bee6ca6df52ae780f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.regexp.constructor.js",
+    "revision": "7cc5de4cf85ac675c85eb6ac410b546c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.regexp.flags.js",
+    "revision": "bda7d44419a92555d9d436ef277a5350"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.regexp.match.js",
+    "revision": "b57d662ade281d32a744e0498f9680d8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.regexp.replace.js",
+    "revision": "7678e9ab1512c4f21ac16e3425b7461b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.regexp.search.js",
+    "revision": "5983fcd7c0969d38065c792108eadcc5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.regexp.split.js",
+    "revision": "cd4d5d1232977ba68a2f4e7d87017a5c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.regexp.to-string.js",
+    "revision": "9d62b15dbfa3ae125f39aec3e51a738a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.set.js",
+    "revision": "0b0ae5ea6dcaecd901125e4ea4ad2a40"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.string.anchor.js",
+    "revision": "c66dc51691844d53cca3791346d10cfd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.string.big.js",
+    "revision": "48db021cef77e50c3e3415cd76a63a01"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.string.blink.js",
+    "revision": "d75010cfca14a1c6288e79c03e5164fe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.string.bold.js",
+    "revision": "aa7155b82500e3ff657d34dce7c130a9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.string.code-point-at.js",
+    "revision": "58ac5fa8b5d00dc0d2521fec10973d3d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.string.ends-with.js",
+    "revision": "78b1a0917364535854f612e2cdae8b42"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.string.fixed.js",
+    "revision": "163c15b8b915cad2efcca9f850565354"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.string.fontcolor.js",
+    "revision": "fbe704d830239bafa494bd4f7abf32e3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.string.fontsize.js",
+    "revision": "eb9e3ee7ffb42a83079630b48fdd0b47"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.string.from-code-point.js",
+    "revision": "1646300b9667a3ecd67015ef464ad7f4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.string.includes.js",
+    "revision": "86ea1c7aa5469e950e9375bfac36c524"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.string.italics.js",
+    "revision": "c21d752644e6db1fb07ee1e4ea2b9a3f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.string.iterator.js",
+    "revision": "d9929e169119615031937bed12b6f491"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.string.link.js",
+    "revision": "ff2c6ff2509e5f622f148048fb7c5b0f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.string.raw.js",
+    "revision": "ae766eb1bffdb127acc7c6375bfd3852"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.string.repeat.js",
+    "revision": "5af4f79ace993dcbf7657bd16441926c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.string.small.js",
+    "revision": "3c666f79d8369b2bdeb223cbcaf0fbbf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.string.starts-with.js",
+    "revision": "0b74b806354686d2c681c481bdc663af"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.string.strike.js",
+    "revision": "837d27ee81254b3369241e85bc607646"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.string.sub.js",
+    "revision": "9781bbfdd2b9ab982039c20c03600f19"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.string.sup.js",
+    "revision": "9da2ff8e6da222800073315a9e622184"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.string.trim.js",
+    "revision": "02fdba9d40448457fd3c1a6d815e4e16"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.symbol.js",
+    "revision": "b24dfffe647fe7b4913c6a6d046f77c5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.typed.array-buffer.js",
+    "revision": "7f4f696fa05ca4951f69276a43b16bc3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.typed.data-view.js",
+    "revision": "599a752bf9b93e41e14b3bfb8627b829"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.typed.float32-array.js",
+    "revision": "6046a34090ef5b5e537ec1df235f9c70"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.typed.float64-array.js",
+    "revision": "13b8652c429aced383c8a08ddfed616b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.typed.int16-array.js",
+    "revision": "f0b255260759260c8a8d55a11edfcf54"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.typed.int32-array.js",
+    "revision": "09b6678fb31e1add02a4f41cd04281a9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.typed.int8-array.js",
+    "revision": "c11d9c777aaff36ce84365f76fb61928"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.typed.uint16-array.js",
+    "revision": "2485752347e61c3f8c501156f2f0798d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.typed.uint32-array.js",
+    "revision": "885c4cc11925dd4787378052dfcfefe6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.typed.uint8-array.js",
+    "revision": "53e644f750d6c093ce62478bf92a49d3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.typed.uint8-clamped-array.js",
+    "revision": "2dd6e433652fa436bbe47c3fb102febe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.weak-map.js",
+    "revision": "5253fc2d1b14f30886ada45bed866df2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es6.weak-set.js",
+    "revision": "8d1df11862954bc6cce49b1f69abbcba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.array.flat-map.js",
+    "revision": "90ed07f989a41513a26508eb8e866b21"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.array.flatten.js",
+    "revision": "128c5d49b6a764245322055a5ee8364a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.array.includes.js",
+    "revision": "35001b8822796668c88399278add3e1a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.asap.js",
+    "revision": "024c60c8d8b3c246cbb5ca409bc7ada7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.error.is-error.js",
+    "revision": "f09428a80644e0e997dbd7571f8c4b2b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.global.js",
+    "revision": "ba8e62e0902432f39a21a6987be41241"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.map.from.js",
+    "revision": "62926a1967289e6bc055df7ea0b3c3e8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.map.of.js",
+    "revision": "5e446a3ecc17b6827f57e393efaab39e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.map.to-json.js",
+    "revision": "f07f0b1a1f4d0b8ac4505abcb4466641"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.math.clamp.js",
+    "revision": "60d32106e7903d95cbd820f67a4f65e5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.math.deg-per-rad.js",
+    "revision": "3e9225eecdbbe0304054c3dd5e3f84a3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.math.degrees.js",
+    "revision": "873f8401547688e866fdf0352957c346"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.math.fscale.js",
+    "revision": "987a218b00489a846104b60035271c63"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.math.iaddh.js",
+    "revision": "998905d816463d307e2f325f9af4667f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.math.imulh.js",
+    "revision": "d3e01b4e63f9b9d47f418c0d95da9b04"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.math.isubh.js",
+    "revision": "e062901706ec388f757d71b105c6b5e6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.math.rad-per-deg.js",
+    "revision": "150ecaedbcb457106c8e1c4877a7c3a0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.math.radians.js",
+    "revision": "27c43a61e6fcb048196595cf10018e80"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.math.scale.js",
+    "revision": "d6344a612f7d78eb07538699aa33faf9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.math.signbit.js",
+    "revision": "abb0f9a52f7e396d946f59ef8fb208be"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.math.umulh.js",
+    "revision": "b1e2286b49a08cbb5ff765362883301e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.object.define-getter.js",
+    "revision": "28009e59cbd7de49cd1d6b18dde098e2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.object.define-setter.js",
+    "revision": "93835304f006c3d154b5580e22b3bcfa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.object.entries.js",
+    "revision": "3d5638be4e5307b8dbdabcd25674ba42"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.object.get-own-property-descriptors.js",
+    "revision": "49e18808b6a91bd40e7aac398188cb89"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.object.lookup-getter.js",
+    "revision": "7333a950839825d4d265c0cc798aaae8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.object.lookup-setter.js",
+    "revision": "c873a78a7d5710ef37d8e59430dc8ea9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.object.values.js",
+    "revision": "364996b34f4c91c4955412e1121c6254"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.observable.js",
+    "revision": "11e1805f1d3048095aa7a91b6c021992"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.promise.finally.js",
+    "revision": "c0dda2b81d27c35b97857ee9d2bfef94"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.promise.try.js",
+    "revision": "0f08e16885175ad201186efdd65eb0ee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.reflect.define-metadata.js",
+    "revision": "11bbfe9e5ea42787a2cf6e197313d84f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.reflect.delete-metadata.js",
+    "revision": "c510cc5265f32fb1fbe6712b11b4c6f0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.reflect.get-metadata-keys.js",
+    "revision": "5736cd8bc4282007a2369dfccbb6393e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.reflect.get-metadata.js",
+    "revision": "cf002fad3e6227159f0a3ff7aa094f48"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.reflect.get-own-metadata-keys.js",
+    "revision": "e7bc387675d6ebb2851e88ec3c753b53"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.reflect.get-own-metadata.js",
+    "revision": "e96d39866e545c36a4cdb245cee3a5b2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.reflect.has-metadata.js",
+    "revision": "bd0877f019b3ff34b2a4f4c65b681650"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.reflect.has-own-metadata.js",
+    "revision": "097e9a071b480d7fec23affb5e6d909f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.reflect.metadata.js",
+    "revision": "6e91029be2a3b78c008110f28858f236"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.set.from.js",
+    "revision": "bc670c9d83eaa8f749de8ed0be843a38"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.set.of.js",
+    "revision": "93f1d65faa65225e548529565ec1577a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.set.to-json.js",
+    "revision": "b6d3e5e8a67ba5ee7dd4cfd029adc585"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.string.at.js",
+    "revision": "6299770783e113f9167541baa159723b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.string.match-all.js",
+    "revision": "552bd95f879e48c5e2088853ac1afdac"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.string.pad-end.js",
+    "revision": "66f8eb9faf203e0b305c33e1aae0aa5a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.string.pad-start.js",
+    "revision": "9648c53588e4788dcc00a2baa3cfdc93"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.string.trim-left.js",
+    "revision": "221a88303295ae14ef50af6806e885ef"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.string.trim-right.js",
+    "revision": "f22117211d1ee2aad5ce4cf127d15bba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.symbol.async-iterator.js",
+    "revision": "894f1f44705ed4ecf58d814b7bc8e12b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.symbol.observable.js",
+    "revision": "ed602c13e0feb76e360b6ad1a8846049"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.system.global.js",
+    "revision": "f1354f603f9260c7a7db3cdcf8abe768"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.weak-map.from.js",
+    "revision": "bf1a3fd5ff88a4eb3b729d9295db8781"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.weak-map.of.js",
+    "revision": "fe93707819613272d017d078488da327"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.weak-set.from.js",
+    "revision": "86d51a2dad74b281284af9a5910b5656"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/es7.weak-set.of.js",
+    "revision": "021781ea984605516037dae87b09440b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/library/_add-to-unscopables.js",
+    "revision": "cd98384ea99b8e60a7fb5f4551e6d288"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/library/_collection.js",
+    "revision": "71762722e0c4ea44b7d93f3d44c76a85"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/library/_export.js",
+    "revision": "164a8e1b3c6edab284676e600de2eb86"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/library/_library.js",
+    "revision": "ca7387f12f47f3fed132030515b54fb0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/library/_path.js",
+    "revision": "b355766fc5597475d9085cd833b0705b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/library/_redefine-all.js",
+    "revision": "e9239e9a155194a91b15cb1e9c9479ff"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/library/_redefine.js",
+    "revision": "65dfcea31b3ef7e926f4b682e728bb91"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/library/_set-species.js",
+    "revision": "fa61898fdb62da27496d5a6cd67fe8cf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/library/es6.date.to-json.js",
+    "revision": "3c48d256fcba8d0f64e87a16c73d1e5d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/library/es6.date.to-primitive.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/library/es6.date.to-string.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/library/es6.function.name.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/library/es6.number.constructor.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/library/es6.object.to-string.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/library/es6.regexp.constructor.js",
+    "revision": "279dcbea9d09a41f5fce489aea6fb11d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/library/es6.regexp.flags.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/library/es6.regexp.match.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/library/es6.regexp.replace.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/library/es6.regexp.search.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/library/es6.regexp.split.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/library/es6.regexp.to-string.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/library/web.dom.iterable.js",
+    "revision": "f30af3558d9052eeda81908329d27197"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/web.dom.iterable.js",
+    "revision": "68b1959530bfad45bb8475c7ae9a542f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/web.immediate.js",
+    "revision": "c47c942a52f07cf4766ba6c890699e8f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/modules/web.timers.js",
+    "revision": "b3e6d4161e9f82d051f1733afca9818b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/shim.js",
+    "revision": "82588e0e7f5232dda563ba8fdabe4670"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/stage/0.js",
+    "revision": "5282edd0d2c440df0d0272bfc22e8b3e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/stage/1.js",
+    "revision": "0fa16f5a1305b4cce516b637d30b35de"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/stage/2.js",
+    "revision": "6a0ae69a6f76014a2ef831e0a4fe1d79"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/stage/3.js",
+    "revision": "0686ddcf35b7196207c82ce9bea483d5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/stage/4.js",
+    "revision": "1917a3df37474b69dcad73409d0fca22"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/stage/index.js",
+    "revision": "b84183f18340b4754651f9b1461c1686"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/stage/pre.js",
+    "revision": "f7a8686987173313c20c41997df94622"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/web/dom-collections.js",
+    "revision": "30d1ee32e10d16e0bd8f32ae2f133d5d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/web/immediate.js",
+    "revision": "86c3189c65a0cbc9d436ec93b703d046"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/web/index.js",
+    "revision": "0cb9010be480a35ab01d75864135a930"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-js/web/timers.js",
+    "revision": "5c230934edd01b6bdd0dad96951cac21"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-util-is/lib/util.js",
+    "revision": "ce1819caad2b19c623e93b3d73a6be24"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/core-util-is/test.js",
+    "revision": "4ab5e52f065ab6d9b1404009b951d4ce"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/css-select/index.js",
+    "revision": "427c4b53e1fe12d21d99c0ffc5020727"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/css-select/lib/attributes.js",
+    "revision": "29ad45059ca4f481eb4710bcd46d7556"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/css-select/lib/compile.js",
+    "revision": "9c6f67d2efe41be7916bffd2f8f089f0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/css-select/lib/general.js",
+    "revision": "17c7379efd4ed6db17282d60d440b177"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/css-select/lib/pseudos.js",
+    "revision": "e3e11a3abf965d18fb8697b2d55d0707"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/css-select/lib/sort.js",
+    "revision": "7fc55d88b7f9e98d574f7c4295c228d4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/css-what/index.js",
+    "revision": "e8f3ee3fe312eae04adffc23b6654783"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/dist/csso-browser.js",
+    "revision": "bd7524ecb2b684289a58f422154121ba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/cli.js",
+    "revision": "530a37984f4bdf3002d7dc84a34aae6e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/clean/Atrule.js",
+    "revision": "0933634b4e94d393d659e17be7be8a3e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/clean/Comment.js",
+    "revision": "ef1c378b7d31b2a380f924912e90033e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/clean/Declaration.js",
+    "revision": "07232b11f3a4cde3beb178b4c1f99305"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/clean/Identifier.js",
+    "revision": "d21131b85b9b02191a743ef0a4fe7e09"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/clean/index.js",
+    "revision": "aed15048217097fe4a4f489e384cb325"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/clean/Ruleset.js",
+    "revision": "a094fa04a719f7b656438389d720a1e6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/clean/Space.js",
+    "revision": "8f4778075308aa282f52ad3dc77fd3a3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/compress/Atrule.js",
+    "revision": "7cfc916bc5449538200e9108cbc436ee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/compress/atrule/keyframes.js",
+    "revision": "d3a596fd49f55b73a7a535348f660440"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/compress/Attribute.js",
+    "revision": "a17d173fde1d498e5c5b7a8354d079d0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/compress/color.js",
+    "revision": "4013f7c52fe7906b267eb7844e6fe840"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/compress/Dimension.js",
+    "revision": "fedb39bade5f70f72718b743598319a9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/compress/index.js",
+    "revision": "38d64f669228142e68a1e689d03bdb2c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/compress/Number.js",
+    "revision": "dc6293d1d5b412ef32783ae7c8dc21e8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/compress/property/background.js",
+    "revision": "d87d7141614828a0a009dc30a09d0dea"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/compress/property/font-weight.js",
+    "revision": "00333437587a7fc8648fdf0e25a324ad"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/compress/property/font.js",
+    "revision": "9499da988c5e087ffe6037b3fd68bd9b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/compress/String.js",
+    "revision": "385cfed177f5bd562cd4b735fd4fd4ea"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/compress/Url.js",
+    "revision": "b2bd1366178557480e345534df22e801"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/compress/Value.js",
+    "revision": "ac2c5552812d36ffb7cb72438fd424ac"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/index.js",
+    "revision": "35fc14fffea31c87b18b87396f76eae7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/restructure/1-initialMergeRuleset.js",
+    "revision": "ad7feebb2b1a501a4006f21c3248f363"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/restructure/2-mergeAtrule.js",
+    "revision": "c6c7abb6e8cd32110b7440edbaf8c016"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/restructure/3-disjoinRuleset.js",
+    "revision": "fae9de55d3e55858b16749a339ca0fa5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/restructure/4-restructShorthand.js",
+    "revision": "645f0cb3aefaaba5e1a815934eb730c9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/restructure/6-restructBlock.js",
+    "revision": "ef00f1724f7eb0231f00f7f88d499f0b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/restructure/7-mergeRuleset.js",
+    "revision": "60a51637f8234baac7f3f1ea44104085"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/restructure/8-restructRuleset.js",
+    "revision": "62fec66a11f29435ca47538fd7198b80"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/restructure/index.js",
+    "revision": "c05e5a110e5d2aeeff9a2f4f11e281bf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/restructure/prepare/createDeclarationIndexer.js",
+    "revision": "f8fa258046bf47cc892abdb4094eaaee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/restructure/prepare/index.js",
+    "revision": "c030f847ed36dfe6587c7565d887c6b0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/restructure/prepare/processSelector.js",
+    "revision": "45db6cb7469319b844c46503e69d287d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/restructure/prepare/specificity.js",
+    "revision": "9f9bfd330e22932ef2f24e6587999ecd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/restructure/utils.js",
+    "revision": "149738fbbbb7602ea5aa09152189e9c6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/compressor/usage.js",
+    "revision": "0c08f14be21d9d865261974fa16daf7c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/index.js",
+    "revision": "1fba92b663ecab7329cdca1d98e78957"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/parser/const.js",
+    "revision": "438fa996a06631ff21801dac2601ba21"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/parser/index.js",
+    "revision": "3ce655c1e9f17a24c90e86ea6c4e0183"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/parser/scanner.js",
+    "revision": "c11ffb9a516df3f19e5a61a5cc6e87dc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/utils/clone.js",
+    "revision": "49fb83a34dd6ca51ec7836ab0828e0e8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/utils/list.js",
+    "revision": "cb61965d75e50c73d1106d339ab78559"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/utils/names.js",
+    "revision": "7e91c90ba5a1dae6daa3ea2d872782df"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/utils/translate.js",
+    "revision": "c71e21b4193a90440ca68b37af71f24a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/utils/translateWithSourceMap.js",
+    "revision": "c60f7742f379b78afd15fc778cee75be"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/csso/lib/utils/walk.js",
+    "revision": "fdb6c604d8f1eaeed02d7b14848ce06c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/debug/karma.conf.js",
+    "revision": "06f3babbdc43c6c4dd1493b6c1af32e2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/debug/node.js",
+    "revision": "79f3814f32362c1c6f9dbb8a1e3b01bf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/debug/src/browser.js",
+    "revision": "62cfee6d6dd5ffec5d3ed35073791aec"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/debug/src/debug.js",
+    "revision": "74bdccf347345d27fe8a4ac3add99c60"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/debug/src/index.js",
+    "revision": "dd13897ea2eed92695bb7e4e744a9148"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/debug/src/inspector-log.js",
+    "revision": "b22697b673c7c3586f22ae0206258fde"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/debug/src/node.js",
+    "revision": "25807a97fbb1fcc42a013abc7d7768c4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/detect-indent/index.js",
+    "revision": "36b71620011507ce6fb72970f30db6ea"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/dom-serializer/index.js",
+    "revision": "06e8b5b8ca7766a1f96d1f9c545f1b1b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/dom-serializer/node_modules/domelementtype/index.js",
+    "revision": "35aa7569bc92cead39a02610c8da95d3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/domelementtype/index.js",
+    "revision": "2df3d6aca9dc31e9632c59725e5e2831"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/domhandler/index.js",
+    "revision": "bf93c26ed657c317a73767af1a1aebef"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/domhandler/lib/element.js",
+    "revision": "20aacd9f9564402df67f87d6216a1c1e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/domhandler/lib/node.js",
+    "revision": "63236eb993edc7fdbeecca366c1ba117"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/domhandler/test/tests.js",
+    "revision": "f5d53313784f18bc91f5a243063efbcc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/domutils/index.js",
+    "revision": "d4e426d162fd24543fc7ef771f470bc5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/domutils/lib/helpers.js",
+    "revision": "b530d24e6535b70f7273d089578c1ead"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/domutils/lib/legacy.js",
+    "revision": "68ddea730e52317c29d336582523e08e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/domutils/lib/manipulation.js",
+    "revision": "a5cbc98bff5022da0c54c080e0e807aa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/domutils/lib/querying.js",
+    "revision": "77ce5098b3f8a4a53f945cf44af0eac6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/domutils/lib/stringify.js",
+    "revision": "20df9b65142235ac17831b407ee6fa7b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/domutils/lib/traversal.js",
+    "revision": "f8cb2e6f1875cfcd4413dd297f5ef245"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/domutils/test/fixture.js",
+    "revision": "98777ff5b57baa1335cf1a1e43259554"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/domutils/test/tests/helpers.js",
+    "revision": "b21e3e61d4b7c7a35e3ba4595e014cfc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/domutils/test/tests/legacy.js",
+    "revision": "45673d43517dffd6975d0b30db4876db"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/domutils/test/tests/traversal.js",
+    "revision": "be48d2a1b0bea15dbe75555b1a868839"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/domutils/test/utils.js",
+    "revision": "f69defb90083aac6acf7e1ab05f47e86"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/entities/index.js",
+    "revision": "df94929d25f694b11d22a2160ef2450a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/entities/lib/decode_codepoint.js",
+    "revision": "10c93c76592dfc0875cba91de4400aa4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/entities/lib/decode.js",
+    "revision": "7e872219b071675f83eafe53726bcb28"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/entities/lib/encode.js",
+    "revision": "70019806041d9fe1a5d8c176b6d48c0a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/entities/test/test.js",
+    "revision": "c3fa98d73da66e67ad002d76734cebd5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/escape-string-regexp/index.js",
+    "revision": "7b366c6d23641eabb9d8f46fa9008535"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/esprima/bin/esparse.js",
+    "revision": "d201caac46b4db927b60ab4d417945fc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/esprima/bin/esvalidate.js",
+    "revision": "65feed22b40baa15834d441f567b74ce"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/esprima/esprima.js",
+    "revision": "d9f07de62eb11e6672af77a316b01150"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/esutils/lib/ast.js",
+    "revision": "68f9d4d61eff7ebfbce00b351b3ad720"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/esutils/lib/code.js",
+    "revision": "2615e88cbe91e29366727db486d9c713"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/esutils/lib/keyword.js",
+    "revision": "47c6eb78b46790e545ef659e07583c0c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/esutils/lib/utils.js",
+    "revision": "187b15f38bae10c5ffd462fe6df9c424"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/expand-brackets/index.js",
+    "revision": "d98c4a3477ac3592280e8e3039ab50bb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/expand-range/index.js",
+    "revision": "77897c243aac089fe66e60c96ef98ebc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/extglob/index.js",
+    "revision": "155140281ac6abb45ec38438c4dabff3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/filename-regex/index.js",
+    "revision": "04244142eee2320c1cdfd53c1c6d8b62"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fill-range/index.js",
+    "revision": "d6cff74dde2eb4165f006308eb2dd83b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/for-in/index.js",
+    "revision": "13da153b7aea4c1168d6538a26c5f172"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/for-own/index.js",
+    "revision": "f2fff8d301e171945c1a53d986925e50"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fs-readdir-recursive/index.js",
+    "revision": "64b2db941d1af1f8e6e8f6e97e07bbd7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fs.realpath/index.js",
+    "revision": "81443ae283d9031000862ce501c9f964"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fs.realpath/old.js",
+    "revision": "8c3d2bd3edf5d8918b7cbf3c93b3ba32"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/fsevents.js",
+    "revision": "63bc3af5ea3d1c5dc1be1351dbdd32fe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/install.js",
+    "revision": "8428b550ef77221c98e3b5de954f30b8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/abbrev/abbrev.js",
+    "revision": "295cdcca75c99f4bc11113aca4cc9dac"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/dist/ajv.bundle.js",
+    "revision": "e535209f4966c9085b49b779da7ba46b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/dist/ajv.min.js",
+    "revision": "48f863c2e24f8db64cb47d88e755339d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/dist/nodent.min.js",
+    "revision": "3005e3b86601f4b3ea84753547335ebb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/dist/regenerator.min.js",
+    "revision": "78fac6122ff6ff4f18d4ed3c7b1d5747"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/ajv.js",
+    "revision": "de09773ca810d8ca8ce406a1d972ce62"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/async.js",
+    "revision": "606e51ad830533c838b16d72bb5d9b3a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/cache.js",
+    "revision": "5a0aad6457642435606b5e5e59ff7ba9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/compile/_rules.js",
+    "revision": "2677c787614b8e9507e25ff81898a128"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/compile/equal.js",
+    "revision": "b5b67fe84baf52dc1c0700a5b5fb0f7f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/compile/formats.js",
+    "revision": "904eb45b98a45f0fab84e0a2d0d9c8a4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/compile/index.js",
+    "revision": "091fc65eda65e445c985085ba12c41a2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/compile/resolve.js",
+    "revision": "876fc5d2e5f5404bb715236cd9353f50"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/compile/rules.js",
+    "revision": "53c4c29bd4fdc0b6ebaf54df38bc62c8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/compile/schema_obj.js",
+    "revision": "08dbac415629c8f5a33a584ab7f9d330"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/compile/ucs2length.js",
+    "revision": "5bc622d79cefe4bc40d6b84dcd1c9d88"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/compile/util.js",
+    "revision": "e0eca429e8e53632e8d04f4ed8d0ba9c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/compile/validation_error.js",
+    "revision": "5d084214a1d889e2796e66561704e439"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/_formatLimit.js",
+    "revision": "68b8207a09e6b49ca2f08c8f2d6bec95"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/_limit.js",
+    "revision": "e7b572e0720be94e27a80ef8ebeb2540"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/_limitItems.js",
+    "revision": "fc7e2faf1189ce37afe424869a72db2b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/_limitLength.js",
+    "revision": "5ea58007c8366ac108c5f630375d0813"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/_limitProperties.js",
+    "revision": "a3bef8e1c9cd6173d5cb0990b611181d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/allOf.js",
+    "revision": "b749e5a906553b7453db46802885cd5a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/anyOf.js",
+    "revision": "91de28c061e0e2be9ccce77c5af7f367"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/constant.js",
+    "revision": "b22203a0c45ed6b09efd262dcb43c7cc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/custom.js",
+    "revision": "9e276f2b600c16c522784340a7f24626"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/dependencies.js",
+    "revision": "9353c4debcbea55ccd42e3747c566ea1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/enum.js",
+    "revision": "73e224e8c40dad7befa6a137df02897d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/format.js",
+    "revision": "479b7deb21d79c350f59543c0f432b07"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/items.js",
+    "revision": "71c8596ad74b453f57053e849d8d8402"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/multipleOf.js",
+    "revision": "457e344ea891fd7f5ada1dfd897a354f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/not.js",
+    "revision": "d0626246bb0aed7e59f37bb94a4227d9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/oneOf.js",
+    "revision": "3704e6d631d36b0ba5e9f4e4f7f08782"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/pattern.js",
+    "revision": "cbe0ef8eff8dd5569e3d0d599e671e92"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/patternRequired.js",
+    "revision": "6b340d2a5f8073585488cb47f4227383"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/properties.js",
+    "revision": "3bfe6f02b73aff28c3b43368ce4ae156"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/ref.js",
+    "revision": "edcae857018ecc5d5a91b4d1e86f79d2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/required.js",
+    "revision": "f5596ccbe9530fd09a9cf5260ec41816"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/switch.js",
+    "revision": "43e2624fc1725f180652426822fca343"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/uniqueItems.js",
+    "revision": "2b3a4aec6162413fb2d77bb8ef5fa518"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/dotjs/validate.js",
+    "revision": "66825886a1e4e3d3f99c64f9f14bfc82"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/keyword.js",
+    "revision": "3a86df4b5518e339f7a9b7c8bf8804c8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/lib/v5.js",
+    "revision": "31538556986501942c5365c94f72997c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/scripts/bundle.js",
+    "revision": "36598f026013654c496c741aa0dc3a3e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ajv/scripts/compile-dots.js",
+    "revision": "ba441e9de91f4b3c8540a46408746594"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ansi-regex/index.js",
+    "revision": "df3213a53f3ce3092379ca771e98af7c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/aproba/index.js",
+    "revision": "f9c951e63bb0962ba26a80f999c2bf8c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/are-we-there-yet/index.js",
+    "revision": "a9c06e81da780a0568fa5a53e8d7e4fe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/are-we-there-yet/tracker-base.js",
+    "revision": "be36dbda2ee54d2785109f0be5037a3d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/are-we-there-yet/tracker-group.js",
+    "revision": "58fdfae17dccd3ee7579725edc085045"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/are-we-there-yet/tracker-stream.js",
+    "revision": "5511f94154099406615a3ff52f5b6b80"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/are-we-there-yet/tracker.js",
+    "revision": "0713ea137fdd7b83574b0025ce2669f6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asn1/lib/ber/errors.js",
+    "revision": "8fa52f6b0f827708e3bb0bc5b5b43f99"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asn1/lib/ber/index.js",
+    "revision": "0fbf9acd91efc8564a81c8d0f6586a91"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asn1/lib/ber/reader.js",
+    "revision": "d1fd8902012dd3accbec758d69b9f4d6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asn1/lib/ber/types.js",
+    "revision": "b0e447ec6a2859ce419b121cffd44f31"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asn1/lib/ber/writer.js",
+    "revision": "98fe8dc77d7fea227a44b283acf9ab36"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asn1/lib/index.js",
+    "revision": "222a36d29951129dd37356ea7e3e8e1e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asn1/tst/ber/reader.test.js",
+    "revision": "1704e2e9095549bf2db45878ae5e04b9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asn1/tst/ber/writer.test.js",
+    "revision": "d1c2f30137b9aeafdb4a8c93452e5771"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/assert-plus/assert.js",
+    "revision": "dcdfa4df2bb596c125011800710ab123"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asynckit/bench.js",
+    "revision": "1f35225bb5de1e68d061869daf5d5ae1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asynckit/index.js",
+    "revision": "80916e2018297eac89a0765e9300ba11"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asynckit/lib/abort.js",
+    "revision": "884f70260b904535b3b46bca66d3901f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asynckit/lib/async.js",
+    "revision": "336705ea47367dfb6c0048d7c28cf0b5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asynckit/lib/defer.js",
+    "revision": "296f8804b9d809f53e081a97e5cd1c3b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asynckit/lib/iterate.js",
+    "revision": "2f5c56d8b3f766e65f8868c9a77d4233"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asynckit/lib/readable_asynckit.js",
+    "revision": "0d8b205f6525fb75a2f00febc0a39ec8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asynckit/lib/readable_parallel.js",
+    "revision": "7e31bd9c72421785a2f962cca13a0dc1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asynckit/lib/readable_serial_ordered.js",
+    "revision": "535bbfb2aaec7fd8b19ded7a053fc8ee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asynckit/lib/readable_serial.js",
+    "revision": "bc62c09129a9a512a6a20c173ced3a12"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asynckit/lib/state.js",
+    "revision": "f753a1520562c93ad8a284fbe837f2de"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asynckit/lib/streamify.js",
+    "revision": "8eac398eeebd8f79fee94dc88c1fb5e9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asynckit/lib/terminator.js",
+    "revision": "e52843ca824d4c5cf5bec5f4ec80fce0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asynckit/parallel.js",
+    "revision": "8e9711405f57ee77900c24617a3e38e6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asynckit/serial.js",
+    "revision": "60380caf0a70da95e4dfbec3a80be4c0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asynckit/serialOrdered.js",
+    "revision": "0d9701de983d5a5f16a9bcb06842fc0f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/asynckit/stream.js",
+    "revision": "386a88b324ec8d86b98edf4b6ad8e525"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/aws-sign2/index.js",
+    "revision": "ce8501ebed0ac6a8a702e586b07b89b5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/aws4/aws4.js",
+    "revision": "5b3745f8d8952a1e5b21286df72e1f94"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/aws4/lru.js",
+    "revision": "6c0a24766f0662b4c9560465a213cbf9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/balanced-match/index.js",
+    "revision": "77122288ffceba0a2f5079eb6b1b31bf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/bcrypt-pbkdf/index.js",
+    "revision": "28057e79198acf9e9dfcb021ccf7b27c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/block-stream/block-stream.js",
+    "revision": "6d4fbd879cfc0067b60d6ed4312d5147"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/boom/lib/index.js",
+    "revision": "1e7ed5d7dc3928f2b9139d3b91051331"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/boom/test/index.js",
+    "revision": "740831c1fcd49d0014aefbee1e0f6d41"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/brace-expansion/index.js",
+    "revision": "2e265baed5f4147160f144389684af9c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/buffer-shims/index.js",
+    "revision": "94169fa260ba2ba6465544c4b4d6e19c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/caseless/index.js",
+    "revision": "8158f3b3e5d07a788ab91bc5e0e6dade"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/caseless/test.js",
+    "revision": "38863a49f32b4ba2e82be47d89f99528"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/co/index.js",
+    "revision": "e9ceb8b2e703197db7e197878a06cb11"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/code-point-at/index.js",
+    "revision": "689f0d878fb9ef7ca0e99790059b2f1d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/combined-stream/lib/combined_stream.js",
+    "revision": "1d72ad7b3adb02bd95232c23665fee62"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/concat-map/example/map.js",
+    "revision": "42b2341e75e2e29012793c31222c2783"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/concat-map/index.js",
+    "revision": "8ef754ba23fdd37b3e8a1c52739ace80"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/concat-map/test/map.js",
+    "revision": "a8e1d80e4629945216de220e4b580cf5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/console-control-strings/index.js",
+    "revision": "8842cebeb2e33407e9fa47e41dea0c80"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/core-util-is/lib/util.js",
+    "revision": "ce1819caad2b19c623e93b3d73a6be24"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/core-util-is/test.js",
+    "revision": "4ab5e52f065ab6d9b1404009b951d4ce"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/cryptiles/lib/index.js",
+    "revision": "c9645b09e1844e79c76eeca5c9200da9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/cryptiles/test/index.js",
+    "revision": "20238526ad623a056dcd34d55051c801"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/dashdash/lib/dashdash.js",
+    "revision": "e60e08d2a67ffa16b5872e16bfdf661d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/dashdash/node_modules/assert-plus/assert.js",
+    "revision": "8e4477b889e2adba790249217424fc22"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/debug/karma.conf.js",
+    "revision": "06f3babbdc43c6c4dd1493b6c1af32e2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/debug/node.js",
+    "revision": "79f3814f32362c1c6f9dbb8a1e3b01bf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/debug/src/browser.js",
+    "revision": "62cfee6d6dd5ffec5d3ed35073791aec"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/debug/src/debug.js",
+    "revision": "74bdccf347345d27fe8a4ac3add99c60"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/debug/src/index.js",
+    "revision": "dd13897ea2eed92695bb7e4e744a9148"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/debug/src/node.js",
+    "revision": "f9385de228f051f70e7cbe987759a707"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/deep-extend/index.js",
+    "revision": "5df64d39a44871d832aa71f608878417"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/deep-extend/lib/deep-extend.js",
+    "revision": "fdd5ab13e17f29b34e066194f83f9321"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/delayed-stream/lib/delayed_stream.js",
+    "revision": "d8c899096c0578def5eae6c3e0aecdd2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/delegates/index.js",
+    "revision": "fe8852bbef1a3d30b7b0fc78aa3fde97"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/delegates/test/index.js",
+    "revision": "0cfa1dfbb0f689754598336c8af5b027"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ecc-jsbn/index.js",
+    "revision": "5f36e052b81d461cabc731cf305ee09d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ecc-jsbn/lib/ec.js",
+    "revision": "f703a226f8945dcb388ddd7b3f1e2e84"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ecc-jsbn/lib/sec.js",
+    "revision": "9e9821098513f691419e2dec868d423a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ecc-jsbn/test.js",
+    "revision": "33558e7112dd102c2bdf47aad637ee9c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/extend/index.js",
+    "revision": "b829c015c2a5be36d47251fdbaa49e72"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/extsprintf/examples/simple.js",
+    "revision": "22ef68310eb91ddcbc6864b8a46dde25"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/extsprintf/lib/extsprintf.js",
+    "revision": "089dc46f27689967a7d2b2ee7c6469a3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/forever-agent/index.js",
+    "revision": "0bc383f18b720e7b23382842d5fe225b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/form-data/lib/browser.js",
+    "revision": "2e4a0786e53b6425f5308b30aee55070"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/form-data/lib/form_data.js",
+    "revision": "0b471cc6ddcfac06a09c7abec1751ea2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/form-data/lib/populate.js",
+    "revision": "34084f573649bd73957749e20ebd836b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/fs.realpath/index.js",
+    "revision": "81443ae283d9031000862ce501c9f964"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/fs.realpath/old.js",
+    "revision": "8c3d2bd3edf5d8918b7cbf3c93b3ba32"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/fstream-ignore/ignore.js",
+    "revision": "0b1bc7d57ef4631d35cd7353c78fe364"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/fstream/examples/filter-pipe.js",
+    "revision": "aca1004baf951181557aa6f2fe2287de"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/fstream/examples/pipe.js",
+    "revision": "120b1613d7cf6619ae22118b56fd1844"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/fstream/examples/reader.js",
+    "revision": "f7a6157f062e0d5da19e0474ec157d9f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/fstream/examples/symlink-write.js",
+    "revision": "6678afc8c82dcdf7e18edb64e5d34be4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/fstream/fstream.js",
+    "revision": "16531809b1e56c0476cea3ae8195e14c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/fstream/lib/abstract.js",
+    "revision": "bf17aa130cda771b83ad495b9148ef7b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/fstream/lib/collect.js",
+    "revision": "b2f42cedf1630bdb66456a965f3097ae"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/fstream/lib/dir-reader.js",
+    "revision": "93d0b69496b2b9132180f3d040a7416a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/fstream/lib/dir-writer.js",
+    "revision": "096414c8490bff8f3bac93ca6c20512c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/fstream/lib/file-reader.js",
+    "revision": "88d2cd7221bf7a7d55f03eaf12983e6c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/fstream/lib/file-writer.js",
+    "revision": "f3f9c4bf243273411521351d816f0ee6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/fstream/lib/get-type.js",
+    "revision": "4100a64f7b2b6735ac95ef0f2caf9739"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/fstream/lib/link-reader.js",
+    "revision": "b362fae176441737316b4ecdd4543e85"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/fstream/lib/link-writer.js",
+    "revision": "7c293f28b0ef4b2106c4801bfed67f7c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/fstream/lib/proxy-reader.js",
+    "revision": "5b717a1ca5d8533699ed974c82423d2a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/fstream/lib/proxy-writer.js",
+    "revision": "5e64c5a64e416d54ddbe8c2a55e7da44"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/fstream/lib/reader.js",
+    "revision": "e1a70a8311f885b29d9de4456eff0621"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/fstream/lib/socket-reader.js",
+    "revision": "c3754f0d2e0b0344633f2e703331887f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/fstream/lib/writer.js",
+    "revision": "70871c0ac204561e73148ffdb303036b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/gauge/base-theme.js",
+    "revision": "f7d82c66bb1b9c300b72cc24d214fb6e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/gauge/error.js",
+    "revision": "528e2cb56f65929aa4376e585005f1a4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/gauge/has-color.js",
+    "revision": "bbfd402b1f17bcc7fddd251be53febcc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/gauge/index.js",
+    "revision": "b281079040e5949e3ffeb958bf6e0d65"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/gauge/plumbing.js",
+    "revision": "097136f02ddd13c2fa1d00467be17d58"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/gauge/process.js",
+    "revision": "337306f3fc6274ecd4f9e7c7ceeffb1d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/gauge/progress-bar.js",
+    "revision": "3cc6fc14b07af0cee1c09e3b5051add3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/gauge/render-template.js",
+    "revision": "a5ad81e4f407436ed067bd4ed0e0f607"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/gauge/set-immediate.js",
+    "revision": "e5cb7c218a0f9437498fa48539dd3dd2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/gauge/set-interval.js",
+    "revision": "cf1c3e0e4bc3b07adf812b1c70e8bdbd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/gauge/spin.js",
+    "revision": "35d56b687e0e510544d77fb01f350406"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/gauge/template-item.js",
+    "revision": "5b4ae4b9ec5331e9c9d1f721146af2ec"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/gauge/theme-set.js",
+    "revision": "4770d98862414436fb700e2f1f5c6327"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/gauge/themes.js",
+    "revision": "e07e8e0552cc1f3c6a9faf25c74e0d75"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/gauge/wide-truncate.js",
+    "revision": "75d9702a66c7a37f8603e6c1c29929b2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/getpass/lib/index.js",
+    "revision": "9276ca431d30f2a8b8dd1cd67e42e4b7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/getpass/node_modules/assert-plus/assert.js",
+    "revision": "8e4477b889e2adba790249217424fc22"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/glob/common.js",
+    "revision": "0041795c4700b9e1c1cd76729517f08b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/glob/glob.js",
+    "revision": "20c4c7d5e53fcaaf2781e53942dc2e32"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/glob/sync.js",
+    "revision": "c29ff74e143a933770c75a66998fbeeb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/graceful-fs/fs.js",
+    "revision": "7fb9340b36e141a4944b13d205af3d1d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/graceful-fs/graceful-fs.js",
+    "revision": "0af3af2b5945a7073883fb5273f25893"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/graceful-fs/legacy-streams.js",
+    "revision": "620fc152dc9bfa087f9901703b1e2616"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/graceful-fs/polyfills.js",
+    "revision": "af45c9957edb1ef798122235655af168"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/har-schema/lib/index.js",
+    "revision": "98d97e584035d8e280c76099a3c8754d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/har-validator/lib/browser/async.js",
+    "revision": "89c9ef83e0e5e65d1a9b638fa9296d70"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/har-validator/lib/browser/error.js",
+    "revision": "89d0a53b6686e738c79c7c347be74eb2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/har-validator/lib/browser/promise.js",
+    "revision": "de9349fa0d88feecef1b303ac590a7c6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/har-validator/lib/node4/async.js",
+    "revision": "c26b370f7ac9c819c62dd19d5a25b3d7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/har-validator/lib/node4/error.js",
+    "revision": "5fc67d3cca12a4fd74c75d194f51891e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/har-validator/lib/node4/promise.js",
+    "revision": "6c1dde2ddc720d1354e578d47af0ad39"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/har-validator/lib/node6/async.js",
+    "revision": "b4bae8ceb80631e74dec76b3e4d7a72b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/har-validator/lib/node6/error.js",
+    "revision": "102aecd2c52d24578999eb2cf7bcc2f6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/har-validator/lib/node6/promise.js",
+    "revision": "2e9c691bf6d4e12e558837e09bcd3aac"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/har-validator/lib/node7/async.js",
+    "revision": "b4bae8ceb80631e74dec76b3e4d7a72b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/har-validator/lib/node7/error.js",
+    "revision": "102aecd2c52d24578999eb2cf7bcc2f6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/har-validator/lib/node7/promise.js",
+    "revision": "2e9c691bf6d4e12e558837e09bcd3aac"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/har-validator/src/async.js",
+    "revision": "e70c5f1d17e3c0b31a3edc11703e2b9d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/har-validator/src/error.js",
+    "revision": "d58cc72189ab66cb14fda6b1b5ea1323"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/har-validator/src/promise.js",
+    "revision": "353755c826213f78735b5174ba6b9fa3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/has-unicode/index.js",
+    "revision": "c6ce2d7686d2808902abf12837367527"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/hawk/dist/client.js",
+    "revision": "3bfc06b61129892256049cf91ff9ace3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/hawk/example/usage.js",
+    "revision": "576cebfc72b38bb876e229feae08fe79"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/hawk/lib/browser.js",
+    "revision": "13a23450c9fe759c33f6656d09e956b3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/hawk/lib/client.js",
+    "revision": "f9ab54846f95de7e227d166b4034babb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/hawk/lib/crypto.js",
+    "revision": "08461d35d82c8ff9a15a95bc1c2a13eb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/hawk/lib/index.js",
+    "revision": "69e4da4d786a95bcc8cbedd5223ab4e7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/hawk/lib/server.js",
+    "revision": "1b9a770b0216244c6983d9ae7b14ece4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/hawk/lib/utils.js",
+    "revision": "e189e57599e85a485cd91bbc4840f46e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/hawk/test/browser.js",
+    "revision": "1ef3b072885c54e1e42196d7c6afeeb9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/hawk/test/client.js",
+    "revision": "40073da1000bffb565214c89044103cb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/hawk/test/crypto.js",
+    "revision": "ce4216fb77834ebee124e9abee8767bf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/hawk/test/index.js",
+    "revision": "fabe6953bd2ffa9f7cd41b1255294e54"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/hawk/test/readme.js",
+    "revision": "8c344fb4d08b6c71b57f705b5849a406"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/hawk/test/server.js",
+    "revision": "4dbace82de3753ed5c6e92e6238bb30c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/hawk/test/uri.js",
+    "revision": "cdd2a3856d22ba0836d101edc5a8b12f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/hawk/test/utils.js",
+    "revision": "53970e6820710c482194b68f5c9c8526"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/hoek/lib/escape.js",
+    "revision": "510c8a74b64d439dbbddd9f342ba14fb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/hoek/lib/index.js",
+    "revision": "8efece1989844ed85a9bde385b3e072d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/hoek/test/escaper.js",
+    "revision": "d678c8a26b1e7494d8b3bf7764d7c89c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/hoek/test/index.js",
+    "revision": "8ae86f1cfe5b70ca4c47812ea6a77b36"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/hoek/test/modules/test1.js",
+    "revision": "89380c158d89267e015f3f5c2c15aac8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/hoek/test/modules/test2.js",
+    "revision": "c7a63a0179eb0e32e7a53a92b891ff0f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/hoek/test/modules/test3.js",
+    "revision": "1fd3c2538965fa861f0227d82ec4b67d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/http-signature/lib/index.js",
+    "revision": "ebff07a92ecd2865afe6f36ba8d089a0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/http-signature/lib/parser.js",
+    "revision": "0c8a6a1ed836fe1b1bcd3742976cf86c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/http-signature/lib/signer.js",
+    "revision": "c44e8b6173742d9dd11cc93ce2cb1838"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/http-signature/lib/utils.js",
+    "revision": "139a927b7dcc2ed8047ce20084c8a6f0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/http-signature/lib/verify.js",
+    "revision": "b8b59308298a9acb503f29d34b68da2c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/inflight/inflight.js",
+    "revision": "42bbc3622abfefca5862fd0d12441a15"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/inherits/inherits_browser.js",
+    "revision": "7c26fc24b695f2afbc284bbd5f64d6a4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/inherits/inherits.js",
+    "revision": "09b210610125b162700734fb93dc892c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ini/ini.js",
+    "revision": "21e87b0f99cd9337bb9154c420f77f98"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/is-fullwidth-code-point/index.js",
+    "revision": "2f08a4aae88894d808045e430dab146c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/is-typedarray/index.js",
+    "revision": "199bbeb0ea85e03b7f418b27cb5049d5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/is-typedarray/test.js",
+    "revision": "92a0f25768191cb5c2e041e83f13604c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/isarray/index.js",
+    "revision": "e32b2424bf3f56c47ac6a2a08478dce9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/isarray/test.js",
+    "revision": "abae91536d765db34554068cc3f001b0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/isstream/isstream.js",
+    "revision": "e04c90cca8842fbace2f2e5d9d0f9b10"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/isstream/test.js",
+    "revision": "1d3e1284e9e7f826a3bfb2fdc41d7379"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/jodid25519/index.js",
+    "revision": "06100e3e16c3cc235ee44a4098dc0eb1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/jodid25519/lib/core.js",
+    "revision": "e379bb6f1fda1427eeb54901030fa928"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/jodid25519/lib/curve255.js",
+    "revision": "ad93c0d48ad33cf156dbb9da5d5458cc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/jodid25519/lib/dh.js",
+    "revision": "63971fd8f99f203a2cb5f6e42f76349d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/jodid25519/lib/eddsa.js",
+    "revision": "82acc9dc638e1ab7c5d17c873275b631"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/jodid25519/lib/utils.js",
+    "revision": "1ee829759815bc1eb45b0b6f173e70ae"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/jsbn/example.html",
+    "revision": "2eb56edbb7819cbc7902f1114f1364a9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/jsbn/example.js",
+    "revision": "2cbb15596cbf1e2f7f6019bc25377fc8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/jsbn/index.js",
+    "revision": "b04b2df86a3986c51d12f416e2d5d91f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/json-schema/lib/links.js",
+    "revision": "4e083e6f7ac01b45f5820243d00fd410"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/json-schema/lib/validate.js",
+    "revision": "958f68b2272dec975ab4a259e85f3bc6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/json-schema/test/tests.js",
+    "revision": "c35d55a911c671514ae2b2079b8c8bbd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/json-stable-stringify/example/key_cmp.js",
+    "revision": "634871bfbdb90c9cd6b38ec91143a225"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/json-stable-stringify/example/nested.js",
+    "revision": "48c600df1da91f0afd20b28d0c00d773"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/json-stable-stringify/example/str.js",
+    "revision": "542ee9f0f96859ce4be9c11b400d277e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/json-stable-stringify/example/value_cmp.js",
+    "revision": "9eedd82368debbd42b162121cda704c0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/json-stable-stringify/index.js",
+    "revision": "3db1958d4967cd8116f472192bbd04d7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/json-stable-stringify/test/cmp.js",
+    "revision": "f91da08aba1d383dce5b920b96eed766"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/json-stable-stringify/test/nested.js",
+    "revision": "633a2f5ddf7b218253dca8fec76960d5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/json-stable-stringify/test/replacer.js",
+    "revision": "bacdf36a8dafb28166923d693804f3ad"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/json-stable-stringify/test/space.js",
+    "revision": "f671e261947019efbb55a7420d486fc5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/json-stable-stringify/test/str.js",
+    "revision": "64005a3340f991d9b3d26740e2f44421"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/json-stable-stringify/test/to-json.js",
+    "revision": "4155134aa439b55ff0486df11e61c47f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/json-stringify-safe/stringify.js",
+    "revision": "a138c2d1114bef6d26623141fc9e7a92"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/json-stringify-safe/test/stringify_test.js",
+    "revision": "1073e1c646b4a794f6bffb4b552a3f8d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/jsonify/index.js",
+    "revision": "cefca340fe9dbf1aab57b6f170000702"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/jsonify/lib/parse.js",
+    "revision": "2d2f09c7e21278f2a1dff97742d6f90c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/jsonify/lib/stringify.js",
+    "revision": "48a8b8fed3af85977d074413d0efa531"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/jsonify/test/parse.js",
+    "revision": "0273d8b78c4ab17a45bf471f80277349"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/jsonify/test/stringify.js",
+    "revision": "86e7497adef8af9948391751b630f798"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/jsprim/lib/jsprim.js",
+    "revision": "9017cab5b3f2989d911c8849b16548f8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/jsprim/node_modules/assert-plus/assert.js",
+    "revision": "8e4477b889e2adba790249217424fc22"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/mime-db/index.js",
+    "revision": "a3e41e93954b3742ed84d3050d6038cf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/mime-types/index.js",
+    "revision": "367e518041c883950769fea8b6572af2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/minimatch/minimatch.js",
+    "revision": "9e22ccffac9538b210d6bc9e120e8f15"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/minimist/example/parse.js",
+    "revision": "559dd0b28e67e4da65c434476bc2c885"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/minimist/index.js",
+    "revision": "822fc8889c4bc1e1906b9e51560e7978"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/minimist/test/dash.js",
+    "revision": "190934d8330fccc8c5aa07a3e43f028d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/minimist/test/default_bool.js",
+    "revision": "c3598075b51486aa545526d13b454c66"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/minimist/test/dotted.js",
+    "revision": "e03ea33b7cfbb7799a90b5b7a799d253"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/minimist/test/long.js",
+    "revision": "652e865e69ae41e78d9ad95f8557f0a2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/minimist/test/parse_modified.js",
+    "revision": "076418970e9e56b926ded3e24aee7a01"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/minimist/test/parse.js",
+    "revision": "02125d8ef8b795946d6e238b880d0814"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/minimist/test/short.js",
+    "revision": "a964fe2c657d6e71d1c3a2c8bc5ce79c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/minimist/test/whitespace.js",
+    "revision": "caa1c589b42a96804176247191ccb980"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/mkdirp/bin/cmd.js",
+    "revision": "9ef5fb33a1a94773afb7dc52b0dfbb5d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/mkdirp/examples/pow.js",
+    "revision": "7440de96a1a111e53e3da08f0d8bb8eb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/mkdirp/index.js",
+    "revision": "7941341b14e76ae88be8dbad2202798e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/mkdirp/test/chmod.js",
+    "revision": "0dc717d70d0a5c203d4445b254828170"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/mkdirp/test/clobber.js",
+    "revision": "b58e37e5922e9d03cd4b4e383ec8acd2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/mkdirp/test/mkdirp.js",
+    "revision": "568448d36da55ea890923d483f082fbc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/mkdirp/test/opts_fs_sync.js",
+    "revision": "0811db9973a3fe26d9fe2b6f550ae374"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/mkdirp/test/opts_fs.js",
+    "revision": "012858e2d9fd5ad9bad79d0b780f3a46"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/mkdirp/test/perm_sync.js",
+    "revision": "63faf9288fc73b378510149a3a2120a4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/mkdirp/test/perm.js",
+    "revision": "40f49b41cbcae7105729d7f892e229a8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/mkdirp/test/race.js",
+    "revision": "ea03e8320bfdf179a4d589e73f3ac302"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/mkdirp/test/rel.js",
+    "revision": "ee4926533441d5574469ed8afc9b2d21"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/mkdirp/test/return_sync.js",
+    "revision": "9ab72a21fa3e974dd6e50ab25c0f697e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/mkdirp/test/return.js",
+    "revision": "ac2c9466636f391c17c6994ea8a51338"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/mkdirp/test/root.js",
+    "revision": "1d8aad344388793f4ba1a2b68fc1e130"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/mkdirp/test/sync.js",
+    "revision": "0ce9d0bf0203775fd4073b4d436920b5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/mkdirp/test/umask_sync.js",
+    "revision": "aaf976f897e44397d06242d36f3821e3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/mkdirp/test/umask.js",
+    "revision": "ce0030869a33d36268e36e27e6f04e2e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/ms/index.js",
+    "revision": "ae157c9a8e70902576c2d8a06dbcde32"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/node-pre-gyp/lib/build.js",
+    "revision": "34a2372d8aae2645f3d344d7b464ba6b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/node-pre-gyp/lib/clean.js",
+    "revision": "cc38e1e82f276aaaf5e426e4969f7cf5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/node-pre-gyp/lib/configure.js",
+    "revision": "cbd2ff5881df68b86217325a0d36151b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/node-pre-gyp/lib/info.js",
+    "revision": "c57370f0f3e17254e189ab6d3f7b7d7b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/node-pre-gyp/lib/install.js",
+    "revision": "ca28a21da3653cf91ee71ab68627f1a2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/node-pre-gyp/lib/node-pre-gyp.js",
+    "revision": "40927a3edca70634fac0a70111cc49fe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/node-pre-gyp/lib/package.js",
+    "revision": "d2b468a49cef00ea77bb1dec7b1ffca4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/node-pre-gyp/lib/pre-binding.js",
+    "revision": "59b66f8079e6405128bd4eb2e67590e7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/node-pre-gyp/lib/publish.js",
+    "revision": "2bccd5cf6c4d3538deee8207f2d33024"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/node-pre-gyp/lib/rebuild.js",
+    "revision": "786ba5ebe02828d9b3a1ae8d12a91c49"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/node-pre-gyp/lib/reinstall.js",
+    "revision": "e9689ae47ee79117e90e7107affc9a51"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/node-pre-gyp/lib/reveal.js",
+    "revision": "59bc3c83b2661e3fa0a20e60d2e45fd2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/node-pre-gyp/lib/testbinary.js",
+    "revision": "f55db7135e0affc888e15c64b3b73f92"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/node-pre-gyp/lib/testpackage.js",
+    "revision": "62dc6e8d8b8c1075e303f96ce6905345"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/node-pre-gyp/lib/unpublish.js",
+    "revision": "4896383a57ef209a79ad034d2809032c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/node-pre-gyp/lib/util/compile.js",
+    "revision": "b387da7adab79b04eb17746496a5a880"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/node-pre-gyp/lib/util/handle_gyp_opts.js",
+    "revision": "e60ee74654233aa5ab5e3fdeee69f3a3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/node-pre-gyp/lib/util/nw-pre-gyp/index.html",
+    "revision": "5d9f0cacc0b6309bc395739d8ef1bce9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/node-pre-gyp/lib/util/s3_setup.js",
+    "revision": "8ca0998e885100e3dc0efd0c02058811"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/node-pre-gyp/lib/util/versioning.js",
+    "revision": "f56ac26d0dbe4acc2334f19995fcd398"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/nopt/bin/nopt.js",
+    "revision": "17cd323d2857023eb172688fce83aee5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/nopt/examples/my-program.js",
+    "revision": "18282294fd8652f91c5d31e86f456f54"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/nopt/lib/nopt.js",
+    "revision": "627fecea2821bf9277220f01a27e96aa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/nopt/test/basic.js",
+    "revision": "c09cdece6a9f0021f117bd333b8a7d5e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/npmlog/log.js",
+    "revision": "55734fe42d13f318dbc51e82ad67af58"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/number-is-nan/index.js",
+    "revision": "8d047de69c33e1bebc91b6b113124f4b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/oauth-sign/index.js",
+    "revision": "349cc7cf3bc8cbcdb4edccf70a9490f9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/object-assign/index.js",
+    "revision": "4eb3c1a156ce2effd67b37a2dfedc632"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/once/once.js",
+    "revision": "d1d6962324348ad89bf780a233952c61"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/os-homedir/index.js",
+    "revision": "a8e7136b6a07850894bafc5b80de33c0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/os-tmpdir/index.js",
+    "revision": "df7052b8646c869991df05e187b63de1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/osenv/osenv.js",
+    "revision": "cc787b37b96db29fc00fee79ce1ffa4e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/osenv/test/unix.js",
+    "revision": "08727f8ca56a7041b563fd94f2a475a9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/osenv/test/windows.js",
+    "revision": "b41ad21b59d3583bee0fd94f244dfd6b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/path-is-absolute/index.js",
+    "revision": "135a9dc74dc76b698c2abeaaa165f889"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/performance-now/lib/performance-now.js",
+    "revision": "1697f281a3039b40390e9113805eff45"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/process-nextick-args/index.js",
+    "revision": "ba4880f44faff6fd438e6ad567bcc865"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/process-nextick-args/test.js",
+    "revision": "33944d3e3bd1cd9b94b0f177828002eb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/punycode/punycode.js",
+    "revision": "1dc3f52fbd74bd297c46f397e05670dd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/qs/dist/qs.js",
+    "revision": "57a8e637eb09b1d12c8a4b81374ca5ee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/qs/lib/formats.js",
+    "revision": "547b7a8b6b81236db977dcd1a548c9e8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/qs/lib/index.js",
+    "revision": "1459a9952f6b500d24818bb6e3e37368"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/qs/lib/parse.js",
+    "revision": "f1a740dc71b7a0559c7c9fa5467a2b55"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/qs/lib/stringify.js",
+    "revision": "2d683076523cc9a0f20801502459ba0c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/qs/lib/utils.js",
+    "revision": "7d333a0cffb3c0a4cb16a9d79fccacad"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/qs/test/index.js",
+    "revision": "16c8338cc83b85a875270f50ac1e4ed6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/qs/test/parse.js",
+    "revision": "1c61afc30c2d46219e2a3785991e1cd0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/qs/test/stringify.js",
+    "revision": "ddf7951e1d2cc375495e1ced1815755c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/qs/test/utils.js",
+    "revision": "5bf19c40463432ac4f6c37b0c9192638"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rc/browser.js",
+    "revision": "8cb80d9dc185db3e7faca27feafb3d52"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rc/index.js",
+    "revision": "e8d321be46bbed5f817f91fca79a0ae6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rc/lib/utils.js",
+    "revision": "b825abe4a237e7d9145f56904069b49a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rc/node_modules/minimist/example/parse.js",
+    "revision": "559dd0b28e67e4da65c434476bc2c885"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rc/node_modules/minimist/index.js",
+    "revision": "c36f5714c734dba3d1cb40e836c1374b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rc/node_modules/minimist/test/all_bool.js",
+    "revision": "0996869b339f45a72669d8638df020d3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rc/node_modules/minimist/test/bool.js",
+    "revision": "e42588336909394bd2c0a02d8346a694"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rc/node_modules/minimist/test/dash.js",
+    "revision": "3912e17dca100d50c1bab4c7982d56dc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rc/node_modules/minimist/test/default_bool.js",
+    "revision": "d97a3688462e13a7399204b153426be8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rc/node_modules/minimist/test/dotted.js",
+    "revision": "16f59760e45e2cf7f835320635d59ce1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rc/node_modules/minimist/test/kv_short.js",
+    "revision": "74c72f03ca3283bacd95ce6019fcd1e8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rc/node_modules/minimist/test/long.js",
+    "revision": "652e865e69ae41e78d9ad95f8557f0a2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rc/node_modules/minimist/test/num.js",
+    "revision": "3c6b959c2a952ca471797e28723fa8c5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rc/node_modules/minimist/test/parse_modified.js",
+    "revision": "d04f05190e5720bb1fb47be8f09f96d8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rc/node_modules/minimist/test/parse.js",
+    "revision": "466b0207dd29b19eefe9aff973472fb5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rc/node_modules/minimist/test/short.js",
+    "revision": "a964fe2c657d6e71d1c3a2c8bc5ce79c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rc/node_modules/minimist/test/stop_early.js",
+    "revision": "20dfd44d3acf4d24e21fa04c24841580"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rc/node_modules/minimist/test/unknown.js",
+    "revision": "68487dbf5d4323c19185167877da8736"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rc/node_modules/minimist/test/whitespace.js",
+    "revision": "caa1c589b42a96804176247191ccb980"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rc/test/ini.js",
+    "revision": "5d5914db7bc21136f83c05703927cd4c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rc/test/nested-env-vars.js",
+    "revision": "27d5644f0925b3f2b7c082b4d07fd175"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rc/test/test.js",
+    "revision": "8ab5665379909d30b99dc0c59b09d470"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/readable-stream/duplex-browser.js",
+    "revision": "71bc8735ee8f568483daa0b68865b025"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/readable-stream/duplex.js",
+    "revision": "d128bf2cd01bfe3a6213e548804685d6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/readable-stream/lib/_stream_duplex.js",
+    "revision": "99e71c9b52e4bef8bd6048cb38972189"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/readable-stream/lib/_stream_passthrough.js",
+    "revision": "3db735c0a75ecf6e78589c49951a8e16"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/readable-stream/lib/_stream_readable.js",
+    "revision": "002a38cdb497687f2c6c4beba90b6cc0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/readable-stream/lib/_stream_transform.js",
+    "revision": "7c5227c7f8a21c907f623537ac2bff86"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/readable-stream/lib/_stream_writable.js",
+    "revision": "b3be8bc346fd9c85a16b01f203ebb441"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/readable-stream/lib/internal/streams/BufferList.js",
+    "revision": "f32a18003a365fd5fdee09a34d6e3e65"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/readable-stream/lib/internal/streams/stream-browser.js",
+    "revision": "df20453c19af8406babdf987facd76d9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/readable-stream/lib/internal/streams/stream.js",
+    "revision": "76bae0aaca4d9c61a71995751b67448b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/readable-stream/passthrough.js",
+    "revision": "c91f046d756b80d527ec8f4dbeffa459"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/readable-stream/readable-browser.js",
+    "revision": "73ba7f8dd912318c3d51d99674c77c4f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/readable-stream/readable.js",
+    "revision": "0fe4be4fe2e76f31a60e95e65d42538f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/readable-stream/transform.js",
+    "revision": "1c25db3b0dbf9eb68d7e2a7063cfcfcb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/readable-stream/writable-browser.js",
+    "revision": "41a26d0db5dea46383b4b625f05a9d30"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/readable-stream/writable.js",
+    "revision": "b5f92bc75cce9fddf6a8407e4b5cb660"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/request/index.js",
+    "revision": "c7977122ae996ec2df2b84ad20cfd6ca"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/request/lib/auth.js",
+    "revision": "fcd956f414f26f0de629ca5a5ad3b286"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/request/lib/cookies.js",
+    "revision": "19cbffd7abf910083a20f0bafc768442"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/request/lib/getProxyFromURI.js",
+    "revision": "be96766375fc956f52337fd6cd8302a0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/request/lib/har.js",
+    "revision": "fe2060ee4cbdde990a7ba7436cd8ba00"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/request/lib/helpers.js",
+    "revision": "482e5ba2b66b6a902de213944319eff6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/request/lib/multipart.js",
+    "revision": "3516fbb226c5b8d79a44421c3579493f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/request/lib/oauth.js",
+    "revision": "a39d80810bdf9638cd8773b3ab4da1c4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/request/lib/querystring.js",
+    "revision": "18c8d5bf96cb2f544119f0430f7ceec7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/request/lib/redirect.js",
+    "revision": "879e838e48f9a1f0925b5523af97c1b9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/request/lib/tunnel.js",
+    "revision": "2657c2af70c47e63e69c065008b2039c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/request/request.js",
+    "revision": "179ea0c4bbb07ea5f0d01b5edb68c8fe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rimraf/bin.js",
+    "revision": "696de134dbb91351b63119cd656df764"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/rimraf/rimraf.js",
+    "revision": "3e8a4b3c0270fa7812b42b62002a13be"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/safe-buffer/browser.js",
+    "revision": "af7b01721d597b373a8a6a37f4dcff77"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/safe-buffer/index.js",
+    "revision": "2294b3e6548ff5b7a3f9e0617401d450"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/safe-buffer/test.js",
+    "revision": "c44ca26f531e2a9af8f7b6a3fe8a1dad"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/semver/semver.js",
+    "revision": "a5a96794f4b1221ecbd06bb54318e9d5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/set-blocking/index.js",
+    "revision": "17da66b83566850037aa069584b34bb4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/signal-exit/index.js",
+    "revision": "a2b431d1c9a84363966d8c76143b87ba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/signal-exit/signals.js",
+    "revision": "088797b13dce89e566484933fe8538b7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sntp/examples/offset.js",
+    "revision": "87a72c1b71f43c9a3df23398a4cb643c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sntp/examples/time.js",
+    "revision": "d8a7e5dd9434dbc06e7dce4a8766271c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sntp/index.js",
+    "revision": "e8d0f05d598f1ce4b789f266f889238a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sntp/lib/index.js",
+    "revision": "6714832a4fab692f099e8d7e63b6055f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sntp/test/index.js",
+    "revision": "17de4f54e73357bd4395becaecc658cc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/lib/algs.js",
+    "revision": "e7f6370f84115c095a8f5c34ca457b0a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/lib/certificate.js",
+    "revision": "5f455dc69a3b3d63c8fc6318addb88bb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/lib/dhe.js",
+    "revision": "5e3636bce8d299a87ee2e754a50a4946"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/lib/ed-compat.js",
+    "revision": "fc7e0077203dcd28415a5953a14bca7b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/lib/errors.js",
+    "revision": "b9389d5e0d3e4dffcefe9e4c586fdabc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/lib/fingerprint.js",
+    "revision": "a3aaa52f74ce0e4eba30be11a707eb02"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/lib/formats/auto.js",
+    "revision": "2a84c6125d8cb334e31f5210a762ff88"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/lib/formats/openssh-cert.js",
+    "revision": "52462ebe7750a0099d8e9d76ee68f53e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/lib/formats/pem.js",
+    "revision": "5b02475c5cf8a2fa3d6cd2586336e1ae"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/lib/formats/pkcs1.js",
+    "revision": "4675d572000a8125e76783057cc49731"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/lib/formats/pkcs8.js",
+    "revision": "a94075e3da863b9e2a15c8af7dcca94a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/lib/formats/rfc4253.js",
+    "revision": "c92922c081eeda12e5b85c7793e60dc1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/lib/formats/ssh-private.js",
+    "revision": "4c654e91bd2eb701c2caef3341d8619f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/lib/formats/ssh.js",
+    "revision": "9b3b1f5feccfcbe10405caf6d5bfba6c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/lib/formats/x509-pem.js",
+    "revision": "a086d788dd5c884bd4fd2e7ea2339c22"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/lib/formats/x509.js",
+    "revision": "f3aa49285ef3dd669d73d97388bc1190"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/lib/identity.js",
+    "revision": "5440f537fce888e9bb776f9a50914a10"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/lib/index.js",
+    "revision": "e61854c943e75e8a0a33398f146d91b5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/lib/key.js",
+    "revision": "1a2d0cb6be6c97142613c6073e911b90"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/lib/private-key.js",
+    "revision": "783a57368c6d90491a12e68fb33dbd4b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/lib/signature.js",
+    "revision": "ede61da73e42f241f17be0d258b1f79c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/lib/ssh-buffer.js",
+    "revision": "e1707e3ba5dbecd0646a72b3c889d12d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/lib/utils.js",
+    "revision": "37f9b14932c04a66612b0a95d805ea65"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/sshpk/node_modules/assert-plus/assert.js",
+    "revision": "8e4477b889e2adba790249217424fc22"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/string_decoder/lib/string_decoder.js",
+    "revision": "b1809126526f580c3645e8f99d610856"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/string-width/index.js",
+    "revision": "6f6896167219a6e5ed1303f389294b60"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/stringstream/example.js",
+    "revision": "d43a337f58ce10e1a06b9c6836f6b20d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/stringstream/stringstream.js",
+    "revision": "cb0d5d1209fc8717ab5ad1d42d976839"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/strip-ansi/index.js",
+    "revision": "e2962c78c9c5968c399c26413ca3e8bc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/strip-json-comments/index.js",
+    "revision": "8cdf3b8b015e770581934f4bbdc0d971"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar-pack/index.js",
+    "revision": "7248754ff9a421362bf85423d6d22119"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar-pack/test/index.js",
+    "revision": "187b78499af9d7ae86e2ed582b072278"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/examples/extracter.js",
+    "revision": "c58a09e3c8d746ddb81b3ece0c4cd677"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/examples/packer.js",
+    "revision": "13ccd3d6b7fbb385909d2071d74697b1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/examples/reader.js",
+    "revision": "851b6612632f0ce91705f297eb780982"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/lib/buffer-entry.js",
+    "revision": "00a20a45f156d4c5b6a2383ad2b3eb63"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/lib/entry-writer.js",
+    "revision": "c05c35d46ef3d545a4f7270f3d55bdd7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/lib/entry.js",
+    "revision": "8b096e407a237cefb847b15456c5035d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/lib/extended-header-writer.js",
+    "revision": "ba389b4fa513fe593ec4c0ee5fcde6f2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/lib/extended-header.js",
+    "revision": "9a68e3f8429ccd6589f0b18c4a3037da"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/lib/extract.js",
+    "revision": "9a8422c26ee874182244142f1b7b7686"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/lib/global-header-writer.js",
+    "revision": "7c348c69f1d193d72a7b8d5a327665e2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/lib/header.js",
+    "revision": "44b14c7ba6b0d18e431a1fed7c0b9152"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/lib/pack.js",
+    "revision": "fcc4538c9126d0ec32c3868f6d0e1f92"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/lib/parse.js",
+    "revision": "4ab3e18b3c627e0710c3ae11fba4154e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/tar.js",
+    "revision": "f9a0ffcc7b185b0b5de24640ed43a92f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/test/00-setup-fixtures.js",
+    "revision": "145d65e14c0337965eb43380bf300850"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/test/dir-normalization.js",
+    "revision": "d264d0eefbddf60e50308daed8312c0e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/test/error-on-broken.js",
+    "revision": "74f2ce68f8ec291944ff2eee1064f4e3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/test/extract-move.js",
+    "revision": "5862b42994e7647cd4ff663ec2c88037"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/test/extract.js",
+    "revision": "4260289710d3897314be29acb3ce25c8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/test/header.js",
+    "revision": "3f4ffa7bfda7e06f5bd25072495e7baa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/test/pack-no-proprietary.js",
+    "revision": "d228c7dbdbe89311ce246d61c8dd6e0e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/test/pack.js",
+    "revision": "81d8c7f41dec68806ff4894e25a45b6e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/test/parse-discard.js",
+    "revision": "697bb5c1eee00b7bce3b636e8072c7c9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/test/parse.js",
+    "revision": "3ecb04bd42663f24317f1b3bf533f597"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tar/test/zz-cleanup.js",
+    "revision": "917dfb9236ef45996f7a8aabd04d6e8e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tough-cookie/lib/cookie.js",
+    "revision": "0ab3030449e15810a6ce347095e83631"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tough-cookie/lib/memstore.js",
+    "revision": "ec2abbb498d7dac2102778bc9ba1e8ab"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tough-cookie/lib/pathMatch.js",
+    "revision": "8ef4b4a39dcaa8d84894d1a3b325565d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tough-cookie/lib/permuteDomain.js",
+    "revision": "846ada1aceb80c98bf826f8f23c76152"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tough-cookie/lib/pubsuffix.js",
+    "revision": "3a3a63f5e128bd1aaee4df17ce596f67"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tough-cookie/lib/store.js",
+    "revision": "b86d7c06a6735c650962b0139f89e1a7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tunnel-agent/index.js",
+    "revision": "fc590d7bef105b571f81e767d3a6e68c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tweetnacl/nacl-fast.js",
+    "revision": "e116afc2595eec2284246f0322a70c2f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tweetnacl/nacl-fast.min.js",
+    "revision": "88e15cdc4e2f1ed7d58ebbdf2e65a259"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tweetnacl/nacl.js",
+    "revision": "6f83d71ad40a0b50b1631c53ac5a9d92"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/tweetnacl/nacl.min.js",
+    "revision": "90212238bdeec75172b744c33ee23c78"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/uid-number/get-uid-gid.js",
+    "revision": "a8722f00c63e2f6de707813fd0fc81a2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/uid-number/uid-number.js",
+    "revision": "e5349f1dae16a030359a4efafd3fa36b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/util-deprecate/browser.js",
+    "revision": "521e3c4a53c4265653c9f68ebd52f700"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/util-deprecate/node.js",
+    "revision": "0e28b0a11a7a2d9d18f33f2bfa67d380"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/uuid/index.js",
+    "revision": "df5fb58fbde2130b9c38075b2afef5ad"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/uuid/lib/bytesToUuid.js",
+    "revision": "b72de4ddba1d993e9b8eacb1f614c0d0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/uuid/lib/rng-browser.js",
+    "revision": "928f3ca78ea9a085f6114991ed5682c1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/uuid/lib/rng.js",
+    "revision": "0aa6490dd05a7a1ee003421209bcf683"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/uuid/test/test.js",
+    "revision": "753e85b3fdb3da7525fa92d46a9fd496"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/uuid/v1.js",
+    "revision": "91d9beb59976ea24482ba5aa2202d40e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/uuid/v4.js",
+    "revision": "f30c1a5c5ec70d6376f3de399a1efa5f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/verror/examples/levels-verror.js",
+    "revision": "47051979f35ad48270b2b430404f9217"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/verror/examples/levels-werror.js",
+    "revision": "b84bc946bf264e8b8f6391283b76f2d1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/verror/examples/varargs.js",
+    "revision": "69431b48be8ee0dc5aa74b623623e4e6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/verror/examples/verror.js",
+    "revision": "d45df12c6233f5b05da9c78f5746c0df"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/verror/examples/werror.js",
+    "revision": "eaf9e5569f057b527a7b43ff32691a3c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/verror/lib/verror.js",
+    "revision": "1383228baa487f02c83e02bc301a851c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/verror/tests/tst.inherit.js",
+    "revision": "72282f9de53da4123024be2504647fdc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/verror/tests/tst.verror.js",
+    "revision": "a245d9576d0b5a18f258ac0a9f2cc7d1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/verror/tests/tst.werror.js",
+    "revision": "52739ecc2d34c6cce8ddf072361c015e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/wide-align/align.js",
+    "revision": "0a1da5fd1ee5e08be7e1079203f452f3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/fsevents/node_modules/wrappy/wrappy.js",
+    "revision": "04a65e1669dc90fa11c900693c1974b1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/glob-base/index.js",
+    "revision": "ee6fe689ab84b0c29e75027f29a4dbee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/glob-parent/index.js",
+    "revision": "e937aae18305a59bbac2265dccfa757f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/glob-parent/test.js",
+    "revision": "ac3af75e7f1ee7264dc145d0c0602670"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/glob/common.js",
+    "revision": "0041795c4700b9e1c1cd76729517f08b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/glob/glob.js",
+    "revision": "20c4c7d5e53fcaaf2781e53942dc2e32"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/glob/sync.js",
+    "revision": "c29ff74e143a933770c75a66998fbeeb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/globals/index.js",
+    "revision": "6a4a3b9c2875af7f0c2d154087eea7e0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/graceful-fs/fs.js",
+    "revision": "7fb9340b36e141a4944b13d205af3d1d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/graceful-fs/graceful-fs.js",
+    "revision": "0af3af2b5945a7073883fb5273f25893"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/graceful-fs/legacy-streams.js",
+    "revision": "620fc152dc9bfa087f9901703b1e2616"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/graceful-fs/polyfills.js",
+    "revision": "af45c9957edb1ef798122235655af168"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/has-ansi/index.js",
+    "revision": "492cbe0061bb86227d725192420ad509"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/has-flag/index.js",
+    "revision": "84a33991244ece2b3f29f0fabbcbb25d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/home-or-tmp/index.js",
+    "revision": "d55a5bd7939ba7d12d782faf8b5f5b8e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/htmlparser2/lib/CollectingHandler.js",
+    "revision": "629828d78f4adaa68a5fd518b10a2f29"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/htmlparser2/lib/FeedHandler.js",
+    "revision": "5072916d4fbf26c745d6f7ccf738c748"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/htmlparser2/lib/index.js",
+    "revision": "70826d75332f70acb8d178d35f912ab3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/htmlparser2/lib/Parser.js",
+    "revision": "4eb134ee174be6db94c2ed70a6d7a862"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/htmlparser2/lib/ProxyHandler.js",
+    "revision": "02f53a358db2d6428139aee055b006b5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/htmlparser2/lib/Stream.js",
+    "revision": "f6a97f3bee674de1f0808ed3c81a4935"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/htmlparser2/lib/Tokenizer.js",
+    "revision": "3c86227f5cdfc3e7ab168b2008f642d7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/htmlparser2/lib/WritableStream.js",
+    "revision": "b512da9d1442a34267da7d4a6a266209"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/inflight/inflight.js",
+    "revision": "42bbc3622abfefca5862fd0d12441a15"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/inherits/inherits_browser.js",
+    "revision": "7c26fc24b695f2afbc284bbd5f64d6a4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/inherits/inherits.js",
+    "revision": "09b210610125b162700734fb93dc892c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/invariant/browser.js",
+    "revision": "12ee92b68002c65637964d34fb66051f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/invariant/invariant.js",
+    "revision": "cf148a475b8ccb7737d4b616002b1503"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/is-binary-path/index.js",
+    "revision": "a8d4a51f85f3558a5c2420ed3e05a165"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/is-buffer/index.js",
+    "revision": "b7412cddcc361499cb97de2fde16d633"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/is-buffer/test/basic.js",
+    "revision": "a464c09281c3a6d95e23046d8b4b14b1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/is-dotfile/index.js",
+    "revision": "98f5d1c788fd02756f3aff863c417ebb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/is-equal-shallow/index.js",
+    "revision": "ba193b903f85dd15c121ebcb823a0007"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/is-extendable/index.js",
+    "revision": "eb39d1113eef5bd5beed938990c412f2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/is-extglob/index.js",
+    "revision": "c0a020adfb4ea05ac06e5394a3a151de"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/is-finite/index.js",
+    "revision": "14531067f0794e449029d9268fbc0d5b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/is-glob/index.js",
+    "revision": "d34a12314359fc9bc8fd60db11cfe8f1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/is-number/index.js",
+    "revision": "6f02a16411a1d0aeefbdacf802f21c2d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/is-posix-bracket/index.js",
+    "revision": "5ca3d3c3422209e76c117734129b197d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/is-primitive/index.js",
+    "revision": "e28ddec757d50f62dc21f22bb0ced51e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/isarray/index.js",
+    "revision": "e32b2424bf3f56c47ac6a2a08478dce9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/isarray/test.js",
+    "revision": "abae91536d765db34554068cc3f001b0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/isobject/index.js",
+    "revision": "dcb5d234632f3de28e4efa747d4eacb0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-tokens/index.js",
+    "revision": "4641ce3ebba02c791bbfcf7095a6ba9d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/bin/js-yaml.js",
+    "revision": "a58cd02b21c231204a6724ec455f8c88"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/dist/js-yaml.js",
+    "revision": "afc62587c893e6adb723b6380c3d0e15"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/dist/js-yaml.min.js",
+    "revision": "5c5429894b3d178ead68e7ffb3fc9410"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/index.js",
+    "revision": "76a16764c909008d9ed10898afbe4b6c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml.js",
+    "revision": "628edef3669f70be7a7c5ba9d8c6c1d9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/common.js",
+    "revision": "338ac6e1778db262f368223d252fddea"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/dumper.js",
+    "revision": "c081cee43eda8b433112e805bfd38cf3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/exception.js",
+    "revision": "1ab5c60bbd8c630a4717e40f36ffd30c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/loader.js",
+    "revision": "2f58c3ecede7040e5d8826f919a67f2e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/mark.js",
+    "revision": "7d527a6dfe70f6e74bf6200d78e41299"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/schema.js",
+    "revision": "824785db1f0531e558a0c1625df67d2b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/schema/core.js",
+    "revision": "daeb44b47e9dac07503aca5da7a24e7b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/schema/default_full.js",
+    "revision": "099062e89258362300e3d6728ed48d67"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/schema/default_safe.js",
+    "revision": "5f1a7bc79c7126c55c7a36bc08fe1366"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/schema/failsafe.js",
+    "revision": "11b24bb3c0fa99924f6b074fcf26df2a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/schema/json.js",
+    "revision": "02a23e1eeac534dac8b9837636ef7394"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/type.js",
+    "revision": "78604f199a08cfcbbbaf3bde48916b73"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/type/binary.js",
+    "revision": "c78ed91c315464b471b267ef6f5471a1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/type/bool.js",
+    "revision": "d4df0d2a71c9af0ab52f29f89773f028"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/type/float.js",
+    "revision": "c3321781bce5c4770ca2a6eda8c29141"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/type/int.js",
+    "revision": "17a92003f8c07c5872147d9322a97f71"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/type/js/function.js",
+    "revision": "a16d53eb46796dc703757ef741d7bfc7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/type/js/regexp.js",
+    "revision": "8c7920630191e853a44cff590ed5bbea"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/type/js/undefined.js",
+    "revision": "e25dc12f322e881118fbe079c451646d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/type/map.js",
+    "revision": "25960bc03a1d75ddb2abb5270c177d4f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/type/merge.js",
+    "revision": "22c9334fbe8557afd8dc4896c2aee6a6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/type/null.js",
+    "revision": "2a28259823f884af4dade8a6d556b357"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/type/omap.js",
+    "revision": "3b430d0920569d39cf59f93e6f592dac"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/type/pairs.js",
+    "revision": "679b89f1b770b24087122047da2b4364"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/type/seq.js",
+    "revision": "713607f1161970831aeca64d9796e4dc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/type/set.js",
+    "revision": "22eea89affd984bc6cd10f471159750d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/type/str.js",
+    "revision": "55642179510bc9b99583d7d5d1c9c586"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/js-yaml/lib/js-yaml/type/timestamp.js",
+    "revision": "80fbd1e71bac0386b2188a6bf42e1a4d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/jsesc/jsesc.js",
+    "revision": "d4ff0d7ac9e4edff17ac5def06b270d5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/json5/lib/cli.js",
+    "revision": "1592c785031b1dab7120e78aa44de473"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/json5/lib/json5.js",
+    "revision": "1e88d69cad7066bd18f2ceaa88bff5ed"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/json5/lib/require.js",
+    "revision": "9267cada7734e7215da0488d9e407cb9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/kind-of/index.js",
+    "revision": "974e0c2803e83c5bf65de52b98bf4f55"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_addMapEntry.js",
+    "revision": "75e71e733f628ff3d820d8e07ab0aa9f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_addSetEntry.js",
+    "revision": "5f97746d021f1c3eb9f563fc409326bf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_apply.js",
+    "revision": "d3ef9e89ba499ebaba74672b935bcc26"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_arrayAggregator.js",
+    "revision": "ea6deb9f9aaca8e880ba9f7716c8d04f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_arrayEach.js",
+    "revision": "5e7b5faacc1ca623b949a8a706cd360b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_arrayEachRight.js",
+    "revision": "692fd011c71bc0b5854c2bbeba1404f7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_arrayEvery.js",
+    "revision": "55a4cd76296213c873249e543222ea2a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_arrayFilter.js",
+    "revision": "11af9f9bc841dd2986d25ccf0287361b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_arrayIncludes.js",
+    "revision": "cc0a5849d8e357be8e95d80af3789c95"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_arrayIncludesWith.js",
+    "revision": "f876b1f5155b6a758516e05426d4ceb3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_arrayLikeKeys.js",
+    "revision": "a105e44741adeb269f237c78b85dba1f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_arrayMap.js",
+    "revision": "987edae0a7e4927837c1d22d9f46c35f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_arrayPush.js",
+    "revision": "a5db107cf04803f7e02fb83a0cb9a4bf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_arrayReduce.js",
+    "revision": "30190f4c8f3f642f3ec57df0cb104dba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_arrayReduceRight.js",
+    "revision": "d8e5f4adf72d5522413711c1cd8abee5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_arraySample.js",
+    "revision": "d95fa12a71b899dfecb72c2d9341f4d1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_arraySampleSize.js",
+    "revision": "2a71d9757f7f5e53524bb21636c3eeb3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_arrayShuffle.js",
+    "revision": "306d7110c5a0f2b74fb81075820a6ea5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_arraySome.js",
+    "revision": "06e22c7ead9c15469d3e1af10172b726"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_asciiSize.js",
+    "revision": "7c8b138a16f81fab938a81b53c74051e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_asciiToArray.js",
+    "revision": "535913c60a3225d16dcd0dbd0627c8f1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_asciiWords.js",
+    "revision": "8ba4e3356c28703adf6b907d96345ffd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_assignMergeValue.js",
+    "revision": "de595d35898c9497307c8014c5846f7b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_assignValue.js",
+    "revision": "0e03ca829340d63cbd671ca252fed636"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_assocIndexOf.js",
+    "revision": "e38b8af759142cb9a66dd619639ce152"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseAggregator.js",
+    "revision": "94bb6f71a3bbe74d0895acb89c9e3d77"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseAssign.js",
+    "revision": "c46e2377e0df338c9dc67194765b771d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseAssignIn.js",
+    "revision": "ca78e775f58165e28fa1cb9814b3a39b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseAssignValue.js",
+    "revision": "7d9535455142d6c5bd54cf127e89e05c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseAt.js",
+    "revision": "66a260175f9e2a8030eae1587739b3e2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseClamp.js",
+    "revision": "fd06a1222f81a963059cfd59d1c0e087"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseClone.js",
+    "revision": "5a0b95bd6c4902f988286c49c66665f3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseConforms.js",
+    "revision": "59c5c5f66d0a6f59879ad48b8d7b5af5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseConformsTo.js",
+    "revision": "eb30ee6f12711087c87365f04724c578"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseCreate.js",
+    "revision": "ad00bfe1ef837383c3d4128b6f192b8b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseDelay.js",
+    "revision": "4fc96a5e6781eef08286b9870a2f5632"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseDifference.js",
+    "revision": "bb644a23b7e837dc52eef2e2bf441e73"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseEach.js",
+    "revision": "135329d8d3ac4bc3cbdd96d3f3fb7043"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseEachRight.js",
+    "revision": "7636760e396f8b8c43d604a9391af266"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseEvery.js",
+    "revision": "37ae9a37abfc533723f684cecccfd943"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseExtremum.js",
+    "revision": "1742a5c54ca6b6bde1ba47209a54389d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseFill.js",
+    "revision": "18b23523749e836ee3dfd3f6ee6cf4c8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseFilter.js",
+    "revision": "9c3870dbcae7312af6682074df188791"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseFindIndex.js",
+    "revision": "689b12caa47aa0d5c9968d04cc4de280"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseFindKey.js",
+    "revision": "5a3a460194cd564e32a3d311b0062d5f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseFlatten.js",
+    "revision": "8f3a69900ef4a1075d25fef1e331edc3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseFor.js",
+    "revision": "a8f1a07ee65b88eb5d665adebdb2302b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseForOwn.js",
+    "revision": "1b7bf3b458dce2f033b2cc27841ef1f1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseForOwnRight.js",
+    "revision": "682f048c044222a951fdd92e7b4c3745"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseForRight.js",
+    "revision": "e3abc83545b074120d778fe931a85428"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseFunctions.js",
+    "revision": "a0fa2f1fa7bc995d36ee18de87676719"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseGet.js",
+    "revision": "f90fbbd109e99b16cb68db657ec35489"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseGetAllKeys.js",
+    "revision": "8b177295cb78ead902f3096e60e26136"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseGetTag.js",
+    "revision": "e9a6e3635b64f3e4ba31eb33aed58848"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseGt.js",
+    "revision": "945f7a08ad07b3a91ee87fdb19c6d704"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseHas.js",
+    "revision": "0526222b785a7c0e7672ea4cb3272004"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseHasIn.js",
+    "revision": "f3d19687a693646c580de8115f845808"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseIndexOf.js",
+    "revision": "62fbdf43dc0c558e233fc6d704185dfd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseIndexOfWith.js",
+    "revision": "697e90a4ad58a689631b6f56e4fe202c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseInRange.js",
+    "revision": "3fe64b774f04a50f4d1bd546668c9709"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseIntersection.js",
+    "revision": "db8e686ef64cc14ef05f8430bb41e321"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseInverter.js",
+    "revision": "7f605b258bbce7cf531972ca1c46772d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseInvoke.js",
+    "revision": "565f354fce582fe9ccc84dc05ea7a38d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseIsArguments.js",
+    "revision": "aac6bce54a5f5d534e2dab147187470e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseIsArrayBuffer.js",
+    "revision": "7f8d104b4180ccc348deef2dc07ad2ed"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseIsDate.js",
+    "revision": "79104a5d8ccedf668fba6226be4a6730"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseIsEqual.js",
+    "revision": "61d91542a3dd58becd84dba7588d0927"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseIsEqualDeep.js",
+    "revision": "87d71894e01af7973a66faeef35b081c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseIsMap.js",
+    "revision": "57fd885ef566653e43584f0a39f7b381"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseIsMatch.js",
+    "revision": "f572a60c80359973fb867e3a94e65ee2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseIsNaN.js",
+    "revision": "362ba09d6229645daa22006374da0778"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseIsNative.js",
+    "revision": "716024a6a779f5d1eaaf8c6905d2e2fd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseIsRegExp.js",
+    "revision": "37c87be651441425e3eae83dc7c58ee4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseIsSet.js",
+    "revision": "e646c0dd9a7cbdc97d0516d93aab3367"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseIsTypedArray.js",
+    "revision": "83a0657add4462715dcb724ba94f9213"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseIteratee.js",
+    "revision": "c0afffd453201ac29e0ca75e0c7e1842"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseKeys.js",
+    "revision": "7cbefd191c1a4bafe13780554813c130"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseKeysIn.js",
+    "revision": "74fdf3b8803b4da3c36940133e45d820"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseLodash.js",
+    "revision": "b33672506fdb05cea731f5b8e36ae559"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseLt.js",
+    "revision": "fe948b10d92f8c2a7ea1be37cbc9e6ca"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseMap.js",
+    "revision": "5692a4be696adaa890207cd57dc9af96"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseMatches.js",
+    "revision": "4a9f64ea0fddf7e0fe13033bed7b342d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseMatchesProperty.js",
+    "revision": "62edfa6b61b3a018d71d000d65c5545f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseMean.js",
+    "revision": "2b1043cbf9c4123988fede43d83d39a4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseMerge.js",
+    "revision": "0c81977478d6a7d7c0b00453929f7f02"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseMergeDeep.js",
+    "revision": "25ed0c729810d17e0cd50792d5a9bfe4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseNth.js",
+    "revision": "d867679f9df2805a7213a5499cb5fe01"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseOrderBy.js",
+    "revision": "59d49e2e8360f1d1d2c4f9f189618fe7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_basePick.js",
+    "revision": "bab148cedf89c0e2bf85e8f3f636e3ba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_basePickBy.js",
+    "revision": "295775d911fa1893b6d5692e70a6c032"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseProperty.js",
+    "revision": "2c7afe7ea6bf3d325dc5c6444a3f9347"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_basePropertyDeep.js",
+    "revision": "1a3e80fb7141e64267811a0eca982060"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_basePropertyOf.js",
+    "revision": "8377ece3f8b729a6cf8c4be49956afb7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_basePullAll.js",
+    "revision": "16806247283623c374b4f2a5cba838e2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_basePullAt.js",
+    "revision": "3600cafb76ab9c97dcc5f27fe40f3c8e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseRandom.js",
+    "revision": "6d6a60bdb7e381d0c1a34d56b41caae1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseRange.js",
+    "revision": "09f2117cf80de80988550ba4f2851746"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseReduce.js",
+    "revision": "6544221866fc625ffc651b474ce8d598"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseRepeat.js",
+    "revision": "5fd77e960cb0da80a6eed6ffd1468185"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseRest.js",
+    "revision": "1458f0c78cdd63a2dfe50b7b16b9c777"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseSample.js",
+    "revision": "5fc8ce020703802e3bcc25cbe4430d74"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseSampleSize.js",
+    "revision": "d62b48319135ffc96a5dd3a7c865647a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseSet.js",
+    "revision": "7a585dce5ed75ac087df319d614898b6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseSetData.js",
+    "revision": "14c3f7e30daa444e6e3375770efb254b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseSetToString.js",
+    "revision": "a9984db5890afd943fdc0afccfcf9093"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseShuffle.js",
+    "revision": "3267e5b52be5e2c3bc30dcbdd3fea29a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseSlice.js",
+    "revision": "e2bdc872cf1dc17694cdb300a31c1bbb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseSome.js",
+    "revision": "7fd58eead1fc6be368fa2d505970b003"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseSortBy.js",
+    "revision": "e2b9dbe227488505c0a18e0360dfd19c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseSortedIndex.js",
+    "revision": "84afbf7241a1fd72a6036551e1020cb1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseSortedIndexBy.js",
+    "revision": "81d189d3888095837e7b413bbebd5889"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseSortedUniq.js",
+    "revision": "c02e43aecc98ae4952843eb30fd31a42"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseSum.js",
+    "revision": "2c1f31cf251ebe54107cf22dcbacd6b5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseTimes.js",
+    "revision": "dc3763002a7a61582bff4038218715c5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseToNumber.js",
+    "revision": "50aa9230f6c0eb42eed7e92d33a0f7e8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseToPairs.js",
+    "revision": "b73abf74d52c3635139845be7c269ab7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseToString.js",
+    "revision": "4bef09e874a5ecf61bedbf8e637d41ed"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseUnary.js",
+    "revision": "feb78ff096f781e3a15b68b06d7b185e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseUniq.js",
+    "revision": "9829c6eaf154df05b44c44c59eb67390"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseUnset.js",
+    "revision": "04b293e23202bd78ac594399d81880fc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseUpdate.js",
+    "revision": "218c5afa97285e1ae2834bc349242d5d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseValues.js",
+    "revision": "8529c2e0ac9dfd0cc5b0de2b759d9d60"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseWhile.js",
+    "revision": "2a34629231c9bbd2ee9a085ad958272b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseWrapperValue.js",
+    "revision": "543821d689889165d50a020c41b2ffb4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseXor.js",
+    "revision": "05b92b1205fcb4bcfa5b6c5332a79bc3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_baseZipObject.js",
+    "revision": "9c2bb1cd9e749908a1d4248b86d94062"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_cacheHas.js",
+    "revision": "acb765ee27ed7db33b1c3bf24dc1737d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_castArrayLikeObject.js",
+    "revision": "e3974a7b1ec27e97db530e1cd0902d15"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_castFunction.js",
+    "revision": "20863aaf7c1fb665a5da84f30de8b660"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_castPath.js",
+    "revision": "64c4755d6783fd856577a35360d903c6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_castRest.js",
+    "revision": "0ad93e0759cd75297096c2f8023e2a57"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_castSlice.js",
+    "revision": "74a774d2c04a6425e843b0d59553eeb3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_charsEndIndex.js",
+    "revision": "c96bf8f92332cc8b6e2233aef9b3ee85"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_charsStartIndex.js",
+    "revision": "ebc17df5400a1d6a6266ca3bc53e9f3e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_cloneArrayBuffer.js",
+    "revision": "a8816d8941a6be069912f77f659a5958"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_cloneBuffer.js",
+    "revision": "47fa50412c4aedbba10fe13048af5fdc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_cloneDataView.js",
+    "revision": "89d1e3c2837c8db07cfe3345d3984e7c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_cloneMap.js",
+    "revision": "bf9c9a3b7fa82c1ede35344a1db4eba5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_cloneRegExp.js",
+    "revision": "4770ac762c5ed1c33dd14a07e38f6764"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_cloneSet.js",
+    "revision": "2af995468cb4541ed2ff1cf24a745195"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_cloneSymbol.js",
+    "revision": "85aa0ecb3c4f13fd4c22dc850391e363"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_cloneTypedArray.js",
+    "revision": "f12f0f6f64c5dbf2653265d3a374f876"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_compareAscending.js",
+    "revision": "62d6c1d57651524b7f868647fc8a9865"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_compareMultiple.js",
+    "revision": "f57979f4477b4bc8cae0c7a6b33b6bb6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_composeArgs.js",
+    "revision": "c02811fd7074b5a12f458f6a9fb914d3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_composeArgsRight.js",
+    "revision": "b30c44b619b88f826f937260b7142f58"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_copyArray.js",
+    "revision": "e9bd394a37453dfcc28f881fbb022170"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_copyObject.js",
+    "revision": "79db3f2c724dd71a15285ee5e9decec2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_copySymbols.js",
+    "revision": "be5537221ee34886ad108ded3d43514a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_copySymbolsIn.js",
+    "revision": "de3b0fe0d6f6f87285cd71e4a9eb3801"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_coreJsData.js",
+    "revision": "73c31c0f1d9ed6bd5c34ab3b10ec96ae"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_countHolders.js",
+    "revision": "22ff47f3014c41f5fb9bd6dff7bf7ba8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createAggregator.js",
+    "revision": "672a108095d147d14a78ad39dc3346d8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createAssigner.js",
+    "revision": "4483c936954ec5465295fcf818b04c1a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createBaseEach.js",
+    "revision": "f7bb2b68af0c067fccb8bc885662e888"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createBaseFor.js",
+    "revision": "ab3021a98ea50849008ba21f86923e62"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createBind.js",
+    "revision": "e0aa4b8e423b116d924bbae8930fb9f3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createCaseFirst.js",
+    "revision": "87ab8be910b955601f6284146c28e3a9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createCompounder.js",
+    "revision": "a979cd3acef512f716756dc289b40a28"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createCtor.js",
+    "revision": "f263d3d18491e59171924c0e12918ec5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createCurry.js",
+    "revision": "06410d4f5acb83d0118c29955705f227"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createFind.js",
+    "revision": "777368719d7488e9b7615dbb055d765d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createFlow.js",
+    "revision": "0b5094d38bb7f6d92cae94b6ad1e62f3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createHybrid.js",
+    "revision": "77b3c28215139ece5e26b38e1f9f32a7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createInverter.js",
+    "revision": "0145a137de29504b952d24865847f0fa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createMathOperation.js",
+    "revision": "d1373646249f4255bbbaab54732dbb07"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createOver.js",
+    "revision": "f8d922fa0a583cc8f4a49496f4ba2304"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createPadding.js",
+    "revision": "a884b3861970260dac1edf3b15b3b605"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createPartial.js",
+    "revision": "1e5a6f4d3f27578576c8a558858e845e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createRange.js",
+    "revision": "fd4429262344493a733c70d9dfbc527a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createRecurry.js",
+    "revision": "2192bd7c3e5fe2a57dc6676a8fddc48b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createRelationalOperation.js",
+    "revision": "673997610a2eee28e2d75155648a8c10"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createRound.js",
+    "revision": "faa689954836edbdee384a64279ef496"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createSet.js",
+    "revision": "5f75e71ebdd998e40fa4152cf7ed30a0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createToPairs.js",
+    "revision": "3613da2d682e2efa8d314debe083fc51"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_createWrap.js",
+    "revision": "1737b32cc2049d6b30a70b34d42af91c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_customDefaultsAssignIn.js",
+    "revision": "1032eb6686881f8c0dcc01bda468f1d2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_customDefaultsMerge.js",
+    "revision": "bbdd98223da8ee6557d2b9f0ed19de00"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_customOmitClone.js",
+    "revision": "7015c84165016d13bcc10e8c594fecb7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_DataView.js",
+    "revision": "53160c15f9901d944fcd60dc8d89a9f5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_deburrLetter.js",
+    "revision": "1490f195d8081b30dbd4e9e5805f2008"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_defineProperty.js",
+    "revision": "f0313b22a33f741623d067525035f306"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_equalArrays.js",
+    "revision": "225330c65e967a3df7e45442cd771c36"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_equalByTag.js",
+    "revision": "3842720c2ccaf5d497f1ed750bde933a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_equalObjects.js",
+    "revision": "afb7f3b01fdcea6f2e1beba78bbb01d5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_escapeHtmlChar.js",
+    "revision": "fd91d45ca3c92d3fa5ee9531308fc179"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_escapeStringChar.js",
+    "revision": "3d7aa1a5844d8503b7ad6d0583000d6c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_flatRest.js",
+    "revision": "1000d22a2adcad2a1675c82869a8e609"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_freeGlobal.js",
+    "revision": "9478ddab8e8d869279ad5f823fcd884c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_getAllKeys.js",
+    "revision": "7b5dddb25c4b0cd3900ebea90139e507"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_getAllKeysIn.js",
+    "revision": "b5e68ac8c96bf95727790d047541e8ac"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_getData.js",
+    "revision": "85343cfcd9f95e91841434a95b5bb86d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_getFuncName.js",
+    "revision": "b45b572289861acdbdb6da376ab24a85"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_getHolder.js",
+    "revision": "1cb5f228f258878d462e57bbb579686c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_getMapData.js",
+    "revision": "ef89da875cff62394930fff7e1c7b72b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_getMatchData.js",
+    "revision": "29182ea18868357ab0e3ab371af8d270"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_getNative.js",
+    "revision": "44b91452619202eb918ebc542f99e17f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_getPrototype.js",
+    "revision": "419a6be535b88eb59069b3ac6b3d6a79"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_getRawTag.js",
+    "revision": "bfa860d23fab6d710f933eafe1cb68bb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_getSymbols.js",
+    "revision": "2d4cb887f5c60ec3291ae36420cacfd0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_getSymbolsIn.js",
+    "revision": "7f927fa010392af47b32d867b2fa3fdc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_getTag.js",
+    "revision": "f33e41fa154f6df10a1ac9ffa53b3d04"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_getValue.js",
+    "revision": "ed9d27c1b50c2986d017c705bbab3408"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_getView.js",
+    "revision": "4de33867d0acf888ba85568380cfc32e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_getWrapDetails.js",
+    "revision": "94bd216bf8b402c6ea9b6d82a7ccac23"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_Hash.js",
+    "revision": "41b6d81dbf2096e96da571720a1e32a9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_hashClear.js",
+    "revision": "0749dca1c6940a4552e64d776986c803"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_hashDelete.js",
+    "revision": "2ccbb11335093afc570a500d0b18d737"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_hashGet.js",
+    "revision": "8c10268775312ae389b808aa99ce8614"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_hashHas.js",
+    "revision": "6947e6fc1ae897767de84406ef16d63b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_hashSet.js",
+    "revision": "6abdb69c250e1c1596d28e1cfc21b67d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_hasPath.js",
+    "revision": "34dff0fae6499058602612a6c3f8a7d9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_hasUnicode.js",
+    "revision": "d4a554e4973024e90d4e20ce7c084460"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_hasUnicodeWord.js",
+    "revision": "c2fe9a7538ce699ccea324303a1bdff7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_initCloneArray.js",
+    "revision": "b38a4cce24f26fa2dcbc152095f478d8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_initCloneByTag.js",
+    "revision": "fe74acd097a55f61bf054c2246c32b7a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_initCloneObject.js",
+    "revision": "00b8196ff9555a8197b796ffb99fd65d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_insertWrapDetails.js",
+    "revision": "698e6fdda209334223dd981ff8f2108a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_isFlattenable.js",
+    "revision": "b391d8104f23b5ae17188728af2d001c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_isIndex.js",
+    "revision": "73276a64158b20d3f46511b4e71ab795"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_isIterateeCall.js",
+    "revision": "cd11a8c2d4eee420c1a24e7663b65e56"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_isKey.js",
+    "revision": "73230460ff274adc43275f913620d7af"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_isKeyable.js",
+    "revision": "506d4cc350a31813f51f76b66ce34e61"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_isLaziable.js",
+    "revision": "c735acb5967b835e0146529879afa15d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_isMaskable.js",
+    "revision": "fec5bf53146030e044bdf29b4bf4fcf9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_isMasked.js",
+    "revision": "6376cafb15443462732be0fbcb8d1525"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_isPrototype.js",
+    "revision": "77ce496d84a19a9b44f0dc59b401da3c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_isStrictComparable.js",
+    "revision": "2f18102118f44f42675fba0666cc96ef"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_iteratorToArray.js",
+    "revision": "0732120e84258ec32a90775d0e589392"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_lazyClone.js",
+    "revision": "398f76c56fe101b547f4fd6bf8fb8927"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_lazyReverse.js",
+    "revision": "d170786ba827f4a08175a274fcc0ce71"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_lazyValue.js",
+    "revision": "d2705744ee8c04d5569a8f8755a11c90"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_LazyWrapper.js",
+    "revision": "248e801194d501fb3bf3402cad21cf74"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_ListCache.js",
+    "revision": "bd633258469fc42792b94ec35421b7c4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_listCacheClear.js",
+    "revision": "3c0975f95bcb79388b3af41ab94a7499"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_listCacheDelete.js",
+    "revision": "de1b929856a50388222dfdf5f5279f06"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_listCacheGet.js",
+    "revision": "22826f86a2982a79fd4f1ad241431f81"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_listCacheHas.js",
+    "revision": "91959ec1928b6649edd62ecde1e5bab9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_listCacheSet.js",
+    "revision": "5db90cb655acaab43e28610ca63eed8d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_LodashWrapper.js",
+    "revision": "e22e3da1ea96f05e819e1305fd66ca52"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_Map.js",
+    "revision": "6e6db9e05e392a887cccd9cccb9fdbee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_MapCache.js",
+    "revision": "fde1cbe29ad8b77aec363185c06d3099"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_mapCacheClear.js",
+    "revision": "81c3e7f3f4d38c56d5bb1c9fa58e34fa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_mapCacheDelete.js",
+    "revision": "5c2ae7848d266170b95a07d41574a6d1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_mapCacheGet.js",
+    "revision": "53e942b3f273be90d6130f728bce7476"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_mapCacheHas.js",
+    "revision": "3544d370646d0d5bea0921dfcb5b22da"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_mapCacheSet.js",
+    "revision": "b1fd117e13a70ccc3a1dfdd7e92a39f0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_mapToArray.js",
+    "revision": "44f44207175358b51bd63641074e6804"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_matchesStrictComparable.js",
+    "revision": "c08e542aff414c5fd3cf4913a9a96328"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_memoizeCapped.js",
+    "revision": "2d9d489f9efdd4f773e240d2b354dd16"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_mergeData.js",
+    "revision": "60e5200d2f787d86a92a6016cb9511c7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_metaMap.js",
+    "revision": "9bcce290ac222f1c49c3944db1b13308"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_nativeCreate.js",
+    "revision": "9fb51b7d3f1c71d46b76a38c166609f8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_nativeKeys.js",
+    "revision": "d87c1b2d45c1668a6a18e0301fbfcf36"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_nativeKeysIn.js",
+    "revision": "a19d47943eeeef1561731a05276af23b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_nodeUtil.js",
+    "revision": "f3d114a5d273ca18f64169314f4155fe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_objectToString.js",
+    "revision": "be82b44dc8ef7278c5cb2a4a3daf243a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_overArg.js",
+    "revision": "839179ed6de294c2145856183b3af8c3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_overRest.js",
+    "revision": "bfe15354abfbe418be549eebae30d074"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_parent.js",
+    "revision": "b1123fe92c66afbb029bccd82f7f4caa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_Promise.js",
+    "revision": "731f15cb043472b49924f03d77a973b7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_realNames.js",
+    "revision": "5916509f9bd8b1978eae90adb2775fa0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_reEscape.js",
+    "revision": "89e721e3a345b29f1692a88bb6ccf901"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_reEvaluate.js",
+    "revision": "f10a4f8ee7e6f632d6dd224a882e721c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_reInterpolate.js",
+    "revision": "35d84189ddbf62c88d17c4103cc09e66"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_reorder.js",
+    "revision": "c9b6df238ace5c7d700e953ee680d9b2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_replaceHolders.js",
+    "revision": "2d1bebfd9ad88d17c34667e47bd7d389"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_root.js",
+    "revision": "6d64819ae22ef4f545aa3502652e54f8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_Set.js",
+    "revision": "19e16c9a6fdb4be5a6f311f604b00f47"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_SetCache.js",
+    "revision": "b79464f33384970c827d725763115c32"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_setCacheAdd.js",
+    "revision": "ab76f826f56c3544a6eb035d51d3d03a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_setCacheHas.js",
+    "revision": "2c72603b0a0eca71965014b9e7d79c64"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_setData.js",
+    "revision": "0b20eae82f22a5883f7713e6611ec9e6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_setToArray.js",
+    "revision": "be494eed7ef92202ed77f3f44bfb8936"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_setToPairs.js",
+    "revision": "728de7f796af926adcd3f4ba0d87687f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_setToString.js",
+    "revision": "f1fa947e65c65677eb4f67e84b8a6c2f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_setWrapToString.js",
+    "revision": "c5c9dfcb4ed581b9006bc847b572f1c9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_shortOut.js",
+    "revision": "2ed663f3d541d558c9bda24186e9c78e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_shuffleSelf.js",
+    "revision": "c86b433c1d9f0f3986297d2cd6020a42"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_Stack.js",
+    "revision": "c79902b6f19c6874d7ab72d66e6ed966"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_stackClear.js",
+    "revision": "924e942ef65a6c59f125151eaaaaf38a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_stackDelete.js",
+    "revision": "a0fc04519ee9e1864d44db2c264ee054"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_stackGet.js",
+    "revision": "691fe6ce99d55fb5a5098e22dffbf755"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_stackHas.js",
+    "revision": "00b5022a10a19615a2cba6f65827b0cb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_stackSet.js",
+    "revision": "23c06bbd7ff9417adb32cead48ca8ba5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_strictIndexOf.js",
+    "revision": "58b44b129458cb4a32a81693e64269a0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_strictLastIndexOf.js",
+    "revision": "2ca03de1dcf8ed0f4918d965a3738840"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_stringSize.js",
+    "revision": "6a1665c02c276c55b7eeb24ca0a857fe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_stringToArray.js",
+    "revision": "347d01063ffd2da61bc1cc5f625d2437"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_stringToPath.js",
+    "revision": "8c2b86b9309979995ad711331d16c36b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_Symbol.js",
+    "revision": "64e6a9f8a8645940140263f7f38580b1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_toKey.js",
+    "revision": "fa125c857965a86b56d486c7096082b4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_toSource.js",
+    "revision": "e607ffda357f62fbcf816728c4a65d20"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_Uint8Array.js",
+    "revision": "156ff381c3de4ac3ca9f98d291942aa9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_unescapeHtmlChar.js",
+    "revision": "4be16d77ceba08fce71cc504c3433c1c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_unicodeSize.js",
+    "revision": "dd199851509af6f21e4162d0a0331bee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_unicodeToArray.js",
+    "revision": "523fa0853c2935cf48d32e4a7393d165"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_unicodeWords.js",
+    "revision": "49d175e3e9f17f2c7caf17ff3f4142fe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_updateWrapDetails.js",
+    "revision": "43d6c5bd1dd80f9a824041b8a9b1c5c5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_WeakMap.js",
+    "revision": "019a1ccd7ad5fa10b5cf335217d47e75"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/_wrapperClone.js",
+    "revision": "4ed3e078e09a34cf095f14f66d634a3a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/add.js",
+    "revision": "5e970c715a3f2847f9f306099e0f2892"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/after.js",
+    "revision": "cef7654d119d37493c1f52ad8afa2a7b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/array.js",
+    "revision": "657c7e2665920e495abf360b5237cf9e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/ary.js",
+    "revision": "574a2dfabea513e4ab99907a54af57c8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/assign.js",
+    "revision": "9008a4050aef77ece0049342a39fab69"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/assignIn.js",
+    "revision": "c7984c8dd0edfa4dcd7c98c6787b5b68"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/assignInWith.js",
+    "revision": "da7875c7779ee52464bb6b165631d142"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/assignWith.js",
+    "revision": "52f79f8ae2f9b1db90d7dc8c125f35ea"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/at.js",
+    "revision": "5cfb6f9f577ef0a840ad8b68da35449d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/attempt.js",
+    "revision": "19e70cf06abe437a9d89f18d20210cf9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/before.js",
+    "revision": "8882868cc16cd75fb910d1084b9b9c24"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/bind.js",
+    "revision": "1d85e6748a7a76477e620431ab1034b2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/bindAll.js",
+    "revision": "95e1e8d1a2765708c140e14deaf832ee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/bindKey.js",
+    "revision": "87510711e98486a979d9d55d90702f41"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/camelCase.js",
+    "revision": "54605fe02003ff81f3d56b3f5c74a0a3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/capitalize.js",
+    "revision": "4ee646ca684de155c98ea1647b029c70"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/castArray.js",
+    "revision": "ffe3d1fa2eb8b6dfda51877e0156b2f1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/ceil.js",
+    "revision": "f2168e812388e9673f0fd66638f98a45"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/chain.js",
+    "revision": "00a4bbcbac41f0583f7f090413d8c12f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/chunk.js",
+    "revision": "4219141edf60d5181aab0726fcd86d2f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/clamp.js",
+    "revision": "e066736e16fa1d8aa0af6943d4a885c2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/clone.js",
+    "revision": "b32143faac3634625b20c387c39e0559"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/cloneDeep.js",
+    "revision": "e1559de07dea6b3c4d6c8bf05456f371"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/cloneDeepWith.js",
+    "revision": "a2c47a8b2cd5c707bb2c62da2146f18f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/cloneWith.js",
+    "revision": "3e56663788233440126a8b46e14e52f0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/collection.js",
+    "revision": "4366d7994d0a0b5cb45d739b58016555"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/commit.js",
+    "revision": "1c4a753548b8dcc0a2affdbbf35e40a6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/compact.js",
+    "revision": "74065cf32642e0c979818e5254ff3914"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/concat.js",
+    "revision": "a57815bf6a2ca6d62bbf99cab9fd7382"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/cond.js",
+    "revision": "248219dbdcefabf43e1d9061de70f9f9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/conforms.js",
+    "revision": "1694e5020941e20a437b2453c9e55457"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/conformsTo.js",
+    "revision": "b63ace636aa9daffba0382e6933416fe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/constant.js",
+    "revision": "ecc070509dfd01f015e96cb6108f4ce3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/core.js",
+    "revision": "3da218843e9cd9445fe68ba2ed6a2752"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/core.min.js",
+    "revision": "53a718a69d8a10b7aa59c40470caf78b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/countBy.js",
+    "revision": "81e3a18218dfc5f2d7b142e09a806b9c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/create.js",
+    "revision": "0ff0c196e8dae2995457b1238b1554d1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/curry.js",
+    "revision": "0f7a1dc4378c4966e2e69e53ed7d8020"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/curryRight.js",
+    "revision": "518b7749881bf764edb77988bb0ba9bb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/date.js",
+    "revision": "90277f6fef25bac2c3c9f7830cc9a514"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/debounce.js",
+    "revision": "779802a3f32952061ae2c5fe49a3f9f0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/deburr.js",
+    "revision": "37a4bcbf6cedd46a08185b597d037a4a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/defaults.js",
+    "revision": "7d119e28d7cb5778fa9e1300264c709d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/defaultsDeep.js",
+    "revision": "f901acc02e4f52a72f2af1ed002890fa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/defaultTo.js",
+    "revision": "89f3cb685024b82ca2b99b46f636a5ec"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/defer.js",
+    "revision": "2ba191febe1a5823a85415a5370caa79"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/delay.js",
+    "revision": "9cdac95b7a32b348c290792cdba3ad4b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/difference.js",
+    "revision": "d50009c0378249ab46212ef3ec1008a1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/differenceBy.js",
+    "revision": "60b1d6dcb332ba0872a181e0e5849001"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/differenceWith.js",
+    "revision": "4cd1de4eceab7068c9e8caf5d331f007"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/divide.js",
+    "revision": "4be4a4e9bc8882b745e400a3445af9c1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/drop.js",
+    "revision": "2bc55da0fb6b1e28c9a53e25d95c9973"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/dropRight.js",
+    "revision": "66e6e6a4e4d586ff52c68663113f390c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/dropRightWhile.js",
+    "revision": "ea0cef489976d614d107ed0d9baf392f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/dropWhile.js",
+    "revision": "19afb7a883791bbdc8b53ad50ece3422"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/each.js",
+    "revision": "6c3256a4015b75b8c508abc941bbfef0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/eachRight.js",
+    "revision": "62a8ae36aef1d02466df15256ad5710a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/endsWith.js",
+    "revision": "a4b280c5037e813927f3d18fd8182936"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/entries.js",
+    "revision": "45ab0d18c7f3f88175c7165119f118e3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/entriesIn.js",
+    "revision": "b0abe5dfafa6525d6b88c41a72c31cbc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/eq.js",
+    "revision": "a645e467afa2982d5b46a98c99a31182"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/escape.js",
+    "revision": "21a3a4fc3772dbacfca46d351e865c6b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/escapeRegExp.js",
+    "revision": "bb978f424f725be0ba2ac3d11cba33a8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/every.js",
+    "revision": "c2ef0c6787b4346a80447e4a27783340"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/extend.js",
+    "revision": "5a8226305524d0a4346c1f7e3ac9996b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/extendWith.js",
+    "revision": "64c9030bcd85048f8e711a4f3c7c8dee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fill.js",
+    "revision": "4350140e9e57cadcf074acd02f8a86fb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/filter.js",
+    "revision": "26d23991d93d2a62b2248ad0bab9466b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/find.js",
+    "revision": "b2451c75a1cd6adee45f5126856c9d54"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/findIndex.js",
+    "revision": "82a040aec1bacd8b4678b2443f438b80"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/findKey.js",
+    "revision": "15f25e59f338e898b839e1976688d852"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/findLast.js",
+    "revision": "efcc5b65498c96e3f31047f80d84bfef"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/findLastIndex.js",
+    "revision": "8f7cba255a0e4c4616840b65e6ecac23"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/findLastKey.js",
+    "revision": "7e911a3fa7383e1b62b68e3a650805de"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/first.js",
+    "revision": "a7013920c19763585c4ddcb9fa235f6a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/flatMap.js",
+    "revision": "8ad0d90d1e1f524e32573baed3f338b3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/flatMapDeep.js",
+    "revision": "6295b2713404efce92647037d557d22a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/flatMapDepth.js",
+    "revision": "60e5373cc953c0c32c612305a4908fda"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/flatten.js",
+    "revision": "d4fd041200bec074037dbd9363d81d24"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/flattenDeep.js",
+    "revision": "2a20a3fc5ebf2241f95d947e6a822a1d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/flattenDepth.js",
+    "revision": "4ef5c7b2ab6c147a8ee3d9683b7cb10a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/flip.js",
+    "revision": "e4b91eb04c871c9647360f74aad7c651"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/floor.js",
+    "revision": "61266bf2d3461c5d94846c4114a37924"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/flow.js",
+    "revision": "28b586b01fd874efd85f10de054ce28b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/flowRight.js",
+    "revision": "ec8758bc434a6f5f561dfc9acd6f2d34"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/forEach.js",
+    "revision": "3a3cc5310c010b403b020ba968daec03"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/forEachRight.js",
+    "revision": "f74c9c6b076e0e0a9efc5bb7b436387a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/forIn.js",
+    "revision": "b7a0a855f5a62e8d988becb705d686e7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/forInRight.js",
+    "revision": "93571025bd367fedf69f60d7972a6c99"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/forOwn.js",
+    "revision": "71977ca8cbbf9d17ba779f9371ca8c14"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/forOwnRight.js",
+    "revision": "dbb68488f92044b459e25039902cb539"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp.js",
+    "revision": "4d128a7e0a4e0c3ee7b7497c7ce215d9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/__.js",
+    "revision": "b433709585d2bd0614de32c90dd29296"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/_baseConvert.js",
+    "revision": "51a7d60b0a00267ae828f6024690fb2b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/_convertBrowser.js",
+    "revision": "05747cda55f6ad83d1cd810d9368656f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/_falseOptions.js",
+    "revision": "36edfda9832c42536e194af3c41513f4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/_mapping.js",
+    "revision": "6078c05c1c59a488e1252050b0bb726f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/_util.js",
+    "revision": "63687a88c74bc9c4cb71552c1543d04a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/add.js",
+    "revision": "18cc03766de26efec361476617cdb920"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/after.js",
+    "revision": "9deb3632d086077d57e48fb52e9948b0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/all.js",
+    "revision": "10868e734db30925403e52ad01e844ea"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/allPass.js",
+    "revision": "d190fd5f6b2977890708511c24883a83"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/always.js",
+    "revision": "95948a83beaa37cfdd7d7228ed7587d7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/any.js",
+    "revision": "43f0d9db7e5b5b7f9d00576f8fb1950f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/anyPass.js",
+    "revision": "c3e773e7a7b70990694b4d444494cec0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/apply.js",
+    "revision": "72d2e6306831de64a0b603a6baf959d2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/array.js",
+    "revision": "2418d7999b44f2940c16da77765d6969"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/ary.js",
+    "revision": "a17148a8e463e84155d3f541c30b6928"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/assign.js",
+    "revision": "412cc4cec382ed06699700efb934d336"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/assignAll.js",
+    "revision": "836d7d9b6fdeff1feaffea7d07bc98bf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/assignAllWith.js",
+    "revision": "8033dbec3bfc303ccb900530f11aeb46"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/assignIn.js",
+    "revision": "4030e61958b04f2b6a587d84ba8e790d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/assignInAll.js",
+    "revision": "b5e8af6e135bd8659ed5186e3e181db2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/assignInAllWith.js",
+    "revision": "c3ee1720e3d62289467ce47eb9a30e21"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/assignInWith.js",
+    "revision": "69d6f019fba4d47a9bf16216f0516bbc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/assignWith.js",
+    "revision": "e45bd115aafd3b8057c2dab6b7f9eeed"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/assoc.js",
+    "revision": "066a302c387c5e31a96ea0b07fcb712d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/assocPath.js",
+    "revision": "066a302c387c5e31a96ea0b07fcb712d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/at.js",
+    "revision": "dd54a55cc61be59b17ba76d59270f788"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/attempt.js",
+    "revision": "1a4bc287a6f6b3ffc5a2d7aae2eadaa7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/before.js",
+    "revision": "c7fda319ca39492f2d5006e1db992a42"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/bind.js",
+    "revision": "f460f68e082f699060c9f571ca1cdfc5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/bindAll.js",
+    "revision": "0eccba620a9a348f507dde1cb801a088"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/bindKey.js",
+    "revision": "32d6654d2a24b21d2a512533c9c48365"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/camelCase.js",
+    "revision": "2c854a81bdb8b6a7faaff4ec887ba32a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/capitalize.js",
+    "revision": "1f85b1e214e4182d517083e60038d872"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/castArray.js",
+    "revision": "5d3d2e7334a6514279afd8a383b590dd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/ceil.js",
+    "revision": "968f80c2e178dfacc8a0d21c3457079c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/chain.js",
+    "revision": "f0f6a050cce808baaf81debec67980fa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/chunk.js",
+    "revision": "e9a949d5ec7b0910a9cbca75ae55050b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/clamp.js",
+    "revision": "aa7c3367be168b61d15032cab025bce9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/clone.js",
+    "revision": "cf96517d5b216449b042bc4e56e82325"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/cloneDeep.js",
+    "revision": "d8f71495fc82c2ca3a74729283a4906b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/cloneDeepWith.js",
+    "revision": "39abb9bac3b6c46e65df500e93f2a18a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/cloneWith.js",
+    "revision": "d04aac827608e0a7cd03952a13776721"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/collection.js",
+    "revision": "631f3bf9a16d8217e94c9cf03d87cbdc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/commit.js",
+    "revision": "c8bf53332f3d9981ace742bd90bb8cab"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/compact.js",
+    "revision": "1b821ce5628f877f082417634d867d8e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/complement.js",
+    "revision": "b386a390060736b1b702d4716d1db41e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/compose.js",
+    "revision": "21308ea0ba9b93e4ebd232790ba00195"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/concat.js",
+    "revision": "4620c520073eaba37e73a9c41ab8c4bb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/cond.js",
+    "revision": "673b0b6d0f8c7c50911dc7ced7f19607"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/conforms.js",
+    "revision": "ecabebfebbfc1190ea0c2cf87eefefee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/conformsTo.js",
+    "revision": "269c05233b2f71496e5defea63d2de62"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/constant.js",
+    "revision": "04903073d5a894589a0d7ab26aafc2f9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/contains.js",
+    "revision": "21d18edf8c9c69d4786bea817d14f10d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/convert.js",
+    "revision": "22601a0e191041a435319724e5518078"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/countBy.js",
+    "revision": "2b49871c96fb5f9ce46ade601f4965de"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/create.js",
+    "revision": "f3e246c973bf907b2bfba57080e2a051"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/curry.js",
+    "revision": "634c00a9179e27821acd0de0d7279a81"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/curryN.js",
+    "revision": "b4826d44479dba43e49510153e0f49f3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/curryRight.js",
+    "revision": "9db716a315fc358c85f962a3b0f12f5a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/curryRightN.js",
+    "revision": "7e08754f27d63adcc6eefddb79cf41f5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/date.js",
+    "revision": "a2f65786455935127b75a4f201464d2d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/debounce.js",
+    "revision": "f872ccdb922b15799a88e3cff891e926"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/deburr.js",
+    "revision": "5cafa74db2e9238a4b12e38d0f91c39a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/defaults.js",
+    "revision": "49eaad31fe13328a43e82cdced385362"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/defaultsAll.js",
+    "revision": "8b1819cd6c616c03f1cda0036ff2c263"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/defaultsDeep.js",
+    "revision": "7aa2f5a70228eba4dc564b4eac715694"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/defaultsDeepAll.js",
+    "revision": "da6f7d3a74efb5d79a68ef83856caf66"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/defaultTo.js",
+    "revision": "52833664a11f3e1b5b89a4c2665f4504"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/defer.js",
+    "revision": "03deedefe06d74b96367d0610189502e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/delay.js",
+    "revision": "c17f0cc7ddba0bd4776fc17162c4e934"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/difference.js",
+    "revision": "89226746f9087d9affb23f64fb102172"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/differenceBy.js",
+    "revision": "34a1bdb626a7b2294ab6a71f6d044221"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/differenceWith.js",
+    "revision": "e483f8f20ae550851f4f0d18e6be5387"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/dissoc.js",
+    "revision": "2cddcfd0310b9d2e6e392c35eb28b089"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/dissocPath.js",
+    "revision": "2cddcfd0310b9d2e6e392c35eb28b089"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/divide.js",
+    "revision": "f8201da1274e8da01d6ef6b1e64208da"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/drop.js",
+    "revision": "38bd833eaab876ec349273dbbe97b815"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/dropLast.js",
+    "revision": "3bd1f1c5f79c1b6638ac9c6fe6c07af5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/dropLastWhile.js",
+    "revision": "f1c275017a5c053689ff7ed864497301"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/dropRight.js",
+    "revision": "0b304dc64050b8b75eb3d35d4061352d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/dropRightWhile.js",
+    "revision": "6fdf513d78bffcd88c3186f18022536c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/dropWhile.js",
+    "revision": "7657c0849562cb53631de4da142324e4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/each.js",
+    "revision": "6c3256a4015b75b8c508abc941bbfef0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/eachRight.js",
+    "revision": "62a8ae36aef1d02466df15256ad5710a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/endsWith.js",
+    "revision": "38d8c09849a05e75277768141c18d969"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/entries.js",
+    "revision": "45ab0d18c7f3f88175c7165119f118e3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/entriesIn.js",
+    "revision": "b0abe5dfafa6525d6b88c41a72c31cbc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/eq.js",
+    "revision": "fefa784186ddbcdc4864fcabedc20b2a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/equals.js",
+    "revision": "53c271a502c59f342dcd5c0b6daf6a17"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/escape.js",
+    "revision": "8881b5dae0afecf67d4f7452f5de6327"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/escapeRegExp.js",
+    "revision": "f4cd178778a924ce6c6fd377e6566657"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/every.js",
+    "revision": "826b30aa5d7ceda3b9402ebe53e29fcb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/extend.js",
+    "revision": "5a8226305524d0a4346c1f7e3ac9996b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/extendAll.js",
+    "revision": "1631456d3422ddea6ef6312f7c0e3a70"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/extendAllWith.js",
+    "revision": "273cb52034a1b8a88b1bf3a2525d977b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/extendWith.js",
+    "revision": "64c9030bcd85048f8e711a4f3c7c8dee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/F.js",
+    "revision": "f1f813bcb827e9eff9c4505b06041845"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/fill.js",
+    "revision": "f6f2c0e2f7d494b9dee0bd90143e37b5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/filter.js",
+    "revision": "d311b15702911e94a67044a8fcdc5933"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/find.js",
+    "revision": "cc23a37c3faa207794a2800822759ffd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/findFrom.js",
+    "revision": "7b069b3a783bf5a3c28d3f2662f2e1ba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/findIndex.js",
+    "revision": "437c0866f2eb72bd59f9f96bf2b5f9f4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/findIndexFrom.js",
+    "revision": "c287b2aadba915cee5e66a11203959fc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/findKey.js",
+    "revision": "e9be013dd56399850f185d812a3d8db8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/findLast.js",
+    "revision": "1c1a964f8a46b0af85e3903188822784"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/findLastFrom.js",
+    "revision": "6fbb2723f2581b7398e1474b0676519e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/findLastIndex.js",
+    "revision": "4e225075c9872653a77d36b59508adff"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/findLastIndexFrom.js",
+    "revision": "faa3ada0a636836cedbae82f75496775"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/findLastKey.js",
+    "revision": "31444d70dbc0e223d4a05bbdafd09d06"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/first.js",
+    "revision": "a7013920c19763585c4ddcb9fa235f6a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/flatMap.js",
+    "revision": "2bcc73a01cf275123ba4d83606c5b9a5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/flatMapDeep.js",
+    "revision": "83daf6499c15a8b9be19853bfb109e3e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/flatMapDepth.js",
+    "revision": "4754b9ad134d4fc710fccbb088b3afe1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/flatten.js",
+    "revision": "f1cbdd4ae16a38045520b7428d212b03"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/flattenDeep.js",
+    "revision": "a826fcc71f8b7706e434a20e721a0940"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/flattenDepth.js",
+    "revision": "8e0f57d942307b4510511b6a50052cf0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/flip.js",
+    "revision": "b7642faea27a03b7287a5d6fcfbca530"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/floor.js",
+    "revision": "acf6a1ade1647d92a2cd9caa4fcc7675"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/flow.js",
+    "revision": "cebf56b5213158bc44f4e4977961b873"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/flowRight.js",
+    "revision": "8b7ca7c56823d9dda545883dfd349a05"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/forEach.js",
+    "revision": "2697da7af0d45bf19d201c2a09cfc52c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/forEachRight.js",
+    "revision": "3dbc7ca41b02e6b975bd5f8257a5b97b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/forIn.js",
+    "revision": "f870d81dbaaf2d8316335e392d830632"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/forInRight.js",
+    "revision": "87962a5ca98b43d34f034261a8cf97d6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/forOwn.js",
+    "revision": "0c37bb973ada1a8cb078102ecdd892fe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/forOwnRight.js",
+    "revision": "2dcf881277fc8cdd7e5e8fc13376fb27"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/fromPairs.js",
+    "revision": "75ba1fe34356f3329cfe0d22015ab817"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/function.js",
+    "revision": "a3f508a6052f94668b308c4950f15437"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/functions.js",
+    "revision": "f54e2d90eb3d730d0b82fcb6ca30b35f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/functionsIn.js",
+    "revision": "5731ae42dd58ac88ffef672cf3650e5d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/get.js",
+    "revision": "a5e884b19c60c73eda6c349e424fbf52"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/getOr.js",
+    "revision": "dc7f5134fd012d49666d636d65dc0e4c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/groupBy.js",
+    "revision": "204c3e9db2ff55784943d6d1cb54684a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/gt.js",
+    "revision": "f7f7cda7fcc84e0221979876631c1f93"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/gte.js",
+    "revision": "786c924a9f820ba0f96744ccdfb6f3cf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/has.js",
+    "revision": "d52b328d0629b6d955c8c29c24390343"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/hasIn.js",
+    "revision": "cdb9790e30ba64c97a477d02531b8f17"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/head.js",
+    "revision": "c7e4ec050d7da75a668b91dd34a6cc3e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/identical.js",
+    "revision": "1e590946a10da088e37aea878332d7cf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/identity.js",
+    "revision": "187064deab844c7d88e319d30c287faa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/includes.js",
+    "revision": "263d1b03d454fa6ddb07730b2c5ce3a6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/includesFrom.js",
+    "revision": "84356b4bf1bb646d7996a539d952c3cb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/indexBy.js",
+    "revision": "159d1c91fb3084fc57c9ccf9cec6e9b4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/indexOf.js",
+    "revision": "350f6280ce6cfe448d9345da73525e2e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/indexOfFrom.js",
+    "revision": "90b48b0d0dac2f835cf2d5eb1f14c534"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/init.js",
+    "revision": "70b41ff450a1d23fffc67fa062e4984f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/initial.js",
+    "revision": "699774f339abf2069f9fb259b5ef1576"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/inRange.js",
+    "revision": "b1a8e5a826520d41fbff1447aac9936d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/intersection.js",
+    "revision": "ee604ffc948ddadf007fcd004ce29ab0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/intersectionBy.js",
+    "revision": "bb633833cacd236bee98a59de42f30a9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/intersectionWith.js",
+    "revision": "bb86498025a98aad53beb7dbcffd6d5c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/invert.js",
+    "revision": "05aa11a5c9f8eefa76d7eb8886401eda"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/invertBy.js",
+    "revision": "8c589995f85b6b9317b994c9d782a76b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/invertObj.js",
+    "revision": "abc84c2e09ca3b1a18cb5b1daffff22c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/invoke.js",
+    "revision": "57ca61686ac8e7fa2441900dbd00bd29"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/invokeArgs.js",
+    "revision": "e95c240c25bac1e2d780fbbbe4ee61e7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/invokeArgsMap.js",
+    "revision": "d122f0f7143789b0b5970b0451f69c52"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/invokeMap.js",
+    "revision": "276a8c8739b02742f38f848d68e9cae0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isArguments.js",
+    "revision": "cb4fcd78cb56b1e07a4d53917eece89a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isArray.js",
+    "revision": "8fde678cd3bb22ec6aad6baeffc503e9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isArrayBuffer.js",
+    "revision": "418dee0e08d3d4c0a6a1077830423efa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isArrayLike.js",
+    "revision": "3d52a7b1c0dac5def5f52cb20fa11757"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isArrayLikeObject.js",
+    "revision": "03db41acffca2277d3214241cd8c30bf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isBoolean.js",
+    "revision": "fa51521c215f703622503577eaa125d3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isBuffer.js",
+    "revision": "30c1f22bfcfdf839c2c20de4d6f049dd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isDate.js",
+    "revision": "f8b3642a36bdad4e28a70b1529c7d5e9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isElement.js",
+    "revision": "a50064d05b3dc304611ebc0dd8b8300d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isEmpty.js",
+    "revision": "2aa4c07e87bd17faf26d6e9df6b6af69"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isEqual.js",
+    "revision": "fb935faf82555d50114db818e0905053"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isEqualWith.js",
+    "revision": "f92e73097dda97f6e0b2877039f9f6f5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isError.js",
+    "revision": "3643226432d5982307b12524acd6057d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isFinite.js",
+    "revision": "52ba445ba609f4b054c4862683ff8e35"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isFunction.js",
+    "revision": "f66b552c188dc8d05d4c3481ca04e9ba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isInteger.js",
+    "revision": "fcbd2f0e21ae2f33d74e7c166ba88a9c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isLength.js",
+    "revision": "91b5856db37d90ed417f99001b578864"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isMap.js",
+    "revision": "990a00b53262759b4fc40b8503026aed"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isMatch.js",
+    "revision": "cdba50595f6843a53e060d3f8f0dee6b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isMatchWith.js",
+    "revision": "46a9af3d702c42dc4b5e92029426140f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isNaN.js",
+    "revision": "a84b9e65a4284465fe8d76a58ee10844"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isNative.js",
+    "revision": "dc74fe71e939d13c2452ae4b657257f4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isNil.js",
+    "revision": "c010e61d92c40c466af30ddcdff4b3e5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isNull.js",
+    "revision": "e5304996b43b5e96c45bacaf3843c08b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isNumber.js",
+    "revision": "7b0673e2d202ccdcfc0e57d0102cf757"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isObject.js",
+    "revision": "e8841177e29eb43127f9fdef614eccbb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isObjectLike.js",
+    "revision": "7c3d484459c06b8fd584550db0446da8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isPlainObject.js",
+    "revision": "689fc92d741ab705f4efc56bf824025f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isRegExp.js",
+    "revision": "9fd2449f1e18ac1b86a973208b2d9e2d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isSafeInteger.js",
+    "revision": "e773fb359782fb0405687978ecb72109"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isSet.js",
+    "revision": "d846fe33a30622f85057c78e878c9344"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isString.js",
+    "revision": "b9015a42f2eebaca55fe1ec0c4ccc7ad"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isSymbol.js",
+    "revision": "c1cc1347c175e27a361f7bf6a7661e8e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isTypedArray.js",
+    "revision": "105021ca72c67a0ead4a0d6bf6995650"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isUndefined.js",
+    "revision": "276f7c2d0df3bf7a4128fdcc11f42386"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isWeakMap.js",
+    "revision": "e4661f2f48216dc1697acc008425aa17"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/isWeakSet.js",
+    "revision": "6573dbc1224d9e063e1c5496143ee4cb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/iteratee.js",
+    "revision": "e08f25f76c91769496122cab556d48e9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/join.js",
+    "revision": "87ce0638b7cdb99b16df0ce13c17e74c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/juxt.js",
+    "revision": "19ada1ee7130a561242857391d1c659e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/kebabCase.js",
+    "revision": "41f27c693523bdf8f5eb9a2b17048304"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/keyBy.js",
+    "revision": "bef3bf2ebd222ebcab1db6157b376c8f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/keys.js",
+    "revision": "b51fb4c22611fd3f76d854c1726fe3b4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/keysIn.js",
+    "revision": "8a52ec7af55e666a910602ffac3f6a9a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/lang.js",
+    "revision": "ed1082689c91ba21a34eccd60a84456e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/last.js",
+    "revision": "3407dd8c4525b29d522f3960e4a36673"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/lastIndexOf.js",
+    "revision": "495fd1af08c724d13372881bd3230273"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/lastIndexOfFrom.js",
+    "revision": "95a0e366248affb5d76617e84c287652"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/lowerCase.js",
+    "revision": "a44548d09f688509682b966a1ea71781"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/lowerFirst.js",
+    "revision": "cd62ef8eb9e89a14a021ef8314cc29f6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/lt.js",
+    "revision": "10e36198474c35c6b9ba732120dddef6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/lte.js",
+    "revision": "5cf0e6a61e08b54ba470e9e75fe2f27c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/map.js",
+    "revision": "79a3c2536ed46aca8bc4d037a8e74ad8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/mapKeys.js",
+    "revision": "d6f95cdf1f026581bf1c0c4d4dc74b3b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/mapValues.js",
+    "revision": "ed4444185bf744d683ee36eb3466c0a3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/matches.js",
+    "revision": "27cee985e9a19e4c7d82503da8984be3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/matchesProperty.js",
+    "revision": "05de07ad5382aafb3904538e09edba56"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/math.js",
+    "revision": "b1ab5fafb8ad85e5f24d2a90e30602a3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/max.js",
+    "revision": "4348adb85d1a37988d0aaa8af54f8a2d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/maxBy.js",
+    "revision": "71909c25d447f3b24cb5c1b066f04847"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/mean.js",
+    "revision": "da12a57384c5e929d24630447bb2a848"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/meanBy.js",
+    "revision": "167e4d102c721d008aafcdb316e028bb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/memoize.js",
+    "revision": "86fa4242ea583b836fa362ab6b1f1232"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/merge.js",
+    "revision": "687c0387297b86ba046eea9c73491d95"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/mergeAll.js",
+    "revision": "78a737ad871163d80f52df4ad52a2e26"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/mergeAllWith.js",
+    "revision": "f7aa513d990bba148b0a15396d9d9063"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/mergeWith.js",
+    "revision": "92ec93dd3147165b9b8af3be92f42bfc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/method.js",
+    "revision": "67bb34873fb347a4d5ae283fd7f94a7d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/methodOf.js",
+    "revision": "bfbbbff4de0d66837263d5acdc0a9bff"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/min.js",
+    "revision": "77ce0e615aa41cb34e6ad94fa2fa0210"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/minBy.js",
+    "revision": "6673c32bdb83309001230f1a524b8cd8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/mixin.js",
+    "revision": "c9b5d0350ab7bfcfabffbc05733953d4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/multiply.js",
+    "revision": "c8f3c43f3626e170c4e5cda690fff674"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/nAry.js",
+    "revision": "f1b9e281273ac2aed23e5b272d5f566c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/negate.js",
+    "revision": "50a629a00f01f092e37bca80f050fbd8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/next.js",
+    "revision": "1bc0608a4f32f06e851809acc128b51b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/noop.js",
+    "revision": "1aa3bd24e3b13ec06d46b313bfecd93c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/now.js",
+    "revision": "9158c9df2cc45f2b1bf10cd95dc2d1d1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/nth.js",
+    "revision": "f7cbde752f58bea4fae5cdf470264f8d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/nthArg.js",
+    "revision": "d1b05dbbe8238283921938c44501ff8b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/number.js",
+    "revision": "7091dfb20df07db6f6721408a6d851b6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/object.js",
+    "revision": "f78a1f6cb311cad319a6e473bf5d6724"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/omit.js",
+    "revision": "4230a073db8f73ac53bdaeaf41d9e8bd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/omitAll.js",
+    "revision": "2278a690be4cd1c154d2541ba8feb2c4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/omitBy.js",
+    "revision": "3dcd831d8db3d0a0bded09a42bc81873"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/once.js",
+    "revision": "942f2c0a507549179191deaa6f16df2c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/orderBy.js",
+    "revision": "36463d278ad5a89f9cff303be825ca22"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/over.js",
+    "revision": "df0598af1bab046eb0d745741e56d704"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/overArgs.js",
+    "revision": "52d76f5f294d63532fd31e5dd5369ace"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/overEvery.js",
+    "revision": "4494bc70faedf0405ea40924ca99271c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/overSome.js",
+    "revision": "825dff31b321b76d8b7b0ca5558c79be"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/pad.js",
+    "revision": "6dfed641d92fe291aaf65413be62e9a2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/padChars.js",
+    "revision": "9ed80c511f40436674f160d91d5f4e79"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/padCharsEnd.js",
+    "revision": "e2e846dd8e342ce2a5995966b52efe90"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/padCharsStart.js",
+    "revision": "cd43f274b39d778d828e4c101d14f111"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/padEnd.js",
+    "revision": "473fc67520619181d8eb9d394232b2d4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/padStart.js",
+    "revision": "1e8da4653680fa95a9f60794497d5bac"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/parseInt.js",
+    "revision": "3aa489f880023d0a38aaae96df94619f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/partial.js",
+    "revision": "0fc1299195bcd8cd155c463075d6e9a3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/partialRight.js",
+    "revision": "b8f0e9b91fdde5c2cc53a7018a29b472"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/partition.js",
+    "revision": "51457fe67a9ffcb7e5dc8c43356a81f4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/path.js",
+    "revision": "ebb08110bff348df334274bd1d79e025"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/pathEq.js",
+    "revision": "138b59dd56981e55387876ac4a72ed5a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/pathOr.js",
+    "revision": "06f57cdc3690f9abc145fd2433d2ca4a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/paths.js",
+    "revision": "0a425c6a9d6274db473d95f26232422c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/pick.js",
+    "revision": "e2a4fc18175ab97c824fb30b0f520330"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/pickAll.js",
+    "revision": "e097223e3a794003805a21214a73e5cb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/pickBy.js",
+    "revision": "f5d93f382b183b31b8e41ecc1d349e19"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/pipe.js",
+    "revision": "c7f70919f118d3fc59a2c9e2b4b9325c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/placeholder.js",
+    "revision": "3a8a658ba46de6cc143e6d361f5024fe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/plant.js",
+    "revision": "8f89b2c3ef1ca88abc6e1bcf3cfb5814"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/pluck.js",
+    "revision": "2cc3465c2a0f9152833793162934c147"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/prop.js",
+    "revision": "ebb08110bff348df334274bd1d79e025"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/propEq.js",
+    "revision": "138b59dd56981e55387876ac4a72ed5a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/property.js",
+    "revision": "ebb08110bff348df334274bd1d79e025"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/propertyOf.js",
+    "revision": "47ab420d866ba10fe2a68d8f2d2fc371"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/propOr.js",
+    "revision": "06f57cdc3690f9abc145fd2433d2ca4a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/props.js",
+    "revision": "0a425c6a9d6274db473d95f26232422c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/pull.js",
+    "revision": "00c8c8fcc7f3113559632db040b7f3eb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/pullAll.js",
+    "revision": "4c1d487ad97275aa0455a74171f14ef2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/pullAllBy.js",
+    "revision": "f364fb1662e7d73c786c570b901f851f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/pullAllWith.js",
+    "revision": "445c39f767353fb8e41eabfb7321e679"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/pullAt.js",
+    "revision": "cae7029b249afb5151a3b09c33512848"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/random.js",
+    "revision": "647d0ee807a2841dc71bd97d525024d0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/range.js",
+    "revision": "5e703112de1411848f57472b065f3bf8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/rangeRight.js",
+    "revision": "e281fc61c8325082c964a9a3a690c413"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/rangeStep.js",
+    "revision": "7e7e6c1d3719a30cb0406ada21841434"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/rangeStepRight.js",
+    "revision": "603bbf10743a7e2cbaf68bfd3cd18437"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/rearg.js",
+    "revision": "856b5cfc72234f4ce497f3c347c4db6e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/reduce.js",
+    "revision": "46df1d233b4f71cab6d0ece4cbaa2beb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/reduceRight.js",
+    "revision": "80450a041b9ce06f7d3d6bca34317773"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/reject.js",
+    "revision": "7f32881a17424f6aff5fafb6d3877ee7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/remove.js",
+    "revision": "57731df55fcfa7b9a1b7702a580338de"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/repeat.js",
+    "revision": "cbd77b042d9fa0e4833fe9bfc614cf1d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/replace.js",
+    "revision": "150e40b666b99949ba3ab95ef6eb7db0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/rest.js",
+    "revision": "b31b21faac768011d88d690cfa56bd4b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/restFrom.js",
+    "revision": "421193666f074edfecdce765c882dfc1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/result.js",
+    "revision": "14944881901a14b0ff728afd0b3781a7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/reverse.js",
+    "revision": "9a55f2c81cc1e2b9064a2b3df711cd6c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/round.js",
+    "revision": "d8ca6e440565f379eef5a4a089dd2b00"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/sample.js",
+    "revision": "5d4471dff9c9e42b6b2d0ab23d231b23"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/sampleSize.js",
+    "revision": "8e9c50560dc72eaf509a918b065d3f6e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/seq.js",
+    "revision": "a4ab915dd85cb78fd91680097f0c2295"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/set.js",
+    "revision": "82aea6dcd756b7b4df4c1f15936a12e6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/setWith.js",
+    "revision": "d8d1f5cbdb3d8363a9e7f464ea87abc0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/shuffle.js",
+    "revision": "b809b7f740cdcabd61b6c29dac1d291b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/size.js",
+    "revision": "dcdeebb1e45eae81f27f05c911a9205e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/slice.js",
+    "revision": "8144e786d646c962aaaa0a5487f6708f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/snakeCase.js",
+    "revision": "0b6a63084c9a80487742205503477baf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/some.js",
+    "revision": "eb79d12a11710a0f75168b573363b06a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/sortBy.js",
+    "revision": "7729b711cfaea07fc311e3d2c85b04da"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/sortedIndex.js",
+    "revision": "734ce7c941b39f2a000daf19be1496b7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/sortedIndexBy.js",
+    "revision": "daeda8ec851c28134be8a92aea63118f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/sortedIndexOf.js",
+    "revision": "7982356a46942d396c230cf561f64872"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/sortedLastIndex.js",
+    "revision": "742dbc6304b3d96ad28002a667879ee3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/sortedLastIndexBy.js",
+    "revision": "18b1e727623e53de44164bae190e77e4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/sortedLastIndexOf.js",
+    "revision": "3445b5d4f2429a6f0705cbb577380986"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/sortedUniq.js",
+    "revision": "ee75c83efc0181cad0ce369dc1fed067"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/sortedUniqBy.js",
+    "revision": "aebe4ab0109edb5c37900a3674e73d87"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/split.js",
+    "revision": "c5123a6c7e36d86d929823cc63bd90b8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/spread.js",
+    "revision": "b621c51e6545fcc568cbf6af991edd87"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/spreadFrom.js",
+    "revision": "da22231d010b6485405f2ef0666af747"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/startCase.js",
+    "revision": "90bd616859792dd51dd555253186d09a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/startsWith.js",
+    "revision": "0ed40f6977e43f85f613954e69669166"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/string.js",
+    "revision": "d65b3bf3380cafa2eb3a4f8db28a3983"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/stubArray.js",
+    "revision": "bed81d91ca3d00bc7ff2520be0e8a910"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/stubFalse.js",
+    "revision": "5d5c0961937d4d9187882137460675e8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/stubObject.js",
+    "revision": "dd66819478b682404dc5c91568fc7699"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/stubString.js",
+    "revision": "323301d6cea49b56bf283ffe3bd0b83f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/stubTrue.js",
+    "revision": "36276ea846ab4720aee49cc4d9a16eda"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/subtract.js",
+    "revision": "7d6564fcc50f7fbc616eeb99e55ddbc0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/sum.js",
+    "revision": "396cfab1b91618b332b249be5ab8f1fc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/sumBy.js",
+    "revision": "113722daec5b092098c4a5166174d692"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/symmetricDifference.js",
+    "revision": "11239edde545f572ab2139791b2c308c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/symmetricDifferenceBy.js",
+    "revision": "96fa3ca89711ff5bcc93070919f02193"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/symmetricDifferenceWith.js",
+    "revision": "a3d5a18ac2470be445eb86386edc626e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/T.js",
+    "revision": "95857c6d0f22c18c28feefd409ed737e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/tail.js",
+    "revision": "b33317664055a7873402ef0f2d2538f6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/take.js",
+    "revision": "441fd19f47544263904b1438140189ed"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/takeLast.js",
+    "revision": "8db50a4c948cf8c7db4e30b2043cd77a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/takeLastWhile.js",
+    "revision": "87d7a424c04ad6f9ee66f2be8c93f6a7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/takeRight.js",
+    "revision": "0a98e2919c1776463a3ad3768663987f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/takeRightWhile.js",
+    "revision": "0e7e9cbaca142ff559bbd98374a8b39e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/takeWhile.js",
+    "revision": "70089c453ea4780d0d1abba5c5e20e70"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/tap.js",
+    "revision": "7264e0f63afa5b3153966a3e33a4b773"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/template.js",
+    "revision": "ae7e6c804d17099493989cd170562921"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/templateSettings.js",
+    "revision": "105a98826f7101e9c7cfa7ce3744fc7b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/throttle.js",
+    "revision": "d1c9b5fca1da686f72e75f3e66ec96b7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/thru.js",
+    "revision": "64d57a6ede6a26be727256ed431dc72b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/times.js",
+    "revision": "9a11f0b5659cd7871e4c6ad23ce0840f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/toArray.js",
+    "revision": "48241b34462b6f982e1ac02a7ba96991"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/toFinite.js",
+    "revision": "e6aa455b682a4931ed81e6ba654d0ad5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/toInteger.js",
+    "revision": "cb7a8350a6a107d5e8a3eb582de50c5b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/toIterator.js",
+    "revision": "652c376c56e347501dec90c4d9ba40d9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/toJSON.js",
+    "revision": "b95c9d43e059e29238c103b1a3e4f9a6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/toLength.js",
+    "revision": "3cd2f888303f21cf011698f61a571f14"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/toLower.js",
+    "revision": "6a47bdd27592b0a9e5bbca9714a4c690"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/toNumber.js",
+    "revision": "d8d21b0f8083bd48c1297edf527c79fd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/toPairs.js",
+    "revision": "42986af6c185b54e06688541d98e205d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/toPairsIn.js",
+    "revision": "2da8aeffb8935e88e17a2232a60d9071"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/toPath.js",
+    "revision": "f5f431ad33c45318dc48cf60eca35c3b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/toPlainObject.js",
+    "revision": "56b90cfcc2d608e67f9d4e9952fdb7a0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/toSafeInteger.js",
+    "revision": "dad034b443e153a1b99528196cc44dc4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/toString.js",
+    "revision": "4086c0dc6dd0d388e1b99b475c4b1240"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/toUpper.js",
+    "revision": "602264300136531a01eb1154e0db8f84"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/transform.js",
+    "revision": "4260e38a912fdd1fe92c5aaefe26d371"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/trim.js",
+    "revision": "895a24aa3c3f907c352032cb751aaf30"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/trimChars.js",
+    "revision": "8500ed2ea850a3870d165ffc39cd79ab"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/trimCharsEnd.js",
+    "revision": "ffbf1b424d13590e8d91c0f4b16b4c17"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/trimCharsStart.js",
+    "revision": "14eb253f6651bcfe1d8cecd9209968e3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/trimEnd.js",
+    "revision": "3bd6b6bc2338ed72ada53c04e07f8c85"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/trimStart.js",
+    "revision": "904a375c46bef027b676f87f7ba981e1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/truncate.js",
+    "revision": "5cb80cb9f02aedfbff93aa558aea8be0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/unapply.js",
+    "revision": "1bd5a45424e5642c0478c50f77dd6a38"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/unary.js",
+    "revision": "be8b1016d861e9d9386d4c5e894fd2de"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/unescape.js",
+    "revision": "eeae484cb59699f1af6918f4556ccca5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/union.js",
+    "revision": "d3c97396142f8580773f21009e2056a6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/unionBy.js",
+    "revision": "f6a2c077e510f55e143e3bdfd9dd79f4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/unionWith.js",
+    "revision": "718248733ea7e00808bbdd49f1bb45c3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/uniq.js",
+    "revision": "e3c51e542c10259e19d0a240a87abb18"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/uniqBy.js",
+    "revision": "4a0b48b0e8a47835f3c2155cb056f052"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/uniqueId.js",
+    "revision": "208db2cf027f7370cc1156b0ca136d62"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/uniqWith.js",
+    "revision": "a589a4b9c17cf76bbe52c1de1b8b9d10"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/unnest.js",
+    "revision": "2fdd990419506252d6cf63b7a63673c3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/unset.js",
+    "revision": "07612d56c339b5459931f068cfeb10dd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/unzip.js",
+    "revision": "7e1a79612f681b0b94768c97b82ca3de"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/unzipWith.js",
+    "revision": "7bdeaba31bb8794f32531d49039f810a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/update.js",
+    "revision": "1b1c49e9a5ca1fce0253854a2f99710b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/updateWith.js",
+    "revision": "9a414aa59e7c939dab3f36a02d75a695"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/upperCase.js",
+    "revision": "04bf20a13ec5e5913feb2f75f8f65809"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/upperFirst.js",
+    "revision": "3cf44949bc5a7881d5008c6d3c56fc47"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/useWith.js",
+    "revision": "220ad5c6a7214541bb957b31e04c3421"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/util.js",
+    "revision": "3eb85d8fa6bbe687426a77e1517ca867"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/value.js",
+    "revision": "f58151a5e4b920211c1e8ab670c57b56"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/valueOf.js",
+    "revision": "747d08bad150df36e8c3981bcce3c1cb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/values.js",
+    "revision": "46bc307b5588ad59eaeff2b4d849877f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/valuesIn.js",
+    "revision": "e6a49fb111a2579860fc4b59d1fb7fb7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/where.js",
+    "revision": "ecabebfebbfc1190ea0c2cf87eefefee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/whereEq.js",
+    "revision": "27cee985e9a19e4c7d82503da8984be3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/without.js",
+    "revision": "aaebf9e5740c5b5ff70ed0f8645ee08f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/words.js",
+    "revision": "f32bb7f1ae929ea01abd0256f3d2b8bd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/wrap.js",
+    "revision": "b3542d630b2292e87523d1a8683d0409"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/wrapperAt.js",
+    "revision": "860d0899c8eff2c5927eb1175c69d4c9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/wrapperChain.js",
+    "revision": "f597cf8ac3cda1a0aaa48939540d1a8a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/wrapperLodash.js",
+    "revision": "ca14cdfda93db8084cd4571f71346573"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/wrapperReverse.js",
+    "revision": "9ebac491d13d88280a2eeb4565c27213"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/wrapperValue.js",
+    "revision": "f8da38d25977c3516b5700a3f5ebe7af"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/xor.js",
+    "revision": "a464b3df2ca86be23824f7119ae24361"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/xorBy.js",
+    "revision": "fe597866dc555ecb067a1ea0747c3cb8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/xorWith.js",
+    "revision": "cb8fcace2490a7b189e78cbac9da4922"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/zip.js",
+    "revision": "e512c15bf24d58423ece2691ffa4f257"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/zipAll.js",
+    "revision": "7c3c4207140063c1ceacf7b6094a1bb3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/zipObj.js",
+    "revision": "d4d0a752ef329533011c3fff35669eec"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/zipObject.js",
+    "revision": "d590f0b21ab834dae8134b665bcd7734"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/zipObjectDeep.js",
+    "revision": "7053beca5ee62f2945c1d936bb3a0bdd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fp/zipWith.js",
+    "revision": "d2c547a6defc8af4932f8601064b9d8b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/fromPairs.js",
+    "revision": "99cf8988f9730f752967476a38d99cb2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/function.js",
+    "revision": "ca35805b33a045f55ee9bcae44d652e4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/functions.js",
+    "revision": "4fd4d482509148e992a75fab1fc15792"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/functionsIn.js",
+    "revision": "7c7e03a4dad98486add395ad7ea04549"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/get.js",
+    "revision": "70a81ce274d87d93c68635e7af98afae"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/groupBy.js",
+    "revision": "9d49fe320d679d87f79a065a9215adea"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/gt.js",
+    "revision": "91234db6649797844913196a15e9f6e5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/gte.js",
+    "revision": "451c4c46af4bab5d7b0b7e106c2ffb4b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/has.js",
+    "revision": "19d11ea3c0db5c0986ef638dbe593d1c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/hasIn.js",
+    "revision": "b11d60c76c3f7c027fe56b647ee9bbb5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/head.js",
+    "revision": "457bb3cd8109f31fbc3e1ce989c0dea9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/identity.js",
+    "revision": "8dd2f4d084e0eed07ef8f0595ed55fe8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/includes.js",
+    "revision": "e3a6dd3853ebf87e369905feb0fc7577"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/index.js",
+    "revision": "552908396095f622eae803fa80e876be"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/indexOf.js",
+    "revision": "7de06c62bc0f37927d6688b2134e8255"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/initial.js",
+    "revision": "0423c76e16af3dc13e636594c2f949a6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/inRange.js",
+    "revision": "0107fc75f47d874cd8f9d836c8334acd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/intersection.js",
+    "revision": "2361892ec320ebb56bf1578b857f01b0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/intersectionBy.js",
+    "revision": "9a1f37c1f6d641e40fc3e65bd0cb2fac"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/intersectionWith.js",
+    "revision": "23a59eeb0de2f544f927c484439631ec"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/invert.js",
+    "revision": "393bc30c1f7dcab93d7d401a1465ebd9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/invertBy.js",
+    "revision": "be4d54c5021908871b94da25691c6a7c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/invoke.js",
+    "revision": "fae7a9ec131c9aa3ebe22bc9dc587913"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/invokeMap.js",
+    "revision": "77d2fbbd6bb283224a823fab17c3320a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isArguments.js",
+    "revision": "60a8a31045fcfd3d3aeec711220b8e40"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isArray.js",
+    "revision": "87882c5192216cc1034a21dc2f4ec69c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isArrayBuffer.js",
+    "revision": "4805ac1c8f571d53574f1e6b745d8fa8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isArrayLike.js",
+    "revision": "eb1853d01dde98b46ce5e86b3715b76f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isArrayLikeObject.js",
+    "revision": "7708a36e8b10b81ea2f7496749d9d722"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isBoolean.js",
+    "revision": "57cde5e46f68854ab42ce04fd58aaa9d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isBuffer.js",
+    "revision": "d8684a4594798f36e2d0086dc33f8b47"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isDate.js",
+    "revision": "8f1ad3b444cbd3c739bff6e91582111b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isElement.js",
+    "revision": "492db2cd6eea9d10dc0558f8f258fbe1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isEmpty.js",
+    "revision": "6d816f786a6d69fc8f0248049c2b418d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isEqual.js",
+    "revision": "89250653217801066371608e33675a89"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isEqualWith.js",
+    "revision": "1574393476b7ae4a137e85c6dcd714bb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isError.js",
+    "revision": "ab9bfcb636d28e93e025d51cb42ae928"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isFinite.js",
+    "revision": "8b8d28c76d11b4382f552b3168fc8f8f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isFunction.js",
+    "revision": "adf1b9baedea09f406114fdf6fb9b7ba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isInteger.js",
+    "revision": "f56b8a7469353147cf6b7062aa3d9e68"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isLength.js",
+    "revision": "f0b8635e8bbb860f3915add57a19f0c2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isMap.js",
+    "revision": "3194c76ba6a5f0ad2be991ca279a5f81"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isMatch.js",
+    "revision": "6d7fd340392fe84eb247e9652ad1902f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isMatchWith.js",
+    "revision": "5d5f267981e8533cd600bbf4d93ffb2b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isNaN.js",
+    "revision": "077cf9e52e9bfbf0b4bdfb0eb5d24d4e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isNative.js",
+    "revision": "c54884d2cbb7f94c0a4bcb8bbafd8c96"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isNil.js",
+    "revision": "0e4b4f42716b39241fae5cbced070881"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isNull.js",
+    "revision": "1ad56c0576f89c5f73f81cf5ad2c7263"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isNumber.js",
+    "revision": "8a9c379dcb27f7917468a2572d8fed1f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isObject.js",
+    "revision": "138701bfaa49348f7dec407c3ed5d05f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isObjectLike.js",
+    "revision": "52a74f63b4821add509fd2f520702eb3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isPlainObject.js",
+    "revision": "07d55d83123a0491da581f496ac63ce4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isRegExp.js",
+    "revision": "09817d0db3d472528c8f6cd706adf16f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isSafeInteger.js",
+    "revision": "846016550092560b7743e3a58d56f72c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isSet.js",
+    "revision": "69b99972f1579175354ab86769b0a000"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isString.js",
+    "revision": "2502d71c37d00d9aaaaeafb55da094bb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isSymbol.js",
+    "revision": "963f2dbaf63c3e402996ed304161ed00"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isTypedArray.js",
+    "revision": "1b59cbfe1e88b1d679d138bbf006a90c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isUndefined.js",
+    "revision": "4f497aba978be742f0a30c586d325203"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isWeakMap.js",
+    "revision": "7e4d3194612d4ad0bcc885f7705c4368"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/isWeakSet.js",
+    "revision": "c5b5b329f3cff537c71c1e8b4d34e1c0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/iteratee.js",
+    "revision": "cd5fb1320b9513f8d1b06a3ca4777973"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/join.js",
+    "revision": "9c1d2448798caf00c8de32b77fd0ec4d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/kebabCase.js",
+    "revision": "6bc33382ae907ced93588a07b4e06682"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/keyBy.js",
+    "revision": "b8a907beb49e3911eaac7733ff981ecd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/keys.js",
+    "revision": "63f67e2c15dd3c0788132347a27894a3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/keysIn.js",
+    "revision": "748fefb0321e8d80db2183312aa3ad7d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/lang.js",
+    "revision": "a9582499718ea8529fbae3e2b7f4f14e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/last.js",
+    "revision": "786a5336030f082a5760288012557b03"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/lastIndexOf.js",
+    "revision": "6a8a2f9168aead8af576e97fd9b9e4ef"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/lodash.js",
+    "revision": "f8107451e16ffb8da7a2f679f13e186e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/lodash.min.js",
+    "revision": "c8515f131f3194c32a3670c8e274fab6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/lowerCase.js",
+    "revision": "f4c9b7d6e7fe44fbd3063035a2b1ea4e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/lowerFirst.js",
+    "revision": "070f47adff7c481e8c8ee71cc2738362"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/lt.js",
+    "revision": "b08a19c8f4213518900f72e5d3b362dc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/lte.js",
+    "revision": "6ada99e4696aaf878ac5312ced4f479b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/map.js",
+    "revision": "46eae2a29079d2d1cdc8ba206dfae557"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/mapKeys.js",
+    "revision": "4458e145fecf390829b7c20abe6fb4d1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/mapValues.js",
+    "revision": "a70819db39a495af74599a7d6dacf719"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/matches.js",
+    "revision": "e0dc4b21558b6a23304df59f69fa013a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/matchesProperty.js",
+    "revision": "b96ea57a4644b08f43690ba784e40e06"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/math.js",
+    "revision": "4afb6b1011d49271809fc8ac932afaff"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/max.js",
+    "revision": "dd313f8bb59619e5615c05c09f7824bc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/maxBy.js",
+    "revision": "72b8113001053da88168cfc8086e212f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/mean.js",
+    "revision": "906f8a84ed98e15c605c8c8bc69d3821"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/meanBy.js",
+    "revision": "543667da56c244159726a731f1f20c78"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/memoize.js",
+    "revision": "ad092b1c969af6517141018116e48c67"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/merge.js",
+    "revision": "42df7b2f60a256f23cff623506ea7470"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/mergeWith.js",
+    "revision": "009224f5339a02adb75b58225cf1cbf0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/method.js",
+    "revision": "28fc273ed0069e44ea834b99bf374313"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/methodOf.js",
+    "revision": "71c4de0b6cb6debbff13d27f9b67202a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/min.js",
+    "revision": "b3e83e44aa8a4a6215b397c6b5be9df2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/minBy.js",
+    "revision": "437ac23074e61f1e22450b5375e2b0ef"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/mixin.js",
+    "revision": "7116cd0545b6c772aaf9af4aae5674b7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/multiply.js",
+    "revision": "656dfb324237152974c3ba36fc4b0355"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/negate.js",
+    "revision": "da3b9149993fc07bda685f5b1c01b94f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/next.js",
+    "revision": "7b5eaa1a6dd78a1d28ddab89c40a9af2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/noop.js",
+    "revision": "63e9230c97cffa6a5a67ec44c8a84b0d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/now.js",
+    "revision": "6f6db93a412f0fe0449b27733e92c16e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/nth.js",
+    "revision": "e1926c82562392d926323e017026e519"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/nthArg.js",
+    "revision": "21e54cd78bec081fe480b74d1f585534"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/number.js",
+    "revision": "d794036290659b1040f1b6f6a9d4876b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/object.js",
+    "revision": "0b059cec1b53e31eec4b6a589c61a282"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/omit.js",
+    "revision": "1954f523fb22579722225aa29b72d41d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/omitBy.js",
+    "revision": "d3005609ae250ed93c3b595169c8e18b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/once.js",
+    "revision": "b4531937be4f6980045839f8d5c92d7d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/orderBy.js",
+    "revision": "eda40f4c342da74d85e8774ebacb9495"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/over.js",
+    "revision": "3f4976957f65e3c4d2de44fc281e7265"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/overArgs.js",
+    "revision": "c4a740102ec1ae5e39deebad3692982c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/overEvery.js",
+    "revision": "6f9c7c932efa1faa530bc6cbe6d05777"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/overSome.js",
+    "revision": "83bea340d2065484e13d2a038adea8f9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/pad.js",
+    "revision": "095354e1ef5f88c6210f3a0b8877bd36"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/padEnd.js",
+    "revision": "a6f5829fd450dd14fe8db80d1bf11894"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/padStart.js",
+    "revision": "0034e12bd437b5831ccec60675a3a2fe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/parseInt.js",
+    "revision": "3b893ddc5e56653859544caaeea2b158"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/partial.js",
+    "revision": "cb8c705299643618bb39d91fd844a028"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/partialRight.js",
+    "revision": "8fe17baf0f5f6bed0db1777402eb597b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/partition.js",
+    "revision": "0d66d61975d3a15f463662d5cb76e266"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/pick.js",
+    "revision": "25edf156314fd08dd483ca8c3fc08ed0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/pickBy.js",
+    "revision": "d328be17181aab8892bb4c68fd21b036"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/plant.js",
+    "revision": "ade0e509d73b77d58b7a8a6761bb9cd0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/property.js",
+    "revision": "1df54f8aab323900a23f283067b2a06d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/propertyOf.js",
+    "revision": "64c43b67f9f4648a22e45a092bc90463"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/pull.js",
+    "revision": "434bcad7f59f700121e113220c8e2acb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/pullAll.js",
+    "revision": "e0bb35da79178232fe91c78512abb5ec"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/pullAllBy.js",
+    "revision": "220f83d779cffb4871143b93628e9853"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/pullAllWith.js",
+    "revision": "9498fff624dc0ffd41a89c5ca7c84b71"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/pullAt.js",
+    "revision": "2c01beb11a3c6395f55a5dcb8669a6d8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/random.js",
+    "revision": "a4a0e160fa717ff0685776dd68c5d906"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/range.js",
+    "revision": "16f1833e6ef6e7974d86beea14ace40b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/rangeRight.js",
+    "revision": "d7496f6e6774f9e28f8adfa2979df4b1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/rearg.js",
+    "revision": "b93df8c5fa7d75100ebb7c22e43889c8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/reduce.js",
+    "revision": "083a9192ef3ffef00cda1708720cd3e8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/reduceRight.js",
+    "revision": "fa7e47170458ede39d22c3ad9b7f79f7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/reject.js",
+    "revision": "c7a813f0556f16692989cff2ca4a5622"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/remove.js",
+    "revision": "d8f42989d8f000325a524f3911e08fec"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/repeat.js",
+    "revision": "7a41496603420d554bb89f795b323584"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/replace.js",
+    "revision": "696742dc1ba713d818f5b87aa88966da"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/rest.js",
+    "revision": "6edc8a914ba38c4d6f491bbcead74c5e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/result.js",
+    "revision": "af66d603bcfb6f581a147173235ec5d5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/reverse.js",
+    "revision": "7d8d52d052921b54be2b4744b11a135c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/round.js",
+    "revision": "a45c6e47a8737ce56398817f90bf05c5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/sample.js",
+    "revision": "611086be4b7d4b39e6fbac6bc5d396a9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/sampleSize.js",
+    "revision": "82fbfa2856e42a151d814b984161c800"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/seq.js",
+    "revision": "7ed4cae2625b39755fed232d148fafd1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/set.js",
+    "revision": "6337d85861ebb28f2d8b0f4e89fe1d84"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/setWith.js",
+    "revision": "cce78f4a7f3fecd564bcc2c4b28fd116"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/shuffle.js",
+    "revision": "205fd973e85aa31437d59cba5e183269"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/size.js",
+    "revision": "50b2a5e055bef4de615cf61c2e3b05bf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/slice.js",
+    "revision": "abe63011663e2fbbdcfa8c2f070fe220"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/snakeCase.js",
+    "revision": "e4c27a7ac21b61e7c37212d5475600f2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/some.js",
+    "revision": "3467083da7994708fb61101dbd98533f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/sortBy.js",
+    "revision": "b2591299cac651c5942d8d434cafd6e7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/sortedIndex.js",
+    "revision": "17128ac01bf1c53f3134870fd480efd2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/sortedIndexBy.js",
+    "revision": "a8ce87b2d628d16f6a579769d78d6c62"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/sortedIndexOf.js",
+    "revision": "7acd0cc2e568fe6370336e820c21a0b7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/sortedLastIndex.js",
+    "revision": "edf7c1dd55d8a3aaf886646ab98fb6b8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/sortedLastIndexBy.js",
+    "revision": "c7f17efdecf80fb5d1877f4ea7fcdbd1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/sortedLastIndexOf.js",
+    "revision": "cb2fde759991938076500485fb599dd8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/sortedUniq.js",
+    "revision": "568e6f15563d47bb860de848740d62c1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/sortedUniqBy.js",
+    "revision": "4b9f711fa40bfbb43f81de03fb69e74c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/split.js",
+    "revision": "b10beee26acbe6ed42dda344257b4526"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/spread.js",
+    "revision": "ed73b3b29d6f3bb10cc490766bbbc23c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/startCase.js",
+    "revision": "9f860d4002c8c7942c8005d6169908bf"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/startsWith.js",
+    "revision": "170c896bc1e289221c42bab9e40ada27"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/string.js",
+    "revision": "721a07aec6e4f9cf2ba3e4ac90e7eff2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/stubArray.js",
+    "revision": "255f764473d31fae0562de536dbcb7ae"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/stubFalse.js",
+    "revision": "fd3fe0af04fdcf2a4f42c41642006c1b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/stubObject.js",
+    "revision": "85610be868ef2ed20c5159a3c6216466"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/stubString.js",
+    "revision": "123cd122486933a3e848dce88acb905e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/stubTrue.js",
+    "revision": "b30ca2a3d73f7be89d67412f2c11410d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/subtract.js",
+    "revision": "6093077f31b2d3e81cbb28d96b973a8c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/sum.js",
+    "revision": "27ba2f5aa1d53e851e20e50e686fe73a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/sumBy.js",
+    "revision": "202c777e4820491f210fcd6532936d07"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/tail.js",
+    "revision": "cdffc48ba78897f19d0fef2ad0864a2e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/take.js",
+    "revision": "066bc1753af3a7197cdce998aaf7e96b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/takeRight.js",
+    "revision": "e1af4c3996906ee93283500d61bed09b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/takeRightWhile.js",
+    "revision": "f0099b7e59bd9e7a45268f90dff7f291"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/takeWhile.js",
+    "revision": "1ad0366fc09c2e5507a2658131a0b34b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/tap.js",
+    "revision": "22b7ec9632d700206bd1a02707f90ecd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/template.js",
+    "revision": "e4d9dc1aaf2946f554340dafe1a37423"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/templateSettings.js",
+    "revision": "271f47df4cd9741383c42605e61f67c6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/throttle.js",
+    "revision": "33e38f238cbb558b03d3b08b61bde40a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/thru.js",
+    "revision": "78f076992ac59d48e8c9784b6233c36e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/times.js",
+    "revision": "bf21a2051f1fb0088503186cc0d23593"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/toArray.js",
+    "revision": "7e0401cc2d8e7fc844d886d57e222d33"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/toFinite.js",
+    "revision": "9eaaaac9bcd246afb349c4b47ad8527f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/toInteger.js",
+    "revision": "e77fa1f31dbef0152e12736928ac4918"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/toIterator.js",
+    "revision": "45cee46bb74c19f22953c3e9746f6389"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/toJSON.js",
+    "revision": "3b889e721c9c14f7a5cd312bb476f2a6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/toLength.js",
+    "revision": "faf5138dd05ff4abcf57c9b381e6c33a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/toLower.js",
+    "revision": "e0a58a96cda863371879236b1992210c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/toNumber.js",
+    "revision": "c9deaf168b8f0a1bc2570e92d7e04e39"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/toPairs.js",
+    "revision": "4ef8f70315e9ef963e2af805a81cb42b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/toPairsIn.js",
+    "revision": "9770e320ae90345bf2c0596d0aaaa2ba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/toPath.js",
+    "revision": "c2a6853a2189b99cb8eb9d690aae7d90"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/toPlainObject.js",
+    "revision": "bcbf2f5bfc1b15364725f22e8d8fa852"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/toSafeInteger.js",
+    "revision": "5ec55825f8af31cda1008dab9ec48a47"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/toString.js",
+    "revision": "efad2a5519044bd6ea323f2f3e9b673d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/toUpper.js",
+    "revision": "c977413d46c36259a8da119b597ca6c5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/transform.js",
+    "revision": "82693987d2f170b190d98fd96f421450"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/trim.js",
+    "revision": "798bfbfba51b96cab6e95e886a7c8265"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/trimEnd.js",
+    "revision": "08412327c350b8f8bbb71ee50c357613"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/trimStart.js",
+    "revision": "e1957a9103788b0fae70faa6f054f7f7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/truncate.js",
+    "revision": "f3856888ca74e93ea0119eb4333aae7b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/unary.js",
+    "revision": "fa520966e58ddd2a4171ffd4d2eba8d5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/unescape.js",
+    "revision": "77daa3fa1dcaa390833acd7c5a838873"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/union.js",
+    "revision": "3631ab216168d18af649e3d6c363552c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/unionBy.js",
+    "revision": "2e3a6410a1ddd3bc3da15d35a33727e8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/unionWith.js",
+    "revision": "413f48b63057ec3381c399e5ec4db844"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/uniq.js",
+    "revision": "87a7176e50a4ea7bd42702992c095c03"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/uniqBy.js",
+    "revision": "c759facfced46ed44f1986a43e1892e6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/uniqueId.js",
+    "revision": "676c6b49a4d2adeb7a51ad31ff7b48e3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/uniqWith.js",
+    "revision": "da7bc0776aa2e387ba67d1715a00d404"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/unset.js",
+    "revision": "775172c76dee06c756b56ea95e2b3637"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/unzip.js",
+    "revision": "30b0221ed83ab6d44f8532e9162e3ba5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/unzipWith.js",
+    "revision": "18e09a0fba9529720f39a6c94b6fb3ba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/update.js",
+    "revision": "68a71f7cd1a7a2179a2a69b3aea34064"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/updateWith.js",
+    "revision": "d71166f91c10a89fd50add7648a20370"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/upperCase.js",
+    "revision": "6eeeccbeab3ef30d640f61d8a7a502fd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/upperFirst.js",
+    "revision": "29dc640ac5b77156e8347dc6cfcba10e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/util.js",
+    "revision": "d680547f23183bc060048f73389d73d6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/value.js",
+    "revision": "3b889e721c9c14f7a5cd312bb476f2a6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/valueOf.js",
+    "revision": "3b889e721c9c14f7a5cd312bb476f2a6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/values.js",
+    "revision": "897424c6904ef8834bf0817a05d8a5c7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/valuesIn.js",
+    "revision": "32c0ef2cf884b3b42a451afc1ce27a64"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/without.js",
+    "revision": "ba0ca6e110953fa4f3885439f3a609aa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/words.js",
+    "revision": "c1d0b16cc03d8e437b7d68bf2e31a591"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/wrap.js",
+    "revision": "16410331d23024cba1c3fe8d1a121556"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/wrapperAt.js",
+    "revision": "3593ace6c3077da6f2d2a00cedcb8436"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/wrapperChain.js",
+    "revision": "4f02b69f9f663c3ab5d4924b06718f0b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/wrapperLodash.js",
+    "revision": "253063ed23d9bcc769ecceaa1c9f0bd5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/wrapperReverse.js",
+    "revision": "511028bfd644b335d9b6c20bbd8f1652"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/wrapperValue.js",
+    "revision": "e2d9d92c0a8066a96af545ad4354d227"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/xor.js",
+    "revision": "f7289719d7fad4a1c62a3e39bc3bdd2b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/xorBy.js",
+    "revision": "121cc1c9ba7f7b4771f170ba4576a932"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/xorWith.js",
+    "revision": "3f073d917f18ed078541d91bf9dca334"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/zip.js",
+    "revision": "8a8d9b0e4cc60c4a52d1fb027fb17e4b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/zipObject.js",
+    "revision": "208a8aa5dc0f5796ae84e4b2a8db2302"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/zipObjectDeep.js",
+    "revision": "e44619cc1763e1674cf79a3a32604b37"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/lodash/zipWith.js",
+    "revision": "e9ae655839812921f67c7d434cc22e4a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/loose-envify/cli.js",
+    "revision": "36d0175bc8f8966744944b9f134be874"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/loose-envify/custom.js",
+    "revision": "b9db5bcf1dcad8e2048892cd6bcf2f2b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/loose-envify/index.js",
+    "revision": "aefa93a9711ba5b91136b8637094bad5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/loose-envify/loose-envify.js",
+    "revision": "34427d8b135d1abbd61f895c3ae9c6fd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/loose-envify/replace.js",
+    "revision": "dcc84b8796171c9609f0cc750c254477"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/micromatch/index.js",
+    "revision": "7fe496347be511ec37bdfe6b7c622cfb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/micromatch/lib/chars.js",
+    "revision": "21c949f06af841e9c32921ce663584b6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/micromatch/lib/expand.js",
+    "revision": "0ef9294dcd7dd09b8492e369f6e546f8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/micromatch/lib/glob.js",
+    "revision": "646719b9775e4366eaa4744c89b7217d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/micromatch/lib/utils.js",
+    "revision": "b3f5e4606e6aa4168cc41009b2791c70"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/minimatch/minimatch.js",
+    "revision": "9e22ccffac9538b210d6bc9e120e8f15"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/minimist/example/parse.js",
+    "revision": "559dd0b28e67e4da65c434476bc2c885"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/minimist/index.js",
+    "revision": "822fc8889c4bc1e1906b9e51560e7978"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/minimist/test/dash.js",
+    "revision": "190934d8330fccc8c5aa07a3e43f028d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/minimist/test/default_bool.js",
+    "revision": "c3598075b51486aa545526d13b454c66"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/minimist/test/dotted.js",
+    "revision": "e03ea33b7cfbb7799a90b5b7a799d253"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/minimist/test/long.js",
+    "revision": "652e865e69ae41e78d9ad95f8557f0a2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/minimist/test/parse_modified.js",
+    "revision": "076418970e9e56b926ded3e24aee7a01"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/minimist/test/parse.js",
+    "revision": "02125d8ef8b795946d6e238b880d0814"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/minimist/test/short.js",
+    "revision": "a964fe2c657d6e71d1c3a2c8bc5ce79c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/minimist/test/whitespace.js",
+    "revision": "caa1c589b42a96804176247191ccb980"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/mkdirp/bin/cmd.js",
+    "revision": "9ef5fb33a1a94773afb7dc52b0dfbb5d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/mkdirp/examples/pow.js",
+    "revision": "7440de96a1a111e53e3da08f0d8bb8eb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/mkdirp/index.js",
+    "revision": "7941341b14e76ae88be8dbad2202798e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/mkdirp/test/chmod.js",
+    "revision": "0dc717d70d0a5c203d4445b254828170"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/mkdirp/test/clobber.js",
+    "revision": "b58e37e5922e9d03cd4b4e383ec8acd2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/mkdirp/test/mkdirp.js",
+    "revision": "568448d36da55ea890923d483f082fbc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/mkdirp/test/opts_fs_sync.js",
+    "revision": "0811db9973a3fe26d9fe2b6f550ae374"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/mkdirp/test/opts_fs.js",
+    "revision": "012858e2d9fd5ad9bad79d0b780f3a46"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/mkdirp/test/perm_sync.js",
+    "revision": "63faf9288fc73b378510149a3a2120a4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/mkdirp/test/perm.js",
+    "revision": "40f49b41cbcae7105729d7f892e229a8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/mkdirp/test/race.js",
+    "revision": "ea03e8320bfdf179a4d589e73f3ac302"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/mkdirp/test/rel.js",
+    "revision": "ee4926533441d5574469ed8afc9b2d21"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/mkdirp/test/return_sync.js",
+    "revision": "9ab72a21fa3e974dd6e50ab25c0f697e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/mkdirp/test/return.js",
+    "revision": "ac2c9466636f391c17c6994ea8a51338"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/mkdirp/test/root.js",
+    "revision": "1d8aad344388793f4ba1a2b68fc1e130"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/mkdirp/test/sync.js",
+    "revision": "0ce9d0bf0203775fd4073b4d436920b5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/mkdirp/test/umask_sync.js",
+    "revision": "aaf976f897e44397d06242d36f3821e3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/mkdirp/test/umask.js",
+    "revision": "ce0030869a33d36268e36e27e6f04e2e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/ms/index.js",
+    "revision": "ae157c9a8e70902576c2d8a06dbcde32"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/nan/include_dirs.js",
+    "revision": "9b8ab7e48044f99fb06303a6074bf356"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/nan/tools/1to2.js",
+    "revision": "f7896354430fe06a135d7a0fdaf4a01a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/ncp/lib/ncp.js",
+    "revision": "cbbd489e0d1b672c2e74d6fd5134470d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/ncp/test/ncp.js",
+    "revision": "d4d8489aaec89dc9cf04cd98805e76e1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/normalize-path/index.js",
+    "revision": "aa9a5e9ffd28fc4dd26f1f7a9b059b77"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/nth-check/compile.js",
+    "revision": "cf7c8953e84543d2c44339d625206f2a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/nth-check/index.js",
+    "revision": "ed64b1614ef3d5ffc27574994582d3a5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/nth-check/parse.js",
+    "revision": "8e8d39114389f6640ffb1140ac37c48e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/nth-check/test.js",
+    "revision": "19db92ac7aadb447d148e9735210a671"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/number-is-nan/index.js",
+    "revision": "8d047de69c33e1bebc91b6b113124f4b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/object-assign/index.js",
+    "revision": "4eb3c1a156ce2effd67b37a2dfedc632"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/object.omit/index.js",
+    "revision": "51e228cf563d4d72ef28630bd3237fd3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/once/once.js",
+    "revision": "d1d6962324348ad89bf780a233952c61"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/os-homedir/index.js",
+    "revision": "a8e7136b6a07850894bafc5b80de33c0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/os-tmpdir/index.js",
+    "revision": "df7052b8646c869991df05e187b63de1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/output-file-sync/index.js",
+    "revision": "1e9cf9578be964b7bb17eab587e71344"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse-glob/index.js",
+    "revision": "ba024d97e8467270df9405d295b34ebc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse5/lib/common/doctype.js",
+    "revision": "5a93dc5efbdadbbf9893b8ca6b1dd979"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse5/lib/common/foreign_content.js",
+    "revision": "92fee5f46e7f5656127e719facf5dffa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse5/lib/common/html.js",
+    "revision": "2dabe633e42ee71a0445f1b1699d16b1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse5/lib/common/merge_options.js",
+    "revision": "7898aa1a54a6de64750cb4d077c182c1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse5/lib/common/unicode.js",
+    "revision": "5a81cc6426d4654b34c26735ec82e3a3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse5/lib/index.js",
+    "revision": "faf081605339b5f2d1b1cac8aaa4e948"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse5/lib/location_info/parser_mixin.js",
+    "revision": "976ad0335c1aa5e54cf3002d73e0dc3d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse5/lib/location_info/tokenizer_mixin.js",
+    "revision": "dde53aa9d07e46950fe29cd8c46c9e41"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse5/lib/parser/formatting_element_list.js",
+    "revision": "08aa46dd50f5e91cb5405a70782a540d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse5/lib/parser/index.js",
+    "revision": "1a2eadb14f11c5b22a92ddfd5df671ff"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse5/lib/parser/open_element_stack.js",
+    "revision": "25da6e707708065d4e6146d7d4c59851"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse5/lib/parser/parser_stream.js",
+    "revision": "f74c8136bce0f55f7fedb74046626040"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse5/lib/parser/plain_text_conversion_stream.js",
+    "revision": "c2511fe07a0a89ff1dfe865249e91937"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse5/lib/sax/dev_null_stream.js",
+    "revision": "78aa0a5e9a594ee672946679b87cd45b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse5/lib/sax/index.js",
+    "revision": "1949a54ad3f8513ec035bdb4293c6a4e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse5/lib/sax/parser_feedback_simulator.js",
+    "revision": "2e61528ffb7cd8dd12cf0c2cce0d4f0d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse5/lib/serializer/index.js",
+    "revision": "687444f086711cf5ae1fef69d0de2754"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse5/lib/serializer/serializer_stream.js",
+    "revision": "5987c23f7f73661783517d8edd03c055"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse5/lib/tokenizer/index.js",
+    "revision": "aa04415a2faf03aa12c7c2a4705221a3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse5/lib/tokenizer/named_entity_data.js",
+    "revision": "e64a69015c2b2178bbf4945d0c7fba38"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse5/lib/tokenizer/preprocessor.js",
+    "revision": "d6cc929e627d0948871c16019f115c9a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse5/lib/tree_adapters/default.js",
+    "revision": "8c5047cfe9c978e1641c09440d108b75"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/parse5/lib/tree_adapters/htmlparser2.js",
+    "revision": "b7c2939062b166d30a3599419e1506e2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/path-is-absolute/index.js",
+    "revision": "135a9dc74dc76b698c2abeaaa165f889"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/path/path.js",
+    "revision": "e8a283290af6859db692d95e27ae3d4c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/preserve/index.js",
+    "revision": "c90a04004b4176bcb17afef5bd215604"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/preserve/test.js",
+    "revision": "022cda52f173eb74043e182146515fcc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/prettier/bin/prettier.js",
+    "revision": "6cfa74794b7866f8912450d78c55f29a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/prettier/index.js",
+    "revision": "debfd2686eae69effdb234188c3ba4a8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/prettier/parser-babylon.js",
+    "revision": "d01c5cb04561190c61c0041cb9c6c528"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/prettier/parser-flow.js",
+    "revision": "13e8deb607d434a9ef33414d9acc9211"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/prettier/parser-graphql.js",
+    "revision": "d9165b9d92d881d4b511d5e27b97923a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/prettier/parser-parse5.js",
+    "revision": "c28a0b9f6b4a8201109e8b73e969df2d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/prettier/parser-postcss.js",
+    "revision": "8cdb7ab488f30ed261277476e158fe62"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/prettier/parser-typescript.js",
+    "revision": "a08238744e146c7c14dd755f642bcd2d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/private/private.js",
+    "revision": "383b87772ca42cb2336c0c0ad2cfcf8d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/process-nextick-args/index.js",
+    "revision": "ba4880f44faff6fd438e6ad567bcc865"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/process-nextick-args/test.js",
+    "revision": "33944d3e3bd1cd9b94b0f177828002eb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/process/browser.js",
+    "revision": "1241df6fb0ce96f21879078ff9a04b6c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/process/index.js",
+    "revision": "22ca56b0703b0c530a21d1e05da421ee"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/process/test.js",
+    "revision": "dad686d55576b88074b7f570ae6ff77d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/q/q.js",
+    "revision": "5f8dc53ca06eee51b26c09d6874d4fe2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/q/queue.js",
+    "revision": "23d8c08ea748d356b2d9359780d15f0e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/randomatic/index.js",
+    "revision": "d123d1961211908644a8cd7cd433a6ca"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/randomatic/node_modules/is-number/index.js",
+    "revision": "d6d0c340ff94edcb26b07c89bb4b6797"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/randomatic/node_modules/is-number/node_modules/kind-of/index.js",
+    "revision": "974e0c2803e83c5bf65de52b98bf4f55"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/randomatic/node_modules/kind-of/index.js",
+    "revision": "a77cea0365bea8e0409216f3545e90da"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readable-stream/duplex-browser.js",
+    "revision": "71bc8735ee8f568483daa0b68865b025"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readable-stream/duplex.js",
+    "revision": "d128bf2cd01bfe3a6213e548804685d6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readable-stream/lib/_stream_duplex.js",
+    "revision": "3ea436f06672f4e799222a1c4409eb86"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readable-stream/lib/_stream_passthrough.js",
+    "revision": "30e8c0b2a1dbc5eec923030dfd14937a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readable-stream/lib/_stream_readable.js",
+    "revision": "2e0bcd07330e8bd9d129aebe645c81b8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readable-stream/lib/_stream_transform.js",
+    "revision": "67b325c22f1d535294fd87b98c5f7c4d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readable-stream/lib/_stream_writable.js",
+    "revision": "89e0007fa67e16dbba77af0ee9663658"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readable-stream/lib/internal/streams/BufferList.js",
+    "revision": "b7de87ad3670685a4f67ba099b7883cd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readable-stream/lib/internal/streams/destroy.js",
+    "revision": "bd31eaaaf4d166dc0de7a9789b1e0184"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readable-stream/lib/internal/streams/stream-browser.js",
+    "revision": "df20453c19af8406babdf987facd76d9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readable-stream/lib/internal/streams/stream.js",
+    "revision": "76bae0aaca4d9c61a71995751b67448b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readable-stream/passthrough.js",
+    "revision": "c91f046d756b80d527ec8f4dbeffa459"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readable-stream/readable-browser.js",
+    "revision": "73ba7f8dd912318c3d51d99674c77c4f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readable-stream/readable.js",
+    "revision": "0fe4be4fe2e76f31a60e95e65d42538f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readable-stream/transform.js",
+    "revision": "1c25db3b0dbf9eb68d7e2a7063cfcfcb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readable-stream/writable-browser.js",
+    "revision": "41a26d0db5dea46383b4b625f05a9d30"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readable-stream/writable.js",
+    "revision": "8d7df10a4331d4707c47ab9913f5e9a5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readdirp/examples/callback-api.js",
+    "revision": "7d8c26460265aff154b71e175a8cc3d9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readdirp/examples/grep.js",
+    "revision": "d2099719f37873af32071c61aa059868"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readdirp/examples/stream-api-pipe.js",
+    "revision": "5c94fd84650334e9720c3a5d886164fb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readdirp/examples/stream-api.js",
+    "revision": "6966e419077dd70be6535f1258b86e13"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readdirp/readdirp.js",
+    "revision": "82716ec97205a6898e860f6b8298ecb6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readdirp/stream-api.js",
+    "revision": "17a80282e476cccaa3dbb6a6344d3ade"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readdirp/test/readdirp-stream.js",
+    "revision": "6896f3b598da49db7d08e3eab21636fe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/readdirp/test/readdirp.js",
+    "revision": "41b29fb490eca298490d00d842cae8ca"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regenerate/regenerate.js",
+    "revision": "ab3bc1a4ed7c2d39d90f41deb5845c78"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regenerator-runtime/path.js",
+    "revision": "17a67d007fe87c76d5ef9c486ec3ff41"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regenerator-runtime/runtime-module.js",
+    "revision": "217bd972038f556db0eef1cb379eb097"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regenerator-runtime/runtime.js",
+    "revision": "368b9de16acf0150a98b49e71b2d0c21"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regenerator-transform/lib/emit.js",
+    "revision": "03491ef19f1932e4864a2ab5910b4829"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regenerator-transform/lib/hoist.js",
+    "revision": "4174b981990aabc9024cc1f7fdd3608b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regenerator-transform/lib/index.js",
+    "revision": "7be2f5b44c5f2ca6e123617b6cf25dd1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regenerator-transform/lib/leap.js",
+    "revision": "9020d754ee9fd96ece99bc321e02c487"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regenerator-transform/lib/meta.js",
+    "revision": "ee34d81015e7823f99623c429bc9b712"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regenerator-transform/lib/replaceShorthandObjectMethod.js",
+    "revision": "4eea3debedb720d316501ea242811eb8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regenerator-transform/lib/util.js",
+    "revision": "edcc4927c7b7cb64613ab2a1148f2bd2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regenerator-transform/lib/visit.js",
+    "revision": "34ec43cae0adb782d891702116e466f5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regenerator-transform/src/emit.js",
+    "revision": "892d14821bc2c000b24b2f865cca32b1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regenerator-transform/src/hoist.js",
+    "revision": "7da02abf2ce7873f404f62693937b6e6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regenerator-transform/src/index.js",
+    "revision": "7ed3df1bdc6a448c59b7d26c3724236f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regenerator-transform/src/leap.js",
+    "revision": "867e41b6d91bb17ef062fb1e55721e5d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regenerator-transform/src/meta.js",
+    "revision": "c07ccf5b7fb6ec08f3065fe8962a468a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regenerator-transform/src/replaceShorthandObjectMethod.js",
+    "revision": "874f13b8f1ef34a187232d3437bb2f20"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regenerator-transform/src/util.js",
+    "revision": "73adce5ccc9a4e92997fc66950371a30"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regenerator-transform/src/visit.js",
+    "revision": "d826b5b23fb91a7967a95dda4d5eb21c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regex-cache/index.js",
+    "revision": "f13adedd799208d595ba998e4340cfa5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regexpu-core/data/character-class-escape-sets.js",
+    "revision": "810c4b9a7063449bac398f2783abfef0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regexpu-core/rewrite-pattern.js",
+    "revision": "8beed2b3fab529b5d15e59fe37691c77"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regjsgen/regjsgen.js",
+    "revision": "cf4a0f289703cc23a80e152d3d6f8a77"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regjsparser/node_modules/jsesc/jsesc.js",
+    "revision": "33235c6600848234c978e69df228b1d1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/regjsparser/parser.js",
+    "revision": "94c2165824828a07c32a754aca9d58f4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/remove-trailing-separator/index.js",
+    "revision": "85c3989ea1e95677af70c5efa23bed10"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/repeat-element/index.js",
+    "revision": "1170b7388b3535ebf2388fbc856a17b1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/repeat-string/index.js",
+    "revision": "5f8c0fdde909e8211553a109f4441f69"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/repeating/index.js",
+    "revision": "e8c65ca553cf8d0a82c3da44a6cd377c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/safe-buffer/index.js",
+    "revision": "b1622ff2944ba3f13a1cf6fbcf0f9e3f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/safe-buffer/test.js",
+    "revision": "9c7e39d1b7237350934d079d8fe2edbe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/sax/lib/sax.js",
+    "revision": "4572bd5e2c9eff7b689cbe1b316592cb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/set-immediate-shim/index.js",
+    "revision": "f2a8b86adf4a74d03889647929a3c345"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/slash/index.js",
+    "revision": "f667ee57a2e86a8acd1d005490a815f1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/source-map-support/browser-source-map-support.js",
+    "revision": "d1506bdf28d4f71d72fc8201407eabb6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/source-map-support/register.js",
+    "revision": "e3a1e47483a703eb9f9c9f923ad8d2e9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/source-map-support/source-map-support.js",
+    "revision": "37201d06ce38bec7a865445ebbcd2ad3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/source-map/dist/source-map.debug.js",
+    "revision": "28a7e11ae114c7f74df596ab15f63a6e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/source-map/dist/source-map.js",
+    "revision": "c6221a16383e3caf16ac3649e10f8476"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/source-map/dist/source-map.min.js",
+    "revision": "293cc6200400907b8c8b9c8fd04f1df5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/source-map/lib/array-set.js",
+    "revision": "e409c2198743fb3f9c3e5939358bc32e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/source-map/lib/base64-vlq.js",
+    "revision": "10ab2672fb7feaa6e4a2ca651d2412f9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/source-map/lib/base64.js",
+    "revision": "d6ba9a233e14b859b51f538c0b295953"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/source-map/lib/binary-search.js",
+    "revision": "250315731532fce9f782a6dcc6a0f569"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/source-map/lib/mapping-list.js",
+    "revision": "b43d49bb65a0e89b26e13a97de816cad"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/source-map/lib/quick-sort.js",
+    "revision": "dfeffc75906e8f42d235a55801ae2a42"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/source-map/lib/source-map-consumer.js",
+    "revision": "7c554dd02418736eadec52587fc657f9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/source-map/lib/source-map-generator.js",
+    "revision": "4d5a791f716a350dc5c4cdd7d1ccb0b9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/source-map/lib/source-node.js",
+    "revision": "5a5f0f5589bd9d1b83c9e24a15174260"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/source-map/lib/util.js",
+    "revision": "ec9ae29400d07c9b1266bc612acda893"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/source-map/source-map.js",
+    "revision": "1bb9c1d35d2fbb3779c67306ca3d8070"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/sprintf-js/demo/angular.html",
+    "revision": "61276ccc42eb16f69df6f9dc82527ff2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/sprintf-js/dist/angular-sprintf.min.js",
+    "revision": "80b1dd478d4cf875a1118c1c2ad8c3c1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/sprintf-js/dist/sprintf.min.js",
+    "revision": "7e443f3f5a0a9cba41b75aedd8f438f1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/sprintf-js/gruntfile.js",
+    "revision": "4758263aff4cfbc3c1680d34c4d763e5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/sprintf-js/src/angular-sprintf.js",
+    "revision": "7955cc90728c050c63177dd9c53f6b5e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/sprintf-js/src/sprintf.js",
+    "revision": "cec7f6de61f126e3cae8271e01f037d3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/sprintf-js/test/test.js",
+    "revision": "a8098585c33386e9cf0c36cb799aedf0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/string_decoder/lib/string_decoder.js",
+    "revision": "b1809126526f580c3645e8f99d610856"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/strip-ansi/index.js",
+    "revision": "e2962c78c9c5968c399c26413ca3e8bc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/supports-color/index.js",
+    "revision": "0e20a32404735d4b0822995d6c19443c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/lib/svgo.js",
+    "revision": "de46e0d09eee9e8a4be92a8f7b11f7a9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/lib/svgo/coa.js",
+    "revision": "0077e3153e712744b3d9a01a2a1e0e4c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/lib/svgo/config.js",
+    "revision": "435388a748ea0c5e4d8357710357eafa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/lib/svgo/js2svg.js",
+    "revision": "716b99c25082ab33ac6a50d45fa9b217"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/lib/svgo/jsAPI.js",
+    "revision": "b2ff847f5f35975f9930f46d5117036f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/lib/svgo/plugins.js",
+    "revision": "264ce36029eabf81669b89e48025b9ba"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/lib/svgo/svg2js.js",
+    "revision": "88f50195194a02065b81233f01dccdfc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/lib/svgo/tools.js",
+    "revision": "fe428e468afd14cd8cee9d5f2de4fda3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/_collections.js",
+    "revision": "eea142638ae0a0a04f3388baa81bd5c4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/_path.js",
+    "revision": "8453239b6058b3d9e1c1aae2d4f98313"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/_transforms.js",
+    "revision": "1cd260487b8c6bae0481ecef4b9413e9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/addAttributesToSVGElement.js",
+    "revision": "8ef1d773603221aae1290e341380fefe"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/addClassesToSVGElement.js",
+    "revision": "34368b283380f3de967618ac2a23efd4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/cleanupAttrs.js",
+    "revision": "56ae164946b66cdc4cbddba0c6a9d946"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/cleanupEnableBackground.js",
+    "revision": "5f8e25d37522fca43ba94ca70d1890d8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/cleanupIDs.js",
+    "revision": "4ce1d4d37e23e381888059f6b3fa724e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/cleanupListOfValues.js",
+    "revision": "6df95f052915e7f5d115d9f3e03f2868"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/cleanupNumericValues.js",
+    "revision": "5cea0bd6c226c5614312a14c6ea9f916"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/collapseGroups.js",
+    "revision": "0efd6398d7d30c30bba50fbc3ced4536"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/convertColors.js",
+    "revision": "9ee9772b414d1184bf7f1e4421db7abb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/convertPathData.js",
+    "revision": "75fdbcb5d70131d47de8f4a3e797bb59"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/convertShapeToPath.js",
+    "revision": "ee79594a295827452ed04b949747fe9a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/convertStyleToAttrs.js",
+    "revision": "79a98b820748aeee14113fe8f4bab528"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/convertTransform.js",
+    "revision": "11bdf6060fae210737f9905e670bbd42"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/mergePaths.js",
+    "revision": "4a5dba43496456c026c110a5026156eb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/minifyStyles.js",
+    "revision": "c9f7b655ce4486c1c3f61c33878879ac"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/moveElemsAttrsToGroup.js",
+    "revision": "d5eeef790801c2da2c3a2f914cd456d6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/moveGroupAttrsToElems.js",
+    "revision": "f447f5732a31f36920a1477940c5df45"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/removeAttrs.js",
+    "revision": "730c6ec80a9d0bde04ebb0f4d1aa18b0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/removeComments.js",
+    "revision": "cad44c1561c601263f2e8b25fce0187d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/removeDesc.js",
+    "revision": "a8288ab7b7d5d6da64654f14bbc462af"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/removeDimensions.js",
+    "revision": "673b22d73efa5e4163b6c4de3770a5aa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/removeDoctype.js",
+    "revision": "8ab35038d9ea2b84b73d87a9f7d8f19a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/removeEditorsNSData.js",
+    "revision": "bc393720485fca81b531fcde1ca46e6d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/removeElementsByAttr.js",
+    "revision": "ea6665d77c91de3ef263569fac5c7d52"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/removeEmptyAttrs.js",
+    "revision": "cc4c99dedb8ac7f64be43ca492bd43a7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/removeEmptyContainers.js",
+    "revision": "6c9de5f60df1396e1ed7c38c155be4c6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/removeEmptyText.js",
+    "revision": "48a874efa30f1eed7a922e1efb2ff634"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/removeHiddenElems.js",
+    "revision": "25cc4e25016a062408f4289a763b65d5"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/removeMetadata.js",
+    "revision": "6f2e197ac71ddf45e1f85c22e8e0c252"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/removeNonInheritableGroupAttrs.js",
+    "revision": "b326df38217df8d938f1d1289ffc601a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/removeRasterImages.js",
+    "revision": "ef2aecd024d3f14519ca39c4f4aee42a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/removeStyleElement.js",
+    "revision": "8cb6ac16884a5f21e8d06f496190460b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/removeTitle.js",
+    "revision": "80dd7d4d5e9fbc593be9897b5c866fac"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/removeUnknownsAndDefaults.js",
+    "revision": "080c22260bb4ef88660a68dc64d8790d"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/removeUnusedNS.js",
+    "revision": "521c85792d203aa516bfe3e20cc48a6f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/removeUselessDefs.js",
+    "revision": "482134d87af6d0c7fa236744152287f0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/removeUselessStrokeAndFill.js",
+    "revision": "0f94cca84fc07eebec220097c25336f9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/removeViewBox.js",
+    "revision": "bf135490ad28d75a0291f50958ef4745"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/removeXMLNS.js",
+    "revision": "21b814161b046ab52413d4e1e97804e1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/removeXMLProcInst.js",
+    "revision": "8351e484c6b918c0f99944801d94ff78"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/sortAttrs.js",
+    "revision": "854fdf4c0ffa6dfe80d6069ed04a6443"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/svgo/plugins/transformsWithOnePath.js",
+    "revision": "f67e1d2f8daf30bee78956255f823398"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/to-fast-properties/index.js",
+    "revision": "cc070a2fb4d4aedfd586c94e031fbc8a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/trim-right/index.js",
+    "revision": "9214f925a4da50e7d2fcb049b64639dd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/uppercamelcase/index.js",
+    "revision": "009036e1c1db233eed5bf494ebb76c53"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/user-home/cli.js",
+    "revision": "bb217efa16fb8eeeb33c85c4c9cb8af8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/user-home/index.js",
+    "revision": "5c09f532654f6003c48104b2a2b4a7da"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/util-deprecate/browser.js",
+    "revision": "521e3c4a53c4265653c9f68ebd52f700"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/util-deprecate/node.js",
+    "revision": "0e28b0a11a7a2d9d18f33f2bfa67d380"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/util/node_modules/inherits/inherits_browser.js",
+    "revision": "7c26fc24b695f2afbc284bbd5f64d6a4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/util/node_modules/inherits/inherits.js",
+    "revision": "93c060d3dbadbf5b71bea0128dd3894a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/util/node_modules/inherits/test.js",
+    "revision": "88a2f874fdc12dd1b1fcd6c9746edeb1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/util/support/isBuffer.js",
+    "revision": "be9303a4f6fecbd90229e09ffd9064cc"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/util/support/isBufferBrowser.js",
+    "revision": "59ebe1d735f988cb957e203465783165"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/util/test/browser/inspect.js",
+    "revision": "bdb8a8569bd5e37faeb25e747294f45c"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/util/test/browser/is.js",
+    "revision": "7b5b5698fe9aacb3719f882f4aa1c81f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/util/test/node/debug.js",
+    "revision": "6f154c90d8d8c32c42ba20dab985afd9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/util/test/node/format.js",
+    "revision": "2e1b6f426f4d33d2e68242d7b89f9dab"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/util/test/node/inspect.js",
+    "revision": "3c51c766d8071e1733e6cb4103509f07"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/util/test/node/log.js",
+    "revision": "58ca300184ed824aafe3996968c33ce6"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/util/test/node/util.js",
+    "revision": "3c3764f5530541dbd31bfaa507377e04"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/util/util.js",
+    "revision": "a044fd120ca83147e17c44cac1de4f75"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/v8flags/index.js",
+    "revision": "0150ced16bed304e3a35fed002a20331"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/whet.extend/index.js",
+    "revision": "7c180c29cd73d2e218b4bf9848559ab2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/whet.extend/lib/whet.extend.js",
+    "revision": "5c77f949698f44716532d7bb78c6649e"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/node_modules/wrappy/wrappy.js",
+    "revision": "04a65e1669dc90fa11c900693c1974b1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/add-open.js",
+    "revision": "e169260b0071ddee96c0a759bca1ed16"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/add-solid.js",
+    "revision": "c36d4e41617dbad57f7d1a1e61db9d8b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/arrow-left.js",
+    "revision": "2df5cc675ec39d64d569f3679902cefb"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/asset-data.js",
+    "revision": "2cf496e839a0d22f67f85bb320b6fdae"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/asset-infographic.js",
+    "revision": "eb37e07816a8e44a12b4e163e0635ff8"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/asset-interactive.js",
+    "revision": "60ca794f05c5ee4926d98647e927137b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/asset-presentation.js",
+    "revision": "d777d74167408a9af0bd11e630227d52"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/asset-text.js",
+    "revision": "c58f4fbaf44f36f6053c5e015bc77520"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/calendar.js",
+    "revision": "365dea8f026c84db0e75e87470083df9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/check-circle.js",
+    "revision": "115c811a1a9126e62301222f8f86136a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/check-solid.js",
+    "revision": "fbc595fd75019daf01578d80599b64dd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/check.js",
+    "revision": "2eac83c474cef0afea21301c56c99cfa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/chevron-right.js",
+    "revision": "0db098d67d5b87fbe5db20cbad39d4f3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/close-open.js",
+    "revision": "07342e8642bdc20c9dcd8b03512239d1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/close-solid.js",
+    "revision": "ea1f864a650112e55daf827d9fc5dc88"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/close.js",
+    "revision": "ff9adc86e545f6373e6c3cfa90c7aae9"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/copy-to-clipboard.js",
+    "revision": "122dca4beae8802b1c7cc9da8c7b59e4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/download.js",
+    "revision": "40f2c10cca64b8fcf4db0681a50f4b77"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/email.js",
+    "revision": "1a21ef1b0c00fdd61f58b55432d72f4b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/exit full screen.js",
+    "revision": "4e3831c8455c46408547bea84febcfb7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/external link.js",
+    "revision": "6e3db122e034c9ae093b629af41deec7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/eye-off.js",
+    "revision": "2c1568160f1d4ad3c6789819f9e0a6aa"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/eye.js",
+    "revision": "5f08bb2b8db13e2aa9e05d1880821e82"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/full screen.js",
+    "revision": "1e9660f8e240990488a752c313b46eef"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/global.js",
+    "revision": "efebf1d4beec5434f8fb12b5615f096b"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/info-open.js",
+    "revision": "46bf8f9ea065baf024dcb19c5a5a2ff2"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/info-solid.js",
+    "revision": "4c7386a2ac98247cd7e0253ec01d610a"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/lock.js",
+    "revision": "a0433a689305507391323d6ec29012e3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/map-pin-solid.js",
+    "revision": "b311d85f9bb48432096e39403bed6326"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/map-pin.js",
+    "revision": "476db19be19745d70b2612e4e8df80ae"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/menu.js",
+    "revision": "9940d1c38eb545ba85b7ca5089b921f7"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/minus-open.js",
+    "revision": "29b3ca2acd9473458d8ff3d6b718620f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/minus-solid.js",
+    "revision": "5e46ac1933729fb9f55b0fea78183293"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/more.js",
+    "revision": "66c9e2a4dae541b27e6fb7519682e7e3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/pencil.js",
+    "revision": "8811b61219b882b88f04353909f342b0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/podcast.js",
+    "revision": "f5ef6d79c008a4417c433602e136e6c0"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/print.js",
+    "revision": "43183aaf33e7d2c7b8af79d16faf8650"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/refresh.js",
+    "revision": "9f4b01aef7c88ef197470f654bcb1fb4"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/search.js",
+    "revision": "6e115d5991982d417aac0de060e0de2f"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/share1.js",
+    "revision": "529f5b66a503d2edfa28352f0ed583d1"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/share2.js",
+    "revision": "360abae26a6e706637d5c17721b24e56"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/unlock.js",
+    "revision": "c9012ba03007e82c25a1ed1741f9ecdd"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/upload.js",
+    "revision": "1696d6a39acc003e97480653e1a948d3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/user.js",
+    "revision": "825028f0fc4f705ebfd80ab6418d0069"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/video.js",
+    "revision": "c3fb03b74704740188e2721190394960"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/warning.js",
+    "revision": "a309254a4497d752899ba0a7f6b01022"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/icons/watch.js",
+    "revision": "8d52f120a96a3f20d67ffa92dc6733d3"
+  },
+  {
+    "url": "_patterns/02-components/bolt-icons/src/index.js",
+    "revision": "25b9eb8d3981fc3973641518ac4b7203"
   },
   {
     "url": "_patterns/02-components/bolt-image/node_modules/lazysizes/lazysizes-umd.js",
@@ -58812,7 +75868,7 @@ const fileManifest = [
   },
   {
     "url": "index.html",
-    "revision": "805e77ab91088cca4cdc08d436445aca"
+    "revision": "18803ca571fe16114314d1cf969ab518"
   },
   {
     "url": "index.js",

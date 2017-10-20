@@ -5,31 +5,18 @@
 @import '@bolt/tools-all';
 @import '@bolt/generic-all';
 @import '@bolt/elements-all';
-@import 'objects.all';
-@import 'components.all';
+@import '@bolt/objects-all';
+@import '@bolt/components-all';
 @import '@bolt/themes-all';
 @import '@bolt/utilities-all';
 
-// @import '@bolt/objects-grid';
-// @import '@bolt/objects-inline-list';
-// @import '@bolt/objects-island';
-// @import '@bolt/objects-ratio';
-// @import '@bolt/objects-ui-list';
-// @import '@bolt/objects-wrapper';
 
 
-
-
-// @import '../_patterns/01-core/01-settings/*';
-// @import '../_patterns/*/*-generic/*';
-// @import '../_patterns/*/*-elements/*';
-// @import '@bolt/settings-colors';
-// @import '@bolt/settings-font-family';
-// @import '@bolt/settings-font-size';
-// @import '@bolt/settings-font-weight';
-// @import '@bolt/settings-global';
-// @import '@bolt/settings-spacing';
-
+// // Demo custom element to show off theming
+bolt-demo {
+  @include bolt-padding(medium);
+  display: block;
+}
 
 
 /* ------------------------------------ *\
@@ -37,16 +24,6 @@
    Overrides -- @TODO: Move to
    external PL-specific Sass file
 \* ------------------------------------ */
-.sg-main {
-  @include bolt-padding(medium);
-}
-
-// Demo custom element to show off theming
-bolt-demo {
-  @include bolt-padding(medium);
-  display: block;
-}
-
 
 // @include bolt-register-element('bolt-card', 'block');
 

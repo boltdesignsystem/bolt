@@ -7,20 +7,20 @@ module.exports = {
     local: {
       remote: false,
       browsers: ['chrome', 'firefox']
-    },
-    browserstack: {
-      username: 'salemghoweri5',
-      accessKey: 'Gq4tSmzPy99rJzAVcWBk',
-      browsers: [{
-        browser: 'chrome',
-        browser_version: 'latest',
-        os: 'windows',
-        os_version: '10'
-      }],
-      defaults: {
-        project: 'bolt',
-        video: false
-      }
     }
+    // browserstack: {
+    //   username: 'salemghoweri5',
+    //   accessKey: 'Gq4tSmzPy99rJzAVcWBk',
+    //   browsers: [{
+    //     browser: 'chrome',
+    //     browser_version: 'latest',
+    //     os: 'windows',
+    //     os_version: '10'
+    //   }],
+    //   defaults: {
+    //     project: 'bolt',
+    //     video: false
+    //   }
+    // }
   }
 };

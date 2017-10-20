@@ -2,7 +2,9 @@ const gutil = require('gulp-util');
 const webpack = require('webpack');
 
 module.exports.devConfig = require('./webpack.config');
+module.exports.devConfig.es6 = require('./webpack.config.es6');
 module.exports.releaseConfig = require('./webpack.config.release');
+// module.exports.releaseConfig.es6 = require('./webpack.config.release.es6');
 
 // const devConfig = require('webpack.config');
 // const releaseConfig = require('webpack.config.release');
@@ -27,6 +29,8 @@ function webpackTask(gulp, devConfig, releaseConfig) {
       done();
     });
   });
+
+  
 
 
   // if (critialPathConfig) {
@@ -54,10 +58,10 @@ function webpackTask(gulp, devConfig, releaseConfig) {
   // Watch webpack-compiled files for changes
   gulp.task('webpack:watch', () => {
     gulp.watch([
-      'src/scripts/**/*.js',
-      'src/_patterns/**/src/*.js'
+      // 'src/scripts/**/*.js',
+      // 'src/_patterns/**/src/*.js'
     ], gulp.parallel([
-        gutil.env.prod ? 'webpack:prod' : 'webpack:dev',
+      gutil.env.prod ? 'webpack:prod' : 'webpack:dev',
     ]));
   });
 }

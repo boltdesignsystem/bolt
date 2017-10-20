@@ -108,7 +108,10 @@ module.exports = (gulp) => {
 
   // Webpack Config
   const webpackConfig = webpackTask.devConfig;
+  const webpackConfigEs6 = webpackTask.devConfig.es6;
+  console.log(webpackConfigEs6);
   const webpackProdConfig = webpackTask.releaseConfig;
+  // const webpackProdConfig = webpackTask.releaseConfig;
   webpackTask.webpack(gulp, webpackConfig, webpackProdConfig);
 
 

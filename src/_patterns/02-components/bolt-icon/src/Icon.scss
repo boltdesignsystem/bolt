@@ -2,12 +2,46 @@ bolt-icon {
   display: inline-block;
   width: 24px;
   height: 24px;
+
+  color: currentColor;
+  color: var(--bolt-color-icon, currentColor);
 }
 
 :host {
-  background: red;
+  display: inline-block;
+  color: currentColor;
+  color: var(--bolt-color-icon, currentColor);
 }
 
-.foo {
-  background: green;
+
+// By default, icons should inherit the size of the container it's put inside
+.c-bolt-icon {
+  width: 1em;
+  height: 1em;
+}
+
+
+.c-bolt-icon--xsmall {
+  width: 12px;
+  height: 12px;
+}
+
+.c-bolt-icon--small {
+  width: 16px;
+  height: 16px;
+}
+
+.c-bolt-icon--medium {
+  width: 24px;
+  height: 24px;
+}
+
+.c-bolt-icon--large {
+  width: 32px;
+  height: 32px;
+}
+
+.c-bolt-icon--xlarge {
+  width: 64px;
+  height: 64px;
 }

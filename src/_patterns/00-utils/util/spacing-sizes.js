@@ -1,8 +1,3 @@
-import sizes from '../../../_data/spacing-sizes';
+import * as boltSpacingSizes from '../../../_data/spacing/bolt-spacing-sizes.data.json';
 
-console.log(sizes);
-
-// function cssValueForSize(size, prefix) {
-//   return size ? `${prefix}${sizes.size}` : null;
-// }
-// module.exports.cssClassForSize = cssClassForSize;
+export const sizes = boltSpacingSizes.boltSpacingSizes;

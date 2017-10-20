@@ -9,15 +9,15 @@ $bolt-color-default: 'base';
 
 $bolt-brand-colors: (
   indigo: (
-    xdark:  hsl(233, 71%, 8%),
-    dark:   hsl(233, 47%, 16%),
-    base:   hsl(233, 47%, 23%),
-    light:  hsl(233, 33%, 49%),
-    xlight: hsl(233, 73%, 81%)
+    xdark:  hsl(233, 84%, 14%),
+    dark:   hsl(233, 64%, 24%),
+    base:   hsl(233, 64%, 33%),
+    light:  hsl(233, 50%, 65%),
+    xlight: hsl(233, 30%, 95%)
   ),
   blue: (
-    dark: hsl(201, 100%, 25%),
-    base: hsl(201, 100%, 35%),
+    dark:  hsl(201, 100%, 25%),
+    base:  hsl(201, 100%, 35%),
     light: hsl(201, 100%, 92%)
   ),
   yellow: (
@@ -77,7 +77,7 @@ $bolt-status-colors: (
 
 $bolt-colors: map-merge($bolt-brand-colors, $bolt-status-colors);
 
-$bolt-colors: bolt-export-data('bolt-colors.data.json', $bolt-colors, $prefix: '{ "boltColors":', $suffix: '}');
-$bolt-status-colors: bolt-export-data('colors-status.data.json', $bolt-status-colors, $prefix: '{ "boltStatusColors":', $suffix: '}');
-$bolt-brand-colors: bolt-export-data('colors-brand.data.json', $bolt-brand-colors, $prefix: '{ "boltBrandColors":', $suffix: '}');
+$bolt-colors: bolt-export-data('colors/bolt-all-colors.data.json', $bolt-colors, $prefix: '{ "boltAllColors":', $suffix: '}');
+$bolt-status-colors: bolt-export-data('colors/bolt-status-colors.data.json', $bolt-status-colors, $prefix: '{ "boltStatusColors":', $suffix: '}');
+$bolt-brand-colors: bolt-export-data('colors/bolt-brand-colors.data.json', $bolt-brand-colors, $prefix: '{ "boltBrandColors":', $suffix: '}');
 

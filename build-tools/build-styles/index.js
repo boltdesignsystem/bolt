@@ -39,6 +39,7 @@ const cached = require('gulp-cached');
 const filter = require('gulp-filter');
 const debug = require('gulp-debug');
 const flatten = require('gulp-flatten');
+// const magicImporter = require('node-sass-magic-importer');
 
 const postCSS = [
   autoprefixer(),
@@ -161,10 +162,11 @@ function compile(userConfig) {
       .pipe(filter(file => !/\/_/.test(file.path) || !/^_/.test(file.relative)))
       // .pipe(debug({ title: 'Sass file: ' }))
       .pipe(sass({
-        includePaths: [
-          'node_modules',
-          'pattern-lab/node_modules'
-        ],
+        // includePaths: [
+        //   'node_modules',
+        //   'pattern-lab/node_modules'
+        // ],
+        // importer: require('npm-sass').importer,
         importer: require('npm-sass').importer,
         functions: exportJson(config.data, 'export_data'),
         outputStyle: 'expanded',
