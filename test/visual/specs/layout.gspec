@@ -1,0 +1,75 @@
+@import common.gspec
+
+@objects
+    header              .header
+        title           .header__title
+        menuButton      .button--menu
+    layoutContainer     .layout-container
+    main                .main
+        content         .content-container
+            title       h1
+            para-*      p
+    nav                 .nav
+        list            .nav__list
+        item-*          .nav__item
+
+@set
+    navWidth            250px
+
+= Main section =
+    @on *
+        header:
+            width 100% of viewport/width
+            inside viewport 0px top, 0px left, 0px right
+
+        header.title:
+            inside header ${approxMargin} left
+
+        layoutContainer:
+            width 100% of viewport/width
+            inside screen 0px left, 0px right
+
+    @on narrow_screen
+        # The menu button is displayed on small screens
+        header.menuButton:
+            inside header ${approxMargin} right
+            aligned horizontally centered header.title 1px
+
+        # We hide the nav menu initially for small screens
+        nav:
+            absent
+
+        main.content.title:
+            below header ${approxMargin}
+            inside viewport ${approxMargin} left, ${approxMargin} right
+
+        main.content.para-1:
+            below main.content.title ${approxMargin}
+
+    @on narrow_screen_nav
+        # The nav is shown
+        nav:
+            inside viewport 0px top, 0px left
+            width ${navWidth}
+
+        @forEach [nav.item-*] as navItem
+            ${navItem}:
+                height 45 to 55px
+                width ${navWidth}
+                inside nav 0px left, 0px right
+
+    @on wide_screen
+        # The menu button is not displayed on large screens
+        header.menuButton:
+            absent
+
+        # The nav menu is visible on large screens, to the left of the main content
+        nav:
+            below header ~ 0px
+            inside viewport 0px left
+            width ${navWidth}
+
+        main:
+            right-of nav 0px
+            aligned horizontally top nav
+            inside viewport 0px right

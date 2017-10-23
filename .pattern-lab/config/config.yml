@@ -1,0 +1,68 @@
+v: 2.6.0
+overrideConfig: q
+ie:
+  - DS_Store
+  - less
+  - scss
+id:
+  - scss
+  - .svn
+  - .sass-cache
+  - scripts
+  - styles
+cleanPublic: false
+patternStates:
+  - inprogress
+  - inreview
+  - complete
+styleGuideExcludes: ''
+cacheBusterOn: 'true'
+exportDir: export
+publicDir: ../bolt-website
+sourceDir: source
+defaultPattern: pages-bolt-homepage
+defaultShowPatternInfo: false
+ishViewportRange:
+  s:
+    - 320
+    - 600
+  m:
+    - 600
+    - 1000
+  l:
+    - 1000
+    - 2600
+ishControlsHide:
+  - hay
+styleguideKit: pattern-lab/styleguidekit-twig-default
+styleguideKitPath: vendor/pattern-lab/styleguidekit-twig-default
+lineageMatch: >-
+  {%([ ]+)?(?:include|extends|embed)(
+  |\()[&quot;\&#039;]([\/.@A-Za-z0-9-_]+)[&quot;\&#039;]([\s\S+]*?)%}
+lineageMatchKey: 3
+patternExtension: twig
+twigDebug: true
+twigAutoescape: false
+twigDefaultDateFormat: ''
+twigDefaultIntervalFormat: ''
+twigMacroExt: macro.twig
+twigFilterExt: filter.php
+twigFunctionExt: function.php
+twigTagExt: tag.php
+twigTestExt: test.php
+extensions:
+  data: .data.json
+  schemas: .json
+  templates: .twig
+  docs: .docs.md
+  sg: .md
+plugins:
+  twigNamespaces:
+    enabled: true
+    namespaces:
+      bolt:
+        paths:
+          - source/_patterns/00-utils
+    roots: {}
+ishMinimum: '240'
+ishMaximum: '2600'
