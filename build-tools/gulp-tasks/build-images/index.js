@@ -16,7 +16,7 @@ const imageSizes = require('@bolt/common').imageSizes.sizes;
 function resizeImages(gulp, defaultConfig) {
   const config = {
     src: './src/images/**/*',
-    dest: './bolt-website/images'
+    dest: './dist/images'
   }
   
 

@@ -41,9 +41,9 @@ const MASTER_CSS_PATH = 'src/bolt.scss';
 const MASTER_JS_PATH = 'src/bolt.js';
 const MASTER_PKG = require(path.join(process.env.PWD, MASTER_PKG_PATH));
 // These few MDC packages work as foundation or utility packages, and are not
-// directly included in webpack or the material-component-web module. But they
+// directly included in webpack or the bolt-component-web module. But they
 // are necessary since other MDC packages depend on them.
-const CSS_WHITELIST = ['base', 'auto-init', 'rtl', 'selection-control'];
+const CSS_WHITELIST = [];
 
 main();
 
@@ -90,7 +90,7 @@ function checkJSDependencyAddedInWebpackConfig() {
   const jsconfig = WEBPACK_CONFIG.find((value) => {
     return value.name === 'js-components';
   });
-  const nameCamel = camelCase(pkg.name.replace('@material/', ''));
+  const nameCamel = camelCase(pkg.name.replace('@bolt/', ''));
   assert.notEqual(typeof jsconfig.entry[nameCamel], 'undefined',
     'FAILURE: Component ' + pkg.name + ' javascript dependency is not added to webpack ' +
     'configuration. Please add ' + nameCamel + ' to ' + WEBPACK_CONFIG_PATH + '\'s js-components ' +
@@ -103,7 +103,7 @@ function checkCSSDependencyAddedInWebpackConfig() {
     const cssconfig = WEBPACK_CONFIG.find((value) => {
       return value.name === 'css';
     });
-    const nameMDC = pkg.name.replace('@material/', 'mdc.');
+    const nameMDC = pkg.name.replace('@bolt/', 'bolt.');
     assert.notEqual(typeof cssconfig.entry[nameMDC], 'undefined',
       'FAILURE: Component ' + pkg.name + ' css denpendency not added to webpack ' +
       'configuration. Please add ' + name + ' to ' + WEBPACK_CONFIG_PATH + '\'s css ' +
@@ -130,7 +130,7 @@ function checkPkgDependencyAddedInMDCPackage() {
 
 function checkCSSDependencyAddedInMDCPackage() {
   const name = pkg.name.split('/')[1];
-  const nameMDC = pkg.name.replace('@material/', 'mdc-');
+  const nameMDC = pkg.name.replace('@bolt/', 'bolt-');
   if (CSS_WHITELIST.indexOf(name) === -1) {
     const src = fs.readFileSync(path.join(process.env.PWD, MASTER_CSS_PATH), 'utf8');
     const cssRules = cssom.parse(src).cssRules;
@@ -139,17 +139,17 @@ function checkCSSDependencyAddedInMDCPackage() {
     assert.notEqual(typeof cssRules.find((value) => {
       return value.href === cssRule;
     }), 'undefined',
-    'FAILURE: Component ' + pkg.name + ' is not being imported in MDC-web. ' +
+    'FAILURE: Component ' + pkg.name + ' is not being imported in Bolt-web. ' +
     'Please add ' + name + ' to ' + MASTER_CSS_PATH + ' import rule before commit.');
   }
 }
 
 function checkJSDependencyAddedInMDCPackage() {
-  const NOT_IMPORTED = ['animation'];
-  const NOT_AUTOINIT = ['auto-init', 'base', 'selection-control'];
+  const NOT_IMPORTED = [''];
+  const NOT_AUTOINIT = [''];
   const name = pkg.name.split('/')[1];
   if (typeof(pkg.main) !== 'undefined' && NOT_IMPORTED.indexOf(name) === -1) {
-    const nameCamel = camelCase(pkg.name.replace('@material/', ''));
+    const nameCamel = camelCase(pkg.name.replace('@bolt/', ''));
     const src = fs.readFileSync(path.join(process.env.PWD, MASTER_JS_PATH), 'utf8');
     const ast = recast.parse(src, {
       parser: {
@@ -157,14 +157,14 @@ function checkJSDependencyAddedInMDCPackage() {
       },
     });
     assert(checkComponentImportedAddedInMDCPackage(ast), 'FAILURE: Component ' +
-      pkg.name + ' is not being imported in MDC-web. ' + 'Please add ' + nameCamel +
+      pkg.name + ' is not being imported in bolt. ' + 'Please add ' + nameCamel +
       ' to '+ MASTER_JS_PATH + ' import rule before commit.');
     assert(checkComponentExportedAddedInMDCPackage(ast), 'FAILURE: Component ' +
-      pkg.name + ' is not being exported in MDC-web. ' + 'Please add ' + nameCamel +
+      pkg.name + ' is not being exported in bolt. ' + 'Please add ' + nameCamel +
       ' to '+ MASTER_JS_PATH + ' export before commit.');
     if (NOT_AUTOINIT.indexOf(name) === -1) {
       assert(checkAutoInitAddedInMDCPackage(ast) > 0, 'FAILURE: Component ' +
-        pkg.name + ' seems not being auto inited in MDC-web. ' + 'Please add ' +
+        pkg.name + ' seems not being auto inited in bolt. ' + 'Please add ' +
         nameCamel + ' to '+ MASTER_JS_PATH + ' autoInit statement before commit.');
     }
   }
@@ -186,7 +186,7 @@ function checkComponentImportedAddedInMDCPackage(ast) {
 }
 
 function checkAutoInitAddedInMDCPackage(ast) {
-  const nameCamel = camelCase(pkg.name.replace('@material/', ''));
+  const nameCamel = camelCase(pkg.name.replace('@bolt/', ''));
   let autoInitedCount = 0;
   traverse(ast, {
     'ExpressionStatement'({node}) {
@@ -206,7 +206,7 @@ function checkAutoInitAddedInMDCPackage(ast) {
 }
 
 function checkComponentExportedAddedInMDCPackage(ast) {
-  const nameCamel = camelCase(pkg.name.replace('@material/', ''));
+  const nameCamel = camelCase(pkg.name.replace('@bolt/', ''));
   let isExported = false;
   traverse(ast, {
     'ExportNamedDeclaration'({node}) {

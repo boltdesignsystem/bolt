@@ -211,15 +211,15 @@ module.exports = (options) => {
         './node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
         './src/components/bolt-icon/src/icon'
       ],
-      './dist/scripts/bolt-icon': [
-        './node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
-        './node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
-        './src/components/bolt-icon/src/icon'
-      ],
-
-      // './dist/scripts/bolt-app': [
-      //   './src/scripts/bolt-app'
+      // './dist/scripts/bolt-icon': [
+      //   './node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
+      //   './node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
+      //   './src/components/bolt-icon/src/icon'
       // ],
+
+      './dist/scripts/bolt-app': [
+        './src/scripts/bolt-app'
+      ],
       './dist/scripts/bolt-critical-path': './src/scripts/bolt-critical-path',
       // './dist/scripts/bolt-webcomponents-loader': [
       //   // '@webcomponents/custom-elements/src/native-shim.js',
@@ -322,7 +322,7 @@ module.exports = (options) => {
                       'not ie < 9'
                     ]
                   },
-                  debug: true
+                  debug: false
                 }],
                 'stage-0'
             ]

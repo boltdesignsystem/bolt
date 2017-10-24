@@ -6,7 +6,7 @@ use PHPExif\Reader\Reader as ExifReader;
 
 $function = new Twig_SimpleFunction('base64', function ($relativeImagePath) {
 
-  $publicDir = '/bolt-website';
+  $publicDir = '/dist';
   $absoluteImagePath = getcwd() . $publicDir . $relativeImagePath;
 
   if(file_exists($absoluteImagePath)){

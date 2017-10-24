@@ -1,6 +1,6 @@
 <?php
 
-$filter = new Twig_SimpleFilter('webpack', function ($name, $manifestFile = '/bolt-website/bolt-manifest.json', $removeQueryString = true) {
+$filter = new Twig_SimpleFilter('webpack', function ($name, $manifestFile = '/dist/bolt-manifest.json', $removeQueryString = true) {
   
   $documentRoot = trim(getcwd(), "");
   $filePath = $documentRoot . $manifestFile;

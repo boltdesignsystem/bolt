@@ -45,7 +45,9 @@ function createTwigManifest(workingDir) {
   const twigManifestConfig = {};
   twigNamespaces.sets.forEach((namespaceSet) => {
     const pathArray = namespaceSet.paths.map((pathBase) => {
-      const results = globby.sync([path.join(pathBase, '**/*.twig'), '!**/node_modules/**/*']);
+      const results = globby.sync([path.join(pathBase, '**/*.twig'), '!**/node_modules/**/*'], {
+        follow: true
+      });
 
       var unorderedResults = {};
 

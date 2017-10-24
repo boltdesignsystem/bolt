@@ -1,7 +1,7 @@
 <?php
 
 $function = new Twig_SimpleFunction('ratio', function ($fileName, $heightOrWidthRatio = 'width') {
-  $filePath = getcwd() . '/bolt-website' . $fileName;
+  $filePath = getcwd() . '/dist' . $fileName;
   
   if (file_exists($filePath)){
     $fileExt = pathinfo($filePath, PATHINFO_EXTENSION);

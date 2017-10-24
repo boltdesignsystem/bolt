@@ -99,7 +99,7 @@ module.exports.boltPackages = boltPackages;
 function cleanPatternLabSymlinks() {
   function cleanPatternLabSymlinksTask(done) {
 
-    delSymlinks(['.pattern-lab/source/**/*', '!.pattern-lab/source/_twig-extensions']).then(() => {
+    delSymlinks(['.pattern-lab/source/**/*', '!.pattern-lab/source/_twig-components']).then(() => {
       done();
     });
   }
