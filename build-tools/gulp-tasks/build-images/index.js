@@ -13,7 +13,13 @@ const rimraf = require('rimraf');
 const imageSizes = require('@bolt/common').imageSizes.sizes;
 
 
-function resizeImages(gulp, config) {
+function resizeImages(gulp, defaultConfig) {
+  const config = {
+    src: './src/images/**/*',
+    dest: './bolt-website/images'
+  }
+  
+
   function resizeImagesTask() {
     const streams = imageSizes.map((el) => {
       return gulp.src([

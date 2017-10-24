@@ -14,6 +14,7 @@ const debug = require('gulp-debug');
 const patternLabConfig = yaml.safeLoad(
   fs.readFileSync(defaultConfig.patternLab.configFile, 'utf8')
 );
+
 const twigNamespaces = defaultConfig.patternLab.twigNamespaces;
 const patternLabRoot = path.join(defaultConfig.patternLab.configFile, '../..');
 const patternLabSource = path.join(patternLabRoot, patternLabConfig.sourceDir);
@@ -25,7 +26,7 @@ const consolePath = path.join(patternLabRoot, 'core/console');
 // Build Pattern Lab via CLI command -- can exit or not based on 2nd param passed in
 function patternLab(done, errorShouldExit) {
   core.events.emit('pattern-lab:precompile');
-  core.notify.sh(`php -d memory_limit=4048M ${consolePath} --generate`, errorShouldExit, (err) => {
+  core.notify.sh(`php -d memory_limit=4048M ${consolePath} --generate --patternsonly`, errorShouldExit, (err) => {
     core.events.emit('reload', '**/*.html', true);
     done(err);
   });
@@ -89,7 +90,9 @@ function getTwigNamespaceConfig(workingDir) {
   const twigNamespaceConfig = {}; 
   twigNamespaces.sets.forEach((namespaceSet) => {
     const pathArray = namespaceSet.paths.map((pathBase) => {
-      const results = globby.sync([path.join(pathBase, '**/*.twig'), '!**/node_modules/**/*']);
+      const results = globby.sync([path.join(pathBase, '**/*.twig'), '!**/node_modules/**/*'], {
+        follow: true
+      });
 
       results.forEach(function (result, index, results) {
         results[index] = path.relative(workingDir, path.dirname(result));

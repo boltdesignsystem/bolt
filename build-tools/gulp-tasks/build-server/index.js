@@ -8,22 +8,22 @@ const debug = require('debug')('@bolt/build-server');
 function server(userConfig) {
   function serveTask() {
     const config = merge({}, defaultConfig, userConfig, {
-      server: './bolt-website',
-      baseDir: ['./bolt-website', 'bolt-website/'],
+      server: './dist',
+      baseDir: ['./dist', 'dist/'],
       notify: false,
       snippetOptions: {
         // Ignore all HTML files within the templates folder
-        blacklist: ['./bolt-website/pattern-lab/index.html', './bolt-website/pattern-lab/']
+        blacklist: ['./dist/pattern-lab/index.html', './dist/pattern-lab/']
       }
-      // files: './bolt-website/**/*.html'
+      // files: './dist/**/*.html'
     });
 
     browserSync.create(config.serverName);
     // browserSync.use(htmlInjector, {
-    //   files: './bolt-website/**/*.html',
+    //   files: './dist/**/*.html',
     //   snippetOptions: {
     //     // Ignore all HTML files within the templates folder
-    //     blacklist: ['./bolt-website/pattern-lab/index.html', './bolt-website/pattern-lab/']
+    //     blacklist: ['./dist/pattern-lab/index.html', './dist/pattern-lab/']
     //   }
     // });
     browserSync.init(config);

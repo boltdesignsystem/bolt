@@ -2,17 +2,12 @@ const util = require('gulp-util');
 
 module.exports = {
   root: 'packages/bolt',
-  src: [
-    'packages/bolt/bolt.scss'
-  ],
   eyeglass: {
     enableImportOnce: false
   },
-  dest: './packages/bolt',
-  jsonDest: './packages/bolt',
   lint: false,
   sassdoc: {
-    dest: './bolt-website/sassdoc'
+    dest: './dist/sassdoc'
   },
   sourceMaps: !util.env.prod,
   failAfterError: false,
@@ -21,5 +16,10 @@ module.exports = {
     './src/_patterns/**/*.scss',
     '!./src/_patterns/**/tests/**',
     '!**/node_modules/**'
-  ]
+  ],
+  src: [
+    './src/styles/bolt.scss'
+  ],
+  data: './src/_data',
+  dest: './dist/styles'
 };

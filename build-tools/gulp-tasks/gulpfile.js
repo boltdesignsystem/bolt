@@ -3,7 +3,7 @@ const server = require('./build-server').server;
 // const jekyll = require('@bolt/build-jekyll');
 const patternlab = require('./build-patternlab');
 const styles = require('./build-styles');
-const symlinks = require('./build-symlinks');
+const symlinks = require('./build-symlinks/index2');
 const webpackTask = require('./build-webpack');
 const icons = require('./build-icons');
 const images = require('./build-images');
@@ -24,14 +24,6 @@ const gutil = require('gulp-util');
 
 
 module.exports = (gulp) => {
-  const cssConfig = {
-    src: [
-      './src/styles/bolt.scss'
-    ],
-    data: './src/_data',
-    dest: './bolt-website/styles'
-  };
-
 
   // const jsonToGlob = './.patternlab/_data/**/*.json';
   //
@@ -58,13 +50,10 @@ module.exports = (gulp) => {
 
 
   // id
-  const imagesConfig = {
-    src: './src/images/**/*',
-    dest: './bolt-website/images'
-  };
+  
 
-  gulp.task('images:resize', images.resize(gulp, imagesConfig));
-  gulp.task('images:clean', images.clean(gulp, imagesConfig));
+  gulp.task('images:resize', images.resize(gulp));
+  gulp.task('images:clean', images.clean(gulp));
 
   gulp.task('images', gulp.series([
     'images:resize'
@@ -74,26 +63,26 @@ module.exports = (gulp) => {
 
 
 
-  gulp.task('styles:compile', styles.compile(cssConfig));
-  gulp.task('styles:watch', styles.watch(cssConfig));
-  gulp.task('styles:lint', styles.lint(cssConfig));
-  gulp.task('styles:sassdoc', styles.docs(cssConfig));
+  gulp.task('styles:compile', styles.compile());
+  gulp.task('styles:watch', styles.watch());
+  gulp.task('styles:lint', styles.lint());
+  gulp.task('styles:sassdoc', styles.docs());
 
   // gulp.task('jekyll:compile', jekyll.compile());
   // gulp.task('jekyll:watch', jekyll.watch());
 
-  // gulp.task('symlinks:create', symlinks.create());
+  gulp.task('symlinks:clean', symlinks.clean());
+  gulp.task('symlinks:create', symlinks.create());
   // gulp.task('symlinks:clean', symlinks.clean());
-  gulp.task('symlinks:watch', symlinks.watch());
+  // gulp.task('symlinks:watch', symlinks.watch());
   // gulp.task('symlinks:gravpl', symlinks.patternLabGrav());
-
   gulp.task('bolt:packages', symlinks.boltPackages());
 
 
-  // gulp.task('symlinks', gulp.series([
-  //   'symlinks:clean',
-  //   'symlinks:create'
-  // ]));
+  gulp.task('symlinks', gulp.series([
+    'symlinks:clean',
+    'symlinks:create'
+  ]));
 
   gulp.task('patternlab:compile', patternlab.compile());
   gulp.task('patternlab:recompile', patternlab.recompile());
@@ -144,26 +133,19 @@ module.exports = (gulp) => {
   
   gulp.task('default',
     gulp.series([
-      // 'setWatch',
-      // 'symlinks:gravpl',
-      // // 'symlinks:clean',
-      // 'symlinks:create',
-      // 'copy:fonts',
-      // gulp.parallel([
-       
-      // ]),
-      // 'copy:json',
+      'symlinks',
+      'images:resize', // Don't wipe images unless doing a full build
+      gutil.env.prod ? 'webpack:prod' : 'webpack:dev',
+      'styles:compile',
+      'styles:sassdoc',
+      'patternlab:compile',
+      
       gulp.parallel([
-        'patternlab:compile',
         'webpack:watch',
         'patternlab:watch',
         'styles:watch',
-        'styles:compile',
-        'styles:sassdoc',
-        'images:resize', // Don't wipe images unless doing a full build
-        gutil.env.prod ? 'webpack:prod' : 'webpack:dev',
         'browsersync:serve'
-      ]),
+      ])
     ])
   );
 
@@ -475,7 +457,7 @@ module.exports = (gulp) => {
 // }));
 
 
-// // gulp.task('patternlab:stylelint', bolt.lintCSS(patternLabCSSConfig));
+// // gulp.task('patternlab:stylelint', bolt.lintCSS(patternLab));
 //
 // /*-------------------------------------------------------------------
 // // Default (Main) Gulp Task -- Serves PL, Compiles & Watches for Changes
@@ -516,7 +498,7 @@ module.exports = (gulp) => {
 // // });
 // //
 // //
-// // const jekyllCssConfig = {
+// // const jekyll = {
 // //   root: './sandbox/styleguide',
 // //   src: [
 // //     './sandbox/styleguide/source/styles/**/*.scss'
@@ -526,9 +508,9 @@ module.exports = (gulp) => {
 // //   extraWatches: './packages/**/*.scss'
 // // };
 // //
-// // const compileJekyllCSS = bolt.compileCSS(jekyllCssConfig);
-// // const jekyllSassDoc = bolt.sassDoc(jekyllCssConfig);
-// // const watchJekyllCSS = bolt.watchCSS(jekyllCssConfig);
+// // const compileJekyllCSS = bolt.compileCSS(jekyll);
+// // const jekyllSassDoc = bolt.sassDoc(jekyll);
+// // const watchJekyllCSS = bolt.watchCSS(jekyll);
 // //
 // //
 // // gulp.task('jekyll:css', compileJekyllCSS);

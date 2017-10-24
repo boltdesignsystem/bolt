@@ -17,9 +17,11 @@
   $background-color: map-get-deep($bolt-colors, $name, $tone);
   background-color: $background-color;
   @if $type == null {
+    background-color: $background-color; // CSS variable fallback
     background-color: var(--bolt-color-background, $background-color);
   }
   @else {
+    background-color: $background-color; // CSS variable fallback
     background-color: var(--bolt-color-#{$type}, $background-color);
   }
 }
@@ -28,6 +30,7 @@
   $border-color: map-get-deep($bolt-colors, $name, $tone);
   border-color: $border-color;
   @if $type == null {
+    border-color: $border-color; // CSS var fallback
     border-color: var(--bolt-color-border, $border-color);
   }
   @else {
@@ -91,111 +94,144 @@
   background-color: var(--bolt-color-background, inherit);
 }
 
-@mixin _bolt-theme($name: 'xlight') {
-  @if $name == 'xlight' {
-    @include _bolt-theme-settings(
-      $background:  bolt-color(white),
-      $primary:     bolt-color(indigo, light),
-      $secondary:   bolt-color(indigo, light),
-      $text:        null,
-      $heading:     bolt-color(indigo),
-      $button-text: null,
-      $border:      null);
-  }
-  @elseif $name == 'light' {
-    @include _bolt-theme-settings(
-      $background:  bolt-color(gray, xlight),
-      $primary:     bolt-color(indigo, light),
-      $secondary:   bolt-color(indigo, light),
-      $text:        null,
-      $heading:     bolt-color(indigo),
-      $button-text: null,
-      $border:      null);
-  }
-  @elseif $name == 'dark' {
-    @include _bolt-theme-settings(
-      $background:  bolt-color(indigo),
-      $primary:     bolt-color(yellow),
-      $secondary:   bolt-color(yellow),
-      $text:        null,
-      $heading:     null,
-      $button-text: null,
-      $border:      null);
-  }
-  @elseif $name == 'xdark' {
-    @include _bolt-theme-settings(
-      $background:  bolt-color(indigo, dark),
-      $primary:     bolt-color(indigo, light),
-      $secondary:   bolt-color(white),
-      $text:        null,
-      $heading:     null,
-      $button-text: null,
-      $border:      null);
-  }
-  @elseif $name == 'notification' {
-    @include _bolt-theme-settings(
-      $background:  bolt-color(blue, light),
-      $primary:     bolt-color(blue, dark),
-      $secondary:   bolt-color(blue));
-  }
-  @elseif $name == 'success' {
-    @include _bolt-theme-settings(
-      $background:  bolt-color(success, light),
-      $primary:     bolt-color(success, dark),
-      $secondary:   bolt-color(success));
-  }
-  @elseif $name == 'warning' {
-    @include _bolt-theme-settings(
-      $background:  bolt-color(warning, light),
-      $primary:     bolt-color(warning, dark),
-      $secondary:   bolt-color(warning));
-  }
-  @elseif $name == 'error' {
-    @include _bolt-theme-settings(
-      $background:  bolt-color(error, light),
-      $primary:     bolt-color(error, dark),
-      $secondary:   bolt-color(warning, dark));
-  }
+// @mixin _bolt-theme($name: 'xlight') {
+//   // @if $name == 'xlight' {
+//   //   @include _bolt-theme-settings(
+      
+//   // }
+//   // @elseif $name == 'light' {
+//   //   @include _bolt-theme-settings(
+//   //     $background:  bolt-color(gray, xlight),
+//   //     $primary:     bolt-color(indigo, light),
+//   //     $secondary:   bolt-color(indigo, light),
+//   //     $text:        null,
+//   //     $heading:     bolt-color(indigo),
+//   //     $button-text: null,
+//   //     $border:      null);
+//   // }
+//   @elseif $name == 'dark' {
+//     @include _bolt-theme-settings(
+//       $background:  bolt-color(indigo),
+//       $primary:     bolt-color(yellow),
+//       $secondary:   bolt-color(yellow),
+//       $text:        null,
+//       $heading:     null,
+//       $button-text: null,
+//       $border:      null);
+//   }
+//   @elseif $name == 'xdark' {
+//     @include _bolt-theme-settings(
+//       $background:  bolt-color(indigo, dark),
+//       $primary:     bolt-color(indigo, light),
+//       $secondary:   bolt-color(white),
+//       $text:        null,
+//       $heading:     null,
+//       $button-text: null,
+//       $border:      null);
+//   }
+
+
+
+
+  // @elseif $name == 'notification' {
+  //   @include _bolt-theme-settings(
+  //     $background:  bolt-color(blue, light),
+  //     $primary:     bolt-color(blue, dark),
+  //     $secondary:   bolt-color(blue));
+  // }
+  // @elseif $name == 'success' {
+  //   @include _bolt-theme-settings(
+  //     $background:  bolt-color(success, light),
+  //     $primary:     bolt-color(success, dark),
+  //     $secondary:   bolt-color(success));
+  // }
+  // @elseif $name == 'warning' {
+  //   @include _bolt-theme-settings(
+  //     $background:  bolt-color(warning, light),
+  //     $primary:     bolt-color(warning, dark),
+  //     $secondary:   bolt-color(warning));
+  // }
+  // @elseif $name == 'error' {
+  //   @include _bolt-theme-settings(
+  //     $background:  bolt-color(error, light),
+  //     $primary:     bolt-color(error, dark),
+  //     $secondary:   bolt-color(warning, dark));
+  // }
+// }
+
+
+.t-bolt-xlight,
+.t-bolt-light {
+  --bolt-theme-primary-color:     bolt-color(indigo, light);
+  --bolt-theme-secondary-color:   bolt-color(indigo, light);
+  --bolt-theme-heading-color:     bolt-color(indigo);
+  --bolt-theme-icon-background-opacity: 1;
+  // --bolt-theme-text-color:     null;
+  // --bolt-theme-border-color:   null;
+  // --bolt-theme-text-button-color: null;
+  // --bolt-theme-icon-color:     null;
 }
 
-
 .t-bolt-xlight {
-  @include _bolt-theme(xlight);
-  --bolt-theme-icon-background-opacity: 1;
+  --bolt-theme-background-color:  bolt-color(white);
   --bolt-theme-icon-background-color: bolt-color(gray, xlight);
 }
 
 .t-bolt-light {
-  @include _bolt-theme(light);
-  --bolt-theme-icon-background-opacity: 1;
+  --bolt-theme-background-color:  bolt-color(gray, xlight);
   --bolt-theme-icon-background-color: bolt-color(white);
 }
 
-.t-bolt-dark {
-  @include _bolt-theme(dark);
-  --bolt-theme-icon-background-opacity: 0.25;
+
+
+
+
+
+
+
+
+
+.t-bolt-dark,
+.t-bolt-xdark {
   --bolt-theme-icon-background-color: bolt-color(indigo, xdark);
+}
+
+
+.t-bolt-dark {
+  --bolt-theme-icon-background-opacity: 0.25;
+
+  // $background:  bolt-color(indigo),
+  // $primary:     bolt-color(yellow),
+  // $secondary:   bolt-color(yellow),
+  // $text:        null,
+  // $heading:     null,
+  // $button-text: null,
+  // $border:      null);
 }
 
 .t-bolt-xdark {
-  @include _bolt-theme(xdark);
   --bolt-theme-icon-background-opacity: 0.5;
-  --bolt-theme-icon-background-color: bolt-color(indigo, xdark);
 }
 
-.t-bolt-success {
-  @include _bolt-theme(success);
-}
 
-.t-bolt-warning {
-  @include _bolt-theme(warning);
-}
 
-.t-bolt-error {
-  @include _bolt-theme(error);
-}
 
-.t-bolt-notification {
-  @include _bolt-theme(notification);
-}
+
+
+
+// .t-bolt-success {
+//   @include _bolt-theme(success);
+// }
+
+// .t-bolt-warning {
+//   @include _bolt-theme(warning);
+// }
+
+// .t-bolt-error {
+//   @include _bolt-theme(error);
+// }
+
+// .t-bolt-notification {
+//   @include _bolt-theme(notification);
+// }
 

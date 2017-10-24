@@ -14,7 +14,7 @@ const ConcatPlugin = require('webpack-concat-plugin');
 
 const isDev = process.argv.find(arg => arg.includes('webpack-dev-server'));
 const ENV = isDev ? 'development' : 'production';
-const outputPath = isDev ? path.resolve('src') : path.resolve('./bolt-website');
+const outputPath = isDev ? path.resolve('src') : path.resolve('./dist');
 
 
 const BROWSERS = process.env.BROWSERS === 'module' ? ['last 2 Chrome versions', 'Safari 10'] : ['last 2 versions', 'not ie <= 11'];
@@ -24,7 +24,7 @@ const processEnv = {
   appVersion: JSON.stringify(pkg.version)
 };
 
-const sassDataExport = `${process.cwd()}/bolt-website/data`;
+const sassDataExport = `${process.cwd()}/dist/data`;
 if (!fs.existsSync(sassDataExport)) {
   fs.mkdirp(sassDataExport);
 }
@@ -211,17 +211,17 @@ module.exports = (options) => {
         './node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
         './src/components/bolt-icon/src/icon'
       ],
-      './bolt-website/scripts/bolt-icon': [
+      './dist/scripts/bolt-icon': [
         './node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
         './node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
         './src/components/bolt-icon/src/icon'
       ],
 
-      // './bolt-website/scripts/bolt-app': [
+      // './dist/scripts/bolt-app': [
       //   './src/scripts/bolt-app'
       // ],
-      './bolt-website/scripts/bolt-critical-path': './src/scripts/bolt-critical-path',
-      // './bolt-website/scripts/bolt-webcomponents-loader': [
+      './dist/scripts/bolt-critical-path': './src/scripts/bolt-critical-path',
+      // './dist/scripts/bolt-webcomponents-loader': [
       //   // '@webcomponents/custom-elements/src/native-shim.js',
       //   // '@webcomponents/webcomponentsjs/webcomponents-loader.js',
       //   // '@webcomponents/custom-elements',
@@ -229,9 +229,9 @@ module.exports = (options) => {
       //   // './src/_patterns/02-components/bolt-critical-fonts/src/critical-fonts',
       //   './src/scripts/bolt-webcomponents-loader'
       // ]
-      // './bolt-website/scripts/bolt-app.polyfilled': './src/scripts/bolt-app.polyfilled'
-      // './bolt-website/scripts/index': './src/index',
-      // './bolt-website/scripts/index.es6': './src/index.es6'
+      // './dist/scripts/bolt-app.polyfilled': './src/scripts/bolt-app.polyfilled'
+      // './dist/scripts/index': './src/index',
+      // './dist/scripts/index.es6': './src/index.es6'
     },
 
     // output: {
@@ -241,7 +241,7 @@ module.exports = (options) => {
     output: {
       path: `${process.cwd()}`,
       filename: '[name].min.js',
-      // publicPath: `${process.cwd()}/bolt-website/scripts/`
+      // publicPath: `${process.cwd()}/dist/scripts/`
     },
     devtool: 'cheap-module-source-map',
     // devtool: 'cheap-source-map',
