@@ -1,20 +1,31 @@
 {# Sample Usage
   {% include "@bolt/action-blocks.twig" with {
+    verticalAlignment: "top",       // Optional [top, center, bottom]. Default is top.
+    border: "show",                 // Optional [show, hide]. Default shows borders, but you can turn them off.
     contentItems: [
       {
-        icon: "icon-name",
-        text: "Item 1",
-        url: "http://google.com"
+        "text": "Item 1",
+        "url": "http://google.com",
+        "icon": {
+          "name": "icon-name",
+          "background": "circle"    // Optional. It contains the icon with a circle.
+        }
       },
       {
-        icon: "icon-name",
-        text: "Item 2",
-        url: "http://google.com"
+        "text": "Item 2",
+        "url": "http://google.com",
+        "icon": {
+          "name": "icon-name",
+          "background": "circle"    // Optional. It contains the icon with a circle.
+        }
       },
       {
-        icon: "icon-name",
-        text: "Item 3",
-        url: "http://google.com"
+        "text": "Item 3",
+        "url": "http://google.com",
+        "icon": {
+          "name": "icon-name",
+          "background": "circle"    // Optional. It contains the icon with a circle.
+        }
       }
     ]
   } only %}
@@ -22,16 +33,31 @@
 
 {% set prefix = "c-bolt-" %}
 
+{% set verticalAlignments = {
+  "top": "start",
+  "center": "center",
+  "bottom": "end"
+} %}
+
+{% set borderOptions = {
+  "show": "bordered",
+  "hide": "borderless"
+} %}
+
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {% set componentName = "action-blocks" %}
 {% set baseClass = prefix ~ componentName %}
 {% set componentItemName = "action-block" %}
 {% set itemClass = prefix ~ componentItemName %}
+{% set verticalAlignment = verticalAlignment | default("top") %}
+{% set border = border | default("show") %}
 
 
 {% set classes = [
-  baseClass
+  baseClass,
+  verticalAlignment in verticalAlignments|keys ? baseClass ~ "--vertical-align-" ~ verticalAlignments[verticalAlignment],
+  border in borderOptions|keys ? baseClass ~ "--" ~ borderOptions[border]
 ] %}
 
 
@@ -42,11 +68,7 @@
     {% else %}
       {% for item in contentItems %}
         <li class="{{ "#{baseClass}__item" }}">
-          {% include "@bolt/action-block.twig" with {
-            icon: item.icon,
-            text: item.text,
-            url: item.url
-          } only %}
+          {% include "@bolt/action-block.twig" with item only %}
         </li>
       {% endfor %}
     {% endif %}

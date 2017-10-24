@@ -25,12 +25,10 @@
   <a href="{{ url }}" {{ attributes.addClass(classes | raw) }}>
     {% if icon %}
       <div class="{{ "#{baseClass}__item" }}">
-        {% include "@bolt/icon.twig" with {
-          icon: {
-            name: "{{ icon }}",
-            size: "xlarge"
-          }
-        } %}
+        {% set icon = icon | merge({
+          size: icon.size | default("xlarge")
+        }) %}
+        {% include "@bolt/icon.twig" with icon only %}
       </div>
     {% endif %}
 
