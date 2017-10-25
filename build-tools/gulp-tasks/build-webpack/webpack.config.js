@@ -30,53 +30,6 @@ if (!fs.existsSync(sassDataExport)) {
 }
 
 
-/**
-  * === Copy static files configuration
- */
-const copyStatics = {
-  copyWebcomponents: [{
-    from: path.resolve('./node_modules/@webcomponents/custom-elements/src/native-shim.js'),
-    to: path.join(outputPath, 'vendor'),
-    flatten: true
-  }, {
-    from: path.resolve('./node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js'),
-    to: path.join(outputPath, 'vendor'),
-    flatten: true
-  }, {
-      from: path.resolve('./node_modules/@webcomponents/webcomponentsjs/webcomponents-hi-sd-ce.js'),
-    to: path.join(outputPath, 'vendor'),
-    flatten: true
-  }, {
-    from: path.resolve('./node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js'),
-    to: path.join(outputPath, 'vendor'),
-    flatten: true
-  }, {
-    from: path.resolve('./node_modules/@webcomponents/webcomponentsjs/webcomponents-sd-ce.js'),
-    to: path.join(outputPath, 'vendor'),
-    flatten: true
-  }, {
-    from: path.resolve('./node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js'),
-    to: path.join(outputPath, 'vendor'),
-    flatten: true
-  }],
-  copyOthers: [{
-    from: 'assets/**',
-    context: path.resolve('./src'),
-    to: outputPath
-  }, {
-    from: path.resolve('./src/index.html'),
-    to: outputPath,
-    flatten: true
-  }, {
-    from: path.resolve('./src/manifest.json'),
-    to: outputPath,
-    flatten: true
-  }]
-};
-module.exports.copyStatics = copyStatics;
-
-
-
 
 
 
@@ -128,7 +81,6 @@ module.exports = (options) => {
  */
   const plugins = [
     new webpack.IgnorePlugin(/vertx/), // needed to ignore vertx dependency in webcomponentsjs-lite
-    // new CopyWebpackPlugin(copyStatics.copyWebcomponents),
     new ExtractTextPlugin({
       filename: '[name].css?[hash]-[chunkhash]-[contenthash]-[name]',
       disable: false,
@@ -149,27 +101,6 @@ module.exports = (options) => {
       h: 'preact'
       // 'window.customElements': '@webcomponents/custom-elements'
     }),
-
-    // new webpack.optimize.UglifyJsPlugin({
-    //   mangle: false,
-    //   compress: true,
-    //   // compress: {
-    //   //   warnings: false,
-    //   //   screw_ie8: true,
-    //   //   conditionals: true,
-    //   //   unused: true,
-    //   //   comparisons: true,
-    //   //   sequences: true,
-    //   //   dead_code: true,
-    //   //   evaluate: true,
-    //   //   if_return: true,
-    //   //   join_vars: true,
-    //   // },
-    //   output: {
-    //     comments: false,
-    //   },
-    //   exclude: /\.native-shim\.js/i
-    // })
   ];
   //  : [
   //     new WorkboxPlugin({
@@ -205,22 +136,27 @@ module.exports = (options) => {
   const config = {
     // entry: './src/index.js',
     entry: {
-      './src/components/bolt-critical-fonts/dist/critical-fonts': './src/components/bolt-critical-fonts/src/critical-fonts',
-      './src/components/bolt-icon/dist/icon': [
-        './node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
-        './node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
-        './src/components/bolt-icon/src/icon'
-      ],
+      'critical-fonts': './src/components/bolt-critical-fonts/src/critical-fonts',
+      
+      // './src/components/bolt-icon/dist/icon': [
+      //   // './src/scripts/native-shim.js', //Wrapper for custom-elements-es5-adapter.js so this doesn't break in other browsers like IE11
+      //   // './node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
+      //   // './node_modules/@webcomponents/webcomponentsjs/webcomponents-sd-ce.js',
+      //   './src/components/bolt-icon/src/icon'
+      // ],
       // './dist/scripts/bolt-icon': [
       //   './node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
       //   './node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
       //   './src/components/bolt-icon/src/icon'
       // ],
 
-      './dist/scripts/bolt-app': [
+      'bolt-app': [
+        // './src/scripts/native-shim.js', //Wrapper for custom-elements-es5-adapter.js so this doesn't break in other browsers like IE11
+        // './node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
+        // './node_modules/@webcomponents/webcomponentsjs/webcomponents-sd-ce.js',
         './src/scripts/bolt-app'
       ],
-      './dist/scripts/bolt-critical-path': './src/scripts/bolt-critical-path',
+      'bolt-critical-path': './src/scripts/bolt-critical-path',
       // './dist/scripts/bolt-webcomponents-loader': [
       //   // '@webcomponents/custom-elements/src/native-shim.js',
       //   // '@webcomponents/webcomponentsjs/webcomponents-loader.js',
@@ -239,9 +175,10 @@ module.exports = (options) => {
     //   filename: IS_MODULE_BUILD ? 'module.bundle.js' : 'bundle.js'
     // },
     output: {
-      path: `${process.cwd()}`,
+      path: `${process.cwd()}/dist/scripts/`,
       filename: '[name].min.js',
-      // publicPath: `${process.cwd()}/dist/scripts/`
+      publicPath: `/scripts/`,
+      chunkFilename: `[id].chunk.js`
     },
     devtool: 'cheap-module-source-map',
     // devtool: 'cheap-source-map',
@@ -260,7 +197,7 @@ module.exports = (options) => {
         {
           test: /\.js$/,
           // exclude: /\.es6.js$/,
-          exclude: /(node_modules|node_modules\/\@webcomponents\/webcomponentsjs|bower_components)/,
+          exclude: /(native-shim\.js|node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js|bower_components)/,
           use: {
             loader: 'babel-loader',
             // options: {

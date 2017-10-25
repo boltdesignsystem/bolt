@@ -2,41 +2,41 @@
    THEMES - ALL (IN PROGRESS)
 \* ------------------------------------ */
 
-@mixin _bolt-color($name, $tone: 'initial', $type: null) {
-  $color: map-get-deep($bolt-colors, $name, $tone);
-  color: $color;
-  @if $type == null {
-    color: var(--bolt-color-text, $color);
-  }
-  @else {
-    color: var(--bolt-color-#{$type}, $color);
-  }
-}
+// @mixin _bolt-color($name, $tone: 'initial', $type: null) {
+//   $color: map-get-deep($bolt-colors, $name, $tone);
+//   color: $color;
+//   @if $type == null {
+//     color: var(--bolt-color-text, $color);
+//   }
+//   @else {
+//     color: var(--bolt-color-#{$type}, $color);
+//   }
+// }
 
-@mixin _bolt-background-color($name, $tone: 'initial', $type: null) {
-  $background-color: map-get-deep($bolt-colors, $name, $tone);
-  background-color: $background-color;
-  @if $type == null {
-    background-color: $background-color; // CSS variable fallback
-    background-color: var(--bolt-color-background, $background-color);
-  }
-  @else {
-    background-color: $background-color; // CSS variable fallback
-    background-color: var(--bolt-color-#{$type}, $background-color);
-  }
-}
+// @mixin _bolt-background-color($name, $tone: 'initial', $type: null) {
+//   $background-color: map-get-deep($bolt-colors, $name, $tone);
+//   background-color: $background-color;
+//   @if $type == null {
+//     background-color: $background-color; // CSS variable fallback
+//     background-color: var(--bolt-color-background, $background-color);
+//   }
+//   @else {
+//     background-color: $background-color; // CSS variable fallback
+//     background-color: var(--bolt-color-#{$type}, $background-color);
+//   }
+// }
 
-@mixin _bolt-border-color($name, $tone: 'initial', $type: null) {
-  $border-color: map-get-deep($bolt-colors, $name, $tone);
-  border-color: $border-color;
-  @if $type == null {
-    border-color: $border-color; // CSS var fallback
-    border-color: var(--bolt-color-border, $border-color);
-  }
-  @else {
-    border-color: var(--bolt-color-#{$type}, $border-color);
-  }
-}
+// @mixin _bolt-border-color($name, $tone: 'initial', $type: null) {
+//   $border-color: map-get-deep($bolt-colors, $name, $tone);
+//   border-color: $border-color;
+//   @if $type == null {
+//     border-color: $border-color; // CSS var fallback
+//     border-color: var(--bolt-color-border, $border-color);
+//   }
+//   @else {
+//     border-color: var(--bolt-color-#{$type}, $border-color);
+//   }
+// }
 
 
 /**
@@ -44,55 +44,50 @@
   * 3. Button text - Defaults to bolt-text-contrast($primary) if not defined
   */
 
-@mixin _bolt-theme-settings(
-  $background,
+// @mixin _bolt-theme-settings(
+//   $background,
+//   $primary,
+//   $secondary,
+//   $text: null,
+//   $heading: null,
+//   $button-text: null,
+//   $border: null
+//   ) {
+  
+  
+//   --bolt-color-background: $background;
+//   // --bolt-color-primary: $primary;
+//   --bolt-color-secondary: $secondary;
+//   // @if $text == null {
+//   //   --bolt-color-text: bolt-text-contrast($background);
+//   // }
+//   // @else {
+//   //   --bolt-color-text: $text;
+//   // }
+//   @if $heading == null {
+//     --bolt-color-heading: bolt-text-contrast($background);
+//   }
+//   @else {
+//     --bolt-color-heading: $heading;
+//   }
+//   @if $button-text == null {
+//     --bolt-color-button-text: bolt-text-contrast($primary);
+//   }
+//   @else {
+//     --bolt-color-button-text: $button-text;
+//   }
+//   @if $border == null {
+//     --bolt-color-border: bolt-text-contrast($background);
+//   }
+//   @else {
+//     --bolt-color-border: $border;
+//   }
 
-  // button bg
-  $primary,
+//   // @include bolt-padding(medium); // Remove this when utility classes are fixed.
 
-  //link
-  $secondary,
-
-  // Defaults to bolt-text-contrast($background)
-  $text: null,
-
-  $heading: null,
-  $button-text: null,
-  $border: null
-  ) {
-  --bolt-color-background: $background;
-  --bolt-color-primary: $primary;
-  --bolt-color-secondary: $secondary;
-  @if $text == null {
-    --bolt-color-text: bolt-text-contrast($background);
-  }
-  @else {
-    --bolt-color-text: $text;
-  }
-  @if $heading == null {
-    --bolt-color-heading: bolt-text-contrast($background);
-  }
-  @else {
-    --bolt-color-heading: $heading;
-  }
-  @if $button-text == null {
-    --bolt-color-button-text: bolt-text-contrast($primary);
-  }
-  @else {
-    --bolt-color-button-text: $button-text;
-  }
-  @if $border == null {
-    --bolt-color-border: bolt-text-contrast($background);
-  }
-  @else {
-    --bolt-color-border: $border;
-  }
-
-  // @include bolt-padding(medium); // Remove this when utility classes are fixed.
-
-  color: var(--bolt-color-text, inherit);
-  background-color: var(--bolt-color-background, inherit);
-}
+//   color: var(--bolt-color-text, inherit);
+//   background-color: var(--bolt-color-background, inherit);
+// }
 
 // @mixin _bolt-theme($name: 'xlight') {
 //   // @if $name == 'xlight' {
@@ -159,58 +154,255 @@
   // }
 // }
 
+// $bolt-theme-background-color: inherit !default;
+// $bolt-theme-primary-color:    inherit !default;
+// $bolt-theme-secondary-color:  inherit !default;
+// $bolt-theme-text-color:       inherit !default;
+// $bolt-theme-heading-color:    inherit !default;
+// $bolt-theme-icon-color:       inherit !default;
+// $bolt-theme-icon-background-color: inherit !default;
+// $bolt-theme-icon-background-opacity: inherit !default;
+// $bolt-theme-border-color: inherit !default;
+// $bolt-theme-text-button-color: inherit !default;
 
-.t-bolt-xlight,
-.t-bolt-light {
-  --bolt-theme-primary-color:     bolt-color(indigo, light);
-  --bolt-theme-secondary-color:   bolt-color(indigo, light);
-  --bolt-theme-heading-color:     bolt-color(indigo);
-  --bolt-theme-icon-background-opacity: 1;
-  // --bolt-theme-text-color:     null;
-  // --bolt-theme-border-color:   null;
-  // --bolt-theme-text-button-color: null;
-  // --bolt-theme-icon-color:     null;
-}
+
+// .t-bolt-xlight,
+// .t-bolt-light {
+// %bolt-theme-placeholder {
+//   background-color: $bolt-theme-background-color;
+//   --bolt-theme-background-color:     $bolt-theme-background-color;
+//   --bolt-color-background:           $bolt-theme-background-color;
+
+//   color: $bolt-theme-text-color;
+//   --bolt-color-text: $bolt-theme-text-color;
+//   --bolt-theme-text-color: $bolt-theme-text-color;
+
+
+//   --bolt-theme-primary-color:     $bolt-theme-primary-color;
+//   --bolt-color-primary:           $bolt-theme-primary-color;
+
+
+//   --bolt-theme-secondary-color:     $bolt-theme-secondary-color;
+//   --bolt-color-secondary:           $bolt-theme-secondary-color;
+
+
+ 
+
+
+//   --bolt-color-heading:           $bolt-theme-heading-color;
+//   --bolt-theme-heading-color:     $bolt-theme-heading-color;
+
+
+//   --bolt-theme-icon-color:     $bolt-theme-icon-color;
+//   --bolt-color-icon:           $bolt-theme-icon-color;
+
+//   --bolt-theme-icon-background-color:     $bolt-theme-icon-background-color;
+//   --bolt-theme-icon-background-opacity:   $bolt-theme-icon-background-opacity;
+
+
+//   --bolt-theme-border-color:     $bolt-theme-border-color;
+//   --bolt-color-border:           $bolt-theme-border-color;
+
+//   --bolt-theme-text-button-color:  $bolt-theme-text-button-color;
+// }
+
+
+
 
 .t-bolt-xlight {
-  --bolt-theme-background-color:  bolt-color(white);
-  --bolt-theme-icon-background-color: bolt-color(gray, xlight);
+  $bolt-theme-background-color: bolt-color(white);
+  $bolt-theme-primary-color:    inherit;
+  $bolt-theme-secondary-color:  inherit;
+  $bolt-theme-text-color:       bolt-text-contrast($bolt-theme-background-color);
+  $bolt-theme-heading-color:    inherit;
+  $bolt-theme-icon-color:       inherit;
+  $bolt-theme-icon-background-color: bolt-color(gray, xlight);
+  $bolt-theme-icon-background-opacity: inherit;
+  $bolt-theme-border-color: inherit;
+  $bolt-theme-text-button-color: inherit;
+
+  background-color: $bolt-theme-background-color;
+  --bolt-theme-background-color:     $bolt-theme-background-color;
+  --bolt-color-background:           $bolt-theme-background-color;
+
+  color: $bolt-theme-text-color;
+  --bolt-color-text: $bolt-theme-text-color;
+  --bolt-theme-text-color: $bolt-theme-text-color;
+
+
+  --bolt-theme-primary-color:     $bolt-theme-primary-color;
+  --bolt-color-primary:           $bolt-theme-primary-color;
+
+
+  --bolt-theme-secondary-color:     $bolt-theme-secondary-color;
+  --bolt-color-secondary:           $bolt-theme-secondary-color;
+
+
+ 
+
+
+  --bolt-color-heading:           $bolt-theme-heading-color;
+  --bolt-theme-heading-color:     $bolt-theme-heading-color;
+
+
+  --bolt-theme-icon-color:     $bolt-theme-icon-color;
+  --bolt-color-icon:           $bolt-theme-icon-color;
+
+  --bolt-theme-icon-background-color:     $bolt-theme-icon-background-color;
+  --bolt-theme-icon-background-opacity:   $bolt-theme-icon-background-opacity;
+
+
+  --bolt-theme-border-color:     $bolt-theme-border-color;
+  --bolt-color-border:           $bolt-theme-border-color;
+
+  --bolt-theme-text-button-color:  $bolt-theme-text-button-color;
 }
 
 .t-bolt-light {
-  --bolt-theme-background-color:  bolt-color(gray, xlight);
-  --bolt-theme-icon-background-color: bolt-color(white);
-}
+  $bolt-theme-background-color: bolt-color(gray, xlight);
+  $bolt-theme-primary-color:    bolt-color(indigo, light);
+  $bolt-theme-secondary-color:  bolt-color(indigo, light);
+  $bolt-theme-text-color:       bolt-text-contrast($bolt-theme-background-color);
+  $bolt-theme-heading-color:    inherit;
+  $bolt-theme-icon-color:       inherit;
+  $bolt-theme-icon-background-color: bolt-color(gray, xlight);
+  $bolt-theme-icon-background-opacity: inherit;
+  $bolt-theme-border-color: inherit;
+  $bolt-theme-text-button-color: inherit;
+
+  background-color: $bolt-theme-background-color;
+  --bolt-theme-background-color:     $bolt-theme-background-color;
+  --bolt-color-background:           $bolt-theme-background-color;
+
+  color: $bolt-theme-text-color;
+  --bolt-color-text: $bolt-theme-text-color;
+  --bolt-theme-text-color: $bolt-theme-text-color;
 
 
+  --bolt-theme-primary-color:     $bolt-theme-primary-color;
+  --bolt-color-primary:           $bolt-theme-primary-color;
 
 
+  --bolt-theme-secondary-color:     $bolt-theme-secondary-color;
+  --bolt-color-secondary:           $bolt-theme-secondary-color;
 
 
+ 
 
 
+  --bolt-color-heading:           $bolt-theme-heading-color;
+  --bolt-theme-heading-color:     $bolt-theme-heading-color;
 
 
-.t-bolt-dark,
-.t-bolt-xdark {
-  --bolt-theme-icon-background-color: bolt-color(indigo, xdark);
+  --bolt-theme-icon-color:     $bolt-theme-icon-color;
+  --bolt-color-icon:           $bolt-theme-icon-color;
+
+  --bolt-theme-icon-background-color:     $bolt-theme-icon-background-color;
+  --bolt-theme-icon-background-opacity:   $bolt-theme-icon-background-opacity;
+
+
+  --bolt-theme-border-color:     $bolt-theme-border-color;
+  --bolt-color-border:           $bolt-theme-border-color;
+
+  --bolt-theme-text-button-color:  $bolt-theme-text-button-color;
 }
 
 
 .t-bolt-dark {
-  --bolt-theme-icon-background-opacity: 0.25;
+  $bolt-theme-background-color: bolt-color(indigo);
+  $bolt-theme-primary-color:    bolt-color(yellow);
+  $bolt-theme-secondary-color:  bolt-color(yellow);
+  $bolt-theme-text-color:       bolt-text-contrast($bolt-theme-background-color);
+  $bolt-theme-heading-color:    bolt-color(white);
+  $bolt-theme-icon-color:       inherit;
+  $bolt-theme-icon-background-color: bolt-color(indigo, xdark);
+  $bolt-theme-icon-background-opacity: 0.25;
+  $bolt-theme-border-color: inherit;
+  $bolt-theme-text-button-color: inherit;
+  background-color: $bolt-theme-background-color;
+  --bolt-theme-background-color:     $bolt-theme-background-color;
+  --bolt-color-background:           $bolt-theme-background-color;
 
-  // $background:  bolt-color(indigo),
-  // $primary:     bolt-color(yellow),
-  // $secondary:   bolt-color(yellow),
-  // $text:        null,
-  // $heading:     null,
-  // $button-text: null,
-  // $border:      null);
+  color: $bolt-theme-text-color;
+  --bolt-color-text: $bolt-theme-text-color;
+  --bolt-theme-text-color: $bolt-theme-text-color;
+
+
+  --bolt-theme-primary-color:     $bolt-theme-primary-color;
+  --bolt-color-primary:           $bolt-theme-primary-color;
+
+
+  --bolt-theme-secondary-color:     $bolt-theme-secondary-color;
+  --bolt-color-secondary:           $bolt-theme-secondary-color;
+
+
+ 
+
+
+  --bolt-color-heading:           $bolt-theme-heading-color;
+  --bolt-theme-heading-color:     $bolt-theme-heading-color;
+
+
+  --bolt-theme-icon-color:     $bolt-theme-icon-color;
+  --bolt-color-icon:           $bolt-theme-icon-color;
+
+  --bolt-theme-icon-background-color:     $bolt-theme-icon-background-color;
+  --bolt-theme-icon-background-opacity:   $bolt-theme-icon-background-opacity;
+
+
+  --bolt-theme-border-color:     $bolt-theme-border-color;
+  --bolt-color-border:           $bolt-theme-border-color;
+
+  --bolt-theme-text-button-color:  $bolt-theme-text-button-color;
 }
 
 .t-bolt-xdark {
-  --bolt-theme-icon-background-opacity: 0.5;
+  $bolt-theme-background-color: bolt-color(indigo, dark);
+  $bolt-theme-primary-color:    bolt-color(indigo, light);
+  $bolt-theme-secondary-color:  bolt-color(white);
+  $bolt-theme-text-color:       bolt-text-contrast($bolt-theme-background-color);
+  $bolt-theme-heading-color:    bolt-color(white);
+  $bolt-theme-icon-color:       inherit;
+  $bolt-theme-icon-background-color: bolt-color(indigo, xdark);
+  $bolt-theme-icon-background-opacity: 0.5;
+  $bolt-theme-border-color: inherit;
+  $bolt-theme-text-button-color: inherit;
+
+  background-color: $bolt-theme-background-color;
+  --bolt-theme-background-color:     $bolt-theme-background-color;
+  --bolt-color-background:           $bolt-theme-background-color;
+
+  color: $bolt-theme-text-color;
+  --bolt-color-text: $bolt-theme-text-color;
+  --bolt-theme-text-color: $bolt-theme-text-color;
+
+
+  --bolt-theme-primary-color:     $bolt-theme-primary-color;
+  --bolt-color-primary:           $bolt-theme-primary-color;
+
+
+  --bolt-theme-secondary-color:     $bolt-theme-secondary-color;
+  --bolt-color-secondary:           $bolt-theme-secondary-color;
+
+
+ 
+
+
+  --bolt-color-heading:           $bolt-theme-heading-color;
+  --bolt-theme-heading-color:     $bolt-theme-heading-color;
+
+
+  --bolt-theme-icon-color:     $bolt-theme-icon-color;
+  --bolt-color-icon:           $bolt-theme-icon-color;
+
+  --bolt-theme-icon-background-color:     $bolt-theme-icon-background-color;
+  --bolt-theme-icon-background-opacity:   $bolt-theme-icon-background-opacity;
+
+
+  --bolt-theme-border-color:     $bolt-theme-border-color;
+  --bolt-color-border:           $bolt-theme-border-color;
+
+  --bolt-theme-text-button-color:  $bolt-theme-text-button-color;
 }
 
 
