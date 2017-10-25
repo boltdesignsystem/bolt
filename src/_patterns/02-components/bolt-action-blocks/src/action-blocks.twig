@@ -1,35 +1,40 @@
 {# Sample Usage
   {% include "@bolt/action-blocks.twig" with {
+    itemsPerRow: 3,                 // Optional [2 ~ 12]. Default is 3.
     verticalAlignment: "top",       // Optional [top, center, bottom]. Default is top.
     border: "show",                 // Optional [show, hide]. Default shows borders, but you can turn them off.
     contentItems: [
       {
-        "text": "Item 1",
-        "url": "http://google.com",
-        "icon": {
-          "name": "icon-name",
-          "background": "circle"    // Optional. It contains the icon with a circle.
+        text: "Item 1",
+        url: "http://google.com",
+        icon: {
+          name: "icon-name",
+          size: "large",
+          background: "circle"
         }
       },
       {
-        "text": "Item 2",
-        "url": "http://google.com",
-        "icon": {
-          "name": "icon-name",
-          "background": "circle"    // Optional. It contains the icon with a circle.
+        text: "Item 2",
+        url: "http://google.com",
+        icon: {
+          name: "icon-name",
+          size: "large",
+          background: "circle"
         }
       },
       {
-        "text": "Item 3",
-        "url": "http://google.com",
-        "icon": {
-          "name": "icon-name",
-          "background": "circle"    // Optional. It contains the icon with a circle.
+        text: "Item 3",
+        url: "http://google.com",
+        icon: {
+          name: "icon-name",
+          size: "large",
+          background: "circle"
         }
       }
     ]
   } only %}
 #}
+
 
 {% set prefix = "c-bolt-" %}
 
@@ -46,16 +51,19 @@
 
 {% set attributes = create_attribute(attributes|default({})) %}
 
+
 {% set componentName = "action-blocks" %}
 {% set baseClass = prefix ~ componentName %}
 {% set componentItemName = "action-block" %}
 {% set itemClass = prefix ~ componentItemName %}
+{% set itemsPerRow = itemsPerRow | default(3) %}
 {% set verticalAlignment = verticalAlignment | default("top") %}
 {% set border = border | default("show") %}
 
 
 {% set classes = [
   baseClass,
+  itemsPerRow ? baseClass ~ "--item-max-" ~ itemsPerRow : "",
   verticalAlignment in verticalAlignments|keys ? baseClass ~ "--vertical-align-" ~ verticalAlignments[verticalAlignment],
   border in borderOptions|keys ? baseClass ~ "--" ~ borderOptions[border]
 ] %}
@@ -74,4 +82,3 @@
     {% endif %}
   </ul>
 </bolt-{{ componentName }}>
-

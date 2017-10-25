@@ -1,8 +1,12 @@
 {# Sample Usage
   {% include "@bolt/action-block.twig" with {
-    icon: "icon-name",
-    text: "Block Text",
-    url: "http://google.com"
+    text: "Title",
+    url: "http://google.com",
+    icon: {
+      name: "icon-name",
+      size: "large",
+      background: "circle"
+    }
   } only %}
 #}
 

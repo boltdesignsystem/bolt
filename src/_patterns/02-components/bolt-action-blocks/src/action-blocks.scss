@@ -81,7 +81,7 @@ bolt-action-blocks {
 
 .c-bolt-action-blocks__item {
   display: block;
-  flex: 1 0 calc(100% / 3 - #{$bolt-action-blocks-border-width});
+  flex-grow: 1;
   position: relative;
   min-width: 150px;
   border-bottom-width: $bolt-action-blocks-border-width;
@@ -90,18 +90,14 @@ bolt-action-blocks {
   border-right-style: $bolt-action-blocks-border-style;
 }
 
-.c-bolt-action-blocks--bordered {
-  > .c-bolt-action-blocks__item {
-    border-bottom-color: $bolt-action-blocks-border-color;
-    border-right-color: $bolt-action-blocks-border-color;
-  }
+.c-bolt-action-blocks--bordered > .c-bolt-action-blocks__item {
+  border-bottom-color: $bolt-action-blocks-border-color;
+  border-right-color: $bolt-action-blocks-border-color;
 }
 
-.c-bolt-action-blocks--borderless {
-  > .c-bolt-action-blocks__item {
-    border-bottom-color: transparent;
-    border-right-color: transparent;
-  }
+.c-bolt-action-blocks--borderless > .c-bolt-action-blocks__item {
+  border-bottom-color: transparent;
+  border-right-color: transparent;
 }
 
 .c-bolt-action-blocks--vertical-align-start {
@@ -125,68 +121,8 @@ bolt-action-blocks {
   }
 }
 
-.c-bolt-action-blocks--item-max-2 {
-  > .c-bolt-action-blocks__item {
-    flex: 1 0 calc(100% / 2 - #{$bolt-action-blocks-border-width});
-  }
-}
-
-.c-bolt-action-blocks--item-max-3 {
-  > .c-bolt-action-blocks__item {
-    flex: 1 0 calc(100% / 3 - #{$bolt-action-blocks-border-width});
-  }
-}
-
-.c-bolt-action-blocks--item-max-4 {
-  > .c-bolt-action-blocks__item {
-    flex: 1 0 calc(100% / 4 - #{$bolt-action-blocks-border-width});
-  }
-}
-
-.c-bolt-action-blocks--item-max-5 {
-  > .c-bolt-action-blocks__item {
-    flex: 1 0 calc(100% / 5 - #{$bolt-action-blocks-border-width});
-  }
-}
-
-.c-bolt-action-blocks--item-max-6 {
-  > .c-bolt-action-blocks__item {
-    flex: 1 0 calc(100% / 6 - #{$bolt-action-blocks-border-width});
-  }
-}
-
-.c-bolt-action-blocks--item-max-7 {
-  > .c-bolt-action-blocks__item {
-    flex: 1 0 calc(100% / 7 - #{$bolt-action-blocks-border-width});
-  }
-}
-
-.c-bolt-action-blocks--item-max-8 {
-  > .c-bolt-action-blocks__item {
-    flex: 1 0 calc(100% / 8 - #{$bolt-action-blocks-border-width});
-  }
-}
-
-.c-bolt-action-blocks--item-max-9 {
-  > .c-bolt-action-blocks__item {
-    flex: 1 0 calc(100% / 9 - #{$bolt-action-blocks-border-width});
-  }
-}
-
-.c-bolt-action-blocks--item-max-10 {
-  > .c-bolt-action-blocks__item {
-    flex: 1 0 calc(100% / 10 - #{$bolt-action-blocks-border-width});
-  }
-}
-
-.c-bolt-action-blocks--item-max-11 {
-  > .c-bolt-action-blocks__item {
-    flex: 1 0 calc(100% / 11 - #{$bolt-action-blocks-border-width});
-  }
-}
-
-.c-bolt-action-blocks--item-max-12 {
-  > .c-bolt-action-blocks__item {
-    flex: 1 0 calc(100% / 12 - #{$bolt-action-blocks-border-width});
+@for $number from 2 through 12 {
+  .c-bolt-action-blocks--item-max-#{$number} > .c-bolt-action-blocks__item {
+    flex-basis: calc(100% / #{$number} - #{$bolt-action-blocks-border-width});
   }
 }
