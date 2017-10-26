@@ -28,7 +28,7 @@
 ] %}
 
 
-<bolt-unordered-list bolt-component>
+<bolt-{{ componentName }} bolt-component>
   <ol {{ attributes.addClass(classes) }}>
     {% for listItem in contentItems %}
       <li class="{{ "#{baseClass}__item" }}">
@@ -42,4 +42,4 @@
       </li>
     {% endfor %}
   </ol>
-</bolt-unordered-list>
+</bolt-{{ componentName }}>

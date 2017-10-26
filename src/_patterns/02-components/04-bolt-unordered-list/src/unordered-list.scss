@@ -1,22 +1,43 @@
-/* ------------------------------------ *\
-   unordered List
-\* ------------------------------------ */
-
-/*@import '@bolt/settings-global'; // TODO: Comment out for now. Need to include only once.*/
-
+/*@import '@bolt/settings-global'; // [1] TODO: Comment out for now. Need to include only once.*/
 @import '@bolt/settings-colors';
 @import '@bolt/tools-spacing';
 @import '@bolt/tools-color-palette';
 
 
+
+
+/* ------------------------------------ *\
+   unordered List
+\* ------------------------------------ */
+
+// Sample Usage
+// <bolt-unordered-list bolt-component>
+//   <ol class="c-bolt-unordered-list">
+//     <li class="c-bolt-unordered-list__item">
+//       Item 1
+//     </li>
+//     <li class="c-bolt-unordered-list__item">
+//       Item 2
+//     </li>
+//     <li class="c-bolt-unordered-list__item">
+//       Item 3
+//     </li>
+//   </ol>
+// </bolt-unordered-list>
+
+
+// Local Variables
 $bolt-unordered-list-bullet-size: 8px; // Using px here because I need to make a perfect circle without subpixel issues.
 $bolt-unordered-list-bullet-bg-color: var(--bolt-color-heading, bolt-color(indigo)); // TODO: refactor this after theming is done.
 
-@include bolt-register-element('bolt-unordered-list', 'block');
+
+// Register Custom Block Element
+@include bolt-register-element('bolt-unordered-list', 'block'); /* [1] */
 
 
+// Styles
 .c-bolt-unordered-list {
-  @include bolt-margin-left(0);
+  @include bolt-margin(0);
   @include bolt-padding(0);
 
   list-style: none;

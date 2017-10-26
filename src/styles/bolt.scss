@@ -50,6 +50,7 @@ bolt-demo {
 // Example of adding global generic styles to all custom elements.
 @if length($bolt-all-custom-block-elements) > 0 {
   #{$bolt-all-custom-block-elements} {
+    @include bolt-margin-bottom(medium);
     display: block;
   }
 }

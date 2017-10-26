@@ -1,9 +1,4 @@
-/* ------------------------------------ *\
-   Ordered List
-\* ------------------------------------ */
-
-/*@import '@bolt/settings-global'; // TODO: Comment out for now. Need to include only once.*/
-
+/*@import '@bolt/settings-global'; // [1] TODO: Comment out for now. Need to include only once.*/
 @import '@bolt/settings-colors';
 @import '@bolt/settings-font-size';
 @import '@bolt/settings-font-weight';
@@ -13,16 +8,41 @@
 @import '@bolt/tools-color-palette';
 
 
+
+
+/* ------------------------------------ *\
+   Ordered List
+\* ------------------------------------ */
+
+// Sample Usage
+// <bolt-ordered-list bolt-component>
+//   <ol class="c-bolt-ordered-list">
+//     <li class="c-bolt-ordered-list__item">
+//       Item 1
+//     </li>
+//     <li class="c-bolt-ordered-list__item">
+//       Item 2
+//     </li>
+//     <li class="c-bolt-ordered-list__item">
+//       Item 3
+//     </li>
+//   </ol>
+// </bolt-ordered-list>
+
+
+// Local Variables
 $bolt-ordered-list-bullet-size: $bolt-line-height--xsmall + rem;
 $bolt-ordered-list-bullet-text-color: var(--bolt-color-heading, bolt-color(indigo)); // TODO: refactor this after theming is done.
 $bolt-ordered-list-bullet-bg-color: rgba(bolt-color(gray), 0.2);
 
 
-@include bolt-register-element('bolt-ordered-list', 'block');
+// Register Custom Block Element
+@include bolt-register-element('bolt-ordered-list', 'block'); /* [1] */
 
 
+// Styles
 .c-bolt-ordered-list {
-  @include bolt-margin-left(0);
+  @include bolt-margin(0);
   @include bolt-padding(0);
 
   list-style: none;
