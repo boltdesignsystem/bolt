@@ -55,16 +55,23 @@ Once installed, you should  `@import`  the main Sass partial into your project�
 
 ```
 // Settings
-@import ‘@bolt/settings-...’
+@import '@bolt/settings-global';
+@import '@bolt/settings-spacing';
+@import '@bolt/settings-colors';
+@import '@bolt/settings-font-size';
+@import '@bolt/settings-font-weight';
 
 // Tools
-@import ‘@bolt/tools-...’
+@import '@bolt/tools-font-size';
+@import '@bolt/tools-font-weight';
+@import '@bolt/tools-spacing';
+@import '@bolt/tools-color-palette';
 ```
 
-Since Bolt's CSS architecture is based on [ITCSS (Inverted Triangle CSS)](http://www.creativebloq.com/web-design/manage-large-css-projects-itcss-101517528)<sup>[1](#1-learn-more-about-itcss)</sup>, what Sass partials you import, and in what order, makes a whole world of difference. That’s why importing any Settings packages from Bolt in your project’s Settings layer (prior to any Sass mixins, resets, base HTML element styles, etc) is so important.
+Since Bolt’s CSS architecture is based on [ITCSS (Inverted Triangle CSS)](http://www.creativebloq.com/web-design/manage-large-css-projects-itcss-101517528)<sup>[1](#1-learn-more-about-itcss)</sup>, what Sass partials you import, and in what order, makes a whole world of difference. That’s why importing any Settings packages from Bolt in your project’s Settings layer (prior to any Sass mixins, resets, base HTML element styles, etc) is so important.
 
 ### Compiling
-We recommend using Bolt’s Gulp-based [front-end build tools](https://www.npmjs.com/package/@bolt/build-tools) to compile your Sass as we're pre-packaging many of the latest tools and add-ons to help you write your very best: LibSass, Autoprefixer, PostCSS, CleanCSS, Sassdoc, Stylelint, Gulp Plumber, npm-sass, and BrowserSync live reloading.
+We recommend using Bolt’s Gulp-based [front-end build tools](https://www.npmjs.com/package/@bolt/build-tools) to compile your Sass as we’re pre-packaging many of the latest tools and add-ons to help you write your very best: LibSass, Autoprefixer, PostCSS, CleanCSS, Sassdoc, Stylelint, Gulp Plumber, npm-sass, and BrowserSync live reloading.
 
 - - - -
 
