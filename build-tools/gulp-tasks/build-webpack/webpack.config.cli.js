@@ -9,8 +9,7 @@ module.exports = (options) => {
     entry: {}, // Since the CLI params will be taking care of these
     output: {
       filename: '[name].min.js',
-      path: `${process.cwd()}/dist/`,
-      chunkFilename: `[name].chunk.js`
+      path: `${process.cwd()}/dist/`
     }
   });
 

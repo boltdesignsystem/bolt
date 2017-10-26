@@ -13,6 +13,7 @@ if (window.customElements !== undefined) {
     import(/* webpackMode: "lazy", webpackChunkName: "bolt-wc-polyfill--sd" */ './wc-polyfill-sd'),
   ])
     .then(() => {
+      // require('./icon.js');
       continueLoading();
     });
 } else {

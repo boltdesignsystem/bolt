@@ -8,6 +8,7 @@ const Industries = ({ color, size, ...otherProps }) => {
       <g fill="currentColor" fill-rule="evenodd">
         <circle
           class="c-bolt-icon--background c-bolt-icon--circle-background"
+          fill="none"
           cx="50%"
           cy="50%"
           r="50%"

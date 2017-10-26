@@ -3,8 +3,8 @@
 // https://github.com/webcomponents/template/blob/master/template.js#L39
 // require('@webcomponents/template');
 
-// // This comes after the native shim because it requries it to be patched first.
-// require('@webcomponents/custom-elements');
+// This comes after the native shim because it requries it to be patched first.
+// require('@webcomponents/custom-elements/src/custom-elements.js');
 
 // Force the polyfill in Safari 10.0.0 and 10.0.1.
 const { navigator } = window;
@@ -19,7 +19,8 @@ if (safari && safariVersions.indexOf(safariVersion) > -1) {
 
 // ShadyDOM comes first. Both because it may need to be forced and the
 // ShadyCSS polyfill requires it to function.
-require('cloudydom');
-require('@webcomponents/shadycss/scoping-shim.min');
-require('@webcomponents/shadycss/apply-shim.min');
-require('@webcomponents/shadycss/custom-style-interface.min');
+// require('cloudydom');
+import '@webcomponents/shadydom/src/shadydom.js';
+import '@webcomponents/shadycss/scoping-shim.min';
+import '@webcomponents/shadycss/apply-shim.min';
+import '@webcomponents/shadycss/custom-style-interface.min';

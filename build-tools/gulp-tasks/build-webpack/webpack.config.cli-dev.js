@@ -39,13 +39,12 @@ module.exports = (options) => {
   // const WorkboxPlugin = require('workbox-webpack-plugin');
   
   const commonConfig = require('./webpack.config');
-  const releaseConfig = Object.create(commonConfig({
+  const webpackConfig = Object.create(commonConfig({
     devtool: 'sourcemap'
   }));
   
-
-  releaseConfig.plugins = releaseConfig.plugins.concat(
-    new CleanWebpackPlugin([!process.env.cli && releaseConfig.output.path ? releaseConfig.output.path : ''], {
+  webpackConfig.plugins = webpackConfig.plugins.concat(
+    new CleanWebpackPlugin([!process.env.cli && webpackConfig.output.path ? webpackConfig.output.path : ''], {
       verbose: true,
       root: process.cwd() // set root context to wherever webpack is getting run (globally or at the component level)
     }),
@@ -57,18 +56,8 @@ module.exports = (options) => {
       disable: false,
       allChunks: true
     }),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new UglifyJSPlugin(),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false
-    })
+    new webpack.NoEmitOnErrorsPlugin()
   );
 
-  releaseConfig.performance = {
-    maxAssetSize: 250000,
-    maxEntrypointSize: 250000
-  };
-
-  return releaseConfig;
+  return webpackConfig;
 };

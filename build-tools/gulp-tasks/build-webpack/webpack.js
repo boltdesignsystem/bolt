@@ -39,6 +39,29 @@ function webpackTask(gulp, devConfig, releaseConfig) {
   });
 
 
+
+  
+
+  // Copy built js files to PL
+  gulp.task('webpack:copypl', (done) => {
+    gulp.src('src/components/bolt-*/dist/**/*.js')
+      .pipe(gulp.dest('./dist/scripts'))
+  });
+
+
+  // Watch webpack-compiled files for changes
+  gulp.task('webpack:watch-components', () => {
+    gulp.watch([
+      'src/components/bolt-*/dist/**/*.js'
+    ], gulp.parallel([
+      'webpack:copypl'
+    ]));
+  });
+
+
+
+
+
   // Watch webpack-compiled files for changes
   gulp.task('webpack:watch', () => {
     gulp.watch([
