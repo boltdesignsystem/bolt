@@ -17,6 +17,8 @@ const ENV = isDev ? 'development' : 'production';
 const outputPath = isDev ? path.resolve('src') : path.resolve('./dist');
 
 
+const merge = require('merge').recursive;
+
 const BROWSERS = process.env.BROWSERS === 'module' ? ['last 2 Chrome versions', 'Safari 10'] : ['last 2 versions', 'not ie <= 11'];
 const IS_MODULE_BUILD = BROWSERS[0].includes('Chrome');
 const processEnv = {
@@ -24,317 +26,170 @@ const processEnv = {
   appVersion: JSON.stringify(pkg.version)
 };
 
-const sassDataExport = `${process.cwd()}/dist/data`;
-if (!fs.existsSync(sassDataExport)) {
-  fs.mkdirp(sassDataExport);
-}
 
 
 
 
 
-module.exports = (options) => {
-  
-
-  // const pkg = require('./package.json');
-  
-  const workingDir = process.cwd();
+const defaultConfig = {
+  sassDataExportPath: `${process.cwd()}/dist/data`,
+  exportSassData: true,
 
 
-  // const styleRules = [
-  //   {
-  //     loader: 'postcss-loader',
-  //     options: {
-  //       plugins: function () {
-  //         return [
-  //           require('autoprefixer')
-  //         ];
-  //       }
-  //     }
-  //   },
-  //   {
-  //     loader: 'clean-css-loader',
-  //     options: {
-  //       skipWarn: true,
-  //       compatibility: 'ie9',
-  //       level: 2,
-  //       inline: ['remote']
-  //     }
-  //   },
-  //   {
-  //     loader: 'sass-loader',
-  //     options: {
-  //       importer: require('npm-sass').importer,
-  //       functions: exportJson(sassDataExport, 'export_data'),
-  //       outputStyle: 'compressed',
-  //       precision: 2
-  //     }
-  //   }
-  // ];
+  // entry: './src/index.js',
+  entry: {
+    'critical-fonts': './src/components/bolt-critical-fonts/src/critical-fonts',
 
+    // './src/components/bolt-icon/dist/icon': [
+    //   // './src/scripts/native-shim.js', //Wrapper for custom-elements-es5-adapter.js so this doesn't break in other browsers like IE11
+    //   // './node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
+    //   // './node_modules/@webcomponents/webcomponentsjs/webcomponents-sd-ce.js',
+    //   './src/components/bolt-icon/src/icon'
+    // ],
+    // './dist/scripts/bolt-icon': [
+    //   './node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
+    //   './node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
+    //   './src/components/bolt-icon/src/icon'
+    // ],
 
-
-    
-    
-  /**
- * Plugin configuration
- */
-  const plugins = [
-    new webpack.IgnorePlugin(/vertx/), // needed to ignore vertx dependency in webcomponentsjs-lite
-    new ExtractTextPlugin({
-      filename: '[name].css?[hash]-[chunkhash]-[contenthash]-[name]',
-      disable: false,
-      allChunks: true
-    }),
-    new ManifestPlugin({
-      fileName: 'bolt-manifest.json',
-      // basePath: '/scripts/',
-      publicPath: '/',
-      writeToFileEmit: true,
-      seed: {
-        name: 'Bolt Manifest'
-      }
-    }),
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.DefinePlugin({ 'process.env': processEnv }),
-    new webpack.ProvidePlugin({
-      h: 'preact'
-      // 'window.customElements': '@webcomponents/custom-elements'
-    }),
-  ];
-  //  : [
-  //     new WorkboxPlugin({
-  //       globDirectory: outputPath,
-  //       globPatterns: ['**/*.{html,js,css}'],
-  //       swDest: path.join(outputPath, 'sw.js')
-  //     }),
-  //     new ExtractTextPlugin({
-  //       filename: '[name].css?[hash]-[chunkhash]-[contenthash]-[name]',
-  //       disable: false,
-  //       allChunks: true
-  //     }),
-  //     new webpack.ProvidePlugin({
-  //       h: 'preact'
-  //     }),
-      
-      
-  //   ];
-
-
-  //   
-  //     exclude: /node_modules/,
-  //       loader: 'babel-loader',
-  //         options: {
-  //     presets: [
-  //       ['es2015', { modules: false }]
-  //     ]
-  //   }
-  // }
-
-  
-
-  const config = {
-    // entry: './src/index.js',
-    entry: {
-      'critical-fonts': './src/components/bolt-critical-fonts/src/critical-fonts',
-      
-      // './src/components/bolt-icon/dist/icon': [
-      //   // './src/scripts/native-shim.js', //Wrapper for custom-elements-es5-adapter.js so this doesn't break in other browsers like IE11
-      //   // './node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
-      //   // './node_modules/@webcomponents/webcomponentsjs/webcomponents-sd-ce.js',
-      //   './src/components/bolt-icon/src/icon'
-      // ],
-      // './dist/scripts/bolt-icon': [
-      //   './node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
-      //   './node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
-      //   './src/components/bolt-icon/src/icon'
-      // ],
-
-      'bolt-app': [
-        // './src/scripts/native-shim.js', //Wrapper for custom-elements-es5-adapter.js so this doesn't break in other browsers like IE11
-        // './node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
-        // './node_modules/@webcomponents/webcomponentsjs/webcomponents-sd-ce.js',
-        './src/scripts/bolt-app'
-      ],
-      'bolt-critical-path': './src/scripts/bolt-critical-path',
-      // './dist/scripts/bolt-webcomponents-loader': [
-      //   // '@webcomponents/custom-elements/src/native-shim.js',
-      //   // '@webcomponents/webcomponentsjs/webcomponents-loader.js',
-      //   // '@webcomponents/custom-elements',
-      //   // './src/scripts/bolt-app'
-      //   // './src/_patterns/02-components/bolt-critical-fonts/src/critical-fonts',
-      //   './src/scripts/bolt-webcomponents-loader'
-      // ]
-      // './dist/scripts/bolt-app.polyfilled': './src/scripts/bolt-app.polyfilled'
-      // './dist/scripts/index': './src/index',
-      // './dist/scripts/index.es6': './src/index.es6'
+    'bolt-app': [
+      // './src/scripts/native-shim.js', //Wrapper for custom-elements-es5-adapter.js so this doesn't break in other browsers like IE11
+      // './node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
+      // './node_modules/@webcomponents/webcomponentsjs/webcomponents-sd-ce.js',
+      './src/scripts/bolt-app'
+    ],
+    'bolt-critical-path': './src/scripts/bolt-critical-path',
+  },
+  output: {
+    path: `${process.cwd()}/dist/scripts/`,
+    filename: '[name].min.js',
+    publicPath: `/scripts/`,
+    chunkFilename: `[id].chunk.js`
+  },
+  devtool: 'cheap-module-source-map',
+  // devtool: 'cheap-source-map',
+  resolve: {
+    alias: {
+      styles: path.resolve(__dirname, 'src/styles'),
     },
+    extensions: ['.js', '.jsx', '.json', '.svg', '.scss']
+  },
 
-    // output: {
-    //   path: outputPath,
-    //   filename: IS_MODULE_BUILD ? 'module.bundle.js' : 'bundle.js'
-    // },
-    output: {
-      path: `${process.cwd()}/dist/scripts/`,
-      filename: '[name].min.js',
-      publicPath: `/scripts/`,
-      chunkFilename: `[id].chunk.js`
-    },
-    devtool: 'cheap-module-source-map',
-    // devtool: 'cheap-source-map',
-    resolve: {
-      alias: {
-        // modules: path.resolve(__dirname, 'src/scripts/modules/'),
-        // 'critical-path': path.resolve(__dirname, 'src/scripts/critical-path/'),
-        styles: path.resolve(__dirname, 'src/styles'),
-      },
-      extensions: ['.js', '.jsx', '.json', '.svg', '.scss']
-    },
-    
-    
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          // exclude: /\.es6.js$/,
-          exclude: /(native-shim\.js|node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js|bower_components)/,
-          use: {
-            loader: 'babel-loader',
-            // options: {
-            //   babelrc: true,
-              
-            //   // presets: [
-            //   //   ["es2015", { "modules": false }],
-            //   //   ['env', {
-            //   //     targets: {
-            //   //       browsers: [
-            //   //         'last 3 versions',
-            //   //         'not ie < 9'
-            //   //       ]
-            //   //     },
-            //   //     debug: true
-            //   //   }]
-            //   // ]
-            // }
-            options: {
-              babelrc: false,
-              plugins: [
-                [
-                  'jsx-pragmatic',
-                  {
-                    module: 'preact',
-                    export: 'h',
-                    import: 'h'
-                  }
-                ],
-                [
-                  'transform-react-jsx',
-                  {
-                    pragma: 'h'
-                  }
-                ],
-                ['module-resolver',
-                  {
-                    root: [
-                      './src'
-                    ],
-                    alias: {
-                      h: 'preact'
-                    }
-                  }
-                ],
-                'transform-class-properties',
-                // 'transform-custom-element-classes',
-                // 'transform-es2015-classes',
-                'transform-object-assign',
-                'transform-object-rest-spread',
-                // 'inline-react-svg'
+
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        // exclude: /\.es6.js$/,
+        exclude: /(native-shim\.js|node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            babelrc: false,
+            plugins: [
+              [
+                'jsx-pragmatic',
+                {
+                  module: 'preact',
+                  export: 'h',
+                  import: 'h'
+                }
               ],
-              
-              presets: [
-                ['env', {
-                  targets: {
-                    browsers: [
-                      'last 3 versions',
-                      'not ie < 9'
-                    ]
-                  },
-                  debug: false
-                }],
-                'stage-0'
+              [
+                'transform-react-jsx',
+                {
+                  pragma: 'h'
+                }
+              ],
+              ['module-resolver',
+                {
+                  root: [
+                    './src'
+                  ],
+                  alias: {
+                    h: 'preact'
+                  }
+                }
+              ],
+              'transform-class-properties',
+              // 'transform-custom-element-classes',
+              // 'transform-es2015-classes',
+              'transform-object-assign',
+              'transform-object-rest-spread',
+              // 'inline-react-svg'
+            ],
+
+            presets: [
+              ['env', {
+                targets: {
+                  browsers: [
+                    'last 3 versions',
+                    'not ie < 9'
+                  ]
+                },
+                debug: false
+              }],
+              'stage-0'
             ]
-                // 'es2015',
-                // 'react',
-              // ]
-            }
-
-
-
-            // "plugins": [
-            //   [
-            //     "jsx-pragmatic",
-            //     {
-            //       "module": "preact",
-            //       "export": "h",
-            //       "import": "h"
-            //     }
-            //   ],
-            //   [
-            //     "transform-react-jsx",
-            //     {
-            //       "pragma": "h"
-            //     }
-            //   ],
-            //   [
-            //     "module-resolver",
-            //     {
-            //       "root": [
-            //         "./src"
-            //       ],
-            //       "alias": {
-            //         "h": "preact"
-            //       }
-            //     }
-            //   ],
-              // "transform-custom-element-classes",
-            // ]
           }
-        },
-        // {
-        //   test: /\.es6.js$/,
-        //   // We need to transpile Polymer itself and other ES6 code
-        //   // exclude: /(node_modules)/,
-        //   use: {
-        //     loader: 'babel-loader',
-        //     options: {
-        //       babelrc: false,
-        //       presets: [[
-        //         'env',
-        //         {
-        //           targets: { browsers: ['last 2 Chrome versions', 'Safari 10'] },
-        //           debug: true
-        //         }
-        //       ]]
-        //     }
-        //   }
-        // },
-        // {
-        //   test: /\.(js|jsx)$/,
-        //   enforce: 'pre',
-        //   exclude: /node_modules/,
-        // },
-        {
-          test: /\.scss$/,
-          exclude: /\.scoped.scss$/,
+        }
+      },
+      {
+        test: /\.scss$/,
+        exclude: /\.scoped.scss$/,
+        use: [
+          {
+            loader: 'css-loader',
+            // options: {
+            //   sourceMap: true,
+            //   modules: true,
+            //   importLoaders: true,
+            //   localIdentName: '[name]__[local]___[hash:base64:5]'
+            // }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: function () {
+                return [
+                  require('autoprefixer')
+                ];
+              }
+            }
+          },
+          {
+            loader: 'clean-css-loader',
+            options: {
+              skipWarn: true,
+              compatibility: 'ie9',
+              level: 2,
+              inline: ['remote']
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              importer: require('npm-sass').importer,
+              functions: exportJson(this.sassDataExportPath, 'export_data'),
+              outputStyle: 'compressed',
+              precision: 2
+            }
+          }
+        ]
+      },
+      {
+        test: /\.scoped.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
           use: [
             {
               loader: 'css-loader',
-              // options: {
-              //   sourceMap: true,
-              //   modules: true,
-              //   importLoaders: true,
-              //   localIdentName: '[name]__[local]___[hash:base64:5]'
-              // }
+              options: {
+                sourceMap: true,
+                modules: true,
+                importLoaders: true,
+                localIdentName: '[name]__[local]___[hash:base64:5]'
+              }
             },
             {
               loader: 'postcss-loader',
@@ -359,84 +214,72 @@ module.exports = (options) => {
               loader: 'sass-loader',
               options: {
                 importer: require('npm-sass').importer,
-                functions: exportJson(sassDataExport, 'export_data'),
+                functions: exportJson(this.sassDataExportPath, 'export_data'),
                 outputStyle: 'compressed',
                 precision: 2
               }
             }
           ]
-        },
-        {
-          test: /\.scoped.scss$/,
-          use: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  sourceMap: true,
-                  modules: true,
-                  importLoaders: true,
-                  localIdentName: '[name]__[local]___[hash:base64:5]'
-                }
-              },
-              {
-                loader: 'postcss-loader',
-                options: {
-                  plugins: function () {
-                    return [
-                      require('autoprefixer')
-                    ];
-                  }
-                }
-              },
-              {
-                loader: 'clean-css-loader',
-                options: {
-                  skipWarn: true,
-                  compatibility: 'ie9',
-                  level: 2,
-                  inline: ['remote']
-                }
-              },
-              {
-                loader: 'sass-loader',
-                options: {
-                  importer: require('npm-sass').importer,
-                  functions: exportJson(sassDataExport, 'export_data'),
-                  outputStyle: 'compressed',
-                  precision: 2
-                }
-              }
-            ]
-          })
-        },
-        {
-          test: /\.html$/,
-          use: ['text-loader']
-        },
-        {
-          test: /\.svg$/,
-          loader: 'svg-inline-loader'
-        }
-      ]
-    },
-    performance: {
-      maxAssetSize: 1500000,
-      maxEntrypointSize: 1500000
-    },
-    plugins, // array of plugins defined higher up in the file
-    devServer: {
-      contentBase: path.resolve(outputPath),
-      compress: true,
-      overlay: {
-        errors: true
+        })
       },
-      port: 3000,
-      host: '0.0.0.0',
-      disableHostCheck: true
-    }
-  };
+      {
+        test: /\.html$/,
+        use: ['text-loader']
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader'
+      }
+    ]
+  },
+  performance: {
+    maxAssetSize: 1500000,
+    maxEntrypointSize: 1500000
+  },
+  plugins: [
+    new webpack.IgnorePlugin(/vertx/), // needed to ignore vertx dependency in webcomponentsjs-lite
+    new ExtractTextPlugin({
+      filename: '[name].css?[hash]-[chunkhash]-[contenthash]-[name]',
+      disable: false,
+      allChunks: true
+    }),
+    new ManifestPlugin({
+      fileName: 'bolt-manifest.json',
+      // basePath: '/scripts/',
+      publicPath: '/',
+      writeToFileEmit: true,
+      seed: {
+        name: 'Bolt Manifest'
+      }
+    }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.DefinePlugin({ 'process.env': processEnv }),
+    new webpack.ProvidePlugin({
+      h: 'preact'
+    })
+  ],
+  devServer: {
+    contentBase: path.resolve(outputPath),
+    compress: true,
+    overlay: {
+      errors: true
+    },
+    port: 3000,
+    host: '0.0.0.0',
+    disableHostCheck: true
+  }
+};
+
+
+
+module.exports = (userConfig) => {
+  
+  // Merge together the default webpack config + any overrides passed in
+  const config = merge(defaultConfig, userConfig);
+
+  if (config.exportSassData && !fs.existsSync(config.sassDataExportPath)) {
+    fs.mkdirp(config.sassDataExportPath);
+  }
 
   return config;
 };
