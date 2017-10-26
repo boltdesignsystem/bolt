@@ -22,7 +22,7 @@ function webpackTask(gulp, devConfig, releaseConfig) {
 
 
   gulp.task('webpack:dev', (done) => {
-    const compiler = getDevCompiler(devConfig);
+    const compiler = getDevCompiler(devConfig.webpack ? devConfig.webpack : devConfig);
     compiler.run((err, stats) => {
       handleWebpackOutput(err, stats);
       done();
@@ -31,7 +31,7 @@ function webpackTask(gulp, devConfig, releaseConfig) {
 
 
   gulp.task('webpack:prod', (done) => {
-    const compiler = getReleaseCompiler(releaseConfig);
+    const compiler = getReleaseCompiler(releaseConfig.webpack ? releaseConfig.webpack : releaseConfig);
     compiler.run((err, stats) => {
       handleWebpackOutput(err, stats);
       done();

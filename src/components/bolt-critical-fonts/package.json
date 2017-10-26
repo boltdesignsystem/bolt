@@ -32,6 +32,7 @@
   "main": "src/critical-fonts.js",
   "style": "src/critical-fonts.css",
   "scripts": {
-    "build": "webpack --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry critical-fonts=./src/critical-fonts"
+    "prepublish": "npm run build",
+    "build": "webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry critical-fonts=./src/critical-fonts"
   }
 }

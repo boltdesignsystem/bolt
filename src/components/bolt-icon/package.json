@@ -25,7 +25,25 @@
     "access": "public"
   },
   "dependencies": {
-    "@bolt/components-icons": "^0.1.0-alpha.0"
+    "@bolt/components-icons": "^0.1.0-alpha.0",
+    "npm-run-all": "^4.0.2",
+    "@webcomponents/custom-elements": "1.0.4",
+    "@webcomponents/shadycss": "^1.0.6",
+    "@webcomponents/shadydom": "^1.0.6",
+    "@webcomponents/template": "^1.1.0",
+    "@webcomponents/webcomponents-platform": "^1.0.0",
+    "@webcomponents/webcomponentsjs": "^1.0.14"
   },
-  "main": "dist/icon.min.js"
+  "devDependencies": {
+    "@bolt/build-webpack": "^0.3.0-alpha.0"
+  },
+  "main": "dist/bolt-icon.min.js",
+  "main:wwwd8": "dist/wwwd8/icon.min.js",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "npm-run-all --parallel build:*",
+    "copy:pl": "cp -r dist/* ../../../dist/scripts",
+    "build:bolt": "webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/icon --entry ./src/icon.standalone --output-filename='bolt-icon.min.js' --output-public-path /scripts/",
+    "build:wwwd8": "webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/icon --entry ./src/icon.standalone --output-filename='bolt-icon.wwwd8.min.js' --output-public-path /themes/custom/pegawww_theme/node_modules/@bolt/components-icon/dist/"
+  }
 }

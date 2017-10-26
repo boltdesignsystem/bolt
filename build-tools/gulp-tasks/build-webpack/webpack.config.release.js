@@ -39,15 +39,15 @@ module.exports = (options) => {
   // const WorkboxPlugin = require('workbox-webpack-plugin');
   
   const commonConfig = require('./webpack.config');
-  const releaseConfig = Object.create(commonConfig(options));
+  const releaseConfig = Object.create(commonConfig({
+    devtool: 'sourcemap'
+  }));
   
-  console.log(releaseConfig);
-  releaseConfig.devtool = 'sourcemap';
   
   releaseConfig.plugins = releaseConfig.plugins.concat(
-    new CleanWebpackPlugin([releaseConfig.output.path ? releaseConfig.output.path : ''], { 
+    new CleanWebpackPlugin([!process.env.cli && releaseConfig.output.path ? releaseConfig.output.path : ''], {
       verbose: true,
-      root: path.join(__dirname, '../', releaseConfig.output.path)
+      root: process.cwd() // set root context to wherever webpack is getting run (globally or at the component level)
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"'

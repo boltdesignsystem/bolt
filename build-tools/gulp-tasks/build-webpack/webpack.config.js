@@ -11,6 +11,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const pkg = require('./package.json');
 const ConcatPlugin = require('webpack-concat-plugin');
+const { CommonsChunkPlugin/*, UglifyJsPlugin*/ } = webpack.optimize;
 
 const isDev = process.argv.find(arg => arg.includes('webpack-dev-server'));
 const ENV = isDev ? 'development' : 'production';
@@ -19,23 +20,16 @@ const outputPath = isDev ? path.resolve('src') : path.resolve('./dist');
 
 const merge = require('merge').recursive;
 
-const BROWSERS = process.env.BROWSERS === 'module' ? ['last 2 Chrome versions', 'Safari 10'] : ['last 2 versions', 'not ie <= 11'];
-const IS_MODULE_BUILD = BROWSERS[0].includes('Chrome');
+
+// const IS_MODULE_BUILD = BROWSERS[0].includes('Chrome');
 const processEnv = {
-  NODE_ENV: JSON.stringify(ENV),
-  appVersion: JSON.stringify(pkg.version)
+  NODE_ENV: JSON.stringify(ENV)
+  // appVersion: JSON.stringify(pkg.version)
 };
 
 
-
-
-
-
+const sassDataExportPath = `${process.cwd()}/dist`;
 const defaultConfig = {
-  sassDataExportPath: `${process.cwd()}/dist/data`,
-  exportSassData: true,
-
-
   // entry: './src/index.js',
   entry: {
     'critical-fonts': './src/components/bolt-critical-fonts/src/critical-fonts',
@@ -81,7 +75,7 @@ const defaultConfig = {
       {
         test: /\.js$/,
         // exclude: /\.es6.js$/,
-        exclude: /(native-shim\.js|node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js|bower_components)/,
+        exclude: /(native-shim\.js|node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js|\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js|custom-elements-es5-adapter\.js|bower_components)/,
         use: {
           loader: 'babel-loader',
           options: {
@@ -170,7 +164,7 @@ const defaultConfig = {
             loader: 'sass-loader',
             options: {
               importer: require('npm-sass').importer,
-              functions: exportJson(this.sassDataExportPath, 'export_data'),
+              functions: exportJson(sassDataExportPath, 'export_data'),
               outputStyle: 'compressed',
               precision: 2
             }
@@ -214,7 +208,7 @@ const defaultConfig = {
               loader: 'sass-loader',
               options: {
                 importer: require('npm-sass').importer,
-                functions: exportJson(this.sassDataExportPath, 'export_data'),
+                functions: exportJson(sassDataExportPath, 'export_data'),
                 outputStyle: 'compressed',
                 precision: 2
               }
@@ -271,15 +265,17 @@ const defaultConfig = {
 };
 
 
+  
+
+
 
 module.exports = (userConfig) => {
-  
   // Merge together the default webpack config + any overrides passed in
-  const config = merge(defaultConfig, userConfig);
+  const config = merge(defaultConfig, userConfig, {});
 
-  if (config.exportSassData && !fs.existsSync(config.sassDataExportPath)) {
-    fs.mkdirp(config.sassDataExportPath);
-  }
+  // if (!fs.existsSync(config.sassDataExportPath)) {
+  //   fs.mkdirp(config.sassDataExportPath);
+  // }
 
   return config;
 };
