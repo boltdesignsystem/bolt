@@ -10,7 +10,7 @@
     "ui toolkit",
     "design system"
   ],
-  "version": "0.1.0-rc.0",
+  "version": "0.1.0-rc.1",
   "author": "Salem Ghoweri",
   "homepage": "https://boltdesignsystem.com",
   "license": "MIT",
@@ -25,8 +25,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@bolt/components-icons": "0.1.0-rc.0",
-    "@bolt/core": "0.0.1-rc.0",
+    "@bolt/components-icons": "0.1.0-rc.1",
+    "@bolt/core": "0.0.1-rc.1",
     "@webcomponents/custom-elements": "1.0.4",
     "@webcomponents/shadycss": "^1.0.6",
     "@webcomponents/shadydom": "^1.0.6",
@@ -36,13 +36,13 @@
     "npm-run-all": "^4.0.2"
   },
   "devDependencies": {
-    "@bolt/build-webpack": "0.3.0-rc.0"
+    "@bolt/build-webpack": "0.3.0-rc.1"
   },
   "main": "dist/bolt-icon.min.js",
   "style": "src/icon.scss",
   "main:wwwd8": "dist/wwwd8/icon.min.js",
   "scripts": {
-    "prepublish": "npm run build",
+    "prepublishOnly": "npm run build",
     "build": "npm-run-all --parallel build:*",
     "copy:pl": "cp -R dist/* ../../../dist/scripts",
     "build:bolt": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/icon.standalone --output-filename='bolt-icon.min.js' --output-public-path /scripts/",

@@ -9,7 +9,7 @@
     "component",
     "image"
   ],
-  "version": "0.2.0-rc.0",
+  "version": "0.2.0-rc.1",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -37,14 +37,14 @@
     "access": "public"
   },
   "dependencies": {
-    "@bolt/objects-ratio": "0.6.0-rc.0",
+    "@bolt/objects-ratio": "0.6.0-rc.1",
     "lazysizes": "^4.0.0-rc4"
   },
   "devDependencies": {
-    "@bolt/build-webpack": "0.3.0-rc.0"
+    "@bolt/build-webpack": "0.3.0-rc.1"
   },
   "scripts": {
-    "prepublish": "npm run build",
+    "prepublishOnly": "npm run build",
     "build": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/image --output-filename='bolt-image.min.js' --output-public-path /scripts/"
   }
 }

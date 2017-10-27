@@ -8,7 +8,8 @@
 
 import utils from '@bolt/core';
 const css = utils.css;
-const spacingSizes = utils.spacingSizes;
+const spacingSizes = utils.spacingSizes.sizes;
+
 
 import { props, withComponent, define } from 'skatejs';
 import withPreact from '@skatejs/renderer-preact';
@@ -58,7 +59,7 @@ export default class BoltIcon extends withComponent(withPreact()) {
     // const sizeNumber = cssClassForSize();
     const classes = css(
       'c-bolt-icon',
-      props.size && spacingSizes[props.size]  ? `c-bolt-icon--${props.size}` : `c-bolt-icon--medium`,
+      props.size && spacingSizes[props.size] && spacingSizes[props.size] !== ''  ? `c-bolt-icon--${props.size}` : `c-bolt-icon--medium`,
       props.name ? `c-bolt-icon--${props.name}` : '',
       props.background && backgroundStyles.includes(props.background) ? `c-bolt-icon--has-${props.background}-background` : ''
     );
