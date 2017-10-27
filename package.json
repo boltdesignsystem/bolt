@@ -20,7 +20,7 @@
     "clean:lighthouse": "rm *.report.html",
     "clean:all": "npm run clean:git && npm run clean:lerna",
     "lint": "npm-run-all --parallel lint:* -c",
-    "mocha": "npm run mocha:settings && npm run mocha:build-tools",
+    "mocha": "npm run mocha:build-tools",
     "mocha:build-tools": "mocha ./build-tools/**/tests/*.test.js",
     "mocha:settings": "mocha **/settings-*/tests/*.test.js",
     "deploy": "node build-tools/gulp-tasks/build-slack/index.js",
