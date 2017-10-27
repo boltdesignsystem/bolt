@@ -206,14 +206,15 @@
 //   --bolt-theme-text-button-color:  $bolt-theme-text-button-color;
 // }
 
-
-
-
 .t-bolt-xlight {
   $bolt-theme-background-color: bolt-color(white);
-  $bolt-theme-primary-color:    inherit;
-  $bolt-theme-primary-color--hover:  inherit;
-  $bolt-theme-primary-color--active:  inherit;
+  // $bolt-theme-primary-color:    inherit;
+  // $bolt-theme-primary-color--hover:  inherit;
+  // $bolt-theme-primary-color--active:  inherit;
+  $bolt-theme-primary-color:    bolt-color(indigo, light);
+  $bolt-theme-primary-color--hover:  #5764D9;
+  $bolt-theme-primary-color--active:  #535BA6;
+  $bolt-theme-primary-text: bolt-color(white);
 
 
   
@@ -239,6 +240,8 @@
   --bolt-theme-primary-color:     $bolt-theme-primary-color;
   --bolt-theme-primary-color--hover:     $bolt-theme-primary-color--hover;
   --bolt-theme-primary-color--active:     $bolt-theme-primary-color--active;
+
+  --bolt-theme-primary-text:     $bolt-theme-primary-text;
 
 
   --bolt-theme-secondary-color:     $bolt-theme-secondary-color;
@@ -275,9 +278,11 @@
   $bolt-theme-primary-color:    bolt-color(indigo, light);
   $bolt-theme-primary-color--hover:  #5764D9;
   $bolt-theme-primary-color--active:  #535BA6;
+  $bolt-theme-primary-text: bolt-color(white);
 
+
+  $bolt-theme-secondary-color:  bolt-color(indigo, light);
   
-  // $bolt-theme-secondary-color:  bolt-color(indigo, light);
   // $bolt-theme-secondary-color--hover:  #5764D9;
   // $bolt-theme-secondary-color--active:  #535BA6;
 
@@ -311,6 +316,9 @@
   --bolt-theme-primary-color--active:     $bolt-theme-primary-color--active;
 
 
+  --bolt-theme-primary-text:     $bolt-theme-primary-text;
+
+
   --bolt-theme-secondary-color:     $bolt-theme-secondary-color;
   --bolt-color-secondary:           $bolt-theme-secondary-color;
 
@@ -338,12 +346,13 @@
 
 .t-bolt-dark {
   $bolt-theme-background-color: bolt-color(indigo);
-  $bolt-theme-primary-color:    bolt-color(yellow);
-  $bolt-theme-primary-color--hover:  #5764D9;
-  $bolt-theme-primary-color--active:  #535BA6;
 
-  --bolt-primary-color--hover: #FFD466;
-  --bolt-primary-color--active: #FFC533;
+
+
+  $bolt-theme-primary-color:    bolt-color(yellow);
+  $bolt-theme-primary-color--hover:  #FFD466;
+  $bolt-theme-primary-color--active:  #FFC533;
+  $bolt-theme-primary-text: bolt-color(indigo);
 
 
 
@@ -368,6 +377,8 @@
   --bolt-theme-primary-color:     $bolt-theme-primary-color;
   --bolt-theme-primary-color--hover:     $bolt-theme-primary-color--hover;
   --bolt-theme-primary-color--active:     $bolt-theme-primary-color--active;
+
+  --bolt-theme-primary-text:     $bolt-theme-primary-text;
 
 
   --bolt-theme-secondary-color:     $bolt-theme-secondary-color;
@@ -396,9 +407,12 @@
 
 .t-bolt-xdark {
   $bolt-theme-background-color: bolt-color(indigo, dark);
-  $bolt-theme-primary-color:    bolt-color(indigo, light);
-  $bolt-theme-primary-color--hover:  #5764D9;
-  $bolt-theme-primary-color--active:  #535BA6;
+  
+  
+  $bolt-theme-primary-color:    bolt-color(yellow);
+  $bolt-theme-primary-color--hover:  #FFD466;
+  $bolt-theme-primary-color--active:  #FFC533;
+  $bolt-theme-primary-text: bolt-color(indigo);
 
 
   $bolt-theme-secondary-color:  bolt-color(white);
@@ -423,6 +437,8 @@
   --bolt-theme-primary-color:     $bolt-theme-primary-color;
   --bolt-theme-primary-color--hover:     $bolt-theme-primary-color--hover;
   --bolt-theme-primary-color--active:     $bolt-theme-primary-color--active;
+
+  --bolt-theme-primary-text:     $bolt-theme-primary-text;
 
 
   --bolt-theme-secondary-color:     $bolt-theme-secondary-color;

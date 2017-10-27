@@ -14,6 +14,7 @@ $bolt-color-primary: bolt-color(indigo, light);
 $bolt-color-secondary: bolt-color(indigo, light);
 
 
+
 $bolt-button-shadow: $bolt-shadow--small;
 $bolt-button-shadow--hover: $bolt-shadow--large;
 $bolt-button-border-width: $bolt-border-width;
@@ -58,7 +59,8 @@ $bolt-button-translate--active: $bolt-translate-none;
   @if $hiarchy == 'primary' {
     &,
     &:visited {
-      color: var(--bolt-color-button-text, $bolt-color-button-text);
+      color: #1F2555;
+      color: var(--bolt-theme-primary-text, $bolt-color-button-text);
       border-color: var(--bolt-color-primary, $bolt-color-primary);
       background-color: var(--bolt-color-primary, $bolt-color-primary);
     }
@@ -228,6 +230,7 @@ $bolt-button-translate--active: $bolt-translate-none;
   &:not([disabled]){
     &:hover, &:focus {
       transform: $bolt-button-translate--hover;
+      background-color: var(--bolt-theme-primary-color--hover);
 
       &:before {
         opacity: 1;
@@ -236,6 +239,7 @@ $bolt-button-translate--active: $bolt-translate-none;
 
     &:active {
       transform: $bolt-button-translate--active;
+      background-color: var(--bolt-theme-primary-color--active);
 
       &:before {
         opacity: 0;
@@ -259,6 +263,8 @@ bolt-button {
 .c-bolt-button,
 .c-bolt-button--primary {
   @include bolt-button-color(primary);
+
+  // --bolt-theme-primary-color:     $bolt-theme-primary-color;
 }
 
 .c-bolt-button--secondary {
