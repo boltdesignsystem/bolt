@@ -2,11 +2,28 @@
 import { props, withComponent, define } from 'skatejs';
 import withPreact from '@skatejs/renderer-preact';
 import { Preact } from 'preact';
-import StyledMixin from '../../../scripts/utils/styled-mixin.js';
 import css from '../../../scripts/utils/css.js';
+import styles from './icon.scss';
+
+
+// console.log(styles);
+// import StyledMixin from '../../../scripts/utils/styled-mixin.js';
+
+// const { ShadyCSS } = window;
+// const $template = Symbol();
+
+// function style(elem, css) {
+//   const template = elem[$template] || (elem[$template] = document.createElement('template'));
+//   template.innerHTML = `<style>${css}</style>`;
+//   ShadyCSS.prepareTemplate(template, elem.localName);
+//   return <style>{css}</style>;
+// }
+
+
+// import BoltComponent from './bolt-component';
 
 import upperCamelCase from 'uppercamelcase';
-import styles from './icon.scss';
+
 import { sizes as spacingSizes } from '../../../scripts/utils/spacing-sizes.js';
 import * as Icon from '../../bolt-icons/dist';
 
@@ -15,15 +32,11 @@ const backgroundStyles = [
 ];
 
 
-const Component = withComponent(withPreact());
+// const Component = withComponent(withPreact());
 
-export default class BoltIcon extends StyledMixin(Component) {
+export default class BoltIcon extends withComponent(withPreact()) {
   static get is() {
     return 'bolt-icon';
-  }
-
-  static get styleSheet() {
-    return styles;
   }
 
   static props = {
@@ -42,13 +55,16 @@ export default class BoltIcon extends StyledMixin(Component) {
     );
 
     const iconName = props.name ? upperCamelCase(props.name) : '';
-    const size = props.size && spacingSizes[props.size] ? spacingSizes[props.size] : spacingSizes['medium'];
+    const size = props.size && spacingSizes[props.size] ? (spacingSizes[props.size].replace('rem', '') * 16 / 2) : spacingSizes['medium'];
     const IconTag = Icon[iconName];
-  
+    
     return (
-      <IconTag className={classes} size={size} />
-    );
+      <div>
+        <style>{styles[0][1]}</style>
+        <IconTag className={classes} size={size} />
+      </div>
+    )
   }
 }
 
-define(BoltIcon);
+customElements.define('bolt-icon', BoltIcon);

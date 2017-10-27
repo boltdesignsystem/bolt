@@ -9,6 +9,7 @@ const MinusSolid = ({ color, size, ...otherProps }) => {
         <path
           d="M0,64a64,64 0 1,0 128,0a64,64 0 1,0 -128,0"
           class="c-bolt-icon--background c-bolt-icon--circle-background"
+          fill="none"
         />
         <circle
           cx="11"

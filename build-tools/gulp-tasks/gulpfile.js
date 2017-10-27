@@ -79,10 +79,10 @@ module.exports = (gulp) => {
   gulp.task('bolt:packages', symlinks.boltPackages());
 
 
-  gulp.task('symlinks', gulp.series([
-    'symlinks:clean',
-    'symlinks:create'
-  ]));
+  // gulp.task('symlinks', gulp.series([
+  //   'symlinks:clean',
+  //   'symlinks:create'
+  // ]));
 
   gulp.task('patternlab:compile', patternlab.compile());
   gulp.task('patternlab:recompile', patternlab.recompile());
@@ -132,7 +132,7 @@ module.exports = (gulp) => {
   gulp.task('default',
     gulp.series([
       gulp.series([
-        'symlinks',
+        // 'symlinks',
         'images:resize', // Don't wipe images unless doing a full build
         gutil.env.prod ? 'webpack:prod' : 'webpack:dev',
         'styles:compile'

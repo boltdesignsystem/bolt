@@ -18,7 +18,7 @@ patternStates:
 styleGuideExcludes: ''
 cacheBusterOn: 'true'
 exportDir: export
-publicDir: bolt-website
+publicDir: dist
 sourceDir: src
 defaultPattern: pages-bolt-homepage
 defaultShowPatternInfo: false
@@ -41,7 +41,7 @@ lineageMatch: >-
   |\()[&quot;\&#039;]([\/.@A-Za-z0-9-_]+)[&quot;\&#039;]([\s\S+]*?)%}
 lineageMatchKey: 3
 patternExtension: twig
-twigDebug: false
+twigDebug: true
 twigAutoescape: false
 twigDefaultDateFormat: ''
 twigDefaultIntervalFormat: ''
@@ -62,59 +62,59 @@ plugins:
     namespaces:
       bolt:
         paths:
-          - src/_patterns/00-utils
-          - src/_patterns/01-core/01-settings/settings-colors/demos
-          - src/_patterns/01-core/01-settings/settings-colors/src/twig
-          - src/_patterns/01-core/02-tools/tools-spacing/demos
-          - src/_patterns/01-core/04-elements/elements-headings
-          - src/_patterns/01-core/04-elements/elements-links
-          - src/_patterns/01-core/04-elements/elements-paragraphs
-          - src/_patterns/01-core/04-elements/elements-small
-          - src/_patterns/01-core/04-elements/elements-tables
-          - src/_patterns/01-core/05-objects/01-lists/bolt-bare-list/src
-          - src/_patterns/01-core/05-objects/01-lists/bolt-inline-list/src
-          - src/_patterns/01-core/05-objects/01-lists/bolt-ui-list/src
-          - src/_patterns/01-core/05-objects/02-layout/bolt-block/src
-          - src/_patterns/01-core/05-objects/02-layout/bolt-flag/src
-          - src/_patterns/01-core/05-objects/02-layout/bolt-grid
-          - src/_patterns/01-core/05-objects/02-layout/bolt-island/src
-          - src/_patterns/01-core/05-objects/02-layout/bolt-wrapper/src
-          - src/_patterns/01-core/05-objects/03-display/bolt-crop/src
-          - src/_patterns/01-core/05-objects/03-display/bolt-ratio/src
-          - src/_patterns/02-components/01-bolt-button/demos
-          - src/_patterns/02-components/01-bolt-button/src
-          - src/_patterns/02-components/02-bolt-button-group/src
-          - src/_patterns/02-components/03-bolt-ordered-list/demo/theming
-          - src/_patterns/02-components/03-bolt-ordered-list/src
-          - src/_patterns/02-components/04-bolt-unordered-list/demo/theming
-          - src/_patterns/02-components/04-bolt-unordered-list/src
-          - src/_patterns/02-components/bolt-action-blocks/demo/theming
-          - src/_patterns/02-components/bolt-action-blocks/src
-          - src/_patterns/02-components/bolt-background/demo
-          - src/_patterns/02-components/bolt-background/src
-          - src/_patterns/02-components/bolt-band/demo
-          - src/_patterns/02-components/bolt-band/src
-          - src/_patterns/02-components/bolt-blockquote/demo/theming
-          - src/_patterns/02-components/bolt-blockquote/src
-          - src/_patterns/02-components/bolt-card/demo
-          - src/_patterns/02-components/bolt-card/src
-          - src/_patterns/02-components/bolt-chip-list
-          - src/_patterns/02-components/bolt-chip/src
-          - src/_patterns/02-components/bolt-headline/demo
-          - src/_patterns/02-components/bolt-headline/demo/h1-through-h6
-          - src/_patterns/02-components/bolt-headline/src
-          - src/_patterns/02-components/bolt-icon/src
-          - src/_patterns/02-components/bolt-image/src
-          - src/_patterns/02-components/bolt-link
-          - src/_patterns/02-components/bolt-logo/src
-          - src/_patterns/02-components/bolt-page-footer/lib
-          - src/_patterns/02-components/bolt-page-footer/src
-          - src/_patterns/02-components/bolt-quote
-          - src/_patterns/02-components/bolt-teaser/src
-          - src/_patterns/03-templates/templates-default
-          - src/_patterns/04-pages/bolt-homepage
-          - src/_patterns/04-pages/d8-homepage
-          - src/_patterns/04-pages/d8-resource-details
+          - source/_patterns/00-utils
+          - source/_patterns/01-core/01-settings/settings-colors/demos
+          - source/_patterns/01-core/01-settings/settings-colors/src
+          - source/_patterns/01-core/02-tools/tools-spacing/demos
+          - source/_patterns/01-core/04-elements/elements-headings
+          - source/_patterns/01-core/04-elements/elements-links
+          - source/_patterns/01-core/04-elements/elements-paragraphs
+          - source/_patterns/01-core/04-elements/elements-small
+          - source/_patterns/01-core/04-elements/elements-tables
+          - source/_patterns/01-core/05-objects/bolt-bare-list-object/src
+          - source/_patterns/01-core/05-objects/bolt-block-object/src
+          - source/_patterns/01-core/05-objects/bolt-crop-object/src
+          - source/_patterns/01-core/05-objects/bolt-flag-object/src
+          - source/_patterns/01-core/05-objects/bolt-grid-object
+          - source/_patterns/01-core/05-objects/bolt-inline-list-object/src
+          - source/_patterns/01-core/05-objects/bolt-island-object/src
+          - source/_patterns/01-core/05-objects/bolt-ratio-object/src
+          - source/_patterns/01-core/05-objects/bolt-ui-list-object/src
+          - source/_patterns/01-core/05-objects/bolt-wrapper-object/src
+          - source/_patterns/02-components/bolt-accordion/src
+          - source/_patterns/02-components/bolt-action-blocks/src
+          - source/_patterns/02-components/bolt-background/demo
+          - source/_patterns/02-components/bolt-background/src
+          - source/_patterns/02-components/bolt-band/demo
+          - source/_patterns/02-components/bolt-band/src
+          - source/_patterns/02-components/bolt-blockquote/demo/theming
+          - source/_patterns/02-components/bolt-blockquote/src
+          - source/_patterns/02-components/bolt-button-group/src
+          - source/_patterns/02-components/bolt-button/demos
+          - source/_patterns/02-components/bolt-button/src
+          - source/_patterns/02-components/bolt-card/demo
+          - source/_patterns/02-components/bolt-card/src
+          - source/_patterns/02-components/bolt-chip-list
+          - source/_patterns/02-components/bolt-chip/src
+          - source/_patterns/02-components/bolt-headline/demo
+          - source/_patterns/02-components/bolt-headline/demo/h1-through-h6
+          - source/_patterns/02-components/bolt-headline/src
+          - source/_patterns/02-components/bolt-icon/src
+          - source/_patterns/02-components/bolt-image/src
+          - source/_patterns/02-components/bolt-link
+          - source/_patterns/02-components/bolt-logo/src
+          - source/_patterns/02-components/bolt-ordered-list/demo/theming
+          - source/_patterns/02-components/bolt-ordered-list/src
+          - source/_patterns/02-components/bolt-page-footer/lib
+          - source/_patterns/02-components/bolt-page-footer/src
+          - source/_patterns/02-components/bolt-quote
+          - source/_patterns/02-components/bolt-teaser/src
+          - source/_patterns/02-components/bolt-unordered-list/demo/theming
+          - source/_patterns/02-components/bolt-unordered-list/src
+          - source/_patterns/03-templates/default
+          - source/_patterns/04-pages/bolt-homepage
+          - source/_patterns/04-pages/d8-homepage
+          - source/_patterns/04-pages/d8-resource-details
     roots: {}
 ishMinimum: '240'
 ishMaximum: '2600'
