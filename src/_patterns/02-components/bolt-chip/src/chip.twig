@@ -1,18 +1,18 @@
+{# Sample Usage
+  {% include "@bolt/chip.twig" with {
+    text: "This is a chip",
+    url: "http://google.com"  // Optional; When url is present, tag changes to `a`, otherwise tag would be `span`.
+  } only %}
+#}
 
-{% set tags = ["span", "a"] %} {# Available Headline Types #}
+{% set tags = ["span", "a"] %} {# Available Chip Tags #}
 {% set prefix = "c-bolt-" %}
-{% set sizes = [
-  "small",
-  "medium",
-  "large",
-] %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
 
 
 {% set componentName = "chip" %}
 {% set baseClass = prefix ~ componentName %}
-{% set size = size | default("medium") %}
 
 {% if url %}
   {% set tag = "a" %}
@@ -22,9 +22,7 @@
 
 
 {% set classes = [
-  baseClass,
-  size in sizes ? baseClass ~ "--" ~ size : "",
-  style in styles ? baseClass ~ "--" ~ style : ""
+  baseClass
 ] %}
 
 
@@ -33,8 +31,8 @@
 {% endif %}
 
 
-<bolt-chip size="{{ size }}" bolt-component>
+<bolt-chip bolt-component>
   <{{ tag }} {{ attributes.addClass(classes | raw) }}>
-    <span class="{{ "#{baseClass}__text" }}">{{ text }}</span>
+    <span class="{{ "#{baseClass}__item-text" }}">{{ text }}</span>
   </{{ tag }}>
 </bolt-chip>

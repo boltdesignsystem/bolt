@@ -1,7 +1,79 @@
-.c-bolt-chip {
-  @include bolt-font-size(small);
-  @include bolt-padding(xsmall, squished);
-  border-radius: 4px;
-  background-color: bolt-color(gray, light);
+@import '@bolt/settings-global';
+@import '@bolt/settings-font-size';
+@import '@bolt/tools-font-size';
+@import '@bolt/tools-spacing';
+@import '@bolt/tools-color-palette';
+
+
+/* ------------------------------------ *\
+   Chips
+\* ------------------------------------ */
+
+// Sample Usage
+// <bolt-chip bolt-component="">
+//   <span class="c-bolt-chip">
+//     <span class="c-bolt-chip__item-text">This is a chip</span>
+//   </span>
+// </bolt-chip>
+
+
+// Chip Variables
+$bolt-chip-border-radius: 100em;
+$bolt-chip-color: var(--bolt-color-text-color); // TODO: Map this to theme text color when theming is done.
+$bolt-chip-background-color: rgba(bolt-color(gray), 0.22);
+$bolt-chip-background-color--hover: rgba(bolt-color(gray), 0.30);
+$bolt-chip-transition: $bolt-transition;
+
+
+// Base Chip Styles
+bolt-chip {
   display: inline-block;
+}
+
+.c-bolt-chip {
+  @include bolt-padding(small, squished);
+  @include bolt-font-size(xsmall);
+
+  display: inline-block;
+  display: inline-flex;
+  color: $bolt-chip-color;
+  border-radius: $bolt-chip-border-radius;
+  background-color: $bolt-chip-background-color;
+  transform: scale(1);
+  transition: all $bolt-chip-transition;
+
+  &:hover, &:focus {
+    background-color: $bolt-chip-background-color--hover;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+
+// Chip items
+.c-bolt-chip__item {
+  display: inline-block;
+  display: inline-flex;
+  align-self: center;
+}
+
+.c-bolt-chip__item-text + .c-bolt-chip__item-icon {
+  @include bolt-margin-left(xsmall);
+}
+
+.c-bolt-chip__item-icon {
+  width: 1em;
+  height: 1em;
+
+  svg {
+    width: 1em;
+    height: auto;
+    fill: currentColor;
+  }
+}
+
+.c-bolt-chip__item-icon + .c-bolt-chip__item-text {
+  @include bolt-margin-left(xsmall);
 }
