@@ -212,6 +212,11 @@
 .t-bolt-xlight {
   $bolt-theme-background-color: bolt-color(white);
   $bolt-theme-primary-color:    inherit;
+  $bolt-theme-primary-color--hover:  inherit;
+  $bolt-theme-primary-color--active:  inherit;
+
+
+  
   $bolt-theme-secondary-color:  inherit;
   $bolt-theme-text-color:       bolt-text-contrast($bolt-theme-background-color);
   $bolt-theme-heading-color:    inherit;
@@ -230,8 +235,10 @@
   --bolt-theme-text-color: $bolt-theme-text-color;
 
 
-  --bolt-theme-primary-color:     $bolt-theme-primary-color;
   --bolt-color-primary:           $bolt-theme-primary-color;
+  --bolt-theme-primary-color:     $bolt-theme-primary-color;
+  --bolt-theme-primary-color--hover:     $bolt-theme-primary-color--hover;
+  --bolt-theme-primary-color--active:     $bolt-theme-primary-color--active;
 
 
   --bolt-theme-secondary-color:     $bolt-theme-secondary-color;
@@ -258,10 +265,29 @@
   --bolt-theme-text-button-color:  $bolt-theme-text-button-color;
 }
 
+
+
+
+
 .t-bolt-light {
   $bolt-theme-background-color: bolt-color(gray, xlight);
+  
   $bolt-theme-primary-color:    bolt-color(indigo, light);
-  $bolt-theme-secondary-color:  bolt-color(indigo, light);
+  $bolt-theme-primary-color--hover:  #5764D9;
+  $bolt-theme-primary-color--active:  #535BA6;
+
+  
+  // $bolt-theme-secondary-color:  bolt-color(indigo, light);
+  // $bolt-theme-secondary-color--hover:  #5764D9;
+  // $bolt-theme-secondary-color--active:  #535BA6;
+
+//indigo states
+// --bolt-primary-color--hover: #;
+// --bolt-primary-color--active: #;
+
+
+//yellow states
+
   $bolt-theme-text-color:       bolt-text-contrast($bolt-theme-background-color);
   $bolt-theme-heading-color:    inherit;
   $bolt-theme-icon-color:       inherit;
@@ -279,8 +305,10 @@
   --bolt-theme-text-color: $bolt-theme-text-color;
 
 
-  --bolt-theme-primary-color:     $bolt-theme-primary-color;
   --bolt-color-primary:           $bolt-theme-primary-color;
+  --bolt-theme-primary-color:     $bolt-theme-primary-color;
+  --bolt-theme-primary-color--hover:     $bolt-theme-primary-color--hover;
+  --bolt-theme-primary-color--active:     $bolt-theme-primary-color--active;
 
 
   --bolt-theme-secondary-color:     $bolt-theme-secondary-color;
@@ -311,6 +339,14 @@
 .t-bolt-dark {
   $bolt-theme-background-color: bolt-color(indigo);
   $bolt-theme-primary-color:    bolt-color(yellow);
+  $bolt-theme-primary-color--hover:  #5764D9;
+  $bolt-theme-primary-color--active:  #535BA6;
+
+  --bolt-primary-color--hover: #FFD466;
+  --bolt-primary-color--active: #FFC533;
+
+
+
   $bolt-theme-secondary-color:  bolt-color(yellow);
   $bolt-theme-text-color:       bolt-text-contrast($bolt-theme-background-color);
   $bolt-theme-heading-color:    bolt-color(white);
@@ -328,8 +364,10 @@
   --bolt-theme-text-color: $bolt-theme-text-color;
 
 
-  --bolt-theme-primary-color:     $bolt-theme-primary-color;
   --bolt-color-primary:           $bolt-theme-primary-color;
+  --bolt-theme-primary-color:     $bolt-theme-primary-color;
+  --bolt-theme-primary-color--hover:     $bolt-theme-primary-color--hover;
+  --bolt-theme-primary-color--active:     $bolt-theme-primary-color--active;
 
 
   --bolt-theme-secondary-color:     $bolt-theme-secondary-color;
@@ -359,6 +397,10 @@
 .t-bolt-xdark {
   $bolt-theme-background-color: bolt-color(indigo, dark);
   $bolt-theme-primary-color:    bolt-color(indigo, light);
+  $bolt-theme-primary-color--hover:  #5764D9;
+  $bolt-theme-primary-color--active:  #535BA6;
+
+
   $bolt-theme-secondary-color:  bolt-color(white);
   $bolt-theme-text-color:       bolt-text-contrast($bolt-theme-background-color);
   $bolt-theme-heading-color:    bolt-color(white);
@@ -377,8 +419,10 @@
   --bolt-theme-text-color: $bolt-theme-text-color;
 
 
-  --bolt-theme-primary-color:     $bolt-theme-primary-color;
   --bolt-color-primary:           $bolt-theme-primary-color;
+  --bolt-theme-primary-color:     $bolt-theme-primary-color;
+  --bolt-theme-primary-color--hover:     $bolt-theme-primary-color--hover;
+  --bolt-theme-primary-color--active:     $bolt-theme-primary-color--active;
 
 
   --bolt-theme-secondary-color:     $bolt-theme-secondary-color;
