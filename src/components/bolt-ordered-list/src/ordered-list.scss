@@ -1,7 +1,4 @@
-/* ------------------------------------ *\
-   Ordered List
-\* ------------------------------------ */
-
+/*@import '@bolt/settings-global'; // [1] TODO: Comment out for now. Need to include only once.*/
 @import '@bolt/settings-colors';
 @import '@bolt/settings-font-size';
 @import '@bolt/settings-font-weight';
@@ -11,15 +8,45 @@
 @import '@bolt/tools-color-palette';
 
 
+
+
+/* ------------------------------------ *\
+   Ordered List
+\* ------------------------------------ */
+
+// Sample Usage
+// <bolt-ordered-list bolt-component>
+//   <ol class="c-bolt-ordered-list">
+//     <li class="c-bolt-ordered-list__item">
+//       Item 1
+//     </li>
+//     <li class="c-bolt-ordered-list__item">
+//       Item 2
+//     </li>
+//     <li class="c-bolt-ordered-list__item">
+//       Item 3
+//     </li>
+//   </ol>
+// </bolt-ordered-list>
+
+
+// Local Variables
 $bolt-ordered-list-bullet-size: $bolt-line-height--xsmall + rem;
+$bolt-ordered-list-bullet-text-color: var(--bolt-color-heading, bolt-color(indigo)); // TODO: refactor this after theming is done.
+$bolt-ordered-list-bullet-bg-color: rgba(bolt-color(gray), 0.2);
 
 
+// Register Custom Block Element
+@include bolt-register-element('bolt-ordered-list', 'block'); /* [1] */
+
+
+// Styles
 .c-bolt-ordered-list {
-  @include bolt-margin-left(0);
+  @include bolt-margin(0);
   @include bolt-padding(0);
 
   list-style: none;
-  counter-reset: li;
+  counter-reset: list-item;
 }
 
 .c-bolt-ordered-list__item {
@@ -27,24 +54,27 @@ $bolt-ordered-list-bullet-size: $bolt-line-height--xsmall + rem;
   @include bolt-padding(0);
 
   position: relative;
-  counter-increment: li;
+  counter-increment: list-item;
 
   &:before {
     @include bolt-font-size(xsmall);
     @include bolt-font-weight(bold);
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
     position: absolute;
     top: 0.125em;
     left: bolt-spacing(medium) * -1;
     width: $bolt-ordered-list-bullet-size;
     height: $bolt-ordered-list-bullet-size;
-    content: counter(li);
-    color: var(--bolt-color-heading, bolt-color(indigo)); // TODO: refactor this after theming is done.
+    content: counter(list-item);
+    color: $bolt-ordered-list-bullet-text-color;
     text-align: center;
+    line-height: $bolt-ordered-list-bullet-size;
     border-radius: $bolt-ordered-list-bullet-size;
-    background-color: rgba(bolt-color(gray), 0.2);
+    background-color: $bolt-ordered-list-bullet-bg-color;
+  }
+
+  &:last-child {
+    @include bolt-margin-bottom(0);
   }
 }

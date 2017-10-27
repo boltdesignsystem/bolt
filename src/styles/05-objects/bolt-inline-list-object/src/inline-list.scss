@@ -1,12 +1,19 @@
-/**
- * The inline-list object simply displays a list of items in one line.
- */
 @import '@bolt/tools-spacing';
+
+
+/* ------------------------------------ *\
+   Inline List:
+
+   The inline-list object simply
+   displays a list of items in
+   one line.
+\* ------------------------------------ */
 
 // Predefine the variables below in order to alter and enable specific features.
 $bolt-inline-list-delimit-character:   '|' !default;
 
 
+// Base Inline List Styles
 bolt-inline-list {
   display: block;
 
@@ -17,6 +24,8 @@ bolt-inline-list {
 
 .o-bolt-inline-list {
   display: block;
+  display: flex;
+  flex-wrap: wrap;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -24,27 +33,21 @@ bolt-inline-list {
 
 // .o-bolt-inline-list--matrix {
 //   margin-bottom: bolt-v-spacing(medium) * -1;
-
 //   > .o-bolt-inline-list__item {
 //     @include bolt-margin-bottom(small);
 //     display: inline-block;
 //   }
 // }
 
-.o-bolt-inline-list__item {
-  // @include bolt-font-size(medium);
-  display: inline-block;
 
-  &:before {
-    display: inline-block;
-    margin-left: -5px; // Workaround to remove extra inline-block whitespace + negate delimeter width
-    letter-spacing: bolt-spacing(medium) * -1;
-  }
+// Inline List Item
+.o-bolt-inline-list__item {
+  display: inline-block;
+  display: inline-flex;
 }
 
 
-
-
+// Inline List Delimited
 .o-bolt-inline-list--delimited > .o-bolt-inline-list__item:not(:first-child):before {
   display: inline-block;
   color: bolt-color(gray, light);
@@ -53,11 +56,8 @@ bolt-inline-list {
 }
 
 
-// .o-bolt-inline-list--xsmall > .o-bolt-inline-list__item:not(:first-child):before {
-//   @include bolt-margin-left(xsmall);
-//   @include bolt-margin-right(xsmall);
-// }
-.o-bolt-inline-list--small {
+// Inline List Spacing
+.o-bolt-inline-list--xsmall {
   margin-left: bolt-spacing(xsmall) * -1;
 
   &.o-bolt-inline-list--matrix {
@@ -77,7 +77,27 @@ bolt-inline-list {
   }
 }
 
-.o-bolt-inline-list--large {
+.o-bolt-inline-list--small {
+  margin-left: bolt-spacing(small) * -1;
+
+  &.o-bolt-inline-list--matrix {
+    margin-bottom: bolt-v-spacing(small) * -1;
+
+    > .o-bolt-inline-list__item {
+      margin-bottom: bolt-v-spacing(small);
+    }
+  }
+
+  > .o-bolt-inline-list__item {
+    padding-left: bolt-spacing(small);
+
+    &:before {
+      margin-right: bolt-spacing(small);
+    }
+  }
+}
+
+.o-bolt-inline-list--medium {
   margin-left: bolt-spacing(medium) * -1;
 
   &.o-bolt-inline-list--matrix {
@@ -96,15 +116,6 @@ bolt-inline-list {
     margin-left: bolt-spacing(medium);
   }
 }
-// .o-bolt-inline-list--medium > .o-bolt-inline-list__item:before {
-//   margin-left: bolt-spacing(small) / 2;
-//   margin-right: bolt-spacing(small) / 2;
-// }
-
-// .o-bolt-inline-list--large > .o-bolt-inline-list__item:before {
-//   margin-left: bolt-spacing(medium) / 4;
-//   margin-right: bolt-spacing(medium) / 4;
-// }
 
 
 // /**

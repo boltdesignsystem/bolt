@@ -21,7 +21,7 @@
   baseClass
 ] %}
 
-<bolt-blockquote bolt-component>
+<bolt-{{ componentName }} bolt-component>
   <blockquote {{ attributes.addClass(classes) }}>
     <div class="{{ "#{baseClass}__quote" }}">
       {% block blockquote_quote %}
@@ -60,4 +60,4 @@
       {% endblock %}
     {% endif %}
   </blockquote>
-</bolt-blockquote>
+</bolt-{{ componentName }}>

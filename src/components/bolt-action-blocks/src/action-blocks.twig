@@ -1,37 +1,70 @@
 {# Sample Usage
   {% include "@bolt/action-blocks.twig" with {
+    maxItemsPerRow: 3,  // Optional [2 ~ 12]. Default is 3.
+    align: "top",       // Optional [top, center, bottom]. Default is top.
+    border: true,       // Optional [show, hide]. Default shows borders, but you can turn them off.
     contentItems: [
       {
-        icon: "icon-name",
         text: "Item 1",
-        url: "http://google.com"
+        url: "http://google.com",
+        icon: {
+          name: "icon-name",
+          size: "large",
+          background: "circle"
+        }
       },
       {
-        icon: "icon-name",
         text: "Item 2",
-        url: "http://google.com"
+        url: "http://google.com",
+        icon: {
+          name: "icon-name",
+          size: "large",
+          background: "circle"
+        }
       },
       {
-        icon: "icon-name",
         text: "Item 3",
-        url: "http://google.com"
+        url: "http://google.com",
+        icon: {
+          name: "icon-name",
+          size: "large",
+          background: "circle"
+        }
       }
     ]
   } only %}
 #}
 
+
 {% set prefix = "c-bolt-" %}
 
+{% set minItems = 2 %}
+{% set maxItems = 12 %}
+{% set defaultItems = 6 %}
+
+{% set alignments = {
+  "top": "start",
+  "center": "center",
+  "bottom": "end"
+} %}
+
 {% set attributes = create_attribute(attributes|default({})) %}
+
 
 {% set componentName = "action-blocks" %}
 {% set baseClass = prefix ~ componentName %}
 {% set componentItemName = "action-block" %}
 {% set itemClass = prefix ~ componentItemName %}
+{% set maxItemsPerRow = maxItemsPerRow >= minItems and maxItemsPerRow <= maxItems ? maxItemsPerRow : defaultItems %}
+{% set align = align | default("top") %}
+{% set border = border == false and border is not null ? "false" : "true" %}
 
 
 {% set classes = [
-  baseClass
+  baseClass,
+  maxItemsPerRow ? baseClass ~ "--item-max-" ~ maxItemsPerRow : "",
+  align in alignments|keys ? baseClass ~ "--vertical-align-" ~ alignments[align],
+  border == "true" ? baseClass ~ "--bordered" : baseClass ~ "--borderless"
 ] %}
 
 
@@ -48,4 +81,3 @@
     {% endif %}
   </ul>
 </bolt-{{ componentName }}>
-

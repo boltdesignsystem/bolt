@@ -1,8 +1,12 @@
 {# Sample Usage
   {% include "@bolt/action-block.twig" with {
-    icon: "icon-name",
-    text: "Block Text",
-    url: "http://google.com"
+    text: "Title",
+    url: "http://google.com",
+    icon: {
+      name: "icon-name",
+      size: "large",
+      background: "circle"
+    }
   } only %}
 #}
 
@@ -26,7 +30,7 @@
     {% if icon %}
       <div class="{{ "#{baseClass}__item" }}">
         {% set icon = icon | merge({
-          size: size | default("xlarge")
+          size: icon.size | default("xlarge")
         }) %}
         {% include "@bolt/icon.twig" with icon only %}
       </div>
