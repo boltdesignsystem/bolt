@@ -11,7 +11,7 @@ $bolt-test-transition: ease-in-out 200ms;
 
 
 
-$bolt-headline--minus-letter-spacing: -0.025rem;
+$bolt-headline--minus-letter-spacing: -0.05rem;
 $bolt-headline--plus-letter-spacing: 0.05rem;
 
 
@@ -58,6 +58,10 @@ a {
   > * {
     display: inline-flex;
     align-self: baseline;
+
+    & + * {
+      @include bolt-margin-left(small);
+    }
   }
 }
 
@@ -98,12 +102,6 @@ a {
 
 // Headline content
 
-.c-bolt-headline__text {
-  ~ .c-bolt-headline__icon {
-    @include bolt-margin-left(small);
-  }
-}
-
 .c-bolt-headline__icon {
   width: 0.75em;
   height: 0.75em;
@@ -111,15 +109,15 @@ a {
   svg {
     width: 1em;
     height: auto;
+    /* stylelint-disable-next-line scale-unlimited/declaration-strict-value */
     fill: currentColor;
-  }
-
-  ~ .c-bolt-headline__text {
-    @include bolt-margin-left(small);
   }
 }
 
 .c-bolt-headline__line {
+  @include bolt-margin-top(0);
+  @include bolt-margin-bottom(0);
+
   flex: 1 0 1rem;
   align-self: center;
   height: 1px;
@@ -128,14 +126,6 @@ a {
   /* stylelint-disable-next-line scale-unlimited/declaration-strict-value */
   background-color: currentColor;
   opacity: 0.2;
-
-  &:first-child {
-    @include bolt-margin(0 small 0 0);
-  }
-
-  &:last-child {
-    @include bolt-margin(0 0 0 small);
-  }
 }
 
 
@@ -258,4 +248,40 @@ a {
 
 .c-bolt-text--semibold {
   @include bolt-font-weight(semibold);
+}
+
+
+
+
+
+// Quote option.
+
+.c-bolt-text--bold .c-bolt-text__quote,
+.c-bolt-headline__quote {
+  &:first-child {
+    text-indent: -0.5em;
+  }
+}
+
+.c-bolt-text:not(.c-bolt-text--bold) .c-bolt-text__quote,
+.c-bolt-eyebrow__quote,
+.c-bolt-subheadline__quote {
+  &:first-child {
+    text-indent: -0.35em;
+  }
+}
+
+.c-bolt-text__quote,
+.c-bolt-eyebrow__quote,
+.c-bolt-headline__quote,
+.c-bolt-subheadline__quote {
+  display: block;
+
+  &:before {
+    content: '\201C';
+  }
+
+  &:after {
+    content: '\201D';
+  }
 }
