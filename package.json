@@ -32,7 +32,7 @@
     "test:travis": "yarn pretest && yarn lint",
     "test:lighthouse": "concurrently --kill-others \"http-server dist\" \"lighthouse --view http://localhost:8080\" ",
     "test:full": "yarn lint:scss && polymer test && yarn test:lighthouse && yarn lint:remark && npm run mocha",
-    "test": "polymer test && yarn test:lighthouse",
+    "test": "",
     "test:ci": "node browserstack.js",
     "pretest": "node build-tools/scripts/check-imports.js"
   },
