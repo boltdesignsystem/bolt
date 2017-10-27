@@ -1,10 +1,10 @@
 {% extends "@bolt/card.twig" %}
 
 {% if image %}
-  {% set items = items | default([]) | merge([{
-    "pattern": "image",
-    "src": image.src
-  }]) %}
+  {% set image = image | merge({
+    pattern: 'image'
+  }) %}
+  {% set items = items | default([]) | merge([image]) %}
 {% endif %}
 
   
@@ -17,7 +17,7 @@
        }) %}
     {% endif %}
 
-    {% include "@bolt/teaser.twig" with cardBodyContent only %}
+    {% include pattern_template('teaser') with cardBodyContent only %}
   {% endif %}
 {% endblock %}
 
