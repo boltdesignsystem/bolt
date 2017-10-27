@@ -12,18 +12,18 @@
   } only %}
 {% endmacro %}
 {% import _self as bolt %}
-  
+
 
       {% grid "o-bolt-grid--center o-bolt-grid--large o-bolt-grid--matrix o-bolt-grid--rev" %}
-        
+
         {# TODO: check if image exists #}
         {% cell 'u-bolt-width-1/1 u-bolt-width-5/12@medium' %}
           {% include "@bolt/image.twig" with {
             src: "/images/sample/anthem-video.jpg"
           } only %}
         {% endcell %}
-        
-        
+
+
         {% cell 'u-bolt-width-1/1 u-bolt-width-7/12@medium' %}
 
           {% include "@bolt/eyebrow.twig" with {
@@ -47,18 +47,18 @@
               }
             ]
           } only %}
-          
+
           {% include "@bolt/button.twig" with {
             text: "Download Now",
             url: "https://www.pega.com/download-now",
             style: "primary"
           } only %}
 
-          
+
         {% endcell %}
 
-        
-          
+
+
       {% endgrid %}
 
   {% endblock %}
@@ -73,16 +73,8 @@
 } %}
   {% block band_content %}
 
-
-  
-
-    {% grid "o-bolt-grid--center" %}
-      {% cell 'u-bolt-width-1/1' %}
-      
-      {% embed "@bolt/wrapper.twig" with {
-        size: "medium"
-      } only %}
-      {% block wrapper_content %}
+    {% grid %}
+      {% cell 'u-bolt-width-1/1 u-bolt-width-9/12@medium' %}
 
         {% include "@bolt/subheadline.twig" with {
           text: "The foundational use cases that are unifying the worlds of adtech and martech.",
@@ -111,7 +103,7 @@
           size: "small",
           transform: "uppercase"
         } only %}
-      
+
         {% include "@bolt/chip-list.twig" with {
           "contentItems": [
             {
@@ -132,8 +124,6 @@
             }
           ]
         } %}
-        {% endblock wrapper_content %}
-      {% endembed %}
 
       {% endcell %}
     {% endgrid %}
@@ -145,16 +135,10 @@
 
 
 {% embed "@bolt/band.twig" with {
-  theme: "light",
-  size: "small"
+  theme: "light"
 } %}
   {% block band_content %}
 
-  {% embed "@bolt/wrapper.twig" with {
-    size: "medium"
-  } only %}
-    {% block wrapper_content %}
-    
     {% include "@bolt/headline.twig" with {
       text: "Related resources",
       size: "xlarge",
@@ -235,9 +219,6 @@
 
       {% endcell %}
     {% endgrid %}
-
-    {% endblock wrapper_content %}
-  {% endembed %}
 
   {% endblock %}
 {% endembed %}
