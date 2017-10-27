@@ -52,6 +52,7 @@
   "jsnext:main": "dist/index.es6.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "npm run build",
     "build": "node ./build-icons.js && babel src --out-dir dist --ignore src/svgs"
   }
 }

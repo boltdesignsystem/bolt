@@ -1,8 +1,16 @@
+// import css from '../../../scripts/utils/css.js';
+// import { sizes as spacingSizes } from '../../../scripts/utils/spacing-sizes.js';
+
+import {
+  css,
+  sizes as spacingSizes
+} from '@bolt/core';
+
+
 
 import { props, withComponent, define } from 'skatejs';
 import withPreact from '@skatejs/renderer-preact';
 import { Preact } from 'preact';
-import css from '../../../scripts/utils/css.js';
 import styles from './icon.scss';
 
 
@@ -24,8 +32,7 @@ import styles from './icon.scss';
 
 import upperCamelCase from 'uppercamelcase';
 
-import { sizes as spacingSizes } from '../../../scripts/utils/spacing-sizes.js';
-import * as Icon from '../../bolt-icons/dist';
+import * as Icon from '@bolt/components-icons/dist';
 
 const backgroundStyles = [
   'circle'
