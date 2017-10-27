@@ -29,11 +29,15 @@ glob(`${rootDir}/src/svgs/**/*.svg`, (err, icons) => {
     svgo.optimize(svg, function (result) {
       
       const optimizedSVG = result.data;
-      const id = path.basename(i, '.svg');
+      let id = path.basename(i, '.svg');
+      id = id.replace(' ', '-');
+
       const $ = cheerio.load(optimizedSVG, {
         xmlMode: true,
       });
-      let fileName = path.basename(i).replace('.svg', '.js');
+
+      let fileName = path.basename(i);
+      fileName = fileName.replace('.svg', '.js');
       fileName = fileName.replace(' ', '-');
       const location = path.join(rootDir, 'src/icons', fileName);
 

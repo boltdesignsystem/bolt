@@ -1,12 +1,14 @@
 // import css from '../../../scripts/utils/css.js';
 // import { sizes as spacingSizes } from '../../../scripts/utils/spacing-sizes.js';
 
-import {
-  css,
-  sizes as spacingSizes
-} from '@bolt/core';
+// import {
+//   css,
+//   sizes as spacingSizes
+// } from '@bolt/core';
 
-
+import utils from '@bolt/core';
+const css = utils.css;
+const spacingSizes = utils.spacingSizes;
 
 import { props, withComponent, define } from 'skatejs';
 import withPreact from '@skatejs/renderer-preact';

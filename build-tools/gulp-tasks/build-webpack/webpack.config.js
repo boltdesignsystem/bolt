@@ -32,7 +32,7 @@ const sassDataExportPath = `${process.cwd()}/dist`;
 const defaultConfig = {
   // entry: './src/index.js',
   entry: {
-    'critical-fonts': './src/components/bolt-critical-fonts/src/critical-fonts',
+    'critical-fonts': './src/_patterns/02-components/bolt-critical-fonts/src/critical-fonts',
 
     // './src/components/bolt-icon/dist/icon': [
     //   // './src/scripts/native-shim.js', //Wrapper for custom-elements-es5-adapter.js so this doesn't break in other browsers like IE11

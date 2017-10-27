@@ -16,14 +16,14 @@ module.exports = {
   ],
   patternLab: {
     enabled: true,
-    configFile: '.pattern-lab/config/config.yml',
+    configFile: 'config/config.yml',
     twigNamespaces: {
       addToDrupalThemeFile: true,
       sets: [
         {
           namespace: 'bolt',
           paths: [
-            '.pattern-lab/source/_patterns'
+            'src/_patterns'
           ]
         }
       ]

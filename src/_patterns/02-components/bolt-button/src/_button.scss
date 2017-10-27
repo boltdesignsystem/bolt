@@ -68,11 +68,14 @@ $bolt-button-translate--active: $bolt-translate-none;
     &:hover {
       border-color: var(--bolt-color-primary, mix(white, $bolt-color-primary, 15%));
       background-color: var(--bolt-color-primary, mix(white, $bolt-color-primary, 15%));
+      background-color: var(--bolt-theme-primary-color--hover);
+      
     }
 
     &:active {
       border-color: var(--bolt-color-primary, mix(black, $bolt-color-primary, 25%));
       background-color: var(--bolt-color-primary, mix(black, $bolt-color-primary, 25%));
+      background-color: var(--bolt-theme-primary-color--active);
     }
   }
 
@@ -230,8 +233,6 @@ $bolt-button-translate--active: $bolt-translate-none;
   &:not([disabled]){
     &:hover, &:focus {
       transform: $bolt-button-translate--hover;
-      background-color: var(--bolt-theme-primary-color--hover);
-
       &:before {
         opacity: 1;
       }
@@ -239,7 +240,7 @@ $bolt-button-translate--active: $bolt-translate-none;
 
     &:active {
       transform: $bolt-button-translate--active;
-      background-color: var(--bolt-theme-primary-color--active);
+      
 
       &:before {
         opacity: 0;
