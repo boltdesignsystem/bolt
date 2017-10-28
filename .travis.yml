@@ -57,7 +57,8 @@ install:
 # - gem install --file packages/website-jekyll/Gemfile
 
 script:
-- npm run test && npm run build
+- npm run test
+- travis_wait npm run build
 
 after_success:
 - npm run deploy
