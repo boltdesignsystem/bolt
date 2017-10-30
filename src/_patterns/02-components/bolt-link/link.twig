@@ -25,13 +25,8 @@
     {{ link.text | default(label) | default("Learn More") }}
   </span>
     
-  {% if icon.name %}
-    {% include "@atoms/icons/icon.twig" with {
-      "icon": {
-        name: icon.name,
-        attributes: icon.attributes
-      }
-    } %}
+  {% if icon %}
+    {% include "@bolt/icon.twig" with icon only %}
   {% endif %}
   
   </a>

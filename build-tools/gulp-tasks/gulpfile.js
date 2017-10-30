@@ -8,6 +8,7 @@ const webpackTask = require('./build-webpack');
 const icons = require('./build-icons');
 const images = require('./build-images');
 const gutil = require('gulp-util');
+const rimraf = require('rimraf');
 // const cache = require('gulp-cached');
 // const remember = require('gulp-remember');
 // const changed = require('gulp-changed');
@@ -87,6 +88,7 @@ module.exports = (gulp) => {
   gulp.task('patternlab:compile', patternlab.compile());
   gulp.task('patternlab:recompile', patternlab.recompile());
   gulp.task('patternlab:watch', patternlab.watch());
+  gulp.task('patternlab:manifest', patternlab.manifest());
 
 
   const browserSyncServer = server();
@@ -158,6 +160,44 @@ module.exports = (gulp) => {
     ])
   );
 
+
+  gulp.task('copy', function(done) {
+    // rimraf('tmp', function(){
+      return gulp.src(['src/_patterns/**', 
+        // '!src/**/node_modules',
+        // '!src/**/yarn.lock',
+        // '!src/images/**',
+        // '!src/styles/**',
+        // '!src/scripts/**',
+        // '!src/assets/**',
+        // // '!src/**/*.'
+        // '!src/**/package-lock.json',
+        // '!src/**/package.json',
+        '!src/**/node_modules/**',
+        // '!src/**/*.scss',
+        // '!src/_patterns/**/*.js',
+        // '!src/_patterns/**/*.svg',
+        // '!src/config-presets',
+        // '!src/images',
+        // '!src/scripts',
+        // '!src/styles',
+        // '!src/**/dist/**',
+        // '!src/node_modules',
+        // '!src/node_modules/**'
+      ], {
+        nodir: true
+      })
+        .pipe(gulp.dest('tmp'));
+    // });
+  });
+
+
+  gulp.task('build:full',
+    gulp.series([
+      'patternlab:manifest', //Generate new PL manifest yaml file, but only during full builds 
+      'build'
+    ])
+  );
 
   // const flatten = require('gulp-flatten');
   // const globby = require('globby');

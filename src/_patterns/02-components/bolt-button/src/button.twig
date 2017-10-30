@@ -55,5 +55,12 @@
   bolt-component>
   <{{ tag }} {{ attributes.addClass(classes | raw) }}>
     <span class="{{ "#{baseClass}__item #{baseClass}__item-text" }}">{{ text }}</span>
+
+    {% if icon %}
+      <span class="{{ "#{baseClass}__icon" }}">
+        {% include "@bolt/icon.twig" with icon only %}
+      </span>
+    {% endif %}
+
   </{{ tag }}>
 </bolt-button>

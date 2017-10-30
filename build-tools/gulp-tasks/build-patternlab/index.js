@@ -129,14 +129,11 @@ function addTwigNamespaceConfigToDrupal(done) {
   }
 }
 
+
 function addTwigNamespaceConfigToPl(done) {
   const config = defaultConfig;
   const twigNamespaceConfig = getTwigNamespaceConfig(patternLabRoot);
 
-  const twigManifestConfig = createTwigManifest(patternLabRoot);
-  // plConfig = yaml.safeLoad(
-  //   fs.readFileSync(config.configFile, 'utf8')
-  // );
   if (!patternLabConfig.plugins) {
     Object.assign(patternLabConfig, {
       plugins: {
@@ -156,25 +153,20 @@ function addTwigNamespaceConfigToPl(done) {
 
   Object.assign(patternLabConfig.plugins.twigNamespaces.namespaces, twigNamespaceConfig);
 
-  const newManifestFile = yaml.safeDump(twigManifestConfig, {
-    noCompatMode: true
-  });
-
   const newConfigFile = yaml.safeDump(patternLabConfig, {
     noCompatMode: true
   });
 
   fs.writeFileSync(defaultConfig.patternLab.configFile, newConfigFile, 'utf8');
-  fs.writeFileSync(config.manifestFile, newManifestFile, 'utf8');
-
-  done();
+  
+  // done();
 }
 
 core.events.on('pattern-lab:precompile', () => {
   if (patternLabConfig.plugins.twigNamespaces) {
-    addTwigNamespaceConfigToPl(() => {
-      addTwigNamespaceConfigToDrupal(() => {});
-    });
+    addTwigNamespaceConfigToPl();
+    // updateTwigManifest();
+    // addTwigNamespaceConfigToDrupal();
   }
 });
 
@@ -228,3 +220,27 @@ function watchPatternLab(userConfig) {
   return watchPatternLabTask;
 }
 module.exports.watch = watchPatternLab;
+
+
+// Update Twig Manifest PL references for dynamic template includes
+function updateTwigManifest(userConfig) {
+  const config = merge(defaultConfig, userConfig);
+
+  function updateTwigManifestTask(done) {
+    
+    const twigManifestConfig = createTwigManifest(patternLabRoot);
+
+    const newManifestFile = yaml.safeDump(twigManifestConfig, {
+      noCompatMode: true
+    });
+
+    fs.writeFileSync(config.manifestFile, newManifestFile, 'utf8');
+
+    done();
+  }
+
+  updateTwigManifestTask.description = 'Update manifest of Twig templates referenced by Pattern Lab';
+  updateTwigManifestTask.displayName = 'patternlab:manifest';
+  return updateTwigManifestTask;
+}
+module.exports.manifest = updateTwigManifest;
