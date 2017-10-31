@@ -33,8 +33,8 @@
   {% set gcd = gcd | escape | raw | number_format %}
   
   {% if gcd != 0 and height != 0 and width != 0 %}
-    {% set imageHeightRatio = (height / gcd) | round %}
-    {% set imageWidthRatio = (width / gcd) | round %}
+    {% set imageHeightRatio = (height / gcd) %}
+    {% set imageWidthRatio = (width / gcd) %}
   {% else %}
     {% set imageHeightRatio = 1 %}
     {% set imageWidthRatio = 1 %}
