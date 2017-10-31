@@ -1,0 +1,44 @@
+@import '@bolt/settings-global';
+@import '@bolt/settings-colors';
+@import '@bolt/tools-color-palette';
+
+
+
+
+/* ------------------------------------ *\
+   Link
+\* ------------------------------------ */
+
+
+// Local Variables
+$bolt-link-color: var(--bolt-color-secondary, bolt-color(indigo, light));
+$bolt-link-transition: $bolt-transition;
+
+
+// Styles
+.c-bolt-link {
+  color: $bolt-link-color;
+  text-decoration: underline;
+  transition: all $bolt-link-transition;
+
+  &:visited {
+    color: $bolt-link-color; // TODO: TBD, okay for the moment.
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    color: $bolt-link-color; // TODO: TBD, okay for the moment.
+  }
+}
+
+
+// Link items
+.c-bolt-link__item {
+  display: inline-block;
+  display: inline-flex;
+  align-self: center;
+  vertical-align: middle;
+}
