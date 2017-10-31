@@ -7,6 +7,8 @@
 
     <link rel="stylesheet" href="../../../styles/bolt.css?{{ cacheBuster }}" media="all" />
     
+    
+    <meta name="bolt-javascript-path"  content="/vendor/">
 
     {# Inline Critical Font-specific CSS automatically #}
     <style>
@@ -14,11 +16,9 @@
     </style>
 
 
-    
-
     {# Inline Critical JS automatically using references to the file manifest webpack generates #}
     <script>
-    {{ inline("_patterns/02-components/bolt-critical-fonts/dist/critical-fonts.min.js", "/src/") }}
+    {{ inline("scripts/bolt-critical-path.min.js", "/dist/") }}
     </script>
 
     <!-- Begin Pattern Lab (Required for Pattern Lab to run properly) -->

@@ -54,6 +54,8 @@
 }
 
 
+$bolt-export-data: true !default; // switch to globally enable / disable exporting JSON data - enabled by default.
+
 @function bolt-export-data(
   $filename,
   $map,
@@ -61,20 +63,18 @@
   $suffix: '',
   $extend: false
 ) {
-  $sass-map: bolt-normalize-data($map, $map);
-
-  $sass-map: export_data(
-    $filename,
-    $sass-map,
-    (
-      prefix: $prefix,
-      suffix: $suffix,
-      extend: $extend
-    )
-  );
-
-  // $json-colors: bolt-normalize-data($palettes, $palettes);
-  // $json-colors: jsonexport('colors.sass.json', $json-colors);
+  @if ($bolt-export-data) {
+    $sass-map: bolt-normalize-data($map, $map);
+    $sass-map: export_data(
+      $filename,
+      $sass-map,
+      (
+        prefix: $prefix,
+        suffix: $suffix,
+        extend: $extend
+      )
+    );
+  }
 
   @return $map;
 }

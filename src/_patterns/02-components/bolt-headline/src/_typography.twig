@@ -59,6 +59,12 @@
       {{ text }}
     {% endif %}
   </span>
+
+  {% if icon %}
+    <span class="{{ "#{baseClass}__icon" }}">
+      {% include "@bolt/icon.twig" with icon only %}
+    </span>
+  {% endif %}
 </{{ tag }}>
 
 

@@ -29,11 +29,15 @@ glob(`${rootDir}/src/svgs/**/*.svg`, (err, icons) => {
     svgo.optimize(svg, function (result) {
       
       const optimizedSVG = result.data;
-      const id = path.basename(i, '.svg');
+      let id = path.basename(i, '.svg');
+      id = id.replace(' ', '-');
+
       const $ = cheerio.load(optimizedSVG, {
         xmlMode: true,
       });
-      let fileName = path.basename(i).replace('.svg', '.js');
+
+      let fileName = path.basename(i);
+      fileName = fileName.replace('.svg', '.js');
       fileName = fileName.replace(' ', '-');
       const location = path.join(rootDir, 'src/icons', fileName);
 
@@ -72,7 +76,8 @@ glob(`${rootDir}/src/svgs/**/*.svg`, (err, icons) => {
           ${
         $('svg').toString()
           .replace(new RegExp('stroke="currentColor"', 'g'), 'stroke={color}')
-        .replace('d="M0 0h24v24H0z"', 'd="M0,64a64,64 0 1,0 128,0a64,64 0 1,0 -128,0" class="c-bolt-icon--background c-bolt-icon--circle-background"')
+          .replace('class="c-bolt-icon--background c-bolt-icon--circle-background"', 'class="c-bolt-icon--background c-bolt-icon--circle-background" fill="none"')
+          .replace('d="M0 0h24v24H0z"', 'd="M0,64a64,64 0 1,0 128,0a64,64 0 1,0 -128,0" class="c-bolt-icon--background c-bolt-icon--circle-background" fill="none"')
           .replace('width="24"', 'width={size}')
           .replace('height="24"', 'height={size}')
           .replace('otherProps="..."', '{...otherProps}')

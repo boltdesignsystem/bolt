@@ -33,12 +33,16 @@
   {% set gcd = gcd | escape | raw | number_format %}
   
   {% if gcd != 0 and height != 0 and width != 0 %}
-    {% set imageHeightRatio = (height / gcd) | round %}
-    {% set imageWidthRatio = (width / gcd) | round %}
+    {% set imageHeightRatio = (height / gcd) %}
+    {% set imageWidthRatio = (width / gcd) %}
   {% else %}
     {% set imageHeightRatio = 1 %}
     {% set imageWidthRatio = 1 %}
   {% endif %}
+
+  {# pre-calculate the % output on the element #}
+  {% set ratio = imageHeightRatio / imageWidthRatio * 100 ~ '%' %}
+
 {% endif %}
 
 {% if src %}
@@ -65,8 +69,7 @@
 
 {% set attributes = create_attribute(attributes | default([])).addClass('c-bolt-image') %}
 {% set styles = attributes.getAttribute('style') | split(' ') | merge([
-  "--aspect-ratio-h: #{height};",
-  "--aspect-ratio-w: #{width};"
+  "padding-top: #{ratio};"
 ]) %}
 {% set attributes = attributes.setAttribute('style', styles | join(' ')) %}
 

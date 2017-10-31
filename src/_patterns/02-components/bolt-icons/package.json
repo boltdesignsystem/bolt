@@ -10,7 +10,7 @@
     "ui toolkit",
     "design system"
   ],
-  "version": "0.1.0-alpha.6f86ccdf",
+  "version": "0.1.0-rc.3",
   "author": "Salem Ghoweri",
   "homepage": "https://boltdesignsystem.com",
   "license": "MIT",
@@ -52,6 +52,7 @@
   "jsnext:main": "dist/index.es6.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "npm run build",
     "build": "node ./build-icons.js && babel src --out-dir dist --ignore src/svgs"
   }
 }
