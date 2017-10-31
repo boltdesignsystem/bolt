@@ -15,6 +15,7 @@
 		"_build:icons": "npm run build --prefix src/components/bolt-icons",
 		"_build:plicons": "npm run build:icons && lerna exec --scope @bolt/components-icon -- npm run build && lerna exec --scope @bolt/components-icon -- npm run copy:pl",
 		"lint:js": "eslint ./build-tools",
+		"lint:scss": "gulp styles:lint",
 		"clean:lerna": "lerna clean -Y",
 		"clean:git": "git clean -xdf",
 		"clean:lighthouse": "rm *.report.html",
