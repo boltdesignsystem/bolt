@@ -39,8 +39,7 @@
     "test": "npm run mocha",
     "test:ci": "node browserstack.js",
     "pretest": "node build-tools/scripts/check-imports.js",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "snyk-protect": "snyk protect"
   },
   "pre-commit": [
     "test",
