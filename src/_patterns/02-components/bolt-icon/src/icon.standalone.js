@@ -35,7 +35,7 @@ import styles from './icon.scss';
 
 import upperCamelCase from 'uppercamelcase';
 
-import * as Icon from '@bolt/components-icons/dist';
+import * as Icon from '@bolt/components-icons';
 
 const backgroundStyles = [
   'circle'
