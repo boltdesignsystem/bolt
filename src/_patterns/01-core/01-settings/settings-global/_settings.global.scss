@@ -130,7 +130,6 @@ $bolt-all-custom-inline-elements: () !global;
 
   } @else if  ( $element-type == 'block') {
     $_bolt-custom-block-elements: append($_bolt-custom-block-elements, $element) !global;
-    @debug $_bolt-custom-block-elements;
   } @else if  ( $element-type == 'inline-block') {
     $_bolt-custom-inline-block-elements: append($_bolt-custom-inline-block-elements, $element) !global;
   }
