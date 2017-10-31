@@ -49,13 +49,40 @@ $bolt-blockquote-footer-line-height: $bolt-line-height--tight;
 
 // Styles
 .c-bolt-blockquote {
-  @include bolt-padding(0 medium);
-
   color: var(--bolt-color-heading, bolt-color(indigo)); // TODO: refactor this after theming is done.
+}
 
+.c-bolt-blockquote--align-start {
+  text-align: left;
+}
+
+.c-bolt-blockquote--align-center {
+  text-align: center;
+}
+
+.c-bolt-blockquote--align-end {
+  text-align: right;
+}
+
+.c-bolt-blockquote--bordered-side {
+  @include bolt-padding(0 medium);
   border-left-width: $bolt-blockquote-border-width;
   border-left-style: $bolt-blockquote-border-style;
   border-left-color: $bolt-blockquote-border-color;
+}
+
+.c-bolt-blockquote--bordered-top {
+  &:before {
+    @include bolt-margin-bottom(medium);
+    display: inline-block;
+    display: inline-flex;
+    width: 6rem;
+    max-width: 100%;
+    height: $bolt-blockquote-border-width;
+    content: '';
+    vertical-align: top;
+    background-color: $bolt-blockquote-border-color;
+  }
 }
 
 .c-bolt-blockquote__quote {

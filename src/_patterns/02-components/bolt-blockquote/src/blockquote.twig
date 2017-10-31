@@ -11,14 +11,30 @@
 
 {% set prefix = "c-bolt-" %}
 
+{% set borderOptions = {
+  "top": "top",
+  "left": "side"
+} %}
+
+{% set alignments = {
+  "left": "start",
+  "center": "center",
+  "right": "end"
+} %}
+
 {% set attributes = create_attribute(attributes|default({})) %}
+
 
 {% set componentName = "blockquote" %}
 {% set baseClass = prefix ~ componentName %}
+{% set align = align | default("left") %}
+{% set border = border %}
 
 
 {% set classes = [
-  baseClass
+  baseClass,
+  align in alignments|keys ? baseClass ~ "--align-" ~ alignments[align],
+  border in borderOptions|keys ? baseClass ~ "--bordered-" ~ borderOptions[border] : ""
 ] %}
 
 <bolt-{{ componentName }} bolt-component>
