@@ -35,7 +35,11 @@
   bolt-component>
   <{{ tag }} {{ attributes.addClass(classes) }}>
     {% set renderedBandContent %}
-      {% block band_background %}{% endblock band_background %}
+      {% block band_background %}
+        {% if background %}
+          {% include "@bolt/background.twig" with background only %}
+        {% endif %}
+      {% endblock band_background %}
       <{{ contentTag }} class="{{ "#{baseClass}__content" }}">
         {% block band_content %}
           {{ content }}

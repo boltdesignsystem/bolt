@@ -72,6 +72,12 @@ const defaultConfig = {
 
   module: {
     rules: [
+      // {
+      //   test: /node_modules\/skatejs\/**\/*\.js?$/,
+      //   // include: /skatejs/,
+      //   // exclude: /!node_modules\/skatejs/,
+      //   use: ['awesome-typescript-loader']
+      // },
       {
         test: /\.js$/,
         // exclude: /\.es6.js$/,
@@ -182,7 +188,7 @@ const defaultConfig = {
                 sourceMap: true,
                 modules: true,
                 importLoaders: true,
-                localIdentName: '[name]__[local]___[hash:base64:5]'
+                localIdentName: '[local]'
               }
             },
             {

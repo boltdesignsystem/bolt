@@ -34,7 +34,7 @@
   disabled ? baseClass ~ "--disabled" : "",
   size in sizes ? baseClass ~ "--" ~ size : "",
   width in widths ? baseClass ~ "--" ~ width : "",
-  style in styles ? baseClass ~ "--" ~ style : "",
+  style in styles ? baseClass ~ "--" ~ style : baseClass ~ "--primary",
   itemAlignment in itemAlignments|keys ? baseClass ~ "--item-align-" ~ itemAlignments[itemAlignment]
 ] %}
 

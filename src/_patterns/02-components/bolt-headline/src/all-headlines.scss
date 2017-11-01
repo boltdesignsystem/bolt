@@ -26,6 +26,8 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   @include bolt-font-family(heading);
   display: block;
   max-width: 55ch;
+  color: currentColor;
+  color: var(--bolt-theme-heading, currentColor);
 
   @supports (display: flex) {
     display: flex;
@@ -45,6 +47,7 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 .c-bolt-headline {
   @include bolt-headline;
   @include bolt-font-weight(bold);
+  
 
   &:not(:last-child) {
     @include bolt-margin-bottom(medium);
@@ -201,6 +204,11 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 .c-bolt-text--large,
 .c-bolt-headline--large {
   @include bolt-font-size(large);
+}
+
+.c-bolt-text a:not([class]),
+.c-bolt-text .c-bolt-link {
+  text-decoration: underline;
 }
 
 

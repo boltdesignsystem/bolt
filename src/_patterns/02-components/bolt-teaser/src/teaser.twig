@@ -22,7 +22,7 @@
   
   {% if content %}
     {% include "@bolt/text.twig" with {
-      text: content | striptags,
+      text: content | striptags('<a>'),
       tag: "p"
     } only %}
   {% endif %}

@@ -1,37 +1,17 @@
-// import css from '../../../scripts/utils/css.js';
-// import { sizes as spacingSizes } from '../../../scripts/utils/spacing-sizes.js';
+import {
+  // BoltComponent,
+  spacingSizes,
+  utils
+} from '@bolt/core';
 
-// import {
-//   css,
-//   sizes as spacingSizes
-// } from '@bolt/core';
-
-import utils from '@bolt/core';
-const css = utils.css;
-const spacingSizes = utils.spacingSizes.sizes;
-
+const css = utils.css.default;
 
 import { props, withComponent, define } from 'skatejs';
 import withPreact from '@skatejs/renderer-preact';
 import { Preact } from 'preact';
 import styles from './icon.scss';
 
-
-// console.log(styles);
-// import StyledMixin from '../../../scripts/utils/styled-mixin.js';
-
-// const { ShadyCSS } = window;
-// const $template = Symbol();
-
-// function style(elem, css) {
-//   const template = elem[$template] || (elem[$template] = document.createElement('template'));
-//   template.innerHTML = `<style>${css}</style>`;
-//   ShadyCSS.prepareTemplate(template, elem.localName);
-//   return <style>{css}</style>;
-// }
-
-
-// import BoltComponent from './bolt-component';
+const sizes = spacingSizes.spacingSizes;
 
 import upperCamelCase from 'uppercamelcase';
 
@@ -41,8 +21,6 @@ const backgroundStyles = [
   'circle'
 ];
 
-
-// const Component = withComponent(withPreact());
 
 export default class BoltIcon extends withComponent(withPreact()) {
   static get is() {
@@ -56,16 +34,15 @@ export default class BoltIcon extends withComponent(withPreact()) {
   }
 
   renderCallback({ props }) {
-    // const sizeNumber = cssClassForSize();
     const classes = css(
       'c-bolt-icon',
-      props.size && spacingSizes[props.size] && spacingSizes[props.size] !== ''  ? `c-bolt-icon--${props.size}` : `c-bolt-icon--medium`,
+      props.size && sizes[props.size] && sizes[props.size] !== ''  ? `c-bolt-icon--${props.size}` : ``,
       props.name ? `c-bolt-icon--${props.name}` : '',
       props.background && backgroundStyles.includes(props.background) ? `c-bolt-icon--has-${props.background}-background` : ''
     );
 
     const iconName = props.name ? upperCamelCase(props.name) : '';
-    const size = props.size && spacingSizes[props.size] ? (spacingSizes[props.size].replace('rem', '') * 16 / 2) : spacingSizes['medium'];
+    const size = props.size && sizes[props.size] ? (sizes[props.size].replace('rem', '') * 16 / 2) : sizes['medium'];
     const IconTag = Icon[iconName];
     
     return (

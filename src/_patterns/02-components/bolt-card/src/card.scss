@@ -2,8 +2,11 @@
    Cards
 \* ------------------------------------ */
 
-@import '@bolt/tools-color-palette';
-@import '@bolt/tools-spacing';
+$bolt-export-data: false;
+
+@import '@bolt/settings-all';
+@import '@bolt/tools-all';
+
 
 $bolt-card-shadow: $bolt-shadow--small;
 $bolt-card-shadow--hover: $bolt-shadow--large;
@@ -17,10 +20,13 @@ $bolt-card-translate--active: $bolt-translate-none;
 
 
 
+/**
+  * Card background: 80% theme background color + 20% white
+  */
+
 
 bolt-card {
   display: flex;
-  flex-direction: column;
   flex-grow: 1; //If used in a flex box container, grow to fill available space.
 }
 
@@ -32,7 +38,7 @@ bolt-card {
   color: currentColor;
   border-radius: $bolt-card-border-radius;
   box-shadow: $bolt-card-shadow;
-  background-color: rgba(bolt-color(white), 0.5);
+  background-color: rgba(bolt-color(white), 0.4);
   transform: translate3d(0, 0, 0) scale(1, 1);
   transition: transform 0.2s ease-in-out;
 
@@ -50,8 +56,8 @@ bolt-card {
   }
 
   &:before {
-    background-color: var(--bolt-color-background, bolt-color(white)); // TODO: needs to map this to theme background color.
-    opacity: 0.2;
+    background-color: var(--bolt-theme-card-background, var(--bolt-theme-background, bolt-color(white))); // TODO: needs to map this to theme background color.
+    opacity: 0.7;
   }
 
   &:after {
@@ -102,10 +108,9 @@ bolt-card {
 
   &:before {
     content: '';
-    border-top-color: var(--bolt-color-border, currentColor);
+    border-top-color: var(--bolt-theme-card-border, var(--bolt-theme-border, currentColor));
     border-top-width: $bolt-card-border-width;
     border-top-style: solid;
-    opacity: 0.2;
     position: absolute;
     top: 0;
     left: 0;
@@ -133,10 +138,9 @@ bolt-card {
 .c-bolt-card__footer-item + .c-bolt-card__footer-item:before {
   display: block;
   content: '';
-  border-left-color: var(--bolt-color-border, currentColor);
+  border-left-color: var(--bolt-theme-card-border, var(--bolt-theme-border, currentColor));
   border-left-width: $bolt-card-border-width;
   border-left-style: solid;
-  opacity: 0.2;
   position: absolute;
   top: 0;
   left: 0;

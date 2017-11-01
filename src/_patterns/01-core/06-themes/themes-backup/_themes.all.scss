@@ -1,0 +1,367 @@
+/* ------------------------------------ *\
+   THEMES - ALL (IN PROGRESS)
+\* ------------------------------------ */
+
+
+
+
+
+  // @elseif $name == 'notification' {
+  //   @include _bolt-theme-settings(
+  //     $background:  bolt-color(blue, light),
+  //     $primary:     bolt-color(blue, dark),
+  //     $secondary:   bolt-color(blue));
+  // }
+  // @elseif $name == 'success' {
+  //   @include _bolt-theme-settings(
+  //     $background:  bolt-color(success, light),
+  //     $primary:     bolt-color(success, dark),
+  //     $secondary:   bolt-color(success));
+  // }
+  // @elseif $name == 'warning' {
+  //   @include _bolt-theme-settings(
+  //     $background:  bolt-color(warning, light),
+  //     $primary:     bolt-color(warning, dark),
+  //     $secondary:   bolt-color(warning));
+  // }
+  // @elseif $name == 'error' {
+  //   @include _bolt-theme-settings(
+  //     $background:  bolt-color(error, light),
+  //     $primary:     bolt-color(error, dark),
+  //     $secondary:   bolt-color(warning, dark));
+  // }
+// }
+
+// $bolt-theme-background-color: inherit !default;
+// $bolt-theme-primary-color:    inherit !default;
+// $bolt-theme-secondary-color:  inherit !default;
+// $bolt-theme-text-color:       inherit !default;
+// $bolt-theme-heading-color:    inherit !default;
+// $bolt-theme-icon-color:       inherit !default;
+// $bolt-theme-icon-background-color: inherit !default;
+// $bolt-theme-icon-background-opacity: inherit !default;
+// $bolt-theme-border-color: inherit !default;
+// $bolt-theme-text-button-color: inherit !default;
+
+
+// .t-bolt-xlight,
+// .t-bolt-light {
+// %bolt-theme-placeholder {
+//   background-color: $bolt-theme-background-color;
+//   --bolt-theme-background-color:     $bolt-theme-background-color;
+//   --bolt-color-background:           $bolt-theme-background-color;
+
+//   color: $bolt-theme-text-color;
+//   --bolt-color-text: $bolt-theme-text-color;
+//   --bolt-theme-text-color: $bolt-theme-text-color;
+
+
+//   --bolt-theme-primary-color:     $bolt-theme-primary-color;
+//   --bolt-color-primary:           $bolt-theme-primary-color;
+
+
+//   --bolt-theme-secondary-color:     $bolt-theme-secondary-color;
+//   --bolt-color-secondary:           $bolt-theme-secondary-color;
+
+
+ 
+
+
+//   --bolt-color-heading:           $bolt-theme-heading-color;
+//   --bolt-theme-heading-color:     $bolt-theme-heading-color;
+
+
+//   --bolt-theme-icon-color:     $bolt-theme-icon-color;
+//   --bolt-color-icon:           $bolt-theme-icon-color;
+
+//   --bolt-theme-icon-background-color:     $bolt-theme-icon-background-color;
+//   --bolt-theme-icon-background-opacity:   $bolt-theme-icon-background-opacity;
+
+
+//   --bolt-theme-border-color:     $bolt-theme-border-color;
+//   --bolt-color-border:           $bolt-theme-border-color;
+
+//   --bolt-theme-text-button-color:  $bolt-theme-text-button-color;
+// }
+
+.t-bolt-xlight {
+  $bolt-theme-background-color: bolt-color(white);
+  // $bolt-theme-primary-color:    inherit;
+  // $bolt-theme-primary-color--hover:  inherit;
+  // $bolt-theme-primary-color--active:  inherit;
+  $bolt-theme-primary-color:    bolt-color(indigo, light);
+  $bolt-theme-primary-color--hover:  #5764D9;
+  $bolt-theme-primary-color--active:  #535BA6;
+  $bolt-theme-primary-text: bolt-color(white);
+
+
+  
+  $bolt-theme-secondary-color:  inherit;
+  $bolt-theme-text-color:       bolt-text-contrast($bolt-theme-background-color);
+  $bolt-theme-heading-color:    inherit;
+  $bolt-theme-icon-color:       inherit;
+  $bolt-theme-icon-background-color: bolt-color(gray, xlight);
+  $bolt-theme-icon-background-opacity: inherit;
+  $bolt-theme-border-color: inherit;
+  $bolt-theme-text-button-color: inherit;
+
+  background-color: $bolt-theme-background-color;
+  --bolt-theme-background-color:     $bolt-theme-background-color;
+  --bolt-color-background:           $bolt-theme-background-color;
+
+  color: $bolt-theme-text-color;
+  --bolt-color-text: $bolt-theme-text-color;
+  --bolt-theme-text-color: $bolt-theme-text-color;
+
+
+  --bolt-color-primary:           $bolt-theme-primary-color;
+  --bolt-theme-primary-color:     $bolt-theme-primary-color;
+  --bolt-theme-primary-color--hover:     $bolt-theme-primary-color--hover;
+  --bolt-theme-primary-color--active:     $bolt-theme-primary-color--active;
+
+  --bolt-theme-primary-text:     $bolt-theme-primary-text;
+
+
+  --bolt-theme-secondary-color:     $bolt-theme-secondary-color;
+  --bolt-color-secondary:           $bolt-theme-secondary-color;
+
+
+ 
+
+
+  --bolt-color-heading:           $bolt-theme-heading-color;
+  --bolt-theme-heading-color:     $bolt-theme-heading-color;
+
+
+  --bolt-theme-icon-color:     $bolt-theme-icon-color;
+  --bolt-color-icon:           $bolt-theme-icon-color;
+
+  --bolt-theme-icon-background-color:     $bolt-theme-icon-background-color;
+  --bolt-theme-icon-background-opacity:   $bolt-theme-icon-background-opacity;
+
+
+  --bolt-theme-border-color:     $bolt-theme-border-color;
+  --bolt-color-border:           $bolt-theme-border-color;
+
+  --bolt-theme-text-button-color:  $bolt-theme-text-button-color;
+}
+
+
+
+
+
+.t-bolt-light {
+  $bolt-theme-background-color: bolt-color(gray, xlight);
+  
+  $bolt-theme-primary-color:    bolt-color(indigo, light);
+  $bolt-theme-primary-color--hover:  #5764D9;
+  $bolt-theme-primary-color--active:  #535BA6;
+  $bolt-theme-primary-text: bolt-color(white);
+
+
+  $bolt-theme-secondary-color:  bolt-color(indigo, light);
+  
+  // $bolt-theme-secondary-color--hover:  #5764D9;
+  // $bolt-theme-secondary-color--active:  #535BA6;
+
+//indigo states
+// --bolt-primary-color--hover: #;
+// --bolt-primary-color--active: #;
+
+
+//yellow states
+
+  $bolt-theme-text-color:       bolt-text-contrast($bolt-theme-background-color);
+  $bolt-theme-heading-color:    inherit;
+  $bolt-theme-icon-color:       inherit;
+  $bolt-theme-icon-background-color: bolt-color(gray, xlight);
+  $bolt-theme-icon-background-opacity: inherit;
+  $bolt-theme-border-color: inherit;
+  $bolt-theme-text-button-color: inherit;
+
+  background-color: $bolt-theme-background-color;
+  --bolt-theme-background-color:     $bolt-theme-background-color;
+  --bolt-color-background:           $bolt-theme-background-color;
+
+  color: $bolt-theme-text-color;
+  --bolt-color-text: $bolt-theme-text-color;
+  --bolt-theme-text-color: $bolt-theme-text-color;
+
+
+  --bolt-color-primary:           $bolt-theme-primary-color;
+  --bolt-theme-primary-color:     $bolt-theme-primary-color;
+  --bolt-theme-primary-color--hover:     $bolt-theme-primary-color--hover;
+  --bolt-theme-primary-color--active:     $bolt-theme-primary-color--active;
+
+
+  --bolt-theme-primary-text:     $bolt-theme-primary-text;
+
+
+  --bolt-theme-secondary-color:     $bolt-theme-secondary-color;
+  --bolt-color-secondary:           $bolt-theme-secondary-color;
+
+
+ 
+
+
+  --bolt-color-heading:           $bolt-theme-heading-color;
+  --bolt-theme-heading-color:     $bolt-theme-heading-color;
+
+
+  --bolt-theme-icon-color:     $bolt-theme-icon-color;
+  --bolt-color-icon:           $bolt-theme-icon-color;
+
+  --bolt-theme-icon-background-color:     $bolt-theme-icon-background-color;
+  --bolt-theme-icon-background-opacity:   $bolt-theme-icon-background-opacity;
+
+
+  --bolt-theme-border-color:     $bolt-theme-border-color;
+  --bolt-color-border:           $bolt-theme-border-color;
+
+  --bolt-theme-text-button-color:  $bolt-theme-text-button-color;
+}
+
+
+.t-bolt-dark {
+  $bolt-theme-background-color: bolt-color(indigo);
+
+
+
+  $bolt-theme-primary-color:    bolt-color(yellow);
+  $bolt-theme-primary-color--hover:  #FFD466;
+  $bolt-theme-primary-color--active:  #FFC533;
+  $bolt-theme-primary-text: bolt-color(indigo);
+
+
+
+  $bolt-theme-secondary-color:  bolt-color(yellow);
+  $bolt-theme-text-color:       bolt-text-contrast($bolt-theme-background-color);
+  $bolt-theme-heading-color:    bolt-color(white);
+  $bolt-theme-icon-color:       inherit;
+  $bolt-theme-icon-background-color: bolt-color(indigo, xdark);
+  $bolt-theme-icon-background-opacity: 0.25;
+  $bolt-theme-border-color: inherit;
+  $bolt-theme-text-button-color: inherit;
+  background-color: $bolt-theme-background-color;
+  --bolt-theme-background-color:     $bolt-theme-background-color;
+  --bolt-color-background:           $bolt-theme-background-color;
+
+  color: $bolt-theme-text-color;
+  --bolt-color-text: $bolt-theme-text-color;
+  --bolt-theme-text-color: $bolt-theme-text-color;
+
+
+  --bolt-color-primary:           $bolt-theme-primary-color;
+  --bolt-theme-primary-color:     $bolt-theme-primary-color;
+  --bolt-theme-primary-color--hover:     $bolt-theme-primary-color--hover;
+  --bolt-theme-primary-color--active:     $bolt-theme-primary-color--active;
+
+  --bolt-theme-primary-text:     $bolt-theme-primary-text;
+
+
+  --bolt-theme-secondary-color:     $bolt-theme-secondary-color;
+  --bolt-color-secondary:           $bolt-theme-secondary-color;
+
+
+ 
+
+
+  --bolt-color-heading:           $bolt-theme-heading-color;
+  --bolt-theme-heading-color:     $bolt-theme-heading-color;
+
+
+  --bolt-theme-icon-color:     $bolt-theme-icon-color;
+  --bolt-color-icon:           $bolt-theme-icon-color;
+
+  --bolt-theme-icon-background-color:     $bolt-theme-icon-background-color;
+  --bolt-theme-icon-background-opacity:   $bolt-theme-icon-background-opacity;
+
+
+  --bolt-theme-border-color:     $bolt-theme-border-color;
+  --bolt-color-border:           $bolt-theme-border-color;
+
+  --bolt-theme-text-button-color:  $bolt-theme-text-button-color;
+}
+
+.t-bolt-xdark {
+  $bolt-theme-background-color: bolt-color(indigo, dark);
+  
+  
+  $bolt-theme-primary-color:    bolt-color(yellow);
+  $bolt-theme-primary-color--hover:  #FFD466;
+  $bolt-theme-primary-color--active:  #FFC533;
+  $bolt-theme-primary-text: bolt-color(indigo);
+
+
+  $bolt-theme-secondary-color:  bolt-color(white);
+  $bolt-theme-text-color:       bolt-text-contrast($bolt-theme-background-color);
+  $bolt-theme-heading-color:    bolt-color(white);
+  $bolt-theme-icon-color:       inherit;
+  $bolt-theme-icon-background-color: bolt-color(indigo, xdark);
+  $bolt-theme-icon-background-opacity: 0.5;
+  $bolt-theme-border-color: inherit;
+  $bolt-theme-text-button-color: inherit;
+
+  background-color: $bolt-theme-background-color;
+  --bolt-theme-background-color:     $bolt-theme-background-color;
+  --bolt-color-background:           $bolt-theme-background-color;
+
+  color: $bolt-theme-text-color;
+  --bolt-color-text: $bolt-theme-text-color;
+  --bolt-theme-text-color: $bolt-theme-text-color;
+
+
+  --bolt-color-primary:           $bolt-theme-primary-color;
+  --bolt-theme-primary-color:     $bolt-theme-primary-color;
+  --bolt-theme-primary-color--hover:     $bolt-theme-primary-color--hover;
+  --bolt-theme-primary-color--active:     $bolt-theme-primary-color--active;
+
+  --bolt-theme-primary-text:     $bolt-theme-primary-text;
+
+
+  --bolt-theme-secondary-color:     $bolt-theme-secondary-color;
+  --bolt-color-secondary:           $bolt-theme-secondary-color;
+
+
+ 
+
+
+  --bolt-color-heading:           $bolt-theme-heading-color;
+  --bolt-theme-heading-color:     $bolt-theme-heading-color;
+
+
+  --bolt-theme-icon-color:     $bolt-theme-icon-color;
+  --bolt-color-icon:           $bolt-theme-icon-color;
+
+  --bolt-theme-icon-background-color:     $bolt-theme-icon-background-color;
+  --bolt-theme-icon-background-opacity:   $bolt-theme-icon-background-opacity;
+
+
+  --bolt-theme-border-color:     $bolt-theme-border-color;
+  --bolt-color-border:           $bolt-theme-border-color;
+
+  --bolt-theme-text-button-color:  $bolt-theme-text-button-color;
+}
+
+
+
+
+
+
+
+// .t-bolt-success {
+//   @include _bolt-theme(success);
+// }
+
+// .t-bolt-warning {
+//   @include _bolt-theme(warning);
+// }
+
+// .t-bolt-error {
+//   @include _bolt-theme(error);
+// }
+
+// .t-bolt-notification {
+//   @include _bolt-theme(notification);
+// }
+
