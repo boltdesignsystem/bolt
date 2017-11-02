@@ -21,6 +21,10 @@
 // </bolt-action-blocks>
 
 
+// [1] Setting this 1px more than needed to deal with IE subpixel rendering issue.
+// [2] Setting min-width to % and flex-basis to px makes it work for IE as well.
+
+
 // Local Variables
 $bolt-action-block-text-color: var(--bolt-theme-action-block-text, var(--bolt-theme-heading, var(--bolt-theme-text, inherit)));
 $bolt-action-block-transition-ease: $bolt-transition-ease;
@@ -30,6 +34,7 @@ $bolt-action-block-item-max-width: 20ch;
 $bolt-action-blocks-border-width: $bolt-border-width;
 $bolt-action-blocks-border-style: $bolt-border-style;
 $bolt-action-blocks-border-color: var(--bolt-theme-card-border, var(--bolt-theme-border, currentColor));
+$bolt-action-blocks-item-min-width: 150px;
 
 // Individual Action Block Styles
 .c-bolt-action-block {
@@ -89,7 +94,7 @@ bolt-action-blocks {
 }
 
 .c-bolt-action-blocks {
-  @include bolt-margin(0 -1px -1px 0);
+  @include bolt-margin(0 -2px -2px 0); // [1]
   @include bolt-padding(0);
 
   display: flex;
@@ -102,7 +107,7 @@ bolt-action-blocks {
   display: block;
   flex-grow: 1;
   flex-shrink: 0;
-  flex-basis: 150px;
+  flex-basis: $bolt-action-blocks-item-min-width; // [2]
   position: relative;
   border-bottom-width: $bolt-action-blocks-border-width;
   border-bottom-style: $bolt-action-blocks-border-style;
@@ -143,6 +148,6 @@ bolt-action-blocks {
 
 @for $number from 2 through 12 {
   .c-bolt-action-blocks--item-max-#{$number} > .c-bolt-action-blocks__item {
-    min-width: calc(100% / #{$number});
+    min-width: calc(100% / #{$number}); // [2]
   }
 }
