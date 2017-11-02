@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width" />
 
     <link rel="stylesheet" href="../../../styles/bolt.css?{{ cacheBuster }}" media="all" />
-    
-    
+
+
     <meta name="bolt-javascript-path"  content="/vendor/">
+
 
     {# Inline Critical Font-specific CSS automatically #}
     <style>
-    {{ inline("_patterns/02-components/bolt-critical-fonts/dist/critical-fonts.css", "/src/") }}
+    {{ inline("scripts/critical-fonts.css", "/dist/") }}
     </style>
 
 
@@ -20,6 +21,7 @@
     <script>
     {{ inline("scripts/bolt-critical-path.min.js", "/dist/") }}
     </script>
+
 
     <!-- Begin Pattern Lab (Required for Pattern Lab to run properly) -->
     {{ patternLabHead | raw }}

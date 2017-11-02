@@ -6,7 +6,7 @@
     {% set teaserItems = {} %}
     {% set items = [] %}
 
-    
+
     {% for teaser in teasers %}
 
       {% set teaserItem %}
@@ -16,7 +16,7 @@
       {% set items = items | merge([{
         "text": teaserItem
       }]) %}
-      
+
     {% endfor %}
 
 
@@ -24,7 +24,9 @@
       "contentItems": items
     }) %}
 
-    {% include "@bolt/ui-list.twig" with teaserItems only %}
+    {% include "@bolt/ui-list.twig" with teaserItems | merge({
+      size: "collapsed-ends"
+    }) only %}
   {% endif %}
 
 {% endblock %}

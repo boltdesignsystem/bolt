@@ -37,7 +37,7 @@
 {% for collectionName in _allowedCollections %}
   {% if _context[collectionName] %}
     {% for key, item in _context[collectionName] if item.pattern in _allowedItems or key in _allowedItems %}
-      
+
       {% if item.buttons %}
         {% set buttons = item.buttons %}
         {% for button in buttons %}
@@ -46,7 +46,7 @@
           }) %}
           {% set _items = _items | merge([button]) %}
         {% endfor %}
-      
+
         {% set item = item | merge({
           "buttons": null
         }) %}
@@ -95,34 +95,34 @@
             {% else %}
               {{ item }}
             {% endif %}
-            
+
           {% endfor %}
         {% endblock %}
       {% endspaceless %}</div>
     {% endif %}
 
-    
+
     {% if block('card_body') is not empty %}
-    <{{ contentTag }} class="{{ "#{baseClass}__body" }}">{% spaceless %}
-      {% block card_body %}
-        {% for key,item in _items if item.pattern in _allowedCardBodyItems %}
-          {% if item.pattern %}
-            {% include pattern_template(item.pattern) with item only %}
-          {% elseif key != "content" %}
-            {% include pattern_template(key) with item only %}
-          {% else %}
-            {{ item }}
-          {% endif %}
-          
-        {% endfor %}
-      {% endblock card_body %}
-    {% endspaceless %}</{{ contentTag }}>
+      <{{ contentTag }} class="{{ "#{baseClass}__body" }}">{% spaceless %}
+        {% block card_body %}
+          {% for key,item in _items if item.pattern in _allowedCardBodyItems %}
+            {% if item.pattern %}
+              {% include pattern_template(item.pattern) with item only %}
+            {% elseif key != "content" %}
+              {% include pattern_template(key) with item only %}
+            {% else %}
+              {{ item }}
+            {% endif %}
+
+          {% endfor %}
+        {% endblock card_body %}
+      {% endspaceless %}</{{ contentTag }}>
     {% endif %}
 
     {% if block('card_footer') is not empty %}
       <div class="{{ "#{baseClass}__footer" }}">{% spaceless %}
         {% block card_footer %}
-        
+
           {% for item in _items if item.pattern in _allowedCardFooterItems %}
             {% set paramOverrides = {
               itemAlignment: "left",
@@ -137,7 +137,7 @@
               {% endif %}
             </div>
           {% endfor %}
-         
+
         {% endblock card_footer %}
       {% endspaceless %}</div>
     {% endif %}
