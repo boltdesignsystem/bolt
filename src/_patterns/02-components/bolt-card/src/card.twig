@@ -14,11 +14,13 @@
 
 {% set classes = [
   baseClass,
-  theme in themes ? "t-bolt-" ~ theme : ""
+  theme in themes ? "t-bolt-" ~ theme : "",
+  url ? "is-actionable" : "",
+  url ? "js-card-action" : ""
 ] %}
 
 {% if url %}
-  {% set attributes = attributes.setAttribute("href", url) %}
+  {% set attributes = attributes.setAttribute("data-href", url) %}
 {% endif %}
 
 {% set _card_footer_block = block('card_footer') %}
@@ -83,6 +85,7 @@
 
 <bolt-card
   theme="{{ theme }}"
+  {% if url %}url={{ url }}{% endif %}
   bolt-component>
   <{{ tag }} {{ attributes.addClass(classes) }}>
 

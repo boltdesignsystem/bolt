@@ -22,15 +22,14 @@
 
 
 // Local Variables
-$bolt-action-block-text-color: var(--bolt-color-heading, bolt-color(indigo));
+$bolt-action-block-text-color: var(--bolt-theme-action-block-text, var(--bolt-theme-heading, var(--bolt-theme-text, inherit)));
 $bolt-action-block-transition-ease: $bolt-transition-ease;
 $bolt-action-block-transition-timing: 300ms;
 $bolt-action-block-item-max-width: 20ch;
 
 $bolt-action-blocks-border-width: $bolt-border-width;
 $bolt-action-blocks-border-style: $bolt-border-style;
-$bolt-action-blocks-border-color: $bolt-border-color;
-
+$bolt-action-blocks-border-color: var(--bolt-theme-card-border, var(--bolt-theme-border, currentColor));
 
 // Individual Action Block Styles
 .c-bolt-action-block {

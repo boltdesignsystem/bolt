@@ -93,6 +93,7 @@ $bolt-background-dark-overlay-opacity--heavy: 0.8;
   position: absolute;
   top: 0;
   left: 0;
+  transform: translate3d(0, 0, 0); // Help prevent rounding errors when rendering (ie. gaps)
   width: 100%;
   height: 100%;
   content: '';
@@ -112,7 +113,8 @@ $bolt-background-dark-overlay-opacity--heavy: 0.8;
 
 
 .c-bolt-background__overlay--color-fill {
-  background-color: var(--bolt-color-background);
+  background-color: bolt-color(black);
+  background-color: var(--bolt-theme-background, bolt-color(black));
 }
 
 
@@ -123,11 +125,11 @@ $bolt-background-dark-overlay-opacity--heavy: 0.8;
 // Default gradient if the image focal point (point of interest) is in the center or on the right side
 .c-bolt-background__overlay--gradient-fill {
   background: linear-gradient($bolt-gradient-angle--default, $bolt-test-color-background-gradient--secondary, $bolt-test-color-background-gradient--primary 50%);
-  background: linear-gradient($bolt-gradient-angle--default, var(--bolt-color-background-gradient--secondary, $bolt-test-color-background-gradient--secondary), var(--bolt-color-background-gradient--primary, $bolt-test-color-background-gradient--primary) 50%);
+  background: linear-gradient($bolt-gradient-angle--default, var(--bolt-theme-background-gradient-primary, $bolt-test-color-background-gradient--secondary), var(--bolt-theme-background-gradient-primary, $bolt-test-color-background-gradient--primary) 50%);
 }
 
 // Alt gradient used if the image focal point (point of interest) is on the left side
 .c-bolt-background__overlay--gradient-reversed-fill {
   background: linear-gradient($bolt-gradient-angle--reversed, $bolt-test-color-background-gradient--secondary, $bolt-test-color-background-gradient--primary 50%);
-  background: linear-gradient($bolt-gradient-angle--reversed, var(--bolt-color-background-gradient--secondary, $bolt-test-color-background-gradient--secondary), var(--bolt-color-background-gradient--primary, $bolt-test-color-background-gradient--primary) 50%);
+  background: linear-gradient($bolt-gradient-angle--reversed, var(--bolt-theme-background-gradient-secondary, $bolt-test-color-background-gradient--secondary), var(--bolt-theme-background-gradient-primary, $bolt-test-color-background-gradient--primary) 50%);
 }

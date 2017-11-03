@@ -1,21 +1,21 @@
-import css from './utils/css';
+
 import environment from './utils/environment';
 import * as getMeta from './utils/get-meta';
 import mixins from './utils/mixins';
-import sizes from './utils/sizes';
-import * as spacingSizes from './utils/spacing-sizes';
+// import sizes from './utils/sizes';
 import style from './utils/style';
+import * as css from './utils/css';
 import * as styledMixin from './utils/styled-mixin';
 
-const utils = {
-  css,
+export const utils = {
   environment,
   getMeta,
   mixins,
-  sizes,
-  spacingSizes,
+  css,
   style,
   styledMixin
 }
 
-export default utils;
+
+export * as spacingSizes from './utils/spacing-sizes';
+export * from './utils/component';

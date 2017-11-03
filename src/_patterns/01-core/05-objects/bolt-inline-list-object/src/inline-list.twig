@@ -11,6 +11,13 @@
   true
 ] %}
 
+{% set valignments = {
+  "top": "top",
+  "center": "center",
+  "middle": "center",
+  "bottom": "bottom"
+} %}
+
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {% set componentName = "inline-list" %}
@@ -18,13 +25,15 @@
 {% set size = size | default("xsmall") %}
 {% set tag = tag in tags ? tag: "ul" %}
 {% set matrix = matrix | default(false) %}
+{% set valign = valign | default("top") %}
 
 
 {% set classes = [
   baseClass,
   size in sizes ? baseClass ~ "--" ~ size : "",
   delimeted ? baseClass ~ "--" ~ "delimited" : "",
-  matrix in matrixOptions ? baseClass ~ "--matrix" : ""
+  matrix in matrixOptions ? baseClass ~ "--matrix" : "",
+  valign in valignments|keys ? baseClass ~ "--valign-" ~ valignments[valign]
 ] %}
 
 {% if contentItems %}

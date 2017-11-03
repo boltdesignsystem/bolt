@@ -48,19 +48,31 @@
   weight in weights and type == "text" ? baseClass ~ "--" ~ weight : "",
   style in styles and type == "text" ? baseClass ~ "--" ~ style : "",
   size in sizes and type != "eyebrow" ? baseClass ~ "--" ~ size : "",
-  transform in transformProps and transform != "" ? baseClass ~ "--" ~ transform : ""
+  transform in transformProps and transform != "" ? baseClass ~ "--" ~ transform : "",
+  url ? baseClass ~ "--link" : "" 
 ] %}
+
+{% if url and icon.name is null %}
+  {% set icon = icon | default({}) | merge({
+    name: "chevron-right"
+  }) %}
+{% endif %}
 
 <{{ tag }} {{ attributes.addClass(classes) }}>
   <span class="{{ "#{baseClass}__text" }}">
     {% if url %}
-      {{ link(text, url, null) }}
+      {% include "@bolt/link.twig" with {
+        text: text,
+        icon: icon,
+        url: url,
+        isHeadline: true
+      } only %}
     {% else %}
       {{ text }}
     {% endif %}
   </span>
 
-  {% if icon %}
+  {% if icon and not url %}
     <span class="{{ "#{baseClass}__icon" }}">
       {% include "@bolt/icon.twig" with icon only %}
     </span>

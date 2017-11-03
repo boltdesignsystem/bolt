@@ -1,31 +1,16 @@
 /* ------------------------------------ *\
   Body and heading declaration
 \* ------------------------------------ */
-$bolt-breakpoint--min: map-get($bolt-breakpoints, xsmall);
-$bolt-breakpoint--max: map-get($bolt-breakpoints, xlarge);
 
-
+$bolt-base-font-sizes: (
+  bolt-breakpoint(xxsmall): 14px,
+  bolt-breakpoint(xsmall): 15px,
+  bolt-breakpoint(xxlarge): 16px,
+  bolt-breakpoint(xxxlarge):  18px
+);
 
 html {
-  // Base type
-  font-size: $bolt-base-font-size--min;
-
-  // Responsive type
-  /* stylelint-disable scale-unlimited/declaration-strict-value */
-  @media screen and (min-width: 400px) {
-    font-size:
-      calc(
-        #{$bolt-base-font-size--min} +
-        (#{bolt-strip-unit($bolt-base-font-size--max)} - #{bolt-strip-unit($bolt-base-font-size--min)}) *
-        (100vw - #{$bolt-breakpoint--min}) / (#{bolt-strip-unit($bolt-breakpoint--max) - bolt-strip-unit($bolt-breakpoint--min)})
-      );
-  }
-  /* stylelint-enable */
-
-  // Large type
-  @include respond-to(xlarge) {
-    font-size: $bolt-base-font-size--max;
-  }
+  @include bolt-poly-fluid-sizing('font-size', $bolt-base-font-sizes);
 }
 
 body {
@@ -34,6 +19,7 @@ body {
   @include bolt-font-size(medium);
   width: 100%;
   margin: 0;
+  color: bolt-color(indigo, xdark);
   // background-image: linear-gradient(to bottom,#0ff 0,rgba(255,255,255,0)1px);
   // background-repeat: repeat-y;
   // background-size: 100% 1rem;

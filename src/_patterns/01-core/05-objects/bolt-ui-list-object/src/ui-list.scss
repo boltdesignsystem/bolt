@@ -18,7 +18,7 @@ $bolt-ui-list-padding--large: (large 0) !default;
 
 $bolt-ui-list-border-width: 1px !default;
 $bolt-ui-list-border-style: solid !default;
-$bolt-ui-list-border-color: var(--bolt-ui-border-color, currentColor);
+$bolt-ui-list-border-color: var(--bolt-theme-border, currentColor);
 
 .o-bolt-ui-list {
   margin: 0;
@@ -33,9 +33,9 @@ $bolt-ui-list-border-color: var(--bolt-ui-border-color, currentColor);
     content: '';
     display: block;
     border-bottom-style: $bolt-ui-list-border-style;
+    border-bottom-color: currentColor; // fallback if no support for CSS variables
     border-bottom-color: $bolt-ui-list-border-color;
     border-bottom-width: 0;
-    opacity: 0.2;
     position: absolute;
     right: 0;
     bottom: 0;
@@ -74,7 +74,8 @@ $bolt-ui-list-border-color: var(--bolt-ui-border-color, currentColor);
 }
 
 
-.o-bolt-ui-list--borderless {
+.o-bolt-ui-list--borderless > .o-bolt-ui-list__item:after {
+  opacity: 0;
   --bolt-ui-border-color: transparent;
 }
 
@@ -89,4 +90,3 @@ $bolt-ui-list-border-color: var(--bolt-ui-border-color, currentColor);
 .o-bolt-ui-list--large > .o-bolt-ui-list__item {
   @include bolt-padding($bolt-ui-list-padding--large);
 }
-
