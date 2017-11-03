@@ -14,7 +14,9 @@
 
 {% set classes = [
   baseClass,
-  theme in themes ? "t-bolt-" ~ theme : ""
+  theme in themes ? "t-bolt-" ~ theme : "",
+  url ? "is-actionable" : "",
+  url ? "js-card-action" : ""
 ] %}
 
 {% if url %}

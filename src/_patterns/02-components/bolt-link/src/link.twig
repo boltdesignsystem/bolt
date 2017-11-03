@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Theme suggestion for link component.
+ *
+ * Available link variables:
+ * - link:
+ *   - attributes: HTML attributes to add to the link component.
+ *   - text: The text displayed inside the  D8 sets this to the `label` variable by default.
+ *
+ */
+#}
+{% spaceless %}
+
+  {% set link_classes = [
+    'c-bolt-link',
+    isHeadline ? 'c-bolt-link--headline' : ''
+  ] %}
+  {% set attributes = create_attribute(attributes | default(attributes) | default({})) %}
+  {% set attributes = attributes.addClass(link_classes) %}
+
+  {% if href %}
+    {% set attributes = attributes.setAttribute('href', href) %}
+  {% elseif url %}
+    {% set attributes = attributes.setAttribute('href', url) %}
+  {% endif %}
+
+  <a {{ attributes }}>    
+    <span class="c-bolt-link__text">
+      {{ text | default(label) | default("Learn More") }}
+    </span>
+      
+    {% if icon %}
+      <span class="c-bolt-link__icon">
+        {% include "@bolt/icon.twig" with icon only %}
+      </span>
+    {% endif %}
+  </a>
+{% endspaceless %}
