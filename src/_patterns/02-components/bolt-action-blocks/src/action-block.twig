@@ -1,11 +1,12 @@
 {# Sample Usage
   {% include "@bolt/action-block.twig" with {
-    text: "Title",
-    url: "http://google.com",
-    icon: {
-      name: "icon-name",
-      size: "large",
-      background: "circle"
+    "actionBlock": {
+      "text": "Item 1",
+      "url": "http://google.com"
+    },
+    "icon": {
+      "name": "download",
+      "size": "large"
     }
   } only %}
 #}
@@ -13,20 +14,28 @@
 
 {% set prefix = "c-bolt-" %}
 
+{% set valignItemsOptions = {
+  "top": "start",
+  "center": "center",
+  "bottom": "end"
+} %}
+
 {% set attributes = create_attribute(attributes|default({})) %}
 
 
 {% set componentName = "action-block" %}
 {% set baseClass = prefix ~ componentName %}
+{% set valignItems = valignItems | default("top") %}
 
 
 {% set classes = [
-  baseClass
+  baseClass,
+  valignItems in valignItemsOptions|keys ? baseClass ~ "--valign-items-" ~ valignItemsOptions[valignItems]
 ] %}
 
 
 <bolt-{{ componentName }} bolt-component>
-  <a href="{{ url }}" {{ attributes.addClass(classes | raw) }}>
+  <a href="{{ actionBlock.url }}" {{ attributes.addClass(classes | raw) }}>
     {% if icon %}
       <div class="{{ "#{baseClass}__item" }}">
         {% set icon = icon | merge({
@@ -36,9 +45,9 @@
       </div>
     {% endif %}
 
-    {% if text %}
+    {% if actionBlock.text %}
       <div class="{{ "#{baseClass}__item" }}">
-        {{ text }}
+        {{ actionBlock.text }}
       </div>
     {% endif %}
   </a>
