@@ -162,15 +162,18 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 // Headline spacing with other elements.
 .c-bolt-headline + .c-bolt-subheadline,
 .c-bolt-headline:not(.c-bolt-headline--xxxlarge) + .c-bolt-text,
+.c-bolt-headline:not(.c-bolt-headline--xxxlarge) + p:not[class],
 .c-bolt-headline + bolt-inline-list {
   margin-top: (-1 * bolt-v-spacing(medium)) + bolt-v-spacing(xsmall);
 }
 
-.c-bolt-headline--xxxlarge + .c-bolt-text {
+.c-bolt-headline--xxxlarge + .c-bolt-text,
+.c-bolt-headline--xxxlarge + p:not([class]) {
   margin-top: (-1 * bolt-v-spacing(medium)) + bolt-v-spacing(small);
 }
 
-.c-bolt-subheadline + .c-bolt-text {
+.c-bolt-subheadline + .c-bolt-text,
+.c-bolt-subheadline + p:not([class]) {
   margin-top: (-1 * bolt-v-spacing(medium)) + bolt-v-spacing(xsmall);
 }
 

@@ -284,8 +284,10 @@ bolt-button {
     border-color: $primary-background-hover;
     border-color: var(--bolt-theme-primary-border-hover, $primary-background-hover);
 
-    color: bolt-text-contrast($primary-background-hover);
-    color: var(--bolt-theme-primary-text-hover, bolt-text-contrast($primary-background-hover));
+    // color: bolt-text-contrast($primary-background-hover);
+    // color: var(--bolt-theme-primary-text-hover, bolt-text-contrast($primary-background-hover));
+    color: bolt-text-contrast($primary-background-default);
+    color: var(--bolt-theme-primary-text-default, bolt-text-contrast($primary-background-default));
 
     background-color: $primary-background-hover;
     background-color: var(--bolt-theme-primary-background-hover, $primary-background-hover);
@@ -295,8 +297,10 @@ bolt-button {
     border-color: $primary-background-active;
     border-color: var(--bolt-theme-primary-border-active, $primary-background-active);
 
-    color: bolt-text-contrast($primary-background-active);
-    color: var(--bolt-theme-primary-text-active, bolt-text-contrast($primary-background-active));
+    // color: bolt-text-contrast($primary-background-active);
+    // color: var(--bolt-theme-primary-text-active, bolt-text-contrast($primary-background-active));
+    color: bolt-text-contrast($primary-background-default);
+    color: var(--bolt-theme-primary-text-default, bolt-text-contrast($primary-background-default));
 
     background-color: $primary-background-active;
     background-color: var(--bolt-theme-primary-background-active, $primary-background-active);
@@ -358,8 +362,10 @@ bolt-button {
     border-color: $secondary-background-hover;
     border-color: var(--bolt-theme-secondary-border-hover, $secondary-background-hover);
 
-    color: bolt-text-contrast($secondary-background-hover);
-    color: var(--bolt-theme-secondary-text-hover, bolt-text-contrast($secondary-background-hover));
+    // color: bolt-text-contrast($secondary-background-hover);
+    // color: var(--bolt-theme-secondary-text-hover, bolt-text-contrast($secondary-background-hover));
+    color: bolt-text-contrast($secondary-background-default);
+    color: var(--bolt-theme-secondary-text-default, bolt-text-contrast($secondary-background-default));
 
     background-color: $secondary-background-hover;
     background-color: var(--bolt-theme-secondary-background-hover, $secondary-background-hover);
@@ -369,8 +375,10 @@ bolt-button {
     border-color: $secondary-background-active;
     border-color: var(--bolt-theme-secondary-border-active, $secondary-background-active);
 
-    color: bolt-text-contrast($secondary-background-active);
-    color: var(--bolt-theme-secondary-text-active, bolt-text-contrast($secondary-background-active));
+    // color: bolt-text-contrast($secondary-background-active);
+    // color: var(--bolt-theme-secondary-text-active, bolt-text-contrast($secondary-background-active));
+    color: bolt-text-contrast($secondary-background-default);
+    color: var(--bolt-theme-secondary-text-default, bolt-text-contrast($secondary-background-default));
 
     background-color: $secondary-background-active;
     background-color: var(--bolt-theme-secondary-background-active, $secondary-background-active);
