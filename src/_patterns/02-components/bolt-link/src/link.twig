@@ -25,16 +25,15 @@
     {% set attributes = attributes.setAttribute('href', url) %}
   {% endif %}
 
-  <a {{ attributes }}>
-    
-  <span class="c-bolt-link__text">
-    {{ text | default(label) | default("Learn More") }}
-  </span>
-    
-  {% if icon %}
-    <span class="c-bolt-link__icon">
-      {% include "@bolt/icon.twig" with icon only %}
+  <a {{ attributes }}>    
+    <span class="c-bolt-link__text">
+      {{ text | default(label) | default("Learn More") }}
     </span>
-  {% endif %}
+      
+    {% if icon %}
+      <span class="c-bolt-link__icon">
+        {% include "@bolt/icon.twig" with icon only %}
+      </span>
+    {% endif %}
   </a>
 {% endspaceless %}
