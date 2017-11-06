@@ -15,8 +15,6 @@
 {% set classes = [
   baseClass,
   theme in themes ? "t-bolt-" ~ theme : "",
-  url ? "is-actionable" : "",
-  url ? "js-card-action" : ""
 ] %}
 
 {% if url %}
@@ -94,7 +92,13 @@
         {% block card_media %}
           {% for key, item in _items if item.pattern in _allowedCardHeaderItems or key in _allowedCardHeaderItems %}
             {% if item.pattern %}
+              {% if item.pattern == 'image' and url is not empty %}
+                <a href="{{url}}">
+              {% endif %}
               {% include pattern_template(item.pattern) with item only %}
+              {% if item.pattern == 'image' and url is not empty %}
+                </a>
+              {% endif %}
             {% else %}
               {{ item }}
             {% endif %}
