@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Image",
+  "category": "atom",
+  "type": "object",
+  "format": "grid",
+  "properties": {
+    "name": {
+      "type": "string",
+      "default": "image",
+      "options": {
+        "hidden": true
+      }
+    },
+    "src": {
+      "type": "string"
+    },
+    "alt": {
+      "type": "string"
+    }
+  },
+  "required": ["name"],
+  "additionalProperties": false
+}
