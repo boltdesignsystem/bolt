@@ -31,7 +31,7 @@
 {% set classes = [
   baseClass,
   size in sizes ? baseClass ~ "--" ~ size : "",
-  delimeted ? baseClass ~ "--" ~ "delimited" : "",
+  delimited ? baseClass ~ "--" ~ "delimited" : "",
   matrix in matrixOptions ? baseClass ~ "--matrix" : "",
   valign in valignments|keys ? baseClass ~ "--valign-" ~ valignments[valign]
 ] %}

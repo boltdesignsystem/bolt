@@ -7,9 +7,10 @@ $bolt-theme-dark-primary:      bolt-color(yellow) !default;
 $bolt-theme-dark-secondary:    bolt-color(white) !default;
 $bolt-theme-dark-text:         bolt-text-contrast($bolt-theme-dark-background) !default;
 $bolt-theme-dark-heading:      bolt-text-contrast($bolt-theme-dark-background) !default;
+
 $bolt-theme-dark-link:         $bolt-theme-dark-primary !default;
 $bolt-theme-dark-heading-link: $bolt-theme-dark-text !default;
-$bolt-theme-dark-border:       rgba(bolt-color(gray), $bolt-global-border-opacity);
+$bolt-theme-dark-border:       rgba($bolt-theme-dark-heading, $bolt-global-border-opacity);
 
 .t-bolt-dark {
   $bolt-theme-background:             $bolt-theme-dark-background;
@@ -18,7 +19,7 @@ $bolt-theme-dark-border:       rgba(bolt-color(gray), $bolt-global-border-opacit
   $bolt-theme-heading:                $bolt-theme-dark-heading; // Default to main text color
   $bolt-theme-link:                   $bolt-theme-dark-link;
   $bolt-theme-text:                   $bolt-theme-dark-text;
-  $bolt-theme-heading-link:           $bolt-theme-text;
+  $bolt-theme-heading-link:           $bolt-theme-dark-heading-link;
   $bolt-theme-border:                 $bolt-theme-dark-border;
 
   $bolt-theme-link-default: $bolt-theme-primary;
@@ -27,7 +28,7 @@ $bolt-theme-dark-border:       rgba(bolt-color(gray), $bolt-global-border-opacit
   $bolt-theme-link-visited: $bolt-theme-link-default;
 
 
-  $bolt-theme-heading-link-default: $bolt-theme-text;
+  $bolt-theme-heading-link-default: $bolt-theme-heading-link;
   $bolt-theme-heading-link-hover:   rgba($bolt-theme-heading-link-default, $bolt-global-link-hover-opacity);
   $bolt-theme-heading-link-active:  rgba($bolt-theme-heading-link-default, $bolt-global-link-active-opacity);
   $bolt-theme-heading-link-visited: $bolt-theme-heading-link-default;

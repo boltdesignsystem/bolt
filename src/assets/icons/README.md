@@ -1,0 +1,2 @@
+# bolt/assets-icons (Deprecated)
+Deprecated - please use our new [@bolt/components-icons](https://www.npmjs.com/package/@bolt/components-icons) package if you need to reference or use the raw (unpackaged) SVG or JS-compiled icons or the [@bolt-components-icon](https://www.npmjs.com/package/@bolt/components-icon) package for physically loading and using Bolt's SVG Icon System itself (which uses the @bolt/components-icons package internally).

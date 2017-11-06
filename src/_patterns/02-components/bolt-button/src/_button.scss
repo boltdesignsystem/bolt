@@ -10,7 +10,7 @@
 
 
 $bolt-color-button-text: bolt-color(white);
-$bolt-color-primary: bolt-color(indigo, light);
+$bolt-color-primary: bolt-color(yellow);
 $bolt-color-secondary: bolt-color(indigo, light);
 
 
@@ -263,9 +263,9 @@ bolt-button {
 
 // .c-bolt-button,
 .c-bolt-button--primary {
-  $primary-background-default: bolt-color(indigo, light);
-  $primary-background-hover: #5764D9;
-  $primary-background-active: #535BA6;
+  $primary-background-default: $bolt-color-primary;
+  $primary-background-hover: mix($bolt-global-button-hover-color, $primary-background-default, $bolt-global-button-hover-mix);
+  $primary-background-active: mix($bolt-global-button-active-color, $primary-background-default, $bolt-global-button-active-mix);
 
   &,
   &:visited {
@@ -385,9 +385,7 @@ bolt-button {
   }
 }
 
-.c-bolt-button--text {
-  @include bolt-button-color(text);
-}
+
 
 .c-bolt-button--success {
   @include bolt-button-color(success);
@@ -480,10 +478,13 @@ bolt-button {
   align-self: center;
 }
 
+
+.c-bolt-link__text + .c-bolt-link__icon,
 .c-bolt-button__item-text + .c-bolt-button__icon {
   @include bolt-margin-left(xxsmall);
 }
 
+.c-bolt-link__icon,
 .c-bolt-button__icon {
   display: inline-block;
   display: inline-flex;
@@ -492,6 +493,7 @@ bolt-button {
   line-height: 1; // workaround so icons can be vertically aligned properly
 }
 
+.c-bolt-link__icon + .c-bolt-link__text,
 .c-bolt-button__icon + .c-bolt-button__item-text {
   @include bolt-margin-left(xsmall);
 }
@@ -501,7 +503,8 @@ bolt-button {
 
 .c-bolt-link {
   @include bolt-reset-button-styles;
-
+  display: inline-block;
+  display: inline-flex; //So icons are vcentered
   text-decoration: underline;
   transition: all $bolt-button-transition;
 }
@@ -510,22 +513,47 @@ bolt-button {
 
 .c-bolt-button--text {
   text-decoration: none;
-  color: currentColor;
-}
+  border-color: transparent;
+  background-color: transparent;
+  $bolt-theme-link-default: bolt-color(indigo, light);
 
-.c-bolt-button--text:hover {
-  opacity: 0.7;
-  color: currentColor;
-}
+  & {
+    opacity: 1;
+    color: currentColor;
 
-.c-bolt-button--text:active {
-  opacity: 0.5;
-  color: currentColor;
-}
+    @supports(--css: variables) {
+      color: var(--bolt-theme-heading-link-default, currentColor);
+    }
+  }
 
-.c-bolt-button--text:visited {
-  opacity: 1;
-  color: currentColor;
+  &:visited {
+    opacity: 1;
+    color: currentColor;
+
+    @supports(--css: variables) {
+      color: var(--bolt-theme-heading-link-visited, currentColor);
+    }
+  }
+  
+
+  &:focus,
+  &:hover {
+    opacity: $bolt-global-link-hover-opacity;
+
+    @supports(--css: variables) {
+      opacity: 1;
+      color: var(--bolt-theme-heading-link-hover, currentColor);
+    }
+  }
+
+  &:active {
+    opacity: $bolt-global-link-active-opacity;
+
+    @supports(--css: variables) {
+      opacity: 1;
+      color: var(--bolt-theme-heading-link-active, currentColor);
+    }
+  }
 }
 
 

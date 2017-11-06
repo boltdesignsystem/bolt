@@ -6,10 +6,10 @@ $bolt-theme-xlight-background:   bolt-color(white) !default;
 $bolt-theme-xlight-primary:      bolt-color(indigo, light) !default;
 $bolt-theme-xlight-secondary:    bolt-color(white) !default;
 $bolt-theme-xlight-text:         bolt-text-contrast($bolt-theme-xlight-background) !default;
-$bolt-theme-xlight-heading:      bolt-text-contrast($bolt-theme-xlight-background) !default;
+$bolt-theme-xlight-heading:      bolt-color(indigo) !default;
 $bolt-theme-xlight-link:         $bolt-theme-xlight-primary !default;
-$bolt-theme-xlight-heading-link: $bolt-theme-xlight-text !default;
-$bolt-theme-xlight-border:       rgba(bolt-color(gray), $bolt-global-border-opacity);
+$bolt-theme-xlight-heading-link: $bolt-theme-xlight-link !default;
+$bolt-theme-xlight-border:       rgba($bolt-theme-xlight-heading, $bolt-global-border-opacity);
 
 .t-bolt-xlight {
   $bolt-theme-background:             $bolt-theme-xlight-background;
@@ -18,7 +18,7 @@ $bolt-theme-xlight-border:       rgba(bolt-color(gray), $bolt-global-border-opac
   $bolt-theme-heading:                $bolt-theme-xlight-heading; // Default to main text color
   $bolt-theme-link:                   $bolt-theme-xlight-link;
   $bolt-theme-text:                   $bolt-theme-xlight-text;
-  $bolt-theme-heading-link:           $bolt-theme-text;
+  $bolt-theme-heading-link:           $bolt-theme-xlight-heading-link;
   $bolt-theme-border:                 $bolt-theme-xlight-border;
 
   $bolt-theme-link-default: $bolt-theme-primary;
@@ -27,7 +27,7 @@ $bolt-theme-xlight-border:       rgba(bolt-color(gray), $bolt-global-border-opac
   $bolt-theme-link-visited: $bolt-theme-link-default;
 
 
-  $bolt-theme-heading-link-default: $bolt-theme-text;
+  $bolt-theme-heading-link-default: $bolt-theme-heading-link;
   $bolt-theme-heading-link-hover:   rgba($bolt-theme-heading-link-default, $bolt-global-link-hover-opacity);
   $bolt-theme-heading-link-active:  rgba($bolt-theme-heading-link-default, $bolt-global-link-active-opacity);
   $bolt-theme-heading-link-visited: $bolt-theme-heading-link-default;

@@ -6,10 +6,11 @@ $bolt-theme-light-background:   bolt-color(gray, xlight) !default;
 $bolt-theme-light-primary:      bolt-color(indigo, light) !default;
 $bolt-theme-light-secondary:    bolt-color(white) !default;
 $bolt-theme-light-text:         bolt-text-contrast($bolt-theme-light-background) !default;
-$bolt-theme-light-heading:      bolt-text-contrast($bolt-theme-light-background) !default;
+$bolt-theme-light-heading:      bolt-color(indigo) !default;
+
 $bolt-theme-light-link:         $bolt-theme-light-primary !default;
-$bolt-theme-light-heading-link: $bolt-theme-light-text !default;
-$bolt-theme-light-border:       rgba(bolt-color(gray), $bolt-global-border-opacity);
+$bolt-theme-light-heading-link: $bolt-theme-light-link !default;
+$bolt-theme-light-border:       rgba($bolt-theme-light-heading, $bolt-global-border-opacity);
 
 .t-bolt-light {
   $bolt-theme-background:             $bolt-theme-light-background;
@@ -18,7 +19,7 @@ $bolt-theme-light-border:       rgba(bolt-color(gray), $bolt-global-border-opaci
   $bolt-theme-heading:                $bolt-theme-light-heading; // Default to main text color
   $bolt-theme-link:                   $bolt-theme-light-link;
   $bolt-theme-text:                   $bolt-theme-light-text;
-  $bolt-theme-heading-link:           $bolt-theme-text;
+  $bolt-theme-heading-link:           $bolt-theme-light-heading-link;
   $bolt-theme-border:                 $bolt-theme-light-border;
 
   $bolt-theme-link-default: $bolt-theme-primary;
@@ -27,7 +28,7 @@ $bolt-theme-light-border:       rgba(bolt-color(gray), $bolt-global-border-opaci
   $bolt-theme-link-visited: $bolt-theme-link-default;
 
 
-  $bolt-theme-heading-link-default: $bolt-theme-text;
+  $bolt-theme-heading-link-default: $bolt-theme-heading-link;
   $bolt-theme-heading-link-hover:   rgba($bolt-theme-heading-link-default, $bolt-global-link-hover-opacity);
   $bolt-theme-heading-link-active:  rgba($bolt-theme-heading-link-default, $bolt-global-link-active-opacity);
   $bolt-theme-heading-link-visited: $bolt-theme-heading-link-default;

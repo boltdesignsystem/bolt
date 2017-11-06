@@ -109,8 +109,7 @@
         }
       ]
     },
-    content: feature_band.content | default(content),
-   
+    content: feature_band.content | default(content)
   } only %}{% endembed %}
 
 
@@ -303,6 +302,22 @@
                 tag: "h3"
               } only %}
 
+              {% include "@bolt/inline-list.twig" with {
+                delimited: true,
+                valign: "top",
+                contentItems: [
+                  {
+                    "text": "Top aligned inline List Item #1"
+                  },
+                  {
+                    "text": "Inline List Item #2"
+                  },
+                  {
+                    "text": "Inline List Item #3"
+                  }
+                ]
+              } only %}
+
               {% include "@bolt/paragraph.twig" with {
                 text: "Considering Salesforce.com? Don’t fall for the hype. See why today’s leading enterprises choose Pega CRM."
               } only %}
@@ -354,51 +369,45 @@
       },
   "contentItems": [
     {
-      "text": "Item 1",
+      "text": "Product Information",
       "url": "http://google.com",
       "icon": {
-        "name": "download",
-        "background": "circle"
+        "name": "product"
       }
     },
     {
-      "text": "Item 2",
+      "text": "Industry Solutions",
       "url": "http://google.com",
       "icon": {
-        "name": "calendar",
-        "background": "circle"
+        "name": "industries"
       }
     },
     {
-      "text": "Item 3",
+      "text": "Training and Certification",
       "url": "http://google.com",
       "icon": {
-        "name": "copy-to-clipboard",
-        "background": "circle"
+        "name": "training"
       }
     },
     {
-      "text": "Item 4",
+      "text": "Vision and Technology",
       "url": "http://google.com",
       "icon": {
-        "name": "copy-to-clipboard",
-        "background": "chevron-right"
+        "name": "vision"
       }
     },
     {
-      "text": "Item 5",
+      "text": "Services and Partners",
       "url": "http://google.com",
       "icon": {
-        "name": "copy-to-clipboard",
-        "background": "add-open"
+        "name": "partners"
       }
     },
     {
-      "text": "Item 6",
+      "text": "Career Opportunities",
       "url": "http://google.com",
       "icon": {
-        "name": "calendar",
-        "background": "chevron-right"
+        "name": "careers"
       }
     }
   ]
