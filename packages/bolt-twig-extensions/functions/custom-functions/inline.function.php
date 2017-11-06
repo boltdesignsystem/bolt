@@ -2,7 +2,7 @@
 
 $function = new Twig_SimpleFunction('inline', function ($fileName, $prefix = '/dist') {
 
-  $documentRoot = trim(getcwd(), "");
+  $documentRoot = trim('../../', "");
   $filePath = $documentRoot . $prefix . $fileName;
 
   if ($fileName !== '' && file_exists($filePath)) {

@@ -8,25 +8,25 @@ use ColorThief\ColorThief;
 /**
   * Handle garbage collection w/ the temp images generated locally
   */
-$lastRunLog = getcwd() . '/dist/last-run.log';
+// $lastRunLog = getcwd() . '/dist/last-run.log';
 
-if (file_exists($lastRunLog)) {
-  $lastRun = file_get_contents($lastRunLog);
-  if (time() - $lastRun >= 86400) {
-    //its been more than a day so run our cleanup task
+// if (file_exists($lastRunLog)) {
+//   $lastRun = file_get_contents($lastRunLog);
+//   if (time() - $lastRun >= 86400) {
+//     //its been more than a day so run our cleanup task
 
-    // This could be a cron called each day @3:00AM for instance
-    // Removes all the files from ../cache that are more than 30 days
-    // old. A verbose output will explain which files are deleted
-    GarbageCollect::dropOldFiles(getcwd() .'/cache', 30, true);
+//     // This could be a cron called each day @3:00AM for instance
+//     // Removes all the files from ../cache that are more than 30 days
+//     // old. A verbose output will explain which files are deleted
+//     GarbageCollect::dropOldFiles(getcwd() .'/cache', 30, true);
 
-    //update lastrun.log with current time
-    file_put_contents($lastRunLog, time());
-  }
-} else {
-  // If this is the first time we're running our cleanup task, create the initial cache file
-  file_put_contents($lastRunLog, time());
-}
+//     //update lastrun.log with current time
+//     file_put_contents($lastRunLog, time());
+//   }
+// } else {
+//   // If this is the first time we're running our cleanup task, create the initial cache file
+//   file_put_contents($lastRunLog, time());
+// }
 
 
 $function = new Twig_SimpleFunction('bgcolor', function ($relativeImagePath){
@@ -41,8 +41,8 @@ $function = new Twig_SimpleFunction('bgcolor', function ($relativeImagePath){
   }
 
   
-  $publicDir = '/dist';
-  $absoluteImagePath = getcwd() . $publicDir . $relativeImagePath;
+  $publicDir = __DIR__ . '/../../../../../dist';
+  $absoluteImagePath = $publicDir . $relativeImagePath;
 
   if(file_exists($absoluteImagePath)){
     $fileExt = pathinfo($absoluteImagePath, PATHINFO_EXTENSION);

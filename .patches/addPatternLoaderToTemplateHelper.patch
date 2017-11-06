@@ -1,0 +1,118 @@
+diff --git a/src/PatternLab/Builder.php b/src/PatternLab/Builder.php
+index bceb814..90b2a70 100644
+--- a/src/PatternLab/Builder.php
++++ b/src/PatternLab/Builder.php
+@@ -298,15 +298,6 @@ class Builder {
+ 		// default var
+ 		$publicDir = Config::getOption("publicDir");
+ 
+-		// load the pattern loader
+-		$ppdExporter             = new PatternPathSrcExporter();
+-		$patternPathSrc          = $ppdExporter->run();
+-		$options                 = array();
+-		$options["patternPaths"] = $patternPathSrc;
+-		$patternEngineBasePath   = PatternEngine::getInstance()->getBasePath();
+-		$patternLoaderClass      = $patternEngineBasePath."\Loaders\PatternLoader";
+-		$patternLoader           = new $patternLoaderClass($options);
+-
+ 		// check directories i need
+ 		if (!is_dir($publicDir."/styleguide/")) {
+ 			mkdir($publicDir."/styleguide/");
+@@ -326,6 +317,7 @@ class Builder {
+ 		// add the pattern lab specific mark-up
+ 		$filesystemLoader             = Template::getFilesystemLoader();
+ 		$stringLoader                 = Template::getStringLoader();
++		$patternLoader    						= Template::getPatternLoader();
+ 
+ 		$globalData                   = Data::get();
+ 		$globalData["patternLabHead"] = $stringLoader->render(array("string" => Template::getHTMLHead(), "data" => array("cacheBuster" => $partials["cacheBuster"])));
+@@ -364,17 +356,9 @@ class Builder {
+ 		$patternFoot      = Template::getPatternFoot();
+ 		$filesystemLoader = Template::getFilesystemLoader();
+ 		$stringLoader     = Template::getStringLoader();
++		$patternLoader    = Template::getPatternLoader();
+ 		$globalData       = Data::get();
+ 
+-		// load the pattern loader
+-		$ppdExporter             = new PatternPathSrcExporter();
+-		$patternPathSrc          = $ppdExporter->run();
+-		$options                 = array();
+-		$options["patternPaths"] = $patternPathSrc;
+-		$patternEngineBasePath   = PatternEngine::getInstance()->getBasePath();
+-		$patternLoaderClass      = $patternEngineBasePath."\Loaders\PatternLoader";
+-		$patternLoader           = new $patternLoaderClass($options);
+-
+ 		// make sure view all is set
+ 		$globalData["viewall"] = true;
+ 
+diff --git a/src/PatternLab/PatternData/Helpers/PatternCodeHelper.php b/src/PatternLab/PatternData/Helpers/PatternCodeHelper.php
+index da6879b..4fee96c 100644
+--- a/src/PatternLab/PatternData/Helpers/PatternCodeHelper.php
++++ b/src/PatternLab/PatternData/Helpers/PatternCodeHelper.php
+@@ -45,15 +45,11 @@ class PatternCodeHelper extends \PatternLab\PatternData\Helper {
+ 		$patternHead             = Template::getPatternHead();
+ 		$patternFoot             = Template::getPatternFoot();
+ 		$stringLoader            = Template::getStringLoader();
++		$patternLoader					 = Template::getPatternLoader();
+ 		
+ 		// re-load the pattern data since we modified it
+ 		$store = PatternData::get();
+ 		
+-		// load the pattern loader
+-		$patternEngineBasePath   = PatternEngine::getInstance()->getBasePath();
+-		$patternLoaderClass      = $patternEngineBasePath."\Loaders\PatternLoader";
+-		$patternLoader           = new $patternLoaderClass($options);
+-		
+ 		// iterate to process each pattern
+ 		foreach ($store as $patternStoreKey => $patternStoreData) {
+ 			
+diff --git a/src/PatternLab/Template.php b/src/PatternLab/Template.php
+index 7dc0aa8..77b9c5f 100644
+--- a/src/PatternLab/Template.php
++++ b/src/PatternLab/Template.php
+@@ -15,6 +15,7 @@ namespace PatternLab;
+ use \PatternLab\Config;
+ use \PatternLab\Console;
+ use \PatternLab\Timer;
++use \PatternLab\PatternData\Exporters\PatternPathSrcExporter;
+ 
+ class Template {
+ 	
+@@ -70,15 +71,19 @@ class Template {
+ 		$options                 = array();
+ 		$options["templatePath"] = $styleguideKitPath.DIRECTORY_SEPARATOR."views";
+ 		$options["partialsPath"] = $options["templatePath"].DIRECTORY_SEPARATOR."partials";
+-		
+ 		self::$filesystemLoader  = new $filesystemLoaderClass($options);
+ 		
++		// add the stringLoader
+ 		$stringLoaderClass       = $patternEngineBasePath."\Loaders\StringLoader";
+ 		self::$stringLoader      = new $stringLoaderClass();
+-		
+-		// i can't remember why i chose to implement the pattern loader directly in classes
+-		// i figure i had a good reason which is why it's not showing up here
+-		
++
++		// add the patternLoader
++		$ppdExporter             = new PatternPathSrcExporter();
++		$patternPathSrc          = $ppdExporter->run();
++		$options                 = array();
++		$options["patternPaths"] = $patternPathSrc;
++		$patternLoaderClass      = $patternEngineBasePath."\Loaders\PatternLoader";
++		self::$patternLoader     = new $patternLoaderClass($options);
+ 	}
+ 	
+ 	/*
+@@ -122,5 +127,12 @@ class Template {
+ 	public static function getStringLoader() {
+ 		return self::$stringLoader;
+ 	}
++
++	/*
++	 * Get the PatternLoader
++	 */
++	public static function getPatternLoader() {
++		return self::$patternLoader;
++	}
+ 	
+ }

@@ -1,6 +1,6 @@
 <?php
 
-$function = new Twig_SimpleFunction('inline', function ($fileName, $prefix = '/dist') {
+$function = new Twig_SimpleFunction('json_decode', function ($fileName, $prefix = '/dist') {
 
   $documentRoot = trim(getcwd(), "");
   $filePath = $documentRoot . $prefix . $fileName;

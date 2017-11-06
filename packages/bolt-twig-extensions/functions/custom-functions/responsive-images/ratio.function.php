@@ -1,7 +1,7 @@
 <?php
 
 $function = new Twig_SimpleFunction('ratio', function ($fileName, $heightOrWidthRatio = 'width') {
-  $filePath = getcwd() . '/dist' . $fileName;
+  $filePath = __DIR__ . '/../../../../../dist' . $fileName;
   
   if (file_exists($filePath)){
     $fileExt = pathinfo($filePath, PATHINFO_EXTENSION);

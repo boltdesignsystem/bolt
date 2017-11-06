@@ -12,7 +12,7 @@ $function = new \Twig_SimpleFunction('pattern_template', function (Twig_Environm
   $patternName = str_replace('.', '_', $patternName); // replace all dots with underscores
   $patternName = str_replace('-', '_', $patternName); // replace all dahses with underscores
 
-
+  
 
   // From get_data.function.php TODO: figure out how to call one twig extension from another twig extension
   /**
@@ -23,7 +23,7 @@ $function = new \Twig_SimpleFunction('pattern_template', function (Twig_Environm
   // $source = $template->getSourceContext();
 
   /** @var string $full_path */
-  $full_path = getcwd() . $manifestPath;
+  $full_path = __DIR__ . '/../../../../..' . $manifestPath;
 
   $file_data = [];
 

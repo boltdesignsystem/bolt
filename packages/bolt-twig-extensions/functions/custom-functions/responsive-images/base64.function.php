@@ -6,8 +6,8 @@ use PHPExif\Reader\Reader as ExifReader;
 
 $function = new Twig_SimpleFunction('base64', function ($relativeImagePath) {
 
-  $publicDir = '/dist';
-  $absoluteImagePath = getcwd() . $publicDir . $relativeImagePath;
+  $publicDir = __DIR__ . '/../../../../../dist';
+  $absoluteImagePath = $publicDir . $relativeImagePath;
 
   if(file_exists($absoluteImagePath)){
     $fileExt = pathinfo($absoluteImagePath, PATHINFO_EXTENSION);
