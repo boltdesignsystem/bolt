@@ -126,8 +126,26 @@ c-bolt-blockquote {
   }
 }
 
-.c-bolt-blockquote__quote {
+.c-bolt-blockquote__quote,
+.c-bolt-blockquote__logo {
   @include bolt-margin-bottom(medium);
+}
+
+.c-bolt-blockquote__logo {
+  display: inline-block;
+}
+
+.c-bolt-blockquote__image {
+  display: inline-block;
+  display: inline-flex;
+  width: 5rem;
+  height: 5rem;
+  border: 1px solid;
+  border-radius: 100em;
+  overflow: hidden;
+}
+
+.c-bolt-blockquote__quote {
   display: block;
   position: relative;
   max-width: 75ch;
@@ -153,5 +171,10 @@ c-bolt-blockquote {
 }
 
 .c-bolt-blockquote__footer-item {
+  @include bolt-margin-bottom(small);
   display: block;
+
+  &:last-child {
+    @include bolt-margin-bottom(0);
+  }
 }

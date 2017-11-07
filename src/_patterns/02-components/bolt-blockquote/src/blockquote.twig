@@ -46,20 +46,36 @@
 
 <bolt-{{ componentName }} bolt-component>
   <blockquote {{ attributes.addClass(classes) }}>
-    <div class="{{ "#{baseClass}__quote" }}">
-      {% block blockquote_quote %}
-        {% if content %}
-          {% include "@bolt/text.twig" with {
-            text: content,
-            tag: "div",
-            size: size
-          } only %}
-        {% endif %}
+    {% if logo %}
+      {% block blockquote_logo %}
+        <div class="{{ "#{baseClass}__logo" }}">
+          {% include "@bolt/logo.twig" with logo only %}
+        </div>
       {% endblock %}
-    </div>
+    {% endif %}
+    {% block blockquote_quote %}
+      <div class="{{ "#{baseClass}__quote" }}">
+        {% include "@bolt/text.twig" with {
+          text: content,
+          tag: "div",
+          size: size
+        } only %}
+      </div>
+    {% endblock %}
     {% if author %}
       {% block blockquote_footer %}
         <footer class="{{ "#{baseClass}__footer" }}">
+          {% if author.image %}
+            <div class="{{ "#{baseClass}__footer-item" }}">
+              <div class="{{ "#{baseClass}__image" }}">
+                {% include "@bolt/image.twig" with author.image | merge({
+                  attributes: {
+                    class: [""]
+                  }
+                }) only %}
+              </div>
+            </div>
+          {% endif %}
           <div class="{{ "#{baseClass}__footer-item" }}">
             {% include "@bolt/text.twig" with {
               text: author.name,
@@ -67,16 +83,13 @@
               size: "xsmall",
               weight: "bold"
             } only %}
-          </div>
-          {% if author.title %}
-            <div class="{{ "#{baseClass}__footer-item" }}">
+            {% if author.title %}
               {% include "@bolt/text.twig" with {
                 text: author.title,
-                tag: "span",
                 size: "xsmall"
               } only %}
-            </div>
-          {% endif %}
+            {% endif %}
+          </div>
         </footer>
       {% endblock %}
     {% endif %}
