@@ -1,0 +1,12 @@
+@@ parameterized using browsers
+@@ parameterized using viewports
+@@ parameterized using components
+${componentName} on ${browser} with ${viewportName} viewport
+    selenium ${browser} ${baseUrl}styleguide/${componentLabel}.html ${size}
+        check test/visual/specs/${componentLabel}.gspec --include "${tags},all"
+
+@@ parameterized using browsers
+Main layout with nav on ${browser} with narrow viewport
+    selenium ${browser} ${baseUrl}styleguide/layout.html ${narrowDimensions}
+        run test/visual/scripts/shownav.js
+        check test/visual/specs/layout.gspec --include "narrow_screen_nav"

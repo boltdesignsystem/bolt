@@ -105,7 +105,13 @@ npm run start
 
 Note: you can always run `gulp --tasks` to see what build tasks are available to run
 
-## Building for Production
+## Building for Production (Quick Build)
 ```
 npm run build
+```
+
+## Building for Production (Full Build)
+Everything done in the normal production build in addition to regenerating the bolt-manaifest.yml file in the root of the project -- used when dynamically referencing arrays of Twig templates in a way that is more D8 friendly out of the box
+```
+npm run build:full
 ```

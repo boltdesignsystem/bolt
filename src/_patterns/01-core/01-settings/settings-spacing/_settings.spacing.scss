@@ -2,6 +2,7 @@
 /// @group Settings: Layout
 /// @author Mike Mai
 ////
+@import '@bolt/tools-export-data'; //So we can export spacing values to JSON
 
 /* ------------------------------------ *\
   Spacing Scale
@@ -25,6 +26,7 @@ $bolt-spacing-values: (
   'xlarge':  4,
   'xxlarge': 8
 );
+$bolt-spacing-values: bolt-export-data('spacing/bolt-spacing-scale.data.json', $bolt-spacing-values, $prefix: '{ "boltSpacingScale":', $suffix: '}');
 
 $bolt-spacing-sizes: ();
 

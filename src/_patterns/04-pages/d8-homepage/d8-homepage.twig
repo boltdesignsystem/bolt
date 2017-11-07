@@ -13,8 +13,11 @@
             },
             {
               "pattern": "headline",
-              "text": "Personalized. Not Creepy.",
-              "size": "large"
+              "text": link("Personalized. Not Creepy.", "#", {}),
+              "size": "large",
+              "icon": {
+                "name": "chevron-right"
+              }
             }
           ]
         },
@@ -27,7 +30,10 @@
             {
               "pattern": "headline",
               "text": "Create Sales Superstars",
-              "size": "large"
+              "size": "large",
+              "icon": {
+                "name": "chevron-right"
+              }
             }
           ]
         },
@@ -40,7 +46,10 @@
             {
               "pattern": "headline",
               "text": "Stop Coding. Start Designing.",
-              "size": "large"
+              "size": "large",
+              "icon": {
+                "name": "chevron-right"
+              }
             }
           ]
         }
@@ -82,7 +91,10 @@
         {
           text: "Get Real",
           style: "primary",
-          url: "https://www.google.com"
+          url: "https://www.google.com",
+          icon: {
+            name: "chevron-right"
+          }
         }
       ]
     },
@@ -281,6 +293,68 @@
         {% endcell %}
       {% endgrid %}
 
+  {% endblock %}
+{% endembed %}
+
+
+
+{% embed "@bolt/band.twig" with {
+  size: "medium",
+  theme: "dark",
+  fullBleed: true
+} only %}
+  {% block band_content %}
+    {% include "@bolt/action-blocks.twig" with {
+      attributes: {
+        class: [
+          "c-bolt-action-blocks--max-8"
+        ]
+      },
+  "contentItems": [
+    {
+      "text": "Product Information",
+      "url": "http://google.com",
+      "icon": {
+        "name": "product"
+      }
+    },
+    {
+      "text": "Industry Solutions",
+      "url": "http://google.com",
+      "icon": {
+        "name": "industries"
+      }
+    },
+    {
+      "text": "Training and Certification",
+      "url": "http://google.com",
+      "icon": {
+        "name": "training"
+      }
+    },
+    {
+      "text": "Vision and Technology",
+      "url": "http://google.com",
+      "icon": {
+        "name": "vision"
+      }
+    },
+    {
+      "text": "Services and Partners",
+      "url": "http://google.com",
+      "icon": {
+        "name": "partners"
+      }
+    },
+    {
+      "text": "Career Opportunities",
+      "url": "http://google.com",
+      "icon": {
+        "name": "careers"
+      }
+    }
+  ]
+} only %}
   {% endblock %}
 {% endembed %}
 

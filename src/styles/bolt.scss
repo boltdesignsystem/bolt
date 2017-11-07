@@ -5,8 +5,8 @@
 @import '@bolt/tools-all';
 @import '@bolt/generic-all';
 @import '@bolt/elements-all';
-@import 'objects.all';
-@import 'components.all';
+@import '@bolt/objects-all';
+@import '@bolt/components-all';
 @import '@bolt/themes-all';
 @import '@bolt/utilities-all';
 
@@ -69,6 +69,15 @@ bolt-demo {
 }
 
 
+
+/*
+ * SHAME
+ */
+
+// Workaround Brightcove Video Player's Hapyak CSS in a ratio component
+bolt-ratio .hapyak-player:not(.hapyak-minimal-css) {
+  position: absolute !important;
+}
 
 
 

@@ -38,14 +38,15 @@
     <div class="{{ "#{baseClass}__item" }}">
       {% if contentItems %}
         {% for item in contentItems %}
-          {% if loop.first %}
-            {% include pattern_template(item.pattern) with item | merge({
-              attributes: {
-                class: ["c-bolt-background__#{item.pattern}"]
-              },
-              ratio: false
-            }) only %}
-          {% endif %}
+
+          {% set itemAttributes = item.pattern ~ "Attributes" %}
+
+          {% include pattern_template(item.pattern) with item | merge({
+            (itemAttributes): {
+              class: ["c-bolt-background__#{item.pattern}"]
+            },
+            ratio: false
+          }) only %}
         {% endfor %}
       {% endif %}
 

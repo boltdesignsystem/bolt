@@ -1,6 +1,6 @@
 <?php
 
-$function = new Twig_SimpleFunction('inline', function ($fileName, $prefix = '/bolt-website') {
+$function = new Twig_SimpleFunction('inline', function ($fileName, $prefix = '/dist') {
 
   $documentRoot = trim(getcwd(), "");
   $filePath = $documentRoot . $prefix . $fileName;

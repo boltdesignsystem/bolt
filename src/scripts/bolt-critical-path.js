@@ -1,1 +1,1 @@
-import '@bolt/components-font-loader';
+import '@bolt/components-critical-fonts';

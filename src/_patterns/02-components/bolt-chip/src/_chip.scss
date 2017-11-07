@@ -1,10 +1,3 @@
-@import '@bolt/settings-global';
-@import '@bolt/settings-font-size';
-@import '@bolt/tools-font-size';
-@import '@bolt/tools-spacing';
-@import '@bolt/tools-color-palette';
-
-
 /* ------------------------------------ *\
    Chips
 \* ------------------------------------ */
@@ -19,7 +12,7 @@
 
 // Chip Variables
 $bolt-chip-border-radius: 100em;
-$bolt-chip-color: var(--bolt-color-text-color); // TODO: Map this to theme text color when theming is done.
+$bolt-chip-color: var(--bolt-theme-chip-text, var(--bolt-theme-color, currentColor)); // TODO: Map this to theme text color when theming is done.
 $bolt-chip-background-color: rgba(bolt-color(gray), 0.22);
 $bolt-chip-background-color--hover: rgba(bolt-color(gray), 0.30);
 $bolt-chip-transition: $bolt-transition;

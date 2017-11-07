@@ -8,7 +8,8 @@ use ColorThief\ColorThief;
 /**
   * Handle garbage collection w/ the temp images generated locally
   */
-$lastRunLog = getcwd() . '/bolt-website/last-run.log';
+$lastRunLog = getcwd() . '/dist/last-run.log';
+
 if (file_exists($lastRunLog)) {
   $lastRun = file_get_contents($lastRunLog);
   if (time() - $lastRun >= 86400) {
@@ -40,7 +41,7 @@ $function = new Twig_SimpleFunction('bgcolor', function ($relativeImagePath){
   }
 
   
-  $publicDir = '/bolt-website';
+  $publicDir = '/dist';
   $absoluteImagePath = getcwd() . $publicDir . $relativeImagePath;
 
   if(file_exists($absoluteImagePath)){

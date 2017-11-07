@@ -1,8 +1,6 @@
 bolt-icon {
   display: inline-block;
-  width: 24px;
-  height: 24px;
-
+  display: inline-flex;
   color: currentColor;
   color: var(--bolt-color-icon, currentColor);
 }
@@ -17,10 +15,10 @@ bolt-icon {
 
 // By default, icons should inherit the size of the container it's put inside
 .c-bolt-icon {
+  display: block; //required for vertically aligning icons
   position: relative;
   width: 1em;
   height: 1em;
-  vertical-align: middle;
   box-sizing: border-box;
 }
 

@@ -1,3 +1,7 @@
+accordion:
+  filename: accordion.twig
+  path: src/_patterns/02-components/bolt-accordion/src/accordion.twig
+  namespace: '@bolt/accordion.twig'
 action_block:
   filename: action-block.twig
   path: src/_patterns/02-components/bolt-action-blocks/src/action-block.twig
@@ -73,11 +77,11 @@ band_kitchen_sink:
   namespace: '@bolt/band-kitchen-sink.twig'
 bare_list:
   filename: bare-list.twig
-  path: src/_patterns/01-core/05-objects/01-lists/bolt-bare-list/src/bare-list.twig
+  path: src/_patterns/01-core/05-objects/bolt-bare-list-object/src/bare-list.twig
   namespace: '@bolt/bare-list.twig'
 block:
   filename: block.twig
-  path: src/_patterns/01-core/05-objects/02-layout/bolt-block/src/block.twig
+  path: src/_patterns/01-core/05-objects/bolt-block-object/src/block.twig
   namespace: '@bolt/block.twig'
 blockquote:
   filename: blockquote.twig
@@ -118,15 +122,15 @@ brand_colors:
   namespace: '@bolt/01-brand-colors.twig'
 button:
   filename: button.twig
-  path: src/_patterns/02-components/01-bolt-button/src/button.twig
+  path: src/_patterns/02-components/bolt-button/src/button.twig
   namespace: '@bolt/button.twig'
 button_group:
   filename: button-group.twig
-  path: src/_patterns/02-components/02-bolt-button-group/src/button-group.twig
+  path: src/_patterns/02-components/bolt-button-group/src/button-group.twig
   namespace: '@bolt/button-group.twig'
 button_kitchen_sink:
   filename: button-kitchen-sink.twig
-  path: src/_patterns/02-components/01-bolt-button/demos/button-kitchen-sink.twig
+  path: src/_patterns/02-components/bolt-button/demos/button-kitchen-sink.twig
   namespace: '@bolt/button-kitchen-sink.twig'
 card:
   filename: card.twig
@@ -146,7 +150,7 @@ card_w_teaser_list:
   namespace: '@bolt/card-w-teaser-list.twig'
 cell:
   filename: cell.twig
-  path: src/_patterns/01-core/05-objects/02-layout/bolt-grid/cell.twig
+  path: src/_patterns/01-core/05-objects/bolt-grid-object/cell.twig
   namespace: '@bolt/cell.twig'
 chip:
   filename: chip.twig
@@ -158,8 +162,7 @@ chip_list:
   namespace: '@bolt/chip-list.twig'
 color_swatch:
   filename: _color-swatch.twig
-  path: >-
-    src/_patterns/01-core/01-settings/settings-colors/src/twig/_color-swatch.twig
+  path: src/_patterns/01-core/01-settings/settings-colors/src/_color-swatch.twig
   namespace: '@bolt/_color-swatch.twig'
 colors_accessibility:
   filename: 03-colors-accessibility.twig
@@ -168,7 +171,7 @@ colors_accessibility:
   namespace: '@bolt/03-colors-accessibility.twig'
 crop:
   filename: crop.twig
-  path: src/_patterns/01-core/05-objects/03-display/bolt-crop/src/crop.twig
+  path: src/_patterns/01-core/05-objects/bolt-crop-object/src/crop.twig
   namespace: '@bolt/crop.twig'
 d8_homepage:
   filename: d8-homepage.twig
@@ -178,13 +181,17 @@ d8_homepage_alt:
   filename: d8-homepage-alt.twig
   path: src/_patterns/04-pages/d8-homepage/d8-homepage-alt.twig
   namespace: '@bolt/d8-homepage-alt.twig'
+d8_homepage_video_test:
+  filename: d8-homepage-video-test.twig
+  path: src/_patterns/04-pages/d8-homepage/d8-homepage-video-test.twig
+  namespace: '@bolt/d8-homepage-video-test.twig'
 d8_resource_details:
   filename: d8-resource-details.twig
   path: src/_patterns/04-pages/d8-resource-details/d8-resource-details.twig
   namespace: '@bolt/d8-resource-details.twig'
 default_template:
   filename: default-template.twig
-  path: src/_patterns/03-templates/templates-default/default-template.twig
+  path: src/_patterns/03-templates/default/default-template.twig
   namespace: '@bolt/default-template.twig'
 demo:
   filename: demo.twig
@@ -196,7 +203,7 @@ eyebrow:
   namespace: '@bolt/eyebrow.twig'
 flag:
   filename: flag.twig
-  path: src/_patterns/01-core/05-objects/02-layout/bolt-flag/src/flag.twig
+  path: src/_patterns/01-core/05-objects/bolt-flag-object/src/flag.twig
   namespace: '@bolt/flag.twig'
 gcd:
   filename: gcd.twig
@@ -204,7 +211,7 @@ gcd:
   namespace: '@bolt/gcd.twig'
 grid:
   filename: grid.twig
-  path: src/_patterns/01-core/05-objects/02-layout/bolt-grid/grid.twig
+  path: src/_patterns/01-core/05-objects/bolt-grid-object/grid.twig
   namespace: '@bolt/grid.twig'
 h1:
   filename: h1.twig
@@ -238,6 +245,10 @@ headline_kitchen_sink:
   filename: headline-kitchen-sink.twig
   path: src/_patterns/02-components/bolt-headline/demo/headline-kitchen-sink.twig
   namespace: '@bolt/headline-kitchen-sink.twig'
+homepage_qa:
+  filename: homepage-qa.twig
+  path: src/_patterns/04-pages/bolt-theming-qa/homepage-qa.twig
+  namespace: '@bolt/homepage-qa.twig'
 icon:
   filename: icon.twig
   path: src/_patterns/02-components/bolt-icon/src/icon.twig
@@ -253,11 +264,11 @@ image_schema:
 inline_list:
   filename: inline-list.twig
   path: >-
-    src/_patterns/01-core/05-objects/01-lists/bolt-inline-list/src/inline-list.twig
+    src/_patterns/01-core/05-objects/bolt-inline-list-object/src/inline-list.twig
   namespace: '@bolt/inline-list.twig'
 island:
   filename: island.twig
-  path: src/_patterns/01-core/05-objects/02-layout/bolt-island/src/island.twig
+  path: src/_patterns/01-core/05-objects/bolt-island-object/src/island.twig
   namespace: '@bolt/island.twig'
 lead:
   filename: lead.twig
@@ -265,40 +276,44 @@ lead:
   namespace: '@bolt/lead.twig'
 link:
   filename: link.twig
-  path: src/_patterns/02-components/bolt-link/link.twig
+  path: src/_patterns/02-components/bolt-link/src/link.twig
   namespace: '@bolt/link.twig'
+link_element:
+  filename: link-element.twig
+  path: src/_patterns/01-core/04-elements/elements-links/link-element.twig
+  namespace: '@bolt/link-element.twig'
 logo:
   filename: logo.twig
   path: src/_patterns/02-components/bolt-logo/src/logo.twig
   namespace: '@bolt/logo.twig'
 ordered_list:
   filename: ordered-list.twig
-  path: src/_patterns/02-components/03-bolt-ordered-list/src/ordered-list.twig
+  path: src/_patterns/02-components/bolt-ordered-list/src/ordered-list.twig
   namespace: '@bolt/ordered-list.twig'
 ordered_list__theme_demo:
   filename: ordered-list--theme-demo.twig
   path: >-
-    src/_patterns/02-components/03-bolt-ordered-list/demo/theming/ordered-list--theme-demo.twig
+    src/_patterns/02-components/bolt-ordered-list/demo/theming/ordered-list--theme-demo.twig
   namespace: '@bolt/ordered-list--theme-demo.twig'
 ordered_list__theme_demo__dark:
   filename: 03-ordered-list--theme-demo--dark.twig
   path: >-
-    src/_patterns/02-components/03-bolt-ordered-list/demo/theming/03-ordered-list--theme-demo--dark.twig
+    src/_patterns/02-components/bolt-ordered-list/demo/theming/03-ordered-list--theme-demo--dark.twig
   namespace: '@bolt/03-ordered-list--theme-demo--dark.twig'
 ordered_list__theme_demo__light:
   filename: 02-ordered-list--theme-demo--light.twig
   path: >-
-    src/_patterns/02-components/03-bolt-ordered-list/demo/theming/02-ordered-list--theme-demo--light.twig
+    src/_patterns/02-components/bolt-ordered-list/demo/theming/02-ordered-list--theme-demo--light.twig
   namespace: '@bolt/02-ordered-list--theme-demo--light.twig'
 ordered_list__theme_demo__xdark:
   filename: 04-ordered-list--theme-demo--xdark.twig
   path: >-
-    src/_patterns/02-components/03-bolt-ordered-list/demo/theming/04-ordered-list--theme-demo--xdark.twig
+    src/_patterns/02-components/bolt-ordered-list/demo/theming/04-ordered-list--theme-demo--xdark.twig
   namespace: '@bolt/04-ordered-list--theme-demo--xdark.twig'
 ordered_list__theme_demo__xlight:
   filename: 01-ordered-list--theme-demo--xlight.twig
   path: >-
-    src/_patterns/02-components/03-bolt-ordered-list/demo/theming/01-ordered-list--theme-demo--xlight.twig
+    src/_patterns/02-components/bolt-ordered-list/demo/theming/01-ordered-list--theme-demo--xlight.twig
   namespace: '@bolt/01-ordered-list--theme-demo--xlight.twig'
 page_footer:
   filename: _page-footer.twig
@@ -314,7 +329,7 @@ quote:
   namespace: '@bolt/quote.twig'
 ratio:
   filename: ratio.twig
-  path: src/_patterns/01-core/05-objects/03-display/bolt-ratio/src/ratio.twig
+  path: src/_patterns/01-core/05-objects/bolt-ratio-object/src/ratio.twig
   namespace: '@bolt/ratio.twig'
 schema_docs:
   filename: schema-docs.twig
@@ -354,38 +369,38 @@ typography:
   namespace: '@bolt/_typography.twig'
 ui_list:
   filename: ui-list.twig
-  path: src/_patterns/01-core/05-objects/01-lists/bolt-ui-list/src/ui-list.twig
+  path: src/_patterns/01-core/05-objects/bolt-ui-list-object/src/ui-list.twig
   namespace: '@bolt/ui-list.twig'
 unordered_list:
   filename: unordered-list.twig
-  path: src/_patterns/02-components/04-bolt-unordered-list/src/unordered-list.twig
+  path: src/_patterns/02-components/bolt-unordered-list/src/unordered-list.twig
   namespace: '@bolt/unordered-list.twig'
 unordered_list__theme_demo:
   filename: unordered-list--theme-demo.twig
   path: >-
-    src/_patterns/02-components/04-bolt-unordered-list/demo/theming/unordered-list--theme-demo.twig
+    src/_patterns/02-components/bolt-unordered-list/demo/theming/unordered-list--theme-demo.twig
   namespace: '@bolt/unordered-list--theme-demo.twig'
 unordered_list__theme_demo__dark:
   filename: 03-unordered-list--theme-demo--dark.twig
   path: >-
-    src/_patterns/02-components/04-bolt-unordered-list/demo/theming/03-unordered-list--theme-demo--dark.twig
+    src/_patterns/02-components/bolt-unordered-list/demo/theming/03-unordered-list--theme-demo--dark.twig
   namespace: '@bolt/03-unordered-list--theme-demo--dark.twig'
 unordered_list__theme_demo__light:
   filename: 02-unordered-list--theme-demo--light.twig
   path: >-
-    src/_patterns/02-components/04-bolt-unordered-list/demo/theming/02-unordered-list--theme-demo--light.twig
+    src/_patterns/02-components/bolt-unordered-list/demo/theming/02-unordered-list--theme-demo--light.twig
   namespace: '@bolt/02-unordered-list--theme-demo--light.twig'
 unordered_list__theme_demo__xdark:
   filename: 04-unordered-list--theme-demo--xdark.twig
   path: >-
-    src/_patterns/02-components/04-bolt-unordered-list/demo/theming/04-unordered-list--theme-demo--xdark.twig
+    src/_patterns/02-components/bolt-unordered-list/demo/theming/04-unordered-list--theme-demo--xdark.twig
   namespace: '@bolt/04-unordered-list--theme-demo--xdark.twig'
 unordered_list__theme_demo__xlight:
   filename: 01-unordered-list--theme-demo--xlight.twig
   path: >-
-    src/_patterns/02-components/04-bolt-unordered-list/demo/theming/01-unordered-list--theme-demo--xlight.twig
+    src/_patterns/02-components/bolt-unordered-list/demo/theming/01-unordered-list--theme-demo--xlight.twig
   namespace: '@bolt/01-unordered-list--theme-demo--xlight.twig'
 wrapper:
   filename: wrapper.twig
-  path: src/_patterns/01-core/05-objects/02-layout/bolt-wrapper/src/wrapper.twig
+  path: src/_patterns/01-core/05-objects/bolt-wrapper-object/src/wrapper.twig
   namespace: '@bolt/wrapper.twig'

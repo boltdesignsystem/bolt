@@ -14,11 +14,11 @@
 
 {% set classes = [
   baseClass,
-  theme in themes ? "t-bolt-" ~ theme : ""
+  theme in themes ? "t-bolt-" ~ theme : "",
 ] %}
 
 {% if url %}
-  {% set attributes = attributes.setAttribute("href", url) %}
+  {% set attributes = attributes.setAttribute("data-href", url) %}
 {% endif %}
 
 {% set _card_footer_block = block('card_footer') %}
@@ -83,6 +83,7 @@
 
 <bolt-card
   theme="{{ theme }}"
+  {% if url %}url={{ url }}{% endif %}
   bolt-component>
   <{{ tag }} {{ attributes.addClass(classes) }}>
 
@@ -91,7 +92,13 @@
         {% block card_media %}
           {% for key, item in _items if item.pattern in _allowedCardHeaderItems or key in _allowedCardHeaderItems %}
             {% if item.pattern %}
+              {% if item.pattern == 'image' and url is not empty %}
+                <a href="{{url}}">
+              {% endif %}
               {% include pattern_template(item.pattern) with item only %}
+              {% if item.pattern == 'image' and url is not empty %}
+                </a>
+              {% endif %}
             {% else %}
               {{ item }}
             {% endif %}
@@ -126,7 +133,10 @@
           {% for item in _items if item.pattern in _allowedCardFooterItems %}
             {% set paramOverrides = {
               itemAlignment: "left",
-              style: "text"
+              style: "text",
+              icon: {
+                name: "chevron-right"
+              }
             } %}
              <div class="{{ "#{baseClass}__footer-item" }}">
               {% if item.pattern %}

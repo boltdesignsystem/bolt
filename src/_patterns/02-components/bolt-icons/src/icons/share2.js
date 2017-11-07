@@ -12,6 +12,7 @@ const Share2 = ({ color, size, ...otherProps }) => {
         <path
           d="M0,64a64,64 0 1,0 128,0a64,64 0 1,0 -128,0"
           class="c-bolt-icon--background c-bolt-icon--circle-background"
+          fill="none"
         />
         <g transform="translate(1 3)">
           <mask id="b" fill="currentColor">

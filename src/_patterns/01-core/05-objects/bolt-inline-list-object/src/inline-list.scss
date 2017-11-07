@@ -1,0 +1,155 @@
+@import '@bolt/tools-spacing';
+
+
+/* ------------------------------------ *\
+   Inline List:
+
+   The inline-list object simply
+   displays a list of items in
+   one line.
+\* ------------------------------------ */
+
+// Predefine the variables below in order to alter and enable specific features.
+$bolt-inline-list-delimit-character:   '|' !default;
+
+
+// Base Inline List Styles
+bolt-inline-list {
+  display: block;
+
+  &:not(:last-child) {
+    @include bolt-margin-bottom(small);
+  }
+}
+
+.o-bolt-inline-list {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  letter-spacing: -.35em; // Remove extra space from inline-blocks 
+}
+
+
+// .o-bolt-inline-list--valign-top {
+//   vertical-align: top;
+//   align-items: flex-start;
+//   align-self: flex-start; // Trick to have children inherit valignment w/o hard coding
+// }
+
+// //Vertical (middle) alignment
+// .o-bolt-inline-list--valign-center {
+//   vertical-align: middle;
+//   align-items: center;
+//   align-self: center; // Trick to have children inherit valignment w/o hard coding
+// }
+
+// .o-bolt-inline-list--valign-bottom {
+//   vertical-align: bottom;
+//   align-items: flex-end;
+//   align-self: flex-end; // Trick to have children inherit valignment w/o hard coding
+// }
+
+// .o-bolt-inline-list--matrix {
+//   margin-bottom: bolt-v-spacing(medium) * -1;
+//   > .o-bolt-inline-list__item {
+//     @include bolt-margin-bottom(small);
+//     display: inline-block;
+//   }
+// }
+
+
+// Inline List Item
+.o-bolt-inline-list__item {
+  display: inline-block; // inline-block is needed here so matrix (margin-bottom) options work
+  letter-spacing: normal;
+  // align-self: inherit; // Trick to inherit valignment w/o hard coding
+}
+
+// Inline List Delimited
+.o-bolt-inline-list--delimited > .o-bolt-inline-list__item:not(:last-child):after {
+  color: currentColor;
+  content: '#{$bolt-inline-list-delimit-character}';
+  // align-self: inherit; // Trick to inherit valignment w/o hard coding
+}
+
+
+// Inline List Spacing
+.o-bolt-inline-list--xsmall {
+
+  &.o-bolt-inline-list--matrix {
+    margin-bottom: bolt-v-spacing(xsmall) * -1;
+
+    > .o-bolt-inline-list__item {
+      margin-bottom: bolt-v-spacing(xsmall);
+    }
+  }
+
+  > .o-bolt-inline-list__item {
+    margin-right: bolt-spacing(xsmall);
+
+    &:after {
+      margin-left: bolt-spacing(xsmall);
+      // margin-left: bolt-spacing(xsmall);
+    }
+  }
+}
+
+.o-bolt-inline-list--small {
+
+  &.o-bolt-inline-list--matrix {
+    margin-bottom: bolt-v-spacing(small) * -1;
+
+    > .o-bolt-inline-list__item {
+      margin-bottom: bolt-v-spacing(small);
+    }
+  }
+
+  > .o-bolt-inline-list__item {
+    margin-right: bolt-spacing(small);
+
+    &:after {
+      margin-left: bolt-spacing(small);
+      // margin-left: bolt-spacing(small);
+    }
+  }
+}
+
+
+.o-bolt-inline-list--medium {
+
+  &.o-bolt-inline-list--matrix {
+    margin-bottom: bolt-v-spacing(medium) * -1;
+
+    > .o-bolt-inline-list__item:after {
+      margin-bottom: bolt-v-spacing(medium);
+    }
+  }
+
+  > .o-bolt-inline-list__item {
+    margin-right: bolt-spacing(medium);
+  }
+
+  > .o-bolt-inline-list__item:after {
+    margin-left: bolt-spacing(medium);
+  }
+}
+
+
+// /**
+//  * Comma delimited list to semantically mark up lists of tags, etc.
+//  *
+//  * N.B. This component requires that you remove the whitespace between LIs.
+//  *      The simplest (and valid) way to achieve this is by omitting the
+//  *      closing `</li>` tag.
+//  */
+
+// .o-bolt-inline-list--delimited {
+//   > * + * {
+//     &:before {
+//     }
+//   }
+// }
+
+
+// .uk-breadcrumb>:nth-child(n+2):not(.uk-first-column)::before

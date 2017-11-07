@@ -33,12 +33,16 @@
   {% set gcd = gcd | escape | raw | number_format %}
   
   {% if gcd != 0 and height != 0 and width != 0 %}
-    {% set imageHeightRatio = (height / gcd) | round %}
-    {% set imageWidthRatio = (width / gcd) | round %}
+    {% set imageHeightRatio = (height / gcd) %}
+    {% set imageWidthRatio = (width / gcd) %}
   {% else %}
     {% set imageHeightRatio = 1 %}
     {% set imageWidthRatio = 1 %}
   {% endif %}
+
+  {# pre-calculate the % output on the element #}
+  {% set ratio = imageHeightRatio / imageWidthRatio * 100 ~ '%' %}
+
 {% endif %}
 
 {% if src %}
@@ -63,15 +67,14 @@
     {% set srcset = src %}
   {% endif %}
 
-{% set attributes = create_attribute(attributes | default([])).addClass('c-bolt-image') %}
+{% set attributes = create_attribute(attributes | default({})).addClass('c-bolt-image') %}
 {% set styles = attributes.getAttribute('style') | split(' ') | merge([
-  "--aspect-ratio-h: #{height};",
-  "--aspect-ratio-w: #{width};"
+  "padding-top: #{ratio};"
 ]) %}
 {% set attributes = attributes.setAttribute('style', styles | join(' ')) %}
 
 
-{% set imgAttributes = create_attribute([]).addClass([
+{% set imageAttributes = create_attribute(imageAttributes | default({})).addClass([
     "c-bolt-image__img",
     lazyload ? "js-lazyload" : "",
     lazyload ? "is-lazyloading" : ""
@@ -80,33 +83,34 @@
 %}
 
 
+
 {% if lazyload %}
-  {% set imgAttributes = imgAttributes
+  {% set imageAttributes = imageAttributes
     .setAttribute("data-srcset", srcset)
     .setAttribute("srcset", placeholderDummySrc)
     .setAttribute("data-sizes", "auto")
   %}
 {% else %}
-  {% set imgAttributes = imgAttributes.setAttribute("srcset", srcset) %}
+  {% set imageAttributes = imageAttributes.setAttribute("srcset", srcset) %}
 {% endif %}
 
-{% set imgPlaceholderAttributes = create_attribute([]).addClass("c-bolt-image__placeholder") %}
-{% set styles = imgPlaceholderAttributes.getAttribute('style') | split(' ') | merge([
+{% set placeholderAttributes = create_attribute(placeholderAttributes | default({})).addClass("c-bolt-image__placeholder") %}
+{% set styles = placeholderAttributes.getAttribute('style') | split(' ') | merge([
     placeholderColor ? "background-color: #{placeholderColor};" : "",
     placeholderImage ? "background-image: url(#{placeholderImage});" : ""
   ])
 %}
-{% set imgPlaceholderAttributes = imgPlaceholderAttributes.setAttribute('style', styles) %}
+{% set placeholderAttributes = placeholderAttributes.setAttribute('style', styles) %}
 
 {% set imageTag %}
-  <img {{ imgAttributes }}>
+  <img {{ imageAttributes }}>
   <noscript>
-    <img {{ imgAttributes.removeClass(["js-lazyload", "is-lazyloading"]).setAttribute("srcset", srcset) }}>
+    <img {{ imageAttributes.removeClass(["js-lazyload", "is-lazyloading"]).setAttribute("srcset", srcset) }}>
   </noscript>
 {% endset %}
 
 {% set imagePlaceholder %}
-  <span {{ imgPlaceholderAttributes }}></span>
+  <span {{ placeholderAttributes }}></span>
 {% endset %}
 <bolt-image>
   {% block image_content %}

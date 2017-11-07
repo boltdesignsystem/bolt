@@ -28,8 +28,6 @@ $bolt-direction-index: 0;
         .u-bolt#{$propertyName}#{$directionName}#{$sizeName}#{$typeName} {
 
           $sizes: null null null null;
-
-
           $size-index: index($bolt-spacing-directions, $direction);
 
           @if ($direction != '') {
@@ -39,8 +37,30 @@ $bolt-direction-index: 0;
           }
 
           $normalizedSizes: _bolt-normalize-spacing-sizes($sizes, null);
-
           @include _bolt-directional-property(#{$property}, false, $normalizedSizes, important);
+        }
+
+        
+        // Loop over our breakpoints
+        // @TODO: consolidate the output inside this selector + the one above into a single function 
+        @each $breakpoint in $breakpoints {
+          $breakpointName: nth($breakpoint, 1);
+          @include respond-to($breakpointName) {
+            .u-bolt#{$propertyName}#{$directionName}#{$sizeName}#{$typeName}\@#{$breakpointName} {
+
+              $sizes: null null null null;
+              $size-index: index($bolt-spacing-directions, $direction);
+
+              @if ($direction != '') {
+                $sizes: set-nth($sizes, $size-index - 1, $size);
+              } @else {
+                $sizes: $size $size $size $size;
+              }
+
+              $normalizedSizes: _bolt-normalize-spacing-sizes($sizes, null);
+              @include _bolt-directional-property(#{$property}, false, $normalizedSizes, important);
+            }
+          }
         }
       }
     }

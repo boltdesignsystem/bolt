@@ -1,5 +1,5 @@
 {
-  "lerna": "2.2.0",
+  "lerna": "2.4.0",
   "version": "independent",
   "changelog": {
     "repo": "bolt-design-system/bolt",
@@ -14,10 +14,17 @@
     "cacheDir": ".changelog"
   },
   "packages": [
-    "packages/bolt-*/**",
-    "src/_patterns/**/*",
-    "build-tools/**/*",
+    "packages/**",
     "src",
-    "src/fonts"
+    "src/**/*",
+    "build-tools/gulp-tasks/build-core",
+    "build-tools/gulp-tasks/build-icons",
+    "build-tools/gulp-tasks/build-images",
+    "build-tools/gulp-tasks/build-patternlab",
+    "build-tools/gulp-tasks/build-server",
+    "build-tools/gulp-tasks/build-slack",
+    "build-tools/gulp-tasks/build-styles",
+    "build-tools/gulp-tasks/build-webpack",
+    "build-tools/gulp-tasks/build-symlinks"
   ]
 }

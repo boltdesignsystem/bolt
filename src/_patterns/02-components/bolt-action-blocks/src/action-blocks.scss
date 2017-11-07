@@ -22,15 +22,14 @@
 
 
 // Local Variables
-$bolt-action-block-text-color: var(--bolt-color-heading, bolt-color(indigo));
+$bolt-action-block-text-color: var(--bolt-theme-action-block-text, var(--bolt-theme-heading, var(--bolt-theme-text, inherit)));
 $bolt-action-block-transition-ease: $bolt-transition-ease;
 $bolt-action-block-transition-timing: 300ms;
 $bolt-action-block-item-max-width: 20ch;
 
 $bolt-action-blocks-border-width: $bolt-border-width;
 $bolt-action-blocks-border-style: $bolt-border-style;
-$bolt-action-blocks-border-color: $bolt-border-color;
-
+$bolt-action-blocks-border-color: var(--bolt-theme-card-border, var(--bolt-theme-border, currentColor));
 
 // Individual Action Block Styles
 .c-bolt-action-block {
@@ -103,15 +102,28 @@ bolt-action-blocks {
   flex-grow: 1;
   position: relative;
   min-width: 150px;
+}
+
+.c-bolt-action-blocks--bordered > .c-bolt-action-blocks__item:before {
   border-bottom-width: $bolt-action-blocks-border-width;
   border-bottom-style: $bolt-action-blocks-border-style;
   border-right-width: $bolt-action-blocks-border-width;
   border-right-style: $bolt-action-blocks-border-style;
-}
-
-.c-bolt-action-blocks--bordered > .c-bolt-action-blocks__item {
+  display: block;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: '';
+  opacity: $bolt-global-border-opacity;
   border-bottom-color: $bolt-action-blocks-border-color;
   border-right-color: $bolt-action-blocks-border-color;
+
+  @supports(--css: variables) {
+    opacity: 1; // Remove fallback opacity and let theme decide.
+  }
 }
 
 .c-bolt-action-blocks--borderless > .c-bolt-action-blocks__item {

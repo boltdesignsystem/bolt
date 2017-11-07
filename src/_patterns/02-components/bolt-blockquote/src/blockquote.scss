@@ -55,7 +55,8 @@ c-bolt-blockquote {
 
 .c-bolt-blockquote {
   @include bolt-margin(0);
-  color: var(--bolt-color-heading, bolt-color(indigo)); // TODO: refactor this after theming is done.
+  color: currentColor;
+  color: var(--bolt-theme-blockquote-text, var(--bolt-theme-text, inherit));
 
   &:before, &:after {
     width: 100%;
@@ -107,6 +108,7 @@ c-bolt-blockquote {
   border-left-width: $bolt-blockquote-border-width * 2;
   border-left-style: $bolt-blockquote-border-style;
   border-left-color: $bolt-blockquote-border-color;
+  border-left-color: var(--bolt-theme-blockquote-border, $bolt-blockquote-border-color);
 
   &:before, &:after {
     display: none;
@@ -157,7 +159,7 @@ c-bolt-blockquote {
 
   p:first-child:before {
     content: '\201C';
-    transform: translate3d(-110%, 0 ,0);
+    transform: translate3d(-110%, 0, 0);
   }
 
   p:last-child:after {
