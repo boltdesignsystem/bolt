@@ -2,9 +2,6 @@ require('es6-promise').polyfill();
 require("core-js/modules/es6.array.iterator");
 require('core-js/modules/es6.symbol');
 require("core-js/modules/es6.array.from");
-// require("core-js/modules/es7.array.includes");
-
-
 
 
 if (window.customElements !== undefined) {

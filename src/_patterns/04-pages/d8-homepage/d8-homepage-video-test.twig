@@ -5,9 +5,18 @@
   {% set feature_band_content %}
     <bolt-ratio>
       <div class="c-brightcove-video u-bolt-width-1/1 o-bolt-ratio" style="padding-bottom: 56.25%;">
-        <video data-video-id="4268703476001" data-account="1900410236" data-player="SklWHdrCAZ" data-embed="default" data-application-id
+        {# <video data-video-id="4268703476001" data-account="1900410236" data-player="SklWHdrCAZ" data-embed="default" data-application-id
           class="video-js" controls></video>
-        <script src="//players.brightcove.net/1900410236/SklWHdrCAZ_default/index.min.js" async></script>
+        <script src="//players.brightcove.net/1900410236/SklWHdrCAZ_default/index.min.js" async></script> #}
+        
+        {# <video data-video-id="4268703476001" data-account="1900410236" data-player="4yYJJr6Tx" data-embed="default" data-application-id
+          class="video-js" controls></video>
+        <script src="//players.brightcove.net/1900410236/4yYJJr6Tx_default/index.min.js"></script> #}
+
+        <video data-video-id="4268703476001" data-account="1900410236" data-player="4yYJJr6Tx" data-embed="default" data-application-id
+          class="video-js" controls></video>
+        <script src="//players.brightcove.net/1900410236/4yYJJr6Tx_default/index.min.js"></script>
+
       </div>
     </bolt-ratio>
     {% include "@bolt/ui-list.twig" with {
