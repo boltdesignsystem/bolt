@@ -11,10 +11,21 @@
 
 {% set prefix = "c-bolt-" %}
 
+{% set sizeOptions = [
+  "large",
+  "xlarge"
+] %}
+
 {% set alignItemsOptions = {
   "left": "start",
   "center": "center",
   "right": "end"
+} %}
+
+{% set borderOptions = {
+  "none": "borderless",
+  "vertical": "bordered-vertical",
+  "horizontal": "bordered-horizontal"
 } %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
@@ -22,14 +33,15 @@
 
 {% set componentName = "blockquote" %}
 {% set baseClass = prefix ~ componentName %}
-{% set alignItems = alignItems | default("center") %}
-{% set border = border == false and border is not null ? "false" : "true" %}
+{% set size = size | default("large") %}
+{% set alignItems = alignItems | default("left") %}
+{% set border = border | default("vertical") %}
 
 
 {% set classes = [
   baseClass,
   alignItems in alignItemsOptions|keys ? baseClass ~ "--align-items-" ~ alignItemsOptions[alignItems],
-  border == "true" ? baseClass ~ "--bordered" : baseClass ~ "--borderless"
+  border in borderOptions|keys ? baseClass ~ "--" ~ borderOptions[border],
 ] %}
 
 <bolt-{{ componentName }} bolt-component>
@@ -40,7 +52,7 @@
           {% include "@bolt/text.twig" with {
             text: content,
             tag: "div",
-            size: "xlarge"
+            size: size
           } only %}
         {% endif %}
       {% endblock %}
@@ -52,7 +64,7 @@
             {% include "@bolt/text.twig" with {
               text: author.name,
               tag: "cite",
-              size: "small",
+              size: "xsmall",
               weight: "bold"
             } only %}
           </div>

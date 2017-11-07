@@ -102,7 +102,18 @@ c-bolt-blockquote {
   }
 }
 
-.c-bolt-blockquote--bordered {
+.c-bolt-blockquote--bordered-vertical {
+  @include bolt-padding(0 medium);
+  border-left-width: $bolt-blockquote-border-width * 2;
+  border-left-style: $bolt-blockquote-border-style;
+  border-left-color: $bolt-blockquote-border-color;
+
+  &:before, &:after {
+    display: none;
+  }
+}
+
+.c-bolt-blockquote--bordered-horizontal {
   &:before, &:after {
     display: inline-block;
     display: inline-flex;
