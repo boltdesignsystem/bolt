@@ -1,17 +1,15 @@
 {% extends "@bolt/default-template.twig" %}
 
-{% macro link(text, href, attributes) %}
-  {% include "@bolt/link.twig" with {
-    text: text,
-    href: href,
-    attributes: attributes | default({})
-  } only %}
-{% endmacro %}
-{% import _self as bolt %}
-
 {% block main_content %}
 
   {% set feature_band_content %}
+    <bolt-ratio>
+      <div class="c-brightcove-video u-bolt-width-1/1 o-bolt-ratio" style="padding-bottom: 56.25%;">
+        <video data-video-id="4268703476001" data-account="1900410236" data-player="SklWHdrCAZ" data-embed="default" data-application-id
+          class="video-js" controls></video>
+        <script src="//players.brightcove.net/1900410236/SklWHdrCAZ_default/index.min.js" async></script>
+      </div>
+    </bolt-ratio>
     {% include "@bolt/ui-list.twig" with {
       contentItems : [
         {
@@ -22,9 +20,11 @@
             },
             {
               "pattern": "headline",
-              "text": "Personalized. Not Creepy.",
+              "text": link("Personalized. Not Creepy.", "#", {}),
               "size": "large",
-              "url": "https://www.google.com"
+              "icon": {
+                "name": "chevron-right"
+              }
             }
           ]
         },
@@ -37,7 +37,10 @@
             {
               "pattern": "headline",
               "text": "Create Sales Superstars",
-              "size": "large"
+              "size": "large",
+              "icon": {
+                "name": "chevron-right"
+              }
             }
           ]
         },
@@ -50,7 +53,10 @@
             {
               "pattern": "headline",
               "text": "Stop Coding. Start Designing.",
-              "size": "large"
+              "size": "large",
+              "icon": {
+                "name": "chevron-right"
+              }
             }
           ]
         }
@@ -70,7 +76,7 @@
     teaserWidth: "2/3",
     size: "medium",
     full: true,
-    theme: qaTheme,
+    theme: "dark",
     primaryTeaser: {
       eyebrow: {
         text: "Customer Service"
@@ -87,21 +93,11 @@
         src: "/images/sample/PayPal-logo.svg",
         invert: true
       },
-      content: "Powered by real AI," ~ bolt.link("Pega Customer Service", "google.com") ~ " delivers game-changing results for enterprises.",
+      content: "Powered by real AI, Pega Customer Service delivers game-changing results for enterprises.",
       buttons: [
         {
-          text: "Sign Up",
+          text: "Get Real",
           style: "primary",
-          url: "https://www.google.com"
-        },
-        {
-          text: "Learn More",
-          style: "secondary",
-          url: "https://www.google.com"
-        },
-        {
-          text: "Read More",
-          style: "text",
           url: "https://www.google.com",
           icon: {
             name: "chevron-right"
@@ -109,14 +105,15 @@
         }
       ]
     },
-    content: feature_band.content | default(content)
+    content: feature_band.content | default(content),
+   
   } only %}{% endembed %}
 
 
 
 {% embed "@bolt/band.twig" with {
   size: "small",
-  theme: qaTheme,
+  theme: "xdark",
   fullBleed: true
 } only %}
   {% block band_content %}
@@ -155,26 +152,11 @@
 
 
 {% embed "@bolt/band--collection.twig" with {
-  theme: qaTheme,
-  size: "medium",
-  background: {
-    "opacity": "heavy",
-    "fill": "color",
-    "focalPoint": {
-      "vertical": "center",
-      "horizontal": "center"
-    },
-    "contentItems": [
-      {
-        "pattern": "image",
-        "src": "/images/sample/background-banner--left-focal-point.jpg"
-      }
-    ]
-  },
+  "theme": "light",
+  "size": "medium",
   "contentItems": [
     {
       "pattern": "card",
-      url: "https://www.pega.com",
       "contentItems": [
         {
           "pattern": "image",
@@ -277,7 +259,7 @@
 
 {% embed "@bolt/band.twig" with {
   size: "medium",
-  theme: qaTheme,
+  theme: "xdark",
   fullBleed: true
 } only %}
   {% block band_content %}
@@ -302,70 +284,14 @@
                 tag: "h3"
               } only %}
 
-              <ul class="o-bolt-inline-list o-bolt-inline-list--xsmall o-bolt-inline-list--delimited o-bolt-inline-list--valign-top">
-              <li class="o-bolt-inline-list__item">
-                 
-<span class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">
-  <span class="c-bolt-text__text">
-          Whiteboard
-      </span>
-
-  </span>
-        </li>
-              <li class="o-bolt-inline-list__item">
-                 
-
-
-<span class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">
-  <span class="c-bolt-text__text">
-          03:17
-      </span>
-
-  </span>
-
-        </li>
-          </ul>
-
-              {% include "@bolt/inline-list.twig" with {
-                delimited: true,
-                valign: "top",
-                contentItems: [
-                  {
-                    "text": "Top aligned inline List Item #1"
-                  },
-                  {
-                    "text": "Inline List Item #2"
-                  },
-                  {
-                    "text": "Inline List Item #3"
-                  }
-                ]
-              } only %}
-
               {% include "@bolt/paragraph.twig" with {
                 text: "Considering Salesforce.com? Don’t fall for the hype. See why today’s leading enterprises choose Pega CRM."
               } only %}
 
-              {% include "@bolt/button-group.twig" with {
-                "buttons": [
-                  {
-                    "text": "Learn More",
-                    "style": "primary"
-                  },
-                  {
-                    "text": "About Pega",
-                    "style": "secondary"
-                  }
-                ]
-              } only %}
-
-              {% include "@bolt/button-group.twig" with {
-                "buttons": [
-                  {
-                    "text": "Learn More",
-                    "style": "text"
-                  }
-                ]
+              {% include "@bolt/button.twig" with {
+                text: "Get Real",
+                style: "primary",
+                size: small
               } only %}
 
             {% endcell %}
@@ -381,7 +307,7 @@
 
 {% embed "@bolt/band.twig" with {
   size: "medium",
-  theme: qaTheme,
+  theme: "dark",
   fullBleed: true
 } only %}
   {% block band_content %}

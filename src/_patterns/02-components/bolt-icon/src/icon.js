@@ -1,12 +1,9 @@
 require('es6-promise').polyfill();
 require("core-js/modules/es6.array.iterator");
-require("core-js/modules/es6.array.from");
-require("core-js/modules/es7.array.includes");
 require('core-js/modules/es6.symbol');
-// import "babel-polyfill";
-// require('array.from').shim();
-// require('object.assign').shim();
-// window.Symbol = require('es6-symbol');
+require("core-js/modules/es6.array.from");
+// require("core-js/modules/es7.array.includes");
+
 
 
 

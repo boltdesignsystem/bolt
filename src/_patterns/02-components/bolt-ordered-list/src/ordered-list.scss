@@ -32,7 +32,7 @@
 
 // Local Variables
 $bolt-ordered-list-bullet-size: $bolt-line-height--xsmall + rem;
-$bolt-ordered-list-bullet-text-color: var(--bolt-color-heading, bolt-color(indigo)); // TODO: refactor this after theming is done.
+$bolt-ordered-list-bullet-text-color: var(--bolt-theme-heading, currentColor); // TODO: refactor this after theming is done.
 $bolt-ordered-list-bullet-bg-color: rgba(bolt-color(gray), 0.2);
 
 
@@ -67,6 +67,7 @@ $bolt-ordered-list-bullet-bg-color: rgba(bolt-color(gray), 0.2);
     width: $bolt-ordered-list-bullet-size;
     height: $bolt-ordered-list-bullet-size;
     content: counter(list-item);
+    color: currentColor;
     color: $bolt-ordered-list-bullet-text-color;
     text-align: center;
     line-height: $bolt-ordered-list-bullet-size;

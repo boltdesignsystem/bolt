@@ -24,32 +24,30 @@ bolt-inline-list {
 
 .o-bolt-inline-list {
   display: block;
-  display: flex;
-  flex-wrap: wrap;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 
-.o-bolt-inline-list--valign-top {
-  vertical-align: top;
-  align-items: flex-start;
-  align-self: flex-start; // Trick to have children inherit valignment w/o hard coding
-}
+// .o-bolt-inline-list--valign-top {
+//   vertical-align: top;
+//   align-items: flex-start;
+//   align-self: flex-start; // Trick to have children inherit valignment w/o hard coding
+// }
 
-//Vertical (middle) alignment
-.o-bolt-inline-list--valign-center {
-  vertical-align: middle;
-  align-items: center;
-  align-self: center; // Trick to have children inherit valignment w/o hard coding
-}
+// //Vertical (middle) alignment
+// .o-bolt-inline-list--valign-center {
+//   vertical-align: middle;
+//   align-items: center;
+//   align-self: center; // Trick to have children inherit valignment w/o hard coding
+// }
 
-.o-bolt-inline-list--valign-bottom {
-  vertical-align: bottom;
-  align-items: flex-end;
-  align-self: flex-end; // Trick to have children inherit valignment w/o hard coding
-}
+// .o-bolt-inline-list--valign-bottom {
+//   vertical-align: bottom;
+//   align-items: flex-end;
+//   align-self: flex-end; // Trick to have children inherit valignment w/o hard coding
+// }
 
 // .o-bolt-inline-list--matrix {
 //   margin-bottom: bolt-v-spacing(medium) * -1;
@@ -62,16 +60,19 @@ bolt-inline-list {
 
 // Inline List Item
 .o-bolt-inline-list__item {
-  display: inline-flex;
-  align-self: inherit; // Trick to inherit valignment w/o hard coding
+  display: inline;
+  // align-self: inherit; // Trick to inherit valignment w/o hard coding
 }
 
+.o-bolt-inline-list__item:not(:last-child):after {
+  content: '';
+}
 
 // Inline List Delimited
 .o-bolt-inline-list--delimited > .o-bolt-inline-list__item:not(:last-child):after {
   color: currentColor;
   content: '#{$bolt-inline-list-delimit-character}';
-  align-self: inherit; // Trick to inherit valignment w/o hard coding
+  // align-self: inherit; // Trick to inherit valignment w/o hard coding
 }
 
 
@@ -121,10 +122,6 @@ bolt-inline-list {
 
     > .o-bolt-inline-list__item:after {
       margin-bottom: bolt-v-spacing(medium);
-
-      &:before {
-        margin-right: bolt-spacing(medium);
-      }
     }
   }
 
