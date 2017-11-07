@@ -60,7 +60,7 @@ bolt-inline-list {
 
 // Inline List Item
 .o-bolt-inline-list__item {
-  display: inline;
+  display: inline-block; // inline-block is needed here so matrix (margin-bottom) options work
   // align-self: inherit; // Trick to inherit valignment w/o hard coding
 }
 
@@ -113,6 +113,7 @@ bolt-inline-list {
   }
 }
 
+
 .o-bolt-inline-list--medium {
 
   &.o-bolt-inline-list--matrix {
@@ -128,7 +129,6 @@ bolt-inline-list {
   }
 
   > .o-bolt-inline-list__item:after {
-    // margin-left: bolt-spacing(medium);
     margin-left: bolt-spacing(medium);
   }
 }
