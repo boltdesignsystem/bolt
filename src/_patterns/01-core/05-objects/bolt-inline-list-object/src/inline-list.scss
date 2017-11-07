@@ -27,6 +27,7 @@ bolt-inline-list {
   margin: 0;
   padding: 0;
   list-style: none;
+  letter-spacing: -.35em; // Remove extra space from inline-blocks 
 }
 
 
@@ -61,6 +62,7 @@ bolt-inline-list {
 // Inline List Item
 .o-bolt-inline-list__item {
   display: inline-block; // inline-block is needed here so matrix (margin-bottom) options work
+  letter-spacing: normal;
   // align-self: inherit; // Trick to inherit valignment w/o hard coding
 }
 
