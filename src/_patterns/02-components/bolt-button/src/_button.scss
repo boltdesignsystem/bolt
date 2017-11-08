@@ -59,43 +59,9 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
 
 @mixin bolt-button-color($hiarchy) {
   @if $hiarchy == 'primary' {
-    // &,
-    // &:visited {
-    //   // color: #1F2555;
-    //   color: var(--bolt-theme-primary-text, $bolt-color-button-text);
-    //   border-color: var(--bolt-color-primary, $bolt-color-primary);
-    //   background-color: var(--bolt-color-primary, $bolt-color-primary);
-    // }
-
-    // &:hover {
-    //   border-color: var(--bolt-color-primary, mix(white, $bolt-color-primary, 15%));
-    //   background-color: var(--bolt-color-primary, mix(white, $bolt-color-primary, 15%));
-    //   background-color: var(--bolt-theme-primary-color--hover);
-      
-    // }
-
-    // &:active {
-    //   border-color: var(--bolt-color-primary, mix(black, $bolt-color-primary, 25%));
-    //   background-color: var(--bolt-color-primary, mix(black, $bolt-color-primary, 25%));
-    //   background-color: var(--bolt-theme-primary-color--active);
-    // }
+    
   } @elseif $hiarchy == 'secondary' {
-    // &,
-    // &:visited {
-    //   color: var(--bolt-color-primary, $bolt-color-primary);
-    //   border-color: var(--bolt-color-button-text, $bolt-color-button-text);
-    //   background-color: var(--bolt-color-button-text, $bolt-color-button-text);
-    // }
-
-    // &:hover {
-    //   border-color: var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 2%));
-    //   background-color: var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 2%));
-    // }
-
-    // &:active {
-    //   border-color: var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 15%));
-    //   background-color: var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 15%));
-    // }
+    
   }
 
   @elseif $hiarchy == 'text' {
@@ -263,7 +229,6 @@ bolt-button {
   @include bolt-button;
 }
 
-// .c-bolt-button,
 .c-bolt-button--primary {
   $primary-background-default: $bolt-color-primary;
   $primary-background-hover: mix($bolt-global-button-hover-color, $primary-background-default, $bolt-global-button-hover-mix);
@@ -286,8 +251,6 @@ bolt-button {
     border-color: $primary-background-hover;
     border-color: var(--bolt-theme-primary-border-hover, $primary-background-hover);
 
-    // color: bolt-text-contrast($primary-background-hover);
-    // color: var(--bolt-theme-primary-text-hover, bolt-text-contrast($primary-background-hover));
     color: bolt-text-contrast($primary-background-default);
     color: var(--bolt-theme-primary-text-default, bolt-text-contrast($primary-background-default));
 
@@ -299,8 +262,6 @@ bolt-button {
     border-color: $primary-background-active;
     border-color: var(--bolt-theme-primary-border-active, $primary-background-active);
 
-    // color: bolt-text-contrast($primary-background-active);
-    // color: var(--bolt-theme-primary-text-active, bolt-text-contrast($primary-background-active));
     color: bolt-text-contrast($primary-background-default);
     color: var(--bolt-theme-primary-text-default, bolt-text-contrast($primary-background-default));
 
@@ -313,39 +274,6 @@ bolt-button {
   $secondary-background-default: bolt-color(white);
   $secondary-background-hover: mix(bolt-color(black), $secondary-background-default, 2%);
   $secondary-background-active: mix(bolt-color(black), $secondary-background-default, 15%);
-
-// &,
-  // &:visited {
-  //   color: var(--bolt-color-primary, $bolt-color-primary);
-  //   border-color: var(--bolt-color-button-text, $bolt-color-button-text);
-  //   background-color: var(--bolt-color-button-text, $bolt-color-button-text);
-  // }
-
-  // &:hover {
-  //   border-color: var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 2%));
-  //   background-color: var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 2%));
-  // }
-
-  // &:active {
-  //   border-color: var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 15%));
-  //   background-color: var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 15%));
-  // }
-  // &,
-  // &:visited {
-  //   color: var(--bolt-color-primary, $bolt-color-primary);
-  //   border-color: var(--bolt-color-button-text, $bolt-color-button-text);
-  //   background-color: var(--bolt-color-button-text, $bolt-color-button-text);
-  // }
-
-  // &:hover {
-  //   border-color: var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 2%));
-  //   background-color: var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 2%));
-  // }
-
-  // &:active {
-  //   border-color: var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 15%));
-  //   background-color: var(--bolt-color-button-text, mix(black, $bolt-color-button-text, 15%));
-  // }
 
   &,
   &:visited {
@@ -364,8 +292,6 @@ bolt-button {
     border-color: $secondary-background-hover;
     border-color: var(--bolt-theme-secondary-border-hover, $secondary-background-hover);
 
-    // color: bolt-text-contrast($secondary-background-hover);
-    // color: var(--bolt-theme-secondary-text-hover, bolt-text-contrast($secondary-background-hover));
     color: bolt-text-contrast($secondary-background-default);
     color: var(--bolt-theme-secondary-text-default, bolt-text-contrast($secondary-background-default));
 
@@ -377,13 +303,42 @@ bolt-button {
     border-color: $secondary-background-active;
     border-color: var(--bolt-theme-secondary-border-active, $secondary-background-active);
 
-    // color: bolt-text-contrast($secondary-background-active);
-    // color: var(--bolt-theme-secondary-text-active, bolt-text-contrast($secondary-background-active));
     color: bolt-text-contrast($secondary-background-default);
     color: var(--bolt-theme-secondary-text-default, bolt-text-contrast($secondary-background-default));
 
     background-color: $secondary-background-active;
     background-color: var(--bolt-theme-secondary-background-active, $secondary-background-active);
+  }
+}
+
+
+
+._c-bolt-button--theme-override {
+  .t-bolt-xlight &,
+  .t-bolt-light & {
+    $fallback-background-default: bolt-color(indigo, light);
+    $fallback-background-hover: mix(bolt-color(black), $fallback-background-default, 2%);
+    $fallback-background-active: mix(bolt-color(black), $fallback-background-default, 15%);
+
+    &,
+    &:visited {
+      border-color: $fallback-background-default;
+      color: bolt-text-contrast($fallback-background-default);
+      background-color: $fallback-background-default;
+    }
+
+    &:focus,
+    &:hover {
+      border-color: $fallback-background-hover;
+      color: bolt-text-contrast($fallback-background-default);
+      background-color: $fallback-background-hover;
+    }
+
+    &:active {
+      border-color: $fallback-background-active;
+      color: bolt-text-contrast($fallback-background-default);
+      background-color: $fallback-background-active;
+    }
   }
 }
 
@@ -524,7 +479,7 @@ bolt-button {
     color: currentColor;
 
     @supports(--css: variables) {
-      color: var(--bolt-theme-heading-link-default, currentColor);
+      color: var(--bolt-theme-heading-link-default, inherit);
     }
   }
 
@@ -533,7 +488,7 @@ bolt-button {
     color: currentColor;
 
     @supports(--css: variables) {
-      color: var(--bolt-theme-heading-link-visited, currentColor);
+      color: var(--bolt-theme-heading-link-visited, inherit);
     }
   }
   
@@ -544,7 +499,7 @@ bolt-button {
 
     @supports(--css: variables) {
       opacity: 1;
-      color: var(--bolt-theme-heading-link-hover, currentColor);
+      color: var(--bolt-theme-heading-link-hover, inherit);
     }
   }
 
@@ -553,7 +508,7 @@ bolt-button {
 
     @supports(--css: variables) {
       opacity: 1;
-      color: var(--bolt-theme-heading-link-active, currentColor);
+      color: var(--bolt-theme-heading-link-active, inherit);
     }
   }
 }
