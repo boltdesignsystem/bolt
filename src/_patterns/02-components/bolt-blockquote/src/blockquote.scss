@@ -11,29 +11,27 @@
 \* ------------------------------------ */
 
 // Sample Usage
-// <bolt-blockquote bolt-component>
-//   <blockquote class="c-bolt-blockquote">
+// <bolt-blockquote bolt-component="">
+//   <blockquote class="c-bolt-blockquote c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical">
 //     <div class="c-bolt-blockquote__quote">
-//       <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--large">
+//       <div class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--large">
 //         <span class="c-bolt-text__text">
-//           <p>Quote Text.</p>
+//           <p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>
 //         </span>
 //       </div>
 //     </div>
 //     <footer class="c-bolt-blockquote__footer">
 //       <div class="c-bolt-blockquote__footer-item">
-//         <cite class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xsmall">
+//         <cite class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall">
 //           <span class="c-bolt-text__text">
-//             Author Name
+//             Michelangelo di Lodovico Buonarroti Simoni
 //           </span>
 //         </cite>
-//       </div>
-//       <div class="c-bolt-blockquote__footer-item">
-//         <em class="c-bolt-text c-bolt-text--regular c-bolt-text--italic c-bolt-text--xsmall">
+//         <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">
 //           <span class="c-bolt-text__text">
-//             Author Title
+//             Renaissance Artist
 //           </span>
-//         </em>
+//         </p>
 //       </div>
 //     </footer>
 //   </blockquote>
@@ -45,6 +43,10 @@ $bolt-blockquote-border-width: 2px;
 $bolt-blockquote-border-style: $bolt-border-style;
 $bolt-blockquote-border-color: bolt-color(teal);
 $bolt-blockquote-footer-line-height: $bolt-line-height--tight;
+$bolt-blockquote-image-border-width: $bolt-border-width;
+$bolt-blockquote-image-border-style: $bolt-border-style;
+$bolt-blockquote-image-border-color: rgba(bolt-color(gray), 0.2);
+$bolt-blockquote-image-size: 4rem;
 
 
 // Styles
@@ -76,10 +78,27 @@ c-bolt-blockquote {
   }
 }
 
+
+// Spacing options
+.c-bolt-blockquote--indented {
+  @include bolt-margin(0 medium);
+
+  &.c-bolt-blockquote--align-items-start {
+    @include bolt-margin-right(0);
+  }
+
+  &.c-bolt-blockquote--align-items-end {
+    @include bolt-margin-left(0);
+  }
+}
+
+
+// Horizontal alignment of items inside
 .c-bolt-blockquote--align-items-start {
   text-align: left;
 
-  .c-bolt-blockquote__quote {
+  .c-bolt-blockquote__quote,
+  .c-bolt-blockquote__logo > * {
     @include bolt-margin-right(auto);
     @include bolt-margin-left(0);
   }
@@ -88,7 +107,8 @@ c-bolt-blockquote {
 .c-bolt-blockquote--align-items-center {
   text-align: center;
 
-  .c-bolt-blockquote__quote {
+  .c-bolt-blockquote__quote,
+  .c-bolt-blockquote__logo > * {
     @include bolt-margin-right(auto);
     @include bolt-margin-left(auto);
   }
@@ -97,12 +117,15 @@ c-bolt-blockquote {
 .c-bolt-blockquote--align-items-end {
   text-align: right;
 
-  .c-bolt-blockquote__quote {
+  .c-bolt-blockquote__quote,
+  .c-bolt-blockquote__logo > * {
     @include bolt-margin-right(0);
     @include bolt-margin-left(auto);
   }
 }
 
+
+// Border Options
 .c-bolt-blockquote--bordered-vertical {
   @include bolt-padding(0 medium);
   border-left-width: $bolt-blockquote-border-width * 2;
@@ -128,43 +151,73 @@ c-bolt-blockquote {
   }
 }
 
-.c-bolt-blockquote__quote,
+
+// Logo
 .c-bolt-blockquote__logo {
-  @include bolt-margin-bottom(medium);
+  @include bolt-margin-bottom(small);
+  display: block;
 }
 
-.c-bolt-blockquote__logo {
-  display: inline-block;
-}
 
-.c-bolt-blockquote__image {
-  display: inline-block;
-  width: 5rem;
-  height: 5rem;
-  border: 1px solid;
-  border-radius: 100em;
-  overflow: hidden;
-}
-
+// Quotation mark
 .c-bolt-blockquote__quote {
+  @include bolt-margin-bottom(medium);
   display: block;
   position: relative;
-  max-width: 75ch;
+  max-width: 43rem;
   font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
-
-  p:first-child:before, p:last-child:after {
-    position: absolute;
-  }
 
   p:first-child:before {
     content: '\201C';
-    transform: translate3d(-110%, 0, 0);
   }
 
   p:last-child:after {
     content: '\201D';
-    transform: translate3d(10%, 0 ,0);
   }
+}
+
+// Perfecting the hanging quotation mark's position in all browsers.
+.c-bolt-blockquote--align-items-start {
+  .c-bolt-blockquote__quote {
+    p:first-child:before {
+      position: absolute;
+      transform: translate3d(-110%, 0, 0);
+    }
+  }
+}
+
+.c-bolt-blockquote--align-items-center {
+  .c-bolt-blockquote__quote {
+    p:first-child:before {
+      @include bolt-padding(0 2px);
+    }
+  }
+}
+
+.c-bolt-blockquote--align-items-end {
+  .c-bolt-blockquote__quote {
+    p:first-child:before {
+      @include bolt-padding(0 2px);
+    }
+
+    p:last-child:after {
+      position: absolute;
+      transform: translate3d(10%, 0 ,0);
+    }
+  }
+}
+
+
+// Attribution
+.c-bolt-blockquote__image {
+  display: inline-block;
+  width: $bolt-blockquote-image-size;
+  height: $bolt-blockquote-image-size;
+  border-width: $bolt-blockquote-image-border-width;
+  border-style: $bolt-blockquote-image-border-style;
+  border-color: $bolt-blockquote-image-border-color;
+  border-radius: 100em;
+  overflow: hidden;
 }
 
 .c-bolt-blockquote__footer {

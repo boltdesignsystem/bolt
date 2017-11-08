@@ -1,10 +1,32 @@
 {# Sample Usage
   {% include "@bolt/twig" with {
-    author: {
-      name: "Full Name",
-      title: "Title and/or organization"
+    // Default is large. [large, xlarge]
+    "size": "large",
+
+    // Default is vertical. [vertical, horizontal]
+    "border": "vertical",
+
+    // Default is left. [left, center, right]
+    "alignItems": "left",
+
+    // Logo is optional.
+    "logo": {
+      "src": "/images/sample/PayPal-logo.svg",
+      "alt": "Alt Text"
     },
-    content: "<p>One paragraph.</p> <p>And another paragraph.</p>"
+
+    // Content is mandatory
+    "content": "<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>",
+
+    // Author is optional
+    "author": {
+      "image": {
+        "src": "/images/placeholders/500x500.jpg",
+        "alt": "Alt Text"
+      },
+      "name": "Michelangelo di Lodovico Buonarroti Simoni",
+      "title": "Renaissance Artist"
+    }
   } only %}
 #}
 
@@ -36,12 +58,14 @@
 {% set size = size | default("large") %}
 {% set alignItems = alignItems | default("left") %}
 {% set border = border | default("vertical") %}
+{% set indent = indent == false and indent is null ? "false" : "true" %}
 
 
 {% set classes = [
   baseClass,
   alignItems in alignItemsOptions|keys ? baseClass ~ "--align-items-" ~ alignItemsOptions[alignItems],
   border in borderOptions|keys ? baseClass ~ "--" ~ borderOptions[border],
+  indent == "true" ? baseClass ~ "--indented" : ""
 ] %}
 
 <bolt-{{ componentName }} bolt-component>
