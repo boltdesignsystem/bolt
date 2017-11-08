@@ -91,7 +91,7 @@ bolt-action-blocks {
 .c-bolt-action-blocks {
   @include bolt-margin(0 -1px -1px 0);
   @include bolt-padding(0);
-
+  transform: translate3d(0, 0, 0); //Force hardware accelerated rendering to cleanly remove extra border from showing up sometimes
   display: flex;
   flex-wrap: wrap;
   list-style: none;
@@ -156,4 +156,10 @@ bolt-action-blocks {
   .c-bolt-action-blocks--item-max-#{$number} > .c-bolt-action-blocks__item {
     flex-basis: calc(100% / #{$number} - #{$bolt-action-blocks-border-width});
   }
+}
+
+
+.c-bolt-action-block__text {
+  color: currentColor;
+  color: var(--bolt-theme-heading-link-default, --bolt-theme-text);
 }

@@ -28,7 +28,7 @@
 <bolt-{{ componentName }} bolt-component>
   <a href="{{ url }}" {{ attributes.addClass(classes | raw) }}>
     {% if icon %}
-      <div class="{{ "#{baseClass}__item" }}">
+      <div class="{{ "#{baseClass}__item #{baseClass}__icon" }}">
         {% set icon = icon | merge({
           size: icon.size | default("xlarge")
         }) %}
@@ -37,7 +37,7 @@
     {% endif %}
 
     {% if text %}
-      <div class="{{ "#{baseClass}__item" }}">
+      <div class="{{ "#{baseClass}__item #{baseClass}__text" }}">
         {{ text }}
       </div>
     {% endif %}

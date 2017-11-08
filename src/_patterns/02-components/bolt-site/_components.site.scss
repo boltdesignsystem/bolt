@@ -20,8 +20,7 @@
 
 .c-bolt-site {
   display: grid;
-  // display: flex;
-  // flex-direction: column;
+  overflow-x: hidden; //Helps prevent horizontal scrolling in Chrome on Windows machines. Seems to be working fine w/ native position sticky at first glance.
   min-height: 100vh;
   grid-template-areas: 'header' 'content' 'footer';
   // grid-template-areas: "header header header" "navigation main ads" "footer footer footer";
@@ -32,10 +31,6 @@
     height: 100%; /* 1, 3 -- Required for IE11 sticky footer */
     overflow-x: hidden; // Prevent content from spilling over
   }
-
-  // > * {
-  //   flex-grow: 0;
-  // }
 }
 
 

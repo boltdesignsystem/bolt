@@ -210,7 +210,8 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   border-style: $bolt-button-border-style;
   border-width: $bolt-button-border-width;
   border-radius: $bolt-button-border-radius;
-  box-shadow: $bolt-button-shadow;
+  // box-shadow: 0 1px 0.15rem rgba(21,22,25,0.2);
+  box-shadow: 0  1px  3px rgba(bolt-color(black), 0.12), 0 1px  2px  rgba(bolt-color(black), 0.24);
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   transform: translate3d(0, 0, 0);
 
@@ -225,8 +226,9 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
     content: '';
     pointer-events: none;
     border-radius: $bolt-button-border-radius;
-    box-shadow: $bolt-button-shadow--hover;
+    box-shadow: 0 1px 0.15rem rgba($bolt-shadow-color, 0.1), $bolt-button-shadow--hover;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    opacity: .2;
   }
 
   &:not([disabled]):not(.c-bolt-button--text) {
