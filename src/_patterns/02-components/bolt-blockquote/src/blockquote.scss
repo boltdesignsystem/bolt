@@ -39,7 +39,7 @@
 
 
 // Local Variables
-$bolt-blockquote-border-width: 2px;
+$bolt-blockquote-border-width: 4px;
 $bolt-blockquote-border-style: $bolt-border-style;
 $bolt-blockquote-border-color: bolt-color(teal);
 $bolt-blockquote-footer-line-height: $bolt-line-height--tight;
@@ -79,16 +79,58 @@ c-bolt-blockquote {
 }
 
 
-// Spacing options
-.c-bolt-blockquote--indented {
-  @include bolt-margin(0 medium);
+// Logo
+.c-bolt-blockquote__logo {
+  @include bolt-margin-bottom(small);
+  display: block;
+}
 
-  &.c-bolt-blockquote--align-items-start {
-    @include bolt-margin-right(0);
+
+// Quotation mark
+.c-bolt-blockquote__quote {
+  @include bolt-margin-bottom(medium);
+  display: block;
+  position: relative;
+  max-width: 44rem;
+  color: currentColor;
+  color: var(--bolt-theme-heading, currentColor);
+
+  p:first-child:before, p:last-child:after {
+    font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
   }
 
-  &.c-bolt-blockquote--align-items-end {
-    @include bolt-margin-left(0);
+  p:first-child:before {
+    content: '\201C';
+  }
+
+  p:last-child:after {
+    content: '\201D';
+  }
+}
+
+
+// Attribution
+.c-bolt-blockquote__image {
+  display: inline-block;
+  width: $bolt-blockquote-image-size;
+  height: $bolt-blockquote-image-size;
+  border-width: $bolt-blockquote-image-border-width;
+  border-style: $bolt-blockquote-image-border-style;
+  border-color: $bolt-blockquote-image-border-color;
+  border-radius: 100em;
+  overflow: hidden;
+}
+
+.c-bolt-blockquote__footer {
+  line-height: $bolt-blockquote-footer-line-height;
+}
+
+.c-bolt-blockquote__footer-item {
+  @include bolt-margin-bottom(small);
+  display: block;
+
+  &:last-child {
+    @include bolt-margin-bottom(0);
   }
 }
 
@@ -128,13 +170,33 @@ c-bolt-blockquote {
 // Border Options
 .c-bolt-blockquote--bordered-vertical {
   @include bolt-padding(0 medium);
-  border-left-width: $bolt-blockquote-border-width * 2;
-  border-left-style: $bolt-blockquote-border-style;
-  border-left-color: $bolt-blockquote-border-color;
-  border-left-color: var(--bolt-theme-blockquote-border, $bolt-blockquote-border-color);
+  border-style: $bolt-blockquote-border-style;
+  border-color: $bolt-blockquote-border-color;
+  border-color: var(--bolt-theme-blockquote-border, $bolt-blockquote-border-color);
 
   &:before, &:after {
     display: none;
+  }
+
+  &.c-bolt-blockquote--align-items-start {
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: $bolt-blockquote-border-width;
+  }
+
+  &.c-bolt-blockquote--align-items-center {
+    border-top-width: 0;
+    border-right-width: $bolt-blockquote-border-width;
+    border-bottom-width: 0;
+    border-left-width: $bolt-blockquote-border-width;
+  }
+
+  &.c-bolt-blockquote--align-items-end {
+    border-top-width: 0;
+    border-right-width: $bolt-blockquote-border-width;
+    border-bottom-width: 0;
+    border-left-width: 0;
   }
 }
 
@@ -152,29 +214,27 @@ c-bolt-blockquote {
 }
 
 
-// Logo
-.c-bolt-blockquote__logo {
-  @include bolt-margin-bottom(small);
-  display: block;
-}
-
-
-// Quotation mark
-.c-bolt-blockquote__quote {
-  @include bolt-margin-bottom(medium);
-  display: block;
-  position: relative;
-  max-width: 43rem;
-  font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
-
-  p:first-child:before {
-    content: '\201C';
-  }
-
-  p:last-child:after {
-    content: '\201D';
+// Full bleed
+.c-bolt-blockquote--full {
+  .c-bolt-blockquote__quote {
+    max-width: 100%;
   }
 }
+
+
+// Indent options
+.c-bolt-blockquote--indented {
+  @include bolt-margin(0 medium);
+
+  &.c-bolt-blockquote--align-items-start {
+    @include bolt-margin-right(0);
+  }
+
+  &.c-bolt-blockquote--align-items-end {
+    @include bolt-margin-left(0);
+  }
+}
+
 
 // Perfecting the hanging quotation mark's position in all browsers.
 .c-bolt-blockquote--align-items-start {
@@ -204,31 +264,5 @@ c-bolt-blockquote {
       position: absolute;
       transform: translate3d(10%, 0 ,0);
     }
-  }
-}
-
-
-// Attribution
-.c-bolt-blockquote__image {
-  display: inline-block;
-  width: $bolt-blockquote-image-size;
-  height: $bolt-blockquote-image-size;
-  border-width: $bolt-blockquote-image-border-width;
-  border-style: $bolt-blockquote-image-border-style;
-  border-color: $bolt-blockquote-image-border-color;
-  border-radius: 100em;
-  overflow: hidden;
-}
-
-.c-bolt-blockquote__footer {
-  line-height: $bolt-blockquote-footer-line-height;
-}
-
-.c-bolt-blockquote__footer-item {
-  @include bolt-margin-bottom(small);
-  display: block;
-
-  &:last-child {
-    @include bolt-margin-bottom(0);
   }
 }

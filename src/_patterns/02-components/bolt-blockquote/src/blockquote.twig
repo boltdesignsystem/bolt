@@ -1,13 +1,16 @@
 {# Sample Usage
   {% include "@bolt/twig" with {
-    // Default is large. [large, xlarge]
+    // Default is large. [large, xlarge, xxlarge]
     "size": "large",
-
-    // Default is vertical. [vertical, horizontal]
-    "border": "vertical",
 
     // Default is left. [left, center, right]
     "alignItems": "left",
+
+    // Default is vertical. [vertical, horizontal, none]
+    "border": "vertical",
+
+    // Default is false. [true, false]
+    "fullBleed": false,
 
     // Logo is optional.
     "logo": {
@@ -15,10 +18,10 @@
       "alt": "Alt Text"
     },
 
-    // Content is mandatory
+    // Content is required.
     "content": "<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>",
 
-    // Author is optional
+    // Author is optional.
     "author": {
       "image": {
         "src": "/images/placeholders/500x500.jpg",
@@ -35,7 +38,8 @@
 
 {% set sizeOptions = [
   "large",
-  "xlarge"
+  "xlarge",
+  "xxlarge"
 ] %}
 
 {% set alignItemsOptions = {
@@ -55,17 +59,20 @@
 
 {% set componentName = "blockquote" %}
 {% set baseClass = prefix ~ componentName %}
-{% set size = size | default("large") %}
-{% set alignItems = alignItems | default("left") %}
-{% set border = border | default("vertical") %}
+{% set size = size == false and size is null ? "xlarge" : size | default("xlarge") %}
+{% set alignItems = alignItems == false and alignItems is null ? "left" : alignItems | default("left") %}
+{% set border = border == false and border is null ? "vertical" : border | default("vertical") %}
 {% set indent = indent == false and indent is null ? "false" : "true" %}
+{% set fullBleed = fullBleed == false and fullBleed is null ? "false" : "true" %}
 
 
 {% set classes = [
   baseClass,
+  size in sizeOptions ? baseClass ~ "--" ~ size : "",
   alignItems in alignItemsOptions|keys ? baseClass ~ "--align-items-" ~ alignItemsOptions[alignItems],
   border in borderOptions|keys ? baseClass ~ "--" ~ borderOptions[border],
-  indent == "true" ? baseClass ~ "--indented" : ""
+  indent == "true" ? baseClass ~ "--indented" : "",
+  fullBleed == "true" ? baseClass ~ "--full" : ""
 ] %}
 
 <bolt-{{ componentName }} bolt-component>
@@ -82,7 +89,8 @@
         {% include "@bolt/text.twig" with {
           text: content,
           tag: "div",
-          size: size
+          size: size,
+          weight: "semibold"
         } only %}
       </div>
     {% endblock %}
@@ -92,11 +100,7 @@
           {% if author.image %}
             <div class="{{ "#{baseClass}__footer-item" }}">
               <div class="{{ "#{baseClass}__image" }}">
-                {% include "@bolt/image.twig" with author.image | merge({
-                  attributes: {
-                    class: [""]
-                  }
-                }) only %}
+                {% include "@bolt/image.twig" with author.image only %}
               </div>
             </div>
           {% endif %}
