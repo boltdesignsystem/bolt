@@ -5,7 +5,6 @@
     "packages/**",
     "src/fonts",
     "src/_data",
-    "src/fonts",
     "src",
     "src/_patterns/**/*",
     "build-tools/gulp-tasks/",
@@ -18,5 +17,10 @@
     "build-tools/gulp-tasks/build-styles",
     "build-tools/gulp-tasks/build-webpack",
     "build-tools/gulp-tasks/build-symlinks"
-  ]
+  ],
+  "command": {
+    "publish": {
+      "allowBranch": "!feature/*"
+    }
+  }
 }

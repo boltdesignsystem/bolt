@@ -13,6 +13,10 @@ const core = require('@bolt/build-core');
 const pkgVersions = require('pkg-versions');
 const gutil = require('gulp-util');
 const prettyPrint = require('pretty-print');
+const latestVersion = require('latest-version');
+const packageJson = require('package-json');
+const bump = require('bump-regex');
+const semver = require('semver');
 
 
 var cosmiconfig = require('cosmiconfig');
@@ -76,21 +80,43 @@ function boltPackages(userConfig) {
           if ('private' in pjson && pjson['private'] === true){
             gutil.log(gutil.colors.green(`${pjson.name} is marked as private so it won't be published -- skipping...`));
           } else {
+            
+           
+
+            // packageJson(pjson.name, { allVersions: true } ).then(json => {
+            //   console.log(json.versions);
+            //   //=> {name: 'ava', ...} 
+            // });
+
             pkgVersions(pjson.name).then(v => {
               const versions = Array.from(v);
+              // console.log(pjson.name);
+              // console.log();
 
-              if (versions.indexOf(pjson.version) > -1) {
-                gutil.log(gutil.colors.red(`WARNING!! The ${pjson.name} package is currently at version ${pjson.version} which appears to already be on NPM!! Attempting to publishing this package as-is would fail!.`));
+              latestVersion(pjson.name).then(version => {
+                if (semver.lt(pjson.version, version)){
+                  bump(`version: "${version}"`, function (err, out) {
+                    console.log(out);
+                    gutil.log(gutil.colors.red(`WARNING!! The ${pjson.name} package is currently at version ${pjson.version} which appears to be behind the ${version} version already published to NPM`));
 
-                gutil.log(gutil.colors.blue('Current versions published to NPM:'));
-                prettyPrint(versions, {
-                  leftPadding: 0
-                });
-                return false;
-              } else {
-                gutil.log(gutil.colors.green(`${pjson.name} version checks out. ✅ `));
-              }
+                    gutil.log(gutil.colors.red(`Try updating ${pjson.name} to ${out.new} or greater.`));
+                  });
+                } else {
+                  if (versions.indexOf(pjson.version) > -1) {
+                    gutil.log(gutil.colors.red(`Warning! It looks like you've already published ${pjson.name} since the current version is already up on NPM!`));
+                  } else {
+                    gutil.log(gutil.colors.green(`${pjson.name} version checks out. ✅ `));
+                  }
+                }
+                
+                // console.log(version === versions[versions.length - 1]);
+                // console.log(' ');
+                //=> '0.18.0' 
+              });
             });
+              
+
+             
           }
 
           
