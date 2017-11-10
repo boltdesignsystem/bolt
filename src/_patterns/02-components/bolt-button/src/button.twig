@@ -52,6 +52,7 @@
 
 <bolt-button
   size="{{ size }}"
+  style="{{ style in styles ? style : "primary" }}"
   bolt-component>
   <{{ tag }} {{ attributes.addClass(classes | raw) }}>
     <span class="{{ "#{baseClass}__item #{baseClass}__item-text" }}">{{ text }}</span>

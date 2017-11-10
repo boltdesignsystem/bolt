@@ -66,7 +66,7 @@ const defaultConfig = {
     alias: {
       styles: path.resolve(__dirname, 'src/styles'),
     },
-    extensions: ['.js', '.jsx', '.json', '.svg', '.scss']
+    extensions: ['.js', '.jsx', '.ts', '.json', '.svg', '.scss']
   },
 
 
@@ -111,6 +111,7 @@ const defaultConfig = {
                   }
                 }
               ],
+              'transform-decorators-legacy',
               'transform-class-properties',
               // 'transform-custom-element-classes',
               // 'transform-es2015-classes',
@@ -134,6 +135,7 @@ const defaultConfig = {
           }
         }
       },
+      { test: /\.tsx|\.ts?$/, loader: 'ts-loader' },
       {
         test: /\.scss$/,
         exclude: /\.scoped.scss$/,

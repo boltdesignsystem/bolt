@@ -1,0 +1,27 @@
+{
+  "name": "@bolt/core-common",
+  "version": "0.0.0",
+  "main": "dist/index.min.js",
+  "typings": "definitions/packages/core-common/index.d.ts",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "definitions",
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bolt-design-system/bolt"
+  },
+  "scripts": {
+    "_start": "../../node_modules/.bin/webpack-dev-server --config ../../webpack.config.js --env.dev --env.element=common --hot",
+    "_test": "npm run build:test && ../../node_modules/.bin/wct",
+    "_test:watch": "../../node_modules/.bin/concurrently \"npm run build:test:watch\" \"WCT_INDEX=./index.watch.test.html ../../node_modules/.bin/wct -p\"",
+    "_build": "npm run build:cleanup && ../../node_modules/.bin/webpack --config ../../webpack.config.js --env.prod --env.element=common",
+    "_build:test": "npm run build:cleanup && ../../node_modules/.bin/webpack --config ../../webpack.config.js --env.test --env.element=common",
+    "_build:test:watch": "../../node_modules/.bin/webpack-dev-server --config ../../webpack.config.js --env.test --env.element=common",
+    "_build:cleanup": "../../node_modules/.bin/rimraf dist definitions"
+  }
+}
