@@ -1,24 +1,22 @@
 {
-  "lerna": "2.2.0",
+  "lerna": "2.5.1",
   "version": "independent",
-  "changelog": {
-    "repo": "bolt-design-system/bolt",
-    "labels": {
-      "tag: new feature": ":rocket: New Feature",
-      "tag: breaking change": ":boom: Breaking Change",
-      "tag: bug fix": ":bug: Bug Fix",
-      "tag: enhancement": ":nail_care: Enhancement",
-      "tag: documentation": ":memo: Documentation",
-      "tag: internal": ":house: Internal"
-    },
-    "cacheDir": ".changelog"
-  },
-  "npmClient": "yarn",
   "packages": [
-    "packages/bolt-*/**",
-    "src/_patterns/**/*",
-    "build-tools/**/*",
+    "packages/**",
+    "src/fonts",
+    "src/_data",
+    "src/fonts",
     "src",
-    "src/fonts"
+    "src/_patterns/**/*",
+    "build-tools/gulp-tasks/",
+    "build-tools/gulp-tasks/build-core",
+    "build-tools/gulp-tasks/build-icons",
+    "build-tools/gulp-tasks/build-images",
+    "build-tools/gulp-tasks/build-patternlab",
+    "build-tools/gulp-tasks/build-server",
+    "build-tools/gulp-tasks/build-slack",
+    "build-tools/gulp-tasks/build-styles",
+    "build-tools/gulp-tasks/build-webpack",
+    "build-tools/gulp-tasks/build-symlinks"
   ]
 }

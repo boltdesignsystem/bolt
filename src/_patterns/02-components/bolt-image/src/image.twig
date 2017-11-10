@@ -1,95 +1,131 @@
 
+{# 
+  Bolt Image - Structure:
+  - .c-bolt-image: uses the ratio object as a base if enabled
+    - .c-bolt-image__img: lazyloaded img tag
+    - .c-bolt-image__placeholder: lazyloader span while the img is lazyloaded.
+#}
 
-
-{% set attributes = create_attribute(attributes | default({})) %}
-{# set wrapper_attributes = create_attribute(wrapper_attributes | default({})) #}
-
-
-
-{% set classes = [
-  "c-bolt-image"
-] %}
-
-{% set attributes = attributes.addClass(classes) %}
-
-
-
-{% if alt %}
-  {% set attributes = attributes.setAttribute("alt", alt) %}
+{% set srcset = srcset ?? "" %}
+{% set lazyload = lazyload ?? true %}
+{% if placeholderColor is empty %}
+  {% set placeholderColor = bgcolor(src) %}
 {% endif %}
-
-{% if title %}
-  {% set attributes = attributes.setAttribute("title", title) %}
+{% if placeholderImage is empty %}
+  {% set placeholderImage = base64(src) %}
 {% endif %}
+{% if height is empty %}
+  {% set height = ratio(src, 'height') %}
+{% endif %}
+{% if width is empty %}
+  {% set width = ratio(src, 'width') %}
+{% endif %}
+{% set ratio = ratio ?? true %}
 
+{# Get a whole number aspect ratio #}
+{% if width > 0 and height > 0 and ratio == true %}
+  {% set gcd %}
+    {% include '@bolt/gcd.twig' with {
+      a: width,
+      b: height
+    } only %}
+  {% endset %}
+  {% set gcd = gcd | escape | raw | number_format %}
+  
+  {% if gcd != 0 and height != 0 and width != 0 %}
+    {% set imageHeightRatio = (height / gcd) %}
+    {% set imageWidthRatio = (width / gcd) %}
+  {% else %}
+    {% set imageHeightRatio = 1 %}
+    {% set imageWidthRatio = 1 %}
+  {% endif %}
+
+  {# pre-calculate the % output on the element #}
+  {% set ratio = imageHeightRatio / imageWidthRatio * 100 ~ '%' %}
+
+{% endif %}
 
 {% if src %}
-  {% set attributes = attributes.setAttribute("src", src) %}
+  {% set ext = src|split('.')|last %}
 {% endif %}
 
-<img {{ attributes }} >
+{% set placeholderDummySrc = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" %}
 
-{#
 
-{% set image_classes = [
-  image.lazyload ? 'js-lazyload' : '',
-] %}
+  {% if srcset == "" and ext != "svg" %}
+    {% set path = publicpath(src|split('.' ~ ext)|first) %}
+    {% set sizes = globalBoltImageSizes %}
+    {% for size in sizes if (size <= width) %}
+      {% if size == width %}
+        {% set srcset = srcset ~ '../..' ~ path ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}
+      {% else %}
+        {% set srcset = srcset ~ '../..' ~ path ~ '-' ~ size ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}
+      {% endif %}
+    {% endfor %}
+    {% set srcset = srcset|trim(', ') %}
+  {% elseif ext == "svg" %}
+    {% set srcset = src %}
+  {% endif %}
 
-{% set wrapper_classes = [
-  'o-ratio'
-] %}
+{% set attributes = create_attribute(attributes | default({})).addClass('c-bolt-image') %}
+{% set styles = attributes.getAttribute('style') | split(' ') | merge([
+  "padding-top: #{ratio};"
+]) %}
+{% set attributes = attributes.setAttribute('style', styles | join(' ')) %}
 
-{% set lazyload_placeholder = lazyload_placeholder ??  "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" %}
-{% set sizes = [50, 100, 200, 320, 480, 640, 800, 1024, 1366, 1536, 1920, 2560] %}
-{% set srcset = image.srcset ?? "" %}
-{% set imageWidth = imagesize(image.src) %}
-{% set ext = image.src|split('.')|last %}
-{% set path = publicpath(image.src|split('.' ~ ext)|first) %}
 
-{% if srcset == "" %}
-  {% for size in sizes if (size <= imageWidth) %}
-    {% if size == imageWidth %}
-      {% set srcset = srcset ~ '../..' ~ path ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}
-    {% else %}
-      {% set srcset = srcset ~ '../..' ~ path ~ '-' ~ size ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}
-    {% endif %}
-  {% endfor %}
-  {% set srcset = srcset|trim(', ') %}
+{% set imageAttributes = create_attribute(imageAttributes | default({})).addClass([
+    "c-bolt-image__img",
+    lazyload ? "js-lazyload" : "",
+    lazyload ? "is-lazyloading" : ""
+  ])
+  .setAttribute('alt', alt)
+%}
+
+
+
+{% if lazyload %}
+  {% set imageAttributes = imageAttributes
+    .setAttribute("data-srcset", srcset)
+    .setAttribute("srcset", placeholderDummySrc)
+    .setAttribute("data-sizes", "auto")
+  %}
+{% else %}
+  {% set imageAttributes = imageAttributes.setAttribute("srcset", srcset) %}
 {% endif %}
 
-{% if ext == "svg" %}
-  {% set srcset = path ~ '.' ~ ext %}
-{% endif %}
+{% set placeholderAttributes = create_attribute(placeholderAttributes | default({})).addClass("c-bolt-image__placeholder") %}
+{% set styles = placeholderAttributes.getAttribute('style') | split(' ') | merge([
+    placeholderColor ? "background-color: #{placeholderColor};" : "",
+    placeholderImage ? "background-image: url(#{placeholderImage});" : ""
+  ])
+%}
+{% set placeholderAttributes = placeholderAttributes.setAttribute('style', styles) %}
 
-
-{% if image.src starts with '/' and ext != "svg" %}
-  {% set placeholder_color = ' background-color: ' ~ bgcolor(image.src) ~ ';' %}
-{% endif %}
-
-
-{% if image.placeholder_image == true %}
-  {% set placeholder_image = "background-image: url('" ~  base64(image.src) ~ "'); " %}
-{% endif %}
-
-<div {{ wrapper_attributes.addClass(wrapper_classes) }} style="
-padding-bottom: {{ ratio(image.src) }}; 
-{{ placeholder_image }}
-{{ placeholder_color }}
-">
-  <img {{ attributes.addClass(image_classes) }}
-  {% if image.lazyload %}
-    data-sizes="auto" data-srcset="{{ srcset }}"
-    src="{{ lazyload_placeholder }}"
-  {% else %}
-    src="{{ path ~ '.' ~ ext | default(publicpath("/images/placeholders/fpo_16x9.png")) }}" srcset="{{ srcset }}"
-  {% endif %}>
-
-
+{% set imageTag %}
+  <img {{ imageAttributes }}>
   <noscript>
-    <img src="{{ path ~ '.' ~ ext }}">
+    <img {{ imageAttributes.removeClass(["js-lazyload", "is-lazyloading"]).setAttribute("srcset", srcset) }}>
   </noscript>
-</div>
+{% endset %}
 
-
-
-#}
+{% set imagePlaceholder %}
+  <span {{ placeholderAttributes }}></span>
+{% endset %}
+<bolt-image>
+  {% block image_content %}
+    {% if ratio == true %}
+      {% embed "@bolt/ratio.twig" with {
+        attributes: attributes
+      } %}
+        {% block ratio_content %}
+          {{ ext == "jpg" ? imagePlaceholder : "" }}
+          {{ imageTag }}
+        {% endblock %}
+      {% endembed %}
+    {% else %}
+      {{ ext == "jpg" ? imagePlaceholder : "" }}
+      {{ imageTag }}
+    {% endif %}
+  {% endblock %}
+</bolt-image>

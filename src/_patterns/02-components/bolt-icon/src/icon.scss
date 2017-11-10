@@ -1,0 +1,83 @@
+bolt-icon {
+  display: inline-block;
+  display: inline-flex;
+  color: currentColor;
+  color: var(--bolt-color-icon, inherit);
+}
+
+:host {
+  display: inline-block;
+  color: currentColor;
+  color: var(--bolt-color-icon, inherit);
+  vertical-align: middle;
+}
+
+
+// By default, icons should inherit the size of the container it's put inside
+.c-bolt-icon {
+  display: block; //required for vertically aligning icons
+  position: relative;
+  width: 1em;
+  height: 1em;
+  box-sizing: border-box;
+}
+
+
+.c-bolt-icon--small {
+  width: 12px;
+  height: 12px;
+}
+
+.c-bolt-icon--medium {
+  width: 24px;
+  height: 24px;
+}
+// 
+.c-bolt-icon--large {
+  width: 32px;
+  height: 32px;
+}
+
+
+.c-bolt-icon--xlarge {
+  width: 64px;
+  height: 64px;
+  padding: 16px;
+}
+
+
+// By default background is transparent;
+.c-bolt-icon--background {
+  opacity: 0;
+}
+
+.c-bolt-icon--circle-background {
+  .c-bolt-icon--xlarge & {
+    transform: scale(2, 2);
+    transform-origin: 50% 50%;
+  }
+}
+
+.c-bolt-icon--has-circle-background .c-bolt-icon--circle-background {
+  opacity: 0.1;
+  opacity: var(--bolt-theme-icon-background-opacity, 0.1);
+
+  fill: currentColor;
+  fill: var(--bolt-theme-icon-background-color, currentColor);
+}
+
+
+
+
+// .c-bolt-icon--circle-background:before {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   opacity: 0.25;
+//   border-radius: 50%;
+//   content: '';
+//   width: 100%;
+//   height: 100%;
+// }
+
+

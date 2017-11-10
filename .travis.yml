@@ -1,3 +1,27 @@
+# sudo: required
+# language: node_js
+# node_js:
+#   - 'node'
+#   - '6'
+
+# before_script:
+#   - export DISPLAY=:99.0
+#   - sh -e /etc/init.d/xvfb start
+
+# script:
+#   - yarn test:travis
+
+# addons:
+#   firefox: latest
+#   apt:
+#     sources:
+#       - google-chrome
+#     packages:
+#       - google-chrome-stable
+
+
+
+
 #sudo: true
 #dist: trusty
 language: php
@@ -29,11 +53,13 @@ install:
 - npm install gulpjs/gulp#4.0
 - npm install --global now
 - npm install --global lerna
-- npm install && npm run bootstrap && npm run setup:composer
+- npm install --global webpack
+- npm install && npm run bootstrap && npm run composer:setup
 # - gem install --file packages/website-jekyll/Gemfile
 
 script:
-- npm run test && npm run build
+- npm run test
+- travis_wait npm run build
 
 after_success:
 - npm run deploy

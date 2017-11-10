@@ -1,0 +1,63 @@
+{# Sample Usage
+  {% include "@bolt/blockquote.twig" with {
+    author: {
+      name: "Full Name",
+      title: "Title and/or organization"
+    },
+    content: "<p>One paragraph.</p> <p>And another paragraph.</p>"
+  } only %}
+#}
+
+
+{% set prefix = "c-bolt-" %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set componentName = "blockquote" %}
+{% set baseClass = prefix ~ componentName %}
+
+
+{% set classes = [
+  baseClass
+] %}
+
+<bolt-{{ componentName }} bolt-component>
+  <blockquote {{ attributes.addClass(classes) }}>
+    <div class="{{ "#{baseClass}__quote" }}">
+      {% block blockquote_quote %}
+        {% if content %}
+          {% include "@bolt/text.twig" with {
+            text: content,
+            tag: "div",
+            size: "large",
+            weight: "semibold"
+          } only %}
+        {% endif %}
+      {% endblock %}
+    </div>
+    {% if author %}
+      {% block blockquote_footer %}
+        <footer class="{{ "#{baseClass}__footer" }}">
+          <div class="{{ "#{baseClass}__footer-item" }}">
+            {% include "@bolt/text.twig" with {
+              text: author.name,
+              tag: "cite",
+              size: "xsmall",
+              weight: "semibold"
+            } only %}
+          </div>
+          {% if author.title %}
+            <div class="{{ "#{baseClass}__footer-item" }}">
+              {% include "@bolt/text.twig" with {
+                text: author.title,
+                tag: "em",
+                size: "xsmall",
+                style: "italic"
+              } only %}
+            </div>
+          {% endif %}
+        </footer>
+      {% endblock %}
+    {% endif %}
+  </blockquote>
+</bolt-{{ componentName }}>

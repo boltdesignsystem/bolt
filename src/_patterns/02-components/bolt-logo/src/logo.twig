@@ -1,9 +1,7 @@
+
+
 <bolt-logo {% if invert %} class="c-bolt-logo--invert" {% endif %}>
-  {% embed "@bolt/ratio.twig" %}
-    {% block ratio_content %}
-      {{ include('@bolt/image.twig', { 
-        logo: logo
-      }, with_context = true) }}
-    {% endblock %}
-  {% endembed %}
+  {{ include('@bolt/image.twig', { 
+    logo: logo
+  }, with_context = true) }}
 </bolt-logo>

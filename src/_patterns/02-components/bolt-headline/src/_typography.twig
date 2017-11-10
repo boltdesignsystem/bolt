@@ -1,5 +1,6 @@
-{% set tags = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "span"] %} {# Allowed Tags #}
-{% set weights = ["bold", "regular", "semibold"] %} {# Allowed Weights #}
+{% set tags = "any" %} {# Allowed Tags #}
+{% set weights = ["bold", "regular", "semibold"] %} {# Allowed Font-weights #}
+{% set styles = ["italic", "normal"] %} {# Allowed Font-styles #}
 {% set types = ["headline", "subheadline", "eyebrow", "text"] %} {# Pre-defined types #}
 {% set transformProps = ["none", "uppercase", "lowercase", "capitalize"] %} {# Pre-defined text transform options #}
 {% set sizes = [
@@ -12,16 +13,20 @@
   "xxxlarge"
 ] %}
 
-
 {% set _defaultTag = "p" %}
 {% set _defaultWeight = "regular" %}
+{% set _defaultStyle = "normal" %}
 {% set _defaultType = "text" %}
 {% set _defaultSize = "medium" %}
 
 
-
-{% set tag = tag in tags ? tag : _defaultTag %}
+{% if tags != "any" %}
+  {% set tag = tag in tags ? tag : _defaultTag %}
+{% else %}
+  {% set tag = tag ?? _defaultTag %}
+{% endif %}
 {% set weight = weight | default(_defaultWeight) %}
+{% set style = style | default(_defaultStyle) %}
 {% set type = type in types ? type : _defaultType %}
 {% set size = size | default(_defaultSize) %}
 {% set transform = transform | default("") %}
@@ -32,23 +37,46 @@
 {% set baseClass = prefix ~ type %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
+{% if (size == "xxxlarge") and (text|length >= 60) %}
+  {% set size = "xxlarge" %}
+{% endif %}
+
 
 {% set classes = [
   baseClass,
   quoted ? baseClass ~ "--" ~ "quoted" : "",
   weight in weights and type == "text" ? baseClass ~ "--" ~ weight : "",
+  style in styles and type == "text" ? baseClass ~ "--" ~ style : "",
   size in sizes and type != "eyebrow" ? baseClass ~ "--" ~ size : "",
-  transform in transformProps and transform != "" ? baseClass ~ "--" ~ transform : ""
+  transform in transformProps and transform != "" ? baseClass ~ "--" ~ transform : "",
+  url ? baseClass ~ "--link" : "" 
 ] %}
+
+{% if url and icon.name is null %}
+  {% set icon = icon | default({}) | merge({
+    name: "chevron-right"
+  }) %}
+{% endif %}
 
 <{{ tag }} {{ attributes.addClass(classes) }}>
   <span class="{{ "#{baseClass}__text" }}">
     {% if url %}
-      {{ link(text, url, null) }}
+      {% include "@bolt/link.twig" with {
+        text: text,
+        icon: icon,
+        url: url,
+        isHeadline: true
+      } only %}
     {% else %}
       {{ text }}
     {% endif %}
   </span>
+
+  {% if icon and not url %}
+    <span class="{{ "#{baseClass}__icon" }}">
+      {% include "@bolt/icon.twig" with icon only %}
+    </span>
+  {% endif %}
 </{{ tag }}>
 
 
@@ -58,6 +86,7 @@
 {# <bolt-headline
     size="{{ size }}"
     weight="{{ weight }}"
+    style="{{ style }}"
     type="{{ type }}"
     level="{{ level }}"
     bolt-component

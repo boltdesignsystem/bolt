@@ -36,15 +36,17 @@
 <bolt-background bolt-component>
   <div {{ attributes.addClass(classes) }}>
     <div class="{{ "#{baseClass}__item" }}">
-      {% if items %}
-        {% for item in items %}
-          {% if loop.first %}
-            {% include "@bolt/#{item.name}.twig" with item | merge({
-              attributes: {
-                class: ["c-bolt-background__#{item.name}"]
-              }
-            }) only %}
-          {% endif %}
+      {% if contentItems %}
+        {% for item in contentItems %}
+
+          {% set itemAttributes = item.pattern ~ "Attributes" %}
+
+          {% include pattern_template(item.pattern) with item | merge({
+            (itemAttributes): {
+              class: ["c-bolt-background__#{item.pattern}"]
+            },
+            ratio: false
+          }) only %}
         {% endfor %}
       {% endif %}
 
@@ -54,20 +56,3 @@
     </div>
   </div>
 </bolt-background>
-
-
-
-
-
-
-
-
-<!-- https://www.pega.com/sites/pega.com/files/styles/max_width_2560/public/ind-government-hero-img.jpg -->
-
-<!-- 
-gradient: 
-c-bolt-background__overlay--gradient
-heavy: c-bolt-background__overlay--heavy
-
-solid: 
-c-bolt-background__overlay--solid -->

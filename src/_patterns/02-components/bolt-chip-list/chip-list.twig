@@ -1,10 +1,30 @@
 {# chip-list = inline-list w/ included chips #}
 
-{% if items %}
+{# Sample Usage
+  {% include "@bolt/chip-list.twig" with {
+    contentItems: [
+      {
+        text: "Chip 1",
+        url: "http://google.com"
+      },
+      {
+        text: "Chip 2",
+        url: "http://google.com"
+      },
+      {
+        text: "Chip 3",
+        url: "http://google.com"
+      }
+    ]
+  } only %}
+#}
+
+
+{% if contentItems %}
   {% set chipParams = {} %}
   {% set inlineListItems = [] %}
 
-  {% for chip in items %}
+  {% for chip in contentItems %}
     {% set chipItem %}
       {% include "@bolt/chip.twig" with chip only %}
     {% endset %}
@@ -15,8 +35,9 @@
   {% endfor %}
 
   {% set chipParams = chipParams | merge({
-    "items": inlineListItems,
-    size: "small"
+    "contentItems": inlineListItems,
+    size: "xsmall",
+    matrix: true
   }) %}
 
   {% include "@bolt/inline-list.twig" with chipParams only %}

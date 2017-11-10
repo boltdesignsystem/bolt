@@ -24,10 +24,10 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 @mixin bolt-headline() {
   @include bolt-font-family(heading);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   display: block;
   max-width: 55ch;
+  color: currentColor;
+  color: var(--bolt-theme-heading, currentColor);
 
   @supports (display: flex) {
     display: flex;
@@ -37,7 +37,7 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   /* stylelint-disable-next-line */
   > * {
     display: inline-flex;
-    align-self: baseline;
+    align-self: center;
   }
 }
 
@@ -47,6 +47,7 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 .c-bolt-headline {
   @include bolt-headline;
   @include bolt-font-weight(bold);
+  
 
   &:not(:last-child) {
     @include bolt-margin-bottom(medium);
@@ -93,21 +94,20 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 // Headline content
 
-.c-bolt-headline__text {
-  ~ .c-bolt-headline__icon {
-    @include bolt-margin-left(small);
-  }
-}
+// .c-bolt-headline__text {
+//   ~ .c-bolt-headline__icon {
+//     @include bolt-margin-left(small);
+//   }
+// }
 
 .c-bolt-headline__icon {
-  width: 0.75em;
-  height: 0.75em;
+ 
 
-  svg {
-    width: 1em;
-    height: auto;
-    fill: currentColor;
-  }
+  // svg {
+  //   width: 1em;
+  //   height: auto;
+  //   fill: currentColor;
+  // }
 
   ~ .c-bolt-headline__text {
     @include bolt-margin-left(small);
@@ -150,6 +150,7 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 .c-bolt-headline,
 .c-bolt-subheadline,
 .c-bolt-text {
+
   &:last-child {
     @include bolt-margin-bottom(0);
   }
@@ -159,16 +160,21 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 
 // Headline spacing with other elements.
-.c-bolt-headline + .c-bolt-subheadline,
-.c-bolt-headline:not(.c-bolt-headline--xxxlarge) + .c-bolt-text {
+.c-bolt-headline:not(.c-bolt-headline--xxxlarge) + .c-bolt-subheadline,
+.c-bolt-headline:not(.c-bolt-headline--xxxlarge) + .c-bolt-text,
+.c-bolt-headline:not(.c-bolt-headline--xxxlarge) + bolt-inline-list,
+.c-bolt-headline:not(.c-bolt-headline--xxxlarge) + p:not([class]) {
   margin-top: (-1 * bolt-v-spacing(medium)) + bolt-v-spacing(xsmall);
 }
 
-.c-bolt-headline--xxxlarge + .c-bolt-text {
+.c-bolt-headline--xxxlarge + .c-bolt-text,
+.c-bolt-headline--xxxlarge + bolt-inline-list,
+.c-bolt-headline--xxxlarge + p:not([class]) {
   margin-top: (-1 * bolt-v-spacing(medium)) + bolt-v-spacing(small);
 }
 
-.c-bolt-subheadline + .c-bolt-text {
+.c-bolt-subheadline + .c-bolt-text,
+.c-bolt-subheadline + p:not([class]) {
   margin-top: (-1 * bolt-v-spacing(medium)) + bolt-v-spacing(xsmall);
 }
 
@@ -202,6 +208,11 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 .c-bolt-text--large,
 .c-bolt-headline--large {
   @include bolt-font-size(large);
+}
+
+.c-bolt-text a:not([class]),
+.c-bolt-text .c-bolt-link {
+  text-decoration: underline;
 }
 
 
@@ -239,8 +250,6 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 .c-bolt-eyebrow--bold,
 .c-bolt-headline--bold {
   @include bolt-font-weight(bold);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 .c-bolt-text--regular,
@@ -248,10 +257,19 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 .c-bolt-headline--regular,
 .c-bolt-subheadline--regular {
   @include bolt-font-weight(regular);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 .c-bolt-text--semibold {
   @include bolt-font-weight(semibold);
+}
+
+
+
+
+.c-bolt-text--normal {
+  font-style: normal;
+}
+
+.c-bolt-text--italic {
+  font-style: italic;
 }

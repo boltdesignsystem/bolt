@@ -1,0 +1,25 @@
+diff --git a/src/PatternLab/Builder.php b/src/PatternLab/Builder.php
+index bceb814..20cdc4f 100644
+--- a/src/PatternLab/Builder.php
++++ b/src/PatternLab/Builder.php
+@@ -261,6 +261,20 @@ class Builder {
+ 				// modify the pattern mark-up
+ 				$markup        = $patternStoreData["code"];
+ 				$markupFull    = $patternStoreData["header"].$markup.$patternStoreData["footer"];
++
++
++				/** If the base template for a JSON / Yaml file (or psuedo pattern variation) lives in a different folder, 
++					* use the `original` pattern's template instead. 
++					* Fixes https://github.com/drupal-pattern-lab/patternlab-php-core/issues/22
++					*/
++				if (!file_exists($patternSourceDir."/".$pathName.".".$patternExtension)){
++					$originalPatternPathName = PatternData::getOption($patternStoreData["original"])["pathName"];
++					if (file_exists($patternSourceDir."/".$originalPatternPathName.".".$patternExtension)){
++						$pathName = $originalPatternPathName;
++					}
++				}
++
++
+ 				$markupEngine  = file_get_contents($patternSourceDir."/".$pathName.".".$patternExtension);
+ 
+ 				// if the pattern directory doesn't exist create it

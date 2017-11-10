@@ -34,11 +34,22 @@
   theme="{{ theme }}"
   bolt-component>
   <{{ tag }} {{ attributes.addClass(classes) }}>
-    <div class="o-bolt-wrapper">
-      {% block band_background %}{% endblock %}
+    {% set renderedBandContent %}
+      {% block band_background %}
+        {% if background %}
+          {% include "@bolt/background.twig" with background only %}
+        {% endif %}
+      {% endblock band_background %}
       <{{ contentTag }} class="{{ "#{baseClass}__content" }}">
-        {% block band_content %}{% endblock %}
+        {% block band_content %}
+          {{ content }}
+        {% endblock band_content %}
       </{{ contentTag }}>
-    </div>
+    {% endset %}
+        
+    {% include "@bolt/wrapper.twig" with {
+      full: false,
+      content: renderedBandContent
+    } only %}
   </{{ tag }}>
 </bolt-band>

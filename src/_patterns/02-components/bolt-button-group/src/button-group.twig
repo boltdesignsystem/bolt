@@ -12,14 +12,25 @@
   baseClass
 ] %}
 
-  <bolt-button-group
-    bolt-component
-  >
-    <{{ tag }} {{ attributes.addClass(classes) }}>
-      {% for button in buttons %}
-        <li class="{{ "#{baseClass}__item" }}">
-          {% include "@bolt/button.twig" with button only %}
-        </li>
-      {% endfor %}
-    </{{ tag }}>
-  </bolt-button-group>
+<bolt-button-group bolt-component>
+  <{{ tag }} {{ attributes.addClass(classes) }}>
+    {% for button in buttons %}
+      <li class="{{ "#{baseClass}__item" }}">
+        {% include "@bolt/button.twig" with button only %}
+      </li>
+    {% endfor %}
+  </{{ tag }}>
+
+  {% block button_group_content %}
+    {% for item in contentItems if item.pattern %}
+      {% include pattern_template(item.pattern) with item only %}
+    {% endfor %}
+  
+  {% if content %}
+    {% include "@bolt/text.twig" with {
+      text: content | striptags,
+      tag: "p"
+    } only %}
+  {% endif %}
+{% endblock button_group_content %}
+</bolt-button-group>

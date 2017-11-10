@@ -1,0 +1,85 @@
+@import '@bolt/settings-global';
+@import '@bolt/settings-colors';
+@import '@bolt/tools-spacing';
+@import '@bolt/tools-color-palette';
+
+
+
+
+/* ------------------------------------ *\
+   Blockquote
+\* ------------------------------------ */
+
+// Sample Usage
+// <bolt-blockquote bolt-component>
+//   <blockquote class="c-bolt-blockquote">
+//     <div class="c-bolt-blockquote__quote">
+//       <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--large">
+//         <span class="c-bolt-text__text">
+//           <p>Quote Text.</p>
+//         </span>
+//       </div>
+//     </div>
+//     <footer class="c-bolt-blockquote__footer">
+//       <div class="c-bolt-blockquote__footer-item">
+//         <cite class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xsmall">
+//           <span class="c-bolt-text__text">
+//             Author Name
+//           </span>
+//         </cite>
+//       </div>
+//       <div class="c-bolt-blockquote__footer-item">
+//         <em class="c-bolt-text c-bolt-text--regular c-bolt-text--italic c-bolt-text--xsmall">
+//           <span class="c-bolt-text__text">
+//             Author Title
+//           </span>
+//         </em>
+//       </div>
+//     </footer>
+//   </blockquote>
+// </bolt-blockquote>
+
+
+// Local Variables
+$bolt-blockquote-border-width: 0.25rem;
+$bolt-blockquote-border-style: $bolt-border-style;
+$bolt-blockquote-border-color: bolt-color(teal);
+$bolt-blockquote-footer-line-height: $bolt-line-height--tight;
+
+
+// Styles
+.c-bolt-blockquote {
+  @include bolt-padding(0 medium);
+
+  color: var(--bolt-theme-blockquote-text, var(--bolt-theme-text, inherit)); // TODO: refactor this after theming is done.
+
+  border-left-width: $bolt-blockquote-border-width;
+  border-left-style: $bolt-blockquote-border-style;
+  border-left-color: $bolt-blockquote-border-color;
+  border-left-color: var(--bolt-theme-blockquote-border, $bolt-blockquote-border-color);
+}
+
+.c-bolt-blockquote__quote {
+  @include bolt-margin-bottom(medium);
+
+  display: block;
+  position: relative;
+
+  p:first-child:before {
+    position: absolute;
+    content: '\201C';
+    transform: translate3d(-110%, 0, 0);
+  }
+
+  p:last-child:after {
+    content: '\201D';
+  }
+}
+
+.c-bolt-blockquote__footer {
+  line-height: $bolt-blockquote-footer-line-height;
+}
+
+.c-bolt-blockquote__footer-item {
+  display: block;
+}
