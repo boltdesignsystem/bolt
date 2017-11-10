@@ -10,6 +10,9 @@ const merge = require('merge').recursive;
 const defaultConfig = require('./config.default');
 const argv = require('yargs').argv;
 const core = require('@bolt/build-core');
+const pkgVersions = require('pkg-versions');
+const gutil = require('gulp-util');
+const prettyPrint = require('pretty-print');
 
 
 var cosmiconfig = require('cosmiconfig');
@@ -62,17 +65,41 @@ function boltPackages(userConfig) {
     globby(config.packageFolders, {
       follow: true
     }).then((packages) => {
-      packages.forEach((pkg) => {
+      for (var i = 0; i < packages.length; ++i) {
+        const pkg = packages[i];
         const pkgJson = `${pkg}/package.json`;
 
         if (fs.existsSync(pkgJson)) {
           const pjson = JSON.parse(fs.readFileSync(pkgJson));
+          
+
+          if ('private' in pjson && pjson['private'] === true){
+            gutil.log(gutil.colors.green(`${pjson.name} is marked as private so it won't be published -- skipping...`));
+          } else {
+            pkgVersions(pjson.name).then(v => {
+              const versions = Array.from(v);
+
+              if (versions.indexOf(pjson.version) > -1) {
+                gutil.log(gutil.colors.red(`WARNING!! The ${pjson.name} package is currently at version ${pjson.version} which appears to already be on NPM!! Attempting to publishing this package as-is would fail!.`));
+
+                gutil.log(gutil.colors.blue('Current versions published to NPM:'));
+                prettyPrint(versions, {
+                  leftPadding: 0
+                });
+                return false;
+              } else {
+                gutil.log(gutil.colors.green(`${pjson.name} version checks out. ✅ `));
+              }
+            });
+          }
+
+          
 
           if (packageTypes.some(v => pjson.name.indexOf(v) >= 0)) {
             unorderedMatches[pjson.name] = pjson.version;
           }
         }
-      });
+      };
       Object.keys(unorderedMatches).sort().forEach((key) => {
         orderedMatches[key] = unorderedMatches[key];
       });
