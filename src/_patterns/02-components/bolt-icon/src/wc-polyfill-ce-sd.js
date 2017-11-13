@@ -21,5 +21,5 @@ import '@webcomponents/custom-elements/src/custom-elements.js';
 
 // ShadyCSS Shims (styling)
 import '@webcomponents/shadycss/scoping-shim.min';
-import '@webcomponents/shadycss/apply-shim.min';
-import '@webcomponents/shadycss/custom-style-interface.min';
+// import '@webcomponents/shadycss/apply-shim.min';
+// import '@webcomponents/shadycss/custom-style-interface.min';

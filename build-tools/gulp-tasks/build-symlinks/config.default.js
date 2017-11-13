@@ -8,6 +8,8 @@ module.exports = {
   packageFolders: [
     // `./node_modules/${npmNamespace}/${symlinkPrefix}*`,
     './src/**/*',
+    './packages/**/*',
+    '!./src/_twig-components/**/*',
     '!./src/**/node_modules/**/*',
     // './packages/bolt-toolkit-core/**/*',
     // './packages/bolt-toolkit-ui/**/*',

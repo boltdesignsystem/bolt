@@ -29,7 +29,9 @@ $bolt-action-block-item-max-width: 20ch;
 
 $bolt-action-blocks-border-width: $bolt-border-width;
 $bolt-action-blocks-border-style: $bolt-border-style;
-$bolt-action-blocks-border-color: var(--bolt-theme-card-border, var(--bolt-theme-border, currentColor));
+$bolt-action-blocks-border-color: var(--bolt-theme-card-border, var(--bolt-theme-border, inherit));
+
+$bolt-action-block-background: bolt-color(indigo, light);
 
 // Individual Action Block Styles
 .c-bolt-action-block {
@@ -43,6 +45,13 @@ $bolt-action-blocks-border-color: var(--bolt-theme-card-border, var(--bolt-theme
   height: 100%;
   color: $bolt-action-block-text-color;
   outline: none;
+  transition: color .35s cubic-bezier(0.25,0.8,0.25,1);
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: bolt-text-contrast($bolt-action-block-background);
+  }
 
   &:before {
     display: block;
@@ -53,14 +62,20 @@ $bolt-action-blocks-border-color: var(--bolt-theme-card-border, var(--bolt-theme
     height: 100%;
     content: '';
     pointer-events: none;
-    background-color: bolt-color(indigo, xlight);
+    background-color: $bolt-action-block-background;
     opacity: 0;
-    transition: all $bolt-action-block-transition-ease $bolt-action-block-transition-timing;
+    transition: all .35s cubic-bezier(0.25,0.8,0.25,1);
   }
 
   &:hover, &:focus {
     &:before {
-      opacity: 0.1;
+      opacity: 1;
+    }
+  }
+
+  &:active {
+    &:before {
+      opacity: .8;
     }
   }
 }
@@ -91,7 +106,7 @@ bolt-action-blocks {
 .c-bolt-action-blocks {
   @include bolt-margin(0 -1px -1px 0);
   @include bolt-padding(0);
-
+  transform: translate3d(0, 0, 0); //Force hardware accelerated rendering to cleanly remove extra border from showing up sometimes
   display: flex;
   flex-wrap: wrap;
   list-style: none;
@@ -155,5 +170,18 @@ bolt-action-blocks {
 @for $number from 2 through 12 {
   .c-bolt-action-blocks--item-max-#{$number} > .c-bolt-action-blocks__item {
     flex-basis: calc(100% / #{$number} - #{$bolt-action-blocks-border-width});
+  }
+}
+
+
+.c-bolt-action-block__text {
+  transition: color .25s cubic-bezier(0.25,0.8,0.25,1);
+  color: currentColor;
+  color: var(--bolt-theme-heading-link-default, --bolt-theme-text);
+
+  .c-bolt-action-block:focus &,
+  .c-bolt-action-block:hover &,
+  .c-bolt-action-block:active & {
+    color: bolt-text-contrast($bolt-action-block-background);
   }
 }
