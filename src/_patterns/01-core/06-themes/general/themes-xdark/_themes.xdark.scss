@@ -11,6 +11,8 @@ $bolt-theme-xdark-link:         $bolt-theme-xdark-primary !default;
 $bolt-theme-xdark-heading-link: $bolt-theme-xdark-text !default;
 $bolt-theme-xdark-border:       rgba($bolt-theme-xdark-heading, $bolt-global-border-opacity);
 
+$bolt-theme-contrast-filter:    grayscale(100%) invert(100%) brightness(150%);
+
 .t-bolt-xdark {
   $bolt-theme-background:             $bolt-theme-xdark-background;
   $bolt-theme-primary:                $bolt-theme-xdark-primary;
@@ -89,6 +91,8 @@ $bolt-theme-xdark-border:       rgba($bolt-theme-xdark-heading, $bolt-global-bor
   --bolt-theme-primary-background-focus: $bolt-theme-primary-background-focus;
   --bolt-theme-primary-text-focus:       $bolt-theme-primary-text-focus;
   --bolt-theme-primary-border-focus:     $bolt-theme-primary-border-focus;
+
+  --bolt-theme-contrast-filter: $bolt-theme-contrast-filter;
 
   background-color: $bolt-theme-background;
   color: $bolt-theme-text;
