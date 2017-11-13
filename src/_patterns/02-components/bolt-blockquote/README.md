@@ -12,9 +12,9 @@ Stylistic pull quote styles for all types of layout. Part of the Bolt “Compone
       </bolt-logo>
     </div>
     <div class="c-bolt-blockquote__quote">
-      <div class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xlarge">
+      <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xlarge">
         <span class="c-bolt-text__text">
-          <p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>
+          <p>Quote text.</p>
         </span>
       </div>
     </div>
@@ -29,12 +29,12 @@ Stylistic pull quote styles for all types of layout. Part of the Bolt “Compone
       <div class="c-bolt-blockquote__footer-item">
         <cite class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall">
           <span class="c-bolt-text__text">
-            Michelangelo di Lodovico Buonarroti Simoni
+            Author Name
           </span>
         </cite>
         <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">
           <span class="c-bolt-text__text">
-            Renaissance Artist
+            Author Title
           </span>
         </p>
       </div>
