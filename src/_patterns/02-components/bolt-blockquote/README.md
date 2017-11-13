@@ -1,32 +1,42 @@
 # bolt/blockquote
-Stylistic pull quote for article content. Part of the Bolt “Components” CSS framework that powers the [Bolt Design System](https://www.boltdesignsystem.com).
+Stylistic pull quote styles for all types of layout. Part of the Bolt “Components” CSS framework that powers the [Bolt Design System](https://www.boltdesignsystem.com).
 
 ## Demo
 
 ```
 <bolt-blockquote bolt-component>
-  <blockquote class="c-bolt-blockquote">
+  <blockquote class="c-bolt-blockquote c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical">
+    <div class="c-bolt-blockquote__logo">
+      <bolt-logo>
+        ...
+      </bolt-logo>
+    </div>
     <div class="c-bolt-blockquote__quote">
-      <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--large">
+      <div class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xlarge">
         <span class="c-bolt-text__text">
-          <p>Quote Text.</p>
+          <p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>
         </span>
       </div>
     </div>
     <footer class="c-bolt-blockquote__footer">
       <div class="c-bolt-blockquote__footer-item">
-        <cite class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xsmall">
-          <span class="c-bolt-text__text">
-            Author Name
-          </span>
-        </cite>
+        <div class="c-bolt-blockquote__image">
+          <bolt-image>
+            ...
+          </bolt-image>
+        </div>
       </div>
       <div class="c-bolt-blockquote__footer-item">
-        <em class="c-bolt-text c-bolt-text--regular c-bolt-text--italic c-bolt-text--xsmall">
+        <cite class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall">
           <span class="c-bolt-text__text">
-            Author Title
+            Michelangelo di Lodovico Buonarroti Simoni
           </span>
-        </em>
+        </cite>
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">
+          <span class="c-bolt-text__text">
+            Renaissance Artist
+          </span>
+        </p>
       </div>
     </footer>
   </blockquote>
