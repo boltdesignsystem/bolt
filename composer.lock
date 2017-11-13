@@ -69,8 +69,44 @@
             "time": "2016-02-15T22:46:40+00:00"
         },
         {
+            "name": "basaltinc/twig-tools",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/basaltinc/twig-tools.git",
+                "reference": "f27b9fa613d121695269b0a213f4688d4d420a66"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/basaltinc/twig-tools/zipball/f27b9fa613d121695269b0a213f4688d4d420a66",
+                "reference": "f27b9fa613d121695269b0a213f4688d4d420a66",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/yaml": "^3.3",
+                "webmozart/path-util": "^2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "BasaltInc\\TwigTools\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Evan Lovely",
+                    "email": "evanlovely@gmail.com"
+                }
+            ],
+            "time": "2017-11-10T21:47:48+00:00"
+        },
+        {
             "name": "bolt/twig-extensions",
-            "version": "dev-master",
+            "version": "dev-feature/blockquote-round-2",
             "dist": {
                 "type": "path",
                 "url": "packages/bolt-twig-extensions",
@@ -338,15 +374,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/EvanLovely/plugin-twig-namespaces.git",
-                "reference": "c6c3494d19732d2e7db6a6d277c887334cf78935"
+                "reference": "184b77172b64760b4507dfcaf63153c1565c96fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EvanLovely/plugin-twig-namespaces/zipball/c6c3494d19732d2e7db6a6d277c887334cf78935",
-                "reference": "c6c3494d19732d2e7db6a6d277c887334cf78935",
+                "url": "https://api.github.com/repos/EvanLovely/plugin-twig-namespaces/zipball/184b77172b64760b4507dfcaf63153c1565c96fd",
+                "reference": "184b77172b64760b4507dfcaf63153c1565c96fd",
                 "shasum": ""
             },
             "require": {
+                "basaltinc/twig-tools": "^1.0",
                 "php": ">=5.4"
             },
             "type": "patternlab-plugin",
@@ -384,7 +421,7 @@
                 "pattern lab",
                 "twig"
             ],
-            "time": "2017-09-01 18:45:52"
+            "time": "2017-11-10 23:21:38"
         },
         {
             "name": "gajus/dindent",
@@ -1252,12 +1289,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "2365c3ddfcd48de678f13d54b1785cede221afd4"
+                "reference": "4e75c6190f3cc5243dfe227a843aa305dec976e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/2365c3ddfcd48de678f13d54b1785cede221afd4",
-                "reference": "2365c3ddfcd48de678f13d54b1785cede221afd4",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/4e75c6190f3cc5243dfe227a843aa305dec976e7",
+                "reference": "4e75c6190f3cc5243dfe227a843aa305dec976e7",
                 "shasum": ""
             },
             "require": {
@@ -1293,7 +1330,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2017-11-07 14:20:24"
+            "time": "2017-11-12 20:37:29"
         },
         {
             "name": "symfony/finder",
@@ -1350,12 +1387,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "dce0aaed6962844b680b9a98a163e2f5f768752b"
+                "reference": "c1638ca1865a54e036ec78d209a72660a5d8ec8b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/dce0aaed6962844b680b9a98a163e2f5f768752b",
-                "reference": "dce0aaed6962844b680b9a98a163e2f5f768752b",
+                "url": "https://api.github.com/repos/symfony/process/zipball/c1638ca1865a54e036ec78d209a72660a5d8ec8b",
+                "reference": "c1638ca1865a54e036ec78d209a72660a5d8ec8b",
                 "shasum": ""
             },
             "require": {
@@ -1391,7 +1428,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2017-11-05 16:10:10"
+            "time": "2017-11-13 18:20:08"
         },
         {
             "name": "symfony/yaml",
@@ -1399,12 +1436,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "e99024f324a7fa927c3a7992ed6f359e3a5ccc3b"
+                "reference": "14568820af0af65e8ae97c3999b58cc94ea408bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/e99024f324a7fa927c3a7992ed6f359e3a5ccc3b",
-                "reference": "e99024f324a7fa927c3a7992ed6f359e3a5ccc3b",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/14568820af0af65e8ae97c3999b58cc94ea408bf",
+                "reference": "14568820af0af65e8ae97c3999b58cc94ea408bf",
                 "shasum": ""
             },
             "require": {
@@ -1449,7 +1486,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-09 14:52:13"
+            "time": "2017-11-10 19:03:56"
         },
         {
             "name": "twig/twig",
@@ -1457,12 +1494,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "2610f2e1288f00e8a59f37b19d3b91e75e78865a"
+                "reference": "5322c9b4ca5fbff5917ecbf0544b46fb2fa66086"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/2610f2e1288f00e8a59f37b19d3b91e75e78865a",
-                "reference": "2610f2e1288f00e8a59f37b19d3b91e75e78865a",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/5322c9b4ca5fbff5917ecbf0544b46fb2fa66086",
+                "reference": "5322c9b4ca5fbff5917ecbf0544b46fb2fa66086",
                 "shasum": ""
             },
             "require": {
@@ -1514,7 +1551,103 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-11-07 21:50:11"
+            "time": "2017-11-12 18:47:15"
+        },
+        {
+            "name": "webmozart/assert",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webmozart/assert.git",
+                "reference": "4a8bf11547e139e77b651365113fc12850c43d9a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/4a8bf11547e139e77b651365113fc12850c43d9a",
+                "reference": "4a8bf11547e139e77b651365113fc12850c43d9a",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.3 || ^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.6",
+                "sebastian/version": "^1.0.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Webmozart\\Assert\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bernhard Schussek",
+                    "email": "bschussek@gmail.com"
+                }
+            ],
+            "description": "Assertions to validate method input/output with nice error messages.",
+            "keywords": [
+                "assert",
+                "check",
+                "validate"
+            ],
+            "time": "2016-11-23 20:04:41"
+        },
+        {
+            "name": "webmozart/path-util",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webmozart/path-util.git",
+                "reference": "95a8f7ad150c2a3773ff3c3d04f557a24c99cfd2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webmozart/path-util/zipball/95a8f7ad150c2a3773ff3c3d04f557a24c99cfd2",
+                "reference": "95a8f7ad150c2a3773ff3c3d04f557a24c99cfd2",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.3|^7.0",
+                "webmozart/assert": "~1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.6",
+                "sebastian/version": "^1.0.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Webmozart\\PathUtil\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bernhard Schussek",
+                    "email": "bschussek@gmail.com"
+                }
+            ],
+            "description": "A robust cross-platform utility for normalizing, comparing and modifying file paths.",
+            "time": "2016-08-15 15:31:42"
         }
     ],
     "packages-dev": [],
