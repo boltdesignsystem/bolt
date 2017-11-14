@@ -3,7 +3,7 @@ import { hasNativeShadowDomSupport } from './environment';
 
 const $template = Symbol();
 
-export function scopeCss( elem: Component<any> & { [ key: string ]: any }, css: string ): string | void {
+export function scopeCss(elem, css){
   if ( hasNativeShadowDomSupport ) {
     return css;
   }

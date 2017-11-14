@@ -33,6 +33,7 @@ const defaultConfig = {
   // entry: './src/index.js',
   entry: {
     'critical-fonts': './src/_patterns/02-components/bolt-critical-fonts/src/critical-fonts',
+    'themes-all': './src/_patterns/01-core/06-themes/themes-all/themes-all.standalone',
 
     // './src/components/bolt-icon/dist/icon': [
     //   // './src/scripts/native-shim.js', //Wrapper for custom-elements-es5-adapter.js so this doesn't break in other browsers like IE11
@@ -135,10 +136,10 @@ const defaultConfig = {
           }
         }
       },
-      { test: /\.tsx|\.ts?$/, loader: 'ts-loader' },
+      // { test: /\.tsx|\.ts?$/, loader: 'ts-loader' },
       {
         test: /\.scss$/,
-        exclude: /\.scoped.scss$/,
+        exclude: /(\.scoped\.scss|\.standalone\.scss)$/,
         use: [
           {
             loader: 'css-loader',
@@ -178,6 +179,52 @@ const defaultConfig = {
             }
           }
         ]
+      },
+      {
+        test: /\.standalone.scss$/,
+        exclude: /\.scoped.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              // options: {
+              //   sourceMap: true,
+              //   modules: true,
+              //   importLoaders: true,
+              //   localIdentName: '[local]'
+              // }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: function () {
+                  return [
+                    require('autoprefixer')
+                  ];
+                }
+              }
+            },
+            {
+              loader: 'clean-css-loader',
+              options: {
+                skipWarn: true,
+                compatibility: 'ie9',
+                level: 2,
+                inline: ['remote']
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                importer: require('npm-sass').importer,
+                functions: exportJson(sassDataExportPath, 'export_data'),
+                outputStyle: 'compressed',
+                precision: 2
+              }
+            }
+          ]
+        })
       },
       {
         test: /\.scoped.scss$/,

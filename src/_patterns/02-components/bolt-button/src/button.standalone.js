@@ -1,41 +1,72 @@
 import {
   // BoltComponent,
   spacingSizes,
-  utils
+  // utils
 } from '@bolt/core';
+import { props, withComponent } from 'skatejs';
+const Component = withComponent();
+// import withBolt from "./BoltComponent";
 
-import {
-  // ColoredProps,
-  // css,
-  // cssClassForColorType,
-  // DisabledProps,
-  // GenericEvents,
-  // prop,
-  shadyCssStyles
-} from '@bolt/core-common';
-
-const css = utils.css.default;
-
-import { props, withComponent, define, h } from 'skatejs';
-// import withPreact from '@skatejs/renderer-preact';
-// import { Preact } from 'preact';
 import styles from './button.scss';
-// const Component = withComponent();
-// const sizes = spacingSizes.spacingSizes;
+import { setTimeout } from 'core-js/library/web/timers';
+const css = styles[0][1];
+// import { h, Component } from 'preact';
+// import withPreact from '@skatejs/renderer-preact';
 
-// import upperCamelCase from 'uppercamelcase';
+const { HTMLElement } = window;
+const { attachShadow } = HTMLElement.prototype;
+const { ShadyCSS } = window;
+const $template = Symbol();
+const nativeShadowDomSupport = attachShadow && attachShadow.toString().indexOf('native code') > -1;
 
-// import * as Icon from '@bolt/components-icons';
+// function style(elem, css) {
+//   if (nativeShadowDomSupport) {
+//     return <style>{css}</style>;
+//   }
+//   const template = elem[$template] || (elem[$template] = document.createElement('template'));
+//   template.innerHTML = `<style>${css}</style>`;
+//   ShadyCSS.prepareTemplate(template, elem.localName);
+// }
 
-// const backgroundStyles = [
-//   'circle'
-// ];
 
-@shadyCssStyles()
-export default class BoltButton extends withComponent() {
-  static get is() {
-    return 'bolt-button';
-  }
+
+function style(elem, css) {
+  // if (nativeShadowDomSupport) {
+  //   const styleElement = document.createElement('style');
+  //   const styleContent = document.createTextNode(css);
+
+  //   styleElement.appendChild(styleContent);
+
+  //   return styleElement;
+  // } else {
+  //   const template = elem[$template] || (elem[$template] = document.createElement('template'));
+
+  //   template.innerHTML = `<style>${css}</style>`;
+  //   ShadyCSS.prepareTemplate(template, elem.localName);
+
+  //   return template;
+  // }
+
+  // const template = elem[$template] || (elem[$template] = document.createElement('template'));
+
+  // template.innerHTML = `<style>${css}</style>`;
+
+  // window.ShadyCSS.prepareTemplate(template, elem.localName);
+
+  // return template.content;
+}
+
+const CustomStyleInterface = window.ShadyCSS.CustomStyleInterface;
+
+
+class BoltButton extends Component {
+    static get is() {
+      return 'bolt-button';
+    }
+    constructor() {
+      super();
+      // CustomStyleInterface.addCustomStyle(this);
+    }
 
   static props = {
     name: props.string,
@@ -44,55 +75,100 @@ export default class BoltButton extends withComponent() {
     // background: props.string
   }
 
-  connectedCallback() {
-    // const { background, color, margin, padding } = this.context;
-    this.attachShadow({ mode: 'open' }).innerHTML = `
-      <style>
-        :host {
-          background: ${background};
-          color: ${color};
-          display: block;
-          margin: ${margin};
-          padding: ${padding};
-        }
-      </style>
-      <slot></slot>
-    `;
-  }
+  // getStyle() {
+  //   return this.querySelector('style');
+  // }
 
+  // connectedCallback() {
+  //   window.ShadyCSS.styleElement(this);
+  //   // if (!this.shadowRoot) {
+  //   //   this.attachShadow({ mode: 'open' });
+  //   //   this.shadowRoot.appendChild(
+  //   //     document.importNode(myElementTemplate.content, true));
+  //   // }
+  // }
+  // static styleSheet = css
+  // get style() {
+  //   return styles
+  // }
+  // {this._style(this, this.styleSheet)}
+
+  // renderCallback({ props }) {
+  //   return (
+  //     <div>
+  //       <style>{css}</style>
+  //       <slot />
+  //     </div>
+  //   );
+  // }
+    // renderCallback() {
+    //   return [
+    //     ,
+    //     <div>
+    //       <span class="span">shadow </span>
+    //       <span class="slot"><slot /></span>
+    //     </div>
+    //   ];
+    // }
+  
+
+  rendererCallback(renderRoot, renderCallback) {
+    renderRoot.innerHtml = '';
+    renderRoot.appendChild(renderCallback());
+    window.ShadyCSS.styleElement(this);
+    window.ShadyCSS.styleDocument();
+  }
   renderCallback() {
+    // window.ShadyCSS.styleElement(this);
+    // const styles = style(this, css);
+    let currentMarkup = document.createElement('template');
+    currentMarkup = `<style>${css}</style>`;
+    currentMarkup += this.innerHTML;
 
-    const className = css(
-      'c-bolt-button',
-      props.style ? `c-bolt-button--${props.style}` : '',
-      // colorClass,
-      // {
-      //   'c-button--ghost': ghost && !color,
-      //   'c-button--close': close,
-      //   'c-button--block': block,
-      // }
-    );
+    const template = this[$template] || (this[$template] = document.createElement('template'));
+    template.innerHTML = currentMarkup;
 
-    console.log('render callback');
+    window.ShadyCSS.prepareTemplate(template, this.localName);
 
-    // const classes = css(
-    //   'c-bolt-button',
-      
-    //   // props.size && sizes[props.size] && sizes[props.size] !== ''  ? `c-bolt-icon--${props.size}` : ``,
-    //   // props.background && backgroundStyles.includes(props.background) ? `c-bolt-icon--has-${props.background}-background` : ''
-    // );
+    // this.shadowRoot.appendChild(document.importNode(template.content, true))
 
-    // const iconName = props.name ? upperCamelCase(props.name) : '';
-    // const size = props.size && sizes[props.size] ? (sizes[props.size].replace('rem', '') * 16 / 2) : sizes['medium'];
-    // const IconTag = Icon[iconName];
+    var clone = document.importNode(template.content, true);
+
+    return clone;
+
+    // 
+    // clone.insertBefore(styles, clone.childNodes[0]);
     
-    return (
-      <div>
-        <style>{styles[0][1]}</style>
-        <slot />
-      </div>
-    )
+    // 
+    // template.innerHTML = `<style>${css}</style>`;
+
+
+
+    // return template.content;
+
+
+    
+
+    
+
+    // window.ShadyCSS.styleSubtree(clone);
+    // this.shadowRoot.appendChild(
+    //   document.importNode(clone, true));
+
+    // this.innerHTML = ''; // Clean out the original HTML since the ShadowDOM takes over from here.
+
+    // window.ShadyCSS.styleElement(this);
+    // window.ShadyCSS.styleDocument();
+    
+    // return clone;
   }
+
 }
 
 customElements.define('bolt-button', BoltButton);
+
+
+
+
+
+

@@ -1,6 +1,8 @@
 /* eslint-disable */
 
 import styles from './critical-fonts.scoped.scss';
+import { setTimeout } from 'core-js/library/web/timers';
+import { clearInterval } from 'timers';
 
 var fontsLoadedClass = styles['js-fonts-loaded'],
   fontsSubsetLoadedClass = styles['js-fonts-subset-loaded'];
@@ -51,8 +53,21 @@ if (sessionStorage.criticalFoftFontsLoaded) {
     ]).then(function () {
 			document.documentElement.className += ' ' + fontsLoadedClass;
 
+      if (window.ShadyCSS){
+        window.ShadyCSS.styleDocument();
+        console.log('fonts loaded - ShadyCSS already there.');
+      } else {
+        setInterval(function(){
+          if (window.ShadyCSS) {
+            window.ShadyCSS.styleDocument();
+            clearInterval();
+            console.log('fonts loaded - ShadyCSS loaded after.');
+          }
+          console.log('fonts loaded - ShadyCSS not yet loaded.');
+        }, 3000);
+      }
 			// Optimization for Repeat Views
-			sessionStorage.criticalFoftFontsLoaded = true;
+      sessionStorage.criticalFoftFontsLoaded = true;
 		});
   //
   // Promise.all([
@@ -76,6 +91,14 @@ if (sessionStorage.criticalFoftFontsLoaded) {
   // });
 }, function () {
   console.log('Font is not available');
+
+  document.documentElement.className += ' ' + fontsLoadedClass;
+  sessionStorage.criticalFoftFontsLoaded = true; // Repeat view.
+
+  if (window.ShadyCSS) {
+    window.ShadyCSS.styleDocument();
+    console.log('fonts fallback loaded - ShadyCSS loaded after.');
+  }
 });
 
 }

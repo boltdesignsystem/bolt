@@ -141,7 +141,7 @@ module.exports = (gulp) => {
       ]),
       gulp.parallel([
         'patternlab:compile',
-        'styles:sassdoc',
+        // 'styles:sassdoc',
         'webpack:watch',
         'patternlab:watch',
         'styles:watch',

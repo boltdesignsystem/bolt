@@ -1,7 +1,7 @@
 {% set tags = ["button", "a"] %} {# Available Headline Types #}
 {% set widths = ["full", "full@small"] %}
 {% set styles = ["primary", "secondary", "text"] %}
-{% set prefix = "c-bolt-" %}
+{% set prefix = "bolt-c-" %}
 
 {% set itemAlignments = {
   "center": "center",
@@ -12,9 +12,16 @@
 {% set sizes = [
   "xsmall",
   "small",
+  "medium",
   "large",
   "xlarge"
 ] %}
+
+
+{% set contexts = {
+  "light": "-on-light",
+  "dark": "-on-dark"
+} %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
 
@@ -24,17 +31,19 @@
 {% set size = size | default("medium") %}
 {% set width = width | default("") %}
 {% set style = style | default("") %}
+
 {% set itemAlignment = itemAlignment | default("center") %}
 
 {% set tag = tag in tags ? tag: "a" %}
 
+{% set context = context in contexts|keys ? contexts[context] : "" %}
 
 {% set classes = [
   baseClass,
   disabled ? baseClass ~ "--disabled" : "",
   size in sizes ? baseClass ~ "--" ~ size : "",
   width in widths ? baseClass ~ "--" ~ width : "",
-  style in styles ? baseClass ~ "--" ~ style : baseClass ~ "--primary",
+  style in styles ? baseClass ~ "--" ~ style ~ context : baseClass ~ "--primary",
   itemAlignment in itemAlignments|keys ? baseClass ~ "--item-align-" ~ itemAlignments[itemAlignment]
 ] %}
 
@@ -65,3 +74,46 @@
 
   </{{ tag }}>
 </bolt-button>
+
+{# 
+.c-bolt-button--default
+
+.c-bolt-button--brand
+.c-bolt-button--brand-on-light
+.c-bolt-button--brand-on-dark
+
+
+
+
+.c-bolt-button--primary
+.c-bolt-button--primary-on-dark
+.c-bolt-button--primary-on-light
+
+.c-bolt-button--secondary
+
+
+
+
+
+
+.c-bolt-button--tertiary
+
+
+
+.c-bolt-button--primary-on-light
+.c-bolt-button--primary-on-dark
+
+.c-bolt-button--secondary
+.c-bolt-button--primary-on-light
+.c-bolt-button--primary-on-dark
+
+
+
+Button Types:
+.c-bolt-button--text
+.c-bolt-button--link
+.c-bolt-button--outline
+.c-bolt-button--default
+
+
+#}

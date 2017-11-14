@@ -1,5 +1,43 @@
 {
   "compilerOptions": {
-    "sourceMap": true
-  }
+    "module": "es2015",
+    "target": "es5",
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noEmitHelpers": true,
+    "importHelpers": true,
+    "stripInternal": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "outDir": "ts-output",
+    "rootDir": "./",
+    "jsx": "react",
+    "jsxFactory": "h",
+    "pretty": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "declaration": true,
+    "declarationDir": "definitions",
+    "typeRoots": [
+      "node_modules/@types",
+      "manual_definitions"
+    ],
+    "types": [
+      "mocha",
+      "sinon-chai",
+      "node"
+    ],
+    "lib": [
+      "dom",
+      "es2015"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "definitions",
+    "packages/*/node_modules",
+    "packages/*/definitions"
+  ]
 }

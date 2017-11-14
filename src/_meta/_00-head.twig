@@ -11,19 +11,25 @@
     <meta name="bolt-javascript-path"  content="/vendor/">
 
     {# Inline Critical Font-specific CSS automatically #}
-    <style>
-    {{ inline("scripts/critical-fonts.css", "/dist/") }}
-    </style>
-
+    <custom-style>
+      <style>
+        {{ inline("scripts/critical-fonts.css", "/dist/") }}
+        {{ inline("scripts/themes-all.css", "/dist/") }}
+      </style>
+    </custom-style>
 
     {# Inline Critical JS automatically using references to the file manifest webpack generates #}
     <script>
-    {{ inline("scripts/bolt-critical-path.min.js", "/dist/") }}
+      {{ inline("scripts/bolt-critical-path.min.js", "/dist/") }}
     </script>
 
     <!-- Begin Pattern Lab (Required for Pattern Lab to run properly) -->
     {{ patternLabHead | raw }}
     <!-- End Pattern Lab -->
 
+  
+   
   </head>
   <body class="{{ bodyClass }} c-bolt-site">
+
+

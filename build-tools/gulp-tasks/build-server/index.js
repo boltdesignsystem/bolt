@@ -61,8 +61,8 @@ function reloadTask(files, stream) {
   return reload;
 }
 
-core.events.on('reload', (files, stream) => {
-  reloadBrowserSync(files, stream);
-});
+// core.events.on('reload', (files, stream) => {
+//   reloadBrowserSync(files, stream);
+// });
 
 module.exports.reload = reloadTask;

@@ -5,7 +5,6 @@
 {% set bandContent %}
 {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--large o-bolt-grid--matrix" %}
 
-
       {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small" %}
         {% include "@bolt/eyebrow.twig" with {
           text: bolt.version
@@ -27,18 +26,18 @@
         {% include "@bolt/button-group.twig" with {
           buttons: [
             {
-              text: "Explore the System",
-              url: "/styleguide/html/styleguide.html",
-              style: "primary",
-              width: "full@small"
-            },
-            {
               text: "Get Started <br>(Coming Soon)",
               url: link["get-started"],
               style: "secondary",
               width: "full@small",
               disabled: true,
               size: "small"
+            },
+             {
+              text: "Explore the System",
+              url: "/styleguide/html/styleguide.html",
+              style: "primary",
+              width: "full@small"
             }
           ],
           contentItems: [
@@ -98,6 +97,15 @@
       {% endcell %}
     {% endgrid %}
   {% endset %}
+
+  
+
+  {% include "@bolt/band.twig" with {
+    size: "large",
+    theme: "xlight",
+    full: true,
+    content: bandContent
+  } %}
 
   {% include "@bolt/band.twig" with {
     size: "large",

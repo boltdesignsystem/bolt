@@ -1,0 +1,166 @@
+//
+// Copyright 2017 Google Inc. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+@import "./functions";
+
+//
+// Main theme colors for your brand.
+//
+// If you're a user customizing your color scheme in SASS, these are probably the only variables you need to change.
+//
+
+$bolt-theme-primary: #3f51b5 !default; // Indigo 500
+$bolt-theme-primary-light: bolt-theme-light-variant($bolt-theme-primary) !default;
+$bolt-theme-primary-dark: bolt-theme-dark-variant($bolt-theme-primary) !default;
+
+// The $bolt-theme-accent variable is DEPRECATED - it exists purely for backward compatibility.
+// The $bolt-theme-secondary* variables should be used for all new projects.
+$bolt-theme-accent: #ff4081 !default; // Pink A200
+$bolt-theme-secondary: $bolt-theme-accent !default;
+$bolt-theme-secondary-light: bolt-theme-light-variant($bolt-theme-secondary) !default;
+$bolt-theme-secondary-dark: bolt-theme-dark-variant($bolt-theme-secondary) !default;
+
+$bolt-theme-background: #fff !default; // White
+
+//
+// Which set of text colors to use for each main theme color (light or dark).
+//
+
+$bolt-theme-primary-tone: bolt-theme-contrast-tone($bolt-theme-primary) !default;
+$bolt-theme-primary-light-tone: bolt-theme-contrast-tone($bolt-theme-primary-light) !default;
+$bolt-theme-primary-dark-tone: bolt-theme-contrast-tone($bolt-theme-primary-dark) !default;
+
+$bolt-theme-secondary-tone: bolt-theme-contrast-tone($bolt-theme-secondary) !default;
+$bolt-theme-secondary-light-tone: bolt-theme-contrast-tone($bolt-theme-secondary-light) !default;
+$bolt-theme-secondary-dark-tone: bolt-theme-contrast-tone($bolt-theme-secondary-dark) !default;
+
+$bolt-theme-background-tone: bolt-theme-contrast-tone($bolt-theme-background) !default;
+
+//
+// Text colors according to light vs dark and text type.
+//
+
+$bolt-theme-text-colors: (
+  dark: (
+    primary: rgba(black, .87),
+    secondary: rgba(black, .54),
+    hint: rgba(black, .38),
+    disabled: rgba(black, .38),
+    icon: rgba(black, .38)
+  ),
+  light: (
+    primary: white,
+    secondary: rgba(white, .7),
+    hint: rgba(white, .5),
+    disabled: rgba(white, .5),
+    icon: rgba(white, .5)
+  )
+) !default;
+
+//
+// Primary text colors for each of the theme colors.
+//
+
+$bolt-theme-property-values: (
+  // Primary
+  primary: $bolt-theme-primary,
+  primary-light: $bolt-theme-primary-light,
+  primary-dark: $bolt-theme-primary-dark,
+  // Secondary
+  secondary: $bolt-theme-secondary,
+  secondary-light: $bolt-theme-secondary-light,
+  secondary-dark: $bolt-theme-secondary-dark,
+  // Background
+  background: $bolt-theme-background,
+  // Text-primary on "primary" background
+  text-primary-on-primary: map-get(map-get($bolt-theme-text-colors, $bolt-theme-primary-tone), primary),
+  text-secondary-on-primary: map-get(map-get($bolt-theme-text-colors, $bolt-theme-primary-tone), secondary),
+  text-hint-on-primary: map-get(map-get($bolt-theme-text-colors, $bolt-theme-primary-tone), hint),
+  text-disabled-on-primary: map-get(map-get($bolt-theme-text-colors, $bolt-theme-primary-tone), disabled),
+  text-icon-on-primary: map-get(map-get($bolt-theme-text-colors, $bolt-theme-primary-tone), icon),
+  // Text-primary on "primary-light" background
+  text-primary-on-primary-light: map-get(map-get($bolt-theme-text-colors, $bolt-theme-primary-light-tone), primary),
+  text-secondary-on-primary-light: map-get(map-get($bolt-theme-text-colors, $bolt-theme-primary-light-tone), secondary),
+  text-hint-on-primary-light: map-get(map-get($bolt-theme-text-colors, $bolt-theme-primary-light-tone), hint),
+  text-disabled-on-primary-light: map-get(map-get($bolt-theme-text-colors, $bolt-theme-primary-light-tone), disabled),
+  text-icon-on-primary-light: map-get(map-get($bolt-theme-text-colors, $bolt-theme-primary-light-tone), icon),
+  // Text-primary on "primary-dark" background
+  text-primary-on-primary-dark: map-get(map-get($bolt-theme-text-colors, $bolt-theme-primary-dark-tone), primary),
+  text-secondary-on-primary-dark: map-get(map-get($bolt-theme-text-colors, $bolt-theme-primary-dark-tone), secondary),
+  text-hint-on-primary-dark: map-get(map-get($bolt-theme-text-colors, $bolt-theme-primary-dark-tone), hint),
+  text-disabled-on-primary-dark: map-get(map-get($bolt-theme-text-colors, $bolt-theme-primary-dark-tone), disabled),
+  text-icon-on-primary-dark: map-get(map-get($bolt-theme-text-colors, $bolt-theme-primary-dark-tone), icon),
+  // Text-primary on "secondary" background
+  text-primary-on-secondary: map-get(map-get($bolt-theme-text-colors, $bolt-theme-secondary-tone), primary),
+  text-secondary-on-secondary: map-get(map-get($bolt-theme-text-colors, $bolt-theme-secondary-tone), secondary),
+  text-hint-on-secondary: map-get(map-get($bolt-theme-text-colors, $bolt-theme-secondary-tone), hint),
+  text-disabled-on-secondary: map-get(map-get($bolt-theme-text-colors, $bolt-theme-secondary-tone), disabled),
+  text-icon-on-secondary: map-get(map-get($bolt-theme-text-colors, $bolt-theme-secondary-tone), icon),
+  // Text-primary on "secondary-light" background
+  text-primary-on-secondary-light: map-get(map-get($bolt-theme-text-colors, $bolt-theme-secondary-light-tone), primary),
+  text-secondary-on-secondary-light: map-get(map-get($bolt-theme-text-colors, $bolt-theme-secondary-light-tone), secondary),
+  text-hint-on-secondary-light: map-get(map-get($bolt-theme-text-colors, $bolt-theme-secondary-light-tone), hint),
+  text-disabled-on-secondary-light: map-get(map-get($bolt-theme-text-colors, $bolt-theme-secondary-light-tone), disabled),
+  text-icon-on-secondary-light: map-get(map-get($bolt-theme-text-colors, $bolt-theme-secondary-light-tone), icon),
+  // Text-primary on "secondary-dark" background
+  text-primary-on-secondary-dark: map-get(map-get($bolt-theme-text-colors, $bolt-theme-secondary-dark-tone), primary),
+  text-secondary-on-secondary-dark: map-get(map-get($bolt-theme-text-colors, $bolt-theme-secondary-dark-tone), secondary),
+  text-hint-on-secondary-dark: map-get(map-get($bolt-theme-text-colors, $bolt-theme-secondary-dark-tone), hint),
+  text-disabled-on-secondary-dark: map-get(map-get($bolt-theme-text-colors, $bolt-theme-secondary-dark-tone), disabled),
+  text-icon-on-secondary-dark: map-get(map-get($bolt-theme-text-colors, $bolt-theme-secondary-dark-tone), icon),
+  // Text-primary on "background" background
+  text-primary-on-background: map-get(map-get($bolt-theme-text-colors, $bolt-theme-background-tone), primary),
+  text-secondary-on-background: map-get(map-get($bolt-theme-text-colors, $bolt-theme-background-tone), secondary),
+  text-hint-on-background: map-get(map-get($bolt-theme-text-colors, $bolt-theme-background-tone), hint),
+  text-disabled-on-background: map-get(map-get($bolt-theme-text-colors, $bolt-theme-background-tone), disabled),
+  text-icon-on-background: map-get(map-get($bolt-theme-text-colors, $bolt-theme-background-tone), icon),
+  // Text-primary on "light" background
+  text-primary-on-light: map-get(map-get($bolt-theme-text-colors, dark), primary),
+  text-secondary-on-light: map-get(map-get($bolt-theme-text-colors, dark), secondary),
+  text-hint-on-light: map-get(map-get($bolt-theme-text-colors, dark), hint),
+  text-disabled-on-light: map-get(map-get($bolt-theme-text-colors, dark), disabled),
+  text-icon-on-light: map-get(map-get($bolt-theme-text-colors, dark), icon),
+  // Text-primary on "dark" background
+  text-primary-on-dark: map-get(map-get($bolt-theme-text-colors, light), primary),
+  text-secondary-on-dark: map-get(map-get($bolt-theme-text-colors, light), secondary),
+  text-hint-on-dark: map-get(map-get($bolt-theme-text-colors, light), hint),
+  text-disabled-on-dark: map-get(map-get($bolt-theme-text-colors, light), disabled),
+  text-icon-on-dark: map-get(map-get($bolt-theme-text-colors, light), icon)
+);
+
+// If `$property` is a literal color value (e.g., `blue`, `#fff`), it is returned verbatim. Otherwise, the value of the
+// corresponding theme property (from `$bolt-theme-property-values`) is returned. If `$property` is not a color and no
+// such theme property exists, an error is thrown.
+//
+// This is mainly useful in situations where `bolt-theme-prop` cannot be used directly (e.g., `box-shadow`).
+//
+// Examples:
+//
+// 1. bolt-theme-prop-value(primary) => "#3f51b5"
+// 2. bolt-theme-prop-value(blue)    => "blue"
+//
+// NOTE: This function must be defined in _variables.scss instead of _functions.scss to avoid circular imports.
+@function bolt-theme-prop-value($property) {
+  @if type-of($property) == color {
+    @return $property;
+  }
+
+  @if not map-has-key($bolt-theme-property-values, $property) {
+    @error "Invalid theme property: '#{$property}'. Choose one of: #{map-keys($bolt-theme-property-values)}";
+  }
+
+  @return map-get($bolt-theme-property-values, $property);
+}

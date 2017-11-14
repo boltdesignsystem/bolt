@@ -228,8 +228,8 @@ function watch(userConfig) {
 
     // console.log(src);
     gulp.watch(src, gulp.parallel([
-      compile(userConfig),
-      docs(userConfig)
+      compile(userConfig)
+      // docs(userConfig)
     ]));
   }
 
