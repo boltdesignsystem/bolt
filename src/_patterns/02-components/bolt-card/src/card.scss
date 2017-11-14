@@ -58,7 +58,7 @@ bolt-card {
   color: bolt-color(gray, xdark); // Default card text color if no css var support
 
   @supports(--css: variables) {
-    background-color: var(--bolt-theme-border, rgba(bolt-color(white), 0.9));
+    background-color: rgba(bolt-color(white), 0.2);
     color: var(--bolt-theme-text, bolt-color(gray, xdark));
   }
 
@@ -147,6 +147,11 @@ bolt-card {
     right: 0;
     display: block;
     height: 1px;
+
+    opacity: $bolt-global-border-opacity;
+    @supports(--css: variables) {
+      opacity: 1; // Remove fallback opacity and let theme decide.
+    }
   }
 }
 
@@ -176,4 +181,9 @@ bolt-card {
   left: 0;
   width: 1px;
   height: 100%;
+
+  opacity: $bolt-global-border-opacity;
+  @supports(--css: variables) {
+    opacity: 1; // Remove fallback opacity and let theme decide.
+  }
 }

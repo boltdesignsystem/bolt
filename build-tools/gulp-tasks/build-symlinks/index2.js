@@ -10,6 +10,13 @@ const merge = require('merge').recursive;
 const defaultConfig = require('./config.default');
 const argv = require('yargs').argv;
 const core = require('@bolt/build-core');
+const pkgVersions = require('pkg-versions');
+const gutil = require('gulp-util');
+const prettyPrint = require('pretty-print');
+const latestVersion = require('latest-version');
+const packageJson = require('package-json');
+const bump = require('bump-regex');
+const semver = require('semver');
 
 
 var cosmiconfig = require('cosmiconfig');
@@ -62,17 +69,63 @@ function boltPackages(userConfig) {
     globby(config.packageFolders, {
       follow: true
     }).then((packages) => {
-      packages.forEach((pkg) => {
+      for (var i = 0; i < packages.length; ++i) {
+        const pkg = packages[i];
         const pkgJson = `${pkg}/package.json`;
 
         if (fs.existsSync(pkgJson)) {
           const pjson = JSON.parse(fs.readFileSync(pkgJson));
+          
+
+          if ('private' in pjson && pjson['private'] === true){
+            gutil.log(gutil.colors.green(`${pjson.name} is marked as private so it won't be published -- skipping...`));
+          } else {
+            
+           
+
+            // packageJson(pjson.name, { allVersions: true } ).then(json => {
+            //   console.log(json.versions);
+            //   //=> {name: 'ava', ...} 
+            // });
+
+            pkgVersions(pjson.name).then(v => {
+              const versions = Array.from(v);
+              // console.log(pjson.name);
+              // console.log();
+
+              latestVersion(pjson.name).then(version => {
+                if (semver.lt(pjson.version, version)){
+                  bump(`version: "${version}"`, function (err, out) {
+                    console.log(out);
+                    gutil.log(gutil.colors.red(`WARNING!! The ${pjson.name} package is currently at version ${pjson.version} which appears to be behind the ${version} version already published to NPM`));
+
+                    gutil.log(gutil.colors.red(`Try updating ${pjson.name} to ${out.new} or greater.`));
+                  });
+                } else {
+                  if (versions.indexOf(pjson.version) > -1) {
+                    gutil.log(gutil.colors.red(`Warning! It looks like you've already published ${pjson.name} since the current version is already up on NPM!`));
+                  } else {
+                    gutil.log(gutil.colors.green(`${pjson.name} version checks out. ✅ `));
+                  }
+                }
+                
+                // console.log(version === versions[versions.length - 1]);
+                // console.log(' ');
+                //=> '0.18.0' 
+              });
+            });
+              
+
+             
+          }
+
+          
 
           if (packageTypes.some(v => pjson.name.indexOf(v) >= 0)) {
             unorderedMatches[pjson.name] = pjson.version;
           }
         }
-      });
+      };
       Object.keys(unorderedMatches).sort().forEach((key) => {
         orderedMatches[key] = unorderedMatches[key];
       });

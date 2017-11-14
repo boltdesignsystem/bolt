@@ -14,8 +14,8 @@ $bolt-font-weight--bold: 800 !default;
   @error "Bolt's regular font weight can't be lighter than 400";
 }
 
-@if ($bolt-font-weight--bold < 700) {
-  @error "Bolt's bold font weight can't be lighter than 700";
+@if ($bolt-font-weight--bold < 600) {
+  @error "Bolt's bold font weight can't be lighter than 600";
 }
 
 @if ($bolt-font-weight--bold < $bolt-font-weight--regular) {

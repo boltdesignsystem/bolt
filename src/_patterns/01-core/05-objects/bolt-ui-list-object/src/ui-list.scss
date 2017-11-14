@@ -34,12 +34,18 @@ $bolt-ui-list-border-color: var(--bolt-theme-border, currentColor);
     display: block;
     border-bottom-style: $bolt-ui-list-border-style;
     border-bottom-color: currentColor; // fallback if no support for CSS variables
-    border-bottom-color: $bolt-ui-list-border-color;
     border-bottom-width: 0;
     position: absolute;
     right: 0;
     bottom: 0;
     left: 0;
+
+    opacity: $bolt-global-border-opacity;
+
+    @supports(--css: variables) {
+      opacity: 1; // Remove fallback opacity and let theme decide.
+      border-bottom-color: $bolt-ui-list-border-color;
+    }
   }
 
   &:not(:last-child):after {

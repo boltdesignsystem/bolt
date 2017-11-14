@@ -255,7 +255,8 @@ const defaultConfig = {
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.DefinePlugin({ 'process.env': processEnv }),
     new webpack.ProvidePlugin({
-      h: 'preact'
+      h: 'preact',
+      Promise: 'es6-promise'
     })
   ],
   devServer: {
