@@ -22,5 +22,5 @@ if (window.customElements !== undefined) {
 }
 
 function continueLoading() {
-  require('./icon.standalone.js');
+  import(/* webpackMode: "eager" */ './icon.standalone.js');
 }

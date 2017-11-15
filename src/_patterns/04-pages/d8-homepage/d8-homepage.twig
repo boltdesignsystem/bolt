@@ -1,5 +1,9 @@
 {% extends "@bolt/default-template.twig" %}
 
+{% block global_header %}
+  {% include "@bolt/page-header.twig" %}
+{% endblock %}
+
 {% block main_content %}
 
   {% set feature_band_content %}
@@ -9,15 +13,16 @@
           contentItems: [
             {
               "pattern": "eyebrow",
-              "text": "Customer Retention"
+              "text": "Customer Retention",
+              "icon": {
+                name: "product"
+              }
             },
             {
               "pattern": "headline",
-              "text": link("Personalized. Not Creepy.", "#", {}),
+              "text": "Personalized. Not Creepy.",
               "size": "large",
-              "icon": {
-                "name": "chevron-right"
-              }
+              "url": "https://www.google.com"
             }
           ]
         },
@@ -76,10 +81,11 @@
       },
       headlines: [
         {
-          "type": "headline",
-          "text": "We're able to predict that you're going to call before you need to actually contact us.",
-          "size": "xxlarge",
-          "tag": "h1"
+          type: "headline",
+          text: "We're able to predict that you're going to call before you need to actually contact us.",
+          size: "xxlarge",
+          tag: "h1",
+          quoted: true
         }
       ],
       logo: {
@@ -312,45 +318,49 @@
       },
   "contentItems": [
     {
-      "text": "Product Information",
-      "url": "http://google.com",
-      "icon": {
-        "name": "product"
+      text: "Product Information",
+      url: "http://google.com",
+      icon: {
+        name: "product"
       }
     },
     {
-      "text": "Industry Solutions",
-      "url": "http://google.com",
-      "icon": {
-        "name": "industries"
+      text: "Industry Solutions",
+      url: "http://google.com",
+      icon: {
+        name: "industries"
       }
     },
     {
-      "text": "Training and Certification",
-      "url": "http://google.com",
-      "icon": {
-        "name": "training"
+      text: "Training and Certification",
+      url: "http://google.com",
+      icon: {
+        name: "training",
+        background: "circle"
       }
     },
     {
-      "text": "Vision and Technology",
-      "url": "http://google.com",
-      "icon": {
-        "name": "vision"
+      text: "Vision and Technology",
+      url: "http://google.com",
+      icon: {
+        name: "vision",
+        background: "circle"
       }
     },
     {
-      "text": "Services and Partners",
-      "url": "http://google.com",
-      "icon": {
-        "name": "partners"
+      text: "Services and Partners",
+      url: "http://google.com",
+      icon: {
+        name: "partners",
+        background: "square"
       }
     },
     {
-      "text": "Career Opportunities",
-      "url": "http://google.com",
-      "icon": {
-        "name": "careers"
+      text: "Career Opportunities",
+      url: "http://google.com",
+      icon: {
+        name: "careers",
+        background: "square"
       }
     }
   ]

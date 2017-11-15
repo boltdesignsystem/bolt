@@ -16,6 +16,6 @@ export const utils = {
   styledMixin
 }
 
-
-export * as spacingSizes from './utils/spacing-sizes';
+export * from './utils/css';
+export * from './utils/spacing-sizes';
 export * from './utils/component';

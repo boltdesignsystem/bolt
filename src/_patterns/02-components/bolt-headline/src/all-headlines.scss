@@ -36,7 +36,6 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
   /* stylelint-disable-next-line */
   > * {
-    display: inline-flex;
     align-self: center;
   }
 }
@@ -59,25 +58,25 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 }
 
 
-// .c-bolt-headline--quoted > .c-bolt-headline__text:first-child,
-// .c-bolt-subheadline--quoted > .c-bolt-subheadline__text:first-child {
-//   text-indent: calc((1em / 2) * -1);
-//   display: inline-block;
 
-//   &:before,
-//   &:after {
-//     @include bolt-font-weight(bold);
-//     font-family: $bolt-font-family--serif;
-//   }
+// @TODO: grab the same shared values from the Blockquote component
+.c-bolt-headline--quoted > .c-bolt-headline__text,
+.c-bolt-subheadline--quoted > .c-bolt-subheadline__text {
+  &:first-child:before,
+  &:last-child:after {
+    font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
+  }
 
-//   &:before {
-//     content: '\201C';
-//   }
+  &:first-child:before {
+    content: '\201C';
+    transform: translate3d(-110%, 0, 0);
+    position: absolute;
+  }
 
-//   &:after {
-//     content: '\201D';
-//   }
-// }
+  &:last-child:after {
+    content: '\201D';
+  }
+}
 
 
 
@@ -93,27 +92,21 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 
 // Headline content
-
-// .c-bolt-headline__text {
-//   ~ .c-bolt-headline__icon {
-//     @include bolt-margin-left(small);
-//   }
-// }
-
-.c-bolt-headline__icon {
- 
-
-  // svg {
-  //   width: 1em;
-  //   height: auto;
-  //   fill: currentColor;
-  // }
-
-  ~ .c-bolt-headline__text {
-    @include bolt-margin-left(small);
-  }
+// @TODO: boil this all down to just one single shared class
+.c-bolt-headline__text ~ .c-bolt-headline__icon,
+.c-bolt-subheadline__text ~ .c-bolt-subheadline__icon,
+.c-bolt-eyebrow__text ~ .c-bolt-eyebrow__icon,
+.c-bolt-text__text ~ .c-bolt-text__icon {
+  @include bolt-margin-left(xxsmall);
 }
 
+.c-bolt-headline__icon ~ .c-bolt-headline__text,
+.c-bolt-subheadline__icon ~ .c-bolt-subheadline__text,
+.c-bolt-eyebrow__icon ~ .c-bolt-eyebrow__text,
+.c-bolt-text__icon ~ .c-bolt-text__text {
+  @include bolt-margin-left(xxsmall);
+}
+ 
 .c-bolt-headline__line {
   flex: 1 0 1rem;
   align-self: center;

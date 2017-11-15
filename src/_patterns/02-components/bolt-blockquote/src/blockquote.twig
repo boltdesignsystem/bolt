@@ -1,61 +1,121 @@
 {# Sample Usage
-  {% include "@bolt/blockquote.twig" with {
-    author: {
-      name: "Full Name",
-      title: "Title and/or organization"
+  {% include "@bolt/twig" with {
+    // Default is large. [large, xlarge, xxlarge]
+    "size": "large",
+
+    // Default is left. [left, center, right]
+    "alignItems": "left",
+
+    // Default is vertical. [vertical, horizontal, none]
+    "border": "vertical",
+
+    // Default is false. [true, false]
+    "fullBleed": false,
+
+    // Logo is optional.
+    "logo": {
+      "src": "/images/sample/PayPal-logo.svg"
     },
-    content: "<p>One paragraph.</p> <p>And another paragraph.</p>"
+
+    // Content is required.
+    "content": "<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>",
+
+    // Author is optional.
+    "author": {
+      "image": {
+        "src": "/images/placeholders/500x500.jpg"
+      },
+      "name": "Michelangelo di Lodovico Buonarroti Simoni",
+      "title": "Renaissance Artist"
+    }
   } only %}
 #}
 
 
 {% set prefix = "c-bolt-" %}
 
+{% set sizeOptions = [
+  "large",
+  "xlarge",
+  "xxlarge"
+] %}
+
+{% set alignItemsOptions = {
+  "left": "start",
+  "center": "center",
+  "right": "end"
+} %}
+
+{% set borderOptions = {
+  "none": "borderless",
+  "vertical": "bordered-vertical",
+  "horizontal": "bordered-horizontal"
+} %}
+
 {% set attributes = create_attribute(attributes|default({})) %}
+
 
 {% set componentName = "blockquote" %}
 {% set baseClass = prefix ~ componentName %}
+{% set size = size == false and size is null ? "xlarge" : size | default("xlarge") %}
+{% set alignItems = alignItems == false and alignItems is null ? "left" : alignItems | default("left") %}
+{% set border = border == false and border is null ? "vertical" : border | default("vertical") %}
+{% set indent = indent == false and indent is null ? "false" : "true" %}
+{% set fullBleed = fullBleed == false and fullBleed is null ? "false" : "true" %}
 
 
 {% set classes = [
-  baseClass
+  baseClass,
+  size in sizeOptions ? baseClass ~ "--" ~ size : "",
+  alignItems in alignItemsOptions|keys ? baseClass ~ "--align-items-" ~ alignItemsOptions[alignItems],
+  border in borderOptions|keys ? baseClass ~ "--" ~ borderOptions[border],
+  indent == "true" ? baseClass ~ "--indented" : "",
+  fullBleed == "true" ? baseClass ~ "--full" : ""
 ] %}
 
 <bolt-{{ componentName }} bolt-component>
   <blockquote {{ attributes.addClass(classes) }}>
-    <div class="{{ "#{baseClass}__quote" }}">
-      {% block blockquote_quote %}
-        {% if content %}
-          {% include "@bolt/text.twig" with {
-            text: content,
-            tag: "div",
-            size: "large",
-            weight: "semibold"
-          } only %}
-        {% endif %}
+    {% if logo %}
+      {% block blockquote_logo %}
+        <div class="{{ "#{baseClass}__logo" }}">
+          {% include "@bolt/logo.twig" with logo only %}
+        </div>
       {% endblock %}
-    </div>
+    {% endif %}
+    {% block blockquote_quote %}
+      <div class="{{ "#{baseClass}__quote" }}">
+        {% include "@bolt/text.twig" with {
+          text: content,
+          tag: "div",
+          size: size,
+          weight: "semibold"
+        } only %}
+      </div>
+    {% endblock %}
     {% if author %}
       {% block blockquote_footer %}
         <footer class="{{ "#{baseClass}__footer" }}">
+          {% if author.image %}
+            <div class="{{ "#{baseClass}__footer-item" }}">
+              <div class="{{ "#{baseClass}__image" }}">
+                {% include "@bolt/image.twig" with author.image only %}
+              </div>
+            </div>
+          {% endif %}
           <div class="{{ "#{baseClass}__footer-item" }}">
             {% include "@bolt/text.twig" with {
               text: author.name,
               tag: "cite",
               size: "xsmall",
-              weight: "semibold"
+              weight: "bold"
             } only %}
-          </div>
-          {% if author.title %}
-            <div class="{{ "#{baseClass}__footer-item" }}">
+            {% if author.title %}
               {% include "@bolt/text.twig" with {
                 text: author.title,
-                tag: "em",
-                size: "xsmall",
-                style: "italic"
+                size: "xsmall"
               } only %}
-            </div>
-          {% endif %}
+            {% endif %}
+          </div>
         </footer>
       {% endblock %}
     {% endif %}
