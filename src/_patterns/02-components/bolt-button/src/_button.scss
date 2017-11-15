@@ -317,8 +317,8 @@ bolt-button {
   .t-bolt-xlight &,
   .t-bolt-light & {
     $fallback-background-default: bolt-color(indigo, light);
-    $fallback-background-hover: mix(bolt-color(black), $fallback-background-default, 2%);
-    $fallback-background-active: mix(bolt-color(black), $fallback-background-default, 15%);
+    $fallback-background-hover: mix($bolt-global-button-hover-color, $fallback-background-default, $bolt-global-button-hover-mix);
+    $fallback-background-active: mix($bolt-global-button-active-color, $fallback-background-default, $bolt-global-button-active-mix);
 
     &,
     &:visited {

@@ -1,4 +1,4 @@
-export default function css(...args) {
+export function css(...args) {
   const classes = [];
 
   for ( const arg of args ) {
