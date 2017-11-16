@@ -25,12 +25,18 @@
     {% set attributes = attributes.setAttribute('href', url) %}
   {% endif %}
 
-  <a {{ attributes }}>    
+  <a {{ attributes }}>
+    {% if icon and icon.position == "before" %}
+      <span class="c-bolt-link__icon">
+        {% include "@bolt/icon.twig" with icon only %}
+      </span>
+    {% endif %}
+
     <span class="c-bolt-link__text">
       {{ text | default(label) | default("Learn More") }}
     </span>
       
-    {% if icon %}
+    {% if icon and icon.position != "before" %}
       <span class="c-bolt-link__icon">
         {% include "@bolt/icon.twig" with icon only %}
       </span>
