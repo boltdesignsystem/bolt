@@ -93,7 +93,7 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 // Headline content
 // @TODO: boil this all down to just one single shared class
-.c-bolt-headline__text ~ .c-bolt-headline__icon,
+__text ~ .c-bolt-headline__icon,
 .c-bolt-subheadline__text ~ .c-bolt-subheadline__icon,
 .c-bolt-eyebrow__text ~ .c-bolt-eyebrow__icon,
 .c-bolt-text__text ~ .c-bolt-text__icon {
@@ -151,8 +151,8 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 
 
-
 // Headline spacing with other elements.
+.c-bolt-headline:not(.c-bolt-headline--xxxlarge) + .c-bolt-headline,
 .c-bolt-headline:not(.c-bolt-headline--xxxlarge) + .c-bolt-subheadline,
 .c-bolt-headline:not(.c-bolt-headline--xxxlarge) + .c-bolt-text,
 .c-bolt-headline:not(.c-bolt-headline--xxxlarge) + bolt-inline-list,
@@ -160,6 +160,8 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   margin-top: (-1 * bolt-v-spacing(medium)) + bolt-v-spacing(xsmall);
 }
 
+.c-bolt-headline--xxxlarge + .c-bolt-headline,
+.c-bolt-headline--xxxlarge + .c-bolt-subheadline,
 .c-bolt-headline--xxxlarge + .c-bolt-text,
 .c-bolt-headline--xxxlarge + bolt-inline-list,
 .c-bolt-headline--xxxlarge + p:not([class]) {

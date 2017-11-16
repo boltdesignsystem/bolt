@@ -10,7 +10,7 @@
   "scripts": {
     "backstop-test": "backstop test",
     "backstop-reference": "backstop reference",
-    "bootstrap": "lerna bootstrap --hoist",
+    "bootstrap": "lerna bootstrap --hoist && npm link --force-local",
     "_build": "NODE_ENV=production webpack --optimize-minimize && gulp build --prod",
     "_build:icons": "npm run build --prefix src/components/bolt-icons",
     "_build:plicons": "npm run build:icons && lerna exec --scope @bolt/components-icon -- npm run build && lerna exec --scope @bolt/components-icon -- npm run copy:pl",
