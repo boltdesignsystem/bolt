@@ -12,7 +12,7 @@ $function = new Twig_SimpleFunction('base64', function ($relativeImagePath) {
   if(file_exists($absoluteImagePath)){
     $fileExt = pathinfo($absoluteImagePath, PATHINFO_EXTENSION);
 
-    if (($fileExt != "jpg") && ($fileExt != "png")){ 
+    if ($fileExt != "jpg"){ 
       return; // Skip over non-jpg or png files.
     }
 

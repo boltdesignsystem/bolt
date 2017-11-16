@@ -82,7 +82,7 @@ npm install -g lerna
 ```
 composer global require hirak/prestissimo
 ```
-- PHP (PHP 7 recommended)
+- PHP (PHP 7 required)
 
 ### Homebrew
 - Homebrew (needed for easy install of GD and Imagick -- used for responsive images / image optimization)

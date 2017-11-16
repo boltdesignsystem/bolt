@@ -6,9 +6,13 @@ $bolt-export-data: false;
 
 bolt-icon {
   display: inline-block;
-  display: inline-flex;
+  vertical-align: middle;
+  // display: inline-flex;
   color: currentColor;
   color: var(--bolt-color-icon, inherit);
+
+  padding-bottom: 100%; // Default square icons
+  height: 0;
 }
 
 :host {
@@ -20,44 +24,57 @@ bolt-icon {
 
 
 // By default, icons should inherit the size of the container it's put inside
+
+//Wrapper
 .c-bolt-icon {
+  position: relative;
+}
+
+.c-bolt-icon__icon {
   display: block; //required for vertically aligning icons
   position: relative;
   width: 1em;
   height: 1em;
   box-sizing: border-box;
+  z-index: 2;
+  color: var(--bolt-color-icon, currentColor);
 }
 
 
-.c-bolt-icon--small {
+bolt-icon[size='small'],
+.c-bolt-icon--small > .c-bolt-icon__icon {
   width: 12px;
   height: 12px;
 }
 
-.c-bolt-icon--medium {
+bolt-icon[size='medium'],
+.c-bolt-icon--medium > .c-bolt-icon__icon {
   width: 24px;
   height: 24px;
 }
-// 
-.c-bolt-icon--large {
+
+bolt-icon[size='large'],
+.c-bolt-icon--large > .c-bolt-icon__icon {
   width: 32px;
   height: 32px;
 }
 
 
-.c-bolt-icon--xlarge {
+bolt-icon[size='xlarge'],
+.c-bolt-icon--xlarge > .c-bolt-icon__icon {
   width: 64px;
   height: 64px;
+}
+
+.c-bolt-icon--xlarge > .c-bolt-icon__icon {
   padding: 16px;
 }
 
 
-.c-bolt-icon-wrapper {
-  position: relative;
-}
 
 .c-bolt-icon__background {
   position: absolute;
+  z-index: 1;
   top: 50%;
   left: 50%;
   width: 100%;
@@ -78,4 +95,16 @@ bolt-icon {
 
 .c-bolt-icon__square-background {
   border-radius: $bolt-border-radius;
+}
+
+
+
+
+// Color options
+.c-bolt-icon--teal {
+  $brand-color: bolt-color(teal);
+  // background-color: $brand-color;
+  --bolt-color-icon: bolt-text-contrast($brand-color);
+  --bolt-theme-icon-background-color: $brand-color;
+  --bolt-theme-icon-background-opacity: 1;
 }
