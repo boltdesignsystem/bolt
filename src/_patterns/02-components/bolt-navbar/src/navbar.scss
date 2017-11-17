@@ -9,6 +9,9 @@ $bolt-navbar-link-border-radius: $bolt-border-radius;
 
 .c-bolt-navbar__title {
   @include bolt-margin(0 auto 0 0);
+
+  display: inline-flex;
+  white-space: nowrap;
 }
 
 .c-bolt-navbar__items {
@@ -44,8 +47,8 @@ $bolt-navbar-link-border-radius: $bolt-border-radius;
   }
 
   &:after {
-    height: 4px;
-    bottom: -2px;
+    height: 2px;
+    bottom: 2px;
   }
 
   &:hover {

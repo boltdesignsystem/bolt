@@ -50,9 +50,10 @@
 
       <nav class="c-bolt-navbar">
         <div class="c-bolt-navbar__title">
-          {# {% include "@bolt/icon.twig" with {
-            "name": title.icon.name
-          } only %} #}
+          {% include "@bolt/icon.twig" with {
+            "name": title.icon.name,
+            "size": "large"
+          } only %}
           {% include "@bolt/text.twig" with {
             "size": "large",
             "weight": "semibold",
