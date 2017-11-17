@@ -1,4 +1,6 @@
 $bolt-navbar-link-border-radius: $bolt-border-radius;
+$bolt-navbar-link-underline-animation-timing: $bolt-transition-timing*2;
+$bolt-navbar-link-bg-animation-timing: $bolt-transition-timing*4;
 
 
 
@@ -10,71 +12,155 @@ $bolt-navbar-link-border-radius: $bolt-border-radius;
 .c-bolt-navbar__title {
   @include bolt-margin(0 auto 0 0);
 
+  white-space: nowrap;
+}
+
+.c-bolt-navbar__title-item {
   display: inline-block;
   display: inline-flex;
-  white-space: nowrap;
   vertical-align: middle;
+  align-items: center;
+
+  & + .c-bolt-navbar__title-item {
+    @include bolt-margin-left(xsmall);
+  }
 }
 
-.c-bolt-navbar__items {
+.c-bolt-navbar__nav {
   @include bolt-margin(0 0 0 auto);
+}
+
+
+
+
+
+// Nav List Component
+.c-bolt-nav-list {
+  @include bolt-margin(0);
   @include bolt-padding(0);
 
-  display: inline-flex;
+  display: flex;
   list-style: none;
-  white-space: nowrap;
 }
 
-.c-bolt-navbar__link {
+.c-bolt-nav-list__item + .c-bolt-nav-list__item {
+  @include bolt-margin(0 0 0 xsmall);
+}
+
+.c-bolt-nav-list__item-link {
   @include bolt-padding(small, squished);
+  @include bolt-font-size(small);
   @include bolt-font-weight(semibold);
 
   display: block;
   position: relative;
+  white-space: nowrap;
+  opacity: 0.8;
+  transition: opacity $bolt-transition;
 
   &:before, &:after {
     display: block;
     position: absolute;
-    left: 50%;
-    width: 0;
     content: '';
     background-color: rgba(bolt-color(gray), 0.2);
-    transition: all $bolt-transition;
+    transform: scale3d(0, 0, 0);
+  }
+
+  &:hover, &:active, &:target {
+    opacity: 1;
   }
 
   &:before {
-    top: 50%;
-    height: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     border-radius: $bolt-navbar-link-border-radius;
   }
 
   &:after {
-    height: 2px;
-    bottom: 2px;
+    left: 0;
+    bottom: (bolt-v-spacing(xsmall) * -1);
+    width: 100%;
+    height: 3px;
   }
 
   &:hover {
     &:before {
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      animation:
+        a-bolt-navbar-link-hover-bg
+        $bolt-navbar-link-bg-animation-timing
+        both;
     }
   }
 
-  &:active, &:target {
+  &:active, &:target,
+  &.is-active {
     &:before {
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
+      animation: none;
     }
 
     &:after {
-      left: 0;
-      width: 100%;
       background-color: currentColor;
       background-color: var(--bolt-theme-heading, currentColor);
+      animation:
+        a-bolt-navbar-link-hover-underline
+        $bolt-navbar-link-underline-animation-timing
+        both;
     }
+  }
+}
+
+
+@keyframes a-bolt-navbar-link-hover-bg {
+  0% {
+    transform: scale3d(0, 0, 0);
+  }
+
+  20% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  40% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  60% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  80% {
+    transform: scale3d(0.99, 0.99, 0.99);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+
+@keyframes a-bolt-navbar-link-hover-underline {
+  0% {
+    transform: scale3d(0, 0, 0);
+  }
+
+  20% {
+    transform: scale3d(1.01, 1, 1);
+  }
+
+  40% {
+    transform: scale3d(0.97, 1, 1);
+  }
+
+  60% {
+    transform: scale3d(1.01, 1, 1);
+  }
+
+  80% {
+    transform: scale3d(0.99, 1, 1);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
   }
 }
