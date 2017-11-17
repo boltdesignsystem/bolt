@@ -129,6 +129,8 @@ const defaultConfig = {
                 },
                 debug: false
               }],
+              "flow",
+              "react",
               'stage-0'
             ]
           }

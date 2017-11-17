@@ -18,8 +18,5 @@ window.ShadyDOM = { force: true };
 
 // ShadyDOM comes first. Both because it may need to be forced and the
 // ShadyCSS polyfill requires it to function.
-// require('cloudydom');
 import '@webcomponents/shadydom/src/shadydom.js';
 import '@webcomponents/shadycss/scoping-shim.min';
-import '@webcomponents/shadycss/apply-shim.min';
-import '@webcomponents/shadycss/custom-style-interface.min';
