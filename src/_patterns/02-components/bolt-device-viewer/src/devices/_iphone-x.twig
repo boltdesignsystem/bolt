@@ -1,0 +1,20 @@
+{% set content = content | default({}) %}
+
+<div class="marvel-device iphone-x landscape">
+  <div class="notch">
+    {% include "parts/_camera.twig" %}
+    {% include "parts/_speaker.twig" %}
+  </div>
+  {% include "parts/_top-bar.twig" %}
+  {% include "parts/_sleep.twig" %}
+  {% include "parts/_bottom-bar.twig" %}
+  {% include "parts/_volume.twig" %}
+  <div class="overflow">
+      <div class="shadow shadow--tr"></div>
+      <div class="shadow shadow--tl"></div>
+      <div class="shadow shadow--br"></div>
+      <div class="shadow shadow--bl"></div>
+  </div>
+  <div class="inner-shadow"></div>
+  {% include "parts/_screen.twig" %}
+</div>

@@ -1,0 +1,61 @@
+{
+	"name": "@bolt/components-device-viewer",
+	"description": "Device Viewer Component in Bolt",
+	"type": "pattern",
+	"patternType": "molecules",
+	"keywords": [
+		"bolt design system",
+		"bolt",
+		"css framework",
+		"design system",
+		"components"
+	],
+	"version": "0.0.0",
+	"maintainers": [
+		{
+			"name": "Salem Ghoweri",
+			"email": "me@salemghoweri.com",
+			"web": "https://github.com/sghoweri"
+		},
+		{
+			"name": "Mike Mai",
+			"email": "boss@mikemai.net",
+			"web": "http://mikemai.net/"
+		}
+	],
+	"homepage": "https://boltdesignsystem.com",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/bolt-design-system/bolt/"
+	},
+	"bugs": {
+		"url": "https://github.com/bolt-design-system/bolt/issues"
+	},
+	"style": "src/_device-viewer.scss",
+	"main": "src/device-viewer.js",
+	"twig": "src/device-viewer.twig",
+	"publishConfig": {
+		"access": "public"
+	},
+	"dependencies": {
+		"@bolt/settings-colors": "^0.6.1",
+		"@bolt/settings-global": "^0.7.3",
+		"@bolt/tools-color-palette": "^0.5.2",
+		"@bolt/tools-spacing": "^0.5.0",
+		"drift-zoom": "^1.2.0",
+		"@bolt/core": "^0.3.0",
+		"@bolt/settings-all": "^0.7.2",
+		"@bolt/tools-all": "^0.5.2",
+		"@skatejs/renderer-preact": "^0.1.0",
+		"@webcomponents/custom-elements": "^1.0.4",
+		"@webcomponents/shadycss": "^1.0.6",
+		"@webcomponents/shadydom": "bolt-design-system/shadydom#hotfix/fix-text-undefined-IE11",
+		"@webcomponents/template": "^1.1.0",
+		"@webcomponents/webcomponents-platform": "^1.0.0",
+		"@webcomponents/webcomponentsjs": "^1.0.14",
+		"core-js": "^2.5.1",
+		"preact": "^8.2.6",
+		"skatejs": "^5.0.0-beta.3"
+	}
+}
