@@ -1,0 +1,49 @@
+{# {% include "devices/_ipad.twig" %} #}
+
+{% set colors = [
+  "silver",
+  "black"
+] %}
+
+{% set orientations = [
+  "portrait",
+  "landscape"
+] %}
+
+{% set prefix = "c-bolt-" %}
+{% set color = color | default("black") %}
+{% set orientation = orientation | default("portrait") %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Defaults for a vanilla `Button` component #}
+{% set componentName = "device-viewer" %}
+{% set baseClass = prefix ~ componentName %}
+
+{% if image %}
+  {% set image = image | merge({
+    sizes: "(min-width: 600px) 150vw, 100vw",
+    zoom: true
+  }) %}
+{% endif %}
+
+{% set classes = [
+  baseClass,
+  "marvel-device",
+  "ipad",
+  color in colors ? baseClass ~ "--" ~ color : "",
+  orientation in orientations ? baseClass ~ "--" ~ orientation : "",
+  orientation in orientations ? orientation : ""
+] %}
+
+<bolt-device-viewer>
+  <div {{ attributes.addClass(classes | raw) }}>
+    {% include "parts/_camera.twig" only %}
+    <div class="screen">
+      {% if image %}
+        {% include "@bolt/image.twig" with image only %}
+      {% endif %}
+    </div>
+    {% include "parts/_home.twig" only %}
+  </div>
+</bolt-device-viewer>

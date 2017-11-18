@@ -52,9 +52,9 @@ $function = new Twig_SimpleFunction('bgcolor', function ($relativeImagePath){
     }
 
     // Resize and optimize the image before running through ColorThief
-    $resizedImage = \Gregwar\Image\Image::open($absoluteImagePath)->resize('640,640')->jpeg($quality = 50);
-      $color = ColorThief::getColor($resizedImage, 5);
-      return rgb2hex($color);
+    $resizedImage = \Gregwar\Image\Image::open($absoluteImagePath)->resize('320,320')->jpeg($quality = 50);
+    $color = ColorThief::getColor($resizedImage, 5);
+    return rgb2hex($color);
     // }
   } else {
     return;
