@@ -38,12 +38,15 @@
 
 <bolt-device-viewer>
   <div {{ attributes.addClass(classes | raw) }}>
-    {% include "parts/_camera.twig" only %}
-    <div class="screen">
-      {% if image %}
-        {% include "@bolt/image.twig" with image only %}
-      {% endif %}
+    <div class="ipad__inner">
+      {% include "parts/_camera.twig" only %}
+      <div class="screen">
+        {% if image %}
+          {% include "@bolt/image.twig" with image only %}
+        {% endif %}
+      </div>
+      {% include "parts/_home.twig" only %}
     </div>
-    {% include "parts/_home.twig" only %}
   </div>
+
 </bolt-device-viewer>

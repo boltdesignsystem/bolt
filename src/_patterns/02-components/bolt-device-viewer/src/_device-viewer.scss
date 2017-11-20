@@ -9,6 +9,149 @@
 /* ------------------------------------ *\
    Figure
 \* ------------------------------------ */
+
+$ipad-width--portrait: 576px;
+$ipad-height--portrait: 768px;
+$ipad-padding-top--portrait: 90px;
+$ipad-padding-bottom--portrait: 90px;
+$ipad-padding-left--portrait: 25px;
+$ipad-padding-right--portrait: 25px;
+
+$ipad-width--landscape: 768px;
+$ipad-height--landscape: 576px;
+$ipad-padding-top--landscape: 25px;
+$ipad-padding-bottom--landscape: 25px;
+$ipad-padding-left--landscape: 90px;
+$ipad-padding-right--landscape: 90px;
+
+
+
+.ipad__inner {
+	width: 100%;
+	padding-left: ($ipad-padding-left--portrait / $ipad-width--portrait) * 100%;
+	padding-right: ($ipad-padding-right--portrait / $ipad-width--portrait) * 100%;
+	padding-top: ($ipad-padding-top--portrait / $ipad-height--portrait) * 100%;
+	padding-bottom: ($ipad-padding-bottom--portrait/ $ipad-height--portrait) * 100%;
+
+	.landscape & {
+		padding-left: ($ipad-padding-left--landscape / $ipad-width--landscape) * 100%;
+		padding-right: ($ipad-padding-right--landscape / $ipad-width--landscape) * 100%;
+		padding-top: ($ipad-padding-top--landscape / $ipad-height--landscape) * 100%;
+		padding-bottom: ($ipad-padding-bottom--landscape/ $ipad-height--landscape) * 100%;
+	}
+}
+
+.ipad{
+		width: 100%;
+		padding-bottom: ($ipad-height--portrait + $ipad-padding-top--portrait + $ipad-padding-bottom--portrait) / ($ipad-width--portrait + $ipad-padding-left--portrait + $ipad-padding-right--portrait) * 100%;
+		height: 0;
+// $ipad-width: 576px;
+// : 768px;
+		// width: 576px;
+		// height: 768px;
+		// max-width: 576px;
+		// padding-bottom: 81.51041667%;
+		background: #242324;
+		border-radius: 44px;
+
+		&.landscape {
+			// height: 576px;
+			// width: 768px;
+			// padding: 25px 90px;
+			padding-bottom: ($ipad-height--landscape + $ipad-padding-top--landscape + $ipad-padding-bottom--landscape) / ($ipad-width--landscape + $ipad-padding-left--landscape + $ipad-padding-right--landscape) * 100%;
+		}
+
+		// &__inner {
+		// 	padding: 90px 25px;
+		// }
+
+		&:before{
+			width: calc(100% - 8px);
+			height: calc(100% - 8px);
+			position: absolute;
+			content: '';
+			display: block;
+			top: 4px;
+			left: 4px;
+			border-radius: 40px;
+			background: #1e1e1e;
+		}
+
+		.camera {
+			background: #3c3d3d;
+			width: 10px;
+			height: 10px;
+			position: absolute;
+			top: 44px;
+			left: 50%;
+			margin-left: -5px;
+			border-radius: 100%;
+		}
+
+		.top-bar, .bottom-bar{
+			display: none;
+		}
+
+		.home {
+			background: #242324;
+			border-radius: 36px;
+			width: 50px;
+			height: 50px;
+			position: absolute;
+			left: 50%;
+			margin-left: -25px;
+			bottom: 22px;
+
+			&:after {
+				width: 15px;
+				height: 15px;
+				margin-top: -8px;
+				margin-left: -8px;
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				border-radius: 4px;
+				position: absolute;
+				display: block;
+				content: '';
+				top: 50%;
+				left: 50%;
+			}
+		}
+
+		&.landscape{
+
+			.camera {
+				left: calc(100% - 44px);
+				top: 50%;
+				margin-left: 0;
+				margin-top: -5px;
+			}
+
+			.home {
+				top: 50%;
+				left: 22px;
+				margin-left: 0;
+				margin-top: -25px;
+			}
+		}
+
+		&.silver{
+			background: #bcbcbc;
+
+			&:before{
+				background: #fcfcfc;
+			}
+
+			.home{
+				background: #fcfcfc;
+				box-shadow: inset 0 0 0 1px #bcbcbc;
+
+				&:after{
+					border: 1px solid rgba(0, 0, 0, 0.2);
+				}
+			}
+		}
+	}
+
 .marvel-device{
 	display: inline-block;
 	position: relative;
@@ -1951,102 +2094,7 @@
 		}
 	}
 
-	&.ipad{
-		width: 576px;
-		height: 768px;
-		padding: 90px 25px;
-		background: #242324;
-		border-radius: 44px;
-
-		&:before{
-			width: calc(100% - 8px);
-			height: calc(100% - 8px);
-			position: absolute;
-			content: '';
-			display: block;
-			top: 4px;
-			left: 4px;
-			border-radius: 40px;
-			background: #1e1e1e;
-		}
-
-		.camera {
-			background: #3c3d3d;
-			width: 10px;
-			height: 10px;
-			position: absolute;
-			top: 44px;
-			left: 50%;
-			margin-left: -5px;
-			border-radius: 100%;
-		}
-
-		.top-bar, .bottom-bar{
-			display: none;
-		}
-
-		.home {
-			background: #242324;
-			border-radius: 36px;
-			width: 50px;
-			height: 50px;
-			position: absolute;
-			left: 50%;
-			margin-left: -25px;
-			bottom: 22px;
-
-			&:after {
-				width: 15px;
-				height: 15px;
-				margin-top: -8px;
-				margin-left: -8px;
-				border: 1px solid rgba(255, 255, 255, 0.1);
-				border-radius: 4px;
-				position: absolute;
-				display: block;
-				content: '';
-				top: 50%;
-				left: 50%;
-			}
-		}
-
-		&.landscape{
-			height: 576px;
-			width: 768px;
-			padding: 25px 90px;
-
-			.camera {
-				left: calc(100% - 44px);
-				top: 50%;
-				margin-left: 0;
-				margin-top: -5px;
-			}
-
-			.home {
-				top: 50%;
-				left: 22px;
-				margin-left: 0;
-				margin-top: -25px;
-			}
-		}
-
-		&.silver{
-			background: #bcbcbc;
-
-			&:before{
-				background: #fcfcfc;
-			}
-
-			.home{
-				background: #fcfcfc;
-				box-shadow: inset 0 0 0 1px #bcbcbc;
-
-				&:after{
-					border: 1px solid rgba(0, 0, 0, 0.2);
-				}
-			}
-		}
-	}
+	
 
 	&.macbook {
 		width: 960px;
@@ -2710,22 +2758,36 @@ bolt-device-viewer {
 	position: relative;
 }
 
+$magnifier-size: 270px;
+
+ 
+@keyframes pulse{
+  0%{
+    transform: translate3d(-50%, -50%, 0) scale(0.98);
+  }
+  50%{
+    transform: translate3d(-50%, -50%, 0) scale(1.1);
+  }
+  100%{ 
+    transform: translate3d(-50%, -50%, 0) scale(0.98);
+  }
+}
 
 @keyframes drift-fadeZoomIn {
-  0% { transform: scale(1.5) translate3d(calc(-300% + #{$magnifier-size / 2}), calc(-300% - #{$magnifier-size / 2}), 0); opacity: 0; }
-  100% { transform: scale(1) translate3d(calc(-300% + #{$magnifier-size / 2}), calc(-300% - #{$magnifier-size / 2}), 0);  opacity: 1; }
+  0% { transform: scale(1.5); opacity: 0; }
+  100% { transform: scale(1);  opacity: 1; }
 }
 
 @keyframes drift-fadeZoomOut {
-  0% { transform: scale(1) translate3d(calc(-300% + #{$magnifier-size / 2}), calc(-300% - #{$magnifier-size / 2}), 0); opacity: 1;  }
-  15% { transform: scale(1.1) translate3d(calc(-300% + #{$magnifier-size / 2}), calc(-300% - #{$magnifier-size / 2}), 0); opacity: 1; }
-  100% { transform: scale(0.5) translate3d(calc(-300% + #{$magnifier-size / 2}), calc(-300% - #{$magnifier-size / 2}), 0); opacity: 0; }
+  0% { transform: scale(1); opacity: 1;  }
+  15% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(0.5); opacity: 0; }
 }
 
 @keyframes drift-loader-rotate {
-  0% { transform: translate(-50%, -50%) translate3d(calc(-300% + #{$magnifier-size / 2}), calc(-300% - #{$magnifier-size / 2}), 0) rotate(0); }
-  50% { transform: translate(-50%, -50%) translate3d(calc(-300% + #{$magnifier-size / 2}), calc(-300% - #{$magnifier-size / 2}), 0) rotate(-180deg); }
-  100% { transform: translate(-50%, -50%) translate3d(calc(-300% + #{$magnifier-size / 2}), calc(-300% - #{$magnifier-size / 2}), 0) rotate(-360deg); }
+  0% { transform: translate(-50%, -50%) rotate(0); }
+  50% { transform: translate(-50%, -50%) rotate(-180deg); }
+  100% { transform: translate(-50%, -50%) rotate(-360deg); }
 }
 
 @keyframes drift-loader-before {
@@ -2753,14 +2815,54 @@ bolt-device-viewer {
 }
 
 
-$magnifier-size: 270px;
+bolt-device-viewer .screen {
+	cursor: none;
+}
+
+bolt-device-viewer .screen:before {
+	content: '';
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: bolt-color(black);
+	opacity: 0.1;
+	transition: all .2s ease;
+	z-index: 1000;
+	position: absolute;
+	pointer-events: none;
+}
+
+bolt-device-viewer .screen:after {
+	content: '🔍';
+	display: block;
+	font-size: 50px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate3d(-50%, -50%, 0);
+	transition: all .1s ease;
+	animation: pulse 1.5s infinite;
+	line-height: 1;
+	pointer-events: none;
+}
+
+
+.screen:hover:before,
+.screen:hover:after {
+	opacity: 0;
+}
+
+
+
 
 .drift-zoom-pane {
   background: rgba(0, 0, 0, 0.5);
   /* This is required because of a bug that causes border-radius to not
   work with child elements in certain cases. */
 	transform: translate3d(0, 0, 0);
-	transform: translate3d(calc(-300% + #{$magnifier-size / 2}), calc(-300% - #{$magnifier-size / 2}), 0);
+	// transform: translate3d( calc(-20px), calc(-100vh - 160px), 0);
+	// transform:;
 	top: 50%;
 	left: 50%;
 }
@@ -2773,7 +2875,8 @@ $magnifier-size: 270px;
   animation: drift-fadeZoomOut 210ms ease-in;
 }
 
-.drift-zoom-pane.drift-inline {
+.drift-zoom-pane {
+	overflow: hidden;
   position: absolute;
   width: $magnifier-size;
   height: $magnifier-size;
@@ -2782,14 +2885,18 @@ $magnifier-size: 270px;
 	border: 10px solid bolt-color(white);
 	box-shadow: 0 2px 5px 10px rgba(bolt-color(black),0.05), 0 20px 40px 0 rgba(bolt-color(black),0.70);
 	z-index: 1000;
-	cursor: -moz-zoom-in; 
-	cursor: -webkit-zoom-in; 
-	cursor: zoom-in;
-	transform: translate3d(calc(-300% + #{$magnifier-size / 2}), calc(-300% - #{$magnifier-size / 2}), 0);
+	// cursor: -moz-zoom-in; 
+	// cursor: -webkit-zoom-in; 
+	// cursor: zoom-in;
+	// transform:;
 
 	// transform: translate3d(-50%, -50%, 0);
 	top: 50%;
 	left: 50%;
+
+	// :defined & {
+	// 	opacity: 0;
+	// }
 }
 
 .drift-loading .drift-zoom-pane-loader {

@@ -47,8 +47,8 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
     // });
 
     var drift = new Drift(this.querySelector('img'), {
-      // inlineOffsetX: -150,
-      // inlineOffsetY: -150,
+      // inlineOffsetX: -15,
+      // inlineOffsetY: -10,
       containInline: false,
       inlinePane: true,
       // Prefix for generated element class names (e.g. `my-ns` will
@@ -56,7 +56,7 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
       // prefixed classes will always be added as well.
       namespace: 'c-bolt',
       // Whether the ZoomPane should show whitespace when near the edges.
-      showWhitespaceAtEdges: true,
+      showWhitespaceAtEdges: false,
       // injectBaseStyles: false,
       // Whether the inline ZoomPane should stay inside
       // the bounds of its image.
@@ -65,8 +65,8 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
       // interaction point when inline.
       // inlineOffsetX: 0,
       // A DOM element to append the inline ZoomPane to.
-      inlineContainer: this,
-      boundingBoxContainer: this,
+      // inlineContainer: this,
+      // boundingBoxContainer: this,
       // Which trigger attribute to pull the ZoomPane image source from.
       sourceAttribute: 'data-zoom',
       // How much to magnify the trigger by in the ZoomPane.
