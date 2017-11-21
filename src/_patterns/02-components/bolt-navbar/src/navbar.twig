@@ -19,6 +19,7 @@
 
 
 {% set theme = theme == false and theme is null ? "dark" : theme | default("dark") %}
+{% set gradient = gradient == false and gradient is not null ? "false" : "true" | default("true") %}
 
 
 {% set Classes = [
@@ -34,20 +35,20 @@
   } %}
 
     {% block band_background %}
-      {% include "@bolt/background.twig" with {
-        "opacity": "light",
-        "fill": "gradient",
-        "focalPoint":
-        {
-          "vertical": "center",
-          "horizontal": "left"
-        }
-      } only %}
+      {% if gradient == "true" %}
+        {% include "@bolt/background.twig" with {
+          "opacity": "light",
+          "fill": "gradient",
+          "focalPoint":
+          {
+            "vertical": "center",
+            "horizontal": "left"
+          }
+        } only %}
+      {% endif %}
     {% endblock band_background %}
 
     {% block band_content %}
-
-
       <nav class="c-bolt-navbar">
         <div class="c-bolt-navbar__title">
           <div class="c-bolt-navbar__title-item">
@@ -74,6 +75,7 @@
                 </a>
               </li>
             {% endfor %}
+            <li class="c-bolt-nav-list__indicator"></li>
           </ul>
         </div>
       </nav>

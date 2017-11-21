@@ -1,9 +1,25 @@
+@import '@bolt/settings-global';
+@import '@bolt/settings-colors';
+@import '@bolt/settings-font-size';
+@import '@bolt/settings-font-weight';
+@import '@bolt/tools-spacing';
+@import '@bolt/tools-color-palette';
+@import '@bolt/tools-font-size';
+@import '@bolt/tools-font-weight';
+
+
+
+
+/* ------------------------------------ *\
+   Blockquote
+\* ------------------------------------ */
+
 $bolt-navbar-link-border-radius: $bolt-border-radius;
 $bolt-navbar-link-underline-animation-timing: $bolt-transition-timing*2;
 $bolt-navbar-link-bg-animation-timing: $bolt-transition-timing*4;
 
 
-
+// Navbar styles
 .c-bolt-navbar {
   display: flex;
   align-items: center;
@@ -40,7 +56,17 @@ $bolt-navbar-link-bg-animation-timing: $bolt-transition-timing*4;
   @include bolt-padding(0);
 
   display: flex;
+  position: relative;
   list-style: none;
+}
+
+.c-bolt-nav-list__indicator {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  background-color: currentColor;
+  background-color: var(--bolt-theme-heading, currentColor);
+  will-change: left, right;
 }
 
 .c-bolt-nav-list__item + .c-bolt-nav-list__item {
@@ -58,16 +84,17 @@ $bolt-navbar-link-bg-animation-timing: $bolt-transition-timing*4;
   opacity: 0.8;
   transition: opacity $bolt-transition;
 
+  &:hover, &:active, &:target,
+  &.is-hover, &.is-active {
+    opacity: 1;
+  }
+
   &:before, &:after {
     display: block;
     position: absolute;
     content: '';
     background-color: rgba(bolt-color(gray), 0.2);
     transform: scale3d(0, 0, 0);
-  }
-
-  &:hover, &:active, &:target {
-    opacity: 1;
   }
 
   &:before {
@@ -85,7 +112,8 @@ $bolt-navbar-link-bg-animation-timing: $bolt-transition-timing*4;
     height: 3px;
   }
 
-  &:hover {
+  &:hover,
+  &.is-hover {
     &:before {
       animation:
         a-bolt-navbar-link-hover-bg
