@@ -116,7 +116,6 @@ npm run build:full
 ```
 
 ## Status Board
-# 
 
 name | version | npm url | github url | readme
 --- | --- | --- | --- | ---
