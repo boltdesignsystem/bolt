@@ -11,12 +11,8 @@
 
 
 /* ------------------------------------ *\
-   Blockquote
+   Navbar
 \* ------------------------------------ */
-
-$bolt-navbar-link-border-radius: $bolt-border-radius;
-$bolt-navbar-link-underline-animation-timing: $bolt-transition-timing*2;
-$bolt-navbar-link-bg-animation-timing: $bolt-transition-timing*4;
 
 
 // Navbar styles
@@ -66,6 +62,17 @@ $bolt-navbar-link-bg-animation-timing: $bolt-transition-timing*4;
 
 
 
+/* ------------------------------------ *\
+   Nav List
+\* ------------------------------------ */
+
+$bolt-nav-list-link-border-size: 2px;
+$bolt-nav-list-link-border-animation-timing: $bolt-transition-timing*2;
+$bolt-nav-list-link-bg-color: rgba(bolt-color(gray), 0.2);
+$bolt-nav-list-link-bg-border-radius: $bolt-border-radius;
+$bolt-nav-list-link-bg-animation-timing: $bolt-transition-timing*4;
+
+
 // Nav List Component
 .c-bolt-nav-list {
   @include bolt-margin(0);
@@ -78,11 +85,12 @@ $bolt-navbar-link-bg-animation-timing: $bolt-transition-timing*4;
 
 .c-bolt-nav-list__indicator {
   position: absolute;
-  height: 2px;
+  left: 0;
+  height: $bolt-nav-list-link-border-size;
   background-color: currentColor;
   background-color: var(--bolt-theme-heading, currentColor);
-  will-change: left, right;
   transition: all $bolt-transition;
+  will-change: width, transform;
 
   .c-bolt-nav-list--xsmall & {
     bottom: (bolt-v-spacing(xsmall) * -1);
@@ -92,7 +100,7 @@ $bolt-navbar-link-bg-animation-timing: $bolt-transition-timing*4;
     bottom: (bolt-v-spacing(medium) * -1); // TODO: [Mai] When the band spacing options are fixed, small should map to small, not medium here.
   }
 
-  // V Spacing options for future use.
+  // Vertical spacing options for future use.
   // .c-bolt-nav-list--medium &
   //   bottom: (bolt-v-spacing(medium) * -1);
   // }
@@ -104,10 +112,6 @@ $bolt-navbar-link-bg-animation-timing: $bolt-transition-timing*4;
   // .c-bolt-nav-list--xlarge &
   //   bottom: (bolt-v-spacing(xlarge) * -1);
   // }
-}
-
-.c-bolt-nav-list__item + .c-bolt-nav-list__item {
-  @include bolt-margin(0 0 0 xsmall);
 }
 
 .c-bolt-nav-list__item-link {
@@ -126,11 +130,11 @@ $bolt-navbar-link-bg-animation-timing: $bolt-transition-timing*4;
     opacity: 1;
   }
 
-  &:before /*, &:after*/ {
+  &:before {
     display: block;
     position: absolute;
     content: '';
-    background-color: rgba(bolt-color(gray), 0.2);
+    background-color: $bolt-nav-list-link-bg-color;
     transform: scale3d(0, 0, 0);
   }
 
@@ -139,22 +143,15 @@ $bolt-navbar-link-bg-animation-timing: $bolt-transition-timing*4;
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: $bolt-navbar-link-border-radius;
+    border-radius: $bolt-nav-list-link-bg-border-radius;
   }
-
-  /*&:after {
-    left: 0;
-    bottom: (bolt-v-spacing(xsmall) * -1);
-    width: 100%;
-    height: 3px;
-  }*/
 
   &:hover,
   &.is-hover {
     &:before {
       animation:
-        a-bolt-navbar-link-hover-bg
-        $bolt-navbar-link-bg-animation-timing
+        a-bolt-navbar-link-bg-hover
+        $bolt-nav-list-link-bg-animation-timing
         both;
     }
   }
@@ -164,20 +161,11 @@ $bolt-navbar-link-bg-animation-timing: $bolt-transition-timing*4;
     &:before {
       animation: none;
     }
-
-    /*&:after {
-      background-color: currentColor;
-      background-color: var(--bolt-theme-heading, currentColor);
-      animation:
-        a-bolt-navbar-link-hover-underline
-        $bolt-navbar-link-underline-animation-timing
-        both;
-    }*/
   }
 }
 
 
-@keyframes a-bolt-navbar-link-hover-bg {
+@keyframes a-bolt-navbar-link-bg-hover {
   0% {
     transform: scale3d(0, 0, 0);
   }
@@ -203,30 +191,3 @@ $bolt-navbar-link-bg-animation-timing: $bolt-transition-timing*4;
   }
 }
 
-
-/*@keyframes a-bolt-navbar-link-hover-underline {
-  0% {
-    transform: scale3d(0, 0, 0);
-  }
-
-  20% {
-    transform: scale3d(1.01, 1, 1);
-  }
-
-  40% {
-    transform: scale3d(0.97, 1, 1);
-  }
-
-  60% {
-    transform: scale3d(1.01, 1, 1);
-  }
-
-  80% {
-    transform: scale3d(0.99, 1, 1);
-  }
-
-  to {
-    transform: scale3d(1, 1, 1);
-  }
-}
-*/
