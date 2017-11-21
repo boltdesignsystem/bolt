@@ -18,6 +18,16 @@ const packageJson = require('package-json');
 const bump = require('bump-regex');
 const semver = require('semver');
 
+const inject = require('mdast-util-inject');
+const unified = require('unified');
+const parse = require('remark-parse');
+const toString = require('mdast-util-to-string');
+const arrayToTable = require('array-to-table');
+
+ 
+
+
+
 
 var cosmiconfig = require('cosmiconfig');
 var explorer = cosmiconfig('patternlab');
@@ -60,7 +70,7 @@ function boltPackages(userConfig) {
   }
 
   const unorderedMatches = {};
-  const orderedMatches = {};
+  const orderedMatches = [];
 
 
   const isProduction = argv.production !== undefined;
@@ -71,7 +81,28 @@ function boltPackages(userConfig) {
     }).then((packages) => {
       for (var i = 0; i < packages.length; ++i) {
         const pkg = packages[i];
+        let hasReadMe = false;
+        let hasDemos = false;
+        let hasTests = false;
+
+        if (fs.existsSync(`${pkg}/tests`) || fs.existsSync(`${pkg}/test`)) {
+          hasTests = true;
+        }
+
+        if (fs.existsSync(`${pkg}/demos`) || fs.existsSync(`${pkg}/demo`)) {
+          hasDemos = true;
+        }
+        
         const pkgJson = `${pkg}/package.json`;
+
+        const readmeFile = `${pkg}/README.md`;
+
+        if (fs.existsSync(readmeFile)) {
+          hasReadMe = true;
+        }
+
+        // const hasReadMe = `${pkg}/src/demo.md`;
+
 
         if (fs.existsSync(pkgJson)) {
           const pjson = JSON.parse(fs.readFileSync(pkgJson));
@@ -84,54 +115,92 @@ function boltPackages(userConfig) {
            
 
             // packageJson(pjson.name, { allVersions: true } ).then(json => {
-            //   console.log(json.versions);
+
+            //   // console.log(json);
+            //   // console.log(json.versions);
             //   //=> {name: 'ava', ...} 
             // });
 
-            pkgVersions(pjson.name).then(v => {
-              const versions = Array.from(v);
-              // console.log(pjson.name);
-              // console.log();
+            // pkgVersions(pjson.name).then(v => {
+            //   const versions = Array.from(v);
+            //   // console.log(pjson.name);
+            //   // console.log();
 
-              latestVersion(pjson.name).then(version => {
-                if (semver.lt(pjson.version, version)){
-                  bump(`version: "${version}"`, function (err, out) {
-                    console.log(out);
-                    gutil.log(gutil.colors.red(`WARNING!! The ${pjson.name} package is currently at version ${pjson.version} which appears to be behind the ${version} version already published to NPM`));
+            //   latestVersion(pjson.name).then(version => {
+            //     if (semver.lt(pjson.version, version)){
+            //       bump(`version: "${version}"`, function (err, out) {
+            //         console.log(out);
+            //         gutil.log(gutil.colors.red(`WARNING!! The ${pjson.name} package is currently at version ${pjson.version} which appears to be behind the ${version} version already published to NPM`));
 
-                    gutil.log(gutil.colors.red(`Try updating ${pjson.name} to ${out.new} or greater.`));
-                  });
-                } else {
-                  if (versions.indexOf(pjson.version) > -1) {
-                    gutil.log(gutil.colors.red(`Warning! It looks like you've already published ${pjson.name} since the current version is already up on NPM!`));
-                  } else {
-                    gutil.log(gutil.colors.green(`${pjson.name} version checks out. ✅ `));
-                  }
-                }
+            //         gutil.log(gutil.colors.red(`Try updating ${pjson.name} to ${out.new} or greater.`));
+            //       });
+            //     } else {
+            //       if (versions.indexOf(pjson.version) > -1) {
+            //         gutil.log(gutil.colors.red(`Warning! It looks like you've already published ${pjson.name} since the current version is already up on NPM!`));
+            //       } else {
+            //         gutil.log(gutil.colors.green(`${pjson.name} version checks out. ✅ `));
+            //       }
+            //     }
                 
-                // console.log(version === versions[versions.length - 1]);
-                // console.log(' ');
-                //=> '0.18.0' 
-              });
-            });
+            //     // console.log(version === versions[versions.length - 1]);
+            //     // console.log(' ');
+            //     //=> '0.18.0' 
+            //   });
+            // });
               
 
              
           }
 
           
-
+          
           if (packageTypes.some(v => pjson.name.indexOf(v) >= 0)) {
-            unorderedMatches[pjson.name] = pjson.version;
+            unorderedMatches[pjson.name] = {};
+            unorderedMatches[pjson.name]["name"] = pjson.name;
+            unorderedMatches[pjson.name]["version"] = pjson.version;
+            unorderedMatches[pjson.name]["demos?"] = hasDemos ? `⚠ Some demo(s)?` : '❌ No Demos';
+            unorderedMatches[pjson.name]["tests?"] = hasTests ? `⚠ Some tests?` : '❌ No Tests';
+            unorderedMatches[pjson.name]["npm url"] = `[NPM Url](https://www.npmjs.com/package/${pjson.name})`;
+            unorderedMatches[pjson.name]["github url"] = `[Github Url](https://github.com/bolt-design-system/bolt/tree/master/${pkg})`;
+
+
+            if (hasReadMe) {
+              unorderedMatches[pjson.name]["readme?"] = `✅ [README.MD link](https://github.com/bolt-design-system/bolt/tree/master/${pkg}/README.md)`;
+            } else {
+              unorderedMatches[pjson.name]["readme?"] = "❌ Missing README.md";
+            }
+
+            // https://github.com/bolt-design-system/bolt/tree/master/packages/bolt-config-presets/config-browserlist
+            // unorderedMatches[pjson.name].npm = pjson.version;
+
           }
         }
       };
       Object.keys(unorderedMatches).sort().forEach((key) => {
-        orderedMatches[key] = unorderedMatches[key];
+        orderedMatches.push(unorderedMatches[key]);
       });
-      console.log(JSON.stringify(orderedMatches, null, 4));
+      // console.log(JSON.stringify(orderedMatches, null, 4));
+
+      const statusBoard = arrayToTable(orderedMatches);
+      // var mainReadme = fs.readFileSync('./README.md', 'utf8');
+
+      // var tree = remark()
+      //   .use(parse)
+      //   .parse(mainReadme);
+
+      // const newReadme = inject('status-board', tree, newStuff);
+
+      // console.log(newReadme);
+      // fs.writeFileSync('./README2.md', newReadme, 'utf8');
+
+
+      // 
+      // var target = mdast.parse('# A document\n## Section1\nBlah\n## Section2\nBlargh')
+      // var newStuff = mdast.parse('# Some other document\nwith some content')
+      // inject('Section1', target, newStuff)
+
       console.log(`Showing ${Object.keys(orderedMatches).length} packages.`);
-      // console.log(JSON.stringify(orderedMatches), null, '');
+      console.log(statusBoard);
       done();
     });
   }

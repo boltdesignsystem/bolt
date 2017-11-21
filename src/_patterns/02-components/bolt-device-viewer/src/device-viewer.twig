@@ -11,13 +11,14 @@
 ] %}
 
 {% set prefix = "c-bolt-" %}
+{% set deviceName = device | default("ipad") %}
 {% set color = color | default("black") %}
 {% set orientation = orientation | default("portrait") %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {# Defaults for a vanilla `Button` component #}
-{% set componentName = "device-viewer" %}
+{% set componentName = deviceName ~ "-viewer" %}
 {% set baseClass = prefix ~ componentName %}
 
 {% if image %}
@@ -30,23 +31,35 @@
 {% set classes = [
   baseClass,
   "marvel-device",
-  "ipad",
   color in colors ? baseClass ~ "--" ~ color : "",
-  orientation in orientations ? baseClass ~ "--" ~ orientation : "",
-  orientation in orientations ? orientation : ""
+  orientation in orientations ? baseClass ~ "--" ~ orientation : ""
 ] %}
+
 
 <bolt-device-viewer>
   <div {{ attributes.addClass(classes | raw) }}>
-    <div class="ipad__inner">
-      {% include "parts/_camera.twig" only %}
-      <div class="screen">
+    <div class="{{ baseClass ~ "__inner" }}">
+      <div class="{{ baseClass ~ "__top-bar"}}"></div>
+      <div class="{{ baseClass ~ "__sleep"}}"></div>
+      <div class="{{ baseClass ~ "__volume"}}"></div>
+      <div class="{{ baseClass ~ "__camera"}}"></div>
+      <div class="{{ baseClass ~ "__speaker"}}"></div>
+
+      <bolt-device-screen class="screen c-bolt-device-viewer__screen js-device-viewer-screen">
+        {% include "parts/_screen-tilt.twig" %}
+
         {% if image %}
           {% include "@bolt/image.twig" with image only %}
         {% endif %}
-      </div>
-      {% include "parts/_home.twig" only %}
+
+        <div class="c-bolt-device-viewer__overlay">
+          <bolt-icon name="search" size="xlarge" background="circle" class="c-bolt-device-viewer__overlay-icon" />
+        </div>
+
+      </bolt-device-screen>
+      <div class="{{ baseClass ~ "__home"}}"></div>
+      <div class="{{ baseClass ~ "__bottom-bar"}}"></div>
+
     </div>
   </div>
-
 </bolt-device-viewer>

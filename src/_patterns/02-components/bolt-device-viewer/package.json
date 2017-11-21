@@ -32,8 +32,11 @@
 	"bugs": {
 		"url": "https://github.com/bolt-design-system/bolt/issues"
 	},
+	"devDependencies": {
+		"@bolt/build-webpack": "^0.3.1"
+	},
+	"main": "dist/bolt-device-viewer.min.js",
 	"style": "src/_device-viewer.scss",
-	"main": "src/device-viewer.js",
 	"twig": "src/device-viewer.twig",
 	"publishConfig": {
 		"access": "public"
@@ -57,5 +60,11 @@
 		"core-js": "^2.5.1",
 		"preact": "^8.2.6",
 		"skatejs": "^5.0.0-beta.3"
+	},
+	"scripts": {
+		"prepublishOnly": "npm run build",
+		"build": "npm-run-all --parallel build:*",
+		"build:bolt": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/device-viewer --output-filename='bolt-device-viewer.min.js' --output-public-path /scripts/",
+		"build:wwwd8": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/icon --output-filename='bolt-device-viewer.wwwd8.min.js' --output-public-path /themes/custom/pegawww_theme/node_modules/@bolt/components-device-viewer/dist/"
 	}
 }

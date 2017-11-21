@@ -11,8 +11,10 @@ bolt-icon {
   color: currentColor;
   color: var(--bolt-color-icon, inherit);
 
-  padding-bottom: 100%; // Default square icons
-  height: 0;
+  &:not(:resolved){
+    padding-bottom: 100%; // Default square icons
+    height: 0;
+  }
 }
 
 :host {

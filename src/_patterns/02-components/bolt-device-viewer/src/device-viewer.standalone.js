@@ -25,6 +25,27 @@ import { css } from '@bolt/core';
 //   'teal'
 // ]
 
+/* From Modernizr */
+function whichAnimationEvent() {
+  var t,
+    el = document.createElement("fakeelement");
+
+  var animations = {
+    "animation": "animationend",
+    "OAnimation": "oAnimationEnd",
+    "MozAnimation": "animationend",
+    "WebkitAnimation": "webkitAnimationEnd"
+  }
+
+  for (t in animations) {
+    if (el.style[t] !== undefined) {
+      return animations[t];
+    }
+  }
+}
+
+const animationEvent = whichAnimationEvent();
+
 
 class BoltDeviceViewer extends withComponent(withPreact()) {
   static props = {
@@ -46,7 +67,44 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
     //   paneContainer: document.querySelector('p')
     // });
 
-    var drift = new Drift(this.querySelector('img'), {
+    
+
+    // drift.enable();
+
+    return (
+      <div className={classes}>
+        <slot />
+      </div>
+    )
+  }
+
+
+  connectedCallback() {
+
+    
+    // HIDE
+    // Shim Shadow DOM styles. This needs to be run in `connectedCallback()`
+    // because if you shim Custom Properties (CSS variables) the element
+    // will need access to its parent node.
+    // ShadyCSS.styleElement(this);
+    // // /HIDE
+
+    // if (!this.hasAttribute('role'))
+    //   this.setAttribute('role', 'checkbox');
+    // if (!this.hasAttribute('tabindex'))
+    //   this.setAttribute('tabindex', 0);
+
+    // // A user may set a property on an _instance_ of an element,
+    // // before its prototype has been connected to this class.
+    // // The `_upgradeProperty()` method will check for any instance properties
+    // // and run them through the proper class setters.
+    // // See the [lazy properites](/web/fundamentals/architecture/building-components/best-practices#lazy-properties)
+    // // section for more details.
+    // this._upgradeProperty('checked');
+    // this._upgradeProperty('disabled');
+    // console.log('connected callback');
+
+    var drift = new Drift(this.querySelector('bolt-device-screen'), {
       // inlineOffsetX: -15,
       // inlineOffsetY: -10,
       containInline: false,
@@ -85,10 +143,10 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
       // handleTouch: true,
       // // If present (and a function), this will be called
       // // whenever the ZoomPane is shown.
-      // onShow: null,
-      // // If present (and a function), this will be called
-      // // whenever the ZoomPane is hidden.
-      // onHide: null,
+      // onShow: this._onShowing(),
+      // // // If present (and a function), this will be called
+      // // // whenever the ZoomPane is hidden.
+      // onHide: this._onHiding(),
       // // Add base styles to the page. See the "Theming"
       // // section of README.md for more information.
       // injectBaseStyles: true,
@@ -108,14 +166,156 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
       // touchBoundingBox: false,
     });
 
-    drift.enable();
+    
 
-    return (
-      <div className={classes}>
-        <slot />
-      </div>
-    )
+    // console.log();
+
+    // drift.setZoomImageURL(driftZoomImageUrl);
   }
+
 }
 
 customElements.define('bolt-device-viewer', BoltDeviceViewer);
+
+
+
+
+
+
+
+
+
+class BoltDeviceScreen extends withComponent(withPreact()) {
+  static props = {
+    // name: props.string,
+    // size: props.string,
+    // background: props.string,
+    // color: props.string
+  }
+
+
+  /**
+     * `_screenElem` returns the screen element inside the device viewer
+     */
+  _screenElem() {
+    return this;
+  }
+
+  /**
+     * `_iconElem` returns the bolt icon element inside the device viewer
+     */
+  _iconElem() {
+    return this.querySelector('bolt-icon');
+  }
+
+
+  _mouseEnter(event) {
+    console.log('mouse enter');
+    const screenElem = this._screenElem();
+    const iconElem = this._iconElem();
+
+    screenElem.classList.add('is-mouse-entering');
+    screenElem.classList.remove('is-mouse-leaving');
+
+
+    // animationEvent && iconElem.addEventListener(animationEvent, animationEnterFunction);
+
+    // function animationEnterFunction(event) {
+    //   console.log('Animation complete!  This is the mouse enter callback, no library needed!');
+    //   iconElem.removeEventListener(animationEvent, animationEnterFunction);
+
+    //   screenElem.classList.remove('is-mouse-entering');
+    //   // Do something when the transition ends
+    // }
+
+  }
+
+  _mouseLeave(event) {
+    console.log('mouse leave');
+
+    const screenElem = this._screenElem();
+    const iconElem = this._iconElem();
+
+    screenElem.classList.remove('is-mouse-entering');
+    screenElem.classList.add('is-mouse-leaving');
+
+    animationEvent && iconElem.addEventListener(animationEvent, animationLeaveFunction);
+
+    function animationLeaveFunction(event) {
+      setTimeout(function(){
+        console.log('Animation complete!  This is the mouse leave callback, no library needed!');
+        iconElem.removeEventListener(animationEvent, animationLeaveFunction);
+
+        screenElem.classList.remove('is-mouse-leaving');
+      }, 1000);
+      
+      // Do something when the transition ends
+    }
+  }
+
+
+  renderCallback() {
+    // const classes = css(
+    //   'c-bolt-image-magnifier',
+    //   // props.name ? `c-bolt-icon--${props.name}` : '',
+    //   // props.color && colors.includes(props.color) ? `c-bolt-icon--${props.color}` : ``,
+    //   // props.size && spacingSizes[props.size] && spacingSizes[props.size] !== '' ? `c-bolt-icon--${props.size}` : ``
+    // );
+    // <style>{styles[0][1]}</style>
+    // var drift = new Drift(document.querySelector('img'), {
+    //   paneContainer: document.querySelector('p')
+    // });
+
+
+
+    // drift.enable();
+
+    return (
+      // <div className={classes}>
+        <slot />
+      // </div>
+    )
+  }
+
+
+  connectedCallback() {
+
+    const driftZoomImageUrl = this.querySelector('img').getAttribute('data-zoom');
+    this.setAttribute('data-zoom', driftZoomImageUrl);
+    // HIDE
+    // Shim Shadow DOM styles. This needs to be run in `connectedCallback()`
+    // because if you shim Custom Properties (CSS variables) the element
+    // will need access to its parent node.
+    // ShadyCSS.styleElement(this);
+    // // /HIDE
+
+    // if (!this.hasAttribute('role'))
+    //   this.setAttribute('role', 'checkbox');
+    // if (!this.hasAttribute('tabindex'))
+    //   this.setAttribute('tabindex', 0);
+
+    // // A user may set a property on an _instance_ of an element,
+    // // before its prototype has been connected to this class.
+    // // The `_upgradeProperty()` method will check for any instance properties
+    // // and run them through the proper class setters.
+    // // See the [lazy properites](/web/fundamentals/architecture/building-components/best-practices#lazy-properties)
+    // // section for more details.
+    // this._upgradeProperty('checked');
+    // this._upgradeProperty('disabled');
+    console.log('connected callback');
+    this.addEventListener('mouseenter', this._mouseEnter);
+    this.addEventListener('mouseleave', this._mouseLeave);
+  }
+
+  /**
+     * `disconnectedCallback()` fires when the element is removed from the DOM.
+     * It's a good place to do clean up work like releasing references and
+     * removing event listeners.
+     */
+  disconnectedCallback() {
+    this.removeEventListener('mouseenter', this._mouseEnter);
+    this.removeEventListener('mouseleave', this._mouseLeave);
+  }
+}
+
+customElements.define('bolt-device-screen', BoltDeviceScreen);
