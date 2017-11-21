@@ -114,3 +114,5 @@ Everything done in the normal production build in addition to regenerating the b
 ```
 npm run build:full
 ```
+
+## Status Board
