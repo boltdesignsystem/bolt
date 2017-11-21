@@ -10,7 +10,7 @@
 		"design system",
 		"components"
 	],
-	"version": "0.0.0",
+	"version": "0.1.0-alpha.28740f6e",
 	"maintainers": [
 		{
 			"name": "Salem Ghoweri",
@@ -32,9 +32,6 @@
 	"bugs": {
 		"url": "https://github.com/bolt-design-system/bolt/issues"
 	},
-	"devDependencies": {
-		"@bolt/build-webpack": "^0.3.1"
-	},
 	"main": "dist/bolt-device-viewer.min.js",
 	"style": "src/_device-viewer.scss",
 	"twig": "src/device-viewer.twig",
@@ -42,14 +39,14 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@bolt/settings-colors": "^0.6.1",
-		"@bolt/settings-global": "^0.7.3",
-		"@bolt/tools-color-palette": "^0.5.2",
-		"@bolt/tools-spacing": "^0.5.0",
-		"drift-zoom": "^1.2.0",
-		"@bolt/core": "^0.3.0",
-		"@bolt/settings-all": "^0.7.2",
-		"@bolt/tools-all": "^0.5.2",
+		"@bolt/build-webpack": "^0.4.0-alpha.28740f6e",
+		"@bolt/core": "^0.4.0-alpha.28740f6e",
+		"@bolt/settings-all": "^0.8.0-alpha.28740f6e",
+		"@bolt/settings-colors": "^0.7.0-alpha.28740f6e",
+		"@bolt/settings-global": "^0.8.0-alpha.28740f6e",
+		"@bolt/tools-all": "^0.6.0-alpha.28740f6e",
+		"@bolt/tools-color-palette": "^0.6.0-alpha.28740f6e",
+		"@bolt/tools-spacing": "^0.6.0-alpha.28740f6e",
 		"@skatejs/renderer-preact": "^0.1.0",
 		"@webcomponents/custom-elements": "^1.0.4",
 		"@webcomponents/shadycss": "^1.0.6",
@@ -58,6 +55,7 @@
 		"@webcomponents/webcomponents-platform": "^1.0.0",
 		"@webcomponents/webcomponentsjs": "^1.0.14",
 		"core-js": "^2.5.1",
+		"drift-zoom": "^1.2.0",
 		"preact": "^8.2.6",
 		"skatejs": "^5.0.0-beta.3"
 	},
@@ -65,6 +63,6 @@
 		"prepublishOnly": "npm run build",
 		"build": "npm-run-all --parallel build:*",
 		"build:bolt": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/device-viewer --output-filename='bolt-device-viewer.min.js' --output-public-path /scripts/",
-		"build:wwwd8": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/icon --output-filename='bolt-device-viewer.wwwd8.min.js' --output-public-path /themes/custom/pegawww_theme/node_modules/@bolt/components-device-viewer/dist/"
+		"build:wwwd8": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/device-viewer --output-filename='bolt-device-viewer.wwwd8.min.js' --output-public-path /themes/custom/pegawww_theme/node_modules/@bolt/components-device-viewer/dist/"
 	}
 }
