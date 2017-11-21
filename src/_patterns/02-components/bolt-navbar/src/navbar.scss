@@ -23,10 +23,12 @@ $bolt-navbar-link-bg-animation-timing: $bolt-transition-timing*4;
 .c-bolt-navbar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  position: relative;
 }
 
 .c-bolt-navbar__title {
-  @include bolt-margin(0 auto 0 0);
+  @include bolt-margin(0 small 0 0);
 
   white-space: nowrap;
 }
@@ -43,7 +45,21 @@ $bolt-navbar-link-bg-animation-timing: $bolt-transition-timing*4;
 }
 
 .c-bolt-navbar__nav {
-  @include bolt-margin(0 0 0 auto);
+  @include bolt-margin(0 0 0 small);
+
+  // TODO: [Mai] The following is a hack to hide the nav on small screens, there should be a better option to hide and show in the future from the design team.
+  display: none;
+
+  @include respond-to(medium) {
+    display: block;
+  }
+}
+
+.c-bolt-navbar__title,
+.c-bolt-navbar__nav {
+  &:only-child {
+    @include bolt-margin(0 auto);
+  }
 }
 
 
@@ -62,11 +78,32 @@ $bolt-navbar-link-bg-animation-timing: $bolt-transition-timing*4;
 
 .c-bolt-nav-list__indicator {
   position: absolute;
-  bottom: 0;
   height: 2px;
   background-color: currentColor;
   background-color: var(--bolt-theme-heading, currentColor);
   will-change: left, right;
+  transition: all $bolt-transition;
+
+  .c-bolt-nav-list--xsmall & {
+    bottom: (bolt-v-spacing(xsmall) * -1);
+  }
+
+  .c-bolt-nav-list--small & {
+    bottom: (bolt-v-spacing(medium) * -1); // TODO: [Mai] When the band spacing options are fixed, small should map to small, not medium here.
+  }
+
+  // V Spacing options for future use.
+  // .c-bolt-nav-list--medium &
+  //   bottom: (bolt-v-spacing(medium) * -1);
+  // }
+  //
+  // .c-bolt-nav-list--large &
+  //   bottom: (bolt-v-spacing(large) * -1);
+  // }
+  //
+  // .c-bolt-nav-list--xlarge &
+  //   bottom: (bolt-v-spacing(xlarge) * -1);
+  // }
 }
 
 .c-bolt-nav-list__item + .c-bolt-nav-list__item {
@@ -89,7 +126,7 @@ $bolt-navbar-link-bg-animation-timing: $bolt-transition-timing*4;
     opacity: 1;
   }
 
-  &:before, &:after {
+  &:before /*, &:after*/ {
     display: block;
     position: absolute;
     content: '';
@@ -105,12 +142,12 @@ $bolt-navbar-link-bg-animation-timing: $bolt-transition-timing*4;
     border-radius: $bolt-navbar-link-border-radius;
   }
 
-  &:after {
+  /*&:after {
     left: 0;
     bottom: (bolt-v-spacing(xsmall) * -1);
     width: 100%;
     height: 3px;
-  }
+  }*/
 
   &:hover,
   &.is-hover {
@@ -128,14 +165,14 @@ $bolt-navbar-link-bg-animation-timing: $bolt-transition-timing*4;
       animation: none;
     }
 
-    &:after {
+    /*&:after {
       background-color: currentColor;
       background-color: var(--bolt-theme-heading, currentColor);
       animation:
         a-bolt-navbar-link-hover-underline
         $bolt-navbar-link-underline-animation-timing
         both;
-    }
+    }*/
   }
 }
 
@@ -167,7 +204,7 @@ $bolt-navbar-link-bg-animation-timing: $bolt-transition-timing*4;
 }
 
 
-@keyframes a-bolt-navbar-link-hover-underline {
+/*@keyframes a-bolt-navbar-link-hover-underline {
   0% {
     transform: scale3d(0, 0, 0);
   }
@@ -192,3 +229,4 @@ $bolt-navbar-link-bg-animation-timing: $bolt-transition-timing*4;
     transform: scale3d(1, 1, 1);
   }
 }
+*/

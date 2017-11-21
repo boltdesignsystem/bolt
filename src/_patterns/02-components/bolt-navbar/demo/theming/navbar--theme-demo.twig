@@ -1,0 +1,39 @@
+{% extends "@bolt/theme-demo.twig" %}
+{% block demo_content %}
+  {% include "@bolt/navbar.twig" with {
+    "theme": false,
+    "gradient": false,
+    "title":
+    {
+      "text": "Product",
+      "icon": {
+        "name": "marketing-gray"
+      }
+    },
+    "links":
+    [
+      {
+        "text": "Features",
+        "url": "features"
+      },
+      {
+        "text": "Customer Success",
+        "url": "customer-success"
+      },
+      {
+        "text": "Go Further",
+        "url": "go-further"
+      },
+      {
+        "text": "Industry Apps",
+        "url": "industry-apps"
+      }
+    ]
+  } %}
+{% endblock %}
+
+
+
+
+
+
