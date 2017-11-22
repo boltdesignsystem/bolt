@@ -244,7 +244,7 @@
 
 {% embed "@bolt/band.twig" with {
   size: "medium",
-  theme: "xlight",
+  theme: "light",
   fullBleed: true
 } only %}
   {% block band_content %}
@@ -354,25 +354,14 @@
 
 {% embed "@bolt/band.twig" with {
   size: "medium",
-  theme: "xlight",
+  theme: "light",
   fullBleed: true
 } only %}
   {% block band_content %}
 
-    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix o-bolt-grid--center" %}
+
       {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
-        {% include "@bolt/device-viewer.twig" with {
-          device: "macbook",
-          orientation: "landscape",
-          color: "black",
-          image: {
-            src: "/images/sample/product-device-screenshot--desktop.jpg"
-          }
-        } only %}
-      {% endcell %}
-
-
-      {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
         {% include "@bolt/subheadline.twig" with {
           text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
           size: "xxlarge",
@@ -397,6 +386,17 @@
           ]
         } only %}
       {% endcell %}
+
+      {% cell "u-bolt-width-1/1" %}
+        {% include "@bolt/device-viewer.twig" with {
+          device: "macbook",
+          orientation: "landscape",
+          color: "black",
+          image: {
+            src: "/images/sample/product-device-screenshot--desktop.jpg"
+          }
+        } only %}
+      {% endcell %}
     {% endgrid %}
   {% endblock %}
 {% endembed %}
@@ -404,7 +404,7 @@
 
 
 {% embed "@bolt/band--collection.twig" with {
-  "theme": "light",
+  "theme": "xlight",
   "size": "medium",
   "contentItems": [
     {

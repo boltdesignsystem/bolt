@@ -2,7 +2,8 @@
 
 {% set colors = [
   "silver",
-  "black"
+  "black",
+  "gold"
 ] %}
 
 {% set orientations = [
@@ -45,7 +46,7 @@
       <div class="{{ baseClass ~ "__camera"}}"></div>
       <div class="{{ baseClass ~ "__speaker"}}"></div>
 
-      <bolt-device-screen class="screen c-bolt-device-viewer__screen js-device-viewer-screen">
+      <bolt-device-screen class="{{ baseClass ~ "__screen"}} c-bolt-device-viewer__screen js-device-viewer-screen">
         {% include "parts/_screen-tilt.twig" %}
 
         {% if image %}
@@ -55,8 +56,8 @@
         <div class="c-bolt-device-viewer__overlay">
           <bolt-icon name="search" size="xlarge" background="circle" class="c-bolt-device-viewer__overlay-icon" />
         </div>
-
       </bolt-device-screen>
+
       <div class="{{ baseClass ~ "__home"}}"></div>
       <div class="{{ baseClass ~ "__bottom-bar"}}"></div>
 

@@ -63,10 +63,10 @@
     {% for size in imageSizes if (size <= width) %}
       {% if size == width %}
         {% set srcset = srcset ~ '../..' ~ path ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}
-        {% set zoomSource = 'http://localhost:3000' ~ path ~ '.' ~ ext %}
+        {% set zoomSource = path ~ '.' ~ ext %}
       {% else %}
         {% set srcset = srcset ~ '../..' ~ path ~ '-' ~ size ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}
-        {% set zoomSource = 'http://localhost:3000' ~ path ~ '-' ~ size ~ '.' ~ ext %}
+        {% set zoomSource = path ~ '-' ~ size ~ '.' ~ ext %}
       {% endif %}
 
       {# store the current srcset path just in case this loop is our last -- loop.last var isn't available w/ conditions #}
