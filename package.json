@@ -39,7 +39,8 @@
     "test": "npm run mocha",
     "test:ci": "node browserstack.js",
     "pretest": "node build-tools/scripts/check-imports.js",
-    "snyk-protect": "snyk protect"
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "pre-commit": [
     "test",
@@ -182,7 +183,7 @@
     "sass-loader": "^6.0.6",
     "skatejs": "^5.0.0-beta.3",
     "skatejs-web-components": "^0.0.1",
-    "snyk": "^1.47.0",
+    "snyk": "^1.49.4",
     "standard-version": "^4.2.0",
     "style-loader": "^0.18.2",
     "stylefmt": "^6.0.0",
