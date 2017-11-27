@@ -51,7 +51,12 @@
   }
 }
 
-.c-bolt-navbar__title,
+.c-bolt-navbar__title {
+  &:only-child {
+    @include bolt-margin(0 auto 0 0);
+  }
+}
+
 .c-bolt-navbar__nav {
   &:only-child {
     @include bolt-margin(0 auto);
