@@ -1,8 +1,15 @@
 {# Sample Usage
   {% include "@bolt/navbar.twig" with {
+    // Default is dark. Can be set to false for a transparent background. [xlight, light, dark, xdark, false]
     "theme": "dark",
+
+    // Default is true. This sets a gradient on the background. [true, false]
     "gradient": true,
+
+    // Default is xsmall. This controls the top and bottom spacing of the navbar. [xsmall, small]
     "vspacing": "xsmall",
+
+    // Navbar title. Icon is optional. Tag can be set to h1 to h6 depending on the page.
     "title":
     {
       "tag": "h2",
@@ -11,6 +18,8 @@
         "name": "icon-name"
       }
     },
+
+    // Navbar links. It's recommended to have no more than 4 links.
     "links":
     [
       {
