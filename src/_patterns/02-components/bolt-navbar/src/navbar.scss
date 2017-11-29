@@ -72,10 +72,13 @@
 \* ------------------------------------ */
 
 $bolt-nav-list-link-border-size: 2px;
-$bolt-nav-list-link-border-animation-timing: $bolt-transition-timing*2;
+$bolt-nav-list-link-border-transition-ease: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+$bolt-nav-list-link-border-transition-timing: $bolt-transition-timing*2;
+
 $bolt-nav-list-link-bg-color: rgba(bolt-color(gray), 0.2);
 $bolt-nav-list-link-bg-border-radius: $bolt-border-radius;
-$bolt-nav-list-link-bg-animation-timing: $bolt-transition-timing*4;
+$bolt-nav-list-link-bg-transition-timing: $bolt-transition-timing*4;
+$bolt-nav-list-link-bg-transition: $bolt-transition;
 
 
 // Nav List Component
@@ -91,10 +94,14 @@ $bolt-nav-list-link-bg-animation-timing: $bolt-transition-timing*4;
 .c-bolt-nav-list__indicator {
   position: absolute;
   left: 0;
+  width: 0;
   height: $bolt-nav-list-link-border-size;
   background-color: currentColor;
   background-color: var(--bolt-theme-heading, currentColor);
-  transition: all $bolt-transition;
+  transition:
+    all
+    $bolt-nav-list-link-border-transition-timing
+    $bolt-nav-list-link-border-transition-ease;
   will-change: width, transform;
 
   .c-bolt-nav-list--xsmall & {
@@ -156,7 +163,7 @@ $bolt-nav-list-link-bg-animation-timing: $bolt-transition-timing*4;
     &:before {
       animation:
         a-bolt-navbar-link-bg-hover
-        $bolt-nav-list-link-bg-animation-timing
+        $bolt-nav-list-link-bg-transition-timing
         both;
     }
   }
