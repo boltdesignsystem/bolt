@@ -50,6 +50,12 @@ const lists = document.querySelectorAll('.c-bolt-nav-list');
         element.offsetHeight;
     }
 
+    // Set an initially active link if appropriate.
+    const initial = list.querySelector('.c-bolt-nav-list__item-link.is-active') || list.querySelector('[href="' + location.hash + '"]');
+    if (initial) {
+        activateLink.call(initial);
+    }
+
     [].forEach.call(links, function(link) {
         link.addEventListener("click", activateLink);
     });
