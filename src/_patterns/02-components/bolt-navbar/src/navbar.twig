@@ -113,15 +113,15 @@
           </div>
         {% endif %}
         <div class="c-bolt-navbar__nav">
-          <ul class="c-bolt-nav-list {{ "c-bolt-nav-list--#{vspacing}" }}">
+          <ul class="c-bolt-nav-list {{ "c-bolt-nav-list--#{vspacing} js-bolt-nav-list" }}">
             {% for item in links %}
               <li class="c-bolt-nav-list__item">
-                <a class="c-bolt-nav-list__item-link" href="{{ item.url }}">
+                <a class="c-bolt-nav-list__item-link js-bolt-nav-list-link" href="{{ item.url }}">
                   {{ item.text }}
                 </a>
               </li>
             {% endfor %}
-            <li class="c-bolt-nav-list__indicator"></li>
+            <li class="c-bolt-nav-list__indicator js-bolt-nav-list-active-link-indicator"></li>
           </ul>
         </div>
       </nav>

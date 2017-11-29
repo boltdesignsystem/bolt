@@ -15,6 +15,14 @@
 \* ------------------------------------ */
 
 
+bolt-navbar {
+  display: block;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 99999;
+}
+
 // Navbar styles
 .c-bolt-navbar {
   display: flex;
@@ -63,6 +71,17 @@
   }
 }
 
+.c-bolt-navbar--align-items-start {
+  justify-content: flex-start;
+}
+
+.c-bolt-navbar--align-items-center {
+  justify-content: center;
+}
+
+.c-bolt-navbar--align-items-end {
+  justify-content: flex-end;
+}
 
 
 
@@ -145,17 +164,14 @@ $bolt-nav-list-link-bg-transition: $bolt-transition;
   &:before {
     display: block;
     position: absolute;
-    content: '';
-    background-color: $bolt-nav-list-link-bg-color;
-    transform: scale3d(0, 0, 0);
-  }
-
-  &:before {
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    content: '';
     border-radius: $bolt-nav-list-link-bg-border-radius;
+    background-color: $bolt-nav-list-link-bg-color;
+    transform: scale3d(0, 0, 0);
   }
 
   &:hover,
