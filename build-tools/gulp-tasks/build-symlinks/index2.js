@@ -70,7 +70,13 @@ function boltPackages(userConfig) {
   }
 
   const unorderedMatches = {};
+
+  // const unorderedComponentMatches = {};
+  // const unorderedToolMatches = {};
+  // const unorderedVisualMatches = {};
+  // const unorderedVisualMatches = {};
   const orderedMatches = [];
+
 
 
   const isProduction = argv.production !== undefined;
@@ -155,19 +161,93 @@ function boltPackages(userConfig) {
           
           
           if (packageTypes.some(v => pjson.name.indexOf(v) >= 0)) {
-            unorderedMatches[pjson.name] = {};
-            unorderedMatches[pjson.name]["name"] = pjson.name;
-            unorderedMatches[pjson.name]["version"] = pjson.version;
-            unorderedMatches[pjson.name]["demos?"] = hasDemos ? `⚠ Some demo(s)?` : '❌ No Demos';
-            unorderedMatches[pjson.name]["tests?"] = hasTests ? `⚠ Some tests?` : '❌ No Tests';
-            unorderedMatches[pjson.name]["npm url"] = `[NPM Url](https://www.npmjs.com/package/${pjson.name})`;
-            unorderedMatches[pjson.name]["github url"] = `[Github Url](https://github.com/bolt-design-system/bolt/tree/master/${pkg})`;
+
+            if (!pjson.name.includes('-all')) {
+            
+              unorderedMatches[pjson.name] = {};
+              unorderedMatches[pjson.name]["name"] = pjson.name.replace('@bolt/', '').replace('components-', '');
+
+              if (pjson.name.includes('components-')) {
+                unorderedMatches[pjson.name]["type"] = 'component';
+              } else if (pjson.name.includes('build-')) {
+                unorderedMatches[pjson.name]["type"] = 'tools';
+              } else {
+                unorderedMatches[pjson.name]["type"] = pjson.type;
+              }
 
 
-            if (hasReadMe) {
-              unorderedMatches[pjson.name]["readme?"] = `✅ [README.MD link](https://github.com/bolt-design-system/bolt/tree/master/${pkg}/README.md)`;
-            } else {
-              unorderedMatches[pjson.name]["readme?"] = "❌ Missing README.md";
+
+              let designStatus = "?";
+              if (pjson.name.includes('/build-')) {
+                designStatus = "N/A";
+              } else if (pjson.status !== undefined && pjson.status.design !== undefined){
+                
+                if (pjson.status.design == 'done') {
+                  designStatus = '✅';
+                } else if (pjson.status.design == 'work needed') {
+                  designStatus = '⚠️';
+                } else if (pjson.status.design == 'in progress') {
+                  designStatus = '🚧';
+                } else if (pjson.status.design == 'on hold' || pjson.status.design == 'pending') {
+                  designStatus = '🛑';
+                } else {
+                  designStatus = pjson.status.design;
+                }
+              } else {
+                designStatus = '✅';
+              }
+
+           
+                unorderedMatches[pjson.name]["Design"] = designStatus;
+
+
+              let buildStatus = "?";
+
+              if (pjson.status !== undefined && pjson.status.build !== undefined){
+                if (pjson.status.build == 'done') {
+                  buildStatus = '✅';
+                } else if (pjson.status.build == 'work needed') {
+                  buildStatus = '⚠️';
+                } else if (pjson.status.build == 'in progress') {
+                  buildStatus = '🚧';
+                } else if (pjson.status.build == 'on hold' || pjson.status.build == 'pending') {
+                  buildStatus = '🛑';
+                } else {
+                  buildStatus = pjson.status.build;
+                }
+
+
+              } else {
+                buildStatus = '✅';
+              }
+              // if (pjson.name.includes('/build-')) {
+              //   hasDesign = "N/A";
+              // }
+              unorderedMatches[pjson.name]["Build"] = buildStatus;
+
+              // unorderedMatches[pjson.name]["version"] = pjson.version;
+              // unorderedMatches[pjson.name]["demos?"] = hasDemos ? `⚠ Some demo(s)?` : '❌ No Demos';
+              // unorderedMatches[pjson.name]["tests?"] = hasTests ? `⚠ Some tests?` : '❌ No Tests';
+              // unorderedMatches[pjson.name]["npm url"] = `[NPM Url](https://www.npmjs.com/package/${pjson.name})`;
+              // unorderedMatches[pjson.name]["github url"] = `[Github Url](https://github.com/bolt-design-system/bolt/tree/master/${pkg})`;
+              
+
+              if (hasReadMe && hasDemos) {
+                // unorderedMatches[pjson.name]["Docs"] = `✅ [README.MD link](https://github.com/bolt-design-system/bolt/tree/master/${pkg}/README.md)`;
+                unorderedMatches[pjson.name]["Docs"] = `⚠️`;
+              } else {
+                unorderedMatches[pjson.name]["Docs"] = "❌";
+              }
+
+              let publishStatus = "?";
+              if (pjson.version.includes('alpha') && pjson.version.includes('0.1.0')) {
+                publishStatus = "Soon";
+              } else {
+                publishStatus = pjson.version;
+              }
+              
+              unorderedMatches[pjson.name]["Publish"] = publishStatus;
+
             }
 
             // https://github.com/bolt-design-system/bolt/tree/master/packages/bolt-config-presets/config-browserlist
@@ -179,9 +259,23 @@ function boltPackages(userConfig) {
       Object.keys(unorderedMatches).sort().forEach((key) => {
         orderedMatches.push(unorderedMatches[key]);
       });
+
+      function isComponent(package) {
+        return package.type == 'component';
+      }
+
+      let filteredComponents = orderedMatches.filter(isComponent);
+
+      // console.log(filteredComponents);
       // console.log(JSON.stringify(orderedMatches, null, 4));
 
-      const statusBoard = arrayToTable(orderedMatches);
+      Object.keys(filteredComponents).forEach((key) => {
+        delete filteredComponents[key]['type']; 
+      });
+      const componentStatusBoard = arrayToTable(filteredComponents);
+
+
+
       // var mainReadme = fs.readFileSync('./README.md', 'utf8');
 
       // var tree = remark()
@@ -199,8 +293,8 @@ function boltPackages(userConfig) {
       // var newStuff = mdast.parse('# Some other document\nwith some content')
       // inject('Section1', target, newStuff)
 
-      console.log(`Showing ${Object.keys(orderedMatches).length} packages.`);
-      console.log(statusBoard);
+      // console.log(`Showing ${Object.keys(orderedMatches).length} packages.`);
+      console.log(componentStatusBoard);
       done();
     });
   }
