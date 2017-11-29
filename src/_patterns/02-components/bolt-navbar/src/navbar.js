@@ -1,9 +1,9 @@
-const lists = document.querySelectorAll('.c-bolt-nav-list');
+const lists = document.querySelectorAll('.js-bolt-nav-list');
 
 [].forEach.call(lists, function(list) {
     // For each set of tabs, find the links and indicator.
-    const links = list.querySelectorAll('.c-bolt-nav-list__item-link');
-    const indicator = list.querySelector('.c-bolt-nav-list__indicator');
+    const links = list.querySelectorAll('.js-bolt-nav-list-link');
+    const indicator = list.querySelector('.js-bolt-nav-list-active-link-indicator');
 
     // active: the link element that is active at any given time.
     let active;
@@ -51,7 +51,7 @@ const lists = document.querySelectorAll('.c-bolt-nav-list');
     }
 
     // Set an initially active link if appropriate.
-    const initial = list.querySelector('.c-bolt-nav-list__item-link.is-active') || list.querySelector('[href="' + location.hash + '"]');
+    const initial = list.querySelector('.js-bolt-nav-list-link.is-active') || list.querySelector('[href="' + location.hash + '"]');
     if (initial) {
         activateLink.call(initial);
     }
