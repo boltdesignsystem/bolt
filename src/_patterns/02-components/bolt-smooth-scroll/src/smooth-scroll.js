@@ -13,7 +13,7 @@ customScrollElems.forEach(elem => {
 
     const scrollOptions = {
         ignore: '[data-scroll-ignore]', // Selector for links to ignore (must be a valid CSS selector)
-        header: null, // Selector for fixed headers (must be a valid CSS selector)
+        header: '.js-bolt-smooth-scroll-offset', // Selector for fixed headers (must be a valid CSS selector)
 
         // Speed & Easing
         speed: scrollSpeed, // Integer. How fast to complete the scroll in milliseconds
