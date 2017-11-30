@@ -21,8 +21,8 @@ customScrollElems.forEach(elem => {
         easing: 'easeInOutCubic', // Easing pattern to use
 
         // Callback API
-        before: function () { console.log('smooth-scroll-before') }, // Callback to run before scroll
-        after: function () { console.log('smooth-scroll-after'); } // Callback to run after scroll
+        before: function () {}, // Callback to run before scroll
+        after: function () {} // Callback to run after scroll
     };
 
     let scrollElemHref = scrollElem.getAttribute('href');
