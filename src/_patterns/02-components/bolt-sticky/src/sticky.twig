@@ -1,0 +1,19 @@
+{% set prefix = "c-bolt-" %}
+
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+
+{% set componentName = "sticky" %}
+{% set baseClass = prefix ~ componentName %}
+
+
+{% set classes = [
+  baseClass
+] %}
+
+<div {{ attributes.addClass(classes) }}>
+  {% block sticky_content %}
+    {{ content }}
+  {% endblock sticky_content %}
+</div>
