@@ -111,18 +111,20 @@
           </div>
         {% endif %}
         <div class="c-bolt-navbar__nav">
-          <ul class="c-bolt-nav-list {{ "c-bolt-nav-list--#{vspacing}" }} js-bolt-nav-list">
-            {% for item in links %}
-              <li class="c-bolt-nav-list__item">
-                {% set itemAttributes = create_attribute(item.attributes | default({})) %}
-                {% set itemAttributes = itemAttributes.addClass("c-bolt-nav-list__item-link js-bolt-nav-list-link").setAttribute("href", item.url) %}
-                <a {{ itemAttributes }}>
-                  {{ item.text }}
-                </a>
-              </li>
-            {% endfor %}
-            <li class="c-bolt-nav-list__indicator js-bolt-nav-list-active-link-indicator"></li>
-          </ul>
+          <bolt-navlist>
+            <ul class="c-bolt-navlist {{ "c-bolt-navlist--#{vspacing}" }} js-bolt-navlist">
+              {% for item in links %}
+                <li class="c-bolt-navlist__item">
+                  {% set itemAttributes = create_attribute(item.attributes | default({})) %}
+                  {% set itemAttributes = itemAttributes.addClass("c-bolt-navlist__item-link js-bolt-navlist-link").setAttribute("href", item.url) %}
+                  <a {{ itemAttributes }}>
+                    {{ item.text }}
+                  </a>
+                </li>
+              {% endfor %}
+              <li class="c-bolt-navlist__indicator js-bolt-navlist-active-link-indicator"></li>
+            </ul>
+          </bolt-navlist>
         </div>
       </nav>
     {% endblock %}
