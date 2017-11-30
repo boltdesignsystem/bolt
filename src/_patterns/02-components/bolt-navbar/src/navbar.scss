@@ -15,6 +15,7 @@
 \* ------------------------------------ */
 
 
+// Navbar styles
 bolt-navbar {
   display: block;
   position: sticky;
@@ -23,7 +24,6 @@ bolt-navbar {
   z-index: 99999;
 }
 
-// Navbar styles
 .c-bolt-navbar {
   display: flex;
   align-items: center;
@@ -101,6 +101,11 @@ $bolt-navlist-link-bg-transition: $bolt-transition;
 
 
 // Navlist Component
+bolt-navlist {
+  display: block;
+}
+
+
 .c-bolt-navlist {
   @include bolt-margin(0);
   @include bolt-padding(0);
