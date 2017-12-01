@@ -47,41 +47,23 @@ class BoltNavList extends withComponent(withPreact()) {
     return Array.from(this.querySelectorAll(navLinkElement));
   }
 
-  // `_onChange` handles the `change` event emmitted by the children
+  // `_onChange` handles the `change` event emitted by the children
   _onChange(event) {
     this.resetLinks(event.target); //Reset nested children, skipping over active link
-    this._animateIndicatorLine(
-      event.target,
-      event.detail.isActiveNow
-    );
+    this._animateIndicatorLine(event.target);
 
     this.containsActiveLink = true;
-  }
-
-  // `_onSetup` handles the initial `setup` event if an element is pre-selected
-  _onSetup(event) {
-    this._animateInitialIndicatorLine(
-      event.target,
-      event.detail.isActiveNow
-    );
-
-    this.containsActiveLink = true;
-  }
-
-  // `_animateInitialIndicatorLine` animates the line for the very first time (same event, different params)
-  _animateInitialIndicatorLine(link, expand) {
-    this._animateIndicatorLine(link, expand, true);
   }
 
   // `_animateIndicatorLine` animates the line for the active link
-  _animateIndicatorLine(link, expand, isInitialAnimation = false) {
+  _animateIndicatorLine(link) {
 
     const linkPos = link.getBoundingClientRect(); // object w/ all positioning
     const linkWidth = linkPos.width;
     const linkOffsetLeft = link.offsetLeft;
     const linkOffsetCenter = linkOffsetLeft + linkWidth / 2;
 
-    if (isInitialAnimation === true || !this.containsActiveLink) {
+    if (!this.containsActiveLink) {
       // No link is currently active; the first link to become active is a special snowflake when it
       // comes to animation.
 
@@ -104,13 +86,11 @@ class BoltNavList extends withComponent(withPreact()) {
   connectedCallback() {
     this._indicator = this.querySelector(indicatorElement);
     this.addEventListener('change', this._onChange);
-    this.addEventListener('setup', this._onSetup);
   }
 
   // Clean up event listeners when being removed from the page 
   disconnectedCallback() {
     this.removeEventListener('change', this._onChange);
-    this.removeEventListener('setup', this._onSetup);
   }
 }
 customElements.define('bolt-nav-list', BoltNavList);
@@ -166,33 +146,19 @@ class BoltNavLink extends withComponent(withPreact()) {
   }
 
   // Handle state changes when being clicked on + emmitting this change as a CustomEvent
-  activateLink(isInitialAnimation = false) {
+  activateLink() {
     if (!this.active){
       this.active = !this.active; // Flip the current active state
 
-      if (isInitialAnimation === true) {
-        // Dispatch an event that signals to the parent what element is being active
-        this.dispatchEvent(
-          new CustomEvent('setup', {
-            detail: {
-              isActiveNow: this.active,
-              isInitialAnimation: isInitialAnimation
-            },
-            bubbles: true,
-          })
-        );
-      } else {
-        // Dispatch an event that signals to the parent what element is being active
-        this.dispatchEvent(
-          new CustomEvent('change', {
-            detail: {
-              isActiveNow: this.active,
-              isInitialAnimation: isInitialAnimation
-            },
-            bubbles: true,
-          })
-        );
-      }
+      // Dispatch an event that signals to the parent what element is being active
+      this.dispatchEvent(
+        new CustomEvent('change', {
+          detail: {
+            isActiveNow: this.active
+          },
+          bubbles: true,
+        })
+      );
     }
   }
 
@@ -209,7 +175,7 @@ class BoltNavLink extends withComponent(withPreact()) {
     const isAlreadyActive = this._shadowLink.classList.contains(isActiveClass) || this._shadowLink.getAttribute('href') === window.location.hash;
     
     if (isAlreadyActive) {
-      this.activateLink(true);
+      this.activateLink();
     }
   }
 
