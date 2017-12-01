@@ -19,7 +19,7 @@ Sticky makes any component sticky to the top of the page. Part of the Bolt “Co
 ## Cheat Sheet
 ### Install via NPM
 ```
-npm install @bolt/sticky
+npm install @bolt/components-sticky
 ```
 
 - - - -
