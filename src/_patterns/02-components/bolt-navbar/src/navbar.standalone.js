@@ -9,6 +9,11 @@ const isActiveClass = 'is-active';
 
 // Behavior for `<bolt-nav-list>` parent container
 class BoltNavList extends withComponent(withPreact()) {
+  constructor() {
+    super();
+    this.containsActiveLink = false;
+  }
+
   renderCallback() {
     return (
       <slot />
@@ -49,6 +54,8 @@ class BoltNavList extends withComponent(withPreact()) {
       event.target,
       event.detail.isActiveNow
     );
+
+    this.containsActiveLink = true;
   }
 
   // `_onSetup` handles the initial `setup` event if an element is pre-selected
@@ -57,6 +64,8 @@ class BoltNavList extends withComponent(withPreact()) {
       event.target,
       event.detail.isActiveNow
     );
+
+    this.containsActiveLink = true;
   }
 
   // `_animateInitialIndicatorLine` animates the line for the very first time (same event, different params)
@@ -66,14 +75,16 @@ class BoltNavList extends withComponent(withPreact()) {
 
   // `_animateIndicatorLine` animates the line for the active link
   _animateIndicatorLine(link, expand, isInitialAnimation = false) {
-    // No link is currently active; the first link to become active is a special snowflake when it
-    // comes to animation.
+
     const linkPos = link.getBoundingClientRect(); // object w/ all positioning
     const linkWidth = linkPos.width;
     const linkOffsetLeft = link.offsetLeft;
     const linkOffsetCenter = linkOffsetLeft + linkWidth / 2;
 
-    if (isInitialAnimation === true){
+    if (isInitialAnimation === true || !this.containsActiveLink) {
+      // No link is currently active; the first link to become active is a special snowflake when it
+      // comes to animation.
+
       // First, immediately center the indicator.
       this._indicator.style.transition = 'none';
       this._indicator.style.transform = 'translateX(' + linkOffsetCenter + 'px)';
