@@ -1,9 +1,12 @@
 import { props, withComponent } from 'skatejs';
 import withPreact from '@skatejs/renderer-preact';
-import { h } from 'preact';
+import Preact from 'preact';
 import upperCamelCase from 'uppercamelcase';
 
 import { css, spacingSizes } from '@bolt/core';
+
+
+
 import styles from './icon.scss';
 import * as Icon from '@bolt/components-icons';
 
@@ -17,6 +20,9 @@ const colors = [
   'teal'
 ]
 
+console.log(Icon);
+// console.log(css);
+
 
 class BoltIcon extends withComponent(withPreact()) {
   static props = {
@@ -27,6 +33,8 @@ class BoltIcon extends withComponent(withPreact()) {
   }
 
   renderCallback({ props }) {
+    console.log('hi');
+
     const classes = css(
       'c-bolt-icon',
       props.name ? `c-bolt-icon--${props.name}` : '',
@@ -48,6 +56,8 @@ class BoltIcon extends withComponent(withPreact()) {
     const iconName = props.name ? upperCamelCase(props.name) : '';
     const size = props.size && spacingSizes[props.size] ? (spacingSizes[props.size].replace('rem', '') * 16 / 2) : spacingSizes['medium'];
     const IconTag = Icon[iconName];
+
+    console.log(IconTag);
 
     return (
       <div className={classes}>

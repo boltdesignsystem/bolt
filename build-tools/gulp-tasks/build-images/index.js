@@ -10,7 +10,7 @@ const imageminMozjpeg = require('imagemin-mozjpeg');
 const rename = require('gulp-rename');
 const rimraf = require('rimraf');
 
-const imageSizes = require('@bolt/common').imageSizes.sizes;
+const imageSizes = require('@bolt/core-data/image-sizes/image-sizes.js').sizes;
 
 
 function resizeImages(gulp, defaultConfig) {
