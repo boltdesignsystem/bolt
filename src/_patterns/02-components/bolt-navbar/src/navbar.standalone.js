@@ -47,8 +47,8 @@ class BoltNavList extends withComponent(withPreact()) {
     return Array.from(this.querySelectorAll(navLinkElement));
   }
 
-  // `_onChange` handles the `change` event emitted by the children
-  _onChange(event) {
+  // `_onActiveLink` handles the `activateLink` event emitted by the children
+  _onActivateLink(event) {
     this.resetLinks(event.target); //Reset nested children, skipping over active link
     this._animateIndicatorLine(event.target);
 
@@ -85,12 +85,12 @@ class BoltNavList extends withComponent(withPreact()) {
   // `<bolt-nav-link>` emits a custom event when the link is active
   connectedCallback() {
     this._indicator = this.querySelector(indicatorElement);
-    this.addEventListener('change', this._onChange);
+    this.addEventListener('activateLink', this._onActivateLink);
   }
 
   // Clean up event listeners when being removed from the page 
   disconnectedCallback() {
-    this.removeEventListener('change', this._onChange);
+    this.removeEventListener('activateLink', this._onActivateLink);
   }
 }
 customElements.define('bolt-nav-list', BoltNavList);
@@ -152,7 +152,7 @@ class BoltNavLink extends withComponent(withPreact()) {
 
       // Dispatch an event that signals to the parent what element is being active
       this.dispatchEvent(
-        new CustomEvent('change', {
+        new CustomEvent('activateLink', {
           detail: {
             isActiveNow: this.active
           },
