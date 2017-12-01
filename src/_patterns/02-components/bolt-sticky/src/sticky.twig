@@ -12,8 +12,9 @@
   baseClass
 ] %}
 
-<div {{ attributes.addClass(classes) }}>
+
+<bolt-{{ componentName }} bolt-component {{ attributes.addClass(classes) }}>
   {% block sticky_content %}
     {{ content }}
   {% endblock sticky_content %}
-</div>
+</bolt-{{ componentName }}>
