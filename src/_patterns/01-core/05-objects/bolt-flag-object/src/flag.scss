@@ -5,7 +5,8 @@
 
 $bolt-flag-sizes: (
   'small',
-  'medium'
+  'medium',
+  'large'
 );
 
 $bolt-flag-alignments: (
@@ -16,25 +17,26 @@ $bolt-flag-alignments: (
 
 
 .o-bolt-flag {
-  // display: table;
-  // width: 100%;
-  @include bolt-margin-bottom(medium);
-  display: flex;
-  align-items: flex-start;
+  display: table;
+  width: 100%;
 }
 
 .o-bolt-flag__body {
-  flex: 1;
+  display: table-cell;
+  width: 100%;
+  vertical-align: top;
 }
 
 
-// .o-bolt-flag__figure {
+.o-bolt-flag__image {
+  display: table-cell;
+  vertical-align: top;
 
-//   // .o-bolt-flag--rev & {
-//   //   padding-right: 0;
-//   //   padding-left: $spacing-unit;
-//   // }
-// }
+  // .o-bolt-flag--rev & {
+  //   padding-right: 0;
+  //   padding-left: $spacing-unit;
+  // }
+}
 
 
 
@@ -61,22 +63,21 @@ $bolt-flag-alignments: (
 //   vertical-align: bottom;
 // }
 // // Flag alignment
-@each $alignment, $value in $bolt-flag-alignments {
-  .o-bolt-flag--#{$alignment} {
-    align-items: $value;
-    vertical-align: $alignment;
-  }
-}
+// @each $alignment in $bolt-flag-alignments {
+//   .o-bolt-flag--#{$alignment} > * {
+//     vertical-align: $alignment;
+//     @include bolt-padding-right($size);
+//   }
+// }
 
 
 
 // Flag sizes
 @each $size in $bolt-flag-sizes {
-  .o-bolt-flag--#{$size} > .o-bolt-flag__figure {
-    @include bolt-margin-right($size);
+  .o-bolt-flag--#{$size} > .o-bolt-flag__image {
+    @include bolt-padding-right($size);
   }
 }
-
 
 
 
