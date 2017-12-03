@@ -40,14 +40,9 @@ $function = new Twig_SimpleFunction('ratio', function ($fileName, $heightOrWidth
       $size = getimagesize($filePath);
 
       if ($heightOrWidthRatio == 'width'){
-        if ($size[0]){
-          return $size[0];
-        }
-
+        return $size[0];
       } else {
-        if ($size[1]){
-          return $size[1];
-        }
+        return $size[1];
       }
     }
   } else {
