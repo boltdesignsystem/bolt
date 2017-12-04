@@ -47,11 +47,13 @@
       <div class="{{ baseClass ~ "__speaker"}}"></div>
 
       <bolt-device-screen class="{{ baseClass ~ "__screen"}} c-bolt-device-viewer__screen js-device-viewer-screen">
-        {% include "parts/_screen-tilt.twig" %}
+        {% include "@bolt/_screen-tilt.twig" %}
 
-        {% if image %}
-          {% include "@bolt/image.twig" with image only %}
-        {% endif %}
+        {% block device_viewer_image %}
+          {% if image %}
+            {% include "@bolt/image.twig" with image only %}
+          {% endif %}
+        {% endblock %}
 
         <div class="c-bolt-device-viewer__overlay">
           <bolt-icon name="search" size="xlarge" background="circle" class="c-bolt-device-viewer__overlay-icon" />
