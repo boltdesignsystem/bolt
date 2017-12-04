@@ -1,62 +1,26 @@
-const lists = document.querySelectorAll('.js-bolt-nav-list');
+require('es6-promise').polyfill();
+require("core-js/modules/es6.array.iterator");
+require('core-js/modules/es6.symbol');
+require("core-js/modules/es6.array.from");
 
-[].forEach.call(lists, function(list) {
-    // For each set of tabs, find the links and indicator.
-    const links = list.querySelectorAll('.js-bolt-nav-list-link');
-    const indicator = list.querySelector('.js-bolt-nav-list-active-link-indicator');
 
-    // active: the link element that is active at any given time.
-    let active;
-
-    function activateLink() {
-
-        if (!active) {
-            // No link is currently active; the first link to become active is a special snowflake when it
-            // comes to animation.
-            let linkWidth = this.offsetWidth;
-            let linkOffsetLeft = this.offsetLeft;
-            let linkOffsetCenter = linkOffsetLeft + linkWidth/2;
-
-            // First, immediately center the indicator.
-            indicator.style.transition = "none";
-            indicator.style.transform = 'translateX(' + linkOffsetCenter + 'px)';
-
-            // Then, reset the transition and expand the indicator to the full width of the link.
-            flushCss(indicator);
-            indicator.style.transition = "";
-            indicator.style.width =  linkWidth + 'px';
-            indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px)';
-        }
-        else {
-            // Remove active state from any link that has it already.
-            active.classList.remove('is-active');
-
-            // Move the indicator under the active item
-            indicator.style.width = this.offsetWidth + 'px';
-            indicator.style.transform = 'translateX(' + this.offsetLeft + 'px)';
-        }
-
-        // Mark this as the new active link.
-        this.classList.add('is-active');
-        active = this;
-    }
-
-    // flushCss() is used to make sure the previous CSS alterations are complete before continuing.
-    // See https://stackoverflow.com/questions/34726154/temporarily-bypass-a-css-transition/34726346
-    function flushCss(element) {
-        // By reading the offsetHeight property, we are forcing
-        // the browser to flush the pending CSS changes (which it
-        // does to ensure the value obtained is accurate).
-        element.offsetHeight;
-    }
-
-    // Set an initially active link if appropriate.
-    const initial = list.querySelector('.js-bolt-nav-list-link.is-active') || list.querySelector('[href="' + location.hash + '"]');
-    if (initial) {
-        activateLink.call(initial);
-    }
-
-    [].forEach.call(links, function(link) {
-        link.addEventListener("click", activateLink);
+if (window.customElements !== undefined) {
+  Promise.all([
+    import(/* webpackMode: "lazy", webpackChunkName: "bolt-wc-polyfill--es5-adapter" */ '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js'),
+    import(/* webpackMode: "lazy", webpackChunkName: "bolt-wc-polyfill--sd" */ './wc-polyfill-sd'),
+  ])
+    .then(() => {
+      continueLoading();
     });
-});
+} else {
+  Promise.all([
+    import(/* webpackMode: "lazy", webpackChunkName: "bolt-wc-polyfill--ce-sd" */ './wc-polyfill-ce-sd'),
+  ])
+    .then(() => {
+      continueLoading();
+    });
+}
+
+function continueLoading() {
+  import(/* webpackMode: "eager" */ './navbar.standalone.js');
+}
