@@ -107,13 +107,7 @@ class BoltNavLink extends withComponent(withPreact()) {
 
   constructor() {
     super();
-
-    /** Binding event handlers to `this` ensures that `this` inside 
-     * the event handler will always be the `<bolt-nav-link>`, even if 
-     * the handler is hooked up to other elements.
-     * NOTE: not sure if we need this (Google's HowTo Components current use this technique) -- https://github.com/GoogleChromeLabs/howto-components/blob/master/elements/howto-accordion/howto-accordion.js#L500
-     */
-    this.activateLink = this.activateLink.bind(this);
+    
     this._shadowLink = this.querySelector('a');
   }
   
