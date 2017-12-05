@@ -20,11 +20,16 @@
 {% if width is empty %}
   {% set width = ratio(src, 'width') %}
 {% endif %}
+
 {% set ratio = ratio ?? true %}
+{% set sizes = sizes | default("auto") %}
+{% set zoom = zoom ?? false %}
+
+
 
 {# Get a whole number aspect ratio #}
 {% if width > 0 and height > 0 and ratio == true %}
-  {% set gcd %}
+  {# {% set gcd %}
     {% include '@bolt/gcd.twig' with {
       a: width,
       b: height
@@ -38,10 +43,9 @@
   {% else %}
     {% set imageHeightRatio = 1 %}
     {% set imageWidthRatio = 1 %}
-  {% endif %}
+  {% endif %} #}
 
-  {# pre-calculate the % output on the element #}
-  {% set ratio = imageHeightRatio / imageWidthRatio * 100 ~ '%' %}
+  {% set ratio = height / width * 100 ~ '%' %}
 
 {% endif %}
 
@@ -51,16 +55,22 @@
 
 {% set placeholderDummySrc = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" %}
 
+{% set zoomSource = src %}
 
   {% if srcset == "" and ext != "svg" %}
     {% set path = publicpath(src|split('.' ~ ext)|first) %}
-    {% set sizes = globalBoltImageSizes %}
-    {% for size in sizes if (size <= width) %}
+    {% set imageSizes = globalBoltImageSizes %}
+    {% for size in imageSizes if (size <= width) %}
       {% if size == width %}
         {% set srcset = srcset ~ '../..' ~ path ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}
+        {% set zoomSource = path ~ '.' ~ ext %}
       {% else %}
         {% set srcset = srcset ~ '../..' ~ path ~ '-' ~ size ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}
+        {% set zoomSource = path ~ '-' ~ size ~ '.' ~ ext %}
       {% endif %}
+
+      {# store the current srcset path just in case this loop is our last -- loop.last var isn't available w/ conditions #}
+      
     {% endfor %}
     {% set srcset = srcset|trim(', ') %}
   {% elseif ext == "svg" %}
@@ -84,11 +94,18 @@
 
 
 
+{% if zoom %}
+  {% set imageAttributes = imageAttributes
+    .setAttribute("data-zoom", zoomSource)
+  %}
+{% endif %}
+
+
 {% if lazyload %}
   {% set imageAttributes = imageAttributes
     .setAttribute("data-srcset", srcset)
     .setAttribute("srcset", placeholderDummySrc)
-    .setAttribute("data-sizes", "auto")
+    .setAttribute("data-sizes", sizes)
   %}
 {% else %}
   {% set imageAttributes = imageAttributes.setAttribute("srcset", srcset) %}

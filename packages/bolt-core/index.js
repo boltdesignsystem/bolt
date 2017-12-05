@@ -19,3 +19,4 @@ export const utils = {
 export * from './utils/css';
 export * from './utils/spacing-sizes';
 export * from './utils/component';
+export * from './polyfills/polyfill-loader';
