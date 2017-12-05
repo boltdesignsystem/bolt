@@ -45,7 +45,7 @@
 {% set classes = [
   baseClass,
   quoted ? baseClass ~ "--" ~ "quoted" : "",
-  weight in weights and type == "text" ? baseClass ~ "--" ~ weight : "",
+  weight in weights ? baseClass ~ "--" ~ weight : "",
   style in styles and type == "text" ? baseClass ~ "--" ~ style : "",
   size in sizes and type != "eyebrow" ? baseClass ~ "--" ~ size : "",
   transform in transformProps and transform != "" ? baseClass ~ "--" ~ transform : "",
