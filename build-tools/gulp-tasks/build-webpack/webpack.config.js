@@ -34,6 +34,7 @@ const defaultConfig = {
   entry: {
     'critical-fonts': './src/_patterns/02-components/bolt-critical-fonts/src/critical-fonts',
 
+    'critical-fonts': './src/_patterns/02-components/bolt-button/src/button',
     // './src/components/bolt-icon/dist/icon': [
     //   // './src/scripts/native-shim.js', //Wrapper for custom-elements-es5-adapter.js so this doesn't break in other browsers like IE11
     //   // './node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
