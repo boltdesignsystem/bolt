@@ -45,6 +45,7 @@
 {% set themeOptions = [
   "xlight",
   "light",
+  "medium",
   "dark",
   "xdark"
 ] %}
@@ -59,7 +60,7 @@
 {% set baseClass = prefix ~ componentName %}
 
 
-{% set theme = theme == false and theme is not null ? "false" : theme | default("dark") %}
+{% set theme = theme == false and theme is not null ? "false" : theme | default("medium") %}
 {% set gradient = gradient == false and gradient is not null ? "false" : "true" | default("true") %}
 {% set vspacing = vspacing == false and vspacing is not null ? "false" : vspacing | default("xsmall") %}
 
