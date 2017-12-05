@@ -1,31 +1,26 @@
-const lists = document.querySelectorAll('.c-bolt-nav-list');
-
-[].forEach.call(lists, function(list) {
-    // For each set of tabs, find the links and indicator.
-    const links = list.querySelectorAll('.c-bolt-nav-list__item-link');
-    const indicator = list.querySelector('.c-bolt-nav-list__indicator');
-
-    // If the location.hash matches one of the links, use that as the active tab.
-    // TODO set this based on the URL if it matches one of the links.
-    let active;
-
-    function activateLink() {
-        // Remove active state from any link that has it already.
-        if (active) {
-            active.classList.remove('is-active');
-        }
-
-        // Mark this as the new active link.
-        this.classList.add('is-active');
-        active = this;
-
-        // Move the indicator under the active item.
-        indicator.style.width = this.offsetWidth + 'px';
-        indicator.style.transform = 'translateX(' + this.offsetLeft + 'px)';
-    }
+require('es6-promise').polyfill();
+require("core-js/modules/es6.array.iterator");
+require('core-js/modules/es6.symbol');
+require("core-js/modules/es6.array.from");
 
 
-    [].forEach.call(links, function(link) {
-        link.addEventListener("click", activateLink);
+if (window.customElements !== undefined) {
+  Promise.all([
+    import(/* webpackMode: "lazy", webpackChunkName: "bolt-wc-polyfill--es5-adapter" */ '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js'),
+    import(/* webpackMode: "lazy", webpackChunkName: "bolt-wc-polyfill--sd" */ './wc-polyfill-sd'),
+  ])
+    .then(() => {
+      continueLoading();
     });
-});
+} else {
+  Promise.all([
+    import(/* webpackMode: "lazy", webpackChunkName: "bolt-wc-polyfill--ce-sd" */ './wc-polyfill-ce-sd'),
+  ])
+    .then(() => {
+      continueLoading();
+    });
+}
+
+function continueLoading() {
+  import(/* webpackMode: "eager" */ './navbar.standalone.js');
+}
