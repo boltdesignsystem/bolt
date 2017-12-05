@@ -1,0 +1,68 @@
+{# {% include "devices/_ipad.twig" %} #}
+
+{% set colors = [
+  "silver",
+  "black",
+  "gold"
+] %}
+
+{% set orientations = [
+  "portrait",
+  "landscape"
+] %}
+
+{% set prefix = "c-bolt-" %}
+{% set deviceName = device | default("ipad") %}
+{% set color = color | default("black") %}
+{% set orientation = orientation | default("portrait") %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Defaults for a vanilla `Button` component #}
+{% set componentName = deviceName ~ "-viewer" %}
+{% set baseClass = prefix ~ componentName %}
+
+{% if image %}
+  {% set image = image | merge({
+    sizes: "(min-width: 600px) 150vw, 100vw",
+    zoom: true
+  }) %}
+{% endif %}
+
+{% set classes = [
+  baseClass,
+  "marvel-device",
+  color in colors ? baseClass ~ "--" ~ color : "",
+  orientation in orientations ? baseClass ~ "--" ~ orientation : ""
+] %}
+
+
+<bolt-device-viewer>
+  <div {{ attributes.addClass(classes | raw) }}>
+    <div class="{{ baseClass ~ "__inner" }}">
+      <div class="{{ baseClass ~ "__top-bar"}}"></div>
+      <div class="{{ baseClass ~ "__sleep"}}"></div>
+      <div class="{{ baseClass ~ "__volume"}}"></div>
+      <div class="{{ baseClass ~ "__camera"}}"></div>
+      <div class="{{ baseClass ~ "__speaker"}}"></div>
+
+      <bolt-device-screen class="{{ baseClass ~ "__screen"}} c-bolt-device-viewer__screen js-device-viewer-screen">
+        {% include "@bolt/_screen-tilt.twig" %}
+
+        {% block device_viewer_image %}
+          {% if image %}
+            {% include "@bolt/image.twig" with image only %}
+          {% endif %}
+        {% endblock %}
+
+        <div class="c-bolt-device-viewer__overlay">
+          <bolt-icon name="search" size="xlarge" background="circle" class="c-bolt-device-viewer__overlay-icon" />
+        </div>
+      </bolt-device-screen>
+
+      <div class="{{ baseClass ~ "__home"}}"></div>
+      <div class="{{ baseClass ~ "__bottom-bar"}}"></div>
+
+    </div>
+  </div>
+</bolt-device-viewer>

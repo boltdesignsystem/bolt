@@ -1,0 +1,15 @@
+{% set content = content | default({}) %}
+
+<div class="marvel-device note8">
+    <div class="inner"></div>
+    <div class="overflow">
+      <div class="shadow"></div>
+    </div>
+    {% include "parts/_speaker.twig" only %}
+    <div class="sensors"></div>
+    <div class="more-sensors"></div>
+    {% include "parts/_sleep.twig" only %}
+    {% include "parts/_volume.twig" only %}
+    {% include "parts/_camera.twig" only %}
+    {% include "parts/_screen.twig" with content only %}
+</div>

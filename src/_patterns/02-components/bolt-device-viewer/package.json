@@ -1,0 +1,64 @@
+{
+	"name": "@bolt/components-device-viewer",
+	"description": "Device Viewer Component in Bolt",
+	"type": "pattern",
+	"patternType": "molecules",
+	"keywords": [
+		"bolt design system",
+		"bolt",
+		"css framework",
+		"design system",
+		"components"
+	],
+	"version": "0.0.0",
+	"maintainers": [
+		{
+			"name": "Salem Ghoweri",
+			"email": "me@salemghoweri.com",
+			"web": "https://github.com/sghoweri"
+		},
+		{
+			"name": "Mike Mai",
+			"email": "boss@mikemai.net",
+			"web": "http://mikemai.net/"
+		}
+	],
+	"homepage": "https://boltdesignsystem.com",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/bolt-design-system/bolt/"
+	},
+	"bugs": {
+		"url": "https://github.com/bolt-design-system/bolt/issues"
+	},
+	"main": "dist/bolt-device-viewer.min.js",
+	"style": "src/_device-viewer.scss",
+	"twig": "src/device-viewer.twig",
+	"publishConfig": {
+		"access": "public"
+	},
+	"dependencies": {
+		"@bolt/build-webpack": "^0.3.1",
+		"@bolt/core": "^0.3.0",
+		"@bolt/settings-all": "^0.7.4",
+		"@bolt/tools-all": "^0.5.4",
+		"@skatejs/renderer-preact": "^0.1.0",
+		"@webcomponents/custom-elements": "^1.0.4",
+		"@webcomponents/shadycss": "^1.0.6",
+		"@webcomponents/shadydom": "bolt-design-system/shadydom#hotfix/fix-text-undefined-IE11",
+		"@webcomponents/template": "^1.1.0",
+		"@webcomponents/webcomponents-platform": "^1.0.0",
+		"@webcomponents/webcomponentsjs": "^1.0.14",
+		"core-js": "^2.5.1",
+		"drift-zoom": "^1.2.0",
+		"preact": "^8.2.6",
+		"skatejs": "^5.0.0-beta.3"
+	},
+	"scripts": {
+		"prepublishOnly": "npm run build",
+		"build": "npm-run-all --parallel build:*",
+		"build:bolt": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/device-viewer --output-filename='bolt-device-viewer.min.js' --output-public-path /scripts/",
+		"build:wwwd8": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/device-viewer --output-filename='bolt-device-viewer.wwwd8.min.js' --output-public-path /themes/custom/pegawww_theme/node_modules/@bolt/components-device-viewer/dist/"
+	}
+}

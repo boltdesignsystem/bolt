@@ -12,24 +12,36 @@ const backgroundStyles = [
   'square'
 ];
 
+const colors = [
+  'teal'
+]
+
 
 class BoltIcon extends withComponent(withPreact()) {
   static props = {
     name: props.string,
     size: props.string,
-    background: props.string
+    background: props.string,
+    color: props.string
   }
 
   renderCallback({ props }) {
     const classes = css(
       'c-bolt-icon',
       props.size && spacingSizes[props.size] && spacingSizes[props.size] !== '' ? `c-bolt-icon--${props.size}` : ``,
-      props.name ? `c-bolt-icon--${props.name}` : ''
+      props.name ? `c-bolt-icon--${props.name}` : '',
+      props.color && colors.includes(props.color) ? `c-bolt-icon--${props.color}` : ``
     );
+    
 
     const backgroundClasses = css(
       'c-bolt-icon__background',
       props.background && backgroundStyles.includes(props.background) ? `c-bolt-icon__${props.background}-background` : ''
+    )
+
+    const iconClasses = css(
+      'c-bolt-icon__icon',
+      // props.background && backgroundStyles.includes(props.background) ? `c-bolt-icon__${props.background}-background` : ''
     )
 
     const iconName = props.name ? upperCamelCase(props.name) : '';
@@ -37,9 +49,9 @@ class BoltIcon extends withComponent(withPreact()) {
     const IconTag = Icon[iconName];
 
     return (
-      <div class="c-bolt-icon-wrapper">
+      <div className={classes}>
         <style>{styles[0][1]}</style>
-        <IconTag className={classes} size={size} />
+        <IconTag className={iconClasses} size={size} />
         {props.background && props.size == "xlarge" &&
           <span class={backgroundClasses}></span>
         }

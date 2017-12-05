@@ -1,0 +1,39 @@
+{# Sample Usage
+  {% include "@bolt/figure.twig" with {
+    "image": {
+      "src": "/images/placeholders/500x500.jpg"
+    },
+    caption: "Example figcation text"
+  } only %}
+#}
+
+
+{% set prefix = "c-bolt-" %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+
+{% set componentName = "figure" %}
+{% set baseClass = prefix ~ componentName %}
+
+{% set classes = [
+  baseClass
+] %}
+
+<bolt-{{ componentName }} bolt-component>
+  <figure {{ attributes.addClass(classes) }}>
+    {% if image %}
+      {% include "@bolt/image.twig" with image only %}
+    {% elseif icon %}
+      {% include "@bolt/icon.twig" with icon only %}
+    {% endif %}
+
+    {% if content %}
+      {{ content }}
+    {% endif %}
+
+    {% if caption %}
+      <figcation class="{{ "#{baseClass}__figcation" }}">{{ caption }}</figcation>
+    {% endif %}
+  </figure>
+</bolt-{{ componentName }}>

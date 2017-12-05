@@ -1,0 +1,391 @@
+@import '@bolt/settings-all';
+@import '@bolt/tools-all';
+
+
+@import 'device-viewer--iphone8';
+@import 'device-viewer--ipad';
+@import 'device-viewer--macbook';
+
+bolt-device-viewer {
+	display: inline-block;
+	position: relative;
+	margin: 0 auto;
+}
+
+$magnifier-size: 350px;
+
+ 
+@keyframes pulse{
+  0%{
+    transform: translate3d(-50%, -50%, 0) scale(0.98);
+  }
+  50%{
+    transform: translate3d(-50%, -50%, 0) scale(1.1);
+  }
+  100%{ 
+    transform: translate3d(-50%, -50%, 0) scale(0.98);
+  }
+}
+
+@keyframes pulseFadeIn {
+  0% { transform: scale(1.5) translate3d(-50%, -50%, 0); opacity: 0; }
+  100% { transform: scale(1) translate3d(-50%, -50%, 0);  opacity: 1; }
+}
+
+@keyframes pulseFadeOut {
+  0% { transform: scale(1) translate3d(-50%, -50%, 0); opacity: 1;  }
+  15% { transform: scale(1.1) translate3d(-50%, -50%, 0); opacity: 1; }
+  100% { transform: scale(4) translate3d(-50%, -50%, 0); opacity: 0; }
+}
+
+
+
+
+@keyframes drift-fadeZoomIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1);  opacity: 1; }
+}
+
+@keyframes drift-fadeZoomOut {
+  0% { transform: scale(1); opacity: 1;  }
+  // 15% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(0.5); opacity: 0; }
+}
+
+
+
+@keyframes drift-loader-rotate {
+  0% { transform: translate(-50%, -50%) rotate(0); }
+  50% { transform: translate(-50%, -50%) rotate(-180deg); }
+  100% { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+@keyframes drift-loader-before {
+  0% { transform: scale(1); }
+  10% { transform: scale(1.2) translateX(6px); }
+  25% { transform: scale(1.3) translateX(8px); }
+  40% { transform: scale(1.2) translateX(6px); }
+  50% { transform: scale(1); }
+  60% { transform: scale(0.8) translateX(6px); }
+  75% { transform: scale(0.7) translateX(8px); }
+  90% { transform: scale(0.8) translateX(6px); }
+  100% { transform: scale(1); }
+}
+
+@keyframes drift-loader-after {
+  0% { transform: scale(1); }
+  10% { transform: scale(1.2) translateX(-6px); }
+  25% { transform: scale(1.3) translateX(-8px); }
+  40% { transform: scale(1.2) translateX(-6px); }
+  50% { transform: scale(1); }
+  60% { transform: scale(0.8) translateX(-6px); }
+  75% { transform: scale(0.7) translateX(-8px); }
+  90% { transform: scale(0.8) translateX(-6px); }
+  100% { transform: scale(1); }
+}
+
+.c-bolt-device-viewer__overlay {
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+	transition: all .2s linear;
+	z-index: 1000;
+	position: absolute;
+	pointer-events: none;
+	color: bolt-color(white);
+
+	&:before {
+		background-color: rgba(bolt-color(black), .3);
+		top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    content: '';
+    display: block;
+    opacity: 1;
+    transition: all .2s linear;
+    z-index: -1;
+    position: absolute;
+    pointer-events: none;
+    transform: translate3d(-50%, -50%, 0);
+	}
+}
+
+
+.c-bolt-device-viewer__overlay-icon {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate3d(-50%, -50%, 0);
+	transition: all .1s ease;
+	animation: pulse 3s infinite;
+	line-height: 1;
+	pointer-events: none;
+
+	box-shadow: 0 2px 5px 10px rgba(21,22,25,.025);
+	border-radius: 50%;
+
+	--bolt-theme-icon-background-opacity: .5;
+	--bolt-theme-icon-background-color: bolt-color(black);
+
+	.is-mouse-leaving & {
+		animation: pulseFadeIn 300ms linear;
+		animation-fill-mode: forwards;
+	}
+
+	.is-mouse-entering & {
+		animation: pulseFadeOut 300ms linear;
+		animation-fill-mode: forwards;
+	}
+}
+// rotateX(-5deg) rotateY(-5deg) translateZ(0) translate3d(calc(-50% - 250%), calc(-50% - 150%), 0)
+
+
+
+
+.c-bolt-device-viewer__screen {
+	perspective: 1000px;
+	position: relative;
+	width: 100%;
+}
+
+.c-bolt-deview-viewer__tilt {
+	opacity: 0;
+	position: absolute;
+	z-index: 1;
+	width: 33.33%;
+	height: 33.33%;
+	display: block;
+
+	&:hover {
+		transform: translateZ(50px);
+	}
+
+	&:hover ~ .c-bolt-device-viewer__overlay > .c-bolt-device-viewer__overlay-icon {
+		transform: translate3d(-50%, -50%, 0) scale(3, 3);
+	}
+}
+
+.c-bolt-deview-viewer__tilt--top-left {
+	top: 0;
+	left: 0;
+	
+	&:hover {
+		~ .c-bolt-device-viewer__overlay {
+			transform-origin: right bottom;
+			transform: rotateX(5deg) rotateY(-5deg) translateZ(0) translate3d(-30%, -30%, 0);
+		}
+	}
+}
+
+
+.c-bolt-deview-viewer__tilt--top-center {
+	top: 0;
+	left: 33.33%;
+
+	&:hover {
+		~ .c-bolt-device-viewer__overlay {
+			transform-origin: center bottom;
+			transform: rotateX(5deg) rotateY(0deg) translateZ(0) translate3d(0, -30%, 0);
+			// transform: rotateX(-5deg) rotateY(0deg) translateZ(0);
+		}
+	}
+}
+
+.c-bolt-deview-viewer__tilt--top-right {
+	top: 0;
+	left: 66.66%;
+
+	&:hover {
+		~ .c-bolt-device-viewer__overlay {
+			transform-origin: left bottom;
+			transform: rotateX(5deg) rotateY(5deg) translateZ(0) translate3d(30%, -30%, 0);
+		}
+	}
+}
+
+.c-bolt-deview-viewer__tilt--middle-left {
+	top: 33.33%;
+	left: 0;
+
+	&:hover {
+		~ .c-bolt-device-viewer__overlay {
+			transform-origin: right center;
+			transform: rotateX(0deg) rotateY(-5deg) translateZ(0) translate3d(-30%, 0, 0);
+			// transform: rotateX(-5deg) rotateY(0deg) translateZ(0);
+		}
+	}
+}
+
+.c-bolt-deview-viewer__tilt--middle-center {
+	top: 33.33%;
+	left: 33.33%;
+
+	&:hover {
+		~ .c-bolt-device-viewer__overlay {
+			transform-origin: center center;
+			transform: rotateX(0deg) rotateY(0deg) translateZ(0) translate3d(0, 0, 0);
+			// transform: rotateX(-5deg) rotateY(0deg) translateZ(0);
+		}
+	}
+}
+
+.c-bolt-deview-viewer__tilt--middle-right {
+	top: 33.33%;
+	left: 66.66%;
+
+	&:hover {
+		~ .c-bolt-device-viewer__overlay {
+			transform-origin: left center;
+			transform: rotateX(0deg) rotateY(5deg) translateZ(0) translate3d(30%, 0, 0);
+			// transform: rotateX(-5deg) rotateY(0deg) translateZ(0);
+		}
+	}
+}
+
+.c-bolt-deview-viewer__tilt--bottom-left {
+	top: 66.66%;
+	left: 0;
+
+	&:hover {
+		~ .c-bolt-device-viewer__overlay {
+			transform-origin: right top;
+			transform: rotateX(-5deg) rotateY(-5deg) translateZ(0) translate3d(-30%, 30%, 0);
+			// transform: rotateX(-5deg) rotateY(0deg) translateZ(0);
+		}
+	}
+}
+
+.c-bolt-deview-viewer__tilt--bottom-center {
+	top: 66.66%;
+	left: 33.33%;
+
+	&:hover {
+		~ .c-bolt-device-viewer__overlay {
+			transform-origin: center top;
+			transform: rotateX(-5deg) rotateY(0deg) translateZ(0) translate3d(0, 30%, 0);
+			// transform: rotateX(-5deg) rotateY(0deg) translateZ(0);
+		}
+	}
+}
+
+.c-bolt-deview-viewer__tilt--bottom-right {
+	top: 66.66%;
+	left: 66.66%;
+
+	&:hover {
+		~ .c-bolt-device-viewer__overlay {
+			transform-origin: left top;
+			transform: rotateX(-5deg) rotateY(5deg) translateZ(0) translate3d(30%, 30%, 0);
+			// transform: rotateX(-5deg) rotateY(0deg) translateZ(0);
+		}
+	}
+}
+
+
+
+
+
+bolt-device-viewer .c-bolt-device-viewer__screen {
+	cursor: none;
+}
+
+
+.c-bolt-device-viewer__screen:hover > .c-bolt-device-viewer__overlay {
+	opacity: 0;
+}
+
+
+
+
+.drift-zoom-pane {
+  background: rgba(0, 0, 0, 0.5);
+  /* This is required because of a bug that causes border-radius to not
+  work with child elements in certain cases. */
+	transform: translate3d(0, 0, 0);
+	will-change: top, left;
+	// transform: translate3d( calc(-20px), calc(-100vh - 160px), 0);
+	// transform:;
+	top: 50%;
+	left: 50%;
+
+	// Needed to 
+	img {
+		object-fit: cover;
+		object-position: top center;
+	}
+}
+
+.drift-zoom-pane.drift-opening {
+	animation: drift-fadeZoomIn 180ms ease-out;
+	animation-fill-mode: forwards;
+}
+
+.drift-zoom-pane.drift-closing {
+	animation: drift-fadeZoomOut 210ms ease-in;
+	animation-fill-mode: forwards;
+}
+
+.drift-zoom-pane {
+	overflow: hidden;
+  position: absolute;
+  width: $magnifier-size;
+  height: $magnifier-size;
+  border-radius: 50%;
+	// box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+	border: 5px solid bolt-color(white);
+	box-shadow: 0 2px 5px 10px rgba(bolt-color(black),0.05), 0 20px 40px 0 rgba(bolt-color(black),0.70);
+	z-index: 1000;
+	// cursor: -moz-zoom-in; 
+	// cursor: -webkit-zoom-in; 
+	// cursor: zoom-in;
+	// transform:;
+
+	// transform: translate3d(-50%, -50%, 0);
+	top: 50%;
+	left: 50%;
+
+	// :defined & {
+	// 	opacity: 0;
+	// }
+}
+
+// .drift-loading .drift-zoom-pane-loader {
+//   display: block;
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   // transform: translate3d(-50%, -50%, 0);
+//   width: 66px;
+//   height: 20px;
+//   animation: drift-loader-rotate 1800ms infinite linear;
+// }
+
+// .drift-zoom-pane-loader:before, .drift-zoom-pane-loader:after {
+//   content: "";
+//   display: block;
+//   width: 20px;
+//   height: 20px;
+//   position: absolute;
+//   top: 50%;
+//   margin-top: -10px;
+//   border-radius: 20px;
+//   background: rgba(255, 255, 255, 0.9);
+// }
+
+// .drift-zoom-pane-loader:before {
+//   left: 0;
+//   animation: drift-loader-before 1800ms infinite linear;
+// }
+
+// .drift-zoom-pane-loader:after {
+//   right: 0;
+//   animation: drift-loader-after 1800ms infinite linear;
+//   animation-delay: -900ms;
+// }
+
+// .drift-bounding-box {
+//   background-color: rgba(0, 0, 0, 0.4);
+// }
