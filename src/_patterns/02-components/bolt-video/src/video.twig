@@ -1,0 +1,37 @@
+{% set prefix = "c-bolt-" %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+
+{% set componentName = "video" %}
+{% set baseClass = prefix ~ componentName %}
+
+{% set collapsed = collapsed | default(true) %}
+
+
+{% set classes = [
+  baseClass,
+  collapsed is not null and collapsed == false ? "is-expanded" : "is-collapsed"
+] %}
+
+
+<bolt-{{ componentName }} bolt-component>
+  <div {{ attributes.addClass(classes) }}>
+    <div class="c-bolt-video__video-wrapper">
+      <video class="c-bolt-video__video-element" width="100%" controls>
+        <source src="https://stripe-images.s3.amazonaws.com/videos/stripe-radar-teespring.mp4" type="video/mp4">
+        <source src="https://stripe-images.s3.amazonaws.com/videos/stripe-radar-teespring.ogv" type="video/ogv">
+      </video>
+
+      <div class="c-bolt-video__button">
+        {% include "@bolt/button.twig" with {
+          icon: {
+            name: "play",
+            size: "xlarge",
+            background: "circle"
+          },
+        } only %}
+      </div>
+    </div>
+  </div>
+</bolt-{{ componentName }}>
