@@ -1,15 +1,19 @@
-{% set tags = ["div", "article", "section", "heading", "footer", "nav", "figure"] %} {# Available overall container tags #}
-{% set contentTags = ["div", "article", "section", "heading", "footer", "nav", "figcaption"] %} {# Available content container tags #}
-{% set fullBleed = [true, false] %}
-{% set themes = ["xlight", "light", "dark", "xdark"] %}
 {% set prefix = "c-bolt-" %}
-
-{# Allowed Band Sizes #}
+{% set tags = ["div", "article", "section", "header", "footer", "nav", "figure"] %} {# Available overall container tags #}
+{% set contentTags = ["div", "article", "section", "header", "footer", "nav", "figcaption"] %} {# Available content container tags #}
+{% set fullBleed = [true, false] %}
 {% set sizes = [
   "xsmall",
   "small",
   "medium",
   "large"
+] %}
+{% set themes = [
+  "xlight",
+  "light",
+  "medium",
+  "dark",
+  "xdark"
 ] %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
@@ -17,11 +21,11 @@
 {# Defaults for a vanilla `Band` component #}
 {% set componentName = "band" %}
 {% set baseClass = prefix ~ componentName %}
-{% set size = size | default("medium") %}
-{% set fullBleed = fullBleed | default(false) %}
-{% set theme = theme | default("dark") %}
 {% set tag = tag in tags ? tag: "div" %}
 {% set contentTag = contentTag in contentTags ? contentTag: "div" %}
+{% set fullBleed = fullBleed | default(false) %}
+{% set size = size | default("medium") %}
+{% set theme = theme | default("dark") %}
 
 {% set classes = [
   baseClass,
@@ -30,7 +34,7 @@
   theme in themes ? "t-bolt-" ~ theme : ""
 ] %}
 
-<bolt-band
+<bolt-{{ componentName }}
   size="{{ size }}"
   theme="{{ theme }}"
   bolt-component>
@@ -53,4 +57,4 @@
       content: renderedBandContent
     } only %}
   </{{ tag }}>
-</bolt-band>
+</bolt-{{ componentName }}>
