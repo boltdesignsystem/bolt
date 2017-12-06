@@ -1,5 +1,5 @@
 ---
-title: Navbar
+title: (Deprecated) Navbar
 ---
 
-Example Bolt Navbar docs!
+Navbar is deprecated. See Nav-bar.

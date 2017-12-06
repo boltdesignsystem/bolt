@@ -2,40 +2,40 @@
 @import '@bolt/tools-all';
 
 /* ------------------------------------ *\
-   Navbar
+   Nav-bar
 \* ------------------------------------ */
 
 
-// Navbar styles
-bolt-navbar {
+// Nav-bar styles
+bolt-nav-bar {
   display: block;
 }
 
-.c-bolt-navbar {
+.c-bolt-nav-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
 }
 
-.c-bolt-navbar__title {
+.c-bolt-nav-bar__title {
   @include bolt-margin(0 small 0 0);
 
   white-space: nowrap;
 }
 
-.c-bolt-navbar__title-item {
+.c-bolt-nav-bar__title-item {
   display: inline-block;
   display: inline-flex;
   vertical-align: middle;
   align-items: center;
 
-  & + .c-bolt-navbar__title-item {
+  & + .c-bolt-nav-bar__title-item {
     @include bolt-margin-left(xsmall);
   }
 }
 
-.c-bolt-navbar__nav {
+.c-bolt-nav-bar__nav {
   @include bolt-margin(0 0 0 small);
 
   // TODO: [Mai] The following is a hack to hide the nav on small screens, there should be a better option to hide and show in the future from the design team.
@@ -46,27 +46,27 @@ bolt-navbar {
   }
 }
 
-.c-bolt-navbar__title {
+.c-bolt-nav-bar__title {
   &:only-child {
     @include bolt-margin(0 auto 0 0);
   }
 }
 
-.c-bolt-navbar__nav {
+.c-bolt-nav-bar__nav {
   &:only-child {
     @include bolt-margin(0 auto);
   }
 }
 
-.c-bolt-navbar--align-items-start {
+.c-bolt-nav-bar--align-items-start {
   justify-content: flex-start;
 }
 
-.c-bolt-navbar--align-items-center {
+.c-bolt-nav-bar--align-items-center {
   justify-content: center;
 }
 
-.c-bolt-navbar--align-items-end {
+.c-bolt-nav-bar--align-items-end {
   justify-content: flex-end;
 }
 
@@ -74,20 +74,15 @@ bolt-navbar {
 
 
 /* ------------------------------------ *\
-   Navlist
+   Nav-list
 \* ------------------------------------ */
 
-$bolt-navlist-link-border-size: 2px;
-$bolt-navlist-link-border-transition-ease: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-$bolt-navlist-link-border-transition-timing: $bolt-transition-timing*2;
-
-$bolt-navlist-link-bg-color: rgba(bolt-color(gray), 0.2);
-$bolt-navlist-link-bg-border-radius: $bolt-border-radius;
-$bolt-navlist-link-bg-transition-timing: $bolt-transition-timing*4;
-$bolt-navlist-link-bg-transition: $bolt-transition;
+$bolt-nav-list-link-border-size: 2px;
+$bolt-nav-list-link-border-transition-ease: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+$bolt-nav-list-link-border-transition-timing: $bolt-transition-timing*2;
 
 
-// Navlist Component
+// Nav-list Component
 bolt-nav-list {
   display: block;
 }
@@ -126,7 +121,7 @@ bolt-nav-list {
 }
 
 // TODO: [Mai] This is the setup for enhanced mobile view instead of hiding the items.
-// .c-bolt-navlist__toggle {
+// .c-bolt-nav-list__toggle {
 //   display: block;
 //   position: relative;
 //   width: 2rem;
@@ -160,13 +155,13 @@ bolt-nav-list {
   position: absolute;
   left: 0;
   width: 0;
-  height: $bolt-navlist-link-border-size;
+  height: $bolt-nav-list-link-border-size;
   background-color: currentColor;
   background-color: var(--bolt-theme-heading, currentColor);
   transition:
     all
-    $bolt-navlist-link-border-transition-timing
-    $bolt-navlist-link-border-transition-ease;
+    $bolt-nav-list-link-border-transition-timing
+    $bolt-nav-list-link-border-transition-ease;
   will-change: width, transform;
 
   .c-bolt-nav-list--xsmall & {
@@ -178,21 +173,21 @@ bolt-nav-list {
   }
 
   // TODO: [Mai] Vertical spacing options for future use.
-  // .c-bolt-navlist--medium &
+  // .c-bolt-nav-list--medium &
   //   bottom: (bolt-v-spacing(medium) * -1);
   // }
   //
-  // .c-bolt-navlist--large &
+  // .c-bolt-nav-list--large &
   //   bottom: (bolt-v-spacing(large) * -1);
   // }
   //
-  // .c-bolt-navlist--xlarge &
+  // .c-bolt-nav-list--xlarge &
   //   bottom: (bolt-v-spacing(xlarge) * -1);
   // }
 }
 
 // TODO: [Mai] This is the setup for enhanced mobile view instead of hiding the items.
-// .c-bolt-navlist__item {
+// .c-bolt-nav-list__item {
 //   display: none;
 //   width: 100%;
 //
@@ -201,12 +196,30 @@ bolt-nav-list {
 //     width: auto;
 //   }
 //
-//   .c-bolt-navlist.is-active & {
+//   .c-bolt-nav-list.is-active & {
 //     display: block;
 //   }
 // }
 
-.c-bolt-nav-list__item-link {
+
+
+
+/* ------------------------------------ *\
+   Nav-link
+\* ------------------------------------ */
+
+$bolt-nav-link-bg-color: rgba(bolt-color(gray), 0.2);
+$bolt-nav-link-bg-border-radius: $bolt-border-radius;
+$bolt-nav-link-bg-transition-timing: $bolt-transition-timing*4;
+$bolt-nav-link-text-transition: $bolt-transition;
+
+
+// Nav-link Component
+bolt-nav-link {
+  display: block;
+}
+
+.c-bolt-nav-link {
   @include bolt-padding(small, squished);
   @include bolt-font-size(small);
   @include bolt-font-weight(semibold);
@@ -215,7 +228,7 @@ bolt-nav-list {
   position: relative;
   white-space: nowrap;
   opacity: 0.8;
-  transition: opacity $bolt-transition;
+  transition: opacity $bolt-nav-link-text-transition;
 
   &:hover, &:active,
   &.is-hover, &.is-active {
@@ -230,8 +243,8 @@ bolt-nav-list {
     width: 100%;
     height: 100%;
     content: '';
-    border-radius: $bolt-navlist-link-bg-border-radius;
-    background-color: $bolt-navlist-link-bg-color;
+    border-radius: $bolt-nav-link-bg-border-radius;
+    background-color: $bolt-nav-link-bg-color;
     transform: scale3d(0, 0, 0);
   }
 
@@ -239,8 +252,8 @@ bolt-nav-list {
   &.is-hover {
     &:before {
       animation:
-        a-bolt-navbar-link-bg-hover
-        $bolt-navlist-link-bg-transition-timing
+        a-bolt-nav-link-bg-hover
+        $bolt-nav-link-bg-transition-timing
         both;
     }
   }
@@ -254,7 +267,7 @@ bolt-nav-list {
 }
 
 
-@keyframes a-bolt-navbar-link-bg-hover {
+@keyframes a-bolt-nav-link-bg-hover {
   0% {
     transform: scale3d(0, 0, 0);
   }

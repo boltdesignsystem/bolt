@@ -25,7 +25,7 @@ class BoltNavList extends withComponent(withPreact()) {
   }
 
   /**
-   * Automatically tell nested `<bolt-nav-link>` elems to de-select, optionally skip over the 
+   * Automatically tell nested `<bolt-nav-link>` elems to de-select, optionally skip over the
    * one being activated.
    */
   resetLinks(activeLink = null) {
@@ -99,7 +99,7 @@ class BoltNavList extends withComponent(withPreact()) {
     window.addEventListener('optimizedResize', this._onWindowResize);
   }
 
-  // Clean up event listeners when being removed from the page 
+  // Clean up event listeners when being removed from the page
   disconnectedCallback() {
     this.removeEventListener('activateLink', this._onActivateLink);
     window.removeEventListener('optimizedResize', this._onWindowResize);
@@ -119,10 +119,10 @@ class BoltNavLink extends withComponent(withPreact()) {
 
   constructor() {
     super();
-    
+
     this._shadowLink = this.querySelector('a');
   }
-  
+
   // Returns whether or not the current `<bolt-nav-link>` element has been active.
   get active() {
     return this.hasAttribute('active');
@@ -130,11 +130,11 @@ class BoltNavLink extends withComponent(withPreact()) {
 
   // Sets the `active` state for the current custom element
   set active(value) {
-    /* Properties can be set to all kinds of string values. This 
-     * makes sure it’s converted to a proper boolean value using 
+    /* Properties can be set to all kinds of string values. This
+     * makes sure it’s converted to a proper boolean value using
      * JavaScript’s truthiness & falsiness principles.
      */
-    
+
     value = Boolean(value);
     if (value) {
       this.setAttribute('active', '');
@@ -179,7 +179,7 @@ class BoltNavLink extends withComponent(withPreact()) {
 
     // Set an initially active link if appropriate.
     const isAlreadyActive = this._shadowLink.classList.contains(isActiveClass) || this._shadowLink.getAttribute('href') === window.location.hash;
-    
+
     if (isAlreadyActive) {
       this.activateLink();
     }

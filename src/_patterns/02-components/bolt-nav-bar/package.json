@@ -1,6 +1,6 @@
 {
-  "name": "@bolt/components-card",
-  "description": "Card Component in Bolt",
+  "name": "@bolt/components-nav-bar",
+  "description": "Nav-bar Component in Bolt",
   "type": "pattern",
   "patternType": "molecules",
   "keywords": [
@@ -10,7 +10,7 @@
     "design system",
     "components"
   ],
-  "version": "0.5.4",
+  "version": "0.0.0",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -32,13 +32,20 @@
   "bugs": {
     "url": "https://github.com/bolt-design-system/bolt/issues"
   },
+  "main": "dist/bolt-nav-bar.min.js",
+  "style": "src/nav-bar.scss",
+  "twig": "src/nav-bar.twig",
   "publishConfig": {
     "access": "public"
   },
+  "devDependencies": {
+    "@bolt/build-webpack": "^0.3.1"
+  },
   "dependencies": {
     "@bolt/core": "^0.3.0",
-    "@bolt/settings-spacing": "^0.7.0",
-    "@bolt/tools-all": "^0.5.4",
+    "@bolt/settings-all": "^0.7.2",
+    "@bolt/tools-all": "^0.5.2",
+    "@skatejs/renderer-preact": "^0.1.0",
     "@webcomponents/custom-elements": "^1.0.4",
     "@webcomponents/shadycss": "^1.0.6",
     "@webcomponents/shadydom": "bolt-design-system/shadydom#hotfix/fix-text-undefined-IE11",
@@ -47,18 +54,13 @@
     "@webcomponents/webcomponentsjs": "^1.0.14",
     "core-js": "^2.5.1",
     "npm-run-all": "^4.0.2",
+    "preact": "^8.2.6",
     "skatejs": "^5.0.0-beta.3"
   },
-  "devDependencies": {
-    "@bolt/build-webpack": "^0.3.1"
-  },
-  "main": "dist/bolt-card.min.js",
-  "style": "src/card.scss",
-  "twig": "src/card.twig",
   "scripts": {
     "prepublishOnly": "npm run build",
     "build": "npm-run-all --parallel build:*",
-    "build:bolt": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/card --output-filename='bolt-card.min.js' --output-public-path /scripts/",
-    "build:wwwd8": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/card --output-filename='bolt-card.wwwd8.min.js' --output-public-path /themes/custom/pegawww_theme/node_modules/@bolt/components-card/dist/"
+    "build:bolt": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/nav-bar --output-filename='bolt-nav-bar.min.js' --output-public-path /scripts/",
+    "build:wwwd8": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/nav-bar --output-filename='bolt-nav-bar.wwwd8.min.js' --output-public-path /themes/custom/pegawww_theme/node_modules/@bolt/components-nav-bar/dist/"
   }
 }

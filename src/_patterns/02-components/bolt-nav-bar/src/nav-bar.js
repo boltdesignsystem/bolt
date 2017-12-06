@@ -22,5 +22,5 @@ if (window.customElements !== undefined) {
 }
 
 function continueLoading() {
-  import(/* webpackMode: "eager" */ './navbar.standalone.js');
+  import(/* webpackMode: "eager" */ './nav-bar.standalone.js');
 }
