@@ -135,9 +135,10 @@ With patch + `learn bootstrap --hoist`: 24 seconds
 14. **Most publishing / downstream install issues stem from a handful of things**
 
 Virtually all npm install + Lerna publish issues pop up due to a small number of things (including a combo of several of these):
-	* Local packages referenced in  `@bolt/something-all` glob packages become out of sync
-	* Publishing using Lerna's --scope which ignores bumping internal dependency versions
-	* Publishing full on releases on non-master branches
-	* Lerna publish failing due to a Git tag version of something already existing
-	* Lerna publish failing due to a tag already existing on NPM
-	* Publishing a package with a suffix that isn't supported by semver (ex. `rc` instead of `alpha` or `beta`
+
+* Local packages referenced in  `@bolt/something-all` glob packages become out of sync
+* Publishing using Lerna's --scope which ignores bumping internal dependency versions
+* Publishing full on releases on non-master branches
+* Lerna publish failing due to a Git tag version of something already existing
+* Lerna publish failing due to a tag already existing on NPM
+* Publishing a package with a suffix that isn't supported by semver (ex. `rc` instead of `alpha` or `beta`
