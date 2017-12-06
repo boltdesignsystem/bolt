@@ -74,8 +74,8 @@ bolt-blockquote {
 
 .c-bolt-blockquote {
   @include bolt-margin(0);
-  color: currentColor;
-  color: var(--bolt-theme-blockquote-text, var(--bolt-theme-text, inherit));
+  // color: currentColor;
+  // color: var(--bolt-theme-blockquote-text, var(--bolt-theme-text, inherit));
 
   &:before, &:after {
     width: 100%;
@@ -109,8 +109,8 @@ bolt-blockquote {
   display: block;
   position: relative;
   max-width: 44rem;
-  color: currentColor;
-  color: var(--bolt-theme-heading, currentColor);
+  color: inherit;
+  color: var(--bolt-theme-heading, inherit);
 
   p:first-child:before, p:last-child:after {
     font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
@@ -139,6 +139,8 @@ bolt-blockquote {
 }
 
 .c-bolt-blockquote__footer {
+  color: inherit;
+  color: var(--bolt-theme-text, inherit);
   line-height: $bolt-blockquote-footer-line-height;
 }
 
