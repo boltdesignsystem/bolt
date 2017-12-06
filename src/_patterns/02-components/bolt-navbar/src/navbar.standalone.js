@@ -11,7 +11,7 @@ const isActiveClass = 'is-active';
 class BoltNavList extends withComponent(withPreact()) {
   constructor() {
     super();
-    this.containsActiveLink = false;
+    this.activeLink = false;
   }
 
   renderCallback() {
@@ -52,7 +52,7 @@ class BoltNavList extends withComponent(withPreact()) {
     this.resetLinks(event.target); //Reset nested children, skipping over active link
     this._animateIndicatorLine(event.target);
 
-    this.containsActiveLink = true;
+    this.activeLink = event.target;
   }
 
   // `_animateIndicatorLine` animates the line for the active link
@@ -63,7 +63,7 @@ class BoltNavList extends withComponent(withPreact()) {
     const linkOffsetLeft = link.offsetLeft;
     const linkOffsetCenter = linkOffsetLeft + linkWidth / 2;
 
-    if (!this.containsActiveLink) {
+    if (!this.activeLink) {
       // No link is currently active; the first link to become active is a special snowflake when it
       // comes to animation.
 
