@@ -88,11 +88,11 @@ $bolt-navlist-link-bg-transition: $bolt-transition;
 
 
 // Navlist Component
-bolt-navlist {
+bolt-nav-list {
   display: block;
 }
 
-.c-bolt-navlist {
+.c-bolt-nav-list {
   @include bolt-margin(0);
   @include bolt-padding(0);
 
@@ -156,7 +156,7 @@ bolt-navlist {
 //   }
 // }
 
-.c-bolt-navlist__indicator {
+.c-bolt-nav-list__indicator {
   position: absolute;
   left: 0;
   width: 0;
@@ -169,11 +169,11 @@ bolt-navlist {
     $bolt-navlist-link-border-transition-ease;
   will-change: width, transform;
 
-  .c-bolt-navlist--xsmall & {
+  .c-bolt-nav-list--xsmall & {
     bottom: (bolt-v-spacing(xsmall) * -1);
   }
 
-  .c-bolt-navlist--small & {
+  .c-bolt-nav-list--small & {
     bottom: (bolt-v-spacing(medium) * -1); // TODO: [Mai] When the band spacing options are fixed, small should map to small, not medium here.
   }
 
@@ -206,7 +206,7 @@ bolt-navlist {
 //   }
 // }
 
-.c-bolt-navlist__item-link {
+.c-bolt-nav-list__item-link {
   @include bolt-padding(small, squished);
   @include bolt-font-size(small);
   @include bolt-font-weight(semibold);
