@@ -9,7 +9,7 @@ Or do I merge to master then publish separately?
 
 But wait, I thought we shouldn’t be doing updates directly on master… but publishing on branch that isn’t master also doesn’t feel right… @_@
 
-3. **Solution: Kill Off Develop, Branch off Master (I know, crazy right?)**
+2. **Solution: Kill Off Develop, Branch off Master (I know, crazy right?)**
 With the develop branch gone, just branch everything off of master and it’s pretty much just business as usual.
 
 Generally speaking, the workflow should be something around the lines of: 
@@ -29,18 +29,18 @@ Name your branch based on the nature of the work being done. Some examples inclu
 	* `chore/remove-www-folder` —> repo cleanup & maintainance
 	* `experimental/replace-gulp-sass-task-with-webpack`  —> experimental. Tinkering so don’t remove but also don’t merge till ready for prime time.
 	
-3. **Rebase > Merge (Generally)**
+4. **Rebase > Merge (Generally)**
 Pull in and rebase master *instead* of merging in master (taking a page from [Material Components Web contribution guidelines](https://github.com/material-components/material-components-web/blob/master/CONTRIBUTING.md#submitting-pull-requests))
 
 5. **Delete yo branch** 
 After getting your updates merged in, practice good code hygiene  by removing branches no longer needed!
 
-8. **There is such a thing as ~too much~ versioning**
+6. **There is such a thing as ~too much~ versioning**
 Significantly consolidate packages based on the overarching purpose. 
 
 For example, instead of having 3 separate packages for managing and organizing your ITCSS color settings, color tools, and color utils, combine all three of these things into a single versioned package while continue to keep things separated out in separate partials.
 
-10. **~Reduce~ Inner Monorepo Dependencies**
+7. **~Reduce~ Inner Monorepo Dependencies**
 Reduce internal Bolt to Bolt dependencies as much as possible!
 
 ![image](https://user-images.githubusercontent.com/1617209/33673997-522d6aa8-da7c-11e7-963e-5ab52fdf21e4.png)
@@ -59,7 +59,7 @@ By default, running `learn publish --canary` not only adds an alpha prefix to ev
 ![image](https://user-images.githubusercontent.com/1617209/33674018-6289daee-da7c-11e7-8051-5194a4e189d8.png)
 But what if I’m just trying to share a hotfix to my button component… :-(
 
-9. **Encapsulation > Minor Duplication** 
+10. **Encapsulation > Minor Duplication** 
 When possible, opt for baking in certain kinds of ITCSS generic layer resets into your component itself. 
 
 For example, including a possibly-redundant `text-decoration: none` CSS rule in a Button components Sass file would help make the Component more portable (and not necessarily require an external ITCSS generic layer to be included). 
@@ -99,7 +99,7 @@ When possible, we should aim to have Component dependencies on internal `@bolt/s
 </bolt-button>
 ```
 
-13. **Pattern Lab + Versioning via Lerna = 💀… Or Is It?**
+12. **Pattern Lab + Versioning via Lerna = 💀… Or Is It?**
 First some bad news: Out of the box, Pattern Lab (generally**) can’t consume your patterns that are being versioned with Lerna (aka each bootstrapped pattern has a component-specific node_modules w/ installed dependencies). 
 
 **Yes, going through symlink hell can work (with a bit of pain) but if you just want to have your code live in a vanilla `_patterns` folder AND get versioned via Lerna, the best case is you’re going to see very, very long compile times, assuming Pattern Lab doesn’t completely break while trying to compile.
@@ -118,7 +118,7 @@ So… that’s it? Monorepos using Lerna + Pattern Lab are a non-starter?
 
 Thankfully, no. At least not anymore since working through this blocker ourselves.
 
-15. **Getting Pattern Lab and Lerna to Play Nicely Together:**
+13. **Getting Pattern Lab and Lerna to Play Nicely Together:**
 
 - **Solution Part 1:** Bootstrap Lerna using the hoist option: `learna bootstrap --hoist`
 
@@ -130,7 +130,7 @@ This still ends up taking way too long —147 seconds (~551% slower), however it
 With patch + `learn bootstrap --hoist`: 24 seconds 
 ![image](https://user-images.githubusercontent.com/1617209/33674078-8aab7a00-da7c-11e7-9b4a-d7e9442db7af.png)
 
-16. **Most publishing / downstream install issues stem from a handful of things**
+14. **Most publishing / downstream install issues stem from a handful of things**
 
 Virtually all npm install + Lerna publish issues pop up due to a small number of things (including a combo of several of these):
 	* Local packages referenced in  `@bolt/something-all` glob packages become out of sync
