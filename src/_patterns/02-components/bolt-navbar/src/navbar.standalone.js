@@ -12,6 +12,10 @@ class BoltNavList extends withComponent(withPreact()) {
   constructor() {
     super();
     this.activeLink = false;
+
+    // Ensure that 'this' inside the _onWindowResize event handler refers to <bolt-nav-link>
+    // even if the handler is attached to another element (window in this case)
+    this._onWindowResize = this._onWindowResize.bind(this);
   }
 
   renderCallback() {
@@ -55,6 +59,12 @@ class BoltNavList extends withComponent(withPreact()) {
     this.activeLink = event.target;
   }
 
+  _onWindowResize() {
+    if (this.activeLink) {
+      this._animateIndicatorLine(this.activeLink);
+    }
+  }
+
   // `_animateIndicatorLine` animates the line for the active link
   _animateIndicatorLine(link) {
 
@@ -86,11 +96,13 @@ class BoltNavList extends withComponent(withPreact()) {
   connectedCallback() {
     this._indicator = this.querySelector(indicatorElement);
     this.addEventListener('activateLink', this._onActivateLink);
+    window.addEventListener('optimizedResize', this._onWindowResize);
   }
 
   // Clean up event listeners when being removed from the page 
   disconnectedCallback() {
     this.removeEventListener('activateLink', this._onActivateLink);
+    window.removeEventListener('optimizedResize', this._onWindowResize);
   }
 }
 customElements.define('bolt-nav-list', BoltNavList);
@@ -178,3 +190,30 @@ class BoltNavLink extends withComponent(withPreact()) {
   }
 }
 customElements.define('bolt-nav-link', BoltNavLink);
+
+
+
+
+// Create a custom 'optimizedResize' event that works just like window.resize but is more performant because it
+// won't fire before a previous event is complete.
+// This was adapted from https://developer.mozilla.org/en-US/docs/Web/Events/resize
+(function() {
+  function throttle(type, name, obj) {
+    obj = obj || window;
+    let running = false;
+
+    function func() {
+      if (running) { return; }
+      running = true;
+      requestAnimationFrame(function() {
+        obj.dispatchEvent(new CustomEvent(name));
+        running = false;
+      });
+    }
+    obj.addEventListener(type, func);
+  }
+
+  // Initialize on window.resize event.  Note that throttle can also be initialized on any type of event,
+  // such as scroll.
+  throttle("resize", "optimizedResize");
+})();
