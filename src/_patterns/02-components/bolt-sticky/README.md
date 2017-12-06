@@ -36,7 +36,7 @@ You can also use the full [Bolt Core](https://www.npmjs.com/package/@bolt/core) 
 Installing Bolt’s Action Blocks component is as easy as running NPM install:
 
 ```
-npm install @bolt/sticky
+npm install @bolt/components-sticky
 ```
 
 > **TIP:**: Don’t have a `package.json` file? Need a little help getting started? Check out our [Getting Started](https://www.boltdesignsystem.com/getting-started) guide for some tips to help get you up to speed.
