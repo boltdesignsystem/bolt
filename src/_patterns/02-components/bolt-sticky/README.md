@@ -4,9 +4,13 @@ Sticky makes any component sticky to the top of the page. Part of the Bolt “Co
 ## Demo
 
 ```
-<div class="c-bolt-sticky">
-  ...
-</div>
+{% embed "@bolt/sticky.twig" %}
+  {% block sticky_content %}
+    <div style="background-color: white">
+      Sticky content goes here
+    </div>
+  {% endblock %}
+{% endembed %}
 ```
 
 - - - -
