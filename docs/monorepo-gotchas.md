@@ -13,17 +13,19 @@ But wait, I thought we shouldn’t be doing updates directly on master… but pu
 With the develop branch gone, just branch everything off of master and it’s pretty much just business as usual.
 
 Generally speaking, the workflow should be something around the lines of: 
-	- Branch your work off master
-	- Build some stuff
-	- Test, document, QA, build, etc.
-	- Pull in latest code from master via rebase (more on that later)
-	- PR back down to master, code review (with changes as needed), merge code down to master
-	- Verify master branch builds successfully
-	- Publish updated packages via `learna publish` 
-	- Delete the now-merged-in feature branch
+
+- Branch your work off master
+- Build some stuff
+- Test, document, QA, build, etc.
+- Pull in latest code from master via rebase (more on that later)
+- PR back down to master, code review (with changes as needed), merge code down to master
+- Verify master branch builds successfully
+- Publish updated packages via `learna publish` 
+- Delete the now-merged-in feature branch
 
 3. **Use reasonable branch names.**
 Name your branch based on the nature of the work being done. Some examples include:
+
 	* `feature/video-player` —> building out a new feature
 	* `hotfix/fix-btn-hover` —> quick fix to package already published
 	* `chore/remove-www-folder` —> repo cleanup & maintainance
