@@ -43,7 +43,7 @@ For example, instead of having 3 separate packages for managing and organizing y
 10. **~Reduce~ Inner Monorepo Dependencies**
 Reduce internal Bolt to Bolt dependencies as much as possible!
 
-[image:1EAA4BFF-FED6-4342-998B-A22D3CA25150-72492-0000DDC276C27997/4A3EDE89-2A20-4A7F-B3FF-E8C3507FB8B1.png]
+![image](https://user-images.githubusercontent.com/1617209/33673997-522d6aa8-da7c-11e7-963e-5ab52fdf21e4.png)
 Ughhhh.
 
 The more things needing to be symlinked, the more likely things are going to fall out of sync + more frequent things will need to be arbitrarily published
@@ -56,7 +56,7 @@ Publishing a nightly release of your in-progress feature branch is **OK** if (an
 
 By default, running `learn publish --canary` not only adds an alpha prefix to every single package in your repo, but it also (by default) automatically bumps the version to the next minor release — both of which might not be the case with the actual changes your new feature / update requires.
 
-[image:7EC76407-F690-4AD3-9981-A0F9769D55B2-72492-0000DCBAEFEC386F/329324ED-4FEE-4844-801D-054BBD5BC119.png]
+![image](https://user-images.githubusercontent.com/1617209/33674018-6289daee-da7c-11e7-8051-5194a4e189d8.png)
 But what if I’m just trying to share a hotfix to my button component… :-(
 
 9. **Encapsulation > Minor Duplication** 
@@ -107,13 +107,12 @@ First some bad news: Out of the box, Pattern Lab (generally**) can’t consume y
 ### Example Pattern Lab Compile Times
 
 1. Vanilla Pattern Lab w/o Lerna bootstrap: 27 seconds
-[image:A8ECB26A-893B-4418-8FC7-945940321DBC-72492-0000E2B1FFA4F831/DFC34515-69C0-4103-B2F3-A7A07375F36D.png]
+![image](https://user-images.githubusercontent.com/1617209/33674028-6b03f326-da7c-11e7-8c98-a4786e230cfe.png)
 
 2. Vanilla Pattern Lab + bootstrapping Lerna via the default  `learn bootstrap` command: 10+ minutes and ~still~ failed (2,222% slower) 😩
-
-[image:03632FA3-0EB1-42D1-9466-423BB4B3CADA-72492-0000E36FAE978F60/A8A532E7-218D-4494-A197-1BFC6E5126EF.png]
+![image](https://user-images.githubusercontent.com/1617209/33674047-769cc4ce-da7c-11e7-9657-31fd50211bee.png)
 …
-[image:7602FB2C-88F6-4241-B6A1-27E4518C1F70-72492-0000E3723948429C/2D92370E-3622-4DD1-A8BE-7108B325C396.png]
+![image](https://user-images.githubusercontent.com/1617209/33674058-7cd726ae-da7c-11e7-8bce-a8f50e940548.png)
 
 So… that’s it? Monorepos using Lerna + Pattern Lab are a non-starter?
 
@@ -124,13 +123,12 @@ Thankfully, no. At least not anymore since working through this blocker ourselve
 - **Solution Part 1:** Bootstrap Lerna using the hoist option: `learna bootstrap --hoist`
 
 This still ends up taking way too long —147 seconds (~551% slower), however it’s still better than the 10+ minutes it would have taken otherwise (plus, less chances Pattern Lab runs into an error due to a malformed nested file)
-[image:DCD33096-48A5-4D5D-8F14-5131FC61AB3B-72492-0000E3C86174BEBC/EF3A574D-7CB6-47BB-930E-3C0153661C18.png]
+![image](https://user-images.githubusercontent.com/1617209/33674066-82a60b9a-da7c-11e7-818c-5e8c5922f0c0.png)
 
 - **Solution Part 2:** Tell Pattern Lab to ignore nested node_modules thanks to a Patten Lab patch included in the Bolt Design System codebase: [bolt/ignoreCertainFolders.patch at master · bolt-design-system/bolt · GitHub](https://github.com/bolt-design-system/bolt/blob/master/.patches/ignoreCertainFolders.patch)
 
 With patch + `learn bootstrap --hoist`: 24 seconds 
-[image:978D2040-773F-4141-AB90-0A474D966968-72492-0000E438F8C94BEE/38C7E4B3-2646-4011-925E-1E9E1D63D76A.png]
-
+![image](https://user-images.githubusercontent.com/1617209/33674078-8aab7a00-da7c-11e7-9b4a-d7e9442db7af.png)
 
 16. **Most publishing / downstream install issues stem from a handful of things**
 
