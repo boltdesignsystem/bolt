@@ -12,9 +12,13 @@ describe('Sass Basics', function () {
   let output = '';
   before(() => {
     try {
-      output = execSync('gulp compile --prod', {
+      output = execSync('gulp compile', {
         cwd: join(__dirname, 'basics'),
         encoding: 'utf8',
+        // Merging the current Env Vars with ours
+        env: Object.assign({}, process.env, {
+          NODE_ENV: 'production',
+        }),
       });
       // console.log(output);
     } catch (e) {
