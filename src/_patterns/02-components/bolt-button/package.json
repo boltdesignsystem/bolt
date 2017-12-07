@@ -3,8 +3,7 @@
   "patternName": "button",
   "patternType": "components",
   "patternSubType": "buttons",
-  "style": "src/_button.scss",
-  "main": "src/button.js",
+  "style": "src/button.scss",
   "templates": {
     "button": {
       "filename": "button.twig",
@@ -20,7 +19,7 @@
     "ui toolkit",
     "design system"
   ],
-  "version": "0.6.1",
+  "version": "0.6.3",
   "author": "Salem Ghoweri",
   "homepage": "https://boltdesignsystem.com",
   "license": "MIT",
@@ -33,5 +32,16 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@bolt/build-webpack": "^0.4.1"
+  },
+  "dependencies": {
+    "@bolt/settings-all": "^0.7.4",
+    "@bolt/tools-all": "^0.5.4"
+  },
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "build": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry bolt-button=./src/button"
   }
 }

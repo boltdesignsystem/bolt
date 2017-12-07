@@ -239,6 +239,21 @@ const defaultConfig = {
     maxEntrypointSize: 1500000
   },
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      // name: "app",
+      // or
+      // names: ["app", "subPageA"],
+      // the name or list of names must match the name or names
+      // of the entry points that create the async chunks
+      children: true,
+      // (use all children of the chunk)
+
+      async: true,
+      // (create an async commons chunk)
+
+      minChunks: 2,
+      // (3 children must share the module before it's separated)
+    }),
     new webpack.IgnorePlugin(/vertx/), // needed to ignore vertx dependency in webcomponentsjs-lite
     new ExtractTextPlugin({
       filename: '[name].css?[hash]-[chunkhash]-[contenthash]-[name]',

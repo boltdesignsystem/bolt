@@ -1,0 +1,559 @@
+/* ------------------------------------ *\
+   Buttons
+\* ------------------------------------ */
+$bolt-export-data: false !global;
+
+@import '@bolt/settings-all';
+@import '@bolt/tools-all';
+
+
+$bolt-color-button-text: bolt-color(white);
+$bolt-color-primary: bolt-color(yellow);
+$bolt-color-secondary: bolt-color(indigo, light);
+
+
+
+$bolt-button-shadow: $bolt-shadow--small;
+$bolt-button-shadow--hover: $bolt-shadow--large;
+$bolt-button-border-width: $bolt-border-width;
+$bolt-button-border-style: $bolt-border-style;
+$bolt-button-border-radius: $bolt-border-radius;
+$bolt-button-transition: $bolt-transition;
+$bolt-button-translate--hover: translate3d(0, -1px, 0);
+$bolt-button-translate--active: translate3d(0, 1px, 0);
+
+
+
+
+// Reset browser defaults for button and input
+@mixin bolt-reset-button-styles {
+  @include bolt-padding(0);
+  @include bolt-font-family(body);
+
+  border: none;
+  background: none;
+}
+
+// Placeholder for colors.
+@mixin bolt-link-color {
+  &:link,
+  &:visited {
+    color: $bolt-color-secondary;
+  }
+  // &:visited {
+  //   color: var(--bolt-color-secondary--visited, $bolt-color-secondary);
+  // }
+
+  &:hover {
+    color: mix(white, $bolt-color-secondary, 35%);
+    // color: var(--bolt-color-secondary, mix(white, $bolt-color-secondary, 35%));
+  }
+
+  &:active {
+    color: mix(white, $bolt-color-secondary, 15%);
+    // color: var(--bolt-color-secondary, $bolt-color-secondary);
+  }
+}
+
+@mixin bolt-button-color($hiarchy) {
+  @if $hiarchy == 'primary' {
+    
+  } @elseif $hiarchy == 'secondary' {
+    
+  }
+
+  @elseif $hiarchy == 'text' {
+    &,
+    &:visited {
+      color: var(--bolt-color-secondary, $bolt-color-secondary);
+      border-color: transparent;
+      background-color: transparent;
+    }
+
+    &:hover {
+      border-color: transparent;
+      background-color: transparent;
+    }
+
+    &:active {
+      border-color: transparent;
+      background-color: transparent;
+    }
+  }
+
+  @elseif $hiarchy == 'success' {
+    &,
+    &:visited {
+      color: bolt-color(white);
+      border-color: bolt-color(success);
+      background-color: bolt-color(success);
+    }
+
+    &:hover {
+      border-color: bolt-color(success, dark);
+      background-color: bolt-color(success, dark);
+    }
+
+    &:active {
+      border-color: bolt-color(success, dark);
+      background-color: bolt-color(success, dark);
+    }
+  }
+  @elseif $hiarchy == 'warning' {
+    &,
+    &:visited {
+      color: bolt-color(black);
+      border-color: bolt-color(warning);
+      background-color: bolt-color(warning);
+    }
+
+    &:hover {
+      border-color: bolt-color(warning, dark);
+      background-color: bolt-color(warning, dark);
+    }
+
+    &:active {
+      border-color: bolt-color(warning, dark);
+      background-color: bolt-color(warning, dark);
+    }
+  }
+
+  @elseif $hiarchy == 'error' {
+    &,
+    &:visited {
+      color: bolt-color(white);
+      border-color: bolt-color(error);
+      background-color: bolt-color(error);
+    }
+
+    &:hover {
+      border-color: bolt-color(error, dark);
+      background-color: bolt-color(error, dark);
+    }
+
+    &:active {
+      border-color: bolt-color(error, dark);
+      background-color: bolt-color(error, dark);
+    }
+  }
+
+  @elseif $hiarchy == 'disabled' {
+    &,
+    &:visited {
+      color: bolt-color(gray);
+      border-color: bolt-color(gray, light);
+      background-color: bolt-color(gray, light);
+    }
+
+    &:hover {
+      border-color: bolt-color(gray, light);
+      background-color: bolt-color(gray, light);
+    }
+
+    &:active {
+      border-color: bolt-color(gray, light);
+      background-color: bolt-color(gray, light);
+    }
+  }
+}
+
+@mixin bolt-button {
+  @include bolt-reset-button-styles;
+  @include bolt-no-select;
+  @include bolt-font-weight(semibold);
+
+  display: inline-block;
+  @supports (display: flex) {
+    display: inline-flex;
+  }
+
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+  vertical-align: middle;
+  border-style: $bolt-button-border-style;
+  border-width: $bolt-button-border-width;
+  border-radius: $bolt-button-border-radius;
+  // box-shadow: 0 1px 0.15rem rgba(21,22,25,0.2);
+  box-shadow: 0  1px  3px rgba(bolt-color(black), 0.12), 0 1px  2px  rgba(bolt-color(black), 0.24);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transform: translate3d(0, 0, 0);
+
+  &:before {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    pointer-events: none;
+    border-radius: $bolt-button-border-radius;
+    box-shadow: 0 1px 0.15rem rgba($bolt-shadow-color, 0.1), $bolt-button-shadow--hover;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    opacity: .2;
+  }
+
+  &:not([disabled]):not(.c-bolt-button--text) {
+    &:hover {
+      transform: $bolt-button-translate--hover;
+    }
+
+    &:hover:before {
+      opacity: 1;
+    }
+
+
+    &:active {
+      transform: $bolt-button-translate--active;
+    }
+
+    &:active:before {
+      opacity: 0;
+    }
+  }
+}
+
+
+bolt-button {
+  display: inline-block; // Fallback
+  display: inline-flex; // So equal height works
+  flex-grow: 1;
+}
+
+// Button colors
+.c-bolt-button {
+  @include bolt-button;
+}
+
+.c-bolt-button--primary {
+  $primary-background-default: $bolt-color-primary;
+  $primary-background-hover: mix($bolt-global-button-hover-color, $primary-background-default, $bolt-global-button-hover-mix);
+  $primary-background-active: mix($bolt-global-button-active-color, $primary-background-default, $bolt-global-button-active-mix);
+
+  &,
+  &:visited {
+    border-color: $primary-background-default;
+    border-color: var(--bolt-theme-primary-border-default, $primary-background-default);
+
+    color: bolt-text-contrast($primary-background-default);
+    color: var(--bolt-theme-primary-text-default, bolt-text-contrast($primary-background-default));
+
+    background-color: $primary-background-default;
+    background-color: var(--bolt-theme-primary-background-default, $primary-background-default);
+  }
+
+  &:focus,
+  &:hover {
+    border-color: $primary-background-hover;
+    border-color: var(--bolt-theme-primary-border-hover, $primary-background-hover);
+
+    color: bolt-text-contrast($primary-background-default);
+    color: var(--bolt-theme-primary-text-default, bolt-text-contrast($primary-background-default));
+
+    background-color: $primary-background-hover;
+    background-color: var(--bolt-theme-primary-background-hover, $primary-background-hover);
+  }
+
+  &:active {
+    border-color: $primary-background-active;
+    border-color: var(--bolt-theme-primary-border-active, $primary-background-active);
+
+    color: bolt-text-contrast($primary-background-default);
+    color: var(--bolt-theme-primary-text-default, bolt-text-contrast($primary-background-default));
+
+    background-color: $primary-background-active;
+    background-color: var(--bolt-theme-primary-background-active, $primary-background-active);
+  }
+}
+
+.c-bolt-button--secondary {
+  $secondary-background-default: bolt-color(white);
+  $secondary-background-hover: mix(bolt-color(black), $secondary-background-default, 2%);
+  $secondary-background-active: mix(bolt-color(black), $secondary-background-default, 15%);
+
+  &,
+  &:visited {
+    border-color: $secondary-background-default;
+    border-color: var(--bolt-theme-secondary-border-default, $secondary-background-default);
+
+    color: bolt-text-contrast($secondary-background-default);
+    color: var(--bolt-theme-secondary-text-default, bolt-text-contrast($secondary-background-default));
+
+    background-color: $secondary-background-default;
+    background-color: var(--bolt-theme-secondary-background-default, $secondary-background-default);
+  }
+
+  &:focus,
+  &:hover {
+    border-color: $secondary-background-hover;
+    border-color: var(--bolt-theme-secondary-border-hover, $secondary-background-hover);
+
+    color: bolt-text-contrast($secondary-background-default);
+    color: var(--bolt-theme-secondary-text-default, bolt-text-contrast($secondary-background-default));
+
+    background-color: $secondary-background-hover;
+    background-color: var(--bolt-theme-secondary-background-hover, $secondary-background-hover);
+  }
+
+  &:active {
+    border-color: $secondary-background-active;
+    border-color: var(--bolt-theme-secondary-border-active, $secondary-background-active);
+
+    color: bolt-text-contrast($secondary-background-default);
+    color: var(--bolt-theme-secondary-text-default, bolt-text-contrast($secondary-background-default));
+
+    background-color: $secondary-background-active;
+    background-color: var(--bolt-theme-secondary-background-active, $secondary-background-active);
+  }
+}
+
+
+
+._c-bolt-button--theme-override {
+  .t-bolt-xlight &,
+  .t-bolt-light & {
+    $fallback-background-default: bolt-color(indigo, light);
+    $fallback-background-hover: mix($bolt-global-button-hover-color, $fallback-background-default, $bolt-global-button-hover-mix);
+    $fallback-background-active: mix($bolt-global-button-active-color, $fallback-background-default, $bolt-global-button-active-mix);
+
+    &,
+    &:visited {
+      border-color: $fallback-background-default;
+      color: bolt-text-contrast($fallback-background-default);
+      background-color: $fallback-background-default;
+    }
+
+    &:focus,
+    &:hover {
+      border-color: $fallback-background-hover;
+      color: bolt-text-contrast($fallback-background-default);
+      background-color: $fallback-background-hover;
+    }
+
+    &:active {
+      border-color: $fallback-background-active;
+      color: bolt-text-contrast($fallback-background-default);
+      background-color: $fallback-background-active;
+    }
+  }
+}
+
+
+
+.c-bolt-button--success {
+  @include bolt-button-color(success);
+}
+
+.c-bolt-button--warning {
+  @include bolt-button-color(warning);
+}
+
+.c-bolt-button--error {
+  @include bolt-button-color(error);
+}
+
+.c-bolt-button[disabled],
+.c-bolt-button--disabled {
+  @include bolt-button-color(disabled);
+  cursor: not-allowed;
+}
+
+
+// Removing shadows for text buttons
+
+.c-bolt-button--text,
+.c-bolt-button--text:before, {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+
+// Button sizes
+
+.c-bolt-button,
+.c-bolt-button--medium {
+  @include bolt-padding(medium, squished);
+  @include bolt-font-size(xsmall);
+}
+
+.c-bolt-button--xsmall {
+  @include bolt-padding(xsmall, squished);
+  @include bolt-font-size(xsmall);
+}
+
+.c-bolt-button--small {
+  @include bolt-padding(small, squished);
+  @include bolt-font-size(xsmall);
+}
+
+.c-bolt-button--large {
+  @include bolt-padding(medium, squished);
+  @include bolt-font-size(medium);
+}
+
+.c-bolt-button--xlarge {
+  @include bolt-padding(large, squished);
+  @include bolt-font-size(large);
+}
+
+
+// Button widths
+
+.c-bolt-button--full {
+  width: 100%;
+}
+
+.c-bolt-button--full\@small {
+  @media screen and (max-width: map-get($bolt-breakpoints, small)) {
+    width: 100%;
+  }
+}
+
+
+// Button items
+
+.c-bolt-button--item-align-center {
+  @supports (display: flex) {
+    justify-content: center;
+  }
+  text-align: center;
+}
+
+.c-bolt-button--item-align-start {
+  @supports (display: flex) {
+    justify-content: flex-start;
+  }
+  text-align: left;
+}
+
+.c-bolt-button__item {
+  display: inline-flex;
+  align-self: center;
+}
+
+
+.c-bolt-link__text + .c-bolt-link__icon,
+.c-bolt-button__item-text + .c-bolt-button__icon {
+  @include bolt-margin-left(xxsmall);
+}
+
+.c-bolt-link__icon,
+.c-bolt-button__icon {
+  display: inline-block;
+  display: inline-flex;
+  vertical-align: middle;
+  align-self: center;
+  line-height: 1; // workaround so icons can be vertically aligned properly
+}
+
+.c-bolt-link__icon + .c-bolt-link__text,
+.c-bolt-button__icon + .c-bolt-button__item-text {
+  @include bolt-margin-left(xsmall);
+}
+
+
+// Links
+
+.c-bolt-link {
+  @include bolt-reset-button-styles;
+  display: inline-block;
+  display: inline-flex; //So icons are vcentered
+  text-decoration: underline;
+  transition: all $bolt-button-transition;
+}
+
+
+
+.c-bolt-button--text {
+  text-decoration: none;
+  border-color: transparent;
+  background-color: transparent;
+  $bolt-theme-link-default: bolt-color(indigo, light);
+
+  & {
+    opacity: 1;
+    color: currentColor;
+
+    @supports(--css: variables) {
+      color: var(--bolt-theme-heading-link-default, inherit);
+    }
+  }
+
+  &:visited {
+    opacity: 1;
+    color: currentColor;
+
+    @supports(--css: variables) {
+      color: var(--bolt-theme-heading-link-visited, inherit);
+    }
+  }
+  
+
+  &:focus,
+  &:hover {
+    opacity: $bolt-global-link-hover-opacity;
+
+    @supports(--css: variables) {
+      opacity: 1;
+      color: var(--bolt-theme-heading-link-hover, inherit);
+    }
+  }
+
+  &:active {
+    opacity: $bolt-global-link-active-opacity;
+
+    @supports(--css: variables) {
+      opacity: 1;
+      color: var(--bolt-theme-heading-link-active, inherit);
+    }
+  }
+}
+
+
+
+
+.c-bolt-link--headline {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  color: var(--bolt-theme-heading-link-default, --bolt-theme-text);
+}
+
+.c-bolt-link--headline:hover {
+    color: inherit;
+    text-decoration: underline;
+    color: var(--bolt-theme-heading-link-hover, --bolt-theme-text);
+  }
+
+.c-bolt-link--headline:active {
+  color: inherit;
+  color: var(--bolt-theme-heading-link-active, --bolt-theme-text);
+}
+
+.c-bolt-link--headline:visited {
+  color: inherit;
+  color: var(--bolt-theme-heading-link-visited, --bolt-theme-text);
+}
+
+
+.c-bolt-link {
+  // &:link,
+  // &:visited {
+  //   // color: $bolt-color-secondary;
+  // }
+  // // &:visited {
+  // //   color: var(--bolt-color-secondary--visited, $bolt-color-secondary);
+  // // }
+
+  // &:hover {
+  //   color: mix(white, $bolt-color-secondary, 35%);
+  //   // color: var(--bolt-color-secondary, mix(white, $bolt-color-secondary, 35%));
+  // }
+
+  // &:active {
+  //   color: mix(white, $bolt-color-secondary, 15%);
+  //   // color: var(--bolt-color-secondary, $bolt-color-secondary);
+  // }
+}

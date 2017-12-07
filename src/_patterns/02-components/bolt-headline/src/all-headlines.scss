@@ -106,7 +106,7 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 .c-bolt-text__icon ~ .c-bolt-text__text {
   @include bolt-margin-left(xxsmall);
 }
- 
+
 .c-bolt-headline__line {
   flex: 1 0 1rem;
   align-self: center;
@@ -151,8 +151,8 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 
 
-
 // Headline spacing with other elements.
+.c-bolt-headline:not(.c-bolt-headline--xxxlarge) + .c-bolt-headline,
 .c-bolt-headline:not(.c-bolt-headline--xxxlarge) + .c-bolt-subheadline,
 .c-bolt-headline:not(.c-bolt-headline--xxxlarge) + .c-bolt-text,
 .c-bolt-headline:not(.c-bolt-headline--xxxlarge) + bolt-inline-list,
@@ -160,6 +160,8 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   margin-top: (-1 * bolt-v-spacing(medium)) + bolt-v-spacing(xsmall);
 }
 
+.c-bolt-headline--xxxlarge + .c-bolt-headline,
+.c-bolt-headline--xxxlarge + .c-bolt-subheadline,
 .c-bolt-headline--xxxlarge + .c-bolt-text,
 .c-bolt-headline--xxxlarge + bolt-inline-list,
 .c-bolt-headline--xxxlarge + p:not([class]) {

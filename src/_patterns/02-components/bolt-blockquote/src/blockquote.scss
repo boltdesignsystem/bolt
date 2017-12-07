@@ -62,9 +62,14 @@ $bolt-blockquote-image-size: 4rem;
 
 
 // Styles
-c-bolt-blockquote {
-  @include bolt-margin-bottom(medium);
+
+// Custom element default styles
+bolt-blockquote {
   display: block;
+
+  &:not(:last-child) {
+    @include bolt-margin-bottom(medium);
+  }
 }
 
 .c-bolt-blockquote {
