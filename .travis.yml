@@ -37,8 +37,9 @@ addons:
     - graphicsmagick
 
 before_install:
-- nvm install 7 # or 5, 6, or whatever
-- npm update -g npm # if necessary
+- nvm install 8 # or 5, 6, or whatever
+- node --version && npm --version && composer --version
+#- npm update -g npm # if necessary
 #- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
 #- export PATH=$HOME/.yarn/bin:$PATH
 - composer global require hirak/prestissimo
