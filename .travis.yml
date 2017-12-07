@@ -59,7 +59,7 @@ install:
 
 script:
 - npm run test
-- travis_wait npm run build
+- npm run build
 
 after_success:
 - npm run deploy
