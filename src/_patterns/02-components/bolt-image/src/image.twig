@@ -8,12 +8,25 @@
 
 {% set srcset = srcset ?? "" %}
 {% set lazyload = lazyload ?? true %}
-{% if placeholderColor is empty %}
-  {% set placeholderColor = bgcolor(src) %}
+{% set path = publicpath(src|split('.' ~ ext)|first) %}
+{% set imageSizes = globalBoltImageSizes %}
+
+{% if src %}
+  {% set ext = src|split('.')|last %}
 {% endif %}
+
+{# smaller image src used for calculating color -- already resized for less of a perf hit #}
+{% set sampleImageSrc = path ~ '-' ~ globalBoltImageSizes[0] ~ '.' ~ ext %}
+
 {% if placeholderImage is empty %}
-  {% set placeholderImage = base64(src) %}
+  {% set placeholderImage = base64(sampleImageSrc) %}
 {% endif %}
+
+{# only calculate a placeholder color if not using a placeholder image #}
+{% if placeholderColor is empty %}
+  {% set placeholderColor = bgcolor(sampleImageSrc) %}
+{% endif %}
+
 {% if height is empty %}
   {% set height = ratio(src, 'height') %}
 {% endif %}
@@ -49,17 +62,12 @@
 
 {% endif %}
 
-{% if src %}
-  {% set ext = src|split('.')|last %}
-{% endif %}
 
 {% set placeholderDummySrc = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" %}
 
 {% set zoomSource = src %}
 
   {% if srcset == "" and ext != "svg" %}
-    {% set path = publicpath(src|split('.' ~ ext)|first) %}
-    {% set imageSizes = globalBoltImageSizes %}
     {% for size in imageSizes if (size <= width) %}
       {% if size == width %}
         {% set srcset = srcset ~ '../..' ~ path ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}
