@@ -10,6 +10,7 @@ const config = {
   sassdoc: {
     enabled: false,
   },
+  sourceMaps: true,
   glob: true
 };
 
