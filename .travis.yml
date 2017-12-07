@@ -49,12 +49,7 @@ before_script:
 - phpenv config-rm xdebug.ini
 
 install:
-- npm install gulpjs/gulp-cli -g
-- npm install gulpjs/gulp#4.0
-- npm install --global now
-- npm install --global lerna
-- npm install --global webpack
-- npm install && npm run bootstrap && npm run composer:setup
+- npm install && npm run setup
 # - gem install --file packages/website-jekyll/Gemfile
 
 script:
