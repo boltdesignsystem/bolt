@@ -39,8 +39,8 @@ addons:
 before_install:
 - nvm install 7 # or 5, 6, or whatever
 - npm update -g npm # if necessary
-- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
-- export PATH=$HOME/.yarn/bin:$PATH
+#- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
+#- export PATH=$HOME/.yarn/bin:$PATH
 - composer global require hirak/prestissimo
 - if [[ -n "$GITHUB_TOKEN" ]]; then composer config -g github-oauth.github.com ${GITHUB_TOKEN};
   fi;
@@ -63,7 +63,7 @@ script:
 
 cache:
   apt: true
-  yarn: true
+#  yarn: true
   directories:
   - "$HOME/.cache/yarn"
   - node_modules
