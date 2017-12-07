@@ -1,0 +1,51 @@
+{
+  "name": "@bolt/components-smooth-scroll",
+  "description": "Smooth Scroll Component in Bolt",
+  "keywords": [
+    "bolt design system",
+    "bolt",
+    "ui toolkit",
+    "design system",
+    "component"
+  ],
+  "version": "0.0.0",
+  "maintainers": [
+    {
+      "name": "Salem Ghoweri",
+      "email": "me@salemghoweri.com",
+      "web": "https://github.com/sghoweri"
+    },
+    {
+      "name": "Mike Mai",
+      "email": "boss@mikemai.net",
+      "web": "http://mikemai.net/"
+    },
+    {
+      "name": "Remy Denton",
+      "email": "remy.denton@pega.com"
+    }
+  ],
+  "homepage": "https://boltdesignsystem.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bolt-design-system/bolt/"
+  },
+  "bugs": {
+    "url": "https://github.com/bolt-design-system/bolt/issues"
+  },
+  "main": "dist/bolt-smooth-scroll.min.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@bolt/build-webpack": "^0.4.1"
+  },
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "build": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/smooth-scroll --output-filename='bolt-smooth-scroll.min.js' --output-public-path /scripts/"
+  },
+  "dependencies": {
+    "smooth-scroll": "^12.1.5"
+  }
+}
