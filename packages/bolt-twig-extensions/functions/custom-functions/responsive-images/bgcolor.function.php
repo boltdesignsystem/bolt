@@ -30,6 +30,12 @@ if (file_exists($lastRunLog)) {
 
 
 $function = new Twig_SimpleFunction('bgcolor', function ($relativeImagePath){
+  // If this isn't a production compile, let's not do this long very memory intensive process.
+  // `$_SERVER` holds Environmental Variables
+  if (!(isset($_SERVER['NODE_ENV']) && $_SERVER['NODE_ENV'] === 'production')) {
+    return '';
+  }
+
   if (!function_exists('rgb2hex')) {
     function rgb2hex($rgb) {
       $hex = "#";
