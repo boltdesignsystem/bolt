@@ -4,10 +4,10 @@
 
 // Sample Usage
 // <bolt-action-blocks bolt-component>
-//   <ul class="c-bolt-action-blocks c-bolt-action-blocks--item-max-6 c-bolt-action-blocks--vertical-align-start c-bolt-action-blocks--bordered">
+//   <ul class="c-bolt-action-blocks c-bolt-action-blocks--item-max-6  c-bolt-action-blocks--bordered">
 //     <li class="c-bolt-action-blocks__item">
 //       <bolt-action-block bolt-component>
-//         <a href="http://google.com" class="c-bolt-action-block">
+//         <a href="http://google.com" class="c-bolt-action-block c-bolt-action-block--valign-start">
 //           <div class="c-bolt-action-block__item">
 //             <bolt-icon name="download" background="circle" size="large"></bolt-icon>
 //           </div>
@@ -80,6 +80,18 @@ $bolt-action-block-background: bolt-color(indigo, light);
   }
 }
 
+.c-bolt-action-block--valign-items-start {
+  justify-content: flex-start;
+}
+
+.c-bolt-action-block--valign-items-center {
+  justify-content: center;
+}
+
+.c-bolt-action-block--valign-items-end {
+  justify-content: flex-end;
+}
+
 .c-bolt-action-block__item {
   @include bolt-margin(0 auto small auto);
   @include bolt-font-size(xsmall);
@@ -144,27 +156,6 @@ bolt-action-blocks {
 .c-bolt-action-blocks--borderless > .c-bolt-action-blocks__item {
   border-bottom-color: transparent;
   border-right-color: transparent;
-}
-
-.c-bolt-action-blocks--vertical-align-start {
-  // TODO: [Mai] I know this feels dirty, but how else can it do this?
-  .c-bolt-action-block {
-    justify-content: flex-start;
-  }
-}
-
-.c-bolt-action-blocks--vertical-align-center {
-  // TODO: [Mai] I know this feels dirty, but how else can it do this?
-  .c-bolt-action-block {
-    justify-content: center;
-  }
-}
-
-.c-bolt-action-blocks--vertical-align-end {
-  // TODO: [Mai] I know this feels dirty, but how else can it do this?
-  .c-bolt-action-block {
-    justify-content: flex-end;
-  }
 }
 
 @for $number from 2 through 12 {
