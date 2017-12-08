@@ -77,61 +77,86 @@ const defaultConfig = {
       //   // include: /skatejs/,
       //   // exclude: /!node_modules\/skatejs/,
       //   use: ['awesome-typescript-loader']
-      // },
+      // },webpack:///
       {
         test: /\.js$/,
         // exclude: /\.es6.js$/,
-        exclude: /(native-shim\.js|node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js|\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js|custom-elements-es5-adapter\.js|bower_components)/,
+        exclude: /(node_modules\/@skatejs\/renderer-lit-html\/dist\/node\/index\.js|native-shim\.js|node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js|\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js|custom-elements-es5-adapter\.js|bower_components)/,
         use: {
           loader: 'babel-loader',
           options: {
             babelrc: false,
             plugins: [
-              [
-                'jsx-pragmatic',
-                {
-                  module: 'preact',
-                  export: 'h',
-                  import: 'h'
-                }
-              ],
+              
+              // [
+              //   'jsx-pragmatic',
+              //   {
+              //     module: 'preact',
+              //     export: 'h',
+              //     import: 'h'
+              //   }
+              // ],
               [
                 'transform-react-jsx',
                 {
                   pragma: 'h'
                 }
               ],
-              ['module-resolver',
-                {
-                  root: [
-                    './src'
-                  ],
-                  alias: {
-                    h: 'preact'
-                  }
-                }
-              ],
-              'transform-class-properties',
+              "transform-decorators-legacy"
+              // ['module-resolver',
+              //   {
+              //     root: [
+              //       './src'
+              //     ],
+              //     alias: {
+              //       h: 'preact'
+              //     }
+              //   }
+              // ],
+              // 'transform-class-properties',
               // 'transform-custom-element-classes',
               // 'transform-es2015-classes',
-              'transform-object-assign',
-              'transform-object-rest-spread',
+              // 'transform-object-assign',
+              // 'transform-object-rest-spread',
               // 'inline-react-svg'
             ],
 
             presets: [
-              ['env', {
-                targets: {
-                  browsers: [
-                    'last 3 versions',
-                    'not ie < 9'
-                  ]
-                },
-                debug: false
-              }],
+              [
+                "env",
+                {
+                  targets: {
+                    // browsers: [
+                    //   'last 3 versions',
+                    //   'not ie < 9'
+                    // ]
+                  },
+                  "modules": false
+                }
+              ],
               "flow",
               "react",
-              'stage-0'
+              "es2015",
+              "es2016",
+              "es2017",
+              "stage-0",
+              // ['env', {
+              //   targets: {
+              //     browsers: [
+              //       'last 3 versions',
+              //       'not ie < 9'
+              //     ]
+              //   },
+              //   debug: false
+              // }],
+              // "react",
+              // "es2016",
+              // "es2017",
+              // // "flow",
+              // "react",
+              // "stage-0"
+              // 'stage-0'
+              // "flow",
             ]
           }
         }

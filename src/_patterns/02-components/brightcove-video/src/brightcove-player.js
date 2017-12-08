@@ -1,20 +1,16 @@
 /* eslint-env browser */
 /* globals videojs, bc */
 
-// import React, { Component } from "react";
-// import { Image } from "react-native";
-// import propTypes from "./brightcove-player.proptypes";
-// const SourcePropType = Image.propTypes.source;
-import defaults from "./brightcove-player.defaults";
-import { props, withComponent } from 'skatejs';
-import withPreact from '@skatejs/renderer-preact';
-import { h } from 'preact';
-
+import { define, props, withComponent } from 'skatejs';
+import { withPreact } from '@bolt/core'; // Latest v. broken so using local version for now
+import { h, render } from 'preact';
+import { value } from 'yocss';
 
 let index = 0;
 
-class BrightcoveVideo extends withComponent(withPreact()) {
-  // static props = defaults;
+@define
+export class BrightcoveVideo extends withComponent(withPreact()) {
+  static is = 'brightcove-player';
 
   static props = {
     width: props.number,
@@ -37,16 +33,16 @@ class BrightcoveVideo extends withComponent(withPreact()) {
 
   constructor() {
     super();
-
     index += 1;
 
-    // console.log(BrightcoveVideo.globalErrors);
+    // this.handlePlayerReady = this.handlePlayerReady.bind(this);
+
     // BrightcoveVideo.globalErrors.forEach(this.props.onError);
 
     this.defaultProps = {
       width: 320,
       height: 180,
-      playerId: "default",
+      // playerId: "default",
       onError: () => { },
       onPlay: () => { },
       onPause: () => { },
@@ -59,48 +55,38 @@ class BrightcoveVideo extends withComponent(withPreact()) {
       resetOnFinish: false
     }
 
-    if (this.defaultProps) {
-      const defaultProps = this.defaultProps;
-      for (const propName in defaultProps) {
-        console.log(this.props[propName]);
-        if (this.props[propName] === undefined || this.props[propName] === null) {
-          // console.log(this.props[propName]);
-          // console.log(`setting default prop of ${propName} to ${defaultProps[propName]}`);
-          this.props[propName] = defaultProps[propName];
-        }
-      }
-    }
-
-    console.log(this.props);
-
-    this.state = {
-      id: `${this.props.videoId}-${this.props.accountId}-${index}`,
-      // errors: BrightcoveVideo.globalErrors !== undefined  ? [].concat(BrightcoveVideo.globalErrors) : [],
-      isPlaying: "paused",
-      isFinished: false,
-      progress: 0
-    };
-
-    if (BrightcoveVideo.globalErrors !== undefined && BrightcoveVideo.globalErrors.length) {
-      console.log('adding default errors');
-      console.log(this.state.errors);
-      this.state.errors = [].concat(BrightcoveVideo.globalErrors);
-    } else {
-      this.state.errors = [];
-    }
+    // this.attachShadow({ mode: 'open' });
   }
 
-  static handlePlayerReady(context) {
+  get renderRoot() {
+    return this;
+  }
+
+  // Called to check whether or not the component should call
+  // updated(), much like React's shouldComponentUpdate().
+  // updating(props, state) { 
+  //   console.log(props);
+  //   console.log(state);
+  // }
+
+
+  handlePlayerReady(context) {
+    console.log('handlePlayerReady');
+    console.log(context);
+    
+    // this.player 
     context.setPlayer(this);
 
-    this.on("play", context.onPlay.bind(context, this));
-    this.on("pause", context.onPause.bind(context, this));
-    this.on("seeked", context.onSeeked.bind(context, this));
-    this.on("timeupdate", context.onPlay.bind(context, this));
-    this.on("durationchange", context.onDurationChange.bind(context, this));
-    this.on("ended", context.onEnded.bind(context, this));
+    console.log(this.player);
 
-    this.contextmenu({ disabled: true });
+    // this.on("play", context.onPlay.bind(context, this));
+    // this.on("pause", context.onPause.bind(context, this));
+    // this.on("seeked", context.onSeeked.bind(context, this));
+    // this.on("timeupdate", context.onPlay.bind(context, this));
+    // this.on("durationchange", context.onDurationChange.bind(context, this));
+    // this.on("ended", context.onEnded.bind(context, this));
+
+    // this.contextmenu({ disabled: true });
   }
 
   static appendScript(s) {
@@ -122,10 +108,31 @@ class BrightcoveVideo extends withComponent(withPreact()) {
   }
   
 
-  
-
   connectedCallback() {
-    console.log('connectedCallback');
+    this.state = {
+      id: `${this.props.videoId}-${this.props.accountId}-${index}`,
+      // errors: BrightcoveVideo.globalErrors !== undefined  ? [].concat(BrightcoveVideo.globalErrors) : [],
+      isPlaying: "paused",
+      isFinished: false,
+      progress: 0
+    };
+
+    if (this.defaultProps) {
+      const defaultProps = this.defaultProps;
+      for (const propName in defaultProps) {
+        if (this.props[propName] === undefined) {
+          this.props[propName] = defaultProps[propName];
+        }
+      }
+    }
+
+    if (BrightcoveVideo.globalErrors !== undefined && BrightcoveVideo.globalErrors.length) {
+      console.log('adding default errors');
+      console.log(this.state.errors);
+      this.state.errors = [].concat(BrightcoveVideo.globalErrors);
+    } else {
+      this.state.errors = [];
+    }
 
     if (this.state.errors.length) {
       console.log(this.state.errors);
@@ -136,13 +143,14 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     // only ever append script once
     if (!BrightcoveVideo.players) {
       BrightcoveVideo.players = [];
-
+      
       const s = this.createScript();
 
       s.onload = () => {
-        BrightcoveVideo.players.forEach(player =>
+        BrightcoveVideo.players.forEach(function(player){
+          console.log(player.state.id);
           player.initVideoJS(player.state.id)
-        );
+        });
       };
 
       // handle script not loading
@@ -165,35 +173,56 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     this.init();
   }
 
-  shouldUpdate(nextProps, nextState) {
-    console.log('componentWillUpdate');
-    const playerStatusChanged = this.state.isPlaying !== nextState.isPlaying;
+  // shouldUpdate(props, state) {
+  //   return true;
+  // }
 
-    if (this.state.duration !== nextState.duration) {
-      this.props.onDuration(nextState.duration);
-    }
+  // Called when props have been set regardless of if they've changed.
+  // updating(props) { }
 
-    if (playerStatusChanged && nextState.isPlaying) {
-      this.props.onPlay();
-    }
+  /**
+     * `attributeChangedCallback` processes changes to the `expanded` attribute.
+     */
+  // attributeChangedCallback(attributeName, oldValue, newValue) {
+  //   console.log(attributeName);
+  //   // `expanded` is a boolean attribute it is either set or not set. The
+  //   // actual value is irrelevant.
+  //   // const value = this.hasAttribute('expanded');
+  //   // this._shadowButton.setAttribute('aria-expanded', value);
+  // }
 
-    if (this.state.progress !== nextState.progress) {
-      this.props.onProgress(nextState.progress);
-    }
+  // attriburtes(nextProps, nextState) {
+  //   console.log('componentWillUpdate');
+  //   console.log(nextProps);
+  //   console.log(nextState);
+  //   // const playerStatusChanged = this.state.isPlaying !== nextState.isPlaying;
 
-    if (playerStatusChanged && !nextState.isPlaying) {
-      this.props.onPause();
-    }
+  //   // if (this.state.duration !== nextState.duration) {
+  //   //   this.props.onDuration(nextState.duration);
+  //   // }
 
-    if (
-      this.state.isFinished !== nextState.isFinished &&
-      nextState.isFinished
-    ) {
-      this.props.onFinish();
-    }
+  //   // if (playerStatusChanged && nextState.isPlaying) {
+  //   //   this.props.onPlay();
+  //   // }
 
-    return this.props !== nextProps;
-  }
+  //   // if (this.state.progress !== nextState.progress) {
+  //   //   this.props.onProgress(nextState.progress);
+  //   // }
+
+  //   // if (playerStatusChanged && !nextState.isPlaying) {
+  //   //   this.props.onPause();
+  //   // }
+
+  //   // if (
+  //   //   this.state.isFinished !== nextState.isFinished &&
+  //   //   nextState.isFinished
+  //   // ) {
+  //   //   this.props.onFinish();
+  //   // }
+
+  //   // return true;
+  //   // return this.props !== nextProps;
+  // }
 
   disconnectedCallback() {
     if (this.player) {
@@ -246,7 +275,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
 
   createScript() {
     const s = document.createElement("script");
-    console.log(this.props);
+    // console.log(this.props);
 
     s.src = BrightcoveVideo.getScriptUrl(
       this.props.accountId,
@@ -257,15 +286,19 @@ class BrightcoveVideo extends withComponent(withPreact()) {
   }
 
   initVideoJS(id) {
+    console.log(this);
+    console.log(id);
     const player = videojs(id);
-    const handler = BrightcoveVideo.handlePlayerReady.bind(player, this);
+    // console.log(BrightcoveVideo.handlePlayerReady);
+    const handler = this.handlePlayerReady.bind(player, this);
+    // player.on("ready", handler);
 
     player.ready(handler);
-    player.on("error", this.onError.bind(this, player));
+    // player.on("error", this.onError.bind(this, player));
   }
 
   initVideo(id) {
-    bc(document.getElementById(id), {
+    bc(this.querySelector(`#${id}`), {
       controlBar: {
         fullscreenToggle: !this.props.hideFullScreenButton
       }
@@ -283,6 +316,8 @@ class BrightcoveVideo extends withComponent(withPreact()) {
   }
 
   play() {
+    console.log('PLAY VIDEO');
+    console.log(this.player);
     if (this.player) {
       this.player.play();
     }
@@ -294,8 +329,15 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     }
   }
 
-  renderCallback() {
+  disconnectedCallback() {
+    super.disconnectedCallback && super.disconnectedCallback();
+    // Preact hack https://github.com/developit/preact/issues/53
+    const Nothing = () => null;
+    this._preactDom = render( <Nothing/> , this._renderRoot, this._preactDom);
+  }
 
+  render({ state, props}) {
+    console.log('render callback');
     // data-email-subject="Pega - Intelligent Virtual Assistant for Email"
     // data-email-body="Check out this video from Pega"
     // data-email-videourl="https://local.d8.pega.com/insights/resources/intelligent-virtual-assistant-email"
@@ -307,11 +349,10 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     // );
     /* eslint jsx-a11y/media-has-caption: "off" */
     // Added a wrapping div as brightcove adds siblings to the video tag
-    return (
+    return(
       <div>
         <video
           id={this.state.id}
-          style={{ width: this.props.width, height: this.props.height }}
           {...(this.props.poster ? { poster: this.props.poster.uri } : {})}
           data-embed="default"
           data-video-id={this.props.videoId}
@@ -332,11 +373,13 @@ class BrightcoveVideo extends withComponent(withPreact()) {
 
 
 // BrightcoveVideo.globalErrors = [];
-BrightcoveVideo.props = defaults;
+//BrightcoveVideo.props = defaults;
 
-customElements.define('brightcove-player', BrightcoveVideo);
+// customElements.define('brightcove-player', BrightcoveVideo);
+
+// customElements.define('brightcove-player', BrightcoveVideo);
+// 44
+// 45	  const el = new PreactComponentWrapper();
 
 
-
-
-export default BrightcoveVideo;
+// export default BrightcoveVideo;
