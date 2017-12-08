@@ -49,8 +49,7 @@ $function = new Twig_SimpleFunction('bgcolor', function ($relativeImagePath){
 
     // If this isn't a production compile, let's not do this long very memory intensive process.
     // `$_SERVER` holds Environmental Variables
-
-    if (!(isset($_SERVER['NODE_ENV']) && $_SERVER['NODE_ENV'] === 'production')) {
+    if (isset($_SERVER['NODE_ENV']) && $_SERVER['NODE_ENV'] === 'production') {
       // Read image file with Gregwar to cache resize before getting average color
       $resizedImage = \Gregwar\Image\Image::open($absoluteImagePath)->resize('16,16')->guess();
       $image = new Imagick($resizedImage);
