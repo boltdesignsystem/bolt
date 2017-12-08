@@ -1,4 +1,4 @@
-# bolt/chip
+# bolt/components-chip
 Stylistic tags for displaying meta data. Part of the Bolt “Components” CSS framework that powers the [Bolt Design System](https://www.boltdesignsystem.com).
 
 ## Demo
@@ -21,7 +21,7 @@ Stylistic tags for displaying meta data. Part of the Bolt “Components” CSS f
 ## Cheat Sheet
 ### Install via NPM
 ```
-npm install @bolt/chip
+npm install @bolt/components-chip
 ```
 
 - - - -
@@ -34,7 +34,7 @@ You can also use the full [Bolt Core](https://www.npmjs.com/package/@bolt/core) 
 Installing Bolt’s chip component is as easy as running NPM install:
 
 ```
-npm install @bolt/chip
+npm install @bolt/components-chip
 ```
 
 > **TIP:**: Don’t have a `package.json` file? Need a little help getting started? Check out our [Getting Started](https://www.boltdesignsystem.com/getting-started) guide for some tips to help get you up to speed.
