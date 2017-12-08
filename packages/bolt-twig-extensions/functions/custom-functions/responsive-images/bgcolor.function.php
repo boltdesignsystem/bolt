@@ -31,8 +31,7 @@ if (file_exists($lastRunLog)) {
 
 $function = new Twig_SimpleFunction('bgcolor', function ($relativeImagePath){
   // If this isn't a production compile, let's not do this long very memory intensive process.
-  // `$_SERVER` holds Environmental Variables
-  if (!(isset($_SERVER['NODE_ENV']) && $_SERVER['NODE_ENV'] === 'production')) {
+  if (getenv('NODE_ENV') !== 'production') {
     return 'hsl(233, 33%, 97%)'; // lightest gray from our colors to use as default when in dev mode
   }
 
