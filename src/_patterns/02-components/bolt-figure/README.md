@@ -1,46 +1,10 @@
-# bolt/blockquote
-Stylistic pull quote styles for all types of layout. Part of the Bolt “Components” CSS framework that powers the [Bolt Design System](https://www.boltdesignsystem.com).
+# bolt/components-figure
+Figure for displaying graphics or tabular content. Part of the Bolt “Components” CSS framework that powers the [Bolt Design System](https://www.boltdesignsystem.com).
 
 ## Demo
 
 ```
-<bolt-blockquote bolt-component>
-  <blockquote class="c-bolt-blockquote c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical">
-    <div class="c-bolt-blockquote__logo">
-      <bolt-logo>
-        ...
-      </bolt-logo>
-    </div>
-    <div class="c-bolt-blockquote__quote">
-      <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xlarge">
-        <span class="c-bolt-text__text">
-          <p>Quote text.</p>
-        </span>
-      </div>
-    </div>
-    <footer class="c-bolt-blockquote__footer">
-      <div class="c-bolt-blockquote__footer-item">
-        <div class="c-bolt-blockquote__image">
-          <bolt-image>
-            ...
-          </bolt-image>
-        </div>
-      </div>
-      <div class="c-bolt-blockquote__footer-item">
-        <cite class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall">
-          <span class="c-bolt-text__text">
-            Author Name
-          </span>
-        </cite>
-        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">
-          <span class="c-bolt-text__text">
-            Author Title
-          </span>
-        </p>
-      </div>
-    </footer>
-  </blockquote>
-</bolt-blockquote>
+...
 ```
 
 - - - -
@@ -53,7 +17,7 @@ Stylistic pull quote styles for all types of layout. Part of the Bolt “Compone
 ## Cheat Sheet
 ### Install via NPM
 ```
-npm install @bolt/blockquote
+npm install @bolt/components-figure
 ```
 
 - - - -
@@ -63,10 +27,10 @@ The best way to start using Bolt is via the *Bolt Starterkit* (coming soon), a p
 
 You can also use the full [Bolt Core](https://www.npmjs.com/package/@bolt/core) CSS framework on its own, or, install just the parts you need and fold the different ITCSS layers of Bolt into your existing codebase.
 
-Installing Bolt’s Action Blocks component is as easy as running NPM install:
+Installing Bolt’s Figure component is as easy as running NPM install:
 
 ```
-npm install @bolt/blockquote
+npm install @bolt/components-figure
 ```
 
 > **TIP:**: Don’t have a `package.json` file? Need a little help getting started? Check out our [Getting Started](https://www.boltdesignsystem.com/getting-started) guide for some tips to help get you up to speed.
@@ -76,12 +40,10 @@ Once installed, you should  `@import`  the main Sass partial into your project�
 
 ```
 // Settings
-@import '@bolt/settings-global';
-@import '@bolt/settings-colors';
+@import '@bolt/settings-all';
 
 // Tools
-@import '@bolt/tools-spacing';
-@import '@bolt/tools-color-palette';
+@import '@bolt/tools-all';
 ```
 
 Since Bolt’s CSS architecture is based on [ITCSS (Inverted Triangle CSS)](http://www.creativebloq.com/web-design/manage-large-css-projects-itcss-101517528)<sup>[1](#1-learn-more-about-itcss)</sup>, what Sass partials you import, and in what order, makes a whole world of difference. That’s why importing any Settings packages from Bolt in your project’s Settings layer (prior to any Sass mixins, resets, base HTML element styles, etc) is so important.

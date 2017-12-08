@@ -1,4 +1,4 @@
-# bolt/action-blocks
+# bolt/components-action-blocks
 Stylistic block layout for displaying actionable icon and text. Part of the Bolt “Components” CSS framework that powers the [Bolt Design System](https://www.boltdesignsystem.com).
 
 ## Demo
@@ -32,7 +32,7 @@ Stylistic block layout for displaying actionable icon and text. Part of the Bolt
 ## Cheat Sheet
 ### Install via NPM
 ```
-npm install @bolt/action-blocks
+npm install @bolt/components-action-blocks
 ```
 
 - - - -
@@ -45,7 +45,7 @@ You can also use the full [Bolt Core](https://www.npmjs.com/package/@bolt/core) 
 Installing Bolt’s Action Blocks component is as easy as running NPM install:
 
 ```
-npm install @bolt/action-blocks
+npm install @bolt/components-action-blocks
 ```
 
 > **TIP:**: Don’t have a `package.json` file? Need a little help getting started? Check out our [Getting Started](https://www.boltdesignsystem.com/getting-started) guide for some tips to help get you up to speed.

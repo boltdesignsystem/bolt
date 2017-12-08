@@ -1,5 +1,5 @@
-# bolt/components-device-viewer
-Device frames for showcase. Part of the Bolt “Components” CSS framework that powers the [Bolt Design System](https://www.boltdesignsystem.com).
+# bolt/components-button
+Button is a branded component to convey call to action. Part of the Bolt “Components” CSS framework that powers the [Bolt Design System](https://www.boltdesignsystem.com).
 
 ## Demo
 
@@ -17,7 +17,7 @@ Device frames for showcase. Part of the Bolt “Components” CSS framework that
 ## Cheat Sheet
 ### Install via NPM
 ```
-npm install @bolt/components-device-viewer
+npm install @bolt/components-button
 ```
 
 - - - -
@@ -27,10 +27,10 @@ The best way to start using Bolt is via the *Bolt Starterkit* (coming soon), a p
 
 You can also use the full [Bolt Core](https://www.npmjs.com/package/@bolt/core) CSS framework on its own, or, install just the parts you need and fold the different ITCSS layers of Bolt into your existing codebase.
 
-Installing Bolt’s Device Viewer component is as easy as running NPM install:
+Installing Bolt’s Button component is as easy as running NPM install:
 
 ```
-npm install @bolt/components-device-viewer
+npm install @bolt/components-button
 ```
 
 > **TIP:**: Don’t have a `package.json` file? Need a little help getting started? Check out our [Getting Started](https://www.boltdesignsystem.com/getting-started) guide for some tips to help get you up to speed.
