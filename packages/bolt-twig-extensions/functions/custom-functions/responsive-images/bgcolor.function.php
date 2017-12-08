@@ -2,7 +2,6 @@
 
 use Gregwar\Image\Image;
 use Gregwar\Image\GarbageCollect;
-use ColorThief\ColorThief;
 
 
 /**
@@ -30,25 +29,16 @@ if (file_exists($lastRunLog)) {
 
 
 $function = new Twig_SimpleFunction('bgcolor', function ($relativeImagePath){
-  // If this isn't a production compile, let's not do this long very memory intensive process.
-  // `$_SERVER` holds Environmental Variables
-  if (!(isset($_SERVER['NODE_ENV']) && $_SERVER['NODE_ENV'] === 'production')) {
-    return '';
-  }
 
-  if (!function_exists('rgb2hex')) {
-    function rgb2hex($rgb) {
-      $hex = "#";
-      $hex .= str_pad(dechex($rgb[0]), 2, "0", STR_PAD_LEFT);
-      $hex .= str_pad(dechex($rgb[1]), 2, "0", STR_PAD_LEFT);
-      $hex .= str_pad(dechex($rgb[2]), 2, "0", STR_PAD_LEFT);
-      return $hex; // returns the hex value including the number sign (#)
+  $publicDir = '/dist';
+  $absoluteImagePath = getcwd() . $publicDir . $relativeImagePath;
+
+  if (!function_exists('rgb2hexAlt')) {
+    function rgb2hexAlt($rgb) {
+      return '#' . sprintf('%02X%02X%02X', $rgb['r'], $rgb['g'], $rgb['b']);
     }
   }
 
-  
-  $publicDir = '/dist';
-  $absoluteImagePath = getcwd() . $publicDir . $relativeImagePath;
 
   if(file_exists($absoluteImagePath)){
     $fileExt = pathinfo($absoluteImagePath, PATHINFO_EXTENSION);
@@ -57,11 +47,18 @@ $function = new Twig_SimpleFunction('bgcolor', function ($relativeImagePath){
       return;
     }
 
-    // Resize and optimize the image before running through ColorThief
-    $resizedImage = \Gregwar\Image\Image::open($absoluteImagePath)->resize('640,640')->jpeg($quality = 50);
-      $color = ColorThief::getColor($resizedImage, 5);
-      return rgb2hex($color);
-    // }
+    // If this isn't a production compile, let's not do this long very memory intensive process.
+    // `$_SERVER` holds Environmental Variables
+    if (isset($_SERVER['NODE_ENV']) && $_SERVER['NODE_ENV'] === 'production') {
+      // Read image file with Gregwar to cache resize before getting average color
+      $resizedImage = \Gregwar\Image\Image::open($absoluteImagePath)->resize('16,16')->guess();
+      $image = new Imagick($resizedImage);
+      $image->resizeImage(1, 1, Imagick::FILTER_CATROM, 1);
+      $pixel = $image->getImagePixelColor(0,0);
+      $rgb = $pixel->getColor();
+
+      return rgb2hexAlt($rgb);
+    }
   } else {
     return;
   }
