@@ -1,139 +1,50 @@
-// import { define, props, withComponent } from 'skatejs';
-// import { withPreact } from '@skatejs/renderer-preact';
-// import { Preact, h } from 'preact';
-// import hasNativeShadowDomSupport from './environment';
-// import Component from './skate-component';
+import { html } from 'lit-html/lib/lit-extended';
+import { define, props, withComponent } from 'skatejs/dist/esnext';
+import withLitHtml from '@skatejs/renderer-lit-html/dist/node';
+import { value } from 'yocss';
 
-const $template = Symbol();
-
-
-
-
-// function shadyCss(elem, css) {
-//   if (hasNativeShadowDomSupport) {
-//     return css;
-//   }
-//   const template = elem[$template] || (elem[$template] = document.createElement('template'));
-//   template.innerHTML = `<style>${css}</style>`;
-//   ShadyCSS.prepareTemplate(template, elem.localName);
-// }
-
-// // export const BoltComponent = define(
-// export class BoltComponent extends withComponent(withPreact()) {
-//   get renderCss() {
-//     return shadyCss(this, this.style)
-//   }
-//   renderCallback() {
-//     console.log(this.renderCss)
-//     return [
-//       h('style', this.renderCss),
-//       super.renderCallback && super.renderCallback()
-//     ];
-//   }
-// };
-// );
-
-
-// import { h as preactH } from 'preact';
-// import { define, props, withComponent, withUpdate } from 'skatejs/src';
-// import withPreact from '@skatejs/renderer-preact';
-
-// // Compatiblity layer for renames.
-// export const Component = class extends withComponent(withPreact()) {
-//   childrenDidUpdate() {
-//     if (this.childrenChangedCallback) {
-//       return this.childrenChangedCallback(...args);
-//     }
-//     if (super.childrenDidUpdate) {
-//       return super.childrenDidUpdate(...args);
-//     }
-//   }
-//   willUpdate(...args) {
-//     if (this.propsSetCallback) {
-//       return this.propsSetCallback(...args);
-//     }
-//     if (super.willUpdate) {
-//       return super.willUpdate(...args);
-//     }
-//   }
-//   shouldUpdate(...args) {
-//     if (this.propsUpdatedCallback) {
-//       return this.propsUpdatedCallback(...args);
-//     }
-//     if (super.shouldUpdate) {
-//       return super.shouldUpdate(...args);
-//     }
-//   }
-//   didUpdate(...args) {
-//     if (this.propsChangedCallback) {
-//       return this.propsChangedCallback(...args);
-//     }
-//     if (super.didUpdate) {
-//       return super.didUpdate(...args);
-//     }
-//   }
-//   render(...args) {
-//     if (this.renderCallback) {
-//       return this.renderCallback(...args);
-//     }
-//     if (super.render) {
-//       return super.render(...args);
-//     }
-//   }
-//   renderCallback(...args) {
-//     if (super.renderCallback) {
-//       return super.renderCallback(...args);
-//     }
-//     if (super.render) {
-//       return super.render(...args);
-//     }
-//   }
-//   renderer(...args) {
-//     if (this.rendererCallback) {
-//       return this.rendererCallback(...args);
-//     }
-//     if (super.renderer) {
-//       return super.renderer(...args);
-//     }
-//   }
-//   didRender(...args) {
-//     if (this.renderedCallback) {
-//       return this.renderedCallback(...args);
-//     }
-//     if (super.didRender) {
-//       return super.didRender(...args);
-//     }
+// export const Component = class extends withComponent(withLitHtml()) {
+//   $ = html;
+//   get $style() {
+//     return style(this.context.style, value(...Object.values(this.css || {})));
 //   }
 // };
 
-// function args(fn) {
-//   return fn
-//     .toString()
-//     .match(/\(([^)]*)\)/)[1]
-//     .split(',')
-//     .map(name => name.split('=')[0].trim());
-// }
+export function style(...css) {
+  return html`<style textContent="${css.join('')}"></style>`;
+}
 
-// export function component(render) {
-//   const fnArgs = args(render);
-//   class Comp extends Component {
-//     static props = fnArgs.reduce((prev, curr) => {
-//       prev[curr] = { attribute: { source: true } };
-//       return prev;
-//     }, {});
-//     render() {
-//       return render.call(this, ...fnArgs.map(n => this[n]));
-//     }
-//   }
-
-//   // Allows the component to have a tag name hint based off the render function
-//   // name.
-//   Object.defineProperty(Comp, 'name', {
-//     configurable: true,
-//     value: render.name
-//   });
-
-//   return define(Comp);
-// }
-
-// export const h = preactH;
+export const withLoadable = (props: Object) =>
+  define(
+    class extends Component {
+      static is = props.is;
+      props: {
+        format: any,
+        loader: any,
+        loading: any,
+        useShadowRoot: boolean
+      };
+      props = props;
+      get renderRoot() {
+        return props.useShadowRoot ? super.renderRoot : this;
+      }
+      connecting() {
+        const loaded = this.loading;
+        if (loaded) {
+          this.state = { loaded };
+        }
+        if (this.loader) {
+          this.loader().then(r => {
+            const loaded = r.default || r;
+            if (loaded) {
+              this.state = { loaded };
+            }
+          });
+        }
+      }
+      render() {
+        const { loaded } = this.state;
+        return this.$`${typeof loaded === 'function' ? new loaded() : loaded}`;
+      }
+    }
+  );

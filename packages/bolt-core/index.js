@@ -16,7 +16,8 @@ export const utils = {
   styledMixin
 }
 
+export * from './utils/component';
+export { withPreact } from './utils/renderer-preact';
 export * from './utils/css';
 export * from './utils/spacing-sizes';
-export * from './utils/component';
 export * from './polyfills/polyfill-loader';
