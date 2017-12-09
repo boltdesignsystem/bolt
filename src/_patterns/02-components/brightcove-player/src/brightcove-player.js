@@ -19,12 +19,12 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
     accountId: props.string,
     playerId: props.string,
     poster: props.object,
-    onError: null,
-    onPlay: null,
-    onPause: null,
-    onFinish: null,
-    onProgress: null,
-    onDuration: null,
+    // onError: null,
+    // onPlay: null,
+    // onPause: null,
+    // onFinish: null,
+    // onProgress: null,
+    // onDuration: null,
     autoplay: props.boolean,
     resetOnFinish: props.boolean,
     directToFullscreen: props.boolean,
@@ -35,20 +35,29 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
     super();
     index += 1;
 
-    // this.handlePlayerReady = this.handlePlayerReady.bind(this);
+    
 
+    this.onPlay = this.onPlay.bind(this);
+    this.onPause = this.onPause.bind(this);
+    this.onEnded = this.onEnded.bind(this);
+    // this.onProgress = this.onProgress.bind(this);
+    this.onDurationChange = this.onDurationChange.bind(this);
+    this.onSeeked = this.onSeeked.bind(this);
+
+
+    
     // BrightcoveVideo.globalErrors.forEach(this.props.onError);
 
     this.defaultProps = {
       width: 320,
       height: 180,
       // playerId: "default",
-      onError: () => { },
-      onPlay: () => { },
-      onPause: () => { },
-      onFinish: () => { },
-      onProgress: () => { },
-      onDuration: () => { },
+      // onError: () => { },
+      // onPlay: () => { },
+      // onPause: () => { },
+      // onFinish: () => { },
+      // onProgress: () => { },
+      // onDuration: () => { },
       autoplay: false,
       hideFullScreenButton: false,
       directToFullscreen: false,
@@ -70,21 +79,37 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
   // }
 
 
-  handlePlayerReady(context) {
+  static handlePlayerReady(context) {
     console.log('handlePlayerReady');
-    console.log(context);
-    
-    // this.player 
-    context.setPlayer(this);
 
-    console.log(this.player);
+    const player = this;
+    const elem = context;
 
-    // this.on("play", context.onPlay.bind(context, this));
-    // this.on("pause", context.onPause.bind(context, this));
-    // this.on("seeked", context.onSeeked.bind(context, this));
-    // this.on("timeupdate", context.onPlay.bind(context, this));
-    // this.on("durationchange", context.onDurationChange.bind(context, this));
-    // this.on("ended", context.onEnded.bind(context, this));
+    elem.setPlayer(player);
+
+    player.on("play", function(){
+      elem.onPlay(player);
+    });
+
+    player.on("pause", function () {
+      elem.onPause(player);
+    });
+
+    player.on("seeked", function () {
+      elem.onSeeked(player);
+    });
+
+    player.on("timeupdate", function () {
+      elem.onPlay(player);
+    });
+
+    player.on("durationchange", function () {
+      elem.onDurationChange(player);
+    });
+
+    player.on("ended", function () {
+      elem.onEnded(player);
+    });
 
     // this.contextmenu({ disabled: true });
   }
@@ -235,31 +260,51 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
   }
 
   onPlay(player) {
-    this.setState({
-      isPlaying: true,
-      progress: BrightcoveVideo.getCurrentTimeMs(player),
-      isFinished: false
-    });
+    // @TODO: implement internal setState method
+    // elem.setState({
+    //   isPlaying: true,
+    //   progress: BrightcoveVideo.getCurrentTimeMs(player),
+    //   isFinished: false
+    // });
+
+    this.state.isPlaying = true;
+    this.state.progress = BrightcoveVideo.getCurrentTimeMs(player);
+    this.state.isFinished = false;
   }
 
   onPause(player) {
     const progress = BrightcoveVideo.getCurrentTimeMs(player);
 
-    this.setState({
-      isPlaying: false,
-      progress
-    });
+    // @TODO: implement internal setState method
+    // this.setState({
+    //   isPlaying: false,
+    //   progress
+    // });
+
+    this.state.isPlaying = false;
+    this.state.progress = progress;
   }
 
   onSeeked(player) {
-    this.setState({
-      progress: BrightcoveVideo.getCurrentTimeMs(player),
-      isFinished: false
-    });
+    const progress = BrightcoveVideo.getCurrentTimeMs(player);
+
+    // @TODO: implement internal setState method
+    // this.setState({
+    //   progress: BrightcoveVideo.getCurrentTimeMs(player),
+    //   isFinished: false
+    // });
+
+    this.state.isFinished = false;
+    this.state.progress = progress;
   }
 
   onDurationChange(player) {
-    this.setState({ duration: BrightcoveVideo.getDurationMs(player) });
+    const duration = BrightcoveVideo.getDurationMs(player);
+
+    // @TODO: implement internal setState method
+    // this.setState({ duration: BrightcoveVideo.getDurationMs(player) });
+
+    this.state.duration = duration;
   }
 
   onEnded() {
@@ -286,11 +331,8 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
   }
 
   initVideoJS(id) {
-    console.log(this);
-    console.log(id);
     const player = videojs(id);
-    // console.log(BrightcoveVideo.handlePlayerReady);
-    const handler = this.handlePlayerReady.bind(player, this);
+    const handler = BrightcoveVideo.handlePlayerReady.bind(player, this);
     // player.on("ready", handler);
 
     player.ready(handler);
@@ -323,6 +365,18 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
     }
   }
 
+  toggle() {
+    console.log('TOGGLE VIDEO');
+    console.log(this.state);
+    if (this.player) {
+      if (this.state.isPlaying === false || this.state.isPlaying === 'paused'){
+        this.play();
+      } else {
+        this.pause();
+      }
+    }
+  }
+
   pause() {
     if (this.player) {
       this.player.pause();
@@ -350,23 +404,21 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
     /* eslint jsx-a11y/media-has-caption: "off" */
     // Added a wrapping div as brightcove adds siblings to the video tag
     return(
-      <div>
-        <video
-          id={this.state.id}
-          {...(this.props.poster ? { poster: this.props.poster.uri } : {})}
-          data-embed="default"
-          data-video-id={this.props.videoId}
-          data-account={this.props.accountId}
-          data-player={this.props.playerId}
-          // playIcon={playIconEmoji()}
-          // following 'autoplay' can not expected to always work on web
-          // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
-          autoPlay={this.props.autoplay}
-          data-application-id
-          className="video-js"
-          controls
-        />
-      </div>
+      <video
+        id={this.state.id}
+        {...(this.props.poster ? { poster: this.props.poster.uri } : {})}
+        data-embed="default"
+        data-video-id={this.props.videoId}
+        data-account={this.props.accountId}
+        data-player={this.props.playerId}
+        // playIcon={playIconEmoji()}
+        // following 'autoplay' can not expected to always work on web
+        // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
+        autoPlay={this.props.autoplay}
+        data-application-id
+        className="video-js"
+        controls
+      />
     );
   }
 }

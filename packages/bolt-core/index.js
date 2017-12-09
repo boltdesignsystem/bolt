@@ -16,6 +16,7 @@ export const utils = {
   styledMixin
 }
 
+export * from './utils/events';
 export * from './utils/component';
 export { withPreact } from './utils/renderer-preact';
 export * from './utils/css';
