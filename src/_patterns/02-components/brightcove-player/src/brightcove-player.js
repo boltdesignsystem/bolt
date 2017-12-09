@@ -215,39 +215,37 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
   //   // const value = this.hasAttribute('expanded');
   //   // this._shadowButton.setAttribute('aria-expanded', value);
   // }
+  updating({ props, state }) {
+    console.log(props);
+    console.log(state);
+    // const playerStatusChanged = this.state.isPlaying !== nextState.isPlaying;
 
-  // attriburtes(nextProps, nextState) {
-  //   console.log('componentWillUpdate');
-  //   console.log(nextProps);
-  //   console.log(nextState);
-  //   // const playerStatusChanged = this.state.isPlaying !== nextState.isPlaying;
+    // if (this.state.duration !== nextState.duration) {
+    //   this.props.onDuration(nextState.duration);
+    // }
 
-  //   // if (this.state.duration !== nextState.duration) {
-  //   //   this.props.onDuration(nextState.duration);
-  //   // }
+    // if (playerStatusChanged && nextState.isPlaying) {
+    //   this.props.onPlay();
+    // }
 
-  //   // if (playerStatusChanged && nextState.isPlaying) {
-  //   //   this.props.onPlay();
-  //   // }
+    // if (this.state.progress !== nextState.progress) {
+    //   this.props.onProgress(nextState.progress);
+    // }
 
-  //   // if (this.state.progress !== nextState.progress) {
-  //   //   this.props.onProgress(nextState.progress);
-  //   // }
+    // if (playerStatusChanged && !nextState.isPlaying) {
+    //   this.props.onPause();
+    // }
 
-  //   // if (playerStatusChanged && !nextState.isPlaying) {
-  //   //   this.props.onPause();
-  //   // }
+    // if (
+    //   this.state.isFinished !== nextState.isFinished &&
+    //   nextState.isFinished
+    // ) {
+    //   this.props.onFinish();
+    // }
 
-  //   // if (
-  //   //   this.state.isFinished !== nextState.isFinished &&
-  //   //   nextState.isFinished
-  //   // ) {
-  //   //   this.props.onFinish();
-  //   // }
-
-  //   // return true;
-  //   // return this.props !== nextProps;
-  // }
+    // return true;
+    // return this.props !== nextProps;
+  }
 
   disconnectedCallback() {
     if (this.player) {
@@ -266,7 +264,6 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
     //   progress: BrightcoveVideo.getCurrentTimeMs(player),
     //   isFinished: false
     // });
-
     this.state.isPlaying = true;
     this.state.progress = BrightcoveVideo.getCurrentTimeMs(player);
     this.state.isFinished = false;
@@ -293,7 +290,6 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
     //   progress: BrightcoveVideo.getCurrentTimeMs(player),
     //   isFinished: false
     // });
-
     this.state.isFinished = false;
     this.state.progress = progress;
   }
