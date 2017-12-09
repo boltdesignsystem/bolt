@@ -50,28 +50,16 @@ export class BoltButton extends withComponent(withPreact()) {
     // });
   }
 
-  get renderRoot() {
-    return this;
+  // get renderRoot() {
+  //   return this;
+  // }
+  render() {
+    return (
+      <slot />
+    )
   }
 
   doThis(){
     console.log('do this event on click');
   }
 }
-
-  // <bolt-button on-click="doThis"
-  // renderCallback() {
-  //   const className = css(
-  //     'c-bolt-button',
-  //     this.theme ? `c-bolt-button--${this.theme}` : '',
-  //     this.size && sizes[this.size] ? `c-bolt-button--${this.size}` : ''
-  //   );
-
-  //   return (
-  //     <button class={className}>
-  //       <span class="c-bolt-button__item">
-  //         <slot />
-  //       </span>
-  //     </button>
-  //   );
-  // }

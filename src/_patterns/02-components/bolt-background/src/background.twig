@@ -43,7 +43,9 @@
 
           {% include pattern_template(item.pattern) with item | merge({
             (itemAttributes): {
-              class: ["c-bolt-background__#{item.pattern}"]
+              class: [
+                "c-bolt-background__#{item.pattern}"
+              ]
             },
             ratio: false
           }) only %}

@@ -66,7 +66,20 @@ $bolt-background-dark-overlay-opacity--heavy: 0.8;
   animation: a-bolt-zoom-in-out 45s ease-in-out infinite both;
 }
 
+.c-bolt-background__video {
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0;
 
+  .video-js {
+    max-width: 1400px;
+    margin: 0 auto;
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+.c-bolt-background__video,
 .c-bolt-background__image {
   @include bolt-margin(auto);
 
