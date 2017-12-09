@@ -1,7 +1,8 @@
 {
-  "name": "@bolt/brightcove-video",
+  "name": "@bolt/components-brightcove-player",
   "version": "0.0.0",
   "main": "src/brightcove-player.polyfilled",
+  "style": "src/brightcove-player",
   "scripts": {
     "flow": "node_modules/flow-bin/cli.js",
     "test:watch": "jest --bail --verbose --watchAll",
@@ -16,13 +17,13 @@
   },
   "jest": {
     "rootDir": "../../",
-    "coverageDirectory": "<rootDir>/src/_patterns/02-components/brightcove-video/coverage/",
+    "coverageDirectory": "<rootDir>/src/_patterns/02-components/components-brightcove-player/coverage/",
     "testEnvironment": "jsdom",
     "transformIgnorePatterns": [
       "node_modules/(?!@bolt)/"
     ],
     "testMatch": [
-      "<rootDir>/src/_patterns/02-components/brightcove-video/__tests__/*"
+      "<rootDir>/src/_patterns/02-components/components-brightcove-player/__tests__/*"
     ]
   },
   "keywords": [
