@@ -1,46 +1,77 @@
-import { Component, define } from 'skatejs';
+import { define, props, withComponent } from 'skatejs';
+import { eventHandler, withPreact } from '@bolt/core'; // Latest v. broken so using local version for now
+import { h, render } from 'preact';
+import { value } from 'yocss';
+import { thisExpression } from 'babel-types';
 
-import styles from '../_button.scss';
-import StyledMixin from '../util/styled-mixin.js';
-import sizes from '../util/sizes.js';
-// import style from '../util/style.js';
-import css from '../util/css.js';
+// import styles from './_button.scss';
 
+@define
+export class BoltButton extends withComponent(withPreact()) {
+  static is = 'bolt-button';
 
-export default class BoltButton extends StyledMixin(Component) {
-  /**
-   * @property {string} is defines the component as bolt-button
-   */
-  static get is() {
-    return 'bolt-button';
+  static props = {
+    onClick: props.string,
+    onClickTarget: props.string
   }
 
-  static get styleSheet() {
-    return styles;
+  clickHandler(event){
+    const clickMethod = this.props.onClick;
+    const clickTarget = this.props.onClickTarget;
+
+    if (clickMethod){
+      if (clickTarget){
+        const elems = document.querySelectorAll(`.${clickTarget}`);
+        
+        if (elems){
+          elems.forEach(function (elem) {
+            elem[clickMethod]();
+          });
+        }
+      } else {
+        this[clickMethod]();
+      }
+    }
   }
 
-  static get props() {
-    return {
-      theme: { attribute: true },
-      size: { attribute: true }
-    };
+  connectedCallback() {
+    console.log('connected callback');
+
+    this.addEventListener('click', this.clickHandler);
+    
+    // }
+    // Add keyboard event for enter key or space to mimic anchor functionality
+    // elem.addEventListener(`keypress`, function (e) {
+    //   if (e.which !== 13 && e.which !== 32) return;
+    //   // Prevent default action of element
+    //   e.preventDefault();
+    //   // Run state function
+    //   eventHandler(this);
+    // });
   }
 
-  renderCallback() {
-    const className = css(
-      'c-bolt-button',
-      this.theme ? `c-bolt-button--${this.theme}` : '',
-      this.size && sizes[this.size] ? `c-bolt-button--${this.size}` : ''
-    );
+  get renderRoot() {
+    return this;
+  }
 
-    return (
-      <button class={className}>
-        <span class="c-bolt-button__item">
-          <slot />
-        </span>
-      </button>
-    );
+  doThis(){
+    console.log('do this event on click');
   }
 }
 
-define(BoltButton);
+  // <bolt-button on-click="doThis"
+  // renderCallback() {
+  //   const className = css(
+  //     'c-bolt-button',
+  //     this.theme ? `c-bolt-button--${this.theme}` : '',
+  //     this.size && sizes[this.size] ? `c-bolt-button--${this.size}` : ''
+  //   );
+
+  //   return (
+  //     <button class={className}>
+  //       <span class="c-bolt-button__item">
+  //         <slot />
+  //       </span>
+  //     </button>
+  //   );
+  // }
