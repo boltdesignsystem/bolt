@@ -6,24 +6,6 @@ import { withPreact } from '@bolt/core'; // Latest v. broken so using local vers
 import { h, render } from 'preact';
 import { value } from 'yocss';
 
-/**
- * Resize arbitary width x height region to fit inside another region.
- *
- * Conserve aspect ratio of the orignal region. Useful when shrinking/enlarging
- * images to fit into a certain area.
- *
- * @param {Number} srcWidth Source area width
- *
- * @param {Number} srcHeight Source area height
- *
- * @param {Number} maxWidth Fittable area maximum available width
- *
- * @param {Number} srcWidth Fittable area maximum available height
- *
- * @return {Object} { width, heigth }
- *
- */
-
 let index = 0;
 
 @define
@@ -31,11 +13,12 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
   static is = 'brightcove-player';
 
   static props = {
+    width: props.number,
+    height: props.number,
     videoId: props.string,
     accountId: props.string,
     playerId: props.string,
     poster: props.object,
-    isBackgroundVideo: props.boolean,
     // onError: null,
     // onPlay: null,
     // onPause: null,
@@ -66,8 +49,8 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
     // BrightcoveVideo.globalErrors.forEach(this.props.onError);
 
     this.defaultProps = {
-      // width: 320,
-      // height: 180,
+      width: 320,
+      height: 180,
       // playerId: "default",
       // onError: () => { },
       // onPlay: () => { },
@@ -81,50 +64,11 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
       resetOnFinish: false
     }
 
-
-    // Ensure that 'this' inside the _onWindowResize event handler refers to <bolt-nav-link>
-    // even if the handler is attached to another element (window in this case)
-    this._onWindowResize = this._onWindowResize.bind(this);
-
     // this.attachShadow({ mode: 'open' });
   }
 
   get renderRoot() {
     return this;
-  }
-
-
-  get expandedHeight() {
-    return this.getAttribute('expandedHeight');
-  }
-  /**
-    * Properties and their corresponding attributes should mirror one another.
-    * To this effect, the property setter for `expanded` handles truthy/falsy
-    * values and reflects those to the state of the attribute. It’s important
-    * to note that there are no side effects taking place in the property
-    * setter. For example, the setter does not set `aria-expanded`. Instead,
-    * that work happens in the `attributeChangedCallback`. As a general rule,
-    * make property setters very dumb, and if setting a property or attribute
-    * should cause a side effect (like setting a corresponding ARIA attribute)
-    * do that work in the `attributeChangedCallback`. This will avoid having to
-    * manage complex attribute/property reentrancy scenarios.
-    */
-  set expandedHeight(value) {
-    // Properties can be set to all kinds of string values. This makes sure
-    // it’s converted to a proper boolean value using JavaScript’s truthiness
-    // & falsiness principles.
-    // value = Boolean(value);
-    if (value)
-      this.setAttribute('expandedHeight', value);
-    else
-      this.removeAttribute('expandedHeight');
-
-    this.dispatchEvent(
-      new CustomEvent('expandedHeightSet', {
-        detail: { expandedHeight: this.expandedHeight },
-        bubbles: true,
-      })
-    );
   }
 
   // Called to check whether or not the component should call
@@ -134,30 +78,14 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
   //   console.log(state);
   // }
 
-  _setDuration(time){
-    this.duration = time;
-  }
-
-  _setVideoDimensions(width, height) {
-    this.srcWidth = width;
-    this.srcHeight = height;
-  }
 
   static handlePlayerReady(context) {
+    console.log('handlePlayerReady');
+
     const player = this;
     const elem = context;
 
     elem.setPlayer(player);
-
-    player.on("loadedmetadata", function () {
-      const duration = player.mediainfo.duration;
-      const width = player.mediainfo.sources[1].width;
-      const height = player.mediainfo.sources[1].height;
-      
-      elem._setDuration();
-      elem._setVideoDimensions(width, height);
-      elem._calculateIdealVideoSize();
-    });
 
     player.on("play", function(){
       elem.onPlay(player);
@@ -172,7 +100,7 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
     });
 
     player.on("timeupdate", function () {
-      // elem.onPlay(player);
+      elem.onPlay(player);
     });
 
     player.on("durationchange", function () {
@@ -203,10 +131,6 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
   static getDurationMs(player) {
     return Math.round(player.duration() * 1000);
   }
-
-  // static isBackgroundVideo() {
-  //   return this.props.isBackgroundVideo;
-  // }
   
 
   connectedCallback() {
@@ -228,16 +152,16 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
     }
 
     if (BrightcoveVideo.globalErrors !== undefined && BrightcoveVideo.globalErrors.length) {
-      // console.log('adding default errors');
-      // console.log(this.state.errors);
+      console.log('adding default errors');
+      console.log(this.state.errors);
       this.state.errors = [].concat(BrightcoveVideo.globalErrors);
     } else {
       this.state.errors = [];
     }
 
     if (this.state.errors.length) {
-      // console.log(this.state.errors);
-      // console.log('error length');
+      console.log(this.state.errors);
+      console.log('error length');
       return;
     }
 
@@ -269,17 +193,9 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
       BrightcoveVideo.appendScript(s);
     }
 
-    // console.log('init');
+    console.log('init');
 
     this.init();
-
-
-    window.addEventListener('optimizedResize', this._onWindowResize);
-  }
-
-
-  _onWindowResize(event){
-    this._calculateIdealVideoSize();
   }
 
   // shouldUpdate(props, state) {
@@ -299,42 +215,41 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
   //   // const value = this.hasAttribute('expanded');
   //   // this._shadowButton.setAttribute('aria-expanded', value);
   // }
-  updating({ props, state }) {
 
-    // console.log(props);
-    // console.log(state);
-    // const playerStatusChanged = this.state.isPlaying !== nextState.isPlaying;
+  // attriburtes(nextProps, nextState) {
+  //   console.log('componentWillUpdate');
+  //   console.log(nextProps);
+  //   console.log(nextState);
+  //   // const playerStatusChanged = this.state.isPlaying !== nextState.isPlaying;
 
-    // if (this.state.duration !== nextState.duration) {
-    //   this.props.onDuration(nextState.duration);
-    // }
+  //   // if (this.state.duration !== nextState.duration) {
+  //   //   this.props.onDuration(nextState.duration);
+  //   // }
 
-    // if (playerStatusChanged && nextState.isPlaying) {
-    //   this.props.onPlay();
-    // }
+  //   // if (playerStatusChanged && nextState.isPlaying) {
+  //   //   this.props.onPlay();
+  //   // }
 
-    // if (this.state.progress !== nextState.progress) {
-    //   this.props.onProgress(nextState.progress);
-    // }
+  //   // if (this.state.progress !== nextState.progress) {
+  //   //   this.props.onProgress(nextState.progress);
+  //   // }
 
-    // if (playerStatusChanged && !nextState.isPlaying) {
-    //   this.props.onPause();
-    // }
+  //   // if (playerStatusChanged && !nextState.isPlaying) {
+  //   //   this.props.onPause();
+  //   // }
 
-    // if (
-    //   this.state.isFinished !== nextState.isFinished &&
-    //   nextState.isFinished
-    // ) {
-    //   this.props.onFinish();
-    // }
+  //   // if (
+  //   //   this.state.isFinished !== nextState.isFinished &&
+  //   //   nextState.isFinished
+  //   // ) {
+  //   //   this.props.onFinish();
+  //   // }
 
-    // return true;
-    // return this.props !== nextProps;
-  }
+  //   // return true;
+  //   // return this.props !== nextProps;
+  // }
 
   disconnectedCallback() {
-    window.removeEventListener('optimizedResize', this._calculateIdealVideoSize);
-
     if (this.player) {
       this.player.dispose();
     }
@@ -345,12 +260,6 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
   }
 
   onPlay(player) {
-
-    this.classList.add('is-playing');
-    this.classList.remove('is-finished');
-    this.classList.remove('is-paused');
-
-    
     // @TODO: implement internal setState method
     // elem.setState({
     //   isPlaying: true,
@@ -358,27 +267,13 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
     //   isFinished: false
     // });
 
-    // Dispatch an event that signals a request to expand to the
-    // `<howto-accordion>` element.
     this.state.isPlaying = true;
     this.state.progress = BrightcoveVideo.getCurrentTimeMs(player);
     this.state.isFinished = false;
-
-    this.dispatchEvent(
-      new CustomEvent('playing', {
-        detail: {
-          isBackgroundVideo: this.props.isBackgroundVideo
-        },
-        bubbles: true,
-      })
-    );
   }
 
   onPause(player) {
     const progress = BrightcoveVideo.getCurrentTimeMs(player);
-
-    this.classList.add('is-paused');
-    this.classList.remove('is-playing');
 
     // @TODO: implement internal setState method
     // this.setState({
@@ -388,15 +283,6 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
 
     this.state.isPlaying = false;
     this.state.progress = progress;
-
-    this.dispatchEvent(
-      new CustomEvent('pause', {
-        detail: {
-          isBackgroundVideo: this.props.isBackgroundVideo
-        },
-        bubbles: true,
-      })
-    );
   }
 
   onSeeked(player) {
@@ -407,6 +293,7 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
     //   progress: BrightcoveVideo.getCurrentTimeMs(player),
     //   isFinished: false
     // });
+
     this.state.isFinished = false;
     this.state.progress = progress;
   }
@@ -422,48 +309,9 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
 
   onEnded() {
     // calling syncronously here inteferes with player and causes errors to be thrown
-
     setTimeout(() => {
-      this.state.isFinished = true;
-
-      this.classList.add('is-finished');
-      this.classList.remove('is-paused');
-
-      this.dispatchEvent(
-        new CustomEvent('ended', {
-          detail: { 
-            isBackgroundVideo: this.props.isBackgroundVideo
-          },
-          bubbles: true,
-        })
-      );
-      // this.setState({ isFinished: true });
+      this.setState({ isFinished: true });
     }, 0);
-  }
-
-
-  _calculateIdealVideoSize() {
-    const srcWidth = this.srcWidth;
-    const srcHeight = this.srcHeight;
-
-    if (this.srcWidth && this.srcHeight){
-      const maxRatio = .5625; //56.25%
-      const maxWidth = this.querySelector('video').getBoundingClientRect().width;
-      const maxHeightOption1 = maxWidth * maxRatio;
-      const maxHeightOption2 = window.innerHeight * maxRatio;
-
-      const maxHeight = Math.min(maxHeightOption1, maxHeightOption2);
-
-      let ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
-
-      const idealMaxWidth = Math.round(srcWidth * ratio * 100) / 100;
-      const idealMaxHeight = Math.round(srcHeight * ratio * 100) / 100;
-
-      // If maxHeight has already been pre-defined BUT that value is larger than the calculated `ideal` maxHeight, use the ideal maxHeight value instead and ignore the taller user-defined value.
-      // if (this.maxHeight && this.maxHeight > idealMaxHeight) {
-      this.expandedHeight = idealMaxHeight;
-      // }
-    }
   }
 
   setPlayer(player) {
@@ -486,9 +334,8 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
     const player = videojs(id);
     const handler = BrightcoveVideo.handlePlayerReady.bind(player, this);
     // player.on("ready", handler);
-    
-    player.ready(handler);
 
+    player.ready(handler);
     // player.on("error", this.onError.bind(this, player));
   }
 
@@ -511,16 +358,16 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
   }
 
   play() {
-    // console.log('PLAY VIDEO');
-    // console.log(this.player);
+    console.log('PLAY VIDEO');
+    console.log(this.player);
     if (this.player) {
       this.player.play();
     }
   }
 
   toggle() {
-    // console.log('TOGGLE VIDEO');
-    // console.log(this.state);
+    console.log('TOGGLE VIDEO');
+    console.log(this.state);
     if (this.player) {
       if (this.state.isPlaying === false || this.state.isPlaying === 'paused'){
         this.play();
@@ -544,7 +391,7 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
   }
 
   render({ state, props}) {
-    // console.log('render callback');
+    console.log('render callback');
     // data-email-subject="Pega - Intelligent Virtual Assistant for Email"
     // data-email-body="Check out this video from Pega"
     // data-email-videourl="https://local.d8.pega.com/insights/resources/intelligent-virtual-assistant-email"
@@ -588,27 +435,3 @@ export class BrightcoveVideo extends withComponent(withPreact()) {
 
 
 // export default BrightcoveVideo;
-
-
-// won't fire before a previous event is complete.
-// This was adapted from https://developer.mozilla.org/en-US/docs/Web/Events/resize
-(function () {
-  function throttle(type, name, obj) {
-    obj = obj || window;
-    let running = false;
-
-    function func() {
-      if (running) { return; }
-      running = true;
-      requestAnimationFrame(function () {
-        obj.dispatchEvent(new CustomEvent(name));
-        running = false;
-      });
-    }
-    obj.addEventListener(type, func);
-  }
-
-  // Initialize on window.resize event.  Note that throttle can also be initialized on any type of event,
-  // such as scroll.
-  throttle("resize", "optimizedResize");
-})();
