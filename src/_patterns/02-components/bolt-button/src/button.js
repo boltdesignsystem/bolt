@@ -36,7 +36,12 @@ export class BoltButton extends withComponent(withPreact()) {
     this.addEventListener('click', this.clickHandler);
   }
 
-  get renderRoot() {
-    return this;
+  // get renderRoot() {
+  //   return this;
+  // }
+  render() {
+    return (
+      <slot />
+    )
   }
 }
