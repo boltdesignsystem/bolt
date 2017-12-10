@@ -33,7 +33,7 @@ The best way to start using Bolt is via the *Bolt Starterkit* (coming soon), a p
 
 You can also use the full [Bolt Core](https://www.npmjs.com/package/@bolt/core) CSS framework on its own, or, install just the parts you need and fold the different ITCSS layers of Bolt into your existing codebase.
 
-Installing Bolt’s Action Blocks component is as easy as running NPM install:
+Installing Bolt’s Sticky component is as easy as running NPM install:
 
 ```
 npm install @bolt/components-sticky

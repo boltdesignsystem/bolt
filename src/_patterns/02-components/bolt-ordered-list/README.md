@@ -1,4 +1,4 @@
-# bolt/ordered-list
+# bolt/components-ordered-list
 Stylistic numbered list for article content. Part of the Bolt “Components” CSS framework that powers the [Bolt Design System](https://www.boltdesignsystem.com).
 
 ## Demo
@@ -29,7 +29,7 @@ Stylistic numbered list for article content. Part of the Bolt “Components” C
 ## Cheat Sheet
 ### Install via NPM
 ```
-npm install @bolt/ordered-list
+npm install @bolt/components-ordered-list
 ```
 
 - - - -
@@ -39,10 +39,10 @@ The best way to start using Bolt is via the *Bolt Starterkit* (coming soon), a p
 
 You can also use the full [Bolt Core](https://www.npmjs.com/package/@bolt/core) CSS framework on its own, or, install just the parts you need and fold the different ITCSS layers of Bolt into your existing codebase.
 
-Installing Bolt’s Action Blocks component is as easy as running NPM install:
+Installing Bolt’s Ordered List component is as easy as running NPM install:
 
 ```
-npm install @bolt/ordered-list
+npm install @bolt/components-ordered-list
 ```
 
 > **TIP:**: Don’t have a `package.json` file? Need a little help getting started? Check out our [Getting Started](https://www.boltdesignsystem.com/getting-started) guide for some tips to help get you up to speed.

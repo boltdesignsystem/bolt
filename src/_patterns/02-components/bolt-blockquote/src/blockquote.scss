@@ -21,7 +21,7 @@
 //     <div class="c-bolt-blockquote__quote">
 //       <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xlarge">
 //         <span class="c-bolt-text__text">
-//           <p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>
+//           <p>This is the quote.</p>
 //         </span>
 //       </div>
 //     </div>
@@ -36,12 +36,12 @@
 //       <div class="c-bolt-blockquote__footer-item">
 //         <cite class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall">
 //           <span class="c-bolt-text__text">
-//             Michelangelo di Lodovico Buonarroti Simoni
+//             Author Name
 //           </span>
 //         </cite>
 //         <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">
 //           <span class="c-bolt-text__text">
-//             Renaissance Artist
+//             Author Title
 //           </span>
 //         </p>
 //       </div>
@@ -61,8 +61,6 @@ $bolt-blockquote-image-border-color: rgba(bolt-color(gray), 0.2);
 $bolt-blockquote-image-size: 4rem;
 
 
-// Styles
-
 // Custom element default styles
 bolt-blockquote {
   display: block;
@@ -72,10 +70,10 @@ bolt-blockquote {
   }
 }
 
+
+// Blockquote container
 .c-bolt-blockquote {
   @include bolt-margin(0);
-  color: currentColor;
-  color: var(--bolt-theme-blockquote-text, var(--bolt-theme-text, inherit));
 
   &:before, &:after {
     width: 100%;
@@ -103,14 +101,14 @@ bolt-blockquote {
 }
 
 
-// Quotation mark
+// Quotation
 .c-bolt-blockquote__quote {
   @include bolt-margin-bottom(medium);
   display: block;
   position: relative;
   max-width: 44rem;
-  color: currentColor;
-  color: var(--bolt-theme-heading, currentColor);
+  color: inherit;
+  color: var(--bolt-theme-heading, inherit);
 
   p:first-child:before, p:last-child:after {
     font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
@@ -139,6 +137,8 @@ bolt-blockquote {
 }
 
 .c-bolt-blockquote__footer {
+  color: inherit;
+  color: var(--bolt-theme-text, inherit);
   line-height: $bolt-blockquote-footer-line-height;
 }
 
@@ -231,7 +231,7 @@ bolt-blockquote {
 }
 
 
-// Full bleed
+// Full bleed. Text takes up full width of screen instead of hitting a max width
 .c-bolt-blockquote--full {
   .c-bolt-blockquote__quote {
     max-width: 100%;

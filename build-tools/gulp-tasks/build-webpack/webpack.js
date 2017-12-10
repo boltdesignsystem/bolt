@@ -68,7 +68,7 @@ function webpackTask(gulp, devConfig, releaseConfig) {
       'src/scripts/**/*.js',
       'src/_patterns/**/src/*.js'
     ], gulp.parallel([
-      gutil.env.prod ? 'webpack:prod' : 'webpack:dev',
+      process.env.NODE_ENV === 'production' ? 'webpack:prod' : 'webpack:dev',
     ]));
   });
 }
