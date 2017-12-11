@@ -1,4 +1,4 @@
-// import { Preact, h } from 'preact';
+// import { Preact, h } from '@bolt/core';
 const Unlock = ({ color, size, ...otherProps }) => {
   color = color || 'currentColor';
   size = size || '24';

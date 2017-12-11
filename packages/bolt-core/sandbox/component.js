@@ -1,3 +1,5 @@
+// Example taken from recent SkateJS 5.0.0-beta.4 site example
+
 import { html } from 'lit-html/lib/lit-extended';
 import { define, props, withComponent } from 'skatejs/dist/esnext';
 import withLitHtml from '@skatejs/renderer-lit-html/dist/node';

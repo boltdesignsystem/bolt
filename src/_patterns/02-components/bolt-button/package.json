@@ -4,6 +4,8 @@
   "patternType": "components",
   "patternSubType": "buttons",
   "style": "src/button.scss",
+  "main": "dist/bolt-button.min.js",
+  "module:dev": "src/button.js",
   "templates": {
     "button": {
       "filename": "button.twig",
@@ -39,13 +41,12 @@
   "dependencies": {
     "@bolt/core": "^0.4.1",
     "@bolt/settings-all": "^0.7.4",
-    "@bolt/tools-all": "^0.5.4",
-    "core-js": "^2.5.1",
-    "preact": "^8.2.5",
-    "skatejs": "^5.0.0-beta.4"
+    "@bolt/tools-all": "^0.5.4"
   },
   "scripts": {
     "prepublishOnly": "npm run build",
-    "build": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry bolt-button=./src/button"
+    "build": "npm-run-all --parallel build:*",
+    "build:bolt": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry bolt-button=./src/button --output-filename='bolt-button.min.js' --output-public-path /scripts/",
+    "build:wwwd8": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js bolt-button=./src/button --output-filename='bolt-button.wwwd8.min.js' --output-public-path /themes/custom/pegawww_theme/node_modules/@bolt/components-button/dist/"
   }
 }

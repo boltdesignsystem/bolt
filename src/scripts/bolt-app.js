@@ -1,12 +1,13 @@
-import '@bolt/components-image/src/image.js';
 import '@bolt/objects-ratio';
-import '@bolt/components-brightcove-player';
-import '@bolt/components-button/src/button.polyfilled';
 
-import '@bolt/components-band/src/band.polyfilled';
-import '@bolt/components-band/src/band-collection.polyfilled';
-import '@bolt/components-device-viewer/src/device-viewer.js';
-import '@bolt/components-icon/src/icon.js'; //Required - otherwise the `dist` version would get included by default which would result in double shimming. @TODO: abstract web components polyfills into separate require.ensure call
-import '@bolt/components-nav-bar/src/nav-bar.js';
-import '@bolt/components-smooth-scroll/src/smooth-scroll.js';
+// Whole card clickability. @TODO: release once IE bugs worked out
 // import '@bolt/components-card/src/card.js';
+import '@bolt/components-band';
+import '@bolt/components-band/src/band-collection';
+import '@bolt/components-button';
+import '@bolt/components-device-viewer';
+import '@bolt/components-icon';
+import '@bolt/components-image';
+import '@bolt/components-nav-bar';
+import '@bolt/components-smooth-scroll';
+import '@bolt/components-video';

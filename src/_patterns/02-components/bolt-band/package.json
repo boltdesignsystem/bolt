@@ -33,18 +33,25 @@
   "bugs": {
     "url": "https://github.com/bolt-design-system/bolt/issues"
   },
-  "style": "src/band.scss",
+
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
     "@bolt/settings-all": "^0.7.4",
     "@bolt/core": "^0.4.1",
-    "@bolt/tools-all": "^0.5.4",
-    "preact": "^8.2.5",
-    "skatejs": "^5.0.0-beta.4"
+    "@bolt/tools-all": "^0.5.4"
   },
   "devDependencies": {
     "@bolt/build-webpack": "^0.4.1"
+  },
+  "main": "dist/bolt-band.min.js",
+  "module:dev": "src/band.js",
+  "style": "src/band.scss",
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "build": "npm-run-all --parallel build:*",
+    "build:bolt": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/band --output-filename='bolt-band.min.js' --output-public-path /scripts/",
+    "build:wwwd8": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/band --output-filename='bolt-band.wwwd8.min.js' --output-public-path /themes/custom/pegawww_theme/node_modules/@bolt/components-band/dist/"
   }
 }

@@ -1,5 +1,5 @@
 /** @jsx h */
-// Temp copy till SkateJS fixes this upstream
+// Temp working version of @skatejs/renderer-preact till SkateJS fixes this upstream in the SkateJS monorepo
 
 import { h, render } from 'preact';
 

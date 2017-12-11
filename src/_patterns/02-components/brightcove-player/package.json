@@ -1,20 +1,9 @@
 {
   "name": "@bolt/components-brightcove-player",
   "version": "0.0.0",
-  "main": "src/brightcove-player.polyfilled",
-  "style": "src/brightcove-player",
-  "scripts": {
-    "flow": "node_modules/flow-bin/cli.js",
-    "test:watch": "jest --bail --verbose --watchAll",
-    "test": "jest --bail --ci --coverage",
-    "fmt": "prettier --write '**/*.+(js|json|md)'",
-    "prettier:diff": "prettier --list-different '**/*.+(js|json|md)'",
-    "lint": "eslint . && yarn prettier:diff",
-    "prepublishOnly": "npm run build",
-    "build": "npm-run-all --parallel build:*",
-    "build:bolt": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/brightcove-player --output-filename='bolt-brightcove-player.min.js' --output-public-path /scripts/",
-    "build:wwwd8": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/brightcove-player --output-filename='bolt-brightcove-player.wwwd8.min.js' --output-public-path /themes/custom/pegawww_theme/node_modules/@bolt/components-brightcove-player/dist/"
-  },
+  "main": "dist/brightcove-player.min.js",
+  "module:dev": "src/brightcove-player.js",
+  "style": "src/brightcove-player.scss",
   "jest": {
     "rootDir": "../../",
     "coverageDirectory": "<rootDir>/src/_patterns/02-components/components-brightcove-player/coverage/",
@@ -34,36 +23,20 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "babel-cli": "6.24.1",
-    "babel-core": "6.24.1",
-    "babel-jest": "21.2.0",
-    "babel-loader": "7.1.2",
-    "babel-plugin-transform-react-remove-prop-types": "0.4.5",
-    "babel-preset-flow": "6.23.0",
-    "babel-preset-react-native": "1.9.2",
-    "eslint": "4.9.0",
-    "eslint-config-airbnb": "16.1.0",
-    "eslint-config-prettier": "2.6.0",
-    "eslint-plugin-import": "2.8.0",
-    "eslint-plugin-jsx-a11y": "6.0.2",
-    "eslint-plugin-react": "7.4.0",
-    "flow-bin": "0.42.0",
-    "jest": "21.2.1",
-    "prettier": "1.8.2"
+    "@bolt/build-webpack": "^0.4.1"
   },
   "dependencies": {
-    "prop-types": "15.6.0",
-    "svgs": "3.1.1",
-    "@bolt/build-webpack": "^0.4.1",
     "@bolt/core": "^0.4.1",
     "@bolt/settings-all": "^0.7.4",
-    "@bolt/tools-all": "^0.5.4",
-    "@skatejs/renderer-preact": "^0.1.0",
-    "core-js": "^2.5.1",
-    "preact": "^8.2.5",
-    "skatejs": "^5.0.0-beta.4"
+    "@bolt/tools-all": "^0.5.4"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "build": "npm-run-all --parallel build:*",
+    "build:bolt": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/brightcove-player --output-filename='bolt-brightcove-player.min.js' --output-public-path /scripts/",
+    "build:wwwd8": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/brightcove-player --output-filename='bolt-brightcove-player.wwwd8.min.js' --output-public-path /themes/custom/pegawww_theme/node_modules/@bolt/components-brightcove-player/dist/"
   }
 }

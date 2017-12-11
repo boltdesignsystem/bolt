@@ -2,7 +2,7 @@
 
 use Gregwar\Image\Image;
 use Gregwar\Image\GarbageCollect;
-
+use ColorThief\ColorThief;
 
 /**
   * Handle garbage collection w/ the temp images generated locally

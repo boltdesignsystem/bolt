@@ -1,11 +1,16 @@
-/* eslint-env browser */
-/* globals videojs, bc */
+import {
+  h,
+  render,
+  define,
+  props,
+  withComponent,
+  withPreact,
+  css,
+  spacingSizes
+} from '@bolt/core';
 
-import { define, props, withComponent } from 'skatejs';
-import { css, withPreact } from '@bolt/core'; // Latest v. broken so using local version for now
-import { h, render } from 'preact';
+
 import styles from './ratio.scss';
-// import { value } from 'yocss';
 
 @define
 export class BoltRatio extends withComponent(withPreact()) {

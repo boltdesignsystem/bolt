@@ -1,4 +1,4 @@
-// import { Preact, h } from 'preact';
+// import { Preact, h } from '@bolt/core';
 const Insurance = ({ color, size, ...otherProps }) => {
   color = color || 'currentColor';
   size = size || '24';

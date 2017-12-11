@@ -63,6 +63,8 @@ const defaultConfig = {
   devtool: 'cheap-module-source-map',
   // devtool: 'cheap-source-map',
   resolve: {
+    // Help webpack find local Bolt code in the src folder
+    mainFields: ['module:dev', 'browser', 'module', 'main'],
     alias: {
       styles: path.resolve(__dirname, 'src/styles'),
     },
