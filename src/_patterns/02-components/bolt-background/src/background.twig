@@ -68,10 +68,9 @@
 
       {% if shapeGroup %}
         <div {{ shapeAttributes.addClass(shapeClasses) }}>
-          {% include "@bolt/background-shapes.twig" with {
-            "shapeGroup": shapeGroup
-          }%}
+          {% include "@bolt/background-shapes.twig" with { "shapeGroup": shapeGroup } only %}
         </div>
+
       {% endif %}
     </div>
   </div>
