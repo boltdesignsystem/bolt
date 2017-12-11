@@ -70,6 +70,15 @@ $bolt-background-dark-overlay-opacity--heavy: 0.8;
   z-index: 10;
   pointer-events: none;
   opacity: 0;
+  transition: all .5s ease;
+  
+  &.is-playing,
+  &.is-paused,
+  &.is-finished {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
 
   .video-js {
     max-width: 1400px;
