@@ -12,4 +12,10 @@
   {% set attributes = attributes.setAttribute("player-id", playerId) %}
 {% endif %}
 
-<brightcove-player {{ attributes }}></brightcove-player>
+{% if isBackgroundVideo %}
+  {% set attributes = attributes.setAttribute("is-background-video", isBackgroundVideo) %}
+{% else %}
+  {% set attributes = attributes.setAttribute("is-background-video", false) %}
+{% endif %}
+
+<brightcove-player {{ attributes }} max-height="1200"></brightcove-player>
