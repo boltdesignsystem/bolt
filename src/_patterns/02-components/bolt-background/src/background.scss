@@ -16,6 +16,10 @@ $bolt-background-dark-overlay-opacity--light: 0.3;
 $bolt-background-dark-overlay-opacity--medium: 0.55;
 $bolt-background-dark-overlay-opacity--heavy: 0.8;
 
+$bolt-bg-shape-offset-default: -100px;
+$bolt-bg-shape-offset-small: -150px;
+$bolt-bg-shape-offset-large: -300px;
+
 
 // Zoom animation treatment
 @keyframes a-bolt-zoom-in-out {
@@ -137,30 +141,30 @@ $bolt-background-dark-overlay-opacity--heavy: 0.8;
 .c-bolt-background__shapes {
   position: absolute;
   transform: rotate(-45deg);
-  right: -100px;
-  bottom: -100px;
+  right: $bolt-bg-shape-offset-default;
+  bottom: $bolt-bg-shape-offset-default;
 
   @include respond-to(small) {
-    right: -150px;
-    bottom: -150px;
+    right: $bolt-bg-shape-offset-small;
+    bottom: $bolt-bg-shape-offset-small;
   }
 
   @include respond-to(large) {
-    right: -300px;
-    bottom: -300px;
+    right: $bolt-bg-shape-offset-large;
+    bottom: $bolt-bg-shape-offset-large;
   }
 }
 
 .c-bolt-background__shapes--left {
   transform: rotate(45deg);
-  left: -100px;
+  left: $bolt-bg-shape-offset-default;
   right: auto;
 
   @include respond-to(small) {
-    left: -150px;
+    left: $bolt-bg-shape-offset-small;
   }
 
   @include respond-to(large) {
-    left: -300px;
+    left: $bolt-bg-shape-offset-large;
   }
 }
