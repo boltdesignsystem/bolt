@@ -4,10 +4,16 @@
 
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set overlayAttributes = create_attribute({}) %}
+{% set shapeAttributes = create_attribute({}) %}
 
 {% set overlayStates = ["enabled", "disabled"] %}
 
 {% set opacities = ["light", "medium", "heavy"] %}
+
+{% set shapeGroups = ["A", "B"] %}
+
+{% set shapeAlignments = ["left", "right"] %}
+
 {% set fills = {
   "color": "color",
   "gradient": "gradient"
@@ -29,6 +35,12 @@
   baseClass ~ "__overlay",
   opacity in opacities ? baseClass ~ "__overlay--" ~ opacity ~ "-opacity" : baseClass ~ "__overlay--medium-opacity",
   fill in fills|keys ? baseClass ~ "__overlay--" ~ fills[fill] ~ "-fill" : baseClass ~ "__overlay--color-fill"
+] %}
+
+{% set shapeGroup =  shapeGroup in shapeGroups ? shapeGroup %}
+{% set shapeClasses = [
+  baseClass ~ "__shapes",
+  shapeAlignment in shapeAlignments ? baseClass ~ "__shapes--" ~ shapeAlignment : baseClass ~ "__shapes--right"
 ] %}
 
 
@@ -54,6 +66,14 @@
 
       {% if overlay == "enabled" %}
         <div {{ overlayAttributes.addClass(overlayClasses) }} ></div>
+      {% endif %}
+
+      {% if shapeGroup %}
+        <div {{ shapeAttributes.addClass(shapeClasses) }}>
+          {% include "@bolt/background-shapes.twig" with {
+            "shapeGroup": shapeGroup
+          }%}
+        </div>
       {% endif %}
     </div>
   </div>    

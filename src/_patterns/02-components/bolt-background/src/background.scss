@@ -155,3 +155,34 @@ $bolt-background-dark-overlay-opacity--heavy: 0.8;
   background: linear-gradient($bolt-gradient-angle--reversed, $bolt-test-color-background-gradient--secondary, $bolt-test-color-background-gradient--primary 50%);
   background: linear-gradient($bolt-gradient-angle--reversed, var(--bolt-theme-background-gradient-secondary, $bolt-test-color-background-gradient--secondary), var(--bolt-theme-background-gradient-primary, $bolt-test-color-background-gradient--primary) 50%);
 }
+
+.c-bolt-background__shapes {
+  position: absolute;
+  transform: rotate(-45deg);
+  right: -100px;
+  bottom: -100px;
+
+  @include respond-to(small) {
+    right: -150px;
+    bottom: -150px;
+  }
+
+  @include respond-to(large) {
+    right: -300px;
+    bottom: -300px;
+  }
+}
+
+.c-bolt-background__shapes--left {
+  transform: rotate(45deg);
+  left: -100px;
+  right: auto;
+
+  @include respond-to(small) {
+    left: -150px;
+  }
+
+  @include respond-to(large) {
+    left: -300px;
+  }
+}
