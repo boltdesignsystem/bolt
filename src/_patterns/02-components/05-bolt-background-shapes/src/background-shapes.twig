@@ -1,0 +1,78 @@
+{% set prefix = "c-bolt-" %}
+{% set componentName = "background-shapes" %}
+{% set baseClass = prefix ~ componentName %}
+
+{% set classes = [
+  baseClass
+] %}
+
+{% set shapeGroups = {
+  "A": [
+    {
+      "shape": "big-circle",
+      "color": "teal"
+    },
+    {
+      "shape": "little-circle",
+      "color": "orange"
+    },
+    {
+      "shape": "big-square",
+      "color": "yellow"
+    },
+    {
+      "shape": "outline-circle",
+      "color": "yellow"
+    },
+    {
+      "shape": "big-circle",
+      "color": "orange"
+    },
+    {
+      "shape": "little-square",
+      "color": "teal"
+    }
+  ],
+  "B": [
+    {
+      "shape": "little-circle",
+      "color": "teal"
+    },
+    {
+      "shape": "big-square",
+      "color": "yellow"
+    },
+    {
+      "shape": "little-circle",
+      "color": "teal"
+    },
+    {
+      "shape": "outline-circle",
+      "color": "orange"
+    },
+    {
+      "shape": "little-square",
+      "color": "yellow"
+    },
+    {
+      "shape": "big-circle",
+      "color": "teal"
+    }
+  ]
+} %}
+
+{# If a valid shapeGroup was specified, select its shapes.  Otherwise, get the shapes from the default shapeGroup. #}
+{% set elements = attribute(shapeGroups, shapeGroup) ? attribute(shapeGroups, shapeGroup) : shapeGroup.A %}
+
+<bolt-{{ componentName }} bolt-component>
+
+  <div class="{{ "#{baseClass}" }}">
+    <div class="{{ "#{baseClass}__shapes" }}">
+      {% for element in  elements %}
+        <div class="{{ "#{baseClass}__shape #{baseClass}__shape--#{element.color}" }}">
+          {{ source(element.shape ~ '.svg') }}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</bolt-{{ componentName }}>
