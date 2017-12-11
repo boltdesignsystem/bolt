@@ -1,5 +1,3 @@
-const util = require('gulp-util');
-
 module.exports = {
   root: 'packages/bolt',
   eyeglass: {
@@ -9,7 +7,7 @@ module.exports = {
   sassdoc: {
     dest: './dist/sassdoc'
   },
-  sourceMaps: !util.env.prod,
+  sourceMaps: process.env.NODE_ENV !== 'production',
   failAfterError: false,
   glob: false,
   extraWatches: [

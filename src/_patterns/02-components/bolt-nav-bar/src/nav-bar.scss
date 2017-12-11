@@ -1,0 +1,294 @@
+@import '@bolt/settings-all';
+@import '@bolt/tools-all';
+
+/* ------------------------------------ *\
+   Nav-bar
+\* ------------------------------------ */
+
+
+// Nav-bar styles
+bolt-nav-bar {
+  display: block;
+}
+
+.c-bolt-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.c-bolt-nav-bar__title {
+  @include bolt-margin(0 small 0 0);
+
+  white-space: nowrap;
+}
+
+.c-bolt-nav-bar__title-item {
+  display: inline-block;
+  display: inline-flex;
+  vertical-align: middle;
+  align-items: center;
+
+  & + .c-bolt-nav-bar__title-item {
+    @include bolt-margin-left(xsmall);
+  }
+}
+
+.c-bolt-nav-bar__nav {
+  @include bolt-margin(0 0 0 small);
+
+  // TODO: [Mai] The following is a hack to hide the nav on small screens, there should be a better option to hide and show in the future from the design team.
+  display: none;
+
+  @include respond-to(medium) {
+    display: block;
+  }
+}
+
+.c-bolt-nav-bar__title {
+  &:only-child {
+    @include bolt-margin(0 auto 0 0);
+  }
+}
+
+.c-bolt-nav-bar__nav {
+  &:only-child {
+    @include bolt-margin(0 auto);
+  }
+}
+
+.c-bolt-nav-bar--align-items-start {
+  justify-content: flex-start;
+}
+
+.c-bolt-nav-bar--align-items-center {
+  justify-content: center;
+}
+
+.c-bolt-nav-bar--align-items-end {
+  justify-content: flex-end;
+}
+
+
+
+
+/* ------------------------------------ *\
+   Nav-list
+\* ------------------------------------ */
+
+$bolt-nav-list-link-border-size: 2px;
+$bolt-nav-list-link-border-transition-ease: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+$bolt-nav-list-link-border-transition-timing: $bolt-transition-timing*2;
+
+
+// Nav-list Component
+bolt-nav-list {
+  display: block;
+}
+
+.c-bolt-nav-list {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
+
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  list-style: none;
+
+  @include respond-to(medium) {
+    flex-direction: row;
+  }
+
+  // TODO: [Mai] This is the setup for enhanced mobile view instead of hiding the items.
+  // &.is-active {
+  //   position: fixed;
+  //   top: 0;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 100%;
+  //   background-color: var(--bolt-theme-background);
+  //
+  //   @include respond-to(medium) {
+  //     position: relative;
+  //     top: auto;
+  //     left: auto;
+  //     width: auto;
+  //     height: auto;
+  //     background-color: transparent;
+  //   }
+  // }
+}
+
+// TODO: [Mai] This is the setup for enhanced mobile view instead of hiding the items.
+// .c-bolt-nav-list__toggle {
+//   display: block;
+//   position: relative;
+//   width: 2rem;
+//   height: 2rem;
+//   content: '';
+//   cursor: pointer;
+//
+//   @include respond-to(medium) {
+//     display: none;
+//   }
+//
+//   &:before {
+//     display: block;
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     width: 1rem;
+//     height: 1rem;
+//     margin: -0.67rem 0 0 -0.5rem;
+//     content: '';
+//     border-style: solid;
+//     border-color: currentColor;
+//     border-color: var(--bolt-theme-heading, currentColor);
+//     border-width: 2px 2px 0 0;
+//     transform: rotate(135deg);
+//     transform-origin: 50% 50%;
+//   }
+// }
+
+.c-bolt-nav-list__indicator {
+  position: absolute;
+  left: 0;
+  width: 0;
+  height: $bolt-nav-list-link-border-size;
+  background-color: currentColor;
+  background-color: var(--bolt-theme-heading, currentColor);
+  transition:
+    all
+    $bolt-nav-list-link-border-transition-timing
+    $bolt-nav-list-link-border-transition-ease;
+  will-change: width, transform;
+
+  .c-bolt-nav-list--xsmall & {
+    bottom: (bolt-v-spacing(xsmall) * -1);
+  }
+
+  .c-bolt-nav-list--small & {
+    bottom: (bolt-v-spacing(medium) * -1); // TODO: [Mai] When the band spacing options are fixed, small should map to small, not medium here.
+  }
+
+  // TODO: [Mai] Vertical spacing options for future use.
+  // .c-bolt-nav-list--medium &
+  //   bottom: (bolt-v-spacing(medium) * -1);
+  // }
+  //
+  // .c-bolt-nav-list--large &
+  //   bottom: (bolt-v-spacing(large) * -1);
+  // }
+  //
+  // .c-bolt-nav-list--xlarge &
+  //   bottom: (bolt-v-spacing(xlarge) * -1);
+  // }
+}
+
+// TODO: [Mai] This is the setup for enhanced mobile view instead of hiding the items.
+// .c-bolt-nav-list__item {
+//   display: none;
+//   width: 100%;
+//
+//   @include respond-to(medium) {
+//     display: block;
+//     width: auto;
+//   }
+//
+//   .c-bolt-nav-list.is-active & {
+//     display: block;
+//   }
+// }
+
+
+
+
+/* ------------------------------------ *\
+   Nav-link
+\* ------------------------------------ */
+
+$bolt-nav-link-bg-color: rgba(bolt-color(gray), 0.2);
+$bolt-nav-link-bg-border-radius: $bolt-border-radius;
+$bolt-nav-link-bg-transition-timing: $bolt-transition-timing*4;
+$bolt-nav-link-text-transition: $bolt-transition;
+
+
+// Nav-link Component
+bolt-nav-link {
+  display: block;
+}
+
+.c-bolt-nav-link {
+  @include bolt-padding(small, squished);
+  @include bolt-font-size(small);
+  @include bolt-font-weight(semibold);
+
+  display: block;
+  position: relative;
+  white-space: nowrap;
+  opacity: 0.8;
+  transition: opacity $bolt-nav-link-text-transition;
+
+  &:hover, &:active,
+  &.is-hover, &.is-active {
+    opacity: 1;
+  }
+
+  &:before {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    border-radius: $bolt-nav-link-bg-border-radius;
+    background-color: $bolt-nav-link-bg-color;
+    transform: scale3d(0, 0, 0);
+  }
+
+  &:hover,
+  &.is-hover {
+    &:before {
+      animation:
+        a-bolt-nav-link-bg-hover
+        $bolt-nav-link-bg-transition-timing
+        both;
+    }
+  }
+
+  &:active,
+  &.is-active {
+    &:before {
+      animation: none;
+    }
+  }
+}
+
+
+@keyframes a-bolt-nav-link-bg-hover {
+  0% {
+    transform: scale3d(0, 0, 0);
+  }
+
+  20% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  40% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  60% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  80% {
+    transform: scale3d(0.99, 0.99, 0.99);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
