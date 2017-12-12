@@ -1,7 +1,7 @@
 {
   "name": "@bolt/components-brightcove-player",
-  "version": "0.0.0",
-  "main": "src/brightcove-player.polyfilled",
+  "version": "0.1.0-alpha.1",
+  "main": "dist/brightcove-player.min.js",
   "style": "src/brightcove-player",
   "scripts": {
     "flow": "node_modules/flow-bin/cli.js",
@@ -34,7 +34,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "babel-cli": "6.24.1",
+    "@bolt/build-webpack": "^0.5.0-alpha.1"
     "babel-core": "6.24.1",
     "babel-jest": "21.2.0",
     "babel-loader": "7.1.2",
@@ -55,7 +55,7 @@
     "prop-types": "15.6.0",
     "svgs": "3.1.1",
     "@bolt/build-webpack": "^0.4.1",
-    "@bolt/core": "^0.4.1",
+    "@bolt/core": "^0.5.0-alpha.1",
     "@bolt/settings-all": "^0.7.4",
     "@bolt/tools-all": "^0.5.4",
     "@skatejs/renderer-preact": "^0.1.0",
@@ -65,5 +65,11 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "build": "npm-run-all --parallel build:*",
+    "build:bolt": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/brightcove-player --output-filename='bolt-brightcove-player.min.js' --output-public-path /scripts/",
+    "build:wwwd8": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/brightcove-player --output-filename='bolt-brightcove-player.wwwd8.min.js' --output-public-path /themes/custom/pegawww_theme/node_modules/@bolt/components-brightcove-player/dist/"
   }
 }
