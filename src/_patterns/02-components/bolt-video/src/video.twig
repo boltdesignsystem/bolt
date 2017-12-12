@@ -1,21 +1,34 @@
+{% set prefix = "c-bolt-" %}
 
-{% set attributes = attributes | default({}) %}
+{% set attributes = create_attribute(attributes|default({})) %}
 
-{% if videoAttributes %}
-  {% set attributes = videoAttributes | merge(attributes) %}
 
-  {% for key, value in videoAttributes %}
-    {% if attributes[key] %}
-      {% set oldValue = attributes[key] %}
-      {% set newValue = attributes[key] | merge(videoAttributes[key]) %}
+{% set componentName = "video" %}
+{% set baseClass = prefix ~ componentName %}
 
-      {% set attributes = attributes|merge({
-        (key):newValue
-      }) %}
-    {% endif %}
+{% set collapsed = collapsed | default(true) %}
+{% set ratio = ratio ?? true %}
 
-  {% endfor %}
+
+{% set classes = [
+  baseClass,
+  collapsed is not null and collapsed == false ? "is-expanded" : "is-collapsed"
+] %}
+
+
+{% set videoTag %}
+  {% include "@bolt/_video-tag.twig" %}
+{% endset %}
+
+{% if ratio == true %}
+  {% embed "@bolt/ratio.twig" with {
+    aspectRatioHeight: aspectRatioHeight ?? 9,
+    aspectRatioWidth: aspectRatioWidth ?? 16
+  } %}
+    {% block ratio_content %}
+      {{ videoTag }}
+    {% endblock %}
+  {% endembed %}
+{% else %}
+  {{ videoTag }}
 {% endif %}
-
-{% set customElementName = "bolt-video" %}
-{% extends "@bolt/brightcove-player.twig" %}
