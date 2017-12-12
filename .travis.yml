@@ -30,7 +30,7 @@ script:
 # - npm run deploy
 
 after_success:
-- netlify deploy -s bolt.netlify.com -t ${NETLIFY_ENV} -p dist
+- netlify deploy -s bolt.netlify.com -t ${NETLIFY_TOKEN} -p dist
 
 cache:
   apt: true
