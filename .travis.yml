@@ -13,6 +13,7 @@ addons:
 before_install:
 - nvm install 8 # or 5, 6, or whatever
 - node --version && npm --version && composer --version
+- npm install netlify-cli -g
 - composer global require hirak/prestissimo
 - if [[ -n "$GITHUB_TOKEN" ]]; then composer config -g github-oauth.github.com ${GITHUB_TOKEN};
   fi;
@@ -25,7 +26,11 @@ install:
 
 script:
 - npm run test
-- travis_wait npm run build && npm run deploy # only run deploy if build is successful. Can't do `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
+- travis_wait npm run build #only run deploy if build is successful. Can't do `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
+# - npm run deploy
+
+after_success:
+- netlify deploy -s bolt.netlify.com -t ${NETLIFY_ENV} -p dist
 
 cache:
   apt: true
