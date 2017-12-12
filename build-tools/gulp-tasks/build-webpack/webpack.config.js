@@ -12,12 +12,9 @@ const autoprefixer = require('autoprefixer');
 const pkg = require('./package.json');
 const ConcatPlugin = require('webpack-concat-plugin');
 const { CommonsChunkPlugin/*, UglifyJsPlugin*/ } = webpack.optimize;
-
 const isDev = process.argv.find(arg => arg.includes('webpack-dev-server'));
 const ENV = isDev ? 'development' : 'production';
 const outputPath = isDev ? path.resolve('src') : path.resolve('./dist');
-
-
 const merge = require('merge').recursive;
 
 
