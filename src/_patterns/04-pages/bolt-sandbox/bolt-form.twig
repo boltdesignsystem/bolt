@@ -1,103 +1,147 @@
-<form action="#" method="post">
-  <fieldset>
-    <legend>
-      Fieldset 1
-    </legend>
-    <ol>
-      <li>
-        <label for="text-input">
-          <div>
+{% extends "@bolt/default-template.twig" %}
+
+{% block main_content %}
+  <form action="#" method="post" class="c-bolt-form t-bolt-xlight">
+    <fieldset class="c-bolt-fieldset">
+      <legend class="c-bolt-fieldset__legend">
+        Fieldset 0: Client-side Validations
+      </legend>
+      <div class="c-bolt-fieldset__items">
+        <label class="c-bolt-fieldset__item" for="valid-input">
+          <input class="c-bolt-input-field is-touched" type="text" name="valid-input" id="valid-input" placeholder="Enter text" value="Valid" required valid />
+          <div class="c-bolt-input-label">
             Text Input
           </div>
-          <input type="text" name="text-input" id="text-input" value="" placeholder="Text input" />
         </label>
-      </li>
-      <li>
-        <label for="select-choice">
-          <div>
-            Select Dropdown Choice
+        <label class="c-bolt-fieldset__item" for="invalid-input">
+          <input class="c-bolt-input-field is-touched" type="email" name="invalid-input" id="invalid-input" placeholder="Enter text" value="Invalid" required invalid />
+          <div class="c-bolt-input-label">
+            Email Input
           </div>
-          <select name="select-choice" id="select-choice">
-            <option disabled selected>
-              Select a choice
-            </option>
-            <option value="Choice 1">
-              Choice 1
-            </option>
-            <option value="Choice 2">
-              Choice 2
-            </option>
-            <option value="Choice 3">
-              Choice 3
-            </option>
-          </select>
-        </label>
-      </li>
-      <li>
-        <label for="textarea">
-          <div>
-            Textarea
+          <div class="c-bolt-input-message c-bolt-input-message--error">
+            {% include "@bolt/text.twig" with {
+              text: "Unfortunately, you are doing it wrong.",
+              size: "xsmall"
+            } only %}
           </div>
-          <textarea cols="40" rows="8" name="textarea" id="textarea" placeholder="Enter message here"></textarea>
         </label>
-      </li>
-    </ol>
-  </fieldset>
-  <fieldset>
-    <legend>
-      Fieldset 2: Checkbox Button Choice
-    </legend>
-    <label for="checkbox-choice-1">
-      <input type="checkbox" name="checkbox" id="checkbox-choice-1" value="checkbox-1" />
-      <span>
-        Checkbox 1
-      </span>
-    </label>
-    <label for="checkbox-choice-2">
-      <input type="checkbox" name="checkbox" id="checkbox-choice-2" value="checkbox-2" />
-      <span>
-        Checkbox 2
-      </span>
-    </label>
-  </fieldset>
-  <fieldset>
-    <legend>
-      Fieldset 3: Radio Button Choice
-    </legend>
-    <ol>
-      <li>
-        <label for="radio-choice-1">
-          <input type="radio" name="radio" id="radio-choice-1" value="radio-1" />
-          <span>
-            Radio 1: kinda long text here.
-          </span>
+        <label class="c-bolt-fieldset__item" for="disabled-input">
+          <input class="c-bolt-input-field is-touched" type="text" name="disabled-input" id="disabled-input" placeholder="Enter text" value="Disabled" required disabled />
+          <div class="c-bolt-input-label">
+            Text Input
+          </div>
         </label>
-      </li>
-      <li>
-        <label for="radio-choice-2">
-          <input type="radio" name="radio" id="radio-choice-2" value="radio-2" />
-          <span>
-            Radio 2: kinda long text here.
-          </span>
+      </div>
+    </fieldset>
+    <fieldset class="c-bolt-fieldset">
+      <legend class="c-bolt-fieldset__legend">
+        Fieldset 1: Text
+      </legend>
+      <ol class="c-bolt-fieldset__items">
+        <label for="text-input" class="c-bolt-fieldset__item">
+          <input class="c-bolt-input-field" type="text" name="text-input" id="text-input" placeholder="Enter the title" required />
+          <div class="c-bolt-input-label">
+            Title
+          </div>
         </label>
-      </li>
-    </ol>
-  </fieldset>
-  <p>
-    <button type="submit" tabindex="8">
-      Submit
-    </button>
-  </p>
-  <footer>
-    <small>
-      <p>
-        <strong>
-          Note:
-        </strong>
+        <label for="textarea" class="c-bolt-fieldset__item">
+          <textarea class="c-bolt-input-field" cols="40" rows="8" name="textarea" id="textarea" placeholder="Describe the job" required></textarea>
+          <div class="c-bolt-input-label">
+            Description
+          </div>
+        </label>
+      </ol>
+    </fieldset>
+    <fieldset>
+      <legend>
+        Fieldset 2: Select
+      </legend>
+      <ol>
+        <li>
+          <label for="select">
+            <div>
+              Select
+            </div>
+            <select name="select" id="select">
+              <option disabled selected>
+                Select a choice
+              </option>
+              <option value="Choice 1">
+                Choice 1
+              </option>
+              <option value="Choice 2">
+                Choice 2
+              </option>
+              <option value="Choice 3">
+                Choice 3
+              </option>
+            </select>
+          </label>
+        </li>
+        <li>
+          <label for="multi-select">
+            <div>
+              Multi-select
+            </div>
+            <select name="multi-select" id="multi-select" size=3 multiple>
+              <option value="Choice 1">
+                Choice 1
+              </option>
+              <option value="Choice 2">
+                Choice 2
+              </option>
+              <option value="Choice 3">
+                Choice 3
+              </option>
+            </select>
+          </label>
+        </li>
+      </ol>
+    </fieldset>
+    <fieldset>
+      <legend>
+        Fieldset 3: Checkbox
+      </legend>
+      <label for="checkbox-choice-1">
+        <input type="checkbox" name="checkbox" id="checkbox-choice-1" value="checkbox-1" />
         <span>
-          All fields are required unless otherwise noted.
+          Checkbox 1
         </span>
-      </p>
-    </small>
-  </footer>
-</form>
+      </label>
+      <label for="checkbox-choice-2">
+        <input type="checkbox" name="checkbox" id="checkbox-choice-2" value="checkbox-2" />
+        <span>
+          Checkbox 2
+        </span>
+      </label>
+    </fieldset>
+    <fieldset>
+      <legend>
+        Fieldset 4: Radio
+      </legend>
+      <ol>
+        <li>
+          <label for="radio-choice-1">
+            <input type="radio" name="radio" id="radio-choice-1" value="radio-1" />
+            <span>
+              Radio 1: kinda long text here.
+            </span>
+          </label>
+        </li>
+        <li>
+          <label for="radio-choice-2">
+            <input type="radio" name="radio" id="radio-choice-2" value="radio-2" />
+            <span>
+              Radio 2: kinda long text here.
+            </span>
+          </label>
+        </li>
+      </ol>
+    </fieldset>
+    {% include "@bolt/button.twig" with {
+      tag: "button",
+      text: "Submit",
+      width: "full"
+    } only %}
+  </form>
+{% endblock %}

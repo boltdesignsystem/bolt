@@ -57,9 +57,9 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
 
 @mixin bolt-button-color($hiarchy) {
   @if $hiarchy == 'primary' {
-    
+
   } @elseif $hiarchy == 'secondary' {
-    
+
   }
 
   @elseif $hiarchy == 'text' {
@@ -375,7 +375,7 @@ bolt-button {
 .c-bolt-button,
 .c-bolt-button--medium {
   @include bolt-padding(medium, squished);
-  @include bolt-font-size(xsmall);
+  @include bolt-font-size(small);
 }
 
 .c-bolt-button--xsmall {
@@ -385,7 +385,7 @@ bolt-button {
 
 .c-bolt-button--small {
   @include bolt-padding(small, squished);
-  @include bolt-font-size(xsmall);
+  @include bolt-font-size(small);
 }
 
 .c-bolt-button--large {
@@ -489,7 +489,7 @@ bolt-button {
       color: var(--bolt-theme-heading-link-visited, inherit);
     }
   }
-  
+
 
   &:focus,
   &:hover {
