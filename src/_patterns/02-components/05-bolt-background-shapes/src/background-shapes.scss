@@ -1,0 +1,42 @@
+.c-bolt-background-shapes {
+  width: 300px;
+
+  @include respond-to(small) {
+    width: 500px;
+  }
+
+  @include respond-to(large) {
+    width: 900px;
+  }
+
+  &__svg {
+    fill: bolt-color(gray);
+  }
+
+  &__shape {
+    float: left;
+    width: 33.3%;
+
+    &:nth-child(3n+1) {
+      clear: left;
+    }
+
+    &--orange {
+      .c-bolt-background-shapes__svg {
+        fill: bolt-color(orange);
+      }
+    }
+
+    &--yellow {
+      .c-bolt-background-shapes__svg {
+        fill: bolt-color(yellow);
+      }
+    }
+
+    &--teal {
+      .c-bolt-background-shapes__svg {
+        fill: bolt-color(teal);
+      }
+    }
+  }
+}

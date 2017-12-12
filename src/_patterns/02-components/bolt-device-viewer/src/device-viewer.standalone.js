@@ -1,29 +1,15 @@
-
 import Drift from 'drift-zoom';
-import { props, withComponent } from 'skatejs';
-import withPreact from '@skatejs/renderer-preact';
-import { h } from 'preact';
-// import upperCamelCase from 'uppercamelcase';
+import {
+  h,
+  render,
+  define,
+  props,
+  withComponent,
+  withPreact,
+  css,
+  spacingSizes
+} from '@bolt/core';
 
-// import { css } from '@bolt/core';
-
-
-
-// var driftOptions = ;
-
-
-// import styles from './icon.scss';
-// import * as Icon from '@bolt/components-icons';
-
-// const backgroundStyles = [
-//   'circle',
-//   'square'
-// ];
-
-
-// const colors = [
-//   'teal'
-// ]
 
 /* From Modernizr */
 function whichAnimationEvent() {
@@ -102,7 +88,6 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
     // // section for more details.
     // this._upgradeProperty('checked');
     // this._upgradeProperty('disabled');
-    // console.log('connected callback');
 
     var drift = new Drift(this.querySelector('bolt-device-screen'), {
       // inlineOffsetX: -15,
@@ -168,8 +153,6 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
 
     
 
-    // console.log();
-
     // drift.setZoomImageURL(driftZoomImageUrl);
   }
 
@@ -210,7 +193,6 @@ class BoltDeviceScreen extends withComponent(withPreact()) {
 
 
   _mouseEnter(event) {
-    console.log('mouse enter');
     const screenElem = this._screenElem();
     const iconElem = this._iconElem();
 
@@ -221,7 +203,6 @@ class BoltDeviceScreen extends withComponent(withPreact()) {
     // animationEvent && iconElem.addEventListener(animationEvent, animationEnterFunction);
 
     // function animationEnterFunction(event) {
-    //   console.log('Animation complete!  This is the mouse enter callback, no library needed!');
     //   iconElem.removeEventListener(animationEvent, animationEnterFunction);
 
     //   screenElem.classList.remove('is-mouse-entering');
@@ -231,8 +212,6 @@ class BoltDeviceScreen extends withComponent(withPreact()) {
   }
 
   _mouseLeave(event) {
-    console.log('mouse leave');
-
     const screenElem = this._screenElem();
     const iconElem = this._iconElem();
 
@@ -243,13 +222,9 @@ class BoltDeviceScreen extends withComponent(withPreact()) {
 
     function animationLeaveFunction(event) {
       setTimeout(function(){
-        console.log('Animation complete!  This is the mouse leave callback, no library needed!');
         iconElem.removeEventListener(animationEvent, animationLeaveFunction);
-
         screenElem.classList.remove('is-mouse-leaving');
       }, 1000);
-      
-      // Do something when the transition ends
     }
   }
 
@@ -282,27 +257,6 @@ class BoltDeviceScreen extends withComponent(withPreact()) {
 
     const driftZoomImageUrl = this.querySelector('img').getAttribute('data-zoom');
     this.setAttribute('data-zoom', driftZoomImageUrl);
-    // HIDE
-    // Shim Shadow DOM styles. This needs to be run in `connectedCallback()`
-    // because if you shim Custom Properties (CSS variables) the element
-    // will need access to its parent node.
-    // ShadyCSS.styleElement(this);
-    // // /HIDE
-
-    // if (!this.hasAttribute('role'))
-    //   this.setAttribute('role', 'checkbox');
-    // if (!this.hasAttribute('tabindex'))
-    //   this.setAttribute('tabindex', 0);
-
-    // // A user may set a property on an _instance_ of an element,
-    // // before its prototype has been connected to this class.
-    // // The `_upgradeProperty()` method will check for any instance properties
-    // // and run them through the proper class setters.
-    // // See the [lazy properites](/web/fundamentals/architecture/building-components/best-practices#lazy-properties)
-    // // section for more details.
-    // this._upgradeProperty('checked');
-    // this._upgradeProperty('disabled');
-    console.log('connected callback');
     this.addEventListener('mouseenter', this._mouseEnter);
     this.addEventListener('mouseleave', this._mouseLeave);
   }

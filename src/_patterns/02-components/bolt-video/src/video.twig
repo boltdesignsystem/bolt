@@ -1,0 +1,21 @@
+
+{% set attributes = attributes | default({}) %}
+
+{% if videoAttributes %}
+  {% set attributes = videoAttributes | merge(attributes) %}
+
+  {% for key, value in videoAttributes %}
+    {% if attributes[key] %}
+      {% set oldValue = attributes[key] %}
+      {% set newValue = attributes[key] | merge(videoAttributes[key]) %}
+
+      {% set attributes = attributes|merge({
+        (key):newValue
+      }) %}
+    {% endif %}
+
+  {% endfor %}
+{% endif %}
+
+{% set customElementName = "bolt-video" %}
+{% extends "@bolt/brightcove-player.twig" %}

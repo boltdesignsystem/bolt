@@ -1,3 +1,6 @@
+// Utility function used for outputting correctly formatted CSS classes in JSX. 
+// Ported over from https://github.com/wc-catalogue/blaze-elements/blob/master/packages/common/css.ts
+
 export function css(...args) {
   const classes = [];
 

@@ -1,0 +1,27 @@
+{% set prefix = "c-bolt-" %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+
+{% set componentName = "video" %}
+{% set baseClass = prefix ~ componentName %}
+
+{% set collapsed = collapsed | default(true) %}
+
+
+{% set classes = [
+  baseClass,
+  collapsed is not null and collapsed == false ? "is-expanded" : "is-collapsed"
+] %}
+
+
+<div>
+  {% embed "@bolt/ratio.twig" with {
+    aspectRatioHeight: 9,
+    aspectRatioWidth: 16
+  } %}
+    {% block ratio_content %}
+      <brightcove-player video-id="5609376179001" account-id="1900410236" player-id="r1CAdLzTW" class="js-brightcove-player-1"></brightcove-player>
+    {% endblock %}
+  {% endembed %}
+</div>
