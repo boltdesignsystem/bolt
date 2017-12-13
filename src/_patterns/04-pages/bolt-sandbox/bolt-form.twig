@@ -14,7 +14,7 @@
           </div>
         </label>
         <label class="c-bolt-fieldset__item" for="invalid-input">
-          <input class="c-bolt-input-field is-touched" type="email" name="invalid-input" id="invalid-input" placeholder="Enter text" value="Invalid" required invalid />
+          <input class="c-bolt-input-field is-touched" type="email" name="invalid-input" id="invalid-input" placeholder="Enter email address" value="Invalid" required invalid />
           <div class="c-bolt-input-label">
             Email Input
           </div>
@@ -24,11 +24,39 @@
               size: "xsmall"
             } only %}
           </div>
+          <div class="c-bolt-input-icons">
+            <ul class="o-bolt-inline-list o-bolt-inline-list--xsmall">
+              <li class="o-bolt-inline-list__item">
+                {% include "@bolt/icon.twig" with {
+                  "name": "warning",
+                  "size": "medium"
+                } only %}
+              </li>
+            </ul>
+          </div>
         </label>
         <label class="c-bolt-fieldset__item" for="disabled-input">
           <input class="c-bolt-input-field is-touched" type="text" name="disabled-input" id="disabled-input" placeholder="Enter text" value="Disabled" required disabled />
           <div class="c-bolt-input-label">
             Text Input
+          </div>
+        </label>
+        <label class="c-bolt-fieldset__item" for="password-input">
+          <input class="c-bolt-input-field" type="password" name="password-input" id="password-input" placeholder="Enter password" required />
+          <div class="c-bolt-input-label">
+            Password
+          </div>
+          <div class="c-bolt-input-icons">
+            <ul class="o-bolt-inline-list o-bolt-inline-list--xsmall">
+              <li class="o-bolt-inline-list__item">
+                <a href="javascript:">
+                  {% include "@bolt/icon.twig" with {
+                    "name": "eye-off",
+                    "size": "medium"
+                  } only %}
+                </a>
+              </li>
+            </ul>
           </div>
         </label>
       </div>
@@ -38,6 +66,30 @@
         Fieldset 1: Text
       </legend>
       <ol class="c-bolt-fieldset__items">
+        <label for="url-input" class="c-bolt-fieldset__item">
+          <input class="c-bolt-input-field" type="url" name="url-input" id="url-input" placeholder="Enter a url" required />
+          <div class="c-bolt-input-label">
+            URL
+          </div>
+        </label>
+        <label for="search-input" class="c-bolt-fieldset__item">
+          <input class="c-bolt-input-field" type="search" name="search-input" id="search-input" placeholder="Enter text to search" required />
+          <div class="c-bolt-input-label">
+            Search
+          </div>
+        </label>
+        <label for="date-input" class="c-bolt-fieldset__item">
+          <input class="c-bolt-input-field" type="date" name="date-input" id="date-input" placeholder="Enter a date" required />
+          <div class="c-bolt-input-label">
+            Date
+          </div>
+        </label>
+        <label for="number-input" class="c-bolt-fieldset__item">
+          <input class="c-bolt-input-field" type="number" name="number-input" id="number-input" placeholder="Enter a number" required />
+          <div class="c-bolt-input-label">
+            Number
+          </div>
+        </label>
         <label for="text-input" class="c-bolt-fieldset__item">
           <input class="c-bolt-input-field" type="text" name="text-input" id="text-input" placeholder="Enter the title" required />
           <div class="c-bolt-input-label">
@@ -52,51 +104,43 @@
         </label>
       </ol>
     </fieldset>
-    <fieldset>
-      <legend>
+    <fieldset class="c-bolt-fieldset">
+      <legend class="c-bolt-fieldset__legend">
         Fieldset 2: Select
       </legend>
-      <ol>
-        <li>
-          <label for="select">
-            <div>
-              Select
-            </div>
-            <select name="select" id="select">
-              <option disabled selected>
-                Select a choice
-              </option>
-              <option value="Choice 1">
-                Choice 1
-              </option>
-              <option value="Choice 2">
-                Choice 2
-              </option>
-              <option value="Choice 3">
-                Choice 3
-              </option>
-            </select>
-          </label>
-        </li>
-        <li>
-          <label for="multi-select">
-            <div>
-              Multi-select
-            </div>
-            <select name="multi-select" id="multi-select" size=3 multiple>
-              <option value="Choice 1">
-                Choice 1
-              </option>
-              <option value="Choice 2">
-                Choice 2
-              </option>
-              <option value="Choice 3">
-                Choice 3
-              </option>
-            </select>
-          </label>
-        </li>
-      </ol>
+      <div class="c-bolt-fieldset__items">
+        <label class="c-bolt-fieldset__item" for="select">
+          <select class="c-bolt-input-field" name="select" id="select">
+            <option disabled selected>
+              Select a choice
+            </option>
+            <option value="Choice 1">
+              Choice 1
+            </option>
+            <option value="Choice 2">
+              Choice 2
+            </option>
+            <option value="Choice 3">
+              Choice 3
+            </option>
+          </select>
+          <div class="c-bolt-input-label">
+            Select
+          </div>
+          <div class="c-bolt-input-icons">
+            <ul class="o-bolt-inline-list o-bolt-inline-list--xsmall">
+              <li class="o-bolt-inline-list__item">
+                <a href="javascript:">
+                  {% include "@bolt/icon.twig" with {
+                    "name": "chevron-right",
+                    "size": "medium"
+                  } only %}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </label>
+      </div>
     </fieldset>
     <fieldset>
       <legend>

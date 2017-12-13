@@ -238,6 +238,13 @@ bolt-ratio .hapyak-player:not(.hapyak-minimal-css) {
    Form Sandbox
 \* ------------------------------------ */
 
+label {
+  cursor: pointer;
+}
+
+
+
+
 .c-bolt-form {
   display: block;
 }
@@ -300,12 +307,29 @@ $bolt-input-label-text-indent: bolt-spacing(small);
 
 
 
+$bolt-input-message-text-color--error: bolt-color(error); // TODO: [Mai] This is the theme error color
+
+.c-bolt-input-message {
+  @include bolt-padding(small, squished);
+
+  display: none;
+}
+
+.c-bolt-input-message--error {
+  color: $bolt-input-message-text-color--error;
+}
+
+
+
+
 $bolt-input-field-text-color: bolt-color(gray, xdark); // TODO: [Mai] This is the theme text color
 $bolt-input-field-text-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
-$bolt-input-field-text-color--disabled: bolt-color(gray); // TODO: [Mai] This is the theme disabled color
+$bolt-input-field-text-color--disabled: rgba(bolt-color(gray, xdark), 0.66); // TODO: [Mai] This is the theme text color at 66%
 $bolt-input-field-background-color: bolt-color(white); // TODO: [Mai] This is the theme input background color
+$bolt-input-field-background-color--disabled: rgba(bolt-color(gray, xdark), 0.05); // TODO: [Mai] This is the theme text color at 5%
 $bolt-input-field-placeholder-color: rgba(bolt-color(gray, xdark), 0.66); // TODO: [Mai] This is the theme text color at 66%
-$bolt-input-field-placeholder-color--invalid: rgba(bolt-color(error), 0.66); // TODO: [Mai] This is the theme error color at 66%
+$bolt-input-field-placeholder-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
+$bolt-input-field-placeholder-color--disabled: rgba(bolt-color(gray, xdark), 0.66); // TODO: [Mai] This is the theme text color at 66%
 $bolt-input-field-border-color: rgba(bolt-color(indigo, light), 0.25); // TODO: [Mai] This is the theme link color at 25%
 $bolt-input-field-border-color--focus: bolt-color(indigo, light); // TODO: [Mai] This is the theme link color
 $bolt-input-field-border-color--invalid: rgba(bolt-color(error), 0.25); // TODO: [Mai] This is the theme error color at 25%
@@ -346,6 +370,8 @@ $bolt-input-field-transition: $bolt-transition;
   border-width: $bolt-input-field-border-width;
   border-radius: $bolt-input-field-border-radius;
   background-color: $bolt-input-field-background-color;
+  appearance: none;
+  outline: none;
   transition: all $bolt-input-field-transition;
 
   &.is-invalid,
@@ -362,8 +388,11 @@ $bolt-input-field-transition: $bolt-transition;
 
   &.is-disabled,
   &:disabled {
+    @include bolt-input-field-placeholder($bolt-input-field-placeholder-color--disabled);
+
     color: $bolt-input-field-text-color--disabled;
     cursor: not-allowed;
+    background-color: $bolt-input-field-background-color--disabled;
   }
 
   &.is-filled,
@@ -378,23 +407,42 @@ $bolt-input-field-transition: $bolt-transition;
   }
 
   &:focus {
-    border-color: $bolt-input-field-border-color--focus;
+    border-color: $bolt-input-field-border-color--focus !important;
     box-shadow: $bolt-input-field-box-shadow--focus;
-    outline: none;
+  }
+
+  & ~ .c-bolt-input-icons {
+    position: absolute;
+    top: 0.75rem;
+    right: bolt-spacing(small);
   }
 }
 
 
 
 
-$bolt-input-message-color--error: bolt-color(error); // TODO: [Mai] This is the theme error color
-
-.c-bolt-input-message {
-  @include bolt-padding(small, squished);
-
-  display: none;
+.c-bolt-input-icons {
+  display: flex;
+  flex-wrap: nowrap;
 }
 
-.c-bolt-input-message--error {
-  color: $bolt-input-message-color--error;
+
+
+
+$bolt-input-icon-color--invalid: bolt-color(error);
+
+.c-bolt-input-icon {
+  display: inline-block;
+  display: inline-flex;
+  vertical-align: middle;
+
+  & + #{&} {
+    @include bolt-margin-left(xsmall);
+  }
+}
+
+.c-bolt-input-icon--invalid {
+  svg {
+    color: $bolt-input-icon-color--invalid !important;
+  }
 }

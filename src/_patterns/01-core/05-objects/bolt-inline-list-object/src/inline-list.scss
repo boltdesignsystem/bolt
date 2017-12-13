@@ -27,7 +27,7 @@ bolt-inline-list {
   margin: 0;
   padding: 0;
   list-style: none;
-  letter-spacing: -.35em; // Remove extra space from inline-blocks 
+  letter-spacing: -.35em; // Remove extra space from inline-blocks
 }
 
 
@@ -91,6 +91,10 @@ bolt-inline-list {
     &:after {
       margin-left: bolt-spacing(xsmall);
       // margin-left: bolt-spacing(xsmall);
+    }
+
+    &:last-child {
+      margin-right: 0;
     }
   }
 }
