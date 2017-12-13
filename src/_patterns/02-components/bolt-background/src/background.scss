@@ -16,9 +16,13 @@ $bolt-background-dark-overlay-opacity--light: 0.3;
 $bolt-background-dark-overlay-opacity--medium: 0.55;
 $bolt-background-dark-overlay-opacity--heavy: 0.8;
 
-$bolt-bg-shape-offset-default: -100px;
-$bolt-bg-shape-offset-small: -150px;
-$bolt-bg-shape-offset-large: -300px;
+$bolt-bg-shape-offset-bottom-default: -100px;
+$bolt-bg-shape-offset-side-default: $bold-bg-shape-offset-bottom-default * 1.2;
+$bolt-bg-shape-offset-bottom-small: -150px;
+$bolt-bg-shape-offset-side-small: $bold-bg-shape-offset-bottom-small * 1.2;
+$bold-bg-shape-offset-bottom-large: -300px;
+$bolt-bg-shape-offset-side-large: $bold-bg-shape-offset-bottom-large * 1.2;
+
 
 
 // Zoom animation treatment
@@ -141,30 +145,30 @@ $bolt-bg-shape-offset-large: -300px;
 .c-bolt-background__shapes {
   position: absolute;
   transform: rotate(-45deg);
-  right: $bolt-bg-shape-offset-default;
-  bottom: $bolt-bg-shape-offset-default;
+  right: $bolt-bg-shape-offset-side-default;
+  bottom: $bolt-bg-shape-offset-side-default;
 
   @include respond-to(small) {
-    right: $bolt-bg-shape-offset-small;
-    bottom: $bolt-bg-shape-offset-small;
+    right: $bolt-bg-shape-offset-side-small;
+    bottom: $bolt-bg-shape-offset-side-small;
   }
 
   @include respond-to(large) {
-    right: $bolt-bg-shape-offset-large;
-    bottom: $bolt-bg-shape-offset-large;
+    right: $bolt-bg-shape-offset-side-large;
+    bottom: -300px;
   }
 }
 
 .c-bolt-background__shapes--left {
   transform: rotate(45deg);
-  left: $bolt-bg-shape-offset-default;
+  left: $bolt-bg-shape-offset-side-default;
   right: auto;
 
   @include respond-to(small) {
-    left: $bolt-bg-shape-offset-small;
+    left: $bolt-bg-shape-offset-side-small;
   }
 
   @include respond-to(large) {
-    left: $bolt-bg-shape-offset-large;
+    left: $bolt-bg-shape-offset-side-large;
   }
 }
