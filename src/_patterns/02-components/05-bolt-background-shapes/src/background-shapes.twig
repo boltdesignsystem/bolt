@@ -6,6 +6,8 @@
   baseClass
 ] %}
 
+{% set colors = ["yellow", "orange", "teal", "blue"] %}
+
 {% set shapeGroups = source("shape-groups.json") | json_decode %}
 
 {# If a valid shapeGroup was specified, select its shapes.  Otherwise, get the shapes from the default shapeGroup. #}
@@ -17,8 +19,16 @@
     <div class="{{ "#{baseClass}__shapes" }}">
       {% grid "o-bolt-grid--center" %}
         {% for element in  elements %}
+          {% set attributes = create_attribute({}) %}
+
+          {% set classes = [
+            baseClass ~ "__shape",
+            element.color in colors ? baseClass ~ "__shape--" ~ element.color,
+            element.interiorColor in colors ? baseClass ~ "__shape--interior-" ~ element.interiorColor
+          ] %}
+
           {% cell "u-bolt-width-1/3" %}
-            <div class="{{ "#{baseClass}__shape #{baseClass}__shape--#{element.color}" }}">
+            <div {{ attributes.addClass(classes) }}>
               {{ source(element.shape ~ '.svg') }}
             </div>
           {% endcell %}
