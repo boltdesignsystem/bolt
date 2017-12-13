@@ -1,0 +1,7 @@
+patternlab.view:
+  path: '/admin/appearance/settings/{theme}/patternlab'
+  defaults:
+    _controller: '\Drupal\patternlab\Controller\PatternlabController::view'
+    _title: 'View theme Patternlab'
+  requirements:
+    _permission: 'administer themes'

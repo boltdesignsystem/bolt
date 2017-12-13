@@ -1,0 +1,42 @@
+<?php
+/**
+ * @file
+ * Contains patternlab.module.
+ */
+
+use Drupal\Core\Url;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function patternlab_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the patternlab module.
+    case 'help.page.patternlab':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Patternlab support module for Drupal') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+/**
+ * Implements system_themes_page_alter().
+ */
+function patternlab_system_themes_page_alter(&$theme_groups) {
+  foreach ($theme_groups['installed'] as $idx => $theme) {
+    $query = ['theme' => $theme->getName()];
+
+    // @TODO: Use some method of detection (via configuration) to conditionally
+    // add this operation if patternlab is available/enabled for this theme.
+    $theme->operations[] = array(
+      'title' => t('View Patternlab'),
+      'url' => Url::fromRoute('patternlab.view', $query),
+      'attributes' => array('title' => t('View Patternlab for the @theme theme', array('@theme' => $theme->info['name']))),
+    );
+  }
+}
