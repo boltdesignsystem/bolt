@@ -68,12 +68,16 @@ function webpackTask(gulp, devConfig, releaseConfig) {
 
   // Watch webpack-compiled files for changes
   gulp.task('webpack:watch', () => {
-    gulp.watch([
-      'src/scripts/**/*.js',
-      'src/_patterns/**/src/*.js'
-    ], gulp.parallel([
-      process.env.NODE_ENV === 'production' ? 'webpack:prod' : 'webpack:dev',
-    ]));
+    const compiler = process.env.NODE_ENV === 'production'
+      ? getReleaseCompiler(releaseConfig.webpack ? releaseConfig.webpack : releaseConfig)
+      : getDevCompiler(devConfig.webpack ? devConfig.webpack : devConfig);
+
+    return compiler.watch({
+      // https://webpack.js.org/configuration/watch/#watchoptions
+      aggregateTimeout: 300,
+    }, (err, stats) => {
+      handleWebpackOutput(err, stats, process.env.NODE_ENV === 'production');
+    });
   });
 }
 module.exports.webpack = webpackTask;
