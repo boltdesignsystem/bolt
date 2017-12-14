@@ -1,2 +1,2 @@
 const gulp = require('gulp');
-require('./build-tools/gulp-tasks/gulpfile.js')(gulp);
+require('./packages/build-tools/gulpfile.js')(gulp);

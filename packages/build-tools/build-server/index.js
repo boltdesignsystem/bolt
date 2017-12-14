@@ -8,8 +8,7 @@ const debug = require('debug')('@bolt/build-server');
 function server(userConfig) {
   function serveTask() {
     const config = merge({}, defaultConfig, userConfig, {
-      server: './dist',
-      baseDir: ['./dist', 'dist/'],
+      server: './apps/pattern-lab--workshop/dist',
       notify: false,
       snippetOptions: {
         // Ignore all HTML files within the templates folder
