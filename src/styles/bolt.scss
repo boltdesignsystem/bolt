@@ -238,13 +238,6 @@ bolt-ratio .hapyak-player:not(.hapyak-minimal-css) {
    Form Sandbox
 \* ------------------------------------ */
 
-label {
-  cursor: pointer;
-}
-
-
-
-
 .c-bolt-form {
   display: block;
 }
@@ -307,7 +300,7 @@ $bolt-input-label-text-indent: bolt-spacing(small);
 
 
 
-$bolt-input-message-text-color--error: bolt-color(error); // TODO: [Mai] This is the theme error color
+$bolt-input-message-text-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
 
 .c-bolt-input-message {
   @include bolt-padding(small, squished);
@@ -315,8 +308,8 @@ $bolt-input-message-text-color--error: bolt-color(error); // TODO: [Mai] This is
   display: none;
 }
 
-.c-bolt-input-message--error {
-  color: $bolt-input-message-text-color--error;
+.c-bolt-input-message--invalid {
+  color: $bolt-input-message-text-color--invalid;
 }
 
 
@@ -332,7 +325,7 @@ $bolt-input-field-placeholder-color--invalid: bolt-color(error); // TODO: [Mai] 
 $bolt-input-field-placeholder-color--disabled: rgba(bolt-color(gray, xdark), 0.66); // TODO: [Mai] This is the theme text color at 66%
 $bolt-input-field-border-color: rgba(bolt-color(indigo, light), 0.25); // TODO: [Mai] This is the theme link color at 25%
 $bolt-input-field-border-color--focus: bolt-color(indigo, light); // TODO: [Mai] This is the theme link color
-$bolt-input-field-border-color--invalid: rgba(bolt-color(error), 0.25); // TODO: [Mai] This is the theme error color at 25%
+$bolt-input-field-border-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
 $bolt-input-field-border-width: $bolt-border-width;
 $bolt-input-field-border-style: $bolt-border-style;
 $bolt-input-field-border-radius: $bolt-border-radius;
@@ -381,7 +374,7 @@ $bolt-input-field-transition: $bolt-transition;
     color: $bolt-input-field-text-color--invalid;
     border-color: $bolt-input-field-border-color--invalid;
 
-    & ~ .c-bolt-input-message--error {
+    & ~ .c-bolt-input-message--invalid {
       display: block;
     }
   }
@@ -410,39 +403,74 @@ $bolt-input-field-transition: $bolt-transition;
     border-color: $bolt-input-field-border-color--focus !important;
     box-shadow: $bolt-input-field-box-shadow--focus;
   }
-
-  & ~ .c-bolt-input-icons {
-    position: absolute;
-    top: 0.75rem;
-    right: bolt-spacing(small);
-  }
 }
 
 
 
 
 .c-bolt-input-icons {
-  display: flex;
-  flex-wrap: nowrap;
-}
+  position: absolute;
+  top: 0.75rem;
+  right: bolt-spacing(small);
+  background-color: $bolt-input-field-background-color;
 
-
-
-
-$bolt-input-icon-color--invalid: bolt-color(error);
-
-.c-bolt-input-icon {
-  display: inline-block;
-  display: inline-flex;
-  vertical-align: middle;
-
-  & + #{&} {
-    @include bolt-margin-left(xsmall);
+  &:before {
+    position: absolute;
+    left: -1rem;
+    width: 1rem;
+    height: 100%;
+    content: '';
+    background: linear-gradient(to left, $bolt-input-field-background-color, transparent);
   }
 }
 
-.c-bolt-input-icon--invalid {
-  svg {
-    color: $bolt-input-icon-color--invalid !important;
+
+
+
+.c-bolt-input-icon:not(.c-bolt-input-icon--link) {
+  pointer-events: none;
+}
+
+
+
+
+.c-bolt-checkbox-field,
+.c-bolt-radio-field {
+  @include bolt-visuallyhidden;
+}
+
+
+
+
+.c-bolt-checkbox-label,
+.c-bolt-radio-label {
+  @include bolt-padding-left(medium);
+
+  position: relative;
+  display: block;
+  cursor: pointer;
+
+  &:before {
+    position: absolute;
+    top: 0.3rem;
+    left: 0;
+    width: 1rem;
+    height: 1rem;
+    content: '';
+    border-color: $bolt-border-color;
+    border-style: $bolt-border-style;
+    border-width: $bolt-border-width;
+  }
+}
+
+.c-bolt-checkbox-label {
+  &:before {
+    border-radius: $bolt-border-radius;
+  }
+}
+
+.c-bolt-radio-label {
+  &:before {
+    border-radius: 100em;
   }
 }

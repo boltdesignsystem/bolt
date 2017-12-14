@@ -8,17 +8,17 @@
       </legend>
       <div class="c-bolt-fieldset__items">
         <label class="c-bolt-fieldset__item" for="valid-input">
-          <input class="c-bolt-input-field is-touched" type="text" name="valid-input" id="valid-input" placeholder="Enter text" value="Valid" required valid />
+          <input class="c-bolt-input-field is-touched is-filled" type="text" name="valid-input" id="valid-input" placeholder="Enter text" value="Valid" required valid />
           <div class="c-bolt-input-label">
             Text Input
           </div>
         </label>
         <label class="c-bolt-fieldset__item" for="invalid-input">
-          <input class="c-bolt-input-field is-touched" type="email" name="invalid-input" id="invalid-input" placeholder="Enter email address" value="Invalid" required invalid />
+          <input class="c-bolt-input-field is-touched is-filled" type="email" name="invalid-input" id="invalid-input" placeholder="Enter email address" value="Invalid" required invalid />
           <div class="c-bolt-input-label">
             Email Input
           </div>
-          <div class="c-bolt-input-message c-bolt-input-message--error">
+          <div class="c-bolt-input-message c-bolt-input-message--invalid">
             {% include "@bolt/text.twig" with {
               text: "Unfortunately, you are doing it wrong.",
               size: "xsmall"
@@ -27,29 +27,31 @@
           <div class="c-bolt-input-icons">
             <ul class="o-bolt-inline-list o-bolt-inline-list--xsmall">
               <li class="o-bolt-inline-list__item">
-                {% include "@bolt/icon.twig" with {
-                  "name": "warning",
-                  "size": "medium"
-                } only %}
+                <div class="c-bolt-input-icon">
+                  {% include "@bolt/icon.twig" with {
+                    "name": "warning",
+                    "size": "medium"
+                  } only %}
+                </div>
               </li>
             </ul>
           </div>
         </label>
         <label class="c-bolt-fieldset__item" for="disabled-input">
-          <input class="c-bolt-input-field is-touched" type="text" name="disabled-input" id="disabled-input" placeholder="Enter text" value="Disabled" required disabled />
+          <input class="c-bolt-input-field is-touched is-filled" type="text" name="disabled-input" id="disabled-input" placeholder="Enter text" value="Disabled" required disabled />
           <div class="c-bolt-input-label">
             Text Input
           </div>
         </label>
         <label class="c-bolt-fieldset__item" for="password-input">
-          <input class="c-bolt-input-field" type="password" name="password-input" id="password-input" placeholder="Enter password" required />
+          <input class="c-bolt-input-field is-touched is-filled" type="password" name="password-input" id="password-input" placeholder="Enter password" value="12345" required />
           <div class="c-bolt-input-label">
             Password
           </div>
           <div class="c-bolt-input-icons">
             <ul class="o-bolt-inline-list o-bolt-inline-list--xsmall">
               <li class="o-bolt-inline-list__item">
-                <a href="javascript:">
+                <a class="c-bolt-input-icon c-bolt-input-icon--link" href="javascript:">
                   {% include "@bolt/icon.twig" with {
                     "name": "eye-off",
                     "size": "medium"
@@ -77,11 +79,35 @@
           <div class="c-bolt-input-label">
             Search
           </div>
+          <div class="c-bolt-input-icons">
+            <ul class="o-bolt-inline-list o-bolt-inline-list--xsmall">
+              <li class="o-bolt-inline-list__item">
+                <div class="c-bolt-input-icon">
+                  {% include "@bolt/icon.twig" with {
+                    "name": "search",
+                    "size": "medium"
+                  } only %}
+                </div>
+              </li>
+            </ul>
+          </div>
         </label>
         <label for="date-input" class="c-bolt-fieldset__item">
           <input class="c-bolt-input-field" type="date" name="date-input" id="date-input" placeholder="Enter a date" required />
           <div class="c-bolt-input-label">
             Date
+          </div>
+          <div class="c-bolt-input-icons">
+            <ul class="o-bolt-inline-list o-bolt-inline-list--xsmall">
+              <li class="o-bolt-inline-list__item">
+                <div class="c-bolt-input-icon">
+                  {% include "@bolt/icon.twig" with {
+                    "name": "calendar",
+                    "size": "medium"
+                  } only %}
+                </div>
+              </li>
+            </ul>
           </div>
         </label>
         <label for="number-input" class="c-bolt-fieldset__item">
@@ -142,45 +168,43 @@
         </label>
       </div>
     </fieldset>
-    <fieldset>
-      <legend>
+    <fieldset class="c-bolt-fieldset">
+      <legend class="c-bolt-fieldset__legend">
         Fieldset 3: Checkbox
       </legend>
-      <label for="checkbox-choice-1">
-        <input type="checkbox" name="checkbox" id="checkbox-choice-1" value="checkbox-1" />
-        <span>
-          Checkbox 1
-        </span>
-      </label>
-      <label for="checkbox-choice-2">
-        <input type="checkbox" name="checkbox" id="checkbox-choice-2" value="checkbox-2" />
-        <span>
-          Checkbox 2
-        </span>
-      </label>
+      <div class="c-bolt-fieldset__items">
+        <label class="c-bolt-fieldset__item" for="checkbox-choice-1">
+          <input class="c-bolt-checkbox-field" type="checkbox" name="checkbox" id="checkbox-choice-1" value="checkbox-1" />
+          <div class="c-bolt-checkbox-label">
+            Checkbox 1
+          </div>
+        </label>
+        <label class="c-bolt-fieldset__item" for="checkbox-choice-2">
+          <input class="c-bolt-checkbox-field" type="checkbox" name="checkbox" id="checkbox-choice-2" value="checkbox-2" />
+          <div class="c-bolt-checkbox-label">
+            Checkbox 2
+          </div>
+        </label>
+      </div>
     </fieldset>
-    <fieldset>
-      <legend>
+    <fieldset class="c-bolt-fieldset">
+      <legend class="c-bolt-fieldset__legend">
         Fieldset 4: Radio
       </legend>
-      <ol>
-        <li>
-          <label for="radio-choice-1">
-            <input type="radio" name="radio" id="radio-choice-1" value="radio-1" />
-            <span>
-              Radio 1: kinda long text here.
-            </span>
-          </label>
-        </li>
-        <li>
-          <label for="radio-choice-2">
-            <input type="radio" name="radio" id="radio-choice-2" value="radio-2" />
-            <span>
-              Radio 2: kinda long text here.
-            </span>
-          </label>
-        </li>
-      </ol>
+      <div class="c-bolt-fieldset__items">
+        <label class="c-bolt-fieldset__item" for="radio-choice-1">
+          <input class="c-bolt-radio-field" type="radio" name="radio" id="radio-choice-1" value="radio-1" />
+          <div class="c-bolt-radio-label">
+            Radio 1
+          </div>
+        </label>
+        <label class="c-bolt-fieldset__item" for="radio-choice-2">
+          <input class="c-bolt-radio-field" type="radio" name="radio" id="radio-choice-2" value="radio-2" />
+          <div class="c-bolt-radio-label">
+            Radio 2
+          </div>
+        </label>
+      </div>
     </fieldset>
     {% include "@bolt/button.twig" with {
       tag: "button",
