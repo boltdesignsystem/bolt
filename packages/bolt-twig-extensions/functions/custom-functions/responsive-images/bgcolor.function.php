@@ -3,7 +3,6 @@
 use Gregwar\Image\Image;
 use Gregwar\Image\GarbageCollect;
 
-
 /**
   * Handle garbage collection w/ the temp images generated locally
   */

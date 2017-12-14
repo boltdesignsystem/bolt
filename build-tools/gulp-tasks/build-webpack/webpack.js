@@ -1,7 +1,7 @@
 const gutil = require('gulp-util');
 const webpack = require('webpack');
 
-module.exports.devConfig = require('./webpack.config');
+module.exports.devConfig = require('./webpack.config.shared');
 module.exports.releaseConfig = require('./webpack.config.release');
 // module.exports.releaseConfig.es6 = require('./webpack.config.release.es6');
 
@@ -74,6 +74,7 @@ function webpackTask(gulp, devConfig, releaseConfig) {
 
     return compiler.watch({
       // https://webpack.js.org/configuration/watch/#watchoptions
+      poll: 1000,
       aggregateTimeout: 300,
     }, (err, stats) => {
       handleWebpackOutput(err, stats, process.env.NODE_ENV === 'production');

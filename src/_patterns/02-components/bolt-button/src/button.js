@@ -1,10 +1,16 @@
-import { define, props, withComponent } from 'skatejs';
-import { eventHandler, withPreact } from '@bolt/core'; // Latest v. broken so using local version for now
-import { h, render } from 'preact';
-import { value } from 'yocss';
-import { thisExpression } from 'babel-types';
+import {
+  h,
+  render,
+  define,
+  props,
+  withComponent,
+  withPreact,
+  css,
+  spacingSizes
+} from '@bolt/core';
 
-// import styles from './_button.scss';
+console.log('load');
+// import styles from './button.scoped.scss';
 
 @define
 export class BoltButton extends withComponent(withPreact()) {
@@ -15,15 +21,16 @@ export class BoltButton extends withComponent(withPreact()) {
     onClickTarget: props.string
   }
 
-  clickHandler(event){
+  clickHandler(event) {
+    console.log('click');
     const clickMethod = this.props.onClick;
     const clickTarget = this.props.onClickTarget;
 
-    if (clickMethod){
-      if (clickTarget){
+    if (clickMethod) {
+      if (clickTarget) {
         const elems = document.querySelectorAll(`.${clickTarget}`);
-        
-        if (elems){
+
+        if (elems) {
           elems.forEach(function (elem) {
             elem[clickMethod]();
           });
@@ -35,31 +42,17 @@ export class BoltButton extends withComponent(withPreact()) {
   }
 
   connectedCallback() {
-    console.log('connected callback');
-
     this.addEventListener('click', this.clickHandler);
-    
-    // }
-    // Add keyboard event for enter key or space to mimic anchor functionality
-    // elem.addEventListener(`keypress`, function (e) {
-    //   if (e.which !== 13 && e.which !== 32) return;
-    //   // Prevent default action of element
-    //   e.preventDefault();
-    //   // Run state function
-    //   eventHandler(this);
-    // });
   }
 
   // get renderRoot() {
   //   return this;
   // }
-  render() {
+
+  renderCallback() {
+    console.log('render');
     return (
       <slot />
     )
-  }
-
-  doThis(){
-    console.log('do this event on click');
   }
 }
