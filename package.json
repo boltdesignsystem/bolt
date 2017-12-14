@@ -37,7 +37,7 @@
     "test:full": "yarn lint:scss && polymer test && yarn test:lighthouse && yarn lint:remark && npm run mocha",
     "test": "npm run mocha",
     "test:ci": "node browserstack.js",
-    "pretest": "node build-tools/scripts/check-imports.js",
+    "pretest": "node packages/build-tools/check-imports.js",
     "precommit": "npm run lint:scss",
     "prepush": "npm test && npm run build:full",
     "snyk-protect": "snyk protect"
