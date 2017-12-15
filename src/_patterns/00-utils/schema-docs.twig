@@ -1,59 +1,61 @@
-{% if schema.description %}
-  <blockquote><p>{{ schema.description|markdown }}</p></blockquote>
-{% endif %}
+<div class="schema-docs">
+  {% if schema.description %}
+    <blockquote><p>{{ schema.description|markdown }}</p></blockquote>
+  {% endif %}
 
-{% if body %}
-  {{ body|markdown }}
-{% endif %}
+  {% if body %}
+    {{ body|markdown }}
+  {% endif %}
 
-{% if schema.properties %}
-  <h4>Variables</h4>
-  <ul>
-    {% for key, prop in schema.properties %}
-      <li>
-        <code>{{ key }}</code>
-        {% if prop.title %} - <strong>{{ prop.title }}</strong> {% endif %}
-        {% if prop.description %} - <span>{{ prop.description }}</span> {% endif %}
-        <ul>
-          {% set enum %}
-            {% for x in prop.enum %}
-              <code>{{ x }}</code>{% if not loop.last %},{% endif %}
-            {% endfor %}
-          {% endset %}
-          <li>
-            Type: <code>{{ prop.type }}</code>
-            {% if prop.oneOf %}
-              Must be one of:
-              <ul>
-                {% for item in prop.oneOf %}
-                  <li><code>{{ item.enum|join(',') }}</code>
-                    {%- if item.title %} - <strong>{{ item.title }}</strong> {% endif -%}
-                    {%- if item.description %} - {{ item.description }} {% endif -%}
-                  </li>
-                {% endfor %}
-              </ul>
-            {%- elseif prop.enum %} - Must be one of: {{ enum }}
+  {% if schema.properties %}
+    <h4>Variables</h4>
+    <ul>
+      {% for key, prop in schema.properties %}
+        <li>
+          <code>{{ key }}</code>
+          {% if prop.title %} - <strong>{{ prop.title }}</strong> {% endif %}
+          {% if prop.description %} - <span>{{ prop.description }}</span> {% endif %}
+          <ul>
+            {% set enum %}
+              {% for x in prop.enum %}
+                <code>{{ x }}</code>{% if not loop.last %},{% endif %}
+              {% endfor %}
+            {% endset %}
+            <li>
+              Type: <code>{{ prop.type }}</code>
+              {% if prop.oneOf %}
+                Must be one of:
+                <ul>
+                  {% for item in prop.oneOf %}
+                    <li><code>{{ item.enum|join(',') }}</code>
+                      {%- if item.title %} - <strong>{{ item.title }}</strong> {% endif -%}
+                      {%- if item.description %} - {{ item.description }} {% endif -%}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {%- elseif prop.enum %} - Must be one of: {{ enum }}
+              {% endif %}
+            </li>
+            {% if key in schema.required %}
+              <li><strong>Required</strong></li> {% endif %}
+            {% if prop.default %}
+              <li>Default: <code>{{ prop.default }}</code></li>
             {% endif %}
-          </li>
-          {% if key in schema.required %}
-            <li><strong>Required</strong></li> {% endif %}
-          {% if prop.default %}
-            <li>Default: <code>{{ prop.default }}</code></li>
-          {% endif %}
-        </ul>
-      </li>
+          </ul>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if code %}
+    <h4>How to use</h4>
+    <pre><code>{{ code }}</code></pre>
+  {% endif %}
+
+  {% if links %}
+    <h4>Helpful Links</h4>
+    {% for link in links %}
+      <a href="{{ link.url }}" target="_blank">{{ link.text }}</a>
     {% endfor %}
-  </ul>
-{% endif %}
-
-{% if code %}
-  <h4>How to use</h4>
-  <pre><code>{{ code }}</code></pre>
-{% endif %}
-
-{% if links %}
-  <h4>Helpful Links</h4>
-  {% for link in links %}
-    <a href="{{ link.url }}" target="_blank">{{ link.text }}</a>
-  {% endfor %}
-{% endif %}
+  {% endif %}
+</div>
