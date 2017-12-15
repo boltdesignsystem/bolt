@@ -72,6 +72,8 @@
 <bolt-{{ componentName }} bolt-component>
 
   {% embed "@bolt/band.twig" with {
+    componentName: 'band',
+    baseClass: 'c-band',
     size: vspacing,
     theme: theme,
     fullBleed: true
