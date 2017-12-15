@@ -11,15 +11,18 @@ module.exports = {
   extraWatches: [
     '!**/package.json',
     '!**/dist/**/*',
-    './bolt-website/bolt-manifest.json'
+    './bolt-website/bolt-manifest.json',
+    './packages/components/**/*.twig',
     // 'packages/bolt-toolkit-*/**/*.twig'
   ],
   patternLab: {
     enabled: true,
-    configFile: 'config/config.yml',
+    configFile: 'apps/pattern-lab--workshop/config/config.yml',
     twigNamespaces: {
       addToDrupalThemeFile: true,
-      sets: [
+      sets: [],
+      // disabling for now
+      Xsets: [
         {
           namespace: 'bolt',
           paths: [

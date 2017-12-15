@@ -51,7 +51,7 @@ module.exports = (gulp) => {
 
 
   // id
-  
+
 
   gulp.task('images:resize', images.resize(gulp));
   gulp.task('images:clean', images.clean(gulp));
@@ -130,8 +130,15 @@ module.exports = (gulp) => {
   // gulp.task('watch', ['setWatch', 'styles:compile'], gulp.series([]));
 
 
-  
-  gulp.task('default',
+  gulp.task('default', gulp.series([
+    'patternlab:compile',
+    gulp.parallel([
+      'patternlab:watch',
+      'browsersync:serve',
+    ]),
+  ]));
+  // @todo change from `default2`
+  gulp.task('default2',
     gulp.series([
       gulp.series([
         // 'symlinks',
@@ -163,7 +170,7 @@ module.exports = (gulp) => {
 
   gulp.task('copy', function(done) {
     // rimraf('tmp', function(){
-      return gulp.src(['src/_patterns/**', 
+      return gulp.src(['src/_patterns/**',
         // '!src/**/node_modules',
         // '!src/**/yarn.lock',
         // '!src/images/**',
@@ -194,7 +201,7 @@ module.exports = (gulp) => {
 
   gulp.task('build:full',
     gulp.series([
-      'patternlab:manifest', //Generate new PL manifest yaml file, but only during full builds 
+      'patternlab:manifest', //Generate new PL manifest yaml file, but only during full builds
       'build'
     ])
   );
