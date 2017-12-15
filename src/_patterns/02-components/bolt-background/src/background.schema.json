@@ -3,9 +3,23 @@
   "title": "Bolt Background",
   "type": "object",
   "properties": {
-    "opacities": {
+    "opacity": {
       "type": "string",
       "enum": ["light", "medium", "heavy"]
+    },
+    "focalPoint": {
+      "type": "object",
+      "description": "Where the opacity background should originate.",
+      "properties": {
+        "horizontal": {
+          "type": "string",
+          "enum": ["center", "left", "right"]
+        },
+        "vertical": {
+          "type": "string",
+          "enum": ["center", "top", "bottom"]
+        }
+      }
     }
   },
   "required": [],
