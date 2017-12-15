@@ -13,12 +13,5 @@ module.exports = (options) => {
     }
   });
 
-
-  // var result = releaseConfig.filter(function (obj) {
-  //   return obj.b == 6;
-  // });
-
-  // console.log(releaseConfig);
-
   return releaseConfig;
 };
