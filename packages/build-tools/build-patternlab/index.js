@@ -89,7 +89,7 @@ function createTwigManifest(workingDir) {
 
 function getTwigNamespaceConfig(workingDir) {
   workingDir = workingDir || process.cwd(); // eslint-disable-line no-param-reassign
-  const twigNamespaceConfig = {}; 
+  const twigNamespaceConfig = {};
   twigNamespaces.sets.forEach((namespaceSet) => {
     const pathArray = namespaceSet.paths.map((pathBase) => {
       const results = globby.sync([path.join(pathBase, '**/*.twig'), '!**/node_modules/**/*'], {
@@ -158,13 +158,13 @@ function addTwigNamespaceConfigToPl(done) {
   });
 
   fs.writeFileSync(defaultConfig.patternLab.configFile, newConfigFile, 'utf8');
-  
+
   // done();
 }
 
 core.events.on('pattern-lab:precompile', () => {
   if (patternLabConfig.plugins.twigNamespaces) {
-    addTwigNamespaceConfigToPl();
+    // addTwigNamespaceConfigToPl();
     // updateTwigManifest();
     // addTwigNamespaceConfigToDrupal();
   }
@@ -227,7 +227,7 @@ function updateTwigManifest(userConfig) {
   const config = merge(defaultConfig, userConfig);
 
   function updateTwigManifestTask(done) {
-    
+
     const twigManifestConfig = createTwigManifest(patternLabRoot);
 
     const newManifestFile = yaml.safeDump(twigManifestConfig, {
