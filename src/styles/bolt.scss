@@ -238,6 +238,13 @@ bolt-ratio .hapyak-player:not(.hapyak-minimal-css) {
    Form Sandbox
 \* ------------------------------------ */
 
+select {
+  cursor: pointer;
+}
+
+
+
+
 .c-bolt-form {
   display: block;
 }
@@ -276,25 +283,82 @@ bolt-ratio .hapyak-player:not(.hapyak-minimal-css) {
 
 
 
-$bolt-input-label-text-color: bolt-color(indigo, light);
-$bolt-input-label-text-indent: bolt-spacing(small);
+$bolt-floating-label-text-color: bolt-color(indigo, light);
+$bolt-floating-label-text-indent: bolt-spacing(small);
+$bolt-floating-label-transition: $bolt-transition;
 
-.c-bolt-input-label {
+.c-bolt-floating-label {
   @include bolt-font-size(xsmall);
 
   position: absolute;
   top: 0.45rem;
-  left: $bolt-input-label-text-indent;
-  max-width: calc(100% - #{$bolt-input-label-text-indent * 2});
+  left: $bolt-floating-label-text-indent;
+  max-width: calc(100% - #{$bolt-floating-label-text-indent * 2});
   overflow: hidden;
-  color: $bolt-input-label-text-color;
+  color: $bolt-floating-label-text-color;
   line-height: 1;
   white-space: nowrap;
   text-overflow: ellipsis;
   opacity: 0;
   transform: translate3d(0, -15%, 0) scale(0.8);
   transform-origin: 0 100%;
-  transition: all $bolt-transition;
+  transition: all $bolt-floating-label-transition;
+}
+
+
+
+
+$bolt-inline-label-transition: $bolt-transition;
+$bolt-inline-label-input-color: bolt-color(indigo, light);
+$bolt-inline-label-border-color: $bolt-border-color;
+$bolt-inline-label-border-style: $bolt-border-style;
+$bolt-inline-label-border-width: $bolt-border-width;
+
+.c-bolt-inline-label {
+  @include bolt-padding-left(medium);
+
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+
+  &:before,
+  &:after {
+    position: absolute;
+    transition: all $bolt-inline-label-transition;
+  }
+
+  &:before {
+    top: 0.3rem;
+    left: 0;
+    width: 1rem;
+    height: 1rem;
+    content: '';
+    border-color: $bolt-inline-label-border-color;
+    border-style: $bolt-inline-label-border-style;
+    border-width: $bolt-inline-label-border-width;
+  }
+
+  &:after {
+    top: calc(0.3rem + 3px);
+    left: 3px;
+    width: calc(1rem - 6px);
+    height: calc(1rem - 6px);
+    background-color: $bolt-inline-label-input-color;
+  }
+}
+
+.c-bolt-inline-label--checkbox {
+  &:before,
+  &:after {
+    border-radius: 2px;
+  }
+}
+
+.c-bolt-inline-label--radio {
+  &:before,
+  &:after {
+    border-radius: 1rem;
+  }
 }
 
 
@@ -393,15 +457,49 @@ $bolt-input-field-transition: $bolt-transition;
     padding-top: calc(#{bolt-v-spacing(small)} + 0.45rem);
     padding-bottom: calc(#{bolt-v-spacing(small)} - 0.45rem);
 
-    & + .c-bolt-input-label {
+    & ~ .c-bolt-floating-label {
       opacity: 1;
       transform: translate3d(0, 0, 0) scale(1);
     }
   }
 
+  &:focus,
+  &:hover {
+    box-shadow: $bolt-input-field-box-shadow--focus;
+  }
+
   &:focus {
     border-color: $bolt-input-field-border-color--focus !important;
-    box-shadow: $bolt-input-field-box-shadow--focus;
+  }
+}
+
+.c-bolt-input-field--checkbox,
+.c-bolt-input-field--radio {
+  @include bolt-visuallyhidden;
+
+  display: inline;
+
+  &:focus ~ .c-bolt-inline-label,
+  &:hover ~ .c-bolt-inline-label {
+    &:before {
+      box-shadow: $bolt-input-field-box-shadow--focus;
+    }
+  }
+
+  &:focus ~ .c-bolt-inline-label {
+    &:before {
+      border-color: $bolt-input-field-border-color--focus;
+    }
+  }
+
+  &:checked ~ .c-bolt-inline-label {
+    &:before {
+      border-color: $bolt-input-field-border-color--focus;
+    }
+
+    &:after {
+      content: '';
+    }
   }
 }
 
@@ -409,13 +507,17 @@ $bolt-input-field-transition: $bolt-transition;
 
 
 .c-bolt-input-icons {
+  @include bolt-padding(0.6rem 0);
+
   position: absolute;
-  top: 0.75rem;
+  top: 1px;
   right: bolt-spacing(small);
   background-color: $bolt-input-field-background-color;
+  pointer-events: none;
 
   &:before {
     position: absolute;
+    top: 0;
     left: -1rem;
     width: 1rem;
     height: 100%;
@@ -426,51 +528,27 @@ $bolt-input-field-transition: $bolt-transition;
 
 
 
+.c-bolt-input-icon {
+  display: inline-block;
+}
 
-.c-bolt-input-icon:not(.c-bolt-input-icon--link) {
-  pointer-events: none;
+.c-bolt-input-icon--link {
+  pointer-events: auto;
 }
 
 
 
 
-.c-bolt-checkbox-field,
-.c-bolt-radio-field {
-  @include bolt-visuallyhidden;
-}
+.c-bolt-strength-indicator {
+  @include bolt-padding(small, squished);
 
-
-
-
-.c-bolt-checkbox-label,
-.c-bolt-radio-label {
-  @include bolt-padding-left(medium);
-
-  position: relative;
   display: block;
-  cursor: pointer;
-
-  &:before {
-    position: absolute;
-    top: 0.3rem;
-    left: 0;
-    width: 1rem;
-    height: 1rem;
-    content: '';
-    border-color: $bolt-border-color;
-    border-style: $bolt-border-style;
-    border-width: $bolt-border-width;
-  }
 }
 
-.c-bolt-checkbox-label {
-  &:before {
-    border-radius: $bolt-border-radius;
-  }
-}
-
-.c-bolt-radio-label {
-  &:before {
-    border-radius: 100em;
-  }
+.c-bolt-strength-indicator__meter {
+  display: block;
+  width: 100%;
+  height: 0.25rem;
+  border-radius: 0.25rem;
+  background: linear-gradient(to left, bolt-color(error), bolt-color(success));
 }
