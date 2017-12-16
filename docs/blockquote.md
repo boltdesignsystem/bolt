@@ -1,6 +1,6 @@
 Title: Blockquote
 
-https://bolt.netlify.com/?p=viewall-components-bolt-blockquote 
+https://bolt.netlify.com/patterns/02-components-bolt-blockquote/index.html
 
 Description:
 Block quotes provide testimonials throughout the pega experience.
