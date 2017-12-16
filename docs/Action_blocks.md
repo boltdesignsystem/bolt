@@ -1,5 +1,7 @@
 Title: Action blocks
 
+https://bolt.netlify.com/patterns/02-components-bolt-action-blocks/index.html
+
 Description:
 Action blocks work as a group to provide an easy to browse list of links. 
 
