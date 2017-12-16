@@ -1,5 +1,7 @@
 Title: Background for bands
 
+https://bolt.netlify.com/patterns/02-components-bolt-background/index.html
+
 Description:
 Background allows Bolt to set an images inside of bands.
 
