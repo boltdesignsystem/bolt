@@ -1,5 +1,5 @@
 {% set schema = get_data('@bolt/button.schema.json') %}
 
-{%  include "@bolt/schema-docs.twig" with {
+{% include "@bolt/schema-docs.twig" with {
   schema: schema
 } %}

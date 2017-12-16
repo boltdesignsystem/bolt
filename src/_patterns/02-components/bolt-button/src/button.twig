@@ -64,3 +64,6 @@
 
   </{{ tag }}>
 </bolt-button>
+{% if TWIG_ENV == 'pl' %}
+  {{ validate_json_schema('@bolt/button.schema.json', _self) }}
+{% endif %}
