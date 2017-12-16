@@ -1,0 +1,24 @@
+{% set schema = get_data("@bolt/background.schema.json") %}
+
+{% for opacity in schema.properties.opacity.enum %}
+  <h3>Opacity variation: {{ opacity }}</h3>
+
+  {% include '@bolt/background.demo.twig' with {
+    background: {
+      "opacity": opacity,
+      "focalPoint": {
+        "vertical": "center",
+        "horizontal": "center"
+      },
+      "contentItems": [
+        {
+          "pattern": "image",
+          "src": "/images/sample/background-banner--left-focal-point.jpg"
+        }
+      ]
+    }
+  } %}
+
+  <br>
+  <br>
+{% endfor %}
