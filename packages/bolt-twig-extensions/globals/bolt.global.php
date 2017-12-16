@@ -1,6 +1,6 @@
 <?php
 
-class Twig_Extension_bolt_image_sizes extends Twig_Extension implements Twig_Extension_GlobalsInterface {
+class Twig_Extension_bolt extends Twig_Extension implements Twig_Extension_GlobalsInterface {
     public static $data;
 
     function __construct(){
@@ -16,6 +16,8 @@ class Twig_Extension_bolt_image_sizes extends Twig_Extension implements Twig_Ext
    public function getGlobals(){
         return array(
             'globalBoltImageSizes' => self::getImageSizes(),
+            'TWIG_ENV' => 'pl',
+            'disable_validate_json_schema' => false,
         );
     }
 }
