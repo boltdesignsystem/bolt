@@ -1,5 +1,7 @@
 Title: Background shapes for bands
 
+https://bolt.netlify.com/patterns/02-components-05-bolt-background-shapes/index.html
+
 Description:
 Background shapes bring the brand further into Bolt. These shapes create a background texture for bands. 
 
