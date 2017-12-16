@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Bolt Button",
+  "type": "object",
+  "properties": {
+    "text": {
+      "type": "string"
+    },
+    "size": {
+      "type": "string",
+      "enum": [
+        "xsmall",
+        "small",
+        "medium",
+        "large",
+        "xlarge"
+      ]
+    }
+  },
+  "required": ["text"],
+  "additionalProperties": false
+}
