@@ -1,5 +1,12 @@
 {% set schema = get_data('@bolt/button.schema.json') %}
 
+{% set code %} {%- verbatim -%}
+{% include '@bolt/button.twig' with {
+  text: 'My button'
+} only %}
+{%- endverbatim -%} {% endset %}
+
 {% include "@bolt/schema-docs.twig" with {
-  schema: schema
+  schema: schema,
+  code: code,
 } %}
