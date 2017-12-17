@@ -2,32 +2,17 @@
   "name": "@bolt/bolt",
   "description": "Bolt Design System",
   "version": "0.5.3",
+  "private": true,
   "license": "MIT",
   "main": "bolt.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/bolt-design-system/bolt"
   },
-  "dependencies": {
+  "devDependencies": {
+    "@bolt/build-tools": "link:../../packages/build-tools",
     "globby": "^6.1.0",
-    "@bolt/build-patternlab": "^0.5.2",
     "event-hooks-webpack-plugin": "^1.0.0",
-    "@bolt/components-all": "^0.6.3",
-    "@bolt/core": "^0.4.1",
-    "@bolt/components-nav-bar": "^0.0.0",
-    "@bolt/components-smooth-scroll": "^0.0.0",
-    "@bolt/components-card": "^0.5.6",
-    "@bolt/components-critical-fonts": "^0.4.10",
-    "@bolt/components-device-viewer": "^0.1.1",
-    "@bolt/components-icon": "^0.3.1",
-    "@bolt/components-image": "^0.3.1",
-    "@bolt/elements-all": "^0.5.4",
-    "@bolt/generic-all": "^0.5.2",
-    "@bolt/objects-all": "^0.4.5",
-    "@bolt/settings-all": "^0.7.4",
-    "@bolt/themes-all": "^0.6.1",
-    "@bolt/tools-all": "^0.5.4",
-    "@bolt/utilities-all": "^0.6.0",
     "@theme-tools/sass-export-data": "^1.0.3",
     "autoprefixer": "^7.2.3",
     "clean-css-loader": "^0.1.4",
@@ -53,5 +38,8 @@
     "babel-preset-env": "^1.6.1",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-dynamic-import-node": "^1.2.0"
+  },
+  "dependencies": {
+    "@bolt/core": "link:../../packages/core"
   }
 }

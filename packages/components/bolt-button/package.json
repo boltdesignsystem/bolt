@@ -34,7 +34,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@bolt/build-webpack": "^0.4.1"
+    "@bolt/build-tools": "^0.5.1"
   },
   "dependencies": {
     "@bolt/settings-all": "^0.7.4",
@@ -42,6 +42,6 @@
   },
   "scripts": {
     "prepublishOnly": "npm run build",
-    "build": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry bolt-button=./src/button"
+    "build": "./node_modules/@bolt/build-tools/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-tools/webpack.config.cli.js --entry bolt-button=./src/button"
   }
 }

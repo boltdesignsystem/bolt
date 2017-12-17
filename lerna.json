@@ -6,12 +6,10 @@
     "apps/pattern-lab--workshop"
   ],
   "command": {
-    "publish": {
-      "message": "chore(release): publish %s"
-    },
     "bootstrap": {
-      "hoist": true,
       "nohoist": "*babel*"
     }
-  }
+  },
+  "npmClient": "yarn",
+  "useWorkspaces": true
 }
