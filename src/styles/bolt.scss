@@ -238,19 +238,14 @@ bolt-ratio .hapyak-player:not(.hapyak-minimal-css) {
    Form Sandbox
 \* ------------------------------------ */
 
+// General Form Elements
 select {
   cursor: pointer;
 }
 
-
-
-
 .c-bolt-form {
   display: block;
 }
-
-
-
 
 .c-bolt-fieldset {
   display: block;
@@ -263,6 +258,10 @@ select {
   display: block;
 }
 
+
+
+
+// Input List
 .c-bolt-input-list {
   @include bolt-margin(0);
   @include bolt-padding(0);
@@ -283,6 +282,7 @@ select {
 
 
 
+// Data Inputs
 $bolt-floating-label-text-color: bolt-color(indigo, light);
 $bolt-floating-label-text-indent: bolt-spacing(small);
 $bolt-floating-label-transition: $bolt-transition;
@@ -306,13 +306,135 @@ $bolt-floating-label-transition: $bolt-transition;
 }
 
 
+$bolt-input-text-color: bolt-color(gray, xdark); // TODO: [Mai] This is the theme text color
+$bolt-input-text-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
+$bolt-input-text-color--disabled: rgba(bolt-color(gray, xdark), 0.66); // TODO: [Mai] This is the theme text color at 66%
+$bolt-input-background-color: bolt-color(white); // TODO: [Mai] This is the theme input background color
+$bolt-input-background-color--disabled: rgba(bolt-color(gray, xdark), 0.05); // TODO: [Mai] This is the theme text color at 5%
+$bolt-input-placeholder-color: rgba(bolt-color(gray, xdark), 0.66); // TODO: [Mai] This is the theme text color at 66%
+$bolt-input-placeholder-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
+$bolt-input-placeholder-color--disabled: rgba(bolt-color(gray, xdark), 0.66); // TODO: [Mai] This is the theme text color at 66%
+$bolt-input-border-color: rgba(bolt-color(indigo, light), 0.25); // TODO: [Mai] This is the theme link color at 25%
+$bolt-input-border-color--focus: bolt-color(indigo, light); // TODO: [Mai] This is the theme link color
+$bolt-input-border-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
+$bolt-input-border-width: $bolt-border-width;
+$bolt-input-border-style: $bolt-border-style;
+$bolt-input-border-radius: $bolt-border-radius;
+$bolt-input-box-shadow--focus: 0 0 0.35rem bolt-color(indigo, light);
+$bolt-input-transition: $bolt-transition;
+
+@mixin bolt-input-placeholder($color) {
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $color;
+  }
+
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: $color;
+  }
+
+  &:-ms-input-placeholder { /* IE 10+ */
+    color: $color;
+  }
+
+  &:-moz-placeholder { /* Firefox 18- */
+    color: $color;
+  }
+}
+
+.c-bolt-input {
+  @include bolt-padding(small);
+  @include bolt-font-size(small);
+  @include bolt-input-placeholder($bolt-input-placeholder-color);
+
+  display: block;
+  width: 100%;
+  color: $bolt-input-text-color;
+  border-color: $bolt-input-border-color;
+  border-style: $bolt-input-border-style;
+  border-width: $bolt-input-border-width;
+  border-radius: $bolt-input-border-radius;
+  background-color: $bolt-input-background-color;
+  appearance: none;
+  outline: none;
+  transition: all $bolt-input-transition;
+
+  &.is-invalid,
+  &.is-touched:invalid {
+    @include bolt-input-placeholder($bolt-input-placeholder-color--invalid);
+
+    color: $bolt-input-text-color--invalid;
+    border-color: $bolt-input-border-color--invalid;
+  }
+
+  &.is-disabled,
+  &:disabled {
+    @include bolt-input-placeholder($bolt-input-placeholder-color--disabled);
+
+    color: $bolt-input-text-color--disabled;
+    cursor: not-allowed;
+    background-color: $bolt-input-background-color--disabled;
+  }
+
+  &.is-filled,
+  &:focus {
+    padding-top: calc(#{bolt-v-spacing(small)} + 0.45rem);
+    padding-bottom: calc(#{bolt-v-spacing(small)} - 0.45rem);
+
+    & ~ .c-bolt-floating-label {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+  }
+
+  &:focus,
+  &:hover {
+    box-shadow: $bolt-input-box-shadow--focus;
+  }
+
+  &:focus {
+    border-color: $bolt-input-border-color--focus !important;
+  }
+}
+
+.c-bolt-input--checkbox,
+.c-bolt-input--radio {
+  @include bolt-visuallyhidden;
+
+  display: inline;
+
+  &:focus ~ .c-bolt-inline-label,
+  &:hover ~ .c-bolt-inline-label {
+    &:before {
+      box-shadow: $bolt-input-box-shadow--focus;
+    }
+  }
+
+  &:focus ~ .c-bolt-inline-label {
+    &:before {
+      border-color: $bolt-input-border-color--focus;
+    }
+  }
+
+  &:checked ~ .c-bolt-inline-label {
+    &:before {
+      border-color: $bolt-input-border-color--focus;
+    }
+
+    &:after {
+      content: '';
+    }
+  }
+}
 
 
+
+
+// Checkbox and Radio Inputs
 $bolt-inline-label-transition: $bolt-transition;
 $bolt-inline-label-input-color: bolt-color(indigo, light);
-$bolt-inline-label-border-color: $bolt-border-color;
-$bolt-inline-label-border-style: $bolt-border-style;
-$bolt-inline-label-border-width: $bolt-border-width;
+$bolt-inline-label-input-border-color: $bolt-border-color;
+$bolt-inline-label-input-border-style: $bolt-border-style;
+$bolt-inline-label-input-border-width: $bolt-border-width;
 
 .c-bolt-inline-label {
   @include bolt-padding-left(medium);
@@ -333,9 +455,9 @@ $bolt-inline-label-border-width: $bolt-border-width;
     width: 1rem;
     height: 1rem;
     content: '';
-    border-color: $bolt-inline-label-border-color;
-    border-style: $bolt-inline-label-border-style;
-    border-width: $bolt-inline-label-border-width;
+    border-color: $bolt-inline-label-input-border-color;
+    border-style: $bolt-inline-label-input-border-style;
+    border-width: $bolt-inline-label-input-border-width;
   }
 
   &:after {
@@ -361,158 +483,13 @@ $bolt-inline-label-border-width: $bolt-border-width;
   }
 }
 
-
-
-
-$bolt-input-message-text-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
-
-.c-bolt-input-message {
-  @include bolt-padding(small, squished);
-
-  display: none;
-}
-
-.c-bolt-input-message--invalid {
-  color: $bolt-input-message-text-color--invalid;
-}
-
-
-
-
-$bolt-input-field-text-color: bolt-color(gray, xdark); // TODO: [Mai] This is the theme text color
-$bolt-input-field-text-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
-$bolt-input-field-text-color--disabled: rgba(bolt-color(gray, xdark), 0.66); // TODO: [Mai] This is the theme text color at 66%
-$bolt-input-field-background-color: bolt-color(white); // TODO: [Mai] This is the theme input background color
-$bolt-input-field-background-color--disabled: rgba(bolt-color(gray, xdark), 0.05); // TODO: [Mai] This is the theme text color at 5%
-$bolt-input-field-placeholder-color: rgba(bolt-color(gray, xdark), 0.66); // TODO: [Mai] This is the theme text color at 66%
-$bolt-input-field-placeholder-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
-$bolt-input-field-placeholder-color--disabled: rgba(bolt-color(gray, xdark), 0.66); // TODO: [Mai] This is the theme text color at 66%
-$bolt-input-field-border-color: rgba(bolt-color(indigo, light), 0.25); // TODO: [Mai] This is the theme link color at 25%
-$bolt-input-field-border-color--focus: bolt-color(indigo, light); // TODO: [Mai] This is the theme link color
-$bolt-input-field-border-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
-$bolt-input-field-border-width: $bolt-border-width;
-$bolt-input-field-border-style: $bolt-border-style;
-$bolt-input-field-border-radius: $bolt-border-radius;
-$bolt-input-field-box-shadow--focus: 0 0 0.35rem bolt-color(indigo, light);
-$bolt-input-field-transition: $bolt-transition;
-
-@mixin bolt-input-field-placeholder($color) {
-  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: $color;
-  }
-
-  &::-moz-placeholder { /* Firefox 19+ */
-    color: $color;
-  }
-
-  &:-ms-input-placeholder { /* IE 10+ */
-    color: $color;
-  }
-
-  &:-moz-placeholder { /* Firefox 18- */
-    color: $color;
-  }
-}
-
-.c-bolt-input {
-  @include bolt-padding(small);
-  @include bolt-font-size(small);
-  @include bolt-input-field-placeholder($bolt-input-field-placeholder-color);
-
-  display: block;
-  width: 100%;
-  color: $bolt-input-field-text-color;
-  border-color: $bolt-input-field-border-color;
-  border-style: $bolt-input-field-border-style;
-  border-width: $bolt-input-field-border-width;
-  border-radius: $bolt-input-field-border-radius;
-  background-color: $bolt-input-field-background-color;
-  appearance: none;
-  outline: none;
-  transition: all $bolt-input-field-transition;
-
-  &.is-invalid,
-  &.is-touched:invalid {
-    @include bolt-input-field-placeholder($bolt-input-field-placeholder-color--invalid);
-
-    color: $bolt-input-field-text-color--invalid;
-    border-color: $bolt-input-field-border-color--invalid;
-
-    ~ .c-bolt-input-message--invalid {
-      display: block;
-    }
-  }
-
-  &.is-disabled,
-  &:disabled {
-    @include bolt-input-field-placeholder($bolt-input-field-placeholder-color--disabled);
-
-    color: $bolt-input-field-text-color--disabled;
-    cursor: not-allowed;
-    background-color: $bolt-input-field-background-color--disabled;
-  }
-
-  &.is-filled,
-  &:focus {
-    padding-top: calc(#{bolt-v-spacing(small)} + 0.45rem);
-    padding-bottom: calc(#{bolt-v-spacing(small)} - 0.45rem);
-
-    & ~ .c-bolt-floating-label {
-      opacity: 1;
-      transform: translate3d(0, 0, 0) scale(1);
-    }
-  }
-
-  &:focus,
-  &:hover {
-    box-shadow: $bolt-input-field-box-shadow--focus;
-  }
-
-  &:focus {
-    border-color: $bolt-input-field-border-color--focus !important;
-  }
-}
-
-.c-bolt-input--checkbox,
-.c-bolt-input--radio {
-  @include bolt-visuallyhidden;
-
-  display: inline;
-
-  &:focus ~ .c-bolt-inline-label,
-  &:hover ~ .c-bolt-inline-label {
-    &:before {
-      box-shadow: $bolt-input-field-box-shadow--focus;
-    }
-  }
-
-  &:focus ~ .c-bolt-inline-label {
-    &:before {
-      border-color: $bolt-input-field-border-color--focus;
-    }
-  }
-
-  &:checked ~ .c-bolt-inline-label {
-    &:before {
-      border-color: $bolt-input-field-border-color--focus;
-    }
-
-    &:after {
-      content: '';
-    }
-  }
-}
-
-
-
-
 .c-bolt-input-icons {
   @include bolt-padding(0.6rem 0);
 
   position: absolute;
   top: 1px;
   right: bolt-spacing(small);
-  background-color: $bolt-input-field-background-color;
+  background-color: $bolt-input-background-color;
   pointer-events: none;
 
   &:before {
@@ -522,11 +499,9 @@ $bolt-input-field-transition: $bolt-transition;
     width: 1rem;
     height: 100%;
     content: '';
-    background: linear-gradient(to left, $bolt-input-field-background-color, transparent);
+    background: linear-gradient(to left, $bolt-input-background-color, transparent);
   }
 }
-
-
 
 .c-bolt-input-icon {
   display: inline-block;
@@ -539,6 +514,29 @@ $bolt-input-field-transition: $bolt-transition;
 
 
 
+// Input validation or helper text
+$bolt-input-message-text-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
+
+.c-bolt-input-message {
+  @include bolt-padding(small, squished);
+  @include bolt-font-size(xsmall);
+}
+
+.c-bolt-input-message--invalid {
+  display: none; // TODO: [Mai] Remove this if invalid messages are dynamically generated through javascript.
+  color: $bolt-input-message-text-color--invalid;
+}
+
+.c-bolt-input.is-invalid ~ .c-bolt-input-message--invalid,
+.c-bolt-input.is-touched:invalid ~ .c-bolt-input-message--invalid {
+  display: block; // TODO: [Mai] Remove this if invalid messages are dynamically generated through javascript.
+}
+
+
+
+// Strength Indicator
+$bolt-strength-indicator-transition: $bolt-transition;
+
 .c-bolt-strength-indicator {
   @include bolt-padding(small, squished);
 
@@ -547,19 +545,20 @@ $bolt-input-field-transition: $bolt-transition;
   .c-bolt-input[type='password']:focus ~ & {
     display: block;
   }
-
 }
 
 .c-bolt-strength-indicator__meter {
+  @include bolt-margin-bottom(xsmall);
+
   display: block;
   width: 100%;
   height: 0.25rem;
   border-radius: 0.25rem;
-  transition: all $bolt-transition;
+  transition: all $bolt-strength-indicator-transition;
 }
 
 .c-bolt-strength-indicator__meter--00 {
-  background: linear-gradient(90deg, bolt-color(success) 0%, bolt-color(error) 0%);
+  background: linear-gradient(90deg, bolt-color(indigo, xlight) 0%, bolt-color(indigo, xlight) 0%);
 }
 
 .c-bolt-strength-indicator__meter--25 {
@@ -576,4 +575,10 @@ $bolt-input-field-transition: $bolt-transition;
 
 .c-bolt-strength-indicator__meter--100 {
   background: linear-gradient(90deg, bolt-color(success) 100%, bolt-color(error) 100%);
+}
+
+.c-bolt-strength-indicator__text {
+  @include bolt-font-size(xsmall);
+
+  display: block;
 }
