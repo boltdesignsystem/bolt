@@ -10,17 +10,21 @@ const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackExcludeAssetsPlugin = require('html-webpack-exclude-assets-plugin');
 const EventHooksPlugin = require('event-hooks-webpack-plugin');
+const globImporter = require("node-sass-glob-importer");
+const onceImporter = require('node-sass-once-importer');
+// const magicImporter = require("node-sass-magic-importer");
 // const plPath = resolve('../../');
 // const plPath = path.resolve(__dirname, './');
 
-const patternlab = require('./build-patternlab');
+
+const patternlab = require('@bolt/build-tools/patternlab');
 const plCompile = patternlab.compile();
 // const plCompile = require('./build-patternlab')(plPath);
 
 const config = {
   entry: {
     'bolt': './src/bolt',
-    'bolt-critical': './src/bolt-critical'
+    // 'bolt-critical': './src/bolt-critical'
   },
   data: './src/_data'
 }
@@ -34,52 +38,53 @@ module.exports = {
   entry: config.entry,
   output: {
     path: `${process.cwd()}/dist/assets`,
-    filename: '[name].js',
+    filename: "[name].js"
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.svg', '.scss']
+    extensions: [".js", ".jsx", ".json", ".svg", ".scss"]
   },
   module: {
     rules: [
       {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
+          fallback: "style-loader",
           use: [
             {
-              loader: 'css-loader',
+              loader: "css-loader",
               options: {
                 sourceMap: true,
                 modules: false, // re-enable if/when using css-modules. was adding duplicate output of CSS to JS output
                 importLoaders: true,
-                localIdentName: '[local]'
+                localIdentName: "[local]"
               }
             },
             {
-              loader: 'postcss-loader',
+              loader: "postcss-loader",
               options: {
-                plugins: function () {
-                  return [
-                    require('autoprefixer')
-                  ];
+                plugins: function() {
+                  return [require("autoprefixer")];
                 }
               }
             },
             {
-              loader: 'clean-css-loader',
+              loader: "clean-css-loader",
               options: {
                 skipWarn: true,
-                compatibility: 'ie9',
-                level: process.env.NODE_ENV === 'production' ? 2 : 0,
-                inline: ['remote']
+                compatibility: "ie9",
+                level: process.env.NODE_ENV === "production" ? 2 : 0,
+                inline: ["remote"]
               }
             },
             {
-              loader: 'sass-loader',
+              loader: "sass-loader",
               options: {
-                importer: require('npm-sass').importer,
+                importer: [
+                  onceImporter(),
+                  npmSass.importer,
+                ],
                 functions: sassExportData,
-                outputStyle: 'expanded',
+                outputStyle: "expanded",
                 precision: 2
               }
             }
@@ -91,9 +96,9 @@ module.exports = {
         // exclude: /\.es6.js$/,
         // exclude: /(native-shim\.js|node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js|\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js|custom-elements-es5-adapter\.js|bower_components)/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['babel-preset-env'].map(require.resolve),
+            presets: ["babel-preset-env"].map(require.resolve),
             cacheDirectory: true,
             babelrc: false,
             plugins: [
@@ -107,16 +112,16 @@ module.exports = {
               // ],
               [
                 // 'babel-plugin-transform-class-properties',
-                'babel-plugin-transform-class-properties',
-                'babel-plugin-syntax-dynamic-import',
+                "babel-plugin-transform-class-properties",
+                "babel-plugin-syntax-dynamic-import",
                 // 'babel-plugin-dynamic-import-node',
-                'babel-plugin-transform-react-jsx',
+                "babel-plugin-transform-react-jsx",
                 // 'babel-plugin-dynamic-import-node',
-                'babel-plugin-transform-object-assign',
-                'babel-plugin-transform-object-rest-spread',
+                "babel-plugin-transform-object-assign",
+                "babel-plugin-transform-object-rest-spread"
                 // 'babel-plugin-transform-object-assign',
                 // 'babel-plugin-transform-object-rest-spread',
-              ].map(require.resolve),
+              ].map(require.resolve)
               // [
               //   'transform-react-jsx',
               //   {
@@ -155,18 +160,18 @@ module.exports = {
             ],
 
             presets: [
-              [require.resolve('babel-preset-env'), {
-                targets: {
-                  browsers: [
-                    'last 3 versions',
-                    'not ie < 9'
-                  ]
-                },
-                modules: false,
-                debug: false
-              }],
-              require.resolve('babel-preset-flow'),
-              require.resolve('babel-preset-react')
+              [
+                require.resolve("babel-preset-env"),
+                {
+                  targets: {
+                    browsers: ["last 3 versions", "not ie < 9"]
+                  },
+                  modules: false,
+                  debug: false
+                }
+              ],
+              require.resolve("babel-preset-flow"),
+              require.resolve("babel-preset-react")
               // "flow",
               // "react",
             ]
@@ -189,7 +194,7 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin({
       // filename: '[name].css?[hash]-[chunkhash]-[contenthash]-[name]',
-      filename: '[name].css',
+      filename: "[name].css",
       // disable: false,
       allChunks: true
     }),
@@ -200,38 +205,40 @@ module.exports = {
     //       // patternlab.build(callback, plConfig.cleanPublic);
     //     }
     //   }),
-      new EventHooksPlugin({
-        'after-compile': function(compilation, callback) {  
-          // watch supported templates
-          // const supportedTemplateExtensions = patternEngines.getSupportedFileExtensions();
-          const templateFilePaths = '**/*.twig';
-          // const templateFilePaths = supportedTemplateExtensions.map(function (dotExtension) {
-          //   return plConfig.paths.source.patterns + '/**/*' + dotExtension;
-          // });
+    new EventHooksPlugin({
+      "after-compile": function(compilation, callback) {
+        // watch supported templates
+        // const supportedTemplateExtensions = patternEngines.getSupportedFileExtensions();
+        const templateFilePaths = "**/*.twig";
+        // const templateFilePaths = supportedTemplateExtensions.map(function (dotExtension) {
+        //   return plConfig.paths.source.patterns + '/**/*' + dotExtension;
+        // });
 
-          // additional watch files
-          const watchFiles = [
-            // './src/**/*.json',
-            '**/*.md',
-            '**/*.yaml',
-            '**/*.yml'
-            // './src/**/*.twig'
-          ];
+        // additional watch files
+        const watchFiles = [
+          // './src/**/*.json',
+          "**/*.md",
+          "**/*.yaml",
+          "**/*.yml"
+          // './src/**/*.twig'
+        ];
 
-          const allWatchFiles = watchFiles.concat(templateFilePaths);
+        const allWatchFiles = watchFiles.concat(templateFilePaths);
 
-          allWatchFiles.forEach(function(globPath) {
-            const patternFiles = globby.sync(globPath).map(function (filePath) {
-              return path.resolve(__dirname, filePath);
-            });
-            
-            compilation.fileDependencies = compilation.fileDependencies.concat(patternFiles);
+        allWatchFiles.forEach(function(globPath) {
+          const patternFiles = globby.sync(globPath).map(function(filePath) {
+            return path.resolve(__dirname, filePath);
           });
 
-          // signal done and continue with build
-          callback();
-        }
-      })
+          compilation.fileDependencies = compilation.fileDependencies.concat(
+            patternFiles
+          );
+        });
+
+        // signal done and continue with build
+        callback();
+      }
+    })
     // new HtmlWebpackPlugin({
     // // excludeAssets: [/.*/]
     // }),

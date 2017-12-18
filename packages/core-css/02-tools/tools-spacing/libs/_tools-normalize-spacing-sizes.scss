@@ -1,0 +1,25 @@
+// Given a mixed list of t-shirt sizes, return the same list after replacing t-shirt sizes w/ real values, but keep other properties
+
+@function _bolt-normalize-spacing-sizes($spacing-sizes, $spacing-type) {
+  $sizes: $spacing-sizes;
+  $list: (); // By default, setup empty list to store compiled t-shirt sizes (ex. `xsmall`)
+
+  @if (length($spacing-sizes) == 1) {
+    $sizes: append($sizes, $spacing-sizes);
+  }
+
+  @for $i from 1 through length($sizes) {
+    $size: nth($sizes, $i);
+
+    @if (type-of($size) == string and $size != 'auto' and $size != 'none') {
+      @if ($i % 2 == 1) {
+        $size: bolt-v-spacing($size, $spacing-type);
+      } @else {
+        $size: bolt-spacing($size);
+      }
+    }
+    $list: append($list, $size);
+  }
+
+  @return $list;
+}

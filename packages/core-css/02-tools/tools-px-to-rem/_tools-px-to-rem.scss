@@ -1,0 +1,15 @@
+/* ------------------------------------ *\
+  TOOLS - Pixel to REM
+\* ------------------------------------ */
+
+@import '../../01-settings/settings-global/settings-global';
+
+@function bolt-rem($pixels, $context: $bolt-base-font-size--min) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+  @return $pixels / $context * 1rem;
+}

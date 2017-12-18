@@ -1,0 +1,31 @@
+/* ------------------------------------ *\
+  Font weight
+\* ------------------------------------ */
+
+////
+/// @group Tools: Typography
+/// @author Mike Mai
+////
+
+@import '../../01-settings/settings-font-weight/settings-font-weight';
+@import '../tools-sassy-maps/tools-sassy-maps'; // required so `map-get-deep` works
+
+
+/// This returns the font-weight for a specific element.
+///
+/// @param {string} $weight
+///   Defines the weight of the text: bold or regular.
+///
+@mixin bolt-font-weight($weight) {
+  $font-weight: map-get-deep($bolt-font-weights, 'font-weights', $weight);
+
+  font-weight: $font-weight;
+}
+
+/* stylelint-disable-next-line scss/at-mixin-pattern */
+@mixin font-weight($args...) {
+  @warn 'PegaKit\'s `font-weight` mixin is deprecated and will be removed in v1.0.0 of Bolt. Use the new @bolt-font-weight mixin instead.';
+
+  @include bolt-font-weight($args);
+}
+/* stylelint-enable */

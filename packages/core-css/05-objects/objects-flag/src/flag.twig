@@ -1,0 +1,64 @@
+{% set prefix = "o-bolt-" %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set alignOptions = [
+  "top",
+  "middle",
+  "bottom"
+] %}
+
+{% set sizes = [
+  "small",
+  "medium"
+] %}
+
+{# Defaults for a vanilla `Button` component #}
+{% set componentName = "flag" %}
+{% set baseClass = prefix ~ componentName %}
+{% set size = size | default("small") %}
+{% set valign = valign | default("top") %}
+
+
+{% set classes = [
+  baseClass,
+  size in sizes ? baseClass ~ "--" ~ size : "",
+  valign in alignOptions ? baseClass ~ "--" ~ valign : ""
+] %}
+
+
+<div {{ attributes.addClass(classes | raw) }}>
+  {% if figure %}
+    <div class="o-bolt-flag__figure">
+      {% block flag_figure %}
+        {% set figureContent %}  
+          {% include "@bolt/figure.twig" with figure only %}
+        {% endset %}
+
+        {% if url %}
+          {% include "@bolt/link.twig" with {
+            url: url,
+            text: figureContent
+          } only %}
+        {% else %}
+          {{ figureContent }}
+        {% endif %}
+      {% endblock %}
+    </div>
+  {% endif %}
+
+  <div class="o-bolt-flag__body">
+    {% block body %}
+      {% for item in items %}
+        {% if item.pattern %}
+          {% include pattern_template(item.pattern) with item only %}
+        {% elseif item.text %}
+          {{ item.text }}
+        {% endif %}
+      {% endfor %}
+      
+      {{ content }}
+
+    {% endblock %}
+  </div>
+</div>

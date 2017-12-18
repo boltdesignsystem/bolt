@@ -11,14 +11,24 @@
   },
   "devDependencies": {
     "@bolt/build-tools": "link:../../packages/build-tools",
-    "globby": "^6.1.0",
-    "event-hooks-webpack-plugin": "^1.0.0",
     "@theme-tools/sass-export-data": "^1.0.3",
     "autoprefixer": "^7.2.3",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-dynamic-import-node": "^1.2.0",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-assign": "^6.8.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react": "^6.24.1",
     "clean-css-loader": "^0.1.4",
     "css-loader": "^0.28.7",
+    "event-hooks-webpack-plugin": "^1.0.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "fs-extra": "^5.0.0",
+    "globby": "^6.1.0",
     "html-webpack-exclude-assets-plugin": "^0.0.5",
     "html-webpack-plugin": "^2.30.1",
     "node-sass-export": "0.0.2",
@@ -27,19 +37,12 @@
     "postcss-loader": "^2.0.9",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.1",
-    "webpack": "^3.10.0",
-    "babel-loader": "^7.1.2",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-assign": "^6.8.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-preset-flow": "^6.23.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-env": "^1.6.1",
-    "babel-plugin-syntax-dynamic-import": "^6.18.0",
-    "babel-plugin-dynamic-import-node": "^1.2.0"
+    "webpack": "^3.10.0"
   },
   "dependencies": {
-    "@bolt/core": "link:../../packages/core"
+    "@bolt/core": "link:../../packages/core",
+    "@bolt/core-css": "link:../../packages/core-css",
+    "node-sass-glob-importer": "^5.0.3",
+    "node-sass-once-importer": "^5.0.3"
   }
 }

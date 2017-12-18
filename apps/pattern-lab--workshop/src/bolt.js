@@ -4,11 +4,11 @@
 // import '@bolt/components-nav-bar/src/nav-bar.js';
 // import '@bolt/components-smooth-scroll/src/smooth-scroll.js';
 // // import '@bolt/components-card/src/card.js';
+import './bolt.scss';
 
+// import { polyfillLoader } from '@bolt/core';
 
-import { polyfillLoader } from '@bolt/core';
-
-polyfillLoader.then((res) => {
-  import('@bolt/components-icon');
-  // import('@bolt/components-image/src/image.js');
-});
+// polyfillLoader.then((res) => {
+//   import('@bolt/components-icon');
+//   // import('@bolt/components-image/src/image.js');
+// });

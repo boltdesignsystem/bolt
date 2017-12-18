@@ -1,0 +1,15 @@
+/* ------------------------------------ *\
+  SCROLLING HELPER MIXIN
+\* ------------------------------------ */
+
+@mixin bolt-vertical-scroll {
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@mixin bolt-horizontal-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}

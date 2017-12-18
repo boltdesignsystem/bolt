@@ -1,0 +1,19 @@
+/* ------------------------------------ *\
+  TOOLS - LIST REMOVE
+  via https://gist.github.com/Jakobud/ec056b52f3673cc369dc97f2c2428424
+\* ------------------------------------ */
+
+/// bolt-list-remove
+/// Remove an item from a list
+/// @param $list - A SASS list
+/// @param $index - The list index to remove
+/// @return {List} A SASS list
+@function bolt-list-remove($list, $index) {
+  $newList: ();
+  @for $i from 1 through length($list) {
+    @if $i != $index {
+      $newList: append($newList, nth($list, $i), 'space');
+    }
+  }
+  @return $newList;
+}
