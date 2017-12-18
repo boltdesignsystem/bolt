@@ -43,7 +43,6 @@
   shapeAlignment in shapeAlignments ? baseClass ~ "__shapes--" ~ shapeAlignment : baseClass ~ "__shapes--right"
 ] %}
 
-{% set x = true %}
 
 
 <bolt-background bolt-component>
@@ -76,6 +75,3 @@
     </div>
   </div>
 </bolt-background>
-{% if TWIG_ENV == 'pl' %}
-  {{ validate_json_schema('@bolt/background.schema.json', _self) }}
-{% endif %}
