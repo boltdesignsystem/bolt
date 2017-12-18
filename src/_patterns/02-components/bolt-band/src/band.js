@@ -1,9 +1,5 @@
-import { html } from 'lit-html';
-import { withComponent } from 'skatejs';
-import withLitHtml from '@skatejs/renderer-lit-html';
+import { polyfillLoader } from '@bolt/core';
 
-class MyComponent extends withComponent(withLitHtml()) {
-  renderCallback() {
-    return html`Hello, <slot />!`;
-  }
-}
+polyfillLoader.then((res) => {
+  import('./band.standalone.js');
+});

@@ -1,22 +1,13 @@
+// Export non-Bolt dependencies shared across virtually all components
+export { define, props, withComponent } from 'skatejs';
+export { h, render } from 'preact';
 
-import environment from './utils/environment';
-import * as getMeta from './utils/get-meta';
-import mixins from './utils/mixins';
-// import sizes from './utils/sizes';
-import style from './utils/style';
-import * as css from './utils/css';
-import * as styledMixin from './utils/styled-mixin';
-
-export const utils = {
-  environment,
-  getMeta,
-  mixins,
-  css,
-  style,
-  styledMixin
-}
-
+// Export Bolt utils
 export * from './utils/css';
-export * from './utils/spacing-sizes';
-export * from './utils/component';
+export { withPreact } from './utils/renderer-preact';
+
+// Export Bolt data shared
+export * from './data/spacing-sizes';
+
+// Export polyfill loader
 export * from './polyfills/polyfill-loader';

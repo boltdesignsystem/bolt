@@ -1,0 +1,49 @@
+@import '@bolt/settings-all';
+@import '@bolt/tools-all';
+
+
+
+.c-bolt-video {
+  position: absolute;
+  width: 100%;
+  max-width: none;
+  perspective: 1200px;
+  perspective-origin: 80% 80%;
+  z-index: 1000;
+  transition: transform .4s cubic-bezier(.645, 0, .355, 1);
+}
+
+.c-bolt-video__video-wrapper {
+  position: relative;
+  pointer-events: all;
+  border-radius: 12px;
+  box-shadow: 0 55px 70px -20px rgba(50, 50, 93, .55), 0 20px 30px -10px rgba(0, 0, 0, .14);
+  transform: translateY(0) !important;
+  transition: transform .4s cubic-bezier(.645, 0, .355, 1);
+  
+  .is-collapsed & {
+    cursor: pointer;
+    @include respond-to(medium) {
+      transform: scale(.45) rotateX(3deg) rotateY(-15deg) rotate(-1deg) translateX(500px) translateY(300px)!important;
+    }
+  }
+}
+
+.c-bolt-video__video-element {
+  background-color: #32325d;
+  display: block;
+  position: relative;
+  border-radius: 6px;
+  -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFW…9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+  transition: border-radius .4s cubic-bezier(.645, 0, .355, 1);
+  .is-collapsed & {
+    border-radius: 14px;
+  }
+}
+
+.c-bolt-video__button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}

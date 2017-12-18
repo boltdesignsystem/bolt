@@ -1,0 +1,42 @@
+{
+  "name": "@bolt/components-brightcove-player",
+  "version": "0.1.0-alpha.2",
+  "main": "dist/brightcove-player.min.js",
+  "module:dev": "src/brightcove-player.js",
+  "style": "src/brightcove-player.scss",
+  "jest": {
+    "rootDir": "../../",
+    "coverageDirectory": "<rootDir>/src/_patterns/02-components/components-brightcove-player/coverage/",
+    "testEnvironment": "jsdom",
+    "transformIgnorePatterns": [
+      "node_modules/(?!@bolt)/"
+    ],
+    "testMatch": [
+      "<rootDir>/src/_patterns/02-components/components-brightcove-player/__tests__/*"
+    ]
+  },
+  "keywords": [
+    "web",
+    "video",
+    "brightcove",
+    "bolt"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@bolt/build-webpack": "^0.5.0-alpha.2"
+  },
+  "dependencies": {
+    "@bolt/core": "^0.5.0-alpha.2",
+    "@bolt/settings-all": "^0.7.4",
+    "@bolt/tools-all": "^0.5.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "build": "npm-run-all --parallel build:*",
+    "build:bolt": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/brightcove-player --output-filename='bolt-brightcove-player.min.js' --output-public-path /scripts/",
+    "build:wwwd8": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/brightcove-player --output-filename='bolt-brightcove-player.wwwd8.min.js' --output-public-path /themes/custom/pegawww_theme/node_modules/@bolt/components-brightcove-player/dist/"
+  }
+}
