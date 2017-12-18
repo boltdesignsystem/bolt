@@ -308,12 +308,12 @@ $bolt-floating-label-transition: $bolt-transition;
 
 $bolt-input-text-color: bolt-color(gray, xdark); // TODO: [Mai] This is the theme text color
 $bolt-input-text-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
-$bolt-input-text-color--disabled: rgba(bolt-color(gray, xdark), 0.66); // TODO: [Mai] This is the theme text color at 66%
+$bolt-input-text-color--disabled: rgba(bolt-color(gray, xdark), 0.5); // TODO: [Mai] This is the theme text color at 66%
 $bolt-input-background-color: bolt-color(white); // TODO: [Mai] This is the theme input background color
-$bolt-input-background-color--disabled: rgba(bolt-color(gray, xdark), 0.05); // TODO: [Mai] This is the theme text color at 5%
-$bolt-input-placeholder-color: rgba(bolt-color(gray, xdark), 0.66); // TODO: [Mai] This is the theme text color at 66%
+$bolt-input-background-color--disabled: bolt-color(gray, xlight);
+$bolt-input-placeholder-color: rgba(bolt-color(gray, xdark), 0.5); // TODO: [Mai] This is the theme text color at 66%
 $bolt-input-placeholder-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
-$bolt-input-placeholder-color--disabled: rgba(bolt-color(gray, xdark), 0.66); // TODO: [Mai] This is the theme text color at 66%
+$bolt-input-placeholder-color--disabled: rgba(bolt-color(gray, xdark), 0.5); // TODO: [Mai] This is the theme text color at 66%
 $bolt-input-border-color: rgba(bolt-color(indigo, light), 0.25); // TODO: [Mai] This is the theme link color at 25%
 $bolt-input-border-color--focus: bolt-color(indigo, light); // TODO: [Mai] This is the theme link color
 $bolt-input-border-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
@@ -432,7 +432,7 @@ $bolt-input-transition: $bolt-transition;
 // Checkbox and Radio Inputs
 $bolt-inline-label-transition: $bolt-transition;
 $bolt-inline-label-input-color: bolt-color(indigo, light);
-$bolt-inline-label-input-border-color: $bolt-border-color;
+$bolt-inline-label-input-border-color: rgba(bolt-color(indigo, light), 0.25); // TODO: [Mai] This is the theme link color at 25%
 $bolt-inline-label-input-border-style: $bolt-border-style;
 $bolt-inline-label-input-border-width: $bolt-border-width;
 
