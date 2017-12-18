@@ -6,20 +6,20 @@
       <div class="c-bolt-band c-bolt-band--medium">
         <form action="#" method="post" class="c-bolt-form t-bolt-xlight">
           <fieldset class="c-bolt-fieldset">
-            <legend class="c-bolt-fieldset__legend">
+            <legend class="c-bolt-legend">
               <h2 class="c-bolt-headline c-bolt-headline--xlarge">
                 Fieldset 0: Client-side Validations
               </h2>
             </legend>
-            <div class="c-bolt-fieldset__items">
-              <div class="c-bolt-fieldset__item">
-                <input class="c-bolt-input-field is-touched is-filled" type="text" name="valid-input" id="valid-input" placeholder="Enter text" value="Valid" required valid />
+            <div class="c-bolt-input-list">
+              <div class="c-bolt-input-list__item">
+                <input class="c-bolt-input is-touched is-filled" type="text" name="valid-input" id="valid-input" placeholder="Enter text" value="Valid" autofocus required valid />
                 <label class="c-bolt-floating-label" for="valid-input">
                   Text Input
                 </label>
               </div>
-              <div class="c-bolt-fieldset__item">
-                <input class="c-bolt-input-field is-touched is-filled" type="email" name="invalid-input" id="invalid-input" placeholder="Enter email address" value="Invalid" required invalid />
+              <div class="c-bolt-input-list__item">
+                <input class="c-bolt-input is-touched is-filled" type="email" name="invalid-input" id="invalid-input" placeholder="Enter email address" value="Invalid" required invalid />
                 <label class="c-bolt-floating-label" for="invalid-input">
                   Email Input
                 </label>
@@ -41,19 +41,19 @@
                   </ul>
                 </div>
               </div>
-              <div class="c-bolt-fieldset__item">
-                <input class="c-bolt-input-field is-touched is-filled" type="text" name="disabled-input" id="disabled-input" placeholder="Enter text" value="Disabled" required disabled />
+              <div class="c-bolt-input-list__item">
+                <input class="c-bolt-input is-touched is-filled" type="text" name="disabled-input" id="disabled-input" placeholder="Enter text" value="Disabled" required disabled />
                 <label class="c-bolt-floating-label" for="disabled-input">
                   Text Input
                 </label>
               </div>
-              <div class="c-bolt-fieldset__item">
-                <input class="c-bolt-input-field is-touched is-filled" type="password" name="password-input" id="password-input" placeholder="Enter password" value="12345" required />
+              <div class="c-bolt-input-list__item">
+                <input class="c-bolt-input is-touched is-filled" type="password" name="password-input" id="password-input" placeholder="Enter password" value="12345" required />
                 <label class="c-bolt-floating-label" for="password-input">
                   Password
                 </label>
                 <div class="c-bolt-strength-indicator">
-                  <div class="c-bolt-strength-indicator__meter"></div>
+                  <div class="c-bolt-strength-indicator__meter c-bolt-strength-indicator__meter--25"></div>
                 </div>
                 <div class="c-bolt-input-icons">
                   <ul class="o-bolt-inline-list o-bolt-inline-list--xsmall">
@@ -76,26 +76,26 @@
             </div>
           </fieldset>
           <fieldset class="c-bolt-fieldset">
-            <legend class="c-bolt-fieldset__legend">
+            <legend class="c-bolt-legend">
               <h2 class="c-bolt-headline c-bolt-headline--xlarge">
                 Fieldset 1: Text
               </h2>
             </legend>
-            <div class="c-bolt-fieldset__items">
-              <div class="c-bolt-fieldset__item">
-                <input class="c-bolt-input-field" type="number" name="number-input" id="number-input" placeholder="Enter a number" required />
+            <div class="c-bolt-input-list">
+              <div class="c-bolt-input-list__item">
+                <input class="c-bolt-input" type="number" name="number-input" id="number-input" placeholder="Enter a number" required />
                 <label class="c-bolt-floating-label" for="number-input">
                   Number
                 </label>
               </div>
-              <div class="c-bolt-fieldset__item">
-                <input class="c-bolt-input-field" type="url" name="url-input" id="url-input" placeholder="Enter a url" required />
+              <div class="c-bolt-input-list__item">
+                <input class="c-bolt-input" type="url" name="url-input" id="url-input" placeholder="Enter a url" required />
                 <label class="c-bolt-floating-label" for="url-input">
                   URL
                 </label>
               </div>
-              <div class="c-bolt-fieldset__item">
-                <input class="c-bolt-input-field" type="search" name="search-input" id="search-input" placeholder="Enter text to search" required />
+              <div class="c-bolt-input-list__item">
+                <input class="c-bolt-input" type="search" name="search-input" id="search-input" placeholder="Enter text to search" required />
                 <label class="c-bolt-floating-label" for="search-input">
                   Search
                 </label>
@@ -112,8 +112,8 @@
                   </ul>
                 </div>
               </div>
-              <div class="c-bolt-fieldset__item">
-                <input class="c-bolt-input-field" type="date" name="date-input" id="date-input" placeholder="Enter a date" required />
+              <div class="c-bolt-input-list__item">
+                <input class="c-bolt-input" type="date" name="date-input" id="date-input" placeholder="Enter a date" required />
                 <label class="c-bolt-floating-label" for="date-input">
                   Date
                 </label>
@@ -130,14 +130,14 @@
                   </ul>
                 </div>
               </div>
-              <div class="c-bolt-fieldset__item">
-                <input class="c-bolt-input-field" type="text" name="text-input" id="text-input" placeholder="Enter the title" required />
+              <div class="c-bolt-input-list__item">
+                <input class="c-bolt-input" type="text" name="text-input" id="text-input" placeholder="Enter the title" required />
                 <label class="c-bolt-floating-label" for="text-input">
                   Title
                 </label>
               </div>
-              <div class="c-bolt-fieldset__item">
-                <textarea class="c-bolt-input-field" cols="40" rows="8" name="textarea" id="textarea" placeholder="Describe the job" required></textarea>
+              <div class="c-bolt-input-list__item">
+                <textarea class="c-bolt-input" cols="40" rows="8" name="textarea" id="textarea" placeholder="Describe the job" required></textarea>
                 <label class="c-bolt-floating-label" for="textarea">
                   Description
                 </label>
@@ -145,14 +145,14 @@
             </div>
           </fieldset>
           <fieldset class="c-bolt-fieldset">
-            <legend class="c-bolt-fieldset__legend">
+            <legend class="c-bolt-legend">
               <h2 class="c-bolt-headline c-bolt-headline--xlarge">
                 Fieldset 2: Select
               </h2>
             </legend>
-            <div class="c-bolt-fieldset__items">
-              <div class="c-bolt-fieldset__item">
-                <select class="c-bolt-input-field c-bolt-input-field--select" name="select" id="select">
+            <div class="c-bolt-input-list">
+              <div class="c-bolt-input-list__item">
+                <select class="c-bolt-input c-bolt-input--select" name="select" id="select">
                   <option disabled selected>
                     Select a choice
                   </option>
@@ -185,20 +185,20 @@
             </div>
           </fieldset>
           <fieldset class="c-bolt-fieldset">
-            <legend class="c-bolt-fieldset__legend">
+            <legend class="c-bolt-legend">
               <h2 class="c-bolt-headline c-bolt-headline--xlarge">
                 Fieldset 3: Checkbox
               </h2>
             </legend>
-            <div class="c-bolt-fieldset__items">
-              <div class="c-bolt-fieldset__item">
-                <input class="c-bolt-input-field c-bolt-input-field--checkbox" type="checkbox" name="checkbox" id="checkbox-choice-1" value="checkbox-1" />
+            <div class="c-bolt-input-list">
+              <div class="c-bolt-input-list__item">
+                <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="checkbox" id="checkbox-choice-1" value="checkbox-1" />
                 <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="checkbox-choice-1">
                   Checkbox 1 Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam eu.
                 </label>
               </div>
-              <div class="c-bolt-fieldset__item">
-                <input class="c-bolt-input-field c-bolt-input-field--checkbox" type="checkbox" name="checkbox" id="checkbox-choice-2" value="checkbox-2" />
+              <div class="c-bolt-input-list__item">
+                <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="checkbox" id="checkbox-choice-2" value="checkbox-2" />
                 <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="checkbox-choice-2">
                   Checkbox 2
                 </label>
@@ -206,20 +206,20 @@
             </div>
           </fieldset>
           <fieldset class="c-bolt-fieldset">
-            <legend class="c-bolt-fieldset__legend">
+            <legend class="c-bolt-legend">
               <h2 class="c-bolt-headline c-bolt-headline--xlarge">
                 Fieldset 4: Radio
               </h2>
             </legend>
-            <div class="c-bolt-fieldset__items">
-              <div class="c-bolt-fieldset__item">
-                <input class="c-bolt-input-field c-bolt-input-field--radio" type="radio" name="radio" id="radio-choice-1" value="radio-1" />
+            <div class="c-bolt-input-list">
+              <div class="c-bolt-input-list__item">
+                <input class="c-bolt-input c-bolt-input--radio" type="radio" name="radio" id="radio-choice-1" value="radio-1" />
                 <label class="c-bolt-inline-label c-bolt-inline-label--radio" for="radio-choice-1">
                   Radio 1
                 </label>
               </div>
-              <div class="c-bolt-fieldset__item">
-                <input class="c-bolt-input-field c-bolt-input-field--radio" type="radio" name="radio" id="radio-choice-2" value="radio-2" />
+              <div class="c-bolt-input-list__item">
+                <input class="c-bolt-input c-bolt-input--radio" type="radio" name="radio" id="radio-choice-2" value="radio-2" />
                 <label class="c-bolt-inline-label c-bolt-inline-label--radio" for="radio-choice-2">
                   Radio 2
                 </label>

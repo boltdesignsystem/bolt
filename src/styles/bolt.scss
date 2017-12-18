@@ -257,18 +257,18 @@ select {
   border: none;
 }
 
-.c-bolt-fieldset__legend {
+.c-bolt-legend {
   @include bolt-margin(0 0 xsmall 0);
 
   display: block;
 }
 
-.c-bolt-fieldset__items {
+.c-bolt-input-list {
   @include bolt-margin(0);
   @include bolt-padding(0);
 }
 
-.c-bolt-fieldset__item {
+.c-bolt-input-list__item {
   @include bolt-margin(0 0 small 0);
   @include bolt-padding(0);
 
@@ -414,7 +414,7 @@ $bolt-input-field-transition: $bolt-transition;
   }
 }
 
-.c-bolt-input-field {
+.c-bolt-input {
   @include bolt-padding(small);
   @include bolt-font-size(small);
   @include bolt-input-field-placeholder($bolt-input-field-placeholder-color);
@@ -473,8 +473,8 @@ $bolt-input-field-transition: $bolt-transition;
   }
 }
 
-.c-bolt-input-field--checkbox,
-.c-bolt-input-field--radio {
+.c-bolt-input--checkbox,
+.c-bolt-input--radio {
   @include bolt-visuallyhidden;
 
   display: inline;
@@ -542,7 +542,12 @@ $bolt-input-field-transition: $bolt-transition;
 .c-bolt-strength-indicator {
   @include bolt-padding(small, squished);
 
-  display: block;
+  display: none;
+
+  .c-bolt-input[type='password']:focus ~ & {
+    display: block;
+  }
+
 }
 
 .c-bolt-strength-indicator__meter {
@@ -550,5 +555,25 @@ $bolt-input-field-transition: $bolt-transition;
   width: 100%;
   height: 0.25rem;
   border-radius: 0.25rem;
-  background: linear-gradient(to left, bolt-color(error), bolt-color(success));
+  transition: all $bolt-transition;
+}
+
+.c-bolt-strength-indicator__meter--00 {
+  background: linear-gradient(90deg, bolt-color(success) 0%, bolt-color(error) 0%);
+}
+
+.c-bolt-strength-indicator__meter--25 {
+  background: linear-gradient(90deg, bolt-color(success) 22%, bolt-color(error) 28%);
+}
+
+.c-bolt-strength-indicator__meter--50 {
+  background: linear-gradient(90deg, bolt-color(success) 47%, bolt-color(error) 53%);
+}
+
+.c-bolt-strength-indicator__meter--75 {
+  background: linear-gradient(90deg, bolt-color(success) 72%, bolt-color(error) 78%);
+}
+
+.c-bolt-strength-indicator__meter--100 {
+  background: linear-gradient(90deg, bolt-color(success) 100%, bolt-color(error) 100%);
 }
