@@ -55,9 +55,7 @@
 
           {% include pattern_template(item.pattern) with item | merge({
             (itemAttributes): {
-              class: [
-                "c-bolt-background__#{item.pattern}"
-              ]
+              class: ["c-bolt-background__#{item.pattern}"]
             },
             ratio: false
           }) only %}
@@ -70,11 +68,10 @@
 
       {% if shapeGroup %}
         <div {{ shapeAttributes.addClass(shapeClasses) }}>
-          {% include "@bolt/background-shapes.twig" with {
-            "shapeGroup": shapeGroup
-          }%}
+          {% include "@bolt/background-shapes.twig" with { "shapeGroup": shapeGroup } only %}
         </div>
+
       {% endif %}
     </div>
-  </div>    
+  </div>
 </bolt-background>

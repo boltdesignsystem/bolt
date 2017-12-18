@@ -6,73 +6,34 @@
   baseClass
 ] %}
 
-{% set shapeGroups = {
-  "A": [
-    {
-      "shape": "big-circle",
-      "color": "teal"
-    },
-    {
-      "shape": "little-circle",
-      "color": "orange"
-    },
-    {
-      "shape": "big-square",
-      "color": "yellow"
-    },
-    {
-      "shape": "outline-circle",
-      "color": "yellow"
-    },
-    {
-      "shape": "big-circle",
-      "color": "orange"
-    },
-    {
-      "shape": "little-square",
-      "color": "teal"
-    }
-  ],
-  "B": [
-    {
-      "shape": "little-circle",
-      "color": "teal"
-    },
-    {
-      "shape": "big-square",
-      "color": "yellow"
-    },
-    {
-      "shape": "little-circle",
-      "color": "teal"
-    },
-    {
-      "shape": "outline-circle",
-      "color": "orange"
-    },
-    {
-      "shape": "little-square",
-      "color": "yellow"
-    },
-    {
-      "shape": "big-circle",
-      "color": "teal"
-    }
-  ]
-} %}
+{% set colors = ["yellow", "orange", "teal", "blue"] %}
+
+{% set shapeGroups = source("shape-groups.json") | json_decode %}
 
 {# If a valid shapeGroup was specified, select its shapes.  Otherwise, get the shapes from the default shapeGroup. #}
-{% set elements = attribute(shapeGroups, shapeGroup) ? attribute(shapeGroups, shapeGroup) : shapeGroup.A %}
+{% set elements = attribute(shapeGroups, shapeGroup) ? attribute(shapeGroups, shapeGroup) : shapeGroups.A %}
 
 <bolt-{{ componentName }} bolt-component>
 
   <div class="{{ "#{baseClass}" }}">
     <div class="{{ "#{baseClass}__shapes" }}">
-      {% for element in  elements %}
-        <div class="{{ "#{baseClass}__shape #{baseClass}__shape--#{element.color}" }}">
-          {{ source(element.shape ~ '.svg') }}
-        </div>
-      {% endfor %}
+      {% grid "o-bolt-grid--center o-bolt-grid--full" %}
+        {% for element in  elements %}
+          {% set attributes = create_attribute({}) %}
+
+          {% set classes = [
+            baseClass ~ "__shape",
+            element.color in colors ? baseClass ~ "__shape--" ~ element.color,
+            element.interiorColor in colors ? baseClass ~ "__shape--interior-" ~ element.interiorColor
+          ] %}
+
+          {% cell "u-bolt-width-1/3" %}
+            <div {{ attributes.addClass(classes) }}>
+              {{ source('@bolt/' ~ element.shape ~ '.svg') }}
+            </div>
+          {% endcell %}
+        {% endfor %}
+      {% endgrid %}
     </div>
   </div>
 </bolt-{{ componentName }}>
