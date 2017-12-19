@@ -31,8 +31,8 @@ const defaultConfig = {
   entry: {
     'critical-fonts':
       './src/_patterns/02-components/bolt-critical-fonts/src/critical-fonts',
-    'bolt-app': './src/scripts/bolt-app',
-    'bolt-critical-path': './src/scripts/bolt-critical-path'
+    'bolt': './packages/bolt',
+    'bolt-critical-path': './packages/bolt/bolt-critical-path'
   },
   output: {
     path: `${process.cwd()}/dist/scripts/`,
@@ -46,9 +46,6 @@ const defaultConfig = {
   resolve: {
     // Help webpack find local Bolt code in the src folder
     mainFields: ['module:dev', 'browser', 'module', 'main'],
-    alias: {
-      styles: path.resolve(__dirname, 'src/styles')
-    },
     extensions: ['.js', '.jsx', '.json', '.svg', '.scss']
   },
 
