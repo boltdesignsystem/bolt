@@ -11,7 +11,7 @@
 {% set srcset = srcset ?? "" %}
 {% set imageSizes = globalBoltImageSizes %}
 
-{% if placeholderImage is empty || placeholderColor is empty || srcset == "" %}
+{% if placeholderImage is empty or placeholderColor is empty or srcset == "" %}
   {% set path = publicpath(src|split('.' ~ ext)|first) %}
 {% endif %}
 
@@ -20,7 +20,7 @@
 {% endif %}
 
 {# smaller image src used for calculating color -- already resized for less of a perf hit #}
-{% if placeholderImage is empty || placeholderColor is empty %}
+{% if placeholderImage is empty or placeholderColor is empty %}
   {% set sampleImageSrc = path ~ '-' ~ globalBoltImageSizes[0] ~ '.' ~ ext %}
 
   {% if placeholderImage is empty %}
