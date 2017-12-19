@@ -23,6 +23,7 @@
     "mocha:build-tools": "mocha ./build-tools/**/tests/*.test.js",
     "mocha:settings": "mocha **/settings-*/tests/*.test.js",
     "deploy": "node build-tools/gulp-tasks/build-slack/index.js",
+    "deploy:netlify": "netlify deploy -s bolt.netlify.com -p dist",
     "publish": "lerna publish",
     "publish:canary": "lerna publish --canary --npm-tag=next",
     "start": "gulp",
