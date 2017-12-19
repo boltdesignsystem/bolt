@@ -16,7 +16,7 @@ module.exports = {
     '!**/node_modules/**'
   ],
   src: [
-    './src/styles/bolt.scss'
+    './packages/bolt/bolt.scss'
   ],
   data: './src/_data',
   dest: './dist/styles'
