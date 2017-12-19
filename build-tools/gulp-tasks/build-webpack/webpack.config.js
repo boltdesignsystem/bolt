@@ -29,33 +29,17 @@ const sassDataExportPath = `${process.cwd()}/dist`;
 const defaultConfig = {
   // entry: './src/index.js',
   entry: {
-    'critical-fonts': './src/_patterns/02-components/bolt-critical-fonts/src/critical-fonts',
-
-    // './src/components/bolt-icon/dist/icon': [
-    //   // './src/scripts/native-shim.js', //Wrapper for custom-elements-es5-adapter.js so this doesn't break in other browsers like IE11
-    //   // './node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
-    //   // './node_modules/@webcomponents/webcomponentsjs/webcomponents-sd-ce.js',
-    //   './src/components/bolt-icon/src/icon'
-    // ],
-    // './dist/scripts/bolt-icon': [
-    //   './node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
-    //   './node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
-    //   './src/components/bolt-icon/src/icon'
-    // ],
-
-    'bolt-app': [
-      // './src/scripts/native-shim.js', //Wrapper for custom-elements-es5-adapter.js so this doesn't break in other browsers like IE11
-      // './node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
-      // './node_modules/@webcomponents/webcomponentsjs/webcomponents-sd-ce.js',
-      './src/scripts/bolt-app'
-    ],
-    'bolt-critical-path': './src/scripts/bolt-critical-path',
+    'critical-fonts':
+      './src/_patterns/02-components/bolt-critical-fonts/src/critical-fonts',
+    'bolt-app': './src/scripts/bolt-app',
+    'bolt-critical-path': './src/scripts/bolt-critical-path'
   },
   output: {
     path: `${process.cwd()}/dist/scripts/`,
     filename: '[name].min.js',
     publicPath: `/scripts/`,
-    chunkFilename: `[id].chunk.js`
+    chunkFilename: `[name]-chunk.min.js`,
+    libraryTarget: 'umd'
   },
   devtool: 'cheap-module-source-map',
   // devtool: 'cheap-source-map',
@@ -63,66 +47,33 @@ const defaultConfig = {
     // Help webpack find local Bolt code in the src folder
     mainFields: ['module:dev', 'browser', 'module', 'main'],
     alias: {
-      styles: path.resolve(__dirname, 'src/styles'),
+      styles: path.resolve(__dirname, 'src/styles')
     },
     extensions: ['.js', '.jsx', '.json', '.svg', '.scss']
   },
 
-
   module: {
     rules: [
-      // {
-      //   test: /node_modules\/skatejs\/**\/*\.js?$/,
-      //   // include: /skatejs/,
-      //   // exclude: /!node_modules\/skatejs/,
-      //   use: ['awesome-typescript-loader']
-      // },webpack:///
       {
         test: /\.js$/,
-        // exclude: /\.es6.js$/,
         exclude: /(node_modules\/@skatejs\/renderer-lit-html\/dist\/node\/index\.js|native-shim\.js|node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js|\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js|custom-elements-es5-adapter\.js|bower_components)/,
         use: {
           loader: 'babel-loader',
           options: {
             babelrc: false,
             plugins: [
-              
-              // [
-              //   'jsx-pragmatic',
-              //   {
-              //     module: 'preact',
-              //     export: 'h',
-              //     import: 'h'
-              //   }
-              // ],
               [
                 'transform-react-jsx',
                 {
                   pragma: 'h'
                 }
               ],
-              "transform-decorators-legacy"
-              // ['module-resolver',
-              //   {
-              //     root: [
-              //       './src'
-              //     ],
-              //     alias: {
-              //       h: 'preact'
-              //     }
-              //   }
-              // ],
-              // 'transform-class-properties',
-              // 'transform-custom-element-classes',
-              // 'transform-es2015-classes',
-              // 'transform-object-assign',
-              // 'transform-object-rest-spread',
-              // 'inline-react-svg'
+              'transform-decorators-legacy'
             ],
 
             presets: [
               [
-                "env",
+                'env',
                 {
                   targets: {
                     // browsers: [
@@ -130,32 +81,15 @@ const defaultConfig = {
                     //   'not ie < 9'
                     // ]
                   },
-                  "modules": false
+                  modules: false
                 }
               ],
-              "flow",
-              "react",
-              "es2015",
-              "es2016",
-              "es2017",
-              "stage-0",
-              // ['env', {
-              //   targets: {
-              //     browsers: [
-              //       'last 3 versions',
-              //       'not ie < 9'
-              //     ]
-              //   },
-              //   debug: false
-              // }],
-              // "react",
-              // "es2016",
-              // "es2017",
-              // // "flow",
-              // "react",
-              // "stage-0"
-              // 'stage-0'
-              // "flow",
+              'flow',
+              'react',
+              'es2015',
+              'es2016',
+              'es2017',
+              'stage-0'
             ]
           }
         }
@@ -165,21 +99,13 @@ const defaultConfig = {
         exclude: /\.scoped.scss$/,
         use: [
           {
-            loader: 'css-loader',
-            // options: {
-            //   sourceMap: true,
-            //   modules: true,
-            //   importLoaders: true,
-            //   localIdentName: '[name]__[local]___[hash:base64:5]'
-            // }
+            loader: 'css-loader'
           },
           {
             loader: 'postcss-loader',
             options: {
-              plugins: function () {
-                return [
-                  require('autoprefixer')
-                ];
+              plugins: function() {
+                return [require('autoprefixer')];
               }
             }
           },
@@ -220,10 +146,8 @@ const defaultConfig = {
             {
               loader: 'postcss-loader',
               options: {
-                plugins: function () {
-                  return [
-                    require('autoprefixer')
-                  ];
+                plugins: function() {
+                  return [require('autoprefixer')];
                 }
               }
             },
@@ -263,20 +187,11 @@ const defaultConfig = {
     maxEntrypointSize: 1500000
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      // name: "app",
-      // or
-      // names: ["app", "subPageA"],
-      // the name or list of names must match the name or names
-      // of the entry points that create the async chunks
+    new CommonsChunkPlugin({
+      deepChildren: true,
       children: true,
-      // (use all children of the chunk)
-
-      async: true,
-      // (create an async commons chunk)
-
-      minChunks: 2,
-      // (3 children must share the module before it's separated)
+      minChunks: Infinity,
+      async: true
     }),
     new webpack.IgnorePlugin(/vertx/), // needed to ignore vertx dependency in webcomponentsjs-lite
     new ExtractTextPlugin({
@@ -313,7 +228,7 @@ const defaultConfig = {
 };
 
 
-  
+
 
 
 

@@ -7,7 +7,7 @@ polyfillLoader.then(res => {
   import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-icon' */ '@bolt/components-icon/src/icon.standalone');
   import(/* webpackMode: 'eager', webpackChunkName: 'bolt-image' */ '@bolt/components-image/src/image');
   import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-nav-bar' */ '@bolt/components-nav-bar/src/nav-bar.standalone');
-  import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-button' */ '@bolt/components-button/src/button.standalone');
+  // import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-button' */ '@bolt/components-button/src/button.standalone');
   import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-smooth-scroll' */ '@bolt/components-smooth-scroll/src/smooth-scroll');
   import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-sticky' */ '@bolt/components-sticky/src/sticky');
   import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-video' */ '@bolt/components-video/src/video.standalone');

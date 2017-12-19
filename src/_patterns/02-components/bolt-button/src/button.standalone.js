@@ -12,8 +12,6 @@ import {
 import styles from './button.scoped.scss';
 
 
-
-
 @define
 export class BoltButton extends withComponent(withPreact()) {
   static is = 'bolt-button';
@@ -30,7 +28,7 @@ export class BoltButton extends withComponent(withPreact()) {
     if (clickMethod){
       if (clickTarget){
         const elems = document.querySelectorAll(`.${clickTarget}`);
-        
+
         if (elems){
           elems.forEach(function (elem) {
             elem[clickMethod]();
