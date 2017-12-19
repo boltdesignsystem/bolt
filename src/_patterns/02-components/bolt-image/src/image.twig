@@ -9,23 +9,28 @@
 
 
 {% set srcset = srcset ?? "" %}
-{% set path = publicpath(src|split('.' ~ ext)|first) %}
 {% set imageSizes = globalBoltImageSizes %}
+
+{% if placeholderImage is empty || placeholderColor is empty || srcset == "" %}
+  {% set path = publicpath(src|split('.' ~ ext)|first) %}
+{% endif %}
 
 {% if src %}
   {% set ext = src|split('.')|last %}
 {% endif %}
 
 {# smaller image src used for calculating color -- already resized for less of a perf hit #}
-{% set sampleImageSrc = path ~ '-' ~ globalBoltImageSizes[0] ~ '.' ~ ext %}
+{% if placeholderImage is empty || placeholderColor is empty %}
+  {% set sampleImageSrc = path ~ '-' ~ globalBoltImageSizes[0] ~ '.' ~ ext %}
 
-{% if placeholderImage is empty %}
-  {% set placeholderImage = base64(sampleImageSrc) %}
-{% endif %}
+  {% if placeholderImage is empty %}
+    {% set placeholderImage = base64(sampleImageSrc) %}
+  {% endif %}
 
-{# only calculate a placeholder color if not using a placeholder image #}
-{% if placeholderColor is empty %}
-  {% set placeholderColor = bgcolor(sampleImageSrc) %}
+  {# only calculate a placeholder color if not using a placeholder image #}
+  {% if placeholderColor is empty %}
+    {% set placeholderColor = bgcolor(sampleImageSrc) %}
+  {% endif %}
 {% endif %}
 
 {% if height is empty %}
