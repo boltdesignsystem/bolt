@@ -54,7 +54,7 @@ export class BoltIcon extends withComponent(withPreact()) {
     )
 
     const iconName = props.name ? upperCamelCase(props.name) : '';
-    const size = props.size && spacingSizes[props.size] ? (spacingSizes[props.size].replace('rem', '') * 16 / 2) : spacingSizes['medium'];
+    const size = props.size && spacingSizes[props.size] ? spacingSizes[props.size].replace('rem', '') * 16 / 2 : spacingSizes['medium'].replace('rem', '') * 16 / 2;
     const IconTag = Icon[iconName];
 
     return (
