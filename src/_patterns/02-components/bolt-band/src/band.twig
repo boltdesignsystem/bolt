@@ -19,8 +19,8 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {# Defaults for a vanilla `Band` component #}
-{% set componentName = componentName | default("band") %}
-{% set baseClass = baseClass | default(prefix ~ componentName) %}
+{% set componentName = "band" %}
+{% set baseClass = prefix ~ componentName %}
 {% set tag = tag in tags ? tag: "div" %}
 {% set contentTag = contentTag in contentTags ? contentTag: "div" %}
 {% set fullBleed = fullBleed | default(false) %}
