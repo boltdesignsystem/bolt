@@ -74,7 +74,29 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
   animation: a-bolt-zoom-in-out 45s ease-in-out infinite both;
 }
 
+.c-bolt-background__video {
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.5s ease;
 
+  &.is-playing,
+  &.is-paused,
+  &.is-finished {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+
+  .video-js {
+    max-width: 1400px;
+    margin: 0 auto;
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+.c-bolt-background__video,
 .c-bolt-background__image {
   @include bolt-margin(auto);
 
@@ -94,7 +116,6 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
     object-fit: cover;
   }
 }
-
 
 .c-bolt-background__overlay {
   display: block;
