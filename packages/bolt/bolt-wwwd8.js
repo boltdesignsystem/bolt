@@ -1,4 +1,9 @@
-// Temporarily disabling ratio JS on both builds -- IE11 issue being debugged
+// Temporary workaround till Pega.com D8 can compile JS locally
+// Exact same as bolt.js, minus:
+//
+// 1. Removed Sticky JS
+// 2. Removed smooth scroll JS
+// 3. Temporarily disabling ratio JS on both builds
 
 import { polyfillLoader } from '@bolt/core';
 
@@ -19,9 +24,9 @@ polyfillLoader.then(res => {
 
   import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-button' */ '@bolt/components-button/src/button.standalone');
 
-  import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-smooth-scroll' */ '@bolt/components-smooth-scroll/src/smooth-scroll');
+  // import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-smooth-scroll' */ '@bolt/components-smooth-scroll/src/smooth-scroll');
 
-  import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-sticky' */ '@bolt/components-sticky/src/sticky');
+  // import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-sticky' */ '@bolt/components-sticky/src/sticky');
 
   import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-video' */ '@bolt/components-video/src/video.standalone');
 });
