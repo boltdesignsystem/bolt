@@ -53,7 +53,7 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
     //   paneContainer: document.querySelector('p')
     // });
 
-    
+
 
     // drift.enable();
 
@@ -67,7 +67,7 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
 
   connectedCallback() {
 
-    
+
     // HIDE
     // Shim Shadow DOM styles. This needs to be run in `connectedCallback()`
     // because if you shim Custom Properties (CSS variables) the element
@@ -89,7 +89,7 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
     // this._upgradeProperty('checked');
     // this._upgradeProperty('disabled');
 
-    var drift = new Drift(this.querySelector('bolt-device-screen'), {
+    var drift = new Drift(this.querySelector('.js-bolt-device-viewer-screen'), {
       // inlineOffsetX: -15,
       // inlineOffsetY: -10,
       containInline: false,
@@ -151,7 +151,7 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
       // touchBoundingBox: false,
     });
 
-    
+
 
     // drift.setZoomImageURL(driftZoomImageUrl);
   }

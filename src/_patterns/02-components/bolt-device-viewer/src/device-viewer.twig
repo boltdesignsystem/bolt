@@ -47,7 +47,7 @@
       <div class="{{ baseClass ~ "__camera"}}"></div>
       <div class="{{ baseClass ~ "__speaker"}}"></div>
 
-      <bolt-device-screen class="{{ baseClass ~ "__screen"}} c-bolt-device-viewer__screen {% if magnify %} c-bolt-device-viewer__screen--magnify js-device-viewer-screen {% endif %}">
+      <bolt-device-screen class="{{ baseClass ~ "__screen"}} c-bolt-device-viewer__screen {% if magnify %} c-bolt-device-viewer__screen--magnify js-bolt-device-viewer-screen {% endif %}">
         {% if magnify %}
           {% include "@bolt/_screen-tilt.twig" %}
         {% endif %}
