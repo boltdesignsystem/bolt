@@ -105,7 +105,7 @@
       ]
     },
     content: feature_band.content | default(content),
-   
+
   } only %}{% endembed %}
 
 
@@ -173,7 +173,10 @@
         "attributes": {
           "class": [
             "js-video-bg-test-1"
-          ]
+          ],
+          "on-pause": "onVideoPause()",
+          "on-play": "onVideoPlay()",
+          "on-finished": "onVideoFinished()"
         }
       }
     ]
@@ -197,6 +200,19 @@
 {% endembed %}
 
 
+<script>
+  var onVideoPause = function(){
+    console.log('on video pause!');
+  }
+
+  var onVideoPlay = function(){
+    console.log('on video play!');
+  }
+
+  var onVideoFinished = function(){
+    console.log('on video end!');
+  }
+</script>
 
 {% embed "@bolt/band--collection.twig" with {
   "theme": "light",

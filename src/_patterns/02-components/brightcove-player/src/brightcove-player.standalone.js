@@ -25,10 +25,10 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     playerId: props.string,
     poster: props.object,
     isBackgroundVideo: props.boolean,
-    // onError: null,
-    // onPlay: null,
-    // onPause: null,
-    // onFinish: null,
+    onError: props.string,
+    onPlay: props.string,
+    onPause: props.string,
+    onFinish: props.string,
     // onProgress: null,
     // onDuration: null,
     autoplay: props.boolean,
@@ -115,7 +115,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
 
   // Called to check whether or not the component should call
   // updated(), much like React's shouldComponentUpdate().
-  // updating(props, state) { 
+  // updating(props, state) {
   //   console.log(props);
   //   console.log(state);
   // }
@@ -139,7 +139,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
       const duration = player.mediainfo.duration;
       const width = player.mediainfo.sources[1].width;
       const height = player.mediainfo.sources[1].height;
-      
+
       elem._setDuration();
       elem._setVideoDimensions(width, height);
       elem._calculateIdealVideoSize();
@@ -193,7 +193,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
   // static isBackgroundVideo() {
   //   return this.props.isBackgroundVideo;
   // }
-  
+
 
   connectedCallback() {
     this.state = {
@@ -230,7 +230,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     // only ever append script once
     if (!BrightcoveVideo.players) {
       BrightcoveVideo.players = [];
-      
+
       const s = this.createScript();
 
       s.onload = () => {
@@ -300,7 +300,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     // }
 
     // if (this.state.progress !== nextState.progress) {
-    //   this.props.onProgress(nextState.progress);
+    //   this.props.onProgress();
     // }
 
     // if (playerStatusChanged && !nextState.isPlaying) {
@@ -336,7 +336,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     this.classList.remove('is-finished');
     this.classList.remove('is-paused');
 
-    
+    this.props.onPlay();
     // @TODO: implement internal setState method
     // elem.setState({
     //   isPlaying: true,
@@ -365,6 +365,8 @@ class BrightcoveVideo extends withComponent(withPreact()) {
 
     this.classList.add('is-paused');
     this.classList.remove('is-playing');
+
+    this.props.onPause();
 
     // @TODO: implement internal setState method
     // this.setState({
@@ -415,9 +417,11 @@ class BrightcoveVideo extends withComponent(withPreact()) {
       this.classList.add('is-finished');
       this.classList.remove('is-paused');
 
+      this.props.onFinish();
+
       this.dispatchEvent(
         new CustomEvent('ended', {
-          detail: { 
+          detail: {
             isBackgroundVideo: this.props.isBackgroundVideo
           },
           bubbles: true,
@@ -472,7 +476,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     const player = videojs(id);
     const handler = BrightcoveVideo.handlePlayerReady.bind(player, this);
     // player.on("ready", handler);
-    
+
     player.ready(handler);
 
     // player.on("error", this.onError.bind(this, player));
@@ -562,7 +566,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
   }
 }
 
-export default BrightcoveVideo; 
+export default BrightcoveVideo;
 
 
 // BrightcoveVideo.globalErrors = [];
