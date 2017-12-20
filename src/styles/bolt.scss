@@ -290,6 +290,7 @@ $bolt-inline-label-input-border-style: $bolt-border-style;
 $bolt-inline-label-input-border-width: $bolt-border-width;
 
 // Data Inputs
+$bolt-floating-label-text-scale: bolt-strip-unit($bolt-font-size--xsmall);
 $bolt-floating-label-text-color: bolt-color(indigo, light);
 $bolt-floating-label-text-indent: bolt-spacing(small);
 $bolt-floating-label-transition: $bolt-transition;
@@ -331,18 +332,20 @@ $bolt-input-transition: $bolt-transition;
 
 .c-bolt-input {
   @include bolt-padding(small);
-  @include bolt-font-size(small);
   @include bolt-input-placeholder($bolt-input-placeholder-color);
 
   display: block;
   width: 100%;
   color: $bolt-input-text-color;
+  line-height: 1.45; // [Mai] This makes the input same height as button.
+  font-size: 16px; // [Mai] This prevents mobile Safari from zooming when input is in focus state.
   border-color: $bolt-input-border-color;
   border-style: $bolt-input-border-style;
   border-width: $bolt-input-border-width;
   border-radius: $bolt-input-border-radius;
   background-color: $bolt-input-background-color;
-  appearance: none;
+  opacity: 1; // [Mai] Reset mobile Safari browser default.
+  appearance: none !important; // [Mai] Reset mobile Safari browser default.
   outline: none;
   transition: all $bolt-input-transition;
 
@@ -365,8 +368,8 @@ $bolt-input-transition: $bolt-transition;
 
   &.is-filled,
   &:focus {
-    padding-top: calc(#{bolt-v-spacing(small)} + 0.45rem);
-    padding-bottom: calc(#{bolt-v-spacing(small)} - 0.45rem);
+    padding-top: calc(#{bolt-v-spacing(small)} + 0.55rem);
+    padding-bottom: calc(#{bolt-v-spacing(small)} - 0.55rem);
   }
 
   &:focus,
@@ -387,19 +390,14 @@ $bolt-input-transition: $bolt-transition;
 }
 
 .c-bolt-floating-label {
-  @include bolt-font-size(xsmall);
-
   position: absolute;
-  top: 0.45rem;
+  top: 0.4rem;
   left: $bolt-floating-label-text-indent;
-  max-width: calc(100% - #{$bolt-floating-label-text-indent * 2});
-  overflow: hidden;
   color: $bolt-floating-label-text-color;
-  line-height: 1;
+  line-height: $bolt-floating-label-text-scale;
   white-space: nowrap;
-  text-overflow: ellipsis;
   opacity: 0;
-  transform: translate3d(0, -15%, 0) scale(0.8);
+  transform: translate3d(0, -15%, 0) scale(0.2);
   transform-origin: 0 100%;
   transition: all $bolt-floating-label-transition;
 }
@@ -408,7 +406,7 @@ $bolt-input-transition: $bolt-transition;
 .c-bolt-input:focus {
   & ~ .c-bolt-floating-label {
     opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
+    transform: translate3d(0, 0, 0) scale($bolt-floating-label-text-scale);
   }
 }
 
@@ -490,11 +488,12 @@ $bolt-input-transition: $bolt-transition;
 }
 
 .c-bolt-input-icons {
-  @include bolt-padding(0.6rem 0);
+  @include bolt-padding(0.65em small 0.65em 0);
 
   position: absolute;
   top: 1px;
-  right: bolt-spacing(small);
+  right: 1px;
+  border-radius: $bolt-input-border-radius;
   background-color: $bolt-input-background-color;
   pointer-events: none;
 
@@ -505,7 +504,7 @@ $bolt-input-transition: $bolt-transition;
     width: 1rem;
     height: 100%;
     content: '';
-    background: linear-gradient(to left, $bolt-input-background-color, transparent);
+    background: linear-gradient(to left, $bolt-input-background-color, rgba(255, 255, 255, 0));
   }
 }
 
@@ -533,7 +532,7 @@ $bolt-input-transition: $bolt-transition;
   background-color: $bolt-input-background-color--disabled;
 
   &:before {
-    background: linear-gradient(to left, $bolt-input-background-color--disabled, transparent);
+    background: linear-gradient(to left, $bolt-input-background-color--disabled, rgba(255, 255, 255, 0));
   }
 }
 
@@ -561,6 +560,7 @@ $bolt-input-message-text-color--invalid: bolt-color(error); // TODO: [Mai] This 
 .c-bolt-input.is-touched:invalid ~ .c-bolt-input-message--invalid {
   display: block; // TODO: [Mai] Remove this if invalid messages are dynamically generated through javascript.
 }
+
 
 
 
