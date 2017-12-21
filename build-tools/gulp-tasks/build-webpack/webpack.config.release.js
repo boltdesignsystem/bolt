@@ -37,33 +37,38 @@ module.exports = (options) => {
   // const ExtractTextPlugin = require('extract-text-webpack-plugin');
   // // const outputPath = isDev ? resolve('src') : resolve('dist');
   // const WorkboxPlugin = require('workbox-webpack-plugin');
-  
+
   const commonConfig = require('./webpack.config');
   const releaseConfig = Object.create(commonConfig({
-    devtool: 'sourcemap'
+    devtool: 'cheap-module-eval-source-map'
   }));
-  
 
-  releaseConfig.plugins = releaseConfig.plugins.concat(
-    new CleanWebpackPlugin([!process.env.cli && releaseConfig.output.path ? releaseConfig.output.path : ''], {
-      verbose: true,
-      root: process.cwd() // set root context to wherever webpack is getting run (globally or at the component level)
-    }),
-    new webpack.DefinePlugin({
+
+  releaseConfig.plugins = releaseConfig.plugins.concat(new CleanWebpackPlugin(
+      [
+        !process.env.cli && releaseConfig.output.path
+          ? releaseConfig.output.path
+          : ''
+      ],
+      {
+        verbose: true,
+        root: process.cwd() // set root context to wherever webpack is getting run (globally or at the component level)
+      }
+    ), new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"'
-    }),
-    new ExtractTextPlugin({
+    }), new ExtractTextPlugin({
       filename: '[name].min.css?[hash]-[chunkhash]-[contenthash]-[name]',
       disable: false,
       allChunks: true
-    }),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new UglifyJSPlugin(),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false
-    })
-  );
+    }), new webpack.NoEmitOnErrorsPlugin(), new UglifyJSPlugin(), new webpack.LoaderOptionsPlugin(
+      {
+        minimize: true,
+        debug: false,
+        compress: {
+          drop_console: true
+        }
+      }
+    ));
 
   releaseConfig.performance = {
     maxAssetSize: 250000,
