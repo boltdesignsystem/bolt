@@ -1,0 +1,95 @@
+// Shared base text styles used across all headline, subheadline, eyebrow and vanilla DIY text components
+@mixin bolt-headline() {
+  @include bolt-headline-font-weight;
+  @include bolt-headline-font-style;
+  @include bolt-headline-text-alignment;
+  @include bolt-headline-text-transform;
+
+  display: block;
+  max-width: 55ch;
+  color: inherit;
+  color: var(--bolt-theme-heading, inherit);
+
+  @supports (display: flex) {
+    display: flex;
+    align-items: center;
+  }
+
+  &:last-child {
+    @include bolt-margin-bottom(0);
+  }
+
+  /* stylelint-disable-next-line */
+  > * {
+    align-self: center;
+  }
+
+  // Headline + Icon and/or Icon + Headline Spacing
+  &__text ~ &__icon,
+  &__icon ~ &__text {
+    @include bolt-margin-left(xxsmall);
+  }
+}
+
+
+
+/** Headline Font Weight Options **/
+@mixin bolt-headline-font-weight {
+  &--semibold {
+    @include bolt-font-weight(semibold);
+  }
+
+  &--regular {
+    @include bolt-font-weight(regular);
+  }
+
+  &--bold {
+    @include bolt-font-weight(bold);
+  }
+}
+
+
+/** Font Style Options **/
+@mixin bolt-headline-font-style {
+  // Font style variations
+  &--normal {
+    font-style: normal;
+  }
+
+  &--italic {
+    font-style: italic;
+  }
+}
+
+/** Left, center and right text alignment options **/
+@mixin bolt-headline-text-alignment {
+  &--left {
+    text-align: left;
+    justify-content: flex-start;
+  }
+
+  &--center {
+    text-align: center;
+    justify-content: center;
+  }
+
+  &--right {
+    text-align: right;
+    justify-content: flex-end;
+  }
+}
+
+
+@mixin bolt-headline-text-transform {
+  &--uppercase {
+    text-transform: uppercase;
+  }
+
+  &--lowercase {
+    text-transform: lowercase;
+  }
+
+  &--capitalize {
+    text-transform: capitalize;
+  }
+}
