@@ -2,12 +2,17 @@
    #GRID
    ========================================================================== */
 
+/**
+ * 1. Workaround to Safari layout getting thrown off when using a negative letter-spacing to remove inline-block whitespace
+ *    @TODO: remove when v1 grid with CSS Grid support rolls out
+ * 2. Reset local font-size inheritance to prevent components w/o default font sizes from breaking
+ */
 .o-bolt-grid {
+  font-size: 0; /* stylelint-disable-line */ /* [1] */
   margin: 0;
   padding: 0;
   list-style: none;
   margin-left: bolt-spacing(medium) * -1;
-  letter-spacing: bolt-spacing(medium) * -1;
   flex: 1 1 auto; //Automatically auto fill any available space, in case a grid is nested inside of a flexbox-friendly parent container.
 }
 
@@ -15,7 +20,7 @@
   display: inline-block;
   vertical-align: top;
   padding-left: bolt-spacing(medium);
-  letter-spacing: normal;
+  font-size: 1rem; /* stylelint-disable-line */ /* [2] */
 }
 
 
