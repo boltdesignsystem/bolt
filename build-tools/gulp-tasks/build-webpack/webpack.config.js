@@ -41,7 +41,7 @@ const defaultConfig = {
     chunkFilename: `[name]-chunk.min.js`,
     libraryTarget: 'umd'
   },
-  devtool: 'cheap-module-source-map',
+  devtool: 'cheap-module-eval-source-map',
   // devtool: 'cheap-source-map',
   resolve: {
     // Help webpack find local Bolt code in the src folder
