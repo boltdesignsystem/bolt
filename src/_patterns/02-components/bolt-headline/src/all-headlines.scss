@@ -26,7 +26,6 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   @include bolt-headline;
 }
 
-
 .c-bolt-headline {
   @include bolt-font-weight(bold);
 
@@ -137,15 +136,20 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 }
 
 
+/**
+  * 1. Only include max-width rule on larger font sizes
+  */
 .c-bolt-text--xxxlarge,
 .c-bolt-headline--xxxlarge {
   @include bolt-font-size(xxxlarge);
+  max-width: 55ch; /* [1] */
 }
 
 .c-bolt-text--xxlarge,
 .c-bolt-subheadline--xxlarge,
 .c-bolt-headline--xxlarge {
   @include bolt-font-size(xxlarge);
+  max-width: 55ch; /* [1] */
 }
 
 
