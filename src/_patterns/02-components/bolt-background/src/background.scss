@@ -167,16 +167,16 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
   position: absolute;
   transform: rotate(-45deg);
   right: $bolt-bg-shape-offset-side-default;
-  bottom: $bolt-bg-shape-offset-side-default;
+  bottom: $bolt-bg-shape-offset-bottom-default;
 
   @include respond-to(small) {
     right: $bolt-bg-shape-offset-side-small;
-    bottom: $bolt-bg-shape-offset-side-small;
+    bottom: $bolt-bg-shape-offset-bottom-small;
   }
 
   @include respond-to(large) {
     right: $bolt-bg-shape-offset-side-large;
-    bottom: -300px;
+    bottom: $bolt-bg-shape-offset-bottom-large;
   }
 }
 
