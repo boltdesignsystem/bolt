@@ -126,9 +126,16 @@ bolt-blockquote {
 }
 
 
+/**
+ * 1. Workaround to address weird Safari bug w/ overflow + border radius
+ *    https://gist.github.com/adamcbrewer/5859738#gistcomment-2008691
+ */
+
 // Attribution
 .c-bolt-blockquote__image {
   display: inline-block;
+  position: relative; /* [1] */
+  z-index: 1; /* [1] */
   width: $bolt-blockquote-image-size;
   height: $bolt-blockquote-image-size;
   border-width: $bolt-blockquote-image-border-width;
