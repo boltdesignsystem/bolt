@@ -75,10 +75,11 @@ bolt-blockquote {
 .c-bolt-blockquote {
   @include bolt-margin(0);
 
-  &:before, &:after {
+  &:before,
+  &:after {
     width: 100%;
-    max-width: 300px;
     height: $bolt-blockquote-border-width;
+    max-width: 300px;
     content: '';
     vertical-align: top;
     background-color: $bolt-blockquote-border-color;
@@ -110,7 +111,8 @@ bolt-blockquote {
   color: inherit;
   color: var(--bolt-theme-heading, inherit);
 
-  p:first-child:before, p:last-child:after {
+  p:first-child:before,
+  p:last-child:after {
     font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
   }
 
