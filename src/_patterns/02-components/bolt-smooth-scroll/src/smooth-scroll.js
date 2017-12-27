@@ -2,7 +2,8 @@ import SmoothScroll from 'smooth-scroll';
 
 const scroll = new SmoothScroll();
 
-const defaultScrollOffset = 0;
+// Set offset to 50 for nav-bar.
+const defaultScrollOffset = 50;
 const defaultScrollSpeed = 500;
 
 const customScrollElems = document.querySelectorAll('a[href*="#"]');
@@ -28,8 +29,8 @@ customScrollElems.forEach(elem => {
         easing: 'easeInOutCubic', // Easing pattern to use
 
         // Callback API
-        before: function () {}, // Callback to run before scroll
-        after: function () {} // Callback to run after scroll
+        before: function () { document.body.className += ' ' + 'js-bolt-smooth-scroll-scrolling'; }, // Callback to run before scroll
+        after: function () { document.body.className = document.body.className.replace('js-bolt-smooth-scroll-scrolling', ''); } // Callback to run after scroll
     };
 
     let scrollElemHref = scrollElem.getAttribute('href');
