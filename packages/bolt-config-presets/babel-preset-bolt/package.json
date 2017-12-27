@@ -2,14 +2,17 @@
   "name": "@bolt/babel-preset-bolt",
   "version": "0.0.0",
   "description": "Babel preset shared across the Bolt Design System",
-  "author": "Salem Ghoweri",
+  "author": {
+    "name": "Salem Ghoweri",
+    "email": "me@salemghoweri.com"
+  },
   "license": "MIT",
-  "files": [
-    "index.js",
-    ".babelrc"
-  ],
+  "babel": {
+    "presets": [
+      "bolt"
+    ]
+  },
   "dependencies": {
-    "babel-core": "^6.26.0",
     "babel-plugin-dynamic-import-node": "^1.2.0",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
