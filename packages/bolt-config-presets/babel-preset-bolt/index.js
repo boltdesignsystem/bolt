@@ -14,12 +14,21 @@ const preset = function(api, opts = {}) {
       }]
     ],
     plugins: [
+/**
+ * 1. Required till github.com/github/babel-plugin-transform-custom-element-classes/issues/11
+ *    is closed. Currently this is required for Bolt's SVG icon component
+ *
+ * 2. Allows us to dynamically import JS via Webpack. ex. import('button.standalone.js')
+ */
       'transform-decorators-legacy', // ex. @define
 
       'transform-class-properties', // ex. class { handleThing = () => { } }
 
-      // import('button.standalone.js')
-      'syntax-dynamic-import',
+      'transform-custom-element-classes', /* [1] */
+
+      'transform-es2015-classes', /* [1] */
+
+      'syntax-dynamic-import', /* [2] */
 
       // critical for preact rendering
       [
