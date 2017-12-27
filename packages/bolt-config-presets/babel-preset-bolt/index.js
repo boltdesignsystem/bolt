@@ -14,11 +14,9 @@ const preset = function(api, opts = {}) {
       }]
     ],
     plugins: [
-      // ex. @define decorator
-      'transform-decorators-legacy',
+      'transform-decorators-legacy', // ex. @define
 
-      // class { handleThing = () => { } }
-      'transform-class-properties',
+      'transform-class-properties', // ex. class { handleThing = () => { } }
 
       // import('button.standalone.js')
       'syntax-dynamic-import',
