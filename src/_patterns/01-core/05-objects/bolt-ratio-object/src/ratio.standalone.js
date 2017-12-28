@@ -67,7 +67,7 @@ export class BoltRatio extends withComponent(withPreact()) {
 
   render() {
     const classes = css(
-      'o-bolt-ratio__content'
+      'o-bolt-ratio__inner'
     );
 
     return (
