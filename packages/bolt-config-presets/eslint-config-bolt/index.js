@@ -13,7 +13,7 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    quotes: [2, 'singlequote', { avoidEscape: true }],
+    quotes: [2, 'single', { avoidEscape: true }],
     'max-len': [
       2,
       120,
