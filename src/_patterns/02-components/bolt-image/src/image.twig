@@ -94,11 +94,6 @@
   {% endif %}
 
 {% set attributes = create_attribute(attributes | default({})).addClass('c-bolt-image') %}
-{% set styles = attributes.getAttribute('style') | split(' ') | merge([
-  "padding-top: #{ratio};"
-]) %}
-{% set attributes = attributes.setAttribute('style', styles | join(' ')) %}
-
 
 {% set imageAttributes = create_attribute(imageAttributes | default({})).addClass([
     "c-bolt-image__img",
@@ -147,9 +142,11 @@
 {% endset %}
 <bolt-image>
   {% block image_content %}
-    {% if ratio == true %}
+    {% if width > 0 and height > 0 and ratio == true %}
       {% embed "@bolt/ratio.twig" with {
-        attributes: attributes
+        attributes: attributes,
+        aspectRatioHeight: height * 1,
+        aspectRatioWidth: width * 1
       } %}
         {% block ratio_content %}
           {{ ext == "jpg" ? imagePlaceholder : "" }}
