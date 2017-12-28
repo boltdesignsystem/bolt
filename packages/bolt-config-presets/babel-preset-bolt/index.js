@@ -22,6 +22,8 @@ const preset = function(api, opts = {}) {
  */
       'transform-decorators-legacy', // ex. @define
 
+      'transform-export-extensions', // ex. `export Communications from './icons/communications';` - used in @bolt/components-icons  
+
       'transform-class-properties', // ex. class { handleThing = () => { } }
 
       'transform-custom-element-classes', /* [1] */
@@ -35,6 +37,16 @@ const preset = function(api, opts = {}) {
         'transform-react-jsx',
         {
           pragma: 'h'
+        }
+      ],
+
+      // required for preact + SVG icons to work
+      [
+        'jsx-pragmatic',
+        {
+          module: 'preact',
+          export: 'h',
+          import: 'h'
         }
       ],
 
