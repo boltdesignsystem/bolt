@@ -40,7 +40,7 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
     // name: props.string,
   }
 
-  renderCallback({ props }) {
+  render({ props }) {
     const classes = css(
       'c-bolt-image-magnifier'
     );
@@ -86,8 +86,12 @@ class BoltImageZoom extends withComponent(withPreact()) {
   /**
      * `iconElem` returns the bolt icon element inside the device viewer
      */
-    return this.querySelector('bolt-icon');
   iconElem() {
+    if (this.querySelector('bolt-icon')){
+      return this.querySelector('bolt-icon');
+    } else {
+      return false;
+    }
   }
 
 
@@ -117,7 +121,7 @@ class BoltImageZoom extends withComponent(withPreact()) {
   }
 
 
-  renderCallback() {
+  render() {
     return (
       <slot />
     )
