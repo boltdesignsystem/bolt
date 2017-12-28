@@ -50,8 +50,8 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
   }
 
   connectedCallback() {
-    var drift = new Drift(this.querySelector('.js-bolt-device-viewer-screen'), {
-    // drift.setZoomImageURL(driftZoomImageUrl);
+    if (this.querySelector('bolt-image-zoom')){
+      const drift = new Drift(this.querySelector('bolt-image-zoom'), {
         containInline: false,
         inlinePane: true,
         namespace: 'c-bolt',
