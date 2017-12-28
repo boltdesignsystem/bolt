@@ -32,7 +32,10 @@ function whichAnimationEvent() {
 const animationEvent = whichAnimationEvent();
 
 
+@define
 class BoltDeviceViewer extends withComponent(withPreact()) {
+  static is = 'bolt-device-viewer';
+
   static props = {
     // name: props.string,
   }
@@ -62,12 +65,13 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
   }
 }
 
-customElements.define('bolt-device-viewer', BoltDeviceViewer);
 
 
 
+@define
+class BoltImageZoom extends withComponent(withPreact()) {
+  static is = 'bolt-image-zoom';
 
-class BoltDeviceScreen extends withComponent(withPreact()) {
   static props = {
   }
 
@@ -136,5 +140,3 @@ class BoltDeviceScreen extends withComponent(withPreact()) {
     this.removeEventListener('mouseleave', this._mouseLeave);
   }
 }
-
-customElements.define('bolt-device-screen', BoltDeviceScreen);
