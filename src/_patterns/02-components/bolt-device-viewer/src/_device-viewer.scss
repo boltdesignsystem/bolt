@@ -14,42 +14,74 @@ bolt-device-viewer {
 
 $magnifier-size: 350px;
 
- 
-@keyframes pulse{
-  0%{
+@keyframes pulse {
+  0% {
     transform: translate3d(-50%, -50%, 0) scale(0.98);
   }
-  50%{
+
+  50% {
     transform: translate3d(-50%, -50%, 0) scale(1.1);
   }
-  100%{ 
+
+  100% {
     transform: translate3d(-50%, -50%, 0) scale(0.98);
   }
 }
 
 @keyframes pulseFadeIn {
-  0% { transform: scale(1.5) translate3d(-50%, -50%, 0); opacity: 0; }
-  100% { transform: scale(1) translate3d(-50%, -50%, 0);  opacity: 1; }
+  0% {
+    transform: scale(1.5) translate3d(-50%, -50%, 0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1) translate3d(-50%, -50%, 0);
+    opacity: 1;
+  }
 }
 
 @keyframes pulseFadeOut {
-  0% { transform: scale(1) translate3d(-50%, -50%, 0); opacity: 1;  }
-  15% { transform: scale(1.1) translate3d(-50%, -50%, 0); opacity: 1; }
-  100% { transform: scale(4) translate3d(-50%, -50%, 0); opacity: 0; }
+  0% {
+    transform: scale(1) translate3d(-50%, -50%, 0);
+    opacity: 1;
+  }
+
+  15% {
+    transform: scale(1.1) translate3d(-50%, -50%, 0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(4) translate3d(-50%, -50%, 0);
+    opacity: 0;
+  }
 }
 
 
 
 
 @keyframes drift-fadeZoomIn {
-  0% { transform: scale(0.5); opacity: 0; }
-  100% { transform: scale(1);  opacity: 1; }
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 @keyframes drift-fadeZoomOut {
-  0% { transform: scale(1); opacity: 1;  }
-  // 15% { transform: scale(1.1); opacity: 1; }
-  100% { transform: scale(0.5); opacity: 0; }
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
 }
 
 
@@ -140,7 +172,6 @@ $magnifier-size: 350px;
 		animation-fill-mode: forwards;
 	}
 }
-// rotateX(-5deg) rotateY(-5deg) translateZ(0) translate3d(calc(-50% - 250%), calc(-50% - 150%), 0)
 
 
 
@@ -292,7 +323,6 @@ bolt-device-viewer .c-bolt-device-viewer__screen--magnify {
 	cursor: none;
 }
 
-
 .c-bolt-device-viewer__screen:hover > .c-bolt-device-viewer__overlay {
 	opacity: 0;
 }
@@ -306,12 +336,8 @@ bolt-device-viewer .c-bolt-device-viewer__screen--magnify {
   work with child elements in certain cases. */
 	transform: translate3d(0, 0, 0);
 	will-change: top, left;
-	// transform: translate3d( calc(-20px), calc(-100vh - 160px), 0);
-	// transform:;
 	top: 50%;
 	left: 50%;
-
-	// Needed to 
 	img {
 		object-fit: cover;
 		object-position: top center;
@@ -319,13 +345,13 @@ bolt-device-viewer .c-bolt-device-viewer__screen--magnify {
 }
 
 .drift-zoom-pane.drift-opening {
-	animation: drift-fadeZoomIn 180ms ease-out;
-	animation-fill-mode: forwards;
+  animation: drift-fadeZoomIn 180ms ease-out;
+  animation-fill-mode: forwards;
 }
 
 .drift-zoom-pane.drift-closing {
-	animation: drift-fadeZoomOut 210ms ease-in;
-	animation-fill-mode: forwards;
+  animation: drift-fadeZoomOut 210ms ease-in;
+  animation-fill-mode: forwards;
 }
 
 .drift-zoom-pane {
@@ -352,40 +378,3 @@ bolt-device-viewer .c-bolt-device-viewer__screen--magnify {
 	// }
 }
 
-// .drift-loading .drift-zoom-pane-loader {
-//   display: block;
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   // transform: translate3d(-50%, -50%, 0);
-//   width: 66px;
-//   height: 20px;
-//   animation: drift-loader-rotate 1800ms infinite linear;
-// }
-
-// .drift-zoom-pane-loader:before, .drift-zoom-pane-loader:after {
-//   content: "";
-//   display: block;
-//   width: 20px;
-//   height: 20px;
-//   position: absolute;
-//   top: 50%;
-//   margin-top: -10px;
-//   border-radius: 20px;
-//   background: rgba(255, 255, 255, 0.9);
-// }
-
-// .drift-zoom-pane-loader:before {
-//   left: 0;
-//   animation: drift-loader-before 1800ms infinite linear;
-// }
-
-// .drift-zoom-pane-loader:after {
-//   right: 0;
-//   animation: drift-loader-after 1800ms infinite linear;
-//   animation-delay: -900ms;
-// }
-
-// .drift-bounding-box {
-//   background-color: rgba(0, 0, 0, 0.4);
-// }
