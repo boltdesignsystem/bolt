@@ -73,6 +73,7 @@ class BoltImageZoom extends withComponent(withPreact()) {
   static is = 'bolt-image-zoom';
 
   static props = {
+    mangify: props.boolean
   }
 
 
