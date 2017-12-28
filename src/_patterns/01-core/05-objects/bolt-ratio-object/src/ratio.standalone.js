@@ -23,11 +23,7 @@ export class BoltRatio extends withComponent(withPreact()) {
 
   constructor(){
     super();
-    this.supportsCSSVars = window.CSS.supports('--fake-var', 0);
-  }
-  // Called when props have been set regardless of if they've changed.
-  updating(props) {
-    this._computeRatio();
+    this.supportsCSSVars = window.CSS && CSS.supports('color', 'var(--primary)');
   }
 
   /**
@@ -42,8 +38,11 @@ export class BoltRatio extends withComponent(withPreact()) {
     if (this.supportsCSSVars){
       this.style.setProperty(`--aspect-ratio-height`, h);
       this.style.setProperty(`--aspect-ratio-width`, w);
+      this.style.paddingTop = '';
     } else {
       this.style.paddingTop = (100 * h / w) + "%";
+      this.style.removeProperty('--aspect-ratio-height');
+      this.style.removeProperty('--aspect-ratio-width');
     }
   }
 
