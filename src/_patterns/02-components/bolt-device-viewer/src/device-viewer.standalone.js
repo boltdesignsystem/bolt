@@ -96,7 +96,6 @@ class BoltImageZoom extends withComponent(withPreact()) {
 
 
   _mouseEnter(event) {
-    const iconElem = this._iconElem();
     const screenElem = this.screenElem();
 
     screenElem.classList.add('is-mouse-entering');
@@ -112,8 +111,8 @@ class BoltImageZoom extends withComponent(withPreact()) {
 
     animationEvent && iconElem.addEventListener(animationEvent, animationLeaveFunction);
 
-    function animationLeaveFunction(event) {
-      setTimeout(function(){
+    function animationLeaveFunction() {
+      setTimeout(function () {
         iconElem.removeEventListener(animationEvent, animationLeaveFunction);
         screenElem.classList.remove('is-mouse-leaving');
       }, 1000);
