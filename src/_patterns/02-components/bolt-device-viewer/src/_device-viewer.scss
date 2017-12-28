@@ -116,7 +116,6 @@ $magnifier-size: 350px;
   100% { transform: scale(1); }
 }
 
-.c-bolt-device-viewer__overlay {
 	top: 0%;
 	left: 0%;
 	width: 100%;
@@ -131,6 +130,7 @@ $magnifier-size: 350px;
 	&:before {
 		background-color: rgba(bolt-color(black), .3);
 		top: 50%;
+.c-bolt-image-zoom__overlay {
     left: 50%;
     width: 200%;
     height: 200%;
@@ -146,7 +146,6 @@ $magnifier-size: 350px;
 }
 
 
-.c-bolt-device-viewer__overlay-icon {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -155,6 +154,7 @@ $magnifier-size: 350px;
 	animation: pulse 3s infinite;
 	line-height: 1;
 	pointer-events: none;
+.c-bolt-image-zoom__overlay-icon {
 
 	box-shadow: 0 2px 5px 10px rgba(21,22,25,.025);
 	border-radius: 50%;
@@ -173,6 +173,7 @@ $magnifier-size: 350px;
 	}
 }
 
+.c-bolt-image-zoom__tilt {
 
 
 
@@ -182,7 +183,6 @@ $magnifier-size: 350px;
 	width: 100%;
 }
 
-.c-bolt-deview-viewer__tilt {
 	opacity: 0;
 	position: absolute;
 	z-index: 1;
@@ -194,38 +194,37 @@ $magnifier-size: 350px;
 		transform: translateZ(50px);
 	}
 
-	&:hover ~ .c-bolt-device-viewer__overlay > .c-bolt-device-viewer__overlay-icon {
 		transform: translate3d(-50%, -50%, 0) scale(3, 3);
 	}
 }
 
-.c-bolt-deview-viewer__tilt--top-left {
 	top: 0;
 	left: 0;
 	
 	&:hover {
-		~ .c-bolt-device-viewer__overlay {
 			transform-origin: right bottom;
 			transform: rotateX(5deg) rotateY(-5deg) translateZ(0) translate3d(-30%, -30%, 0);
 		}
 	}
+    ~ .c-bolt-image-zoom__overlay {
+  &:hover ~ .c-bolt-image-zoom__overlay > .c-bolt-image-zoom__overlay-icon {
 }
 
 
 .c-bolt-deview-viewer__tilt--top-center {
 	top: 0;
 	left: 33.33%;
+.c-bolt-image-zoom__tilt--top-left {
 
 	&:hover {
-		~ .c-bolt-device-viewer__overlay {
 			transform-origin: center bottom;
 			transform: rotateX(5deg) rotateY(0deg) translateZ(0) translate3d(0, -30%, 0);
 			// transform: rotateX(-5deg) rotateY(0deg) translateZ(0);
 		}
 	}
+    ~ .c-bolt-image-zoom__overlay {
 }
 
-.c-bolt-deview-viewer__tilt--top-right {
 	top: 0;
 	left: 66.66%;
 
@@ -240,6 +239,7 @@ $magnifier-size: 350px;
 .c-bolt-deview-viewer__tilt--middle-left {
 	top: 33.33%;
 	left: 0;
+.c-bolt-image-zoom__tilt--top-right {
 
 	&:hover {
 		~ .c-bolt-device-viewer__overlay {
