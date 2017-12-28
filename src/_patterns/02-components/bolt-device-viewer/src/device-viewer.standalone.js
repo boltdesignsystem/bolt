@@ -13,14 +13,14 @@ import {
 
 /* From Modernizr */
 function whichAnimationEvent() {
-  var t,
-    el = document.createElement("fakeelement");
+  let t;
+  let el = document.createElement('fakeelement');
 
-  var animations = {
-    "animation": "animationend",
-    "OAnimation": "oAnimationEnd",
-    "MozAnimation": "animationend",
-    "WebkitAnimation": "webkitAnimationEnd"
+  const animations = {
+    'animation': 'animationend',
+    'OAnimation': 'oAnimationEnd',
+    'MozAnimation': 'animationend',
+    'WebkitAnimation': 'webkitAnimationEnd'
   }
 
   for (t in animations) {
@@ -29,33 +29,18 @@ function whichAnimationEvent() {
     }
   }
 }
-
 const animationEvent = whichAnimationEvent();
 
 
 class BoltDeviceViewer extends withComponent(withPreact()) {
   static props = {
     // name: props.string,
-    // size: props.string,
-    // background: props.string,
-    // color: props.string
   }
 
   renderCallback({ props }) {
     const classes = css(
-      'c-bolt-image-magnifier',
-      // props.name ? `c-bolt-icon--${props.name}` : '',
-      // props.color && colors.includes(props.color) ? `c-bolt-icon--${props.color}` : ``,
-      // props.size && spacingSizes[props.size] && spacingSizes[props.size] !== '' ? `c-bolt-icon--${props.size}` : ``
+      'c-bolt-image-magnifier'
     );
-    // <style>{styles[0][1]}</style>
-    // var drift = new Drift(document.querySelector('img'), {
-    //   paneContainer: document.querySelector('p')
-    // });
-
-
-
-    // drift.enable();
 
     return (
       <div className={classes}>
@@ -63,7 +48,6 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
       </div>
     )
   }
-
 
   connectedCallback() {
 
@@ -163,17 +147,8 @@ customElements.define('bolt-device-viewer', BoltDeviceViewer);
 
 
 
-
-
-
-
-
 class BoltDeviceScreen extends withComponent(withPreact()) {
   static props = {
-    // name: props.string,
-    // size: props.string,
-    // background: props.string,
-    // color: props.string
   }
 
 
@@ -198,17 +173,6 @@ class BoltDeviceScreen extends withComponent(withPreact()) {
 
     screenElem.classList.add('is-mouse-entering');
     screenElem.classList.remove('is-mouse-leaving');
-
-
-    // animationEvent && iconElem.addEventListener(animationEvent, animationEnterFunction);
-
-    // function animationEnterFunction(event) {
-    //   iconElem.removeEventListener(animationEvent, animationEnterFunction);
-
-    //   screenElem.classList.remove('is-mouse-entering');
-    //   // Do something when the transition ends
-    // }
-
   }
 
   _mouseLeave(event) {
@@ -230,31 +194,12 @@ class BoltDeviceScreen extends withComponent(withPreact()) {
 
 
   renderCallback() {
-    // const classes = css(
-    //   'c-bolt-image-magnifier',
-    //   // props.name ? `c-bolt-icon--${props.name}` : '',
-    //   // props.color && colors.includes(props.color) ? `c-bolt-icon--${props.color}` : ``,
-    //   // props.size && spacingSizes[props.size] && spacingSizes[props.size] !== '' ? `c-bolt-icon--${props.size}` : ``
-    // );
-    // <style>{styles[0][1]}</style>
-    // var drift = new Drift(document.querySelector('img'), {
-    //   paneContainer: document.querySelector('p')
-    // });
-
-
-
-    // drift.enable();
-
     return (
-      // <div className={classes}>
-        <slot />
-      // </div>
+      <slot />
     )
   }
 
-
   connectedCallback() {
-
     const driftZoomImageUrl = this.querySelector('img').getAttribute('data-zoom');
     this.setAttribute('data-zoom', driftZoomImageUrl);
     this.addEventListener('mouseenter', this._mouseEnter);
