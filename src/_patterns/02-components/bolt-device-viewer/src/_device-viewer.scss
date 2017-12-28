@@ -7,9 +7,68 @@
 @import 'device-viewer--macbook';
 
 bolt-device-viewer {
-	display: inline-block;
-	position: relative;
-	margin: 0 auto;
+  display: block;
+}
+
+.c-bolt-device-viewer {
+  position: relative;
+  height: auto; // Based on inner contents + padding;
+  margin: 0 auto;
+  box-sizing: content-box; //Required for now till device viewer updated to be fluid in size.
+}
+
+.c-bolt-device-viewer__inner {
+  display: block;
+  position: relative;
+  z-index: 1;
+
+  &:before,
+  &:after {
+    pointer-events: none; // So scrolling works / mouse doesn't get blocked.
+    position: absolute;
+  }
+
+  &:before {
+    content: '';
+  }
+}
+
+.c-bolt-device-viewer__screen {
+  display: block;
+  position: relative;
+  box-shadow: 0 0 0 3px bolt-color(black);
+  z-index: 10; // Must be higher than the z-index of the :before layer on the base component
+  width: 100%;
+  perspective: 1000px;
+  overflow: hidden; // Unfortunately zooming + scrolling is very, very tricky. Forcing this for now.
+  border-radius: 1px;
+  height: 0;
+}
+
+.c-bolt-device-viewer__home {
+  border-radius: 50%;
+  position: absolute;
+  z-index: 20;
+}
+
+.c-bolt-device-viewer__camera {
+  position: absolute;
+  border-radius: 100%;
+  z-index: 30;
+}
+
+.c-bolt-device-viewer__top-bar,
+.c-bolt-device-viewer__bottom-bar {
+  display: block;
+  position: absolute;
+  z-index: -1; // Since we want this layer pushed back behind most, but not all, layers
+  width: 100%;
+}
+
+
+// Image zoom custom element
+bolt-image-zoom {
+  display: block; // Required to render magnifying glass properly
 }
 
 $bolt-magnifier-size: 350px;
