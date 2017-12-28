@@ -1,9 +1,12 @@
 {% set classes = [
-  "o-bolt-ratio"
+
 ] %}
 
 {% set attributes = create_attribute(attributes | default({})) %}
 
+
+{% set aspectRatioHeight = aspectRatioHeight ? aspectRatioHeight : "1" %}
+{% set aspectRatioWidth = aspectRatioWidth ? aspectRatioWidth : "1" %}
 
 {% if aspectRatioHeight and aspectRatioWidth %}
   {% set attributes = attributes.addClass(classes) %}
@@ -15,6 +18,13 @@
     "--aspect-ratio-height: " ~ aspectRatioHeight ~ ";",
     "--aspect-ratio-width: " ~ aspectRatioWidth ~ ";"
   ]) %}
+
+  {# set attributes = attributes.setAttribute("style", [
+    "--aspect-ratio-height: " ~ aspectRatioHeight ~ ";",
+    "--aspect-ratio-width: " ~ aspectRatioWidth ~ ";",
+    "padding-top: " ~ (aspectRatioHeight / aspectRatioWidth * 100) ~ "%;",
+    "padding-top: calc( var(--aspect-ratio-height," ~ aspectRatioHeight ~ ") / var(--aspect-ratio-width," ~  aspectRatioWidth ~ ") * 100%);"
+  ]) #}
 {% endif %}
 
 <bolt-ratio {{ attributes }}>
