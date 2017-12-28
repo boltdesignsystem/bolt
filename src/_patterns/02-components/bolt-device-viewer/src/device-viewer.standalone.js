@@ -73,31 +73,31 @@ class BoltDeviceScreen extends withComponent(withPreact()) {
 
 
   /**
-     * `_screenElem` returns the screen element inside the device viewer
+     * `screenElem` returns the screen element inside the device viewer
      */
-  _screenElem() {
+  screenElem() {
     return this;
   }
 
   /**
-     * `_iconElem` returns the bolt icon element inside the device viewer
+     * `iconElem` returns the bolt icon element inside the device viewer
      */
-  _iconElem() {
     return this.querySelector('bolt-icon');
+  iconElem() {
   }
 
 
   _mouseEnter(event) {
-    const screenElem = this._screenElem();
     const iconElem = this._iconElem();
+    const screenElem = this.screenElem();
 
     screenElem.classList.add('is-mouse-entering');
     screenElem.classList.remove('is-mouse-leaving');
   }
 
   _mouseLeave(event) {
-    const screenElem = this._screenElem();
-    const iconElem = this._iconElem();
+    const screenElem = this.screenElem();
+    const iconElem = this.iconElem();
 
     screenElem.classList.remove('is-mouse-entering');
     screenElem.classList.add('is-mouse-leaving');
