@@ -25,25 +25,11 @@ export class BoltRatio extends withComponent(withPreact()) {
     super();
     this.supportsCSSVars = window.CSS.supports('--fake-var', 0);
   }
-
-  // get renderRoot() {
-  //   return this;
-  // }
-
   // Called when props have been set regardless of if they've changed.
   updating(props) {
     this._computeRatio();
   }
 
-  // Called to check whether or not the component should call
-  // updated(), much like React's shouldComponentUpdate().
-  // shouldUpdate(props, state) {
-  //   return true;
-  // }
-
-  // // Called if shouldUpdate returned true.
-  // updated() {
-    
   /**
    * sets the style so that the height is based on a ratio of width to height
    * @param {Number} aspH - the height component of the ratio
@@ -71,12 +57,6 @@ export class BoltRatio extends withComponent(withPreact()) {
     );
 
     return (
-      // <div className={classes}>
-        <slot>
-          <style>{styles[0][1]}</style>
-
-        </slot>
-      // </div>
     )
   }
 }
