@@ -1,0 +1,231 @@
+/* ------------------------------------ *\
+   Tooltip
+\* ------------------------------------ */
+$bolt-bubble-tip-width: 8px;
+$bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
+
+// Aria tags for accessibility.
+[aria-hidden="true"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+[aria-hidden="false"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+// Tooltip styling
+.bolt-tooltip {
+  display: inline-block;
+  position: relative;
+
+  &.help {
+    cursor: help;
+  }
+
+  &.action {
+    .bolt-tooltip__trigger {
+      cursor: pointer;
+    }
+  }
+
+  &.nowrap {
+    .bolt-tooltip__content {
+      min-width: auto;
+      white-space: nowrap;
+    }
+  }
+
+  &.y-up {
+    .bolt-tooltip__content {
+      top: 0;
+      transform: translateY(-100%);
+    }
+
+    .bolt-tooltip__content-bubble {
+      &:after,
+      &:before {
+        border-top: $bolt-bubble-tip-height solid;
+        border-right: $bolt-bubble-tip-width solid transparent;
+        border-bottom: $bolt-bubble-tip-width solid transparent;
+        border-left: $bolt-bubble-tip-width solid transparent;
+        transform: translateY(100%);
+      }
+
+      &:before {
+        top: auto;
+        bottom: -1px;
+        border-top-color: rgba(bolt-color(black), 0.2);
+        border-bottom-color: transparent;
+      }
+
+      &:after {
+        top: auto;
+        bottom: 0;
+        border-top-color: white;
+        border-bottom-color: transparent;
+      }
+    }
+  }
+
+  &.y-down {
+    .bolt-tooltip__content-bubble {
+      &:after,
+      &:before {
+        border-top: $bolt-bubble-tip-width solid transparent;
+        border-right: $bolt-bubble-tip-width solid transparent;
+        border-left: $bolt-bubble-tip-width solid transparent;
+        border-bottom: $bolt-bubble-tip-height solid;
+        transform: translateY(-100%);
+      }
+
+      &:before {
+        top: -1px;
+        bottom: auto;
+        border-bottom-color: rgba(bolt-color(black), 0.2);
+      }
+
+      &:after {
+        top: 0;
+        bottom: auto;
+        border-bottom-color: white;
+      }
+    }
+  }
+
+  &.x-left {
+    .bolt-tooltip__content {
+      right: auto;
+      left: 0;
+    }
+
+    .bolt-tooltip__content-bubble {
+      &:before,
+      &:after {
+        right: auto;
+        left: $bolt-bubble-tip-width / 2;
+      }
+    }
+  }
+
+  &.x-right {
+    .bolt-tooltip__content {
+      right: 0;
+      left: auto;
+    }
+
+    .bolt-tooltip__content-bubble {
+      &:before,
+      &:after {
+        right: $bolt-bubble-tip-width / 2;
+        left: auto;
+      }
+    }
+  }
+
+  &.x-center {
+    .bolt-tooltip__content {
+      left: 50%;
+    }
+
+    .bolt-tooltip__content-bubble {
+      &:after,
+      &:before {
+        left: 50%;
+      }
+    }
+
+    &.y-up {
+      .bolt-tooltip__content {
+        transform: translate(-50%, -100%);
+      }
+
+      .bolt-tooltip__content-bubble {
+        &:after,
+        &:before {
+          transform: translate(-50%, 100%);
+        }
+      }
+    }
+
+    &.y-down {
+      .bolt-tooltip__content {
+        transform: translate(-50%, 0);
+      }
+
+      .bolt-tooltip__content-bubble {
+        &:after,
+        &:before {
+          transform: translate(-50%, -100%);
+        }
+      }
+    }
+  }
+}
+
+.bolt-tooltip__trigger {
+  display: block;
+}
+
+.bolt-tooltip__content {
+  display: block;
+  position: absolute;
+  min-width: 200px;
+  z-index: 99999;
+  transition: all ease-in-out 200ms;
+}
+
+.bolt-tooltip__content-bubble {
+  display: block;
+  position: relative;
+  border: 1px solid rgba(bolt-color(black), 0.2);
+  border-radius: 3px;
+  background-color: white;
+  box-shadow: 0 0 3px rgba(bolt-color(black), 0.1), 0 0 0.5em rgba(bolt-color(black), 0.1), 0 0.35em 1.5em rgba(bolt-color(black), 0.2);
+
+  &:after,
+  &:before {
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    content: '';
+    pointer-events: none;
+  }
+}
+
+// Show and hide effects
+.bolt-tooltip:not(:hover) > .bolt-tooltip__content,
+.bolt-tooltip__trigger + .bolt-tooltip__content {
+  @extend [aria-hidden="true"];
+}
+
+.bolt-tooltip:hover > .bolt-tooltip__content,
+.bolt-tooltip__trigger.is-active + .bolt-tooltip__content {
+  @extend [aria-hidden="false"];
+}
+
+.bolt-tooltip.y-down {
+  &:not(:hover) > .bolt-tooltip__content,
+  .bolt-tooltip__trigger + .bolt-tooltip__content {
+    padding-top: 0;
+  }
+
+  &:hover > .bolt-tooltip__content,
+  .bolt-tooltip__trigger.is-active + .bolt-tooltip__content {
+    padding-top: 0.25em; // Extra spacing between the bubble and the trigger
+  }
+}
+
+.bolt-tooltip.y-up {
+  &:not(:hover) > .bolt-tooltip__content,
+  .bolt-tooltip__trigger + .bolt-tooltip__content {
+    padding-bottom: 0;
+  }
+
+  &:hover > .bolt-tooltip__content,
+  .bolt-tooltip__trigger.is-active + .bolt-tooltip__content {
+    padding-bottom: 0.25em; // Extra spacing between the bubble and the trigger
+  }
+}

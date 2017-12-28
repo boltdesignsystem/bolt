@@ -1,0 +1,146 @@
+{% extends "@bolt/default-template.twig" %}
+
+{% block main_content %}
+  {% grid %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small" %}
+      <div class="c-bolt-band c-bolt-band--medium t-bolt-xlight">
+        <p class="block text">
+          You can
+          <span class="tooltip action x-left y-down">
+            <mark class="tooltip__trigger" aria-describedby="tooltip-1">
+              hover over this
+            </mark>
+            <span id="tooltip-1" class="tooltip__content" role="tooltip" aria-hidden="true">
+              <span class="tooltip__content-bubble">
+                <span class="card transparent full-bleed cozy">
+                  <span class="block figure">
+                    <img src="http://fillmurray.com/300/200" alt="Bill">
+                  </span>
+                  <span class="block text">
+                    This is a tooltip and inside it, there is an image of Bill Murray.
+                  </span>
+                  <span class="block text">
+                    <a href="javascript:" class="button">
+                      Button
+                    </a>
+                  </span>
+                </span>
+              </span>
+            </span>
+          </span>
+          to see the tooltip.
+        </p>
+        <p class="block text">
+          Here is a second paragraph of text. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. And then
+          <span class="tooltip help x-center y-down nowrap">
+            <mark class="tooltip__trigger" aria-describedby="tooltip-2">
+              another tooltip
+            </mark>
+            <span id="tooltip-2" class="tooltip__content" role="tooltip" aria-hidden="true">
+              <span class="tooltip__content-bubble">
+                <span class="card transparent compact">
+                  <span class="block text">
+                    Short and sweet, and center
+                  </span>
+                </span>
+              </span>
+            </span>
+          </span>.
+          Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus.
+        </p>
+        <p class="block text">
+          <span class="tooltip help x-left y-down nowrap">
+            <mark class="tooltip__trigger" aria-describedby="tooltip-left">
+              Left
+            </mark>
+            <span id="tooltip-left" class="tooltip__content" role="tooltip" aria-hidden="true">
+              <span class="tooltip__content-bubble">
+                <span class="card transparent compact">
+                  <span class="block text">
+                    left aligned
+                  </span>
+                </span>
+              </span>
+            </span>
+          </span>
+          •
+          <span class="tooltip help x-center y-down nowrap">
+            <mark class="tooltip__trigger" aria-describedby="tooltip-center">
+              Center
+            </mark>
+            <span id="tooltip-center" class="tooltip__content" role="tooltip" aria-hidden="true">
+              <span class="tooltip__content-bubble">
+                <span class="card transparent compact">
+                  <span class="block text">
+                    center aligned
+                  </span>
+                </span>
+              </span>
+            </span>
+          </span>
+          •
+          <span class="tooltip help x-right y-down nowrap">
+            <mark class="tooltip__trigger" aria-describedby="tooltip-right">
+              Right
+            </mark>
+            <span id="tooltip-right" class="tooltip__content" role="tooltip" aria-hidden="true">
+              <span class="tooltip__content-bubble">
+                <span class="card transparent compact">
+                  <span class="block text">
+                    right aligned
+                  </span>
+                </span>
+              </span>
+            </span>
+          </span>
+        </p>
+        <p class="block text">
+          <span class="tooltip help x-left y-up nowrap">
+            <mark class="tooltip__trigger" aria-describedby="tooltip-left">
+              Up Left
+            </mark>
+            <span id="tooltip-left" class="tooltip__content" role="tooltip" aria-hidden="true">
+              <span class="tooltip__content-bubble">
+                <span class="card transparent compact">
+                  <span class="block text">
+                    left aligned
+                  </span>
+                </span>
+              </span>
+            </span>
+          </span>
+          •
+          <span class="tooltip help x-center y-up nowrap">
+            <mark class="tooltip__trigger" aria-describedby="tooltip-center">
+              Up Center
+            </mark>
+            <span id="tooltip-center" class="tooltip__content" role="tooltip" aria-hidden="true">
+              <span class="tooltip__content-bubble">
+                <span class="card transparent compact">
+                  <span class="block text">
+                    center aligned
+                  </span>
+                </span>
+              </span>
+            </span>
+          </span>
+          •
+          <span class="tooltip help x-right y-up nowrap">
+            <mark class="tooltip__trigger" aria-describedby="tooltip-right">
+              Up Right
+            </mark>
+            <span id="tooltip-right" class="tooltip__content" role="tooltip" aria-hidden="true">
+              <span class="tooltip__content-bubble">
+                <span class="card transparent compact">
+                  <span class="block text">
+                    right aligned
+                  </span>
+                </span>
+              </span>
+            </span>
+          </span>
+        </p>
+      </div>
+    {% endcell %}
+  {% endgrid %}
+{% endblock %}
