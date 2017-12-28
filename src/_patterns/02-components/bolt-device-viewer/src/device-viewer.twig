@@ -45,6 +45,9 @@
       <div class="{{ baseClass ~ "__speaker"}}"></div>
 <bolt-device-viewer {{ attributes.addClass(classes | raw) }}>
   <div class="c-bolt-device-viewer__inner {{ baseClass ~ "__inner"}}">
+    <div class="{{ baseClass ~ "__bottom-bar"}}"></div>
+
+    <div class="c-bolt-device-viewer__home {{ baseClass ~ "__home"}}"></div>
 
     <div class="c-bolt-device-viewer__screen {{ baseClass ~ "__screen"}}">
       {% if magnify %}<bolt-image-zoom>{% endif %}
@@ -72,10 +75,6 @@
             } only %}
           </div>
         {% endif %}
-
-      <div class="{{ baseClass ~ "__home"}}"></div>
-      <div class="{{ baseClass ~ "__bottom-bar"}}"></div>
-
       {% if magnify %}</bolt-image-zoom>{% endif %}
     </div>
   </div>
