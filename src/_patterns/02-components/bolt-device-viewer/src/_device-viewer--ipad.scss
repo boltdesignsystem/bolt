@@ -1,62 +1,56 @@
 $device-shadow: 0 1px 2px 1px rgba(6,10,36,0.10), 0 5px 10px 1px rgba(6,10,36,0.15), 0 15px 30px 0 rgba(6,10,36,0.25);
 
+$bolt-ipad-viewer-padding-sm: 25px;
+$bolt-ipad-viewer-padding-lg: 90px;
+
 .c-bolt-ipad-viewer {
-  width: 576px;
-  height: 768px;
-  padding: 90px 25px;
+  width: 100%;
+  max-width: 576px + (25px * 2);
   background: #242324;
   border-radius: 44px;
-  display: inline-block;
-  position: relative;
   box-shadow: $device-shadow;
-  box-sizing: content-box; //Required for now till updated to be fluid in size.
 
   &.c-bolt-ipad-viewer--landscape {
-    height: 576px;
-    width: 768px;
-    padding: 25px 90px;
+    max-width: 768px + (90px * 2);
   }
 
   &.c-bolt-ipad-viewer--silver {
     background: #bcbcbc;
+  }
+}
 
-    &:before {
-      background: #fcfcfc;
-    }
+.c-bolt-ipad-viewer__inner {
+  padding: 90px 25px;
+
+  .c-bolt-ipad-viewer--landscape & {
+    padding: 25px 90px;
   }
 
   &:before {
     width: calc(100% - 8px);
     height: calc(100% - 8px);
-    position: absolute;
-    content: '';
-    display: block;
     top: 4px;
     left: 4px;
     border-radius: 40px;
     background: #1e1e1e;
+
+    .c-bolt-ipad-viewer--silver & {
+      background: #fcfcfc;
+    }
   }
 }
 
+
 .c-bolt-ipad-viewer__screen {
-  width: 100%;
-  position: relative;
-  z-index: 2;
   background: white;
-  overflow: hidden;
-  display: block;
-  border-radius: 1px;
-  box-shadow: 0 0 0 3px #111;
   padding-bottom: 133.33159722%;
-  height: 0;
-  overflow: hidden; //Needed to prevent issues with zoom functionality
 
   .c-bolt-ipad-viewer--landscape & {
     padding-bottom: 73.82908632%;
   }
 }
 
-.c-bolt-ipad-viewer__top-bar, 
+.c-bolt-ipad-viewer__top-bar,
 .c-bolt-ipad-viewer__bottom-bar {
   height: 3px;
   background: black;
@@ -70,20 +64,17 @@ $device-shadow: 0 1px 2px 1px rgba(6,10,36,0.10), 0 5px 10px 1px rgba(6,10,36,0.
   top: 0px;
   left: 90px;
   background: black;
-  position: absolute;
 }
 
 .c-bolt-ipad-viewer__camera {
   background: #3c3d3d;
   width: 10px;
   height: 10px;
-  position: absolute;
   top: 44px;
   left: 50%;
   margin-left: -5px;
-  border-radius: 100%;
 
-  .c-bolt-ipad-viewer--landscape {
+  .c-bolt-ipad-viewer--landscape & {
     left: calc(100% - 44px);
     top: 50%;
     margin-left: 0;
@@ -91,17 +82,15 @@ $device-shadow: 0 1px 2px 1px rgba(6,10,36,0.10), 0 5px 10px 1px rgba(6,10,36,0.
   }
 }
 
-.c-bolt-ipad-viewer__top-bar, 
+.c-bolt-ipad-viewer__top-bar,
 .c-bolt-ipad-viewer__bottom-bar{
   display: none;
 }
 
 .c-bolt-ipad-viewer__home {
   background: #242324;
-  border-radius: 36px;
   width: 50px;
   height: 50px;
-  position: absolute;
   left: 50%;
   margin-left: -25px;
   bottom: 22px;
