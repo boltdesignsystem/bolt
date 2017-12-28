@@ -327,16 +327,28 @@ bolt-device-viewer .c-bolt-device-viewer__screen--magnify {
 
 .drift-zoom-pane {
   background: rgba(0, 0, 0, 0.5);
+
   /* This is required because of a bug that causes border-radius to not
   work with child elements in certain cases. */
-	transform: translate3d(0, 0, 0);
-	will-change: top, left;
-	top: 50%;
-	left: 50%;
-	img {
-		object-fit: cover;
-		object-position: top center;
-	}
+  transform: translate3d(0, 0, 0);
+  will-change: top, left;
+
+  position: absolute;
+  z-index: 1000;
+  top: 50%;
+  left: 50%;
+
+  overflow: hidden;
+  width: $bolt-magnifier-size;
+  height: $bolt-magnifier-size;
+  border-radius: 50%;
+  border: 5px solid bolt-color(white);
+  box-shadow: 0 2px 5px 10px rgba(bolt-color(black), 0.05), 0 20px 40px 0 rgba(bolt-color(black), 0.7);
+
+  img {
+    object-fit: cover;
+    object-position: top center;
+  }
 }
 
 .drift-zoom-pane.drift-opening {
@@ -348,17 +360,3 @@ bolt-device-viewer .c-bolt-device-viewer__screen--magnify {
   animation: drift-fadeZoomOut 210ms ease-in;
   animation-fill-mode: forwards;
 }
-
-.drift-zoom-pane {
-	overflow: hidden;
-  position: absolute;
-  width: $magnifier-size;
-  height: $magnifier-size;
-  border-radius: 50%;
-	border: 5px solid bolt-color(white);
-	box-shadow: 0 2px 5px 10px rgba(bolt-color(black),0.05), 0 20px 40px 0 rgba(bolt-color(black),0.70);
-	z-index: 1000;
-	top: 50%;
-	left: 50%;
-}
-
