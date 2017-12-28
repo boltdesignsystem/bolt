@@ -162,15 +162,15 @@ $magnifier-size: 350px;
 	--bolt-theme-icon-background-opacity: .5;
 	--bolt-theme-icon-background-color: bolt-color(black);
 
-	.is-mouse-leaving & {
-		animation: pulseFadeIn 300ms linear;
-		animation-fill-mode: forwards;
-	}
+  .is-mouse-leaving & {
+    animation: pulseFadeIn 300ms linear;
+    animation-fill-mode: forwards;
+  }
 
-	.is-mouse-entering & {
-		animation: pulseFadeOut 300ms linear;
-		animation-fill-mode: forwards;
-	}
+  .is-mouse-entering & {
+    animation: pulseFadeOut 300ms linear;
+    animation-fill-mode: forwards;
+  }
 }
 
 .c-bolt-image-zoom__tilt {
@@ -216,24 +216,23 @@ $magnifier-size: 350px;
 	left: 33.33%;
 .c-bolt-image-zoom__tilt--top-left {
 
-	&:hover {
 			transform-origin: center bottom;
 			transform: rotateX(5deg) rotateY(0deg) translateZ(0) translate3d(0, -30%, 0);
 			// transform: rotateX(-5deg) rotateY(0deg) translateZ(0);
 		}
 	}
+  &:hover {
     ~ .c-bolt-image-zoom__overlay {
 }
 
 	top: 0;
 	left: 66.66%;
 
-	&:hover {
-		~ .c-bolt-device-viewer__overlay {
 			transform-origin: left bottom;
 			transform: rotateX(5deg) rotateY(5deg) translateZ(0) translate3d(30%, -30%, 0);
 		}
 	}
+    ~ .c-bolt-image-zoom__overlay {
 }
 
 .c-bolt-deview-viewer__tilt--middle-left {
@@ -242,7 +241,6 @@ $magnifier-size: 350px;
 .c-bolt-image-zoom__tilt--top-right {
 
 	&:hover {
-		~ .c-bolt-device-viewer__overlay {
 			transform-origin: right center;
 			transform: rotateX(0deg) rotateY(-5deg) translateZ(0) translate3d(-30%, 0, 0);
 			// transform: rotateX(-5deg) rotateY(0deg) translateZ(0);
@@ -263,15 +261,14 @@ $magnifier-size: 350px;
 	}
 }
 
-.c-bolt-deview-viewer__tilt--middle-right {
-	top: 33.33%;
-	left: 66.66%;
+.c-bolt-image-zoom__tilt--middle-center {
+  top: 33.33%;
+  left: 33.33%;
 
 	&:hover {
 		~ .c-bolt-device-viewer__overlay {
 			transform-origin: left center;
 			transform: rotateX(0deg) rotateY(5deg) translateZ(0) translate3d(30%, 0, 0);
-			// transform: rotateX(-5deg) rotateY(0deg) translateZ(0);
 		}
 	}
 }
@@ -280,8 +277,6 @@ $magnifier-size: 350px;
 	top: 66.66%;
 	left: 0;
 
-	&:hover {
-		~ .c-bolt-device-viewer__overlay {
 			transform-origin: right top;
 			transform: rotateX(-5deg) rotateY(-5deg) translateZ(0) translate3d(-30%, 30%, 0);
 			// transform: rotateX(-5deg) rotateY(0deg) translateZ(0);
@@ -306,13 +301,13 @@ $magnifier-size: 350px;
 	top: 66.66%;
 	left: 66.66%;
 
-	&:hover {
-		~ .c-bolt-device-viewer__overlay {
 			transform-origin: left top;
 			transform: rotateX(-5deg) rotateY(5deg) translateZ(0) translate3d(30%, 30%, 0);
 			// transform: rotateX(-5deg) rotateY(0deg) translateZ(0);
 		}
 	}
+  &:hover {
+    ~ .c-bolt-image-zoom__overlay {
 }
 
 
@@ -360,21 +355,10 @@ bolt-device-viewer .c-bolt-device-viewer__screen--magnify {
   width: $magnifier-size;
   height: $magnifier-size;
   border-radius: 50%;
-	// box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
 	border: 5px solid bolt-color(white);
 	box-shadow: 0 2px 5px 10px rgba(bolt-color(black),0.05), 0 20px 40px 0 rgba(bolt-color(black),0.70);
 	z-index: 1000;
-	// cursor: -moz-zoom-in; 
-	// cursor: -webkit-zoom-in; 
-	// cursor: zoom-in;
-	// transform:;
-
-	// transform: translate3d(-50%, -50%, 0);
 	top: 50%;
 	left: 50%;
-
-	// :defined & {
-	// 	opacity: 0;
-	// }
 }
 
