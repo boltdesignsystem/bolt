@@ -32,21 +32,22 @@
 
 {% set classes = [
   baseClass,
+  "c-bolt-device-viewer",
   "marvel-device",
   color in colors ? baseClass ~ "--" ~ color : "",
   orientation in orientations ? baseClass ~ "--" ~ orientation : ""
 ] %}
 
 
-      <div class="{{ baseClass ~ "__top-bar"}}"></div>
-      <div class="{{ baseClass ~ "__sleep"}}"></div>
-      <div class="{{ baseClass ~ "__volume"}}"></div>
-      <div class="{{ baseClass ~ "__camera"}}"></div>
-      <div class="{{ baseClass ~ "__speaker"}}"></div>
 <bolt-device-viewer {{ attributes.addClass(classes | raw) }}>
   <div class="c-bolt-device-viewer__inner {{ baseClass ~ "__inner"}}">
+    <div class="{{ baseClass ~ "__top-bar"}}"></div>
     <div class="{{ baseClass ~ "__bottom-bar"}}"></div>
 
+    <div class="{{ baseClass ~ "__sleep"}}"></div>
+    <div class="{{ baseClass ~ "__volume"}}"></div>
+    <div class="c-bolt-device-viewer__camera {{ baseClass ~ "__camera"}}"></div>
+    <div class="{{ baseClass ~ "__speaker"}}"></div>
     <div class="c-bolt-device-viewer__home {{ baseClass ~ "__home"}}"></div>
 
     <div class="c-bolt-device-viewer__screen {{ baseClass ~ "__screen"}}">
