@@ -38,16 +38,16 @@
 ] %}
 
 
-<bolt-device-viewer>
-  <div {{ attributes.addClass(classes | raw) }}>
-    <div class="{{ baseClass ~ "__inner" }}">
       <div class="{{ baseClass ~ "__top-bar"}}"></div>
       <div class="{{ baseClass ~ "__sleep"}}"></div>
       <div class="{{ baseClass ~ "__volume"}}"></div>
       <div class="{{ baseClass ~ "__camera"}}"></div>
       <div class="{{ baseClass ~ "__speaker"}}"></div>
+<bolt-device-viewer {{ attributes.addClass(classes | raw) }}>
+  <div class="c-bolt-device-viewer__inner {{ baseClass ~ "__inner"}}">
 
-      <bolt-device-screen class="{{ baseClass ~ "__screen"}} c-bolt-device-viewer__screen {% if magnify %} c-bolt-device-viewer__screen--magnify js-bolt-device-viewer-screen {% endif %}">
+    <div class="c-bolt-device-viewer__screen {{ baseClass ~ "__screen"}}">
+      {% if magnify %}<bolt-image-zoom>{% endif %}
         {% if magnify %}
           {% include "@bolt/_screen-tilt.twig" %}
         {% endif %}
@@ -72,11 +72,11 @@
             } only %}
           </div>
         {% endif %}
-      </bolt-device-screen>
 
       <div class="{{ baseClass ~ "__home"}}"></div>
       <div class="{{ baseClass ~ "__bottom-bar"}}"></div>
 
+      {% if magnify %}</bolt-image-zoom>{% endif %}
     </div>
   </div>
 </bolt-device-viewer>
