@@ -301,14 +301,20 @@ $magnifier-size: 350px;
 
 
 
+bolt-image-zoom,
 bolt-device-viewer .c-bolt-device-viewer__screen--magnify {
   cursor: none;
 
-.c-bolt-device-viewer__screen:hover > .c-bolt-device-viewer__overlay {
-	opacity: 0;
+  // Don't hide cursor on IE10 / 11 due to janky behavior
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    cursor: inherit;
+  }
 }
 
 
+bolt-image-zoom:hover > .c-bolt-image-zoom__overlay {
+  opacity: 0;
+}
 
 
 .drift-zoom-pane {
