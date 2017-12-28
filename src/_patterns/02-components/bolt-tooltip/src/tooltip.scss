@@ -16,7 +16,7 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
 }
 
 // Tooltip styling
-.bolt-tooltip {
+.c-bolt-tooltip {
   display: inline-block;
   position: relative;
 
@@ -25,25 +25,25 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
   }
 
   &.action {
-    .bolt-tooltip__trigger {
+    .c-bolt-tooltip__trigger {
       cursor: pointer;
     }
   }
 
   &.nowrap {
-    .bolt-tooltip__content {
+    .c-bolt-tooltip__content {
       min-width: auto;
       white-space: nowrap;
     }
   }
 
   &.y-up {
-    .bolt-tooltip__content {
+    .c-bolt-tooltip__content {
       top: 0;
       transform: translateY(-100%);
     }
 
-    .bolt-tooltip__content-bubble {
+    .c-bolt-tooltip__content-bubble {
       &:after,
       &:before {
         border-top: $bolt-bubble-tip-height solid;
@@ -70,7 +70,7 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
   }
 
   &.y-down {
-    .bolt-tooltip__content-bubble {
+    .c-bolt-tooltip__content-bubble {
       &:after,
       &:before {
         border-top: $bolt-bubble-tip-width solid transparent;
@@ -95,12 +95,12 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
   }
 
   &.x-left {
-    .bolt-tooltip__content {
+    .c-bolt-tooltip__content {
       right: auto;
       left: 0;
     }
 
-    .bolt-tooltip__content-bubble {
+    .c-bolt-tooltip__content-bubble {
       &:before,
       &:after {
         right: auto;
@@ -110,12 +110,12 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
   }
 
   &.x-right {
-    .bolt-tooltip__content {
+    .c-bolt-tooltip__content {
       right: 0;
       left: auto;
     }
 
-    .bolt-tooltip__content-bubble {
+    .c-bolt-tooltip__content-bubble {
       &:before,
       &:after {
         right: $bolt-bubble-tip-width / 2;
@@ -125,11 +125,11 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
   }
 
   &.x-center {
-    .bolt-tooltip__content {
+    .c-bolt-tooltip__content {
       left: 50%;
     }
 
-    .bolt-tooltip__content-bubble {
+    .c-bolt-tooltip__content-bubble {
       &:after,
       &:before {
         left: 50%;
@@ -137,11 +137,11 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
     }
 
     &.y-up {
-      .bolt-tooltip__content {
+      .c-bolt-tooltip__content {
         transform: translate(-50%, -100%);
       }
 
-      .bolt-tooltip__content-bubble {
+      .c-bolt-tooltip__content-bubble {
         &:after,
         &:before {
           transform: translate(-50%, 100%);
@@ -150,11 +150,11 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
     }
 
     &.y-down {
-      .bolt-tooltip__content {
+      .c-bolt-tooltip__content {
         transform: translate(-50%, 0);
       }
 
-      .bolt-tooltip__content-bubble {
+      .c-bolt-tooltip__content-bubble {
         &:after,
         &:before {
           transform: translate(-50%, -100%);
@@ -164,11 +164,11 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
   }
 }
 
-.bolt-tooltip__trigger {
+.c-bolt-tooltip__trigger {
   display: block;
 }
 
-.bolt-tooltip__content {
+.c-bolt-tooltip__content {
   display: block;
   position: absolute;
   min-width: 200px;
@@ -176,7 +176,7 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
   transition: all ease-in-out 200ms;
 }
 
-.bolt-tooltip__content-bubble {
+.c-bolt-tooltip__content-bubble {
   display: block;
   position: relative;
   border: 1px solid rgba(bolt-color(black), 0.2);
@@ -196,36 +196,36 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
 }
 
 // Show and hide effects
-.bolt-tooltip:not(:hover) > .bolt-tooltip__content,
-.bolt-tooltip__trigger + .bolt-tooltip__content {
+.c-bolt-tooltip:not(:hover) > .c-bolt-tooltip__content,
+.c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
   @extend [aria-hidden="true"];
 }
 
-.bolt-tooltip:hover > .bolt-tooltip__content,
-.bolt-tooltip__trigger.is-active + .bolt-tooltip__content {
+.c-bolt-tooltip:hover > .c-bolt-tooltip__content,
+.c-bolt-tooltip__trigger.is-active + .c-bolt-tooltip__content {
   @extend [aria-hidden="false"];
 }
 
-.bolt-tooltip.y-down {
-  &:not(:hover) > .bolt-tooltip__content,
-  .bolt-tooltip__trigger + .bolt-tooltip__content {
+.c-bolt-tooltip.y-down {
+  &:not(:hover) > .c-bolt-tooltip__content,
+  .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
     padding-top: 0;
   }
 
-  &:hover > .bolt-tooltip__content,
-  .bolt-tooltip__trigger.is-active + .bolt-tooltip__content {
+  &:hover > .c-bolt-tooltip__content,
+  .c-bolt-tooltip__trigger.is-active + .c-bolt-tooltip__content {
     padding-top: 0.25em; // Extra spacing between the bubble and the trigger
   }
 }
 
-.bolt-tooltip.y-up {
-  &:not(:hover) > .bolt-tooltip__content,
-  .bolt-tooltip__trigger + .bolt-tooltip__content {
+.c-bolt-tooltip.y-up {
+  &:not(:hover) > .c-bolt-tooltip__content,
+  .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
     padding-bottom: 0;
   }
 
-  &:hover > .bolt-tooltip__content,
-  .bolt-tooltip__trigger.is-active + .bolt-tooltip__content {
+  &:hover > .c-bolt-tooltip__content,
+  .c-bolt-tooltip__trigger.is-active + .c-bolt-tooltip__content {
     padding-bottom: 0.25em; // Extra spacing between the bubble and the trigger
   }
 }
