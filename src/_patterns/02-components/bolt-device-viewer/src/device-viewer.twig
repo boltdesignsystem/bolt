@@ -59,8 +59,17 @@
         {% endblock %}
 
         {% if magnify %}
-          <div class="c-bolt-device-viewer__overlay">
-            <bolt-icon name="search" size="xlarge" background="circle" class="c-bolt-device-viewer__overlay-icon" />
+          <div class="c-bolt-image-zoom__overlay">
+            {% include "@bolt/icon.twig" with {
+              name: "search",
+              size: "xlarge",
+              background: "circle",
+              attributes: {
+                class: [
+                  "c-bolt-image-zoom__overlay-icon"
+                ]
+              }
+            } only %}
           </div>
         {% endif %}
       </bolt-device-screen>
