@@ -27,7 +27,6 @@ const processEnv = {
 
 const sassDataExportPath = `${process.cwd()}/dist`;
 const defaultConfig = {
-  // entry: './src/index.js',
   entry: {
     'critical-fonts':
       './src/_patterns/02-components/bolt-critical-fonts/src/critical-fonts',
@@ -58,36 +57,7 @@ const defaultConfig = {
           loader: 'babel-loader',
           options: {
             babelrc: false,
-            plugins: [
-              [
-                'transform-react-jsx',
-                {
-                  pragma: 'h'
-                }
-              ],
-              'transform-decorators-legacy'
-            ],
-
-            presets: [
-              [
-                'env',
-                {
-                  targets: {
-                    // browsers: [
-                    //   'last 3 versions',
-                    //   'not ie < 9'
-                    // ]
-                  },
-                  modules: false
-                }
-              ],
-              'flow',
-              'react',
-              'es2015',
-              'es2016',
-              'es2017',
-              'stage-0'
-            ]
+            presets: ['@bolt/babel-preset-bolt'],
           }
         }
       },
