@@ -154,6 +154,7 @@ const defaultConfig = {
     maxEntrypointSize: 1500000
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new CommonsChunkPlugin({
       deepChildren: true,
       children: true,
@@ -191,6 +192,13 @@ const defaultConfig = {
     port: 3000,
     host: '0.0.0.0',
     disableHostCheck: true
+    hot: true,
+    inline: true,
+    watchContentBase: true,
+    watchOptions: {
+      aggregateTimeout: 500,
+      ignored: /(annotations|fonts|node_modules|styleguide|images|fonts|assets)/
+    }
   }
 };
 
