@@ -216,10 +216,10 @@ const defaultConfig = {
   devServer: {
     contentBase: path.resolve(outputPath),
     compress: true,
+    port: 8080,
     overlay: {
       errors: true
     },
-    port: 3000,
     host: '0.0.0.0',
     disableHostCheck: true
     hot: true,
