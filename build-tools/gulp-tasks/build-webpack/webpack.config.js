@@ -184,7 +184,7 @@ const defaultConfig = {
     })
   ],
   devServer: {
-    contentBase: path.resolve(outputPath),
+    contentBase: path.resolve('./dist'),
     compress: true,
     port: 8080,
     overlay: {
