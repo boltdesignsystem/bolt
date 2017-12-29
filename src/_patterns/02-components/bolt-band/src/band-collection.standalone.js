@@ -264,7 +264,6 @@ export class BoltBandCollection extends withComponent(withPreact()) {
   
 
   connectedCallback() {
-    console.log('band collection connected callback');
 
     // HIDE
     // Shim Shadow DOM styles. This needs to be run in `connectedCallback()`
