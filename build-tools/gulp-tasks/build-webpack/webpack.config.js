@@ -52,7 +52,7 @@ const defaultConfig = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /(node_modules\/@skatejs\/renderer-lit-html\/dist\/node\/index\.js|native-shim\.js|node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js|\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js|custom-elements-es5-adapter\.js|bower_components)/,
+        exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
         use: {
           loader: 'babel-loader',
           options: {
