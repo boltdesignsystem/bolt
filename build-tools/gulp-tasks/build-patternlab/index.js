@@ -8,8 +8,6 @@ const merge = require('merge').recursive;
 const fs = require('fs-extra');
 const path = require('path');
 const globby = require('globby');
-const glob = require('glob');
-const debug = require('gulp-debug');
 
 const patternLabConfig = yaml.safeLoad(
   fs.readFileSync(defaultConfig.patternLab.configFile, 'utf8')
