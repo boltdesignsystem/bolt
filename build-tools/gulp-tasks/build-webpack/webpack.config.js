@@ -27,7 +27,6 @@ const processEnv = {
 
 const sassDataExportPath = `${process.cwd()}/dist`;
 const defaultConfig = {
-  // entry: './src/index.js',
   entry: {
     'critical-fonts':
       './src/_patterns/02-components/bolt-critical-fonts/src/critical-fonts',
@@ -53,41 +52,12 @@ const defaultConfig = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /(node_modules\/@skatejs\/renderer-lit-html\/dist\/node\/index\.js|native-shim\.js|node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js|\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js|custom-elements-es5-adapter\.js|bower_components)/,
+        exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
         use: {
           loader: 'babel-loader',
           options: {
             babelrc: false,
-            plugins: [
-              [
-                'transform-react-jsx',
-                {
-                  pragma: 'h'
-                }
-              ],
-              'transform-decorators-legacy'
-            ],
-
-            presets: [
-              [
-                'env',
-                {
-                  targets: {
-                    // browsers: [
-                    //   'last 3 versions',
-                    //   'not ie < 9'
-                    // ]
-                  },
-                  modules: false
-                }
-              ],
-              'flow',
-              'react',
-              'es2015',
-              'es2016',
-              'es2017',
-              'stage-0'
-            ]
+            presets: ['@bolt/babel-preset-bolt'],
           }
         }
       },
@@ -184,6 +154,7 @@ const defaultConfig = {
     maxEntrypointSize: 1500000
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new CommonsChunkPlugin({
       deepChildren: true,
       children: true,
@@ -213,14 +184,21 @@ const defaultConfig = {
     })
   ],
   devServer: {
-    contentBase: path.resolve(outputPath),
+    contentBase: path.resolve('./dist'),
     compress: true,
+    port: 8080,
     overlay: {
       errors: true
     },
-    port: 3000,
     host: '0.0.0.0',
-    disableHostCheck: true
+    disableHostCheck: true,
+    hot: true,
+    inline: true,
+    watchContentBase: true,
+    watchOptions: {
+      aggregateTimeout: 500,
+      ignored: /(annotations|fonts|node_modules|styleguide|images|fonts|assets)/
+    }
   }
 };
 

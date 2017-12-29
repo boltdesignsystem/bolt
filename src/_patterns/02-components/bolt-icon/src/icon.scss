@@ -8,7 +8,7 @@ bolt-icon {
   display: inline-block;
   vertical-align: middle;
   // display: inline-flex;
-  color: currentColor;
+  color: inherit;
   color: var(--bolt-color-icon, inherit);
 
   &:not(:resolved){
@@ -19,7 +19,7 @@ bolt-icon {
 
 :host {
   display: inline-block;
-  color: currentColor;
+  color: inherit;
   color: var(--bolt-color-icon, inherit);
   vertical-align: middle;
 }
@@ -39,7 +39,8 @@ bolt-icon {
   height: 1em;
   box-sizing: border-box;
   z-index: 2;
-  color: var(--bolt-color-icon, currentColor);
+  color: inherit;
+  color: var(--bolt-color-icon, inherit);
 }
 
 
@@ -87,8 +88,8 @@ bolt-icon[size='xlarge'],
   opacity: 0.1;
   opacity: var(--bolt-theme-icon-background-opacity, 0.1);
 
-  background-color: currentColor;
-  background-color: var(--bolt-theme-icon-background-color, currentColor);
+  background-color: inherit;
+  background-color: var(--bolt-theme-icon-background-color, inherit);
 }
 
 .c-bolt-icon__circle-background {

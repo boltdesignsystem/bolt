@@ -1,71 +1,33 @@
-/**
-  * @define o-bolt-ratio
-  */
-
 /* ==========================================================================
    #BOLT RATIO OBJECT
    ========================================================================== */
-// bolt-ratio {
-//   display: inline;
-// }
 
-// :host {
-//   display: inline-block;
-//   overflow: hidden;
-// }
+bolt-ratio {
+  display: inline-block;
+  position: relative;
+  width: 100%;
 
-
-bolt-ratio,
-:host {
   --aspect-ratio-width: 1;
   --aspect-ratio-height: 1;
-  position: relative;
-  display: inline-block;
-  width: 100%;
 
   @supports (--custom:property) {
     padding-top: calc( var(--aspect-ratio-height, 1) / var(--aspect-ratio-width, 1) * 100%);
   }
-
-  > * {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    min-width: 100%; // workaround for content w/ hard-coded height & width 
-    min-height: 100%; // workaround for content w/ hard-coded height & width
-  }
 }
 
-// @mixin bolt-aspect-ratio($width, $height) {
-//   padding-bottom: ($height / $width) * 100%;
-// }
 
-// .o-bolt-ratio--16x9:after {
-//   @include bolt-aspect-ratio(16,9);
-// }
-
-// .o-bolt-ratio--2x1:after {
-//   @include bolt-aspect-ratio(16,8);
-// }
-
-// .o-bolt-ratio--16x7:after {
-//   @include bolt-aspect-ratio(16,7);
-// }
-
-// .o-bolt-ratio--20x9:after {
-//   @include bolt-aspect-ratio(20,9);
-// }
-
-// .o-bolt-ratio--1x1:after {
-//   @include bolt-aspect-ratio(1,1);
-// }
-
-// .o-bolt-ratio--3x4:after {
-//   @include bolt-aspect-ratio(3,4);
-// }
-
-// .o-bolt-ratio--4x3:after {
-//   @include bolt-aspect-ratio(4,3);
-// }
+/**
+  * 1. Fallback selector if JS isn't disabled, but hasn't kicked in yet.
+  * 2. Fallback selector for browsers not supporting ::slotted(*) selector
+  */
+bolt-ratio > *, /* [1] */
+.o-bolt-ratio__inner, /* [2] */
+.o-bolt-ratio__inner ::slotted(*) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 100%; // workaround for content w/ hard-coded height & width
+  min-height: 100%; // workaround for content w/ hard-coded height & width
+}

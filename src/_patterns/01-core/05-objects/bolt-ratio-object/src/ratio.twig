@@ -1,9 +1,12 @@
 {% set classes = [
-  "o-bolt-ratio"
+
 ] %}
 
 {% set attributes = create_attribute(attributes | default({})) %}
 
+
+{% set aspectRatioHeight = aspectRatioHeight ? aspectRatioHeight : "1" %}
+{% set aspectRatioWidth = aspectRatioWidth ? aspectRatioWidth : "1" %}
 
 {% if aspectRatioHeight and aspectRatioWidth %}
   {% set attributes = attributes.addClass(classes) %}
