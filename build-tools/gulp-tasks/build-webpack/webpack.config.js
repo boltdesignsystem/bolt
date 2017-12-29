@@ -221,7 +221,7 @@ const defaultConfig = {
       errors: true
     },
     host: '0.0.0.0',
-    disableHostCheck: true
+    disableHostCheck: true,
     hot: true,
     inline: true,
     watchContentBase: true,
