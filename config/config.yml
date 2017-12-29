@@ -63,5 +63,12 @@ plugins:
     enabled: true
     namespaces:
       bolt:
+        recursive: true
+        paths:
+          - packages
+          - src/_patterns
+      utils:
+        recursive: true
         paths:
           - src/_patterns/00-utils
+          # - src/_includes # new home for utils in v1.0
