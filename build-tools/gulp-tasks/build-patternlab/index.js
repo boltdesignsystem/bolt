@@ -23,7 +23,6 @@ const consolePath = path.join(patternLabRoot, 'core/console');
 
 // Build Pattern Lab via CLI command -- can exit or not based on 2nd param passed in
 function patternLab(done, errorShouldExit) {
-  core.events.emit('pattern-lab:precompile');
     core.events.emit('reload', '**/*.html', true);
   core.notify.sh(`php -d memory_limit=1024M ${consolePath} --generate`, errorShouldExit, (err) => {
     done(err);
