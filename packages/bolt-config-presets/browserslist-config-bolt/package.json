@@ -1,0 +1,34 @@
+{
+  "name": "@bolt/browserslist-config-bolt",
+  "description": "Browserslist config shared across the Bolt Design System",
+  "keywords": [
+    "browserslist",
+    "browserslist-config",
+    "bolt design system"
+  ],
+  "version": "0.3.1",
+  "author": "Salem Ghoweri",
+  "homepage": "https://boltdesignsystem.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bolt-design-system/bolt"
+  },
+  "bugs": {
+    "url": "https://github.com/bolt-design-system/bolt/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "browserslist": "^2.10.0"
+  },
+  "devDependencies": {
+    "@bolt/eslint-config-bolt": "^0.4.0-beta.0"
+  },
+  "scripts": {
+    "test": "npm run lint && node test",
+    "lint": "eslint ."
+  }
+}

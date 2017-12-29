@@ -13,6 +13,7 @@
     ]
   },
   "dependencies": {
+    "@bolt/browserslist-config-bolt": "^0.3.1",
     "babel-plugin-jsx-pragmatic": "^1.0.2",
     "babel-plugin-dynamic-import-node": "^1.2.0",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
@@ -36,5 +37,11 @@
     "node",
     "bolt",
     "bolt design system"
-  ]
+  ],
+  "browserslist": [
+    "extends @bolt/browserslist-config-bolt"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }
