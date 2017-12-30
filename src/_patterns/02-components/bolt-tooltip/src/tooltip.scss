@@ -20,24 +20,7 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
   display: inline-block;
   position: relative;
 
-  &.help {
-    cursor: help;
-  }
-
-  &.action {
-    .c-bolt-tooltip__trigger {
-      cursor: pointer;
-    }
-  }
-
-  &.nowrap {
-    .c-bolt-tooltip__content {
-      min-width: auto;
-      white-space: nowrap;
-    }
-  }
-
-  &.y-up {
+  &.is-up {
     .c-bolt-tooltip__content {
       top: 0;
       transform: translateY(-100%);
@@ -69,7 +52,7 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
     }
   }
 
-  &.y-down {
+  &.is-down {
     .c-bolt-tooltip__content-bubble {
       &:after,
       &:before {
@@ -94,7 +77,7 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
     }
   }
 
-  &.x-left {
+  &.is-left {
     .c-bolt-tooltip__content {
       right: auto;
       left: 0;
@@ -109,7 +92,7 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
     }
   }
 
-  &.x-right {
+  &.is-right {
     .c-bolt-tooltip__content {
       right: 0;
       left: auto;
@@ -124,7 +107,7 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
     }
   }
 
-  &.x-center {
+  &.is-center {
     .c-bolt-tooltip__content {
       left: 50%;
     }
@@ -136,7 +119,7 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
       }
     }
 
-    &.y-up {
+    &.is-up {
       .c-bolt-tooltip__content {
         transform: translate(-50%, -100%);
       }
@@ -149,7 +132,7 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
       }
     }
 
-    &.y-down {
+    &.is-down {
       .c-bolt-tooltip__content {
         transform: translate(-50%, 0);
       }
@@ -161,6 +144,23 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
         }
       }
     }
+  }
+}
+
+.c-bolt-tooltip--help {
+  cursor: help;
+}
+
+.c-bolt-tooltip--action {
+  .c-bolt-tooltip__trigger {
+    cursor: pointer;
+  }
+}
+
+.c-bolt-tooltip--nowrap {
+  .c-bolt-tooltip__content {
+    min-width: auto;
+    white-space: nowrap;
   }
 }
 
@@ -206,7 +206,7 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
   @extend [aria-hidden="false"];
 }
 
-.c-bolt-tooltip.y-down {
+.c-bolt-tooltip.is-down {
   &:not(:hover) > .c-bolt-tooltip__content,
   .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
     padding-top: 0;
@@ -218,7 +218,7 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
   }
 }
 
-.c-bolt-tooltip.y-up {
+.c-bolt-tooltip.is-up {
   &:not(:hover) > .c-bolt-tooltip__content,
   .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
     padding-bottom: 0;
