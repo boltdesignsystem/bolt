@@ -12,7 +12,6 @@ import {
 
 import styles from './ratio.scss';
 
-@define
 export class BoltRatio extends withComponent(withPreact()) {
   static is = 'bolt-ratio';
 
@@ -107,3 +106,5 @@ export class BoltRatio extends withComponent(withPreact()) {
     this.update();
   }
 }
+
+customElements.define(BoltRatio.is, BoltRatio);

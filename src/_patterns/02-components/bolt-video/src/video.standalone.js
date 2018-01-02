@@ -12,7 +12,6 @@ import {
 import BrightcoveVideo from '@bolt/components-brightcove-player/src/brightcove-player.standalone';
 
 
-@define
 class BoltVideo extends BrightcoveVideo {
   static is='bolt-video';
   
@@ -26,3 +25,5 @@ class BoltVideo extends BrightcoveVideo {
   //   )
   // }
 }
+
+customElements.define(BoltVideo.is, BoltVideo);
