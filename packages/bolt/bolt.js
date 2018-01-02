@@ -25,3 +25,7 @@ polyfillLoader.then(res => {
 
   import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-video' */ '@bolt/components-video/src/video.standalone');
 });
+
+if (module.hot) {
+  module.hot.accept('./bolt.js');
+}
