@@ -24,7 +24,6 @@ bandCollectionTemplate.innerHTML = `
 ShadyCSS.prepareTemplate(bandCollectionTemplate, 'bolt-band-collection');
   // /HIDE
 
-  
 
 export class BoltBandCollection extends withComponent(withPreact()) {
   static is = 'bolt-band-collection';
@@ -106,7 +105,7 @@ export class BoltBandCollection extends withComponent(withPreact()) {
       } else {
         initialHeight = band.getBoundingClientRect().height;
       }
-      
+
       if (band.expandedHeight){
         expandedHeight = band.expandedHeight;
       } else {
@@ -260,7 +259,6 @@ export class BoltBandCollection extends withComponent(withPreact()) {
   }
 
 
-  
 
   connectedCallback() {
     console.log('band collection connected callback');

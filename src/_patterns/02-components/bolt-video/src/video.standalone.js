@@ -14,16 +14,10 @@ import BrightcoveVideo from '@bolt/components-brightcove-player/src/brightcove-p
 
 class BoltVideo extends BrightcoveVideo {
   static is='bolt-video';
-  
+
   constructor() {
     super();
   }
-
-  // renderCallback() {
-  //   return (
-  //     <slot />
-  //   )
-  // }
 }
 
 customElements.define(BoltVideo.is, BoltVideo);
