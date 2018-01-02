@@ -47,3 +47,29 @@
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
 }
+
+.c-bolt-video__close-button {
+  color: bolt-color(orange);
+  --bolt-color-icon: bolt-color(orange);
+
+  position: absolute;
+  z-index: 1000;
+  top: bolt-spacing(xxsmall);
+  right: bolt-spacing(xxsmall);
+  transition: all 0.3s ease;
+  opacity: 0; // Initial state before brightcove video player kicks in
+
+  .is-collapsed & {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .is-expanded & {
+    opacity: 0.8;
+    pointer-events: auto;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+}
