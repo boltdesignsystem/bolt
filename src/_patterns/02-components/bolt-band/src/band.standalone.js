@@ -30,7 +30,6 @@ ShadyCSS.prepareTemplate(bandTemplate, 'bolt-band');
 
 
 
-@define
 export class BoltBand extends withComponent(withPreact()) {
   static is = 'bolt-band';
 
@@ -179,3 +178,5 @@ export class BoltBand extends withComponent(withPreact()) {
     )
   }
 }
+
+customElements.define(BoltBand.is, BoltBand);

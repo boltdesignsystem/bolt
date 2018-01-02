@@ -15,7 +15,6 @@ import {
 
 let index = 0;
 
-@define
 class BrightcoveVideo extends withComponent(withPreact()) {
   static is = 'brightcove-player';
 
@@ -561,6 +560,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     );
   }
 }
+customElements.define(BrightcoveVideo.is, BrightcoveVideo);
 
 export default BrightcoveVideo; 
 

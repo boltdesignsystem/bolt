@@ -12,7 +12,6 @@ import {
 import styles from './button.scoped.scss';
 
 
-@define
 export class BoltButton extends withComponent(withPreact()) {
   static is = 'bolt-button';
 
@@ -54,3 +53,5 @@ export class BoltButton extends withComponent(withPreact()) {
     )
   }
 }
+
+customElements.define(BoltButton.is, BoltButton);
