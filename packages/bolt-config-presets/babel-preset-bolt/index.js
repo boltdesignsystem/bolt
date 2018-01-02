@@ -15,24 +15,15 @@ const preset = function (api, opts = {}) {
       }]
     ],
     plugins: [
-/**
- * 1. Required till github.com/github/babel-plugin-transform-custom-element-classes/issues/11
- *    is closed. Currently this is required for Bolt's SVG icon component
- *
- * 2. Allows us to dynamically import JS via Webpack. ex. import('button.standalone.js')
- */
       '@babel/plugin-syntax-decorators', // ex. @define
       '@babel/plugin-proposal-decorators',
-
-
 
       // critical for preact rendering
       [
         '@babel/plugin-transform-react-jsx',
         {
           pragma: 'h',
-          pragmaFrag: "\"span\"",
-          // pragmaFrag: "h",
+          pragmaFrag: '\"span\"',
           throwIfNamespace: false,
           useBuiltIns: false
         }
