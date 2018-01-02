@@ -1,6 +1,6 @@
-import { 
-  h, 
-  render, 
+import {
+  h,
+  render,
   define,
   props,
   withComponent,
@@ -70,7 +70,7 @@ export class BoltBand extends withComponent(withPreact()) {
   * `attributeChangedCallback` processes changes to the `expanded` attribute.
   */
   attributeChangedCallback(name) {
-    
+
     if (this.expanded && this.expandedHeight){
       this.style.maxHeight = this.expandedHeight + 'px';
     }
@@ -80,14 +80,14 @@ export class BoltBand extends withComponent(withPreact()) {
     } else {
       this.classList.remove('is-expanded');
     }
-    
+
     // `expanded` is a boolean attribute it is either set or not set. The
     // actual value is irrelevant.
     const value = this.hasAttribute('expanded');
     this.setAttribute('aria-expanded', value);
   }
 
- 
+
 
   playHandler(event) {
     if (event.detail.isBackgroundVideo){
@@ -113,7 +113,7 @@ export class BoltBand extends withComponent(withPreact()) {
   finishedHandler(event) {
     if (event.detail.isBackgroundVideo) {
       // console.log('bg video now finished!');
-      
+
       // this.expanded = false;
       // this.dispatchEvent(
       //   new CustomEvent('change', {
@@ -138,17 +138,18 @@ export class BoltBand extends withComponent(withPreact()) {
 
   set expanded(value) {
     value = Boolean(value);
-    if (value)
+    if (value) {
       this.setAttribute('expanded', '');
-    else
+    } else {
       this.removeAttribute('expanded');
+    }
   }
 
 
   get initialHeight() {
     return this.getAttribute('initialHeight');
   }
-  
+
   set initialHeight(value) {
     if (value)
       this.setAttribute('initialHeight', value);
@@ -160,7 +161,7 @@ export class BoltBand extends withComponent(withPreact()) {
   get expandedHeight() {
     return this.getAttribute('expandedHeight');
   }
- 
+
   set expandedHeight(value) {
     if (value)
       this.setAttribute('expandedHeight', value);

@@ -11,8 +11,6 @@ import {
   spacingSizes
 } from '@bolt/core';
 
-
-
 let index = 0;
 
 class BrightcoveVideo extends withComponent(withPreact()) {
@@ -46,7 +44,6 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     // this.onProgress = this.onProgress.bind(this);
     this.onDurationChange = this.onDurationChange.bind(this);
     this.onSeeked = this.onSeeked.bind(this);
-
 
     // BrightcoveVideo.globalErrors.forEach(this.props.onError);
 
@@ -138,7 +135,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
       const duration = player.mediainfo.duration;
       const width = player.mediainfo.sources[1].width;
       const height = player.mediainfo.sources[1].height;
-      
+
       elem._setDuration();
       elem._setVideoDimensions(width, height);
       elem._calculateIdealVideoSize();
@@ -192,7 +189,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
   // static isBackgroundVideo() {
   //   return this.props.isBackgroundVideo;
   // }
-  
+
 
   connectedCallback() {
     this.state = {
@@ -229,12 +226,11 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     // only ever append script once
     if (!BrightcoveVideo.players) {
       BrightcoveVideo.players = [];
-      
+
       const s = this.createScript();
 
       s.onload = () => {
         BrightcoveVideo.players.forEach(function(player){
-          console.log(player.state.id);
           player.initVideoJS(player.state.id)
         });
       };
@@ -335,7 +331,6 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     this.classList.remove('is-finished');
     this.classList.remove('is-paused');
 
-    
     // @TODO: implement internal setState method
     // elem.setState({
     //   isPlaying: true,
@@ -416,7 +411,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
 
       this.dispatchEvent(
         new CustomEvent('ended', {
-          detail: { 
+          detail: {
             isBackgroundVideo: this.props.isBackgroundVideo
           },
           bubbles: true,
@@ -471,7 +466,6 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     const player = videojs(id);
     const handler = BrightcoveVideo.handlePlayerReady.bind(player, this);
     // player.on("ready", handler);
-    
     player.ready(handler);
 
     // player.on("error", this.onError.bind(this, player));
@@ -521,14 +515,8 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     }
   }
 
-  disconnectedCallback() {
-    super.disconnectedCallback && super.disconnectedCallback();
-    // Preact hack https://github.com/developit/preact/issues/53
-    const Nothing = () => null;
-    this._preactDom = render( <Nothing/> , this._renderRoot, this._preactDom);
-  }
 
-  render({ state, props}) {
+  render({ state, props }) {
     // console.log('render callback');
     // data-email-subject="Pega - Intelligent Virtual Assistant for Email"
     // data-email-body="Check out this video from Pega"
@@ -541,10 +529,11 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     // );
     /* eslint jsx-a11y/media-has-caption: "off" */
     // Added a wrapping div as brightcove adds siblings to the video tag
+
     return(
       <video
         id={this.state.id}
-        {...(this.props.poster ? { poster: this.props.poster.uri } : {})}
+        {...(this.props.poster ? { poster: this.props.poster.uri } : {}) }
         data-embed="default"
         data-video-id={this.props.videoId}
         data-account={this.props.accountId}
@@ -562,7 +551,8 @@ class BrightcoveVideo extends withComponent(withPreact()) {
 }
 customElements.define(BrightcoveVideo.is, BrightcoveVideo);
 
-export default BrightcoveVideo; 
+export default BrightcoveVideo;
+
 
 
 // BrightcoveVideo.globalErrors = [];

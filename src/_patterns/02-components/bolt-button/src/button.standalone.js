@@ -9,7 +9,6 @@ import {
   spacingSizes
 } from '@bolt/core';
 
-import styles from './button.scoped.scss';
 
 
 export class BoltButton extends withComponent(withPreact()) {
