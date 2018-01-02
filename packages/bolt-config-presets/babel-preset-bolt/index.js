@@ -1,7 +1,8 @@
-const preset = function(api, opts = {}) {
+const preset = function (api, opts = {}) {
   return {
     presets: [
-      ['env', {
+      '@babel/preset-stage-3',
+      ['@babel/preset-env', {
         targets: {
           node: 'current',
           browsers: [
@@ -14,29 +15,17 @@ const preset = function(api, opts = {}) {
       }]
     ],
     plugins: [
-/**
- * 1. Required till github.com/github/babel-plugin-transform-custom-element-classes/issues/11
- *    is closed. Currently this is required for Bolt's SVG icon component
- *
- * 2. Allows us to dynamically import JS via Webpack. ex. import('button.standalone.js')
- */
-      'transform-decorators-legacy', // ex. @define
-
-      'transform-export-extensions', // ex. `export Communications from './icons/communications';` - used in @bolt/components-icons  
-
-      'transform-class-properties', // ex. class { handleThing = () => { } }
-
-      'transform-custom-element-classes', /* [1] */
-
-      'transform-es2015-classes', /* [1] */
-
-      'syntax-dynamic-import', /* [2] */
+      '@babel/plugin-syntax-decorators', // ex. @define
+      '@babel/plugin-proposal-decorators',
 
       // critical for preact rendering
       [
-        'transform-react-jsx',
+        '@babel/plugin-transform-react-jsx',
         {
-          pragma: 'h'
+          pragma: 'h',
+          pragmaFrag: '\"span\"',
+          throwIfNamespace: false,
+          useBuiltIns: false
         }
       ],
 
@@ -50,21 +39,10 @@ const preset = function(api, opts = {}) {
         }
       ],
 
-      // The following two plugins use Object.assign directly, instead of Babel's
-      // extends helper. Note that this assumes `Object.assign` is available.
-      // { ...todo, completed: true }
-      [
-        'transform-object-assign',
-        {
-          async: true
-        }
-      ],
 
       [
-        'transform-object-rest-spread',
-        {
-          useBuiltIns: true
-        }
+        '@babel/plugin-proposal-class-properties',
+        { loose: false }
       ],
 
       // @TODO: only include this when being run on a NODE environment
