@@ -133,19 +133,15 @@ module.exports = (gulp) => {
   
   gulp.task('default',
     gulp.series([
-      gulp.series([
-        // 'symlinks',
+      gulp.parallel([
         'images:resize', // Don't wipe images unless doing a full build
-        gutil.env.prod ? 'webpack:prod' : 'webpack:dev',
-        'styles:compile'
+        'styles:compile',
+        'patternlab:compile',
+        'styles:sassdoc'
       ]),
       gulp.parallel([
-        'patternlab:compile',
-        'styles:sassdoc',
-        'webpack:watch',
         'patternlab:watch',
-        'styles:watch',
-        'browsersync:serve'
+        'styles:watch'
       ])
     ])
   );

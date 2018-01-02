@@ -16,6 +16,7 @@ const isDev = process.argv.find(arg => arg.includes('webpack-dev-server'));
 const ENV = isDev ? 'development' : 'production';
 const outputPath = isDev ? path.resolve('src') : path.resolve('./dist');
 const merge = require('merge').recursive;
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 
 // const IS_MODULE_BUILD = BROWSERS[0].includes('Chrome');
@@ -182,6 +183,25 @@ const defaultConfig = {
       h: 'preact',
       Promise: 'es6-promise'
     })
+    new BrowserSyncPlugin(
+      // BrowserSync options
+      {
+        // browse to http://localhost:3000/ during development
+        host: 'localhost',
+        port: 3000,
+        // proxy the Webpack Dev Server endpoint
+        // (which should be serving on http://localhost:3100/)
+        // through BrowserSync
+        proxy: 'http://localhost:8080/'
+      },
+      // plugin options
+      {
+        // prevent BrowserSync from reloading the page
+        // and let Webpack Dev Server take care of this
+        reload: false,
+        name: 'bolt-server'
+      }
+    )
   ],
   devServer: {
     contentBase: path.resolve('./dist'),
@@ -198,7 +218,8 @@ const defaultConfig = {
     watchOptions: {
       aggregateTimeout: 500,
       ignored: /(annotations|fonts|node_modules|styleguide|images|fonts|assets)/
-    }
+    },
+    historyApiFallback: true
   }
 };
 
