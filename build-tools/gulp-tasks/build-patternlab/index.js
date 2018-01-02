@@ -8,8 +8,6 @@ const merge = require('merge').recursive;
 const fs = require('fs-extra');
 const path = require('path');
 const globby = require('globby');
-const glob = require('glob');
-const debug = require('gulp-debug');
 
 const patternLabConfig = yaml.safeLoad(
   fs.readFileSync(defaultConfig.patternLab.configFile, 'utf8')
@@ -25,9 +23,8 @@ const consolePath = path.join(patternLabRoot, 'core/console');
 
 // Build Pattern Lab via CLI command -- can exit or not based on 2nd param passed in
 function patternLab(done, errorShouldExit) {
-  core.events.emit('pattern-lab:precompile');
-  core.notify.sh(`php -d memory_limit=4048M ${consolePath} --generate`, errorShouldExit, (err) => {
     core.events.emit('reload', '**/*.html', true);
+  core.notify.sh(`php -d memory_limit=1024M ${consolePath} --generate`, errorShouldExit, (err) => {
     done(err);
   });
 }
@@ -87,88 +84,6 @@ function createTwigManifest(workingDir) {
 }
 
 
-function getTwigNamespaceConfig(workingDir) {
-  workingDir = workingDir || process.cwd(); // eslint-disable-line no-param-reassign
-  const twigNamespaceConfig = {}; 
-  twigNamespaces.sets.forEach((namespaceSet) => {
-    const pathArray = namespaceSet.paths.map((pathBase) => {
-      const results = globby.sync([path.join(pathBase, '**/*.twig'), '!**/node_modules/**/*'], {
-        follow: true
-      });
-
-      results.forEach(function (result, index, results) {
-        results[index] = path.relative(workingDir, path.dirname(result));
-      });
-
-      const uniqEs6 = results.filter((elem, pos, arr) => arr.indexOf(elem) == pos);
-      return uniqEs6;
-    });
-    twigNamespaceConfig[namespaceSet.namespace] = {
-      paths: core.utils.uniqueArray(core.utils.flattenArray(pathArray)),
-    };
-  });
-  return twigNamespaceConfig;
-}
-
-function addTwigNamespaceConfigToDrupal(done) {
-  if (!twigNamespaces.drupalThemeFile) {
-    done();
-  } else {
-    const twigNamespaceConfig = getTwigNamespaceConfig(
-      path.dirname(twigNamespaces.drupalThemeFile)
-    );
-    const drupalThemeFile = yaml.safeLoad(
-      fs.readFileSync(twigNamespaces.drupalThemeFile, 'utf8')
-    );
-    Object.assign(drupalThemeFile['component-libraries'], twigNamespaceConfig);
-    const newThemeFile = yaml.safeDump(drupalThemeFile, {
-      noCompatMode: true
-    });
-    fs.writeFileSync(twigNamespaces.drupalThemeFile, newThemeFile, 'utf8');
-    done();
-  }
-}
-
-
-function addTwigNamespaceConfigToPl(done) {
-  const config = defaultConfig;
-  const twigNamespaceConfig = getTwigNamespaceConfig(patternLabRoot);
-
-  if (!patternLabConfig.plugins) {
-    Object.assign(patternLabConfig, {
-      plugins: {
-        twigNamespaces: { enabled: true, namespaces: {} },
-      },
-    });
-  } else if (!patternLabConfig.plugins.twigNamespaces) {
-    Object.assign(patternLabConfig.plugins, {
-      twigNamespaces: { enabled: true, namespaces: {} },
-    });
-  } else if (!patternLabConfig.plugins.twigNamespaces.namespaces) {
-    patternLabConfig.plugins.twigNamespaces.enabled = true;
-    patternLabConfig.plugins.twigNamespaces.namespaces = {};
-  }
-  patternLabConfig.plugins.twigNamespaces.enabled = true;
-  patternLabConfig.twigAutoescape = false;
-
-  Object.assign(patternLabConfig.plugins.twigNamespaces.namespaces, twigNamespaceConfig);
-
-  const newConfigFile = yaml.safeDump(patternLabConfig, {
-    noCompatMode: true
-  });
-
-  fs.writeFileSync(defaultConfig.patternLab.configFile, newConfigFile, 'utf8');
-  
-  // done();
-}
-
-core.events.on('pattern-lab:precompile', () => {
-  if (patternLabConfig.plugins.twigNamespaces) {
-    addTwigNamespaceConfigToPl();
-    // updateTwigManifest();
-    // addTwigNamespaceConfigToDrupal();
-  }
-});
 
 
 // Initial PL build - exits if error
