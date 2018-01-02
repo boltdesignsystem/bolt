@@ -65,6 +65,8 @@ module.exports = (options) => {
       allChunks: true
     }),
     new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new UglifyJSPlugin(),
     new webpack.LoaderOptionsPlugin(
       {
         minimize: true
