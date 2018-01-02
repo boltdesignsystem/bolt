@@ -76,23 +76,50 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
 
 .c-bolt-background__video {
   z-index: 10;
-  pointer-events: none;
-  opacity: 0;
-  transition: all 0.5s ease;
+  transition: all 0.4s ease;
 
-  &.is-playing,
-  &.is-paused,
-  &.is-finished {
+  .is-ready & {
+    background-color: rgba(bolt-color(black), 0.6);
+    perspective: 500px;
+    perspective-origin: 50% 150%;
+  }
+
+  .is-collapsed & {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .is-expanded & {
     opacity: 1;
     pointer-events: auto;
   }
-
 
   .video-js {
     max-width: 1400px;
     margin: 0 auto;
     min-width: 0;
     width: 100%;
+    transition: all 0.4s ease;
+
+    .is-ready & {
+      background-color: transparent;
+    }
+
+    .is-collapsed & {
+      transform: scale(0.95) rotateX(20deg) translateY(20%);
+    }
+
+    .is-expanded & {
+      transform: scale(1) rotateX(0deg) translateY(0%);
+      transition: transform 0.3s cubic-bezier(0.645, 0, 0.355, 1);
+    }
+  }
+}
+
+.c-bolt-background__image {
+  .is-expanded & {
+    opacity: 1;
+    filter: blur(10px);
   }
 }
 

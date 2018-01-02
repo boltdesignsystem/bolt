@@ -225,6 +225,8 @@ bolt-button {
 // Button colors
 .c-bolt-button {
   @include bolt-button;
+  flex-direction: column; // Vertically center inner content
+  justify-content: center; // Vertically center inner content
 }
 
 .c-bolt-button--primary {
@@ -376,26 +378,55 @@ bolt-button {
 .c-bolt-button--medium {
   @include bolt-padding(medium, squished);
   @include bolt-font-size(xsmall);
+
+  &.c-bolt-button--icon-only {
+    padding: bolt-spacing(medium);
+  }
+}
+
+.c-bolt-button--xxsmall {
+  @include bolt-padding(xxsmall, squished);
+  @include bolt-font-size(xsmall);
+
+  &.c-bolt-button--icon-only {
+    padding: bolt-spacing(xxsmall);
+  }
 }
 
 .c-bolt-button--xsmall {
   @include bolt-padding(xsmall, squished);
   @include bolt-font-size(xsmall);
+
+  &.c-bolt-button--icon-only {
+    padding: bolt-spacing(xsmall);
+  }
 }
 
 .c-bolt-button--small {
   @include bolt-padding(small, squished);
   @include bolt-font-size(xsmall);
+
+  &.c-bolt-button--icon-only {
+    padding: bolt-spacing(small);
+  }
 }
 
 .c-bolt-button--large {
   @include bolt-padding(medium, squished);
   @include bolt-font-size(medium);
+
+  &.c-bolt-button--icon-only {
+    padding: bolt-spacing(medium);
+  }
 }
 
 .c-bolt-button--xlarge {
   @include bolt-padding(large, squished);
   @include bolt-font-size(large);
+
+  &.c-bolt-button--icon-only {
+    padding: bolt-spacing(large);
+  }
 }
 
 
@@ -403,6 +434,11 @@ bolt-button {
 
 .c-bolt-button--full {
   width: 100%;
+}
+
+.c-bolt-button--rounded,
+.c-bolt-button--rounded:before {
+  border-radius: 50%;
 }
 
 .c-bolt-button--full\@small {
@@ -433,6 +469,18 @@ bolt-button {
   align-self: center;
 }
 
+.c-bolt-button__button {
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 0;
+  font-weight: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: inherit;
+  outline: 0;
+  padding: 0;
+  display: inline-flex; // vertical alignment w/ icon only button
+}
 
 .c-bolt-link__text + .c-bolt-link__icon,
 .c-bolt-button__item-text + .c-bolt-button__icon {

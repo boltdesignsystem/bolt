@@ -5,6 +5,48 @@ $bolt-export-data: false !global;
 
 $bolt-direction-index: 0;
 
+// @TODO: fix broken logic -- values not being output automatically as expected.
+.u-bolt-margin-none {
+  margin: 0 !important;
+}
+
+.u-bolt-margin-right-none {
+  margin-right: 0 !important;
+}
+
+.u-bolt-margin-left-none {
+  margin-left: 0 !important;
+}
+
+.u-bolt-margin-top-none {
+  margin-top: 0 !important;
+}
+
+.u-bolt-margin-bottom-none {
+  margin-top: 0 !important;
+}
+
+
+.u-bolt-padding-none {
+  padding: 0 !important;
+}
+
+.u-bolt-padding-right-none {
+  padding-right: 0 !important;
+}
+
+.u-bolt-padding-left-none {
+  padding-left: 0 !important;
+}
+
+.u-bolt-padding-top-none {
+  padding-top: 0 !important;
+}
+
+.u-bolt-padding-bottom-none {
+  padding-top: 0 !important;
+}
+
 @each $property in $bolt-spacing-properties {
   @for $i from 1 through length($bolt-spacing-directions) {
     $direction: nth($bolt-spacing-directions, $i);
