@@ -497,6 +497,19 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     }
   }
 
+  close() {
+    this.pause();
+
+    this.dispatchEvent(
+      new CustomEvent('close', {
+        detail: {
+          isBackgroundVideo: this.props.isBackgroundVideo
+        },
+        bubbles: true,
+      })
+    );
+  }
+
   toggle() {
     // console.log('TOGGLE VIDEO');
     // console.log(this.state);

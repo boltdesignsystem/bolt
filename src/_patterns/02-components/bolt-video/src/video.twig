@@ -1,6 +1,9 @@
 {% set prefix = "c-bolt-" %}
 
+{% set videoUuid = videoUuid | default("js-bolt-video-uuid--" ~ random()) %}
+
 {% set attributes = create_attribute(attributes|default({})) %}
+{% set attributes = attributes.addClass(videoUuid) %}
 
 
 {% set componentName = "video" %}
@@ -18,6 +21,37 @@
 
 {% set videoTag %}
   {% include "@bolt/_video-tag.twig" %}
+  {% embed "@bolt/wrapper.twig" with {
+    attributes: {
+      class: [
+        "u-bolt-padding-left-none",
+        "u-bolt-padding-right-none"
+      ]
+    }
+  } %}
+    {% block wrapper_content %}
+      <div class="c-bolt-video__close-wrapper">
+        <div class="c-bolt-video__close-button">
+          {% include "@bolt/button.twig" with {
+            text: "Close video",
+            tag: "button",
+            size: "xxsmall",
+            style: "secondary",
+            iconOnly: true,
+            rounded: true,
+            icon: {
+              name: "close",
+              size: "small"
+            },
+            attributes: {
+              "on-click": "close",
+              "on-click-target": videoUuid
+            }
+          } only %}
+        </div>
+      </div>
+    {% endblock %}
+  {% endembed %}
 {% endset %}
 
 {% if ratio == true %}

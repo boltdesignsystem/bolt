@@ -42,12 +42,18 @@ export class BoltBand extends withComponent(withPreact()) {
     this.attachShadow({
       mode: 'open'
     });
+
+    this.state = {
+      ready: false
+    }
+
     // Clone the shadow DOM template.
     this.shadowRoot.appendChild(
       bandTemplate.content.cloneNode(true)
     );
 
     this.addEventListener('expandedHeightSet', this._adjustExpandedHeightToMatchChildren);
+    this.initialHeight = this.getBoundingClientRect().height;
   }
 
 
@@ -63,6 +69,7 @@ export class BoltBand extends withComponent(withPreact()) {
     this.addEventListener('playing', this.playHandler);
     this.addEventListener('pause', this.pauseHandler);
     this.addEventListener('ended', this.finishedHandler);
+    this.addEventListener('close', this.collapse);
   }
 
 
@@ -70,6 +77,10 @@ export class BoltBand extends withComponent(withPreact()) {
   * `attributeChangedCallback` processes changes to the `expanded` attribute.
   */
   attributeChangedCallback(name) {
+    if (this.state.ready === false){
+      this.state.ready = true;
+      this.classList.add('is-ready');
+    }
 
     if (this.expanded && this.expandedHeight){
       this.style.maxHeight = this.expandedHeight + 'px';
@@ -77,8 +88,10 @@ export class BoltBand extends withComponent(withPreact()) {
 
     if (this.expanded) {
       this.classList.add('is-expanded');
+      this.classList.remove('is-collapsed');
     } else {
       this.classList.remove('is-expanded');
+      this.classList.add('is-collapsed');
     }
 
     // `expanded` is a boolean attribute it is either set or not set. The
@@ -124,10 +137,23 @@ export class BoltBand extends withComponent(withPreact()) {
     }
   }
 
+  expand() {
+    this.expanded = true;
+  }
+
+  collapse() {
+    this.expanded = false;
+  }
+
   // Max Height of a child element has been set so use that to determine how tall a band should get.
   _adjustExpandedHeightToMatchChildren(event){
     if (event.detail.expandedHeight) {
       this.expandedHeight = event.detail.expandedHeight;
+    }
+
+    if (this.state.ready === false) {
+      this.state.ready = true;
+      this.classList.add('is-ready');
     }
   }
 
@@ -139,9 +165,25 @@ export class BoltBand extends withComponent(withPreact()) {
   set expanded(value) {
     value = Boolean(value);
     if (value) {
+      if (this.expandedHeight) {
+        this.style.height = this.expandedHeight + 'px';
+      } else {
+        this.style.height = '56.25vh';
+      }
+
       this.setAttribute('expanded', '');
+      this.classList.add('is-expanded');
+      this.classList.remove('is-collapsed');
     } else {
+      if (this.initialHeight) {
+        this.style.height = this.initialHeight + 'px';
+      } else {
+        this.style.height = 'auto';
+      }
+
       this.removeAttribute('expanded');
+      this.classList.add('is-collapsed');
+      this.classList.remove('is-expanded');
     }
   }
 
@@ -151,10 +193,13 @@ export class BoltBand extends withComponent(withPreact()) {
   }
 
   set initialHeight(value) {
-    if (value)
+    if (value) {
       this.setAttribute('initialHeight', value);
-    else
+      this.style.height = this.initialHeight + 'px';
+    } else {
       this.removeAttribute('initialHeight');
+      this.style.height = 'auto';
+    }
   }
 
 

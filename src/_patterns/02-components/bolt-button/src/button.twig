@@ -14,6 +14,7 @@
 
 {# Allowed Button Sizes #}
 {% set sizes = [
+  "xxsmall",
   "xsmall",
   "small",
   "large",
@@ -29,6 +30,7 @@
 {% set size = size | default("medium") %}
 {% set width = width | default("") %}
 {% set style = style | default("") %}
+{% set rounded = rounded | default(false) %}
 {% set itemAlignment = itemAlignment | default("center") %}
 
 {% set tag = tag in tags|keys ? tag: "a" %}
@@ -59,14 +61,22 @@
 
 {# set iconpos = iconpos | default("right") #}
 
-<bolt-button {{ attributes.addClass(classes) }} bolt-component>
-  <{{ tag }} {{ tagAttributes }}>
-    <span class="{{ "#{baseClass}__item #{baseClass}__item-text" }}">{{ text }}</span>
+<bolt-button
+  size="{{ size in sizes ? size : 'medium' }}"
+  style="{{ style in styles ? style : 'primary' }}"
+  {% if rounded %}rounded="true"{% endif %}
+  {% if iconOnly %}icon-only="true"{% endif %}
+  {{ attributes }}
+>
+  <div {{ attributes.addClass(classes) }}>
+    <{{ tag }} {{ tagAttributes }}>
+      <span class="{{ "#{baseClass}__item #{baseClass}__item-text" }} {% if iconOnly %}u-bolt-visuallyhidden{% endif %}">{{ text }}</span>
 
-    {% if icon %}
-      <span class="{{ "#{baseClass}__icon" }}">
-        {% include "@bolt/icon.twig" with icon only %}
-      </span>
-    {% endif %}
-  </{{ tag }}>
+      {% if icon %}
+        <span class="{{ "#{baseClass}__icon" }} {% if iconOnly %}u-bolt-margin-left-none {% endif %}">
+          {% include "@bolt/icon.twig" with icon only %}
+        </span>
+      {% endif %}
+    </{{ tag }}>
+  </div>
 </bolt-button>

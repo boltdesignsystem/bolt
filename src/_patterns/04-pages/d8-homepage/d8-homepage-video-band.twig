@@ -148,6 +148,7 @@
   {% endblock %}
 {% endembed %}
 
+{% set videoUuid1 = "js-bolt-video-uuid--1" %}
 
 {% embed "@bolt/band.twig" with {
   theme: "dark",
@@ -170,11 +171,7 @@
         "videoId": "5609376179001",
         "accountId": "1900410236",
         "playerId": "r1CAdLzTW",
-        "attributes": {
-          "class": [
-            "js-video-bg-test-1"
-          ]
-        }
+        "videoUuid": videoUuid1
       }
     ]
   }
@@ -187,9 +184,10 @@
     } only %}
     {% include "@bolt/button.twig" with {
       text: "Toggle video",
+      tag: "button",
       attributes: {
         "on-click": "toggle",
-        "on-click-target": "js-video-bg-test-1"
+        "on-click-target": videoUuid1
       }
     } only %}
     {{ parent() }}
@@ -350,6 +348,7 @@
   {% endblock %}
 {% endembed %}
 
+{% set videoUuid2 = "js-bolt-video-uuid--2" %}
 {% embed "@bolt/band.twig" with {
   theme: "light",
   size: "medium",
@@ -371,11 +370,7 @@
         "videoId": "5453299964001",
         "accountId": "1900410236",
         "playerId": "r1CAdLzTW",
-        "attributes": {
-          "class": [
-            "js-video-bg-test-2"
-          ]
-        }
+        "videoUuid": videoUuid2
       }
     ]
   }
@@ -390,7 +385,7 @@
       text: "Toggle second video",
       attributes: {
         "on-click": "toggle",
-        "on-click-target": "js-video-bg-test-2"
+        "on-click-target": videoUuid2
       }
     } only %}
     {{ parent() }}
