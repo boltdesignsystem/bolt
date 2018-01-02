@@ -1,8 +1,10 @@
 /* ------------------------------------ *\
    Tooltip
 \* ------------------------------------ */
-$bolt-bubble-tip-width: 8px;
-$bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
+$bolt-tooltip-bubble-triangle-width: 8px;
+$bolt-tooltip-shadow: $bolt-global-shadow-depth-medium;
+$bolt-tooltip-tranision: $bolt-transition;
+
 
 // Aria tags for accessibility.
 [aria-hidden="true"] {
@@ -20,7 +22,7 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
   display: inline-block;
   position: relative;
 
-  &.is-up {
+  &.is-push-up {
     .c-bolt-tooltip__content {
       top: 0;
       transform: translateY(-100%);
@@ -29,85 +31,85 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
     .c-bolt-tooltip__content-bubble {
       &:after,
       &:before {
-        border-top: $bolt-bubble-tip-height solid;
-        border-right: $bolt-bubble-tip-width solid transparent;
-        border-bottom: $bolt-bubble-tip-width solid transparent;
-        border-left: $bolt-bubble-tip-width solid transparent;
+        border-top: $bolt-tooltip-bubble-triangle-width solid;
+        border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
+        border-bottom: $bolt-tooltip-bubble-triangle-width solid transparent;
+        border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
         transform: translateY(100%);
       }
 
       &:before {
         top: auto;
-        bottom: -1px;
+        bottom: 0;
         border-top-color: rgba(bolt-color(black), 0.2);
         border-bottom-color: transparent;
       }
 
       &:after {
         top: auto;
-        bottom: 0;
+        bottom: 1px;
         border-top-color: white;
         border-bottom-color: transparent;
       }
     }
   }
 
-  &.is-down {
+  &.is-push-down {
     .c-bolt-tooltip__content-bubble {
       &:after,
       &:before {
-        border-top: $bolt-bubble-tip-width solid transparent;
-        border-right: $bolt-bubble-tip-width solid transparent;
-        border-left: $bolt-bubble-tip-width solid transparent;
-        border-bottom: $bolt-bubble-tip-height solid;
+        border-top: $bolt-tooltip-bubble-triangle-width solid transparent;
+        border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
+        border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
+        border-bottom: $bolt-tooltip-bubble-triangle-width solid;
         transform: translateY(-100%);
       }
 
       &:before {
-        top: -1px;
+        top: 0;
         bottom: auto;
         border-bottom-color: rgba(bolt-color(black), 0.2);
       }
 
       &:after {
-        top: 0;
+        top: 1px;
         bottom: auto;
         border-bottom-color: white;
       }
     }
   }
 
-  &.is-left {
+  &.is-align-right {
     .c-bolt-tooltip__content {
-      right: auto;
-      left: 0;
-    }
-
-    .c-bolt-tooltip__content-bubble {
-      &:before,
-      &:after {
-        right: auto;
-        left: $bolt-bubble-tip-width / 2;
-      }
-    }
-  }
-
-  &.is-right {
-    .c-bolt-tooltip__content {
-      right: 0;
+      right: bolt-spacing(small) * -1;
       left: auto;
     }
 
     .c-bolt-tooltip__content-bubble {
       &:before,
       &:after {
-        right: $bolt-bubble-tip-width / 2;
+        right: calc(#{bolt-spacing(small)} + #{$bolt-tooltip-bubble-triangle-width / 2});
         left: auto;
       }
     }
   }
 
-  &.is-center {
+  &.is-align-left {
+    .c-bolt-tooltip__content {
+      right: auto;
+      left: bolt-spacing(small) * -1;
+    }
+
+    .c-bolt-tooltip__content-bubble {
+      &:before,
+      &:after {
+        right: auto;
+        left: calc(#{bolt-spacing(small)} + #{$bolt-tooltip-bubble-triangle-width / 2});
+      }
+    }
+  }
+
+  &.is-align-center {
     .c-bolt-tooltip__content {
       left: 50%;
     }
@@ -119,7 +121,7 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
       }
     }
 
-    &.is-up {
+    &.is-push-up {
       .c-bolt-tooltip__content {
         transform: translate(-50%, -100%);
       }
@@ -132,7 +134,7 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
       }
     }
 
-    &.is-down {
+    &.is-push-down {
       .c-bolt-tooltip__content {
         transform: translate(-50%, 0);
       }
@@ -142,6 +144,99 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
         &:before {
           transform: translate(-50%, -100%);
         }
+      }
+    }
+  }
+
+  &.is-push-right {
+    .c-bolt-tooltip__content {
+      left: 100%;
+    }
+
+    .c-bolt-tooltip__content-bubble {
+      &:after,
+      &:before {
+        border-top: $bolt-tooltip-bubble-triangle-width solid transparent;
+        border-right: $bolt-tooltip-bubble-triangle-width solid;
+        border-bottom: $bolt-tooltip-bubble-triangle-width solid transparent;
+        border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
+      }
+
+      &:before {
+        left: $bolt-tooltip-bubble-triangle-width * -2;
+        border-right-color: rgba(bolt-color(black), 0.2);
+      }
+
+      &:after {
+        left: calc(#{$bolt-tooltip-bubble-triangle-width * -2} + 1px);
+        border-right-color: white;
+      }
+    }
+  }
+
+  &.is-push-left {
+    .c-bolt-tooltip__content {
+      right: 100%;
+    }
+
+    .c-bolt-tooltip__content-bubble {
+      &:after,
+      &:before {
+        border-top: $bolt-tooltip-bubble-triangle-width solid transparent;
+        border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
+        border-bottom: $bolt-tooltip-bubble-triangle-width solid transparent;
+        border-left: $bolt-tooltip-bubble-triangle-width solid;
+      }
+
+      &:before {
+        right: $bolt-tooltip-bubble-triangle-width * -2;
+        border-left-color: rgba(bolt-color(black), 0.2);
+      }
+
+      &:after {
+        right: calc(#{$bolt-tooltip-bubble-triangle-width * -2} + 1px);
+        border-left-color: white;
+      }
+    }
+  }
+
+  &.is-valign-top {
+    .c-bolt-tooltip__content {
+      top: bolt-spacing(small) * -1;
+    }
+
+    .c-bolt-tooltip__content-bubble {
+      &:after,
+      &:before {
+        top: calc(#{bolt-spacing(small)} + #{$bolt-tooltip-bubble-triangle-width / 2});
+      }
+    }
+  }
+
+  &.is-valign-bottom {
+    .c-bolt-tooltip__content {
+      bottom: bolt-spacing(small) * -1;
+    }
+
+    .c-bolt-tooltip__content-bubble {
+      &:after,
+      &:before {
+        bottom: calc(#{bolt-spacing(small)} + #{$bolt-tooltip-bubble-triangle-width / 2});
+      }
+    }
+  }
+
+  &.is-valign-center {
+    .c-bolt-tooltip__content {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .c-bolt-tooltip__content-bubble {
+      &:after,
+      &:before {
+        top: 50%;
+        transform: translateY(-50%);
       }
     }
   }
@@ -158,7 +253,7 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
 }
 
 .c-bolt-tooltip--nowrap {
-  .c-bolt-tooltip__content {
+  .c-bolt-tooltip__content-bubble {
     min-width: auto;
     white-space: nowrap;
   }
@@ -171,18 +266,21 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
 .c-bolt-tooltip__content {
   display: block;
   position: absolute;
-  min-width: 200px;
   z-index: 99999;
-  transition: all ease-in-out 200ms;
+  transition: all $bolt-transition;
 }
 
 .c-bolt-tooltip__content-bubble {
+  @include bolt-padding(xsmall, squished);
+
   display: block;
   position: relative;
+  min-width: 12rem;
+  max-width: calc(100vw - #{bolt-spacing(medium)});
   border: 1px solid rgba(bolt-color(black), 0.2);
   border-radius: 3px;
-  background-color: white;
-  box-shadow: 0 0 3px rgba(bolt-color(black), 0.1), 0 0 0.5em rgba(bolt-color(black), 0.1), 0 0.35em 1.5em rgba(bolt-color(black), 0.2);
+  background-color: bolt-color(white);
+  box-shadow: $bolt-tooltip-shadow;
 
   &:after,
   &:before {
@@ -206,7 +304,31 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
   @extend [aria-hidden="false"];
 }
 
-.c-bolt-tooltip.is-down {
+.c-bolt-tooltip.is-push-up {
+  &:not(:hover) > .c-bolt-tooltip__content,
+  .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
+    padding-bottom: 0;
+  }
+
+  &:hover > .c-bolt-tooltip__content,
+  .c-bolt-tooltip__trigger.is-active + .c-bolt-tooltip__content {
+    padding-bottom: 0.25em; // Extra spacing between the bubble and the trigger
+  }
+}
+
+.c-bolt-tooltip.is-push-right {
+  &:not(:hover) > .c-bolt-tooltip__content,
+  .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
+    padding-left: 0;
+  }
+
+  &:hover > .c-bolt-tooltip__content,
+  .c-bolt-tooltip__trigger.is-active + .c-bolt-tooltip__content {
+    padding-left: $bolt-tooltip-bubble-triangle-width * 1.5; // Extra spacing between the bubble and the trigger
+  }
+}
+
+.c-bolt-tooltip.is-push-down {
   &:not(:hover) > .c-bolt-tooltip__content,
   .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
     padding-top: 0;
@@ -218,14 +340,14 @@ $bolt-bubble-tip-height: $bolt-bubble-tip-width*1.125;
   }
 }
 
-.c-bolt-tooltip.is-up {
+.c-bolt-tooltip.is-push-left {
   &:not(:hover) > .c-bolt-tooltip__content,
   .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
-    padding-bottom: 0;
+    padding-right: 0;
   }
 
   &:hover > .c-bolt-tooltip__content,
   .c-bolt-tooltip__trigger.is-active + .c-bolt-tooltip__content {
-    padding-bottom: 0.25em; // Extra spacing between the bubble and the trigger
+    padding-right: $bolt-tooltip-bubble-triangle-width * 1.5; // Extra spacing between the bubble and the trigger
   }
 }
