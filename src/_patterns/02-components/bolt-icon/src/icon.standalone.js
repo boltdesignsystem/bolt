@@ -24,7 +24,6 @@ const colors = [
 ]
 
 
-@define
 export class BoltIcon extends withComponent(withPreact()) {
   static is = 'bolt-icon';
 
@@ -68,3 +67,5 @@ export class BoltIcon extends withComponent(withPreact()) {
     )
   }
 }
+
+customElements.define(BoltIcon.is, BoltIcon);
