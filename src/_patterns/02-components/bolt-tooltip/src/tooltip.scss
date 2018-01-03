@@ -17,7 +17,8 @@ $bolt-tooltip-tranision: $bolt-transition;
   pointer-events: auto;
 }
 
-// Tooltip styling
+
+// Tooltip positioning
 .c-bolt-tooltip {
   display: inline-block;
   position: relative;
@@ -242,6 +243,8 @@ $bolt-tooltip-tranision: $bolt-transition;
   }
 }
 
+
+// Category options
 .c-bolt-tooltip--help {
   cursor: help;
 }
@@ -252,13 +255,31 @@ $bolt-tooltip-tranision: $bolt-transition;
   }
 }
 
+
+// Spacing options
+.c-bolt-tooltip--spacing-none {
+  .c-bolt-tooltip__content-bubble {
+    @include bolt-padding(0);
+  }
+}
+
+.c-bolt-tooltip--spacing-small {
+  .c-bolt-tooltip__content-bubble {
+    @include bolt-padding(small);
+  }
+}
+
+
+// Text wrapping
 .c-bolt-tooltip--nowrap {
   .c-bolt-tooltip__content-bubble {
-    min-width: auto;
+    width: auto;
     white-space: nowrap;
   }
 }
 
+
+// Tooltip styling
 .c-bolt-tooltip__trigger {
   display: block;
 }
@@ -275,8 +296,7 @@ $bolt-tooltip-tranision: $bolt-transition;
 
   display: block;
   position: relative;
-  min-width: 12rem;
-  max-width: calc(100vw - #{bolt-spacing(medium)});
+  width: 300px;
   border: 1px solid rgba(bolt-color(black), 0.2);
   border-radius: 3px;
   background-color: bolt-color(white);
@@ -292,6 +312,7 @@ $bolt-tooltip-tranision: $bolt-transition;
     pointer-events: none;
   }
 }
+
 
 // Show and hide effects
 .c-bolt-tooltip:not(:hover) > .c-bolt-tooltip__content,

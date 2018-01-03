@@ -26,12 +26,17 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   @include bolt-headline;
 }
 
-.c-bolt-headline {
-  @include bolt-font-weight(bold);
 
+.c-bolt-headline,
+.c-bolt-subheadline,
+.c-bolt-text {
   &:not(:last-child) {
     @include bolt-margin-bottom(medium);
   }
+}
+
+.c-bolt-headline {
+  @include bolt-font-weight(bold);
 
   &:not([class*='c-bolt-headline--']) {
     @include bolt-font-size(large);
@@ -95,7 +100,6 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 // Subheadline styles.
 .c-bolt-subheadline {
-  @include bolt-margin-bottom(medium);
   @include bolt-font-family(heading);
   @include bolt-font-weight(regular);
 

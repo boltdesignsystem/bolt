@@ -55,7 +55,7 @@
   </p>
   <div class="c-bolt-band c-bolt-band--small">
     <h2 class="c-bolt-headline c-bolt-headline--xxlarge">
-      Long tooltips
+      All possible positions
     </h2>
     {% grid %}
       {% cell "u-bolt-width-1/1 u-bolt-width-4/12@small" %}
@@ -84,7 +84,7 @@
               </span>
             </span>
           </span>
-          •
+          -
           <span class="c-bolt-tooltip c-bolt-tooltip--help is-align-center is-push-down">
             <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-push-down-center">
               Push Down Center
@@ -95,7 +95,7 @@
               </span>
             </span>
           </span>
-          •
+          -
           <span class="c-bolt-tooltip c-bolt-tooltip--help is-align-right is-push-down">
             <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-push-down-right">
               Push Down Right
@@ -186,7 +186,7 @@
               </span>
             </span>
           </span>
-          •
+          -
           <span class="c-bolt-tooltip c-bolt-tooltip--help is-align-center is-push-up">
             <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-push-up-center">
               Push Up Center
@@ -197,7 +197,7 @@
               </span>
             </span>
           </span>
-          •
+          -
           <span class="c-bolt-tooltip c-bolt-tooltip--help is-align-right is-push-up">
             <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-push-up-right">
               Push Up Right
@@ -228,73 +228,110 @@
   </div>
   <div class="c-bolt-band c-bolt-band--small">
     <h2 class="c-bolt-headline c-bolt-headline--xxlarge">
-      Short tooltips
+      Content lengths
     </h2>
-    {% grid %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-4/12@small" %}
-        <p>
-          <span class="c-bolt-tooltip c-bolt-tooltip--help c-bolt-tooltip--nowrap is-push-right is-valign-center">
-            <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-push-right-center">
-              Push Right Center
-            </mark>
-            <span id="tooltip-push-right-center" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
-              <span class="c-bolt-tooltip__content-bubble">
-                <span class="c-bolt-text c-bolt-text--small">Push Right Center</span>
+    <p>
+      <span class="c-bolt-tooltip c-bolt-tooltip--help c-bolt-tooltip--nowrap is-push-right is-valign-center">
+        <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-short">
+          <strong>Short</strong>
+        </mark>
+        <span id="tooltip-short" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+          <span class="c-bolt-tooltip__content-bubble">
+            <span class="c-bolt-text c-bolt-text--small">Some info text.</span>
+          </span>
+        </span>
+      </span>
+      -
+      <span class="c-bolt-tooltip c-bolt-tooltip--help is-push-right is-valign-center">
+        <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-long">
+          <strong>Loooooong</strong>
+        </mark>
+        <span id="tooltip-long" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+          <span class="c-bolt-tooltip__content-bubble">
+            <span class="c-bolt-text c-bolt-text--small">Some long info text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum.</span>
+          </span>
+        </span>
+      </span>
+    </p>
+  </div>
+  <div class="c-bolt-band c-bolt-band--small">
+    <h2 class="c-bolt-headline c-bolt-headline--xxlarge">
+      Help tooltips
+    </h2>
+    <p>
+      <span class="c-bolt-tooltip c-bolt-tooltip--help c-bolt-tooltip--nowrap is-push-right is-valign-center">
+        <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-help">
+          <strong>Help</strong>
+          {% include "@bolt/icon.twig" with {
+            "name": "info-open",
+            "size": "medium"
+          } only %}
+        </mark>
+        <span id="tooltip-help" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+          <span class="c-bolt-tooltip__content-bubble">
+            <span class="c-bolt-text c-bolt-text--small">Some info text.</span>
+          </span>
+        </span>
+      </span>
+      -
+      <span class="c-bolt-tooltip c-bolt-tooltip--help is-push-right is-valign-bottom">
+        <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-help-2">
+          <strong>Help</strong>
+          {% include "@bolt/icon.twig" with {
+            "name": "info-open",
+            "size": "medium"
+          } only %}
+        </mark>
+        <span id="tooltip-help-2" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+          <span class="c-bolt-tooltip__content-bubble">
+            <span class="c-bolt-text c-bolt-text--small">Some long info text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum.</span>
+          </span>
+        </span>
+      </span>
+    </p>
+  </div>
+  <div class="c-bolt-band c-bolt-band--small">
+    <h2 class="c-bolt-headline c-bolt-headline--xxlarge">
+      Action tooltips
+    </h2>
+    <p>
+      <span class="c-bolt-tooltip c-bolt-tooltip--action is-push-right is-valign-bottom">
+        <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-action">
+          <strong>Action with ui-list</strong>
+        </mark>
+        <span id="tooltip-action" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+          <span class="c-bolt-tooltip__content-bubble">
+            <span class="o-bolt-ui-list o-bolt-ui-list--small">
+              <span class="o-bolt-ui-list__item">
+                <a href="javascript:" class="c-bolt-link">List Item</a>
+              </span>
+              <span class="o-bolt-ui-list__item">
+                <a href="javascript:" class="c-bolt-link">List Item</a>
+              </span>
+              <span class="o-bolt-ui-list__item">
+                <a href="javascript:" class="c-bolt-link">List Item</a>
               </span>
             </span>
           </span>
-        </p>
-      {% endcell %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-4/12@small" %}
-        <p>
-          <span class="c-bolt-tooltip c-bolt-tooltip--help c-bolt-tooltip--nowrap is-align-left is-push-up">
-            <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-push-up-left">
-              Push Up Left
-            </mark>
-            <span id="tooltip-push-up-left" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
-              <span class="c-bolt-tooltip__content-bubble">
-                <span class="c-bolt-text c-bolt-text--small">Push Up Left</span>
-              </span>
+        </span>
+      </span>
+      -
+      <span class="c-bolt-tooltip c-bolt-tooltip--spacing-small c-bolt-tooltip--action is-push-right is-valign-bottom">
+        <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-action-2">
+          <strong>Action with help text</strong>
+        </mark>
+        <span id="tooltip-action-2" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+          <span class="c-bolt-tooltip__content-bubble">
+            <span class="c-bolt-headline c-bolt-headline--xlarge">
+              Headline
             </span>
-          </span>
-          •
-          <span class="c-bolt-tooltip c-bolt-tooltip--help c-bolt-tooltip--nowrap is-align-center is-push-up">
-            <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-push-up-center">
-              Push Up Center
-            </mark>
-            <span id="tooltip-push-up-center" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
-              <span class="c-bolt-tooltip__content-bubble">
-                <span class="c-bolt-text c-bolt-text--small">Push Up Center</span>
-              </span>
+            <span class="c-bolt-text c-bolt-text--small">
+              Paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor dui sagittis.
             </span>
+            <a href="javascript:" class="c-bolt-button c-bolt-button--primary">Action &raquo;</a>
           </span>
-          •
-          <span class="c-bolt-tooltip c-bolt-tooltip--help c-bolt-tooltip--nowrap is-align-right is-push-up">
-            <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-push-up-right">
-              Push Up Right
-            </mark>
-            <span id="tooltip-push-up-right" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
-              <span class="c-bolt-tooltip__content-bubble">
-                <span class="c-bolt-text c-bolt-text--small">Push Up Right</span>
-              </span>
-            </span>
-          </span>
-        </p>
-      {% endcell %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-4/12@small" %}
-        <p>
-          <span class="c-bolt-tooltip c-bolt-tooltip--help c-bolt-tooltip--nowrap is-push-left is-valign-center">
-            <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-push-left-center">
-              Push Left Center
-            </mark>
-            <span id="tooltip-push-left-center" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
-              <span class="c-bolt-tooltip__content-bubble">
-                <span class="c-bolt-text c-bolt-text--small">Push Left Center</span>
-              </span>
-            </span>
-          </span>
-        </p>
-      {% endcell %}
-    {% endgrid %}
+        </span>
+      </span>
+    </p>
   </div>
 </div>
