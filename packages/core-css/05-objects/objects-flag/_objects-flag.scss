@@ -24,7 +24,9 @@ $bolt-flag-alignments: (
 }
 
 .o-bolt-flag__body {
-  flex: 1;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
 }
 
 
@@ -81,35 +83,35 @@ $bolt-flag-alignments: (
 
 
 
-//
-//
+// 
+// 
 // // Flexbox adjustments
 // @supports (display: flex) {
 //   .o-flag {
 //     display: flex;
 //     align-items: flex-start;
-//
+// 
 //     &--center {
 //       align-items: center;
 //     }
-//
+// 
 //     &--bottom {
 //       align-items: flex-end;
 //     }
-//
+//     
 //     &--rev .o-bolt-flag__image {
 //       order: 1;
 //       padding-left: $spacing-unit;
 //       padding-right: $spacing-unit;
 //     }
 //   }
-//
-//
+// 
+// 
 //   .o-bolt-flag__image,
 //   .o-bolt-flag__body {
 //       display: initial;
 //   }
-//
+// 
 //   .o-bolt-flag__body {
 //     // min-width: 0;
 //     // flex: 1 1 auto;

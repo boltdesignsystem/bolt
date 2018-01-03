@@ -9,6 +9,7 @@ const globby = require('globby');
 const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackExcludeAssetsPlugin = require('html-webpack-exclude-assets-plugin');
+const WebpackShellPlugin = require('@bolt/build-tools/webpack-shell-plugin');
 const EventHooksPlugin = require('event-hooks-webpack-plugin');
 const globImporter = require("node-sass-glob-importer");
 const onceImporter = require('node-sass-once-importer');
@@ -17,8 +18,6 @@ const onceImporter = require('node-sass-once-importer');
 // const plPath = path.resolve(__dirname, './');
 
 
-const patternlab = require('@bolt/build-tools/patternlab');
-const plCompile = patternlab.compile();
 // const plCompile = require('./build-patternlab')(plPath);
 
 const config = {
@@ -189,7 +188,7 @@ module.exports = {
       //     }
       //   }
       // }
-    ]
+    ],
   },
   plugins: [
     new ExtractTextPlugin({
@@ -198,50 +197,28 @@ module.exports = {
       // disable: false,
       allChunks: true
     }),
+    // https://github.com/1337programming/webpack-shell-plugin/pull/46
+    new WebpackShellPlugin({
+      onBeforeBuild: ['php -d memory_limit=4048M core/console --generate'],
+      dev: true
+    }),
     // new EventHooksPlugin({
-    //     // Before WebPack compiles, call the pattern build API, once done, bundle continues
-    //     'before-compile': function(compilationParams, callback){
-    //       plCompile(callback);
-    //       // patternlab.build(callback, plConfig.cleanPublic);
-    //     }
-    //   }),
-    new EventHooksPlugin({
-      "after-compile": function(compilation, callback) {
-        // watch supported templates
-        // const supportedTemplateExtensions = patternEngines.getSupportedFileExtensions();
-        const templateFilePaths = "**/*.twig";
-        // const templateFilePaths = supportedTemplateExtensions.map(function (dotExtension) {
-        //   return plConfig.paths.source.patterns + '/**/*' + dotExtension;
-        // });
-
-        // additional watch files
-        const watchFiles = [
-          // './src/**/*.json',
-          "**/*.md",
-          "**/*.yaml",
-          "**/*.yml"
-          // './src/**/*.twig'
-        ];
-
-        const allWatchFiles = watchFiles.concat(templateFilePaths);
-
-        allWatchFiles.forEach(function(globPath) {
-          const patternFiles = globby.sync(globPath).map(function(filePath) {
-            return path.resolve(__dirname, filePath);
-          });
-
-          compilation.fileDependencies = compilation.fileDependencies.concat(
-            patternFiles
-          );
-        });
-
-        // signal done and continue with build
-        callback();
-      }
-    })
     // new HtmlWebpackPlugin({
     // // excludeAssets: [/.*/]
     // }),
     // new HtmlWebpackExcludeAssetsPlugin()
-  ]
+  ],
+  devServer: {
+    contentBase: path.resolve('dist'),
+    compress: true,
+    port: 8080,
+    overlay: {
+      errors: true
+    },
+    host: '0.0.0.0',
+    disableHostCheck: true,
+    hot: true,
+    inline: true,
+    watchContentBase: true,
+  }
 };

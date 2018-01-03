@@ -74,7 +74,56 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
   animation: a-bolt-zoom-in-out 45s ease-in-out infinite both;
 }
 
+.c-bolt-background__video {
+  z-index: 10;
+  transition: all 0.4s ease;
 
+  .is-ready & {
+    background-color: rgba(bolt-color(black), 0.6);
+    perspective: 500px;
+    perspective-origin: 50% 150%;
+  }
+
+  .is-collapsed & {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .is-expanded & {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .video-js {
+    max-width: 1400px;
+    margin: 0 auto;
+    min-width: 0;
+    width: 100%;
+    transition: all 0.4s ease;
+
+    .is-ready & {
+      background-color: transparent;
+    }
+
+    .is-collapsed & {
+      transform: scale(0.95) rotateX(20deg) translateY(20%);
+    }
+
+    .is-expanded & {
+      transform: scale(1) rotateX(0deg) translateY(0%);
+      transition: transform 0.3s cubic-bezier(0.645, 0, 0.355, 1);
+    }
+  }
+}
+
+.c-bolt-background__image {
+  .is-expanded & {
+    opacity: 1;
+    filter: blur(10px);
+  }
+}
+
+.c-bolt-background__video,
 .c-bolt-background__image {
   @include bolt-margin(auto);
 
@@ -94,7 +143,6 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
     object-fit: cover;
   }
 }
-
 
 .c-bolt-background__overlay {
   display: block;
@@ -146,16 +194,16 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
   position: absolute;
   transform: rotate(-45deg);
   right: $bolt-bg-shape-offset-side-default;
-  bottom: $bolt-bg-shape-offset-side-default;
+  bottom: $bolt-bg-shape-offset-bottom-default;
 
   @include respond-to(small) {
     right: $bolt-bg-shape-offset-side-small;
-    bottom: $bolt-bg-shape-offset-side-small;
+    bottom: $bolt-bg-shape-offset-bottom-small;
   }
 
   @include respond-to(large) {
     right: $bolt-bg-shape-offset-side-large;
-    bottom: -300px;
+    bottom: $bolt-bg-shape-offset-bottom-large;
   }
 }
 

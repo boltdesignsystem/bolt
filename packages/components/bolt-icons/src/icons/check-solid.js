@@ -1,4 +1,4 @@
-// import { Preact, h } from 'preact';
+// import { Preact, h } from '@bolt/core';
 const CheckSolid = ({ color, size, ...otherProps }) => {
   color = color || 'currentColor';
   size = size || '24';

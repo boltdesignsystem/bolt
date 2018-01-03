@@ -4,6 +4,8 @@
   "patternType": "components",
   "patternSubType": "buttons",
   "style": "src/button.scss",
+  "main": "dist/bolt-button.min.js",
+  "module:dev": "src/button.js",
   "templates": {
     "button": {
       "filename": "button.twig",
@@ -19,7 +21,7 @@
     "ui toolkit",
     "design system"
   ],
-  "version": "0.6.3",
+  "version": "0.7.0-beta.5",
   "author": "Salem Ghoweri",
   "homepage": "https://boltdesignsystem.com",
   "license": "MIT",
@@ -34,14 +36,18 @@
     "access": "public"
   },
   "devDependencies": {
-    "@bolt/build-tools": "^0.5.1"
+    "@bolt/build-webpack": "^0.5.0-beta.4"
   },
   "dependencies": {
+    "@bolt/core": "^0.5.0-beta.1",
     "@bolt/settings-all": "^0.7.4",
-    "@bolt/tools-all": "^0.5.4"
+    "@bolt/tools-all": "^0.5.4",
+    "@bolt/utilities-spacing": "^0.5.0"
   },
   "scripts": {
     "prepublishOnly": "npm run build",
-    "build": "./node_modules/@bolt/build-tools/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-tools/webpack.config.cli.js --entry bolt-button=./src/button"
+    "build": "npm-run-all --parallel build:*",
+    "build:bolt": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry bolt-button=./src/button --output-filename='bolt-button.min.js' --output-public-path /scripts/",
+    "build:wwwd8": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js bolt-button=./src/button --output-filename='bolt-button.wwwd8.min.js' --output-public-path /themes/custom/pegawww_theme/node_modules/@bolt/components-button/dist/"
   }
 }
