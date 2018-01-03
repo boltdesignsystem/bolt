@@ -1,51 +1,45 @@
 {
   "name": "bolt",
-  "version": "0.4.0",
   "description": "Pega Digital Design System",
   "private": true,
-  "files": [
-    "dist/"
-  ],
-  "browser": "dist/bolt.js",
   "scripts": {
     "backstop-test": "backstop test",
     "backstop-reference": "backstop reference",
-    "bootstrap": "lerna bootstrap --hoist",
-    "lint:js": "eslint ./build-tools",
-    "lint:scss": "gulp styles:lint",
-    "clean:lerna": "lerna clean -Y",
+    "bootstrap": "lerna bootstrap",
     "clean:git": "git clean -xdf",
-    "clean:lighthouse": "rm *.report.html",
-    "clean:all": "npm run clean:git && npm run clean:lerna",
-    "lint": "npm-run-all --parallel lint:* -c",
-    "mocha": "npm run mocha:build-tools",
-    "mocha:build-tools": "mocha ./packages/build-tools/**/tests/*.test.js",
-    "mocha:settings": "mocha **/settings-*/tests/*.test.js",
-    "deploy": "node build-tools/gulp-tasks/build-slack/index.js",
-    "publish": "lerna publish",
-    "publish:canary": "lerna publish --canary --npm-tag=next",
-    "start": "gulp",
-    "pre-build": "lerna exec -- npm run --if-present build",
-    "build": "export NODE_ENV=production && npm run pre-build && gulp build",
-    "build:full": "export NODE_ENV=production && npm run pre-build && gulp build:full",
+    "deploy": "netlify deploy -s bolt.netlify.com -p dist",
+    "Xlint:js": "eslint ./build-tools",
+    "Xlint:scss": "gulp styles:lint",
+    "Xclean:lerna": "lerna clean -Y",
+    "Xclean:lighthouse": "rm *.report.html",
+    "Xclean:all": "npm run clean:git && npm run clean:lerna",
+    "Xlint": "npm-run-all --parallel lint:* -c",
+    "Xmocha": "npm run mocha:build-tools",
+    "Xmocha:build-tools": "mocha ./packages/build-tools/**/tests/*.test.js",
+    "Xmocha:settings": "mocha **/settings-*/tests/*.test.js",
+    "Xpublish": "lerna publish",
+    "Xpublish:canary": "lerna publish --canary --npm-tag=next",
+    "start": "run-p start:*",
+    "start:gulp": "gulp",
+    "start:webpack": "cd apps/pattern-lab--workshop && webpack-dev-server --progress --colors",
+    "Xpre-build": "lerna exec -- npm run --if-present build",
+    "Xbuild": "export NODE_ENV=production && npm run pre-build && gulp build",
+    "Xbuild:full": "export NODE_ENV=production && npm run pre-build && gulp build:full",
     "setup": "npm run bootstrap && npm run composer:setup",
     "composer:setup": "if [ ! -f ./dist/index.html ]; then npm run composer:clean && npm run composer:install; fi",
     "composer:install": "composer install -d apps/pattern-lab--workshop --prefer-source --no-interaction --no-dev",
     "composer:clean": "rm -rf apps/pattern-lab--workshop/composer.lock && rm -rf apps/pattern-lab--workshop/vendor && rm -rf apps/pattern-lab--workshop/src/_twig-components",
-    "test:travis": "yarn pretest && yarn lint",
-    "test:lighthouse": "concurrently --kill-others \"http-server dist\" \"lighthouse --view http://localhost:8080\" ",
-    "test:full": "yarn lint:scss && polymer test && yarn test:lighthouse && yarn lint:remark && npm run mocha",
-    "test": "npm run mocha",
-    "test:ci": "node browserstack.js",
-    "pretest": "node packages/build-tools/check-imports.js",
+    "Xtest:travis": "yarn pretest && yarn lint",
+    "Xtest:lighthouse": "concurrently --kill-others \"http-server dist\" \"lighthouse --view http://localhost:8080\" ",
+    "Xtest:full": "yarn lint:scss && polymer test && yarn test:lighthouse && yarn lint:remark && npm run mocha",
+    "Xtest": "npm run mocha",
+    "Xtest:ci": "node browserstack.js",
+    "Xpretest": "node packages/build-tools/check-imports.js",
     "Xprecommit": "npm run lint:scss",
     "Xprepush": "npm test && npm run build:full",
-    "snyk-protect": "snyk protect"
+    "Xsnyk-protect": "snyk protect"
   },
   "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-lerna-changelog"
-    },
     "validate-commit-msg": {
       "maxSubjectLength": 100,
       "subjectPattern": ".+",
@@ -70,7 +64,10 @@
   },
   "keywords": [
     "design",
-    "system"
+    "system",
+    "design system",
+    "bolt design system",
+    "pattern lab"
   ],
   "author": "Salem Ghoweri",
   "license": "MIT",
@@ -78,135 +75,22 @@
     "url": "https://github.com/bolt-design-system/bolt/issues"
   },
   "homepage": "https://github.com/bolt-design-system/bolt#readme",
-  "dependencies": {
-    "@bolt/config-stylelint": "file:packages/bolt-config-presets/config-stylelint",
-    "@bolt/eslint-config": "file:packages/bolt-config-presets/config-eslint",
-    "@times-components/brightcove-video": "^1.4.0",
-    "@webcomponents/custom-elements": "^1.0.4",
-    "@webcomponents/shadycss": "^1.0.6",
-    "@webcomponents/shadydom": "bolt-design-system/shadydom#hotfix/fix-text-undefined-IE11",
-    "@webcomponents/template": "^1.1.0",
-    "@webcomponents/webcomponents-platform": "^1.0.0",
-    "@webcomponents/webcomponentsjs": "^1.0.14",
-    "array.from": "^1.0.3",
-    "autoprefixer": "^7.1.4",
-    "babylon": "^6.16.1",
-    "backstopjs": "^3.0.31",
-    "camel-case": "^3.0.0",
-    "chai": "^4.1.0",
-    "chai-fs": "^1.0.0",
-    "chokidar": "^1.7.0",
-    "concurrently": "^3.5.0",
-    "core-js": "^2.5.1",
-    "cssnano": "^3.10.0",
-    "cz-conventional-changelog": "^2.0.0",
-    "cz-lerna-changelog": "^1.2.1",
-    "document-register-element": "^1.7.0",
-    "es6-promise": "^4.1.1",
-    "es6-symbol": "^3.1.1",
-    "eslint": "^4.5.0",
-    "eslint-config-airbnb-base": "^11.3.2",
-    "eslint-plugin-import": "^2.7.0",
-    "feature-toggle": "^0.3.0",
-    "flatten-packages": "^0.1.4",
-    "fs-extra": "^4.0.2",
-    "glob": "^7.1.2",
-    "globby": "^6.1.0",
-    "gulp": "gulpjs/gulp#4.0",
-    "gulp-util": "^3.0.8",
-    "http-server": "^0.10.0",
-    "inquirer": "^3.2.0",
-    "js-yaml": "^3.9.1",
-    "json-server": "^0.12.0",
-    "lerna": "^2.5.1",
-    "lerna-changelog": "^0.6.0",
-    "lerna-semantic-release": "^9.1.0",
-    "lighthouse": "^2.5.0",
-    "lodash": "^4.17.4",
-    "lozad": "^1.0.6",
-    "merge": "^1.2.0",
-    "mocha": "^4.0.0",
-    "node-sass": "^4.5.3",
-    "nodemon": "^1.12.1",
-    "now-travis": "^1.0.1",
-    "npm-run-all": "^4.0.2",
-    "npm-sass": "^2.2.1",
-    "object-assign": "^4.1.1",
-    "object.assign": "^4.0.4",
-    "path": "^0.12.7",
-    "postcss": "^6.0.13",
-    "postcss-cssnext": "^3.0.2",
-    "prettier-eslint-cli": "^4.2.1",
-    "publish-please": "^2.3.1",
-    "read-pkg-up": "^2.0.0",
-    "recast": "^0.12.7",
-    "remark-cli": "^4.0.0",
-    "remark-lint": "^6.0.1",
-    "remark-preset-github": "^0.0.7",
-    "remark-preset-lint-consistent": "^2.0.1",
-    "remark-preset-lint-markdown-style-guide": "^2.1.1",
-    "remark-preset-lint-recommended": "^3.0.1",
-    "skatejs": "^5.0.0-beta.3",
-    "skatejs-web-components": "^0.0.1",
-    "snyk": "^1.47.0",
-    "standard-version": "^4.2.0",
-    "stylefmt": "^6.0.0",
-    "stylelint": "^8.0.0",
-    "stylelint-scss": "^2.0.1",
-    "svg-injector": "^1.1.3",
-    "touch": "^3.1.0",
-    "uppercamelcase": "^3.0.0",
-    "validate-commit-msg": "^2.12.2",
-    "web-component-refs": "^0.0.2",
-    "web-component-tester": "^6.3.0",
-    "xo": "^0.18.2",
-    "babel-loader": "^7.1.2",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-assign": "^6.8.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-preset-flow": "^6.23.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-plugin-syntax-dynamic-import": "^6.18.0"
-  },
   "devDependencies": {
-    "husky": "^0.14.3"
+    "backstopjs": "^3.0.31",
+    "gulp": "gulpjs/gulp#4.0",
+    "husky": "^0.14.3",
+    "lerna": "^2.5.1",
+    "lighthouse": "^2.5.0",
+    "web-component-tester": "^6.3.0",
+    "npm-run-all": "^4.1.2"
   },
-  "snyk": true,
-  "lint-staged": {
-    "*.md": [
-      "remark --quiet --frail --no-stdout"
-    ],
-    "*.js": [
-      "prettier-eslint --write",
-      "git add"
-    ],
-    "*.scss": [
-      "stylelint"
-    ]
-  },
-  "now": {
-    "files": [
-      "bolt-website",
-      "bolt-website/pattern-lab/styleguide/bower_components/**/*"
-    ]
-  },
-  "xo": {
-    "space": true,
-    "envs": [
-      "browser"
-    ],
-    "rules": {
-      "eol-last": 0,
-      "import/no-unassigned-import": 0
-    },
-    "ignores": [
-      "test/test-fixture.js"
-    ]
-  },
-  "remarkConfig": {
-    "plugins": [
-      "preset-github"
-    ]
-  }
+  "workspaces": [
+    "packages/assets",
+    "packages/build-tools",
+    "packages/components/*",
+    "packages/config-presets",
+    "packages/core",
+    "packages/twig-extensions",
+    "apps/pattern-lab--workshop"
+  ]
 }

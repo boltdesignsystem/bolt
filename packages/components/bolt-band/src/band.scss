@@ -1,7 +1,8 @@
 /**
   * @define c-bolt-band
   */
-@import '@bolt/tools-spacing';
+@import '@bolt/settings-all';
+@import '@bolt/tools-all';
 
 @mixin bolt-full-bleed() {
   position: relative;
@@ -42,4 +43,19 @@
 
 .c-bolt-band--full {
   @include bolt-full-bleed;
+}
+
+
+bolt-band {
+  display: block;
+  display: flex; // So children increase in height
+  width: 100%;
+  transition: all 0.4s ease-in-out;
+  max-height: none;
+  transform: translate3d(0, 0, 0);
+  will-change: height;
+
+  &.is-expanded {
+    height: 56.25vw;
+  }
 }

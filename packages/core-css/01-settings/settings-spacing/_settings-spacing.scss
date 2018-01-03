@@ -1,0 +1,50 @@
+////
+/// @group Settings: Layout
+/// @author Mike Mai
+////
+@import '../../02-tools/tools-export-data/tools-export-data'; //So we can export spacing values to JSON
+
+/* ------------------------------------ *\
+  Spacing Scale
+\* ------------------------------------ */
+
+// Unit on which all spacing is based
+$bolt-spacing-gutter: 2rem;
+$bolt-spacing-leading: 1.65;
+$bolt-spacing-squished: 0.5;
+$bolt-spacing-stretched: 1.5;
+
+/// Bolt's definition of spacing scale
+/// @type Map
+$bolt-spacing-values: (
+  '':        1,
+  'xxsmall': 0.125,
+  'xsmall':  0.25,
+  'small':   0.5,
+  'medium':  1,
+  'large':   2,
+  'xlarge':  4,
+  'xxlarge': 8
+);
+$bolt-spacing-values: bolt-export-data('spacing/bolt-spacing-scale.data.json', $bolt-spacing-values, $prefix: '{ "boltSpacingScale":', $suffix: '}');
+
+$bolt-spacing-sizes: ();
+
+$bolt-spacing-properties: (
+  'padding',
+  'margin'
+);
+
+$bolt-spacing-directions: (
+  '',
+  'top',
+  'right',
+  'bottom',
+  'left',
+);
+
+$bolt-spacing-types: (
+  '',
+  'squished',
+  'stretched'
+);

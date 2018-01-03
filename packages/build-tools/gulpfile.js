@@ -1,12 +1,12 @@
 // const gulp = require('gulp');
-const server = require('./build-server').server;
+const server = require('./server').server;
 // const jekyll = require('@bolt/build-jekyll');
-const patternlab = require('./build-patternlab');
-const styles = require('./build-styles');
-const symlinks = require('./build-symlinks/index2');
-const webpackTask = require('./build-webpack');
-const icons = require('./build-icons');
-const images = require('./build-images');
+const patternlab = require('./patternlab');
+// const styles = require('./styles');
+// const symlinks = require('./symlinks/index2');
+// const webpackTask = require('./webpack');
+// const icons = require('./icons');
+const images = require('./images');
 const gutil = require('gulp-util');
 const rimraf = require('rimraf');
 // const cache = require('gulp-cached');
@@ -60,24 +60,24 @@ module.exports = (gulp) => {
     'images:resize'
   ]));
 
-  gulp.task('icons:build', icons.build(gulp));
+  // gulp.task('icons:build', icons.build(gulp));
 
 
 
-  gulp.task('styles:compile', styles.compile());
-  gulp.task('styles:watch', styles.watch());
-  gulp.task('styles:lint', styles.lint());
-  gulp.task('styles:sassdoc', styles.docs());
+  // gulp.task('styles:compile', styles.compile());
+  // gulp.task('styles:watch', styles.watch());
+  // gulp.task('styles:lint', styles.lint());
+  // gulp.task('styles:sassdoc', styles.docs());
 
-  // gulp.task('jekyll:compile', jekyll.compile());
-  // gulp.task('jekyll:watch', jekyll.watch());
+  // // gulp.task('jekyll:compile', jekyll.compile());
+  // // gulp.task('jekyll:watch', jekyll.watch());
 
-  gulp.task('symlinks:clean', symlinks.clean());
-  gulp.task('symlinks:create', symlinks.create());
+  // gulp.task('symlinks:clean', symlinks.clean());
+  // gulp.task('symlinks:create', symlinks.create());
   // gulp.task('symlinks:clean', symlinks.clean());
   // gulp.task('symlinks:watch', symlinks.watch());
   // gulp.task('symlinks:gravpl', symlinks.patternLabGrav());
-  gulp.task('bolt:packages', symlinks.boltPackages());
+  // gulp.task('bolt:packages', symlinks.boltPackages());
 
 
   // gulp.task('symlinks', gulp.series([
@@ -97,11 +97,6 @@ module.exports = (gulp) => {
   gulp.task(browserSyncServer);
 
 
-  // Webpack Config
-  const webpackConfig = webpackTask.devConfig;
-  const webpackProdConfig = webpackTask.releaseConfig;
-  // const webpackProdConfig = webpackTask.releaseConfig;
-  webpackTask.webpack(gulp, webpackConfig, webpackProdConfig);
 
 
   // gulp.task('copy:fonts', () =>
@@ -131,80 +126,80 @@ module.exports = (gulp) => {
 
 
   gulp.task('default', gulp.series([
-    'patternlab:compile',
+    'patternlab:manifest',
     gulp.parallel([
-      'patternlab:watch',
-      'browsersync:serve',
+      'patternlab:watch'
+      // 'browsersync:serve',
     ]),
   ]));
   // @todo change from `default2`
-  gulp.task('default2',
-    gulp.series([
-      gulp.series([
-        // 'symlinks',
-        'images:resize', // Don't wipe images unless doing a full build
-        gutil.env.prod ? 'webpack:prod' : 'webpack:dev',
-        'styles:compile'
-      ]),
-      gulp.parallel([
-        'patternlab:compile',
-        'styles:sassdoc',
-        'webpack:watch',
-        'patternlab:watch',
-        'styles:watch',
-        'browsersync:serve'
-      ])
-    ])
-  );
+  // gulp.task('default2',
+  //   gulp.series([
+  //     gulp.series([
+  //       // 'symlinks',
+  //       'images:resize', // Don't wipe images unless doing a full build
+  //       gutil.env.prod ? 'webpack:prod' : 'webpack:dev',
+  //       'styles:compile'
+  //     ]),
+  //     gulp.parallel([
+  //       'patternlab:compile',
+  //       'styles:sassdoc',
+  //       'webpack:watch',
+  //       'patternlab:watch',
+  //       'styles:watch',
+  //       'browsersync:serve'
+  //     ])
+  //   ])
+  // );
 
-  gulp.task('build',
-    gulp.series([
-      'images',
-      'styles:compile',
-      'styles:sassdoc',
-      'webpack:prod',
-      'patternlab:compile'
-    ])
-  );
-
-
-  gulp.task('copy', function(done) {
-    // rimraf('tmp', function(){
-      return gulp.src(['src/_patterns/**',
-        // '!src/**/node_modules',
-        // '!src/**/yarn.lock',
-        // '!src/images/**',
-        // '!src/styles/**',
-        // '!src/scripts/**',
-        // '!src/assets/**',
-        // // '!src/**/*.'
-        // '!src/**/package-lock.json',
-        // '!src/**/package.json',
-        '!src/**/node_modules/**',
-        // '!src/**/*.scss',
-        // '!src/_patterns/**/*.js',
-        // '!src/_patterns/**/*.svg',
-        // '!src/config-presets',
-        // '!src/images',
-        // '!src/scripts',
-        // '!src/styles',
-        // '!src/**/dist/**',
-        // '!src/node_modules',
-        // '!src/node_modules/**'
-      ], {
-        nodir: true
-      })
-        .pipe(gulp.dest('tmp'));
-    // });
-  });
+  // gulp.task('build',
+  //   gulp.series([
+  //     'images',
+  //     'styles:compile',
+  //     'styles:sassdoc',
+  //     // 'webpack:prod',
+  //     'patternlab:compile'
+  //   ])
+  // );
 
 
-  gulp.task('build:full',
-    gulp.series([
-      'patternlab:manifest', //Generate new PL manifest yaml file, but only during full builds
-      'build'
-    ])
-  );
+  // gulp.task('copy', function(done) {
+  //   // rimraf('tmp', function(){
+  //     return gulp.src(['src/_patterns/**',
+  //       // '!src/**/node_modules',
+  //       // '!src/**/yarn.lock',
+  //       // '!src/images/**',
+  //       // '!src/styles/**',
+  //       // '!src/scripts/**',
+  //       // '!src/assets/**',
+  //       // // '!src/**/*.'
+  //       // '!src/**/package-lock.json',
+  //       // '!src/**/package.json',
+  //       '!src/**/node_modules/**',
+  //       // '!src/**/*.scss',
+  //       // '!src/_patterns/**/*.js',
+  //       // '!src/_patterns/**/*.svg',
+  //       // '!src/config-presets',
+  //       // '!src/images',
+  //       // '!src/scripts',
+  //       // '!src/styles',
+  //       // '!src/**/dist/**',
+  //       // '!src/node_modules',
+  //       // '!src/node_modules/**'
+  //     ], {
+  //       nodir: true
+  //     })
+  //       .pipe(gulp.dest('tmp'));
+  //   // });
+  // });
+
+
+  // gulp.task('build:full',
+  //   gulp.series([
+  //     'patternlab:manifest', //Generate new PL manifest yaml file, but only during full builds
+  //     'build'
+  //   ])
+  // );
 
   // const flatten = require('gulp-flatten');
   // const globby = require('globby');

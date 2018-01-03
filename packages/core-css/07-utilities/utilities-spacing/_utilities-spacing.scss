@@ -1,0 +1,116 @@
+$bolt-export-data: false !global;
+
+@import '@bolt/settings-all';
+@import '@bolt/tools-all';
+
+$bolt-direction-index: 0;
+
+// @TODO: fix broken logic -- values not being output automatically as expected.
+.u-bolt-margin-none {
+  margin: 0 !important;
+}
+
+.u-bolt-margin-right-none {
+  margin-right: 0 !important;
+}
+
+.u-bolt-margin-left-none {
+  margin-left: 0 !important;
+}
+
+.u-bolt-margin-top-none {
+  margin-top: 0 !important;
+}
+
+.u-bolt-margin-bottom-none {
+  margin-top: 0 !important;
+}
+
+
+.u-bolt-padding-none {
+  padding: 0 !important;
+}
+
+.u-bolt-padding-right-none {
+  padding-right: 0 !important;
+}
+
+.u-bolt-padding-left-none {
+  padding-left: 0 !important;
+}
+
+.u-bolt-padding-top-none {
+  padding-top: 0 !important;
+}
+
+.u-bolt-padding-bottom-none {
+  padding-top: 0 !important;
+}
+
+@each $property in $bolt-spacing-properties {
+  @for $i from 1 through length($bolt-spacing-directions) {
+    $direction: nth($bolt-spacing-directions, $i);
+
+    @each $type in $bolt-spacing-types {
+      @each $size, $value in $bolt-spacing-sizes {
+
+        $sizeName: $size;
+        @if ($size != '') {
+          $sizeName: '-' + $sizeName;
+        }
+
+        $typeName: $type;
+        @if ($type != '') {
+          $typeName: '-' + $typeName;
+        }
+
+        $directionName: $direction;
+        @if ($direction != '') {
+          $directionName: '-' + $directionName;
+        }
+
+        $propertyName: $property;
+        $propertyName: '-' + $propertyName;
+
+        .u-bolt#{$propertyName}#{$directionName}#{$sizeName}#{$typeName} {
+
+          $sizes: null null null null;
+          $size-index: index($bolt-spacing-directions, $direction);
+
+          @if ($direction != '') {
+            $sizes: set-nth($sizes, $size-index - 1, $size);
+          } @else {
+            $sizes: $size $size $size $size;
+          }
+
+          $normalizedSizes: _bolt-normalize-spacing-sizes($sizes, null);
+          @include _bolt-directional-property(#{$property}, false, $normalizedSizes, important);
+        }
+
+        
+        // Loop over our breakpoints
+        // @TODO: consolidate the output inside this selector + the one above into a single function 
+        @each $breakpoint in $breakpoints {
+          $breakpointName: nth($breakpoint, 1);
+          @include respond-to($breakpointName) {
+            .u-bolt#{$propertyName}#{$directionName}#{$sizeName}#{$typeName}\@#{$breakpointName} {
+
+              $sizes: null null null null;
+              $size-index: index($bolt-spacing-directions, $direction);
+
+              @if ($direction != '') {
+                $sizes: set-nth($sizes, $size-index - 1, $size);
+              } @else {
+                $sizes: $size $size $size $size;
+              }
+
+              $normalizedSizes: _bolt-normalize-spacing-sizes($sizes, null);
+              @include _bolt-directional-property(#{$property}, false, $normalizedSizes, important);
+            }
+          }
+        }
+      }
+    }
+
+  }
+}

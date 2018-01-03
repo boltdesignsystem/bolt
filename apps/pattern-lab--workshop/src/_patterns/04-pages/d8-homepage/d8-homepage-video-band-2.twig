@@ -1,0 +1,47 @@
+{% extends "@bolt/default-template.twig" %}
+
+  {% block main_content %}
+    {% set videoUuid2 = "js-bolt-video-uuid--2" %}
+    {% embed "@bolt/band.twig" with {
+      theme: "light",
+      size: "medium",
+      background: {
+        "opacity": "heavy",
+        "fill": "color",
+        "focalPoint": {
+          "vertical": "center",
+          "horizontal": "center"
+        },
+        "contentItems": [
+          {
+            "pattern": "image",
+            "src": "/images/sample/background-banner--left-focal-point.jpg"
+          },
+          {
+            "pattern": "video",
+            "isBackgroundVideo": true,
+            "videoId": "5453299964001",
+            "accountId": "1900410236",
+            "playerId": "r1CAdLzTW",
+            "videoUuid": videoUuid2
+          }
+        ]
+      }
+    } %}
+      {% block band_content %}
+        {% include "@bolt/headline.twig" with {
+          text: "Other Insightful Content",
+          size: "xlarge",
+          tag: "h3"
+        } only %}
+        {% include "@bolt/button.twig" with {
+          text: "Toggle second video",
+          attributes: {
+            "on-click": "toggle",
+            "on-click-target": videoUuid2
+          }
+        } only %}
+        {{ parent() }}
+      {% endblock band_content %}
+    {% endembed %}
+  {% endblock %}

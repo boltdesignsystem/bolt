@@ -1,41 +1,32 @@
 {
-  "id": "patternlab_test",
+  "id": "backstop_default",
   "viewports": [
     {
-      "name": "phone",
-      "width": 320,
-      "height": 480
-    },
-    {
-      "name": "square",
-      "width": 600,
-      "height": 600
-    },
-    {
-      "name": "tablet_h",
+      "label": "tablet",
       "width": 1024,
       "height": 768
     }
   ],
-  "onBeforeScript": "",
-  "onReadyScript": "",
+  "onBeforeScript": "chromy/onBefore.js",
+  "onReadyScript": "chromy/onReady.js",
   "scenarios": [
     {
-      "label": "isExpanded",
-      "url": "./dist/public/styleguide/html/styleguide.html",
+      "label": "BackstopJS Homepage",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "https://garris.github.io/BackstopJS/",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": "",
+      "delay": 0,
       "hideSelectors": [],
       "removeSelectors": [],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": "",
+      "selectors": [],
       "selectorExpansion": true,
-      "selectors": [
-        ".sg-pattern"
-      ],
-      "readySelector": "#sg-patterns",
-      "readyEvent": "",
-      "delay": null,
-      "misMatchThreshold" : 0.1,
-      "requireSameDimensions" : true,
-      "onBeforeScript": "",
-      "onReadyScript": ""
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
     }
   ],
   "paths": {
@@ -45,10 +36,9 @@
     "html_report": "backstop_data/html_report",
     "ci_report": "backstop_data/ci_report"
   },
-  "asyncCaptureLimit": 10,
-  "casperFlags": [],
-  "engine": "chromy",
   "report": ["browser"],
+  "engine": "chrome",
+  "engineFlags": [],
   "debug": false,
   "debugWindow": false
 }

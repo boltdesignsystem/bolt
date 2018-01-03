@@ -1,0 +1,233 @@
+/* ------------------------------------ *\
+  Settings
+\* ------------------------------------ */
+@import '@bolt/settings-all';
+@import '@bolt/tools-all';
+@import '@bolt/generic-all';
+@import '@bolt/elements-all';
+@import '@bolt/objects-all';
+@import '@bolt/components-all';
+@import '@bolt/themes-all';
+@import '@bolt/utilities-all';
+
+
+
+/* ------------------------------------ *\
+   Pattern Lab Styleguidekit Style
+   Overrides -- @TODO: Move to
+   external PL-specific Sass file
+\* ------------------------------------ */
+.sg-main {
+  @include bolt-padding(medium);
+}
+
+// Demo custom element to show off theming
+bolt-demo {
+  @include bolt-padding(medium);
+  display: block;
+}
+
+
+/* ------------------------------------ *\
+   Custom elements
+\* ------------------------------------ */
+
+// Post-processing after all custom elements have been added.
+// @TODO: figure out how best to collect these dynamically but still add to the generic layer when we need these to be included.
+@each $bolt-custom-element-item in $_bolt-custom-block-elements {
+  $bolt-all-custom-block-elements: append($bolt-all-custom-block-elements, unquote($bolt-custom-element-item), comma);
+}
+
+@each $bolt-custom-element-item in $_bolt-custom-inline-block-elements {
+  $bolt-all-custom-inline-block-elements: append($bolt-all-custom-inline-block-elements, unquote($bolt-custom-element-item), comma) !global;
+}
+
+@each $bolt-custom-element-item in $_bolt-custom-inline-elements {
+  $bolt-all-custom-inline-elements: append($bolt-all-custom-inline-elements, unquote($bolt-custom-element-item), comma) !global;
+}
+
+
+// Example of adding global generic styles to all custom elements.
+@if length($bolt-all-custom-block-elements) > 0 {
+  #{$bolt-all-custom-block-elements} {
+    @include bolt-margin-bottom(medium);
+    display: block;
+  }
+}
+
+@if length($bolt-all-custom-inline-block-elements) > 0 {
+  #{$bolt-all-custom-inline-block-elements} {
+    display: inline-block;
+    display: inline-flex;
+  }
+}
+
+@if length($bolt-all-custom-inline-elements) > 0 {
+  #{$bolt-all-custom-inline-elements} {
+    display: inline;
+  }
+}
+
+
+
+/*
+ * SHAME
+ */
+
+// Workaround Brightcove Video Player's Hapyak CSS in a ratio component
+bolt-ratio .hapyak-player:not(.hapyak-minimal-css) {
+  position: absolute !important;
+}
+
+
+
+// // color map
+// $color: (
+//   text: #222,
+//   background: #FFF,
+// );
+
+// // font map
+// $font: (
+//   family: (
+//     body: (Merriweather, Georgia, serif),
+//     head: (Roboto, Helvetica, sans-serif)
+//   ),
+//   weight: (
+//     body: 300,
+//     head: 300,
+//   ),
+//   size: (
+//     body: 18px,
+//     h1: 2.4em,
+//     h2: 2em,
+//     h3: 1.6em,
+//     h4: 1.4em,
+//   ),
+//   leading: (
+//     body: 1.7,
+//     head: 1.2,
+//   )
+// );
+
+// // associate variable map name to an actual variable map
+// $var-maps: (
+//   color: $bolt-colors,
+//   font:  $font
+// );
+
+// // which property uses which var map
+// // you would edit this for each property you want to use variables for
+// $props: (
+//   background-color: color,
+//   color:            color,
+//   font-family:      (font, family),
+//   font-size:        (font, size),
+//   font-weight:      (font, weight),
+//   line-height:      (font, leading),
+// );
+
+
+
+// // the variable mixin takes a property and variable name
+// @mixin bolt-var($prop, $var, $show-fall: true) {
+//   // get the property's map name(s)
+//   $map-name: map-get($props, $prop);
+//   $nest-name: null;
+//   $nest-map-name: null;
+//   $map: null;
+//   $var-fall: null;
+//   $var-output: null;
+//   // if a list, we need to go deeper
+//   @if type-of($map-name) == list {
+//     $nest-name: nth($map-name, 1);
+//     $nest-map-name: nth($map-name, 2);
+//   }
+//   // if it is a nested map
+//   @if $nest-name {
+//     // get the map from nested map-name
+//     $map: map-get($var-maps, $nest-name);
+//     // get the nested map
+
+//     // @if (str-index($map, bolt)) {
+//     //   @debug 'bolt-map';
+//     // } @else {
+//     //   @debug 'nope';
+//     // }
+
+//     $nest-map: map-get($map, $nest-map-name);
+//     // get the var value fro mthe nested map
+//     $var-fall: map-get($nest-map, $var);
+//     $var-output: var(--#{$nest-name}-#{$nest-map-name}-#{$var});
+//   } @else {
+//     // get the map from map name
+//     $map: map-get($var-maps, $map-name);
+//     // fallback, grab the variable's value from the map
+//     $var-fall: map-get($map, $var);
+//     $var-output: var(--bolt-#{$map-name}#{$var});
+//   }
+//   // if show standard is not overridden to be null
+//   @if $show-fall {
+//     #{$prop}: $var-fall;
+//   }
+//   // css4 variable output
+//   #{$prop}: $var-output;
+// }
+
+
+
+
+// // setup the css4 variable definitions
+// :root {
+//   // for each variable map
+//   @each $var-map-name, $var-map in $var-maps {
+//     // for each variable in the variable map
+//     @each $var, $val in $var-map {
+//       // if it is a map, go another level deep
+//       @if type-of($val) == map {
+//         // each in the map
+//         @each $var-n, $val-n in $val {
+//           // do the definition
+//           #{--bolt-$var-map-name}-#{$var}-#{$var-n}: $val-n;
+//         }
+//       } @else {
+//         // do the definition
+//         #{--bolt-$var-map-name}-#{$var}: $val;
+//       }
+//     }
+//   }
+// }
+
+
+// // using it is magical
+
+// body {
+//   // @include v(font-size, body);
+//   // @include v(font-family, body);
+//   // @include v(font-weight, body);
+//   // @include v(line-height, body);
+//   @include bolt-var(background-color, bolt-color(teal));
+
+//   // color it red if no CSS4 variables
+//   color: red;
+//   // override "show standard" with "null" which means no CSS4 support will still be red
+//   // if we didn't do this, it would create the fallback.
+//   // @include v(color, text, null);
+// }
+
+// // h1, h2, h3, h4 {
+// //   @include v(line-height, head);
+// //   @include v(font-family, head);
+// //   @include v(font-weight, head);
+// // }
+
+// // h1 { @include v(font-size, h1); }
+// // h2 { @include v(font-size, h2); }
+// // h3 { @include v(font-size, h3); }
+// // h4 { @include v(font-size, h4); }
+
+
+// .c-test-card {
+//   @include bolt-var(background-color, bolt-color(indigo, dark));
+//   // @include var(background-color, )
+// }
