@@ -1,0 +1,5 @@
+{% set attributes = create_attribute(attributes | default({})) %}
+
+<div{{ wrapper_attributes }}>
+  <textarea{{ attributes }}>{{ value }}</textarea>
+</div>
