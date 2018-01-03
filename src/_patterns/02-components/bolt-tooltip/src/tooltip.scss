@@ -203,26 +203,26 @@ $bolt-tooltip-tranision: $bolt-transition;
 
   &.is-valign-top {
     .c-bolt-tooltip__content {
-      top: bolt-spacing(small) * -1;
+      top: bolt-v-spacing(xsmall) * -1;
     }
 
     .c-bolt-tooltip__content-bubble {
       &:after,
       &:before {
-        top: calc(#{bolt-spacing(small)} + #{$bolt-tooltip-bubble-triangle-width / 2});
+        top: calc(#{bolt-v-spacing(xsmall)} + #{$bolt-tooltip-bubble-triangle-width / 2});
       }
     }
   }
 
   &.is-valign-bottom {
     .c-bolt-tooltip__content {
-      bottom: bolt-spacing(small) * -1;
+      bottom: bolt-v-spacing(xsmall) * -1;
     }
 
     .c-bolt-tooltip__content-bubble {
       &:after,
       &:before {
-        bottom: calc(#{bolt-spacing(small)} + #{$bolt-tooltip-bubble-triangle-width / 2});
+        bottom: calc(#{bolt-v-spacing(xsmall)} + #{$bolt-tooltip-bubble-triangle-width / 2});
       }
     }
   }
