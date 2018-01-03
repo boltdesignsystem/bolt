@@ -6,17 +6,37 @@
     - .c-bolt-image__placeholder: lazyloader span while the img is lazyloaded.
 #}
 
+
+
 {% set srcset = srcset ?? "" %}
-{% set lazyload = lazyload ?? true %}
-{% if placeholderColor is empty %}
-  {% set placeholderColor = bgcolor(src) %}
+{% set imageSizes = globalBoltImageSizes %}
+
+{% if placeholderImage is empty or placeholderColor is empty or srcset == "" %}
+  {% set path = publicpath(src|split('.' ~ ext)|first) %}
 {% endif %}
-{% if placeholderImage is empty %}
-  {% set placeholderImage = base64(src) %}
+
+{% if src %}
+  {% set ext = src|split('.')|last %}
 {% endif %}
+
+{# smaller image src used for calculating color -- already resized for less of a perf hit #}
+{% if placeholderImage is empty or placeholderColor is empty %}
+  {% set sampleImageSrc = path ~ '-' ~ globalBoltImageSizes[0] ~ '.' ~ ext %}
+
+  {% if placeholderImage is empty %}
+    {% set placeholderImage = base64(sampleImageSrc) %}
+  {% endif %}
+
+  {# only calculate a placeholder color if not using a placeholder image #}
+  {% if placeholderColor is empty %}
+    {% set placeholderColor = bgcolor(sampleImageSrc) %}
+  {% endif %}
+{% endif %}
+
 {% if height is empty %}
   {% set height = ratio(src, 'height') %}
 {% endif %}
+
 {% if width is empty %}
   {% set width = ratio(src, 'width') %}
 {% endif %}
@@ -24,7 +44,7 @@
 {% set ratio = ratio ?? true %}
 {% set sizes = sizes | default("auto") %}
 {% set zoom = zoom ?? false %}
-
+{% set lazyload = lazyload ?? true %}
 
 
 {# Get a whole number aspect ratio #}
@@ -49,17 +69,13 @@
 
 {% endif %}
 
-{% if src %}
-  {% set ext = src|split('.')|last %}
-{% endif %}
+
 
 {% set placeholderDummySrc = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" %}
 
 {% set zoomSource = src %}
 
   {% if srcset == "" and ext != "svg" %}
-    {% set path = publicpath(src|split('.' ~ ext)|first) %}
-    {% set imageSizes = globalBoltImageSizes %}
     {% for size in imageSizes if (size <= width) %}
       {% if size == width %}
         {% set srcset = srcset ~ '../..' ~ path ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}

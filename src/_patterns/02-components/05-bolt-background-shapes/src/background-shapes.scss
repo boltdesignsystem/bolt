@@ -1,0 +1,84 @@
+@import '@bolt/tools-all';
+
+.c-bolt-background-shapes {
+  width: 300px;
+
+  @include respond-to(small) {
+    width: 500px;
+  }
+
+  @include respond-to(large) {
+    width: 900px;
+  }
+
+  &__shape {
+
+    svg {
+      display: block;
+    }
+
+    &--orange {
+      .c-bolt-background-shapes__svg {
+        fill: bolt-color(orange);
+      }
+
+      .c-bolt-background-shapes__svg-outline {
+        stroke: bolt-color(orange);
+      }
+    }
+
+    &--yellow {
+      .c-bolt-background-shapes__svg {
+        fill: bolt-color(yellow);
+      }
+
+      .c-bolt-background-shapes__svg-outline {
+        stroke: bolt-color(yellow);
+      }
+    }
+
+    &--teal {
+      .c-bolt-background-shapes__svg {
+        fill: bolt-color(teal);
+      }
+
+      .c-bolt-background-shapes__svg-outline {
+        stroke: bolt-color(teal);
+      }
+    }
+
+    &--indigo {
+      .c-bolt-background-shapes__svg {
+        fill: bolt-color(indigo);
+      }
+
+      .c-bolt-background-shapes__svg-outline {
+        stroke: bolt-color(indigo);
+      }
+    }
+
+    &--interior-yellow {
+      .c-bolt-background-shapes__svg-interior {
+        fill: bolt-color(yellow);
+      }
+    }
+
+    &--interior-indigo {
+      .c-bolt-background-shapes__svg-interior {
+        fill: bolt-color(indigo);
+      }
+    }
+
+    &--interior-teal {
+      .c-bolt-background-shapes__svg-interior {
+        fill: bolt-color(teal);
+      }
+    }
+
+    &--interior-orange {
+      .c-bolt-background-shapes__svg-interior {
+        fill: bolt-color(orange);
+      }
+    }
+  }
+}

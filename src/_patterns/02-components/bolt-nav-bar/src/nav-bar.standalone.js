@@ -1,7 +1,13 @@
-import { props, withComponent } from 'skatejs';
-import withPreact from '@skatejs/renderer-preact';
-import { h } from 'preact';
-import { css } from '@bolt/core';
+import { 
+  h,
+  render,
+  define,
+  props,
+  withComponent,
+  withPreact,
+  css,
+  spacingSizes
+} from '@bolt/core';
 
 const indicatorElement = '.js-bolt-nav-indicator';
 const navLinkElement = 'bolt-nav-link'; // Custom element

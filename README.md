@@ -94,7 +94,36 @@ brew install graphicsmagick
 
 
 ## Installing
-Once Bolt is cloned down locally (and you’ve already gone ahead and installed the prerequisites)  all you need to do to finish setting up Bolt is run `npm run setup` to install the required NPM dependencies, run Lerna bootstrap, and install Pattern Lab + any composer dependencies for the very first time.
+
+### First time setup
+
+If this is a fresh clone, run the commands below, then go get lunch.
+
+```bash
+npm install
+npm run setup
+npm start
+```
+
+<details>
+<summary>**What's that all doing? I wanna know details! (click me)**</summary>
+Well, since you asked:
+
+- `npm install` - Installing node dependencies listed in `package.json` into `node_modules/`
+- `npm run setup` - This runs these commands:
+    - `npm run bootstrap` - Runs `lerna bootstrap --hoist` 
+        - Looks at `lerna.json` to find where all packages are, then goes to those directories and runs `npm install`. 
+        - Since we use `--hoist`, that installs shared dependencies up in the repo roots `node_modules/` folder.
+    - `npm run composer:setup`
+        - Checks to see if this is a fresh install and if not:
+        - deletes `composer.lock` and `vendor`
+        - Runs `composer install` to get dependencies from `composer.json` and put them in `vendor`, these are mainly Pattern Lab dependencies.
+- `npm start`
+    - Compiles everything
+    - Starts watches on files that will trigger builds for what was changed
+    - Starts up a server
+
+</details>
 
 ## Start up local server, compile, and watch for changes
 ```

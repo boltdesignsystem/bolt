@@ -1,29 +1,3 @@
-# sudo: required
-# language: node_js
-# node_js:
-#   - 'node'
-#   - '6'
-
-# before_script:
-#   - export DISPLAY=:99.0
-#   - sh -e /etc/init.d/xvfb start
-
-# script:
-#   - yarn test:travis
-
-# addons:
-#   firefox: latest
-#   apt:
-#     sources:
-#       - google-chrome
-#     packages:
-#       - google-chrome-stable
-
-
-
-
-#sudo: true
-#dist: trusty
 language: php
 php:
   - 7.0
@@ -39,9 +13,7 @@ addons:
 before_install:
 - nvm install 8 # or 5, 6, or whatever
 - node --version && npm --version && composer --version
-#- npm update -g npm # if necessary
-#- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
-#- export PATH=$HOME/.yarn/bin:$PATH
+- npm install netlify-cli -g
 - composer global require hirak/prestissimo
 - if [[ -n "$GITHUB_TOKEN" ]]; then composer config -g github-oauth.github.com ${GITHUB_TOKEN};
   fi;
@@ -51,18 +23,17 @@ before_script:
 
 install:
 - npm install && npm run setup
-# - gem install --file packages/website-jekyll/Gemfile
 
 script:
 - npm run test
-- travis_wait npm run build && npm run deploy # only run deploy if build is successful. Can't do `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
+- travis_wait npm run build #only run deploy if build is successful. Can't do `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
+# - npm run deploy
+
+after_success:
+- netlify deploy -s bolt.netlify.com -t ${NETLIFY_TOKEN} -p dist
 
 cache:
   apt: true
-#  yarn: true
-  directories:
-#  - "$HOME/.cache/yarn"
-#  - node_modules
 
 notifications:
   email:

@@ -1,5 +1,5 @@
 v: 2.6.0
-overrideConfig: q
+overrideConfig: false
 ie:
   - DS_Store
   - less
@@ -41,7 +41,7 @@ lineageMatch: >-
   |\()[&quot;\&#039;]([\/.@A-Za-z0-9-_]+)[&quot;\&#039;]([\s\S+]*?)%}
 lineageMatchKey: 3
 patternExtension: twig
-twigDebug: false
+twigDebug: true
 twigAutoescape: false
 twigDefaultDateFormat: ''
 twigDefaultIntervalFormat: ''
@@ -81,6 +81,7 @@ plugins:
           - src/_patterns/01-core/05-objects/bolt-ratio-object/src
           - src/_patterns/01-core/05-objects/bolt-ui-list-object/src
           - src/_patterns/01-core/05-objects/bolt-wrapper-object/src
+          - src/_patterns/02-components/05-bolt-background-shapes/src
           - src/_patterns/02-components/bolt-accordion/src
           - src/_patterns/02-components/bolt-action-blocks/demo/theming
           - src/_patterns/02-components/bolt-action-blocks/src
@@ -103,6 +104,7 @@ plugins:
           - src/_patterns/02-components/bolt-forms/src
           - src/_patterns/02-components/bolt-headline/demo
           - src/_patterns/02-components/bolt-headline/demo/h1-through-h6
+          - src/_patterns/02-components/bolt-headline/demo/text-alignment
           - src/_patterns/02-components/bolt-headline/src
           - src/_patterns/02-components/bolt-icon/src
           - src/_patterns/02-components/bolt-image/src
@@ -123,6 +125,9 @@ plugins:
           - src/_patterns/02-components/bolt-teaser/src
           - src/_patterns/02-components/bolt-unordered-list/demo/theming
           - src/_patterns/02-components/bolt-unordered-list/src
+          - src/_patterns/02-components/bolt-video/demo
+          - src/_patterns/02-components/bolt-video/src
+          - src/_patterns/02-components/brightcove-player/src
           - src/_patterns/03-templates/default
           - src/_patterns/04-pages/bolt-homepage
           - src/_patterns/04-pages/bolt-sandbox

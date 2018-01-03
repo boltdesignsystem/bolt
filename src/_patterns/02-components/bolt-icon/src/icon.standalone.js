@@ -1,9 +1,16 @@
-import { props, withComponent } from 'skatejs';
-import withPreact from '@skatejs/renderer-preact';
-import { h } from 'preact';
+import {
+  h,
+  render,
+  define,
+  props,
+  withComponent,
+  withPreact,
+  css,
+  spacingSizes
+} from '@bolt/core';
+
 import upperCamelCase from 'uppercamelcase';
 
-import { css, spacingSizes } from '@bolt/core';
 import styles from './icon.scss';
 import * as Icon from '@bolt/components-icons';
 
@@ -17,7 +24,10 @@ const colors = [
 ]
 
 
-class BoltIcon extends withComponent(withPreact()) {
+@define
+export class BoltIcon extends withComponent(withPreact()) {
+  static is = 'bolt-icon';
+
   static props = {
     name: props.string,
     size: props.string,
@@ -25,7 +35,7 @@ class BoltIcon extends withComponent(withPreact()) {
     color: props.string
   }
 
-  renderCallback({ props }) {
+  render({ props }) {
     const classes = css(
       'c-bolt-icon',
       props.size && spacingSizes[props.size] && spacingSizes[props.size] !== '' ? `c-bolt-icon--${props.size}` : ``,
@@ -41,11 +51,10 @@ class BoltIcon extends withComponent(withPreact()) {
 
     const iconClasses = css(
       'c-bolt-icon__icon',
-      // props.background && backgroundStyles.includes(props.background) ? `c-bolt-icon__${props.background}-background` : ''
     )
 
     const iconName = props.name ? upperCamelCase(props.name) : '';
-    const size = props.size && spacingSizes[props.size] ? (spacingSizes[props.size].replace('rem', '') * 16 / 2) : spacingSizes['medium'];
+    const size = props.size && spacingSizes[props.size] ? spacingSizes[props.size].replace('rem', '') * 16 / 2 : spacingSizes['medium'].replace('rem', '') * 16 / 2;
     const IconTag = Icon[iconName];
 
     return (
@@ -59,5 +68,3 @@ class BoltIcon extends withComponent(withPreact()) {
     )
   }
 }
-
-customElements.define('bolt-icon', BoltIcon);

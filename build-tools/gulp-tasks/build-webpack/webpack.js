@@ -12,11 +12,15 @@ function webpackTask(gulp, devConfig, releaseConfig) {
   const getDevCompiler = options => webpack(devConfig(options));
   const getReleaseCompiler = options => webpack(releaseConfig(options));
 
-  const handleWebpackOutput = (err, stats) => {
+  const handleWebpackOutput = (err, stats, verbose) => {
     if (err) throw new gutil.PluginError('es6Pipeline', err);
     gutil.log('[es6Pipeline]', stats.toString({
       colors: true,
-      chunks: false
+      chunks: false,
+      assets: verbose,
+      version: verbose,
+      modules: verbose,
+      timings: verbose,
     }));
   };
 
@@ -24,7 +28,7 @@ function webpackTask(gulp, devConfig, releaseConfig) {
   gulp.task('webpack:dev', (done) => {
     const compiler = getDevCompiler(devConfig.webpack ? devConfig.webpack : devConfig);
     compiler.run((err, stats) => {
-      handleWebpackOutput(err, stats);
+      handleWebpackOutput(err, stats, false);
       done();
     });
   });
@@ -33,14 +37,14 @@ function webpackTask(gulp, devConfig, releaseConfig) {
   gulp.task('webpack:prod', (done) => {
     const compiler = getReleaseCompiler(releaseConfig.webpack ? releaseConfig.webpack : releaseConfig);
     compiler.run((err, stats) => {
-      handleWebpackOutput(err, stats);
+      handleWebpackOutput(err, stats, true);
       done();
     });
   });
 
 
 
-  
+
 
   // Copy built js files to PL
   gulp.task('webpack:copypl', (done) => {
@@ -64,12 +68,16 @@ function webpackTask(gulp, devConfig, releaseConfig) {
 
   // Watch webpack-compiled files for changes
   gulp.task('webpack:watch', () => {
-    gulp.watch([
-      'src/scripts/**/*.js',
-      'src/_patterns/**/src/*.js'
-    ], gulp.parallel([
-      process.env.NODE_ENV === 'production' ? 'webpack:prod' : 'webpack:dev',
-    ]));
+    const compiler = process.env.NODE_ENV === 'production'
+      ? getReleaseCompiler(releaseConfig.webpack ? releaseConfig.webpack : releaseConfig)
+      : getDevCompiler(devConfig.webpack ? devConfig.webpack : devConfig);
+
+    return compiler.watch({
+      // https://webpack.js.org/configuration/watch/#watchoptions
+      aggregateTimeout: 300,
+    }, (err, stats) => {
+      handleWebpackOutput(err, stats, process.env.NODE_ENV === 'production');
+    });
   });
 }
 module.exports.webpack = webpackTask;

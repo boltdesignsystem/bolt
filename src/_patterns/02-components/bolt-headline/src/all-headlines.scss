@@ -5,6 +5,7 @@
 @import '@bolt/tools-font-weight';
 @import '@bolt/tools-font-size';
 @import '@bolt/tools-spacing';
+@import './tools.headlines';
 
 
 /* ------------------------------------ *\
@@ -14,39 +15,19 @@
 $bolt-test-color-secondary: blue; // TODO: needs to map to our palette
 $bolt-test-transition: ease-in-out 200ms;
 
-
-
 $bolt-headline--minus-letter-spacing: -0.025rem;
 $bolt-headline--plus-letter-spacing: 0.05rem;
 
 
-
-
-@mixin bolt-headline() {
-  @include bolt-font-family(heading);
-  display: block;
-  max-width: 55ch;
-  color: inherit;
-  color: var(--bolt-theme-heading, inherit);
-
-  @supports (display: flex) {
-    display: flex;
-    align-items: center;
-  }
-
-  /* stylelint-disable-next-line */
-  > * {
-    align-self: center;
-  }
+.c-bolt-headline,
+.c-bolt-subheadline,
+.c-bolt-eyebrow,
+.c-bolt-text {
+  @include bolt-headline;
 }
 
-
-
-
 .c-bolt-headline {
-  @include bolt-headline;
   @include bolt-font-weight(bold);
-
 
   &:not(:last-child) {
     @include bolt-margin-bottom(medium);
@@ -81,7 +62,6 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 
 .c-bolt-eyebrow {
-  @include bolt-headline;
   @include bolt-margin-bottom(0.1rem);
   @include bolt-font-size(xsmall);
   @include bolt-font-weight(regular);
@@ -91,21 +71,7 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 }
 
 
-// Headline content
-// @TODO: boil this all down to just one single shared class
-.c-bolt-headline__text ~ .c-bolt-headline__icon,
-.c-bolt-subheadline__text ~ .c-bolt-subheadline__icon,
-.c-bolt-eyebrow__text ~ .c-bolt-eyebrow__icon,
-.c-bolt-text__text ~ .c-bolt-text__icon {
-  @include bolt-margin-left(xxsmall);
-}
 
-.c-bolt-headline__icon ~ .c-bolt-headline__text,
-.c-bolt-subheadline__icon ~ .c-bolt-subheadline__text,
-.c-bolt-eyebrow__icon ~ .c-bolt-eyebrow__text,
-.c-bolt-text__icon ~ .c-bolt-text__text {
-  @include bolt-margin-left(xxsmall);
-}
 
 .c-bolt-headline__line {
   flex: 1 0 1rem;
@@ -129,7 +95,6 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 // Subheadline styles.
 .c-bolt-subheadline {
-  @include bolt-headline;
   @include bolt-margin-bottom(medium);
   @include bolt-font-family(heading);
   @include bolt-font-weight(regular);
@@ -138,17 +103,6 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
     @include bolt-font-size(large);
   }
 }
-
-
-.c-bolt-headline,
-.c-bolt-subheadline,
-.c-bolt-text {
-
-  &:last-child {
-    @include bolt-margin-bottom(0);
-  }
-}
-
 
 
 // Headline spacing with other elements.
@@ -182,15 +136,20 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 }
 
 
+/**
+  * 1. Only include max-width rule on larger font sizes
+  */
 .c-bolt-text--xxxlarge,
 .c-bolt-headline--xxxlarge {
   @include bolt-font-size(xxxlarge);
+  max-width: 55ch; /* [1] */
 }
 
 .c-bolt-text--xxlarge,
 .c-bolt-subheadline--xxlarge,
 .c-bolt-headline--xxlarge {
   @include bolt-font-size(xxlarge);
+  max-width: 55ch; /* [1] */
 }
 
 
@@ -237,34 +196,4 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 .c-bolt-headline--small,
 .c-bolt-headline--xsmall {
   letter-spacing: $bolt-headline--plus-letter-spacing;
-}
-
-
-
-.c-bolt-text--bold,
-.c-bolt-eyebrow--bold,
-.c-bolt-headline--bold {
-  @include bolt-font-weight(bold);
-}
-
-.c-bolt-text--regular,
-.c-bolt-eyebrow--regular,
-.c-bolt-headline--regular,
-.c-bolt-subheadline--regular {
-  @include bolt-font-weight(regular);
-}
-
-.c-bolt-text--semibold {
-  @include bolt-font-weight(semibold);
-}
-
-
-
-
-.c-bolt-text--normal {
-  font-style: normal;
-}
-
-.c-bolt-text--italic {
-  font-style: italic;
 }

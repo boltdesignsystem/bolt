@@ -15,6 +15,7 @@
 {% set deviceName = device | default("ipad") %}
 {% set color = color | default("black") %}
 {% set orientation = orientation | default("portrait") %}
+{% set magnify = magnify | default(false) %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
 
@@ -46,8 +47,10 @@
       <div class="{{ baseClass ~ "__camera"}}"></div>
       <div class="{{ baseClass ~ "__speaker"}}"></div>
 
-      <bolt-device-screen class="{{ baseClass ~ "__screen"}} c-bolt-device-viewer__screen js-device-viewer-screen">
-        {% include "@bolt/_screen-tilt.twig" %}
+      <bolt-device-screen class="{{ baseClass ~ "__screen"}} c-bolt-device-viewer__screen {% if magnify %} c-bolt-device-viewer__screen--magnify js-bolt-device-viewer-screen {% endif %}">
+        {% if magnify %}
+          {% include "@bolt/_screen-tilt.twig" %}
+        {% endif %}
 
         {% block device_viewer_image %}
           {% if image %}
@@ -55,9 +58,11 @@
           {% endif %}
         {% endblock %}
 
-        <div class="c-bolt-device-viewer__overlay">
-          <bolt-icon name="search" size="xlarge" background="circle" class="c-bolt-device-viewer__overlay-icon" />
-        </div>
+        {% if magnify %}
+          <div class="c-bolt-device-viewer__overlay">
+            <bolt-icon name="search" size="xlarge" background="circle" class="c-bolt-device-viewer__overlay-icon" />
+          </div>
+        {% endif %}
       </bolt-device-screen>
 
       <div class="{{ baseClass ~ "__home"}}"></div>
