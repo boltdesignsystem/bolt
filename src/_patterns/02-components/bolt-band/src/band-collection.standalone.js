@@ -25,6 +25,7 @@ ShadyCSS.prepareTemplate(bandCollectionTemplate, 'bolt-band-collection');
   // /HIDE
 
 
+@define
 export class BoltBandCollection extends withComponent(withPreact()) {
   static is = 'bolt-band-collection';
 
@@ -288,7 +289,6 @@ export class BoltBandCollection extends withComponent(withPreact()) {
   }
 }
 
-customElements.define(BoltBandCollection.is, BoltBandCollection);
 
 
 // These functions help make animations easier.

@@ -12,6 +12,7 @@ import {
 import styles from './button.scss';
 import spacingUtils from '@bolt/utilities-spacing/_utilities.spacing.scss';
 
+@define
 export class BoltButton extends withComponent(withPreact()) {
   static is = 'bolt-button';
 
@@ -89,5 +90,3 @@ export class BoltButton extends withComponent(withPreact()) {
     )
   }
 }
-
-customElements.define(BoltButton.is, BoltButton);
