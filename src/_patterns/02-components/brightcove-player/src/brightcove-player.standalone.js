@@ -15,6 +15,23 @@ import dasherize from 'dasherize';
 
 let index = 0;
 
+
+@define
+class BrightcoveMeta extends withComponent(withPreact()) {
+  static is = 'brightcove-meta'
+
+  static props = {
+    duration: props.string
+  }
+
+  render() {
+    return (
+      <div>Duration: {this.duration}</div>
+    );
+  }
+}
+
+
 @define
 class BrightcoveVideo extends withComponent(withPreact()) {
   static is = 'brightcove-player';
@@ -121,7 +138,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
   // }
 
   _setDuration(time){
-    this.duration = time;
+    this.querySelector('brightcove-meta').setAttribute('duration', time);
   }
 
   _setVideoDimensions(width, height) {
@@ -140,7 +157,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
       const width = player.mediainfo.sources[1].width;
       const height = player.mediainfo.sources[1].height;
 
-      elem._setDuration();
+      elem._setDuration(duration);
       elem._setVideoDimensions(width, height);
       elem._calculateIdealVideoSize();
     });
@@ -408,6 +425,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     // this.setState({ duration: BrightcoveVideo.getDurationMs(player) });
 
     this.state.duration = duration;
+    this._setDuration(duration);
   }
 
   onEnded() {
@@ -566,22 +584,25 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     const dataAttributes = datasetToObject(this);
 
     return(
-      <video
-        {...dataAttributes}
-        id={this.state.id}
-        {...(this.props.poster ? { poster: this.props.poster.uri } : {}) }
-        data-embed="default"
-        data-video-id={this.props.videoId}
-        data-account={this.props.accountId}
-        data-player={this.props.playerId}
-        // playIcon={playIconEmoji()}
-        // following 'autoplay' can not expected to always work on web
-        // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
-        autoPlay={this.props.autoplay}
-        data-application-id
-        className="video-js"
-        controls
-      />
+      <div>
+        <video
+          {...dataAttributes}
+          id={this.state.id}
+          {...(this.props.poster ? { poster: this.props.poster.uri } : {}) }
+          data-embed="default"
+          data-video-id={this.props.videoId}
+          data-account={this.props.accountId}
+          data-player={this.props.playerId}
+          // playIcon={playIconEmoji()}
+          // following 'autoplay' can not expected to always work on web
+          // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
+          autoPlay={this.props.autoplay}
+          data-application-id
+          className="video-js"
+          controls
+        />
+        <brightcove-meta />
+      </div>
     );
   }
 }
