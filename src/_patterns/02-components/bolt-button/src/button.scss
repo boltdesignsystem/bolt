@@ -270,7 +270,8 @@ bolt-button {
   }
 }
 
-.c-bolt-button--secondary {
+
+@mixin bolt-button-secondary() {
   $secondary-background-default: bolt-color(white);
   $secondary-background-hover: mix(bolt-color(black), $secondary-background-default, 2%);
   $secondary-background-active: mix(bolt-color(black), $secondary-background-default, 15%);
@@ -309,6 +310,10 @@ bolt-button {
     background-color: $secondary-background-active;
     background-color: var(--bolt-theme-secondary-background-active, $secondary-background-active);
   }
+}
+
+.c-bolt-button--secondary {
+  @include bolt-button-secondary;
 }
 
 
