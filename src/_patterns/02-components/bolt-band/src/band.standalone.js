@@ -24,7 +24,7 @@ bandTemplate.innerHTML = `
     <slot></slot>
   `;
 
-  // ShadyCSS will rename classes as needed to ensure style scoping.
+// ShadyCSS will rename classes as needed to ensure style scoping.
 ShadyCSS.prepareTemplate(bandTemplate, 'bolt-band');
 
 
@@ -36,6 +36,10 @@ export class BoltBand extends withComponent(withPreact()) {
 
   static get observedAttributes() {
     return ['expanded', 'expandedHeight', 'initialHeight'];
+  }
+
+  static props = {
+    isCollapsable: props.boolean
   }
 
   constructor() {
@@ -54,13 +58,19 @@ export class BoltBand extends withComponent(withPreact()) {
     );
 
     this.addEventListener('expandedHeightSet', this._adjustExpandedHeightToMatchChildren);
-    this.initialHeight = this.getBoundingClientRect().height;
+    this._onWindowResize = this._onWindowResize.bind(this);
+
+    if (this.expanded) {
+      this.expand();
+    } else {
+      this.collapse();
+    }
   }
 
 
-/**
-  * `connectedCallback()` sets up the role, event handler and initial state.
-  */
+  /**
+    * `connectedCallback()` sets up the role, event handler and initial state.
+    */
   connectedCallback() {
     // Shim Shadow DOM styles. This needs to be run in `connectedCallback()`
     // because if you shim Custom Properties (CSS variables) the element
@@ -71,29 +81,29 @@ export class BoltBand extends withComponent(withPreact()) {
     this.addEventListener('pause', this.pauseHandler);
     this.addEventListener('ended', this.finishedHandler);
     this.addEventListener('close', this.collapse);
+
+    if (this.isCollapsable){
+      window.addEventListener('optimizedResize', this._onWindowResize);
+    }
+  }
+
+  disconnectedCallback() {
+    if (this.isCollapsable) {
+      window.removeEventListener('optimizedResize', this._onWindowResize);
+    }
   }
 
 
-/**
-  * `attributeChangedCallback` processes changes to the `expanded` attribute.
-  */
+  /**
+    * `attributeChangedCallback` processes changes to the `expanded` attribute.
+    */
   attributeChangedCallback(name) {
-    if (this.state.ready === false){
+    if (this.state.ready === false) {
       this.state.ready = true;
       this.classList.add('is-ready');
     }
 
-    if (this.expanded && this.expandedHeight){
-      this.style.maxHeight = this.expandedHeight + 'px';
-    }
 
-    if (this.expanded) {
-      this.classList.add('is-expanded');
-      this.classList.remove('is-collapsed');
-    } else {
-      this.classList.remove('is-expanded');
-      this.classList.add('is-collapsed');
-    }
 
     // `expanded` is a boolean attribute it is either set or not set. The
     // actual value is irrelevant.
@@ -101,13 +111,18 @@ export class BoltBand extends withComponent(withPreact()) {
     this.setAttribute('aria-expanded', value);
   }
 
+  _onWindowResize() {
+    if (!this.expanded) {
+      this.updateInitialHeight();
+    }
+  }
 
 
   playHandler(event) {
-    if (event.detail.isBackgroundVideo){
-      this.initialHeight = this.getBoundingClientRect().height;
+    if (event.detail.isBackgroundVideo) {
 
-      this.expanded = true;
+      this.expand();
+      // this.expanded = true;
 
       this.dispatchEvent(
         new CustomEvent('change', {
@@ -118,36 +133,44 @@ export class BoltBand extends withComponent(withPreact()) {
     }
   }
 
-  pauseHandler(event) {
-    if (event.detail.isBackgroundVideo) {
-      // console.log('bg video now paused!');
-    }
-  }
-
-  finishedHandler(event) {
-    if (event.detail.isBackgroundVideo) {
-      // console.log('bg video now finished!');
-
-      // this.expanded = false;
-      // this.dispatchEvent(
-      //   new CustomEvent('change', {
-      //     detail: { isExpandedNow: this.expanded },
-      //     bubbles: true,
-      //   })
-      // );
-    }
-  }
-
-  expand() {
-    this.expanded = true;
-  }
 
   collapse() {
-    this.expanded = false;
+
+    if (this.state.ready){
+      this.style.height = this.expandedHeight + 'px';
+      this.style.height = this.initialHeight + 'px';
+
+      this.addEventListener('transitionend', function f() {
+        this.style.height = 'auto'; // remove "height" from the element's inline styles, so it can return to its initial value
+        this.removeEventListener('transitionend', f);
+      });
+    }
+
+    this.expanded = false; // mark the section as "currently collapsed"
   }
 
+
+  expand() {
+    if (this.state.ready) {
+      this.style.height = this.initialHeight + 'px';
+
+      this.addEventListener('transitionend', function f() {
+        this.style.height = this.expandedHeight + 'px';
+        this.removeEventListener('transitionend', f);
+      });
+    }
+
+    this.expanded = true; // mark the section as "currently not collapsed"
+  }
+
+
   // Max Height of a child element has been set so use that to determine how tall a band should get.
-  _adjustExpandedHeightToMatchChildren(event){
+  _adjustExpandedHeightToMatchChildren(event) {
+    this.updateInitialHeight();
+
+    this.isCollapsable = true;
+    window.addEventListener('optimizedResize', this._onWindowResize);
+
     if (event.detail.expandedHeight) {
       this.expandedHeight = event.detail.expandedHeight;
     }
@@ -166,22 +189,10 @@ export class BoltBand extends withComponent(withPreact()) {
   set expanded(value) {
     value = Boolean(value);
     if (value) {
-      if (this.expandedHeight) {
-        this.style.height = this.expandedHeight + 'px';
-      } else {
-        this.style.height = '56.25vh';
-      }
-
       this.setAttribute('expanded', '');
       this.classList.add('is-expanded');
       this.classList.remove('is-collapsed');
     } else {
-      if (this.initialHeight) {
-        this.style.height = this.initialHeight + 'px';
-      } else {
-        this.style.height = 'auto';
-      }
-
       this.removeAttribute('expanded');
       this.classList.add('is-collapsed');
       this.classList.remove('is-expanded');
@@ -196,23 +207,26 @@ export class BoltBand extends withComponent(withPreact()) {
   set initialHeight(value) {
     if (value) {
       this.setAttribute('initialHeight', value);
-      this.style.height = this.initialHeight + 'px';
     } else {
       this.removeAttribute('initialHeight');
-      this.style.height = 'auto';
     }
   }
 
+  updateInitialHeight() {
+    this.initialHeight = this.getBoundingClientRect().height;
+  }
 
   get expandedHeight() {
     return this.getAttribute('expandedHeight');
   }
 
   set expandedHeight(value) {
-    if (value)
+    if (value) {
       this.setAttribute('expandedHeight', value);
-    else
+    }
+    else {
       this.removeAttribute('expandedHeight');
+    }
   }
 
   // get renderRoot() {
@@ -224,4 +238,28 @@ export class BoltBand extends withComponent(withPreact()) {
       <slot />
     )
   }
+}
+
+// Create a custom 'optimizedResize' event that works just like window.resize but is more performant because it
+// won't fire before a previous event is complete.
+// This was adapted from https://developer.mozilla.org/en-US/docs/Web/Events/resize
+export function optimizedResize(){
+  function throttle(type, name, obj) {
+    obj = obj || window;
+    let running = false;
+
+    function func() {
+      if (running) { return; }
+      running = true;
+      requestAnimationFrame(function () {
+        obj.dispatchEvent(new CustomEvent(name));
+        running = false;
+      });
+    }
+    obj.addEventListener(type, func);
+  }
+
+  // Initialize on window.resize event.  Note that throttle can also be initialized on any type of event,
+  // such as scroll.
+  throttle('resize', 'optimizedResize');
 }
