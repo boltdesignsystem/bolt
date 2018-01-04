@@ -1,6 +1,7 @@
 @import '@bolt/settings-all';
 @import '@bolt/tools-all';
 
+@import 'videojs-enhancements';
 
 
 .c-bolt-video {
@@ -13,20 +14,10 @@
   transition: transform .4s cubic-bezier(.645, 0, .355, 1);
 }
 
-.c-bolt-video__video-wrapper {
+.c-bolt-video__wrapper {
   position: relative;
-  pointer-events: all;
-  border-radius: 12px;
-  box-shadow: 0 55px 70px -20px rgba(50, 50, 93, .55), 0 20px 30px -10px rgba(0, 0, 0, .14);
-  transform: translateY(0) !important;
-  transition: transform .4s cubic-bezier(.645, 0, .355, 1);
-
-  .is-collapsed & {
-    cursor: pointer;
-    @include respond-to(medium) {
-      transform: scale(.45) rotateX(3deg) rotateY(-15deg) rotate(-1deg) translateX(500px) translateY(300px)!important;
-    }
-  }
+  width: 100%;
+  pointer-events: none;
 }
 
 .c-bolt-video__video-element {
@@ -78,53 +69,4 @@
 .c-bolt-video__close-wrapper {
   position: relative;
   width: 100%;
-}
-
-
-
-// Vertically and horizontally center the default Brightcove share overlay content
-.vjs-modal-dialog .vjs-modal-dialog-content {
-  height: auto;
-  max-width: 1024px;
-  margin: 0 auto;
-  position: relative; // override position: absolute
-}
-
-.video-js {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.video-js .vjs-modal-dialog {
-  overflow: auto; // so psuedo layer below shows up
-  box-sizing: border-box;
-  z-index: 100;
-  max-width: 768px;
-  margin: 0 auto;
-  overflow: visible; // override default overflow: hidden
-  background: transparent; // override default gradient so the psuedo layer is the only backgrond showing up
-  position: relative; // override position: absolute
-  height: auto; // override height: 100%;
-
-  &:before {
-    content: '';
-    display: block;
-    background-color: rgba(bolt-color(black), 0.8);
-    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8), rgba(255, 255, 255, 0));
-    width: auto;
-    height: auto;
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-    bottom: -9990px;
-    right: -9990px;
-    opacity: 1;
-    pointer-events: none;
-  }
-}
-
-.vjs-social-overlay .vjs-social-description,
-.vjs-social-overlay .vjs-social-title {
-  white-space: normal;
 }
