@@ -20,5 +20,3 @@ class BoltVideo extends BrightcoveVideo {
     super();
   }
 }
-
-customElements.define(BoltVideo.is, BoltVideo);
