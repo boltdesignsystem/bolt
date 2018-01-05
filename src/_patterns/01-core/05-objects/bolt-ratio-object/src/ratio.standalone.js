@@ -48,7 +48,6 @@ export class BoltRatio extends withComponent(withPreact()) {
       this.style.paddingTop = (100 * h / w) + "%";
       this.style.removeProperty('--aspect-ratio-height');
       this.style.removeProperty('--aspect-ratio-width');
-      this.querySelector('img').classList.add('o-bolt-ratio__inner');
     }
   }
 
@@ -87,6 +86,14 @@ export class BoltRatio extends withComponent(withPreact()) {
         this.shadyPrepared = true;
       }
       ShadyCSS.styleElement(this);
+
+      // Auto-add class for fallback styles
+      var childNodes = this.childNodes;
+      for (var i = 0; i < childNodes.length; i++) {
+        if (childNodes[i].nodeType !== 3) { // nodeType 3 is a text node
+          childNodes[i].classList.add('o-bolt-ratio__inner');
+        }
+      }
 
     /** @TODO: determine if this logic below is required. This <style> node cleanup was
      *  included in original example (mentioned above) so keeping around for now.

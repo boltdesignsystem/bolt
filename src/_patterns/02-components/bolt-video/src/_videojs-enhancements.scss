@@ -24,23 +24,18 @@
   }
 
   .vjs-icon-placeholder {
-    display: flex;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    display: block;
+    position: relative;
+    align-self: center;
+    line-height: 1; // Fixes vertical alignment issues w/ the icon in IE11 and Chrome
   }
 
   .vjs-icon-placeholder:before {
     color: bolt-color(blue);
+    display: block;
     position: relative;
     height: auto;
     width: auto;
-    line-height: 1;
     pointer-events: none; // prevent clicks from sticking
   }
 }

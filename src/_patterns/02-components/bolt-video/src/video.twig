@@ -55,14 +55,11 @@
 {% endset %}
 
 {% if ratio == true %}
-  {% embed "@bolt/ratio.twig" with {
+  {% include "@bolt/ratio.twig" with {
     aspectRatioHeight: aspectRatioHeight ?? 9,
-    aspectRatioWidth: aspectRatioWidth ?? 16
-  } %}
-    {% block ratio_content %}
-      {{ videoTag }}
-    {% endblock %}
-  {% endembed %}
+    aspectRatioWidth: aspectRatioWidth ?? 16,
+    children: videoTag
+  } only %}
 {% else %}
   {{ videoTag }}
 {% endif %}
