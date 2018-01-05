@@ -32,20 +32,22 @@
         pegaPlayer.emailSocialShare();
 
 
-        if (pegaPlayer.controlBar.playbackRateMenuButton) {
-          // Update the existing playback rate menu button in the control bar
-          var playbackControl = pegaPlayer.controlBar.playbackRateMenuButton;
-          playbackControl.removeChild(playbackControl.menu);
-          playbackControl.options_.playbackRates = options.playbackRates;
-          playbackControl.addChild(playbackControl.createMenu());
-          playbackControl.updateLabel();
-          playbackControl.updateVisibility();
-        } else {
-          // Add the playback rate menu button to the control bar
-          pegaPlayer.controlBar.playbackRateMenuButton = pegaPlayer.controlBar.addChild('PlaybackRateMenuButton', {
-            playbackRates: options.playbackRates
-          });
-          pegaPlayer.controlBar.playbackRateMenuButton.updateVisibility();
+        if (Array.isArray(options.playbackRates)) {
+          if (pegaPlayer.controlBar.playbackRateMenuButton) {
+            // Update the existing playback rate menu button in the control bar
+            var playbackControl = pegaPlayer.controlBar.playbackRateMenuButton;
+            playbackControl.removeChild(playbackControl.menu);
+            playbackControl.options_.playbackRates = options.playbackRates;
+            playbackControl.addChild(playbackControl.createMenu());
+            playbackControl.updateLabel();
+            playbackControl.updateVisibility();
+          } else {
+            // Add the playback rate menu button to the control bar
+            pegaPlayer.controlBar.playbackRateMenuButton = pegaPlayer.controlBar.addChild('PlaybackRateMenuButton', {
+              playbackRates: options.playbackRates
+            });
+            pegaPlayer.controlBar.playbackRateMenuButton.updateVisibility();
+          }
         }
       });
     });
