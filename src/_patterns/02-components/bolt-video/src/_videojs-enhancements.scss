@@ -6,6 +6,7 @@
   max-width: 1024px;
   max-height: 56.25vw;
   margin: 0 auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .video-js .vjs-big-play-button.vjs-big-play-button {
@@ -80,8 +81,11 @@
   margin: 0 auto;
   overflow: visible; // override default overflow: hidden
   background: transparent; // override default gradient so the psuedo layer is the only backgrond showing up
-  position: relative; // override position: absolute
+  position: absolute; // override position: absolute
   height: auto; // override height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
 
   &:before {
     content: '';

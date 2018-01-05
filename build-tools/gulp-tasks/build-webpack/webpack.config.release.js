@@ -11,7 +11,7 @@ const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const merge = require('merge').recursive;
 
 // const isDev = process.argv.find(arg => arg.includes('webpack-dev-server'));
@@ -64,6 +64,7 @@ module.exports = (options) => {
       disable: false,
       allChunks: true
     }),
+    new UglifyJsPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.LoaderOptionsPlugin(
       {
