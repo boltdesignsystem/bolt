@@ -13,6 +13,36 @@ import {
 
 let index = 0;
 
+import metaStyles from './brightcove-meta.scss';
+
+@define
+class BrightcoveMeta extends withComponent(withPreact()) {
+  static is = 'brightcove-meta';
+
+  static props = {
+    duration: props.string,
+    title: props.string
+  };
+
+  render() {
+    const separator = this.title && this.duration ? ' | ' : '';
+
+    // 'reveal' allows the metadata to be hidden.
+    // All of its logic is contained here in render(), but it could be updated to be a property that is set
+    // externally (such as when the video has finished fully loading).
+    const reveal =  Boolean(this.title || this.duration);
+    return (
+      <div>
+        <style>{metaStyles[0][1]}</style>
+        {reveal ? (
+          <div class="brightcove-meta__wrapper">{this.title}{separator}{this.duration}</div>
+        ) : null}
+      </div>
+    );
+  }
+}
+
+
 @define
 class BrightcoveVideo extends withComponent(withPreact()) {
   static is = 'brightcove-player';
@@ -112,13 +142,25 @@ class BrightcoveVideo extends withComponent(withPreact()) {
 
   // Called to check whether or not the component should call
   // updated(), much like React's shouldComponentUpdate().
-  // updating(props, state) { 
+  // updating(props, state) {
   //   console.log(props);
   //   console.log(state);
   // }
 
-  _setDuration(time){
-    this.duration = time;
+  _setMetaTitle(title) {
+    this.querySelector('brightcove-meta').setAttribute('title', title);
+  }
+
+  _setMetaDuration(seconds) {
+    const durationFormatted = BrightcoveVideo._formatDuration(seconds);
+    this.querySelector('brightcove-meta').setAttribute('duration', durationFormatted);
+  }
+
+  static _formatDuration(seconds) {
+    const mm = Math.floor(seconds / 60) || 0;
+    const ss = ('0' + Math.floor(seconds % 60)).slice(-2);
+
+    return mm + ':' + ss;
   }
 
   _setVideoDimensions(width, height) {
@@ -134,10 +176,12 @@ class BrightcoveVideo extends withComponent(withPreact()) {
 
     player.on("loadedmetadata", function () {
       const duration = player.mediainfo.duration;
+      const title = player.mediainfo.name;
       const width = player.mediainfo.sources[1].width;
       const height = player.mediainfo.sources[1].height;
 
-      elem._setDuration();
+      elem._setMetaTitle(title);
+      elem._setMetaDuration(duration);
       elem._setVideoDimensions(width, height);
       elem._calculateIdealVideoSize();
     });
@@ -545,21 +589,24 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     // Added a wrapping div as brightcove adds siblings to the video tag
 
     return(
-      <video
-        id={this.state.id}
-        {...(this.props.poster ? { poster: this.props.poster.uri } : {}) }
-        data-embed="default"
-        data-video-id={this.props.videoId}
-        data-account={this.props.accountId}
-        data-player={this.props.playerId}
-        // playIcon={playIconEmoji()}
-        // following 'autoplay' can not expected to always work on web
-        // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
-        autoPlay={this.props.autoplay}
-        data-application-id
-        className="video-js"
-        controls
-      />
+      <div>
+        <video
+          id={this.state.id}
+          {...(this.props.poster ? { poster: this.props.poster.uri } : {}) }
+          data-embed="default"
+          data-video-id={this.props.videoId}
+          data-account={this.props.accountId}
+          data-player={this.props.playerId}
+          // playIcon={playIconEmoji()}
+          // following 'autoplay' can not expected to always work on web
+          // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
+          autoPlay={this.props.autoplay}
+          data-application-id
+          className="video-js"
+          controls
+        />
+        <brightcove-meta />
+      </div>
     );
   }
 }
