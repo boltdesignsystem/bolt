@@ -137,9 +137,6 @@ class BrightcoveVideo extends withComponent(withPreact()) {
   //   console.log(state);
   // }
 
-  _setDuration(time){
-    this.querySelector('brightcove-meta').setAttribute('duration', time);
-  }
 
   _setVideoDimensions(width, height) {
     this.srcWidth = width;
@@ -157,7 +154,6 @@ class BrightcoveVideo extends withComponent(withPreact()) {
       const width = player.mediainfo.sources[1].width;
       const height = player.mediainfo.sources[1].height;
 
-      elem._setDuration(duration);
       elem._setVideoDimensions(width, height);
       elem._calculateIdealVideoSize();
     });
@@ -425,7 +421,6 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     // this.setState({ duration: BrightcoveVideo.getDurationMs(player) });
 
     this.state.duration = duration;
-    this._setDuration(duration);
   }
 
   onEnded() {
