@@ -612,20 +612,20 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     return(
       <span>
         <video
-          {...dataAttributes}
-          id={this.state.id}
-          {...(this.props.poster ? { poster: this.props.poster.uri } : {}) }
-          data-embed="default"
-          data-video-id={this.props.videoId}
-          data-account={this.props.accountId}
-          data-player={this.props.playerId}
-          // playIcon={playIconEmoji()}
-          // following 'autoplay' can not expected to always work on web
-          // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
-          autoPlay={this.props.autoplay}
-          data-application-id
-          className="video-js"
-          controls
+        {...dataAttributes}
+        id={this.state.id}
+        {...(this.props.poster ? { poster: this.props.poster.uri } : {}) }
+        data-embed="default"
+        data-video-id={this.props.videoId}
+        data-account={this.props.accountId}
+        data-player={this.props.playerId}
+        // playIcon={playIconEmoji()}
+        // following 'autoplay' can not expected to always work on web
+        // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
+        autoPlay={this.props.autoplay}
+        data-application-id
+        className="video-js"
+        controls
         />
         <brightcove-meta />
       </span>
