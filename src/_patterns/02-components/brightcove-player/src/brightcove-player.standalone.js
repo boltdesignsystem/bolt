@@ -37,7 +37,7 @@ class BrightcoveMeta extends withComponent(withPreact()) {
       <div>
         <style>{metaStyles[0][1]}</style>
         {reveal ? (
-          <div class="brightcove-meta__wrapper">{this.title}{separator}{this.duration}</div>
+          <div class="c-brightcove-meta__wrapper">{this.title}{separator}{this.duration}</div>
         ) : null}
       </div>
     );
