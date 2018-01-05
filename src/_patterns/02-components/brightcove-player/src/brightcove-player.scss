@@ -12,6 +12,19 @@ brightcove-player {
   }
 }
 
+bolt-video {
+  // Hide the metadata (which covers the controls) if the user is either
+  //   a) watching the video
+  //   b) potentially interacting with the video
+  &:hover,
+  &.is-playing,
+  &:hover.is-paused {
+    brightcove-meta {
+      display: none;
+    }
+  }
+}
+
 
 .video-js {
   // @supports (--custom:property) {
