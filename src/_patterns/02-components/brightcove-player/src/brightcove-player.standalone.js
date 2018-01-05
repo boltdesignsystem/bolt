@@ -610,7 +610,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     const dataAttributes = datasetToObject(this);
 
     return(
-      <div>
+      <span>
         <video
           {...dataAttributes}
           id={this.state.id}
@@ -628,7 +628,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
           controls
         />
         <brightcove-meta />
-      </div>
+      </span>
     );
   }
 }
