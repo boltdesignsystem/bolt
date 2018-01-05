@@ -1,0 +1,36 @@
+/* ------------------------------------ *\
+  Color Palette
+\* ------------------------------------ */
+
+/**
+  * Helper functions for applying global color swatches stored in Sass Maps
+  */
+
+@function bolt-color(
+  $color,
+  $tone: $bolt-color-default
+) {
+  @return map-get-deep($bolt-colors, quote($color), $tone);
+}
+
+// Mixin to return color value + !important if needed.
+@mixin bolt-color(
+  $color,
+  $tone: $bolt-color-default,
+  $important: null
+) {
+  @if $important == important {
+    $important: !important;
+  }
+
+  /* stylelint-disable-next-line */
+  color: map-get-deep($bolt-colors, $color, $tone) $important;
+}
+
+/* stylelint-disable-next-line scss/at-function-pattern */
+@function palette($args...) {
+  @warn 'PegaKit\'s `palette` function is deprecated and will be removed in v1.0.0 of Bolt. Use the new @color() function instead.';
+
+  @return bolt-color($args...);
+}
+/* stylelint-enable */

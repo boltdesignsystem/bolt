@@ -3,18 +3,35 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const npmSass = require('npm-sass');
 const autoprefixer = require('autoprefixer');
-const onceImporter = require('node-sass-once-importer');
+const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const sassImportGlobbing = require('@theme-tools/sass-import-globbing');
 const sassExportData = require('@theme-tools/sass-export-data')({
   path: path.resolve(process.cwd(), './src/_data'),
 });
 
 function createConfig(userConfig) {
 
+  function getAssets(component) {
+    const x = require.resolve(`${component}/package.json`);
+    const thePath = path.dirname(x);
+    const pkg = require(x);
+    const styleMain = pkg.style;
+    const stylePath = path.join(thePath, styleMain);
+    console.log(x, thePath, styleMain);
+    return stylePath;
+  }
+
+  const entry = {
+    'global': userConfig.components.global.map(getAssets),
+  };
+
+  if (userConfig.components.individual) {
+    // entry.x = getAssets(userConfig.components.individual[0]);
+  }
+
   return {
-    entry: {
-      'bolt': path.resolve(process.cwd(), userConfig.entryPoint),
-    },
+    entry: entry,
     output: {
       path: path.resolve(process.cwd(), userConfig.dist),
       filename: "[name].js"
@@ -42,6 +59,7 @@ function createConfig(userConfig) {
                 loader: "postcss-loader",
                 options: {
                   plugins: [
+                    postcssDiscardDuplicates,
                     autoprefixer,
                   ],
                 }
@@ -52,14 +70,15 @@ function createConfig(userConfig) {
                   skipWarn: true,
                   compatibility: "ie9",
                   level: process.env.NODE_ENV === "production" ? 2 : 0,
-                  inline: ["remote"]
+                  inline: ["remote"],
+                  format: 'beautify',
                 }
               },
               {
                 loader: "sass-loader",
                 options: {
                   importer: [
-                    onceImporter(),
+                    sassImportGlobbing,
                     npmSass.importer,
                   ],
                   functions: sassExportData,
