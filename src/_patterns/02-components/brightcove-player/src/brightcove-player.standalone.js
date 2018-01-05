@@ -147,6 +147,21 @@ class BrightcoveVideo extends withComponent(withPreact()) {
   //   console.log(state);
   // }
 
+  _setMetaTitle(title) {
+    this.querySelector('brightcove-meta').setAttribute('title', title);
+  }
+
+  _setMetaDuration(seconds) {
+    const durationFormatted = BrightcoveVideo._formatDuration(seconds);
+    this.querySelector('brightcove-meta').setAttribute('duration', durationFormatted);
+  }
+
+  static _formatDuration(seconds) {
+    const mm = Math.floor(seconds / 60) || 0;
+    const ss = ('0' + Math.floor(seconds % 60)).slice(-2);
+
+    return mm + ':' + ss;
+  }
 
   _setVideoDimensions(width, height) {
     this.srcWidth = width;
@@ -161,9 +176,12 @@ class BrightcoveVideo extends withComponent(withPreact()) {
 
     player.on("loadedmetadata", function () {
       const duration = player.mediainfo.duration;
+      const title = player.mediainfo.name;
       const width = player.mediainfo.sources[1].width;
       const height = player.mediainfo.sources[1].height;
 
+      elem._setMetaTitle(title);
+      elem._setMetaDuration(duration);
       elem._setVideoDimensions(width, height);
       elem._calculateIdealVideoSize();
     });
