@@ -15,18 +15,31 @@ import dasherize from 'dasherize';
 
 let index = 0;
 
+import metaStyles from './brightcove-meta.scss';
 
 @define
 class BrightcoveMeta extends withComponent(withPreact()) {
-  static is = 'brightcove-meta'
+  static is = 'brightcove-meta';
 
   static props = {
-    duration: props.string
-  }
+    duration: props.string,
+    title: props.string
+  };
 
   render() {
+    const separator = this.title && this.duration ? ' | ' : '';
+
+    // 'reveal' allows the metadata to be hidden.
+    // All of its logic is contained here in render(), but it could be updated to be a property that is set
+    // externally (such as when the video has finished fully loading).
+    const reveal =  Boolean(this.title || this.duration);
     return (
-      <div>Duration: {this.duration}</div>
+      <div>
+        <style>{metaStyles[0][1]}</style>
+        {reveal ? (
+          <div class="brightcove-meta__wrapper">{this.title}{separator}{this.duration}</div>
+        ) : null}
+      </div>
     );
   }
 }
