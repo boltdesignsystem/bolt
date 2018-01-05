@@ -48,6 +48,7 @@ export class BoltRatio extends withComponent(withPreact()) {
       this.style.paddingTop = (100 * h / w) + "%";
       this.style.removeProperty('--aspect-ratio-height');
       this.style.removeProperty('--aspect-ratio-width');
+      this.querySelector('img').classList.add('o-bolt-ratio__inner');
     }
   }
 
