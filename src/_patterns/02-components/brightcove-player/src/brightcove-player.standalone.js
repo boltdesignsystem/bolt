@@ -11,6 +11,8 @@ import {
   spacingSizes
 } from '@bolt/core';
 
+import dasherize from 'dasherize';
+
 let index = 0;
 
 @define
@@ -23,6 +25,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     playerId: props.string,
     poster: props.object,
     isBackgroundVideo: props.boolean,
+    onInit: props.string,
     // onError: null,
     // onPlay: null,
     // onPause: null,
@@ -112,7 +115,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
 
   // Called to check whether or not the component should call
   // updated(), much like React's shouldComponentUpdate().
-  // updating(props, state) { 
+  // updating(props, state) {
   //   console.log(props);
   //   console.log(state);
   // }
@@ -251,9 +254,15 @@ class BrightcoveVideo extends withComponent(withPreact()) {
       BrightcoveVideo.appendScript(s);
     }
 
-    // console.log('init');
 
-    this.init();
+    // If onInit event exists on element, run that instead of auto initializing
+    if (this.props.onInit) {
+      if (window[this.props.onInit]){
+        window[this.props.onInit](this);
+      }
+    } else {
+      this.init();
+    }
 
 
     window.addEventListener('optimizedResize', this._onWindowResize);
@@ -544,8 +553,21 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     /* eslint jsx-a11y/media-has-caption: "off" */
     // Added a wrapping div as brightcove adds siblings to the video tag
 
+    // Loop through any extra (unknown) data attributes on the main element; copy over to the <video> tag being rendered
+    function datasetToObject(elem) {
+      var data = {};
+      [].forEach.call(elem.attributes, function (attr) {
+        if (/^data-/.test(attr.name)) {
+          data[dasherize(attr.name)] = attr.value;
+        }
+      });
+      return data;
+    }
+    const dataAttributes = datasetToObject(this);
+
     return(
       <video
+        {...dataAttributes}
         id={this.state.id}
         {...(this.props.poster ? { poster: this.props.poster.uri } : {}) }
         data-embed="default"
