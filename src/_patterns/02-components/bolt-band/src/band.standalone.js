@@ -135,15 +135,16 @@ export class BoltBand extends withComponent(withPreact()) {
 
 
   collapse() {
+    const elem = this;
 
     if (this.state.ready){
       this.style.height = this.expandedHeight + 'px';
+
       this.style.height = this.initialHeight + 'px';
 
-      this.addEventListener('transitionend', function f() {
-        this.style.height = 'auto'; // remove "height" from the element's inline styles, so it can return to its initial value
-        this.removeEventListener('transitionend', f);
-      });
+      setTimeout(function () {
+        elem.style.height = 'auto'; // remove "height" from the element's inline styles, so it can return to its initial value
+      }, 500);
     }
 
     this.expanded = false; // mark the section as "currently collapsed"
