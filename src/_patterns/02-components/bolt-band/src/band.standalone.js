@@ -144,7 +144,7 @@ export class BoltBand extends withComponent(withPreact()) {
 
       setTimeout(function () {
         elem.style.height = 'auto'; // remove "height" from the element's inline styles, so it can return to its initial value
-      }, 500);
+      }, 700);
     }
 
     this.expanded = false; // mark the section as "currently collapsed"

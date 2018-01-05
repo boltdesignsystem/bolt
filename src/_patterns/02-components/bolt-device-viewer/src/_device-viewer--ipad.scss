@@ -8,7 +8,7 @@ $bolt-ipad-viewer-padding-lg: 90px;
 
 .c-bolt-ipad-viewer {
   width: 100%;
-  max-width: $bolt-ipad-viewer-width;
+  max-width: $bolt-ipad-viewer-width * .6;
   background: #242324;
 
   border-top-left-radius: (44px / $bolt-ipad-viewer-width * 100%) (44px / $bolt-ipad-viewer-height * 100%);
@@ -20,7 +20,8 @@ $bolt-ipad-viewer-padding-lg: 90px;
 
 
   &.c-bolt-ipad-viewer--landscape {
-    max-width: $bolt-ipad-viewer-height;
+    max-width: $bolt-ipad-viewer-height * .8;
+
     border-top-left-radius: (44px / $bolt-ipad-viewer-height * 100%) (44px / $bolt-ipad-viewer-width * 100%);
     border-top-right-radius: (44px / $bolt-ipad-viewer-height * 100%) (44px / $bolt-ipad-viewer-width * 100%);
     border-bottom-left-radius: (44px / $bolt-ipad-viewer-height * 100%) (44px / $bolt-ipad-viewer-width * 100%);
@@ -36,7 +37,7 @@ $bolt-ipad-viewer-padding-lg: 90px;
   padding: (90px / $bolt-ipad-viewer-width * 100%) (25px / $bolt-ipad-viewer-width * 100%);
 
   .c-bolt-ipad-viewer--landscape & {
-    padding: (25px / $bolt-ipad-viewer-width * 100%) (90px / $bolt-ipad-viewer-width * 100%);
+    padding: (25px / $bolt-ipad-viewer-height * 100%) (90px / $bolt-ipad-viewer-height * 100%);
   }
 
   &:before {
@@ -94,6 +95,7 @@ $bolt-ipad-viewer-padding-lg: 90px;
 }
 
 .c-bolt-ipad-viewer__camera {
+  $leftOffset: 44px / $bolt-ipad-viewer-width * 100%;
   background: #3c3d3d;
 
   transform: translateX(-50%); // Center align without knowing size of element
@@ -105,10 +107,10 @@ $bolt-ipad-viewer-padding-lg: 90px;
   .c-bolt-ipad-viewer--landscape & {
     width: 10px / $bolt-ipad-viewer-height * 100%;
     height: 10px / $bolt-ipad-viewer-width * 100%;
-    left: auto;
-    right: 44px / $bolt-ipad-viewer-width * 100%;
+    left: calc(100% - #{$leftOffset});
+    // right: 44px / $bolt-ipad-viewer-width * 100%;
     top: 50%;
-    transform: translateY(-50%); // Center align without knowing size of element
+    transform: translateY(-50%) translateX(100%); // Center align without knowing size of element
   }
 }
 
@@ -139,7 +141,7 @@ $bolt-ipad-viewer-padding-lg: 90px;
     left: 22px / $bolt-ipad-viewer-width * 100%;
     bottom: auto;
     margin-left: 0;
-    transform: translateY(-50%) translateX(25%);// Center align without knowing size of element
+    transform: translateY(-50%) translateX(-25%);// Center align without knowing size of element
     width: 50px / $bolt-ipad-viewer-height * 100%;
     height: 50px / $bolt-ipad-viewer-width * 100%;
   }
