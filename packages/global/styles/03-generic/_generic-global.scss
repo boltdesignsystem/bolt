@@ -1,0 +1,21 @@
+/* ------------------------------------ *\
+  GENERIC - GLOBAL
+\* ------------------------------------ */
+
+/**
+ * 1. Global box-sizing reset
+ * 2. Remove default "touch" color behavior globally
+ * 3. Sharpens text to show true font styles
+ */
+
+*,
+*:before,
+*:after {
+  @include bolt-font-kerning;
+
+  box-sizing: border-box; /* [1] */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* [2] */
+
+  -webkit-font-smoothing: antialiased; /* [3] */
+  -moz-osx-font-smoothing: grayscale;
+}

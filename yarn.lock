@@ -27,19 +27,75 @@
     webpack-dev-server "^2.9.7"
     webpack-manifest-plugin "^1.3.2"
 
+"@bolt/components-button@*":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@bolt/components-button/-/components-button-0.7.0.tgz#154296fecb647d5c43338ce4e2aed914c19bd3ed"
+  dependencies:
+    "@bolt/settings-all" "^0.7.4"
+    "@bolt/tools-all" "^0.5.4"
+
+"@bolt/components-card@*":
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/@bolt/components-card/-/components-card-0.5.6.tgz#1871fed9d76e5c3c2ea82fa10e51bb9b0a5cc84a"
+  dependencies:
+    "@bolt/core" "^0.4.1"
+    "@bolt/settings-spacing" "^0.7.0"
+    "@bolt/tools-all" "^0.5.4"
+    "@webcomponents/custom-elements" "^1.0.4"
+    "@webcomponents/shadycss" "^1.0.6"
+    "@webcomponents/shadydom" bolt-design-system/shadydom#hotfix/fix-text-undefined-IE11
+    "@webcomponents/template" "^1.1.0"
+    "@webcomponents/webcomponents-platform" "^1.0.0"
+    "@webcomponents/webcomponentsjs" "^1.0.14"
+    core-js "^2.5.1"
+    npm-run-all "^4.0.2"
+    skatejs "^5.0.0-beta.3"
+
 "@bolt/components-font-loader@^0.2.0":
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/@bolt/components-font-loader/-/components-font-loader-0.2.1.tgz#10db15f147af172db7570d7423057c61917ccde5"
   dependencies:
     fontfaceobserver "^2.0.13"
 
+"@bolt/components-nav-bar@0.1.0-alpha.0":
+  version "0.1.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@bolt/components-nav-bar/-/components-nav-bar-0.1.0-alpha.0.tgz#0957e1e98e10d8ce57de1eeeec4d38370cd97552"
+  dependencies:
+    "@bolt/core" "^0.5.0-alpha.0"
+    "@bolt/settings-all" "^0.7.2"
+    "@bolt/tools-all" "^0.5.2"
+    npm-run-all "^4.0.2"
+
 "@bolt/core-css@link:packages/core-css":
   version "0.0.0"
   uid ""
 
+"@bolt/core-data@^0.1.0":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@bolt/core-data/-/core-data-0.1.2.tgz#7dbb2db3dc31ce17f2863d25a84dc254c8ac8a3c"
+
 "@bolt/core-data@^0.2.0-beta.0":
   version "0.2.0-beta.0"
   resolved "https://registry.yarnpkg.com/@bolt/core-data/-/core-data-0.2.0-beta.0.tgz#c1c0ca051be39391e13ea99195e7c3b587bcf532"
+
+"@bolt/core@*", "@bolt/core@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@bolt/core/-/core-0.4.1.tgz#01ceae1e65a2f704f5190897984e84a37502df80"
+  dependencies:
+    "@bolt/core-data" "^0.1.0"
+    "@skatejs/renderer-lit-html" latest
+    "@skatejs/renderer-preact" "^0.1.0"
+    "@webcomponents/custom-elements" "^1.0.4"
+    "@webcomponents/shadycss" "^1.0.6"
+    "@webcomponents/shadydom" bolt-design-system/shadydom#hotfix/fix-text-undefined-IE11
+    "@webcomponents/template" "^1.1.0"
+    "@webcomponents/webcomponents-platform" "^1.0.0"
+    "@webcomponents/webcomponentsjs" "^1.0.14"
+    core-js "^2.5.1"
+    es6-promise "^4.1.1"
+    lit-html latest
+    preact "^8.2.6"
+    skatejs "^5.0.0-beta.3"
 
 "@bolt/elements-headings@^0.4.0":
   version "0.4.0"
@@ -342,6 +398,14 @@
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@polymer/test-fixture/-/test-fixture-0.0.3.tgz#4443752697d4d9293bbc412ea0b5e4d341f149d9"
 
+"@skatejs/renderer-lit-html@latest":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@skatejs/renderer-lit-html/-/renderer-lit-html-0.1.1.tgz#c7fbb03041bb6b7b4010c39ef97c28bee0ce10dd"
+
+"@skatejs/renderer-preact@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@skatejs/renderer-preact/-/renderer-preact-0.1.0.tgz#6ca3b1aa9c46c2852078292621e489b0b96d97e6"
+
 "@theme-tools/core@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@theme-tools/core/-/core-1.0.0.tgz#7ed9915cb4d0f3591404346612ce3adfc2d9923e"
@@ -357,6 +421,13 @@
     "@theme-tools/core" "^1.0.0"
     fs-extra "^5.0.0"
     jsondiffpatch "^0.2.5"
+
+"@theme-tools/sass-import-globbing@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@theme-tools/sass-import-globbing/-/sass-import-globbing-1.0.0.tgz#df884e40fa02cfb6331cfbb308b9b5caeeb2ced4"
+  dependencies:
+    debug "^3.1.0"
+    glob "^7.1.2"
 
 "@types/assert@0.0.29":
   version "0.0.29"
@@ -617,7 +688,27 @@
   dependencies:
     "@types/node" "*"
 
-"@webcomponents/webcomponentsjs@^1.0.22":
+"@webcomponents/custom-elements@^1.0.4":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@webcomponents/custom-elements/-/custom-elements-1.0.6.tgz#79944e0d7dcb830063308df65560a6fd2bd20a9a"
+
+"@webcomponents/shadycss@^1.0.6":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@webcomponents/shadycss/-/shadycss-1.1.0.tgz#3a31b062d6f0837b2a34bec1edea8b6fb046b2eb"
+
+"@webcomponents/shadydom@bolt-design-system/shadydom#hotfix/fix-text-undefined-IE11":
+  version "1.0.6"
+  resolved "https://codeload.github.com/bolt-design-system/shadydom/tar.gz/5ce5a74abe7fc71064d7d46a989213e6b41ede97"
+
+"@webcomponents/template@^1.1.0":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@webcomponents/template/-/template-1.2.2.tgz#fcf07be87d54bc8953cbef7df8a6be2385f674ac"
+
+"@webcomponents/webcomponents-platform@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@webcomponents/webcomponents-platform/-/webcomponents-platform-1.0.0.tgz#8879146380ddbecb8617e322497d59e77c3ff468"
+
+"@webcomponents/webcomponentsjs@^1.0.14", "@webcomponents/webcomponentsjs@^1.0.22":
   version "1.0.22"
   resolved "https://registry.yarnpkg.com/@webcomponents/webcomponentsjs/-/webcomponentsjs-1.0.22.tgz#a9fed9f346d81dab738b0c3e04614ee6303a24b6"
 
@@ -6448,6 +6539,10 @@ lighthouse@^2.5.0:
     yargs "3.32.0"
     yargs-parser "7.0.0"
 
+lit-html@latest:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/lit-html/-/lit-html-0.7.1.tgz#61785045cf84f9ee955fa078c2985b52b765ad16"
+
 load-bmfont@^1.2.3:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/load-bmfont/-/load-bmfont-1.3.0.tgz#bb7e7c710de6bcafcb13cb3b8c81e0c0131ecbc9"
@@ -8693,7 +8788,7 @@ postcss@^6.0.0, postcss@^6.0.1, postcss@^6.0.14, postcss@^6.0.3:
     source-map "^0.6.1"
     supports-color "^4.4.0"
 
-preact@^8.2.5:
+preact@^8.2.5, preact@^8.2.6:
   version "8.2.7"
   resolved "https://registry.yarnpkg.com/preact/-/preact-8.2.7.tgz#316249fb678cd5e93e7cee63cea7bfb62dbd6814"
 
@@ -9793,7 +9888,7 @@ sinon@^2.3.5:
     text-encoding "0.6.4"
     type-detect "^4.0.0"
 
-skatejs@^5.0.0-beta.4:
+skatejs@^5.0.0-beta.3, skatejs@^5.0.0-beta.4:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/skatejs/-/skatejs-5.1.1.tgz#e253b676a26f0aac9565df7043f9878f9fa0518d"
 
