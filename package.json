@@ -31,6 +31,7 @@
     "Xtest:lighthouse": "concurrently --kill-others \"http-server dist\" \"lighthouse --view http://localhost:8080\" ",
     "Xtest:full": "yarn lint:scss && polymer test && yarn test:lighthouse && yarn lint:remark && npm run mocha",
     "Xtest": "npm run mocha",
+    "build:pl": "export NODE_ENV=production && cd apps/pattern-lab--workshop && npm run build",
     "Xtest:ci": "node browserstack.js",
     "Xpretest": "node packages/build-tools/check-imports.js",
     "Xprecommit": "npm run lint:scss",

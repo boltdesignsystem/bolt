@@ -24,8 +24,8 @@ install:
 - npm install && npm run setup
 
 script:
-- npm run test
-- travis_wait npm run build && npm run deploy # only run deploy if build is successful. Can't do `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
+- npm run build:pl
+#- travis_wait npm run build && npm run deploy # only run deploy if build is successful. Can't do `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
 
 cache:
   apt: true
