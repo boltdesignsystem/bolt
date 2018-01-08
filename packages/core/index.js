@@ -7,7 +7,7 @@ export * from './utils/css';
 export { withPreact } from './utils/renderer-preact';
 
 // Export Bolt data shared
-export * from './data/spacing-sizes';
+// export * from './data/spacing-sizes';
 
 // Export polyfill loader
 export * from './polyfills/polyfill-loader';
