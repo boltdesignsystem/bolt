@@ -1,15 +1,12 @@
 {
   "lerna": "2.5.1",
   "version": "independent",
-  "packages": [
-    "packages/*",
-    "packages/components/*",
-    "packages/config-presets/*",
-    "apps/pattern-lab--workshop"
-  ],
   "command": {
+    "publish": {
+      "allowBranch": "master"
+    },
     "bootstrap": {
-      "nohoist": "*babel*"
+      "hoist": true
     }
   },
   "npmClient": "yarn",
