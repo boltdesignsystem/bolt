@@ -10,24 +10,49 @@ const sassExportData = require('@theme-tools/sass-export-data')({
   path: path.resolve(process.cwd(), './src/_data'),
 });
 
+/**
+ * Get information about a components assets
+ * @param {string} component - Machine name of a component i.e. `@bolt/button`
+ * @returns {{name, basicName: string | * | void}} - Asset info
+ */
+function getAssets(component) {
+  const pkgJsonPath = require.resolve(`${component}/package.json`);
+  const pkgPath = path.dirname(pkgJsonPath);
+  const pkg = require(pkgJsonPath);
+  const assets = {
+    name: pkg.name,
+    basicName: pkg.name.replace('@bolt/', 'bolt-'),
+  };
+  if (pkg.style) assets.style = path.join(pkgPath, pkg.style);
+  if (pkg.main) assets.main = path.join(pkgPath, pkg.main);
+  // console.log(assets);
+  return assets;
+}
+
 function createConfig(userConfig) {
 
-  function getAssets(component) {
-    const x = require.resolve(`${component}/package.json`);
-    const thePath = path.dirname(x);
-    const pkg = require(x);
-    const styleMain = pkg.style;
-    const stylePath = path.join(thePath, styleMain);
-    console.log(x, thePath, styleMain);
-    return stylePath;
+  const entry = {};
+
+  if (userConfig.components.global) {
+    entry['bolt-global'] = [];
+    userConfig.components.global.forEach((component) => {
+      const assets = getAssets(component);
+      if (assets.style) entry['bolt-global'].push(assets.style);
+      if (assets.main) entry['bolt-global'].push(assets.main);
+    });
   }
-
-  const entry = {
-    'global': userConfig.components.global.map(getAssets),
-  };
-
   if (userConfig.components.individual) {
-    // entry.x = getAssets(userConfig.components.individual[0]);
+    userConfig.components.individual.forEach((component) => {
+      const assets = getAssets(component);
+      const files = [];
+      if (assets.style) files.push(assets.style);
+      if (assets.main) files.push(assets.main);
+      if (files) {
+        entry[assets.basicName] = files;
+      } else {
+        console.error(`No assets found for ${assets.name}`, assets);
+      }
+    });
   }
 
   return {
@@ -133,7 +158,7 @@ function createConfig(userConfig) {
       }),
       new webpack.optimize.ModuleConcatenationPlugin(),
       new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify('production'),
+        'process.env.NODE_ENV': process.env.NODE_ENV === 'production' ? JSON.stringify(process.env.NODE_ENV) : JSON.stringify('development'),
       }),
       new webpack.ProvidePlugin({
         h: 'preact',

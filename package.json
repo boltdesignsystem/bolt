@@ -5,7 +5,7 @@
   "scripts": {
     "backstop-test": "backstop test",
     "backstop-reference": "backstop reference",
-    "bootstrap": "lerna bootstrap",
+    "bootstrap": "lerna bootstrap --reject-cycles",
     "clean:git": "git clean -xdf",
     "deploy": "netlify deploy -s bolt.netlify.com -p dist",
     "Xlint:js": "eslint ./build-tools",
@@ -19,9 +19,7 @@
     "Xmocha:settings": "mocha **/settings-*/tests/*.test.js",
     "Xpublish": "lerna publish",
     "Xpublish:canary": "lerna publish --canary --npm-tag=next",
-    "start": "run-p start:*",
-    "start:gulp": "gulp",
-    "start:webpack": "cd apps/pattern-lab--workshop && webpack-dev-server --progress --colors",
+    "start": "cd apps/pattern-lab--workshop && npm start",
     "Xpre-build": "lerna exec -- npm run --if-present build",
     "Xbuild": "export NODE_ENV=production && npm run pre-build && gulp build",
     "Xbuild:full": "export NODE_ENV=production && npm run pre-build && gulp build:full",
@@ -77,7 +75,6 @@
   "homepage": "https://github.com/bolt-design-system/bolt#readme",
   "devDependencies": {
     "backstopjs": "^3.0.31",
-    "gulp": "gulpjs/gulp#4.0",
     "husky": "^0.14.3",
     "lerna": "^2.5.1",
     "lighthouse": "^2.5.0",
@@ -85,9 +82,10 @@
     "npm-run-all": "^4.1.2"
   },
   "workspaces": [
-    "packages/*",
-    "packages/components/*",
-    "packages/config-presets/*",
-    "apps/pattern-lab--workshop"
+    "packages/core",
+    "packages/global",
+    "packages/build-tools",
+    "packages/config-presets/babel-preset-bolt",
+    "apps/*"
   ]
 }
