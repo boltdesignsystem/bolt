@@ -1,6 +1,7 @@
 @import '@bolt/settings-all';
 @import '@bolt/tools-all';
 
+@import 'videojs-enhancements';
 
 
 .c-bolt-video {
@@ -13,20 +14,10 @@
   transition: transform .4s cubic-bezier(.645, 0, .355, 1);
 }
 
-.c-bolt-video__video-wrapper {
+.c-bolt-video__wrapper {
   position: relative;
-  pointer-events: all;
-  border-radius: 12px;
-  box-shadow: 0 55px 70px -20px rgba(50, 50, 93, .55), 0 20px 30px -10px rgba(0, 0, 0, .14);
-  transform: translateY(0) !important;
-  transition: transform .4s cubic-bezier(.645, 0, .355, 1);
-  
-  .is-collapsed & {
-    cursor: pointer;
-    @include respond-to(medium) {
-      transform: scale(.45) rotateX(3deg) rotateY(-15deg) rotate(-1deg) translateX(500px) translateY(300px)!important;
-    }
-  }
+  width: 100%;
+  pointer-events: none;
 }
 
 .c-bolt-video__video-element {
@@ -35,7 +26,8 @@
   position: relative;
   border-radius: 6px;
   -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFW…9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
-  transition: border-radius .4s cubic-bezier(.645, 0, .355, 1);
+  transition: border-radius 0.4s cubic-bezier(0.645, 0, 0.355, 1);
+
   .is-collapsed & {
     border-radius: 14px;
   }
@@ -46,4 +38,35 @@
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
+}
+
+.c-bolt-video__close-button {
+  color: bolt-color(orange);
+  --bolt-color-icon: bolt-color(orange);
+
+  position: absolute;
+  z-index: 1000;
+  top: bolt-spacing(xsmall);
+  right: bolt-spacing(xsmall);
+  transition: all 0.3s ease;
+  opacity: 0; // Initial state before brightcove video player kicks in
+
+  .is-collapsed & {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .is-expanded & {
+    opacity: 0.8;
+    pointer-events: auto;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.c-bolt-video__close-wrapper {
+  position: relative;
+  width: 100%;
 }

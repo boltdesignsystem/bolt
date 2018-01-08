@@ -15,12 +15,14 @@
 {% set componentName = "ui-list" %}
 {% set baseClass = prefix ~ componentName %}
 {% set size = size | default("medium") %}
+{% set border = border == false and border is not null ? "false" : "true" %}
 {% set tag = tag in tags ? tag: "ul" %}
 
 
 {% set classes = [
   baseClass,
   size in sizes ? baseClass ~ "--" ~ size : "",
+  border == "true" ? baseClass ~ "--bordered" : baseClass ~ "--borderless"
 ] %}
 
 

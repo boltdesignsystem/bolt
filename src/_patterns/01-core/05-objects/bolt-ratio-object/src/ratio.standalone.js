@@ -23,27 +23,14 @@ export class BoltRatio extends withComponent(withPreact()) {
 
   constructor(){
     super();
-    this.supportsCSSVars = window.CSS.supports('--fake-var', 0);
+    if (!this.shadowRoot) {
+      this.attachShadow({ mode: 'open' });
+    }
+    this.shadyTemplate = document.createElement('template');
+    this.shadyPrepared = false;
+    this.supportsCSSVars = window.CSS && CSS.supports('color', 'var(--primary)');
   }
 
-  // get renderRoot() {
-  //   return this;
-  // }
-
-  // Called when props have been set regardless of if they've changed.
-  updating(props) {
-    this._computeRatio();
-  }
-
-  // Called to check whether or not the component should call
-  // updated(), much like React's shouldComponentUpdate().
-  // shouldUpdate(props, state) {
-  //   return true;
-  // }
-
-  // // Called if shouldUpdate returned true.
-  // updated() {
-    
   /**
    * sets the style so that the height is based on a ratio of width to height
    * @param {Number} aspH - the height component of the ratio
@@ -56,27 +43,75 @@ export class BoltRatio extends withComponent(withPreact()) {
     if (this.supportsCSSVars){
       this.style.setProperty(`--aspect-ratio-height`, h);
       this.style.setProperty(`--aspect-ratio-width`, w);
+      this.style.paddingTop = '';
     } else {
       this.style.paddingTop = (100 * h / w) + "%";
+      this.style.removeProperty('--aspect-ratio-height');
+      this.style.removeProperty('--aspect-ratio-width');
     }
   }
 
   connectedCallback() {
+    this.update();
     this._computeRatio();
   }
 
+  // Called when props have been set regardless of if they've changed. - recalculates ratio if props updated
+  updating(props) {
+    this._computeRatio();
+  }
+
+  // Render out component via Preact
   render() {
     const classes = css(
-      'o-bolt-ratio__content'
+      'o-bolt-ratio__inner'
     );
 
     return (
-      // <div className={classes}>
-        <slot>
-          <style>{styles[0][1]}</style>
-
-        </slot>
-      // </div>
+      <div className={classes}>
+        <style>{styles[0][1]}</style>
+        <slot />
+      </div>
     )
+  }
+
+  /** Idea for wiring up ShadyCSS + Preact inspired by https://github.com/daKmoR/lit-html-demos/blob/master/demo/wc02.html **/
+  _render(what, where) {
+    this.render(what, where);
+
+    if (typeof ShadyCSS === 'object') {
+      if (this.shadyPrepared === false) {
+        this.shadyTemplate.innerHTML = this.shadowRoot.innerHTML;
+        ShadyCSS.prepareTemplate(this.shadyTemplate, this.localName);
+        this.shadyPrepared = true;
+      }
+      ShadyCSS.styleElement(this);
+
+      // Auto-add class for fallback styles
+      var childNodes = this.childNodes;
+      for (var i = 0; i < childNodes.length; i++) {
+        if (childNodes[i].nodeType !== 3) { // nodeType 3 is a text node
+          childNodes[i].classList.add('o-bolt-ratio__inner');
+        }
+      }
+
+    /** @TODO: determine if this logic below is required. This <style> node cleanup was
+     *  included in original example (mentioned above) so keeping around for now.
+     */
+      // if (!ShadyCSS.nativeShadow) {
+      //   this.shadowRoot.querySelectorAll('style').forEach((styleNode) => {
+      //     styleNode.remove();
+      //   });
+      // }
+    }
+  }
+
+  update() {
+    this._render(this.render(), this.shadowRoot);
+  }
+
+  updateShady() {
+    this.shadyPrepared = false;
+    this.update();
   }
 }

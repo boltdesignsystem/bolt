@@ -9,19 +9,11 @@
   color: inherit;
   color: var(--bolt-theme-heading, inherit);
 
-  @supports (display: flex) {
-    display: flex;
-    align-items: center;
-  }
 
   &:last-child {
     @include bolt-margin-bottom(0);
   }
 
-  /* stylelint-disable-next-line */
-  > * {
-    align-self: center;
-  }
 
   // Headline + Icon and/or Icon + Headline Spacing
   &__text ~ &__icon,

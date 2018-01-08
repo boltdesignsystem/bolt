@@ -42,7 +42,7 @@ export class BoltIcon extends withComponent(withPreact()) {
       props.name ? `c-bolt-icon--${props.name}` : '',
       props.color && colors.includes(props.color) ? `c-bolt-icon--${props.color}` : ``
     );
-    
+
 
     const backgroundClasses = css(
       'c-bolt-icon__background',

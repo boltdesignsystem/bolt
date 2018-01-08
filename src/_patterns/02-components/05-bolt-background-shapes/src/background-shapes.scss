@@ -11,14 +11,22 @@
     width: 900px;
   }
 
-  &__shape {
+  &__svg {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
 
-    svg {
-      display: block;
-    }
+  &__shape {
+    // To support IE, use the "bottom padding" hack to position svgs within the grid.
+    // See https://css-tricks.com/scale-svg/#article-header-id-10
+    position: relative;
+    height: 0;
+    padding-bottom: 100%;
 
     &--orange {
-      .c-bolt-background-shapes__svg {
+      .c-bolt-background-shapes__svg-primary {
         fill: bolt-color(orange);
       }
 
@@ -28,7 +36,7 @@
     }
 
     &--yellow {
-      .c-bolt-background-shapes__svg {
+      .c-bolt-background-shapes__svg-primary {
         fill: bolt-color(yellow);
       }
 
@@ -38,7 +46,7 @@
     }
 
     &--teal {
-      .c-bolt-background-shapes__svg {
+      .c-bolt-background-shapes__svg-primary {
         fill: bolt-color(teal);
       }
 
@@ -48,7 +56,7 @@
     }
 
     &--indigo {
-      .c-bolt-background-shapes__svg {
+      .c-bolt-background-shapes__svg-primary {
         fill: bolt-color(indigo);
       }
 
