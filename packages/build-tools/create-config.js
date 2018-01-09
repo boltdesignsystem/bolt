@@ -16,6 +16,7 @@ const sassExportData = require('@theme-tools/sass-export-data')({
  * @returns {{name, basicName: string | * | void}} - Asset info
  */
 function getAssets(component) {
+  // @todo Ensure package exists
   const pkgJsonPath = require.resolve(`${component}/package.json`);
   const pkgPath = path.dirname(pkgJsonPath);
   const pkg = require(pkgJsonPath);
@@ -23,8 +24,10 @@ function getAssets(component) {
     name: pkg.name,
     basicName: pkg.name.replace('@bolt/', 'bolt-'),
   };
+  // @todo Ensure asset files exist
   if (pkg.style) assets.style = path.join(pkgPath, pkg.style);
   if (pkg.main) assets.main = path.join(pkgPath, pkg.main);
+  // @todo Allow verbosity settings
   // console.log(assets);
   return assets;
 }
@@ -54,6 +57,8 @@ function createConfig(userConfig) {
       }
     });
   }
+
+  // @todo Allow verbosity settings for seeing `entry`
 
   return {
     entry: entry,
