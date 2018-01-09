@@ -2,7 +2,7 @@
 const path = require('path');
 const program = require('commander');
 const webpack = require('webpack');
-const createConfig = require('./create-config');
+const createWebpackConfig = require('./create-webpack-config');
 
 const packageJson = require('./package.json');
 
@@ -33,7 +33,7 @@ if (program.verbosity > 1) {
 const configFilePath = path.resolve(process.cwd(), program.configFile || '.boltrc');
 const config = require(configFilePath);
 
-const webpackConfig = createConfig(config);
+const webpackConfig = createWebpackConfig(config);
 
 if (program.watch) {
   webpack(webpackConfig).watch({
