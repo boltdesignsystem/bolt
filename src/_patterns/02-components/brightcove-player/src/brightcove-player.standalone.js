@@ -310,14 +310,13 @@ class BrightcoveVideo extends withComponent(withPreact()) {
       BrightcoveVideo.appendScript(s);
     }
 
+    this.init();
 
     // If onInit event exists on element, run that instead of auto initializing
     if (this.props.onInit) {
       if (window[this.props.onInit]){
         window[this.props.onInit](this);
       }
-    } else {
-      this.init();
     }
 
 

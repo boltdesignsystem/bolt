@@ -1,0 +1,47 @@
+{% embed "@bolt/band.twig" with {
+  theme: "dark",
+  size: "medium",
+  background: {
+    "opacity": "heavy",
+    "fill": "color",
+    "focalPoint": {
+      "vertical": "center",
+      "horizontal": "center"
+    },
+    "contentItems": [
+      {
+        "pattern": "image",
+        "src": "/images/sample/background-banner--left-focal-point.jpg"
+      },
+      {
+        "pattern": "video",
+        "isBackgroundVideo": true,
+        "videoId": "5205361615001",
+        "accountId": "1900410236",
+        "playerId": "r1CAdLzTW",
+        "videoUuid": "pega-video-5205361615001",
+        "attributes": {
+          "on-init": "pegaCustomInitVideo",
+          "data-email-subject": "Pega - CRM Evolved Atlanta: Customer Engagement in a Digital World",
+          "data-email-body": "Check out this video from Pega",
+          "data-email-videourl": "https://demo1.d8.pega.com/insights/resources/crm-evolved-atlanta-customer-engagement-digital-world"
+        }
+      }
+    ]
+  }
+} %}
+  {% block band_content %}
+    {% include "@bolt/_video-inline-script.twig" with {
+      socialUrl: "https://demo1.d8.pega.com/insights/resources/crm-evolved-atlanta-customer-engagement-digital-world"
+    } %}
+
+    {% include "@bolt/button.twig" with {
+        text: "Watch Video",
+        tag: "button",
+        attributes: {
+          "on-click": "toggle",
+          "on-click-target": "pega-video-5205361615001"
+        }
+    } only %}
+  {% endblock band_content %}
+{% endembed %}

@@ -3,9 +3,7 @@
   <!-- https://github.com/OwenMelbz/whendefined -->
   (function(){window.whenDefined=function(a,b,c){a[b]?c():Object.defineProperty(a,b,{configurable:!0,enumerable:!0,writeable:!0,get:function(){return this["_"+b]},set:function(a){this["_"+b]=a,c()}})}}).call(this);
 
-
   function pegaCustomInitVideo(elem){
-
     whenDefined(window, 'bc', function() {
       var id = elem.state.id;
 
@@ -17,7 +15,7 @@
         }
 
         pegaPlayer.social({
-          "url": "https://local.d8.pega.com/insights/resources/intelligent-virtual-assistant-email",
+          "url": "{{ socialUrl | default('') }}",
           "displayAfterVideo": true,
           "services": {
             "facebook": true,
@@ -30,7 +28,6 @@
         });
 
         pegaPlayer.emailSocialShare();
-
 
         if (Array.isArray(options.playbackRates)) {
           if (pegaPlayer.controlBar.playbackRateMenuButton) {
@@ -52,17 +49,4 @@
       });
     });
   }
-
 </script>
-
-{% include "@bolt/video.twig" with {
-  "videoId": "5609376179001",
-  "accountId": "1900410236",
-  "playerId": "r1CAdLzTW",
-  "attributes": {
-    "on-init": "pegaCustomInitVideo",
-    "data-email-subject": "Pega - Intelligent Virtual Assistant for Email",
-    "data-email-body": "Check out this video from Pega",
-    "data-email-videourl": "https://local.d8.pega.com/insights/resources/intelligent-virtual-assistant-email"
-  }
-} only %}
