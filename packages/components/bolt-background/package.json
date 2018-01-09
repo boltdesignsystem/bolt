@@ -1,15 +1,11 @@
 {
   "name": "@bolt/components-background",
   "description": "Background Component in Bolt",
-  "type": "pattern",
-  "patternType": "atoms",
-  "patternSubtype": "layout",
   "keywords": [
     "bolt design system",
     "bolt",
     "css framework",
-    "design system",
-    "objects"
+    "design system"
   ],
   "version": "0.3.0-beta.2",
   "maintainers": [
@@ -34,11 +30,12 @@
     "url": "https://github.com/bolt-design-system/bolt/issues"
   },
   "style": "src/background.scss",
+  "twig": "src/background.twig",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@bolt/tools-color-palette": "^0.5.2",
-    "@bolt/tools-spacing": "^0.5.0"
+    "@bolt/core": "0.5.0-beta.1",
+    "@bolt/components-background-shapes": "0.1.0-beta.2",
   }
 }
