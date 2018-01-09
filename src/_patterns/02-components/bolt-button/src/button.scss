@@ -469,8 +469,10 @@ bolt-button {
   text-align: left;
 }
 
-.c-bolt-button__item {
-  display: inline-flex;
+.c-bolt-button__item,
+.c-bolt-button__link,
+.c-bolt-button__button {
+  display: inline-flex; // vertical align content
   align-self: center;
 }
 
@@ -609,4 +611,8 @@ bolt-button {
   //   color: mix(white, $bolt-color-secondary, 15%);
   //   // color: var(--bolt-color-secondary, $bolt-color-secondary);
   // }
+}
+
+.c-bolt-button__inner {
+  display: flex;
 }
