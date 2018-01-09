@@ -76,6 +76,10 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
 .c-bolt-background__video {
   z-index: 10;
   transition: all 0.4s ease;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 
   .is-ready & {
     background-color: rgba(bolt-color(black), 0.6);
@@ -119,6 +123,11 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
 }
 
 .c-bolt-background__image {
+  top: -9999px;
+  right: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+
   .is-expanded & {
     opacity: 1;
     filter: blur(10px);
@@ -130,10 +139,6 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
   @include bolt-margin(auto);
 
   position: absolute;
-  top: -9999px;
-  right: -9999px;
-  bottom: -9999px;
-  left: -9999px;
   min-width: 100%;
   min-height: 100%;
   max-width: none; //Required to handle instances where a max-width is previously set.
