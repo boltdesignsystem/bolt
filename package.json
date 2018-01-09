@@ -37,7 +37,10 @@
     "Xpretest": "node packages/build-tools/check-imports.js",
     "Xprecommit": "npm run lint:scss",
     "Xprepush": "npm test && npm run build:full",
-    "Xsnyk-protect": "snyk protect"
+    "Xsnyk-protect": "snyk protect",
+    "styleguidekit:install": "cd packages/styleguidekit-assets-default && bower install",
+    "styleguidekit:dev": "cd packages/styleguidekit-assets-default && gulp --watch",
+    "styleguidekit:build": "cd packages/styleguidekit-assets-default && gulp"
   },
   "config": {
     "validate-commit-msg": {
@@ -87,6 +90,7 @@
   "workspaces": [
     "packages/assets",
     "packages/build-tools",
+    "packages/styleguidekit-assets-default",
     "packages/components/*",
     "packages/config-presets",
     "packages/core",

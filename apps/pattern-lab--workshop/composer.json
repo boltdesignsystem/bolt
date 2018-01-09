@@ -40,7 +40,12 @@
       },
       {
         "type": "vcs",
-        "url": "https://github.com/drupal-pattern-lab/styleguidekit-twig-default",
+        "url": "https://github.com/bolt-design-system/styleguidekit-assets-default",
+        "no-api": true
+      },
+      {
+        "type": "vcs",
+        "url": "https://github.com/pattern-lab/styleguidekit-twig-default",
         "no-api": true
       }
     ],
@@ -51,8 +56,8 @@
       "cweagans/composer-patches": "~1.0",
       "pattern-lab/core": "^2.8.10",
       "pattern-lab/patternengine-twig": "^2.1.3",
-      "pattern-lab/styleguidekit-twig-default": "^3.0.0",
-      "pattern-lab/styleguidekit-assets-default": "*",
+      "pattern-lab/styleguidekit-twig-default": "dev-feature/styleguidekit-assets-default-refactor-updates",
+      "pattern-lab/styleguidekit-assets-default": "dev-feature/v4.0.0-improvements as 3.5.2",
       "evanlovely/plugin-twig-namespaces": "dev-master",
       "oomphinc/composer-installers-extender": "dev-master",
       "bolt/twig-extensions": "*",
@@ -102,8 +107,12 @@
         ]
       },
       "patches-file": "composer.patches.json",
-      "installer-types": ["patternlab-plugin"],
+      "installer-types": ["patternlab-plugin", "patternlab-styleguidekit"],
       "installer-paths": {
+        "../../packages/styleguidekit-assets-default": ["pattern-lab/styleguidekit-assets-default"],
+        "../../packages/styleguidekit-twig-default": [
+          "pattern-lab/styleguidekit-twig-default"
+        ],
         "src/_twig-components": ["bolt/twig-extensions"]
       }
     }
