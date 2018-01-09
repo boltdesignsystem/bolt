@@ -130,10 +130,11 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     // it’s converted to a proper boolean value using JavaScript’s truthiness
     // & falsiness principles.
     // value = Boolean(value);
-    if (value)
+    if (value) {
       this.setAttribute('expandedHeight', value);
-    else
+    } else {
       this.removeAttribute('expandedHeight');
+    }
 
     this.dispatchEvent(
       new CustomEvent('expandedHeightSet', {
@@ -187,6 +188,17 @@ class BrightcoveVideo extends withComponent(withPreact()) {
       elem._setMetaDuration(duration);
       elem._setVideoDimensions(width, height);
       elem._calculateIdealVideoSize();
+
+      if (this.earlyToggle) {
+        this.earlyToggle = false;
+        this.toggle();
+      } else if (this.earlyPlay){
+        this.earlyPlay = false;
+        this.play();
+      } else if (this.earlyPause) {
+        this.earlyPause = false;
+        this.pause();
+      }
     });
 
     player.on("play", function(){
@@ -548,6 +560,17 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     // console.log(this.player);
     if (this.player) {
       this.player.play();
+    } else {
+      this.earlyPlay = true;
+
+      this.dispatchEvent(
+        new CustomEvent('playing', {
+          detail: {
+            isBackgroundVideo: this.props.isBackgroundVideo
+          },
+          bubbles: true,
+        })
+      );
     }
   }
 
@@ -573,12 +596,25 @@ class BrightcoveVideo extends withComponent(withPreact()) {
       } else {
         this.pause();
       }
+    } else {
+      this.earlyToggle = true;
+
+      this.dispatchEvent(
+        new CustomEvent('playing', {
+          detail: {
+            isBackgroundVideo: this.props.isBackgroundVideo
+          },
+          bubbles: true,
+        })
+      );
     }
   }
 
   pause() {
     if (this.player) {
       this.player.pause();
+    } else {
+      this.earlyPause = true;
     }
   }
 
