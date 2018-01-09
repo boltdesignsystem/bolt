@@ -5,6 +5,7 @@ module.exports = {
     global: [
       '@bolt/core',
       '@bolt/global',
+      '@bolt/components-button',
     ],
     individual: [
     ],
