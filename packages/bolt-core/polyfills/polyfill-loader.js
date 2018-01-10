@@ -14,7 +14,7 @@ export const polyfillLoader = new Promise(function (resolve, reject) {
     });
   } else {
     Promise.all([
-      import(/* webpackChunkName: "webcomponents-lite" */ '@webcomponents/webcomponentsjs/webcomponents-lite.js')
+      import(/* webpackChunkName: "webcomponents-lite" */ './webcomponents-hi-sd-ce-pf-index.js')
     ]).then(() => {
       resolve();
     });
