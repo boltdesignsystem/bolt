@@ -1,0 +1,110 @@
+{% extends "@bolt/default-template.twig" %}
+
+{% block global_header %}
+  {% include "@bolt/page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+
+  {% embed "@bolt/band.twig" with {
+    "theme": "xlight",
+    "size": "medium"
+  } %}
+    {% block band_content %}
+      {% include "@bolt/eyebrow.twig" with {
+        "text": "Press Release"
+      } only %}
+      {% include "@bolt/headline.twig" with {
+        "text": feature_band.title | default("Pega Receives Highest Scores in Two Use Cases in Gartner’s Critical Capabilities for the CRM Customer Engagement Center"),
+        "size": "xxxlarge"
+      } only %}
+
+      {% grid %}
+        {% cell 'u-bolt-width-1/1 u-bolt-width-8/12@medium' %}
+          {% include "@bolt/text.twig" with {
+            "text": "CAMBRIDGE, Mass. – December 26, 2017 – Pegasystems Inc. (NASDAQ: PEGA), the software company empowering customer engagement at the world’s leading enterprises, today announced it received the highest scores in the business-to-business and complex processes use cases in Gartner’s December 2017 Critical Capabilities for the CRM Customer Engagement Center (1)."
+          } only %}
+          {% include "@bolt/text.twig" with {
+            "text": "Gartner evaluated 15 leading CRM vendors as part of the Critical Capabilities report – a companion report to the Gartner Magic Quadrant for the CRM Customer Engagement Center (2) in which Pega was named a Leader for the eighth consecutive year. In the Critical Capabilities report, vendors’ products and services were evaluated across the following capabilities and weightings: case management, digital engagement channels, integration, mobile support, predictive customer analytics, real-time guidance/decision support, self-service/knowledge management, and social media engagement management."
+          } only %}
+          {% include "@bolt/text.twig" with {
+            "text": "Pega’s end-to-end suite of customer engagement applications for marketing, sales, and customer service are powered by Pega® Customer Decision Hub, its market-leading, real-time artificial intelligence (AI) engine. Built on Pega® Platform, Pega’s CRM solutions enable clients to constantly anticipate customers’ changing needs and provide personalized AI-driven recommendations throughout the customer journey. By engaging customers with meaningful interactions, Pega clients boost customer satisfaction while increasing customer lifetime value."
+          } only %}
+          {% include "@bolt/text.twig" with {
+            "text": "Pega believes this recognition in the Critical Capabilities report builds on other recent recognition of Pega’s customer engagement capabilities. Pega was named a leader in The Forrester Wave™: Real-Time Interaction Management, Q2 2017 (3), The Forrester Wave™: CRM Suites For Enterprise Organizations, Q4 2016 (4), and the Ovum Decision Matrix: Selecting a Customer Relationship Management Solution, 2016-17 (5)."
+          } only %}
+          {% include "@bolt/blockquote.twig" with {
+            "content": "<p>Pega supports organizations as they progress along their digital transformation journeys, with advanced, AI-powered customer engagement and digital process automation tools to seamlessly meet customers’ needs on any channel, at any time. We believe this latest recognition from Gartner further reinforces Pega as a leader in empowering end-to-end engagement to help companies improve customer satisfaction, revenue, and retention.</p>"
+          } only %}
+        {% endcell %}
+        {% cell 'u-bolt-width-1/1 u-bolt-width-4/12@medium' %}
+          {% include "@bolt/card.twig" with {
+            "theme": "xlight",
+            "contentItems": [
+              {
+                "pattern": "image",
+                "src": "/images/placeholders/1200x660.jpg"
+              },
+              {
+                "pattern": "headline",
+                "tag": "h3",
+                "size": "large",
+                "text": "Pega Press Kit"
+              },
+              {
+                "pattern": "text",
+                "text": "Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula sed."
+              },
+              {
+                "pattern": "button",
+                "text": "Download"
+              }
+            ]
+          } only %}
+          <hr>
+          {% include "@bolt/headline.twig" with {
+            "text": feature_band.title | default("Some Other Stuff"),
+            "size": "large"
+          } only %}
+          {% include "@bolt/text.twig" with {
+            "text": "In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus."
+          } only %}
+        {% endcell %}
+      {% endgrid %}
+      <hr>
+      {% include "@bolt/headline.twig" with {
+        "text": "Category:",
+        "size": "small",
+        "transform": "uppercase"
+      } only %}
+      {% include "@bolt/chip-list.twig" with {
+        "contentItems": [
+          {
+            "text": "First tag",
+            "url": "http://pega.com"
+          },
+          {
+            "text": "Sales Automation and Stuff",
+            "url": "http://pega.com"
+          },
+          {
+            "text": "CRM",
+            "url": "http://pega.com"
+          },
+          {
+            "text": "White Paper",
+            "url": "http://pega.com"
+          },
+          {
+            "text": "Pega.com",
+            "url": "http://pega.com"
+          }
+        ]
+      } %}
+      {% include "@bolt/text.twig" with {
+        "text": "CAMBRIDGE, Mass. – December 26, 2017 – Pegasystems Inc. (NASDAQ: PEGA), the software company empowering customer engagement at the world’s leading enterprises, today announced it received the highest scores in the business-to-business and complex processes use cases in Gartner’s December 2017 Critical Capabilities for the CRM Customer Engagement Center (1)."
+      } only %}
+    {% endblock %}
+  {% endembed %}
+
+{% endblock %}

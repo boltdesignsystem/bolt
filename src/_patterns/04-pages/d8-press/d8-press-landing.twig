@@ -1,0 +1,258 @@
+{% extends "@bolt/default-template.twig" %}
+
+{% block global_header %}
+  {% include "@bolt/page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+
+  {% embed "@bolt/band.twig" with {
+    theme: "dark",
+    size: "large",
+    fullBleed: true
+  } only %}
+    {% block band_content %}
+      {% include "@bolt/headline.twig" with {
+        size: "xxxlarge",
+        text: "In The News"
+      } only %}
+      {% include "@bolt/subheadline.twig" with {
+        size: "xxlarge",
+        text: "Newsworthy is an understatement. Our industry-leading solutions help the world’s largest enterprises build applications engineered for evolution."
+      } only %}
+    {% endblock %}
+  {% endembed %}
+
+  {% embed "@bolt/band--collection.twig" with {
+    "theme": "xlight",
+    "size": "medium",
+    "contentItems": [
+      {
+        "pattern": "card",
+        "image": {
+          "src": "/images/placeholders/1200x660.jpg"
+        },
+        "teaser": {
+          "eyebrow": {
+            text: "BPM"
+          },
+          "headlines": [
+            {
+              "type": "headline",
+              "text": "A New CRM Bill of Rights for the Future Empowered Enterprise",
+              "size": "large"
+            }
+          ],
+          "content": "Jeff Nicholson of Pega provides insight into what companies should expect from CRM vendors.",
+          "buttons": [
+            {
+              "text": "Read more",
+              "url": "http://www.google.com",
+              "width": "full"
+            }
+          ]
+        }
+      },
+      {
+        "pattern": "card",
+        "image": {
+          "src": "/images/sample/anthem-video.jpg"
+        },
+        "teaser": {
+          "eyebrow": {
+            text: "Case Management"
+          },
+          "headlines": [
+            {
+              "type": "headline",
+              "text": "6 Customer Experience Trends to Watch in 2018",
+              "size": "large"
+            }
+          ],
+          "content": "Pega's Don Schuerman previews customer experience questions and trends for the New Year.",
+          "buttons": [
+            {
+              "text": "Read more",
+              "url": "http://www.google.com",
+              "width": "full"
+            }
+          ]
+        }
+      },
+      {
+        "pattern": "card",
+        "image": {
+          "src": "/images/sample/artificial-intelligence-image.jpg"
+        },
+        "teaser": {
+          "eyebrow": {
+            text: "PegaWorld"
+          },
+          "headlines": [
+            {
+              "type": "headline",
+              "text": "3 Reasons Your AI-Driven Customer Experiences are Falling Short",
+              "size": "large"
+            }
+          ],
+          "content": "Pega's Jeff Nicholson examines the state of AI in today's customer experiences.",
+          "buttons": [
+            {
+              "text": "Read more",
+              "url": "http://www.google.com",
+              "width": "full"
+            }
+          ]
+        }
+      }
+    ]
+  } %}
+    {% block band_content %}
+      {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix u-bolt-padding-bottom-medium" %}
+        {% cell "u-bolt-flex-grow" %}
+          {% grid %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
+              {% include "@bolt/headline.twig" with {
+                text: "Press Releases",
+                size: "xlarge",
+                tag: "h3"
+              } only %}
+            {% endcell %}
+          {% endgrid %}
+        {% endcell %}
+        {% cell %}
+          {% include "@bolt/text.twig" with {
+            text: "See all press releases",
+            size: "small",
+            weight: "bold",
+            tag: "p",
+            url: "http://pega.com",
+            icon: {
+              name: "chevron-right",
+              position: "after"
+            }
+          } only %}
+        {% endcell %}
+      {% endgrid %}
+
+      {{ parent() }}
+    {% endblock band_content %}
+  {% endembed %}
+
+  {% embed "@bolt/band--collection.twig" with {
+    "theme": "light",
+    "size": "medium",
+    "contentItems": [
+      {
+        "pattern": "card",
+        "image": {
+          "src": "/images/placeholders/1200x660.jpg"
+        },
+        "teaser": {
+          "eyebrow": {
+            text: "BPM"
+          },
+          "headlines": [
+            {
+              "type": "headline",
+              "text": "A New CRM Bill of Rights for the Future Empowered Enterprise",
+              "size": "large"
+            }
+          ],
+          "content": "Jeff Nicholson of Pega provides insight into what companies should expect from CRM vendors.",
+          "buttons": [
+            {
+              "text": "Read more",
+              "url": "http://www.google.com",
+              "width": "full"
+            }
+          ]
+        }
+      },
+      {
+        "pattern": "card",
+        "image": {
+          "src": "/images/sample/anthem-video.jpg"
+        },
+        "teaser": {
+          "eyebrow": {
+            text: "Case Management"
+          },
+          "headlines": [
+            {
+              "type": "headline",
+              "text": "6 Customer Experience Trends to Watch in 2018",
+              "size": "large"
+            }
+          ],
+          "content": "Pega's Don Schuerman previews customer experience questions and trends for the New Year.",
+          "buttons": [
+            {
+              "text": "Read more",
+              "url": "http://www.google.com",
+              "width": "full"
+            }
+          ]
+        }
+      },
+      {
+        "pattern": "card",
+        "image": {
+          "src": "/images/sample/artificial-intelligence-image.jpg"
+        },
+        "teaser": {
+          "eyebrow": {
+            text: "PegaWorld"
+          },
+          "headlines": [
+            {
+              "type": "headline",
+              "text": "3 Reasons Your AI-Driven Customer Experiences are Falling Short",
+              "size": "large"
+            }
+          ],
+          "content": "Pega's Jeff Nicholson examines the state of AI in today's customer experiences.",
+          "buttons": [
+            {
+              "text": "Read more",
+              "url": "http://www.google.com",
+              "width": "full"
+            }
+          ]
+        }
+      }
+    ]
+  } %}
+    {% block band_content %}
+      {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix u-bolt-padding-bottom-medium" %}
+        {% cell "u-bolt-flex-grow" %}
+          {% grid %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
+              {% include "@bolt/headline.twig" with {
+                text: "Media Coverage",
+                size: "xlarge",
+                tag: "h3"
+              } only %}
+            {% endcell %}
+          {% endgrid %}
+        {% endcell %}
+        {% cell %}
+          {% include "@bolt/text.twig" with {
+            text: "See all media coverage",
+            size: "small",
+            weight: "bold",
+            tag: "p",
+            url: "http://pega.com",
+            icon: {
+              name: "chevron-right",
+              position: "after"
+            }
+          } only %}
+        {% endcell %}
+      {% endgrid %}
+
+      {{ parent() }}
+    {% endblock band_content %}
+  {% endembed %}
+
+{% endblock %}
