@@ -32,7 +32,7 @@ class BrightcoveMeta extends withComponent(withPreact()) {
     // 'reveal' allows the metadata to be hidden.
     // All of its logic is contained here in render(), but it could be updated to be a property that is set
     // externally (such as when the video has finished fully loading).
-    const reveal = Boolean(this.title || this.duration);
+    const reveal =  Boolean(this.title || this.duration);
     return (
       <div>
         <style>{metaStyles[0][1]}</style>
@@ -192,7 +192,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
       if (this.earlyToggle) {
         this.earlyToggle = false;
         this.toggle();
-      } else if (this.earlyPlay) {
+      } else if (this.earlyPlay){
         this.earlyPlay = false;
         this.play();
       } else if (this.earlyPause) {
@@ -201,7 +201,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
       }
     });
 
-    player.on("play", function () {
+    player.on("play", function(){
       elem.onPlay(player);
     });
 
@@ -235,7 +235,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
   static getScriptUrl(accountId, playerId) {
     return `//players.brightcove.net/${accountId}/${
       playerId
-      }_default/index.min.js`;
+    }_default/index.min.js`;
   }
 
   static getCurrentTimeMs(player) {
@@ -290,7 +290,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
       const s = this.createScript();
 
       s.onload = () => {
-        BrightcoveVideo.players.forEach(function (player) {
+        BrightcoveVideo.players.forEach(function(player){
           player.initVideoJS(player.state.id)
         });
       };
@@ -314,7 +314,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
 
     // If onInit event exists on element, run that instead of auto initializing
     if (this.props.onInit) {
-      if (window[this.props.onInit]) {
+      if (window[this.props.onInit]){
         window[this.props.onInit](this);
       }
     }
@@ -324,7 +324,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
   }
 
 
-  _onWindowResize(event) {
+  _onWindowResize(event){
     this._calculateIdealVideoSize();
   }
 
@@ -491,7 +491,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     const srcWidth = this.srcWidth;
     const srcHeight = this.srcHeight;
 
-    if (this.srcWidth && this.srcHeight) {
+    if (this.srcWidth && this.srcHeight){
       const maxRatio = .5625; //56.25%
       const maxWidth = this.querySelector('video').getBoundingClientRect().width;
       const maxHeightOption1 = maxWidth * maxRatio;
@@ -590,7 +590,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     // console.log('TOGGLE VIDEO');
     // console.log(this.state);
     if (this.player) {
-      if (this.state.isPlaying === false || this.state.isPlaying === 'paused') {
+      if (this.state.isPlaying === false || this.state.isPlaying === 'paused'){
         this.play();
       } else {
         this.pause();
@@ -644,23 +644,23 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     }
     const dataAttributes = datasetToObject(this);
 
-    return (
+    return(
       <span>
         <video
-          {...dataAttributes}
-          id={this.state.id}
-          {...(this.props.poster ? { poster: this.props.poster.uri } : {}) }
-          data-embed="default"
-          data-video-id={this.props.videoId}
-          data-account={this.props.accountId}
-          data-player={this.props.playerId}
-          // playIcon={playIconEmoji()}
-          // following 'autoplay' can not expected to always work on web
-          // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
-          autoPlay={this.props.autoplay}
-          data-application-id
-          className="video-js"
-          controls
+        {...dataAttributes}
+        id={this.state.id}
+        {...(this.props.poster ? { poster: this.props.poster.uri } : {}) }
+        data-embed="default"
+        data-video-id={this.props.videoId}
+        data-account={this.props.accountId}
+        data-player={this.props.playerId}
+        // playIcon={playIconEmoji()}
+        // following 'autoplay' can not expected to always work on web
+        // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
+        autoPlay={this.props.autoplay}
+        data-application-id
+        className="video-js"
+        controls
         />
         <brightcove-meta />
       </span>
