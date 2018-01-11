@@ -17,6 +17,8 @@ module.exports = {
       '@bolt/components-figure',
       '@bolt/components-link',
       '@bolt/components-ordered-list',
+      '@bolt/components-page-footer',
+      '@bolt/components-page-header',
       '@bolt/components-teaser',
       '@bolt/components-unordered-list'
     ],

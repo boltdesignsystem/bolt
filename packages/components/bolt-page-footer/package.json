@@ -1,6 +1,5 @@
 {
   "name": "@bolt/components-page-footer",
-  "type": "pattern",
   "description": "Page Footer Component",
   "keywords": [
     "eyeglass-module",
@@ -23,5 +22,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "style": "src/_page-footer.scss"
+  "style": "src/_page-footer.scss",
+  "twig": "src/_page-footer.twig",
+  "dependencies": {
+    "@bolt/core": "^0.5.0-beta.1"
+  }
 }

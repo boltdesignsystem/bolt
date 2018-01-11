@@ -1,6 +1,5 @@
 {
   "name": "@bolt/components-page-header",
-  "type": "pattern",
   "description": "(In Progress) Page Header Component",
   "keywords": [
     "bolt design system",
@@ -22,5 +21,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "style": "src/_page-header.scss"
+  "style": "src/_page-header.scss",
+  "twig": "src/page-header.twig",
+  "dependencies": {
+    "@bolt/core": "^0.5.0-beta.1"
+  }
 }
