@@ -6,8 +6,8 @@
   "license": "MIT",
   "main": "bolt.js",
   "scripts": {
-    "build": "gulp compile",
-    "start": "gulp"
+    "build": "bolt-build",
+    "start": "bolt-build --watch"
   },
   "repository": {
     "type": "git",
@@ -17,8 +17,6 @@
     "@bolt/build-tools": "0.5.1",
     "@bolt/components-button": "0.7.0-beta.5",
     "@bolt/core": "0.5.0-beta.1",
-    "@bolt/global": "0.5.0",
-    "@theme-tools/plugin-pattern-lab-php": "^1.1.0",
-    "gulp": "^4.0.0"
+    "@bolt/global": "0.5.0"
   }
 }

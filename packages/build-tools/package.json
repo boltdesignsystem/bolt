@@ -4,6 +4,9 @@
   "license": "MIT",
   "description": "Curated collection of front-end build tools in the Bolt Design System.",
   "main": "index.js",
+  "bin": {
+    "bolt-build": "cli.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/pega-digital/bolt.git"
@@ -22,16 +25,14 @@
     }
   ],
   "dependencies": {
-    "@theme-tools/plugin-pattern-lab-php": "^1.1.0",
     "@theme-tools/sass-export-data": "^1.0.3",
     "@theme-tools/sass-import-globbing": "^1.0.0",
     "autoprefixer": "^7.2.4",
     "babel-loader": "^7.1.2",
     "clean-css-loader": "^0.1.4",
+    "commander": "^2.12.2",
     "css-loader": "^0.28.7",
-    "del": "^3.0.0",
     "extract-text-webpack-plugin": "^3.0.2",
-    "gulp": "^4.0.0",
     "npm-sass": "^2.2.1",
     "postcss-discard-duplicates": "^2.1.0",
     "postcss-loader": "^2.0.10",
