@@ -14,7 +14,8 @@ module.exports = {
       '@bolt/components-button-group',
       '@bolt/components-chip',
       '@bolt/components-chip-list',
-      '@bolt/components-figure'
+      '@bolt/components-figure',
+      '@bolt/components-link'
     ],
     individual: [
     ],
