@@ -10,7 +10,8 @@ module.exports = {
       '@bolt/components-background',
       '@bolt/components-background-shapes',
       '@bolt/components-blockquote',
-      '@bolt/components-button'
+      '@bolt/components-button',
+      '@bolt/components-button-group'
     ],
     individual: [
     ],
