@@ -16,7 +16,8 @@ module.exports = {
       '@bolt/components-chip-list',
       '@bolt/components-figure',
       '@bolt/components-link',
-      '@bolt/components-ordered-list'
+      '@bolt/components-ordered-list',
+      '@bolt/components-unordered-list'
     ],
     individual: [
     ],
