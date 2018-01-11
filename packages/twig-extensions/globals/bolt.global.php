@@ -7,7 +7,7 @@ class Twig_Extension_bolt extends Twig_Extension implements Twig_Extension_Globa
 
     function __construct(){
         $documentRoot = getcwd();
-        $json = file_get_contents($documentRoot . '/node_modules/@bolt/core-data/image-sizes/image-sizes.data.json');
+        $json = file_get_contents($documentRoot . '/src/_data/image-sizes/image-sizes.data.json');
         self::$data = json_decode($json)->boltImageSizes;
     }
 
