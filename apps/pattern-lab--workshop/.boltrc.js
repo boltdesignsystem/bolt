@@ -11,7 +11,8 @@ module.exports = {
       '@bolt/components-background-shapes',
       '@bolt/components-blockquote',
       '@bolt/components-button',
-      '@bolt/components-button-group'
+      '@bolt/components-button-group',
+      '@bolt/components-chip'
     ],
     individual: [
     ],
