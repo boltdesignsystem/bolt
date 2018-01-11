@@ -13,7 +13,8 @@ module.exports = {
       '@bolt/components-button',
       '@bolt/components-button-group',
       '@bolt/components-chip',
-      '@bolt/components-chip-list'
+      '@bolt/components-chip-list',
+      '@bolt/components-figure'
     ],
     individual: [
     ],
