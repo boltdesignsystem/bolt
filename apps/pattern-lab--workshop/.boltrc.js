@@ -9,6 +9,7 @@ module.exports = {
       '@bolt/components-action-blocks',
       '@bolt/components-background',
       '@bolt/components-background-shapes',
+      '@bolt/components-blockquote',
       '@bolt/components-button'
     ],
     individual: [
