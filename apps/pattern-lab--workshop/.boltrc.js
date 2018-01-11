@@ -12,7 +12,8 @@ module.exports = {
       '@bolt/components-blockquote',
       '@bolt/components-button',
       '@bolt/components-button-group',
-      '@bolt/components-chip'
+      '@bolt/components-chip',
+      '@bolt/components-chip-list'
     ],
     individual: [
     ],
