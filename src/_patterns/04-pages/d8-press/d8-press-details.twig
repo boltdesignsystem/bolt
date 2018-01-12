@@ -63,12 +63,18 @@
           } only %}
           <hr>
           {% include "@bolt/headline.twig" with {
-            "text": feature_band.title | default("Some Other Stuff"),
-            "size": "large"
+            "text": feature_band.title | default("Media Contacts"),
+            "size": "xlarge"
           } only %}
-          {% include "@bolt/text.twig" with {
-            "text": "In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus."
-          } only %}
+          <p class="c-bolt-text">
+            Lisa Pintchman Rogers
+            <br>
+            VP, Corporate Communications
+            <br>
+            <a href="mailto:Lisa.Pintchman@pega.com">Lisa.Pintchman@pega.com</a>
+            <br>
+            +1 617-866-6022
+          </p>
         {% endcell %}
       {% endgrid %}
       <hr>
@@ -101,9 +107,6 @@
           }
         ]
       } %}
-      {% include "@bolt/text.twig" with {
-        "text": "CAMBRIDGE, Mass. – December 26, 2017 – Pegasystems Inc. (NASDAQ: PEGA), the software company empowering customer engagement at the world’s leading enterprises, today announced it received the highest scores in the business-to-business and complex processes use cases in Gartner’s December 2017 Critical Capabilities for the CRM Customer Engagement Center (1)."
-      } only %}
     {% endblock %}
   {% endembed %}
 
