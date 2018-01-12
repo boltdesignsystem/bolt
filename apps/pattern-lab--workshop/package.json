@@ -6,8 +6,9 @@
   "license": "MIT",
   "main": "bolt.js",
   "scripts": {
-    "build": "bolt-build",
-    "start": "bolt-build --watch"
+    "build": "bolt build",
+    "build:noisy": "bolt build --verbosity 5",
+    "start": "bolt build --watch"
   },
   "repository": {
     "type": "git",
