@@ -34,7 +34,7 @@ class BrightcoveMeta extends withComponent(withPreact()) {
     // externally (such as when the video has finished fully loading).
     const reveal =  Boolean(this.title || this.duration);
     return (
-      <div>
+      <div class="c-brightcove-meta">
         <style>{metaStyles[0][1]}</style>
         {reveal ? (
           <div class="c-brightcove-meta__wrapper">{this.title}{separator}{this.duration}</div>
@@ -56,6 +56,8 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     poster: props.object,
     isBackgroundVideo: props.boolean,
     onInit: props.string,
+    showMeta: props.boolean,
+    closeButtonText: props.string,
     // onError: null,
     // onPlay: null,
     // onPause: null,
@@ -78,6 +80,9 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     // this.onProgress = this.onProgress.bind(this);
     this.onDurationChange = this.onDurationChange.bind(this);
     this.onSeeked = this.onSeeked.bind(this);
+
+    // This binding is necessary to make `this` work in the callback
+    this.handleClose = this.handleClose.bind(this);
 
     // BrightcoveVideo.globalErrors.forEach(this.props.onError);
 
@@ -152,12 +157,16 @@ class BrightcoveVideo extends withComponent(withPreact()) {
   // }
 
   _setMetaTitle(title) {
-    this.querySelector('brightcove-meta').setAttribute('title', title);
+    if (this.props.showMeta){
+      this.querySelector('brightcove-meta').setAttribute('title', title);
+    }
   }
 
   _setMetaDuration(seconds) {
-    const durationFormatted = BrightcoveVideo._formatDuration(seconds);
-    this.querySelector('brightcove-meta').setAttribute('duration', durationFormatted);
+    if (this.props.showMeta) {
+      const durationFormatted = BrightcoveVideo._formatDuration(seconds);
+      this.querySelector('brightcove-meta').setAttribute('duration', durationFormatted);
+    }
   }
 
   static _formatDuration(seconds) {
@@ -250,6 +259,9 @@ class BrightcoveVideo extends withComponent(withPreact()) {
   //   return this.props.isBackgroundVideo;
   // }
 
+  handleClose() {
+    this.close();
+  }
 
   connectedCallback() {
     this.state = {
@@ -644,25 +656,44 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     }
     const dataAttributes = datasetToObject(this);
 
+    let closeButtonText = null;
+    if (this.props.closeButtonText) {
+      closeButtonText = this.props.closeButtonText;
+    } else {
+      closeButtonText = 'Close video';
+    }
+
     return(
-      <span>
-        <video
-        {...dataAttributes}
-        id={this.state.id}
-        {...(this.props.poster ? { poster: this.props.poster.uri } : {}) }
-        data-embed="default"
-        data-video-id={this.props.videoId}
-        data-account={this.props.accountId}
-        data-player={this.props.playerId}
-        // playIcon={playIconEmoji()}
-        // following 'autoplay' can not expected to always work on web
-        // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
-        autoPlay={this.props.autoplay}
-        data-application-id
-        className="video-js"
-        controls
-        />
-        <brightcove-meta />
+      <span class="c-brightcove-video">
+          <video
+            {...dataAttributes}
+            id={this.state.id}
+            {...(this.props.poster ? { poster: this.props.poster.uri } : {}) }
+            data-embed="default"
+            data-video-id={this.props.videoId}
+            data-account={this.props.accountId}
+            data-player={this.props.playerId}
+            // playIcon={playIconEmoji()}
+            // following 'autoplay' can not expected to always work on web
+            // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
+            autoPlay={this.props.autoplay}
+            data-application-id
+            className="video-js"
+            controls
+          />
+          {this.props.showMeta &&
+            <brightcove-meta />
+          }
+        <div class="c-bolt-video__close-button">
+          <bolt-button size="xsmall" color="secondary" rounded="true" icon-only="true" onClick={this.handleClose}>
+            <button class="c-bolt-button__button">
+              <span class="c-bolt-button__item c-bolt-button__item-text u-bolt-visuallyhidden">{closeButtonText}</span>
+              <span class="c-bolt-button__icon u-bolt-margin-left-none ">
+                <bolt-icon name="close" size="small"></bolt-icon>
+              </span>
+            </button>
+          </bolt-button>
+        </div>
       </span>
     );
   }

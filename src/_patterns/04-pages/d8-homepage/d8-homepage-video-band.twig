@@ -150,9 +150,9 @@
 
 {% set videoUuid1 = "js-bolt-video-uuid--1" %}
 
-{% embed "@bolt/band.twig" with {
-  theme: "dark",
-  size: "medium",
+{% embed "@bolt/band--collection.twig" with {
+  "theme": "dark",
+  "size": "medium",
   background: {
     "opacity": "heavy",
     "fill": "color",
@@ -174,32 +174,94 @@
         "videoUuid": videoUuid1
       }
     ]
-  }
-} %}
-  {% block band_content %}
-    {% include "@bolt/headline.twig" with {
-      text: "What's Trending",
-      size: "xlarge",
-      tag: "h3"
-    } only %}
-    {% include "@bolt/button.twig" with {
-      text: "Toggle video",
-      tag: "button",
-      attributes: {
-        "on-click": "toggle",
-        "on-click-target": videoUuid1
-      }
-    } only %}
-    {{ parent() }}
-  {% endblock band_content %}
-{% endembed %}
-
-
-
-{% embed "@bolt/band--collection.twig" with {
-  "theme": "light",
-  "size": "medium",
+  },
   "contentItems": [
+    {
+      "pattern": "card",
+      "contentItems": [
+        {
+          "pattern": "image",
+          "src": "/images/placeholders/1200x660.jpg"
+        },
+        {
+          "pattern": "headline",
+          "text": "2017 Forrester Wave Report",
+          "size": "large",
+          "tag": "h3"
+        },
+        {
+          "pattern": "text",
+          "text": "Pega cited as a Leader in The Forrester Wave™: Digital Process Automation Software, Q3 2017."
+        },
+        {
+          "pattern": "button",
+          "width": "full",
+          "text": "Get the report",
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "pattern": "card",
+      "image": {
+        "src": "/images/sample/anthem-video.jpg"
+      },
+      "teaser": {
+        "eyebrow": {
+          text: "Article"
+        },
+        "headlines": [
+          {
+            "type": "headline",
+            "text": "Headline #2",
+            "size": "large"
+          }
+        ],
+        "content": "Simplify and automate to reduce costs and improve agility.",
+        "buttons": [
+          {
+            "text": "Learn More",
+            "style": "secondary",
+            "url": "www.google.com/pega7",
+            "width": "full"
+          },
+          {
+            "text": "About Pega",
+            "style": "secondary",
+            "url": "www.google.com/pega7",
+            "width": "full"
+          }
+        ]
+      }
+    },
+    {
+      "pattern": "card",
+      "contentItems": [
+        {
+          "pattern": "image",
+          "src": "/images/sample/artificial-intelligence-image.jpg"
+        },
+        {
+          "pattern": "teaser",
+          "headlines": [
+            {
+              "type": "headline",
+              "text": "Headline #3",
+              "size": "large"
+            }
+          ],
+          "content": "Simplify and automate to reduce costs and improve agility.",
+          "buttons": [
+            {
+              "text": "Learn More About Pega 7",
+              "style": "text",
+              "url": "www.google.com/pega7",
+              "width": "full"
+            }
+          ]
+        }
+      ]
+    },
     {
       "pattern": "card",
       "contentItems": [
@@ -294,6 +356,18 @@
       size: "xlarge",
       tag: "h3"
     } only %}
+
+    {% include "@bolt/button.twig" with {
+      text: "Toggle video",
+      tag: "button",
+      attributes: {
+        "on-click": "toggle",
+        "on-click-target": videoUuid1
+      }
+    } only %}
+
+    <br><br><br>
+
     {{ parent() }}
   {% endblock band_content %}
 {% endembed %}

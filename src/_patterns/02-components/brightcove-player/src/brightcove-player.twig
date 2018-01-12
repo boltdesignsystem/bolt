@@ -1,11 +1,18 @@
 {% set attributes = create_attribute(attributes | default({})) %}
 
+{# force HTML5 Only Rendering #}
+{% set attributes = attributes.setAttribute("data-setup", "{&quot;techOrder&quot;: [&quot;Html5&quot;]}") %}
+
 {% if videoId %}
   {% set attributes = attributes.setAttribute("video-id", videoId) %}
 {% endif %}
 
 {% if accountId %}
   {% set attributes = attributes.setAttribute("account-id", accountId) %}
+{% endif %}
+
+{% if showMeta %}
+  {% set attributes = attributes.setAttribute("show-meta", showMeta) %}
 {% endif %}
 
 {% if playerId %}
