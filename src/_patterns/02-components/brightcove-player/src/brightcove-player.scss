@@ -39,13 +39,18 @@ bolt-video {
     height: 100%;
   }
 
+  /**
+    * 1. 90vw instead of 100vw so the video close button
+    * doesn't spill outside of the video container in IE 11 /
+    * on Windows
+    */
   .c-bolt-background__video & {
-    position: relative;
     display: block;
-    width: calc(100vw - #{bolt-spacing(large)});
+    position: relative;
+    width: calc(90vw - #{bolt-spacing(large)}); /* [1] */
+    height: calc((90vw * (9 / 16)) - #{bolt-spacing(large)}); /* [1] */
     max-width: 100vh;
-    height: calc(calc(100vw - #{bolt-spacing(large)}) * (9/16));
-    max-height: calc(100vh * (9/16));
+    max-height: calc(100vh * (9 / 16));
     margin: 0 auto;
   }
 }
