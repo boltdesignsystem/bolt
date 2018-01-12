@@ -38,11 +38,5 @@ export function withPreact(Base = HTMLElement){
     //   this.rendered && this.rendered();
     // }
 
-    disconnectedCallback() {
-      super.disconnectedCallback && super.disconnectedCallback();
-      // Preact hack https://github.com/developit/preact/issues/53
-      const Nothing = () => null;
-      this._preactDom = render(<Nothing />, this._renderRoot, this._preactDom);
-    }
   }
 };
