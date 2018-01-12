@@ -57,6 +57,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     isBackgroundVideo: props.boolean,
     onInit: props.string,
     showMeta: props.boolean,
+    showMetaTitle: props.boolean,
     closeButtonText: props.string,
     // onError: null,
     // onPlay: null,
@@ -157,7 +158,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
   // }
 
   _setMetaTitle(title) {
-    if (this.props.showMeta){
+    if (this.props.showMeta && this.props.showMetaTitle){
       this.querySelector('brightcove-meta').setAttribute('title', title);
     }
   }

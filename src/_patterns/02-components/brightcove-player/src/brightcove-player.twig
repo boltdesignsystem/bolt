@@ -1,7 +1,10 @@
 {% set attributes = create_attribute(attributes | default({})) %}
 
 {# force HTML5 Only Rendering #}
-{% set attributes = attributes.setAttribute("data-setup", "{&quot;techOrder&quot;: [&quot;Html5&quot;]}") %}
+{% set attributes = attributes.setAttribute("data-setup", '{"techOrder": ["Html5"]}') %}
+{% set showMeta = showMeta is null ? true : showMeta %}
+{% set showMetaTitle = showMeta is null ? false : showMetaTitle %}
+
 
 {% if videoId %}
   {% set attributes = attributes.setAttribute("video-id", videoId) %}
@@ -13,6 +16,10 @@
 
 {% if showMeta %}
   {% set attributes = attributes.setAttribute("show-meta", showMeta) %}
+{% endif %}
+
+{% if showMetaTitle %}
+  {% set attributes = attributes.setAttribute("show-meta-title", showMetaTitle) %}
 {% endif %}
 
 {% if playerId %}
