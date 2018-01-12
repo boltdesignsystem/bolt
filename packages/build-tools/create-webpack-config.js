@@ -6,62 +6,14 @@ const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const sassImportGlobbing = require('@theme-tools/sass-import-globbing');
+const assets = require('./utils/assets');
 const sassExportData = require('@theme-tools/sass-export-data')({
   path: path.resolve(process.cwd(), './src/_data'),
 });
 
-/**
- * Get information about a components assets
- * @param {string} component - Machine name of a component i.e. `@bolt/button`
- * @returns {{name, basicName: string | * | void}} - Asset info
- */
-function getAssets(component) {
-  // @todo Ensure package exists
-  const pkgJsonPath = require.resolve(`${component}/package.json`);
-  const pkgPath = path.dirname(pkgJsonPath);
-  const pkg = require(pkgJsonPath);
-  const assets = {
-    name: pkg.name,
-    basicName: pkg.name.replace('@bolt/', 'bolt-'),
-  };
-  // @todo Ensure asset files exist
-  if (pkg.style) assets.style = path.join(pkgPath, pkg.style);
-  if (pkg.main) assets.main = path.join(pkgPath, pkg.main);
-  // @todo Allow verbosity settings
-  // console.log(assets);
-  return assets;
-}
-
 function createConfig(userConfig) {
-
-  const entry = {};
-
-  if (userConfig.components.global) {
-    entry['bolt-global'] = [];
-    userConfig.components.global.forEach((component) => {
-      const assets = getAssets(component);
-      if (assets.style) entry['bolt-global'].push(assets.style);
-      if (assets.main) entry['bolt-global'].push(assets.main);
-    });
-  }
-  if (userConfig.components.individual) {
-    userConfig.components.individual.forEach((component) => {
-      const assets = getAssets(component);
-      const files = [];
-      if (assets.style) files.push(assets.style);
-      if (assets.main) files.push(assets.main);
-      if (files) {
-        entry[assets.basicName] = files;
-      } else {
-        console.error(`No assets found for ${assets.name}`, assets);
-      }
-    });
-  }
-
-  // @todo Allow verbosity settings for seeing `entry`
-
   return {
-    entry: entry,
+    entry: assets.buildWebpackEntry(userConfig.components),
     output: {
       path: path.resolve(process.cwd(), userConfig.dist),
       filename: "[name].js"
