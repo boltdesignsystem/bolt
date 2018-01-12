@@ -1,16 +1,17 @@
 const log = require('../utils/log');
+const run = require('../utils/run');
 
 module.exports = async (config, options) => {
   const webpackTasks = require('../tasks/webpack-tasks')(config, options);
   const patternLabTasks = await require('../tasks/pattern-lab-tasks')(config, options);
+  // @todo figure out how to best conditionally run tasks based on environment (`pl`, `drupal`)
 
   async function parallelBuild() {
     try {
-      const pl = patternLabTasks.compile();
-      const wp = webpackTasks.compile();
-
-      await pl;
-      await wp;
+      run.parallel([
+        webpackTasks.compile,
+        patternLabTasks.compile,
+      ]);
     } catch (error) {
       log.errorAndExit('build (parallel)', error);
     }
@@ -18,12 +19,10 @@ module.exports = async (config, options) => {
 
   async function serialBuild() {
     try {
-      // @todo figure out how to best conditionally run tasks based on environment
-      // this is intentionally the only conditional task
-      if (config.env === 'pl') {
-        await patternLabTasks.compile();
-      }
-      await webpackTasks.compile();
+      run.series([
+        webpackTasks.compile,
+        patternLabTasks.compile,
+      ]);
     } catch (error) {
       log.errorAndExit('build (serial)', error);
     }
@@ -31,10 +30,10 @@ module.exports = async (config, options) => {
 
   async function parallelWatch() {
     try {
-      const pl = patternLabTasks.watch();
-      const wp = webpackTasks.watch();
-      await pl;
-      await wp;
+      run.parallel([
+        patternLabTasks.watch,
+        webpackTasks.watch,
+      ]);
     } catch (error) {
       log.errorAndExit('watch', error);
     }
