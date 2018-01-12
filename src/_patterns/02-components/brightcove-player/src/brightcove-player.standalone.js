@@ -666,35 +666,37 @@ class BrightcoveVideo extends withComponent(withPreact()) {
 
     return(
       <span class="c-brightcove-video">
-          <video
-            {...dataAttributes}
-            id={this.state.id}
-            {...(this.props.poster ? { poster: this.props.poster.uri } : {}) }
-            data-embed="default"
-            data-video-id={this.props.videoId}
-            data-account={this.props.accountId}
-            data-player={this.props.playerId}
-            // playIcon={playIconEmoji()}
-            // following 'autoplay' can not expected to always work on web
-            // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
-            autoPlay={this.props.autoplay}
-            data-application-id
-            className="video-js"
-            controls
-          />
-          {this.props.showMeta &&
-            <brightcove-meta />
-          }
-        <div class="c-bolt-video__close-button">
-          <bolt-button size="xsmall" color="secondary" rounded="true" icon-only="true" onClick={this.handleClose}>
-            <button class="c-bolt-button__button">
-              <span class="c-bolt-button__item c-bolt-button__item-text u-bolt-visuallyhidden">{closeButtonText}</span>
-              <span class="c-bolt-button__icon u-bolt-margin-left-none ">
-                <bolt-icon name="close" size="small"></bolt-icon>
-              </span>
-            </button>
-          </bolt-button>
-        </div>
+        <video
+          {...dataAttributes}
+          id={this.state.id}
+          {...(this.props.poster ? { poster: this.props.poster.uri } : {}) }
+          data-embed="default"
+          data-video-id={this.props.videoId}
+          data-account={this.props.accountId}
+          data-player={this.props.playerId}
+          // playIcon={playIconEmoji()}
+          // following 'autoplay' can not expected to always work on web
+          // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
+          autoPlay={this.props.autoplay}
+          data-application-id
+          className="video-js"
+          controls
+        />
+        {this.props.showMeta &&
+          <brightcove-meta />
+        }
+        {this.props.isBackgroundVideo &&
+          <div class="c-bolt-video__close-button">
+            <bolt-button size="xsmall" color="secondary" rounded="true" icon-only="true" onClick={this.handleClose}>
+              <button class="c-bolt-button__button">
+                <span class="c-bolt-button__item c-bolt-button__item-text u-bolt-visuallyhidden">{closeButtonText}</span>
+                <span class="c-bolt-button__icon u-bolt-margin-left-none ">
+                  <bolt-icon name="close" size="small"></bolt-icon>
+                </span>
+              </button>
+            </bolt-button>
+          </div>
+        }
       </span>
     );
   }
