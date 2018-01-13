@@ -5,8 +5,9 @@ const events = require('../utils/events');
 const chokidar = require('chokidar');
 const debounce = require('lodash.debounce');
 const log = require('../utils/log');
+const { getConfig } = require('../utils/config-store');
 
-module.exports = async (userConfig, options) => {
+module.exports = async () => {
   const config = Object.assign({
     plConfigFile: 'config/config.yml',
     watchedExtensions: [
@@ -20,7 +21,7 @@ module.exports = async (userConfig, options) => {
     ],
     extraWatches: [],
     debounceRate: 1000,
-  }, userConfig);
+  }, getConfig());
 
   const plConfig = await yaml.readYamlFile(config.plConfigFile);
   const plRoot = path.join(config.plConfigFile, '../..');
@@ -78,7 +79,7 @@ module.exports = async (userConfig, options) => {
 
     // list of all events: https://www.npmjs.com/package/chokidar#methods--events
     watcher.on('all', (event, path) => {
-      if (options.verbosity > 1) {
+      if (config.verbosity > 1) {
         console.log(event, path);
       }
       debouncedCompile();
