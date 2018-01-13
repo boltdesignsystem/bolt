@@ -4,8 +4,10 @@ const createWebpackConfig = require('../create-webpack-config');
 const formatWebpackMessages = require('../utils/formatWebpackMessages');
 const events = require('../utils/events');
 const log = require('../utils/log');
+const { getConfig } = require('../utils/config-store');
 
-module.exports = (config, options) => {
+module.exports = () => {
+  const config = getConfig();
   const webpackConfig = createWebpackConfig(config);
 
   function compile() {
@@ -24,7 +26,7 @@ module.exports = (config, options) => {
           }
           const prettyError = messages.errors.join('\n\n');
 
-          return reject(options.verbosity > 2 ? new Error(prettyError) : prettyError);
+          return reject(config.verbosity > 2 ? new Error(prettyError) : prettyError);
         }
         // Stats config options: https://webpack.js.org/configuration/stats/
         console.log(stats.toString({

@@ -1,9 +1,9 @@
 const log = require('../utils/log');
 const run = require('../utils/run');
 
-module.exports = async (config, options) => {
-  const webpackTasks = require('../tasks/webpack-tasks')(config, options);
-  const patternLabTasks = await require('../tasks/pattern-lab-tasks')(config, options);
+module.exports = async (options) => {
+  const webpackTasks = require('../tasks/webpack-tasks')();
+  const patternLabTasks = await require('../tasks/pattern-lab-tasks')();
   // @todo figure out how to best conditionally run tasks based on environment (`pl`, `drupal`)
 
   async function parallelBuild() {
