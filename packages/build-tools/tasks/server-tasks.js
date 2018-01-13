@@ -14,7 +14,7 @@ if (config.env === 'pl') {
   serverConfig.server = config.server;
 }
 
-function init() {
+function serve() {
   log.taskStart('serve');
   // https://www.browsersync.io/docs/api#api-init
   server.init(serverConfig, () => {
@@ -42,6 +42,6 @@ events.on('reload', (files) => {
 
 
 module.exports = {
-  init,
+  serve,
   reload,
 };
