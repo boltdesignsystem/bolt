@@ -41,6 +41,24 @@ program
     });
   });
 
+program
+  .command('serve')
+  .description('Spin up local server')
+  .option('-O, --open', 'Open browser at start.')
+  .action((options) => {
+    log.info('Starting server...');
+
+    configStore.updateConfig((config) => {
+      config.openServerAtStart = typeof options.open === 'undefined'
+        ? config.openServerAtStart
+        : options.open;
+      return config;
+    });
+
+    const serve = require('./tasks/serve');
+    serve.init();
+  });
+
 // `bolt lint`
 program
   .command('lint')
