@@ -2,6 +2,7 @@ module.exports = {
   env: 'pl',
   plConfigFile: './config/config.yml',
   dist: './dist/assets',
+  server: './dist',
   verbosity: 3,
   components: {
     global: [

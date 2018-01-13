@@ -13,6 +13,7 @@ let config = {};
 
 const defaultConfig = {
   verbosity: 2,
+  openServerAtStart: false,
 };
 
 function getEnvVarsConfig() {
