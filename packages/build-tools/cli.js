@@ -55,8 +55,8 @@ program
       return config;
     });
 
-    const serve = require('./tasks/serve');
-    serve.init();
+    const serverTasks = require('./tasks/server-tasks');
+    serverTasks.serve();
   });
 
 // `bolt lint`
