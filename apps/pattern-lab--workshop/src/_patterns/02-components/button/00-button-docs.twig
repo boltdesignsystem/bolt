@@ -6,7 +6,5 @@
 } only %}
 {%- endverbatim -%} {% endset %}
 
-{% include "@utils/schema-docs.twig" with {
-  schema: schema,
-  code: code,
-} %}
+{# @TODO: given that the current schema-docs.twig doesn't take in a `code` param, are we missing an include somewhere? #}
+{% include "@utils/schema-docs.twig" with schema only %}
