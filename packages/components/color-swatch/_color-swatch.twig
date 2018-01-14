@@ -23,7 +23,7 @@
         {% set currentColorValue = colorValue %}
       {% endif %}
 
-        <bolt-swatch-color class="c-bolt-swatch__color {{ isLargeColor }}" style="background-color: {{ currentColorValue }};">
+        <bolt-swatch-color class="c-bolt-swatch__color {{ isLargeColor }}" style="background-color: {{ currentColorValue | rgb2hex }};">
           <div class="c-bolt-swatch__text" style="color: {{ currentColorValue | rgb2hex | text_contrast }}">
 
             {% if tone == "initial" or tone == "default" or tone == "base" %}

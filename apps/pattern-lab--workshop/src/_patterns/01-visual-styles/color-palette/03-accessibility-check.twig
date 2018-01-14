@@ -1,3 +1,5 @@
+{% set bolt_colors = get_data('@bolt-assets/bolt-all-colors.data.json').boltAllColors %}
+
 <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix">
   {% for colorName, palette in bolt_colors %}
     <div class="o-bolt-grid__cell u-bolt-width-1/3">
@@ -5,7 +7,7 @@
       <bolt-swatch class="c-bolt-swatch">
         <!-- <div class="c-bolt-swatch__inner"> -->
           {% for tone, colorValue in palette | reverse %}
-          <div class="c-bolt-accessibility-table" style="color: {{ colorValue | rgb2hex | text_contrast }}; background-color: {{ colorValue }};">
+          <div class="c-bolt-accessibility-table" style="color: {{ colorValue | rgb2hex | text_contrast }}; background-color: {{ colorValue | rgb2hex }};">
 
 
             <ul class="c-bolt-accessibility-table__table" aria-label="Accessibility table for {{ colorName }} — {{ tone }}" role="table">
