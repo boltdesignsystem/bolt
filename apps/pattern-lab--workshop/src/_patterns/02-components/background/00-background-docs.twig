@@ -1,0 +1,3 @@
+{% set schema = get_data('@bolt/background.schema.json') %}
+
+{%  include "@utils/schema-docs.twig" with schema only %}
