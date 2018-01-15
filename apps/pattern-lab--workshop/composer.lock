@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8cf522d785d8301cf3468627820e820f",
+    "content-hash": "d6c51d082143ee596224ce46e5aa3cb7",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -106,7 +106,7 @@
         },
         {
             "name": "bolt/twig-extensions",
-            "version": "dev-epic/refactor--consolidate-packages",
+            "version": "dev-epic/refactor--build-improvements",
             "dist": {
                 "type": "path",
                 "url": "../../packages/twig-extensions",
@@ -784,30 +784,25 @@
         },
         {
             "name": "michelf/php-markdown",
-            "version": "1.7.0",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/michelf/php-markdown.git",
-                "reference": "1f51cc520948f66cd2af8cbc45a5ee175e774220"
+                "reference": "01ab082b355bf188d907b9929cd99b2923053495"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/michelf/php-markdown/zipball/1f51cc520948f66cd2af8cbc45a5ee175e774220",
-                "reference": "1f51cc520948f66cd2af8cbc45a5ee175e774220",
+                "url": "https://api.github.com/repos/michelf/php-markdown/zipball/01ab082b355bf188d907b9929cd99b2923053495",
+                "reference": "01ab082b355bf188d907b9929cd99b2923053495",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-lib": "1.4.x-dev"
-                }
-            },
             "autoload": {
-                "psr-0": {
-                    "Michelf": ""
+                "psr-4": {
+                    "Michelf\\": "Michelf/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -831,7 +826,7 @@
             "keywords": [
                 "markdown"
             ],
-            "time": "2016-10-29T18:58:20+00:00"
+            "time": "2018-01-15T00:49:33+00:00"
         },
         {
             "name": "oomphinc/composer-installers-extender",
@@ -910,7 +905,8 @@
                     "[FEATURE] Beautify raw HTML output": ".patches/beautifyHTML.patch",
                     "[FEATURE] Allow markdown files to specify associated pattern + also includes compiling embedded templates in .md files": ".patches/allowMarkdownFilesToSpecifyAssociatedPattern.patch",
                     "[FIX] Allow PL to Ignore Certain Folders like Node Modules.": ".patches/ignoreCertainFolders.patch",
-                    "[FEATURE] Allow default Pattern Data configuration rules to be disabled. Also adds ability to add on extra Pattern Data rules to customize and extend default Pattern Lab behavior.": ".patches/configurablePatternDataRules.patch"
+                    "[FEATURE] Allow default Pattern Data configuration rules to be disabled. Also adds ability to add on extra Pattern Data rules to customize and extend default Pattern Lab behavior.": ".patches/configurablePatternDataRules.patch",
+                    "[FEATURE] Allow regenerateion of Styleguidekit to be conditional based on config.yml flag. Set `regenerateStyleguidekit` to 'false' to BYO index.html file and not write to the public folder": ".patches/dont-regenerate-styleguidekit.patch"
                 }
             },
             "autoload": {
@@ -1228,12 +1224,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "12a2b2ecc6db24eda3d3dc26778ad5413831326e"
+                "reference": "26b87b6bca8f8f797331a30b76fdae5342dc26ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/12a2b2ecc6db24eda3d3dc26778ad5413831326e",
-                "reference": "12a2b2ecc6db24eda3d3dc26778ad5413831326e",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/26b87b6bca8f8f797331a30b76fdae5342dc26ca",
+                "reference": "26b87b6bca8f8f797331a30b76fdae5342dc26ca",
                 "shasum": ""
             },
             "require": {
@@ -1283,7 +1279,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-02 15:47:46"
+            "time": "2018-01-03 07:37:34"
         },
         {
             "name": "symfony/filesystem",
@@ -1389,12 +1385,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "ff69f110c6b33fd33cd2089ba97d6112f44ef0ba"
+                "reference": "65883873aacf53d26bce46aec6d3994f6b8b2b14"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/ff69f110c6b33fd33cd2089ba97d6112f44ef0ba",
-                "reference": "ff69f110c6b33fd33cd2089ba97d6112f44ef0ba",
+                "url": "https://api.github.com/repos/symfony/process/zipball/65883873aacf53d26bce46aec6d3994f6b8b2b14",
+                "reference": "65883873aacf53d26bce46aec6d3994f6b8b2b14",
                 "shasum": ""
             },
             "require": {
@@ -1430,7 +1426,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-03 07:37:34"
+            "time": "2018-01-10 11:30:01"
         },
         {
             "name": "symfony/yaml",
@@ -1496,12 +1492,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "b36e3eb45221b36e0bf8050c18231ee4209ee225"
+                "reference": "75baf9f89780ee93122b4b5f04eca5eff51a6cff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/b36e3eb45221b36e0bf8050c18231ee4209ee225",
-                "reference": "b36e3eb45221b36e0bf8050c18231ee4209ee225",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/75baf9f89780ee93122b4b5f04eca5eff51a6cff",
+                "reference": "75baf9f89780ee93122b4b5f04eca5eff51a6cff",
                 "shasum": ""
             },
             "require": {
@@ -1553,7 +1549,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-12-07 15:56:46"
+            "time": "2018-01-07 17:54:25"
         },
         {
             "name": "webmozart/assert",
@@ -1658,8 +1654,7 @@
     "stability-flags": {
         "evanlovely/plugin-twig-namespaces": 20,
         "oomphinc/composer-installers-extender": 20,
-        "gajus/dindent": 20,
-        "justinrainbow/json-schema": 20
+        "gajus/dindent": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
