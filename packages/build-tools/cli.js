@@ -3,45 +3,8 @@ const program = require('commander');
 const packageJson = require('./package.json');
 const configStore = require('./utils/config-store');
 const log = require('./utils/log');
-const chalk = require('chalk');
 
-// @TODO: How best to pull in .scss color data export to reference branch colors below?
-const b = chalk.hex('#545DA6'); // indigo, light
-const y = chalk.hex('#ffcc4d'); // yellow, base
-
-const CLI_TITLE = chalk.bold.underline('Bolt-CLI');
-const CLI_DESCRIPTION = 'Welcome to the Bolt CLI ⚡️  Have fun!';
-const CLI_USAGE = 'Usage: \`bolt <command> [options ...]\`';
-
-// const HELP_HEADER_BACKUP = `
-//     /˜˜˜˜˜˜˜˜˜˜˜˜\
-//    / /˜˜˜˜/|˜˜˜˜\ \
-//   / /    / |     \ \
-//  / /    /  |____  \ \
-// / /    /       /   \ \
-// \ \   /____   /    / /
-//  \ \      |  /    / /
-//   \ \     | /    / /
-//    \ \____|/____/ /
-//     \____________/
-// `
-
-// ^ Colorized + partially filled in version of logo above
-const HELP_HEADER = `
-    ${b('///////|\\\\\\\\\\\\')}
-   ${b('///˜˜˜˜')}${y('/|')}${b('˜˜˜˜\\\\\\')}
-  ${b('///    ')}${y('//|')}${b('     \\\\\\')}     ${CLI_TITLE}
- ${b('///    ')}${y('///|____')}${b('  \\\\\\')}
-${b('///    ')}${y('/////////')}${b('   \\\\\\')}   ${CLI_DESCRIPTION}
-${b('\\\\\\   ')}${y('/////////')}${b('    ///')}
- ${b('\\\\\\      ')}${y('|///')}${b('    ///')}    ${CLI_USAGE}
-  ${b('\\\\\\     ')}${y('|//')}${b('    ///')}
-   ${b('\\\\\\____')}${y('|/')}${b('____///')}
-    ${b('\\\\\\\\\\\\|///////')}
-`
-
-// @todo Can we have emojis? How does `yarn` handle it?
-log.info(HELP_HEADER);
+log.intro();
 
 // global `bolt` cli options & meta
 program
