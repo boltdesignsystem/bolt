@@ -7,7 +7,7 @@ const lstat = promisify(fs.lstat);
 
 /**
  * Monorepo symlink checker for internal `@bolt` packages
- * Ensures every directory in `../node_modules/.bin/@bolt/` is a symbolic link, if not then, a package is being pulled from npm instead of the local repo - which causes problems.
+ * Ensures every directory in `../node_modules/@bolt/` is a symbolic link, if not then, a package is being pulled from npm instead of the local repo - which causes problems.
  */
 function checkMonorepoSymlinks() {
   const baseDir = path.resolve(__dirname, '../node_modules/@bolt');
@@ -30,7 +30,7 @@ function checkMonorepoSymlinks() {
     .then((items) => {
       items.forEach((item) => {
         if (!item.stats.isSymbolicLink()) {
-          console.log('Error: Everything in "node_modules/.bin/@bolt/" should be a symbolic link to ensure the monorepo is set up correctly. You most likely have a version mismatch between this and something that is using it.');
+          console.log('Error: Everything in "node_modules/@bolt/" should be a symbolic link to ensure the monorepo is set up correctly. You most likely have a version mismatch between this and something that is using it.');
           console.log(item.path);
           process.exit(1);
         } else {
