@@ -4,8 +4,7 @@ const packageJson = require('./package.json');
 const configStore = require('./utils/config-store');
 const log = require('./utils/log');
 
-// @todo Can we have emojis? How does `yarn` handle it?
-log.info('Welcome to the Bolt CLI ⚡️  Have fun!');
+log.intro();
 
 // global `bolt` cli options & meta
 program
