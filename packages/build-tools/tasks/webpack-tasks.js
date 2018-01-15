@@ -1,5 +1,7 @@
 const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
 const chalk = require('chalk');
+const gutil = require('gulp-util');
 const createWebpackConfig = require('../create-webpack-config');
 const formatWebpackMessages = require('../utils/formatWebpackMessages');
 const events = require('../utils/events');
@@ -91,8 +93,33 @@ module.exports = () => {
   watch.description = 'Watch & fast re-compile Webpack';
   watch.displayName = 'webpack:watch';
 
+
+  function server() {
+    return new Promise((resolve, reject) => {
+      log.taskStart('webpack:server');
+      // Start a webpack-dev-server
+      new WebpackDevServer(webpack(webpackConfig), webpackConfig.devServer).listen(webpackConfig.devServer.port, 'localhost', function (err) {
+        // if (err) throw new gutil.PluginError('webpack-dev-server', err);
+        if (err) {
+          return reject(err);
+        }
+        // gutil.log('[webpack-dev-server]', `Serving up http://localhost:${webpackConfig.devServer.port}/`);
+
+        // if (err) throw new gutil.PluginError('webpack-dev-server', err);
+        // gutil.log('[webpack-dev-server]', 'http://localhost:8080/webpack-dev-server/index.html');
+        // proxy.run();
+        log.taskDone('webpack:server');
+        return resolve();
+      });
+
+    });
+  }
+  server.description = 'Webpack Dev Server';
+  server.displayName = 'webpack:server';
+
   return {
     compile,
     watch,
+    server
   };
 };

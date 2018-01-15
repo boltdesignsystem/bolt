@@ -121,35 +121,6 @@ function createConfig(userConfig) {
         h: 'preact',
         Promise: 'es6-promise'
       }),
-      // new BrowserSyncPlugin(
-      //   // BrowserSync options
-      //   {
-      //     // browse to http://localhost:3000/ during development
-      //     host: 'localhost',
-      //     port: 3000,
-      //     // proxy the Webpack Dev Server endpoint
-      //     // (which should be serving on http://localhost:3100/)
-      //     // through BrowserSync
-      //     proxy: 'http://localhost:8080/'
-      //   },
-      //   // plugin options
-      //   {
-      //     // prevent BrowserSync from reloading the page
-      //     // and let Webpack Dev Server take care of this
-      //     reload: false,
-      //     name: 'bolt-server'
-      //   }
-      // )
-      // https://github.com/1337programming/webpack-shell-plugin/pull/46
-      // new WebpackShellPlugin({
-      //   onBeforeBuild: ['php -d memory_limit=4048M core/console --generate'],
-      //   dev: true
-      // }),
-      // new EventHooksPlugin({
-      // new HtmlWebpackPlugin({
-      // // excludeAssets: [/.*/]
-      // }),
-      // new HtmlWebpackExcludeAssetsPlugin()
     ],
     devServer: {
       contentBase: path.resolve('dist'),
@@ -158,8 +129,6 @@ function createConfig(userConfig) {
       overlay: {
         errors: true
       },
-      host: '0.0.0.0',
-      disableHostCheck: true,
       hot: true,
       inline: true,
       watchContentBase: true,
