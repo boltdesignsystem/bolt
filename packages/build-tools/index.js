@@ -9,8 +9,8 @@ if (semver.lt(currentNodeVersion, '8.9.0')) {
     'You are running Node ' +
     currentNodeVersion +
     '.\n' +
-    'This requires Node 8.9.0 (LTS Carbon) or higher. \n' +
-    'Please update your version of Node.'
+    'Bolt CLI requires Node 8.9.0 (LTS Carbon) or higher. \n' +
+    'Please update your version of Node: https://nodejs.org/en/'
   );
   process.exit(1);
 }
