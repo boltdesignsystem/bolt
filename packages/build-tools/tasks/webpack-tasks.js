@@ -103,11 +103,6 @@ module.exports = () => {
         if (err) {
           return reject(err);
         }
-        // gutil.log('[webpack-dev-server]', `Serving up http://localhost:${webpackConfig.devServer.port}/`);
-
-        // if (err) throw new gutil.PluginError('webpack-dev-server', err);
-        // gutil.log('[webpack-dev-server]', 'http://localhost:8080/webpack-dev-server/index.html');
-        // proxy.run();
         log.taskDone('webpack:server');
         return resolve();
       });
