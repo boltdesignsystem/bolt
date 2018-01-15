@@ -6,9 +6,17 @@ class Twig_Extension_bolt extends Twig_Extension implements Twig_Extension_Globa
     // /Users/sghoweri/sites/bolt-master/
 
     function __construct(){
-        $documentRoot = getcwd();
-        $json = file_get_contents($documentRoot . '/src/_data/image-sizes/image-sizes.data.json');
-        self::$data = json_decode($json)->boltImageSizes;
+      $cwd = getcwd();
+
+      $config = exec("node -e 'const config = require('\'$cwd/.boltrc.js\''); console.log(JSON.stringify(config));'");
+
+      // $buildPath = json_decode($config)->wwwDir;
+
+
+      // $dataPath = exec("node -e 'console.log(path.resolve('\'$cwd/$buildPath/data/image-sizes/image-sizes.data.json\''));'");
+
+      // $json = file_get_contents($dataPath);
+      // self::$data = json_decode($json)->boltImageSizes;
     }
 
     public static function getImageSizes() {
