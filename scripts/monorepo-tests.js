@@ -33,6 +33,8 @@ function checkMonorepoSymlinks() {
           console.log('Error: Everything in "node_modules/.bin/@bolt/" should be a symbolic link to ensure the monorepo is set up correctly. You most likely have a version mismatch between this and something that is using it.');
           console.log(item.path);
           process.exit(1);
+        } else {
+          // console.log(`Looks good: ${item.path}`);
         }
       });
     })

@@ -6,6 +6,7 @@
     "backstop-test": "backstop test",
     "backstop-reference": "backstop reference",
     "bootstrap": "lerna bootstrap --reject-cycles",
+    "postbootstrap": "node scripts/monorepo-tests.js",
     "clean:git": "git clean -xdf",
     "deploy": "netlify deploy -s bolt.netlify.com -p dist",
     "Xlint:js": "eslint ./build-tools",
