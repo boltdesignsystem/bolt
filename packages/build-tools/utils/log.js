@@ -84,6 +84,7 @@ function intro() {
   const CLI_TITLE = chalk.bold.underline('Bolt-CLI');
   const CLI_DESCRIPTION = 'Welcome to the Bolt CLI ⚡️  Have fun!';
   const CLI_USAGE = 'Usage: \`bolt <command> [options ...]\`';
+  const HELP_USAGE = 'Help: \`bolt --help\` or \`bolt <command> --help\`';
 
 // const HELP_HEADER_BACKUP = `
 //     /˜˜˜˜˜˜˜˜˜˜˜˜\
@@ -107,7 +108,7 @@ function intro() {
 ${b('///    ')}${y('/////////')}${b('   \\\\\\')}   ${CLI_DESCRIPTION}
 ${b('\\\\\\   ')}${y('/////////')}${b('    ///')}
  ${b('\\\\\\      ')}${y('|///')}${b('    ///')}    ${CLI_USAGE}
-  ${b('\\\\\\     ')}${y('|//')}${b('    ///')}
+  ${b('\\\\\\     ')}${y('|//')}${b('    ///')}     ${HELP_USAGE}
    ${b('\\\\\\____')}${y('|/')}${b('____///')}
     ${b('\\\\\\\\\\\\|///////')}
 `;
