@@ -1,9 +1,9 @@
 const log = require('../utils/log');
 const run = require('../utils/run');
 
-module.exports = async (options) => {
+module.exports = (options) => {
   const webpackTasks = require('../tasks/webpack-tasks')();
-  const patternLabTasks = await require('../tasks/pattern-lab-tasks')();
+  const patternLabTasks = require('../tasks/pattern-lab-tasks');
   const serverTasks = require('../tasks/server-tasks');
   // @todo figure out how to best conditionally run tasks based on environment (`pl`, `drupal`)
 
