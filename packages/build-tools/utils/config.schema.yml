@@ -1,0 +1,55 @@
+  $schema: http://json-schema.org/draft-04/schema#
+  title: Bolt Button
+  type: object
+  required:
+    - env
+    - dist
+    - components
+  additionalProperties: false
+  properties:
+    env:
+      type: string
+      title: Environment Type
+      description: Where is this being compiled? Pattern Lab? Drupal?
+      enum:
+        - pl
+    plConfigFile:
+      type: string
+      title: Pattern Lab Config File Path
+    dist:
+      type: string
+      description: Where it all builds too
+    server:
+      type: string
+      title: Path to server root
+      description: Where static files are served from.
+    verbosity:
+      type: integer
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+    components:
+      type: object
+      properties:
+        global:
+          type: array
+          uniqueItems: true
+          # array of objects
+          items:
+            -
+              type: string
+        individual:
+          type: array
+          uniqueItems: true
+          # array of objects
+          items:
+            -
+              type: string
+    openServerAtStart:
+      type: boolean
+      description: If, after starting `npm start`, a Browser opens.
+
