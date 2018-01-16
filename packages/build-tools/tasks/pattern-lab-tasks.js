@@ -10,6 +10,13 @@ const { getConfig } = require('../utils/config-store');
 module.exports = async () => {
   const config = Object.assign({
     plConfigFile: 'config/config.yml',
+
+    // Try to limit the number of things being watched in the packages folder -- limiting to twig files + data and schema configs. Anything else?
+    watchedPkgExtensions: [
+      'twig',
+      'data.*',
+      'schema.*'
+    ],
     watchedExtensions: [
       'twig',
       'json',
@@ -18,6 +25,7 @@ module.exports = async () => {
       'md',
       'png',
       'php',
+      'data.*'
     ],
     extraWatches: [],
     debounceRate: 1000,
@@ -35,7 +43,7 @@ module.exports = async () => {
       events.emit('pattern-lab:precompile');
       sh(`php -d memory_limit=4048M ${consolePath} --generate`, errorShouldExit)
         .then(() => {
-          events.emit('reload');
+          // events.emit('reload'); // Temporarily disable - still testing out HMR reload approach
           log.taskDone('build: pattern lab');
           resolve();
         })
@@ -61,7 +69,17 @@ module.exports = async () => {
 
   function watch() {
     const watchedExtensions = config.watchedExtensions.join(',');
-    const plGlob = [path.normalize(`${plSource}/**/*.{${watchedExtensions}}`)];
+    const watchedPkgExtensions = config.watchedPkgExtensions.join(',');
+    const plGlob = [
+      path.normalize(`${plSource}/**/*.{${watchedExtensions}}`),
+      path.normalize(`${config.wwwDir}/${config.buildDir}/**/*.data.*`), // Watch for data files being output to the data folder
+
+      // Component twig files + configs
+      path.normalize(`../../packages/components/**/*.{${watchedPkgExtensions}}`),
+
+      // Object twig files
+      path.normalize(`../../packages/global/**/*.{${watchedPkgExtensions}}`),
+    ];
     const src = config.extraWatches
       ? [].concat(plGlob, config.extraWatches)
       : plGlob;
