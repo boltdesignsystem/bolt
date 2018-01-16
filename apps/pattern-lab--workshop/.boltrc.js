@@ -77,7 +77,7 @@ module.exports = {
       '@bolt/components-button-group',
       '@bolt/components-chip',
       '@bolt/components-chip-list',
-      '@bolt/components-color-swatch'
+      '@bolt/components-color-swatch',
       '@bolt/components-figure',
       '@bolt/components-link',
       '@bolt/components-ordered-list',
@@ -96,6 +96,6 @@ module.exports = {
 
   // Dev-server specific config settings (ex. port to use)
   devServer: {
-    open: true // was: openServerAtStart
+    open: true
   }
 };

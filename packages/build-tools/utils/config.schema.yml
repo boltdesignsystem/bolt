@@ -3,7 +3,7 @@
   type: object
   required:
     - env
-    - dist
+    - buildDir
     - components
   additionalProperties: true
   properties:
@@ -16,13 +16,17 @@
     plConfigFile:
       type: string
       title: Pattern Lab Config File Path
-    dist:
+    buildDir:
       type: string
       description: Where it all builds too
-    server:
+    wwwDir:
       type: string
       title: Path to server root
       description: Where static files are served from.
+    publicPath:
+      type: string
+      title: Path to publicPath directory
+      description: Sets the client-side base path for all built / asynchronously loaded assets
     verbosity:
       type: integer
       enum:
@@ -49,7 +53,9 @@
           items:
             -
               type: string
-    openServerAtStart:
-      type: boolean
-      description: If, after starting `npm start`, a Browser opens.
-
+    devServer:
+      type: object
+      properties:
+        open:
+          type: boolean
+          description: If, after starting `npm start`, a Browser opens.
