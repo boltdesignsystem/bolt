@@ -1,6 +1,7 @@
 const path = require('path');
 const program = require('commander');
 const packageJson = require('./package.json');
+const configStore = require('./utils/config-store');
 const log = require('./utils/log');
 
 // @todo Can we have emojis? How does `yarn` handle it?
@@ -12,13 +13,10 @@ program
   .option('-C, --config-file <path>', 'Pass in a specific config file instead of default of ".boltrc.js/json".')
   .option('-v, --verbosity <amount>', 'How much output do you want? 0-5', parseInt);
 
-// @todo Come up with default `config` & `options` and ways to easily get them
-// an idea for that
-// process.env.BOLT_VERBOSITY = program.verbosity;
 
 // defaults to `.boltrc` so either `.boltrc.js` or `.boltrc.json` works
 const configFilePath = path.resolve(process.cwd(), program.configFile || '.boltrc');
-const config = require(configFilePath);
+configStore.init(require(configFilePath));
 
 // `bolt build`
 program
@@ -28,15 +26,17 @@ program
   .option('-P, --parallel', 'Run build in parallel instead of a series. Faster, but some assets might not be ready in time.')
   .action((options) => {
     log.info(`Starting build (${options.parallel ? 'parallel' : 'serial'})`);
-    if (options.verbosity > 4) {
-      log.info('CLI Options');
-      console.log(options);
-    }
+
+    configStore.updateConfig((config) => {
+      config.verbosity = typeof program.verbosity === 'undefined'
+        ? config.verbosity
+        : program.verbosity;
+      return config;
+    });
 
     const build = require('./commands/build');
-    build(config, {
+    build({
       watch: options.watch,
-      verbosity: program.verbosity,
       parallel: options.parallel,
     });
   });
@@ -54,11 +54,9 @@ program
 
 // This will tell you all that got `require()`-ed
 // We want to only load what we need - that's why not all `require` statements are at top
-if (program.verbosity > 4) {
-  log.info('All that got `require()`-ed');
-  console.log(Object.keys(require.cache).filter(x => !x.includes('node_modules')));
-  log.info('END: All that got `require()`-ed');
-}
+// log.info('All that got `require()`-ed');
+// console.log(Object.keys(require.cache).filter(x => !x.includes('node_modules')));
+// log.info('END: All that got `require()`-ed');
 
 // cli init ~ must go at bottom
 program.parse(process.argv);

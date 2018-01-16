@@ -2,7 +2,7 @@
 
 use Symfony\Component\Yaml\Yaml;
 
-$function = new \Twig_SimpleFunction('pattern_template', function (Twig_Environment $env, $context, $patternName, $manifestPath = '/apps/pattern-lab--workshop/bolt-manifest.yml') {
+$function = new \Twig_SimpleFunction('pattern_template', function (Twig_Environment $env, $context, $patternName, $manifestPath = '/bolt-manifest.yml') {
 
   $originalPatternName = $patternName;
 
