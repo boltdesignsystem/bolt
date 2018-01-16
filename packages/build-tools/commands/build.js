@@ -33,7 +33,6 @@ module.exports = (options) => {
     try {
       run.parallel([
         webpackTasks.server,
-        patternLabTasks.watch,
         webpackTasks.watch,
         serverTasks.serve,
         patternLabTasks.watch,
