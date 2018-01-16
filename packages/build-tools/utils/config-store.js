@@ -23,8 +23,7 @@ const defaultConfig = {
 function getEnvVarsConfig() {
   const envVars = {};
   Object.keys(process.env).forEach((envVar) => {
-    const parts = envVar.split('bolt_');
-    if (parts.length > 1) {
+    if (envVar.startsWith('bolt_')) {
       /** @type {string} - All env vars are strings */
       let value = process.env[envVar];
 
@@ -40,6 +39,7 @@ function getEnvVarsConfig() {
         }
       }
 
+      const parts = envVar.split('bolt_');
       envVars[parts[1]] = value;
     }
   });
