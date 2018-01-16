@@ -96,7 +96,12 @@ module.exports = () => {
   function server() {
     return new Promise((resolve, reject) => {
       log.taskStart('webpack:server');
-      // Start a webpack-dev-server
+
+      // Add HMR scripts required to entrypoint
+      if (webpackConfig.devServer.hot) {
+        webpackConfig.entry['bolt-global'].unshift('webpack-dev-server/client?http://localhost:8080/', 'webpack/hot/dev-server');
+      }
+
       new WebpackDevServer(webpack(webpackConfig), webpackConfig.devServer).listen(webpackConfig.devServer.port, 'localhost', function (err) {
         if (err) {
           return reject(err);
