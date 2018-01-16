@@ -1,7 +1,7 @@
 const chalk = require('chalk');
 const path = require('path');
 const { readYamlFileSync } = require('./yaml');
-const schemaValidator = require('./schemas');
+const { validateSchema } = require('./schemas');
 const configSchema = readYamlFileSync(path.join(__dirname, './config.schema.yml'));
 let isInitialized = false;
 let config = {};
@@ -56,7 +56,7 @@ function isReady() {
 
 function init(userConfig) {
   config = Object.assign({}, defaultConfig, userConfig, getEnvVarsConfig());
-  schemaValidator.validateSchema(configSchema, config);
+  validateSchema(configSchema, config);
   isInitialized = true;
   return config;
 }
@@ -77,7 +77,7 @@ function getConfig() {
 function updateConfig(updater) {
   isReady();
   const newConfig = updater(config);
-  schemaValidator.validateSchema(configSchema, newConfig);
+  validateSchema(configSchema, newConfig);
   // console.log('new config:');
   // console.log(newConfig);
   config = newConfig;
