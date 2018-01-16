@@ -48,8 +48,8 @@ program
     log.info('Starting server...');
 
     configStore.updateConfig((config) => {
-      config.devServer.open = typeof options.open === 'undefined'
-        ? config.devServer.open
+      config.openServerAtStart = typeof options.open === 'undefined'
+        ? config.openServerAtStart
         : options.open;
       return config;
     });

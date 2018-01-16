@@ -6,7 +6,7 @@ const server = browserSync.create();
 
 // https://www.browsersync.io/docs/options
 const serverConfig = {
-  open: config.devServer.open,
+  open: config.openServerAtStart,
   startPath: '/index.html', // Since `/` doesn't do anything and we want to avoid double browserSync notifications from the very beginning
   host: 'localhost',
   port: 3000,
