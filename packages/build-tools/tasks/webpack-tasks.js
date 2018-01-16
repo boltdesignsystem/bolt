@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const chalk = require('chalk');
-const gutil = require('gulp-util');
 const createWebpackConfig = require('../create-webpack-config');
 const formatWebpackMessages = require('../utils/formatWebpackMessages');
 const events = require('../utils/events');
@@ -99,7 +98,6 @@ module.exports = () => {
       log.taskStart('webpack:server');
       // Start a webpack-dev-server
       new WebpackDevServer(webpack(webpackConfig), webpackConfig.devServer).listen(webpackConfig.devServer.port, 'localhost', function (err) {
-        // if (err) throw new gutil.PluginError('webpack-dev-server', err);
         if (err) {
           return reject(err);
         }
