@@ -177,7 +177,8 @@ function createConfig(config) {
       new webpack.WatchIgnorePlugin([
         /dist\/styleguide/,
         /dist\/annotations/,
-        /styleguide/
+        /styleguide/,
+        path.join(__dirname, 'node_modules')
       ]),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.optimize.CommonsChunkPlugin({
@@ -217,6 +218,7 @@ function createConfig(config) {
         // @TODO: add Pattern Lab Styleguidekit Assets Default dist path here
       ],
       compress: true,
+      clientLogLevel: 'info',
       port: 8080,
       stats: statsPreset(webpackStats[config.verbosity]),
       overlay: {
@@ -230,6 +232,8 @@ function createConfig(config) {
       watchOptions: {
         aggregateTimeout: 500,
         // ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
+        // Poll using interval (in ms, accepts boolean too)
+        poll: true,
       }
     }
   };

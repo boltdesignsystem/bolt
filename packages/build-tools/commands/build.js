@@ -32,9 +32,10 @@ module.exports = async (options) => {
   async function parallelWatch() {
     try {
       run.parallel([
-        patternLabTasks.watch,
-        webpackTasks.watch,
+        webpackTasks.server,
+        patternLabTasks.compile,
         serverTasks.serve,
+        patternLabTasks.watch,
       ]);
     } catch (error) {
       log.errorAndExit('watch', error);

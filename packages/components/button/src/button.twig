@@ -1,9 +1,10 @@
+{% set schema = get_data('@bolt/button.schema.json') %}
+
 {% set tags = {
   "button": "button",
   "a": "link"
 } %}
 
-{% set widths = ["full", "full@small"] %}
 {% set styles = ["primary", "secondary", "text"] %}
 {% set prefix = "c-bolt-" %}
 
@@ -40,7 +41,7 @@
   baseClass,
   disabled ? baseClass ~ "--disabled" : "",
   size in sizes ? baseClass ~ "--" ~ size : "",
-  width in widths ? baseClass ~ "--" ~ width : "",
+  width in schema.properties.widths.enum ? baseClass ~ "--" ~ width : "",
   style in styles ? baseClass ~ "--" ~ style : baseClass ~ "--primary",
   itemAlignment in itemAlignments|keys ? baseClass ~ "--item-align-" ~ itemAlignments[itemAlignment]
 ] %}

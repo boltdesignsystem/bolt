@@ -12,11 +12,12 @@ import {
 import styles from './button.scss';
 import spacingUtils from '@bolt/utilities-spacing/_utilities.spacing.scss';
 
+@define
 export class BoltButton extends withComponent(withPreact()) {
   static is = 'bolt-button';
 
   static props = {
-    style: props.string,
+    color: props.string,
     size: props.string,
     rounded: props.boolean,
     iconOnly: props.boolean,
@@ -30,16 +31,13 @@ export class BoltButton extends withComponent(withPreact()) {
     // if (!this.shadowRoot) {
     //   this.attachShadow({ mode: 'open' });
     // }
-
-    const originalElem = this.querySelectorAll('.c-bolt-button')[0];
-
-    if (originalElem) {
-      originalElem.replaceWith(...originalElem.childNodes);
+    if (!this.shadowRoot) {
+      this.attachShadow({ mode: 'open' });
     }
+    this.addEventListener('click', this.clickHandler);
   }
 
   connectedCallback() {
-    this.addEventListener('click', this.clickHandler);
   }
 
   clickHandler(event) {
@@ -72,11 +70,17 @@ export class BoltButton extends withComponent(withPreact()) {
   render({ props }) {
     const classes = css(
       'c-bolt-button',
-      props.size && spacingSizes[props.size] && spacingSizes[props.size] !== '' ? `c-bolt-button--${props.size}` : ``,
-      this.props.style ? `c-bolt-button--${this.props.style}` : '',
+      this.props.size ? `c-bolt-button--${this.props.size}` : '',
+      this.props.color ? `c-bolt-button--${this.props.color}` : '',
       this.props.rounded ? `c-bolt-button--rounded` : '',
       this.props.iconOnly ? `c-bolt-button--icon-only` : '',
     );
+
+    const originalElem = this.querySelectorAll('.c-bolt-button') [0];
+
+    if (originalElem) {
+      originalElem.className = 'c-bolt-button__inner';
+    }
 
     return (
       <div className={classes}>
@@ -90,4 +94,6 @@ export class BoltButton extends withComponent(withPreact()) {
   }
 }
 
-customElements.define(BoltButton.is, BoltButton);
+if (module.hot) {
+  module.hot.accept();
+}
