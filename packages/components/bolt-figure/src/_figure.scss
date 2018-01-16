@@ -1,11 +1,3 @@
-@import '@bolt/settings-global';
-@import '@bolt/settings-colors';
-@import '@bolt/tools-spacing';
-@import '@bolt/tools-color-palette';
-
-
-
-
 /* ------------------------------------ *\
    Figure
 \* ------------------------------------ */
@@ -15,6 +7,9 @@
   *  issue with the vertical alignment of the flag object's `figure` not being vertically
   *  aligned as expected (internally the flag object uses a nested figure)
   */
+
+@import '@bolt/core';
+
 bolt-figure {
   display: block; /* [1] */
 }
