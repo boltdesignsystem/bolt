@@ -90,8 +90,6 @@ module.exports = {
     individual: [
 
     ],
-    // individual: [
-    // ],
   },
 
   // Dev-server specific config settings (ex. port to use)
