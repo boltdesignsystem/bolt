@@ -8,7 +8,7 @@ use ColorThief\ColorThief;
 /**
   * Handle garbage collection w/ the temp images generated locally
   */
-$lastRunLog = getcwd() . '/dist/last-run.log';
+$lastRunLog = getcwd() . '/www/last-run.log';
 
 if (file_exists($lastRunLog)) {
   $lastRun = file_get_contents($lastRunLog);

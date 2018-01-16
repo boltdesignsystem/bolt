@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
 const chalk = require('chalk');
 const createWebpackConfig = require('../create-webpack-config');
 const formatWebpackMessages = require('../utils/formatWebpackMessages');
@@ -91,8 +92,27 @@ module.exports = () => {
   watch.description = 'Watch & fast re-compile Webpack';
   watch.displayName = 'webpack:watch';
 
+
+  function server() {
+    return new Promise((resolve, reject) => {
+      log.taskStart('webpack:server');
+      // Start a webpack-dev-server
+      new WebpackDevServer(webpack(webpackConfig), webpackConfig.devServer).listen(webpackConfig.devServer.port, 'localhost', function (err) {
+        if (err) {
+          return reject(err);
+        }
+        log.taskDone('webpack:server');
+        return resolve();
+      });
+
+    });
+  }
+  server.description = 'Webpack Dev Server';
+  server.displayName = 'webpack:server';
+
   return {
     compile,
     watch,
+    server
   };
 };

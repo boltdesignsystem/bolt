@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html dir="ltr" lang="en">
+
+<head>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.ready.then(function (registration) {
+        registration.unregister();
+      });
+    }
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Initializing First Bolt Build...</title>
+  <style>
+    .c-bolt-toast {
+      z-index: 1000;
+      position: absolute;
+      /* top: 10px; */
+      top: 0;
+      right: 10px;
+      left: 10px;
+      margin: auto;
+      max-width: 700px;
+      border-radius: 3px;
+      background: rgba(0, 0, 0, .9);
+      transform: translate3d(0px, -100%, 0px);
+      transition: all 0.2s ease;
+      pointer-events: none;
+    }
+
+    .c-bolt-toast.is-active {
+      transform: translate3d(0, 50%, 0);
+    }
+
+    .c-bolt-toast__content {
+      display: flex;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      pointer-events: auto;
+    }
+
+    .c-bolt-toast__message {
+      -webkit-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      padding: 15px;
+      font-size: 14px;
+      color: #fff;
+    }
+
+    .c-bolt-toast__spinner {
+      position: relative;
+      display: inline-block;
+      width: 56px;
+      height: 28px;
+    }
+
+    .c-bolt-toast__spinner-svg:not(:root) {
+      overflow: hidden;
+    }
+
+    .c-bolt-toast__spinner-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      -webkit-animation: rotate 600ms linear infinite;
+      animation: rotate 600ms linear infinite;
+    }
+
+    @-webkit-keyframes rotate {
+      0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes rotate {
+      0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    .c-bolt-toast__spinner-svg circle {
+      fill: transparent;
+      stroke: white;
+      stroke-width: 4px;
+      stroke-dasharray: 128px;
+      stroke-dashoffset: 82px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="c-bolt-toast js-bolt-toast">
+    <div class="c-bolt-toast__content">
+      <div class="c-bolt-toast__message">Initializing First Build</div>
+      <div class="c-bolt-toast__spinner">
+        <svg viewBox="0 0 64 64" class="c-bolt-toast__spinner-svg">
+          <circle transform="translate(32,32)" r="26"></circle>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    setTimeout(function () {
+      document.querySelector('.js-bolt-toast').classList.add('is-active');
+    }, 100);
+  </script>
+
+
+  <script src="http://localhost:3000/browser-sync/browser-sync-client.js?v=2.23.5" async></script>
+
+</body>
+
+</html>
