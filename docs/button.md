@@ -4,7 +4,7 @@ https://bolt.netlify.com/?p=viewall-components-bolt-button-group
 https://bolt.netlify.com/patterns/02-components-bolt-button-src-button/02-components-bolt-button-src-button.html
 
 Description:
-Buttons are the core of our action components. Their affordance is imediate and can be use for most actions and allow users to access the target with a single interaction. 
+Buttons are the core of our action components. Their affordance is imediate and can be use for most actions and allow users to access the target with a single interaction. Buttons clearly provide a next step for the user.
 
 Our Buttons depend on the theme they are contained in and change in appearance based on said theme. The themes and button colors were designed together to ensure the proper amount affordance and clarity.
 
@@ -23,11 +23,12 @@ Text button: white tex with chevron
 * Can optionally be 100% width. For example, the button has default width of 2 rem on either side on larger screens but full width on smaller screens
 
 Dos:
-* CTAs must be clearly and succintly labeled
+* CTAs must be clearly and succintly labeled with a next step
 * CTA should lead with strong action verbs
 * The primary CTA should be the most important action. 
 * Be consistent in placement based on the screen size and device
 * Fall back to the text button in secondary and tertiary content areas where you can. For example, cards with a button use the text style so that a filled button doesn't become overwhelming and redundant. 
+* Follow theming rules
 
 Don'ts:
 * Don't clutter the page with too many buttons
