@@ -1,0 +1,60 @@
+{#
+A generic form input element
+
+Available variables:
+  - attributes (object) - A Drupal attributes object for the input element.
+    - type (enum) -
+      - inline elements:
+      -
+      text
+      - buttons:
+    - disabled (boolean) -
+    - placeholder (string) -
+  - children (renderable) - Optional additional rendered elements.
+#}
+
+{% set attributes = create_attribute(attributes | default({})) %}
+{% set _classes = [] %}
+{% set _buttonTypes = ['button', 'reset', 'submit'] %}
+{% set _type = attributes.type.value %}
+
+{% if _type in _buttonTypes %}
+  {% set _classes = _classes|merge([
+    'c-bolt-button',
+    'c-bolt-button--primary',
+    'c-bolt-button--full',
+    'c-bolt-button--item-align-center'
+  ]) %}
+{% else %}
+  {% set _classes = _classes|merge([
+    'c-bolt-input',
+    'c-bolt-input--' ~ attributes.type
+  ]) %}
+{% endif %}
+
+<input{{ attributes.addClass(_classes) }} />{{ children }}
+
+{# TODO Replace hard-coding with included icon pattern. #}
+{% if attributes.disabled %}
+  <div class="c-bolt-input-icons">
+    <ul class="o-bolt-inline-list o-bolt-inline-list--xsmall">
+      <li class="o-bolt-inline-list__item">
+        <div class="c-bolt-input-icon">
+          <bolt-icon name="lock" size="medium"></bolt-icon>
+        </div>
+      </li>
+    </ul>
+  </div>
+{% endif %}
+
+{% if _type == "search" %}
+  <div class="c-bolt-input-icons">
+    <ul class="o-bolt-inline-list o-bolt-inline-list--xsmall">
+      <li class="o-bolt-inline-list__item">
+        <div class="c-bolt-input-icon">
+          <bolt-icon name="search" size="medium"></bolt-icon>
+        </div>
+      </li>
+    </ul>
+  </div>
+{% endif %}

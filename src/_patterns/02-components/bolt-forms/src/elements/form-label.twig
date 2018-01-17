@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Pattern for
+ *
+ * Available variables:
+ * - title (string) - The title to be displayed in this label
+ * - attributes (object) - A Drupal attributes object
+ * - displayType (enum)
+ *      - inline
+ *      - floating
+ *      - default
+ */
+#}
+{% set attributes = create_attribute(attributes | default({})) %}
+
+{% set _inlineElementTypes = ["checkbox", "radio"] %}
+{% set _floatingElementTypes = ["text", "url", "email", "password", "select"] %}
+
+{% if displayType == "inline" %}
+  {% set _classes = [
+    "c-bolt-inline-label",
+    "c-bolt-inline-label--" ~ inputElementType
+  ] %}
+{% elseif displayType == "floating" %}
+  {% set _classes = ["c-bolt-floating-label"] %}
+{% else %}
+  {% set _classes = ["c-bolt-label"] %}
+{% endif %}
+
+{% if title is not empty or required %}
+  <label{{ attributes.addClass(_classes) }}>{{ title }}</label>
+{% endif %}

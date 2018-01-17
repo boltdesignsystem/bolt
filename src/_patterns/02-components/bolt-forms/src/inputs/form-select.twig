@@ -1,0 +1,31 @@
+{% set attributes = create_attribute(attributes | default({})) %}
+{% set classes = ["c-bolt-input", "c-bolt-input--select"] %}
+
+{% spaceless %}
+  <select{{ attributes.addClass(classes) }}>
+    {% for option in options %}
+      {% if option.type == 'optgroup' %}
+        <optgroup label="{{ option.label }}">
+          {% for sub_option in option.options %}
+            <option value="{{ sub_option.value }}"{{ sub_option.selected ? ' selected="selected"' }}>{{ sub_option.label }}</option>
+          {% endfor %}
+        </optgroup>
+      {% elseif option.type == 'option' %}
+        <option value="{{ option.value }}"{{ option.selected ? ' selected="selected"' }}>{{ option.label }}</option>
+      {% endif %}
+    {% endfor %}
+  </select>
+
+  {# TODO Replace hard-coding with included icon pattern. #}
+  {% if not attributes.multiple %}
+    <div class="c-bolt-input-icons">
+      <ul class="o-bolt-inline-list o-bolt-inline-list--xsmall">
+        <li class="o-bolt-inline-list__item">
+          <div class="c-bolt-input-icon">
+            <bolt-icon name="chevron-right" size="medium"></bolt-icon>
+          </div>
+        </li>
+      </ul>
+    </div>
+  {% endif %}
+{% endspaceless %}
