@@ -21,6 +21,8 @@ module.exports = {
       '@bolt/components-chip-list',
       '@bolt/components-color-swatch',
       '@bolt/components-figure',
+      '@bolt/components-icon',
+      '@bolt/components-icons',
       '@bolt/components-link',
       '@bolt/components-ordered-list',
       '@bolt/components-page-footer',
