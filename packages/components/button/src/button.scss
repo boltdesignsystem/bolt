@@ -465,11 +465,6 @@ bolt-button[width="full"],
   width: 100%;
 }
 
-.c-bolt-button--rounded,
-.c-bolt-button--rounded:before {
-  border-radius: 50%;
-}
-
 bolt-button[width="full@small"],
 .c-bolt-button--full\@small {
   @media screen and (max-width: map-get($bolt-breakpoints, small)) {
@@ -478,20 +473,25 @@ bolt-button[width="full@small"],
 }
 
 
-.c-bolt-button--item-align-center {
-  @supports (display: flex) {
-    justify-content: center;
-  }
+.c-bolt-button--rounded,
+.c-bolt-button--rounded:before {
+  border-radius: 50rem;
+}
+
+
+.c-bolt-button--center {
+  align-items: center;
   text-align: center;
 }
 
-.c-bolt-button--item-align-start {
-  @supports (display: flex) {
-    justify-content: flex-start;
-  }
+.c-bolt-button--left {
+  align-items: flex-start;
   text-align: left;
 }
 
+.c-bolt-button--right {
+  align-items: flex-end;
+  text-align: right;
 }
 
 .c-bolt-button__button {
