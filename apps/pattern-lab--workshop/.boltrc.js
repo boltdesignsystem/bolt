@@ -6,7 +6,7 @@ module.exports = {
   buildDir: 'build',
   wwwDir: 'www',
   plConfigFile: './config/config.yml',
-  verbosity: 2,
+  verbosity: 1,
   components: {
     global: [
       '@bolt/core',

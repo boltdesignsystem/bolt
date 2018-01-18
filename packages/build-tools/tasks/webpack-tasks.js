@@ -6,19 +6,23 @@ const formatWebpackMessages = require('../utils/formatWebpackMessages');
 const events = require('../utils/events');
 const log = require('../utils/log');
 const { getConfig } = require('../utils/config-store');
+const ora = require('ora');
 
 const config = getConfig();
 const webpackConfig = createWebpackConfig(config);
 
 function compile() {
   return new Promise((resolve, reject) => {
-    log.taskStart('build: webpack');
+    const webpackSpinner = ora(chalk.blue('Building WebPack bundle...')).start();
+    const spinFailed = () => webpackSpinner.fail(chalk.red('Building WebPack Failed'));
     webpack(webpackConfig).run((err, stats) => {
       if (err) {
+        spinFailed();
         return reject(err);
       }
       const messages = formatWebpackMessages(stats.toJson({}, true));
       if (messages.errors.length) {
+        spinFailed();
         // Only keep the first error. Others are often indicative
         // of the same problem, but confuse the reader with noise.
         if (messages.errors.length > 1) {
@@ -28,12 +32,15 @@ function compile() {
 
         return reject(config.verbosity > 2 ? new Error(prettyError) : prettyError);
       }
+      webpackSpinner.succeed(chalk.green('Built WebPack bundle'));
+
+      let output;
       // Stats config options: https://webpack.js.org/configuration/stats/
-      console.log(stats.toString({
+      output = stats.toString({
         chunks: false,  // Makes the build much quieter
         colors: true,   // Shows colors in the console
         modules: false, // Hides built modules making output less verbose
-      }));
+      });
 
       if (messages.warnings.length) {
         console.log(chalk.yellow('Compiled with warnings.\n'));
@@ -48,12 +55,17 @@ function compile() {
           chalk.cyan('// eslint-disable-next-line') +
           ' to the line before.\n'
         );
-      } else {
-        console.log(chalk.green('Compiled successfully.\n'));
       }
 
-      log.taskDone('build: webpack');
-      return resolve();
+
+      if (config.verbosity > 2) {
+        console.log('---');
+        console.log(output);
+        console.log('===\n');
+      }
+
+      // log.taskDone('build: webpack');
+      return resolve(output);
     });
   });
 
@@ -64,25 +76,53 @@ compile.displayName = 'webpack:compile';
 
 function watch() {
   return new Promise((resolve, reject) => {
-    log.taskStart('watch: webpack');
-    webpack(webpackConfig).watch({
+    const webpackSpinner = ora(chalk.blue('Watch triggered WebPack re-bundle...'));
+    const spinFailed = () => webpackSpinner.fail(chalk.red('Watch triggered WebPack Failed'));
+
+    const compiler = webpack(webpackConfig);
+
+    // Fired when a watch triggers a compile
+    compiler.plugin('compile', () => {
+      webpackSpinner.start();
+    });
+
+    compiler.watch({
       // https://webpack.js.org/configuration/watch/#watchoptions
       aggregateTimeout: 300,
     }, (err, stats) => {
       if (err) {
+        spinFailed();
         return reject(err);
       }
 
-      // Stats config options: https://webpack.js.org/configuration/stats/
-      console.log(stats.toString({
-        chunks: false,  // Makes the build much quieter
-        colors: true,   // Shows colors in the console
-        modules: false, // Hides built modules making output less verbose
-        version: false,
-      }));
+      const messages = formatWebpackMessages(stats.toJson({}, true));
+      if (messages.errors.length) {
+        spinFailed();
+        // Only keep the first error. Others are often indicative
+        // of the same problem, but confuse the reader with noise.
+        if (messages.errors.length > 1) {
+          messages.errors.length = 1;
+        }
+        const prettyError = messages.errors.join('\n\n');
+        console.log(config.verbosity > 2 ? new Error(prettyError) : prettyError);
+      } else {
+        // Stats config options: https://webpack.js.org/configuration/stats/
+        const output = stats.toString({
+          chunks: false,  // Makes the build much quieter
+          colors: true,   // Shows colors in the console
+          modules: false, // Hides built modules making output less verbose
+          version: false,
+        });
 
-      events.emit('reload');
-      return resolve();
+        webpackSpinner.succeed(chalk.green('Watch rebuilt WebPack bundle'));
+        if (config.verbosity > 2) {
+          console.log('---');
+          console.log(output);
+          console.log('===\n');
+        }
+        events.emit('reload');
+      }
+
     });
   });
 
@@ -94,7 +134,6 @@ watch.displayName = 'webpack:watch';
 
 function server() {
   return new Promise((resolve, reject) => {
-    log.taskStart('webpack:server');
 
     // Add HMR scripts required to entrypoint
     if (webpackConfig.devServer.hot) {
@@ -105,7 +144,6 @@ function server() {
       if (err) {
         return reject(err);
       }
-      log.taskDone('webpack:server');
       return resolve();
     });
 
