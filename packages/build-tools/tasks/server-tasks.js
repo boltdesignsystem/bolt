@@ -27,11 +27,10 @@ if (config.env === 'pl') {
 }
 
 function serve() {
-  log.taskStart('serve');
   // https://www.browsersync.io/docs/api#api-init
   server.init(serverConfig, () => {
     if (config.verbosity > 3) {
-      log.info('BrowserSync set up and ready to go... (this notice may be redundant)');
+      // log.info('BrowserSync set up and ready to go... (this notice may be redundant)');
     }
   });
 }
@@ -46,7 +45,7 @@ function reload(files) {
 }
 
 events.on('reload', (files) => {
-  if (config.verbosity > 3) {
+  if (config.verbosity > 4) {
     log.info('Event triggered: "reload"', files);
   }
   reload(files);

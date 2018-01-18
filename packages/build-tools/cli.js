@@ -17,27 +17,48 @@ program
 const configFilePath = path.resolve(process.cwd(), program.configFile || '.boltrc');
 configStore.init(require(configFilePath));
 
+/**
+ * Update config with all options flags
+ * @param {Object} options
+ * @param programInstance - The commander `program`
+ * @returns {Object} config - Final updated config
+ */
+function updateConfig(options, programInstance) {
+  configStore.updateConfig((config) => {
+    config.verbosity = typeof program.verbosity === 'undefined'
+      ? config.verbosity
+      : program.verbosity;
+
+    config.openServerAtStart = typeof options.open === 'undefined'
+      ? config.openServerAtStart
+      : options.open;
+
+
+    config.quick = typeof options.quick === 'undefined'
+      ? config.quick
+      : options.quick;
+
+    return config;
+  });
+
+  const config = configStore.getConfig();
+  log.dim(`Verbosity: ${config.verbosity}`);
+  log.dim(`Opening browser: ${config.openServerAtStart}`);
+  log.dim(`Quick mode: ${config.quick}`);
+  return config;
+}
+
 // `bolt build`
 program
   .command('build')
   .description('Build it')
   .option('-W, --watch', 'Watch and rebuild')
   .option('-P, --parallel', 'Run build in parallel instead of a series. Faster, but some assets might not be ready in time.')
+  .option('-Q, --quick', 'Try to be quicker by skipping some steps that might not be needed if everything is recently built and in good working order.')
   .action((options) => {
     log.info(`Starting build (${options.parallel ? 'parallel' : 'serial'})`);
-
-    configStore.updateConfig((config) => {
-      config.verbosity = typeof program.verbosity === 'undefined'
-        ? config.verbosity
-        : program.verbosity;
-      return config;
-    });
-
-    const build = require('./commands/build');
-    build({
-      watch: options.watch,
-      parallel: options.parallel,
-    });
+    updateConfig(options, program);
+    require('./tasks/task-collections').build();
   });
 
 program
@@ -45,17 +66,24 @@ program
   .description('Spin up local server')
   .option('-O, --open', 'Open browser at start.')
   .action((options) => {
-    log.info('Starting server...');
+    updateConfig(options, program);
+    require('./tasks/task-collections').serve();
+  });
 
-    configStore.updateConfig((config) => {
-      config.openServerAtStart = typeof options.open === 'undefined'
-        ? config.openServerAtStart
-        : options.open;
-      return config;
-    });
+program
+  .command('watch')
+  .action((options) => {
+    updateConfig(options, program);
+    require('./tasks/task-collections').watch();
+  });
 
-    const serverTasks = require('./tasks/server-tasks');
-    serverTasks.serve();
+program
+  .command('start')
+  .option('-O, --open', 'Open browser at start.')
+  .option('-Q, --quick', 'Try to be quicker by skipping some steps that might not be needed if everything is recently built and in good working order.')
+  .action((options) => {
+    updateConfig(options, program);
+    require('./tasks/task-collections').start();
   });
 
 // `bolt lint`

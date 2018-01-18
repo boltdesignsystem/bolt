@@ -23,7 +23,7 @@ function createConfig(config) {
     3: 'normal', // standard output
     4: 'detailed',
     5: 'verbose', // output everything
-  }
+  };
 
   function statsPreset(name) {
     /**
@@ -210,7 +210,9 @@ function createConfig(config) {
         Promise: 'es6-promise'
       }),
       // Show build progress
-      new webpack.ProgressPlugin({ profile: false }),
+      // Disabling for now as it messes up spinners
+      // @todo consider bringing it back
+      // new webpack.ProgressPlugin({ profile: false }),
     ],
     devServer: {
       contentBase: [
@@ -218,7 +220,7 @@ function createConfig(config) {
         // @TODO: add Pattern Lab Styleguidekit Assets Default dist path here
       ],
       compress: true,
-      clientLogLevel: 'info',
+      clientLogLevel: 'none',
       port: 8080,
       stats: statsPreset(webpackStats[config.verbosity]),
       overlay: {
@@ -226,6 +228,7 @@ function createConfig(config) {
       },
       hot: true,
       inline: true,
+      noInfo: true, // webpackTasks.watch handles output info related to success & failure
       publicPath: config.publicPath,
       watchContentBase: true,
       historyApiFallback: true,
