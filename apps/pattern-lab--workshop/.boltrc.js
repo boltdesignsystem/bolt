@@ -28,6 +28,7 @@ module.exports = {
       '@bolt/components-page-header',
       '@bolt/components-site',
       '@bolt/components-smooth-scroll',
+      '@bolt/components-sticky',
       '@bolt/components-teaser',
       '@bolt/components-unordered-list'
     ],
