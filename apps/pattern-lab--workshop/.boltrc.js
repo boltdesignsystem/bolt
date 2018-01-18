@@ -22,6 +22,7 @@ module.exports = {
       '@bolt/components-color-swatch',
       '@bolt/components-device-viewer',
       '@bolt/components-figure',
+      '@bolt/components-headline',
       '@bolt/components-link',
       '@bolt/components-nav-bar',
       '@bolt/components-ordered-list',
