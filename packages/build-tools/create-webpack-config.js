@@ -111,53 +111,105 @@ function createConfig(config) {
     },
     module: {
       rules: [
+
+        /**
+         * Output .css files for <link> tags
+         */
+        // {
+        //   test: /\.scss$/,
+        //   use: ExtractTextPlugin.extract({
+        //     fallback: "style-loader",
+        //     use: [
+        //     {
+        //       loader: 'css-loader',
+        //       options: {
+        //         sourceMap: true,
+        //         modules: true,
+        //         importLoaders: true,
+        //         localIdentName: '[local]'
+        //       }
+        //     },
+        //     {
+        //       loader: "postcss-loader",
+        //       options: {
+        //         plugins: [
+        //           postcssDiscardDuplicates,
+        //           autoprefixer,
+        //         ],
+        //       }
+        //     },
+        //     {
+        //       loader: "clean-css-loader",
+        //       options: {
+        //         skipWarn: true,
+        //         compatibility: "ie9",
+        //         level: process.env.NODE_ENV === "production" ? 2 : 0,
+        //         inline: ["remote"],
+        //         format: 'beautify',
+        //       }
+        //     },
+        //     {
+        //       loader: "sass-loader",
+        //       options: {
+        //         importer: [
+        //           sassImportGlobbing,
+        //           npmSass.importer,
+        //         ],
+        //         functions: sassExportData,
+        //         outputStyle: "expanded",
+        //         precision: 2
+        //       }
+        //     }
+        //   ]})
+        // },
+
+        /**
+         * Expose CSS as JS import for inlining in components
+         */
         {
           test: /\.scss$/,
-          use: ExtractTextPlugin.extract({
-            fallback: "style-loader",
-            use: [
-              {
-                loader: "css-loader",
-                options: {
-                  sourceMap: true,
-                  modules: false, // re-enable if/when using css-modules. was adding duplicate output of CSS to JS output
-                  importLoaders: true,
-                  localIdentName: "[local]"
-                }
-              },
-              {
-                loader: "postcss-loader",
-                options: {
-                  plugins: [
-                    postcssDiscardDuplicates,
-                    autoprefixer,
-                  ],
-                }
-              },
-              {
-                loader: "clean-css-loader",
-                options: {
-                  skipWarn: true,
-                  compatibility: "ie9",
-                  level: process.env.NODE_ENV === "production" ? 2 : 0,
-                  inline: ["remote"],
-                  format: 'beautify',
-                }
-              },
-              {
-                loader: "sass-loader",
-                options: {
-                  importer: [
-                    sassImportGlobbing,
-                    npmSass.importer,
-                  ],
-                  functions: sassExportData,
-                  outputStyle: "expanded",
-                  precision: 2
-                }
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true,
+                modules: true,
+                importLoaders: true,
+                localIdentName: '[local]'
               }
-            ]
-          })
+            },
+            {
+              loader: "postcss-loader",
+              options: {
+                plugins: [
+                  postcssDiscardDuplicates,
+                  autoprefixer,
+                ],
+              }
+            },
+            {
+              loader: "clean-css-loader",
+              options: {
+                skipWarn: true,
+                compatibility: "ie9",
+                level: process.env.NODE_ENV === "production" ? 2 : 0,
+                inline: ["remote"],
+                format: 'beautify',
+              }
+            },
+            {
+              loader: "sass-loader",
+              options: {
+                importer: [
+                  sassImportGlobbing,
+                  npmSass.importer,
+                ],
+                functions: sassExportData,
+                outputStyle: "expanded",
+                precision: 2
+              }
+            }
+          ]
         },
         {
           test: /\.js$/,
