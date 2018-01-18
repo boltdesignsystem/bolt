@@ -91,7 +91,6 @@ export class BoltBandCollection extends withComponent(withPreact()) {
     * keyboard input.
     */
   _onChange(event) {
-    this._animateBandForElement(event.target, event.detail.isExpandedNow);
   }
 
 

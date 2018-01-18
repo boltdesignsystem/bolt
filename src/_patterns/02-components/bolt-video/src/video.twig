@@ -21,37 +21,6 @@
 
 {% set videoTag %}
   {% include "@bolt/_video-tag.twig" %}
-  <div class="c-bolt-video__wrapper">
-    {% embed "@bolt/wrapper.twig" with {
-      attributes: {
-        class: [
-          "u-bolt-padding-left-none",
-          "u-bolt-padding-right-none"
-        ]
-      }
-    } %}
-      {% block wrapper_content %}
-        <div class="c-bolt-video__close-button">
-          {% include "@bolt/button.twig" with {
-            text: "Close video",
-            tag: "button",
-            size: "xsmall",
-            style: "secondary",
-            iconOnly: true,
-            rounded: true,
-            icon: {
-              name: "close",
-              size: "small"
-            },
-            attributes: {
-              "on-click": "close",
-              "on-click-target": videoUuid
-            }
-          } only %}
-        </div>
-      {% endblock %}
-    {% endembed %}
-  </div>
 {% endset %}
 
 {% if ratio == true %}
