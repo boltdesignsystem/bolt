@@ -78,6 +78,13 @@ program
   });
 
 program
+  .command('clean')
+  .action((options) => {
+    updateConfig(options, program);
+    require('./tasks/task-collections').clean();
+  });
+
+program
   .command('start')
   .option('-O, --open', 'Open browser at start.')
   .option('-Q, --quick', 'Try to be quicker by skipping some steps that might not be needed if everything is recently built and in good working order.')

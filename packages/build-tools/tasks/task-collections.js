@@ -65,4 +65,5 @@ module.exports = {
   start,
   build,
   watch,
+  clean,
 };
