@@ -195,20 +195,23 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   }
 
   &:not([disabled]):not(.c-bolt-button--text) {
-    &:hover {
+    &:hover,
+    &.c-bolt-button--hover {
       transform: $bolt-button-translate--hover;
     }
 
-    &:hover:before {
+    &:hover:before,
+    &.c-bolt-button--hover:before {
       opacity: 1;
     }
 
-
-    &:active {
+    &:active,
+    &.c-bolt-button--active {
       transform: $bolt-button-translate--active;
     }
 
-    &:active:before {
+    &:active:before,
+    &.c-bolt-button--active:before {
       opacity: 0;
     }
   }
@@ -245,16 +248,28 @@ bolt-button {
     background-color: var(--bolt-theme-primary-background-default, $primary-background-default);
   }
 
-  &:focus,
-  &:hover {
+  &:hover,
+  &.c-bolt-button--hover {
     border-color: $primary-background-hover;
     border-color: var(--bolt-theme-primary-border-hover, $primary-background-hover);
-
     color: bolt-text-contrast($primary-background-default);
     color: var(--bolt-theme-primary-text-default, bolt-text-contrast($primary-background-default));
-
     background-color: $primary-background-hover;
     background-color: var(--bolt-theme-primary-background-hover, $primary-background-hover);
+  }
+
+  &:focus,
+  &.c-bolt-button--focus {
+    border-color: $primary-background-hover;
+    border-color: var(--bolt-theme-primary-border-hover, $primary-background-hover);
+    color: bolt-text-contrast($primary-background-default);
+    color: var(--bolt-theme-primary-text-default, bolt-text-contrast($primary-background-default));
+    background-color: $primary-background-hover;
+    background-color: var(--bolt-theme-primary-background-hover, $primary-background-hover);
+
+    outline-width: 5px;
+    outline-style: auto;
+    outline-color: rgb(59, 153, 252); // Browser defaults
   }
 
   &:active {
@@ -286,18 +301,30 @@ bolt-button {
     background-color: var(--bolt-theme-secondary-background-default, $secondary-background-default);
   }
 
-  &:focus,
+  &.c-bolt-button--hover,
   &:hover {
     border-color: $secondary-background-hover;
     border-color: var(--bolt-theme-secondary-border-hover, $secondary-background-hover);
-
     color: bolt-text-contrast($secondary-background-default);
     color: var(--bolt-theme-secondary-text-default, bolt-text-contrast($secondary-background-default));
-
     background-color: $secondary-background-hover;
     background-color: var(--bolt-theme-secondary-background-hover, $secondary-background-hover);
   }
 
+  &:focus,
+  &.c-bolt-button--focus {
+    border-color: $secondary-background-hover;
+    border-color: var(--bolt-theme-secondary-border-hover, $secondary-background-hover);
+    color: bolt-text-contrast($secondary-background-default);
+    color: var(--bolt-theme-secondary-text-default, bolt-text-contrast($secondary-background-default));
+    background-color: $secondary-background-hover;
+    background-color: var(--bolt-theme-secondary-background-hover, $secondary-background-hover);
+    outline-width: 5px;
+    outline-style: auto;
+    outline-color: rgb(59, 153, 252); // Browser defaults
+  }
+
+  &.c-bolt-button--active,
   &:active {
     border-color: $secondary-background-active;
     border-color: var(--bolt-theme-secondary-border-active, $secondary-background-active);
