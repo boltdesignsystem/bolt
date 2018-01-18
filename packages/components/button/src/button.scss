@@ -431,6 +431,9 @@ bolt-button {
 
 // Button widths
 
+
+// Button width variations
+bolt-button[width="full"],
 .c-bolt-button--full {
   width: 100%;
 }
@@ -440,6 +443,7 @@ bolt-button {
   border-radius: 50%;
 }
 
+bolt-button[width="full@small"],
 .c-bolt-button--full\@small {
   @media screen and (max-width: map-get($bolt-breakpoints, small)) {
     width: 100%;
