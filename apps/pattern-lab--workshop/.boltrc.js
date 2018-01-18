@@ -23,6 +23,7 @@ module.exports = {
       '@bolt/components-figure',
       '@bolt/components-image',
       '@bolt/components-link',
+      '@bolt/components-logo',
       '@bolt/components-ordered-list',
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
