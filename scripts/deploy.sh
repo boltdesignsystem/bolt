@@ -13,5 +13,9 @@ else
   echo 'Main deploy, not a draft'
 fi
 
+if [[ $NETLIFY_TOKEN ]]; then
+  cmd="$cmd --access-token $NETLIFY_TOKEN"
+fi
+
 echo 'Begin deploying to Netlify..'
 $cmd
