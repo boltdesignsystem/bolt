@@ -1,4 +1,102 @@
 /* ------------------------------------ *\
+   Search
+\* ------------------------------------ */
+
+$bolt-search-filters-transition: $bolt-transition;
+
+
+.c-bolt-search-filters {
+  display: block;
+}
+
+.c-bolt-search-filters__trigger {
+  display: block;
+  position: fixed;
+  right: bolt-spacing(medium);
+  bottom: bolt-v-spacing(medium);
+  z-index: 99998;
+
+  @include respond-to(medium) {
+    display: none;
+  }
+}
+
+.c-bolt-search-filters__panel {
+  @media screen and (max-width: (bolt-breakpoint(medium) - 1px)) {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: bolt-color(white);
+    z-index: 99999;
+
+    &,
+    > * {
+      transition: all $bolt-search-filters-transition;
+    }
+
+    &:not(:target) {
+      pointer-events: none;
+      opacity: 0;
+
+      .c-bolt-search-filters__panel-content,
+      .c-bolt-search-filters__panel-controls--close,
+      .c-bolt-search-filters__panel-controls--submit {
+        transform: translateY(-2rem);
+      }
+    }
+
+    &:target {
+      opacity: 1;
+
+      .c-bolt-search-filters__panel-content,
+      .c-bolt-search-filters__panel-controls--close,
+      .c-bolt-search-filters__panel-controls--submit {
+        transform: translateY(0%);
+      }
+    }
+  }
+}
+
+.c-bolt-search-filters__panel-content {
+  @media screen and (max-width: (bolt-breakpoint(medium) - 1px)) {
+    @include bolt-padding(medium);
+    display: block;
+    flex: 1;
+    overflow-y: auto;
+    background-color: bolt-color(white);
+  }
+}
+
+.c-bolt-search-filters__panel-controls {
+  display: block;
+
+  @include respond-to(medium) {
+    display: none;
+  }
+}
+
+.c-bolt-search-filters__panel-controls--close {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 99999;
+}
+
+.c-bolt-search-filters__panel-controls--submit {
+  @include bolt-padding(medium, squished);
+  width: 100%;
+  background-color: bolt-color(white);
+}
+
+
+
+
+
+/* ------------------------------------ *\
    Form Sandbox
 \* ------------------------------------ */
 
@@ -404,4 +502,43 @@ $bolt-strength-indicator-transition: $bolt-transition;
   @include bolt-font-size(xsmall);
 
   display: block;
+}
+
+
+// Toggle
+.c-bolt-toggle {
+  @include bolt-margin-bottom(medium);
+  display: inline-flex;
+  flex-wrap: nowrap;
+  border-color: $bolt-input-border-color;
+  border-style: $bolt-input-border-style;
+  border-width: $bolt-input-border-width;
+  border-radius: $bolt-input-border-radius;
+  background-color: bolt-color(indigo, xxlight);
+
+  &:last-child {
+    @include bolt-margin-bottom(0);
+  }
+}
+
+.c-bolt-toggle__item {
+  flex: 1;
+}
+
+.c-bolt-toggle__item-input {
+  @include bolt-visuallyhidden;
+
+  &:checked + .c-bolt-toggle__item-label {
+    @include bolt-margin(($bolt-input-border-width * -1));
+    border-color: $bolt-input-border-color;
+    border-style: $bolt-input-border-style;
+    border-width: $bolt-input-border-width;
+    border-radius: $bolt-input-border-radius;
+    background-color: bolt-color(white);
+  }
+}
+
+.c-bolt-toggle__item-label {
+  display: block;
+  transition: background-color $bolt-input-transition;
 }

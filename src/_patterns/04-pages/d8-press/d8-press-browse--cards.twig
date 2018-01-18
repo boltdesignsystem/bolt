@@ -328,7 +328,7 @@
                 {% cell "u-bolt-width-6/12 u-bolt-width-8/12@medium" %}
                   <div class="c-bolt-toggle">
                     <div class="c-bolt-toggle__item">
-                      <input type="radio" class="c-bolt-toggle__item-input" id="toggle-list-view" name="toggle-display" checked>
+                      <input type="radio" class="c-bolt-toggle__item-input" id="toggle-list-view" name="toggle-display">
                       <label for="toggle-list-view" class="c-bolt-toggle__item-label">
                         {% include "@bolt/button.twig" with {
                           "text": "List View",
@@ -343,7 +343,7 @@
                       </label>
                     </div>
                     <div class="c-bolt-toggle__item">
-                      <input type="radio" class="c-bolt-toggle__item-input" id="toggle-grid-view" name="toggle-display">
+                      <input type="radio" class="c-bolt-toggle__item-input" id="toggle-grid-view" name="toggle-display" checked>
                       <label for="toggle-grid-view" class="c-bolt-toggle__item-label">
                         {% include "@bolt/button.twig" with {
                           "text": "Grid View",
@@ -390,10 +390,14 @@
                 {% endcell %}
               {% endgrid %}
             {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
               {% include "@bolt/card.twig" with {
                 theme: "xlight",
                 contentItems: [
+                  {
+                    pattern: "image",
+                    src: "/images/placeholders/1200x660.jpg"
+                  },
                   {
                     pattern: "eyebrow",
                     text: "Article Type"
@@ -403,18 +407,18 @@
                     tag: "h3",
                     size: "large",
                     text: "Article Headline"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
                   }
                 ]
               } only %}
             {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
               {% include "@bolt/card.twig" with {
                 theme: "xlight",
                 contentItems: [
+                  {
+                    pattern: "image",
+                    src: "/images/sample/anthem-video.jpg"
+                  },
                   {
                     pattern: "eyebrow",
                     text: "BPM"
@@ -424,18 +428,18 @@
                     tag: "h3",
                     size: "large",
                     text: "A New CRM Bill of Rights for the Future Empowered Enterprise"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Jeff Nicholson of Pega provides insight into what companies should expect from CRM vendors."
                   }
                 ]
               } only %}
             {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
               {% include "@bolt/card.twig" with {
                 theme: "xlight",
                 contentItems: [
+                  {
+                    pattern: "image",
+                    src: "/images/sample/artificial-intelligence-image.jpg"
+                  },
                   {
                     pattern: "eyebrow",
                     text: "Case Management"
@@ -445,18 +449,18 @@
                     tag: "h3",
                     size: "large",
                     text: "6 Customer Experience Trends to Watch in 2018"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Pega's Don Schuerman previews customer experience questions and trends for the New Year."
                   }
                 ]
               } only %}
             {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
               {% include "@bolt/card.twig" with {
                 theme: "xlight",
                 contentItems: [
+                  {
+                    pattern: "image",
+                    src: "/images/placeholders/1200x660.jpg"
+                  },
                   {
                     pattern: "eyebrow",
                     text: "PegaWorld"
@@ -466,18 +470,18 @@
                     tag: "h3",
                     size: "large",
                     text: "3 Reasons Your AI-Driven Customer Experiences are Falling Short"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Pega's Jeff Nicholson examines the state of AI in today's customer experiences."
                   }
                 ]
               } only %}
             {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
               {% include "@bolt/card.twig" with {
                 theme: "xlight",
                 contentItems: [
+                  {
+                    pattern: "image",
+                    src: "/images/placeholders/1200x660.jpg"
+                  },
                   {
                     pattern: "eyebrow",
                     text: "Article Type"
@@ -487,18 +491,18 @@
                     tag: "h3",
                     size: "large",
                     text: "Article Headline"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
                   }
                 ]
               } only %}
             {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
               {% include "@bolt/card.twig" with {
                 theme: "xlight",
                 contentItems: [
+                  {
+                    pattern: "image",
+                    src: "/images/placeholders/1200x660.jpg"
+                  },
                   {
                     pattern: "eyebrow",
                     text: "Article Type"
@@ -508,18 +512,18 @@
                     tag: "h3",
                     size: "large",
                     text: "Article Headline"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
                   }
                 ]
               } only %}
             {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
               {% include "@bolt/card.twig" with {
                 theme: "xlight",
                 contentItems: [
+                  {
+                    pattern: "image",
+                    src: "/images/placeholders/1200x660.jpg"
+                  },
                   {
                     pattern: "eyebrow",
                     text: "Article Type"
@@ -529,18 +533,18 @@
                     tag: "h3",
                     size: "large",
                     text: "Article Headline"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
                   }
                 ]
               } only %}
             {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
               {% include "@bolt/card.twig" with {
                 theme: "xlight",
                 contentItems: [
+                  {
+                    pattern: "image",
+                    src: "/images/placeholders/1200x660.jpg"
+                  },
                   {
                     pattern: "eyebrow",
                     text: "Article Type"
@@ -550,18 +554,18 @@
                     tag: "h3",
                     size: "large",
                     text: "Article Headline"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
                   }
                 ]
               } only %}
             {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
               {% include "@bolt/card.twig" with {
                 theme: "xlight",
                 contentItems: [
+                  {
+                    pattern: "image",
+                    src: "/images/placeholders/1200x660.jpg"
+                  },
                   {
                     pattern: "eyebrow",
                     text: "Article Type"
@@ -571,18 +575,18 @@
                     tag: "h3",
                     size: "large",
                     text: "Article Headline"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
                   }
                 ]
               } only %}
             {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
               {% include "@bolt/card.twig" with {
                 theme: "xlight",
                 contentItems: [
+                  {
+                    pattern: "image",
+                    src: "/images/placeholders/1200x660.jpg"
+                  },
                   {
                     pattern: "eyebrow",
                     text: "Article Type"
@@ -592,10 +596,6 @@
                     tag: "h3",
                     size: "large",
                     text: "Article Headline"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
                   }
                 ]
               } only %}
