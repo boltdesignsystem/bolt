@@ -272,7 +272,8 @@ bolt-button {
     outline-color: rgb(59, 153, 252); // Browser defaults
   }
 
-  &:active {
+  &:active,
+  &.c-bolt-button--active {
     border-color: $primary-background-active;
     border-color: var(--bolt-theme-primary-border-active, $primary-background-active);
 
@@ -456,7 +457,6 @@ bolt-button {
 }
 
 
-// Button widths
 
 
 // Button width variations
@@ -478,8 +478,6 @@ bolt-button[width="full@small"],
 }
 
 
-// Button items
-
 .c-bolt-button--item-align-center {
   @supports (display: flex) {
     justify-content: center;
@@ -494,9 +492,6 @@ bolt-button[width="full@small"],
   text-align: left;
 }
 
-.c-bolt-button__item {
-  display: inline-flex;
-  align-self: center;
 }
 
 .c-bolt-button__button {
