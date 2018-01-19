@@ -1,26 +1,55 @@
+const fs = require('fs');
 const path = require('path');
 const log = require('./log');
+const config = require('./config-store').getConfig();
+
+/**
+ * Ensure a file exists
+ * We don't want to do anything with the file now, we just want to provide an early error if a path is wrong.
+ * This is called async and by the time an error is thrown, we may be several steps ahead with WebPack probably already trying to start - that's ok, we don't want to hold up the process everytime things are correct.
+ * @param filePath {string} - Path to file to ensure exists
+ */
+function ensureFileExists(filePath) {
+  fs.access(filePath, (err) => {
+    if (err) {
+      log.errorAndExit(`This file ^^^ does not exist and it was referenced in package.json for that component, please make sure the file path is correct.`, filePath);
+    }
+  });
+}
 
 /**
  * Get information about a components assets
- * @param {string} component - Machine name of a component i.e. `@bolt/button`
+ * @param {string} pkgName - Machine name of a component i.e. `@bolt/button`
  * @returns {{name, basicName: string | * | void}} - Asset info
  */
-function getAssets(component) {
-  // @todo Ensure package exists
-  const pkgJsonPath = require.resolve(`${component}/package.json`);
+function getPkgInfo(pkgName) {
+  const pkgJsonPath = require.resolve(`${pkgName}/package.json`);
   const pkgPath = path.dirname(pkgJsonPath);
   const pkg = require(pkgJsonPath);
-  const assets = {
+  const info = {
     name: pkg.name,
     basicName: pkg.name.replace('@bolt/', 'bolt-'),
+    assets: {},
   };
-  // @todo Ensure asset files exist
-  if (pkg.style) assets.style = path.join(pkgPath, pkg.style);
-  if (pkg.main) assets.main = path.join(pkgPath, pkg.main);
+  if (pkg.style) {
+    info.assets.style = path.join(pkgPath, pkg.style);
+    ensureFileExists(info.assets.style);
+  }
+  if (pkg.main) {
+    info.assets.main = path.join(pkgPath, pkg.main);
+    ensureFileExists(info.assets.main);
+  }
+  if (pkg.twig) {// can be a string or an array of strings
+    const twigs = typeof pkg.twig === 'string' ? [pkg.twig] : pkg.twig;
+    info.assets.twig = twigs.map(twig => path.join(pkgPath, twig));
+    info.assets.twig.forEach(ensureFileExists);
+  }
+  if (Object.keys(info.assets).length === 0) {
+    log.errorAndExit(`${pkgName} has not declared any assets in package.json in the keys "style", "main", or "twig", please correct or remove this package`);
+  }
   // @todo Allow verbosity settings
   // console.log(assets);
-  return assets;
+  return info;
 }
 
 /**
@@ -36,29 +65,30 @@ function buildWebpackEntry(components) {
   if (components.global) {
     entry['bolt-global'] = [];
     components.global.forEach((component) => {
-      const assets = getAssets(component);
-      if (assets.style) entry['bolt-global'].push(assets.style);
-      if (assets.main) entry['bolt-global'].push(assets.main);
+      const pkgInfo = getPkgInfo(component);
+      if (pkgInfo.assets.style) entry['bolt-global'].push(pkgInfo.assets.style);
+      if (pkgInfo.assets.main) entry['bolt-global'].push(pkgInfo.assets.main);
     });
   }
   if (components.individual) {
     components.individual.forEach((component) => {
-      const assets = getAssets(component);
+      const pkgInfo = getPkgInfo(component);
       const files = [];
-      if (assets.style) files.push(assets.style);
-      if (assets.main) files.push(assets.main);
+      if (pkgInfo.assets.style) files.push(pkgInfo.assets.style);
+      if (pkgInfo.assets.main) files.push(pkgInfo.assets.main);
       if (files) {
-        entry[assets.basicName] = files;
-      } else {
-        log.error(`No assets found for ${assets.name}`, assets);
+        entry[pkgInfo.basicName] = files;
       }
     });
   }
-  // @todo Allow verbosity settings for seeing `entry`
+  if (config.verbosity > 4) {
+    log.info('WebPack `entry`:');
+    console.log(entry);
+  }
   return entry;
 }
 
 module.exports = {
-  getAssets,
+  getPkgInfo,
   buildWebpackEntry,
 };
