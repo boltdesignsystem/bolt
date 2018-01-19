@@ -8,7 +8,7 @@
     "bootstrap": "lerna bootstrap --reject-cycles",
     "postbootstrap": "node scripts/monorepo-tests.js",
     "clean:git": "git clean -xdf",
-    "deploy": "netlify deploy -s bolt.netlify.com -p apps/pattern-lab--workshop/www",
+    "deploy": "./scripts/deploy.sh",
     "Xlint:js": "eslint ./build-tools",
     "Xlint:scss": "gulp styles:lint",
     "clean:lerna": "lerna clean -Y",
@@ -22,7 +22,7 @@
     "Xpublish:canary": "lerna publish --canary --npm-tag=next",
     "start": "cd apps/pattern-lab--workshop && npm start",
     "Xpre-build": "lerna exec -- npm run --if-present build",
-    "Xbuild": "export NODE_ENV=production && npm run pre-build && gulp build",
+    "build": "export NODE_ENV=production && cd apps/pattern-lab--workshop && npm run build",
     "Xbuild:full": "export NODE_ENV=production && npm run pre-build && gulp build:full",
     "setup": "npm run bootstrap && npm run composer:setup",
     "composer:setup": "if [ ! -f ./apps/pattern-lab--workshop/www/index.html ]; then npm run composer:clean && npm run composer:install; fi",
@@ -32,7 +32,6 @@
     "Xtest:lighthouse": "concurrently --kill-others \"http-server dist\" \"lighthouse --view http://localhost:8080\" ",
     "Xtest:full": "yarn lint:scss && polymer test && yarn test:lighthouse && yarn lint:remark && npm run mocha",
     "Xtest": "npm run mocha",
-    "build:pl": "export NODE_ENV=production && cd apps/pattern-lab--workshop && npm run build",
     "Xtest:ci": "node browserstack.js",
     "Xpretest": "node packages/build-tools/check-imports.js",
     "Xprecommit": "npm run lint:scss",
@@ -80,8 +79,9 @@
     "husky": "^0.14.3",
     "lerna": "^2.5.1",
     "lighthouse": "^2.5.0",
-    "web-component-tester": "^6.3.0",
-    "npm-run-all": "^4.1.2"
+    "netlify-cli": "^1.2.2",
+    "npm-run-all": "^4.1.2",
+    "web-component-tester": "^6.3.0"
   },
   "workspaces": [
     "packages/components/background-shapes",
