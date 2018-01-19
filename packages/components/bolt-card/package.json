@@ -1,8 +1,6 @@
 {
   "name": "@bolt/components-card",
   "description": "Card Component in Bolt",
-  "type": "pattern",
-  "patternType": "molecules",
   "keywords": [
     "bolt design system",
     "bolt",
@@ -32,25 +30,16 @@
   "bugs": {
     "url": "https://github.com/bolt-design-system/bolt/issues"
   },
+  "style": "src/card.scss",
+  "twig": [
+    "src/card.twig",
+    "src/card-w-teaser.twig",
+    "src/card-w-teaser-list.twig"
+  ],
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@bolt/core": "^0.5.0-beta.1",
-    "@bolt/settings-spacing": "^0.7.0",
-    "@bolt/tools-all": "^0.5.4",
-    "npm-run-all": "^4.0.2"
-  },
-  "devDependencies": {
-    "@bolt/build-tools": "^0.5.1"
-  },
-  "main": "dist/bolt-card.min.js",
-  "style": "src/card.scss",
-  "twig": "src/card.twig",
-  "scripts": {
-    "prepublishOnly": "npm run build",
-    "build": "npm-run-all --parallel build:*",
-    "build:bolt": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/card --output-filename='bolt-card.min.js' --output-public-path /scripts/",
-    "build:wwwd8": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/card --output-filename='bolt-card.wwwd8.min.js' --output-public-path /themes/custom/pegawww_theme/node_modules/@bolt/components-card/dist/"
+    "@bolt/core": "^0.5.0-beta.1"
   }
 }
