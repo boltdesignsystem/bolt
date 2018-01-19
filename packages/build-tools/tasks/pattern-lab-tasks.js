@@ -1,11 +1,14 @@
+const chalk = require('chalk');
 const { readYamlFileSync } = require('../utils/yaml');
 const sh = require('../utils/sh');
 const path = require('path');
 const events = require('../utils/events');
 const chokidar = require('chokidar');
+const del = require('del');
 const debounce = require('lodash.debounce');
 const log = require('../utils/log');
 const { getConfig } = require('../utils/config-store');
+const ora = require('ora');
 
 const config = Object.assign({
   plConfigFile: 'config/config.yml',
@@ -30,20 +33,33 @@ const config = Object.assign({
 const plConfig = readYamlFileSync(config.plConfigFile);
 const plRoot = path.join(config.plConfigFile, '../..');
 const plSource = path.join(plRoot, plConfig.sourceDir);
-// const plPublic = path.join(plRoot, plConfig.publicDir);
+const plPublic = path.join(plRoot, plConfig.publicDir);
 const consolePath = path.join(plRoot, 'core/console');
 
 function plBuild(errorShouldExit) {
   return new Promise((resolve, reject) => {
-    log.taskStart('build: pattern lab');
+    const plSpinner = ora(chalk.blue('Building Pattern Lab...')).start();
+    // log.taskStart('build: pattern lab');
     events.emit('pattern-lab:precompile');
-    sh(`php -d memory_limit=4048M ${consolePath} --generate`, errorShouldExit)
-      .then(() => {
+    sh(`php -d memory_limit=4048M ${consolePath} --generate`, errorShouldExit, false)
+      .then((output) => {
+
+        plSpinner.succeed(chalk.green('Built Pattern Lab'));
+
+        if (config.verbosity > 2) {
+          console.log('---');
+          console.log(output);
+          console.log('===\n');
+        }
         // events.emit('reload'); // Temporarily disable - still testing out HMR reload approach
-        log.taskDone('build: pattern lab');
-        resolve();
+
+        resolve(output);
       })
-      .catch(reject);
+      .catch((error) => {
+        plSpinner.fail(chalk.red('Building Pattern Lab Failed'));
+        console.log(error);
+        // reject(error);
+      });
   });
 }
 
@@ -80,7 +96,6 @@ function watch() {
     ? [].concat(plGlob, config.extraWatches)
     : plGlob;
 
-  log.taskStart('watch: pattern lab');
   // The watch event ~ same engine gulp uses https://www.npmjs.com/package/chokidar
   const watcher = chokidar.watch(src, {
     ignoreInitial: true,
@@ -93,8 +108,8 @@ function watch() {
 
   // list of all events: https://www.npmjs.com/package/chokidar#methods--events
   watcher.on('all', (event, path) => {
-    if (config.verbosity > 1) {
-      console.log(event, path);
+    if (config.verbosity > 3) {
+      console.log('Pattern Lab watch event: ', event, path);
     }
     debouncedCompile();
   });
@@ -104,7 +119,17 @@ function watch() {
 watch.description = 'Watch and rebuild Pattern Lab';
 watch.displayName = 'pattern-lab:watch';
 
+async function clean() {
+  const spinner = ora(chalk.blue('Cleaning Pattern Lab files...')).start();
+  await del([
+    plPublic,
+  ]);
+  spinner.succeed(chalk.green('Cleaned Pattern Lab files.'));
+  return true;
+}
+
 module.exports = {
   compile,
   watch,
+  clean,
 };

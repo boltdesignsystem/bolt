@@ -18,6 +18,7 @@ let config = {};
 const defaultConfig = {
   verbosity: 2,
   openServerAtStart: false,
+  quick: false,
 };
 
 function getEnvVarsConfig() {
@@ -81,6 +82,7 @@ function updateConfig(updater) {
   // console.log('new config:');
   // console.log(newConfig);
   config = newConfig;
+  return config;
 }
 
 module.exports = {

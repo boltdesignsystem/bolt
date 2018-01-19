@@ -6,7 +6,7 @@ module.exports = {
   buildDir: 'build',
   wwwDir: 'www',
   plConfigFile: './config/config.yml',
-  verbosity: 2,
+  verbosity: 1,
   components: {
     global: [
       '@bolt/core',
@@ -17,6 +17,7 @@ module.exports = {
       '@bolt/components-blockquote',
       '@bolt/components-button',
       '@bolt/components-button-group',
+      '@bolt/components-card',
       '@bolt/components-chip',
       '@bolt/components-chip-list',
       '@bolt/components-color-swatch',
@@ -25,6 +26,8 @@ module.exports = {
       '@bolt/components-headline',
       '@bolt/components-link',
       '@bolt/components-nav-bar',
+      '@bolt/components-image',
+      '@bolt/components-logo',
       '@bolt/components-ordered-list',
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
