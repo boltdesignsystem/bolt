@@ -1,10 +1,7 @@
 // BOLT HEADLINE COMPONENT
 
-@import '@bolt/tools-uppercase';
-@import '@bolt/tools-font-family';
-@import '@bolt/tools-font-weight';
-@import '@bolt/tools-font-size';
-@import '@bolt/tools-spacing';
+@import '@bolt/core';
+
 @import './tools.headlines';
 
 
@@ -142,14 +139,12 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 .c-bolt-text--xxxlarge,
 .c-bolt-headline--xxxlarge {
   @include bolt-font-size(xxxlarge);
-  max-width: 55ch; /* [1] */
 }
 
 .c-bolt-text--xxlarge,
 .c-bolt-subheadline--xxlarge,
 .c-bolt-headline--xxlarge {
   @include bolt-font-size(xxlarge);
-  max-width: 55ch; /* [1] */
 }
 
 

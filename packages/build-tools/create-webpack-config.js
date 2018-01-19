@@ -97,6 +97,48 @@ function createConfig(config) {
   }
 
 
+  const scssLoaders = [
+    {
+      loader: 'css-loader',
+      options: {
+        sourceMap: true,
+        modules: true,
+        importLoaders: true,
+        localIdentName: '[local]'
+      }
+    },
+    {
+      loader: "postcss-loader",
+      options: {
+        plugins: [
+          postcssDiscardDuplicates,
+          autoprefixer,
+        ],
+      }
+    },
+    {
+      loader: "clean-css-loader",
+      options: {
+        skipWarn: true,
+        compatibility: "ie9",
+        level: process.env.NODE_ENV === "production" ? 2 : 0,
+        inline: ["remote"],
+        format: 'beautify',
+      }
+    },
+    {
+      loader: "sass-loader",
+      options: {
+        importer: [
+          sassImportGlobbing,
+          npmSass.importer,
+        ],
+        functions: sassExportData,
+        outputStyle: "expanded",
+        precision: 2
+      }
+    }
+  ];
 
   return {
     entry: assets.buildWebpackEntry(config.components),
@@ -113,51 +155,19 @@ function createConfig(config) {
       rules: [
         {
           test: /\.scss$/,
-          use: ExtractTextPlugin.extract({
-            fallback: "style-loader",
-            use: [
-              {
-                loader: "css-loader",
-                options: {
-                  sourceMap: true,
-                  modules: false, // re-enable if/when using css-modules. was adding duplicate output of CSS to JS output
-                  importLoaders: true,
-                  localIdentName: "[local]"
-                }
-              },
-              {
-                loader: "postcss-loader",
-                options: {
-                  plugins: [
-                    postcssDiscardDuplicates,
-                    autoprefixer,
-                  ],
-                }
-              },
-              {
-                loader: "clean-css-loader",
-                options: {
-                  skipWarn: true,
-                  compatibility: "ie9",
-                  level: process.env.NODE_ENV === "production" ? 2 : 0,
-                  inline: ["remote"],
-                  format: 'beautify',
-                }
-              },
-              {
-                loader: "sass-loader",
-                options: {
-                  importer: [
-                    sassImportGlobbing,
-                    npmSass.importer,
-                  ],
-                  functions: sassExportData,
-                  outputStyle: "expanded",
-                  precision: 2
-                }
-              }
-            ]
-          })
+          oneOf: [
+            {
+              issuer: /\.js$/,
+              use: scssLoaders,
+            },
+            {
+              // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
+              use: ExtractTextPlugin.extract({
+                fallback: "style-loader",
+                use: scssLoaders,
+              })
+            },
+          ],
         },
         {
           test: /\.js$/,
