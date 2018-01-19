@@ -56,8 +56,6 @@ bolt-video {
     @include respond-to(small) {
       width: calc(90vw - #{bolt-spacing(large)}); /* [1] */
       height: calc((90vw * (9 / 16)) - #{bolt-spacing(large)}); /* [1] */
-      max-width: 100vh;
-      max-height: calc(100vh * (9 / 16));
     }
   }
 }
