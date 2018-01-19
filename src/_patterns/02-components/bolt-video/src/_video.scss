@@ -60,9 +60,13 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
   position: absolute;
   z-index: 1000;
   top: bolt-spacing(xsmall);
-  right: (bolt-spacing(large) / -2) - bolt-spacing(xsmall);
+  right: bolt-spacing(xsmall);
   transition: all 0.3s ease;
   opacity: 0; // Initial state before brightcove video player kicks in
+
+  @include respond-to(small) {
+    right: (bolt-spacing(large) / -2) - bolt-spacing(xsmall);
+  }
 
   .is-collapsed & {
     opacity: 0;
