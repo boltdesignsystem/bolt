@@ -31,7 +31,7 @@
   {% if figure %}
     <div class="o-bolt-flag__figure">
       {% block flag_figure %}
-        {% set figureContent %}  
+        {% set figureContent %}
           {% include "@bolt/figure.twig" with figure only %}
         {% endset %}
 
@@ -56,7 +56,7 @@
           {{ item.text }}
         {% endif %}
       {% endfor %}
-      
+
       {{ content }}
 
     {% endblock %}
