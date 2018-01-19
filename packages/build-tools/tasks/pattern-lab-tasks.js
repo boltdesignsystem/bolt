@@ -35,16 +35,18 @@ const plRoot = path.join(config.plConfigFile, '../..');
 const plSource = path.join(plRoot, plConfig.sourceDir);
 const plPublic = path.join(plRoot, plConfig.publicDir);
 const consolePath = path.join(plRoot, 'core/console');
+const timer = require('../utils/timer');
 
 function plBuild(errorShouldExit) {
   return new Promise((resolve, reject) => {
     const plSpinner = ora(chalk.blue('Building Pattern Lab...')).start();
+    const startTime = timer.start();
     // log.taskStart('build: pattern lab');
     events.emit('pattern-lab:precompile');
     sh(`php -d memory_limit=4048M ${consolePath} --generate`, errorShouldExit, false)
       .then((output) => {
 
-        plSpinner.succeed(chalk.green('Built Pattern Lab'));
+        plSpinner.succeed(chalk.green(`Built Pattern Lab in ${timer.end(startTime)}`));
 
         if (config.verbosity > 2) {
           console.log('---');
@@ -121,10 +123,11 @@ watch.displayName = 'pattern-lab:watch';
 
 async function clean() {
   const spinner = ora(chalk.blue('Cleaning Pattern Lab files...')).start();
+  const startTime = timer.start();
   await del([
     plPublic,
   ]);
-  spinner.succeed(chalk.green('Cleaned Pattern Lab files.'));
+  spinner.succeed(chalk.green(`Cleaned Pattern Lab files in ${timer.end(startTime)}`));
   return true;
 }
 
