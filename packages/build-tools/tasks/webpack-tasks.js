@@ -7,6 +7,7 @@ const events = require('../utils/events');
 const log = require('../utils/log');
 const { getConfig } = require('../utils/config-store');
 const ora = require('ora');
+const timer = require('../utils/timer');
 
 const config = getConfig();
 const webpackConfig = createWebpackConfig(config);
@@ -14,6 +15,7 @@ const webpackConfig = createWebpackConfig(config);
 function compile() {
   return new Promise((resolve, reject) => {
     const webpackSpinner = ora(chalk.blue('Building WebPack bundle...')).start();
+    const startTime = timer.start();
     const spinFailed = () => webpackSpinner.fail(chalk.red('Building WebPack Failed'));
     webpack(webpackConfig).run((err, stats) => {
       if (err) {
@@ -32,8 +34,7 @@ function compile() {
 
         return reject(config.verbosity > 2 ? new Error(prettyError) : prettyError);
       }
-      webpackSpinner.succeed(chalk.green('Built WebPack bundle'));
-
+      webpackSpinner.succeed(chalk.green(`Built WebPack bundle in ${timer.end(startTime)}`));
       let output;
       // Stats config options: https://webpack.js.org/configuration/stats/
       output = stats.toString({
@@ -77,6 +78,7 @@ compile.displayName = 'webpack:compile';
 function watch() {
   return new Promise((resolve, reject) => {
     const webpackSpinner = ora(chalk.blue('Watch triggered WebPack re-bundle...'));
+    const startTime = timer.start();
     const spinFailed = () => webpackSpinner.fail(chalk.red('Watch triggered WebPack Failed'));
 
     const compiler = webpack(webpackConfig);
@@ -114,7 +116,7 @@ function watch() {
           version: false,
         });
 
-        webpackSpinner.succeed(chalk.green('Watch rebuilt WebPack bundle'));
+        webpackSpinner.succeed(chalk.green(`Watch rebuilt WebPack bundle in ${timer.end(startTime)}`));
         if (config.verbosity > 2) {
           console.log('---');
           console.log(output);
