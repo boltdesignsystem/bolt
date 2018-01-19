@@ -161,6 +161,7 @@ function createConfig(config) {
               use: scssLoaders,
             },
             {
+              // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
               use: ExtractTextPlugin.extract({
                 fallback: "style-loader",
                 use: scssLoaders,
