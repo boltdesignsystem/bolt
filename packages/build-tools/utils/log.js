@@ -27,6 +27,14 @@ function warning(msg) {
 }
 
 /**
+ * Logs a dim message to Terminal
+ * @param {string} msg
+ */
+function dim(msg) {
+  console.log(chalk.dim(msg));
+}
+
+/**
  * Logs an error message to Terminal
  * @param {string} msg
  */
@@ -36,7 +44,7 @@ function error(msg) {
 
 /**
  * Displays info, an error message, and then exits the cli
- * @param {string} - Message
+ * @param {string} msg - Message
  * @param {*} logMe - Passed to `console.log`
  */
 function errorAndExit(msg, logMe) {
@@ -45,7 +53,7 @@ function errorAndExit(msg, logMe) {
     console.log(logMe);
   }
   error(`Error: ${msg}`);
-  process.exit(1);
+  process.exitCode = 1;
 }
 
 /**
@@ -77,7 +85,7 @@ Task Done: ${task}
  * Displays big Bolt intro ASCII art
  */
 function intro() {
-// @TODO: How best to pull in .scss color data export to reference branch colors below?
+  // @TODO: How best to pull in .scss color data export to reference branch colors below?
   const b = chalk.hex('#545DA6'); // indigo, light
   const y = chalk.hex('#ffcc4d'); // yellow, base
 
@@ -125,4 +133,5 @@ module.exports = {
   taskStart,
   taskDone,
   intro,
+  dim,
 };

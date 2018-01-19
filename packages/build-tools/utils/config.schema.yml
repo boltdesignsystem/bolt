@@ -35,6 +35,9 @@
     openServerAtStart:
       type: boolean
       description: If, after starting `npm start`, a Browser opens.
+    quick:
+      type: boolean
+      description: Try to be quicker by skipping some steps that might not be needed if everything is recently built and in good working order.
     verbosity:
       type: integer
       description: Logging level (Range of 0 to 5) How 'loud' or 'quiet' do you want the console output to be?
