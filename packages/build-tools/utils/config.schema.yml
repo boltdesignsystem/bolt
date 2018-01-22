@@ -28,10 +28,9 @@
       type: string
       title: Path to server root
       description: "Where static files are served from. The wwwDir config specifies the public web distribution directory. This directory is commonly the root directory for a server, where all static files can be served. This directory is built and rebuilt directly from the source files. Note: We recommend this directory is not committed to a repository."
-    publicPath:
+    dataDir:
       type: string
-      title: Path to publicPath directory
-      description: "The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config."
+      description: This is the directory where generated json data files exist with information about the overall build. Defaults to `data` inside `buildDir`
     openServerAtStart:
       type: boolean
       description: If, after starting `npm start`, a Browser opens.

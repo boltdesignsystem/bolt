@@ -11,7 +11,7 @@ const assets = require('./utils/assets');
 function createConfig(config) {
   // @TODO: move this setting to .boltrc config
   const sassExportData = require('@theme-tools/sass-export-data')({
-    path: path.resolve(process.cwd(), config.wwwDir, config.buildDir, 'data'),
+    path: path.resolve(process.cwd(), config.dataDir),
   });
 
   // Map out the global config verbosity setting to the 6 preset levels of Webpack stats: https://webpack.js.org/configuration/stats/#stats + https://github.com/webpack/webpack/blob/b059e07cf90db871fe9497f5c14b9383fc71d2ad/lib/Stats.js#L906
@@ -140,12 +140,16 @@ function createConfig(config) {
     }
   ];
 
+  // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
+  // Must start and end with `/`
+  const publicPath = `/${path.relative(config.wwwDir, config.buildDir)}/`;
+
   return {
     entry: assets.buildWebpackEntry(config.components),
     output: {
-      path: path.resolve(process.cwd(), config.wwwDir, config.buildDir),
+      path: path.resolve(process.cwd(), config.buildDir),
       filename: "[name].js",
-      publicPath: config.publicPath
+      publicPath: publicPath,
     },
     devtool: 'cheap-module-eval-source-map',
     resolve: {
@@ -205,7 +209,7 @@ function createConfig(config) {
       }),
       new ManifestPlugin({
         fileName: 'bolt-manifest.json',
-        publicPath: config.publicPath,
+        publicPath: publicPath,
         writeToFileEmit: true,
         seed: {
           name: 'Bolt Manifest'
@@ -239,7 +243,7 @@ function createConfig(config) {
       hot: true,
       inline: true,
       noInfo: true, // webpackTasks.watch handles output info related to success & failure
-      publicPath: config.publicPath,
+      publicPath: publicPath,
       watchContentBase: true,
       historyApiFallback: true,
       watchOptions: {

@@ -2,8 +2,7 @@ module.exports = {
   // Environmental variable / preset to use
   env: 'pl',
   srcDir: 'src',
-  publicPath: '/build/',
-  buildDir: 'build',
+  buildDir: 'www/build',
   wwwDir: 'www',
   plConfigFile: './config/config.yml',
   verbosity: 1,
