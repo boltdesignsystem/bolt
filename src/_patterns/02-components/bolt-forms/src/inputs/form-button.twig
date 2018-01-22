@@ -10,13 +10,15 @@
 ] %}
 
 <div class="c-bolt-input-list__item">
-  <button {{ attributes.addClass(classes) }}>
-    {% if icon %}
-      <span class="c-bolt-button__icon" {% if iconOnly %}u-bolt-margin-left-none {% endif %}">
-        {% include "@bolt/icon.twig" with icon only %}
-      </span>
-    {% endif %}
+  <div {{ attributes.addClass(classes) }}>
+    <button class="c-bolt-button__button">
+      {% if icon %}
+        <span class="c-bolt-button__icon" {% if iconOnly %}u-bolt-margin-left-none {% endif %}">
+          {% include "@bolt/icon.twig" with icon only %}
+        </span>
+      {% endif %}
 
-    {{ text }}
-  </button>
+      {{ text }}
+    </button>
+  </div>
 </div>
