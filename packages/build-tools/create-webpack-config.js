@@ -11,7 +11,7 @@ const assets = require('./utils/assets');
 function createConfig(config) {
   // @TODO: move this setting to .boltrc config
   const sassExportData = require('@theme-tools/sass-export-data')({
-    path: path.resolve(process.cwd(), config.buildDir, config.dataSubDir),
+    path: path.resolve(process.cwd(), config.dataDir),
   });
 
   // Map out the global config verbosity setting to the 6 preset levels of Webpack stats: https://webpack.js.org/configuration/stats/#stats + https://github.com/webpack/webpack/blob/b059e07cf90db871fe9497f5c14b9383fc71d2ad/lib/Stats.js#L906

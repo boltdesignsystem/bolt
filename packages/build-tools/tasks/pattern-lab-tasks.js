@@ -86,7 +86,7 @@ function watch() {
   const watchedPkgExtensions = config.watchedPkgExtensions.join(',');
   const plGlob = [
     path.normalize(`${plSource}/**/*.{${watchedExtensions}}`),
-    path.normalize(`${config.buildDir}/${config.dataSubDir}/*.*`), // Watch for data files being output to the data folder
+    path.normalize(`${config.dataDir}/*.*`), // Watch for data files being output to the data folder
 
     // Component twig files + configs
     path.normalize(`../../packages/components/**/*.{${watchedPkgExtensions}}`),
