@@ -1,0 +1,50 @@
+{% set tags = ["div", "article", "section", "figure"] %} {# Available overall container tags #}
+{% set contentTags = ["div", "article", "section", "figcaption"] %} {# Available content container tags #}
+{% set themes = ["xlight", "light", "dark", "xdark"] %}
+{% set prefix = "c-bolt-" %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Defaults for a vanilla `Card` component #}
+{% set componentName = "card" %}
+{% set baseClass = prefix ~ componentName %}
+{% set theme = theme %}
+{% set tag = tag in tags ? tag: "div" %}
+{% set contentTag = contentTag in contentTags ? contentTag: "div" %}
+
+{% set classes = [
+  baseClass,
+  theme in themes ? "t-bolt-" ~ theme : "",
+] %}
+
+{% if url %}
+  {% set attributes = attributes.setAttribute("data-href", url) %}
+{% endif %}
+
+
+<bolt-card
+  theme="{{ theme }}"
+  {% if url %}url={{ url }}{% endif %}
+  bolt-component>
+
+  <{{ tag }} {{ attributes.addClass(classes) }}>
+
+    {% if card_media is not empty %}
+      <div class="{{ "#{baseClass}__media" }}">
+        {{ card_media }}
+      </div>
+    {% endif %}
+
+    {% if card_body is not empty %}
+      <{{ contentTag }} class="{{ "#{baseClass}__body" }}">
+        {{ card_body }}
+      </{{ contentTag }}>
+    {% endif %}
+
+    {% if card_footer is not empty %}
+      <div class="{{ "#{baseClass}__footer" }}">
+        {{ card_footer }}
+      </div>
+    {% endif %}
+  </{{ tag }}>
+</bolt-card>

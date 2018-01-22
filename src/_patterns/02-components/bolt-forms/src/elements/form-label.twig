@@ -20,7 +20,7 @@
 {% if displayType == "inline" %}
   {% set _classes = [
     "c-bolt-inline-label",
-    "c-bolt-inline-label--" ~ inputElementType
+    inputElementType ? "c-bolt-inline-label--" ~ inputElementType : "",
   ] %}
 {% elseif displayType == "floating" %}
   {% set _classes = ["c-bolt-floating-label"] %}

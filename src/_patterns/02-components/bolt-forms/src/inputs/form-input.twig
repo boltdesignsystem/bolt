@@ -16,7 +16,7 @@ Available variables:
 {% set attributes = create_attribute(attributes | default({})) %}
 {% set _classes = [] %}
 {% set _buttonTypes = ['button', 'reset', 'submit'] %}
-{% set _type = attributes.type.value %}
+{% set _type = attributes.type.__tostring %}
 
 {% if _type in _buttonTypes %}
   {% set _classes = _classes|merge([
