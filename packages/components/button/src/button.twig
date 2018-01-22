@@ -27,7 +27,7 @@
 {% if tag == "submit" %}
   {% set tag = "button" %}
   {% set attributes = attributes.setAttribute("type", "submit") %}
-{% elseif tag == "link" %}
+{% elseif tag == "link" or tag == "a" %}
   {% set tag = "a" %}
   {% if url %}
     {% set attributes = attributes.setAttribute("href", url) %}
@@ -43,17 +43,11 @@
   baseClass,
   disabled ? baseClass ~ "--disabled" : "",
   size in sizeOptions ? baseClass ~ "--" ~ size : "",
-  width in widthOptions ? baseClass ~ "--" ~ width : "",
+  width in widthOptions and width != "" ? baseClass ~ "--" ~ width : "",
   rounded in roundedOptions and rounded != schema.properties.rounded.default ? baseClass ~ "--" ~ rounded : "",
   style in styleOptions ? baseClass ~ "--" ~ style : "",
   align in alignOptions ? baseClass ~ "--" ~ align : "",
 ] %}
-
-  {# tag in tagOptions ? baseClass ~ "--" ~ tag : "", #}
-
-
-
-
 
 {% if disabled %}
   {% set attributes = attributes.setAttribute("disabled", true) %}
@@ -66,12 +60,11 @@
   {% if align %} align="{{ align }}" {% endif %}
   {% if style %} color="{{ style }}" {% endif %}
   {% if size %} size="{{ size }}" {% endif %}
+  {% if url %} url="{{ url }}" {% endif %}
   {% if width %} width="{{ width }}" {% endif %}
   {% if rounded %} rounded=" {{ rounded }}" {% endif %}
   {% if iconOnly %} icon-only="true" {% endif %}
-  {% if disabled %} {{ disabled }} {% endif %}
-
-  {{ attributes }}
+  {% if disabled == true %} disabled {% endif %}
 >
   <{{ tag }} {{ attributes.addClass(classes).addClass('js-bolt-pre-rendered') }}>
     {{ text }}

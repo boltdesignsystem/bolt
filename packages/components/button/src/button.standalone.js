@@ -84,7 +84,7 @@ export class BoltButton extends withComponent(withPreact()) {
       this.props.rounded ? `c-bolt-button--rounded` : '',
       this.props.size ? `c-bolt-button--${this.props.size}` : '',
       this.props.width ? `c-bolt-button--${this.props.width}` : '',
-      this.props.align ? `c-bolt-button--${this.props.align}` : '',
+      this.props.align ? `c-bolt-button--${this.props.align}` : 'c-bolt-button--center',
 
       // Test out psuedo states via prop values
       this.props.isHover ? `c-bolt-button--hover` : '',
@@ -102,37 +102,43 @@ export class BoltButton extends withComponent(withPreact()) {
       replacementTag = 'a';
     }
 
+    let originalProps = {};
     if (originalElem) {
       this.innerHTML = originalElem.innerHTML;
 
-    //   // // originalElem.className = 'c-bolt-button__inner';
-    //   // // Create a replacement tag of the desired type
-    //   replacement = document.createElement(replacementTag);
-
-    //   // Grab all of the original's attributes, and pass them to the replacement
-    //   for (var i = 0, l = originalElem.attributes.length; i < l; ++i) {
-    //     var nodeName = originalElem.attributes.item(i).nodeName;
-    //     var nodeValue = originalElem.attributes.item(i).nodeValue;
-
-    //     replacement.setAttribute(nodeName, nodeValue);
-    //   }
-
-    //   // Persist contents
-    //   replacement.innerHTML = originalElem.innerHTML;
-
-    //   originalElem.parentNode.replaceChild(replacement, originalElem);
-
-    //   replacement.className = '';
+      // Grab all of the original inner element's attributes & pass to vdom element
+      for (var i = 0, l = originalElem.attributes.length; i < l; ++i) {
+        var nodeName = originalElem.attributes.item(i).nodeName;
+        var nodeValue = originalElem.attributes.item(i).nodeValue;
+        originalProps[nodeName] = nodeValue;
+      }
     }
 
-    const ButtonTag = this.props.url ? 'a' : 'button';
+    function camelCaseToDash(myStr) {
+      return myStr.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+    }
 
+    // Select + convert the prop names from this component so we can remove from new element
+    let propsToRemove = Object.keys(this.props).map(val => camelCaseToDash(val));
+    propsToRemove.push('class');
+
+    // Loop through the original attributes on the inner element and remove the props defined by the component
+    const filteredProps = Object.keys(originalProps)
+      .filter(key => !propsToRemove.includes(key))
+      .reduce((obj, key) => {
+        obj[key] = originalProps[key];
+        return obj;
+      }, {});
+
+    const ButtonTag = this.props.url.length > 0 && this.props.url !== 'null' ? 'a' : 'button';
     let disabled = this.props.disabled ? { 'disabled': 'disabled' } : {};
+    let href = this.props.url.length > 0 && this.props.url !== 'null' ? { 'href': this.props.url } : {};
     let active = this.props.active ? { 'active': 'disabled' } : {};
+
 
     // {spacingUtils[0][1]}
     return (
-      <ButtonTag className={classes} {...disabled}>
+      <ButtonTag className={classes} {...disabled} {...href} {...filteredProps}>
         <style>
           {styles[0][1]}
         </style>
