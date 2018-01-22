@@ -1,9 +1,15 @@
-import { html } from 'lit-html';
-import { withComponent } from 'skatejs';
-import withLitHtml from '@skatejs/renderer-lit-html';
+import {
+  h,
+  render,
+  define,
+  props,
+  withComponent,
+  withPreact
+} from '@bolt/core';
 
 class MyComponent extends withComponent(withLitHtml()) {
   renderCallback() {
-    return html`Hello, <slot />!`;
+    // @todo Have Salem review this to ensure it is correct
+    return h`Hello, <slot />!`;
   }
 }
