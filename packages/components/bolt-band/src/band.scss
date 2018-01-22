@@ -17,6 +17,8 @@
   @include bolt-padding-top(large);
   @include bolt-padding-bottom(large);
   display: block;
+  min-height: 0;
+  transition: all 0.4s ease;
 }
 
 
@@ -49,13 +51,14 @@ bolt-band {
   display: block;
   display: flex; // So children increase in height
   width: 100%;
-  transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease;
   max-height: none;
+  min-height: 0;
   transform: translate3d(0, 0, 0);
-  will-change: height;
+  will-change: height, min-height;
+  height: 100%;
 
   &.is-expanded {
-    height: 56.25vw;
+    min-height: 56.25vh;
   }
 }
-

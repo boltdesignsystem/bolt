@@ -24,12 +24,13 @@ bandTemplate.innerHTML = `
     <slot></slot>
   `;
 
-  // ShadyCSS will rename classes as needed to ensure style scoping.
+// ShadyCSS will rename classes as needed to ensure style scoping.
 ShadyCSS.prepareTemplate(bandTemplate, 'bolt-band');
 
 
 
 
+@define
 export class BoltBand extends withComponent(withPreact()) {
   static is = 'bolt-band';
 
@@ -52,14 +53,26 @@ export class BoltBand extends withComponent(withPreact()) {
       bandTemplate.content.cloneNode(true)
     );
 
-    this.addEventListener('expandedHeightSet', this._adjustExpandedHeightToMatchChildren);
-    this.initialHeight = this.getBoundingClientRect().height;
+    if (this.state.ready === false) {
+      this.state.ready = true;
+      this.classList.add('is-ready');
+    }
+
+    if (this.expandedHeight === null){
+      this.expandedHeight = '56.25vh';
+    }
+
+    if (this.expanded) {
+      this.expand();
+    } else {
+      this.collapse();
+    }
   }
 
 
-/**
-  * `connectedCallback()` sets up the role, event handler and initial state.
-  */
+  /**
+    * `connectedCallback()` sets up the role, event handler and initial state.
+    */
   connectedCallback() {
     // Shim Shadow DOM styles. This needs to be run in `connectedCallback()`
     // because if you shim Custom Properties (CSS variables) the element
@@ -70,28 +83,21 @@ export class BoltBand extends withComponent(withPreact()) {
     this.addEventListener('pause', this.pauseHandler);
     this.addEventListener('ended', this.finishedHandler);
     this.addEventListener('close', this.collapse);
+
+    this.addEventListener('expandedHeightSet', this._adjustExpandedHeightToMatchChildren);
   }
 
+  disconnectedCallback() {
+    this.removeEventListener('expandedHeightSet', this._adjustExpandedHeightToMatchChildren);
+  }
 
-/**
-  * `attributeChangedCallback` processes changes to the `expanded` attribute.
-  */
+  /**
+    * `attributeChangedCallback` processes changes to the `expanded` attribute.
+    */
   attributeChangedCallback(name) {
-    if (this.state.ready === false){
+    if (this.state.ready === false) {
       this.state.ready = true;
       this.classList.add('is-ready');
-    }
-
-    if (this.expanded && this.expandedHeight){
-      this.style.maxHeight = this.expandedHeight + 'px';
-    }
-
-    if (this.expanded) {
-      this.classList.add('is-expanded');
-      this.classList.remove('is-collapsed');
-    } else {
-      this.classList.remove('is-expanded');
-      this.classList.add('is-collapsed');
     }
 
     // `expanded` is a boolean attribute it is either set or not set. The
@@ -100,13 +106,9 @@ export class BoltBand extends withComponent(withPreact()) {
     this.setAttribute('aria-expanded', value);
   }
 
-
-
   playHandler(event) {
-    if (event.detail.isBackgroundVideo){
-      this.initialHeight = this.getBoundingClientRect().height;
-
-      this.expanded = true;
+    if (event.detail.isBackgroundVideo && this.expanded === false) {
+      this.expand();
 
       this.dispatchEvent(
         new CustomEvent('change', {
@@ -117,43 +119,58 @@ export class BoltBand extends withComponent(withPreact()) {
     }
   }
 
-  pauseHandler(event) {
-    if (event.detail.isBackgroundVideo) {
-      // console.log('bg video now paused!');
-    }
-  }
-
-  finishedHandler(event) {
-    if (event.detail.isBackgroundVideo) {
-      // console.log('bg video now finished!');
-
-      // this.expanded = false;
-      // this.dispatchEvent(
-      //   new CustomEvent('change', {
-      //     detail: { isExpandedNow: this.expanded },
-      //     bubbles: true,
-      //   })
-      // );
-    }
-  }
-
-  expand() {
-    this.expanded = true;
-  }
 
   collapse() {
+    const startingHeight = this.getBoundingClientRect().height;
+    const endingHeight = '0px';
+
+    requestAnimationFrame(() => {
+      this.style.minHeight = `${startingHeight}px`;
+      this.style.transition = 'all 0s';
+
+      requestAnimationFrame(() => {
+        // In order to get the animation to play, we'll need to wait for
+        // the 'invert' animation frame to finish, so that its inverted
+        // position has propagated to the DOM.
+        //
+        // Then, we just remove the transform, reverting it to its natural
+        // state, and apply a transition so it does so smoothly.
+        this.style.transition = 'all 0.4s ease';
+        this.style.minHeight = endingHeight;
+      });
+    });
+
     this.expanded = false;
   }
 
+  expand() {
+    const startingHeight = this.getBoundingClientRect().height;
+    const endingHeight = this.expandedHeight;
+
+    requestAnimationFrame(() => {
+      this.style.minHeight = `${startingHeight}px`;
+      this.style.transition = 'all 0s';
+
+      requestAnimationFrame(() => {
+        // In order to get the animation to play, we'll need to wait for
+        // the 'invert' animation frame to finish, so that its inverted
+        // position has propagated to the DOM.
+        //
+        // Then, we just remove the transform, reverting it to its natural
+        // state, and apply a transition so it does so smoothly.
+        this.style.transition = 'all 0.4s ease';
+        this.style.minHeight = this.expandedHeight;
+      });
+    });
+
+    this.expanded = true;
+  }
+
+
   // Max Height of a child element has been set so use that to determine how tall a band should get.
-  _adjustExpandedHeightToMatchChildren(event){
+  _adjustExpandedHeightToMatchChildren(event) {
     if (event.detail.expandedHeight) {
       this.expandedHeight = event.detail.expandedHeight;
-    }
-
-    if (this.state.ready === false) {
-      this.state.ready = true;
-      this.classList.add('is-ready');
     }
   }
 
@@ -163,42 +180,14 @@ export class BoltBand extends withComponent(withPreact()) {
   }
 
   set expanded(value) {
-    value = Boolean(value);
     if (value) {
-      if (this.expandedHeight) {
-        this.style.height = this.expandedHeight + 'px';
-      } else {
-        this.style.height = '56.25vh';
-      }
-
       this.setAttribute('expanded', '');
       this.classList.add('is-expanded');
       this.classList.remove('is-collapsed');
     } else {
-      if (this.initialHeight) {
-        this.style.height = this.initialHeight + 'px';
-      } else {
-        this.style.height = 'auto';
-      }
-
       this.removeAttribute('expanded');
       this.classList.add('is-collapsed');
       this.classList.remove('is-expanded');
-    }
-  }
-
-
-  get initialHeight() {
-    return this.getAttribute('initialHeight');
-  }
-
-  set initialHeight(value) {
-    if (value) {
-      this.setAttribute('initialHeight', value);
-      this.style.height = this.initialHeight + 'px';
-    } else {
-      this.removeAttribute('initialHeight');
-      this.style.height = 'auto';
     }
   }
 
@@ -208,15 +197,26 @@ export class BoltBand extends withComponent(withPreact()) {
   }
 
   set expandedHeight(value) {
-    if (value)
-      this.setAttribute('expandedHeight', value);
-    else
-      this.removeAttribute('expandedHeight');
-  }
+    if (value) {
 
-  // get renderRoot() {
-  //   return this;
-  // }
+      // @TODO: come up with a better way to validate CSS unit possibilities here
+      // if (value.includes('px') ||
+      //   value.includes('vh') ||
+      //   value.includes('vw')) {
+      //   this.setAttribute('expandedHeight', value);
+      // }
+      // console.log(value.indexOf('vh'));
+
+      if (value.indexOf('vh') > -1 || value.indexOf('px') > -1) {
+        this.setAttribute('expandedHeight', value);
+      } else {
+        this.setAttribute('expandedHeight', value + 'px');
+      }
+    }
+    else {
+      this.removeAttribute('expandedHeight');
+    }
+  }
 
   render() {
     return (
@@ -224,5 +224,3 @@ export class BoltBand extends withComponent(withPreact()) {
     )
   }
 }
-
-customElements.define(BoltBand.is, BoltBand);
