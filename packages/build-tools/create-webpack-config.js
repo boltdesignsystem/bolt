@@ -141,7 +141,8 @@ function createConfig(config) {
   ];
 
   // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
-  const publicPath = `/${path.relative(config.wwwDir, config.buildDir)}`;
+  // Must start and end with `/`
+  const publicPath = `/${path.relative(config.wwwDir, config.buildDir)}/`;
 
   return {
     entry: assets.buildWebpackEntry(config.components),
