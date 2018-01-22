@@ -23,6 +23,7 @@ module.exports = {
       '@bolt/components-action-blocks',
       '@bolt/components-background',
       '@bolt/components-background-shapes',
+      '@bolt/components-band',
       '@bolt/components-blockquote',
       '@bolt/components-button',
       '@bolt/components-button-group',
