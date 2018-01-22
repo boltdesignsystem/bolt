@@ -6,6 +6,16 @@ module.exports = {
   wwwDir: 'www',
   plConfigFile: './config/config.yml',
   verbosity: 1,
+  plTwigNamespaces: {
+    'bolt-assets': {
+      recursive: true,
+      paths: ['www/build'],
+    },
+    utils: {
+      recursive: true,
+      paths: ['src/_includes'],
+    },
+  },
   components: {
     global: [
       '@bolt/core',
@@ -30,7 +40,7 @@ module.exports = {
       '@bolt/components-page-header',
       '@bolt/components-site',
       '@bolt/components-teaser',
-      '@bolt/components-unordered-list'
+      '@bolt/components-unordered-list',
     ],
     individual: [
     ],
