@@ -19,6 +19,7 @@ const defaultConfig = {
   verbosity: 2,
   openServerAtStart: false,
   quick: false,
+  dataSubDir: 'data',
 };
 
 function getEnvVarsConfig() {
