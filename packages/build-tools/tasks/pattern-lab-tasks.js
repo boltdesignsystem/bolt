@@ -56,7 +56,7 @@ function getTwigToWatch() {
 
 /**
  * Builds info file for Twig Namespaces
- * Creates `twig-namespaces.json` in `config.dataDir` from the Bolt Manifest. That is pulled in by [Twig Namespace plugin](https://packagist.org/packages/evanlovely/plugin-twig-namespaces) in the PL config file.
+ * Creates `bolt-twig-namespaces.json` in `config.dataDir` from the Bolt Manifest. That is pulled in by [Twig Namespace plugin](https://packagist.org/packages/evanlovely/plugin-twig-namespaces) in the PL config file.
  * @async
  * @returns {Promise<void>}
  */
@@ -89,7 +89,7 @@ async function makeTwigNamespaceFile() {
   }, namespaces, config.plTwigNamespaces || {});
 
   await writeFile(
-    path.join(config.dataDir, 'twig-namespaces.json'),
+    path.join(config.dataDir, 'bolt-twig-namespaces.json'),
     JSON.stringify(namespaceConfigFile, null, '  ')
   );
 }
