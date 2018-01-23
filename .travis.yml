@@ -26,11 +26,7 @@ install:
 
 script:
 - npm run test
-- travis_wait npm run build #only run deploy if build is successful. Can't do `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
-# - npm run deploy
-
-after_success:
-- ./deploy.sh
+- travis_wait npm run build && npm i -g netlify-cli && npm run deploy:netlify # only run deploy if build is successful. Can't do `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
 
 cache:
   apt: true
