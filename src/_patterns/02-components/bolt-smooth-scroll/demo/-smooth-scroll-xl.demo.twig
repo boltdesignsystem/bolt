@@ -1,9 +1,19 @@
 {% extends "@bolt/theme-demo.twig" %}
 {% block demo_content %}
+    {% set rows %}
+      {# 35 x 100px = 3500px tall #}
+      {% for i in 1..35 %}
+        {% if loop.index is even %}
+          <div style="background-color: lightgrey; height: 100px;"></div>
+        {% else  %}
+          <div style="background-color: darkgrey; height: 100px;"></div>
+        {% endif %}
+      {% endfor %}
+    {% endset %}
     <a class="test" href="#anchor-1">Link 1</a>
     <a href="#anchor-2">Link 2</a>
-    <div style="background-color: lightgrey; height: 3500px;"></div>
+    {{ rows }}
     <div id="anchor-1">Anchor 1</div>
-    <div style="background-color: lightgrey; height: 3500px;"></div>
+    {{ rows }}
     <div id="anchor-2">Anchor 2</div>
 {% endblock %}
