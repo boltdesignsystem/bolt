@@ -2,9 +2,6 @@ const path = require('path');
 const program = require('commander');
 const packageJson = require('./package.json');
 const configStore = require('./utils/config-store');
-const log = require('./utils/log');
-
-log.intro();
 
 // global `bolt` cli options & meta
 program
@@ -12,10 +9,13 @@ program
   .option('-C, --config-file <path>', 'Pass in a specific config file instead of default of ".boltrc.js/json".')
   .option('-v, --verbosity <amount>', 'How much output do you want? 0-5', parseInt);
 
-
-// defaults to `.boltrc` so either `.boltrc.js` or `.boltrc.json` works
+// We need to initialize config as early as possible
 const configFilePath = path.resolve(process.cwd(), program.configFile || '.boltrc');
 configStore.init(require(configFilePath));
+// Now that config is initilized, we can start requiring other things
+
+const { buildBoltManifest } = require('./utils/manifest');
+const log = require('./utils/log');
 
 /**
  * Update config with all options flags
@@ -43,10 +43,21 @@ function updateConfig(options, programInstance) {
 
   const config = configStore.getConfig();
   log.dim(`Verbosity: ${config.verbosity}`);
-  log.dim(`Opening browser: ${config.openServerAtStart}`);
-  log.dim(`Quick mode: ${config.quick}`);
+  if (config.verbosity > 2){
+    log.dim(`Opening browser: ${config.openServerAtStart}`);
+    log.dim(`Quick mode: ${config.quick}`);
+    log.dim(`buildDir: ${config.buildDir}`);
+    log.dim(`dataDir: ${config.dataDir}`);
+    log.dim(`wwwDir: ${config.wwwDir}`);
+  }
+
+  // Basically at this point, the cli is bootstrapped and ready to go.
+  // Let's build the core bolt manifest
+  buildBoltManifest();
   return config;
 }
+
+log.intro();
 
 // `bolt build`
 program
@@ -97,11 +108,8 @@ program
 program
   .command('lint')
   .description('A linter... that doesn\'t work!')
-  .action(() => {
-    log.taskStart('lint');
-    console.log('Im linting... ');
-    console.log('Looks good to me 👍');
-    log.taskDone('lint');
+  .action((options) => {
+    updateConfig(options, program);
   });
 
 // This will tell you all that got `require()`-ed

@@ -24,24 +24,25 @@ function ensureFileExists(filePath) {
  */
 function getPkgInfo(pkgName) {
   const pkgJsonPath = require.resolve(`${pkgName}/package.json`);
-  const pkgPath = path.dirname(pkgJsonPath);
+  const dir = path.dirname(pkgJsonPath);
   const pkg = require(pkgJsonPath);
   const info = {
     name: pkg.name,
     basicName: pkg.name.replace('@bolt/', 'bolt-'),
+    dir,
     assets: {},
   };
   if (pkg.style) {
-    info.assets.style = path.join(pkgPath, pkg.style);
+    info.assets.style = path.join(dir, pkg.style);
     ensureFileExists(info.assets.style);
   }
   if (pkg.main) {
-    info.assets.main = path.join(pkgPath, pkg.main);
+    info.assets.main = path.join(dir, pkg.main);
     ensureFileExists(info.assets.main);
   }
   if (pkg.twig) {// can be a string or an array of strings
     const twigs = typeof pkg.twig === 'string' ? [pkg.twig] : pkg.twig;
-    info.assets.twig = twigs.map(twig => path.join(pkgPath, twig));
+    info.assets.twig = twigs.map(twig => path.join(dir, twig));
     info.assets.twig.forEach(ensureFileExists);
   }
   if (Object.keys(info.assets).length === 0) {

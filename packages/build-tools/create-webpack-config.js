@@ -207,8 +207,9 @@ function createConfig(config) {
         // disable: false,
         allChunks: true
       }),
+      // @todo This needs to be in `config.dataDir`
       new ManifestPlugin({
-        fileName: 'bolt-manifest.json',
+        fileName: 'bolt-webpack-manifest.json',
         publicPath: publicPath,
         writeToFileEmit: true,
         seed: {
