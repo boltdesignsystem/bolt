@@ -1,8 +1,5 @@
 {
   "name": "@bolt/components-icons",
-  "type": "pattern",
-  "patternType": "atoms",
-  "description": "All icons in Bolt",
   "keywords": [
     "eyeglass-module",
     "bolt design system",
@@ -25,25 +22,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@bolt/babel-preset-bolt": "^0.0.1-beta.1",
     "@bolt/core": "^0.5.0-beta.1",
-    "babel-cli": "^6.26.0",
-    "camelcase": "^4.1.0",
-    "cheerio": "^1.0.0-rc.2",
-    "fs": "0.0.1-security",
-    "glob": "^7.1.2",
-    "ncp": "^2.0.0",
-    "path": "^0.12.7",
-    "prettier": "^1.7.4",
-    "svgo": "^0.7.2",
     "uppercamelcase": "^3.0.0"
   },
-  "main": "dist/index.js",
-  "module": "dist/index.es6.js",
-  "jsnext:main": "dist/index.es6.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublishOnly": "npm run build",
-    "build": "node ./build-icons.js && babel src --out-dir dist --ignore src/svgs"
-  }
+  "main": "src/index.js"
 }
