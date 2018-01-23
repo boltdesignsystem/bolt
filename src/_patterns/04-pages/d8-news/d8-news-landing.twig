@@ -18,7 +18,23 @@
       } only %}
       {% include "@bolt/subheadline.twig" with {
         size: "xxlarge",
-        text: "Newsworthy is an understatement. Our industry-leading solutions help the world’s largest enterprises build applications engineered for evolution."
+        text: "See the latest updates and media coverage about Pega from around the world."
+      } only %}
+      {% include "@bolt/button-group.twig" with {
+        buttons: [
+          {
+            text: "Press Releases",
+            url: "http://pega.com",
+            style: "secondary",
+            width: "full@small"
+          },
+          {
+            text: "Media Coverage",
+            url: "http://pega.com",
+            style: "secondary",
+            width: "full@small",
+          }
+        ],
       } only %}
     {% endblock %}
   {% endembed %}
@@ -34,7 +50,7 @@
         },
         "teaser": {
           "eyebrow": {
-            text: "BPM"
+            text: "Jan 18 2018"
           },
           "headlines": [
             {
@@ -60,7 +76,7 @@
         },
         "teaser": {
           "eyebrow": {
-            text: "Case Management"
+            text: "Jan 18 2018"
           },
           "headlines": [
             {
@@ -86,7 +102,7 @@
         },
         "teaser": {
           "eyebrow": {
-            text: "PegaWorld"
+            text: "Jan 04 2018"
           },
           "headlines": [
             {
@@ -113,7 +129,7 @@
           {% grid %}
             {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
               {% include "@bolt/headline.twig" with {
-                text: "Press Releases",
+                text: "Featured Press Releases",
                 size: "xlarge",
                 tag: "h3"
               } only %}
@@ -150,7 +166,7 @@
         },
         "teaser": {
           "eyebrow": {
-            text: "BPM"
+            text: "Jan 22 2018"
           },
           "headlines": [
             {
@@ -162,7 +178,7 @@
           "content": "Jeff Nicholson of Pega provides insight into what companies should expect from CRM vendors.",
           "buttons": [
             {
-              "text": "Read more",
+              "text": "MARTECH ADVISOR",
               "url": "http://www.google.com",
               "width": "full"
             }
@@ -176,7 +192,7 @@
         },
         "teaser": {
           "eyebrow": {
-            text: "Case Management"
+            text: "Jan 11 2018"
           },
           "headlines": [
             {
@@ -188,7 +204,7 @@
           "content": "Pega's Don Schuerman previews customer experience questions and trends for the New Year.",
           "buttons": [
             {
-              "text": "Read more",
+              "text": "CMS WIRE",
               "url": "http://www.google.com",
               "width": "full"
             }
@@ -202,7 +218,7 @@
         },
         "teaser": {
           "eyebrow": {
-            text: "PegaWorld"
+            text: "Dec 26 2017"
           },
           "headlines": [
             {
@@ -214,7 +230,7 @@
           "content": "Pega's Jeff Nicholson examines the state of AI in today's customer experiences.",
           "buttons": [
             {
-              "text": "Read more",
+              "text": "CIO AUSTRALIA",
               "url": "http://www.google.com",
               "width": "full"
             }
@@ -229,7 +245,7 @@
           {% grid %}
             {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
               {% include "@bolt/headline.twig" with {
-                text: "Media Coverage",
+                text: "Featured Media Coverage",
                 size: "xlarge",
                 tag: "h3"
               } only %}

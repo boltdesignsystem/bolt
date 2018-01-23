@@ -1,4 +1,3 @@
-/*@import '@bolt/settings-global'; // [1] TODO: Comment out for now. Need to include only once.*/
 @import '@bolt/settings-colors';
 @import '@bolt/tools-spacing';
 @import '@bolt/tools-color-palette';
@@ -31,8 +30,14 @@ $bolt-unordered-list-bullet-size: 8px; // Using px here because I need to make a
 $bolt-unordered-list-bullet-bg-color: var(--bolt-theme-heading, currentColor); // TODO: refactor this after theming is done.
 
 
-// Register Custom Block Element
-@include bolt-register-element('bolt-unordered-list', 'block'); /* [1] */
+// Custom element default styles
+bolt-unordered-list {
+  display: block;
+
+  &:not(:last-child) {
+    @include bolt-margin-bottom(medium);
+  }
+}
 
 
 // Styles

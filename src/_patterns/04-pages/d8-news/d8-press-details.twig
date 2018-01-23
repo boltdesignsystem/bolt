@@ -23,7 +23,7 @@
         "size": "xxlarge"
       } only %}
 
-      {% grid %}
+      {% grid "o-bolt-grid--matrix o-bolt-grid--large" %}
         {% cell 'u-bolt-width-1/1 u-bolt-width-8/12@medium' %}
           {% include "@bolt/text.twig" with {
             "text": "CAMBRIDGE, Mass. – January 22, 2018 – Organizations believe that pairing humans alongside machine intelligence will create a more effective, engaged, and meritocratic workforce, according to a new global study released by Pegasystems Inc. (NASDAQ: PEGA), the software company empowering customer engagement at the world’s leading enterprises. Pega surveyed 845 senior executives working globally across key industry sectors, including financial services, insurance, manufacturing, retail, telecommunications and media, and government, on the increased role artificial intelligence (AI) and robotic automation will play in the workplace of the future."
@@ -101,9 +101,17 @@
           {% include "@bolt/text.twig" with {
             "text": "“AI and automation technologies have generated tremendous hype, but the potential within the enterprise remains largely untapped,“ said Don Schuerman, chief technology officer and vice president, product marketing, Pegasystems. “Organizations must augment their human intelligence with AI across the entire organization in order to move beyond basic efficiency improvements. By deploying AI and automation with an end-to-end view in mind, businesses can move closer to fulfilling their customer centric vision.”"
           } only %}
+          {% include "@bolt/text.twig" with {
+            "text": "All trademarks are the property of their respective owners.",
+            "size": "xsmall"
+          } only %}
+          {% include "@bolt/text.twig" with {
+            "text": "The information contained in this press release is not a commitment, promise, or legal obligation to deliver any material, code or functionality. The development, release and timing of any features or functionality described remains at the sole discretion of Pegasystems, Pegasystems specifically disclaims any liability with respect to this information.",
+            "size": "xsmall"
+          } only %}
         {% endcell %}
         {% cell 'u-bolt-width-1/1 u-bolt-width-4/12@medium' %}
-          {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+          {% grid "o-bolt-grid--matrix" %}
             {% cell "u-bolt-width-1/1" %}
               <div class="c-bolt-card">
                 <div class="c-bolt-card__body">
@@ -230,12 +238,29 @@
                 +44 (0) 118 9398 584
               </p>
             {% endcell %}
+            {% cell 'u-bolt-width-1/1' %}
+              {% include "@bolt/headline.twig" with {
+                "text": "Pegasystems Inc.",
+                "size": "large"
+              } only %}
+              <p class="c-bolt-text">
+                One Rogers St.
+                <br>
+                Cambridge, MA 02142
+                <br>
+                U.S.A.
+                <br>
+                Phone +1 617-374-9600
+                <br>
+                Fax +1 617-374-9620
+              </p>
+            {% endcell %}
           {% endgrid %}
         {% endcell %}
         {% cell 'u-bolt-width-1/1' %}
           <hr>
           {% include "@bolt/headline.twig" with {
-            "text": "Category:",
+            "text": "Tags:",
             "size": "small",
             "transform": "uppercase"
           } only %}
@@ -263,19 +288,6 @@
               }
             ]
           } %}
-          {% include "@bolt/headline.twig" with {
-            "text": "About Pegasystems",
-            "size": "xlarge"
-          } only %}
-          <p class="c-bolt-text">
-            Pegasystems Inc. is the leader in software for customer engagement and operational excellence. Pega’s adaptive, cloud-architected software – built on its unified Pega® Platform – empowers people to rapidly deploy, and easily extend and change applications to meet strategic business needs. Over its 30-year history, Pega has delivered award-winning capabilities in CRM and BPM, powered by advanced artificial intelligence and robotic automation, to help the world’s leading brands achieve breakthrough business results. For more information on Pegasystems (NASDAQ: PEGA) visit www.pega.com.
-          </p>
-          <p class="c-bolt-text c-bolt-text--xsmall">
-            All trademarks are the property of their respective owners.
-          </p>
-          <p class="c-bolt-text c-bolt-text--xsmall">
-            The information contained in this press release is not a commitment, promise, or legal obligation to deliver any material, code or functionality. The development, release and timing of any features or functionality described remains at the sole discretion of Pegasystems, Pegasystems specifically disclaims any liability with respect to this information.
-          </p>
         {% endcell %}
       {% endgrid %}
     {% endblock %}
