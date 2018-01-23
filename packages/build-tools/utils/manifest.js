@@ -37,6 +37,25 @@ function getBoltManifest() {
   return boltManifest;
 }
 
+/**
+ * Get all directories for components in Bolt Manifest
+ * @param relativeFrom {string} - If present, the path will be relative from this, else it will be absolute.
+ * @returns {Array<String>} {dirs} - List of all component/package paths in Bolt Manifest
+ */
+function getAllDirs(relativeFrom) {
+  const dirs = [];
+  const {global, individual} = getBoltManifest().components;
+  [global, individual].forEach((componentList) => {
+    componentList.src.forEach((component) => {
+      dirs.push(relativeFrom
+        ? path.relative(relativeFrom, component.dir)
+        : component.dir
+      );
+    });
+  });
+  return dirs;
+}
+
 async function writeBoltManifest() {
   const filePath = path.resolve(config.dataDir, './bolt-full-manifest.json');
   try {
@@ -50,4 +69,5 @@ module.exports = {
   buildBoltManifest,
   getBoltManifest,
   writeBoltManifest,
+  getAllDirs,
 };

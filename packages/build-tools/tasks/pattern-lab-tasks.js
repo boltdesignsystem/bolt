@@ -12,7 +12,7 @@ const debounce = require('lodash.debounce');
 const log = require('../utils/log');
 const { getConfig } = require('../utils/config-store');
 const ora = require('ora');
-const {getBoltManifest} = require('../utils/manifest');
+const manifest = require('../utils/manifest');
 
 const config = Object.assign({
   plConfigFile: 'config/config.yml',
@@ -36,25 +36,6 @@ const consolePath = path.join(plRoot, 'core/console');
 const timer = require('../utils/timer');
 
 /**
- * Finds all directories that contain twig files so PL can watch them
- * We don't return an array of all Twig files b/c we don't know which ones are included in the main one. So we just watch the whole directories.
- * @returns {Array<String>}
- */
-function getTwigToWatch() {
-  const twigs = [];
-  const {global, individual} = getBoltManifest().components;
-  [global, individual].forEach((componentList) => {
-    componentList.src.forEach((list) => {
-      if (list.assets.twig) {
-        twigs.push(path.join(list.dir, '**/*.{twig,schema.*}'));
-      }
-    });
-  });
-
-  return twigs;
-}
-
-/**
  * Builds info file for Twig Namespaces
  * Creates `bolt-twig-namespaces.json` in `config.dataDir` from the Bolt Manifest. That is pulled in by [Twig Namespace plugin](https://packagist.org/packages/evanlovely/plugin-twig-namespaces) in the PL config file.
  * @async
@@ -63,17 +44,15 @@ function getTwigToWatch() {
 async function makeTwigNamespaceFile() {
   const namespaces = {};
   const allDirs = [];
-  const {global, individual} = getBoltManifest().components;
+  const {global, individual} = manifest.getBoltManifest().components;
   [global, individual].forEach((componentList) => {
     componentList.src.forEach((component) => {
-      if (component.assets.twig) {
-        const dir = path.relative(plRoot, component.dir);
-        namespaces[component.basicName] = {
-          recursive: true,
-          paths: [dir],
-        };
-        allDirs.push(dir);
-      }
+      const dir = path.relative(plRoot, component.dir);
+      namespaces[component.basicName] = {
+        recursive: true,
+        paths: [dir],
+      };
+      allDirs.push(dir);
     });
   });
 
@@ -139,9 +118,10 @@ compileWithNoExit.displayName = 'pattern-lab:compile';
 const debouncedCompile = debounce(compileWithNoExit, config.debounceRate);
 
 function watch() {
+  const globPattern = `**/*.{${config.watchedExtensions.join(',')}}`;
   const watchedFiles = [
-    ...getTwigToWatch(),
-    path.join(plSource, `/**/*.{${config.watchedExtensions.join(',')}}`),
+    ...manifest.getAllDirs(process.cwd()).map(dir => path.join(dir, globPattern)),
+    path.join(plSource, globPattern),
     path.join(config.dataDir, '*.*'),
   ];
 

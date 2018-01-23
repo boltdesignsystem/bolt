@@ -40,14 +40,6 @@ function getPkgInfo(pkgName) {
     info.assets.main = path.join(dir, pkg.main);
     ensureFileExists(info.assets.main);
   }
-  if (pkg.twig) {// can be a string or an array of strings
-    const twigs = typeof pkg.twig === 'string' ? [pkg.twig] : pkg.twig;
-    info.assets.twig = twigs.map(twig => path.join(dir, twig));
-    info.assets.twig.forEach(ensureFileExists);
-  }
-  if (Object.keys(info.assets).length === 0) {
-    log.errorAndExit(`${pkgName} has not declared any assets in package.json in the keys "style", "main", or "twig", please correct or remove this package`);
-  }
   // @todo Allow verbosity settings
   // console.log(assets);
   return info;
