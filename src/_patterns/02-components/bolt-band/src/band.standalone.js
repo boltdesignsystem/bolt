@@ -84,11 +84,11 @@ export class BoltBand extends withComponent(withPreact()) {
     this.addEventListener('ended', this.finishedHandler);
     this.addEventListener('close', this.collapse);
 
-    this.addEventListener('expandedHeightSet', this._adjustExpandedHeightToMatchChildren);
+    this.addEventListener('videoExpandedHeightSet', this._adjustExpandedHeightToMatchVideo);
   }
 
   disconnectedCallback() {
-    this.removeEventListener('expandedHeightSet', this._adjustExpandedHeightToMatchChildren);
+    this.removeEventListener('videoExpandedHeightSet', this._adjustExpandedHeightToMatchVideo);
   }
 
   /**
@@ -167,10 +167,22 @@ export class BoltBand extends withComponent(withPreact()) {
   }
 
 
-  // Max Height of a child element has been set so use that to determine how tall a band should get.
-  _adjustExpandedHeightToMatchChildren(event) {
+  // Max Height of a video child element has been set so use that to determine how tall a band should get.
+  _adjustExpandedHeightToMatchVideo(event) {
     if (event.detail.expandedHeight) {
-      this.expandedHeight = event.detail.expandedHeight;
+      let videoHeight = event.detail.expandedHeight;
+      const mq = window.matchMedia( "(max-width: 600px)" );
+
+      // Add to the height to make space for the 'close' button at the bottom
+      // if we are at the smallest breakpoint.
+      if (mq.matches) {
+        // expandedHeight apparently needs to be a string (on both the incoming
+        // and outgoing ends).  In order to modify it, we turn it into a number, then
+        // back to a string.  Not
+        videoHeight = Number(videoHeight) + 40;
+        videoHeight = String(videoHeight)
+      }
+      this.expandedHeight = videoHeight;
     }
   }
 

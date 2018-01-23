@@ -143,7 +143,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     }
 
     this.dispatchEvent(
-      new CustomEvent('expandedHeightSet', {
+      new CustomEvent('videoExpandedHeightSet', {
         detail: { expandedHeight: this.expandedHeight },
         bubbles: true,
       })
