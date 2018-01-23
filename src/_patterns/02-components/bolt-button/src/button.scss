@@ -436,7 +436,7 @@ bolt-button {
 
 
 // Button widths
-
+bolt-button[width="full"],
 .c-bolt-button--full {
   width: 100%;
 }
@@ -446,6 +446,7 @@ bolt-button {
   border-radius: 50%;
 }
 
+bolt-button[width="full@small"],
 .c-bolt-button--full\@small {
   @media screen and (max-width: map-get($bolt-breakpoints, small)) {
     width: 100%;
@@ -455,17 +456,13 @@ bolt-button {
 
 // Button items
 
-.c-bolt-button--item-align-center {
-  @supports (display: flex) {
-    justify-content: center;
-  }
+.c-bolt-button--center {
+  align-items: center;
   text-align: center;
 }
 
-.c-bolt-button--item-align-start {
-  @supports (display: flex) {
-    justify-content: flex-start;
-  }
+.c-bolt-button--left {
+  align-items: flex-start;
   text-align: left;
 }
 

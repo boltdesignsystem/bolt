@@ -22,7 +22,9 @@ export class BoltButton extends withComponent(withPreact()) {
     rounded: props.boolean,
     iconOnly: props.boolean,
     onClick: props.string,
-    onClickTarget: props.string
+    onClickTarget: props.string,
+    width: props.string,
+    align: props.string,
   }
 
   constructor() {
@@ -72,6 +74,8 @@ export class BoltButton extends withComponent(withPreact()) {
       'c-bolt-button',
       this.props.size ? `c-bolt-button--${this.props.size}` : '',
       this.props.color ? `c-bolt-button--${this.props.color}` : '',
+      this.props.width ? `c-bolt-button--${this.props.width}` : '',
+      this.props.align ? `c-bolt-button--${this.props.align}` : 'c-bolt-button--center',
       this.props.rounded ? `c-bolt-button--rounded` : '',
       this.props.iconOnly ? `c-bolt-button--icon-only` : '',
     );

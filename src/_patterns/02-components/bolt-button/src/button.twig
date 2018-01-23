@@ -64,6 +64,8 @@
 <bolt-button
   size="{{ size in sizes ? size : 'medium' }}"
   color="{{ style in styles ? style : 'primary' }}"
+    {% if width %} width="{{ width }}" {% endif %}
+    {% if itemAlignment %} align="{{ itemAlignment }}" {% endif %}
   {% if rounded %}rounded="true"{% endif %}
   {% if iconOnly %}icon-only="true"{% endif %}
   {{ attributes }}

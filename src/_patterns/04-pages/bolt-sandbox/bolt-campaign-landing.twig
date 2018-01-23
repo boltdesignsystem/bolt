@@ -1,7 +1,7 @@
 {% extends "@bolt/default-template.twig" %}
 
 {% block main_content %}
-  {% set card_body %}
+  {% set card_content %}
     {% include "@bolt/headline.twig" with {
       text: "Get the Report"
     } only %}
@@ -18,9 +18,9 @@
     } only %}
   {% endset %}
 
-  {% include "@bolt/card-simple.twig" with {
+  {% include "@bolt/card--simple.twig" with {
     "theme": "light",
-    "card_body": card_body
+    "card_content": card_content
   } only %}
 
 {% endblock %}
