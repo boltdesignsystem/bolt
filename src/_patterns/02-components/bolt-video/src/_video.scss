@@ -81,6 +81,47 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
   &:hover {
     opacity: 1;
   }
+
+  &:active {
+    opacity: 0.6;
+  }
+}
+
+.c-bolt-video__close-button--icon-to-text {
+  @media (max-width: (bolt-breakpoint(small) - 1px)) {
+    display: block;
+    position: relative;
+    right: 0;
+    text-align: right;
+
+    .c-bolt-video__close-button-icon {
+      display: none;
+    }
+  }
+
+  @media (min-width: bolt-breakpoint(small)) {
+    position: absolute;
+
+    .c-bolt-video__close-button-text {
+      @include bolt-visuallyhidden;
+    }
+  }
+}
+
+.c-bolt-video__close-button:not(.c-bolt-video__close-button--icon-to-text) {
+  .c-bolt-video__close-button-text {
+    @include bolt-visuallyhidden;
+  }
+}
+
+.c-bolt-video__close-button-icon,
+.c-bolt-video__close-button-text {
+  cursor: pointer;
+}
+
+.c-bolt-video__close-button-text {
+  color: bolt-color(white);
+  text-decoration: underline;
 }
 
 .c-bolt-video__close-wrapper {

@@ -661,7 +661,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     if (this.props.closeButtonText) {
       closeButtonText = this.props.closeButtonText;
     } else {
-      closeButtonText = 'Close video';
+      closeButtonText = 'Close';
     }
 
     return(
@@ -686,16 +686,18 @@ class BrightcoveVideo extends withComponent(withPreact()) {
           <brightcove-meta />
         }
         {this.props.isBackgroundVideo &&
-          <div class="c-bolt-video__close-button">
-            <bolt-button size="xsmall" color="secondary" rounded="true" icon-only="true" onClick={this.handleClose}>
-              <button class="c-bolt-button__button">
-                <span class="c-bolt-button__item c-bolt-button__item-text u-bolt-visuallyhidden">{closeButtonText}</span>
-                <span class="c-bolt-button__icon u-bolt-margin-left-none ">
+          <a class="c-bolt-video__close-button c-bolt-video__close-button--icon-to-text" href="javascript:" onClick={this.handleClose}>
+            <span class="c-bolt-video__close-button-icon">
+              <bolt-button size="xsmall" color="secondary" rounded="true" icon-only="true">
+                <span class="c-bolt-button__icon">
                   <bolt-icon name="close" size="small"></bolt-icon>
                 </span>
-              </button>
-            </bolt-button>
-          </div>
+              </bolt-button>
+            </span>
+            <span class="c-bolt-video__close-button-text">
+              {closeButtonText}
+            </span>
+          </a>
         }
       </span>
     );
