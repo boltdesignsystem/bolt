@@ -11,6 +11,8 @@ addons:
     - graphicsmagick
 
 before_install:
+- echo "Showing some Travis Env Vars"
+- echo "TRAVIS_BRANCH - $TRAVIS_BRANCH" && echo "TRAVIS_PULL_REQUEST - $TRAVIS_PULL_REQUEST"
 - nvm install 8 # or 5, 6, or whatever
 - node --version && npm --version && composer --version
 - npm install netlify-cli -g
