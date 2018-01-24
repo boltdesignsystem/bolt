@@ -9,6 +9,8 @@ import {
   spacingSizes
 } from '@bolt/core';
 
+import gumshoe from 'gumshoejs';
+
 const indicatorElement = '.js-bolt-nav-indicator';
 const navLinkElement = 'bolt-nav-link'; // Custom element
 const isActiveClass = 'is-active';
@@ -166,7 +168,7 @@ class BoltNavLink extends withComponent(withPreact()) {
       this.dispatchEvent(
         new CustomEvent('activateLink', {
           detail: {
-            isActiveNow: this.active
+            isActiveNow: true
           },
           bubbles: true,
         })
@@ -198,6 +200,21 @@ class BoltNavLink extends withComponent(withPreact()) {
 customElements.define('bolt-nav-link', BoltNavLink);
 
 
+gumshoe.init({
+  // All the link activation logic is handled in the callback, but gumshoe won't work without
+  // a value for activeClass, so we give it a placeholder.
+  activeClass: 'gumshoe',
+  scrollDelay: true,
+  callback: function (nav) {
+    if (nav && nav.hasOwnProperty('nav')) {
+      if (!nav.nav.classList.contains('is-active')) {
+        // If the parent already has the is-active class, it was activated by something other
+        // than gumshoe-- no need to duplicate effort, so abort.
+        nav.nav.parentElement.activateLink();
+      }
+    }
+  }
+});
 
 
 // Create a custom 'optimizedResize' event that works just like window.resize but is more performant because it
@@ -223,3 +240,4 @@ customElements.define('bolt-nav-link', BoltNavLink);
   // such as scroll.
   throttle("resize", "optimizedResize");
 })();
+
