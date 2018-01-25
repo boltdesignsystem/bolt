@@ -1,0 +1,16 @@
+{% extends "@bolt/default-template.twig" %}
+
+{% block global_header %}
+  {% include "@bolt/page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+  {% for i in 0..10 %}
+    {% include "@bolt/video.twig" with {
+      "videoId": "5609376179001",
+      "accountId": "1900410236",
+      "playerId": "r1CAdLzTW",
+      "videoUuid": "js-bolt-video-uuid--" ~ i ~ "x"
+    } only %}
+  {% endfor %}
+{% endblock %}
