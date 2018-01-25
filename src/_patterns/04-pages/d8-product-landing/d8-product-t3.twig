@@ -75,6 +75,11 @@
           text: "Move past traditional CRM systems to a true journey-enabled, customer engagement suite. Learn how Pega is helping enterprises revolutionize their customer engagement with end-to-end automation and real-time AI on the only unified CRM platform.",
           size: "medium"
         } only %}
+        {% include "@bolt/video.twig" with {
+          "videoId": "5609376179001",
+          "accountId": "1900410236",
+          "playerId": "r1CAdLzTW"
+        } only %}
       {% endcell %}
 
 
@@ -296,7 +301,45 @@
   {% endblock %}
 {% endembed %}
 
+  {% embed "@bolt/band.twig" with {
+    size: "small",
+    theme: "xdark",
+    fullBleed: true
+  } only %}
+    {% block band_content %}
+      {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+          {% set videoUuid3 = "js-bolt-video-uuid--3c" %}
+          {% include "@bolt/video.twig" with {
+            "videoId": "5609376179001",
+            "accountId": "1900410236",
+            "playerId": "r1CAdLzTW",
+            "videoUuid": videoUuid3
+          } only %}
+        {% endcell %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+          {% include "@bolt/subheadline.twig" with {
+            text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
+            size: "xxlarge",
+            tag: "span"
+          } only %}
 
+          {% include "@bolt/text.twig" with {
+            text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
+            size: "medium"
+          } only %}
+          {% include "@bolt/button.twig" with {
+            text: "Toggle video",
+            tag: "button",
+            attributes: {
+              "on-click": "toggle",
+              "on-click-target": videoUuid3
+            }
+          } only %}
+        {% endcell %}
+      {% endgrid %}
+    {% endblock %}
+  {% endembed %}
 
 {% embed "@bolt/band.twig" with {
   size: "medium",
@@ -384,8 +427,45 @@
   {% endblock %}
 {% endembed %}
 
+  {% embed "@bolt/band.twig" with {
+    size: "small",
+    theme: "xdark",
+    fullBleed: true
+  } only %}
+    {% block band_content %}
+      {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+          {% include "@bolt/subheadline.twig" with {
+            text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
+            size: "xxlarge",
+            tag: "span"
+          } only %}
 
-
+          {% include "@bolt/text.twig" with {
+            text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
+            size: "medium"
+          } only %}
+          {% set videoUuid3 = "js-bolt-video-uuid--3" %}
+          {% include "@bolt/button.twig" with {
+            text: "Toggle video",
+            tag: "button",
+            attributes: {
+              "on-click": "toggle",
+              "on-click-target": videoUuid3
+            }
+          } only %}
+        {% endcell %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+          {% include "@bolt/video.twig" with {
+            "videoId": "5609376179001",
+            "accountId": "1900410236",
+            "playerId": "r1CAdLzTW",
+            "videoUuid": videoUuid3
+          } only %}
+        {% endcell %}
+      {% endgrid %}
+    {% endblock %}
+  {% endembed %}
 
 {% embed "@bolt/band.twig" with {
   size: "medium",
@@ -433,6 +513,47 @@
         } only %}
       {% endcell %}
     {% endgrid %}
+  {% endblock %}
+{% endembed %}
+
+
+{% embed "@bolt/band.twig" with {
+  size: "small",
+  theme: "xdark",
+  fullBleed: true
+} only %}
+  {% block band_content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+        {% set videoUuid3 = "js-bolt-video-uuid--3b" %}
+        {% include "@bolt/video.twig" with {
+          "videoId": "5609376179001",
+          "accountId": "1900410236",
+          "playerId": "r1CAdLzTW",
+          "videoUuid": videoUuid3
+        } only %}
+        {% endcell %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+          {% include "@bolt/subheadline.twig" with {
+            text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
+            size: "xxlarge",
+            tag: "span"
+          } only %}
+
+          {% include "@bolt/text.twig" with {
+            text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
+            size: "medium"
+          } only %}
+          {% include "@bolt/button.twig" with {
+            text: "Toggle video",
+            tag: "button",
+            attributes: {
+              "on-click": "toggle",
+              "on-click-target": videoUuid3
+            }
+          } only %}
+        {% endcell %}
+      {% endgrid %}
   {% endblock %}
 {% endembed %}
 
