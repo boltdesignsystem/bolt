@@ -35,44 +35,6 @@ const plPublic = path.join(plRoot, plConfig.publicDir);
 const consolePath = path.join(plRoot, 'core/console');
 const timer = require('../utils/timer');
 
-/**
- * Builds info file for Twig Namespaces
- * Creates `bolt-twig-namespaces.json` in `config.dataDir` from the Bolt Manifest. That is pulled in by [Twig Namespace plugin](https://packagist.org/packages/evanlovely/plugin-twig-namespaces) in the PL config file.
- * @async
- * @returns {Promise<void>}
- */
-async function makeTwigNamespaceFile() {
-  const namespaces = {};
-  const allDirs = [];
-  const {global, individual} = manifest.getBoltManifest().components;
-  [global, individual].forEach((componentList) => {
-    componentList.src.forEach((component) => {
-      const dir = path.relative(plRoot, component.dir);
-      namespaces[component.basicName] = {
-        recursive: true,
-        paths: [dir],
-      };
-      allDirs.push(dir);
-    });
-  });
-
-  const namespaceConfigFile = Object.assign({
-    // Can hit anything with `@bolt`
-    bolt: {
-      recursive: true,
-      paths: [
-        plSource,
-        ...allDirs,
-      ],
-    }
-  }, namespaces, config.plTwigNamespaces || {});
-
-  await writeFile(
-    path.join(config.dataDir, 'bolt-twig-namespaces.json'),
-    JSON.stringify(namespaceConfigFile, null, '  ')
-  );
-}
-
 function plBuild(errorShouldExit) {
   return new Promise((resolve, reject) => {
     const plSpinner = ora(chalk.blue('Building Pattern Lab...')).start();
@@ -168,5 +130,4 @@ module.exports = {
   compile,
   watch,
   clean,
-  makeTwigNamespaceFile,
 };

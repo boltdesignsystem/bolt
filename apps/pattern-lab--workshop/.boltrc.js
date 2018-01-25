@@ -6,7 +6,7 @@ module.exports = {
   wwwDir: 'www',
   plConfigFile: './config/config.yml',
   verbosity: 1,
-  plTwigNamespaces: {
+  extraTwigNamespaces: {
     'bolt-assets': {
       recursive: true,
       paths: ['www/build'],

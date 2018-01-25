@@ -65,9 +65,55 @@ async function writeBoltManifest() {
   }
 }
 
+/**
+ * Builds & writes info file for Twig Namespaces
+ * Creates `bolt-twig-namespaces.json` in `config.dataDir` from the Bolt Manifest. That is pulled in by [Twig Namespace plugin](https://packagist.org/packages/evanlovely/plugin-twig-namespaces) in the PL config file.
+ * @param relativeFrom {string} - If present, the path will be relative from this, else it will be absolute.
+ * @async
+ * @returns {Promise<void>}
+ */
+async function writeTwigNamespaceFile(relativeFrom, extraNamespaces = {}) {
+  const namespaces = {};
+  const allDirs = [];
+  const {global, individual} = getBoltManifest().components;
+
+  [global, individual].forEach((componentList) => {
+    componentList.src.forEach((component) => {
+      const dir = relativeFrom
+        ? path.relative(relativeFrom, component.dir)
+        : component.dir;
+
+      namespaces[component.basicName] = {
+        recursive: true,
+        paths: [dir],
+      };
+
+      allDirs.push(dir);
+    });
+  });
+
+  const namespaceConfigFile = Object.assign({
+    // Can hit anything with `@bolt`
+    bolt: {
+      recursive: true,
+      paths: [
+        config.srcDir,
+        ...allDirs,
+      ],
+    }
+  }, namespaces, extraNamespaces);
+
+  await writeFile(
+    path.join(config.dataDir, 'bolt-twig-namespaces.json'),
+    JSON.stringify(namespaceConfigFile, null, '  ')
+  );
+}
+
+
 module.exports = {
   buildBoltManifest,
   getBoltManifest,
   writeBoltManifest,
+  writeTwigNamespaceFile,
   getAllDirs,
 };
