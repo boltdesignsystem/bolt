@@ -1,0 +1,34 @@
+{% extends "@bolt/default-template.twig" %}
+
+{% block global_header %}
+  {% include "@bolt/page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+  {% for i in 0..10 %}
+    {% embed "@bolt/band.twig" with {
+      size: "small",
+      theme: "xdark",
+      fullBleed: true
+    } only %}
+      {% block band_content %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+            {% for i in 0..3 %}
+              {% include "@bolt/button.twig" with {
+                "text": "Example Button Text"
+              } only %}
+            {% endfor %}
+          {% endcell %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+            {% for i in 0..3 %}
+              {% include "@bolt/button.twig" with {
+                "text": "Example Button Text"
+              } only %}
+            {% endfor %}
+          {% endcell %}
+        {% endgrid %}
+      {% endblock %}
+    {% endembed %}
+  {% endfor %}
+{% endblock %}
