@@ -6,13 +6,18 @@
 
 {% block main_content %}
 
-  <div class="c-bolt-band c-bolt-band--full c-bolt-band--small t-bolt-light">
+  <div class="c-bolt-band c-bolt-band--full c-bolt-band--medium t-bolt-dark">
     <div class="o-bolt-wrapper">
       <h1 class="c-bolt-headline c-bolt-headline--xxxlarge">
         <span class="c-bolt-headline__text">
-          Press &amp; Media
+          Page Headline
         </span>
       </h1>
+      <h2 class="c-bolt-subheadline c-bolt-subheadline--xlarge">
+        <span class="c-bolt-subheadline__text">
+          Page subheadline if there is one.
+        </span>
+      </h2>
       <form action="#" method="post" class="c-bolt-form">
         <fieldset class="c-bolt-fieldset">
           <div class="c-bolt-input-list">
@@ -33,6 +38,14 @@
           </div>
         </fieldset>
       </form>
+    </div>
+  </div>
+
+  <div class="c-bolt-band c-bolt-band--full c-bolt-band--small t-bolt-light">
+    <div class="o-bolt-wrapper">
+      <p class="c-bolt-text c-bolt-text--bold">
+        Showing 555 results. (<a href="javascript:" class="c-bolt-link">Clear filters</a>)
+      </p>
       {% grid %}
         {% cell 'u-bolt-width-1/1 u-bolt-width-3/12@medium' %}
           <div class="c-bolt-search-filters">
@@ -58,7 +71,64 @@
                     <legend class="c-bolt-legend">
                       <h2 class="c-bolt-headline c-bolt-headline--large">
                         <span class="c-bolt-headline__text">
-                          Category
+                          Search
+                        </span>
+                      </h2>
+                    </legend>
+                    <div class="c-bolt-input-list">
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input" type="search" name="search2-input" id="search2-input" placeholder="Enter text to search" required />
+                        <label class="c-bolt-floating-label" for="search2-input">
+                          Search
+                        </label>
+                        <div class="c-bolt-input-icons">
+                          <button class="c-bolt-input-icon c-bolt-input-icon--link">
+                            {% include "@bolt/icon.twig" with {
+                              "name": "search",
+                              "size": "medium"
+                            } only %}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset class="c-bolt-fieldset">
+                    <legend class="c-bolt-legend">
+                      <h2 class="c-bolt-headline c-bolt-headline--large">
+                        <span class="c-bolt-headline__text">
+                          Single Select
+                        </span>
+                      </h2>
+                    </legend>
+                    <div class="c-bolt-input-list">
+                      <div class="c-bolt-input-list__item">
+                        <select class="c-bolt-input c-bolt-input--select is-filled" name="singleselect" id="singleselect">
+                          <option value="Selection 1" selected>
+                            Selection 1
+                          </option>
+                          <option value="Selection 2">
+                            Selection 2
+                          </option>
+                        </select>
+                        <label class="c-bolt-floating-label" for="singleselect">
+                          Select
+                        </label>
+                        <div class="c-bolt-input-icons">
+                          <div class="c-bolt-input-icon">
+                            {% include "@bolt/icon.twig" with {
+                              "name": "chevron-right",
+                              "size": "medium"
+                            } only %}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset class="c-bolt-fieldset">
+                    <legend class="c-bolt-legend">
+                      <h2 class="c-bolt-headline c-bolt-headline--large">
+                        <span class="c-bolt-headline__text">
+                          Either Or
                         </span>
                       </h2>
                     </legend>
@@ -67,20 +137,26 @@
                         &laquo;
                         <a href="javascript:" class="c-bolt-link">
                           <span class="c-bolt-link__text">
-                            Any category
+                            Any
                           </span>
                         </a>
                       </div>
                       <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--radio" type="radio" name="category" id="category-choice-1" value="Media Coverage" checked />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--radio" for="category-choice-1">
-                          <span class="c-bolt-inline-label__emphasize">Media Coverage (45)</span>
+                        <input class="c-bolt-input c-bolt-input--radio" type="radio" name="eitheror" id="eitheror-choice-1" value="Item 1" checked />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--radio" for="eitheror-choice-1">
+                          <span class="c-bolt-inline-label__emphasize">Item 1 (45)</span>
                         </label>
                       </div>
                       <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--radio" type="radio" name="category" id="category-choice-2" value="Press Release" />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--radio" for="category-choice-2">
-                          <span class="c-bolt-inline-label__emphasize">Press Release (32)</span>
+                        <input class="c-bolt-input c-bolt-input--radio" type="radio" name="eitheror" id="eitheror-choice-2" value="Item 2" />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--radio" for="eitheror-choice-2">
+                          <span class="c-bolt-inline-label__emphasize">Item 2 (32)</span>
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--radio" type="radio" name="eitheror" id="eitheror-choice-3" value="Item 3" />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--radio" for="eitheror-choice-3">
+                          <span class="c-bolt-inline-label__emphasize">Item 3 (2)</span>
                         </label>
                       </div>
                     </div>
@@ -89,7 +165,7 @@
                     <legend class="c-bolt-legend">
                       <h2 class="c-bolt-headline c-bolt-headline--large">
                         <span class="c-bolt-headline__text">
-                          Date
+                          And
                         </span>
                       </h2>
                     </legend>
@@ -103,183 +179,33 @@
                         </a>
                       </div>
                       <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="date" id="date-choice-1" value="2017" checked />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="date-choice-1">
-                          <span class="c-bolt-inline-label__emphasize">2017 (12)</span>
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="and" id="and-choice-1" value="Item 1" checked />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="and-choice-1">
+                          <span class="c-bolt-inline-label__emphasize">Item 1 (12)</span>
                         </label>
                       </div>
                       <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="date" id="date-choice-2" value="2016" checked />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="date-choice-2">
-                          <span class="c-bolt-inline-label__emphasize">2016 (8)</span>
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="and" id="and-choice-2" value="Item 2" checked />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="and-choice-2">
+                          <span class="c-bolt-inline-label__emphasize">Item 2 (8)</span>
                         </label>
                       </div>
                       <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="date" id="date-choice-3" value="2015" checked />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="date-choice-3">
-                          <span class="c-bolt-inline-label__emphasize">2015 (3)</span>
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="and" id="and-choice-3" value="Item 3" checked />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="and-choice-3">
+                          <span class="c-bolt-inline-label__emphasize">Item 3 (3)</span>
                         </label>
                       </div>
                       <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="date" id="date-choice-4" value="2014" checked />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="date-choice-4">
-                          <span class="c-bolt-inline-label__emphasize">2014 (5)</span>
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="and" id="and-choice-4" value="Item 4" checked />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="and-choice-4">
+                          <span class="c-bolt-inline-label__emphasize">Item 4 (5)</span>
                         </label>
                       </div>
                       <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="date" id="date-choice-5" value="2013" />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="date-choice-5">
-                          <span class="c-bolt-inline-label__emphasize">2013 (10)</span>
-                        </label>
-                      </div>
-                    </div>
-                  </fieldset>
-                  <fieldset class="c-bolt-fieldset">
-                    <legend class="c-bolt-legend">
-                      <h2 class="c-bolt-headline c-bolt-headline--large">
-                        <span class="c-bolt-headline__text">
-                          Topic
-                        </span>
-                      </h2>
-                    </legend>
-                    <div class="c-bolt-input-list c-bolt-input-list--stack-spacing-none">
-                      <div class="c-bolt-input-list__item">
-                        &laquo;
-                        <a href="javascript:" class="c-bolt-link">
-                          <span class="c-bolt-link__text">
-                            Clear
-                          </span>
-                        </a>
-                      </div>
-                      <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-1" value="Analytics" />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="topic-choice-1">
-                          <span class="c-bolt-inline-label__emphasize">Analytics (3)</span>
-                        </label>
-                      </div>
-                      <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-2" value="BPM" />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="topic-choice-2">
-                          <span class="c-bolt-inline-label__emphasize">BPM (4)</span>
-                        </label>
-                      </div>
-                      <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-3" value="Case Management" checked />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="topic-choice-3">
-                          <span class="c-bolt-inline-label__emphasize">Case Management (6)</span>
-                        </label>
-                      </div>
-                      <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-4" value="Cloud" checked />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="topic-choice-4">
-                          <span class="c-bolt-inline-label__emphasize">Cloud (7)</span>
-                        </label>
-                      </div>
-                      <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-5" value="CRM" checked />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="topic-choice-5">
-                          <span class="c-bolt-inline-label__emphasize">CRM (14)</span>
-                        </label>
-                      </div>
-                      <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-6" value="Customer Service" />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="topic-choice-6">
-                          <span class="c-bolt-inline-label__emphasize">Customer Service (10)</span>
-                        </label>
-                      </div>
-                      <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-7" value="Decision Management" />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="topic-choice-7">
-                          <span class="c-bolt-inline-label__emphasize">Decision Management (34)</span>
-                        </label>
-                      </div>
-                      <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-8" value="Internet of Things" />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="topic-choice-8">
-                          <span class="c-bolt-inline-label__emphasize">Internet of Things (1)</span>
-                        </label>
-                      </div>
-                      <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-9" value="Marketing Automation" checked />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="topic-choice-9">
-                          <span class="c-bolt-inline-label__emphasize">Marketing Automation (23)</span>
-                        </label>
-                      </div>
-                      <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-10" value="Mobile" />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="topic-choice-10">
-                          <span class="c-bolt-inline-label__emphasize">Mobile (5)</span>
-                        </label>
-                      </div>
-                      <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-11" value="Operations" checked />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="topic-choice-11">
-                          <span class="c-bolt-inline-label__emphasize">Operations (5)</span>
-                        </label>
-                      </div>
-                      <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Pega Platform" />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="topic-choice-12">
-                          <span class="c-bolt-inline-label__emphasize">Pega Platform (9)</span>
-                        </label>
-                      </div>
-                    </div>
-                  </fieldset>
-                  <fieldset class="c-bolt-fieldset">
-                    <legend class="c-bolt-legend">
-                      <h2 class="c-bolt-headline c-bolt-headline--large">
-                        <span class="c-bolt-headline__text">
-                          Industry
-                        </span>
-                      </h2>
-                    </legend>
-                    <div class="c-bolt-input-list c-bolt-input-list--stack-spacing-none">
-                      <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-1" value="Communications & Media" />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="industry-choice-1">
-                          <span class="c-bolt-inline-label__emphasize">Communications & Media (12)</span>
-                        </label>
-                      </div>
-                      <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-2" value="Energy & Utilities" />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="industry-choice-2">
-                          <span class="c-bolt-inline-label__emphasize">Energy & Utilities (8)</span>
-                        </label>
-                      </div>
-                      <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-3" value="Financial Services" />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="industry-choice-3">
-                          <span class="c-bolt-inline-label__emphasize">Financial Services (3)</span>
-                        </label>
-                      </div>
-                      <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-4" value="Government" />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="industry-choice-4">
-                          <span class="c-bolt-inline-label__emphasize">Government (5)</span>
-                        </label>
-                      </div>
-                      <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-5" value="Healthcare" />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="industry-choice-5">
-                          <span class="c-bolt-inline-label__emphasize">Healthcare (10)</span>
-                        </label>
-                      </div>
-                      <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-6" value="Insurance" />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="industry-choice-6">
-                          <span class="c-bolt-inline-label__emphasize">Insurance (10)</span>
-                        </label>
-                      </div>
-                      <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-7" value="Life Sciences" />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="industry-choice-7">
-                          <span class="c-bolt-inline-label__emphasize">Life Sciences (10)</span>
-                        </label>
-                      </div>
-                      <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-8" value="Manufacturing & High Technology" />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="industry-choice-8">
-                          <span class="c-bolt-inline-label__emphasize">Manufacturing & High Technology (10)</span>
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="and" id="and-choice-5" value="Item 5" />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="and-choice-5">
+                          <span class="c-bolt-inline-label__emphasize">Item 5 (10)</span>
                         </label>
                       </div>
                     </div>
