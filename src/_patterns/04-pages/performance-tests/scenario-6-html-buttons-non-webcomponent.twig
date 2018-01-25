@@ -1,0 +1,13 @@
+{% extends "@bolt/default-template.twig" %}
+
+{% block global_header %}
+  {% include "@bolt/page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+  {% for i in 0..800 %}
+    {% include "@bolt/button--non-webcomponent.twig" with {
+      "text": "Example Button Text"
+    } only %}
+  {% endfor %}
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "@bolt/default-template.twig" %}
+
+{% block global_header %}
+  {% include "@bolt/page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+  {% for i in 0..10 %}
+    {% include "@bolt/card.twig" with {
+      "image": {
+        "src": "/images/sample/anthem-video.jpg"
+      },
+      "teaser": {
+        "eyebrow": {
+          text: "Article"
+        },
+        "headlines": [
+          {
+            "type": "headline",
+            "text": "Gartner Magic Quadrant for the CRM Customer Engagement Center",
+            "size": "large"
+          }
+        ],
+        "content": "Simplify and automate to reduce costs and improve agility.",
+        "buttons": [
+          {
+            "text": "Learn More",
+            "style": "secondary",
+            "url": "www.google.com/pega7",
+            "width": "full"
+          }
+        ]
+      }
+    } only %}
+  {% endfor %}
+{% endblock %}

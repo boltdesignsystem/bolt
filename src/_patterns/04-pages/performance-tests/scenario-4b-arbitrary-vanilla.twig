@@ -1,0 +1,311 @@
+{% extends "@bolt/vanilla-template.twig" %}
+
+{% block global_header %}
+  {#{% include "@bolt/page-header.twig" %}#}
+{% endblock %}
+
+{% block main_content %}
+  {% for i in 0..10 %}
+    {% raw %}
+      <div id="sln"></div>
+      <div class="hd">
+        <div class="illustration png_fix">
+          <div class="content">
+            <div class="sensio_product">
+            </div>
+            <div class="clearfix">
+              <div class="logo_header"><a href="/">Twig</a></div>
+              <h1 class="title_header">
+                The flexible, fast, and secure<br />template engine for PHP
+              </h1>
+            </div>
+
+            <div class="menu">
+              <ul>
+                <li><a href="/">ABOUT</a></li>
+                <li><a class="active" href="/doc/2.x/">DOCUMENTATION</a></li>
+                <li><a href="/development">DEVELOPMENT</a></li>
+                <li><a href="/contributors">CONTRIBUTORS</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bd">
+        <div class="content">
+          <div class="alert">
+
+            You are reading the documentation for Twig 2.x.
+
+            Switch to the documentation for Twig
+            <a href="/doc/1.x/">1.x</a>.
+          </div>
+
+
+          <div class="infobar clearfix">
+            <div id="doc-toc" class="infobar-box">
+              <h3>Table of Contents</h3>
+              <ul>
+                <li><a class="reference internal" href="#"><code class="notranslate">for</code></a><ul>
+                    <li><a class="reference internal" href="#the-loop-variable">The <cite>loop</cite> variable</a></li>
+                    <li><a class="reference internal" href="#adding-a-condition">Adding a condition</a></li>
+                    <li><a class="reference internal" href="#the-else-clause">The <cite>else</cite> Clause</a></li>
+                    <li><a class="reference internal" href="#iterating-over-keys">Iterating over Keys</a></li>
+                    <li><a class="reference internal" href="#iterating-over-keys-and-values">Iterating over Keys and Values</a></li>
+                    <li><a class="reference internal" href="#iterating-over-a-subset">Iterating over a Subset</a></li>
+                  </ul>
+                </li>
+              </ul>
+
+            </div>
+
+            <div class="infobar-box">
+              <h3>Questions &amp; Feedback</h3>
+              <div class="feedback">
+                <p>
+                  <strong>Found a typo or an error?</strong><br />
+                  Want to improve this document? <a href="https://github.com/twigphp/Twig/edit/2.x/doc/tags/for.rst">Edit</a> it.
+                </p>
+                <p>
+                  <strong>Need support or have a technical question?</strong><br />
+                  Ask support on <a href="https://stackoverflow.com/">Stack Overflow</a>.
+                </p>
+              </div>
+
+              <h3>License</h3>
+              <div id="license">
+                Twig <span xmlns:dc="https://purl.org/dc/elements/1.1/" href="https://purl.org/dc/dcmitype/MovingImage" rel="dc:type">documentation</span> is licensed under the
+                new BSD <a rel="license" href="/license">license</a>.
+              </div>
+            </div>
+          </div>
+
+          <div class="body-web">
+            <div class="section" id="for">
+              <h1><code class="notranslate">for</code><a class="headerlink" href="#for" title="Permalink to this headline">¶</a></h1>
+              <p>Loop over each item in a sequence. For example, to display a list of users
+                provided in a variable called <code class="notranslate">users</code>:</p>
+              <div class="literal-block notranslate"><div class="highlight-jinja"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+  2
+  3
+  4
+  5
+  6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="x">&lt;h1&gt;Members&lt;/h1&gt;</span>
+  <span class="x">&lt;ul&gt;</span>
+  <span class="x">    </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">user</span> <span class="k">in</span> <span class="nv">users</span> <span class="cp">%}</span><span class="x"></span>
+  <span class="x">        &lt;li&gt;</span><span class="cp">{{</span> <span class="nv">user.username</span><span class="o">|</span><span class="nf">e</span> <span class="cp">}}</span><span class="x">&lt;/li&gt;</span>
+  <span class="x">    </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+  <span class="x">&lt;/ul&gt;</span>
+  </pre></div>
+                      </td></tr></table></div></div>
+              <div class="admonition-wrapper">
+                <div class="note"></div><div class="admonition admonition-note"><p class="first admonition-title">Note</p>
+                  <p class="last">A sequence can be either an array or an object implementing the
+                    <code class="notranslate">Traversable</code> interface.</p>
+                </div></div>
+              <p>If you do need to iterate over a sequence of numbers, you can use the <code class="notranslate">..</code>
+                operator:</p>
+              <div class="literal-block notranslate"><div class="highlight-jinja"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+  2
+  3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">i</span> <span class="k">in</span> <span class="m">0.</span><span class="nv">.10</span> <span class="cp">%}</span><span class="x"></span>
+  <span class="x">    * </span><span class="cp">{{</span> <span class="nv">i</span> <span class="cp">}}</span><span class="x"></span>
+  <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+  </pre></div>
+                      </td></tr></table></div></div>
+              <p>The above snippet of code would print all numbers from 0 to 10.</p>
+              <p>It can be also useful with letters:</p>
+              <div class="literal-block notranslate"><div class="highlight-jinja"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+  2
+  3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">letter</span> <span class="k">in</span> <span class="s1">&#39;a&#39;</span><span class="p">..</span><span class="s1">&#39;z&#39;</span> <span class="cp">%}</span><span class="x"></span>
+  <span class="x">    * </span><span class="cp">{{</span> <span class="nv">letter</span> <span class="cp">}}</span><span class="x"></span>
+  <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+  </pre></div>
+                      </td></tr></table></div></div>
+              <p>The <code class="notranslate">..</code> operator can take any expression at both sides:</p>
+              <div class="literal-block notranslate"><div class="highlight-jinja"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+  2
+  3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">letter</span> <span class="k">in</span> <span class="s1">&#39;a&#39;</span><span class="o">|</span><span class="nf">upper</span><span class="p">..</span><span class="s1">&#39;z&#39;</span><span class="o">|</span><span class="nf">upper</span> <span class="cp">%}</span><span class="x"></span>
+  <span class="x">    * </span><span class="cp">{{</span> <span class="nv">letter</span> <span class="cp">}}</span><span class="x"></span>
+  <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+  </pre></div>
+                      </td></tr></table></div></div>
+              <div class="section" id="the-loop-variable">
+                <h2>The <cite>loop</cite> variable<a class="headerlink" href="#the-loop-variable" title="Permalink to this headline">¶</a></h2>
+                <p>Inside of a <code class="notranslate">for</code> loop block you can access some special variables:</p>
+                <table border="1" class="docutils">
+                  <colgroup>
+                    <col width="26%" />
+                    <col width="74%" />
+                  </colgroup>
+                  <thead valign="bottom">
+                  <tr class="row-odd"><th class="head">Variable</th>
+                    <th class="head">Description</th>
+                  </tr>
+                  </thead>
+                  <tbody valign="top">
+                  <tr class="row-even"><td><code class="notranslate">loop.index</code></td>
+                    <td>The current iteration of the loop. (1 indexed)</td>
+                  </tr>
+                  <tr class="row-odd"><td><code class="notranslate">loop.index0</code></td>
+                    <td>The current iteration of the loop. (0 indexed)</td>
+                  </tr>
+                  <tr class="row-even"><td><code class="notranslate">loop.revindex</code></td>
+                    <td>The number of iterations from the end of the loop (1 indexed)</td>
+                  </tr>
+                  <tr class="row-odd"><td><code class="notranslate">loop.revindex0</code></td>
+                    <td>The number of iterations from the end of the loop (0 indexed)</td>
+                  </tr>
+                  <tr class="row-even"><td><code class="notranslate">loop.first</code></td>
+                    <td>True if first iteration</td>
+                  </tr>
+                  <tr class="row-odd"><td><code class="notranslate">loop.last</code></td>
+                    <td>True if last iteration</td>
+                  </tr>
+                  <tr class="row-even"><td><code class="notranslate">loop.length</code></td>
+                    <td>The number of items in the sequence</td>
+                  </tr>
+                  <tr class="row-odd"><td><code class="notranslate">loop.parent</code></td>
+                    <td>The parent context</td>
+                  </tr>
+                  </tbody>
+                </table>
+                <div class="literal-block notranslate"><div class="highlight-jinja"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+  2
+  3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">user</span> <span class="k">in</span> <span class="nv">users</span> <span class="cp">%}</span><span class="x"></span>
+  <span class="x">    </span><span class="cp">{{</span> <span class="nb">loop</span><span class="nv">.index</span> <span class="cp">}}</span><span class="x"> - </span><span class="cp">{{</span> <span class="nv">user.username</span> <span class="cp">}}</span><span class="x"></span>
+  <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+  </pre></div>
+                        </td></tr></table></div></div>
+                <div class="admonition-wrapper">
+                  <div class="note"></div><div class="admonition admonition-note"><p class="first admonition-title">Note</p>
+                    <p class="last">The <code class="notranslate">loop.length</code>, <code class="notranslate">loop.revindex</code>, <code class="notranslate">loop.revindex0</code>, and
+                      <code class="notranslate">loop.last</code> variables are only available for PHP arrays, or objects that
+                      implement the <code class="notranslate">Countable</code> interface. They are also not available when
+                      looping with a condition.</p>
+                  </div></div>
+              </div>
+              <div class="section" id="adding-a-condition">
+                <h2>Adding a condition<a class="headerlink" href="#adding-a-condition" title="Permalink to this headline">¶</a></h2>
+                <p>Unlike in PHP, it's not possible to <code class="notranslate">break</code> or <code class="notranslate">continue</code> in a loop. You
+                  can however filter the sequence during iteration which allows you to skip
+                  items. The following example skips all the users which are not active:</p>
+                <div class="literal-block notranslate"><div class="highlight-jinja"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+  2
+  3
+  4
+  5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="x">&lt;ul&gt;</span>
+  <span class="x">    </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">user</span> <span class="k">in</span> <span class="nv">users</span> <span class="k">if</span> <span class="nv">user.active</span> <span class="cp">%}</span><span class="x"></span>
+  <span class="x">        &lt;li&gt;</span><span class="cp">{{</span> <span class="nv">user.username</span><span class="o">|</span><span class="nf">e</span> <span class="cp">}}</span><span class="x">&lt;/li&gt;</span>
+  <span class="x">    </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+  <span class="x">&lt;/ul&gt;</span>
+  </pre></div>
+                        </td></tr></table></div></div>
+                <p>The advantage is that the special loop variable will count correctly thus not
+                  counting the users not iterated over. Keep in mind that properties like
+                  <code class="notranslate">loop.last</code> will not be defined when using loop conditions.</p>
+                <div class="admonition-wrapper">
+                  <div class="note"></div><div class="admonition admonition-note"><p class="first admonition-title">Note</p>
+                    <p class="last">Using the <code class="notranslate">loop</code> variable within the condition is not recommended as it
+                      will probably not be doing what you expect it to. For instance, adding a
+                      condition like <code class="notranslate">loop.index &gt; 4</code> won't work as the index is only
+                      incremented when the condition is true (so the condition will never
+                      match).</p>
+                  </div></div>
+              </div>
+              <div class="section" id="the-else-clause">
+                <h2>The <cite>else</cite> Clause<a class="headerlink" href="#the-else-clause" title="Permalink to this headline">¶</a></h2>
+                <p>If no iteration took place because the sequence was empty, you can render a
+                  replacement block by using <code class="notranslate">else</code>:</p>
+                <div class="literal-block notranslate"><div class="highlight-jinja"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+  2
+  3
+  4
+  5
+  6
+  7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="x">&lt;ul&gt;</span>
+  <span class="x">    </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">user</span> <span class="k">in</span> <span class="nv">users</span> <span class="cp">%}</span><span class="x"></span>
+  <span class="x">        &lt;li&gt;</span><span class="cp">{{</span> <span class="nv">user.username</span><span class="o">|</span><span class="nf">e</span> <span class="cp">}}</span><span class="x">&lt;/li&gt;</span>
+  <span class="x">    </span><span class="cp">{%</span> <span class="k">else</span> <span class="cp">%}</span><span class="x"></span>
+  <span class="x">        &lt;li&gt;&lt;em&gt;no user found&lt;/em&gt;&lt;/li&gt;</span>
+  <span class="x">    </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+  <span class="x">&lt;/ul&gt;</span>
+  </pre></div>
+                        </td></tr></table></div></div>
+              </div>
+              <div class="section" id="iterating-over-keys">
+                <h2>Iterating over Keys<a class="headerlink" href="#iterating-over-keys" title="Permalink to this headline">¶</a></h2>
+                <p>By default, a loop iterates over the values of the sequence. You can iterate
+                  on keys by using the <code class="notranslate">keys</code> filter:</p>
+                <div class="literal-block notranslate"><div class="highlight-jinja"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+  2
+  3
+  4
+  5
+  6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="x">&lt;h1&gt;Members&lt;/h1&gt;</span>
+  <span class="x">&lt;ul&gt;</span>
+  <span class="x">    </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">key</span> <span class="k">in</span> <span class="nv">users</span><span class="o">|</span><span class="nf">keys</span> <span class="cp">%}</span><span class="x"></span>
+  <span class="x">        &lt;li&gt;</span><span class="cp">{{</span> <span class="nv">key</span> <span class="cp">}}</span><span class="x">&lt;/li&gt;</span>
+  <span class="x">    </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+  <span class="x">&lt;/ul&gt;</span>
+  </pre></div>
+                        </td></tr></table></div></div>
+              </div>
+              <div class="section" id="iterating-over-keys-and-values">
+                <h2>Iterating over Keys and Values<a class="headerlink" href="#iterating-over-keys-and-values" title="Permalink to this headline">¶</a></h2>
+                <p>You can also access both keys and values:</p>
+                <div class="literal-block notranslate"><div class="highlight-jinja"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+  2
+  3
+  4
+  5
+  6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="x">&lt;h1&gt;Members&lt;/h1&gt;</span>
+  <span class="x">&lt;ul&gt;</span>
+  <span class="x">    </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">key</span><span class="o">,</span> <span class="nv">user</span> <span class="k">in</span> <span class="nv">users</span> <span class="cp">%}</span><span class="x"></span>
+  <span class="x">        &lt;li&gt;</span><span class="cp">{{</span> <span class="nv">key</span> <span class="cp">}}</span><span class="x">: </span><span class="cp">{{</span> <span class="nv">user.username</span><span class="o">|</span><span class="nf">e</span> <span class="cp">}}</span><span class="x">&lt;/li&gt;</span>
+  <span class="x">    </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+  <span class="x">&lt;/ul&gt;</span>
+  </pre></div>
+                        </td></tr></table></div></div>
+              </div>
+              <div class="section" id="iterating-over-a-subset">
+                <h2>Iterating over a Subset<a class="headerlink" href="#iterating-over-a-subset" title="Permalink to this headline">¶</a></h2>
+                <p>You might want to iterate over a subset of values. This can be achieved using
+                  the <a class="reference internal" href="../filters/slice.html"><span class="doc">slice</span></a> filter:</p>
+                <div class="literal-block notranslate"><div class="highlight-jinja"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+  2
+  3
+  4
+  5
+  6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="x">&lt;h1&gt;Top Ten Members&lt;/h1&gt;</span>
+  <span class="x">&lt;ul&gt;</span>
+  <span class="x">    </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">user</span> <span class="k">in</span> <span class="nv">users</span><span class="o">|</span><span class="nf">slice</span><span class="o">(</span><span class="m">0</span><span class="o">,</span> <span class="m">10</span><span class="o">)</span> <span class="cp">%}</span><span class="x"></span>
+  <span class="x">        &lt;li&gt;</span><span class="cp">{{</span> <span class="nv">user.username</span><span class="o">|</span><span class="nf">e</span> <span class="cp">}}</span><span class="x">&lt;/li&gt;</span>
+  <span class="x">    </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+  <span class="x">&lt;/ul&gt;</span>
+  </pre></div>
+                        </td></tr></table></div></div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="navigation">
+            <a accesskey="P" title="flush" href="flush.html">
+              &laquo;&nbsp;flush
+            </a>
+            <span class="separator">|</span>                            <a accesskey="N" title="from" href="from.html">
+              from&nbsp;&raquo;
+            </a>
+          </div>
+        </div>
+        <div class="ft">
+          <div class="content">
+            Website powered by <a href="https://symfony.com/">Symfony</a> and Twig, deployed on <a href="https://sensio.cloud/"></a>
+            <br />
+            The Twig <a href="/images/twig-logo.png">logo</a> is &copy; 2010-2018 <a href="https://sensiolabs.com/" class="sensiolabs">Sensio<span class="brand">Labs</span></a>
+          </div>
+        </div>
+      </div>
+    {% endraw %}
+  {% endfor %}
+{% endblock %}

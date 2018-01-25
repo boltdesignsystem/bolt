@@ -1,0 +1,15 @@
+{% extends "@bolt/default-template.twig" %}
+
+{% block global_header %}
+  {% include "@bolt/page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+  {% for i in 1..35 %}
+    {% if loop.index is even %}
+      <div style="background-color: lightgrey; height: 100px;"></div>
+    {% else  %}
+      <div style="background-color: darkgrey; height: 100px;"></div>
+    {% endif %}
+  {% endfor %}
+{% endblock %}
