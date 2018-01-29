@@ -4,7 +4,7 @@
 
   {# Generic Breadcrumb Lockup #}
 
-  {% set outer_band_content %}
+  {% set band_content %}
     <a href="" class="c-bolt-link">Home</a> &raquo; <a href="" class="c-bolt-link">Page</a> &raquo; <a href="" class="c-bolt-link">Sub Page</a>
     {% include "@bolt/band--feature.twig" with {
       "size": "medium",
@@ -48,25 +48,23 @@
   {% include "@bolt/band.twig" with {
     "size": "small",
     "theme": "xdark",
-    "content": outer_band_content
+    "content": band_content
   } only %}
 
-  <hr>
 
+  {# Demo notes #}
+  <hr>
   {% include "@bolt/headline.twig" with {
     "size": "large",
     "text": "Notes"
   } only %}
-
   {% include "@bolt/text.twig" with {
     "text": "Generic breadcrumbs. The above example shows a small outer band containing the breadcrumbs and a medium inner band with the content."
   } only %}
-
   {% include "@bolt/headline.twig" with {
     "size": "large",
     "text": "Theme and Background"
   } only %}
-
   {% include "@bolt/text.twig" with {
     "text": "Theme and background graphics should be set on the outer band. The inner band should contain a piece of non-themed transparent content, therefore theme must be set to 'none'."
   } only %}
@@ -76,7 +74,7 @@
 
   {# This has actual content #}
 
-  {% set outer_band_content %}
+  {% set band_content %}
     <a href="" class="c-bolt-link">Home</a> &raquo; <a href="" class="c-bolt-link">Why Pega?</a> &raquo; <a href="" class="c-bolt-link">Agile Goes Mainstream</a>
     {% include "@bolt/band--feature.twig" with {
       "size": "large",
@@ -118,25 +116,23 @@
 
   {% include "@bolt/band.twig" with {
     "size": "small",
-    "content": outer_band_content
+    "content": band_content
   } only %}
 
-  <hr>
 
+  {# Demo notes #}
+  <hr>
   {% include "@bolt/headline.twig" with {
     "size": "large",
     "text": "Notes"
   } only %}
-
   {% include "@bolt/text.twig" with {
     "text": "Breadcrumbs with actual content. Using large inner band."
   } only %}
-
   {% include "@bolt/headline.twig" with {
     "size": "large",
     "text": "Theme and Background"
   } only %}
-
   {% include "@bolt/text.twig" with {
     "text": "Theme and background graphics should be set on the outer band. The inner band should contain a piece of non-themed transparent content, therefore theme must be set to 'none'."
   } only %}
@@ -146,7 +142,7 @@
 
   {# This has a background image #}
 
-  {% set outer_band_content %}
+  {% set band_content %}
     <a href="" class="c-bolt-link">Home</a> &raquo; <a href="" class="c-bolt-link">Why Pega?</a> &raquo; <a href="" class="c-bolt-link">Agile Goes Mainstream</a>
     {% include "@bolt/band--feature.twig" with {
       "theme": "none",
@@ -204,25 +200,23 @@
         "src": "/images/sample/product-background-t2.jpg"
       }]
     },
-    "content": outer_band_content
+    "content": band_content
   } only %}
 
-  <hr>
 
+  {# Demo notes #}
+  <hr>
   {% include "@bolt/headline.twig" with {
     "size": "large",
     "text": "Notes"
   } only %}
-
   {% include "@bolt/text.twig" with {
     "text": "Breadcrumbs with actual content and a background image on the outer band. Using large inner band."
   } only %}
-
   {% include "@bolt/headline.twig" with {
     "size": "large",
     "text": "Theme and Background"
   } only %}
-
   {% include "@bolt/text.twig" with {
     "text": "Theme and background graphics should be set on the outer band. The inner band should contain a piece of non-themed transparent content, therefore theme must be set to 'none'."
   } only %}
