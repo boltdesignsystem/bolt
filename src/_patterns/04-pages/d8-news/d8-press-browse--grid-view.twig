@@ -405,7 +405,7 @@
                   </div>
                 {% endcell %}
                 {% cell "u-bolt-width-6/12 u-bolt-width-4/12@medium" %}
-                  <form action="#" method="post" class="c-bolt-form">
+                  {# <form action="#" method="post" class="c-bolt-form">
                     <fieldset class="c-bolt-fieldset">
                       <div class="c-bolt-input-list">
                         <div class="c-bolt-input-list__item">
@@ -431,7 +431,7 @@
                         </div>
                       </div>
                     </fieldset>
-                  </form>
+                  </form> #}
                 {% endcell %}
               {% endgrid %}
             {% endcell %}
@@ -439,10 +439,6 @@
               {% include "@bolt/card.twig" with {
                 theme: "xlight",
                 contentItems: [
-                  {
-                    pattern: "image",
-                    src: "/images/placeholders/1200x660.jpg"
-                  },
                   {
                     pattern: "eyebrow",
                     text: "Date"
@@ -460,10 +456,6 @@
               {% include "@bolt/card.twig" with {
                 theme: "xlight",
                 contentItems: [
-                  {
-                    pattern: "image",
-                    src: "/images/sample/anthem-video.jpg"
-                  },
                   {
                     pattern: "eyebrow",
                     text: "Jan 18 2018"
@@ -482,10 +474,6 @@
                 theme: "xlight",
                 contentItems: [
                   {
-                    pattern: "image",
-                    src: "/images/sample/artificial-intelligence-image.jpg"
-                  },
-                  {
                     pattern: "eyebrow",
                     text: "Jan 18 2018"
                   },
@@ -502,10 +490,6 @@
               {% include "@bolt/card.twig" with {
                 theme: "xlight",
                 contentItems: [
-                  {
-                    pattern: "image",
-                    src: "/images/placeholders/1200x660.jpg"
-                  },
                   {
                     pattern: "eyebrow",
                     text: "Jan 18 2018"
@@ -524,9 +508,22 @@
                 theme: "xlight",
                 contentItems: [
                   {
-                    pattern: "image",
-                    src: "/images/placeholders/1200x660.jpg"
+                    pattern: "eyebrow",
+                    text: "Date"
                   },
+                  {
+                    pattern: "headline",
+                    tag: "h3",
+                    size: "large",
+                    text: "Article Headline"
+                  }
+                ]
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+              {% include "@bolt/card.twig" with {
+                theme: "xlight",
+                contentItems: [
                   {
                     pattern: "eyebrow",
                     text: "Date"
@@ -545,9 +542,22 @@
                 theme: "xlight",
                 contentItems: [
                   {
-                    pattern: "image",
-                    src: "/images/placeholders/1200x660.jpg"
+                    pattern: "eyebrow",
+                    text: "Date"
                   },
+                  {
+                    pattern: "headline",
+                    tag: "h3",
+                    size: "large",
+                    text: "Article Headline"
+                  }
+                ]
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+              {% include "@bolt/card.twig" with {
+                theme: "xlight",
+                contentItems: [
                   {
                     pattern: "eyebrow",
                     text: "Date"
@@ -566,9 +576,22 @@
                 theme: "xlight",
                 contentItems: [
                   {
-                    pattern: "image",
-                    src: "/images/placeholders/1200x660.jpg"
+                    pattern: "eyebrow",
+                    text: "Date"
                   },
+                  {
+                    pattern: "headline",
+                    tag: "h3",
+                    size: "large",
+                    text: "Article Headline"
+                  }
+                ]
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+              {% include "@bolt/card.twig" with {
+                theme: "xlight",
+                contentItems: [
                   {
                     pattern: "eyebrow",
                     text: "Date"
@@ -587,10 +610,6 @@
                 theme: "xlight",
                 contentItems: [
                   {
-                    pattern: "image",
-                    src: "/images/placeholders/1200x660.jpg"
-                  },
-                  {
                     pattern: "eyebrow",
                     text: "Date"
                   },
@@ -607,73 +626,6 @@
               {% include "@bolt/card.twig" with {
                 theme: "xlight",
                 contentItems: [
-                  {
-                    pattern: "image",
-                    src: "/images/placeholders/1200x660.jpg"
-                  },
-                  {
-                    pattern: "eyebrow",
-                    text: "Date"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "Article Headline"
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-              {% include "@bolt/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "image",
-                    src: "/images/placeholders/1200x660.jpg"
-                  },
-                  {
-                    pattern: "eyebrow",
-                    text: "Date"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "Article Headline"
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-              {% include "@bolt/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "image",
-                    src: "/images/placeholders/1200x660.jpg"
-                  },
-                  {
-                    pattern: "eyebrow",
-                    text: "Date"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "Article Headline"
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-              {% include "@bolt/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "image",
-                    src: "/images/placeholders/1200x660.jpg"
-                  },
                   {
                     pattern: "eyebrow",
                     text: "Date"
