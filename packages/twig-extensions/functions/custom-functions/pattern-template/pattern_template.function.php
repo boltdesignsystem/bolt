@@ -23,6 +23,8 @@ $function = new \Twig_SimpleFunction('pattern_template', function ($patternName)
       return '@bolt/headline.twig';
     case 'image':
       return '@bolt/image.twig';
+    case 'link':
+      return '@bolt/link.twig';
     case 'teaser':
       return '@bolt/teaser.twig';
     case 'text':
