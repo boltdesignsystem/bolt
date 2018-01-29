@@ -31,7 +31,7 @@ async function sh(cmd, exitOnError, streamOutput) {
       if (code > 0) {
         if (exitOnError) {
             process.exitCode = 1;
-            reject(new Error(`Error with code ${code} after running: ${cmd}`));
+            reject(new Error(`Error with code ${code} after running: ${cmd}\n ${output}`));
         } else {
           notifier.notify({
             title: cmd,

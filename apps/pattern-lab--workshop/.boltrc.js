@@ -2,11 +2,20 @@ module.exports = {
   // Environmental variable / preset to use
   env: 'pl',
   srcDir: 'src',
-  publicPath: '/build/',
-  buildDir: 'build',
+  buildDir: 'www/build',
   wwwDir: 'www',
   plConfigFile: './config/config.yml',
   verbosity: 1,
+  plTwigNamespaces: {
+    'bolt-assets': {
+      recursive: true,
+      paths: ['www/build'],
+    },
+    utils: {
+      recursive: true,
+      paths: ['src/_includes'],
+    },
+  },
   components: {
     global: [
       '@bolt/core',
@@ -14,6 +23,7 @@ module.exports = {
       '@bolt/components-action-blocks',
       '@bolt/components-background',
       '@bolt/components-background-shapes',
+      '@bolt/components-band',
       '@bolt/components-blockquote',
       '@bolt/components-button',
       '@bolt/components-button-group',
@@ -24,9 +34,9 @@ module.exports = {
       '@bolt/components-device-viewer',
       '@bolt/components-figure',
       '@bolt/components-headline',
+      '@bolt/components-image',
       '@bolt/components-link',
       '@bolt/components-nav-bar',
-      '@bolt/components-image',
       '@bolt/components-logo',
       '@bolt/components-ordered-list',
       '@bolt/components-page-footer',
@@ -35,7 +45,7 @@ module.exports = {
       '@bolt/components-smooth-scroll',
       '@bolt/components-sticky',
       '@bolt/components-teaser',
-      '@bolt/components-unordered-list'
+      '@bolt/components-unordered-list',
     ],
     individual: [
     ],

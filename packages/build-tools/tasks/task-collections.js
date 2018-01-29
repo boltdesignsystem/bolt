@@ -2,6 +2,8 @@ const log = require('../utils/log');
 const webpackTasks = require('./webpack-tasks');
 const patternLabTasks = require('./pattern-lab-tasks');
 const serverTasks = require('./server-tasks');
+const manifest = require('../utils/manifest');
+const internalTasks = require('./internal-tasks');
 const config = require('../utils/config-store').getConfig();
 
 async function clean() {
@@ -28,6 +30,9 @@ async function build() {
     if (!config.quick) {
       await clean();
     }
+    await internalTasks.mkDirs();
+    await manifest.writeBoltManifest();
+    await patternLabTasks.makeTwigNamespaceFile();
     await webpackTasks.compile();
     await patternLabTasks.compile();
   } catch (error) {

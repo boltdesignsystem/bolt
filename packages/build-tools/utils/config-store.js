@@ -56,6 +56,10 @@ function isReady() {
 }
 
 function init(userConfig) {
+  // Setting default config that requires userConfig
+  defaultConfig.dataDir = path.join(userConfig.buildDir, 'data');
+  // End setting programatic defaults
+
   config = Object.assign({}, defaultConfig, userConfig, getEnvVarsConfig());
   validateSchema(configSchema, config);
   isInitialized = true;

@@ -1,9 +1,10 @@
 {
   "name": "@bolt/components-band",
+  "version": "0.6.0-beta.5",
   "description": "Band Component in Bolt",
-  "type": "pattern",
-  "patternType": "molecules",
-  "patternSubtype": "layout",
+  "main": "src/band.js",
+  "style": "src/band.scss",
+  "twig": ["src/band.twig"],
   "keywords": [
     "bolt design system",
     "bolt",
@@ -11,7 +12,6 @@
     "design system",
     "objects"
   ],
-  "version": "0.6.0-beta.5",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -37,20 +37,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@bolt/core": "^0.5.0-beta.1",
-    "@bolt/settings-all": "^0.7.4",
-    "@bolt/tools-all": "^0.5.4"
-  },
-  "devDependencies": {
-    "@bolt/build-webpack": "^0.5.0-beta.4"
-  },
-  "main": "dist/bolt-band.min.js",
-  "module:dev": "src/band.js",
-  "style": "src/band.scss",
-  "scripts": {
-    "prepublishOnly": "npm run build",
-    "build": "npm-run-all --parallel build:*",
-    "build:bolt": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/band --output-filename='bolt-band.min.js' --output-public-path /scripts/",
-    "build:wwwd8": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/band --output-filename='bolt-band.wwwd8.min.js' --output-public-path /themes/custom/pegawww_theme/node_modules/@bolt/components-band/dist/"
+    "@bolt/core": "^0.5.0-beta.1"
   }
 }

@@ -66,18 +66,4 @@ extensions:
 plugins:
   twigNamespaces:
     enabled: true
-    namespaces:
-      bolt-assets:
-        recursive: true
-        paths:
-          - www/build
-      bolt:
-        recursive: true
-        paths:
-          - ../../packages
-          - src/_patterns
-          - src
-      utils:
-        recursive: true
-        paths:
-          - src/_includes
+    readFromFile: www/build/data/bolt-twig-namespaces.json

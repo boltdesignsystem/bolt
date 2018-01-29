@@ -1,6 +1,17 @@
-{% if description %}
-  <blockquote><p>{{ description }}</p></blockquote>
+{% if title %}
+  {% include "@bolt/headline.twig" with {
+    text: title,
+    size: "xxlarge"
+  } only %}
 {% endif %}
+
+{% if description %}
+  {% include "@bolt/subheadline.twig" with {
+    text: description,
+    size: "xlarge"
+  } only %}
+{% endif %}
+
 <ul>
   {% for key, prop in properties %}
     <li>
