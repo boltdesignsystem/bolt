@@ -1,8 +1,6 @@
 {
   "name": "@bolt/components-nav-bar",
   "description": "Nav-bar Component in Bolt",
-  "type": "pattern",
-  "patternType": "molecules",
   "keywords": [
     "bolt design system",
     "bolt",
@@ -32,26 +30,13 @@
   "bugs": {
     "url": "https://github.com/bolt-design-system/bolt/issues"
   },
-  "main": "dist/bolt-nav-bar.min.js",
-  "module:dev": "src/nav-bar.js",
+  "main": "src/nav-bar.js",
   "style": "src/nav-bar.scss",
   "twig": "src/nav-bar.twig",
   "publishConfig": {
     "access": "public"
   },
-  "devDependencies": {
-    "@bolt/build-webpack": "^0.5.0-beta.4"
-  },
   "dependencies": {
-    "@bolt/core": "^0.5.0-beta.1",
-    "@bolt/settings-all": "^0.7.2",
-    "@bolt/tools-all": "^0.5.2",
-    "npm-run-all": "^4.0.2"
-  },
-  "scripts": {
-    "prepublishOnly": "npm run build",
-    "build": "npm-run-all --parallel build:*",
-    "build:bolt": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/nav-bar --output-filename='bolt-nav-bar.min.js' --output-public-path /scripts/",
-    "build:wwwd8": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/nav-bar --output-filename='bolt-nav-bar.wwwd8.min.js' --output-public-path /themes/custom/pegawww_theme/node_modules/@bolt/components-nav-bar/dist/"
+    "@bolt/core": "^0.5.0-beta.1"
   }
 }

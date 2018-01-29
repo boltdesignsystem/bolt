@@ -22,7 +22,7 @@
     },
     {
       "name": "Remy Denton",
-      "email": "remy.denton@pega.com"
+      "email": "https://github.com/remydenton"
     }
   ],
   "homepage": "https://boltdesignsystem.com",
@@ -34,16 +34,9 @@
   "bugs": {
     "url": "https://github.com/bolt-design-system/bolt/issues"
   },
-  "main": "dist/bolt-smooth-scroll.min.js",
+  "main": "src/smooth-scroll.js",
   "publishConfig": {
     "access": "public"
-  },
-  "devDependencies": {
-    "@bolt/build-webpack": "^0.5.0-beta.4"
-  },
-  "scripts": {
-    "prepublishOnly": "npm run build",
-    "build": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/smooth-scroll --output-filename='bolt-smooth-scroll.min.js' --output-public-path /scripts/"
   },
   "dependencies": {
     "smooth-scroll": "^12.1.5"
