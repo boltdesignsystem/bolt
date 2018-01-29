@@ -25,7 +25,10 @@
 {% set contentTag = contentTag in contentTags ? contentTag: "div" %}
 {% set fullBleed = fullBleed | default(false) %}
 {% set size = size | default("medium") %}
-{% set theme = theme | default("dark") %}
+{% if theme != "none" %}
+  {% set theme = theme | default("dark") %}
+{% endif %}
+{# {% set theme = theme in themes == false and theme is not null ? "false" : theme | default("dark") %} #}
 
 {% set classes = [
   baseClass,
