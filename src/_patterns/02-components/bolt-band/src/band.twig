@@ -28,7 +28,6 @@
 {% if theme != "none" %}
   {% set theme = theme | default("dark") %}
 {% endif %}
-{# {% set theme = theme in themes == false and theme is not null ? "false" : theme | default("dark") %} #}
 
 {% set classes = [
   baseClass,
