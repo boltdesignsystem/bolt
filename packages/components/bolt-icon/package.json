@@ -1,7 +1,5 @@
 {
   "name": "@bolt/components-icon",
-  "type": "pattern",
-  "patternType": "atoms",
   "description": "Icon component in Bolt",
   "keywords": [
     "eyeglass-module",
@@ -26,22 +24,8 @@
   },
   "dependencies": {
     "@bolt/components-icons": "^0.2.0-beta.3",
-    "@bolt/core": "^0.5.0-beta.1",
-    "@bolt/settings-all": "^0.7.4",
-    "@bolt/tools-all": "^0.5.4",
-    "npm-run-all": "^4.0.2"
+    "@bolt/core": "^0.5.0-beta.1"
   },
-  "devDependencies": {
-    "@bolt/build-webpack": "^0.5.0-beta.4"
-  },
-  "main": "dist/bolt-icon.min.js",
-  "main:wwwd8": "dist/wwwd8/icon.min.js",
-  "module:dev": "src/icon.js",
-  "style": "src/icon.scss",
-  "scripts": {
-    "prepublishOnly": "npm run build",
-    "build": "npm-run-all --parallel build:*",
-    "build:bolt": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/icon --output-filename='bolt-icon.min.js' --output-public-path /scripts/",
-    "build:wwwd8": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/icon --output-filename='bolt-icon.wwwd8.min.js' --output-public-path /themes/custom/pegawww_theme/node_modules/@bolt/components-icon/dist/"
-  }
+  "main": "src/icon.js",
+  "style": "src/icon.scss"
 }

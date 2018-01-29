@@ -64,7 +64,7 @@
           items:
             -
               type: string
-    plTwigNamespaces:
+    extraTwigNamespaces:
       type: object
-      title: Pattern Lab Twig Namespaces
-      description: "These will be joined with others created programatically. Creates a file in the `dataDir` that is read by Pattern Lab's config file. [Follows this structure](https://packagist.org/packages/evanlovely/plugin-twig-namespaces)."
+      title: Extra Twig Namespaces
+      description: "These will be joined with others created programatically. Creates a file in the `dataDir` that can be read by things that register the Twig Namespaces in a way that is appropriate for that environment. Follows the conventions from [this plugin](https://packagist.org/packages/evanlovely/plugin-twig-namespaces)."

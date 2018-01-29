@@ -45,7 +45,7 @@ function compile() {
 
       if (messages.warnings.length) {
         console.log(chalk.yellow('Compiled with warnings.\n'));
-        console.log(warnings.join('\n\n'));
+        console.log(messages.warnings.join('\n\n'));
         console.log(
           '\nSearch for the ' +
           chalk.underline(chalk.yellow('keywords')) +
@@ -78,7 +78,7 @@ compile.displayName = 'webpack:compile';
 function watch() {
   return new Promise((resolve, reject) => {
     const webpackSpinner = ora(chalk.blue('Watch triggered WebPack re-bundle...'));
-    const startTime = timer.start();
+    let startTime;
     const spinFailed = () => webpackSpinner.fail(chalk.red('Watch triggered WebPack Failed'));
 
     const compiler = webpack(webpackConfig);
@@ -86,6 +86,7 @@ function watch() {
     // Fired when a watch triggers a compile
     compiler.plugin('compile', () => {
       webpackSpinner.start();
+      startTime = timer.start();
     });
 
     compiler.watch({

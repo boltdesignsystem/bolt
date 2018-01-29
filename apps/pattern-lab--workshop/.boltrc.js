@@ -6,7 +6,7 @@ module.exports = {
   wwwDir: 'www',
   plConfigFile: './config/config.yml',
   verbosity: 1,
-  plTwigNamespaces: {
+  extraTwigNamespaces: {
     'bolt-assets': {
       recursive: true,
       paths: ['www/build'],
@@ -34,6 +34,8 @@ module.exports = {
       '@bolt/components-device-viewer',
       '@bolt/components-figure',
       '@bolt/components-headline',
+      '@bolt/components-icon',
+      '@bolt/components-icons',
       '@bolt/components-image',
       '@bolt/components-link',
       '@bolt/components-nav-bar',

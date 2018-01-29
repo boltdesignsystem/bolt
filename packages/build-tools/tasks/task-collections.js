@@ -32,7 +32,7 @@ async function build() {
     }
     await internalTasks.mkDirs();
     await manifest.writeBoltManifest();
-    await patternLabTasks.makeTwigNamespaceFile();
+    await manifest.writeTwigNamespaceFile(process.cwd(), config.extraTwigNamespaces);
     await webpackTasks.compile();
     await patternLabTasks.compile();
   } catch (error) {
