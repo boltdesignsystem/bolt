@@ -69,6 +69,7 @@ async function writeBoltManifest() {
  * Builds & writes info file for Twig Namespaces
  * Creates `bolt-twig-namespaces.json` in `config.dataDir` from the Bolt Manifest. That is pulled in by [Twig Namespace plugin](https://packagist.org/packages/evanlovely/plugin-twig-namespaces) in the PL config file.
  * @param relativeFrom {string} - If present, the path will be relative from this, else it will be absolute.
+ * @param extraNamespaces {object} - Extra namespaces to add to file in [this format](https://packagist.org/packages/evanlovely/plugin-twig-namespaces)
  * @async
  * @returns {Promise<void>}
  */
