@@ -1,0 +1,259 @@
+{% extends "@bolt/default-template.twig" %}
+
+{% block main_content %}
+
+  {# Generic Breadcrumb Lockup #}
+
+  {% set inner_band_content %}
+    {% include "@bolt/headline.twig" with {
+      "size": "xxxlarge",
+      "text": "Headline"
+    } only %}
+    {% include "@bolt/subheadline.twig" with {
+      "size": "xxlarge",
+      "text": "Subheadline"
+    } only %}
+    {% include "@bolt/button.twig" with {
+      "size": "medium",
+      "text": "Call to action"
+    } only %}
+  {% endset %}
+
+  {% set outer_band_content %}
+    <a href="" class="c-bolt-link">Home</a> &raquo; <a href="" class="c-bolt-link">Page</a> &raquo; <a href="" class="c-bolt-link">Sub Page</a>
+    {% include "@bolt/band--feature.twig" with {
+      "size": "medium",
+      "theme": "none",
+      "primaryTeaser": {
+        "headlines": [
+          {
+            "type": "eyebrow",
+            "text": "Eyebrow",
+            "tag": "span"
+          },
+          {
+            "type": "headline",
+            "text": "Headline",
+            "size": "xxxlarge",
+            "tag": "h1"
+          },
+          {
+            "type": "subheadline",
+            "text": "Subheadline",
+            "size": "xxlarge",
+            "tag": "h2"
+          },
+          {
+            "type": "text",
+            "text": "Body text.",
+            "tag": "p"
+          }
+        ],
+        "buttons": [
+          {
+            "text": "Call to Action",
+            "style": "primary",
+            "url": "https://www.google.com"
+          }
+        ]
+      }
+    } only %}
+  {% endset %}
+
+  {% include "@bolt/band.twig" with {
+    "size": "small",
+    "theme": "xdark",
+    "content": outer_band_content
+  } only %}
+
+  <hr>
+
+  {% include "@bolt/headline.twig" with {
+    "size": "large",
+    "text": "Notes"
+  } only %}
+
+  {% include "@bolt/text.twig" with {
+    "text": "Generic breadcrumbs. The above example shows a small outer band containing the breadcrumbs and a medium inner band with the content."
+  } only %}
+
+  {% include "@bolt/headline.twig" with {
+    "size": "large",
+    "text": "Theme and Background"
+  } only %}
+
+  {% include "@bolt/text.twig" with {
+    "text": "Theme and background graphics should be set on the outer band. The inner band should contain a piece of non-themed transparent content, therefore theme must be set to 'none'."
+  } only %}
+
+
+
+
+  {# This has actual content #}
+
+  {% set inner_band_content %}
+    {% include "@bolt/headline.twig" with {
+      "size": "xxxlarge",
+      "text": "Agile Goes Mainstream"
+    } only %}
+    {% include "@bolt/subheadline.twig" with {
+      "size": "xxlarge",
+      "text": "Tech speed. Business savvy. The best of both worlds."
+    } only %}
+    {% include "@bolt/text.twig" with {
+      "text": "Agile isn’t just for developers these days. It’s for anyone who wants to brainstorm, model, build, and collaborate – on any application, without any roadblocks. Comp Sci degree not required."
+    } only %}
+  {% endset %}
+
+  {% set outer_band_content %}
+    <a href="" class="c-bolt-link">Home</a> &raquo; <a href="" class="c-bolt-link">Why Pega?</a> &raquo; <a href="" class="c-bolt-link">Agile Goes Mainstream</a>
+    {% include "@bolt/band--feature.twig" with {
+      "size": "large",
+      "primaryTeaser": {
+        "headlines": [
+          {
+            "type": "eyebrow",
+            "text": "Pega Platform",
+            "tag": "span"
+          },
+          {
+            "type": "headline",
+            "text": "Agile Goes Mainstream",
+            "size": "xxxlarge",
+            "tag": "h1"
+          },
+          {
+            "type": "subheadline",
+            "text": "Tech speed. Business savvy. The best of both worlds.",
+            "size": "xxlarge",
+            "tag": "h2"
+          },
+          {
+            "type": "text",
+            "text": "Agile isn’t just for developers these days. It’s for anyone who wants to brainstorm, model, build, and collaborate – on any application, without any roadblocks. Comp Sci degree not required.",
+            "tag": "p"
+          }
+        ],
+        "buttons": [
+          {
+            "text": "Call to Action",
+            "style": "primary",
+            "url": "https://www.google.com"
+          }
+        ]
+      }
+    } only %}
+  {% endset %}
+
+  {% include "@bolt/band.twig" with {
+    "size": "small",
+    "content": outer_band_content
+  } only %}
+
+  <hr>
+
+  {% include "@bolt/headline.twig" with {
+    "size": "large",
+    "text": "Notes"
+  } only %}
+
+  {% include "@bolt/text.twig" with {
+    "text": "Breadcrumbs with actual content. Using large inner band."
+  } only %}
+
+  {% include "@bolt/headline.twig" with {
+    "size": "large",
+    "text": "Theme and Background"
+  } only %}
+
+  {% include "@bolt/text.twig" with {
+    "text": "Theme and background graphics should be set on the outer band. The inner band should contain a piece of non-themed transparent content, therefore theme must be set to 'none'."
+  } only %}
+
+
+
+
+  {# This has a background image #}
+
+  {% set outer_band_content %}
+    <a href="" class="c-bolt-link">Home</a> &raquo; <a href="" class="c-bolt-link">Why Pega?</a> &raquo; <a href="" class="c-bolt-link">Agile Goes Mainstream</a>
+    {% include "@bolt/band--feature.twig" with {
+      "theme": "none",
+      "size": "large",
+      "primaryTeaser": {
+        "headlines": [
+          {
+            "type": "eyebrow",
+            "text": "Pega Platform",
+            "tag": "span"
+          },
+          {
+            "type": "headline",
+            "text": "Agile Goes Mainstream",
+            "size": "xxxlarge",
+            "tag": "h1"
+          },
+          {
+            "type": "subheadline",
+            "text": "Tech speed. Business savvy. The best of both worlds.",
+            "size": "xxlarge",
+            "tag": "h2"
+          },
+          {
+            "type": "text",
+            "text": "Agile isn’t just for developers these days. It’s for anyone who wants to brainstorm, model, build, and collaborate – on any application, without any roadblocks. Comp Sci degree not required.",
+            "tag": "p"
+          }
+        ],
+        "buttons": [
+          {
+            "text": "Call to Action",
+            "style": "primary",
+            "url": "https://www.google.com"
+          }
+        ]
+      }
+    } only %}
+  {% endset %}
+
+  {% include "@bolt/band.twig" with {
+    "teaserPosition": "left",
+    "teaserWidth": "2/3",
+    "size": "small",
+    "theme": "dark",
+    "background": {
+      "opacity": "heavy",
+      "fill": "gradient",
+      "focalPoint": {
+        "vertical": "center",
+        "horizontal": "right"
+      },
+      "contentItems": [{
+        "pattern": "image",
+        "src": "/images/sample/product-background-t2.jpg"
+      }]
+    },
+    "content": outer_band_content
+  } only %}
+
+  <hr>
+
+  {% include "@bolt/headline.twig" with {
+    "size": "large",
+    "text": "Notes"
+  } only %}
+
+  {% include "@bolt/text.twig" with {
+    "text": "Breadcrumbs with actual content and a background image on the outer band. Using large inner band."
+  } only %}
+
+  {% include "@bolt/headline.twig" with {
+    "size": "large",
+    "text": "Theme and Background"
+  } only %}
+
+  {% include "@bolt/text.twig" with {
+    "text": "Theme and background graphics should be set on the outer band. The inner band should contain a piece of non-themed transparent content, therefore theme must be set to 'none'."
+  } only %}
+
+{% endblock %}
