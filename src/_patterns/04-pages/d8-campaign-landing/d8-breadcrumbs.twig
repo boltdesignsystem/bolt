@@ -4,21 +4,6 @@
 
   {# Generic Breadcrumb Lockup #}
 
-  {% set inner_band_content %}
-    {% include "@bolt/headline.twig" with {
-      "size": "xxxlarge",
-      "text": "Headline"
-    } only %}
-    {% include "@bolt/subheadline.twig" with {
-      "size": "xxlarge",
-      "text": "Subheadline"
-    } only %}
-    {% include "@bolt/button.twig" with {
-      "size": "medium",
-      "text": "Call to action"
-    } only %}
-  {% endset %}
-
   {% set outer_band_content %}
     <a href="" class="c-bolt-link">Home</a> &raquo; <a href="" class="c-bolt-link">Page</a> &raquo; <a href="" class="c-bolt-link">Sub Page</a>
     {% include "@bolt/band--feature.twig" with {
@@ -90,20 +75,6 @@
 
 
   {# This has actual content #}
-
-  {% set inner_band_content %}
-    {% include "@bolt/headline.twig" with {
-      "size": "xxxlarge",
-      "text": "Agile Goes Mainstream"
-    } only %}
-    {% include "@bolt/subheadline.twig" with {
-      "size": "xxlarge",
-      "text": "Tech speed. Business savvy. The best of both worlds."
-    } only %}
-    {% include "@bolt/text.twig" with {
-      "text": "Agile isn’t just for developers these days. It’s for anyone who wants to brainstorm, model, build, and collaborate – on any application, without any roadblocks. Comp Sci degree not required."
-    } only %}
-  {% endset %}
 
   {% set outer_band_content %}
     <a href="" class="c-bolt-link">Home</a> &raquo; <a href="" class="c-bolt-link">Why Pega?</a> &raquo; <a href="" class="c-bolt-link">Agile Goes Mainstream</a>
