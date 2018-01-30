@@ -1,3 +1,3 @@
 import stickybits from 'stickybits';
 
-stickybits('.js-bolt-sticky');
+//stickybits('.js-bolt-sticky');

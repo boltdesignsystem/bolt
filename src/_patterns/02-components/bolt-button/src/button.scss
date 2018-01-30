@@ -317,8 +317,8 @@ bolt-button {
 }
 
 
-
-._c-bolt-button--theme-override {
+// Until http://vjira2:8080/browse/BK-48 is complete, IE11 won't respect button colors.  
+._c-bolt-button--theme-override .c-bolt-button {
   .t-bolt-xlight &,
   .t-bolt-light & {
     $fallback-background-default: bolt-color(indigo, light);

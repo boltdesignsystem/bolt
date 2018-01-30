@@ -82,10 +82,16 @@
     "labelDisplayType": "inline"
   } only %}
 
+  {% include "@bolt/form-input.twig" with {
+    "attributes": {
+      "type": "submit",
+      "value": "Download Now"
+    }
+  } only %}
+
   {% include "@bolt/button.twig" with {
     "text": "Download Now",
     "width": "full",
-    "itemAlignment": "center",
     "tag": "button",
     "icon": {
       "name": "download"
