@@ -1,111 +1,55 @@
 <?php
 
-use Symfony\Component\Yaml\Yaml;
+$function = new \Twig_SimpleFunction('pattern_template', function ($patternName) {
 
-$function = new \Twig_SimpleFunction('pattern_template', function (Twig_Environment $env, $context, $patternName, $manifestPath = '/bolt-manifest.yml') {
+// uncomment to see all calls to this template
+//  fputs(STDOUT, '
+//  pattern_template: '. $patternName . '
+//  ');
 
-  $originalPatternName = $patternName;
-
-  $patternName = preg_replace('/\\.[^.\\s]{3,4}$/', '', $patternName); // Remove file extension if it was specified
-  $patternName = ltrim($patternName, '_'); // Remove _ prefix
-  $patternName = preg_replace('/^[0-9\-]+/', '', $patternName); // remove number prefix, if it exists
-  $patternName = str_replace('.', '_', $patternName); // replace all dots with underscores
-  $patternName = str_replace('-', '_', $patternName); // replace all dahses with underscores
-
-
-
-  // From get_data.function.php TODO: figure out how to call one twig extension from another twig extension
-  /**
-   * @var \Twig_Template $template
-   * @url https://twig.symfony.com/api/1.x/Twig_Template.html
-   * */
-  // $template = $env->resolveTemplate($manifestPath);
-  // $source = $template->getSourceContext();
-
-  /** @var string $full_path */
-  $full_path = getcwd() . $manifestPath;
-
-  $file_data = [];
-
-  // @todo error handling for no file
-  $file_string = file_get_contents($full_path);
-  $file_type = pathinfo($full_path)['extension'];
-
-  switch ($file_type) {
-    case 'json':
-      $file_data = json_decode($file_string, true);
-      break;
-    case 'yaml' || 'yml':
-      $file_data = Yaml::parse($file_string);
-      break;
+  // @todo Deprecate & remove this whole `pattern_template` function
+  switch ($patternName) {
+    case 'button_group':
+      return '@bolt/button-group.twig';
+    case 'button':
+      return '@bolt/button.twig';
+    case 'card':
+      return '@bolt/card.twig';
+    case 'eyebrow':
+      return '@bolt/eyebrow.twig';
+    case 'flag':
+      return '@bolt/flag.twig';
+    case 'headline':
+      return '@bolt/headline.twig';
+    case 'image':
+      return '@bolt/image.twig';
+    case 'link':
+      return '@bolt/link.twig';
+    case 'teaser':
+      return '@bolt/teaser.twig';
+    case 'text':
+      return '@bolt/text.twig';
+    case 'video':
+      return '@bolt/video.twig';
+    default:
+      return 'ERROR: Template not found: '. $patternName;
   }
 
-  if (isset($file_data[$patternName])){
-    return $file_data[$patternName]["namespace"];
-  } else {
-    return $originalPatternName;
-  }
+  // the full list of `$patternName` that uses this is:
+    //button - @bolt/button.twig
+    //button_group - @bolt-button-group/button-group.twig
+    //card - @bolt-card/card.twig
+    //eyebrow - @bolt-headline/eyebrow.twig
+    //flag - @bolt-global/flag.twig
+    //headline - @bolt-headline/headline.twig
+    //image - @bolt-global/image.twig
+    //teaser - @bolt-teaser/teaser.twig
+    //text - @bolt-headline/text.twig
+    //video - @bolt-video/video.twig
 
-
-
-
-  // /**
-  //  * @var \Twig_Template $template
-  //  * @url https://twig.symfony.com/api/1.x/Twig_Template.html
-  //  * */
-  // $template = $env->resolveTemplate('@bolt/' . $template . '.twig');
-
-
-  // // /**
-  // //  * @var \Twig_Source $source
-  // //  * @url https://twig.symfony.com/api/1.x/Twig_Source.html
-  // //  */
-  // $source = $template->getSourceContext();
-
-
-  // return $env->resolveTemplate($twig_self)->getSourceContext()->getPath();
-
-
-
-
-  // $name = $template->getTemplateName();
-
-  // print_r($name);
-
-  // echo '
-
-
-  // ';
-
-  // print_r($template);
-
-  // /** @var string $full_path */
-  // $full_path = $source->getPath();
-
-
-  // print_r($template);
-
-  // return $full_path;
-
-  // $file_data = [];
-
-  // // @todo error handling for no file
-  // $file_string = file_get_contents($full_path);
-  // $file_type = pathinfo($full_path)['extension'];
-
-  // switch ($file_type) {
-  //   case 'json':
-  //     $file_data = json_decode($file_string, true);
-  //     break;
-  //   case 'yaml' || 'yml':
-  //     $file_data = Yaml::parse($file_string);
-  //     break;
-  // }
-
-  // return $file_data;
 }, [
-  'needs_environment' => true,
-  'needs_context' => true
+  'needs_environment' => false,
+  'needs_context' => false
 ]);
 
 ?>
