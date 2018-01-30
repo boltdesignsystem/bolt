@@ -317,8 +317,8 @@ bolt-button {
 }
 
 
-
-._c-bolt-button--theme-override {
+// Allow forcing light and xlight theme colors in IE11 until http://vjira2:8080/browse/BK-48 is resolved.
+._c-bolt-button--theme-override .c-bolt-button {
   .t-bolt-xlight &,
   .t-bolt-light & {
     $fallback-background-default: bolt-color(indigo, light);
