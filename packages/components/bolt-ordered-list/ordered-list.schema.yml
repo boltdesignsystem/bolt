@@ -1,0 +1,14 @@
+$schema: http://json-schema.org/draft-04/schema#
+title: Ordered List
+type: object
+properties:
+  contentItems:
+    type: array
+    items:
+      type: object
+      properties:
+        text:
+          type: string
+        contentItems:
+          type: object
+          description: Passes to `@bolt/text.twig`
