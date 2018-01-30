@@ -1,0 +1,20 @@
+{% if schema %}
+  {% include '@utils/schema-docs.twig' with schema only %}
+{% endif %}
+
+{% if code %}
+  <h4>How to use</h4>
+  <pre><code>{{ code }}</code></pre>
+{% endif %}
+
+{% if readme %}
+  <h4>ReadMe</h4>
+  {{ readme|markdown }}
+{% endif %}
+
+{% if links %}
+  <h4>Helpful Links</h4>
+  {% for link in links %}
+    <a href="{{ link.url }}" target="_blank">{{ link.text }}</a>
+  {% endfor %}
+{% endif %}
