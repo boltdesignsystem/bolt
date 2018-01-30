@@ -4,6 +4,7 @@ const patternLabTasks = require('./pattern-lab-tasks');
 const serverTasks = require('./server-tasks');
 const manifest = require('../utils/manifest');
 const internalTasks = require('./internal-tasks');
+const imageTasks = require('./image-tasks');
 const config = require('../utils/config-store').getConfig();
 
 async function clean() {
@@ -25,6 +26,14 @@ async function serve() {
   }
 }
 
+async function images() {
+  try {
+    await imageTasks.processImages();
+  } catch (error) {
+    log.errorAndExit('Images failed', error);
+  }
+}
+
 async function build() {
   try {
     if (!config.quick) {
@@ -35,6 +44,7 @@ async function build() {
     await manifest.writeTwigNamespaceFile(process.cwd(), config.extraTwigNamespaces);
     await webpackTasks.compile();
     await patternLabTasks.compile();
+    await imageTasks.processImages();
   } catch (error) {
     log.errorAndExit('Build failed', error);
   }
@@ -68,6 +78,7 @@ async function start() {
 module.exports = {
   serve,
   start,
+  images,
   build,
   watch,
   clean,

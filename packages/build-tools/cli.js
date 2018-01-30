@@ -112,6 +112,14 @@ program
     updateConfig(options, program);
   });
 
+program
+  .command('img')
+  .description('Image process')
+  .action((options) => {
+    updateConfig(options, program);
+    require('./tasks/task-collections').images();
+  });
+
 // This will tell you all that got `require()`-ed
 // We want to only load what we need - that's why not all `require` statements are at top
 // log.info('All that got `require()`-ed');

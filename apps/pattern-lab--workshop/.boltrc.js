@@ -16,6 +16,15 @@ module.exports = {
       paths: ['src/_includes'],
     },
   },
+  images: {
+    sets: [
+      {
+        base: './src/assets/images',
+        glob: '**',
+        dist: './www/images/',
+      },
+    ],
+  },
   components: {
     global: [
       '@bolt/core',
