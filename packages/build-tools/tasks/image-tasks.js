@@ -91,7 +91,7 @@ async function processImage(file, set) {
       } else {
         // http://sharp.pixelplumbing.com/en/stable/
         await sharp(originalFileBuffer)
-          .resize(size)
+          .resize(size > width ? width : size) // don't resize larger than the original image; we still make the file though
           .toFile(newSizedPath);
       }
     } else {
