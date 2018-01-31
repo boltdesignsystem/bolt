@@ -40,6 +40,22 @@ function readYamlFile(file) {
 }
 
 /**
+ * Read Yaml File into Object
+ * @param {string} file - File path
+ * @returns {Promise<object>} Promise resolves with yaml file as object
+ * @see fromYaml
+ * @see writeYamlFile
+ */
+function readYamlFileSync(file) {
+  return fromYaml(fs.readFileSync(file, 'utf8'));
+  // return new Promise((resolve, reject) => {
+  //   readFile(file, 'utf8')
+  //     .then(data => resolve(fromYaml(data)))
+  //     .catch(reject);
+  // });
+}
+
+/**
  * Write Yaml string to File
  * @param {string} file - File path
  * @param {object} data - Object to turn into Yaml
@@ -59,5 +75,6 @@ module.exports = {
   fromYaml,
   toYaml,
   readYamlFile,
+  readYamlFileSync,
   writeYamlFile,
 };

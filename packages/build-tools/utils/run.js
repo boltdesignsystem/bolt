@@ -1,3 +1,5 @@
+const log = require('./log');
+
 // @todo tweak, prod, and test the crap out of this
 
 /**
@@ -6,7 +8,11 @@
  */
 async function series(tasks) {
   for (let task of tasks) {
-    await task();
+    try {
+      await task();
+    } catch (error) {
+      log.errorAndExit('Series task run failed.', error);
+    }
   }
 }
 
@@ -15,11 +21,14 @@ async function series(tasks) {
  * @param {function[]} tasks - An array of functions that return Promises
  */
 async function parallel(tasks) {
-  const allTasks = tasks.map(task => task());
-
-  allTasks.forEach(async (task) => {
-    await task;
-  });
+  try {
+    const allTasks = tasks.map(task => task());
+    allTasks.forEach(async (task) => {
+      await task;
+    });
+  } catch (error) {
+    log.errorAndExit('Parallel task run failed.', error);
+  }
 }
 
 module.exports = {

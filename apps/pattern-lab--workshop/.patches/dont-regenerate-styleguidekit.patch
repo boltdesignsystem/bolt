@@ -1,0 +1,67 @@
+diff --git a/src/PatternLab/Builder.php b/src/PatternLab/Builder.php
+index bceb814..aa79ff6 100644
+--- a/src/PatternLab/Builder.php
++++ b/src/PatternLab/Builder.php
+@@ -88,36 +88,38 @@ class Builder {
+ 			*  4. Only copy files if they are missing (vs changed, etc)
+ 			*/
+ 		if (!file_exists(Config::getOption("publicDir")."/index.html")) {
+-			$index = Console::getHumanReadablePath(Config::getOption("publicDir")).DIRECTORY_SEPARATOR."index.html";
+-			Console::writeWarning($index . " is missing. No biggie. Grabbing a fresh copy from your StyleguideKit...");
++			if (Config::getOption("regenerateStyleguideKit") != 'false') {
++				$index = Console::getHumanReadablePath(Config::getOption("publicDir")).DIRECTORY_SEPARATOR."index.html";
++				Console::writeWarning($index . " is missing. No biggie. Grabbing a fresh copy from your StyleguideKit...");
+ 
+-			$baseDir = Config::getOption("baseDir") . '/vendor';
+-			$finder = new Finder();
++				$baseDir = Config::getOption("baseDir") . '/vendor';
++				$finder = new Finder();
+ 
+-			// Locate the current theme's styleguidekit assets via the patternlab-styleguidekit `type` in composer.json
+-			$finder->files()->name("composer.json")->in($baseDir)->contains('patternlab-styleguidekit')->sortByName();
++				// Locate the current theme's styleguidekit assets via the patternlab-styleguidekit `type` in composer.json
++				$finder->files()->name("composer.json")->in($baseDir)->contains('patternlab-styleguidekit')->sortByName();
+ 
+-			foreach ($finder as $file) {
+-				$src = dirname($file->getRealPath()) . DIRECTORY_SEPARATOR . 'dist'; /* [1] */
+-				$dest= Config::getOption("publicDir");
++				foreach ($finder as $file) {
++					$src = dirname($file->getRealPath()) . DIRECTORY_SEPARATOR . 'dist'; /* [1] */
++					$dest= Config::getOption("publicDir");
+ 
+-				if (is_dir($src)){
++					if (is_dir($src)){
+ 
+-					if(!is_dir($dest)) {
+-						mkdir($dest, 0755);
+-	        }
++						if(!is_dir($dest)) {
++							mkdir($dest, 0755);
++						}
+ 
+-	        foreach ( /* [2] */
+-						$iterator = new \RecursiveIteratorIterator(
+-							new \RecursiveDirectoryIterator($src, \RecursiveDirectoryIterator::SKIP_DOTS), \RecursiveIteratorIterator::SELF_FIRST) as $item
+-					) {
+-						if ($item->isDir()) {
+-							if(!is_dir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName())) { /* [3] */
+-								mkdir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+-							}
+-						} else {
+-							if(!file_exists($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName())) { /* [4] */
+-								copy($item, $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
++						foreach ( /* [2] */
++							$iterator = new \RecursiveIteratorIterator(
++								new \RecursiveDirectoryIterator($src, \RecursiveDirectoryIterator::SKIP_DOTS), \RecursiveIteratorIterator::SELF_FIRST) as $item
++						) {
++							if ($item->isDir()) {
++								if(!is_dir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName())) { /* [3] */
++									mkdir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
++								}
++							} else {
++								if(!file_exists($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName())) { /* [4] */
++									copy($item, $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
++								}
+ 							}
+ 						}
+ 					}

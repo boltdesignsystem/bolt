@@ -1,39 +1,47 @@
 v: 2.6.0
+regenerateStyleguideKit: 'true'
 overrideConfig: false
 ie:
-  - DS_Store
-  - less
-  - scss
+    - DS_Store
+    - less
+    - scss
+    - html
+    - js
 id:
-  - scss
-  - .svn
-  - .sass-cache
-  - scripts
-  - styles
+    - scss
+    - .svn
+    - .sass-cache
+    - scripts
+    - styles
+    - splash-screen.html
+    - assets
 cleanPublic: false
 patternStates:
-  - inprogress
-  - inreview
-  - complete
+    - inprogress
+    - inreview
+    - complete
 styleGuideExcludes: ''
 cacheBusterOn: 'true'
-exportDir: export
-publicDir: dist
+publicDir: www
 sourceDir: src
 defaultPattern: pages-bolt-homepage
 defaultShowPatternInfo: false
+ishMinimum: '240'
+ishMaximum: '2600'
 ishViewportRange:
-  s:
-    - 320
-    - 600
-  m:
-    - 600
-    - 1000
-  l:
-    - 1000
-    - 2600
+    s:
+        - 320
+        - 600
+    m:
+        - 600
+        - 1000
+    l:
+        - 1000
+        - 2600
 ishControlsHide:
-  - hay
+    - hay
+    - disco
+    - random
 styleguideKit: pattern-lab/styleguidekit-twig-default
 styleguideKitPath: vendor/pattern-lab/styleguidekit-twig-default
 lineageMatch: >-
@@ -51,21 +59,12 @@ twigFunctionExt: function.php
 twigTagExt: tag.php
 twigTestExt: test.php
 extensions:
-  data: .data.json
-  schemas: .json
-  templates: .twig
-  docs: .docs.md
-  sg: .md
+    data: .data.json
+    schemas: .json
+    templates: .twig
+    docs: .docs.md
+    sg: .md
 plugins:
   twigNamespaces:
     enabled: true
-    namespaces:
-      bolt:
-        recursive: true
-        paths:
-          - ../../packages
-          - src/_patterns
-      utils:
-        recursive: true
-        paths:
-          - src/_includes
+    readFromFile: www/build/data/bolt-twig-namespaces.json

@@ -1,29 +1,29 @@
+{% set assets = get_data("@bolt-assets/bolt-webpack-manifest.json") %}
+
 <!DOCTYPE html>
-<html class="{{ htmlClass }}">
+<html>
   <head>
     <title>Bolt Design System</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" />
 
-    <link rel="stylesheet" href="../../assets/bolt.css?{{ cacheBuster }}" media="all" />
+    <link rel="stylesheet" href="{{ assets["bolt-global.css"] }}" media="all" />
 
 
-    <meta name="bolt-javascript-path"  content="/vendor/">
-
-    {# Inline Critical Font-specific CSS automatically #}
+    {# @TODO: wire this up to use Critical CSS #}
     <style>
     {#{{ inline("scripts/critical-fonts.css", "/dist/") }}#}
     </style>
 
-
-    {# Inline Critical JS automatically using references to the file manifest webpack generates #}
+    {# @TODO: wire this up to use Critical JS #}
     <script>
     {#{{ inline("scripts/bolt-critical-path.min.js", "/dist/") }}#}
     </script>
+
 
     <!-- Begin Pattern Lab (Required for Pattern Lab to run properly) -->
     {{ patternLabHead | raw }}
     <!-- End Pattern Lab -->
 
   </head>
-  <body class="{{ bodyClass }} c-bolt-site">
+  <body class="c-bolt-site">

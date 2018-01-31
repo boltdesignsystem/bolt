@@ -1,0 +1,88 @@
+# Thanks to StencilJS (https://stenciljs.com/docs/stencil-config) for a little inspiration for some of these configuration names. Naming things is hard!
+
+  $schema: http://json-schema.org/draft-04/schema#
+  title: Bolt Build Tools
+  type: object
+  required:
+    - env
+    - buildDir
+    - components
+  additionalProperties: false
+  properties:
+    env:
+      type: string
+      title: Environment Type
+      description: Where is this being compiled? Pattern Lab? Drupal?
+      enum:
+        - pl
+    srcDir:
+      type: string
+      title: Source Directory
+    plConfigFile:
+      type: string
+      title: Pattern Lab Config File Path
+    buildDir:
+      type: string
+      description: The buildDir config specifies where Bolt's compiled files are saved after every build. These are the generated scripts which will be requested by the browser. The build directory should be relative to the wwwDir setting (i.e. inside it).
+    wwwDir:
+      type: string
+      title: Path to server root
+      description: "Where static files are served from. The wwwDir config specifies the public web distribution directory. This directory is commonly the root directory for a server, where all static files can be served. This directory is built and rebuilt directly from the source files. Note: We recommend this directory is not committed to a repository."
+    dataDir:
+      type: string
+      description: This is the directory where generated json data files exist with information about the overall build. Defaults to `data` inside `buildDir`
+    openServerAtStart:
+      type: boolean
+      description: If, after starting `npm start`, a Browser opens.
+    quick:
+      type: boolean
+      description: Try to be quicker by skipping some steps that might not be needed if everything is recently built and in good working order.
+    verbosity:
+      type: integer
+      description: Logging level (Range of 0 to 5) How 'loud' or 'quiet' do you want the console output to be?
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+    components:
+      type: object
+      properties:
+        global:
+          type: array
+          uniqueItems: true
+          # array of objects
+          items:
+            -
+              type: string
+        individual:
+          type: array
+          uniqueItems: true
+          # array of objects
+          items:
+            -
+              type: string
+    extraTwigNamespaces:
+      type: object
+      title: Extra Twig Namespaces
+      description: "These will be joined with others created programatically. Creates a file in the `dataDir` that can be read by things that register the Twig Namespaces in a way that is appropriate for that environment. Follows the conventions from [this plugin](https://packagist.org/packages/evanlovely/plugin-twig-namespaces)."
+    images:
+      type: object
+      description: Image resizing options, which can handle multiple sets.
+      properties:
+        sets:
+          type: array
+          items:
+            type: object
+            properties:
+              base:
+                type: string
+                description: The base path, which is combined with `glob` to indicate the source file. The directories used here will *not* be used to construct the output path.
+              glob:
+                type: string
+                description: The glob pattern, which can include plain directories, and is used to create the output path along with `dist`.
+              dist:
+                type: string
+                description: The output path, which is combined with what `glob` returns.

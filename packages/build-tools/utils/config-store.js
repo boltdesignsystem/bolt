@@ -1,4 +1,8 @@
 const chalk = require('chalk');
+const path = require('path');
+const { readYamlFileSync } = require('./yaml');
+const { validateSchema } = require('./schemas');
+const configSchema = readYamlFileSync(path.join(__dirname, './config.schema.yml'));
 let isInitialized = false;
 let config = {};
 // Welcome to the home of the config!
@@ -14,13 +18,13 @@ let config = {};
 const defaultConfig = {
   verbosity: 2,
   openServerAtStart: false,
+  quick: false,
 };
 
 function getEnvVarsConfig() {
   const envVars = {};
   Object.keys(process.env).forEach((envVar) => {
-    const parts = envVar.split('bolt_');
-    if (parts.length > 1) {
+    if (envVar.startsWith('bolt_')) {
       /** @type {string} - All env vars are strings */
       let value = process.env[envVar];
 
@@ -36,6 +40,7 @@ function getEnvVarsConfig() {
         }
       }
 
+      const parts = envVar.split('bolt_');
       envVars[parts[1]] = value;
     }
   });
@@ -51,7 +56,12 @@ function isReady() {
 }
 
 function init(userConfig) {
+  // Setting default config that requires userConfig
+  defaultConfig.dataDir = path.join(userConfig.buildDir, 'data');
+  // End setting programatic defaults
+
   config = Object.assign({}, defaultConfig, userConfig, getEnvVarsConfig());
+  validateSchema(configSchema, config);
   isInitialized = true;
   return config;
 }
@@ -72,9 +82,11 @@ function getConfig() {
 function updateConfig(updater) {
   isReady();
   const newConfig = updater(config);
+  validateSchema(configSchema, newConfig);
   // console.log('new config:');
   // console.log(newConfig);
   config = newConfig;
+  return config;
 }
 
 module.exports = {

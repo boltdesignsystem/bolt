@@ -1,7 +1,6 @@
 {
   "name": "@bolt/components-action-blocks",
   "description": "Action Blocks Component in Bolt",
-  "type": "pattern",
   "keywords": [
     "bolt design system",
     "bolt",
@@ -32,7 +31,11 @@
     "url": "https://github.com/bolt-design-system/bolt/issues"
   },
   "style": "src/action-blocks.scss",
+  "twig": "src/action-blocks.twig",
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@bolt/core": "0.5.0-beta.1"
   }
 }

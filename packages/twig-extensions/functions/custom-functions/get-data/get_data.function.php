@@ -18,23 +18,27 @@ $function = new \Twig_SimpleFunction('get_data', function (Twig_Environment $env
 
   /** @var string $full_path */
   $full_path = $source->getPath();
-
   $file_data = [];
 
-  // @todo error handling for no file
-  $file_string = file_get_contents($full_path);
-  $file_type = pathinfo($full_path)['extension'];
+  if ($full_path !== '' && file_exists($full_path)) {
+    // @todo error handling for no file
+    $file_string = file_get_contents($full_path);
+    $file_type = pathinfo($full_path)['extension'];
 
-  switch ($file_type) {
+    switch ($file_type) {
     case 'json':
       $file_data = json_decode($file_string, true);
       break;
     case 'yaml' || 'yml':
       $file_data = Yaml::parse($file_string);
-      break;
-  }
+        break;
+    }
 
-  return $file_data;
+    return $file_data;
+  } else {
+    print "get_data.function.php Twig Error: Can't find " . $path;
+    return $full_path;
+  }
 }, [
   'needs_environment' => true,
   'needs_context' => true,

@@ -1,9 +1,9 @@
 const log = require('../utils/log');
 const run = require('../utils/run');
 
-module.exports = async (options) => {
-  const webpackTasks = require('../tasks/webpack-tasks')();
-  const patternLabTasks = await require('../tasks/pattern-lab-tasks')();
+module.exports = (options) => {
+  const webpackTasks = require('../tasks/webpack-tasks');
+  const patternLabTasks = require('../tasks/pattern-lab-tasks');
   const serverTasks = require('../tasks/server-tasks');
   // @todo figure out how to best conditionally run tasks based on environment (`pl`, `drupal`)
 
@@ -32,9 +32,10 @@ module.exports = async (options) => {
   async function parallelWatch() {
     try {
       run.parallel([
-        patternLabTasks.watch,
+        webpackTasks.server,
         webpackTasks.watch,
         serverTasks.serve,
+        patternLabTasks.watch,
       ]);
     } catch (error) {
       log.errorAndExit('watch', error);
