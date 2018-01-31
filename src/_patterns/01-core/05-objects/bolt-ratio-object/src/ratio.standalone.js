@@ -21,13 +21,11 @@ export class BoltRatio extends withComponent(withPreact()) {
     aspectRatioWidth: props.number
   }
 
-  constructor(){
-    super();
+  constructor(element){
+    super(element);
     if (!this.shadowRoot) {
       this.attachShadow({ mode: 'open' });
     }
-    this.shadyTemplate = document.createElement('template');
-    this.shadyPrepared = false;
     this.supportsCSSVars = window.CSS && CSS.supports('color', 'var(--primary)');
   }
 
@@ -52,14 +50,16 @@ export class BoltRatio extends withComponent(withPreact()) {
   }
 
   connectedCallback() {
-    this.update();
+
+    if (this.shadowRoot) {
+      this._render(this.render(), this.shadowRoot);
+    } else {
+      this._render(this.render(), this);
+    }
     this._computeRatio();
   }
 
   // Called when props have been set regardless of if they've changed. - recalculates ratio if props updated
-  updating(props) {
-    this._computeRatio();
-  }
 
   // Render out component via Preact
   render() {
@@ -79,13 +79,6 @@ export class BoltRatio extends withComponent(withPreact()) {
   _render(what, where) {
     this.render(what, where);
 
-    if (typeof ShadyCSS === 'object') {
-      if (this.shadyPrepared === false) {
-        this.shadyTemplate.innerHTML = this.shadowRoot.innerHTML;
-        ShadyCSS.prepareTemplate(this.shadyTemplate, this.localName);
-        this.shadyPrepared = true;
-      }
-      ShadyCSS.styleElement(this);
 
       // Auto-add class for fallback styles
       var childNodes = this.childNodes;
@@ -103,15 +96,8 @@ export class BoltRatio extends withComponent(withPreact()) {
       //     styleNode.remove();
       //   });
       // }
-    }
+    // }
   }
 
-  update() {
-    this._render(this.render(), this.shadowRoot);
-  }
 
-  updateShady() {
-    this.shadyPrepared = false;
-    this.update();
-  }
 }

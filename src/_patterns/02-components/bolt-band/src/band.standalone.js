@@ -14,18 +14,8 @@ import {
 // template for the contents of the ShadowDOM is is shared by all
 // `<bolt-band>` instances.
 //
-const bandTemplate = document.createElement('template');
-bandTemplate.innerHTML = `
-    <style>
-      // :host {
-      //   contain: content;
-      // }
-    </style>
-    <slot></slot>
-  `;
 
 // ShadyCSS will rename classes as needed to ensure style scoping.
-ShadyCSS.prepareTemplate(bandTemplate, 'bolt-band');
 
 
 
@@ -38,20 +28,14 @@ export class BoltBand extends withComponent(withPreact()) {
     return ['expanded', 'expandedHeight', 'initialHeight'];
   }
 
-  constructor() {
-    super();
-    this.attachShadow({
-      mode: 'open'
-    });
+  constructor(element) {
+    super(element);
 
     this.state = {
       ready: false
     }
 
     // Clone the shadow DOM template.
-    this.shadowRoot.appendChild(
-      bandTemplate.content.cloneNode(true)
-    );
 
     if (this.state.ready === false) {
       this.state.ready = true;
@@ -77,7 +61,6 @@ export class BoltBand extends withComponent(withPreact()) {
     // Shim Shadow DOM styles. This needs to be run in `connectedCallback()`
     // because if you shim Custom Properties (CSS variables) the element
     // will need access to its parent node.
-    ShadyCSS.styleElement(this);
 
     this.addEventListener('playing', this.playHandler);
     this.addEventListener('pause', this.pauseHandler);

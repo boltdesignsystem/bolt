@@ -26,6 +26,10 @@ class BrightcoveMeta extends withComponent(withPreact()) {
     title: props.string
   };
 
+  get renderRoot() {
+    return this;
+  }
+
   render() {
     const separator = this.title && this.duration ? ' | ' : '';
 
@@ -71,8 +75,8 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     hideFullScreenButton: props.boolean
   }
 
-  constructor() {
-    super();
+  constructor(element) {
+    super(element);
     index += 1;
 
     this.onPlay = this.onPlay.bind(this);
@@ -672,6 +676,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
           {...(this.props.poster ? { poster: this.props.poster.uri } : {}) }
           data-embed="default"
           data-video-id={this.props.videoId}
+          preload="none"
           data-account={this.props.accountId}
           data-player={this.props.playerId}
           // playIcon={playIconEmoji()}

@@ -3,12 +3,40 @@ require('core-js/modules/es6.array.iterator');
 require('core-js/modules/es6.symbol');
 require('core-js/modules/es6.array.from');
 require('core-js/modules/es7.array.includes');
+require('core-js/modules/es6.array.for-each');
+
+// ex. NodeList.forEach --> IE 11
+if (window.NodeList && !NodeList.prototype.forEach) {
+  NodeList.prototype.forEach = function (callback, thisArg) {
+    thisArg = thisArg || window;
+    for (var i = 0; i < this.length; i++) {
+      callback.call(thisArg, this[i], i, this);
+    }
+  };
+}
+
+
+
+// CustomElement shim for IE 11
+(function () {
+  if (typeof window.CustomEvent === "function") return false;
+  function CustomEvent(event, params) {
+    params = params || { bubbles: false, cancelable: false, detail: undefined };
+    var evt = document.createEvent('CustomEvent');
+    evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+    return evt;
+  }
+  CustomEvent.prototype = window.Event.prototype;
+  window.CustomEvent = CustomEvent;
+})();
+
+
+
 
 export const polyfillLoader = new Promise(function (resolve, reject) {
   if (window.customElements !== undefined) {
     Promise.all([
-      import(/* webpackChunkName: "custom-elements-es5-adapter" */ '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js'),
-      import(/* webpackChunkName: "webcomponents-hi-sd-ce" */ '@webcomponents/webcomponentsjs/webcomponents-hi-sd-ce.js')
+      import(/* webpackChunkName: "webcomponents-sd-ce" */ './wc-polyfill-ce-sd.js')
     ]).then(() => {
       resolve();
     });

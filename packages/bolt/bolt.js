@@ -3,7 +3,7 @@
 import { polyfillLoader } from '@bolt/core';
 
 polyfillLoader.then(res => {
-  import(/* webpackMode: 'eager', webpackChunkName: 'bolt-ratio-object' */ '@bolt/objects-ratio/src/ratio.standalone');
+  // import(/* webpackMode: 'eager', webpackChunkName: 'bolt-ratio-object' */ '@bolt/objects-ratio/src/ratio.standalone');
 
   import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-device-viewer' */ '@bolt/components-device-viewer/src/device-viewer.standalone');
 
@@ -23,5 +23,5 @@ polyfillLoader.then(res => {
 
   import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-sticky' */ '@bolt/components-sticky/src/sticky');
 
-  import(/* webpackMode: 'eager', webpackChunkName: 'bolt-video' */ '@bolt/components-video/src/video.standalone');
+  import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-video' */ '@bolt/components-video/src/video.standalone');
 });

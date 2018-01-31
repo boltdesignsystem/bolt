@@ -25,20 +25,13 @@ export class BoltButton extends withComponent(withPreact()) {
     onClickTarget: props.string
   }
 
-  constructor() {
-    super();
-    // @TODO: check if shadow DOM supported + ShadyDOM polyfill loaded
-    // if (!this.shadowRoot) {
-    //   this.attachShadow({ mode: 'open' });
-    // }
-    if (!this.shadowRoot) {
-      this.attachShadow({ mode: 'open' });
-    }
+  constructor(element) {
+    super(element);
+    // this.attachShadow({ mode: 'open' });
+
     this.addEventListener('click', this.clickHandler);
   }
 
-  connectedCallback() {
-  }
 
   clickHandler(event) {
     const clickMethod = this.props.onClick;

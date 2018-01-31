@@ -1,4 +1,4 @@
-import { 
+import {
   h,
   render,
   define,
@@ -15,8 +15,8 @@ const isActiveClass = 'is-active';
 
 // Behavior for `<bolt-nav-list>` parent container
 class BoltNavList extends withComponent(withPreact()) {
-  constructor() {
-    super();
+  constructor(element) {
+    super(element);
     this.activeLink = false;
 
     // Ensure that 'this' inside the _onWindowResize event handler refers to <bolt-nav-link>
@@ -123,8 +123,8 @@ class BoltNavLink extends withComponent(withPreact()) {
     return ['active'];
   }
 
-  constructor() {
-    super();
+  constructor(element) {
+    super(element);
 
     this._shadowLink = this.querySelector('a');
   }
