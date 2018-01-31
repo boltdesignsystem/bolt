@@ -24,15 +24,17 @@
 {% set tag = tag in tags ? tag: "div" %}
 {% set contentTag = contentTag in contentTags ? contentTag: "div" %}
 {% set fullBleed = fullBleed | default(false) %}
-{% set size = size | default("medium") %}
+{% if size != "none" %}
+  {% set size = size | default("medium") %}
+{% endif %}
 {% if theme != "none" %}
   {% set theme = theme | default("dark") %}
 {% endif %}
 
 {% set classes = [
   baseClass,
-  size in sizes ? baseClass ~ "--" ~ size : "",
   fullBleed == true ? baseClass ~ "--" ~ "full" : "",
+  size in sizes ? baseClass ~ "--" ~ size : "",
   theme in themes ? "t-bolt-" ~ theme : ""
 ] %}
 

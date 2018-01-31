@@ -1,0 +1,50 @@
+{# Sample Usage
+  {% include "@bolt/breadcrumb.twig" with {
+    "contentItems": [
+      {
+        "pattern": "link",
+        "text": "Home",
+        "url": "http://pega.com"
+      },
+      {
+        "pattern": "link",
+        "text": "Page",
+        "url": "http://pega.com"
+      },
+
+      // Note about accessibility: if the last link is the current page, then it should have the aria-current="page" attribute. Make sure to add that in the json data.
+      {
+        "attributes": {
+          "aria-current": "page"
+        },
+        "pattern": "link",
+        "text": "Subpage",
+        "url": "http://pega.com"
+      }
+    ]
+  } only %}
+#}
+
+
+{% set prefix = "c-bolt-" %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set componentName = "breadcrumb" %}
+{% set baseClass = prefix ~ componentName %}
+
+
+{% set classes = [
+  baseClass
+] %}
+
+
+<bolt-{{ componentName }} bolt-component>
+  <nav {{ attributes.addClass(classes) }} aria-label="Breadcrumb" role="navigation">
+    <ol class="{{ "#{baseClass}__list" }}">
+      {% for item in contentItems %}
+        <li class="{{ "#{baseClass}__item" }}">
+          {% include "@bolt/link.twig" with item only %}
+        </li>
+      {% endfor %}
+    </ol>
+  </nav>
+</bolt-{{ componentName }}>

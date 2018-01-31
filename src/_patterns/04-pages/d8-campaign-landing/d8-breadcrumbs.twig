@@ -2,12 +2,89 @@
 
 {% block main_content %}
 
-  {# Generic Breadcrumb Lockup #}
-
+  {# Breadcrumb Component in a Band #}
   {% set band_content %}
-    <a href="" class="c-bolt-link">Home</a> &raquo; <a href="" class="c-bolt-link">Page</a> &raquo; <a href="" class="c-bolt-link">Sub Page</a>
+    {% include "@bolt/breadcrumb.twig" with {
+      "contentItems": [
+        {
+          "pattern": "link",
+          "text": "Home",
+          "url": "http://pega.com"
+        },
+        {
+          "pattern": "link",
+          "text": "Page",
+          "url": "http://pega.com"
+        },
+        {
+          "attributes": {
+            "aria-current": "page"
+          },
+          "pattern": "link",
+          "text": "Subpage",
+          "url": "http://pega.com"
+        }
+      ]
+    } only %}
+  {% endset %}
+  {% include "@bolt/band.twig" with {
+    "size": "xsmall",
+    "theme": "light",
+    "content": band_content
+  } only %}
+
+  {# Demo notes #}
+  {% set band_content %}
+    {% include "@bolt/headline.twig" with {
+      "size": "xlarge",
+      "text": "Breadcrumb Component in a Band ^"
+    } only %}
+    {% include "@bolt/text.twig" with {
+      "text": "The above example shows a xsmall band containing the breadcrumbs."
+    } only %}
+  {% endset %}
+  {% include "@bolt/band.twig" with {
+    "theme": "none",
+    "content": band_content
+  } only %}
+
+
+
+
+  {# Breadcrumb Band Stacking On Top of Featured Band #}
+  {% set breadcrumb_band_content %}
+    {% include "@bolt/breadcrumb.twig" with {
+      "contentItems": [
+        {
+          "pattern": "link",
+          "text": "Home",
+          "url": "http://pega.com"
+        },
+        {
+          "pattern": "link",
+          "text": "Page",
+          "url": "http://pega.com"
+        },
+        {
+          "attributes": {
+            "aria-current": "page"
+          },
+          "pattern": "link",
+          "text": "Subpage",
+          "url": "http://pega.com"
+        }
+      ]
+    } only %}
+  {% endset %}
+
+  {% set stacked_bands %}
+    {% include "@bolt/band.twig" with {
+      "size": "small",
+      "theme": "none",
+      "content": breadcrumb_band_content
+    } only %}
     {% include "@bolt/band--feature.twig" with {
-      "size": "medium",
+      "size": "large",
       "theme": "none",
       "primaryTeaser": {
         "headlines": [
@@ -38,7 +115,7 @@
           {
             "text": "Call to Action",
             "style": "primary",
-            "url": "https://www.google.com"
+            "url": "https://www.pega.com"
           }
         ]
       }
@@ -46,137 +123,101 @@
   {% endset %}
 
   {% include "@bolt/band.twig" with {
-    "size": "small",
-    "theme": "xdark",
-    "content": band_content
+    "size": "none",
+    "theme": "dark",
+    "content": stacked_bands
   } only %}
-
 
   {# Demo notes #}
-  <hr>
-  {% include "@bolt/headline.twig" with {
-    "size": "large",
-    "text": "Notes"
-  } only %}
-  {% include "@bolt/text.twig" with {
-    "text": "Generic breadcrumbs. The above example shows a small outer band containing the breadcrumbs and a medium inner band with the content."
-  } only %}
-  {% include "@bolt/headline.twig" with {
-    "size": "large",
-    "text": "Theme and Background"
-  } only %}
-  {% include "@bolt/text.twig" with {
-    "text": "Theme and background graphics should be set on the outer band. The inner band should contain a piece of non-themed transparent content, therefore theme must be set to 'none'."
-  } only %}
-
-
-
-
-  {# This has actual content #}
-
   {% set band_content %}
-    <a href="" class="c-bolt-link">Home</a> &raquo; <a href="" class="c-bolt-link">Why Pega?</a> &raquo; <a href="" class="c-bolt-link">Agile Goes Mainstream</a>
-    {% include "@bolt/band--feature.twig" with {
+    {% include "@bolt/headline.twig" with {
+      "size": "xlarge",
+      "text": "Breadcrumb Band Stacking On Top of Featured Band ^"
+    } only %}
+    {% include "@bolt/text.twig" with {
+      "text": "The above example shows a small band containing the breadcrumbs and large band containing the content. Both have theme set to none."
+    } only %}
+    {% include "@bolt/headline.twig" with {
       "size": "large",
-      "primaryTeaser": {
-        "headlines": [
-          {
-            "type": "eyebrow",
-            "text": "Pega Platform",
-            "tag": "span"
-          },
-          {
-            "type": "headline",
-            "text": "Agile Goes Mainstream",
-            "size": "xxxlarge",
-            "tag": "h1"
-          },
-          {
-            "type": "subheadline",
-            "text": "Tech speed. Business savvy. The best of both worlds.",
-            "size": "xxlarge",
-            "tag": "h2"
-          },
-          {
-            "type": "text",
-            "text": "Agile isn’t just for developers these days. It’s for anyone who wants to brainstorm, model, build, and collaborate – on any application, without any roadblocks. Comp Sci degree not required.",
-            "tag": "p"
-          }
-        ],
-        "buttons": [
-          {
-            "text": "Call to Action",
-            "style": "primary",
-            "url": "https://www.google.com"
-          }
-        ]
-      }
+      "text": "Background and Theming"
+    } only %}
+    {% include "@bolt/text.twig" with {
+      "text": "There is an outer band containing the breadcrumb band and the featured band, background and theme should be set on that outer band."
     } only %}
   {% endset %}
-
   {% include "@bolt/band.twig" with {
-    "size": "small",
+    "theme": "none",
     "content": band_content
   } only %}
 
 
-  {# Demo notes #}
-  <hr>
-  {% include "@bolt/headline.twig" with {
-    "size": "large",
-    "text": "Notes"
-  } only %}
-  {% include "@bolt/text.twig" with {
-    "text": "Breadcrumbs with actual content. Using large inner band."
-  } only %}
-  {% include "@bolt/headline.twig" with {
-    "size": "large",
-    "text": "Theme and Background"
-  } only %}
-  {% include "@bolt/text.twig" with {
-    "text": "Theme and background graphics should be set on the outer band. The inner band should contain a piece of non-themed transparent content, therefore theme must be set to 'none'."
-  } only %}
 
 
+  {# Breadcrumb Band Stacking On Top of Featured Band with Outer Background Band #}
+  {% set breadcrumb_band_content %}
+    {% include "@bolt/breadcrumb.twig" with {
+      "contentItems": [
+        {
+          "pattern": "link",
+          "text": "Home",
+          "url": "http://pega.com"
+        },
+        {
+          "pattern": "link",
+          "text": "Why Pega?",
+          "url": "http://pega.com"
+        },
+        {
+          "attributes": {
+            "aria-current": "page"
+          },
+          "pattern": "link",
+          "text": "Digital Transformation",
+          "url": "http://pega.com"
+        }
+      ]
+    } only %}
+  {% endset %}
 
-
-  {# This has a background image #}
-
-  {% set band_content %}
-    <a href="" class="c-bolt-link">Home</a> &raquo; <a href="" class="c-bolt-link">Why Pega?</a> &raquo; <a href="" class="c-bolt-link">Agile Goes Mainstream</a>
-    {% include "@bolt/band--feature.twig" with {
+  {% set stacked_bands %}
+    {% include "@bolt/band.twig" with {
+      "size": "small",
       "theme": "none",
+      "content": breadcrumb_band_content
+    } only %}
+    {% include "@bolt/band--feature.twig" with {
       "size": "large",
+      "theme": "none",
       "primaryTeaser": {
         "headlines": [
           {
             "type": "eyebrow",
-            "text": "Pega Platform",
+            "text": "Digital Transformation",
             "tag": "span"
           },
           {
             "type": "headline",
-            "text": "Agile Goes Mainstream",
+            "text": "Be Future Empowered",
             "size": "xxxlarge",
             "tag": "h1"
           },
           {
             "type": "subheadline",
-            "text": "Tech speed. Business savvy. The best of both worlds.",
+            "text": "Start with the outcomes you want.",
             "size": "xxlarge",
             "tag": "h2"
           },
           {
             "type": "text",
-            "text": "Agile isn’t just for developers these days. It’s for anyone who wants to brainstorm, model, build, and collaborate – on any application, without any roadblocks. Comp Sci degree not required.",
+            "text": "Digital transformation is more than a slick new mobile app. It demands the hard work of designing for customer outcomes. Pega software gives you the power to truly transform.",
             "tag": "p"
           }
         ],
         "buttons": [
           {
-            "text": "Call to Action",
+            "text": "Get Smart",
             "style": "primary",
-            "url": "https://www.google.com"
+            "url": "https://www.pega.com"
           }
         ]
       }
@@ -186,7 +227,7 @@
   {% include "@bolt/band.twig" with {
     "teaserPosition": "left",
     "teaserWidth": "2/3",
-    "size": "small",
+    "size": "none",
     "theme": "dark",
     "background": {
       "opacity": "heavy",
@@ -200,25 +241,131 @@
         "src": "/images/sample/product-background-t2.jpg"
       }]
     },
+    "content": stacked_bands
+  } only %}
+
+  {# Demo notes #}
+  {% set band_content %}
+    {% include "@bolt/headline.twig" with {
+      "size": "xlarge",
+      "text": "Breadcrumb Band Stacking On Top of Featured Band with Outer Background Band ^"
+    } only %}
+    {% include "@bolt/text.twig" with {
+      "text": "The above example shows a small band containing the breadcrumbs and large band containing the content. Both have theme set to none."
+    } only %}
+    {% include "@bolt/headline.twig" with {
+      "size": "large",
+      "text": "Background and Theming"
+    } only %}
+    {% include "@bolt/text.twig" with {
+      "text": "A background image is set on the outer band and the theme is set to dark."
+    } only %}
+  {% endset %}
+  {% include "@bolt/band.twig" with {
+    "theme": "none",
     "content": band_content
   } only %}
 
 
+
+
+  {# Breadcrumb Band Stacking On Top of Featured Band #}
+  {% set breadcrumb_band_content %}
+    {% include "@bolt/breadcrumb.twig" with {
+      "contentItems": [
+        {
+          "pattern": "link",
+          "text": "Home",
+          "url": "http://pega.com"
+        },
+        {
+          "pattern": "link",
+          "text": "Why Pega?",
+          "url": "http://pega.com"
+        },
+        {
+          "attributes": {
+            "aria-current": "page"
+          },
+          "pattern": "link",
+          "text": "Digital Transformation",
+          "url": "http://pega.com"
+        }
+      ]
+    } only %}
+  {% endset %}
+
+  {% set stacked_bands %}
+    {% include "@bolt/band.twig" with {
+      "size": "xsmall",
+      "theme": "medium",
+      "content": breadcrumb_band_content
+    } only %}
+    {% include "@bolt/band--feature.twig" with {
+      "size": "large",
+      "theme": "xdark",
+      "primaryTeaser": {
+        "headlines": [
+          {
+            "type": "eyebrow",
+            "text": "Digital Transformation",
+            "tag": "span"
+          },
+          {
+            "type": "headline",
+            "text": "Be Future Empowered",
+            "size": "xxxlarge",
+            "tag": "h1"
+          },
+          {
+            "type": "subheadline",
+            "text": "Start with the outcomes you want.",
+            "size": "xxlarge",
+            "tag": "h2"
+          },
+          {
+            "type": "text",
+            "text": "Digital transformation is more than a slick new mobile app. It demands the hard work of designing for customer outcomes. Pega software gives you the power to truly transform.",
+            "tag": "p"
+          }
+        ],
+        "buttons": [
+          {
+            "text": "Get Smart",
+            "style": "primary",
+            "url": "https://www.pega.com"
+          }
+        ]
+      }
+    } only %}
+  {% endset %}
+
+  {% include "@bolt/band.twig" with {
+    "size": "none",
+    "theme": "none",
+    "content": stacked_bands
+  } only %}
+
   {# Demo notes #}
-  <hr>
-  {% include "@bolt/headline.twig" with {
-    "size": "large",
-    "text": "Notes"
-  } only %}
-  {% include "@bolt/text.twig" with {
-    "text": "Breadcrumbs with actual content and a background image on the outer band. Using large inner band."
-  } only %}
-  {% include "@bolt/headline.twig" with {
-    "size": "large",
-    "text": "Theme and Background"
-  } only %}
-  {% include "@bolt/text.twig" with {
-    "text": "Theme and background graphics should be set on the outer band. The inner band should contain a piece of non-themed transparent content, therefore theme must be set to 'none'."
+  {% set band_content %}
+    {% include "@bolt/headline.twig" with {
+      "size": "xlarge",
+      "text": "Breadcrumb Band Stacking On Top of Featured Band (individually themed)^"
+    } only %}
+    {% include "@bolt/text.twig" with {
+      "text": "The above example shows a xsmall band containing the breadcrumbs and large band containing the content."
+    } only %}
+    {% include "@bolt/headline.twig" with {
+      "size": "large",
+      "text": "Background and Theming"
+    } only %}
+    {% include "@bolt/text.twig" with {
+      "text": "No background or theme is set on the outer band in this case because it's not neccessary."
+    } only %}
+  {% endset %}
+  {% include "@bolt/band.twig" with {
+    "theme": "none",
+    "content": band_content
   } only %}
 
 {% endblock %}

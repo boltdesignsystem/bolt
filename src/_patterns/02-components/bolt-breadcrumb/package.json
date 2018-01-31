@@ -1,6 +1,6 @@
 {
-  "name": "@bolt/components-link",
-  "description": "Link Component in Bolt",
+  "name": "@bolt/components-breadcrumb",
+  "description": "Breadcrumb Component in Bolt",
   "type": "pattern",
   "patternType": "molecules",
   "keywords": [
@@ -32,14 +32,17 @@
   "bugs": {
     "url": "https://github.com/bolt-design-system/bolt/issues"
   },
-  "style": "src/link.scss",
-  "twig": "src/link.twig",
+  "style": "src/breadcrumb.scss",
+  "twig": "src/breadcrumb.twig",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
     "@bolt/settings-colors": "^0.9.0",
     "@bolt/settings-global": "^0.9.0",
-    "@bolt/tools-color-palette": "^0.9.0"
+    "@bolt/settings-font-size": "^0.9.0",
+    "@bolt/tools-color-palette": "^0.9.0",
+    "@bolt/tools-spacing": "^0.9.0",
+    "@bolt/tools-font-size": "^0.9.0"
   }
 }
