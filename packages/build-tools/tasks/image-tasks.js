@@ -32,6 +32,15 @@ const boltImageSizes = [
   2880,
 ];
 
+let imgManifest = {};
+
+async function writeImageManifest() {
+  await writeFile(
+    path.join(config.dataDir, 'bolt-image-manifest.json'),
+    JSON.stringify(imgManifest, null, '  ')
+  );
+}
+
 async function processImage(file, set) {
   if (config.verbosity > 2) {
     log.dim(`Processing image: ${file}`);
@@ -61,6 +70,7 @@ async function processImage(file, set) {
       name: `${pathInfo.name}${sizeSuffix}`,
     });
     const newSizedPath = path.format(thisPathInfo);
+    const newSizeWebPath = `/${path.relative(config.wwwDir, newSizedPath)}`;
 
     if (isOrig) {// original file
 
@@ -93,7 +103,19 @@ async function processImage(file, set) {
         }
       }
     }
-  }));
+
+    if (!isOrig) {
+      return newSizeWebPath;
+    }
+  }))
+    .then((values) => {
+      // console.log(values);
+      imgManifest[fileId] = {
+        original: file,
+        sizes: values.filter(value => value), // removes `undefined` & other non-truthy values (mainly original images & non processed file types like SVG or GIF)
+      };
+      return values;
+    });
 }
 
 async function processImages() {
@@ -112,7 +134,10 @@ async function processImages() {
   return Promise.all(config.images.sets.map(async (set) => {
     const imagePaths = await globby(path.join(set.base, set.glob));
     return Promise.all(imagePaths.map(imagePath => processImage(imagePath, set)));
-  })).then(() => {// When it's all done
+  })).then(async (values) => {// When it's all done
+    // console.log(values);
+    // console.log(imgManifest);
+    await writeImageManifest();
     const endMessage = chalk.green(`Processed images in ${timer.end(startTime)}`);
     if (config.verbosity > 2) {
       console.log(endMessage);
