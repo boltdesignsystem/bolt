@@ -31,12 +31,34 @@
             <ul>
               {% for item in prop.oneOf %}
                 <li><code>{{ item.enum|join(',') }}</code>
-                  {%- if item.title %} - <strong>{{ item.title }}</strong> {% endif -%}
-                {%- if item.description %} - {{ item.description }} {% endif -%}
+                  {%- if item.title %} - <strong>{{ item.title | markdown }}</strong> {% endif -%}
+                {%- if item.description %} - {{ item.description | markdown }} {% endif -%}
                 </li>
               {% endfor %}
             </ul>
           {%- elseif prop.enum %} - Must be one of: {{ enum }}
+          {% endif %}
+
+          {# arrays #}
+          {% if prop.items %}
+            <ul>
+              <li>Items:</li>
+              {% if prop.items.type == 'object' %}
+                <ul>
+                  <li>Type: <code>{{ prop.items.type }}</code>
+                    {%- if prop.items.title %} - <strong>{{ prop.items.title | markdown }}</strong> {% endif -%}
+                    {%- if prop.items.description %} - {{ prop.items.description | markdown }} {% endif -%}
+                  </li>
+                  <li>Properties:
+                    <ul>
+                      {% for key, property in prop.items.properties %}
+                        <li><code>{{ key }}</code></li>
+                      {% endfor %}
+                    </ul>
+                  </li>
+                </ul>
+              {% endif %}
+            </ul>
           {% endif %}
         </li>
         {% if key in loop.parent.required %} <li><strong>Required</strong></li> {% endif %}
