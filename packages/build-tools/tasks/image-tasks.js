@@ -13,6 +13,7 @@ const timer = require('../utils/timer');
 const ora = require('ora');
 const sharp = require('sharp');
 const config = require('../utils/config-store').getConfig();
+const { flattenArray } = require('../utils/general');
 const isProd = process.env.NODE_ENV === 'production';
 
 // @todo Consider moving this to a place to share
@@ -32,9 +33,11 @@ const boltImageSizes = [
   2880,
 ];
 
-let imgManifest = {};
+function  makeWebPath(imagePath) {
+  return `/${path.relative(config.wwwDir, imagePath)}`;
+}
 
-async function writeImageManifest() {
+async function writeImageManifest(imgManifest) {
   await writeFile(
     path.join(config.dataDir, 'bolt-image-manifest.json'),
     JSON.stringify(imgManifest, null, '  ')
@@ -57,29 +60,30 @@ async function processImage(file, set) {
   // We add `null` to beginning b/c we want the original file too
   const sizes = [null, ...boltImageSizes];
 
-  let originalFileBuffer;
-  if (isProd) {
-    // we want to read the original file once, instead of reading for each size
-    originalFileBuffer = await readFile(file);
-  }
+  // let originalFileBuffer;
+  // if (isProd) {
+  // }
+  // we want to read the original file once, instead of reading for each size
+  const originalFileBuffer = await readFile(file);
+  // http://sharp.pixelplumbing.com/en/stable/api-input/#metadata
+  const { width, height } = await sharp(originalFileBuffer).metadata();
 
   return Promise.all(sizes.map(async (size) => {
-    const isOrig = size === null;
-    const sizeSuffix = size ? `-${size}` : '';
-    const thisPathInfo = Object.assign({}, pathInfo, {
-      name: `${pathInfo.name}${sizeSuffix}`,
-    });
-    const newSizedPath = path.format(thisPathInfo);
-    const newSizeWebPath = `/${path.relative(config.wwwDir, newSizedPath)}`;
-
-    if (isOrig) {// original file
-
-    } else {// resized file
+    const isOrig = size === null; // original file
+    if (!isOrig) {
       // no need to resize these file extensions
       if (pathInfo.ext === '.svg' || pathInfo.ext === '.gif') {
         return;
       }
     }
+
+    // Goes on end of filename
+    const sizeSuffix = size ? `-${size}` : '';
+    const thisPathInfo = Object.assign({}, pathInfo, {
+      name: `${pathInfo.name}${sizeSuffix}`,
+    });
+    const newSizedPath = path.format(thisPathInfo);
+    const newSizeWebPath = makeWebPath(newSizedPath);
 
     if (isProd) {
       if (isOrig) {
@@ -107,15 +111,18 @@ async function processImage(file, set) {
     if (!isOrig) {
       return newSizeWebPath;
     }
-  }))
-    .then((values) => {
-      // console.log(values);
-      imgManifest[fileId] = {
-        original: file,
-        sizes: values.filter(value => value), // removes `undefined` & other non-truthy values (mainly original images & non processed file types like SVG or GIF)
-      };
-      return values;
-    });
+  })).then((resizedImagePaths) => {
+    const imageMeta = {
+      original: file,
+      width,
+      height,
+      fileId,
+      fullSizePath: makeWebPath(newPath),
+      sizePaths: resizedImagePaths.filter(resizedImagePath => resizedImagePath), // removes `undefined` & other non-truthy values (mainly original images & non processed file types like SVG or GIF)
+    };
+
+    return imageMeta;
+  });
 }
 
 async function processImages() {
@@ -134,10 +141,14 @@ async function processImages() {
   return Promise.all(config.images.sets.map(async (set) => {
     const imagePaths = await globby(path.join(set.base, set.glob));
     return Promise.all(imagePaths.map(imagePath => processImage(imagePath, set)));
-  })).then(async (values) => {// When it's all done
-    // console.log(values);
-    // console.log(imgManifest);
-    await writeImageManifest();
+  })).then(async (setsOfImageMetas) => {// When it's all done
+    const imageMetas = flattenArray(setsOfImageMetas);
+    const imageManifest = {};
+    imageMetas.forEach((imageMeta) => {
+      imageManifest[imageMeta.fileId] = imageMeta;
+    });
+    await writeImageManifest(imageManifest);
+
     const endMessage = chalk.green(`Processed images in ${timer.end(startTime)}`);
     if (config.verbosity > 2) {
       console.log(endMessage);
