@@ -4,8 +4,11 @@ type: object
 properties:
   contentItems:
     type: array
+    title: The content items
+    description: These are all of the items in the ordered list
     items:
       type: object
+      description: This can have `text` **or** `contentItems`
       properties:
         text:
           type: string
