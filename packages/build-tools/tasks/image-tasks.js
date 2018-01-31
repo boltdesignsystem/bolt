@@ -11,6 +11,7 @@ const log = require('../utils/log');
 const globby = require('globby');
 const timer = require('../utils/timer');
 const ora = require('ora');
+const sharp = require('sharp');
 const config = require('../utils/config-store').getConfig();
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -54,13 +55,14 @@ async function processImage(file, set) {
   }
 
   return Promise.all(sizes.map(async (size) => {
+    const isOrig = size === null;
     const sizeSuffix = size ? `-${size}` : '';
     const thisPathInfo = Object.assign({}, pathInfo, {
       name: `${pathInfo.name}${sizeSuffix}`,
     });
     const newSizedPath = path.format(thisPathInfo);
 
-    if (size === null) {// original file
+    if (isOrig) {// original file
 
     } else {// resized file
       // no need to resize these file extensions
@@ -70,8 +72,14 @@ async function processImage(file, set) {
     }
 
     if (isProd) {
-      // @todo Resize & minify image
-      await writeFile(newSizedPath, originalFileBuffer);
+      if (isOrig) {
+        await writeFile(newSizedPath, originalFileBuffer);
+      } else {
+        // http://sharp.pixelplumbing.com/en/stable/
+        await sharp(originalFileBuffer)
+          .resize(size)
+          .toFile(newSizedPath);
+      }
     } else {
       // Not prod, so let's be quick.
       // Symlinking works even if the original file is not served
