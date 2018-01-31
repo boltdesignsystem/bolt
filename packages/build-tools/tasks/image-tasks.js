@@ -60,14 +60,12 @@ async function processImage(file, set) {
   // We add `null` to beginning b/c we want the original file too
   const sizes = [null, ...boltImageSizes];
 
-  // let originalFileBuffer;
-  // if (isProd) {
-  // }
   // we want to read the original file once, instead of reading for each size
   const originalFileBuffer = await readFile(file);
   // http://sharp.pixelplumbing.com/en/stable/api-input/#metadata
   const { width, height } = await sharp(originalFileBuffer).metadata();
 
+  // looping through all sizes and resizing
   return Promise.all(sizes.map(async (size) => {
     const isOrig = size === null; // original file
     if (!isOrig) {
