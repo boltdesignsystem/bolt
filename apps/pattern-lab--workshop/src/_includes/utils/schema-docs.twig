@@ -1,3 +1,10 @@
+{% macro titleAndDescription(title, description) %}
+  {%- if title %} - <strong>{{ title | markdown }}</strong> {% endif -%}
+  {%- if description %} - {{ description | markdown }} {% endif -%}
+{% endmacro %}
+
+{% import _self as macros %}
+
 {% if title %}
   {% include "@bolt/headline.twig" with {
     text: title,
@@ -16,8 +23,7 @@
   {% for key, prop in properties %}
     <li>
       <code>{{ key }}</code>
-      {% if prop.title %} - <strong>{{ prop.title }}</strong> {% endif %}
-      {% if prop.description %} - <span>{{ prop.description }}</span> {% endif %}
+      {{ macros.titleAndDescription(prop.title, prop.description) }}
       <ul>
         {% set enum %}
           {% for x in prop.enum %}
@@ -30,10 +36,7 @@
             Must be one of:
             <ul>
               {% for item in prop.oneOf %}
-                <li><code>{{ item.enum|join(',') }}</code>
-                  {%- if item.title %} - <strong>{{ item.title | markdown }}</strong> {% endif -%}
-                {%- if item.description %} - {{ item.description | markdown }} {% endif -%}
-                </li>
+                <li><code>{{ item.enum|join(',') }}</code>{{ macros.titleAndDescription(item.title, item.description) }}</li>
               {% endfor %}
             </ul>
           {%- elseif prop.enum %} - Must be one of: {{ enum }}
@@ -45,15 +48,12 @@
               <li>Items:</li>
               {% if prop.items.type == 'object' %}
                 <ul>
-                  <li>Type: <code>{{ prop.items.type }}</code>
-                    {%- if prop.items.title %} - <strong>{{ prop.items.title | markdown }}</strong> {% endif -%}
-                    {%- if prop.items.description %} - {{ prop.items.description | markdown }} {% endif -%}
-                  </li>
+                  <li>Type: <code>{{ prop.items.type }}</code>{{ macros.titleAndDescription(prop.items.title, prop.items.description) }}</li>
                   <li>Properties:
                     <ul>
                       {% for key, property in prop.items.properties %}
                         <li><code>{{ key }}</code>
-                          {%- if property.description %} - {{ property.description | markdown }} {% endif -%}
+                          {{ macros.titleAndDescription(property.title, property.description) }}
                           {% if property.type %}
                             <ul>
                               <li>Type: <code>{{ property.type }}</code></li>

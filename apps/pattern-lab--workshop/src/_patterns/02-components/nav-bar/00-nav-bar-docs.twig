@@ -1,0 +1,34 @@
+{% set schema = get_data('@bolt-components-nav-bar/nav-bar.schema.yml') %}
+{% set readme = source('@bolt-components-nav-bar/README.md') %}
+{% set code %} {% verbatim %}
+{% include "@bolt-components-nav-bar/nav-bar.twig" with {
+    "title": {
+      "tag": "h2",
+      "text": "Title Text",
+      "icon": {
+        "name": "icon-name"
+      }
+    },
+    "links": [
+      {
+        "text": "Link 1 Text",
+        "url": "link-1-url"
+      },
+      {
+        "text": "Link 2 Text",
+        "url": "link-2-url"
+      },
+      {
+        "text": "Link 3 Text",
+        "url": "link-3-url"
+      }
+    ]
+  } only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/docs.twig' with {
+  schema: schema,
+  code: code,
+  readme: readme,
+} only %}
