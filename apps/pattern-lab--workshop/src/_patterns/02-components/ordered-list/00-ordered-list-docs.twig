@@ -1,7 +1,7 @@
 {% set schema = get_data('@bolt-components-ordered-list/ordered-list.schema.yml') %}
 {% set readme = source('@bolt-components-ordered-list/README.md') %}
 {% set code %} {% verbatim %}
-{% include "@bolt/ordered-list.twig" with {
+{% include "@bolt-components-ordered-list/ordered-list.twig" with {
   "contentItems" : [
     {
       "text": "Do not include any data or information in your posts that are confidential!"
