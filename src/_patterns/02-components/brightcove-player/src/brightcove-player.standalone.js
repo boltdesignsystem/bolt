@@ -694,11 +694,11 @@ class BrightcoveVideo extends withComponent(withPreact()) {
         {this.props.isBackgroundVideo &&
           <a class="c-bolt-video__close-button c-bolt-video__close-button--icon-to-text" href="javascript:" onClick={this.handleClose}>
             <span class="c-bolt-video__close-button-icon">
-              <bolt-button size="xsmall" color="secondary" rounded="true" icon-only="true">
+              <div class="c-bolt-button c-bolt-button--xsmall c-bolt-button--secondary c-bolt-button--rounded c-bolt-button--icon-only">
                 <span class="c-bolt-button__icon">
                   <bolt-icon name="close" size="small"></bolt-icon>
                 </span>
-              </bolt-button>
+              </div>
             </span>
             <span class="c-bolt-video__close-button-text">
               {closeButtonText}
