@@ -1,0 +1,9 @@
+{% set schema = get_data('@bolt-components-nav-bar/nav-bar.schema.yml') %}
+
+{% for gradient in schema.properties.gradient.enum %}
+  <p>Gradient: {{ gradient }}</p>
+  {% include '05-nav-bar.twig' with {
+    gradient: gradient == 'true',
+  } %}
+
+{% endfor %}

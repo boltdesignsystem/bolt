@@ -1,0 +1,9 @@
+{% set schema = get_data('@bolt-components-nav-bar/nav-bar.schema.yml') %}
+
+{% for vspacing in schema.properties.vspacing.enum %}
+  <p>Vspacing: {{ vspacing }}</p>
+  {% include '05-nav-bar.twig' with {
+    vspacing: vspacing,
+  } %}
+
+{% endfor %}
