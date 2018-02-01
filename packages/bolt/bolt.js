@@ -7,9 +7,8 @@ polyfillLoader.then(res => {
 
   import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-device-viewer' */ '@bolt/components-device-viewer/src/device-viewer.standalone');
 
-  import(/* webpackMode: 'eager', webpackChunkName: 'bolt-band' */ '@bolt/components-band/src/band.standalone');
+  import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-band' */ '@bolt/components-band/src/band.standalone');
 
-  // import(/* webpackMode: 'eager', webpackChunkName: 'bolt-band-collection' */ '@bolt/components-band/src/band-collection.standalone');
 
   import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-icon' */ '@bolt/components-icon/src/icon.standalone');
 
@@ -23,5 +22,5 @@ polyfillLoader.then(res => {
 
   import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-sticky' */ '@bolt/components-sticky/src/sticky');
 
-  import(/* webpackMode: 'eager', webpackChunkName: 'bolt-video' */ '@bolt/components-video/src/video.standalone');
+  import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-video' */ '@bolt/components-video/src/video.standalone');
 });

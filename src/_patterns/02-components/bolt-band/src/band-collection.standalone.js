@@ -6,7 +6,8 @@ import {
   withComponent,
   withPreact,
   css,
-  spacingSizes
+  spacingSizes,
+  hasNativeShadowDomSupport
 } from '@bolt/core';
 
 
@@ -104,12 +105,14 @@ export class BoltBandCollection extends withComponent(withPreact()) {
   }
 
   render() {
-    return (
-      <slot />
-    )
+    if (hasNativeShadowDomSupport){
+      return (
+        <slot />
+      )
+    }
   }
-}
 
+}
 
 
 // These functions help make animations easier.

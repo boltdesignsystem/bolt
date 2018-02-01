@@ -6,7 +6,9 @@ import {
   withComponent,
   withPreact,
   css,
-  spacingSizes
+  spacingSizes,
+  renderToString,
+  hasNativeShadowDomSupport
 } from '@bolt/core';
 
 import styles from './button.scss';
@@ -27,11 +29,46 @@ export class BoltButton extends withComponent(withPreact()) {
 
   constructor(element) {
     super(element);
-    // this.attachShadow({ mode: 'open' });
+    this.useShadow = hasNativeShadowDomSupport;
+    const originalElem = this.querySelectorAll('.c-bolt-button')[0];
 
-    this.addEventListener('click', this.clickHandler);
+    if (originalElem) {
+      originalElem.className = 'c-bolt-button__inner';
+    }
+
+    if (!this.useShadow) {
+      if (originalElem) {
+        this.fallbackText = originalElem.innerHTML;
+      } else {
+        this.fallbackText = this.innerHTML;
+      }
+    }
   }
 
+  connectedCallback(){
+    this.addEventListener('click', this.clickHandler);
+
+    if (!this.useShadow) {
+      this.enableTransitions = false;
+      const self = this;
+
+      setTimeout(function () {
+        const buttonElem = self.querySelector('.c-bolt-button');
+
+        if (buttonElem) {
+          self.enableTransitions = true;
+          buttonElem.classList.remove('u-bolt-transitionless');
+          self.render(self.props, self.enableTransitions = true);
+        }
+      }, 300);
+    } else {
+      this.enableTransitions = true;
+    }
+  }
+
+  disconnectedCallback(){
+    this.removeEventListener('click', this.clickHandler);
+  }
 
   clickHandler(event) {
     const clickMethod = this.props.onClick;
@@ -40,7 +77,6 @@ export class BoltButton extends withComponent(withPreact()) {
     if (clickMethod) {
       if (clickTarget) {
         const elems = document.querySelectorAll(`.${clickTarget}`);
-
         if (elems) {
           elems.forEach(function (elem) {
             if (elem[clickMethod]) {
@@ -60,20 +96,24 @@ export class BoltButton extends withComponent(withPreact()) {
     }
   }
 
-  render({ props }) {
+  render({ props, enableTransitions }) {
     const classes = css(
       'c-bolt-button',
       this.props.size ? `c-bolt-button--${this.props.size}` : '',
       this.props.color ? `c-bolt-button--${this.props.color}` : '',
       this.props.rounded ? `c-bolt-button--rounded` : '',
       this.props.iconOnly ? `c-bolt-button--icon-only` : '',
+      enableTransitions === false ? 'u-bolt-transitionless' : ''
     );
 
-    const originalElem = this.querySelectorAll('.c-bolt-button')[0];
+    let buttonText;
 
-    if (originalElem){
-      originalElem.className = 'c-bolt-button__inner';
+    if (this.useShadow){
+      buttonText = <slot />;
+    } else {
+      buttonText = <span className="c-bolt-button__inner" dangerouslySetInnerHTML={{ __html: this.fallbackText }} />
     }
+
 
     return (
       <div className={classes}>
@@ -81,7 +121,7 @@ export class BoltButton extends withComponent(withPreact()) {
           {styles[0][1]}
           {spacingUtils[0][1]}
         </style>
-        <slot />
+        { buttonText }
       </div>
     )
   }

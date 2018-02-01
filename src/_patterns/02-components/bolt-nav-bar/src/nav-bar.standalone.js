@@ -6,7 +6,8 @@ import {
   withComponent,
   withPreact,
   css,
-  spacingSizes
+  spacingSizes,
+  hasNativeShadowDomSupport
 } from '@bolt/core';
 
 const indicatorElement = '.js-bolt-nav-indicator';
@@ -24,10 +25,20 @@ class BoltNavList extends withComponent(withPreact()) {
     this._onWindowResize = this._onWindowResize.bind(this);
   }
 
-  renderCallback() {
-    return (
-      <slot />
-    )
+  render() {
+    if (hasNativeShadowDomSupport) {
+      return (
+        <slot />
+      )
+    }
+  }
+
+  renderer(root, html) {
+    if (hasNativeShadowDomSupport) {
+      super.renderer(root, html);
+    } else {
+      root.innerHTML = this.innerHTML;
+    }
   }
 
   /**
@@ -174,10 +185,21 @@ class BoltNavLink extends withComponent(withPreact()) {
     }
   }
 
-  renderCallback() {
-    return (
-      <slot />
-    )
+  render() {
+    if (hasNativeShadowDomSupport) {
+      return (
+        <slot />
+      )
+    }
+  }
+
+
+  renderer(root, html) {
+    if (hasNativeShadowDomSupport) {
+      super.renderer(root, html);
+    } else {
+      root.innerHTML = this.innerHTML;
+    }
   }
 
   connectedCallback() {

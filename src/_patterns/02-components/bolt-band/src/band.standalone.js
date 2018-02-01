@@ -4,7 +4,8 @@ import {
   define,
   props,
   withComponent,
-  withPreact
+  withPreact,
+  hasNativeShadowDomSupport
 } from '@bolt/core';
 
 
@@ -52,7 +53,6 @@ export class BoltBand extends withComponent(withPreact()) {
       this.collapse();
     }
   }
-
 
   /**
     * `connectedCallback()` sets up the role, event handler and initial state.
@@ -213,9 +213,19 @@ export class BoltBand extends withComponent(withPreact()) {
     }
   }
 
+  renderer(root, html) {
+    if (hasNativeShadowDomSupport) {
+      super.renderer(root, html);
+    } else {
+      root.innerHTML = this.innerHTML;
+    }
+  }
+
   render() {
-    return (
-      <slot />
-    )
+    if (hasNativeShadowDomSupport){
+      return (
+        <slot />
+      )
+    }
   }
 }

@@ -5,6 +5,4 @@
  * Used in: IE 11
  */
 
-import '@webcomponents/webcomponents-platform/webcomponents-platform.js';
-import '@webcomponents/shadydom/src/shadydom.js';
 import 'document-register-element';
