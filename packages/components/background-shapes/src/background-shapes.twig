@@ -8,7 +8,7 @@
 
 {% set colors = ["yellow", "orange", "teal", "blue"] %}
 
-{% set shapeGroups = source("shape-groups.json") | json_decode %}
+{% set shapeGroups = source("@bolt/shape-groups.json") | json_decode %}
 
 {# If a valid shapeGroup was specified, select its shapes.  Otherwise, get the shapes from the default shapeGroup. #}
 {% set elements = attribute(shapeGroups, shapeGroup) ? attribute(shapeGroups, shapeGroup) : shapeGroups.A %}
