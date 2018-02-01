@@ -4,7 +4,6 @@ module.exports = {
   buildDir: 'www/build',
   srcDir: './content',
   wwwDir: 'www',
-  verbosity: 4,
   components: {
     global: [
       '@bolt/core',
