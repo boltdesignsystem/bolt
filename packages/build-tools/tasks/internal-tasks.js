@@ -11,9 +11,9 @@ const config = require('../utils/config-store').getConfig();
 async function mkDirs() {
   try {
     return Promise.all([
-      mkdirp(config.wwwDir),
-      mkdirp(config.dataDir),
-      mkdirp(config.buildDir),
+      config.wwwDir ? mkdirp(config.wwwDir) : null,
+      config.dataDir ? mkdirp(config.dataDir) : null,
+      config.buildDir ? mkdirp(config.buildDir) : null,
     ]);
   } catch (error) {
     log.errorAndExit('Could not make all directories necessary.', error);
