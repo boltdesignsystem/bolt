@@ -5,6 +5,16 @@ properties:
   content:
       description: Content is required.
       type: string
+  theme:
+      type: string
+      description: Default is dark. Can be set to false for a transparent background.
+      enum:
+        - xlight
+        - light
+        - dark
+        - xdark
+        - medium
+        - 'false'
   size:
     description: Default is large.
     type: string
@@ -28,13 +38,13 @@ properties:
       - none
   indent:
     description: Default is false.
-    type: string
+    type: boolean
     enum:
       - 'true'
       - 'false'
   fullBleed:
       description: Default is false.
-      type: string
+      type: boolean
       enum:
         - 'true'
         - 'false'
@@ -45,6 +55,11 @@ properties:
         src:
           type: string
           description: Source URL.
+        invert:
+          type: boolean
+          enum:
+            - 'true'
+            - 'false'
   author:
       description: Author is optional.
       type: object
