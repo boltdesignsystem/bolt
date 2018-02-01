@@ -144,7 +144,8 @@ function createConfig(config) {
   // Must start and end with `/`
   const publicPath = `/${path.relative(config.wwwDir, config.buildDir)}/`;
 
-  return {
+  // THIS IS IT!! The object that gets passed in as WebPack's config object.
+  const webpackConfig = {
     entry: assets.buildWebpackEntry(config.components),
     output: {
       path: path.resolve(process.cwd(), config.buildDir),
@@ -255,6 +256,8 @@ function createConfig(config) {
       }
     }
   };
+
+  return webpackConfig;
 }
 
 module.exports = createConfig;
