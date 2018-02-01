@@ -8,13 +8,11 @@
 import { polyfillLoader } from '@bolt/core';
 
 polyfillLoader.then(res => {
-  import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-ratio-object' */ '@bolt/objects-ratio/src/ratio.standalone');
+  // import(/* webpackMode: 'eager', webpackChunkName: 'bolt-ratio-object' */ '@bolt/objects-ratio/src/ratio.standalone');
 
   import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-device-viewer' */ '@bolt/components-device-viewer/src/device-viewer.standalone');
 
   import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-band' */ '@bolt/components-band/src/band.standalone');
-
-  import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-band-collection' */ '@bolt/components-band/src/band-collection.standalone');
 
   import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-icon' */ '@bolt/components-icon/src/icon.standalone');
 
@@ -22,7 +20,7 @@ polyfillLoader.then(res => {
 
   import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-nav-bar' */ '@bolt/components-nav-bar/src/nav-bar.standalone');
 
-  import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-button' */ '@bolt/components-button/src/button.standalone');
+  import(/* webpackMode: 'eager', webpackChunkName: 'bolt-button' */ '@bolt/components-button/src/button.standalone');
 
   // import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-smooth-scroll' */ '@bolt/components-smooth-scroll/src/smooth-scroll');
 
