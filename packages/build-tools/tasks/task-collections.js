@@ -10,6 +10,8 @@ const extraTasks = {};
 switch (config.env) {
   case 'pl':
     extraTasks.patternLab = require('./pattern-lab-tasks');
+  case 'storefront':
+    extraTasks.storefront = require('./storefront-tasks');
 }
 
 if (config.wwwDir) {
@@ -59,6 +61,8 @@ async function build() {
       case 'pl':
         await manifest.writeTwigNamespaceFile(process.cwd(), config.extraTwigNamespaces);
         await extraTasks.patternLab.compile();
+      case 'storefront':
+        await extraTasks.storefront.go();
     }
     await imageTasks.processImages();
   } catch (error) {
