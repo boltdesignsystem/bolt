@@ -4,7 +4,7 @@ const childProcess = require('child_process');
 const path = require('path');
 const { promisify } = require('util');
 const fs = require('fs');
-const mkdirp = require('mkdirp');
+const mkdirp = promisify(require('mkdirp'));
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 const events = require('../utils/events');
@@ -17,6 +17,7 @@ const config = require('../utils/config-store').getConfig();
 const fm = require('front-matter');
 const ora = require('ora');
 const marked = require('marked');
+const timer = require('../utils/timer');
 const manifest = require('../utils/manifest');
 
 /**
@@ -51,36 +52,52 @@ async function getFileInfo(file) {
 
 async function getAllFilesInfo(files) {
   const allFilePaths = await globby(path.join(files, '**/*.{md,html}'));
-  return Promise.all(allFilePaths.map(getFileInfo));
+  return Promise.all(allFilePaths.map(getFileInfo)).then((allInfo) => {
+    if (config.verbosity > 4) {
+      log.dim('All data for Storefront content files:');
+      console.log(allInfo);
+      log.dim('END: All data for Storefront content files.');
+    }
+    return allInfo;
+  });
 }
 
 async function compile() {
-  const allInfo = await getAllFilesInfo(config.srcDir);
-  if (config.verbosity > 3) {
-    console.log(allInfo);
+  const startMessage = chalk.blue('Compiling Storefront...');
+  const startTime = timer.start();
+  let spinner;
+  if (config.verbosity > 2) {
+    console.log(startMessage);
+  } else {
+    spinner = ora(startMessage).start();
   }
 
-  allInfo.forEach(async (page) => {
-    if (config.verbosity > 3) {
-      log.dim(`Attempting ${page.srcPath}`);
-      // console.log(page);
-    }
+  const allInfo = await getAllFilesInfo(config.srcDir);
+
+  return Promise.all(allInfo.map(async (page) => {
 
     try {
       const dataArg = escapeNestedSingleQuotes(JSON.stringify(page));
       const cmd = `php index.php default.twig '${dataArg}'`;
-      // console.log(cmd);
-
       const output = await sh(cmd, true);
-      // console.log(output);
 
       const htmlFilePath = path.join(config.wwwDir, page.distPath);
-      mkdirp(path.dirname(htmlFilePath));
+      await mkdirp(path.dirname(htmlFilePath));
       await writeFile(htmlFilePath, output);
+      if (config.verbosity > 3) {
+        log.dim(`Wrote: ${htmlFilePath}`);
+      }
     } catch (error) {
-      log.errorAndExit(error);
+      log.errorAndExit('Compiling Storefront', error);
     }
 
+  })).then(() => {
+    const endMessage = chalk.green(`Compiled Storefront in ${timer.end(startTime)}`);
+    if (config.verbosity > 2) {
+      console.log(endMessage);
+    } else {
+      spinner.succeed(endMessage);
+    }
   });
 }
 
@@ -111,7 +128,18 @@ function watch() {
 
 }
 
+async function clean() {
+  const spinner = ora(chalk.blue('Cleaning files...')).start();
+  const startTime = timer.start();
+  await del([
+    config.wwwDir,
+  ]);
+  spinner.succeed(chalk.green(`Cleaned files in ${timer.end(startTime)}`));
+  return true;
+}
+
 module.exports = {
   compile,
   watch,
+  clean,
 };

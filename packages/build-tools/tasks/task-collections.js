@@ -20,8 +20,11 @@ if (config.wwwDir) {
 
 async function clean() {
   try {
-    if (config.env === 'pl') {
-      await extraTasks.patternLab.clean();
+    switch (config.env) {
+      case 'pl':
+        await extraTasks.patternLab.clean();
+      case 'storefront':
+        await extraTasks.storefront.clean();
     }
   } catch (error) {
     log.errorAndExit('Clean failed', error);
