@@ -540,6 +540,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
       this.props.accountId,
       this.props.playerId
     );
+    s.async = true;
 
     return s;
   }

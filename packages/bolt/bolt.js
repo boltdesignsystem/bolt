@@ -23,5 +23,5 @@ polyfillLoader.then(res => {
 
   import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-sticky' */ '@bolt/components-sticky/src/sticky');
 
-  import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-video' */ '@bolt/components-video/src/video.standalone');
+  import(/* webpackMode: 'eager', webpackChunkName: 'bolt-video' */ '@bolt/components-video/src/video.standalone');
 });
