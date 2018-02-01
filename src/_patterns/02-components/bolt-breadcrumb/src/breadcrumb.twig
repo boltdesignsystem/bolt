@@ -42,7 +42,7 @@
     <ol class="{{ "#{baseClass}__list" }}">
       {% for item in contentItems %}
         <li class="{{ "#{baseClass}__item" }}">
-          {% include "@bolt/link.twig" with item only %}
+          {{ item }}
         </li>
       {% endfor %}
     </ol>
