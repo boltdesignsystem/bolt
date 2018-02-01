@@ -146,33 +146,38 @@ class BoltNavLink extends withComponent(withPreact()) {
     value = Boolean(value);
     if (value) {
       this.setAttribute('active', '');
-      this._shadowLink.classList.add(isActiveClass);
     } else {
       this.removeAttribute('active');
-      this._shadowLink.classList.remove(isActiveClass);
     }
   }
 
 
   // `attributeChangedCallback` processes changes to the `active` attr
-  attributeChangedCallback(attrName, oldVal, newVal) {
-    const value = this.hasAttribute('active');
+  attributeChangedCallback(name, oldVal, newVal) {
+    switch (name) {
+      case 'active':
+        if (this.active) {
+          this._shadowLink.classList.add(isActiveClass);
+
+          // Dispatch an event that signals to the parent what element is being active
+          this.dispatchEvent(
+            new CustomEvent('activateLink', {
+              detail: {
+                isActiveNow: true
+              },
+              bubbles: true,
+            })
+          );
+        }
+        else {
+          this._shadowLink.classList.remove(isActiveClass);
+        }
+    }
   }
 
-  // Handle state changes when being clicked on + emmitting this change as a CustomEvent
-  activateLink() {
-    if (!this.active){
-      this.active = !this.active; // Flip the current active state
-
-      // Dispatch an event that signals to the parent what element is being active
-      this.dispatchEvent(
-        new CustomEvent('activateLink', {
-          detail: {
-            isActiveNow: true
-          },
-          bubbles: true,
-        })
-      );
+  onClick() {
+    if (!this.active) {
+      this.active = true;
     }
   }
 
@@ -183,18 +188,18 @@ class BoltNavLink extends withComponent(withPreact()) {
   }
 
   connectedCallback() {
-    this.addEventListener('click', this.activateLink);
+    this.addEventListener('click', this.onClick);
 
     // Set an initially active link if appropriate.
     const isAlreadyActive = this._shadowLink.classList.contains(isActiveClass) || this._shadowLink.getAttribute('href') === window.location.hash;
 
     if (isAlreadyActive) {
-      this.activateLink();
+      this.active = true;
     }
   }
 
   disconnectedCallback() {
-    this.removeEventListener('click', this.activateLink);
+    this.removeEventListener('click', this.onClick);
   }
 }
 customElements.define('bolt-nav-link', BoltNavLink);
