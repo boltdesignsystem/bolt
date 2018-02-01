@@ -1,5 +1,51 @@
-<div>
-  <h1>{{ page.title }}</h1>
-  <h2>I'm the default template</h2>
-  <div class="body">{{ body | raw }}</div>
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Bolt Design System{% if page.title %} | {{ title }}{% endif %}</title>
+  <meta name="description" content="Bolt Design System">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  {#<link rel="manifest" href="site.webmanifest">#}
+  {#<link rel="apple-touch-icon" href="icon.png">#}
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="/build/bolt-global.css">
+</head>
+<body class="c-bolt-site">
+
+<div class="c-bolt-site__content c-bolt-site__content--middle"><!-- vertically center -->
+  <div class="o-bolt-wrapper">
+    <main>
+      <h1>{{ page.title }}</h1>
+      <article>
+        {{ body|raw }}
+        {#<bolt-band-collection>#}
+        {#</bolt-band-collection>#}
+      </article>
+    </main>
+  </div>
 </div>
+
+<div class="c-bolt-site__footer c-bolt-page-footer">
+  <div class="o-bolt-wrapper">
+    <footer role="contentinfo">
+      <small>
+        <p>
+          <strong>Copyright &copy; 2017 Pegasystems, Inc.</strong> | <a href="/styleguide/html/styleguide.html">Pattern Lab</a> | <a href="/sassdoc">Sass Docs</a>
+        </p>
+      </small>
+    </footer>
+  </div>
+</div>
+{#<script src="js/main.js"></script>#}
+
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+{#<script>#}
+  {#window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;#}
+  {#ga('create','UA-XXXXX-Y','auto');ga('send','pageview')#}
+{#</script>#}
+{#<script src="https://www.google-analytics.com/analytics.js" async defer></script>#}
+</body>
+</html>
