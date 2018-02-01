@@ -196,6 +196,18 @@ class BoltNavLink extends withComponent(withPreact()) {
     if (isAlreadyActive) {
       this.active = true;
     }
+
+    this._upgradeProperty('active');
+  }
+
+  // See https://developers.google.com/web/fundamentals/web-components/best-practices#lazy-properties
+  // for an explanation of lazy properties.
+  _upgradeProperty(prop) {
+    if (this.hasOwnProperty(prop)) {
+      let value = this[prop];
+      delete this[prop];
+      this[prop] = value;
+    }
   }
 
   disconnectedCallback() {
