@@ -4,6 +4,7 @@ const childProcess = require('child_process');
 const path = require('path');
 const { promisify } = require('util');
 const fs = require('fs');
+const mkdirp = require('mkdirp');
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 const events = require('../utils/events');
@@ -69,15 +70,18 @@ async function go() {
     }
 
     try {
-
       const dataArg = escapeNestedSingleQuotes(JSON.stringify(page));
       const cmd = `php index.php default.twig '${dataArg}'`;
       // console.log(cmd);
 
       const output = await sh(cmd, true);
       // console.log(output);
+
+      const htmlFilePath = path.join(config.wwwDir, page.distPath);
+      mkdirp(path.dirname(htmlFilePath));
+      await writeFile(htmlFilePath, output);
     } catch (error) {
-      console.log(error);
+      log.errorAndExit(error);
     }
 
   });
