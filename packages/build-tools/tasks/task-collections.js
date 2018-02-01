@@ -62,7 +62,7 @@ async function build() {
         await manifest.writeTwigNamespaceFile(process.cwd(), config.extraTwigNamespaces);
         await extraTasks.patternLab.compile();
       case 'storefront':
-        await extraTasks.storefront.go();
+        await extraTasks.storefront.compile();
     }
     await imageTasks.processImages();
   } catch (error) {
@@ -79,6 +79,8 @@ async function watch() {
     switch (config.env) {
       case 'pl':
         watchTasks.push(extraTasks.patternLab.watch());
+      case 'storefront':
+        watchTasks.push(extraTasks.storefront.watch());
     }
 
     return Promise.all(watchTasks);

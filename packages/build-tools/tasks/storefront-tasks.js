@@ -12,6 +12,7 @@ const chokidar = require('chokidar');
 const del = require('del');
 const log = require('../utils/log');
 const globby = require('globby');
+const debounce = require('lodash.debounce');
 const config = require('../utils/config-store').getConfig();
 const fm = require('front-matter');
 const ora = require('ora');
@@ -20,14 +21,11 @@ const manifest = require('../utils/manifest');
 
 /**
  * Prep a JSON string for use in bash
- * @link https://stackoverflow.com/questions/1250079/how-to-escape-single-quotes-within-single-quoted-strings
  * @param {string} string
  * @returns {string}
  */
 function escapeNestedSingleQuotes(string) {
-  // return string.replace(/'/g, /'"'"'/);
   return string.replace(/'/g, "'\\''");
-  // return string.replace(/'/g, "&#039;");
 }
 
 async function getFileInfo(file) {
@@ -52,12 +50,11 @@ async function getFileInfo(file) {
 }
 
 async function getAllFilesInfo(files) {
-  const allFilePaths = await globby(path.join(files, '**/*.md'));
-  console.log(allFilePaths);
+  const allFilePaths = await globby(path.join(files, '**/*.{md,html}'));
   return Promise.all(allFilePaths.map(getFileInfo));
 }
 
-async function go() {
+async function compile() {
   const allInfo = await getAllFilesInfo(config.srcDir);
   if (config.verbosity > 3) {
     console.log(allInfo);
@@ -87,6 +84,34 @@ async function go() {
   });
 }
 
+const debouncedCompile = debounce(compile, 500);
+
+function watch() {
+  const watchedFiles = [
+    './templates/**/*.twig',
+    './content/**/*.{md,html}',
+  ];
+
+  const watcher = chokidar.watch(watchedFiles, {
+    ignoreInitial: true,
+    cwd: process.cwd(),
+    ignore: [
+      '**/node_modules/**',
+      '**/vendor/**',
+    ],
+  });
+
+  // list of all events: https://www.npmjs.com/package/chokidar#methods--events
+  watcher.on('all', (event, path) => {
+    if (config.verbosity > 3) {
+      console.log('Storefront watch event: ', event, path);
+    }
+    debouncedCompile();
+  });
+
+}
+
 module.exports = {
-  go,
+  compile,
+  watch,
 };
