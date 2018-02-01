@@ -9,11 +9,54 @@ import {
   spacingSizes
 } from '@bolt/core';
 
-import gumshoe from 'gumshoejs';
+import navListGumshoe from 'gumshoejs';
 
 const indicatorElement = '.js-bolt-nav-indicator';
 const navLinkElement = 'bolt-nav-link'; // Custom element
 const isActiveClass = 'is-active';
+
+// gumshoeStateModule stores an offset value that persists even when it's called multiple times.  If the offset
+// is the same as the last time it was called, it avoids initializing gumshoe again (among other things, when
+// initializing multiple navbars on one page, this only initializes gumshoe once).  If the offset value HAS changed--
+// presumably because the header has adjusted its own height--gumshoe will be re-initialized with the new value.
+let gumshoeStateModule = (function () {
+  let offset; // Private variable
+  let pub = {}; // public object - returned at end of module to allow external interaction
+
+  pub.setOffset = function (newOffset) {
+    if (offset !== newOffset) {
+      offset = newOffset;
+
+      navListGumshoe.init({
+        selector: '.js-bolt-nav-list-gumshoe a',
+        // All the link activation logic is handled in the callback, but gumshoe won't work without
+        // a value for activeClass, so we give it a placeholder.
+        activeClass: 'gumshoe',
+        // Setting scrollDelay to true prevents gumshoe from trying to set the active item when a link
+        // has been clicked and WHILE we are smooth scrolling to that item.  This could be removed if
+        // we could find a way to disable any activity in the callback while a non-gumshoe (i.e. click-initiated)
+        // animation is in-progress.
+        scrollDelay: true,
+        offset: offset,
+        callback: function (nav) {
+          if (nav && nav.hasOwnProperty('nav')) {
+            if (!nav.nav.classList.contains(isActiveClass)) {
+              // If the parent already has the is-active class, it was activated by something other
+              // than gumshoe-- no need to duplicate effort, so abort.
+              nav.nav.parentElement.setAttribute('active', '');
+            }
+          }
+        }
+      });
+    }
+  };
+
+  pub.getOffset = function() {
+    return offset;
+  };
+
+  return pub;
+}());
 
 // Behavior for `<bolt-nav-list>` parent container
 class BoltNavList extends withComponent(withPreact()) {
@@ -30,6 +73,28 @@ class BoltNavList extends withComponent(withPreact()) {
     return (
       <slot />
     )
+  }
+
+  static get observedAttributes() { return ['offset']; }
+  
+  get offset() {
+    return this.getAttribute('offset');
+  }
+
+  set offset(value) {
+    // Reflect the value of the offset property as an HTML attribute.
+    if (value) {
+      this.setAttribute('offset', value);
+    }
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    switch (name) {
+      case 'offset':
+        // Note the attributeChangedCallback is only handling the *side effects*
+        // of setting the attribute.
+        this._initializeGumshoe();
+    }
   }
 
   /**
@@ -100,11 +165,29 @@ class BoltNavList extends withComponent(withPreact()) {
     }
   }
 
+  _initializeGumshoe() {
+    gumshoeStateModule.setOffset(this.offset);
+  }
+
   // `<bolt-nav-link>` emits a custom event when the link is active
   connectedCallback() {
     this._indicator = this.querySelector(indicatorElement);
     this.addEventListener('activateLink', this._onActivateLink);
     window.addEventListener('optimizedResize', this._onWindowResize);
+
+    // Initialize the Gumshoe library.
+    this.offset = this.hasAttribute('offset') ? this.getAttribute('offset') : 50;
+    this._initializeGumshoe();
+
+    this._upgradeProperty('offset');
+  }
+
+  _upgradeProperty(prop) {
+    if (this.hasOwnProperty(prop)) {
+      let value = this[prop];
+      delete this[prop];
+      this[prop] = value;
+    }
   }
 
   // Clean up event listeners when being removed from the page
@@ -216,22 +299,6 @@ class BoltNavLink extends withComponent(withPreact()) {
 }
 customElements.define('bolt-nav-link', BoltNavLink);
 
-
-gumshoe.init({
-  // All the link activation logic is handled in the callback, but gumshoe won't work without
-  // a value for activeClass, so we give it a placeholder.
-  activeClass: 'gumshoe',
-  scrollDelay: true,
-  callback: function (nav) {
-    if (nav && nav.hasOwnProperty('nav')) {
-      if (!nav.nav.classList.contains('is-active')) {
-        // If the parent already has the is-active class, it was activated by something other
-        // than gumshoe-- no need to duplicate effort, so abort.
-        nav.nav.parentElement.activateLink();
-      }
-    }
-  }
-});
 
 
 // Create a custom 'optimizedResize' event that works just like window.resize but is more performant because it

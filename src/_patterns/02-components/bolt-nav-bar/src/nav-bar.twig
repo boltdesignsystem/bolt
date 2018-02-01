@@ -9,6 +9,10 @@
     // Default is xsmall. This controls the top and bottom spacing of the nav-bar. [xsmall, small]
     "vspacing": "xsmall",
 
+    // Default is set 50.  The cumulative height of all fixed headers in pixels (used to adjust when scrolling-based
+    transitions take place, such as gumshoe changing the active item when scrolling).
+    "headerOffset": "50",
+
     // Nav-bar title. Icon is optional. Tag can be set to h1 to h6 depending on the page.
     "title":
     {
@@ -112,8 +116,10 @@
           </div>
         {% endif %}
         <div class="c-bolt-nav-bar__nav">
-          <bolt-nav-list>
-            <ul class="c-bolt-nav-list {{ "c-bolt-nav-list--#{vspacing}" }}" data-gumshoe>
+          <bolt-nav-list
+              {% if headerOffset %} offset="{{ headerOffset }}" {% endif %}
+          >
+            <ul class="c-bolt-nav-list {{ "c-bolt-nav-list--#{vspacing}" }} js-bolt-nav-list-gumshoe">
               {% for item in links %}
                 <li class="c-bolt-nav-list__item">
                   <bolt-nav-link>
