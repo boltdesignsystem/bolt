@@ -41,15 +41,23 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
   }
 
   render({ props }) {
-    const classes = css(
-      'c-bolt-image-magnifier'
-    );
+    if (hasNativeShadowDomSupport){
+      const classes = css(
+        'c-bolt-image-magnifier'
+      );
 
-    return (
-      <div className={classes}>
-        <slot />
-      </div>
-    )
+      return (
+        <div className={classes}>
+          <slot />
+        </div>
+      )
+    }
+  }
+
+  renderer(root, html) {
+    if (!hasNativeShadowDomSupport) {
+      root.innerHTML = `<div class="c-bolt-image-magnifier">${this.innerHTML}</div>`;
+    }
   }
 
   connectedCallback() {

@@ -26,6 +26,10 @@ class BrightcoveMeta extends withComponent(withPreact()) {
     title: props.string
   };
 
+  get renderRoot() {
+    return this;
+  }
+
   render() {
     const separator = this.title && this.duration ? ' | ' : '';
 
@@ -71,8 +75,8 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     hideFullScreenButton: props.boolean
   }
 
-  constructor() {
-    super();
+  constructor(element) {
+    super(element);
     index += 1;
 
     this.onPlay = this.onPlay.bind(this);
@@ -536,6 +540,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
       this.props.accountId,
       this.props.playerId
     );
+    s.async = true;
 
     return s;
   }
@@ -672,6 +677,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
           {...(this.props.poster ? { poster: this.props.poster.uri } : {}) }
           data-embed="default"
           data-video-id={this.props.videoId}
+          preload="none"
           data-account={this.props.accountId}
           data-player={this.props.playerId}
           // playIcon={playIconEmoji()}
@@ -688,11 +694,11 @@ class BrightcoveVideo extends withComponent(withPreact()) {
         {this.props.isBackgroundVideo &&
           <a class="c-bolt-video__close-button c-bolt-video__close-button--icon-to-text" href="javascript:" onClick={this.handleClose}>
             <span class="c-bolt-video__close-button-icon">
-              <bolt-button size="xsmall" color="secondary" rounded="true" icon-only="true">
+              <div class="c-bolt-button c-bolt-button--xsmall c-bolt-button--secondary c-bolt-button--rounded c-bolt-button--icon-only">
                 <span class="c-bolt-button__icon">
                   <bolt-icon name="close" size="small"></bolt-icon>
                 </span>
-              </bolt-button>
+              </div>
             </span>
             <span class="c-bolt-video__close-button-text">
               {closeButtonText}

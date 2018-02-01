@@ -1,4 +1,4 @@
-import { 
+import {
   h,
   render,
   define,
@@ -6,7 +6,8 @@ import {
   withComponent,
   withPreact,
   css,
-  spacingSizes
+  spacingSizes,
+  hasNativeShadowDomSupport
 } from '@bolt/core';
 
 const indicatorElement = '.js-bolt-nav-indicator';
@@ -15,8 +16,8 @@ const isActiveClass = 'is-active';
 
 // Behavior for `<bolt-nav-list>` parent container
 class BoltNavList extends withComponent(withPreact()) {
-  constructor() {
-    super();
+  constructor(element) {
+    super(element);
     this.activeLink = false;
 
     // Ensure that 'this' inside the _onWindowResize event handler refers to <bolt-nav-link>
@@ -24,10 +25,20 @@ class BoltNavList extends withComponent(withPreact()) {
     this._onWindowResize = this._onWindowResize.bind(this);
   }
 
-  renderCallback() {
-    return (
-      <slot />
-    )
+  render() {
+    if (hasNativeShadowDomSupport) {
+      return (
+        <slot />
+      )
+    }
+  }
+
+  renderer(root, html) {
+    if (hasNativeShadowDomSupport) {
+      super.renderer(root, html);
+    } else {
+      root.innerHTML = this.innerHTML;
+    }
   }
 
   /**
@@ -123,8 +134,8 @@ class BoltNavLink extends withComponent(withPreact()) {
     return ['active'];
   }
 
-  constructor() {
-    super();
+  constructor(element) {
+    super(element);
 
     this._shadowLink = this.querySelector('a');
   }
@@ -174,10 +185,21 @@ class BoltNavLink extends withComponent(withPreact()) {
     }
   }
 
-  renderCallback() {
-    return (
-      <slot />
-    )
+  render() {
+    if (hasNativeShadowDomSupport) {
+      return (
+        <slot />
+      )
+    }
+  }
+
+
+  renderer(root, html) {
+    if (hasNativeShadowDomSupport) {
+      super.renderer(root, html);
+    } else {
+      root.innerHTML = this.innerHTML;
+    }
   }
 
   connectedCallback() {
