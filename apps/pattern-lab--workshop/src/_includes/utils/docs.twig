@@ -14,6 +14,11 @@
   {% if readme %}
     <h4>ReadMe</h4>
     {{ readme|markdown }}
+    {% if readmePath %}
+      {# @todo Improve robustness of getting ReadMe Path #}
+      {% set branchName = 'epic/refactor' %}
+      <a href="https://github.com/bolt-design-system/bolt/blob/{{ branchName }}/{{ readmePath }}" target="_blank">Edit this ReadMe on GitHub</a>
+    {% endif %}
   {% endif %}
 
   {% if links %}
