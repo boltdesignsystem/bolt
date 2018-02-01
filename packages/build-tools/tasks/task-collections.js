@@ -1,6 +1,5 @@
 const log = require('../utils/log');
 const webpackTasks = require('./webpack-tasks');
-const serverTasks = require('./server-tasks');
 const manifest = require('../utils/manifest');
 const internalTasks = require('./internal-tasks');
 const imageTasks = require('./image-tasks');
@@ -14,7 +13,7 @@ switch (config.env) {
 }
 
 if (config.wwwDir) {
-  
+  extraTasks.server = require('./server-tasks');
 }
 
 async function clean() {
@@ -29,10 +28,12 @@ async function clean() {
 
 async function serve() {
   try {
-    return Promise.all([
-      webpackTasks.server(),
-      serverTasks.serve(),
-    ]);
+    const serverTasks = [];
+    if (config.wwwDir) {
+      serverTasks.push(extraTasks.server.serve());
+      serverTasks.push(webpackTasks.server());
+    }
+    return Promise.all(serverTasks);
   } catch (error) {
     log.errorAndExit('Serve failed', error);
   }

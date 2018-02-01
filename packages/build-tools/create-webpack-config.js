@@ -142,7 +142,10 @@ function createConfig(config) {
 
   // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
   // Must start and end with `/`
-  const publicPath = `/${path.relative(config.wwwDir, config.buildDir)}/`;
+  // conditional is temp workaround for when servers are disabled via absence of `config.wwwDir`
+  const publicPath = config.wwwDir
+    ? `/${path.relative(config.wwwDir, config.buildDir)}/`
+    : config.buildDir;
 
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
   const webpackConfig = {
@@ -230,32 +233,35 @@ function createConfig(config) {
       // @todo consider bringing it back
       // new webpack.ProgressPlugin({ profile: false }),
     ],
-    devServer: {
-      contentBase: [
-        path.resolve(process.cwd(), config.wwwDir),
-        // @TODO: add Pattern Lab Styleguidekit Assets Default dist path here
-      ],
-      compress: true,
-      clientLogLevel: 'none',
-      port: 8080,
-      stats: statsPreset(webpackStats[config.verbosity]),
-      overlay: {
-        errors: true
-      },
-      hot: true,
-      inline: true,
-      noInfo: true, // webpackTasks.watch handles output info related to success & failure
-      publicPath: publicPath,
-      watchContentBase: true,
-      historyApiFallback: true,
-      watchOptions: {
-        aggregateTimeout: 500,
-        // ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
-        // Poll using interval (in ms, accepts boolean too)
-        poll: true,
-      }
-    }
   };
+
+ if (config.wwwDir) {
+   webpackConfig.devServer = {
+     contentBase: [
+       path.resolve(process.cwd(), config.wwwDir),
+       // @TODO: add Pattern Lab Styleguidekit Assets Default dist path here
+     ],
+     compress: true,
+     clientLogLevel: 'none',
+     port: 8080,
+     stats: statsPreset(webpackStats[config.verbosity]),
+     overlay: {
+       errors: true
+     },
+     hot: true,
+     inline: true,
+     noInfo: true, // webpackTasks.watch handles output info related to success & failure
+     publicPath: publicPath,
+     watchContentBase: true,
+     historyApiFallback: true,
+     watchOptions: {
+       aggregateTimeout: 500,
+       // ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
+       // Poll using interval (in ms, accepts boolean too)
+       poll: true,
+     }
+   }
+ }
 
   return webpackConfig;
 }
