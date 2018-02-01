@@ -1,0 +1,9 @@
+{% set schema = get_data('@bolt-components-blockquote/blockquote.schema.yml') %}
+
+{% for alignItems in schema.properties.alignItems.enum %}
+  <p>alignItems: {{ alignItems }}</p>
+  {% include '05-blockquote.twig' with {
+    alignItems: alignItems,
+  } %}
+
+{% endfor %}
