@@ -45,3 +45,13 @@ properties:
           name:
             type: string
             description: Must use icon name
+  links:
+    type: array
+    items:
+      type: object
+      description: Nav-bar links. It's recommended to have no more than 4 links.
+      properties:
+        text:
+          type: string
+        url:
+          type: string
