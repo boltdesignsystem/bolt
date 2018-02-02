@@ -31,6 +31,7 @@ export class BoltBand extends withComponent(withPreact()) {
 
   constructor(element) {
     super(element);
+    this.useShadow = hasNativeShadowDomSupport;
 
     this.state = {
       ready: false
@@ -214,7 +215,7 @@ export class BoltBand extends withComponent(withPreact()) {
   }
 
   renderer(root, html) {
-    if (hasNativeShadowDomSupport) {
+    if (this.useShadow) {
       super.renderer(root, html);
     } else {
       root.innerHTML = this.innerHTML;
@@ -222,7 +223,7 @@ export class BoltBand extends withComponent(withPreact()) {
   }
 
   render() {
-    if (hasNativeShadowDomSupport){
+    if (this.useShadow){
       return (
         <slot />
       )

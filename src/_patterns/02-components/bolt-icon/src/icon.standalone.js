@@ -6,7 +6,8 @@ import {
   withComponent,
   withPreact,
   css,
-  spacingSizes
+  spacingSizes,
+  hasNativeShadowDomSupport
 } from '@bolt/core';
 
 import upperCamelCase from 'uppercamelcase';
@@ -35,6 +36,11 @@ export class BoltIcon extends withComponent(withPreact()) {
     color: props.string
   }
 
+  constructor(element){
+    super(element);
+    this.useShadow = hasNativeShadowDomSupport;
+  }
+
   render({ props }) {
     const classes = css(
       'c-bolt-icon',
@@ -59,7 +65,9 @@ export class BoltIcon extends withComponent(withPreact()) {
 
     return (
       <div className={classes}>
-        <style>{styles[0][1]}</style>
+        {this.useShadow &&
+          <style>{styles[0][1]}</style>
+        }
         <IconTag className={iconClasses} size={size} />
         {props.background && props.size == "xlarge" &&
           <span class={backgroundClasses}></span>

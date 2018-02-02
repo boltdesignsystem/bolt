@@ -12,7 +12,7 @@ import {
 } from '@bolt/core';
 
 import styles from './button.scss';
-import spacingUtils from '@bolt/utilities-spacing/_utilities.spacing.scss';
+// import spacingUtils from '@bolt/utilities-spacing/_utilities.spacing.scss';
 
 @define
 export class BoltButton extends withComponent(withPreact()) {
@@ -114,15 +114,17 @@ export class BoltButton extends withComponent(withPreact()) {
       buttonText = <span className="c-bolt-button__inner" dangerouslySetInnerHTML={{ __html: this.fallbackText }} />
     }
 
-
     return (
       <div className={classes}>
-        <style>
-          {styles[0][1]}
-          {spacingUtils[0][1]}
-        </style>
+        {this.useShadow &&
+          <style>
+            {styles[0][1]}
+          </style>
+        }
         { buttonText }
       </div>
     )
   }
 }
+
+

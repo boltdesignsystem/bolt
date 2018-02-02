@@ -8,6 +8,5 @@ Object.assign(lazySizes.cfg, {
   lazyClass: 'js-lazyload',
   loadingClass: 'is-lazyloading',
   loadedClass: 'is-lazyloaded',
-  preloadAfterLoad: false,
-  ricTimeout: 50
+  preloadAfterLoad: true
 });
