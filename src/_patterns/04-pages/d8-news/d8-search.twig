@@ -256,30 +256,18 @@
                     <div class="c-bolt-toggle__item">
                       <input type="radio" class="c-bolt-toggle__item-input" id="toggle-list-view" name="toggle-display" checked>
                       <label for="toggle-list-view" class="c-bolt-toggle__item-label">
-                        {% include "@bolt/button.twig" with {
-                          "text": "List View",
-                          "size": "xsmall",
-                          "style": "text",
-                          "iconOnly": true,
-                          "icon": {
-                            "name": "asset-text",
-                            "size": "medium"
-                          }
+                        {% include "@bolt/icon.twig" with {
+                          "name": "asset-text",
+                          "size": "medium"
                         } only %}
                       </label>
                     </div>
                     <div class="c-bolt-toggle__item">
                       <input type="radio" class="c-bolt-toggle__item-input" id="toggle-grid-view" name="toggle-display">
                       <label for="toggle-grid-view" class="c-bolt-toggle__item-label">
-                        {% include "@bolt/button.twig" with {
-                          "text": "Grid View",
-                          "size": "xsmall",
-                          "style": "text",
-                          "iconOnly": true,
-                          "icon": {
-                            "name": "asset-infographic",
-                            "size": "medium"
-                          }
+                        {% include "@bolt/icon.twig" with {
+                          "name": "asset-infographic",
+                          "size": "medium"
                         } only %}
                       </label>
                     </div>
