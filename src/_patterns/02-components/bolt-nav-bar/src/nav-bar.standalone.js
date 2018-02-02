@@ -61,6 +61,9 @@ let gumshoeStateModule = (function () {
 
 // Behavior for `<bolt-nav-list>` parent container
 class BoltNavList extends withComponent(withPreact()) {
+
+  static get observedAttributes() { return ['offset']; }
+
   constructor(element) {
     super(element);
     this.activeLink = false;
@@ -87,8 +90,6 @@ class BoltNavList extends withComponent(withPreact()) {
     }
   }
 
-  static get observedAttributes() { return ['offset']; }
-  
   get offset() {
     return this.getAttribute('offset');
   }
