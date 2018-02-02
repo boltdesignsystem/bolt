@@ -1,5 +1,5 @@
 {# Sample Usage
-  {% include "@bolt/twig" with {
+  {% include "@bolt/blockquote.twig" with {
     // Default is large. [large, xlarge, xxlarge]
     "size": "large",
 
@@ -60,7 +60,7 @@
 {% set size = size == false and size is null ? "xlarge" : size | default("xlarge") %}
 {% set alignItems = alignItems == false and alignItems is null ? "left" : alignItems | default("left") %}
 {% set border = border == false and border is null ? "vertical" : border | default("vertical") %}
-{% set indent = indent == false and indent is null ? "false" : "true" %}
+{% set indent = indent == false or indent is null ? "false" : "true" %}
 {% set fullBleed = fullBleed == false and fullBleed is null ? "false" : "true" %}
 
 
