@@ -104,7 +104,10 @@
     .setAttribute("data-sizes", sizes)
   %}
 {% else %}
-  {% set imageAttributes = imageAttributes.setAttribute("srcset", srcset) %}
+  {% set imageAttributes = imageAttributes
+    .setAttribute("srcset", srcset)
+    .setAttribute("src", src)
+  %}
 {% endif %}
 
 {% set placeholderAttributes = create_attribute(placeholderAttributes | default({})).addClass("c-bolt-image__placeholder") %}
