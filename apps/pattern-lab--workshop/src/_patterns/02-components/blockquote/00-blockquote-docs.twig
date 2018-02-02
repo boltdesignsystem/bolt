@@ -1,7 +1,7 @@
 {% set schema = get_data('@bolt-components-blockquote/blockquote.schema.yml') %}
 {% set readme = source('@bolt-components-blockquote/README.md') %}
 {% set code %} {% verbatim %}
-{% include "@bolt/twig" with {
+{% include "@bolt-components-blockquote/blockquote.twig" with {
     "content": "&lt;p&gt;The greater danger for most of us lies not in ... achieving our mark.&lt;/p&gt;",
   } only %}
 {% endverbatim %}
