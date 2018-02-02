@@ -1,7 +1,9 @@
 /** @jsx h */
 // Temp working version of @skatejs/renderer-preact till SkateJS fixes this upstream in the SkateJS monorepo
 
+import { shadow } from 'skatejs';
 import { h, render } from 'preact';
+import { hasNativeShadowDomSupport } from './environment';
 
 export function withPreact(Base = HTMLElement){
   return class extends Base {
@@ -10,17 +12,17 @@ export function withPreact(Base = HTMLElement){
       // cases for children by using a slot.
       return {
         ...super.props,
-        ...{ children: <slot /> },
+        ...{ children: <slot /> }
       };
     }
 
-    // get state() {
-    //   // We override props so that we can satisfy most use
-    //   // cases for children by using a slot.
-    //   return {
-    //     ...super.state
-    //   };
-    // }
+    get renderRoot() {
+      if (hasNativeShadowDomSupport) {
+        return super.renderRoot || shadow(this);
+      } else {
+        return this;
+      }
+    }
 
     renderer(renderRoot, renderCallback) {
       this._renderRoot = renderRoot;

@@ -4,26 +4,23 @@
     <title>Bolt Design System</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" />
+    {# <link rel="preconnect" href="https://demo1.d8.pega.com"> #}
 
-    <link rel="stylesheet" href="../../../styles/bolt.css?{{ cacheBuster }}" media="all" />
-    
-    
-    <meta name="bolt-javascript-path"  content="/vendor/">
-
-    {# Inline Critical Font-specific CSS automatically #}
     <style>
-    {{ inline("scripts/critical-fonts.css", "/dist/") }}
+     {{ inline("scripts/critical-fonts.css", "/dist/") }}
+     {# inline("styles/bolt-critical.css", "/dist/") #}
     </style>
 
+    {# <link rel="preload" href="../../../styles/bolt.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../../styles/bolt.css"></noscript> #}
 
-    {# Inline Critical JS automatically using references to the file manifest webpack generates #}
     <script>
     {{ inline("scripts/bolt-critical-path.min.js", "/dist/") }}
     </script>
 
-    <!-- Begin Pattern Lab (Required for Pattern Lab to run properly) -->
+    <link rel="stylesheet" href="../../../styles/bolt.css?{{ cacheBuster }}">
+
     {{ patternLabHead | raw }}
-    <!-- End Pattern Lab -->
 
   </head>
   <body class="{{ bodyClass }} c-bolt-site">

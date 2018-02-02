@@ -6,7 +6,8 @@ import {
   withComponent,
   withPreact,
   css,
-  spacingSizes
+  spacingSizes,
+  hasNativeShadowDomSupport
 } from '@bolt/core';
 
 
@@ -21,13 +22,10 @@ export class BoltRatio extends withComponent(withPreact()) {
     aspectRatioWidth: props.number
   }
 
-  constructor(){
-    super();
-    if (!this.shadowRoot) {
-      this.attachShadow({ mode: 'open' });
-    }
-    this.shadyTemplate = document.createElement('template');
-    this.shadyPrepared = false;
+  constructor(element){
+    super(element);
+    this.useShadow = hasNativeShadowDomSupport;
+
     this.supportsCSSVars = window.CSS && CSS.supports('color', 'var(--primary)');
   }
 
@@ -52,13 +50,23 @@ export class BoltRatio extends withComponent(withPreact()) {
   }
 
   connectedCallback() {
-    this.update();
+
+    if (this.shadowRoot) {
+      this._render(this.render(), this.shadowRoot);
+    } else {
+      this._render(this.render(), this);
+    }
     this._computeRatio();
   }
 
   // Called when props have been set regardless of if they've changed. - recalculates ratio if props updated
-  updating(props) {
-    this._computeRatio();
+
+  renderer(root, html) {
+    if (this.useShadow) {
+      super.renderer(root, html);
+    } else {
+      root.innerHTML = `<div class="o-bolt-ratio__inner">${this.innerHTML}</div>`;
+    }
   }
 
   // Render out component via Preact
@@ -67,25 +75,24 @@ export class BoltRatio extends withComponent(withPreact()) {
       'o-bolt-ratio__inner'
     );
 
-    return (
-      <div className={classes}>
-        <style>{styles[0][1]}</style>
-        <slot />
-      </div>
-    )
+    if (this.useShadow) {
+      return (
+        <div className={classes}>
+          {this.useShadow &&
+            <style>
+              {styles[0][1]}
+            </style>
+          }
+          <slot />
+        </div>
+      )
+    }
   }
 
   /** Idea for wiring up ShadyCSS + Preact inspired by https://github.com/daKmoR/lit-html-demos/blob/master/demo/wc02.html **/
   _render(what, where) {
     this.render(what, where);
 
-    if (typeof ShadyCSS === 'object') {
-      if (this.shadyPrepared === false) {
-        this.shadyTemplate.innerHTML = this.shadowRoot.innerHTML;
-        ShadyCSS.prepareTemplate(this.shadyTemplate, this.localName);
-        this.shadyPrepared = true;
-      }
-      ShadyCSS.styleElement(this);
 
       // Auto-add class for fallback styles
       var childNodes = this.childNodes;
@@ -103,15 +110,8 @@ export class BoltRatio extends withComponent(withPreact()) {
       //     styleNode.remove();
       //   });
       // }
-    }
+    // }
   }
 
-  update() {
-    this._render(this.render(), this.shadowRoot);
-  }
 
-  updateShady() {
-    this.shadyPrepared = false;
-    this.update();
-  }
 }

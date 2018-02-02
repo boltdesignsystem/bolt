@@ -1,4 +1,4 @@
-import { 
+import {
   h,
   render,
   define,
@@ -6,7 +6,8 @@ import {
   withComponent,
   withPreact,
   css,
-  spacingSizes
+  spacingSizes,
+  hasNativeShadowDomSupport
 } from '@bolt/core';
 
 import navListGumshoe from 'gumshoejs';
@@ -60,19 +61,30 @@ let gumshoeStateModule = (function () {
 
 // Behavior for `<bolt-nav-list>` parent container
 class BoltNavList extends withComponent(withPreact()) {
-  constructor() {
-    super();
+  constructor(element) {
+    super(element);
     this.activeLink = false;
+    this.useShadow = hasNativeShadowDomSupport;
 
     // Ensure that 'this' inside the _onWindowResize event handler refers to <bolt-nav-link>
     // even if the handler is attached to another element (window in this case)
     this._onWindowResize = this._onWindowResize.bind(this);
   }
 
-  renderCallback() {
-    return (
-      <slot />
-    )
+  render() {
+    if (hasNativeShadowDomSupport) {
+      return (
+        <slot />
+      )
+    }
+  }
+
+  renderer(root, html) {
+    if (hasNativeShadowDomSupport) {
+      super.renderer(root, html);
+    } else {
+      root.innerHTML = this.innerHTML;
+    }
   }
 
   static get observedAttributes() { return ['offset']; }
@@ -208,8 +220,8 @@ class BoltNavLink extends withComponent(withPreact()) {
     return ['active'];
   }
 
-  constructor() {
-    super();
+  constructor(element) {
+    super(element);
 
     this._shadowLink = this.querySelector('a');
   }
@@ -264,10 +276,21 @@ class BoltNavLink extends withComponent(withPreact()) {
     }
   }
 
-  renderCallback() {
-    return (
-      <slot />
-    )
+  render() {
+    if (hasNativeShadowDomSupport) {
+      return (
+        <slot />
+      )
+    }
+  }
+
+
+  renderer(root, html) {
+    if (hasNativeShadowDomSupport) {
+      super.renderer(root, html);
+    } else {
+      root.innerHTML = this.innerHTML;
+    }
   }
 
   connectedCallback() {

@@ -4,7 +4,8 @@ import {
   define,
   props,
   withComponent,
-  withPreact
+  withPreact,
+  hasNativeShadowDomSupport
 } from '@bolt/core';
 
 
@@ -14,18 +15,8 @@ import {
 // template for the contents of the ShadowDOM is is shared by all
 // `<bolt-band>` instances.
 //
-const bandTemplate = document.createElement('template');
-bandTemplate.innerHTML = `
-    <style>
-      // :host {
-      //   contain: content;
-      // }
-    </style>
-    <slot></slot>
-  `;
 
 // ShadyCSS will rename classes as needed to ensure style scoping.
-ShadyCSS.prepareTemplate(bandTemplate, 'bolt-band');
 
 
 
@@ -38,20 +29,15 @@ export class BoltBand extends withComponent(withPreact()) {
     return ['expanded', 'expandedHeight', 'initialHeight'];
   }
 
-  constructor() {
-    super();
-    this.attachShadow({
-      mode: 'open'
-    });
+  constructor(element) {
+    super(element);
+    this.useShadow = hasNativeShadowDomSupport;
 
     this.state = {
       ready: false
     }
 
     // Clone the shadow DOM template.
-    this.shadowRoot.appendChild(
-      bandTemplate.content.cloneNode(true)
-    );
 
     if (this.state.ready === false) {
       this.state.ready = true;
@@ -69,7 +55,6 @@ export class BoltBand extends withComponent(withPreact()) {
     }
   }
 
-
   /**
     * `connectedCallback()` sets up the role, event handler and initial state.
     */
@@ -77,7 +62,6 @@ export class BoltBand extends withComponent(withPreact()) {
     // Shim Shadow DOM styles. This needs to be run in `connectedCallback()`
     // because if you shim Custom Properties (CSS variables) the element
     // will need access to its parent node.
-    ShadyCSS.styleElement(this);
 
     this.addEventListener('playing', this.playHandler);
     this.addEventListener('pause', this.pauseHandler);
@@ -230,9 +214,19 @@ export class BoltBand extends withComponent(withPreact()) {
     }
   }
 
+  renderer(root, html) {
+    if (this.useShadow) {
+      super.renderer(root, html);
+    } else {
+      root.innerHTML = this.innerHTML;
+    }
+  }
+
   render() {
-    return (
-      <slot />
-    )
+    if (this.useShadow){
+      return (
+        <slot />
+      )
+    }
   }
 }
