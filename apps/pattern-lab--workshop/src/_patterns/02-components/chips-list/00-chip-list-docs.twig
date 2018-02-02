@@ -1,0 +1,29 @@
+{% set schema = get_data('@bolt-components-chip-list/chip-list.schema.yml') %}
+{% set readme = source('@bolt-components-chip-list/README.md') %}
+{% set code %} {% verbatim %}
+{% include "@bolt-components-chip-list/chip-list.twig" with {
+  contentItems: [
+    {
+      text: "Chip 1",
+      url: "http://google.com"
+    },
+    {
+      text: "Chip 2",
+      url: "http://google.com"
+    },
+    {
+      text: "Chip 3",
+      url: "http://google.com"
+    }
+  ]
+} only %}
+
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/docs.twig' with {
+  schema: schema,
+  code: code,
+  readme: readme,
+  readmePath: 'packages/components/bolt-chip-list/README.md',
+} only %}
