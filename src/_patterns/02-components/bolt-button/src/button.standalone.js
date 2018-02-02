@@ -12,7 +12,7 @@ import {
 } from '@bolt/core';
 
 import styles from './button.scss';
-import spacingUtils from '@bolt/utilities-spacing/_utilities.spacing.scss';
+// import spacingUtils from '@bolt/utilities-spacing/_utilities.spacing.scss';
 
 @define
 export class BoltButton extends withComponent(withPreact()) {
