@@ -7,7 +7,8 @@ import {
   withComponent,
   withPreact,
   css,
-  spacingSizes
+  spacingSizes,
+  hasNativeShadowDomSupport
 } from '@bolt/core';
 
 
@@ -40,8 +41,13 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
     // name: props.string,
   }
 
+  constructor(element) {
+    super(element);
+    this.useShadow = hasNativeShadowDomSupport;
+  }
+
   render({ props }) {
-    if (hasNativeShadowDomSupport){
+    if (this.useShadow){
       const classes = css(
         'c-bolt-image-magnifier'
       );
@@ -55,7 +61,7 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
   }
 
   renderer(root, html) {
-    if (!hasNativeShadowDomSupport) {
+    if (!this.useShadow) {
       root.innerHTML = `<div class="c-bolt-image-magnifier">${this.innerHTML}</div>`;
     }
   }
@@ -128,11 +134,20 @@ class BoltImageZoom extends withComponent(withPreact()) {
     }
   }
 
+  renderer(root, html) {
+    if (this.useShadow) {
+      super.renderer(root, html);
+    } else {
+      root.innerHTML = this.innerHTML;
+    }
+  }
 
   render() {
-    return (
-      <slot />
-    )
+    if (this.useShadow) {
+      return (
+        <slot />
+      )
+    }
   }
 
   connectedCallback() {

@@ -19,6 +19,7 @@ class BoltNavList extends withComponent(withPreact()) {
   constructor(element) {
     super(element);
     this.activeLink = false;
+    this.useShadow = hasNativeShadowDomSupport;
 
     // Ensure that 'this' inside the _onWindowResize event handler refers to <bolt-nav-link>
     // even if the handler is attached to another element (window in this case)

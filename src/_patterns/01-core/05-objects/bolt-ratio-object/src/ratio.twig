@@ -15,9 +15,8 @@
 
   {# pre-render custom property values before the JS kicks in #}
   {% set attributes = attributes.setAttribute("style", [
-    "--aspect-ratio-height: " ~ 0 ~ ";",
-    "--aspect-ratio-width: " ~ 0 ~ ";",
-    "padding-bottom: " ~ (aspectRatioHeight / aspectRatioWidth * 100) ~ "%;",
+    "--aspect-ratio-height: " ~ aspectRatioHeight ~ ";",
+    "--aspect-ratio-width: " ~ aspectRatioWidth ~ ";"
   ]) %}
 {% endif %}
 
