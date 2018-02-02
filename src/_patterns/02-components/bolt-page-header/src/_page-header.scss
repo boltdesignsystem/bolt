@@ -27,8 +27,19 @@
   right: 0;
   top: 0;
   display: block;
-  position: fixed;
   width: 100%;
+
+  &.is-sticky {
+    position: sticky;
+  }
+
+  &.is-static {
+    position: relative;
+  }
+
+  &.is-fixed {
+    position: fixed;
+  }
 }
 
 .c-page-header:before,
@@ -41,12 +52,14 @@
   clear: both;
 }
 
-.c-page-header ~ .c-bolt-site__content {
+// Only offset site content if fixed position
+.c-page-header.is-fixed ~ .c-bolt-site__content {
   margin-top: 51px;
 }
 
+// Only offset site content if fixed position
 @media (min-width:1000px) {
-  .c-page-header ~ .c-bolt-site__content {
+  .c-page-header.is-fixed~.c-bolt-site__content {
     margin-top: 112px;
   }
 }
