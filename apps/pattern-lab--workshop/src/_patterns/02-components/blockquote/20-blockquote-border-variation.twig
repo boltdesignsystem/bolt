@@ -2,7 +2,7 @@
 
 {% for border in schema.properties.border.enum %}
   <p>Border: {{ border }}</p>
-  {% include '05-blockquote.twig' with {
+  {% include '@bolt-components-blockquote/blockquote.twig' with {
     border: border,
   } %}
 
