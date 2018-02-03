@@ -125,7 +125,7 @@ async function compile() {
       };
       const dataArg = escapeNestedSingleQuotes(JSON.stringify(data));
       const layout = page.meta.layout ? page.meta.layout : 'default';
-      const cmd = `php index.php ${layout}.twig '${dataArg}'`;
+      const cmd = `php renderTwig.php ${layout}.twig '${dataArg}'`;
       const output = await sh(cmd, true);
 
       const htmlFilePath = path.join(config.wwwDir, page.url);
