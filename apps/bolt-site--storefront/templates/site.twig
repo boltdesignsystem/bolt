@@ -1,0 +1,68 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Bolt Design System{% if page.meta.title %} | {{ page.meta.title }}{% endif %}</title>
+  <meta name="description" content="Bolt Design System">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  {#<link rel="manifest" href="site.webmanifest">#}
+  {#<link rel="apple-touch-icon" href="icon.png">#}
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="/build/bolt-global.css">
+</head>
+<body class="c-bolt-site">
+
+
+<div class="c-bolt-site__content">
+  <div class="o-bolt-wrapper">
+    <header>
+      <h1>Bolt Storefront</h1>
+      <nav style="display: flex;">
+        {% for page in site.pages if page.meta.nav == 'main' %}
+          <a href="/{{ page.url }}" style="margin-right: 5px;">{{ page.meta.title }}</a>
+        {% endfor %}
+      </nav>
+      <hr>
+    </header>
+    <main>
+      {% block content %}
+
+      {% endblock %}
+    </main>
+  </div>
+</div>
+
+<div class="c-bolt-site__footer c-bolt-page-footer">
+  <div class="o-bolt-wrapper">
+    <footer role="contentinfo">
+      <p>
+        <strong>Copyright &copy; 2017 Pegasystems, Inc.</strong>
+      </p>
+    </footer>
+  </div>
+</div>
+
+{# Shows Twig Vars in Browser Console #}
+<script type="application/json">{{ _context|json_encode()|raw }}</script>
+<script>
+  (function () {
+    var me = document.currentScript;
+    var jsonScriptTag = me.previousElementSibling.innerHTML;
+    var data = JSON.parse(jsonScriptTag);
+    console.log('Twig vars for this page: ', data);
+  })();
+</script>
+
+<script src="/build/bolt-global.js"></script>
+
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+{#<script>#}
+{#window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;#}
+{#ga('create','UA-XXXXX-Y','auto');ga('send','pageview')#}
+{#</script>#}
+{#<script src="https://www.google-analytics.com/analytics.js" async defer></script>#}
+</body>
+</html>
