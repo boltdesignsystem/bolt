@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Bolt Design System{% if page.title %} | {{ title }}{% endif %}</title>
+  <title>Bolt Design System{% if page.meta.title %} | {{ page.meta.title }}{% endif %}</title>
   <meta name="description" content="Bolt Design System">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -15,13 +15,23 @@
 </head>
 <body class="c-bolt-site">
 
-<div class="c-bolt-site__content c-bolt-site__content--middle"><!-- vertically center -->
+
+<div class="c-bolt-site__content">
   <div class="o-bolt-wrapper">
+    <header>
+      <h1>Bolt Storefront</h1>
+      <nav style="display: flex; justify-content: space-between;">
+        {% for page in site.pages %}
+          <a href="/{{ page.url }}">{{ page.meta.title }}</a>
+        {% endfor %}
+      </nav>
+      <hr>
+    </header>
     <main>
-      <h1>{{ page.title }}</h1>
+      <h2>{{ page.meta.title }}</h2>
       <article>
-        {{ body|raw }}
         {#<bolt-band-collection>#}
+        {{ page.body|raw }}
         {#</bolt-band-collection>#}
       </article>
     </main>
@@ -31,11 +41,9 @@
 <div class="c-bolt-site__footer c-bolt-page-footer">
   <div class="o-bolt-wrapper">
     <footer role="contentinfo">
-      <small>
-        <p>
-          <strong>Copyright &copy; 2017 Pegasystems, Inc.</strong> | <a href="/styleguide/html/styleguide.html">Pattern Lab</a> | <a href="/sassdoc">Sass Docs</a>
-        </p>
-      </small>
+      <p>
+        <strong>Copyright &copy; 2017 Pegasystems, Inc.</strong>
+      </p>
     </footer>
   </div>
 </div>

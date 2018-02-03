@@ -29,7 +29,7 @@ function escapeNestedSingleQuotes(string) {
   return string.replace(/'/g, "'\\''");
 }
 
-async function getFileInfo(file) {
+async function getPage(file) {
   if (config.verbosity > 3) {
     log.dim(`Getting info for: ${file}`);
   }
@@ -40,26 +40,47 @@ async function getFileInfo(file) {
   // https://www.npmjs.com/package/front-matter
   const { attributes, body, frontmatter } = fm(fileContents);
 
-  const fileInfo = {
+  const page = {
     srcPath: file,
     distPath,
-    page: attributes,
+    meta: attributes,
     body: file.endsWith('.md') ? marked(body) : body,
   };
 
-  return fileInfo;
+  return page;
 }
 
-async function getAllFilesInfo(files) {
+async function getPages(files) {
   const allFilePaths = await globby(path.join(files, '**/*.{md,html}'));
-  return Promise.all(allFilePaths.map(getFileInfo)).then((allInfo) => {
+
+  return Promise.all(allFilePaths.map(getPage)).then((pages) => {
     if (config.verbosity > 4) {
-      log.dim('All data for Storefront content files:');
-      console.log(allInfo);
-      log.dim('END: All data for Storefront content files.');
+      log.dim('All data for Storefront pages:');
+      console.log(pages);
+      log.dim('END: All data for Storefront pages.');
     }
-    return allInfo;
+    // Sorting pages so that `weight: 10` comes before `weight: 50` if present in Yaml front matter.
+    // This enables menus and any page listing to have basic control.
+    return pages.sort((a, b) => {
+      if (a.meta.weight && b.meta.weight) {
+        return a.meta.weight - b.meta.weight;
+      } else {
+        return 0;
+      }
+    });
   });
+}
+
+function getSiteData(pages) {
+  const site = {
+    pages: pages.map((page) => ({
+      url: page.distPath,
+      meta: page.meta,
+      // choosing not to have `page.body` in here on purpose
+    })),
+  };
+
+  return site;
 }
 
 async function compile() {
@@ -72,12 +93,16 @@ async function compile() {
     spinner = ora(startMessage).start();
   }
 
-  const allInfo = await getAllFilesInfo(config.srcDir);
+  const pages = await getPages(config.srcDir);
+  const site = getSiteData(pages);
 
-  return Promise.all(allInfo.map(async (page) => {
-
+  return Promise.all(pages.map(async (page) => {
     try {
-      const dataArg = escapeNestedSingleQuotes(JSON.stringify(page));
+      const data = {
+        page,
+        site,
+      };
+      const dataArg = escapeNestedSingleQuotes(JSON.stringify(data));
       const cmd = `php index.php default.twig '${dataArg}'`;
       const output = await sh(cmd, true);
 

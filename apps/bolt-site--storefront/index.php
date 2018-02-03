@@ -2,20 +2,13 @@
 require_once 'vendor/autoload.php';
 // Twig docs for this: https://twig.symfony.com/doc/2.x/api.html
 
+$data = [];
+
 // First arg to CLI - template path
 $templatePath = $argv[1];
-$dataString = [];
+// Second arg to CLI - JSON string
 if ($argv[2]) {
-  $dataString = $argv[2];
-}
-// data is STDIN aka `echo '{"title": "hello there"}' | php index.php '@upone/bar.twig'`
-//$in_data = [];
-//$in = fgets(STDIN);
-//while($f = fgets(STDIN)){
-//  echo "line: $f";
-//}
-if ($dataString) {
-  $data = json_decode($dataString, true);
+  $data = json_decode($argv[2], true);
 }
 
 // Creates Twig Loader, uses `./templates` as default directory to look for Twig files
