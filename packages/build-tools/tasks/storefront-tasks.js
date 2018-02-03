@@ -174,18 +174,7 @@ function watch() {
 
 }
 
-async function clean() {
-  const spinner = ora(chalk.blue('Cleaning files...')).start();
-  const startTime = timer.start();
-  await del([
-    config.wwwDir,
-  ]);
-  spinner.succeed(chalk.green(`Cleaned files in ${timer.end(startTime)}`));
-  return true;
-}
-
 module.exports = {
   compile,
   watch,
-  clean,
 };
