@@ -21,7 +21,7 @@
     <header>
       <h1>Bolt Storefront</h1>
       <nav style="display: flex; justify-content: space-between;">
-        {% for page in site.pages %}
+        {% for page in site.pages if page.meta.nav == 'main' %}
           <a href="/{{ page.url }}">{{ page.meta.title }}</a>
         {% endfor %}
       </nav>
