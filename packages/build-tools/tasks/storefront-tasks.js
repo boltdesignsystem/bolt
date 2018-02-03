@@ -29,6 +29,11 @@ function escapeNestedSingleQuotes(string) {
   return string.replace(/'/g, "'\\''");
 }
 
+/**
+ * Get data for a single page that is Markdown or HTML with Yaml front matter
+ * @param {string} file - Path to source file
+ * @returns {Promise<{srcPath: string, distPath: string, meta: object, body: string}>} page - Page Data
+ */
 async function getPage(file) {
   if (config.verbosity > 3) {
     log.dim(`Getting info for: ${file}`);
@@ -50,10 +55,17 @@ async function getPage(file) {
   return page;
 }
 
-async function getPages(files) {
-  const allFilePaths = await globby(path.join(files, '**/*.{md,html}'));
+/**
+ * Get data for all pages
+ * @param {string} files - Source directory
+ * @see getPage
+ * @returns {Promise<object[]>} - An array of page data objects
+ */
+async function getPages(srcDir) {
+  /** @type Array<String> */
+  const allPaths = await globby(path.join(srcDir, '**/*.{md,html}'));
 
-  return Promise.all(allFilePaths.map(getPage)).then((pages) => {
+  return Promise.all(allPaths.map(getPage)).then((pages) => {
     if (config.verbosity > 4) {
       log.dim('All data for Storefront pages:');
       console.log(pages);
@@ -71,6 +83,11 @@ async function getPages(files) {
   });
 }
 
+/**
+ * Get the site data based on the pages
+ * @param {object} pages
+ * @returns {{pages}}
+ */
 function getSiteData(pages) {
   const site = {
     pages: pages.map((page) => ({
@@ -83,6 +100,10 @@ function getSiteData(pages) {
   return site;
 }
 
+/**
+ * The main event - compile the whole site
+ * @returns {Promise<any[]>}
+ */
 async function compile() {
   const startMessage = chalk.blue('Compiling Storefront...');
   const startTime = timer.start();
