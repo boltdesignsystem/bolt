@@ -4,6 +4,15 @@ module.exports = {
   buildDir: 'www/build',
   srcDir: './content',
   wwwDir: 'www',
+  images: {
+    sets: [
+      {
+        base: './images',
+        glob: '**',
+        dist: './www/images/',
+      },
+    ],
+  },
   components: {
     global: [
       '@bolt/core',
