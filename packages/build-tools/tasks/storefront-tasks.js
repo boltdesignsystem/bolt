@@ -39,7 +39,7 @@ async function getPage(file) {
     log.dim(`Getting info for: ${file}`);
   }
 
-  const distPath = path.relative(config.srcDir, file).replace('\.md', '\.html');
+  const url = path.relative(config.srcDir, file).replace('\.md', '\.html');
   const fileContents = await readFile(file, 'utf8');
 
   // https://www.npmjs.com/package/front-matter
@@ -47,7 +47,7 @@ async function getPage(file) {
 
   const page = {
     srcPath: file,
-    distPath,
+    url,
     meta: attributes,
     body: file.endsWith('.md') ? marked(body) : body,
   };
@@ -91,7 +91,7 @@ async function getPages(srcDir) {
 function getSiteData(pages) {
   const site = {
     pages: pages.map((page) => ({
-      url: page.distPath,
+      url: page.url,
       meta: page.meta,
       // choosing not to have `page.body` in here on purpose
     })),
@@ -128,7 +128,7 @@ async function compile() {
       const cmd = `php index.php ${layout}.twig '${dataArg}'`;
       const output = await sh(cmd, true);
 
-      const htmlFilePath = path.join(config.wwwDir, page.distPath);
+      const htmlFilePath = path.join(config.wwwDir, page.url);
       await mkdirp(path.dirname(htmlFilePath));
       await writeFile(htmlFilePath, output);
       if (config.verbosity > 3) {

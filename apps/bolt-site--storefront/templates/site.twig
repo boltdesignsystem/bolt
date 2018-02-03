@@ -21,8 +21,10 @@
     <header>
       <h1>Bolt Storefront</h1>
       <nav style="display: flex;">
+        {% set currentUrl = page.url %}
         {% for page in site.pages if page.meta.nav == 'main' %}
-          <a href="/{{ page.url }}" style="margin-right: 5px;">{{ page.meta.title }}</a>
+          {% set isActive = currentUrl == page.url %}
+          <a href="/{{ page.url }}" style="margin-right: 5px; {% if isActive %} text-decoration: underline; {% endif %}">{{ page.meta.title }}</a>
         {% endfor %}
       </nav>
       <hr>
