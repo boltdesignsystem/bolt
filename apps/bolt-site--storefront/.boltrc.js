@@ -8,9 +8,6 @@ module.exports = {
     global: [
       '@bolt/core',
       '@bolt/global',
-      '@bolt/components-blockquote',
-      '@bolt/components-button',
-      '@bolt/components-card',
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
       '@bolt/components-site',
