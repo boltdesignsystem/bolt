@@ -116,18 +116,7 @@ function watch() {
 watch.description = 'Watch and rebuild Pattern Lab';
 watch.displayName = 'pattern-lab:watch';
 
-async function clean() {
-  const spinner = ora(chalk.blue('Cleaning Pattern Lab files...')).start();
-  const startTime = timer.start();
-  await del([
-    plPublic,
-  ]);
-  spinner.succeed(chalk.green(`Cleaned Pattern Lab files in ${timer.end(startTime)}`));
-  return true;
-}
-
 module.exports = {
   compile,
   watch,
-  clean,
 };
