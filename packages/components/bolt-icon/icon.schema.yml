@@ -1,0 +1,39 @@
+$schema: http://json-schema.org/draft-04/schema#
+title: Icon
+type: object
+properties:
+  name:
+    type: string
+    description: Icon name.
+    enum:
+      - communications
+      - energy
+      - entertainment
+      - finacial
+      - government
+      - healthcare
+      - insurance
+      - life sciences
+      - manufacturing
+      - retail
+      - transportation
+  background:
+    type: string
+    description: Background shape
+    enum:
+      - circle
+      - square
+  size:
+    type: string
+    description: Icon size.
+    enum:
+      - small
+      - medium
+      - large
+      - xlarge
+  color:
+    type: string
+    description: Icon color.
+    enum:
+      - ?
+      - teal

@@ -1,0 +1,32 @@
+{% set schema = get_data('@bolt-components-icon/icon.schema.yml') %}
+{% set readme = source('@bolt-components-icon/README.md') %}
+{% set code %} {% verbatim %}
+Twig:
+
+{% set attributes = create_attribute(attributes | default({})) %}
+
+{% set attributes = attributes
+  .setAttribute("name", name)
+  .setAttribute("background", background)
+  .setAttribute("size", size)
+  .setAttribute("color", color)
+%}
+
+<bolt-icon {{ attributes }}></bolt-icon>
+
+HTML:
+
+<!-- Icon JS + twig integration -->
+<bolt-icon name="chevron-right">
+</bolt-icon>
+
+
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/docs.twig' with {
+  schema: schema,
+  code: code,
+  readme: readme,
+  readmePath: 'packages/components/bolt-icon/README.md',
+} only %}
