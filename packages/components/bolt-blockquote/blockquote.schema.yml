@@ -2,9 +2,6 @@ $schema: http://json-schema.org/draft-04/schema#
 title: Blockquote
 type: object
 properties:
-  content:
-      description: Content is required.
-      type: string
   theme:
       type: string
       description: Default is dark. Can be set to false for a transparent background.
@@ -15,6 +12,9 @@ properties:
         - xdark
         - medium
         - 'false'
+  content:
+    description: Content is required.
+    type: string
   size:
     description: Default is large.
     type: string
