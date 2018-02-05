@@ -6,24 +6,21 @@
   {% set band_content %}
     {% include "@bolt/breadcrumb.twig" with {
       "contentItems": [
-        {
-          "pattern": "link",
+        include("@bolt/link.twig", {
           "text": "Home",
-          "url": "http://pega.com"
-        },
-        {
-          "pattern": "link",
+          "url": "#"
+        }),
+        include("@bolt/link.twig", {
           "text": "Page",
-          "url": "http://pega.com"
-        },
-        {
+          "url": "#"
+        }),
+        include("@bolt/link.twig", {
+          "text": "Sub Page",
+          "url": "#",
           "attributes": {
             "aria-current": "page"
           },
-          "pattern": "link",
-          "text": "Subpage",
-          "url": "http://pega.com"
-        }
+        })
       ]
     } only %}
   {% endset %}
@@ -55,24 +52,21 @@
   {% set breadcrumb_band_content %}
     {% include "@bolt/breadcrumb.twig" with {
       "contentItems": [
-        {
-          "pattern": "link",
+        include("@bolt/link.twig", {
           "text": "Home",
-          "url": "http://pega.com"
-        },
-        {
-          "pattern": "link",
+          "url": "#"
+        }),
+        include("@bolt/link.twig", {
           "text": "Page",
-          "url": "http://pega.com"
-        },
-        {
+          "url": "#"
+        }),
+        include("@bolt/link.twig", {
+          "text": "Sub Page",
+          "url": "#",
           "attributes": {
             "aria-current": "page"
           },
-          "pattern": "link",
-          "text": "Subpage",
-          "url": "http://pega.com"
-        }
+        })
       ]
     } only %}
   {% endset %}
@@ -157,24 +151,21 @@
   {% set breadcrumb_band_content %}
     {% include "@bolt/breadcrumb.twig" with {
       "contentItems": [
-        {
-          "pattern": "link",
+        include("@bolt/link.twig", {
           "text": "Home",
-          "url": "http://pega.com"
-        },
-        {
-          "pattern": "link",
+          "url": "#"
+        }),
+        include("@bolt/link.twig", {
           "text": "Why Pega?",
-          "url": "http://pega.com"
-        },
-        {
+          "url": "#"
+        }),
+        include("@bolt/link.twig", {
+          "text": "Digital Transformation",
+          "url": "#",
           "attributes": {
             "aria-current": "page"
           },
-          "pattern": "link",
-          "text": "Digital Transformation",
-          "url": "http://pega.com"
-        }
+        })
       ]
     } only %}
   {% endset %}
@@ -273,24 +264,21 @@
   {% set breadcrumb_band_content %}
     {% include "@bolt/breadcrumb.twig" with {
       "contentItems": [
-        {
-          "pattern": "link",
+        include("@bolt/link.twig", {
           "text": "Home",
-          "url": "http://pega.com"
-        },
-        {
-          "pattern": "link",
+          "url": "#"
+        }),
+        include("@bolt/link.twig", {
           "text": "Why Pega?",
-          "url": "http://pega.com"
-        },
-        {
+          "url": "#"
+        }),
+        include("@bolt/link.twig", {
+          "text": "Digital Transformation",
+          "url": "#",
           "attributes": {
             "aria-current": "page"
           },
-          "pattern": "link",
-          "text": "Digital Transformation",
-          "url": "http://pega.com"
-        }
+        })
       ]
     } only %}
   {% endset %}
