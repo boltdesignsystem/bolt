@@ -7,13 +7,9 @@ use JsonSchema\Constraints\Constraint;
 
 // Usage:
 // <div>Component</div>
-//{{ validate_data('@components/hero-schema.json', _self) }}
+//{{ validate_data_schema('@components/hero-schema.json', _self) }}
 // $function = new Twig_SimpleFunction('validate_data_schema', function (Twig_Environment $env, $context, $schema_path, $twig_self) {
 $function = new Twig_SimpleFunction('validate_data_schema', function (Twig_Environment $env, $context, $schema_path, $twig_self) {
-
-    if (isset($context['disable_validate_data_schema']) && $context['disable_validate_data_schema'])  {
-        return '';
-    }
 
     $output = '';
 
@@ -72,7 +68,7 @@ $function = new Twig_SimpleFunction('validate_data_schema', function (Twig_Envir
 
         $output = '
 <script type="application/json">' . json_encode($to_log) . '</script>
-<!--<script>
+<script>
     (function () {
         var me = document.currentScript;
         var jsonScriptTag = me.previousElementSibling.innerHTML;
@@ -81,7 +77,7 @@ $function = new Twig_SimpleFunction('validate_data_schema', function (Twig_Envir
         var component = me.previousElementSibling.previousElementSibling;
         console.error(data.message, data.details, component);
     })();
-</script>-->
+</script>
     ';
     }
 

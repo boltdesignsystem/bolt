@@ -10,10 +10,17 @@ pre {
 
 code {
   @include bolt-font-family(code);
-  @include bolt-font-weight(semibold); // This is an edge case to use semibold.
-  @include bolt-font-size(xsmall);
+  // @todo review the exclusion of the next 2 lines with Salem ~ Evan
+  //@include bolt-font-weight(semibold); // This is an edge case to use semibold.
+  //@include bolt-font-size(xsmall);
 
-  display: block;
+  background-color: transparentize(bolt-color(gray, light), 0.2);
+  padding: 0 3px;
+  border-radius: 4px;
+  display: inline-block;
   letter-spacing: 0.05rem;
   white-space: inherit;
+  pre & {
+    background-color: transparent;
+  }
 }

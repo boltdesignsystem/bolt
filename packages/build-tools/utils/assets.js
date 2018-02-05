@@ -19,30 +19,49 @@ function ensureFileExists(filePath) {
 
 /**
  * Get information about a components assets
- * @param {string} pkgName - Machine name of a component i.e. `@bolt/button`
+ * @param {string} pkgName - Machine name of a component i.e. `@bolt/button` OR path to an entry file i.e. `./src/style.scss`
  * @returns {{name, basicName: string | * | void}} - Asset info
  */
 function getPkgInfo(pkgName) {
-  const pkgJsonPath = require.resolve(`${pkgName}/package.json`);
-  const dir = path.dirname(pkgJsonPath);
-  const pkg = require(pkgJsonPath);
-  const info = {
-    name: pkg.name,
-    basicName: pkg.name.replace('@bolt/', 'bolt-'),
-    dir,
-    assets: {},
-  };
-  if (pkg.style) {
-    info.assets.style = path.join(dir, pkg.style);
-    ensureFileExists(info.assets.style);
+  if (pkgName.endsWith('.scss') || pkgName.endsWith('.js')) {
+    const pathInfo = path.parse(pkgName);
+    const name = pathInfo.name + pathInfo.ext.replace('.', '-');
+    const info = {
+      name,
+      basicName: name,
+      dir: path.dirname(pkgName),
+      assets: {},
+    };
+    if (pkgName.endsWith('.scss')) {
+      info.assets.style = pkgName;
+    }
+    if (pkgName.endsWith('.js')) {
+      info.assets.main = pkgName;
+    }
+    ensureFileExists(pkgName);
+    return info;
+  } else {// package name
+    const pkgJsonPath = require.resolve(`${pkgName}/package.json`);
+    const dir = path.dirname(pkgJsonPath);
+    const pkg = require(pkgJsonPath);
+    const info = {
+      name: pkg.name,
+      basicName: pkg.name.replace('@bolt/', 'bolt-'),
+      dir,
+      assets: {},
+    };
+    if (pkg.style) {
+      info.assets.style = path.join(dir, pkg.style);
+      ensureFileExists(info.assets.style);
+    }
+    if (pkg.main) {
+      info.assets.main = path.join(dir, pkg.main);
+      ensureFileExists(info.assets.main);
+    }
+    // @todo Allow verbosity settings
+    // console.log(assets);
+    return info;
   }
-  if (pkg.main) {
-    info.assets.main = path.join(dir, pkg.main);
-    ensureFileExists(info.assets.main);
-  }
-  // @todo Allow verbosity settings
-  // console.log(assets);
-  return info;
 }
 
 /**

@@ -3,7 +3,7 @@ class Twig_Extension_bolt extends Twig_Extension implements Twig_Extension_Globa
     public static $data;
     // /Users/sghoweri/sites/bolt-master/
     function __construct(){
-        $documentRoot = getcwd();
+//        $documentRoot = getcwd();
         // $json = file_get_contents($documentRoot . '/www/build/data/image-sizes/image-sizes.data.json');
         // self::$data = json_decode($json)->boltImageSizes;
     }
@@ -14,7 +14,7 @@ class Twig_Extension_bolt extends Twig_Extension implements Twig_Extension_Globa
         return array(
             // 'globalBoltImageSizes' => self::getImageSizes(),
             'TWIG_ENV' => 'pl',
-            'disable_validate_json_schema' => false,
+            'enable_json_schema_validation' => true,
         );
     }
 }

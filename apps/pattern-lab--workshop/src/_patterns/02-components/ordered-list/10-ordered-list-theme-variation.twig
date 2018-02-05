@@ -1,0 +1,34 @@
+{% set themeVariations = [
+  'xlight',
+  'light',
+  'dark',
+  'xdark',
+] %}
+
+{% for theme in themeVariations %}
+  <p>Theme: {{ theme }}</p>
+  {% embed "@utils/theme-demo.twig" with {
+    theme: theme,
+  } %}
+    {% block demo_content %}
+      {% include "@bolt-components-ordered-list/ordered-list.twig" with {
+        "contentItems" : [
+          {
+            "text": "Do not include any data or information in your posts that are confidential!"
+          },
+          {
+            "text": "Apply basic practices for collaborative work."
+          },
+          {
+            "text": "Be honest, respectful, trustworthy and helpful."
+          },
+          {
+            "text": "Answer questions authoritatively and concisely. Avoid cluttering discussions with noise."
+          }
+        ]
+      } only %}
+    {% endblock %}
+  {% endembed %}
+  <br>
+{% endfor %}
+

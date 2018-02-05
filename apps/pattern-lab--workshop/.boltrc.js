@@ -27,6 +27,8 @@ module.exports = {
   },
   components: {
     global: [
+      './src/styles/pl.scss',
+      './src/scripts/pl.js',
       '@bolt/core',
       '@bolt/global',
       '@bolt/components-action-blocks',

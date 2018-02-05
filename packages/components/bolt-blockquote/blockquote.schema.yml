@@ -1,0 +1,75 @@
+$schema: http://json-schema.org/draft-04/schema#
+title: Blockquote
+type: object
+properties:
+  content:
+      description: Content is required.
+      type: string
+  theme:
+      type: string
+      description: Default is dark. Can be set to false for a transparent background.
+      enum:
+        - xlight
+        - light
+        - dark
+        - xdark
+        - medium
+        - 'false'
+  size:
+    description: Default is large.
+    type: string
+    enum:
+      - large
+      - xlarge
+      - xxlarge
+  alignItems:
+    description: Default is left. Aligns items left, center, or right.
+    type: string
+    enum:
+      - left
+      - center
+      - right
+  border:
+    description: Default is vertical.
+    type: string
+    enum:
+      - vertical
+      - horizontal
+      - none
+  indent:
+    description: Default is false.
+    type: boolean
+    enum:
+      - 'true'
+      - 'false'
+  fullBleed:
+      description: Default is false.
+      type: boolean
+      enum:
+        - 'true'
+        - 'false'
+  logo:
+      description: Logo is optional.
+      type: object
+      properties:
+        src:
+          type: string
+          description: Source URL.
+        invert:
+          type: boolean
+          enum:
+            - 'true'
+            - 'false'
+  author:
+      description: Author is optional.
+      type: object
+      properties:
+        image:
+          type: string
+          description: Source URL.
+        name:
+          type: string
+          description: Author's name.
+        title:
+          type: string
+          description: Author's title.

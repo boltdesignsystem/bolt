@@ -1,0 +1,9 @@
+{% set schema = get_data('@bolt-components-blockquote/blockquote.schema.yml') %}
+
+{% for border in schema.properties.border.enum %}
+  <p>Border: {{ border }}</p>
+  {% include '@bolt-components-blockquote/blockquote.twig' with {
+    border: border,
+  } %}
+
+{% endfor %}
