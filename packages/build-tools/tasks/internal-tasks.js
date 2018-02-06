@@ -1,6 +1,10 @@
 const log = require('../utils/log');
 const {promisify} = require('util');
 const mkdirp = promisify(require('mkdirp'));
+const ora = require('ora');
+const chalk = require('chalk');
+const timer = require('../utils/timer');
+const del = require('del');
 const config = require('../utils/config-store').getConfig();
 
 /**
@@ -20,6 +24,15 @@ async function mkDirs() {
   }
 }
 
+async function clean(dirs) {
+  const spinner = ora(chalk.blue('Cleaning files...')).start();
+  const startTime = timer.start();
+  await del(dirs);
+  spinner.succeed(chalk.green(`Cleaned files in ${timer.end(startTime)}`));
+  return true;
+}
+
 module.exports = {
   mkDirs,
+  clean,
 };

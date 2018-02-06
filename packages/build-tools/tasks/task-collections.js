@@ -10,6 +10,10 @@ const extraTasks = {};
 switch (config.env) {
   case 'pl':
     extraTasks.patternLab = require('./pattern-lab-tasks');
+    break;
+  case 'storefront':
+    extraTasks.storefront = require('./storefront-tasks');
+    break;
 }
 
 if (config.wwwDir) {
@@ -18,9 +22,14 @@ if (config.wwwDir) {
 
 async function clean() {
   try {
-    if (config.env === 'pl') {
-      await extraTasks.patternLab.clean();
+    const dirs = [config.buildDir];
+    switch (config.env) {
+      case 'pl':
+      case 'storefront':
+        dirs.push(config.wwwDir);
+        break;
     }
+    await internalTasks.clean(dirs);
   } catch (error) {
     log.errorAndExit('Clean failed', error);
   }
@@ -59,8 +68,12 @@ async function build() {
       case 'pl':
         await manifest.writeTwigNamespaceFile(process.cwd(), config.extraTwigNamespaces);
         await extraTasks.patternLab.compile();
+        break;
+      case 'storefront':
+        await extraTasks.storefront.compile();
+        break;
     }
-    await imageTasks.processImages();
+    await images();
   } catch (error) {
     log.errorAndExit('Build failed', error);
   }
@@ -75,6 +88,10 @@ async function watch() {
     switch (config.env) {
       case 'pl':
         watchTasks.push(extraTasks.patternLab.watch());
+        break;
+      case 'storefront':
+        watchTasks.push(extraTasks.storefront.watch());
+        break;
     }
 
     return Promise.all(watchTasks);
