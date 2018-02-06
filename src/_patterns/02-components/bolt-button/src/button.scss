@@ -170,7 +170,7 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   @include bolt-font-weight(semibold);
 
   display: inline-block;
-    display: inline-flex;
+  display: inline-flex;
   position: relative;
   cursor: pointer;
   text-decoration: none;
@@ -480,12 +480,13 @@ bolt-button {
 }
 
 
-// Button widths
-
+// Button width variations
+bolt-button[width='full'],
 .c-bolt-button--full {
   width: 100%;
 }
 
+bolt-button[width='full@small'],
 .c-bolt-button--full\@small {
   @media screen and (max-width: map-get($bolt-breakpoints, small)) {
     width: 100%;
@@ -502,13 +503,13 @@ bolt-button {
 // Button alignment options
 .c-bolt-button--center {
   align-items: center;
-    justify-content: center;
+  justify-content: center;
   text-align: center;
 }
 
 .c-bolt-button--left {
   align-items: flex-start;
-    justify-content: flex-start;
+  justify-content: flex-start;
   text-align: left;
 }
 
