@@ -23,6 +23,7 @@ export class BoltButton extends withComponent(withPreact()) {
     size: props.string,
     rounded: props.boolean,
     iconOnly: props.boolean,
+    align: props.string,
     onClick: props.string,
     onClickTarget: props.string,
     isHover: props.boolean,  // test hover psuedo state
@@ -152,6 +153,7 @@ export class BoltButton extends withComponent(withPreact()) {
       this.props.color ? `c-bolt-button--${this.props.color}` : '',
       this.props.rounded ? `c-bolt-button--rounded` : '',
       this.props.iconOnly ? `c-bolt-button--icon-only` : '',
+      this.props.align ? `c-bolt-button--${this.props.align}` : 'c-bolt-button--center',
       this.enableTransitions === false ? 'u-bolt-transitionless' : '',
 
       // Test out psuedo states via prop values
