@@ -623,6 +623,8 @@ bolt-button {
 .c-bolt-button__inner {
   display: flex;
 
+  // Sass-portion of the workaround technique to hide the focus outline styles on <button> tag buttons without wrecking accessibility
+  // Technique inspired by https://hackernoon.com/removing-that-ugly-focus-ring-and-keeping-it-too-6c8727fefcd2, https://jmperezperez.com/outline-focus-ring-a11y/, and https://marcysutton.com/button-focus-hell/
   &:not(.is-focused) {
     &:focus,
     &:active {
