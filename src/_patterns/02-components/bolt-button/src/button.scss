@@ -170,10 +170,7 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   @include bolt-font-weight(semibold);
 
   display: inline-block;
-  @supports (display: flex) {
     display: inline-flex;
-  }
-
   position: relative;
   cursor: pointer;
   text-decoration: none;
@@ -199,7 +196,7 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
     border-radius: $bolt-button-border-radius;
     box-shadow: 0 1px 0.15rem rgba($bolt-shadow-color, 0.1), $bolt-button-shadow--hover;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    opacity: .2;
+    opacity: 0.2;
   }
 
   &:not([disabled]):not(.c-bolt-button--text) {
@@ -229,13 +226,12 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
 bolt-button {
   display: inline-block; // Fallback
   display: inline-flex; // So equal height works
-  flex-grow: 1;
 }
 
 // Button colors
 .c-bolt-button {
   @include bolt-button;
-  flex-direction: column; // Vertically center inner content
+  flex-direction: row; // Vertically center inner content
   justify-content: center; // Vertically center inner content
 }
 
@@ -500,20 +496,24 @@ bolt-button {
 }
 
 
-// Button items
 
-.c-bolt-button--item-align-center {
-  @supports (display: flex) {
+// Button alignment options
+.c-bolt-button--center {
+  align-items: center;
     justify-content: center;
-  }
   text-align: center;
 }
 
-.c-bolt-button--item-align-start {
-  @supports (display: flex) {
+.c-bolt-button--left {
+  align-items: flex-start;
     justify-content: flex-start;
-  }
   text-align: left;
+}
+
+.c-bolt-button--right {
+  align-items: flex-end;
+  justify-content: flex-end;
+  text-align: right;
 }
 
 .c-bolt-button__item,
@@ -532,7 +532,6 @@ bolt-button {
   font-family: inherit;
   cursor: inherit;
   color: inherit; // fix for black text browser default
-  outline: 0;
   padding: 0;
   display: inline-flex; // vertical alignment w/ icon only button
 }
