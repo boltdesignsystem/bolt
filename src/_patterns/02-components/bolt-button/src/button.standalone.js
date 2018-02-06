@@ -156,7 +156,8 @@ export class BoltButton extends withComponent(withPreact()) {
     }
   }
 
-  render({ props, enableTransitions }) {
+  render({ props, state }) {
+    // Setup the combo of classes to apply based on state + extras added
     const classes = css(
       'c-bolt-button',
       this.props.size ? `c-bolt-button--${this.props.size}` : '',
@@ -175,6 +176,49 @@ export class BoltButton extends withComponent(withPreact()) {
     );
 
 
+    // Grab all of the original inner element's attributes & pass everything to vdom element. @TODO: move all of the logic below to @bolt/core
+    let originalProps = {};
+    if (this.originalElem && this.state.isFirstRender === true) {
+
+      // Is this the 1st time rendering the button? Or subsequent renders?
+      this.state.isFirstRender = false;
+      this.innerHTML = this.originalElem.innerHTML;
+
+      for (var i = 0, l = this.originalElem.attributes.length; i < l; ++i) {
+        var nodeName = this.originalElem.attributes.item(i).nodeName;
+        var nodeValue = this.originalElem.attributes.item(i).nodeValue;
+        originalProps[nodeName] = nodeValue;
+      }
+    }
+
+    // Convert component props to dash-cased attributes. @TODO: move to @bolt/core as a shared util function.
+    function camelCaseToDash(myStr) {
+      return myStr.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+    }
+
+    // Select + convert the prop names from this component so we can remove from new element
+    let propsToRemove = Object.keys(this.props).map(val => camelCaseToDash(val));
+    propsToRemove.push('class');
+
+    // Loop through the original attributes on the inner element and remove the props defined by the component
+    const filteredProps = Object.keys(originalProps)
+      .filter(key => !propsToRemove.includes(key))
+      .reduce((obj, key) => {
+        obj[key] = originalProps[key];
+        return obj;
+      }, {});
+
+
+    // Decide on if the rendered button tag should be a <button> or <a> tag, based on if a URL exists OR if a link was passed in from the getgo
+    const hasUrl = this.props.url.length > 0 && this.props.url !== 'null';
+    const hasLinkTag = this.originalElem && this.originalElem.tagName === 'A';
+
+
+    const ButtonTag = hasUrl || hasLinkTag ? 'a' : 'button';
+    const disabled = this.props.disabled ? { 'disabled': 'disabled' } : {};
+    const href = this.props.url.length > 0 && this.props.url !== 'null' ? { 'href': this.props.url } : {};
+
+
     // Depending on if the user natively supports the ShadowDom, conditionally render a slot or psuedo-slot polyfill we're manually handling here.
     let buttonText;
     if (this.useShadow){
@@ -184,14 +228,14 @@ export class BoltButton extends withComponent(withPreact()) {
     }
 
     return (
-      <div className={classes}>
+      <ButtonTag className={classes} {...disabled} {...href} {...filteredProps}>
         {this.useShadow &&
           <style>
             {styles[0][1]}
           </style>
         }
         { buttonText }
-      </div>
+      </ButtonTag>
     )
   }
 }
