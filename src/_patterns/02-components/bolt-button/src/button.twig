@@ -36,14 +36,6 @@
 {% set tag = tag in tags|keys ? tag: "a" %}
 
 
-{% set classes = [
-  baseClass,
-  disabled ? baseClass ~ "--disabled" : "",
-  size in sizes ? baseClass ~ "--" ~ size : "",
-  width in widths ? baseClass ~ "--" ~ width : "",
-  style in styles ? baseClass ~ "--" ~ style : baseClass ~ "--primary",
-  itemAlignment in itemAlignments|keys ? baseClass ~ "--item-align-" ~ itemAlignments[itemAlignment]
-] %}
 
 {% set tagClasses = [
   tag in tags|keys ? baseClass ~ "__" ~ tags[tag]
@@ -53,6 +45,17 @@
   {% set tagAttributes = tagAttributes.setAttribute("href", url) %}
 {% endif %}
 
+
+
+{% set classes = [
+  baseClass,
+  disabled ? baseClass ~ "--disabled" : "",
+  size in sizeOptions ? baseClass ~ "--" ~ size : "",
+  width in widthOptions and width != "" ? baseClass ~ "--" ~ width : "",
+  rounded in roundedOptions and rounded != schema.properties.rounded.default ? baseClass ~ "--" ~ rounded : "",
+  style in styleOptions ? baseClass ~ "--" ~ style : baseClass ~ "--primary",
+  align in alignOptions ? baseClass ~ "--" ~ align : "",
+] %}
 
 {% if disabled %}
   {% set attributes = attributes.setAttribute("disabled", true) %}
