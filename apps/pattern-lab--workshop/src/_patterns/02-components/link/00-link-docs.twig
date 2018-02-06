@@ -1,0 +1,16 @@
+{% set schema = get_data('@bolt-components-link/link.schema.yml') %}
+{% set readme = source('@bolt-components-link/README.md') %}
+{% set code %} {% verbatim %}
+{% include "@bolt-components-link/link.twig" with {
+    text: "This is a link",
+    url: "http://google.com",
+  } only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/docs.twig' with {
+  schema: schema,
+  code: code,
+  readme: readme,
+  readmePath: 'packages/components/bolt-link/README.md',
+} only %}

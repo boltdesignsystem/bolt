@@ -1,0 +1,16 @@
+$schema: http://json-schema.org/draft-04/schema#
+title: Link
+type: object
+properties:
+  url or href:
+    type: string
+    description: Link href attribute. Either url or href may be passed in.
+  icon:
+    type: object
+    description: Bolt icon.
+    properties:
+      position:
+        type: string
+        description: By default icon is after text. "before" will place the icon before the text.
+        enum:
+          - before
