@@ -484,17 +484,17 @@ bolt-button {
   width: 100%;
 }
 
-.c-bolt-button--rounded,
-.c-bolt-button--rounded:before {
-  border-radius: 50%;
-}
-
 .c-bolt-button--full\@small {
   @media screen and (max-width: map-get($bolt-breakpoints, small)) {
     width: 100%;
   }
 }
 
+// Rounded button option
+.c-bolt-button--rounded,
+.c-bolt-button--rounded:before {
+  border-radius: 50rem;
+}
 
 
 // Button alignment options
