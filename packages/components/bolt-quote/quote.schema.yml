@@ -1,0 +1,16 @@
+$schema: http://json-schema.org/draft-04/schema#
+title: Quote
+type: object
+properties:
+  quotation:
+    type: string
+    description: Text content of a quotation.
+  attribution:
+    type: object
+    properties:
+      name:
+        type: string
+        descrition: Author(s) of the quotation.
+      title:
+        type: string
+        description: Title of the author(s).

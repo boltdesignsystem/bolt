@@ -1,0 +1,13 @@
+{% set schema = get_data('@bolt-components-quote/quote.schema.yml') %}
+{% set readme = source('@bolt-components-quote/README.md') %}
+{% set code %} {% verbatim %}
+  This component has yet to become a package.
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/docs.twig' with {
+  schema: schema,
+  code: code,
+  readme: readme,
+  readmePath: 'packages/components/bolt-quote/README.md',
+} only %}
