@@ -349,15 +349,17 @@ bolt-button {
 
 
 // Allow forcing light and xlight theme colors in IE11 until http://vjira2:8080/browse/BK-48 is resolved.
-._c-bolt-button--theme-override .c-bolt-button {
-  .t-bolt-xlight &,
-  .t-bolt-light & {
+.t-bolt-xlight,
+.t-bolt-light {
+  ._c-bolt-button--theme-override {
     $fallback-background-default: bolt-color(indigo, light);
     $fallback-background-hover: mix($bolt-global-button-hover-color, $fallback-background-default, $bolt-global-button-hover-mix);
     $fallback-background-active: mix($bolt-global-button-active-color, $fallback-background-default, $bolt-global-button-active-mix);
 
-    &,
-    &:visited {
+    &.c-bolt-button,
+    &.c-bolt-button__inner,
+    &.c-bolt-button:visited,
+    &.c-bolt-button__inner:visited {
       border-color: $fallback-background-default;
       color: bolt-text-contrast($fallback-background-default);
       background-color: $fallback-background-default;
