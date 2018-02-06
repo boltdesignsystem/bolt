@@ -39,6 +39,10 @@
         "url": "../../packages/twig-extensions"
       },
       {
+        "type": "path",
+        "url": "../../packages/core-php"
+      },
+      {
         "type": "vcs",
         "url": "https://github.com/pattern-lab/drupal-twig-extensions"
       },
@@ -50,6 +54,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
+      "bolt/core-php": "*",
       "php": ">=7.0",
       "twig/twig": "^1.35.0",
       "cweagans/composer-patches": "~1.0",

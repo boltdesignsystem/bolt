@@ -1,0 +1,25 @@
+{
+  "name": "bolt/core-php",
+  "description": "Core PHP functionality for Bolt",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Salem Ghoweri",
+      "role": "Maintainer"
+    },
+    {
+      "name": "Evan Lovely"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Bolt\\": "src/"
+    }
+  },
+  "require": {
+    "justinrainbow/json-schema": "^5.2",
+    "symfony/yaml": "^3.3",
+    "twig/twig": "^1.0"
+  }
+}
