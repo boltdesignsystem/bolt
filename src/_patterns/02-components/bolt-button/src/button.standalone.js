@@ -167,8 +167,9 @@ export class BoltButton extends withComponent(withPreact()) {
       this.props.isFocus ? `c-bolt-button--focus` : ''
     );
 
-    let buttonText;
 
+    // Depending on if the user natively supports the ShadowDom, conditionally render a slot or psuedo-slot polyfill we're manually handling here.
+    let buttonText;
     if (this.useShadow){
       buttonText = <slot />;
     } else {
