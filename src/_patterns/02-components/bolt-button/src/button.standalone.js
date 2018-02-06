@@ -157,6 +157,7 @@ export class BoltButton extends withComponent(withPreact()) {
       this.props.color ? `c-bolt-button--${this.props.color}` : '',
       this.props.rounded ? `c-bolt-button--rounded` : '',
       this.props.iconOnly ? `c-bolt-button--icon-only` : '',
+      this.props.width ? `c-bolt-button--${this.props.width}` : '',
       this.props.align ? `c-bolt-button--${this.props.align}` : 'c-bolt-button--center',
       this.enableTransitions === false ? 'u-bolt-transitionless' : '',
 
