@@ -23,7 +23,11 @@ export class BoltButton extends withComponent(withPreact()) {
     size: props.string,
     rounded: props.boolean,
     iconOnly: props.boolean,
+    disabled: props.boolean,
+    size: props.string,
+    width: props.string,
     align: props.string,
+    url: props.string,
     onClick: props.string,
     onClickTarget: props.string,
     isHover: props.boolean,  // test hover psuedo state
