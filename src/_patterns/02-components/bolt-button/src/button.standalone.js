@@ -41,8 +41,13 @@ export class BoltButton extends withComponent(withPreact()) {
     this.useShadow = hasNativeShadowDomSupport;
     this.originalElem = this.querySelectorAll('.c-bolt-button')[0];
 
-      originalElem.className = 'c-bolt-button__inner';
     if (this.originalElem) {
+      // Remove any `c-bolt-` classes getting passed in since the component's core styles should be based on the component's props
+      var extraClasses = this.originalElem.className.split(' ').filter(function (c) {
+        return c.lastIndexOf('c-bolt-', 0) !== 0;
+      });
+      extraClasses = extraClasses.join(' ').trim();
+      this.originalElem.className = `c-bolt-button__inner ${extraClasses}`;
     }
 
     if (!this.useShadow) {
@@ -160,6 +165,7 @@ export class BoltButton extends withComponent(withPreact()) {
       this.props.iconOnly ? `c-bolt-button--icon-only` : '',
       this.props.width ? `c-bolt-button--${this.props.width}` : '',
       this.props.align ? `c-bolt-button--${this.props.align}` : 'c-bolt-button--center',
+      this.originalElem ? this.originalElem.className : '',
       this.enableTransitions === false ? 'u-bolt-transitionless' : '',
 
       // Test out psuedo states via prop values
