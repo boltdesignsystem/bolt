@@ -37,16 +37,17 @@ export class BoltButton extends withComponent(withPreact()) {
 
   constructor(element) {
     super(element);
-    this.useShadow = hasNativeShadowDomSupport;
-    const originalElem = this.querySelectorAll('.c-bolt-button')[0];
 
-    if (originalElem) {
+    this.useShadow = hasNativeShadowDomSupport;
+    this.originalElem = this.querySelectorAll('.c-bolt-button')[0];
+
       originalElem.className = 'c-bolt-button__inner';
+    if (this.originalElem) {
     }
 
     if (!this.useShadow) {
-      if (originalElem) {
-        this.fallbackText = originalElem.innerHTML;
+      if (this.originalElem) {
+        this.fallbackText = this.originalElem.innerHTML;
       } else {
         this.fallbackText = this.innerHTML;
       }
