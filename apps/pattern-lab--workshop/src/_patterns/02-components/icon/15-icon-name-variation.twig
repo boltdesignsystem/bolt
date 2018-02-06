@@ -1,20 +1,21 @@
 {% set schema = get_data('@bolt-components-icon/icon.schema.yml') %}
 
-{% set name = "add-open" %}
 {% set background = "circle" %}
 {% set color = "" %}
 
-{% for size in schema.properties.size.enum %}
+<ul>
+{% for name in schema.properties.name.enum %}
 
   {% set attributes = create_attribute(attributes | default({})) %}
 
   {% set attributes = attributes
   .setAttribute("name", name)
-  .setAttribute("background", background)
-  .setAttribute("size", size)
+  .setAttribute("background", "circle")
+  .setAttribute("size", "medium")
   .setAttribute("color", color)
   %}
 
-  <bolt-icon {{ attributes }}></bolt-icon>
+  <li><bolt-icon {{ attributes }}></bolt-icon> :{{ name }}</li>
 
 {% endfor %}
+</ul>
