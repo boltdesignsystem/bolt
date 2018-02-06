@@ -619,6 +619,14 @@ bolt-button {
   // }
 }
 
+// Inner component wrapper to the button added when rendering via Preact - doesn't apply to the component's pre-rendered state
 .c-bolt-button__inner {
   display: flex;
+
+  &:not(.is-focused) {
+    &:focus,
+    &:active {
+      outline: none;
+    }
+  }
 }

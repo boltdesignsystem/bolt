@@ -46,7 +46,21 @@ export class BoltButton extends withComponent(withPreact()) {
   }
 
   connectedCallback(){
-    this.addEventListener('click', this.clickHandler);
+    // Set default button states
+    this.state = {
+      isMouseActive: false,
+      isFocused: false,
+      isFirstRender: true
+    };
+
+  /**
+   * 1. Handles external click event hooks
+   * 2. Handles internal focus and click events relating to conditionally toggling focus state
+   * 3. Note: `focus` here won't work in IE 11
+   */
+    this.addEventListener('click', this.clickHandler); /* [1] */
+    this.addEventListener('mousedown', this.mousedownHandler); /* [2] */
+    this.addEventListener('focusin', this.focusHandler); /* [2, 3] */
 
     if (!this.useShadow) {
       this.enableTransitions = false;
@@ -68,8 +82,40 @@ export class BoltButton extends withComponent(withPreact()) {
 
   disconnectedCallback(){
     this.removeEventListener('click', this.clickHandler);
+    this.removeEventListener('mousedown', this.mousedownHandler);
+    this.removeEventListener('focusin', this.focusHandler);
   }
 
+
+  // Handle conditionally toggling state classes based on interaction. Based on https://marcysutton.com/button-focus-hell/ and https://jmperezperez.com/outline-focus-ring-a11y/ and https://hackernoon.com/removing-that-ugly-focus-ring-and-keeping-it-too-6c8727fefcd2
+  mousedownHandler(event){
+    const elem = this; // Needed for scoping the setTimeout
+
+    elem.state.isMouseActive = true;
+    setTimeout(function () {
+      elem.state.isMouseActive = false;
+    }, 100);
+  }
+
+  focusHandler(event) {
+    if (this.state.isMouseActive === false) {
+      this.state.isFocused = true;
+      this.renderRoot.firstChild.classList.add('is-focused');
+
+      this.addEventListener('blur', this.blurHandler);
+    }
+  }
+
+  blurHandler(event) {
+    this.state.isFocused = false;
+    // this.render(this.props, this.state);
+    this.renderRoot.firstChild.classList.remove('is-focused');
+
+    this.removeEventListener('blur', this.blurHandler);
+  }
+
+
+  // Attach external events declaratively
   clickHandler(event) {
     const clickMethod = this.props.onClick;
     const clickTarget = this.props.onClickTarget;
