@@ -24,7 +24,10 @@ export class BoltButton extends withComponent(withPreact()) {
     rounded: props.boolean,
     iconOnly: props.boolean,
     onClick: props.string,
-    onClickTarget: props.string
+    onClickTarget: props.string,
+    isHover: props.boolean,  // test hover psuedo state
+    isActive: props.boolean, // test active psuedo state
+    isFocus: props.boolean,  // test focus psuedo state
   }
 
   constructor(element) {
@@ -149,7 +152,12 @@ export class BoltButton extends withComponent(withPreact()) {
       this.props.color ? `c-bolt-button--${this.props.color}` : '',
       this.props.rounded ? `c-bolt-button--rounded` : '',
       this.props.iconOnly ? `c-bolt-button--icon-only` : '',
-      enableTransitions === false ? 'u-bolt-transitionless' : ''
+      this.enableTransitions === false ? 'u-bolt-transitionless' : '',
+
+      // Test out psuedo states via prop values
+      this.props.isHover ? `c-bolt-button--hover` : '',
+      this.props.isActive ? `c-bolt-button--active` : '',
+      this.props.isFocus ? `c-bolt-button--focus` : ''
     );
 
     let buttonText;
