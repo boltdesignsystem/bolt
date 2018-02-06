@@ -146,11 +146,13 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
     }
 
     &:hover {
+      color: bolt-color(gray);
       border-color: bolt-color(gray, light);
       background-color: bolt-color(gray, light);
     }
 
     &:active {
+      color: bolt-color(gray);
       border-color: bolt-color(gray, light);
       background-color: bolt-color(gray, light);
     }
@@ -370,6 +372,18 @@ bolt-button {
 .c-bolt-button--disabled {
   @include bolt-button-color(disabled);
   cursor: not-allowed;
+
+  &:before,
+  &:hover:before,
+  &:active:before {
+    opacity: 1;
+  }
+
+  &,
+  &:hover,
+  &:active {
+    transform: none;
+  }
 }
 
 
