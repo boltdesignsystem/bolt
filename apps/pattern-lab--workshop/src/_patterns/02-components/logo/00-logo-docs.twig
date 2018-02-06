@@ -1,0 +1,16 @@
+{% set schema = get_data('@bolt-components-logo/logo.schema.yml') %}
+{% set readme = source('@bolt-components-logo/README.md') %}
+{% set code %} {% verbatim %}
+{% include "@bolt/logo.twig" with {
+    text: "This is a logo",
+    url: "http://google.com",
+  } only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/docs.twig' with {
+  schema: schema,
+  code: code,
+  readme: readme,
+  readmePath: 'packages/components/bolt-logo/README.md',
+} only %}
