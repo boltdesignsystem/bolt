@@ -1,0 +1,30 @@
+{% set schema = get_data('@bolt/button.schema.json') %}
+
+{% for tag in schema.properties.tag.enum %}
+  <h3>Button Tag: {{ align }}</h3>
+
+  {% if tag == "link" or tag == "a" %}
+    {% include "@bolt/button.twig" with {
+      "tag": tag,
+      url: "https://www.google.com",
+      "text": tag ~ "-tag based Button"
+    } only %}
+
+    {% include "@bolt/button.twig" with {
+      "tag": tag,
+      url: "https://www.google.com",
+      "text": tag ~ "-tag based Button, New Window",
+      attributes: {
+        target: "_blank"
+      }
+    } only %}
+  {% else %}
+
+    {% include "@bolt/button.twig" with {
+    "tag": tag,
+    "text": tag ~ "-tag based Button"
+  } only %}
+  {% endif %}
+
+
+{% endfor %}
