@@ -1,0 +1,64 @@
+$schema: http://json-schema.org/draft-04/schema#
+title: Action blocks
+type: object
+properties:
+  theme:
+    type: string
+    description: Default is 'false' for a transparent background.
+    enum:
+      - xlight
+      - light
+      - dark
+      - xdark
+      - medium
+      - 'false'
+  maxItemsPerRow:
+    type: number
+    description: Default is 3.
+    minimum: 2
+    maximum: 12
+    default: 3
+    emun:
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+  align:
+    type: string
+    description: Default is top.
+    enum:
+      - top
+      - center
+      - bottom
+  border:
+    type: string
+    description: Default (true) shows borders, but you can turn them off.
+    enum:
+      - 'true'
+      - 'false'
+  contentItems:
+    type: array
+    description: Content items to populate the action blocks.
+    items:
+      type: object
+      properties:
+        text:
+          type: string
+        url:
+          type: string
+        icon:
+          type: object
+          properties:
+            name:
+              type: string
+            size:
+              type: string
+            background:
+              type: string

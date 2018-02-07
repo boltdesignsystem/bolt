@@ -121,3 +121,7 @@
     {% endif %}
   </blockquote>
 </bolt-{{ componentName }}>
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-blockquote/blockquote.schema.yml', _self) }}
+{% endif %}
