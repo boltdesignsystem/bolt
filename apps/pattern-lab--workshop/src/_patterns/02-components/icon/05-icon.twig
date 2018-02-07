@@ -1,15 +1,5 @@
-{% set name = "add-open" %}
-{% set background = "circle" %}
-{% set size = "medium" %}
-{% set color = "" %}
-
-{% set attributes = create_attribute(attributes | default({})) %}
-
-{% set attributes = attributes
-.setAttribute("name", name)
-.setAttribute("background", background)
-.setAttribute("size", size)
-.setAttribute("color", color)
-%}
-
-<bolt-icon {{ attributes }}></bolt-icon>
+{% include "@bolt-components-icon/icon.twig" with {
+  name: "add-open",
+  background: "circle",
+  size: "medium"
+}%}

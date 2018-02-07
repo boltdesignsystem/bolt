@@ -1,23 +1,11 @@
-{#{% set schema = get_data('@bolt-components-icon/icon.schema.yml') %}#}
+{% set schema = get_data('@bolt-components-icon/icon.schema.yml') %}
 {% set readme = source('@bolt-components-icon/README.md') %}
 {% set code %} {% verbatim %}
-Twig:
-
-{% set attributes = create_attribute(attributes | default({})) %}
-
-{% set attributes = attributes
-  .setAttribute("name", name)
-  .setAttribute("background", background)
-  .setAttribute("size", size)
-  .setAttribute("color", color)
-%}
-
-&lt;bolt-icon {{ attributes }}&gt;&lt;/bolt-icon&gt;
-
-HTML:
-
-&lt;bolt-icon name=&quot;add-open&quot;&gt;&lt;/bolt-icon&gt;
-
+{% include "@bolt-components-icon/icon.twig" with {
+  name: "add-open",
+  background: "circle",
+  size: "medium",
+}%}
 {% endverbatim %}
 {% endset %}
 
