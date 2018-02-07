@@ -97,36 +97,37 @@ function createConfig(config) {
   }
 
 
-  // @todo Remove workaround for getting classes with `\@` to compile correctly
+  // This workaround has been disabled for now as setting `modules: false` on `css-loader` fixes it; see https://github.com/bolt-design-system/bolt/pull/410
+  // Workaround for getting classes with `\@` to compile correctly
   // CSS Classes like `.u-hide\@large` were getting compiled like `.u-hide-large`.
   // Due to this bug: https://github.com/webpack-contrib/css-loader/issues/578
   // Workaround: using the `string-replace-loader` to change `\@` to our `workaroundAtValue` before passing to `css-loader`, then turning it back afterwards.
-  const workaroundAtValue = '-theAtSymbol-';
+  // const workaroundAtValue = '-theAtSymbol-';
 
   const scssLoaders = [
-    {
-      loader: 'string-replace-loader',
-      query: {
-        search: workaroundAtValue,
-        replace: String.raw`\\@`, // needed to ensure `\` comes through
-      },
-    },
+//     {
+//       loader: 'string-replace-loader',
+//       query: {
+//         search: workaroundAtValue,
+//         replace: String.raw`\\@`, // needed to ensure `\` comes through
+//       },
+//     },
     {
       loader: 'css-loader',
       options: {
         sourceMap: true,
-        modules: true,
+        modules: false,
         importLoaders: true,
         localIdentName: '[local]'
       }
     },
-    {
-      loader: 'string-replace-loader',
-      query: {
-        search: '\\@',
-        replace: workaroundAtValue,
-      },
-    },
+//     {
+//       loader: 'string-replace-loader',
+//       query: {
+//         search: '\\@',
+//         replace: workaroundAtValue,
+//       },
+//     },
     {
       loader: "postcss-loader",
       options: {
