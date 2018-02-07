@@ -38,13 +38,13 @@ properties:
       - none
   indent:
     description: Default is false.
-    type: boolean
+    type: string
     enum:
       - 'true'
       - 'false'
   fullBleed:
       description: Default is false.
-      type: boolean
+      type: string
       enum:
         - 'true'
         - 'false'
@@ -56,7 +56,7 @@ properties:
           type: string
           description: Source URL.
         invert:
-          type: boolean
+          type: string
           enum:
             - 'true'
             - 'false'
@@ -65,8 +65,14 @@ properties:
       type: object
       properties:
         image:
-          type: string
-          description: Source URL.
+          type: object
+          properties:
+            src:
+              type: string
+              description: Source URL.
+            lazyLoad:
+              type: boolean
+              description: Default is true.
         name:
           type: string
           description: Author's name.
