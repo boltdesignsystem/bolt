@@ -1,0 +1,12 @@
+{% include "@bolt-components-headline/headline.twig" with {
+  text: "This headline is a link, with default icon",
+  url: "https://www.google.com"
+} only %}
+
+{% include "@bolt-components-headline/headline.twig" with {
+  text: "This headline is also a link, with defined icon",
+  url: "https://www.google.com",
+  icon: {
+    name: "search"
+  }
+} only %}

@@ -1,0 +1,16 @@
+{% set alignmentExamples = {
+  left: "Left",
+  center: "Center",
+  right: "Right",
+  null: "Null",
+  typo: "Typo",
+} %}
+
+{% for alignment, alignmentName in alignmentExamples %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "This is an example of align " ~ alignmentName,
+    tag: "h2",
+    size: "xxlarge",
+    align: alignment
+  } only %}
+{% endfor %}
