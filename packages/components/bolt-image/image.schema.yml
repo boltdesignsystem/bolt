@@ -1,0 +1,31 @@
+$schema: http://json-schema.org/draft-04/schema#
+title: Image
+type: object
+properties:
+  src:
+    type: string
+    description: Source url for image. Required.
+  alt:
+    type: string
+    description: Alt tag for image. Required.
+  lazyload:
+    type: boolean
+    description: Default true.
+  height:
+    type: string
+    descirption: Set the height of the image. Leave empty for auto height based on image size.
+  width:
+    type: string
+    descirption: Set the width of the image. Leave empty for auto width based on image size.
+  ratio:
+    type: boolean
+    description: Default false.
+    enum:
+      - 'true'
+      - 'false'
+  zoom:
+    type: boolean
+    description: Default false. Zoom effect.
+    enum:
+      - 'true'
+      - 'false'
