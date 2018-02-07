@@ -1,10 +1,9 @@
-{% set schema = get_data('@bolt-components-logo/logo.schema.yml') %}
+{#{% set schema = get_data('@bolt-components-logo/logo.schema.yml') %}#}
 {% set readme = source('@bolt-components-logo/README.md') %}
 {% set code %} {% verbatim %}
-{% include "@bolt/logo.twig" with {
-    text: "This is a logo",
-    url: "http://google.com",
-  } only %}
+{% include "@bolt-components-logo/logo.twig" with {
+  src: "/images/content/logos/logo-paypal.svg",
+} %}
 {% endverbatim %}
 {% endset %}
 
