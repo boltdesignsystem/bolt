@@ -12,20 +12,14 @@ properties:
     type: boolean
     description: Default true.
   height:
-    type: string
+    type: ['string', 'null']
     descirption: Set the height of the image. Leave empty for auto height based on image size.
   width:
-    type: string
+    type: ['string', 'null']
     descirption: Set the width of the image. Leave empty for auto width based on image size.
   ratio:
-    type: boolean
+    type: ['boolean', 'string']
     description: Default false.
-    enum:
-      - 'true'
-      - 'false'
   zoom:
     type: boolean
     description: Default false. Zoom effect.
-    enum:
-      - 'true'
-      - 'false'
