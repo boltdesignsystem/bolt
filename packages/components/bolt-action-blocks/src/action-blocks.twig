@@ -81,3 +81,7 @@
     {% endif %}
   </ul>
 </bolt-{{ componentName }}>
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-action-blocks/action-blocks.schema.yml', _self) }}
+{% endif %}

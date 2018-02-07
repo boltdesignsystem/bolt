@@ -1,10 +1,10 @@
-{% set schema = get_data('@bolt-components-ordered-list/ordered-list.schema.yml') %}
+{% set schema = get_data('@bolt-components-unordered-list/unordered-list.schema.yml') %}
 
 {% for theme in schema.properties.theme.enum %}
   <p>Theme: {{ theme }}</p>
   {% embed "@utils/theme-demo.twig" %}
     {% block demo_content %}
-      {% include "@bolt-components-ordered-list/ordered-list.twig" with {
+      {% include "@bolt-components-unordered-list/unordered-list.twig" with {
         "theme": theme,
         "contentItems" : [
           {
