@@ -1,4 +1,4 @@
-{#{% set schema = get_data('@bolt-components-image/image.schema.yml') %}#}
+{% set schema = get_data('@bolt-components-image/image.schema.yml') %}
 {% set readme = source('@bolt-components-image/README.md') %}
 {% set code %} {% verbatim %}
 {% include '@bolt-components-image/image.twig' with {

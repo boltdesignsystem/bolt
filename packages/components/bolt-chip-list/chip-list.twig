@@ -43,3 +43,7 @@
   {% include "@bolt/inline-list.twig" with chipParams only %}
 
 {% endif %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-chip-list/chip-list.schema.yml', _self) }}
+{% endif %}

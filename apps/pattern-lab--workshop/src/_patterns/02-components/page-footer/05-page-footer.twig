@@ -1,0 +1,11 @@
+{% set content %}
+  <small>
+    <p>
+      <strong>Copyright &copy; {{ "now"|date('Y') }} Pegasystems, Inc.</strong> | <a href="/styleguide/html/styleguide.html">Pattern Lab</a> | <a href="/sassdoc">Sass Docs</a>
+    </p>
+  </small>
+{% endset %}
+
+{% include "@bolt-components-page-footer/page-footer.twig" with {
+  "content": content,
+} only %}

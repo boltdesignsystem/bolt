@@ -1,5 +1,11 @@
-{% macro titleAndDescription(title, description) %}
+{% macro titleAndDescription(title, description, minimum, maximum) %}
   {%- if title %} - <strong>{{ title | markdown }}</strong> {% endif -%}
+  {% if minimum and maximum %}
+    - [{{ minimum }} ~ {{ maximum }}]
+  {% else %}
+    {%- if minimum %} - Minimum is {{ minimum }} {%- endif %}
+    {%- if maximum %} - Maximum is {{ maximum }} {%- endif %}
+  {% endif %}
   {%- if description %} - {{ description | markdown }} {% endif -%}
 {% endmacro %}
 
@@ -9,7 +15,7 @@
     {% for key, prop in properties %}
       <li>
         <code>{{ key }}</code>
-        {{ macros.titleAndDescription(prop.title, prop.description) }}
+        {{ macros.titleAndDescription(prop.title, prop.description, prop.minimum, prop.maximum) }}
         <ul>
           {% set enum %}
             {% for x in prop.enum %}
@@ -22,7 +28,7 @@
               Must be one of:
               <ul>
                 {% for item in prop.oneOf %}
-                  <li><code>{{ item.enum|join(',') }}</code>{{ macros.titleAndDescription(item.title, item.description) }}</li>
+                  <li><code>{{ item.enum|join(',') }}</code>{{ macros.titleAndDescription(item.title, item.description, prop.minimum, prop.maximum) }}</li>
                 {% endfor %}
               </ul>
             {%- elseif prop.enum %} - Must be one of: {{ enum }}
@@ -37,15 +43,19 @@
                 <li>Items:</li>
                 {% if prop.items.type == 'object' %}
                   <ul>
-                    <li>Type: <code>{{ prop.items.type }}</code>{{ macros.titleAndDescription(prop.items.title, prop.items.description) }}</li>
+                    <li>Type: <code>{{ prop.items.type }}</code>{{ macros.titleAndDescription(prop.items.title, prop.items.description, prop.minimum, prop.maximum) }}</li>
                     <li>Properties:
                       <ul>
                         {% for key, property in prop.items.properties %}
                           <li><code>{{ key }}</code>
-                            {{ macros.titleAndDescription(property.title, property.description) }}
+                            {{ macros.titleAndDescription(property.title, property.description, prop.minimum, prop.maximum) }}
                             {% if property.type %}
                               <ul>
                                 <li>Type: <code>{{ property.type }}</code></li>
+                                {% if property.type == 'object' and property.properties %}
+                                  <li>Properties:</li>
+                                  {{ macros.object(property.properties) }}
+                                {% endif %}
                               </ul>
                             {% endif %}
                           </li>
