@@ -123,7 +123,7 @@ function createConfig(config) {
     {
       loader: 'string-replace-loader',
       query: {
-        search: '\@',
+        search: '\\@',
         replace: workaroundAtValue,
       },
     },
