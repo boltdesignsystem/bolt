@@ -2,19 +2,16 @@
 
 namespace Bolt;
 
+use \Twig_SimpleFunction;
+
 class TwigFunctions {
 
-  /**
-   * @param \Twig_Environment $env
-   * @param {string} $twigPath - Like `@namespace/file.json`
-   * @return array - `file.json` turned into data
-   * @throws \Exception
-   */
-  public static function getData(\Twig_Environment $env, $twigPath) {
-    $full_path = Util::resolveTwigPath($env, $twigPath);
-    $file_data = Util::getDataFile($full_path);
-    return $file_data;
+  public static function deep_merge() {
+    return new Twig_SimpleFunction('deep_merge', function($param1, $param2) {
+      $result = array_merge_recursive( $param1, $param2 );
+      // $result = array_replace_recursive( $param1, $param2 );
+      return $result;
+    });
   }
-
 
 }

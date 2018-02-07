@@ -7,18 +7,18 @@ use Twig_Extension;
 use Twig_ExtensionInterface;
 use BasaltInc\TwigTools;
 
-class BoltCore extends Twig_Extension implements Twig_ExtensionInterface {
+class BoltExtras extends Twig_Extension implements Twig_ExtensionInterface {
 
   public function getFunctions() {
     return [
-      TwigTools\TwigFunctions::get_data(),
-      TwigTools\TwigFunctions::validate_data_schema(),
+      TwigTools\TwigFunctions::console_log(),
+      Bolt\TwigFunctions::deep_merge(),
     ];
   }
 
   public function getFilters() {
     return [
-      Bolt\TwigFilters::json_decode(),
+      Bolt\TwigFilters::markdown(),
     ];
   }
 
