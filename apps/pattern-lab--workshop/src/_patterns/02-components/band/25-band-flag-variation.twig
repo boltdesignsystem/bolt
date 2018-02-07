@@ -1,0 +1,17 @@
+{% embed "@bolt-components-band/band.twig" with {
+  size: "medium",
+  theme: "xlight"
+} %}
+  {% block band_content %}
+    {% include "@bolt-components-headline/eyebrow.twig" with {
+      text: "Who is Pega?"
+    } %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Pega is #1 in software for customer engagement and operational excellence."
+    } %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: "Example button #1",
+      style: "primary"
+    } %}
+  {% endblock band_content %}
+{% endembed %}
