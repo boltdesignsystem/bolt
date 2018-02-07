@@ -3,7 +3,7 @@
 {% for size in exampleSizes %}
   <p>Size: {{ size }}</p>
   {% include "@bolt-components-band/band.twig" with {
-    content: "Hello world!",
+    content: "This band is "~size,
     size: size,
   } only %}
 {% endfor %}
