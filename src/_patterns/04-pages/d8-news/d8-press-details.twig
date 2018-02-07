@@ -12,7 +12,12 @@
   } %}
     {% block band_content %}
       {% include "@bolt/eyebrow.twig" with {
-        "text": "Press Release"
+        "text": "Press Releases",
+        "url": "http://pega.com",
+        "icon": {
+          "name": "arrow-left",
+          "position": "before"
+        }
       } only %}
       {% include "@bolt/headline.twig" with {
         "text": "Despite Fears, Executives Believe AI and Robotics Could Change Workplace for the Better, Says Pega Research",
@@ -267,11 +272,11 @@
           {% include "@bolt/chip-list.twig" with {
             "contentItems": [
               {
-                "text": "First tag",
+                "text": "2017",
                 "url": "http://pega.com"
               },
               {
-                "text": "Sales Automation and Stuff",
+                "text": "Case Management",
                 "url": "http://pega.com"
               },
               {
@@ -279,11 +284,11 @@
                 "url": "http://pega.com"
               },
               {
-                "text": "White Paper",
+                "text": "Communications & Media",
                 "url": "http://pega.com"
               },
               {
-                "text": "Pega.com",
+                "text": "Life Sciences",
                 "url": "http://pega.com"
               }
             ]
