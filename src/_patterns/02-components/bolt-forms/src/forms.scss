@@ -198,7 +198,9 @@ $bolt-input-transition: $bolt-transition;
 }
 
 .c-bolt-input.is-filled,
-.c-bolt-input:focus {
+.c-bolt-input:focus,
+.c-bolt-custom-input.is-active {
+  // [Mai] A custom input is considered active if the regular input inside is filled or in focus.
   & ~ .c-bolt-floating-label {
     opacity: 1;
     transform: translate3d(0, 0, 0) scale($bolt-floating-label-text-scale);
