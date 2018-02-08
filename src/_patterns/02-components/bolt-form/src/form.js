@@ -1,5 +1,5 @@
 // TODO: limit to a .js class
-const inputs = document.querySelectorAll('input.c-bolt-input');
+const inputs = document.querySelectorAll('.c-bolt-input');
 inputs.forEach(input => {
 
   // Check if the field has pre-filled text from the server side
