@@ -6,7 +6,7 @@ npm install @bolt/components-image
 ```
 
 ### Image sizes
-To specify image size (e.g `u-bolt-width-1-1`) pass the correct class like so:
+To specify image size (e.g `u-bolt-width-1/1`) pass the correct class like so:
 ```
 {% set classes = create_attribute(imageAttributes | default({})).addClass([
     "c-bolt-image__img",
