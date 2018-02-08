@@ -2,9 +2,9 @@
    Tooltip
 \* ------------------------------------ */
 $bolt-tooltip-bubble-triangle-width: 8px;
+$bolt-tooltip-bubble-border-color: bolt-color(gray, light);
 $bolt-tooltip-shadow: $bolt-global-shadow-depth-medium;
 $bolt-tooltip-tranision: $bolt-transition;
-
 
 // Aria tags for accessibility.
 [aria-hidden="true"] {
@@ -42,7 +42,7 @@ $bolt-tooltip-tranision: $bolt-transition;
       &:before {
         top: auto;
         bottom: 0;
-        border-top-color: rgba(bolt-color(black), 0.2);
+        border-top-color: $bolt-tooltip-bubble-border-color;
         border-bottom-color: transparent;
       }
 
@@ -69,7 +69,7 @@ $bolt-tooltip-tranision: $bolt-transition;
       &:before {
         top: 0;
         bottom: auto;
-        border-bottom-color: rgba(bolt-color(black), 0.2);
+        border-bottom-color: $bolt-tooltip-bubble-border-color;
       }
 
       &:after {
@@ -165,7 +165,7 @@ $bolt-tooltip-tranision: $bolt-transition;
 
       &:before {
         left: $bolt-tooltip-bubble-triangle-width * -2;
-        border-right-color: rgba(bolt-color(black), 0.2);
+        border-right-color: $bolt-tooltip-bubble-border-color;
       }
 
       &:after {
@@ -191,7 +191,7 @@ $bolt-tooltip-tranision: $bolt-transition;
 
       &:before {
         right: $bolt-tooltip-bubble-triangle-width * -2;
-        border-left-color: rgba(bolt-color(black), 0.2);
+        border-left-color: $bolt-tooltip-bubble-border-color;
       }
 
       &:after {
@@ -263,9 +263,21 @@ $bolt-tooltip-tranision: $bolt-transition;
   }
 }
 
+.c-bolt-tooltip--spacing-xsmall {
+  .c-bolt-tooltip__content-bubble {
+    @include bolt-padding(xsmall, squished);
+  }
+}
+
 .c-bolt-tooltip--spacing-small {
   .c-bolt-tooltip__content-bubble {
     @include bolt-padding(small);
+  }
+}
+
+.c-bolt-tooltip--spacing-medium {
+  .c-bolt-tooltip__content-bubble {
+    @include bolt-padding(medium);
   }
 }
 
@@ -297,7 +309,7 @@ $bolt-tooltip-tranision: $bolt-transition;
   display: block;
   position: relative;
   width: 300px;
-  border: 1px solid rgba(bolt-color(black), 0.2);
+  border: 1px solid $bolt-tooltip-bubble-border-color;
   border-radius: 3px;
   background-color: bolt-color(white);
   box-shadow: $bolt-tooltip-shadow;
