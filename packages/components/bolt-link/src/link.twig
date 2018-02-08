@@ -43,3 +43,7 @@
     {% endif %}
   </a>
 {% endspaceless %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-link/link.schema.yml', _self) }}
+{% endif %}

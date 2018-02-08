@@ -34,8 +34,16 @@
             {%- elseif prop.enum %} - Must be one of: {{ enum }}
             {% endif %}
 
-            {% if prop.type == 'object' and prop.properties %}
-              {{ macros.object(prop.properties) }}
+            {% if prop.type == 'object' and prop.properties or prop.ref %}
+              {% if prop.ref %}
+                {% set reference = get_data(prop.ref).properties %}
+                <details>
+                  <summary><em>{{ prop.ref }} > Object details</em></summary>
+                  {{ macros.object(reference) }}
+                </details>
+              {% else %}
+                {{ macros.object(prop.properties) }}
+              {% endif %}
             {% endif %}
 
             {% if prop.type == 'array' and prop.items %}
