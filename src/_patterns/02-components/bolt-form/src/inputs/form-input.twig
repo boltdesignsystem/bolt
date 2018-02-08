@@ -16,6 +16,15 @@ Available variables:
 {% set attributes = create_attribute(attributes | default({})) %}
 {% set _classes = [] %}
 {% set _type = attributes.type.__tostring %}
+{% set _icons = [] %}
+
+{% if attributes.disabled %}
+  {% set _icons = _icons|merge(['lock']) %}
+{% endif %}
+
+{% if _type == "search" %}
+  {% set _icons = _icons|merge(['search']) %}
+{% endif %}
 
 {% set _classes = _classes|merge([
   'c-bolt-input',
@@ -24,27 +33,6 @@ Available variables:
 
 <input{{ attributes.addClass(_classes) }} />{{ children }}
 
-{# TODO Replace hard-coding with included icon pattern. #}
-{% if attributes.disabled %}
-  <div class="c-bolt-input-icons">
-    <ul class="o-bolt-inline-list o-bolt-inline-list--xsmall">
-      <li class="o-bolt-inline-list__item">
-        <div class="c-bolt-input-icon">
-          <bolt-icon name="lock" size="medium"></bolt-icon>
-        </div>
-      </li>
-    </ul>
-  </div>
-{% endif %}
-
-{% if _type == "search" %}
-  <div class="c-bolt-input-icons">
-    <ul class="o-bolt-inline-list o-bolt-inline-list--xsmall">
-      <li class="o-bolt-inline-list__item">
-        <div class="c-bolt-input-icon">
-          <bolt-icon name="search" size="medium"></bolt-icon>
-        </div>
-      </li>
-    </ul>
-  </div>
-{% endif %}
+<div class="c-bolt-input-icons">
+  {% include "@bolt/form-icons.twig" with {"icons": _icons } only %}
+</div>

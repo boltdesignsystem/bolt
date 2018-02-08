@@ -16,16 +16,13 @@
     {% endfor %}
   </select>
 
-  {# TODO Replace hard-coding with included icon pattern. #}
   {% if not attributes.multiple %}
+
+    {% set _icons = ["chevron-right"] %}
+
     <div class="c-bolt-input-icons">
-      <ul class="o-bolt-inline-list o-bolt-inline-list--xsmall">
-        <li class="o-bolt-inline-list__item">
-          <div class="c-bolt-input-icon">
-            <bolt-icon name="chevron-right" size="medium"></bolt-icon>
-          </div>
-        </li>
-      </ul>
+      {% include "@bolt/form-icons.twig" with {"icons": _icons } only %}
     </div>
+
   {% endif %}
 {% endspaceless %}
