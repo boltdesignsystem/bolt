@@ -45,7 +45,7 @@
  */
 #}
 {% set attributes = create_attribute(attributes | default({})) %}
-{% set label_display = label_display | default('after') %}
+{% set labelDisplay = labelDisplay | default('after') %}
 {% set attributes = attributes.addClass('c-bolt-input-list__item') %}
 
 {%
@@ -67,32 +67,21 @@
 ]
 %}
 <div{{ attributes.addClass(classes) }}>
-  {% if label_display in ['before', 'invisible'] %}
+  {% if labelDisplay in ['before', 'invisible'] %}
     {{ label }}
   {% endif %}
-  {% if prefix is not empty %}
-    <span class="field-prefix">{{ prefix }}</span>
-  {% endif %}
-  {% if description_display == 'before' and description.content %}
-    <div{{ description.attributes }}>
-      {{ description.content }}
-    </div>
-  {% endif %}
   {{ children }}
-  {% if suffix is not empty %}
-    <span class="field-suffix">{{ suffix }}</span>
-  {% endif %}
-  {% if label_display == 'after' %}
+  {% if labelDisplay == 'after' %}
     {{ label }}
   {% endif %}
   {% if errors %}
-    <div class="form-item--error-message">
+    <div class="c-bolt-input-message c-bolt-input-message--invalid">
       {{ errors }}
     </div>
   {% endif %}
-  {% if description_display in ['after', 'invisible'] and description.content %}
-    <div{{ description.attributes.addClass(description_classes) }}>
-      {{ description.content }}
+  {% if descriptionText %}
+    <div class="c-bolt-input-message">
+      {{ descriptionText }}
     </div>
   {% endif %}
 </div>

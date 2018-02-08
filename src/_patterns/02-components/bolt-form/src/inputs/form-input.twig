@@ -15,22 +15,12 @@ Available variables:
 
 {% set attributes = create_attribute(attributes | default({})) %}
 {% set _classes = [] %}
-{% set _buttonTypes = ['button', 'reset', 'submit'] %}
 {% set _type = attributes.type.__tostring %}
 
-{% if _type in _buttonTypes %}
-  {% set _classes = _classes|merge([
-    'c-bolt-button',
-    'c-bolt-button--primary',
-    'c-bolt-button--full',
-    'c-bolt-button--item-align-center'
-  ]) %}
-{% else %}
-  {% set _classes = _classes|merge([
-    'c-bolt-input',
-    'c-bolt-input--' ~ attributes.type
-  ]) %}
-{% endif %}
+{% set _classes = _classes|merge([
+  'c-bolt-input',
+  'c-bolt-input--' ~ attributes.type
+]) %}
 
 <input{{ attributes.addClass(_classes) }} />{{ children }}
 

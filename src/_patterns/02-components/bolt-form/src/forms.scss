@@ -9,12 +9,18 @@ select {
   cursor: pointer;
 }
 
-.c-bolt-form {
+.c-bolt-form,
+.c-bolt-fieldset {
+  @include bolt-margin-bottom(medium);
+
   display: block;
+
+  &:last-child {
+    @include bolt-margin-bottom(0);
+  }
 }
 
 .c-bolt-fieldset {
-  display: block;
   border: none;
 }
 
@@ -33,6 +39,18 @@ select {
   @include bolt-padding(0);
 }
 
+.c-bolt-input-list--stack-spacing-none {
+  .c-bolt-input-list__item {
+    @include bolt-margin-bottom(0);
+  }
+}
+
+.c-bolt-input-list--stack-spacing-xsmall {
+  .c-bolt-input-list__item {
+    @include bolt-margin-bottom(xsmall);
+  }
+}
+
 .c-bolt-input-list__item {
   @include bolt-margin(0 0 small 0);
   @include bolt-padding(0);
@@ -49,7 +67,7 @@ select {
 
 
 // Checkbox and Radio Inputs
-$bolt-inline-label-transition: $bolt-transition;
+$bolt-inline-label-transition: $bolt-transition-timing cubic-bezier(0.45,1.8,0.5,0.75);
 $bolt-inline-label-input-color: bolt-color(indigo, light);
 $bolt-inline-label-input-border-color: rgba(bolt-color(indigo, light), 0.25); // TODO: [Mai] This is the theme link color at 25%
 $bolt-inline-label-input-border-style: $bolt-border-style;
@@ -57,8 +75,8 @@ $bolt-inline-label-input-border-width: $bolt-border-width;
 
 // Data Inputs
 $bolt-floating-label-text-scale: bolt-strip-unit($bolt-font-size--xsmall);
-$bolt-floating-label-text-color: bolt-color(indigo, light);
-$bolt-floating-label-text-indent: bolt-spacing(small);
+$bolt-floating-label-text-color: bolt-color(indigo, light); // TODO: [Mai] This is the theme link color
+$bolt-floating-label-text-indent: calc(#{bolt-spacing(small)} + 2px);
 $bolt-floating-label-transition: $bolt-transition;
 
 $bolt-input-text-color: bolt-color(gray, xdark); // TODO: [Mai] This is the theme text color
@@ -111,9 +129,19 @@ $bolt-input-transition: $bolt-transition;
   border-radius: $bolt-input-border-radius;
   background-color: $bolt-input-background-color;
   opacity: 1; // [Mai] Reset mobile Safari browser default.
-  appearance: none !important; // [Mai] Reset mobile Safari browser default.
   outline: none;
   transition: all $bolt-input-transition;
+
+  // Removing native controls
+  -webkit-appearance: none !important;
+  -moz-appearance: window;
+  appearance: none !important; // [Mai] Reset mobile Safari browser default.
+
+  &::-ms-expand
+  {
+    display: none;
+  }
+  // Removing native controls
 
   &.is-invalid,
   &.is-touched:invalid {
@@ -162,6 +190,7 @@ $bolt-input-transition: $bolt-transition;
   color: $bolt-floating-label-text-color;
   line-height: $bolt-floating-label-text-scale;
   white-space: nowrap;
+  user-select: none;
   opacity: 0;
   transform: translate3d(0, -15%, 0) scale(0.2);
   transform-origin: 0 100%;
@@ -169,7 +198,9 @@ $bolt-input-transition: $bolt-transition;
 }
 
 .c-bolt-input.is-filled,
-.c-bolt-input:focus {
+.c-bolt-input:focus,
+.c-bolt-custom-input.is-active {
+  // [Mai] A custom input is considered active if the regular input inside is filled or in focus.
   & ~ .c-bolt-floating-label {
     opacity: 1;
     transform: translate3d(0, 0, 0) scale($bolt-floating-label-text-scale);
@@ -182,6 +213,7 @@ $bolt-input-transition: $bolt-transition;
   display: inline-block;
   position: relative;
   cursor: pointer;
+  user-select: none;
 
   &:before,
   &:after {
@@ -201,21 +233,26 @@ $bolt-input-transition: $bolt-transition;
   }
 
   &:after {
-    top: calc(0.3rem + 3px);
-    left: 3px;
-    width: calc(1rem - 6px);
-    height: calc(1rem - 6px);
     content: '';
-    background-color: $bolt-inline-label-input-color;
     opacity: 0;
-    transform: scale(0.1);
+    transform-origin: center;
   }
 }
 
 .c-bolt-inline-label--checkbox {
-  &:before,
-  &:after {
+  &:before {
     border-radius: 2px;
+  }
+
+  &:after {
+    top: 0.4rem;
+    left: 0.375rem;
+    width: calc(1rem - 0.675rem);
+    height: calc(1rem - 0.325rem);
+    border-color: $bolt-inline-label-input-color;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) scale(0.1);
   }
 }
 
@@ -223,6 +260,15 @@ $bolt-input-transition: $bolt-transition;
   &:before,
   &:after {
     border-radius: 1rem;
+  }
+
+  &:after {
+    top: calc(0.3rem + 3px);
+    left: 3px;
+    width: calc(1rem - 6px);
+    height: calc(1rem - 6px);
+    background-color: $bolt-inline-label-input-color;
+    transform: scale(0.1);
   }
 }
 
@@ -248,25 +294,44 @@ $bolt-input-transition: $bolt-transition;
 
     &:after {
       opacity: 1;
+    }
+
+    .c-bolt-inline-label__emphasize {
+      @include bolt-font-weight(semibold);
+    }
+  }
+}
+
+.c-bolt-input--checkbox {
+  &:checked ~ .c-bolt-inline-label {
+    &:after {
+      transform: rotate(45deg) scale(1);
+    }
+  }
+}
+
+.c-bolt-input--radio {
+  &:checked ~ .c-bolt-inline-label {
+    &:after {
       transform: scale(1);
     }
   }
 }
 
 .c-bolt-input-icons {
-  @include bolt-padding(0.65em small 0.65em 0);
+  @include bolt-padding(0.65rem small 0.35rem 0);
 
   position: absolute;
   top: 1px;
   right: 1px;
+  pointer-events: none;
   border-radius: $bolt-input-border-radius;
   background-color: $bolt-input-background-color;
-  pointer-events: none;
 
   &:before {
     position: absolute;
     top: 0;
-    left: -1rem;
+    left: -.95rem;
     width: 1rem;
     height: 100%;
     content: '';
@@ -279,7 +344,14 @@ $bolt-input-transition: $bolt-transition;
 }
 
 .c-bolt-input-icon--link {
+  @include bolt-padding(0);
+  @include bolt-font-family(body);
+
+  cursor: pointer;
   pointer-events: auto;
+  text-decoration: none;
+  border: none;
+  background: none;
 }
 
 .c-bolt-input-icon--invalid {
@@ -377,4 +449,46 @@ $bolt-strength-indicator-transition: $bolt-transition;
   @include bolt-font-size(xsmall);
 
   display: block;
+}
+
+
+// Toggle
+.c-bolt-toggle {
+  @include bolt-margin-bottom(medium);
+  display: inline-flex;
+  flex-wrap: nowrap;
+  border-radius: $bolt-input-border-radius;
+  background-color: $bolt-input-border-color;
+
+  &:last-child {
+    @include bolt-margin-bottom(0);
+  }
+}
+
+.c-bolt-toggle__item {
+}
+
+.c-bolt-toggle__item-input {
+  @include bolt-visuallyhidden;
+
+  &:checked + .c-bolt-toggle__item-label {
+    border-color: $bolt-input-border-color;
+    background-color: bolt-color(white);
+  }
+
+  &:focus + .c-bolt-toggle__item-label {
+    box-shadow: $bolt-input-box-shadow--focus;
+  }
+}
+
+.c-bolt-toggle__item-label {
+  @include bolt-margin(($bolt-input-border-width * -1));
+  @include bolt-padding(0.65rem 0.75rem);
+  display: block;
+  cursor: pointer;
+  border-color: transparent;
+  border-style: $bolt-input-border-style;
+  border-width: $bolt-input-border-width;
+  border-radius: $bolt-input-border-radius;
+  transition: all $bolt-input-transition;
 }
