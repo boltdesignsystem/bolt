@@ -1,0 +1,16 @@
+{#{% set schema = get_data('@bolt-components-background/background.schema.yml') %}#}
+{% set readme = source('@bolt-components-background/README.md') %}
+{% set code %} {% verbatim %}
+{% include "@bolt-components-background/background.twig" with {
+    text: "This is a background",
+    url: "http://google.com",
+  } only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/docs.twig' with {
+  schema: schema,
+  code: code,
+  readme: readme,
+  readmePath: 'packages/components/bolt-background/README.md',
+} only %}
