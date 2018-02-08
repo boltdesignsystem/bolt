@@ -1,5 +1,5 @@
 {% set attributes = create_attribute(attributes | default({})) %}
-{% set classes = ["c-bolt-input", "c-bolt-input--select"] %}
+{% set classes = ["c-bolt-input", "c-bolt-input--select", "js-bolt-form-select"] %}
 
 {% spaceless %}
   <select{{ attributes.addClass(classes) }}>
