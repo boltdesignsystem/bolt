@@ -1,0 +1,27 @@
+$schema: http://json-schema.org/draft-04/schema#
+title: Unordered List
+type: object
+properties:
+  theme:
+    type: string
+    description: Default is 'false' - for a transparent background.
+    enum:
+      - xlight
+      - light
+      - dark
+      - xdark
+      - medium
+      - 'false'
+  contentItems:
+    type: array
+    title: The content items
+    description: These are all of the items in the ordered list
+    items:
+      type: object
+      description: This can have `text` **or** `contentItems`
+      properties:
+        text:
+          type: string
+        contentItems:
+          type: object
+          description: Passes to `@bolt/text.twig`

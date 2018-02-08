@@ -1,7 +1,5 @@
-
-
 <bolt-logo {% if invert %} class="c-bolt-logo--invert" {% endif %}>
-  {{ include('@bolt/image.twig', { 
+  {{ include('@bolt-components-image/image.twig', {
     logo: logo
   }, with_context = true) }}
 </bolt-logo>

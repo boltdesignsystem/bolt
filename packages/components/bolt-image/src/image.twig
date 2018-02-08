@@ -147,3 +147,7 @@
     {% endif %}
   {% endblock %}
 </bolt-image>
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-image/image.schema.yml', _self) }}
+{% endif %}

@@ -1,0 +1,16 @@
+$schema: http://json-schema.org/draft-04/schema#
+title: Image
+type: object
+properties:
+  src:
+    type: string
+    description: Source url for image. Required.
+  alt:
+    type: string
+    description: Alt tag for image. Required.
+  lazyload:
+    type: boolean
+    description: Default true.
+  zoom:
+    type: boolean
+    description: Default false. Zoom effect. Relates to device viewer.

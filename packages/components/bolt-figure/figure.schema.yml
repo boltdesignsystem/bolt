@@ -2,12 +2,15 @@ $schema: http://json-schema.org/draft-04/schema#
 title: Figure
 type: object
 properties:
-  caption:
-    description: Figure caption.
-    type: string
   image:
     type: object
     properties:
       src:
         type: string
         description: Source url.
+      lazyLoad:
+        type: boolean
+        description: Default is true.
+  caption:
+    description: Figure caption.
+    type: string
