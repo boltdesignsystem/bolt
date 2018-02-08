@@ -2,6 +2,16 @@ $schema: http://json-schema.org/draft-04/schema#
 title: Ordered List
 type: object
 properties:
+  theme:
+    type: string
+    description: Default is 'false' - for a transparent background.
+    enum:
+      - xlight
+      - light
+      - dark
+      - xdark
+      - medium
+      - 'false'
   contentItems:
     type: array
     title: The content items
