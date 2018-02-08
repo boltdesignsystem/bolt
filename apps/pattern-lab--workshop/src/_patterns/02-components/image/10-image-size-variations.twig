@@ -1,14 +1,13 @@
-{% set sizeExamples = [100, 250, 500] %}
+{% set classes = create_attribute(imageAttributes | default({})).addClass([
+    "c-bolt-image__img",
+    "u-bolt-width-1/1",
+  ])
+%}
 
-{% for size in sizeExamples %}
-  <h3>Size: {{ size }} pixels</h3>
-  {% include '@bolt-components-image/image.twig' with {
-    src: "/images/placeholders/tout-4x3-climber.jpg",
-    alt: "A Rock Climber",
-    title: "Rock Climber",
-    lazyload: false,
-    height: size,
-    ratio: true,
-    zoom: true,
-  } only %}
-{% endfor %}
+<h3>Size: 100%</h3>
+{% include '@bolt-components-image/image.twig' with {
+  lazyload: false,
+  src: "/images/placeholders/tout-4x3-climber.jpg",
+  alt: "A Rock Climber",
+  imageAttributes: classes,
+} only %}
