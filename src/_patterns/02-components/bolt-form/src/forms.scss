@@ -191,6 +191,7 @@ $bolt-input-transition: $bolt-transition;
   line-height: $bolt-floating-label-text-scale;
   white-space: nowrap;
   user-select: none;
+  pointer-events: none;
   opacity: 0;
   transform: translate3d(0, -15%, 0) scale(0.2);
   transform-origin: 0 100%;
@@ -385,11 +386,12 @@ $bolt-input-transition: $bolt-transition;
 $bolt-input-message-text-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
 
 .c-bolt-input-message {
-  @include bolt-padding(small, squished);
+  @include bolt-padding(xxsmall small);
   @include bolt-font-size(xsmall);
 }
 
 .c-bolt-input-message--invalid {
+  @include bolt-font-weight(semibold);
   display: none; // TODO: [Mai] Remove this if invalid messages are dynamically generated through javascript.
   color: $bolt-input-message-text-color--invalid;
 }
