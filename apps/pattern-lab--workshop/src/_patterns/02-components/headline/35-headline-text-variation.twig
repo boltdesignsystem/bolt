@@ -1,0 +1,32 @@
+{% set weights = ["regular", "bold", "semibold"] %}
+{% set styles = ["normal", "italic"] %}
+{% set sizes = ["xsmall","small","medium","large","xlarge","xxlarge","xxxlarge"] %}
+{% set transform = ["none", "uppercase", "lowercase", "capitalize"] %}
+
+{% for weight in weights %}
+  {% for style in styles %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "This is " ~ weight ~ " weight and " ~ style ~ " text",
+      weight: weight,
+      style: style
+    } only %}
+  {% endfor %}
+{% endfor %}
+
+<br />
+
+{% for size in sizes %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "This is " ~ size ~ " text",
+    size: size,
+  } only %}
+{% endfor %}
+
+<br />
+
+{% for trans in transform %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "This is Transform " ~ trans ~ " text",
+    transform: trans,
+  } only %}
+{% endfor %}
