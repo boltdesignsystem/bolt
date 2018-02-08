@@ -43,8 +43,18 @@
 
   <div class="c-bolt-band c-bolt-band--full c-bolt-band--small t-bolt-light">
     <div class="o-bolt-wrapper">
-      <p class="c-bolt-text c-bolt-text--bold">
-        Showing 555 results. (<a href="javascript:" class="c-bolt-link">Clear filters</a>)
+      <p class="c-bolt-text">
+        Showing 555 results in
+        <span class="c-bolt-search-inline-tags">
+          <a href="javascript:" class="c-bolt-search-inline-tag">
+            filter 1
+          </a>
+          <a href="javascript:" class="c-bolt-search-inline-tag">
+            filter 2
+          </a>
+        </span>
+        <strong>"search term"</strong>
+        (<a href="javascript:" class="c-bolt-link">Clear all</a>)
       </p>
       {% grid %}
         {% cell 'u-bolt-width-1/1 u-bolt-width-3/12@medium' %}
@@ -67,9 +77,62 @@
             <div class="c-bolt-search-filters__panel" id="search-filters">
               <div class="c-bolt-search-filters__panel-content">
                 <form class="c-bolt-form" action="#" method="post" onsubmit="return false;">
+                  {# <fieldset class="c-bolt-fieldset">
+                    <legend class="c-bolt-legend">
+                      <h2 class="c-bolt-headline c-bolt-headline--small">
+                        <span class="c-bolt-headline__text">
+                          Custom Select
+                        </span>
+                      </h2>
+                    </legend>
+                    <div class="c-bolt-input-list">
+                      <div class="c-bolt-input-list__item">
+                        <div class="c-bolt-custom-input is-active">
+                          <select class="c-bolt-input c-bolt-input--select is-filled" name="custom-select" id="custom-select">
+                            <option value="Selection 1" selected>
+                              Selection 1
+                            </option>
+                            <option value="Selection 2">
+                              Selection 2
+                            </option>
+                          </select>
+                        </div>
+                        <label class="c-bolt-floating-label" for="custom-select">
+                          Select
+                        </label>
+                        <div class="c-bolt-input-icons">
+                          <div class="c-bolt-input-icon">
+                            {% include "@bolt/icon.twig" with {
+                              "name": "chevron-right",
+                              "size": "medium"
+                            } only %}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
                   <fieldset class="c-bolt-fieldset">
                     <legend class="c-bolt-legend">
-                      <h2 class="c-bolt-headline c-bolt-headline--large">
+                      <h2 class="c-bolt-headline c-bolt-headline--small">
+                        <span class="c-bolt-headline__text">
+                          Custom Textarea
+                        </span>
+                      </h2>
+                    </legend>
+                    <div class="c-bolt-input-list">
+                      <div class="c-bolt-input-list__item">
+                        <div class="c-bolt-custom-input is-active">
+                          <textarea class="c-bolt-input is-filled" cols="40" rows="8" name="textarea" id="textarea" placeholder="Describe the job" required></textarea>
+                        </div>
+                        <label class="c-bolt-floating-label" for="textarea">
+                          Description
+                        </label>
+                      </div>
+                    </div>
+                  </fieldset> #}
+                  <fieldset class="c-bolt-fieldset">
+                    <legend class="c-bolt-legend">
+                      <h2 class="c-bolt-headline c-bolt-headline--small">
                         <span class="c-bolt-headline__text">
                           Search
                         </span>
@@ -94,7 +157,7 @@
                   </fieldset>
                   <fieldset class="c-bolt-fieldset">
                     <legend class="c-bolt-legend">
-                      <h2 class="c-bolt-headline c-bolt-headline--large">
+                      <h2 class="c-bolt-headline c-bolt-headline--small">
                         <span class="c-bolt-headline__text">
                           Single Select
                         </span>
@@ -126,7 +189,7 @@
                   </fieldset>
                   <fieldset class="c-bolt-fieldset">
                     <legend class="c-bolt-legend">
-                      <h2 class="c-bolt-headline c-bolt-headline--large">
+                      <h2 class="c-bolt-headline c-bolt-headline--small">
                         <span class="c-bolt-headline__text">
                           Either Or
                         </span>
@@ -163,7 +226,7 @@
                   </fieldset>
                   <fieldset class="c-bolt-fieldset">
                     <legend class="c-bolt-legend">
-                      <h2 class="c-bolt-headline c-bolt-headline--large">
+                      <h2 class="c-bolt-headline c-bolt-headline--small">
                         <span class="c-bolt-headline__text">
                           And
                         </span>
@@ -310,13 +373,14 @@
                 contentItems: [
                   {
                     pattern: "eyebrow",
-                    text: "Article Type"
+                    text: "Date"
                   },
                   {
                     pattern: "headline",
                     tag: "h3",
                     size: "large",
-                    text: "Article Headline"
+                    text: "Article Headline",
+                    url: "http://pega.com"
                   },
                   {
                     pattern: "text",
@@ -331,76 +395,14 @@
                 contentItems: [
                   {
                     pattern: "eyebrow",
-                    text: "BPM"
+                    text: "Date"
                   },
                   {
                     pattern: "headline",
                     tag: "h3",
                     size: "large",
-                    text: "A New CRM Bill of Rights for the Future Empowered Enterprise"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Jeff Nicholson of Pega provides insight into what companies should expect from CRM vendors."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Case Management"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "6 Customer Experience Trends to Watch in 2018"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Pega's Don Schuerman previews customer experience questions and trends for the New Year."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "PegaWorld"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "3 Reasons Your AI-Driven Customer Experiences are Falling Short"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Pega's Jeff Nicholson examines the state of AI in today's customer experiences."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Article Type"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "Article Headline"
+                    text: "Article Headline",
+                    url: "http://pega.com"
                   },
                   {
                     pattern: "text",
@@ -415,13 +417,14 @@
                 contentItems: [
                   {
                     pattern: "eyebrow",
-                    text: "Article Type"
+                    text: "Date"
                   },
                   {
                     pattern: "headline",
                     tag: "h3",
                     size: "large",
-                    text: "Article Headline"
+                    text: "Article Headline",
+                    url: "http://pega.com"
                   },
                   {
                     pattern: "text",
@@ -436,13 +439,14 @@
                 contentItems: [
                   {
                     pattern: "eyebrow",
-                    text: "Article Type"
+                    text: "Date"
                   },
                   {
                     pattern: "headline",
                     tag: "h3",
                     size: "large",
-                    text: "Article Headline"
+                    text: "Article Headline",
+                    url: "http://pega.com"
                   },
                   {
                     pattern: "text",
@@ -457,13 +461,14 @@
                 contentItems: [
                   {
                     pattern: "eyebrow",
-                    text: "Article Type"
+                    text: "Date"
                   },
                   {
                     pattern: "headline",
                     tag: "h3",
                     size: "large",
-                    text: "Article Headline"
+                    text: "Article Headline",
+                    url: "http://pega.com"
                   },
                   {
                     pattern: "text",
@@ -478,13 +483,14 @@
                 contentItems: [
                   {
                     pattern: "eyebrow",
-                    text: "Article Type"
+                    text: "Date"
                   },
                   {
                     pattern: "headline",
                     tag: "h3",
                     size: "large",
-                    text: "Article Headline"
+                    text: "Article Headline",
+                    url: "http://pega.com"
                   },
                   {
                     pattern: "text",
@@ -499,13 +505,80 @@
                 contentItems: [
                   {
                     pattern: "eyebrow",
-                    text: "Article Type"
+                    text: "Date"
                   },
                   {
                     pattern: "headline",
                     tag: "h3",
                     size: "large",
-                    text: "Article Headline"
+                    text: "Article Headline",
+                    url: "http://pega.com"
+                  },
+                  {
+                    pattern: "text",
+                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
+                  }
+                ]
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1" %}
+              {% include "@bolt/card.twig" with {
+                theme: "xlight",
+                contentItems: [
+                  {
+                    pattern: "eyebrow",
+                    text: "Date"
+                  },
+                  {
+                    pattern: "headline",
+                    tag: "h3",
+                    size: "large",
+                    text: "Article Headline",
+                    url: "http://pega.com"
+                  },
+                  {
+                    pattern: "text",
+                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
+                  }
+                ]
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1" %}
+              {% include "@bolt/card.twig" with {
+                theme: "xlight",
+                contentItems: [
+                  {
+                    pattern: "eyebrow",
+                    text: "Date"
+                  },
+                  {
+                    pattern: "headline",
+                    tag: "h3",
+                    size: "large",
+                    text: "Article Headline",
+                    url: "http://pega.com"
+                  },
+                  {
+                    pattern: "text",
+                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
+                  }
+                ]
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1" %}
+              {% include "@bolt/card.twig" with {
+                theme: "xlight",
+                contentItems: [
+                  {
+                    pattern: "eyebrow",
+                    text: "Date"
+                  },
+                  {
+                    pattern: "headline",
+                    tag: "h3",
+                    size: "large",
+                    text: "Article Headline",
+                    url: "http://pega.com"
                   },
                   {
                     pattern: "text",
