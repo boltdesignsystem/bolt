@@ -2,7 +2,7 @@
 
 <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small">
   {% for colorName, palette in bolt_status_colors %}
-    {% include "@bolt/_color-swatch.twig" with {
+    {% include "@utils/color-swatch.twig" with {
       color_swatch: {
         colorName: colorName,
         palette: palette
