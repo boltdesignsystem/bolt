@@ -1,4 +1,4 @@
-<section>
+<section class="o-bolt-wrapper">
 
   {% set schema = get_data('@bolt/button.schema.json') %}
   {% set themes = get_data('@bolt/themes.schema.json') %}
@@ -165,11 +165,6 @@
 
 
   {# @TODO: given that the current schema-docs.twig doesn't take in a `code` param, are we missing an include somewhere? #}
-  <details>
-    <summary>Bolt Button Schema</summary>
-    <p>
-      {% include "@utils/schema-docs.twig" with schema only %}
-    </p>
-  </details>
+  {% include "@utils/schema-docs.twig" with { schema: schema } only %}
 
 </section>

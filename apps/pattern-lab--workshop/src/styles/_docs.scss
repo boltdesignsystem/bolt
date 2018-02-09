@@ -1,3 +1,5 @@
+@import '@bolt/core';
+
 .bolt-docs {
   &__schema {
     ul {
@@ -7,4 +9,163 @@
       }
     }
   }
+}
+
+
+
+.c-bolt-docs {
+  display: -ms-grid;
+  display: grid;
+
+  -ms-grid-rows: auto auto 1fr;
+  grid-template-rows: auto auto 1fr;
+
+  -ms-grid-columns: 1fr 80% 20% 1fr;
+  grid-template-columns: 1fr 80% 20% 1fr;
+  max-width: 1440px;
+  margin: 0 auto;
+
+}
+
+.c-bolt-docs__page-content {
+  grid-column: 2/span 2;
+  grid-row: 3/span 1;
+  min-width: 0;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+
+.c-bolt-docs__page-nav {
+  grid-row: 3/span 1;
+  grid-column: 3/span 1;
+}
+
+* + pre {
+  @include bolt-margin-top(small);
+}
+
+pre {
+  background: rgba(0, 0, 0, .05);
+  padding: 20px;
+  white-space: pre-wrap;
+  font-family: Menlo,Monaco,"Courier New",Courier,monospace;
+  font-size: 16px;
+  background-color: rgba(0, 0, 0, 0.05);
+
+  // @include bolt-padding(small);
+  // background: #F0F0F0;
+  border-radius: 4px;
+
+  font-family: 'Roboto Mono', monospace;
+
+  .hljs {
+    @include bolt-padding(0);
+  }
+}
+
+
+
+.c-bolt-docs__page-nav__link {
+  @include bolt-font-size(small);
+}
+
+
+.c-bolt-docs__title {
+  @include bolt-font-size(xxlarge);
+  @include bolt-font-weight(semibold); // font-size: 24px;
+  @include bolt-margin-bottom(medium);
+  color: #222;
+}
+
+.c-bolt-docs__lead {
+  @include bolt-font-weight(regular);
+  // font-size: 24px;
+  // line-height: 1.5;
+  color: #222;
+  // font-weight: 300;
+}
+
+.c-bolt-site {
+  display: block;
+}
+
+
+
+.c-bolt-docs-table {
+  background-image: -webkit-linear-gradient(left, #fff, hsla(0, 0%, 100%, 0)),
+  -webkit-linear-gradient(right, #fff, hsla(0, 0%, 100%, 0)),
+  -webkit-linear-gradient(left, #eaf0f6, rgba(234, 240, 246, 0)),
+  -webkit-linear-gradient(right, #eaf0f6, rgba(234, 240, 246, 0));
+  // background-image: -webkit-linear-gradient(left, bolt-color(white), bolt-color(black)),
+  // -webkit-linear-gradient(right, bolt-color(white), bolt-color(black)),
+  // -webkit-linear-gradient(left, bolt-color(gray, xlight), bolt-color(gray, xdark)),
+  // -webkit-linear-gradient(right, bolt-color(gray, xlight), bolt-color(gray, xdark));
+
+  // background-image: linear-gradient(left, bolt-color(white), bolt-color(black)),
+  //   linear-gradient(right, bolt-color(white), bolt-color(black)),
+  //   linear-gradient(left, bolt-color(gray, xlight), bolt-color(gray, xdark)),
+  //   linear-gradient(right, bolt-color(gray, xlight), bolt-color(gray, xdark));
+
+
+  background-color: bolt-color(white);
+
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  -webkit-overflow-scrolling: touch;
+
+  background-attachment: local,local,scroll,scroll;
+  background-position: 0 0,100% 0,0 0,100% 0;
+  background-repeat: no-repeat;
+  background-size: 4em 100%, 4em 100%, 1em 100%, 1em 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: $bolt-border-radius;
+
+  table {
+    @include bolt-font-size(small);
+    @include bolt-font-family(code);
+    @include bolt-margin-bottom(0);
+    table-layout: auto;
+    border: 1px solid bolt-color(gray, light);
+    width: 100%;
+    transform: translate3d(0, 0, 0);
+    // table-layout: fixed;
+    // border-radius: $bolt-border-radius;
+  }
+
+  thead {
+    border-bottom: 1px solid bolt-color(gray, light);
+  }
+
+  tr {
+    transition: background-color 0.1s ease;
+
+    &:hover {
+      background-color: rgba(bolt-color(gray, xlight), 0.5);
+    }
+  }
+
+  th {
+    @include bolt-padding(small);
+    @include bolt-font-size(xsmall);
+    @include bolt-font-weight(semibold);
+    text-align: left;
+    color: bolt-color(gray, dark);
+    background-color: bolt-color(gray, xlight);
+    text-transform: uppercase;
+    vertical-align: bottom;
+  }
+
+  td {
+    @include bolt-padding(small);
+    vertical-align: top;
+  }
+}
+
+.c-bolt-docs-table__row {
+  border-top: 1px solid bolt-color(gray, light);
+}
+
+.c-bolt-docs-table .c-bolt-docs-table {
+  overflow: hidden; // Prevent nested tables from scrolling to keep things from getting too crazy
 }

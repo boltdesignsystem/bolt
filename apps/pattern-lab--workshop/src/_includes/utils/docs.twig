@@ -1,30 +1,43 @@
-<div class="bolt-docs">
+<div class="c-bolt-docs">
 
-  {% if schema %}
-    <div class="bolt-docs__schema">
-      {% include '@utils/schema-docs.twig' with schema only %}
-    </div>
-  {% endif %}
+  <div class="c-bolt-docs__page-content">
 
-  {% if code %}
-    <h4>How to use</h4>
-    <pre><code>{{ code }}</code></pre>
-  {% endif %}
+    <h1 class="c-bolt-docs__title">Nav Bar</h1>
 
-  {% if readme %}
-    <h4>ReadMe</h4>
-    {{ readme|markdown }}
+    {% if readme %}
+      <div class="c-bolt-docs__lead">
+        {{ readme|markdown }}
+      </div>
+    {% endif %}
+
+    {% if code %}
+      <h4>Usage</h4>
+      <pre><code>{{ code }}</code></pre>
+    {% endif %}
+
+
+    {% if schema %}
+      <div class="bolt-docs__schema">
+        {% include '@utils/schema-docs.twig' with { schema: schema } only %}
+      </div>
+    {% endif %}
+
+    {% if links %}
+      <h4>Helpful Links</h4>
+      {% for link in links %}
+        <a href="{{ link.url }}" target="_blank">{{ link.text }}</a>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  <div class="c-bolt-docs__page-nav">
     {% if readmePath %}
       {# @todo Improve robustness of getting ReadMe Path #}
       {% set branchName = 'epic/refactor' %}
-      <a href="https://github.com/bolt-design-system/bolt/blob/{{ branchName }}/{{ readmePath }}" target="_blank">Edit this ReadMe on GitHub</a>
+      <a href="https://github.com/bolt-design-system/bolt/blob/{{ branchName }}/{{ readmePath }}" class="c-bolt-docs__page-nav__link" target="_blank">
+        <bolt-icon name="pencil"></bolt-icon>
+      Edit this page
+      </a>
     {% endif %}
-  {% endif %}
-
-  {% if links %}
-    <h4>Helpful Links</h4>
-    {% for link in links %}
-      <a href="{{ link.url }}" target="_blank">{{ link.text }}</a>
-    {% endfor %}
-  {% endif %}
+  </div>
 </div>
