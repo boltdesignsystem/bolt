@@ -1,4 +1,5 @@
-{% embed "@bolt/band.twig" with {
+{# The code below is strictly used as a sample for background demos included here #}
+{% embed "@bolt-components-band/band.twig" with {
   size: size | default("large"),
   theme: theme | default("dark"),
   fullBleed: true,
@@ -7,7 +8,7 @@
 } %}
   {% block band_background %}
     {% if background %}
-      {% include "@bolt/background.twig" with background only %}
+      {% include "@bolt-components-background/background.twig" with background only %}
     {% endif %}
   {% endblock band_background %}
 
@@ -38,23 +39,23 @@
         }
       } %}
       {# teaserAlign == "center" ? "u-bolt-text-align-center" : "" #}
-        {% include "@bolt/headline.twig" with {
+        {% include "@bolt-components-headline/headline.twig" with {
           text: "Visualization & Simulation",
           size: "xxxlarge",
           tag: "h1"
         } only %}
 
-        {% include "@bolt/subheadline.twig" with {
+        {% include "@bolt-components-headline/subheadline.twig" with {
           text: "Imagine the Future with Decision Hub",
           size: "xxlarge",
           tag: "h2"
         } only %}
-        
-        {% include "@bolt/text.twig" with {
+
+        {% include "@bolt-components-headline/text.twig" with {
           text: "Continuously improve results by visualizing how future adjustments to your strategies can impact business performance. Simulate and test your ideas, evaluate the results using intuitive views, and then deploy optimal alterations."
         } only %}
-        
-        {% include "@bolt/button.twig" with {
+
+        {% include "@bolt-components-button/button.twig" with {
           text: "View the data sheet"
         } only %}
       {% endcell %}
