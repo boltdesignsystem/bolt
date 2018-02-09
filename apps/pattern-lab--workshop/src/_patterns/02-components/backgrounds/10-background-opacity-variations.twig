@@ -1,26 +1,10 @@
-<p>Light Opacity</p>
-{% include "./_00-background-band-demo.twig" with {
-  background: {
-    opacity: "light",
-    fill: "gradient",
-    focalPoint: {
-      vertical: "center",
-      horizontal: "center"
-    },
-    contentItems: [
-      {
-        pattern: "image",
-        src: "/images/content/backgrounds/background-tall-2.jpg",
-        lazyload: false
-      }
-    ]
-  }
-} %}
+{% set schema = get_data('@bolt-components-background/background.schema.yml') %}{# @todo complete schema #}
 
-<p>Medium Opacity</p>
+{% for opacity in schema.properties.opacity.enum %}
+<p>{{ opacity|capitalize }} Opacity</p>
 {% include "./_00-background-band-demo.twig" with {
   background: {
-    opacity: "medium",
+    opacity: opacity,
     focalPoint: {
       vertical: "center",
       horizontal: "center"
@@ -34,21 +18,4 @@
     ]
   }
 } %}
-
-<p>Heavy Opacity</p>
-{% include "./_00-background-band-demo.twig" with {
-  background: {
-    opacity: "heavy",
-    focalPoint: {
-      vertical: "center",
-      horizontal: "center"
-    },
-    contentItems: [
-      {
-        pattern: "image",
-        src: "/images/content/backgrounds/background-tall-2.jpg",
-        lazyload: false
-      }
-    ]
-  }
-} %}
+{% endfor %}
