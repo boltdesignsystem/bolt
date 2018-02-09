@@ -1,0 +1,283 @@
+{% embed "@bolt-components-band/band.twig" with {
+  size: size | default("large"),
+  theme: theme | default("xlight"),
+  fullBleed: true,
+} %}
+  {% block band_content %}
+
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Cards in a band",
+      size: "xxlarge",
+      tag: "h2"
+    } only %}
+
+    {% grid with {
+      attributes: {
+        class: [
+          "o-bolt-grid--flex",
+          "o-bolt-grid--matrix"
+        ]
+      }
+    } %}
+
+    {% cell with {
+      attributes: {
+        class: [
+          "u-bolt-width-1/1",
+          "u-bolt-width-1/3@small"
+        ]
+      }
+    } %}
+    <div class="c-bolt-card">
+      <div class="c-bolt-card__image">
+        {% include "@bolt-components-image/image.twig" with {
+          src: "/images/content/promos/promo-16x9-ai.jpg",
+          lazyload: false,
+        } only %}
+      </div>
+      <div class="c-bolt-card__body">
+        {% include "@bolt-components-headline/eyebrow.twig" with {
+          text: "Eyebrow"
+        } only %}
+
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Old Card Is Old: Do Not Use This Style Anymore",
+          size: "large",
+          tag: "h3"
+        } only %}
+
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor."
+        } only %}
+
+        {% include "@bolt-components-button/button.twig" with {
+          text: "Primary Button",
+          width: "full",
+          style: "primary"
+        } only %}
+      </div>
+    </div>
+    {% endcell %}
+
+    {% cell with {
+      attributes: {
+        class: [
+          "u-bolt-width-1/1",
+          "u-bolt-width-1/3@small"
+        ]
+      }
+    } %}
+      {% include "@bolt-components-card/card.twig" with {
+        url: "javascript:",
+        contentItems: [
+          {
+            pattern: "image",
+            src: "/images/content/promos/promo-16x9-anthem.jpg",
+            alt: "Anthem Video",
+            lazyload: false,
+          },
+          {
+            pattern: "eyebrow",
+            text: "Video"
+          },
+          {
+            pattern: "headline",
+            tag: "h3",
+            size: "large",
+            text: "Anthem: Service Desktop"
+          },
+          {
+            pattern: "text",
+            text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
+          },
+          {
+            pattern: "button",
+            style: "text",
+            width: "full",
+            itemAlignment: "start",
+            text: "Get the report"
+          }
+        ]
+      } only %}
+    {% endcell %}
+
+    {% cell with {
+      attributes: {
+        class: [
+          "u-bolt-width-1/1",
+          "u-bolt-width-1/3@small"
+        ]
+      }
+    } %}
+      {% include "@bolt-components-card/card.twig" with {
+        contentItems: [
+          {
+            pattern: "image",
+            src: "/images/content/promos/promo-16x9-forrester.jpg",
+            alt: "2017 Forrester Wave Report",
+            lazyload: false,
+          },
+          {
+            pattern: "headline",
+            tag: "h3",
+            size: "large",
+            text: "2017 Forrester Wave Report"
+          },
+          {
+            pattern: "text",
+            text: "Pega cited as a Leader in The Forrester Wave™: Digital Process Automation Software, Q3 2017."
+          }
+        ]
+      } only %}
+    {% endcell %}
+    {% endgrid %}
+
+  {% endblock band_content %}
+{% endembed %}
+
+
+{% embed "@bolt-components-band/band.twig" with {
+  size: size | default("large"),
+  theme: theme | default("xdark"),
+  fullBleed: true,
+} %}
+  {% block band_background %}
+    <div class="c-bolt-background">
+      <div class="c-bolt-background__item">
+        <img class="c-bolt-background__image c-bolt-image" src="https://www.pega.com/sites/pega.com/files/styles/max_width_2560/public/ind-government-hero-img.jpg">
+        <div class="c-bolt-background__overlay c-bolt-background__overlay--medium-opacity c-bolt-background__overlay--color-fill"></div>
+      </div>
+    </div>
+  {% endblock band_background %}
+
+  {% block band_content %}
+
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Cards in a band with a background image",
+      size: "xxlarge",
+      tag: "h2"
+    } only %}
+
+    {% grid with {
+      attributes: {
+        class: [
+          "o-bolt-grid--flex",
+          "o-bolt-grid--matrix"
+        ]
+      }
+    } %}
+
+      {% cell with {
+        attributes: {
+          class: [
+            "u-bolt-width-1/1",
+            "u-bolt-width-1/3@small"
+          ]
+        }
+      } %}
+        <div class="c-bolt-card">
+          <div class="c-bolt-card__image">
+            {% include "@bolt-components-image/image.twig" with {
+              src: "/images/content/promos/promo-16x9-ai.jpg",
+              lazyload: false,
+            } only %}
+          </div>
+          <div class="c-bolt-card__body">
+            {% include "@bolt-components-headline/eyebrow.twig" with {
+              text: "Eyebrow"
+            } only %}
+
+            {% include "@bolt-components-headline/headline.twig" with {
+              text: "Old Card Is Old: Do Not Use This Style Anymore",
+              size: "large",
+              tag: "h3"
+            } only %}
+
+            {% include "@bolt-components-headline/text.twig" with {
+              text: "Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor."
+            } only %}
+
+            {% include "@bolt-components-button/button.twig" with {
+              text: "Primary Button",
+              width: "full",
+              style: "primary"
+            } only %}
+          </div>
+        </div>
+      {% endcell %}
+
+      {% cell with {
+        attributes: {
+          class: [
+            "u-bolt-width-1/1",
+            "u-bolt-width-1/3@small"
+          ]
+        }
+      } %}
+        {% include "@bolt-components-card/card.twig" with {
+          url: "javascript:",
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/images/content/promos/promo-16x9-anthem.jpg",
+              alt: "Anthem Video",
+              lazyload: false,
+            },
+            {
+              pattern: "eyebrow",
+              text: "Video"
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: "Anthem: Service Desktop"
+            },
+            {
+              pattern: "text",
+              text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
+            },
+            {
+              pattern: "button",
+              style: "text",
+              width: "full",
+              itemAlignment: "start",
+              text: "Get the report"
+            }
+          ]
+        } only %}
+      {% endcell %}
+
+      {% cell with {
+        attributes: {
+          class: [
+            "u-bolt-width-1/1",
+            "u-bolt-width-1/3@small"
+          ]
+        }
+      } %}
+        {% include "@bolt-components-card/card.twig" with {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/images/content/promos/promo-16x9-forrester.jpg",
+              alt: "2017 Forrester Wave Report",
+              lazyload: false,
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: "2017 Forrester Wave Report"
+            },
+            {
+              pattern: "text",
+              text: "Pega cited as a Leader in The Forrester Wave™: Digital Process Automation Software, Q3 2017."
+            }
+          ]
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+
+  {% endblock band_content %}
+{% endembed %}
