@@ -74,12 +74,9 @@
   {{ attributes }}
 >
   <{{ tag }} {{ attributes.addClass(classes).addClass('js-bolt-pre-rendered') }}>
-    {{ text }}
-    {# <span class="{{ "#{baseClass}__text" }} {% if iconOnly %}u-bolt-visuallyhidden{% endif %}">
-
-    </span> #}
-
-
+     <span class="{{ "#{baseClass}__text" }} {% if iconOnly %}u-bolt-visuallyhidden{% endif %}">
+       {{ text }}
+    </span>
     {% if icon %}
       <span class="{{ "#{baseClass}__icon" }} {% if iconOnly %}u-bolt-margin-left-none {% endif %}">
         {% include "@bolt/icon.twig" with icon only %}

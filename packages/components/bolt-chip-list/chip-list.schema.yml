@@ -1,0 +1,15 @@
+$schema: http://json-schema.org/draft-04/schema#
+title: Chip List
+type: object
+properties:
+  contentItems:
+    description: An array of Chips.
+    type: array
+    items:
+      type: object
+      description: Chip.
+      properties:
+        text:
+          type: string
+        url:
+          type: string

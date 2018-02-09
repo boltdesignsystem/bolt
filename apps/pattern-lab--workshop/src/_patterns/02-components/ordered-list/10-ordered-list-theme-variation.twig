@@ -1,17 +1,11 @@
-{% set themeVariations = [
-  'xlight',
-  'light',
-  'dark',
-  'xdark',
-] %}
+{% set schema = get_data('@bolt-components-ordered-list/ordered-list.schema.yml') %}
 
-{% for theme in themeVariations %}
+{% for theme in schema.properties.theme.enum %}
   <p>Theme: {{ theme }}</p>
-  {% embed "@utils/theme-demo.twig" with {
-    theme: theme,
-  } %}
+  {% embed "@utils/theme-demo.twig" %}
     {% block demo_content %}
       {% include "@bolt-components-ordered-list/ordered-list.twig" with {
+        "theme": theme,
         "contentItems" : [
           {
             "text": "Do not include any data or information in your posts that are confidential!"

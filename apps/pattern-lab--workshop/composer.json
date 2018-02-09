@@ -39,6 +39,14 @@
         "url": "../../packages/twig-extensions"
       },
       {
+        "type": "path",
+        "url": "../../packages/core-php"
+      },
+      {
+        "type": "vcs",
+        "url": "https://github.com/pattern-lab/drupal-twig-extensions"
+      },
+      {
         "type": "vcs",
         "url": "https://github.com/drupal-pattern-lab/styleguidekit-twig-default",
         "no-api": true
@@ -46,11 +54,13 @@
     ],
     "minimum-stability": "dev",
     "require": {
+      "bolt/core-php": "*",
       "php": ">=7.0",
       "twig/twig": "^1.35.0",
       "cweagans/composer-patches": "~1.0",
       "pattern-lab/core": "^2.8.10",
-      "pattern-lab/patternengine-twig": "^2.1.3",
+      "pattern-lab/drupal-twig-extensions": "^0.2.0",
+      "pattern-lab/patternengine-twig": "^2.2.0",
       "pattern-lab/styleguidekit-twig-default": "^3.0.0",
       "pattern-lab/styleguidekit-assets-default": "*",
       "evanlovely/plugin-twig-namespaces": "dev-master",

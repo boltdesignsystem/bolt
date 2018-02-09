@@ -1,7 +1,7 @@
 {% set schema = get_data('@bolt-components-background-shapes/background-shapes.schema.yml') %}
-{% for shapeGroup in schema.properties.shapeGroups.enum %}
+{% for shapeGroup in schema.properties.shapeGroup.enum %}
   <p>shapeGroup: {{ shapeGroup }}</p>
   {% include "@bolt-components-background-shapes/background-shapes.twig" with {
-    "shapeGroups": shapeGroup
+    "shapeGroup": shapeGroup
   }%}
 {% endfor %}

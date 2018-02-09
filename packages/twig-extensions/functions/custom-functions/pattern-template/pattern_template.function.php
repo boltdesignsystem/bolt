@@ -15,6 +15,8 @@ $function = new \Twig_SimpleFunction('pattern_template', function ($patternName)
       return '@bolt/button.twig';
     case 'card':
       return '@bolt/card.twig';
+    case 'card-w-teaser':
+      return '@bolt/card-w-teaser.twig';
     case 'eyebrow':
       return '@bolt/eyebrow.twig';
     case 'flag':
