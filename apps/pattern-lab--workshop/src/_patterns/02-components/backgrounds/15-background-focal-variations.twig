@@ -1,0 +1,59 @@
+<p>Heavy Opacity with Center Focal Point</p>
+{% include "./_00-background-band-demo.twig" with {
+  background: {
+    opacity: "heavy",
+    fill: "gradient",
+    focalPoint: {
+      vertical: "center",
+      horizontal: "center"
+    },
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/images/content/backgrounds/background-tall-4.jpg",
+        lazyload: false
+      }
+    ]
+  },
+  teaserPosition: "center"
+} %}
+
+<p>Heavy Opacity with Left Focal Point</p>
+{% include "./_00-background-band-demo.twig" with {
+  background: {
+    opacity: "heavy",
+    fill: "gradient",
+    focalPoint: {
+      vertical: "center",
+      horizontal: "left"
+    },
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/images/content/backgrounds/background-tall-4.jpg",
+        lazyload: false
+      }
+    ]
+  },
+  teaserPosition: "right"
+} %}
+
+<p>Heavy Opacity with Right Focal Point</p>
+{% include "./_00-background-band-demo.twig" with {
+  background: {
+    opacity: "heavy",
+    fill: "gradient",
+    focalPoint: {
+      vertical: "center",
+      horizontal: "right"
+    },
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/images/content/backgrounds/background-tall-1.jpg",
+        lazyload: false
+      }
+    ]
+  },
+  teaserPosition: "left"
+} %}

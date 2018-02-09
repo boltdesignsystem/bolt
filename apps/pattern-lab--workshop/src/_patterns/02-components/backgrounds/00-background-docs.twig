@@ -2,9 +2,19 @@
 {% set readme = source('@bolt-components-background/README.md') %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-background/background.twig" with {
-    text: "This is a background",
-    url: "http://google.com",
-  } only %}
+    opacity: "heavy",
+    fill: "gradient",
+    focalPoint: {
+      vertical: "center",
+      horizontal: "center"
+    },
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/images/content/backgrounds/background-tall-4.jpg"
+      }
+    ]
+} only %}
 {% endverbatim %}
 {% endset %}
 

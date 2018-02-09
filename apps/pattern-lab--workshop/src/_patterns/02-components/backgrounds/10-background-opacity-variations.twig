@@ -1,0 +1,54 @@
+<p>Light Opacity</p>
+{% include "./_00-background-band-demo.twig" with {
+  background: {
+    opacity: "light",
+    fill: "gradient",
+    focalPoint: {
+      vertical: "center",
+      horizontal: "center"
+    },
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/images/content/backgrounds/background-tall-2.jpg",
+        lazyload: false
+      }
+    ]
+  }
+} %}
+
+<p>Medium Opacity</p>
+{% include "./_00-background-band-demo.twig" with {
+  background: {
+    opacity: "medium",
+    focalPoint: {
+      vertical: "center",
+      horizontal: "center"
+    },
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/images/content/backgrounds/background-tall-2.jpg",
+        lazyload: false
+      }
+    ]
+  }
+} %}
+
+<p>Heavy Opacity</p>
+{% include "./_00-background-band-demo.twig" with {
+  background: {
+    opacity: "heavy",
+    focalPoint: {
+      vertical: "center",
+      horizontal: "center"
+    },
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/images/content/backgrounds/background-tall-2.jpg",
+        lazyload: false
+      }
+    ]
+  }
+} %}
