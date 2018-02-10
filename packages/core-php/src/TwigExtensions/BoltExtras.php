@@ -13,6 +13,8 @@ class BoltExtras extends Twig_Extension implements Twig_ExtensionInterface {
     return [
       TwigTools\TwigFunctions::console_log(),
       Bolt\TwigFunctions::deep_merge(),
+      Bolt\TwigFunctions::color_contrast(),
+      Bolt\TwigFunctions::create_attribute(),
     ];
   }
 
@@ -20,6 +22,7 @@ class BoltExtras extends Twig_Extension implements Twig_ExtensionInterface {
     return [
       Bolt\TwigFilters::markdown(),
       Bolt\TwigFilters::rgb2hex(),
+      Bolt\TwigFilters::text_contrast(),
     ];
   }
 

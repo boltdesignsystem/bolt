@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "95532bfafbd58db96c00b5d837cd1c2e",
+    "content-hash": "11c4cc9a7417d5ab98b26086fe8ae9e0",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -108,22 +108,27 @@
         },
         {
             "name": "bolt/core-php",
-            "version": "dev-feature/twig-extension-refactor",
+            "version": "dev-feature/twig-extension-migration",
             "dist": {
                 "type": "path",
                 "url": "../../packages/core-php",
-                "reference": "6704467dc59a2145b7dbae815b2631d01fa6a59d",
+                "reference": "ff490db38db3f77f5984fdb0960cd0a7c430fdf5",
                 "shasum": null
             },
             "require": {
                 "basaltinc/twig-tools": "^1.1.1",
+                "mexitek/phpcolors": "^0.4.0",
                 "michelf/php-markdown": "^1.8.0",
                 "twig/twig": "^1.0"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Bolt\\": "src/"
+                    "Bolt\\": "src/",
+                    "Drupal\\Component\\Render\\": "/libs",
+                    "Drupal\\Component\\Utility\\": "/libs",
+                    "Drupal\\Core\\": "/libs",
+                    "Drupal\\Core\\Template\\": "/libs"
                 }
             },
             "license": [
@@ -139,41 +144,6 @@
                 }
             ],
             "description": "Core PHP functionality for Bolt"
-        },
-        {
-            "name": "bolt/twig-extensions",
-            "version": "dev-feature/twig-extension-refactor",
-            "dist": {
-                "type": "path",
-                "url": "../../packages/twig-extensions",
-                "reference": "68fde6e7c28d82239695c4c9ce2a0e1def075ea7",
-                "shasum": null
-            },
-            "require": {
-                "gregwar/image": "*",
-                "ksubileau/color-thief-php": "^1.3",
-                "mexitek/phpcolors": "^0.4.0",
-                "symfony/yaml": "^3.3"
-            },
-            "type": "patternlab-plugin",
-            "extra": {
-                "installer-name": "_twig-components"
-            },
-            "autoload": {
-                "psr-0": {
-                    "Drupal\\Component\\Render\\": "/libs",
-                    "Drupal\\Component\\Utility\\": "/libs",
-                    "Drupal\\Core\\": "/libs",
-                    "Drupal\\Core\\Template\\": "/libs"
-                }
-            },
-            "authors": [
-                {
-                    "name": "Salem Ghoweri",
-                    "role": "Maintainer"
-                }
-            ],
-            "description": "Custom Twig Extensions Used By Bolt"
         },
         {
             "name": "composer/installers",
@@ -337,7 +307,7 @@
                 }
             ],
             "description": "Provides a way to patch Composer packages.",
-            "time": "2017-12-14T17:29:42+00:00"
+            "time": "2017-12-14 17:29:42"
         },
         {
             "name": "doctrine/collections",
@@ -459,7 +429,7 @@
                 "pattern lab",
                 "twig"
             ],
-            "time": "2017-11-10T23:21:38+00:00"
+            "time": "2017-11-10 23:21:38"
         },
         {
             "name": "gajus/dindent",
@@ -505,102 +475,7 @@
                 "html",
                 "indent"
             ],
-            "time": "2017-06-05T10:29:29+00:00"
-        },
-        {
-            "name": "gregwar/cache",
-            "version": "v1.0.12",
-            "target-dir": "Gregwar/Cache",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Gregwar/Cache.git",
-                "reference": "305d0f5a12c0beecbbd7e1de236f59f39e0c0ac3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Gregwar/Cache/zipball/305d0f5a12c0beecbbd7e1de236f59f39e0c0ac3",
-                "reference": "305d0f5a12c0beecbbd7e1de236f59f39e0c0ac3",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Gregwar\\Cache": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Gregwar",
-                    "email": "g.passault@gmail.com"
-                }
-            ],
-            "description": "A lightweight file-system cache system",
-            "keywords": [
-                "cache",
-                "caching",
-                "file-system",
-                "system"
-            ],
-            "time": "2016-09-23T08:16:04+00:00"
-        },
-        {
-            "name": "gregwar/image",
-            "version": "dev-master",
-            "target-dir": "Gregwar/Image",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Gregwar/Image.git",
-                "reference": "c506d57d7fb5e67961d4eea6540ae8e23dffd406"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Gregwar/Image/zipball/c506d57d7fb5e67961d4eea6540ae8e23dffd406",
-                "reference": "c506d57d7fb5e67961d4eea6540ae8e23dffd406",
-                "shasum": ""
-            },
-            "require": {
-                "ext-gd": "*",
-                "gregwar/cache": "^1.0.6",
-                "php": "^5.3 || ^7.0"
-            },
-            "require-dev": {
-                "sllh/php-cs-fixer-styleci-bridge": "~1.0",
-                "symfony/phpunit-bridge": "^2.7.4 || ^3.0"
-            },
-            "suggest": {
-                "behat/transliterator": "Transliterator provides ability to set non-latin1 pretty names"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Gregwar\\Image": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Grégoire Passault",
-                    "email": "g.passault@gmail.com",
-                    "homepage": "http://www.gregwar.com/"
-                }
-            ],
-            "description": "Image handling",
-            "homepage": "https://github.com/Gregwar/Image",
-            "keywords": [
-                "gd",
-                "image"
-            ],
-            "time": "2018-01-31T17:40:17+00:00"
+            "time": "2017-06-05 10:29:29"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -666,7 +541,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2017-10-21T13:15:38+00:00"
+            "time": "2017-10-21 13:15:38"
         },
         {
             "name": "kevinlebrun/colors.php",
@@ -718,59 +593,6 @@
                 "shell"
             ],
             "time": "2016-04-12T20:58:34+00:00"
-        },
-        {
-            "name": "ksubileau/color-thief-php",
-            "version": "v1.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ksubileau/color-thief-php.git",
-                "reference": "a673d7d3fa815c70fa4bebdee74d337e9e6944fa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ksubileau/color-thief-php/zipball/a673d7d3fa815c70fa4bebdee74d337e9e6944fa",
-                "reference": "a673d7d3fa815c70fa4bebdee74d337e9e6944fa",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.8|~5.7",
-                "squizlabs/php_codesniffer": "~2.7"
-            },
-            "suggest": {
-                "ext-gd": "to use the GD image adapter.",
-                "ext-gmagick": "to use the Gmagick image adapter.",
-                "ext-imagick": "to use the Imagick image adapter."
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "ColorThief\\": "lib/ColorThief"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "CC-BY-2.5"
-            ],
-            "authors": [
-                {
-                    "name": "Kevin Subileau",
-                    "homepage": "http://www.kevinsubileau.fr"
-                }
-            ],
-            "description": "Grabs the dominant color or a representative color palette from an image.",
-            "homepage": "http://www.kevinsubileau.fr/projets/color-thief-php",
-            "keywords": [
-                "color",
-                "dominant",
-                "palette",
-                "php",
-                "thief"
-            ],
-            "time": "2016-12-18T03:12:25+00:00"
         },
         {
             "name": "mexitek/phpcolors",
@@ -903,7 +725,7 @@
             ],
             "description": "Extend the composer/installers plugin to accept any arbitrary package type.",
             "homepage": "http://www.oomphinc.com/",
-            "time": "2017-03-31T16:57:39+00:00"
+            "time": "2017-03-31 16:57:39"
         },
         {
             "name": "pattern-lab/core",
@@ -1028,16 +850,16 @@
         },
         {
             "name": "pattern-lab/patternengine-twig",
-            "version": "v2.2.0",
+            "version": "v2.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pattern-lab/patternengine-php-twig",
-                "reference": "1934ca010acb6139dc2b26da869cf79bd6a6f0a1"
+                "reference": "edeb27a56a7a389e8f369e02ba9c50ee83a84cbb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pattern-lab/patternengine-php-twig/zipball/1934ca010acb6139dc2b26da869cf79bd6a6f0a1",
-                "reference": "1934ca010acb6139dc2b26da869cf79bd6a6f0a1",
+                "url": "https://api.github.com/repos/pattern-lab/patternengine-php-twig/zipball/edeb27a56a7a389e8f369e02ba9c50ee83a84cbb",
+                "reference": "edeb27a56a7a389e8f369e02ba9c50ee83a84cbb",
                 "shasum": ""
             },
             "require": {
@@ -1094,7 +916,7 @@
                 "wiki": "http://patternlab.io/docs/",
                 "source": "https://github.com/pattern-lab/patternengine-php-twig/releases"
             },
-            "time": "2018-02-05T22:39:57+00:00"
+            "time": "2018-02-08T00:11:23+00:00"
         },
         {
             "name": "pattern-lab/styleguidekit-assets-default",
@@ -1353,7 +1175,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-31T10:49:53+00:00"
+            "time": "2018-01-31 10:49:53"
         },
         {
             "name": "symfony/filesystem",
@@ -1402,7 +1224,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-03T07:37:34+00:00"
+            "time": "2018-01-03 07:37:34"
         },
         {
             "name": "symfony/finder",
@@ -1451,7 +1273,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-03T07:37:34+00:00"
+            "time": "2018-01-03 07:37:34"
         },
         {
             "name": "symfony/process",
@@ -1500,7 +1322,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-29T09:03:43+00:00"
+            "time": "2018-01-29 09:03:43"
         },
         {
             "name": "symfony/yaml",
@@ -1558,7 +1380,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-21T19:05:02+00:00"
+            "time": "2018-01-21 19:05:02"
         },
         {
             "name": "twig/twig",
@@ -1566,12 +1388,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "e923101942193d46d459f6c2dbf91b48f6174432"
+                "reference": "8a7fba9560e0564342f2a95538f2a373f508d0e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/e923101942193d46d459f6c2dbf91b48f6174432",
-                "reference": "e923101942193d46d459f6c2dbf91b48f6174432",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/8a7fba9560e0564342f2a95538f2a373f508d0e3",
+                "reference": "8a7fba9560e0564342f2a95538f2a373f508d0e3",
                 "shasum": ""
             },
             "require": {
@@ -1623,7 +1445,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2018-01-30T16:11:48+00:00"
+            "time": "2018-02-07 19:24:52"
         },
         {
             "name": "webmozart/assert",
@@ -1673,7 +1495,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2018-01-29T19:49:41+00:00"
+            "time": "2018-01-29 19:49:41"
         },
         {
             "name": "webmozart/path-util",
@@ -1719,7 +1541,7 @@
                 }
             ],
             "description": "A robust cross-platform utility for normalizing, comparing and modifying file paths.",
-            "time": "2016-08-15T15:31:42+00:00"
+            "time": "2016-08-15 15:31:42"
         }
     ],
     "packages-dev": [],

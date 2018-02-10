@@ -12,7 +12,18 @@
       "name": "Evan Lovely"
     }
   ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/drupal/core-render",
+      "no-api": true
+    }
+  ],
   "autoload": {
+    "psr-0": {
+      "Drupal\\Core\\": "src/libs/",
+      "Drupal\\Core\\Template\\": "src/libs/"
+    },
     "psr-4": {
       "Bolt\\": "src/"
     }
@@ -20,6 +31,9 @@
   "require": {
     "twig/twig": "^1.0",
     "basaltinc/twig-tools": "^1.1.1",
-    "michelf/php-markdown": "^1.8.0"
+    "michelf/php-markdown": "^1.8.0",
+    "mexitek/phpcolors": "^0.4.0",
+    "drupal/core-render": "8.4.x-dev",
+    "drupal/core-utility": "8.4.x-dev"
   }
 }
