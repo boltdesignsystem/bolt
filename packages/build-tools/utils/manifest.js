@@ -57,7 +57,7 @@ function getAllDirs(relativeFrom) {
 }
 
 async function writeBoltManifest() {
-  const filePath = path.resolve(config.dataDir, './bolt-full-manifest.json');
+  const filePath = path.resolve(config.dataDir, './full-manifest.bolt.json');
   try {
     await writeFile(filePath, JSON.stringify(boltManifest, null, '  '));
   } catch(error) {
@@ -111,7 +111,7 @@ async function writeTwigNamespaceFile(relativeFrom, extraNamespaces = {}) {
   }, namespaces, extraNamespaces);
 
   await writeFile(
-    path.join(config.dataDir, 'bolt-twig-namespaces.json'),
+    path.join(config.dataDir, 'twig-namespaces.bolt.json'),
     JSON.stringify(namespaceConfigFile, null, '  ')
   );
 }
