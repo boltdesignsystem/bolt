@@ -19,6 +19,7 @@ class BoltExtras extends Twig_Extension implements Twig_ExtensionInterface {
   public function getFilters() {
     return [
       Bolt\TwigFilters::markdown(),
+      Bolt\TwigFilters::rgb2hex(),
     ];
   }
 
