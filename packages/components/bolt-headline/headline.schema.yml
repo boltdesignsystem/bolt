@@ -63,3 +63,9 @@ properties:
     type: object
     description: Bolt icon. Excepts the same options as Bolt Icon Component `@bolt-components-icon`
     ref: '@bolt-components-icon/icon.schema.yml'
+  quoted:
+    type: boolean
+    description: Default false. Adds quoted styling to text.
+    enum:
+      - 'true'
+      - 'false'
