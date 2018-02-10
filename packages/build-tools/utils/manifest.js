@@ -101,7 +101,13 @@ async function writeTwigNamespaceFile(relativeFrom, extraNamespaces = {}) {
         config.srcDir,
         ...allDirs,
       ],
-    }
+    },
+    'bolt-data': {
+      recursive: true,
+      paths: [
+        config.dataDir,
+      ],
+    },
   }, namespaces, extraNamespaces);
 
   await writeFile(
