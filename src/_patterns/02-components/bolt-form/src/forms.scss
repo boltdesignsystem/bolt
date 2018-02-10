@@ -3,7 +3,6 @@
 \* ------------------------------------ */
 
 @import '@bolt/tools-all';
-@import '_choices';
 
 // General Form Elements
 select {
@@ -80,6 +79,7 @@ $bolt-floating-label-text-color: bolt-color(indigo, light); // TODO: [Mai] This 
 $bolt-floating-label-text-indent: calc(#{bolt-spacing(small)} + 2px);
 $bolt-floating-label-transition: $bolt-transition;
 
+$bolt-input-line-height: 1.45;
 $bolt-input-text-color: bolt-color(gray, xdark); // TODO: [Mai] This is the theme text color
 $bolt-input-text-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
 $bolt-input-text-color--disabled: rgba(bolt-color(gray, xdark), 0.5); // TODO: [Mai] This is the theme text color at 66%
@@ -122,7 +122,7 @@ $bolt-input-transition: $bolt-transition;
   display: block;
   width: 100%;
   color: $bolt-input-text-color;
-  line-height: 1.45; // [Mai] This makes the input same height as button.
+  line-height: $bolt-input-line-height; // [Mai] This makes the input same height as button.
   font-size: 16px; // [Mai] This prevents mobile Safari from zooming when input is in focus state.
   border-color: $bolt-input-border-color;
   border-style: $bolt-input-border-style;
@@ -493,3 +493,11 @@ $bolt-strength-indicator-transition: $bolt-transition;
   border-radius: $bolt-input-border-radius;
   transition: all $bolt-input-transition;
 }
+
+
+
+
+/* ------------------------------------ *\
+   Choices.js
+\* ------------------------------------ */
+@import '_choices';
