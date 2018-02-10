@@ -1,0 +1,11 @@
+{% set schema = get_data('@bolt-components-headline/headline.schema.yml') %}
+
+{% for weight in schema.properties.weight.enum %}
+  <p>Weight: {{ weight }}</p>
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "This is an example of weight " ~ weight,
+    tag: "h3",
+    size: "xlarge",
+    weight: weight
+  } only %}
+{% endfor %}
