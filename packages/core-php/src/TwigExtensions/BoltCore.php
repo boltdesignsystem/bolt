@@ -13,6 +13,7 @@ class BoltCore extends Twig_Extension implements Twig_ExtensionInterface {
     return [
       TwigTools\TwigFunctions::get_data(),
       TwigTools\TwigFunctions::validate_data_schema(),
+      Bolt\TwigFunctions::pattern_template(),
     ];
   }
 
