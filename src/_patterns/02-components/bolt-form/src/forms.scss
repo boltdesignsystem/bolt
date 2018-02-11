@@ -357,14 +357,14 @@ $bolt-input-transition: $bolt-transition;
 }
 
 .c-bolt-input-icon--invalid {
-  display: none; // TODO: [Mai] Remove this if invalid icons are dynamically generated through javascript.
+  display: none; // The invalid icon will always be present and simply un-hidden when a field becomes invalid
   color: $bolt-input-icon-color--invalid;
 }
 
 .c-bolt-input.is-invalid ~ .c-bolt-input-icons,
 .c-bolt-input.is-touched:invalid ~ .c-bolt-input-icons {
   .c-bolt-input-icon--invalid {
-    display: block; // TODO: [Mai] Remove this if invalid icons are dynamically generated through javascript.
+    display: block;
   }
 }
 

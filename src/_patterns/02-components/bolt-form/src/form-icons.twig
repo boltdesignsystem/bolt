@@ -1,12 +1,21 @@
 
 <bolt-input-icons>
   <ul class="o-bolt-inline-list o-bolt-inline-list--xsmall">
+
+    {# The invalid icon is always added; it's simply shown or hidden using CSS and javascript #}
     <li class="o-bolt-inline-list__item">
-      {% for icon in icons %}
+      <div class="c-bolt-input-icon--invalid">
+        <bolt-icon name="warning" size="medium"></bolt-icon>
+      </div>
+    </li>
+
+    {% for icon in icons %}
+      <li class="o-bolt-inline-list__item">
         <div class="c-bolt-input-icon">
           <bolt-icon name="{{ icon }}" size="medium"></bolt-icon>
         </div>
-      {% endfor %}
-    </li>
+      </li>
+    {% endfor %}
+
   </ul>
 </bolt-input-icons>
