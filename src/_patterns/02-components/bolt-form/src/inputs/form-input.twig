@@ -2,15 +2,14 @@
 A generic form input element
 
 Available variables:
-  - attributes (object) - A Drupal attributes object for the input element.
-    - type (enum) -
-      - inline elements:
-      -
-      text
-      - buttons:
-    - disabled (boolean) -
-    - placeholder (string) -
+  - attributes (object) - A Drupal attributes object for the input element.  Of note, it may include the following:
+    - type (enum, REQUIRED) - a valid HTML5 input type
+        see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_<input>_types
+    - disabled (boolean)
+    - placeholder (string)
   - children (renderable) - Optional additional rendered elements.
+  - hasErrors (boolean) - whether this input has server-side errors.  If true, this will invoke error styling for this
+      field on page load.
 #}
 
 {% set attributes = create_attribute(attributes | default({})) %}
@@ -20,6 +19,10 @@ Available variables:
 
 {% if attributes.disabled %}
   {% set _icons = _icons|merge(['lock']) %}
+{% endif %}
+
+{% if hasErrors %}
+  {% set _classes = _classes|merge(['is-invalid']) %}
 {% endif %}
 
 {% if _type == "search" %}

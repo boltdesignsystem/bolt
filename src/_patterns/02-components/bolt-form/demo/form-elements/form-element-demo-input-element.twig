@@ -4,11 +4,12 @@
   {% include("@bolt/form-label.twig") with {
     "title": title,
     "displayType": labelDisplayType
-  } %}
+  } only %}
 {% endset %}
 
 {% set children %}
   {% include("@bolt/form-input.twig") with {
-    "attributes": inputAttributes
-  } %}
+    "attributes": inputAttributes,
+    "hasErrors": errors is not empty
+  } only %}
 {% endset %}
