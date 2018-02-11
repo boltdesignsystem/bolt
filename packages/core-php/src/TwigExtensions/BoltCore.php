@@ -22,4 +22,10 @@ class BoltCore extends Twig_Extension implements Twig_ExtensionInterface {
     ];
   }
 
+  public function getTokenParsers() {
+    return [
+      Bolt\TwigTags::grid_tag(),
+      Bolt\TwigTags::cell_tag()
+    ];
+  }
 }
