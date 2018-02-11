@@ -87,6 +87,7 @@ $bolt-input-background-color--disabled: bolt-color(gray, xlight);
 $bolt-input-placeholder-color: rgba(bolt-color(gray, xdark), 0.5); // TODO: [Mai] This is the theme text color at 66%
 $bolt-input-placeholder-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
 $bolt-input-placeholder-color--disabled: rgba(bolt-color(gray, xdark), 0.5); // TODO: [Mai] This is the theme text color at 66%
+$bolt-input-icon-color--invalid: bolt-color(error);
 $bolt-input-border-color: rgba(bolt-color(indigo, light), 0.25); // TODO: [Mai] This is the theme link color at 25%
 $bolt-input-border-color--focus: bolt-color(indigo, light); // TODO: [Mai] This is the theme link color
 $bolt-input-border-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
@@ -357,6 +358,7 @@ $bolt-input-transition: $bolt-transition;
 
 .c-bolt-input-icon--invalid {
   display: none; // TODO: [Mai] Remove this if invalid icons are dynamically generated through javascript.
+  color: $bolt-input-icon-color--invalid;
 }
 
 .c-bolt-input.is-invalid ~ .c-bolt-input-icons,
