@@ -2,8 +2,6 @@
 
 namespace Bolt;
 
-require __DIR__ . '/../vendor/autoload.php';
-
 use \Twig_SimpleFunction;
 use \Drupal\Core\Template\Attribute;
 
