@@ -9,6 +9,54 @@ use \Drupal\Core\Template\Attribute;
 
 class TwigFunctions {
 
+
+  // @todo: integrate with existing Link component
+  // Better Link function - improvement over off the shelf Drupal `Link` function Pattern Lab's Twig Extensions Plugin provided.
+  public static function link() {
+    return new Twig_SimpleFunction('link', function ($title, $url, $attributes) {
+      if (!empty($attributes)) {
+        if (is_array($attributes)) {
+          $attributes = new Drupal\Core\Template\Attribute($attributes);
+        }
+        return '<a href="' . $url . '"' . $attributes . '>' . $title . '</a>';
+      } else {
+        return '<a href="' . $url . '">' . $title . '</a>';
+      }
+    }, array('is_safe' => array('html')));
+  }
+
+
+  // Same overall idea as https://jmperezperez.com/medium-image-progressive-loading-placeholder/, we just started working on this a few years prior ^_^
+  public static function base64() {
+    return new Twig_SimpleFunction('base64', function($relativeImagePath) {
+      return Images::generate_base64_image_placeholder($relativeImagePath);
+    });
+  }
+
+
+  // Return the average color of the image path passed in
+  public static function bgcolor() {
+    return new Twig_SimpleFunction('bgcolor', function($relativeImagePath) {
+      return Images::calculate_average_image_color($relativeImagePath);
+    });
+  }
+
+  // Return the aspect ratio of the image passed in
+  public static function ratio() {
+    return new Twig_SimpleFunction('ratio', function($relativeImagePath) {
+      return Images::calculate_image_aspect_ratio($relativeImagePath);
+    });
+  }
+
+
+  // Originally was required...? Keeping for now till full responsive images solution back up and running
+  public static function imagesize() {
+    return new Twig_SimpleFunction('imagesize', function($relativeImagePath) {
+      return Images::get_image_dimensions($relativeImagePath);
+    });
+  }
+
+
   public static function deep_merge() {
     return new Twig_SimpleFunction('deep_merge', function($param1, $param2) {
       $result = array_merge_recursive( $param1, $param2 );
@@ -17,6 +65,18 @@ class TwigFunctions {
     });
   }
 
+
+  // @todo: rename to public_path? we should also look into what'd be required to support `drupal_get_path`
+  public static function publicpath() {
+    return new Twig_SimpleFunction('publicpath', function($fileName) {
+      if (function_exists('drupal_get_path')) {
+        return '/' . drupal_get_path('theme', 'bolt') . '/public/' . $fileName;
+      }
+      else {
+        return $fileName;
+      }
+    });
+  }
 
   // @todo Deprecate & remove this whole `pattern_template` function
   public static function pattern_template() {
@@ -66,54 +126,6 @@ class TwigFunctions {
   }
 
 
-  // calculates the luminosity of an given RGB color
-  // the color code must be in the format of RRGGBB
-  // the luminosity equations are from the WCAG 2 requirements
-  // http://www.w3.org/TR/WCAG20/#relativeluminancedef
-  public static function calculateLuminosity($color) {
-    $r = hexdec(substr($color, 0, 2)) / 255; // red value
-    $g = hexdec(substr($color, 2, 2)) / 255; // green value
-    $b = hexdec(substr($color, 4, 2)) / 255; // blue value
-    if ($r <= 0.03928) {
-      $r = $r / 12.92;
-    } else {
-      $r = pow((($r + 0.055) / 1.055), 2.4);
-    }
-
-    if ($g <= 0.03928) {
-      $g = $g / 12.92;
-    } else {
-      $g = pow((($g + 0.055) / 1.055), 2.4);
-    }
-
-    if ($b <= 0.03928) {
-      $b = $b / 12.92;
-    } else {
-      $b = pow((($b + 0.055) / 1.055), 2.4);
-    }
-
-    $luminosity = 0.2126 * $r + 0.7152 * $g + 0.0722 * $b;
-    return $luminosity;
-  }
-
-
-  // calculates the luminosity ratio of two colors
-  // the luminosity ratio equations are from the WCAG 2 requirements
-  // http://www.w3.org/TR/WCAG20/#contrast-ratiodef
-  public static function calculateLuminosityRatio($color1, $color2) {
-    $l1 = self::calculateLuminosity($color1);
-    $l2 = self::calculateLuminosity($color2);
-
-    if ($l1 > $l2) {
-      $ratio = (($l1 + 0.05) / ($l2 + 0.05));
-    } else {
-      $ratio = (($l2 + 0.05) / ($l1 + 0.05));
-    }
-    return $ratio;
-  }
-
-
-
   // returns an array with the results of the color contrast analysis
   // it returns akey for each level (AA and AAA, both for normal and large or bold text)
   // it also returns the calculated contrast ratio
@@ -122,7 +134,7 @@ class TwigFunctions {
   // http://www.w3.org/TR/WCAG20/#larger-scaledef
   public static function color_contrast() {
     return new Twig_SimpleFunction('color_contrast', function($color1, $color2) {
-      $ratio = self::calculateLuminosityRatio($color1, $color2);
+      $ratio = Colors::calculateLuminosityRatio($color1, $color2);
 
       $contrast["levelAANormal"] = ($ratio >= 4.5 ? 'pass' : 'fail');
       $contrast["levelAALarge"] = ($ratio >= 3 ? 'pass' : 'fail');
@@ -143,6 +155,5 @@ class TwigFunctions {
       // print_r(Attribute);
     });
   }
-
 
 }

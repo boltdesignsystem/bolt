@@ -3,7 +3,6 @@
 namespace Bolt;
 
 use \Twig_SimpleFilter;
-use Mexitek\PHPColors\Color;
 
 class TwigFilters {
 
@@ -43,13 +42,7 @@ class TwigFilters {
 
   public static function text_contrast() {
     return new Twig_SimpleFilter('text_contrast', function ($color) {
-      $myColor = new Color($color);
-
-      if ($myColor->isLight()){
-        return 'black';
-      } else {
-        return 'white';
-      }
+      return Colors::calculateTextContrast($color);
     });
   }
 }
