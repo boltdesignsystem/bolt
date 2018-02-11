@@ -10,6 +10,10 @@ inputs.forEach(input => {
   input.onfocus = function() {
     input.classList.remove('is-touched');
 
+    // In there were server-side errors, the 'is-invalid' class will be present
+    // but should be removed on focus because the user is trying to fix them.
+    input.classList.remove('is-invalid');
+
     if (input.errors) {
       input.errors.remove();
     }

@@ -394,13 +394,7 @@ $bolt-input-message-text-color--invalid: bolt-color(error); // TODO: [Mai] This 
 
 .c-bolt-input-message--invalid {
   @include bolt-font-weight(semibold);
-  display: none; // TODO: [Mai] Remove this if invalid messages are dynamically generated through javascript.
   color: $bolt-input-message-text-color--invalid;
-}
-
-.c-bolt-input.is-invalid ~ .c-bolt-input-message--invalid,
-.c-bolt-input.is-touched:invalid ~ .c-bolt-input-message--invalid {
-  display: block; // TODO: [Mai] Remove this if invalid messages are dynamically generated through javascript.
 }
 
 
