@@ -1,6 +1,8 @@
 $schema: http://json-schema.org/draft-04/schema#
 title: Headline
 type: object
+required:
+  - text
 properties:
   text:
     type: string
@@ -24,6 +26,7 @@ properties:
       - left
       - center
       - right
+      - '' # @todo Refactor template so default is `left`
   weight:
     type: string
     description: Font weights.
@@ -42,7 +45,7 @@ properties:
     description: Font size.
     enum:
       - xsmall
-      - smalll
+      - small
       - medium
       - large
       - xlarge
@@ -56,6 +59,7 @@ properties:
       - uppercase
       - lowercase
       - capitalize
+      - '' # @todo Refactor template so default is `none`
   url:
     type: string
     description: If provided, turns headline into a link to given url.
@@ -67,5 +71,5 @@ properties:
     type: boolean
     description: Default false. Adds quoted styling to text.
     enum:
-      - 'true'
-      - 'false'
+      - false
+      - true
