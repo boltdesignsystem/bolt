@@ -17,7 +17,7 @@ export function withPreact(Base = HTMLElement){
     }
 
     get renderRoot() {
-      if (hasNativeShadowDomSupport) {
+      if (hasNativeShadowDomSupport && this.useShadow === true) {
         return super.renderRoot || shadow(this);
       } else {
         return this;

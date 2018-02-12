@@ -8,7 +8,8 @@ import {
   css,
   spacingSizes,
   renderToString,
-  hasNativeShadowDomSupport
+  hasNativeShadowDomSupport,
+  findParentTag
 } from '@bolt/core';
 
 import styles from './button.scss';
@@ -38,7 +39,12 @@ export class BoltButton extends withComponent(withPreact()) {
   constructor(element) {
     super(element);
 
-    this.useShadow = hasNativeShadowDomSupport;
+    if (findParentTag(this, 'FORM')){
+      this.useShadow = true;
+    } else {
+      this.useShadow = hasNativeShadowDomSupport;
+    }
+
     this.originalElem = this.querySelectorAll('.c-bolt-button')[0];
 
     if (this.originalElem) {
@@ -182,7 +188,10 @@ export class BoltButton extends withComponent(withPreact()) {
 
       // Is this the 1st time rendering the button? Or subsequent renders?
       this.state.isFirstRender = false;
-      this.innerHTML = this.originalElem.innerHTML;
+
+      if (this.useShadow){
+        this.innerHTML = this.originalElem.innerHTML;
+      }
 
       for (var i = 0, l = this.originalElem.attributes.length; i < l; ++i) {
         var nodeName = this.originalElem.attributes.item(i).nodeName;
