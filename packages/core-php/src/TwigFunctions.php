@@ -3,7 +3,7 @@
 namespace Bolt;
 
 use \Twig_SimpleFunction;
-use \Drupal\Core\Template\Attribute;
+use Drupal\Core\Template\Attribute;
 
 class TwigFunctions {
 
