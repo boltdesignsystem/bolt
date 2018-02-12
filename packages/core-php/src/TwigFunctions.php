@@ -14,4 +14,16 @@ class TwigFunctions {
     });
   }
 
+  public static function getSpacingScaleSequence() {
+    return new Twig_SimpleFunction('getSpacingScaleSequence', function($context) {
+      // Mainly just a demo for how to access the global `bolt` data.
+      $data = $context['bolt']['data']['spacing']['scale'];
+      $scaleValues = array_values($data);
+      sort($scaleValues);
+      return $scaleValues;
+    }, [
+      'needs_context' => true,
+    ]);
+  }
+
 }

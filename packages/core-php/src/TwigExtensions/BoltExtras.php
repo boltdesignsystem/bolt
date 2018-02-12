@@ -13,6 +13,7 @@ class BoltExtras extends Twig_Extension implements Twig_ExtensionInterface {
     return [
       TwigTools\TwigFunctions::console_log(),
       Bolt\TwigFunctions::deep_merge(),
+      Bolt\TwigFunctions::getSpacingScaleSequence(),
     ];
   }
 

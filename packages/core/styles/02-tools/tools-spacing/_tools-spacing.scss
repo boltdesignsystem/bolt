@@ -14,7 +14,7 @@
   @return $map;
 }
 $bolt-spacing-sizes: _bolt-create-spacing-map($bolt-spacing-values);
-@include export-data('spacing/bolt-spacing-sizes.data.json', (boltSpacingSizes: $bolt-spacing-sizes));
+@include export-data('spacing/sizes.bolt.json', $bolt-spacing-sizes);
 
 
 // $bolt-spacing-sizes-js: ();

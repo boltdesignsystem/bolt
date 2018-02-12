@@ -1,22 +1,20 @@
-
-
-{% set schema = get_data('@bolt/button.schema.json') %}
+{% set schema = get_data('@bolt-components-button/button.schema.json') %}
 
 {% for style in schema.properties.style.enum %}
-  <h4>{{ style }} Button States:</h4>
+  <p>{{ style|capitalize }} Button States</p>
 
-  {% include "@bolt/button.twig" with {
+  {% include "@bolt-components-button/button.twig" with {
     "text": "Button (Default)",
     style: style
   } only %}
 
-  {% include "@bolt/button.twig" with {
+  {% include "@bolt-components-button/button.twig" with {
     "text": "Button (Disabled)",
     disabled: true,
     style: style
   } only %}
 
-  {% include "@bolt/button.twig" with {
+  {% include "@bolt-components-button/button.twig" with {
     "text": "Button (Hover)",
     attributes: {
       class: [
@@ -27,7 +25,7 @@
     style: style
   } only %}
 
-  {% include "@bolt/button.twig" with {
+  {% include "@bolt-components-button/button.twig" with {
     "text": "Button (Focus)",
     attributes: {
       class: [
@@ -38,7 +36,7 @@
     style: style
   } only %}
 
-  {% include "@bolt/button.twig" with {
+  {% include "@bolt-components-button/button.twig" with {
     "text": "Button (Active)",
     attributes: {
       class: [
@@ -48,7 +46,4 @@
     },
     style: style
   } only %}
-
-  <br>
-  <br>
 {% endfor %}
