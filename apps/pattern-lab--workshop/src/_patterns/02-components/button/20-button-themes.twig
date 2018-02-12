@@ -1,6 +1,6 @@
-{% set schema = get_data('@bolt-components-button/button.schema.json') %}
+{% set themes = get_data('@bolt/themes.schema.json') %}
 
-{% for theme in get_data(schema.properties.theme.ref).enum %}
+{% for theme in themes.properties.colors.enum %}
   <p>Button theme: {{ theme }}</p>
   {% embed "@utils/theme-demo.twig" %}
     {% block demo_content %}
