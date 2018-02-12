@@ -7,23 +7,20 @@
  * - title (string) - The title to be displayed in this label
  * - attributes (object) - A Drupal attributes object
  * - displayType (enum)
- *      - inline
- *      - floating
- *      - default
+ *    - floating - display the label "floated" inside the input field
+ *    - inline-radio - display the label inline next to a radio button
+ *    - inline-checkbox - display the label inline next to a checkbox
+ *    - default - no special treatment
  */
 #}
 {% set attributes = create_attribute(attributes | default({})) %}
 
-{% set _inlineElementTypes = ["checkbox", "radio"] %}
-{% set _floatingElementTypes = ["text", "url", "email", "password", "select"] %}
-
-{% if displayType == "inline" %}
-  {% set _classes = [
-    "c-bolt-inline-label",
-    inputElementType ? "c-bolt-inline-label--" ~ inputElementType : "",
-  ] %}
-{% elseif displayType == "floating" %}
+{% if displayType == "floating" %}
   {% set _classes = ["c-bolt-floating-label"] %}
+{% elseif displayType == "inline-radio" %}
+  {% set _classes = ["c-bolt-inline-label", "c-bolt-inline-label--radio"] %}
+{% elseif displayType == "inline-checkbox" %}
+  {% set _classes = ["c-bolt-inline-label", "c-bolt-inline-label--checkbox"] %}
 {% else %}
   {% set _classes = ["c-bolt-label"] %}
 {% endif %}
