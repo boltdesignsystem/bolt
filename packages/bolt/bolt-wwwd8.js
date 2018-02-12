@@ -14,6 +14,8 @@ polyfillLoader.then(res => {
 
   import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-band' */ '@bolt/components-band/src/band.standalone');
 
+  import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-form' */ '@bolt/components-form/src/form');
+
   import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-icon' */ '@bolt/components-icon/src/icon.standalone');
 
   import(/* webpackMode: 'eager', webpackChunkName: 'bolt-image' */ '@bolt/components-image/src/image');
