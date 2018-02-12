@@ -104,22 +104,20 @@ $bolt-search-filters-transition: $bolt-transition;
 .c-bolt-search-inline-tag {
   @include bolt-font-weight(semibold);
   display: inline;
+  display: inline-flex;
   color: inherit;
   color: var(--bolt-theme-link, inherit);
   text-decoration: none;
   transition: all $bolt-transition;
 
   &:after {
-    @include bolt-margin(0 0.1rem);
-
     display: inline-block;
-    width: 3px;
-    height: 3px;
-    content: '';
+    zoom: 1;
+    *display: inline;
+    content: ',';
+    color: inherit;
+    color: var(--bolt-theme-text, inherit);
     vertical-align: middle;
-    border-radius: 3px;
-    background-color: inherit;
-    background-color: var(--bolt-theme-text, inherit);
   }
 
   &:hover {
@@ -127,7 +125,11 @@ $bolt-search-filters-transition: $bolt-transition;
   }
 }
 
-
+.c-bolt-search-inline-tag__text {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+}
 
 
 /* ------------------------------------ *\
@@ -363,12 +365,33 @@ $bolt-input-transition: $bolt-transition;
     border-color: $bolt-inline-label-input-border-color;
     border-style: $bolt-inline-label-input-border-style;
     border-width: $bolt-inline-label-input-border-width;
+    background-color: $bolt-input-background-color;
   }
 
   &:after {
     content: '';
     opacity: 0;
     transform-origin: center;
+  }
+}
+
+.c-bolt-inline-label--small {
+  @include bolt-font-size(small);
+
+  &:before {
+    top: 0.2rem;
+  }
+
+  &.c-bolt-inline-label--checkbox {
+    &:after {
+      top: 0.3rem;
+    }
+  }
+
+  &.c-bolt-inline-label--radio {
+    &:after {
+      top: calc(0.2rem + 3px);
+    }
   }
 }
 

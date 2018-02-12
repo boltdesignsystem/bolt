@@ -53,8 +53,8 @@
             filter 2
           </a>
         </span>
-        <strong>"search term"</strong>
-        (<a href="javascript:" class="c-bolt-link">Clear all</a>)
+        and <strong>"search term"</strong>
+        (<a href="javascript:" class="c-bolt-link">Clear filters</a>)
       </p>
       {% grid %}
         {% cell 'u-bolt-width-1/1 u-bolt-width-3/12@medium' %}
@@ -77,59 +77,6 @@
             <div class="c-bolt-search-filters__panel" id="search-filters">
               <div class="c-bolt-search-filters__panel-content">
                 <form class="c-bolt-form" action="#" method="post" onsubmit="return false;">
-                  {# <fieldset class="c-bolt-fieldset">
-                    <legend class="c-bolt-legend">
-                      <h2 class="c-bolt-headline c-bolt-headline--small">
-                        <span class="c-bolt-headline__text">
-                          Custom Select
-                        </span>
-                      </h2>
-                    </legend>
-                    <div class="c-bolt-input-list">
-                      <div class="c-bolt-input-list__item">
-                        <div class="c-bolt-custom-input is-active">
-                          <select class="c-bolt-input c-bolt-input--select is-filled" name="custom-select" id="custom-select">
-                            <option value="Selection 1" selected>
-                              Selection 1
-                            </option>
-                            <option value="Selection 2">
-                              Selection 2
-                            </option>
-                          </select>
-                        </div>
-                        <label class="c-bolt-floating-label" for="custom-select">
-                          Select
-                        </label>
-                        <div class="c-bolt-input-icons">
-                          <div class="c-bolt-input-icon">
-                            {% include "@bolt/icon.twig" with {
-                              "name": "chevron-right",
-                              "size": "medium"
-                            } only %}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </fieldset>
-                  <fieldset class="c-bolt-fieldset">
-                    <legend class="c-bolt-legend">
-                      <h2 class="c-bolt-headline c-bolt-headline--small">
-                        <span class="c-bolt-headline__text">
-                          Custom Textarea
-                        </span>
-                      </h2>
-                    </legend>
-                    <div class="c-bolt-input-list">
-                      <div class="c-bolt-input-list__item">
-                        <div class="c-bolt-custom-input is-active">
-                          <textarea class="c-bolt-input is-filled" cols="40" rows="8" name="textarea" id="textarea" placeholder="Describe the job" required></textarea>
-                        </div>
-                        <label class="c-bolt-floating-label" for="textarea">
-                          Description
-                        </label>
-                      </div>
-                    </div>
-                  </fieldset> #}
                   <fieldset class="c-bolt-fieldset">
                     <legend class="c-bolt-legend">
                       <h2 class="c-bolt-headline c-bolt-headline--small">
@@ -197,29 +144,21 @@
                     </legend>
                     <div class="c-bolt-input-list c-bolt-input-list--stack-spacing-none">
                       <div class="c-bolt-input-list__item">
-                        &laquo;
-                        <a href="javascript:" class="c-bolt-link">
-                          <span class="c-bolt-link__text">
-                            Any
-                          </span>
-                        </a>
-                      </div>
-                      <div class="c-bolt-input-list__item">
                         <input class="c-bolt-input c-bolt-input--radio" type="radio" name="eitheror" id="eitheror-choice-1" value="Item 1" checked />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--radio" for="eitheror-choice-1">
-                          <span class="c-bolt-inline-label__emphasize">Item 1 (45)</span>
+                        <label class="c-bolt-inline-label c-bolt-inline-label--radio c-bolt-inline-label--small" for="eitheror-choice-1">
+                          Item 1 (45)
                         </label>
                       </div>
                       <div class="c-bolt-input-list__item">
                         <input class="c-bolt-input c-bolt-input--radio" type="radio" name="eitheror" id="eitheror-choice-2" value="Item 2" />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--radio" for="eitheror-choice-2">
-                          <span class="c-bolt-inline-label__emphasize">Item 2 (32)</span>
+                        <label class="c-bolt-inline-label c-bolt-inline-label--radio c-bolt-inline-label--small" for="eitheror-choice-2">
+                          Item 2 (32)
                         </label>
                       </div>
                       <div class="c-bolt-input-list__item">
                         <input class="c-bolt-input c-bolt-input--radio" type="radio" name="eitheror" id="eitheror-choice-3" value="Item 3" />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--radio" for="eitheror-choice-3">
-                          <span class="c-bolt-inline-label__emphasize">Item 3 (2)</span>
+                        <label class="c-bolt-inline-label c-bolt-inline-label--radio c-bolt-inline-label--small" for="eitheror-choice-3">
+                          Item 3 (2)
                         </label>
                       </div>
                     </div>
@@ -234,41 +173,33 @@
                     </legend>
                     <div class="c-bolt-input-list c-bolt-input-list--stack-spacing-none">
                       <div class="c-bolt-input-list__item">
-                        &laquo;
-                        <a href="javascript:" class="c-bolt-link">
-                          <span class="c-bolt-link__text">
-                            Clear
-                          </span>
-                        </a>
-                      </div>
-                      <div class="c-bolt-input-list__item">
                         <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="and" id="and-choice-1" value="Item 1" checked />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="and-choice-1">
-                          <span class="c-bolt-inline-label__emphasize">Item 1 (12)</span>
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="and-choice-1">
+                          Item 1 (12)
                         </label>
                       </div>
                       <div class="c-bolt-input-list__item">
                         <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="and" id="and-choice-2" value="Item 2" checked />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="and-choice-2">
-                          <span class="c-bolt-inline-label__emphasize">Item 2 (8)</span>
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="and-choice-2">
+                          Item 2 (8)
                         </label>
                       </div>
                       <div class="c-bolt-input-list__item">
                         <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="and" id="and-choice-3" value="Item 3" checked />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="and-choice-3">
-                          <span class="c-bolt-inline-label__emphasize">Item 3 (3)</span>
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="and-choice-3">
+                          Item 3 (3)
                         </label>
                       </div>
                       <div class="c-bolt-input-list__item">
                         <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="and" id="and-choice-4" value="Item 4" checked />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="and-choice-4">
-                          <span class="c-bolt-inline-label__emphasize">Item 4 (5)</span>
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="and-choice-4">
+                          Item 4 (5)
                         </label>
                       </div>
                       <div class="c-bolt-input-list__item">
                         <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="and" id="and-choice-5" value="Item 5" />
-                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox" for="and-choice-5">
-                          <span class="c-bolt-inline-label__emphasize">Item 5 (10)</span>
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="and-choice-5">
+                          Item 5 (10)
                         </label>
                       </div>
                     </div>
