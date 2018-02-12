@@ -8,6 +8,9 @@
 {% endset %}
 
 {% set children %}
+  {# Default input type is text #}
+  {% set inputAttributes = inputAttributes|merge({'type': inputAttributes.type|default('text')}) %}
+
   {% include("@bolt/form-input.twig") with {
     "attributes": inputAttributes,
     "hasErrors": errors is not empty
