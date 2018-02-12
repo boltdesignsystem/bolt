@@ -7,6 +7,17 @@ use \Drupal\Core\Template\Attribute;
 
 class TwigFunctions {
 
+  public static function getSpacingScaleSequence() {
+    return new Twig_SimpleFunction('getSpacingScaleSequence', function($context) {
+      // Mainly just a demo for how to access the global `bolt` data.
+      $data = $context['bolt']['data']['spacing']['scale'];
+      $scaleValues = array_values($data);
+      sort($scaleValues);
+      return $scaleValues;
+    }, [
+      'needs_context' => true,
+    ]);
+  }
 
   // @todo: integrate with existing Link component
   // Better Link function - improvement over off the shelf Drupal `Link` function Pattern Lab's Twig Extensions Plugin provided.
@@ -62,7 +73,6 @@ class TwigFunctions {
       return $result;
     });
   }
-
 
   // @todo: rename to public_path? we should also look into what'd be required to support `drupal_get_path`
   public static function publicpath() {
