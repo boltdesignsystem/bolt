@@ -10,7 +10,9 @@
       "type": "string"
     },
     "theme": {
-      "$ref": "@bolt/theme.schema.json#/properties/themes"
+      "description": "What theme should we use?",
+      "ref": "@utils/theme.schema.yml",
+      "id": "enum"
     },
     "tag": {
       "title": "Semantic tag",
