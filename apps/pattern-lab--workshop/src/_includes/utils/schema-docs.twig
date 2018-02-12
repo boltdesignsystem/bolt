@@ -9,25 +9,6 @@
   {%- if description %} - {{ description | markdown }} {% endif -%}
 {% endmacro %}
 
-{% macro getRefSchema(ref, id) %}
-  {% import _self as macros %}
-  {% if ref %}
-    {% set reference = get_data(ref) %}
-    {% set theRef = id ? id : 'properties' %}
-    <details>
-      <summary><em>{{ ref }} > <code>{{ reference.type|capitalize }}</code> details</em></summary>
-      {% if id =='enum' %}
-        Type: <code>{{ reference.type }}</code> - Must be one of:
-        {% for x in reference[theRef] %}
-          <code>{{ x }}</code>{% if not loop.last %},{% endif %}
-        {% endfor %}
-      {% else %}
-        {{ macros.object(reference[theRef]) }}
-      {% endif %}
-    </details>
-  {% endif %}
-{% endmacro %}
-
 {% macro object(properties) %}
   {% import _self as macros %}
   <ul>
@@ -42,7 +23,7 @@
             {% endfor %}
           {% endset %}
           <li>
-            {% if prop.type  %}Type: <code>{{ prop.type }}</code>{% endif %}
+            Type: <code>{{ prop.type }}</code>
             {% if prop.oneOf %}
               Must be one of:
               <ul>
@@ -53,12 +34,16 @@
             {%- elseif prop.enum %} - Must be one of: {{ enum }}
             {% endif %}
 
-            {% if prop.type == 'object' and prop.properties %}
-              {{ macros.object(prop.properties) }}
-            {% endif %}
-
-            {% if prop.ref %}
-              {{ macros.getRefSchema(prop.ref, prop.id) }}
+            {% if prop.type == 'object' and prop.properties or prop.ref %}
+              {% if prop.ref %}
+                {% set reference = get_data(prop.ref).properties %}
+                <details>
+                  <summary><em>{{ prop.ref }} > Object details</em></summary>
+                  {{ macros.object(reference) }}
+                </details>
+              {% else %}
+                {{ macros.object(prop.properties) }}
+              {% endif %}
             {% endif %}
 
             {% if prop.type == 'array' and prop.items %}
