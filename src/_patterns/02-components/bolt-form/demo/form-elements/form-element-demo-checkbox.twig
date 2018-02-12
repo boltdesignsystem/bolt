@@ -1,0 +1,20 @@
+{% extends "@bolt/form-element.twig" %}
+
+{% set label %}
+  {% include("@bolt/form-label.twig") with {
+    "title": labelTitle,
+    "displayType": "inline-checkbox",
+    "attributes": {
+      "for": elementId
+    }
+  } %}
+{% endset %}
+
+{% set children %}
+  {% include("@bolt/form-input.twig") with {
+    "attributes": {
+      "type": "checkbox",
+      "id": elementId
+    },
+  } %}
+{% endset %}
