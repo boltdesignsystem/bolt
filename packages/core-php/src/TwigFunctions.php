@@ -3,7 +3,7 @@
 namespace Bolt;
 
 use \Twig_SimpleFunction;
-use Drupal\Core\Template\Attribute;
+use \Drupal\Core\Template\Attribute;
 
 class TwigFunctions {
 
@@ -14,7 +14,7 @@ class TwigFunctions {
     return new Twig_SimpleFunction('link', function ($title, $url, $attributes) {
       if (!empty($attributes)) {
         if (is_array($attributes)) {
-          $attributes = new Drupal\Core\Template\Attribute($attributes);
+          $attributes = new Attribute($attributes);
         }
         return '<a href="' . $url . '"' . $attributes . '>' . $title . '</a>';
       } else {

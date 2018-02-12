@@ -2,8 +2,8 @@
 
 namespace Bolt\Layout;
 
-  use \Drupal\Core\Template\Attribute;
-  use \PatternLab\PatternEngine\Twig\TwigUtil;
+use \Drupal\Core\Template\Attribute;
+use \PatternLab\PatternEngine\Twig\TwigUtil;
 
 
   // Default attributes and inheritted data all grid components inherit (ex. base CSS class)
