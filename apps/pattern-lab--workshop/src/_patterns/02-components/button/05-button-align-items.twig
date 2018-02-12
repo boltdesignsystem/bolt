@@ -1,9 +1,9 @@
-{% set schema = get_data('@bolt/button.schema.json') %}
+{% set schema = get_data('@bolt-components-button/button.schema.json') %}
 
 {% for align in schema.properties.align.enum %}
-  <h3>Align {{ align }}</h3>
+  <p>Align: {{ align }}</p>
 
-  {% include "@bolt/button.twig" with {
+  {% include "@bolt-components-button/button.twig" with {
     "align": align,
     "width": "full",
     "text": align ~ " Aligned Button"

@@ -1,9 +1,9 @@
-{% set schema = get_data('@bolt/button.schema.json') %}
+{% set schema = get_data('@bolt-components-button/button.schema.json') %}
 
 {% for size in schema.properties.size.enum %}
-  <h3>Button Size Variation: {{ size }}</h3>
+  <p>Button Size Variation: {{ size }}</p>
 
-  {% include "@bolt/button.twig" with {
+  {% include "@bolt-components-button/button.twig" with {
     "size": size,
     "text": "Example " ~ size ~" Button"
   } %}
