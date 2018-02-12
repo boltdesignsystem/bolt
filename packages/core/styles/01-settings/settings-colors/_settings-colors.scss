@@ -138,6 +138,7 @@ $bolt-status-colors: (
 
 $bolt-colors: map-merge($bolt-brand-colors, $bolt-status-colors);
 
-@include export-data('colors/bolt-all-colors.data.json', ('boltAllColors': $bolt-colors));
-@include export-data('colors/bolt-status-colors.data.json', ('boltStatusColors': $bolt-status-colors));
-@include export-data('colors/bolt-brand-colors.data.json', ('boltBrandColors': $bolt-brand-colors));
+@include export-data('colors/all.bolt.json', $bolt-colors);
+@include export-data('colors/status.bolt.json', $bolt-status-colors);
+@include export-data('colors/brand.bolt.json', $bolt-brand-colors);
+
