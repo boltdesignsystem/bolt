@@ -41,7 +41,6 @@ module.exports = {
       '@bolt/components-card',
       '@bolt/components-chip',
       '@bolt/components-chip-list',
-      '@bolt/components-color-swatch',
       '@bolt/components-device-viewer',
       '@bolt/components-figure',
       '@bolt/components-headline',
