@@ -1,4 +1,4 @@
-{% set schema = get_data('@bolt-components-button/button.schema.json') %}
+{% set schema = get_data('@bolt-components-button/button.schema.yml') %}
 
 {% for style in schema.properties.style.enum %}
   <p>{{ style|capitalize }} Button States</p>
