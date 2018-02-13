@@ -1,4 +1,4 @@
-{#{% set schema = get_data('@bolt-components-logo/logo.schema.yml') %}#}
+{% set schema = get_data('@bolt-components-logo/logo.schema.yml') %}
 {% set readme = source('@bolt-components-logo/README.md') %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-logo/logo.twig" with {

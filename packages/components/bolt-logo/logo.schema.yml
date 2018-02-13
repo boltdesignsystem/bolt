@@ -1,0 +1,13 @@
+$schema: http://json-schema.org/draft-04/schema#
+title: Logo
+type: object
+allOf:
+  -
+    properties:
+      invert:
+        type: boolean
+        description: Adds the "invert" effect.
+        enum:
+          - true
+          - false
+  - ref: '@bolt-components-image/image.schema.yml'
