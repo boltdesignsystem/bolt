@@ -2,8 +2,10 @@
 
 namespace Bolt;
 
+use Bolt;
 use \Twig_SimpleFunction;
 use \Drupal\Core\Template\Attribute;
+use \BasaltInc\TwigTools;
 
 class TwigFunctions {
 
@@ -162,6 +164,15 @@ class TwigFunctions {
       return is_array($attributes) ? new Attribute($attributes) : $attributes;
       // print_r(Attribute);
     });
+  }
+
+  public static function github_url() {
+    return new Twig_SimpleFunction('github_url', function(\Twig_Environment $env, $twigPath) {
+      $filePath = TwigTools\Utils::resolveTwigPath($env, $twigPath);
+      return Utils::gitHubUrl($filePath);
+    }, [
+      'needs_environment' => true,
+    ]);
   }
 
 }
