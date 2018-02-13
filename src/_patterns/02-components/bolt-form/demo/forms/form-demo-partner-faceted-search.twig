@@ -5,29 +5,31 @@
 } %}
 
 {% set children %}
-  {# TODO Replace with wrapped form element #}
-  {% include("@bolt/form-label.twig") with {
-    "title": "Partner Type"
-  } only %}
+  {% set PartnerTypeChildren %}
+    {% include "@bolt/form-element-demo-checkbox.twig" with {
+      "labelTitle": "Strategic Consulting",
+      "elementId": "strategic-consulting"
+    } only %}
 
-  {% include "@bolt/form-element-demo-checkbox.twig" with {
-    "labelTitle": "Strategic Consulting",
-    "elementId": "strategic-consulting"
-  } only %}
+    {% include "@bolt/form-element-demo-checkbox.twig" with {
+      "labelTitle": "Systems Integrator",
+      "elementId": "systems-integrator"
+    } only %}
 
-  {% include "@bolt/form-element-demo-checkbox.twig" with {
-    "labelTitle": "Systems Integrator",
-    "elementId": "systems-integrator"
-  } only %}
+    {% include "@bolt/form-element-demo-checkbox.twig" with {
+      "labelTitle": "Technology",
+      "elementId": "technology"
+    } only %}
 
-  {% include "@bolt/form-element-demo-checkbox.twig" with {
-    "labelTitle": "Technology",
-    "elementId": "technology"
-  } only %}
+    {% include "@bolt/form-element-demo-checkbox.twig" with {
+      "labelTitle": "Registered",
+      "elementId": "registered"
+    } only %}
+  {% endset %}
 
-  {% include "@bolt/form-element-demo-checkbox.twig" with {
-    "labelTitle": "Registered",
-    "elementId": "registered"
+  {% include "@bolt/form-fieldset.twig" with {
+    "legendTitle": "Partner Type",
+    "children": PartnerTypeChildren
   } only %}
 
   {% include "@bolt/form-element-demo-select.twig" with {
