@@ -1,4 +1,4 @@
-{% set schema = get_data('@bolt-components-button/button.schema.json') %}
+{% set schema = get_data('@bolt-components-button/button.schema.yml') %}
 
 {% for rounded in schema.properties.rounded.enum %}
   <p>{{ rounded|capitalize }} Button</p>
