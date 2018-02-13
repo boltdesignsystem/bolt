@@ -1,0 +1,69 @@
+{% set prefix = "c-bolt-" %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set componentName = "search-filters" %}
+{% set baseClass = prefix ~ componentName %}
+
+{% set classes = [
+  baseClass
+] %}
+
+<bolt-{{ componentName }} bolt-component>
+  <div {{ attributes.addClass(classes) }}>
+    <div class="{{ "#{baseClass}__trigger" }}">
+      {% include "@bolt/button.twig" with {
+        "text": "Close search filters",
+        "url": "#search-filters",
+        "size": "xsmall",
+        "style": "primary",
+        "rounded": true,
+        "iconOnly": true,
+        "icon": {
+          "name": "more",
+          "size": "medium"
+        }
+      } only %}
+    </div>
+
+    <div class="{{ "#{baseClass}__panel" }}" id="search-filters">
+      <div class="c-bolt-search-filters__panel-content">
+        {% block search_filters %}
+          {{ content }}
+        {% endblock search_filters %}
+      </div>
+
+      <div class="{{ "#{baseClass}__panel-controls #{baseClass}__panel-controls--submit" }}">
+        {% include "@bolt/button-group.twig" with {
+          "buttons": [
+            {
+              "text": "Apply",
+              "style": "primary",
+              "url": "#!"
+            },
+            {
+              "text": "Cancel",
+              "style": "secondary",
+              "url": "#!"
+            }
+          ]
+        } only %}
+      </div>
+
+      <div class="{{ "#{baseClass}__panel-controls #{baseClass}__panel-controls--close" }}">
+        {% include "@bolt/button.twig" with {
+          "text": "Close search filters",
+          "url": "#!",
+          "size": "xsmall",
+          "style": "text",
+          "rounded": true,
+          "iconOnly": true,
+          "icon": {
+            "name": "close",
+            "size": "medium"
+          }
+        } only %}
+      </div>
+    </div>
+  </div>
+</bolt-{{ componentName }}>
