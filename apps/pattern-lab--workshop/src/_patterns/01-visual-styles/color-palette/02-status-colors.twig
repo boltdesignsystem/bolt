@@ -1,8 +1,6 @@
-{% set bolt_status_colors = get_data('@bolt-assets/bolt-status-colors.data.json').boltStatusColors %}
-
 <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small">
-  {% for colorName, palette in bolt_status_colors %}
-    {% include "@utils/color-swatch.twig" with {
+  {% for colorName, palette in bolt.data.colors.status %}
+    {% include "@bolt/_color-swatch.twig" with {
       color_swatch: {
         colorName: colorName,
         palette: palette

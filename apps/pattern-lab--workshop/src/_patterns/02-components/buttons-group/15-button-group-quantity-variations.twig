@@ -1,0 +1,16 @@
+{% set exampleButtonQuantities = [1, 2, 3, 4, 5] %}
+
+{% for quantity in exampleButtonQuantities %}
+  {% set buttons = [] %}
+  {% for i in 1..quantity %}
+    {% set buttons = buttons|merge([{
+      text: "Learn More",
+      style: "primary"
+    }]) %}
+  {% endfor %}
+
+  <p>{{ quantity }} Button(s)</p>
+  {% include "@bolt-components-button-group/button-group.twig" with {
+    buttons: buttons
+  } %}
+{% endfor %}

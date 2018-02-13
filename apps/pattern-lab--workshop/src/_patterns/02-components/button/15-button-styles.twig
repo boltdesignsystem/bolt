@@ -1,0 +1,49 @@
+{% set schema = get_data('@bolt-components-button/button.schema.json') %}
+
+{% for style in schema.properties.style.enum %}
+  <p>{{ style|capitalize }} Button States</p>
+
+  {% include "@bolt-components-button/button.twig" with {
+    "text": "Button (Default)",
+    style: style
+  } only %}
+
+  {% include "@bolt-components-button/button.twig" with {
+    "text": "Button (Disabled)",
+    disabled: true,
+    style: style
+  } only %}
+
+  {% include "@bolt-components-button/button.twig" with {
+    "text": "Button (Hover)",
+    attributes: {
+      class: [
+        "c-bolt-button--hover"
+      ],
+      "is-hover": true
+    },
+    style: style
+  } only %}
+
+  {% include "@bolt-components-button/button.twig" with {
+    "text": "Button (Focus)",
+    attributes: {
+      class: [
+        "c-bolt-button--focus"
+      ],
+      "is-focus": true
+    },
+    style: style
+  } only %}
+
+  {% include "@bolt-components-button/button.twig" with {
+    "text": "Button (Active)",
+    attributes: {
+      class: [
+        "c-bolt-button--active"
+      ],
+      "is-active": true
+    },
+    style: style
+  } only %}
+{% endfor %}
