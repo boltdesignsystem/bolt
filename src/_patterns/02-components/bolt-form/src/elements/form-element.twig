@@ -1,3 +1,17 @@
+{#
+A wrapper for a form element that includes a label, description, inline errors, etc.
+
+Available variables:
+  - attributes (object) - A Drupal attributes object for the input element.
+  - labelDisplay (enum) - Where the label should be displayed
+      before
+      after
+      invisible (Not yet supported, defaults to 'before')
+  - children (renderable) - The form inputs .
+  - errors (string) - Server-side errors
+  - descriptionText (string) - An optional description for this element
+#}
+
 {% set attributes = create_attribute(attributes | default({})) %}
 {% set labelDisplay = labelDisplay | default('after') %}
 {% set attributes = attributes.addClass('c-bolt-input-list__item') %}
