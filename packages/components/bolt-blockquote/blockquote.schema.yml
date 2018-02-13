@@ -16,7 +16,7 @@ properties:
     description: Content is required.
     type: string
   size:
-    description: Default is large.
+    description: Default is xlarge.
     type: string
     enum:
       - large
@@ -51,31 +51,17 @@ properties:
   logo:
       description: Logo is optional.
       type: object
-      properties:
-        src:
-          type: string
-          description: Source URL.
-        invert:
-          type: string
-          enum:
-            - 'true'
-            - 'false'
+      ref: '@bolt-components-logo/logo.schema.yml'
   author:
       description: Author is optional.
       type: object
       properties:
-        image:
-          type: object
-          properties:
-            src:
-              type: string
-              description: Source URL.
-            lazyLoad:
-              type: boolean
-              description: Default is true.
         name:
           type: string
           description: Author's name.
         title:
           type: string
           description: Author's title.
+        image:
+          type: object
+          ref: '@bolt-components-image/image.schema.yml'
