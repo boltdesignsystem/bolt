@@ -3,8 +3,11 @@
 namespace Bolt;
 
 use Michelf\MarkdownExtra;
+use \Webmozart\PathUtil\Path;
 
 class Utils {
+
+  const repoRoot = __DIR__ . '/../../../';
 
   /**
    * Markdown to HTML
@@ -34,6 +37,18 @@ class Utils {
   public static function dashesToCamelCase($string) {
     $str = str_replace('-', '', ucwords($string, '-'));
     return lcfirst($str);
+  }
+
+  /**
+   * Get path to file on GitHub
+   * @param string $filePath - Absolute path to a file in repo
+   * @return string - URL to file on GitHub
+   */
+  public static function gitHubUrl($filePath) {
+    $relFilePath = Path::makeRelative($filePath, self::repoRoot);
+    $repoBranchName = 'epic/refactor'; // @todo Change branch name to `master`
+    $githubPath = Path::join('https://github.com/bolt-design-system/bolt/blob/', $repoBranchName, $relFilePath);
+    return $githubPath;
   }
 
 }
