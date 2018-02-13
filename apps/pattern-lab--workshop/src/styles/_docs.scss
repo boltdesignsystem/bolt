@@ -7,6 +7,24 @@
         display: inline-block;
         margin: 0;
       }
+
+      code {
+        font-weight: normal;
+      }
+
+      details {
+        cursor: pointer;
+        summary {
+          font-weight: bold;
+          user-select: none;
+          &:focus {
+            outline: none;
+          }
+        }
+        &,summary {
+          margin: 0;
+        }
+      }
     }
   }
 }
