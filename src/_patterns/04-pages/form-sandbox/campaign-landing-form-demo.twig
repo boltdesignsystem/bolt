@@ -1,0 +1,28 @@
+{% extends "@bolt/default-template.twig" %}
+
+{% block main_content %}
+
+  {% embed "@bolt/card.twig" with {
+    "theme": "light",
+  } only %}
+
+    {% block card_body %}
+      {% include "@bolt/headline.twig" with {
+        text: "Get the Report"
+      } only %}
+      {% include "@bolt/text.twig" with {
+        text: "(all fields are required)"
+      } only %}
+
+      {% include "@bolt/form-demo-campaign-landing.twig" only %}
+
+      {% include "@bolt/text.twig" with {
+        text: "The forrester wave is copyrighted by Forrester Research",
+        size: "small",
+        style: "italic"
+      } only %}
+    {% endblock %}
+
+  {% endembed %}
+
+{% endblock %}
