@@ -79,7 +79,6 @@ $bolt-floating-label-text-color: bolt-color(indigo, light); // TODO: [Mai] This 
 $bolt-floating-label-text-indent: calc(#{bolt-spacing(small)} + 2px);
 $bolt-floating-label-transition: $bolt-transition;
 
-$bolt-input-line-height: 1.45;
 $bolt-input-text-color: bolt-color(gray, xdark); // TODO: [Mai] This is the theme text color
 $bolt-input-text-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
 $bolt-input-text-color--disabled: rgba(bolt-color(gray, xdark), 0.5); // TODO: [Mai] This is the theme text color at 66%
@@ -122,7 +121,7 @@ $bolt-input-transition: $bolt-transition;
   display: block;
   width: 100%;
   color: $bolt-input-text-color;
-  line-height: $bolt-input-line-height; // [Mai] This makes the input same height as button.
+  line-height: 1.45; // [Mai] This makes the input same height as button.
   font-size: 16px; // [Mai] This prevents mobile Safari from zooming when input is in focus state.
   border-color: $bolt-input-border-color;
   border-style: $bolt-input-border-style;
@@ -192,6 +191,7 @@ $bolt-input-transition: $bolt-transition;
   line-height: $bolt-floating-label-text-scale;
   white-space: nowrap;
   user-select: none;
+  pointer-events: none;
   opacity: 0;
   transform: translate3d(0, -15%, 0) scale(0.2);
   transform-origin: 0 100%;
@@ -223,14 +223,15 @@ $bolt-input-transition: $bolt-transition;
   }
 
   &:before {
-    top: 0.3rem;
+    top: 0.3em;
     left: 0;
-    width: 1rem;
-    height: 1rem;
+    width: 1em;
+    height: 1em;
     content: '';
     border-color: $bolt-inline-label-input-border-color;
     border-style: $bolt-inline-label-input-border-style;
     border-width: $bolt-inline-label-input-border-width;
+    background-color: $bolt-input-background-color;
   }
 
   &:after {
@@ -240,16 +241,21 @@ $bolt-input-transition: $bolt-transition;
   }
 }
 
+.c-bolt-inline-label--small {
+  @include bolt-padding-left(1.5em);
+  @include bolt-font-size(small);
+}
+
 .c-bolt-inline-label--checkbox {
   &:before {
     border-radius: 2px;
   }
 
   &:after {
-    top: 0.4rem;
-    left: 0.375rem;
-    width: calc(1rem - 0.675rem);
-    height: calc(1rem - 0.325rem);
+    top: 0.4em;
+    left: 0.375em;
+    width: calc(1em - 0.675em);
+    height: calc(1em - 0.325em);
     border-color: $bolt-inline-label-input-color;
     border-style: solid;
     border-width: 0 2px 2px 0;
@@ -260,14 +266,14 @@ $bolt-input-transition: $bolt-transition;
 .c-bolt-inline-label--radio {
   &:before,
   &:after {
-    border-radius: 1rem;
+    border-radius: 1em;
   }
 
   &:after {
-    top: calc(0.3rem + 3px);
+    top: calc(0.3em + 3px);
     left: 3px;
-    width: calc(1rem - 6px);
-    height: calc(1rem - 6px);
+    width: calc(1em - 6px);
+    height: calc(1em - 6px);
     background-color: $bolt-inline-label-input-color;
     transform: scale(0.1);
   }
@@ -386,11 +392,12 @@ $bolt-input-transition: $bolt-transition;
 $bolt-input-message-text-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
 
 .c-bolt-input-message {
-  @include bolt-padding(small, squished);
+  @include bolt-padding(xxsmall small);
   @include bolt-font-size(xsmall);
 }
 
 .c-bolt-input-message--invalid {
+  @include bolt-font-weight(semibold);
   display: none; // TODO: [Mai] Remove this if invalid messages are dynamically generated through javascript.
   color: $bolt-input-message-text-color--invalid;
 }
@@ -493,11 +500,3 @@ $bolt-strength-indicator-transition: $bolt-transition;
   border-radius: $bolt-input-border-radius;
   transition: all $bolt-input-transition;
 }
-
-
-
-
-/* ------------------------------------ *\
-   Choices.js
-\* ------------------------------------ */
-@import '_choices';
