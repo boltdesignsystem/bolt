@@ -40,7 +40,7 @@ export class BoltButton extends withComponent(withPreact()) {
     super(element);
 
     if (findParentTag(this, 'FORM')){
-      this.useShadow = true;
+      this.useShadow = false;
     } else {
       this.useShadow = hasNativeShadowDomSupport;
     }
