@@ -49,6 +49,21 @@
 
 {# Get a whole number aspect ratio #}
 {% if width > 0 and height > 0 and ratio == true %}
+  {# {% set gcd %}
+    {% include '@bolt/gcd.twig' with {
+      a: width,
+      b: height
+    } only %}
+  {% endset %}
+  {% set gcd = gcd | escape | raw | number_format %}
+  
+  {% if gcd != 0 and height != 0 and width != 0 %}
+    {% set imageHeightRatio = (height / gcd) %}
+    {% set imageWidthRatio = (width / gcd) %}
+  {% else %}
+    {% set imageHeightRatio = 1 %}
+    {% set imageWidthRatio = 1 %}
+  {% endif %} #}
 
   {% set ratio = height / width * 100 ~ '%' %}
 
@@ -104,10 +119,7 @@
     .setAttribute("data-sizes", sizes)
   %}
 {% else %}
-  {% set imageAttributes = imageAttributes
-    .setAttribute("srcset", srcset)
-    .setAttribute("src", src)
-  %}
+  {% set imageAttributes = imageAttributes.setAttribute("srcset", srcset) %}
 {% endif %}
 
 {% set placeholderAttributes = create_attribute(placeholderAttributes | default({})).addClass("c-bolt-image__placeholder") %}
@@ -147,7 +159,3 @@
     {% endif %}
   {% endblock %}
 </bolt-image>
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-image/image.schema.yml', _self) }}
-{% endif %}
