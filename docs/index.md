@@ -12,7 +12,9 @@
    \\\____<span style="color:orange">|/</span>____///
     \\\\\\|///////
     
-<span style="color: grey;">Verbosity: 1</span><span style="color: green;">✔ Cleaned files in 134ms
+<span style="color: grey;">Verbosity: 1</span>
+<span style="color: green;">✔ Cleaned files in 134ms
 ✔ Built WebPack bundle in 10.1s
 ✔ Built Pattern Lab in 3.8s
-✔ Processed images in 25ms</span><span style="color: green;">⠹</span><span style="color: #2525ef"> Watch triggered WebPack re-bundle...<span style="color: white">[</span>Browsersync<span style="color: white">]</span><span style="color: white"> Proxying: </span><span style="color: #6ac1de;">http://localhost:8080</span></span></pre>
+✔ Processed images in 25ms</span>
+<span style="color: green;">⠹</span><span style="color: #2525ef"> Watch triggered WebPack re-bundle...<span style="color: white">[</span>Browsersync<span style="color: white">]</span><span style="color: white"> Proxying: </span><span style="color: #6ac1de;">http://localhost:8080</span></span></pre>
