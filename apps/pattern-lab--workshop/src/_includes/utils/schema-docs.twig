@@ -9,15 +9,16 @@
   {%- if description %} - {{ description | markdown }} {% endif -%}
 {% endmacro %}
 
-{% macro propValues(prop) %}
+
+{% macro schemaProps(prop) %}
   {% import _self as macros %}
-  <ul class="o-bolt-bare-list">
+
+  <ul>
     {% set enum %}
       {% for x in prop.enum %}
         <code>{{ x }}</code>{% if not loop.last %},{% endif %}
       {% endfor %}
     {% endset %}
-
     <li>
       Type: <code>{{ prop.type }}</code>
       {% if prop.oneOf %}
@@ -32,10 +33,10 @@
 
       {% if prop.type == 'object' and prop.properties or prop.ref %}
         {% if prop.ref %}
-          {% set nestedSchema = get_data(prop.ref) %}
+          {% set reference = get_data(prop.ref).properties %}
           <details>
             <summary><em>{{ prop.ref }} > Object details</em></summary>
-            {{ macros.object(nestedSchema) }}
+            {{ macros.object(reference) }}
           </details>
         {% else %}
           {{ macros.object(prop.properties) }}
@@ -71,67 +72,29 @@
         </ul>
       {% endif %}
     </li>
-
-    {# if key in loop.parent.required %}
-      <li><strong>Required</strong></li>
-    {% endif #}
-
-    {# if prop.default %}
-      <li>Default: <code>{{ prop.default }}</code></li>
-    {% endif #}
+    {% if key in loop.parent.required %} <li><strong>Required</strong></li> {% endif %}
+    {% if prop.default %} <li>Default: <code>{{ prop.default }}</code></li> {% endif %}
   </ul>
 {% endmacro %}
 
-{% macro object(schema) %}
-  {% set requiredProps = schema.required %}
+
+{% macro object(properties) %}
   {% import _self as macros %}
+  <ul>
+    {% for key, prop in properties %}
+      <li>
+        <code>{{ key }}</code>
+        {{ macros.titleAndDescription(prop.title, prop.description, prop.minimum, prop.maximum) }}
 
-  <div class="c-bolt-docs-table">
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Value</th>
-          <th>Description</th>
-          <th>Default</th>
-          <th>Required?</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        {% for key, prop in schema.properties %}
-          <tr class="c-bolt-docs-table__row">
-            <td>{{ key }}</td>
-
-            {% if prop.type == 'object' and prop.ref %}
-              <td colspan="4">{{ macros.propValues(prop) }}</td>
-            {% else %}
-              <td>{{ macros.propValues(prop) }}</td>
-
-              <td>{{ macros.titleAndDescription(prop.title, prop.description | default('-'), prop.minimum, prop.maximum) }}</td>
-
-              <td>
-                {% if prop.default %}
-                  <code>{{ prop.default }}</code>
-                {% else %}
-                  -
-                {% endif %}
-              </td>
-
-              <td>
-              {% if key in requiredProps %}
-                Required
-              {% endif %}
-              </td>
-            {% endif %}
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
+        {{ macros.schemaProps(prop) }}
+      </li>
+    {% endfor %}
+  </ul>
 {% endmacro %}
 
+
 {% import _self as macros %}
+
 
 {% if title %}
   {% include "@bolt/headline.twig" with {
@@ -147,4 +110,43 @@
   } only %}
 {% endif %}
 
-{{ macros.object(schema) }}
+
+<div class="c-bolt-docs-table">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Value</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Required?</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for key, prop in schema.properties %}
+        <tr class="c-bolt-docs-table__row">
+          <td>{{ key }}</td>
+
+          <td>{{ macros.schemaProps(prop) }}</td>
+
+          <td>{{ macros.titleAndDescription(prop.title, prop.description, prop.minimum, prop.maximum) }}</td>
+
+          <td>
+            {% if prop.default %}
+              <code>{{ prop.default }}</code>
+            {% else %}
+              -
+            {% endif %}
+          </td>
+
+          <td>
+          {% if key in requiredProps %}
+            Required
+          {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
