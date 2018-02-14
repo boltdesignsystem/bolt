@@ -48,7 +48,6 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
   right: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;
   overflow: hidden;
 }
 
@@ -75,22 +74,29 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
 
 .c-bolt-background__video {
   z-index: 10;
-  transition: all 0.4s ease;
+  transition: opacity 0.4s ease, min-height 0.4s ease, max-height 0.4s ease;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 
   .is-ready & {
-    background-color: rgba(bolt-color(black), 0.6);
+    background-color: rgba(bolt-color(indigo, dark), 0.8);
     perspective: 500px;
     perspective-origin: 50% 150%;
+    pointer-events: none;
   }
 
   .is-collapsed & {
     opacity: 0;
     pointer-events: none;
+    visibility: hidden;
   }
 
   .is-expanded & {
     opacity: 1;
     pointer-events: auto;
+    visibility: visible;
   }
 
   .video-js {
@@ -104,18 +110,23 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
       background-color: transparent;
     }
 
-    .is-collapsed & {
-      transform: scale(0.95) rotateX(20deg) translateY(20%);
-    }
+    // .is-collapsed & {
+    //   transform: scale(0.95) rotateX(20deg) translateY(20%);
+    // }
 
-    .is-expanded & {
-      transform: scale(1) rotateX(0deg) translateY(0%);
-      transition: transform 0.3s cubic-bezier(0.645, 0, 0.355, 1);
-    }
+    // .is-expanded & {
+    //   transform: scale(1) rotateX(0deg) translateY(0%);
+    //   transition: transform 0.3s cubic-bezier(0.645, 0, 0.355, 1);
+    // }
   }
 }
 
 .c-bolt-background__image {
+  top: -9999px;
+  right: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+
   .is-expanded & {
     opacity: 1;
     filter: blur(10px);
@@ -127,10 +138,6 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
   @include bolt-margin(auto);
 
   position: absolute;
-  top: -9999px;
-  right: -9999px;
-  bottom: -9999px;
-  left: -9999px;
   min-width: 100%;
   min-height: 100%;
   max-width: none; //Required to handle instances where a max-width is previously set.
