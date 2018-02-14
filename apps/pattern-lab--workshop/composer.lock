@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f89490b5504136e9f544061a116e1629",
+    "content-hash": "a5d4cac4d1764d262858597d5b9f288f",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -70,19 +70,20 @@
         },
         {
             "name": "basaltinc/twig-tools",
-            "version": "v1.1.1",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/basaltinc/twig-tools.git",
-                "reference": "1d1af03a4793c5294ed740e0a7b7afb1d4e94a78"
+                "reference": "6a583b410d0a1cf236459f20aa185ebe9578b057"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/basaltinc/twig-tools/zipball/1d1af03a4793c5294ed740e0a7b7afb1d4e94a78",
-                "reference": "1d1af03a4793c5294ed740e0a7b7afb1d4e94a78",
+                "url": "https://api.github.com/repos/basaltinc/twig-tools/zipball/6a583b410d0a1cf236459f20aa185ebe9578b057",
+                "reference": "6a583b410d0a1cf236459f20aa185ebe9578b057",
                 "shasum": ""
             },
             "require": {
+                "fzaninotto/faker": "^1.7",
                 "justinrainbow/json-schema": "^5.2",
                 "symfony/yaml": "^3.3",
                 "twig/twig": "^1.0",
@@ -104,7 +105,7 @@
                     "email": "evanlovely@gmail.com"
                 }
             ],
-            "time": "2018-02-07T03:34:09+00:00"
+            "time": "2018-02-14T04:22:41+00:00"
         },
         {
             "name": "bolt/core-php",
@@ -502,6 +503,56 @@
                 "twig"
             ],
             "time": "2017-11-10T23:21:38+00:00"
+        },
+        {
+            "name": "fzaninotto/faker",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fzaninotto/Faker.git",
+                "reference": "c8db65327b73c8e0fa1c9e4d8d179d14a185b13a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/c8db65327b73c8e0fa1c9e4d8d179d14a185b13a",
+                "reference": "c8db65327b73c8e0fa1c9e4d8d179d14a185b13a",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.3 || ^7.0"
+            },
+            "require-dev": {
+                "ext-intl": "*",
+                "phpunit/phpunit": "^4.8.35 || ^5.7",
+                "squizlabs/php_codesniffer": "^1.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Faker\\": "src/Faker/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Zaninotto"
+                }
+            ],
+            "description": "Faker is a PHP library that generates fake data for you.",
+            "keywords": [
+                "data",
+                "faker",
+                "fixtures"
+            ],
+            "time": "2018-02-05T15:03:34+00:00"
         },
         {
             "name": "gajus/dindent",
