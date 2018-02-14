@@ -1,0 +1,731 @@
+{% extends "@bolt/default-template.twig" %}
+
+{% block global_header %}
+  {% include "@bolt/page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+  {% embed "@bolt/band--feature.twig" with {
+    teaserPosition: "left",
+    teaserWidth: "2/3",
+    size: "large",
+    full: true,
+    theme: "dark",
+    background: {
+      opacity: "medium",
+      fill: "gradient",
+      focalPoint: {
+        vertical: "center",
+        horizontal: "right"
+      },
+      contentItems: [{
+        pattern: "image",
+        src: "/images/sample/background-chairs.jpg"
+      }]
+    },
+    primaryTeaser: {
+      headlines: [
+        {
+          type: "eyebrow",
+          text: "Partner Overview",
+          url: "pega.com",
+          icon: {
+            name: "arrow-left",
+            position: "before"
+          }
+        },
+        {
+          type: "headline",
+          text: "Find a Partner",
+          size: "xxxlarge",
+          tag: "h1"
+        }
+      ]
+    }
+  } only %}{% endembed %}
+
+  <div class="c-bolt-band c-bolt-band--full c-bolt-band--small t-bolt-light">
+    <div class="o-bolt-wrapper">
+      <p class="c-bolt-text">
+        Showing 555 results in
+        <span class="c-bolt-search-inline-tags">
+          <a href="javascript:" class="c-bolt-search-inline-tag">
+            filter 1
+          </a>
+          <a href="javascript:" class="c-bolt-search-inline-tag">
+            filter 2
+          </a>
+        </span>
+        and <strong>"search term"</strong>
+        (<a href="javascript:" class="c-bolt-link">Clear filters</a>)
+      </p>
+      {% grid %}
+        {% cell 'u-bolt-width-1/1 u-bolt-width-3/12@medium' %}
+          <div class="c-bolt-search-filters">
+            <div class="c-bolt-search-filters__trigger">
+              {% include "@bolt/button.twig" with {
+                "text": "Close search filters",
+                "url": "#search-filters",
+                "size": "xsmall",
+                "style": "primary",
+                "rounded": true,
+                "iconOnly": true,
+                "icon": {
+                  "name": "more",
+                  "size": "medium"
+                }
+              } only %}
+            </div>
+
+            <div class="c-bolt-search-filters__panel" id="search-filters">
+              <div class="c-bolt-search-filters__panel-content">
+                <form class="c-bolt-form" action="#" method="post" onsubmit="return false;">
+                  <fieldset class="c-bolt-fieldset">
+                    <legend class="c-bolt-legend u-bolt-visuallyhidden">
+                      <h2 class="c-bolt-headline c-bolt-headline--small">
+                        <span class="c-bolt-headline__text">
+                          Search
+                        </span>
+                      </h2>
+                    </legend>
+                    <div class="c-bolt-input-list">
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input" type="search" name="search2-input" id="search2-input" placeholder="Enter text to search" required />
+                        <label class="c-bolt-floating-label" for="search2-input">
+                          Search
+                        </label>
+                        <div class="c-bolt-input-icons">
+                          <button class="c-bolt-input-icon c-bolt-input-icon--link">
+                            {% include "@bolt/icon.twig" with {
+                              "name": "search",
+                              "size": "medium"
+                            } only %}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset class="c-bolt-fieldset">
+                    <legend class="c-bolt-legend">
+                      <h2 class="c-bolt-headline c-bolt-headline--small">
+                        <span class="c-bolt-headline__text">
+                          Partner Type
+                        </span>
+                      </h2>
+                    </legend>
+                    <div class="c-bolt-input-list c-bolt-input-list--stack-spacing-none">
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="partner-type" id="partner-type-choice-1" value="Item 1" checked />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="partner-type-choice-1">
+                          Item 1 (12)
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="partner-type" id="partner-type-choice-2" value="Item 2" checked />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="partner-type-choice-2">
+                          Item 2 (8)
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="partner-type" id="partner-type-choice-3" value="Item 3" checked />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="partner-type-choice-3">
+                          Item 3 (3)
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="partner-type" id="partner-type-choice-4" value="Item 4" checked />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="partner-type-choice-4">
+                          Item 4 (5)
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="partner-type" id="partner-type-choice-5" value="Item 5" />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="partner-type-choice-5">
+                          Item 5 (10)
+                        </label>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset class="c-bolt-fieldset">
+                    <legend class="c-bolt-legend">
+                      <h2 class="c-bolt-headline c-bolt-headline--small">
+                        <span class="c-bolt-headline__text">
+                          Industry
+                        </span>
+                      </h2>
+                    </legend>
+                    <div class="c-bolt-input-list c-bolt-input-list--stack-spacing-none">
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-1" value="Item 1" checked />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="industry-choice-1">
+                          Item 1 (12)
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-2" value="Item 2" checked />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="industry-choice-2">
+                          Item 2 (8)
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-3" value="Item 3" checked />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="industry-choice-3">
+                          Item 3 (3)
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-4" value="Item 4" checked />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="industry-choice-4">
+                          Item 4 (5)
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="industry" id="industry-choice-5" value="Item 5" />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="industry-choice-5">
+                          Item 5 (10)
+                        </label>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset class="c-bolt-fieldset">
+                    <legend class="c-bolt-legend">
+                      <h2 class="c-bolt-headline c-bolt-headline--small">
+                        <span class="c-bolt-headline__text">
+                          Global Region
+                        </span>
+                      </h2>
+                    </legend>
+                    <div class="c-bolt-input-list c-bolt-input-list--stack-spacing-none">
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="global-region" id="global-region-choice-1" value="Item 1" checked />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="global-region-choice-1">
+                          Item 1 (12)
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="global-region" id="global-region-choice-2" value="Item 2" checked />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="global-region-choice-2">
+                          Item 2 (8)
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="global-region" id="global-region-choice-3" value="Item 3" checked />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="global-region-choice-3">
+                          Item 3 (3)
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="global-region" id="global-region-choice-4" value="Item 4" checked />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="global-region-choice-4">
+                          Item 4 (5)
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="global-region" id="global-region-choice-5" value="Item 5" />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="global-region-choice-5">
+                          Item 5 (10)
+                        </label>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset class="c-bolt-fieldset">
+                    <legend class="c-bolt-legend">
+                      <h2 class="c-bolt-headline c-bolt-headline--small">
+                        <span class="c-bolt-headline__text">
+                          Solution
+                        </span>
+                      </h2>
+                    </legend>
+                    <div class="c-bolt-input-list c-bolt-input-list--stack-spacing-none">
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="solution" id="solution-choice-1" value="Item 1" checked />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="solution-choice-1">
+                          Item 1 (12)
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="solution" id="solution-choice-2" value="Item 2" checked />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="solution-choice-2">
+                          Item 2 (8)
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="solution" id="solution-choice-3" value="Item 3" checked />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="solution-choice-3">
+                          Item 3 (3)
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="solution" id="solution-choice-4" value="Item 4" checked />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="solution-choice-4">
+                          Item 4 (5)
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="solution" id="solution-choice-5" value="Item 5" />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--checkbox c-bolt-inline-label--small" for="solution-choice-5">
+                          Item 5 (10)
+                        </label>
+                      </div>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+
+              <div class="c-bolt-search-filters__panel-controls c-bolt-search-filters__panel-controls--submit">
+                {% include "@bolt/button-group.twig" with {
+                  "buttons": [
+                    {
+                      "text": "Apply",
+                      "style": "primary"
+                    },
+                    {
+                      "text": "Cancel",
+                      "url": "#!",
+                      "style": "secondary"
+                    }
+                  ]
+                } only %}
+              </div>
+
+              <div class="c-bolt-search-filters__panel-controls c-bolt-search-filters__panel-controls--close">
+                {% include "@bolt/button.twig" with {
+                  "text": "Close search filters",
+                  "url": "#!",
+                  "size": "xsmall",
+                  "style": "text",
+                  "rounded": true,
+                  "iconOnly": true,
+                  "icon": {
+                    "name": "close",
+                    "size": "medium"
+                  }
+                } only %}
+              </div>
+            </div>
+          </div>
+        {% endcell %}
+
+        {% cell 'u-bolt-width-1/1 u-bolt-width-9/12@medium' %}
+          {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+              {% include "@bolt/card.twig" with {
+                "theme": "xlight",
+                "image": {
+                  "src": "/images/placeholders/logo.png"
+                },
+                "teaser": {
+                  "eyebrow": {
+                    text: "Systems Integrator"
+                  },
+                  "headlines": [
+                    {
+                      "type": "headline",
+                      "text": "Partner Name",
+                      "size": "large"
+                    }
+                  ],
+                  "content": "Overall excellence in driving client success across Pega's applications portfolio, including Pega robotics and articial intellegence (AI).",
+                  "buttons": [
+                    {
+                      "text": "Partner Website",
+                      "style": "secondary",
+                      "url": "http://pega.com/",
+                      "width": "full"
+                    },
+                    {
+                      "text": "App Exchange",
+                      "style": "secondary",
+                      "url": "http://pega.com/",
+                      "width": "full"
+                    }
+                  ]
+                }
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+              {% include "@bolt/card.twig" with {
+                "theme": "xlight",
+                "image": {
+                  "src": "/images/placeholders/logo.png"
+                },
+                "teaser": {
+                  "eyebrow": {
+                    text: "Systems Integrator"
+                  },
+                  "headlines": [
+                    {
+                      "type": "headline",
+                      "text": "Partner Name",
+                      "size": "large"
+                    }
+                  ],
+                  "content": "Overall excellence in driving client success across Pega's applications portfolio, including Pega robotics and articial intellegence (AI).",
+                  "buttons": [
+                    {
+                      "text": "Detail page",
+                      "style": "secondary",
+                      "url": "http://pega.com/",
+                      "width": "full"
+                    }
+                  ]
+                }
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+              {% include "@bolt/card.twig" with {
+                "theme": "xlight",
+                "image": {
+                  "src": "/images/placeholders/logo.png"
+                },
+                "teaser": {
+                  "eyebrow": {
+                    text: "Systems Integrator"
+                  },
+                  "headlines": [
+                    {
+                      "type": "headline",
+                      "text": "Partner Name",
+                      "size": "large"
+                    }
+                  ],
+                  "content": "Overall excellence in driving client success across Pega's applications portfolio, including Pega robotics and articial intellegence (AI).",
+                  "buttons": [
+                    {
+                      "text": "Partner Website",
+                      "style": "secondary",
+                      "url": "http://pega.com/",
+                      "width": "full"
+                    },
+                    {
+                      "text": "App Exchange",
+                      "style": "secondary",
+                      "url": "http://pega.com/",
+                      "width": "full"
+                    }
+                  ]
+                }
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+              {% include "@bolt/card.twig" with {
+                "theme": "xlight",
+                "image": {
+                  "src": "/images/placeholders/logo.png"
+                },
+                "teaser": {
+                  "eyebrow": {
+                    text: "Systems Integrator"
+                  },
+                  "headlines": [
+                    {
+                      "type": "headline",
+                      "text": "Partner Name",
+                      "size": "large"
+                    }
+                  ],
+                  "content": "Overall excellence in driving client success across Pega's applications portfolio, including Pega robotics and articial intellegence (AI).",
+                  "buttons": [
+                    {
+                      "text": "Detail page",
+                      "style": "secondary",
+                      "url": "http://pega.com/",
+                      "width": "full"
+                    }
+                  ]
+                }
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+              {% include "@bolt/card.twig" with {
+                "theme": "xlight",
+                "image": {
+                  "src": "/images/placeholders/logo.png"
+                },
+                "teaser": {
+                  "eyebrow": {
+                    text: "Systems Integrator"
+                  },
+                  "headlines": [
+                    {
+                      "type": "headline",
+                      "text": "Partner Name",
+                      "size": "large"
+                    }
+                  ],
+                  "content": "Overall excellence in driving client success across Pega's applications portfolio, including Pega robotics and articial intellegence (AI).",
+                  "buttons": [
+                    {
+                      "text": "Partner Website",
+                      "style": "secondary",
+                      "url": "http://pega.com/",
+                      "width": "full"
+                    },
+                    {
+                      "text": "App Exchange",
+                      "style": "secondary",
+                      "url": "http://pega.com/",
+                      "width": "full"
+                    }
+                  ]
+                }
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+              {% include "@bolt/card.twig" with {
+                "theme": "xlight",
+                "image": {
+                  "src": "/images/placeholders/logo.png"
+                },
+                "teaser": {
+                  "eyebrow": {
+                    text: "Systems Integrator"
+                  },
+                  "headlines": [
+                    {
+                      "type": "headline",
+                      "text": "Partner Name",
+                      "size": "large"
+                    }
+                  ],
+                  "content": "Overall excellence in driving client success across Pega's applications portfolio, including Pega robotics and articial intellegence (AI).",
+                  "buttons": [
+                    {
+                      "text": "Detail page",
+                      "style": "secondary",
+                      "url": "http://pega.com/",
+                      "width": "full"
+                    }
+                  ]
+                }
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+              {% include "@bolt/card.twig" with {
+                "theme": "xlight",
+                "image": {
+                  "src": "/images/placeholders/logo.png"
+                },
+                "teaser": {
+                  "eyebrow": {
+                    text: "Systems Integrator"
+                  },
+                  "headlines": [
+                    {
+                      "type": "headline",
+                      "text": "Partner Name",
+                      "size": "large"
+                    }
+                  ],
+                  "content": "Overall excellence in driving client success across Pega's applications portfolio, including Pega robotics and articial intellegence (AI).",
+                  "buttons": [
+                    {
+                      "text": "Partner Website",
+                      "style": "secondary",
+                      "url": "http://pega.com/",
+                      "width": "full"
+                    },
+                    {
+                      "text": "App Exchange",
+                      "style": "secondary",
+                      "url": "http://pega.com/",
+                      "width": "full"
+                    }
+                  ]
+                }
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+              {% include "@bolt/card.twig" with {
+                "theme": "xlight",
+                "image": {
+                  "src": "/images/placeholders/logo.png"
+                },
+                "teaser": {
+                  "eyebrow": {
+                    text: "Systems Integrator"
+                  },
+                  "headlines": [
+                    {
+                      "type": "headline",
+                      "text": "Partner Name",
+                      "size": "large"
+                    }
+                  ],
+                  "content": "Overall excellence in driving client success across Pega's applications portfolio, including Pega robotics and articial intellegence (AI).",
+                  "buttons": [
+                    {
+                      "text": "Detail page",
+                      "style": "secondary",
+                      "url": "http://pega.com/",
+                      "width": "full"
+                    }
+                  ]
+                }
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+              {% include "@bolt/card.twig" with {
+                "theme": "xlight",
+                "image": {
+                  "src": "/images/placeholders/logo.png"
+                },
+                "teaser": {
+                  "eyebrow": {
+                    text: "Systems Integrator"
+                  },
+                  "headlines": [
+                    {
+                      "type": "headline",
+                      "text": "Partner Name",
+                      "size": "large"
+                    }
+                  ],
+                  "content": "Overall excellence in driving client success across Pega's applications portfolio, including Pega robotics and articial intellegence (AI).",
+                  "buttons": [
+                    {
+                      "text": "Partner Website",
+                      "style": "secondary",
+                      "url": "http://pega.com/",
+                      "width": "full"
+                    },
+                    {
+                      "text": "App Exchange",
+                      "style": "secondary",
+                      "url": "http://pega.com/",
+                      "width": "full"
+                    }
+                  ]
+                }
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+              {% include "@bolt/card.twig" with {
+                "theme": "xlight",
+                "image": {
+                  "src": "/images/placeholders/logo.png"
+                },
+                "teaser": {
+                  "eyebrow": {
+                    text: "Systems Integrator"
+                  },
+                  "headlines": [
+                    {
+                      "type": "headline",
+                      "text": "Partner Name",
+                      "size": "large"
+                    }
+                  ],
+                  "content": "Overall excellence in driving client success across Pega's applications portfolio, including Pega robotics and articial intellegence (AI).",
+                  "buttons": [
+                    {
+                      "text": "Detail page",
+                      "style": "secondary",
+                      "url": "http://pega.com/",
+                      "width": "full"
+                    }
+                  ]
+                }
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+              {% include "@bolt/card.twig" with {
+                "theme": "xlight",
+                "image": {
+                  "src": "/images/placeholders/logo.png"
+                },
+                "teaser": {
+                  "eyebrow": {
+                    text: "Systems Integrator"
+                  },
+                  "headlines": [
+                    {
+                      "type": "headline",
+                      "text": "Partner Name",
+                      "size": "large"
+                    }
+                  ],
+                  "content": "Overall excellence in driving client success across Pega's applications portfolio, including Pega robotics and articial intellegence (AI).",
+                  "buttons": [
+                    {
+                      "text": "Partner Website",
+                      "style": "secondary",
+                      "url": "http://pega.com/",
+                      "width": "full"
+                    },
+                    {
+                      "text": "App Exchange",
+                      "style": "secondary",
+                      "url": "http://pega.com/",
+                      "width": "full"
+                    }
+                  ]
+                }
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+              {% include "@bolt/card.twig" with {
+                "theme": "xlight",
+                "image": {
+                  "src": "/images/placeholders/logo.png"
+                },
+                "teaser": {
+                  "eyebrow": {
+                    text: "Systems Integrator"
+                  },
+                  "headlines": [
+                    {
+                      "type": "headline",
+                      "text": "Partner Name",
+                      "size": "large"
+                    }
+                  ],
+                  "content": "Overall excellence in driving client success across Pega's applications portfolio, including Pega robotics and articial intellegence (AI).",
+                  "buttons": [
+                    {
+                      "text": "Detail page",
+                      "style": "secondary",
+                      "url": "http://pega.com/",
+                      "width": "full"
+                    }
+                  ]
+                }
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1" %}
+              <ul class="o-bolt-inline-list o-bolt-inline-list--small">
+                <li class="o-bolt-inline-list__item">
+                  <strong>1</strong>
+                </li>
+                <li class="o-bolt-inline-list__item">
+                  <a href="javascript:" class="c-bolt-link">2</a>
+                </li>
+                <li class="o-bolt-inline-list__item">
+                  <a href="javascript:" class="c-bolt-link">3</a>
+                </li>
+                <li class="o-bolt-inline-list__item">
+                  <a href="javascript:" class="c-bolt-link">4</a>
+                </li>
+                <li class="o-bolt-inline-list__item">
+                  <a href="javascript:" class="c-bolt-link">5</a>
+                </li>
+                <li class="o-bolt-inline-list__item">
+                  &hellip;
+                </li>
+                <li class="o-bolt-inline-list__item">
+                  <a href="javascript:" class="c-bolt-link">20</a>
+                </li>
+                <li class="o-bolt-inline-list__item">
+                  <a href="javascript:" class="c-bolt-link">&raquo;</a>
+                </li>
+                <li class="o-bolt-inline-list__item">
+                  <a href="https://pega.invisionapp.com/share/SUFT20GM5HJ#/screens/278846298_Pagination_Redlines" class="c-bolt-link" target="_blank">View InVision design for pagination</a>
+                </li>
+              </ul>
+            {% endcell %}
+          {% endgrid %}
+        {% endcell %}
+      {% endgrid %}
+    </div>
+  </div>
+{% endblock %}
