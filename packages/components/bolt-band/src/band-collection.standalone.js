@@ -6,7 +6,8 @@ import {
   withComponent,
   withPreact,
   css,
-  spacingSizes
+  spacingSizes,
+  hasNativeShadowDomSupport
 } from '@bolt/core';
 
 
@@ -14,25 +15,15 @@ import {
    * Cloning contents from a &lt;template&gt; element is more performant
    * than using innerHTML because it avoids addtional HTML parse costs.
    */
-const bandCollectionTemplate = document.createElement('template');
-bandCollectionTemplate.innerHTML = `
-    <slot></slot>
-  `;
-
-// HIDE
-// ShadyCSS will rename classes as needed to ensure style scoping.
-ShadyCSS.prepareTemplate(bandCollectionTemplate, 'bolt-band-collection');
-  // /HIDE
-
 
 @define
 export class BoltBandCollection extends withComponent(withPreact()) {
   static is = 'bolt-band-collection';
 
-  constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
-    this.shadowRoot.appendChild(bandCollectionTemplate.content.cloneNode(true));
+  constructor(element) {
+    super(element);
+    // this.attachShadow({ mode: 'open' });
+    // this.shadowRoot.appendChild(bandCollectionTemplate.content.cloneNode(true));
 
     Promise.all([
       customElements.whenDefined('bolt-band')
@@ -100,7 +91,6 @@ export class BoltBandCollection extends withComponent(withPreact()) {
     // Shim Shadow DOM styles. This needs to be run in `connectedCallback()`
     // because if you shim Custom Properties (CSS variables) the element
     // will need access to its parent node.
-    ShadyCSS.styleElement(this);
       // /HIDE
 
     this.addEventListener('change', this._onChange);
@@ -115,12 +105,14 @@ export class BoltBandCollection extends withComponent(withPreact()) {
   }
 
   render() {
-    return (
-      <slot />
-    )
+    if (hasNativeShadowDomSupport){
+      return (
+        <slot />
+      )
+    }
   }
-}
 
+}
 
 
 // These functions help make animations easier.
