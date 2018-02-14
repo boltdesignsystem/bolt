@@ -1,10 +1,23 @@
-{% set schema = get_data('@bolt-components-breadcrumb/breadcrumb.schema.yml') %}
+{#{% set schema = get_data('@bolt-components-breadcrumb/breadcrumb.schema.yml') %}#}
 {% set readme = source('@bolt-components-breadcrumb/README.md') %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
-    text: "This is a breadcrumb",
-    url: "http://google.com",
-  } only %}
+  "contentItems": [
+    include("@bolt-components-link/link.twig", {
+      "text": "Home",
+      "url": "#"
+    }),
+    include("@bolt-components-link/link.twig", {
+      "text": "Landing Page",
+      "url": "#"
+    }),
+    include("@bolt-components-link/link.twig", {
+      "text": "Sub Page",
+      "url": "#"
+    }),
+    "Current Page"
+  ]
+} only %}
 {% endverbatim %}
 {% endset %}
 
