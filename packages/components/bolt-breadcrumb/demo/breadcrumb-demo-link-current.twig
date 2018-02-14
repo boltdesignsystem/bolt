@@ -1,0 +1,23 @@
+{% include "@bolt/breadcrumb.twig" with {
+  "contentItems": [
+    include("@bolt/link.twig", {
+      "text": "Home",
+      "url": "#"
+    }),
+    include("@bolt/link.twig", {
+      "text": "Landing Page",
+      "url": "#"
+    }),
+    include("@bolt/link.twig", {
+      "text": "Sub Page",
+      "url": "#"
+    }),
+    include("@bolt/link.twig", {
+      "text": "Current Page",
+      "url": "#",
+      "attributes": {
+        "aria-current": "page"
+      },
+    }),
+  ]
+} only %}
