@@ -1,0 +1,49 @@
+/* ------------------------------------ *\
+   Breadcrumb
+\* ------------------------------------ */
+
+@import '@bolt/core';
+
+// Custom element default styles
+bolt-breadcrumb {
+  display: block;
+
+  &:not(:last-child) {
+    @include bolt-margin-bottom(medium);
+  }
+}
+
+
+// Breadcrumb styles
+.c-bolt-breadcrumb {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
+  background: transparent;
+}
+
+.c-bolt-breadcrumb__list {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
+  @include bolt-font-size(xsmall);
+  list-style: none;
+}
+
+.c-bolt-breadcrumb__item {
+  display: inline;
+
+  &:not(:last-child):after {
+    @include bolt-margin(0 xxsmall);
+
+    display: inline-block;
+    position: relative;
+    width: bolt-v-spacing(xsmall);
+    height: bolt-v-spacing(xsmall);
+    content: '';
+    vertical-align: baseline;
+    border-color: inherit;
+    border-color: var(--bolt-theme-text, inherit);
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    transform: rotate(45deg);
+  }
+}
