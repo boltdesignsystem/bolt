@@ -120,13 +120,18 @@ program
     require('./tasks/task-collections').images();
   });
 
+
 program
   .command('webpack')
   .alias('wp')
   .description('WebPack Compile')
-  .action((options) => {
+  .action(async (options) => {
     updateConfig(options, program);
-    require('./tasks/webpack-tasks').compile();
+    try {
+      await require('./tasks/webpack-tasks').compile();
+    } catch (error) {
+      log.errorAndExit('WebPack failed', error);
+    }
   });
 
 if (config.env === 'pl'){
@@ -134,9 +139,13 @@ if (config.env === 'pl'){
     .command('pattern-lab')
     .alias('pl')
     .description('Pattern Lab Compile')
-    .action((options) => {
+    .action(async (options) => {
       updateConfig(options, program);
-      require('./tasks/pattern-lab-tasks').compile();
+      try {
+        await require('./tasks/pattern-lab-tasks').compile();
+      } catch (error) {
+        log.errorAndExit('Pattern Lab failed', error);
+      }
     });
 }
 
