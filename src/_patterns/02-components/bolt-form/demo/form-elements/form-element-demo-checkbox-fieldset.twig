@@ -21,6 +21,8 @@
 {% endset %}
 
 {% include "@bolt/form-fieldset.twig" with {
-  "legendTitle": "Select one or more toppings",
-  "children": children
+  "legendTitle": "Select toppings",
+  "children": children,
+  "descriptionText": "Pick at least two of the following",
+  "errors": "If there were any server-side errors, you'd see them here"
 } only %}
