@@ -59,8 +59,8 @@
   @include respond-to(medium) {
     grid-row: 3/span 1;
     grid-column: 3/span 1;
-    @include bolt-padding-left(large);
-    @include bolt-padding-right(large);
+    @include bolt-padding-left(medium);
+    @include bolt-padding-right(medium);
   }
 }
 
@@ -82,21 +82,18 @@
 }
 
 pre {
-  background: rgba(0, 0, 0, .05);
-  padding: 20px;
+  @include bolt-font-family(code);
+  @include bolt-font-size(small);
+  @include bolt-padding(small);
   white-space: pre-wrap;
-  font-family: Menlo,Monaco,"Courier New",Courier,monospace;
-  font-size: 16px;
-  background-color: rgba(0, 0, 0, 0.05);
-
-  // @include bolt-padding(small);
-  // background: #F0F0F0;
+  background-color: rgba(bolt-color(black), 0.05);
   border-radius: 4px;
 
-  font-family: 'Roboto Mono', monospace;
 
+  // Override highlightjs default styling
   .hljs {
     @include bolt-padding(0);
+    background-color: transparent;
   }
 }
 
@@ -204,4 +201,20 @@ pre {
 
 .c-bolt-docs-table .c-bolt-docs-table {
   overflow: hidden; // Prevent nested tables from scrolling to keep things from getting too crazy
+}
+
+
+
+.c-bolt-docs__heading-fragment a {
+  display: block;
+  margin-left: bolt-spacing(medium) * -1;
+
+  &:before {
+    float: left;
+    content: '#';
+    font-size: 1em;
+    text-align: center;
+    width: bolt-spacing(medium);
+    color: inherit;
+  }
 }
