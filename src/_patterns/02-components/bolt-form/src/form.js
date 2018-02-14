@@ -1,6 +1,8 @@
 // TODO: limit to a .js class
 const inputs = document.querySelectorAll('.c-bolt-input');
-inputs.forEach(input => {
+
+for (let i = 0, len = inputs.length; i < len; i++) {
+  const input = inputs[i];
 
   // Check if the field has pre-filled text from the server side
   if (input.value) {
@@ -37,10 +39,12 @@ inputs.forEach(input => {
       input.errors = input.insertAdjacentElement('afterend', error);
     }
   };
-});
+}
 
 const customInputWrappers = document.querySelectorAll('.c-bolt-custom-input');
-customInputWrappers.forEach(wrapper => {
+
+for (let i = 0, len = customInputWrappers.length; i < len; i++) {
+  const wrapper = customInputWrappers[i];
   const input = wrapper.querySelector('.c-bolt-input');
 
   input.onfocus = function() {
@@ -50,4 +54,4 @@ customInputWrappers.forEach(wrapper => {
   input.onblur = function() {
     wrapper.classList.remove('is-active');
   };
-});
+}
