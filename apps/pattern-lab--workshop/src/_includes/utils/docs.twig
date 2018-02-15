@@ -11,14 +11,11 @@
     <pre><code>{{ code }}</code></pre>
   {% endif %}
 
-  {% if readme %}
+  {% if readmeFile %}
     <h4>ReadMe</h4>
-    {{ readme|markdown }}
-    {% if readmePath %}
-      {# @todo Improve robustness of getting ReadMe Path #}
-      {% set branchName = 'epic/refactor' %}
-      <a href="https://github.com/bolt-design-system/bolt/blob/{{ branchName }}/{{ readmePath }}" target="_blank">Edit this ReadMe on GitHub</a>
-    {% endif %}
+    {% include '@utils/md-embed.twig' with {
+      file: readmeFile,
+    } only %}
   {% endif %}
 
   {% if links %}
