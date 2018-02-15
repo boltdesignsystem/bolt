@@ -11,7 +11,7 @@ program
 
 // We need to initialize config as early as possible
 const configFilePath = path.resolve(process.cwd(), program.configFile || '.boltrc');
-configStore.init(require(configFilePath));
+const config = configStore.init(require(configFilePath));
 // Now that config is initilized, we can start requiring other things
 
 const { buildBoltManifest } = require('./utils/manifest');
@@ -119,6 +119,35 @@ program
     updateConfig(options, program);
     require('./tasks/task-collections').images();
   });
+
+
+program
+  .command('webpack')
+  .alias('wp')
+  .description('WebPack Compile')
+  .action(async (options) => {
+    updateConfig(options, program);
+    try {
+      await require('./tasks/webpack-tasks').compile();
+    } catch (error) {
+      log.errorAndExit('WebPack failed', error);
+    }
+  });
+
+if (config.env === 'pl'){
+  program
+    .command('pattern-lab')
+    .alias('pl')
+    .description('Pattern Lab Compile')
+    .action(async (options) => {
+      updateConfig(options, program);
+      try {
+        await require('./tasks/pattern-lab-tasks').compile();
+      } catch (error) {
+        log.errorAndExit('Pattern Lab failed', error);
+      }
+    });
+}
 
 // This will tell you all that got `require()`-ed
 // We want to only load what we need - that's why not all `require` statements are at top

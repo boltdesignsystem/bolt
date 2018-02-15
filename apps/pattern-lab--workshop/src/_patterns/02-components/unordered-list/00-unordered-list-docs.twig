@@ -1,4 +1,3 @@
-{% set schema = get_data('@bolt-components-unordered-list/unordered-list.schema.yml') %}
 {% set readme = source('@bolt-components-unordered-list/README.md') %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-unordered-list/unordered-list.twig" with {
@@ -23,6 +22,5 @@
 {% include '@utils/docs.twig' with {
   schema: schema,
   code: code,
-  readme: readme,
-  readmePath: 'packages/components/bolt-unordered-list/README.md',
+  readmeFile: '@bolt-components-unordered-list/README.md',
 } only %}

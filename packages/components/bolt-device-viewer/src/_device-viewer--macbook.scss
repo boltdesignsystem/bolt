@@ -1,13 +1,15 @@
 $bolt-macbook-viewer-height: 720px;
 $bolt-macbook-viewer-width: 960px + (44px * 2);
 
-$bolt-macbook-shadow: 0 1px 2px 1px rgba(6,10,36,0.10),
-  0 0.25rem 0.5rem 1px rgba(6,10,36,0.15),
-  0 1rem 2rem 0 rgba(6,10,36,0.25);
+// $bolt-macbook-shadow: 0 1px 2px 1px rgba(6,10,36,0.10),
+//   0 0.25rem 0.5rem 1px rgba(6,10,36,0.15),
+//   0 1rem 2rem 0 rgba(6,10,36,0.25);
+
+$bolt-macbook-shadow: none;
 
 .c-bolt-macbook-viewer {
   width: 100%;
-  max-width: $bolt-macbook-viewer-width;
+  max-width: $bolt-macbook-viewer-width * .6;
   background-color: #bebebe;
   border-top-left-radius: (34px / $bolt-macbook-viewer-width * 100%) (34px / $bolt-macbook-viewer-height * 100%);
   border-top-right-radius: (34px / $bolt-macbook-viewer-width * 100%) (34px / $bolt-macbook-viewer-height * 100%);

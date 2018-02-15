@@ -6,20 +6,82 @@ brightcove-player {
   // --aspect-ratio-height: 16;
   // --aspect-ratio-width: 9;
   // padding-top: calc( var(--aspect-ratio-height, 1) / var(--aspect-ratio-width, 1) * 100%);
-  
+
   &.is-playing {
     opacity: 1;
   }
 }
 
+.c-brightcove-video__inner {
+  margin: 0 auto;
+}
+
+bolt-video {
+  // Hide the metadata (which covers the controls) if the user is either
+  //   a) watching the video
+  //   b) potentially interacting with the video
+  &:hover,
+  &.is-playing,
+  &:hover.is-paused {
+    brightcove-meta {
+      display: none;
+    }
+  }
+}
+
+
+
+
+.c-brightcove-video {
+
+  .video-js {
+    width: 100%;
+    height: 100%;
+  }
+
+  /**
+    * 1. 90vw instead of 100vw so the video close button
+    * doesn't spill outside of the video container in IE 11 /
+    * on Windows
+    */
+  .c-bolt-background__video & {
+    display: block;
+    position: relative;
+    width: 90vw;
+    height: 90vw * (9 / 16);
+    max-width: 100vh;
+    max-height: 100vh * (9 / 16);
+    margin: 0 auto;
+
+    @include respond-to(small) {
+      width: calc(90vw - #{bolt-spacing(large)}); /* [1] */
+      height: calc((90vw * (9 / 16)) - #{bolt-spacing(large)}); /* [1] */
+    }
+  }
+}
 
 .video-js {
+  width: 100%;
+  height: 100%;
   // @supports (--custom:property) {
   //   padding-top: calc( var(--aspect-ratio-height, 1) / var(--aspect-ratio-width, 1) * 100%);
   // }
-  min-height: 100%;
-  min-width: 100%;
+
+  .c-bolt-background__video & {
+    height: 100%;
+  }
 }
+
+
+// Hide close captions button
+.vjs-subs-caps-button {
+  display: none;
+}
+
+
+
+
+
 
 // .c-bolt-background-video {
 //   pointer-events: none;

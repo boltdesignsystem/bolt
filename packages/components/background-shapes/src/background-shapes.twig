@@ -8,7 +8,66 @@
 
 {% set colors = ["yellow", "orange", "teal", "blue"] %}
 
-{% set shapeGroups = source("@bolt/shape-groups.json") | json_decode %}
+{% set shapeGroups = {
+  "A": [
+    {
+      "shape": "circle-square",
+      "color": "yellow",
+      "interiorColor": "indigo"
+    },
+    {
+      "shape": "outline-circle",
+      "color": "orange"
+    },
+    {
+      "shape": "square-square",
+      "color": "teal",
+      "interiorColor": "indigo"
+    },
+    {
+      "shape": "little-circle",
+      "color": "teal"
+    },
+    {
+      "shape": "square-square",
+      "color": "yellow",
+      "interiorColor": "indigo"
+    },
+    {
+      "shape": "little-circle",
+      "color": "orange"
+    }
+  ],
+  "B": [
+    {
+      "shape": "square-square",
+      "color": "teal",
+      "interiorColor": "indigo"
+    },
+    {
+      "shape": "outline-circle",
+      "color": "yellow"
+    },
+    {
+      "shape": "square-square",
+      "color": "orange",
+      "interiorColor": "indigo"
+    },
+    {
+      "shape": "little-circle",
+      "color": "teal"
+    },
+    {
+      "shape": "circle-circle",
+      "color": "teal",
+      "interiorColor": "orange"
+    },
+    {
+      "shape": "outline-circle",
+      "color": "yellow"
+    }
+  ]
+} %}
 
 {# If a valid shapeGroup was specified, select its shapes.  Otherwise, get the shapes from the default shapeGroup. #}
 {% set elements = attribute(shapeGroups, shapeGroup) ? attribute(shapeGroups, shapeGroup) : shapeGroups.A %}
