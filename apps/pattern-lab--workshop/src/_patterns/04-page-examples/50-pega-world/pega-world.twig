@@ -1,10 +1,37 @@
 {# HERO #}
 
+<nav class="c-pw-mobile-menu" id="menu">
+  <ul class="c-pw-mobile-menu-list">
+    <li class="c-pw-mobile-menu-list__item">
+      <a href="#!" class="c-pw-mobile-menu-link">
+        <span class="u-bolt-visuallyhidden">
+          Close menu
+        </span>
+      </a>
+    </li>
+    <li class="c-pw-mobile-menu-list__item">
+      <a href="" class="c-pw-mobile-menu-link">Facts</a>
+    </li>
+    <li class="c-pw-mobile-menu-list__item">
+      <a href="" class="c-pw-mobile-menu-link">Agenda</a>
+    </li>
+    <li class="c-pw-mobile-menu-list__item">
+      <a href="" class="c-pw-mobile-menu-link">Experience</a>
+    </li>
+    <li class="c-pw-mobile-menu-list__item">
+      <a href="" class="c-bolt-button c-bolt-button--large c-bolt-button--secondary u-pw-full-at-bp-400-only">Register</a>
+    </li>
+  </ul>
+</nav>
+
 {% set nav_band_content %}
-  <nav class="c-pw-menu" id="menu">
+  <nav class="c-pw-menu">
     <div class="c-pw-menu-logo">
       <img src="/images/pw2018/logo-pw2018.png" alt="Pega">
     </div>
+    <a class="c-pw-menu-trigger" href="#menu">
+      <span class="u-bolt-visuallyhidden">Open menu</span>
+    </a>
     <ul class="c-pw-menu-list">
       <li class="c-pw-menu-list__item">
         <a href="" class="c-pw-menu-link">Facts</a>
@@ -37,9 +64,7 @@
             "text": "Digital Transformation is hard. Join us at PegaWorld 2018 to learn how to get it right.",
             "tag": "h2"
           } only %}
-          {% include "@bolt/button.twig" with {
-            "text": "Register now"
-          } only %}
+          <a href="" class="c-bolt-button c-bolt-button--primary">Register now</a>
         {% endcell %}
       {% endgrid %}
     {% endcell %}
@@ -239,8 +264,8 @@
       {% cell "u-bolt-width-1/1" %}
         {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
           {% cell "u-bolt-width-1/1 u-bolt-width-9/12@small" %}
-            {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
-              {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
                 {% include "@bolt/image.twig" with {
                   src: "/images/pw2018/thumb-keynotes.jpg",
                   alt: "Inspiring Keynotes"
@@ -251,8 +276,13 @@
                   "text": "Inspiring Keynotes",
                   "tag": "div"
                 } only %}
+                {% include "@bolt/text.twig" with {
+                  "align": "center",
+                  "text": "Renowned business leaders sharing their amazing stories",
+                  "tag": "div"
+                } only %}
               {% endcell %}
-              {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
                 {% include "@bolt/image.twig" with {
                   src: "/images/pw2018/thumb-networking.jpg",
                   alt: "Unbelievable Networking"
@@ -260,11 +290,16 @@
                 {% include "@bolt/headline.twig" with {
                   "size": "large",
                   "align": "center",
-                  "text": "Unbelievable Networking",
+                  "text": "Awesome Technology",
+                  "tag": "div"
+                } only %}
+                {% include "@bolt/text.twig" with {
+                  "align": "center",
+                  "text": "Award-winning AI, Robotics, Customer Engagement, and Digital Process Automation tech",
                   "tag": "div"
                 } only %}
               {% endcell %}
-              {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
                 {% include "@bolt/image.twig" with {
                   src: "/images/pw2018/thumb-entertainment.jpg",
                   alt: "Killer Entertainment"
@@ -272,19 +307,46 @@
                 {% include "@bolt/headline.twig" with {
                   "size": "large",
                   "align": "center",
-                  "text": "Killer Entertainment",
+                  "text": "A Riveting Agenda",
+                  "tag": "div"
+                } only %}
+                {% include "@bolt/text.twig" with {
+                  "align": "center",
+                  "text": "100s of sessions to choose from to learn practical ways to accelerate your own Digital Transformation journey",
                   "tag": "div"
                 } only %}
               {% endcell %}
-              {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
                 {% include "@bolt/image.twig" with {
-                  src: "/images/pw2018/thumb-learning.jpg",
+                  src: "/images/pw2018/thumb-networking.jpg",
+                  alt: "Unbelievable Networking"
+                } only %}
+                {% include "@bolt/headline.twig" with {
+                  "size": "large",
+                  "align": "center",
+                  "text": "The greatest minds in business and technology all under one roof",
+                  "tag": "div"
+                } only %}
+                {% include "@bolt/text.twig" with {
+                  "align": "center",
+                  "text": "Renowned business leaders sharing their amazing stories",
+                  "tag": "div"
+                } only %}
+              {% endcell %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+                {% include "@bolt/image.twig" with {
+                  src: "/images/pw2018/thumb-entertainment.jpg",
                   alt: "Learning, knowledge, insights"
                 } only %}
                 {% include "@bolt/headline.twig" with {
                   "size": "large",
                   "align": "center",
-                  "text": "Learning, knowledge, insights",
+                  "text": "Killer Entertainment",
+                  "tag": "div"
+                } only %}
+                {% include "@bolt/text.twig" with {
+                  "align": "center",
+                  "text": "You gotta have some fun too, right?!",
                   "tag": "div"
                 } only %}
               {% endcell %}
@@ -334,9 +396,7 @@
       {% cell "u-bolt-width-1/1" %}
         {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
           {% cell %}
-            {% include "@bolt/button.twig" with {
-              "text": "Watch the Replays"
-            } only %}
+            <a href="" class="c-bolt-button c-bolt-button--primary">Watch the Replays</a>
           {% endcell %}
         {% endgrid %}
       {% endcell %}
@@ -346,8 +406,7 @@
 
 {% embed "@bolt/band.twig" with {
   theme: "dark",
-  size: "large",
-  fullBleed: true
+  size: "large"
 } only %}
   {% block band_content %}
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
@@ -371,8 +430,7 @@
                 <figure class="c-pw-portrait">
                   {% include "@bolt/image.twig" with {
                     src: "/images/pw2018/portrait-silva.jpg",
-                    alt: "Kushala Silva",
-                    lazyload: true
+                    alt: "Kushala Silva"
                   } only %}
                 </figure>
                 {% include "@bolt/headline.twig" with {
@@ -385,13 +443,21 @@
                   "align": "center",
                   "text": "Group Director, Innovation and Emerging Technologies"
                 } only %}
+                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+                  {% cell %}
+                    {% include "@bolt/logo.twig" with {
+                      src: "/images/pw2018/logo-paypal.png",
+                      alt: "Logo",
+                      align: "center"
+                    } only %}
+                  {% endcell %}
+                {% endgrid %}
               {% endcell %}
               {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small u-bolt-width-4/12@medium" %}
                 <figure class="c-pw-portrait">
                   {% include "@bolt/image.twig" with {
                     src: "/images/pw2018/portrait-mingle.jpg",
-                    alt: "David Mingle",
-                    lazyload: true
+                    alt: "David Mingle"
                   } only %}
                 </figure>
                 {% include "@bolt/headline.twig" with {
@@ -404,13 +470,21 @@
                   "align": "center",
                   "text": "General Director, Global Customer Experience Execution"
                 } only %}
+                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+                  {% cell %}
+                    {% include "@bolt/logo.twig" with {
+                      src: "/images/pw2018/logo-paypal.png",
+                      alt: "Logo",
+                      align: "center"
+                    } only %}
+                  {% endcell %}
+                {% endgrid %}
               {% endcell %}
               {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small u-bolt-width-4/12@medium" %}
                 <figure class="c-pw-portrait">
                   {% include "@bolt/image.twig" with {
                     src: "/images/pw2018/portrait-sole.jpg",
-                    alt: "Roger Sole",
-                    lazyload: true
+                    alt: "Roger Sole"
                   } only %}
                 </figure>
                 {% include "@bolt/headline.twig" with {
@@ -423,6 +497,15 @@
                   "align": "center",
                   "text": "Chief Marketing Officer"
                 } only %}
+                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+                  {% cell %}
+                    {% include "@bolt/logo.twig" with {
+                      src: "/images/pw2018/logo-paypal.png",
+                      alt: "Logo",
+                      align: "center"
+                    } only %}
+                  {% endcell %}
+                {% endgrid %}
               {% endcell %}
             {% endgrid %}
           {% endcell %}
@@ -431,145 +514,7 @@
       {% cell "u-bolt-width-1/1" %}
         {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
           {% cell %}
-            {% include "@bolt/button.twig" with {
-              "text": "Call to action"
-            } only %}
-          {% endcell %}
-        {% endgrid %}
-      {% endcell %}
-      {% cell "u-bolt-width-1/1" %}
-        {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
-            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-              {% cell %}
-                {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
-                } only %}
-              {% endcell %}
-            {% endgrid %}
-          {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
-            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-              {% cell %}
-                {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
-                } only %}
-              {% endcell %}
-            {% endgrid %}
-          {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
-            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-              {% cell %}
-                {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
-                } only %}
-              {% endcell %}
-            {% endgrid %}
-          {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
-            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-              {% cell %}
-                {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
-                } only %}
-              {% endcell %}
-            {% endgrid %}
-          {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
-            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-              {% cell %}
-                {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
-                } only %}
-              {% endcell %}
-            {% endgrid %}
-          {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
-            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-              {% cell %}
-                {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
-                } only %}
-              {% endcell %}
-            {% endgrid %}
-          {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
-            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-              {% cell %}
-                {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
-                } only %}
-              {% endcell %}
-            {% endgrid %}
-          {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
-            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-              {% cell %}
-                {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
-                } only %}
-              {% endcell %}
-            {% endgrid %}
-          {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
-            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-              {% cell %}
-                {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
-                } only %}
-              {% endcell %}
-            {% endgrid %}
-          {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
-            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-              {% cell %}
-                {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
-                } only %}
-              {% endcell %}
-            {% endgrid %}
-          {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
-            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-              {% cell %}
-                {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
-                } only %}
-              {% endcell %}
-            {% endgrid %}
-          {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
-            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-              {% cell %}
-                {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
-                } only %}
-              {% endcell %}
-            {% endgrid %}
+            <a href="" class="c-bolt-button c-bolt-button--primary">Call to action</a>
           {% endcell %}
         {% endgrid %}
       {% endcell %}
@@ -712,9 +657,7 @@
       {% cell "u-bolt-width-1/1" %}
         {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
           {% cell %}
-            {% include "@bolt/button.twig" with {
-              "text": "Register now!"
-            } only %}
+            <a href="" class="c-bolt-button c-bolt-button--primary">Register now!</a>
           {% endcell %}
         {% endgrid %}
       {% endcell %}
@@ -743,134 +686,122 @@
       {% endcell %}
       {% cell "u-bolt-width-1/1" %}
         {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
                   src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
+                  alt: "Logo"
                 } only %}
               {% endcell %}
             {% endgrid %}
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
                   src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
+                  alt: "Logo"
                 } only %}
               {% endcell %}
             {% endgrid %}
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
                   src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
+                  alt: "Logo"
                 } only %}
               {% endcell %}
             {% endgrid %}
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
                   src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
+                  alt: "Logo"
                 } only %}
               {% endcell %}
             {% endgrid %}
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
                   src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
+                  alt: "Logo"
                 } only %}
               {% endcell %}
             {% endgrid %}
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
                   src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
+                  alt: "Logo"
                 } only %}
               {% endcell %}
             {% endgrid %}
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
                   src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
+                  alt: "Logo"
                 } only %}
               {% endcell %}
             {% endgrid %}
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
                   src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
+                  alt: "Logo"
                 } only %}
               {% endcell %}
             {% endgrid %}
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
                   src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
+                  alt: "Logo"
                 } only %}
               {% endcell %}
             {% endgrid %}
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
                   src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
+                  alt: "Logo"
                 } only %}
               {% endcell %}
             {% endgrid %}
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
                   src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
+                  alt: "Logo"
                 } only %}
               {% endcell %}
             {% endgrid %}
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
                   src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo",
-                  lazyload: false
+                  alt: "Logo"
                 } only %}
               {% endcell %}
             {% endgrid %}
