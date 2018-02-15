@@ -1,5 +1,5 @@
 {% macro titleAndDescription(title, description, minimum, maximum) %}
-  {%- if title %} - <strong>{{ title | markdown }}</strong> {% endif -%}
+  {%- if title %}<strong>{{ title | markdown }}</strong> {% endif -%}
   {% if minimum and maximum %}
     - [{{ minimum }} ~ {{ maximum }}]
   {% else %}
