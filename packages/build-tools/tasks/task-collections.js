@@ -70,6 +70,7 @@ async function build() {
         await extraTasks.patternLab.compile();
         break;
       case 'static':
+        await manifest.writeTwigNamespaceFile(process.cwd(), config.extraTwigNamespaces);
         await extraTasks.static.compile();
         break;
     }
