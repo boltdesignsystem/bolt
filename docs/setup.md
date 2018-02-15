@@ -81,6 +81,7 @@ Well, since you asked:
 </details>
 
 When the above completes you should see:
+
 <pre style="background: #000000;color: #5659de;padding: 30px;overflow: hidden;border-radius: 7px;">    ///////|\\\\\\
    ///˜˜˜˜<span style="color:orange">/|</span>˜˜˜˜\\\
   ///    <span style="color:orange">//|</span>     \\\     <strong><u>Bolt-CLI</u></strong>
@@ -91,7 +92,7 @@ When the above completes you should see:
   \\\     <span style="color:orange">|//</span>    ///     <span style="color: #2525ef;">Help: `bolt --help` or `bolt &lt;command&gt; --help`</span>
    \\\____<span style="color:orange">|/</span>____///
     \\\\\\|///////
-
+    
 <span style="color: grey;">Verbosity: 1</span>
 <span style="color: green;">✔ Cleaned files in 134ms
 ✔ Built WebPack bundle in 10.1s
