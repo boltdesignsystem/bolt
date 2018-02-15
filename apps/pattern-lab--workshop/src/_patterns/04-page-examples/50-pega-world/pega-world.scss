@@ -144,17 +144,25 @@
 }
 
 .c-pw-menu-logo {
-  display: block;
+  display: flex;
+  align-items: center;
+}
 
-  img {
-    width: 200px;
-    height: auto;
-  }
+.c-pw-logo-pega {
+  width: 110px;
+  height: auto;
 
   @media screen and (min-width: 600px) {
-    img {
-      width: 300px;
-    }
+    width: 140px;
+  }
+}
+
+.c-pw-logo-pw2018 {
+  width: 90px;
+  height: auto;
+
+  @media screen and (min-width: 600px) {
+    width: 120px;
   }
 }
 
@@ -185,5 +193,26 @@
 
   &:hover {
     text-decoration: underline;
+  }
+}
+
+
+
+
+.u-pw-position-lower-logo {
+  // Add padding and relative point.
+  &.o-bolt-grid__cell {
+    .o-bolt-grid--matrix > & {
+      padding-bottom: calc(1.65rem + 60px);
+      position: relative;
+    }
+  }
+  .u-pw-position-lower-logo__logo {
+    bottom: 3rem;
+    position: absolute;
+    width: 100%;
+    .o-bolt-grid__cell {
+      padding-left: 0;
+    }
   }
 }

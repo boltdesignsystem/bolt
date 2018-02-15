@@ -27,7 +27,8 @@
 {% set nav_band_content %}
   <nav class="c-pw-menu">
     <div class="c-pw-menu-logo">
-      <img src="/images/pw2018/logo-pw2018.png" alt="Pega">
+      <a href="http://pega.com"><img src="/images/pw2018/logo-pega.png" alt="Pega" class="c-pw-logo-pega"></a>
+      <a href="http://pega.com/events/pegaworld"><img src="/images/pw2018/logo-pw2018.png" alt="PegaWorld 2018" class="c-pw-logo-pw2018"></a>
     </div>
     <a class="c-pw-menu-trigger" href="#menu">
       <span class="u-bolt-visuallyhidden">Open menu</span>
@@ -134,7 +135,12 @@
           {% cell "u-pw-nowrap" %}
             {% include "@bolt/eyebrow.twig" with {
               "text": "Oct 1 - Dec 31, 2017",
-              "tag": "div"
+              "tag": "div",
+              "attributes": {
+                "class": [
+                  "u-pw-opacity-40"
+                ]
+              }
             } only %}
             {% include "@bolt/headline.twig" with {
               "size": "xlarge",
@@ -142,7 +148,7 @@
               "tag": "div",
               "attributes": {
                 "class": [
-                  "u-pw-color-yellow"
+                  "u-pw-opacity-40"
                 ]
               }
             } only %}
@@ -150,12 +156,7 @@
           {% cell "u-pw-nowrap" %}
             {% include "@bolt/eyebrow.twig" with {
               "text": "Jan 1 - Apr 2, 2018",
-              "tag": "div",
-              "attributes": {
-                "class": [
-                  "u-pw-opacity-40"
-                ]
-              }
+              "tag": "div"
             } only %}
             {% include "@bolt/headline.twig" with {
               "size": "xlarge",
@@ -163,7 +164,7 @@
               "tag": "div",
               "attributes": {
                 "class": [
-                  "u-pw-opacity-40"
+                  "u-pw-color-yellow"
                 ]
               }
             } only %}
@@ -245,7 +246,7 @@
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
       {% cell "u-bolt-width-1/1" %}
         {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-8/12@small" %}
             {% include "@bolt/headline.twig" with {
               "size": "xxxlarge",
               "align": "center",
@@ -265,9 +266,9 @@
         {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
           {% cell "u-bolt-width-1/1 u-bolt-width-9/12@small" %}
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-              {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@large" %}
                 {% include "@bolt/image.twig" with {
-                  src: "/images/pw2018/thumb-keynotes.jpg",
+                  src: "/images/pw2018/expect-inspiring-keynotes.jpg",
                   alt: "Inspiring Keynotes"
                 } only %}
                 {% include "@bolt/headline.twig" with {
@@ -282,10 +283,10 @@
                   "tag": "div"
                 } only %}
               {% endcell %}
-              {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@large" %}
                 {% include "@bolt/image.twig" with {
-                  src: "/images/pw2018/thumb-networking.jpg",
-                  alt: "Unbelievable Networking"
+                  src: "/images/pw2018/expect-awesome-technoogy.jpg",
+                  alt: "Awesome Technology"
                 } only %}
                 {% include "@bolt/headline.twig" with {
                   "size": "large",
@@ -299,10 +300,10 @@
                   "tag": "div"
                 } only %}
               {% endcell %}
-              {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@large" %}
                 {% include "@bolt/image.twig" with {
-                  src: "/images/pw2018/thumb-entertainment.jpg",
-                  alt: "Killer Entertainment"
+                  src: "/images/pw2018/expect-riveting-agenda.jpg",
+                  alt: "A Riveting Agenda"
                 } only %}
                 {% include "@bolt/headline.twig" with {
                   "size": "large",
@@ -316,27 +317,27 @@
                   "tag": "div"
                 } only %}
               {% endcell %}
-              {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@large" %}
                 {% include "@bolt/image.twig" with {
-                  src: "/images/pw2018/thumb-networking.jpg",
+                  src: "/images/pw2018/expect-unbelievable-networking.jpg",
                   alt: "Unbelievable Networking"
                 } only %}
                 {% include "@bolt/headline.twig" with {
                   "size": "large",
                   "align": "center",
-                  "text": "The greatest minds in business and technology all under one roof",
+                  "text": "Unbelievable Networking",
                   "tag": "div"
                 } only %}
                 {% include "@bolt/text.twig" with {
                   "align": "center",
-                  "text": "Renowned business leaders sharing their amazing stories",
+                  "text": "The greatest minds in business and technology all under one roof",
                   "tag": "div"
                 } only %}
               {% endcell %}
-              {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@large" %}
                 {% include "@bolt/image.twig" with {
-                  src: "/images/pw2018/thumb-entertainment.jpg",
-                  alt: "Learning, knowledge, insights"
+                  src: "/images/pw2018/expect-killer-entertainment.jpg",
+                  alt: "Killer Entertainment"
                 } only %}
                 {% include "@bolt/headline.twig" with {
                   "size": "large",
@@ -426,7 +427,7 @@
         {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
           {% cell "u-bolt-width-1/1 u-bolt-width-9/12@small" %}
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix o-bolt-grid--large" %}
-              {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small u-bolt-width-4/12@medium" %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small u-bolt-width-4/12@medium u-pw-position-lower-logo" %}
                 <figure class="c-pw-portrait">
                   {% include "@bolt/image.twig" with {
                     src: "/images/pw2018/portrait-silva.jpg",
@@ -443,7 +444,7 @@
                   "align": "center",
                   "text": "Group Director, Innovation and Emerging Technologies"
                 } only %}
-                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix u-pw-position-lower-logo__logo" %}
                   {% cell %}
                     {% include "@bolt/logo.twig" with {
                       src: "/images/pw2018/logo-paypal.png",
@@ -453,7 +454,7 @@
                   {% endcell %}
                 {% endgrid %}
               {% endcell %}
-              {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small u-bolt-width-4/12@medium" %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small u-bolt-width-4/12@medium u-pw-position-lower-logo" %}
                 <figure class="c-pw-portrait">
                   {% include "@bolt/image.twig" with {
                     src: "/images/pw2018/portrait-mingle.jpg",
@@ -470,7 +471,7 @@
                   "align": "center",
                   "text": "General Director, Global Customer Experience Execution"
                 } only %}
-                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix u-pw-position-lower-logo__logo" %}
                   {% cell %}
                     {% include "@bolt/logo.twig" with {
                       src: "/images/pw2018/logo-paypal.png",
@@ -480,7 +481,7 @@
                   {% endcell %}
                 {% endgrid %}
               {% endcell %}
-              {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small u-bolt-width-4/12@medium" %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small u-bolt-width-4/12@medium u-pw-position-lower-logo" %}
                 <figure class="c-pw-portrait">
                   {% include "@bolt/image.twig" with {
                     src: "/images/pw2018/portrait-sole.jpg",
@@ -497,7 +498,7 @@
                   "align": "center",
                   "text": "Chief Marketing Officer"
                 } only %}
-                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix u-pw-position-lower-logo__logo" %}
                   {% cell %}
                     {% include "@bolt/logo.twig" with {
                       src: "/images/pw2018/logo-paypal.png",
@@ -553,7 +554,12 @@
                     {% include "@bolt/eyebrow.twig" with {
                       "align": "center",
                       "text": "Oct 1 - Dec 31, 2017",
-                      "tag": "div"
+                      "tag": "div",
+                      "attributes": {
+                        "class": [
+                          "u-pw-opacity-40"
+                        ]
+                      }
                     } only %}
                     {% include "@bolt/headline.twig" with {
                       "size": "xlarge",
@@ -562,7 +568,7 @@
                       "tag": "div",
                       "attributes": {
                         "class": [
-                          "u-pw-color-yellow"
+                          "u-pw-opacity-40"
                         ]
                       }
                     } only %}
@@ -575,12 +581,7 @@
                     {% include "@bolt/eyebrow.twig" with {
                       "align": "center",
                       "text": "Jan 1 - Apr 2, 2018",
-                      "tag": "div",
-                      "attributes": {
-                        "class": [
-                          "u-pw-opacity-40"
-                        ]
-                      }
+                      "tag": "div"
                     } only %}
                     {% include "@bolt/headline.twig" with {
                       "size": "xlarge",
@@ -589,7 +590,7 @@
                       "tag": "div",
                       "attributes": {
                         "class": [
-                          "u-pw-opacity-40"
+                          "u-pw-color-yellow"
                         ]
                       }
                     } only %}
@@ -661,6 +662,130 @@
           {% endcell %}
         {% endgrid %}
       {% endcell %}
+      {% cell "u-bolt-width-1/1" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--middle o-bolt-grid--matrix" %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/images/pw2018/paypal-logo-white.png",
+                  alt: "Paypal"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/images/pw2018/unum-logo-white.png",
+                  alt: "Unum"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/images/pw2018/philips-logo-white.png",
+                  alt: "Philips"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/images/pw2018/nsw-logo-white.png",
+                  alt: "NSW"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/images/pw2018/swedbank-logo-white.png",
+                  alt: "Swedbank"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/images/pw2018/cisco-logo-white.png",
+                  alt: "Cisco"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/images/pw2018/toyota-logo-white.png",
+                  alt: "Toyota"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/images/pw2018/ocbc-logo-white.png",
+                  alt: "OCBC"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/images/pw2018/vodafone-logo-white.png",
+                  alt: "Vodafone"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/images/pw2018/dell-logo-white.png",
+                  alt: "Dell"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/images/pw2018/ing-logo-white.png",
+                  alt: "ING"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/images/pw2018/raytheon-logo-white.png",
+                  alt: "Raytheon"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
     {% endgrid %}
   {% endblock %}
 {% endembed %}
@@ -685,13 +810,13 @@
         {% endgrid %}
       {% endcell %}
       {% cell "u-bolt-width-1/1" %}
-        {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--middle o-bolt-grid--matrix" %}
           {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo"
+                  src: "/images/pw2018/paypal-logo-white.png",
+                  alt: "Paypal"
                 } only %}
               {% endcell %}
             {% endgrid %}
@@ -700,8 +825,8 @@
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo"
+                  src: "/images/pw2018/unum-logo-white.png",
+                  alt: "Unum"
                 } only %}
               {% endcell %}
             {% endgrid %}
@@ -710,8 +835,8 @@
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo"
+                  src: "/images/pw2018/philips-logo-white.png",
+                  alt: "Philips"
                 } only %}
               {% endcell %}
             {% endgrid %}
@@ -720,8 +845,8 @@
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo"
+                  src: "/images/pw2018/nsw-logo-white.png",
+                  alt: "NSW"
                 } only %}
               {% endcell %}
             {% endgrid %}
@@ -730,8 +855,8 @@
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo"
+                  src: "/images/pw2018/swedbank-logo-white.png",
+                  alt: "Swedbank"
                 } only %}
               {% endcell %}
             {% endgrid %}
@@ -740,8 +865,8 @@
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo"
+                  src: "/images/pw2018/cisco-logo-white.png",
+                  alt: "Cisco"
                 } only %}
               {% endcell %}
             {% endgrid %}
@@ -750,8 +875,8 @@
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo"
+                  src: "/images/pw2018/toyota-logo-white.png",
+                  alt: "Toyota"
                 } only %}
               {% endcell %}
             {% endgrid %}
@@ -760,8 +885,8 @@
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo"
+                  src: "/images/pw2018/ocbc-logo-white.png",
+                  alt: "OCBC"
                 } only %}
               {% endcell %}
             {% endgrid %}
@@ -770,8 +895,8 @@
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo"
+                  src: "/images/pw2018/vodafone-logo-white.png",
+                  alt: "Vodafone"
                 } only %}
               {% endcell %}
             {% endgrid %}
@@ -780,8 +905,8 @@
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo"
+                  src: "/images/pw2018/dell-logo-white.png",
+                  alt: "Dell"
                 } only %}
               {% endcell %}
             {% endgrid %}
@@ -790,8 +915,8 @@
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo"
+                  src: "/images/pw2018/ing-logo-white.png",
+                  alt: "ING"
                 } only %}
               {% endcell %}
             {% endgrid %}
@@ -800,8 +925,8 @@
             {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
               {% cell %}
                 {% include "@bolt/logo.twig" with {
-                  src: "/images/pw2018/logo-paypal.png",
-                  alt: "Logo"
+                  src: "/images/pw2018/raytheon-logo-white.png",
+                  alt: "Raytheon"
                 } only %}
               {% endcell %}
             {% endgrid %}
