@@ -6,7 +6,7 @@
     {%- if minimum %} - Minimum is {{ minimum }} {%- endif %}
     {%- if maximum %} - Maximum is {{ maximum }} {%- endif %}
   {% endif %}
-  {%- if description %}{{ description | markdown }} {% endif -%}
+  {%- if description %}{{ description | markdown }}{% endif -%}
 {% endmacro %}
 
 
@@ -34,7 +34,7 @@
           {% set reference = get_data(prop.ref).properties %}
           <details>
             <summary><em>{{ prop.ref }} > Object details</em></summary>
-            {{ macros.object(reference) }}
+            {{ macros.object(reference, true) }}
           </details>
         {% else %}
           {{ macros.object(prop.properties) }}
@@ -71,15 +71,15 @@
   </ul>
 {% endmacro %}
 
-
-{% macro object(properties) %}
+{% macro object(properties, isRef) %}
   {% import _self as macros %}
+  {% set isRef = isRef|default(false) %}
   <ul>
     {% for key, prop in properties %}
       <li>
         <code>{{ key }}</code>
         {{ macros.titleAndDescription(prop.title, prop.description, prop.minimum, prop.maximum) }}
-
+        {% if isRef %}<br />Type: {{ prop.type }}{% endif %}
         {{ macros.schemaProps(prop) }}
       </li>
     {% endfor %}
