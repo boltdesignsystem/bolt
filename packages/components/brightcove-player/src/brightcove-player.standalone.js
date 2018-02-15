@@ -11,8 +11,45 @@ import {
   spacingSizes
 } from '@bolt/core';
 
+import dasherize from 'dasherize';
+
 let index = 0;
 
+import metaStyles from './brightcove-meta.scss';
+
+@define
+class BrightcoveMeta extends withComponent(withPreact()) {
+  static is = 'brightcove-meta';
+
+  static props = {
+    duration: props.string,
+    title: props.string
+  };
+
+  get renderRoot() {
+    return this;
+  }
+
+  render() {
+    const separator = this.title && this.duration ? ' | ' : '';
+
+    // 'reveal' allows the metadata to be hidden.
+    // All of its logic is contained here in render(), but it could be updated to be a property that is set
+    // externally (such as when the video has finished fully loading).
+    const reveal =  Boolean(this.title || this.duration);
+    return (
+      <div class="c-brightcove-meta">
+        <style>{metaStyles[0][1]}</style>
+        {reveal ? (
+          <div class="c-brightcove-meta__wrapper">{this.title}{separator}{this.duration}</div>
+        ) : null}
+      </div>
+    );
+  }
+}
+
+
+@define
 class BrightcoveVideo extends withComponent(withPreact()) {
   static is = 'brightcove-player';
 
@@ -22,6 +59,10 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     playerId: props.string,
     poster: props.object,
     isBackgroundVideo: props.boolean,
+    onInit: props.string,
+    showMeta: props.boolean,
+    showMetaTitle: props.boolean,
+    closeButtonText: props.string,
     // onError: null,
     // onPlay: null,
     // onPause: null,
@@ -34,8 +75,8 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     hideFullScreenButton: props.boolean
   }
 
-  constructor() {
-    super();
+  constructor(element) {
+    super(element);
     index += 1;
 
     this.onPlay = this.onPlay.bind(this);
@@ -44,6 +85,9 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     // this.onProgress = this.onProgress.bind(this);
     this.onDurationChange = this.onDurationChange.bind(this);
     this.onSeeked = this.onSeeked.bind(this);
+
+    // This binding is necessary to make `this` work in the callback
+    this.handleClose = this.handleClose.bind(this);
 
     // BrightcoveVideo.globalErrors.forEach(this.props.onError);
 
@@ -96,13 +140,14 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     // it’s converted to a proper boolean value using JavaScript’s truthiness
     // & falsiness principles.
     // value = Boolean(value);
-    if (value)
+    if (value) {
       this.setAttribute('expandedHeight', value);
-    else
+    } else {
       this.removeAttribute('expandedHeight');
+    }
 
     this.dispatchEvent(
-      new CustomEvent('expandedHeightSet', {
+      new CustomEvent('videoExpandedHeightSet', {
         detail: { expandedHeight: this.expandedHeight },
         bubbles: true,
       })
@@ -111,13 +156,29 @@ class BrightcoveVideo extends withComponent(withPreact()) {
 
   // Called to check whether or not the component should call
   // updated(), much like React's shouldComponentUpdate().
-  // updating(props, state) { 
+  // updating(props, state) {
   //   console.log(props);
   //   console.log(state);
   // }
 
-  _setDuration(time){
-    this.duration = time;
+  _setMetaTitle(title) {
+    if (this.props.showMeta && this.props.showMetaTitle){
+      this.querySelector('brightcove-meta').setAttribute('title', title);
+    }
+  }
+
+  _setMetaDuration(seconds) {
+    if (this.props.showMeta) {
+      const durationFormatted = BrightcoveVideo._formatDuration(seconds);
+      this.querySelector('brightcove-meta').setAttribute('duration', durationFormatted);
+    }
+  }
+
+  static _formatDuration(seconds) {
+    const mm = Math.floor(seconds / 60) || 0;
+    const ss = ('0' + Math.floor(seconds % 60)).slice(-2);
+
+    return mm + ':' + ss;
   }
 
   _setVideoDimensions(width, height) {
@@ -133,12 +194,25 @@ class BrightcoveVideo extends withComponent(withPreact()) {
 
     player.on("loadedmetadata", function () {
       const duration = player.mediainfo.duration;
+      const title = player.mediainfo.name;
       const width = player.mediainfo.sources[1].width;
       const height = player.mediainfo.sources[1].height;
 
-      elem._setDuration();
+      elem._setMetaTitle(title);
+      elem._setMetaDuration(duration);
       elem._setVideoDimensions(width, height);
       elem._calculateIdealVideoSize();
+
+      if (this.earlyToggle) {
+        this.earlyToggle = false;
+        this.toggle();
+      } else if (this.earlyPlay){
+        this.earlyPlay = false;
+        this.play();
+      } else if (this.earlyPause) {
+        this.earlyPause = false;
+        this.pause();
+      }
     });
 
     player.on("play", function(){
@@ -190,6 +264,9 @@ class BrightcoveVideo extends withComponent(withPreact()) {
   //   return this.props.isBackgroundVideo;
   // }
 
+  handleClose() {
+    this.close();
+  }
 
   connectedCallback() {
     this.state = {
@@ -250,9 +327,14 @@ class BrightcoveVideo extends withComponent(withPreact()) {
       BrightcoveVideo.appendScript(s);
     }
 
-    // console.log('init');
-
     this.init();
+
+    // If onInit event exists on element, run that instead of auto initializing
+    if (this.props.onInit) {
+      if (window[this.props.onInit]){
+        window[this.props.onInit](this);
+      }
+    }
 
 
     window.addEventListener('optimizedResize', this._onWindowResize);
@@ -458,6 +540,7 @@ class BrightcoveVideo extends withComponent(withPreact()) {
       this.props.accountId,
       this.props.playerId
     );
+    s.async = true;
 
     return s;
   }
@@ -494,6 +577,17 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     // console.log(this.player);
     if (this.player) {
       this.player.play();
+    } else {
+      this.earlyPlay = true;
+
+      this.dispatchEvent(
+        new CustomEvent('playing', {
+          detail: {
+            isBackgroundVideo: this.props.isBackgroundVideo
+          },
+          bubbles: true,
+        })
+      );
     }
   }
 
@@ -519,12 +613,25 @@ class BrightcoveVideo extends withComponent(withPreact()) {
       } else {
         this.pause();
       }
+    } else {
+      this.earlyToggle = true;
+
+      this.dispatchEvent(
+        new CustomEvent('playing', {
+          detail: {
+            isBackgroundVideo: this.props.isBackgroundVideo
+          },
+          bubbles: true,
+        })
+      );
     }
   }
 
   pause() {
     if (this.player) {
       this.player.pause();
+    } else {
+      this.earlyPause = true;
     }
   }
 
@@ -543,26 +650,65 @@ class BrightcoveVideo extends withComponent(withPreact()) {
     /* eslint jsx-a11y/media-has-caption: "off" */
     // Added a wrapping div as brightcove adds siblings to the video tag
 
+    // Loop through any extra (unknown) data attributes on the main element; copy over to the <video> tag being rendered
+    function datasetToObject(elem) {
+      var data = {};
+      [].forEach.call(elem.attributes, function (attr) {
+        if (/^data-/.test(attr.name)) {
+          data[dasherize(attr.name)] = attr.value;
+        }
+      });
+      return data;
+    }
+    const dataAttributes = datasetToObject(this);
+
+    let closeButtonText = null;
+    if (this.props.closeButtonText) {
+      closeButtonText = this.props.closeButtonText;
+    } else {
+      closeButtonText = 'Close';
+    }
+
     return(
-      <video
-        id={this.state.id}
-        {...(this.props.poster ? { poster: this.props.poster.uri } : {}) }
-        data-embed="default"
-        data-video-id={this.props.videoId}
-        data-account={this.props.accountId}
-        data-player={this.props.playerId}
-        // playIcon={playIconEmoji()}
-        // following 'autoplay' can not expected to always work on web
-        // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
-        autoPlay={this.props.autoplay}
-        data-application-id
-        className="video-js"
-        controls
-      />
+      <span class="c-brightcove-video">
+        <video
+          {...dataAttributes}
+          id={this.state.id}
+          {...(this.props.poster ? { poster: this.props.poster.uri } : {}) }
+          data-embed="default"
+          data-video-id={this.props.videoId}
+          preload="none"
+          data-account={this.props.accountId}
+          data-player={this.props.playerId}
+          // playIcon={playIconEmoji()}
+          // following 'autoplay' can not expected to always work on web
+          // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
+          autoPlay={this.props.autoplay}
+          data-application-id
+          className="video-js"
+          controls
+        />
+        {this.props.showMeta &&
+          <brightcove-meta />
+        }
+        {this.props.isBackgroundVideo &&
+          <a class="c-bolt-video__close-button c-bolt-video__close-button--icon-to-text" href="javascript:" onClick={this.handleClose}>
+            <span class="c-bolt-video__close-button-icon">
+              <div class="c-bolt-button c-bolt-button--xsmall c-bolt-button--secondary c-bolt-button--rounded c-bolt-button--icon-only">
+                <span class="c-bolt-button__icon">
+                  <bolt-icon name="close" size="small"></bolt-icon>
+                </span>
+              </div>
+            </span>
+            <span class="c-bolt-video__close-button-text">
+              {closeButtonText}
+            </span>
+          </a>
+        }
+      </span>
     );
   }
 }
-customElements.define(BrightcoveVideo.is, BrightcoveVideo);
 
 export default BrightcoveVideo;
 

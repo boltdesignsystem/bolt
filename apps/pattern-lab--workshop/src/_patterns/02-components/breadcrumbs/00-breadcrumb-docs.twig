@@ -1,5 +1,4 @@
 {#{% set schema = get_data('@bolt-components-breadcrumb/breadcrumb.schema.yml') %}#}
-{% set readme = source('@bolt-components-breadcrumb/README.md') %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
   "contentItems": [
@@ -24,6 +23,5 @@
 {% include '@utils/docs.twig' with {
   schema: schema,
   code: code,
-  readme: readme,
-  readmePath: 'packages/components/bolt-breadcrumb/README.md',
+  readmeFile: '@bolt-components-breadcrumb/README.md',
 } only %}

@@ -1,30 +1,139 @@
-<div class="bolt-docs">
 
-  {% if schema %}
-    <div class="bolt-docs__schema">
-      {% include '@utils/schema-docs.twig' with schema only %}
-    </div>
-  {% endif %}
+<div class="c-bolt-docs t-bolt-xlight">
 
-  {% if code %}
-    <h4>How to use</h4>
-    <pre><code>{{ code }}</code></pre>
-  {% endif %}
+  <div class="c-bolt-docs__page-content">
 
-  {% if readme %}
-    <h4>ReadMe</h4>
-    {{ readme|markdown }}
-    {% if readmePath %}
-      {# @todo Improve robustness of getting ReadMe Path #}
-      {% set branchName = 'epic/refactor' %}
-      <a href="https://github.com/bolt-design-system/bolt/blob/{{ branchName }}/{{ readmePath }}" target="_blank">Edit this ReadMe on GitHub</a>
+    {% include "@bolt/headline.twig" with {
+      size: "xxxlarge",
+      tag: "h1",
+      text: schema.title
+    } %}
+
+     {% include "@bolt/subheadline.twig" with {
+        weight: "regular",
+        size: "xxlarge",
+        tag: "p",
+        text: schema.description,
+        attributes: {
+          class: [
+            "u-bolt-margin-bottom-medium"
+          ]
+        }
+      } %}
+
+    {% if readmeFile %}
+      {% include "@bolt/headline.twig" with {
+          size: "xlarge",
+          tag: "h2",
+          url: "#getting-started",
+          text: "Getting Started",
+          icon: {
+            name: false
+          },
+          attributes: {
+            class: [
+              "u-bolt-margin-top-large",
+              "c-bolt-docs__heading-fragment"
+            ],
+            id: "getting-started"
+          }
+        } %}
+      {{ source(readmeFile) | markdown }}
     {% endif %}
-  {% endif %}
 
-  {% if links %}
-    <h4>Helpful Links</h4>
-    {% for link in links %}
-      <a href="{{ link.url }}" target="_blank">{{ link.text }}</a>
-    {% endfor %}
-  {% endif %}
-</div>
+    {% if code %}
+      {% include "@bolt/headline.twig" with {
+        size: "xlarge",
+        tag: "h2",
+        url: "#usage",
+        text: "Usage",
+        icon: false,
+        attributes: {
+          class: [
+            "u-bolt-margin-top-large",
+            "c-bolt-docs__heading-fragment"
+          ],
+          id: "usage"
+        }
+      } %}
+      <pre><code>{{ code }}</code></pre>
+    {% endif %}
+
+
+    {% if schema %}
+      {% include "@bolt/headline.twig" with {
+        size: "xlarge",
+        tag: "h2",
+        url: "#schema",
+        text: "Schema",
+        icon: null,
+        attributes: {
+          class: [
+            "u-bolt-margin-top-large",
+            "c-bolt-docs__heading-fragment"
+          ],
+          id: "schema"
+        }
+      } %}
+
+      <div class="bolt-docs__schema">
+        {% include '@utils/schema-docs.twig' with { schema: schema } only %}
+      </div>
+    {% endif %}
+
+    {% if links %}
+      <h4>Helpful Links</h4>
+      {% for link in links %}
+        <a href="{{ link.url }}" target="_blank">{{ link.text }}</a>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  <div class="c-bolt-docs__page-nav u-bolt-padding-right-medium@small">
+    <ul class="o-bolt-ui-list o-bolt-ui-list--xsmall">
+      <li class="o-bolt-ui-list__item">
+        <ul class="o-bolt-ui-list o-bolt-ui-list--xxsmall o-bolt-ui-list--borderless">
+          {% if readme %}
+            <li class="o-bolt-ui-list__item">
+              {% include "@bolt/headline.twig" with {
+                size: "xsmall",
+                transform: "capitalize",
+                weight: "regular",
+                tag: "h3",
+                url: "#getting-started",
+                text: "Getting Started",
+                icon: {
+                  name: false
+                }
+              } %}
+            </li>
+          {% endif %}
+
+          {% if code %}
+            <li class="o-bolt-ui-list__item">
+              {% include "@bolt/headline.twig" with {
+                size: "xsmall",
+                transform: "capitalize",
+                weight: "regular",
+                tag: "h3",
+                url: "#usage",
+                text: "Usage",
+                icon: {
+                  name: false
+                }
+              } %}
+            </li>
+          {% endif %}
+        </ul>
+      </li>
+
+      {% if readmeFile %}
+        <li class="o-bolt-ui-list__item">
+          <a href="{{ github_url(readmeFile) }}" class="c-bolt-docs__page-nav__link" target="_blank">
+            <bolt-icon name="pencil"></bolt-icon>
+            Edit this page
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>

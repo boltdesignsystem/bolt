@@ -1,5 +1,4 @@
 {% set schema = get_data('@bolt-components-icon/icon.schema.yml') %}
-{% set readme = source('@bolt-components-icon/README.md') %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-icon/icon.twig" with {
   name: "add-open",
@@ -12,6 +11,5 @@
 {% include '@utils/docs.twig' with {
   schema: schema,
   code: code,
-  readme: readme,
-  readmePath: 'packages/components/bolt-icon/README.md',
+  readmeFile: '@bolt-components-icon/README.md',
 } only %}

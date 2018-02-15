@@ -7,7 +7,8 @@ import {
   withComponent,
   withPreact,
   css,
-  spacingSizes
+  spacingSizes,
+  hasNativeShadowDomSupport
 } from '@bolt/core';
 
 
@@ -32,6 +33,7 @@ function whichAnimationEvent() {
 const animationEvent = whichAnimationEvent();
 
 
+@define
 class BoltDeviceViewer extends withComponent(withPreact()) {
   static is = 'bolt-device-viewer';
 
@@ -39,16 +41,29 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
     // name: props.string,
   }
 
-  render({ props }) {
-    const classes = css(
-      'c-bolt-image-magnifier'
-    );
+  constructor(element) {
+    super(element);
+    this.useShadow = hasNativeShadowDomSupport;
+  }
 
-    return (
-      <div className={classes}>
-        <slot />
-      </div>
-    )
+  render({ props }) {
+    if (this.useShadow){
+      const classes = css(
+        'c-bolt-image-magnifier'
+      );
+
+      return (
+        <div className={classes}>
+          <slot />
+        </div>
+      )
+    }
+  }
+
+  renderer(root, html) {
+    if (!this.useShadow) {
+      root.innerHTML = `<div class="c-bolt-image-magnifier">${this.innerHTML}</div>`;
+    }
   }
 
   connectedCallback() {
@@ -64,10 +79,10 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
   }
 }
 
-customElements.define(BoltDeviceViewer.is, BoltDeviceViewer);
 
 
 
+@define
 class BoltImageZoom extends withComponent(withPreact()) {
   static is = 'bolt-image-zoom';
 
@@ -119,11 +134,20 @@ class BoltImageZoom extends withComponent(withPreact()) {
     }
   }
 
+  renderer(root, html) {
+    if (this.useShadow) {
+      super.renderer(root, html);
+    } else {
+      root.innerHTML = this.innerHTML;
+    }
+  }
 
   render() {
-    return (
-      <slot />
-    )
+    if (this.useShadow) {
+      return (
+        <slot />
+      )
+    }
   }
 
   connectedCallback() {
@@ -143,5 +167,3 @@ class BoltImageZoom extends withComponent(withPreact()) {
     this.removeEventListener('mouseleave', this._mouseLeave);
   }
 }
-
-customElements.define(BoltImageZoom.is, BoltImageZoom);

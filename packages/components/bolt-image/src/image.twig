@@ -114,12 +114,12 @@
 
 {% if lazyload %}
   {% set imageAttributes = imageAttributes
-    .setAttribute("data-srcset", srcset)
+    .setAttribute("data-srcset", src)
     .setAttribute("srcset", placeholderDummySrc)
     .setAttribute("data-sizes", sizes)
   %}
 {% else %}
-  {% set imageAttributes = imageAttributes.setAttribute("srcset", srcset) %}
+  {% set imageAttributes = imageAttributes.setAttribute("srcset", src) %}
 {% endif %}
 
 {% set placeholderAttributes = create_attribute(placeholderAttributes | default({})).addClass("c-bolt-image__placeholder") %}

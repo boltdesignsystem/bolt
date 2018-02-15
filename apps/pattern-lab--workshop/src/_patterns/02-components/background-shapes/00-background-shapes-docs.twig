@@ -1,5 +1,4 @@
 {% set schema = get_data('@bolt-components-background-shapes/background-shapes.schema.yml') %}
-{% set readme = source('@bolt-components-background-shapes/README.md') %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-background-shapes/background-shapes.twig" with {
     "shapeGroup": "B"
@@ -10,6 +9,5 @@
 {% include '@utils/docs.twig' with {
   schema: schema,
   code: code,
-  readme: readme,
-  readmePath: 'packages/components/background-shapes/README.md',
+  readmeFile: '@bolt-components-background-shapes/README.md',
 } only %}
