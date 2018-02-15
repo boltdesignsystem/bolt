@@ -33,6 +33,9 @@
       {% block content %}
 
       {% endblock %}
+      {% if page.url starts with 'docs' %}
+        {% include 'partials/docs-nav.twig' %}
+      {% endif %}
     </main>
   </div>
 </div>
@@ -52,12 +55,12 @@
 {# Shows Twig Vars in Browser Console #}
 <script type="application/json">{{ _context|json_encode()|raw }}</script>
 <script>
-  (function () {
-    var me = document.currentScript;
-    var jsonScriptTag = me.previousElementSibling.innerHTML;
-    var data = JSON.parse(jsonScriptTag);
-    console.log('Twig vars for this page: ', data);
-  })();
+    (function () {
+        var me = document.currentScript;
+        var jsonScriptTag = me.previousElementSibling.innerHTML;
+        var data = JSON.parse(jsonScriptTag);
+        console.log('Twig vars for this page: ', data);
+    })();
 </script>
 
 <script src="/build/bolt-global.js"></script>

@@ -15,6 +15,7 @@ module.exports = {
   },
   components: {
     global: [
+      './style.scss',
       '@bolt/core',
       '@bolt/global',
       '@bolt/components-page-footer',
