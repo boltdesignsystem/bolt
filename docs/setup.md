@@ -21,14 +21,17 @@ Needed for easy install of Composer, GD, Imagick, and Yarn. More details [availa
 ```
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
+The script explains what it will do and then pauses before it does it. There are more installation options [here](https://docs.brew.sh/Installation.html).
 
 ### Install PHP Dependencies
 PHP 7.x or higher is required.
+
 - Composer
 ```
 brew install composer
 ```
 then run `composer --version` to verify everything went smoothly (you should see a version number)
+
 - Prestissimo (optional, but recommend)
 ```
 composer global require hirak/prestissimo
