@@ -36,6 +36,7 @@ module.exports = {
       '@bolt/components-background-shapes',
       '@bolt/components-band',
       '@bolt/components-blockquote',
+      '@bolt/components-breadcrumb',
       '@bolt/components-button',
       '@bolt/components-button-group',
       '@bolt/components-card',

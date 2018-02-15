@@ -1,5 +1,3 @@
-{% set readme = source('@bolt-components-page-footer/README.md') %}
-
 {% set code %} {% verbatim %}
 {% include "@bolt-components-page-footer/page-footer.twig" with {
   "content": content,
@@ -9,7 +7,6 @@
 
 {% include '@utils/docs.twig' with {
   code: code,
-  readme: readme,
-  readmePath: 'packages/components/page-footer/README.md',
+  readmeFile: '@bolt-components-page-footer/README.md',
 } only %}
 

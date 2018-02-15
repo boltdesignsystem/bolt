@@ -4,7 +4,8 @@ import {
   define,
   props,
   withComponent,
-  withPreact
+  withPreact,
+  hasNativeShadowDomSupport
 } from '@bolt/core';
 
 
@@ -14,18 +15,8 @@ import {
 // template for the contents of the ShadowDOM is is shared by all
 // `<bolt-band>` instances.
 //
-const bandTemplate = document.createElement('template');
-bandTemplate.innerHTML = `
-    <style>
-      // :host {
-      //   contain: content;
-      // }
-    </style>
-    <slot></slot>
-  `;
 
 // ShadyCSS will rename classes as needed to ensure style scoping.
-ShadyCSS.prepareTemplate(bandTemplate, 'bolt-band');
 
 
 
@@ -38,20 +29,15 @@ export class BoltBand extends withComponent(withPreact()) {
     return ['expanded', 'expandedHeight', 'initialHeight'];
   }
 
-  constructor() {
-    super();
-    this.attachShadow({
-      mode: 'open'
-    });
+  constructor(element) {
+    super(element);
+    this.useShadow = hasNativeShadowDomSupport;
 
     this.state = {
       ready: false
     }
 
     // Clone the shadow DOM template.
-    this.shadowRoot.appendChild(
-      bandTemplate.content.cloneNode(true)
-    );
 
     if (this.state.ready === false) {
       this.state.ready = true;
@@ -69,7 +55,6 @@ export class BoltBand extends withComponent(withPreact()) {
     }
   }
 
-
   /**
     * `connectedCallback()` sets up the role, event handler and initial state.
     */
@@ -77,18 +62,17 @@ export class BoltBand extends withComponent(withPreact()) {
     // Shim Shadow DOM styles. This needs to be run in `connectedCallback()`
     // because if you shim Custom Properties (CSS variables) the element
     // will need access to its parent node.
-    ShadyCSS.styleElement(this);
 
     this.addEventListener('playing', this.playHandler);
     this.addEventListener('pause', this.pauseHandler);
     this.addEventListener('ended', this.finishedHandler);
     this.addEventListener('close', this.collapse);
 
-    this.addEventListener('expandedHeightSet', this._adjustExpandedHeightToMatchChildren);
+    this.addEventListener('videoExpandedHeightSet', this._adjustExpandedHeightToMatchVideo);
   }
 
   disconnectedCallback() {
-    this.removeEventListener('expandedHeightSet', this._adjustExpandedHeightToMatchChildren);
+    this.removeEventListener('videoExpandedHeightSet', this._adjustExpandedHeightToMatchVideo);
   }
 
   /**
@@ -167,10 +151,22 @@ export class BoltBand extends withComponent(withPreact()) {
   }
 
 
-  // Max Height of a child element has been set so use that to determine how tall a band should get.
-  _adjustExpandedHeightToMatchChildren(event) {
+  // Max Height of a video child element has been set so use that to determine how tall a band should get.
+  _adjustExpandedHeightToMatchVideo(event) {
     if (event.detail.expandedHeight) {
-      this.expandedHeight = event.detail.expandedHeight;
+      let videoHeight = event.detail.expandedHeight;
+      const mq = window.matchMedia( "(max-width: 600px)" );
+
+      // Add to the height to make space for the 'close' button at the bottom
+      // if we are at the smallest breakpoint.
+      if (mq.matches) {
+        // expandedHeight apparently needs to be a string (on both the incoming
+        // and outgoing ends).  In order to modify it, we turn it into a number, then
+        // back to a string.  Not
+        videoHeight = Number(videoHeight) + 40;
+        videoHeight = String(videoHeight)
+      }
+      this.expandedHeight = videoHeight;
     }
   }
 
@@ -218,9 +214,19 @@ export class BoltBand extends withComponent(withPreact()) {
     }
   }
 
+  renderer(root, html) {
+    if (this.useShadow) {
+      super.renderer(root, html);
+    } else {
+      root.innerHTML = this.innerHTML;
+    }
+  }
+
   render() {
-    return (
-      <slot />
-    )
+    if (this.useShadow){
+      return (
+        <slot />
+      )
+    }
   }
 }

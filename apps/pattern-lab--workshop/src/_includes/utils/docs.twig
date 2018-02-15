@@ -1,3 +1,4 @@
+
 <div class="c-bolt-docs t-bolt-xlight">
 
   <div class="c-bolt-docs__page-content">
@@ -20,26 +21,24 @@
         }
       } %}
 
-    {% if readme %}
+    {% if readmeFile %}
       {% include "@bolt/headline.twig" with {
-        size: "xlarge",
-        tag: "h2",
-        url: "#getting-started",
-        text: "Getting Started",
-        icon: {
-          name: false
-        },
-        attributes: {
-          class: [
-            "u-bolt-margin-top-large",
-            "c-bolt-docs__heading-fragment"
-          ],
-          id: "getting-started"
-        }
-      } %}
-      <div class="c-bolt-docs__lead">
-        {{ readme|markdown }}
-      </div>
+          size: "xlarge",
+          tag: "h2",
+          url: "#getting-started",
+          text: "Getting Started",
+          icon: {
+            name: false
+          },
+          attributes: {
+            class: [
+              "u-bolt-margin-top-large",
+              "c-bolt-docs__heading-fragment"
+            ],
+            id: "getting-started"
+          }
+        } %}
+      {{ source(readmeFile) | markdown }}
     {% endif %}
 
     {% if code %}
@@ -128,16 +127,13 @@
         </ul>
       </li>
 
-      {% if readmePath %}
+      {% if readmeFile %}
         <li class="o-bolt-ui-list__item">
-          {# @todo Improve robustness of getting ReadMe Path #}
-          {% set branchName = 'epic/refactor' %}
-          <a href="https://github.com/bolt-design-system/bolt/blob/{{ branchName }}/{{ readmePath }}" class="c-bolt-docs__page-nav__link" target="_blank">
+          <a href="{{ github_url(readmeFile) }}" class="c-bolt-docs__page-nav__link" target="_blank">
             <bolt-icon name="pencil"></bolt-icon>
-          Edit this page
+            Edit this page
           </a>
         </li>
       {% endif %}
     </ul>
   </div>
-</div>

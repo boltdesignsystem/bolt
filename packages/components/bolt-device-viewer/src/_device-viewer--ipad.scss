@@ -1,17 +1,31 @@
 $device-shadow: 0 1px 2px 1px rgba(6,10,36,0.10), 0 5px 10px 1px rgba(6,10,36,0.15), 0 15px 30px 0 rgba(6,10,36,0.25);
 
+$bolt-ipad-viewer-height: 768px + (90px * 2);
+$bolt-ipad-viewer-width: 576px + (25px * 2);
+
 $bolt-ipad-viewer-padding-sm: 25px;
 $bolt-ipad-viewer-padding-lg: 90px;
 
 .c-bolt-ipad-viewer {
   width: 100%;
-  max-width: 576px + (25px * 2);
+  max-width: $bolt-ipad-viewer-width * .6;
   background: #242324;
-  border-radius: 44px;
+
+  border-top-left-radius: (44px / $bolt-ipad-viewer-width * 100%) (44px / $bolt-ipad-viewer-height * 100%);
+  border-top-right-radius: (44px / $bolt-ipad-viewer-width * 100%) (44px / $bolt-ipad-viewer-height * 100%);
+  border-bottom-left-radius: (44px / $bolt-ipad-viewer-width * 100%) (44px / $bolt-ipad-viewer-height * 100%);
+  border-bottom-right-radius: (44px / $bolt-ipad-viewer-width * 100%) (44px / $bolt-ipad-viewer-height * 100%);
+
   box-shadow: $device-shadow;
 
+
   &.c-bolt-ipad-viewer--landscape {
-    max-width: 768px + (90px * 2);
+    max-width: $bolt-ipad-viewer-height * .8;
+
+    border-top-left-radius: (44px / $bolt-ipad-viewer-height * 100%) (44px / $bolt-ipad-viewer-width * 100%);
+    border-top-right-radius: (44px / $bolt-ipad-viewer-height * 100%) (44px / $bolt-ipad-viewer-width * 100%);
+    border-bottom-left-radius: (44px / $bolt-ipad-viewer-height * 100%) (44px / $bolt-ipad-viewer-width * 100%);
+    border-bottom-right-radius: (44px / $bolt-ipad-viewer-height * 100%) (44px / $bolt-ipad-viewer-width * 100%);
   }
 
   &.c-bolt-ipad-viewer--silver {
@@ -20,19 +34,33 @@ $bolt-ipad-viewer-padding-lg: 90px;
 }
 
 .c-bolt-ipad-viewer__inner {
-  padding: 90px 25px;
+  padding: (90px / $bolt-ipad-viewer-width * 100%) (25px / $bolt-ipad-viewer-width * 100%);
 
   .c-bolt-ipad-viewer--landscape & {
-    padding: 25px 90px;
+    padding: (25px / $bolt-ipad-viewer-height * 100%) (90px / $bolt-ipad-viewer-height * 100%);
   }
 
   &:before {
-    width: calc(100% - 8px);
-    height: calc(100% - 8px);
-    top: 4px;
-    left: 4px;
-    border-radius: 40px;
     background: #1e1e1e;
+
+    width: auto;
+    height: auto;
+    top: 4px / $bolt-ipad-viewer-height * 100%;
+    right: 4px / $bolt-ipad-viewer-width * 100%;
+    bottom: 4px / $bolt-ipad-viewer-height * 100%;
+    left: 4px / $bolt-ipad-viewer-width * 100%;
+
+    border-top-left-radius: (40px / $bolt-ipad-viewer-width * 100%) (40px / $bolt-ipad-viewer-height * 100%);
+    border-top-right-radius: (40px / $bolt-ipad-viewer-width * 100%) (40px / $bolt-ipad-viewer-height * 100%);
+    border-bottom-left-radius: (40px / $bolt-ipad-viewer-width * 100%) (40px / $bolt-ipad-viewer-height * 100%);
+    border-bottom-right-radius: (40px / $bolt-ipad-viewer-width * 100%) (40px / $bolt-ipad-viewer-height * 100%);
+
+    .c-bolt-ipad-viewer--landscape & {
+      border-top-left-radius: (40px / $bolt-ipad-viewer-height * 100%) (40px / $bolt-ipad-viewer-width * 100%);
+      border-top-right-radius: (40px / $bolt-ipad-viewer-height * 100%) (40px / $bolt-ipad-viewer-width * 100%);
+      border-bottom-left-radius: (40px / $bolt-ipad-viewer-height * 100%) (40px / $bolt-ipad-viewer-width * 100%);
+      border-bottom-right-radius: (40px / $bolt-ipad-viewer-height * 100%) (40px / $bolt-ipad-viewer-width * 100%);
+    }
 
     .c-bolt-ipad-viewer--silver & {
       background: #fcfcfc;
@@ -67,18 +95,22 @@ $bolt-ipad-viewer-padding-lg: 90px;
 }
 
 .c-bolt-ipad-viewer__camera {
+  $leftOffset: 44px / $bolt-ipad-viewer-width * 100%;
   background: #3c3d3d;
-  width: 10px;
-  height: 10px;
-  top: 44px;
+
+  transform: translateX(-50%); // Center align without knowing size of element
+  top: 44px / $bolt-ipad-viewer-height * 100%;
   left: 50%;
-  margin-left: -5px;
+  width: 10px / $bolt-ipad-viewer-width * 100%;
+  height: 10px / $bolt-ipad-viewer-height * 100%;
 
   .c-bolt-ipad-viewer--landscape & {
-    left: calc(100% - 44px);
+    width: 10px / $bolt-ipad-viewer-height * 100%;
+    height: 10px / $bolt-ipad-viewer-width * 100%;
+    left: calc(100% - #{$leftOffset});
+    // right: 44px / $bolt-ipad-viewer-width * 100%;
     top: 50%;
-    margin-left: 0;
-    margin-top: -5px;
+    transform: translateY(-50%) translateX(100%); // Center align without knowing size of element
   }
 }
 
@@ -89,11 +121,11 @@ $bolt-ipad-viewer-padding-lg: 90px;
 
 .c-bolt-ipad-viewer__home {
   background: #242324;
-  width: 50px;
-  height: 50px;
+  width: 50px / $bolt-ipad-viewer-width * 100%;
+  height: 50px / $bolt-ipad-viewer-height * 100%;
+  transform: translateX(-50%); // Center align without knowing size of element
   left: 50%;
-  margin-left: -25px;
-  bottom: 22px;
+  bottom: 22px / $bolt-ipad-viewer-height * 100%;
 
   .c-bolt-ipad-viewer--silver & {
     background: #fcfcfc;
@@ -106,16 +138,18 @@ $bolt-ipad-viewer-padding-lg: 90px;
 
   .c-bolt-ipad-viewer--landscape & {
     top: 50%;
-    left: 22px;
+    left: 22px / $bolt-ipad-viewer-width * 100%;
+    bottom: auto;
     margin-left: 0;
-    margin-top: -25px;
+    transform: translateY(-50%) translateX(-25%);// Center align without knowing size of element
+    width: 50px / $bolt-ipad-viewer-height * 100%;
+    height: 50px / $bolt-ipad-viewer-width * 100%;
   }
 
   &:after {
-    width: 15px;
-    height: 15px;
-    margin-top: -8px;
-    margin-left: -8px;
+    width: 15px / 50px * 100%;
+    height: 15px / 50px * 100%;
+    transform: translate3d(-50%, -50%, 0);
     border-width: 1px;
     border-style: solid;
     border-color: rgba(255, 255, 255, 0.1);

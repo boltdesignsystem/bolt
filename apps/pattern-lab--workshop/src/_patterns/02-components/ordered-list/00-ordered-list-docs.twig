@@ -1,5 +1,4 @@
 {% set schema = get_data('@bolt-components-ordered-list/ordered-list.schema.yml') %}
-{% set readme = source('@bolt-components-ordered-list/README.md') %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-ordered-list/ordered-list.twig" with {
   "contentItems" : [
@@ -23,6 +22,5 @@
 {% include '@utils/docs.twig' with {
   schema: schema,
   code: code,
-  readme: readme,
-  readmePath: 'packages/components/bolt-ordered-list/README.md',
+  readmeFile: '@bolt-components-ordered-list/README.md',
 } only %}
