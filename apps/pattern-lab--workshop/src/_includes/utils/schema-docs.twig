@@ -12,23 +12,23 @@
 
 {% macro schemaProps(prop) %}
   {% import _self as macros %}
-
-  <ul>
-    {% set enum %}
-      {% for x in prop.enum %}
-        <code>{% if prop.type == 'boolean' %}{{ x ? 'TRUE' : 'FALSE' }}{% elseif x == null %}NULL{% else %}{{ x }}{% endif %}</code>
-        {%- if not loop.last %}{{ prop.enum|length == 2 ? ' OR' : ',' }}{%- endif %}
-      {% endfor %}
-    {% endset %}
+  {% set enum %}
+    {% for x in prop.enum %}
+      <code>{% if prop.type == 'boolean' %}{{ x ? 'TRUE' : 'FALSE' }}{% elseif x == null %}NULL{% else %}{{ x }}{% endif %}</code>
+      {%- if not loop.last %}{{ prop.enum|length == 2 ? ' OR' : ',' }}{%- endif %}
+    {% endfor %}
+  {% endset %}
+  <ul class="c-bolt-docs-list">
     <li>
       {% if prop.oneOf %}
         Must be one of:
-        <ul>
+        <ul class="c-bolt-docs-list__child">
           {% for item in prop.oneOf %}
             <li><code>{{ item.enum|join(',') }}</code>{{ macros.titleAndDescription(item.title, item.description, prop.minimum, prop.maximum) }}</li>
           {% endfor %}
         </ul>
-      {%- elseif prop.enum %}Must be one of: {{ enum }}
+      {% elseif prop.enum %}
+        {{ enum }}
       {% endif %}
 
       {% if prop.type == 'object' and prop.properties or prop.ref %}
@@ -44,32 +44,30 @@
       {% endif %}
 
       {% if prop.type == 'array' and prop.items %}
-        <ul>
-          <li>Items:</li>
-          {% if prop.items.type == 'object' %}
-            <ul>
-              <li>Type: <code>{{ prop.items.type }}</code>{{ macros.titleAndDescription(prop.items.title, prop.items.description, prop.minimum, prop.maximum) }}</li>
-              <li>Properties:
-                <ul>
-                  {% for key, property in prop.items.properties %}
-                    <li><code>{{ key }}</code>
-                      {{ macros.titleAndDescription(property.title, property.description, prop.minimum, prop.maximum) }}
-                      {% if property.type %}
-                        <ul>
-                          <li>Type: <code>{{ property.type }}</code></li>
-                          {% if property.type == 'object' and property.properties %}
-                            <li>Properties:</li>
-                            {{ macros.object(property.properties) }}
-                          {% endif %}
-                        </ul>
-                      {% endif %}
-                    </li>
-                  {% endfor %}
-                </ul>
-              </li>
-            </ul>
-          {% endif %}
-        </ul>
+        {% if prop.items.type == 'object' %}
+          [<em>items</em>]:
+          <ul class="c-bolt-docs-list__child">
+            <li>Type: <code>{{ prop.items.type }}</code>{{ macros.titleAndDescription(prop.items.title, prop.items.description, prop.minimum, prop.maximum) }}</li>
+            <li>Properties:
+              <ul class="c-bolt-docs-list__child c-bolt-docs-list__child--level-2">
+                {% for key, property in prop.items.properties %}
+                  <li><code>{{ key }}</code>
+                    {{ macros.titleAndDescription(property.title, property.description, prop.minimum, prop.maximum) }}
+                    {% if property.type %}
+                      <ul class="c-bolt-docs-list__child c-bolt-docs-list__child--level-3">
+                        <li>Type: <code>{{ property.type }}</code></li>
+                        {% if property.type == 'object' and property.properties %}
+                          <li>Properties:</li>
+                          {{ macros.object(property.properties) }}
+                        {% endif %}
+                      </ul>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </li>
+          </ul>
+        {% endif %}
       {% endif %}
     </li>
   </ul>
@@ -116,7 +114,7 @@
       <tr>
         <th>Name</th>
         <th>Type</th>
-        <th>Value</th>
+        <th>Value(s)</th>
         <th>Description</th>
         <th>Default</th>
       </tr>
