@@ -1,6 +1,6 @@
 module.exports = {
   // Environmental variable / preset to use
-  env: 'storefront',
+  env: 'static',
   buildDir: 'www/build',
   srcDir: './content',
   wwwDir: 'www',

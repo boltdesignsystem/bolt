@@ -11,8 +11,8 @@ switch (config.env) {
   case 'pl':
     extraTasks.patternLab = require('./pattern-lab-tasks');
     break;
-  case 'storefront':
-    extraTasks.storefront = require('./storefront-tasks');
+  case 'static':
+    extraTasks.static = require('./static-tasks');
     break;
 }
 
@@ -25,7 +25,7 @@ async function clean() {
     const dirs = [config.buildDir];
     switch (config.env) {
       case 'pl':
-      case 'storefront':
+      case 'static':
         dirs.push(config.wwwDir);
         break;
     }
@@ -69,8 +69,8 @@ async function build() {
         await manifest.writeTwigNamespaceFile(process.cwd(), config.extraTwigNamespaces);
         await extraTasks.patternLab.compile();
         break;
-      case 'storefront':
-        await extraTasks.storefront.compile();
+      case 'static':
+        await extraTasks.static.compile();
         break;
     }
     await images();
@@ -89,8 +89,8 @@ async function watch() {
       case 'pl':
         watchTasks.push(extraTasks.patternLab.watch());
         break;
-      case 'storefront':
-        watchTasks.push(extraTasks.storefront.watch());
+      case 'static':
+        watchTasks.push(extraTasks.static.watch());
         break;
     }
 

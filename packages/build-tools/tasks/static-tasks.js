@@ -67,9 +67,9 @@ async function getPages(srcDir) {
 
   return Promise.all(allPaths.map(getPage)).then((pages) => {
     if (config.verbosity > 4) {
-      log.dim('All data for Storefront pages:');
+      log.dim('All data for Static pages:');
       console.log(pages);
-      log.dim('END: All data for Storefront pages.');
+      log.dim('END: All data for Static pages.');
     }
     // Sorting pages so that `weight: 10` comes before `weight: 50` if present in Yaml front matter.
     // This enables menus and any page listing to have basic control.
@@ -105,7 +105,7 @@ function getSiteData(pages) {
  * @returns {Promise<any[]>}
  */
 async function compile() {
-  const startMessage = chalk.blue('Compiling Storefront...');
+  const startMessage = chalk.blue('Compiling Static Site...');
   const startTime = timer.start();
   let spinner;
   if (config.verbosity > 2) {
@@ -135,11 +135,11 @@ async function compile() {
         log.dim(`Wrote: ${htmlFilePath}`);
       }
     } catch (error) {
-      log.errorAndExit('Compiling Storefront', error);
+      log.errorAndExit('Compiling Static Site', error);
     }
 
   })).then(() => {
-    const endMessage = chalk.green(`Compiled Storefront in ${timer.end(startTime)}`);
+    const endMessage = chalk.green(`Compiled Static Site in ${timer.end(startTime)}`);
     if (config.verbosity > 2) {
       console.log(endMessage);
     } else {
@@ -168,7 +168,7 @@ function watch() {
   // list of all events: https://www.npmjs.com/package/chokidar#methods--events
   watcher.on('all', (event, path) => {
     if (config.verbosity > 3) {
-      console.log('Storefront watch event: ', event, path);
+      console.log('Static Site watch event: ', event, path);
     }
     debouncedCompile();
   });
