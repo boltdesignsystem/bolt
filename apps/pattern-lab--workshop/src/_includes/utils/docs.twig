@@ -20,7 +20,7 @@
           ]
         }
       } %}
-      
+
     {% if readmeFile %}
       {% include "@bolt/headline.twig" with {
           size: "xlarge",
@@ -38,9 +38,7 @@
             id: "getting-started"
           }
         } %}
-      {% include '@utils/md-embed.twig' with {
-        file: readmeFile,
-      } only %}
+      {{ source(readmeFile) | markdown }}
     {% endif %}
 
     {% if code %}
@@ -131,12 +129,9 @@
 
       {% if readmeFile %}
         <li class="o-bolt-ui-list__item">
-          {# @todo Improve robustness of getting ReadMe Path #}
-          {# set branchName = 'epic/refactor'#}
-          {% set readmeUrlLink = github_url(readmeFile) %}
-          <a href="{{ readmeUrlLink }}" class="c-bolt-docs__page-nav__link" target="_blank">
+          <a href="{{ github_url(readmeFile) }}" class="c-bolt-docs__page-nav__link" target="_blank">
             <bolt-icon name="pencil"></bolt-icon>
-          Edit this page
+            Edit this page
           </a>
         </li>
       {% endif %}
