@@ -6,7 +6,7 @@
     {%- if minimum %} - Minimum is {{ minimum }} {%- endif %}
     {%- if maximum %} - Maximum is {{ maximum }} {%- endif %}
   {% endif %}
-  {%- if description %} - {{ description | markdown }} {% endif -%}
+  {%- if description %}{{ description | markdown }} {% endif -%}
 {% endmacro %}
 
 
