@@ -2,75 +2,53 @@
 **Below you'll find a step-by-step guide for getting your local environment configured**
 
 ## Prerequisites
-### **Node Prerequisites**
+### Node Prerequisites
 Bolt uses [Node](https://nodejs.org) for core processing and scripting, [npm](https://www.npmjs.com/) to manage project dependencies, [gulp.js](http://gulpjs.com/) to run front-end build tasks and to interface with the Pattern Lab PHP core library, and [Lerna](https://github.com/lerna/lerna) for versioning and publishing individual packages in Bolt to NPM, in addition to symlinking any local Bolt packages that depend on one-another.
 
 #### Installing Node & NPM
-Node v4 or higher should suffice however the latest v8.x of Node is recommended. You can follow the directions for [installing Node](https://nodejs.org/en/download/current/) on the nodejs.org website if you haven't done so already.
+Node v8.9.0 or higher is required. You can use the command below or follow the directions for [installing Node](https://nodejs.org/en/download/) on the nodejs.org website if you haven't done so already.
+```
+curl "https://nodejs.org/dist/latest/node-${VERSION:-$(wget -qO- https://nodejs.org/dist/latest/ | sed -nE 's|.*>node-(.*)\.pkg</a>.*|\1|p')}.pkg" > "$HOME/Downloads/node-latest.pkg" && sudo installer -store -pkg "$HOME/Downloads/node-latest.pkg" -target "/"
+```
 
-Installing Node also installs the latest version of npm by default however if you’ve already installed Node in the past, you should upgrade to at least v5.x of NPM to take advantage of the performance gains npm 5 introduced. 
-
+Installing Node also installs the latest version of npm by default however if you’ve already installed Node in the past, you should upgrade to at least v9.4.0 of NPM. 
 ```
 npm install npm@latest -g 
 ```
 
-It's also highly recommended that you [install gulp](hhttps://github.com/gulpjs/gulp/blob/4.0/docs/getting-started.md) globally.
-
-> Note: Bolt uses Gulp 4, which may require a new global install of the Gulp command line interface.
-> 
-> Follow the *Upgrading to Gulp 4* instructions below if you already have Gulp installed and need to upgrade. Gulp 4 is in alpha, but brings many benefits to the table and is relatively stable. The rest of this documentation assumes a global install.
-
-##### Upgrading to Gulp 4
-Gulp 4 uses an updated CLI which needs to be updated globally. This CLI is backwards compatible with any Gulp 3.x projects you may have locally.
-
+### Homebrew
+Needed for easy install of Composer, GD, Imagick, and Yarn. More details [available here](https://brew.sh/).
 ```
-# first uninstall gulp globally
-npm uninstall gulp -g
-
-# uninstall from your project directory, or delete node_modules if you need a coffee break
-npm uninstall gulp
-
-# install the latest Gulp 4 CLI tools globally
-npm install gulpjs/gulp-cli -g
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
-
-Once done you can run npm install again from the Bolt repo and everything should be pulled down again via npm.
-
-You can confirm the correct versions are installed via:
-```
-gulp -v
-[22:35:42] CLI version 1.4.0 (at time of writing)
-[22:35:42] Local version 4.0.0-alpha.2
-```
-
-
-### Install Lerna Globally
-```
-npm install -g lerna
-```
-
 
 ### Install PHP Dependencies
+PHP 7.x or higher is required.
 - Composer
+```
+brew install composer
+```
+then run `composer --version` to verify everything went smoothly (you should see a version number)
 - Prestissimo (optional, but recommend)
 ```
 composer global require hirak/prestissimo
 ```
-- PHP (PHP 7 recommended)
 
-### Homebrew
-- Homebrew (needed for easy install of GD and Imagick -- used for responsive images / image optimization)
-
+### GD and Imagick
+Used for responsive images / image optimization.
 ```
 brew install imagemagick
 brew install graphicsmagick
 ```
 
+### Yarn
+Yarn v1.x or higher is required. Yarn caches every package it downloads so it never needs to download it again. It also parallelizes operations to maximize resource utilization so install times are faster than ever.
+```
+brew install yarn
+```
 
 ## Installing
-
 ### First time setup
-
 If this is a fresh clone, run the commands below, then go get lunch.
 
 ```bash
@@ -101,11 +79,8 @@ Well, since you asked:
 
 ## Start up local server, compile, and watch for changes
 ```
-## Alias for `gulp`
-npm run start
+npm start
 ```
-
-Note: you can always run `gulp --tasks` to see what build tasks are available to run
 
 ## Building for Production (Quick Build)
 ```
