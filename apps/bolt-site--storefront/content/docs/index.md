@@ -1,4 +1,10 @@
-# Welcome to Bolt Contributor docs
+---
+title: Docs
+nav: main
+---
+
+## Welcome to Bolt Contributor docs
+
 **Here you'll learn how to get a local environment spun up and the correct methods for contributing to the platform**
 
 <pre style="background: #000000;color: #5659de;padding: 30px;overflow: hidden;border-radius: 7px;">    ///////|\\\\\\

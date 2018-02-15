@@ -1,4 +1,7 @@
-# Folder structure
+---
+title: Folder structure
+---
+
 **See where things are**
 
 <pre>
