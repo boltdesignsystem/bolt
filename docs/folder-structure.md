@@ -3,17 +3,17 @@
 
 <pre>
 .
-├── apps
+├── <strong>apps</strong>
 │   ├── <strong>bolt-site--storefront (coming soon)</strong>
 │   │   ├── content
 │   │   ├── images
 │   │   └── templates
-│   ├── example_drupal_theme
+│   ├── <strong>example_drupal_theme (coming soon)</strong>
 │   └── <strong>pattern-lab--workshop</strong>
 │       ├── config
 │       ├── core
 │       ├── node_modules
-│       ├─── src
+│       ├─── <strong>src</strong>
 │       │    ├── _annotations
 │       │    ├── _data
 │       │    ├── _includes
