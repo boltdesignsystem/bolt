@@ -72,8 +72,6 @@
         </ul>
       {% endif %}
     </li>
-    {% if key in loop.parent.required %} <li><strong>Required</strong></li> {% endif %}
-    {% if prop.default %} <li>Default: <code>{{ prop.default }}</code></li> {% endif %}
   </ul>
 {% endmacro %}
 
