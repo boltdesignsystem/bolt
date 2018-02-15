@@ -16,7 +16,8 @@
   <ul>
     {% set enum %}
       {% for x in prop.enum %}
-        <code>{{ x }}</code>{% if not loop.last %},{% endif %}
+        <code>{% if prop.type == 'boolean' %}{{ x ? 'TRUE' : 'FALSE' }}{% elseif x == null %}NULL{% else %}{{ x }}{% endif %}</code>
+        {%- if not loop.last %}{{ prop.enum|length == 2 ? ' OR' : ',' }}{%- endif %}
       {% endfor %}
     {% endset %}
     <li>
