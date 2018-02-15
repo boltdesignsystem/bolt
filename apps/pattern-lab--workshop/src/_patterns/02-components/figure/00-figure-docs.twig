@@ -1,5 +1,4 @@
 {% set schema = get_data('@bolt-components-figure/figure.schema.yml') %}
-{% set readme = source('@bolt-components-figure/README.md') %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-figure/figure.twig" with {
   image: {
@@ -14,6 +13,5 @@
 {% include '@utils/docs.twig' with {
   schema: schema,
   code: code,
-  readme: readme,
-  readmePath: 'packages/components/bolt-figure/README.md',
+  readmeFile: '@bolt-components-figure/README.md',
 } only %}

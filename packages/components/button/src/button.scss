@@ -145,15 +145,22 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
     }
 
     &:hover {
+      color: bolt-color(gray);
       border-color: bolt-color(gray, light);
       background-color: bolt-color(gray, light);
     }
 
     &:active {
+      color: bolt-color(gray);
       border-color: bolt-color(gray, light);
       background-color: bolt-color(gray, light);
     }
   }
+}
+
+// TODO: move to utils. temp workaround to flash of unstyled text in IE11
+.u-bolt-transitionless {
+  transition: none !important;
 }
 
 @mixin bolt-button {
@@ -162,10 +169,7 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   @include bolt-font-weight(semibold);
 
   display: inline-block;
-  @supports (display: flex) {
-    display: inline-flex;
-  }
-
+  display: inline-flex;
   position: relative;
   cursor: pointer;
   text-decoration: none;
@@ -191,7 +195,7 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
     border-radius: $bolt-button-border-radius;
     box-shadow: 0 1px 0.15rem rgba($bolt-shadow-color, 0.1), $bolt-button-shadow--hover;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    opacity: .2;
+    opacity: 0.2;
   }
 
   &:not([disabled]):not(.c-bolt-button--text) {
@@ -221,13 +225,12 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
 bolt-button {
   display: inline-block; // Fallback
   display: inline-flex; // So equal height works
-  flex-grow: 1;
 }
 
 // Button colors
 .c-bolt-button {
   @include bolt-button;
-  flex-direction: column; // Vertically center inner content
+  flex-direction: row; // Vertically center inner content
   justify-content: center; // Vertically center inner content
 }
 
@@ -267,9 +270,9 @@ bolt-button {
     background-color: $primary-background-hover;
     background-color: var(--bolt-theme-primary-background-hover, $primary-background-hover);
 
-    outline-width: 5px;
-    outline-style: auto;
-    outline-color: rgb(59, 153, 252); // Browser defaults
+    outline-width: 5px; // Default browser outline styles
+    outline-style: auto; // Default browser outline styles
+    outline-color: rgb(59, 153, 252); // Default browser outline styles
   }
 
   &:active,
@@ -285,7 +288,8 @@ bolt-button {
   }
 }
 
-.c-bolt-button--secondary {
+
+@mixin bolt-button-secondary() {
   $secondary-background-default: bolt-color(white);
   $secondary-background-hover: mix(bolt-color(black), $secondary-background-default, 2%);
   $secondary-background-active: mix(bolt-color(black), $secondary-background-default, 15%);
@@ -320,9 +324,9 @@ bolt-button {
     color: var(--bolt-theme-secondary-text-default, bolt-text-contrast($secondary-background-default));
     background-color: $secondary-background-hover;
     background-color: var(--bolt-theme-secondary-background-hover, $secondary-background-hover);
-    outline-width: 5px;
-    outline-style: auto;
-    outline-color: rgb(59, 153, 252); // Browser defaults
+    outline-width: 5px; // Default browser outline styles
+    outline-style: auto; // Default browser outline styles
+    outline-color: rgb(59, 153, 252); // Default browser outline styles
   }
 
   &.c-bolt-button--active,
@@ -338,18 +342,23 @@ bolt-button {
   }
 }
 
+.c-bolt-button--secondary {
+  @include bolt-button-secondary;
+}
 
 
 // Allow forcing light and xlight theme colors in IE11 until http://vjira2:8080/browse/BK-48 is resolved.
-._c-bolt-button--theme-override .c-bolt-button {
-  .t-bolt-xlight &,
-  .t-bolt-light & {
+.t-bolt-xlight,
+.t-bolt-light {
+  ._c-bolt-button--theme-override {
     $fallback-background-default: bolt-color(indigo, light);
     $fallback-background-hover: mix($bolt-global-button-hover-color, $fallback-background-default, $bolt-global-button-hover-mix);
     $fallback-background-active: mix($bolt-global-button-active-color, $fallback-background-default, $bolt-global-button-active-mix);
 
-    &,
-    &:visited {
+    &.c-bolt-button,
+    &.c-bolt-button__inner,
+    &.c-bolt-button:visited,
+    &.c-bolt-button__inner:visited {
       border-color: $fallback-background-default;
       color: bolt-text-contrast($fallback-background-default);
       background-color: $fallback-background-default;
@@ -388,6 +397,18 @@ bolt-button {
 .c-bolt-button--disabled {
   @include bolt-button-color(disabled);
   cursor: not-allowed;
+
+  &:before,
+  &:hover:before,
+  &:active:before {
+    opacity: 1;
+  }
+
+  &,
+  &:hover,
+  &:active {
+    transform: none;
+  }
 }
 
 
@@ -458,41 +479,50 @@ bolt-button {
 }
 
 
-
-
 // Button width variations
-bolt-button[width="full"],
+bolt-button[width='full'],
 .c-bolt-button--full {
   width: 100%;
 }
 
-bolt-button[width="full@small"],
+bolt-button[width='full@small'],
 .c-bolt-button--full\@small {
   @media screen and (max-width: map-get($bolt-breakpoints, small)) {
     width: 100%;
   }
 }
 
-
+// Rounded button option
 .c-bolt-button--rounded,
 .c-bolt-button--rounded:before {
   border-radius: 50rem;
 }
 
 
+// Button alignment options
 .c-bolt-button--center {
   align-items: center;
+  justify-content: center;
   text-align: center;
 }
 
 .c-bolt-button--left {
   align-items: flex-start;
+  justify-content: flex-start;
   text-align: left;
 }
 
 .c-bolt-button--right {
   align-items: flex-end;
+  justify-content: flex-end;
   text-align: right;
+}
+
+.c-bolt-button__item,
+.c-bolt-button__link,
+.c-bolt-button__button {
+  display: inline-flex; // vertical align content
+  align-self: center;
 }
 
 .c-bolt-button__button {
@@ -503,7 +533,7 @@ bolt-button[width="full@small"],
   font-size: inherit;
   font-family: inherit;
   cursor: inherit;
-  outline: 0;
+  color: inherit; // fix for black text browser default
   padding: 0;
   display: inline-flex; // vertical alignment w/ icon only button
 }
@@ -630,4 +660,18 @@ bolt-button[width="full@small"],
   //   color: mix(white, $bolt-color-secondary, 15%);
   //   // color: var(--bolt-color-secondary, $bolt-color-secondary);
   // }
+}
+
+// Inner component wrapper to the button added when rendering via Preact - doesn't apply to the component's pre-rendered state
+.c-bolt-button__inner {
+  display: flex;
+
+  // Sass-portion of the workaround technique to hide the focus outline styles on <button> tag buttons without wrecking accessibility
+  // Technique inspired by https://hackernoon.com/removing-that-ugly-focus-ring-and-keeping-it-too-6c8727fefcd2, https://jmperezperez.com/outline-focus-ring-a11y/, and https://marcysutton.com/button-focus-hell/
+  &:not(.is-focused) {
+    &:focus,
+    &:active {
+      outline: none;
+    }
+  }
 }
