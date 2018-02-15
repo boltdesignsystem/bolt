@@ -115,8 +115,21 @@ pre {
   @include bolt-font-weight(regular);
   // font-size: 24px;
   // line-height: 1.5;
-  color: #222;
   // font-weight: 300;
+  border: 1px dotted transparent;
+  border-radius: 4px;
+  color: #222;
+  margin: -13px;
+  padding: 13px;
+  transition: border 0.3s ease-in-out;
+
+  &.edit-this-readme {
+    border: 1px dotted var(--bolt-theme-primary);
+  }
+
+  pre:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .c-bolt-site {
