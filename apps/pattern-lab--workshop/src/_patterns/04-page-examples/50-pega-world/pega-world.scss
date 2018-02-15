@@ -1,3 +1,91 @@
 @import "@bolt/core";
 
+.u-pw-color-yellow {
+  color: bolt-color(yellow) !important;
+}
 
+.u-pw-opacity-40 {
+  opacity: 0.4 !important;
+}
+
+.u-pw-nowrap {
+  white-space: nowrap !important;
+}
+
+.u-pw-background-image-contain {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.c-pw-portrait {
+  @include bolt-margin(0 auto medium auto);
+  max-width: 250px;
+  max-height: 250px;
+  overflow: hidden;
+  border-radius: 100em;
+}
+
+.c-pw-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.c-pw-menu-logo {
+  display: block;
+  width: 100%;
+  text-align: center;
+
+  img {
+    width: 250px;
+    height: auto;
+  }
+
+  @include respond-to(small) {
+    width: auto;
+  }
+
+  @include respond-to(large) {
+    img {
+      width: 300px;
+    }
+  }
+}
+
+.c-pw-menu-list {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
+  display: block;
+  width: 100%;
+  text-align: center;
+  list-style: none;
+  white-space: nowrap;
+
+  @include respond-to(small) {
+    width: auto;
+  }
+}
+
+.c-pw-menu-list__item {
+  display: inline;
+
+  & + #{&} {
+    @include bolt-margin-left(medium);
+  }
+
+  &:last-child {
+    display: none;
+
+    @include respond-to(medium) {
+      display: inline;
+    }
+  }
+}
+
+.c-pw-menu-link {
+  &:hover {
+    text-decoration: underline;
+  }
+}
