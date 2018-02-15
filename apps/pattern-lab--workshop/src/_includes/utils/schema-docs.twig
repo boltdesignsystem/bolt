@@ -15,7 +15,7 @@
   {% set enum %}
     {% for x in prop.enum %}
       <code>{% if prop.type == 'boolean' %}{{ x ? 'TRUE' : 'FALSE' }}{% elseif x == null %}NULL{% else %}{{ x }}{% endif %}</code>
-      {%- if not loop.last %}{{ prop.enum|length == 2 ? ' OR' : ',' }}{%- endif %}
+      {%- if not loop.last %}{{ prop.enum|length == 2 ? ' OR' : ',' }}{% endif -%}
     {% endfor %}
   {% endset %}
   <ul class="c-bolt-docs-list">
@@ -27,9 +27,7 @@
             <li><code>{{ item.enum|join(',') }}</code>{{ macros.titleAndDescription(item.title, item.description, prop.minimum, prop.maximum) }}</li>
           {% endfor %}
         </ul>
-      {% elseif prop.enum %}
-        {{ enum }}
-      {% endif %}
+      {%- elseif prop.enum %}{{ enum }}{% endif -%}
 
       {% if prop.type == 'object' and prop.properties or prop.ref %}
         {% if prop.ref %}
