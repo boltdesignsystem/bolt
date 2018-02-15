@@ -21,7 +21,6 @@
       {% endfor %}
     {% endset %}
     <li>
-      Type: <code>{{ prop.type }}</code>
       {% if prop.oneOf %}
         Must be one of:
         <ul>
@@ -29,7 +28,7 @@
             <li><code>{{ item.enum|join(',') }}</code>{{ macros.titleAndDescription(item.title, item.description, prop.minimum, prop.maximum) }}</li>
           {% endfor %}
         </ul>
-      {%- elseif prop.enum %} - Must be one of: {{ enum }}
+      {%- elseif prop.enum %}Must be one of: {{ enum }}
       {% endif %}
 
       {% if prop.type == 'object' and prop.properties or prop.ref %}
@@ -111,40 +110,37 @@
   } only %}
 {% endif %}
 
+{% set requiredProps = schema.required %}
 
 <div class="c-bolt-docs-table">
   <table>
     <thead>
       <tr>
         <th>Name</th>
+        <th>Type</th>
         <th>Value</th>
         <th>Description</th>
         <th>Default</th>
-        <th>Required?</th>
       </tr>
     </thead>
 
     <tbody>
       {% for key, prop in schema.properties %}
         <tr class="c-bolt-docs-table__row">
-          <td>{{ key }}</td>
+          <td class="c-bolt-docs-table__col c-bolt-docs-table__col--key">{{ key }}{% if key in requiredProps %} <span class="required-key" title="Required">*</span>{% endif %}</td>
 
-          <td>{{ macros.schemaProps(prop) }}</td>
+          <td class="c-bolt-docs-table__col"><code>{{ prop.type }}</code></td>
 
-          <td>{{ macros.titleAndDescription(prop.title, prop.description, prop.minimum, prop.maximum) }}</td>
+          <td class="c-bolt-docs-table__col">{{ macros.schemaProps(prop) }}</td>
 
-          <td>
+          <td class="c-bolt-docs-table__col">{{ macros.titleAndDescription(prop.title, prop.description, prop.minimum, prop.maximum) }}</td>
+
+          <td class="c-bolt-docs-table__col">
             {% if prop.default %}
               <code>{{ prop.default }}</code>
             {% else %}
               -
             {% endif %}
-          </td>
-
-          <td>
-          {% if key in requiredProps %}
-            Required
-          {% endif %}
           </td>
         </tr>
       {% endfor %}

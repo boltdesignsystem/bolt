@@ -205,11 +205,19 @@ pre {
   td {
     @include bolt-padding(small);
     vertical-align: top;
+
+    .required-key {
+      color: red;
+    }
   }
 }
 
 .c-bolt-docs-table__row {
   border-top: 1px solid bolt-color(gray, light);
+}
+
+.c-bolt-docs-table__col--key {
+  font-weight: 600;
 }
 
 .c-bolt-docs-table .c-bolt-docs-table {
