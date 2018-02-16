@@ -1,0 +1,23 @@
+$bolt-export-data: false !global;
+
+@import '@bolt/settings-all';
+@import '@bolt/tools-all';
+
+// Same as max-width of wrapper container
+$bolt-video-meta--max-width: bolt-breakpoint(xxlarge);
+
+.c-brightcove-meta {
+  max-width: $bolt-video-meta--max-width;
+}
+
+.c-brightcove-meta__wrapper {
+  @include bolt-padding(medium, squished);
+  @include bolt-font-size(xsmall);
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(bolt-color(indigo), 0.8);
+  color: bolt-color(white);
+}

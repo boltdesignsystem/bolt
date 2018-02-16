@@ -1,5 +1,4 @@
-{#{% set schema = get_data('@bolt-components-button-group/button-group.schema.yml') %}#}
-{% set readme = source('@bolt-components-button-group/README.md') %}
+{% set schema = get_data('@bolt-components-button-group/button-group.schema.yml') %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-button-group/button-group.twig" with {
   buttons: [
@@ -19,6 +18,5 @@
 {% include '@utils/docs.twig' with {
   schema: schema,
   code: code,
-  readme: readme,
-  readmePath: 'packages/components/bolt-button-group/README.md',
+  readmeFile: '@bolt-components-button-group/README.md',
 } only %}

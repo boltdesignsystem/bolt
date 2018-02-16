@@ -1,42 +1,38 @@
 {
   "name": "bolt",
-  "description": "Pega Digital Design System",
+  "description": "Bolt Design System",
   "private": true,
+  "author": "Salem Ghoweri",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bolt-design-system/bolt.git"
+  },
+  "homepage": "https://github.com/bolt-design-system/bolt#readme",
+  "bugs": {
+    "url": "https://github.com/bolt-design-system/bolt/issues"
+  },
+  "keywords": [
+    "design",
+    "system",
+    "design system",
+    "bolt design system",
+    "pattern lab"
+  ],
   "scripts": {
-    "backstop-test": "backstop test",
-    "backstop-reference": "backstop reference",
+    "start": "cd apps/pattern-lab--workshop && npm start",
+    "setup": "npm run bootstrap && npm run composer:setup",
+    "build": "export NODE_ENV=production && cd apps/pattern-lab--workshop && npm run build",
     "bootstrap": "lerna bootstrap --reject-cycles",
     "postbootstrap": "node scripts/monorepo-tests.js",
-    "clean:git": "git clean -xdf",
     "deploy": "./scripts/deploy.sh",
-    "Xlint:js": "eslint ./build-tools",
-    "Xlint:scss": "gulp styles:lint",
+    "clean:git": "git clean -xdf",
     "clean:lerna": "lerna clean -Y",
-    "Xclean:lighthouse": "rm *.report.html",
     "clean": "npm-run-all --parallel clean:*",
-    "Xlint": "npm-run-all --parallel lint:* -c",
-    "Xmocha": "npm run mocha:build-tools",
-    "Xmocha:build-tools": "mocha ./packages/build-tools/**/tests/*.test.js",
-    "Xmocha:settings": "mocha **/settings-*/tests/*.test.js",
-    "Xpublish": "lerna publish",
-    "Xpublish:canary": "lerna publish --canary --npm-tag=next",
-    "start": "cd apps/pattern-lab--workshop && npm start",
-    "Xpre-build": "lerna exec -- npm run --if-present build",
-    "build": "export NODE_ENV=production && cd apps/pattern-lab--workshop && npm run build",
-    "Xbuild:full": "export NODE_ENV=production && npm run pre-build && gulp build:full",
-    "setup": "npm run bootstrap && npm run composer:setup",
     "composer:setup": "if [ ! -f ./apps/pattern-lab--workshop/www/index.html ]; then npm run composer:clean && npm run composer:install; fi",
     "composer:install": "composer install -d apps/pattern-lab--workshop --prefer-source --no-interaction --no-dev",
     "composer:clean": "rm -rf apps/pattern-lab--workshop/composer.lock && rm -rf apps/pattern-lab--workshop/vendor && rm -rf apps/pattern-lab--workshop/src/_twig-components",
-    "Xtest:travis": "yarn pretest && yarn lint",
-    "Xtest:lighthouse": "concurrently --kill-others \"http-server dist\" \"lighthouse --view http://localhost:8080\" ",
-    "Xtest:full": "yarn lint:scss && polymer test && yarn test:lighthouse && yarn lint:remark && npm run mocha",
-    "Xtest": "npm run mocha",
-    "Xtest:ci": "node browserstack.js",
-    "Xpretest": "node packages/build-tools/check-imports.js",
-    "Xprecommit": "npm run lint:scss",
-    "Xprepush": "npm test && npm run build:full",
-    "Xsnyk-protect": "snyk protect"
+    "snyk-protect": "snyk protect"
   },
   "config": {
     "validate-commit-msg": {
@@ -57,28 +53,9 @@
       "warnOnFail": false
     }
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bolt-design-system/bolt.git"
-  },
-  "keywords": [
-    "design",
-    "system",
-    "design system",
-    "bolt design system",
-    "pattern lab"
-  ],
-  "author": "Salem Ghoweri",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/bolt-design-system/bolt/issues"
-  },
-  "homepage": "https://github.com/bolt-design-system/bolt#readme",
   "devDependencies": {
-    "backstopjs": "^3.0.31",
     "husky": "^0.14.3",
     "lerna": "^2.5.1",
-    "lighthouse": "^2.5.0",
     "netlify-cli": "^1.2.2",
     "npm-run-all": "^4.1.2",
     "web-component-tester": "^6.3.0"

@@ -1,0 +1,29 @@
+{% set classes = [
+  "o-bolt-ratio"
+] %}
+
+{% set attributes = create_attribute(attributes | default({})) %}
+
+
+{% set aspectRatioHeight = aspectRatioHeight ? aspectRatioHeight : "1" %}
+{% set aspectRatioWidth = aspectRatioWidth ? aspectRatioWidth : "1" %}
+
+{% if aspectRatioHeight and aspectRatioWidth %}
+  {% set attributes = attributes.addClass(classes) %}
+  {% set attributes = attributes.setAttribute("aspect-ratio-height", aspectRatioHeight) %}
+  {% set attributes = attributes.setAttribute("aspect-ratio-width", aspectRatioWidth) %}
+
+  {# pre-render custom property values before the JS kicks in #}
+  {% set attributes = attributes.setAttribute("style", [
+    "--aspect-ratio-height: " ~ aspectRatioHeight ~ ";",
+    "--aspect-ratio-width: " ~ aspectRatioWidth ~ ";"
+  ]) %}
+{% endif %}
+
+<bolt-ratio {{ attributes }}>
+  {# <div class="o-bolt-ratio__content"> #}
+    {% block ratio_content %}
+      {{ children }}
+    {% endblock %}
+  {# </div> #}
+</bolt-ratio>

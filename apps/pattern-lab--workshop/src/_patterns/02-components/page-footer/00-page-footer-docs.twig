@@ -1,5 +1,4 @@
-{% set readme = source('@bolt-components-page-footer/README.md') %}
-
+{% set schema = get_data('@bolt-components-page-header/page-header.schema.yml') %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-page-footer/page-footer.twig" with {
   "content": content,
@@ -8,8 +7,8 @@
 {% endset %}
 
 {% include '@utils/docs.twig' with {
+  schema: schema,
   code: code,
-  readme: readme,
-  readmePath: 'packages/components/page-footer/README.md',
+  readmeFile: '@bolt-components-page-footer/README.md',
 } only %}
 

@@ -29,8 +29,6 @@
 {% set _allowedCardHeaderItems = ["image", "video"] %}
 {% set _allowedCardBodyItems = ["eyebrow", "content", "text", "headline", "teaser"] %}
 {% set _allowedCardFooterItems = ["buttons", "link", "button"] %}
-
-
 {% set _allowedItems = _allowedCardHeaderItems | merge(_allowedCardBodyItems) | merge(_allowedCardFooterItems) %}
 
 {% set _allowedCollections = ["contentItems"] %} {# array of different arrays that could exist w/ nested content #}
@@ -83,6 +81,22 @@
 
 
 
+{% set cardMedia %}
+  {% for key, item in _items if item.pattern in _allowedCardHeaderItems %}
+    {% if item.pattern %}
+      {% if item.pattern == 'image' and url is not empty %}
+        <a href="{{url}}">
+      {% endif %}
+      {% include pattern_template(item.pattern) with item only %}
+      {% if item.pattern == 'image' and url is not empty %}
+        </a>
+      {% endif %}
+    {% else %}
+      {{ item }}
+    {% endif %}
+  {% endfor %}
+{% endset %}
+
 <bolt-card
   theme="{{ theme }}"
   {% if url %}url={{ url }}{% endif %}
@@ -92,20 +106,7 @@
     {% if block('card_media') is not empty %}
       <div class="{{ "#{baseClass}__media" }}">{% spaceless %}
         {% block card_media %}
-          {% for key, item in _items if item.pattern in _allowedCardHeaderItems or key in _allowedCardHeaderItems %}
-            {% if item.pattern %}
-              {% if item.pattern == 'image' and url is not empty %}
-                <a href="{{url}}">
-              {% endif %}
-              {% include pattern_template(item.pattern) with item only %}
-              {% if item.pattern == 'image' and url is not empty %}
-                </a>
-              {% endif %}
-            {% else %}
-              {{ item }}
-            {% endif %}
-
-          {% endfor %}
+          {{ cardMedia }}
         {% endblock %}
       {% endspaceless %}</div>
     {% endif %}
@@ -136,13 +137,32 @@
             {% set paramOverrides = {
               itemAlignment: "left",
               style: "text",
-              icon: {
-                name: "chevron-right"
-              }
             } %}
+
+            {% if item.icon == null %}
+              {% if item.external == true %}
+                {% set iconOverrides = {
+                  icon: {
+                    name: "external-link"
+                  }
+                } %}
+              {% else %}
+                {% set iconOverrides = {
+                  icon: {
+                    name: "chevron-right"
+                  }
+                } %}
+              {% endif %}
+            {% endif %}
+
              <div class="{{ "#{baseClass}__footer-item" }}">
               {% if item.pattern %}
                 {% set item = item | merge(paramOverrides) %}
+
+                {# if icon default data set, merge that in as well #}
+                {% if iconOverrides %}
+                  {% set item = item | merge(iconOverrides) %}
+                {% endif %}
                 {% include pattern_template(item.pattern) with item only %}
               {% else %}
                 {{ item }}
@@ -155,3 +175,7 @@
     {% endif %}
   </{{ tag }}>
 </bolt-card>
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-card/card.schema.yml', _self) }}
+{% endif %}

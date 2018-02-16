@@ -1,5 +1,4 @@
-{#{% set schema = get_data('@bolt-components-logo/logo.schema.yml') %}#}
-{% set readme = source('@bolt-components-logo/README.md') %}
+{% set schema = get_data('@bolt-components-logo/logo.schema.yml') %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-logo/logo.twig" with {
   src: "/images/content/logos/logo-paypal.svg",
@@ -10,6 +9,5 @@
 {% include '@utils/docs.twig' with {
   schema: schema,
   code: code,
-  readme: readme,
-  readmePath: 'packages/components/bolt-logo/README.md',
+  readmeFile: '@bolt-components-logo/README.md',
 } only %}

@@ -1,5 +1,4 @@
-{#{% set schema = get_data('@bolt-components-card/card.schema.yml') %}#}
-{% set readme = source('@bolt-components-card/README.md') %}
+{% set schema = get_data('@bolt-components-card/card.schema.yml') %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-card/card.twig" with {
   url: "javascript:",
@@ -39,6 +38,5 @@
 {% include '@utils/docs.twig' with {
   schema: schema,
   code: code,
-  readme: readme,
-  readmePath: 'packages/components/bolt-card/README.md',
+  readmeFile: '@bolt-components-card/README.md',
 } only %}
