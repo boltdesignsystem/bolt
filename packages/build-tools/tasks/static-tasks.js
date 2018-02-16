@@ -104,7 +104,7 @@ function getSiteData(pages) {
  * The main event - compile the whole site
  * @returns {Promise<any[]>}
  */
-async function compile() {
+async function compile(exitOnError = true) {
   const startMessage = chalk.blue('Compiling Static Site...');
   const startTime = timer.start();
   let spinner;
@@ -118,26 +118,21 @@ async function compile() {
   const site = getSiteData(pages);
 
   return Promise.all(pages.map(async (page) => {
-    try {
-      const data = {
-        page,
-        site,
-      };
-      const dataArg = escapeNestedSingleQuotes(JSON.stringify(data));
-      const layout = page.meta.layout ? page.meta.layout : 'default';
-      const cmd = `php renderTwig.php ${layout}.twig '${dataArg}'`;
-      const output = await sh(cmd, true);
+    const data = {
+      page,
+      site,
+    };
+    const dataArg = escapeNestedSingleQuotes(JSON.stringify(data));
+    const layout = page.meta.layout ? page.meta.layout : 'default';
+    const cmd = `php renderTwig.php ${layout}.twig '${dataArg}'`;
+    const output = await sh(cmd, exitOnError, false);
 
-      const htmlFilePath = path.join(config.wwwDir, page.url);
-      await mkdirp(path.dirname(htmlFilePath));
-      await writeFile(htmlFilePath, output);
-      if (config.verbosity > 3) {
-        log.dim(`Wrote: ${htmlFilePath}`);
-      }
-    } catch (error) {
-      log.errorAndExit('Compiling Static Site', error);
+    const htmlFilePath = path.join(config.wwwDir, page.url);
+    await mkdirp(path.dirname(htmlFilePath));
+    await writeFile(htmlFilePath, output);
+    if (config.verbosity > 3) {
+      log.dim(`Wrote: ${htmlFilePath}`);
     }
-
   })).then(() => {
     const endMessage = chalk.green(`Compiled Static Site in ${timer.end(startTime)}`);
     if (config.verbosity > 2) {
@@ -145,10 +140,17 @@ async function compile() {
     } else {
       spinner.succeed(endMessage);
     }
+  }).catch((error) => {
+    console.log(error);
+    const endMessage = chalk.red(`Compiling Static Site failed in ${timer.end(startTime)}`);
+    spinner.fail(endMessage);
   });
 }
 
-const debouncedCompile = debounce(compile, 500);
+function compileWithNoExit() {
+  return compile(false);
+}
+const debouncedCompile = debounce(compileWithNoExit, 200);
 
 function watch() {
   const watchedFiles = [
