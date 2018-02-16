@@ -60,3 +60,7 @@
     content: renderedBandContent
   } only %}
 </bolt-{{ componentName }}>
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-band/band.schema.yml', _self) }}
+{% endif %}
