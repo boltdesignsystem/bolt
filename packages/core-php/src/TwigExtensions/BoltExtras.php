@@ -13,12 +13,19 @@ class BoltExtras extends Twig_Extension implements Twig_ExtensionInterface {
     return [
       TwigTools\TwigFunctions::console_log(),
       Bolt\TwigFunctions::deep_merge(),
+      Bolt\TwigFunctions::color_contrast(),
+      Bolt\TwigFunctions::create_attribute(),
+      Bolt\TwigFunctions::link(),
+      Bolt\TwigFunctions::getSpacingScaleSequence(),
+      Bolt\TwigFunctions::github_url(),
     ];
   }
 
   public function getFilters() {
     return [
       Bolt\TwigFilters::markdown(),
+      Bolt\TwigFilters::rgb2hex(),
+      Bolt\TwigFilters::text_contrast(),
     ];
   }
 

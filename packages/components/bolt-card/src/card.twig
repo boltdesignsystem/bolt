@@ -29,8 +29,6 @@
 {% set _allowedCardHeaderItems = ["image", "video"] %}
 {% set _allowedCardBodyItems = ["eyebrow", "content", "text", "headline", "teaser"] %}
 {% set _allowedCardFooterItems = ["buttons", "link", "button"] %}
-
-
 {% set _allowedItems = _allowedCardHeaderItems | merge(_allowedCardBodyItems) | merge(_allowedCardFooterItems) %}
 
 {% set _allowedCollections = ["contentItems"] %} {# array of different arrays that could exist w/ nested content #}
@@ -39,7 +37,7 @@
 {% for collectionName in _allowedCollections %}
   {% if _context[collectionName] %}
     {% for key, item in _context[collectionName] if item.pattern in _allowedItems or key in _allowedItems %}
-
+      
       {% if item.buttons %}
         {% set buttons = item.buttons %}
         {% for button in buttons %}
@@ -48,7 +46,7 @@
           }) %}
           {% set _items = _items | merge([button]) %}
         {% endfor %}
-
+      
         {% set item = item | merge({
           "buttons": null
         }) %}
@@ -104,13 +102,13 @@
             {% else %}
               {{ item }}
             {% endif %}
-
+            
           {% endfor %}
         {% endblock %}
       {% endspaceless %}</div>
     {% endif %}
 
-
+    
     {% if block('card_body') is not empty %}
     <{{ contentTag }} class="{{ "#{baseClass}__body" }}">{% spaceless %}
       {% block card_body %}
@@ -122,7 +120,7 @@
           {% else %}
             {{ item }}
           {% endif %}
-
+          
         {% endfor %}
       {% endblock card_body %}
     {% endspaceless %}</{{ contentTag }}>
@@ -131,7 +129,7 @@
     {% if block('card_footer') is not empty %}
       <div class="{{ "#{baseClass}__footer" }}">{% spaceless %}
         {% block card_footer %}
-
+        
           {% for item in _items if item.pattern in _allowedCardFooterItems %}
             {% set paramOverrides = {
               itemAlignment: "left",
@@ -149,7 +147,7 @@
               {% endif %}
             </div>
           {% endfor %}
-
+         
         {% endblock card_footer %}
       {% endspaceless %}</div>
     {% endif %}

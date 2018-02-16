@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "95532bfafbd58db96c00b5d837cd1c2e",
+    "content-hash": "a5d4cac4d1764d262858597d5b9f288f",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -70,19 +70,20 @@
         },
         {
             "name": "basaltinc/twig-tools",
-            "version": "v1.1.1",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/basaltinc/twig-tools.git",
-                "reference": "1d1af03a4793c5294ed740e0a7b7afb1d4e94a78"
+                "reference": "6a583b410d0a1cf236459f20aa185ebe9578b057"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/basaltinc/twig-tools/zipball/1d1af03a4793c5294ed740e0a7b7afb1d4e94a78",
-                "reference": "1d1af03a4793c5294ed740e0a7b7afb1d4e94a78",
+                "url": "https://api.github.com/repos/basaltinc/twig-tools/zipball/6a583b410d0a1cf236459f20aa185ebe9578b057",
+                "reference": "6a583b410d0a1cf236459f20aa185ebe9578b057",
                 "shasum": ""
             },
             "require": {
+                "fzaninotto/faker": "^1.7",
                 "justinrainbow/json-schema": "^5.2",
                 "symfony/yaml": "^3.3",
                 "twig/twig": "^1.0",
@@ -104,26 +105,32 @@
                     "email": "evanlovely@gmail.com"
                 }
             ],
-            "time": "2018-02-07T03:34:09+00:00"
+            "time": "2018-02-14T04:22:41+00:00"
         },
         {
             "name": "bolt/core-php",
-            "version": "dev-feature/twig-extension-refactor",
+            "version": "0.9.0",
             "dist": {
                 "type": "path",
                 "url": "../../packages/core-php",
-                "reference": "6704467dc59a2145b7dbae815b2631d01fa6a59d",
+                "reference": "4a59dbcb6beef1b97c2d248c0f1d3819f7268ce1",
                 "shasum": null
             },
             "require": {
                 "basaltinc/twig-tools": "^1.1.1",
+                "drupal/core-render": "8.4.x-dev",
+                "drupal/core-utility": "8.4.x-dev",
+                "mexitek/phpcolors": "^0.4.0",
                 "michelf/php-markdown": "^1.8.0",
-                "twig/twig": "^1.0"
+                "shudrum/array-finder": "^1.1",
+                "twig/twig": "^1.0",
+                "webmozart/path-util": "^2.3"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Bolt\\": "src/"
+                    "Bolt\\": "src/",
+                    "Drupal\\Core\\": "src/libs/Drupal/Core/"
                 }
             },
             "license": [
@@ -139,41 +146,6 @@
                 }
             ],
             "description": "Core PHP functionality for Bolt"
-        },
-        {
-            "name": "bolt/twig-extensions",
-            "version": "dev-feature/twig-extension-refactor",
-            "dist": {
-                "type": "path",
-                "url": "../../packages/twig-extensions",
-                "reference": "68fde6e7c28d82239695c4c9ce2a0e1def075ea7",
-                "shasum": null
-            },
-            "require": {
-                "gregwar/image": "*",
-                "ksubileau/color-thief-php": "^1.3",
-                "mexitek/phpcolors": "^0.4.0",
-                "symfony/yaml": "^3.3"
-            },
-            "type": "patternlab-plugin",
-            "extra": {
-                "installer-name": "_twig-components"
-            },
-            "autoload": {
-                "psr-0": {
-                    "Drupal\\Component\\Render\\": "/libs",
-                    "Drupal\\Component\\Utility\\": "/libs",
-                    "Drupal\\Core\\": "/libs",
-                    "Drupal\\Core\\Template\\": "/libs"
-                }
-            },
-            "authors": [
-                {
-                    "name": "Salem Ghoweri",
-                    "role": "Maintainer"
-                }
-            ],
-            "description": "Custom Twig Extensions Used By Bolt"
         },
         {
             "name": "composer/installers",
@@ -337,7 +309,7 @@
                 }
             ],
             "description": "Provides a way to patch Composer packages.",
-            "time": "2017-12-14T17:29:42+00:00"
+            "time": "2017-12-14 17:29:42"
         },
         {
             "name": "doctrine/collections",
@@ -407,6 +379,77 @@
             "time": "2017-01-03T10:49:41+00:00"
         },
         {
+            "name": "drupal/core-render",
+            "version": "8.4.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drupal/core-render.git",
+                "reference": "11338118bb93a2e23181f67d95f0f76733b35167"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drupal/core-render/zipball/11338118bb93a2e23181f67d95f0f76733b35167",
+                "reference": "11338118bb93a2e23181f67d95f0f76733b35167",
+                "shasum": ""
+            },
+            "require": {
+                "drupal/core-utility": "^8.2",
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Drupal\\Component\\Render\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Renders placeholder variables for HTML and plain-text display.",
+            "homepage": "https://www.drupal.org/project/drupal",
+            "keywords": [
+                "drupal"
+            ],
+            "time": "2018-01-23 08:31:55"
+        },
+        {
+            "name": "drupal/core-utility",
+            "version": "8.4.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drupal/core-utility.git",
+                "reference": "f959b49d527314b8b3f7f6f074d301b0d6254bdb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drupal/core-utility/zipball/f959b49d527314b8b3f7f6f074d301b0d6254bdb",
+                "reference": "f959b49d527314b8b3f7f6f074d301b0d6254bdb",
+                "shasum": ""
+            },
+            "require": {
+                "drupal/core-render": "^8.2",
+                "paragonie/random_compat": "^1.0|^2.0",
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Drupal\\Component\\Utility\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Mostly static utility classes for string, xss, array, image, and other commonly needed manipulations.",
+            "homepage": "https://www.drupal.org/project/drupal",
+            "keywords": [
+                "drupal"
+            ],
+            "time": "2018-01-23 08:31:55"
+        },
+        {
             "name": "evanlovely/plugin-twig-namespaces",
             "version": "dev-master",
             "source": {
@@ -459,7 +502,57 @@
                 "pattern lab",
                 "twig"
             ],
-            "time": "2017-11-10T23:21:38+00:00"
+            "time": "2017-11-10 23:21:38"
+        },
+        {
+            "name": "fzaninotto/faker",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fzaninotto/Faker.git",
+                "reference": "5dce1159142a1ba0fcab4672cb295bf7d8f98824"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/5dce1159142a1ba0fcab4672cb295bf7d8f98824",
+                "reference": "5dce1159142a1ba0fcab4672cb295bf7d8f98824",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.3 || ^7.0"
+            },
+            "require-dev": {
+                "ext-intl": "*",
+                "phpunit/phpunit": "^4.8.35 || ^5.7",
+                "squizlabs/php_codesniffer": "^1.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Faker\\": "src/Faker/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Zaninotto"
+                }
+            ],
+            "description": "Faker is a PHP library that generates fake data for you.",
+            "keywords": [
+                "data",
+                "faker",
+                "fixtures"
+            ],
+            "time": "2018-02-14 13:50:47"
         },
         {
             "name": "gajus/dindent",
@@ -505,102 +598,7 @@
                 "html",
                 "indent"
             ],
-            "time": "2017-06-05T10:29:29+00:00"
-        },
-        {
-            "name": "gregwar/cache",
-            "version": "v1.0.12",
-            "target-dir": "Gregwar/Cache",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Gregwar/Cache.git",
-                "reference": "305d0f5a12c0beecbbd7e1de236f59f39e0c0ac3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Gregwar/Cache/zipball/305d0f5a12c0beecbbd7e1de236f59f39e0c0ac3",
-                "reference": "305d0f5a12c0beecbbd7e1de236f59f39e0c0ac3",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Gregwar\\Cache": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Gregwar",
-                    "email": "g.passault@gmail.com"
-                }
-            ],
-            "description": "A lightweight file-system cache system",
-            "keywords": [
-                "cache",
-                "caching",
-                "file-system",
-                "system"
-            ],
-            "time": "2016-09-23T08:16:04+00:00"
-        },
-        {
-            "name": "gregwar/image",
-            "version": "dev-master",
-            "target-dir": "Gregwar/Image",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Gregwar/Image.git",
-                "reference": "c506d57d7fb5e67961d4eea6540ae8e23dffd406"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Gregwar/Image/zipball/c506d57d7fb5e67961d4eea6540ae8e23dffd406",
-                "reference": "c506d57d7fb5e67961d4eea6540ae8e23dffd406",
-                "shasum": ""
-            },
-            "require": {
-                "ext-gd": "*",
-                "gregwar/cache": "^1.0.6",
-                "php": "^5.3 || ^7.0"
-            },
-            "require-dev": {
-                "sllh/php-cs-fixer-styleci-bridge": "~1.0",
-                "symfony/phpunit-bridge": "^2.7.4 || ^3.0"
-            },
-            "suggest": {
-                "behat/transliterator": "Transliterator provides ability to set non-latin1 pretty names"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Gregwar\\Image": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Grégoire Passault",
-                    "email": "g.passault@gmail.com",
-                    "homepage": "http://www.gregwar.com/"
-                }
-            ],
-            "description": "Image handling",
-            "homepage": "https://github.com/Gregwar/Image",
-            "keywords": [
-                "gd",
-                "image"
-            ],
-            "time": "2018-01-31T17:40:17+00:00"
+            "time": "2017-06-05 10:29:29"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -666,7 +664,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2017-10-21T13:15:38+00:00"
+            "time": "2017-10-21 13:15:38"
         },
         {
             "name": "kevinlebrun/colors.php",
@@ -718,59 +716,6 @@
                 "shell"
             ],
             "time": "2016-04-12T20:58:34+00:00"
-        },
-        {
-            "name": "ksubileau/color-thief-php",
-            "version": "v1.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ksubileau/color-thief-php.git",
-                "reference": "a673d7d3fa815c70fa4bebdee74d337e9e6944fa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ksubileau/color-thief-php/zipball/a673d7d3fa815c70fa4bebdee74d337e9e6944fa",
-                "reference": "a673d7d3fa815c70fa4bebdee74d337e9e6944fa",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.8|~5.7",
-                "squizlabs/php_codesniffer": "~2.7"
-            },
-            "suggest": {
-                "ext-gd": "to use the GD image adapter.",
-                "ext-gmagick": "to use the Gmagick image adapter.",
-                "ext-imagick": "to use the Imagick image adapter."
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "ColorThief\\": "lib/ColorThief"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "CC-BY-2.5"
-            ],
-            "authors": [
-                {
-                    "name": "Kevin Subileau",
-                    "homepage": "http://www.kevinsubileau.fr"
-                }
-            ],
-            "description": "Grabs the dominant color or a representative color palette from an image.",
-            "homepage": "http://www.kevinsubileau.fr/projets/color-thief-php",
-            "keywords": [
-                "color",
-                "dominant",
-                "palette",
-                "php",
-                "thief"
-            ],
-            "time": "2016-12-18T03:12:25+00:00"
         },
         {
             "name": "mexitek/phpcolors",
@@ -903,7 +848,55 @@
             ],
             "description": "Extend the composer/installers plugin to accept any arbitrary package type.",
             "homepage": "http://www.oomphinc.com/",
-            "time": "2017-03-31T16:57:39+00:00"
+            "time": "2017-03-31 16:57:39"
+        },
+        {
+            "name": "paragonie/random_compat",
+            "version": "v2.0.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paragonie/random_compat.git",
+                "reference": "5da4d3c796c275c55f057af5a643ae297d96b4d8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/5da4d3c796c275c55f057af5a643ae297d96b4d8",
+                "reference": "5da4d3c796c275c55f057af5a643ae297d96b4d8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*|5.*"
+            },
+            "suggest": {
+                "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "lib/random.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paragon Initiative Enterprises",
+                    "email": "security@paragonie.com",
+                    "homepage": "https://paragonie.com"
+                }
+            ],
+            "description": "PHP 5.x polyfill for random_bytes() and random_int() from PHP 7",
+            "keywords": [
+                "csprng",
+                "pseudorandom",
+                "random"
+            ],
+            "time": "2017-09-27T21:40:39+00:00"
         },
         {
             "name": "pattern-lab/core",
@@ -1010,6 +1003,7 @@
                     "PatternLab\\DrupalTwigExtensions\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1020,24 +1014,20 @@
                 }
             ],
             "description": "Twig Extensions for working with Drupal",
-            "support": {
-                "source": "https://github.com/pattern-lab/drupal-twig-extensions/tree/v0.2.0",
-                "issues": "https://github.com/pattern-lab/drupal-twig-extensions/issues"
-            },
             "time": "2018-02-07T03:22:50+00:00"
         },
         {
             "name": "pattern-lab/patternengine-twig",
-            "version": "v2.2.0",
+            "version": "v2.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pattern-lab/patternengine-php-twig",
-                "reference": "1934ca010acb6139dc2b26da869cf79bd6a6f0a1"
+                "reference": "edeb27a56a7a389e8f369e02ba9c50ee83a84cbb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pattern-lab/patternengine-php-twig/zipball/1934ca010acb6139dc2b26da869cf79bd6a6f0a1",
-                "reference": "1934ca010acb6139dc2b26da869cf79bd6a6f0a1",
+                "url": "https://api.github.com/repos/pattern-lab/patternengine-php-twig/zipball/edeb27a56a7a389e8f369e02ba9c50ee83a84cbb",
+                "reference": "edeb27a56a7a389e8f369e02ba9c50ee83a84cbb",
                 "shasum": ""
             },
             "require": {
@@ -1094,7 +1084,7 @@
                 "wiki": "http://patternlab.io/docs/",
                 "source": "https://github.com/pattern-lab/patternengine-php-twig/releases"
             },
-            "time": "2018-02-05T22:39:57+00:00"
+            "time": "2018-02-08T00:11:23+00:00"
         },
         {
             "name": "pattern-lab/styleguidekit-assets-default",
@@ -1298,12 +1288,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "9e34a7af34870675f2ca2378ec667ec8b16e514d"
+                "reference": "58990682ac3fdc1f563b7e705452921372aad11d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/9e34a7af34870675f2ca2378ec667ec8b16e514d",
-                "reference": "9e34a7af34870675f2ca2378ec667ec8b16e514d",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/58990682ac3fdc1f563b7e705452921372aad11d",
+                "reference": "58990682ac3fdc1f563b7e705452921372aad11d",
                 "shasum": ""
             },
             "require": {
@@ -1353,7 +1343,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-31T10:49:53+00:00"
+            "time": "2018-02-14 10:03:57"
         },
         {
             "name": "symfony/filesystem",
@@ -1402,7 +1392,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-03T07:37:34+00:00"
+            "time": "2018-01-03 07:37:34"
         },
         {
             "name": "symfony/finder",
@@ -1410,12 +1400,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "613e26310776f49a1773b6737c6bd554b8bc8c6f"
+                "reference": "6a615613745cef820d807443f32076bb9f5d0a38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/613e26310776f49a1773b6737c6bd554b8bc8c6f",
-                "reference": "613e26310776f49a1773b6737c6bd554b8bc8c6f",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/6a615613745cef820d807443f32076bb9f5d0a38",
+                "reference": "6a615613745cef820d807443f32076bb9f5d0a38",
                 "shasum": ""
             },
             "require": {
@@ -1451,7 +1441,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-03T07:37:34+00:00"
+            "time": "2018-02-11 17:15:12"
         },
         {
             "name": "symfony/process",
@@ -1459,12 +1449,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "09a5172057be8fc677840e591b17f385e58c7c0d"
+                "reference": "cc4aea21f619116aaf1c58016a944e4821c8e8af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/09a5172057be8fc677840e591b17f385e58c7c0d",
-                "reference": "09a5172057be8fc677840e591b17f385e58c7c0d",
+                "url": "https://api.github.com/repos/symfony/process/zipball/cc4aea21f619116aaf1c58016a944e4821c8e8af",
+                "reference": "cc4aea21f619116aaf1c58016a944e4821c8e8af",
                 "shasum": ""
             },
             "require": {
@@ -1500,7 +1490,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-29T09:03:43+00:00"
+            "time": "2018-02-12 17:55:00"
         },
         {
             "name": "symfony/yaml",
@@ -1508,12 +1498,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "eab73b6c21d27ae4cd037c417618dfd4befb0bfe"
+                "reference": "f44c40e9eb06da59bdaf83309e9a1312eb6eaf84"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/eab73b6c21d27ae4cd037c417618dfd4befb0bfe",
-                "reference": "eab73b6c21d27ae4cd037c417618dfd4befb0bfe",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/f44c40e9eb06da59bdaf83309e9a1312eb6eaf84",
+                "reference": "f44c40e9eb06da59bdaf83309e9a1312eb6eaf84",
                 "shasum": ""
             },
             "require": {
@@ -1558,7 +1548,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-21T19:05:02+00:00"
+            "time": "2018-02-11 15:00:48"
         },
         {
             "name": "twig/twig",
@@ -1566,12 +1556,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "e923101942193d46d459f6c2dbf91b48f6174432"
+                "reference": "8a7fba9560e0564342f2a95538f2a373f508d0e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/e923101942193d46d459f6c2dbf91b48f6174432",
-                "reference": "e923101942193d46d459f6c2dbf91b48f6174432",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/8a7fba9560e0564342f2a95538f2a373f508d0e3",
+                "reference": "8a7fba9560e0564342f2a95538f2a373f508d0e3",
                 "shasum": ""
             },
             "require": {
@@ -1623,7 +1613,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2018-01-30T16:11:48+00:00"
+            "time": "2018-02-07 19:24:52"
         },
         {
             "name": "webmozart/assert",
@@ -1673,7 +1663,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2018-01-29T19:49:41+00:00"
+            "time": "2018-01-29 19:49:41"
         },
         {
             "name": "webmozart/path-util",
@@ -1719,7 +1709,7 @@
                 }
             ],
             "description": "A robust cross-platform utility for normalizing, comparing and modifying file paths.",
-            "time": "2016-08-15T15:31:42+00:00"
+            "time": "2016-08-15 15:31:42"
         }
     ],
     "packages-dev": [],

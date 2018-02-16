@@ -4,6 +4,7 @@ export { h, render } from 'preact';
 
 // Export Bolt utils
 export * from './utils/css';
+export * from './utils/environment';
 export { withPreact } from './utils/renderer-preact';
 
 // Export Bolt data shared

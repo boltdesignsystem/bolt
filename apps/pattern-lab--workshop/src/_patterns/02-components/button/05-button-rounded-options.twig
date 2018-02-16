@@ -1,10 +1,10 @@
-{% set schema = get_data('@bolt/button.schema.json') %}
+{% set schema = get_data('@bolt-components-button/button.schema.yml') %}
 
 {% for rounded in schema.properties.rounded.enum %}
-  <h4>{{ rounded }} Button</h4>
+  <p>{{ rounded|capitalize }} Button</p>
 
-  {% include "@bolt/button.twig" with {
+  {% include "@bolt-components-button/button.twig" with {
     "rounded": rounded,
-    "text": "Example " ~ rounded ~" Button"
+    "text": "Example " ~ rounded|capitalize ~" Button"
   } %}
 {% endfor %}

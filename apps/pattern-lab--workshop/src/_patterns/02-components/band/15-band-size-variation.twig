@@ -1,0 +1,9 @@
+{% set exampleSizes = ["xsmall", "small", "medium", "large"] %}
+
+{% for size in exampleSizes %}
+  <p>Size: {{ size }}</p>
+  {% include "@bolt-components-band/band.twig" with {
+    content: "This band is "~size,
+    size: size,
+  } only %}
+{% endfor %}

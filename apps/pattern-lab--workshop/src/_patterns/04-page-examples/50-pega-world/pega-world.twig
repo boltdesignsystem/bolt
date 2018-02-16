@@ -1,0 +1,11 @@
+{% extends "@bolt/default-template.twig" %}
+
+  {% block global_header %}{% endblock %}
+
+  {% block main_content %}
+    Hello world
+
+    {% include "@bolt/button.twig" with {
+      text: "Hello button"
+    } only %}
+  {% endblock %}

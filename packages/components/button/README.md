@@ -1,62 +1,48 @@
-# bolt/components-button
 Button is a branded component to convey call to action. Part of the Bolt “Components” CSS framework that powers the [Bolt Design System](https://www.boltdesignsystem.com).
 
-## Demo
-
-```
-...
-```
-
-- - - -
-
-## Table of Contents
-- [Cheat Sheet](#cheat-sheet)
-- [Getting Started](#getting-started)
-- [Further Reading](#further-reading)
-
-## Cheat Sheet
 ### Install via NPM
 ```
 npm install @bolt/components-button
 ```
 
-- - - -
-
-## Getting Started
-The best way to start using Bolt is via the *Bolt Starterkit* (coming soon), a pre-assembled front-end boilerplate designed to get you up and running as quickly as possible.
-
-You can also use the full [Bolt Core](https://www.npmjs.com/package/@bolt/core) CSS framework on its own, or, install just the parts you need and fold the different ITCSS layers of Bolt into your existing codebase.
-
-Installing Bolt’s Button component is as easy as running NPM install:
-
+### Theme inheritance
+This component must be wrapped in the following to inherit correct theme variation:
 ```
-npm install @bolt/components-button
+{% embed "@utils/theme-demo.twig" %}
+    {% block demo_content %}
+        {# component here #}
+    {% endblock %}
+{% endembed %}
 ```
 
-> **TIP:**: Don’t have a `package.json` file? Need a little help getting started? Check out our [Getting Started](https://www.boltdesignsystem.com/getting-started) guide for some tips to help get you up to speed.
+Description:
+Buttons are the core of our action components. Their affordance is imediate and can be use for most actions and allow users to access the target with a single interaction. Buttons clearly provide a next step for the user.
 
-### Usage
-Once installed, you should  `@import`  the main Sass partial into your project’s main `.scss` file to make the included variables available to the rest of your code.
+Our Buttons depend on the theme they are contained in and change in appearance based on said theme. The themes and button colors were designed together to ensure the proper amount affordance and clarity.
 
-```
-// Settings
-@import '@bolt/settings-all';
+Xlight and light themes:
+Primary: Light Indigo container with white text
+Secondary: white button with indigo text
+Text button: Light indigo text with chevron
 
-// Tools
-@import '@bolt/tools-all';
-```
+Dark and xdark themes:
+Primary: Yellow container with default indigo text
+Secondary: white button with indigo text
+Text button: white tex with chevron
 
-Since Bolt’s CSS architecture is based on [ITCSS (Inverted Triangle CSS)](http://www.creativebloq.com/web-design/manage-large-css-projects-itcss-101517528)<sup>[1](#1-learn-more-about-itcss)</sup>, what Sass partials you import, and in what order, makes a whole world of difference. That’s why importing any Settings packages from Bolt in your project’s Settings layer (prior to any Sass mixins, resets, base HTML element styles, etc) is so important.
+* Currently only have one defined size (though other options can and will be defined in the future)
+* Can be 100% width of the wrapper for mobile or card instances
+* Can optionally be 100% width. For example, the button has default width of 2 rem on either side on larger screens but full width on smaller screens
 
-### Compiling
-We recommend using Bolt’s Gulp-based [front-end build tools](https://www.npmjs.com/package/@bolt/build-tools) to compile your Sass as we’re pre-packaging many of the latest tools and add-ons to help you write your very best: LibSass, Autoprefixer, PostCSS, CleanCSS, Sassdoc, Stylelint, Gulp Plumber, npm-sass, and BrowserSync live reloading.
+Dos:
+* CTAs must be clearly and succintly labeled with a next step
+* CTA should lead with strong action verbs
+* The primary CTA should be the most important action. 
+* Be consistent in placement based on the screen size and device
+* Fall back to the text button in secondary and tertiary content areas where you can. For example, cards with a button use the text style so that a filled button doesn't become overwhelming and redundant. 
+* Follow theming rules
 
-- - - -
-
-## Further Reading:
-<h3 id="learn-about-itcss">1. Learn more about ITCSS</h3>
-
-- [Harry Roberts - Managing CSS Projects with ITCSS - YouTube](https://www.youtube.com/watch?v=1OKZOV-iLj4)
-- [ITCSS: Scalable and Maintainable CSS Architecture - Xfive](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/)
-- [Manage large CSS projects with ITCSS | Creative Bloq](http://www.creativebloq.com/web-design/manage-large-css-projects-itcss-101517528)
-- [How I Shrank my CSS by 84kb by Refactoring with ITCSS](https://medium.com/@jordankoschei/how-i-shrank-my-css-by-84kb-by-refactoring-with-itcss-2e8dafee123a)
+Don'ts:
+* Don't clutter the page with too many buttons
+* Don't mix and match themes and their button colors. For example, do not use the indigo button on dark and xdark themes as the indigo button does not stand out enough.
+* Don't mix and match colors outside the theme, see button groups. 
