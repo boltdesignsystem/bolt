@@ -1,5 +1,4 @@
 {# HERO #}
-
 <nav class="c-pw-mobile-menu" id="menu">
   <ul class="c-pw-mobile-menu-list">
     <li class="c-pw-mobile-menu-list__item">
@@ -65,7 +64,7 @@
             "text": "Digital Transformation is hard. Join us at PegaWorld 2018 to learn how to get it right.",
             "tag": "h2"
           } only %}
-          <a href="https://www.pega.com/events/pegaworld/event-details/why-attend" class="c-pw-mobile-menu-link" class="c-bolt-button c-bolt-button--primary">Register now</a>
+          <a href="https://www.pega.com/events/pegaworld/event-details/why-attend" class="c-bolt-button c-bolt-button--primary">Register now</a>
         {% endcell %}
       {% endgrid %}
     {% endcell %}
@@ -100,24 +99,33 @@
       src: "/images/pw2018/background-hero-eye.jpg"
     }]
   },
-  "content": stacked_bands
+  "content": stacked_bands,
+  "attributes": {
+    "class": [
+      "c-pw-hero-header"
+    ]
+  }
 } only %}
-
 {# END HERO #}
 
 
 
-
+{# Pricing ribbon #}
 {% embed "@bolt/band.twig" with {
   theme: "xdark",
-  size: "small"
+  size: "small",
+  "attributes": {
+    "class": [
+      "c-pw-pricing"
+    ]
+  }
 } only %}
   {% block band_content %}
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
       {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
         {% include "@bolt/headline.twig" with {
           "size": "small",
-          "text": "Save Now",
+          "text": "Save Now!",
           "tag": "div",
           "attributes": {
             "class": [
@@ -126,7 +134,7 @@
           }
         } only %}
         {% include "@bolt/text.twig" with {
-          "text": "Time is running to take advantage of end-of-year pricing.",
+          "text": "Register soon to secure your spot at the best price.",
           "tag": "div"
         } only %}
       {% endcell %}
@@ -217,30 +225,16 @@
   {% endblock %}
 {% endembed %}
 
-{% embed "@bolt/band.twig" with {
-  theme: "dark",
-  size: "none"
-} only %}
-  {% block band_content %}
-    <div class="u-pw-background-image-contain" style="background-image: url('/images/pw2018/background-shapes.png')">
-      <div class="u-bolt-padding-top-xxlarge u-bolt-padding-bottom-xxlarge">
-        {% include "@bolt/blockquote.twig" with {
-          "size": "xxlarge",
-          "alignItems": "center",
-          "border": "none",
-          "author": {
-            "name": "2017 Attendee"
-          },
-          "content": "<p>PPegaWorld is hands-down the best technology conference I’ve been to…and I’ve been to them all. Practical insights that I was able to take back to my business that have delivered real results. I look forward to returning next year.</p>"
-        } only %}
-      </div>
-    </div>
-  {% endblock %}
-{% endembed %}
 
+{# Why #}
 {% embed "@bolt/band.twig" with {
   theme: "dark",
-  size: "large"
+  size: "large",
+  "attributes": {
+    "class": [
+      "c-pw-5up-highlight"
+    ]
+  }
 } only %}
   {% block band_content %}
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
@@ -250,13 +244,13 @@
             {% include "@bolt/headline.twig" with {
               "size": "xxxlarge",
               "align": "center",
-              "text": "What to expect",
+              "text": "Why you need to be there",
               "tag": "h2"
             } only %}
             {% include "@bolt/subheadline.twig" with {
               "size": "xlarge",
               "align": "center",
-              "text": "Discover why 4,500 global leaders plan to join us next June in Las Vegas to gain the tools, connections, and knowledge to make an immediate business impact like no other event can!",
+              "text": "3+ power-packed days of the most successful companies on the planet sharing their stories of digital transformation, access to industry-leading AI, Robotics, Customer Engagement and Digital Process Automation technology, and thousands of business leaders and innovators coming together to learn, network, and grow.  Oh, and there’s a lot of fun too!",
               "tag": "h3"
             } only %}
           {% endcell %}
@@ -359,55 +353,16 @@
   {% endblock %}
 {% endembed %}
 
-{% embed "@bolt/band.twig" with {
-  theme: "xdark",
-  size: "large",
-  background: {
-    opacity: "light",
-    fill: "gradient",
-    focalPoint: {
-      vertical: "center",
-      horizontal: "center"
-    },
-    contentItems: [{
-      pattern: "image",
-      src: "/images/pw2018/background-ceo.jpg"
-    }]
-  }
-} only %}
-  {% block band_content %}
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-padding-top-xxlarge u-bolt-padding-bottom-xxlarge" %}
-      {% cell "u-bolt-width-1/1" %}
-        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-9/12@small" %}
-            {% include "@bolt/eyebrow.twig" with {
-              "align": "center",
-              "text": "PegaWorld 2017 On-Demand",
-              "tag": "div"
-            } only %}
-            {% include "@bolt/headline.twig" with {
-              "size": "xxxlarge",
-              "align": "center",
-              "text": "Discover how PegaWorld 2017 created so much buzz.",
-              "tag": "h2"
-            } only %}
-          {% endcell %}
-        {% endgrid %}
-      {% endcell %}
-      {% cell "u-bolt-width-1/1" %}
-        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-          {% cell %}
-            <a href="https://www.pega.com/events/pegaworld/replays" class="c-bolt-button c-bolt-button--primary">Watch the Replays</a>
-          {% endcell %}
-        {% endgrid %}
-      {% endcell %}
-    {% endgrid %}
-  {% endblock %}
-{% endembed %}
 
+{# Leading companies #}
 {% embed "@bolt/band.twig" with {
   theme: "dark",
-  size: "large"
+  size: "large",
+  "attributes": {
+    "class": [
+      "c-pw-leading-companies"
+    ]
+  }
 } only %}
   {% block band_content %}
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
@@ -516,148 +471,6 @@
         {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
           {% cell %}
             <a href="https://www.pega.com/events/pegaworld" class="c-bolt-button c-bolt-button--primary">View 2018 Agenda</a>
-          {% endcell %}
-        {% endgrid %}
-      {% endcell %}
-    {% endgrid %}
-  {% endblock %}
-{% endembed %}
-
-{% embed "@bolt/band.twig" with {
-  theme: "xdark",
-  size: "large"
-} only %}
-  {% block band_content %}
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
-      {% cell "u-bolt-width-1/1" %}
-        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-9/12@small" %}
-            {% include "@bolt/headline.twig" with {
-              "size": "xxxlarge",
-              "align": "center",
-              "text": "Register now!",
-              "tag": "h2"
-            } only %}
-            {% include "@bolt/subheadline.twig" with {
-              "size": "xlarge",
-              "align": "center",
-              "text": "PegaWorld brings together business and technical visionaries from the world's leading companies. Take advantage of end-of-year pricing before it increases to $1,095 on January 1, 2018!",
-              "tag": "h3"
-            } only %}
-          {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-9/12@small" %}
-            {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-padding-top-medium u-bolt-padding-bottom-medium" %}
-              {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
-                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-                  {% cell %}
-                    {% include "@bolt/eyebrow.twig" with {
-                      "align": "center",
-                      "text": "Oct 1 - Dec 31, 2017",
-                      "tag": "div",
-                      "attributes": {
-                        "class": [
-                          "u-pw-opacity-40"
-                        ]
-                      }
-                    } only %}
-                    {% include "@bolt/headline.twig" with {
-                      "size": "xlarge",
-                      "align": "center",
-                      "text": "$895",
-                      "tag": "div",
-                      "attributes": {
-                        "class": [
-                          "u-pw-opacity-40"
-                        ]
-                      }
-                    } only %}
-                  {% endcell %}
-                {% endgrid %}
-              {% endcell %}
-              {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
-                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-                  {% cell %}
-                    {% include "@bolt/eyebrow.twig" with {
-                      "align": "center",
-                      "text": "Jan 1 - Apr 2, 2018",
-                      "tag": "div"
-                    } only %}
-                    {% include "@bolt/headline.twig" with {
-                      "size": "xlarge",
-                      "align": "center",
-                      "text": "$1095",
-                      "tag": "div",
-                      "attributes": {
-                        "class": [
-                          "u-pw-color-yellow"
-                        ]
-                      }
-                    } only %}
-                  {% endcell %}
-                {% endgrid %}
-              {% endcell %}
-              {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
-                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-                  {% cell %}
-                    {% include "@bolt/eyebrow.twig" with {
-                      "align": "center",
-                      "text": "Apr 3 - Jun 2, 2018",
-                      "tag": "div",
-                      "attributes": {
-                        "class": [
-                          "u-pw-opacity-40"
-                        ]
-                      }
-                    } only %}
-                    {% include "@bolt/headline.twig" with {
-                      "size": "xlarge",
-                      "align": "center",
-                      "text": "$1295",
-                      "tag": "div",
-                      "attributes": {
-                        "class": [
-                          "u-pw-opacity-40"
-                        ]
-                      }
-                    } only %}
-                  {% endcell %}
-                {% endgrid %}
-              {% endcell %}
-              {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
-                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-                  {% cell %}
-                    {% include "@bolt/eyebrow.twig" with {
-                      "align": "center",
-                      "text": "Onsite",
-                      "tag": "div",
-                      "attributes": {
-                        "class": [
-                          "u-pw-opacity-40"
-                        ]
-                      }
-                    } only %}
-                    {% include "@bolt/headline.twig" with {
-                      "size": "xlarge",
-                      "align": "center",
-                      "text": "$1695",
-                      "tag": "div",
-                      "attributes": {
-                        "class": [
-                          "u-pw-opacity-40"
-                        ]
-                      }
-                    } only %}
-                  {% endcell %}
-                {% endgrid %}
-              {% endcell %}
-            {% endgrid %}
-          {% endcell %}
-        {% endgrid %}
-      {% endcell %}
-      {% cell "u-bolt-width-1/1" %}
-        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-          {% cell %}
-            <a href="https://www.cvent.com/events/pegaworld-2018/registration-510ce28f40334ea195526c224ae26a21.aspx" class="c-bolt-button c-bolt-button--primary">Register now!</a>
           {% endcell %}
         {% endgrid %}
       {% endcell %}
@@ -789,9 +602,247 @@
   {% endblock %}
 {% endembed %}
 
-{# {% embed "@bolt/band.twig" with {
+
+{# Quote #}
+{% embed "@bolt/band.twig" with {
+  theme: "dark",
+  size: "none",
+  "attributes": {
+    "class": [
+      "c-pw-quote"
+    ]
+  }
+} only %}
+  {% block band_content %}
+    <div class="u-pw-background-image-contain" style="background-image: url('/images/pw2018/background-shapes.png')">
+      <div class="u-bolt-padding-top-xxlarge u-bolt-padding-bottom-xxlarge">
+        {% include "@bolt/blockquote.twig" with {
+          "size": "xxlarge",
+          "alignItems": "center",
+          "border": "none",
+          "author": {
+            "name": "2017 Attendee"
+          },
+          "content": "<p>PegaWorld is hands-down the best technology conference I’ve been to…and I’ve been to them all. Practical insights that I was able to take back to my business that have delivered real results. I look forward to returning next year.</p>"
+        } only %}
+      </div>
+    </div>
+  {% endblock %}
+{% endembed %}
+
+
+{# 2017 #}
+{% embed "@bolt/band.twig" with {
   theme: "xdark",
-  size: "large"
+  size: "large",
+  background: {
+    opacity: "light",
+    fill: "gradient",
+    focalPoint: {
+      vertical: "center",
+      horizontal: "center"
+    },
+    contentItems: [{
+      pattern: "image",
+      src: "/images/pw2018/background-ceo.jpg"
+    }]
+  },
+  "attributes": {
+    "class": [
+      "c-pw-highlight"
+    ]
+  }
+} only %}
+  {% block band_content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-padding-top-xxlarge u-bolt-padding-bottom-xxlarge" %}
+      {% cell "u-bolt-width-1/1" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-9/12@small" %}
+            {% include "@bolt/eyebrow.twig" with {
+              "align": "center",
+              "text": "PegaWorld 2017 On-Demand",
+              "tag": "div"
+            } only %}
+            {% include "@bolt/headline.twig" with {
+              "size": "xxxlarge",
+              "align": "center",
+              "text": "Discover how PegaWorld 2017 created so much buzz.",
+              "tag": "h2"
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+          {% cell %}
+            <a href="https://www.pega.com/events/pegaworld/replays" class="c-bolt-button c-bolt-button--primary">Watch the Replays</a>
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+    {% endgrid %}
+  {% endblock %}
+{% endembed %}
+
+
+{# Register #}
+{% embed "@bolt/band.twig" with {
+  theme: "xdark",
+  size: "large",
+  "attributes": {
+    "class": [
+      "c-pw-register"
+    ]
+  }
+} only %}
+  {% block band_content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-9/12@small" %}
+            {% include "@bolt/headline.twig" with {
+              "size": "xxxlarge",
+              "align": "center",
+              "text": "Register now!",
+              "tag": "h2"
+            } only %}
+            {% include "@bolt/subheadline.twig" with {
+              "size": "xlarge",
+              "align": "center",
+              "text": "PegaWorld brings together business and technical visionaries from the world’s leading companies. Secure your spot now at the best price.",
+              "tag": "h3"
+            } only %}
+          {% endcell %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-9/12@small" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-padding-top-medium u-bolt-padding-bottom-medium" %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+                  {% cell %}
+                    {% include "@bolt/eyebrow.twig" with {
+                      "align": "center",
+                      "text": "Oct 1 - Dec 31, 2017",
+                      "tag": "div",
+                      "attributes": {
+                        "class": [
+                          "u-pw-opacity-40"
+                        ]
+                      }
+                    } only %}
+                    {% include "@bolt/headline.twig" with {
+                      "size": "xlarge",
+                      "align": "center",
+                      "text": "$895",
+                      "tag": "div",
+                      "attributes": {
+                        "class": [
+                          "u-pw-opacity-40"
+                        ]
+                      }
+                    } only %}
+                  {% endcell %}
+                {% endgrid %}
+              {% endcell %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+                  {% cell %}
+                    {% include "@bolt/eyebrow.twig" with {
+                      "align": "center",
+                      "text": "Jan 1 - Apr 2, 2018",
+                      "tag": "div"
+                    } only %}
+                    {% include "@bolt/headline.twig" with {
+                      "size": "xlarge",
+                      "align": "center",
+                      "text": "$1095",
+                      "tag": "div",
+                      "attributes": {
+                        "class": [
+                          "u-pw-color-yellow"
+                        ]
+                      }
+                    } only %}
+                  {% endcell %}
+                {% endgrid %}
+              {% endcell %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+                  {% cell %}
+                    {% include "@bolt/eyebrow.twig" with {
+                      "align": "center",
+                      "text": "Apr 3 - Jun 2, 2018",
+                      "tag": "div",
+                      "attributes": {
+                        "class": [
+                          "u-pw-opacity-40"
+                        ]
+                      }
+                    } only %}
+                    {% include "@bolt/headline.twig" with {
+                      "size": "xlarge",
+                      "align": "center",
+                      "text": "$1295",
+                      "tag": "div",
+                      "attributes": {
+                        "class": [
+                          "u-pw-opacity-40"
+                        ]
+                      }
+                    } only %}
+                  {% endcell %}
+                {% endgrid %}
+              {% endcell %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+                  {% cell %}
+                    {% include "@bolt/eyebrow.twig" with {
+                      "align": "center",
+                      "text": "Onsite",
+                      "tag": "div",
+                      "attributes": {
+                        "class": [
+                          "u-pw-opacity-40"
+                        ]
+                      }
+                    } only %}
+                    {% include "@bolt/headline.twig" with {
+                      "size": "xlarge",
+                      "align": "center",
+                      "text": "$1695",
+                      "tag": "div",
+                      "attributes": {
+                        "class": [
+                          "u-pw-opacity-40"
+                        ]
+                      }
+                    } only %}
+                  {% endcell %}
+                {% endgrid %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+          {% cell %}
+            <a href="https://www.cvent.com/events/pegaworld-2018/registration-510ce28f40334ea195526c224ae26a21.aspx" class="c-bolt-button c-bolt-button--primary">Register now!</a>
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+    {% endgrid %}
+  {% endblock %}
+{% endembed %}
+
+
+{# Sponsors #}
+{% embed "@bolt/band.twig" with {
+  theme: "xdark",
+  size: "large",
+  attributes: {
+    "class": [
+      "c-pw-sponsors",
+      "u-bolt-visuallyhidden"
+    ]
+  }
 } only %}
   {% block band_content %}
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
@@ -933,5 +984,5 @@
       {% endcell %}
     {% endgrid %}
   {% endblock %}
-{% endembed %} #}
+{% endembed %}
 
