@@ -1,5 +1,5 @@
 
-{# 
+{#
   Bolt Image - Structure:
   - .c-bolt-image: uses the ratio object as a base if enabled
     - .c-bolt-image__img: lazyloaded img tag
@@ -44,11 +44,27 @@
 {% set ratio = ratio ?? true %}
 {% set sizes = sizes | default("auto") %}
 {% set zoom = zoom ?? false %}
-{% set lazyload = lazyload ?? true %}
+{# {% set lazyload = lazyload ?? true %} #}
+{% set lazyload = false %}
 
 
 {# Get a whole number aspect ratio #}
 {% if width > 0 and height > 0 and ratio == true %}
+  {# {% set gcd %}
+    {% include '@bolt/gcd.twig' with {
+      a: width,
+      b: height
+    } only %}
+  {% endset %}
+  {% set gcd = gcd | escape | raw | number_format %}
+
+  {% if gcd != 0 and height != 0 and width != 0 %}
+    {% set imageHeightRatio = (height / gcd) %}
+    {% set imageWidthRatio = (width / gcd) %}
+  {% else %}
+    {% set imageHeightRatio = 1 %}
+    {% set imageWidthRatio = 1 %}
+  {% endif %} #}
 
   {% set ratio = height / width * 100 ~ '%' %}
 
@@ -71,10 +87,10 @@
       {% endif %}
 
       {# store the current srcset path just in case this loop is our last -- loop.last var isn't available w/ conditions #}
-      
+
     {% endfor %}
     {% set srcset = srcset|trim(', ') %}
-  {% elseif ext == "svg" %}
+  {% elseif ext == "svg" and lazyload == true %}
     {% set srcset = src %}
   {% endif %}
 
@@ -97,17 +113,19 @@
 {% endif %}
 
 
-{% if lazyload %}
-  {% set imageAttributes = imageAttributes
-    .setAttribute("data-srcset", srcset)
-    .setAttribute("srcset", placeholderDummySrc)
-    .setAttribute("data-sizes", sizes)
-  %}
+{# fallback if image not found #}
+{% if srcset == "" %}
+  {% set imageAttributes = imageAttributes.removeAttribute("srcset").setAttribute("src", src) %}
 {% else %}
-  {% set imageAttributes = imageAttributes
-    .setAttribute("srcset", srcset)
-    .setAttribute("src", src)
-  %}
+  {% if lazyload %}
+    {% set imageAttributes = imageAttributes
+      .setAttribute("data-srcset", srcset)
+      .setAttribute("srcset", placeholderDummySrc)
+      .setAttribute("data-sizes", sizes)
+    %}
+  {% else %}
+    {% set imageAttributes = imageAttributes.setAttribute("srcset", srcset) %}
+  {% endif %}
 {% endif %}
 
 {% set placeholderAttributes = create_attribute(placeholderAttributes | default({})).addClass("c-bolt-image__placeholder") %}
@@ -120,9 +138,12 @@
 
 {% set imageTag %}
   <img {{ imageAttributes }}>
-  <noscript>
-    <img {{ imageAttributes.removeClass(["js-lazyload", "is-lazyloading"]).setAttribute("srcset", srcset) }}>
-  </noscript>
+
+  {% if lazyload %}
+    <noscript>
+      <img {{ imageAttributes.removeClass(["js-lazyload", "is-lazyloading"]).setAttribute("srcset", srcset) }}>
+    </noscript>
+  {% endif %}
 {% endset %}
 
 {% set imagePlaceholder %}
@@ -147,7 +168,3 @@
     {% endif %}
   {% endblock %}
 </bolt-image>
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-image/image.schema.yml', _self) }}
-{% endif %}

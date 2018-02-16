@@ -55,11 +55,14 @@
   align-items: center;
 
   > * {
+    display: block;
     flex-basis: auto;
+    flex-grow: 1; // How we make sure children don't report 0px widths
+    width: 100%;
     -ms-flex-preferred-size: auto;
-    
+
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-      margin: 0; //Fix flexbox weirdness 
+      margin: 0; //Fix flexbox weirdness
     }
   }
 }

@@ -20,7 +20,8 @@
       },
       contentItems: [{
         pattern: "image",
-        src: "/images/sample/product-background-image.jpg"
+        src: "/assets/images/content/backgrounds/background-short-1.jpg",
+        lazyload: false
       }]
     },
     primaryTeaser: {
@@ -209,7 +210,8 @@
 
       {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
         {% include "@bolt/image.twig" with {
-          src: "/images/sample/decision-hub-chart.png"
+          src: "/images/content/charts/decision-hub-chart.png",
+          lazyload: false
         } only %}
       {% endcell %}
 
@@ -250,14 +252,16 @@
     {
       "pattern": "card",
       "image": {
-        "src": "/images/sample/anthem-video.jpg"
+        "src": "/images/content/promos/promo-16x9-anthem.jpg",
+        "lazyload": false
       },
       "teaser": {
         "eyebrow": {
           text: "Article"
         },
         "logo": {
-          src: "/images/content/logos/logo-paypal.svg"
+          src: "/images/content/logos/logo-paypal.svg",
+          lazyload: false
         },
         "headlines": [
           {
@@ -280,7 +284,8 @@
     {
       "pattern": "card",
       "image": {
-        "src": "/images/sample/anthem-video.jpg"
+        "src": "/images/content/promos/promo-16x9-anthem.jpg",
+        "lazyload": false
       },
       "teaser": {
         "eyebrow": {
@@ -307,7 +312,8 @@
     {
       "pattern": "card",
       "image": {
-        "src": "/images/sample/anthem-video.jpg"
+        "src": "/images/content/promos/promo-16x9-anthem.jpg",
+        "lazyload": false
       },
       "teaser": {
         "eyebrow": {
@@ -334,7 +340,7 @@
   ]
 } %}
   {% block band_content %}
-    
+
 
 
    {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix u-bolt-margin-bottom" %}
@@ -390,13 +396,14 @@
     "contentItems": [
       {
         "pattern": "image",
-        "src": "/images/sample/background-banner--left-focal-point.jpg"
+        "src": "/images/content/backgrounds/background-tall-4.jpg",
+        "lazyload": false
       }
     ]
   }
 } only %}
   {% block band_content %}
-    
+
     {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center" %}
       {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small u-bolt-text-align-center" %}
 
@@ -408,7 +415,8 @@
           alignItems: "center",
           logo: {
             src: "/images/content/logos/logo-paypal.svg",
-            invert: true
+            invert: true,
+            lazyload: false
           },
           author: {
             image: {
@@ -432,7 +440,7 @@
           style: "secondary"
         } only %}
 
-        
+
       {% endcell %}
     {% endgrid %}
   {% endblock %}

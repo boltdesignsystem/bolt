@@ -1,5 +1,4 @@
-{#{% set schema = get_data('@bolt-components-background/background.schema.yml') %}#}
-{% set readme = source('@bolt-components-background/README.md') %}
+{% set schema = get_data('@bolt-components-background/background.schema.yml') %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-background/background.twig" with {
     opacity: "heavy",
@@ -21,6 +20,5 @@
 {% include '@utils/docs.twig' with {
   schema: schema,
   code: code,
-  readme: readme,
-  readmePath: 'packages/components/bolt-background/README.md',
+  readmeFile: '@bolt-components-background/README.md',
 } only %}

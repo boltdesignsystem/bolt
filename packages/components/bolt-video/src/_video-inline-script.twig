@@ -1,0 +1,69 @@
+<script type="text/javascript">
+  // @TODO: add whenDefined to critical JS bundle
+
+  // https://fokkezb.nl/2016/04/14/how-to-wait-for-a-javascript-variable-to-be-defined/
+  // https://github.com/OwenMelbz/whendefined
+  (function(){window.whenDefined=function(a,b,c){a[b]?c():Object.defineProperty(a,b,{configurable:!0,enumerable:!0,writeable:!0,get:function(){return this["_"+b]},set:function(a){this["_"+b]=a,c()}})}}).call(this);
+
+
+  // @TODO: move into separate JS bundle - export standalone plugin functions used below
+  function initBrightcovePlugins(elem){
+    var videoStack = [];
+
+    function initVideoEl(elem) {
+      var id = elem.state.id;
+
+      videojs(id).ready(function(){
+        var boltVideoPlayer = this;
+        var options = {
+          'playbackRates': [1, 1.3, 1.5, 2]
+        }
+        boltVideoPlayer.social({
+          'url': '{{ socialUrl | default('') }}',
+          'displayAfterVideo': true,
+          'services': {
+            'facebook': true,
+            'google': false,
+            'twitter': true,
+            'linkedin': true,
+            'pinterest': false,
+            'tumblr': false
+          }
+        });
+
+        boltVideoPlayer.emailSocialShare();
+
+        if (Array.isArray(options.playbackRates)) {
+          if (boltVideoPlayer.controlBar.playbackRateMenuButton) {
+            // Update the existing playback rate menu button in the control bar
+            var playbackControl = boltVideoPlayer.controlBar.playbackRateMenuButton;
+            playbackControl.removeChild(playbackControl.menu);
+            playbackControl.options_.playbackRates = options.playbackRates;
+            playbackControl.addChild(playbackControl.createMenu());
+            playbackControl.updateLabel();
+            playbackControl.updateVisibility();
+          } else {
+            // Add the playback rate menu button to the control bar
+            boltVideoPlayer.controlBar.playbackRateMenuButton = boltVideoPlayer.controlBar.addChild('PlaybackRateMenuButton', {
+              playbackRates: options.playbackRates
+            });
+            boltVideoPlayer.controlBar.playbackRateMenuButton.updateVisibility();
+          }
+        }
+      });
+    }
+
+    if (window.bc) { // If the brightcove player already loaded up, configure the player instance immediately
+      initVideoEl(elem);
+    } else { // store references to the players that are ready to get configured, once brightcove is ready
+      videoStack.push(elem);
+    }
+
+    whenDefined(window, 'bc', function() {
+      var elem;
+      while (elem = videoStack.pop()) {
+        initVideoEl(elem);
+      }
+    });
+  }
+</script>

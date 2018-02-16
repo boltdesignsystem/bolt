@@ -5,32 +5,12 @@ Background can be added to any container. Part of the Bolt “Components” CSS 
 npm install @bolt/components-background
 ```
 
-### Usage
-Bolt background is a component that is depended on content to wrap:
-```
-{% embed "@bolt-components-band/band.twig" with {
-  ...
-} %}
-  {% block band_background %}
-    {% include "@bolt-components-background/background.twig" with {
-      opacity: "heavy",
-      fill: "gradient",
-      focalPoint: {
-      vertical: "center",
-      horizontal: "center"
-    },
-    contentItems: [
-      {
-        pattern: "image",
-        src: "/images/content/backgrounds/background-tall-4.jpg",
-        lazyload: false,
-      }
-    ]
-    } %}
-  {% endblock band_background %}
-  
-  {% block band_content %}
-    // Content here
-  {% endblock band_content %}
-{% endembed %}
-```
+Description:
+Background allows Bolt to set an images inside of bands.
+
+* Can set an image inside the band
+* Can set background shapes
+* Can set focus on the left
+* Can set focus on the right
+* Can set light, medium, or heavy opacity
+* Can set a left, right, or center gradient 

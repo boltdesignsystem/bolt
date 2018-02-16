@@ -1,5 +1,4 @@
 {% set schema = get_data('@bolt-components-nav-bar/nav-bar.schema.yml') %}
-{% set readme = source('@bolt-components-nav-bar/README.md') %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-nav-bar/nav-bar.twig" with {
     "title": {
@@ -30,6 +29,5 @@
 {% include '@utils/docs.twig' with {
   schema: schema,
   code: code,
-  readme: readme,
-  readmePath: 'packages/components/bolt-nav-bar/README.md',
+  readmeFile: '@bolt-components-nav-bar/README.md',
 } only %}

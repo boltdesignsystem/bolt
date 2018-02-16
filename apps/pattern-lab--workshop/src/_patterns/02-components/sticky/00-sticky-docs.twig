@@ -1,5 +1,4 @@
-{#{% set schema = get_data('@bolt-components-sticky/sticky.schema.yml') %}#}
-{% set readme = source('@bolt-components-sticky/README.md') %}
+{% set schema = get_data('@bolt-components-sticky/sticky.schema.yml') %}
 {% set code %} {% verbatim %}
 {% embed "@bolt-components-sticky/sticky.twig" %}
   {% block sticky_content %}
@@ -14,6 +13,5 @@
 {% include '@utils/docs.twig' with {
   schema: schema,
   code: code,
-  readme: readme,
-  readmePath: 'packages/components/bolt-sticky/README.md',
+  readmeFile: '@bolt-components-sticky/README.md',
 } only %}

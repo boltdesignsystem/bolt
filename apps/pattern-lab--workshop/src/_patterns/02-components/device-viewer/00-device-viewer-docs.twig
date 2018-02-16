@@ -1,5 +1,4 @@
 {% set schema = get_data('@bolt-components-device-viewer/device-viewer.schema.yml') %}
-{% set readme = source('@bolt-components-device-viewer/README.md') %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-device-viewer/device-viewer.twig" with {
   device: "iphone8",
@@ -15,6 +14,5 @@
 {% include '@utils/docs.twig' with {
   schema: schema,
   code: code,
-  readme: readme,
-  readmePath: 'packages/components/bolt-device-viewer/README.md',
+  readmeFile: '@bolt-components-device-viewer/README.md',
 } only %}
