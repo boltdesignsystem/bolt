@@ -71,15 +71,7 @@ async function getPages(srcDir) {
       console.log(pages);
       log.dim('END: All data for Static pages.');
     }
-    // Sorting pages so that `weight: 10` comes before `weight: 50` if present in Yaml front matter.
-    // This enables menus and any page listing to have basic control.
-    return pages.sort((a, b) => {
-      if (a.meta.weight && b.meta.weight) {
-        return a.meta.weight - b.meta.weight;
-      } else {
-        return 0;
-      }
-    });
+    return pages;
   });
 }
 
