@@ -13,35 +13,36 @@
 
   <link rel="stylesheet" href="/build/bolt-global.css">
 </head>
-<body class="c-bolt-site">
+<body class="storefront-docs">
 
 
-<div class="c-bolt-site__content">
-  <div class="o-bolt-wrapper">
-    <header>
-      <h1>Bolt Storefront</h1>
-      <nav style="display: flex;">
-        {% set currentUrl = page.url %}
-        {% for page in site.pages if page.meta.nav == 'main' %}
-          {% set isActive = currentUrl == page.url %}
-          <a href="/{{ page.url }}" style="margin-right: 5px; {% if isActive %} text-decoration: underline; {% endif %}">{{ page.meta.title }}</a>
-        {% endfor %}
-      </nav>
-      <hr>
-    </header>
-    <main>
-      {% block content %}
-
-      {% endblock %}
+<div class="storefront-docs__content">
+  <div class="storefront-docs-wrapper">
+    <aside class="storefront-docs-sidebar">
+      <h1>BOLT STOREFRONT</h1>
       {% if page.url starts with 'docs' %}
         {% include 'partials/docs-nav.twig' %}
       {% endif %}
+    </aside>
+    <header class="storefront-docs-header">
+      <nav class="storefront-docs-header__nav">
+        {% set currentUrl = page.url %}
+        {% for page in site.pages if page.meta.nav == 'main' %}
+          {% set isActive = currentUrl == page.url %}
+          <a href="/{{ page.url }}" class="{% if isActive %}active{% endif %}">{{ page.meta.title }}</a>
+        {% endfor %}
+      </nav>
+    </header>
+    <main class="storefront-docs-content">
+      {% block content %}
+
+      {% endblock %}
     </main>
   </div>
 </div>
 
-<div class="c-bolt-site__footer c-bolt-page-footer">
-  <div class="o-bolt-wrapper">
+<div class="storefront-docs-footer">
+  <div class="storefront-docs-wrapper">
     <footer role="contentinfo">
       <p>
         <strong>Copyright &copy; 2017 Pegasystems, Inc.</strong>
