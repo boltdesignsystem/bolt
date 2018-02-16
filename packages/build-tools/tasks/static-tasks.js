@@ -39,7 +39,11 @@ async function getPage(file) {
     log.dim(`Getting info for: ${file}`);
   }
 
-  const url = path.relative(config.srcDir, file).replace('\.md', '\.html');
+  const url = path.relative(config.srcDir, file)
+    .replace('\.md', '\.html')
+    .split('/')
+    .map(x => x.replace(/^[0-9]*-/, '')) // Removing number prefix `05-item` => `item`
+    .join('/');
   const fileContents = await readFile(file, 'utf8');
 
   // https://www.npmjs.com/package/front-matter
