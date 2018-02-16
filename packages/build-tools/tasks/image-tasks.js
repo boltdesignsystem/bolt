@@ -39,7 +39,7 @@ function  makeWebPath(imagePath) {
 
 async function writeImageManifest(imgManifest) {
   await writeFile(
-    path.join(config.dataDir, 'bolt-image-manifest.json'),
+    path.join(config.dataDir, 'images.bolt.json'),
     JSON.stringify(imgManifest, null, '  ')
   );
 }
@@ -143,7 +143,7 @@ async function processImages() {
     const imageMetas = flattenArray(setsOfImageMetas);
     const imageManifest = {};
     imageMetas.forEach((imageMeta) => {
-      imageManifest[imageMeta.fileId] = imageMeta;
+      imageManifest[imageMeta.fullSizePath] = imageMeta;
     });
     await writeImageManifest(imageManifest);
 
