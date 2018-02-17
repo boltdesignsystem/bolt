@@ -1,0 +1,29 @@
+{% macro menu(items, depth) %}
+  {% import _self as macros %}
+  <ul class="sub-nav__list sub-nav__list--depth-{{ depth }}">
+    {% for item in items %}
+      <li class="sub-nav__item">
+        <a href="/{{ item.url }}" class="sub-nav__link">
+          {{ item.meta.title }}
+          ({{ item.url }})
+        </a>
+        {% if item.children %}
+          {% set depth = depth + 1 %}
+          {{ macros.menu(item.children, depth) }}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+{% import _self as macros %}
+
+<nav class="sub-nav">
+  {{ macros.menu(site.pages, 1) }}
+</nav>
+
+{#<ul class="sub-nav">#}
+  {#{% for page in site.pages if page.dirStructure[0] starts with 'docs' %}#}
+    {#<li><a href="/{{ page.url }}">{{ page.meta.title }}</a></li>#}
+  {#{% endfor %}#}
+{#</ul>#}

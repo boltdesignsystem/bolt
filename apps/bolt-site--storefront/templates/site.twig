@@ -20,9 +20,9 @@
   <div class="storefront-docs-wrapper">
     <aside class="storefront-docs-sidebar">
       <h1>BOLT STOREFRONT</h1>
-      {% if page.url starts with 'docs' %}
-        {% include 'partials/docs-nav.twig' %}
-      {% endif %}
+      {#{% if page.children %}#}
+        {% include 'partials/sub-nav.twig' %}
+      {#{% endif %}#}
     </aside>
     <header class="storefront-docs-header">
       <nav class="storefront-docs-header__nav">
@@ -37,6 +37,8 @@
       {% block content %}
 
       {% endblock %}
+      {% include 'partials/sub-nav.twig' %}
+
     </main>
   </div>
 </div>
@@ -61,6 +63,8 @@
         var jsonScriptTag = me.previousElementSibling.innerHTML;
         var data = JSON.parse(jsonScriptTag);
         console.log('Twig vars for this page: ', data);
+        console.table(data.site.pages);
+//        console.table(data.site.pages);
     })();
 </script>
 
