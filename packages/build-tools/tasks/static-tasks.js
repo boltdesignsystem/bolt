@@ -114,8 +114,7 @@ function nestedContent(itemPath) {
 
   if (itemMeta.isDirectory()) { // recursively call nestedContent if directory
     item.type = "directory";
-    item.children = fs.readdirSync(itemPath);
-      // .map(child => {nestedContent(path.join(item, child))});
+    item.children = fs.readdirSync(itemPath).map(child => nestedContent(path.join(itemPath, child)));
   } else { // Otherwise call getPage
     item.type = "page";
     return (item, itemPath) => Object.assign({}, item, getPage(itemPath));
@@ -130,9 +129,9 @@ function nestedContent(itemPath) {
  * @returns {{pages}}
  */
 function getSiteData(pages) {
-  const pagesNested = nestedContent(config.srcDir);
+  const content = nestedContent(config.srcDir);
   const site = {
-    pagesNested,
+    content,
     pages: pages.map((page) => ({
       url: page.url,
       meta: page.meta,
