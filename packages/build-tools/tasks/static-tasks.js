@@ -6,7 +6,9 @@ const { promisify } = require('util');
 const fs = require('fs');
 const mkdirp = promisify(require('mkdirp'));
 const readFile = promisify(fs.readFile);
+const readdir = promisify(fs.readdir);
 const writeFile = promisify(fs.writeFile);
+const lstat = promisify(fs.lstat);
 const events = require('../utils/events');
 const chokidar = require('chokidar');
 const del = require('del');
@@ -107,8 +109,8 @@ async function getPages(srcDir) {
  * @param itemPath A system path to a directory or file.
  * @returns {*}
  */
-function nestedContent(itemPath) {
-  const itemMeta = fs.lstatSync(itemPath);
+async function nestedContent(itemPath) {
+  const itemMeta = await lstat(itemPath);
   let item = {
     path: itemPath,
     name: path.basename(itemPath)
@@ -116,11 +118,11 @@ function nestedContent(itemPath) {
 
   if (itemMeta.isDirectory()) { // recursively call nestedContent if directory
     item.type = "directory";
-    item.children = fs.readdirSync(itemPath)
-      .map(child => nestedContent(path.join(itemPath, child)));
+    const pathsInThisDir = await readdir(itemPath);
+    item.children = await Promise.all(pathsInThisDir.map(child => nestedContent(path.join(itemPath, child))));
   } else { // Otherwise call getPage
     item.type = "page";
-    item = Object.assign(item, getPage(itemPath));
+    item = Object.assign({}, item, await getPage(itemPath));
   }
   return item;
 }
@@ -131,8 +133,8 @@ function nestedContent(itemPath) {
  * @param {object} pages
  * @returns {{pages}}
  */
-function getSiteData(pages) {
-  const content = nestedContent(config.srcDir);
+async function getSiteData(pages) {
+  const content = await nestedContent(config.srcDir);
   const site = {
     content,
     pages: pages.map((page) => ({
@@ -160,7 +162,7 @@ async function compile(exitOnError = true) {
   }
 
   const pages = await getPages(config.srcDir);
-  const site = getSiteData(pages);
+  const site = await getSiteData(pages);
 
   return Promise.all(pages.map(async (page) => {
     const data = {
