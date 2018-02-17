@@ -1,27 +1,14 @@
-<ul>
-  <li>{{ faker.words() }}</li>
-  <li>{{ faker.words() }}</li>
-  <li>
-    {{ faker.words() }}
-    <ul>
-      <li>{{ faker.words() }}</li>
-      <li>{{ faker.words() }}</li>
-    </ul>
-  </li>
-  <li>{{ faker.words() }}</li>
-  <li>{{ faker.words() }}</li>
-</ul>
+{% set tags = ["ul", "ol"] %} {# Available Headline Types #}
 
-<ol>
-  <li>{{ faker.words() }}</li>
-  <li>{{ faker.words() }}</li>
-  <li>
-    {{ faker.words() }}
-    <ol>
-      <li>{{ faker.words() }}</li>
-      <li>{{ faker.words() }}</li>
-    </ol>
-  </li>
-  <li>{{ faker.words() }}</li>
-  <li>{{ faker.words() }}</li>
-</ol>
+{% for tag in tags %}
+  {% include '@bolt-global/bare-list.twig' with {
+    tag: tag,
+    contentItems: [
+      { text: faker.words() },
+      { text: faker.words() },
+      { text: faker.words() },
+      { text: faker.words() },
+      { text: faker.words() }
+    ]
+  } %}
+{% endfor %}
