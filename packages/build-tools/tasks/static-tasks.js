@@ -49,9 +49,23 @@ async function getPage(file) {
   // https://www.npmjs.com/package/front-matter
   const { attributes, body, frontmatter } = fm(fileContents);
 
+  const dirTree = url.split('/');
+
+  let depth = url
+    .split('/')
+    .filter(x => x !== 'index.html')
+    .length;
+
+  let parent = dirTree[depth - 2];
+
+  // Don't do it for homepage
+  if (url === 'index.html') depth = 1;
+
   const page = {
     srcPath: file,
     url,
+    depth,
+    parent,
     meta: attributes,
     body: file.endsWith('.md') ? marked(body) : body,
   };
