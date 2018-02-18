@@ -19,10 +19,10 @@
 <div class="storefront-docs__content">
   <div class="storefront-docs-wrapper">
     <aside class="storefront-docs-sidebar">
-      <h1>BOLT STOREFRONT</h1>
-      {#{% if page.children %}#}
+      <h1>Bolt Design System</h1>
+      {% if page.url starts with 'docs' %}
         {% include 'partials/sub-nav.twig' %}
-      {#{% endif %}#}
+      {% endif %}
     </aside>
     <header class="storefront-docs-header">
       <nav class="storefront-docs-header__nav">
@@ -37,8 +37,6 @@
       {% block content %}
 
       {% endblock %}
-      {% include 'partials/sub-nav.twig' %}
-
     </main>
   </div>
 </div>

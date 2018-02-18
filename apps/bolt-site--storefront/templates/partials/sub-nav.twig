@@ -1,15 +1,15 @@
-{% macro menu(items, depth) %}
+{% macro menu(items, depth, currentUrl) %}
   {% import _self as macros %}
   <ul class="sub-nav__list sub-nav__list--depth-{{ depth }}">
     {% for item in items %}
+      {% set isActive = currentUrl == item.url %}
       <li class="sub-nav__item">
-        <a href="/{{ item.url }}" class="sub-nav__link">
+        <a href="/{{ item.url }}" class="sub-nav__link{% if isActive %} sub-nav__link--active{% endif %}">
           {{ item.meta.title }}
-          ({{ item.url }})
         </a>
         {% if item.children %}
           {% set depth = depth + 1 %}
-          {{ macros.menu(item.children, depth) }}
+          {{ macros.menu(item.children, depth, currentUrl) }}
         {% endif %}
       </li>
     {% endfor %}
@@ -17,9 +17,10 @@
 {% endmacro %}
 
 {% import _self as macros %}
+{% set currentUrl = page.url %}
 
 <nav class="sub-nav">
-  {{ macros.menu(site.pages, 1) }}
+  {{ macros.menu(site.nestedPages, 1, currentUrl) }}
 </nav>
 
 {#<ul class="sub-nav">#}
