@@ -34,12 +34,15 @@
       description: This is the directory where generated json data files exist with information about the overall build. Defaults to `data` inside `buildDir`
     openServerAtStart:
       type: boolean
+      default: false
       description: If, after starting `npm start`, a Browser opens.
     quick:
       type: boolean
+      default: false
       description: Try to be quicker by skipping some steps that might not be needed if everything is recently built and in good working order.
     verbosity:
       type: integer
+      default: 2
       description: Logging level (Range of 0 to 5) How 'loud' or 'quiet' do you want the console output to be?
       enum:
         - 0

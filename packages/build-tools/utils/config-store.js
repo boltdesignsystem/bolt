@@ -16,9 +16,9 @@ let config = {};
 // For both 3 & 4, it doesn't support deep merges, so only top level properties.
 
 const defaultConfig = {
-  verbosity: 2,
-  openServerAtStart: false,
-  quick: false,
+  verbosity: configSchema.properties.verbosity.default,
+  openServerAtStart: configSchema.properties.openServerAtStart.default,
+  quick: configSchema.properties.quick.default,
 };
 
 function getEnvVarsConfig() {
