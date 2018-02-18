@@ -20,11 +20,8 @@
 {% set currentUrl = page.url %}
 
 <nav class="sub-nav">
-  {{ macros.menu(site.nestedPages, 1, currentUrl) }}
+  {% if currentSection %}
+    <h4 class="sub-nav__section">{{ currentSection|title }}</h4>
+  {% endif %}
+  {{ macros.menu(nestedPages, 1, currentUrl) }}
 </nav>
-
-{#<ul class="sub-nav">#}
-  {#{% for page in site.pages if page.dirStructure[0] starts with 'docs' %}#}
-    {#<li><a href="/{{ page.url }}">{{ page.meta.title }}</a></li>#}
-  {#{% endfor %}#}
-{#</ul>#}

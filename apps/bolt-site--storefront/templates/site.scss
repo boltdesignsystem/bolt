@@ -14,7 +14,7 @@
   backface-visibility: hidden;
 
   @media (min-width: 1025px) {
-    padding-left: 240px;
+    padding-left: 320px;
   }
   @media (min-width: 768px) {
     height: 294px;
@@ -29,24 +29,30 @@
     color: #FFF;
     padding: 10px 20px;
 
+    &.active-path {
+      text-decoration: underline;
+    }
     &.active {
       background: #FFF;
       border-radius: 3px;
       color: #024469;
       box-shadow: 0 1px 3px rgba(21,22,25,.12), 0 1px 2px rgba(21,22,25,.24);
+      &.active-path {
+        text-decoration: none;
+      }
     }
   }
 }
 
 .storefront-docs-sidebar {
-  width: 240px;
+  width: 320px;
   overflow: hidden;
   border-right: 1px solid #E0E2EB;
   padding: 15px 20px 20px;
   position: fixed;
   top: 0;
   bottom: 0;
-  left: -240px;
+  left: -320px;
   background-color: #fff;
   z-index: 99;
   transition: left .2s cubic-bezier(.23, 1, .32, 1);
@@ -66,7 +72,7 @@
   transition: margin .4s;
 
   @media (min-width: 1025px) {
-    margin-left: 240px;
+    margin-left: 340px;
   }
   @media (min-width: 768px){
     margin-top: 294px;
@@ -85,6 +91,6 @@
   backface-visibility: hidden;
 
   @media (min-width: 1025px) {
-    padding-left: 240px;
+    padding-left: 340px;
   }
 }
