@@ -8,7 +8,8 @@ import {
   css,
   spacingSizes,
   renderToString,
-  hasNativeShadowDomSupport
+  hasNativeShadowDomSupport,
+  findParentTag
 } from '@bolt/core';
 
 import styles from './button.scss';
@@ -38,7 +39,12 @@ export class BoltButton extends withComponent(withPreact()) {
   constructor(element) {
     super(element);
 
-    this.useShadow = hasNativeShadowDomSupport;
+    if (findParentTag(this, 'FORM')) {
+      this.useShadow = false;
+    } else {
+      this.useShadow = hasNativeShadowDomSupport;
+    }
+
     this.originalElem = this.querySelectorAll('.c-bolt-button')[0];
 
     if (this.originalElem) {
@@ -59,7 +65,7 @@ export class BoltButton extends withComponent(withPreact()) {
     }
   }
 
-  connectedCallback(){
+  connectedCallback() {
     // Set default button states
     this.state = {
       isMouseActive: false,
@@ -67,11 +73,11 @@ export class BoltButton extends withComponent(withPreact()) {
       isFirstRender: true
     };
 
-  /**
-   * 1. Handles external click event hooks
-   * 2. Handles internal focus and click events relating to conditionally toggling focus state
-   * 3. Note: `focus` here won't work in IE 11
-   */
+    /**
+     * 1. Handles external click event hooks
+     * 2. Handles internal focus and click events relating to conditionally toggling focus state
+     * 3. Note: `focus` here won't work in IE 11
+     */
     this.addEventListener('click', this.clickHandler); /* [1] */
     this.addEventListener('mousedown', this.mousedownHandler); /* [2] */
     this.addEventListener('focusin', this.focusHandler); /* [2, 3] */
@@ -94,7 +100,7 @@ export class BoltButton extends withComponent(withPreact()) {
     }
   }
 
-  disconnectedCallback(){
+  disconnectedCallback() {
     this.removeEventListener('click', this.clickHandler);
     this.removeEventListener('mousedown', this.mousedownHandler);
     this.removeEventListener('focusin', this.focusHandler);
@@ -102,7 +108,7 @@ export class BoltButton extends withComponent(withPreact()) {
 
 
   // Handle conditionally toggling state classes based on interaction. Based on https://marcysutton.com/button-focus-hell/ and https://jmperezperez.com/outline-focus-ring-a11y/ and https://hackernoon.com/removing-that-ugly-focus-ring-and-keeping-it-too-6c8727fefcd2
-  mousedownHandler(event){
+  mousedownHandler(event) {
     const elem = this; // Needed for scoping the setTimeout
 
     elem.state.isMouseActive = true;
@@ -182,7 +188,10 @@ export class BoltButton extends withComponent(withPreact()) {
 
       // Is this the 1st time rendering the button? Or subsequent renders?
       this.state.isFirstRender = false;
-      this.innerHTML = this.originalElem.innerHTML;
+
+      if (this.useShadow) {
+        this.innerHTML = this.originalElem.innerHTML;
+      }
 
       for (var i = 0, l = this.originalElem.attributes.length; i < l; ++i) {
         var nodeName = this.originalElem.attributes.item(i).nodeName;
@@ -221,7 +230,7 @@ export class BoltButton extends withComponent(withPreact()) {
 
     // Depending on if the user natively supports the ShadowDom, conditionally render a slot or psuedo-slot polyfill we're manually handling here.
     let buttonText;
-    if (this.useShadow){
+    if (this.useShadow) {
       buttonText = <slot />;
     } else {
       buttonText = <span className="c-bolt-button__inner" dangerouslySetInnerHTML={{ __html: this.fallbackText }} />
@@ -234,10 +243,9 @@ export class BoltButton extends withComponent(withPreact()) {
             {styles[0][1]}
           </style>
         }
-        { buttonText }
+        {buttonText}
       </ButtonTag>
     )
   }
 }
-
 
