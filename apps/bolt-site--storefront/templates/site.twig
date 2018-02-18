@@ -12,6 +12,11 @@
   <!-- Place favicon.ico in the root directory -->
 
   <link rel="stylesheet" href="/build/bolt-global.css">
+
+  {% set urlChunks = page.url | split('/') %}
+  {% set currentSection = urlChunks | length >= 1 ? urlChunks|first : '' %}
+  {% set currentUrl = page.url %}
+
 </head>
 <body class="storefront-docs">
 
@@ -20,16 +25,22 @@
   <div class="storefront-docs-wrapper">
     <aside class="storefront-docs-sidebar">
       <h1>Bolt Design System</h1>
-      {% if page.url starts with 'docs' %}
-        {% include 'partials/sub-nav.twig' %}
+      {% if page.url starts with currentSection %}
+        {% set nestedPages = [] %}
+        {% for page in site.nestedPages if page.url starts with currentSection %}
+          {% set nestedPages = page.children %}
+        {% endfor %}
+        {% include 'partials/sub-nav.twig' with {
+          nestedPages: nestedPages,
+        } %}
       {% endif %}
     </aside>
     <header class="storefront-docs-header">
       <nav class="storefront-docs-header__nav">
-        {% set currentUrl = page.url %}
         {% for page in site.pages if page.meta.nav == 'main' %}
           {% set isActive = currentUrl == page.url %}
-          <a href="/{{ page.url }}" class="{% if isActive %}active{% endif %}">{{ page.meta.title }}</a>
+          {% set isActivePath = page.url starts with currentSection %}
+          <a href="/{{ page.url }}" class="{% if isActive %}active{% endif %} {% if isActivePath %}active-path{% endif %}">{{ page.meta.title }}</a>
         {% endfor %}
       </nav>
     </header>
