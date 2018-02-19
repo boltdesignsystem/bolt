@@ -19,6 +19,7 @@ const defaultConfig = {
   verbosity: configSchema.properties.verbosity.default,
   openServerAtStart: configSchema.properties.openServerAtStart.default,
   quick: configSchema.properties.quick.default,
+  webpackDevServer: configSchema.properties.webpackDevServer.default
 };
 
 function getEnvVarsConfig() {
