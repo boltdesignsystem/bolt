@@ -105,6 +105,7 @@
   "additionalProperties": false
 } %}
 
+{# re-assign old itemAlignment paramater to the new `align` name that's replacing it; avoids breaking change till post v1.0 #}
 {% if itemAlignment %}
   {% if itemAlignment == "start" %}
     {% set itemAlignment = "left" %}
@@ -113,6 +114,7 @@
   {% set align = itemAlignment %}
 {% endif %}
 
+{# set up psuedo self-validation by limiting param values to what's specifically allowed in the component schema #}
 {% set alignOptions = schema.properties.align.enum %}
 {% set roundedOptions = schema.properties.rounded.enum %}
 {% set sizeOptions = schema.properties.size.enum %}
@@ -121,6 +123,7 @@
 {% set widthOptions = schema.properties.width.enum %}
 
 
+{# check if the value set to a prop is allowed or defined. if not, default to the default value specified in the component's schema (if one exists) #}
 {% set align =  align in alignOptions ? align : schema.properties.align.default %}
 {% set rounded = rounded in roundedOptions ? rounded : schema.properties.rounded.default %}
 {% set size = size in sizeOptions ? size : schema.properties.size.default %}
