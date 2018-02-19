@@ -167,24 +167,47 @@
 
 {# set iconpos = iconpos | default("right") #}
 
-<bolt-button
-  {% if align %} align="{{ align }}" {% endif %}
-  {% if style %} color="{{ style }}" {% endif %}
-  {% if size %} size="{{ size }}" {% endif %}
+ <bolt-button
+    {% if align %} align="{{ align }}" {% endif %}
+    {% if style %} color="{{ style }}" {% endif %}
+    {% if size %} size="{{ size }}" {% endif %}
   {% if url %} url="{{ url }}" {% endif %}
-  {% if width %} width="{{ width }}" {% endif %}
-  {% if rounded %} rounded=" {{ rounded }}" {% endif %}
-  {% if iconOnly %} icon-only="true" {% endif %}
-  {% if disabled == true %} disabled {% endif %}
-  {{ attributes | without('class') }}
->
+    {% if width %} width="{{ width }}" {% endif %}
+    {% if rounded %} rounded=" {{ rounded }}" {% endif %}
+    {% if iconOnly %} icon-only="true" {% endif %}
+    {% if disabled == true %} disabled {% endif %}
+    {% if target or attributes['target'] %} target="{{ target | default(attributes['target']) }}" {% endif %}
+
+
+    {# todo: rename on-click + on-click-target to only allow onClick + onClickTarget to unify the prop syntax; deprecate adding these via attributes #}
+    {% if onClick or attributes['on-click'] %} on-click="{{ onClick | default(attributes['on-click']) }}" {% endif %}
+    {% if onClickTarget or attributes['on-click-target'] %} on-click-target="{{ onClickTarget | default(attributes['on-click-target']) }}" {% endif %}
+
+
+    {#
+      @todo: create Twig function to translate shorthand utility class references to actual classnames
+      For example:
+
+      {% include "@bolt/button.twig' with {
+        text: "Example Button",
+        color: "primary",
+        utils: [
+          "-mb-sm", --> small negative margin bottom spacing
+          "mt-md"   --> medium margin top spacing
+        ]
+      } %}
+    #}
+    {# @todo: share `utils` prop across all Twig components #}
+    {# workaround to still allow external utility classes to get added (ex. for spacing or layout tweaks) while still encapsulating internal styling #}
+    {% if utils %} class="{{ utils|join(' ') }}"{% endif %}
+  >
   <{{ tag }} {{ attributes.addClass(classes) }}>
     <span class="{{ "#{baseClass}__item #{baseClass}__item-text" }} {% if iconOnly %}u-bolt-visuallyhidden{% endif %}">{{ text }}</span>
 
-    {% if icon %}
+      {% if icon %}
       <span class="{{ "#{baseClass}__icon" }} {% if iconOnly %}u-bolt-margin-left-none {% endif %}">
-        {% include "@bolt/icon.twig" with icon only %}
-      </span>
-    {% endif %}
+          {% include "@bolt/icon.twig" with icon only %}
+        </span>
+      {% endif %}
   </{{ tag }}>
 </bolt-button>
