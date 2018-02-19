@@ -164,9 +164,7 @@
   {% set attributes = attributes.setAttribute("disabled", true) %}
 {% endif %}
 
-
-{# set iconpos = iconpos | default("right") #}
-
+{# Set up the custom element's prop values based on the params passed into the Twig template - used to hydrate the component's initial state and appearance once the Button Component's JavaScript kicks in #}
  <bolt-button
     {% if align %} align="{{ align }}" {% endif %}
     {% if style %} color="{{ style }}" {% endif %}
