@@ -1,0 +1,20 @@
+<p>Test case showing a <code>&lt;bolt-button&gt;</code> nested inside of a form to confirm native form submissions work as expected</p>
+
+<form action="/" method="get">
+  First name:<br>
+  <input type="text" name="firstname" value="Mickey">
+
+  <br><br>
+
+  {% include "@bolt/button.twig" with {
+    text: "Submit",
+    type: "submit",
+    attributes: {
+      class: [
+        "u-bolt-margin-bottom"
+      ],
+      id: "foobar",
+      "data-baz": "bar"
+    }
+  } only %}
+</form>

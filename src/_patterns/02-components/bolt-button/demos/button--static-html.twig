@@ -1,0 +1,28 @@
+<p>Test case to verify pure HTML-based <code>&lt;bolt-button&gt;</code> tags properly render with either an internal &lt;button&gt; or &lt;a&gt; tag.</p>
+
+<bolt-button color="primary">&lt;button&gt; tag Button</bolt-button>
+
+<bolt-button color="primary" url="https://www.google.com">&lt;a&gt; tag button, no target</bolt-button>
+
+<bolt-button color="primary" target="_blank" url="https://www.google.com">&lt;a&gt; tag button, with target</bolt-button>
+
+
+<h3>Example of manually disabling Shadow DOM + using a static HTML custom element:</h3>
+<bolt-button color="primary" no-shadow>
+<span>Manually Disabling Shadow DOM</span></bolt-button>
+
+
+<p>Please note: manually disabling Shadow DOM + using the Button component manually (ie. writing vanilla HTML and not via a Twig template include) does NOT currently work:</p>
+
+{% verbatim %}
+<code>
+<pre>
+&lt;bolt-button color="primary" no-shadow&gt; Manually Disabling Shadow DOM, no inner wrapper&lt;/bolt-button&gt;
+</pre>
+</code>
+{% endverbatim %}
+
+<section class="u-bolt-padding-medium" style="border: 1px dashed gray">
+  <bolt-button color="primary" no-shadow>
+Manually Disabling Shadow DOM, no inner wrapper</bolt-button>
+</section>

@@ -18,5 +18,15 @@
       style: "text",
       "text": "Button Text"
     } %}
+
+    {% include "@bolt/button.twig" with {
+      style: "primary",
+      text: "Button Theming Override",
+      attributes: {
+        class: [
+          "_c-bolt-button--theme-override"
+        ]
+      }
+    } %}
   </section>
 {% endfor %}

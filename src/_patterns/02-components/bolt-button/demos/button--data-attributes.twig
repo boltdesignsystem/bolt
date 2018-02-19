@@ -1,0 +1,13 @@
+<p>Test case to verify misc attributes can be tacked onto a <code>&lt;bolt-button&gt;</code> such as data attributes, ids, etc</p>
+
+{% include "@bolt/button.twig" with {
+  text: "Button with Misc Attributes",
+  type: "submit",
+  attributes: {
+    class: [
+      "js-my-external-selector",
+    ],
+    id: "foobar",
+    "data-baz": "bar"
+  }
+} only %}
