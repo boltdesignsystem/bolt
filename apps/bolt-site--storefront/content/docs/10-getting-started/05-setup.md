@@ -1,5 +1,5 @@
 ---
-title: Getting setup with Bolt
+title: Prerequisites
 ---
 
 **Below you'll find a step-by-step guide for getting your local environment configured**
