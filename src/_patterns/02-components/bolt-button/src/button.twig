@@ -145,6 +145,10 @@
 {% endif %}
 
 
+{# shorthand for manually setting HTML attribute `type` such as submit or reset #}
+{% if type %}
+  {% set attributes = attributes.setAttribute("type", type) %}
+{% endif %}
 
 {% set classes = [
   baseClass,
