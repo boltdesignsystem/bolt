@@ -35,6 +35,9 @@ function updateConfig(options, programInstance) {
       ? config.openServerAtStart
       : options.open;
 
+    config.webpackDevServer = typeof options.webpackDevServer === 'undefined'
+      ? config.webpackDevServer
+      : options.webpackDevServer;
 
     config.quick = typeof options.quick === 'undefined'
       ? config.quick
@@ -45,6 +48,7 @@ function updateConfig(options, programInstance) {
 
   const config = configStore.getConfig();
   log.dim(`Verbosity: ${config.verbosity}`);
+  log.dim(`WebPack Dev Server: ${config.webpackDevServer}`);
   if (config.verbosity > 2){
     log.dim(`Opening browser: ${config.openServerAtStart}`);
     log.dim(`Quick mode: ${config.quick}`);
@@ -78,6 +82,7 @@ program
   .command('serve')
   .description('Spin up local server')
   .option('-O, --open', configSchema.properties.openServerAtStart.description)
+  .option('--webpack-dev-server', configSchema.properties.webpackDevServer.description)
   .action((options) => {
     updateConfig(options, program);
     require('./tasks/task-collections').serve();
@@ -101,6 +106,7 @@ program
   .command('start')
   .option('-O, --open', configSchema.properties.openServerAtStart.description)
   .option('-Q, --quick', configSchema.properties.quick.description)
+  .option('--webpack-dev-server', configSchema.properties.webpackDevServer.description)
   .action((options) => {
     updateConfig(options, program);
     require('./tasks/task-collections').start();

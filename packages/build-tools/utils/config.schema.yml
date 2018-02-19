@@ -29,6 +29,10 @@
       type: string
       title: Path to server root
       description: "Where static files are served from. The wwwDir config specifies the public web distribution directory. This directory is commonly the root directory for a server, where all static files can be served. This directory is built and rebuilt directly from the source files. Note: We recommend this directory is not committed to a repository."
+    webpackDevServer:
+      type: boolean
+      default: false
+      description: Enable the WebPack Dev Server.
     dataDir:
       type: string
       description: This is the directory where generated json data files exist with information about the overall build. Defaults to `data` inside `buildDir`
