@@ -1,6 +1,9 @@
-{% extends 'site.twig' %}
-{% block content %}
+{% set content %}
   <article>
     {{ page.body|raw }}
   </article>
-{% endblock %}
+{% endset %}
+
+{% include 'site.twig' with {
+  content: content,
+} %}

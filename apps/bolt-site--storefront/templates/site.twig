@@ -16,25 +16,26 @@
   {% set urlChunks = page.url | split('/') %}
   {% set currentSection = urlChunks | length >= 1 ? urlChunks|first : '' %}
   {% set currentUrl = page.url %}
-
+  {% if page.url starts with currentSection %}
+    {% set nestedPages = [] %}
+    {% for page in site.nestedPages if page.url starts with currentSection %}
+      {% set nestedPages = page.children %}
+    {% endfor %}
+  {% endif %}
 </head>
 <body class="storefront-docs">
 
 
 <div class="storefront-docs__content">
   <div class="storefront-docs-wrapper">
-    <aside class="storefront-docs-sidebar">
-      <h1>Bolt Design System</h1>
-      {% if page.url starts with currentSection %}
-        {% set nestedPages = [] %}
-        {% for page in site.nestedPages if page.url starts with currentSection %}
-          {% set nestedPages = page.children %}
-        {% endfor %}
+    {% if nestedPages %}
+      <aside class="storefront-docs-sidebar">
+        <h1>Bolt Design System</h1>
         {% include 'partials/sub-nav.twig' with {
           nestedPages: nestedPages,
         } %}
-      {% endif %}
-    </aside>
+      </aside>
+    {% endif %}
     <header class="storefront-docs-header">
       <nav class="storefront-docs-header__nav">
         {% for page in site.pages if page.meta.nav == 'main' %}
@@ -45,9 +46,7 @@
       </nav>
     </header>
     <main class="storefront-docs-content">
-      {% block content %}
-
-      {% endblock %}
+      {{ content }}
     </main>
   </div>
 </div>
