@@ -24,4 +24,4 @@ nav: main
 ✔ Built Pattern Lab in 3.8s
 ✔ Processed images in 25ms</span>
 
-**[Let's get started!](/docs/getting-started)**
+**[Let's get started!](/docs/getting-started/index.html)**
