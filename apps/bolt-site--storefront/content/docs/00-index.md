@@ -7,7 +7,7 @@ nav: main
 
 **Here you'll learn how to get a local environment spun up and the correct methods for contributing to the platform**
 
-<pre style="background: #000000;color: #5659de;padding: 30px;overflow: hidden;border-radius: 7px;">    ///////|\\\\\\
+<pre style="background: #000000;color: #5659de;padding: 30px;overflow: hidden;border-radius: 7px;"><code class="nohighlight">    ///////|\\\\\\
    ///˜˜˜˜<span style="color:orange">/|</span>˜˜˜˜\\\
   ///    <span style="color:orange">//|</span>     \\\     <strong><u>Bolt-CLI</u></strong>
  ///    <span style="color:orange">///|____</span>  \\\
@@ -23,5 +23,6 @@ nav: main
 ✔ Built WebPack bundle in 10.1s
 ✔ Built Pattern Lab in 3.8s
 ✔ Processed images in 25ms</span>
+</code></pre>
 
 **[Let's get started!](/docs/getting-started/index.html)**
