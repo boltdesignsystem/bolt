@@ -111,42 +111,44 @@
 {% endif %}
 
 
-<div class="c-bolt-docs-table">
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Value</th>
-        <th>Description</th>
-        <th>Default</th>
-        <th>Required?</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      {% for key, prop in schema.properties %}
-        <tr class="c-bolt-docs-table__row">
-          <td>{{ key }}</td>
-
-          <td>{{ macros.schemaProps(prop) }}</td>
-
-          <td>{{ macros.titleAndDescription(prop.title, prop.description, prop.minimum, prop.maximum) }}</td>
-
-          <td>
-            {% if prop.default %}
-              <code>{{ prop.default }}</code>
-            {% else %}
-              -
-            {% endif %}
-          </td>
-
-          <td>
-          {% if key in requiredProps %}
-            Required
-          {% endif %}
-          </td>
+{% if schema.properties %}
+  <div class="c-bolt-docs-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Value</th>
+          <th>Description</th>
+          <th>Default</th>
+          <th>Required?</th>
         </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
+      </thead>
+
+      <tbody>
+        {% for key, prop in schema.properties %}
+          <tr class="c-bolt-docs-table__row">
+            <td>{{ key }}</td>
+
+            <td>{{ macros.schemaProps(prop) }}</td>
+
+            <td>{{ macros.titleAndDescription(prop.title, prop.description, prop.minimum, prop.maximum) }}</td>
+
+            <td>
+              {% if prop.default %}
+                <code>{{ prop.default }}</code>
+              {% else %}
+                -
+              {% endif %}
+            </td>
+
+            <td>
+            {% if key in requiredProps %}
+              Required
+            {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endif %}
