@@ -199,16 +199,21 @@
     {# workaround to still allow external utility classes to get added (ex. for spacing or layout tweaks) while still encapsulating internal styling #}
     {% if utils %} class="{{ utils|join(' ') }}"{% endif %}
   >
-    <span class="{{ "#{baseClass}__item #{baseClass}__item-text" }} {% if iconOnly %}u-bolt-visuallyhidden{% endif %}">{{ text }}</span>
 
 
   {# choose a semantic <a> tag or <button> tag for better accessibility, depending on whether or not a url is getting passed along #}
   <{{ tag }} {{ attributes.addClass('c-bolt-button__root') | without('on-click') | without('on-click-target') }}>
 
+    {# Add component-specific classes to a Bolt temp element that gets removed and replaced by it's children once the JS kicks in #}
+    <replace-with-children class="{{ classes|join(' ') }}">
+      <span class="{{ "#{baseClass}__item" }} {{ iconOnly ? 'u-bolt-visuallyhidden' : '' }}">{{ text }}</span>
+
       {% if icon %}
-      <span class="{{ "#{baseClass}__icon" }} {% if iconOnly %}u-bolt-margin-left-none {% endif %}">
+        <span class="{{ "#{baseClass}__icon" }}">
           {% include "@bolt/icon.twig" with icon only %}
         </span>
       {% endif %}
+    </replace-with-children>
+
   </{{ tag }}>
 </bolt-button>
