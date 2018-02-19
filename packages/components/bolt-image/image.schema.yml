@@ -1,16 +1,27 @@
 $schema: http://json-schema.org/draft-04/schema#
 title: Image
 type: object
+required:
+  - src
+  - alt
 properties:
   src:
     type: string
-    description: Source url for image. Required.
+    description: Source url for image.
   alt:
     type: string
-    description: Alt tag for image. Required.
+    description: Alt tag for image.
   lazyload:
     type: boolean
-    description: Default true.
+    description: Lazyload can boost performance by loading images on demand, instead of on initial page load.
+    default: true
+    enum:
+      - true
+      - false
   zoom:
     type: boolean
-    description: Default false. Zoom effect. Relates to device viewer.
+    description: Zoom effect.
+    default: false
+    enum:
+      - true
+      - false
