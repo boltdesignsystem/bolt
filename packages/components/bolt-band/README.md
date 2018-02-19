@@ -1,6 +1,7 @@
 Band is a panel with vertical spacing. Part of the Bolt “Components” CSS framework that powers the [Bolt Design System](https://www.boltdesignsystem.com).
 
 ### Install via NPM
+
 ```
 npm install @bolt/components-band
 ```
@@ -13,6 +14,7 @@ Bands also define what theme the contents follow. For example, a dark theme with
 Bands are defined content areas where content hangs together. 
 
 Dos:
+
 * Are full width
 * Are xlight, light, dark, xdark
 * Optionally include a background image (see background) 
@@ -22,5 +24,6 @@ Dos:
 * Make sure the content inside a band hangs together
 
 Don'ts:
+
 * Introduce content in a band that doesn't hang with other content
 * Don't have a band not be full width
