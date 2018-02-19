@@ -29,6 +29,7 @@ $loaders = new \Twig_Loader_Chain([
 // Create Twig Environment with the `$loaders` just made and some global settings
 $twig = new Twig_Environment($loaders, [
   'debug' => true,
+  'autoescape' => false,
 ]);
 
 // Add all our Twig Extensions for our custom functions, filters, etc

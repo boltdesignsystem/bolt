@@ -21,8 +21,14 @@ module.exports = {
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
       '@bolt/components-site',
+      '@bolt/components-band',
+      '@bolt/components-button',
+      '@bolt/components-card',
+      '@bolt/components-icon',
+      '@bolt/components-headline',
+      '@bolt/components-teaser',
+      '@bolt/components-image'
     ],
-    individual: [
-    ],
+    individual: [],
   },
 };
