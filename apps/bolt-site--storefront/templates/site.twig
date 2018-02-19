@@ -13,28 +13,34 @@
 
   <link rel="stylesheet" href="/build/bolt-global.css">
 
+  {# Global Twig vars #}
   {% set urlChunks = page.url | split('/') %}
   {% set currentSection = urlChunks | length >= 1 ? urlChunks|first : '' %}
   {% set currentUrl = page.url %}
-
+  {% if page.url starts with currentSection %}
+    {% set nestedPages = [] %}
+    {% for page in site.nestedPages if page.url starts with currentSection %}
+      {% set nestedPages = page.children %}
+    {% endfor %}
+  {% endif %}
+  {% set hasSidebar = nestedPages or sidebar %}
+  {# End Global Twig vars #}
 </head>
 <body class="storefront-docs">
 
-
-<div class="storefront-docs__content">
+{# @todo Incorporate new class into styles for when there is a sidebar and when there is not. ie: when no sidebar: make it 100% wide Jake #}
+<div class="storefront-docs__content {% if hasSidebar %} storefront-docs__content--has-sidebar{% endif %}">
   <div class="storefront-docs-wrapper">
-    <aside class="storefront-docs-sidebar">
-      <h1>Bolt Design System</h1>
-      {% if page.url starts with currentSection %}
-        {% set nestedPages = [] %}
-        {% for page in site.nestedPages if page.url starts with currentSection %}
-          {% set nestedPages = page.children %}
-        {% endfor %}
-        {% include 'partials/sub-nav.twig' with {
-          nestedPages: nestedPages,
-        } %}
-      {% endif %}
-    </aside>
+    {% if hasSidebar %}
+      <aside class="storefront-docs-sidebar">
+        <h1>Bolt Design System</h1>
+        {% if nestedPages %}
+          {% include 'partials/sub-nav.twig' with {
+            nestedPages: nestedPages,
+          } %}
+        {% endif %}
+      </aside>
+    {% endif %}
     <header class="storefront-docs-header">
       <nav class="storefront-docs-header__nav">
         {% for page in site.pages if page.meta.nav == 'main' %}
@@ -45,9 +51,7 @@
       </nav>
     </header>
     <main class="storefront-docs-content">
-      {% block content %}
-
-      {% endblock %}
+      {{ content }}
     </main>
   </div>
 </div>
@@ -58,7 +62,7 @@
       <p>
         <strong>Copyright &copy; 2017 Pegasystems, Inc.</strong>
       </p>
-      {% set gitBranch = 'epic/refactor' %}
+      {% set gitBranch = 'feature/docs-site' %}
       <p><a href="https://github.com/bolt-design-system/bolt/blob/{{ gitBranch }}/apps/bolt-site--storefront/{{ page.srcPath }}">Edit this page on GitHub</a></p>
     </footer>
   </div>
@@ -67,17 +71,23 @@
 {# Shows Twig Vars in Browser Console #}
 <script type="application/json">{{ _context|json_encode()|raw }}</script>
 <script>
-    (function () {
-        var me = document.currentScript;
-        var jsonScriptTag = me.previousElementSibling.innerHTML;
-        var data = JSON.parse(jsonScriptTag);
-        console.log('Twig vars for this page: ', data);
-        console.table(data.site.pages);
+  (function () {
+    var me = document.currentScript;
+    var jsonScriptTag = me.previousElementSibling.innerHTML;
+    var data = JSON.parse(jsonScriptTag);
+    console.log('Twig vars for this page: ', data);
+    console.table(data.site.pages);
 //        console.table(data.site.pages);
-    })();
+  })();
 </script>
 
 <script src="/build/bolt-global.js"></script>
+{# Code syntax highlighting - https://github.com/imsky/holder #}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scss.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/twig.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 
 <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
 {#<script>#}

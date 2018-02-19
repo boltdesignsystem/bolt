@@ -3,8 +3,9 @@
   <ul class="sub-nav__list sub-nav__list--depth-{{ depth }}">
     {% for item in items %}
       {% set isActive = currentUrl == item.url %}
+      {% set isActivePath = currentUrl starts with item.url|replace({'index.html': ''}) %}
       <li class="sub-nav__item">
-        <a href="/{{ item.url }}" class="sub-nav__link{% if isActive %} sub-nav__link--active{% endif %}">
+        <a href="/{{ item.url }}" class="sub-nav__link{% if isActive %} sub-nav__link--active{% endif %}{% if isActivePath %} sub-nav__link--active-path{% endif %}">
           {{ item.meta.title }}
         </a>
         {% if item.children %}
