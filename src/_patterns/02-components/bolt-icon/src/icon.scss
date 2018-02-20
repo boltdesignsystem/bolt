@@ -115,3 +115,10 @@ bolt-icon[size='xlarge'],
   --bolt-theme-icon-background-color: $brand-color;
   --bolt-theme-icon-background-opacity: 1;
 }
+
+.c-bolt-icon--blue {
+  $brand-color: bolt-color(blue);
+  --bolt-color-icon: $brand-color;
+  --bolt-theme-icon-background-color: bolt-text-contrast($brand-color);
+  --bolt-theme-icon-background-opacity: 1;
+}

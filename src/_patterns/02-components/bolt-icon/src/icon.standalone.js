@@ -21,7 +21,8 @@ const backgroundStyles = [
 ];
 
 const colors = [
-  'teal'
+  'teal',
+  'blue'
 ]
 
 
