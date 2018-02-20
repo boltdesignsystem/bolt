@@ -1,5 +1,23 @@
 .storefront-docs {
-  background: #F5F5FA;
+  //background: #F5F5FA;
+}
+
+.storefront-docs-title {
+  color: #FFF;
+  font-size: 18px;
+  padding: 15px;
+  position: absolute;
+  top: 0;
+  z-index: 100;
+  letter-spacing: 2px;
+
+  bolt-icon {
+    margin-right: 7px;
+  }
+
+  .storefront-docs__content--has-sidebar & {
+    color: var(--bolt-theme-background);
+  }
 }
 
 .storefront-docs-header {
@@ -13,11 +31,14 @@
   transition: height 0s,padding .4s,box-shadow .2s;
   backface-visibility: hidden;
 
-  @media (min-width: 1025px) {
-    padding-left: 320px;
-  }
   @media (min-width: 768px) {
     height: 294px;
+  }
+
+  .storefront-docs__content--has-sidebar & {
+    @media (min-width: 1025px) {
+      padding-left: 320px;
+    }
   }
 }
 
@@ -29,13 +50,11 @@
     color: #FFF;
     padding: 10px 20px;
 
+    &.active,
     &.active-path {
-      text-decoration: underline;
-    }
-    &.active {
-      background: #FFF;
+      background: rgba(0, 0, 0, 0.1);
+      border: 1px solid #FFF;
       border-radius: 3px;
-      color: #024469;
       box-shadow: 0 1px 3px rgba(21,22,25,.12), 0 1px 2px rgba(21,22,25,.24);
       &.active-path {
         text-decoration: none;
@@ -48,7 +67,7 @@
   width: 320px;
   overflow: hidden;
   border-right: 1px solid #E0E2EB;
-  padding: 15px 20px 20px;
+  padding: 45px 20px 20px;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -71,11 +90,14 @@
   padding: 0 0 0 0;
   transition: margin .4s;
 
-  @media (min-width: 1025px) {
-    margin-left: 340px;
-  }
-  @media (min-width: 768px){
+  @media (min-width: 768px) {
     margin-top: 294px;
+  }
+
+  .storefront-docs__content--has-sidebar & {
+    @media (min-width: 1025px) {
+      margin-left: 340px;
+    }
   }
 }
 
@@ -90,7 +112,9 @@
   overflow: hidden;
   backface-visibility: hidden;
 
-  @media (min-width: 1025px) {
-    padding-left: 340px;
+  .storefront-docs__content--has-sidebar+& {
+    @media (min-width: 1025px) {
+      padding-left: 340px;
+    }
   }
 }
