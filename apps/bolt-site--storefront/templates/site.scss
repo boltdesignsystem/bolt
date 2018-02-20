@@ -1,3 +1,8 @@
+@import "@bolt/core";
+
+$storefront-sidebar-width: 320px;
+
+
 .storefront-docs {
   //background: #F5F5FA;
 }
@@ -29,7 +34,6 @@
 }
 
 .storefront-docs-header {
-  background: #0074B3;
   position: fixed;
   top: 0;
   left: 0;
@@ -44,7 +48,7 @@
 
   .storefront-docs__content--has-sidebar & {
     @media (min-width: 1025px) {
-      padding-left: 320px;
+      padding-left: $storefront-sidebar-width;
     }
   }
 }
@@ -71,14 +75,14 @@
 }
 
 .storefront-docs-sidebar {
-  width: 320px;
+  width: $storefront-sidebar-width;
   overflow: hidden;
   border-right: 1px solid #E0E2EB;
   padding: 45px 20px 20px;
   position: fixed;
   top: 0;
   bottom: 0;
-  left: -320px;
+  left: -$storefront-sidebar-width;
   background-color: #fff;
   z-index: 99;
   transition: left .2s cubic-bezier(.23, 1, .32, 1);
@@ -103,13 +107,14 @@
 
   .storefront-docs__content--has-sidebar & {
     @media (min-width: 1025px) {
-      margin-left: 340px;
+      margin-left: $storefront-sidebar-width;
     }
   }
 }
 
 .storefront-docs-footer {
-  position: fixed;
+  position: relative; // Fallback positioning
+  position: sticky; // Sticky positioning if supported
   bottom: 0;
   right: 0;
   left: 0;
@@ -121,7 +126,21 @@
 
   .storefront-docs__content--has-sidebar+& {
     @media (min-width: 1025px) {
-      padding-left: 340px;
+      padding-left: $storefront-sidebar-width;
     }
   }
 }
+
+
+// Remove default padding of highlightJS when used inside of Bolt Global style defaults
+pre > .hljs,
+pre > code {
+/**
+  * 1. Workaround to offset default <code> spacing
+  */
+  background-color: bolt-color(gray, xlight);
+  margin-left: bolt-spacing(small) * -1; /* [1] */
+  margin-right: bolt-spacing(small) * -1; /* [1] */
+  @include bolt-padding(small);
+}
+

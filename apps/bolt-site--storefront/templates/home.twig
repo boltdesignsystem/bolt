@@ -1,7 +1,112 @@
 {% set content %}
   <article>
-    {{ page.body|raw }}
-    {% include "@bolt-components-band/band--card-collection.twig" with {
+
+    {# include "@bolt-components-band/band.twig" with {
+      content: page.body|raw,
+      theme: "xlight",
+      attributes: {
+        class: [
+          "u-bolt-padding-top-none"
+        ]
+      }
+    } only #}
+
+
+    {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--large o-bolt-grid--matrix" %}
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small" %}
+        {% include "@bolt/eyebrow.twig" with {
+          text: bolt.version
+        } only %}
+
+        {% include "@bolt/headline.twig" with {
+          text: "Bolt Design System",
+          tag: "h1",
+          size: "xxxlarge"
+        } only %}
+
+        {% include "@bolt/subheadline.twig" with {
+          tag: "h2",
+          text: "Bolt provides tools, patterns, services, and guidelines that systematically improve quality, timeliness, and consistency to the Pega ecosystem so that you can focus on what really matters.",
+          size: "xxlarge"
+        } only %}
+
+
+        {% include "@bolt/button-group.twig" with {
+          buttons: [
+            {
+              text: "Explore the System",
+              url: "https://bolt.netlify.com",
+              style: "primary",
+              width: "full@small"
+            },
+            {
+              text: "Get Started",
+              url: "/docs/index.html",
+              style: "secondary",
+              width: "full@small",
+              size: "small"
+            }
+          ],
+          contentItems: [
+            {
+              pattern: "text",
+              tag: "p",
+              text: "View the #{link("source", "https://github.com/bolt-design-system/bolt", {
+                attributes: {
+                  target: "_blank"
+                }
+              })} on Github"
+            }
+          ]
+        } %}
+
+      {% endcell %}
+
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+        <ul class="o-bolt-ui-list">
+          <li class="o-bolt-ui-list__item">
+            {% include "@bolt/headline.twig" with {
+              text: "Speed",
+              size: "small",
+              tag: "h3"
+            } only %}
+            {% include "@bolt/text.twig" with {
+              text: "Design and develop faster.",
+              size: "medium"
+            } only %}
+          </li>
+
+          <li class="o-bolt-ui-list__item">
+            {% include "@bolt/headline.twig" with {
+              text: "Stable",
+              size: "small",
+              tag: "h3"
+            } only %}
+            {% include "@bolt/text.twig" with {
+              text: "Predictable, automated testing coverage, and scalable.",
+              size: "medium"
+            } only %}
+          </li>
+
+          <li class="o-bolt-ui-list__item">
+            {% include "@bolt/headline.twig" with {
+              text: "Stunning",
+              size: "small",
+              tag: "h3"
+            } only %}
+            {% include "@bolt/text.twig" with {
+              text: "On brand, consistent, elegant.",
+              size: "medium"
+            } only %}
+          </li>
+        </ul>
+      {% endcell %}
+    {% endgrid %}
+
+
+    {# include "@bolt-components-band/band--card-collection.twig" with {
       theme: "light",
       size: "medium",
       contentItems: [
@@ -87,7 +192,7 @@
         ]
         }
       ]
-    } %}
+    } #}
   </article>
 {% endset %}
 {% include 'site.twig' with {

@@ -7,7 +7,7 @@ nav: main
 
 **Here you'll learn how to get a local environment spun up and the correct methods for contributing to the platform**
 
-<pre style="background: #000000;color: #5659de;padding: 30px;overflow: hidden;border-radius: 7px;"><code class="nohighlight">    ///////|\\\\\\
+<pre style="background: #000000;color: #5659de;padding: 30px;overflow: hidden;border-radius: 7px;"><code class="nohighlight" style="background-color: transparent; margin: 0 auto;">    ///////|\\\\\\
    ///˜˜˜˜<span style="color:orange">/|</span>˜˜˜˜\\\
   ///    <span style="color:orange">//|</span>     \\\     <strong><u>Bolt-CLI</u></strong>
  ///    <span style="color:orange">///|____</span>  \\\

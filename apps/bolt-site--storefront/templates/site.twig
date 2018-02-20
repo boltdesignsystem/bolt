@@ -13,10 +13,32 @@
 
   <link rel="stylesheet" href="/build/bolt-global.css">
 
+  <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+  <noscript><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"></noscript>
+
+  <script>
+  /*! loadCSS rel=preload polyfill. [c]2017 Filament Group, Inc. MIT License */
+  !function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){function e(){t.media=a}var a=t.media||"all";t.addEventListener?t.addEventListener("load",e):t.attachEvent&&t.attachEvent("onload",e),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(e,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
+  </script>
+
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" async></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scss.min.js" async></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/twig.min.js" async></script>
+  <script>
+  window.addEventListener('DOMContentLoaded', function() {
+    hljs.initHighlightingOnLoad();
+  });
+  </script>
+
   {# Global Twig vars #}
   {% set urlChunks = page.url | split('/') %}
   {% set currentSection = urlChunks | length >= 1 ? urlChunks|first : '' %}
   {% set currentUrl = page.url %}
+
+
+
   {% if page.url starts with currentSection %}
     {% set nestedPages = [] %}
     {% for page in site.nestedPages if page.url starts with currentSection %}
@@ -26,16 +48,20 @@
   {% set hasSidebar = nestedPages or sidebar %}
   {# End Global Twig vars #}
 </head>
-<body class="storefront-docs">
+<body class="storefront-docs c-bolt-site">
+
 
 {# @todo Incorporate new class into styles for when there is a sidebar and when there is not. ie: when no sidebar: make it 100% wide Jake #}
-<div class="storefront-docs__content {% if hasSidebar %} storefront-docs__content--has-sidebar{% endif %}">
+<div class="storefront-docs__content c-bolt-site__content {% if hasSidebar %} storefront-docs__content--has-sidebar{% endif %} {% if currentUrl == 'index.html' %}c-bolt-site__content--middle t-bolt-dark {% endif %}">
+
   <div class="storefront-docs-wrapper">
     <h1 class="storefront-docs-title">
+      <a href="/">
       {% include "@bolt-components-icon/icon.twig" with {
         name: "energy",
         size: "medium",
       }%} <span>BOLT DESIGN SYSTEM</span>
+      </a>
     </h1>
     {% if hasSidebar %}
       <aside class="storefront-docs-sidebar">
@@ -56,22 +82,51 @@
       </nav>
     </header>
     <main class="storefront-docs-content">
-      {{ content }}
+      {% include "@bolt-components-band/band.twig" with {
+        "content": content,
+        "fullBleed": false,
+        theme: currentUrl == 'index.html' ? 'none' : 't-bolt-xlight'
+      } only %}
     </main>
   </div>
 </div>
 
-<div class="storefront-docs-footer">
-  <div class="storefront-docs-wrapper">
-    <footer role="contentinfo">
-      <p>
-        <strong>Copyright &copy; 2017 Pegasystems, Inc.</strong>
-      </p>
+<footer role="contentinfo" class="storefront-docs-footer c-bolt-site__footer">
+  {% embed "@bolt-components-band/band.twig" with {
+    theme: "xlight",
+    size: "small",
+    fullBleed: false
+  } only %}
+    {% block band_content %}
       {% set gitBranch = 'feature/docs-site' %}
-      <p><a href="https://github.com/bolt-design-system/bolt/blob/{{ gitBranch }}/apps/bolt-site--storefront/{{ page.srcPath }}">Edit this page on GitHub</a></p>
-    </footer>
-  </div>
-</div>
+
+      <nav>
+        <ul class="o-bolt-bare-list" style="flex-flow: row wrap; display: flex; justify-content: space-between; align-items: center;">
+          <li class="u-bolt-margin-right@small">
+            {% include "@bolt-components-headline/text.twig" with {
+              size: "xsmall",
+              weight: "bold",
+              tag: "p",
+              text: "Copyright &copy; 2017 Pegasystems, Inc."
+            } only %}
+          </li>
+
+          <li>
+            {% include "@bolt-components-headline/text.twig" with {
+              size: "xsmall",
+              weight: "bold",
+              tag: "p",
+              text: include("@bolt-components-link/link.twig", {
+              url: "https://github.com/bolt-design-system/bolt/blob/" ~ gitBranch ~ "/apps/bolt-site--storefront/" ~  page.srcPath,
+              text: "Edit this page on GitHub"}, with_context = false)
+            } only %}
+          </li>
+        </ul>
+      </nav>
+
+    {% endblock %}
+  {% endembed %}
+</footer>
 
 {# Shows Twig Vars in Browser Console #}
 <script type="application/json">{{ _context|json_encode()|raw }}</script>
@@ -86,13 +141,11 @@
   })();
 </script>
 
-<script src="/build/bolt-global.js"></script>
+<script src="/build/bolt-global.js" async></script>
 {# Code syntax highlighting - https://highlightjs.org/ #}
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scss.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/twig.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+
+
+
 
 <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
 {#<script>#}
