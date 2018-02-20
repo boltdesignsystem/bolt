@@ -135,8 +135,10 @@ $bolt-input-transition: $bolt-transition;
 
   // Removing native controls
   -webkit-appearance: none !important;
-  -moz-appearance: window;
-  appearance: none !important; // [Mai] Reset mobile Safari browser default.
+  -moz-appearance: none !important;
+  appearance: none !important;
+  text-indent: 0.01px;
+  text-overflow: '';
 
   &::-ms-expand
   {
