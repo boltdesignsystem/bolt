@@ -54,6 +54,19 @@
           <a href="/{{ page.url }}" class="{% if isActive %}active{% endif %} {% if isActivePath %}active-path{% endif %}">{{ page.meta.title }}</a>
         {% endfor %}
       </nav>
+      {% if page.meta.title %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: page.meta.title,
+          size: 'xxxlarge',
+          transform: 'uppercase',
+          icon: {
+            name: 'chevron-right'
+          }
+        } only %}
+      {% endif %}
+      {% if page.meta.subtitle %}
+        <h3 class="storefront-docs-page-subtitle">{{ page.meta.subtitle }}</h3>
+      {% endif %}
     </header>
     <main class="storefront-docs-content">
       {{ content }}

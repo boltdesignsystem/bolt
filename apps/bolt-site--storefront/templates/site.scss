@@ -40,9 +40,19 @@
   transition: all 0.2s ease-in-out;
   backface-visibility: hidden;
 
+  .c-bolt-headline {
+    bottom: 10px;
+    position: absolute;
+    margin-left: 20px;
+  }
+
   &.scrolled {
     box-shadow: 0 0 10px var(--bolt-theme-background);
     height: inherit;
+
+    .c-bolt-headline {
+      font-size: 30px;
+    }
   }
 
   @media (min-width: 768px) {
@@ -101,7 +111,7 @@
 
 .storefront-docs-content {
   margin: 65px 0 0 0;
-  padding: 0 0 0 0;
+  padding: 40px;
   transition: margin .4s;
 
   @media (min-width: 768px) {
@@ -110,17 +120,12 @@
 
   .storefront-docs__content--has-sidebar & {
     @media (min-width: 1025px) {
-      margin-left: 340px;
+      margin-left: 320px;
     }
   }
 }
 
 .storefront-docs-footer {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 70;
   border-top: 1px solid #E0E2EB;
   background-color: #fff;
   overflow: hidden;
@@ -128,7 +133,7 @@
 
   .storefront-docs__content--has-sidebar+& {
     @media (min-width: 1025px) {
-      padding-left: 340px;
+      padding-left: 320px;
     }
   }
 }
