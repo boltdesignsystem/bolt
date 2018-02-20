@@ -2,12 +2,14 @@ const path = require('path');
 const program = require('commander');
 const packageJson = require('./package.json');
 const configStore = require('./utils/config-store');
+const { readYamlFileSync } = require('./utils/yaml');
+const configSchema = readYamlFileSync(path.join(__dirname, './utils/config.schema.yml'));
 
 // global `bolt` cli options & meta
 program
   .version(packageJson.version)
   .option('-C, --config-file <path>', 'Pass in a specific config file instead of default of ".boltrc.js/json".')
-  .option('-v, --verbosity <amount>', 'How much output do you want? 0-5', parseInt);
+  .option('-v, --verbosity <amount>', configSchema.properties.verbosity.description, parseInt);
 
 // We need to initialize config as early as possible
 const configFilePath = path.resolve(process.cwd(), program.configFile || '.boltrc');
@@ -65,7 +67,7 @@ program
   .description('Build it')
   .option('-W, --watch', 'Watch and rebuild')
   .option('-P, --parallel', 'Run build in parallel instead of a series. Faster, but some assets might not be ready in time.')
-  .option('-Q, --quick', 'Try to be quicker by skipping some steps that might not be needed if everything is recently built and in good working order.')
+  .option('-Q, --quick', configSchema.properties.quick.description)
   .action((options) => {
     log.info(`Starting build (${options.parallel ? 'parallel' : 'serial'})`);
     updateConfig(options, program);
@@ -75,7 +77,7 @@ program
 program
   .command('serve')
   .description('Spin up local server')
-  .option('-O, --open', 'Open browser at start.')
+  .option('-O, --open', configSchema.properties.openServerAtStart.description)
   .action((options) => {
     updateConfig(options, program);
     require('./tasks/task-collections').serve();
@@ -97,8 +99,8 @@ program
 
 program
   .command('start')
-  .option('-O, --open', 'Open browser at start.')
-  .option('-Q, --quick', 'Try to be quicker by skipping some steps that might not be needed if everything is recently built and in good working order.')
+  .option('-O, --open', configSchema.properties.openServerAtStart.description)
+  .option('-Q, --quick', configSchema.properties.quick.description)
   .action((options) => {
     updateConfig(options, program);
     require('./tasks/task-collections').start();
