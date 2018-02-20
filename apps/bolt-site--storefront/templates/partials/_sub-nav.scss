@@ -2,14 +2,43 @@
   list-style-type: none;
   margin: 0;
   padding: 15px 0px 0;
+
+  .c-bolt-headline {
+    margin-top: 1.65rem;
+  }
+
   &__link {
+    font-size: 1.11rem;
+    line-height: 1.25;
+    font-weight: 500;
+
     &--active-path {
       text-decoration: underline;
     }
     &--active {
-      font-weight: bold;
+      font-weight: bolder;
       text-decoration: none;
     }
+    .sub-nav__list--depth-2 & {
+      font-size: 0.9rem;
+      font-weight: 400;
+    }
+  }
 
+  &__list {
+    &--depth-2,
+    &--depth-3 {
+      margin-top: 0.25rem;
+      margin-bottom: 0.75rem;
+    }
+  }
+
+  > ul {
+    margin-left: 0;
+  }
+
+  li {
+    list-style: none;
   }
 }
+

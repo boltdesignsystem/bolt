@@ -5,12 +5,13 @@
       {% set isActive = currentUrl == item.url %}
       {% set isActivePath = currentUrl starts with item.url|replace({'index.html': ''}) %}
       <li class="sub-nav__item">
+
         <a href="/{{ item.url }}" class="sub-nav__link{% if isActive %} sub-nav__link--active{% endif %}{% if isActivePath %} sub-nav__link--active-path{% endif %}">
           {{ item.meta.title }}
         </a>
         {% if item.children %}
-          {% set depth = depth + 1 %}
-          {{ macros.menu(item.children, depth, currentUrl) }}
+          {#{% set depth = depth + 1 %}#}
+          {{ macros.menu(item.children, depth + 1, currentUrl) }}
         {% endif %}
       </li>
     {% endfor %}
@@ -22,7 +23,11 @@
 
 <nav class="sub-nav">
   {% if currentSection %}
-    <h4 class="sub-nav__section">{{ currentSection|title }}</h4>
+    {% include '@bolt-components-headline/headline.twig' with {
+      text: currentSection|title,
+      size: 'xlarge',
+      tag: 'h2',
+    } %}
   {% endif %}
   {{ macros.menu(nestedPages, 1, currentUrl) }}
 </nav>
