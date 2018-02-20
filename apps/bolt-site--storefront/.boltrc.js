@@ -16,6 +16,7 @@ module.exports = {
   components: {
     global: [
       './style.scss',
+      './storefront.js',
       '@bolt/core',
       '@bolt/global',
       '@bolt/components-page-footer',

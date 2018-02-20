@@ -5,6 +5,7 @@
 .storefront-docs-title {
   color: #FFF;
   font-size: 18px;
+  margin-top: 1px;
   padding: 15px;
   position: absolute;
   top: 0;
@@ -30,16 +31,22 @@
 
 .storefront-docs-header {
   background: #0074B3;
+  border-bottom: 1px solid #FFF;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 80;
-  transition: height 0s,padding .4s,box-shadow .2s;
+  transition: all 0.2s ease-in-out;
   backface-visibility: hidden;
 
+  &.scrolled {
+    box-shadow: 0 0 10px var(--bolt-theme-background);
+    height: inherit;
+  }
+
   @media (min-width: 768px) {
-    height: 294px;
+    height: 228px;
   }
 
   .storefront-docs__content--has-sidebar & {
@@ -98,7 +105,7 @@
   transition: margin .4s;
 
   @media (min-width: 768px) {
-    margin-top: 294px;
+    margin-top: 228px;
   }
 
   .storefront-docs__content--has-sidebar & {
