@@ -8,13 +8,12 @@ $storefront-sidebar-width: 320px;
 }
 
 .storefront-docs-title {
-  color: #FFF;
-  font-size: 18px;
+  // color: #FFF;
   padding: 15px;
-  position: fixed;
-  top: 0;
-  z-index: 100;
-  letter-spacing: 2px;
+  // position: fixed;
+  // top: 0;
+  // z-index: 100;
+  // letter-spacing: 2px;
 
   bolt-icon {
     margin-right: 7px;
@@ -25,32 +24,34 @@ $storefront-sidebar-width: 320px;
   }
 
   .storefront-docs__content--has-sidebar & {
-    color: var(--bolt-theme-background);
-
-    @media (max-width: 1024px) {
-      color: #FFF;
-    }
+    @include bolt-padding-left(0);
+    @include bolt-padding-right(0);
   }
 }
 
 .storefront-docs-header {
-  position: fixed;
+  position: relative;
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  align-items: center;
   top: 0;
   left: 0;
   right: 0;
   z-index: 80;
-  transition: height 0s,padding .4s,box-shadow .2s;
+  transition: height 0s, padding 0.4s, box-shadow 0.2s;
   backface-visibility: hidden;
 
   @media (min-width: 768px) {
-    height: 154px;
+    min-height: bolt-spacing(large);
   }
 
-  .storefront-docs__content--has-sidebar & {
-    @media (min-width: 1025px) {
-      padding-left: $storefront-sidebar-width;
-    }
-  }
+  // .storefront-docs__content--has-sidebar & {
+  //   @media (min-width: 1025px) {
+  //     padding-left: $storefront-sidebar-width;
+  //   }
+  // }
 }
 
 .storefront-docs-header__nav {
@@ -74,39 +75,60 @@ $storefront-sidebar-width: 320px;
   }
 }
 
+.storefront-docs-sidebar__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 85;
+  background-color: bolt-color(black);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1), visibility 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
 .storefront-docs-sidebar {
   width: $storefront-sidebar-width;
-  overflow: hidden;
+  overflow: auto;
   border-right: 1px solid #E0E2EB;
-  padding: 45px 20px 20px;
+  padding: 0 20px 20px;
   position: fixed;
   top: 0;
   bottom: 0;
-  left: -$storefront-sidebar-width;
-  background-color: #fff;
+  transform: translate3d(-$storefront-sidebar-width, 0, 0);
+  background-color: bolt-color(white);
   z-index: 99;
-  transition: left .2s cubic-bezier(.23, 1, .32, 1);
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 
-  @media (min-width: 1025px) {
-    left: 0;
+  &:target {
+    transform: translate3d(0, 0, 0);
+
+    & + .storefront-docs-sidebar__overlay {
+      visibility: visible;
+      opacity: 0.2;
+      pointer-events: auto;
+    }
   }
 
-  h1 {
-    font-size: 1.3rem;
+  @include respond-to(medium){
+    transform: translate3d(0, 0, 0);
   }
 }
 
+
 .storefront-docs-content {
-  margin: 65px 0 0 0;
+  // margin: 65px 0 0 0;
   padding: 0 0 0 0;
   transition: margin .4s;
 
-  @media (min-width: 768px) {
-    margin-top: 154px;
-  }
+  // @media (min-width: 768px) {
+  //   margin-top: 154px;
+  // }
 
   .storefront-docs__content--has-sidebar & {
-    @media (min-width: 1025px) {
+    @include respond-to(medium) {
       margin-left: $storefront-sidebar-width;
     }
   }
@@ -125,7 +147,7 @@ $storefront-sidebar-width: 320px;
   backface-visibility: hidden;
 
   .storefront-docs__content--has-sidebar+& {
-    @media (min-width: 1025px) {
+    @include respond-to(medium) {
       padding-left: $storefront-sidebar-width;
     }
   }
@@ -144,3 +166,37 @@ pre > code {
   @include bolt-padding(small);
 }
 
+
+
+
+.u-bolt-margin-right-auto {
+  margin-right: auto !important;
+}
+
+.u-bolt-margin-right-auto\@small {
+  @include respond-to(small) {
+    margin-right: auto !important;
+  }
+}
+
+.u-bolt-hide {
+  display: none !important;
+}
+
+.u-bolt-hide\@small {
+  @include respond-to(small){
+    display: none !important;
+  }
+}
+
+.u-bolt-hide\@medium {
+  @include respond-to(medium) {
+    display: none !important;
+  }
+}
+
+.u-bolt-show\@small {
+  @include respond-to(small) {
+    display: block !important;
+  }
+}
