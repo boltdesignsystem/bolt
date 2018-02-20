@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const npmSass = require('npm-sass');
 const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
@@ -176,7 +177,6 @@ function createConfig(config) {
       filename: "[name].js",
       publicPath: publicPath,
     },
-    devtool: 'cheap-module-eval-source-map',
     resolve: {
       extensions: [".js", ".jsx", ".json", ".svg", ".scss"]
     },
@@ -242,9 +242,6 @@ function createConfig(config) {
         }
       }),
       new webpack.optimize.ModuleConcatenationPlugin(),
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': process.env.NODE_ENV === 'production' ? JSON.stringify(process.env.NODE_ENV) : JSON.stringify('development'),
-      }),
       new webpack.ProvidePlugin({
         h: 'preact',
         Promise: 'es6-promise'
@@ -255,6 +252,24 @@ function createConfig(config) {
       // new webpack.ProgressPlugin({ profile: false }),
     ],
   };
+
+  if (config.prod) {
+    webpackConfig.plugins.push(new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }));
+
+    // https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
+    webpackConfig.plugins.push(new UglifyJsPlugin({
+      sourceMap: true,
+    }));
+
+    // @todo Evaluate best source map approach for production
+    webpackConfig.devtool = 'hidden-source-map';
+  } else {// not prod
+    // @todo fix source maps
+    webpackConfig.devtool = 'cheap-module-eval-source-map';
+  }
+
 
  if (config.wwwDir) {
    webpackConfig.devServer = {
