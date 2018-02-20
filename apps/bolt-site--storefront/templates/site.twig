@@ -48,39 +48,67 @@
   {% set hasSidebar = nestedPages or sidebar %}
   {# End Global Twig vars #}
 </head>
-<body class="storefront-docs c-bolt-site">
+<body class="storefront-docs c-bolt-site {% if currentUrl == 'index.html' %} t-bolt-dark {% endif %}">
 
+
+<header class="storefront-docs-header {% if currentUrl != 'index.html' %}t-bolt-dark {% endif %}">
+  <h1 class="storefront-docs-title u-bolt-margin-right-auto@small">
+    <a href="/">
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "energy",
+      size: "medium",
+    }%} <span>BOLT DESIGN SYSTEM</span>
+    </a>
+  </h1>
+  <nav class="storefront-docs-header__nav">
+
+    {% for page in site.pages if page.meta.nav == 'main' %}
+      {% set isActive = currentUrl == page.url %}
+      {% set isActivePath = page.url starts with currentSection %}
+      <a href="/{{ page.url }}" class="{% if isActive %}active{% endif %} {% if isActivePath %}active-path{% endif %}">{{ page.meta.title }}</a>
+    {% endfor %}
+
+    <a href="#menu" class="storefront-docs__hamburger u-bolt-hide@medium">
+      <span class="u-bolt-margin-right-xsmall">Menu</span>
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "menu",
+        size: "medium",
+      } %}
+    </a>
+  </nav>
+</header>
 
 {# @todo Incorporate new class into styles for when there is a sidebar and when there is not. ie: when no sidebar: make it 100% wide Jake #}
-<div class="storefront-docs__content c-bolt-site__content {% if hasSidebar %} storefront-docs__content--has-sidebar{% endif %} {% if currentUrl == 'index.html' %}c-bolt-site__content--middle t-bolt-dark {% endif %}">
+<div class="storefront-docs__content c-bolt-site__content {% if hasSidebar %} storefront-docs__content--has-sidebar{% endif %} {% if currentUrl == 'index.html' %}c-bolt-site__content--middle {% endif %}">
 
   <div class="storefront-docs-wrapper">
-    <h1 class="storefront-docs-title">
-      <a href="/">
-      {% include "@bolt-components-icon/icon.twig" with {
-        name: "energy",
-        size: "medium",
-      }%} <span>BOLT DESIGN SYSTEM</span>
-      </a>
-    </h1>
+
+
+
     {% if hasSidebar %}
-      <aside class="storefront-docs-sidebar">
+      <aside class="storefront-docs-sidebar" id="menu">
+        <header class="storefront-docs-header t-bolt-xlight">
+          <h1 class="storefront-docs-title c-bolt-headline--large">
+            <a href="/">
+            {% include "@bolt-components-icon/icon.twig" with {
+              name: "energy",
+              size: "medium",
+            }%} <span>BOLT DESIGN SYSTEM</span>
+            </a>
+          </h1>
+        </header>
+
         {% if nestedPages %}
           {% include 'partials/sub-nav.twig' with {
             nestedPages: nestedPages,
           } %}
         {% endif %}
       </aside>
+
+      <a href="#" class="storefront-docs-sidebar__overlay"></a>
     {% endif %}
-    <header class="storefront-docs-header t-bolt-xdark">
-      <nav class="storefront-docs-header__nav">
-        {% for page in site.pages if page.meta.nav == 'main' %}
-          {% set isActive = currentUrl == page.url %}
-          {% set isActivePath = page.url starts with currentSection %}
-          <a href="/{{ page.url }}" class="{% if isActive %}active{% endif %} {% if isActivePath %}active-path{% endif %}">{{ page.meta.title }}</a>
-        {% endfor %}
-      </nav>
-    </header>
+
+
     <main class="storefront-docs-content">
       {% include "@bolt-components-band/band.twig" with {
         "content": content,
