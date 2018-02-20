@@ -1,10 +1,13 @@
 $schema: http://json-schema.org/draft-04/schema#
 title: Blockquote
 type: object
+required:
+  - content
 properties:
   theme:
       type: string
-      description: Default is dark. Can be set to false for a transparent background.
+      description: Color theme. Can be set to false for a transparent background.
+      default: false
       enum:
         - xlight
         - light
@@ -13,47 +16,52 @@ properties:
         - medium
         - 'false'
   content:
-    description: Content is required.
+    description: Text to appear in blockquote.
     type: string
   size:
-    description: Default is xlarge.
+    description: Text size.
+    default: xlarge
     type: string
     enum:
       - large
       - xlarge
       - xxlarge
   alignItems:
-    description: Default is left. Aligns items left, center, or right.
+    description: Aligns items left, center, or right.
+    default: left
     type: string
     enum:
       - left
       - center
       - right
   border:
-    description: Default is vertical.
+    description: Add a border.
+    default: vertical
     type: string
     enum:
       - vertical
       - horizontal
       - none
   indent:
-    description: Default is false.
+    description: Indent text.
+    default: false
     type: string
     enum:
       - 'true'
       - 'false'
   fullBleed:
-      description: Default is false.
+      description: Width of the brower window.
+      default: false
       type: string
       enum:
         - 'true'
         - 'false'
   logo:
-      description: Logo is optional.
+      description: Add a logo component.
       type: object
       ref: '@bolt-components-logo/logo.schema.yml'
   author:
-      description: Author is optional.
+      description: Author of the quote.
       type: object
       properties:
         name:

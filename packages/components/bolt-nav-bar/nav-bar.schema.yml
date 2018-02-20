@@ -4,7 +4,8 @@ type: object
 properties:
   theme:
     type: string
-    description: Default is dark. Can be set to false for a transparent background.
+    description: Color theme. Can be set to false for a transparent background.
+    default: dark
     enum:
       - xlight
       - light
@@ -14,13 +15,15 @@ properties:
       - 'false'
   gradient:
     type: string
-    description: Default is true. This sets a gradient on the background.
+    description: This sets a gradient on the background.
+    default: true
     enum:
       - 'true'
       - 'false'
   vspacing:
     type: string
-    description: Default is xsmall. This controls the top and bottom spacing of the nav-bar.
+    description: This controls the top and bottom spacing of the nav-bar.
+    default: xsmall
     enum:
       - xsmall
       - small
