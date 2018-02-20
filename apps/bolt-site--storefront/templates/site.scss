@@ -15,15 +15,22 @@
     margin-right: 7px;
   }
 
+  span {
+    vertical-align: middle;
+  }
+
   .storefront-docs__content--has-sidebar & {
     color: var(--bolt-theme-background);
+
+    @media (max-width: 1024px) {
+      color: #FFF;
+    }
   }
 }
 
 .storefront-docs-header {
   background: #0074B3;
   position: fixed;
-  height: 66px;
   top: 0;
   left: 0;
   right: 0;
@@ -48,7 +55,7 @@
 
   a {
     color: #FFF;
-    padding: 10px 20px;
+    padding: 6px 12px;
 
     &.active,
     &.active-path {
