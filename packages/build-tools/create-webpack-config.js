@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const npmSass = require('npm-sass');
 const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
@@ -119,7 +120,7 @@ function createConfig(config) {
         sourceMap: true,
         modules: false,
         importLoaders: true,
-        localIdentName: '[local]'
+        localIdentName: '[local]',
       }
     },
 //     {
@@ -143,7 +144,7 @@ function createConfig(config) {
       options: {
         skipWarn: true,
         compatibility: "ie9",
-        level: process.env.NODE_ENV === "production" ? 2 : 0,
+        level: config.prod ? 2 : 0,
         inline: ["remote"],
         format: 'beautify',
       }
@@ -258,9 +259,15 @@ function createConfig(config) {
       'process.env.NODE_ENV': JSON.stringify('production'),
     }));
 
-    // https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
+    // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
     webpackConfig.plugins.push(new UglifyJsPlugin({
       sourceMap: true,
+      parallel: true,
+    }));
+
+    // Optimize CSS - https://github.com/NMFR/optimize-css-assets-webpack-plugin
+    webpackConfig.plugins.push(new OptimizeCssAssetsPlugin({
+      canPrint: config.verbosity > 2,
     }));
 
     // @todo Evaluate best source map approach for production
