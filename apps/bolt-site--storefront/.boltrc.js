@@ -15,7 +15,6 @@ module.exports = {
   },
   components: {
     global: [
-      './style.scss',
       '@bolt/core',
       '@bolt/global',
       '@bolt/components-page-footer',
@@ -23,11 +22,14 @@ module.exports = {
       '@bolt/components-site',
       '@bolt/components-band',
       '@bolt/components-button',
+      '@bolt/components-button-group',
       '@bolt/components-card',
       '@bolt/components-icon',
       '@bolt/components-headline',
+      '@bolt/components-link',
       '@bolt/components-teaser',
-      '@bolt/components-image'
+      '@bolt/components-image',
+      './style.scss'
     ],
     individual: [],
   },
