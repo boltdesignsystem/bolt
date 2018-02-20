@@ -1,7 +1,15 @@
 {% set content %}
+
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: page.meta.title,
+    size: "xxxlarge",
+    tag: "h2"
+  } %}
+
   <article>
     {{ page.body|raw }}
   </article>
+
 {% endset %}
 
 {% include 'site.twig' with {
