@@ -40,7 +40,9 @@ async function serve() {
     const serverTasks = [];
     if (config.wwwDir) {
       serverTasks.push(extraTasks.server.serve());
-      serverTasks.push(webpackTasks.server());
+      if (config.webpackDevServer) {
+        serverTasks.push(webpackTasks.server());
+      }
     }
     return Promise.all(serverTasks);
   } catch (error) {
