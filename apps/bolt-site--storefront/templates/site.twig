@@ -48,7 +48,7 @@
   {% set hasSidebar = nestedPages or sidebar %}
   {# End Global Twig vars #}
 </head>
-<body class="storefront-docs c-bolt-site {% if currentUrl == 'index.html' %} t-bolt-dark {% endif %}">
+<body class="storefront-docs c-bolt-site {% if currentUrl == 'index.html' %} t-bolt-dark {% endif %} storefront-docs--{{ urlChunks | length >= 2 ? urlChunks|first : 'parent' }}">
 
 
 <header class="storefront-docs-header {% if currentUrl != 'index.html' %}t-bolt-dark {% endif %}">

@@ -117,15 +117,25 @@ $storefront-sidebar-width: 320px;
   }
 }
 
+.storefront-docs--docs {
+  // Styling for markdown content (classes not available)
+  article {
+    h2,
+    h3 {
+      margin-bottom: 0.65rem;
+
+      &::before {
+        content: '#';
+        left: -20px;
+        position: absolute;
+      }
+    }
+  }
+}
 
 .storefront-docs-content {
-  // margin: 65px 0 0 0;
   padding: 0 0 0 0;
   transition: margin .4s;
-
-  // @media (min-width: 768px) {
-  //   margin-top: 154px;
-  // }
 
   .storefront-docs__content--has-sidebar & {
     @include respond-to(medium) {
