@@ -29,7 +29,8 @@ module.exports = {
       '@bolt/components-link',
       '@bolt/components-teaser',
       '@bolt/components-image',
-      './style.scss'
+      './style.scss',
+      './storefront.js',
     ],
     individual: [],
   },
