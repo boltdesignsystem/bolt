@@ -5,16 +5,6 @@ Button is a branded component to convey call to action. Part of the Bolt “Comp
 npm install @bolt/components-button
 ```
 
-### Theme inheritance
-This component must be wrapped in the following to inherit correct theme variation:
-```
-{% embed "@utils/theme-demo.twig" %}
-    {% block demo_content %}
-        {# component here #}
-    {% endblock %}
-{% endembed %}
-```
-
 Description:
 Buttons are the core of our action components. Their affordance is imediate and can be use for most actions and allow users to access the target with a single interaction. Buttons clearly provide a next step for the user.
 
