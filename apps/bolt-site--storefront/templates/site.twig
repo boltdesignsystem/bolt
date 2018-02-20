@@ -109,7 +109,7 @@
     {% endif %}
 
 
-    <main class="storefront-docs-content">
+    <main class="storefront-docs-content {{ currentUrl != 'index.html' ? 't-bolt-xlight' }}">
       {% include "@bolt-components-band/band.twig" with {
         "content": content,
         "fullBleed": false,
@@ -122,7 +122,7 @@
 <footer role="contentinfo" class="storefront-docs-footer c-bolt-site__footer">
   {% embed "@bolt-components-band/band.twig" with {
     theme: "xlight",
-    size: "small",
+    size: "xsmall",
     fullBleed: false
   } only %}
     {% block band_content %}
