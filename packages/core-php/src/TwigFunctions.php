@@ -32,12 +32,20 @@ class TwigFunctions {
         return '';
       }
 
-      $data = new ArrayFinder($context['bolt']['data']);
-      $buildDir = $data->get('config.buildDir');
+      $context = new ArrayFinder($context);
+      $buildDir = $context->get('bolt.data.config.buildDir');
 
-      $fullPath = Path::join($buildDir, $filename);
-      if (file_exists($fullPath)){
-        return file_get_contents($fullPath);
+      if ($buildDir) {
+        $fullPath = Path::join($buildDir, $filename);
+
+        if (file_exists($fullPath)){
+          return file_get_contents($fullPath);
+        } else {
+          throw new \Exception('Warning: the file ' . $fullPath . ' trying to be inlined doesn\'t seem to exist...');
+        }
+      } else {
+        // throw error saying `bolt.data` isn't set up right
+        throw new \Exception('Warning: the Bolt Build directory, `' . $buildDir . '` , appears to be missing. Is your `.boltrc` config set up properly?');
       }
     }, [
       'needs_context' => true,
