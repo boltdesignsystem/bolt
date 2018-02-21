@@ -265,6 +265,9 @@ function createConfig(config) {
       parallel: true,
     }));
 
+    // https://webpack.js.org/plugins/module-concatenation-plugin/
+    webpackConfig.plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
+
     // Optimize CSS - https://github.com/NMFR/optimize-css-assets-webpack-plugin
     webpackConfig.plugins.push(new OptimizeCssAssetsPlugin({
       canPrint: config.verbosity > 2,
