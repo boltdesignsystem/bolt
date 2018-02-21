@@ -1,7 +1,7 @@
 .sub-nav {
+  border-top: 1px solid #E0E2EB;
   list-style-type: none;
   margin: 0;
-  padding: 3.3rem 0 0;
 
   &__link {
     font-size: 1.11rem;
@@ -15,9 +15,13 @@
       font-weight: bolder;
       text-decoration: none;
     }
+    .sub-nav__list--depth-1 & {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
     .sub-nav__list--depth-2 & {
       font-size: 0.9rem;
-      font-weight: 400;
+      font-weight: 300;
     }
   }
 
@@ -31,6 +35,7 @@
 
   > ul {
     margin-left: 0;
+    padding: 15px 20px 0;
   }
 
   li {
