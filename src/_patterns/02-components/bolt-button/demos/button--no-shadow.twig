@@ -1,0 +1,9 @@
+<p>Test case demoing how buttons can <em>technically</em> have Shadow DOM encapsulation manually disabled as a failsafe.</p>
+
+<p>Use with <strong>extreme caution</strong> as we are already automatically managing this internally based native browser support!</p>
+
+{% include "@bolt/button.twig" with {
+  text: "Submit",
+  style: "primary",
+  noShadow: true
+} only %}

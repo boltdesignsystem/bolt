@@ -1,0 +1,10 @@
+<p>Test case to verify external utility classes can be applied to the <code>&lt;bolt-button&gt;</code>.</p>
+
+{% include "@bolt/button.twig" with {
+  text: "Button With Utility Classes",
+  utils: [
+    "u-bolt-margin-top",
+    "u-bolt-margin-left",
+    "u-bolt-margin-bottom"
+  ]
+} only %}
