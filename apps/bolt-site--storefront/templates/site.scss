@@ -113,6 +113,24 @@ $storefront-sidebar-width: 320px;
   @include respond-to(medium){
     transform: translate3d(0, 0, 0);
   }
+
+  .sub-nav > h2 {
+    background-color: bolt-color(gray, light);
+    border-bottom: 1px solid #FFF;
+    padding: 10px 20px;
+    margin: 0;
+    font-size: 1.11rem;
+    font-weight: 400;
+
+    &:before {
+      content: "#";
+      width: 24px;
+      text-align: center;
+      display: inline-block;
+      margin-right: 7px;
+      font-weight: 600;
+    }
+  }
 }
 
 .storefront-docs--docs {
