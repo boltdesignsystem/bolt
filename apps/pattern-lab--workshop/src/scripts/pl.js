@@ -6,12 +6,18 @@
 var editLink = document.getElementsByClassName('c-bolt-docs__page-nav__link');
 var editWrap = document.getElementsByClassName('c-bolt-docs__lead');
 
-editLink[0].addEventListener("mouseover", toggleEditOn, false);
-editLink[0].addEventListener("mouseout", toggleEditOff, false);
+if (editLink[0]){
+  editLink[0].addEventListener("mouseover", toggleEditOn, false);
+}
+
+if (editWrap[0]) {
+  editLink[0].addEventListener("mouseout", toggleEditOff, false);
+}
+
 
 function toggleEditOn() {
-    editWrap[0].classList.add('edit-this-readme');
+  editWrap[0].classList.add('edit-this-readme');
 }
 function toggleEditOff() {
-    editWrap[0].classList.remove('edit-this-readme');
+  editWrap[0].classList.remove('edit-this-readme');
 }
