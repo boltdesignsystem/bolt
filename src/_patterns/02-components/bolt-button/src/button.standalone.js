@@ -4,6 +4,7 @@ import {
   withComponent,
   css,
   hasNativeShadowDomSupport,
+  withPreact,
   withHyperHTML,
   sanitizeBoltClasses
 } from '@bolt/core';
@@ -11,6 +12,24 @@ import {
 import styles from './button.scss';
 import visuallyhiddenUtils from '@bolt/utilities-visuallyhidden/_utilities.visuallyhidden.scss';
 
+
+@define
+export class ReplaceWithChildren extends withPreact(withComponent()) {
+  static is = 'replace-with-children';
+
+  constructor(elem) {
+    super(elem);
+    this.useShadow = hasNativeShadowDomSupport;
+  }
+
+  connectedCallback(){
+    if (hasNativeShadowDomSupport){
+      this.replaceWith(...this.childNodes);
+    } else {
+      this.className = '';
+    }
+  }
+}
 
 @define
 export class BoltButton extends withHyperHTML(withComponent()) {
@@ -39,19 +58,17 @@ export class BoltButton extends withHyperHTML(withComponent()) {
     onClickTarget: props.string, // Managed by base class
   }
 
-  constructor() {
-    super();
+  constructor(elem) {
+    super(elem);
+    this.useShadow = hasNativeShadowDomSupport;
   }
 
-  connecting(){
-    // Connected callback work goes here - syntactic sugar SkateJS provides so we don't have to remeber to call `super()`
+  connecting() {
   }
 
-  disconnected() {
-    // Disconnected callback work goes here - syntactic sugar SkateJS provides so we don't have to remeber to call `super()`
+  disconnecting() {
+
   }
-
-
 
   render({ props, state }) {
     // Setup the combo of classes to apply based on state + extras added
