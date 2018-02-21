@@ -15,6 +15,20 @@
       font-weight: bolder;
       text-decoration: none;
     }
+    &--parent {
+      background: #e0e2eb;
+      display: block;
+      border-top: 1px solid #FFF;
+      border-bottom: 1px solid #FFF;
+      padding: 0.6rem 1.7rem;
+      color: #000;
+
+      &.sub-nav__link--active-path {
+        background: #545DA6;
+        color: #FFF;
+        text-decoration: none;
+      }
+    }
     .sub-nav__list--depth-1 & {
       font-size: 1.25rem;
       font-weight: 600;
@@ -22,6 +36,17 @@
     .sub-nav__list--depth-2 & {
       font-size: 0.9rem;
       font-weight: 300;
+
+      &.sub-nav__link--active {
+        color: #545DA6;
+        font-style: italic;
+        font-weight: 600;
+
+        &:before {
+          content: "#";
+          font-weight: 100;
+        }
+      }
     }
   }
 
@@ -29,13 +54,16 @@
     &--depth-2,
     &--depth-3 {
       margin-top: 0.25rem;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.25rem;
     }
   }
 
   > ul {
     margin-left: 0;
-    padding: 15px 20px 0;
+    padding: 0;
+    li:first-child a.sub-nav__link--parent {
+      border-top: none;
+    }
   }
 
   li {
