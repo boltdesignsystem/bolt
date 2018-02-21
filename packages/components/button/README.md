@@ -5,36 +5,29 @@ Button is a branded component to convey call to action. Part of the Bolt “Comp
 npm install @bolt/components-button
 ```
 
-### Theme inheritance
-This component must be wrapped in the following to inherit correct theme variation:
-```
-{% embed "@utils/theme-demo.twig" %}
-    {% block demo_content %}
-        {# component here #}
-    {% endblock %}
-{% endembed %}
-```
-
 Description:
 Buttons are the core of our action components. Their affordance is imediate and can be use for most actions and allow users to access the target with a single interaction. Buttons clearly provide a next step for the user.
 
 Our Buttons depend on the theme they are contained in and change in appearance based on said theme. The themes and button colors were designed together to ensure the proper amount affordance and clarity.
 
-Xlight and light themes:
-Primary: Light Indigo container with white text
-Secondary: white button with indigo text
-Text button: Light indigo text with chevron
+#### Xlight and light themes:
 
-Dark and xdark themes:
-Primary: Yellow container with default indigo text
-Secondary: white button with indigo text
-Text button: white tex with chevron
+- Primary: Light Indigo container with white text
+- Secondary: white button with indigo text
+- Text button: Light indigo text with chevron
+
+#### Dark and xdark themes:
+
+- Primary: Yellow container with default indigo text
+- Secondary: white button with indigo text
+- Text button: white tex with chevron
 
 * Currently only have one defined size (though other options can and will be defined in the future)
 * Can be 100% width of the wrapper for mobile or card instances
 * Can optionally be 100% width. For example, the button has default width of 2 rem on either side on larger screens but full width on smaller screens
 
 Dos:
+
 * CTAs must be clearly and succintly labeled with a next step
 * CTA should lead with strong action verbs
 * The primary CTA should be the most important action. 

@@ -4,13 +4,3 @@ Stylistic bulleted list for article content. Part of the Bolt “Components” C
 ```
 npm install @bolt/components-unordered-list
 ```
-
-## Theme inheritance
-This component must be wrapped in the following to inherit correct theme variation:
-```
-{% embed "@utils/theme-demo.twig" %}
-    {% block demo_content %}
-        {# component here #}
-    {% endblock %}
-{% endembed %}
-```

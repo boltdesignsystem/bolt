@@ -36,7 +36,9 @@
             id: "getting-started"
           }
         } %}
-      {{ source(readmeFile) | markdown }}
+      <div class="c-bolt-docs__lead">
+        {{ source(readmeFile) | markdown }}
+      </div>
     {% endif %}
 
     {% if code %}
