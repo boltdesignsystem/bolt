@@ -6,6 +6,10 @@ use Bolt;
 use \Twig_SimpleFunction;
 use \Drupal\Core\Template\Attribute;
 use \BasaltInc\TwigTools;
+use \Webmozart\PathUtil\Path;
+
+// https://github.com/Shudrum/ArrayFinder
+use \Shudrum\Component\ArrayFinder\ArrayFinder;
 
 class TwigFunctions {
 
@@ -16,6 +20,25 @@ class TwigFunctions {
       $scaleValues = array_values($data);
       sort($scaleValues);
       return $scaleValues;
+    }, [
+      'needs_context' => true,
+    ]);
+  }
+
+
+  public static function inlineFile() {
+    return new Twig_SimpleFunction('inline', function($context, $filename) {
+      if (!$filename){
+        return '';
+      }
+
+      $data = new ArrayFinder($context['bolt']['data']);
+      $buildDir = $data->get('config.buildDir');
+
+      $fullPath = Path::join($buildDir, $filename);
+      if (file_exists($fullPath)){
+        return file_get_contents($fullPath);
+      }
     }, [
       'needs_context' => true,
     ]);

@@ -63,6 +63,14 @@ async function writeBoltManifest() {
   } catch(error) {
     log.errorAndExit('Could not write bolt manifest', error);
   }
+
+  // @todo: refactor
+  const filePath2 = path.resolve(config.dataDir, './config.bolt.json');
+  try {
+    await writeFile(filePath2, JSON.stringify(config, null, '  '));
+  } catch (error) {
+    log.errorAndExit('Could not write bolt config', error);
+  }
 }
 
 /**
