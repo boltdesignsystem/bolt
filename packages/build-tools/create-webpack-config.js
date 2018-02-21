@@ -145,7 +145,7 @@ function createConfig(config) {
       options: {
         skipWarn: true,
         compatibility: "ie9",
-        level: config.prod ? 2 : 0,
+        level: config.prod ? 1 : 0,
         inline: ["remote"],
         format: 'beautify',
       }
