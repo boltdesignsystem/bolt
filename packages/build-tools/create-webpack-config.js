@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const npmSass = require('npm-sass');
 const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
@@ -118,7 +120,7 @@ function createConfig(config) {
         sourceMap: true,
         modules: true,
         importLoaders: 2,
-        localIdentName: '[local]'
+        localIdentName: '[local]',
       }
     },
 //     {
@@ -143,7 +145,7 @@ function createConfig(config) {
       options: {
         skipWarn: true,
         compatibility: "ie9",
-        level: process.env.NODE_ENV === "production" ? 2 : 0,
+        level: config.prod ? 2 : 0,
         inline: ["remote"],
         format: 'beautify',
       }
@@ -181,7 +183,6 @@ function createConfig(config) {
       filename: "[name].js",
       publicPath: publicPath,
     },
-    devtool: 'cheap-module-eval-source-map',
     resolve: {
       extensions: [".js", ".jsx", ".json", ".svg", ".scss"]
     },
@@ -254,9 +255,6 @@ function createConfig(config) {
         }
       }),
       new webpack.optimize.ModuleConcatenationPlugin(),
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': process.env.NODE_ENV === 'production' ? JSON.stringify(process.env.NODE_ENV) : JSON.stringify('development'),
-      }),
       new webpack.ProvidePlugin({
         h: 'preact',
         Promise: 'es6-promise'
@@ -267,6 +265,30 @@ function createConfig(config) {
       // new webpack.ProgressPlugin({ profile: false }),
     ],
   };
+
+  if (config.prod) {
+    webpackConfig.plugins.push(new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }));
+
+    // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
+    webpackConfig.plugins.push(new UglifyJsPlugin({
+      sourceMap: true,
+      parallel: true,
+    }));
+
+    // Optimize CSS - https://github.com/NMFR/optimize-css-assets-webpack-plugin
+    webpackConfig.plugins.push(new OptimizeCssAssetsPlugin({
+      canPrint: config.verbosity > 2,
+    }));
+
+    // @todo Evaluate best source map approach for production
+    webpackConfig.devtool = 'hidden-source-map';
+  } else {// not prod
+    // @todo fix source maps
+    webpackConfig.devtool = 'cheap-module-eval-source-map';
+  }
+
 
  if (config.wwwDir) {
    webpackConfig.devServer = {

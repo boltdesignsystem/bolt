@@ -9,6 +9,7 @@ const configSchema = readYamlFileSync(path.join(__dirname, './utils/config.schem
 program
   .version(packageJson.version)
   .option('-C, --config-file <path>', 'Pass in a specific config file instead of default of ".boltrc.js/json".')
+  .option('--prod', configSchema.properties.prod.description)
   .option('-v, --verbosity <amount>', configSchema.properties.verbosity.description, parseInt);
 
 // We need to initialize config as early as possible
@@ -43,12 +44,16 @@ function updateConfig(options, programInstance) {
       ? config.quick
       : options.quick;
 
+    config.prod = typeof program.prod === 'undefined'
+      ? config.prod
+      : program.prod;
+
     return config;
   });
 
   const config = configStore.getConfig();
   log.dim(`Verbosity: ${config.verbosity}`);
-  log.dim(`WebPack Dev Server: ${config.webpackDevServer}`);
+  log.dim(`Prod: ${config.prod}`);
   if (config.verbosity > 2){
     log.dim(`Opening browser: ${config.openServerAtStart}`);
     log.dim(`Quick mode: ${config.quick}`);
