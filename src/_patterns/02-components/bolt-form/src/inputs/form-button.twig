@@ -1,24 +1,31 @@
-{# // @TODO include bolt button here, or even remove this file entirely #}
+{#
+  @TODO It was hoped that this template wouldn't be needed, because we really should just use the button component
+  instead.  As of this writing, it is very close, with the following exception:
+    - Button component needs support for displaying the icon to the left of the text within a button.
+
+  Once that support can be added, this template should just include the button component rather than building it up
+  a button on its own.
+ #}
 
 {% set attributes = create_attribute(attributes | default({})) %}
 
 {% set classes = [
   "c-bolt-button",
   "c-bolt-button--primary",
-  "c-bolt-button--full",
   "c-bolt-button--item-align-center"
 ] %}
 
-<div class="c-bolt-input-list__item">
-  <div {{ attributes.addClass(classes) }}>
-    <button class="c-bolt-button__button">
-      {% if icon %}
-        <span class="c-bolt-button__icon" {% if iconOnly %}u-bolt-margin-left-none {% endif %}">
-          {% include "@bolt/icon.twig" with icon only %}
-        </span>
-      {% endif %}
+{% set widthOptions = ["full", "full@small"] %}
+{% if width in widthOptions %}
+  {% set attributes = attributes.addClass("c-bolt-button--" ~ width) %}
+{% endif %}
 
-      {{ text }}
-    </button>
-  </div>
-</div>
+<button {{ attributes.addClass(classes) }}>
+  {% if icon %}
+    <span class="c-bolt-button__icon" {% if iconOnly %}u-bolt-margin-left-none {% endif %}">
+      {% include "@bolt/icon.twig" with icon only %}
+    </span>
+  {% endif %}
+
+  {{ text }}
+</button>
