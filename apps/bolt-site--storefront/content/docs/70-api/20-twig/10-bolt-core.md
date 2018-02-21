@@ -15,7 +15,7 @@ Let's you decode json. Uses [PHP's `json_decode`](http://php.net/manual/en/funct
 
 
 
-## [Twig Functions}(http://twig.symfony.com/doc/1.x/templates.html#functions)
+## [Twig Functions](http://twig.symfony.com/doc/1.x/templates.html#functions)
 
 ### `get_data( path )`
 
@@ -127,9 +127,9 @@ Takes the relative path to an image and returns the width to height ratio (defau
 <!--@todo Salem/Evan I'mm thinking, since these are the only custom tags, that this information should be in/connect to more thurough documentation on the custom grid system and how to use it.-->
 ## [Twig Tags](https://twig.symfony.com/doc/1.x/advanced.html#tags)
 
-### `{% grid "_classes_" %}`
+### `grid`
 
-Bolt's grid system. Wraps the custom [`{% cell %}`](#-cell-_classes_-)
+Bolt's grid system. Wraps the custom [`cell`](#-cell-)
 
 #### Parameters
 - `classes` {string} Space separated string of classes to by applied to the grid.
@@ -144,7 +144,7 @@ Bolt's grid system. Wraps the custom [`{% cell %}`](#-cell-_classes_-)
 ```
 
 
-### `{% cell "_classes_" %}`
+### `cell`
 
 A cell to be used in the Bolt grid system.
 
