@@ -12,7 +12,7 @@
     } only #}
 
 
-    {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--large o-bolt-grid--matrix" %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--large c-bolt-band--medium u-bolt-padding-top-none o-bolt-grid--matrix" %}
 
       {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small" %}
         {% include "@bolt/eyebrow.twig" with {
@@ -106,8 +106,8 @@
     {% endgrid %}
 
 
-    {# include "@bolt-components-band/band--card-collection.twig" with {
-      theme: "light",
+    {% include "@bolt-components-band/band--card-collection.twig" with {
+      theme: "xdark",
       size: "medium",
       contentItems: [
         {
@@ -192,7 +192,7 @@
         ]
         }
       ]
-    } #}
+    } %}
   </article>
 {% endset %}
 {% include 'site.twig' with {
