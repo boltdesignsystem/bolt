@@ -19,7 +19,8 @@ const defaultConfig = {
   verbosity: configSchema.properties.verbosity.default,
   openServerAtStart: configSchema.properties.openServerAtStart.default,
   quick: configSchema.properties.quick.default,
-  webpackDevServer: configSchema.properties.webpackDevServer.default
+  webpackDevServer: configSchema.properties.webpackDevServer.default,
+  prod: process.env.NODE_ENV === 'production',
 };
 
 function getEnvVarsConfig() {
@@ -87,6 +88,9 @@ function updateConfig(updater) {
   // console.log('new config:');
   // console.log(newConfig);
   config = newConfig;
+  if (config.prod) {
+    process.env.NODE_ENV = 'production';
+  }
   return config;
 }
 
