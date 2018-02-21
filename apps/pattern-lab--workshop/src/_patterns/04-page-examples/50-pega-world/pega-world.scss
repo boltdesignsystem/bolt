@@ -231,8 +231,11 @@
 
 .c-pw-blocks__item {
   @include bolt-margin(0);
-  @include bolt-padding(medium);
+  @include bolt-padding(large);
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   & + #{&} {
     border-left-width: $bolt-border-width;
