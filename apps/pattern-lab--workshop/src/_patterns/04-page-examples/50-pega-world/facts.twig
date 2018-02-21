@@ -1,18 +1,86 @@
-{% set hero_band_content %}
+{# HERO #}
+<nav class="c-pw-mobile-menu" id="menu">
+  <ul class="c-pw-mobile-menu-list">
+    <li class="c-pw-mobile-menu-list__item">
+      <a href="#!" class="c-pw-mobile-menu-link">
+        <span class="u-bolt-visuallyhidden">
+          Close menu
+        </span>
+      </a>
+    </li>
+    <li class="c-pw-mobile-menu-list__item">
+      <a href="https://www.pega.com/events/pegaworld/event-details/why-attend" class="c-pw-mobile-menu-link">Facts</a>
+    </li>
+    <li class="c-pw-mobile-menu-list__item">
+      <a href="https://www.pega.com/events/pegaworld/agenda" class="c-pw-mobile-menu-link">Agenda</a>
+    </li>
+    <li class="c-pw-mobile-menu-list__item">
+      <a href="https://www.pega.com/events/pegaworld/trending" class="c-pw-mobile-menu-link">Experience</a>
+    </li>
+    <li class="c-pw-mobile-menu-list__item">
+      <a href="https://www.cvent.com/events/pegaworld-2018/registration-510ce28f40334ea195526c224ae26a21.aspx" class="c-bolt-button c-bolt-button--large c-bolt-button--secondary u-pw-full-at-bp-400-only">Register</a>
+    </li>
+  </ul>
+</nav>
+
+{% set nav_band_content %}
+  <nav class="c-pw-menu">
+    <div class="c-pw-menu-logo">
+      <a href="http://pega.com"><img src="/assets/images/pw2018/logo-pega.png" alt="Pega" class="c-pw-logo-pega"></a>
+      <a href="http://pega.com/events/pegaworld"><img src="/assets/images/pw2018/logo-pw2018.png" alt="PegaWorld 2018" class="c-pw-logo-pw2018"></a>
+    </div>
+    <a class="c-pw-menu-trigger" href="#menu">
+      <span class="u-bolt-visuallyhidden">Open menu</span>
+    </a>
+    <ul class="c-pw-menu-list">
+      <li class="c-pw-menu-list__item">
+        <a href="https://www.pega.com/events/pegaworld/event-details/why-attend" class="c-pw-menu-link">Facts</a>
+      </li>
+      <li class="c-pw-menu-list__item">
+        <a href="https://www.pega.com/events/pegaworld/agenda" class="c-pw-menu-link">Agenda</a>
+      </li>
+      <li class="c-pw-menu-list__item">
+        <a href="https://www.pega.com/events/pegaworld/trending" class="c-pw-menu-link">Experience</a>
+      </li>
+      <li class="c-pw-menu-list__item">
+        <a href="https://www.cvent.com/events/pegaworld-2018/registration-510ce28f40334ea195526c224ae26a21.aspx" class="c-bolt-button c-bolt-button--secondary">Register</a>
+      </li>
+    </ul>
+  </nav>
+{% endset %}
+
+{% set hero_text_band_content %}
   {% include "@bolt/headline.twig" with {
     "size": "xxxlarge",
     "align": "center",
     "text": "Event Details",
     "tag": "h1"
   } only %}
-{% endset %}
-
-{% set intro_band_content %}
   {% include "@bolt/subheadline.twig" with {
+    "align": "center",
     "text": "You won't find cartoon characters at PegaWorld. Instead, you'll hear success stories from the world's biggest brands, connect with 5,000 fellow business and tech leaders, and get an inside look at the newest and most powerful Pega technology.",
     "tag": "h2"
   } only %}
 {% endset %}
+
+{% set hero_band_content %}
+  {% include "@bolt/band.twig" with {
+    "size": "small",
+    "theme": "none",
+    "content": nav_band_content
+  } only %}
+  {% include "@bolt/band.twig" with {
+    "size": "large",
+    "theme": "none",
+    "content": hero_text_band_content
+  } only %}
+{% endset %}
+
+{# END HERO #}
+
+
+
+
 
 {% set details_band_content %}
   <ul class="c-pw-blocks">
@@ -109,7 +177,7 @@
               {% include "@bolt/card.twig" with {
                 "theme": "xlight",
                 "image": {
-                  "src": "/images/pw2018/thumb-no-code.jpg"
+                  "src": "/assets/images/pw2018/thumb-no-code.jpg"
                 },
                 "teaser": {
                   "eyebrow": {
@@ -143,7 +211,7 @@
               {% include "@bolt/card.twig" with {
                 "theme": "xlight",
                 "image": {
-                  "src": "/images/pw2018/thumb-devops.jpg"
+                  "src": "/assets/images/pw2018/thumb-devops.jpg"
                 },
                 "teaser": {
                   "eyebrow": {
@@ -177,7 +245,7 @@
               {% include "@bolt/card.twig" with {
                 "theme": "xlight",
                 "image": {
-                  "src": "/images/pw2018/thumb-cloud-choice.jpg"
+                  "src": "/assets/images/pw2018/thumb-cloud-choice.jpg"
                 },
                 "teaser": {
                   "eyebrow": {
@@ -251,7 +319,7 @@
               {% include "@bolt/card.twig" with {
                 "theme": "xlight",
                 "image": {
-                  "src": "/images/pw2018/thumb-no-code.jpg"
+                  "src": "/assets/images/pw2018/thumb-no-code.jpg"
                 },
                 "teaser": {
                   "eyebrow": {
@@ -285,7 +353,7 @@
               {% include "@bolt/card.twig" with {
                 "theme": "xlight",
                 "image": {
-                  "src": "/images/pw2018/thumb-devops.jpg"
+                  "src": "/assets/images/pw2018/thumb-devops.jpg"
                 },
                 "teaser": {
                   "eyebrow": {
@@ -319,7 +387,7 @@
               {% include "@bolt/card.twig" with {
                 "theme": "xlight",
                 "image": {
-                  "src": "/images/pw2018/thumb-cloud-choice.jpg"
+                  "src": "/assets/images/pw2018/thumb-cloud-choice.jpg"
                 },
                 "teaser": {
                   "eyebrow": {
@@ -393,7 +461,7 @@
               {% include "@bolt/card.twig" with {
                 "theme": "xlight",
                 "image": {
-                  "src": "/images/pw2018/thumb-no-code.jpg"
+                  "src": "/assets/images/pw2018/thumb-no-code.jpg"
                 },
                 "teaser": {
                   "eyebrow": {
@@ -427,7 +495,7 @@
               {% include "@bolt/card.twig" with {
                 "theme": "xlight",
                 "image": {
-                  "src": "/images/pw2018/thumb-devops.jpg"
+                  "src": "/assets/images/pw2018/thumb-devops.jpg"
                 },
                 "teaser": {
                   "eyebrow": {
@@ -461,7 +529,7 @@
               {% include "@bolt/card.twig" with {
                 "theme": "xlight",
                 "image": {
-                  "src": "/images/pw2018/thumb-cloud-choice.jpg"
+                  "src": "/assets/images/pw2018/thumb-cloud-choice.jpg"
                 },
                 "teaser": {
                   "eyebrow": {
@@ -594,21 +662,16 @@
 {% set stacked_bands %}
   {% include "@bolt/band.twig" with {
     "theme": "xdark",
-    "size": "large",
+    "size": "none",
     "background": {
-      "opacity": "light",
+      "opacity": "medium",
       "fill": "color",
       "contentItems": [{
         "pattern": "image",
-        "src": "/images/pw2018/background-trending.jpg"
+        "src": "/assets/images/pw2018/background-trending.jpg"
       }]
     },
     "content": hero_band_content
-  } only %}
-  {% include "@bolt/band.twig" with {
-    "size": "medium",
-    "theme": "xlight",
-    "content": intro_band_content
   } only %}
   {% include "@bolt/band.twig" with {
     "size": "large",
