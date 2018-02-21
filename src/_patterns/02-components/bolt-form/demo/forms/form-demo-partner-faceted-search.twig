@@ -1,0 +1,123 @@
+{% extends "@bolt/form.twig" %}
+
+{% set attributes = {
+  "class": ["t-bolt-xlight"]
+} %}
+
+{% set children %}
+  {% set PartnerTypeChildren %}
+    {% include "@bolt/form-element-demo-checkbox.twig" with {
+      "labelTitle": "Strategic Consulting",
+      "elementId": "strategic-consulting"
+    } only %}
+
+    {% include "@bolt/form-element-demo-checkbox.twig" with {
+      "labelTitle": "Systems Integrator",
+      "elementId": "systems-integrator"
+    } only %}
+
+    {% include "@bolt/form-element-demo-checkbox.twig" with {
+      "labelTitle": "Technology",
+      "elementId": "technology"
+    } only %}
+
+    {% include "@bolt/form-element-demo-checkbox.twig" with {
+      "labelTitle": "Registered",
+      "elementId": "registered"
+    } only %}
+  {% endset %}
+
+  {% include "@bolt/form-fieldset.twig" with {
+    "legendTitle": "Partner Type",
+    "children": PartnerTypeChildren
+  } only %}
+
+  {% include "@bolt/form-element-demo-select.twig" with {
+    "title": "Industry",
+    "options": [
+      {
+        "type": "option",
+        "value": "",
+        "label": "- Filter by Industry -"
+      },
+      {
+        "type": "option",
+        "value": "communications",
+        "label": "Communications & Media"
+      },
+      {
+        "type": "option",
+        "value": "energy",
+        "label": "Energy & Utilities"
+      },
+      {
+        "type": "option",
+        "value": "financial-services",
+        "label": "Financial Services"
+      }
+    ]
+  } only %}
+
+  {% include "@bolt/form-element-demo-select.twig" with {
+    "title": "Location",
+    "options": [
+      {
+        "type": "option",
+        "value": "",
+        "label": "- Filter by Location -"
+      },
+      {
+        "type": "option",
+        "value": "apac",
+        "label": "APAC"
+      },
+      {
+        "type": "option",
+        "value": "emea",
+        "label": "EMEA"
+      },
+      {
+        "type": "option",
+        "value": "latin-america",
+        "label": "Latin America"
+      },
+      {
+        "type": "option",
+        "value": "north-america",
+        "label": "North America"
+      }
+    ]
+  } only %}
+
+  {% include "@bolt/form-element-demo-select.twig" with {
+    "title": "Solution",
+    "options": [
+      {
+        "type": "option",
+        "value": "",
+        "label": "- Filter by Solution -"
+      },
+      {
+        "type": "option",
+        "value": "co-browse",
+        "label": "Co-Browse"
+      },
+      {
+        "type": "option",
+        "value": "decision-hub",
+        "label": "Customer Decision Hub"
+      },
+      {
+        "type": "option",
+        "value": "onboarding",
+        "label": "Customer Onboarding"
+      },
+      {
+        "type": "option",
+        "value": "service",
+        "label": "Customer Service"
+      }
+    ]
+  } only %}
+
+{% endset %}
