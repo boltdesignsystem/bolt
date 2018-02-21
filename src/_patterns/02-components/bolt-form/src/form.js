@@ -9,6 +9,14 @@ for (let i = 0, len = inputs.length; i < len; i++) {
     input.classList.add('is-filled');
   }
 
+  input.onchange = function() {
+    if (input.value) {
+      input.classList.add('is-filled');
+    } else {
+      input.classList.remove('is-filled');
+    }
+  };
+
   input.onfocus = function() {
     input.classList.remove('is-touched');
 
@@ -23,11 +31,6 @@ for (let i = 0, len = inputs.length; i < len; i++) {
 
   input.onblur = function() {
     input.classList.add('is-touched');
-    if (input.value) {
-      input.classList.add('is-filled');
-    } else {
-      input.classList.remove('is-filled');
-    }
 
     if (input.validationMessage) {
       let error = document.createElement('div');
