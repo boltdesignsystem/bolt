@@ -21,12 +21,16 @@
   ],
   "scripts": {
     "start": "echo 'To start up a server and watches, head into any of the folders in the apps/ directory, then run npm start there.' && echo 'If you want to start Pattern Lab, run this:' && echo '' && echo 'cd apps/pattern-lab--workshop' && echo 'npm start'",
-    "setup": "npm run bootstrap && npm run composer:setup",
+    "setup": "npm run bootstrap && npm run composer",
 
     "build:pl": "cd apps/pattern-lab--workshop && npm run build:prod",
     "build:bolt-site": "cd apps/bolt-site--storefront && npm run build:prod",
     "build:example-drupal-theme": "cd apps/example_drupal_theme && npm run build:prod",
     "build": "npm-run-all --serial build:*",
+
+    "composer:pl": "cd apps/pattern-lab--workshop && rm -rf vendor composer.lock && composer install --no-interaction",
+    "composer:bolt-site": "cd apps/bolt-site--storefront && rm -rf vendor composer.lock && composer install --no-interaction",
+    "composer": "npm-run-all --serial composer:*",
 
     "bootstrap": "lerna bootstrap --reject-cycles",
     "postbootstrap": "node scripts/monorepo-tests.js",
@@ -34,9 +38,6 @@
     "clean:git": "git clean -xdf",
     "clean:lerna": "lerna clean -Y",
     "clean": "npm-run-all --parallel clean:*",
-    "composer:setup": "if [ ! -f ./apps/pattern-lab--workshop/www/index.html ]; then npm run composer:clean && npm run composer:install; fi",
-    "composer:install": "composer install -d apps/pattern-lab--workshop --prefer-source --no-interaction --no-dev",
-    "composer:clean": "rm -rf apps/pattern-lab--workshop/composer.lock && rm -rf apps/pattern-lab--workshop/vendor && rm -rf apps/pattern-lab--workshop/src/_twig-components",
     "snyk-protect": "snyk protect"
   },
   "config": {
