@@ -61,6 +61,7 @@ module.exports = {
       '@bolt/components-unordered-list',
     ],
     individual: [
+      '@bolt/components-critical-fonts'
     ],
   },
 };

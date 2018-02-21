@@ -4,20 +4,53 @@
 
 @font-face {
   font-family: OpenSansSubset;
-  src: url('/fonts/opensans-subset.woff2') format('woff2'), url('/fonts/opensans-subset.woff') format('woff');
+  src: url('../../fonts/opensans-subset.woff2') format('woff2'),
+  url('../../fonts/opensans-subset.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   unicode-range: U+65-U+90, U+97-122;
 }
 
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../../fonts/opensans-regular.woff2') format('woff2'), url('../../fonts/opensans-regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
 
-@include bolt-font-face('Open Sans', '/fonts/opensans-regular', 400);
-@include bolt-font-face('Open Sans', '/fonts/opensans-italic', 400, italic);
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../../fonts/opensans-italic.woff2') format('woff2'), url('../../fonts/opensans-italic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+}
 
 
-@include bolt-font-face('Open Sans', '/fonts/opensans-semibold', 600);
-// @include bolt-font-face('Open Sans', '/fonts/opensans-bolditalic', 700, italic);
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../../fonts/opensans-semibold.woff2') format('woff2'), url('../../fonts/opensans-semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../../fonts/opensans-bolditalic.woff2') format('woff2'), url('../../fonts/opensans-bolditalic.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+}
 
 
-@include bolt-font-face('Open Sans', '/fonts/opensans-extrabold', 800);
-@include bolt-font-face('Open Sans', '/fonts/opensans-extrabolditalic', 800, italic);
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../../fonts/opensans-extrabold.woff2') format('woff2'), url('../../fonts/opensans-extrabold.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../../fonts/opensans-extrabolditalic.woff2') format('woff2'), url('../../fonts/opensans-extrabolditalic.woff') format('woff');
+  font-weight: 800;
+  font-style: italic;
+}

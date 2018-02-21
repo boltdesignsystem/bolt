@@ -118,8 +118,8 @@ function createConfig(config) {
       loader: 'css-loader',
       options: {
         sourceMap: true,
-        modules: false,
-        importLoaders: true,
+        modules: true,
+        importLoaders: 2,
         localIdentName: '[local]',
       }
     },
@@ -133,6 +133,7 @@ function createConfig(config) {
     {
       loader: "postcss-loader",
       options: {
+        sourceMap: true,
         plugins: [
           postcssDiscardDuplicates,
           autoprefixer,
@@ -144,14 +145,18 @@ function createConfig(config) {
       options: {
         skipWarn: true,
         compatibility: "ie9",
-        level: config.prod ? 2 : 0,
+        level: config.prod ? 1 : 0,
         inline: ["remote"],
         format: 'beautify',
       }
     },
     {
+      loader: 'resolve-url-loader'
+    },
+    {
       loader: "sass-loader",
       options: {
+        sourceMap: true,
         importer: [
           sassImportGlobbing,
           npmSass.importer,
@@ -210,6 +215,13 @@ function createConfig(config) {
             }
           }
         },
+        {
+          test: /\.(woff|woff2)$/,
+          loader: "file-loader",
+          options: {
+            name: 'fonts/[name].[ext]',
+          },
+        }
       ],
     },
     plugins: [
