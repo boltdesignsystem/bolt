@@ -24,12 +24,12 @@
     "setup": "npm run bootstrap && npm run composer",
 
     "build:pl": "cd apps/pattern-lab--workshop && npm run build:prod",
-    "build:bolt-site": "cd apps/bolt-site--storefront && npm run build:prod",
+    "Xbuild:bolt-site": "cd apps/bolt-site--storefront && npm run build:prod",
     "build:example-drupal-theme": "cd apps/example_drupal_theme && npm run build:prod",
     "build": "npm-run-all --serial build:*",
 
     "composer:pl": "cd apps/pattern-lab--workshop && rm -rf vendor composer.lock && composer install --no-interaction",
-    "composer:bolt-site": "cd apps/bolt-site--storefront && rm -rf vendor composer.lock && composer install --no-interaction",
+    "Xcomposer:bolt-site": "cd apps/bolt-site--storefront && rm -rf vendor composer.lock && composer install --no-interaction",
     "composer": "npm-run-all --serial composer:*",
 
     "bootstrap": "lerna bootstrap --reject-cycles",
