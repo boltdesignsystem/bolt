@@ -1,0 +1,154 @@
+{% set hero_band_content %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-9/12@small" %}
+      {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+        {% cell "u-bolt-width-1/1 u-bolt-padding-bottom-large" %}
+          {% include "@bolt/headline.twig" with {
+            "size": "xxxlarge",
+            "align": "center",
+            "text": "Join us for this exciting thing!",
+            "tag": "h1"
+          } only %}
+        {% endcell %}
+        {% cell "u-bolt-width-1/1" %}
+          {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--center o-bolt-grid--middle o-bolt-grid--matrix" %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
+              {% include "@bolt/image.twig" with {
+                src: "/images/placeholders/500x500.jpg",
+                alt: "Bill"
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
+              {% include "@bolt/eyebrow.twig" with {
+                "text": "Keynote",
+                "tag": "div"
+              } only %}
+              {% include "@bolt/headline.twig" with {
+                "size": "xxlarge",
+                "text": "Young Axl Rose",
+                "tag": "h2"
+              } only %}
+              {% include "@bolt/text.twig" with {
+                "text": "You know where ahhh?!?! You're in the PegaWorld baby! Yer gonna digitally transform your buiness!",
+                "tag": "p"
+              } only %}
+              <a href="https://www.cvent.com/events/pegaworld-2018/registration-510ce28f40334ea195526c224ae26a21.aspx" class="c-bolt-button c-bolt-button--primary">Register now!</a>
+            {% endcell %}
+          {% endgrid %}
+        {% endcell %}
+      {% endgrid %}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+
+{% set register_band_content %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-4/12@small" %}
+      {% include "@bolt/headline.twig" with {
+        "size": "large",
+        "text": "Register now",
+        "tag": "h2"
+      } only %}
+      {% include "@bolt/text.twig" with {
+        "text": "Time is running out to take advantage of end-of-year pricing."
+      } only %}
+      <a href="https://www.pega.com/events/pegaworld/event-details/why-attend" class="c-bolt-button c-bolt-button--primary">Register now</a>
+    {% endcell %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-4/12@small" %}
+      {% include "@bolt/headline.twig" with {
+        "size": "large",
+        "text": "Become a PegaWorld Insider",
+        "tag": "h2"
+      } only %}
+      {% include "@bolt/text.twig" with {
+        "text": "Stay up-to-date on all the latest PegaWorld news and announcements."
+      } only %}
+      <a href="https://www.pega.com/events/pegaworld/event-details/why-attend" class="c-bolt-button c-bolt-button--secondary">Sign up</a>
+    {% endcell %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-4/12@small" %}
+      {% include "@bolt/headline.twig" with {
+        "size": "large",
+        "text": "Connect to start a conversation",
+        "tag": "h2"
+      } only %}
+      {% include "@bolt/text.twig" with {
+        "size": "xlarge",
+        "text": "#pegaworld18",
+        "attributes": {
+          "class": [
+            "u-pw-color-yellow"
+          ]
+        }
+      } only %}
+      <ul class="o-bolt-inline-list o-bolt-inline-list--medium">
+        <li class="o-bolt-inline-list__item">
+          <a href="http://twitter.com">
+            <svg viewBox="0 0 100 100" class="c-pw-svg-icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#shape-twitter"></use>
+              <path id="shape-twitter" d="M100.001,17.942c-3.681,1.688-7.633,2.826-11.783,3.339
+    c4.236-2.624,7.49-6.779,9.021-11.73c-3.965,2.432-8.354,4.193-13.026,5.146C80.47,10.575,75.138,8,69.234,8
+    c-11.33,0-20.518,9.494-20.518,21.205c0,1.662,0.183,3.281,0.533,4.833c-17.052-0.884-32.168-9.326-42.288-22.155
+    c-1.767,3.133-2.778,6.773-2.778,10.659c0,7.357,3.622,13.849,9.127,17.65c-3.363-0.109-6.525-1.064-9.293-2.651
+    c-0.002,0.089-0.002,0.178-0.002,0.268c0,10.272,7.072,18.845,16.458,20.793c-1.721,0.484-3.534,0.744-5.405,0.744
+    c-1.322,0-2.606-0.134-3.859-0.379c2.609,8.424,10.187,14.555,19.166,14.726c-7.021,5.688-15.867,9.077-25.48,9.077
+    c-1.656,0-3.289-0.102-4.895-0.297C9.08,88.491,19.865,92,31.449,92c37.737,0,58.374-32.312,58.374-60.336
+    c0-0.92-0.02-1.834-0.059-2.743C93.771,25.929,97.251,22.195,100.001,17.942L100.001,17.942z"></path>
+            </svg>
+            <span class="u-bolt-visuallyhidden">
+              Pegasystems Twitter Page
+            </span>
+          </a>
+        </li>
+        <li class="o-bolt-inline-list__item">
+          <a href="http://facebook.com">
+            <svg viewBox="0 0 100 100" class="c-pw-svg-icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#shape-facebook"></use>
+              <path id="shape-facebook" d="M94.48,0H5.519C2.471,0,0,2.471,0,5.52v88.96c0,3.049,2.47,5.521,5.519,5.521h63.479L53.411,100V61.273h-13.03V46.181
+      h13.03v-11.13c0-12.916,7.89-19.949,19.412-19.949c5.52,0,10.263,0.41,11.645,0.595v13.497l-7.991,0.004
+      c-6.265,0-7.479,2.979-7.479,7.348v9.636h14.945l-1.947,15.093H68.998v38.726H94.48c3.047,0,5.52-2.472,5.52-5.521V5.52
+      C100,2.471,97.529,0,94.48,0z"></path>
+            </svg>
+            <span class="u-bolt-visuallyhidden">
+              Pegasystems Facebook Page
+            </span>
+          </a>
+        </li>
+        <li class="o-bolt-inline-list__item">
+          <a href="http://youtube.com">
+            <svg viewBox="0 0 100 100" class="c-pw-svg-icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#shape-youtube"></use>
+              <path id="shape-youtube" d="M98.77,27.492c-1.225-5.064-5.576-8.799-10.811-9.354C75.561,16.818,63.01,15.993,50.514,16
+    c-12.495-0.007-25.045,0.816-37.446,2.139c-5.235,0.557-9.583,4.289-10.806,9.354C0.522,34.704,0.5,42.574,0.5,50.001
+    c0,7.426,0,15.296,1.741,22.509c1.224,5.061,5.572,8.799,10.807,9.352c12.399,1.32,24.949,2.145,37.446,2.14
+    c12.494,0.005,25.047-0.817,37.443-2.14c5.234-0.555,9.586-4.291,10.81-9.352c1.741-7.213,1.753-15.083,1.753-22.509
+    S100.51,34.704,98.77,27.492 M67.549,52.203L43.977,64.391c-2.344,1.213-4.262,0.119-4.262-2.428V38.036
+    c0-2.548,1.917-3.644,4.262-2.429l23.572,12.188C69.896,49.008,69.896,50.992,67.549,52.203"></path>
+            </svg>
+            <span class="u-bolt-visuallyhidden">
+              Pegasystems YouTube Page
+            </span>
+          </a>
+        </li>
+      </ul>
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+
+{% set stacked_bands %}
+  {% include "@bolt/band.twig" with {
+    "theme": "xlight",
+    "size": "large",
+    "content": hero_band_content
+  } only %}
+  {% include "@bolt/band.twig" with {
+    "size": "medium",
+    "theme": "xdark",
+    "content": register_band_content
+  } only %}
+{% endset %}
+
+{% include "@bolt/band.twig" with {
+  "theme": "xdark",
+  "size": "none",
+  "content": stacked_bands
+} only %}

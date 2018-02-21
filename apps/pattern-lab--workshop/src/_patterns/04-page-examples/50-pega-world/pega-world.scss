@@ -24,6 +24,28 @@
   background-position: center center !important;
 }
 
+.u-pw-position-lower-logo {
+  // Add padding and relative point.
+  &.o-bolt-grid__cell {
+    .o-bolt-grid--matrix > & {
+      padding-bottom: calc(1.65rem + 120px);
+      position: relative;
+    }
+  }
+  .u-pw-position-lower-logo__logo {
+    bottom: 3rem;
+    position: absolute;
+    width: 100%;
+    .o-bolt-grid__cell {
+      padding-left: 0;
+    }
+  }
+}
+
+
+
+
+
 .c-pw-portrait {
   @include bolt-margin(0 auto medium auto);
   max-width: 250px;
@@ -31,6 +53,7 @@
   overflow: hidden;
   border-radius: 100em;
 }
+
 
 .c-pw-menu-trigger {
   display: block;
@@ -136,6 +159,7 @@
   @include bolt-font-size(xlarge);
 }
 
+
 .c-pw-menu {
   display: flex;
   justify-content: space-between;
@@ -197,22 +221,29 @@
 }
 
 
+.c-pw-blocks {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
+  display: flex;
+  flex-wrap: nowrap;
+  list-style: none;
+}
+
+.c-pw-blocks__item {
+  @include bolt-margin(0);
+  @include bolt-padding(medium);
+  flex: 1;
+
+  & + #{&} {
+    border-left-width: $bolt-border-width;
+    border-left-style: $bolt-border-style;
+    border-left-color: var(--bolt-theme-card-border, var(--bolt-theme-border, inherit));
+  }
+}
 
 
-.u-pw-position-lower-logo {
-  // Add padding and relative point.
-  &.o-bolt-grid__cell {
-    .o-bolt-grid--matrix > & {
-      padding-bottom: calc(1.65rem + 120px);
-      position: relative;
-    }
-  }
-  .u-pw-position-lower-logo__logo {
-    bottom: 3rem;
-    position: absolute;
-    width: 100%;
-    .o-bolt-grid__cell {
-      padding-left: 0;
-    }
-  }
+.c-pw-svg-icon {
+  width: 1.25em;
+  height: 1.25em;
+  fill: bolt-color(white);
 }

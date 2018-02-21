@@ -2,77 +2,12 @@
   {% include "@bolt/headline.twig" with {
     "size": "xxxlarge",
     "align": "center",
-    "text": "Event Details",
+    "text": "Real Digital Transformation Starts Here",
     "tag": "h1"
   } only %}
 {% endset %}
 
-{% set intro_band_content %}
-  {% include "@bolt/subheadline.twig" with {
-    "text": "You won't find cartoon characters at PegaWorld. Instead, you'll hear success stories from the world's biggest brands, connect with 5,000 fellow business and tech leaders, and get an inside look at the newest and most powerful Pega technology.",
-    "tag": "h2"
-  } only %}
-{% endset %}
-
-{% set details_band_content %}
-  <ul class="c-pw-blocks">
-    <li class="c-pw-blocks__item">
-      {% include "@bolt/headline.twig" with {
-        "size": "small",
-        "align": "center",
-        "text": "When",
-        "tag": "h3"
-      } only %}
-      {% include "@bolt/text.twig" with {
-        "align": "center",
-        "text": "Sunday, June 3, 2018 — Wednesday, June 6, 2018",
-        "tag": "p"
-      } only %}
-      {% include "@bolt/headline.twig" with {
-        "size": "small",
-        "align": "center",
-        "text": "Where",
-        "tag": "h3"
-      } only %}
-      <p class="c-bolt-text c-bolt-text--center">
-        <a href="https://www.pega.com/events/pegaworld/event-details/why-attend" class="c-bolt-link">MGM Grand Hotel and Casino</a><br>
-        3799 Las Vegas Blvd S<br>
-        Las Vegas, NV 89109
-      </p>
-      {% include "@bolt/headline.twig" with {
-        "size": "small",
-        "align": "center",
-        "text": "Questions?",
-        "tag": "h3"
-      } only %}
-      <p class="c-bolt-text c-bolt-text--center">
-        <a href="mailto:PegaWorld@pega.com" class="c-bolt-link">PegaWorld@pega.com</a>
-      </p>
-    </li>
-    <li class="c-pw-blocks__item">
-      <p class="c-bolt-text c-bolt-text--center">
-        <a href="https://www.pega.com/events/pegaworld/event-details/why-attend" class="c-bolt-button c-bolt-button--primary">Register now</a>
-      </p>
-      <p class="c-bolt-text c-bolt-text--center">
-        <a href="https://www.pega.com/events/pegaworld/event-details/why-attend" class="c-bolt-button c-bolt-button--secondary">FAQ</a>
-      </p>
-      <p class="c-bolt-text c-bolt-text--center">
-        <a href="https://www.pega.com/events/pegaworld/event-details/why-attend" class="c-bolt-button c-bolt-button--secondary">Book your hotel</a>
-      </p>
-    </li>
-  </ul>
-{% endset %}
-
-{% set why_band_content %}
-  {% include "@bolt/headline.twig" with {
-    "size": "xxxlarge",
-    "align": "center",
-    "text": "Why you need to be there?",
-    "tag": "h2"
-  } only %}
-{% endset %}
-
-{% set engage_band_content %}
+{% set handson_band_content %}
   {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
     {% cell "u-bolt-width-1/1" %}
       {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
@@ -90,12 +25,12 @@
           {% include "@bolt/headline.twig" with {
             "size": "xxlarge",
             "align": "center",
-            "text": "Engage Customers",
+            "text": "Hands-on Training",
             "tag": "h2"
           } only %}
           {% include "@bolt/text.twig" with {
             "align": "center",
-            "text": "You're on a mission to deliver seamless, personalized customer experiences on every channel, guided by AI and machine learning. Guess what? So are your competitors. The real challenge is turning that vision into reality before they do. Come to PegaWorld to learn how to make the right offer at the right time, every time.",
+            "text": "Stay current. Add a skill to your CV. Discover new ways tackle your most challenging projects. Led by expert instructors, our hands-on training courses are designed with your success in mind. Note: hands-on training coursesare offered on Sunday, June 3, 2018 to PegaWorld attendees only for an additional fee of $200 per course. Pre-registration is required.",
             "tag": "h3"
           } only %}
         {% endcell %}
@@ -214,7 +149,7 @@
   {% endgrid %}
 {% endset %}
 
-{% set automate_band_content %}
+{% set onsite_band_content %}
   {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
     {% cell "u-bolt-width-1/1" %}
       {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
@@ -232,12 +167,12 @@
           {% include "@bolt/headline.twig" with {
             "size": "xxlarge",
             "align": "center",
-            "text": "Automate",
+            "text": "On-site Certifications",
             "tag": "h2"
           } only %}
           {% include "@bolt/text.twig" with {
             "align": "center",
-            "text": "Slow, ineffective code-based development holding you back? Struggling to innovate at the speed of today's ever-changing markets? In an era when business and IT play for the same team — and are often the same player — you'll need to build fast and change faster, while still staying in control. At PegaWorld 2018, thought leaders and experts will show you how to succeed in a no-code, cloud-centric world.",
+            "text": "Pega's Professional Certification Program ensures you have the skills and knowledge to successfully implement Pega technology at your organization. Get certified at PegaWorld2018 and join thousands of technology leaders using Pega software to deliver groundbreaking results.",
             "tag": "h3"
           } only %}
         {% endcell %}
@@ -356,7 +291,7 @@
   {% endgrid %}
 {% endset %}
 
-{% set build_band_content %}
+{% set developer_band_content %}
   {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
     {% cell "u-bolt-width-1/1" %}
       {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
@@ -374,12 +309,12 @@
           {% include "@bolt/headline.twig" with {
             "size": "xxlarge",
             "align": "center",
-            "text": "Build",
+            "text": "Developer Day",
             "tag": "h2"
           } only %}
           {% include "@bolt/text.twig" with {
             "align": "center",
-            "text": "Slow, ineffective code-based development holding you back? Struggling to innovate at the speed of today's ever-changing markets? In an era when business and IT play for the same team — and are often the same player — you'll need to build fast and change faster, while still staying in control. At PegaWorld 2018, thought leaders and experts will show you how to succeed in a no-code, cloud-centric world.",
+            "text": "Attention developers and IT leaders: we heard your feedback and designed a full-day program at PegaWorld just for you. Developer Day is the place to learn about exciting new tech, plus we'll be sharing some big news you won't want to miss. Spaces are limited, so enroll now.",
             "tag": "h3"
           } only %}
         {% endcell %}
@@ -606,34 +541,19 @@
     "content": hero_band_content
   } only %}
   {% include "@bolt/band.twig" with {
-    "size": "medium",
-    "theme": "xlight",
-    "content": intro_band_content
-  } only %}
-  {% include "@bolt/band.twig" with {
     "size": "large",
-    "theme": "xlight",
-    "content": details_band_content
-  } only %}
-  {% include "@bolt/band.twig" with {
-    "size": "medium",
-    "theme": "xlight",
-    "content": why_band_content
+    "theme": "light",
+    "content": handson_band_content
   } only %}
   {% include "@bolt/band.twig" with {
     "size": "large",
     "theme": "light",
-    "content": engage_band_content
+    "content": onsite_band_content
   } only %}
   {% include "@bolt/band.twig" with {
     "size": "large",
     "theme": "light",
-    "content": automate_band_content
-  } only %}
-  {% include "@bolt/band.twig" with {
-    "size": "large",
-    "theme": "light",
-    "content": build_band_content
+    "content": developer_band_content
   } only %}
   {% include "@bolt/band.twig" with {
     "size": "medium",
