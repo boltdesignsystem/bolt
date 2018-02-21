@@ -34,6 +34,7 @@
 
     "bootstrap": "lerna bootstrap --reject-cycles",
     "postbootstrap": "node scripts/monorepo-tests.js",
+    "predeploy": "npm run build",
     "deploy": "./scripts/deploy.sh",
     "clean:git": "git clean -xdf",
     "clean:lerna": "lerna clean -Y",
