@@ -14,7 +14,6 @@ const ora = require('ora');
 const sharp = require('sharp');
 const config = require('../utils/config-store').getConfig();
 const { flattenArray } = require('../utils/general');
-const isProd = process.env.NODE_ENV === 'production';
 
 // @todo Consider moving this to a place to share
 const boltImageSizes = [
@@ -45,7 +44,7 @@ async function writeImageManifest(imgManifest) {
 }
 
 async function processImage(file, set) {
-  if (config.verbosity > 2) {
+  if (config.verbosity > 3) {
     log.dim(`Processing image: ${file}`);
   }
   // If `set.base` is `images/` and `file` is `images/header/main.png`, then `fileId` is `header/main.png`
@@ -83,7 +82,7 @@ async function processImage(file, set) {
     const newSizedPath = path.format(thisPathInfo);
     const newSizeWebPath = makeWebPath(newSizedPath);
 
-    if (isProd) {
+    if (config.prod) {
       if (isOrig) {
         await writeFile(newSizedPath, originalFileBuffer);
       } else {

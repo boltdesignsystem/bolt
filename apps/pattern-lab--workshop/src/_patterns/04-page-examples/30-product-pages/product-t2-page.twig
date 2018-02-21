@@ -20,7 +20,8 @@
       },
       contentItems: [{
         pattern: "image",
-        src: "/images/sample/product-background-t2.jpg"
+        src: "/images/content/backgrounds/background-tall-3.jpg",
+        lazyload: false
       }]
     },
     primaryTeaser: {
@@ -52,7 +53,7 @@
       ]
     }
   } only %}
-  
+
   {% endembed %}
 
 
@@ -203,7 +204,7 @@
           size: "xxlarge",
           tag: "h2"
         } only %}
-       
+
         {% include "@bolt/text.twig" with {
           text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
           size: "medium"
@@ -229,7 +230,8 @@
           orientation: "landscape",
           color: "black",
           image: {
-            src: "/images/sample/product-device-screenshot--tablet.jpg"
+            src: "/images/content/screenshots/device-screenshot--tablet.jpg",
+            lazyload: false
           }
         } only %}
       {% endcell %}
@@ -258,7 +260,8 @@
           orientation: "portrait",
           color: "black",
           image: {
-            src: "/images/sample/product-device-screenshot--tablet-portrait.png"
+            src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
+            lazyload: false
           }
         } only %}
       {% endcell %}
@@ -270,7 +273,7 @@
           size: "xxlarge",
           tag: "span"
         } only %}
-       
+
         {% include "@bolt/text.twig" with {
           text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
           size: "medium"
@@ -313,7 +316,7 @@
           size: "xxlarge",
           tag: "span"
         } only %}
-       
+
         {% include "@bolt/text.twig" with {
           text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
           size: "medium"
@@ -339,7 +342,8 @@
           orientation: "portrait",
           color: "black",
           image: {
-            src: "/images/sample/product-device-screenshot--phone.jpg"
+            src: "/images/content/screenshots/device-screenshot--phone.jpg",
+            lazyload: false
           }
         } only %}
       {% endcell %}
@@ -368,7 +372,7 @@
           size: "xxlarge",
           tag: "span"
         } only %}
-       
+
         {% include "@bolt/text.twig" with {
           text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
           size: "medium"
@@ -394,7 +398,8 @@
           orientation: "landscape",
           color: "black",
           image: {
-            src: "/images/sample/product-device-screenshot--desktop.jpg"
+            src: "/images/content/screenshots/device-screenshot--desktop.jpg",
+            lazyload: false
           }
         } only %}
       {% endcell %}
@@ -411,14 +416,16 @@
     {
       "pattern": "card",
       "image": {
-        "src": "/images/sample/anthem-video.jpg"
+        "src": "/images/content/promos/promo-16x9-anthem.jpg",
+        "lazyload": false
       },
       "teaser": {
         "eyebrow": {
           text: "Article"
         },
         "logo": {
-          src: "/images/content/logos/logo-paypal.svg"
+          src: "/images/content/logos/logo-paypal.svg",
+          "lazyload": false
         },
         "headlines": [
           {
@@ -441,7 +448,8 @@
     {
       "pattern": "card",
       "image": {
-        "src": "/images/sample/anthem-video.jpg"
+        "src": "/images/content/promos/promo-16x9-anthem.jpg",
+        "lazyload": false
       },
       "teaser": {
         "eyebrow": {
@@ -468,7 +476,8 @@
     {
       "pattern": "card",
       "image": {
-        "src": "/images/sample/anthem-video.jpg"
+        "src": "/images/content/promos/promo-16x9-anthem.jpg",
+        "lazyload": false
       },
       "teaser": {
         "eyebrow": {
@@ -495,7 +504,7 @@
   ]
 } %}
   {% block band_content %}
-    
+
 
 
    {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix u-bolt-margin-bottom" %}
@@ -551,13 +560,14 @@
     "contentItems": [
       {
         "pattern": "image",
-        "src": "/images/sample/background-banner--left-focal-point.jpg"
+        "src": "/images/content/backgrounds/background-tall-4.jpg",
+        "lazyload": false
       }
     ]
   }
 } only %}
   {% block band_content %}
-    
+
     {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center" %}
       {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small u-bolt-text-align-center" %}
 
@@ -569,7 +579,8 @@
           alignItems: "center",
           logo: {
             src: "/images/content/logos/logo-paypal.svg",
-            invert: true
+            invert: true,
+            lazyload: false
           },
           author: {
             image: {
@@ -593,7 +604,7 @@
           style: "secondary"
         } only %}
 
-        
+
       {% endcell %}
     {% endgrid %}
   {% endblock %}

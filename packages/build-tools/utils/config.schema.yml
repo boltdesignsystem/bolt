@@ -29,17 +29,24 @@
       type: string
       title: Path to server root
       description: "Where static files are served from. The wwwDir config specifies the public web distribution directory. This directory is commonly the root directory for a server, where all static files can be served. This directory is built and rebuilt directly from the source files. Note: We recommend this directory is not committed to a repository."
+    webpackDevServer:
+      type: boolean
+      default: false
+      description: Enable the WebPack Dev Server.
     dataDir:
       type: string
       description: This is the directory where generated json data files exist with information about the overall build. Defaults to `data` inside `buildDir`
     openServerAtStart:
       type: boolean
+      default: false
       description: If, after starting `npm start`, a Browser opens.
     quick:
       type: boolean
+      default: false
       description: Try to be quicker by skipping some steps that might not be needed if everything is recently built and in good working order.
     verbosity:
       type: integer
+      default: 2
       description: Logging level (Range of 0 to 5) How 'loud' or 'quiet' do you want the console output to be?
       enum:
         - 0
@@ -87,3 +94,7 @@
               dist:
                 type: string
                 description: The output path, which is combined with what `glob` returns.
+    prod:
+      type: boolean
+      description: Production build, will compress assets.
+      default: false
