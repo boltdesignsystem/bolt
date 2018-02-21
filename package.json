@@ -22,7 +22,12 @@
   "scripts": {
     "start": "cd apps/pattern-lab--workshop && npm start",
     "setup": "npm run bootstrap && npm run composer:setup",
-    "build": "export NODE_ENV=production && cd apps/pattern-lab--workshop && npm run build",
+
+    "build:pl": "cd apps/pattern-lab--workshop && npm run build:prod",
+    "build:bolt-site": "cd apps/bolt-site--storefront && npm run build:prod",
+    "build:example-drupal-theme": "cd apps/example_drupal_theme && npm run build:prod",
+    "build": "npm-run-all --serial build:*",
+
     "bootstrap": "lerna bootstrap --reject-cycles",
     "postbootstrap": "node scripts/monorepo-tests.js",
     "deploy": "./scripts/deploy.sh",
