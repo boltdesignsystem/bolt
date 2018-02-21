@@ -2,19 +2,22 @@
   "name": "@bolt/example_drupal_theme",
   "version": "0.1.0",
   "private": true,
-  "description": "",
-  "main": "index.js",
   "scripts": {
     "build": "bolt build",
+    "build:noisy": "bolt build --verbosity 3",
+    "build:prod": "bolt build --prod",
     "start": "bolt start"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@bolt/build-tools": "0.5.1",
     "@bolt/components-button": "0.7.0-beta.5",
+    "@bolt/components-button-group": "0.2.0",
     "@bolt/core": "0.5.0-beta.1",
+    "@bolt/components-card": "0.6.0-beta.5",
+    "@bolt/components-device-viewer": "0.2.0-beta.6",
+    "@bolt/components-nav-bar": "0.1.0-beta.5",
+    "@bolt/components-smooth-scroll": "0.1.0-beta.4",
+    "@bolt/components-band": "0.6.0-beta.5",
     "@bolt/global": "0.5.0"
   }
 }

@@ -13,7 +13,6 @@ const timer = require('../utils/timer');
 const ora = require('ora');
 const sharp = require('sharp');
 const config = require('../utils/config-store').getConfig();
-const isProd = process.env.NODE_ENV === 'production';
 
 // @todo Consider moving this to a place to share
 const boltImageSizes = [
@@ -49,7 +48,7 @@ async function processImage(file, set) {
   const sizes = [null, ...boltImageSizes];
 
   let originalFileBuffer;
-  if (isProd) {
+  if (config.prod) {
     // we want to read the original file once, instead of reading for each size
     originalFileBuffer = await readFile(file);
   }
@@ -71,7 +70,7 @@ async function processImage(file, set) {
       }
     }
 
-    if (isProd) {
+    if (config.prod) {
       if (isOrig) {
         await writeFile(newSizedPath, originalFileBuffer);
       } else {

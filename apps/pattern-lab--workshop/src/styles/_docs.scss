@@ -4,7 +4,7 @@
   &__schema {
     ul {
       p {
-        display: inline-block;
+        display: inline;
         margin: 0;
       }
 
@@ -23,6 +23,10 @@
         }
         &,summary {
           margin: 0;
+        }
+
+        ul {
+          margin-bottom: 0;
         }
       }
     }
@@ -115,8 +119,21 @@ pre {
   @include bolt-font-weight(regular);
   // font-size: 24px;
   // line-height: 1.5;
-  color: #222;
   // font-weight: 300;
+  border: 1px dotted transparent;
+  border-radius: 4px;
+  color: #222;
+  margin: -13px;
+  padding: 13px;
+  transition: border 0.3s ease-in-out;
+
+  &.edit-this-readme {
+    border: 1px dotted var(--bolt-theme-primary);
+  }
+
+  pre:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .c-bolt-site {
@@ -192,6 +209,13 @@ pre {
   td {
     @include bolt-padding(small);
     vertical-align: top;
+
+    .required-key {
+      color: red;
+    }
+    ul {
+      //margin: 0;
+    }
   }
 }
 
@@ -199,10 +223,39 @@ pre {
   border-top: 1px solid bolt-color(gray, light);
 }
 
+.c-bolt-docs-table__col--key {
+  font-weight: 600;
+}
+
 .c-bolt-docs-table .c-bolt-docs-table {
   overflow: hidden; // Prevent nested tables from scrolling to keep things from getting too crazy
 }
 
+.c-bolt-docs-list {
+  list-style-position: inside;
+  list-style-type: none;
+  margin: 0;
+
+  & > ul {
+    margin-bottom: 0;
+  }
+}
+
+.c-bolt-docs-list__child {
+  list-style-position: outside;
+  list-style-type: square;
+  margin: 0 0 0 1.25rem;
+
+  &--level-3,
+  &--level-4,
+  &--level-5 {
+    margin-bottom: 0;
+
+    ul {
+      margin-bottom: 0;
+    }
+  }
+}
 
 
 .c-bolt-docs__heading-fragment a {
