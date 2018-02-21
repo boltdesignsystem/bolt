@@ -28,8 +28,6 @@ export function withHyperHTML(Base = class extends HTMLElement { }) {
       } else {
         this.useShadow = hasNativeShadowDomSupport;
       }
-
-      this._replaceElementWithChildren();
     }
 
     connectedCallback() {
@@ -44,18 +42,9 @@ export function withHyperHTML(Base = class extends HTMLElement { }) {
       this.removeEventListener('click', this.clickHandler);
     }
 
-
     // Attach external events declaratively
     clickHandler(event) {
       declarativeClickHandler(this);
-    }
-
-
-    _replaceElementWithChildren(){
-      const placeholderElement = this.querySelectorAll('replace-with-children')[0];
-      if (placeholderElement) {
-        placeholderElement.replaceWith(...placeholderElement.childNodes);
-      }
     }
 
 

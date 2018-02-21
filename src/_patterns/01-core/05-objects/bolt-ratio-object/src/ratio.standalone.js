@@ -14,7 +14,7 @@ import {
 import styles from './ratio.scss';
 
 @define
-export class BoltRatio extends withComponent(withPreact()) {
+export class BoltRatio extends withPreact(withComponent()) {
   static is = 'bolt-ratio';
 
   static props = {

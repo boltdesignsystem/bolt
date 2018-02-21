@@ -5,4 +5,4 @@
  * Used in: IE 11
  */
 
-import 'document-register-element';
+import '@webcomponents/custom-elements/src/custom-elements.js';

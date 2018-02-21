@@ -4,7 +4,7 @@ import {
   define,
   props,
   withComponent,
-  withPreact,
+  withHyperHTML,
   hasNativeShadowDomSupport
 } from '@bolt/core';
 
@@ -22,7 +22,7 @@ import {
 
 
 @define
-export class BoltBand extends withComponent(withPreact()) {
+export class BoltBand extends withHyperHTML(withComponent()) {
   static is = 'bolt-band';
 
   static get observedAttributes() {
@@ -59,6 +59,10 @@ export class BoltBand extends withComponent(withPreact()) {
     * `connectedCallback()` sets up the role, event handler and initial state.
     */
   connectedCallback() {
+    if (super.connectedCallback) {
+      super.connectedCallback();
+    }
+
     // Shim Shadow DOM styles. This needs to be run in `connectedCallback()`
     // because if you shim Custom Properties (CSS variables) the element
     // will need access to its parent node.
@@ -72,6 +76,15 @@ export class BoltBand extends withComponent(withPreact()) {
   }
 
   disconnectedCallback() {
+    if (super.disconnectedCallback) {
+      super.disconnectedCallback();
+    }
+
+    this.removeEventListener('playing', this.playHandler);
+    this.removeEventListener('pause', this.pauseHandler);
+    this.removeEventListener('ended', this.finishedHandler);
+    this.removeEventListener('close', this.collapse);
+
     this.removeEventListener('videoExpandedHeightSet', this._adjustExpandedHeightToMatchVideo);
   }
 
@@ -214,19 +227,15 @@ export class BoltBand extends withComponent(withPreact()) {
     }
   }
 
-  renderer(root, html) {
-    if (this.useShadow) {
-      super.renderer(root, html);
-    } else {
-      root.innerHTML = this.innerHTML;
-    }
-  }
-
   render() {
-    if (this.useShadow){
-      return (
+    if (this.useShadow) {
+      return this.html`
         <slot />
-      )
+      `
+    } else {
+      return this.html`
+        ${this.slots.default}
+      `
     }
   }
 }
