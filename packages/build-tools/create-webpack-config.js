@@ -215,7 +215,7 @@ function createConfig(config) {
           }
         },
         {
-          test: /\.(woff|woff2|eot|ttf|otf)$/,
+          test: /\.(woff|woff2)$/,
           loader: "file-loader",
           options: {
             name: 'fonts/[name].[ext]',
