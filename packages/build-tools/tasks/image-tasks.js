@@ -32,7 +32,7 @@ const boltImageSizes = [
 ];
 
 async function processImage(file, set) {
-  if (config.verbosity > 2) {
+  if (config.verbosity > 3) {
     log.dim(`Processing image: ${file}`);
   }
   // If `set.base` is `images/` and `file` is `images/header/main.png`, then `fileId` is `header/main.png`
