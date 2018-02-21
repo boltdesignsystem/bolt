@@ -38,6 +38,7 @@
     "clean:git": "git clean -xdf",
     "clean:lerna": "lerna clean -Y",
     "clean": "npm-run-all --parallel clean:*",
+    "prepublish": "npm run build",
     "snyk-protect": "snyk protect"
   },
   "config": {
