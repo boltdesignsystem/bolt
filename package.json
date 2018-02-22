@@ -24,7 +24,7 @@
     "setup": "npm run bootstrap && npm run composer:setup",
     "build": "export NODE_ENV=production && cd apps/pattern-lab--workshop && npm run build",
     "bootstrap": "lerna bootstrap --reject-cycles",
-    "postbootstrap": "node scripts/monorepo-tests.js",
+    "postbootstrap": "node scripts/monorepo-tests.js && lerna exec -- npm run --if-present postbootstrap",
     "deploy": "./scripts/deploy.sh",
     "clean:git": "git clean -xdf",
     "clean:lerna": "lerna clean -Y",
