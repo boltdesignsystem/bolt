@@ -12,7 +12,7 @@ title: Folder structure
 │   │   ├── images
 │   │   └── templates
 │   ├── <strong>example_drupal_theme (coming soon)</strong>
-│   └── <strong>pattern-lab--workshop</strong>
+│   └── <strong>pattern-lab</strong>
 │       ├── config
 │       ├── core
 │       ├── node_modules
