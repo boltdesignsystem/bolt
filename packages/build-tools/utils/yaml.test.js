@@ -1,6 +1,6 @@
-const yaml = require('./yaml'),
-      fs   = require('fs'),
-      path = require('path');
+const yaml = require('./yaml');
+const fs   = require('fs');
+const path = require('path');
 
 // For testing file reads. This json matches the correct conversion of the yaml file `yaml.test.yml`
 const testFileJson = {
@@ -61,6 +61,7 @@ const testFileJson = {
   ]
 };
 // @todo Set up a temp directory for file read,write, and destroy. Clean up as part of testing
+// @todo It would be nice to programmatically generate yaml.test.yml (used for import test) in the test directory as well
 const testDirectory = './';
 
 // @todo This is needed to clean up after the tests, but it is also causing the tests to throw an error
