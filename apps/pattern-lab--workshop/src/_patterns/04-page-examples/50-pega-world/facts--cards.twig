@@ -159,7 +159,7 @@
           {% include "@bolt/text.twig" with {
             "align": "center",
             "text": "You're on a mission to deliver seamless, personalized customer experiences on every channel, guided by AI and machine learning. Guess what? So are your competitors. The real challenge is turning that vision into reality before they do. Come to PegaWorld to learn how to make the right offer at the right time, every time.",
-            "tag": "p"
+            "tag": "h3"
           } only %}
         {% endcell %}
       {% endgrid %}
@@ -169,58 +169,109 @@
         {% cell "u-bolt-width-1/1" %}
           {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
             {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
-              {% include "@bolt/image.twig" with {
-                "src": "/assets/images/pw2018/thumb-no-code.jpg"
+              {% include "@bolt/card.twig" with {
+                "theme": "xlight",
+                "image": {
+                  "src": "/assets/images/pw2018/thumb-no-code.jpg"
+                },
+                "teaser": {
+                  "eyebrow": {
+                    text: "AI"
+                  },
+                  "headlines": [
+                    {
+                      "type": "headline",
+                      "text": "Upgrade every interaction with AI",
+                      "size": "large"
+                    }
+                  ],
+                  "content": "Body text. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                  "buttons": [
+                    {
+                      "text": "Link 1",
+                      "style": "text",
+                      "url": "http://pega.com",
+                      "width": "full"
+                    },
+                    {
+                      "text": "Link 2",
+                      "style": "text",
+                      "url": "http://pega.com",
+                      "width": "full"
+                    }
+                  ]
+                }
               } only %}
-              {% include "@bolt/eyebrow.twig" with {
-                "text": "AI"
-              } only %}
-              {% include "@bolt/headline.twig" with {
-                "size": "large",
-                "text": "Upgrade every interaction with AI",
-                "tag": "h3"
-              } only %}
-              {% include "@bolt/text.twig" with {
-                "text": "Body text. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                "tag": "p"
-              } only %}
-              <a href="http://pega.com" class="c-bolt-link">Link 1</a>
             {% endcell %}
             {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
-              {% include "@bolt/image.twig" with {
-                "src": "/assets/images/pw2018/thumb-devops.jpg"
+              {% include "@bolt/card.twig" with {
+                "theme": "xlight",
+                "image": {
+                  "src": "/assets/images/pw2018/thumb-devops.jpg"
+                },
+                "teaser": {
+                  "eyebrow": {
+                    text: "Retention"
+                  },
+                  "headlines": [
+                    {
+                      "type": "headline",
+                      "text": "Recognize. Resolve. Retain",
+                      "size": "large"
+                    }
+                  ],
+                  "content": "Body text. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                  "buttons": [
+                    {
+                      "text": "Link 1",
+                      "style": "text",
+                      "url": "http://pega.com",
+                      "width": "full"
+                    },
+                    {
+                      "text": "Link 2",
+                      "style": "text",
+                      "url": "http://pega.com",
+                      "width": "full"
+                    }
+                  ]
+                }
               } only %}
-              {% include "@bolt/eyebrow.twig" with {
-                "text": "Retention"
-              } only %}
-              {% include "@bolt/headline.twig" with {
-                "size": "large",
-                "text": "Recognize. Resolve. Retain",
-                "tag": "h3"
-              } only %}
-              {% include "@bolt/text.twig" with {
-                "text": "Body text. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                "tag": "p"
-              } only %}
-              <a href="http://pega.com" class="c-bolt-link">Link 1</a>
             {% endcell %}
             {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
-              {% include "@bolt/image.twig" with {
-                "src": "/assets/images/pw2018/thumb-cloud-choice.jpg"
+              {% include "@bolt/card.twig" with {
+                "theme": "xlight",
+                "image": {
+                  "src": "/assets/images/pw2018/thumb-cloud-choice.jpg"
+                },
+                "teaser": {
+                  "eyebrow": {
+                    text: "Omni-Channel Engagement"
+                  },
+                  "headlines": [
+                    {
+                      "type": "headline",
+                      "text": "Create seamless experiences everywhere",
+                      "size": "large"
+                    }
+                  ],
+                  "content": "Body text. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                  "buttons": [
+                    {
+                      "text": "Link 1",
+                      "style": "text",
+                      "url": "http://pega.com",
+                      "width": "full"
+                    },
+                    {
+                      "text": "Link 2",
+                      "style": "text",
+                      "url": "http://pega.com",
+                      "width": "full"
+                    }
+                  ]
+                }
               } only %}
-              {% include "@bolt/eyebrow.twig" with {
-                "text": "Omni-Channel Engagement"
-              } only %}
-              {% include "@bolt/headline.twig" with {
-                "size": "large",
-                "text": "Create seamless experiences everywhere",
-                "tag": "h3"
-              } only %}
-              {% include "@bolt/text.twig" with {
-                "text": "Body text. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                "tag": "p"
-              } only %}
-              <a href="http://pega.com" class="c-bolt-link">Link 1</a>
             {% endcell %}
           {% endgrid %}
         {% endcell %}
@@ -263,58 +314,106 @@
         {% cell "u-bolt-width-1/1" %}
           {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
             {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
-              {% include "@bolt/image.twig" with {
-                "src": "/assets/images/pw2018/thumb-no-code.jpg"
+              {% include "@bolt/card.twig" with {
+                "theme": "xlight",
+                "image": {
+                  "src": "/assets/images/pw2018/thumb-no-code.jpg"
+                },
+                "teaser": {
+                  "eyebrow": {
+                    text: "No Code"
+                  },
+                  "headlines": [
+                    {
+                      "type": "headline",
+                      "text": "Real collaboration. No coding required.",
+                      "size": "large"
+                    }
+                  ],
+                  "buttons": [
+                    {
+                      "text": "Link 1",
+                      "style": "text",
+                      "url": "http://pega.com",
+                      "width": "full"
+                    },
+                    {
+                      "text": "Link 2",
+                      "style": "text",
+                      "url": "http://pega.com",
+                      "width": "full"
+                    }
+                  ]
+                }
               } only %}
-              {% include "@bolt/eyebrow.twig" with {
-                "text": "No Code"
-              } only %}
-              {% include "@bolt/headline.twig" with {
-                "size": "large",
-                "text": "Real collaboration. No coding required.",
-                "tag": "h3"
-              } only %}
-              {% include "@bolt/text.twig" with {
-                "text": "Body text. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                "tag": "p"
-              } only %}
-              <a href="http://pega.com" class="c-bolt-link">Link 1</a>
             {% endcell %}
             {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
-              {% include "@bolt/image.twig" with {
-                "src": "/assets/images/pw2018/thumb-devops.jpg"
+              {% include "@bolt/card.twig" with {
+                "theme": "xlight",
+                "image": {
+                  "src": "/assets/images/pw2018/thumb-devops.jpg"
+                },
+                "teaser": {
+                  "eyebrow": {
+                    text: "DevOps"
+                  },
+                  "headlines": [
+                    {
+                      "type": "headline",
+                      "text": "Deliver apps faster with DevOps",
+                      "size": "large"
+                    }
+                  ],
+                  "buttons": [
+                    {
+                      "text": "Link 1",
+                      "style": "text",
+                      "url": "http://pega.com",
+                      "width": "full"
+                    },
+                    {
+                      "text": "Link 2",
+                      "style": "text",
+                      "url": "http://pega.com",
+                      "width": "full"
+                    }
+                  ]
+                }
               } only %}
-              {% include "@bolt/eyebrow.twig" with {
-                "text": "DevOps"
-              } only %}
-              {% include "@bolt/headline.twig" with {
-                "size": "large",
-                "text": "Deliver apps faster with DevOps",
-                "tag": "h3"
-              } only %}
-              {% include "@bolt/text.twig" with {
-                "text": "Body text. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                "tag": "p"
-              } only %}
-              <a href="http://pega.com" class="c-bolt-link">Link 1</a>
             {% endcell %}
             {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
-              {% include "@bolt/image.twig" with {
-                "src": "/assets/images/pw2018/thumb-cloud-choice.jpg"
+              {% include "@bolt/card.twig" with {
+                "theme": "xlight",
+                "image": {
+                  "src": "/assets/images/pw2018/thumb-cloud-choice.jpg"
+                },
+                "teaser": {
+                  "eyebrow": {
+                    text: "Cloud Choice"
+                  },
+                  "headlines": [
+                    {
+                      "type": "headline",
+                      "text": "Extend your apps when, where, and how you want them",
+                      "size": "large"
+                    }
+                  ],
+                  "buttons": [
+                    {
+                      "text": "Link 1",
+                      "style": "text",
+                      "url": "http://pega.com",
+                      "width": "full"
+                    },
+                    {
+                      "text": "Link 2",
+                      "style": "text",
+                      "url": "http://pega.com",
+                      "width": "full"
+                    }
+                  ]
+                }
               } only %}
-              {% include "@bolt/eyebrow.twig" with {
-                "text": "Cloud Choice"
-              } only %}
-              {% include "@bolt/headline.twig" with {
-                "size": "large",
-                "text": "Extend your apps when, where, and how you want them",
-                "tag": "h3"
-              } only %}
-              {% include "@bolt/text.twig" with {
-                "text": "Body text. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                "tag": "p"
-              } only %}
-              <a href="http://pega.com" class="c-bolt-link">Link 1</a>
             {% endcell %}
           {% endgrid %}
         {% endcell %}
@@ -357,58 +456,106 @@
         {% cell "u-bolt-width-1/1" %}
           {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
             {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
-              {% include "@bolt/image.twig" with {
-                "src": "/assets/images/pw2018/thumb-no-code.jpg"
+              {% include "@bolt/card.twig" with {
+                "theme": "xlight",
+                "image": {
+                  "src": "/assets/images/pw2018/thumb-no-code.jpg"
+                },
+                "teaser": {
+                  "eyebrow": {
+                    text: "No Code"
+                  },
+                  "headlines": [
+                    {
+                      "type": "headline",
+                      "text": "Real collaboration. No coding required.",
+                      "size": "large"
+                    }
+                  ],
+                  "buttons": [
+                    {
+                      "text": "Link 1",
+                      "style": "text",
+                      "url": "http://pega.com",
+                      "width": "full"
+                    },
+                    {
+                      "text": "Link 2",
+                      "style": "text",
+                      "url": "http://pega.com",
+                      "width": "full"
+                    }
+                  ]
+                }
               } only %}
-              {% include "@bolt/eyebrow.twig" with {
-                "text": "No Code"
-              } only %}
-              {% include "@bolt/headline.twig" with {
-                "size": "large",
-                "text": "Real collaboration. No coding required.",
-                "tag": "h3"
-              } only %}
-              {% include "@bolt/text.twig" with {
-                "text": "Body text. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                "tag": "p"
-              } only %}
-              <a href="http://pega.com" class="c-bolt-link">Link 1</a>
             {% endcell %}
             {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
-              {% include "@bolt/image.twig" with {
-                "src": "/assets/images/pw2018/thumb-devops.jpg"
+              {% include "@bolt/card.twig" with {
+                "theme": "xlight",
+                "image": {
+                  "src": "/assets/images/pw2018/thumb-devops.jpg"
+                },
+                "teaser": {
+                  "eyebrow": {
+                    text: "DevOps"
+                  },
+                  "headlines": [
+                    {
+                      "type": "headline",
+                      "text": "Deliver apps faster with DevOps",
+                      "size": "large"
+                    }
+                  ],
+                  "buttons": [
+                    {
+                      "text": "Link 1",
+                      "style": "text",
+                      "url": "http://pega.com",
+                      "width": "full"
+                    },
+                    {
+                      "text": "Link 2",
+                      "style": "text",
+                      "url": "http://pega.com",
+                      "width": "full"
+                    }
+                  ]
+                }
               } only %}
-              {% include "@bolt/eyebrow.twig" with {
-                "text": "DevOps"
-              } only %}
-              {% include "@bolt/headline.twig" with {
-                "size": "large",
-                "text": "Deliver apps faster with DevOps",
-                "tag": "h3"
-              } only %}
-              {% include "@bolt/text.twig" with {
-                "text": "Body text. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                "tag": "p"
-              } only %}
-              <a href="http://pega.com" class="c-bolt-link">Link 1</a>
             {% endcell %}
             {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
-              {% include "@bolt/image.twig" with {
-                "src": "/assets/images/pw2018/thumb-cloud-choice.jpg"
+              {% include "@bolt/card.twig" with {
+                "theme": "xlight",
+                "image": {
+                  "src": "/assets/images/pw2018/thumb-cloud-choice.jpg"
+                },
+                "teaser": {
+                  "eyebrow": {
+                    text: "Cloud Choice"
+                  },
+                  "headlines": [
+                    {
+                      "type": "headline",
+                      "text": "Extend your apps when, where, and how you want them",
+                      "size": "large"
+                    }
+                  ],
+                  "buttons": [
+                    {
+                      "text": "Link 1",
+                      "style": "text",
+                      "url": "http://pega.com",
+                      "width": "full"
+                    },
+                    {
+                      "text": "Link 2",
+                      "style": "text",
+                      "url": "http://pega.com",
+                      "width": "full"
+                    }
+                  ]
+                }
               } only %}
-              {% include "@bolt/eyebrow.twig" with {
-                "text": "Cloud Choice"
-              } only %}
-              {% include "@bolt/headline.twig" with {
-                "size": "large",
-                "text": "Extend your apps when, where, and how you want them",
-                "tag": "h3"
-              } only %}
-              {% include "@bolt/text.twig" with {
-                "text": "Body text. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                "tag": "p"
-              } only %}
-              <a href="http://pega.com" class="c-bolt-link">Link 1</a>
             {% endcell %}
           {% endgrid %}
         {% endcell %}
