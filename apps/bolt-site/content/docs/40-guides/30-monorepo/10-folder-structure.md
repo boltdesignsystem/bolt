@@ -7,7 +7,7 @@ title: Folder structure
 <pre>
 .
 ├── <strong>apps</strong>
-│   ├── <strong>bolt-site--storefront (coming soon)</strong>
+│   ├── <strong>bolt-site (coming soon)</strong>
 │   │   ├── content
 │   │   ├── images
 │   │   └── templates
