@@ -1,6 +1,5 @@
 ---
 title: About
-weight: 90
 nav: main
 ---
 

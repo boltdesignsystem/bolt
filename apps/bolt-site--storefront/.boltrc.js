@@ -1,6 +1,6 @@
 module.exports = {
   // Environmental variable / preset to use
-  env: 'storefront',
+  env: 'static',
   buildDir: 'www/build',
   srcDir: './content',
   wwwDir: 'www',
@@ -20,8 +20,18 @@ module.exports = {
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
       '@bolt/components-site',
+      '@bolt/components-band',
+      '@bolt/components-button',
+      '@bolt/components-button-group',
+      '@bolt/components-card',
+      '@bolt/components-icon',
+      '@bolt/components-headline',
+      '@bolt/components-link',
+      '@bolt/components-teaser',
+      '@bolt/components-image',
+      './style.scss',
+      './storefront.js',
     ],
-    individual: [
-    ],
+    individual: [],
   },
 };

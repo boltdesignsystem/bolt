@@ -1,0 +1,272 @@
+@import "@bolt/core";
+
+$storefront-sidebar-width: 320px;
+
+
+.storefront-docs {
+  //background: #F5F5FA;
+}
+
+.storefront-docs-title {
+  padding: 15px 20px;
+
+  &--main {
+    bolt-icon {
+      color: bolt-color(yellow);
+    }
+  }
+
+  bolt-icon {
+    margin-right: 7px;
+  }
+
+  span {
+    vertical-align: middle;
+  }
+
+  .storefront-docs__content--has-sidebar & {
+    width: 100%;
+  }
+}
+
+.storefront-docs-header {
+  position: relative;
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 80;
+  transition: height 0s, padding 0.4s, box-shadow 0.2s;
+  backface-visibility: hidden;
+
+  @media (min-width: 768px) {
+    min-height: bolt-spacing(large);
+  }
+
+  .c-bolt-headline {
+    padding-left: 25px;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+
+    @media (min-width: 800px) {
+      left: 320px;
+    }
+    @media (max-width: 1000px) {
+      bottom: -44px;
+      background: #535ca6;
+      height: 44px;
+      width: 100%;
+      line-height: 44px;
+      border-top: 1px solid #FFF;
+    }
+  }
+
+  &.scrolled {
+    box-shadow: 0 0 10px var(--bolt-theme-background);
+
+    .c-bolt-headline {
+      opacity: 1;
+      @media (max-width: 1000px) {
+        box-shadow: 0 0 10px var(--bolt-theme-background);
+      }
+    }
+  }
+
+  // .storefront-docs__content--has-sidebar & {
+  //   @media (min-width: 1025px) {
+  //     padding-left: $storefront-sidebar-width;
+  //   }
+  // }
+}
+
+.storefront-docs-header__nav {
+  padding: 15px 20px;
+  text-align: right;
+
+  a {
+    color: #FFF;
+    padding: 6px 12px;
+
+    &.active,
+    &.active-path {
+      background: rgba(0, 0, 0, 0.1);
+      border: 1px solid #FFF;
+      border-radius: 3px;
+      box-shadow: 0 1px 3px rgba(21,22,25,.12), 0 1px 2px rgba(21,22,25,.24);
+      &.active-path {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.storefront-docs-sidebar__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 85;
+  background-color: bolt-color(black);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1), visibility 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.storefront-docs-sidebar {
+  width: $storefront-sidebar-width;
+  overflow: auto;
+  border-right: 1px solid #E0E2EB;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  transform: translate3d(-$storefront-sidebar-width, 0, 0);
+  background-color: bolt-color(gray, xlight);
+  z-index: 99;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+
+  &:target {
+    transform: translate3d(0, 0, 0);
+
+    & + .storefront-docs-sidebar__overlay {
+      visibility: visible;
+      opacity: 0.2;
+      pointer-events: auto;
+    }
+  }
+
+  @include respond-to(medium){
+    transform: translate3d(0, 0, 0);
+  }
+
+  .sub-nav > h2 {
+    color: #FFF;
+    background-color: bolt-color(indigo);
+    border-bottom: 1px solid #FFF;
+    padding: 10px 20px;
+    margin: 0;
+    font-size: 1.11rem;
+
+    &:before {
+      content: "#";
+      width: 24px;
+      text-align: center;
+      display: inline-block;
+      margin-right: 7px;
+    }
+  }
+}
+
+.storefront-docs--docs {
+  // Styling for markdown content (classes not available)
+  article {
+    h2 {
+      font-size: 1.33rem;
+      margin-bottom: 0.9rem;
+      &::before {
+        content: '#';
+        left: -20px;
+        position: absolute;
+      }
+    }
+
+
+    h3 {
+      margin-bottom: 0.65rem;
+      &::before {
+        content: '-';
+        left: -20px;
+        position: absolute;
+      }
+    }
+  }
+}
+
+.storefront-docs-content {
+  padding: 0 0 0 0;
+  transition: margin .4s;
+
+  .storefront-docs__content--has-sidebar & {
+    @include respond-to(medium) {
+      margin-left: $storefront-sidebar-width;
+    }
+  }
+}
+
+.storefront-docs-footer {
+  position: relative; // Fallback positioning
+  position: sticky; // Sticky positioning if supported
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 70;
+  border-top: 1px solid #E0E2EB;
+  background-color: #fff;
+  overflow: hidden;
+  backface-visibility: hidden;
+
+  .c-bolt-link {
+    text-decoration: none;
+  }
+
+  .storefront-docs__content--has-sidebar+& {
+    @include respond-to(medium) {
+      padding-left: $storefront-sidebar-width;
+    }
+  }
+}
+
+
+// Remove default padding of highlightJS when used inside of Bolt Global style defaults
+pre > .hljs,
+pre > code {
+/**
+  * 1. Workaround to offset default <code> spacing
+  */
+  background-color: bolt-color(gray, xlight);
+  margin-left: bolt-spacing(small) * -1; /* [1] */
+  margin-right: bolt-spacing(small) * -1; /* [1] */
+  @include bolt-padding(small);
+}
+
+
+
+
+.u-bolt-margin-right-auto {
+  margin-right: auto !important;
+}
+
+.u-bolt-margin-right-auto\@small {
+  @include respond-to(small) {
+    margin-right: auto !important;
+  }
+}
+
+.u-bolt-hide {
+  display: none !important;
+}
+
+.u-bolt-hide\@small {
+  @include respond-to(small){
+    display: none !important;
+  }
+}
+
+.u-bolt-hide\@medium {
+  @include respond-to(medium) {
+    display: none !important;
+  }
+}
+
+.u-bolt-show\@small {
+  @include respond-to(small) {
+    display: block !important;
+  }
+}

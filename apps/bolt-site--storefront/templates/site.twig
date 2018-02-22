@@ -12,42 +12,160 @@
   <!-- Place favicon.ico in the root directory -->
 
   <link rel="stylesheet" href="/build/bolt-global.css">
+
+  <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+  <noscript><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"></noscript>
+
+  <script>
+  /*! loadCSS rel=preload polyfill. [c]2017 Filament Group, Inc. MIT License */
+  !function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){function e(){t.media=a}var a=t.media||"all";t.addEventListener?t.addEventListener("load",e):t.attachEvent&&t.attachEvent("onload",e),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(e,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
+  </script>
+
+  {# @todo get async loading for syntax highlighting - this doesn't work since `DOMContentLoaded` fires before `script[async]` loads. See scripts that load this in footer. #}
+  {#<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" async></script>#}
+  {#<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scss.min.js" async></script>#}
+  {#<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/twig.min.js" async></script>#}
+  {#<script>#}
+  {#window.addEventListener('DOMContentLoaded', function() {#}
+    {#hljs.initHighlightingOnLoad();#}
+  {#});#}
+  {#</script>#}
+
+  {# Global Twig vars #}
+  {% set urlChunks = page.url | split('/') %}
+  {% set currentSection = urlChunks | length >= 1 ? urlChunks|first : '' %}
+  {% set currentUrl = page.url %}
+
+
+
+  {% if page.url starts with currentSection %}
+    {% set nestedPages = [] %}
+    {% for page in site.nestedPages if page.url starts with currentSection %}
+      {% set nestedPages = page.children %}
+    {% endfor %}
+  {% endif %}
+  {% set hasSidebar = nestedPages or sidebar %}
+  {# End Global Twig vars #}
 </head>
-<body class="c-bolt-site">
+<body class="storefront-docs c-bolt-site {% if currentUrl == 'index.html' %} t-bolt-dark {% endif %} storefront-docs--{{ urlChunks | length >= 2 ? urlChunks|first : 'parent' }}">
 
 
-<div class="c-bolt-site__content">
-  <div class="o-bolt-wrapper">
-    <header>
-      <h1>Bolt Storefront</h1>
-      <nav style="display: flex;">
-        {% set currentUrl = page.url %}
-        {% for page in site.pages if page.meta.nav == 'main' %}
-          {% set isActive = currentUrl == page.url %}
-          <a href="/{{ page.url }}" style="margin-right: 5px; {% if isActive %} text-decoration: underline; {% endif %}">{{ page.meta.title }}</a>
-        {% endfor %}
-      </nav>
-      <hr>
-    </header>
-    <main>
-      {% block content %}
+<header class="storefront-docs-header {{ currentUrl != 'index.html' ? 't-bolt-dark' : 't-bolt-xdark' }}">
+  <h1 class="storefront-docs-title storefront-docs-title--main u-bolt-margin-right-auto@small">
+    <a class="" href="/">
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "energy",
+      size: "medium",
+    }%} <span>BOLT DESIGN SYSTEM</span>
+    </a>
+  </h1>
+  <nav class="storefront-docs-header__nav">
 
-      {% endblock %}
+    {% for page in site.pages if page.meta.nav == 'main' %}
+      {% set isActive = currentUrl == page.url %}
+      {% set isActivePath = page.url starts with currentSection %}
+      <a href="/{{ page.url }}" class="{% if isActive %}active{% endif %} {% if isActivePath %}active-path{% endif %}">{{ page.meta.title }}</a>
+    {% endfor %}
+
+    <a href="#menu" class="storefront-docs__hamburger u-bolt-hide@medium">
+      <span class="u-bolt-margin-right-xsmall">Menu</span>
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "menu",
+        size: "medium",
+      } %}
+    </a>
+  </nav>
+  {% if currentUrl != 'index.html' %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      tag: "h2",
+      text: page.meta.title,
+      size: "large",
+      icon: {
+        name: "chevron-right",
+        size: "medium",
+      }
+    } only %}
+  {% endif %}
+</header>
+
+{# @todo Incorporate new class into styles for when there is a sidebar and when there is not. ie: when no sidebar: make it 100% wide Jake #}
+<div class="storefront-docs__content c-bolt-site__content {% if hasSidebar %} storefront-docs__content--has-sidebar{% endif %} {% if currentUrl == 'index.html' %}c-bolt-site__content--middle {% endif %}">
+
+  <div class="storefront-docs-wrapper">
+
+
+
+    {% if hasSidebar %}
+      <aside class="storefront-docs-sidebar" id="menu">
+        <header class="storefront-docs-header t-bolt-xlight">
+          <h1 class="storefront-docs-title c-bolt-headline--large">
+            <a href="/">
+            {% include "@bolt-components-icon/icon.twig" with {
+              name: "energy",
+              size: "medium",
+            }%} <span>BOLT DESIGN SYSTEM</span>
+            </a>
+          </h1>
+        </header>
+
+        {% if nestedPages %}
+          {% include 'partials/sub-nav.twig' with {
+            nestedPages: nestedPages,
+          } %}
+        {% endif %}
+      </aside>
+
+      <a href="#" class="storefront-docs-sidebar__overlay"></a>
+    {% endif %}
+
+
+    <main class="storefront-docs-content {{ currentUrl != 'index.html' ? 't-bolt-xlight' }}">
+      {% include "@bolt-components-band/band.twig" with {
+        "content": content,
+        "fullBleed": false,
+        theme: currentUrl == 'index.html' ? 'none' : 't-bolt-xlight'
+      } only %}
     </main>
   </div>
 </div>
 
-<div class="c-bolt-site__footer c-bolt-page-footer">
-  <div class="o-bolt-wrapper">
-    <footer role="contentinfo">
-      <p>
-        <strong>Copyright &copy; 2017 Pegasystems, Inc.</strong>
-      </p>
-      {% set gitBranch = 'epic/refactor' %}
-      <p><a href="https://github.com/bolt-design-system/bolt/blob/{{ gitBranch }}/apps/bolt-site--storefront/{{ page.srcPath }}">Edit this page on GitHub</a></p>
-    </footer>
-  </div>
-</div>
+<footer role="contentinfo" class="storefront-docs-footer c-bolt-site__footer">
+  {% embed "@bolt-components-band/band.twig" with {
+    theme: "xlight",
+    size: "xsmall",
+    fullBleed: false
+  } only %}
+    {% block band_content %}
+      {% set gitBranch = 'feature/docs-site' %}
+
+      <nav>
+        <ul class="o-bolt-bare-list" style="flex-flow: row wrap; display: flex; justify-content: space-between; align-items: center;">
+          <li class="u-bolt-margin-right@small">
+            {% include "@bolt-components-headline/text.twig" with {
+              size: "xsmall",
+              weight: "bold",
+              tag: "p",
+              text: "Copyright &copy;" ~ "now"|date("Y") ~ " Pegasystems, Inc."
+            } only %}
+          </li>
+
+          <li>
+            {% include "@bolt-components-headline/text.twig" with {
+              size: "xsmall",
+              weight: "bold",
+              tag: "p",
+              text: include("@bolt-components-link/link.twig", {
+              url: "https://github.com/bolt-design-system/bolt/blob/" ~ gitBranch ~ "/apps/bolt-site--storefront/" ~  page.srcPath,
+              text: "Edit this page on GitHub"}, with_context = false)
+            } only %}
+          </li>
+        </ul>
+      </nav>
+
+    {% endblock %}
+  {% endembed %}
+</footer>
 
 {# Shows Twig Vars in Browser Console #}
 <script type="application/json">{{ _context|json_encode()|raw }}</script>
@@ -57,10 +175,21 @@
     var jsonScriptTag = me.previousElementSibling.innerHTML;
     var data = JSON.parse(jsonScriptTag);
     console.log('Twig vars for this page: ', data);
+    console.table(data.site.pages);
+//        console.table(data.site.pages);
   })();
 </script>
 
-<script src="/build/bolt-global.js"></script>
+<script src="/build/bolt-global.js" async></script>
+
+{# Code syntax highlighting - https://highlightjs.org/ #}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+
+{# @todo Load async. See script tags in footer for these same scripts that are commented out. #}
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scss.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/twig.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 
 <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
 {#<script>#}

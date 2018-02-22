@@ -1,7 +1,17 @@
-{% extends 'site.twig' %}
-{% block content %}
-  <h2>{{ page.meta.title }}</h2>
+{% set content %}
+
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: page.meta.title,
+    size: "xxxlarge",
+    tag: "h2"
+  } %}
+
   <article>
     {{ page.body|raw }}
   </article>
-{% endblock %}
+
+{% endset %}
+
+{% include 'site.twig' with {
+  content: content,
+} %}
