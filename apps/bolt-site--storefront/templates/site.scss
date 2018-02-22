@@ -41,8 +41,34 @@ $storefront-sidebar-width: 320px;
     min-height: bolt-spacing(large);
   }
 
+  .c-bolt-headline {
+    padding-left: 25px;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+
+    @media (min-width: 800px) {
+      left: 320px;
+    }
+    @media (max-width: 1000px) {
+      bottom: -44px;
+      background: #535ca6;
+      height: 44px;
+      width: 100%;
+      line-height: 44px;
+      border-top: 1px solid #FFF;
+    }
+  }
+
   &.scrolled {
     box-shadow: 0 0 10px var(--bolt-theme-background);
+
+    .c-bolt-headline {
+      opacity: 1;
+      @media (max-width: 1000px) {
+        box-shadow: 0 0 10px var(--bolt-theme-background);
+      }
+    }
   }
 
   // .storefront-docs__content--has-sidebar & {

@@ -51,7 +51,7 @@
 <body class="storefront-docs c-bolt-site {% if currentUrl == 'index.html' %} t-bolt-dark {% endif %} storefront-docs--{{ urlChunks | length >= 2 ? urlChunks|first : 'parent' }}">
 
 
-<header class="storefront-docs-header {% if currentUrl != 'index.html' %}t-bolt-dark {% endif %}">
+<header class="storefront-docs-header {{ currentUrl != 'index.html' ? 't-bolt-dark' : 't-bolt-xdark' }}">
   <h1 class="storefront-docs-title u-bolt-margin-right-auto@small">
     <a href="/">
     {% include "@bolt-components-icon/icon.twig" with {
@@ -76,6 +76,17 @@
       } %}
     </a>
   </nav>
+  {% if currentUrl != 'index.html' %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      tag: "h2",
+      text: page.meta.title,
+      size: "large",
+      icon: {
+        name: "chevron-right",
+        size: "medium",
+      }
+    } only %}
+  {% endif %}
 </header>
 
 {# @todo Incorporate new class into styles for when there is a sidebar and when there is not. ie: when no sidebar: make it 100% wide Jake #}
