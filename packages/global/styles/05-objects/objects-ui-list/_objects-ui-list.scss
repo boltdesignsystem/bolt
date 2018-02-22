@@ -24,6 +24,10 @@ $bolt-ui-list-border-color: var(--bolt-theme-border, currentColor);
   list-style: none;
 }
 
+/**
+  * 1. Workaround to force browser hardware acceleration and avoid sub-pixel rendering issues.
+  *    Without this, borders sometimes disappear in IE11 when viewing in Patternlab
+  */
 .o-bolt-ui-list__item {
   position: relative;
 
@@ -37,8 +41,8 @@ $bolt-ui-list-border-color: var(--bolt-theme-border, currentColor);
     right: 0;
     bottom: 0;
     left: 0;
-
     opacity: $bolt-global-border-opacity;
+    transform: translate3d(0, 0, 0); /* [1] */
 
     @supports(--css: variables) {
       opacity: 1; // Remove fallback opacity and let theme decide.
