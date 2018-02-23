@@ -4,13 +4,20 @@ branch_name="(unnamed branch)"     # detached HEAD
 
 branch_name=${branch_name##refs/heads/}
 
-cmd="netlify deploy --site-id bolt-design-system.netlify.com --path www"
+if [[ $TRAVIS == 'true' ]]; then
+  curl -L https://github.com/netlify/netlifyctl/releases/download/v0.3.2/netlifyctl-linux-amd64-0.3.2.tar.gz | tar zx # Installs netlify deploy cli
+  netlifycli='./netlifyctl';
+else
+  netlifycli=`which netlifyctl`;
+fi
 
 if [[ $TRAVIS_PULL_REQUEST == 'false' ]]; then
   branch_name=$TRAVIS_BRANCH;
 fi
 
 echo "On this git branch: $branch_name"
+
+cmd="$netlifycli deploy --site-id bolt-design-system.netlify.com --base-directory www --yes --message $branch_name"
 
 if [[ $branch_name != 'master' ]]; then
   echo 'Draft deploy'

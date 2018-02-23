@@ -22,7 +22,7 @@ module.exports = {
       {
         base: './src/assets/images',
         glob: '**',
-        dist: './www/images/',
+        dist: '../../www/pattern-lab/images/',
       },
     ],
   },
