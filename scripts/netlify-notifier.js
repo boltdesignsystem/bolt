@@ -29,7 +29,10 @@ async function init() {
     console.log('Latest Netlify Deploy: ', netlifyDeploys[0]);
 
     // Can handle HTML
-    const githubCommentText = `Netlify build preview available at: ${netlifyDeploys[0].deploy_ssl_url}`;
+    const githubCommentText = `:zap: PR built on Travis and deployed a Netlify preview here: 
+
+${netlifyDeploys[0].deploy_ssl_url}`;
+    
     const githubCommentEndpoint = `https://api.github.com/repos/${TRAVIS_REPO_SLUG}/issues/${TRAVIS_PULL_REQUEST}/comments`;
 
     const response = await fetch(githubCommentEndpoint, {
