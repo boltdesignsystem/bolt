@@ -9,9 +9,10 @@ addons:
     packages:
     - g++-4.8
     - graphicsmagick
-    - go
 
 before_install:
+- curl -sL -o ~/bin/gimme https://raw.githubusercontent.com/travis-ci/gimme/master/gimme && chmod +x ~/bin/gimme
+- gimme stable # installs `go`
 - go get github.com/netlify/netlifyctl
 - nvm install # version lifted from `.nvmrc`
 # yarn install
