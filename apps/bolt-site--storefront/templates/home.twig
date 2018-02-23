@@ -119,6 +119,10 @@
             src: "/images/single-source2.jpg"
           },
           {
+            pattern: "eyebrow",
+            text: "Docs"
+          },
+          {
             pattern: "headline",
             text: "Living, cohesive design language",
             size: "large",
@@ -142,6 +146,10 @@
             pattern: "image",
             lazyload: false,
             src: "/images/code2.jpg"
+          },
+          {
+            pattern: "eyebrow",
+            text: "Docs"
           },
           {
             pattern: "teaser",
@@ -172,6 +180,10 @@
             src: "/images/tested.jpg"
           },
           {
+            pattern: "eyebrow",
+            text: "Docs"
+          },
+          {
             pattern: "teaser",
             headlines: [
             {
@@ -193,6 +205,53 @@
         }
       ]
     } %}
+
+    {% set availableComponents %}
+      {% include "@bolt/headline.twig" with {
+        text: "Bolt components",
+        tag: "h2",
+        size: "xxlarge"
+      } only %}
+      {% include "@bolt/subheadline.twig" with {
+        tag: "h3",
+        text: "Current available inventory of reusable components available within latest Bolt:",
+        size: "xlarge"
+      } only %}
+      {% set listComponents = [] %}
+      {% for component in bolt.data.fullManifest.components.global.src if component.name starts with "@bolt" %}
+        {% set listComponents = listComponents|merge([{text: component.name}]) %}
+      {% endfor %}
+      {% if listComponents|length > 0 %}
+        {% include "@bolt-components-chip-list/chip-list.twig" with {
+          contentItems: listComponents
+        } only %}
+      {% endif %}
+    {% endset %}
+    {% include "@bolt-components-band/band.twig" with {
+      content: availableComponents,
+      theme: "xlight",
+    } only %}
+
+    {% set blockquoteContent %}
+      {% include "@bolt-components-blockquote/blockquote.twig" with {
+        alignItems: "center",
+        border: "none",
+        content: "<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>",
+        author: {
+          image: {
+            src: "https://avatars0.githubusercontent.com/u/1617209?s=400&v=4",
+            lazyload: false
+          },
+          name: "Salem Ghoweri",
+          title: "Senior Front-end Architect, Design Systems at Pega"
+        }
+      } %}
+    {% endset %}
+    {% include "@bolt-components-band/band.twig" with {
+      content: blockquoteContent,
+      theme: "dark",
+    } only %}
+
   </article>
 {% endset %}
 {% include 'site.twig' with {
