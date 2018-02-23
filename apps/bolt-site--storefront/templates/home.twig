@@ -217,10 +217,37 @@
         text: "Current available inventory of reusable components available within latest Bolt:",
         size: "xlarge"
       } only %}
-      {% set listComponents = [] %}
-      {% for component in bolt.data.fullManifest.components.global.src if component.name starts with "@bolt" %}
-        {% set listComponents = listComponents|merge([{text: component.name}]) %}
-      {% endfor %}
+      {% set listComponents = [
+        { text: "@bolt/core" },
+        { text: "@bolt/global" },
+        { text: "@bolt/components-action-blocks" },
+        { text: "@bolt/components-background" },
+        { text: "@bolt/components-background-shapes" },
+        { text: "@bolt/components-band" },
+        { text: "@bolt/components-blockquote" },
+        { text: "@bolt/components-breadcrumb" },
+        { text: "@bolt/components-button" },
+        { text: "@bolt/components-button-group" },
+        { text: "@bolt/components-card" },
+        { text: "@bolt/components-chip" },
+        { text: "@bolt/components-chip-list" },
+        { text: "@bolt/components-device-viewer" },
+        { text: "@bolt/components-figure" },
+        { text: "@bolt/components-icon" },
+        { text: "@bolt/components-headline" },
+        { text: "@bolt/components-image" },
+        { text: "@bolt/components-link" },
+        { text: "@bolt/components-logo" },
+        { text: "@bolt/components-nav-bar" },
+        { text: "@bolt/components-ordered-list" },
+        { text: "@bolt/components-page-footer" },
+        { text: "@bolt/components-page-header" },
+        { text: "@bolt/components-site" },
+        { text: "@bolt/components-smooth-scroll" },
+        { text: "@bolt/components-sticky" },
+        { text: "@bolt/components-teaser" },
+        { text: "@bolt/components-unordered-list" }
+      ] %}
       {% if listComponents|length > 0 %}
         {% include "@bolt-components-chip-list/chip-list.twig" with {
           contentItems: listComponents
