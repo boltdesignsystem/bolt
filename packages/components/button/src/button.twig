@@ -105,6 +105,7 @@
   "additionalProperties": false
 } %}
 
+{# re-assign old itemAlignment paramater to the new `align` name that's replacing it; avoids breaking change till post v1.0 #}
 {% if itemAlignment %}
   {% if itemAlignment == "start" %}
     {% set itemAlignment = "left" %}
@@ -113,6 +114,7 @@
   {% set align = itemAlignment %}
 {% endif %}
 
+{# set up psuedo self-validation by limiting param values to what's specifically allowed in the component schema #}
 {% set alignOptions = schema.properties.align.enum %}
 {% set roundedOptions = schema.properties.rounded.enum %}
 {% set sizeOptions = schema.properties.size.enum %}
@@ -121,6 +123,7 @@
 {% set widthOptions = schema.properties.width.enum %}
 
 
+{# check if the value set to a prop is allowed or defined. if not, default to the default value specified in the component's schema (if one exists) #}
 {% set align =  align in alignOptions ? align : schema.properties.align.default %}
 {% set rounded = rounded in roundedOptions ? rounded : schema.properties.rounded.default %}
 {% set size = size in sizeOptions ? size : schema.properties.size.default %}
@@ -142,6 +145,10 @@
 {% endif %}
 
 
+{# shorthand for manually setting HTML attribute `type` such as submit or reset #}
+{% if type %}
+  {% set attributes = attributes.setAttribute("type", type) %}
+{% endif %}
 
 {% set classes = [
   baseClass,
@@ -157,27 +164,60 @@
   {% set attributes = attributes.setAttribute("disabled", true) %}
 {% endif %}
 
-
-{# set iconpos = iconpos | default("right") #}
-
-<bolt-button
-  {% if align %} align="{{ align }}" {% endif %}
-  {% if style %} color="{{ style }}" {% endif %}
-  {% if size %} size="{{ size }}" {% endif %}
+{# Set up the custom element's prop values based on the params passed into the Twig template - used to hydrate the component's initial state and appearance once the Button Component's JavaScript kicks in #}
+ <bolt-button
+    {% if align %} align="{{ align }}" {% endif %}
+    {% if style %} color="{{ style }}" {% endif %}
+    {% if size %} size="{{ size }}" {% endif %}
   {% if url %} url="{{ url }}" {% endif %}
-  {% if width %} width="{{ width }}" {% endif %}
-  {% if rounded %} rounded=" {{ rounded }}" {% endif %}
-  {% if iconOnly %} icon-only="true" {% endif %}
-  {% if disabled == true %} disabled {% endif %}
-  {{ attributes | without('class') }}
->
-  <{{ tag }} {{ attributes.addClass(classes) }}>
-    <span class="{{ "#{baseClass}__item #{baseClass}__item-text" }} {% if iconOnly %}u-bolt-visuallyhidden{% endif %}">{{ text }}</span>
+    {% if width %} width="{{ width }}" {% endif %}
+    {% if rounded %} rounded=" {{ rounded }}" {% endif %}
+    {% if iconOnly %} icon-only="true" {% endif %}
+    {% if disabled == true %} disabled {% endif %}
 
-    {% if icon %}
-      <span class="{{ "#{baseClass}__icon" }} {% if iconOnly %}u-bolt-margin-left-none {% endif %}">
-        {% include "@bolt/icon.twig" with icon only %}
-      </span>
-    {% endif %}
+    {# Failsafe to manually switch off Shadow DOM encapsulation #}
+    {% if noShadow %} no-shadow {% endif %}
+
+    {% if target or attributes['target'] %} target="{{ target | default(attributes['target']) }}" {% endif %}
+
+
+    {# todo: rename on-click + on-click-target to only allow onClick + onClickTarget to unify the prop syntax; deprecate adding these via attributes #}
+    {% if onClick or attributes['on-click'] %} on-click="{{ onClick | default(attributes['on-click']) }}" {% endif %}
+    {% if onClickTarget or attributes['on-click-target'] %} on-click-target="{{ onClickTarget | default(attributes['on-click-target']) }}" {% endif %}
+
+
+    {#
+      @todo: create Twig function to translate shorthand utility class references to actual classnames
+      For example:
+
+      {% include "@bolt/button.twig' with {
+        text: "Example Button",
+        color: "primary",
+        utils: [
+          "-mb-sm", --> small negative margin bottom spacing
+          "mt-md"   --> medium margin top spacing
+        ]
+      } %}
+    #}
+    {# @todo: share `utils` prop across all Twig components #}
+    {# workaround to still allow external utility classes to get added (ex. for spacing or layout tweaks) while still encapsulating internal styling #}
+    {% if utils %} class="{{ utils|join(' ') }}"{% endif %}
+  >
+
+
+  {# choose a semantic <a> tag or <button> tag for better accessibility, depending on whether or not a url is getting passed along #}
+  <{{ tag }} {{ attributes.addClass('c-bolt-button__root') | without('on-click') | without('on-click-target') }}>
+
+    {# Add component-specific classes to a Bolt temp element that gets removed and replaced by it's children once the JS kicks in #}
+    <replace-with-children class="{{ classes|join(' ') }}">
+      <span class="{{ "#{baseClass}__item" }} {{ iconOnly ? 'u-bolt-visuallyhidden' : '' }}">{{ text }}</span>
+
+      {% if icon %}
+        <span class="{{ "#{baseClass}__icon" }}">
+          {% include "@bolt/icon.twig" with icon only %}
+        </span>
+      {% endif %}
+    </replace-with-children>
+
   </{{ tag }}>
 </bolt-button>
