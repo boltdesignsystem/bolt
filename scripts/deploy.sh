@@ -4,9 +4,9 @@ branch_name="(unnamed branch)"     # detached HEAD
 
 branch_name=${branch_name##refs/heads/}
 
-cmd="netlify deploy --site-id bolt-design-system.netlify.com --path apps/pattern-lab/www"
+cmd="netlify deploy --site-id bolt-design-system.netlify.com --path www"
 
-if [[ $branch_name != 'epic/refactor' ]]; then
+if [[ $branch_name != 'master' ]]; then
   echo 'Draft deploy'
   cmd="$cmd --draft"
 else

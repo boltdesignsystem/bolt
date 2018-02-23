@@ -1,4 +1,5 @@
 const log = require('../utils/log');
+const path = require('path');
 const webpackTasks = require('./webpack-tasks');
 const manifest = require('../utils/manifest');
 const internalTasks = require('./internal-tasks');
@@ -22,11 +23,27 @@ if (config.wwwDir) {
 
 async function clean() {
   try {
-    const dirs = [config.buildDir];
+    let dirs = [];
     switch (config.env) {
-      case 'pl':
       case 'static':
-        dirs.push(config.wwwDir);
+        // If we have a pattern lab site built in a static site, like this folder structure:
+        // - www/
+        //   - build/
+        //   - docs/
+        //   - pattern-lab/
+        //     - build/
+        // We need to be careful; we want to delete everything in there but a `pattern-lab` folder (yes, that's a hard coded magic string that'll we'll have to update if we change `publicDir` in `config.yml` in pattern lab)
+        // Also when we use `del` (our clean task), we have to explicitly ignore parent directories: https://www.npmjs.com/package/del#beware
+        // On top of that, you can't do `!www/`, you must do `!www` - if you ignore a directory, it MUST NOT have a trailing slash, so we pass it through `path.resolve()` which handles that for us. That can't handle `**` though, but `path.join()` can.
+        dirs = [
+          path.join(path.resolve(config.wwwDir), '**'),
+          `!${path.resolve(config.wwwDir)}`,
+          `!${path.resolve(config.wwwDir, 'pattern-lab')}`,
+          `!${path.join(path.resolve(config.wwwDir, 'pattern-lab'), '**')}`,
+        ];
+        break;
+      case 'pl':
+        dirs = [path.join(config.buildDir, '..')];
         break;
     }
     await internalTasks.clean(dirs);

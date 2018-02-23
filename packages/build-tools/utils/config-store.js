@@ -21,6 +21,7 @@ const defaultConfig = {
   quick: configSchema.properties.quick.default,
   webpackDevServer: configSchema.properties.webpackDevServer.default,
   prod: process.env.NODE_ENV === 'production',
+  startPath: configSchema.properties.startPath.default
 };
 
 function getEnvVarsConfig() {

@@ -1,15 +1,15 @@
 module.exports = {
   // Environmental variable / preset to use
   env: 'static',
-  buildDir: 'www/build',
+  buildDir: '../../www/build/',
   srcDir: './content',
-  wwwDir: 'www',
+  wwwDir: '../../www',
   images: {
     sets: [
       {
         base: './images',
         glob: '**',
-        dist: './www/images/',
+        dist: '../../www/images/',
       },
     ],
   },

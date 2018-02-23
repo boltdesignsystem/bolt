@@ -29,6 +29,11 @@
       type: string
       title: Path to server root
       description: "Where static files are served from. The wwwDir config specifies the public web distribution directory. This directory is commonly the root directory for a server, where all static files can be served. This directory is built and rebuilt directly from the source files. Note: We recommend this directory is not committed to a repository."
+    startPath:
+      type: string
+      title: Local server start path
+      description: This is the `path/to/file.html` in `http://localhost:3000/path/to/file.html`
+      default: ''
     webpackDevServer:
       type: boolean
       default: false
