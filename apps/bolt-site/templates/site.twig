@@ -137,7 +137,8 @@
   {% embed "@bolt-components-band/band.twig" with {
     theme: "xlight",
     size: "xsmall",
-    fullBleed: false
+    fullBleed: false,
+    page: page,
   } only %}
     {% block band_content %}
       {% set gitBranch = 'master' %}
