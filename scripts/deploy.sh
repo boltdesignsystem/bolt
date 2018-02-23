@@ -5,16 +5,16 @@ branch_name="(unnamed branch)"     # detached HEAD
 branch_name=${branch_name##refs/heads/}
 
 if [[ $TRAVIS == 'true' ]]; then
-  curl -L https://github.com/netlify/netlifyctl/releases/download/v0.3.2/netlifyctl-linux-amd64-0.3.2.tar.gz | tar zx # Installs netlify deploy cli
+  # Installs netlify deploy cli
+  curl -L https://github.com/netlify/netlifyctl/releases/download/v0.3.2/netlifyctl-linux-amd64-0.3.2.tar.gz | tar zx
   netlifycli='./netlifyctl';
-  deploy_message="Branch: $branch_name Commit: $TRAVIS_COMMIT_MESSAGE - $TRAVIS_COMMIT"
+  if [[ $TRAVIS_PULL_REQUEST == 'false' ]]; then
+    branch_name=$TRAVIS_BRANCH;
+  fi
+  deploy_message="Branch: \"$branch_name\" Commit: \"$TRAVIS_COMMIT_MESSAGE\" - \"$TRAVIS_COMMIT\""
 else
   netlifycli=`which netlifyctl`;
   deploy_message="Branch: $branch_name"
-fi
-
-if [[ $TRAVIS_PULL_REQUEST == 'false' ]]; then
-  branch_name=$TRAVIS_BRANCH;
 fi
 
 echo "On this git branch: $branch_name"
@@ -28,11 +28,14 @@ else
   echo 'Main deploy, not a draft'
 fi
 
+echo 'Running this command (not showing NETLIFY_TOKEN though):'
+echo $cmd
+echo 'Begin deploying to Netlify..'
+
 if [[ $NETLIFY_TOKEN ]]; then
   cmd="$cmd --access-token $NETLIFY_TOKEN"
 fi
 
-echo 'Begin deploying to Netlify..'
 $cmd
 
 # Hit the Netlify API to get all deploys, then pipe it into `node` so I can just show the first object in that array.
