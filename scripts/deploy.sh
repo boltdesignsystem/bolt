@@ -11,7 +11,7 @@ fi
 
 echo "On this git branch: $branch_name"
 
-cmd="netlifyctl deploy --site-id bolt-design-system.netlify.com --base-directory www --yes --message $branch_name"
+cmd="./netlifyctl deploy --site-id bolt-design-system.netlify.com --base-directory www --yes --message $branch_name"
 
 if [[ $branch_name != 'master' ]]; then
   echo 'Draft deploy'
