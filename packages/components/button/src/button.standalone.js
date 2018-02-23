@@ -1,165 +1,73 @@
 import {
-  h,
-  render,
   define,
   props,
   withComponent,
-  withPreact,
   css,
-  spacingSizes,
-  renderToString,
   hasNativeShadowDomSupport,
-  findParentTag
+  withPreact,
+  withHyperHTML,
+  sanitizeBoltClasses
 } from '@bolt/core';
 
 import styles from './button.scss';
-// import spacingUtils from '@bolt/utilities-spacing/_utilities.spacing.scss';
+import visuallyhiddenUtils from '@bolt/utilities-visuallyhidden/_utilities.visuallyhidden.scss';
+
 
 @define
-export class BoltButton extends withComponent(withPreact()) {
+export class ReplaceWithChildren extends withPreact(withComponent()) {
+  static is = 'replace-with-children';
+
+  constructor(elem) {
+    super(elem);
+    this.useShadow = hasNativeShadowDomSupport;
+  }
+
+  connectedCallback(){
+    if (hasNativeShadowDomSupport){
+      this.replaceWith(...this.childNodes);
+    } else {
+      this.className = '';
+    }
+  }
+}
+
+@define
+export class BoltButton extends withHyperHTML(withComponent()) {
   static is = 'bolt-button';
 
   static props = {
     color: props.string,
+    text: props.string,
     size: props.string,
     rounded: props.boolean,
     iconOnly: props.boolean,
-    disabled: props.boolean,
     size: props.string,
     width: props.string,
     align: props.string,
+
+    disabled: props.boolean,
+
+    target: props.string,
     url: props.string,
-    onClick: props.string,
-    onClickTarget: props.string,
+
     isHover: props.boolean,  // test hover psuedo state
     isActive: props.boolean, // test active psuedo state
     isFocus: props.boolean,  // test focus psuedo state
+
+    onClick: props.string, // Managed by base class
+    onClickTarget: props.string, // Managed by base class
   }
 
-  constructor(element) {
-    super(element);
-
-    if (findParentTag(this, 'FORM')) {
-      this.useShadow = false;
-    } else {
-      this.useShadow = hasNativeShadowDomSupport;
-    }
-
-    this.originalElem = this.querySelectorAll('.c-bolt-button')[0];
-
-    if (this.originalElem) {
-      // Remove any `c-bolt-` classes getting passed in since the component's core styles should be based on the component's props
-      var extraClasses = this.originalElem.className.split(' ').filter(function (c) {
-        return c.lastIndexOf('c-bolt-', 0) !== 0;
-      });
-      extraClasses = extraClasses.join(' ').trim();
-      this.originalElem.className = `c-bolt-button__inner ${extraClasses}`;
-    }
-
-    if (!this.useShadow) {
-      if (this.originalElem) {
-        this.fallbackText = this.originalElem.innerHTML;
-      } else {
-        this.fallbackText = this.innerHTML;
-      }
-    }
+  constructor(elem) {
+    super(elem);
+    this.useShadow = hasNativeShadowDomSupport;
   }
 
-  connectedCallback() {
-    // Set default button states
-    this.state = {
-      isMouseActive: false,
-      isFocused: false,
-      isFirstRender: true
-    };
-
-    /**
-     * 1. Handles external click event hooks
-     * 2. Handles internal focus and click events relating to conditionally toggling focus state
-     * 3. Note: `focus` here won't work in IE 11
-     */
-    this.addEventListener('click', this.clickHandler); /* [1] */
-    this.addEventListener('mousedown', this.mousedownHandler); /* [2] */
-    this.addEventListener('focusin', this.focusHandler); /* [2, 3] */
-
-    if (!this.useShadow) {
-      this.enableTransitions = false;
-      const self = this;
-
-      setTimeout(function () {
-        const buttonElem = self.querySelector('.c-bolt-button');
-
-        if (buttonElem) {
-          self.enableTransitions = true;
-          buttonElem.classList.remove('u-bolt-transitionless');
-          self.render(self.props, self.enableTransitions = true);
-        }
-      }, 300);
-    } else {
-      this.enableTransitions = true;
-    }
+  connecting() {
   }
 
-  disconnectedCallback() {
-    this.removeEventListener('click', this.clickHandler);
-    this.removeEventListener('mousedown', this.mousedownHandler);
-    this.removeEventListener('focusin', this.focusHandler);
-  }
+  disconnecting() {
 
-
-  // Handle conditionally toggling state classes based on interaction. Based on https://marcysutton.com/button-focus-hell/ and https://jmperezperez.com/outline-focus-ring-a11y/ and https://hackernoon.com/removing-that-ugly-focus-ring-and-keeping-it-too-6c8727fefcd2
-  mousedownHandler(event) {
-    const elem = this; // Needed for scoping the setTimeout
-
-    elem.state.isMouseActive = true;
-    setTimeout(function () {
-      elem.state.isMouseActive = false;
-    }, 100);
-  }
-
-  focusHandler(event) {
-    if (this.state.isMouseActive === false) {
-      this.state.isFocused = true;
-      this.renderRoot.firstChild.classList.add('is-focused');
-
-      this.addEventListener('blur', this.blurHandler);
-    }
-  }
-
-  blurHandler(event) {
-    this.state.isFocused = false;
-    // this.render(this.props, this.state);
-    this.renderRoot.firstChild.classList.remove('is-focused');
-
-    this.removeEventListener('blur', this.blurHandler);
-  }
-
-
-  // Attach external events declaratively
-  clickHandler(event) {
-    const clickMethod = this.props.onClick;
-    const clickTarget = this.props.onClickTarget;
-
-    if (clickMethod) {
-      if (clickTarget) {
-        const elems = document.querySelectorAll(`.${clickTarget}`);
-        if (elems) {
-          elems.forEach(function (elem) {
-            if (elem[clickMethod]) {
-              elem[clickMethod]();
-            } else {
-              // @TODO: handle call to undefined method
-            }
-          });
-        }
-      } else {
-        if (this[clickMethod]) {
-          this[clickMethod]();
-        } else {
-          // @TODO: handle call to undefined method
-        }
-      }
-    }
   }
 
   render({ props, state }) {
@@ -172,8 +80,7 @@ export class BoltButton extends withComponent(withPreact()) {
       this.props.iconOnly ? `c-bolt-button--icon-only` : '',
       this.props.width ? `c-bolt-button--${this.props.width}` : '',
       this.props.align ? `c-bolt-button--${this.props.align}` : 'c-bolt-button--center',
-      this.originalElem ? this.originalElem.className : '',
-      this.enableTransitions === false ? 'u-bolt-transitionless' : '',
+      this.props.disabled ? 'c-bolt-button--disabled' : '',
 
       // Test out psuedo states via prop values
       this.props.isHover ? `c-bolt-button--hover` : '',
@@ -182,70 +89,46 @@ export class BoltButton extends withComponent(withPreact()) {
     );
 
 
-    // Grab all of the original inner element's attributes & pass everything to vdom element. @TODO: move all of the logic below to @bolt/core
-    let originalProps = {};
-    if (this.originalElem && this.state.isFirstRender === true) {
+    /**
+     * Given that our base HyperHTML Class is configured to automatically organizing top level children into separate slot buckets (ie.
+     * `this.slots.default`) AND we need to apply padding styles to the <button> or <link> getting passed in, we need to identify which Dom Node in
+     * our default Slot is the one we should apply our component classes to.
+     *
+     * If for some reason a container can't be found (ex. if creating a `<bolt-button color="primary">Hello World</bolt-button>` element by hand),
+     * We'll need to generate a wrapper container + figure out if this should be a <button> or <a> tag
+    */
 
-      // Is this the 1st time rendering the button? Or subsequent renders?
-      this.state.isFirstRender = false;
-
-      if (this.useShadow) {
-        this.innerHTML = this.originalElem.innerHTML;
+    let childElementIndex = null;
+    this.slots.default.forEach(function (item, i) {
+      if (item.nodeType === 1) {
+        childElementIndex = i;
       }
+    });
 
-      for (var i = 0, l = this.originalElem.attributes.length; i < l; ++i) {
-        var nodeName = this.originalElem.attributes.item(i).nodeName;
-        var nodeValue = this.originalElem.attributes.item(i).nodeValue;
-        originalProps[nodeName] = nodeValue;
-      }
+    if (childElementIndex !== null){
+      let sanitizedClasses = sanitizeBoltClasses(this.slots.default[childElementIndex]);
+      this.slots.default[childElementIndex].className = `${sanitizedClasses} ${classes}`;
     }
-
-    // Convert component props to dash-cased attributes. @TODO: move to @bolt/core as a shared util function.
-    function camelCaseToDash(myStr) {
-      return myStr.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-    }
-
-    // Select + convert the prop names from this component so we can remove from new element
-    let propsToRemove = Object.keys(this.props).map(val => camelCaseToDash(val));
-    propsToRemove.push('class');
-
-    // Loop through the original attributes on the inner element and remove the props defined by the component
-    const filteredProps = Object.keys(originalProps)
-      .filter(key => !propsToRemove.includes(key))
-      .reduce((obj, key) => {
-        obj[key] = originalProps[key];
-        return obj;
-      }, {});
-
 
     // Decide on if the rendered button tag should be a <button> or <a> tag, based on if a URL exists OR if a link was passed in from the getgo
     const hasUrl = this.props.url.length > 0 && this.props.url !== 'null';
-    const hasLinkTag = this.originalElem && this.originalElem.tagName === 'A';
+
+    // Assign default target attribute value if one isn't specified
+    const urlTarget = this.props.target && hasUrl ? this.props.target : '_self';
 
 
-    const ButtonTag = hasUrl || hasLinkTag ? 'a' : 'button';
-    const disabled = this.props.disabled ? { 'disabled': 'disabled' } : {};
-    const href = this.props.url.length > 0 && this.props.url !== 'null' ? { 'href': this.props.url } : {};
+    // Add inline <style> tag automatically if Shadow DOM is natively supported
+    return this.html`
+      ${ this.addStyles([styles, visuallyhiddenUtils]) }
 
-
-    // Depending on if the user natively supports the ShadowDom, conditionally render a slot or psuedo-slot polyfill we're manually handling here.
-    let buttonText;
-    if (this.useShadow) {
-      buttonText = <slot />;
-    } else {
-      buttonText = <span className="c-bolt-button__inner" dangerouslySetInnerHTML={{ __html: this.fallbackText }} />
-    }
-
-    return (
-      <ButtonTag className={classes} {...disabled} {...href} {...filteredProps}>
-        {this.useShadow &&
-          <style>
-            {styles[0][1]}
-          </style>
-        }
-        {buttonText}
-      </ButtonTag>
-    )
+      ${
+        childElementIndex === null ? (
+          hasUrl ?
+            this.html`<a href="${this.props.url}" class="${classes}" target="${urlTarget}">${this.slots.default}</a>` :
+            this.html`<button class="${classes}">${this.slots.default}</button>`
+        )
+        : this.slots.default
+      }
+    `
   }
 }
-
