@@ -1,5 +1,5 @@
 
-{#
+{# 
   Bolt Image - Structure:
   - .c-bolt-image: uses the ratio object as a base if enabled
     - .c-bolt-image__img: lazyloaded img tag
@@ -44,8 +44,7 @@
 {% set ratio = ratio ?? true %}
 {% set sizes = sizes | default("auto") %}
 {% set zoom = zoom ?? false %}
-{# {% set lazyload = lazyload ?? true %} #}
-{% set lazyload = false %}
+{% set lazyload = lazyload ?? true %}
 
 
 {# Get a whole number aspect ratio #}
@@ -57,7 +56,7 @@
     } only %}
   {% endset %}
   {% set gcd = gcd | escape | raw | number_format %}
-
+  
   {% if gcd != 0 and height != 0 and width != 0 %}
     {% set imageHeightRatio = (height / gcd) %}
     {% set imageWidthRatio = (width / gcd) %}
@@ -87,10 +86,10 @@
       {% endif %}
 
       {# store the current srcset path just in case this loop is our last -- loop.last var isn't available w/ conditions #}
-
+      
     {% endfor %}
     {% set srcset = srcset|trim(', ') %}
-  {% elseif ext == "svg" and lazyload == true %}
+  {% elseif ext == "svg" %}
     {% set srcset = src %}
   {% endif %}
 
@@ -113,19 +112,14 @@
 {% endif %}
 
 
-{# fallback if image not found #}
-{% if srcset == "" %}
-  {% set imageAttributes = imageAttributes.removeAttribute("srcset").setAttribute("src", src) %}
+{% if lazyload %}
+  {% set imageAttributes = imageAttributes
+    .setAttribute("data-srcset", srcset)
+    .setAttribute("srcset", placeholderDummySrc)
+    .setAttribute("data-sizes", sizes)
+  %}
 {% else %}
-  {% if lazyload %}
-    {% set imageAttributes = imageAttributes
-      .setAttribute("data-srcset", srcset)
-      .setAttribute("srcset", placeholderDummySrc)
-      .setAttribute("data-sizes", sizes)
-    %}
-  {% else %}
-    {% set imageAttributes = imageAttributes.setAttribute("srcset", srcset) %}
-  {% endif %}
+  {% set imageAttributes = imageAttributes.setAttribute("srcset", srcset) %}
 {% endif %}
 
 {% set placeholderAttributes = create_attribute(placeholderAttributes | default({})).addClass("c-bolt-image__placeholder") %}
@@ -138,12 +132,9 @@
 
 {% set imageTag %}
   <img {{ imageAttributes }}>
-
-  {% if lazyload %}
-    <noscript>
-      <img {{ imageAttributes.removeClass(["js-lazyload", "is-lazyloading"]).setAttribute("srcset", srcset) }}>
-    </noscript>
-  {% endif %}
+  <noscript>
+    <img {{ imageAttributes.removeClass(["js-lazyload", "is-lazyloading"]).setAttribute("srcset", srcset) }}>
+  </noscript>
 {% endset %}
 
 {% set imagePlaceholder %}

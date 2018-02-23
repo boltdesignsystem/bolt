@@ -33,40 +33,16 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 
 
 
-var polyfills = [];
-
-// Detect Shadow Dom Support
-if (!('attachShadow' in Element.prototype && 'getRootNode' in Element.prototype) ||
-  (window.ShadyDOM && window.ShadyDOM.force)) {
-  polyfills.push('sd');
-}
-
-// Detect Custom Element Support
-if (!window.customElements || window.customElements.forcePolyfill) {
-  polyfills.push('ce');
-}
-
-// NOTE: any browser that does not have template or ES6 features
-// must load the full suite (called `lite` for legacy reasons) of polyfills.
-if (!('content' in document.createElement('template')) || !window.Promise || !Array.from ||
-  // Edge has broken fragment cloning which means you cannot clone template.content
-  !(document.createDocumentFragment().cloneNode() instanceof DocumentFragment)) {
-  polyfills = ['lite'];
-}
-
-var webComponentPolyfillPath = 'bolt-webcomponents-' + polyfills.join('-') + '.js';
-
-
 export const polyfillLoader = new Promise(function (resolve, reject) {
-  if (polyfills.length > 0) {
+  if (window.customElements !== undefined) {
     Promise.all([
-      import(/* webpackChunkName: `${webComponentPolyfillPath}` */ `./${webComponentPolyfillPath}`)
+      import(/* webpackChunkName: "webcomponents-sd-ce" */ './wc-polyfill-ce-sd.js')
     ]).then(() => {
       resolve();
     });
   } else {
     Promise.all([
-      import(/* webpackChunkName: "custom-elements-es5-adapter" */ '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js')
+      import(/* webpackChunkName: "webcomponents-lite" */ './webcomponents-hi-sd-ce-pf-index.js')
     ]).then(() => {
       resolve();
     });

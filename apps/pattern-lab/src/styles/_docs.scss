@@ -56,13 +56,15 @@
 }
 
 .c-bolt-docs__page-content {
-  grid-column: 2/span 1;
+  grid-column: 1/span 3;
   grid-row: 3/span 1;
   min-width: 0;
+  max-width: 960px;
 
   @include respond-to(medium) {
     grid-row: 3/span 1;
-    grid-column: 3/span 1;
+    grid-column: 2/span 2;
+    margin-left: auto;
     @include bolt-padding-left(medium);
     @include bolt-padding-right(medium);
   }
@@ -71,7 +73,7 @@
 
 .c-bolt-docs__page-nav {
   grid-row: 2/span 1;
-  grid-column: 2/span 1;
+  grid-column: 1/span 3;
   text-align: right;
 
   @include respond-to(medium) {
@@ -259,15 +261,26 @@ pre {
 
 
 .c-bolt-docs__heading-fragment a {
-  display: block;
-  margin-left: bolt-spacing(medium) * -1;
+  display: flex;
+  position: relative;
 
   &:before {
-    float: left;
     content: '#';
-    font-size: 1em;
+    opacity: 0.3;
+    position: absolute;
+    left: -1.5rem;
+    width: 1.5rem;
+    font-size: 0.9em;
     text-align: center;
-    width: bolt-spacing(medium);
+    align-self: center;
+    text-decoration: none;
     color: inherit;
+    transition: opacity 0.2s ease;
   }
+}
+
+.c-bolt-docs__heading-fragment a:hover:before {
+  text-decoration: none;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
 }
