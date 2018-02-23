@@ -14,13 +14,9 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/twig.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 
-    {# Showing off global `bolt` Twig var in Browsers Console #}
-    <script>console.log('Bolt Global Twig variable. In Twig, you can tap into the `bolt` global var to access all sorts of helpful information about the Bolt Design System, such as colors, spacing, and more. Most is exported from Sass; to add more, add this to any Sass file: `@include export-data("myVariables.bolt.json", $my-variables-in-a-sass-map);`, and then you can access it in Twig via `bolt.data.myVariables`.');</script>
-    {# Just setting it like this so it shows the word "bolt" before the var in the console. #}
-    {% set toLog = {
-      bolt: bolt,
-    } %}
-    {{ console_log(toLog) }}
+    {# Showing off global vars in Browsers Console #}
+    <script>console.log('Bolt Global Twig variable. In Twig, you can tap into the `bolt` global var to access all sorts of helpful information about the Bolt Design System, such as colors, spacing, and more. Most is exported from Sass; to add more, add this to any Sass file: `@include export-data("myVariables.bolt.json", $my-variables-in-a-sass-map);`, and then you can access it in Twig via `bolt.data.myVariables`. Here is all the data available to the current templates, including the `bolt` var:');</script>
+    {{ console_log(_context) }}
 
   </body>
 </html>
