@@ -24,7 +24,8 @@ before_script:
 - phpenv config-rm xdebug.ini
 
 install:
-- yarn install && npm run setup
+- yarn install
+- npm run setup
 
 script:
 - travis_wait npm run build && npm run deploy
