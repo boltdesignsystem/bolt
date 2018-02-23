@@ -1,7 +1,8 @@
-{% set exampleIcons = ["communications","energy","entertainment","financial","government","healthcare","insurance","life sciences","manufacturing","retail","transportation","co-browse","customer decision hub","customer service","field service","field service-gray","marketing","marketing-gray","sales automation","app-development","case-management","cloud","data-integrations","mobility","robo-auto","customer-onboarding","careers","industries","partners","product","training","vision","add-open","add-solid","arrow-left","asset-data","asset-infographic","asset-interactive","asset-link","asset-media","asset-podcast","asset-presentation","asset-text","asset-video","calendar","check","check-circle","check-solid","chevron-right","close","close-open","close-solid","copy-to-clipboard","download","email","exit full screen","external link","eye","eye-off","full screen","global","info-open","info-solid","lock","map-pin","map-pin-solid","menu","minus-open","minus-solid","more","pencil","podcast","print","refresh","search","share1","share2","unlock","upload","video","warning","watch"] %}
+{% set schema = get_data('@bolt-components-icon/icon.schema.yml') %}
 
+{# loop through icons referenced in schema #}
 <ul class="bolt-icon-list-demo">
-{% for name in exampleIcons %}
+{% for name in schema.properties.name.enum %}
   <li>
     {% include "@bolt-components-icon/icon.twig" with {
       name: name,

@@ -25,9 +25,9 @@ glob(`${rootDir}/src/svgs/**/*.svg`, (err, icons) => {
 
   icons.forEach((i) => {
     const svg = fs.readFileSync(i, 'utf-8');
-    
+
     svgo.optimize(svg, function (result) {
-      
+
       const optimizedSVG = result.data;
       let id = path.basename(i, '.svg');
       id = id.replace(' ', '-');
@@ -51,7 +51,7 @@ glob(`${rootDir}/src/svgs/**/*.svg`, (err, icons) => {
             $(el).attr(x, 'currentColor');
           }
         });
-        
+
 
         if (el.name === 'svg') {
           $(el).attr('otherProps', '...');
@@ -66,7 +66,7 @@ glob(`${rootDir}/src/svgs/**/*.svg`, (err, icons) => {
 
       });
 
-      
+
       const element = `
       // import { Preact, h } from '@bolt/core';
       const ${uppercamelcase(id)} = ({ color, size, ...otherProps }) => {

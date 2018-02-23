@@ -18,7 +18,7 @@ let index = 0;
 import metaStyles from './brightcove-meta.scss';
 
 @define
-class BrightcoveMeta extends withComponent(withPreact()) {
+class BrightcoveMeta extends withPreact(withComponent()) {
   static is = 'brightcove-meta';
 
   static props = {
@@ -50,7 +50,7 @@ class BrightcoveMeta extends withComponent(withPreact()) {
 
 
 @define
-class BrightcoveVideo extends withComponent(withPreact()) {
+class BrightcoveVideo extends withPreact(withComponent()) {
   static is = 'brightcove-player';
 
   static props = {

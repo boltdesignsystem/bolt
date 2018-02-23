@@ -10,3 +10,9 @@
     name: "search"
   }
 } only %}
+
+{% include "@bolt-components-headline/headline.twig" with {
+  text: "This headline is also a link, without an Icon",
+  url: "https://www.google.com",
+  icon: false
+} only %}

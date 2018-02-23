@@ -1,11 +1,14 @@
 // Export non-Bolt dependencies shared across virtually all components
-export { define, props, withComponent } from 'skatejs';
-export { h, render } from 'preact';
+export { define, props, withComponent, withUpdate } from 'skatejs';
+export { h } from 'preact';
 
 // Export Bolt utils
 export * from './utils/css';
+export { declarativeClickHandler } from './utils/declarative-click-handler';
 export * from './utils/environment';
-export { withPreact } from './utils/renderer-preact';
+
+export { withPreact } from './renderers/renderer-preact';
+export { withHyperHTML } from './renderers/renderer-hyperhtml';
 
 // Export Bolt data shared
 export * from './data/spacing-sizes';
@@ -22,4 +25,18 @@ export function findParentTag(el, tag) {
       return el;
   }
   return null;
+}
+
+export function sanitizeBoltClasses(elementToSanitize, prefixesToRemove = ['c-bolt-']) {
+  let prefixes = Array.from(prefixesToRemove);
+  // Remove any `c-bolt-` prefixed classes but leave the rest
+  let remainingClasses;
+
+  prefixes.forEach(function (prefix) {
+    remainingClasses = elementToSanitize.className.split(' ').filter(function (c) {
+      return c.lastIndexOf(prefix, 0) !== 0;
+    });
+  });
+
+  return remainingClasses.join(' ').trim();
 }

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 branch_name="$(git symbolic-ref HEAD 2>/dev/null)" ||
-branch_name="(unnamed branch)"     # detached HEAD
+branch_name="detached-HEAD"     # detached HEAD
 
 branch_name=${branch_name##refs/heads/}
 
@@ -11,7 +11,7 @@ if [[ $TRAVIS == 'true' ]]; then
   if [[ $TRAVIS_PULL_REQUEST == 'false' ]]; then
     branch_name=$TRAVIS_BRANCH;
   fi
-  deploy_message="Branch: \"$branch_name\" Commit: \"$TRAVIS_COMMIT_MESSAGE\" - \"$TRAVIS_COMMIT\""
+  deploy_message="Branch: $branch_name Commit: $TRAVIS_COMMIT"
 else
   netlifycli=`which netlifyctl`;
   deploy_message="Branch: $branch_name"
@@ -19,7 +19,7 @@ fi
 
 echo "On this git branch: $branch_name"
 
-cmd="$netlifycli deploy --site-id bolt-design-system.netlify.com --base-directory www --yes --message $deploy_message"
+cmd="$netlifycli deploy --site-id bolt-design-system.netlify.com --base-directory www --yes --message \"$deploy_message\""
 
 if [[ $branch_name != 'master' ]]; then
   echo 'Draft deploy'

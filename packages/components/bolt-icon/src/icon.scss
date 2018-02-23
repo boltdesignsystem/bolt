@@ -9,6 +9,8 @@ bolt-icon {
   // display: inline-flex;
   color: inherit;
   color: var(--bolt-color-icon, inherit);
+  width: 1em; // Default icon size if size prop not specified
+  height: 1em; // Default icon size if size prop not specified
 
   &:not(:resolved){
     padding-bottom: 100%; // Default square icons
@@ -112,5 +114,13 @@ bolt-icon[size='xlarge'],
   // background-color: $brand-color;
   --bolt-color-icon: bolt-text-contrast($brand-color);
   --bolt-theme-icon-background-color: $brand-color;
+  --bolt-theme-icon-background-opacity: 1;
+}
+
+.c-bolt-icon--blue {
+  $brand-color: bolt-color(blue);
+  color: $brand-color;
+  --bolt-color-icon: $brand-color;
+  --bolt-theme-icon-background-color: bolt-text-contrast($brand-color);
   --bolt-theme-icon-background-opacity: 1;
 }
