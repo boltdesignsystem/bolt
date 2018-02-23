@@ -196,7 +196,6 @@ $storefront-sidebar-width: 320px;
   > bolt-band:first-child {
     margin-bottom: 0;
     padding-bottom: 0;
-    padding-top: 0;
   }
 
   .storefront-docs__content--has-sidebar & {
@@ -275,4 +274,8 @@ pre > code {
   @include respond-to(small) {
     display: block !important;
   }
+}
+
+.u-bolt-padding-top-none {
+  padding-top: 0 !important;
 }
