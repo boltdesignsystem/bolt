@@ -90,7 +90,7 @@
 
     {% endfor %}
     {% set srcset = srcset|trim(', ') %}
-  {% elseif ext == "svg" and lazyload == true %}
+  {% elseif ext == "svg" %}
     {% set srcset = src %}
   {% endif %}
 
@@ -113,19 +113,14 @@
 {% endif %}
 
 
-{# fallback if image not found #}
-{% if srcset == "" %}
-  {% set imageAttributes = imageAttributes.removeAttribute("srcset").setAttribute("src", src) %}
+{% if lazyload %}
+  {% set imageAttributes = imageAttributes
+    .setAttribute("data-srcset", srcset)
+    .setAttribute("srcset", placeholderDummySrc)
+    .setAttribute("data-sizes", sizes)
+  %}
 {% else %}
-  {% if lazyload %}
-    {% set imageAttributes = imageAttributes
-      .setAttribute("data-srcset", srcset)
-      .setAttribute("srcset", placeholderDummySrc)
-      .setAttribute("data-sizes", sizes)
-    %}
-  {% else %}
-    {% set imageAttributes = imageAttributes.setAttribute("srcset", srcset) %}
-  {% endif %}
+  {% set imageAttributes = imageAttributes.setAttribute("srcset", srcset) %}
 {% endif %}
 
 {% set placeholderAttributes = create_attribute(placeholderAttributes | default({})).addClass("c-bolt-image__placeholder") %}
@@ -138,12 +133,9 @@
 
 {% set imageTag %}
   <img {{ imageAttributes }}>
-
-  {% if lazyload %}
-    <noscript>
-      <img {{ imageAttributes.removeClass(["js-lazyload", "is-lazyloading"]).setAttribute("srcset", srcset) }}>
-    </noscript>
-  {% endif %}
+  <noscript>
+    <img {{ imageAttributes.removeClass(["js-lazyload", "is-lazyloading"]).setAttribute("srcset", srcset) }}>
+  </noscript>
 {% endset %}
 
 {% set imagePlaceholder %}
