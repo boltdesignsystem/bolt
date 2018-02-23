@@ -66,6 +66,9 @@
       {% set isActive = currentUrl == page.url %}
       {% set isActivePath = page.url starts with currentSection %}
       <a href="/{{ page.url }}" class="{% if isActive %}active{% endif %} {% if isActivePath %}active-path{% endif %}">{{ page.meta.title }}</a>
+      {% if loop.first %}
+        <a href="/pattern-lab" target="_blank">Pattern Lab</a>
+      {% endif %}
     {% endfor %}
 
     <a href="#menu" class="storefront-docs__hamburger u-bolt-hide@medium">
