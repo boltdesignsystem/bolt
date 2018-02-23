@@ -70,9 +70,12 @@
           url: "javascript:",
           contentItems: [
             {
-              pattern: "image",
-              src: "/images/sample/anthem-video.jpg",
-              alt: "Anthem Video"
+              pattern: "video",
+              videoId: "5609376179001",
+              accountId: "1900410236",
+              playerId: "r1CAdLzTW",
+              showMeta: true,
+              showMetaTitle: false
             },
             {
               pattern: "eyebrow",
@@ -110,15 +113,10 @@
         {% include "@bolt/card.twig" with {
           contentItems: [
             {
-              pattern: "image",
-              src: "/images/sample/forrester-preview.jpg",
-              alt: "2017 Forrester Wave Report"
-            },
-            {
               pattern: "headline",
               tag: "h3",
               size: "large",
-              text: "2017 Forrester Wave Report"
+              text: "Card without an image"
             },
             {
               pattern: "text",
@@ -249,7 +247,9 @@
               style: "text",
               width: "full",
               itemAlignment: "start",
-              text: "Get the report"
+              text: "Read the report",
+              external: true,
+              url: "https://www.google.com"
             }
           ]
         } only %}
