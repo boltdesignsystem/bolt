@@ -21,12 +21,13 @@ const backgroundStyles = [
 ];
 
 const colors = [
-  'teal'
+  'teal',
+  'blue'
 ]
 
 
 @define
-export class BoltIcon extends withComponent(withPreact()) {
+export class BoltIcon extends withPreact(withComponent()) {
   static is = 'bolt-icon';
 
   static props = {
