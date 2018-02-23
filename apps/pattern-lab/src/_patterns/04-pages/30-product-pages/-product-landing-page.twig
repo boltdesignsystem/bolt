@@ -1,7 +1,7 @@
 {% extends "@bolt/default-template.twig" %}
 
 {% block global_header %}
-  {% include "@bolt/page-header.twig" %}
+  {% include "@bolt/_page-header.twig" %}
 {% endblock %}
 
 {% block main_content %}
@@ -20,7 +20,7 @@
       },
       contentItems: [{
         pattern: "image",
-        src: "../../images/content/backgrounds/background-tall-3.jpg",
+        src: "/assets/images/content/backgrounds/background-short-1.jpg",
         lazyload: false
       }]
     },
@@ -28,7 +28,7 @@
       headlines: [
         {
           type: "headline",
-          text: "CRM Applications",
+          text: "Products",
           size: "xsmall",
           tag: "span",
           url: "pega.com",
@@ -39,9 +39,15 @@
         },
         {
           type: "headline",
-          text: "Dynamically recommend next-best-actions for your customers.",
+          text: "CRM Applications for Real-Time Engagement",
           size: "xxxlarge",
           tag: "h1"
+        },
+        {
+          type: "subheadline",
+          text: "Pega’s AI powered CRM Suite is transforming the way enterprises drive greater engagement across the entire customer journey.",
+          size: "xlarge",
+          tag: "p"
         }
       ],
       buttons: [
@@ -52,9 +58,7 @@
         }
       ]
     }
-  } only %}
-
-  {% endembed %}
+  } only %}{% endembed %}
 
 
 
@@ -80,14 +84,7 @@
 
 
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-        {% include "@bolt/headline.twig" with {
-          text: "Get to know Pega Marketing",
-          size: "xlarge",
-          tag: "h2"
-        } only %}
-
         {% include "@bolt/ui-list.twig" with {
-          size: "small",
           contentItems : [
             {
               contentItems: [
@@ -98,7 +95,7 @@
                   figure: {
                     "icon": {
                       name: "app-development",
-                      size: "large",
+                      size: "xlarge",
                       background: "circle",
                       color: "teal"
                     }
@@ -106,13 +103,17 @@
                   items: [
                     {
                       "pattern": "headline",
-                      "size": "small",
-                      "text": "Download the data Sheet",
+                      "size": "large",
+                      "text": "Marketing",
                       "url": "https://www.google.com",
                       "icon": {
                         name: "chevron-right"
-                      },
-                      tag: "h3"
+                      }
+                    },
+                    {
+                      "pattern": "text",
+                      "text": "Engage customers with real-time 1:1 marketing on any channel.",
+                      "size": "medium",
                     }
                   ]
                 }
@@ -127,7 +128,7 @@
                   figure: {
                     "icon": {
                       name: "sales-automation",
-                      size: "large",
+                      size: "xlarge",
                       background: "circle",
                       color: "teal"
                     }
@@ -135,12 +136,17 @@
                   items: [
                     {
                       "pattern": "headline",
-                      "size": "small",
-                      "text": "Download the Overview document",
+                      "size": "large",
+                      "text": "Sales Automation",
                       "url": "https://www.google.com",
                       "icon": {
                         name: "chevron-right"
                       }
+                    },
+                    {
+                      "pattern": "text",
+                      "text": "Intelligently guide sales professionals and automate the sales process.",
+                      "size": "medium",
                     }
                   ]
                 }
@@ -155,7 +161,7 @@
                   figure: {
                     "icon": {
                       name: "customer-service",
-                      size: "large",
+                      size: "xlarge",
                       background: "circle",
                       color: "teal"
                     }
@@ -163,12 +169,17 @@
                   items: [
                     {
                       "pattern": "headline",
-                      "size": "small",
-                      "text": "View Pricing for Pega Marketing",
+                      "size": "large",
+                      "text": "Customer Service",
                       "url": "https://www.google.com",
                       "icon": {
                         name: "chevron-right"
                       }
+                    },
+                    {
+                      "pattern": "text",
+                      "text": "Serve, satisfy and engage every customer with digital customer service.",
+                      "size": "medium",
                     }
                   ]
                 }
@@ -197,220 +208,45 @@
 
     {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
 
+      {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
+        {% include "@bolt/image.twig" with {
+          src: "../../images/content/charts/decision-hub-chart.png",
+          lazyload: false
+        } only %}
+      {% endcell %}
+
+
       {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
         {% include "@bolt/headline.twig" with {
-          text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
-          weight: "regular",
-          size: "xxlarge",
+          text: "Customer Decision Hub",
+          size: "xxxlarge",
           tag: "h2"
         } only %}
-
-        {% include "@bolt/text.twig" with {
-          text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
-          size: "medium"
-        } only %}
-
-        {% include "@bolt/button-group.twig" with {
-          "buttons": [
-            {
-              "text": "Call to action",
-              "style": "primary"
-            },
-            {
-              "text": "Call to action",
-              "style": "secondary"
-            }
-          ]
-        } only %}
-      {% endcell %}
-
-      {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
-        {% include "@bolt/device-viewer.twig" with {
-          device: "ipad",
-          orientation: "landscape",
-          color: "black",
-          image: {
-            src: "../../images/content/screenshots/device-screenshot--tablet.jpg",
-            lazyload: false
-          }
-        } only %}
-      {% endcell %}
-
-    {% endgrid %}
-
-
-  {% endblock %}
-{% endembed %}
-
-
-
-
-{% embed "@bolt/band.twig" with {
-  size: "medium",
-  theme: "light",
-  fullBleed: true
-} only %}
-  {% block band_content %}
-
-    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
-
-      {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
-        {% include "@bolt/device-viewer.twig" with {
-          device: "ipad",
-          orientation: "portrait",
-          color: "black",
-          image: {
-            src: "../../images/content/screenshots/device-screenshot--tablet-portrait.jpg",
-            lazyload: false
-          }
-        } only %}
-      {% endcell %}
-
-
-      {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
         {% include "@bolt/subheadline.twig" with {
-          text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
-          size: "xxlarge",
-          tag: "span"
+          text: "Infuse real-time AI into every customer engagement",
+          size: "xlarge",
+          tag: "p"
         } only %}
-
         {% include "@bolt/text.twig" with {
-          text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
+          text: "There’s nothing artificial about Pega’s proven AI. This always-on brain gets results. Using pragmatic artificial intelligence and decision management, you can improve response rates by up to 6X, NPS by 30 points, and get ROI as high as 500%.",
           size: "medium"
         } only %}
-
-        {% include "@bolt/button-group.twig" with {
-          "buttons": [
-            {
-              "text": "Call to action",
-              "style": "primary"
-            },
-            {
-              "text": "Call to action",
-              "style": "secondary"
-            }
-          ]
+        {% include "@bolt/button.twig" with {
+          text: "Call to Action",
+          url: "www.google.com"
         } only %}
       {% endcell %}
 
     {% endgrid %}
 
 
-  {% endblock %}
-{% endembed %}
-
-
-
-{% embed "@bolt/band.twig" with {
-  size: "medium",
-  theme: "xlight",
-  fullBleed: true
-} only %}
-  {% block band_content %}
-
-    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
-
-      {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
-        {% include "@bolt/subheadline.twig" with {
-          text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
-          size: "xxlarge",
-          tag: "span"
-        } only %}
-
-        {% include "@bolt/text.twig" with {
-          text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
-          size: "medium"
-        } only %}
-
-        {% include "@bolt/button-group.twig" with {
-          "buttons": [
-            {
-              "text": "Call to action",
-              "style": "primary"
-            },
-            {
-              "text": "Call to action",
-              "style": "secondary"
-            }
-          ]
-        } only %}
-      {% endcell %}
-
-      {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
-        {% include "@bolt/device-viewer.twig" with {
-          device: "iphone8",
-          orientation: "portrait",
-          color: "black",
-          image: {
-            src: "../../images/content/screenshots/device-screenshot--phone.jpg",
-            lazyload: false
-          }
-        } only %}
-      {% endcell %}
-
-    {% endgrid %}
-
-
-  {% endblock %}
-{% endembed %}
-
-
-
-
-{% embed "@bolt/band.twig" with {
-  size: "medium",
-  theme: "light",
-  fullBleed: true
-} only %}
-  {% block band_content %}
-
-    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix o-bolt-grid--center" %}
-
-      {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
-        {% include "@bolt/subheadline.twig" with {
-          text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
-          size: "xxlarge",
-          tag: "span"
-        } only %}
-
-        {% include "@bolt/text.twig" with {
-          text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
-          size: "medium"
-        } only %}
-
-        {% include "@bolt/button-group.twig" with {
-          "buttons": [
-            {
-              "text": "Call to action",
-              "style": "primary"
-            },
-            {
-              "text": "Call to action",
-              "style": "secondary"
-            }
-          ]
-        } only %}
-      {% endcell %}
-
-      {% cell "u-bolt-width-1/1" %}
-        {% include "@bolt/device-viewer.twig" with {
-          device: "macbook",
-          orientation: "landscape",
-          color: "black",
-          image: {
-            src: "../../images/content/screenshots/device-screenshot--desktop.jpg",
-            lazyload: false
-          }
-        } only %}
-      {% endcell %}
-    {% endgrid %}
   {% endblock %}
 {% endembed %}
 
 
 
 {% embed "@bolt/band--collection.twig" with {
-  "theme": "xlight",
+  "theme": "light",
   "size": "medium",
   "contentItems": [
     {
@@ -425,7 +261,7 @@
         },
         "logo": {
           src: "../../images/content/logos/logo-paypal.svg",
-          "lazyload": false
+          lazyload: false
         },
         "headlines": [
           {

@@ -1,11 +1,19 @@
 {% set colorName = color_swatch.colorName %}
 {% set palette = color_swatch.palette %}
 
-<div class="o-bolt-grid__cell u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium u-bolt-width-1/4@large">
+{% cell with {
+  attributes: {
+    class: [
+      "u-bolt-width-1/1",
+      "u-bolt-width-1/2@small",
+      "u-bolt-width-1/3@medium",
+      "u-bolt-width-1/4@large"
+    ]
+  }
+} %}
 
   <bolt-swatch class="c-bolt-swatch">
-    <!-- <div class="c-bolt-swatch__inner"> -->
-      {% for tone, colorValue in palette %}
+    {% for tone, colorValue in palette %}
 
       {% if tone == "initial" or tone == "default" or tone == "base" %}
         {% set isLargeColor = "c-bolt-swatch__color--large" %}
@@ -45,6 +53,6 @@
 
         </bolt-swatch-color>
       {% endfor %}
-    <!-- </div> -->
   </bolt-swatch>
-</div>
+
+{% endcell %}
