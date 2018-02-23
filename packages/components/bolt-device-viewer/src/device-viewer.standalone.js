@@ -34,7 +34,7 @@ const animationEvent = whichAnimationEvent();
 
 
 @define
-class BoltDeviceViewer extends withComponent(withPreact()) {
+class BoltDeviceViewer extends withPreact(withComponent()) {
   static is = 'bolt-device-viewer';
 
   static props = {
@@ -83,13 +83,17 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
 
 
 @define
-class BoltImageZoom extends withComponent(withPreact()) {
+class BoltImageZoom extends withPreact(withComponent()) {
   static is = 'bolt-image-zoom';
 
   static props = {
     mangify: props.boolean
   }
 
+  constructor(element) {
+    super(element);
+    this.useShadow = hasNativeShadowDomSupport;
+  }
 
   /**
      * `screenElem` returns the screen element inside the device viewer
@@ -134,21 +138,7 @@ class BoltImageZoom extends withComponent(withPreact()) {
     }
   }
 
-  renderer(root, html) {
-    if (this.useShadow) {
-      super.renderer(root, html);
-    } else {
-      root.innerHTML = this.innerHTML;
-    }
-  }
 
-  render() {
-    if (this.useShadow) {
-      return (
-        <slot />
-      )
-    }
-  }
 
   connectedCallback() {
     const driftZoomImageUrl = this.querySelector('img').getAttribute('data-zoom');

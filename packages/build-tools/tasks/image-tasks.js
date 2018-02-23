@@ -15,7 +15,7 @@ const sharp = require('sharp');
 const config = require('../utils/config-store').getConfig();
 const { flattenArray } = require('../utils/general');
 
-// @todo Consider moving this to a place to share
+// @todo Consider moving this to a place to share - also duplicated in `@bolt/core/images-sizes.js`
 const boltImageSizes = [
   50,
   100,

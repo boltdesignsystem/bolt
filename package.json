@@ -20,24 +20,24 @@
     "pattern lab"
   ],
   "scripts": {
-    "start": "echo 'To start up a server and watches, head into any of the folders in the apps/ directory, then run npm start there.' && echo 'If you want to start Pattern Lab, run this:' && echo '' && echo 'cd apps/pattern-lab--workshop' && echo 'npm start'",
+    "start": "echo 'To start up a server and watches, head into any of the folders in the apps/ directory, then run npm start there.' && echo 'If you want to start Pattern Lab, run this:' && echo '' && echo 'cd apps/pattern-lab' && echo 'npm start'",
     "setup": "npm run bootstrap && npm run composer",
 
-    "build:pl": "cd apps/pattern-lab--workshop && npm run build:prod",
-    "Xbuild:bolt-site": "cd apps/bolt-site--storefront && npm run build:prod",
+    "build:pl": "cd apps/pattern-lab && npm run build:prod",
+    "build:bolt-site": "cd apps/bolt-site && npm run build:prod",
     "build:example-drupal-theme": "cd apps/example_drupal_theme && npm run build:prod",
     "build:icons": "lerna exec --scope @bolt/components-icons -- npm run build",
     "build": "npm-run-all --serial build:*",
 
-    "composer:pl": "cd apps/pattern-lab--workshop && rm -rf vendor composer.lock && composer install --no-interaction",
-    "Xcomposer:bolt-site": "cd apps/bolt-site--storefront && rm -rf vendor composer.lock && composer install --no-interaction",
+    "composer:pl": "cd apps/pattern-lab && rm -rf vendor composer.lock && composer install --no-interaction",
+    "composer:bolt-site": "cd apps/bolt-site && rm -rf vendor composer.lock && composer install --no-interaction",
     "composer": "npm-run-all --serial composer:*",
 
     "bootstrap": "lerna bootstrap --reject-cycles",
     "postbootstrap": "npm run build:icons && node scripts/monorepo-tests.js",
     "predeploy": "npm run build",
     "deploy": "./scripts/deploy.sh",
-    "clean:git": "git clean -xdf",
+    "clean:git": "git clean -xdf && rm -rf apps/**/vendor apps/**/node_modules && find . -empty -type d -delete",
     "clean:lerna": "lerna clean -Y",
     "clean": "npm-run-all --parallel clean:*",
     "prepublishOnly": "npm run build",
@@ -67,7 +67,6 @@
   "devDependencies": {
     "husky": "^0.14.3",
     "lerna": "^2.5.1",
-    "netlify-cli": "^1.2.2",
     "npm-run-all": "^4.1.2",
     "web-component-tester": "^6.3.0"
   },

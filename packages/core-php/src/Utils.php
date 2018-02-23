@@ -46,7 +46,7 @@ class Utils {
    */
   public static function gitHubUrl($filePath) {
     $relFilePath = Path::makeRelative($filePath, self::repoRoot);
-    $repoBranchName = 'epic/refactor'; // @todo Change branch name to `master`
+    $repoBranchName = 'master';
     $githubPath = Path::join('https://github.com/bolt-design-system/bolt/blob/', $repoBranchName, $relFilePath);
     return $githubPath;
   }
