@@ -28,11 +28,14 @@ else
   echo 'Main deploy, not a draft'
 fi
 
+echo 'Running this command (not showing NETLIFY_TOKEN though):'
+echo $cmd
+echo 'Begin deploying to Netlify..'
+
 if [[ $NETLIFY_TOKEN ]]; then
   cmd="$cmd --access-token $NETLIFY_TOKEN"
 fi
 
-echo 'Begin deploying to Netlify..'
 $cmd
 
 # Hit the Netlify API to get all deploys, then pipe it into `node` so I can just show the first object in that array.
