@@ -14,9 +14,9 @@ $choices-bg-color-disabled: $bolt-input-background-color--disabled;
 $choices-bg-color-dropdown: $bolt-input-background-color;
 $choices-text-color: $bolt-input-text-color;
 $choices-keyline-color: $bolt-input-border-color;
-$choices-primary-color: #00BCD4 !default;
+$choices-primary-color: bolt-color(indigo, light);
 $choices-disabled-color: $bolt-input-text-color--disabled;
-$choices-highlight-color: $choices-primary-color !default;
+$choices-highlight-color: $choices-primary-color;
 $choices-button-icon-path: '../../icons' !default;
 $choices-button-dimension: 8px !default;
 $choices-button-offset: 8px !default;
@@ -145,6 +145,11 @@ $choices-transition: $bolt-input-transition;
 
   .#{$choices-selector}:hover &, .is-focused &, .is-open & {
     box-shadow: $choices-box-shadow;
+  }
+  // TODO: [Mai] .choices__inner needs the .is-filled class if a choice has been selected.
+  .is-filled &, .is-focused &, .is-open & {
+    padding-top: calc(#{bolt-v-spacing(small)} + 0.55rem);
+    padding-bottom: calc(#{bolt-v-spacing(small)} - 0.55rem);
   }
   .is-open & {
     border-radius: $choices-border-radius $choices-border-radius 0 0;
