@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 const url = require('url');
-const path = require('path');
 const querystring = require('querystring');
 const fetch = require("node-fetch");
 const netlifyBase = 'https://api.netlify.com/api/v1';
-const netlifySiteId = 'sandbox-netlify.netlify.com';
+const netlifySiteId = 'bolt-design-system.netlify.com';
 const netlifyDeploysEndpoint = `${netlifyBase}/sites/${netlifySiteId}/deploys`;
 
 const { NETLIFY_TOKEN, GITHUB_TOKEN, TRAVIS_PULL_REQUEST, TRAVIS_REPO_SLUG} = process.env;
