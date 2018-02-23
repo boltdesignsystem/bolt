@@ -10,7 +10,8 @@ import {
 } from '@bolt/core';
 
 import styles from './button.scss';
-import visuallyhiddenUtils from '@bolt/utilities-visuallyhidden/_utilities.visuallyhidden.scss';
+// @todo Salem, since this imports something that imports '@bolt/core', please make sure this doesn't add a huge amount in the wrong place - Evan
+import visuallyhiddenUtils from '@bolt/global/styles/07-utilities/_utilities-visuallyhidden.scss';
 
 
 @define
