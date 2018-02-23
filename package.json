@@ -21,12 +21,13 @@
   ],
   "scripts": {
     "start": "echo 'To start up a server and watches, head into any of the folders in the apps/ directory, then run npm start there.' && echo 'If you want to start Pattern Lab, run this:' && echo '' && echo 'cd apps/pattern-lab' && echo 'npm start'",
-    "setup": "npm run bootstrap && npm run composer",
+    "setup": "npm run bootstrap && npm run composer:bolt-site",
 
     "build:pl": "cd apps/pattern-lab && npm run build:prod",
     "build:bolt-site": "cd apps/bolt-site && npm run build:prod",
     "build:example-drupal-theme": "cd apps/example_drupal_theme && npm run build:prod",
-    "build": "npm-run-all --serial build:*",
+    "Xbuild": "npm-run-all --serial build:*",
+    "build": "npm run build:bolt-site",
 
     "composer:pl": "cd apps/pattern-lab && rm -rf vendor composer.lock && composer install --no-interaction",
     "composer:bolt-site": "cd apps/bolt-site && rm -rf vendor composer.lock && composer install --no-interaction",
