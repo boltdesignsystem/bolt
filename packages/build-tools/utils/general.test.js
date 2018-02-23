@@ -36,5 +36,7 @@ test('Concat 2 dimensional arrays', () => {
 
 test('Remove duplicate entries from an array', () => {
   const test = general.uniqueArray(testNonUniqueArray);
+  const expectedResults = ['one', 'two', 'three'];
 
+  expect(test).toEqual(expectedResults);
 });
