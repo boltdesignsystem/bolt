@@ -36,7 +36,7 @@
     "postbootstrap": "node scripts/monorepo-tests.js",
     "predeploy": "npm run build",
     "deploy": "./scripts/deploy.sh",
-    "clean:git": "git clean -xdf",
+    "clean:git": "git clean -xdf && rm -rf apps/**/vendor apps/**/node_modules && find . -empty -type d -delete",
     "clean:lerna": "lerna clean -Y",
     "clean": "npm-run-all --parallel clean:*",
     "prepublishOnly": "npm run build",
