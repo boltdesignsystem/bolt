@@ -27,7 +27,9 @@ async function mkDirs() {
 async function clean(dirs) {
   const spinner = ora(chalk.blue('Cleaning files...')).start();
   const startTime = timer.start();
-  await del(dirs);
+  await del(dirs, {
+    force: true, // needed if you want to delete directories outside CWD
+  });
   spinner.succeed(chalk.green(`Cleaned files in ${timer.end(startTime)}`));
   return true;
 }

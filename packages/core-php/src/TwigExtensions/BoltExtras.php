@@ -18,6 +18,7 @@ class BoltExtras extends Twig_Extension implements Twig_ExtensionInterface {
       Bolt\TwigFunctions::link(),
       Bolt\TwigFunctions::getSpacingScaleSequence(),
       Bolt\TwigFunctions::github_url(),
+      Bolt\TwigFunctions::inlineFile()
     ];
   }
 

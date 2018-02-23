@@ -104,35 +104,38 @@ function createConfig(config) {
   // CSS Classes like `.u-hide\@large` were getting compiled like `.u-hide-large`.
   // Due to this bug: https://github.com/webpack-contrib/css-loader/issues/578
   // Workaround: using the `string-replace-loader` to change `\@` to our `workaroundAtValue` before passing to `css-loader`, then turning it back afterwards.
-  // const workaroundAtValue = '-theAtSymbol-';
+  const workaroundAtValue = '-theAtSymbol-';
 
   const scssLoaders = [
-//     {
-//       loader: 'string-replace-loader',
-//       query: {
-//         search: workaroundAtValue,
-//         replace: String.raw`\\@`, // needed to ensure `\` comes through
-//       },
-//     },
+    {
+      loader: 'string-replace-loader',
+      query: {
+        search: workaroundAtValue,
+        replace: String.raw`\\@`, // needed to ensure `\` comes through
+        flags: 'g'
+      },
+    },
     {
       loader: 'css-loader',
       options: {
         sourceMap: true,
-        modules: false,
-        importLoaders: true,
+        modules: false, // needed for JS referencing classNames directly, such as critical fonts
+        importLoaders: 2,
         localIdentName: '[local]',
       }
     },
-//     {
-//       loader: 'string-replace-loader',
-//       query: {
-//         search: '\\@',
-//         replace: workaroundAtValue,
-//       },
-//     },
+    {
+      loader: 'string-replace-loader',
+      query: {
+        search: /\\@/,
+        replace: workaroundAtValue,
+        flags: 'g'
+      },
+    },
     {
       loader: "postcss-loader",
       options: {
+        sourceMap: true,
         plugins: [
           postcssDiscardDuplicates,
           autoprefixer,
@@ -144,14 +147,18 @@ function createConfig(config) {
       options: {
         skipWarn: true,
         compatibility: "ie9",
-        level: config.prod ? 2 : 0,
+        level: config.prod ? 1 : 0,
         inline: ["remote"],
         format: 'beautify',
       }
     },
     {
+      loader: 'resolve-url-loader'
+    },
+    {
       loader: "sass-loader",
       options: {
+        sourceMap: true,
         importer: [
           sassImportGlobbing,
           npmSass.importer,
@@ -210,6 +217,13 @@ function createConfig(config) {
             }
           }
         },
+        {
+          test: /\.(woff|woff2)$/,
+          loader: "file-loader",
+          options: {
+            name: 'fonts/[name].[ext]',
+          },
+        }
       ],
     },
     plugins: [
@@ -264,6 +278,9 @@ function createConfig(config) {
       sourceMap: true,
       parallel: true,
     }));
+
+    // https://webpack.js.org/plugins/module-concatenation-plugin/
+    webpackConfig.plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
 
     // Optimize CSS - https://github.com/NMFR/optimize-css-assets-webpack-plugin
     webpackConfig.plugins.push(new OptimizeCssAssetsPlugin({

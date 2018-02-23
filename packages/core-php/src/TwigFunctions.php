@@ -6,6 +6,10 @@ use Bolt;
 use \Twig_SimpleFunction;
 use \Drupal\Core\Template\Attribute;
 use \BasaltInc\TwigTools;
+use \Webmozart\PathUtil\Path;
+
+// https://github.com/Shudrum/ArrayFinder
+use \Shudrum\Component\ArrayFinder\ArrayFinder;
 
 class TwigFunctions {
 
@@ -16,6 +20,33 @@ class TwigFunctions {
       $scaleValues = array_values($data);
       sort($scaleValues);
       return $scaleValues;
+    }, [
+      'needs_context' => true,
+    ]);
+  }
+
+
+  public static function inlineFile() {
+    return new Twig_SimpleFunction('inline', function($context, $filename) {
+      if (!$filename){
+        return '';
+      }
+
+      $context = new ArrayFinder($context);
+      $buildDir = $context->get('bolt.data.config.buildDir');
+
+      if ($buildDir) {
+        $fullPath = Path::join($buildDir, $filename);
+
+        if (file_exists($fullPath)){
+          return file_get_contents($fullPath);
+        } else {
+          throw new \Exception('Warning: the file ' . $fullPath . ' trying to be inlined doesn\'t seem to exist...');
+        }
+      } else {
+        // throw error saying `bolt.data` isn't set up right
+        throw new \Exception('Warning: the Bolt Build directory, `' . $buildDir . '` , appears to be missing. Is your `.boltrc` config set up properly?');
+      }
     }, [
       'needs_context' => true,
     ]);
