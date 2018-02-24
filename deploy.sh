@@ -46,3 +46,4 @@ $cmd | grep -v "Uploading objects" | grep -v "Counting objects"
 curl --silent  \
      -H "Authorization: Bearer $NETLIFY_TOKEN" \
      https://api.netlify.com/api/v1/sites/bolt.netlify.com/deploys | node <<< "var o = $(cat); console.log(JSON.stringify(o[0], null, 4));"
+
