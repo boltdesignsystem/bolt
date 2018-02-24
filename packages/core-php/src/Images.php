@@ -2,8 +2,10 @@
 
 namespace Bolt;
 
-use Gregwar\Image\Image;
-use Gregwar\Image\GarbageCollect;
+// Evan @todo: help Salem get this autoloaded properly
+require_once __DIR__ . '../../vendor/autoload.php';
+use \Gregwar\Image\Image;
+use \Gregwar\Image\GarbageCollect;
 use ColorThief\ColorThief;
 use PHPExif\Exif;
 use PHPExif\Reader\Reader as ExifReader;
