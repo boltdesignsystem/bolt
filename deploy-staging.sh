@@ -4,7 +4,7 @@ branch_name="(unnamed branch)"     # detached HEAD
 
 branch_name=${branch_name##refs/heads/}
 
-cmd="netlify deploy --site-id bolt-design-system.com --path dist --draft"
+cmd="netlify deploy --site-id bolt.netlify.com --path dist --draft"
 
 # if [[ $branch_name != 'release/0.x' ]]; then
 #   echo 'Draft deploy'
