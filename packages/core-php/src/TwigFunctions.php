@@ -70,32 +70,49 @@ class TwigFunctions {
 
   // Same overall idea as https://jmperezperez.com/medium-image-progressive-loading-placeholder/, we just started working on this a few years prior ^_^
   public static function base64() {
-    return new Twig_SimpleFunction('base64', function($relativeImagePath) {
-      return Images::generate_base64_image_placeholder($relativeImagePath);
-    });
+    return new Twig_SimpleFunction('base64', function(\Twig_Environment $env, $relativeImagePath) {
+      $boltData = Utils::getData($env);
+      $wwwDir = $boltData['config']['wwwDir'];
+      return Images::generate_base64_image_placeholder($relativeImagePath, $wwwDir);
+    }, [
+      'needs_environment' => true,
+    ]);
   }
 
 
   // Return the average color of the image path passed in
   public static function bgcolor() {
-    return new Twig_SimpleFunction('bgcolor', function($relativeImagePath) {
-      return Images::calculate_average_image_color($relativeImagePath);
-    });
+    return new Twig_SimpleFunction('bgcolor', function(\Twig_Environment $env, $relativeImagePath) {
+      $boltData = Utils::getData($env);
+      $wwwDir = $boltData['config']['wwwDir'];
+      return Images::calculate_average_image_color($relativeImagePath, $wwwDir);
+    }, [
+      'needs_environment' => true,
+    ]);
   }
 
   // Return the aspect ratio of the image passed in
   public static function ratio() {
-    return new Twig_SimpleFunction('ratio', function($relativeImagePath) {
-      return Images::calculate_image_aspect_ratio($relativeImagePath);
-    });
+    return new Twig_SimpleFunction('ratio', function(\Twig_Environment $env, $relativeImagePath, $heightOrWidthRatio = 'width') {
+      $boltData = Utils::getData($env);
+      $wwwDir = $boltData['config']['wwwDir'];
+      $value = Images::calculate_image_aspect_ratio($relativeImagePath, $heightOrWidthRatio, $wwwDir);
+      return $value;
+    }, [
+      'needs_environment' => true,
+    ]);
   }
 
 
   // Originally was required...? Keeping for now till full responsive images solution back up and running
   public static function imagesize() {
-    return new Twig_SimpleFunction('imagesize', function($relativeImagePath) {
-      return Images::get_image_dimensions($relativeImagePath);
-    });
+    return new Twig_SimpleFunction('imagesize', function(\Twig_Environment $env, $relativeImagePath) {
+      $boltData = Utils::getData($env);
+      $wwwDir = $boltData['config']['wwwDir'];
+      return Images::get_image_dimensions($relativeImagePath, $wwwDir);
+    }, [
+      'needs_environment' => true,
+    ]);
   }
 
 

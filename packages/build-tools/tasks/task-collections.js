@@ -38,7 +38,7 @@ async function clean() {
         dirs = [
           path.join(path.resolve(config.wwwDir), '**'),
           `!${path.resolve(config.wwwDir)}`,
-          `!${path.resolve(config.wwwDir, 'pattern-lab')}`,
+          `!${path.resolve(config.wwwDir, 'pattern-lab')}`, // @todo Remove hard-coded magic string of `pattern-lab` sub folder
           `!${path.join(path.resolve(config.wwwDir, 'pattern-lab'), '**')}`,
         ];
         break;
@@ -85,6 +85,7 @@ async function build() {
     if (!config.quick) {
       await webpackTasks.compile();
     }
+    await images();
     switch (config.env) {
       case 'pl':
         await manifest.writeTwigNamespaceFile(process.cwd(), config.extraTwigNamespaces);
@@ -95,7 +96,6 @@ async function build() {
         await extraTasks.static.compile();
         break;
     }
-    await images();
   } catch (error) {
     log.errorAndExit('Build failed', error);
   }

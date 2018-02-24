@@ -1,19 +1,31 @@
 
-{# 
+{#
   Bolt Image - Structure:
   - .c-bolt-image: uses the ratio object as a base if enabled
     - .c-bolt-image__img: lazyloaded img tag
     - .c-bolt-image__placeholder: lazyloader span while the img is lazyloaded.
 #}
 
+{% set srcset = srcset ? srcset : "" %}
 
 
-{% set srcset = srcset ?? "" %}
-{% set imageSizes = globalBoltImageSizes %}
+{# @todo DRY this #}
+{% set imageSizes = [
+  50, 100, 200, 320, 480, 640, 800, 1024, 1366, 1536, 1920, 2560, 2880
+] %}
 
 {% if placeholderImage is empty or placeholderColor is empty or srcset == "" %}
   {% set path = publicpath(src|split('.' ~ ext)|first) %}
 {% endif %}
+
+{% if path == "" and ('../' in src) %}
+  {% set path = src|replace({'../': ''}) %}
+  {% set path = '/' ~ path %}
+  {% set path = path|split('.' ~ ext)|first %}
+{% elseif path == "" and srcset == "" %}
+  {% set srcset = src %}
+{% endif %}
+
 
 {% if src %}
   {% set ext = src|split('.')|last %}
@@ -21,23 +33,27 @@
 
 {# smaller image src used for calculating color -- already resized for less of a perf hit #}
 {% if placeholderImage is empty or placeholderColor is empty %}
-  {% set sampleImageSrc = path ~ '-' ~ globalBoltImageSizes[0] ~ '.' ~ ext %}
+  {% if path %}
+    {% set sampleImageSrc = path ~ '-' ~ imageSizes[0] ~ '.' ~ ext %}
 
-  {% if placeholderImage is empty %}
-    {% set placeholderImage = base64(sampleImageSrc) %}
-  {% endif %}
 
-  {# only calculate a placeholder color if not using a placeholder image #}
-  {% if placeholderColor is empty %}
-    {% set placeholderColor = bgcolor(sampleImageSrc) %}
+    {% if placeholderImage is empty and ext != 'svg' %}
+      {% set placeholderImage = base64('../..' ~ sampleImageSrc) %}
+    {% endif %}
+
+    {# only calculate a placeholder color if not using a placeholder image #}
+    {% if placeholderColor is empty and ext != 'svg' %}
+      {% set placeholderColor = bgcolor('../..' ~ sampleImageSrc) %}
+    {% endif %}
   {% endif %}
 {% endif %}
 
-{% if height is empty %}
+{% if height is empty and height != false %}
   {% set height = ratio(src, 'height') %}
+
 {% endif %}
 
-{% if width is empty %}
+{% if width is empty and width != false %}
   {% set width = ratio(src, 'width') %}
 {% endif %}
 
@@ -49,6 +65,8 @@
 
 {# Get a whole number aspect ratio #}
 {% if width > 0 and height > 0 and ratio == true %}
+  {% set ratio = height / width * 100 ~ '%' %}
+{% endif %}
   {# {% set gcd %}
     {% include '@bolt/gcd.twig' with {
       a: width,
@@ -56,7 +74,7 @@
     } only %}
   {% endset %}
   {% set gcd = gcd | escape | raw | number_format %}
-  
+
   {% if gcd != 0 and height != 0 and width != 0 %}
     {% set imageHeightRatio = (height / gcd) %}
     {% set imageWidthRatio = (width / gcd) %}
@@ -65,9 +83,7 @@
     {% set imageWidthRatio = 1 %}
   {% endif %} #}
 
-  {% set ratio = height / width * 100 ~ '%' %}
 
-{% endif %}
 
 
 
@@ -77,6 +93,7 @@
 
   {% if srcset == "" and ext != "svg" %}
     {% for size in imageSizes if (size <= width) %}
+
       {% if size == width %}
         {% set srcset = srcset ~ '../..' ~ path ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}
         {% set zoomSource = path ~ '.' ~ ext %}
@@ -86,7 +103,7 @@
       {% endif %}
 
       {# store the current srcset path just in case this loop is our last -- loop.last var isn't available w/ conditions #}
-      
+
     {% endfor %}
     {% set srcset = srcset|trim(', ') %}
   {% elseif ext == "svg" %}
@@ -96,19 +113,17 @@
 {% set attributes = create_attribute(attributes | default({})).addClass('c-bolt-image') %}
 
 {% set imageAttributes = create_attribute(imageAttributes | default({})).addClass([
-    "c-bolt-image__img",
-    lazyload ? "js-lazyload" : "",
-    lazyload ? "is-lazyloading" : ""
-  ])
-  .setAttribute('alt', alt)
-%}
+  "c-bolt-image__img",
+  lazyload ? "js-lazyload" : "",
+  lazyload ? "is-lazyloading" : ""
+])
+  .setAttribute('alt', alt) %}
 
 
 
 {% if zoom %}
   {% set imageAttributes = imageAttributes
-    .setAttribute("data-zoom", zoomSource)
-  %}
+    .setAttribute("data-zoom", zoomSource) %}
 {% endif %}
 
 
@@ -116,18 +131,16 @@
   {% set imageAttributes = imageAttributes
     .setAttribute("data-srcset", srcset)
     .setAttribute("srcset", placeholderDummySrc)
-    .setAttribute("data-sizes", sizes)
-  %}
+    .setAttribute("data-sizes", sizes) %}
 {% else %}
   {% set imageAttributes = imageAttributes.setAttribute("srcset", srcset) %}
 {% endif %}
 
 {% set placeholderAttributes = create_attribute(placeholderAttributes | default({})).addClass("c-bolt-image__placeholder") %}
 {% set styles = placeholderAttributes.getAttribute('style') | split(' ') | merge([
-    placeholderColor ? "background-color: #{placeholderColor};" : "",
-    placeholderImage ? "background-image: url(#{placeholderImage});" : ""
-  ])
-%}
+  placeholderColor ? "background-color: #{placeholderColor};" : "",
+  placeholderImage ? "background-image: url(#{placeholderImage});" : ""
+]) %}
 {% set placeholderAttributes = placeholderAttributes.setAttribute('style', styles) %}
 
 {% set imageTag %}
