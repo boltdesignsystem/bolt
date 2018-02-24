@@ -9,9 +9,11 @@ if [[ $TRAVIS == 'true' ]]; then
   curl -L https://github.com/netlify/netlifyctl/releases/download/v0.3.2/netlifyctl-linux-amd64-0.3.2.tar.gz | tar zx
   netlifycli='./netlifyctl';
   if [[ $TRAVIS_PULL_REQUEST == 'false' ]]; then
-    branch_name=$TRAVIS_BRANCH;
+    branch_name=$TRAVIS_BRANCH
+  else
+    branch_name=$TRAVIS_PULL_REQUEST_BRANCH
   fi
-  deploy_message="Branch: $branch_name Commit: $TRAVIS_COMMIT"
+  deploy_message="Branch - $branch_name Commit - $TRAVIS_COMMIT"
 else
   netlifycli=`which netlifyctl`;
   deploy_message="Branch: $branch_name"
@@ -36,7 +38,8 @@ if [[ $NETLIFY_TOKEN ]]; then
   cmd="$cmd --access-token $NETLIFY_TOKEN"
 fi
 
-$cmd
+# The command outputs about 1200 lines with these two phrases; filtering them out for cleaner output
+$cmd | grep -v "Uploading objects" | grep -v "Counting objects"
 
 # Hit the Netlify API to get all deploys, then pipe it into `node` so I can just show the first object in that array.
 curl --silent  \
