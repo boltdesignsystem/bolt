@@ -13,15 +13,16 @@ if [[ $TRAVIS == 'true' ]]; then
   else
     branch_name=$TRAVIS_PULL_REQUEST_BRANCH
   fi
-  deploy_message="Branch - $branch_name Commit - $TRAVIS_COMMIT"
+  deploy_message="$branch_name $TRAVIS_COMMIT"
 else
   netlifycli=`which netlifyctl`;
-  deploy_message="Branch: $branch_name"
+  deploy_message="$branch_name"
 fi
 
 echo "On this git branch: $branch_name"
 
-cmd="$netlifycli deploy --site-id bolt-design-system.netlify.com --base-directory www --yes --message \"$deploy_message\""
+deploy_message=${deploy_message// /_} # Replaces all spaces with `_` - b/c dealing with quoting it properly sucks
+cmd="$netlifycli deploy --site-id bolt-design-system.netlify.com --base-directory www --yes --message $deploy_message"
 
 if [[ $branch_name != 'master' ]]; then
   echo 'Draft deploy'
