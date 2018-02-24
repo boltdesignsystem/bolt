@@ -48,12 +48,12 @@
   {% endif %}
 {% endif %}
 
-{% if height is empty %}
+{% if height is empty and height != false %}
   {% set height = ratio(src, 'height') %}
 
 {% endif %}
 
-{% if width is empty %}
+{% if width is empty and width != false %}
   {% set width = ratio(src, 'width') %}
 {% endif %}
 
