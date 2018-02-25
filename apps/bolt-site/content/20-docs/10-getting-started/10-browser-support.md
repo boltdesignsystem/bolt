@@ -60,4 +60,5 @@ With the help of these polyfills, Bolt's cross browser support of Web Components
 <small><sup>**</sup>Cross browser support of HTML Templates, Custom Elements, and Shadow DOM support is around 86.13%, 73.95%, and 74.22%, respectfully, as of late February, 2018. Bolt doesn't use or support the now defunct HTML Imports spec in lieu of the shift towards ES Modules / Imports.</small>
 
 ### Latest Browserslist Stats
-<iframe src="http://browserl.ist/?q=%3E+1%25+in+US%2C+ie+11%2C+last+3+Android+major+versions%2C+last+3+iOS+major+versions%2C+last+3+Chrome+major+versions%2C+last+3+Edge+major+versions%2C+last+3+Firefox+major+versions%2C+last+3+Safari+major+versions" frameborder="0" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups allow-forms" style="width: 100%; height: 2560px; max-height: 100%;" height="2560px"></iframe>
+
+<iframe src="//browserl.ist/?q=%3E+1%25+in+US%2C+ie+11%2C+last+3+Android+major+versions%2C+last+3+iOS+major+versions%2C+last+3+Chrome+major+versions%2C+last+3+Edge+major+versions%2C+last+3+Firefox+major+versions%2C+last+3+Safari+major+versions" frameborder="0" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups allow-forms" style="width: 100%; height: 2560px; max-height: 100%;" height="2560px"></iframe>
