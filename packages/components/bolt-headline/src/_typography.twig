@@ -59,7 +59,7 @@
   url ? baseClass ~ "--link" : ""
 ] %}
 
-{% if url and icon.name is null %}
+{% if url and icon != null and icon.name is not defined %}
   {% set icon = icon | default({}) | merge({
     name: "chevron-right"
   }) %}

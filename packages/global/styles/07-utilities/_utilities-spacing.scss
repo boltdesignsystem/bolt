@@ -35,6 +35,10 @@ $bolt-spacing-sizes: map-merge($bolt-spacing-sizes-extras, $bolt-spacing-sizes);
           $directionName: bolt-prefix-prop-name($direction);
           $propName: '-' + $prop;
 
+          @if ($size=='none' and $value == 0) {
+            $size: 0;
+          }
+
           // Ex. .u-bolt-margin-left-large@small
           // Ex. .u-bolt-margin-left-squish
           // Ex. .u-bolt-margin-right

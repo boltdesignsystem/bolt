@@ -4,6 +4,7 @@ import {
   define,
   props,
   withComponent,
+  withHyperHTML,
   withPreact,
   css,
   spacingSizes,
@@ -59,9 +60,12 @@ let gumshoeStateModule = (function () {
   return pub;
 }());
 
-// Behavior for `<bolt-nav-list>` parent container
-class BoltNavList extends withComponent(withPreact()) {
 
+@define
+export class BoltNavList extends withHyperHTML(withComponent()) {
+  static is = 'bolt-nav-list';
+
+  // Behavior for `<bolt-nav-list>` parent container
   static get observedAttributes() { return ['offset']; }
 
   constructor(element) {
@@ -75,18 +79,14 @@ class BoltNavList extends withComponent(withPreact()) {
   }
 
   render() {
-    if (hasNativeShadowDomSupport) {
-      return (
+    if (this.useShadow) {
+      return this.html`
         <slot />
-    )
-    }
-  }
-
-  renderer(root, html) {
-    if (hasNativeShadowDomSupport) {
-      super.renderer(root, html);
+      `
     } else {
-      root.innerHTML = this.innerHTML;
+      return this.html`
+         ${this.slots.default}
+      `
     }
   }
 
@@ -118,9 +118,9 @@ class BoltNavList extends withComponent(withPreact()) {
     const links = this._allLinks();
     links.forEach(link => {
       if (link !== activeLink) {
-      link.active = false
-    }
-  });
+        link.active = false
+      }
+    });
   }
 
   // flushCss() is used to make sure the previous CSS alterations are complete before continuing.
@@ -184,6 +184,7 @@ class BoltNavList extends withComponent(withPreact()) {
 
   // `<bolt-nav-link>` emits a custom event when the link is active
   connectedCallback() {
+    this._checkSlots();
     this._indicator = this.querySelector(indicatorElement);
     this.addEventListener('activateLink', this._onActivateLink);
     window.addEventListener('optimizedResize', this._onWindowResize);
@@ -209,13 +210,14 @@ class BoltNavList extends withComponent(withPreact()) {
     window.removeEventListener('optimizedResize', this._onWindowResize);
   }
 }
-customElements.define('bolt-nav-list', BoltNavList);
 
 
 
+@define
+export class BoltNavLink extends withHyperHTML(withComponent()) { // Behavior for `<bolt-nav-link>` children
 
-// Behavior for `<bolt-nav-link>` children
-class BoltNavLink extends withComponent(withPreact()) {
+  static is = 'bolt-nav-link';
+
   // The element reacts to changes to the `active` attribute.
   static get observedAttributes() {
     return ['active'];
@@ -278,23 +280,19 @@ class BoltNavLink extends withComponent(withPreact()) {
   }
 
   render() {
-    if (hasNativeShadowDomSupport) {
-      return (
+    if (this.useShadow) {
+      return this.html`
         <slot />
-    )
-    }
-  }
-
-
-  renderer(root, html) {
-    if (hasNativeShadowDomSupport) {
-      super.renderer(root, html);
+      `
     } else {
-      root.innerHTML = this.innerHTML;
+      return this.html`
+         ${this.slots.default}
+      `
     }
   }
 
   connectedCallback() {
+    this._checkSlots();
     this.addEventListener('click', this.onClick);
 
     // Set an initially active link if appropriate.
@@ -321,7 +319,6 @@ class BoltNavLink extends withComponent(withPreact()) {
     this.removeEventListener('click', this.onClick);
   }
 }
-customElements.define('bolt-nav-link', BoltNavLink);
 
 
 

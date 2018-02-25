@@ -1,0 +1,33 @@
+// Links
+.c-bolt-link {
+  @include bolt-button-reset;
+  display: inline-block;
+  display: inline-flex;
+  align-items: center; // So icons are vertically centered
+  text-decoration: underline;
+  transition: all $bolt-button-transition;
+}
+
+
+.c-bolt-link--headline {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  color: var(--bolt-theme-heading-link-default, --bolt-theme-text);
+}
+
+.c-bolt-link--headline:hover {
+  color: inherit;
+  text-decoration: underline;
+  color: var(--bolt-theme-heading-link-hover, --bolt-theme-text);
+}
+
+.c-bolt-link--headline:active {
+  color: inherit;
+  color: var(--bolt-theme-heading-link-active, --bolt-theme-text);
+}
+
+.c-bolt-link--headline:visited {
+  color: inherit;
+  color: var(--bolt-theme-heading-link-visited, --bolt-theme-text);
+}

@@ -1,0 +1,15 @@
+{{ 'A `<blockquote>` **with** a `<p>` tag inside:' | markdown }}
+<blockquote>
+  <p>{{ faker.paragraph() }}</p>
+</blockquote>
+
+{{ 'A `<blockquote>` **without** a `<p>` tag inside:' | markdown }}
+<blockquote>
+  {{ faker.paragraph() }}
+</blockquote>
+
+{{ 'A `<blockquote>` **with** a `<p>` tag inside, and a `<cite>`:' | markdown }}
+<blockquote>
+  <p>{{ faker.paragraph() }}</p>
+  <footer><cite><a href="https://en.wikipedia.org/wiki/Lorem_ipsum" target="_blank">By Cicero, circa 100 BC</a></cite></footer>
+</blockquote>

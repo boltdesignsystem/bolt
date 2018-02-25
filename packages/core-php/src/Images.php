@@ -2,8 +2,9 @@
 
 namespace Bolt;
 
-use Gregwar\Image\Image;
-use Gregwar\Image\GarbageCollect;
+// Evan @todo: help Salem get this autoloaded properly
+use \Gregwar\Image\Image;
+use \Gregwar\Image\GarbageCollect;
 use ColorThief\ColorThief;
 use PHPExif\Exif;
 use PHPExif\Reader\Reader as ExifReader;
@@ -45,8 +46,8 @@ class Images {
 
 
   // @todo: update to support publicDir via Bolt manifest data
-  public static function generate_base64_image_placeholder($relativeImagePath) {
-    $absoluteImagePath = Utils::get_absolute_path($relativeImagePath);
+  public static function generate_base64_image_placeholder($relativeImagePath, $wwwDir) {
+    $absoluteImagePath = Utils::get_absolute_path($relativeImagePath, $wwwDir);
 
     if(file_exists($absoluteImagePath)){
       $fileExt = Utils::get_file_ext($absoluteImagePath);
@@ -74,14 +75,14 @@ class Images {
 
 
   // @todo: update to support publicDir via Bolt manifest data
-  public static function calculate_average_image_color($relativeImagePath) {
+  public static function calculate_average_image_color($relativeImagePath, $wwwDir) {
     // If this isn't a production compile, let's not do this long very memory intensive process.
     if (getenv('NODE_ENV') !== 'production') {
       // @todo: update to point to Bolt color swatch value
       return 'hsl(233, 33%, 97%)'; // lightest gray from our colors to use as default when in dev mode
     }
 
-    $absoluteImagePath = Utils::get_absolute_path($relativeImagePath);
+    $absoluteImagePath = Utils::get_absolute_path($relativeImagePath, $wwwDir);
 
     if(file_exists($absoluteImagePath)){
       $fileExt = Utils::get_file_ext($absoluteImagePath);
@@ -101,8 +102,8 @@ class Images {
   }
 
 
-  public static function get_image_dimensions($relativeImagePath) {
-    $absoluteImagePath = Utils::get_absolute_path($relativeImagePath);
+  public static function get_image_dimensions($relativeImagePath, $wwwDir) {
+    $absoluteImagePath = Utils::get_absolute_path($relativeImagePath, $wwwDir);
 
     if (file_exists($absoluteImagePath)){
       $size = getimagesize($absoluteImagePath);
@@ -112,14 +113,14 @@ class Images {
 
 
   // @todo: how best should we handle remote image urls?
-  public static function calculate_image_aspect_ratio($relativeImagePath, $heightOrWidthRatio = 'width') {
-    $absoluteImagePath = Utils::get_absolute_path($relativeImagePath);
+  public static function calculate_image_aspect_ratio($relativeImagePath, $heightOrWidthRatio, $wwwDir) {
+    $absoluteImagePath = Utils::get_absolute_path($relativeImagePath, $wwwDir);
 
     if (file_exists($absoluteImagePath)){
       $fileExt = Utils::get_file_ext($absoluteImagePath);
 
       if ($fileExt == "svg"){
-        $svgfile = simplexml_load_file($filePath);
+        $svgfile = simplexml_load_file($absoluteImagePath);
 
         $viewport = explode(" ", $svgfile['viewBox']);
         $svgHeight = $svgfile['height']; // if it exists
@@ -158,7 +159,7 @@ class Images {
         }
       }
     } else {
-      // @todo: throw error if image path can't be found
+      throw new \Exception('Cannot find image files when trying to get calculate_image_aspect_ratio: ' . $relativeImagePath);
     }
   }
 }

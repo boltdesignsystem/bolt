@@ -5,10 +5,12 @@ Stylistic pull quote styles for all types of layout. Part of the Bolt “Compone
 npm install @bolt/components-blockquote
 ```
 
-Description:
+#### Description
+
 Block quotes provide testimonials throughout the pega experience.
 
-Content that can be contained in a blockquote:
+#### Content that can be contained in a blockquote
+
 * Logo or image (optional)
 * Quote
 * Attributor image (optional)
@@ -16,7 +18,8 @@ Content that can be contained in a blockquote:
 * Attributor title (optional)
 * Attributor company (optional)
 
-Additional info:
+#### Additional info
+
 * Can be full width or confined with the grid
 * Can be left, center, or right aligned
 * can have top+bottom horizontal lines, a left or right vertical line, or no lines

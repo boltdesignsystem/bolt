@@ -19,7 +19,7 @@ $bolt-breakpoints: (
   xxxlarge: 1920px
 );
 
-
+@include export-data("breakpoints.bolt.json", $bolt-breakpoints);
 // Re-map Bolt's namespaced Sassmap to the Breakpoint Sass's `$breakpoints` default
 
 /* stylelint-disable-next-line scss/dollar-variable-pattern */

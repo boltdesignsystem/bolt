@@ -1,0 +1,342 @@
+// Lightweight style reset for button and input elements
+@mixin bolt-button-reset {
+  @include bolt-padding(0);
+  @include bolt-font-family(body);
+  border: none;
+  background: none;
+}
+
+@mixin bolt-button-raised() {
+  &:not(.c-bolt-button--disabled):not(.c-bolt-button--text):not([disabled]) {
+    &:hover,
+    &.c-bolt-button--hover {
+      transform: $bolt-button-translate--hover;
+    }
+
+    &:hover:before,
+    &.c-bolt-button--hover:before {
+      opacity: 1;
+    }
+
+    &:active,
+    &.c-bolt-button--active {
+      transform: $bolt-button-translate--active;
+    }
+
+    &:active:before,
+    &.c-bolt-button--active:before {
+      opacity: 0;
+    }
+  }
+}
+
+
+@mixin bolt-button {
+  @include bolt-button-reset;
+  @include bolt-no-select;
+  @include bolt-font-weight(semibold);
+  @include bolt-button-raised;
+
+  display: inline-block;
+  display: inline-flex;
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+  vertical-align: middle;
+  border-style: $bolt-button-border-style;
+  border-width: $bolt-button-border-width;
+  border-radius: $bolt-button-border-radius;
+  box-shadow: 0  1px  3px rgba(bolt-color(black), 0.12), 0 1px  2px  rgba(bolt-color(black), 0.24);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transform: translate3d(0, 0, 0);
+
+  flex-grow: 1;
+  flex-direction: row; // Vertically center inner content
+  justify-content: center; // Vertically center inner content
+
+  &:before {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    pointer-events: none;
+    border-radius: $bolt-button-border-radius;
+    box-shadow: 0 1px 0.15rem rgba($bolt-shadow-color, 0.1), $bolt-button-shadow--hover;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    opacity: 0.2;
+  }
+}
+
+// Temporary styles applied to links and buttons nested inside of the <bolt-button> component, prior to JS kicking in
+@mixin bolt-button-root(){
+  height: 100%;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  font-weight: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  font: inherit;
+  line-height: inherit;
+  cursor: inherit;
+  color: inherit; // fix for black text browser default
+  display: inline-flex; // vertical alignment w/ icon only button
+  align-items: stretch; // valign inner content
+  flex-grow: 1;
+  justify-content: inherit;
+}
+
+
+
+/**
+  * Button Colors / Types
+  */
+@mixin bolt-button-style--primary() {
+  $primary-background-default: $bolt-color-primary;
+  $primary-background-hover: mix($bolt-global-button-hover-color, $primary-background-default, $bolt-global-button-hover-mix);
+  $primary-background-active: mix($bolt-global-button-active-color, $primary-background-default, $bolt-global-button-active-mix);
+
+  &,
+  &:visited {
+    border-color: $primary-background-default;
+    border-color: var(--bolt-theme-primary-border-default, $primary-background-default);
+
+    color: bolt-text-contrast($primary-background-default);
+    color: var(--bolt-theme-primary-text-default, bolt-text-contrast($primary-background-default));
+
+    background-color: $primary-background-default;
+    background-color: var(--bolt-theme-primary-background-default, $primary-background-default);
+  }
+
+  &:hover,
+  &.c-bolt-button--hover {
+    border-color: $primary-background-hover;
+    border-color: var(--bolt-theme-primary-border-hover, $primary-background-hover);
+    color: bolt-text-contrast($primary-background-default);
+    color: var(--bolt-theme-primary-text-default, bolt-text-contrast($primary-background-default));
+    background-color: $primary-background-hover;
+    background-color: var(--bolt-theme-primary-background-hover, $primary-background-hover);
+  }
+
+  &:focus,
+  &.c-bolt-button--focus {
+    border-color: $primary-background-hover;
+    border-color: var(--bolt-theme-primary-border-hover, $primary-background-hover);
+    color: bolt-text-contrast($primary-background-default);
+    color: var(--bolt-theme-primary-text-default, bolt-text-contrast($primary-background-default));
+    background-color: $primary-background-hover;
+    background-color: var(--bolt-theme-primary-background-hover, $primary-background-hover);
+
+    outline-width: 5px; // Default browser outline styles
+    outline-style: auto; // Default browser outline styles
+    outline-color: rgb(59, 153, 252); // Default browser outline styles
+  }
+
+  &:active,
+  &.c-bolt-button--active {
+    border-color: $primary-background-active;
+    border-color: var(--bolt-theme-primary-border-active, $primary-background-active);
+
+    color: bolt-text-contrast($primary-background-default);
+    color: var(--bolt-theme-primary-text-default, bolt-text-contrast($primary-background-default));
+
+    background-color: $primary-background-active;
+    background-color: var(--bolt-theme-primary-background-active, $primary-background-active);
+  }
+}
+
+
+@mixin bolt-button-style--secondary() {
+  $secondary-background-default: bolt-color(white);
+  $secondary-background-hover: mix(bolt-color(black), $secondary-background-default, 2%);
+  $secondary-background-active: mix(bolt-color(black), $secondary-background-default, 15%);
+
+  &,
+  &:visited {
+    border-color: $secondary-background-default;
+    border-color: var(--bolt-theme-secondary-border-default, $secondary-background-default);
+
+    color: bolt-text-contrast($secondary-background-default);
+    color: var(--bolt-theme-secondary-text-default, bolt-text-contrast($secondary-background-default));
+
+    background-color: $secondary-background-default;
+    background-color: var(--bolt-theme-secondary-background-default, $secondary-background-default);
+  }
+
+  &.c-bolt-button--hover,
+  &:hover {
+    border-color: $secondary-background-hover;
+    border-color: var(--bolt-theme-secondary-border-hover, $secondary-background-hover);
+    color: bolt-text-contrast($secondary-background-default);
+    color: var(--bolt-theme-secondary-text-default, bolt-text-contrast($secondary-background-default));
+    background-color: $secondary-background-hover;
+    background-color: var(--bolt-theme-secondary-background-hover, $secondary-background-hover);
+  }
+
+  &:focus,
+  &.c-bolt-button--focus {
+    border-color: $secondary-background-hover;
+    border-color: var(--bolt-theme-secondary-border-hover, $secondary-background-hover);
+    color: bolt-text-contrast($secondary-background-default);
+    color: var(--bolt-theme-secondary-text-default, bolt-text-contrast($secondary-background-default));
+    background-color: $secondary-background-hover;
+    background-color: var(--bolt-theme-secondary-background-hover, $secondary-background-hover);
+    outline-width: 5px; // Default browser outline styles
+    outline-style: auto; // Default browser outline styles
+    outline-color: rgb(59, 153, 252); // Default browser outline styles
+  }
+
+  &.c-bolt-button--active,
+  &:active {
+    border-color: $secondary-background-active;
+    border-color: var(--bolt-theme-secondary-border-active, $secondary-background-active);
+
+    color: bolt-text-contrast($secondary-background-default);
+    color: var(--bolt-theme-secondary-text-default, bolt-text-contrast($secondary-background-default));
+
+    background-color: $secondary-background-active;
+    background-color: var(--bolt-theme-secondary-background-active, $secondary-background-active);
+  }
+}
+
+
+@mixin bolt-button-style--text(){
+  text-decoration: none;
+  border-color: transparent;
+  background-color: transparent;
+  $bolt-theme-link-default: bolt-color(indigo, light);
+
+  // Removing shadows for text buttons
+  &, &:before {
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  & {
+    opacity: 1;
+    color: currentColor;
+
+    @supports(--css: variables) {
+      color: var(--bolt-theme-heading-link-default, inherit);
+    }
+  }
+
+  &:visited {
+    opacity: 1;
+    color: currentColor;
+
+    @supports(--css: variables) {
+      color: var(--bolt-theme-heading-link-visited, inherit);
+    }
+  }
+
+
+  &:focus,
+  &:hover {
+    opacity: $bolt-global-link-hover-opacity;
+
+    @supports(--css: variables) {
+      opacity: 1;
+      color: var(--bolt-theme-heading-link-hover, inherit);
+    }
+  }
+
+  &:active {
+    opacity: $bolt-global-link-active-opacity;
+
+    @supports(--css: variables) {
+      opacity: 1;
+      color: var(--bolt-theme-heading-link-active, inherit);
+    }
+  }
+}
+
+
+@mixin bolt-button-style--disabled() {
+  cursor: not-allowed;
+  &,
+  &:visited {
+    color: bolt-color(gray);
+    border-color: bolt-color(gray, light);
+    background-color: bolt-color(gray, light);
+  }
+
+  &:hover {
+    color: bolt-color(gray);
+    border-color: bolt-color(gray, light);
+    background-color: bolt-color(gray, light);
+  }
+
+  &:active {
+    color: bolt-color(gray);
+    border-color: bolt-color(gray, light);
+    background-color: bolt-color(gray, light);
+  }
+
+  &:before,
+  &:hover:before,
+  &:active:before {
+    opacity: 1;
+  }
+
+  &,
+  &:hover,
+  &:active {
+    transform: none;
+  }
+}
+
+
+// Teal-specific color. Needs refactoring to combine with primary button logic above ^
+@mixin bolt-button-color--teal {
+  $button-background-color-default: bolt-color(indigo, light);
+  $button-background-color-hover: mix($bolt-global-button-hover-color, $button-background-color-default, $bolt-global-button-hover-mix);
+  $button-background-color-active: mix($bolt-global-button-active-color, $button-background-color-default, $bolt-global-button-active-mix);
+  &.c-bolt-button,
+  &.c-bolt-button:visited {
+    border-color: $button-background-color-default;
+    color: bolt-text-contrast($button-background-color-default);
+    background-color: $button-background-color-default;
+  }
+  &:focus,
+  &:hover {
+    border-color: $button-background-color-hover;
+    color: bolt-text-contrast($button-background-color-default);
+    background-color: $button-background-color-hover;
+  }
+  &:active {
+    border-color: $button-background-color-active;
+    color: bolt-text-contrast($button-background-color-default);
+    background-color: $button-background-color-active;
+  }
+}
+
+// @todo: refactor and revive state color options
+// .c-bolt-button--success {
+//   @include bolt-button-color(success);
+// }
+// .c-bolt-button--warning {
+//   @include bolt-button-color(warning);
+// }
+// .c-bolt-button--error {
+//   @include bolt-button-color(error);
+// }
+
+
+
+@mixin bolt-button-style($style) {
+  @if ($style == 'primary') {
+    @include bolt-button-style--primary;
+  } @else if ($style == 'secondary') {
+    @include bolt-button-style--secondary;
+  } @else if ($style == 'text') {
+    @include bolt-button-style--text;
+  } @else if ($style == 'disabled') {
+    @include bolt-button-style--disabled;
+  }
+}
