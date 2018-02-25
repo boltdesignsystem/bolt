@@ -91,7 +91,7 @@ class Images {
       }
 
       // Resize and optimize the image before running through ColorThief
-      $resizedImage = \Gregwar\Image\Image::open($absoluteImagePath)->resize('640,640')->jpeg($quality = 50);
+      $resizedImage = \Gregwar\Image\Image::open($absoluteImagePath)->resize('640', '640')->jpeg($quality = 50);
         $color = ColorThief::getColor($resizedImage, 5);
         return self::rgb2hex($color);
       // }
