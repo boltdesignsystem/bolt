@@ -117,7 +117,13 @@
   lazyload ? "js-lazyload" : "",
   lazyload ? "is-lazyloading" : ""
 ])
-  .setAttribute('alt', alt) %}
+  .setAttribute('alt', alt)
+  .setAttribute('src', src)
+%}
+
+{% if srcset %}
+  {% set imageAttributes = imageAttributes.setAttribute("srcset", srcset) %}
+{% endif %}
 
 {#{% if zoom %}#}
   {#{% set imageAttributes = imageAttributes#}
@@ -136,8 +142,6 @@
     {#.setAttribute("data-srcset", srcset)#}
     {#.setAttribute("srcset", placeholderDummySrc)#}
     {#.setAttribute("data-sizes", sizes) %}#}
-{#{% else %}#}
-  {% set imageAttributes = imageAttributes.setAttribute("srcset", srcset) %}
 {#{% endif %}#}
 
 {% set imageTag %}
