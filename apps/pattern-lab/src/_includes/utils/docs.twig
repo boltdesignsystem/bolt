@@ -90,7 +90,7 @@
   </div>
 
   <div class="c-bolt-docs__page-nav u-bolt-padding-right-medium@medium">
-    <ul class="o-bolt-ui-list o-bolt-ui-list--xsmall">
+    <ul class="o-bolt-ui-list o-bolt-ui-list--xsmall c-bolt-docs__page-nav-list">
       <li class="o-bolt-ui-list__item">
         <ul class="o-bolt-ui-list o-bolt-ui-list--xxsmall o-bolt-ui-list--borderless">
           {% if readmeFile %}
@@ -100,14 +100,23 @@
                 transform: "capitalize",
                 weight: "regular",
                 tag: "h3",
-                url: "#getting-started",
-                text: "Getting Started",
-                icon: false,
+                text: include("@bolt/link.twig", {
+                  text: "Getting Started",
+                  url:  "#getting-started",
+                  attributes: {
+                    class: [
+                      "c-bolt-link--headline"
+                    ],
+                    'data-scroll-offset': 70
+                  }
+                }),
                 attributes: {
                   class: [
-                    "u-bolt-margin-bottom-none",
+                    "c-bolt-headline--link",
+                    "u-bolt-margin-bottom-none"
                   ]
-                }
+                },
+                icon: false,
               } only %}
             </li>
           {% endif %}
@@ -119,14 +128,23 @@
                 transform: "capitalize",
                 weight: "regular",
                 tag: "h3",
-                url: "#usage",
-                text: "Usage",
-                icon: false,
+                text: include("@bolt/link.twig", {
+                  text: "Usage",
+                  url:  "#usage",
+                  attributes: {
+                    class: [
+                      "c-bolt-link--headline"
+                    ],
+                    'data-scroll-offset': 70
+                  }
+                }),
                 attributes: {
                   class: [
-                    "u-bolt-margin-bottom-none",
+                    "c-bolt-headline--link",
+                    "u-bolt-margin-bottom-none"
                   ]
-                }
+                },
+                icon: false,
               } only %}
             </li>
           {% endif %}
@@ -139,14 +157,23 @@
                 transform: "capitalize",
                 weight: "regular",
                 tag: "h3",
-                url: "#schema",
-                text: "Schema",
-                icon: false,
+                text: include("@bolt/link.twig", {
+                  text: "Schema",
+                  url:  "#schema",
+                  attributes: {
+                    class: [
+                      "c-bolt-link--headline"
+                    ],
+                    'data-scroll-offset': 70
+                  }
+                }),
                 attributes: {
                   class: [
-                    "u-bolt-margin-bottom-none",
+                    "c-bolt-headline--link",
+                    "u-bolt-margin-bottom-none"
                   ]
-                }
+                },
+                icon: false,
               } only %}
             </li>
           {% endif %}
