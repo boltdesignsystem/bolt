@@ -56,8 +56,7 @@ class Images {
         return; // Skip over non-jpg or png files.
       }
 
-      $base64ImagePlaceholder = Image::open($absoluteImagePath)->resize('16,16')->smooth('1')->jpeg($quality = 50);
-
+      $base64ImagePlaceholder = Image::open($absoluteImagePath)->resize('16', '16')->smooth('1')->jpeg($quality = 50);
       return Image::open($base64ImagePlaceholder)->inline();
     }
   }
