@@ -149,7 +149,7 @@ async function processImages() {
     const imageMetas = flattenArray(setsOfImageMetas);
     const imageManifest = {};
     imageMetas.forEach((imageMeta) => {
-      imageManifest[imageMeta.fullSizePath] = imageMeta;
+      imageManifest[imageMeta.src] = imageMeta;
     });
     await writeImageManifest(imageManifest);
 
