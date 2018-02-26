@@ -28,10 +28,20 @@ async function init() {
     }
     console.log('Latest Netlify Deploy: ', netlifyDeploys[0]);
 
-    // Can handle HTML
-    const githubCommentText = `:zap: PR built on Travis and deployed a Netlify preview here: 
+    // The GitHub comment template - Can handle HTML
+    const githubCommentText = `
+:zap: PR built on Travis and deployed a Netlify preview here: 
 
-${netlifyDeploys[0].deploy_ssl_url}`;
+${netlifyDeploys[0].deploy_ssl_url}
+
+<details>
+
+- Commit built: ${process.env.TRAVIS_COMMIT}
+- [Travis build](https://travis-ci.org/${process.env.TRAVIS_REPO_SLUG}/builds/${process.env.TRAVIS_BUILD_ID})
+
+</details>
+`.trim();
+    // end GitHub comment template
     
     const githubCommentEndpoint = `https://api.github.com/repos/${TRAVIS_REPO_SLUG}/issues/${TRAVIS_PULL_REQUEST}/comments`;
 
