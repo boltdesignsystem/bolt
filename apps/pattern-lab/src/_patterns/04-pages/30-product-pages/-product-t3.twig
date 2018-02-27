@@ -1,7 +1,7 @@
 {% extends "@bolt/default-template.twig" %}
 
 {% block global_header %}
-  {% include "@bolt/page-header.twig" %}
+  {% include "@bolt/_page-header.twig" %}
 {% endblock %}
 
 {% block main_content %}
@@ -20,7 +20,7 @@
       },
       contentItems: [{
         pattern: "image",
-        src: "/images/sample/product-background-t2.jpg"
+        src: "/pattern-lab/images/content/backgrounds/background-tall-3.jpg"
       }]
     },
     primaryTeaser: {
@@ -55,7 +55,7 @@
 
   {% endembed %}
 
-
+{% set videoUuid1 = "js-bolt-video-uuid--1" %}
 
 {% embed "@bolt/band.twig" with {
   size: "small",
@@ -78,7 +78,8 @@
         {% include "@bolt/video.twig" with {
           "videoId": "5609376179001",
           "accountId": "1900410236",
-          "playerId": "r1CAdLzTW"
+          "playerId": "r1CAdLzTW",
+          "videoUuid": videoUuid1
         } only %}
       {% endcell %}
 
@@ -234,7 +235,7 @@
           orientation: "landscape",
           color: "black",
           image: {
-            src: "/images/sample/product-device-screenshot--tablet.jpg"
+            src: "/pattern-lab/images/content/screenshots/device-screenshot--tablet.jpg"
           }
         } only %}
       {% endcell %}
@@ -263,7 +264,7 @@
           orientation: "portrait",
           color: "black",
           image: {
-            src: "/images/sample/product-device-screenshot--tablet-portrait.png"
+            src: "/pattern-lab/images/content/screenshots/device-screenshot--tablet-portrait.jpg"
           }
         } only %}
       {% endcell %}
@@ -382,7 +383,7 @@
           orientation: "portrait",
           color: "black",
           image: {
-            src: "/images/sample/product-device-screenshot--phone.jpg"
+            src: "/pattern-lab/images/content/screenshots/device-screenshot--phone.jpg"
           }
         } only %}
       {% endcell %}
@@ -393,7 +394,7 @@
           orientation: "portrait",
           color: "gold",
           image: {
-            src: "/images/sample/product-device-screenshot--phone.jpg"
+            src: "/pattern-lab/images/content/screenshots/device-screenshot--phone.jpg"
           }
         } only %}
       {% endcell %}
@@ -404,7 +405,7 @@
           orientation: "landscape",
           color: "gold",
           image: {
-            src: "/images/sample/product-device-screenshot--phone.jpg"
+            src: "/pattern-lab/images/content/screenshots/device-screenshot--phone.jpg"
           }
         } only %}
       {% endcell %}
@@ -416,7 +417,7 @@
           orientation: "landscape",
           color: "black",
           image: {
-            src: "/images/sample/product-device-screenshot--phone.jpg"
+            src: "/pattern-lab/images/content/screenshots/device-screenshot--phone.jpg"
           }
         } only %}
       {% endcell %}
@@ -445,13 +446,13 @@
             text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
             size: "medium"
           } only %}
-          {% set videoUuid3 = "js-bolt-video-uuid--3" %}
+          {% set videoUuid2 = "js-bolt-video-uuid--2" %}
           {% include "@bolt/button.twig" with {
             text: "Toggle video",
             tag: "button",
             attributes: {
               "on-click": "toggle",
-              "on-click-target": videoUuid3
+              "on-click-target": videoUuid2
             }
           } only %}
         {% endcell %}
@@ -460,7 +461,7 @@
             "videoId": "5609376179001",
             "accountId": "1900410236",
             "playerId": "r1CAdLzTW",
-            "videoUuid": videoUuid3
+            "videoUuid": videoUuid2
           } only %}
         {% endcell %}
       {% endgrid %}
@@ -508,7 +509,7 @@
           orientation: "landscape",
           color: "black",
           image: {
-            src: "/images/sample/product-device-screenshot--desktop.jpg"
+            src: "/pattern-lab/images/content/screenshots/device-screenshot--desktop.jpg"
           }
         } only %}
       {% endcell %}
@@ -525,12 +526,12 @@
   {% block band_content %}
     {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-        {% set videoUuid3 = "js-bolt-video-uuid--3b" %}
+        {% set videoUuid3b = "js-bolt-video-uuid--3b" %}
         {% include "@bolt/video.twig" with {
           "videoId": "5609376179001",
           "accountId": "1900410236",
           "playerId": "r1CAdLzTW",
-          "videoUuid": videoUuid3
+          "videoUuid": videoUuid3b
         } only %}
         {% endcell %}
         {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
@@ -549,7 +550,7 @@
             tag: "button",
             attributes: {
               "on-click": "toggle",
-              "on-click-target": videoUuid3
+              "on-click-target": videoUuid3b
             }
           } only %}
         {% endcell %}
@@ -566,14 +567,14 @@
     {
       "pattern": "card",
       "image": {
-        "src": "/images/sample/anthem-video.jpg"
+        "src": "/pattern-lab/images/content/promos/promo-16x9-anthem.jpg"
       },
       "teaser": {
         "eyebrow": {
           text: "Article"
         },
         "logo": {
-          src: "/images/sample/PayPal-logo.svg"
+          src: "/pattern-lab/images/content/logos/logo-paypal.svg"
         },
         "headlines": [
           {
@@ -596,7 +597,7 @@
     {
       "pattern": "card",
       "image": {
-        "src": "/images/sample/anthem-video.jpg"
+        "src": "/pattern-lab/images/content/promos/promo-16x9-anthem.jpg"
       },
       "teaser": {
         "eyebrow": {
@@ -623,7 +624,7 @@
     {
       "pattern": "card",
       "image": {
-        "src": "/images/sample/anthem-video.jpg"
+        "src": "/pattern-lab/images/content/promos/promo-16x9-anthem.jpg"
       },
       "teaser": {
         "eyebrow": {
@@ -706,7 +707,7 @@
     "contentItems": [
       {
         "pattern": "image",
-        "src": "/images/sample/background-banner--left-focal-point.jpg"
+        "src": "/pattern-lab/images/content/backgrounds/background-tall-1.jpg"
       }
     ]
   }
@@ -723,12 +724,12 @@
           border: "horizontal",
           alignItems: "center",
           logo: {
-            src: "/images/sample/PayPal-logo.svg",
+            src: "/pattern-lab/images/content/logos/logo-paypal.svg",
             invert: true
           },
           author: {
             image: {
-              src: "/images/placeholders/500x500.jpg"
+              src: "/pattern-lab/images/placeholders/500x500.jpg"
             },
             name: "Jessica Cuthbertson",
             title: "CEO, RBS"
