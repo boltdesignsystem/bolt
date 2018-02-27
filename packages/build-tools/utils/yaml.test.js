@@ -103,36 +103,27 @@ test('Read Yaml file async, promise Resolves', () => {
   testData.then(fileData => expect(fileData).toEqual(testFileJson));
 });
 
-test('Read Yaml file sync', () => {
-  const fileData = yaml.readYamlFileSync('./packages/build-tools/utils/yaml.test.yml');
-  expect(fileData).toEqual(testFileJson);
-});
-
-test('Write Yaml file, file is created', () => {
+test('Write Yaml file, file is created, data written', async () => {
   const dataToWrite = {
     title: 'Testing Yaml',
     tags: ['a', 'b', 'c'],
   };
   const testFileName = 'writeYamlFile.test.yml';
   const testFilePath = path.join(testDirectory, testFileName);
+  const writeFile = await yaml.writeYamlFile(testFilePath, dataToWrite);
 
-  const writeFile = yaml.writeYamlFile(testFilePath, dataToWrite);
-
-  writeFile.then(() => expect(fs.existsSync(testFilePath)).toBe(true));
-  writeFile.then(() => expect(
-    yaml.readYamlFileSync(testFilePath)).toEqual(dataToWrite)
-  );
+  expect(fs.existsSync(testFilePath)).toBe(true);
+  expect(yaml.readYamlFileSync(testFilePath)).toEqual(dataToWrite);
 });
 
-// @todo Look further into testing this. Node was giving me the following warning...
-// (node:46133) UnhandledPromiseRejectionWarning: Unhandled promise rejection (rejection id: 1): Error: ENOENT: no such file or directory, open './packages/build-tools/utils/notThere.test.yml'
-// (node:46133) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
-// test('Read Yaml file async, Promise Error', () => {
-//   const testData = yaml.readYamlFile('./packages/build-tools/utils/notThere.test.yml');
+test('Read Yaml file sync', () => {
+  const fileData = yaml.readYamlFileSync('./packages/build-tools/utils/yaml.test.yml');
+  expect(fileData).toEqual(testFileJson);
+});
+
+// test('Read Yaml file async, error thrown if file does not exist', async () => {
+//   const testData = await yaml.readYamlFile('./packages/does/not/exist.test.yml');
 //   const expectedError = 'File doesn\'t exist';
-//   const err = new Error();
 //
-//   //Test is promise resolves to correct value
-//   // testData.then(fileData => expect(fileData).toThrow(expectedResults));
-//   return expect(testData.reject(err)).rejects.toHaveProperty('code', 404);
+//   expect(await yaml.readYamlFile('./packages/does/not/exist.test.yml')).toThrow();
 // });
