@@ -16,7 +16,7 @@
 
       {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small" %}
         {% include "@bolt/eyebrow.twig" with {
-          text: "v1.0.0-beta.1"
+          text: "v1.0.0-rc.3"
         } only %}
 
         {% include "@bolt/headline.twig" with {
@@ -116,7 +116,15 @@
           {
             pattern: "image",
             lazyload: false,
+            ratio: false,
+            placeholderImage: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+            placeholderColor: "#8d8e99",
+            srcset: "/images/single-source2.jpg",
             src: "/images/single-source2.jpg"
+          },
+          {
+            pattern: "eyebrow",
+            text: "Docs"
           },
           {
             pattern: "headline",
@@ -124,14 +132,11 @@
             size: "large",
           },
           {
-            pattern: "text",
-            text: "An update to any component in the design system will roll out across every Wonderbly application, reducing variation and inconsistency in experience across our interface."
-          },
-          {
             pattern: "button",
             width: "full",
             text: "View the pattern library",
-            style: "secondary"
+            style: "secondary",
+            url: "pattern-lab",
           }
         ]
         },
@@ -141,7 +146,15 @@
           {
             pattern: "image",
             lazyload: false,
-            src: "/images/code2.jpg"
+            src: "/images/code2.jpg",
+            ratio: false,
+            placeholderImage: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+            placeholderColor: "#8d8e99",
+            srcset: "/images/code2.jpg"
+          },
+          {
+            pattern: "eyebrow",
+            text: "Docs"
           },
           {
             pattern: "teaser",
@@ -152,12 +165,11 @@
               size: "large"
             }
           ],
-            content: "This single-source approach to building out our interface means we can create and iterate faster, whilst empowering engineers to implement design changes and deliver features with minimal upfront design work.",
             buttons: [
             {
               text: "Get started with Bolt",
               style: "secondary",
-              url: ""
+              url: "/docs/getting-started/index.html",
             }
           ]
           }
@@ -169,7 +181,15 @@
           {
             pattern: "image",
             lazyload: false,
-            src: "/images/tested.jpg"
+            src: "/images/tested.jpg",
+            ratio: false,
+            placeholderImage: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+            placeholderColor: "#8d8e99",
+            srcset: "/images/tested.jpg"
+          },
+          {
+            pattern: "eyebrow",
+            text: "Docs"
           },
           {
             pattern: "teaser",
@@ -180,12 +200,11 @@
               size: "large"
             }
           ],
-            content: "The design system has been tried and tested and it’s scalable to all devices.",
             buttons: [
             {
               text: "Visit the component docs",
               style: "secondary",
-              url: ""
+              url: "/docs/index.html",
             }
           ]
           }
@@ -193,6 +212,151 @@
         }
       ]
     } %}
+
+    {% set availableComponents %}
+      {% include "@bolt/headline.twig" with {
+        text: "Bolt components",
+        tag: "h2",
+        size: "xxlarge"
+      } only %}
+      {% include "@bolt/subheadline.twig" with {
+        tag: "h3",
+        text: "Current available inventory of reusable components available within latest Bolt:",
+        size: "xlarge"
+      } only %}
+      {% set listComponents = [
+        { text: "@bolt/core" },
+        { text: "@bolt/global" },
+        { text: "@bolt/components-action-blocks" },
+        { text: "@bolt/components-background" },
+        { text: "@bolt/components-background-shapes" },
+        { text: "@bolt/components-band" },
+        { text: "@bolt/components-blockquote" },
+        { text: "@bolt/components-breadcrumb" },
+        { text: "@bolt/components-button" },
+        { text: "@bolt/components-button-group" },
+        { text: "@bolt/components-card" },
+        { text: "@bolt/components-chip" },
+        { text: "@bolt/components-chip-list" },
+        { text: "@bolt/components-device-viewer" },
+        { text: "@bolt/components-figure" },
+        { text: "@bolt/components-icon" },
+        { text: "@bolt/components-headline" },
+        { text: "@bolt/components-image" },
+        { text: "@bolt/components-link" },
+        { text: "@bolt/components-logo" },
+        { text: "@bolt/components-nav-bar" },
+        { text: "@bolt/components-ordered-list" },
+        { text: "@bolt/components-page-footer" },
+        { text: "@bolt/components-page-header" },
+        { text: "@bolt/components-site" },
+        { text: "@bolt/components-smooth-scroll" },
+        { text: "@bolt/components-sticky" },
+        { text: "@bolt/components-teaser" },
+        { text: "@bolt/components-unordered-list" }
+      ] %}
+      {% if listComponents|length > 0 %}
+        {% include "@bolt-components-chip-list/chip-list.twig" with {
+          contentItems: listComponents
+        } only %}
+      {% endif %}
+    {% endset %}
+    {% include "@bolt-components-band/band.twig" with {
+      content: availableComponents,
+      theme: "xlight",
+    } only %}
+
+    {% set actionBlocks %}
+      {% include "@bolt/headline.twig" with {
+        text: "Let's get this show on the road!",
+        tag: "h2",
+        size: "xxlarge",
+        align: "center"
+      } only %}
+      {% include "@bolt/subheadline.twig" with {
+        tag: "h3",
+        text: "Jump right in:",
+        size: "xlarge",
+        align: "center"
+      } only %}
+      {% include "@bolt-components-action-blocks/action-blocks.twig" with {
+        contentItems: [
+          {
+            text: "Getting Started",
+            url: "/docs/getting-started/index.html",
+            icon: {
+              name: "energy",
+              size: "large",
+              background: "circle"
+            }
+          },
+          {
+            text: "Configuration",
+            url: "/docs/config/index.html",
+            icon: {
+              name: "info-open",
+              size: "large",
+              background: "circle"
+            }
+          },
+          {
+            text: "Concepts",
+            url: "/docs/concepts/index.html",
+            icon: {
+              name: "data-integrations",
+              size: "large",
+              background: "circle"
+            }
+          },
+          {
+            text: "Guides",
+            url: "/docs/guides/index.html",
+            icon: {
+              name: "robo-auto",
+              size: "large",
+              background: "circle"
+            }
+          },
+          {
+            text: "API",
+            url: "/docs/api/index.html",
+            icon: {
+              name: "customer-decision-hub",
+              size: "large",
+              background: "circle"
+            }
+          }
+        ]
+      } only %}
+    {% endset %}
+    {% include "@bolt-components-band/band.twig" with {
+      content: actionBlocks,
+      theme: "xdark",
+    } only %}
+
+    {% set blockquoteContent %}
+      {% include "@bolt-components-blockquote/blockquote.twig" with {
+        alignItems: "center",
+        border: "none",
+        content: "<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>",
+        author: {
+          image: {
+            src: "../../images/500x500.jpg",
+            placeholderImage: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+            placeholderColor: "#8d8e99",
+            srcset: "../../images/500x500.jpg",
+            lazyload: false
+          },
+          name: "Salem Ghoweri",
+          title: "Senior Front-End Architect, Design Systems at Pega"
+        }
+      } %}
+    {% endset %}
+    {% include "@bolt-components-band/band.twig" with {
+      content: blockquoteContent,
+      theme: "dark",
+    } only %}
+
   </article>
 {% endset %}
 {% include 'site.twig' with {

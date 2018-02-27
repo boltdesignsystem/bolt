@@ -104,14 +104,14 @@ function createConfig(config) {
   // CSS Classes like `.u-hide\@large` were getting compiled like `.u-hide-large`.
   // Due to this bug: https://github.com/webpack-contrib/css-loader/issues/578
   // Workaround: using the `string-replace-loader` to change `\@` to our `workaroundAtValue` before passing to `css-loader`, then turning it back afterwards.
-  const workaroundAtValue = '-theAtSymbol-';
+  const workaroundAtValue = '-theSlashSymbol-';
 
   const scssLoaders = [
     {
       loader: 'string-replace-loader',
       query: {
         search: workaroundAtValue,
-        replace: String.raw`\\@`, // needed to ensure `\` comes through
+        replace: String.raw`\\`, // needed to ensure `\` comes through
         flags: 'g'
       },
     },
@@ -119,15 +119,15 @@ function createConfig(config) {
       loader: 'css-loader',
       options: {
         sourceMap: true,
-        modules: false, // needed for JS referencing classNames directly, such as critical fonts
-        importLoaders: 2,
+        modules: true, // needed for JS referencing classNames directly, such as critical fonts
+        importLoaders: 5,
         localIdentName: '[local]',
       }
     },
     {
       loader: 'string-replace-loader',
       query: {
-        search: /\\@/,
+        search: /\\/,
         replace: workaroundAtValue,
         flags: 'g'
       },
@@ -212,6 +212,7 @@ function createConfig(config) {
           use: {
             loader: 'babel-loader',
             options: {
+              cacheDirectory: true,
               babelrc: false,
               presets: ['@bolt/babel-preset-bolt'],
             }
@@ -234,7 +235,6 @@ function createConfig(config) {
         /styleguide/,
         path.join(__dirname, 'node_modules')
       ]),
-      new webpack.HotModuleReplacementPlugin(),
       new webpack.optimize.CommonsChunkPlugin({
         deepChildren: true,
         children: true,
@@ -256,7 +256,6 @@ function createConfig(config) {
           name: 'Bolt Manifest'
         }
       }),
-      new webpack.optimize.ModuleConcatenationPlugin(),
       new webpack.ProvidePlugin({
         h: 'preact',
         Promise: 'es6-promise'
@@ -268,15 +267,28 @@ function createConfig(config) {
     ],
   };
 
+  if (!config.prod) {
+    webpackConfig.plugins.push(
+      new webpack.HotModuleReplacementPlugin(),
+    );
+  }
+
   if (config.prod) {
     webpackConfig.plugins.push(new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
     }));
 
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
+    // Config recommendation based off of https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1#f548
     webpackConfig.plugins.push(new UglifyJsPlugin({
       sourceMap: true,
       parallel: true,
+      uglifyOptions: {
+        cache: true,
+        compress: true,
+
+        mangle: true,
+      }
     }));
 
     // https://webpack.js.org/plugins/module-concatenation-plugin/
@@ -308,17 +320,16 @@ function createConfig(config) {
      overlay: {
        errors: true
      },
-     hot: true,
+     hot: config.prod ? true : false,
      inline: true,
      noInfo: true, // webpackTasks.watch handles output info related to success & failure
      publicPath: publicPath,
      watchContentBase: true,
      historyApiFallback: true,
      watchOptions: {
-       aggregateTimeout: 500,
+       aggregateTimeout: 200,
        // ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
        // Poll using interval (in ms, accepts boolean too)
-       poll: true,
      }
    }
  }

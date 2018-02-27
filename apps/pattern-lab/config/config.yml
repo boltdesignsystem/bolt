@@ -24,7 +24,7 @@ styleGuideExcludes: ''
 cacheBusterOn: 'true'
 publicDir: ../../www/pattern-lab/
 sourceDir: src
-defaultPattern: pages-bolt-homepage
+defaultPattern: viewall-components-all
 defaultShowPatternInfo: false
 ishMinimum: '240'
 ishMaximum: '2600'
@@ -51,6 +51,7 @@ lineageMatchKey: 3
 patternExtension: twig
 twigExtensions:
     - '\PatternLab\DrupalTwigExtensions\Basic'
+    - '\BasaltInc\TwigTools\TwigExtensions\BasaltFakerExtension'
     - '\Bolt\TwigExtensions\BoltCore'
     - '\Bolt\TwigExtensions\BoltExtras'
 twigDebug: true

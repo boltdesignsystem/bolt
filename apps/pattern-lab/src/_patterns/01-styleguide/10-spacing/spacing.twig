@@ -1,0 +1,15 @@
+{# @todo Cleanup this demo and make it look pretty. Add code docs for how to use it in Sass. #}
+
+<p>Spacing Sizes</p>
+{% for key, value in bolt.data.spacing.sizes %}
+  <div>Name: <code>{{ key }}</code>: {{ value }}</div>
+  <div style="width: {{ value }}; height: {{ value }}; border: solid 1px black; margin-bottom: 5px;"></div>
+{% endfor %}
+
+<h4>How to use</h4>
+
+{{ '```scss
+.class {
+  margin-bottom: bolt-spacing(NAME);
+}
+```' | markdown }}
