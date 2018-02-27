@@ -8,14 +8,13 @@ const defaultScrollSpeed = 500;
 const customScrollElems = document.querySelectorAll('a[href*="#"]');
 customScrollElems.forEach(elem => {
     const scrollElem = elem;
-    const scrollOffset = defaultScrollOffset;
     const scrollSpeed = defaultScrollSpeed;
 
     // In the future, we could add support for links to modify options like scrollOffset, scrollOffset, etc.  However,
     // we should provide options carefully-- only enable these after considering whether the use case that requires them
     // is justified.
     //
-    // const scrollOffset = scrollElem.dataset.scrollOffset ? scrollElem.dataset.scrollOffset : defaultScrollOffset;
+    const scrollOffset = scrollElem.dataset.scrollOffset ? scrollElem.dataset.scrollOffset : defaultScrollOffset;
     // const scrollSpeed = scrollElem.dataset.scrollSpeed ? scrollElem.dataset.scrollSpeed : defaultScrollSpeed;
 
     const scrollOptions = {

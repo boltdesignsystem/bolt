@@ -56,13 +56,14 @@ async function processImage(file, set) {
 
   await mkdirp(pathInfo.dir);
 
-  // We add `null` to beginning b/c we want the original file too
-  const sizes = [null, ...boltImageSizes];
-
   // we want to read the original file once, instead of reading for each size
   const originalFileBuffer = await readFile(file);
   // http://sharp.pixelplumbing.com/en/stable/api-input/#metadata
   const { width, height } = await sharp(originalFileBuffer).metadata();
+
+  // We add `null` to beginning b/c we want the original file too
+  // Filter the list to not include sizes bigger than our file
+  const sizes = [null, ...boltImageSizes].filter(size => width > size);
 
   // looping through all sizes and resizing
   return Promise.all(sizes.map(async (size) => {
@@ -88,7 +89,7 @@ async function processImage(file, set) {
       } else {
         // http://sharp.pixelplumbing.com/en/stable/
         await sharp(originalFileBuffer)
-          .resize(size > width ? width : size) // don't resize larger than the original image; we still make the file though
+          .resize(size)
           .toFile(newSizedPath);
       }
     } else {
@@ -106,16 +107,22 @@ async function processImage(file, set) {
     }
 
     if (!isOrig) {
-      return newSizeWebPath;
+      return {
+        path: newSizeWebPath,
+        size,
+      };
     }
   })).then((resizedImagePaths) => {
+    // removes `undefined` & other non-truthy values (mainly original images & non processed file types like SVG or GIF)
+    const sets = resizedImagePaths.filter(resizedImagePath => resizedImagePath);
     const imageMeta = {
       original: file,
       width,
       height,
       fileId,
-      fullSizePath: makeWebPath(newPath),
-      sizePaths: resizedImagePaths.filter(resizedImagePath => resizedImagePath), // removes `undefined` & other non-truthy values (mainly original images & non processed file types like SVG or GIF)
+      src: makeWebPath(newPath),
+      sizePaths: sets,
+      srcset: sets.map(set => `${set.path} ${set.size}w`).join(', '),
     };
 
     return imageMeta;
@@ -142,7 +149,7 @@ async function processImages() {
     const imageMetas = flattenArray(setsOfImageMetas);
     const imageManifest = {};
     imageMetas.forEach((imageMeta) => {
-      imageManifest[imageMeta.fullSizePath] = imageMeta;
+      imageManifest[imageMeta.src] = imageMeta;
     });
     await writeImageManifest(imageManifest);
 

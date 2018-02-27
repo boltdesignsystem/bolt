@@ -6,46 +6,38 @@
     - .c-bolt-image__placeholder: lazyloader span while the img is lazyloaded.
 #}
 
-{% set srcset = srcset ? srcset : "" %}
+{#{% set srcset = srcset ? srcset : "" %}#}
 
+{# Grabbing the data in the bolt manifest for this particular image #}
+{% set thisImageData = bolt.data.images[src] %}
 
 {# @todo DRY this #}
 {% set imageSizes = [
   50, 100, 200, 320, 480, 640, 800, 1024, 1366, 1536, 1920, 2560, 2880
 ] %}
 
-{% if placeholderImage is empty or placeholderColor is empty or srcset == "" %}
-  {% set path = publicpath(src|split('.' ~ ext)|first) %}
+
+{#{% set sampleImageSrc = thisImageData.sizePaths ? thisImageData.sizePaths[0].path : src %}#}
+{% set sampleImageSrc = src %}
+{% if thisImageData.sizePaths %}
+  {% set sampleImageSrc = thisImageData.sizePaths[0].path %}
 {% endif %}
 
-{% if path == "" and ('../' in src) %}
-  {% set path = src|replace({'../': ''}) %}
-  {% set path = '/' ~ path %}
-  {% set path = path|split('.' ~ ext)|first %}
-{% elseif path == "" and srcset == "" %}
-  {% set srcset = src %}
-{% endif %}
+{#{% if placeholderImage is empty or placeholderColor is empty or srcset == "" %}#}
+  {#{% set path = src|split('.' ~ ext)|first %}#}
+{#{% endif %}#}
+
+{#{% if path == "" and srcset == "" %}#}
+  {#{% set srcset = src %}#}
+{#{% endif %}#}
 
 
-{% if src %}
-  {% set ext = src|split('.')|last %}
-{% endif %}
+{#{% if src %}#}
+  {#{% set ext = src|split('.')|last %}#}
+{#{% endif %}#}
 
-{# smaller image src used for calculating color -- already resized for less of a perf hit #}
-{% if placeholderImage is empty or placeholderColor is empty %}
-  {% if path %}
-    {% set sampleImageSrc = path ~ '-' ~ imageSizes[0] ~ '.' ~ ext %}
-
-
-    {% if placeholderImage is empty and ext != 'svg' %}
-      {% set placeholderImage = base64('../..' ~ sampleImageSrc) %}
-    {% endif %}
-
-    {# only calculate a placeholder color if not using a placeholder image #}
-    {% if placeholderColor is empty and ext != 'svg' %}
-      {% set placeholderColor = bgcolor('../..' ~ sampleImageSrc) %}
-    {% endif %}
-  {% endif %}
+{% if placeholderImage is empty and ext != 'svg' %}
+  {% set placeholderImage = base64(sampleImageSrc) %}
 {% endif %}
 
 {% if height is empty and height != false %}
@@ -57,6 +49,22 @@
   {% set width = ratio(src, 'width') %}
 {% endif %}
 
+
+{# only calculate a placeholder color if not using a placeholder image #}
+{% if placeholderColor is empty and ext != 'svg' %}
+  {% set placeholderColor = bgcolor(sampleImageSrc) %}
+{% endif %}
+
+{# smaller image src used for calculating color -- already resized for less of a perf hit #}
+{#{% if placeholderImage is empty or placeholderColor is empty %}#}
+  {#{% if path %}#}
+    {#{% set sampleImageSrc = path ~ '-' ~ imageSizes[0] ~ '.' ~ ext %}#}
+
+
+  {#{% endif %}#}
+{#{% endif %}#}
+
+
 {% set ratio = ratio ?? true %}
 {% set sizes = sizes | default("auto") %}
 {% set zoom = zoom ?? false %}
@@ -67,48 +75,40 @@
 {% if width > 0 and height > 0 and ratio == true %}
   {% set ratio = height / width * 100 ~ '%' %}
 {% endif %}
-  {# {% set gcd %}
-    {% include '@bolt/gcd.twig' with {
-      a: width,
-      b: height
-    } only %}
-  {% endset %}
-  {% set gcd = gcd | escape | raw | number_format %}
 
-  {% if gcd != 0 and height != 0 and width != 0 %}
-    {% set imageHeightRatio = (height / gcd) %}
-    {% set imageWidthRatio = (width / gcd) %}
-  {% else %}
-    {% set imageHeightRatio = 1 %}
-    {% set imageWidthRatio = 1 %}
-  {% endif %} #}
+{#{% set placeholderDummySrc = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" %}#}
+
+{#{% set zoomSource = src %}#}
+
+{#{% if srcset == "" and ext != "svg" %}#}
+  {#{% for size in imageSizes if (size <= width) %}#}
+
+    {#{% if size == width %}#}
+      {#{% set srcset = srcset ~ path ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}#}
+      {#{% set zoomSource = path ~ '.' ~ ext %}#}
+    {#{% else %}#}
+      {#{% set srcset = srcset ~ path ~ '-' ~ size ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}#}
+      {#{% set zoomSource = path ~ '-' ~ size ~ '.' ~ ext %}#}
+    {#{% endif %}#}
+
+     {#store the current srcset path just in case this loop is our last -- loop.last var isn't available w/ conditions#}
+
+  {#{% endfor %}#}
+  {#{% set srcset = srcset|trim(', ') %}#}
+{#{% elseif ext == "svg" %}#}
+  {#{% set srcset = src %}#}
+{#{% endif %}#}
 
 
 
+{% if thisImageData %}
+  {% set srcset = thisImageData.srcset %}
+{% endif %}
 
-
-{% set placeholderDummySrc = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" %}
-
-{% set zoomSource = src %}
-
-  {% if srcset == "" and ext != "svg" %}
-    {% for size in imageSizes if (size <= width) %}
-
-      {% if size == width %}
-        {% set srcset = srcset ~ '../..' ~ path ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}
-        {% set zoomSource = path ~ '.' ~ ext %}
-      {% else %}
-        {% set srcset = srcset ~ '../..' ~ path ~ '-' ~ size ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}
-        {% set zoomSource = path ~ '-' ~ size ~ '.' ~ ext %}
-      {% endif %}
-
-      {# store the current srcset path just in case this loop is our last -- loop.last var isn't available w/ conditions #}
-
-    {% endfor %}
-    {% set srcset = srcset|trim(', ') %}
-  {% elseif ext == "svg" %}
-    {% set srcset = src %}
-  {% endif %}
+{#--------------------#}
+{# STOP!!!!!!!!!#}
+{# The ONLY thing that can happen below here is creating and building the `attributes`, then calling the template - ALL data must be prepped by this point #}
+{#--------------------#}
 
 {% set attributes = create_attribute(attributes | default({})).addClass('c-bolt-image') %}
 
@@ -117,24 +117,18 @@
   lazyload ? "js-lazyload" : "",
   lazyload ? "is-lazyloading" : ""
 ])
-  .setAttribute('alt', alt) %}
+  .setAttribute('alt', alt)
+  .setAttribute('src', src)
+%}
 
-
-
-{% if zoom %}
-  {% set imageAttributes = imageAttributes
-    .setAttribute("data-zoom", zoomSource) %}
-{% endif %}
-
-
-{% if lazyload %}
-  {% set imageAttributes = imageAttributes
-    .setAttribute("data-srcset", srcset)
-    .setAttribute("srcset", placeholderDummySrc)
-    .setAttribute("data-sizes", sizes) %}
-{% else %}
+{% if srcset %}
   {% set imageAttributes = imageAttributes.setAttribute("srcset", srcset) %}
 {% endif %}
+
+{#{% if zoom %}#}
+  {#{% set imageAttributes = imageAttributes#}
+    {#.setAttribute("data-zoom", zoomSource) %}#}
+{#{% endif %}#}
 
 {% set placeholderAttributes = create_attribute(placeholderAttributes | default({})).addClass("c-bolt-image__placeholder") %}
 {% set styles = placeholderAttributes.getAttribute('style') | split(' ') | merge([
@@ -143,16 +137,27 @@
 ]) %}
 {% set placeholderAttributes = placeholderAttributes.setAttribute('style', styles) %}
 
+{#{% if lazyload %}#}
+  {#{% set imageAttributes = imageAttributes#}
+    {#.setAttribute("data-srcset", srcset)#}
+    {#.setAttribute("srcset", placeholderDummySrc)#}
+    {#.setAttribute("data-sizes", sizes) %}#}
+{#{% endif %}#}
+
 {% set imageTag %}
   <img {{ imageAttributes }}>
   <noscript>
-    <img {{ imageAttributes.removeClass(["js-lazyload", "is-lazyloading"]).setAttribute("srcset", srcset) }}>
+    <img {{ imageAttributes.removeClass(["js-lazyload", "is-lazyloading"]) }}>
   </noscript>
 {% endset %}
 
 {% set imagePlaceholder %}
   <span {{ placeholderAttributes }}></span>
 {% endset %}
+
+{# Super helpful info if you uncomment #}
+{#{{ console_log(_context) }}#}
+
 <bolt-image>
   {% block image_content %}
     {% if width > 0 and height > 0 and ratio == true %}

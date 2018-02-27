@@ -39,15 +39,19 @@
   display: -ms-grid;
   display: grid;
 
-  -ms-grid-rows: bolt-spacing(large) auto auto 1fr bolt-spacing(large);
-  grid-template-rows: bolt-spacing(large) auto auto 1fr bolt-spacing(large);
-
+  -ms-grid-rows: bolt-spacing(small) auto auto 1fr bolt-spacing(small);
+  grid-template-rows: bolt-spacing(small) auto auto 1fr bolt-spacing(small);
 
   -ms-grid-columns: 1fr 90% 1fr;
   grid-template-columns: 1fr 90% 1fr;
 
   max-width: 1440px;
   margin: 0 auto;
+
+  @include respond-to(small){
+    -ms-grid-rows: bolt-spacing(medium) auto auto 1fr bolt-spacing(medium);
+    grid-template-rows: bolt-spacing(medium) auto auto 1fr bolt-spacing(medium);
+  }
 
   @include respond-to(medium) {
     -ms-grid-columns: 1fr 17.5% 65% 17.5% 1fr;
@@ -283,4 +287,10 @@ pre {
   text-decoration: none;
   opacity: 0.6;
   transition: opacity 0.2s ease;
+}
+
+// Sticky positioning of side nav links, if supported
+.c-bolt-docs__page-nav-list {
+  position: sticky;
+  top: bolt-spacing(large);
 }
