@@ -30,7 +30,6 @@
     "composer:pl": "cd apps/pattern-lab && rm -rf vendor composer.lock && composer install --no-interaction",
     "composer:bolt-site": "cd apps/bolt-site && rm -rf vendor composer.lock && composer install --no-interaction",
     "composer": "npm-run-all --serial composer:*",
-
     "bootstrap": "lerna bootstrap --reject-cycles",
     "postbootstrap": "npm run build:icons && node scripts/monorepo-tests.js",
     "predeploy": "npm run build",
@@ -41,7 +40,6 @@
     "prepublishOnly": "npm run build",
     "test": "jest --testPathIgnorePatterns 'sandbox' --testPathIgnorePatterns 'brightcove-player.test.js'",
     "snyk-protect": "snyk protect",
-
     "watch:icons": "lerna exec --scope @bolt/components-icons -- npm run watch"
   },
   "config": {
