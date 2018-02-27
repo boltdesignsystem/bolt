@@ -3,31 +3,6 @@
 {% block main_content %}
 
   {% set feature_band_content %}
-    {% include "@bolt/button.twig" with {
-      attributes: {
-        class: [
-          "_c-bolt-button--theme-override"
-        ]
-      },
-      text: "Contact Us"
-    } %}
-    
-    <bolt-ratio>
-      <div class="c-brightcove-video u-bolt-width-1/1 o-bolt-ratio" style="padding-bottom: 56.25%;">
-        {# <video data-video-id="4268703476001" data-account="1900410236" data-player="SklWHdrCAZ" data-embed="default" data-application-id
-          class="video-js" controls></video>
-        <script src="//players.brightcove.net/1900410236/SklWHdrCAZ_default/index.min.js" async></script> #}
-        
-        {# <video data-video-id="4268703476001" data-account="1900410236" data-player="4yYJJr6Tx" data-embed="default" data-application-id
-          class="video-js" controls></video>
-        <script src="//players.brightcove.net/1900410236/4yYJJr6Tx_default/index.min.js"></script> #}
-
-        <video data-video-id="4268703476001" data-account="1900410236" data-player="4yYJJr6Tx" data-embed="default" data-application-id
-          class="video-js" controls></video>
-        <script src="//players.brightcove.net/1900410236/4yYJJr6Tx_default/index.min.js"></script>
-
-      </div>
-    </bolt-ratio>
     {% include "@bolt/ui-list.twig" with {
       contentItems : [
         {
@@ -38,11 +13,8 @@
             },
             {
               "pattern": "headline",
-              "text": link("Personalized. Not Creepy.", "#", {}),
-              "size": "large",
-              "icon": {
-                "name": "chevron-right"
-              }
+              "text": "Personalized. Not Creepy.",
+              "size": "large"
             }
           ]
         },
@@ -55,10 +27,7 @@
             {
               "pattern": "headline",
               "text": "Create Sales Superstars",
-              "size": "large",
-              "icon": {
-                "name": "chevron-right"
-              }
+              "size": "large"
             }
           ]
         },
@@ -71,10 +40,7 @@
             {
               "pattern": "headline",
               "text": "Stop Coding. Start Designing.",
-              "size": "large",
-              "icon": {
-                "name": "chevron-right"
-              }
+              "size": "large"
             }
           ]
         }
@@ -102,30 +68,35 @@
       headlines: [
         {
           "type": "headline",
-          "text": "We're able to predict that you're going to call before you need to actually contact us.",
-          "size": "xxlarge",
+          "text": "Dynamically recommend next-best-actions for your customers.",
+          "size": "xxxlarge",
           "tag": "h1"
         }
       ],
-      logo: {
-        src: "/images/sample/PayPal-logo.svg",
-        invert: true
-      },
-      content: "Powered by real AI, Pega Customer Service delivers game-changing results for enterprises.",
       buttons: [
         {
-          text: "Get Real",
+          text: "Call to action",
           style: "primary",
-          url: "https://www.google.com",
-          icon: {
-            name: "chevron-right"
-          }
+          url: "https://www.google.com"
         }
       ]
     },
     content: feature_band.content | default(content),
-   
-  } only %}{% endembed %}
+
+  } only %}
+    {% block primary_teaser %}
+      {{ parent() }}
+      <hr>
+      {% include "@bolt/blockquote.twig" with {
+        "author": {
+          "name": "Daniel Schulman",
+          "title": "CEO, Paypal"
+        },
+        "content": "<p>Pega Marketing did a lot of great things for us lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet.”</p>"
+      } only %}
+
+    {% endblock %}
+  {% endembed %}
 
 
 
@@ -178,7 +149,7 @@
       "contentItems": [
         {
           "pattern": "image",
-          "src": "/images/placeholders/1200x660.jpg"
+          "src": "/pattern-lab/images/placeholders/1200x660.jpg"
         },
         {
           "pattern": "headline",
@@ -201,7 +172,7 @@
     {
       "pattern": "card",
       "image": {
-        "src": "/images/sample/anthem-video.jpg"
+        "src": "/pattern-lab/images/content/promos/promo-16x9-anthem.jpg"
       },
       "teaser": {
         "eyebrow": {
@@ -236,7 +207,7 @@
       "contentItems": [
         {
           "pattern": "image",
-          "src": "/images/sample/artificial-intelligence-image.jpg"
+          "src": "/pattern-lab/images/content/promos/promo-16x9-ai.jpg"
         },
         {
           "pattern": "teaser",
@@ -286,7 +257,7 @@
 
         {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
           {% include "@bolt/image.twig" with {
-            src: "/images/sample/salesforce-v-pega.png"
+            src: "/pattern-lab/images/content/promos/promo-16x9-salesforce-vs-pega.png"
           } only %}
         {% endcell %}
 
@@ -318,68 +289,6 @@
         {% endcell %}
       {% endgrid %}
 
-  {% endblock %}
-{% endembed %}
-
-
-
-{% embed "@bolt/band.twig" with {
-  size: "medium",
-  theme: "dark",
-  fullBleed: true
-} only %}
-  {% block band_content %}
-    {% include "@bolt/action-blocks.twig" with {
-      attributes: {
-        class: [
-          "c-bolt-action-blocks--max-8"
-        ]
-      },
-  "contentItems": [
-    {
-      "text": "Product Information",
-      "url": "http://google.com",
-      "icon": {
-        "name": "product"
-      }
-    },
-    {
-      "text": "Industry Solutions",
-      "url": "http://google.com",
-      "icon": {
-        "name": "industries"
-      }
-    },
-    {
-      "text": "Training and Certification",
-      "url": "http://google.com",
-      "icon": {
-        "name": "training"
-      }
-    },
-    {
-      "text": "Vision and Technology",
-      "url": "http://google.com",
-      "icon": {
-        "name": "vision"
-      }
-    },
-    {
-      "text": "Services and Partners",
-      "url": "http://google.com",
-      "icon": {
-        "name": "partners"
-      }
-    },
-    {
-      "text": "Career Opportunities",
-      "url": "http://google.com",
-      "icon": {
-        "name": "careers"
-      }
-    }
-  ]
-} only %}
   {% endblock %}
 {% endembed %}
 

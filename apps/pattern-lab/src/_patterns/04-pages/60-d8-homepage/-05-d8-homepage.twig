@@ -1,5 +1,9 @@
 {% extends "@bolt/default-template.twig" %}
 
+{% block global_header %}
+  {% include "@bolt/page-header.twig" %}
+{% endblock %}
+
 {% block main_content %}
 
   {% set feature_band_content %}
@@ -9,12 +13,16 @@
           contentItems: [
             {
               "pattern": "eyebrow",
-              "text": "Customer Retention"
+              "text": "Customer Retention",
+              "icon": {
+                name: "product"
+              }
             },
             {
               "pattern": "headline",
               "text": "Personalized. Not Creepy.",
-              "size": "large"
+              "size": "large",
+              "url": "https://www.google.com"
             }
           ]
         },
@@ -27,7 +35,10 @@
             {
               "pattern": "headline",
               "text": "Create Sales Superstars",
-              "size": "large"
+              "size": "large",
+              "icon": {
+                "name": "chevron-right"
+              }
             }
           ]
         },
@@ -40,7 +51,10 @@
             {
               "pattern": "headline",
               "text": "Stop Coding. Start Designing.",
-              "size": "large"
+              "size": "large",
+              "icon": {
+                "name": "chevron-right"
+              }
             }
           ]
         }
@@ -67,36 +81,32 @@
       },
       headlines: [
         {
-          "type": "headline",
-          "text": "Dynamically recommend next-best-actions for your customers.",
-          "size": "xxxlarge",
-          "tag": "h1"
+          type: "headline",
+          text: "We're able to predict that you're going to call before you need to actually contact us.",
+          size: "xxlarge",
+          tag: "h1",
+          quoted: true
         }
       ],
+      logo: {
+        src: "/pattern-lab/images/content/logos/logo-paypal.svg",
+        invert: true
+      },
+      content: "Powered by real AI, Pega Customer Service delivers game-changing results for enterprises.",
       buttons: [
         {
-          text: "Call to action",
+          text: "Get Real",
           style: "primary",
-          url: "https://www.google.com"
+          url: "https://www.google.com",
+          icon: {
+            name: "chevron-right"
+          }
         }
       ]
     },
     content: feature_band.content | default(content),
-   
-  } only %}
-    {% block primary_teaser %}
-      {{ parent() }}
-      <hr>
-      {% include "@bolt/blockquote.twig" with {
-        "author": {
-          "name": "Daniel Schulman",
-          "title": "CEO, Paypal"
-        },
-        "content": "<p>Pega Marketing did a lot of great things for us lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet.”</p>"
-      } only %}
 
-    {% endblock %}
-  {% endembed %}
+  } only %}{% endembed %}
 
 
 
@@ -149,7 +159,7 @@
       "contentItems": [
         {
           "pattern": "image",
-          "src": "/images/placeholders/1200x660.jpg"
+          "src": "/pattern-lab/images/placeholders/1200x660.jpg"
         },
         {
           "pattern": "headline",
@@ -172,7 +182,7 @@
     {
       "pattern": "card",
       "image": {
-        "src": "/images/sample/anthem-video.jpg"
+        "src": "/pattern-lab/images/content/promos/promo-16x9-anthem.jpg"
       },
       "teaser": {
         "eyebrow": {
@@ -207,7 +217,7 @@
       "contentItems": [
         {
           "pattern": "image",
-          "src": "/images/sample/artificial-intelligence-image.jpg"
+          "src": "/pattern-lab/images/content/promos/promo-16x9-ai.jpg"
         },
         {
           "pattern": "teaser",
@@ -257,7 +267,7 @@
 
         {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
           {% include "@bolt/image.twig" with {
-            src: "/images/sample/salesforce-v-pega.png"
+            src: "/pattern-lab/images/content/promos/promo-16x9-salesforce-vs-pega.png"
           } only %}
         {% endcell %}
 
@@ -289,6 +299,72 @@
         {% endcell %}
       {% endgrid %}
 
+  {% endblock %}
+{% endembed %}
+
+
+
+{% embed "@bolt/band.twig" with {
+  size: "medium",
+  theme: "dark",
+  fullBleed: true
+} only %}
+  {% block band_content %}
+    {% include "@bolt/action-blocks.twig" with {
+      attributes: {
+        class: [
+          "c-bolt-action-blocks--max-8"
+        ]
+      },
+  "contentItems": [
+    {
+      text: "Product Information",
+      url: "http://google.com",
+      icon: {
+        name: "product"
+      }
+    },
+    {
+      text: "Industry Solutions",
+      url: "http://google.com",
+      icon: {
+        name: "industries"
+      }
+    },
+    {
+      text: "Training and Certification",
+      url: "http://google.com",
+      icon: {
+        name: "training",
+        background: "circle"
+      }
+    },
+    {
+      text: "Vision and Technology",
+      url: "http://google.com",
+      icon: {
+        name: "vision",
+        background: "circle"
+      }
+    },
+    {
+      text: "Services and Partners",
+      url: "http://google.com",
+      icon: {
+        name: "partners",
+        background: "square"
+      }
+    },
+    {
+      text: "Career Opportunities",
+      url: "http://google.com",
+      icon: {
+        name: "careers",
+        background: "square"
+      }
+    }
+  ]
+} only %}
   {% endblock %}
 {% endembed %}
 
