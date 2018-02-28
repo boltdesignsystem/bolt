@@ -60,6 +60,7 @@ module.exports = {
       '@bolt/components-sticky',
       '@bolt/components-teaser',
       '@bolt/components-unordered-list',
+      '@bolt/components-video',
     ],
     individual: [
       '@bolt/components-critical-fonts'
