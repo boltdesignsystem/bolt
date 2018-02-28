@@ -26,6 +26,7 @@ before_script:
 install:
 - yarn install
 - npm run setup
+- npm test
 
 script:
 - travis_wait npm run build && npm run deploy && node ./scripts/netlify-notifier.js
