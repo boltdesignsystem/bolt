@@ -38,6 +38,7 @@
     "clean:lerna": "lerna clean -Y",
     "clean": "npm-run-all --parallel clean:*",
     "prepublishOnly": "npm run build",
+    "test:js": "jest --testPathIgnorePatterns 'sandbox' --testPathIgnorePatterns 'brightcove-player.test.js'",
     "snyk-protect": "snyk protect",
     "test": "npm run test:js && npm run test:php",
     "test:js": "jest --testPathIgnorePatterns 'sandbox' --testPathIgnorePatterns 'brightcove-player.test.js'",
