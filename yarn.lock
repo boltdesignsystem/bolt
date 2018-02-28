@@ -2,6 +2,22 @@
 # yarn lockfile v1
 
 
+"@bolt/core-data@^0.2.0-beta.0":
+  version "0.2.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@bolt/core-data/-/core-data-0.2.0-beta.0.tgz#c1c0ca051be39391e13ea99195e7c3b587bcf532"
+
+"@bolt/core@0.5.0-beta.1":
+  version "0.5.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@bolt/core/-/core-0.5.0-beta.1.tgz#a7c411019a6bdee4587ce099e4a754d688167d48"
+  dependencies:
+    "@bolt/core-data" "^0.2.0-beta.0"
+    "@webcomponents/webcomponentsjs" "^1.0.22"
+    core-js "^2.5.1"
+    es6-promise "^4.1.1"
+    preact "^8.2.5"
+    skatejs "^5.0.0-beta.4"
+    yocss "^0.5.1"
+
 "@polymer/sinonjs@^1.14.1":
   version "1.17.1"
   resolved "https://registry.yarnpkg.com/@polymer/sinonjs/-/sinonjs-1.17.1.tgz#e47d3785b7d0e8c29feb97f7e924b0fc597e2e9b"
@@ -305,7 +321,7 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@webcomponents/webcomponents-platform/-/webcomponents-platform-1.0.0.tgz#8879146380ddbecb8617e322497d59e77c3ff468"
 
-"@webcomponents/webcomponentsjs@^1.0.7", "@webcomponents/webcomponentsjs@^1.1.0":
+"@webcomponents/webcomponentsjs@^1.0.22", "@webcomponents/webcomponentsjs@^1.0.7", "@webcomponents/webcomponentsjs@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@webcomponents/webcomponentsjs/-/webcomponentsjs-1.1.0.tgz#1392799c266fca142622a720176f688beb74d181"
 
@@ -7842,7 +7858,7 @@ postcss@^5.0.0, postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.
     source-map "^0.5.6"
     supports-color "^3.2.3"
 
-preact@^8.2.7:
+preact@^8.2.5, preact@^8.2.7:
   version "8.2.7"
   resolved "https://registry.yarnpkg.com/preact/-/preact-8.2.7.tgz#316249fb678cd5e93e7cee63cea7bfb62dbd6814"
 
@@ -9016,7 +9032,7 @@ sinon@^2.3.5:
     text-encoding "0.6.4"
     type-detect "^4.0.0"
 
-skatejs@^5.1.1:
+skatejs@^5.0.0-beta.4, skatejs@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/skatejs/-/skatejs-5.1.1.tgz#e253b676a26f0aac9565df7043f9878f9fa0518d"
 
