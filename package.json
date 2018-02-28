@@ -38,7 +38,7 @@
     "clean:lerna": "lerna clean -Y",
     "clean": "npm-run-all --parallel clean:*",
     "prepublishOnly": "npm run build",
-    "test": "jest --testPathIgnorePatterns 'sandbox' --testPathIgnorePatterns 'brightcove-player.test.js'",
+    "test:js": "jest --testPathIgnorePatterns 'sandbox' --testPathIgnorePatterns 'brightcove-player.test.js'",
     "snyk-protect": "snyk protect",
     "watch:icons": "lerna exec --scope @bolt/components-icons -- npm run watch"
   },
