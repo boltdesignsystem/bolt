@@ -39,9 +39,9 @@
     "clean": "npm-run-all --parallel clean:*",
     "prepublishOnly": "npm run build",
     "snyk-protect": "snyk protect",
-    "test": "npm-run-all --serial test:*",
     "test:js": "jest --testPathIgnorePatterns 'sandbox' --testPathIgnorePatterns 'brightcove-player.test.js'",
     "test:php": "cd packages/core-php && composer run test",
+    "test": "npm-run-all --serial test:*",
     "watch:icons": "lerna exec --scope @bolt/components-icons -- npm run watch"
   },
   "config": {
