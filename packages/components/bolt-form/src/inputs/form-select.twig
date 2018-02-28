@@ -1,0 +1,30 @@
+{# TODO: Add hasErrors parameter to support server-side invalidation #}
+
+{% set attributes = create_attribute(attributes | default({})) %}
+{% set classes = ["c-bolt-input", "c-bolt-input--select"] %}
+
+{% spaceless %}
+  <select{{ attributes.addClass(classes) }}>
+    {% for option in options %}
+      {% if option.type == 'optgroup' %}
+        <optgroup label="{{ option.label }}">
+          {% for sub_option in option.options %}
+            <option value="{{ sub_option.value }}"{{ sub_option.selected ? ' selected="selected"' }}>{{ sub_option.label }}</option>
+          {% endfor %}
+        </optgroup>
+      {% elseif option.type == 'option' %}
+        <option value="{{ option.value }}"{{ option.selected ? ' selected="selected"' }}>{{ option.label }}</option>
+      {% endif %}
+    {% endfor %}
+  </select>
+
+  {% if not attributes.multiple %}
+
+    {% set _icons = ["chevron-right"] %}
+
+    <div class="c-bolt-input-icons">
+      {% include "@bolt/form-icons.twig" with {"icons": _icons } only %}
+    </div>
+
+  {% endif %}
+{% endspaceless %}
