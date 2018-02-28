@@ -40,9 +40,9 @@
     "prepublishOnly": "npm run build",
     "test:js": "jest --testPathIgnorePatterns 'sandbox' --testPathIgnorePatterns 'brightcove-player.test.js'",
     "snyk-protect": "snyk protect",
-    "test": "npm run test:js && npm run test:php",
+    "test": "npm-run-all --serial test:*",
     "test:js": "jest --testPathIgnorePatterns 'sandbox' --testPathIgnorePatterns 'brightcove-player.test.js'",
-    "test:php": "cd packages/core-php && ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests",
+    "test:php": "cd packages/core-php && composer run test",
     "watch:icons": "lerna exec --scope @bolt/components-icons -- npm run watch"
   },
   "config": {
