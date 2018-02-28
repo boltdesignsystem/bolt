@@ -9,15 +9,14 @@ use Bolt;
 final class ColorsTest extends TestCase
 {
   private static $epsilon = 0.00001; // accuracy for floating point test
+  private static $colorBlack = '000000';
+  private static $colorWhite = 'ffffff';
+  private static $colorRandom = 'a8b3c1';
 
   public function testCanCalculateLuminosity() {
-    $colorBlack = '000000';
-    $colorWhite = 'ffffff';
-    $colorRandom = 'a8b3c1';
-
-    $luminosityBlack = Colors::calculateLuminosity($colorBlack);
-    $luminosityWhite = Colors::calculateLuminosity($colorWhite);
-    $luminosityRandom = Colors::calculateLuminosity($colorRandom);
+    $luminosityBlack = Colors::calculateLuminosity(self::$colorBlack);
+    $luminosityWhite = Colors::calculateLuminosity(self::$colorWhite);
+    $luminosityRandom = Colors::calculateLuminosity(self::$colorRandom);
 
     $this->assertSame(0.0, $luminosityBlack);
     $this->assertSame(1.0, $luminosityWhite);
@@ -25,14 +24,10 @@ final class ColorsTest extends TestCase
   }
 
   public function testCanCalculateLuminosityRatio() {
-    $colorBlack = '000000';
-    $colorWhite = 'ffffff';
-    $colorRandom = 'a8b3c1';
-
-    $luminosityRatioOne = Colors::calculateLuminosityRatio($colorBlack, $colorWhite);
-    $luminosityRatioTwo = Colors::calculateLuminosityRatio($colorWhite, $colorBlack);
-    $luminosityRatioThree = Colors::calculateLuminosityRatio($colorBlack, $colorRandom);
-    $luminosityRatioFour = Colors::calculateLuminosityRatio($colorWhite, $colorRandom);
+    $luminosityRatioOne = Colors::calculateLuminosityRatio(self::$colorBlack, self::$colorWhite);
+    $luminosityRatioTwo = Colors::calculateLuminosityRatio(self::$colorWhite, self::$colorBlack);
+    $luminosityRatioThree = Colors::calculateLuminosityRatio(self::$colorBlack, self::$colorRandom);
+    $luminosityRatioFour = Colors::calculateLuminosityRatio(self::$colorWhite, self::$colorRandom);
 
     $this->assertTrue(abs(21-$luminosityRatioOne) < self::$epsilon);
     $this->assertTrue(abs(21-$luminosityRatioTwo) < self::$epsilon);
@@ -41,9 +36,12 @@ final class ColorsTest extends TestCase
   }
 
   public function testCanCalculateTextContrast() {
-    $colorBlack = '000000';
-    $colorWhite = 'ffffff';
-    $colorRandom = 'a8b3c1';
+    $textContrastOne = Colors::calculateTextContrast(self::$colorBlack);
+    $textContrastTwo = Colors::calculateTextContrast(self::$colorWhite);
+    $textContrastThree = Colors::calculateTextContrast(self::$colorRandom);
 
+    $this->assertEquals('white', $textContrastOne);
+    $this->assertEquals('black', $textContrastTwo);
+    $this->assertEquals('black', $textContrastThree);
   }
 }
