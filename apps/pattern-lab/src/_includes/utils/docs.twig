@@ -60,7 +60,7 @@
     {% endif %}
 
 
-    {% if schema %}
+    {% if schema and schema.properties %}
       {% include "@bolt/headline.twig" with {
         size: "xlarge",
         tag: "h2",
@@ -82,10 +82,52 @@
     {% endif %}
 
     {% if links %}
-      <h4>Helpful Links</h4>
-      {% for link in links %}
-        <a href="{{ link.url }}" target="_blank">{{ link.text }}</a>
-      {% endfor %}
+      {% include "@bolt/headline.twig" with {
+        size: "xlarge",
+        tag: "h2",
+        url: "#helpful-links",
+        text: "Helpful Links",
+        icon: false,
+        attributes: {
+          class: [
+            "u-bolt-margin-top-large",
+            "c-bolt-docs__heading-fragment"
+          ],
+          id: "schema"
+        }
+      } %}
+
+      <ul class="c-bolt-docs__page-nav-list">
+        {% for link in links %}
+          <li>
+            {#{% include "@bolt/headline.twig" with {#}
+              {#size: "small",#}
+              {#weight: "regular",#}
+              {#transform: "capitalize",#}
+              {#tag: "h3",#}
+              {#text: link.text,#}
+              {#url:  link.url,#}
+              {#target: '_parent', // This needs to be added to headline component #}
+              {#attributes: {#}
+                {#class: [#}
+                  {#"c-bolt-headline--link",#}
+                  {#"u-bolt-margin-bottom-none"#}
+                {#],#}
+                {#'data-scroll-offset': 70#}
+              {#},#}
+              {#icon: false,#}
+            {#} only %}#}
+            <h3 class="c-bolt-headline--link u-bolt-margin-bottom-none c-bolt-headline c-bolt-headline--regular c-bolt-headline--small c-bolt-headline--capitalize" data-scroll-offset="70">
+              <span class="c-bolt-headline__text">
+                <a class="c-bolt-link c-bolt-link--headline" href="{{ link.url }}" target="_parent">
+                  <span class="c-bolt-link__text">{{ link.text }}</span>
+                </a>
+              </span>
+            </h3>
+          </li>
+        {% endfor %}
+      </ul>
+
     {% endif %}
   </div>
 
@@ -160,6 +202,35 @@
                 text: include("@bolt/link.twig", {
                   text: "Schema",
                   url:  "#schema",
+                  attributes: {
+                    class: [
+                      "c-bolt-link--headline"
+                    ],
+                    'data-scroll-offset': 70
+                  }
+                }),
+                attributes: {
+                  class: [
+                    "c-bolt-headline--link",
+                    "u-bolt-margin-bottom-none"
+                  ]
+                },
+                icon: false,
+              } only %}
+            </li>
+          {% endif %}
+
+
+          {% if links %}
+            <li class="o-bolt-ui-list__item">
+              {% include "@bolt/headline.twig" with {
+                size: "xsmall",
+                transform: "capitalize",
+                weight: "regular",
+                tag: "h3",
+                text: include("@bolt/link.twig", {
+                  text: "Helpful Links",
+                  url:  "#helpful-links",
                   attributes: {
                     class: [
                       "c-bolt-link--headline"
