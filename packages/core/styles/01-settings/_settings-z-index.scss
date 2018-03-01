@@ -1,13 +1,19 @@
+// Increasing $z-index-range will increase the range between generated z-index values
+$z-index-range: 20;
+
 $bolt-z-index: (
-  modal: 100,
-  modalBG: 90,
-  navFixed: 80,
-  tooltip: 70,
-  popover: 60,
-  nav: 50,
-  contentTop: 40,
-  content: 30,
-  contentBottom: 20,
+  modal: 10 * $z-index-range,
+  modalBG: 9 * $z-index-range,
+  navFixed: 8 * $z-index-range,
+  tooltip: 7 * $z-index-range,
+  popover: 6 * $z-index-range,
+  nav: 5 * $z-index-range,
+  contentTop: 4 * $z-index-range,
+  content: 3 * $z-index-range,
+  contentBottom: 2 * $z-index-range,
+  backgroundTop: 1 * $z-index-range,
+  background: 0 * $z-index-range,
+  backgroundBottom: -1 * $z-index-range,
 );
 
 @include export-data('z-index.bolt.json', $bolt-z-index);
