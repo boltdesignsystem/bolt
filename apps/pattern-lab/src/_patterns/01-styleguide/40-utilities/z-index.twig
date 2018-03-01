@@ -14,19 +14,15 @@
 <h4>How to use</h4>
 
 {{ '```scss
-@import \'@bolt/core\';
-
 .class {
-  z-index: z(NAME);
+  z-index: bolt-z-index(NAME);
 }
 ```' | markdown }}
 
 <h4>Example</h4>
 
 {{ '```scss
-@import \'@bolt/core\';
-
 .navbar {
-  z-index: z(navFixed);
+  z-index: bolt-z-index(\'navFixed\');
 }
 ```' | markdown }}
