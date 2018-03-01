@@ -1,0 +1,18 @@
+/* ------------------------------------ *\
+  Z Index MIXIN
+\* ------------------------------------ */
+
+@mixin bolt-z-index($name: "content") {
+  @if map-has-key($bolt-z-index, $name) {
+    z-index: $bolt-z-index[$name];
+  }
+}
+
+/* ------------------------------------ *\
+  Z Index FUNCTION
+\* ------------------------------------ */
+
+@function z($key) {
+  @return map-get($z-index, $key)
+}
+
