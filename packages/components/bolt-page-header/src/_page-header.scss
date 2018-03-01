@@ -23,7 +23,7 @@
 }
 
 .c-page-header {
-  z-index: z("nav");
+  z-index: bolt-z-index('nav');
   border-bottom: 1px solid #f5f5fa;
   left: 0;
   right: 0;
@@ -250,7 +250,7 @@
   background: #F3F5F8;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  z-index: z("contentBottom");
+  z-index: bolt-z-index('contentBottom');
 }
 
 .c-mega-nav__level-1.c-mega-nav__list .c-mega-nav__link,
@@ -305,7 +305,7 @@
   font-size: 11px;
   line-height: 17px;
   font-weight: 600;
-  z-index: z("contentBottom");
+  z-index: bolt-z-index('contentBottom');
 }
 
 .c-utility-nav__link {
@@ -474,7 +474,7 @@
     color: #fff;
     background-color: #005A8B;
     text-align: center;
-    z-index: z("nav");
+    z-index: bolt-z-index('nav');
     left: 100%;
     padding: 15px 16px;
     font-weight: 600;
@@ -556,7 +556,7 @@
     width: auto;
     background: transparent;
     overflow: visible;
-    z-index: (z("contentBottom") + 5);
+    z-index: bolt-z-index('contentBottom') + 5;
   }
 
   .c-mega-nav__level-1.c-mega-nav__list > .c-mega-nav__item {
@@ -835,7 +835,7 @@
   top: 50%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
-  z-index: z("nav");
+  z-index: bolt-z-index('nav');
   color: #005A8B;
 }
 
@@ -848,7 +848,7 @@
   width: auto;
   -webkit-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
-  z-index: z("nav");
+  z-index: bolt-z-index('nav');
   display: inline-block;
   vertical-align: middle;
   -ms-flex-item-align: center;
@@ -913,7 +913,7 @@
 }
 
 .c-hamburger__button--close {
-  z-index: z("content");
+  z-index: bolt-z-index('content');
   visibility: hidden;
   position: absolute;
   top: 0;
@@ -930,7 +930,7 @@
   background-color: white;
   opacity: 0;
   visibility: hidden;
-  z-index: z("content");
+  z-index: bolt-z-index('content');
   padding: 0 1rem;
   display: inline-block;
   overflow: hidden;
@@ -970,7 +970,7 @@
 .c-global-search__submit {
   position: absolute;
   top: 50%;
-  z-index: z("content");
+  z-index: bolt-z-index('content');
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
   padding: 12px;
@@ -1045,7 +1045,7 @@
 .c-global-search__panel-trigger {
   top: 50%;
   left: 0;
-  z-index: z("content");
+  z-index: bolt-z-index('content');
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
   padding: 12px;
@@ -1080,7 +1080,7 @@
 }
 
 .c-global-search__panel-trigger {
-  z-index: z("tooltip");
+  z-index: bolt-z-index('tooltip');
   top: 0;
   -webkit-transform: none;
   transform: none;
@@ -1091,7 +1091,7 @@
 
 .c-overlay {
   position: fixed;
-  z-index: z("contentTop");
+  z-index: bolt-z-index('contentTop');
   height: 100%;
   width: 100%;
   top: 0;
