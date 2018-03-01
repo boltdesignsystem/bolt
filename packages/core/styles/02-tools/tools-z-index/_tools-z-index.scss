@@ -2,9 +2,9 @@
   Z Index MIXIN
 \* ------------------------------------ */
 
-@mixin bolt-z-index($name: "content") {
-  @if map-has-key($bolt-z-index, $name) {
-    z-index: $bolt-z-index[$name];
+@mixin bolt-z-index($key: "content") {
+  @if map-has-key($bolt-z-index, $key) {
+    z-index: map-get($bolt-z-index, $key);
   }
 }
 
@@ -13,6 +13,6 @@
 \* ------------------------------------ */
 
 @function z($key) {
-  @return map-get($z-index, $key)
+  @return map-get($bolt-z-index, $key)
 }
 
