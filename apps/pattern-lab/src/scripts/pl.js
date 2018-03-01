@@ -21,3 +21,12 @@ function toggleEditOn() {
 function toggleEditOff() {
   editWrap[0].classList.remove('edit-this-readme');
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('a').forEach((item) => {
+      const href = item.getAttribute('href');
+      if (href.startsWith('http')) {
+        item.setAttribute('target', '_blank');
+      }
+    });
+});
