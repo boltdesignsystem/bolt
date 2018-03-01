@@ -128,7 +128,7 @@ bolt-blockquote {
 .c-bolt-blockquote__image {
   display: inline-block;
   position: relative; /* [1] */
-  z-index: 1; /* [1] */
+  z-index: z("backgroundTop"); /* [1] */
   width: $bolt-blockquote-image-size;
   height: $bolt-blockquote-image-size;
   border-width: $bolt-blockquote-image-border-width;

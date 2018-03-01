@@ -18,7 +18,7 @@ bolt-device-viewer {
 .c-bolt-device-viewer__inner {
   display: block;
   position: relative;
-  z-index: 1;
+  z-index: z("content");
 
   &:before,
   &:after {
@@ -35,7 +35,7 @@ bolt-device-viewer {
   display: block;
   position: relative;
   box-shadow: 0 0 0 3px bolt-color(black);
-  z-index: 10; // Must be higher than the z-index of the :before layer on the base component
+  z-index: z("contentTop"); // Must be higher than the z-index of the :before layer on the base component
   width: 100%;
   perspective: 1000px;
   overflow: hidden; // Unfortunately zooming + scrolling is very, very tricky. Forcing this for now.
@@ -47,20 +47,20 @@ bolt-device-viewer {
 .c-bolt-device-viewer__home {
   border-radius: 50%;
   position: absolute;
-  z-index: 20;
+  z-index: (z("contentTop") + 5);
 }
 
 .c-bolt-device-viewer__camera {
   position: absolute;
   border-radius: 100%;
-  z-index: 30;
+  z-index: (z("contentTop") + 10);
 }
 
 .c-bolt-device-viewer__top-bar,
 .c-bolt-device-viewer__bottom-bar {
   display: block;
   position: absolute;
-  z-index: -1; // Since we want this layer pushed back behind most, but not all, layers
+  z-index: (z("background") - 5); // Since we want this layer pushed back behind most, but not all, layers
   width: 100%;
 }
 
@@ -177,7 +177,7 @@ $bolt-magnifier-size: 350px;
 
 .c-bolt-image-zoom__overlay {
   position: absolute;
-  z-index: 1000;
+  z-index: z("navFixed");
   top: 0%;
   left: 0%;
   width: 100%;
@@ -190,7 +190,7 @@ $bolt-magnifier-size: 350px;
   &:before {
     display: block;
     position: absolute;
-    z-index: -1;
+    z-index: (z("background") - 5);
     background-color: rgba(bolt-color(black), 0.3);
     top: 50%;
     left: 50%;
@@ -236,7 +236,7 @@ $bolt-magnifier-size: 350px;
   display: block;
   opacity: 0;
   position: absolute;
-  z-index: 1;
+  z-index: z("content");
   width: 33.33%;
   height: 33.33%;
 
@@ -385,7 +385,7 @@ bolt-image-zoom:hover > .c-bolt-image-zoom__overlay {
   will-change: top, left;
 
   position: absolute;
-  z-index: 1000;
+  z-index: z("tooltip");
   top: 50%;
   left: 50%;
 
