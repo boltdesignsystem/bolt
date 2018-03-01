@@ -193,7 +193,7 @@
           {% endif %}
 
 
-          {% if schema %}
+          {% if schema and schema.properties %}
             <li class="o-bolt-ui-list__item">
               {% include "@bolt/headline.twig" with {
                 size: "xsmall",
