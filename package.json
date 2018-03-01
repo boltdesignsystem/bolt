@@ -28,6 +28,7 @@
     "build:icons": "lerna exec --scope @bolt/components-icons -- npm run build",
     "build": "npm-run-all --serial build:*",
     "composer:pl": "cd apps/pattern-lab && rm -rf vendor composer.lock && composer install --no-interaction",
+    "composer:core-php": "cd packages/core-php && rm -rf vendor composer.lock && composer install --no-interaction",
     "composer:bolt-site": "cd apps/bolt-site && rm -rf vendor composer.lock && composer install --no-interaction",
     "composer": "npm-run-all --serial composer:*",
     "bootstrap": "lerna bootstrap --reject-cycles",
