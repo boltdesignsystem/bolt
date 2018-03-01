@@ -1,0 +1,28 @@
+{% macro recursiveZindexDemo(list) %}
+  <div class="bolt-z-index-demo" style="z-index: {{ list|last }};">
+    {% if list|slice(0, -1)|length  %}
+      {{ _self.recursiveZindexDemo(list|slice(0, -1)) }}
+    {% endif %}
+    <p>Z-Index: <code>{{ list|keys|last }}</code>: {{ list|last }}</p>
+  </div>
+{% endmacro %}
+
+<h4>Z-index Values</h4>
+
+{{ _self.recursiveZindexDemo(bolt.data.zIndex) }}
+
+<h4>How to use</h4>
+
+{{ '```scss
+.class {
+  z-index: z(NAME);
+}
+```' | markdown }}
+
+<h4>Example</h4>
+
+{{ '```scss
+.navbar {
+  z-index: z(navFixed);
+}
+```' | markdown }}
