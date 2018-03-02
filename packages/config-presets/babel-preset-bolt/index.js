@@ -28,7 +28,6 @@ const preset = function(api, opts = {}) {
       // ex. class { handleThing = () => { } }
       [
         '@babel/plugin-proposal-class-properties',
-        { loose: false },
       ],
 
       '@babel/plugin-syntax-jsx',
