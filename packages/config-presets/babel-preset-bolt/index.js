@@ -20,7 +20,8 @@ const preset = function(api, opts = {}) {
  *
  * 2. Allows us to dynamically import JS via Webpack. ex. import('button.standalone.js')
  */
-      'transform-decorators-legacy', // ex. @define
+      '@babel/plugin-syntax-decorators', // ex. @define
+      '@babel/plugin-proposal-decorators',
 
       'transform-export-extensions', // ex. `export Communications from './icons/communications';` - used in @bolt/components-icons  
 
