@@ -41,13 +41,16 @@
 .class {
   @include bolt-shadow(\'' ~ bolt.data.shadows.sets|keys|first ~ '\');
 }
-
 ```') | markdown }}
 
-{{ ('```scss
-/* With hover effect */
-.class {
-  @include bolt-shadow(\'' ~ bolt.data.shadows.sets|keys|first ~ '\', true);
-}
+<p>You can trigger the lift effect by calling the mixin with a 2nd param of <code>true</code> and apply it to another class, or any CSS selector; here's how it can be applied on <code>:hover</code>:</p>
 
+{{ ('```scss
+/* With lift effect on hover */
+.class {
+  @include bolt-shadow(\'' ~ bolt.data.shadows.sets|keys|first ~ '\');
+  &:hover {
+    @include bolt-shadow(\'' ~ bolt.data.shadows.sets|keys|first ~ '\', true);
+  }
+}
 ```') | markdown }}
