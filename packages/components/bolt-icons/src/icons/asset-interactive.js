@@ -2,8 +2,7 @@ const AssetInteractive = ({ color, size, ...otherProps }) => {
   color = color || 'currentColor';
   size = size || '24';
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" {...otherProps}>
-      <title>Icon/utility/Indigo/24px/Asset-Interactive</title>
+    <svg width={size} height={size} {...otherProps}>
       <g fill="currentColor" fill-rule="evenodd">
         <path
           d="M5.428 5.54a.74.74 0 0 0-.737-.738H1.737a.74.74 0 0 0 0 1.48h2.954c.406 0 .737-.331.737-.741"

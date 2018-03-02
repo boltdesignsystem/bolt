@@ -2,8 +2,7 @@ const AssetText = ({ color, size, ...otherProps }) => {
   color = color || 'currentColor';
   size = size || '24';
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" {...otherProps}>
-      <title>Icon/utility/Indigo/24px/Asset-Text</title>
+    <svg width={size} height={size} {...otherProps}>
       <defs>
         <path id="a" d="M0 1V0h20v2H0V1z" />
       </defs>
