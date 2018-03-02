@@ -1,9 +1,8 @@
-// import { Preact, h } from '@bolt/core';
 const Financial = ({ color, size, ...otherProps }) => {
   color = color || 'currentColor';
   size = size || '24';
   return (
-    <svg width="32" height="32" viewBox="0 0 32 32" {...otherProps}>
+    <svg width={size} height={size} viewBox="0 0 32 32" {...otherProps}>
       <title>Icon/Industry/Financial</title>
       <g fill="currentColor" fill-rule="evenodd">
         <path d="M5 30h22V2H5v28zM27 0H5a2 2 0 0 0-2 2v28a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />

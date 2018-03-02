@@ -1,9 +1,8 @@
-// import { Preact, h } from '@bolt/core';
 const MarketingGray = ({ color, size, ...otherProps }) => {
   color = color || 'currentColor';
   size = size || '24';
   return (
-    <svg width="32" height="32" viewBox="0 0 32 32" {...otherProps}>
+    <svg width={size} height={size} viewBox="0 0 32 32" {...otherProps}>
       <title>Icon/product/CRM/Marketing-gray</title>
       <g fill="currentColor" fill-rule="evenodd">
         <path d="M30.271 8.75H27.96C29.261 10.86 30 13.35 30 16c0 7.73-6.269 14-14 14-7.729 0-14-6.27-14-14S8.271 2 16 2c2.701 0 5.221.77 7.361 2.1V1.79C21.161.64 18.651 0 16 0 7.161 0 0 7.16 0 16s7.161 16 16 16c8.831 0 16-7.16 16-16 0-2.61-.62-5.07-1.729-7.25" />

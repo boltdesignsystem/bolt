@@ -1,4 +1,3 @@
-// import { Preact, h } from '@bolt/core';
 const Eye = ({ color, size, ...otherProps }) => {
   color = color || 'currentColor';
   size = size || '24';

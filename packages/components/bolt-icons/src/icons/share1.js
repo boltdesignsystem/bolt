@@ -1,4 +1,3 @@
-// import { Preact, h } from '@bolt/core';
 const Share1 = ({ color, size, ...otherProps }) => {
   color = color || 'currentColor';
   size = size || '24';

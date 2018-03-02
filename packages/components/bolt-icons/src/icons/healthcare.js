@@ -1,9 +1,8 @@
-// import { Preact, h } from '@bolt/core';
 const Healthcare = ({ color, size, ...otherProps }) => {
   color = color || 'currentColor';
   size = size || '24';
   return (
-    <svg width="32" height="32" viewBox="0 0 32 32" {...otherProps}>
+    <svg width={size} height={size} viewBox="0 0 32 32" {...otherProps}>
       <title>Icon/Industry/Healthcare</title>
       <g fill="currentColor" fill-rule="evenodd">
         <path d="M29 27a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h22a2 2 0 0 1 2 2v18zM11 5h10V3H11v2zm16 0h-4V1H9v4H5a4 4 0 0 0-4 4v18a4 4 0 0 0 4 4h22a4 4 0 0 0 4-4V9a4 4 0 0 0-4-4z" />
