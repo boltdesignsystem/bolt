@@ -28,6 +28,7 @@
     "build:icons": "lerna exec --scope @bolt/components-icons -- npm run build",
     "build": "npm-run-all --serial build:*",
     "composer:pl": "cd apps/pattern-lab && rm -rf vendor composer.lock && composer install --no-interaction",
+    "composer:core-php": "cd packages/core-php && rm -rf vendor composer.lock && composer install --no-interaction",
     "composer:bolt-site": "cd apps/bolt-site && rm -rf vendor composer.lock && composer install --no-interaction",
     "composer": "npm-run-all --serial composer:*",
     "bootstrap": "lerna bootstrap --reject-cycles",
@@ -39,7 +40,10 @@
     "clean": "npm-run-all --parallel clean:*",
     "prepublishOnly": "npm run build",
     "snyk-protect": "snyk protect",
-
+    "test:js": "jest",
+    "test:js:watch": "jest --watch",
+    "test:php": "cd packages/core-php && composer run test",
+    "test": "npm-run-all --serial test:*",
     "watch:icons": "lerna exec --scope @bolt/components-icons -- npm run watch"
   },
   "config": {
@@ -63,6 +67,7 @@
   },
   "devDependencies": {
     "husky": "^0.14.3",
+    "jest": "^22.4.0",
     "lerna": "^2.5.1",
     "node-fetch": "^2.0.0",
     "npm-run-all": "^4.1.2",
@@ -84,6 +89,7 @@
     "packages/components/bolt-critical-fonts",
     "packages/components/bolt-device-viewer",
     "packages/components/bolt-figure",
+    "packages/components/bolt-form",
     "packages/components/bolt-headline",
     "packages/components/bolt-icon",
     "packages/components/bolt-icons",

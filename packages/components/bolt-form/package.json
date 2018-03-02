@@ -1,0 +1,35 @@
+{
+  "name": "@bolt/components-form",
+  "description": "Bolt component for forms and form elements",
+  "keywords": [
+    "bolt design system",
+    "bolt",
+    "ui toolkit",
+    "design system"
+  ],
+  "version": "1.0.0-rc.3",
+  "sourceFilesFrom": "0.0.0",
+  "author": "Remy Denton",
+  "homepage": "https://boltdesignsystem.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pega-digital/bolt/tree/master/packages/bolt-component-forms"
+  },
+  "bugs": {
+    "url": "https://github.com/pega-digital/bolt/issues"
+  },
+  "main": "src/form.js",
+  "style": "src/form.scss",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@bolt/core": "1.0.0-rc.3"
+  },
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "build": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/form --output-filename='bolt-form.min.js' --output-public-path /scripts/"
+  }
+}
