@@ -37,12 +37,12 @@
 {{ '```scss
 /* Without hover effect */
 .class {
-  @include bolt-shadow(\'l2\');
+  @include bolt-shadow(\'' ~ bolt.data.shadows.sets|keys|first ~ '\');
 }
 
 /* With hover effect */
 .class {
-  @include bolt-shadow(\'l2\', true);
+  @include bolt-shadow(\'' ~ bolt.data.shadows.sets|keys|first ~ '\', true);
 }
 
 ```' | markdown }}
