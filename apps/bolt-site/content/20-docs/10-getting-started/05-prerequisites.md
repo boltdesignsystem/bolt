@@ -10,7 +10,7 @@ title: Prerequisites
     - Prestissimo
 - Yarn v1 +
 - imagemagick & graphicsmagick
-- PHP v7 +
+- PHP v7.1 +
 
 All package installation command below assume a Mac with Homebrew (`brew`) installed. If it's Linux, then it's *probably* just `apt-get`, if it's Windows, then emulate a Linux environment. 
 
