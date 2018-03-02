@@ -1,17 +1,17 @@
 const preset = function(api, opts = {}) {
   return {
     presets: [
-      ['env', {
+      ['@babel/preset-env', {
         targets: {
           node: 'current',
           browsers: [
             'last 3 versions',
-            'not ie < 9'
-          ]
+            'ie 11',
+          ],
         },
         modules: false,
-        debug: false
-      }]
+        debug: false,
+      }],
     ],
     plugins: [
 /**
