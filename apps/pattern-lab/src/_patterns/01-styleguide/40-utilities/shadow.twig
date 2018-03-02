@@ -3,7 +3,9 @@
 {% set classPrefix = bolt.data.shadows['utility-class-prefix'] %}
 {% for key, value in bolt.data.shadows.sets %}
   <div class="bolt-shadow-demo__card {{ classPrefix }}{{ key }}">{{ key }}
+    <br>Utility Class
     <br><code>.{{ classPrefix }}{{ key }}</code>
+    <br>Scss Mixin
     <br><code>@include bolt-shadow('{{ key }}');</code>
   </div>
 {% endfor %}
@@ -11,7 +13,9 @@
 <h5>Hoverable</h5>
 {% for key, value in bolt.data.shadows.sets %}
   <div class="bolt-shadow-demo__card {{ classPrefix }}{{ key }}--hoverable">{{ key }}
+    <br>Utility Class
     <br><code>.{{ classPrefix }}{{ key }}--hoverable</code>
+    <br>Scss Mixin
     <br><code>@include bolt-shadow('{{ key }}', true);</code>
   </div>
 {% endfor %}
