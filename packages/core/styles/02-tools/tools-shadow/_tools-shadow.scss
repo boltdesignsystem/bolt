@@ -1,0 +1,49 @@
+/**
+ Mixin that adds shadow effect, including hover animation
+*/
+@mixin bolt-shadow($level: 'G') {
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  @if map-has-key($bolt-shadow-styles, $level) {
+    box-shadow: map-get(map-get($bolt-shadow-styles, $level), 'base');
+    &:hover {
+      box-shadow: map-get(map-get($bolt-shadow-styles, $level), 'hover');
+    }
+  }
+}
+
+
+/**
+ Utility Classes for adding shadow effects
+ @todo Generate this dynamically from $bolt-shadow-styles
+*/
+.bolt-shadow--b1 {
+  @include bolt-shadow('B1');
+}
+
+.bolt-shadow--l1 {
+  @include bolt-shadow('L1');
+}
+
+.bolt-shadow--l2 {
+  @include bolt-shadow('L2');
+}
+
+.bolt-shadow--l3 {
+  @include bolt-shadow('L3');
+}
+
+.bolt-shadow--l4 {
+  @include bolt-shadow('L4');
+}
+
+.bolt-shadow--l5 {
+  @include bolt-shadow('L5');
+}
+
+.bolt-shadow--l6 {
+  @include bolt-shadow('L6');
+}
