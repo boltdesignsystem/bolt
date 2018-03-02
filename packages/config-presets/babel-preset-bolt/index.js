@@ -23,7 +23,8 @@ const preset = function(api, opts = {}) {
       '@babel/plugin-syntax-decorators', // ex. @define
       '@babel/plugin-proposal-decorators',
 
-      'transform-export-extensions', // ex. `export Communications from './icons/communications';` - used in @bolt/components-icons  
+      '@babel/plugin-syntax-export-default-from', // ex. `export Communications from './icons/communications';` - used in @bolt/components-icons
+      '@babel/plugin-proposal-export-default-from',
 
       'transform-class-properties', // ex. class { handleThing = () => { } }
 
