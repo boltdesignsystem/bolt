@@ -12,6 +12,8 @@
     &:hover {
       box-shadow: map-get(map-get($bolt-shadow-styles, $level), 'hover');
     }
+  } @else {
+    @warn 'A value was passed into @include bolt-shadow() that is not defined in $bolt-shadow-styles';
   }
 }
 
