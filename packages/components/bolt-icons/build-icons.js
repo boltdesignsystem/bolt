@@ -104,7 +104,7 @@ async function transpileIcons(icons) {
 
 
 (async () => {
-  const icons = await globby(`${rootDir}/src/svgs/**/*.svg`);
+  const icons = await globby(path.join(rootDir, 'src/svgs/**/*.svg'));
   await fs.remove(path.join(rootDir, 'src/icons')); // Clean folder
   await fs.outputFile(path.join(rootDir, 'src', 'index.js'), '', 'utf-8');
   await transpileIcons(icons);
