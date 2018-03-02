@@ -1,6 +1,7 @@
 /**
  Mixin that adds shadow effect, including hover animation
  see `_settings-shadow.scss`
+ @todo Salem, should these have important added to them?
 */
 @mixin bolt-shadow($level: 'G', $lifted: false) {
   @if map-has-key($shadows, $level) {

@@ -34,15 +34,20 @@
 
 <p>There is also a shadow mixin available for use in sass/scss. The mixin takes two arguments, a string corresponding to the level of shadow desired, and an option boolean to add the 'lift' effect on hover.</p>
 
-{{ '```scss
+<p><bold>Note:</bold> Passing a value that is not a defined in <code>_settings-shadow.scss</code> will generate an error.</p>
+
+{{ ('```scss
 /* Without hover effect */
 .class {
   @include bolt-shadow(\'' ~ bolt.data.shadows.sets|keys|first ~ '\');
 }
 
+```') | markdown }}
+
+{{ ('```scss
 /* With hover effect */
 .class {
   @include bolt-shadow(\'' ~ bolt.data.shadows.sets|keys|first ~ '\', true);
 }
 
-```' | markdown }}
+```') | markdown }}
