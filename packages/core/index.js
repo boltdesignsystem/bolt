@@ -1,8 +1,14 @@
 // Export non-Bolt dependencies shared across virtually all components
-export { define, props, withComponent, withUpdate } from 'skatejs';
+export {
+  define,
+  props,
+  withComponent,
+  withUpdate,
+} from 'skatejs';
+
 export { h } from 'preact';
 
-// Export Bolt utils
+// Export Utilties + Helpers
 export * from './utils/css';
 export { declarativeClickHandler } from './utils/declarative-click-handler';
 export * from './utils/environment';
