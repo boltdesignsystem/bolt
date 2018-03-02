@@ -1,29 +1,48 @@
-<h4>Bolt Shadow Values</h4>
+<h4>Bolt Shadows</h4>
 
-{#@todo Lets dynamically generate this from bolt data #}
-{#@todo As well as generate the utility class for display #}
-<div class="bolt-shadow-demo__card bolt-shadow--b1">B1</div>
-<div class="bolt-shadow-demo__card bolt-shadow--l1">L1</div>
-<div class="bolt-shadow-demo__card bolt-shadow--l2">L2</div>
-<div class="bolt-shadow-demo__card bolt-shadow--l3">L3</div>
-<div class="bolt-shadow-demo__card bolt-shadow--l4">L4</div>
-<div class="bolt-shadow-demo__card bolt-shadow--l5">L5</div>
-<div class="bolt-shadow-demo__card bolt-shadow--l6">L6</div>
+{% set classPrefix = bolt.data.shadows['utility-class-prefix'] %}
+{% for key, value in bolt.data.shadows.sets %}
+  <div class="bolt-shadow-demo__card {{ classPrefix }}{{ key }}">{{ key }}
+    <br><code>.{{ classPrefix }}{{ key }}</code>
+    <br><code>@include bolt-shadow('{{ key }}');</code>
+  </div>
+{% endfor %}
+
+<h5>Hoverable</h5>
+{% for key, value in bolt.data.shadows.sets %}
+  <div class="bolt-shadow-demo__card {{ classPrefix }}{{ key }}--hoverable">{{ key }}
+    <br><code>.{{ classPrefix }}{{ key }}--hoverable</code>
+    <br><code>@include bolt-shadow('{{ key }}', true);</code>
+  </div>
+{% endfor %}
 
 <h5>Utility Classes</h5>
 
-<p>Simply add the utility class "bolt-shadow--xx" where xx equals the level of shadow you which to use (B1, L1-L6).</p>
+<p>Simply add the utility class "{{ classPrefix }}xx" where xx equals the level of shadow you which to use.</p>
 
-{{ '```html
-<div class="bolt-shadow--l1"> ... </div>
-```' | markdown }}
+{{ ('```html
+<div class="' ~ classPrefix ~ bolt.data.shadows.sets|keys|first ~ '"> ... </div>
+```') | markdown }}
+
+<p>To add an animated shadow that 'lifts' on hover, add the "{{ classPrefix }}xx--hoverable" where xx equals the level of shadow you which to use.</p>
+
+{{ ('```html
+<div class="' ~ classPrefix ~ bolt.data.shadows.sets|keys|first ~ '--hoverable"> ... </div>
+```') | markdown }}
 
 <h5>Mixin</h5>
 
-<p>There is also a shadow mixin available for use in sass/scss. The mixin takes one argument, a string corresponding to the level of shadow desired.</p>
+<p>There is also a shadow mixin available for use in sass/scss. The mixin takes two arguments, a string corresponding to the level of shadow desired, and an option boolean to add the 'lift' effect on hover.</p>
 
 {{ '```scss
+/* Without hover effect */
 .class {
-  @include bolt-shadow(\'l1\');
+  @include bolt-shadow(\'l2\');
 }
+
+/* With hover effect */
+.class {
+  @include bolt-shadow(\'l2\', true);
+}
+
 ```' | markdown }}
