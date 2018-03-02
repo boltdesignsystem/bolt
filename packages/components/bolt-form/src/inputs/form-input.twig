@@ -1,0 +1,55 @@
+{#
+A generic form input element
+
+Available variables:
+  - attributes (object) - A Drupal attributes object for the input element.  Of note, it may include the following:
+    - type (enum, REQUIRED) - a valid HTML5 input type
+        see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_<input>_types
+    - disabled (boolean)
+    - placeholder (string)
+  - children (renderable) - Optional additional rendered elements.
+  - hasErrors (boolean) - whether this input has server-side errors.  If true, this will invoke error styling for this
+      field on page load.
+#}
+
+{% set attributes = create_attribute(attributes | default({})) %}
+{% set _type = attributes.type.__tostring %}
+{% set _icons = [] %}
+
+{% set _classes = [
+  'c-bolt-input',
+  'c-bolt-input--' ~ attributes.type
+] %}
+
+{% if hasErrors %}
+  {% set _classes = _classes|merge(['is-invalid']) %}
+{% endif %}
+
+<input{{ attributes.addClass(_classes) }} />{{ children }}
+
+{#
+Some input types support icons, others don't.  Note that if icons are supported though, we'll always output
+the icons wrapping markup, even if there are no icons to show, for the following reasons:
+ - It allows js to detect if icons are supported (by its presence)
+ - It allows js to not have to rebuild the wrapper markup itself
+ - It adds the invalid icon (even if a field is not invalid) so that it can just be shown or hidden with js and CSS
+#}
+{% if _type in ['email', 'number', 'password', 'search', 'text', 'tel'] %}
+  {% set _supportsIcons = TRUE %}
+{% endif %}
+
+{% if _supportsIcons %}
+  {% if attributes.disabled %}
+    {% set _icons = _icons|merge(['lock']) %}
+  {% endif %}
+
+  {% if _type == "search" %}
+    {% set _icons = _icons|merge(['search']) %}
+  {% endif %}
+
+  <div class="c-bolt-input-icons">
+    {% include "@bolt/form-icons.twig" with {
+      "icons": _icons
+    } only %}
+  </div>
+{% endif %}

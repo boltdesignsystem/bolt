@@ -171,18 +171,6 @@
   {% endembed %}
 </footer>
 
-{# Shows Twig Vars in Browser Console #}
-<script type="application/json">{{ _context|json_encode()|raw }}</script>
-<script>
-  (function () {
-    var me = document.currentScript;
-    var jsonScriptTag = me.previousElementSibling.innerHTML;
-    var data = JSON.parse(jsonScriptTag);
-    console.log('Twig vars for this page: ', data);
-    console.table(data.site.pages);
-//        console.table(data.site.pages);
-  })();
-</script>
 
 <script src="/build/bolt-global.js" async></script>
 
@@ -201,5 +189,18 @@
 {#ga('create','UA-XXXXX-Y','auto');ga('send','pageview')#}
 {#</script>#}
 {#<script src="https://www.google-analytics.com/analytics.js" async defer></script>#}
+
+{# Shows Twig Vars in Browser Console #}
+{% if not bolt.data.config.prod %}
+  <script type="application/json">{{ _context|json_encode()|raw }}</script>
+  <script>
+    (function () {
+      var me = document.currentScript;
+      var jsonScriptTag = me.previousElementSibling.innerHTML;
+      var data = JSON.parse(jsonScriptTag);
+      console.log('Twig vars for this page: ', data);
+    })();
+  </script>
+{% endif %}
 </body>
 </html>
