@@ -7,45 +7,45 @@
     transform: translateY(-2px);
   }
 
-  @if map-has-key($bolt-shadow-styles, $level) {
-    box-shadow: map-get(map-get($bolt-shadow-styles, $level), 'base');
+  @if map-has-key($bolt-shadow-values, $level) {
+    box-shadow: map-get(map-get($bolt-shadow-values, $level), 'base');
     &:hover {
-      box-shadow: map-get(map-get($bolt-shadow-styles, $level), 'hover');
+      box-shadow: map-get(map-get($bolt-shadow-values, $level), 'hover');
     }
   } @else {
-    @warn 'A value was passed into @include bolt-shadow() that is not defined in $bolt-shadow-styles';
+    @warn 'A value was passed into @include bolt-shadow() that is not defined in $bolt-shadow-values';
   }
 }
 
 
 /**
  Utility Classes for adding shadow effects
- @todo Generate this dynamically from $bolt-shadow-styles
+ @todo Generate this dynamically from $bolt-shadow-values
 */
 .bolt-shadow--b1 {
-  @include bolt-shadow('B1');
+  @include bolt-shadow('b1');
 }
 
 .bolt-shadow--l1 {
-  @include bolt-shadow('L1');
+  @include bolt-shadow('l1');
 }
 
 .bolt-shadow--l2 {
-  @include bolt-shadow('L2');
+  @include bolt-shadow('l2');
 }
 
 .bolt-shadow--l3 {
-  @include bolt-shadow('L3');
+  @include bolt-shadow('l3');
 }
 
 .bolt-shadow--l4 {
-  @include bolt-shadow('L4');
+  @include bolt-shadow('l4');
 }
 
 .bolt-shadow--l5 {
-  @include bolt-shadow('L5');
+  @include bolt-shadow('l5');
 }
 
 .bolt-shadow--l6 {
-  @include bolt-shadow('L6');
+  @include bolt-shadow('l6');
 }
