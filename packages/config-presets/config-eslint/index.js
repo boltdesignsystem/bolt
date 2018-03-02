@@ -4,7 +4,7 @@ module.exports = {
     'eslint-config-airbnb-base',
   ].map(require.resolve),
   parserOptions: {
-    ecmaVersion: 7,
+    ecmaVersion: 2017,
     ecmaFeatures: {
       experimentalObjectRestSpread: true,
       experimentalDecorators: true,
@@ -13,10 +13,15 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    quotes: [2, 'singlequote', { avoidEscape: true }],
+    quotes: [2, 'single', { avoidEscape: true }],
     'max-len': [
       2,
       120,
     ],
+  },
+  env: {
+    browser: true,
+    node: true,
+    es6: true,
   },
 };
