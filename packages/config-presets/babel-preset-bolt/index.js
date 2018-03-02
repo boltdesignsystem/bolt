@@ -26,13 +26,16 @@ const preset = function(api, opts = {}) {
       '@babel/plugin-syntax-export-default-from', // ex. `export Communications from './icons/communications';` - used in @bolt/components-icons
       '@babel/plugin-proposal-export-default-from',
 
-      'transform-class-properties', // ex. class { handleThing = () => { } }
+      '@babel/plugin-transform-classes', /* [1] */
 
-      'transform-custom-element-classes', /* [1] */
 
-      'transform-es2015-classes', /* [1] */
+      '@babel/plugin-syntax-dynamic-import', /* [2] */
 
-      'syntax-dynamic-import', /* [2] */
+      // ex. class { handleThing = () => { } }
+      [
+        '@babel/plugin-proposal-class-properties',
+        { loose: false },
+      ],
 
       // critical for preact rendering
       [
