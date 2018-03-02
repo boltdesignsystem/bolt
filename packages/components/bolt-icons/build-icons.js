@@ -102,11 +102,19 @@ async function transpileIcons(icons) {
   }
 }
 
+async function build() {
+  try {
+    const icons = await globby(path.join(rootDir, 'src/svgs/**/*.svg'));
+    await fs.remove(path.join(rootDir, 'src/icons')); // Clean folder
+    await fs.outputFile(path.join(rootDir, 'src', 'index.js'), '', 'utf-8');
+    await transpileIcons(icons);
+    await fs.outputFile(path.join(rootDir, 'src', 'index.js'), allExports, 'utf-8');
+    console.log(`Built ${icons.length} icons.`);
+  } catch (error) {
+    console.error(error);
+    console.error('Error trying to run "npm run build" for "@bolt/components-icons".');
+    process.exitCode = 1;
+  }
+}
 
-(async () => {
-  const icons = await globby(path.join(rootDir, 'src/svgs/**/*.svg'));
-  await fs.remove(path.join(rootDir, 'src/icons')); // Clean folder
-  await fs.outputFile(path.join(rootDir, 'src', 'index.js'), '', 'utf-8');
-  await transpileIcons(icons);
-  await fs.outputFile(path.join(rootDir, 'src', 'index.js'), allExports, 'utf-8');
-})();
+build();
