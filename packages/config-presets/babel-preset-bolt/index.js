@@ -37,11 +37,16 @@ const preset = function(api, opts = {}) {
         { loose: false },
       ],
 
+      '@babel/plugin-syntax-jsx',
+
       // critical for preact rendering
       [
-        'transform-react-jsx',
+        '@babel/plugin-transform-react-jsx',
         {
-          pragma: 'h'
+          pragma: 'h',
+          pragmaFrag: '\"span\"',
+          throwIfNamespace: false,
+          useBuiltIns: false
         }
       ],
 
