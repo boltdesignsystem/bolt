@@ -68,8 +68,10 @@ ul.bolt-icon-list-demo {
   padding: 3px 25px 3px 3px;
   border: solid 1px black;
   margin-bottom: 15px;
-
-  box-shadow: 3px 3px 6px #5c5d66;
+  @include bolt-shadow('l4');
+  &:hover {
+    @include bolt-shadow('l4', true);
+  }
 }
 
 .bolt-shadow-demo {

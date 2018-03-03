@@ -1,7 +1,11 @@
-// Generates utility
-// see `_settings-shadow.scss`
-// @todo Salem, should these have `!important`?
+/* ------------------------------------ *\
+  SHADOW MIXIN
+  see `_settings-shadow.scss`
+  @todo Salem, should these have `!important`?
+\* ------------------------------------ */
+
 $shadows: map-get($bolt-shadows, 'sets');
+
 @each $key, $value in $shadows {
   $prefix: map-get($bolt-shadows, 'utility-class-prefix');
   .#{$prefix}#{$key} {

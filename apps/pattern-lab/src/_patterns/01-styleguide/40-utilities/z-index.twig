@@ -3,13 +3,13 @@
     {% if list|slice(0, -1)|length  %}
       {{ _self.recursiveZindexDemo(list|slice(0, -1)) }}
     {% endif %}
-    <p>Z-Index: <code>{{ list|keys|last }}</code>: {{ list|last }}</p>
+    <p>Z-Index: <code>{{ list|keys|last }}</code>: {{ list|last }}<br>Utility Class: <code>{{ bolt.data.zIndexes['utility-class-prefix'] }}{{ list|keys|last }}</code></p>
   </div>
 {% endmacro %}
 
 <h4>Z-index Values</h4>
 
-{{ _self.recursiveZindexDemo(bolt.data.zIndex) }}
+{{ _self.recursiveZindexDemo(bolt.data.zIndexes.sets) }}
 
 <h4>How to use</h4>
 
