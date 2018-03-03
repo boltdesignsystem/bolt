@@ -1,5 +1,4 @@
 // here if you need pl only JS
-
 /**
  * Docs Edit README Link > Simple edit hover effect
  */
@@ -14,10 +13,22 @@ if (editWrap[0]) {
   editLink[0].addEventListener("mouseout", toggleEditOff, false);
 }
 
-
 function toggleEditOn() {
   editWrap[0].classList.add('edit-this-readme');
 }
 function toggleEditOff() {
   editWrap[0].classList.remove('edit-this-readme');
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  /**
+   * Make sure all external facing links open in a new tab in PL.
+   * Important as external links can behave strangely within the iframe setup of PL.
+   */
+  document.querySelectorAll('a').forEach((item) => {
+    const href = item.getAttribute('href');
+    if (href.startsWith('http')) {
+      item.setAttribute('target', '_blank');
+    }
+  });
+});
