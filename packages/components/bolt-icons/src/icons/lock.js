@@ -1,10 +1,8 @@
-// import { Preact, h } from '@bolt/core';
 const Lock = ({ color, size, ...otherProps }) => {
   color = color || 'currentColor';
   size = size || '24';
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" {...otherProps}>
-      <title>Icon/utility/Indigo/24px/Lock</title>
       <g fill="currentColor" fill-rule="evenodd">
         <path
           d="M0,64a64,64 0 1,0 128,0a64,64 0 1,0 -128,0"
