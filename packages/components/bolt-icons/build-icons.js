@@ -11,6 +11,9 @@ const svgo = new SVGO({
     {
       removeXMLNS: true,
     },
+    {
+      removeViewBox: false, // <-- keep the viewBox attribute
+    },
   ],
 });
 
