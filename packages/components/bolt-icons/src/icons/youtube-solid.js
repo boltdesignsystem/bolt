@@ -1,13 +1,12 @@
-const YoutubeSolid = ({ color, size, ...otherProps }) => {
-  color = color || 'currentColor';
-  size = size || '24';
+import { h } from '@bolt/core';
+
+export const YoutubeSolid = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (
-    <svg width={size} height={size} {...otherProps}>
+    <svg width={size} height={size} {...otherProps} viewBox="0 0 28 28">
       <path
         d="M11.109 17.625l7.562-3.906-7.562-3.953v7.859zM14 4.156c5.891 0 9.797.281 9.797.281.547.063 1.75.063 2.812 1.188 0 0 .859.844 1.109 2.781.297 2.266.281 4.531.281 4.531v2.125s.016 2.266-.281 4.531c-.25 1.922-1.109 2.781-1.109 2.781-1.062 1.109-2.266 1.109-2.812 1.172 0 0-3.906.297-9.797.297-7.281-.063-9.516-.281-9.516-.281-.625-.109-2.031-.078-3.094-1.188 0 0-.859-.859-1.109-2.781C-.016 17.327 0 15.062 0 15.062v-2.125s-.016-2.266.281-4.531C.531 6.469 1.39 5.625 1.39 5.625 2.452 4.5 3.656 4.5 4.202 4.437c0 0 3.906-.281 9.797-.281z"
-        fill="currentColor"
+        fill={bgColor}
       />
     </svg>
   );
 };
-export default YoutubeSolid;
