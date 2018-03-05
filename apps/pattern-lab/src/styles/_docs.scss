@@ -14,14 +14,16 @@
 
       details {
         cursor: pointer;
+
         summary {
-          font-weight: bold;
+          font-weight: bolt-font-weight(700);
           user-select: none;
           &:focus {
             outline: none;
           }
         }
-        &,summary {
+        &,
+        summary {
           margin: 0;
         }
 
@@ -34,93 +36,95 @@
 }
 
 
-
+/**
+  * 1. Vendor prefixes added due to limitations of Autoprefixer transpiling (esp. the old CSS grid spec used in IE 11)
+  */
 .c-bolt-docs {
-  display: -ms-grid;
+  display: -ms-grid; /* [1] */
   display: grid;
 
-  -ms-grid-rows: bolt-spacing(small) auto auto 1fr bolt-spacing(small);
+  -ms-grid-rows: bolt-spacing(small) auto auto 1fr bolt-spacing(small); /* [1] */
   grid-template-rows: bolt-spacing(small) auto auto 1fr bolt-spacing(small);
 
-  -ms-grid-columns: 1fr 90% 1fr;
+  -ms-grid-columns: 1fr 90% 1fr; /* [1] */
   grid-template-columns: 1fr 90% 1fr;
 
   max-width: 1440px;
   margin: 0 auto;
 
-  @include respond-to(small){
-    -ms-grid-rows: bolt-spacing(medium) auto auto 1fr bolt-spacing(medium);
+  @include respond-to(small) {
+    -ms-grid-rows: bolt-spacing(medium) auto auto 1fr bolt-spacing(medium); /* [1] */
     grid-template-rows: bolt-spacing(medium) auto auto 1fr bolt-spacing(medium);
   }
 
   @include respond-to(medium) {
-    -ms-grid-columns: 1fr 17.5% 65% 17.5% 1fr;
+    -ms-grid-columns: 1fr 17.5% 65% 17.5% 1fr; /* [1] */
     grid-template-columns: 1fr 17.5% 65% 17.5% 1fr;
   }
 }
 
 .c-bolt-docs__page-content {
-  -ms-grid-row: 3;
-  -ms-grid-row-span: 1;
+  -ms-grid-row: 3; /* [1] */
+  -ms-grid-row-span: 1; /* [1] */
   grid-row: 3/span 1;
 
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 3;
+  -ms-grid-column: 1; /* [1] */
+  -ms-grid-column-span: 3; /* [1] */
   grid-column: 1/span 3;
 
   min-width: 0;
   max-width: 960px;
 
   @include respond-to(medium) {
-    -ms-grid-row: 3;
-    -ms-grid-row-span: 1;
+    @include bolt-padding-left(medium);
+    @include bolt-padding-right(medium);
+
+    -ms-grid-row: 3; /* [1] */
+    -ms-grid-row-span: 1; /* [1] */
     grid-row: 3/span 1;
 
-    -ms-grid-column: 2;
-    -ms-grid-column-span: 2;
+    -ms-grid-column: 2; /* [1] */
+    -ms-grid-column-span: 2; /* [1] */
     grid-column: 2/span 2;
 
     margin-left: auto;
-    @include bolt-padding-left(medium);
-    @include bolt-padding-right(medium);
   }
 
   @include respond-to(large) {
-    -ms-grid-row: 3;
-    -ms-grid-row-span: 1;
-    grid-row: 3/span 1;
-
-    -ms-grid-column: 3;
-    -ms-grid-column-span: 1;
-    grid-column: 3/span 1;
-
-    // grid-row: 3/span 1;
-    // grid-column: 2/span 2;
-    margin-left: auto;
     @include bolt-padding-left(medium);
     @include bolt-padding-right(medium);
+
+    -ms-grid-row: 3; /* [1] */
+    -ms-grid-row-span: 1; /* [1] */
+    grid-row: 3/span 1;
+
+    -ms-grid-column: 3; /* [1] */
+    -ms-grid-column-span: 1; /* [1] */
+    grid-column: 3/span 1;
+
+    margin-left: auto;
   }
 }
 
 
 .c-bolt-docs__page-nav {
-  -ms-grid-row: 2;
-  -ms-grid-row-span: 1;
+  -ms-grid-row: 2; /* [1] */
+  -ms-grid-row-span: 1; /* [1] */
   grid-row: 2/span 1;
 
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 3;
+  -ms-grid-column: 1; /* [1] */
+  -ms-grid-column-span: 3; /* [1] */
   grid-column: 1/span 3;
 
   text-align: right;
 
   @include respond-to(medium) {
-    -ms-grid-row: 3;
-    -ms-grid-row-span: 1;
+    -ms-grid-row: 3; /* [1] */
+    -ms-grid-row-span: 1; /* [1] */
     grid-row: 3/span 1;
 
-    -ms-grid-column: 4;
-    -ms-grid-column-span: 1;
+    -ms-grid-column: 4; /* [1] */
+    -ms-grid-column-span: 1; /* [1] */
     grid-column: 4/span 1;
 
     text-align: left;
@@ -158,7 +162,7 @@ pre {
   @include bolt-font-size(xxlarge);
   @include bolt-font-weight(semibold); // font-size: 24px;
   @include bolt-margin-bottom(medium);
-  color: #222;
+  color: bolt-color(black);
 }
 
 .c-bolt-docs__lead {
@@ -168,9 +172,9 @@ pre {
   // font-weight: 300;
   border: 1px dotted transparent;
   border-radius: 4px;
-  color: #222;
   margin: -13px;
   padding: 13px;
+  color: bolt-color(black);
   transition: border 0.3s ease-in-out;
 
   &.edit-this-readme {
@@ -209,8 +213,8 @@ pre {
   -ms-overflow-style: -ms-autohiding-scrollbar;
   -webkit-overflow-scrolling: touch;
 
-  background-attachment: local,local,scroll,scroll;
-  background-position: 0 0,100% 0,0 0,100% 0;
+  background-attachment: local, local, scroll, scroll;
+  background-position: 0 0, 100% 0, 0 0, 100% 0;
   background-repeat: no-repeat;
   background-size: 4em 100%, 4em 100%, 1em 100%, 1em 100%;
   overflow-x: auto;
@@ -226,8 +230,6 @@ pre {
     border: 1px solid bolt-color(gray, light);
     width: 100%;
     transform: translate3d(0, 0, 0);
-    // table-layout: fixed;
-    // border-radius: $bolt-border-radius;
   }
 
   thead {
@@ -236,11 +238,12 @@ pre {
 
   tr {
     transition: background-color 0.1s ease;
-
-    &:hover {
-      background-color: rgba(bolt-color(gray, xlight), 0.5);
-    }
   }
+
+  tr:hover {
+    background-color: rgba(bolt-color(gray, xlight), 0.5);
+  }
+
 
   th {
     @include bolt-padding(small);
@@ -256,13 +259,10 @@ pre {
   td {
     @include bolt-padding(small);
     vertical-align: top;
+  }
 
-    .required-key {
-      color: red;
-    }
-    ul {
-      //margin: 0;
-    }
+  .required-key {
+    color: red;
   }
 }
 
@@ -271,7 +271,7 @@ pre {
 }
 
 .c-bolt-docs-table__col--key {
-  font-weight: 600;
+  font-weight: bolt-font-weight(600);
 }
 
 .c-bolt-docs-table .c-bolt-docs-table {
@@ -310,18 +310,18 @@ pre {
   position: relative;
 
   &:before {
+    @include bolt-font-size(small);
     content: '#';
     opacity: 0.3;
     position: absolute;
+    top: 50%; // Fix IE11 vcentering
     left: -1.5rem;
     width: 1.5rem;
-    font-size: 0.9em;
     text-align: center;
     align-self: center;
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
     transition: opacity 0.2s ease;
-    top: 50%; // Fix IE11 vcentering
     transform: translateY(-50%); // Fix IE11 vcentering
   }
 }
