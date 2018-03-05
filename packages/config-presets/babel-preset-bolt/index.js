@@ -1,4 +1,4 @@
-const preset = function(api, opts = {}) {
+const preset = function (api, opts = {}) {
   return {
     presets: [
       ['@babel/preset-env', {
@@ -12,29 +12,14 @@ const preset = function(api, opts = {}) {
         modules: false,
         debug: false,
       }],
-      // '@babel/preset-stage-3',
     ],
     plugins: [
-      '@babel/plugin-syntax-decorators', // ex. @define
-      '@babel/plugin-proposal-decorators',
-
-      // ex. `export Communications from './icons/communications';` - used in @bolt/components-icons
-      '@babel/plugin-syntax-export-default-from',
-      '@babel/plugin-proposal-export-default-from',
-
-      // Allows us to dynamically import JS via Webpack. ex. import('button.standalone.js')
-      '@babel/plugin-syntax-dynamic-import', /* [2] */
-
-      // ex. class { handleThing = () => { } }
+    /**
+     * 1. Helps with our Web Component Preact renderer
+     */
+      '@babel/plugin-syntax-jsx', /* [1] */
       [
-        '@babel/plugin-proposal-class-properties',
-      ],
-
-      '@babel/plugin-syntax-jsx',
-
-      // critical for preact rendering
-      [
-        '@babel/plugin-transform-react-jsx',
+        '@babel/plugin-transform-react-jsx', /* [1] */
         {
           pragma: 'h',
           pragmaFrag: '\"span\"',
@@ -42,6 +27,19 @@ const preset = function(api, opts = {}) {
           useBuiltIns: false,
         },
       ],
+
+      '@babel/plugin-syntax-decorators', // ex. @define
+      '@babel/plugin-proposal-decorators',
+
+      // ex. class { handleThing = () => { } }
+      '@babel/plugin-proposal-class-properties',
+
+
+      // Allows us to dynamically import JS via Webpack. ex. import('button.standalone.js')
+      '@babel/plugin-syntax-dynamic-import', /* [2] */
+
+
+
 
       '@babel/plugin-proposal-object-rest-spread',
     ],
