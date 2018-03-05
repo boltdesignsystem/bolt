@@ -1,0 +1,5 @@
+
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-share/share.schema.yml', _self) }}
+{% endif %}

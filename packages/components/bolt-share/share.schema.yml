@@ -1,0 +1,14 @@
+$schema: http://json-schema.org/draft-04/schema#
+title: Share
+type: object
+required:
+  - src
+  - alt
+properties:
+  sources:
+    type: array
+    description: 'Social media sources to share to'
+    enum:
+      - 'facebook'
+      - 'twitter'
+      - 'linkedin'

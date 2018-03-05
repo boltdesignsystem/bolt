@@ -1,0 +1,17 @@
+{% set schema = get_data('@bolt-components-share/share.schema.yml') %}
+{% set code %}
+  {% verbatim %}
+    {% include '@bolt-components-share/share.twig' with {
+      sources: ['facebook','twitter','linkedin'],
+      email: true,
+      copy: true,
+      visibility: 'scroll'
+    } only %}
+  {% endverbatim %}
+{% endset %}
+
+{% include '@utils/docs.twig' with {
+  schema: schema,
+  code: code,
+  readmeFile: '@bolt-components-share/README.md',
+} only %}
