@@ -7,22 +7,27 @@
   </div>
 {% endmacro %}
 
+{% set classPrefix = bolt.data.zIndexes['utility-class-prefix'] %}
+
 <h4>Z-index Values</h4>
 
 {{ _self.recursiveZindexDemo(bolt.data.zIndexes.sets) }}
 
-<h4>How to use</h4>
+<h5>Utility Classes</h5>
 
-{{ '```scss
-.class {
-  z-index: bolt-z-index(NAME);
+<p>Add the utility class "{{ classPrefix }}xx" where xx equals the z index level you wish to apply.</p>
+
+{{ ('```html
+<div class="' ~ classPrefix ~ bolt.data.zIndexes.sets|keys|first ~ '"> ... </div>
+```') | markdown }}
+
+<h5>Mixin</h5>
+
+<p>The following mixin can be used in sass/scss to adjust z-index.</p>
+{# @todo Can someone add a bit here about why this is perferable to using random numbers #}
+
+{{ ('```scss
+.' ~ bolt.data.zIndexes.sets|keys|first ~ ' {
+  z-index: bolt-z-index(\'' ~ classPrefix ~ bolt.data.zIndexes.sets|keys|first ~ '\');
 }
-```' | markdown }}
-
-<h4>Example</h4>
-
-{{ '```scss
-.navbar {
-  z-index: bolt-z-index(\'navFixed\');
-}
-```' | markdown }}
+```') | markdown }}
