@@ -18,6 +18,10 @@ properties:
     enum:
       - true
       - false
+  srcset:
+    type: string
+    description: A comma seperated string of image urls and page widths, used for optimizing image loading performance.
+    default: Generated during build.
   zoom:
     type: boolean
     description: Zoom effect.
