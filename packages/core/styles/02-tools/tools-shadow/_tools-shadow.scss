@@ -6,7 +6,7 @@
 @mixin bolt-shadow($key: 'G', $lifted: false) {
   $shadows: map-get($bolt-shadows, 'sets');
   @if not(map-has-key($shadows, $key)) {
-    @error 'A value, ' + $key +  ', was passed into @include bolt-shadow() that is not defined in $bolt-shadows';
+    @error 'A value, #{$key}, was passed into @include bolt-shadow() that is not defined in $bolt-shadows';
   } @else {
     @if $lifted {
       transform: translateY(-2px);

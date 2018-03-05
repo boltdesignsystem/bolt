@@ -8,7 +8,7 @@
   @if map-has-key($indexes, $key) {
     z-index: map-get($indexes, $key);
   } @else {
-    @error 'A value, ' + $key +  ', was passed into @include bolt-z-index() that is not defined in $bolt-z-indexes';
+    @error 'A value, #{$key}, was passed into @include bolt-z-index() that is not defined in $bolt-z-indexes';
   }
 }
 
@@ -21,7 +21,11 @@
   @if map-has-key($indexes, $key) {
     @return map-get($indexes, $key)
   } @else {
-    @error 'A value, ' + $key +  ', was passed into bolt-z-index() that is not defined in $bolt-z-indexes';
+    @error 'A value, #{$key}, was passed into bolt-z-index() that is not defined in $bolt-z-indexes';
   }
+}
+
+body {
+  z-index: bolt-z-index('foobar');
 }
 
