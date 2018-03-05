@@ -1,46 +1,47 @@
-<h4>640x480 jpg</h4>
-
-{% include '@bolt-components-image/image.twig' with {
-  src: "/pattern-lab/images/placeholders/tout-4x3-climber.jpg",
-  alt: "A Rock Climber",
-} only %}
-
-<h4>500x500 jpg</h4>
+<h4>Jpg: Lazyload true</h4>
 
 {% include '@bolt-components-image/image.twig' with {
   src: "/pattern-lab/images/placeholders/500x500.jpg",
+  alt: "Bill Murrey",
+  lazyload: true,
 } only %}
 
-<h4>1151x638 jpg</h4>
+<h4>Jpg: Lazyload false</h4>
 
 {% include '@bolt-components-image/image.twig' with {
-  src: "/pattern-lab/images/placeholders/landscape-16x9-mountains.jpg",
-  alt: "Mountains",
+  src: "/pattern-lab/images/placeholders/500x500.jpg",
+  alt: "Bill Murrey",
+  lazyload: false,
 } only %}
 
-<h4>1151x638 jpeg</h4>
-
-{% include '@bolt-components-image/image.twig' with {
-  src: "/pattern-lab/images/placeholders/landscape-16x9-mountains.jpeg",
-  alt: "Mountains",
-} only %}
-
-<h4>2712x2300 png</h4>
+<h4>Png: Lazyload true</h4>
 
 {% include '@bolt-components-image/image.twig' with {
   src: "/pattern-lab/images/content/charts/decision-hub-chart.png",
   alt: "decision hub chart",
+  lazyload: true,
 } only %}
 
-<h4>3000x5336 jpeg</h4>
+<h4>Png: Lazyload false</h4>
+
 {% include '@bolt-components-image/image.twig' with {
-  src: "/pattern-lab/images/content/screenshots/device-screenshot--phone.jpg",
+  src: "/pattern-lab/images/content/charts/decision-hub-chart.png",
   alt: "decision hub chart",
+  lazyload: false,
 } only %}
 
-<h4>124x33 svg</h4>
+<h4>Svg: Lazyload: true</h4>
 
 {% include '@bolt-components-image/image.twig' with {
   src: "/pattern-lab/images/content/logos/logo-paypal.svg",
   alt: "logo paypal svg",
+  lazyload: true,
+} only %}
+
+<h4>Svg: Lazyload: false</h4>
+
+{% include '@bolt-components-image/image.twig' with {
+  src: "/pattern-lab/images/content/logos/logo-paypal.svg",
+  alt: "logo paypal svg",
+  lazyload: false,
 } only %}
