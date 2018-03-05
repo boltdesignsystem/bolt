@@ -11,6 +11,8 @@ export { h } from 'preact';
 // Export Utilties + Helpers
 export * from './utils/css';
 export * from './utils/supports-css-vars';
+export * from './utils/color-contrast';
+export * from './utils/rgb2hex';
 export { declarativeClickHandler } from './utils/declarative-click-handler';
 export * from './utils/environment';
 
