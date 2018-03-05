@@ -60,14 +60,42 @@
 }
 
 .c-bolt-docs__page-content {
-  grid-column: 1/span 3;
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 1;
   grid-row: 3/span 1;
+
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1/span 3;
+
   min-width: 0;
   max-width: 960px;
 
   @include respond-to(medium) {
+    -ms-grid-row: 3;
+    -ms-grid-row-span: 1;
     grid-row: 3/span 1;
+
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 2;
     grid-column: 2/span 2;
+
+    margin-left: auto;
+    @include bolt-padding-left(medium);
+    @include bolt-padding-right(medium);
+  }
+
+  @include respond-to(large) {
+    -ms-grid-row: 3;
+    -ms-grid-row-span: 1;
+    grid-row: 3/span 1;
+
+    -ms-grid-column: 3;
+    -ms-grid-column-span: 1;
+    grid-column: 3/span 1;
+
+    // grid-row: 3/span 1;
+    // grid-column: 2/span 2;
     margin-left: auto;
     @include bolt-padding-left(medium);
     @include bolt-padding-right(medium);
@@ -76,13 +104,25 @@
 
 
 .c-bolt-docs__page-nav {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
   grid-row: 2/span 1;
+
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
   grid-column: 1/span 3;
+
   text-align: right;
 
   @include respond-to(medium) {
+    -ms-grid-row: 3;
+    -ms-grid-row-span: 1;
     grid-row: 3/span 1;
-    grid-column: 4/span 2;
+
+    -ms-grid-column: 4;
+    -ms-grid-column-span: 1;
+    grid-column: 4/span 1;
+
     text-align: left;
   }
 }
@@ -176,6 +216,7 @@ pre {
   overflow-x: auto;
   overflow-y: hidden;
   border-radius: $bolt-border-radius;
+  touch-action: pan-y pinch-zoom;
 
   table {
     @include bolt-font-size(small);
@@ -280,6 +321,8 @@ pre {
     text-decoration: none;
     color: inherit;
     transition: opacity 0.2s ease;
+    top: 50%; // Fix IE11 vcentering
+    transform: translateY(-50%); // Fix IE11 vcentering
   }
 }
 
