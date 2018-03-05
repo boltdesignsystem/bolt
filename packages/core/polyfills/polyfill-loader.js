@@ -61,15 +61,25 @@ export const polyfillLoader = new Promise((resolve) => {
   if (polyfills.length > 0) {
     Promise.all([
       import(/* webpackChunkName: `${webComponentPolyfillPath}` */ `./${webComponentPolyfillPath}`),
-    ]).then(() => {
+    ])
+    .then(() => {
       resolve();
+    })
+    .catch((error) => {
+      throw new Error(`Could not load ${webComponentPolyfillPath}. Error: ${error}`);
     });
   } else {
     Promise.all([
       import(/* webpackChunkName: "custom-elements-es5-adapter" */
       '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js'),
-    ]).then(() => {
+    ])
+    .then(() => {
       resolve();
+    })
+    .catch((error) => {
+      throw new Error(`Could not load @webcomponents/webcomponentsjs/custom-elements-es5-adapter.js. Error: ${error}`);
     });
   }
+}).catch((error) => {
+  throw new Error(`Error: unexpected polyfill-loader.js error. ${error}`);
 });
