@@ -3,17 +3,22 @@
   see `_settings-shadow.scss`
 \* ------------------------------------ */
 
-@mixin bolt-shadow($key: 'G', $lifted: false) {
+@mixin bolt-shadow($key: 'G', $lifted: false, $utility: false) {
   $shadows: map-get($bolt-shadows, 'sets');
+  $important: '';
+
+  @if $utility {
+    $important: '!important';
+  }
   @if not(map-has-key($shadows, $key)) {
     @error 'A value, #{$key}, was passed into @include bolt-shadow() that is not defined in $bolt-shadows';
   } @else {
     @if $lifted {
-      transform: translateY(-2px);
-      box-shadow: unquote(map-get(map-get($shadows, $key), 'hover'));
+      transform: translateY(-2px) #{$important};
+      box-shadow: unquote(map-get(map-get($shadows, $key), 'hover')) #{$important};
     } @else {
-      transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-      box-shadow: unquote(map-get(map-get($shadows, $key), 'base'));
+      transition: all 0.3s cubic-bezier(.25,.8,.25,1) #{$important};
+      box-shadow: unquote(map-get(map-get($shadows, $key), 'base')) #{$important};
     }
   }
 }

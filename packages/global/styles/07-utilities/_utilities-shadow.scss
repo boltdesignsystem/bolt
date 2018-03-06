@@ -9,12 +9,12 @@ $shadows: map-get($bolt-shadows, 'sets');
 @each $key, $value in $shadows {
   $prefix: map-get($bolt-shadows, 'utility-class-prefix');
   .#{$prefix}#{$key} {
-    @include bolt-shadow($key);
+    @include bolt-shadow($key, $utility: true);
   }
   .#{$prefix}#{$key}--hoverable {
-    @include bolt-shadow($key);
+    @include bolt-shadow($key, $utility: true);
     &:hover {
-      @include bolt-shadow($key, true);
+      @include bolt-shadow($key, $lifted: true, $utility: true);
     }
   }
 }
