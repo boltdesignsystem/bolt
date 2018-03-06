@@ -1,4 +1,4 @@
-{% set schema = get_data('@bolt-components-action-blocks/action-blocks.schema.yml') %}
+{% set schema = bolt.data.components['@bolt-components-action-blocks'].schema %}
 
 {% for border in schema.properties.border.enum %}
   <p>Border: {{ border }}</p>
