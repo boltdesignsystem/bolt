@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#Must be ran from `../` ie `./scripts/update-read-only-git-repos.sh`
+# Must be ran from `../` ie `./scripts/update-read-only-git-repos.sh`
 if [[ $TRAVIS == 'true' ]]; then
   if [[ $TRAVIS_PULL_REQUEST == 'false' ]]; then
     branch_name=$TRAVIS_BRANCH
