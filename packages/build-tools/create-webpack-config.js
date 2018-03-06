@@ -19,9 +19,6 @@ function createConfig(config) {
   /**
    * Build WebPack config's `entry` object
    * @link https://webpack.js.org/configuration/entry-context/#entry
-   * @param {object} components
-   * @prop {string[]} components.global - Array of strings that are package names - all go into the global bundle
-   * @prop {string[]} components.individual - Array of strings that are package names - each go into own bundle
    * @returns {object} entry - WebPack config `entry`
    */
   function buildWebpackEntry() {
