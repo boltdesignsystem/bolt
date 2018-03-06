@@ -9,19 +9,13 @@
 {#{% set srcset = srcset ? srcset : "" %}#}
 
 {# Grabbing the data in the bolt manifest for this particular image #}
-{% set thisImageData = bolt.data.images[src] %}
+{% set imageDataBolt = bolt.data.images[src] %}
 
 {# @todo DRY this #}
 {% set imageSizes = [
   50, 100, 200, 320, 480, 640, 800, 1024, 1366, 1536, 1920, 2560, 2880
 ] %}
 
-
-{#{% set sampleImageSrc = thisImageData.sizePaths ? thisImageData.sizePaths[0].path : src %}#}
-{% set sampleImageSrc = src %}
-{% if thisImageData.sizePaths %}
-  {% set sampleImageSrc = thisImageData.sizePaths[0].path %}
-{% endif %}
 
 {#{% if placeholderImage is empty or placeholderColor is empty or srcset == "" %}#}
   {#{% set path = src|split('.' ~ ext)|first %}#}
@@ -31,39 +25,14 @@
   {#{% set srcset = src %}#}
 {#{% endif %}#}
 
+{% set imageDataTwig = getImageData(src)  %}
+{#{% set imageData = imageDataBolt|merge(imageDataTwig) %}#}
+{% set ext = src|split('.')|last %}
 
-{#{% if src %}#}
-  {#{% set ext = src|split('.')|last %}#}
-{#{% endif %}#}
-
-{% if placeholderImage is empty and ext != 'svg' %}
-  {% set placeholderImage = base64(sampleImageSrc) %}
-{% endif %}
-
-{% if height is empty and height != false %}
-  {% set height = ratio(src, 'height') %}
-
-{% endif %}
-
-{% if width is empty and width != false %}
-  {% set width = ratio(src, 'width') %}
-{% endif %}
-
-
-{# only calculate a placeholder color if not using a placeholder image #}
-{% if placeholderColor is empty and ext != 'svg' %}
-  {% set placeholderColor = bgcolor(sampleImageSrc) %}
-{% endif %}
-
-{# smaller image src used for calculating color -- already resized for less of a perf hit #}
-{#{% if placeholderImage is empty or placeholderColor is empty %}#}
-  {#{% if path %}#}
-    {#{% set sampleImageSrc = path ~ '-' ~ imageSizes[0] ~ '.' ~ ext %}#}
-
-
-  {#{% endif %}#}
-{#{% endif %}#}
-
+{% set placeholderImage = imageDataTwig.base64 %}
+{% set placeholderColor = imageDataTwig.color %}
+{% set height = imageDataTwig.height %}
+{% set width = imageDataTwig.width %}
 
 {% set ratio = ratio ?? true %}
 {% set sizes = sizes | default("auto") %}
@@ -72,6 +41,7 @@
 
 
 {# Get a whole number aspect ratio #}
+{#@todo This mutation of ratio is not clear, refactor#}
 {% if width > 0 and height > 0 and ratio == true %}
   {% set ratio = height / width * 100 ~ '%' %}
 {% endif %}
@@ -101,8 +71,8 @@
 
 
 
-{% if thisImageData %}
-  {% set srcset = thisImageData.srcset %}
+{% if imageData %}
+  {% set srcset = imageData.srcset %}
 {% endif %}
 
 {#--------------------#}
@@ -156,7 +126,7 @@
 {% endset %}
 
 {# Super helpful info if you uncomment #}
-{#{{ console_log(_context) }}#}
+{{ console_log(_context) }}
 
 <bolt-image>
   {% block image_content %}
