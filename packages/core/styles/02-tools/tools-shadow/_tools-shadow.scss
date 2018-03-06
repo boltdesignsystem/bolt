@@ -1,0 +1,20 @@
+/**
+ Mixin that adds shadow effect, including hover animation
+ see `_settings-shadow.scss`
+*/
+@mixin bolt-shadow($level: 'G', $lifted: false) {
+  @if map-has-key($shadows, $level) {
+    $shadows: map-get($bolt-shadows, 'sets');
+  } @else {
+    @error 'A value, ' + $level +  ', was passed into @include bolt-shadow() that is not defined in $bolt-shadows';
+  }
+  @if $lifted {
+    transform: translateY(-2px);
+    box-shadow: unquote(map-get(map-get($shadows, $level), 'hover'));
+  } @else {
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    box-shadow: unquote(map-get(map-get($shadows, $level), 'base'));
+  }
+}
+
+
