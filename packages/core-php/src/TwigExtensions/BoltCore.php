@@ -79,6 +79,7 @@ class BoltCore extends \Twig_Extension implements \Twig_Extension_InitRuntimeInt
       Bolt\TwigFunctions::base64(),
       Bolt\TwigFunctions::bgcolor(),
       Bolt\TwigFunctions::ratio(),
+      Bolt\TwigFunctions::getImageData(),
     ];
   }
 

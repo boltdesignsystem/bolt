@@ -42,14 +42,69 @@ class Images {
     }
   }
 
+  // A combination of base64, bgcolor, ratio, and imageSize
+  public static function get_image_data($relativeImagePath, $wwwDir) {
+    $absoluteImagePath = Utils::get_absolute_path($relativeImagePath, $wwwDir);
+
+    if (file_exists($absoluteImagePath)) {
+      $fileExt = Utils::get_file_ext($absoluteImagePath);
+      $base64ImagePlaceholder = null;
+      // @todo: update to point to Bolt color swatch value
+      $placeHolderColor = 'hsl(233, 33%, 97%)';
+      $sizes = getimagesize($absoluteImagePath);
+      $imageLoaded = Image::open($absoluteImagePath);
+      $smallSampleImage = $imageLoaded->resize('320', '320')->jpeg($quality = 50);
 
 
+      if ($fileExt == "svg") {
+        $svgfile = simplexml_load_file($absoluteImagePath);
+
+        $viewport = explode(" ", $svgfile['viewBox']);
+        $svgHeight = $svgfile['height']; // if it exists
+        $svgWidth = $svgfile['width']; // if it exists
+        $height = '';
+        $width = '';
+
+        // If the SVG height / width values exist, use those first
+        if ($svgHeight && $svgWidth) {
+          $height = $svgHeight;
+          $width = $svgWidth;
+
+          // Otherwise try to calculate the aspect ratio via the viewport
+        } else if ($viewport[3] && $viewport[2]){
+          $height = $viewport[3];
+          $width = $viewport[2];
+        }
+      } else if (($fileExt == "jpg") || ($fileExt == "jpeg") || ($fileExt == "png")) {
+        // Base 64
+        $base64Image = $imageLoaded->resize('16', '16')->smooth('1')->jpeg($quality = 50);
+        $base64ImagePlaceholder = Image::open($base64Image)->inline();
+
+        // Calculate Average Color
+        // If this isn't a production compile, let's not do this long very memory intensive process.
+        if (getenv('NODE_ENV') === 'production') {
+          $placeHolderColor = self::rgb2hex(ColorThief::getColor($smallSampleImage, 5));
+        }
+
+        // Height and Width
+        $width = $sizes[0];
+        $height = $sizes[1];
+      }
+    }
+
+    return array(
+      'height' => $height,
+      'width' => $width,
+      'base64' => $base64ImagePlaceholder,
+      'color' => $placeHolderColor,
+    );
+  }
 
   // @todo: update to support publicDir via Bolt manifest data
   public static function generate_base64_image_placeholder($relativeImagePath, $wwwDir) {
     $absoluteImagePath = Utils::get_absolute_path($relativeImagePath, $wwwDir);
 
-    if(file_exists($absoluteImagePath)){
+    if (file_exists($absoluteImagePath)){
       $fileExt = Utils::get_file_ext($absoluteImagePath);
 
       if (($fileExt != "jpg") && ($fileExt != "png")){
@@ -91,10 +146,9 @@ class Images {
       }
 
       // Resize and optimize the image before running through ColorThief
-      $resizedImage = \Gregwar\Image\Image::open($absoluteImagePath)->resize('640', '640')->jpeg($quality = 50);
-        $color = ColorThief::getColor($resizedImage, 5);
-        return self::rgb2hex($color);
-      // }
+      $resizedImage = \Image::open($absoluteImagePath)->resize('640', '640')->jpeg($quality = 50);
+      $color = ColorThief::getColor($resizedImage, 5);
+      return self::rgb2hex($color);
     } else {
       return;
     }
