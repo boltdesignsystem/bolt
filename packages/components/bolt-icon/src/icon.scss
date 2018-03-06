@@ -80,7 +80,7 @@ bolt-icon[size='xlarge'],
 }
 
 
-.c-bolt-icon__background {
+.c-bolt-icon__background-shape {
   position: absolute;
   z-index: bolt-z-index('contentBottom');
   top: 50%;
@@ -97,11 +97,11 @@ bolt-icon[size='xlarge'],
   background-color: var(--bolt-theme-icon-background-color, inherit);
 }
 
-.c-bolt-icon__circle-background {
+.c-bolt-icon__background-shape--circle {
   border-radius: 50%;
 }
 
-.c-bolt-icon__square-background {
+.c-bolt-icon__background-shape--square {
   border-radius: $bolt-border-radius;
 }
 
@@ -111,8 +111,9 @@ bolt-icon[size='xlarge'],
 // Color options
 .c-bolt-icon--teal {
   $brand-color: bolt-color(teal);
-  // background-color: $brand-color;
-  --bolt-color-icon: bolt-text-contrast($brand-color);
+  $contrast-color: bolt-text-contrast($brand-color);
+
+  --bolt-color-icon: $contrast-color;
   --bolt-theme-icon-background-color: $brand-color;
   --bolt-theme-icon-background-opacity: 1;
 }
@@ -124,3 +125,10 @@ bolt-icon[size='xlarge'],
   --bolt-theme-icon-background-color: bolt-text-contrast($brand-color);
   --bolt-theme-icon-background-opacity: 1;
 }
+
+
+.c-bolt-icon__background {
+  fill: currentColor;
+  fill: var(--bolt-theme-text, currentColor)
+}
+

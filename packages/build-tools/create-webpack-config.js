@@ -257,7 +257,6 @@ function createConfig(config) {
         }
       }),
       new webpack.ProvidePlugin({
-        h: 'preact',
         Promise: 'es6-promise'
       }),
       // Show build progress
