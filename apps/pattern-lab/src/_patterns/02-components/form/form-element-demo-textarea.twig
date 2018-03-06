@@ -1,0 +1,17 @@
+{% extends "@bolt-components-form/form-element.twig" %}
+
+{% set label %}
+  {% include("@bolt-components-form/form-label.twig") with {
+    "title": "Job Description",
+    "displayType": "floating"
+  } %}
+{% endset %}
+
+{% set children %}
+  {% include("@bolt-components-form/form-textarea.twig") with {
+    "attributes": {
+      "placeholder": "Describe the job",
+      "required": true
+    }
+  } %}
+{% endset %}

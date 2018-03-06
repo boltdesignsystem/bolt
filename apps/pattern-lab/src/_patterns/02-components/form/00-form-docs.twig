@@ -1,0 +1,14 @@
+{% set schema = get_data('@bolt-components-form/form.schema.yml') %}
+{% set code %} {% verbatim %}
+{% include "@bolt-components-form/form.twig" with {
+    text: "This is a form",
+    url: "http://google.com",
+  } only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/docs.twig' with {
+  schema: schema,
+  code: code,
+  readmeFile: '@bolt-components-form/README.md',
+} only %}

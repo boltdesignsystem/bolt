@@ -26,7 +26,7 @@ const log = require('./utils/log');
  * @param programInstance - The commander `program`
  * @returns {Object} config - Final updated config
  */
-function updateConfig(options, programInstance) {
+async function updateConfig(options, programInstance) {
   configStore.updateConfig((config) => {
     config.verbosity = typeof program.verbosity === 'undefined'
       ? config.verbosity
@@ -64,7 +64,7 @@ function updateConfig(options, programInstance) {
 
   // Basically at this point, the cli is bootstrapped and ready to go.
   // Let's build the core bolt manifest
-  buildBoltManifest();
+  await buildBoltManifest();
   return config;
 }
 
@@ -77,9 +77,9 @@ program
   .option('-W, --watch', 'Watch and rebuild')
   .option('-P, --parallel', 'Run build in parallel instead of a series. Faster, but some assets might not be ready in time.')
   .option('-Q, --quick', configSchema.properties.quick.description)
-  .action((options) => {
+  .action(async (options) => {
     log.info(`Starting build (${options.parallel ? 'parallel' : 'serial'})`);
-    updateConfig(options, program);
+    await updateConfig(options, program);
     require('./tasks/task-collections').build();
   });
 
@@ -88,22 +88,22 @@ program
   .description('Spin up local server')
   .option('-O, --open', configSchema.properties.openServerAtStart.description)
   .option('--webpack-dev-server', configSchema.properties.webpackDevServer.description)
-  .action((options) => {
-    updateConfig(options, program);
+  .action(async (options) => {
+    await updateConfig(options, program);
     require('./tasks/task-collections').serve();
   });
 
 program
   .command('watch')
-  .action((options) => {
-    updateConfig(options, program);
+  .action(async (options) => {
+    await updateConfig(options, program);
     require('./tasks/task-collections').watch();
   });
 
 program
   .command('clean')
-  .action((options) => {
-    updateConfig(options, program);
+  .action(async (options) => {
+    await updateConfig(options, program);
     require('./tasks/task-collections').clean();
   });
 
@@ -112,8 +112,8 @@ program
   .option('-O, --open', configSchema.properties.openServerAtStart.description)
   .option('-Q, --quick', configSchema.properties.quick.description)
   .option('--webpack-dev-server', configSchema.properties.webpackDevServer.description)
-  .action((options) => {
-    updateConfig(options, program);
+  .action(async (options) => {
+    await updateConfig(options, program);
     require('./tasks/task-collections').start();
   });
 
@@ -121,15 +121,15 @@ program
 program
   .command('lint')
   .description('A linter... that doesn\'t work!')
-  .action((options) => {
-    updateConfig(options, program);
+  .action(async (options) => {
+    await updateConfig(options, program);
   });
 
 program
   .command('img')
   .description('Image process')
-  .action((options) => {
-    updateConfig(options, program);
+  .action(async (options) => {
+    await updateConfig(options, program);
     require('./tasks/task-collections').images();
   });
 
@@ -139,7 +139,7 @@ program
   .alias('wp')
   .description('WebPack Compile')
   .action(async (options) => {
-    updateConfig(options, program);
+    await updateConfig(options, program);
     try {
       await require('./tasks/webpack-tasks').compile();
     } catch (error) {
@@ -153,7 +153,7 @@ if (config.env === 'pl'){
     .alias('pl')
     .description('Pattern Lab Compile')
     .action(async (options) => {
-      updateConfig(options, program);
+      await updateConfig(options, program);
       try {
         await require('./tasks/pattern-lab-tasks').compile();
       } catch (error) {
