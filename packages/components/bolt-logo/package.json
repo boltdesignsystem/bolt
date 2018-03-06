@@ -1,8 +1,6 @@
 {
   "name": "@bolt/components-logo",
   "description": "Logo Component in Bolt",
-  "type": "pattern",
-  "patternType": "molecules",
   "patternSubtype": "layout",
   "keywords": [
     "bolt design system",
@@ -27,15 +25,10 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "homepage": "https://boltdesignsystem.com",
+  "homepage": "https://bolt-design-system.com",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bolt-design-system/bolt/"
-  },
-  "bugs": {
-    "url": "https://github.com/bolt-design-system/bolt/issues"
-  },
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-logo",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "style": "src/logo.scss",
   "publishConfig": {
     "access": "public"
@@ -43,5 +36,6 @@
   "dependencies": {
     "@bolt/components-image": "^1.0.0-rc.3",
     "@bolt/core": "^1.0.0-rc.3"
-  }
+  },
+  "schema": "logo.schema.yml"
 }
