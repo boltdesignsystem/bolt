@@ -33,6 +33,7 @@ module.exports = {
       '@bolt/core',
       '@bolt/global',
       '@bolt/components-action-blocks',
+      '@bolt/components-accordion',
       '@bolt/components-background',
       '@bolt/components-background-shapes',
       '@bolt/components-band',
