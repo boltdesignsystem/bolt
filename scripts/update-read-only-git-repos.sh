@@ -16,8 +16,8 @@ if [[ $TRAVIS == 'true' ]]; then
   fi
 
 fi
-# if we have the remote `core-php` cool, if not, then let's add it
-git remote show core-php || git remote add --fetch core-php git@github.com:bolt-design-system/core-php.git
+# Adding the git remote - we might already have it which would result in an error message and an error, we don't want either
+git remote add --fetch core-php git@github.com:bolt-design-system/core-php.git > /dev/null 2>&1 || true
 # push updates to https://github.com/bolt-design-system/core-php
 # @todo Ensure tags are pushed so Packagist can publish them
 git subtree push --prefix=packages/core-php core-php master
