@@ -1,7 +1,6 @@
 /* ------------------------------------ *\
   Z INDEX MIXIN
   see `_settings-z-index.scss`
-  @todo Salem, should these have `!important`?
 \* ------------------------------------ */
 
 $indexes: map-get($bolt-z-indexes, 'sets');
@@ -9,6 +8,6 @@ $indexes: map-get($bolt-z-indexes, 'sets');
 @each $key, $value in $indexes {
   $prefix: map-get($bolt-z-indexes, 'utility-class-prefix');
   .#{$prefix}#{$key} {
-    @include bolt-z-index($key);
+    @include bolt-z-index($key, $utility: true);
   }
 }

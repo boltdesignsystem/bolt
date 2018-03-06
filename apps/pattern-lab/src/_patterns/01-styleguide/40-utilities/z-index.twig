@@ -1,9 +1,10 @@
 {% macro recursiveZindexDemo(list) %}
-  <div class="bolt-z-index-demo" style="z-index: {{ list|last }};">
+  {% set utilityClass = bolt.data.zIndexes['utility-class-prefix'] ~ list|keys|last %}
+  <div class="bolt-z-index-demo {{ utilityClass }}">
     {% if list|slice(0, -1)|length  %}
       {{ _self.recursiveZindexDemo(list|slice(0, -1)) }}
     {% endif %}
-    <p>Z-Index: <code>{{ list|keys|last }}</code>: {{ list|last }}<br>Utility Class: <code>{{ bolt.data.zIndexes['utility-class-prefix'] }}{{ list|keys|last }}</code></p>
+    <p>Z-Index: <code>{{ list|keys|last }}</code>: {{ list|last }}<br>Utility Class: <code>{{ utilityClass }}</code></p>
   </div>
 {% endmacro %}
 

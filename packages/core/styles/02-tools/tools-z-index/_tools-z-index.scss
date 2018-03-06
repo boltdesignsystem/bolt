@@ -3,10 +3,15 @@
   see `_settings-z-index.scss`
 \* ------------------------------------ */
 
-@mixin bolt-z-index($key: "content") {
+@mixin bolt-z-index($key: "content", $utility: false) {
   $indexes: map-get($bolt-z-indexes, 'sets');
+  $important: '';
+
+  @if $utility {
+    $important: '!important';
+  }
   @if map-has-key($indexes, $key) {
-    z-index: map-get($indexes, $key);
+    z-index: map-get($indexes, $key) #{$important};
   } @else {
     @error 'A value, #{$key}, was passed into @include bolt-z-index() that is not defined in $bolt-z-indexes';
   }
