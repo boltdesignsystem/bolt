@@ -8,13 +8,45 @@ const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const sassImportGlobbing = require('@theme-tools/sass-import-globbing');
-const assets = require('./utils/assets');
+const { getBoltManifest } = require('./utils/manifest');
 
 function createConfig(config) {
   // @TODO: move this setting to .boltrc config
   const sassExportData = require('@theme-tools/sass-export-data')({
     path: path.resolve(process.cwd(), config.dataDir),
   });
+
+  /**
+   * Build WebPack config's `entry` object
+   * @link https://webpack.js.org/configuration/entry-context/#entry
+   * @returns {object} entry - WebPack config `entry`
+   */
+  function buildWebpackEntry() {
+    const {components} = getBoltManifest();
+    const entry = {};
+    if (components.global) {
+      entry['bolt-global'] = [];
+      components.global.forEach((component) => {
+        if (component.assets.style) entry['bolt-global'].push(component.assets.style);
+        if (component.assets.main) entry['bolt-global'].push(component.assets.main);
+      });
+    }
+    if (components.individual) {
+      components.individual.forEach((component) => {
+        const files = [];
+        if (component.assets.style) files.push(component.assets.style);
+        if (component.assets.main) files.push(component.assets.main);
+        if (files) {
+          entry[component.basicName] = files;
+        }
+      });
+    }
+    if (config.verbosity > 4) {
+      log.info('WebPack `entry`:');
+      console.log(entry);
+    }
+    return entry;
+  }
 
   // Map out the global config verbosity setting to the 6 preset levels of Webpack stats: https://webpack.js.org/configuration/stats/#stats + https://github.com/webpack/webpack/blob/b059e07cf90db871fe9497f5c14b9383fc71d2ad/lib/Stats.js#L906
 
@@ -179,7 +211,7 @@ function createConfig(config) {
 
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
   const webpackConfig = {
-    entry: assets.buildWebpackEntry(config.components),
+    entry: buildWebpackEntry(),
     output: {
       path: path.resolve(process.cwd(), config.buildDir),
       filename: "[name].js",

@@ -1,3 +1,5 @@
+{% set schema = bolt.data.components['@bolt-components-card'].schema %}
+
 {% set tags = ["div", "article", "section", "figure"] %} {# Available overall container tags #}
 {% set contentTags = ["div", "article", "section", "figcaption"] %} {# Available content container tags #}
 {% set themes = ["xlight", "light", "dark", "xdark"] %}
@@ -155,5 +157,5 @@
 </bolt-card>
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-card/card.schema.yml', _self) }}
+  {{ validate_data_schema(schema, _self) }}
 {% endif %}

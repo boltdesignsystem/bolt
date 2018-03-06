@@ -10,15 +10,10 @@
   "version": "1.0.0-rc.3",
   "sourceFilesFrom": "0.0.0",
   "author": "Remy Denton",
-  "homepage": "https://boltdesignsystem.com",
+  "homepage": "https://bolt-design-system.com",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/pega-digital/bolt/tree/master/packages/bolt-component-forms"
-  },
-  "bugs": {
-    "url": "https://github.com/pega-digital/bolt/issues"
-  },
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-form",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "main": "src/form.js",
   "style": "src/form.scss",
   "publishConfig": {
@@ -31,5 +26,6 @@
   "scripts": {
     "prepublishOnly": "npm run build",
     "build": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/form --output-filename='bolt-form.min.js' --output-public-path /scripts/"
-  }
+  },
+  "schema": "form.schema.yml"
 }

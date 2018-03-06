@@ -2,6 +2,7 @@
    Sticky
 \* ------------------------------------ */
 
+@import '@bolt/core';
 
 bolt-sticky {
   display: block;
@@ -12,5 +13,5 @@ bolt-sticky {
   position: sticky;
   top: 0;
   width: 100%;
-  z-index: 1001; // TODO: [Mai] We need z-index management.
+  z-index: z('navFixed');
 }

@@ -18,7 +18,7 @@ bolt-device-viewer {
 .c-bolt-device-viewer__inner {
   display: block;
   position: relative;
-  z-index: 1;
+  z-index: bolt-z-index('content');
 
   &:before,
   &:after {
@@ -32,10 +32,10 @@ bolt-device-viewer {
 }
 
 .c-bolt-device-viewer__screen {
+  @include bolt-shadow('level-10');
   display: block;
   position: relative;
-  box-shadow: 0 0 0 3px bolt-color(black);
-  z-index: 10; // Must be higher than the z-index of the :before layer on the base component
+  z-index: bolt-z-index('contentTop'); // Must be higher than the z-index of the :before layer on the base component
   width: 100%;
   perspective: 1000px;
   overflow: hidden; // Unfortunately zooming + scrolling is very, very tricky. Forcing this for now.
@@ -47,20 +47,20 @@ bolt-device-viewer {
 .c-bolt-device-viewer__home {
   border-radius: 50%;
   position: absolute;
-  z-index: 20;
+  z-index: (bolt-z-index('contentTop') + 5);
 }
 
 .c-bolt-device-viewer__camera {
   position: absolute;
   border-radius: 100%;
-  z-index: 30;
+  z-index: (bolt-z-index('contentTop') + 10);
 }
 
 .c-bolt-device-viewer__top-bar,
 .c-bolt-device-viewer__bottom-bar {
   display: block;
   position: absolute;
-  z-index: -1; // Since we want this layer pushed back behind most, but not all, layers
+  z-index: bolt-z-index('background') - 5; // Since we want this layer pushed back behind most, but not all, layers
   width: 100%;
 }
 
@@ -177,7 +177,7 @@ $bolt-magnifier-size: 350px;
 
 .c-bolt-image-zoom__overlay {
   position: absolute;
-  z-index: 1000;
+  z-index: bolt-z-index('navFixed');
   top: 0%;
   left: 0%;
   width: 100%;
@@ -190,7 +190,7 @@ $bolt-magnifier-size: 350px;
   &:before {
     display: block;
     position: absolute;
-    z-index: -1;
+    z-index: bolt-z-index('background') - 5;
     background-color: rgba(bolt-color(black), 0.3);
     top: 50%;
     left: 50%;
@@ -206,6 +206,8 @@ $bolt-magnifier-size: 350px;
 
 
 .c-bolt-image-zoom__overlay-icon {
+  @include bolt-shadow('level-60');
+
   --bolt-theme-icon-background-opacity: 0.5;
   --bolt-theme-icon-background-color: bolt-color(black);
 
@@ -218,7 +220,6 @@ $bolt-magnifier-size: 350px;
   line-height: 1;
   pointer-events: none;
 
-  box-shadow: 0 2px 5px 10px rgba(21, 22, 25, 0.025);
   border-radius: 50%;
 
   .is-mouse-leaving & {
@@ -236,7 +237,7 @@ $bolt-magnifier-size: 350px;
   display: block;
   opacity: 0;
   position: absolute;
-  z-index: 1;
+  z-index: bolt-z-index('content');
   width: 33.33%;
   height: 33.33%;
 
@@ -377,6 +378,8 @@ bolt-image-zoom:hover > .c-bolt-image-zoom__overlay {
 
 
 .drift-zoom-pane {
+  @include bolt-shadow('level-60');
+
   background: rgba(0, 0, 0, 0.5);
 
   /* This is required because of a bug that causes border-radius to not
@@ -385,7 +388,7 @@ bolt-image-zoom:hover > .c-bolt-image-zoom__overlay {
   will-change: top, left;
 
   position: absolute;
-  z-index: 1000;
+  z-index: bolt-z-index('tooltip');
   top: 50%;
   left: 50%;
 
@@ -394,7 +397,6 @@ bolt-image-zoom:hover > .c-bolt-image-zoom__overlay {
   height: $bolt-magnifier-size;
   border-radius: 50%;
   border: 5px solid bolt-color(white);
-  box-shadow: 0 2px 5px 10px rgba(bolt-color(black), 0.05), 0 20px 40px 0 rgba(bolt-color(black), 0.7);
 
   img {
     object-fit: cover;
