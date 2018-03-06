@@ -117,9 +117,13 @@
 
 {% set imageTag %}
   <img {{ imageAttributes }}>
-  <noscript>
-    <img {{ imageAttributes.removeClass(["js-lazyload", "is-lazyloading"]) }}>
-  </noscript>
+
+{# Only output noscript fallback if lazyloading, and ratio will be output #}
+  {% if lazyload and width > 0 and height > 0 and ratio == true %}
+    <noscript>
+      <img {{ imageAttributes.removeClass(["js-lazyload", "is-lazyloading"]) }}>
+    </noscript>
+  {% endif %}
 {% endset %}
 
 {% set imagePlaceholder %}

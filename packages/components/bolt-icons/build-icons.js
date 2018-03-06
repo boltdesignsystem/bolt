@@ -9,10 +9,10 @@ const SVGO = require('svgo');
 const svgo = new SVGO({
   plugins: [
     {
-      removeXMLNS: true,
+      removeViewBox: false,
     },
     {
-      removeViewBox: false, // <-- keep the viewBox attribute
+      removeXMLNS: true,
     },
   ],
 });
@@ -31,11 +31,9 @@ async function transpileIcons(icons) {
   return Promise.all(icons.map(async (icon) => {
     // icons.forEach(async (i) => {
     const svg = await fs.readFile(icon, 'utf-8');
-    const result = await svgo.optimize(svg);
-    const optimizedSVG = result.data;
     const id = path.basename(icon, '.svg').replace(/ /g, '-');
 
-    const $ = cheerio.load(optimizedSVG, {
+    const $ = cheerio.load(svg, {
       xmlMode: true,
     });
 
@@ -57,7 +55,19 @@ async function transpileIcons(icons) {
       if (el.name === 'svg') {
         $(el).attr('otherProps', '...');
       }
+
+      // Remove artboard rectangle that sometimes pops up in exported SVGs
+      if ($(el).attr('id') === 'Rectangle-6') {
+        $(el).remove();
+      }
+
       $(el).removeAttr('xmlns:xlink');
+
+      if ($(el).attr('xlink:href')) {
+        const xlinkHrefVal = $(el).attr('xlink:href');
+        $(el).removeAttr('xlink:href');
+        $(el).attr('xlinkHref', xlinkHrefVal);
+      }
 
       if ($(el).attr('xlink:href')) {
         const xlinkHrefVal = $(el).attr('xlink:href');
@@ -66,24 +76,29 @@ async function transpileIcons(icons) {
       }
     });
 
+    const result = await svgo.optimize(svg);
+    const optimizedSVG = result.data;
+
 
     const element = `
-const ${uppercamelcase(id)} = ({ color, size, ...otherProps }) => {
-  color = color || 'currentColor';
-  size = size || '24';
-  return (
-    ${
-      $('svg').toString()
-        .replace(new RegExp('stroke="currentColor"', 'g'), 'stroke={color}')
-        .replace('class="c-bolt-icon--background c-bolt-icon--circle-background"', 'class="c-bolt-icon--background c-bolt-icon--circle-background" fill="none"')
-        .replace('d="M0 0h24v24H0z"', 'd="M0,64a64,64 0 1,0 128,0a64,64 0 1,0 -128,0" class="c-bolt-icon--background c-bolt-icon--circle-background" fill="none"')
-        .replace(/width=".*?"/, 'width={size}')
-        .replace(/height=".*?"/, 'height={size}')
-        .replace('otherProps="..."', '{...otherProps}')
-      }
-  )
+  import { h } from '@bolt/core';
+
+  export const ${uppercamelcase(id)} = ({ bgColor, fgColor, size, ...otherProps }) => {
+      return (
+        ${
+          $(optimizedSVG).toString()
+            .replace('fill="#FFF"', 'fill={fgColor}')
+            .replace('stroke="#FFF"', 'stroke={fgColor}')
+            .replace(new RegExp(/ stroke=".*?"/, 'g'), ' stroke={bgColor}')
+            .replace(new RegExp(/ fill=".*?"/, 'g'), ' fill={bgColor}')
+            .replace('viewBox', '{...otherProps} viewBox') // tack on extra props next to viewBox attribute
+            .replace('d="M0 0h24v24H0z"', '')
+            .replace(/width=".*?"/, 'width={size}')
+            .replace(/height=".*?"/, 'height={size}')
+            .replace('otherProps="..."', '{...otherProps}')
+          }
+      )
 };
-export default ${uppercamelcase(id)}
 `;
 
     const component = prettier.format(element, {
@@ -118,7 +133,7 @@ async function build() {
     const icons = await transpileIcons(iconPaths);
     const allExports = icons
       .sort(alphabetizeIconList) // we alphabetize the list so multiple compiles on same set doesn't result in a change that git notices
-      .map(icon => `export ${uppercamelcase(icon.id)} from './icons/${icon.id}';`); // building up `export` lines
+      .map(icon => `export * from './icons/${icon.id}';`); // building up `export` lines
     allExports.push(''); // Adding empty item to end of array so file has empty line at bottom to conform to `.editorconfig`
     await fs.outputFile(
       path.join(rootDir, 'src', 'index.js'),
