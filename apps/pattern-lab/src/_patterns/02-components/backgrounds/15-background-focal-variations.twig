@@ -1,4 +1,4 @@
-{% set schema = get_data('@bolt-components-background/background.schema.yml') %}{# @todo complete schema #}
+{% set schema = get_data('@bolt-components-background/background.schema.yml') %}
 
 {% for horz in schema.properties.focalPoint.properties.horizontal.enum if horz != 'center' %}{# @todo: bolt background currently only reverses gradient on horz = 'left' #}
   <p>Heavy Opacity with {{  horz|capitalize }} Focal Point</p>

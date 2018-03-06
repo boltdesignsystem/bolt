@@ -7,10 +7,7 @@
   "bin": {
     "bolt": "index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/pega-digital/bolt.git"
-  },
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools",
   "keywords": [
     "bolt",
     "bolt design system",
@@ -28,14 +25,14 @@
     "@theme-tools/sass-export-data": "^1.0.3",
     "@theme-tools/sass-import-globbing": "^1.0.0",
     "autoprefixer": "^7.2.4",
-    "babel-loader": "^7.1.2",
+    "babel-loader": "^8.0.0-beta.2",
     "browser-sync": "^2.23.5",
     "chalk": "^2.3.0",
     "chokidar": "^2.0.0",
     "clean-css-loader": "^0.1.4",
     "commander": "^2.12.2",
     "convert-hrtime": "^2.0.0",
-    "css-loader": "^0.28.7",
+    "css-loader": "^0.28.10",
     "del": "^3.0.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.8",
@@ -66,5 +63,8 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "schema": "utils/config.schema.yml",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "homepage": "https://bolt-design-system.com"
 }

@@ -46,6 +46,7 @@ module.exports = {
       '@bolt/components-chip-list',
       '@bolt/components-device-viewer',
       '@bolt/components-figure',
+      '@bolt/components-form',
       '@bolt/components-headline',
       '@bolt/components-icon',
       '@bolt/components-icons',

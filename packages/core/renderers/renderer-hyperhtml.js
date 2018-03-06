@@ -12,7 +12,7 @@ import {
 const { hyperHTML, hyper, wire, bind, Component } = require('hyperhtml/cjs');
 
 
-export function withHyperHTML(Base = class extends HTMLElement { }) {
+export function withHyperHTML(Base = HTMLElement) {
   return class extends Base {
 
     static props = {
