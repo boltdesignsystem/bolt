@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1c9b620a9203dbbec0e031237800c393",
+    "content-hash": "928e2d2de35d6023a5e1b14669da47e6",
     "packages": [
         {
             "name": "basaltinc/twig-tools",
-            "version": "v1.3.3",
+            "version": "v1.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/basaltinc/twig-tools.git",
-                "reference": "e890b1ec9a5a2ce0d49c248962b2efc854c54cc2"
+                "reference": "52aa4c6a83e233f40433fb4121c84d38b4800f38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/basaltinc/twig-tools/zipball/e890b1ec9a5a2ce0d49c248962b2efc854c54cc2",
-                "reference": "e890b1ec9a5a2ce0d49c248962b2efc854c54cc2",
+                "url": "https://api.github.com/repos/basaltinc/twig-tools/zipball/52aa4c6a83e233f40433fb4121c84d38b4800f38",
+                "reference": "52aa4c6a83e233f40433fb4121c84d38b4800f38",
                 "shasum": ""
             },
             "require": {
@@ -43,19 +43,20 @@
                     "email": "evanlovely@gmail.com"
                 }
             ],
-            "time": "2018-02-21T00:54:40+00:00"
+            "time": "2018-03-06T19:34:12+00:00"
         },
         {
-            "name": "bolt/core-php",
+            "name": "bolt-design-system/core-php",
             "version": "0.9.0",
             "dist": {
                 "type": "path",
                 "url": "../../packages/core-php",
-                "reference": "23faf1fc308dc1ba5a28b3026e9c9729e7f2f234",
+                "reference": "1dc66c3b7116424698ccf316fbe04342d1886d40",
                 "shasum": null
             },
             "require": {
-                "basaltinc/twig-tools": "^1.3.2",
+                "basaltinc/twig-tools": "^1.3.4",
+                "bolt-design-system/core-php": "^0.9.0",
                 "drupal/core-render": "8.4.x-dev",
                 "drupal/core-utility": "8.4.x-dev",
                 "gregwar/image": "^2.0",
@@ -66,12 +67,20 @@
                 "twig/twig": "^1.0",
                 "webmozart/path-util": "^2.3"
             },
+            "require-dev": {
+                "phpunit/phpunit": "^7"
+            },
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "Bolt\\": "src/",
                     "Drupal\\Core\\": "src/libs/Drupal/Core/"
                 }
+            },
+            "scripts": {
+                "test": [
+                    "phpunit --colors=always tests"
+                ]
             },
             "license": [
                 "MIT"
