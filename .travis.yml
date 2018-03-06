@@ -29,7 +29,7 @@ install:
 - npm test
 
 script:
-- travis_wait npm run build && ./scripts/deploy.sh && node ./scripts/netlify-notifier.js
+- travis_wait npm run build && ./scripts/deploy.sh && node ./scripts/netlify-notifier.js && ./scripts/update-read-only-git-repos.sh
 #- travis_wait npm run build && npm run deploy # only run deploy if build is successful. Can't do `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
 
 cache:
