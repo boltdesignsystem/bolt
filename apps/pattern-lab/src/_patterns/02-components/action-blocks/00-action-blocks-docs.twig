@@ -1,4 +1,5 @@
-{% set schema = get_data('@bolt-components-action-blocks/action-blocks.schema.yml') %}
+{% set schema = bolt.data.components['@bolt-components-action-blocks'].schema %}
+
 {% set code %} {% verbatim %}
 {% include "@bolt-components-action-blocks/action-blocks.twig" with {
   contentItems: [

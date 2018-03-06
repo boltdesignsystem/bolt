@@ -14,10 +14,12 @@ if [[ $TRAVIS == 'true' ]]; then
   else
     echo "We are in Travis and this IS the master branch, so we WILL attempt to update read-only git repos..."
   fi
-
 fi
-# if we have the remote `core-php` cool, if not, then let's add it
-git remote show core-php || git remote add --fetch core-php git@github.com:bolt-design-system/core-php.git
-# push updates to https://github.com/bolt-design-system/core-php
-# @todo Ensure tags are pushed so Packagist can publish them
-git subtree push --prefix=packages/core-php core-php master
+
+# Run helper subsplit script ported over from from https://raw.githubusercontent.com/dflydev/git-subsplit/master/git-subsplit.sh
+
+./scripts/git-subsplit.sh init https://${GH_TOKEN}@github.com/bolt-design-system/core-php.git
+
+./scripts/git-subsplit.sh publish --work-dir=$PWD packages/core-php:https://${GH_TOKEN}@github.com/bolt-design-system/core-php.git \
+  --heads=master --update
+

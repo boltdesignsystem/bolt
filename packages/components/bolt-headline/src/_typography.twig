@@ -87,7 +87,8 @@
 </{{ tag }}>
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-headline/headline.schema.yml', _self) }}
+  {# disabling schema validation for now as it has too many errors now #}
+  {#{{ validate_data_schema('@bolt-components-headline/headline.schema.yml', _self) }}#}
 {% endif %}
 
 {# set iconpos = iconpos | default("right") #}

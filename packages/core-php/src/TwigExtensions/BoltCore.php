@@ -66,7 +66,7 @@ class BoltCore extends \Twig_Extension implements \Twig_Extension_InitRuntimeInt
       'bolt' => [
         'data' => $this->data,
       ],
-      'enable_json_schema_validation' => false,
+      'enable_json_schema_validation' => true,
     ];
   }
 

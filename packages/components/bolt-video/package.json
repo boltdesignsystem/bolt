@@ -1,46 +1,38 @@
 {
-	"name": "@bolt/components-video",
-	"description": "Video Component in Bolt",
-	"type": "pattern",
-	"patternType": "molecules",
-	"keywords": [
-		"bolt design system",
-		"bolt",
-		"css framework",
-		"design system",
-		"components"
-	],
-	"version": "1.0.0-rc.3",
-	"sourceFilesFrom": "0.10.2",
-	"maintainers": [
-		{
-			"name": "Salem Ghoweri",
-			"email": "me@salemghoweri.com",
-			"web": "https://github.com/sghoweri"
-		},
-		{
-			"name": "Mike Mai",
-			"email": "boss@mikemai.net",
-			"web": "http://mikemai.net/"
-		}
-	],
-	"homepage": "https://boltdesignsystem.com",
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/bolt-design-system/bolt/"
-	},
-	"bugs": {
-		"url": "https://github.com/bolt-design-system/bolt/issues"
-	},
-	"style": "src/_video.scss",
-	"twig": "src/video.twig",
-	"main": "src/video.js",
-	"publishConfig": {
-		"access": "public"
-	},
-	"dependencies": {
-		"@bolt/components-brightcove-player": "^1.0.0-rc.3",
-		"@bolt/core": "^1.0.0-rc.3"
-	}
+  "name": "@bolt/components-video",
+  "description": "Video Component in Bolt",
+  "keywords": [
+    "bolt design system",
+    "bolt",
+    "css framework",
+    "design system",
+    "components"
+  ],
+  "version": "1.0.0-rc.3",
+  "sourceFilesFrom": "0.10.2",
+  "maintainers": [
+    {
+      "name": "Salem Ghoweri",
+      "email": "me@salemghoweri.com",
+      "web": "https://github.com/sghoweri"
+    },
+    {
+      "name": "Mike Mai",
+      "email": "boss@mikemai.net",
+      "web": "http://mikemai.net/"
+    }
+  ],
+  "homepage": "https://bolt-design-system.com",
+  "license": "MIT",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "style": "src/_video.scss",
+  "main": "src/video.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@bolt/components-brightcove-player": "^1.0.0-rc.3",
+    "@bolt/core": "^1.0.0-rc.3"
+  }
 }

@@ -10,7 +10,7 @@
   &:not(.c-bolt-button--disabled):not(.c-bolt-button--text):not([disabled]) {
     &:hover,
     &.c-bolt-button--hover {
-      transform: $bolt-button-translate--hover;
+      @include bolt-shadow('level-20', true);
     }
 
     &:hover:before,
@@ -36,6 +36,7 @@
   @include bolt-no-select;
   @include bolt-font-weight(semibold);
   @include bolt-button-raised;
+  @include bolt-shadow('level-20');
 
   display: inline-block;
   display: inline-flex;
@@ -46,8 +47,6 @@
   border-style: $bolt-button-border-style;
   border-width: $bolt-button-border-width;
   border-radius: $bolt-button-border-radius;
-  box-shadow: 0  1px  3px rgba(bolt-color(black), 0.12), 0 1px  2px  rgba(bolt-color(black), 0.24);
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   transform: translate3d(0, 0, 0);
 
   flex-grow: 1;
@@ -57,7 +56,7 @@
   &:before {
     display: block;
     position: absolute;
-    z-index: -1;
+    z-index: bolt-z-index('background') - 5;
     top: 0;
     left: 0;
     width: 100%;
@@ -65,8 +64,7 @@
     content: '';
     pointer-events: none;
     border-radius: $bolt-button-border-radius;
-    box-shadow: 0 1px 0.15rem rgba($bolt-shadow-color, 0.1), $bolt-button-shadow--hover;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    @include bolt-shadow('level-10', true);
     opacity: 0.2;
   }
 }
