@@ -23,7 +23,7 @@ bolt-demo {
   background-color: bolt-color(white);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: bolt-z-index("nav");
   margin-bottom: 0;
   margin-left: -1 * bolt-spacing(medium);
   margin-right: -1 * bolt-spacing(medium);
@@ -61,6 +61,14 @@ ul.bolt-icon-list-demo {
       width: 50%;
     }
   }
+}
+
+.bolt-z-index-demo {
+  display: inline-block;
+  padding: 3px 25px 3px 3px;
+  border: solid 1px black;
+  margin-bottom: 15px;
+  @include bolt-shadow('level-40');
 }
 
 .bolt-shadow-demo {
