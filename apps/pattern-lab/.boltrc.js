@@ -36,6 +36,7 @@ module.exports = {
       '@bolt/components-background',
       '@bolt/components-background-shapes',
       '@bolt/components-band',
+      '@bolt/components-brightcove-player',
       '@bolt/components-blockquote',
       '@bolt/components-breadcrumb',
       '@bolt/components-button',
@@ -61,6 +62,7 @@ module.exports = {
       '@bolt/components-sticky',
       '@bolt/components-teaser',
       '@bolt/components-unordered-list',
+      '@bolt/components-video',
     ],
     individual: [
       '@bolt/components-critical-fonts'
