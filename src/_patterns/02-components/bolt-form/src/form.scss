@@ -133,6 +133,11 @@ $bolt-input-transition: $bolt-transition;
   outline: none;
   transition: all $bolt-input-transition;
 
+  // Force browsers to render this using hardward acceleration.
+  // This resolves a rendering quirk seen in Chrome where the hover
+  // state would only work intermittently.
+  transform: translate3d(0, 0, 0);
+
   // Removing native controls
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
