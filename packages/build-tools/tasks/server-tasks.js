@@ -7,23 +7,27 @@ const server = browserSync.create();
 // https://www.browsersync.io/docs/options
 const serverConfig = {
   open: config.openServerAtStart,
-  startPath: '/index.html', // Since `/` doesn't do anything and we want to avoid double browserSync notifications from the very beginning
+  startPath: config.startPath, // Since `/` doesn't do anything and we want to avoid double browserSync notifications from the very beginning
   host: 'localhost',
-  port: 3000,
 
-  // proxy the Webpack Dev Server endpoint
-  // through BrowserSync
-  proxy: 'http://localhost:8080/',
   snippetOptions: {
     blacklist: ['/index.html', '/', '/?*'] // prevents double browsersync
   }
 };
 
-if (config.env === 'pl') {
-  // https://www.browsersync.io/docs/options#option-server
-  serverConfig.serveStatic = [];
-  serverConfig.serveStatic.push(config.srcDir);
-  serverConfig.serveStatic.push(config.wwwDir);
+if (config.webpackDevServer) {
+  // proxy the Webpack Dev Server endpoint
+  serverConfig.proxy = 'http://localhost:8080/';
+  if (config.env === 'pl') {
+    // https://www.browsersync.io/docs/options#option-server
+    serverConfig.serveStatic = [];
+    serverConfig.serveStatic.push(config.srcDir);
+    serverConfig.serveStatic.push(config.wwwDir);
+  }
+} else {
+  serverConfig.server = [
+    config.wwwDir,
+  ];
 }
 
 function serve() {

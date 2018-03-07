@@ -1,6 +1,5 @@
 {
   "name": "@bolt/components-teaser",
-  "type": "pattern",
   "description": "Teaser Component",
   "keywords": [
     "eyeglass-module",
@@ -9,23 +8,19 @@
     "ui toolkit",
     "design system"
   ],
-  "version": "0.2.0",
+  "version": "1.0.0-rc.6",
+  "sourceFilesFrom": "0.9.0",
   "author": "Salem Ghoweri",
-  "homepage": "https://boltdesignsystem.com",
+  "homepage": "https://bolt-design-system.com",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/pega-digital/bolt/tree/master/packages/bolt-component-button"
-  },
-  "bugs": {
-    "url": "https://github.com/pega-digital/bolt/issues"
-  },
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-teaser",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "style": "src/teaser.scss",
-  "twig": "src/teaser.twig",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@bolt/core": "^0.5.0-beta.1"
-  }
+    "@bolt/core": "^1.0.0-rc.6"
+  },
+  "schema": "teaser.schema.yml"
 }

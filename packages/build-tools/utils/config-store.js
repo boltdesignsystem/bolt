@@ -16,9 +16,12 @@ let config = {};
 // For both 3 & 4, it doesn't support deep merges, so only top level properties.
 
 const defaultConfig = {
-  verbosity: 2,
-  openServerAtStart: false,
-  quick: false,
+  verbosity: configSchema.properties.verbosity.default,
+  openServerAtStart: configSchema.properties.openServerAtStart.default,
+  quick: configSchema.properties.quick.default,
+  webpackDevServer: configSchema.properties.webpackDevServer.default,
+  prod: process.env.NODE_ENV === 'production',
+  startPath: configSchema.properties.startPath.default
 };
 
 function getEnvVarsConfig() {
@@ -86,6 +89,9 @@ function updateConfig(updater) {
   // console.log('new config:');
   // console.log(newConfig);
   config = newConfig;
+  if (config.prod) {
+    process.env.NODE_ENV = 'production';
+  }
   return config;
 }
 

@@ -1,0 +1,22 @@
+{% set schema = get_data('@bolt-components-button-group/button-group.schema.yml') %}
+{% set code %} {% verbatim %}
+{% include "@bolt-components-button-group/button-group.twig" with {
+  buttons: [
+    {
+      text: "Learn More",
+      style: "primary"
+    },
+    {
+      text: "About Pega",
+      style: "secondary"
+    }
+  ]
+} %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/docs.twig' with {
+  schema: schema,
+  code: code,
+  readmeFile: '@bolt-components-button-group/README.md',
+} only %}

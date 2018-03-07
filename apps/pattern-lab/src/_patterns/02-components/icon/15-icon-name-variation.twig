@@ -1,0 +1,15 @@
+{% set schema = get_data('@bolt-components-icon/icon.schema.yml') %}
+
+{# loop through icons referenced in schema #}
+<ul class="bolt-icon-list-demo">
+{% for name in schema.properties.name.enum %}
+  <li>
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: name,
+      background: "circle",
+      size: "large",
+    }%}
+    <br />{{ name }}
+  </li>
+{% endfor %}
+</ul>

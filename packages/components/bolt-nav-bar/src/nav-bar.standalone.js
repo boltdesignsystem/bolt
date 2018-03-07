@@ -4,30 +4,110 @@ import {
   define,
   props,
   withComponent,
+  withHyperHTML,
   withPreact,
   css,
-  spacingSizes
+  spacingSizes,
+  hasNativeShadowDomSupport
 } from '@bolt/core';
+
+import navListGumshoe from 'gumshoejs';
 
 const indicatorElement = '.js-bolt-nav-indicator';
 const navLinkElement = 'bolt-nav-link'; // Custom element
 const isActiveClass = 'is-active';
 
-// Behavior for `<bolt-nav-list>` parent container
-class BoltNavList extends withComponent(withPreact()) {
-  constructor() {
-    super();
+// gumshoeStateModule stores an offset value that persists even when it's called multiple times.  If the offset
+// is the same as the last time it was called, it avoids initializing gumshoe again (among other things, when
+// initializing multiple navbars on one page, this only initializes gumshoe once).  If the offset value HAS changed--
+// presumably because the header has adjusted its own height--gumshoe will be re-initialized with the new value.
+let gumshoeStateModule = (function () {
+  let offset; // Private variable
+  let pub = {}; // public object - returned at end of module to allow external interaction
+
+  pub.setOffset = function (newOffset) {
+    if (offset !== newOffset) {
+      offset = newOffset;
+
+      navListGumshoe.init({
+        selector: '.js-bolt-nav-list-gumshoe a',
+        // All the link activation logic is handled in the callback, but gumshoe won't work without
+        // a value for activeClass, so we give it a placeholder.
+        activeClass: 'gumshoe',
+        // Setting scrollDelay to true prevents gumshoe from trying to set the active item when a link
+        // has been clicked and WHILE we are smooth scrolling to that item.  This could be removed if
+        // we could find a way to disable any activity in the callback while a non-gumshoe (i.e. click-initiated)
+        // animation is in-progress.
+        scrollDelay: true,
+        offset: offset,
+        callback: function (nav) {
+          if (nav && nav.hasOwnProperty('nav')) {
+            if (!nav.nav.classList.contains(isActiveClass)) {
+              // If the parent already has the is-active class, it was activated by something other
+              // than gumshoe-- no need to duplicate effort, so abort.
+              nav.nav.parentElement.setAttribute('active', '');
+            }
+          }
+        }
+      });
+    }
+  };
+
+  pub.getOffset = function() {
+    return offset;
+  };
+
+  return pub;
+}());
+
+
+@define
+export class BoltNavList extends withHyperHTML(withComponent()) {
+  static is = 'bolt-nav-list';
+
+  // Behavior for `<bolt-nav-list>` parent container
+  static get observedAttributes() { return ['offset']; }
+
+  constructor(element) {
+    super(element);
     this.activeLink = false;
+    this.useShadow = hasNativeShadowDomSupport;
 
     // Ensure that 'this' inside the _onWindowResize event handler refers to <bolt-nav-link>
     // even if the handler is attached to another element (window in this case)
     this._onWindowResize = this._onWindowResize.bind(this);
   }
 
-  renderCallback() {
-    return (
-      <slot />
-    )
+  render() {
+    if (this.useShadow) {
+      return this.html`
+        <slot />
+      `
+    } else {
+      return this.html`
+         ${this.slots.default}
+      `
+    }
+  }
+
+  get offset() {
+    return this.getAttribute('offset');
+  }
+
+  set offset(value) {
+    // Reflect the value of the offset property as an HTML attribute.
+    if (value) {
+      this.setAttribute('offset', value);
+    }
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    switch (name) {
+      case 'offset':
+        // Note the attributeChangedCallback is only handling the *side effects*
+        // of setting the attribute.
+        this._initializeGumshoe();
+    }
   }
 
   /**
@@ -98,11 +178,30 @@ class BoltNavList extends withComponent(withPreact()) {
     }
   }
 
+  _initializeGumshoe() {
+    gumshoeStateModule.setOffset(this.offset);
+  }
+
   // `<bolt-nav-link>` emits a custom event when the link is active
   connectedCallback() {
+    this._checkSlots();
     this._indicator = this.querySelector(indicatorElement);
     this.addEventListener('activateLink', this._onActivateLink);
     window.addEventListener('optimizedResize', this._onWindowResize);
+
+    // Initialize the Gumshoe library.
+    this.offset = this.hasAttribute('offset') ? this.getAttribute('offset') : 50;
+    this._initializeGumshoe();
+
+    this._upgradeProperty('offset');
+  }
+
+  _upgradeProperty(prop) {
+    if (this.hasOwnProperty(prop)) {
+      let value = this[prop];
+      delete this[prop];
+      this[prop] = value;
+    }
   }
 
   // Clean up event listeners when being removed from the page
@@ -111,20 +210,21 @@ class BoltNavList extends withComponent(withPreact()) {
     window.removeEventListener('optimizedResize', this._onWindowResize);
   }
 }
-customElements.define('bolt-nav-list', BoltNavList);
 
 
 
+@define
+export class BoltNavLink extends withHyperHTML(withComponent()) { // Behavior for `<bolt-nav-link>` children
 
-// Behavior for `<bolt-nav-link>` children
-class BoltNavLink extends withComponent(withPreact()) {
+  static is = 'bolt-nav-link';
+
   // The element reacts to changes to the `active` attribute.
   static get observedAttributes() {
     return ['active'];
   }
 
-  constructor() {
-    super();
+  constructor(element) {
+    super(element);
 
     this._shadowLink = this.querySelector('a');
   }
@@ -144,59 +244,81 @@ class BoltNavLink extends withComponent(withPreact()) {
     value = Boolean(value);
     if (value) {
       this.setAttribute('active', '');
-      this._shadowLink.classList.add(isActiveClass);
     } else {
       this.removeAttribute('active');
-      this._shadowLink.classList.remove(isActiveClass);
     }
   }
 
 
   // `attributeChangedCallback` processes changes to the `active` attr
-  attributeChangedCallback(attrName, oldVal, newVal) {
-    const value = this.hasAttribute('active');
-  }
+  attributeChangedCallback(name, oldVal, newVal) {
+    switch (name) {
+      case 'active':
+        if (this.active) {
+          this._shadowLink.classList.add(isActiveClass);
 
-  // Handle state changes when being clicked on + emmitting this change as a CustomEvent
-  activateLink() {
-    if (!this.active){
-      this.active = !this.active; // Flip the current active state
-
-      // Dispatch an event that signals to the parent what element is being active
-      this.dispatchEvent(
-        new CustomEvent('activateLink', {
-          detail: {
-            isActiveNow: this.active
-          },
-          bubbles: true,
-        })
-      );
+          // Dispatch an event that signals to the parent what element is being active
+          this.dispatchEvent(
+            new CustomEvent('activateLink', {
+              detail: {
+                isActiveNow: true
+              },
+              bubbles: true,
+            })
+          );
+        }
+        else {
+          this._shadowLink.classList.remove(isActiveClass);
+        }
     }
   }
 
-  renderCallback() {
-    return (
-      <slot />
-    )
+  onClick() {
+    if (!this.active) {
+      this.active = true;
+    }
+  }
+
+  render() {
+    if (this.useShadow) {
+      return this.html`
+        <slot />
+      `
+    } else {
+      return this.html`
+         ${this.slots.default}
+      `
+    }
   }
 
   connectedCallback() {
-    this.addEventListener('click', this.activateLink);
+    this._checkSlots();
+    this.addEventListener('click', this.onClick);
 
     // Set an initially active link if appropriate.
     const isAlreadyActive = this._shadowLink.classList.contains(isActiveClass) || this._shadowLink.getAttribute('href') === window.location.hash;
 
     if (isAlreadyActive) {
-      this.activateLink();
+      this.active = true;
+    }
+
+    this._upgradeProperty('active');
+  }
+
+  // See https://developers.google.com/web/fundamentals/web-components/best-practices#lazy-properties
+  // for an explanation of lazy properties.
+  _upgradeProperty(prop) {
+    if (this.hasOwnProperty(prop)) {
+      let value = this[prop];
+      delete this[prop];
+      this[prop] = value;
     }
   }
 
   disconnectedCallback() {
-    this.removeEventListener('click', this.activateLink);
+    this.removeEventListener('click', this.onClick);
   }
 }
-customElements.define('bolt-nav-link', BoltNavLink);
-
 
 
 

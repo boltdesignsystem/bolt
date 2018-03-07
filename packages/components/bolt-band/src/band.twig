@@ -1,7 +1,7 @@
 {% set prefix = "c-bolt-" %}
 {% set tags = ["div", "article", "section", "header", "footer", "nav", "figure"] %} {# Available overall container tags #}
 {% set contentTags = ["div", "article", "section", "header", "footer", "nav", "figcaption"] %} {# Available content container tags #}
-{% set fullBleed = [true, false] %}
+{% set fullBleedOptions = [true, false] %}
 {% set sizes = [
   "xsmall",
   "small",
@@ -23,14 +23,21 @@
 {% set baseClass = prefix ~ componentName %}
 {% set tag = tag in tags ? tag: "div" %}
 {% set contentTag = contentTag in contentTags ? contentTag: "div" %}
-{% set fullBleed = fullBleed | default(false) %}
-{% set size = size | default("medium") %}
-{% set theme = theme | default("dark") %}
+{% set fullBleed = fullBleed == false and fullBleed is not null ? false : true %}
+
+{# set fullBleed = fullBleed in fullBleedOptions ? fullBleed | default(false) #}
+{% if size != "none" %}
+  {% set size = size | default("medium") %}
+{% endif %}
+{% if theme != "none" %}
+  {% set theme = theme | default("dark") %}
+{% endif %}
+
 
 {% set classes = [
   baseClass,
-  size in sizes ? baseClass ~ "--" ~ size : "",
   fullBleed == true ? baseClass ~ "--" ~ "full" : "",
+  size in sizes ? baseClass ~ "--" ~ size : "",
   theme in themes ? "t-bolt-" ~ theme : ""
 ] %}
 
@@ -56,3 +63,7 @@
     content: renderedBandContent
   } only %}
 </bolt-{{ componentName }}>
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-band/band.schema.yml', _self) }}
+{% endif %}

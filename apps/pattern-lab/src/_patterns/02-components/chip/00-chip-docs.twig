@@ -1,0 +1,14 @@
+{% set schema = get_data('@bolt-components-chip/chip.schema.yml') %}
+{% set code %} {% verbatim %}
+{% include "@bolt-components-chip/chip.twig" with {
+    text: "This is a chip",
+    url: "http://google.com",
+  } only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/docs.twig' with {
+  schema: schema,
+  code: code,
+  readmeFile: '@bolt-components-chip/README.md',
+} only %}

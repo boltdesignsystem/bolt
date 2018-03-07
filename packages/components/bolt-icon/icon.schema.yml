@@ -1,45 +1,17 @@
 $schema: http://json-schema.org/draft-04/schema#
 title: Icon
 type: object
+required:
+  - name
 properties:
   name:
     type: string
     description: Icon name.
     enum:
-      - communications
-      - energy
-      - entertainment
-      - financial
-      - government
-      - healthcare
-      - insurance
-      - life sciences
-      - manufacturing
-      - retail
-      - transportation
-      - co-browse
-      - customer decision hub
-      - customer service
-      - field service
-      - field service-gray
-      - marketing
-      - marketing-gray
-      - sales automation
-      - app-development
-      - case-management
-      - cloud
-      - data-integrations
-      - mobility
-      - robo-auto
-      - customer-onboarding
-      - careers
-      - industries
-      - partners
-      - product
-      - training
-      - vision
+      #todo: dynamically generate or reference these
       - add-open
       - add-solid
+      - app-development
       - arrow-left
       - asset-data
       - asset-infographic
@@ -51,43 +23,85 @@ properties:
       - asset-text
       - asset-video
       - calendar
-      - check
+      - careers
+      - case-management
       - check-circle
       - check-solid
+      - check
       - chevron-right
-      - close
       - close-open
       - close-solid
+      - close
+      - cloud
+      - co-browse
+      - communications
       - copy-to-clipboard
+      - customer-decision hub
+      - customer-onboarding
+      - customer-service
+      - data-integrations
       - download
       - email
-      - exit full screen
-      - external link
-      - eye
+      - energy
+      - entertainment
+      - exit-full screen
+      - external-link
       - eye-off
-      - full screen
+      - eye
+      - facebook-solid
+      - facebook
+      - field-service-gray
+      - field-service
+      - financial
+      - full-screen
       - global
+      - government
+      - healthcare
+      - hospitality
+      - industries
       - info-open
       - info-solid
+      - insurance
+      - intelligent-virtual-assistant
+      - life-sciences
+      - linkedin-solid
+      - linkedin
       - lock
-      - map-pin
+      - manufacturing
       - map-pin-solid
+      - map-pin
+      - marketing-gray
+      - marketing
       - menu
       - minus-open
       - minus-solid
+      - mobility
       - more
+      - partners
       - pencil
       - podcast
       - print
+      - product
       - refresh
+      - retail
+      - robo-auto
+      - sales-automation
       - search
       - share1
       - share2
+      - training
+      - transportation
+      - twitter-solid
+      - twitter
       - unlock
       - upload
+      - user
       - video
+      - vision
       - warning
       - watch
+      - workforce-intelligence
+      - youtube-solid
   background:
     type: string
     description: Background shape

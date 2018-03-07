@@ -52,12 +52,12 @@
         {% for item in contentItems %}
 
           {% set itemAttributes = item.pattern ~ "Attributes" %}
-
           {% include pattern_template(item.pattern) with item | merge({
             (itemAttributes): {
               class: ["c-bolt-background__#{item.pattern}"]
             },
-            ratio: false
+            ratio: false,
+            lazyload: item.lazyload ? item.lazyload : true
           }) only %}
         {% endfor %}
       {% endif %}

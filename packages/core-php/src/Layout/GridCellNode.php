@@ -89,12 +89,14 @@ class GridCellNode extends \Twig_Node {
       $GLOBALS['cell_props'][ $GLOBALS['cell_counter'] ] = array();
     }
 
-
     // Run the captured attributes through D8's createAttribute function, prior to rendering
     $attributes = createAttribute($merged_attributes);
 
-    //@TODO: check if this PL template instance exists, otherwise load the default Twig string loader.
-    $stringLoader = \PatternLab\Template::getStringLoader();
+    if (class_exists('\PatternLab\Template')) {
+      $stringLoader = \PatternLab\Template::getStringLoader();
+    } else {
+      $stringLoader = new BoltStringLoader();
+    }
 
     //Setup data into 2 groups: attributes + everything else that we're going to namespace under the component name.
     $data         = array(

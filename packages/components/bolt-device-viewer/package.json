@@ -1,42 +1,39 @@
 {
-	"name": "@bolt/components-device-viewer",
-	"description": "Device Viewer Component in Bolt",
-	"keywords": [
-		"bolt design system",
-		"bolt",
-		"css framework",
-		"design system",
-		"components"
-	],
-	"version": "0.2.0-beta.6",
-	"maintainers": [
-		{
-			"name": "Salem Ghoweri",
-			"email": "me@salemghoweri.com",
-			"web": "https://github.com/sghoweri"
-		},
-		{
-			"name": "Mike Mai",
-			"email": "boss@mikemai.net",
-			"web": "http://mikemai.net/"
-		}
-	],
-	"homepage": "https://boltdesignsystem.com",
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/bolt-design-system/bolt/"
-	},
-	"bugs": {
-		"url": "https://github.com/bolt-design-system/bolt/issues"
-	},
-	"main": "src/device-viewer.js",
-	"style": "src/_device-viewer.scss",
-	"publishConfig": {
-		"access": "public"
-	},
-	"dependencies": {
-		"@bolt/core": "^0.5.0-beta.1",
-		"drift-zoom": "^1.2.0"
-	}
+  "name": "@bolt/components-device-viewer",
+  "description": "Device Viewer Component in Bolt",
+  "keywords": [
+    "bolt design system",
+    "bolt",
+    "css framework",
+    "design system",
+    "components"
+  ],
+  "version": "1.0.0-rc.6",
+  "sourceFilesFrom": "0.10.2",
+  "maintainers": [
+    {
+      "name": "Salem Ghoweri",
+      "email": "me@salemghoweri.com",
+      "web": "https://github.com/sghoweri"
+    },
+    {
+      "name": "Mike Mai",
+      "email": "boss@mikemai.net",
+      "web": "http://mikemai.net/"
+    }
+  ],
+  "homepage": "https://bolt-design-system.com",
+  "license": "MIT",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-device-viewer",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "main": "src/device-viewer.js",
+  "style": "src/_device-viewer.scss",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@bolt/core": "^1.0.0-rc.6",
+    "drift-zoom": "^1.2.0"
+  },
+  "schema": "device-viewer.schema.yml"
 }

@@ -10,7 +10,11 @@ properties:
         description: Source url.
       lazyLoad:
         type: boolean
-        description: Default is true.
+        description: To speed performace, lazyload will load images as needed.
+        default: true
+        enum:
+          - true
+          - false
   caption:
     description: Figure caption.
     type: string

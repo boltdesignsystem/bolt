@@ -7,7 +7,8 @@ import {
   withComponent,
   withPreact,
   css,
-  spacingSizes
+  spacingSizes,
+  hasNativeShadowDomSupport
 } from '@bolt/core';
 
 
@@ -32,23 +33,37 @@ function whichAnimationEvent() {
 const animationEvent = whichAnimationEvent();
 
 
-class BoltDeviceViewer extends withComponent(withPreact()) {
+@define
+class BoltDeviceViewer extends withPreact(withComponent()) {
   static is = 'bolt-device-viewer';
 
   static props = {
     // name: props.string,
   }
 
-  render({ props }) {
-    const classes = css(
-      'c-bolt-image-magnifier'
-    );
+  constructor(element) {
+    super(element);
+    this.useShadow = hasNativeShadowDomSupport;
+  }
 
-    return (
-      <div className={classes}>
-        <slot />
-      </div>
-    )
+  render({ props }) {
+    if (this.useShadow){
+      const classes = css(
+        'c-bolt-image-magnifier'
+      );
+
+      return (
+        <div className={classes}>
+          <slot />
+        </div>
+      )
+    }
+  }
+
+  renderer(root, html) {
+    if (!this.useShadow) {
+      root.innerHTML = `<div class="c-bolt-image-magnifier">${this.innerHTML}</div>`;
+    }
   }
 
   connectedCallback() {
@@ -64,17 +79,21 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
   }
 }
 
-customElements.define(BoltDeviceViewer.is, BoltDeviceViewer);
 
 
 
-class BoltImageZoom extends withComponent(withPreact()) {
+@define
+class BoltImageZoom extends withPreact(withComponent()) {
   static is = 'bolt-image-zoom';
 
   static props = {
     mangify: props.boolean
   }
 
+  constructor(element) {
+    super(element);
+    this.useShadow = hasNativeShadowDomSupport;
+  }
 
   /**
      * `screenElem` returns the screen element inside the device viewer
@@ -120,11 +139,6 @@ class BoltImageZoom extends withComponent(withPreact()) {
   }
 
 
-  render() {
-    return (
-      <slot />
-    )
-  }
 
   connectedCallback() {
     const driftZoomImageUrl = this.querySelector('img').getAttribute('data-zoom');
@@ -143,5 +157,3 @@ class BoltImageZoom extends withComponent(withPreact()) {
     this.removeEventListener('mouseleave', this._mouseLeave);
   }
 }
-
-customElements.define(BoltImageZoom.is, BoltImageZoom);

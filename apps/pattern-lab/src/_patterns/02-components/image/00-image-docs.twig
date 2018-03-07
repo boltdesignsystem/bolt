@@ -1,0 +1,14 @@
+{% set schema = get_data('@bolt-components-image/image.schema.yml') %}
+{% set code %} {% verbatim %}
+{% include '@bolt-components-image/image.twig' with {
+  src: "/src/images/turtle.jpg",
+  alt: "A Turtle",
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/docs.twig' with {
+  schema: schema,
+  code: code,
+  readmeFile: '@bolt-components-image/README.md',
+} only %}

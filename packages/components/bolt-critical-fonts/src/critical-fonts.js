@@ -1,18 +1,13 @@
 /* eslint-disable */
 
-
-var fontsLoadedClass = 'js-fonts-loaded';
-  // fontsSubsetLoadedClass = styles['js-fonts-subset-loaded'];
 var FontFaceObserver = require('fontfaceobserver/fontfaceobserver.js');
 
-// if (sessionStorage.criticalFoftFontsLoaded) {
-//   document.documentElement.className += ' ' + fontsLoadedClass + ' ' + fontsSubsetLoadedClass;
-// }
+import styles from './critical-fonts.scss';
+
+var fontsLoadedClass = styles.locals['js-fonts-loaded'];
 
 (function () {
-  // var FontFaceObserver = window.FontFaceObserver;
-
-  // Current method for Stories
+  
   if (document.documentElement.className.indexOf(fontsLoadedClass) < 0) {
 
     var openSansRegular = new FontFaceObserver('Open Sans', {
@@ -83,10 +78,8 @@ var FontFaceObserver = require('fontfaceobserver/fontfaceobserver.js');
       style: 'italic'
     });
 
-    // var retina = new FontFaceObserver('Retina');
-    // var register = new FontFaceObserver('Register');
+    
     Promise
-      // .all([retina.load(), register.load()])
       .all([
         openSansRegular.load(),
         openSansItalic.load(),

@@ -68,10 +68,11 @@ bolt-blockquote {
 .c-bolt-blockquote {
   @include bolt-margin(0);
 
-  &:before, &:after {
+  &:before,
+  &:after {
     width: 100%;
-    max-width: 300px;
     height: $bolt-blockquote-border-width;
+    max-width: 300px;
     content: '';
     vertical-align: top;
     background-color: $bolt-blockquote-border-color;
@@ -103,7 +104,8 @@ bolt-blockquote {
   color: inherit;
   color: var(--bolt-theme-heading, inherit);
 
-  p:first-child:before, p:last-child:after {
+  p:first-child:before,
+  p:last-child:after {
     font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
   }
 
@@ -117,15 +119,22 @@ bolt-blockquote {
 }
 
 
+/**
+ * 1. Workaround to address weird Safari bug w/ overflow + border radius
+ *    https://gist.github.com/adamcbrewer/5859738#gistcomment-2008691
+ */
+
 // Attribution
 .c-bolt-blockquote__image {
   display: inline-block;
+  position: relative; /* [1] */
+  z-index: bolt-z-index('backgroundTop'); /* [1] */
   width: $bolt-blockquote-image-size;
   height: $bolt-blockquote-image-size;
   border-width: $bolt-blockquote-image-border-width;
   border-style: $bolt-blockquote-image-border-style;
   border-color: $bolt-blockquote-image-border-color;
-  border-radius: 100em;
+  border-radius: 50%;
   overflow: hidden;
 }
 

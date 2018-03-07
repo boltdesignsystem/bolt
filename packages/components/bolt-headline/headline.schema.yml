@@ -19,6 +19,8 @@ properties:
       - h6
       - p
       - span
+      - cite
+      - div
   align:
     type: string
     description: Text alignment.
@@ -69,7 +71,8 @@ properties:
     ref: '@bolt-components-icon/icon.schema.yml'
   quoted:
     type: boolean
-    description: Default false. Adds quoted styling to text.
+    description: Adds quoted styling to text.
+    default: false
     enum:
       - false
       - true

@@ -4,7 +4,8 @@ type: object
 properties:
   theme:
     type: string
-    description: Default is 'false' for a transparent background.
+    description: A color theme.
+    default: false
     enum:
       - xlight
       - light
@@ -14,7 +15,7 @@ properties:
       - 'false'
   maxItemsPerRow:
     type: number
-    description: Default is 3.
+    description: Number of items to place in a row before beginning a new row.
     minimum: 2
     maximum: 12
     default: 3
@@ -32,14 +33,16 @@ properties:
       - 12
   align:
     type: string
-    description: Default is top.
+    description: Alignment of action block content.
+    default: top
     enum:
       - top
       - center
       - bottom
   border:
     type: string
-    description: Default (true) shows borders, but you can turn them off.
+    description: Display a border around the action blocks.
+    default: true
     enum:
       - 'true'
       - 'false'

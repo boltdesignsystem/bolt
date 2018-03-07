@@ -1,3 +1,5 @@
+{% set schema = bolt.data.components['@bolt-components-card'].schema %}
+
 {% set tags = ["div", "article", "section", "figure"] %} {# Available overall container tags #}
 {% set contentTags = ["div", "article", "section", "figcaption"] %} {# Available content container tags #}
 {% set themes = ["xlight", "light", "dark", "xdark"] %}
@@ -29,8 +31,6 @@
 {% set _allowedCardHeaderItems = ["image", "video"] %}
 {% set _allowedCardBodyItems = ["eyebrow", "content", "text", "headline", "teaser"] %}
 {% set _allowedCardFooterItems = ["buttons", "link", "button"] %}
-
-
 {% set _allowedItems = _allowedCardHeaderItems | merge(_allowedCardBodyItems) | merge(_allowedCardFooterItems) %}
 
 {% set _allowedCollections = ["contentItems"] %} {# array of different arrays that could exist w/ nested content #}
@@ -155,3 +155,7 @@
     {% endif %}
   </{{ tag }}>
 </bolt-card>
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) }}
+{% endif %}

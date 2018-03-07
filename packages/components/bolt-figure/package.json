@@ -1,43 +1,37 @@
 {
-	"name": "@bolt/components-figure",
-	"description": "Figure Component in Bolt",
-	"type": "pattern",
-	"patternType": "molecules",
-	"keywords": [
-		"bolt design system",
-		"bolt",
-		"css framework",
-		"design system",
-		"components"
-	],
-	"version": "0.2.0-beta.2",
-	"maintainers": [
-		{
-			"name": "Salem Ghoweri",
-			"email": "me@salemghoweri.com",
-			"web": "https://github.com/sghoweri"
-		},
-		{
-			"name": "Mike Mai",
-			"email": "boss@mikemai.net",
-			"web": "http://mikemai.net/"
-		}
-	],
-	"homepage": "https://boltdesignsystem.com",
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/bolt-design-system/bolt/"
-	},
-	"bugs": {
-		"url": "https://github.com/bolt-design-system/bolt/issues"
-	},
-	"style": "src/_figure.scss",
-	"twig": "src/figure.twig",
-	"publishConfig": {
-		"access": "public"
-	},
-	"dependencies": {
-		"@bolt/core": "0.5.0-beta.1"
-	}
+  "name": "@bolt/components-figure",
+  "description": "Figure Component in Bolt",
+  "keywords": [
+    "bolt design system",
+    "bolt",
+    "css framework",
+    "design system",
+    "components"
+  ],
+  "version": "1.0.0-rc.6",
+  "sourceFilesFrom": "0.9.0",
+  "maintainers": [
+    {
+      "name": "Salem Ghoweri",
+      "email": "me@salemghoweri.com",
+      "web": "https://github.com/sghoweri"
+    },
+    {
+      "name": "Mike Mai",
+      "email": "boss@mikemai.net",
+      "web": "http://mikemai.net/"
+    }
+  ],
+  "homepage": "https://bolt-design-system.com",
+  "license": "MIT",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-figure",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "style": "src/_figure.scss",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@bolt/core": "^1.0.0-rc.6"
+  },
+  "schema": "figure.schema.yml"
 }

@@ -1,0 +1,191 @@
+// BOLT HEADLINE COMPONENT
+
+@import '@bolt/core';
+@import './tools.headlines';
+
+
+/* ------------------------------------ *\
+   Headlines
+\* ------------------------------------ */
+/* stylelint-disable-next-line color-named */
+$bolt-test-color-secondary: blue; // TODO: needs to map to our palette
+$bolt-test-transition: ease-in-out 200ms;
+
+$bolt-headline--minus-letter-spacing: -0.025rem;
+$bolt-headline--plus-letter-spacing: 0.05rem;
+
+
+.c-bolt-headline,
+.c-bolt-subheadline,
+.c-bolt-eyebrow,
+.c-bolt-text {
+  @include bolt-headline;
+}
+
+.c-bolt-headline {
+
+  &:not(:last-child) {
+    @include bolt-margin-bottom(medium);
+  }
+
+  &:not([class*='c-bolt-headline--']) {
+    @include bolt-font-size(large);
+  }
+}
+
+
+
+// @TODO: grab the same shared values from the Blockquote component
+.c-bolt-headline--quoted > .c-bolt-headline__text,
+.c-bolt-subheadline--quoted > .c-bolt-subheadline__text {
+  &:first-child:before,
+  &:last-child:after {
+    font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
+  }
+
+  &:first-child:before {
+    content: '\201C';
+    transform: translate3d(-110%, 0, 0);
+    position: absolute;
+  }
+
+  &:last-child:after {
+    content: '\201D';
+  }
+}
+
+
+
+.c-bolt-eyebrow {
+  @include bolt-margin-bottom(0.1rem);
+  @include bolt-font-size(xsmall);
+  @include bolt-font-weight(regular);
+  text-transform: uppercase;
+  letter-spacing: $bolt-headline--plus-letter-spacing;
+  opacity: 0.8;
+}
+
+
+
+
+.c-bolt-headline__line {
+  flex: 1 0 1rem;
+  align-self: center;
+  height: 1px;
+  border-width: 0;
+  border-style: none;
+  /* stylelint-disable-next-line scale-unlimited/declaration-strict-value */
+  background-color: inherit;
+  opacity: 0.2;
+
+  &:first-child {
+    @include bolt-margin(0 small 0 0);
+  }
+
+  &:last-child {
+    @include bolt-margin(0 0 0 small);
+  }
+}
+
+
+// Subheadline styles.
+.c-bolt-subheadline {
+  @include bolt-margin-bottom(medium);
+  @include bolt-font-family(heading);
+  @include bolt-font-weight(regular);
+
+  &:not([class*='c-bolt-subheadline--']) {
+    @include bolt-font-size(large);
+  }
+}
+
+
+// Headline spacing with other elements.
+.c-bolt-headline:not(.c-bolt-headline--xxxlarge) + .c-bolt-headline,
+.c-bolt-headline:not(.c-bolt-headline--xxxlarge) + .c-bolt-subheadline,
+.c-bolt-headline:not(.c-bolt-headline--xxxlarge) + .c-bolt-text,
+.c-bolt-headline:not(.c-bolt-headline--xxxlarge) + bolt-inline-list,
+.c-bolt-headline:not(.c-bolt-headline--xxxlarge) + p:not([class]) {
+  margin-top: (-1 * bolt-v-spacing(medium)) + bolt-v-spacing(xsmall);
+}
+
+.c-bolt-headline--xxxlarge + .c-bolt-headline,
+.c-bolt-headline--xxxlarge + .c-bolt-subheadline,
+.c-bolt-headline--xxxlarge + .c-bolt-text,
+.c-bolt-headline--xxxlarge + bolt-inline-list,
+.c-bolt-headline--xxxlarge + p:not([class]) {
+  margin-top: (-1 * bolt-v-spacing(medium)) + bolt-v-spacing(small);
+}
+
+.c-bolt-subheadline + .c-bolt-text,
+.c-bolt-subheadline + p:not([class]) {
+  margin-top: (-1 * bolt-v-spacing(medium)) + bolt-v-spacing(xsmall);
+}
+
+
+
+
+.c-bolt-headline--xxxlarge,
+.c-bolt-headline--xxlarge {
+  letter-spacing: $bolt-headline--minus-letter-spacing;
+}
+
+
+/**
+  * 1. Only include max-width rule on larger font sizes
+  */
+.c-bolt-text--xxxlarge,
+.c-bolt-headline--xxxlarge {
+  @include bolt-font-size(xxxlarge);
+}
+
+.c-bolt-text--xxlarge,
+.c-bolt-subheadline--xxlarge,
+.c-bolt-headline--xxlarge {
+  @include bolt-font-size(xxlarge);
+}
+
+
+.c-bolt-text--xlarge,
+.c-bolt-subheadline--xlarge,
+.c-bolt-headline--xlarge {
+  @include bolt-font-size(xlarge);
+}
+
+.c-bolt-text--large,
+.c-bolt-headline--large {
+  @include bolt-font-size(large);
+}
+
+.c-bolt-text a:not([class]),
+.c-bolt-text .c-bolt-link {
+  text-decoration: underline;
+}
+
+
+
+.c-bolt-text--medium {
+  @include bolt-font-size(medium);
+}
+
+.c-bolt-text--small,
+.c-bolt-headline--small {
+  @include bolt-font-size(small);
+}
+
+
+.c-bolt-text--uppercase {
+  @include bolt-uppercase;
+}
+
+
+.c-bolt-text--xsmall,
+.c-bolt-headline--xsmall {
+  @include bolt-font-size(xsmall);
+}
+
+
+.c-bolt-headline--small,
+.c-bolt-headline--xsmall {
+  letter-spacing: $bolt-headline--plus-letter-spacing;
+}

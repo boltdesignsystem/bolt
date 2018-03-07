@@ -1,8 +1,6 @@
 {
   "name": "@bolt/components-unordered-list",
   "description": "Unordered-list Component in Bolt",
-  "type": "pattern",
-  "patternType": "molecules",
   "keywords": [
     "bolt design system",
     "bolt",
@@ -10,7 +8,8 @@
     "design system",
     "components"
   ],
-  "version": "0.1.2",
+  "version": "1.0.0-rc.6",
+  "sourceFilesFrom": "0.9.0",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -23,21 +22,16 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "homepage": "https://boltdesignsystem.com",
+  "homepage": "https://bolt-design-system.com",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bolt-design-system/bolt/"
-  },
-  "bugs": {
-    "url": "https://github.com/bolt-design-system/bolt/issues"
-  },
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-unordered-list",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "style": "src/unordered-list.scss",
-  "twig": "src/unordered-list.twig",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@bolt/core": "^0.5.0-beta.1"
-  }
+    "@bolt/core": "^1.0.0-rc.6"
+  },
+  "schema": "unordered-list.schema.yml"
 }

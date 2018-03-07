@@ -204,7 +204,19 @@ module.exports = {
     'number-leading-zero': 'always',
     'number-no-trailing-zeros': true,
     'property-case': 'lower',
-    'property-no-vendor-prefix': true,
+    'property-no-vendor-prefix': [true, {
+      ignoreProperties: [
+        'grid-rows',
+        'grid-columns',
+        'grid-column',
+        'grid-column-span',
+        'grid-row',
+        'grid-row-span',
+      ],
+    }],
+    'value-no-vendor-prefix': [true, {
+      ignoreValues: ['grid'],
+    }],
     'rule-empty-line-before': ['always-multi-line', {
       except: ['first-nested'],
       ignore: ['after-comment'],
@@ -236,6 +248,5 @@ module.exports = {
     'value-list-comma-newline-after': 'always-multi-line',
     'value-list-comma-space-after': 'always-single-line',
     'value-list-comma-space-before': 'never',
-    'value-no-vendor-prefix': true
   },
 };
