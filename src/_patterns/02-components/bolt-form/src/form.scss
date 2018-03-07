@@ -100,6 +100,10 @@ $bolt-input-transition: $bolt-transition;
 @mixin bolt-input-placeholder($color) {
   &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     color: $color;
+
+    // Workaround for pega.com Drupal, which currently uses sanitize.css.  Once that's
+    // removed, the following line will be unnecessary.
+    opacity: 1;
   }
 
   &::-moz-placeholder { /* Firefox 19+ */
