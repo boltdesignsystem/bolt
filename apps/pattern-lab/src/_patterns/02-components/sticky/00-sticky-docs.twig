@@ -1,4 +1,4 @@
-{% set schema = get_data('@bolt-components-sticky/sticky.schema.yml') %}
+{% set schema = bolt.data.components['@bolt-components-sticky'].schema %}
 {% set code %} {% verbatim %}
 {% embed "@bolt-components-sticky/sticky.twig" %}
   {% block sticky_content %}

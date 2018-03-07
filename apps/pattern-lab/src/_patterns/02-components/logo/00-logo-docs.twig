@@ -1,4 +1,4 @@
-{% set schema = get_data('@bolt-components-logo/logo.schema.yml') %}
+{% set schema = bolt.data.components['@bolt-components-logo'].schema %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-logo/logo.twig" with {
   src: "/pattern-lab/images/content/logos/logo-paypal.svg",

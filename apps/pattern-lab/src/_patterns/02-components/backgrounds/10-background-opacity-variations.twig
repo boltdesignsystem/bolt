@@ -1,4 +1,4 @@
-{% set schema = get_data('@bolt-components-background/background.schema.yml') %}
+{% set schema = bolt.data.components['@bolt-components-background'].schema %}
 
 {% for opacity in schema.properties.opacity.enum %}
 <p>{{ opacity|capitalize }} Opacity</p>

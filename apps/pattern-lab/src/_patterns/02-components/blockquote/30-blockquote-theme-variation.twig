@@ -1,4 +1,4 @@
-{% set schema = get_data('@bolt-components-blockquote/blockquote.schema.yml') %}
+{% set schema = bolt.data.components['@bolt-components-blockquote'].schema %}
 
 {% for theme in schema.properties.theme.enum %}
   <p>theme: {{ theme }}</p>

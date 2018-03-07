@@ -1,4 +1,4 @@
-{% set readme = source('@bolt-components-unordered-list/README.md') %}
+{% set schema = bolt.data.components['@bolt-components-unordered-list'].schema %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-unordered-list/unordered-list.twig" with {
   "contentItems" : [
