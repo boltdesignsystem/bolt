@@ -1,6 +1,6 @@
 <section>
 
-  {% set schema = get_data('@bolt/button.schema.yml') %}
+  {% set schema = bolt.data.components['@bolt-components-button'].schema %}
   {% set themes = get_data('@bolt/themes.schema.json') %}
   {% set defaultButtonText = "Button Text" %}
   {% set defaultButtonSize = schema.properties.size.default  %}

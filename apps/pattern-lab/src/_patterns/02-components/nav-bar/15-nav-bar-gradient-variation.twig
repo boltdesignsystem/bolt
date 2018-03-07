@@ -1,4 +1,4 @@
-{% set schema = get_data('@bolt-components-nav-bar/nav-bar.schema.yml') %}
+{% set schema = bolt.data.components['@bolt-components-nav-bar'].schema %}
 
 {% for gradient in schema.properties.gradient.enum %}
   <p>Gradient: {{ gradient }}</p>

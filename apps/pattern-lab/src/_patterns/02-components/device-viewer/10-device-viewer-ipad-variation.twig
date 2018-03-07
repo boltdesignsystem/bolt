@@ -1,4 +1,4 @@
-{% set schema = get_data('@bolt-components-device-viewer/device-viewer.schema.yml') %}
+{% set schema = bolt.data.components['@bolt-components-device-viewer'].schema %}
 
 {% for color in schema.properties.color.enum if (color != 'gold') %}
   <p>Color: {{ color }}<br />Orientation: 'portrait'</p>
