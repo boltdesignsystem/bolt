@@ -1,4 +1,21 @@
+{% set shareSources = sources is not empty ? sources : ['facebook','twitter','linkedin'] %}
+{% set emailShare = email is sameas(false) ? false : (email is null ? true : email) %}
+{% set copyShare = copy is sameas(false) ? false : (copy is null ? true : copy) %}
+{% set visible = visibility is not empty ? visibility : 'visible' %}
+{% set isFlat = flatLayout is sameas(false) ? false : (flatLayout is null ? false : flatLayout) %}
 
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set classes = [
+  'c-bolt-share',
+  'c-bolt-share--' ~ visible,
+  isFlat is sameas(false) ? 'c-botl-share--normal-layout'
+] %}
+
+<bolt-share bolt-component>
+  <div {{ attributes.addClass(classes) }}>
+
+  </div>
+</bolt-share>
 
 {% if enable_json_schema_validation %}
   {{ validate_data_schema('@bolt-components-share/share.schema.yml', _self) }}

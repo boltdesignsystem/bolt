@@ -1,14 +1,34 @@
 $schema: http://json-schema.org/draft-04/schema#
 title: Share
 type: object
-required:
-  - src
-  - alt
 properties:
   sources:
     type: array
     description: 'Social media sources to share to'
+    default: 'facebook, twitter, linkedin'
+    items:
+      type: string
+      enum:
+        - 'facebook'
+        - 'twitter'
+        - 'linkedin'
+  email:
+    type: boolean
+    description: '`True` to show email share option'
+    default: True
+  copy:
+    type: boolean
+    description: '`True` to show copy link option'
+    default: True
+  visibility:
+    type: string
+    description: 'Controls how the share component is viewed'
+    default: 'visible'
     enum:
-      - 'facebook'
-      - 'twitter'
-      - 'linkedin'
+      - 'visible'
+      - 'scroll'
+      - 'timed'
+  flatLayout:
+    type: boolean
+    description: 'Display as a flat layout, rather than popping out'
+    default: False
