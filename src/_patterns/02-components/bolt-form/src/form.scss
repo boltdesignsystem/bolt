@@ -75,7 +75,8 @@ $bolt-inline-label-input-border-width: $bolt-border-width;
 
 // Data Inputs
 $bolt-floating-label-text-scale: bolt-strip-unit($bolt-font-size--xsmall);
-$bolt-floating-label-text-color: bolt-color(indigo, light); // TODO: [Mai] This is the theme link color
+$bolt-floating-label-text-color: rgba(bolt-color(gray, xdark), 0.5); // TODO: [Denton] This is the theme text color at 66%
+$bolt-floating-label-text-color-active: bolt-color(indigo, light); // TODO: [Mai] This is the theme link color
 $bolt-floating-label-text-indent: calc(#{bolt-spacing(small)} + 2px);
 $bolt-floating-label-transition: $bolt-transition;
 
@@ -217,6 +218,13 @@ $bolt-input-transition: $bolt-transition;
   & ~ .c-bolt-floating-label {
     opacity: 1;
     transform: translate3d(0, 0, 0) scale($bolt-floating-label-text-scale);
+  }
+}
+
+.c-bolt-input:focus,
+.c-bolt-custom-input.is-active {
+  & ~ .c-bolt-floating-label {
+    color: $bolt-floating-label-text-color-active;
   }
 }
 
