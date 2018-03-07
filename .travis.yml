@@ -9,25 +9,28 @@ addons:
     packages:
     - g++-4.8
     - graphicsmagick
-
 before_install:
-- nvm install # version lifted from `.nvmrc`
-# yarn install
+- |
+    openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in .blackfire.travis.ini.enc -out .blackfire.travis.ini -d
+    curl -L https://blackfire.io/api/v1/releases/agent/linux/amd64 | tar zxpf -
+    chmod 755 agent && ./agent --config=~/.blackfire.ini --socket=unix:///tmp/blackfire.sock &
+- nvm install
 - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.3.2
 - export PATH="$HOME/.yarn/bin:$PATH"
 - node --version && npm --version && yarn --version && composer --version
 - composer global require hirak/prestissimo
 - if [[ -n "$GITHUB_TOKEN" ]]; then composer config -g github-oauth.github.com ${GITHUB_TOKEN};
   fi;
-
 before_script:
 - phpenv config-rm xdebug.ini
-
+- |
+    curl -L https://blackfire.io/api/v1/releases/probe/php/linux/amd64/$(php -r "echo PHP_MAJOR_VERSION . PHP_MINOR_VERSION;")-zts | tar zxpf -
+    echo "extension=$(pwd)/$(ls blackfire-*.so | tr -d '[[:space:]]')" > ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/blackfire.ini
+    echo "blackfire.agent_socket=unix:///tmp/blackfire.sock" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/blackfire.ini
 install:
 - yarn install
 - npm run setup
 - npm test
-
 script:
 - travis_wait npm run build && ./scripts/deploy.sh && node ./scripts/netlify-notifier.js && ./scripts/update-read-only-git-repos.sh
 #- travis_wait npm run build && npm run deploy # only run deploy if build is successful. Can't do `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
@@ -35,7 +38,6 @@ script:
 cache:
   apt: true
   yarn: true
-
 notifications:
   email:
     on_success: never
