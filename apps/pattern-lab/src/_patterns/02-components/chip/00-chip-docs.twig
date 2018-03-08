@@ -1,4 +1,4 @@
-{% set schema = get_data('@bolt-components-chip/chip.schema.yml') %}
+{% set schema = bolt.data.components['@bolt-components-chip'].schema %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-chip/chip.twig" with {
     text: "This is a chip",

@@ -1,4 +1,4 @@
-{% set schema = get_data('@bolt-components-headline/headline.schema.yml') %}
+{% set schema = bolt.data.components['@bolt-components-headline'].schema %}
 
 {% for size in schema.properties.size.enum %}
   {% for weight in schema.properties.weight.enum %}

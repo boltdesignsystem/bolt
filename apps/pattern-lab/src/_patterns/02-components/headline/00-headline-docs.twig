@@ -1,4 +1,4 @@
-{% set schema = get_data('@bolt-components-headline/headline.schema.yml') %}
+{% set schema = bolt.data.components['@bolt-components-headline'].schema %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-headline/headline.twig" with {
     text: "This is a headline",

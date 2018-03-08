@@ -1,4 +1,4 @@
-{% set schema = get_data('@bolt-components-button/button.schema.yml') %}
+{% set schema = bolt.data.components['@bolt-components-button'].schema %}
 
 {% for tag in schema.properties.tag.enum %}
   <p>Button Tag: {{ tag }}</p>
