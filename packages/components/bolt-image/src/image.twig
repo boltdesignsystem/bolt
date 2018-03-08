@@ -1,34 +1,8 @@
-
-{#
-  Bolt Image - Structure:
-  - .c-bolt-image: uses the ratio object as a base if enabled
-    - .c-bolt-image__img: lazyloaded img tag
-    - .c-bolt-image__placeholder: lazyloader span while the img is lazyloaded.
-#}
-
-{#{% set srcset = srcset ? srcset : "" %}#}
-
-{# Grabbing the data in the bolt manifest for this particular image #}
+{# Data from Bolt Manifest #}
 {% set imageDataBolt = bolt.data.images[src] %}
-
-{# @todo DRY this #}
-{% set imageSizes = [
-  50, 100, 200, 320, 480, 640, 800, 1024, 1366, 1536, 1920, 2560, 2880
-] %}
-
-
-{#{% if placeholderImage is empty or placeholderColor is empty or srcset == "" %}#}
-  {#{% set path = src|split('.' ~ ext)|first %}#}
-{#{% endif %}#}
-
-{#{% if path == "" and srcset == "" %}#}
-  {#{% set srcset = src %}#}
-{#{% endif %}#}
-
+{# Data from processing image file #}
 {% set imageDataTwig = getImageData(src)  %}
 {#{% set imageData = imageDataBolt|merge(imageDataTwig) %}#}
-{% set ext = src|split('.')|last %}
-
 
 {% set placeholderImage = imageDataTwig.base64 %}
 {% set placeholderColor = imageDataTwig.color %}
@@ -40,41 +14,21 @@
 {% set zoom = zoom ?? false %}
 {% set lazyload = lazyload ?? true %}
 
-
 {# Get a whole number aspect ratio #}
 {#@todo This mutation of ratio is not clear, refactor#}
 {% if width > 0 and height > 0 and ratio == true %}
   {% set ratio = height / width * 100 ~ '%' %}
 {% endif %}
 
-{#{% set placeholderDummySrc = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" %}#}
 
-{#{% set zoomSource = src %}#}
-
-{#{% if srcset == "" and ext != "svg" %}#}
-  {#{% for size in imageSizes if (size <= width) %}#}
-
-    {#{% if size == width %}#}
-      {#{% set srcset = srcset ~ path ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}#}
-      {#{% set zoomSource = path ~ '.' ~ ext %}#}
-    {#{% else %}#}
-      {#{% set srcset = srcset ~ path ~ '-' ~ size ~ '.' ~ ext ~ ' ' ~ size ~ 'w' ~ ', ' %}#}
-      {#{% set zoomSource = path ~ '-' ~ size ~ '.' ~ ext %}#}
-    {#{% endif %}#}
-
-     {#store the current srcset path just in case this loop is our last -- loop.last var isn't available w/ conditions#}
-
-  {#{% endfor %}#}
-  {#{% set srcset = srcset|trim(', ') %}#}
-{#{% elseif ext == "svg" %}#}
-  {#{% set srcset = src %}#}
-{#{% endif %}#}
-
-
-
+{% set ext = src|split('.')|last %}
+{% set srcset = src %}
 {% if imageData %}
   {% set srcset = imageData.srcset %}
 {% endif %}
+
+{% set zoomSource = src %}
+{% set placeholderDummySrc = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" %}
 
 {#--------------------#}
 {# STOP!!!!!!!!!#}
@@ -96,10 +50,10 @@
   {% set imageAttributes = imageAttributes.setAttribute("srcset", srcset) %}
 {% endif %}
 
-{#{% if zoom %}#}
-  {#{% set imageAttributes = imageAttributes#}
-    {#.setAttribute("data-zoom", zoomSource) %}#}
-{#{% endif %}#}
+{% if zoom %}
+  {% set imageAttributes = imageAttributes
+    .setAttribute("data-zoom", zoomSource) %}
+{% endif %}
 
 {% set placeholderAttributes = create_attribute(placeholderAttributes | default({})).addClass("c-bolt-image__placeholder") %}
 {% set styles = placeholderAttributes.getAttribute('style') | split(' ') | merge([
@@ -108,12 +62,12 @@
 ]) %}
 {% set placeholderAttributes = placeholderAttributes.setAttribute('style', styles) %}
 
-{#{% if lazyload %}#}
-  {#{% set imageAttributes = imageAttributes#}
-    {#.setAttribute("data-srcset", srcset)#}
-    {#.setAttribute("srcset", placeholderDummySrc)#}
-    {#.setAttribute("data-sizes", sizes) %}#}
-{#{% endif %}#}
+{% if lazyload %}
+  {% set imageAttributes = imageAttributes
+    .setAttribute("data-srcset", srcset)
+    .setAttribute("srcset", placeholderDummySrc)
+    .setAttribute("data-sizes", sizes) %}
+{% endif %}
 
 {% set imageTag %}
   <img {{ imageAttributes }}>
