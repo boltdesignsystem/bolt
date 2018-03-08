@@ -98,7 +98,7 @@ bolt-icon[size='xlarge'],
   opacity: var(--bolt-theme-icon-background-opacity, 0.1);
 
   background-color: inherit;
-  background-color: var(--bolt-theme-icon-background-color, inherit);
+  background-color: var(--bolt-theme-icon-background, var(--bolt-theme-text, currentColor));
 }
 
 .c-bolt-icon__circle-background {
@@ -117,7 +117,7 @@ bolt-icon[size='xlarge'],
   $brand-color: bolt-color(teal);
   // background-color: $brand-color;
   --bolt-color-icon: bolt-text-contrast($brand-color);
-  --bolt-theme-icon-background-color: $brand-color;
+  --bolt-theme-icon-background: $brand-color;
   --bolt-theme-icon-background-opacity: 1;
 }
 
@@ -125,6 +125,6 @@ bolt-icon[size='xlarge'],
   $brand-color: bolt-color(blue);
   color: $brand-color;
   --bolt-color-icon: $brand-color;
-  --bolt-theme-icon-background-color: bolt-text-contrast($brand-color);
+  --bolt-theme-icon-background: bolt-text-contrast($brand-color);
   --bolt-theme-icon-background-opacity: 1;
 }

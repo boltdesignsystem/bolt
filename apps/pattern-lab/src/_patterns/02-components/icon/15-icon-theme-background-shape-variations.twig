@@ -3,11 +3,11 @@
 {% include "@bolt-components-headline/headline.twig" with {
   text: "Theme: " ~ theme,
   size: "small"
-} %}
+} only %}
 {% embed '@bolt-components-band/band.twig' with {
   theme: theme,
   size: 'xlarge'
-} %}
+} only %}
   {% block band_content %}
     {% set exampleBackgrounds = ["circle", "square"] %}
     {% set exampleColors = [null, "teal", "blue"] %}
@@ -21,7 +21,7 @@
               background: background,
               size: "xlarge",
               color: color
-            }%}
+            } only %}
             <br />{{ background ? "Background: " ~ background : '' }}
             <br />{{ color ? "Color: " ~ color : '' }}
           </li>
@@ -38,11 +38,11 @@
 {% include "@bolt-components-headline/headline.twig" with {
 text: "Theme: " ~ theme,
 size: "small"
-} %}
+} only %}
 {% embed '@bolt-components-band/band.twig' with {
 theme: theme,
 size: 'xlarge'
-} %}
+} only %}
   {% block band_content %}
     {% set exampleBackgrounds = ["circle", "square"] %}
     {% set exampleColors = [null, "teal", "blue"] %}
@@ -56,7 +56,7 @@ size: 'xlarge'
             background: background,
             size: "xlarge",
             color: color
-            }%}
+            } only %}
             <br />{{ background ? "Background: " ~ background : '' }}
             <br />{{ color ? "Color: " ~ color : '' }}
           </li>
