@@ -92,7 +92,7 @@ bolt-icon[size='xlarge'],
   opacity: 0.1;
   opacity: var(--bolt-theme-icon-background-opacity, 0.1);
 
-  background-color: inherit;
+  background-color: currentColor; // Fallback if CSS vars not supported
   background-color: var(--bolt-theme-icon-background, var(--bolt-theme-text, currentColor));
 }
 
@@ -113,7 +113,7 @@ bolt-icon[size='xlarge'],
   $contrast-color: bolt-text-contrast($brand-color);
 
   --bolt-color-icon: $contrast-color;
-  --bolt-theme-icon-background-color: $brand-color;
+  --bolt-theme-icon-background: $brand-color;
   --bolt-theme-icon-background-opacity: 1;
 }
 
