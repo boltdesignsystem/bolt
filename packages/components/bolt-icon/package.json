@@ -8,26 +8,23 @@
     "ui toolkit",
     "design system"
   ],
-  "version": "1.0.0-rc.3",
+  "version": "1.0.0-rc.6",
   "sourceFilesFrom": "0.10.2",
   "author": "Salem Ghoweri",
-  "homepage": "https://boltdesignsystem.com",
+  "homepage": "https://bolt-design-system.com",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/pega-digital/bolt"
-  },
-  "bugs": {
-    "url": "https://github.com/pega-digital/bolt/issues"
-  },
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@bolt/components-icons": "^1.0.0-rc.3",
-    "@bolt/core": "^1.0.0-rc.3"
+    "@bolt/components-icons": "^1.0.0-rc.6",
+    "@bolt/core": "^1.0.0-rc.6",
+    "pubsub-js": "^1.6.0",
+    "uppercamelcase": "^3.0.0"
   },
   "main": "src/icon.js",
   "style": "src/icon.scss",
-  "twig": "src/icon.twig"
+  "schema": "icon.schema.yml"
 }

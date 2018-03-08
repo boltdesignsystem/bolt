@@ -1,4 +1,4 @@
-{% set schema = get_data('@bolt-components-blockquote/blockquote.schema.yml') %}
+{% set schema = bolt.data.components['@bolt-components-blockquote'].schema %}
 
 {% for border in schema.properties.border.enum %}
   <p>Border: {{ border }}</p>

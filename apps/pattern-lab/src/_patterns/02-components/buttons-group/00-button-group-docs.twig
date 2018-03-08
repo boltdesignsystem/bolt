@@ -1,4 +1,4 @@
-{% set schema = get_data('@bolt-components-button-group/button-group.schema.yml') %}
+{% set schema = bolt.data.components['@bolt-components-button-group'].schema %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-button-group/button-group.twig" with {
   buttons: [

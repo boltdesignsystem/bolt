@@ -1,0 +1,45 @@
+/* ------------------------------------ *\
+  SHADOW SETTINGS
+  see _tools-shadow.scss
+  see _utilities-shadow.scss
+\* ------------------------------------ */
+
+@function bolt-get-shadows-map($base-color: rgb(6, 10, 36)) {
+  $bolt-shadows: (
+    'utility-class-prefix': 'u-bolt-shadow--',
+    'sets': (
+      //'b1': (
+      //  'base': 'inset 0 1px 3px rgba(0,0,0,0.12), inset 0 1px 2px rgba(0,0,0,0.24)',
+      //  'lifted': ''
+      //),
+      'level-10': (
+        'base': '0 1px 2px 1px #{transparentize($base-color, .92)}',
+        'raised': ''
+      ),
+      'level-20': (
+        'base': '0 1px 4px 1px #{transparentize($base-color, .90)}, 0 5px 10px 0 #{transparentize($base-color, .92)}',
+        'raised': '0 1px 8px 1px #{transparentize($base-color, .82)}, 0 5px 10px 1px #{transparentize($base-color, .85)}, 0 15px 30px 0 #{transparentize($base-color, .84)}'
+      ),
+      'level-30': (
+        'base': '0 1px 6px 1px #{transparentize($base-color, .90)}, 0 5px 5px 1px #{transparentize($base-color, .90)}, 0 5px 20px 0 #{transparentize($base-color, .92)}',
+        'raised': '0 1px 10px 1px #{transparentize($base-color, .90)}, 0 10px 10px 1px #{transparentize($base-color, .80)}, 0 35px 60px 0 #{transparentize($base-color, .73)}'
+      ),
+      'level-40': (
+        'base': '0 1px 8px 1px #{transparentize($base-color, .82)}, 0 5px 10px 1px #{transparentize($base-color, .85)}, 0 15px 30px 0 #{transparentize($base-color, .84)}',
+        'raised': '0 1px 12px 1px #{transparentize($base-color, .90)}, 0 20px 20px 1px #{transparentize($base-color, .80)}, 0 45px 90px 0 #{transparentize($base-color, .64)}'
+      ),
+      'level-50': (
+        'base': '0 1px 10px 1px #{transparentize($base-color, .90)}, 0 10px 10px 1px #{transparentize($base-color, .80)}, 0 35px 60px 0 #{transparentize($base-color, .73)}',
+        'raised': '0 1px 12px 1px #{transparentize($base-color, .90)}, 0 20px 20px 1px #{transparentize($base-color, .80)}, 0 45px 90px 0 #{transparentize($base-color, .58)}'
+      ),
+      'level-60': (
+        'base': '0 1px 12px 1px #{transparentize($base-color, .90)}, 0 20px 20px 1px #{transparentize($base-color, .80)}, 0 45px 90px 0 #{transparentize($base-color, .64)}',
+        'raised': '0 1px 12px 1px #{transparentize($base-color, .90)}, 0 20px 20px 1px #{transparentize($base-color, .80)}, 0 60px 120px 0 #{transparentize($base-color, .52)}'
+      )
+    )
+  );
+  @return $bolt-shadows;
+}
+
+$bolt-shadows: bolt-get-shadows-map();
+@include export-data('shadows.bolt.json', $bolt-shadows);

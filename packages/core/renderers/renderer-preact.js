@@ -5,7 +5,7 @@ import { shadow } from 'skatejs';
 import { h, render } from 'preact';
 import { hasNativeShadowDomSupport } from '../utils/environment';
 
-export function withPreact(Base = class extends HTMLElement { }){
+export function withPreact(Base = HTMLElement) {
   return class extends Base {
     get props() {
       // We override props so that we can satisfy most use
@@ -32,5 +32,5 @@ export function withPreact(Base = class extends HTMLElement { }){
         this._preactDom || this._renderRoot.children[0]
       );
     }
-  }
-};
+  };
+}

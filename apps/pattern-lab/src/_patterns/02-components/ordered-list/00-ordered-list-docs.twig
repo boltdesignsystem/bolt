@@ -1,4 +1,4 @@
-{% set schema = get_data('@bolt-components-ordered-list/ordered-list.schema.yml') %}
+{% set schema = bolt.data.components['@bolt-components-ordered-list'].schema %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-ordered-list/ordered-list.twig" with {
   "contentItems" : [
