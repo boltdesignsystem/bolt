@@ -1,0 +1,28 @@
+{% set prefix = "c-bolt-" %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set componentName = "block-list" %}
+{% set baseClass = prefix ~ componentName %}
+
+{% set classes = [
+  baseClass
+] %}
+
+<bolt-{{ componentName }} bolt-component>
+  <ul {{ attributes.addClass(classes) }}>
+    {% for listItem in contentItems %}
+      <li class="{{ "#{baseClass}__item" }}">
+        {% if listItem.text %}
+          {{ listItem.text }}
+        {% else %}
+          {{ listItem }}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</bolt-{{ componentName }}>
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-block-list/block-list.schema.yml', _self) }}
+{% endif %}
