@@ -9,7 +9,7 @@
     "component",
     "image"
   ],
-  "version": "1.0.0-rc.3",
+  "version": "1.0.0-rc.6",
   "sourceFilesFrom": "0.10.2",
   "maintainers": [
     {
@@ -23,23 +23,18 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "homepage": "https://boltdesignsystem.com",
+  "homepage": "https://bolt-design-system.com",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bolt-design-system/bolt/"
-  },
-  "bugs": {
-    "url": "https://github.com/bolt-design-system/bolt/issues"
-  },
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "style": "src/image.scss",
   "main": "src/image.js",
-  "twig": "src/image.twig",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@bolt/core": "^1.0.0-rc.3",
+    "@bolt/core": "^1.0.0-rc.6",
     "lazysizes": "^4.0.0-rc4"
-  }
+  },
+  "schema": "image.schema.yml"
 }

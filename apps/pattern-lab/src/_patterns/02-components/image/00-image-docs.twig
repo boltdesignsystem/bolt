@@ -1,4 +1,4 @@
-{% set schema = get_data('@bolt-components-image/image.schema.yml') %}
+{% set schema = bolt.data.components['@bolt-components-image'].schema %}
 {% set code %} {% verbatim %}
 {% include '@bolt-components-image/image.twig' with {
   src: "/src/images/turtle.jpg",

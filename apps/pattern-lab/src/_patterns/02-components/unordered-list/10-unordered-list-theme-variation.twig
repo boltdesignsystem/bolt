@@ -1,4 +1,4 @@
-{% set schema = get_data('@bolt-components-unordered-list/unordered-list.schema.yml') %}
+{% set schema = bolt.data.components['@bolt-components-unordered-list'].schema %}
 
 {% for theme in schema.properties.theme.enum %}
   <p>Theme: {{ theme }}</p>

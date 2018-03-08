@@ -1,3 +1,28 @@
-$schema: http://json-schema.org/draft-04/schema#
-title: Background
+"$schema": http://json-schema.org/draft-04/schema#
+title: Bolt Background
 type: object
+properties:
+  opacity:
+    type: string
+    enum:
+    - light
+    - medium
+    - heavy
+  focalPoint:
+    type: object
+    description: Where the opacity background should originate.
+    properties:
+      horizontal:
+        type: string
+        description: Currently only reverses gradient on 'left'.
+        enum:
+        - center
+        - left
+        - right
+      vertical:
+        type: string
+        description: Currently doesn't use this value. Intended future application.
+        enum:
+        - center
+        - top
+        - bottom

@@ -22,13 +22,13 @@
 
 <h5>Utility Classes</h5>
 
-<p>Simply add the utility class "{{ classPrefix }}xx" where xx equals the level of shadow you which to use.</p>
+<p>Add the utility class "{{ classPrefix }}xx" where xx equals the level of shadow you wish to apply.</p>
 
 {{ ('```html
 <div class="' ~ classPrefix ~ bolt.data.shadows.sets|keys|first ~ '"> ... </div>
 ```') | markdown }}
 
-<p>To add an animated shadow that 'lifts' on hover, add the "{{ classPrefix }}xx--hoverable" where xx equals the level of shadow you which to use.</p>
+<p>To add an animated shadow that 'lifts' on hover, add the "{{ classPrefix }}xx--hoverable" where xx equals the level of shadow you wish to use.</p>
 
 {{ ('```html
 <div class="' ~ classPrefix ~ bolt.data.shadows.sets|keys|first ~ '--hoverable"> ... </div>

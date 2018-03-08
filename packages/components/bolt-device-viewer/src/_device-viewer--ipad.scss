@@ -1,5 +1,3 @@
-$device-shadow: 0 1px 2px 1px rgba(6,10,36,0.10), 0 5px 10px 1px rgba(6,10,36,0.15), 0 15px 30px 0 rgba(6,10,36,0.25);
-
 $bolt-ipad-viewer-height: 768px + (90px * 2);
 $bolt-ipad-viewer-width: 576px + (25px * 2);
 
@@ -16,7 +14,7 @@ $bolt-ipad-viewer-padding-lg: 90px;
   border-bottom-left-radius: (44px / $bolt-ipad-viewer-width * 100%) (44px / $bolt-ipad-viewer-height * 100%);
   border-bottom-right-radius: (44px / $bolt-ipad-viewer-width * 100%) (44px / $bolt-ipad-viewer-height * 100%);
 
-  box-shadow: $device-shadow;
+  @include bolt-shadow('level-40');
 
 
   &.c-bolt-ipad-viewer--landscape {

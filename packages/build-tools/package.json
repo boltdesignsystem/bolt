@@ -1,16 +1,13 @@
 {
   "name": "@bolt/build-tools",
-  "version": "1.0.0-rc.3",
+  "version": "1.0.0-rc.6",
   "license": "MIT",
   "description": "Curated collection of front-end build tools in the Bolt Design System.",
   "main": "index.js",
   "bin": {
     "bolt": "index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/pega-digital/bolt.git"
-  },
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools",
   "keywords": [
     "bolt",
     "bolt design system",
@@ -25,6 +22,7 @@
     }
   ],
   "dependencies": {
+    "@bolt/babel-preset-bolt": "^1.0.0-rc.6",
     "@theme-tools/sass-export-data": "^1.0.3",
     "@theme-tools/sass-import-globbing": "^1.0.0",
     "autoprefixer": "^7.2.4",
@@ -66,5 +64,8 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "schema": "utils/config.schema.yml",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "homepage": "https://bolt-design-system.com"
 }
