@@ -3,8 +3,11 @@
   see `_settings-shadow.scss`
 \* ------------------------------------ */
 
-@mixin bolt-shadow($key: 'G', $lifted: false, $utility: false) {
-  $shadows: map-get($bolt-shadows, 'sets');
+@mixin bolt-shadow($key: 'G', $lifted: false, $base-color: false, $utility: false) {
+  $shadows: map-get(bolt-get-shadows-map(), 'sets');
+  @if $base-color {
+    $shadows: map-get(bolt-get-shadows-map($base-color), 'sets');
+  }
   $important: '';
 
   @if $utility {
