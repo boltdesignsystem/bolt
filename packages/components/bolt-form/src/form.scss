@@ -75,7 +75,8 @@ $bolt-inline-label-input-border-width: $bolt-border-width;
 
 // Data Inputs
 $bolt-floating-label-text-scale: bolt-strip-unit($bolt-font-size--xsmall);
-$bolt-floating-label-text-color: bolt-color(indigo, light); // TODO: [Mai] This is the theme link color
+$bolt-floating-label-text-color: rgba(bolt-color(gray, xdark), 0.5); // TODO: [Denton] This is the theme text color at 66%
+$bolt-floating-label-text-color-active: bolt-color(indigo, light); // TODO: [Mai] This is the theme link color
 $bolt-floating-label-text-indent: calc(#{bolt-spacing(small)} + 2px);
 $bolt-floating-label-transition: $bolt-transition;
 
@@ -94,13 +95,16 @@ $bolt-input-border-color--invalid: bolt-color(error); // TODO: [Mai] This is the
 $bolt-input-border-width: $bolt-border-width;
 $bolt-input-border-style: $bolt-border-style;
 $bolt-input-border-radius: $bolt-border-radius;
-$bolt-input-box-shadow: bolt-color(indigo, light);
-$bolt-input-shadow-level: 'level-30';
+$bolt-input-box-shadow--focus: 0 0 0.35rem bolt-color(indigo, light);
 $bolt-input-transition: $bolt-transition;
 
 @mixin bolt-input-placeholder($color) {
   &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     color: $color;
+
+    // Workaround for pega.com Drupal, which currently uses sanitize.css.  Once that's
+    // removed, the following line will be unnecessary.
+    opacity: 1;
   }
 
   &::-moz-placeholder { /* Firefox 19+ */
@@ -133,6 +137,11 @@ $bolt-input-transition: $bolt-transition;
   opacity: 1; // [Mai] Reset mobile Safari browser default.
   outline: none;
   transition: all $bolt-input-transition;
+
+  // Force browsers to render this using hardward acceleration.
+  // This resolves a rendering quirk seen in Chrome where the hover
+  // state would only work intermittently.
+  transform: translate3d(0, 0, 0);
 
   // Removing native controls
   -webkit-appearance: none !important;
@@ -172,7 +181,7 @@ $bolt-input-transition: $bolt-transition;
 
   &:focus,
   &:hover {
-    @include bolt-shadow($key: $bolt-input-shadow-level, $base-color: $bolt-input-box-shadow);
+    box-shadow: $bolt-input-box-shadow--focus;
   }
 
   &:focus {
@@ -209,6 +218,13 @@ $bolt-input-transition: $bolt-transition;
   & ~ .c-bolt-floating-label {
     opacity: 1;
     transform: translate3d(0, 0, 0) scale($bolt-floating-label-text-scale);
+  }
+}
+
+.c-bolt-input:focus,
+.c-bolt-custom-input.is-active {
+  & ~ .c-bolt-floating-label {
+    color: $bolt-floating-label-text-color-active;
   }
 }
 
