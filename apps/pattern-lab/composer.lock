@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "355ee272185dd5c5a195cb5c7b3399ac",
+    "content-hash": "a8fb5f5053c2dee6fc0642b3bcc5a1bf",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -70,22 +70,22 @@
         },
         {
             "name": "basaltinc/twig-tools",
-            "version": "v1.3.4",
+            "version": "v1.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/basaltinc/twig-tools.git",
-                "reference": "52aa4c6a83e233f40433fb4121c84d38b4800f38"
+                "reference": "52b7cf4f2f4d0188fcc148c4a845ce3c49977d10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/basaltinc/twig-tools/zipball/52aa4c6a83e233f40433fb4121c84d38b4800f38",
-                "reference": "52aa4c6a83e233f40433fb4121c84d38b4800f38",
+                "url": "https://api.github.com/repos/basaltinc/twig-tools/zipball/52b7cf4f2f4d0188fcc148c4a845ce3c49977d10",
+                "reference": "52b7cf4f2f4d0188fcc148c4a845ce3c49977d10",
                 "shasum": ""
             },
             "require": {
                 "fzaninotto/faker": "^1.7",
                 "justinrainbow/json-schema": "^5.2",
-                "symfony/yaml": "^3.3",
+                "symfony/yaml": "^3.2",
                 "twig/twig": "^1.0",
                 "webmozart/path-util": "^2.3"
             },
@@ -105,22 +105,19 @@
                     "email": "evanlovely@gmail.com"
                 }
             ],
-            "time": "2018-03-06T19:34:12+00:00"
+            "time": "2018-03-08T22:31:17+00:00"
         },
         {
             "name": "bolt-design-system/core-php",
-            "version": "0.9.0",
+            "version": "1.0.0-rc.6",
             "dist": {
                 "type": "path",
                 "url": "../../packages/core-php",
-                "reference": "1dc66c3b7116424698ccf316fbe04342d1886d40",
+                "reference": "e7ea42e14c206ae4f02bcec2a8e291f1916db103",
                 "shasum": null
             },
             "require": {
                 "basaltinc/twig-tools": "^1.3.4",
-                "bolt-design-system/core-php": "^0.9.0",
-                "drupal/core-render": "8.4.x-dev",
-                "drupal/core-utility": "8.4.x-dev",
                 "gregwar/image": "^2.0",
                 "ksubileau/color-thief-php": "^1.3",
                 "mexitek/phpcolors": "^0.4.0",
@@ -135,8 +132,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Bolt\\": "src/",
-                    "Drupal\\Core\\": "src/libs/Drupal/Core/"
+                    "Bolt\\": "src/"
                 }
             },
             "scripts": {
@@ -157,6 +153,40 @@
                 }
             ],
             "description": "Core PHP functionality for Bolt"
+        },
+        {
+            "name": "bolt-design-system/drupal-stubs",
+            "version": "1.0.0-rc.6",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/drupal-stubs",
+                "reference": "a390a394526d9e72de6d89b7bb70c25b0cd3bf93",
+                "shasum": null
+            },
+            "require": {
+                "drupal/core-render": "^8.0.0",
+                "drupal/core-utility": "^8.0.0",
+                "twig/twig": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Drupal\\Core\\": "src/Core"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Salem Ghoweri",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Evan Lovely"
+                }
+            ],
+            "description": "Stubbed in Drupal functionality"
         },
         {
             "name": "composer/installers",
@@ -320,7 +350,7 @@
                 }
             ],
             "description": "Provides a way to patch Composer packages.",
-            "time": "2017-12-14 17:29:42"
+            "time": "2017-12-14T17:29:42+00:00"
         },
         {
             "name": "doctrine/collections",
@@ -391,16 +421,16 @@
         },
         {
             "name": "drupal/core-render",
-            "version": "8.4.x-dev",
+            "version": "8.6.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-render.git",
-                "reference": "11338118bb93a2e23181f67d95f0f76733b35167"
+                "reference": "10f38eca14d0486b54e239950ce5e99df62a3052"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core-render/zipball/11338118bb93a2e23181f67d95f0f76733b35167",
-                "reference": "11338118bb93a2e23181f67d95f0f76733b35167",
+                "url": "https://api.github.com/repos/drupal/core-render/zipball/10f38eca14d0486b54e239950ce5e99df62a3052",
+                "reference": "10f38eca14d0486b54e239950ce5e99df62a3052",
                 "shasum": ""
             },
             "require": {
@@ -422,20 +452,20 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2018-01-23 08:31:55"
+            "time": "2018-02-01T21:34:33+00:00"
         },
         {
             "name": "drupal/core-utility",
-            "version": "8.4.x-dev",
+            "version": "8.6.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-utility.git",
-                "reference": "f959b49d527314b8b3f7f6f074d301b0d6254bdb"
+                "reference": "17a9212a99c8d905d10b9cab20ab5ba495f86087"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core-utility/zipball/f959b49d527314b8b3f7f6f074d301b0d6254bdb",
-                "reference": "f959b49d527314b8b3f7f6f074d301b0d6254bdb",
+                "url": "https://api.github.com/repos/drupal/core-utility/zipball/17a9212a99c8d905d10b9cab20ab5ba495f86087",
+                "reference": "17a9212a99c8d905d10b9cab20ab5ba495f86087",
                 "shasum": ""
             },
             "require": {
@@ -458,7 +488,7 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2018-01-23 08:31:55"
+            "time": "2018-02-07T14:34:43+00:00"
         },
         {
             "name": "evanlovely/plugin-twig-namespaces",
@@ -513,7 +543,7 @@
                 "pattern lab",
                 "twig"
             ],
-            "time": "2017-11-10 23:21:38"
+            "time": "2017-11-10T23:21:38+00:00"
         },
         {
             "name": "fzaninotto/faker",
@@ -563,7 +593,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2018-02-14 13:50:47"
+            "time": "2018-02-14T13:50:47+00:00"
         },
         {
             "name": "gajus/dindent",
@@ -609,7 +639,7 @@
                 "html",
                 "indent"
             ],
-            "time": "2017-06-05 10:29:29"
+            "time": "2017-06-05T10:29:29+00:00"
         },
         {
             "name": "gregwar/cache",
@@ -770,7 +800,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2018-02-14 22:26:30"
+            "time": "2018-02-14T22:26:30+00:00"
         },
         {
             "name": "kevinlebrun/colors.php",
@@ -1007,7 +1037,7 @@
             ],
             "description": "Extend the composer/installers plugin to accept any arbitrary package type.",
             "homepage": "http://www.oomphinc.com/",
-            "time": "2017-03-31 16:57:39"
+            "time": "2017-03-31T16:57:39+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -1089,7 +1119,6 @@
             "extra": {
                 "patches_applied": {
                     "[FIX] Fix Psuedo Pattern Template Paths If Organized In Different Folder From Base Template. Addresses https://github.com/drupal-pattern-lab/patternlab-php-core/issues/22": ".patches/fixPsuedoPatternTemplatePaths.patch",
-                    "[FEATURE] Beautify raw HTML output": ".patches/beautifyHTML.patch",
                     "[FEATURE] Allow markdown files to specify associated pattern + also includes compiling embedded templates in .md files": ".patches/allowMarkdownFilesToSpecifyAssociatedPattern.patch",
                     "[FIX] Allow PL to Ignore Certain Folders like Node Modules.": ".patches/ignoreCertainFolders.patch",
                     "[FEATURE] Allow default Pattern Data configuration rules to be disabled. Also adds ability to add on extra Pattern Data rules to customize and extend default Pattern Lab behavior.": ".patches/configurablePatternDataRules.patch",
@@ -1502,7 +1531,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-14 10:03:57"
+            "time": "2018-02-14T10:03:57+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -1551,7 +1580,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-22 10:48:49"
+            "time": "2018-02-22T10:48:49+00:00"
         },
         {
             "name": "symfony/finder",
@@ -1600,7 +1629,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2018-03-05 18:28:11"
+            "time": "2018-03-05T18:28:11+00:00"
         },
         {
             "name": "symfony/process",
@@ -1649,7 +1678,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-12 17:55:00"
+            "time": "2018-02-12T17:55:00+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -1707,7 +1736,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-16 09:50:28"
+            "time": "2018-02-16T09:50:28+00:00"
         },
         {
             "name": "twig/twig",
@@ -1772,7 +1801,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2018-03-05 02:08:10"
+            "time": "2018-03-05T02:08:10+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -1822,7 +1851,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2018-01-29 19:49:41"
+            "time": "2018-01-29T19:49:41+00:00"
         },
         {
             "name": "webmozart/path-util",
@@ -1868,7 +1897,7 @@
                 }
             ],
             "description": "A robust cross-platform utility for normalizing, comparing and modifying file paths.",
-            "time": "2016-08-15 15:31:42"
+            "time": "2016-08-15T15:31:42+00:00"
         }
     ],
     "packages-dev": [],
