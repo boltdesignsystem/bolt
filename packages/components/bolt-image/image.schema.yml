@@ -22,13 +22,6 @@ properties:
     type: string
     description: A comma seperated string of image urls and page widths, used for optimizing image loading performance.
     default: Generated during build.
-  zoom:
-    type: boolean
-    description: Zoom effect.
-    default: false
-    enum:
-      - true
-      - false
   width:
     type: number
     description: Override the default width of the image. If no height is provided, aspect ratio will be maintained.

@@ -11,7 +11,6 @@
 
 {% set ratio = ratio ?? true %}
 {% set sizes = sizes | default("auto") %}
-{% set zoom = zoom ?? false %}
 {% set lazyload = lazyload ?? true %}
 
 {# Get a whole number aspect ratio #}
@@ -27,7 +26,6 @@
   {% set srcset = imageData.srcset %}
 {% endif %}
 
-{% set zoomSource = src %}
 {% set placeholderDummySrc = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" %}
 
 {#--------------------#}
@@ -51,6 +49,7 @@
 {% endif %}
 
 {% if zoom %}
+  {% set zoomSource = src %}
   {% set imageAttributes = imageAttributes
     .setAttribute("data-zoom", zoomSource) %}
 {% endif %}
