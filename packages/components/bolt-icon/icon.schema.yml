@@ -52,6 +52,7 @@ properties:
       - facebook
       - field-service-gray
       - field-service
+      - filter
       - financial
       - full-screen
       - global
@@ -104,7 +105,7 @@ properties:
       - youtube-solid
   background:
     type: string
-    description: Background shape
+    description: Background shape. This applies *only* to 'xlarge' icons.
     enum:
       - circle
       - square
@@ -119,3 +120,6 @@ properties:
   color:
     type: string
     description: Icon color. Currently only support default (black) and teal.
+    enum:
+     - teal
+     - blue
