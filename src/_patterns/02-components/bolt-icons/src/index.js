@@ -62,6 +62,7 @@ export EyeOff from './icons/eye-off';
 export Eye from './icons/eye';
 export FacebookSolid from './icons/facebook-solid';
 export Facebook from './icons/facebook';
+export Filter from './icons/filter';
 export FullScreen from './icons/full-screen';
 export Global from './icons/global';
 export InfoOpen from './icons/info-open';
