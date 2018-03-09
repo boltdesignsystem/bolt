@@ -95,7 +95,8 @@ $bolt-input-border-color--invalid: bolt-color(error); // TODO: [Mai] This is the
 $bolt-input-border-width: $bolt-border-width;
 $bolt-input-border-style: $bolt-border-style;
 $bolt-input-border-radius: $bolt-border-radius;
-$bolt-input-box-shadow--focus: 0 0 0.35rem bolt-color(indigo, light);
+$bolt-input-box-shadow: bolt-color(indigo, light);
+$bolt-input-shadow-level: 'level-30';
 $bolt-input-transition: $bolt-transition;
 
 @mixin bolt-input-placeholder($color) {
@@ -181,7 +182,7 @@ $bolt-input-transition: $bolt-transition;
 
   &:focus,
   &:hover {
-    box-shadow: $bolt-input-box-shadow--focus;
+    @include bolt-shadow($key: $bolt-input-shadow-level, $base-color: $bolt-input-box-shadow);
   }
 
   &:focus {
