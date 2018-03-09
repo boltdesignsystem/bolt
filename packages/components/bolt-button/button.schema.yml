@@ -2,6 +2,8 @@ $schema: 'http://json-schema.org/draft-04/schema#'
 title: 'Bolt Button'
 description: 'Buttons are the core of our action components.'
 type: object
+required:
+  - text
 properties:
   text:
     title: 'Button Text'
@@ -9,7 +11,7 @@ properties:
     type: string
   theme:
     description: 'Themes, which are globally defined.'  # @todo Pulling this information in is a work in progress. Should be dynamically generated
-    $ref: '@bolt/theme.schema.json#/properties/themes'
+#    $ref: '@bolt/theme.schema.json#/properties/themes'
   tag:
     title: 'Semantic tag'
     description: 'What should this element semantically be?'
@@ -49,7 +51,10 @@ properties:
       - secondary
       - text
   width:
-    type: string
+    type:
+      anyOf:
+        - string
+        - null
     title: 'Button Width'
     default: null
     description: 'Should a button be full width, it''s default size, or full width, but only on smaller screens?'
@@ -58,13 +63,16 @@ properties:
       - full@small
       - null
   rounded:
-    type: string
+    type:
+      anyOf:
+        - string
+        - null
     title: 'Rounded Corners?'
     description: 'What kind of rounded corners should the button have?'
     default: null
     enum:
-      - null
       - rounded
+      - null
   iconOnly:
     type: boolean
     title: 'Icon Only?'
@@ -75,6 +83,3 @@ properties:
     enum:
       - true
       - false
-required:
-  - text
-additionalProperties: false

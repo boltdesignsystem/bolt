@@ -4,107 +4,6 @@
 {% set baseClass = prefix ~ componentName %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
-{# Schema being added in v1.0 - hard-coded version added for now to minimize API differences #}
-{% set schema = {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Bolt Button",
-  "description": "Buttons are the core of our action components.",
-  "type": "object",
-  "properties": {
-    "text": {
-      "title": "Button Text",
-      "description": "The text displayed inside a button",
-      "type": "string"
-    },
-    "theme": {
-      "$ref": "@bolt/theme.schema.json#/properties/themes"
-    },
-    "tag": {
-      "title": "Semantic tag",
-      "description": "What should this element semantically be?",
-      "type": "string",
-      "enum": [
-        "link",
-        "a",
-        "button",
-        "submit",
-        "reset"
-      ],
-      "default": "button"
-    },
-    "size": {
-      "type": "string",
-      "title": "Button Size",
-      "description": "How large is this button?",
-      "default": "medium",
-      "enum": [
-        "xsmall",
-        "small",
-        "medium",
-        "large",
-        "xlarge"
-      ]
-    },
-    "align": {
-      "title": "Button Alignment",
-      "type": "string",
-      "enum": [
-        "left",
-        "center",
-        "right"
-      ],
-      "default": "center"
-    },
-    "style": {
-      "type": "string",
-      "title": "Button Style",
-      "description": "What's the button style / theme?",
-      "default": "primary",
-      "enum": [
-        "primary",
-        "secondary",
-        "text"
-      ]
-    },
-    "width": {
-      "type": "string",
-      "title": "Button Width",
-      "default": null,
-      "description": "Should a button be full width, it's default size, or full width, but only on smaller screens?",
-      "enum": [
-        "full",
-        "full@small",
-        null
-      ]
-    },
-    "rounded": {
-      "type": "string",
-      "title": "Rounded Corners?",
-      "description": "What kind of rounded corners should the button have?",
-      "default": null,
-      "enum": [
-        null,
-        "rounded"
-      ]
-    },
-    "iconOnly": {
-      "type": "boolean",
-      "title": "Icon Only?",
-      "description": "Is this an icon-only button (with visually hidden text)?",
-      "default": false,
-      "required": [
-        "icon"
-      ],
-      "enum": [
-        true,
-        false
-      ]
-    }
-  },
-  "required": ["text"],
-  "additionalProperties": false
-} %}
-
 {# re-assign old itemAlignment paramater to the new `align` name that's replacing it; avoids breaking change till post v1.0 #}
 {% if itemAlignment %}
   {% if itemAlignment == "start" %}
@@ -130,6 +29,7 @@
 {% set style = style in styleOptions ? style : schema.properties.style.default %}
 {% set tag = tag in tagOptions ? tag : schema.properties.tag.default %}
 {% set width = width in widthOptions ? width : schema.properties.width.default %}
+{% set iconOnly = iconOnly | default(false) %}
 
 {% if tag == "submit" %}
   {% set tag = "button" %}
@@ -221,3 +121,7 @@
 
   </{{ tag }}>
 </bolt-button>
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-button/button.schema.yml', _self) }}
+{% endif %}
