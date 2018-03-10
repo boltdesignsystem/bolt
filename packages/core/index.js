@@ -6,7 +6,7 @@ export {
   withUpdate,
 } from 'skatejs';
 
-export { h } from 'preact';
+export { Component, h } from 'preact';
 
 // Export Utilties + Helpers
 export * from './utils/css';

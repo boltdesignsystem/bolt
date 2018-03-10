@@ -17,16 +17,16 @@ const preset = function (api, opts = {}) {
     /**
      * 1. Helps with our Web Component Preact renderer
      */
-      '@babel/plugin-syntax-jsx', /* [1] */
       [
         '@babel/plugin-transform-react-jsx', /* [1] */
         {
-          pragma: 'h',
-          pragmaFrag: '\"span\"',
+          pragma: 'React.createElement',
+          pragmaFrag: 'React.Fragment',
           throwIfNamespace: false,
           useBuiltIns: false,
         },
       ],
+      '@babel/plugin-syntax-jsx', /* [1] */
 
       '@babel/plugin-syntax-decorators', // ex. @define
       '@babel/plugin-proposal-decorators',
@@ -37,8 +37,6 @@ const preset = function (api, opts = {}) {
 
       // Allows us to dynamically import JS via Webpack. ex. import('button.standalone.js')
       '@babel/plugin-syntax-dynamic-import', /* [2] */
-
-
 
 
       '@babel/plugin-proposal-object-rest-spread',
