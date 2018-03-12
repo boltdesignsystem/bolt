@@ -252,6 +252,7 @@ $bolt-input-transition: $bolt-transition;
     border-color: $bolt-inline-label-input-border-color;
     border-style: $bolt-inline-label-input-border-style;
     border-width: $bolt-inline-label-input-border-width;
+    background-color: $bolt-input-background-color;
   }
 
   &:after {
@@ -320,6 +321,12 @@ $bolt-input-transition: $bolt-transition;
 
     .c-bolt-inline-label__emphasize {
       @include bolt-font-weight(semibold);
+    }
+  }
+
+  &:disabled ~ .c-bolt-inline-label {
+    &:before {
+      background-color: $bolt-input-background-color--disabled;
     }
   }
 }
