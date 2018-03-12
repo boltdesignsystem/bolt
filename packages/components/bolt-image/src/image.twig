@@ -22,8 +22,8 @@
 
 {% set ext = src|split('.')|last %}
 {% set srcset = src %}
-{% if imageData %}
-  {% set srcset = imageData.srcset %}
+{% if imageDataBolt %}
+  {% set srcset = imageDataBolt.srcset %}
 {% endif %}
 
 {% set placeholderDummySrc = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" %}
@@ -84,7 +84,7 @@
 {% endset %}
 
 {# Super helpful info if you uncomment #}
-{{ console_log(_context) }}
+{#{{ console_log(_context) }}#}
 
 <bolt-image>
   {% block image_content %}
