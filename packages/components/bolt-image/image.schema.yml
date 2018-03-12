@@ -22,9 +22,20 @@ properties:
     type: string
     description: A comma seperated string of image urls and page widths, used for optimizing image loading performance.
     default: Generated during build.
+  sizes:
+    type: string
+    description: A list of one or more strings separated by commas indicating a set of source sizes. Each source size consists of a media condition (omitted for the last item), and a source size value.
+    default: auto
+  useAspectRatio:
+    type: boolean
+    description: Use the ratio wrapper around the image to maintain a specific image ratio. This ratio is either determined from the image, or by passing in `height` and `width` arguements.
+    default: true
+    enum:
+      - true
+      - false
   width:
     type: number
     description: Override the default width of the image. If no height is provided, aspect ratio will be maintained.
   height:
-    type: numbert of the image. If no width is provided, aspect ratio will be maintained.
-    description: Override the default heigh
+    type: number
+    description: Override the default height of the image. If no width is provided, aspect ratio will be maintained.

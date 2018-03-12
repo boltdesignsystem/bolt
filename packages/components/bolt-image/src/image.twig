@@ -1,32 +1,19 @@
-{# Data from Bolt Manifest #}
-{% set imageDataBolt = bolt.data.images[src] %}
-{# Data from processing image file #}
-{% set imageDataTwig = getImageData(src)  %}
-{#{% set imageData = imageDataBolt|merge(imageDataTwig) %}#}
-
-{% set placeholderImage = imageDataTwig.base64 %}
-{% set placeholderColor = imageDataTwig.color %}
-{% set height = imageDataTwig.height %}
-{% set width = imageDataTwig.width %}
-
-{% set ratio = ratio ?? true %}
-{% set sizes = sizes | default("auto") %}
-{% set lazyload = lazyload ?? true %}
-
-{# Get a whole number aspect ratio #}
-{#@todo This mutation of ratio is not clear, refactor#}
-{% if width > 0 and height > 0 and ratio == true %}
-  {% set ratio = height / width * 100 ~ '%' %}
-{% endif %}
-
+{% set imageDataBolt = bolt.data.images[src] %} {# Data from Bolt Manifest #}
+{% set imageDataTwig = getImageData(src)  %} {# Data from processing image file #}
 
 {% set ext = src|split('.')|last %}
+{% set height = height|default(imageDataTwig.height) %}
+{% set width = width|default(imageDataTwig.width) %}
+{% set lazyload = lazyload ?? true %}
+{% set placeholderColor = imageDataTwig.color %}
+{% set placeholderImage = imageDataTwig.base64 %}
+{% set placeholderDummySrc = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" %}
+{% set sizes = sizes | default("auto") %}
 {% set srcset = src %}
 {% if imageDataBolt.srcset %}
   {% set srcset = imageDataBolt.srcset %}
 {% endif %}
-
-{% set placeholderDummySrc = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" %}
+{% set useAspectRatio = useAspectRatio ?? true %}
 
 {#--------------------#}
 {# STOP!!!!!!!!!#}
@@ -42,6 +29,7 @@
 ])
   .setAttribute('alt', alt)
   .setAttribute('src', src)
+  .setAttribute('sizes', sizes)
 %}
 
 {% if srcset %}
@@ -72,7 +60,8 @@
   <img {{ imageAttributes }}>
 
 {# Only output noscript fallback if lazyloading, and ratio will be output #}
-  {% if lazyload and width > 0 and height > 0 and ratio == true %}
+  {# @todo Salem, can you take a quick look at this conditional. Wouldn't we want the noscript fallback regardless of useAspectRatio and height and width?#}
+  {% if lazyload and width > 0 and height > 0 and useAspectRatio == true %}
     <noscript>
       <img {{ imageAttributes.removeClass(["js-lazyload", "is-lazyloading"]) }}>
     </noscript>
@@ -83,12 +72,9 @@
   <span {{ placeholderAttributes }}></span>
 {% endset %}
 
-{# Super helpful info if you uncomment #}
-{#{{ console_log(_context) }}#}
-
 <bolt-image>
   {% block image_content %}
-    {% if width > 0 and height > 0 and ratio == true %}
+    {% if width > 0 and height > 0 and useAspectRatio == true %}
       {% embed "@bolt/ratio.twig" with {
         attributes: attributes,
         aspectRatioHeight: height * 1,

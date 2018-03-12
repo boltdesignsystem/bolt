@@ -15,9 +15,6 @@ class ImagesTests extends TestCase {
   }
 
   public function testGetImageData() {
-    // @todo add png
-    // @todo add svg
-    // @todo add jpeg
     $sets = [
       [
         'file' => 'assets/500x500.jpg',
