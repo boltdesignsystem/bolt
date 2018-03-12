@@ -45,53 +45,34 @@ class Images {
   // A combination of base64, bgcolor, ratio, and imageSize
   public static function get_image_data($relativeImagePath, $wwwDir) {
     $absoluteImagePath = Utils::get_absolute_path($relativeImagePath, $wwwDir);
-
     if (!file_exists($absoluteImagePath)) {
       // @todo add Error
       return [];
     }
 
     $fileExt = Utils::get_file_ext($absoluteImagePath);
-    $base64ImagePlaceholder = '';
+    $base64ImagePlaceholder = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
     // @todo: update to point to Bolt color swatch value
     $placeHolderColor = 'hsl(233, 33%, 97%)';
-    $sizes = getimagesize($absoluteImagePath);
-    $imageLoaded = Image::open($absoluteImagePath);
-    $smallSampleImage = $imageLoaded->resize('320', '320')->jpeg($quality = 50);
-
 
     if ($fileExt == "svg") {
-      // @todo break everything in this `if` block out into `get_svg_data()`
-      $svgfile = simplexml_load_file($absoluteImagePath);
+      $svgData = Images::get_svg_data($absoluteImagePath);
+      $height = $svgData['height'];
+      $width = $svgData['width'];
 
-      $viewport = explode(" ", $svgfile['viewBox']);
-      $svgHeight = $svgfile['height']; // if it exists
-      $svgWidth = $svgfile['width']; // if it exists
-      $height = '';
-      $width = '';
-
-      // If the SVG height / width values exist, use those first
-      if ($svgHeight && $svgWidth) {
-        $height = $svgHeight;
-        $width = $svgWidth;
-
-        // Otherwise try to calculate the aspect ratio via the viewport
-      } else if ($viewport[3] && $viewport[2]){
-        $height = $viewport[3];
-        $width = $viewport[2];
-      }
     } else if (($fileExt == "jpg") || ($fileExt == "jpeg") || ($fileExt == "png")) {
-      // Base 64
+      $imageLoaded = Image::open($absoluteImagePath);
       $base64Image = $imageLoaded->resize('16', '16')->smooth('1')->jpeg($quality = 50);
       $base64ImagePlaceholder = Image::open($base64Image)->inline();
 
-      // Calculate Average Color
-      // If this isn't a production compile, let's not do this long very memory intensive process.
+      // Calculate Average Color, only in production
       if (getenv('NODE_ENV') === 'production') {
-        $placeHolderColor = self::rgb2hex(ColorThief::getColor($smallSampleImage, 5));
+        $smallSample = $imageLoaded->resize('320', '320')->jpeg($quality = 50);
+        $placeHolderColor = self::rgb2hex(ColorThief::getColor($smallSample, 5));
       }
 
       // Height and Width
+      $sizes = getimagesize($absoluteImagePath);
       $width = $sizes[0];
       $height = $sizes[1];
     }
@@ -101,6 +82,32 @@ class Images {
       'width' => $width,
       'base64' => $base64ImagePlaceholder,
       'color' => $placeHolderColor,
+    ];
+  }
+
+  public static function get_svg_data($absoluteImagePath) {
+    $svgfile = simplexml_load_file($absoluteImagePath);
+
+    $viewport = explode(" ", $svgfile['viewBox']);
+    $svgHeight = ((int)$svgfile['height']); // if it exists
+    $svgWidth = ((int)$svgfile['width']); // if it exists
+    $height = '';
+    $width = '';
+
+    // If the SVG height / width values exist, use those first
+    if ($svgHeight && $svgWidth) {
+      $height = $svgHeight;
+      $width = $svgWidth;
+
+      // Otherwise try to calculate the aspect ratio via the viewport
+    } else if ($viewport[3] && $viewport[2]){
+      $height = $viewport[3];
+      $width = $viewport[2];
+    }
+
+    return [
+      'height' => $height,
+      'width' => $width,
     ];
   }
 

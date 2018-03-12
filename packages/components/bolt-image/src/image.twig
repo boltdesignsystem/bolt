@@ -22,7 +22,7 @@
 
 {% set ext = src|split('.')|last %}
 {% set srcset = src %}
-{% if imageDataBolt %}
+{% if imageDataBolt.srcset %}
   {% set srcset = imageDataBolt.srcset %}
 {% endif %}
 

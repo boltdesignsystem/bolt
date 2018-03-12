@@ -23,31 +23,36 @@ class ImagesTests extends TestCase {
         'file' => 'assets/500x500.jpg',
         'height'=> 500,
         'width'=> 500,
-        'color' => '#dcbfa6',
+        'color' => '#3d4046',
+        'base64' => 'data:image/jpeg;base64',
       ],
       [
         'file' => 'assets/732x945.jpg',
         'height'=> 945,
         'width'=> 732,
-        'color' => '#bdbdbd',
+        'color' => '#9c9c9c',
+        'base64' => 'data:image/jpeg;base64',
       ],
       [
         'file' => 'assets/tout-4x3-climber.jpg',
         'height'=> 480,
         'width'=> 640,
-        'color' => '#908379',
+        'color' => '#121111',
+        'base64' => 'data:image/jpeg;base64',
       ],
       [
         'file' => 'assets/decision-hub-chart.png',
         'height'=> 2300,
         'width'=> 2712,
-        'color' => '#cd9b1c',
+        'color' => '#b08539',
+        'base64' => 'data:image/jpeg;base64',
       ],
       [
         'file' => 'assets/logo-paypal.svg',
-        'height'=> 500,
-        'width'=> 500,
-        'color' => '#dcbfa6',
+        'height'=> 33,
+        'width'=> 124,
+        'color' => 'hsl(233, 33%, 97%)',
+        'base64' => 'data:image/gif;base64',
       ],
     ];
 
@@ -56,7 +61,7 @@ class ImagesTests extends TestCase {
       $this->assertEquals($set['height'], $results['height'], 'height of image');
       $this->assertEquals($set['width'], $results['width'], 'width of image');
       $this->assertEquals($set['color'], $results['color'], 'color of image');
-      $this->assertStringStartsWith('data:image/jpeg;base64', $results['base64']);
+      $this->assertStringStartsWith($set['base64'], $results['base64']);
     }
   }
 
