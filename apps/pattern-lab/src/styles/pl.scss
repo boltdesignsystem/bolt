@@ -86,5 +86,8 @@ ul.bolt-icon-list-demo {
     code {
       font-size: 0.7rem;
     }
+    &[class*="hoverable"]:hover {
+      @include  bolt-z-index('contentTop');
+    }
   }
 }
