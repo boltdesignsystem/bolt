@@ -31,6 +31,24 @@ class ImagesTests extends TestCase {
         'width'=> 732,
         'color' => '#bdbdbd',
       ],
+      [
+        'file' => 'assets/tout-4x3-climber.jpg',
+        'height'=> 480,
+        'width'=> 640,
+        'color' => '#908379',
+      ],
+      [
+        'file' => 'assets/decision-hub-chart.png',
+        'height'=> 2300,
+        'width'=> 2712,
+        'color' => '#cd9b1c',
+      ],
+      [
+        'file' => 'assets/logo-paypal.svg',
+        'height'=> 500,
+        'width'=> 500,
+        'color' => '#dcbfa6',
+      ],
     ];
 
     foreach ($sets as $set) {
