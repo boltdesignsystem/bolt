@@ -117,8 +117,8 @@ async function processImage(file, set) {
     const sets = resizedImagePaths.filter(resizedImagePath => resizedImagePath);
     const imageMeta = {
       original: file,
-      width,
-      height,
+      // width,
+      // height,
       fileId,
       src: makeWebPath(newPath),
       sizePaths: sets,
