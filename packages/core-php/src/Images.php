@@ -68,8 +68,8 @@ class Images {
       // Calculate Average Color, only in production
       if (getenv('NODE_ENV') === 'production') {
 //        @todo @salem I'm not sure how ColorThief works here, but is it really necessary to do an image processing before hand?
-        $smallSample = $imageLoaded->resize('320', '320')->jpeg($quality = 50);
-        $placeHolderColor = self::rgb2hex(ColorThief::getColor($smallSample, 5));
+        $smallSample = $imageLoaded->resize('640', '640')->jpeg($quality = 50);
+        $placeHolderColor = self::rgb2hex(ColorThief::getColor($smallSample));
       }
 
       // Height and Width
