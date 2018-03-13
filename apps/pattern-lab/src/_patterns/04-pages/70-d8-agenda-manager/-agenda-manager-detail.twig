@@ -1,7 +1,6 @@
 {% extends "@bolt/default-template.twig" %}
 
 {% block global_header %}
-  {#{% include "@bolt/_page-header.twig" %}#}
   {% embed "@bolt/band.twig" with {
     size: "small",
     theme: "dark",
@@ -10,7 +9,7 @@
     }
   } %}
     {% block band_content  %}
-      Header goes here
+      Placeholder for this page's header
     {% endblock %}
   {% endembed %}
 {% endblock %}
@@ -53,7 +52,7 @@
 
       {% grid "o-bolt-grid--matrix o-bolt-grid--large" %}
 
-        {% cell "u-bolt-width-1/1 u-bolt-width-1/3@medium u-bolt-width-1/4@xlarge" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/3@medium" %}
           {% include "@bolt/headline.twig" with {
             size: "xsmall",
             transform: "uppercase",
@@ -81,7 +80,7 @@
 
         {% endcell %}
 
-        {% cell "u-bolt-width-1/1 u-bolt-width-2/3@medium u-bolt-width-3/4@xlarge" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-2/3@medium" %}
           {% include "@bolt/headline.twig" with {
             size: "xsmall",
             transform: "uppercase",
@@ -288,6 +287,7 @@
       class: "u-bolt-margin-bottom-xlarge"
     }
   } only %}
+
     {% block band_content  %}
 
       <hr>
@@ -343,106 +343,97 @@
     {% endblock %}
   {% endembed %}
 
-
-  {% set collectionItemOne %}
-    {% include "@bolt/teaser.twig" with {
-      "headlines": [
-        {
-          "type": "headline",
-          "text": "Register Now",
-          "size": "large"
-        }
-      ],
-      "content": "Time is running out to take advantage of end-of-year pricing.",
-      "buttons": [
-        {
-          "text": "Register Now!",
-          "url": "#"
-        }
-      ]
-    } only %}
-  {% endset %}
-
-  {% set collectionItemTwo %}
-    {% include "@bolt/teaser.twig" with {
-      "headlines": [
-        {
-          "type": "headline",
-          "text": "Become a PegaWorld Insider",
-          "size": "large"
-        }
-      ],
-      "content": "Stay up-to-date on all the latest PegaWorld news and announcements.",
-      "buttons": [
-        {
-          "text": "Sign up",
-          "url": "#",
-          "style": "secondary"
-        }
-      ]
-    } only %}
-  {% endset %}
-
-  {% set collectionItemThree %}
-    {% include "@bolt/headline.twig" with {
-      text: "Connect to start a conversation",
-      size: "large"
-    } only %}
-
-    {% include "@bolt/headline.twig" with {
-      text: "#PegaWorld18",
-      size: "xxlarge",
-      weight: "regular",
-      attributes: {
-        class: ["u-bolt-color-yellow"]
-      }
-    } only %}
-
-
-    {% set socialIcons = [
-      {
-        name: "twitter",
-        url: "#"
-      },
-      {
-        name: "facebook-solid",
-        url: "#"
-      },
-      {
-        name: "linkedin-solid",
-        url: "#"
-      },
-      {
-        name: "youtube-solid",
-        url: "#"
-      }
-    ] %}
-
-    {% for icon in socialIcons %}
-      <a class="u-bolt-margin-right-small" href="{{ icon.url }}">
-        {% include "@bolt/icon.twig" with {
-          name: icon.name,
-          size: "medium"
-        } only %}
-      </a>
-    {% endfor %}
-  {% endset %}
-
-  {% embed "@bolt/band--collection.twig" with {
+  {% embed "@bolt/band.twig" with {
     theme: "xdark",
-    size: "medium",
-    contentItems: [
-      collectionItemOne,
-      collectionItemTwo,
-      collectionItemThree
-    ]
+    size: "medium"
   } %}
 
-    {% block collection_content %}
-      {{ item }}
+    {% block band_content  %}
+      {% grid "o-bolt-grid--matrix" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+          {% include "@bolt/teaser.twig" with {
+            "headlines": [
+              {
+                "type": "headline",
+                "text": "Register Now",
+                "size": "large"
+              }
+            ],
+            "content": "Time is running out to take advantage of end-of-year pricing.",
+            "buttons": [
+              {
+                "text": "Register Now!",
+                "url": "#"
+              }
+            ]
+          } only %}
+        {% endcell %}
+
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+          {% include "@bolt/teaser.twig" with {
+            "headlines": [
+              {
+                "type": "headline",
+                "text": "Become a PegaWorld Insider",
+                "size": "large"
+              }
+            ],
+            "content": "Stay up-to-date on all the latest PegaWorld news and announcements.",
+            "buttons": [
+              {
+                "text": "Sign up",
+                "url": "#",
+                "style": "secondary"
+              }
+            ]
+          } only %}
+        {% endcell %}
+
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+          {% include "@bolt/headline.twig" with {
+            text: "Connect to start a conversation",
+            size: "large"
+          } only %}
+
+          {% include "@bolt/headline.twig" with {
+            text: "#PegaWorld18",
+            size: "xxlarge",
+            weight: "regular",
+            attributes: {
+              class: ["u-bolt-color-yellow"]
+            }
+          } only %}
+
+
+          {% set socialIcons = [
+            {
+              name: "twitter",
+              url: "#"
+            },
+            {
+              name: "facebook-solid",
+              url: "#"
+            },
+            {
+              name: "linkedin-solid",
+              url: "#"
+            },
+            {
+              name: "youtube-solid",
+              url: "#"
+            }
+          ] %}
+
+          {% for icon in socialIcons %}
+            <a class="u-bolt-margin-right-small" href="{{ icon.url }}">
+              {% include "@bolt/icon.twig" with {
+                name: icon.name,
+                size: "medium"
+              } only %}
+            </a>
+          {% endfor %}
+        {% endcell %}
+      {% endgrid %}
     {% endblock %}
-
   {% endembed %}
-
-
 {% endblock %}
