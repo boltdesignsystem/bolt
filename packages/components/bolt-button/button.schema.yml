@@ -15,15 +15,23 @@ properties:
   tag:
     title: 'Semantic tag'
     description: 'What should this element semantically be?'
-    type: string
+    type:
+      anyOf:
+        - string
+        - null
     enum:
+      - a
       - link
       - button
       - submit
       - reset
+      - null
     default: button
   size:
-    type: string
+    type:
+      anyOf:
+        - string
+        - null
     title: 'Button Size'
     description: 'How large is this button?'
     default: medium
@@ -33,16 +41,24 @@ properties:
       - medium
       - large
       - xlarge
+      - null
   align:
     title: 'Button Alignment'
-    type: string
+    type:
+      anyOf:
+        - string
+        - null
     enum:
       - left
       - center
       - right
+      - null
     default: center
   style:
-    type: string
+    type:
+      anyOf:
+        - string
+        - null
     title: 'Button Style'
     description: 'What''s the button style / theme?'
     default: primary
@@ -50,6 +66,7 @@ properties:
       - primary
       - secondary
       - text
+      - null
   width:
     type:
       anyOf:
