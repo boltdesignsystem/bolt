@@ -59,21 +59,21 @@ class ImagesTests extends TestCase {
       $this->assertEquals($set['width'], $results['width'], 'width of image');
       $this->assertStringStartsWith($set['base64'], $results['base64']);
       $this->assertTrue(self::compareColors($set['color'], $results['color'], 0.005),
-        "The color value calculated for {$set['file']} did not match the expected value.");
+        "{$set['file']}, the expected value {$results['color']} did not match the actual value {$set['color']}.");
     }
   }
 
   /**
    * Returns true if the two colors are within the given precision
-   * @param $colorOne string hex color in the form of either `#xxxxxx` or `hsl(123, xx%, xx%)`
-   * @param $colorTwo string hex color in the form of either `#xxxxxx` or `hsl(123, xx%, xx%)`
-   * @param $percision float acceptable percent difference between the two numbers to return true.
+   * @param $expectedColor string hex color in the form of either `#xxxxxx` or `hsl(123, xx%, xx%)`
+   * @param $actualColor string hex color in the form of either `#xxxxxx` or `hsl(123, xx%, xx%)`
+   * @param $precision float acceptable percent difference between the two numbers to return true.
    * @return bool
    */
-  private static function compareColors($colorOne, $colorTwo, $precision) {
-    $colorOneValue = hexdec($colorOne);
-    $colorTwoValue = hexdec($colorTwo);
+  private static function compareColors($expectedColor, $actualColor, $precision) {
+    $expectedColorValue = hexdec($expectedColor);
+    $actualColorValue = hexdec($actualColor);
 
-    return abs(($colorOneValue-$colorTwoValue)/$colorOneValue) < $precision;
+    return abs(($expectedColorValue-$actualColorValue)/$expectedColorValue) < $precision;
   }
 }
