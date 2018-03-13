@@ -41,6 +41,7 @@ export * from './icons/facebook';
 export * from './icons/facebook-solid';
 export * from './icons/field-service';
 export * from './icons/field-service-gray';
+export * from './icons/filter';
 export * from './icons/financial';
 export * from './icons/full-screen';
 export * from './icons/global';
