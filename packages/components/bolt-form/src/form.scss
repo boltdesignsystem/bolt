@@ -183,7 +183,9 @@ $bolt-input-transition: $bolt-transition;
 
   &:focus,
   &:hover {
-    @include bolt-shadow($key: $bolt-input-shadow-level, $base-color: $bolt-input-box-shadow);
+    &:not(.is-disabled):not(:disabled) {
+      @include bolt-shadow($key: $bolt-input-shadow-level, $base-color: $bolt-input-box-shadow);
+    }
   }
 
   &:focus {
