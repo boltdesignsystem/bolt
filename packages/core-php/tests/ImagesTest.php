@@ -57,9 +57,23 @@ class ImagesTests extends TestCase {
       $results = Images::get_image_data($set['file'], __DIR__);
       $this->assertEquals($set['height'], $results['height'], 'height of image');
       $this->assertEquals($set['width'], $results['width'], 'width of image');
-      $this->assertEquals($set['color'], $results['color'], 'color of image');
       $this->assertStringStartsWith($set['base64'], $results['base64']);
+      $this->assertTrue(self::compareColors($set['color'], $results['color'], 0.005),
+        "The color value calculated for {$set['file']} did not match the expected value.");
     }
   }
 
+  /**
+   * Returns true if the two colors are within the given precision
+   * @param $colorOne string hex color in the form of either `#xxxxxx` or `hsl(123, xx%, xx%)`
+   * @param $colorTwo string hex color in the form of either `#xxxxxx` or `hsl(123, xx%, xx%)`
+   * @param $percision float acceptable percent difference between the two numbers to return true.
+   * @return bool
+   */
+  private static function compareColors($colorOne, $colorTwo, $precision) {
+    $colorOneValue = hexdec($colorOne);
+    $colorTwoValue = hexdec($colorTwo);
+
+    return abs(($colorOneValue-$colorTwoValue)/$colorOneValue) < $precision;
+  }
 }
