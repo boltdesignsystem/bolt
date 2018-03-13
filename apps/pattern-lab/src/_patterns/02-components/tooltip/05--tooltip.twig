@@ -1,0 +1,32 @@
+<div style="text-align: center; padding: 3rem;">
+{% include "@bolt-components-tooltip/tooltip.twig" with {
+  trigger: {
+    type: "button",
+    text: "Trigger Closed",
+    icon: {
+      name: "chevron-right",
+      position: "before"
+    },
+    toggle: {
+      text: "Trigger Open",
+      name: "close"
+    }
+  },
+  content: include("@bolt-components-link/link.twig", {
+    text: "Link 2",
+    url: "#",
+    icon: {
+      name: "cloud",
+      position: "before"
+    }
+  }),
+  id: "tooltip-1",
+  type: "help",
+  position: {
+    horz: "center",
+    vert: "top"
+  },
+  noWrap: False,
+  spacing: "small"
+} only %}
+</div>

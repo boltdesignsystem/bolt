@@ -62,6 +62,7 @@ module.exports = {
       '@bolt/components-smooth-scroll',
       '@bolt/components-sticky',
       '@bolt/components-teaser',
+      '@bolt/components-tooltip',
       '@bolt/components-unordered-list',
     ],
     individual: [
