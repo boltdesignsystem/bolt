@@ -85,14 +85,13 @@ async function build() {
     if (!config.quick) {
       await webpackTasks.compile();
     }
+    await manifest.writeTwigNamespaceFile(process.cwd(), config.extraTwigNamespaces);
     await images();
     switch (config.env) {
       case 'pl':
-        await manifest.writeTwigNamespaceFile(process.cwd(), config.extraTwigNamespaces);
         await extraTasks.patternLab.compile();
         break;
       case 'static':
-        await manifest.writeTwigNamespaceFile(process.cwd(), config.extraTwigNamespaces);
         await extraTasks.static.compile();
         break;
     }
