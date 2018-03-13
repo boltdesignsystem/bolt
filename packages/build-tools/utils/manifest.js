@@ -161,7 +161,6 @@ async function writeTwigNamespaceFile(relativeFrom, extraNamespaces = {}) {
     bolt: {
       recursive: true,
       paths: [
-        config.srcDir,
         ...allDirs,
       ],
     },
@@ -171,7 +170,33 @@ async function writeTwigNamespaceFile(relativeFrom, extraNamespaces = {}) {
         config.dataDir,
       ],
     },
-  }, namespaces, extraNamespaces);
+  }, namespaces);
+
+  // `extraNamespaces` serves two purposes:
+  // 1. To add extra namespaces that have not been declared
+  // 2. To add extra paths to previously declared namespaces
+  //    Assuming we've already declared the `foo` namespaces to look in `~/my-dir1`
+  //    Then someone uses `extraNamespaces` to declare that `foo` will look in `~/my-dir2`
+  //    This will not overwrite it, but *prepend* to the paths, resulting in a namespace setting like this:
+  //    'foo': {
+  //      paths: ['~/my-dir2', '~/my-dir1']
+  //    }
+  //    This causes the folder declared in `extraNamespaces` to be looked in first for templates, before our default;
+  //    allowing end user developers to selectively overwrite some templates.
+  if (extraNamespaces) {
+    Object.keys(extraNamespaces).forEach((namespace) => {
+      const settings = extraNamespaces[namespace];
+      if (namespaceConfigFile[namespace]) {
+        // merging the two, making sure the paths from `extraNamespaces` go first
+        namespaceConfigFile[namespace].paths = [
+          ...settings.paths,
+          ...namespaceConfigFile[namespace].paths,
+        ];
+      } else {
+        namespaceConfigFile[namespace] = settings;
+      }
+    });
+  }
 
   await writeFile(
     path.join(config.dataDir, 'twig-namespaces.bolt.json'),
