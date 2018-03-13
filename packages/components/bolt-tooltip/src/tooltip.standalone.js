@@ -36,6 +36,7 @@ export class BoltTooltip extends withPreact(withComponent()) {
     };
   }
 
+  // For use with the 'button' type toggle
   toggler() {
     this.state = {
       toggled: !this.state.toggled
@@ -51,9 +52,13 @@ export class BoltTooltip extends withPreact(withComponent()) {
       baseClass,
       baseClass+'--action',
       'is-align-center',
-      'is-push-down',
-      toggled === true ? 'is-active' : 'not-active'
+      'is-push-down'
     ];
+
+    if (data.triggerType === 'button') {
+      const buttonClass = toggled === true ? 'is-active' : 'not-active';
+      classes.push(buttonClass);
+    }
 
     return (
       <span>
@@ -67,7 +72,9 @@ export class BoltTooltip extends withPreact(withComponent()) {
             toggle-text={data.triggerToggleText}
             toggle-icon={data.triggerToggleIcon}
             toggled={() =>{
-              this.toggler();
+              if (data.triggerType === 'button') {
+                this.toggler();
+              }
             }}
           />
           <TooltipContent type={data.triggerType}>
@@ -105,6 +112,7 @@ class TooltipTrigger extends withPreact(withComponent()) {
     };
   }
 
+  // For use with the 'button' type toggle
   handleToggle() {
     const text = this.props.text,
           toggleText = this.props.toggleText,
@@ -124,12 +132,14 @@ class TooltipTrigger extends withPreact(withComponent()) {
         className="c-bolt-tooltip__trigger"
         aria-describedby="tooltip-1"
         onClick={() => {
-          this.handleToggle(); // Handles our local toggling
-          data.toggled(); // Bubbles event up to parent to toggle higher level classes
+          if (data.type === 'button'){
+            this.handleToggle(); // Handles our local toggling
+            data.toggled(); // Bubbles event up to parent to toggle higher level classes
+          }
         }}
       >
         {icon} : {text}
-  </span>
+      </span>
     );
   }
 }
