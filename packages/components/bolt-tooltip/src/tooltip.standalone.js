@@ -9,6 +9,7 @@ import {
 } from '@bolt/core';
 
 import styles from './tooltip.scss';
+import button from '@bolt/components-button/src/button.scss';
 
 @define
 export class BoltTooltip extends withPreact(withComponent()) {
@@ -127,18 +128,43 @@ class TooltipTrigger extends withPreact(withComponent()) {
   render() {
     const {text, icon} = this.state;
     const data = this.props;
+
     return (
-      <span
-        className="c-bolt-tooltip__trigger"
-        aria-describedby="tooltip-1"
-        onClick={() => {
-          if (data.type === 'button'){
-            this.handleToggle(); // Handles our local toggling
-            data.toggled(); // Bubbles event up to parent to toggle higher level classes
+      <span>
+        {data.type === 'button' &&
+          <style>{button[0][1]}</style>
+        }
+        <span
+          className="c-bolt-tooltip__trigger"
+          aria-describedby="tooltip-1"
+          onClick={() => {
+            if (data.type === 'button'){
+              this.handleToggle(); // Handles our local toggling
+              data.toggled(); // Bubbles event up to parent to toggle higher level classes
+            }
+          }}
+        >
+          {data.type === 'button' &&
+          <button className="c-bolt-button c-bolt-button--medium c-bolt-button--secondary c-bolt-button--center">
+            {icon &&
+              <span className="c-bolt-button__icon">
+                <bolt-icon name={icon} size="medium"></bolt-icon>
+              </span>
+            }
+            {text}
+          </button>
           }
-        }}
-      >
-        {icon} : {text}
+          {data.type === 'text' &&
+          <span>
+            {icon &&
+              <span className="c-bolt-button__icon">
+                <bolt-icon name={icon} size="medium"></bolt-icon>
+              </span>
+            }
+            {text}
+          </span>
+          }
+        </span>
       </span>
     );
   }
