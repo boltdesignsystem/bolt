@@ -296,6 +296,35 @@ $bolt-tooltip-transition: $bolt-transition;
 // Tooltip styling
 .c-bolt-tooltip__trigger {
   display: block;
+
+  button .toggle--closed,
+  button .toggle--open {
+    transition: all $bolt-transition;
+
+    bolt-icon {
+      padding-right: 5px;
+    }
+  }
+
+  .toggle--closed {
+    position: relative;
+    opacity: 1;
+
+    .is-active & {
+      position: absolute;
+      opacity: 0;
+    }
+  }
+
+  .toggle--open {
+    position: absolute;
+    opacity: 0;
+
+    .is-active & {
+      position: relative;
+      opacity: 1;
+    }
+  }
 }
 
 .c-bolt-tooltip__content {
@@ -308,7 +337,7 @@ $bolt-tooltip-transition: $bolt-transition;
     opacity: 0 !important; // We need this to override the hover functionality
     pointer-events: none;
 
-    .c-bolt-tooltip.is-active > & {
+    .is-active+& {
       opacity: 1 !important; // Brings us back only when active
       pointer-events: auto;
     }

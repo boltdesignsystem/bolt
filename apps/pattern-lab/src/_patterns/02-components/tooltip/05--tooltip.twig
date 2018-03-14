@@ -2,14 +2,13 @@
 {% include "@bolt-components-tooltip/tooltip.twig" with {
   trigger: {
     type: "button",
-    text: "Trigger Closed",
+    text: "Closed",
     icon: {
-      name: "chevron-right",
-      position: "before"
+      name: "info-open",
     },
     toggle: {
-      text: "Trigger Open",
-      name: "close"
+      text: "Open",
+      name: "close-open"
     }
   },
   content: include("@bolt-components-link/link.twig", {

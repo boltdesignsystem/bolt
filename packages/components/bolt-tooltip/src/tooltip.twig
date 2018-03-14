@@ -8,10 +8,6 @@
 
   {% if trigger.icon %}
     {% set attributes = attributes.setAttribute("trigger-icon-name", trigger.icon.name) %}
-
-    {% if trigger.icon.position %}
-      {% set attributes = attributes.setAttribute("trigger-icon-position", trigger.icon.position) %}
-    {% endif %}
   {% endif %}
 
   {% if trigger.toggle %}

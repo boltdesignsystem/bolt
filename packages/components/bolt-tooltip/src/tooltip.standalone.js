@@ -28,24 +28,9 @@ export class BoltTooltip extends withPreact(withComponent()) {
   constructor() {
     super();
     this.useShadow = hasNativeShadowDomSupport;
-    this.toggler = this.toggler.bind(this);
-  }
-
-  connectedCallback(){
-    this.state = {
-      toggled: false
-    };
-  }
-
-  // For use with the 'button' type toggle
-  toggler() {
-    this.state = {
-      toggled: !this.state.toggled
-    };
   }
 
   render() {
-    const {toggled} = this.state;
     const data = this.props;
     const baseClass = 'c-bolt-tooltip';
 
@@ -56,11 +41,6 @@ export class BoltTooltip extends withPreact(withComponent()) {
       'is-push-down'
     ];
 
-    if (data.triggerType === 'button') {
-      const buttonClass = toggled === true ? 'is-active' : 'not-active';
-      classes.push(buttonClass);
-    }
-
     return (
       <span>
         <style>{styles[0][1]}</style>
@@ -69,14 +49,8 @@ export class BoltTooltip extends withPreact(withComponent()) {
             text={data.triggerText}
             type={data.triggerType}
             icon={data.triggerIconName}
-            position={data.triggerIconPosition}
             toggle-text={data.triggerToggleText}
             toggle-icon={data.triggerToggleIcon}
-            toggled={() =>{
-              if (data.triggerType === 'button') {
-                this.toggler();
-              }
-            }}
           />
           <TooltipContent type={data.triggerType}>
             <span dangerouslySetInnerHTML={{__html: data.content}} />
@@ -95,38 +69,15 @@ class TooltipTrigger extends withPreact(withComponent()) {
     text: props.string,
     type: props.string,
     icon: props.string,
-    position: props.string,
     toggleText: props.string,
-    toggleIcon: props.string,
-    toggled: props.any
+    toggleIcon: props.string
   };
 
   constructor() {
     super();
-    this.handleToggle = this.handleToggle.bind(this);
-  }
-
-  connectedCallback(){
-    this.state = {
-      text: this.props.text,
-      icon: this.props.icon,
-    };
-  }
-
-  // For use with the 'button' type toggle
-  handleToggle() {
-    const text = this.props.text,
-          toggleText = this.props.toggleText,
-          icon = this.props.icon,
-          toggleIcon = this.props.toggleIcon;
-    this.state = {
-      text: this.state.text === text ? toggleText : text,
-      icon: this.state.icon === icon ? toggleIcon : icon,
-    };
   }
 
   render() {
-    const {text, icon} = this.state;
     const data = this.props;
 
     return (
@@ -139,29 +90,39 @@ class TooltipTrigger extends withPreact(withComponent()) {
           aria-describedby="tooltip-1"
           onClick={() => {
             if (data.type === 'button'){
-              this.handleToggle(); // Handles our local toggling
-              data.toggled(); // Bubbles event up to parent to toggle higher level classes
+              // Fixes issue with css transitions within re-rendered components
+              this.classList.toggle('is-active');
             }
           }}
         >
           {data.type === 'button' &&
-          <button className="c-bolt-button c-bolt-button--medium c-bolt-button--secondary c-bolt-button--center">
-            {icon &&
+          <button className="c-bolt-button c-bolt-button--rounded c-bolt-button--medium c-bolt-button--secondary c-bolt-button--center">
+            <div className="toggle--closed">
+            {data.icon &&
               <span className="c-bolt-button__icon">
-                <bolt-icon name={icon} size="medium"></bolt-icon>
+                <bolt-icon name={data.icon} size="medium" />
               </span>
             }
-            {text}
+              {data.text}
+            </div>
+            <div className="toggle--open">
+              {data.toggleIcon &&
+                <span className="c-bolt-button__icon">
+                  <bolt-icon name={data.toggleIcon} size="medium" />
+                </span>
+              }
+              {data.toggleText}
+            </div>
           </button>
           }
           {data.type === 'text' &&
           <span>
-            {icon &&
+            {data.icon &&
               <span className="c-bolt-button__icon">
-                <bolt-icon name={icon} size="medium"></bolt-icon>
+                <bolt-icon name={data.icon} size="medium" />
               </span>
             }
-            {text}
+            {data.text}
           </span>
           }
         </span>
