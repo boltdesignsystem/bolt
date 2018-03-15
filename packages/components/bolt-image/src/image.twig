@@ -13,6 +13,10 @@
 {% if imageDataBolt.srcset %}
   {% set srcset = imageDataBolt.srcset %}
 {% endif %}
+
+{% if ratio is defined and ratio == false %}
+  {% set useAspectRatio = false %}
+{% endif %}
 {% set useAspectRatio = useAspectRatio ?? true %}
 
 {#--------------------#}
