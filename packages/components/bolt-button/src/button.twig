@@ -7,11 +7,11 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {# re-assign old itemAlignment paramater to the new `align` name that's replacing it; avoids breaking change till post v1.0 #}
+{# @todo Salem, is it safe to remove the coverage for legacy itemAlignment parameter? #}
 {% if itemAlignment %}
   {% if itemAlignment == "start" %}
     {% set itemAlignment = "left" %}
   {% endif %}
-
   {% set align = itemAlignment %}
 {% endif %}
 
@@ -45,8 +45,6 @@
   {% set attributes = attributes.setAttribute("type", "reset") %}
 {% endif %}
 
-{% set tag = "a" %}
-
 {# shorthand for manually setting HTML attribute `type` such as submit or reset #}
 {% if type %}
   {% set attributes = attributes.setAttribute("type", type) %}
@@ -71,7 +69,7 @@
     {% if align %} align="{{ align }}" {% endif %}
     {% if style %} color="{{ style }}" {% endif %}
     {% if size %} size="{{ size }}" {% endif %}
-  {% if url %} url="{{ url }}" {% endif %}
+    {% if url %} url="{{ url }}" {% endif %}
     {% if width %} width="{{ width }}" {% endif %}
     {% if rounded %} rounded=" {{ rounded }}" {% endif %}
     {% if iconOnly %} icon-only="true" {% endif %}
