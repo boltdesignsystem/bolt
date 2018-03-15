@@ -19,10 +19,14 @@ export class BoltTooltip extends withPreact(withComponent()) {
     triggerText: props.string,
     triggerType: props.string,
     triggerIconName: props.string,
-    triggerIconPosition: props.string,
+    triggerIconSize: props.string,
     triggerToggleText: props.string,
     triggerToggleIcon: props.string,
-    content: props.any
+    triggerId: props.string,
+    content: props.any,
+    type: props.string,
+    noWrap: props.boolean,
+    spacing: props.string
   };
 
   constructor() {
@@ -33,13 +37,21 @@ export class BoltTooltip extends withPreact(withComponent()) {
   render() {
     const data = this.props;
     const baseClass = 'c-bolt-tooltip';
+    const type = data.type === 'help' ? 'help' : 'action';
 
     const classes = [
       baseClass,
-      baseClass+'--action',
+      baseClass + '--' + type,
       'is-align-center',
       'is-push-down'
     ];
+
+    if (data.noWrap) {
+      classes.push(baseClass + '--nowrap');
+    }
+    if (data.spacing) {
+      classes.push(baseClass + '--spacing-' + data.spacing);
+    }
 
     return (
       <span>
@@ -49,10 +61,12 @@ export class BoltTooltip extends withPreact(withComponent()) {
             text={data.triggerText}
             type={data.triggerType}
             icon={data.triggerIconName}
+            size={data.triggerIconSize}
             toggle-text={data.triggerToggleText}
             toggle-icon={data.triggerToggleIcon}
+            trigger-id={data.triggerId}
           />
-          <TooltipContent type={data.triggerType}>
+          <TooltipContent type={data.triggerType} trigger-id={data.triggerId}>
             <span dangerouslySetInnerHTML={{__html: data.content}} />
           </TooltipContent>
         </span>
@@ -69,8 +83,10 @@ class TooltipTrigger extends withPreact(withComponent()) {
     text: props.string,
     type: props.string,
     icon: props.string,
+    size: props.string,
     toggleText: props.string,
-    toggleIcon: props.string
+    toggleIcon: props.string,
+    triggerId: props.string
   };
 
   constructor() {
@@ -79,6 +95,7 @@ class TooltipTrigger extends withPreact(withComponent()) {
 
   render() {
     const data = this.props;
+    const size = data.size ? data.size : 'medium';
 
     return (
       <span>
@@ -87,7 +104,7 @@ class TooltipTrigger extends withPreact(withComponent()) {
         }
         <span
           className="c-bolt-tooltip__trigger"
-          aria-describedby="tooltip-1"
+          aria-describedby={data.triggerId}
           onClick={() => {
             if (data.type === 'button'){
               // Fixes issue with css transitions within re-rendered components
@@ -100,7 +117,7 @@ class TooltipTrigger extends withPreact(withComponent()) {
             <div className="toggle--closed">
             {data.icon &&
               <span className="c-bolt-button__icon">
-                <bolt-icon name={data.icon} size="medium" />
+                <bolt-icon name={data.icon} size={size} />
               </span>
             }
               {data.text}
@@ -108,7 +125,7 @@ class TooltipTrigger extends withPreact(withComponent()) {
             <div className="toggle--open">
               {data.toggleIcon &&
                 <span className="c-bolt-button__icon">
-                  <bolt-icon name={data.toggleIcon} size="medium" />
+                  <bolt-icon name={data.toggleIcon} size={size} />
                 </span>
               }
               {data.toggleText}
@@ -119,7 +136,7 @@ class TooltipTrigger extends withPreact(withComponent()) {
           <span>
             {data.icon &&
               <span className="c-bolt-button__icon">
-                <bolt-icon name={data.icon} size="medium" />
+                <bolt-icon name={data.icon} size={size} />
               </span>
             }
             {data.text}
@@ -137,7 +154,7 @@ const TooltipContent = (props) => {
     'c-bolt-tooltip__content--' + props.type,
   ];
   return (
-    <span id="tooltip-1" className={classes.join(' ')} role="tooltip" aria-hidden="true">
+    <span id={props['trigger-id']} className={classes.join(' ')} role="tooltip" aria-hidden="true">
       <span className="c-bolt-tooltip__content-bubble">
         {props.children}
       </span>

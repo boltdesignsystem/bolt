@@ -248,6 +248,10 @@ $bolt-tooltip-transition: $bolt-transition;
 // Category options
 .c-bolt-tooltip--help {
   cursor: help;
+
+  .c-bolt-tooltip__trigger button {
+    cursor: help;
+  }
 }
 
 .c-bolt-tooltip--action {
@@ -297,9 +301,13 @@ $bolt-tooltip-transition: $bolt-transition;
 .c-bolt-tooltip__trigger {
   display: block;
 
+  button:focus {
+    outline: none;
+  }
+
   button .toggle--closed,
   button .toggle--open {
-    transition: all $bolt-transition;
+    transition: opacity $bolt-transition;
 
     bolt-icon {
       padding-right: 5px;
