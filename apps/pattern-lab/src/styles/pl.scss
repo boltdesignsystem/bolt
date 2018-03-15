@@ -50,7 +50,7 @@ ul.bolt-icon-list-demo {
   margin: 0;
 
   li {
-    margin: 0 0 50px;
+    margin: 25px 0;
     text-align: center;
     width: 25%;
     @media (max-width: 768px) {
@@ -79,12 +79,15 @@ ul.bolt-icon-list-demo {
     height: 225px;
     margin: .5rem;
     position: relative;
-    width: 225px;
+    width: 325px;
     vertical-align: top;
     padding: 0.7rem;
 
     code {
       font-size: 0.7rem;
+    }
+    &[class*="hoverable"]:hover {
+      @include  bolt-z-index('contentTop');
     }
   }
 }

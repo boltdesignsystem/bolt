@@ -1,13 +1,16 @@
 module.exports = {
   // Environmental variable / preset to use
   env: 'pl',
-  srcDir: 'src',
   buildDir: '../../www/pattern-lab/build',
   wwwDir: '../../www/',
   startPath: 'pattern-lab/index.html',
   plConfigFile: './config/config.yml',
   verbosity: 1,
   extraTwigNamespaces: {
+    'bolt': {
+      recursive: true,
+      paths: ['./src'],
+    },
     'bolt-assets': {
       recursive: true,
       paths: ['../../www/pattern-lab/build'],
