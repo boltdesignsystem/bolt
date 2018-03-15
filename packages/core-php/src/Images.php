@@ -5,7 +5,7 @@ namespace Bolt;
 // Evan @todo: help Salem get this autoloaded properly
 use \Gregwar\Image\Image;
 use \Gregwar\Image\GarbageCollect;
-use ColorThief\ColorThief;
+use Tooleks\Php\AvgColorPicker\Gd\AvgColorPicker;
 use PHPExif\Exif;
 use PHPExif\Reader\Reader as ExifReader;
 
@@ -61,15 +61,15 @@ class Images {
       $width = $svgData['width'];
 
     } else if (($fileExt == "jpg") || ($fileExt == "jpeg") || ($fileExt == "png")) {
-      $imageLoaded = Image::open($absoluteImagePath);
-      $base64Image = $imageLoaded->resize('16', '16')->smooth('1')->jpeg($quality = 50);
-      $base64ImagePlaceholder = Image::open($base64Image)->inline();
 
-      // Calculate Average Color, only in production
       if (getenv('NODE_ENV') === 'production') {
-//        @todo @salem I'm not sure how ColorThief works here, but is it really necessary to do an image processing before hand?
-        $smallSample = $imageLoaded->resize('640', '640')->jpeg($quality = 50);
-        $placeHolderColor = self::rgb2hex(ColorThief::getColor($smallSample));
+        if (($fileExt == "jpeg") || ($fileExt == "jpg")){
+          $smallSample = Image::open($absoluteImagePath)->cropResize(320, 320)->jpeg($quality = 50);
+          $placeHolderColor = (new AvgColorPicker)->getImageAvgHexByPath($smallSample);
+
+          $base64Image = Image::open($absoluteImagePath)->cropResize(32, 32)->gaussianBlur(1)->jpeg($quality = 50);
+          $base64ImagePlaceholder = Image::open($base64Image)->inline();
+        }
       }
 
       // Height and Width
@@ -159,10 +159,11 @@ class Images {
         return;
       }
 
-      // Resize and optimize the image before running through ColorThief
+      // Resize and optimize the image before running through AvgColorPicker
       $resizedImage = \Image::open($absoluteImagePath)->resize('640', '640')->jpeg($quality = 50);
-      $color = ColorThief::getColor($resizedImage, 5);
-      return self::rgb2hex($color);
+
+      $color = (new AvgColorPicker)->getImageAvgHexByPath($resizedImage);
+      return $color;
     } else {
       return;
     }
