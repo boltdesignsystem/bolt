@@ -14,6 +14,18 @@ const ora = require('ora');
 const sharp = require('sharp');
 const config = require('../utils/config-store').getConfig();
 const { flattenArray } = require('../utils/general');
+const SVGO = require('svgo');
+
+const svgo = new SVGO({
+  plugins: [
+    {
+      removeViewBox: false,
+    },
+    {
+      removeXMLNS: true,
+    },
+  ],
+});
 
 // @todo Consider moving this to a place to share - also duplicated in `@bolt/core/images-sizes.js`
 const boltImageSizes = [
@@ -86,11 +98,60 @@ async function processImage(file, set) {
     if (config.prod) {
       if (isOrig) {
         await writeFile(newSizedPath, originalFileBuffer);
+        if (pathInfo.ext === '.jpeg' || pathInfo.ext === '.jpg' || pathInfo.ext === '.png') {
+          await sharp(originalFileBuffer)
+            .resize(size)
+            .jpeg({
+              quality: 50,
+              progressive: true,
+              optimiseScans: true,
+              force: false
+            })
+            .png({
+              progressive: true,
+              force: false
+            })
+            .toFile(newSizedPath);
+          } else if (pathInfo.ext === '.svg') {
+            const result = await svgo.optimize(originalFileBuffer);
+            const optimizedSVG = result.data;
+            await writeFile(newSizedPath, optimizedSVG);
+
+          } else {
+            await sharp(originalFileBuffer)
+              .jpeg({
+                quality: 50,
+                progressive: true,
+                optimiseScans: true,
+                force: false
+              })
+              .png({
+                progressive: true,
+                force: false
+              })
+              .toFile(newSizedPath);
+          }
       } else {
         // http://sharp.pixelplumbing.com/en/stable/
-        await sharp(originalFileBuffer)
-          .resize(size)
-          .toFile(newSizedPath);
+        if (pathInfo.ext === '.jpeg' || pathInfo.ext === '.jpg' || pathInfo.ext === '.png') {
+          await sharp(originalFileBuffer)
+            .resize(size)
+            .jpeg({
+              quality: 50,
+              progressive: true,
+              optimiseScans: true,
+              force: false
+            })
+            .png({
+              progressive: true,
+              force: false
+            })
+            .toFile(newSizedPath);
+          } else {
+            await sharp(originalFileBuffer)
+              .resize(size)
+              .toFile(newSizedPath);
+          }
       }
     } else {
       // Not prod, so let's be quick.
