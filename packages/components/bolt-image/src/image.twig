@@ -24,59 +24,56 @@
 {# The ONLY thing that can happen below here is creating and building the `attributes`, then calling the template - ALL data must be prepped by this point #}
 {#--------------------#}
 
-{% set attributes = create_attribute(attributes | default({})).addClass('c-bolt-image') %}
+{% set attributes = create_attribute(attributes | default({})) %}
 
-{% set imageAttributes = create_attribute(imageAttributes | default({})).addClass([
-  "c-bolt-image__img",
-  lazyload ? "js-lazyload" : "",
-  lazyload ? "is-lazyloading" : ""
-])
-  .setAttribute('alt', alt)
-  .setAttribute('src', src)
-  .setAttribute('sizes', sizes)
+{% set imageClasses = [
+  "c-bolt-image__image"
+] %}
+
+{% set placeholderClasses = [
+  "c-bolt-image__image-placeholder"
+] %}
+
+{% set lazyloadClasses = [
+  lazyload ? "c-bolt-image__lazyload",
+  lazyload ? "c-bolt-image__lazyload--fade" : "",
+  lazyload and ext == "jpg" ? "c-bolt-image__lazyload--blur" : "",
+  lazyload ? "js-lazyload" : ""
+] %}
+
+{% set imageAttributes = create_attribute(imageAttributes | default({})).addClass(imageClasses, lazyloadClasses)
+  .setAttribute('alt', alt ? alt : null)
+  .setAttribute('src', lazyload ? placeholderDummySrc : src)
+  .setAttribute( (lazyload ? "data-" : "") ~ "sizes", sizes)
+  .setAttribute( (lazyload ? "data-" : "") ~ "srcset", srcset ? srcset : null)
+  .setAttribute( (zoom ? "data-zoom" : ""), src)
 %}
 
-{% if srcset %}
-  {% set imageAttributes = imageAttributes.setAttribute("srcset", srcset) %}
-{% endif %}
+{% set imageFallbackAttributes = create_attribute({}).addClass(imageClasses)
+  .setAttribute('alt', alt ? alt : null)
+  .setAttribute('src', src)
+  .setAttribute(srcset ? "srcset" : "", srcset ? srcset : null)
+%}
 
-{% if zoom %}
-  {% set zoomSource = src %}
-  {% set imageAttributes = imageAttributes
-    .setAttribute("data-zoom", zoomSource) %}
-{% endif %}
-
-{% set placeholderAttributes = create_attribute(placeholderAttributes | default({})).addClass("c-bolt-image__placeholder") %}
-{% set styles = placeholderAttributes.getAttribute('style') | split(' ') | merge([
-  placeholderColor ? "background-color: #{placeholderColor};" : "",
-  placeholderImage ? "background-image: url(#{placeholderImage});" : ""
-]) %}
-{% set placeholderAttributes = placeholderAttributes.setAttribute('style', styles) %}
-
-{% if lazyload %}
-  {% set imageAttributes = imageAttributes
-    .setAttribute("data-srcset", srcset)
-    .setAttribute("srcset", placeholderDummySrc)
-    .setAttribute("data-sizes", sizes) %}
-{% endif %}
 
 {% set imageTag %}
   <img {{ imageAttributes }}>
 
-{# Only output noscript fallback if lazyloading, and ratio will be output #}
+  {# Only output noscript fallback if lazyloading, and ratio will be output #}
   {# @todo Salem, can you take a quick look at this conditional. Wouldn't we want the noscript fallback regardless of useAspectRatio and height and width?#}
   {% if lazyload and width > 0 and height > 0 and useAspectRatio == true %}
-    <noscript>
-      <img {{ imageAttributes.removeClass(["js-lazyload", "is-lazyloading"]) }}>
-    </noscript>
+    <noscript> <img {{ imageFallbackAttributes }}> </noscript>
   {% endif %}
 {% endset %}
 
 {% set imagePlaceholder %}
-  <span {{ placeholderAttributes }}></span>
+  <img src="{{ placeholderImage }}" {{ imageAttributes.removeClass(imageClasses, lazyloadClasses).addClass(placeholderClasses)
+  .removeAttribute("data-srcset")
+  .removeAttribute("data-sizes")
+  .removeAttribute("srcset") }} />
 {% endset %}
 
-<bolt-image>
+<bolt-image {% if placeholderColor and ext == "jpg" %} style="background-color: {{ placeholderColor }};" {% endif %}>
   {% block image_content %}
     {% if width > 0 and height > 0 and useAspectRatio == true %}
       {% embed "@bolt/ratio.twig" with {
