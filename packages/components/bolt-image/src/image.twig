@@ -43,11 +43,14 @@
 
 {% set imageAttributes = create_attribute(imageAttributes | default({})).addClass(imageClasses, lazyloadClasses)
   .setAttribute('alt', alt ? alt : null)
+  .setAttribute( (lazyload ? "data-" : null) ~ "srcset", srcset ? srcset : null)
+  .setAttribute( (lazyload ? "data-" : null) ~ "sizes", sizes)
   .setAttribute('src', lazyload ? placeholderDummySrc : src)
-  .setAttribute( (lazyload ? "data-" : "") ~ "sizes", sizes)
-  .setAttribute( (lazyload ? "data-" : "") ~ "srcset", srcset ? srcset : null)
-  .setAttribute( (zoom ? "data-zoom" : ""), src)
 %}
+
+{% if zoom %}
+  {% set imageAttributes = imageAttributes.setAttribute("data-zoom", src) %}
+{% endif %}
 
 {% set imageFallbackAttributes = create_attribute({}).addClass(imageClasses)
   .setAttribute('alt', alt ? alt : null)
@@ -57,20 +60,23 @@
 
 
 {% set imageTag %}
-  <img {{ imageAttributes }}>
+  <img {{ imageAttributes }} />
 
   {# Only output noscript fallback if lazyloading, and ratio will be output #}
   {# @todo Salem, can you take a quick look at this conditional. Wouldn't we want the noscript fallback regardless of useAspectRatio and height and width?#}
   {% if lazyload and width > 0 and height > 0 and useAspectRatio == true %}
-    <noscript> <img {{ imageFallbackAttributes }}> </noscript>
+    <noscript> <img {{ imageFallbackAttributes }} /> </noscript>
   {% endif %}
 {% endset %}
 
 {% set imagePlaceholder %}
-  <img src="{{ placeholderImage }}" {{ imageAttributes.removeClass(imageClasses, lazyloadClasses).addClass(placeholderClasses)
+  <img {{ imageAttributes.removeClass(imageClasses, lazyloadClasses).addClass(placeholderClasses)
   .removeAttribute("data-srcset")
+  .removeAttribute("src")
   .removeAttribute("data-sizes")
-  .removeAttribute("srcset") }} />
+  .removeAttribute("srcset")
+  .setAttribute("src", placeholderImage)
+  }} />
 {% endset %}
 
 <bolt-image {% if placeholderColor and ext == "jpg" %} style="background-color: {{ placeholderColor }};" {% endif %}>
