@@ -21,7 +21,6 @@ if (config.webpackDevServer) {
   if (config.env === 'pl') {
     // https://www.browsersync.io/docs/options#option-server
     serverConfig.serveStatic = [];
-    serverConfig.serveStatic.push(config.srcDir);
     serverConfig.serveStatic.push(config.wwwDir);
   }
 } else {
