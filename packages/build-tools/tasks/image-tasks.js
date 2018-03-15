@@ -22,7 +22,7 @@ const svgo = new SVGO({
       removeViewBox: false,
     },
     {
-      removeXMLNS: true,
+      removeXMLNS: false,
     },
   ],
 });
