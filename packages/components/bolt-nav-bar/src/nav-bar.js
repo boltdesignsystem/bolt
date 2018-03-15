@@ -1,5 +1,5 @@
 import { polyfillLoader } from '@bolt/core';
 
 polyfillLoader.then((res) => {
-  import('./nav-bar.standalone.js');
+  import(/* webpackChunkName: 'bolt-navbar' */ './nav-bar.standalone.js');
 });
