@@ -1,6 +1,6 @@
 {% set schema = bolt.data.components['@bolt-components-button'].schema %}
 
-{% for rounded in schema.properties.rounded.enum|remove_null %}
+{% for rounded in schema.properties.rounded.enum %}
   <p>{{ rounded|capitalize }} Button</p>
 
   {% include "@bolt-components-button/button.twig" with {
