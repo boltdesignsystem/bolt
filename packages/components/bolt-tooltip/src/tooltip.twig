@@ -40,6 +40,10 @@
   {% set attributes = attributes.setAttribute("spacing", spacing) %}
 {% endif %}
 
+{% if position %}
+  {% set attributes = attributes.setAttribute("position-vert", position) %}
+{% endif %}
+
 {% if content %}
   {% set attributes = attributes.setAttribute("content", content) %}
 {% endif %}

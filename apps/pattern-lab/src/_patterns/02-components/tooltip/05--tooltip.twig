@@ -2,13 +2,13 @@
 {% include "@bolt-components-tooltip/tooltip.twig" with {
   trigger: {
     type: "button",
-    text: "Closed",
+    text: "Trigger",
     icon: {
       name: "info-open",
       size: "medium"
     },
     toggle: {
-      text: "Open",
+      text: "Trigger",
       name: "close-open"
     }
   },
@@ -22,10 +22,7 @@
   }),
   id: "tooltip-example-1",
   type: "action",
-  position: {
-    horz: "center",
-    vert: "top"
-  },
+  position: "down",
   noWrap: false,
   spacing: "small"
 } only %}

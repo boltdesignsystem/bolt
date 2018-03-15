@@ -26,7 +26,8 @@ export class BoltTooltip extends withPreact(withComponent()) {
     content: props.any,
     type: props.string,
     noWrap: props.boolean,
-    spacing: props.string
+    spacing: props.string,
+    positionVert: props.string
   };
 
   constructor() {
@@ -38,12 +39,13 @@ export class BoltTooltip extends withPreact(withComponent()) {
     const data = this.props;
     const baseClass = 'c-bolt-tooltip';
     const type = data.type === 'help' ? 'help' : 'action';
+    const vert = data.positionVert ? data.positionVert : 'down';
 
     const classes = [
       baseClass,
       baseClass + '--' + type,
-      'is-align-center',
-      'is-push-down'
+      'is-push-' + vert,
+      'is-align-center'
     ];
 
     if (data.noWrap) {
