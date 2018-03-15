@@ -1,3 +1,5 @@
+{% set schema = bolt.data.components['@bolt-components-button'].schema %}
+
 {# Defaults for a vanilla `Button` component #}
 {% set prefix = "c-bolt-" %}
 {% set componentName = "button" %}
@@ -15,13 +17,11 @@
 
 {# set up psuedo self-validation by limiting param values to what's specifically allowed in the component schema #}
 {% set alignOptions = schema.properties.align.enum|remove_null %}
-{% set roundedOptions = schema.properties.rounded.enum|remove_null %}
+{% set roundedOptions = schema.properties.rounded.enum %}
 {% set sizeOptions = schema.properties.size.enum|remove_null %}
 {% set styleOptions = schema.properties.style.enum|remove_null %}
 {% set tagOptions = schema.properties.tag.enum|remove_null %}
 {% set widthOptions = schema.properties.width.enum|remove_null %}
-{{ console_log(tagOptions) }}
-
 
 {# check if the value set to a prop is allowed or defined. if not, default to the default value specified in the component's schema (if one exists) #}
 {% set align =  align in alignOptions ? align : schema.properties.align.default %}
