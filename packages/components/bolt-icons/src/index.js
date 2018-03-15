@@ -1,3 +1,4 @@
+export * from './icons/Filter';
 export * from './icons/add-open';
 export * from './icons/add-solid';
 export * from './icons/app-development';
