@@ -8,7 +8,7 @@ bolt-icon {
   vertical-align: middle;
   // display: inline-flex;
   color: inherit;
-  color: var(--bolt-color-icon, inherit);
+  color: var(--bolt-theme-icon, inherit);
   width: 1em; // Default icon size if size prop not specified
   height: 1em; // Default icon size if size prop not specified
 
@@ -21,7 +21,7 @@ bolt-icon {
 :host {
   display: inline-block;
   color: inherit;
-  color: var(--bolt-color-icon, inherit);
+  color: var(--bolt-theme-icon, inherit);
   vertical-align: middle;
 }
 
@@ -41,7 +41,7 @@ bolt-icon {
   box-sizing: border-box;
   z-index: bolt-z-index('content');
   color: inherit;
-  color: var(--bolt-color-icon, inherit);
+  color: var(--bolt-theme-icon, inherit);
 }
 
 bolt-icon[size='small'],
@@ -112,7 +112,7 @@ bolt-icon[size='xlarge'],
   $brand-color: bolt-color(teal);
   $contrast-color: bolt-text-contrast($brand-color);
 
-  --bolt-color-icon: $contrast-color;
+  --bolt-theme-icon: $contrast-color;
   --bolt-theme-icon-background: $brand-color;
   --bolt-theme-icon-background-opacity: 1;
 }
@@ -120,7 +120,7 @@ bolt-icon[size='xlarge'],
 .c-bolt-icon--blue {
   $brand-color: bolt-color(blue);
   color: $brand-color;
-  --bolt-color-icon: $brand-color;
+  --bolt-theme-icon: $brand-color;
   --bolt-theme-icon-background: bolt-text-contrast($brand-color);
   --bolt-theme-icon-background-opacity: 1;
 
