@@ -42,6 +42,12 @@ bolt-icon {
   z-index: bolt-z-index('content');
   color: inherit;
   color: var(--bolt-theme-icon, inherit);
+
+  // The primary goal of this is to set the transition for icon color.  Perhaps it's a
+  // bit heavy-handed, but it seems more robust than just applying this to, say, 'path' elements.
+  * {
+    transition: all $bolt-transition;
+  }
 }
 
 bolt-icon[size='small'],
