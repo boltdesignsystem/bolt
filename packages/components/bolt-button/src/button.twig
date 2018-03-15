@@ -14,12 +14,13 @@
 {% endif %}
 
 {# set up psuedo self-validation by limiting param values to what's specifically allowed in the component schema #}
-{% set alignOptions = schema.properties.align.enum %}
-{% set roundedOptions = schema.properties.rounded.enum %}
-{% set sizeOptions = schema.properties.size.enum %}
-{% set styleOptions = schema.properties.style.enum %}
-{% set tagOptions = schema.properties.tag.enum %}
-{% set widthOptions = schema.properties.width.enum %}
+{% set alignOptions = schema.properties.align.enum|remove_null %}
+{% set roundedOptions = schema.properties.rounded.enum|remove_null %}
+{% set sizeOptions = schema.properties.size.enum|remove_null %}
+{% set styleOptions = schema.properties.style.enum|remove_null %}
+{% set tagOptions = schema.properties.tag.enum|remove_null %}
+{% set widthOptions = schema.properties.width.enum|remove_null %}
+{{ console_log(tagOptions) }}
 
 
 {# check if the value set to a prop is allowed or defined. if not, default to the default value specified in the component's schema (if one exists) #}
@@ -44,6 +45,7 @@
   {% set attributes = attributes.setAttribute("type", "reset") %}
 {% endif %}
 
+{% set tag = "a" %}
 
 {# shorthand for manually setting HTML attribute `type` such as submit or reset #}
 {% if type %}

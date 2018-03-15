@@ -1,6 +1,6 @@
 {% set schema = bolt.data.components['@bolt-components-button'].schema %}
 
-{% for align in schema.properties.align.enum %}
+{% for align in schema.properties.align.enum|remove_null %}
   <p>Align: {{ align }}</p>
 
   {% include "@bolt-components-button/button.twig" with {
