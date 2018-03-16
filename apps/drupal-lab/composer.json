@@ -49,6 +49,8 @@
       "drush site-install --verbose config_installer config_installer_sync_configure_form.sync_directory=../config/sync --account-name=admin --account-pass=admin --yes",
       "drush cache:rebuild",
       "@generate",
+      "drush core:cron",
+      "drush cache:rebuild",
       "echo '' && echo 'All done. Login with user: admin pass:admin'"
     ],
     "serve": "drush serve",
@@ -61,6 +63,8 @@
       "@build",
       "@serve"
     ],
+    "cr": "drush cr",
+    "cc": "@cr",
     "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
     "pre-install-cmd": [
       "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"

@@ -35,6 +35,7 @@ composer run serve
 #### Commands
 
 - `composer run serve` - Start a webserver
+- `composer run cr` - Clear Drupal cache via `drush cr`
 - `composer run export` - Export database config to yml files via `drush config:export`
 - `composer run build` - Drop the current database, install site, import config, generate dummy content, clear the cache and carry on.
 - `composer run start` - Run `build`, then `serve`
