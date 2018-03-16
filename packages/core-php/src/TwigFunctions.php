@@ -67,6 +67,16 @@ class TwigFunctions {
     }, array('is_safe' => array('html')));
   }
 
+  // A combination of base64, bgcolor, ratio, and imageSize
+  public static function getImageData() {
+    return new Twig_SimpleFunction('getImageData', function(\Twig_Environment $env, $relativeImagePath) {
+      $boltData = Utils::getData($env);
+      $wwwDir = $boltData['config']['wwwDir'];
+      return Images::get_image_data($relativeImagePath, $wwwDir);
+    }, [
+      'needs_environment' => true,
+    ]);
+  }
 
   // Same overall idea as https://jmperezperez.com/medium-image-progressive-loading-placeholder/, we just started working on this a few years prior ^_^
   public static function base64() {

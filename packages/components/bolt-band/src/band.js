@@ -1,5 +1,5 @@
 import { polyfillLoader } from '@bolt/core';
 
 polyfillLoader.then((res) => {
-  import('./band.standalone.js');
+  import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-band' */ './band.standalone.js');
 });

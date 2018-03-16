@@ -11,7 +11,14 @@ const serverConfig = {
   host: 'localhost',
 
   snippetOptions: {
-    blacklist: ['/index.html', '/', '/?*'] // prevents double browsersync
+    async: true,
+    blacklist: ['/index.html', '/', '/?*'], // prevents double browsersync
+    rule: {
+      match: /<\/body>/i,
+      fn: function (snippet, match) {
+        return snippet + match;
+      }
+    }
   }
 };
 
