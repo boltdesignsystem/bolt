@@ -4,6 +4,18 @@
 
 @import '@bolt/core';
 
+
+// Mobile Safari will zoom in when input is focused if the text is not at least 16px.
+// Use this mixin either to prevent that OR to match the text size of elements that
+// need it (for example, if you want a label to match an input).
+@mixin bolt-form-mobile-font-size() {
+  font-size: 16px;
+
+  @media (min-width: bolt-breakpoint(small)) {
+    @include bolt-font-size(small, null);
+  }
+}
+
 // General Form Elements
 select {
   cursor: pointer;
@@ -126,12 +138,12 @@ $bolt-input-transition: $bolt-transition;
 .c-bolt-input {
   @include bolt-padding(small);
   @include bolt-input-placeholder($bolt-input-placeholder-color);
+  @include bolt-form-mobile-font-size;
 
   display: block;
   width: 100%;
   color: $bolt-input-text-color;
   line-height: 1.45; // [Mai] This makes the input same height as button.
-  font-size: 16px; // [Mai] This prevents mobile Safari from zooming when input is in focus state.
   border-color: $bolt-input-border-color;
   border-style: $bolt-input-border-style;
   border-width: $bolt-input-border-width;
@@ -236,6 +248,7 @@ $bolt-input-transition: $bolt-transition;
 
 .c-bolt-inline-label {
   @include bolt-padding-left(medium);
+  @include bolt-form-mobile-font-size;
 
   display: inline-block;
   position: relative;
