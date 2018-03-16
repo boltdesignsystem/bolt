@@ -1,0 +1,100 @@
+{
+  "name": "basaltinc/drupal-lite",
+  "description": "Project template for a simple Drupal 8 using SQLite for easy dev testing.",
+  "type": "project",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Evan Lovely"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  ],
+  "require": {
+    "composer/installers": "^1.2",
+    "cweagans/composer-patches": "^1.6",
+    "drupal-composer/drupal-scaffold": "^2.2",
+    "drupal/config_installer": "^1.7",
+    "drupal/console": "^1.0.2",
+    "drupal/core": "~8.5",
+    "drupal/devel": "^1.2",
+    "drush/drush": "^9.0.0",
+    "webflo/drupal-finder": "^1.0.0",
+    "webmozart/path-util": "^2.3"
+  },
+  "require-dev": {
+    "webflo/drupal-core-require-dev": "~8.5"
+  },
+  "conflict": {
+    "drupal/drupal": "*"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "sort-packages": true,
+    "process-timeout": 0
+  },
+  "autoload": {
+    "classmap": [
+      "scripts/composer/ScriptHandler.php"
+    ]
+  },
+  "scripts": {
+    "build": [
+      "drush sql-drop -y",
+      "drush site-install --verbose config_installer config_installer_sync_configure_form.sync_directory=../config/sync --account-name=admin --account-pass=admin --yes",
+      "drush cache:rebuild",
+      "@generate",
+      "echo '' && echo 'All done. Login with user: admin pass:admin'"
+    ],
+    "serve": "drush serve",
+    "export": "drush config:export",
+    "generate": [
+      "# 'About to use devel to generate content, but it outputs a big confusing error that actually is not an error as it still generates all the content, so we will redirect it to /dev/null to hide output.'",
+      "drush devel-generate-content --kill > /dev/null 2>&1"
+    ],
+    "start": [
+      "@build",
+      "@serve"
+    ],
+    "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+    "pre-install-cmd": [
+      "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+    ],
+    "pre-update-cmd": [
+      "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+    ],
+    "post-install-cmd": [
+      "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+    ],
+    "post-update-cmd": [
+      "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+    ]
+  },
+  "extra": {
+    "installer-paths": {
+      "web/core": [
+        "type:drupal-core"
+      ],
+      "web/libraries/{$name}": [
+        "type:drupal-library"
+      ],
+      "web/modules/contrib/{$name}": [
+        "type:drupal-module"
+      ],
+      "web/profiles/contrib/{$name}": [
+        "type:drupal-profile"
+      ],
+      "web/themes/contrib/{$name}": [
+        "type:drupal-theme"
+      ],
+      "drush/contrib/{$name}": [
+        "type:drupal-drush"
+      ]
+    }
+  }
+}
