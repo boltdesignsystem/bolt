@@ -7,6 +7,7 @@ module.exports = {
   startPath: 'pattern-lab/index.html',
   plConfigFile: './config/config.yml',
   verbosity: 1,
+  webpackDevServer: true,
   extraTwigNamespaces: {
     'bolt-assets': {
       recursive: true,
@@ -34,7 +35,7 @@ module.exports = {
       '@bolt/global',
       '@bolt/components-action-blocks',
       '@bolt/components-collapse',
-      '@bolt/components-accordion',
+      '@bolt/components-dropdown',
       '@bolt/components-background',
       '@bolt/components-background-shapes',
       '@bolt/components-band',

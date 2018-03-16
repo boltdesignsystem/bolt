@@ -1,0 +1,107 @@
+/* ------------------------------------ *\
+  #VISUALLY HIDDEN UTILITIES
+\* ------------------------------------ */
+@import "@bolt/core";
+
+$bolt-height-props: (
+  'xxsmall': bolt-spacing(xxsmall),
+  'xsmall': bolt-spacing(xsmall),
+  'small': bolt-spacing(small),
+  'medium': bolt-spacing(medium),
+  'large': bolt-spacing(large),
+  'xlarge': bolt-spacing(xlarge),
+  'xxlarge': bolt-spacing(xxlarge),
+  'none': 0,
+  'auto': auto,
+  'full': 100%,
+  'screen': 100vh,
+);
+
+@mixin bolt-height-utils($breakpoint: null) {
+  @each $name, $value in $bolt-height-props {
+    .u-bolt-height-#{$name}#{$breakpoint} {
+      height: $value !important;
+    }
+  }
+}
+
+@include bolt-height-utils;
+
+// Loop over our breakpoints
+@each $breakpoint in $breakpoints {
+  $breakpointName: nth($breakpoint, 1);
+  @include respond-to($breakpointName) {
+    @include bolt-height-utils(\@#{$breakpointName});
+  }
+}
+
+// // Loop over our breakpoints
+// @each $breakpoint in $breakpoints {
+//   $breakpointName: nth($breakpoint, 1);
+//   @include respond-to($breakpointName) {
+//     @include bolt-display-utils(\@#{$breakpointName});
+//   }
+// }
+
+
+// .u-bolt-height-1 {
+//   height: 0.25rem;
+// }
+
+// .u-bolt-height-2 {
+//   height: 0.5rem;
+// }
+
+// .u-bolt-height-3 {
+//   height: 0.75rem;
+// }
+
+// .u-bolt-height-4 {
+//   height: 1rem;
+// }
+// .u-bolt-height-6 {
+//   height: 1.5rem;
+// }
+
+// .u-bolt-height-8 {
+//   height: 2rem;
+// }
+
+// .u-bolt-height-10 {
+//   height: 2.5rem;
+// }
+
+// .u-bolt-height-12 {
+//   height: 3rem;
+// }
+
+// .u-bolt-height-16 {
+//   height: 4rem;
+// }
+// .u-bolt-height-24 {
+//   height: 6rem;
+// }
+
+// .u-bolt-height-32 {
+//   height: 8rem;
+// }
+// .u-bolt-height-48{
+//   height: 12rem;
+// }
+// .u-bolt-height-64 {
+//   height: 16rem;
+// }
+// .u-bolt-height-auto{
+//   height: auto;
+
+// .u-bolt-height-px {
+//   height: 1px;
+// }
+
+// .u-bolt-height-full{
+//   height: 100%;
+// }
+
+// .u-bolt-height-screen{
+//   height: 100vh;
+// }

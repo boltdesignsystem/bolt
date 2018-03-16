@@ -1,0 +1,94 @@
+
+
+{# <bolt-dropdown default-text="Dropdown label">
+  {% block content %}
+
+  {% endblock %}
+</bolt-dropdown> #}
+    {# <button class="c-bolt-dropdown__button" aria-controls="dropdown-content"
+    aria-expanded="false"
+    aria-disabled="false">
+      {{ defaultDropdownText | default('Toggle Dropdown') }}
+    </button> #}
+
+{#
+<bolt-dropdown id="dropdown">
+
+  <h3 class="c-bolt-dropdown__header">
+
+
+    <a class="c-bolt-dropdown__button c-bolt-dropdown__button--open"
+    href="#dropdown">
+      {{ defaultDropdownText | default('Open Dropdown') }}
+    </a>
+
+    <a class="c-bolt-dropdown__button c-bolt-dropdown__button--close"
+    href="#">
+      {{ defaultDropdownText | default('Close Dropdown') }}
+    </a>
+  </h3>
+
+  <bolt-dropdown-content id="dropdown-content">
+    <div
+    class="c-bolt-dropdown__content">
+      <div class="c-bolt-dropdown__content-inner">
+        <bolt-menu>
+          <bolt-item>
+            <bolt-link href="#jose">Components</bolt-link>
+          </bolt-item>
+
+          <bolt-item>
+            <bolt-link href="#manolo">Manolo</bolt-link>
+          </bolt-item>
+
+          <bolt-item>
+            <bolt-link href="#pedro">Pedro</bolt-link>
+          </bolt-item>
+        </bolt-menu>
+      </div>
+    </div>
+
+  </bolt-dropdown-content>
+</bolt-dropdown> #}
+
+
+
+
+
+<bolt-dropdown>
+  <input class="c-bolt-dropdown__state" type="checkbox" id="c-bolt-dropdown-uuid">
+
+  <div class="c-bolt-dropdown" id="c-bolt-dropdown-id">
+    <label class="c-bolt-dropdown__label" for="c-bolt-dropdown-uuid">
+      <h3 class="c-bolt-dropdown__title">Toggle Dropdown</h3>
+
+      <bolt-icon name="chevron-down"></bolt-icon>
+    </label>
+
+    <a href="#c-bolt-dropdown-uuid" class="c-bolt-dropdown__toggle c-bolt-dropdown__toggle--open">
+      <span class="c-bolt-dropdown__toggle-text">Open Menu</span>
+    </a>
+
+    <a href="#c-bolt-dropdown-id" class="c-bolt-dropdown__toggle c-bolt-dropdown__toggle--close">
+      <span class="c-bolt-dropdown__toggle-text">Close Menu</span>
+    </a>
+
+    <div class="c-bolt-dropdown__content">
+      <div class="c-bolt-dropdown__content-inner">
+        <ul>
+          <li><a href="/mac/">Mac</a></li>
+          <li><a href="/ipad/">iPad</a></li>
+          <li><a href="/iphone/">iPhone</a></li>
+          <li><a href="/watch/">Watch</a></li>
+          <li><a href="/tv/">TV</a></li>
+          <li><a href="/music/">Music</a></li>
+          <li><a href="/itunes/">iTunes</a></li>
+          <li><a href="/homepod/">HomePod</a></li>
+          <li><a href="/ipod-touch/">iPod touch</a></li>
+          <li><a href="/us/shop/goto/buy_accessories">Accessories</a></li>
+          <li><a href="/us/shop/goto/giftcards">Gift Cards</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

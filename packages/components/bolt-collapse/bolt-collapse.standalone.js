@@ -2,10 +2,13 @@ import { withReact, wrap } from '@bolt/core/renderers/renderer-react';
 import React from 'react';
 import { define, props, withComponent } from 'skatejs';
 import { Collapse } from './collapse';
+import { CollapseToggler } from './collapse-toggler';
 import classNames from 'classnames';
 
 import styles from './collapse.scss';
-import utils from '@bolt/global/styles/07-utilities/_utilities-display.scss';
+import displayUtils from '@bolt/global/styles/07-utilities/_utilities-display.scss';
+import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
+import opacityUtils from '@bolt/global/styles/07-utilities/_utilities-opacity.scss';
 
 
 class BoltCollapse extends React.Component {
@@ -36,27 +39,29 @@ class BoltCollapse extends React.Component {
       <div>
         <style>
           {styles[0][1]}
-          {utils[0][1]}
+          {displayUtils[0][1]}
+          {heightUtils[0][1]}
+          {opacityUtils[0][1]}
         </style>
 
-        <h3 class="c-bolt-collapse__header u-bolt-hidden@small">
-          <button onClick={this.toggle}
-            className="c-bolt-collapse__header-button"
-            aria-controls="collapse-content"
-            aria-expanded="false"
-            aria-disabled="false"
-            { ...autoFocus }
+        <button onClick={this.toggle}
+          className="c-bolt-collapse__header-button"
+          aria-controls="collapse-content"
+          aria-expanded="false"
+          aria-disabled="false"
+          { ...autoFocus }
         >
-            <slot name="title" />
-          </button>
-        </h3>
+          <slot name="title" />
+        </button>
 
         <Collapse
           id="collapse-content"
           isOpen={this.state.collapse}
-          className="c-bolt-collapse__content u-bolt-block@small"
+          className="u-bolt-block@small u-bolt-height-auto@small"
         >
-          <slot />
+          <div className="c-bolt-collapse__content-inner u-bolt-opacity-100@small">
+            <slot />
+          </div>
         </Collapse>
       </div>
     );

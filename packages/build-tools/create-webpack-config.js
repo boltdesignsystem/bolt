@@ -108,6 +108,9 @@ function createConfig(config) {
 
   const scssLoaders = [
     {
+      loader: 'cache-loader'
+    },
+    {
       loader: 'string-replace-loader',
       query: {
         search: workaroundAtValue,
@@ -186,10 +189,23 @@ function createConfig(config) {
       publicPath: publicPath,
     },
     resolve: {
+      alias: {
+        'react': 'preact-compat',
+        'react-dom': 'preact-compat',
+        // Not necessary unless you consume a module using `createClass`
+        'create-react-class': 'preact-compat/lib/create-react-class'
+      },
       extensions: [".js", ".jsx", ".json", ".svg", ".scss"]
     },
     module: {
       rules: [
+        {
+          test: /\.twig$/,
+          use: [
+            { loader: 'raw-loader' },
+            { loader: 'inline-source-loader' }
+          ]
+        },
         {
           test: /\.scss$/,
           oneOf: [
@@ -208,7 +224,7 @@ function createConfig(config) {
         },
         {
           test: /\.js$/,
-          exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
+          exclude: /(node_modules|node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
           use: {
             loader: 'babel-loader',
             options: {
@@ -282,6 +298,7 @@ function createConfig(config) {
     webpackConfig.plugins.push(new UglifyJsPlugin({
       sourceMap: true,
       parallel: true,
+      cache: true,
       uglifyOptions: {
         cache: true,
         compress: true,
