@@ -791,5 +791,5 @@ $databases['default']['default'] = array (
   'namespace' => 'Drupal\\Core\\Database\\Driver\\sqlite',
   'driver' => 'sqlite',
 );
-$settings['install_profile'] = 'minimal';
+$settings['install_profile'] = 'config_installer';
 $config_directories['sync'] = '../config/sync';
