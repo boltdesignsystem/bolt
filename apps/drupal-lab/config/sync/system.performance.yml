@@ -2,7 +2,7 @@ cache:
   page:
     max_age: 0
 css:
-  preprocess: true
+  preprocess: false
   gzip: true
 fast_404:
   enabled: true
@@ -10,7 +10,7 @@ fast_404:
   exclude_paths: '/\/(?:styles|imagecache)\//'
   html: '<!DOCTYPE html><html><head><title>404 Not Found</title></head><body><h1>Not Found</h1><p>The requested URL "@path" was not found on this server.</p></body></html>'
 js:
-  preprocess: true
+  preprocess: false
   gzip: true
 stale_file_threshold: 2592000
 _core:
