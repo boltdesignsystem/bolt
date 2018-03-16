@@ -430,11 +430,12 @@ $bolt-input-message-text-color--invalid: bolt-color(error); // TODO: [Mai] This 
 
 .c-bolt-input-message {
   @include bolt-padding(xxsmall small);
-  @include bolt-font-size(xsmall);
+  @include bolt-font-size(medium);
 }
 
 .c-bolt-input-message--invalid {
   @include bolt-font-weight(semibold);
+  @include bolt-font-size(xsmall);
   color: $bolt-input-message-text-color--invalid;
 }
 
