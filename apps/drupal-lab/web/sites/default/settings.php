@@ -797,3 +797,6 @@ $databases['default']['default'] = array (
 );
 $settings['install_profile'] = 'config_installer';
 $config_directories['sync'] = '../config/sync';
+
+// Including local settings as we are always in development mode here
+require(__DIR__ . '/settings.local.php');
