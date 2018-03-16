@@ -1,0 +1,34 @@
+{% macro recursiveZindexDemo(list) %}
+  {% set utilityClass = bolt.data.zIndexes['utility-class-prefix'] ~ list|keys|last %}
+  <div class="bolt-z-index-demo {{ utilityClass }}">
+    {% if list|slice(0, -1)|length  %}
+      {{ _self.recursiveZindexDemo(list|slice(0, -1)) }}
+    {% endif %}
+    <p>Z-Index: <code>{{ list|keys|last }}</code>: {{ list|last }}<br>Utility Class: <code>{{ utilityClass }}</code></p>
+  </div>
+{% endmacro %}
+
+{% set classPrefix = bolt.data.zIndexes['utility-class-prefix'] %}
+
+<h4>Z-index Values</h4>
+
+{{ _self.recursiveZindexDemo(bolt.data.zIndexes.sets) }}
+
+<h5>Utility Classes</h5>
+
+<p>Add the utility class "{{ classPrefix }}xx" where xx equals the z index level you wish to apply.</p>
+
+{{ ('```html
+<div class="' ~ classPrefix ~ bolt.data.zIndexes.sets|keys|first ~ '"> ... </div>
+```') | markdown }}
+
+<h5>Mixin</h5>
+
+<p>The following mixin can be used in sass/scss to adjust z-index.</p>
+{# @todo Can someone add a bit here about why this is perferable to using random numbers #}
+
+{{ ('```scss
+.' ~ bolt.data.zIndexes.sets|keys|first ~ ' {
+  z-index: bolt-z-index(\'' ~ classPrefix ~ bolt.data.zIndexes.sets|keys|first ~ '\');
+}
+```') | markdown }}

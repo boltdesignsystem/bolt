@@ -1,6 +1,6 @@
 {
   "name": "@bolt/babel-preset-bolt",
-  "version": "1.0.0-rc.3",
+  "version": "1.0.0-rc.7",
   "description": "Babel preset shared across the Bolt Design System",
   "author": {
     "name": "Salem Ghoweri",
@@ -14,14 +14,14 @@
   },
   "dependencies": {
     "@babel/core": "^7.0.0-beta.40",
-    "@babel/plugin-proposal-decorators": "^7.0.0-beta.40",
-    "@babel/plugin-syntax-decorators": "7.0.0-beta.40",
-    "@babel/plugin-syntax-jsx": "^7.0.0-beta.40",
     "@babel/plugin-proposal-class-properties": "^7.0.0-beta.40",
-    "@babel/plugin-transform-react-jsx": "^7.0.0-beta.40",
-    "@babel/preset-env": "^v7.0.0-beta.40",
+    "@babel/plugin-proposal-decorators": "^7.0.0-beta.40",
+    "@babel/plugin-proposal-object-rest-spread": "^v7.0.0-beta.40",
+    "@babel/plugin-syntax-decorators": "7.0.0-beta.40",
     "@babel/plugin-syntax-dynamic-import": "^v7.0.0-beta.40",
-    "@babel/plugin-proposal-object-rest-spread": "^v7.0.0-beta.40"
+    "@babel/plugin-syntax-jsx": "^7.0.0-beta.40",
+    "@babel/plugin-transform-react-jsx": "^7.0.0-beta.40",
+    "@babel/preset-env": "^v7.0.0-beta.40"
   },
   "keywords": [
     "babel",
@@ -32,5 +32,8 @@
   ],
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/config-presets/babel-preset-bolt",
+  "homepage": "https://bolt-design-system.com"
 }

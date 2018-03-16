@@ -83,5 +83,5 @@
 </bolt-{{ componentName }}>
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-action-blocks/action-blocks.schema.yml', _self) }}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-action-blocks'].schema, _self) }}
 {% endif %}

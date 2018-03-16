@@ -13,6 +13,7 @@ export * from './utils/css';
 export * from './utils/supports-css-vars';
 export * from './utils/color-contrast';
 export * from './utils/rgb2hex';
+export * from './utils/supports-passive-event-listener';
 export { declarativeClickHandler } from './utils/declarative-click-handler';
 export * from './utils/environment';
 

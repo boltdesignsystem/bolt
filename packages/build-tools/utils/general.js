@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 /**
  * Flatten Array
  * @param arrayOfArrays {Array[]}
@@ -34,8 +36,24 @@ function uniqueArray(item) {
   return newArray;
 }
 
+/**
+ * Ensure a file exists
+ * We don't want to do anything with the file now, we just want to provide an early error if a path is wrong.
+ * This is called async and by the time an error is thrown, we may be several steps ahead with WebPack probably already trying to start - that's ok, we don't want to hold up the process everytime things are correct.
+ * @param filePath {string} - Path to file to ensure exists
+ */
+function ensureFileExists(filePath) {
+  fs.access(filePath, (err) => {
+    if (err) {
+      log.errorAndExit(`This file ^^^ does not exist and it was referenced in package.json for that component, please make sure the file path is correct.`, filePath);
+    }
+  });
+}
+
+
 module.exports = {
   flattenArray,
   concatArrays,
   uniqueArray,
+  ensureFileExists,
 };

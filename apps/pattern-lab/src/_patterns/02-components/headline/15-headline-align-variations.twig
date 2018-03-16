@@ -1,4 +1,4 @@
-{% set schema = get_data('@bolt-components-headline/headline.schema.yml') %}
+{% set schema = bolt.data.components['@bolt-components-headline'].schema %}
 
 {% for align in schema.properties.align.enum %}
   <p>Align: {{ alignmentName }}</p>

@@ -1,4 +1,4 @@
-{% set schema = get_data('@bolt-components-breadcrumb/breadcrumb.schema.yml') %}
+{% set schema = bolt.data.components['@bolt-components-breadcrumb'].schema %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
   "contentItems": [
