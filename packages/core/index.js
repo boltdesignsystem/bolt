@@ -17,7 +17,7 @@ export * from './utils/supports-passive-event-listener';
 export { declarativeClickHandler } from './utils/declarative-click-handler';
 export * from './utils/environment';
 
-export { withPreact } from './renderers/renderer-preact';
+export { withPreact, wrapPreact } from './renderers/renderer-preact';
 export { withHyperHTML } from './renderers/renderer-hyperhtml';
 
 // Export Bolt data shared

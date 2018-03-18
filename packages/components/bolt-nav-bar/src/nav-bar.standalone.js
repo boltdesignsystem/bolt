@@ -156,8 +156,13 @@ export class BoltNavList extends withHyperHTML(withComponent()) {
 
     const linkPos = link.getBoundingClientRect(); // object w/ all positioning
     const linkWidth = linkPos.width;
+    const linkHeight = linkPos.height;
     const linkOffsetLeft = link.offsetLeft;
-    const linkOffsetCenter = linkOffsetLeft + linkWidth / 2;
+    const linkOffsetTop = link.offsetTop;
+    const linkOffsetVertical = linkPos.top + linkHeight / 2;
+    const linkOffsetHorizontal = linkOffsetLeft + linkWidth / 2;
+    const mq = window.matchMedia("(max-width: 600px)");
+
 
     if (!this.activeLink) {
       // No link is currently active; the first link to become active is a special snowflake when it
@@ -165,16 +170,44 @@ export class BoltNavList extends withHyperHTML(withComponent()) {
 
       // First, immediately center the indicator.
       this._indicator.style.transition = 'none';
-      this._indicator.style.transform = 'translateX(' + linkOffsetCenter + 'px)';
+
+
+      if (mq.matches){
+        this._indicator.style.transform = 'translateY(' + linkOffsetVertical + 'px)';
+      } else {
+        this._indicator.style.transform = 'translateX(' + linkOffsetHorizontal + 'px)';
+      }
 
       // Then, reset the transition and expand the indicator to the full width of the link.
       this.flushCss(this._indicator);
       this._indicator.style.transition = '';
-      this._indicator.style.width = linkWidth + 'px';
-      this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px)';
+
+
+      if (mq.matches) {
+        this._indicator.style.height = linkHeight + 'px';
+        this._indicator.style.width = '2px';
+        this._indicator.style.transform = 'translateY(' + linkOffsetTop + 'px)';
+      } else {
+        this._indicator.style.width = linkWidth + 'px';
+        this._indicator.style.height = '2px';
+        this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px)';
+      }
+
+
+
     } else {
-      this._indicator.style.width = linkWidth + 'px';
-      this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px)';
+      if (mq.matches) {
+
+        // console.log(linkPos);
+
+        this._indicator.style.height = linkHeight + 'px';
+        this._indicator.style.width = '2px';
+        this._indicator.style.transform = 'translateY(' + linkOffsetTop + 'px)';
+      } else {
+        this._indicator.style.width = linkWidth + 'px';
+        this._indicator.style.height = '2px';
+        this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px)';
+      }
     }
   }
 

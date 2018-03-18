@@ -157,18 +157,28 @@ bolt-nav-list {
   height: $bolt-nav-list-link-border-size;
   background-color: currentColor;
   background-color: var(--bolt-theme-heading, currentColor);
+  opacity: 0;
   transition:
-    all
+    transform
     $bolt-nav-list-link-border-transition-timing
-    $bolt-nav-list-link-border-transition-ease;
+    $bolt-nav-list-link-border-transition-ease,
+    opacity 0.35s ease-out;
+    // transform
+    // $bolt-nav-list-link-border-transition-timing
+    // $bolt-nav-list-link-border-transition-ease;
   will-change: width, transform;
+  // top: 0;
 
-  .c-bolt-nav-list--xsmall & {
-    bottom: (bolt-v-spacing(xsmall) * -1);
-  }
 
-  .c-bolt-nav-list--small & {
-    bottom: (bolt-v-spacing(medium) * -1); // TODO: [Mai] When the band spacing options are fixed, small should map to small, not medium here.
+  @include respond-to(small) {
+    opacity: 1;
+    .c-bolt-nav-list--xsmall & {
+      bottom: (bolt-v-spacing(xsmall) * -1);
+    }
+
+    .c-bolt-nav-list--small & {
+      bottom: (bolt-v-spacing(medium) * -1); // TODO: [Mai] When the band spacing options are fixed, small should map to small, not medium here.
+    }
   }
 
   // TODO: [Mai] Vertical spacing options for future use.
@@ -218,16 +228,83 @@ bolt-nav-link {
   display: block;
 }
 
+
+.c-bolt-block-list__link {
+  // @include bolt-padding-top(xsmall);
+  // @include bolt-padding-bottom(xsmall);
+  // @include bolt-padding-left(medium);
+  // @include bolt-padding-right(medium);
+  // @include bolt-font-size(medium);
+  // display: block;
+  // position: relative;
+  // transition: all .2s ease;
+  // color: currentColor;
+  // color: var(--bolt-theme-heading-link-default, inherit);
+  // &:after {
+  //   content: '';
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   right: 0;
+  //   bottom: 0;
+  //   pointer-events: none;
+  //   z-index: -1;
+  //   display: block;
+  //   background-color: transparent;
+  //   transition: opacity .2s ease;
+  //   opacity: 0;
+  //   background-color: var(--bolt-theme-heading-link);
+  // }
+  // &:hover {
+  //   color: var(--bolt-theme-heading-link-hover, inherit);
+  //   &:after {
+  //     opacity: 0.15;
+  //   }
+  // }
+  // &:active {
+  //   color: var(--bolt-theme-heading-link-active, inherit);
+  //   &:after {
+  //     opacity: 0.25; // background-color: #FFFFFF;
+  //   }
+  // }
+}
+
+// .c-bolt-block-list__link:target:before,
+// .c-bolt-block-list__link.is-active:before {
+//   content: '';
+//   top: bolt-spacing(xxsmall);
+//   bottom: bolt-spacing(xxsmall);
+//   width: 2px;
+//   background-color: #FFFFFF;
+//   height: auto;
+//   position: absolute;
+//   pointer-events: none;
+// }
+
 .c-bolt-nav-link {
-  @include bolt-padding(small, squished);
-  @include bolt-font-size(small);
+  @include bolt-padding-top(xsmall);
+  @include bolt-padding-bottom(xsmall);
+  @include bolt-padding-left(medium);
+  @include bolt-padding-right(medium);
   @include bolt-font-weight(semibold);
+  @include bolt-font-size(medium);
+
+  @include respond-to(medium) {
+    @include bolt-padding(small, squished);
+    @include bolt-font-size(small);
+  }
 
   display: block;
   position: relative;
   white-space: nowrap;
   opacity: 0.8;
   transition: opacity $bolt-nav-link-text-transition;
+
+  display: block;
+  position: relative;
+  transition: all .1s ease;
+  color: currentColor;
+  color: var(--bolt-theme-heading-link-default, inherit);
 
   &:hover, &:active,
   &.is-hover, &.is-active {

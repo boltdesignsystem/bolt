@@ -1,72 +1,40 @@
-import {
-  h,
-  render,
-  // React,
-  // Component,
-  define,
-  props,
-  withComponent,
-  css,
-  hasNativeShadowDomSupport,
-  withPreact,
-  sanitizeBoltClasses
-} from '@bolt/core';
-
-
 import EventEmitter from 'ev-emitter'
 import { rAF, extend } from './helpers'
 import Fold from './fold'
 
 let ID_COUNTER = 0
 
-
-// class Handorgel extends withComponent(wrap(HandorgelComponent)) {
-
-// }
-
-@define
-export class Handorgel extends withPreact(withComponent(EventEmitter)) {
-  static is = "bolt-collapse";
-
+export default class Handorgel extends EventEmitter {
   constructor(element, options = {}) {
     super()
 
-    // if (element.handorgel) {
-    //   return
-    // }
+    if (element.handorgel) {
+      return
+    }
 
-    // this = element;
-    // this.handorgel = this
-
+    this.element = element
+    this.element.handorgel = this
+    this.id = `handorgel${++ID_COUNTER}`
+    this.element.setAttribute('id', this.id)
     this.folds = []
     this.options = extend({}, Handorgel.defaultOptions, options)
 
     this._listeners = {}
     this._resizing = false
 
+    this._bindEvents()
+    this._initAria()
+    this.update()
   }
 
-  connectedCallback(){
-    this.id = `handorgel${++ID_COUNTER}`
-    this.id = this.id;
-
-    this._bindEvents();
-    this._initAria();
-    this._update();
-
-    console.log(this.childNodes);
-  }
-
-  _update() {
-    this.folds = [];
-    const children = this.children;
-
-    console.log(children);
+  update() {
+    this.folds = []
+    const children = this.element.children
 
     for (let i = 0, childrenLength = children.length; i < childrenLength; i = i + 2) {
-      const header = children[i];
-      const content = children[i + 1];
-      let fold = header.handorgelFold;
+      const header = children[i]
+      const content = children[i + 1]
+      let fold = header.handorgelFold
 
       if (!fold) {
         fold = new Fold(this, header, content)
@@ -123,14 +91,9 @@ export class Handorgel extends withPreact(withComponent(EventEmitter)) {
     }
   }
 
-
-  disconnectedCallback(){
-    this.destroy();
-  }
-
   destroy() {
     this.emitEvent('destroy')
-    this.removeAttribute('id')
+    this.element.removeAttribute('id')
 
     this.folds.forEach(fold => {
       fold.destroy()
@@ -140,7 +103,7 @@ export class Handorgel extends withPreact(withComponent(EventEmitter)) {
     this._cleanAria()
 
     // clean reference to handorgel instance
-    this.handorgel = null
+    this.element.handorgel = null
     this.emitEvent('destroyed')
   }
 
@@ -171,16 +134,16 @@ export class Handorgel extends withPreact(withComponent(EventEmitter)) {
       return
     }
 
-    this.setAttribute('role', 'presentation')
+    this.element.setAttribute('role', 'presentation')
 
     if (this.options.multiSelectable) {
-      this.setAttribute('aria-multiselectable', 'true')
+      this.element.setAttribute('aria-multiselectable', 'true')
     }
   }
 
   _cleanAria() {
-    this.removeAttribute('role')
-    this.removeAttribute('aria-multiselectable')
+    this.element.removeAttribute('role')
+    this.element.removeAttribute('aria-multiselectable')
   }
 
   _bindEvents() {
@@ -208,18 +171,18 @@ Handorgel.defaultOptions = {
   initialOpenTransition: true,
   initialOpenTransitionDelay: 200,
 
-  headerOpenClass: 'c-bolt-collapse__header--open',
-  contentOpenClass: 'c-bolt-collapse__content--open',
+  headerOpenClass: 'handorgel__header--open',
+  contentOpenClass: 'handorgel__content--open',
 
-  headerOpenedClass: 'c-bolt-collapse__header--opened',
-  contentOpenedClass: 'c-bolt-collapse__content--opened',
+  headerOpenedClass: 'handorgel__header--opened',
+  contentOpenedClass: 'handorgel__content--opened',
 
-  headerDisabledClass: 'c-bolt-collapse__header--disabled',
-  contentDisabledClass: 'c-bolt-collapse__content--disabled',
+  headerDisabledClass: 'handorgel__header--disabled',
+  contentDisabledClass: 'handorgel__content--disabled',
 
-  headerFocusClass: 'c-bolt-collapse__header--focus',
-  contentFocusClass: 'c-bolt-collapse__content--focus',
+  headerFocusClass: 'handorgel__header--focus',
+  contentFocusClass: 'handorgel__content--focus',
 
-  headerNoTransitionClass: 'c-bolt-collapse__header--notransition',
-  contentNoTransitionClass: 'c-bolt-collapse__content--notransition'
+  headerNoTransitionClass: 'handorgel__header--notransition',
+  contentNoTransitionClass: 'handorgel__content--notransition'
 }

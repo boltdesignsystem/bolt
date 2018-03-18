@@ -9,7 +9,54 @@ import {
   sanitizeBoltClasses
 } from '@bolt/core';
 
-import { BoltDropdownItem } from './dropdown-item';
+// import { BoltDropdownItem } from './dropdown-item';
+
+
+import handorgel from './handorgel/handorgel';
+
+
+var accordion = new handorgel(document.querySelector('.c-bolt-dropdown'), {
+
+  // whether multiple folds can be opened at once
+  multiSelectable: true,
+  // whether the folds are collapsible
+  collapsible: true,
+
+  // whether ARIA attributes are enabled
+  ariaEnabled: true,
+  // whether W3C keyboard shortcuts are enabled
+  keyboardInteraction: true,
+  // whether to loop header focus (sets focus back to first/last header when end/start reached)
+  carouselFocus: true,
+
+  // attribute for the header or content to open folds at initialization
+  initialOpenAttribute: 'data-open',
+  // whether to use transition at initial open
+  initialOpenTransition: true,
+  // delay used to show initial transition
+  initialOpenTransitionDelay: 200,
+
+  // header/content class if fold is open
+  headerOpenClass: 'c-bolt-dropdown__header--open',
+  contentOpenClass: 'c-bolt-dropdown__content--open',
+
+  // header/content class if fold has been opened (transition finished)
+  headerOpenedClass: 'c-bolt-dropdown__header--opened',
+  contentOpenedClass: 'c-bolt-dropdown__content--opened',
+
+  // header/content class if fold has been focused
+  headerFocusClass: 'c-bolt-dropdown__header--focus',
+  contentFocusClass: 'c-bolt-dropdown__content--focus',
+
+  // header/content class if fold is disabled
+  headerDisabledClass: 'c-bolt-dropdown__header--disabled',
+  contentDisabledClass: 'c-bolt-dropdown__content--disabled',
+
+  // header/content class if no transition should be active (applied on resize)
+  headerNoTransitionClass: 'c-bolt-dropdown__header--notransition',
+  contentNoTransitionClass: 'c-bolt-dropdown__content--notransition'
+
+});
 
 // console.log(BoltDropdownItem);
 
