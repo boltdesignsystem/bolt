@@ -8,7 +8,7 @@ import {
   withComponent,
   withPreact,
   css,
-  spacingSizes
+  spacingSizes,
 } from '@bolt/core';
 
 import dasherize from 'dasherize';
@@ -23,7 +23,7 @@ class BrightcoveMeta extends withPreact(withComponent()) {
 
   static props = {
     duration: props.string,
-    title: props.string
+    title: props.string,
   };
 
   get renderRoot() {
@@ -36,7 +36,7 @@ class BrightcoveMeta extends withPreact(withComponent()) {
     // 'reveal' allows the metadata to be hidden.
     // All of its logic is contained here in render(), but it could be updated to be a property that is set
     // externally (such as when the video has finished fully loading).
-    const reveal =  Boolean(this.title || this.duration);
+    const reveal = Boolean(this.title || this.duration);
     return (
       <div class="c-brightcove-meta">
         <style>{metaStyles[0][1]}</style>
@@ -72,7 +72,7 @@ class BrightcoveVideo extends withPreact(withComponent()) {
     autoplay: props.boolean,
     resetOnFinish: props.boolean,
     directToFullscreen: props.boolean,
-    hideFullScreenButton: props.boolean
+    hideFullScreenButton: props.boolean,
   }
 
   constructor(element) {
@@ -104,8 +104,8 @@ class BrightcoveVideo extends withPreact(withComponent()) {
       autoplay: false,
       hideFullScreenButton: false,
       directToFullscreen: false,
-      resetOnFinish: false
-    }
+      resetOnFinish: false,
+    };
 
 
     // Ensure that 'this' inside the _onWindowResize event handler refers to <bolt-nav-link>
@@ -150,7 +150,7 @@ class BrightcoveVideo extends withPreact(withComponent()) {
       new CustomEvent('videoExpandedHeightSet', {
         detail: { expandedHeight: this.expandedHeight },
         bubbles: true,
-      })
+      }),
     );
   }
 
@@ -162,7 +162,7 @@ class BrightcoveVideo extends withPreact(withComponent()) {
   // }
 
   _setMetaTitle(title) {
-    if (this.props.showMeta && this.props.showMetaTitle){
+    if (this.props.showMeta && this.props.showMetaTitle) {
       this.querySelector('brightcove-meta').setAttribute('title', title);
     }
   }
@@ -176,9 +176,9 @@ class BrightcoveVideo extends withPreact(withComponent()) {
 
   static _formatDuration(seconds) {
     const mm = Math.floor(seconds / 60) || 0;
-    const ss = ('0' + Math.floor(seconds % 60)).slice(-2);
+    const ss = (`0${Math.floor(seconds % 60)}`).slice(-2);
 
-    return mm + ':' + ss;
+    return `${mm}:${ss}`;
   }
 
   _setVideoDimensions(width, height) {
@@ -192,7 +192,7 @@ class BrightcoveVideo extends withPreact(withComponent()) {
 
     elem.setPlayer(player);
 
-    player.on("loadedmetadata", function () {
+    player.on('loadedmetadata', function () {
       const duration = player.mediainfo.duration;
       const title = player.mediainfo.name;
       const width = player.mediainfo.sources[1].width;
@@ -206,7 +206,7 @@ class BrightcoveVideo extends withPreact(withComponent()) {
       if (this.earlyToggle) {
         this.earlyToggle = false;
         this.toggle();
-      } else if (this.earlyPlay){
+      } else if (this.earlyPlay) {
         this.earlyPlay = false;
         this.play();
       } else if (this.earlyPause) {
@@ -215,27 +215,27 @@ class BrightcoveVideo extends withPreact(withComponent()) {
       }
     });
 
-    player.on("play", function(){
+    player.on('play', () => {
       elem.onPlay(player);
     });
 
-    player.on("pause", function () {
+    player.on('pause', () => {
       elem.onPause(player);
     });
 
-    player.on("seeked", function () {
+    player.on('seeked', () => {
       elem.onSeeked(player);
     });
 
-    player.on("timeupdate", function () {
+    player.on('timeupdate', () => {
       // elem.onPlay(player);
     });
 
-    player.on("durationchange", function () {
+    player.on('durationchange', () => {
       elem.onDurationChange(player);
     });
 
-    player.on("ended", function () {
+    player.on('ended', () => {
       elem.onEnded(player);
     });
 
@@ -272,9 +272,9 @@ class BrightcoveVideo extends withPreact(withComponent()) {
     this.state = {
       id: `${this.props.videoId}-${this.props.accountId}-${index}`,
       // errors: BrightcoveVideo.globalErrors !== undefined  ? [].concat(BrightcoveVideo.globalErrors) : [],
-      isPlaying: "paused",
+      isPlaying: 'paused',
       isFinished: false,
-      progress: 0
+      progress: 0,
     };
 
     if (this.defaultProps) {
@@ -307,16 +307,16 @@ class BrightcoveVideo extends withPreact(withComponent()) {
       const s = this.createScript();
 
       s.onload = () => {
-        BrightcoveVideo.players.forEach(function(player){
-          player.initVideoJS(player.state.id)
+        BrightcoveVideo.players.forEach((player) => {
+          player.initVideoJS(player.state.id);
         });
       };
 
       // handle script not loading
-      s.onerror = err => {
+      s.onerror = (err) => {
         const uriErr = {
-          code: "",
-          message: `The script ${err.target.src} is not accessible.`
+          code: '',
+          message: `The script ${err.target.src} is not accessible.`,
         };
 
         BrightcoveVideo.globalErrors.push(uriErr);
@@ -331,7 +331,7 @@ class BrightcoveVideo extends withPreact(withComponent()) {
 
     // If onInit event exists on element, run that instead of auto initializing
     if (this.props.onInit) {
-      if (window[this.props.onInit]){
+      if (window[this.props.onInit]) {
         window[this.props.onInit](this);
       }
     }
@@ -341,7 +341,7 @@ class BrightcoveVideo extends withPreact(withComponent()) {
   }
 
 
-  _onWindowResize(event){
+  _onWindowResize(event) {
     this._calculateIdealVideoSize();
   }
 
@@ -408,7 +408,6 @@ class BrightcoveVideo extends withPreact(withComponent()) {
   }
 
   onPlay(player) {
-
     this.classList.add('is-playing');
     this.classList.remove('is-finished');
     this.classList.remove('is-paused');
@@ -429,10 +428,10 @@ class BrightcoveVideo extends withPreact(withComponent()) {
     this.dispatchEvent(
       new CustomEvent('playing', {
         detail: {
-          isBackgroundVideo: this.props.isBackgroundVideo
+          isBackgroundVideo: this.props.isBackgroundVideo,
         },
         bubbles: true,
-      })
+      }),
     );
   }
 
@@ -454,10 +453,10 @@ class BrightcoveVideo extends withPreact(withComponent()) {
     this.dispatchEvent(
       new CustomEvent('pause', {
         detail: {
-          isBackgroundVideo: this.props.isBackgroundVideo
+          isBackgroundVideo: this.props.isBackgroundVideo,
         },
         bubbles: true,
-      })
+      }),
     );
   }
 
@@ -494,10 +493,10 @@ class BrightcoveVideo extends withPreact(withComponent()) {
       this.dispatchEvent(
         new CustomEvent('ended', {
           detail: {
-            isBackgroundVideo: this.props.isBackgroundVideo
+            isBackgroundVideo: this.props.isBackgroundVideo,
           },
           bubbles: true,
-        })
+        }),
       );
       // this.setState({ isFinished: true });
     }, 0);
@@ -508,15 +507,15 @@ class BrightcoveVideo extends withPreact(withComponent()) {
     const srcWidth = this.srcWidth;
     const srcHeight = this.srcHeight;
 
-    if (this.srcWidth && this.srcHeight){
-      const maxRatio = .5625; //56.25%
+    if (this.srcWidth && this.srcHeight) {
+      const maxRatio = 0.5625; // 56.25%
       const maxWidth = this.querySelector('video').getBoundingClientRect().width;
       const maxHeightOption1 = maxWidth * maxRatio;
       const maxHeightOption2 = window.innerHeight * maxRatio;
 
       const maxHeight = Math.min(maxHeightOption1, maxHeightOption2);
 
-      let ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
+      const ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
 
       const idealMaxWidth = Math.round(srcWidth * ratio * 100) / 100;
       const idealMaxHeight = Math.round(srcHeight * ratio * 100) / 100;
@@ -533,12 +532,12 @@ class BrightcoveVideo extends withPreact(withComponent()) {
   }
 
   createScript() {
-    const s = document.createElement("script");
+    const s = document.createElement('script');
     // console.log(this.props);
 
     s.src = BrightcoveVideo.getScriptUrl(
       this.props.accountId,
-      this.props.playerId
+      this.props.playerId,
     );
     s.async = true;
 
@@ -557,8 +556,8 @@ class BrightcoveVideo extends withPreact(withComponent()) {
   initVideo(id) {
     bc(this.querySelector(`#${id}`), {
       controlBar: {
-        fullscreenToggle: !this.props.hideFullScreenButton
-      }
+        fullscreenToggle: !this.props.hideFullScreenButton,
+      },
     });
 
     this.initVideoJS(id);
@@ -583,10 +582,10 @@ class BrightcoveVideo extends withPreact(withComponent()) {
       this.dispatchEvent(
         new CustomEvent('playing', {
           detail: {
-            isBackgroundVideo: this.props.isBackgroundVideo
+            isBackgroundVideo: this.props.isBackgroundVideo,
           },
           bubbles: true,
-        })
+        }),
       );
     }
   }
@@ -597,10 +596,10 @@ class BrightcoveVideo extends withPreact(withComponent()) {
     this.dispatchEvent(
       new CustomEvent('close', {
         detail: {
-          isBackgroundVideo: this.props.isBackgroundVideo
+          isBackgroundVideo: this.props.isBackgroundVideo,
         },
         bubbles: true,
-      })
+      }),
     );
   }
 
@@ -608,7 +607,7 @@ class BrightcoveVideo extends withPreact(withComponent()) {
     // console.log('TOGGLE VIDEO');
     // console.log(this.state);
     if (this.player) {
-      if (this.state.isPlaying === false || this.state.isPlaying === 'paused'){
+      if (this.state.isPlaying === false || this.state.isPlaying === 'paused') {
         this.play();
       } else {
         this.pause();
@@ -619,10 +618,10 @@ class BrightcoveVideo extends withPreact(withComponent()) {
       this.dispatchEvent(
         new CustomEvent('playing', {
           detail: {
-            isBackgroundVideo: this.props.isBackgroundVideo
+            isBackgroundVideo: this.props.isBackgroundVideo,
           },
           bubbles: true,
-        })
+        }),
       );
     }
   }
@@ -652,8 +651,8 @@ class BrightcoveVideo extends withPreact(withComponent()) {
 
     // Loop through any extra (unknown) data attributes on the main element; copy over to the <video> tag being rendered
     function datasetToObject(elem) {
-      var data = {};
-      [].forEach.call(elem.attributes, function (attr) {
+      const data = {};
+      [].forEach.call(elem.attributes, (attr) => {
         if (/^data-/.test(attr.name)) {
           data[dasherize(attr.name)] = attr.value;
         }
@@ -669,7 +668,7 @@ class BrightcoveVideo extends withPreact(withComponent()) {
       closeButtonText = 'Close';
     }
 
-    return(
+    return (
       <span class="c-brightcove-video">
         <video
           {...dataAttributes}
@@ -713,9 +712,8 @@ class BrightcoveVideo extends withPreact(withComponent()) {
 export default BrightcoveVideo;
 
 
-
 // BrightcoveVideo.globalErrors = [];
-//BrightcoveVideo.props = defaults;
+// BrightcoveVideo.props = defaults;
 
 // customElements.define('brightcove-player', BrightcoveVideo);
 
@@ -737,7 +735,7 @@ export default BrightcoveVideo;
     function func() {
       if (running) { return; }
       running = true;
-      requestAnimationFrame(function () {
+      requestAnimationFrame(() => {
         obj.dispatchEvent(new CustomEvent(name));
         running = false;
       });
@@ -747,5 +745,5 @@ export default BrightcoveVideo;
 
   // Initialize on window.resize event.  Note that throttle can also be initialized on any type of event,
   // such as scroll.
-  throttle("resize", "optimizedResize");
-})();
+  throttle('resize', 'optimizedResize');
+}());

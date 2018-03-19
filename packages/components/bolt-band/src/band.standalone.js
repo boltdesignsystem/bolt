@@ -5,10 +5,8 @@ import {
   props,
   withComponent,
   withPreact,
-  hasNativeShadowDomSupport
+  hasNativeShadowDomSupport,
 } from '@bolt/core';
-
-
 
 
 // To avoid invoking the parser with `.innerHTML` for every new instance, a
@@ -17,8 +15,6 @@ import {
 //
 
 // ShadyCSS will rename classes as needed to ensure style scoping.
-
-
 
 
 @define
@@ -34,8 +30,8 @@ export class BoltBand extends withComponent(withPreact()) {
     this.useShadow = hasNativeShadowDomSupport;
 
     this.state = {
-      ready: false
-    }
+      ready: false,
+    };
 
     // Clone the shadow DOM template.
 
@@ -44,7 +40,7 @@ export class BoltBand extends withComponent(withPreact()) {
       this.classList.add('is-ready');
     }
 
-    if (this.expandedHeight === null){
+    if (this.expandedHeight === null) {
       this.expandedHeight = '56.25vh';
     }
 
@@ -98,7 +94,7 @@ export class BoltBand extends withComponent(withPreact()) {
         new CustomEvent('change', {
           detail: { isExpandedNow: this.expanded },
           bubbles: true,
-        })
+        }),
       );
     }
   }
@@ -155,7 +151,7 @@ export class BoltBand extends withComponent(withPreact()) {
   _adjustExpandedHeightToMatchVideo(event) {
     if (event.detail.expandedHeight) {
       let videoHeight = event.detail.expandedHeight;
-      const mq = window.matchMedia( "(max-width: 600px)" );
+      const mq = window.matchMedia('(max-width: 600px)');
 
       // Add to the height to make space for the 'close' button at the bottom
       // if we are at the smallest breakpoint.
@@ -164,7 +160,7 @@ export class BoltBand extends withComponent(withPreact()) {
         // and outgoing ends).  In order to modify it, we turn it into a number, then
         // back to a string.  Not
         videoHeight = Number(videoHeight) + 40;
-        videoHeight = String(videoHeight)
+        videoHeight = String(videoHeight);
       }
       this.expandedHeight = videoHeight;
     }
@@ -194,7 +190,6 @@ export class BoltBand extends withComponent(withPreact()) {
 
   set expandedHeight(value) {
     if (value) {
-
       // @TODO: come up with a better way to validate CSS unit possibilities here
       // if (value.includes('px') ||
       //   value.includes('vh') ||
@@ -206,10 +201,9 @@ export class BoltBand extends withComponent(withPreact()) {
       if (value.indexOf('vh') > -1 || value.indexOf('px') > -1) {
         this.setAttribute('expandedHeight', value);
       } else {
-        this.setAttribute('expandedHeight', value + 'px');
+        this.setAttribute('expandedHeight', `${value}px`);
       }
-    }
-    else {
+    } else {
       this.removeAttribute('expandedHeight');
     }
   }
@@ -223,10 +217,10 @@ export class BoltBand extends withComponent(withPreact()) {
   }
 
   render() {
-    if (this.useShadow){
+    if (this.useShadow) {
       return (
         <slot />
-      )
+      );
     }
   }
 }

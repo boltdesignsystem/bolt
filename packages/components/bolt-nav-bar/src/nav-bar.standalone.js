@@ -8,7 +8,7 @@ import {
   withPreact,
   css,
   spacingSizes,
-  hasNativeShadowDomSupport
+  hasNativeShadowDomSupport,
 } from '@bolt/core';
 
 import navListGumshoe from 'gumshoejs';
@@ -21,9 +21,9 @@ const isActiveClass = 'is-active';
 // is the same as the last time it was called, it avoids initializing gumshoe again (among other things, when
 // initializing multiple navbars on one page, this only initializes gumshoe once).  If the offset value HAS changed--
 // presumably because the header has adjusted its own height--gumshoe will be re-initialized with the new value.
-let gumshoeStateModule = (function () {
+const gumshoeStateModule = (function () {
   let offset; // Private variable
-  let pub = {}; // public object - returned at end of module to allow external interaction
+  const pub = {}; // public object - returned at end of module to allow external interaction
 
   pub.setOffset = function (newOffset) {
     if (offset !== newOffset) {
@@ -39,8 +39,8 @@ let gumshoeStateModule = (function () {
         // we could find a way to disable any activity in the callback while a non-gumshoe (i.e. click-initiated)
         // animation is in-progress.
         scrollDelay: true,
-        offset: offset,
-        callback: function (nav) {
+        offset,
+        callback(nav) {
           if (nav && nav.hasOwnProperty('nav')) {
             if (!nav.nav.classList.contains(isActiveClass)) {
               // If the parent already has the is-active class, it was activated by something other
@@ -48,12 +48,12 @@ let gumshoeStateModule = (function () {
               nav.nav.parentElement.setAttribute('active', '');
             }
           }
-        }
+        },
       });
     }
   };
 
-  pub.getOffset = function() {
+  pub.getOffset = function () {
     return offset;
   };
 
@@ -82,12 +82,11 @@ export class BoltNavList extends withHyperHTML(withComponent()) {
     if (this.useShadow) {
       return this.html`
         <slot />
-      `
-    } else {
-      return this.html`
-         ${this.slots.default}
-      `
+      `;
     }
+    return this.html`
+         ${this.slots.default}
+      `;
   }
 
   get offset() {
@@ -116,9 +115,9 @@ export class BoltNavList extends withHyperHTML(withComponent()) {
    */
   resetLinks(activeLink = null) {
     const links = this._allLinks();
-    links.forEach(link => {
+    links.forEach((link) => {
       if (link !== activeLink) {
-        link.active = false
+        link.active = false;
       }
     });
   }
@@ -139,7 +138,7 @@ export class BoltNavList extends withHyperHTML(withComponent()) {
 
   // `_onActiveLink` handles the `activateLink` event emitted by the children
   _onActivateLink(event) {
-    this.resetLinks(event.target); //Reset nested children, skipping over active link
+    this.resetLinks(event.target); // Reset nested children, skipping over active link
     this._animateIndicatorLine(event.target);
 
     this.activeLink = event.target;
@@ -153,7 +152,6 @@ export class BoltNavList extends withHyperHTML(withComponent()) {
 
   // `_animateIndicatorLine` animates the line for the active link
   _animateIndicatorLine(link) {
-
     const linkPos = link.getBoundingClientRect(); // object w/ all positioning
     const linkWidth = linkPos.width;
     const linkOffsetLeft = link.offsetLeft;
@@ -165,16 +163,16 @@ export class BoltNavList extends withHyperHTML(withComponent()) {
 
       // First, immediately center the indicator.
       this._indicator.style.transition = 'none';
-      this._indicator.style.transform = 'translateX(' + linkOffsetCenter + 'px)';
+      this._indicator.style.transform = `translateX(${linkOffsetCenter}px)`;
 
       // Then, reset the transition and expand the indicator to the full width of the link.
       this.flushCss(this._indicator);
       this._indicator.style.transition = '';
-      this._indicator.style.width = linkWidth + 'px';
-      this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px)';
+      this._indicator.style.width = `${linkWidth}px`;
+      this._indicator.style.transform = `translateX(${linkOffsetLeft}px)`;
     } else {
-      this._indicator.style.width = linkWidth + 'px';
-      this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px)';
+      this._indicator.style.width = `${linkWidth}px`;
+      this._indicator.style.transform = `translateX(${linkOffsetLeft}px)`;
     }
   }
 
@@ -198,7 +196,7 @@ export class BoltNavList extends withHyperHTML(withComponent()) {
 
   _upgradeProperty(prop) {
     if (this.hasOwnProperty(prop)) {
-      let value = this[prop];
+      const value = this[prop];
       delete this[prop];
       this[prop] = value;
     }
@@ -210,7 +208,6 @@ export class BoltNavList extends withHyperHTML(withComponent()) {
     window.removeEventListener('optimizedResize', this._onWindowResize);
   }
 }
-
 
 
 @define
@@ -261,13 +258,12 @@ export class BoltNavLink extends withHyperHTML(withComponent()) { // Behavior fo
           this.dispatchEvent(
             new CustomEvent('activateLink', {
               detail: {
-                isActiveNow: true
+                isActiveNow: true,
               },
               bubbles: true,
-            })
+            }),
           );
-        }
-        else {
+        } else {
           this._shadowLink.classList.remove(isActiveClass);
         }
     }
@@ -283,12 +279,11 @@ export class BoltNavLink extends withHyperHTML(withComponent()) { // Behavior fo
     if (this.useShadow) {
       return this.html`
         <slot />
-      `
-    } else {
-      return this.html`
-         ${this.slots.default}
-      `
+      `;
     }
+    return this.html`
+         ${this.slots.default}
+      `;
   }
 
   connectedCallback() {
@@ -309,7 +304,7 @@ export class BoltNavLink extends withHyperHTML(withComponent()) { // Behavior fo
   // for an explanation of lazy properties.
   _upgradeProperty(prop) {
     if (this.hasOwnProperty(prop)) {
-      let value = this[prop];
+      const value = this[prop];
       delete this[prop];
       this[prop] = value;
     }
@@ -321,11 +316,10 @@ export class BoltNavLink extends withHyperHTML(withComponent()) { // Behavior fo
 }
 
 
-
 // Create a custom 'optimizedResize' event that works just like window.resize but is more performant because it
 // won't fire before a previous event is complete.
 // This was adapted from https://developer.mozilla.org/en-US/docs/Web/Events/resize
-(function() {
+(function () {
   function throttle(type, name, obj) {
     obj = obj || window;
     let running = false;
@@ -333,7 +327,7 @@ export class BoltNavLink extends withHyperHTML(withComponent()) { // Behavior fo
     function func() {
       if (running) { return; }
       running = true;
-      requestAnimationFrame(function() {
+      requestAnimationFrame(() => {
         obj.dispatchEvent(new CustomEvent(name));
         running = false;
       });
@@ -343,5 +337,5 @@ export class BoltNavLink extends withHyperHTML(withComponent()) { // Behavior fo
 
   // Initialize on window.resize event.  Note that throttle can also be initialized on any type of event,
   // such as scroll.
-  throttle("resize", "optimizedResize");
-})();
+  throttle('resize', 'optimizedResize');
+}());

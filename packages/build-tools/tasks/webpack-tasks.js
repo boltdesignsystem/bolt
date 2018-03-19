@@ -47,14 +47,14 @@ function compile() {
         console.log(chalk.yellow('Compiled with warnings.\n'));
         console.log(messages.warnings.join('\n\n'));
         console.log(
-          '\nSearch for the ' +
-          chalk.underline(chalk.yellow('keywords')) +
-          ' to learn more about each warning.'
+          `\nSearch for the ${
+          chalk.underline(chalk.yellow('keywords'))
+          } to learn more about each warning.`,
         );
         console.log(
-          'To ignore, add ' +
-          chalk.cyan('// eslint-disable-next-line') +
-          ' to the line before.\n'
+          `To ignore, add ${
+          chalk.cyan('// eslint-disable-next-line')
+          } to the line before.\n`,
         );
       }
 
@@ -69,7 +69,6 @@ function compile() {
       return resolve(output);
     });
   });
-
 }
 
 compile.description = 'Compile Webpack';
@@ -125,10 +124,8 @@ function watch() {
         }
         events.emit('reload');
       }
-
     });
   });
-
 }
 
 watch.description = 'Watch & fast re-compile Webpack';
@@ -137,19 +134,17 @@ watch.displayName = 'webpack:watch';
 
 function server() {
   return new Promise((resolve, reject) => {
-
     // Add HMR scripts required to entrypoint
     if (webpackConfig.devServer.hot) {
       webpackConfig.entry['bolt-global'].unshift('webpack-dev-server/client?http://localhost:8080/', 'webpack/hot/dev-server');
     }
 
-    new WebpackDevServer(webpack(webpackConfig), webpackConfig.devServer).listen(webpackConfig.devServer.port, 'localhost', function (err) {
+    new WebpackDevServer(webpack(webpackConfig), webpackConfig.devServer).listen(webpackConfig.devServer.port, 'localhost', (err) => {
       if (err) {
         return reject(err);
       }
       return resolve();
     });
-
   });
 }
 server.description = 'Webpack Dev Server';
@@ -158,5 +153,5 @@ server.displayName = 'webpack:server';
 module.exports = {
   compile,
   watch,
-  server
+  server,
 };

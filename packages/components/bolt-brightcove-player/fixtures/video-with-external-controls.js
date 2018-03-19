@@ -1,18 +1,18 @@
 /* eslint import/no-unresolved: "off" */
 
-import React, { Component } from "react";
-import { View } from "react-native";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import PropTypes from 'prop-types';
 
-import Button from "./button";
-import BrightcoveVideo from "../brightcove-video";
+import Button from './button';
+import BrightcoveVideo from '../brightcove-video';
 
 class VideoWithExternalControls extends Component {
   render() {
     return (
       <View>
         <BrightcoveVideo
-          ref={ref => {
+          ref={(ref) => {
             this.bcVideo = ref;
           }}
           policyKey={this.props.policyKey}
@@ -48,7 +48,7 @@ class VideoWithExternalControls extends Component {
 VideoWithExternalControls.propTypes = {
   videoId: PropTypes.string.isRequired,
   accountId: PropTypes.string.isRequired,
-  policyKey: PropTypes.string.isRequired
+  policyKey: PropTypes.string.isRequired,
 };
 
 export default VideoWithExternalControls;

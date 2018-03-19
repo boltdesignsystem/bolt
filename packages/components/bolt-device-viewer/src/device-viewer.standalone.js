@@ -16,14 +16,14 @@ import {
 /* From Modernizr */
 function whichAnimationEvent() {
   let t;
-  let el = document.createElement('fakeelement');
+  const el = document.createElement('fakeelement');
 
   const animations = {
-    'animation': 'animationend',
-    'OAnimation': 'oAnimationEnd',
-    'MozAnimation': 'animationend',
-    'WebkitAnimation': 'webkitAnimationEnd'
-  }
+    animation: 'animationend',
+    OAnimation: 'oAnimationEnd',
+    MozAnimation: 'animationend',
+    WebkitAnimation: 'webkitAnimationEnd',
+  };
 
   for (t in animations) {
     if (el.style[t] !== undefined) {
@@ -48,16 +48,16 @@ class BoltDeviceViewer extends withPreact(withComponent()) {
   }
 
   render({ props }) {
-    if (this.useShadow){
+    if (this.useShadow) {
       const classes = css(
-        'c-bolt-image-magnifier'
+        'c-bolt-image-magnifier',
       );
 
       return (
         <div className={classes}>
           <slot />
         </div>
-      )
+      );
     }
   }
 
@@ -68,7 +68,7 @@ class BoltDeviceViewer extends withPreact(withComponent()) {
   }
 
   connectedCallback() {
-    if (this.querySelector('bolt-image-zoom')){
+    if (this.querySelector('bolt-image-zoom')) {
       const drift = new Drift(this.querySelector('bolt-image-zoom'), {
         containInline: false,
         inlinePane: true,
@@ -81,14 +81,12 @@ class BoltDeviceViewer extends withPreact(withComponent()) {
 }
 
 
-
-
 @define
 class BoltImageZoom extends withPreact(withComponent()) {
   static is = 'bolt-image-zoom';
 
   static props = {
-    mangify: props.boolean
+    mangify: props.boolean,
   }
 
   constructor(element) {
@@ -107,11 +105,10 @@ class BoltImageZoom extends withPreact(withComponent()) {
      * `iconElem` returns the bolt icon element inside the device viewer
      */
   iconElem() {
-    if (this.querySelector('bolt-icon')){
+    if (this.querySelector('bolt-icon')) {
       return this.querySelector('bolt-icon');
-    } else {
-      return false;
     }
+    return false;
   }
 
 
@@ -132,13 +129,12 @@ class BoltImageZoom extends withPreact(withComponent()) {
     animationEvent && iconElem.addEventListener(animationEvent, animationLeaveFunction, passiveSupported ? { passive: false } : false);
 
     function animationLeaveFunction() {
-      setTimeout(function () {
+      setTimeout(() => {
         iconElem.removeEventListener(animationEvent, animationLeaveFunction);
         screenElem.classList.remove('is-mouse-leaving');
       }, 1000);
     }
   }
-
 
 
   connectedCallback() {

@@ -1,7 +1,6 @@
 import { h } from '@bolt/core';
 
-export const AssetInfographic = ({ bgColor, fgColor, size, ...otherProps }) => {
-  return (
+export const AssetInfographic = ({ bgColor, fgColor, size, ...otherProps }) => (
     <svg width={size} height={size} {...otherProps} viewBox="0 0 24 24">
       <g fill={bgColor} fill-rule="evenodd">
         <path d="M8.5 8c.275 0 .5.225.5.5s-.225.5-.5.5a.501.501 0 0 1-.5-.5c0-.275.225-.5.5-.5m0 3a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
@@ -9,4 +8,3 @@ export const AssetInfographic = ({ bgColor, fgColor, size, ...otherProps }) => {
       </g>
     </svg>
   );
-};

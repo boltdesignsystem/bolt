@@ -19,7 +19,7 @@ export class BoltRatio extends withComponent(withHyperHTML()) {
 
   static props = {
     aspectRatioHeight: props.number,
-    aspectRatioWidth: props.number
+    aspectRatioWidth: props.number,
   }
 
   constructor(element) {
@@ -38,11 +38,11 @@ export class BoltRatio extends withComponent(withHyperHTML()) {
     const w = this.props.aspectRatioWidth && this.props.aspectRatioWidth > 0 ? this.props.aspectRatioWidth : 1;
 
     if (this.supportsCSSVars) {
-      this.style.setProperty(`--aspect-ratio-height`, h);
-      this.style.setProperty(`--aspect-ratio-width`, w);
+      this.style.setProperty('--aspect-ratio-height', h);
+      this.style.setProperty('--aspect-ratio-width', w);
       this.style.paddingTop = '';
     } else {
-      this.style.paddingTop = (100 * h / w) + "%";
+      this.style.paddingTop = `${100 * h / w}%`;
       this.style.removeProperty('--aspect-ratio-height');
       this.style.removeProperty('--aspect-ratio-width');
     }
@@ -55,14 +55,14 @@ export class BoltRatio extends withComponent(withHyperHTML()) {
   // Render out component via HyperHTML
   render({ props, state }) {
     const classes = css(
-      'o-bolt-ratio__inner'
+      'o-bolt-ratio__inner',
     );
 
     return this.html`
-      ${ this.addStyles([styles]) }
+      ${this.addStyles([styles])}
       <div class="${classes}">
-        ${ this.useShadow ? (this.html`<slot />`) : this.slots.default }
+        ${this.useShadow ? (this.html`<slot />`) : this.slots.default}
       </div>
-    `
+    `;
   }
 }

@@ -1,7 +1,6 @@
 import { h } from '@bolt/core';
 
-export const Upload = ({ bgColor, fgColor, size, ...otherProps }) => {
-  return (
+export const Upload = ({ bgColor, fgColor, size, ...otherProps }) => (
     <svg width={size} height={size} {...otherProps} viewBox="0 0 24 24">
       <g fill={bgColor} fill-rule="evenodd">
         <path />
@@ -11,4 +10,3 @@ export const Upload = ({ bgColor, fgColor, size, ...otherProps }) => {
       </g>
     </svg>
   );
-};

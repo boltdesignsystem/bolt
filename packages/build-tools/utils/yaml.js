@@ -3,6 +3,7 @@ const log = require('./log');
 const yaml = require('js-yaml');
 const fs = require('fs');
 const path = require('path');
+
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 const { ensureFileExists } = require('./general');
@@ -83,17 +84,16 @@ async function getDataFile(filePath) {
   ensureFileExists(filePath);
   const fileInfo = path.parse(filePath);
   try {
-
-  switch (fileInfo.ext) {
-    case '.json':
-      const fileContents = await readFile(filePath, 'utf8');
-      return JSON.parse(fileContents);
-      break;
-    case '.yml':
-    case '.yaml':
-      return await readYamlFile(filePath);
-      break;
-  }
+    switch (fileInfo.ext) {
+      case '.json':
+        const fileContents = await readFile(filePath, 'utf8');
+        return JSON.parse(fileContents);
+        break;
+      case '.yml':
+      case '.yaml':
+        return await readYamlFile(filePath);
+        break;
+    }
   } catch (err) {
     log.errorAndExit('Could not getDataFile', err);
   }

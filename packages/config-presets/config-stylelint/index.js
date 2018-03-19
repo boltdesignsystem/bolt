@@ -2,7 +2,7 @@ module.exports = {
   ignoreFiles: [
     'nebula-css/tools/*',
     'nebula-css/resets/_normalize.scss',
-    'demo/dist/main.css'
+    'demo/dist/main.css',
   ],
   plugins: [
     'stylelint-order',
@@ -10,7 +10,7 @@ module.exports = {
     'stylelint-declaration-block-order',
     'stylelint-declaration-use-variable',
     'stylelint-selector-bem-pattern',
-    'stylelint-declaration-strict-value'
+    'stylelint-declaration-strict-value',
   ],
   rules: {
     'scale-unlimited/declaration-strict-value': [
@@ -19,7 +19,7 @@ module.exports = {
         'font-size',
       ], {
         ignoreKeywords: ['currentColor', 'transparent', 'inherit'],
-      }
+      },
     ],
     // 'sh-waqar/declaration-use-variable': [
     //   // '/color/',
@@ -33,27 +33,27 @@ module.exports = {
       {
         type: 'at-rule',
         name: 'include',
-        hasBlock: false
+        hasBlock: false,
       },
       'declarations',
       {
         type: 'at-rule',
         name: 'include',
-        hasBlock: true
+        hasBlock: true,
       },
-      'rules'
+      'rules',
     ],
 
     'color-hex-case': 'lower',
     'color-named': ['never', {
-      ignore: ['inside-function']
+      ignore: ['inside-function'],
     }],
     'color-no-invalid-hex': true,
     'color-no-hex': true,
     'selector-max-id': 0,
     'selector-class-pattern': '',
     'selector-no-qualifying-type': [true, {
-      ignore: ['attribute']
+      ignore: ['attribute'],
     }],
     'scss/selector-no-redundant-nesting-selector': true,
     'scss/at-extend-no-missing-placeholder': true,
@@ -64,7 +64,7 @@ module.exports = {
       preset: 'bem',
       componentName: '(((o-|c-|u-|t-|s-|is-|has-|no-|_|js-|qa-)(bolt-)[a-z0-9]+(?!-$)-?)+)',
       componentSelectors: {
-        initial: "\\.{componentName}(((__|--)(([a-z0-9\\[\\]'=]+(?!-$)-?)+))+)?$"
+        initial: "\\.{componentName}(((__|--)(([a-z0-9\\[\\]'=]+(?!-$)-?)+))+)?$",
       },
       // componentSelectors: '^\\.ns-{componentName}(?:-[a-zA-Z]+)?$'
       // ignoreSelectors: [
@@ -74,7 +74,7 @@ module.exports = {
       // ]
     },
     'scss/dollar-variable-pattern': ['^(bolt-|_bolt-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$', {
-      ignore: ['local']
+      ignore: ['local'],
     }],
     'scss/percent-placeholder-pattern': '^(bolt-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$',
     'scss/at-function-pattern': '^(bolt-|_bolt-)[a-z0-9\\-]+$',
@@ -150,7 +150,7 @@ module.exports = {
       'text-decoration',
       'text-shadow',
       'text-transform',
-      'vertical-align'
+      'vertical-align',
     ],
     'declaration-block-semicolon-newline-after': 'always-multi-line',
     'declaration-block-semicolon-space-after': 'always-single-line',
@@ -173,7 +173,7 @@ module.exports = {
     'function-url-quotes': 'always',
     'function-whitespace-after': 'always',
     indentation: [2, {
-      ignore: ['inside-parens', 'param', 'value']
+      ignore: ['inside-parens', 'param', 'value'],
     }],
     'keyframe-declaration-no-important': true,
     'length-zero-no-unit': true,
@@ -184,7 +184,7 @@ module.exports = {
         'media',
         'function',
         'if',
-        'for'
+        'for',
       ],
     }],
     'media-feature-colon-space-after': 'always',
@@ -237,8 +237,8 @@ module.exports = {
     'selector-pseudo-element-no-unknown': true,
     'selector-type-case': 'lower',
     'selector-type-no-unknown': [true, {
-      ignore: ['custom-elements']
-    }
+      ignore: ['custom-elements'],
+    },
     ],
     'shorthand-property-no-redundant-values': true,
     'string-no-newline': null,

@@ -1,4 +1,4 @@
-// // import { 
+// // import {
 // //   utils
 // // } from '@bolt/core';
 
@@ -32,7 +32,7 @@
 //     url: props.string,
 //     theme: props.string
 //   }
-  
+
 //   handleClick(elem, e) {
 //     e.preventDefault();
 
@@ -57,7 +57,7 @@
 //     //   <slot/>
 //     // )
 //     // return (
-//     //   <div 
+//     //   <div
 //     //     className={classes}
 //     //     onClick={this.handleClick.bind(this, props)}
 //     //   >
@@ -68,7 +68,7 @@
 //     return (
 //       <div
 //         className={classes}
-       
+
 //       >
 //         <slot />
 //       </div>

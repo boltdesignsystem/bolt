@@ -2,6 +2,7 @@ const chalk = require('chalk');
 const path = require('path');
 const { readYamlFileSync } = require('./yaml');
 const { validateSchema } = require('./schemas');
+
 const configSchema = readYamlFileSync(path.join(__dirname, './config.schema.yml'));
 let isInitialized = false;
 let config = {};
@@ -21,7 +22,7 @@ const defaultConfig = {
   quick: configSchema.properties.quick.default,
   webpackDevServer: configSchema.properties.webpackDevServer.default,
   prod: process.env.NODE_ENV === 'production',
-  startPath: configSchema.properties.startPath.default
+  startPath: configSchema.properties.startPath.default,
 };
 
 function getEnvVarsConfig() {

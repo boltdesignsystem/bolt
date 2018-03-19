@@ -8,22 +8,21 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-'use strict';
 
 // Establish scope.
-window['WebComponents'] = window['WebComponents'] || {'flags':{}};
+window.WebComponents = window.WebComponents || { flags: {} };
 
 // loading script
-let file = 'webcomponents-lite.js';
-let script = document.querySelector('script[src*="' + file + '"]');
-let flagMatcher = /wc-(.+)/;
+const file = 'webcomponents-lite.js';
+const script = document.querySelector(`script[src*="${file}"]`);
+const flagMatcher = /wc-(.+)/;
 
 // Flags. Convert url arguments to flags
-let flags = {};
-if (!flags['noOpts']) {
+const flags = {};
+if (!flags.noOpts) {
   // from url
-  location.search.slice(1).split('&').forEach(function(option) {
-    let parts = option.split('=');
+  location.search.slice(1).split('&').forEach((option) => {
+    const parts = option.split('=');
     let match;
     if (parts[0] && (match = parts[0].match(flagMatcher))) {
       flags[match[1]] = parts[1] || true;
@@ -31,33 +30,33 @@ if (!flags['noOpts']) {
   });
   // from script
   if (script) {
-    for (let i=0, a; (a=script.attributes[i]); i++) {
+    for (let i = 0, a; (a = script.attributes[i]); i++) {
       if (a.name !== 'src') {
         flags[a.name] = a.value || true;
       }
     }
   }
   // log flags
-  if (flags['log'] && flags['log']['split']) {
-    let parts = flags['log'].split(',');
-    flags['log'] = {};
-    parts.forEach(function(f) {
-      flags['log'][f] = true;
+  if (flags.log && flags.log.split) {
+    const parts = flags.log.split(',');
+    flags.log = {};
+    parts.forEach((f) => {
+      flags.log[f] = true;
     });
   } else {
-    flags['log'] = {};
+    flags.log = {};
   }
 }
 
 // exports
-window['WebComponents']['flags'] = flags;
-let forceShady = flags['shadydom'];
+window.WebComponents.flags = flags;
+const forceShady = flags.shadydom;
 if (forceShady) {
-  window['ShadyDOM'] = window['ShadyDOM'] || {};
-  window['ShadyDOM']['force'] = forceShady;
+  window.ShadyDOM = window.ShadyDOM || {};
+  window.ShadyDOM.force = forceShady;
 }
 
-let forceCE = flags['register'] || flags['ce'];
-if (forceCE && window['customElements']) {
-  window['customElements']['forcePolyfill'] = forceCE;
+const forceCE = flags.register || flags.ce;
+if (forceCE && window.customElements) {
+  window.customElements.forcePolyfill = forceCE;
 }

@@ -6,7 +6,7 @@ export function declarativeClickHandler(element) {
     if (clickTarget) {
       const elems = document.querySelectorAll(`.${clickTarget}`);
       if (elems) {
-        elems.forEach(function (elem) {
+        elems.forEach((elem) => {
           if (elem[clickMethod]) {
             elem[clickMethod]();
           } else {
@@ -14,12 +14,10 @@ export function declarativeClickHandler(element) {
           }
         });
       }
+    } else if (element[clickMethod]) {
+      element[clickMethod]();
     } else {
-      if (element[clickMethod]) {
-        element[clickMethod]();
-      } else {
         // @TODO: handle call to undefined method
-      }
     }
   }
 }

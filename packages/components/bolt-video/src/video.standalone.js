@@ -6,7 +6,7 @@ import {
   withComponent,
   withPreact,
   css,
-  spacingSizes
+  spacingSizes,
 } from '@bolt/core';
 
 import BrightcoveVideo from '@bolt/components-brightcove-player/src/brightcove-player.standalone';

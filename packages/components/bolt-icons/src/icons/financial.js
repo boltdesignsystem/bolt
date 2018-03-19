@@ -1,7 +1,6 @@
 import { h } from '@bolt/core';
 
-export const Financial = ({ bgColor, fgColor, size, ...otherProps }) => {
-  return (
+export const Financial = ({ bgColor, fgColor, size, ...otherProps }) => (
     <svg width={size} height={size} {...otherProps} viewBox="0 0 32 32">
       <g fill={bgColor} fill-rule="evenodd">
         <path d="M5 30h22V2H5v28zM27 0H5a2 2 0 0 0-2 2v28a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
@@ -9,4 +8,3 @@ export const Financial = ({ bgColor, fgColor, size, ...otherProps }) => {
       </g>
     </svg>
   );
-};

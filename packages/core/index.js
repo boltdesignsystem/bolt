@@ -31,21 +31,18 @@ export * from './polyfills/polyfill-loader';
 export function findParentTag(el, tag) {
   while (el.parentNode) {
     el = el.parentNode;
-    if (el.tagName === tag)
-      return el;
+    if (el.tagName === tag) { return el; }
   }
   return null;
 }
 
 export function sanitizeBoltClasses(elementToSanitize, prefixesToRemove = ['c-bolt-']) {
-  let prefixes = Array.from(prefixesToRemove);
+  const prefixes = Array.from(prefixesToRemove);
   // Remove any `c-bolt-` prefixed classes but leave the rest
   let remainingClasses;
 
-  prefixes.forEach(function (prefix) {
-    remainingClasses = elementToSanitize.className.split(' ').filter(function (c) {
-      return c.lastIndexOf(prefix, 0) !== 0;
-    });
+  prefixes.forEach((prefix) => {
+    remainingClasses = elementToSanitize.className.split(' ').filter(c => c.lastIndexOf(prefix, 0) !== 0);
   });
 
   return remainingClasses.join(' ').trim();

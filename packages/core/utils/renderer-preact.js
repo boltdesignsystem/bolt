@@ -12,16 +12,15 @@ export function withPreact(Base = HTMLElement) {
       // cases for children by using a slot.
       return {
         ...super.props,
-        ...{ children: <slot /> }
+        ...{ children: <slot /> },
       };
     }
 
     get renderRoot() {
       if (hasNativeShadowDomSupport && this.useShadow === true) {
         return super.renderRoot || shadow(this);
-      } else {
-        return this;
       }
+      return this;
     }
 
     renderer(renderRoot, renderCallback) {
@@ -29,7 +28,7 @@ export function withPreact(Base = HTMLElement) {
       this._preactDom = render(
         renderCallback(),
         this._renderRoot,
-        this._preactDom || this._renderRoot.children[0]
+        this._preactDom || this._renderRoot.children[0],
       );
     }
 
@@ -40,5 +39,5 @@ export function withPreact(Base = HTMLElement) {
     //   this.rendered && this.rendered();
     // }
 
-  }
-};
+  };
+}

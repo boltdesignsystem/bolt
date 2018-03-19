@@ -1,30 +1,31 @@
 function debounce(func, wait, immediate) {
-  var timeout;
-  return function() {
-    var context = this, args = arguments;
-    var later = function() {
+  let timeout;
+  return function () {
+    let context = this,
+      args = arguments;
+    const later = function () {
       timeout = null;
       if (!immediate) func.apply(context, args);
     };
-    var callNow = immediate && !timeout;
+    const callNow = immediate && !timeout;
     clearTimeout(timeout);
     timeout = setTimeout(later, wait);
     if (callNow) func.apply(context, args);
   };
-};
+}
 
 function throttle(func, wait, scope) {
   wait || (wait = 250);
-  var last,
+  let last,
     deferTimer;
   return function () {
-    var context = scope || this;
+    const context = scope || this;
 
-    var now = +new Date,
+    let now = +new Date(),
       args = arguments;
     if (last && now < last + wait) {
       clearTimeout(deferTimer);
-      deferTimer = setTimeout(function () {
+      deferTimer = setTimeout(() => {
         last = now;
         func.apply(context, args);
       }, wait);
@@ -35,7 +36,7 @@ function throttle(func, wait, scope) {
   };
 }
 
-var toggleScrollClass = throttle(function() {
+const toggleScrollClass = throttle(() => {
   theHeader = document.getElementsByClassName('storefront-docs-header');
   if (window.scrollY > 100) {
     theHeader[0].classList.add('scrolled');

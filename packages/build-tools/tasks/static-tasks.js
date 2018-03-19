@@ -5,6 +5,7 @@ const path = require('path');
 const { promisify } = require('util');
 const fs = require('fs');
 const mkdirp = promisify(require('mkdirp'));
+
 const readFile = promisify(fs.readFile);
 const readdir = promisify(fs.readdir);
 const writeFile = promisify(fs.writeFile);
@@ -58,7 +59,7 @@ async function getPage(file) {
     .filter(x => x !== 'index.html')
     .length;
 
-  let parent = dirTree[depth - 2];
+  const parent = dirTree[depth - 2];
 
   // Don't do it for homepage
   if (url === 'index.html') depth = 1;
@@ -120,9 +121,8 @@ async function getNestedPages(folder) {
       const item = await getPage(indexFile);
       item.children = filterChildren;
       return item;
-    } else {
-      return await getPage(fullPath);
     }
+    return await getPage(fullPath);
   }));
 }
 
@@ -135,7 +135,7 @@ async function getSiteData(pages) {
   const nestedPages = await getNestedPages(config.srcDir);
   const site = {
     nestedPages,
-    pages: pages.map((page) => ({
+    pages: pages.map(page => ({
       url: page.url,
       meta: page.meta,
       // choosing not to have `page.body` in here on purpose
@@ -219,7 +219,6 @@ function watch() {
     }
     debouncedCompile();
   });
-
 }
 
 module.exports = {

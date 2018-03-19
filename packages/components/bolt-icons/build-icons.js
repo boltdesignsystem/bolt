@@ -120,8 +120,8 @@ async function transpileIcons(icons) {
 }
 
 function alphabetizeIconList(a, b) {
-  if(a.id < b.id) return -1;
-  if(a.id > b.id) return 1;
+  if (a.id < b.id) return -1;
+  if (a.id > b.id) return 1;
   return 0;
 }
 
@@ -138,7 +138,7 @@ async function build() {
     await fs.outputFile(
       path.join(rootDir, 'src', 'index.js'),
       allExports.join('\n'),
-      'utf-8'
+      'utf-8',
     );
     console.log(`Built ${iconPaths.length} icons.`);
   } catch (error) {

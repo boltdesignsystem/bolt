@@ -1,5 +1,5 @@
 const log = require('../utils/log');
-const {promisify} = require('util');
+const { promisify } = require('util');
 const mkdirp = promisify(require('mkdirp'));
 const ora = require('ora');
 const chalk = require('chalk');

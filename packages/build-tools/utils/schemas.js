@@ -8,8 +8,8 @@ function validateSchema(schema, data) {
   // console.log(results);
   if (results.errors.length) {
     log.error(chalk.bold('Config Schema Errors:'));
-    results.errors.forEach((error, i ) => {
-      log.error(`${i+1}) ${error}`);
+    results.errors.forEach((error, i) => {
+      log.error(`${i + 1}) ${error}`);
     });
     log.info('Please fix the config being used in Bolt CLI.');
     process.exit(1);

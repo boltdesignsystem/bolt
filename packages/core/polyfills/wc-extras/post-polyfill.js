@@ -8,56 +8,54 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-'use strict';
 
-let customElements = window['customElements'];
-let HTMLImports = window['HTMLImports'];
-let Template = window['HTMLTemplateElement'];
+const customElements = window.customElements;
+const HTMLImports = window.HTMLImports;
+const Template = window.HTMLTemplateElement;
 
 // global for (1) existence means `WebComponentsReady` will file,
 // (2) WebComponents.ready == true means event has fired.
 window.WebComponents = window.WebComponents || {};
 
-if (customElements && customElements['polyfillWrapFlushCallback']) {
+if (customElements && customElements.polyfillWrapFlushCallback) {
   // Here we ensure that the public `HTMLImports.whenReady`
   // always comes *after* custom elements have upgraded.
   let flushCallback;
-  let runAndClearCallback = function runAndClearCallback() {
+  const runAndClearCallback = function runAndClearCallback() {
     if (flushCallback) {
       // make sure to run the HTMLTemplateElement polyfill before custom elements upgrade
       if (Template.bootstrap) {
         Template.bootstrap(window.document);
       }
-      let cb = flushCallback;
+      const cb = flushCallback;
       flushCallback = null;
       cb();
       return true;
     }
-  }
-  let origWhenReady = HTMLImports['whenReady'];
-  customElements['polyfillWrapFlushCallback'](function(cb) {
+  };
+  const origWhenReady = HTMLImports.whenReady;
+  customElements.polyfillWrapFlushCallback((cb) => {
     flushCallback = cb;
     origWhenReady(runAndClearCallback);
   });
 
-  HTMLImports['whenReady'] = function(cb) {
-    origWhenReady(function() {
+  HTMLImports.whenReady = function (cb) {
+    origWhenReady(() => {
       // custom element code may add dynamic imports
       // to match processing of native custom elements before
       // domContentLoaded, we wait for these imports to resolve first.
       if (runAndClearCallback()) {
-        HTMLImports['whenReady'](cb);
+        HTMLImports.whenReady(cb);
       } else {
         cb();
       }
     });
-  }
-
+  };
 }
 
-HTMLImports['whenReady'](function() {
-  requestAnimationFrame(function() {
+HTMLImports.whenReady(() => {
+  requestAnimationFrame(() => {
     window.WebComponents.ready = true;
-    document.dispatchEvent(new CustomEvent('WebComponentsReady', {bubbles: true}));
+    document.dispatchEvent(new CustomEvent('WebComponentsReady', { bubbles: true }));
   });
 });

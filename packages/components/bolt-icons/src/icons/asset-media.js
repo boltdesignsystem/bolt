@@ -1,7 +1,6 @@
 import { h } from '@bolt/core';
 
-export const AssetMedia = ({ bgColor, fgColor, size, ...otherProps }) => {
-  return (
+export const AssetMedia = ({ bgColor, fgColor, size, ...otherProps }) => (
     <svg width={size} height={size} {...otherProps} viewBox="0 0 24 24">
       <g fill={bgColor} fill-rule="evenodd">
         <path d="M5.25 12.5v8.75c0 .69-.561 1.25-1.25 1.25h-.75c-.689 0-1.25-.56-1.25-1.25V12.5h3.25zM22.5 2v19.25c0 .69-.561 1.25-1.25 1.25H6.989c.173-.401.261-.82.261-1.25V2H22.5zM5.25 0v10.5H0v10.75a3.254 3.254 0 0 0 3.25 3.25h18a3.254 3.254 0 0 0 3.25-3.25V0H5.25z" />
@@ -9,4 +8,3 @@ export const AssetMedia = ({ bgColor, fgColor, size, ...otherProps }) => {
       </g>
     </svg>
   );
-};

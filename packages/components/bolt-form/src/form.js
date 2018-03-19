@@ -9,7 +9,7 @@ for (let i = 0, len = inputs.length; i < len; i++) {
     input.classList.add('is-filled');
   }
 
-  input.onchange = function() {
+  input.onchange = function () {
     if (input.value) {
       input.classList.add('is-filled');
     } else {
@@ -17,7 +17,7 @@ for (let i = 0, len = inputs.length; i < len; i++) {
     }
   };
 
-  input.onfocus = function() {
+  input.onfocus = function () {
     input.classList.remove('is-touched');
 
     // In there were server-side errors, the 'is-invalid' class will be present
@@ -29,12 +29,12 @@ for (let i = 0, len = inputs.length; i < len; i++) {
     }
   };
 
-  input.onblur = function() {
+  input.onblur = function () {
     input.classList.add('is-touched');
 
     if (input.validationMessage) {
-      let error = document.createElement('div');
-      let messageText = document.createTextNode(input.validationMessage);
+      const error = document.createElement('div');
+      const messageText = document.createTextNode(input.validationMessage);
       error.classList.add('c-bolt-input-message');
       error.classList.add('c-bolt-input-message--invalid');
       error.appendChild(messageText);
@@ -50,11 +50,11 @@ for (let i = 0, len = customInputWrappers.length; i < len; i++) {
   const wrapper = customInputWrappers[i];
   const input = wrapper.querySelector('.c-bolt-input');
 
-  input.onfocus = function() {
+  input.onfocus = function () {
     wrapper.classList.add('is-active');
   };
 
-  input.onblur = function() {
+  input.onblur = function () {
     wrapper.classList.remove('is-active');
   };
 }

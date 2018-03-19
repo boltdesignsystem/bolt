@@ -9,5 +9,5 @@ Object.assign(lazySizes.cfg, {
   lazyClass: 'js-lazyload',
   loadingClass: 'is-lazyloading',
   loadedClass: 'is-lazyloaded',
-  preloadAfterLoad: true
+  preloadAfterLoad: true,
 });

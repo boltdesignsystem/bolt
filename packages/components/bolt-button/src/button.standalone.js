@@ -6,7 +6,7 @@ import {
   hasNativeShadowDomSupport,
   withPreact,
   withHyperHTML,
-  sanitizeBoltClasses
+  sanitizeBoltClasses,
 } from '@bolt/core';
 
 import styles from './button.scss';
@@ -23,8 +23,8 @@ export class ReplaceWithChildren extends withPreact(withComponent()) {
     this.useShadow = hasNativeShadowDomSupport;
   }
 
-  connectedCallback(){
-    if (hasNativeShadowDomSupport){
+  connectedCallback() {
+    if (hasNativeShadowDomSupport) {
       this.replaceWith(...this.childNodes);
     } else {
       this.className = '';
@@ -77,16 +77,16 @@ export class BoltButton extends withHyperHTML(withComponent()) {
       'c-bolt-button',
       this.props.size ? `c-bolt-button--${this.props.size}` : '',
       this.props.color ? `c-bolt-button--${this.props.color}` : '',
-      this.props.rounded ? `c-bolt-button--rounded` : '',
-      this.props.iconOnly ? `c-bolt-button--icon-only` : '',
+      this.props.rounded ? 'c-bolt-button--rounded' : '',
+      this.props.iconOnly ? 'c-bolt-button--icon-only' : '',
       this.props.width ? `c-bolt-button--${this.props.width}` : '',
       this.props.align ? `c-bolt-button--${this.props.align}` : 'c-bolt-button--center',
       this.props.disabled ? 'c-bolt-button--disabled' : '',
 
       // Test out psuedo states via prop values
-      this.props.isHover ? `c-bolt-button--hover` : '',
-      this.props.isActive ? `c-bolt-button--active` : '',
-      this.props.isFocus ? `c-bolt-button--focus` : ''
+      this.props.isHover ? 'c-bolt-button--hover' : '',
+      this.props.isActive ? 'c-bolt-button--active' : '',
+      this.props.isFocus ? 'c-bolt-button--focus' : '',
     );
 
 
@@ -100,14 +100,14 @@ export class BoltButton extends withHyperHTML(withComponent()) {
     */
 
     let childElementIndex = null;
-    this.slots.default.forEach(function (item, i) {
+    this.slots.default.forEach((item, i) => {
       if (item.nodeType === 1) {
         childElementIndex = i;
       }
     });
 
-    if (childElementIndex !== null){
-      let sanitizedClasses = sanitizeBoltClasses(this.slots.default[childElementIndex]);
+    if (childElementIndex !== null) {
+      const sanitizedClasses = sanitizeBoltClasses(this.slots.default[childElementIndex]);
       this.slots.default[childElementIndex].className = `${sanitizedClasses} ${classes}`;
     }
 
@@ -120,7 +120,7 @@ export class BoltButton extends withHyperHTML(withComponent()) {
 
     // Add inline <style> tag automatically if Shadow DOM is natively supported
     return this.html`
-      ${ this.addStyles([styles, visuallyhiddenUtils]) }
+      ${this.addStyles([styles, visuallyhiddenUtils])}
 
       ${
         childElementIndex === null ? (
@@ -130,6 +130,6 @@ export class BoltButton extends withHyperHTML(withComponent()) {
         )
         : this.slots.default
       }
-    `
+    `;
   }
 }

@@ -1,12 +1,12 @@
 /* eslint-env jest, browser */
 
-import { View } from "react-native";
-import React from "react";
-import ReactDOM from "react-dom";
-import renderer from "react-test-renderer";
-import BrightcoveVideo from "../src/brightcove-player.web";
+import { View } from 'react-native';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import renderer from 'react-test-renderer';
+import BrightcoveVideo from '../src/brightcove-player.web';
 
-describe("brightcove-video web component", () => {
+describe('brightcove-video web component', () => {
   afterEach(() => {
     window.bc = null;
     window.videojs = null;
@@ -15,10 +15,10 @@ describe("brightcove-video web component", () => {
     delete BrightcoveVideo.players;
     BrightcoveVideo.globalErrors = [];
 
-    document.body.innerHTML = "";
+    document.body.innerHTML = '';
   });
 
-  it("renders correctly", () => {
+  it('renders correctly', () => {
     const tree = renderer
       .create(<BrightcoveVideo accountId="[ACCOUNT_ID]" videoId="[VIDEO_ID]" />)
       .toJSON();
@@ -26,55 +26,55 @@ describe("brightcove-video web component", () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it("renders correctly with a poster", () => {
+  it('renders correctly with a poster', () => {
     const tree = renderer
       .create(
         <BrightcoveVideo
           accountId="[ACCOUNT_ID]"
           videoId="[VIDEO_ID]"
-          poster={{ uri: "[POSTER_URI]" }}
-        />
+          poster={{ uri: '[POSTER_URI]' }}
+        />,
       )
       .toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
-  it("appends correct script tag to body when no playerId supplied", () => {
+  it('appends correct script tag to body when no playerId supplied', () => {
     renderer.create(
-      <BrightcoveVideo accountId="[ACCOUNT_ID]" videoId="[VIDEO_ID]" />
+      <BrightcoveVideo accountId="[ACCOUNT_ID]" videoId="[VIDEO_ID]" />,
     );
 
     expect(document.body.innerHTML.trim()).toBe(
-      '<script src="//players.brightcove.net/[ACCOUNT_ID]/default_default/index.min.js"></script>'
+      '<script src="//players.brightcove.net/[ACCOUNT_ID]/default_default/index.min.js"></script>',
     );
   });
 
-  it("appends correct script tag to body when playerId supplied", () => {
+  it('appends correct script tag to body when playerId supplied', () => {
     renderer.create(
       <BrightcoveVideo
         accountId="[ACCOUNT_ID]"
         videoId="[VIDEO_ID]"
         playerId="[PLAYER_ID]"
-      />
+      />,
     );
 
     expect(document.body.innerHTML.trim()).toBe(
-      '<script src="//players.brightcove.net/[ACCOUNT_ID]/[PLAYER_ID]_default/index.min.js"></script>'
+      '<script src="//players.brightcove.net/[ACCOUNT_ID]/[PLAYER_ID]_default/index.min.js"></script>',
     );
   });
 
-  it("will not append script tag to body if there has been a global error", () => {
+  it('will not append script tag to body if there has been a global error', () => {
     BrightcoveVideo.globalErrors.push({});
 
     renderer.create(
-      <BrightcoveVideo accountId="[ACCOUNT_ID]" videoId="[VIDEO_ID]" />
+      <BrightcoveVideo accountId="[ACCOUNT_ID]" videoId="[VIDEO_ID]" />,
     );
 
-    expect(document.body.innerHTML.trim()).toBe("");
+    expect(document.body.innerHTML.trim()).toBe('');
   });
 
-  it("has width x height that default to 320 x 180", () => {
+  it('has width x height that default to 320 x 180', () => {
     const tree = renderer
       .create(<BrightcoveVideo accountId="[ACCOUNT_ID]" videoId="[VIDEO_ID]" />)
       .toJSON();
@@ -83,7 +83,7 @@ describe("brightcove-video web component", () => {
     expect(tree.children[0].props.style.height).toBe(180);
   });
 
-  it("has width x height that can be overridden", () => {
+  it('has width x height that can be overridden', () => {
     const tree = renderer
       .create(
         <BrightcoveVideo
@@ -91,7 +91,7 @@ describe("brightcove-video web component", () => {
           videoId="[VIDEO_ID]"
           height={400}
           width={600}
-        />
+        />,
       )
       .toJSON();
 
@@ -99,24 +99,24 @@ describe("brightcove-video web component", () => {
     expect(tree.children[0].props.style.height).toBe(400);
   });
 
-  it("passes accountId, videoId & playerId to video correctly", () => {
+  it('passes accountId, videoId & playerId to video correctly', () => {
     const tree = renderer
       .create(
         <BrightcoveVideo
           accountId="[ACCOUNT_ID]"
           videoId="[VIDEO_ID]"
           playerId="[PLAYER_ID]"
-        />
+        />,
       )
       .toJSON();
 
-    expect(tree.children[0].props["data-video-id"]).toBe("[VIDEO_ID]");
-    expect(tree.children[0].props["data-account"]).toBe("[ACCOUNT_ID]");
-    expect(tree.children[0].props["data-player"]).toBe("[PLAYER_ID]");
+    expect(tree.children[0].props['data-video-id']).toBe('[VIDEO_ID]');
+    expect(tree.children[0].props['data-account']).toBe('[ACCOUNT_ID]');
+    expect(tree.children[0].props['data-player']).toBe('[PLAYER_ID]');
   });
 
-  it("does not attempt to initialise the brightcove player before the script has loaded", () => {
-    const initVideoSpy = jest.spyOn(BrightcoveVideo.prototype, "initVideo");
+  it('does not attempt to initialise the brightcove player before the script has loaded', () => {
+    const initVideoSpy = jest.spyOn(BrightcoveVideo.prototype, 'initVideo');
 
     renderer.create(
       <View>
@@ -130,7 +130,7 @@ describe("brightcove-video web component", () => {
           videoId="[VIDEO_ID2]"
           playerId="[PLAYER_ID2]"
         />
-      </View>
+      </View>,
     );
 
     expect(initVideoSpy.mock.calls.length).toBe(0);
@@ -138,15 +138,15 @@ describe("brightcove-video web component", () => {
     initVideoSpy.mockRestore();
   });
 
-  it("uses the initialise function once the script has loaded", () => {
+  it('uses the initialise function once the script has loaded', () => {
     const readyMock = jest.fn();
     const onMock = jest.fn();
-    const initVideoSpy = jest.spyOn(BrightcoveVideo.prototype, "initVideo");
+    const initVideoSpy = jest.spyOn(BrightcoveVideo.prototype, 'initVideo');
 
     window.bc = jest.fn();
     window.videojs = jest.fn().mockReturnValue({
       ready: readyMock,
-      on: onMock
+      on: onMock,
     });
 
     renderer.create(
@@ -161,7 +161,7 @@ describe("brightcove-video web component", () => {
           videoId="[VIDEO_ID]"
           playerId="[PLAYER_ID2]"
         />
-      </View>
+      </View>,
     );
 
     expect(initVideoSpy.mock.calls).toHaveLength(2);
@@ -171,27 +171,27 @@ describe("brightcove-video web component", () => {
     initVideoSpy.mockRestore();
   });
 
-  describe("jsdom tests", () => {
+  describe('jsdom tests', () => {
     let reactWrapper;
 
     beforeEach(() => {
-      reactWrapper = document.body.appendChild(document.createElement("div"));
+      reactWrapper = document.body.appendChild(document.createElement('div'));
     });
 
     afterEach(() => {
       document.body.removeChild(reactWrapper);
     });
 
-    it("will emit an error if account id is wrong", done => {
+    it('will emit an error if account id is wrong', (done) => {
       const component = (
         <BrightcoveVideo
           accountId="[X]"
           videoId="[VIDEO_ID]"
-          onError={err => {
+          onError={(err) => {
             expect(err).toMatchObject({
-              code: "",
+              code: '',
               message:
-                "The script //players.brightcove.net/[X]/default_default/index.min.js is not accessible."
+                'The script //players.brightcove.net/[X]/default_default/index.min.js is not accessible.',
             });
             done();
           }}
@@ -201,7 +201,7 @@ describe("brightcove-video web component", () => {
       ReactDOM.render(component, reactWrapper);
     });
 
-    describe("player events", () => {
+    describe('player events', () => {
       let dummyScript;
       let createScriptSpy;
       let appendScriptSpy;
@@ -210,19 +210,19 @@ describe("brightcove-video web component", () => {
       beforeEach(() => {
         dummyScript = {};
         createScriptSpy = jest
-          .spyOn(BrightcoveVideo.prototype, "createScript")
+          .spyOn(BrightcoveVideo.prototype, 'createScript')
           .mockReturnValue(dummyScript);
 
         appendScriptSpy = jest
-          .spyOn(BrightcoveVideo, "appendScript")
+          .spyOn(BrightcoveVideo, 'appendScript')
           .mockImplementation(() => {});
 
         dummyPlayer = {
-          ready: fn => {
+          ready: (fn) => {
             setTimeout(() => {
               fn();
             }, 20);
-          }
+          },
         };
 
         window.videojs = () => dummyPlayer;
@@ -235,14 +235,14 @@ describe("brightcove-video web component", () => {
         delete window.videojs;
       });
 
-      it("will emit an error if the brightcove player emits an error", done => {
+      it('will emit an error if the brightcove player emits an error', (done) => {
         dummyPlayer.error = () => ({
-          code: "[CODE]",
-          message: "[MESSAGE]"
+          code: '[CODE]',
+          message: '[MESSAGE]',
         });
 
         dummyPlayer.on = (what, fn) => {
-          if (what === "error") {
+          if (what === 'error') {
             fn();
           }
         };
@@ -251,10 +251,10 @@ describe("brightcove-video web component", () => {
           <BrightcoveVideo
             accountId="57838016001"
             videoId="[X]"
-            onError={err => {
+            onError={(err) => {
               expect(err).toMatchObject({
-                code: "[CODE]",
-                message: "[MESSAGE]"
+                code: '[CODE]',
+                message: '[MESSAGE]',
               });
               done();
             }}
@@ -268,13 +268,13 @@ describe("brightcove-video web component", () => {
         }, 20);
       });
 
-      describe("play / pause / seek", () => {
+      describe('play / pause / seek', () => {
         let evtReg;
 
         beforeEach(() => {
           evtReg = {};
 
-          dummyPlayer.duration = () => "Once in a blue moon";
+          dummyPlayer.duration = () => 'Once in a blue moon';
           dummyPlayer.currentTime = () => 2.5;
 
           dummyPlayer.on = (evtType, fn) => {
@@ -282,7 +282,7 @@ describe("brightcove-video web component", () => {
           };
         });
 
-        it("will emit a 'play' event", done => {
+        it("will emit a 'play' event", (done) => {
           const component = (
             <BrightcoveVideo
               accountId="57838016001"
@@ -304,7 +304,7 @@ describe("brightcove-video web component", () => {
           }, 50);
         });
 
-        it("will emit a 'pause' event", done => {
+        it("will emit a 'pause' event", (done) => {
           const component = (
             <BrightcoveVideo
               accountId="57838016001"
@@ -326,14 +326,14 @@ describe("brightcove-video web component", () => {
           }, 50);
         });
 
-        it("will emit a 'progress' event", done => {
+        it("will emit a 'progress' event", (done) => {
           dummyPlayer.currentTime = () => 0.1;
 
           const component = (
             <BrightcoveVideo
               accountId="57838016001"
               videoId="[X]"
-              onProgress={progress => {
+              onProgress={(progress) => {
                 expect(progress).toBe(100);
                 done();
               }}
@@ -351,7 +351,7 @@ describe("brightcove-video web component", () => {
           }, 50);
         });
 
-        it("will emit a 'duration' event", done => {
+        it("will emit a 'duration' event", (done) => {
           dummyPlayer.currentTime = () => 0.1;
           dummyPlayer.duration = () => 0.85;
 
@@ -359,7 +359,7 @@ describe("brightcove-video web component", () => {
             <BrightcoveVideo
               accountId="57838016001"
               videoId="[X]"
-              onDuration={duration => {
+              onDuration={(duration) => {
                 expect(duration).toBe(850);
                 done();
               }}
@@ -377,7 +377,7 @@ describe("brightcove-video web component", () => {
           }, 50);
         });
 
-        it("will emit a 'finish' event", done => {
+        it("will emit a 'finish' event", (done) => {
           const component = (
             <BrightcoveVideo
               accountId="57838016001"
@@ -399,8 +399,8 @@ describe("brightcove-video web component", () => {
           }, 50);
         });
 
-        it("will not error if there are no handlers", done => {
-          dummyPlayer.currentTime = () => "Seek & ye will find";
+        it('will not error if there are no handlers', (done) => {
+          dummyPlayer.currentTime = () => 'Seek & ye will find';
 
           const component = (
             <BrightcoveVideo accountId="57838016001" videoId="[X]" />
@@ -418,7 +418,7 @@ describe("brightcove-video web component", () => {
           }, 50);
         });
 
-        it("will unmount cleanly", done => {
+        it('will unmount cleanly', (done) => {
           dummyPlayer.dispose = jest.fn();
 
           const component = (
@@ -440,7 +440,7 @@ describe("brightcove-video web component", () => {
           }, 50);
         });
 
-        it("will unmount cleanly if player not yet ready", () => {
+        it('will unmount cleanly if player not yet ready', () => {
           const component = (
             <BrightcoveVideo accountId="57838016001" videoId="[X]" />
           );
@@ -449,7 +449,7 @@ describe("brightcove-video web component", () => {
           ReactDOM.unmountComponentAtNode(reactWrapper);
         });
 
-        it("will call player's 'play' method if play is called", done => {
+        it("will call player's 'play' method if play is called", (done) => {
           dummyPlayer.play = jest.fn();
 
           let brightcoveVideo;
@@ -458,7 +458,7 @@ describe("brightcove-video web component", () => {
             <BrightcoveVideo
               accountId="57838016001"
               videoId="[X]"
-              ref={ref => {
+              ref={(ref) => {
                 brightcoveVideo = ref;
               }}
             />
@@ -479,7 +479,7 @@ describe("brightcove-video web component", () => {
           }, 50);
         });
 
-        it("will call player's 'pause' method if pause is called", done => {
+        it("will call player's 'pause' method if pause is called", (done) => {
           dummyPlayer.pause = jest.fn();
 
           let brightcoveVideo;
@@ -488,7 +488,7 @@ describe("brightcove-video web component", () => {
             <BrightcoveVideo
               accountId="57838016001"
               videoId="[X]"
-              ref={ref => {
+              ref={(ref) => {
                 brightcoveVideo = ref;
               }}
             />

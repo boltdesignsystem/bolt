@@ -45,7 +45,7 @@ function uniqueArray(item) {
 function ensureFileExists(filePath) {
   fs.access(filePath, (err) => {
     if (err) {
-      log.errorAndExit(`This file ^^^ does not exist and it was referenced in package.json for that component, please make sure the file path is correct.`, filePath);
+      log.errorAndExit('This file ^^^ does not exist and it was referenced in package.json for that component, please make sure the file path is correct.', filePath);
     }
   });
 }

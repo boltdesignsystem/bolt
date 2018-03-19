@@ -6,7 +6,7 @@ import { hasNativeShadowDomSupport } from '../utils/environment';
 
 import {
   declarativeClickHandler,
-  findParentTag
+  findParentTag,
 } from '../';
 
 const { hyperHTML, hyper, wire, bind, Component } = require('hyperhtml/cjs');
@@ -17,7 +17,7 @@ export function withHyperHTML(Base = HTMLElement) {
 
     static props = {
       onClick: props.string,
-      onClickTarget: props.string
+      onClickTarget: props.string,
     }
 
     constructor(...args) {
@@ -54,7 +54,7 @@ export function withHyperHTML(Base = HTMLElement) {
 
       if (this.useShadow) {
         return hyper.wire() `
-          <style>${ styles } </style>
+          <style>${styles} </style>
         `;
       }
     }
@@ -64,11 +64,11 @@ export function withHyperHTML(Base = HTMLElement) {
     _checkSlots() {
       const children = this.childNodes;
       this.slots = {
-        default: []
+        default: [],
       };
       if (children.length > 0) {
-        [...children].map(child => {
-          const slotName = child.getAttribute ? child.getAttribute("slot") : null;
+        [...children].map((child) => {
+          const slotName = child.getAttribute ? child.getAttribute('slot') : null;
           if (!slotName) {
             this.slots.default.push(child);
           } else {
@@ -82,9 +82,8 @@ export function withHyperHTML(Base = HTMLElement) {
     get renderRoot() {
       if (hasNativeShadowDomSupport && this.useShadow === true) {
         return super.renderRoot || shadow(this);
-      } else {
-        return this;
       }
+      return this;
     }
 
 
@@ -102,5 +101,5 @@ export function withHyperHTML(Base = HTMLElement) {
       this.rendered && this.rendered();
     }
 
-  }
-};
+  };
+}

@@ -4,6 +4,7 @@ const sh = require('../utils/sh');
 const path = require('path');
 const { promisify } = require('util');
 const fs = require('fs');
+
 const writeFile = promisify(fs.writeFile);
 const events = require('../utils/events');
 const chokidar = require('chokidar');
@@ -43,7 +44,6 @@ function plBuild(errorShouldExit) {
     events.emit('pattern-lab:precompile');
     sh(`php -d memory_limit=4048M ${consolePath} --generate`, errorShouldExit, false)
       .then((output) => {
-
         plSpinner.succeed(chalk.green(`Built Pattern Lab in ${timer.end(startTime)}`));
 
         if (config.verbosity > 2) {
@@ -110,7 +110,6 @@ function watch() {
     }
     debouncedCompile();
   });
-
 }
 
 watch.description = 'Watch and rebuild Pattern Lab';

@@ -1,7 +1,6 @@
 import { h } from '@bolt/core';
 
-export const AssetText = ({ bgColor, fgColor, size, ...otherProps }) => {
-  return (
+export const AssetText = ({ bgColor, fgColor, size, ...otherProps }) => (
     <svg
       width={size}
       height={size}
@@ -34,4 +33,3 @@ export const AssetText = ({ bgColor, fgColor, size, ...otherProps }) => {
       </g>
     </svg>
   );
-};

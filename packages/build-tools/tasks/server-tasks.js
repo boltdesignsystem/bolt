@@ -2,6 +2,7 @@ const browserSync = require('browser-sync');
 const events = require('../utils/events');
 const config = require('../utils/config-store').getConfig();
 const log = require('../utils/log');
+
 const server = browserSync.create();
 
 // https://www.browsersync.io/docs/options
@@ -15,11 +16,11 @@ const serverConfig = {
     blacklist: ['/index.html', '/', '/?*'], // prevents double browsersync
     rule: {
       match: /<\/body>/i,
-      fn: function (snippet, match) {
+      fn(snippet, match) {
         return snippet + match;
-      }
-    }
-  }
+      },
+    },
+  },
 };
 
 if (config.webpackDevServer) {

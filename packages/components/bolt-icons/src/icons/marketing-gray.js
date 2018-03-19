@@ -1,7 +1,6 @@
 import { h } from '@bolt/core';
 
-export const MarketingGray = ({ bgColor, fgColor, size, ...otherProps }) => {
-  return (
+export const MarketingGray = ({ bgColor, fgColor, size, ...otherProps }) => (
     <svg width={size} height={size} {...otherProps} viewBox="0 0 32 32">
       <g fill={bgColor} fill-rule="evenodd">
         <path d="M30.271 8.75H27.96C29.261 10.86 30 13.35 30 16c0 7.73-6.269 14-14 14-7.729 0-14-6.27-14-14S8.271 2 16 2c2.701 0 5.221.77 7.361 2.1V1.79C21.161.64 18.651 0 16 0 7.161 0 0 7.16 0 16s7.161 16 16 16c8.831 0 16-7.16 16-16 0-2.61-.62-5.07-1.729-7.25" />
@@ -10,4 +9,3 @@ export const MarketingGray = ({ bgColor, fgColor, size, ...otherProps }) => {
       </g>
     </svg>
   );
-};

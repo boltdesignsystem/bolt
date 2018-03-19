@@ -22,7 +22,7 @@ function createConfig(config) {
    * @returns {object} entry - WebPack config `entry`
    */
   function buildWebpackEntry() {
-    const {components} = getBoltManifest();
+    const { components } = getBoltManifest();
     const entry = {};
     if (components.global) {
       entry['bolt-global'] = [];
@@ -65,12 +65,12 @@ function createConfig(config) {
      * verbose. Any other falsy value will behave as 'none', truthy
      * values as 'normal'
      */
-    const pn = (typeof name === "string") && name.toLowerCase() || name || "none";
+    const pn = (typeof name === 'string') && name.toLowerCase() || name || 'none';
 
     switch (pn) {
       case 'none':
         return {
-          all: false
+          all: false,
         };
       case 'verbose':
         return {
@@ -125,8 +125,8 @@ function createConfig(config) {
         };
       default:
         return {
-          colors: true
-        }
+          colors: true,
+        };
     }
   }
 
@@ -144,7 +144,7 @@ function createConfig(config) {
       query: {
         search: workaroundAtValue,
         replace: String.raw`\\`, // needed to ensure `\` comes through
-        flags: 'g'
+        flags: 'g',
       },
     },
     {
@@ -154,41 +154,41 @@ function createConfig(config) {
         modules: true, // needed for JS referencing classNames directly, such as critical fonts
         importLoaders: 5,
         localIdentName: '[local]',
-      }
+      },
     },
     {
       loader: 'string-replace-loader',
       query: {
         search: /\\/,
         replace: workaroundAtValue,
-        flags: 'g'
+        flags: 'g',
       },
     },
     {
-      loader: "postcss-loader",
+      loader: 'postcss-loader',
       options: {
         sourceMap: true,
         plugins: [
           postcssDiscardDuplicates,
           autoprefixer,
         ],
-      }
+      },
     },
     {
-      loader: "clean-css-loader",
+      loader: 'clean-css-loader',
       options: {
         skipWarn: true,
-        compatibility: "ie9",
+        compatibility: 'ie9',
         level: config.prod ? 1 : 0,
-        inline: ["remote"],
+        inline: ['remote'],
         format: 'beautify',
-      }
+      },
     },
     {
-      loader: 'resolve-url-loader'
+      loader: 'resolve-url-loader',
     },
     {
-      loader: "sass-loader",
+      loader: 'sass-loader',
       options: {
         sourceMap: true,
         importer: [
@@ -196,10 +196,10 @@ function createConfig(config) {
           npmSass.importer,
         ],
         functions: sassExportData,
-        outputStyle: "expanded",
-        precision: 2
-      }
-    }
+        outputStyle: 'expanded',
+        precision: 2,
+      },
+    },
   ];
 
   // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
@@ -214,11 +214,11 @@ function createConfig(config) {
     entry: buildWebpackEntry(),
     output: {
       path: path.resolve(process.cwd(), config.buildDir),
-      filename: "[name].js",
-      publicPath: publicPath,
+      filename: '[name].js',
+      publicPath,
     },
     resolve: {
-      extensions: [".js", ".jsx", ".json", ".svg", ".scss"]
+      extensions: ['.js', '.jsx', '.json', '.svg', '.scss'],
     },
     module: {
       rules: [
@@ -232,9 +232,9 @@ function createConfig(config) {
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
               use: ExtractTextPlugin.extract({
-                fallback: "style-loader",
+                fallback: 'style-loader',
                 use: scssLoaders,
-              })
+              }),
             },
           ],
         },
@@ -247,16 +247,16 @@ function createConfig(config) {
               cacheDirectory: true,
               babelrc: false,
               presets: ['@bolt/babel-preset-bolt'],
-            }
-          }
+            },
+          },
         },
         {
           test: /\.(woff|woff2)$/,
-          loader: "file-loader",
+          loader: 'file-loader',
           options: {
             name: 'fonts/[name].[ext]',
           },
-        }
+        },
       ],
     },
     plugins: [
@@ -265,31 +265,31 @@ function createConfig(config) {
         /dist\/styleguide/,
         /dist\/annotations/,
         /styleguide/,
-        path.join(__dirname, 'node_modules')
+        path.join(__dirname, 'node_modules'),
       ]),
       new webpack.optimize.CommonsChunkPlugin({
         deepChildren: true,
         children: true,
         minChunks: Infinity,
-        async: true
+        async: true,
       }),
       new webpack.IgnorePlugin(/vertx/), // needed to ignore vertx dependency in webcomponentsjs-lite
       new ExtractTextPlugin({
-        filename: "[name].css",
+        filename: '[name].css',
         // disable: false,
-        allChunks: true
+        allChunks: true,
       }),
       // @todo This needs to be in `config.dataDir`
       new ManifestPlugin({
         fileName: 'bolt-webpack-manifest.json',
-        publicPath: publicPath,
+        publicPath,
         writeToFileEmit: true,
         seed: {
-          name: 'Bolt Manifest'
-        }
+          name: 'Bolt Manifest',
+        },
       }),
       new webpack.ProvidePlugin({
-        Promise: 'es6-promise'
+        Promise: 'es6-promise',
       }),
       // Show build progress
       // Disabling for now as it messes up spinners
@@ -319,7 +319,7 @@ function createConfig(config) {
         compress: true,
 
         mangle: true,
-      }
+      },
     }));
 
     // https://webpack.js.org/plugins/module-concatenation-plugin/
@@ -332,38 +332,38 @@ function createConfig(config) {
 
     // @todo Evaluate best source map approach for production
     webpackConfig.devtool = 'hidden-source-map';
-  } else {// not prod
+  } else { // not prod
     // @todo fix source maps
     webpackConfig.devtool = 'cheap-module-eval-source-map';
   }
 
 
- if (config.wwwDir) {
-   webpackConfig.devServer = {
-     contentBase: [
-       path.resolve(process.cwd(), config.wwwDir),
+  if (config.wwwDir) {
+    webpackConfig.devServer = {
+      contentBase: [
+        path.resolve(process.cwd(), config.wwwDir),
        // @TODO: add Pattern Lab Styleguidekit Assets Default dist path here
-     ],
-     compress: true,
-     clientLogLevel: 'none',
-     port: 8080,
-     stats: statsPreset(webpackStats[config.verbosity]),
-     overlay: {
-       errors: true
-     },
-     hot: config.prod ? true : false,
-     inline: true,
-     noInfo: true, // webpackTasks.watch handles output info related to success & failure
-     publicPath: publicPath,
-     watchContentBase: true,
-     historyApiFallback: true,
-     watchOptions: {
-       aggregateTimeout: 200,
+      ],
+      compress: true,
+      clientLogLevel: 'none',
+      port: 8080,
+      stats: statsPreset(webpackStats[config.verbosity]),
+      overlay: {
+        errors: true,
+      },
+      hot: !!config.prod,
+      inline: true,
+      noInfo: true, // webpackTasks.watch handles output info related to success & failure
+      publicPath,
+      watchContentBase: true,
+      historyApiFallback: true,
+      watchOptions: {
+        aggregateTimeout: 200,
        // ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
        // Poll using interval (in ms, accepts boolean too)
-     }
-   }
- }
+      },
+    };
+  }
 
   return webpackConfig;
 }

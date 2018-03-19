@@ -1,6 +1,7 @@
-const {promisify} = require('util');
+const { promisify } = require('util');
 const fs = require('fs');
 const path = require('path');
+
 const symlink = promisify(fs.symlink);
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
@@ -44,14 +45,14 @@ const boltImageSizes = [
   2880,
 ];
 
-function  makeWebPath(imagePath) {
+function makeWebPath(imagePath) {
   return `/${path.relative(config.wwwDir, imagePath)}`;
 }
 
 async function writeImageManifest(imgManifest) {
   await writeFile(
     path.join(config.dataDir, 'images.bolt.json'),
-    JSON.stringify(imgManifest, null, '  ')
+    JSON.stringify(imgManifest, null, '  '),
   );
 }
 
@@ -105,32 +106,31 @@ async function processImage(file, set) {
               quality: 50,
               progressive: true,
               optimiseScans: true,
-              force: false
+              force: false,
             })
             .png({
               progressive: true,
-              force: false
+              force: false,
             })
             .toFile(newSizedPath);
-          } else if (pathInfo.ext === '.svg') {
-            const result = await svgo.optimize(originalFileBuffer);
-            const optimizedSVG = result.data;
-            await writeFile(newSizedPath, optimizedSVG);
-
-          } else {
-            await sharp(originalFileBuffer)
+        } else if (pathInfo.ext === '.svg') {
+          const result = await svgo.optimize(originalFileBuffer);
+          const optimizedSVG = result.data;
+          await writeFile(newSizedPath, optimizedSVG);
+        } else {
+          await sharp(originalFileBuffer)
               .jpeg({
                 quality: 50,
                 progressive: true,
                 optimiseScans: true,
-                force: false
+                force: false,
               })
               .png({
                 progressive: true,
-                force: false
+                force: false,
               })
               .toFile(newSizedPath);
-          }
+        }
       } else {
         // http://sharp.pixelplumbing.com/en/stable/
         if (pathInfo.ext === '.jpeg' || pathInfo.ext === '.jpg' || pathInfo.ext === '.png') {
@@ -140,18 +140,18 @@ async function processImage(file, set) {
               quality: 50,
               progressive: true,
               optimiseScans: true,
-              force: false
+              force: false,
             })
             .png({
               progressive: true,
-              force: false
+              force: false,
             })
             .toFile(newSizedPath);
-          } else {
-            await sharp(originalFileBuffer)
+        } else {
+          await sharp(originalFileBuffer)
               .resize(size)
               .toFile(newSizedPath);
-          }
+        }
       }
     } else {
       // Not prod, so let's be quick.
@@ -206,7 +206,7 @@ async function processImages() {
   return Promise.all(config.images.sets.map(async (set) => {
     const imagePaths = await globby(path.join(set.base, set.glob));
     return Promise.all(imagePaths.map(imagePath => processImage(imagePath, set)));
-  })).then(async (setsOfImageMetas) => {// When it's all done
+  })).then(async (setsOfImageMetas) => { // When it's all done
     const imageMetas = flattenArray(setsOfImageMetas);
     const imageManifest = {};
     imageMetas.forEach((imageMeta) => {

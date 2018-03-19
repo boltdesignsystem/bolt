@@ -39,8 +39,6 @@ const preset = function (api, opts = {}) {
       '@babel/plugin-syntax-dynamic-import', /* [2] */
 
 
-
-
       '@babel/plugin-proposal-object-rest-spread',
     ],
   };
