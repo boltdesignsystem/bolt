@@ -40,6 +40,7 @@
     "clean": "npm-run-all --parallel clean:*",
     "prepublishOnly": "npm run build",
     "snyk-protect": "snyk protect",
+    "lint:editorconfig": "editorconfig-checker --exclude-pattern './www/**/*' --exclude-pattern './**/sandbox/**/*'",
     "lint:js": "eslint 'packages/**/*.js' 'apps/**/*.js'",
     "lint:js:fix": "npm run lint:js -- --fix",
     "lint:sh": "which shellcheck; if [ $? -eq 0 ]; then shellcheck scripts/*.sh ; else echo 'Shell script linting requires `shellcheck` to be installed, skipping for now; use `brew install shellcheck` to install ~ https://github.com/koalaman/shellcheck '; fi",
@@ -73,6 +74,7 @@
     }
   },
   "devDependencies": {
+    "editorconfig-checker": "^1.2.0",
     "husky": "^0.14.3",
     "jest": "^22.4.0",
     "lerna": "^2.5.1",
