@@ -47,10 +47,19 @@ $template = $twig->load($templatePath);
 
 // Pass data to template and get back HTML
 $html = $template->render($data);
-$templates = \BasaltInc\TwigTools\Utils::getData('../../www/build/bolt.templates.json');
-$renderer = new Renderer($templates, $twig);
+
+$boltData = \Bolt\Utils::getData($twig);
+$wwwDir = $boltData['config']['buildDir'];
+$templateFilePath = \Bolt\Utils::get_absolute_path('/bolt.templates.json', $wwwDir);
+
+
+if (file_exists($templateFilePath)){
+  $templates = \BasaltInc\TwigTools\Utils::getData($templateFilePath);
+  $renderer = new Renderer($templates, $twig);
+  echo $renderer->render($html);  // Enables SSR
+} else {
+  echo $html; // Disables SSR for troubleshooting
+}
 // $templates = json_decode(file_get_contents('./build/bolt.templates.json'), TRUE);
 
-echo $renderer->render($html);  // Enables SSR
-// echo $html; // Disables SSR for troubleshooting
 
