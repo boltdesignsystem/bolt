@@ -4,17 +4,17 @@ import {
   define,
   props,
   withComponent,
-  withPreact,
+  withHyperHTML,
   css,
   spacingSizes,
-  hasNativeShadowDomSupport
+  hasNativeShadowDomSupport,
 } from '@bolt/core';
 
 
 import styles from './ratio.scss';
 
 @define
-export class BoltRatio extends withComponent(withPreact()) {
+export class BoltRatio extends withComponent(withHyperHTML()) {
   static is = 'bolt-ratio';
 
   static props = {
@@ -25,7 +25,6 @@ export class BoltRatio extends withComponent(withPreact()) {
   constructor(element) {
     super(element);
     this.useShadow = hasNativeShadowDomSupport;
-
     this.supportsCSSVars = window.CSS && CSS.supports('color', 'var(--primary)');
   }
 
@@ -49,69 +48,21 @@ export class BoltRatio extends withComponent(withPreact()) {
     }
   }
 
-  connectedCallback() {
-
-    if (this.shadowRoot) {
-      this._render(this.render(), this.shadowRoot);
-    } else {
-      this._render(this.render(), this);
-    }
+  connecting() {
     this._computeRatio();
   }
 
-  // Called when props have been set regardless of if they've changed. - recalculates ratio if props updated
-
-  renderer(root, html) {
-    if (this.useShadow) {
-      super.renderer(root, html);
-    } else {
-      root.innerHTML = `<div class="o-bolt-ratio__inner">${this.innerHTML}</div>`;
-    }
-  }
-
-  // Render out component via Preact
-  render() {
+  // Render out component via HyperHTML
+  render({ props, state }) {
     const classes = css(
       'o-bolt-ratio__inner'
     );
 
-    if (this.useShadow) {
-      return (
-        <div className={classes}>
-          {this.useShadow &&
-            <style>
-              {styles[0][1]}
-            </style>
-          }
-          <slot />
-        </div>
-      )
-    }
+    return this.html`
+      ${ this.addStyles([styles]) }
+      <div class="${classes}">
+        ${ this.useShadow ? (this.html`<slot />`) : this.slots.default }
+      </div>
+    `
   }
-
-  /** Idea for wiring up ShadyCSS + Preact inspired by https://github.com/daKmoR/lit-html-demos/blob/master/demo/wc02.html **/
-  _render(what, where) {
-    this.render(what, where);
-
-
-    // Auto-add class for fallback styles
-    var childNodes = this.childNodes;
-    for (var i = 0; i < childNodes.length; i++) {
-      if (childNodes[i].nodeType !== 3) { // nodeType 3 is a text node
-        childNodes[i].classList.add('o-bolt-ratio__inner');
-      }
-    }
-
-    /** @TODO: determine if this logic below is required. This <style> node cleanup was
-     *  included in original example (mentioned above) so keeping around for now.
-     */
-    // if (!ShadyCSS.nativeShadow) {
-    //   this.shadowRoot.querySelectorAll('style').forEach((styleNode) => {
-    //     styleNode.remove();
-    //   });
-    // }
-    // }
-  }
-
-
 }

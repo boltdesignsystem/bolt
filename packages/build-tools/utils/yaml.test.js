@@ -153,3 +153,20 @@ describe('Yaml Files', () => {
     await del([testFile]);
   });
 });
+
+describe('data', () => {
+  test('Read this package.json name value', async () => {
+    const file = path.join(__dirname, '../package.json');
+    const results = await yaml.getDataFile(file);
+    expect(results.name).toEqual('@bolt/build-tools');
+  });
+
+  test('Read basic Json/Yaml file', async () => {
+    const fileYaml = path.join(__dirname, 'test-sample-files/basic.yml');
+    const resultsYaml = await yaml.getDataFile(fileYaml);
+    const fileJson = path.join(__dirname, 'test-sample-files/basic.json');
+    const resultsJson = await yaml.getDataFile(fileJson);
+    expect(resultsJson).toEqual(resultsYaml);
+  });
+});
+

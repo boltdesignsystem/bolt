@@ -1,13 +1,16 @@
 module.exports = {
   // Environmental variable / preset to use
   env: 'pl',
-  srcDir: 'src',
   buildDir: '../../www/pattern-lab/build',
   wwwDir: '../../www/',
   startPath: 'pattern-lab/index.html',
   plConfigFile: './config/config.yml',
   verbosity: 1,
   extraTwigNamespaces: {
+    'bolt': {
+      recursive: true,
+      paths: ['./src'],
+    },
     'bolt-assets': {
       recursive: true,
       paths: ['../../www/pattern-lab/build'],
@@ -37,6 +40,7 @@ module.exports = {
       '@bolt/components-background-shapes',
       '@bolt/components-band',
       '@bolt/components-block-list',
+      '@bolt/components-brightcove-player',
       '@bolt/components-blockquote',
       '@bolt/components-breadcrumb',
       '@bolt/components-button',
@@ -64,6 +68,7 @@ module.exports = {
       '@bolt/components-teaser',
       '@bolt/components-tooltip',
       '@bolt/components-unordered-list',
+      '@bolt/components-video',
     ],
     individual: [
       '@bolt/components-critical-fonts'

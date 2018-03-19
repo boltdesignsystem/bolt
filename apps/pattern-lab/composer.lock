@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a5d4cac4d1764d262858597d5b9f288f",
+    "content-hash": "a8fb5f5053c2dee6fc0642b3bcc5a1bf",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -70,22 +70,22 @@
         },
         {
             "name": "basaltinc/twig-tools",
-            "version": "v1.3.3",
+            "version": "v1.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/basaltinc/twig-tools.git",
-                "reference": "e890b1ec9a5a2ce0d49c248962b2efc854c54cc2"
+                "reference": "9ef67feb0ada6182debe5c4d90f458192fdcb7a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/basaltinc/twig-tools/zipball/e890b1ec9a5a2ce0d49c248962b2efc854c54cc2",
-                "reference": "e890b1ec9a5a2ce0d49c248962b2efc854c54cc2",
+                "url": "https://api.github.com/repos/basaltinc/twig-tools/zipball/9ef67feb0ada6182debe5c4d90f458192fdcb7a5",
+                "reference": "9ef67feb0ada6182debe5c4d90f458192fdcb7a5",
                 "shasum": ""
             },
             "require": {
                 "fzaninotto/faker": "^1.7",
                 "justinrainbow/json-schema": "^5.2",
-                "symfony/yaml": "^3.3",
+                "symfony/yaml": "^3.2",
                 "twig/twig": "^1.0",
                 "webmozart/path-util": "^2.3"
             },
@@ -105,35 +105,41 @@
                     "email": "evanlovely@gmail.com"
                 }
             ],
-            "time": "2018-02-21T00:54:40+00:00"
+            "time": "2018-03-13T22:09:56+00:00"
         },
         {
-            "name": "bolt/core-php",
-            "version": "0.9.0",
+            "name": "bolt-design-system/core-php",
+            "version": "1.0.0-rc.6",
             "dist": {
                 "type": "path",
                 "url": "../../packages/core-php",
-                "reference": "23faf1fc308dc1ba5a28b3026e9c9729e7f2f234",
+                "reference": "e5d54198ccc79ae23418eb7147b75cf99bf80f4a",
                 "shasum": null
             },
             "require": {
-                "basaltinc/twig-tools": "^1.3.2",
-                "drupal/core-render": "8.4.x-dev",
-                "drupal/core-utility": "8.4.x-dev",
+                "basaltinc/twig-tools": "^1.3.4",
                 "gregwar/image": "^2.0",
                 "ksubileau/color-thief-php": "^1.3",
                 "mexitek/phpcolors": "^0.4.0",
                 "michelf/php-markdown": "^1.8.0",
                 "shudrum/array-finder": "^1.1",
+                "tooleks/php-avg-color-picker": "^1.1.2",
                 "twig/twig": "^1.0",
                 "webmozart/path-util": "^2.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Bolt\\": "src/",
-                    "Drupal\\Core\\": "src/libs/Drupal/Core/"
+                    "Bolt\\": "src/"
                 }
+            },
+            "scripts": {
+                "test": [
+                    "phpunit --colors=always tests"
+                ]
             },
             "license": [
                 "MIT"
@@ -148,6 +154,40 @@
                 }
             ],
             "description": "Core PHP functionality for Bolt"
+        },
+        {
+            "name": "bolt-design-system/drupal-stubs",
+            "version": "1.0.0-rc.6",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/drupal-stubs",
+                "reference": "a390a394526d9e72de6d89b7bb70c25b0cd3bf93",
+                "shasum": null
+            },
+            "require": {
+                "drupal/core-render": "^8.0.0",
+                "drupal/core-utility": "^8.0.0",
+                "twig/twig": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Drupal\\Core\\": "src/Core"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Salem Ghoweri",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Evan Lovely"
+                }
+            ],
+            "description": "Stubbed in Drupal functionality"
         },
         {
             "name": "composer/installers",
@@ -382,16 +422,16 @@
         },
         {
             "name": "drupal/core-render",
-            "version": "8.4.x-dev",
+            "version": "8.6.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-render.git",
-                "reference": "11338118bb93a2e23181f67d95f0f76733b35167"
+                "reference": "10f38eca14d0486b54e239950ce5e99df62a3052"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core-render/zipball/11338118bb93a2e23181f67d95f0f76733b35167",
-                "reference": "11338118bb93a2e23181f67d95f0f76733b35167",
+                "url": "https://api.github.com/repos/drupal/core-render/zipball/10f38eca14d0486b54e239950ce5e99df62a3052",
+                "reference": "10f38eca14d0486b54e239950ce5e99df62a3052",
                 "shasum": ""
             },
             "require": {
@@ -413,20 +453,20 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2018-01-23 08:31:55"
+            "time": "2018-02-01 21:34:33"
         },
         {
             "name": "drupal/core-utility",
-            "version": "8.4.x-dev",
+            "version": "8.6.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-utility.git",
-                "reference": "f959b49d527314b8b3f7f6f074d301b0d6254bdb"
+                "reference": "17a9212a99c8d905d10b9cab20ab5ba495f86087"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core-utility/zipball/f959b49d527314b8b3f7f6f074d301b0d6254bdb",
-                "reference": "f959b49d527314b8b3f7f6f074d301b0d6254bdb",
+                "url": "https://api.github.com/repos/drupal/core-utility/zipball/17a9212a99c8d905d10b9cab20ab5ba495f86087",
+                "reference": "17a9212a99c8d905d10b9cab20ab5ba495f86087",
                 "shasum": ""
             },
             "require": {
@@ -449,7 +489,7 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2018-01-23 08:31:55"
+            "time": "2018-02-07 14:34:43"
         },
         {
             "name": "evanlovely/plugin-twig-namespaces",
@@ -512,12 +552,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "5dce1159142a1ba0fcab4672cb295bf7d8f98824"
+                "reference": "68c7e19a465b6bc9b4a80b56b93ce881d9646194"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/5dce1159142a1ba0fcab4672cb295bf7d8f98824",
-                "reference": "5dce1159142a1ba0fcab4672cb295bf7d8f98824",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/68c7e19a465b6bc9b4a80b56b93ce881d9646194",
+                "reference": "68c7e19a465b6bc9b4a80b56b93ce881d9646194",
                 "shasum": ""
             },
             "require": {
@@ -554,7 +594,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2018-02-14 13:50:47"
+            "time": "2018-03-15 08:27:55"
         },
         {
             "name": "gajus/dindent",
@@ -1050,16 +1090,16 @@
         },
         {
             "name": "pattern-lab/core",
-            "version": "v2.8.11",
+            "version": "v2.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pattern-lab/patternlab-php-core.git",
-                "reference": "46ae845673396ec67b24075d1ee66ac6ac10112d"
+                "reference": "009399c5cb175f1d5a1fafc7b07abc1f2d13a0a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pattern-lab/patternlab-php-core/zipball/46ae845673396ec67b24075d1ee66ac6ac10112d",
-                "reference": "46ae845673396ec67b24075d1ee66ac6ac10112d",
+                "url": "https://api.github.com/repos/pattern-lab/patternlab-php-core/zipball/009399c5cb175f1d5a1fafc7b07abc1f2d13a0a3",
+                "reference": "009399c5cb175f1d5a1fafc7b07abc1f2d13a0a3",
                 "shasum": ""
             },
             "require": {
@@ -1080,7 +1120,6 @@
             "extra": {
                 "patches_applied": {
                     "[FIX] Fix Psuedo Pattern Template Paths If Organized In Different Folder From Base Template. Addresses https://github.com/drupal-pattern-lab/patternlab-php-core/issues/22": ".patches/fixPsuedoPatternTemplatePaths.patch",
-                    "[FEATURE] Beautify raw HTML output": ".patches/beautifyHTML.patch",
                     "[FEATURE] Allow markdown files to specify associated pattern + also includes compiling embedded templates in .md files": ".patches/allowMarkdownFilesToSpecifyAssociatedPattern.patch",
                     "[FIX] Allow PL to Ignore Certain Folders like Node Modules.": ".patches/ignoreCertainFolders.patch",
                     "[FEATURE] Allow default Pattern Data configuration rules to be disabled. Also adds ability to add on extra Pattern Data rules to customize and extend default Pattern Lab behavior.": ".patches/configurablePatternDataRules.patch",
@@ -1128,7 +1167,7 @@
                 "style guide",
                 "styleguide"
             ],
-            "time": "2017-11-08T23:56:57+00:00"
+            "time": "2018-02-27T22:12:27+00:00"
         },
         {
             "name": "pattern-lab/drupal-twig-extensions",
@@ -1550,12 +1589,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "6a615613745cef820d807443f32076bb9f5d0a38"
+                "reference": "a479817ce0a9e4adfd7d39c6407c95d97c254625"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/6a615613745cef820d807443f32076bb9f5d0a38",
-                "reference": "6a615613745cef820d807443f32076bb9f5d0a38",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/a479817ce0a9e4adfd7d39c6407c95d97c254625",
+                "reference": "a479817ce0a9e4adfd7d39c6407c95d97c254625",
                 "shasum": ""
             },
             "require": {
@@ -1591,7 +1630,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-11 17:15:12"
+            "time": "2018-03-05 18:28:11"
         },
         {
             "name": "symfony/process",
@@ -1701,17 +1740,69 @@
             "time": "2018-02-16 09:50:28"
         },
         {
+            "name": "tooleks/php-avg-color-picker",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tooleks/php-avg-color-picker.git",
+                "reference": "64e2042def3f0450e04a812dd3dcd8e7236a7fd8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tooleks/php-avg-color-picker/zipball/64e2042def3f0450e04a812dd3dcd8e7236a7fd8",
+                "reference": "64e2042def3f0450e04a812dd3dcd8e7236a7fd8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "ext-mbstring": "*",
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tooleks\\Php\\AvgColorPicker\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oleksandr Tolochko",
+                    "email": "tooleks@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The PHP Average Color Picker Library",
+            "homepage": "https://github.com/tooleks/php-avg-color-picker",
+            "keywords": [
+                "average",
+                "avg",
+                "color",
+                "hex",
+                "php",
+                "picker",
+                "rgb"
+            ],
+            "time": "2017-07-07T11:41:14+00:00"
+        },
+        {
             "name": "twig/twig",
             "version": "1.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "8a7fba9560e0564342f2a95538f2a373f508d0e3"
+                "reference": "4d9dc7951606e631f1619cb3578dd5be82e19298"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/8a7fba9560e0564342f2a95538f2a373f508d0e3",
-                "reference": "8a7fba9560e0564342f2a95538f2a373f508d0e3",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/4d9dc7951606e631f1619cb3578dd5be82e19298",
+                "reference": "4d9dc7951606e631f1619cb3578dd5be82e19298",
                 "shasum": ""
             },
             "require": {
@@ -1763,7 +1854,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2018-02-07 19:24:52"
+            "time": "2018-03-14 15:27:12"
         },
         {
             "name": "webmozart/assert",

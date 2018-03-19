@@ -1,4 +1,4 @@
-{% set schema = get_data('@bolt-components-page-header/page-header.schema.yml') %}
+{% set schema = bolt.data.components['@bolt-components-page-footer'].schema %}
 {% set code %} {% verbatim %}
 {% include "@bolt-components-page-footer/page-footer.twig" with {
   "content": content,

@@ -1,38 +1,49 @@
-// These values can be applied using the mixins, functions, and utility classes
-// see _tools-shadow.scss
-// see _utilities-shadow.scss
-$bolt-shadows: (
-  'utility-class-prefix': 'u-bolt-shadow--',
-  'sets': (
-    //'b1': (
-    //  'base': 'inset 0 1px 3px rgba(0,0,0,0.12), inset 0 1px 2px rgba(0,0,0,0.24)',
-    //  'hover': ''
-    //),
-    'l1': (
-      'base': '0 1px 2px 1px rgba(6,10,36,0.08)',
-      'hover': ''
-    ),
-    'l2': (
-      'base': '0 1px 4px 1px rgba(6,10,36,0.10), 0 5px 10px 0 rgba(6,10,36,0.08)',
-      'hover': '0 1px 8px 1px rgba(6,10,36,0.18), 0 5px 10px 1px rgba(6,10,36,0.15), 0 15px 30px 0 rgba(6,10,36,0.16)'
-    ),
-    'l3': (
-      'base': '0 1px 6px 1px rgba(6,10,36,0.10), 0 5px 5px 1px rgba(6,10,36,0.10), 0 5px 20px 0 rgba(6,10,36,0.08)',
-      'hover': '0 1px 10px 1px rgba(6,10,36,0.10), 0 10px 10px 1px rgba(6,10,36,0.20), 0 35px 60px 0 rgba(6,10,36,0.27)'
-    ),
-    'l4': (
-      'base': '0 1px 8px 1px rgba(6,10,36,0.18), 0 5px 10px 1px rgba(6,10,36,0.15), 0 15px 30px 0 rgba(6,10,36,0.16)',
-      'hover': '0 1px 12px 1px rgba(6,10,36,0.10), 0 20px 20px 1px rgba(6,10,36,0.20), 0 45px 90px 0 rgba(6,10,36,0.36)'
-    ),
-    'l5': (
-      'base': '0 1px 10px 1px rgba(6,10,36,0.10), 0 10px 10px 1px rgba(6,10,36,0.20), 0 35px 60px 0 rgba(6,10,36,0.27)',
-      'hover': '0 1px 12px 1px rgba(6,10,36,0.10), 0 20px 20px 1px rgba(6,10,36,0.20), 0 45px 90px 0 rgba(6,10,36,0.42)'
-    ),
-    'l6': (
-      'base': '0 1px 12px 1px rgba(6,10,36,0.10), 0 20px 20px 1px rgba(6,10,36,0.20), 0 45px 90px 0 rgba(6,10,36,0.36)',
-      'hover': '0 1px 12px 1px rgba(6,10,36,0.10), 0 20px 20px 1px rgba(6,10,36,0.20), 0 60px 120px 0 rgba(6,10,36,0.48)'
-    )
-  )
-);
+/* ------------------------------------ *\
+  SHADOW SETTINGS
+  see _tools-shadow.scss
+  see _utilities-shadow.scss
+\* ------------------------------------ */
 
+@function bolt-get-shadows-map($base-color: rgb(6, 10, 36)) {
+  $bolt-shadows: (
+    'utility-class-prefix': 'u-bolt-shadow--',
+    'sets': (
+      //'b1': (
+      //  'base': 'inset 0 1px 3px rgba(0,0,0,0.12), inset 0 1px 2px rgba(0,0,0,0.24)',
+      //  'lifted': ''
+      //),
+      'level-10': (
+        'base': '0 1px 2px 1px #{transparentize($base-color, .92)}',
+        'raised': ''
+      ),
+      'level-20': (
+        'base': '0 1px 4px 1px #{transparentize($base-color, .90)}, 0 5px 10px 0 #{transparentize($base-color, .92)}',
+        'raised': '0 1px 8px 1px #{transparentize($base-color, .82)}, 0 5px 10px 1px #{transparentize($base-color, .85)}, 0 15px 30px 0 #{transparentize($base-color, .84)}'
+      ),
+      'level-30': (
+        'base': '0 8px 15px 1px #{transparentize($base-color, .90)}, 0 18px 24px 1px #{transparentize($base-color, .88)}',
+        'raised': '0 8px 15px 1px #{transparentize($base-color, .90)}, 0 24px 36px 1px #{transparentize($base-color, .82)}, 0 35px 50px 0 #{transparentize($base-color, .75)}'
+      ),
+      'level-40': (
+        'base': '0 10px 20px 1px #{transparentize($base-color, .90)}, 0 24px 36px 1px #{transparentize($base-color, .82)}',
+        'raised': '0 10px 20px 1px #{transparentize($base-color, .90)}, 0 36px 49px 1px #{transparentize($base-color, .80)}, 0 45px 65px 0 #{transparentize($base-color, .70)}'
+      ),
+      'level-50': (
+        'base': '0 10px 30px 1px #{transparentize($base-color, .90)}, 0 40px 48px 1px #{transparentize($base-color, .75)}',
+        'raised': '0 10px 30px 1px #{transparentize($base-color, .90)}, 0 50px 70px 1px #{transparentize($base-color, .80)}, 0 55px 80px 0 #{transparentize($base-color, .70)}'
+      ),
+      'level-60': (
+        'base': '0 10px 30px 1px #{transparentize($base-color, .90)}, 0 50px 60px 1px #{transparentize($base-color, .60)}',
+        'raised': '0 10px 30px 1px #{transparentize($base-color, .90)}, 0 70px 80px 1px #{transparentize($base-color, .80)}, 0 80px 120px 0 #{transparentize($base-color, .65)}'
+      ),
+      'level-70': (
+        'base': '0 10px 30px 1px #{transparentize($base-color, .90)}, 0 80px 90px 1px #{transparentize($base-color, .60)}',
+        'raised': '0 10px 30px 1px #{transparentize($base-color, .90)}, 0 110px 130px 1px #{transparentize($base-color, .75)}, 0 130px 150px 0 #{transparentize($base-color, .65)}'
+      )
+    )
+  );
+  @return $bolt-shadows;
+}
+
+$bolt-shadows: bolt-get-shadows-map();
 @include export-data('shadows.bolt.json', $bolt-shadows);

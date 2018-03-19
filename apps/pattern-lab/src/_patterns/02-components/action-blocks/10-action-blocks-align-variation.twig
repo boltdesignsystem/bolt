@@ -1,4 +1,4 @@
-{% set schema = get_data('@bolt-components-action-blocks/action-blocks.schema.yml') %}
+{% set schema = bolt.data.components['@bolt-components-action-blocks'].schema %}
 
 {% for align in schema.properties.align.enum %}
   <p>Align: {{ align }}</p>

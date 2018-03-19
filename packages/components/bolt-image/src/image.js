@@ -1,5 +1,6 @@
 import lazySizes from 'lazysizes'; // Mostly just for automatic `size` attribute support
 import 'lazysizes/plugins/unveilhooks/ls.unveilhooks';
+import 'lazysizes/plugins/progressive/ls.progressive';
 import 'lazysizes/plugins/respimg/ls.respimg'; // Lighter weight version of picturefill
 
 // https://github.com/aFarkas/lazysizes/issues/410

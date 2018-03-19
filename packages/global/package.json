@@ -1,26 +1,19 @@
 {
   "name": "@bolt/global",
   "description": "Global styles for Bolt Design System",
-  "version": "1.0.0-rc.3",
+  "version": "1.0.0-rc.7",
   "license": "MIT",
   "main": "styles/index.js",
   "style": "styles/index.scss",
-  "twig": [
-    "styles/05-objects/objects-wrapper/wrapper.twig",
-    "styles/05-objects/objects-inline-list/src/inline-list.twig"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bolt-design-system/bolt"
-  },
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/global",
   "dependencies": {
-    "@bolt/core": "^1.0.0-rc.3",
+    "@bolt/core": "^1.0.0-rc.7",
     "normalize-scss": "^7.0.0"
   },
-  "files": [
-    "fonts/**/*"
-  ],
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "schema": "styles/06-themes/themes.schema.json",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "homepage": "https://bolt-design-system.com"
 }

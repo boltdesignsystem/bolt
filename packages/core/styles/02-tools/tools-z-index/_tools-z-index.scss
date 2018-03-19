@@ -1,0 +1,31 @@
+/* ------------------------------------ *\
+  Z Index MIXIN
+  see `_settings-z-index.scss`
+\* ------------------------------------ */
+
+@mixin bolt-z-index($key: "content", $utility: false) {
+  $indexes: map-get($bolt-z-indexes, 'sets');
+  $important: '';
+
+  @if $utility {
+    $important: '!important';
+  }
+  @if map-has-key($indexes, $key) {
+    z-index: map-get($indexes, $key) #{$important};
+  } @else {
+    @error 'A value, #{$key}, was passed into @include bolt-z-index() that is not defined in $bolt-z-indexes';
+  }
+}
+
+/* ------------------------------------ *\
+  Z Index FUNCTION
+\* ------------------------------------ */
+
+@function bolt-z-index($key) {
+  $indexes: map-get($bolt-z-indexes, 'sets');
+  @if map-has-key($indexes, $key) {
+    @return map-get($indexes, $key)
+  } @else {
+    @error 'A value, #{$key}, was passed into bolt-z-index() that is not defined in $bolt-z-indexes';
+  }
+}

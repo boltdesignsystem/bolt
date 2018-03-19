@@ -1,81 +1,50 @@
 /* eslint-disable */
-
 import styles from './critical-fonts.scss';
+import FontFaceObserver from 'fontfaceobserver/fontfaceobserver.js';
 
-var fontsLoadedClass = styles.locals['js-fonts-loaded'],
-  fontsSubsetLoadedClass = styles.locals['js-fonts-subset-loaded'];
+(function () {
 
-if (sessionStorage.criticalFoftFontsLoaded) {
-  document.documentElement.className += ' ' + fontsLoadedClass + ' ' +  fontsSubsetLoadedClass;
-} else {
+  var fontsLoadedClass = styles.locals['js-fonts-loaded'];
 
-  var FontFaceObserver = require('fontfaceobserver/fontfaceobserver.js');
+  // Optimization for Repeat Views
+  if (sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill) {
+    document.documentElement.className += ` ${fontsLoadedClass}`;
+    return;
+  }
 
-  var openSansSubset = new FontFaceObserver('OpenSansSubset');
+  var openSansRegular = new FontFaceObserver('Open Sans', {
+    weight: 400
+  });
 
+  var openSansItalic = new FontFaceObserver('Open Sans', {
+    weight: 400,
+    style: 'italic'
+  });
 
+  var openSansSemiBold = new FontFaceObserver('Open Sans', {
+    weight: 600
+  });
 
+  var openSansExtraBold = new FontFaceObserver('Open Sans', {
+    weight: 800
+  });
 
-	Promise.all([openSansSubset.load()]).then(function () {
-		document.documentElement.className += ' ' + fontsSubsetLoadedClass;
+  var openSansExtraBoldItalic = new FontFaceObserver('Open Sans', {
+    weight: 800,
+    style: 'italic'
+  });
 
-    var openSansRegular = new FontFaceObserver('Open Sans', {
-      weight: 400
-    });
+  Promise.all([
+    openSansRegular.load(),
+    openSansItalic.load(),
+    openSansSemiBold.load(),
+    openSansExtraBold.load(),
+    openSansExtraBoldItalic.load()
 
-    var openSansItalic = new FontFaceObserver('Open Sans', {
-      weight: 400,
-      style: 'italic'
-    });
+  ]).then(function () {
+    document.documentElement.className += ` ${fontsLoadedClass}`;
 
-    var openSansSemiBold = new FontFaceObserver('Open Sans', {
-      weight: 600
-    });
-
-    var openSansExtraBold = new FontFaceObserver('Open Sans', {
-      weight: 800
-    });
-
-    var openSansExtraBoldItalic = new FontFaceObserver('Open Sans', {
-      weight: 800,
-      style: 'italic'
-    });
-
-		Promise.all([
-      openSansRegular.load(),
-      openSansItalic.load(),
-      openSansSemiBold.load(),
-      // openSansBoldItalic.load(),
-      openSansExtraBold.load(),
-      openSansExtraBoldItalic.load()
-    ]).then(function () {
-			document.documentElement.className += ' ' + fontsLoadedClass;
-
-			// Optimization for Repeat Views
-			sessionStorage.criticalFoftFontsLoaded = true;
-		});
-  //
-  // Promise.all([
-  //   openSansRegular.load(null, 5000),
-  //   openSansItalic.load(null, 5000),
-  //   openSansSemiBold.load(null, 5000),
-  //   openSansSemiBoldItalic.load(null, 5000),
-  //   openSansBold.load(null, 5000),
-  //   openSansBoldItalic.load(null, 5000),
-  //       // glyphicons.load('\ue003', 5000),
-  //       // fontAwesome.load('\f099', 5000)
-  //
-  //
-  // ]).then(function() {
-  //   document.documentElement.className += ' js-fonts-loaded';
-  //       // // Optimization for Repeat Views
-  //   sessionStorage.criticalFoftFontsLoaded = true;
-  // }, function(err) {
-  //   document.documentElement.className += ' js-fonts-loaded';
-  //   sessionStorage.criticalFoftFontsLoaded = true;
-  // });
-}, function () {
-  console.log('Font is not available');
-});
-
-}
+    // Optimization for Repeat Views
+    sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill = true;
+  });
+})();

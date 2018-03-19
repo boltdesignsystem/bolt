@@ -1,16 +1,19 @@
-// Generates utility
-// see `_settings-shadow.scss`
-// @todo Salem, should these have `!important`?
+/* ------------------------------------ *\
+  SHADOW MIXIN
+  see `_settings-shadow.scss`
+\* ------------------------------------ */
+
 $shadows: map-get($bolt-shadows, 'sets');
+
 @each $key, $value in $shadows {
   $prefix: map-get($bolt-shadows, 'utility-class-prefix');
   .#{$prefix}#{$key} {
-    @include bolt-shadow($key);
+    @include bolt-shadow($key, $lifted: false, $utility: true);
   }
   .#{$prefix}#{$key}--hoverable {
-    @include bolt-shadow($key);
+    @include bolt-shadow($key, $lifted: false, $utility: true);
     &:hover {
-      @include bolt-shadow($key, true);
+      @include bolt-shadow($key, $lifted: true, $utility: true);
     }
   }
 }
