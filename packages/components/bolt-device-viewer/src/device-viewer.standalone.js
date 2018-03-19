@@ -8,7 +8,8 @@ import {
   withPreact,
   css,
   spacingSizes,
-  hasNativeShadowDomSupport
+  hasNativeShadowDomSupport,
+  passiveSupported,
 } from '@bolt/core';
 
 
@@ -128,7 +129,7 @@ class BoltImageZoom extends withPreact(withComponent()) {
     screenElem.classList.remove('is-mouse-entering');
     screenElem.classList.add('is-mouse-leaving');
 
-    animationEvent && iconElem.addEventListener(animationEvent, animationLeaveFunction);
+    animationEvent && iconElem.addEventListener(animationEvent, animationLeaveFunction, passiveSupported ? { passive: false } : false);
 
     function animationLeaveFunction() {
       setTimeout(function () {
@@ -143,8 +144,8 @@ class BoltImageZoom extends withPreact(withComponent()) {
   connectedCallback() {
     const driftZoomImageUrl = this.querySelector('img').getAttribute('data-zoom');
     this.setAttribute('data-zoom', driftZoomImageUrl);
-    this.addEventListener('mouseenter', this._mouseEnter);
-    this.addEventListener('mouseleave', this._mouseLeave);
+    this.addEventListener('mouseenter', this._mouseEnter, passiveSupported ? { passive: false } : false);
+    this.addEventListener('mouseleave', this._mouseLeave, passiveSupported ? { passive: false } : false);
   }
 
   /**

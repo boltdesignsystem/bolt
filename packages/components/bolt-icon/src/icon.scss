@@ -99,7 +99,7 @@ bolt-icon[size='xlarge'],
   opacity: var(--bolt-theme-icon-background-opacity, 0.1);
 
   background-color: currentColor; // Fallback if CSS vars not supported
-  background-color: var(--bolt-theme-icon-background, var(--bolt-theme-text, currentColor));
+  background-color: var(--bolt-theme-icon-background, var(--bolt-theme-primary-text-default, currentColor));
 }
 
 .c-bolt-icon__background-shape--circle {
