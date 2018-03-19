@@ -1,4 +1,3 @@
-<!doctype html>
 <html class="no-js" lang="">
 <head>
   <meta charset="utf-8">
@@ -191,7 +190,7 @@
 {#<script src="https://www.google-analytics.com/analytics.js" async defer></script>#}
 
 {# Shows Twig Vars in Browser Console #}
-{% if not bolt.data.config.prod %}
+{# if not bolt.data.config.prod %}
   <script type="application/json">{{ _context|json_encode()|raw }}</script>
   <script>
     (function () {
@@ -201,6 +200,6 @@
       console.log('Twig vars for this page: ', data);
     })();
   </script>
-{% endif %}
+{% endif #}
 </body>
 </html>

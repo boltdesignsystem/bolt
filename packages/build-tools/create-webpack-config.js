@@ -9,6 +9,10 @@ const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const sassImportGlobbing = require('@theme-tools/sass-import-globbing');
 const { getBoltManifest } = require('./utils/manifest');
+const WebpackEventPlugin = require('webpack-event-plugin');
+const globby = require('globby');
+const fs = require('fs-extra');
+
 
 function createConfig(config) {
   // @TODO: move this setting to .boltrc config
@@ -202,6 +206,54 @@ function createConfig(config) {
     }
   ];
 
+  const webpackModules = {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+            babelrc: false,
+            presets: ['@bolt/babel-preset-bolt'],
+          }
+        }
+      },
+      {
+        test: /\.twig$/,
+        use: [
+          { loader: 'raw-loader' },
+          { loader: 'inline-source-loader' }
+        ]
+      },
+      {
+        test: /\.scss$/,
+        oneOf: [
+          {
+            issuer: /\.js$/,
+            use: scssLoaders,
+          },
+          {
+            // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
+            use: ExtractTextPlugin.extract({
+              fallback: "style-loader",
+              use: scssLoaders,
+            })
+          },
+        ],
+      },
+      {
+        test: /\.(woff|woff2)$/,
+        loader: "file-loader",
+        options: {
+          name: 'fonts/[name].[ext]',
+        },
+      }
+    ],
+  };
+
+
   // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
   // Must start and end with `/`
   // conditional is temp workaround for when servers are disabled via absence of `config.wwwDir`
@@ -220,45 +272,7 @@ function createConfig(config) {
     resolve: {
       extensions: [".js", ".jsx", ".json", ".svg", ".scss"]
     },
-    module: {
-      rules: [
-        {
-          test: /\.scss$/,
-          oneOf: [
-            {
-              issuer: /\.js$/,
-              use: scssLoaders,
-            },
-            {
-              // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
-              use: ExtractTextPlugin.extract({
-                fallback: "style-loader",
-                use: scssLoaders,
-              })
-            },
-          ],
-        },
-        {
-          test: /\.js$/,
-          exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              cacheDirectory: true,
-              babelrc: false,
-              presets: ['@bolt/babel-preset-bolt'],
-            }
-          }
-        },
-        {
-          test: /\.(woff|woff2)$/,
-          loader: "file-loader",
-          options: {
-            name: 'fonts/[name].[ext]',
-          },
-        }
-      ],
-    },
+    module: webpackModules,
     plugins: [
       // Ignore generated output if generated output is on a dependency chain (causes endless loop)
       new webpack.WatchIgnorePlugin([
@@ -365,7 +379,59 @@ function createConfig(config) {
    }
  }
 
-  return webpackConfig;
+  return [
+    webpackConfig,
+    {
+      entry: [
+        './bolt.templates.js'
+      ],
+      resolve: {
+        extensions: [".js", ".jsx", ".json", ".svg", ".scss", ".twig"]
+      },
+      output: {
+        path: path.resolve(process.cwd(), config.buildDir),
+        filename: "bolt.templates.js",
+        libraryTarget: 'commonjs2'
+      },
+      module: webpackModules,
+      plugins: [
+        new WebpackEventPlugin([
+          {
+            hook: 'after-emit',
+            callback: (compilation, callback) => {
+              console.log('Converting Twig Templates to JSON for Server Side Rendering...');
+
+              // With async/await:
+              async function writeTemplateJson() {
+                try {
+                  const templateData = await eval(compilation.assets['bolt.templates.js']._cachedSource);
+                  await fs.writeJson(path.resolve(config.buildDir + '/bolt.templates.json'), templateData);
+                  return callback();
+                } catch (err) {
+                  console.error(err);
+                }
+              }
+
+              // Make sure the buildDir, www exists before converting our template-specific JS data into JSON
+              fs.ensureDir(__dirname + path.resolve(process.cwd(), config.buildDir), err => {
+                if (err) {
+                  console.log(err); // => null
+                }
+
+                if (compilation.assets['bolt.templates.js']._cachedSource) {
+                  writeTemplateJson();
+                } else {
+                  console.log('Error! Cannott find bolt.templates.js');
+                }
+              });
+            }
+          }
+        ])
+      ],
+      target: 'node'
+    }
+  ]
+
 }
 
 module.exports = createConfig;

@@ -18,7 +18,7 @@ export { declarativeClickHandler } from './utils/declarative-click-handler';
 export * from './utils/environment';
 
 export { withPreact } from './renderers/renderer-preact';
-export { withHyperHTML } from './renderers/renderer-hyperhtml';
+export * from './renderers/renderer-hyperhtml';
 
 // Export Bolt data shared
 export * from './data/spacing-sizes';

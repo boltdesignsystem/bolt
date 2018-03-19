@@ -3,9 +3,9 @@ require('core-js/modules/es6.array.iterator');
 require('core-js/modules/es6.symbol');
 require('core-js/modules/es6.array.from');
 require('core-js/modules/es7.array.includes');
-require('core-js/modules/es6.array.for-each');
+// require('core-js/modules/es6.array.for-each');
 require('core-js/modules/es6.object.assign');
-require('core-js/library/es6/reflect');
+// require('core-js/library/es6/reflect');
 
 let polyfills = [];
 

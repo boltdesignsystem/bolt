@@ -1,11 +1,9 @@
 import {
   define,
   props,
-  withComponent,
   css,
   hasNativeShadowDomSupport,
-  withPreact,
-  withHyperHTML,
+  BoltComponent,
   sanitizeBoltClasses
 } from '@bolt/core';
 
@@ -15,25 +13,7 @@ import visuallyhiddenUtils from '@bolt/global/styles/07-utilities/_utilities-vis
 
 
 @define
-export class ReplaceWithChildren extends withPreact(withComponent()) {
-  static is = 'replace-with-children';
-
-  constructor(elem) {
-    super(elem);
-    this.useShadow = hasNativeShadowDomSupport;
-  }
-
-  connectedCallback(){
-    if (hasNativeShadowDomSupport){
-      this.replaceWith(...this.childNodes);
-    } else {
-      this.className = '';
-    }
-  }
-}
-
-@define
-export class BoltButton extends withHyperHTML(withComponent()) {
+class BoltButton extends BoltComponent() {
   static is = 'bolt-button';
 
   static props = {
@@ -59,8 +39,8 @@ export class BoltButton extends withHyperHTML(withComponent()) {
     onClickTarget: props.string, // Managed by base class
   }
 
-  constructor(elem) {
-    super(elem);
+  constructor() {
+    super();
     this.useShadow = hasNativeShadowDomSupport;
   }
 
@@ -89,7 +69,6 @@ export class BoltButton extends withHyperHTML(withComponent()) {
       this.props.isFocus ? `c-bolt-button--focus` : ''
     );
 
-
     /**
      * Given that our base HyperHTML Class is configured to automatically organizing top level children into separate slot buckets (ie.
      * `this.slots.default`) AND we need to apply padding styles to the <button> or <link> getting passed in, we need to identify which Dom Node in
@@ -117,19 +96,24 @@ export class BoltButton extends withHyperHTML(withComponent()) {
     // Assign default target attribute value if one isn't specified
     const urlTarget = this.props.target && hasUrl ? this.props.target : '_self';
 
-
     // Add inline <style> tag automatically if Shadow DOM is natively supported
     return this.html`
       ${ this.addStyles([styles, visuallyhiddenUtils]) }
 
       ${
-        childElementIndex === null ? (
-          hasUrl ?
-            this.html`<a href="${this.props.url}" class="${classes}" target="${urlTarget}">${this.slots.default}</a>` :
-            this.html`<button class="${classes}">${this.slots.default}</button>`
+        (childElementIndex !== null ) ? (this.html`${ this.slot('default') }`) :
+        (
+          (hasUrl) ?
+            (this.hyper.wire() `
+              <a href="${this.props.url}" class="${classes}" target="${urlTarget}">
+                ${this.slot('default')}
+              </a>`) :
+            (this.hyper.wire() `
+              <button class="${classes}">
+                ${this.slot('default')}
+              </button>`)
         )
-        : this.slots.default
-      }
-    `
+       }
+      `
   }
 }

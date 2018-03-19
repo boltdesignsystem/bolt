@@ -1,7 +1,6 @@
-/** @jsx h */
 // HyperHTML Renderer ported to SkateJS
-
-import { shadow, props } from 'skatejs';
+import { withComponent, shadow, props } from 'skatejs';
+import { hyper, bind } from 'hyperhtml/cjs';
 import { hasNativeShadowDomSupport } from '../utils/environment';
 
 import {
@@ -9,11 +8,10 @@ import {
   findParentTag
 } from '../';
 
-const { hyperHTML, hyper, wire, bind, Component } = require('hyperhtml/cjs');
 
 
-export function withHyperHTML(Base = HTMLElement) {
-  return class extends Base {
+export function BoltComponent(Base = HTMLElement) {
+  return class extends withComponent(Base) {
 
     static props = {
       onClick: props.string,
@@ -23,6 +21,8 @@ export function withHyperHTML(Base = HTMLElement) {
     constructor(...args) {
       super(...args);
 
+      this.hyper = hyper;
+
       if (findParentTag(this, 'FORM') || this.getAttribute('no-shadow') !== null) {
         this.useShadow = false;
       } else {
@@ -31,6 +31,10 @@ export function withHyperHTML(Base = HTMLElement) {
     }
 
     connectedCallback() {
+      if (this.dataset.ssrContent) {
+        this.innerHTML = JSON.parse(this.dataset.ssrContent);
+      }
+
       this._checkSlots();
 
       // Handles external click event hooks
@@ -38,7 +42,6 @@ export function withHyperHTML(Base = HTMLElement) {
     }
 
     disconnectedCallback() {
-      super.disconnectedCallback();
       this.removeEventListener('click', this.clickHandler);
     }
 
@@ -54,30 +57,54 @@ export function withHyperHTML(Base = HTMLElement) {
 
       if (this.useShadow) {
         return hyper.wire() `
-          <style>${ styles } </style>
+          <style>${ styles} </style>
         `;
+      }
+    }
+
+    slot(name) {
+      if (this.useShadow && hasNativeShadowDomSupport) {
+        if (name === 'default') {
+          return hyper.wire() `
+            <slot />
+          `;
+        } else {
+          return hyper.wire() `
+            <slot name="${name}" />
+          `;
+        }
+      } else {
+        if (this.slots[name]) {
+          return hyper.wire() `
+            ${this.slots.default}
+          `;
+        }
+        else {
+          console.log(`The ${name} slot doesn't appear to exist...`);
+        }
       }
     }
 
 
     // Inspired by https://codepen.io/jovdb/pen/ddRZKo
     _checkSlots() {
-      const children = this.childNodes;
       this.slots = {
         default: []
       };
-      if (children.length > 0) {
-        [...children].map(child => {
-          const slotName = child.getAttribute ? child.getAttribute("slot") : null;
-          if (!slotName) {
-            this.slots.default.push(child);
-          } else {
-            this.slots[slotName] = child;
-          }
-        });
-      }
-    }
 
+      const elem = this;
+
+      // Loop through nodelist
+      this.childNodes.forEach(function (child, index, nodelist) {
+        const slotName = child.getAttribute ? child.getAttribute("slot") : null;
+
+        if (!slotName) {
+          elem.slots.default.push(child);
+        } else {
+          elem.slots[slotName] = child;
+        }
+      });
+    }
 
     get renderRoot() {
       if (hasNativeShadowDomSupport && this.useShadow === true) {
@@ -88,19 +115,9 @@ export function withHyperHTML(Base = HTMLElement) {
     }
 
 
-    renderer(renderRoot, renderCallback) {
-      this._renderRoot = renderRoot;
-      this.html = this.html || bind(this._renderRoot);
-      renderCallback();
+    renderer(root, render) {
+      this.html = this.html || bind(root);
+      render();
     }
-
-
-    updated(...args) {
-      super.updated && super.updated(...args);
-      this.rendering && this.rendering();
-      this.renderer(this.renderRoot, () => this.render && this.render(this));
-      this.rendered && this.rendered();
-    }
-
   }
 };

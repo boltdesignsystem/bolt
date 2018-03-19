@@ -113,15 +113,15 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/core-php",
-                "reference": "e5d54198ccc79ae23418eb7147b75cf99bf80f4a",
+                "reference": "81ca4e65d8a07a8b3afc14ae6073e755356c1ac6",
                 "shasum": null
             },
             "require": {
                 "basaltinc/twig-tools": "^1.3.4",
                 "gregwar/image": "^2.0",
-                "ksubileau/color-thief-php": "^1.3",
                 "mexitek/phpcolors": "^0.4.0",
                 "michelf/php-markdown": "^1.8.0",
+                "sabberworm/php-css-parser": "dev-master",
                 "shudrum/array-finder": "^1.1",
                 "tooleks/php-avg-color-picker": "^1.1.2",
                 "twig/twig": "^1.0",
@@ -552,12 +552,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "68c7e19a465b6bc9b4a80b56b93ce881d9646194"
+                "reference": "65fbcca41437baff58a5c0e8f08fae617531dd0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/68c7e19a465b6bc9b4a80b56b93ce881d9646194",
-                "reference": "68c7e19a465b6bc9b4a80b56b93ce881d9646194",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/65fbcca41437baff58a5c0e8f08fae617531dd0d",
+                "reference": "65fbcca41437baff58a5c0e8f08fae617531dd0d",
                 "shasum": ""
             },
             "require": {
@@ -594,7 +594,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2018-03-15 08:27:55"
+            "time": "2018-03-15 16:58:08"
         },
         {
             "name": "gajus/dindent",
@@ -853,59 +853,6 @@
                 "shell"
             ],
             "time": "2016-04-12T20:58:34+00:00"
-        },
-        {
-            "name": "ksubileau/color-thief-php",
-            "version": "v1.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ksubileau/color-thief-php.git",
-                "reference": "a673d7d3fa815c70fa4bebdee74d337e9e6944fa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ksubileau/color-thief-php/zipball/a673d7d3fa815c70fa4bebdee74d337e9e6944fa",
-                "reference": "a673d7d3fa815c70fa4bebdee74d337e9e6944fa",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.8|~5.7",
-                "squizlabs/php_codesniffer": "~2.7"
-            },
-            "suggest": {
-                "ext-gd": "to use the GD image adapter.",
-                "ext-gmagick": "to use the Gmagick image adapter.",
-                "ext-imagick": "to use the Imagick image adapter."
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "ColorThief\\": "lib/ColorThief"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "CC-BY-2.5"
-            ],
-            "authors": [
-                {
-                    "name": "Kevin Subileau",
-                    "homepage": "http://www.kevinsubileau.fr"
-                }
-            ],
-            "description": "Grabs the dominant color or a representative color palette from an image.",
-            "homepage": "http://www.kevinsubileau.fr/projets/color-thief-php",
-            "keywords": [
-                "color",
-                "dominant",
-                "palette",
-                "php",
-                "thief"
-            ],
-            "time": "2016-12-18T03:12:25+00:00"
         },
         {
             "name": "mexitek/phpcolors",
@@ -1381,6 +1328,50 @@
                 "source": "https://github.com/pattern-lab/styleguidekit-twig-default/releases"
             },
             "time": "2017-08-28T18:42:55+00:00"
+        },
+        {
+            "name": "sabberworm/php-css-parser",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sabberworm/PHP-CSS-Parser.git",
+                "reference": "c3b01ef0a85824e86fd86a74a8154d8d5c34b0ff"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sabberworm/PHP-CSS-Parser/zipball/c3b01ef0a85824e86fd86a74a8154d8d5c34b0ff",
+                "reference": "c3b01ef0a85824e86fd86a74a8154d8d5c34b0ff",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Sabberworm\\CSS": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Raphael Schweikert"
+                }
+            ],
+            "description": "Parser for CSS Files written in PHP",
+            "homepage": "http://www.sabberworm.com/blog/2010/6/10/php-css-parser",
+            "keywords": [
+                "css",
+                "parser",
+                "stylesheet"
+            ],
+            "time": "2017-05-31 21:19:41"
         },
         {
             "name": "seld/jsonlint",

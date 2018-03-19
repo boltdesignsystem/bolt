@@ -1,0 +1,83 @@
+{# Defaults for a vanilla `Button` component #}
+{% set prefix = "c-bolt-" %}
+{% set componentName = "button" %}
+{% set baseClass = prefix ~ componentName %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set schema = bolt.data.components['@bolt-components-button'].schema %}
+
+{# re-assign old itemAlignment paramater to the new `align` name that's replacing it; avoids breaking change till post v1.0 #}
+{% if itemAlignment %}
+  {% if itemAlignment == "start" %}
+    {% set itemAlignment = "left" %}
+  {% endif %}
+  {% set align = itemAlignment %}
+{% endif %}
+
+{# set up psuedo self-validation by limiting param values to what's specifically allowed in the component schema #}
+{% set alignOptions = schema.properties.align.enum %}
+{% set roundedOptions = schema.properties.rounded.enum %}
+{% set sizeOptions = schema.properties.size.enum %}
+{% set colorOptions = schema.properties.color.enum %}
+{% set tagOptions = schema.properties.tag.enum %}
+{% set widthOptions = schema.properties.width.enum %}
+
+
+{# check if the value set to a prop is allowed or defined. if not, default to the default value specified in the component's schema (if one exists) #}
+{% set align =  align in alignOptions ? align : schema.properties.align.default %}
+{% set rounded = rounded in roundedOptions ? rounded : schema.properties.rounded.default %}
+{% set size = size in sizeOptions ? size : schema.properties.size.default %}
+{% set color = color in colorOptions ? color : schema.properties.color.default %}
+{% set tag = tag in tagOptions ? tag : schema.properties.tag.default %}
+{% set width = width in widthOptions ? width : schema.properties.width.default %}
+
+{% if tag == "submit" %}
+  {% set tag = "button" %}
+  {% set attributes = attributes.setAttribute("type", "submit") %}
+{% elseif tag == "link" or tag == "a" or url != null %}
+  {% set tag = "a" %}
+  {% if url %}
+    {% set attributes = attributes.setAttribute("href", url) %}
+  {% endif %}
+{% elseif tag == "reset" %}
+  {% set tag = "button" %}
+  {% set attributes = attributes.setAttribute("type", "reset") %}
+{% endif %}
+
+
+{# shorthand for manually setting HTML attribute `type` such as submit or reset #}
+{% if type %}
+  {% set attributes = attributes.setAttribute("type", type) %}
+{% endif %}
+
+{% set classes = [
+  baseClass,
+  disabled ? baseClass ~ "--disabled" : "",
+  size in sizeOptions ? baseClass ~ "--" ~ size : "",
+  width in widthOptions and width != "" ? baseClass ~ "--" ~ width : "",
+  rounded in roundedOptions and rounded != schema.properties.rounded.default ? baseClass ~ "--" ~ rounded : "",
+  color in colorOptions ? baseClass ~ "--" ~ color : baseClass ~ "--primary",
+  align in alignOptions ? baseClass ~ "--" ~ align : "",
+] %}
+
+{% if disabled %}
+  {% set attributes = attributes.setAttribute("disabled", true) %}
+{% endif %}
+
+{# choose a semantic <a> tag or <button> tag for better accessibility, depending on whether or not a url is getting passed along #}
+  <{{ tag }} {{ attributes.addClass('c-bolt-button__root') | without('on-click') | without('on-click-target') }}>
+
+    {# Add component-specific classes to a Bolt temp element that gets removed and replaced by it's children once the JS kicks in #}
+    <replace-with-children class="{{ classes|join(' ') }}">
+      <span class="{{ "#{baseClass}__item" }} {{ iconOnly ? 'u-bolt-visuallyhidden' : '' }}">
+        <slot />
+      </span>
+
+      {% if icon %}
+        <span class="{{ "#{baseClass}__icon" }}">
+          {% include "@bolt/icon.twig" with icon only %}
+        </span>
+      {% endif %}
+    </replace-with-children>
+
+  </{{ tag }}>
