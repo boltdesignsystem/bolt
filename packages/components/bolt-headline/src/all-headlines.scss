@@ -23,7 +23,6 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 }
 
 .c-bolt-headline {
-
   &:not(:last-child) {
     @include bolt-margin-bottom(medium);
   }
@@ -44,9 +43,9 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   }
 
   &:first-child:before {
+    position: absolute;
     content: '\201C';
     transform: translate3d(-110%, 0, 0);
-    position: absolute;
   }
 
   &:last-child:after {
@@ -69,9 +68,9 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 
 .c-bolt-headline__line {
+  height: 1px;
   flex: 1 0 1rem;
   align-self: center;
-  height: 1px;
   border-width: 0;
   border-style: none;
   /* stylelint-disable-next-line scale-unlimited/declaration-strict-value */

@@ -39,12 +39,12 @@ $bolt-action-block-background: bolt-color(indigo, light);
   @include bolt-padding(medium, stretched);
 
   display: flex;
-  flex-direction: column;
   flex-grow: 1;
   position: relative;
   width: 100%;
   height: 100%;
   color: $bolt-action-block-text-color;
+  flex-direction: column;
   outline: none;
   transition: color .35s cubic-bezier(0.25,0.8,0.25,1);
 
@@ -107,10 +107,10 @@ bolt-action-blocks {
 .c-bolt-action-blocks {
   @include bolt-margin(0 -1px -1px 0);
   @include bolt-padding(0);
-  transform: translate3d(0, 0, 0); //Force hardware accelerated rendering to cleanly remove extra border from showing up sometimes
   display: flex;
-  flex-wrap: wrap;
   list-style: none;
+  transform: translate3d(0, 0, 0); //Force hardware accelerated rendering to cleanly remove extra border from showing up sometimes
+  flex-wrap: wrap;
 }
 
 .c-bolt-action-blocks__item {
@@ -121,10 +121,6 @@ bolt-action-blocks {
 }
 
 .c-bolt-action-blocks--bordered > .c-bolt-action-blocks__item:before {
-  border-bottom-width: $bolt-action-blocks-border-width;
-  border-bottom-style: $bolt-action-blocks-border-style;
-  border-right-width: $bolt-action-blocks-border-width;
-  border-right-style: $bolt-action-blocks-border-style;
   display: block;
   position: absolute;
   z-index: bolt-z-index('background');
@@ -132,6 +128,10 @@ bolt-action-blocks {
   left: 0;
   width: 100%;
   height: 100%;
+  border-bottom-width: $bolt-action-blocks-border-width;
+  border-bottom-style: $bolt-action-blocks-border-style;
+  border-right-width: $bolt-action-blocks-border-width;
+  border-right-style: $bolt-action-blocks-border-style;
   content: '';
   opacity: $bolt-global-border-opacity;
   border-bottom-color: $bolt-action-blocks-border-color;
@@ -176,9 +176,9 @@ bolt-action-blocks {
 
 
 .c-bolt-action-block__text {
-  transition: color .25s cubic-bezier(0.25,0.8,0.25,1);
   color: currentColor;
   color: var(--bolt-theme-heading-link-default, --bolt-theme-text);
+  transition: color .25s cubic-bezier(0.25,0.8,0.25,1);
 
   .c-bolt-action-block:focus &,
   .c-bolt-action-block:hover &,

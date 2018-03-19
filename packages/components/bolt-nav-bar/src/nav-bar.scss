@@ -12,9 +12,9 @@ bolt-nav-bar {
 
 .c-bolt-nav-bar {
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: space-between;
-  position: relative;
 }
 
 .c-bolt-nav-bar__title {
@@ -91,9 +91,9 @@ bolt-nav-list {
   @include bolt-padding(0);
 
   display: flex;
-  flex-direction: column;
   position: relative;
   list-style: none;
+  flex-direction: column;
 
   @include respond-to(medium) {
     flex-direction: row;

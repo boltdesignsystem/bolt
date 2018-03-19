@@ -20,10 +20,10 @@ bolt-demo {
 
 .sg-pattern-head.sg-pattern-head {
   @include bolt-padding(medium, squished);
-  background-color: bolt-color(white);
   position: sticky;
-  top: 0;
   z-index: bolt-z-index("nav");
+  top: 0;
+  background-color: bolt-color(white);
   margin-bottom: 0;
   margin-left: -1 * bolt-spacing(medium);
   margin-right: -1 * bolt-spacing(medium);
@@ -32,8 +32,8 @@ bolt-demo {
 
 .sg-pattern-extra.sg-pattern-extra.sg-pattern-extra {
   @include bolt-margin-top(medium);
-  border-top: 0;
   max-width: 1400px;
+  border-top: 0;
   margin-left: auto;
   margin-right: auto;
 }
@@ -44,21 +44,21 @@ bolt-demo {
 
 ul.bolt-icon-list-demo {
   display: flex;
+  margin: 0;
   flex-wrap: wrap;
   justify-content: flex-start;
   list-style-type: none;
-  margin: 0;
 
   li {
+    width: 25%;
     margin: 25px 0;
     text-align: center;
-    width: 25%;
     @media (max-width: 768px) {
       width: 33%;
     }
     @media (max-width: 575px) {
-      margin: 15px 0;
       width: 50%;
+      margin: 15px 0;
     }
   }
 }
@@ -73,19 +73,20 @@ ul.bolt-icon-list-demo {
 
 .bolt-shadow-demo {
   &__card {
-    background: #fff;
-    border-radius: 3px;
     display: inline-block;
-    height: 225px;
-    margin: .5rem;
     position: relative;
     width: 325px;
-    vertical-align: top;
+    height: 225px;
+    margin: .5rem;
     padding: 0.7rem;
+    vertical-align: top;
+    background: #fff;
+    border-radius: 3px;
 
     code {
       font-size: 0.7rem;
     }
+
     &[class*="hoverable"]:hover {
       @include  bolt-z-index('contentTop');
     }

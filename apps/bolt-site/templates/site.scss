@@ -30,16 +30,16 @@ $storefront-sidebar-width: 320px;
 }
 
 .storefront-docs-header {
+  display: flex;
   position: relative;
   position: sticky;
-  display: flex;
+  z-index: 80;
+  top: 0;
+  right: 0;
+  left: 0;
   justify-content: center;
   flex-flow: row wrap;
   align-items: center;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 80;
   transition: height 0s, padding 0.4s, box-shadow 0.2s;
   backface-visibility: hidden;
 
@@ -48,8 +48,8 @@ $storefront-sidebar-width: 320px;
   }
 
   .c-bolt-headline {
-    padding-left: 25px;
     position: absolute;
+    padding-left: 25px;
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
 
@@ -58,11 +58,11 @@ $storefront-sidebar-width: 320px;
     }
     @media (max-width: 1000px) {
       bottom: -44px;
-      background: #535ca6;
-      height: 44px;
       width: 100%;
+      height: 44px;
+      background: #535ca6;
       line-height: 44px;
-      border-top: 1px solid #FFF;
+      border-top: 1px solid #fff;
     }
   }
 
@@ -89,15 +89,16 @@ $storefront-sidebar-width: 320px;
   text-align: right;
 
   a {
-    color: #FFF;
     padding: 6px 12px;
+    color: #fff;
 
     &.active,
     &.active-path {
       background: rgba(0, 0, 0, 0.1);
-      border: 1px solid #FFF;
+      border: 1px solid #fff;
       border-radius: 3px;
       box-shadow: 0 1px 3px rgba(21,22,25,.12), 0 1px 2px rgba(21,22,25,.24);
+
       &.active-path {
         text-decoration: none;
       }
@@ -106,30 +107,30 @@ $storefront-sidebar-width: 320px;
 }
 
 .storefront-docs-sidebar__overlay {
+  visibility: hidden;
   position: fixed;
+  z-index: 85;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
+  left: 0;
   pointer-events: none;
-  z-index: 85;
   background-color: bolt-color(black);
   opacity: 0;
-  visibility: hidden;
   transition: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1), visibility 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .storefront-docs-sidebar {
-  width: $storefront-sidebar-width;
-  overflow: auto;
-  border-right: 1px solid #E0E2EB;
-  padding: 0;
   position: fixed;
+  z-index: 99;
   top: 0;
   bottom: 0;
+  width: $storefront-sidebar-width;
+  padding: 0;
+  overflow: auto;
+  border-right: 1px solid #e0e2eb;
   transform: translate3d(-$storefront-sidebar-width, 0, 0);
   background-color: bolt-color(gray, xlight);
-  z-index: 99;
   transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 
   &:target {
@@ -147,18 +148,18 @@ $storefront-sidebar-width: 320px;
   }
 
   .sub-nav > h2 {
-    color: #FFF;
-    background-color: bolt-color(indigo);
-    border-bottom: 1px solid #FFF;
-    padding: 10px 20px;
     margin: 0;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: bolt-color(indigo);
+    border-bottom: 1px solid #fff;
     font-size: 1.11rem;
 
     &:before {
-      content: "#";
+      display: inline-block;
       width: 24px;
       text-align: center;
-      display: inline-block;
+      content: "#";
       margin-right: 7px;
     }
   }
@@ -170,20 +171,22 @@ $storefront-sidebar-width: 320px;
     h2 {
       font-size: 1.33rem;
       margin-bottom: 0.9rem;
+
       &::before {
-        content: '#';
-        left: -20px;
         position: absolute;
+        left: -20px;
+        content: '#';
       }
     }
 
 
     h3 {
       margin-bottom: 0.65rem;
+
       &::before {
-        content: '-';
-        left: -20px;
         position: absolute;
+        left: -20px;
+        content: '-';
       }
     }
   }
@@ -208,11 +211,11 @@ $storefront-sidebar-width: 320px;
 .storefront-docs-footer {
   position: relative; // Fallback positioning
   position: sticky; // Sticky positioning if supported
-  bottom: 0;
-  right: 0;
-  left: 0;
   z-index: 70;
-  border-top: 1px solid #E0E2EB;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-top: 1px solid #e0e2eb;
   background-color: #fff;
   overflow: hidden;
   backface-visibility: hidden;
@@ -232,7 +235,7 @@ $storefront-sidebar-width: 320px;
 // Remove default padding of highlightJS when used inside of Bolt Global style defaults
 pre > .hljs,
 pre > code {
-/**
+  /**
   * 1. Workaround to offset default <code> spacing
   */
   background-color: bolt-color(gray, xlight);

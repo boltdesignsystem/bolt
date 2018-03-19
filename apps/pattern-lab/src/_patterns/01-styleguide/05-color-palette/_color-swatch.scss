@@ -1,9 +1,9 @@
 .c-bolt-swatch {
-  flex: 1;
   display: flex;
+  height: 100%; // So vertical centering works -- same update we had to make for cards since teaking how flex grid behaves
+  flex: 1;
   flex-direction: column;
   justify-content: center;
-  height: 100%; // So vertical centering works -- same update we had to make for cards since teaking how flex grid behaves
 }
 
 .c-bolt-swatch__color {
@@ -58,8 +58,8 @@
 .c-bolt-swatch__value {
   @include bolt-font-size(large);
   @include bolt-font-weight(bold);
-  margin-left: auto;
   text-transform: uppercase;
+  margin-left: auto;
 }
 
 
@@ -80,10 +80,10 @@
 
 
 .c-bolt-accessibility-table__row {
-  align-items: center;
   display: flex;
-  flex-direction: row;
   width: 100%;
+  align-items: center;
+  flex-direction: row;
   border-bottom: 1px solid currentColor;
 }
 
@@ -91,9 +91,9 @@
   @include bolt-font-size(xsmall);
   @include bolt-padding-top(xsmall);
   @include bolt-padding-bottom(xsmall);
-  align-items: center;
   display: block;
   margin: 0;
+  align-items: center;
 }
 
 .c-bolt-accessibility-table__column:nth-child(1) {
@@ -116,11 +116,11 @@
 
 .c-bolt-accessibility-table__column:nth-child(2),
 .c-bolt-accessibility-table__column:nth-child(3) {
-  flex: 1;
   display: flex;
-  align-items: flex-end;
   margin: 0 bolt-spacing(small);
   text-align: right;
+  flex: 1;
+  align-items: flex-end;
   align-self: flex-end;
 }
 

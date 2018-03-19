@@ -9,35 +9,35 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
 
 .c-bolt-video {
   position: absolute;
+  z-index: bolt-z-index('tooltip');
   width: 100%;
   max-width: none;
   perspective: 1200px;
   perspective-origin: 80% 80%;
-  z-index: bolt-z-index('tooltip');
   transition: transform .4s cubic-bezier(.645, 0, .355, 1);
 }
 
 .c-bolt-video__wrapper {
+  visibility: hidden;
   position: relative;
   width: 100%;
-  pointer-events: none;
   max-width: $bolt-video-wrapper--max-width;
   margin: 0 auto;
+  pointer-events: none;
   transition: opacity 0.4s ease, visibility 0.1s ease;
   opacity: 0;
-  visibility: hidden;
 
   .is-expanded & {
-    opacity: 1;
     visibility: visible;
+    opacity: 1;
     pointer-events: auto;
   }
 }
 
 .c-bolt-video__video-element {
-  background-color: #32325d;
   display: block;
   position: relative;
+  background-color: #32325d;
   border-radius: 6px;
   -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFW…9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
   transition: border-radius 0.4s cubic-bezier(0.645, 0, 0.355, 1);
@@ -55,15 +55,15 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
 }
 
 .c-bolt-video__close-button {
-  color: bolt-color(orange);
-  --bolt-color-icon: bolt-color(orange);
 
   position: absolute;
   z-index: bolt-z-index('tooltip');
   top: bolt-spacing(xsmall);
   right: bolt-spacing(xsmall);
+  color: bolt-color(orange);
   transition: all 0.3s ease;
   opacity: 0; // Initial state before brightcove video player kicks in
+  --bolt-color-icon: bolt-color(orange);
 
   @include respond-to(small) {
     right: (bolt-spacing(large) / -2) - bolt-spacing(xsmall);

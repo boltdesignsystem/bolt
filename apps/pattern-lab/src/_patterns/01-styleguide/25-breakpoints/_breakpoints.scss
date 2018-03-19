@@ -1,20 +1,23 @@
 .sg-breakpoints {
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
+
   ul {
     margin: 0;
     padding: 0;
   }
+
   li {
-    list-style-type: none;
     margin: 0;
     padding: 0;
+    list-style-type: none;
   }
+
   .breakpoints {
     > li {
       position: absolute;
-      border-left: solid 3px hsl(0, 0%, 35%);
       height: 100%;
+      border-left: solid 3px hsl(0, 0%, 35%);
       //      > .icon--arrow--right-medium {
       //        font-size: 18px;
       //        margin-top: 100px;
@@ -23,15 +26,17 @@
         //        @include transform(rotate(90deg));
         //        @include transform-origin(bottom left);
         display: block;
+        padding: 3px;
+        color: white;
         //        position: absolute;
         //        bottom: 20px;
         background: hsl(0, 0%, 35%);
-        padding: 3px;
-        color: white;
       }
+
       &:hover {
         // stylelint-disable max-nesting-depth, selector-max-specificity
         border-left-color: hsla(0, 0%, 35%, 0.3);
+
         > .label {
           opacity: 0;
         }
@@ -39,11 +44,13 @@
       }
     }
   }
+
   .device_widths {
     padding-top: 20px;
+
     > li {
-      border-bottom: solid 3px hsl(0, 0%, 80%);
       text-align: right;
+      border-bottom: solid 3px hsl(0, 0%, 80%);
       margin-bottom: 15px;
       padding-right: 15px;
       border-right: solid 3px hsl(0, 0%, 80%);

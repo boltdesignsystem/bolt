@@ -39,26 +39,26 @@ bolt-card {
 
 .c-bolt-card {
   display: flex;
-  flex-direction: column;
   flex-basis: 100%;
   flex-grow: 1; //If used in a flex box container, grow to fill available space.
   position: relative;
+  max-width: 100%; //IE11 flexbox fix
+  color: bolt-color(gray, xdark); // Default card text color if no css var support
+  flex-direction: column;
   border-radius: $bolt-card-border-radius;
+
+  transform: translate3d(0, 0, 0) scale(1, 1);
+  transition: $bolt-card-transition;
+  background-color: rgba(bolt-color(white), 0.9); // Default card bgcolor
 
   &:not(.c-bolt-card--wrapper){
     box-shadow: $bolt-card-shadow;
     // height: 100%; //workaround to fix strange flexbox behavior when rendering as a custom element.
   }
 
-  transform: translate3d(0, 0, 0) scale(1, 1);
-  transition: $bolt-card-transition;
-  max-width: 100%; //IE11 flexbox fix
-  background-color: rgba(bolt-color(white), 0.9); // Default card bgcolor
-  color: bolt-color(gray, xdark); // Default card text color if no css var support
-
   @supports(--css: variables) {
-    background-color: rgba(bolt-color(white), 0.2);
     color: var(--bolt-theme-text, bolt-color(gray, xdark));
+    background-color: rgba(bolt-color(white), 0.2);
   }
 
   &:before,
@@ -127,25 +127,25 @@ bolt-card {
 .c-bolt-card__body {
   @include bolt-padding(medium);
   display: flex;
-  flex-direction: column;
   flex-grow: 1;
+  flex-direction: column;
 }
 
 .c-bolt-card__footer {
-  position: relative;
   display: flex;
+  position: relative;
 
   &:before {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 1px;
     content: '';
     border-top-color: var(--bolt-theme-card-border, var(--bolt-theme-border, currentColor));
     border-top-width: $bolt-card-border-width;
     border-top-style: solid;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: block;
-    height: 1px;
 
     opacity: $bolt-global-border-opacity;
     @supports(--css: variables) {
@@ -157,11 +157,11 @@ bolt-card {
 .c-bolt-card__footer-item {
   &:not(:only-child) {
     display: inline-flex;
-    flex: 1;
-    justify-content: center;
     position: relative;
     text-align: center;
     color: currentColor;
+    flex: 1;
+    justify-content: center;
   }
 
   &:only-child {
@@ -171,15 +171,15 @@ bolt-card {
 
 .c-bolt-card__footer-item + .c-bolt-card__footer-item:before {
   display: block;
-  content: '';
-  border-left-color: var(--bolt-theme-card-border, var(--bolt-theme-border, currentColor));
-  border-left-width: $bolt-card-border-width;
-  border-left-style: solid;
   position: absolute;
   top: 1px; // Prevent double border on top
   left: 0;
   width: 1px;
   height: 100%;
+  content: '';
+  border-left-color: var(--bolt-theme-card-border, var(--bolt-theme-border, currentColor));
+  border-left-width: $bolt-card-border-width;
+  border-left-style: solid;
 
   opacity: $bolt-global-border-opacity;
   @supports(--css: variables) {

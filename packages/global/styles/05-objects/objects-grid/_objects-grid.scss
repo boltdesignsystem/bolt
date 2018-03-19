@@ -8,10 +8,10 @@
  * 2. Reset local font-size inheritance to prevent components w/o default font sizes from breaking
  */
 .o-bolt-grid {
-  font-size: 0; /* stylelint-disable-line */ /* [1] */
   margin: 0;
   padding: 0;
   list-style: none;
+  font-size: 0; /* stylelint-disable-line */ /* [1] */
   margin-left: bolt-spacing(medium) * -1;
   flex: 1 1 auto; //Automatically auto fill any available space, in case a grid is nested inside of a flexbox-friendly parent container.
 }

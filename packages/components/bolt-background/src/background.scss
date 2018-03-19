@@ -54,10 +54,10 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
 
 .c-bolt-background__item {
   display: block;
+  display: flex;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  display: flex;
 
   > * {
     flex-grow: 1;
@@ -79,11 +79,11 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
 
 .c-bolt-background__video {
   z-index: bolt-z-index('backgroundTop');
-  transition: opacity 0.4s ease, min-height 0.4s ease, max-height 0.4s ease;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+  transition: opacity 0.4s ease, min-height 0.4s ease, max-height 0.4s ease;
 
   .is-ready & {
     background-color: rgba(bolt-color(indigo, dark), 0.8);
@@ -93,22 +93,22 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
   }
 
   .is-collapsed & {
+    visibility: hidden;
     opacity: 0;
     pointer-events: none;
-    visibility: hidden;
   }
 
   .is-expanded & {
+    visibility: visible;
     opacity: 1;
     pointer-events: auto;
-    visibility: visible;
   }
 
   .video-js {
+    width: 100%;
+    min-width: 0;
     max-width: 1400px;
     margin: 0 auto;
-    min-width: 0;
-    width: 100%;
     transition: all 0.4s ease;
 
     .is-ready & {
@@ -160,9 +160,9 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
   position: absolute;
   top: 0;
   left: 0;
-  transform: translate3d(0, 0, 0); // Help prevent rounding errors when rendering (ie. gaps)
   width: 100%;
   height: 100%;
+  transform: translate3d(0, 0, 0); // Help prevent rounding errors when rendering (ie. gaps)
   content: '';
 }
 
@@ -203,9 +203,9 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
 
 .c-bolt-background__shapes {
   position: absolute;
-  transform: rotate(-45deg);
   right: $bolt-bg-shape-offset-side-default;
   bottom: $bolt-bg-shape-offset-bottom-default;
+  transform: rotate(-45deg);
 
   @include respond-to(small) {
     right: $bolt-bg-shape-offset-side-small;
@@ -219,9 +219,9 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
 }
 
 .c-bolt-background__shapes--left {
-  transform: rotate(45deg);
-  left: $bolt-bg-shape-offset-side-default;
   right: auto;
+  left: $bolt-bg-shape-offset-side-default;
+  transform: rotate(45deg);
 
   @include respond-to(small) {
     left: $bolt-bg-shape-offset-side-small;

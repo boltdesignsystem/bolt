@@ -23,9 +23,9 @@ $bolt-flag-alignments: (
 }
 
 .o-bolt-flag__body {
-  flex-grow: 1;
-  flex-shrink: 1;
   flex-basis: auto;
+  flex-shrink: 1;
+  flex-grow: 1;
 }
 
 
@@ -64,8 +64,8 @@ $bolt-flag-alignments: (
 // // Flag alignment
 @each $alignment, $value in $bolt-flag-alignments {
   .o-bolt-flag--#{$alignment} {
-    align-items: $value;
     vertical-align: $alignment;
+    align-items: $value;
   }
 }
 

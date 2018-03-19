@@ -5,16 +5,16 @@ $bolt-export-data: false;
 
 bolt-icon {
   display: inline-block;
-  vertical-align: middle;
+  width: 1em; // Default icon size if size prop not specified
+  height: 1em; // Default icon size if size prop not specified
   // display: inline-flex;
   color: inherit;
   color: var(--bolt-color-icon, inherit);
-  width: 1em; // Default icon size if size prop not specified
-  height: 1em; // Default icon size if size prop not specified
+  vertical-align: middle;
 
   &:not(:resolved){
-    padding-bottom: 100%; // Default square icons
     height: 0;
+    padding-bottom: 100%; // Default square icons
   }
 }
 
@@ -36,12 +36,12 @@ bolt-icon {
 .c-bolt-icon__icon {
   display: block; //required for vertically aligning icons
   position: relative;
+  z-index: bolt-z-index('content');
   width: 1em;
   height: 1em;
-  box-sizing: border-box;
-  z-index: bolt-z-index('content');
   color: inherit;
   color: var(--bolt-color-icon, inherit);
+  box-sizing: border-box;
 }
 
 bolt-icon[size='small'],

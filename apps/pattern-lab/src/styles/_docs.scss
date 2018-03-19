@@ -18,10 +18,12 @@
         summary {
           font-weight: bolt-font-weight(700);
           user-select: none;
+
           &:focus {
             outline: none;
           }
         }
+
         &,
         summary {
           margin: 0;
@@ -43,14 +45,14 @@
   display: -ms-grid; /* [1] */
   display: grid;
 
+  max-width: 1440px;
+  margin: 0 auto;
+
   -ms-grid-rows: bolt-spacing(small) auto auto 1fr bolt-spacing(small); /* [1] */
   grid-template-rows: bolt-spacing(small) auto auto 1fr bolt-spacing(small);
 
   -ms-grid-columns: 1fr 90% 1fr; /* [1] */
   grid-template-columns: 1fr 90% 1fr;
-
-  max-width: 1440px;
-  margin: 0 auto;
 
   @include respond-to(small) {
     -ms-grid-rows: bolt-spacing(medium) auto auto 1fr bolt-spacing(medium); /* [1] */
@@ -64,6 +66,9 @@
 }
 
 .c-bolt-docs__page-content {
+
+  min-width: 0;
+  max-width: 960px;
   -ms-grid-row: 3; /* [1] */
   -ms-grid-row-span: 1; /* [1] */
   grid-row: 3/span 1;
@@ -71,9 +76,6 @@
   -ms-grid-column: 1; /* [1] */
   -ms-grid-column-span: 3; /* [1] */
   grid-column: 1/span 3;
-
-  min-width: 0;
-  max-width: 960px;
 
   @include respond-to(medium) {
     @include bolt-padding-left(medium);
@@ -108,6 +110,8 @@
 
 
 .c-bolt-docs__page-nav {
+
+  text-align: right;
   -ms-grid-row: 2; /* [1] */
   -ms-grid-row-span: 1; /* [1] */
   grid-row: 2/span 1;
@@ -116,9 +120,9 @@
   -ms-grid-column-span: 3; /* [1] */
   grid-column: 1/span 3;
 
-  text-align: right;
-
   @include respond-to(medium) {
+
+    text-align: left;
     -ms-grid-row: 3; /* [1] */
     -ms-grid-row-span: 1; /* [1] */
     grid-row: 3/span 1;
@@ -126,8 +130,6 @@
     -ms-grid-column: 4; /* [1] */
     -ms-grid-column-span: 1; /* [1] */
     grid-column: 4/span 1;
-
-    text-align: left;
   }
 }
 
@@ -167,14 +169,14 @@ pre {
 
 .c-bolt-docs__lead {
   @include bolt-font-weight(regular);
+  margin: -13px;
+  padding: 13px;
+  color: bolt-color(black);
   // font-size: 24px;
   // line-height: 1.5;
   // font-weight: 300;
   border: 1px dotted transparent;
   border-radius: 4px;
-  margin: -13px;
-  padding: 13px;
-  color: bolt-color(black);
   transition: border 0.3s ease-in-out;
 
   &.edit-this-readme {
@@ -193,6 +195,8 @@ pre {
 
 
 .c-bolt-docs-table {
+  overflow-x: auto;
+  overflow-y: hidden;
   background-image: -webkit-linear-gradient(left, #fff, hsla(0, 0%, 100%, 0)),
   -webkit-linear-gradient(right, #fff, hsla(0, 0%, 100%, 0)),
   -webkit-linear-gradient(left, #eaf0f6, rgba(234, 240, 246, 0)),
@@ -217,8 +221,6 @@ pre {
   background-position: 0 0, 100% 0, 0 0, 100% 0;
   background-repeat: no-repeat;
   background-size: 4em 100%, 4em 100%, 1em 100%, 1em 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
   border-radius: $bolt-border-radius;
   touch-action: pan-y pinch-zoom;
 
@@ -226,9 +228,9 @@ pre {
     @include bolt-font-size(small);
     @include bolt-font-family(code);
     @include bolt-margin-bottom(0);
+    width: 100%;
     table-layout: auto;
     border: 1px solid bolt-color(gray, light);
-    width: 100%;
     transform: translate3d(0, 0, 0);
   }
 
@@ -251,9 +253,9 @@ pre {
     @include bolt-font-weight(semibold);
     text-align: left;
     color: bolt-color(gray, dark);
-    background-color: bolt-color(gray, xlight);
     text-transform: uppercase;
     vertical-align: bottom;
+    background-color: bolt-color(gray, xlight);
   }
 
   td {
@@ -279,9 +281,9 @@ pre {
 }
 
 .c-bolt-docs-list {
+  margin: 0;
   list-style-position: inside;
   list-style-type: none;
-  margin: 0;
 
   & > ul {
     margin-bottom: 0;
@@ -289,9 +291,9 @@ pre {
 }
 
 .c-bolt-docs-list__child {
+  margin: 0 0 0 1.25rem;
   list-style-position: outside;
   list-style-type: square;
-  margin: 0 0 0 1.25rem;
 
   &--level-3,
   &--level-4,
@@ -311,16 +313,16 @@ pre {
 
   &:before {
     @include bolt-font-size(small);
-    content: '#';
-    opacity: 0.3;
     position: absolute;
     top: 50%; // Fix IE11 vcentering
     left: -1.5rem;
     width: 1.5rem;
     text-align: center;
-    align-self: center;
     color: inherit;
     text-decoration: none;
+    content: '#';
+    opacity: 0.3;
+    align-self: center;
     transition: opacity 0.2s ease;
     transform: translateY(-50%); // Fix IE11 vcentering
   }

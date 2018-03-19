@@ -6,12 +6,12 @@ bolt-button-group:not(:last-child) {
 
 .c-bolt-button-group {
   @include bolt-margin-bottom(0);
-  margin-left: bolt-spacing(small) * -1;
   display: inline-flex;
   list-style: none;
+  list-style: none;
+  margin-left: bolt-spacing(small) * -1;
   letter-spacing: -0.35em;
   flex-flow: row wrap;
-  list-style: none;
 
   &:last-child {
     margin-bottom: bolt-v-spacing(small) * -1;
@@ -21,12 +21,12 @@ bolt-button-group:not(:last-child) {
 .c-bolt-button-group__item {
   @include bolt-padding-left(small);
   @include bolt-padding-bottom(small);
-  letter-spacing: normal;
   display: inline-block;
   display: inline-flex;
   flex-basis: auto;
   flex-shrink: 1;
   flex-grow: 1;
+  letter-spacing: normal;
 
   // @include respond-to(small) {
   //   max-width: 300px;

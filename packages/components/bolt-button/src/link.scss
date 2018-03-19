@@ -3,23 +3,23 @@
   @include bolt-button-reset;
   display: inline-block;
   display: inline-flex;
-  align-items: center; // So icons are vertically centered
   text-decoration: underline;
+  align-items: center; // So icons are vertically centered
   transition: all $bolt-button-transition;
 }
 
 
 .c-bolt-link--headline {
-  cursor: pointer;
-  text-decoration: none;
   color: inherit;
   color: var(--bolt-theme-heading-link-default, --bolt-theme-text);
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .c-bolt-link--headline:hover {
   color: inherit;
-  text-decoration: underline;
   color: var(--bolt-theme-heading-link-hover, --bolt-theme-text);
+  text-decoration: underline;
 }
 
 .c-bolt-link--headline:active {

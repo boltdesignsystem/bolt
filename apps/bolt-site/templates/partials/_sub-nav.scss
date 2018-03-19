@@ -1,7 +1,7 @@
 .sub-nav {
-  border-top: 1px solid #E0E2EB;
-  list-style-type: none;
   margin: 0;
+  border-top: 1px solid #e0e2eb;
+  list-style-type: none;
 
   &__link {
     font-size: 1.11rem;
@@ -9,40 +9,45 @@
     font-weight: 300;
 
     &--active-path {
-      color: #545DA6;
+      color: #545da6;
       font-weight: 600;
+
       &+.sub-nav__list--depth-3 {
         border-left: 2px solid #535ca6;
       }
     }
+
     &--active {
-      font-weight: bolder;
       text-decoration: none;
+      font-weight: bolder;
     }
+
     &--parent {
-      background: #e0e2eb;
       display: block;
-      border-top: 1px solid #FFF;
-      border-bottom: 1px solid #FFF;
       padding: 0.6rem 1.7rem;
       color: #000;
+      background: #e0e2eb;
+      border-top: 1px solid #fff;
+      border-bottom: 1px solid #fff;
 
       &.sub-nav__link--active-path {
-        background: #545DA6;
-        color: #FFF;
+        color: #fff;
         text-decoration: none;
+        background: #545da6;
       }
     }
+
     .sub-nav__list--depth-1 & {
       font-size: 1.25rem;
     }
+
     .sub-nav__list--depth-2 & {
-      font-size: 0.9rem;
       display: block;
       margin: 0.5rem 0;
+      font-size: 0.9rem;
 
       &.sub-nav__link--active {
-        color: #545DA6;
+        color: #545da6;
         font-style: italic;
         font-weight: 600;
 
@@ -66,8 +71,9 @@
   }
 
   > ul {
-    margin-left: 0;
     padding: 0;
+    margin-left: 0;
+
     li:first-child a.sub-nav__link--parent {
       border-top: none;
     }
