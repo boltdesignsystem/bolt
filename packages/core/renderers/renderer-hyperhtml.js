@@ -1,6 +1,6 @@
 // HyperHTML Renderer ported to SkateJS
-
 import { withComponent, shadow, props } from 'skatejs';
+import { hyper, bind } from 'hyperhtml/cjs';
 import { hasNativeShadowDomSupport } from '../utils/environment';
 
 import {
@@ -8,15 +8,6 @@ import {
   findParentTag
 } from '../';
 
-const { hyper, bind } = require('hyperhtml/cjs');
-
-
-const _init$ = { value: false };
-const defineProperty = Object.defineProperty;
-
-const extend = (target, source) => {
-  for (const key in source) target[key] = source[key];
-};
 
 
 export function BoltComponent(Base = HTMLElement) {
@@ -30,9 +21,7 @@ export function BoltComponent(Base = HTMLElement) {
     constructor(...args) {
       super(...args);
 
-      if (this.dataset.ssrContent) {
-        this.innerHTML = JSON.parse(this.dataset.ssrContent);
-      }
+      this.hyper = hyper;
 
       if (findParentTag(this, 'FORM') || this.getAttribute('no-shadow') !== null) {
         this.useShadow = false;
@@ -42,6 +31,10 @@ export function BoltComponent(Base = HTMLElement) {
     }
 
     connectedCallback() {
+      if (this.dataset.ssrContent) {
+        this.innerHTML = JSON.parse(this.dataset.ssrContent);
+      }
+
       this._checkSlots();
 
       // Handles external click event hooks
@@ -49,8 +42,6 @@ export function BoltComponent(Base = HTMLElement) {
     }
 
     disconnectedCallback() {
-      // super.disconnectedCallback && super.disconnectedCallback();
-
       this.removeEventListener('click', this.clickHandler);
     }
 
@@ -71,11 +62,7 @@ export function BoltComponent(Base = HTMLElement) {
       }
     }
 
-
     slot(name) {
-      let styles = Array.from(stylesheet);
-      styles = styles.join(' ');
-
       if (this.useShadow && hasNativeShadowDomSupport) {
         if (name === 'default') {
           return hyper.wire() `
@@ -109,16 +96,12 @@ export function BoltComponent(Base = HTMLElement) {
 
       // Loop through nodelist
       this.childNodes.forEach(function (child, index, nodelist) {
-        if (child.nodeType === 3) {
+        const slotName = child.getAttribute ? child.getAttribute("slot") : null;
+
+        if (!slotName) {
           elem.slots.default.push(child);
         } else {
-          const slotName = child.getAttribute ? child.getAttribute("slot") : null;
-
-          if (!slotName) {
-            elem.slots.default.push(child);
-          } else {
-            elem.slots[slotName] = child;
-          }
+          elem.slots[slotName] = child;
         }
       });
     }
@@ -135,12 +118,6 @@ export function BoltComponent(Base = HTMLElement) {
     renderer(root, render) {
       this.html = this.html || bind(root);
       render();
-
-      // if (root.childNodes.length) {
-      //   root.replaceChild(render(), root.firstChild);
-      // } else {
-      //   root.appendChild(render());
-      // }
     }
   }
 };
