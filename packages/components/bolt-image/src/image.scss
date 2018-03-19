@@ -1,43 +1,31 @@
 // Image Component Styling (if any)
 
-
-// .js-lazyload {
-//   opacity: 0;
-// }
 bolt-image {
   display: block;
 }
 
-// .c-bolt-image {
-//   display: inline-block;
-//   position: relative;
-// }
+.c-bolt-image__lazyload {
+  transition: opacity .2s ease, filter .2s ease;
+}
 
-// Building on top of o-bolt-ratio__item
-.c-bolt-image__img {
-  transition: opacity .2s ease;
+.c-bolt-image__lazyload--blur {
+  filter: blur(20px);
 
-  &.is-lazyloading {
-    opacity: 0;
+  &.is-lazyloaded {
+    filter: none;
   }
+}
+
+.c-bolt-image__lazyload--fade {
+  opacity: 0;
 
   &.is-lazyloaded {
     opacity: 1;
   }
 }
 
-.c-bolt-image__placeholder {
-  display: block;
-  // position: absolute;
-  min-height: 100%;
-  min-width: 100%;
+
+.c-bolt-image__image-placeholder {
+  transition: opacity .2s ease;
   pointer-events: none;
-  background-size: cover;
-  background-repeat: no-repeat;
-  filter: blur(3px);
-  transform: translate3d(0, 0, 0);
 }
-
-
-
-

@@ -1,5 +1,5 @@
 import { polyfillLoader } from '@bolt/core';
 
 polyfillLoader.then((res) => {
-  import('./icon.standalone.js');
+  import(/* webpackMode: 'eager', webpackChunkName: 'bolt-icon' */ './icon.standalone.js');
 });

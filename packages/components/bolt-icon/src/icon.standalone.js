@@ -108,7 +108,7 @@ export class BoltIcon extends withPreact(withComponent()) {
 
 
     if (supportsCSSVars) {
-      this.state.primaryColor = 'var(--bolt-color-icon, var(--bolt-theme-text, currentColor))';
+      this.state.primaryColor = 'var(--bolt-theme-icon, currentColor)';
       this.state.secondaryColor = 'var(--bolt-theme-background, #fff)';
     } else {
       this.state.primaryColor = 'currentColor';
