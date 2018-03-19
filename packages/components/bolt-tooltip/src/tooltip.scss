@@ -338,6 +338,8 @@ $bolt-tooltip-transition: $bolt-transition;
 
   bolt-icon {
     padding-right: 5px;
+    width: auto; // IE & Firefox fix
+    height: auto; // IE & Firefox fix
   }
 
   button .toggle--closed,
@@ -349,6 +351,8 @@ $bolt-tooltip-transition: $bolt-transition;
 
   .toggle--closed {
     position: absolute;
+    top: 0; // For IE 11
+    bottom: 0; // For IE 11
     opacity: 1;
 
     .is-active & {
