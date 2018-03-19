@@ -51,3 +51,7 @@
 {% set customElementName = customElementName | default('bolt-' ~ componentName) %}
 
 <{{ customElementName }} {{ attributes }}></{{ customElementName }}>
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-tooltip/tooltip.schema.yml', _self) }}
+{% endif %}

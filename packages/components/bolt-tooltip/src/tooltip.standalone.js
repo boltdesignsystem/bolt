@@ -55,8 +55,6 @@ export class BoltTooltip extends withPreact(withComponent()) {
       classes.push(baseClass + '--spacing-' + data.spacing);
     }
 
-    console.log(data.content);
-
     return (
       <span>
         <style>{styles[0][1]}</style>
