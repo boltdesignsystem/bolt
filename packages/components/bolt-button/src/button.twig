@@ -21,16 +21,18 @@
 {% set sizeOptions = schema.properties.size.enum|remove_null %}
 {% set styleOptions = schema.properties.style.enum|remove_null %}
 {% set tagOptions = schema.properties.tag.enum|remove_null %}
+{% set transformOptions = schema.properties.transform.enum|remove_null %}
 {% set widthOptions = schema.properties.width.enum|remove_null %}
 
 {# check if the value set to a prop is allowed or defined. if not, default to the default value specified in the component's schema (if one exists) #}
 {% set align =  align in alignOptions ? align : schema.properties.align.default %}
+{% set iconOnly = iconOnly | default(false) %}
 {% set rounded = rounded in roundedOptions ? rounded : schema.properties.rounded.default %}
 {% set size = size in sizeOptions ? size : schema.properties.size.default %}
 {% set style = style in styleOptions ? style : schema.properties.style.default %}
 {% set tag = tag in tagOptions ? tag : schema.properties.tag.default %}
+{% set transform = transform in transformOptions ? transform : schema.properties.transform.default %}
 {% set width = width in widthOptions ? width : schema.properties.width.default %}
-{% set iconOnly = iconOnly | default(false) %}
 
 {% if tag == "submit" %}
   {% set tag = "button" %}
@@ -57,6 +59,7 @@
   width in widthOptions and width != "" ? baseClass ~ "--" ~ width : "",
   rounded in roundedOptions and rounded != schema.properties.rounded.default ? baseClass ~ "--" ~ rounded : "",
   style in styleOptions ? baseClass ~ "--" ~ style : baseClass ~ "--primary",
+  transform in transformOptions ? baseClass ~ "--" ~ transform : "",
   align in alignOptions ? baseClass ~ "--" ~ align : "",
 ] %}
 
@@ -73,6 +76,7 @@
     {% if width %} width="{{ width }}" {% endif %}
     {% if rounded %} rounded=" {{ rounded }}" {% endif %}
     {% if iconOnly %} icon-only="true" {% endif %}
+    {% if transform %} transform="{{ transform }}" {% endif %}
     {% if disabled == true %} disabled {% endif %}
 
     {# Failsafe to manually switch off Shadow DOM encapsulation #}
@@ -109,7 +113,7 @@
   <{{ tag }} {{ attributes.addClass('c-bolt-button__root') | without('on-click') | without('on-click-target') }}>
 
     {# Add component-specific classes to a Bolt temp element that gets removed and replaced by it's children once the JS kicks in #}
-    <replace-with-children class="{{ classes|join(' ') }}">
+    <replace-with-children class="{{ classes|join(' ') }} Hello">
       <span class="{{ "#{baseClass}__item" }} {{ iconOnly ? 'u-bolt-visuallyhidden' : '' }}">{{ text }}</span>
 
       {% if icon %}

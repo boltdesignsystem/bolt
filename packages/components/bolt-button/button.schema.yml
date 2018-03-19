@@ -9,6 +9,18 @@ properties:
     title: 'Button Text'
     description: 'The text displayed inside a button'
     type: string
+  transform:
+      type:
+        anyOf:
+          - string
+          - null
+      description: Text transformation.
+      default: null
+      enum:
+        - uppercase
+        - lowercase
+        - capitalize
+        - null
   theme:
     description: 'Themes, which are globally defined.'  # @todo Pulling this information in is a work in progress. Should be dynamically generated
 #    $ref: '@bolt/theme.schema.json#/properties/themes'
