@@ -18,6 +18,18 @@ $bolt-tooltip-transition: $bolt-transition;
   pointer-events: auto;
 }
 
+@keyframes bounceDown {
+   0% { transform: translate(-50%, -50%) scale(0); }
+   30% { transform: translate(-50%, 25%) scale(1.1); }
+   100% { transform: translate(-50%, 15%) scale(1); }
+ }
+
+@keyframes bounceUp {
+  0% { transform: translate(-50%, 50%) scale(0); }
+  30% { transform: translate(-50%, -125%) scale(1.1); }
+  100% { transform: translate(-50%, -115%) scale(1); }
+}
+
 // Tooltip positioning
 .c-bolt-tooltip {
   display: inline-block;
@@ -127,12 +139,12 @@ $bolt-tooltip-transition: $bolt-transition;
         transform: translate(-50%, -100%);
 
         &--button {
-          transform: translate(-50%, 50%) scale(0);
+          transform: translate(-50%, -115%) scale(1);
         }
       }
 
       .is-active+.c-bolt-tooltip__content--button {
-        transform: translate(-50%, -115%) scale(1);
+        animation: bounceUp 500ms ease forwards;
       }
 
       .c-bolt-tooltip__content-bubble {
@@ -148,12 +160,12 @@ $bolt-tooltip-transition: $bolt-transition;
         transform: translate(-50%, 0);
 
         &--button {
-          transform: translate(-50%, -50%) scale(0);
+          transform: translate(-50%, 15%) scale(1);
         }
       }
 
       .is-active+.c-bolt-tooltip__content--button {
-        transform: translate(-50%, 15%) scale(1);
+        animation: bounceDown 500ms ease forwards;
       }
 
       .c-bolt-tooltip__content-bubble {
@@ -469,7 +481,7 @@ $bolt-tooltip-transition: $bolt-transition;
 
   &:hover > .c-bolt-tooltip__content,
   .c-bolt-tooltip__trigger.is-active + .c-bolt-tooltip__content {
-    padding-bottom: 0.25em; // Extra spacing between the bubble and the trigger
+    //padding-bottom: 0.25em; // Extra spacing between the bubble and the trigger
   }
 }
 
@@ -493,7 +505,7 @@ $bolt-tooltip-transition: $bolt-transition;
 
   &:hover > .c-bolt-tooltip__content,
   .c-bolt-tooltip__trigger.is-active + .c-bolt-tooltip__content {
-    padding-top: 0.25em; // Extra spacing between the bubble and the trigger
+    //padding-top: 0.25em; // Extra spacing between the bubble and the trigger
   }
 }
 
