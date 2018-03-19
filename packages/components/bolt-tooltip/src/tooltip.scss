@@ -425,7 +425,7 @@ $bolt-tooltip-transition: $bolt-transition;
 .c-bolt-tooltip__content {
   display: block;
   position: absolute;
-  z-index: 99999;
+  z-index: bolt-z-index('tooltip');
   transition: all $bolt-tooltip-transition;
 
   &--button {
@@ -441,6 +441,7 @@ $bolt-tooltip-transition: $bolt-transition;
 
 .c-bolt-tooltip__content-bubble {
   @include bolt-padding(xsmall, squished);
+  @include bolt-shadow('level-20');
 
   display: block;
   position: relative;
@@ -448,7 +449,6 @@ $bolt-tooltip-transition: $bolt-transition;
   border: 1px solid $bolt-tooltip-bubble-border-color;
   border-radius: 3px;
   background-color: bolt-color(white);
-  box-shadow: 0 1px 2px 1px rgba(6,10,36,0.08);
 
   &:after,
   &:before {
