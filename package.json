@@ -40,6 +40,8 @@
     "clean": "npm-run-all --parallel clean:*",
     "prepublishOnly": "npm run build",
     "snyk-protect": "snyk protect",
+    "lint:style": "stylelint 'packages/**/*.scss' 'apps/**/*.scss'",
+    "lint:style:fix": "npm run lint:style -- --fix",
     "test:js": "jest",
     "test:js:watch": "jest --watch",
     "test:php": "cd packages/core-php && composer run test",
