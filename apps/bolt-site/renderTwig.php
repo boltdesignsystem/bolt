@@ -1,5 +1,9 @@
 <?php
 require_once 'vendor/autoload.php';
+
+use \Bolt\WebComponentsSSR\Renderer;
+
+// use TwigComponentsSSR\;
 // Twig docs for this: https://twig.symfony.com/doc/1.x/api.html
 
 $data = [];
@@ -43,5 +47,10 @@ $template = $twig->load($templatePath);
 
 // Pass data to template and get back HTML
 $html = $template->render($data);
+$templates = \BasaltInc\TwigTools\Utils::getData('../../www/build/bolt.templates.json');
+$renderer = new Renderer($templates, $twig);
+// $templates = json_decode(file_get_contents('./build/bolt.templates.json'), TRUE);
 
-echo $html;
+echo $renderer->render($html);  // Enables SSR
+// echo $html; // Disables SSR for troubleshooting
+

@@ -1,11 +1,9 @@
 import {
   define,
   props,
-  withComponent,
   css,
   hasNativeShadowDomSupport,
-  withPreact,
-  withHyperHTML,
+  BoltComponent,
   sanitizeBoltClasses
 } from '@bolt/core';
 
@@ -15,25 +13,7 @@ import visuallyhiddenUtils from '@bolt/global/styles/07-utilities/_utilities-vis
 
 
 @define
-export class ReplaceWithChildren extends withPreact(withComponent()) {
-  static is = 'replace-with-children';
-
-  constructor(elem) {
-    super(elem);
-    this.useShadow = hasNativeShadowDomSupport;
-  }
-
-  connectedCallback(){
-    if (hasNativeShadowDomSupport){
-      this.replaceWith(...this.childNodes);
-    } else {
-      this.className = '';
-    }
-  }
-}
-
-@define
-export class BoltButton extends withHyperHTML(withComponent()) {
+class BoltButton extends BoltComponent() {
   static is = 'bolt-button';
 
   static props = {
@@ -59,8 +39,8 @@ export class BoltButton extends withHyperHTML(withComponent()) {
     onClickTarget: props.string, // Managed by base class
   }
 
-  constructor(elem) {
-    super(elem);
+  constructor() {
+    super();
     this.useShadow = hasNativeShadowDomSupport;
   }
 
@@ -88,7 +68,6 @@ export class BoltButton extends withHyperHTML(withComponent()) {
       this.props.isActive ? `c-bolt-button--active` : '',
       this.props.isFocus ? `c-bolt-button--focus` : ''
     );
-
 
     /**
      * Given that our base HyperHTML Class is configured to automatically organizing top level children into separate slot buckets (ie.
@@ -124,11 +103,14 @@ export class BoltButton extends withHyperHTML(withComponent()) {
 
       ${
         childElementIndex === null ? (
-          hasUrl ?
-            this.html`<a href="${this.props.url}" class="${classes}" target="${urlTarget}">${this.slots.default}</a>` :
-            this.html`<button class="${classes}">${this.slots.default}</button>`
-        )
-        : this.slots.default
+            hasUrl ?
+            this.html`<a href="${this.props.url}" class="${classes}" target="${urlTarget}">
+              ${ this.slot('default') }
+            </a>` :
+            this.html`<button class="${classes}">
+              ${ this.slot('default') }
+            </button>`
+        ) : this.html`${ this.slot('default') }`
       }
     `
   }
