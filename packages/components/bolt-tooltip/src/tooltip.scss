@@ -328,71 +328,17 @@ $bolt-tooltip-transition: $bolt-transition;
 .c-bolt-tooltip__trigger {
   display: block;
 
-  button:focus {
-    outline: none;
+  button {
+    overflow: hidden;
+
+    &:focus {
+      outline: none;
+    }
   }
 
   bolt-icon {
     padding-right: 5px;
   }
-
-  //button {
-  //  .c-bolt-button__inner {
-  //    position: relative;
-  //
-  //    .c-bolt-button__icons,
-  //    .c-bolt-button__text {
-  //      display: inline-flex;
-  //    }
-  //
-  //    .c-bolt-button__icon--closed,
-  //    .c-bolt-button__icon--open,
-  //    .c-bolt-button__text-item--closed,
-  //    .c-bolt-button__text-item--open {
-  //      transition: opacity $bolt-transition;
-  //    }
-  //  }
-  //}
-  //
-  //.c-bolt-button__icon--closed {
-  //  position: relative;
-  //  opacity: 1;
-  //
-  //  .is-active & {
-  //    position: absolute;
-  //    opacity: 0;
-  //  }
-  //}
-  //
-  //.c-bolt-button__icon--open {
-  //  position: absolute;
-  //  opacity: 0;
-  //
-  //  .is-active & {
-  //    position: relative;
-  //    opacity: 1;
-  //  }
-  //}
-  //
-  //.c-bolt-button__text-item--closed {
-  //  position: relative;
-  //  opacity: 1;
-  //
-  //  .is-active & {
-  //    position: absolute;
-  //    opacity: 0;
-  //  }
-  //}
-  //
-  //.c-bolt-button__text-item--open {
-  //  position: absolute;
-  //  opacity: 0;
-  //
-  //  .is-active & {
-  //    position: relative;
-  //    opacity: 1;
-  //  }
-  //}
 
   button .toggle--closed,
   button .toggle--open {
@@ -402,22 +348,22 @@ $bolt-tooltip-transition: $bolt-transition;
   }
 
   .toggle--closed {
-    position: relative;
+    position: absolute;
     opacity: 1;
 
     .is-active & {
-      position: absolute;
       opacity: 0;
     }
   }
 
   .toggle--open {
-    position: absolute;
+    transform: translate3d(0, -200%, 0);
     opacity: 0;
 
     .is-active & {
       position: relative;
       opacity: 1;
+      transform: translate3d(0, 0%, 0);
     }
   }
 }
