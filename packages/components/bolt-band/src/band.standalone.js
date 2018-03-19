@@ -4,7 +4,7 @@ import {
   define,
   props,
   withComponent,
-  withPreact,
+  BoltComponent,
   hasNativeShadowDomSupport
 } from '@bolt/core';
 
@@ -22,7 +22,7 @@ import {
 
 
 @define
-export class BoltBand extends withComponent(withPreact()) {
+export class BoltBand extends BoltComponent() {
   static is = 'bolt-band';
 
   static get observedAttributes() {
@@ -214,19 +214,11 @@ export class BoltBand extends withComponent(withPreact()) {
     }
   }
 
-  renderer(root, html) {
-    if (this.useShadow) {
-      super.renderer(root, html);
-    } else {
-      root.innerHTML = this.innerHTML;
-    }
-  }
+
 
   render() {
-    if (this.useShadow){
-      return (
-        <slot />
-      )
-    }
+    return this.html`
+      ${ this.slot('default')}
+    `
   }
 }
