@@ -1,3 +1,82 @@
 $schema: http://json-schema.org/draft-04/schema#
 title: Tooltip
 type: object
+properties:
+  trigger:
+    type: object
+    description: Provides the data for our trigger type
+    properties:
+      type:
+        type: string
+        description: What kind of trigger are we using?
+        enum:
+          - text
+          - button
+      text:
+        type: string
+        description: The text for our trigger
+      icon:
+        type: object
+        description: Properties for including an icon with our trigger
+        properties:
+          name:
+            type: string
+            description: Name of the icon to be used
+          size:
+            type: string
+            description: Size of the icon
+            enum:
+              - small
+              - medium
+              - large
+              - xlarge
+      toggle:
+        type: object
+        description: If using a `button` set optional toggle text / icon
+        properties:
+          text:
+            type: string
+            description: The text for our toggle
+          name:
+            type: string
+            description: The icon for our toggle
+  content:
+    type: any
+    description: This can be text OR an included bolt component (like Block List)
+  id:
+    type: string
+    description: A unique identifier for our tooltip (must be different for each on the page)
+  type:
+    type: string
+    description: What kind of tooltip is this?
+    default: action
+    enum:
+      - action
+      - help
+  position:
+    type: string
+    description: Should tooltip push up or down?
+    default: down
+    enum:
+      - up
+      - down
+  noWrap:
+    type: boolean
+    description: "`true` for single line content (short snippets)"
+    default: false
+    enum:
+      - true
+      - false
+  spacing:
+    type: string
+    description: Spacing within our tooltip content bubble
+    default: none
+    enum:
+      - none
+      - xsmall
+      - small
+      - medium
+required:
+  - trigger
+  - content
+  - id

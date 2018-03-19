@@ -6,4 +6,14 @@ npm install @bolt/components-tooltip
 ```
 
 ## Description:
-The tooltip component provides the user with a hover and show option, as well as the option to remain hidden until a class is provided through JS.
+The tooltip component provides the user with a onHover Or onClick (button) toggle to display nearly any kind of content or Bolt Component nested within.
+
+## Use cases (not limited to):
+- Help text
+- Navigational assistance (such as language select)
+- Used within other components, such as Share, to enhance functionality and presentation
+
+## Best practices
+- Toggle icons should be tested to ensure smooth transition states
+- Always include a unique `id` to prevent collisions should multiple tooltips be present on the page
+- The `noWrap` option should only be used when small snippets of text or content are used

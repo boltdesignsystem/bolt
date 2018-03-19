@@ -55,6 +55,8 @@ export class BoltTooltip extends withPreact(withComponent()) {
       classes.push(baseClass + '--spacing-' + data.spacing);
     }
 
+    console.log(data.content);
+
     return (
       <span>
         <style>{styles[0][1]}</style>
@@ -116,22 +118,44 @@ class TooltipTrigger extends withPreact(withComponent()) {
         >
           {data.type === 'button' &&
           <button className="c-bolt-button c-bolt-button--rounded c-bolt-button--medium c-bolt-button--secondary c-bolt-button--center">
-            <div className="toggle--closed">
-            {data.icon &&
-              <span className="c-bolt-button__icon">
-                <bolt-icon name={data.icon} size={size} />
-              </span>
-            }
-              {data.text}
-            </div>
-            <div className="toggle--open">
-              {data.toggleIcon &&
+            {/*<div className="c-bolt-button__inner">*/}
+              {/*<div className="c-bolt-button__icons">*/}
+                {/*{data.icon &&*/}
+                  {/*<span className="c-bolt-button__icon c-bolt-button__icon--closed">*/}
+                    {/*<bolt-icon name={data.icon} size={size} />*/}
+                  {/*</span>*/}
+                {/*}*/}
+                {/*{data.toggleIcon &&*/}
+                  {/*<span className="c-bolt-button__icon c-bolt-button__icon--open">*/}
+                    {/*<bolt-icon name={data.toggleIcon} size={size} />*/}
+                  {/*</span>*/}
+                {/*}*/}
+              {/*</div>*/}
+              {/*<div className="c-bolt-button__text">*/}
+                {/*<span className="c-bolt-button__text-item c-bolt-button__text-item--closed">*/}
+                  {/*{data.text}*/}
+                {/*</span>*/}
+                {/*<span className="c-bolt-button__text-item c-bolt-button__text-item--open">*/}
+                  {/*{data.toggleText}*/}
+                {/*</span>*/}
+              {/*</div>*/}
+            {/*</div>*/}
+              <div className="toggle--closed">
+              {data.icon &&
                 <span className="c-bolt-button__icon">
-                  <bolt-icon name={data.toggleIcon} size={size} />
+                  <bolt-icon name={data.icon} size={size} />
                 </span>
               }
-              {data.toggleText}
-            </div>
+                {data.text}
+              </div>
+              <div className="toggle--open">
+                {data.toggleIcon &&
+                  <span className="c-bolt-button__icon">
+                    <bolt-icon name={data.toggleIcon} size={size} />
+                  </span>
+                }
+                {data.toggleText}
+              </div>
           </button>
           }
           {data.type === 'text' &&

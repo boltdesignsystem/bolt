@@ -18,7 +18,6 @@ $bolt-tooltip-transition: $bolt-transition;
   pointer-events: auto;
 }
 
-
 // Tooltip positioning
 .c-bolt-tooltip {
   display: inline-block;
@@ -126,6 +125,14 @@ $bolt-tooltip-transition: $bolt-transition;
     &.is-push-up {
       .c-bolt-tooltip__content {
         transform: translate(-50%, -100%);
+
+        &--button {
+          transform: translate(-50%, 50%) scale(0);
+        }
+      }
+
+      .is-active+.c-bolt-tooltip__content--button {
+        transform: translate(-50%, -115%) scale(1);
       }
 
       .c-bolt-tooltip__content-bubble {
@@ -139,6 +146,14 @@ $bolt-tooltip-transition: $bolt-transition;
     &.is-push-down {
       .c-bolt-tooltip__content {
         transform: translate(-50%, 0);
+
+        &--button {
+          transform: translate(-50%, -50%) scale(0);
+        }
+      }
+
+      .is-active+.c-bolt-tooltip__content--button {
+        transform: translate(-50%, 15%) scale(1);
       }
 
       .c-bolt-tooltip__content-bubble {
@@ -305,13 +320,73 @@ $bolt-tooltip-transition: $bolt-transition;
     outline: none;
   }
 
+  bolt-icon {
+    padding-right: 5px;
+  }
+
+  //button {
+  //  .c-bolt-button__inner {
+  //    position: relative;
+  //
+  //    .c-bolt-button__icons,
+  //    .c-bolt-button__text {
+  //      display: inline-flex;
+  //    }
+  //
+  //    .c-bolt-button__icon--closed,
+  //    .c-bolt-button__icon--open,
+  //    .c-bolt-button__text-item--closed,
+  //    .c-bolt-button__text-item--open {
+  //      transition: opacity $bolt-transition;
+  //    }
+  //  }
+  //}
+  //
+  //.c-bolt-button__icon--closed {
+  //  position: relative;
+  //  opacity: 1;
+  //
+  //  .is-active & {
+  //    position: absolute;
+  //    opacity: 0;
+  //  }
+  //}
+  //
+  //.c-bolt-button__icon--open {
+  //  position: absolute;
+  //  opacity: 0;
+  //
+  //  .is-active & {
+  //    position: relative;
+  //    opacity: 1;
+  //  }
+  //}
+  //
+  //.c-bolt-button__text-item--closed {
+  //  position: relative;
+  //  opacity: 1;
+  //
+  //  .is-active & {
+  //    position: absolute;
+  //    opacity: 0;
+  //  }
+  //}
+  //
+  //.c-bolt-button__text-item--open {
+  //  position: absolute;
+  //  opacity: 0;
+  //
+  //  .is-active & {
+  //    position: relative;
+  //    opacity: 1;
+  //  }
+  //}
+
   button .toggle--closed,
   button .toggle--open {
     transition: opacity $bolt-transition;
-
-    bolt-icon {
-      padding-right: 5px;
-    }
+    align-items: center;
+    display: inline-flex;
   }
 
   .toggle--closed {

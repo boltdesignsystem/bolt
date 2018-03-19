@@ -1,11 +1,15 @@
 <div style="text-align: center; padding: 5rem 0;">
 {% include "@bolt-components-tooltip/tooltip.twig" with {
   trigger: {
-    type: "text",
-    text: "Hover Trigger",
+    type: "button",
+    text: "Trigger #1",
     icon: {
       name: "info-open",
       size: "medium"
+    },
+    toggle: {
+      text: "Trigger #1",
+      name: "close-open"
     }
   },
   content: "Here is a tooltip! And it even comes with a button toggle!",
@@ -15,21 +19,24 @@
   noWrap: false,
   spacing: "small"
 } only %}
-<br /><br />
 {% include "@bolt-components-tooltip/tooltip.twig" with {
   trigger: {
-    type: "text",
-    text: "Need Help?",
+    type: "button",
+    text: "Longer Trigger #2",
     icon: {
       name: "info-open",
       size: "medium"
+    },
+    toggle: {
+      text: "Longer Trigger #2",
+      name: "close-open"
     }
   },
-  content: 'Small piece of help text!',
+  content: "Here is a tooltip! And it even comes with a button toggle!",
   id: "tooltip-example-2",
-  type: "help",
+  type: "action",
   position: "down",
-  noWrap: true,
+  noWrap: false,
   spacing: "small"
 } only %}
 </div>
