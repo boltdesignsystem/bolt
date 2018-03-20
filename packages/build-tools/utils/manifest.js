@@ -1,33 +1,83 @@
-const { getPkgInfo } = require('./assets');
 const log = require('./log');
+const { ensureFileExists } = require('./general');
 const { promisify } = require('util');
 const fs = require('fs');
 const writeFile = promisify(fs.writeFile);
+const {getDataFile} = require('./yaml');
 const path = require('path');
 const config = require('./config-store').getConfig();
 
 let boltManifest = {
   name: 'Bolt Manifest',
   components: {
-    global: {
-      src: [],
-      dist: {},
-    },
-    individual: {
-      src: [],
-      dist: {},
-    },
+    global: [],
+    individual: [],
   },
 };
 
-function buildBoltManifest() {
-  if (config.components.global) {
-    const globalSrc = config.components.global.map(getPkgInfo);
-    boltManifest.components.global.src = globalSrc;
+/**
+ * Get information about a components assets
+ * @param {string} pkgName - Machine name of a component i.e. `@bolt/button` OR path to an entry file i.e. `./src/style.scss`
+ * @returns {{name, basicName: string | * | void}} - Asset info
+ */
+async function getPkgInfo(pkgName) {
+  if (pkgName.endsWith('.scss') || pkgName.endsWith('.js')) {
+    const pathInfo = path.parse(pkgName);
+    const name = pathInfo.name + pathInfo.ext.replace('.', '-');
+    const info = {
+      name,
+      basicName: name,
+      dir: path.dirname(pkgName),
+      assets: {},
+    };
+    if (pkgName.endsWith('.scss')) {
+      info.assets.style = pkgName;
+    }
+    if (pkgName.endsWith('.js')) {
+      info.assets.main = pkgName;
+    }
+    ensureFileExists(pkgName);
+    return info;
+  } else {// package name
+    const pkgJsonPath = require.resolve(`${pkgName}/package.json`);
+    const dir = path.dirname(pkgJsonPath);
+    const pkg = require(pkgJsonPath);
+    const info = {
+      name: pkg.name,
+      basicName: pkg.name.replace('@bolt/', 'bolt-'),
+      dir,
+      assets: {},
+    };
+    info.twigNamespace = `@${info.basicName}`;
+    if (pkg.style) {
+      info.assets.style = path.join(dir, pkg.style);
+      ensureFileExists(info.assets.style);
+    }
+    if (pkg.main) {
+      info.assets.main = path.join(dir, pkg.main);
+      ensureFileExists(info.assets.main);
+    }
+    if (pkg.schema) {
+      info.schema = await getDataFile(path.join(dir, pkg.schema));
+    }
+    // @todo Allow verbosity settings
+    // console.log(assets);
+    return info;
   }
-  if (config.components.individual) {
-    const individualSrc = config.components.individual.map(getPkgInfo);
-    boltManifest.components.individual.src = individualSrc;
+}
+
+async function buildBoltManifest() {
+  try {
+    if (config.components.global) {
+      const globalSrc = await Promise.all(config.components.global.map(getPkgInfo));
+      boltManifest.components.global = globalSrc;
+    }
+    if (config.components.individual) {
+      const individualSrc = await Promise.all(config.components.individual.map(getPkgInfo));
+      boltManifest.components.individual = individualSrc;
+    }
+  } catch (err) {
+    log.errorAndExit('Error building Bolt Manifest', err);
   }
 
   return boltManifest;
@@ -46,7 +96,7 @@ function getAllDirs(relativeFrom) {
   const dirs = [];
   const {global, individual} = getBoltManifest().components;
   [global, individual].forEach((componentList) => {
-    componentList.src.forEach((component) => {
+    componentList.forEach((component) => {
       dirs.push(relativeFrom
         ? path.relative(relativeFrom, component.dir)
         : component.dir
@@ -56,12 +106,25 @@ function getAllDirs(relativeFrom) {
   return dirs;
 }
 
+function createComponentsManifest() {
+  const components = {};
+  const manifest = getBoltManifest();
+  const allComponents = [...manifest.components.global, ...manifest.components.individual];
+  allComponents.forEach((component) => {
+    if (component.twigNamespace) {
+      components[component.twigNamespace] = component;
+    }
+  });
+  return components;
+}
+
 async function writeBoltManifest() {
-  const filePath = path.resolve(config.dataDir, './full-manifest.bolt.json');
   try {
-    await writeFile(filePath, JSON.stringify(boltManifest, null, '  '));
+    await writeFile(path.resolve(config.dataDir, './full-manifest.bolt.json'), JSON.stringify(getBoltManifest()));
+    await writeFile(path.resolve(config.dataDir, './components.bolt.json'), JSON.stringify(createComponentsManifest()));
+    await writeFile(path.resolve(config.dataDir, './config.bolt.json'), JSON.stringify(config));
   } catch(error) {
-    log.errorAndExit('Could not write bolt manifest', error);
+    log.errorAndExit('Could not write bolt manifest files', error);
   }
 }
 
@@ -79,7 +142,7 @@ async function writeTwigNamespaceFile(relativeFrom, extraNamespaces = {}) {
   const {global, individual} = getBoltManifest().components;
 
   [global, individual].forEach((componentList) => {
-    componentList.src.forEach((component) => {
+    componentList.forEach((component) => {
       const dir = relativeFrom
         ? path.relative(relativeFrom, component.dir)
         : component.dir;
@@ -98,7 +161,6 @@ async function writeTwigNamespaceFile(relativeFrom, extraNamespaces = {}) {
     bolt: {
       recursive: true,
       paths: [
-        config.srcDir,
         ...allDirs,
       ],
     },
@@ -108,7 +170,33 @@ async function writeTwigNamespaceFile(relativeFrom, extraNamespaces = {}) {
         config.dataDir,
       ],
     },
-  }, namespaces, extraNamespaces);
+  }, namespaces);
+
+  // `extraNamespaces` serves two purposes:
+  // 1. To add extra namespaces that have not been declared
+  // 2. To add extra paths to previously declared namespaces
+  //    Assuming we've already declared the `foo` namespaces to look in `~/my-dir1`
+  //    Then someone uses `extraNamespaces` to declare that `foo` will look in `~/my-dir2`
+  //    This will not overwrite it, but *prepend* to the paths, resulting in a namespace setting like this:
+  //    'foo': {
+  //      paths: ['~/my-dir2', '~/my-dir1']
+  //    }
+  //    This causes the folder declared in `extraNamespaces` to be looked in first for templates, before our default;
+  //    allowing end user developers to selectively overwrite some templates.
+  if (extraNamespaces) {
+    Object.keys(extraNamespaces).forEach((namespace) => {
+      const settings = extraNamespaces[namespace];
+      if (namespaceConfigFile[namespace]) {
+        // merging the two, making sure the paths from `extraNamespaces` go first
+        namespaceConfigFile[namespace].paths = [
+          ...settings.paths,
+          ...namespaceConfigFile[namespace].paths,
+        ];
+      } else {
+        namespaceConfigFile[namespace] = settings;
+      }
+    });
+  }
 
   await writeFile(
     path.join(config.dataDir, 'twig-namespaces.bolt.json'),

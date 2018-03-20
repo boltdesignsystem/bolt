@@ -1,0 +1,44 @@
+{#
+A wrapper for multiple form elements
+
+Available variables:
+  - fieldsetAttributes (object) - A Drupal attributes object for the fieldset element.
+  - legendAttributes (object) - A Drupal attributes object for the legend element.
+  - legendInnerAttributes (object) - A Drupal attributes object for the element inside of legend.  This is really
+      only present because it's used in Drupal and might therefore be needed.
+  - legendTitle (string) - The title to display in the legend element.
+  - legendSize (enum) - A headline size to use for the legend.
+  - children (renderable) - The form inputs .
+  - errors (string) - Server-side errors
+  - descriptionText (string) - An optional description for this fieldset
+#}
+
+{% set fieldsetAttributes = create_attribute(fieldsetAttributes | default({})) %}
+{% set legendAttributes = create_attribute(legendAttributes | default({})) %}
+{% set legendInnerAttributes = create_attribute(legendInnerAttributes | default({})) %}
+
+<fieldset{{ fieldsetAttributes.addClass('c-bolt-fieldset') }}>
+  <legend{{ legendAttributes.addClass('c-bolt-legend') }}>
+    {% include "@bolt/headline.twig" with {
+      "text": legendTitle,
+      "attributes": legendInnerAttributes,
+      "size": legendSize|default('small')
+    } only %}
+  </legend>
+  <div>
+    {% if errors %}
+      <div class="c-bolt-input-message c-bolt-input-message--invalid">
+        {{ errors }}
+      </div>
+    {% endif %}
+
+    {% if descriptionText %}
+      <div class="c-bolt-input-message">
+        {{ descriptionText }}
+      </div>
+    {% endif %}
+
+    {{ children }}
+
+  </div>
+</fieldset>

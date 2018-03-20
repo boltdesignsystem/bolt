@@ -7,7 +7,9 @@ import {
   withComponent,
   withPreact,
   css,
-  spacingSizes
+  spacingSizes,
+  hasNativeShadowDomSupport,
+  passiveSupported,
 } from '@bolt/core';
 
 
@@ -32,23 +34,37 @@ function whichAnimationEvent() {
 const animationEvent = whichAnimationEvent();
 
 
-class BoltDeviceViewer extends withComponent(withPreact()) {
+@define
+class BoltDeviceViewer extends withPreact(withComponent()) {
   static is = 'bolt-device-viewer';
 
   static props = {
     // name: props.string,
   }
 
-  render({ props }) {
-    const classes = css(
-      'c-bolt-image-magnifier'
-    );
+  constructor(element) {
+    super(element);
+    this.useShadow = hasNativeShadowDomSupport;
+  }
 
-    return (
-      <div className={classes}>
-        <slot />
-      </div>
-    )
+  render({ props }) {
+    if (this.useShadow){
+      const classes = css(
+        'c-bolt-image-magnifier'
+      );
+
+      return (
+        <div className={classes}>
+          <slot />
+        </div>
+      )
+    }
+  }
+
+  renderer(root, html) {
+    if (!this.useShadow) {
+      root.innerHTML = `<div class="c-bolt-image-magnifier">${this.innerHTML}</div>`;
+    }
   }
 
   connectedCallback() {
@@ -64,17 +80,21 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
   }
 }
 
-customElements.define(BoltDeviceViewer.is, BoltDeviceViewer);
 
 
 
-class BoltImageZoom extends withComponent(withPreact()) {
+@define
+class BoltImageZoom extends withPreact(withComponent()) {
   static is = 'bolt-image-zoom';
 
   static props = {
     mangify: props.boolean
   }
 
+  constructor(element) {
+    super(element);
+    this.useShadow = hasNativeShadowDomSupport;
+  }
 
   /**
      * `screenElem` returns the screen element inside the device viewer
@@ -109,7 +129,7 @@ class BoltImageZoom extends withComponent(withPreact()) {
     screenElem.classList.remove('is-mouse-entering');
     screenElem.classList.add('is-mouse-leaving');
 
-    animationEvent && iconElem.addEventListener(animationEvent, animationLeaveFunction);
+    animationEvent && iconElem.addEventListener(animationEvent, animationLeaveFunction, passiveSupported ? { passive: false } : false);
 
     function animationLeaveFunction() {
       setTimeout(function () {
@@ -120,17 +140,12 @@ class BoltImageZoom extends withComponent(withPreact()) {
   }
 
 
-  render() {
-    return (
-      <slot />
-    )
-  }
 
   connectedCallback() {
     const driftZoomImageUrl = this.querySelector('img').getAttribute('data-zoom');
     this.setAttribute('data-zoom', driftZoomImageUrl);
-    this.addEventListener('mouseenter', this._mouseEnter);
-    this.addEventListener('mouseleave', this._mouseLeave);
+    this.addEventListener('mouseenter', this._mouseEnter, passiveSupported ? { passive: false } : false);
+    this.addEventListener('mouseleave', this._mouseLeave, passiveSupported ? { passive: false } : false);
   }
 
   /**
@@ -143,5 +158,3 @@ class BoltImageZoom extends withComponent(withPreact()) {
     this.removeEventListener('mouseleave', this._mouseLeave);
   }
 }
-
-customElements.define(BoltImageZoom.is, BoltImageZoom);

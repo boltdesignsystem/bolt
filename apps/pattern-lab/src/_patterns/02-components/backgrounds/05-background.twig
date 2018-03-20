@@ -1,0 +1,19 @@
+<div style="height: 400px; position: relative;">
+
+  {% include "@bolt-components-background/background.twig" with {
+    opacity: "heavy",
+    fill: "gradient",
+    focalPoint: {
+      vertical: "center",
+      horizontal: "center"
+    },
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/pattern-lab/images/content/backgrounds/background-tall-4.jpg",
+        lazyload: false
+      }
+    ]
+} only %}
+
+</div>

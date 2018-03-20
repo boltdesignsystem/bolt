@@ -14,8 +14,6 @@
 }
 
 .c-bolt-band {
-  @include bolt-padding-top(large);
-  @include bolt-padding-bottom(large);
   display: block;
   min-height: 0;
   transition: all 0.4s ease;
@@ -30,6 +28,11 @@
 .c-bolt-band--large {
   @include bolt-padding-top(xlarge);
   @include bolt-padding-bottom(xlarge);
+}
+
+.c-bolt-band--medium {
+  @include bolt-padding-top(large);
+  @include bolt-padding-bottom(large);
 }
 
 .c-bolt-band--small {

@@ -2,16 +2,19 @@ const path = require('path');
 const program = require('commander');
 const packageJson = require('./package.json');
 const configStore = require('./utils/config-store');
+const { readYamlFileSync } = require('./utils/yaml');
+const configSchema = readYamlFileSync(path.join(__dirname, './utils/config.schema.yml'));
 
 // global `bolt` cli options & meta
 program
   .version(packageJson.version)
   .option('-C, --config-file <path>', 'Pass in a specific config file instead of default of ".boltrc.js/json".')
-  .option('-v, --verbosity <amount>', 'How much output do you want? 0-5', parseInt);
+  .option('--prod', configSchema.properties.prod.description)
+  .option('-v, --verbosity <amount>', configSchema.properties.verbosity.description, parseInt);
 
 // We need to initialize config as early as possible
 const configFilePath = path.resolve(process.cwd(), program.configFile || '.boltrc');
-configStore.init(require(configFilePath));
+const config = configStore.init(require(configFilePath));
 // Now that config is initilized, we can start requiring other things
 
 const { buildBoltManifest } = require('./utils/manifest');
@@ -23,7 +26,7 @@ const log = require('./utils/log');
  * @param programInstance - The commander `program`
  * @returns {Object} config - Final updated config
  */
-function updateConfig(options, programInstance) {
+async function updateConfig(options, programInstance) {
   configStore.updateConfig((config) => {
     config.verbosity = typeof program.verbosity === 'undefined'
       ? config.verbosity
@@ -33,16 +36,24 @@ function updateConfig(options, programInstance) {
       ? config.openServerAtStart
       : options.open;
 
+    config.webpackDevServer = typeof options.webpackDevServer === 'undefined'
+      ? config.webpackDevServer
+      : options.webpackDevServer;
 
     config.quick = typeof options.quick === 'undefined'
       ? config.quick
       : options.quick;
+
+    config.prod = typeof program.prod === 'undefined'
+      ? config.prod
+      : program.prod;
 
     return config;
   });
 
   const config = configStore.getConfig();
   log.dim(`Verbosity: ${config.verbosity}`);
+  log.dim(`Prod: ${config.prod}`);
   if (config.verbosity > 2){
     log.dim(`Opening browser: ${config.openServerAtStart}`);
     log.dim(`Quick mode: ${config.quick}`);
@@ -53,7 +64,7 @@ function updateConfig(options, programInstance) {
 
   // Basically at this point, the cli is bootstrapped and ready to go.
   // Let's build the core bolt manifest
-  buildBoltManifest();
+  await buildBoltManifest();
   return config;
 }
 
@@ -65,42 +76,44 @@ program
   .description('Build it')
   .option('-W, --watch', 'Watch and rebuild')
   .option('-P, --parallel', 'Run build in parallel instead of a series. Faster, but some assets might not be ready in time.')
-  .option('-Q, --quick', 'Try to be quicker by skipping some steps that might not be needed if everything is recently built and in good working order.')
-  .action((options) => {
+  .option('-Q, --quick', configSchema.properties.quick.description)
+  .action(async (options) => {
     log.info(`Starting build (${options.parallel ? 'parallel' : 'serial'})`);
-    updateConfig(options, program);
+    await updateConfig(options, program);
     require('./tasks/task-collections').build();
   });
 
 program
   .command('serve')
   .description('Spin up local server')
-  .option('-O, --open', 'Open browser at start.')
-  .action((options) => {
-    updateConfig(options, program);
+  .option('-O, --open', configSchema.properties.openServerAtStart.description)
+  .option('--webpack-dev-server', configSchema.properties.webpackDevServer.description)
+  .action(async (options) => {
+    await updateConfig(options, program);
     require('./tasks/task-collections').serve();
   });
 
 program
   .command('watch')
-  .action((options) => {
-    updateConfig(options, program);
+  .action(async (options) => {
+    await updateConfig(options, program);
     require('./tasks/task-collections').watch();
   });
 
 program
   .command('clean')
-  .action((options) => {
-    updateConfig(options, program);
+  .action(async (options) => {
+    await updateConfig(options, program);
     require('./tasks/task-collections').clean();
   });
 
 program
   .command('start')
-  .option('-O, --open', 'Open browser at start.')
-  .option('-Q, --quick', 'Try to be quicker by skipping some steps that might not be needed if everything is recently built and in good working order.')
-  .action((options) => {
-    updateConfig(options, program);
+  .option('-O, --open', configSchema.properties.openServerAtStart.description)
+  .option('-Q, --quick', configSchema.properties.quick.description)
+  .option('--webpack-dev-server', configSchema.properties.webpackDevServer.description)
+  .action(async (options) => {
+    await updateConfig(options, program);
     require('./tasks/task-collections').start();
   });
 
@@ -108,17 +121,46 @@ program
 program
   .command('lint')
   .description('A linter... that doesn\'t work!')
-  .action((options) => {
-    updateConfig(options, program);
+  .action(async (options) => {
+    await updateConfig(options, program);
   });
 
 program
   .command('img')
   .description('Image process')
-  .action((options) => {
-    updateConfig(options, program);
+  .action(async (options) => {
+    await updateConfig(options, program);
     require('./tasks/task-collections').images();
   });
+
+
+program
+  .command('webpack')
+  .alias('wp')
+  .description('WebPack Compile')
+  .action(async (options) => {
+    await updateConfig(options, program);
+    try {
+      await require('./tasks/webpack-tasks').compile();
+    } catch (error) {
+      log.errorAndExit('WebPack failed', error);
+    }
+  });
+
+if (config.env === 'pl'){
+  program
+    .command('pattern-lab')
+    .alias('pl')
+    .description('Pattern Lab Compile')
+    .action(async (options) => {
+      await updateConfig(options, program);
+      try {
+        await require('./tasks/pattern-lab-tasks').compile();
+      } catch (error) {
+        log.errorAndExit('Pattern Lab failed', error);
+      }
+    });
+}
 
 // This will tell you all that got `require()`-ed
 // We want to only load what we need - that's why not all `require` statements are at top

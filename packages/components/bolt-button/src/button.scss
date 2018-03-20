@@ -1,0 +1,194 @@
+/* ------------------------------------ *\
+   Buttons
+\* ------------------------------------ */
+$bolt-export-data: false !global;
+
+@import '@bolt/core';
+
+@import './button.settings';
+@import './button.mixins';
+
+@import './link';
+
+
+
+
+/** Base Button Styles **/
+bolt-button {
+  display: inline-block; // Fallback
+  display: inline-flex; // So equal height works
+}
+
+.c-bolt-button {
+  @include bolt-button;
+
+  // Inner <a> or <button> nested inside of the custom element tag
+  &__root {
+     @include bolt-button-root;
+  }
+}
+
+
+
+/** Button Style Variations **/
+.c-bolt-button--primary {
+  @include bolt-button-style(primary);
+}
+
+.c-bolt-button--secondary {
+  @include bolt-button-style(secondary);
+}
+
+.c-bolt-button--text {
+  @include bolt-button-style(text);
+}
+
+.c-bolt-button[disabled],
+.c-bolt-button--disabled {
+  @include bolt-button-style(disabled);
+}
+
+// Allow forcing light and xlight theme colors in IE11 until http://vjira2:8080/browse/BK-48 is resolved.
+.t-bolt-xlight,
+.t-bolt-light {
+  ._c-bolt-button--theme-override {
+    @include bolt-button-color--teal;
+  }
+}
+
+
+
+
+/** Button Size Variations **/
+.c-bolt-button,
+.c-bolt-button--medium {
+  @include bolt-padding(medium, squished);
+  @include bolt-font-size(xsmall);
+
+  &.c-bolt-button--icon-only {
+    padding: bolt-spacing(medium);
+  }
+}
+
+.c-bolt-button--xxsmall {
+  @include bolt-padding(xxsmall, squished);
+  @include bolt-font-size(xsmall);
+
+  &.c-bolt-button--icon-only {
+    padding: bolt-spacing(xxsmall);
+  }
+}
+
+.c-bolt-button--xsmall {
+  @include bolt-padding(xsmall, squished);
+  @include bolt-font-size(xsmall);
+
+  &.c-bolt-button--icon-only {
+    padding: bolt-spacing(xsmall);
+  }
+}
+
+.c-bolt-button--small {
+  @include bolt-padding(small, squished);
+  @include bolt-font-size(xsmall);
+
+  &.c-bolt-button--icon-only {
+    padding: bolt-spacing(small);
+  }
+}
+
+.c-bolt-button--large {
+  @include bolt-padding(medium, squished);
+  @include bolt-font-size(medium);
+
+  &.c-bolt-button--icon-only {
+    padding: bolt-spacing(medium);
+  }
+}
+
+.c-bolt-button--xlarge {
+  @include bolt-padding(large, squished);
+  @include bolt-font-size(large);
+
+  &.c-bolt-button--icon-only {
+    padding: bolt-spacing(large);
+  }
+}
+
+
+
+
+/** Button Width Variations **/
+bolt-button[width='full'],
+.c-bolt-button--full {
+  width: 100%;
+}
+
+bolt-button[width='full@small'],
+.c-bolt-button--full\@small {
+  @media screen and (max-width: map-get($bolt-breakpoints, small)) {
+    width: 100%;
+  }
+}
+
+
+
+
+/** Rounded off buttons (ie. pills or icon-only buttons) **/
+.c-bolt-button--rounded,
+.c-bolt-button--rounded:before {
+  border-radius: 50rem;
+}
+
+
+
+
+/** Button Alignments **/
+.c-bolt-button--center {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.c-bolt-button--left {
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.c-bolt-button--right {
+  align-items: flex-end;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+
+
+
+/** Handle Button Icon Alignment + Before / After **/
+.c-bolt-link__text + .c-bolt-link__icon,
+.c-bolt-button__item-text + .c-bolt-button__icon {
+  @include bolt-margin-left(xxsmall);
+
+  .c-bolt-button--icon-only & {
+    @include bolt-margin-left(0);
+  }
+}
+
+.c-bolt-link__icon + .c-bolt-link__text,
+.c-bolt-button__icon + .c-bolt-button__item-text {
+  @include bolt-margin-left(xsmall);
+
+  .c-bolt-button--icon-only & {
+    @include bolt-margin-left(0);
+  }
+}
+
+.c-bolt-link__icon,
+.c-bolt-button__icon {
+  display: inline-block;
+  display: inline-flex;
+  vertical-align: middle;
+  align-self: center;
+  line-height: 1; // workaround so icons can be vertically aligned properly
+}

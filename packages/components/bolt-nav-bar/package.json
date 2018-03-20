@@ -8,7 +8,8 @@
     "design system",
     "components"
   ],
-  "version": "0.1.0-beta.5",
+  "version": "1.0.0-rc.7",
+  "sourceFilesFrom": "0.10.2",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -21,22 +22,18 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "homepage": "https://boltdesignsystem.com",
+  "homepage": "https://bolt-design-system.com",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bolt-design-system/bolt/"
-  },
-  "bugs": {
-    "url": "https://github.com/bolt-design-system/bolt/issues"
-  },
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav-bar",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "main": "src/nav-bar.js",
   "style": "src/nav-bar.scss",
-  "twig": "src/nav-bar.twig",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@bolt/core": "^0.5.0-beta.1"
-  }
+    "@bolt/core": "^1.0.0-rc.7",
+    "gumshoejs": "^3.5.0"
+  },
+  "schema": "nav-bar.schema.yml"
 }

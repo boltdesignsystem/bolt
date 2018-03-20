@@ -8,6 +8,7 @@
  */
 
 $bolt-ui-list-padding--collapsed: (0) !default;
+$bolt-ui-list-padding--xxsmall: (xxsmall 0) !default;
 $bolt-ui-list-padding--xsmall: (xsmall 0) !default;
 $bolt-ui-list-padding--small: (small 0) !default;
 $bolt-ui-list-padding--medium: (medium 0) !default;
@@ -63,6 +64,10 @@ $bolt-ui-list-border-color: var(--bolt-theme-border, currentColor);
 // Remove all padding
 .o-bolt-ui-list--collapsed > .o-bolt-ui-list__item {
   @include bolt-padding($bolt-ui-list-padding--collapsed);
+}
+
+.o-bolt-ui-list--xxsmall > .o-bolt-ui-list__item {
+  @include bolt-padding($bolt-ui-list-padding--xxsmall);
 }
 
 .o-bolt-ui-list--xsmall > .o-bolt-ui-list__item {

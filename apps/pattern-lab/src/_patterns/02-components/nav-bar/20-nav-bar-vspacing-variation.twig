@@ -1,0 +1,30 @@
+{% set schema = bolt.data.components['@bolt-components-nav-bar'].schema %}
+
+{% for vspacing in schema.properties.vspacing.enum %}
+  <p>Vspacing: {{ vspacing }}</p>
+  {% include "@bolt-components-nav-bar/nav-bar.twig" with {
+    "vspacing": vspacing,
+    "title": {
+      "tag": "h2",
+      "text": "Title Text",
+      "icon": {
+        "name": "marketing-gray"
+      }
+    },
+    "links": [
+      {
+        "text": "Link 1 Text",
+        "url": "link-1-url"
+      },
+      {
+        "text": "Link 2 Text",
+        "url": "link-2-url"
+      },
+      {
+        "text": "Link 3 Text",
+        "url": "link-3-url"
+      }
+    ]
+  } %}
+
+{% endfor %}

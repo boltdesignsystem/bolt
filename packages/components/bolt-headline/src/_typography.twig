@@ -59,7 +59,7 @@
   url ? baseClass ~ "--link" : ""
 ] %}
 
-{% if url and icon.name is null %}
+{% if url and icon != null and icon.name is not defined %}
   {% set icon = icon | default({}) | merge({
     name: "chevron-right"
   }) %}
@@ -86,7 +86,10 @@
   {% endif %}
 </{{ tag }}>
 
-
+{% if enable_json_schema_validation %}
+  {# disabling schema validation for now as it has too many errors now #}
+  {#{{ validate_data_schema('@bolt-components-headline/headline.schema.yml', _self) }}#}
+{% endif %}
 
 {# set iconpos = iconpos | default("right") #}
 

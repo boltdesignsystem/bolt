@@ -1,0 +1,60 @@
+<h4>Bolt Shadows</h4>
+
+{% set classPrefix = bolt.data.shadows['utility-class-prefix'] %}
+{% for key, value in bolt.data.shadows.sets %}
+  <div class="bolt-shadow-demo__card {{ classPrefix }}{{ key }}">{{ key }}
+    <br>Utility Class
+    <br><code>.{{ classPrefix }}{{ key }}</code>
+    <br>Scss Mixin
+    <br><code>@include bolt-shadow('{{ key }}');</code>
+  </div>
+{% endfor %}
+
+<h5>Hoverable</h5>
+{% for key, value in bolt.data.shadows.sets %}
+  <div class="bolt-shadow-demo__card {{ classPrefix }}{{ key }}--hoverable">{{ key }}
+    <br>Utility Class
+    <br><code>.{{ classPrefix }}{{ key }}--hoverable</code>
+    <br>Scss Mixin
+    <br><code>@include bolt-shadow('{{ key }}', true);</code>
+  </div>
+{% endfor %}
+
+<h5>Utility Classes</h5>
+
+<p>Add the utility class "{{ classPrefix }}xx" where xx equals the level of shadow you wish to apply.</p>
+
+{{ ('```html
+<div class="' ~ classPrefix ~ bolt.data.shadows.sets|keys|first ~ '"> ... </div>
+```') | markdown }}
+
+<p>To add an animated shadow that 'lifts' on hover, add the "{{ classPrefix }}xx--hoverable" where xx equals the level of shadow you wish to use.</p>
+
+{{ ('```html
+<div class="' ~ classPrefix ~ bolt.data.shadows.sets|keys|first ~ '--hoverable"> ... </div>
+```') | markdown }}
+
+<h5>Mixin</h5>
+
+<p>There is also a shadow mixin available for use in sass/scss. The mixin takes two arguments, a string corresponding to the level of shadow desired, and an option boolean to add the 'lift' effect on hover.</p>
+
+<p><bold>Note:</bold> Passing a value that is not a defined in <code>_settings-shadow.scss</code> will generate an error.</p>
+
+{{ ('```scss
+/* Without hover effect */
+.class {
+  @include bolt-shadow(\'' ~ bolt.data.shadows.sets|keys|first ~ '\');
+}
+```') | markdown }}
+
+<p>You can trigger the lift effect by calling the mixin with a 2nd param of <code>true</code> and apply it to another class, or any CSS selector; here's how it can be applied on <code>:hover</code>:</p>
+
+{{ ('```scss
+/* With lift effect on hover */
+.class {
+  @include bolt-shadow(\'' ~ bolt.data.shadows.sets|keys|first ~ '\');
+  &:hover {
+    @include bolt-shadow(\'' ~ bolt.data.shadows.sets|keys|first ~ '\', true);
+  }
+}
+```') | markdown }}

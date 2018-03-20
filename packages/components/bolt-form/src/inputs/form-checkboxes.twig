@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Theme override for a 'checkboxes' #type form element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The rendered checkboxes.
+ */
+#}
+
+{% set classes = [
+  'c-bolt-input-list',
+  'c-bolt-input-list--stack-spacing-none'
+] %}
+
+<div{{ attributes.addClass(classes) }}>{{ children }}</div>

@@ -11,38 +11,18 @@ cache
 *.psb
 *.psd
 *.tmp
-dist
 
-## installed to src/_twig-components via composer
-src/_twig-components
-src/_patterns/**/dist
-src/_patterns/**/dist/*
-
-apps/pattern-lab--workshop/src/_twig-components
-
-*.log
-lerna-debug.log
 node_modules
 bower_components
 vendor
 
-## static bolt site / pattern lab instance built locally
-bolt-website
-navItems.html
-src/_patternsnavitems.html
-src/_patternspatterns.html
-src/_patternspatternStore.html
-src/_patternspatternSubtype.html
-src/_patternspatternType.html
-
-
+/www
 
 # Logs
-logs
 *.log
+lerna-debug.log
+logs
 npm-debug.log*
 coverage
-dist
-apps/pattern-lab--workshop/www
 .vscode/
 *.report.html

@@ -1,16 +1,12 @@
-// import { Preact, h } from '@bolt/core';
-const Healthcare = ({ color, size, ...otherProps }) => {
-  color = color || 'currentColor';
-  size = size || '24';
+import { h } from '@bolt/core';
+
+export const Healthcare = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (
-    <svg width="32" height="32" viewBox="0 0 32 32" {...otherProps}>
-      <title>Icon/Industry/Healthcare</title>
-      <path
-        d="M2 22l2-7v1h24v-1l2 7H2zm28 6H2v-4h28v4zM6 8h4v1.001A1 1 0 0 0 11 10h10c.553 0 1-.447 1-.999V8h4l1.714 6.001H4.286L6 8zm6 0h8V6.001h-8V8zM6 3.001A1 1 0 0 1 7 2h18a1 1 0 0 1 1 1.001V5a1 1 0 0 1-1 1.001h-3V5a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1.001H7A1 1 0 0 1 6 5V3.001zM31.556 22L28 6.001V2a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v4.001L.444 22H0v8h2v2h2v-2h24v2h2v-2h2v-8h-.444z"
-        fill="currentColor"
-        fill-rule="evenodd"
-      />
+    <svg width={size} height={size} {...otherProps} viewBox="0 0 32 32">
+      <g fill={bgColor} fill-rule="evenodd">
+        <path d="M29 27a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h22a2 2 0 0 1 2 2v18zM11 5h10V3H11v2zm16 0h-4V1H9v4H5a4 4 0 0 0-4 4v18a4 4 0 0 0 4 4h22a4 4 0 0 0 4-4V9a4 4 0 0 0-4-4z" />
+        <path d="M16 11c-1.653 0-3 1.346-3 3v1h-1a3.003 3.003 0 0 0-3 3 3.003 3.003 0 0 0 3 3h1v1c0 1.654 1.346 3 3 3a3.005 3.005 0 0 0 3-3v-1h1c1.655 0 3-1.347 3-3 0-1.654-1.345-3-3-3h-1v-1c0-1.654-1.345-3-3-3m0 2a1 1 0 0 1 1 1v2a1 1 0 0 0 1 1h2a1 1 0 1 1 0 2h-2a.999.999 0 0 0-1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 0-1-1h-2a.999.999 0 1 1 0-2h2a1 1 0 0 0 1-1v-2c0-.553.448-1 1-1" />
+      </g>
     </svg>
   );
 };
-export default Healthcare;

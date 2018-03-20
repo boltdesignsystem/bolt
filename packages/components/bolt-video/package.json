@@ -1,8 +1,6 @@
 {
 	"name": "@bolt/components-video",
 	"description": "Video Component in Bolt",
-	"type": "pattern",
-	"patternType": "molecules",
 	"keywords": [
 		"bolt design system",
 		"bolt",
@@ -10,7 +8,8 @@
 		"design system",
 		"components"
 	],
-	"version": "0.1.0-beta.5",
+	"version": "1.0.0-rc.7",
+	"sourceFilesFrom": "0.10.2",
 	"maintainers": [
 		{
 			"name": "Salem Ghoweri",
@@ -23,37 +22,18 @@
 			"web": "http://mikemai.net/"
 		}
 	],
-	"homepage": "https://boltdesignsystem.com",
+	"homepage": "https://bolt-design-system.com",
 	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/bolt-design-system/bolt/"
-	},
-	"bugs": {
-		"url": "https://github.com/bolt-design-system/bolt/issues"
-	},
+	"repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video",
+	"bugs": "https://github.com/bolt-design-system/bolt/issues",
 	"style": "src/_video.scss",
-	"twig": "src/video.twig",
 	"main": "src/video.js",
 	"publishConfig": {
 		"access": "public"
 	},
 	"dependencies": {
-		"@bolt/components-brightcove-player": "^0.1.0-beta.5",
-		"@bolt/core": "^0.5.0-beta.1",
-		"@bolt/settings-all": "^0.7.4",
-		"@bolt/tools-all": "^0.5.4",
-		"npm-run-all": "^4.0.2"
-	},
-	"devDependencies": {
-		"@bolt/build-webpack": "^0.5.0-beta.4"
-	},
-	"scripts": {
-		"prepublishOnly": "npm run build",
-		"build": "npm-run-all --parallel build:*",
-		"build:bolt": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/video --output-filename='bolt-video.min.js' --output-public-path /scripts/",
-		"build:wwwd8": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js --entry ./src/video --output-filename='bolt-video.wwwd8.min.js' --output-public-path /themes/custom/pegawww_theme/node_modules/@bolt/components-video/dist/",
-		"build:bolt-dev": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli-dev.js --entry ./src/video --output-filename='bolt-video.js' --output-public-path /scripts/",
-		"build:wwwd-dev": "./node_modules/@bolt/build-webpack/node_modules/.bin/webpack --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli-dev.js --entry ./src/video --output-filename='bolt-video.wwwd8.js' --output-public-path /themes/custom/pegawww_theme/node_modules/@bolt/components-video/dist/"
+		"@bolt/components-brightcove-player": "^1.0.0-rc.7",
+		"@bolt/components-button": "^1.0.0-rc.7",
+		"@bolt/core": "^1.0.0-rc.7"
 	}
 }
