@@ -143,7 +143,10 @@ $bolt-input-transition: $bolt-transition;
   display: block;
   width: 100%;
   color: $bolt-input-text-color;
-  line-height: 1.45; // [Mai] This makes the input same height as button.
+
+  // [Mai/Denton] This makes the input same height as button.  Note that it must be a line height based on the font size
+  // of the button component (.8rem as of this writing, but obviously subject to change).
+  line-height: calc(1.45 * .8rem);
   border-color: $bolt-input-border-color;
   border-style: $bolt-input-border-style;
   border-width: $bolt-input-border-width;
@@ -216,7 +219,7 @@ $bolt-input-transition: $bolt-transition;
 
 .c-bolt-floating-label {
   position: absolute;
-  top: 0.4rem;
+  top: 0.3rem;
   left: $bolt-floating-label-text-indent;
   color: $bolt-floating-label-text-color;
   line-height: $bolt-floating-label-text-scale;
