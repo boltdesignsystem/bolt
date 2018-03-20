@@ -1,134 +1,37 @@
+{% set schema = bolt.data.components['@bolt-components-button'].schema %}
+
 {# Defaults for a vanilla `Button` component #}
 {% set prefix = "c-bolt-" %}
 {% set componentName = "button" %}
 {% set baseClass = prefix ~ componentName %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
-{# Schema being added in v1.0 - hard-coded version added for now to minimize API differences #}
-{% set schema = {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Bolt Button",
-  "description": "Buttons are the core of our action components.",
-  "type": "object",
-  "properties": {
-    "text": {
-      "title": "Button Text",
-      "description": "The text displayed inside a button",
-      "type": "string"
-    },
-    "theme": {
-      "$ref": "@bolt/theme.schema.json#/properties/themes"
-    },
-    "tag": {
-      "title": "Semantic tag",
-      "description": "What should this element semantically be?",
-      "type": "string",
-      "enum": [
-        "link",
-        "a",
-        "button",
-        "submit",
-        "reset"
-      ],
-      "default": "button"
-    },
-    "size": {
-      "type": "string",
-      "title": "Button Size",
-      "description": "How large is this button?",
-      "default": "medium",
-      "enum": [
-        "xsmall",
-        "small",
-        "medium",
-        "large",
-        "xlarge"
-      ]
-    },
-    "align": {
-      "title": "Button Alignment",
-      "type": "string",
-      "enum": [
-        "left",
-        "center",
-        "right"
-      ],
-      "default": "center"
-    },
-    "style": {
-      "type": "string",
-      "title": "Button Style",
-      "description": "What's the button style / theme?",
-      "default": "primary",
-      "enum": [
-        "primary",
-        "secondary",
-        "text"
-      ]
-    },
-    "width": {
-      "type": "string",
-      "title": "Button Width",
-      "default": null,
-      "description": "Should a button be full width, it's default size, or full width, but only on smaller screens?",
-      "enum": [
-        "full",
-        "full@small",
-        null
-      ]
-    },
-    "rounded": {
-      "type": "string",
-      "title": "Rounded Corners?",
-      "description": "What kind of rounded corners should the button have?",
-      "default": null,
-      "enum": [
-        null,
-        "rounded"
-      ]
-    },
-    "iconOnly": {
-      "type": "boolean",
-      "title": "Icon Only?",
-      "description": "Is this an icon-only button (with visually hidden text)?",
-      "default": false,
-      "required": [
-        "icon"
-      ],
-      "enum": [
-        true,
-        false
-      ]
-    }
-  },
-  "required": ["text"],
-  "additionalProperties": false
-} %}
-
 {# re-assign old itemAlignment paramater to the new `align` name that's replacing it; avoids breaking change till post v1.0 #}
+{# @todo Salem, is it safe to remove the coverage for legacy itemAlignment parameter? #}
 {% if itemAlignment %}
   {% if itemAlignment == "start" %}
     {% set itemAlignment = "left" %}
   {% endif %}
-
   {% set align = itemAlignment %}
 {% endif %}
 
 {# set up psuedo self-validation by limiting param values to what's specifically allowed in the component schema #}
-{% set alignOptions = schema.properties.align.enum %}
+{% set alignOptions = schema.properties.align.enum|remove_null %}
 {% set roundedOptions = schema.properties.rounded.enum %}
-{% set sizeOptions = schema.properties.size.enum %}
-{% set styleOptions = schema.properties.style.enum %}
-{% set tagOptions = schema.properties.tag.enum %}
-{% set widthOptions = schema.properties.width.enum %}
-
+{% set sizeOptions = schema.properties.size.enum|remove_null %}
+{% set styleOptions = schema.properties.style.enum|remove_null %}
+{% set tagOptions = schema.properties.tag.enum|remove_null %}
+{% set transformOptions = schema.properties.transform.enum|remove_null %}
+{% set widthOptions = schema.properties.width.enum|remove_null %}
 
 {# check if the value set to a prop is allowed or defined. if not, default to the default value specified in the component's schema (if one exists) #}
 {% set align =  align in alignOptions ? align : schema.properties.align.default %}
+{% set iconOnly = iconOnly | default(false) %}
 {% set rounded = rounded in roundedOptions ? rounded : schema.properties.rounded.default %}
 {% set size = size in sizeOptions ? size : schema.properties.size.default %}
 {% set style = style in styleOptions ? style : schema.properties.style.default %}
 {% set tag = tag in tagOptions ? tag : schema.properties.tag.default %}
+{% set transform = transform in transformOptions ? transform : schema.properties.transform.default %}
 {% set width = width in widthOptions ? width : schema.properties.width.default %}
 
 {% if tag == "submit" %}
@@ -144,7 +47,6 @@
   {% set attributes = attributes.setAttribute("type", "reset") %}
 {% endif %}
 
-
 {# shorthand for manually setting HTML attribute `type` such as submit or reset #}
 {% if type %}
   {% set attributes = attributes.setAttribute("type", type) %}
@@ -157,6 +59,7 @@
   width in widthOptions and width != "" ? baseClass ~ "--" ~ width : "",
   rounded in roundedOptions and rounded != schema.properties.rounded.default ? baseClass ~ "--" ~ rounded : "",
   style in styleOptions ? baseClass ~ "--" ~ style : baseClass ~ "--primary",
+  transform in transformOptions ? baseClass ~ "--" ~ transform : "",
   align in alignOptions ? baseClass ~ "--" ~ align : "",
 ] %}
 
@@ -169,10 +72,11 @@
     {% if align %} align="{{ align }}" {% endif %}
     {% if style %} color="{{ style }}" {% endif %}
     {% if size %} size="{{ size }}" {% endif %}
-  {% if url %} url="{{ url }}" {% endif %}
+    {% if url %} url="{{ url }}" {% endif %}
     {% if width %} width="{{ width }}" {% endif %}
     {% if rounded %} rounded=" {{ rounded }}" {% endif %}
     {% if iconOnly %} icon-only="true" {% endif %}
+    {% if transform %} transform="{{ transform }}" {% endif %}
     {% if disabled == true %} disabled {% endif %}
 
     {# Failsafe to manually switch off Shadow DOM encapsulation #}
@@ -209,7 +113,7 @@
   <{{ tag }} {{ attributes.addClass('c-bolt-button__root') | without('on-click') | without('on-click-target') }}>
 
     {# Add component-specific classes to a Bolt temp element that gets removed and replaced by it's children once the JS kicks in #}
-    <replace-with-children class="{{ classes|join(' ') }}">
+    <replace-with-children class="{{ classes|join(' ') }} Hello">
       <span class="{{ "#{baseClass}__item" }} {{ iconOnly ? 'u-bolt-visuallyhidden' : '' }}">{{ text }}</span>
 
       {% if icon %}
@@ -221,3 +125,7 @@
 
   </{{ tag }}>
 </bolt-button>
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-button/button.schema.yml', _self) }}
+{% endif %}
