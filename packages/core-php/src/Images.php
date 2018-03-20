@@ -49,8 +49,6 @@ class Images {
       return [
         'height' => 0,
         'width' => 0,
-        'base64' => '',
-        'color' => '',
         'isAbsolute' => true,
       ];
     }

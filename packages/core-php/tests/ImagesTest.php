@@ -20,8 +20,6 @@ class ImagesTests extends TestCase {
         'file' => 'https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg',
         'height' => 0,
         'width' => 0,
-        'color' => '',
-        'base64' => '',
         'isAbsolute' => true,
       ],
       [
@@ -70,11 +68,12 @@ class ImagesTests extends TestCase {
       $results = Images::get_image_data($set['file'], __DIR__);
       $this->assertEquals($set['height'], $results['height'], 'height of image');
       $this->assertEquals($set['width'], $results['width'], 'width of image');
-      if ($set['base64']) {
+      if (isset($set['base64'])) {
         $this->assertStringStartsWith($set['base64'], $results['base64']);
       }
-      $this->assertTrue(self::compareColors($set['color'], $results['color'], 0.001),
-        "{$set['file']}, the expected value {$results['color']} did not match the actual value {$set['color']}.");
+      if (isset($set['color'])) {
+        $this->assertTrue(self::compareColors($set['color'], $results['color'], 0.001), "{$set['file']}, the expected value {$results['color']} did not match the actual value {$set['color']}.");
+      }
     }
   }
 
