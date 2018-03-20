@@ -1,0 +1,34 @@
+
+<bolt-input-icons>
+  <ul class="o-bolt-inline-list o-bolt-inline-list--xsmall">
+
+    {# The invalid icon is always added; it's simply shown or hidden using CSS and javascript #}
+    <li class="o-bolt-inline-list__item">
+      <div class="c-bolt-input-icon--invalid">
+        <bolt-icon name="warning" size="medium"></bolt-icon>
+      </div>
+    </li>
+
+    {% for icon in icons %}
+      {% if icon == 'search' %}
+
+        {# The search icon is a special case; the icon itself needs to be a submit button #}
+        <li class="o-bolt-inline-list__item">
+          <button class="c-bolt-input-icon c-bolt-input-icon--link" type="submit">
+            <bolt-icon name="{{ icon }}" size="medium"></bolt-icon>
+          </button>
+        </li>
+
+      {% else %}
+
+        <li class="o-bolt-inline-list__item">
+          <div class="c-bolt-input-icon">
+            <bolt-icon name="{{ icon }}" size="medium"></bolt-icon>
+          </div>
+        </li>
+
+      {% endif %}
+    {% endfor %}
+
+  </ul>
+</bolt-input-icons>

@@ -1,0 +1,28 @@
+{% set schema = bolt.data.components['@bolt-components-unordered-list'].schema %}
+
+{% for theme in schema.properties.theme.enum %}
+  <p>Theme: {{ theme }}</p>
+  {% embed "@utils/theme-demo.twig" %}
+    {% block demo_content %}
+      {% include "@bolt-components-unordered-list/unordered-list.twig" with {
+        "theme": theme,
+        "contentItems" : [
+          {
+            "text": "Do not include any data or information in your posts that are confidential!"
+          },
+          {
+            "text": "Apply basic practices for collaborative work."
+          },
+          {
+            "text": "Be honest, respectful, trustworthy and helpful."
+          },
+          {
+            "text": "Answer questions authoritatively and concisely. Avoid cluttering discussions with noise."
+          }
+        ]
+      } only %}
+    {% endblock %}
+  {% endembed %}
+  <br>
+{% endfor %}
+

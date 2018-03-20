@@ -15,6 +15,7 @@ class BoltCore extends \Twig_Extension implements \Twig_Extension_InitRuntimeInt
   public $data = [];
 
   function initRuntime(\Twig_Environment $env) {
+    // @todo `catch` the Exception from this and display a helpful error message - uncaught crashes whole Drupal site with white screen of death!
     $fullManifestPath = TwigTools\Utils::resolveTwigPath($env, '@bolt-data/full-manifest.bolt.json');
     $dataDir = dirname($fullManifestPath);
     $this->data = self::buildBoltData($dataDir);
@@ -74,16 +75,17 @@ class BoltCore extends \Twig_Extension implements \Twig_Extension_InitRuntimeInt
     return [
       TwigTools\TwigFunctions::get_data(),
       TwigTools\TwigFunctions::validate_data_schema(),
-      Bolt\TwigFunctions::pattern_template(),
       Bolt\TwigFunctions::publicpath(),
       Bolt\TwigFunctions::base64(),
       Bolt\TwigFunctions::bgcolor(),
       Bolt\TwigFunctions::ratio(),
+      Bolt\TwigFunctions::getImageData(),
     ];
   }
 
   public function getFilters() {
     return [
+      TwigTools\TwigFilters::remove_null(),
       Bolt\TwigFilters::json_decode(),
     ];
   }

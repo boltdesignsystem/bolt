@@ -1,0 +1,988 @@
+{# HERO #}
+<nav class="c-pw-mobile-menu" id="menu">
+  <ul class="c-pw-mobile-menu-list">
+    <li class="c-pw-mobile-menu-list__item">
+      <a href="#!" class="c-pw-mobile-menu-link">
+        <span class="u-bolt-visuallyhidden">
+          Close menu
+        </span>
+      </a>
+    </li>
+    <li class="c-pw-mobile-menu-list__item">
+      <a href="https://www.pega.com/events/pegaworld/event-details/why-attend" class="c-pw-mobile-menu-link">Facts</a>
+    </li>
+    <li class="c-pw-mobile-menu-list__item">
+      <a href="https://www.pega.com/events/pegaworld/agenda" class="c-pw-mobile-menu-link">Agenda</a>
+    </li>
+    <li class="c-pw-mobile-menu-list__item">
+      <a href="https://www.pega.com/events/pegaworld/trending" class="c-pw-mobile-menu-link">Experience</a>
+    </li>
+    <li class="c-pw-mobile-menu-list__item">
+      <a href="https://www.cvent.com/events/pegaworld-2018/registration-510ce28f40334ea195526c224ae26a21.aspx" class="c-bolt-button c-bolt-button--large c-bolt-button--secondary u-pw-full-at-bp-400-only">Register</a>
+    </li>
+  </ul>
+</nav>
+
+{% set nav_band_content %}
+  <nav class="c-pw-menu">
+    <div class="c-pw-menu-logo">
+      <a href="http://pega.com"><img src="/pattern-lab/images/pw2018/logo-pega.png" alt="Pega" class="c-pw-logo-pega"></a>
+      <a href="http://pega.com/events/pegaworld"><img src="/pattern-lab/images/pw2018/logo-pw2018.png" alt="PegaWorld 2018" class="c-pw-logo-pw2018"></a>
+    </div>
+    <a class="c-pw-menu-trigger" href="#menu">
+      <span class="u-bolt-visuallyhidden">Open menu</span>
+    </a>
+    <ul class="c-pw-menu-list">
+      <li class="c-pw-menu-list__item">
+        <a href="https://www.pega.com/events/pegaworld/event-details/why-attend" class="c-pw-menu-link">Facts</a>
+      </li>
+      <li class="c-pw-menu-list__item">
+        <a href="https://www.pega.com/events/pegaworld/agenda" class="c-pw-menu-link">Agenda</a>
+      </li>
+      <li class="c-pw-menu-list__item">
+        <a href="https://www.pega.com/events/pegaworld/trending" class="c-pw-menu-link">Experience</a>
+      </li>
+      <li class="c-pw-menu-list__item">
+        <a href="https://www.cvent.com/events/pegaworld-2018/registration-510ce28f40334ea195526c224ae26a21.aspx" class="c-bolt-button c-bolt-button--secondary">Register</a>
+      </li>
+    </ul>
+  </nav>
+{% endset %}
+
+{% set hero_band_content %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+    {% cell "u-bolt-width-1/1" %}
+      {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-8/12@small u-bolt-width-7/12@medium u-bolt-width-6/12@large" %}
+          {% include "@bolt/headline.twig" with {
+            "size": "xxxlarge",
+            "text": "THIS IS GONNA BE BIG",
+            "tag": "h1"
+          } only %}
+          {% include "@bolt/subheadline.twig" with {
+            "size": "xxlarge",
+            "text": "Digital Transformation is hard. Join us at PegaWorld 2018 to learn how to get it right.",
+            "tag": "h2"
+          } only %}
+          <a href="https://www.pega.com/events/pegaworld/event-details/why-attend" class="c-bolt-button c-bolt-button--primary">Register now</a>
+        {% endcell %}
+      {% endgrid %}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+
+{% set stacked_bands %}
+  {% include "@bolt/band.twig" with {
+    "size": "small",
+    "theme": "none",
+    "content": nav_band_content
+  } only %}
+  {% include "@bolt/band.twig" with {
+    "size": "large",
+    "theme": "none",
+    "content": hero_band_content
+  } only %}
+{% endset %}
+
+{% include "@bolt/band.twig" with {
+  theme: "xdark",
+  size: "none",
+  background: {
+    opacity: "light",
+    fill: "gradient",
+    focalPoint: {
+      vertical: "center",
+      horizontal: "right"
+    },
+    contentItems: [{
+      pattern: "image",
+      src: "/pattern-lab/images/pw2018/background-hero-eye.jpg"
+    }]
+  },
+  "content": stacked_bands,
+  "attributes": {
+    "class": [
+      "c-pw-hero-header"
+    ]
+  }
+} only %}
+{# END HERO #}
+
+
+
+{# Pricing ribbon #}
+{% embed "@bolt/band.twig" with {
+  theme: "xdark",
+  size: "small",
+  "attributes": {
+    "class": [
+      "c-pw-pricing"
+    ]
+  }
+} only %}
+  {% block band_content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
+        {% include "@bolt/headline.twig" with {
+          "size": "small",
+          "text": "Save Now!",
+          "tag": "div",
+          "attributes": {
+            "class": [
+              "u-pw-color-yellow"
+            ]
+          }
+        } only %}
+        {% include "@bolt/text.twig" with {
+          "text": "Register soon to secure your spot at the best price.",
+          "tag": "div"
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+          {% cell "u-pw-nowrap" %}
+            {% include "@bolt/eyebrow.twig" with {
+              "text": "Oct 1 - Dec 31, 2017",
+              "tag": "div",
+              "attributes": {
+                "class": [
+                  "u-pw-opacity-40"
+                ]
+              }
+            } only %}
+            {% include "@bolt/headline.twig" with {
+              "size": "xlarge",
+              "text": "$895",
+              "tag": "div",
+              "attributes": {
+                "class": [
+                  "u-pw-opacity-40"
+                ]
+              }
+            } only %}
+          {% endcell %}
+          {% cell "u-pw-nowrap" %}
+            {% include "@bolt/eyebrow.twig" with {
+              "text": "Jan 1 - Apr 2, 2018",
+              "tag": "div"
+            } only %}
+            {% include "@bolt/headline.twig" with {
+              "size": "xlarge",
+              "text": "$1095",
+              "tag": "div",
+              "attributes": {
+                "class": [
+                  "u-pw-color-yellow"
+                ]
+              }
+            } only %}
+          {% endcell %}
+          {% cell "u-pw-nowrap" %}
+            {% include "@bolt/eyebrow.twig" with {
+              "text": "Apr 3 - Jun 2, 2018",
+              "tag": "div",
+              "attributes": {
+                "class": [
+                  "u-pw-opacity-40"
+                ]
+              }
+            } only %}
+            {% include "@bolt/headline.twig" with {
+              "size": "xlarge",
+              "text": "$1295",
+              "tag": "div",
+              "attributes": {
+                "class": [
+                  "u-pw-opacity-40"
+                ]
+              }
+            } only %}
+          {% endcell %}
+          {% cell "u-pw-nowrap" %}
+            {% include "@bolt/eyebrow.twig" with {
+              "text": "Onsite",
+              "tag": "div",
+              "attributes": {
+                "class": [
+                  "u-pw-opacity-40"
+                ]
+              }
+            } only %}
+            {% include "@bolt/headline.twig" with {
+              "size": "xlarge",
+              "text": "$1695",
+              "tag": "div",
+              "attributes": {
+                "class": [
+                  "u-pw-opacity-40"
+                ]
+              }
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+    {% endgrid %}
+  {% endblock %}
+{% endembed %}
+
+
+{# Why #}
+{% embed "@bolt/band.twig" with {
+  theme: "dark",
+  size: "large",
+  "attributes": {
+    "class": [
+      "c-pw-5up-highlight"
+    ]
+  }
+} only %}
+  {% block band_content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-8/12@small" %}
+            {% include "@bolt/headline.twig" with {
+              "size": "xxxlarge",
+              "align": "center",
+              "text": "Why you need to be there",
+              "tag": "h2"
+            } only %}
+            {% include "@bolt/subheadline.twig" with {
+              "size": "xlarge",
+              "align": "center",
+              "text": "3+ power-packed days of the most successful companies on the planet sharing their stories of digital transformation, access to industry-leading AI, Robotics, Customer Engagement and Digital Process Automation technology, and thousands of business leaders and innovators coming together to learn, network, and grow.  Oh, and there’s a lot of fun too!",
+              "tag": "h3"
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-9/12@small" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@large" %}
+                {% include "@bolt/image.twig" with {
+                  src: "/pattern-lab/images/pw2018/expect-inspiring-keynotes.jpg",
+                  alt: "Inspiring Keynotes"
+                } only %}
+                {% include "@bolt/headline.twig" with {
+                  "size": "large",
+                  "align": "center",
+                  "text": "Inspiring Keynotes",
+                  "tag": "div"
+                } only %}
+                {% include "@bolt/text.twig" with {
+                  "align": "center",
+                  "text": "Renowned business leaders sharing their amazing stories",
+                  "tag": "div"
+                } only %}
+              {% endcell %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@large" %}
+                {% include "@bolt/image.twig" with {
+                  src: "/pattern-lab/images/pw2018/expect-awesome-technoogy.jpg",
+                  alt: "Awesome Technology"
+                } only %}
+                {% include "@bolt/headline.twig" with {
+                  "size": "large",
+                  "align": "center",
+                  "text": "Awesome Technology",
+                  "tag": "div"
+                } only %}
+                {% include "@bolt/text.twig" with {
+                  "align": "center",
+                  "text": "Award-winning AI, Robotics, Customer Engagement, and Digital Process Automation tech",
+                  "tag": "div"
+                } only %}
+              {% endcell %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@large" %}
+                {% include "@bolt/image.twig" with {
+                  src: "/pattern-lab/images/pw2018/expect-riveting-agenda.jpg",
+                  alt: "A Riveting Agenda"
+                } only %}
+                {% include "@bolt/headline.twig" with {
+                  "size": "large",
+                  "align": "center",
+                  "text": "A Riveting Agenda",
+                  "tag": "div"
+                } only %}
+                {% include "@bolt/text.twig" with {
+                  "align": "center",
+                  "text": "100s of sessions to choose from to learn practical ways to accelerate your own Digital Transformation journey",
+                  "tag": "div"
+                } only %}
+              {% endcell %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@large" %}
+                {% include "@bolt/image.twig" with {
+                  src: "/pattern-lab/images/pw2018/expect-unbelievable-networking.jpg",
+                  alt: "Unbelievable Networking"
+                } only %}
+                {% include "@bolt/headline.twig" with {
+                  "size": "large",
+                  "align": "center",
+                  "text": "Unbelievable Networking",
+                  "tag": "div"
+                } only %}
+                {% include "@bolt/text.twig" with {
+                  "align": "center",
+                  "text": "The greatest minds in business and technology all under one roof",
+                  "tag": "div"
+                } only %}
+              {% endcell %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@large" %}
+                {% include "@bolt/image.twig" with {
+                  src: "/pattern-lab/images/pw2018/expect-killer-entertainment.jpg",
+                  alt: "Killer Entertainment"
+                } only %}
+                {% include "@bolt/headline.twig" with {
+                  "size": "large",
+                  "align": "center",
+                  "text": "Killer Entertainment",
+                  "tag": "div"
+                } only %}
+                {% include "@bolt/text.twig" with {
+                  "align": "center",
+                  "text": "You gotta have some fun too, right?!",
+                  "tag": "div"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+    {% endgrid %}
+  {% endblock %}
+{% endembed %}
+
+
+{# Leading companies #}
+{% embed "@bolt/band.twig" with {
+  theme: "dark",
+  size: "large",
+  "attributes": {
+    "class": [
+      "c-pw-leading-companies"
+    ]
+  }
+} only %}
+  {% block band_content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-9/12@small" %}
+            {% include "@bolt/headline.twig" with {
+              "size": "xxxlarge",
+              "align": "center",
+              "text": "Leading companies use Pega to solve business challenges.",
+              "tag": "h2"
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-9/12@small" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix o-bolt-grid--large" %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small u-bolt-width-4/12@medium u-pw-position-lower-logo" %}
+                <figure class="c-pw-portrait">
+                  {% include "@bolt/image.twig" with {
+                    src: "/pattern-lab/images/pw2018/portrait-silva.jpg",
+                    alt: "Kushala Silva"
+                  } only %}
+                </figure>
+                {% include "@bolt/headline.twig" with {
+                  "size": "large",
+                  "align": "center",
+                  "text": "Kushala Silva",
+                  "tag": "div"
+                } only %}
+                {% include "@bolt/text.twig" with {
+                  "align": "center",
+                  "text": "Group Director, Innovation and Emerging Technologies"
+                } only %}
+                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix u-pw-position-lower-logo__logo" %}
+                  {% cell %}
+                    {% include "@bolt/image.twig" with {
+                      src: "/pattern-lab/images/pw2018/coca-cola-logo-white.png",
+                      alt: "Logo",
+                      align: "center"
+                    } only %}
+                  {% endcell %}
+                {% endgrid %}
+              {% endcell %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small u-bolt-width-4/12@medium u-pw-position-lower-logo" %}
+                <figure class="c-pw-portrait">
+                  {% include "@bolt/image.twig" with {
+                    src: "/pattern-lab/images/pw2018/portrait-mingle.jpg",
+                    alt: "David Mingle"
+                  } only %}
+                </figure>
+                {% include "@bolt/headline.twig" with {
+                  "size": "large",
+                  "align": "center",
+                  "text": "David Mingle",
+                  "tag": "div"
+                } only %}
+                {% include "@bolt/text.twig" with {
+                  "align": "center",
+                  "text": "General Director, Global Customer Experience Execution"
+                } only %}
+                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix u-pw-position-lower-logo__logo" %}
+                  {% cell %}
+                    {% include "@bolt/image.twig" with {
+                      src: "/pattern-lab/images/pw2018/gm-logo-white.png",
+                      alt: "Logo",
+                      align: "center"
+                    } only %}
+                  {% endcell %}
+                {% endgrid %}
+              {% endcell %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small u-bolt-width-4/12@medium u-pw-position-lower-logo" %}
+                <figure class="c-pw-portrait">
+                  {% include "@bolt/image.twig" with {
+                    src: "/pattern-lab/images/pw2018/portrait-sole.jpg",
+                    alt: "Roger Sole"
+                  } only %}
+                </figure>
+                {% include "@bolt/headline.twig" with {
+                  "size": "large",
+                  "align": "center",
+                  "text": "Roger Sole",
+                  "tag": "div"
+                } only %}
+                {% include "@bolt/text.twig" with {
+                  "align": "center",
+                  "text": "Chief Marketing Officer"
+                } only %}
+                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix u-pw-position-lower-logo__logo" %}
+                  {% cell %}
+                    {% include "@bolt/image.twig" with {
+                      src: "/pattern-lab/images/pw2018/sprint-logo-white.png",
+                      alt: "Logo",
+                      align: "center"
+                    } only %}
+                  {% endcell %}
+                {% endgrid %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+          {% cell %}
+            <a href="https://www.pega.com/events/pegaworld" class="c-bolt-button c-bolt-button--primary">View 2018 Agenda</a>
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--middle o-bolt-grid--matrix" %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/paypal-logo-white.png",
+                  alt: "Paypal"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/unum-logo-white.png",
+                  alt: "Unum"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/philips-logo-white.png",
+                  alt: "Philips"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/nsw-logo-white.png",
+                  alt: "NSW"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/swedbank-logo-white.png",
+                  alt: "Swedbank"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/cisco-logo-white.png",
+                  alt: "Cisco"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/toyota-logo-white.png",
+                  alt: "Toyota"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/ocbc-logo-white.png",
+                  alt: "OCBC"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/vodafone-logo-white.png",
+                  alt: "Vodafone"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/dell-logo-white.png",
+                  alt: "Dell"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/ing-logo-white.png",
+                  alt: "ING"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/raytheon-logo-white.png",
+                  alt: "Raytheon"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+    {% endgrid %}
+  {% endblock %}
+{% endembed %}
+
+
+{# Quote #}
+{% embed "@bolt/band.twig" with {
+  theme: "dark",
+  size: "none",
+  "attributes": {
+    "class": [
+      "c-pw-quote"
+    ]
+  }
+} only %}
+  {% block band_content %}
+    <div class="u-pw-background-image-contain" style="background-image: url('/pattern-lab/images/pw2018/background-shapes.png')">
+      <div class="u-bolt-padding-top-xxlarge u-bolt-padding-bottom-xxlarge">
+        {% include "@bolt/blockquote.twig" with {
+          "size": "xxlarge",
+          "alignItems": "center",
+          "border": "none",
+          "author": {
+            "name": "2017 Attendee"
+          },
+          "content": "<p>PegaWorld is hands-down the best technology conference I’ve been to…and I’ve been to them all. Practical insights that I was able to take back to my business that have delivered real results. I look forward to returning next year.</p>"
+        } only %}
+      </div>
+    </div>
+  {% endblock %}
+{% endembed %}
+
+
+{# 2017 #}
+{% embed "@bolt/band.twig" with {
+  theme: "xdark",
+  size: "large",
+  background: {
+    opacity: "light",
+    fill: "gradient",
+    focalPoint: {
+      vertical: "center",
+      horizontal: "center"
+    },
+    contentItems: [{
+      pattern: "image",
+      src: "/pattern-lab/images/pw2018/background-ceo.jpg"
+    }]
+  },
+  "attributes": {
+    "class": [
+      "c-pw-highlight"
+    ]
+  }
+} only %}
+  {% block band_content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-padding-top-xxlarge u-bolt-padding-bottom-xxlarge" %}
+      {% cell "u-bolt-width-1/1" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-9/12@small" %}
+            {% include "@bolt/eyebrow.twig" with {
+              "align": "center",
+              "text": "PegaWorld 2017 On-Demand",
+              "tag": "div"
+            } only %}
+            {% include "@bolt/headline.twig" with {
+              "size": "xxxlarge",
+              "align": "center",
+              "text": "Discover how PegaWorld 2017 created so much buzz.",
+              "tag": "h2"
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+          {% cell %}
+            <a href="https://www.pega.com/events/pegaworld/replays" class="c-bolt-button c-bolt-button--primary">Watch the Replays</a>
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+    {% endgrid %}
+  {% endblock %}
+{% endembed %}
+
+
+{# Register #}
+{% embed "@bolt/band.twig" with {
+  theme: "xdark",
+  size: "large",
+  "attributes": {
+    "class": [
+      "c-pw-register"
+    ]
+  }
+} only %}
+  {% block band_content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-9/12@small" %}
+            {% include "@bolt/headline.twig" with {
+              "size": "xxxlarge",
+              "align": "center",
+              "text": "Register now!",
+              "tag": "h2"
+            } only %}
+            {% include "@bolt/subheadline.twig" with {
+              "size": "xlarge",
+              "align": "center",
+              "text": "PegaWorld brings together business and technical visionaries from the world’s leading companies. Secure your spot now at the best price.",
+              "tag": "h3"
+            } only %}
+          {% endcell %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-9/12@small" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-padding-top-medium u-bolt-padding-bottom-medium" %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+                  {% cell %}
+                    {% include "@bolt/eyebrow.twig" with {
+                      "align": "center",
+                      "text": "Oct 1 - Dec 31, 2017",
+                      "tag": "div",
+                      "attributes": {
+                        "class": [
+                          "u-pw-opacity-40"
+                        ]
+                      }
+                    } only %}
+                    {% include "@bolt/headline.twig" with {
+                      "size": "xlarge",
+                      "align": "center",
+                      "text": "$895",
+                      "tag": "div",
+                      "attributes": {
+                        "class": [
+                          "u-pw-opacity-40"
+                        ]
+                      }
+                    } only %}
+                  {% endcell %}
+                {% endgrid %}
+              {% endcell %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+                  {% cell %}
+                    {% include "@bolt/eyebrow.twig" with {
+                      "align": "center",
+                      "text": "Jan 1 - Apr 2, 2018",
+                      "tag": "div"
+                    } only %}
+                    {% include "@bolt/headline.twig" with {
+                      "size": "xlarge",
+                      "align": "center",
+                      "text": "$1095",
+                      "tag": "div",
+                      "attributes": {
+                        "class": [
+                          "u-pw-color-yellow"
+                        ]
+                      }
+                    } only %}
+                  {% endcell %}
+                {% endgrid %}
+              {% endcell %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+                  {% cell %}
+                    {% include "@bolt/eyebrow.twig" with {
+                      "align": "center",
+                      "text": "Apr 3 - Jun 2, 2018",
+                      "tag": "div",
+                      "attributes": {
+                        "class": [
+                          "u-pw-opacity-40"
+                        ]
+                      }
+                    } only %}
+                    {% include "@bolt/headline.twig" with {
+                      "size": "xlarge",
+                      "align": "center",
+                      "text": "$1295",
+                      "tag": "div",
+                      "attributes": {
+                        "class": [
+                          "u-pw-opacity-40"
+                        ]
+                      }
+                    } only %}
+                  {% endcell %}
+                {% endgrid %}
+              {% endcell %}
+              {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+                {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+                  {% cell %}
+                    {% include "@bolt/eyebrow.twig" with {
+                      "align": "center",
+                      "text": "Onsite",
+                      "tag": "div",
+                      "attributes": {
+                        "class": [
+                          "u-pw-opacity-40"
+                        ]
+                      }
+                    } only %}
+                    {% include "@bolt/headline.twig" with {
+                      "size": "xlarge",
+                      "align": "center",
+                      "text": "$1695",
+                      "tag": "div",
+                      "attributes": {
+                        "class": [
+                          "u-pw-opacity-40"
+                        ]
+                      }
+                    } only %}
+                  {% endcell %}
+                {% endgrid %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+          {% cell %}
+            <a href="https://www.cvent.com/events/pegaworld-2018/registration-510ce28f40334ea195526c224ae26a21.aspx" class="c-bolt-button c-bolt-button--primary">Register now!</a>
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+    {% endgrid %}
+  {% endblock %}
+{% endembed %}
+
+
+{# Sponsors #}
+{% embed "@bolt/band.twig" with {
+  theme: "xdark",
+  size: "large",
+  attributes: {
+    "class": [
+      "c-pw-sponsors",
+      "u-bolt-visuallyhidden"
+    ]
+  }
+} only %}
+  {% block band_content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-9/12@small" %}
+            {% include "@bolt/headline.twig" with {
+              "size": "xxxlarge",
+              "align": "center",
+              "text": "Special thanks to our sponsors",
+              "tag": "h2"
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--middle o-bolt-grid--matrix" %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/paypal-logo-white.png",
+                  alt: "Paypal"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/unum-logo-white.png",
+                  alt: "Unum"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/philips-logo-white.png",
+                  alt: "Philips"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/nsw-logo-white.png",
+                  alt: "NSW"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/swedbank-logo-white.png",
+                  alt: "Swedbank"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/cisco-logo-white.png",
+                  alt: "Cisco"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/toyota-logo-white.png",
+                  alt: "Toyota"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/ocbc-logo-white.png",
+                  alt: "OCBC"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/vodafone-logo-white.png",
+                  alt: "Vodafone"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/dell-logo-white.png",
+                  alt: "Dell"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/ing-logo-white.png",
+                  alt: "ING"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small u-bolt-width-3/12@medium" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+              {% cell %}
+                {% include "@bolt/logo.twig" with {
+                  src: "/pattern-lab/images/pw2018/raytheon-logo-white.png",
+                  alt: "Raytheon"
+                } only %}
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+    {% endgrid %}
+  {% endblock %}
+{% endembed %}
+

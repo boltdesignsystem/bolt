@@ -6,6 +6,10 @@ use Bolt;
 use \Twig_SimpleFunction;
 use \Drupal\Core\Template\Attribute;
 use \BasaltInc\TwigTools;
+use \Webmozart\PathUtil\Path;
+
+// https://github.com/Shudrum/ArrayFinder
+use \Shudrum\Component\ArrayFinder\ArrayFinder;
 
 class TwigFunctions {
 
@@ -16,6 +20,33 @@ class TwigFunctions {
       $scaleValues = array_values($data);
       sort($scaleValues);
       return $scaleValues;
+    }, [
+      'needs_context' => true,
+    ]);
+  }
+
+
+  public static function inlineFile() {
+    return new Twig_SimpleFunction('inline', function($context, $filename) {
+      if (!$filename){
+        return '';
+      }
+
+      $context = new ArrayFinder($context);
+      $buildDir = $context->get('bolt.data.config.buildDir');
+
+      if ($buildDir) {
+        $fullPath = Path::join($buildDir, $filename);
+
+        if (file_exists($fullPath)){
+          return file_get_contents($fullPath);
+        } else {
+          throw new \Exception('Warning: the file ' . $fullPath . ' trying to be inlined doesn\'t seem to exist...');
+        }
+      } else {
+        // throw error saying `bolt.data` isn't set up right
+        throw new \Exception('Warning: the Bolt Build directory, `' . $buildDir . '` , appears to be missing. Is your `.boltrc` config set up properly?');
+      }
     }, [
       'needs_context' => true,
     ]);
@@ -36,35 +67,62 @@ class TwigFunctions {
     }, array('is_safe' => array('html')));
   }
 
+  // A combination of base64, bgcolor, ratio, and imageSize
+  public static function getImageData() {
+    return new Twig_SimpleFunction('getImageData', function(\Twig_Environment $env, $relativeImagePath) {
+      $boltData = Utils::getData($env);
+      $wwwDir = $boltData['config']['wwwDir'];
+      return Images::get_image_data($relativeImagePath, $wwwDir);
+    }, [
+      'needs_environment' => true,
+    ]);
+  }
 
   // Same overall idea as https://jmperezperez.com/medium-image-progressive-loading-placeholder/, we just started working on this a few years prior ^_^
   public static function base64() {
-    return new Twig_SimpleFunction('base64', function($relativeImagePath) {
-      return Images::generate_base64_image_placeholder($relativeImagePath);
-    });
+    return new Twig_SimpleFunction('base64', function(\Twig_Environment $env, $relativeImagePath) {
+      $boltData = Utils::getData($env);
+      $wwwDir = $boltData['config']['wwwDir'];
+      return Images::generate_base64_image_placeholder($relativeImagePath, $wwwDir);
+    }, [
+      'needs_environment' => true,
+    ]);
   }
 
 
   // Return the average color of the image path passed in
   public static function bgcolor() {
-    return new Twig_SimpleFunction('bgcolor', function($relativeImagePath) {
-      return Images::calculate_average_image_color($relativeImagePath);
-    });
+    return new Twig_SimpleFunction('bgcolor', function(\Twig_Environment $env, $relativeImagePath) {
+      $boltData = Utils::getData($env);
+      $wwwDir = $boltData['config']['wwwDir'];
+      return Images::calculate_average_image_color($relativeImagePath, $wwwDir);
+    }, [
+      'needs_environment' => true,
+    ]);
   }
 
   // Return the aspect ratio of the image passed in
   public static function ratio() {
-    return new Twig_SimpleFunction('ratio', function($relativeImagePath) {
-      return Images::calculate_image_aspect_ratio($relativeImagePath);
-    });
+    return new Twig_SimpleFunction('ratio', function(\Twig_Environment $env, $relativeImagePath, $heightOrWidthRatio = 'width') {
+      $boltData = Utils::getData($env);
+      $wwwDir = $boltData['config']['wwwDir'];
+      $value = Images::calculate_image_aspect_ratio($relativeImagePath, $heightOrWidthRatio, $wwwDir);
+      return $value;
+    }, [
+      'needs_environment' => true,
+    ]);
   }
 
 
   // Originally was required...? Keeping for now till full responsive images solution back up and running
   public static function imagesize() {
-    return new Twig_SimpleFunction('imagesize', function($relativeImagePath) {
-      return Images::get_image_dimensions($relativeImagePath);
-    });
+    return new Twig_SimpleFunction('imagesize', function(\Twig_Environment $env, $relativeImagePath) {
+      $boltData = Utils::getData($env);
+      $wwwDir = $boltData['config']['wwwDir'];
+      return Images::get_image_dimensions($relativeImagePath, $wwwDir);
+    }, [
+      'needs_environment' => true,
+    ]);
   }
 
 

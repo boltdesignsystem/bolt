@@ -1,0 +1,13 @@
+{% set schema = bolt.data.components['@bolt-components-band'].schema %}
+{% set code %} {% verbatim %}
+{% include "@bolt-components-band/band.twig" with {
+  content: "Example Band Content",
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/docs.twig' with {
+  schema: schema,
+  code: code,
+  readmeFile: '@bolt-components-band/README.md',
+} only %}

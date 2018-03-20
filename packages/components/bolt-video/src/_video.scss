@@ -1,4 +1,6 @@
 @import '@bolt/core';
+@import '@bolt/components-button/src/button.settings';
+@import '@bolt/components-button/src/button.mixins';
 
 @import 'videojs-enhancements';
 
@@ -11,7 +13,7 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
   max-width: none;
   perspective: 1200px;
   perspective-origin: 80% 80%;
-  z-index: 1000;
+  z-index: bolt-z-index('tooltip');
   transition: transform .4s cubic-bezier(.645, 0, .355, 1);
 }
 
@@ -54,10 +56,10 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
 
 .c-bolt-video__close-button {
   color: bolt-color(orange);
-  --bolt-color-icon: bolt-color(orange);
+  --bolt-theme-icon: bolt-color(orange);
 
   position: absolute;
-  z-index: 1000;
+  z-index: bolt-z-index('tooltip');
   top: bolt-spacing(xsmall);
   right: bolt-spacing(xsmall);
   transition: all 0.3s ease;

@@ -1,10 +1,13 @@
 $schema: http://json-schema.org/draft-04/schema#
 title: Logo
 type: object
-properties:
-  text:
-    type: string
-    description: Chip Text.
-  url:
-    type: string
-    description: Optional. When url is present, tag changes to `a`, otherwise tag would be `span`.
+allOf:
+  -
+    properties:
+      invert:
+        type: boolean
+        description: Adds the "invert" effect.
+        enum:
+          - true
+          - false
+  - ref: '@bolt-components-image/image.schema.yml'

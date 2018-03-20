@@ -14,7 +14,7 @@
 }
 
 .video-js .vjs-big-play-button.vjs-big-play-button {
-  @include bolt-button-secondary;
+  @include bolt-button-style(secondary);
   margin-top: auto;
   margin-left: auto;
   width: 4.5rem;
@@ -80,7 +80,7 @@
 .video-js .vjs-modal-dialog {
   overflow: auto; // so psuedo layer below shows up
   box-sizing: border-box;
-  z-index: 100;
+  z-index: bolt-z-index('nav');
   max-width: 768px;
   margin: 0 auto;
   overflow: visible; // override default overflow: hidden

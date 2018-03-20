@@ -1,0 +1,30 @@
+{% set assets = get_data("@bolt-assets/bolt-webpack-manifest.json") %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bolt Design System</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+
+    <link rel="stylesheet" href="{{ assets["bolt-global.css"] }}?cachebuster="{{ cacheBuster }}" media="all" />
+
+
+    {# @TODO: wire this up to use Critical CSS #}
+    <style>
+      {{ inline("bolt-components-critical-fonts.css") }}
+    </style>
+
+    {# @TODO: wire this up to use Critical JS #}
+    <script>
+      {{ inline("bolt-components-critical-fonts.js") }}
+    </script>
+
+
+    <!-- Begin Pattern Lab (Required for Pattern Lab to run properly) -->
+    {{ patternLabHead | raw }}
+    <!-- End Pattern Lab -->
+
+  </head>
+  {# @todo Get `c-bolt-site` class back someplace, perhaps on a template/layout, perhaps on the `<body>` when needed. Was causing all Patterns to expand too wide, no matter browser width #}
+  <body class="">

@@ -7,7 +7,7 @@
     "css framework",
     "design system"
   ],
-  "version": "0.3.0-beta.2",
+  "version": "1.0.0-rc.7",
   "sourceFilesFrom": "0.9.2",
   "maintainers": [
     {
@@ -21,22 +21,17 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "homepage": "https://boltdesignsystem.com",
+  "homepage": "https://bolt-design-system.com",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bolt-design-system/bolt/"
-  },
-  "bugs": {
-    "url": "https://github.com/bolt-design-system/bolt/issues"
-  },
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-background",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "style": "src/background.scss",
-  "twig": "src/background.twig",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@bolt/core": "0.5.0-beta.1",
-    "@bolt/components-background-shapes": "0.1.0-beta.2"
-  }
+    "@bolt/components-background-shapes": "^1.0.0-rc.7",
+    "@bolt/core": "^1.0.0-rc.7"
+  },
+  "schema": "background.schema.yml"
 }

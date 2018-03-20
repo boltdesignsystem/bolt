@@ -1,0 +1,10 @@
+{% set schema = bolt.data.components['@bolt-components-button'].schema %}
+
+{% for width in schema.properties.width.enum|remove_null %}
+  <p>Button Width Variations: {{ width ? width : 'Default' }}</p>
+
+  {% include "@bolt-components-button/button.twig" with {
+    "width": width,
+    "text": "Example " ~ width ~" Button"
+  } %}
+{% endfor %}

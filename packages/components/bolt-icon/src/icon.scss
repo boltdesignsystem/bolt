@@ -8,7 +8,9 @@ bolt-icon {
   vertical-align: middle;
   // display: inline-flex;
   color: inherit;
-  color: var(--bolt-color-icon, inherit);
+  color: var(--bolt-theme-icon, inherit);
+  width: 1em; // Default icon size if size prop not specified
+  height: 1em; // Default icon size if size prop not specified
 
   &:not(:resolved){
     padding-bottom: 100%; // Default square icons
@@ -19,7 +21,7 @@ bolt-icon {
 :host {
   display: inline-block;
   color: inherit;
-  color: var(--bolt-color-icon, inherit);
+  color: var(--bolt-theme-icon, inherit);
   vertical-align: middle;
 }
 
@@ -37,11 +39,16 @@ bolt-icon {
   width: 1em;
   height: 1em;
   box-sizing: border-box;
-  z-index: 2;
+  z-index: bolt-z-index('content');
   color: inherit;
-  color: var(--bolt-color-icon, inherit);
-}
+  color: var(--bolt-theme-icon, inherit);
 
+  // The primary goal of this is to set the transition for icon color.  Perhaps it's a
+  // bit heavy-handed, but it seems more robust than just applying this to, say, 'path' elements.
+  * {
+    transition: all $bolt-transition;
+  }
+}
 
 bolt-icon[size='small'],
 .c-bolt-icon--small > .c-bolt-icon__icon {
@@ -78,9 +85,9 @@ bolt-icon[size='xlarge'],
 }
 
 
-.c-bolt-icon__background {
+.c-bolt-icon__background-shape {
   position: absolute;
-  z-index: 1;
+  z-index: bolt-z-index('contentBottom');
   top: 50%;
   left: 50%;
   width: 100%;
@@ -91,15 +98,15 @@ bolt-icon[size='xlarge'],
   opacity: 0.1;
   opacity: var(--bolt-theme-icon-background-opacity, 0.1);
 
-  background-color: inherit;
-  background-color: var(--bolt-theme-icon-background-color, inherit);
+  background-color: currentColor; // Fallback if CSS vars not supported
+  background-color: var(--bolt-theme-icon-background, var(--bolt-theme-primary-text-default, currentColor));
 }
 
-.c-bolt-icon__circle-background {
+.c-bolt-icon__background-shape--circle {
   border-radius: 50%;
 }
 
-.c-bolt-icon__square-background {
+.c-bolt-icon__background-shape--square {
   border-radius: $bolt-border-radius;
 }
 
@@ -109,8 +116,24 @@ bolt-icon[size='xlarge'],
 // Color options
 .c-bolt-icon--teal {
   $brand-color: bolt-color(teal);
-  // background-color: $brand-color;
-  --bolt-color-icon: bolt-text-contrast($brand-color);
-  --bolt-theme-icon-background-color: $brand-color;
+  $contrast-color: bolt-text-contrast($brand-color);
+
+  --bolt-theme-icon: $contrast-color;
+  --bolt-theme-icon-background: $brand-color;
   --bolt-theme-icon-background-opacity: 1;
 }
+
+.c-bolt-icon--blue {
+  $brand-color: bolt-color(blue);
+  color: $brand-color;
+  --bolt-theme-icon: $brand-color;
+  --bolt-theme-icon-background: bolt-text-contrast($brand-color);
+  --bolt-theme-icon-background-opacity: 1;
+
+}
+
+.c-bolt-icon__background {
+  fill: currentColor;
+  fill: var(--bolt-theme-text, currentColor)
+}
+

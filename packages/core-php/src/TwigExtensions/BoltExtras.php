@@ -15,9 +15,11 @@ class BoltExtras extends Twig_Extension implements Twig_ExtensionInterface {
       Bolt\TwigFunctions::deep_merge(),
       Bolt\TwigFunctions::color_contrast(),
       Bolt\TwigFunctions::create_attribute(),
+      Bolt\TwigFunctions::pattern_template(),
       Bolt\TwigFunctions::link(),
       Bolt\TwigFunctions::getSpacingScaleSequence(),
       Bolt\TwigFunctions::github_url(),
+      Bolt\TwigFunctions::inlineFile()
     ];
   }
 

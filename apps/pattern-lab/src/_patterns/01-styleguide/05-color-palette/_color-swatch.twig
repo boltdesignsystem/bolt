@@ -1,0 +1,58 @@
+{% set colorName = color_swatch.colorName %}
+{% set palette = color_swatch.palette %}
+
+{% cell with {
+  attributes: {
+    class: [
+      "u-bolt-width-1/1",
+      "u-bolt-width-1/2@small",
+      "u-bolt-width-1/3@medium",
+      "u-bolt-width-1/4@large"
+    ]
+  }
+} %}
+
+  <bolt-swatch class="c-bolt-swatch">
+    {% for tone, colorValue in palette %}
+
+      {% if tone == "initial" or tone == "default" or tone == "base" %}
+        {% set isLargeColor = "c-bolt-swatch__color--large" %}
+      {% else %}
+        {% set isLargeColor = "" %}
+      {% endif %}
+
+      {% set oldColorValue = "" %}
+      {% set currentColorValue = "" %}
+
+      {% if colorValue is iterable %}
+        {% set oldColorValue = colorValue[1] %}
+        {% set currentColorValue = colorValue[0] %}
+      {% else %}
+        {% set currentColorValue = colorValue %}
+      {% endif %}
+
+        <bolt-swatch-color class="c-bolt-swatch__color {{ isLargeColor }}" style="background-color: {{ currentColorValue | rgb2hex }};">
+          <div class="c-bolt-swatch__text" style="color: {{ currentColorValue | rgb2hex | text_contrast }}">
+
+            {% if tone == "initial" or tone == "default" or tone == "base" %}
+              <div class="c-bolt-swatch__meta">(base)</div>
+            {% endif %}
+
+            <span class="c-bolt-swatch__name">
+              {{ colorName | lower }}{% if tone != "initial" and tone != "default" and tone != "base" %}, {{ tone }}
+              {% endif %}
+            </span>
+
+            <span class="c-bolt-swatch__value">
+              {% if oldColorValue != "" %}
+                <del>{{ oldColorValue | rgb2hex }}</del>&nbsp;
+              {% endif %}
+              {{ currentColorValue | rgb2hex }}
+            </span>
+          </div>
+
+        </bolt-swatch-color>
+      {% endfor %}
+  </bolt-swatch>
+
+{% endcell %}

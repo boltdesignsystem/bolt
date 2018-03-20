@@ -8,7 +8,8 @@ import {
   withPreact,
   css,
   spacingSizes,
-  hasNativeShadowDomSupport
+  hasNativeShadowDomSupport,
+  passiveSupported,
 } from '@bolt/core';
 
 
@@ -34,7 +35,7 @@ const animationEvent = whichAnimationEvent();
 
 
 @define
-class BoltDeviceViewer extends withComponent(withPreact()) {
+class BoltDeviceViewer extends withPreact(withComponent()) {
   static is = 'bolt-device-viewer';
 
   static props = {
@@ -83,13 +84,17 @@ class BoltDeviceViewer extends withComponent(withPreact()) {
 
 
 @define
-class BoltImageZoom extends withComponent(withPreact()) {
+class BoltImageZoom extends withPreact(withComponent()) {
   static is = 'bolt-image-zoom';
 
   static props = {
     mangify: props.boolean
   }
 
+  constructor(element) {
+    super(element);
+    this.useShadow = hasNativeShadowDomSupport;
+  }
 
   /**
      * `screenElem` returns the screen element inside the device viewer
@@ -124,7 +129,7 @@ class BoltImageZoom extends withComponent(withPreact()) {
     screenElem.classList.remove('is-mouse-entering');
     screenElem.classList.add('is-mouse-leaving');
 
-    animationEvent && iconElem.addEventListener(animationEvent, animationLeaveFunction);
+    animationEvent && iconElem.addEventListener(animationEvent, animationLeaveFunction, passiveSupported ? { passive: false } : false);
 
     function animationLeaveFunction() {
       setTimeout(function () {
@@ -134,27 +139,13 @@ class BoltImageZoom extends withComponent(withPreact()) {
     }
   }
 
-  renderer(root, html) {
-    if (this.useShadow) {
-      super.renderer(root, html);
-    } else {
-      root.innerHTML = this.innerHTML;
-    }
-  }
 
-  render() {
-    if (this.useShadow) {
-      return (
-        <slot />
-      )
-    }
-  }
 
   connectedCallback() {
     const driftZoomImageUrl = this.querySelector('img').getAttribute('data-zoom');
     this.setAttribute('data-zoom', driftZoomImageUrl);
-    this.addEventListener('mouseenter', this._mouseEnter);
-    this.addEventListener('mouseleave', this._mouseLeave);
+    this.addEventListener('mouseenter', this._mouseEnter, passiveSupported ? { passive: false } : false);
+    this.addEventListener('mouseleave', this._mouseLeave, passiveSupported ? { passive: false } : false);
   }
 
   /**
