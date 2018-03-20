@@ -6,14 +6,6 @@
   alt: "Bill Murray",
 } only %}
 
-<h4>Src: Relative</h4>
-<pre><code>src: "../../images/placeholders/image.jpg",</code></pre>
-
-{% include '@bolt-components-image/image.twig' with {
-  src: "../../images/placeholders/500x500.jpg",
-  alt: "Bill Murray",
-} only %}
-
 <h4>Src: Source Set</h4>
 <pre><code>srcset: "/pattern-lab/images/placeholders/500x500-200.jpg 200w,/pattern-lab/images/placeholders/500x500-480.jpg 480w",</code></pre>
 
@@ -34,4 +26,18 @@
   src: "/pattern-lab/images/placeholders/500x500-480.jpg",
   srcset: "/pattern-lab/images/placeholders/500x500-200.jpg 200w, /pattern-lab/images/placeholders/500x500-480.jpg 480w",
   alt: "Bill Murray",
+} only %}
+
+<h4>Absolute src - not lazy loaded</h4>
+{% include '@bolt-components-image/image.twig' with {
+  src: "https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg",
+  alt: "Wikipedia Example",
+  lazyload: false,
+} only %}
+
+<h4>Absolute src - lazy loaded</h4>
+{% include '@bolt-components-image/image.twig' with {
+  src: "https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg",
+  alt: "Wikipedia Example",
+  lazyload: true,
 } only %}
