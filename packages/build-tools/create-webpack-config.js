@@ -256,7 +256,14 @@ function createConfig(config) {
           options: {
             name: 'fonts/[name].[ext]',
           },
-        }
+        },
+        {
+          test: /\.svg$/,
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+          },
+        },
       ],
     },
     plugins: [
