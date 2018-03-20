@@ -17,11 +17,18 @@ class ImagesTests extends TestCase {
   public function testGetImageData() {
     $sets = [
       [
+        'file' => 'https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg',
+        'height' => 0,
+        'width' => 0,
+        'isAbsolute' => true,
+      ],
+      [
         'file' => 'assets/500x500.jpg',
         'height'=> 500,
         'width'=> 500,
         'color' => '#2f4962',
         'base64' => 'data:image/jpeg;base64',
+        'isAbsolute' => false,
       ],
       [
         'file' => 'assets/732x945.jpg',
@@ -29,6 +36,7 @@ class ImagesTests extends TestCase {
         'width'=> 732,
         'color' => '#c9c9c9',
         'base64' => 'data:image/jpeg;base64',
+        'isAbsolute' => false,
       ],
       [
         'file' => 'assets/tout-4x3-climber.jpg',
@@ -36,6 +44,7 @@ class ImagesTests extends TestCase {
         'width'=> 640,
         'color' => '#6b6764',
         'base64' => 'data:image/jpeg;base64',
+        'isAbsolute' => false,
       ],
       [
         'file' => 'assets/decision-hub-chart.png',
@@ -43,6 +52,7 @@ class ImagesTests extends TestCase {
         'width'=> 2712,
         'color' => 'hsl(233, 33%, 97%)',
         'base64' => 'data:image/gif;base64',
+        'isAbsolute' => false,
       ],
       [
         'file' => 'assets/logo-paypal.svg',
@@ -50,6 +60,7 @@ class ImagesTests extends TestCase {
         'width'=> 124,
         'color' => 'hsl(233, 33%, 97%)',
         'base64' => 'data:image/gif;base64',
+        'isAbsolute' => false,
       ],
     ];
 
@@ -57,9 +68,12 @@ class ImagesTests extends TestCase {
       $results = Images::get_image_data($set['file'], __DIR__);
       $this->assertEquals($set['height'], $results['height'], 'height of image');
       $this->assertEquals($set['width'], $results['width'], 'width of image');
-      $this->assertStringStartsWith($set['base64'], $results['base64']);
-      $this->assertTrue(self::compareColors($set['color'], $results['color'], 0.001),
-        "{$set['file']}, the expected value {$results['color']} did not match the actual value {$set['color']}.");
+      if (isset($set['base64'])) {
+        $this->assertStringStartsWith($set['base64'], $results['base64']);
+      }
+      if (isset($set['color'])) {
+        $this->assertTrue(self::compareColors($set['color'], $results['color'], 0.001), "{$set['file']}, the expected value {$results['color']} did not match the actual value {$set['color']}.");
+      }
     }
   }
 
