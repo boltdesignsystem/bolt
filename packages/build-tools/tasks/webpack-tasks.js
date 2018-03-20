@@ -118,7 +118,7 @@ function watch() {
         });
 
         webpackSpinner.succeed(chalk.green(`Watch rebuilt WebPack bundle in ${timer.end(startTime)}`));
-        if (config.verbosity > 2) {
+        if (config.verbosity > 3) {
           console.log('---');
           console.log(output);
           console.log('===\n');
