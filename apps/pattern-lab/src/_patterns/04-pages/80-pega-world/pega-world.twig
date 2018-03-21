@@ -237,6 +237,130 @@
   }
 } only %}
   {% block band_content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-9/12@small" %}
+        <figure class="c-pw-stat-slideshow">
+          <div class="c-pw-stat-slideshow-media">
+            {# <div>
+              <bolt-ratio  class="o-bolt-ratio" aspect-ratio-height="9" aspect-ratio-width="16" style="--aspect-ratio-height: 9; --aspect-ratio-width: 16;">
+                <bolt-video
+                data-setup="{&quot;techOrder&quot;: [&quot;Html5&quot;]}"
+                video-id="5609376179001"
+                player-id="r1CAdLzTW"
+                account-id="1900410236"
+                show-meta
+                show-meta-title></bolt-video>
+              </bolt-ratio>
+            </div> #}
+
+            <video id="video" poster="http://sandbox.thewikies.com/vfe-generator/images/big-buck-bunny_poster.jpg" src="http://media.w3.org/2010/05/bunny/trailer.ogv" preload loop>
+            </video>
+          </div>
+          <figcaption class="c-pw-stat-slideshow-content">
+            <div class="c-pw-stat-slideshow-content__scroll">
+              <ul class="c-pw-stat-list">
+                <li class="c-pw-stat-list__item">
+                  {% include "@bolt/headline.twig" with {
+                    "size": "xxxlarge",
+                    "text": "1%",
+                    "tag": "div"
+                  } only %}
+                  {% include "@bolt/text.twig" with {
+                    "size": "large",
+                    "text": "Percent of attendees rated PegaWorld 2017 good or excellent",
+                    "tag": "div"
+                  } only %}
+                </li>
+                <li class="c-pw-stat-list__item">
+                  {% include "@bolt/headline.twig" with {
+                    "size": "xxxlarge",
+                    "text": "2%",
+                    "tag": "div"
+                  } only %}
+                  {% include "@bolt/text.twig" with {
+                    "size": "large",
+                    "text": "Percent of leading organizations that attend PegaWorld year over year",
+                    "tag": "div"
+                  } only %}
+                </li>
+                <li class="c-pw-stat-list__item">
+                  {% include "@bolt/headline.twig" with {
+                    "size": "xxxlarge",
+                    "text": "3%",
+                    "tag": "div"
+                  } only %}
+                  {% include "@bolt/text.twig" with {
+                    "size": "large",
+                    "text": "Percent of attendees rated PegaWorld 2017 good or excellent",
+                    "tag": "div"
+                  } only %}
+                </li>
+                <li class="c-pw-stat-list__item">
+                  {% include "@bolt/headline.twig" with {
+                    "size": "xxxlarge",
+                    "text": "4%",
+                    "tag": "div"
+                  } only %}
+                  {% include "@bolt/text.twig" with {
+                    "size": "large",
+                    "text": "Percent of leading organizations that attend PegaWorld year over year",
+                    "tag": "div"
+                  } only %}
+                </li>
+                <li class="c-pw-stat-list__item">
+                  {% include "@bolt/headline.twig" with {
+                    "size": "xxxlarge",
+                    "text": "5%",
+                    "tag": "div"
+                  } only %}
+                  {% include "@bolt/text.twig" with {
+                    "size": "large",
+                    "text": "Percent of leading organizations that attend PegaWorld year over year",
+                    "tag": "div"
+                  } only %}
+                </li>
+              </ul>
+            </div>
+          </figcaption>
+        </figure>
+      {% endcell %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-9/12@small" %}
+        {% include "@bolt/headline.twig" with {
+          "size": "xxxlarge",
+          "align": "center",
+          "text": "Why you need to be there",
+          "tag": "h2"
+        } only %}
+        {% include "@bolt/subheadline.twig" with {
+          "size": "xlarge",
+          "align": "center",
+          "text": "Like our technology, PegaWorld smashes organizational silos. Whether your role is C-suite, IT, or business lead, join us to learn how to achieve breakthrough results.",
+          "tag": "h3"
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+          {% cell %}
+            <a href="https://staging.d8.pega.com/events/pegaworld/why-attend" class="c-bolt-button c-bolt-button--primary">Top 5 Reasons</a>
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+    {% endgrid %}
+  {% endblock %}
+{% endembed %}
+
+
+{# What #}
+{% embed "@bolt/band.twig" with {
+  theme: "dark",
+  size: "large",
+  "attributes": {
+    "class": [
+      "c-pw-5up-highlight"
+    ]
+  }
+} only %}
+  {% block band_content %}
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
       {% cell "u-bolt-width-1/1" %}
         {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
@@ -244,14 +368,8 @@
             {% include "@bolt/headline.twig" with {
               "size": "xxxlarge",
               "align": "center",
-              "text": "Why you need to be there",
+              "text": "What to expect",
               "tag": "h2"
-            } only %}
-            {% include "@bolt/subheadline.twig" with {
-              "size": "xlarge",
-              "align": "center",
-              "text": "3+ power-packed days of the most successful companies on the planet sharing their stories of digital transformation, access to industry-leading AI, Robotics, Customer Engagement and Digital Process Automation technology, and thousands of business leaders and innovators coming together to learn, network, and grow.  Oh, and there’s a lot of fun too!",
-              "tag": "h3"
             } only %}
           {% endcell %}
         {% endgrid %}
@@ -401,7 +519,7 @@
                 } only %}
                 {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix u-pw-position-lower-logo__logo" %}
                   {% cell %}
-                    {% include "@bolt/image.twig" with {
+                    {% include "@bolt/logo.twig" with {
                       src: "/pattern-lab/images/pw2018/coca-cola-logo-white.png",
                       alt: "Logo",
                       align: "center"
@@ -428,7 +546,7 @@
                 } only %}
                 {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix u-pw-position-lower-logo__logo" %}
                   {% cell %}
-                    {% include "@bolt/image.twig" with {
+                    {% include "@bolt/logo.twig" with {
                       src: "/pattern-lab/images/pw2018/gm-logo-white.png",
                       alt: "Logo",
                       align: "center"
@@ -455,7 +573,7 @@
                 } only %}
                 {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix u-pw-position-lower-logo__logo" %}
                   {% cell %}
-                    {% include "@bolt/image.twig" with {
+                    {% include "@bolt/logo.twig" with {
                       src: "/pattern-lab/images/pw2018/sprint-logo-white.png",
                       alt: "Logo",
                       align: "center"
