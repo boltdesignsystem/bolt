@@ -4,30 +4,6 @@
 
 @import '@bolt/core';
 
-@keyframes copiedLink {
-  0% {
-    opacity: 0;
-    transform: scale(0) rotate(0deg);
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1) rotate(360deg);
-  }
-}
-
-@keyframes copiedLinkTransitioning {
-  0% { opacity: 1; }
-
-  100% { opacity: 0; }
-}
-
-@keyframes copiedLinkText {
-  0% { opacity: 0; }
-
-  100% { opacity: 1; }
-}
-
 .js-bolt-copy-to-clipboard {
   display: inline-block;
   position: relative;
@@ -44,6 +20,12 @@
   }
 
   .c-bolt-copy-to-clipboard__copied {
+    pointer-events: none;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+
     .c-bolt-link__text {
       color: bolt-color(teal, dark);
     }
@@ -56,7 +38,6 @@
       pointer-events: none;
       display: inline-block;
       position: relative;
-      width: 100%;
       top: 0;
       left: 0;
     }
@@ -64,11 +45,23 @@
     .c-bolt-copy-to-clipboard__icon {
       opacity: 1;
       transform: scale(1) rotate(360deg);
-      transition: all 1s ease 0.75s;
+      transition: all 0.5s ease 0.75s;
       left: 0;
       top: 0;
       bottom: 0;
       margin: auto;
+    }
+  }
+
+  &.copied.transitioning {
+    .c-bolt-copy-to-clipboard__icon {
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .c-bolt-copy-to-clipboard__copied {
+      opacity: 1;
+      transition: opacity 1s ease 0.75s;
     }
   }
 }

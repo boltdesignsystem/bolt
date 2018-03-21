@@ -12,9 +12,9 @@ if (theClipRef !== null) {
 
     clip.on("success", function() {
       document.querySelector('.js-bolt-copy-to-clipboard').classList.add('copied');
-      // setTimeout(function(){
-      //    document.querySelector('.js-bolt-copy-to-clipboard').classList.add('transitioning');
-      // }, 1000);
+      setTimeout(function(){
+         document.querySelector('.js-bolt-copy-to-clipboard').classList.add('transitioning');
+      }, 2000);
     });
   }, false);
 }
