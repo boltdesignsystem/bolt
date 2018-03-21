@@ -69,17 +69,68 @@
             "time": "2016-02-15T22:46:40+00:00"
         },
         {
-            "name": "basaltinc/twig-tools",
-            "version": "v1.3.6",
+            "name": "asm89/twig-lint",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/basaltinc/twig-tools.git",
-                "reference": "9ef67feb0ada6182debe5c4d90f458192fdcb7a5"
+                "url": "https://github.com/asm89/twig-lint.git",
+                "reference": "9ce57f6e45dc699dbecb8a23034b01cf1f89774b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/basaltinc/twig-tools/zipball/9ef67feb0ada6182debe5c4d90f458192fdcb7a5",
-                "reference": "9ef67feb0ada6182debe5c4d90f458192fdcb7a5",
+                "url": "https://api.github.com/repos/asm89/twig-lint/zipball/9ce57f6e45dc699dbecb8a23034b01cf1f89774b",
+                "reference": "9ce57f6e45dc699dbecb8a23034b01cf1f89774b",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/console": "^2.1 || ^3.0",
+                "symfony/finder": "^2.1 || ^3.0",
+                "twig/twig": "^1.16.2"
+            },
+            "bin": [
+                "bin/twig-lint"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Asm89\\Twig\\Lint\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander",
+                    "email": "iam.asm89@gmail.com"
+                }
+            ],
+            "description": "Standalone twig linter.",
+            "homepage": "https://github.com/asm89/twig-lint",
+            "keywords": [
+                "lint",
+                "twig"
+            ],
+            "time": "2016-12-30T10:04:11+00:00"
+        },
+        {
+            "name": "basaltinc/twig-tools",
+            "version": "v1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/basaltinc/twig-tools.git",
+                "reference": "23816ca243d46d35ec7d515bc112650b3f90b0f0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/basaltinc/twig-tools/zipball/23816ca243d46d35ec7d515bc112650b3f90b0f0",
+                "reference": "23816ca243d46d35ec7d515bc112650b3f90b0f0",
                 "shasum": ""
             },
             "require": {
@@ -105,7 +156,7 @@
                     "email": "evanlovely@gmail.com"
                 }
             ],
-            "time": "2018-03-13T22:09:56+00:00"
+            "time": "2018-03-19T21:48:53+00:00"
         },
         {
             "name": "bolt-design-system/core-php",
@@ -113,13 +164,13 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/core-php",
-                "reference": "e5d54198ccc79ae23418eb7147b75cf99bf80f4a",
+                "reference": "6563a95e988702081ecc482a30c0a7764ae26de1",
                 "shasum": null
             },
             "require": {
-                "basaltinc/twig-tools": "^1.3.4",
+                "asm89/twig-lint": "^1.0",
+                "basaltinc/twig-tools": "^1.4.0",
                 "gregwar/image": "^2.0",
-                "ksubileau/color-thief-php": "^1.3",
                 "mexitek/phpcolors": "^0.4.0",
                 "michelf/php-markdown": "^1.8.0",
                 "shudrum/array-finder": "^1.1",
@@ -351,7 +402,7 @@
                 }
             ],
             "description": "Provides a way to patch Composer packages.",
-            "time": "2017-12-14 17:29:42"
+            "time": "2017-12-14T17:29:42+00:00"
         },
         {
             "name": "doctrine/collections",
@@ -453,7 +504,7 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2018-02-01 21:34:33"
+            "time": "2018-02-01T21:34:33+00:00"
         },
         {
             "name": "drupal/core-utility",
@@ -489,7 +540,7 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2018-02-07 14:34:43"
+            "time": "2018-02-07T14:34:43+00:00"
         },
         {
             "name": "evanlovely/plugin-twig-namespaces",
@@ -544,7 +595,7 @@
                 "pattern lab",
                 "twig"
             ],
-            "time": "2017-11-10 23:21:38"
+            "time": "2017-11-10T23:21:38+00:00"
         },
         {
             "name": "fzaninotto/faker",
@@ -552,12 +603,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "68c7e19a465b6bc9b4a80b56b93ce881d9646194"
+                "reference": "65fbcca41437baff58a5c0e8f08fae617531dd0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/68c7e19a465b6bc9b4a80b56b93ce881d9646194",
-                "reference": "68c7e19a465b6bc9b4a80b56b93ce881d9646194",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/65fbcca41437baff58a5c0e8f08fae617531dd0d",
+                "reference": "65fbcca41437baff58a5c0e8f08fae617531dd0d",
                 "shasum": ""
             },
             "require": {
@@ -594,7 +645,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2018-03-15 08:27:55"
+            "time": "2018-03-15T16:58:08+00:00"
         },
         {
             "name": "gajus/dindent",
@@ -640,7 +691,7 @@
                 "html",
                 "indent"
             ],
-            "time": "2017-06-05 10:29:29"
+            "time": "2017-06-05T10:29:29+00:00"
         },
         {
             "name": "gregwar/cache",
@@ -801,7 +852,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2018-02-14 22:26:30"
+            "time": "2018-02-14T22:26:30+00:00"
         },
         {
             "name": "kevinlebrun/colors.php",
@@ -853,59 +904,6 @@
                 "shell"
             ],
             "time": "2016-04-12T20:58:34+00:00"
-        },
-        {
-            "name": "ksubileau/color-thief-php",
-            "version": "v1.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ksubileau/color-thief-php.git",
-                "reference": "a673d7d3fa815c70fa4bebdee74d337e9e6944fa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ksubileau/color-thief-php/zipball/a673d7d3fa815c70fa4bebdee74d337e9e6944fa",
-                "reference": "a673d7d3fa815c70fa4bebdee74d337e9e6944fa",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.8|~5.7",
-                "squizlabs/php_codesniffer": "~2.7"
-            },
-            "suggest": {
-                "ext-gd": "to use the GD image adapter.",
-                "ext-gmagick": "to use the Gmagick image adapter.",
-                "ext-imagick": "to use the Imagick image adapter."
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "ColorThief\\": "lib/ColorThief"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "CC-BY-2.5"
-            ],
-            "authors": [
-                {
-                    "name": "Kevin Subileau",
-                    "homepage": "http://www.kevinsubileau.fr"
-                }
-            ],
-            "description": "Grabs the dominant color or a representative color palette from an image.",
-            "homepage": "http://www.kevinsubileau.fr/projets/color-thief-php",
-            "keywords": [
-                "color",
-                "dominant",
-                "palette",
-                "php",
-                "thief"
-            ],
-            "time": "2016-12-18T03:12:25+00:00"
         },
         {
             "name": "mexitek/phpcolors",
@@ -1038,7 +1036,7 @@
             ],
             "description": "Extend the composer/installers plugin to accept any arbitrary package type.",
             "homepage": "http://www.oomphinc.com/",
-            "time": "2017-03-31 16:57:39"
+            "time": "2017-03-31T16:57:39+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -1383,6 +1381,53 @@
             "time": "2017-08-28T18:42:55+00:00"
         },
         {
+            "name": "psr/log",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Log\\": "Psr/Log/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "homepage": "https://github.com/php-fig/log",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "time": "2016-10-10T12:19:37+00:00"
+        },
+        {
             "name": "seld/jsonlint",
             "version": "1.7.1",
             "source": {
@@ -1472,6 +1517,131 @@
             "time": "2016-02-01T12:23:32+00:00"
         },
         {
+            "name": "symfony/console",
+            "version": "3.4.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/console.git",
+                "reference": "23c06f589689aa3de8bbe314be04535bdb691e51"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/console/zipball/23c06f589689aa3de8bbe314be04535bdb691e51",
+                "reference": "23c06f589689aa3de8bbe314be04535bdb691e51",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5.9|>=7.0.8",
+                "symfony/debug": "~2.8|~3.0|~4.0",
+                "symfony/polyfill-mbstring": "~1.0"
+            },
+            "conflict": {
+                "symfony/dependency-injection": "<3.4",
+                "symfony/process": "<3.3"
+            },
+            "require-dev": {
+                "psr/log": "~1.0",
+                "symfony/config": "~3.3|~4.0",
+                "symfony/dependency-injection": "~3.4|~4.0",
+                "symfony/event-dispatcher": "~2.8|~3.0|~4.0",
+                "symfony/lock": "~3.4|~4.0",
+                "symfony/process": "~3.3|~4.0"
+            },
+            "suggest": {
+                "psr/log": "For using the console logger",
+                "symfony/event-dispatcher": "",
+                "symfony/lock": "",
+                "symfony/process": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Console\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Console Component",
+            "homepage": "https://symfony.com",
+            "time": "2018-03-19T22:32:39+00:00"
+        },
+        {
+            "name": "symfony/debug",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/debug.git",
+                "reference": "8c5df4183c9c4eafc130e6c9714b6eb15ce53aa1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/8c5df4183c9c4eafc130e6c9714b6eb15ce53aa1",
+                "reference": "8c5df4183c9c4eafc130e6c9714b6eb15ce53aa1",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3",
+                "psr/log": "~1.0"
+            },
+            "conflict": {
+                "symfony/http-kernel": "<3.4"
+            },
+            "require-dev": {
+                "symfony/http-kernel": "~3.4|~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Debug\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Debug Component",
+            "homepage": "https://symfony.com",
+            "time": "2018-03-19T22:38:22+00:00"
+        },
+        {
             "name": "symfony/event-dispatcher",
             "version": "3.4.x-dev",
             "source": {
@@ -1532,7 +1702,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-14 10:03:57"
+            "time": "2018-02-14T10:03:57+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -1581,7 +1751,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-22 10:48:49"
+            "time": "2018-02-22T10:48:49+00:00"
         },
         {
             "name": "symfony/finder",
@@ -1630,7 +1800,66 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2018-03-05 18:28:11"
+            "time": "2018-03-05T18:28:11+00:00"
+        },
+        {
+            "name": "symfony/polyfill-mbstring",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-mbstring.git",
+                "reference": "78be803ce01e55d3491c1397cf1c64beb9c1b63b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/78be803ce01e55d3491c1397cf1c64beb9c1b63b",
+                "reference": "78be803ce01e55d3491c1397cf1c64beb9c1b63b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "ext-mbstring": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Mbstring\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for the Mbstring extension",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "mbstring",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "time": "2018-01-30T19:27:44+00:00"
         },
         {
             "name": "symfony/process",
@@ -1638,12 +1867,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "cc4aea21f619116aaf1c58016a944e4821c8e8af"
+                "reference": "6745cdc6d77139ce3a6c177e9a34ebb630de310f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/cc4aea21f619116aaf1c58016a944e4821c8e8af",
-                "reference": "cc4aea21f619116aaf1c58016a944e4821c8e8af",
+                "url": "https://api.github.com/repos/symfony/process/zipball/6745cdc6d77139ce3a6c177e9a34ebb630de310f",
+                "reference": "6745cdc6d77139ce3a6c177e9a34ebb630de310f",
                 "shasum": ""
             },
             "require": {
@@ -1679,7 +1908,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-12 17:55:00"
+            "time": "2018-03-19T22:32:39+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -1737,7 +1966,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-16 09:50:28"
+            "time": "2018-02-16T09:50:28+00:00"
         },
         {
             "name": "tooleks/php-avg-color-picker",
@@ -1797,12 +2026,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "4d9dc7951606e631f1619cb3578dd5be82e19298"
+                "reference": "c35ad8c4e33d02ad14171b033b938f520e5eefb5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/4d9dc7951606e631f1619cb3578dd5be82e19298",
-                "reference": "4d9dc7951606e631f1619cb3578dd5be82e19298",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/c35ad8c4e33d02ad14171b033b938f520e5eefb5",
+                "reference": "c35ad8c4e33d02ad14171b033b938f520e5eefb5",
                 "shasum": ""
             },
             "require": {
@@ -1810,8 +2039,8 @@
             },
             "require-dev": {
                 "psr/container": "^1.0",
-                "symfony/debug": "~2.7",
-                "symfony/phpunit-bridge": "~3.3@dev"
+                "symfony/debug": "^2.7",
+                "symfony/phpunit-bridge": "^3.3"
             },
             "type": "library",
             "extra": {
@@ -1854,7 +2083,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2018-03-14 15:27:12"
+            "time": "2018-03-20T04:26:35+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -1904,7 +2133,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2018-01-29 19:49:41"
+            "time": "2018-01-29T19:49:41+00:00"
         },
         {
             "name": "webmozart/path-util",
@@ -1950,7 +2179,7 @@
                 }
             ],
             "description": "A robust cross-platform utility for normalizing, comparing and modifying file paths.",
-            "time": "2016-08-15 15:31:42"
+            "time": "2016-08-15T15:31:42+00:00"
         }
     ],
     "packages-dev": [],
