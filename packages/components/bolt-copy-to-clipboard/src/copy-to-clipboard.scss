@@ -1,0 +1,74 @@
+/* ------------------------------------ *\
+   Copy to Clipboard
+\* ------------------------------------ */
+
+@import '@bolt/core';
+
+@keyframes copiedLink {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+@keyframes copiedLinkTransitioning {
+  0% { opacity: 1; }
+
+  100% { opacity: 0; }
+}
+
+@keyframes copiedLinkText {
+  0% { opacity: 0; }
+
+  100% { opacity: 1; }
+}
+
+.js-bolt-copy-to-clipboard {
+  display: inline-block;
+  position: relative;
+
+  .c-bolt-copy-to-clipboard__icon,
+  .c-bolt-copy-to-clipboard__copied {
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .c-bolt-copy-to-clipboard__icon {
+    transform: scale(0) rotate(0deg);
+  }
+
+  .c-bolt-copy-to-clipboard__copied {
+    .c-bolt-link__text {
+      color: bolt-color(teal, dark);
+    }
+  }
+
+  &.copied {
+    .c-bolt-copy-to-clipboard__default {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+      display: inline-block;
+      position: relative;
+      width: 100%;
+      top: 0;
+      left: 0;
+    }
+
+    .c-bolt-copy-to-clipboard__icon {
+      opacity: 1;
+      transform: scale(1) rotate(360deg);
+      transition: all 1s ease 0.75s;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{% set schema = get_data('@bolt-components-copy-to-clipboard/copy-to-clipboard.schema.yml') %}
+{% set code %} {% verbatim %}
+{% include "@bolt-components-copy-to-clipboard/copy-to-clipboard.twig" with {
+  text: "Copy Link",
+  copiedText: "Copied!",
+  url: "http://google.com"
+} only %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/docs.twig' with {
+  schema: schema,
+  code: code,
+  readmeFile: '@bolt-components-copy-to-clipboard/README.md',
+} only %}

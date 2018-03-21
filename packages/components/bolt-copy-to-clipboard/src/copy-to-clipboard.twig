@@ -1,0 +1,44 @@
+{% set componentName = "copy-to-clipboard" %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% if text %}
+  {% set attributes = attributes.setAttribute("text", text) %}
+{% endif %}
+
+{% if copiedText %}
+  {% set attributes = attributes.setAttribute("copied-text", copiedText) %}
+{% endif %}
+
+{% if url %}
+  {% set attributes = attributes.setAttribute("url", url) %}
+{% endif %}
+
+<bolt-{{ componentName }} bolt-component class="c-bolt-copy-to-clipboard js-bolt-copy-to-clipboard" {{ attributes }}>
+  <span class="c-bolt-copy-to-clipboard__default">
+    {% include "@bolt-components-link/link.twig" with {
+      text: text,
+      url: url,
+      icon: {
+        name: 'asset-link',
+        position: 'before'
+      },
+      attributes: attributes.setAttribute('data-clipboard-text', url)
+    } only %}
+  </span>
+  <bolt-icon class="c-bolt-copy-to-clipboard__icon" name="refresh"></bolt-icon>
+  <span class="c-bolt-copy-to-clipboard__copied">
+    {% include "@bolt-components-link/link.twig" with {
+      text: copiedText,
+      url: url,
+      icon: {
+        name: 'asset-link',
+        position: 'before'
+      }
+    } only %}
+  </span>
+</bolt-{{ componentName }}>
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-copy-to-clipboard/copy-to-clipboard.schema.yml', _self) }}
+{% endif %}
