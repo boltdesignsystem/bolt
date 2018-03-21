@@ -85,6 +85,7 @@ class BoltCore extends \Twig_Extension implements \Twig_Extension_InitRuntimeInt
 
   public function getFilters() {
     return [
+      TwigTools\TwigFilters::remove_null(),
       Bolt\TwigFilters::json_decode(),
     ];
   }
