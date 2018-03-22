@@ -3,9 +3,7 @@ import {
   render,
   define,
   props,
-  withComponent,
-  withHyperHTML,
-  withPreact,
+  BoltComponent,
   css,
   spacingSizes,
   hasNativeShadowDomSupport
@@ -53,7 +51,7 @@ let gumshoeStateModule = (function () {
     }
   };
 
-  pub.getOffset = function() {
+  pub.getOffset = function () {
     return offset;
   };
 
@@ -62,7 +60,7 @@ let gumshoeStateModule = (function () {
 
 
 @define
-export class BoltNavList extends withHyperHTML(withComponent()) {
+export class BoltNavList extends BoltComponent() {
   static is = 'bolt-nav-list';
 
   // Behavior for `<bolt-nav-list>` parent container
@@ -79,15 +77,9 @@ export class BoltNavList extends withHyperHTML(withComponent()) {
   }
 
   render() {
-    if (this.useShadow) {
-      return this.html`
-        <slot />
-      `
-    } else {
-      return this.html`
-         ${this.slots.default}
-      `
-    }
+    return this.html`
+      ${this.slot('default')}
+    `
   }
 
   get offset() {
@@ -188,9 +180,9 @@ export class BoltNavList extends withHyperHTML(withComponent()) {
         this._indicator.style.width = '2px';
         this._indicator.style.transform = 'translateY(' + linkOffsetTop + 'px)';
       } else {
-        this._indicator.style.width = linkWidth + 'px';
+      this._indicator.style.width = linkWidth + 'px';
         this._indicator.style.height = '2px';
-        this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px)';
+      this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px)';
       }
 
 
@@ -203,12 +195,12 @@ export class BoltNavList extends withHyperHTML(withComponent()) {
         this._indicator.style.height = linkHeight + 'px';
         this._indicator.style.width = '2px';
         this._indicator.style.transform = 'translateY(' + linkOffsetTop + 'px)';
-      } else {
-        this._indicator.style.width = linkWidth + 'px';
+    } else {
+      this._indicator.style.width = linkWidth + 'px';
         this._indicator.style.height = '2px';
-        this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px)';
-      }
+      this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px)';
     }
+  }
   }
 
   _initializeGumshoe() {
@@ -216,8 +208,7 @@ export class BoltNavList extends withHyperHTML(withComponent()) {
   }
 
   // `<bolt-nav-link>` emits a custom event when the link is active
-  connectedCallback() {
-    this._checkSlots();
+  connecting() {
     this._indicator = this.querySelector(indicatorElement);
     this.addEventListener('activateLink', this._onActivateLink);
     window.addEventListener('optimizedResize', this._onWindowResize);
@@ -247,7 +238,7 @@ export class BoltNavList extends withHyperHTML(withComponent()) {
 
 
 @define
-export class BoltNavLink extends withHyperHTML(withComponent()) { // Behavior for `<bolt-nav-link>` children
+export class BoltNavLink extends BoltComponent() { // Behavior for `<bolt-nav-link>` children
 
   static is = 'bolt-nav-link';
 
@@ -313,19 +304,12 @@ export class BoltNavLink extends withHyperHTML(withComponent()) { // Behavior fo
   }
 
   render() {
-    if (this.useShadow) {
-      return this.html`
-        <slot />
-      `
-    } else {
-      return this.html`
-         ${this.slots.default}
-      `
-    }
+    return this.html`
+      ${this.slot('default')}
+    `
   }
 
-  connectedCallback() {
-    this._checkSlots();
+  connecting() {
     this.addEventListener('click', this.onClick);
 
     // Set an initially active link if appropriate.
@@ -358,7 +342,7 @@ export class BoltNavLink extends withHyperHTML(withComponent()) { // Behavior fo
 // Create a custom 'optimizedResize' event that works just like window.resize but is more performant because it
 // won't fire before a previous event is complete.
 // This was adapted from https://developer.mozilla.org/en-US/docs/Web/Events/resize
-(function() {
+(function () {
   function throttle(type, name, obj) {
     obj = obj || window;
     let running = false;
@@ -366,7 +350,7 @@ export class BoltNavLink extends withHyperHTML(withComponent()) { // Behavior fo
     function func() {
       if (running) { return; }
       running = true;
-      requestAnimationFrame(function() {
+      requestAnimationFrame(function () {
         obj.dispatchEvent(new CustomEvent(name));
         running = false;
       });

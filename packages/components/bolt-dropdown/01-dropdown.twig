@@ -1,4 +1,50 @@
 
+{% set uuid = random() %}
+
+{% set primaryUUID = "c-bolt-dropdown-#{uuid}" %}
+{% set secondaryUUID = "c-bolt-dropdown-inner-#{uuid}" %}
+
+<bolt-dropdown align="">
+  <input class="c-bolt-dropdown__state" type="checkbox" id="{{ primaryUUID }}">
+
+  <div class="c-bolt-dropdown" id="{{ secondaryUUID }}">
+    <h3 class="c-bolt-dropdown__header u-bolt-hidden@small">
+      <button class="c-bolt-dropdown__header-button">
+        Toggle Dropdown
+
+        <bolt-icon name="chevron-right"></bolt-icon>
+      </button>
+
+      <label class="c-bolt-dropdown__label" for="{{ primaryUUID }}">
+        <h3 class="c-bolt-dropdown__header-title">Toggle Dropdown</h3>
+        <bolt-icon name="chevron-right"></bolt-icon>
+      </label>
+
+      <a href="#{{ secondaryUUID }}" class="c-bolt-dropdown__toggle c-bolt-dropdown__toggle--open">
+        <span class="c-bolt-dropdown__toggle-text">Open Menu</span>
+      </a>
+
+      <a href="#{{ primaryUUID }}" class="c-bolt-dropdown__toggle c-bolt-dropdown__toggle--close">
+        <span class="c-bolt-dropdown__toggle-text">Close Menu</span>
+      </a>
+    </h3>
+
+    <div class="c-bolt-dropdown__content u-bolt-block@small u-bolt-height-auto@small">
+      <div class="c-bolt-dropdown__content-inner u-bolt-opacity-100@small">
+        <span class="default">
+          {% block children %}
+            {{ children }}
+          {% endblock %}
+        </span>
+      </div>
+    </div>
+  </div>
+</bolt-dropdown>
+
+
+
+
+
 
 {# <bolt-dropdown default-text="Dropdown label">
   {% block content %}
@@ -52,77 +98,5 @@
 </bolt-dropdown> #}
 
 
-<div class="t-bolt-xdark">
-
-
-  <bolt-dropdown>
-    <input class="c-bolt-dropdown__state" type="checkbox" id="c-bolt-dropdown-uuid">
-
-    <div class="c-bolt-dropdown" id="c-bolt-dropdown-id">
-
-      <h3 class="c-bolt-dropdown__header u-bolt-hidden@small">
-
-        <button class="c-bolt-dropdown__header-button">
-          Toggle Dropdown
-        </button>
-
-
-
-        <label class="c-bolt-dropdown__label" for="c-bolt-dropdown-uuid">
-          <h3 class="c-bolt-dropdown__header-title">Toggle Dropdown</h3>
-          <bolt-icon name="chevron-right"></bolt-icon>
-        </label>
-
-        <a href="#c-bolt-dropdown-uuid" class="c-bolt-dropdown__toggle c-bolt-dropdown__toggle--open">
-          <span class="c-bolt-dropdown__toggle-text">Open Menu</span>
-        </a>
-
-        <a href="#c-bolt-dropdown-id" class="c-bolt-dropdown__toggle c-bolt-dropdown__toggle--close">
-          <span class="c-bolt-dropdown__toggle-text">Close Menu</span>
-        </a>
-      </h3>
-
-      <div class="c-bolt-dropdown__content u-bolt-block@small u-bolt-height-auto@small">
-        <div class="c-bolt-dropdown__content-inner u-bolt-opacity-100@small">
-          {# <ul class="o-bolt-bare-list c-bolt-block-list">
-            <li class="c-bolt-block-list__item"><a class="c-bolt-block-list__link" id="features" href="#features">Features</a></li>
-            <li class="c-bolt-block-list__item"><a class="c-bolt-block-list__link" href="#resources">Resources</a></li>
-            <li class="c-bolt-block-list__item"><a class="c-bolt-block-list__link" href="#industries">Industries</a></li>
-            <li class="c-bolt-block-list__item"><a class="c-bolt-block-list__link" href="#customer-success">Customer Success</a></li>
-            <li class="c-bolt-block-list__item"><a class="c-bolt-block-list__link" href="#long-menu-item">Menu item that is really long and breaks after 32ish characters</a></li>
-          </ul> #}
-
-          <bolt-nav-list offset="50">
-            <ul class="c-bolt-nav-list c-bolt-nav-list--xsmall js-bolt-nav-list-gumshoe">
-              <li class="c-bolt-nav-list__item">
-                <bolt-nav-link>
-                  <a class="c-bolt-nav-link" href="#p-f3ff267c-5fb8-4e2f-8682-52663b5437df">Features</a>
-                </bolt-nav-link>
-              </li>
-              <li class="c-bolt-nav-list__item">
-                <bolt-nav-link>
-                  <a class="c-bolt-nav-link" href="#p-12de80d7-1c57-4bef-a173-07d898f8e356">Resources
-                  </a>
-                </bolt-nav-link>
-              </li>
-              <li class="c-bolt-nav-list__item">
-                <bolt-nav-link>
-                  <a class="c-bolt-nav-link" href="#p-468a47c1-fe65-46d4-b8c7-9dbfe8404ee9">Industry Apps
-                  </a>
-                </bolt-nav-link>
-              </li>
-              <li class="c-bolt-nav-list__item">
-                <bolt-nav-link>
-                  <a class="c-bolt-nav-link" href="#p-6618d817-126e-46d1-955a-f7ee78e79475">Customer Success
-                  </a>
-                </bolt-nav-link>
-              </li>
-              <li class="c-bolt-nav-list__indicator js-bolt-nav-indicator" style="transform: translateX(0px); width: 0px;"></li>
-            </ul>
-          </bolt-nav-list>
-
-        </div>
-      </div>
-    </bolt-dropdown>
-  </div>
-
+{# <div class="t-bolt-xdark"> #}
+  {# </div> #}

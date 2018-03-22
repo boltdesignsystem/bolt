@@ -14,19 +14,19 @@ const preset = function (api, opts = {}) {
       }],
     ],
     plugins: [
-    /**
-     * 1. Helps with our Web Component Preact renderer
-     */
+      /**
+       * 1. Helps with our Web Component Preact renderer
+       */
+      '@babel/plugin-syntax-jsx', /* [1] */
       [
         '@babel/plugin-transform-react-jsx', /* [1] */
         {
-          pragma: 'React.createElement',
-          pragmaFrag: 'React.Fragment',
+          pragma: 'h',
+          pragmaFrag: '\"span\"',
           throwIfNamespace: false,
           useBuiltIns: false,
         },
       ],
-      '@babel/plugin-syntax-jsx', /* [1] */
 
       '@babel/plugin-syntax-decorators', // ex. @define
       '@babel/plugin-proposal-decorators',
