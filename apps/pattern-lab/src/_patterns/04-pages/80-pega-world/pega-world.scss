@@ -253,7 +253,11 @@
 
 
 
+$bolt-pw-stat-slideshow-shadow-level: 'level-50';
+$bolt-pw-stat-slideshow-shadow-color: bolt-color(indigo, xdark);
+
 .c-pw-stat-slideshow {
+  @include bolt-shadow($key: $bolt-pw-stat-slideshow-shadow-level, $base-color: $bolt-pw-stat-slideshow-shadow-color);
   display: block;
   position: relative;
   margin: 0;
@@ -261,7 +265,6 @@
   overflow: hidden;
   border-radius: 3px;
   background-color: rgba(bolt-color(white), 0.05);
-  box-shadow: 0 10px 30px 1px rgba(black, 0.2), 0 50px 60px 1px rgba(black, 0.1);
 }
 
 .c-pw-stat-slideshow-media {
