@@ -1,14 +1,12 @@
 <script>
-  // We're inside an iframe if true and we need to display our message
+  //We're inside an iframe if true and we need to display our message
   if (window.self !== window.top) {
-    const message = '<div style="text-align: center;"><strong><u>Note</u>:</strong> Demo must be opened in separate window and will not work in "view-all" mode</div>';
+    const message = '<div style="text-align: center;"><strong><u>Note</u>:</strong> Demo must be opened in separate window and will not work within an iframe</div>';
     document.write(message);
   }
 </script>
 <div style="text-align: center; padding: 3rem;">
 {% include "@bolt-components-copy-to-clipboard/copy-to-clipboard.twig" with {
-  text: "Copy Link",
-  copiedText: "Copied!",
-  url: "http://google.com"
+  url: "http://bolt-design-system.com"
 } only %}
 </div>

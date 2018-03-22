@@ -4,10 +4,16 @@
 
 {% if text %}
   {% set attributes = attributes.setAttribute("text", text) %}
+{% else %}
+  {% set attributes = attributes.setAttribute("text", "Copy Link") %}
+  {% set text = "Copy Link" %}
 {% endif %}
 
 {% if copiedText %}
   {% set attributes = attributes.setAttribute("copied-text", copiedText) %}
+{% else %}
+  {% set attributes = attributes.setAttribute("copied-text", "Copied!") %}
+  {% set copiedText = "Copied!" %}
 {% endif %}
 
 {% if url %}
