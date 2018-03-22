@@ -15,6 +15,13 @@ properties:
       text:
         type: string
         description: The text for our trigger
+      transform:
+        type: string
+        description: Trigger text transformation
+        enum:
+          - uppercase
+          - lowercase
+          - capitalize
       icon:
         type: object
         description: Properties for including an icon with our trigger

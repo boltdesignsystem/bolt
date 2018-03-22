@@ -18,6 +18,7 @@ export class BoltTooltip extends withPreact(withComponent()) {
   static props = {
     triggerText: props.string,
     triggerType: props.string,
+    triggerTransform: props.string,
     triggerIconName: props.string,
     triggerIconSize: props.string,
     triggerToggleText: props.string,
@@ -62,6 +63,7 @@ export class BoltTooltip extends withPreact(withComponent()) {
           <tooltip-trigger
             text={data.triggerText}
             type={data.triggerType}
+            transform={data.triggerTransform}
             icon={data.triggerIconName}
             size={data.triggerIconSize}
             toggle-text={data.triggerToggleText}
@@ -84,6 +86,7 @@ class TooltipTrigger extends withPreact(withComponent()) {
   static props = {
     text: props.string,
     type: props.string,
+    transform: props.string,
     icon: props.string,
     size: props.string,
     toggleText: props.string,
@@ -96,8 +99,22 @@ class TooltipTrigger extends withPreact(withComponent()) {
   }
 
   render() {
+    const baseClass = 'c-bolt-button';
+
     const data = this.props;
     const size = data.size ? data.size : 'medium';
+
+    const classes = [
+      baseClass,
+      baseClass + '--rounded',
+      baseClass + '--medium',
+      baseClass + '--secondary',
+      baseClass + '--center'
+    ];
+
+    if (data.transform) {
+      classes.push(baseClass + '--' + data.transform);
+    }
 
     return (
       <span>
@@ -115,7 +132,7 @@ class TooltipTrigger extends withPreact(withComponent()) {
           }}
         >
           {data.type === 'button' &&
-          <button className="c-bolt-button c-bolt-button--rounded c-bolt-button--medium c-bolt-button--secondary c-bolt-button--center">
+          <button className={classes.join(' ')}>
               <div className="toggle--closed">
               {data.icon &&
                 <span className="c-bolt-button__icon">

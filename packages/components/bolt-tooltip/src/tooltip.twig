@@ -6,6 +6,10 @@
   {% set attributes = attributes.setAttribute("trigger-type", trigger.type) %}
   {% set attributes = attributes.setAttribute("trigger-text", trigger.text) %}
 
+  {% if trigger.transform %}
+    {% set attributes = attributes.setAttribute("trigger-transform", trigger.transform) %}
+  {% endif %}
+
   {% if trigger.icon %}
     {% set attributes = attributes.setAttribute("trigger-icon-name", trigger.icon.name) %}
 
