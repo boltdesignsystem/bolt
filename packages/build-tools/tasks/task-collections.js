@@ -45,6 +45,9 @@ async function clean() {
       case 'pl':
         dirs = [path.join(config.buildDir, '..')];
         break;
+      default:
+        dirs = [config.buildDir];
+        break;
     }
     await internalTasks.clean(dirs);
   } catch (error) {
