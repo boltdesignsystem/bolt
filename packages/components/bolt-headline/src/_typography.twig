@@ -1,4 +1,5 @@
 {% set schema = bolt.data.components['@bolt-components-headline'].schema %}
+{% set types = ["headline", "subheadline", "eyebrow", "text"] %} {# Pre-defined types #}
 
 {% set tags = schema.properties.tag.enum|remove_null %}
 {% set weights = schema.properties.weight.enum|remove_null %}
