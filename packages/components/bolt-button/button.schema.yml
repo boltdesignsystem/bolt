@@ -2,26 +2,48 @@ $schema: 'http://json-schema.org/draft-04/schema#'
 title: 'Bolt Button'
 description: 'Buttons are the core of our action components.'
 type: object
+required:
+  - text
 properties:
   text:
     title: 'Button Text'
     description: 'The text displayed inside a button'
     type: string
+  transform:
+      type:
+        anyOf:
+          - string
+          - null
+      description: Text transformation.
+      default: null
+      enum:
+        - uppercase
+        - lowercase
+        - capitalize
+        - null
   theme:
     description: 'Themes, which are globally defined.'  # @todo Pulling this information in is a work in progress. Should be dynamically generated
-    $ref: '@bolt/theme.schema.json#/properties/themes'
+#    $ref: '@bolt/theme.schema.json#/properties/themes'
   tag:
     title: 'Semantic tag'
     description: 'What should this element semantically be?'
-    type: string
+    type:
+      anyOf:
+        - string
+        - null
     enum:
+      - a
       - link
       - button
       - submit
       - reset
+      - null
     default: button
   size:
-    type: string
+    type:
+      anyOf:
+        - string
+        - null
     title: 'Button Size'
     description: 'How large is this button?'
     default: medium
@@ -31,16 +53,24 @@ properties:
       - medium
       - large
       - xlarge
+      - null
   align:
     title: 'Button Alignment'
-    type: string
+    type:
+      anyOf:
+        - string
+        - null
     enum:
       - left
       - center
       - right
+      - null
     default: center
   style:
-    type: string
+    type:
+      anyOf:
+        - string
+        - null
     title: 'Button Style'
     description: 'What''s the button style / theme?'
     default: primary
@@ -48,8 +78,12 @@ properties:
       - primary
       - secondary
       - text
+      - null
   width:
-    type: string
+    type:
+      anyOf:
+        - string
+        - null
     title: 'Button Width'
     default: null
     description: 'Should a button be full width, it''s default size, or full width, but only on smaller screens?'
@@ -58,13 +92,16 @@ properties:
       - full@small
       - null
   rounded:
-    type: string
+    type:
+      anyOf:
+        - string
+        - null
     title: 'Rounded Corners?'
     description: 'What kind of rounded corners should the button have?'
     default: null
     enum:
-      - null
       - rounded
+      - null
   iconOnly:
     type: boolean
     title: 'Icon Only?'
@@ -75,6 +112,3 @@ properties:
     enum:
       - true
       - false
-required:
-  - text
-additionalProperties: false

@@ -124,7 +124,15 @@
           <tr class="c-bolt-docs-table__row">
             <td class="c-bolt-docs-table__col c-bolt-docs-table__col--key">{{ key }}{% if key in requiredProps %} <span class="required-key" title="Required">*</span>{% endif %}</td>
 
-            <td class="c-bolt-docs-table__col"><code>{{ prop.type }}</code></td>
+            {% if prop.type.anyOf is iterable %}
+              <td class="c-bolt-docs-table__col">
+              {% for type in prop.type.anyOf %}
+                <code>{{ type }}</code>
+              {% endfor %}
+              </td>
+            {% else %}
+              <td class="c-bolt-docs-table__col"><code>{{ prop.type }}</code>
+            {% endif %}
 
             <td class="c-bolt-docs-table__col">{{ macros.schemaProps(prop) }}</td>
 

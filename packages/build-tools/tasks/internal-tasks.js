@@ -31,6 +31,9 @@ async function clean(dirs) {
     force: true, // needed if you want to delete directories outside CWD
   });
   spinner.succeed(chalk.green(`Cleaned files in ${timer.end(startTime)}`));
+  if (config.verbosity > 2) {
+    console.log(dirs);
+  }
   return true;
 }
 

@@ -207,7 +207,7 @@ function createConfig(config) {
   // conditional is temp workaround for when servers are disabled via absence of `config.wwwDir`
   const publicPath = config.wwwDir
     ? `/${path.relative(config.wwwDir, config.buildDir)}/`
-    : config.buildDir;
+    : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
 
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
   const webpackConfig = {
@@ -256,7 +256,14 @@ function createConfig(config) {
           options: {
             name: 'fonts/[name].[ext]',
           },
-        }
+        },
+        {
+          test: /\.svg$/,
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+          },
+        },
       ],
     },
     plugins: [

@@ -88,6 +88,7 @@ $bolt-input-background-color--disabled: bolt-color(gray, xlight);
 $bolt-input-placeholder-color: rgba(bolt-color(gray, xdark), 0.5); // TODO: [Mai] This is the theme text color at 66%
 $bolt-input-placeholder-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
 $bolt-input-placeholder-color--disabled: rgba(bolt-color(gray, xdark), 0.5); // TODO: [Mai] This is the theme text color at 66%
+$bolt-input-icon-color--active: bolt-color(indigo, light);
 $bolt-input-icon-color--invalid: bolt-color(error);
 $bolt-input-border-color: rgba(bolt-color(indigo, light), 0.25); // TODO: [Mai] This is the theme link color at 25%
 $bolt-input-border-color--focus: bolt-color(indigo, light); // TODO: [Mai] This is the theme link color
@@ -96,7 +97,7 @@ $bolt-input-border-width: $bolt-border-width;
 $bolt-input-border-style: $bolt-border-style;
 $bolt-input-border-radius: $bolt-border-radius;
 $bolt-input-box-shadow: bolt-color(indigo, light);
-$bolt-input-shadow-level: 'level-30';
+$bolt-input-shadow-level: 'level-20';
 $bolt-input-transition: $bolt-transition;
 
 @mixin bolt-input-placeholder($color) {
@@ -368,6 +369,14 @@ $bolt-input-transition: $bolt-transition;
   }
 }
 
+.c-bolt-input:focus,
+.c-bolt-custom-input.is-active {
+  & ~ .c-bolt-input-icons {
+    color: $bolt-input-icon-color--active;
+    --bolt-theme-icon: $bolt-input-icon-color--active;
+  }
+}
+
 .c-bolt-input-icon {
   display: inline-block;
 }
@@ -386,6 +395,7 @@ $bolt-input-transition: $bolt-transition;
 .c-bolt-input-icon--invalid {
   display: none; // The invalid icon will always be present and simply un-hidden when a field becomes invalid
   color: $bolt-input-icon-color--invalid;
+  --bolt-theme-icon: $bolt-input-icon-color--invalid;
 }
 
 .c-bolt-input.is-invalid ~ .c-bolt-input-icons,

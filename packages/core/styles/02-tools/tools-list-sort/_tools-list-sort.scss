@@ -9,16 +9,21 @@
 /// @return {List} A sorted SASS list
 /// @requires {function} bolt-list-remove
 @function bolt-list-sort($list) {
-  $sortedlist: ();
-  @while length($list) > 0 {
-    $value: nth($list, 1);
-    @each $item in $list {
-      @if $item < $value {
-        $value: $item;
-      }
+    $sortedlist: ();
+    @while length($list) > 0 {
+        $value: nth($list, 1);
+        @each $item in $list {
+          @if type-of($item) == "number" and type-of($value) == "number" {
+            @if $item < $value {
+                $value: $item;
+            }
+          } @else {
+            @warn 'Problem encountered'; // `@warn` shows Backtrace, `@error` does not
+            @error 'These values are not sortable: ' + $item + ' and ' + $value;
+          }
+        }
+        $sortedlist: append($sortedlist, $value, "space");
+        $list: bolt-list-remove($list, index($list, $value));
     }
-    $sortedlist: append($sortedlist, $value, 'space');
-    $list: bolt-list-remove($list, index($list, $value));
-  }
-  @return $sortedlist;
+    @return $sortedlist;
 }
