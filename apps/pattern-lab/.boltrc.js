@@ -37,7 +37,6 @@ module.exports = {
       '@bolt/core',
       '@bolt/global',
       '@bolt/components-action-blocks',
-      '@bolt/components-collapse',
       '@bolt/components-dropdown',
       '@bolt/components-background',
       '@bolt/components-background-shapes',
