@@ -13,7 +13,27 @@
 
 <bolt-share bolt-component>
   <div {{ attributes.addClass(classes) }}>
-
+    {% include "@bolt-components-tooltip/tooltip.twig" with {
+      trigger: {
+        type: "button",
+        text: "Share",
+        transform: "uppercase",
+        icon: {
+          name: "share1",
+          size: "medium"
+        },
+        toggle: {
+          text: "Close",
+          name: "close-solid"
+        }
+      },
+      content: "Here is a tooltip! And it even comes with a button toggle!",
+      id: "tooltip-share",
+      type: "action",
+      position: "up",
+      noWrap: false,
+      spacing: "none"
+    } only %}
   </div>
 </bolt-share>
 

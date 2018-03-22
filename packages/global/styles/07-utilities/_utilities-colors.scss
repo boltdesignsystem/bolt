@@ -2,6 +2,8 @@
   COLOR UTILITIES
 \* ------------------------------------ */
 
+@import '@bolt/core'; // We need this for including within shadowDOM
+
 // Color utility classes
 @each $color in $bolt-colors {
   $colorName: nth($color, 1);

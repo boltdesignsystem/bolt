@@ -10,6 +10,7 @@ import {
 
 import styles from './tooltip.scss';
 import button from '@bolt/components-button/src/button.scss';
+import colorUtils from '@bolt/global/styles/07-utilities/_utilities-colors.scss';
 
 @define
 export class BoltTooltip extends withPreact(withComponent()) {
@@ -109,7 +110,8 @@ class TooltipTrigger extends withPreact(withComponent()) {
       baseClass + '--rounded',
       baseClass + '--medium',
       baseClass + '--secondary',
-      baseClass + '--center'
+      baseClass + '--center',
+      'u-bolt-color-orange',
     ];
 
     if (data.transform) {
@@ -119,7 +121,10 @@ class TooltipTrigger extends withPreact(withComponent()) {
     return (
       <span>
         {data.type === 'button' &&
+        <span>
           <style>{button[0][1]}</style>
+          <style>{colorUtils[0][1]}</style>
+        </span>
         }
         <span
           className="c-bolt-tooltip__trigger"
