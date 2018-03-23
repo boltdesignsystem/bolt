@@ -385,7 +385,7 @@ $bolt-tooltip-transition: $bolt-transition;
 
     .is-active+& {
       opacity: 1 !important; // Brings us back only when active
-      pointer-events: auto;
+      pointer-events: auto !important; // Brings back the ability to click links within the tooltip only when active
     }
   }
 }
