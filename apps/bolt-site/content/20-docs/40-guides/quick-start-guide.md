@@ -1,0 +1,96 @@
+# Bolt Quick Start Guide
+
+## Install Suggested Apps
+
+1. Install the iTerm2 app: https://www.iterm2.com/
+2. Next, install oh-my-zsh: https://github.com/robbyrussell/oh-my-zsh#basic-installation
+```
+# Paste this into iTerm
+sh -c “$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)”
+```
+3. Install the SourceTree app: https://www.sourcetreeapp.com/
+4. Install the VS Code app: https://code.visualstudio.com/
+
+
+## Install Dependencies
+1. Install Homebrew: https://brew.sh/
+```
+/usr/bin/ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)”
+```
+
+2. Install Git
+```
+brew install git
+```
+
+3. Install NodeJS and NPM:
+```bash
+brew install nvm
+
+# Once that finishes, create NVM's working directory if it doesn't exist
+mkdir ~/.nvm      
+
+# Add the following to ~/.zshrc or your desired shell configuration file:
+echo 'export NVM_DIR="$HOME/.nvm"
+  . "/usr/local/opt/nvm/nvm.sh"' >> ~/.zshrc
+  
+# restart shell
+source ~/.zshrc
+
+# finish installing nvm
+nvm install lts/carbon # v8.9 +
+nvm alias default lts/carbon
+
+```
+
+4. Install PHP and PHP Dependencies
+```
+brew install php72
+brew tap homebrew/homebrew-php
+brew install composer
+composer global require hirak/prestissimo
+```
+
+5. Install GD and Imagick (used for generating responsive images in the build process)
+```
+brew install imagemagick
+brew install graphicsmagick
+```
+
+6. Finally, install Yarn
+```
+brew install yarn
+```
+
+
+
+## Pulling Down, Installing and Running Bolt Locally
+
+1. In iTerm, create a `sites` folder on your machine if you don't already have one created.
+```
+cd ~/
+mkdir sites
+cd sites
+```
+
+2. Now, clone down the Bolt repo locally (which will be located in your `~/sites/bolt` folder):
+```
+git clone https://github.com/bolt-design-system/bolt.git
+```
+
+3. Once the code has finished being cloned, in iTerm, change your working directory to be at the root of the Bolt codebase
+```
+cd bolt
+```
+
+4. Now, run the setup command which will do all the necessary installs for running the docs site and Pattern Lab environments locally, set up the build tools, install PHP dependencies, etc. Note: this'll take a couple mins probably the first time you need to run it - it gets faster during subsequent runs!
+```
+yarn # so Lerna bootstrap works
+npm run setup
+```
+
+5. Finally, assuming you didn't get any errors during Step 4, you should be able to `cd` into the `apps/pattern-lab` folder to get the code to compile, watch for changes, start up a local dev server, etc.
+```
+cd apps/pattern-lab
+npm start
+```
