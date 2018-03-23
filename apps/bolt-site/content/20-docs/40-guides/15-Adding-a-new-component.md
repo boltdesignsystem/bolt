@@ -10,8 +10,8 @@ Below you'll find a step-by-step guide to walk through the process of adding a n
 {
   "name": "@bolt/[NEW-COMPONENT]",
   "description": "BLANK Component in Bolt",
-  "version": "1.0.0-rc.3",
-  "homepage": "https://boltdesignsystem.com",
+  "version": "0.0.0",
+  "homepage": "https://bolt-design-system.com",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -27,15 +27,13 @@ Below you'll find a step-by-step guide to walk through the process of adding a n
     "access": "public"
   },
   "dependencies": {
-    "@bolt/core": "^1.0.0-rc.3",
-    "@bolt/components-link": "1.0.0-rc.3",
-    "@bolt/components-icon": "1.0.0-rc.3"
+    "@bolt/core": "0.0.0"
   }
 }
 ```
 **Notes:**
-- Ensure you're using the correct version (review `package.json` of another current component)
-- Make sure to add any required Bolt components to `dependencies` and their correct version
+- Ensure you're ONLY adding the assets needed (e.g. if you don't need JavaScript then don't add `"main": "src/[COMPONENT].js"`)
+- Make sure to add any required Bolt components to `dependencies`
 
 **<u>Step 3</u>:** Add your necessary SCSS and JS files to `[bolt-NEW-COMPONENT]/src/`
 
@@ -61,7 +59,15 @@ polyfillLoader.then((res) => {
 - Be sure to review an existing readme and include the "Install via NPM" instructions
 - Consider adding a "description" section as well as a "best practices" bullet list
 
-**<u>Step 6</u>:** Add component to `workspaces` array within the `package.json` located at the root of the repo
+**<u>Step 6</u>:** In the `package.json` file in the root of the Bolt repo, add the new component's folder path to the `workspaces` key. This tells Lerna and Yarn where to look when installing and symlinking together the different packages that make up the Bolt codebase (**hint:** that's what happens when running `npm run bootstrap`)
+
+```
+"workspaces": [
+    "packages/components/bolt-action-blocks",
+    "packages/components/bolt-[COMPONENT-FOLDER-NAME]",
+   ...
+]
+```
 
 **<u>Step 7</u>:** Add component to `package.json` AND `.boltrc.js` within the Pattern Lab dir `/apps/pattern-lab/`
 
