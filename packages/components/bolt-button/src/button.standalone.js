@@ -83,7 +83,7 @@ class BoltButton extends BoltComponent() {
     const classes = css(
       'c-bolt-button',
       this.props.size ? `c-bolt-button--${this.props.size}` : '',
-      this.props.color ? `c-bolt-button--${this.props.color}` : '',
+      this.props.color ? `c-bolt-button--${this.props.color}` : 'c-bolt-button--primary',
       this.props.rounded ? `c-bolt-button--rounded` : '',
       this.props.iconOnly ? `c-bolt-button--icon-only` : '',
       this.props.width ? `c-bolt-button--${this.props.width}` : '',
