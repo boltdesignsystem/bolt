@@ -1,27 +1,29 @@
-# Drupal Lite
-
-> Project template for a simple Drupal 8 using SQLite for easy dev testing.
+# Drupal Lab
 
 ## Usage
 
-### Creating a new project
-
-If you want to create a new project using this, run:
-
-```
-composer create-project basaltinc/drupal-lite some-dir --stability dev --no-interaction
-```
-
-- Commit the results
-- Delete this section of "Creating a new project" as it's confusing.
-
-### Using the current Drupal Lite project
-
 #### First time setup
+
+Install and build Drupal:
 
 ```bash
 composer install
 composer run build
+```
+
+Compile assets in theme using Bolt Build Tools:
+
+```bash
+cd web/themes/flash
+npm run build
+cd ../../../
+```
+
+Next, run a `git status` and you'll notice that `settings.php` has been modified. Please revert those changes, possibliy needing to use `sudo`. @todo This step needs to be improved.
+
+Start up the web server:
+
+```bash
 composer run serve
 ```
 
