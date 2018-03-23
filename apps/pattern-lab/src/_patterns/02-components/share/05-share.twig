@@ -1,9 +1,21 @@
-<div style="text-align: center; padding: 6rem 0;">
+<div class="demo--share">
 {% include '@bolt-components-share/share.twig' with {
   sources: ['facebook','twitter','linkedin'],
   email: true,
   copy: true,
   visibility: 'visible',
-  inline: false
+  inline: true
 } only %}
 </div>
+
+<script>
+  //We're inside an iframe if true and we need to adjust styles
+  const demo = document.querySelector('.demo--share');
+  if (demo !== null) {
+    if (window.self !== window.top) {
+      demo.setAttribute('style','text-align: center; padding: 10rem 0 0');
+    } else {
+      demo.setAttribute('style','position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)');
+    }
+  }
+</script>

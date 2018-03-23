@@ -2,13 +2,25 @@
 {% set emailShare = email is sameas(false) ? false : (email is null ? true : email) %}
 {% set copyShare = copy is sameas(false) ? false : (copy is null ? true : copy) %}
 {% set visible = visibility is not empty ? visibility : 'visible' %}
-{% set isFlat = flatLayout is sameas(false) ? false : (flatLayout is null ? false : flatLayout) %}
+{% set isFlat = inline is sameas(false) ? false : (inline is null ? false : inline) %}
+
+{% set items = [] %}
+
+{% if isFlat is sameas(true) %}
+  {% set items = items|merge([include("@bolt-components-headline/text.twig", {
+    text: "Share",
+    transform: 'uppercase',
+    weight: 'bold'
+  })]) %}
+{% endif %}
+
+{{ console_log(items) }}
 
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set classes = [
   'c-bolt-share',
   'c-bolt-share--' ~ visible,
-  isFlat is sameas(false) ? 'c-botl-share--normal-layout'
+  isFlat is sameas(false) ? 'c-bolt-share--normal-layout'
 ] %}
 
 <bolt-share bolt-component>
@@ -27,7 +39,9 @@
           name: "close-solid"
         }
       },
-      content: "Here is a tooltip! And it even comes with a button toggle!",
+      content: include ("@bolt-components-block-list/block-list.twig", {
+      "contentItems" : items
+      }),
       id: "tooltip-share",
       type: "action",
       position: "up",
