@@ -1,0 +1,27 @@
+<h2>Namespaces</h2>
+{% for key, value in namespaces %}
+  <h4><code>@{{key}}</code></h4>
+  <details>
+  <summary>Paths for this Twig Namespace</summary>
+    <ul>
+      {% for path in value.paths %}
+        <li>{{ path }}</li>
+      {% endfor %}
+    </ul>
+  </details>
+{% endfor %}
+
+<h2>Functions</h2>
+{% for function in functions %}
+  <ul>
+    <li><code>{{ function.name }}</code></li>
+  </ul>
+{% endfor %}
+
+<h2>Filters</h2>
+{% for filter in filters %}
+  <ul>
+    <li><code>{{ filter.name }}</code></li>
+  </ul>
+{% endfor %}
+

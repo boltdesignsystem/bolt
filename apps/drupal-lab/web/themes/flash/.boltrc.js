@@ -5,6 +5,7 @@ module.exports = {
   components: {
     global: [
       '@bolt/global',
+      '@bolt/components-headline',
     ],
     individual: [
     ],

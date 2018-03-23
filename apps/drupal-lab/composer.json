@@ -12,9 +12,19 @@
     {
       "type": "composer",
       "url": "https://packages.drupal.org/8"
+    },
+    {
+      "type": "path",
+      "url": "../../packages/core-php"
+    },
+    {
+      "type": "path",
+      "url": "../../packages/drupal-modules/bolt_connect"
     }
   ],
   "require": {
+    "bolt-design-system/bolt_connect": "^1.0@RC",
+    "bolt-design-system/core-php": "^1.0@RC",
     "composer/installers": "^1.2",
     "cweagans/composer-patches": "^1.6",
     "drupal-composer/drupal-scaffold": "^2.2",
