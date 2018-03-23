@@ -1,0 +1,121 @@
+
+{% block global_header %}{% endblock %}
+
+
+{% include "@bolt-components-nav-bar/nav-bar.twig" with {
+  "theme": "dark",
+  "title": {
+    "tag": "h2",
+    "text": "Pega for Government",
+    "icon": {
+      "name": "government"
+    }
+  },
+  "links": [
+    {
+      "text": "Events",
+      "url": "link-1-url"
+    },
+    {
+      "text": "Customers",
+      "url": "link-2-url"
+    },
+    {
+      "text": "News",
+      "url": "link-3-url"
+    }
+  ]
+} %}
+
+{# band #}
+{% block main_content %}
+  {% embed "@bolt/band--feature.twig" with {
+    size: "large",
+    full: true,
+    theme: "dark",
+    background: {
+      opacity: "light",
+      fill: "gradient",
+      focalPoint: {
+        vertical: "center",
+        horizontal: "right"
+      },
+      contentItems: [{
+        pattern: "image",
+        src: "https://www.pega.com/sites/pega.com/files/styles/full_width_image/public/hero-government-4.jpg?itok=YRPU8-d-",
+        alt: "Background banner of conference keynote",
+        lazyload: true
+      }]
+    }
+  } only %}
+
+
+  {% block band_content %}
+
+    {% grid with {
+      attributes: {
+        class: [
+          "o-bolt-grid--middle"      
+        ]  
+      }
+    } %}
+    {% cell with {
+      attributes: {
+        class: [
+          "u-bolt-width-1/1",
+          "u-bolt-width-1/2@small"     
+        ]
+      }
+    } %}
+
+        {# band teaser #}
+        {% include "@bolt-components-headline/headline.twig" with {
+            type: "headline",
+            text: "Pega for Government",
+            size: "xxxlarge",
+            tag: "h1"
+          } only %}
+        {% include "@bolt-components-headline/subheadline.twig" with {
+            type: "subheadline",
+            text: "Modernize your organization and transform the constituent experience.",
+            size: "xlarge",
+            tag: "p"
+          } only %}
+      {% endcell %}
+    {% endgrid %}
+
+    
+        {# band list #}
+        {# {% grid with {
+          attributes: {
+            class: [
+              "o-bolt-grid--middle"      
+            ]  
+          }
+        } %}
+        {% cell with {
+          attributes: {
+            class: [
+              "u-bolt-width-1/1",
+              "u-bolt-width-1/2@small"     
+            ]
+          }
+        } %}
+
+      {% include "@bolt-components-headline/eyebrow.twig" with {
+            text: "Learn more",
+          } only %}
+        {% include "@bolt-components-headline/subheadline.twig" with {
+            type: "subheadline",
+            text: "Modernize your organization and transform the constituent experience.",
+            size: "xlarge",
+            tag: "p"
+          } only %}
+      {% endcell %}
+    {% endgrid %} #}
+
+    {% endblock %}
+  {% endembed %}
+
+
+{% endblock %}
