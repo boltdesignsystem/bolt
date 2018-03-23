@@ -4,15 +4,26 @@
 {% set primaryUUID = "c-bolt-dropdown-#{uuid}" %}
 {% set secondaryUUID = "c-bolt-dropdown-inner-#{uuid}" %}
 
-<bolt-dropdown align="">
+
+
+
+<bolt-dropdown {% if center and center == true %}center{% endif %}>
   <input class="c-bolt-dropdown__state" type="checkbox" id="{{ primaryUUID }}">
 
   <div class="c-bolt-dropdown" id="{{ secondaryUUID }}">
-    <h3 class="c-bolt-dropdown__header u-bolt-hidden@small">
+    <h3 class="c-bolt-dropdown__header u-bolt-hidden@small {% if center and center == true %}c-bolt-dropdown__header--center{% endif %} ">
       <button class="c-bolt-dropdown__header-button">
         Toggle Dropdown
 
-        <bolt-icon name="chevron-right"></bolt-icon>
+        <span class="c-bolt-dropdown__header-icons">
+          <span class="c-bolt-dropdown__header-icon c-bolt-dropdown__header-icon--open">
+            <bolt-icon name="chevron-down"></bolt-icon>
+          </span>
+
+          <span class="c-bolt-dropdown__header-icon c-bolt-dropdown__header-icon--close">
+            <bolt-icon name="chevron-up"></bolt-icon>
+          </span>
+        </span>
       </button>
 
       <label class="c-bolt-dropdown__label" for="{{ primaryUUID }}">
