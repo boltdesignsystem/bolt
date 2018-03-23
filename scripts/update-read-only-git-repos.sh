@@ -19,7 +19,10 @@ fi
 # Run helper subsplit script ported over from from https://raw.githubusercontent.com/dflydev/git-subsplit/master/git-subsplit.sh
 
 ./scripts/git-subsplit.sh init https://${GH_TOKEN}@github.com/bolt-design-system/core-php.git
-
 ./scripts/git-subsplit.sh publish --work-dir=$PWD packages/core-php:https://${GH_TOKEN}@github.com/bolt-design-system/core-php.git \
+  --heads=master --update
+
+./scripts/git-subsplit.sh init https://${GH_TOKEN}@github.com/bolt-design-system/bolt_connect.git
+./scripts/git-subsplit.sh publish --work-dir=$PWD packages/drupal-modules/bolt_connect:https://${GH_TOKEN}@github.com/bolt-design-system/bolt_connect.git \
   --heads=master --update
 
