@@ -1,4 +1,3 @@
-export * from './icons/Filter';
 export * from './icons/add-open';
 export * from './icons/add-solid';
 export * from './icons/app-development';
@@ -18,7 +17,10 @@ export * from './icons/case-management';
 export * from './icons/check';
 export * from './icons/check-circle';
 export * from './icons/check-solid';
+export * from './icons/chevron-down';
+export * from './icons/chevron-left';
 export * from './icons/chevron-right';
+export * from './icons/chevron-up';
 export * from './icons/close';
 export * from './icons/close-open';
 export * from './icons/close-solid';
