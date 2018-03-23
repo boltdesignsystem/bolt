@@ -8,6 +8,7 @@
 # Paste this into iTerm
 sh -c “$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)”
 ```
+
 3. Install the SourceTree app: https://www.sourcetreeapp.com/
 4. Install the VS Code app: https://code.visualstudio.com/
 
