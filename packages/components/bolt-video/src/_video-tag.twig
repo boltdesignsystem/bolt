@@ -1,5 +1,5 @@
 
-{% set attributes = attributes | default({}) %}
+{% set attributes = create_attribute(attributes | default({})) %}
 
 {% if videoAttributes %}
   {% set attributes = videoAttributes | merge(attributes) %}
@@ -17,5 +17,56 @@
   {% endfor %}
 {% endif %}
 
-{% set customElementName = "bolt-video" %}
-{% extends "@bolt/brightcove-player.twig" %}
+
+
+
+{# force HTML5 Only Rendering #}
+{% set attributes = attributes.setAttribute("data-setup", '{"techOrder": ["Html5"]}') %}
+{% set showMeta = showMeta is null ? true : showMeta %}
+{% set showMetaTitle = showMeta is null ? false : showMetaTitle %}
+
+{% set controls = controls is null ? true : controls %}
+{% set autoplay = autoplay is null ? false : autoplay %}
+{% set loop = loop is null ? false : loop %}
+
+{% if videoId %}
+  {% set attributes = attributes.setAttribute("video-id", videoId) %}
+{% endif %}
+
+{% if accountId %}
+  {% set attributes = attributes.setAttribute("account-id", accountId) %}
+{% endif %}
+
+{% if showMeta %}
+  {% set attributes = attributes.setAttribute("show-meta", showMeta) %}
+{% endif %}
+
+{% if showMetaTitle %}
+  {% set attributes = attributes.setAttribute("show-meta-title", showMetaTitle) %}
+{% endif %}
+
+{% if playerId %}
+  {% set attributes = attributes.setAttribute("player-id", playerId) %}
+{% endif %}
+
+{% if autoplay %}
+  {% set attributes = attributes.setAttribute("autoplay", autoplay) %}
+{% endif %}
+
+{% if controls %}
+  {% set attributes = attributes.setAttribute("controls", controls) %}
+{% endif %}
+
+{% if loop %}
+  {% set attributes = attributes.setAttribute("loop", true) %}
+{% endif %}
+
+{% if isBackgroundVideo %}
+  {% set attributes = attributes.setAttribute("is-background-video", isBackgroundVideo) %}
+{% else %}
+  {% set attributes = attributes.setAttribute("is-background-video", false) %}
+{% endif %}
+
+{% set customElementName = customElementName | default("bolt-video") %}
+
+<{{ customElementName }} {{ attributes }}></{{ customElementName }}>
