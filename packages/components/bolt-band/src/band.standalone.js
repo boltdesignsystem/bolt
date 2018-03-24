@@ -110,7 +110,7 @@ export class BoltBand extends withComponent(withPreact()) {
 
     requestAnimationFrame(() => {
       this.style.minHeight = `${startingHeight}px`;
-      this.style.transition = 'all 0s';
+      this.style.transition = 'height 0s, max-height 0s, min-height 0s';
 
       requestAnimationFrame(() => {
         // In order to get the animation to play, we'll need to wait for
@@ -119,7 +119,7 @@ export class BoltBand extends withComponent(withPreact()) {
         //
         // Then, we just remove the transform, reverting it to its natural
         // state, and apply a transition so it does so smoothly.
-        this.style.transition = 'all 0.4s ease';
+        this.style.transition = 'height 0.4s ease, max-height 0.4s ease, min-height 0.4s ease';
         this.style.minHeight = endingHeight;
       });
     });
@@ -142,7 +142,7 @@ export class BoltBand extends withComponent(withPreact()) {
         //
         // Then, we just remove the transform, reverting it to its natural
         // state, and apply a transition so it does so smoothly.
-        this.style.transition = 'all 0.4s ease';
+        this.style.transition = 'height 0.4s ease, max-height 0.4s ease, min-height 0.4s ease';
         this.style.minHeight = this.expandedHeight;
       });
     });
