@@ -7,14 +7,64 @@
 // Same as max-width of wrapper container
 $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
 
+
+bolt-video {
+  display: block;
+  width: 100%;
+
+  &.is-playing {
+    opacity: 1;
+  }
+
+  // Hide the metadata (which covers the controls) if the user is either
+  //   a) watching the video
+  //   b) potentially interacting with the video
+  &:hover,
+  &.is-playing,
+  &:hover.is-paused {
+    bolt-video-meta {
+      display: none;
+    }
+  }
+}
+
+
+.c-bolt-video__inner {
+  margin: 0 auto;
+}
+
+
 .c-bolt-video {
-  position: absolute;
   width: 100%;
   max-width: none;
   perspective: 1200px;
   perspective-origin: 80% 80%;
   z-index: bolt-z-index('tooltip');
   transition: transform .4s cubic-bezier(.645, 0, .355, 1);
+  .video-js {
+    width: 100%;
+    height: 100%;
+  }
+  /**
+    * 1. 90vw instead of 100vw so the video close button
+    * doesn't spill outside of the video container in IE 11 /
+    * on Windows
+    */
+  .c-bolt-background__video & {
+    display: block;
+    position: relative;
+    width: 90vw;
+    height: 90vw * (9 / 16);
+    max-width: 100vh;
+    max-height: 100vh * (9 / 16);
+    margin: 0 auto;
+    @include respond-to(small) {
+      width: calc(90vw - #{bolt-spacing(large)});
+      /* [1] */
+      height: calc((90vw * (9 / 16)) - #{bolt-spacing(large)});
+      /* [1] */
+    }
+  }
 }
 
 .c-bolt-video__wrapper {
@@ -26,7 +76,6 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
   transition: opacity 0.4s ease, visibility 0.1s ease;
   opacity: 0;
   visibility: hidden;
-
   .is-expanded & {
     opacity: 1;
     visibility: visible;
@@ -41,7 +90,6 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
   border-radius: 6px;
   -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFW…9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
   transition: border-radius 0.4s cubic-bezier(0.645, 0, 0.355, 1);
-
   .is-collapsed & {
     border-radius: 14px;
   }
@@ -64,25 +112,20 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
   right: bolt-spacing(xsmall);
   transition: all 0.3s ease;
   opacity: 0; // Initial state before brightcove video player kicks in
-
   @include respond-to(small) {
     right: (bolt-spacing(large) / -2) - bolt-spacing(xsmall);
   }
-
   .is-collapsed & {
     opacity: 0;
     pointer-events: none;
   }
-
   .is-expanded & {
     opacity: 0.8;
     pointer-events: auto;
   }
-
   &:hover {
     opacity: 1;
   }
-
   &:active {
     opacity: 0.6;
   }
@@ -94,15 +137,12 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
     position: relative;
     right: 0;
     text-align: right;
-
     .c-bolt-video__close-button-icon {
       display: none;
     }
   }
-
   @media (min-width: bolt-breakpoint(small)) {
     position: absolute;
-
     .c-bolt-video__close-button-text {
       @include bolt-visuallyhidden;
     }
