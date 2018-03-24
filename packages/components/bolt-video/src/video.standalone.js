@@ -34,7 +34,7 @@ class BoltVideoMeta extends withPreact(withComponent()) {
     // 'reveal' allows the metadata to be hidden.
     // All of its logic is contained here in render(), but it could be updated to be a property that is set
     // externally (such as when the video has finished fully loading).
-    const reveal =  Boolean(this.title || this.duration);
+    const reveal = Boolean(this.title || this.duration);
     return (
       <div class="c-bolt-video-meta">
         <style>{metaStyles[0][1]}</style>
@@ -61,12 +61,14 @@ class BoltVideo extends withPreact(withComponent()) {
     showMeta: props.boolean,
     showMetaTitle: props.boolean,
     closeButtonText: props.string,
+    loop: props.boolean,
     // onError: null,
     // onPlay: null,
     // onPause: null,
     // onFinish: null,
     // onProgress: null,
     // onDuration: null,
+    controls: props.boolean,
     autoplay: props.boolean,
     resetOnFinish: props.boolean,
     directToFullscreen: props.boolean,
@@ -99,6 +101,7 @@ class BoltVideo extends withPreact(withComponent()) {
       // onFinish: () => { },
       // onProgress: () => { },
       // onDuration: () => { },
+      loop: false,
       autoplay: false,
       hideFullScreenButton: false,
       directToFullscreen: false,
@@ -190,6 +193,11 @@ class BoltVideo extends withPreact(withComponent()) {
 
     elem.setPlayer(player);
 
+    // If the option to show controls is set to false (meaning, no controls will be shown), make sure the video is also muted.
+    if (elem.controls === false) {
+      elem.player.muted(true);
+    }
+
     player.on("loadedmetadata", function () {
       const duration = player.mediainfo.duration;
       const title = player.mediainfo.name;
@@ -204,7 +212,7 @@ class BoltVideo extends withPreact(withComponent()) {
       if (this.earlyToggle) {
         this.earlyToggle = false;
         this.toggle();
-      } else if (this.earlyPlay){
+      } else if (this.earlyPlay) {
         this.earlyPlay = false;
         this.play();
       } else if (this.earlyPause) {
@@ -213,7 +221,7 @@ class BoltVideo extends withPreact(withComponent()) {
       }
     });
 
-    player.on("play", function(){
+    player.on("play", function () {
       elem.onPlay(player);
     });
 
@@ -247,7 +255,7 @@ class BoltVideo extends withPreact(withComponent()) {
   static getScriptUrl(accountId, playerId) {
     return `//players.brightcove.net/${accountId}/${
       playerId
-    }_default/index.min.js`;
+      }_default/index.min.js`;
   }
 
   static getCurrentTimeMs(player) {
@@ -329,7 +337,7 @@ class BoltVideo extends withPreact(withComponent()) {
 
     // If onInit event exists on element, run that instead of auto initializing
     if (this.props.onInit) {
-      if (window[this.props.onInit]){
+      if (window[this.props.onInit]) {
         window[this.props.onInit](this);
       }
     }
@@ -339,7 +347,7 @@ class BoltVideo extends withPreact(withComponent()) {
   }
 
 
-  _onWindowResize(event){
+  _onWindowResize(event) {
     this._calculateIdealVideoSize();
   }
 
@@ -506,7 +514,7 @@ class BoltVideo extends withPreact(withComponent()) {
     const srcWidth = this.srcWidth;
     const srcHeight = this.srcHeight;
 
-    if (this.srcWidth && this.srcHeight){
+    if (this.srcWidth && this.srcHeight) {
       const maxRatio = .5625; //56.25%
       const maxWidth = this.querySelector('video').getBoundingClientRect().width;
       const maxHeightOption1 = maxWidth * maxRatio;
@@ -547,6 +555,7 @@ class BoltVideo extends withPreact(withComponent()) {
     const player = videojs(id);
     const handler = BoltVideo.handlePlayerReady.bind(player, this);
     // player.on("ready", handler);
+
     player.ready(handler);
 
     // player.on("error", this.onError.bind(this, player));
@@ -606,7 +615,7 @@ class BoltVideo extends withPreact(withComponent()) {
     // console.log('TOGGLE VIDEO');
     // console.log(this.state);
     if (this.player) {
-      if (this.state.isPlaying === false || this.state.isPlaying === 'paused'){
+      if (this.state.isPlaying === false || this.state.isPlaying === 'paused') {
         this.play();
       } else {
         this.pause();
@@ -669,6 +678,7 @@ class BoltVideo extends withPreact(withComponent()) {
 
     const classes = css(
       'c-bolt-video',
+      this.props.controls === false ? 'c-bolt-video--hide-controls' : ''
     );
 
     return (
@@ -676,7 +686,7 @@ class BoltVideo extends withPreact(withComponent()) {
         <video
           {...dataAttributes}
           id={this.state.id}
-          {...(this.props.poster ? { poster: this.props.poster.uri } : {}) }
+          {...(this.props.poster ? { poster: this.props.poster.uri } : {})}
           data-embed="default"
           data-video-id={this.props.videoId}
           preload="none"
@@ -687,8 +697,9 @@ class BoltVideo extends withPreact(withComponent()) {
           // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
           autoPlay={this.props.autoplay}
           data-application-id
+          loop={this.props.loop}
           className="video-js"
-          controls
+          controls={this.props.controls}
         />
         {this.props.showMeta &&
           <bolt-video-meta />

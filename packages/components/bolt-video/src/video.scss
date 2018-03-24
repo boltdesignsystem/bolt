@@ -169,3 +169,13 @@ bolt-video {
   position: relative;
   width: 100%;
 }
+
+.c-bolt-video--hide-controls {
+  .video-js .vjs-control-bar {
+    display: none;
+  }
+
+  .video-js {
+    pointer-events: none;
+  }
+}
