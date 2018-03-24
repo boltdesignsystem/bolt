@@ -64,8 +64,8 @@ $bolt-flag-alignments: (
 // // Flag alignment
 @each $alignment, $value in $bolt-flag-alignments {
   .o-bolt-flag--#{$alignment} {
-    align-items: $value;
-    vertical-align: $alignment;
+    align-items: unquote($value);
+    vertical-align: unquote($alignment);
   }
 }
 
