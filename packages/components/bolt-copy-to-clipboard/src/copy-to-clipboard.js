@@ -1,30 +1,34 @@
 import ClipboardJS from 'clipboard';
 
-let theClipRef = document.querySelector('.c-bolt-copy-to-clipboard__default .c-bolt-link');
-let theClipCopied = document.querySelector('.c-bolt-copy-to-clipboard__copied .c-bolt-link');
+const theClipRef = document.querySelectorAll('.js-bolt-copy-to-clipboard__default .c-bolt-link');
+const theClipCopied = document.querySelectorAll('.js-bolt-copy-to-clipboard__copied .c-bolt-link');
 
-if (theClipRef !== null) {
-  theClipRef.addEventListener("click", function(event) {
-    event.preventDefault(); // Prevent the default link behavior
+if (theClipRef.length > 0) {
+  theClipRef.forEach((ref) => {
+    ref.addEventListener('click', (event) => {
+      event.preventDefault(); // Prevent the default link behavior
+    }, false);
 
-    let clip = new ClipboardJS('.c-bolt-copy-to-clipboard__default .c-bolt-link');
+    const clip = new ClipboardJS(ref); // ClipboardJS adds it's own event listener
 
-    /**
+    /*
      * [1] Adds a class onClick after successful copy and enables the first set of animations
      * [2] Waits until the first set of animations complete and adds the last class for last animations
-     **/
-    clip.on("success", function() {
-      document.querySelector('.js-bolt-copy-to-clipboard').classList.add('copied'); // [1]
-      setTimeout(function(){ // [2]
-         document.querySelector('.js-bolt-copy-to-clipboard').classList.add('transitioning');
+     */
+    clip.on('success', () => {
+      ref.parentElement.parentElement.classList.add('is-copied'); // [1]
+      setTimeout(() => { // [2]
+        ref.parentElement.parentElement.classList.add('is-transitioning');
       }, 2000);
     });
-  }, false);
+  });
 }
 
 // We don't want the other link clickable either
-if (theClipCopied !== null) {
-  theClipCopied.addEventListener("click", function(event) {
-    event.preventDefault(); // Prevent the default link behavior
-  }, false);
+if (theClipCopied.length > 0) {
+  theClipCopied.forEach((ref) => {
+    ref.addEventListener('click', (event) => {
+      event.preventDefault(); // Prevent the default link behavior
+    }, false);
+  });
 }
