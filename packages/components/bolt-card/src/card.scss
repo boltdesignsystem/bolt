@@ -134,6 +134,7 @@ bolt-card {
 .c-bolt-card__footer {
   position: relative;
   display: flex;
+  overflow: hidden; // Prevent the card footer's border from overflowing outside the card. Workaround if card footer container rendering despite not having any content to display.
 
   &:before {
     content: '';
