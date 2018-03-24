@@ -48,8 +48,30 @@ class BoltVideoMeta extends withPreact(withComponent()) {
 
 
 @define
-class BoltVideo extends BrightcoveVideo {
-  static is='bolt-video';
+class BoltVideo extends withPreact(withComponent()) {
+  static is = 'bolt-video';
+
+  static props = {
+    videoId: props.string,
+    accountId: props.string,
+    playerId: props.string,
+    poster: props.object,
+    isBackgroundVideo: props.boolean,
+    onInit: props.string,
+    showMeta: props.boolean,
+    showMetaTitle: props.boolean,
+    closeButtonText: props.string,
+    // onError: null,
+    // onPlay: null,
+    // onPause: null,
+    // onFinish: null,
+    // onProgress: null,
+    // onDuration: null,
+    autoplay: props.boolean,
+    resetOnFinish: props.boolean,
+    directToFullscreen: props.boolean,
+    hideFullScreenButton: props.boolean
+  }
 
   constructor(element) {
     super(element);
@@ -65,7 +87,7 @@ class BoltVideo extends BrightcoveVideo {
     // This binding is necessary to make `this` work in the callback
     this.handleClose = this.handleClose.bind(this);
 
-    // BrightcoveVideo.globalErrors.forEach(this.props.onError);
+    // BoltVideo.globalErrors.forEach(this.props.onError);
 
     this.defaultProps = {
       // width: 320,
@@ -247,7 +269,7 @@ class BoltVideo extends BrightcoveVideo {
   connectedCallback() {
     this.state = {
       id: `${this.props.videoId}-${this.props.accountId}-${index}`,
-      // errors: BrightcoveVideo.globalErrors !== undefined  ? [].concat(BrightcoveVideo.globalErrors) : [],
+      // errors: BoltVideo.globalErrors !== undefined  ? [].concat(BoltVideo.globalErrors) : [],
       isPlaying: "paused",
       isFinished: false,
       progress: 0
@@ -262,10 +284,10 @@ class BoltVideo extends BrightcoveVideo {
       }
     }
 
-    if (BrightcoveVideo.globalErrors !== undefined && BrightcoveVideo.globalErrors.length) {
+    if (BoltVideo.globalErrors !== undefined && BoltVideo.globalErrors.length) {
       // console.log('adding default errors');
       // console.log(this.state.errors);
-      this.state.errors = [].concat(BrightcoveVideo.globalErrors);
+      this.state.errors = [].concat(BoltVideo.globalErrors);
     } else {
       this.state.errors = [];
     }
@@ -277,13 +299,13 @@ class BoltVideo extends BrightcoveVideo {
     }
 
     // only ever append script once
-    if (!BrightcoveVideo.players) {
-      BrightcoveVideo.players = [];
+    if (!BoltVideo.players) {
+      BoltVideo.players = [];
 
       const s = this.createScript();
 
       s.onload = () => {
-        BrightcoveVideo.players.forEach(function(player){
+        BoltVideo.players.forEach(function (player) {
           player.initVideoJS(player.state.id)
         });
       };
@@ -295,12 +317,12 @@ class BoltVideo extends BrightcoveVideo {
           message: `The script ${err.target.src} is not accessible.`
         };
 
-        BrightcoveVideo.globalErrors.push(uriErr);
+        BoltVideo.globalErrors.push(uriErr);
 
         this.props.onError(uriErr);
       };
 
-      BrightcoveVideo.appendScript(s);
+      BoltVideo.appendScript(s);
     }
 
     this.init();
@@ -392,14 +414,14 @@ class BoltVideo extends BrightcoveVideo {
     // @TODO: implement internal setState method
     // elem.setState({
     //   isPlaying: true,
-    //   progress: BrightcoveVideo.getCurrentTimeMs(player),
+    //   progress: BoltVideo.getCurrentTimeMs(player),
     //   isFinished: false
     // });
 
     // Dispatch an event that signals a request to expand to the
     // `<howto-accordion>` element.
     this.state.isPlaying = true;
-    this.state.progress = BrightcoveVideo.getCurrentTimeMs(player);
+    this.state.progress = BoltVideo.getCurrentTimeMs(player);
     this.state.isFinished = false;
 
     this.dispatchEvent(
@@ -413,7 +435,7 @@ class BoltVideo extends BrightcoveVideo {
   }
 
   onPause(player) {
-    const progress = BrightcoveVideo.getCurrentTimeMs(player);
+    const progress = BoltVideo.getCurrentTimeMs(player);
 
     this.classList.add('is-paused');
     this.classList.remove('is-playing');
@@ -438,11 +460,11 @@ class BoltVideo extends BrightcoveVideo {
   }
 
   onSeeked(player) {
-    const progress = BrightcoveVideo.getCurrentTimeMs(player);
+    const progress = BoltVideo.getCurrentTimeMs(player);
 
     // @TODO: implement internal setState method
     // this.setState({
-    //   progress: BrightcoveVideo.getCurrentTimeMs(player),
+    //   progress: BoltVideo.getCurrentTimeMs(player),
     //   isFinished: false
     // });
     this.state.isFinished = false;
@@ -450,10 +472,10 @@ class BoltVideo extends BrightcoveVideo {
   }
 
   onDurationChange(player) {
-    const duration = BrightcoveVideo.getDurationMs(player);
+    const duration = BoltVideo.getDurationMs(player);
 
     // @TODO: implement internal setState method
-    // this.setState({ duration: BrightcoveVideo.getDurationMs(player) });
+    // this.setState({ duration: BoltVideo.getDurationMs(player) });
 
     this.state.duration = duration;
   }
@@ -512,7 +534,7 @@ class BoltVideo extends BrightcoveVideo {
     const s = document.createElement("script");
     // console.log(this.props);
 
-    s.src = BrightcoveVideo.getScriptUrl(
+    s.src = BoltVideo.getScriptUrl(
       this.props.accountId,
       this.props.playerId
     );
@@ -523,7 +545,7 @@ class BoltVideo extends BrightcoveVideo {
 
   initVideoJS(id) {
     const player = videojs(id);
-    const handler = BrightcoveVideo.handlePlayerReady.bind(player, this);
+    const handler = BoltVideo.handlePlayerReady.bind(player, this);
     // player.on("ready", handler);
     player.ready(handler);
 
@@ -544,7 +566,7 @@ class BoltVideo extends BrightcoveVideo {
     if (window.bc && window.videojs) {
       this.initVideo(this.state.id);
     } else {
-      BrightcoveVideo.players.push(this);
+      BoltVideo.players.push(this);
     }
   }
 
@@ -645,8 +667,12 @@ class BoltVideo extends BrightcoveVideo {
       closeButtonText = 'Close';
     }
 
-    return(
-      <span class="c-brightcove-video">
+    const classes = css(
+      'c-bolt-video',
+    );
+
+    return (
+      <span className={classes}>
         <video
           {...dataAttributes}
           id={this.state.id}
@@ -685,3 +711,34 @@ class BoltVideo extends BrightcoveVideo {
     );
   }
 }
+
+export default BoltVideo;
+
+// BoltVideo.globalErrors = [];
+//BoltVideo.props = defaults;
+
+
+
+
+// won't fire before a previous event is complete.
+// This was adapted from https://developer.mozilla.org/en-US/docs/Web/Events/resize
+(function () {
+  function throttle(type, name, obj) {
+    obj = obj || window;
+    let running = false;
+
+    function func() {
+      if (running) { return; }
+      running = true;
+      requestAnimationFrame(function () {
+        obj.dispatchEvent(new CustomEvent(name));
+        running = false;
+      });
+    }
+    obj.addEventListener(type, func);
+  }
+
+  // Initialize on window.resize event.  Note that throttle can also be initialized on any type of event,
+  // such as scroll.
+  throttle("resize", "optimizedResize");
+})();
