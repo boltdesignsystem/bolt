@@ -106,27 +106,30 @@ export class BoltBand extends withComponent(withPreact()) {
 
   collapse() {
     const startingHeight = this.getBoundingClientRect().height;
-    const endingHeight = '0px';
+    const endingHeight = this.startingHeight ? this.startingHeight : 0;
 
-      this.style.minHeight = `${startingHeight}px`;
-      this.style.transition = 'all 0s';
+    this.style.transition = 'min-height 0s';
+    this.style.minHeight = `${startingHeight}px`;
 
-      requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      this.style.transition = 'min-height 0.3s ease';
+      this.style.minHeight = `${endingHeight}px`;;
     });
 
     this.expanded = false;
   }
 
   expand() {
-    const startingHeight = this.getBoundingClientRect().height;
-    const endingHeight = this.expandedHeight;
+    this.startingHeight = this.getBoundingClientRect().height;
+    const endingHeight = parseInt(this.expandedHeight) > parseInt(this.startingHeight) ? this.expandedHeight : `${this.startingHeight}px`;
 
-      this.style.minHeight = `${startingHeight}px`;
-      this.style.transition = 'all 0s';
+    this.style.transition = 'min-height 0s';
+    this.style.minHeight = `${this.startingHeight}px`;
 
-      requestAnimationFrame(() => {
-        this.style.minHeight = this.expandedHeight;
-      });
+    requestAnimationFrame(() => {
+      this.style.transition = 'min-height 0.3s ease';
+      this.style.minHeight = this.expandedHeight;
+    });
 
     this.expanded = true;
   }
@@ -148,6 +151,12 @@ export class BoltBand extends withComponent(withPreact()) {
         videoHeight = String(videoHeight)
       }
       this.expandedHeight = videoHeight;
+
+      if (this.expanded){
+        requestAnimationFrame(() => {
+          this.style.minHeight = parseInt(this.expandedHeight) > parseInt(this.startingHeight) ? this.expandedHeight : `${this.startingHeight}px`;
+        });
+      }
     }
   }
 
