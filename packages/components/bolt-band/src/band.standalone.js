@@ -108,20 +108,10 @@ export class BoltBand extends withComponent(withPreact()) {
     const startingHeight = this.getBoundingClientRect().height;
     const endingHeight = '0px';
 
-    requestAnimationFrame(() => {
       this.style.minHeight = `${startingHeight}px`;
       this.style.transition = 'all 0s';
 
       requestAnimationFrame(() => {
-        // In order to get the animation to play, we'll need to wait for
-        // the 'invert' animation frame to finish, so that its inverted
-        // position has propagated to the DOM.
-        //
-        // Then, we just remove the transform, reverting it to its natural
-        // state, and apply a transition so it does so smoothly.
-        this.style.transition = 'all 0.4s ease';
-        this.style.minHeight = endingHeight;
-      });
     });
 
     this.expanded = false;
@@ -131,21 +121,12 @@ export class BoltBand extends withComponent(withPreact()) {
     const startingHeight = this.getBoundingClientRect().height;
     const endingHeight = this.expandedHeight;
 
-    requestAnimationFrame(() => {
       this.style.minHeight = `${startingHeight}px`;
       this.style.transition = 'all 0s';
 
       requestAnimationFrame(() => {
-        // In order to get the animation to play, we'll need to wait for
-        // the 'invert' animation frame to finish, so that its inverted
-        // position has propagated to the DOM.
-        //
-        // Then, we just remove the transform, reverting it to its natural
-        // state, and apply a transition so it does so smoothly.
-        this.style.transition = 'all 0.4s ease';
         this.style.minHeight = this.expandedHeight;
       });
-    });
 
     this.expanded = true;
   }
