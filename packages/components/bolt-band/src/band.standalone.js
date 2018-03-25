@@ -163,7 +163,7 @@ export class BoltBand extends withComponent(withPreact()) {
         // expandedHeight apparently needs to be a string (on both the incoming
         // and outgoing ends).  In order to modify it, we turn it into a number, then
         // back to a string.  Not
-        videoHeight = Number(videoHeight) + 40;
+        videoHeight = Number(videoHeight);
         videoHeight = String(videoHeight)
       }
       this.expandedHeight = videoHeight;
