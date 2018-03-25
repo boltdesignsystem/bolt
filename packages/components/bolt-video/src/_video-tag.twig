@@ -1,7 +1,7 @@
 
 {% set attributes = create_attribute(attributes | default({})) %}
 
-{% if videoAttributes %}
+{# if videoAttributes %}
   {% set attributes = videoAttributes | merge(attributes) %}
 
   {% for key, value in videoAttributes %}
@@ -15,10 +15,7 @@
     {% endif %}
 
   {% endfor %}
-{% endif %}
-
-
-
+{% endif #}
 
 {# force HTML5 Only Rendering #}
 {% set attributes = attributes.setAttribute("data-setup", '{"techOrder": ["Html5"]}') %}
