@@ -682,7 +682,8 @@ class BoltVideo extends withPreact(withComponent()) {
 
     const classes = css(
       'c-bolt-video',
-      this.props.controls === false ? 'c-bolt-video--hide-controls' : ''
+      this.props.controls === false ? 'c-bolt-video--hide-controls' : '',
+      this.props.isBackgroundVideo ? 'c-bolt-video--background' : '',
     );
 
     return (
