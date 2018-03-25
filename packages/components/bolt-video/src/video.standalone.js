@@ -147,6 +147,10 @@ class BoltVideo extends withPreact(withComponent()) {
       this.removeAttribute('expandedHeight');
     }
 
+    requestAnimationFrame(() => {
+      this.style.maxHeight = this.expandedHeight + 'px';
+    });
+
     this.dispatchEvent(
       new CustomEvent('videoExpandedHeightSet', {
         detail: { expandedHeight: this.expandedHeight },
