@@ -15,5 +15,4 @@ The tooltip component provides the user with a onHover Or onClick (button) toggl
 
 ## Best practices
 - Toggle icons should be tested to ensure smooth transition states
-- Always include a unique `id` to prevent collisions should multiple tooltips be present on the page
 - The `noWrap` option should only be used when small snippets of text or content are used

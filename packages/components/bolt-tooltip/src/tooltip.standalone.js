@@ -35,11 +35,14 @@ export class BoltTooltip extends withPreact(withComponent()) {
     this.useShadow = hasNativeShadowDomSupport;
   }
 
+  connectedCallback() {
+    this.triggerID = `bolt-tooltip-id-${Math.floor(Math.random() * 20)}`;
+  }
+
   render() {
     const data = this.props;
     const baseClass = 'c-bolt-tooltip';
     const vert = data.positionVert ? data.positionVert : 'up';
-    const triggerID = `bolt-tooltip-id-${Math.floor(Math.random() * 20)}`;
 
     const classes = [
       baseClass,
@@ -74,9 +77,10 @@ export class BoltTooltip extends withPreact(withComponent()) {
             size={data.triggerIconSize}
             toggle-text={data.triggerToggleText}
             toggle-icon={data.triggerToggleIcon}
-            trigger-id={triggerID}
+            trigger-id={this.triggerID}
           />
-          <TooltipContent type={data.triggerType} trigger-id={triggerID}>
+          <TooltipContent type={data.triggerType} trigger-id={this.triggerID}>
+            // @todo: Conditionally render slot similar to how HyperHtml is doing it
             <span dangerouslySetInnerHTML={{ __html: data.content }} />
           </TooltipContent>
         </span>
