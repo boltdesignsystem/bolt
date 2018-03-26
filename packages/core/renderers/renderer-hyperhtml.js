@@ -52,7 +52,7 @@ export function withHyperHTML(Base = HTMLElement) {
       let styles = Array.from(stylesheet);
       styles = styles.join(' ');
 
-      if (this.useShadow) {
+      if (this.useShadow && styles) {
         return hyper.wire() `
           <style>${ styles } </style>
         `;
