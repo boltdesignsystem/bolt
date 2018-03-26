@@ -20,7 +20,7 @@ export class BoltBlockList extends withPreact(withComponent()) {
 
   constructor() {
     super();
-    this.useShadow = hasNativeShadowDomSupport;
+    this.useShadow = false; // @todo: Get this working with shadowDOM + slots
   }
 
   render() {
@@ -31,10 +31,10 @@ export class BoltBlockList extends withPreact(withComponent()) {
     });
     return (
       <span>
-        <style>{styles[0][1]}</style>
-        <ul className="c-bolt-block-list">
-          <span dangerouslySetInnerHTML={{ __html: finalItems }} />
-        </ul>
+        {this.useShadow &&
+          <style>{styles[0][1]}</style>
+        }
+        <ul className="c-bolt-block-list" dangerouslySetInnerHTML={{ __html: finalItems }} />
       </span>
     );
   }

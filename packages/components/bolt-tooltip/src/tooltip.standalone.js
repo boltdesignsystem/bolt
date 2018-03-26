@@ -32,7 +32,7 @@ export class BoltTooltip extends withPreact(withComponent()) {
 
   constructor() {
     super();
-    this.useShadow = hasNativeShadowDomSupport;
+    this.useShadow = false; // @todo: Get this working with shadowDOM + slots
   }
 
   connectedCallback() {
@@ -64,14 +64,16 @@ export class BoltTooltip extends withPreact(withComponent()) {
     } else {
       classes.push(`${baseClass}--spacing-small`);
     }
-
+    // @todo: Conditionally render slot similar to how HyperHtml is doing it
     return (
       <span>
-        <style>{styles[0][1]}</style>
+        {this.useShadow &&
+          <style>{styles[0][1]}</style>
+        }
         <span className={classes.join(' ')}>
           <tooltip-trigger
             text={data.triggerText}
-            type={data.triggerType}
+            trigger={data.triggerType}
             transform={data.triggerTransform}
             icon={data.triggerIconName}
             size={data.triggerIconSize}
@@ -79,8 +81,7 @@ export class BoltTooltip extends withPreact(withComponent()) {
             toggle-icon={data.triggerToggleIcon}
             trigger-id={this.triggerID}
           />
-          <TooltipContent type={data.triggerType} trigger-id={this.triggerID}>
-            // @todo: Conditionally render slot similar to how HyperHtml is doing it
+          <TooltipContent trigger={data.triggerType} trigger-id={this.triggerID}>
             <span dangerouslySetInnerHTML={{ __html: data.content }} />
           </TooltipContent>
         </span>
@@ -95,7 +96,7 @@ class TooltipTrigger extends withPreact(withComponent()) {
 
   static props = {
     text: props.string,
-    type: props.string,
+    trigger: props.string,
     transform: props.string,
     icon: props.string,
     size: props.string,
@@ -129,7 +130,7 @@ class TooltipTrigger extends withPreact(withComponent()) {
 
     return (
       <span>
-        {data.type === 'button' &&
+        {data.trigger === 'button' &&
         <span>
           <style>{button[0][1]}</style>
           <style>{colorUtils[0][1]}</style>
@@ -139,13 +140,13 @@ class TooltipTrigger extends withPreact(withComponent()) {
           className="c-bolt-tooltip__trigger"
           aria-describedby={data.triggerId}
           onClick={() => {
-            if (data.type === 'button') {
+            if (data.trigger === 'button') {
               // Fixes issue with css transitions within re-rendered components
               this.classList.toggle('is-active');
             }
           }}
         >
-          {data.type === 'button' &&
+          {data.trigger === 'button' &&
           <button className={classes.join(' ')}>
               <div className="toggle--closed">
               {data.icon &&
@@ -165,7 +166,7 @@ class TooltipTrigger extends withPreact(withComponent()) {
               </div>
           </button>
           }
-          {data.type === 'text' &&
+          {data.trigger === 'text' &&
           <span>
             {data.icon &&
               <span className="c-bolt-button__icon">
@@ -184,7 +185,7 @@ class TooltipTrigger extends withPreact(withComponent()) {
 const TooltipContent = (props) => {
   const classes = [
     'c-bolt-tooltip__content',
-    `c-bolt-tooltip__content--${props.type}`,
+    `c-bolt-tooltip__content--${props.trigger}`,
   ];
   return (
     <span id={props['trigger-id']} className={classes.join(' ')} role="tooltip" aria-hidden="true">
