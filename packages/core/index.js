@@ -6,7 +6,8 @@ export {
   withUpdate,
 } from 'skatejs';
 
-export { h } from 'preact';
+export { Component, h } from 'preact';
+export { hyper } from 'hyperhtml/cjs';
 
 // Export Utilties + Helpers
 export * from './utils/css';
@@ -17,8 +18,8 @@ export * from './utils/supports-passive-event-listener';
 export { declarativeClickHandler } from './utils/declarative-click-handler';
 export * from './utils/environment';
 
-export { withPreact } from './renderers/renderer-preact';
-export { withHyperHTML } from './renderers/renderer-hyperhtml';
+export { withPreact, wrapPreact } from './renderers/renderer-preact';
+export * from './renderers/renderer-hyperhtml';
 
 // Export Bolt data shared
 export * from './data/spacing-sizes';

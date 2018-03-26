@@ -2,11 +2,14 @@
   Text Contrast
 \* ------------------------------------ */
 
-@function bolt-text-contrast($color) {
+@function bolt-text-contrast(
+  $color,
+  $black: bolt-color(black),
+  $white: bolt-color(white)
+) {
   @if (lightness($color) > 50) {
-    @return bolt-color(black) // Lighter backgorund, return dark color
-  }
-  @else {
-    @return bolt-color(white); // Darker background, return light color
+    @return $black; // Lighter background, return dark color
+  } @else {
+    @return $white; // Darker background, return light color
   }
 }

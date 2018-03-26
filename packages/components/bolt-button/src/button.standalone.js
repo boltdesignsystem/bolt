@@ -5,7 +5,8 @@ import {
   css,
   hasNativeShadowDomSupport,
   withPreact,
-  withHyperHTML,
+  BoltComponent,
+  declarativeClickHandler,
   sanitizeBoltClasses
 } from '@bolt/core';
 
@@ -33,7 +34,7 @@ export class ReplaceWithChildren extends withPreact(withComponent()) {
 }
 
 @define
-export class BoltButton extends withHyperHTML(withComponent()) {
+class BoltButton extends BoltComponent() {
   static is = 'bolt-button';
 
   static props = {
@@ -60,16 +61,22 @@ export class BoltButton extends withHyperHTML(withComponent()) {
     onClickTarget: props.string, // Managed by base class
   }
 
-  constructor(elem) {
-    super(elem);
+  constructor() {
+    super();
     this.useShadow = hasNativeShadowDomSupport;
   }
 
   connecting() {
+    this.addEventListener('click', this.clickHandler);
   }
 
   disconnecting() {
+    this.removeEventListener('click', this.clickHandler);
+  }
 
+  // Attach external events declaratively
+  clickHandler(event) {
+    declarativeClickHandler(this);
   }
 
   render({ props, state }) {
@@ -77,7 +84,7 @@ export class BoltButton extends withHyperHTML(withComponent()) {
     const classes = css(
       'c-bolt-button',
       this.props.size ? `c-bolt-button--${this.props.size}` : '',
-      this.props.color ? `c-bolt-button--${this.props.color}` : '',
+      this.props.color ? `c-bolt-button--${this.props.color}` : 'c-bolt-button--primary',
       this.props.rounded ? `c-bolt-button--rounded` : '',
       this.props.iconOnly ? `c-bolt-button--icon-only` : '',
       this.props.width ? `c-bolt-button--${this.props.width}` : '',
@@ -90,7 +97,6 @@ export class BoltButton extends withHyperHTML(withComponent()) {
       this.props.isActive ? `c-bolt-button--active` : '',
       this.props.isFocus ? `c-bolt-button--focus` : ''
     );
-
 
     /**
      * Given that our base HyperHTML Class is configured to automatically organizing top level children into separate slot buckets (ie.
@@ -119,19 +125,24 @@ export class BoltButton extends withHyperHTML(withComponent()) {
     // Assign default target attribute value if one isn't specified
     const urlTarget = this.props.target && hasUrl ? this.props.target : '_self';
 
-
     // Add inline <style> tag automatically if Shadow DOM is natively supported
     return this.html`
       ${ this.addStyles([styles, visuallyhiddenUtils]) }
 
       ${
-        childElementIndex === null ? (
-          hasUrl ?
-            this.html`<a href="${this.props.url}" class="${classes}" target="${urlTarget}">${this.slots.default}</a>` :
-            this.html`<button class="${classes}">${this.slots.default}</button>`
+        (childElementIndex !== null ) ? (this.html`${ this.slot('default') }`) :
+        (
+          (hasUrl) ?
+            (this.hyper.wire() `
+              <a href="${this.props.url}" class="${classes}" target="${urlTarget}">
+                ${this.slot('default')}
+              </a>`) :
+            (this.hyper.wire() `
+              <button class="${classes}">
+                ${this.slot('default')}
+              </button>`)
         )
-        : this.slots.default
-      }
-    `
+       }
+      `
   }
 }

@@ -140,6 +140,9 @@ function createConfig(config) {
 
   const scssLoaders = [
     {
+      loader: 'cache-loader'
+    },
+    {
       loader: 'string-replace-loader',
       query: {
         search: workaroundAtValue,
@@ -223,6 +226,13 @@ function createConfig(config) {
     module: {
       rules: [
         {
+          test: /\.twig$/,
+          use: [
+            { loader: 'raw-loader' },
+            { loader: 'inline-source-loader' }
+          ]
+        },
+        {
           test: /\.scss$/,
           oneOf: [
             {
@@ -240,7 +250,7 @@ function createConfig(config) {
         },
         {
           test: /\.js$/,
-          exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
+          exclude: /(node_modules|node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
           use: {
             loader: 'babel-loader',
             options: {
@@ -321,6 +331,7 @@ function createConfig(config) {
     webpackConfig.plugins.push(new UglifyJsPlugin({
       sourceMap: true,
       parallel: true,
+      cache: true,
       uglifyOptions: {
         cache: true,
         compress: true,

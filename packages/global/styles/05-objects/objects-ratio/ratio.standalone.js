@@ -3,8 +3,7 @@ import {
   render,
   define,
   props,
-  withComponent,
-  withHyperHTML,
+  BoltComponent,
   css,
   spacingSizes,
   hasNativeShadowDomSupport,
@@ -14,7 +13,7 @@ import {
 import styles from './ratio.scss';
 
 @define
-export class BoltRatio extends withComponent(withHyperHTML()) {
+export class BoltRatio extends BoltComponent() {
   static is = 'bolt-ratio';
 
   static props = {
@@ -59,9 +58,9 @@ export class BoltRatio extends withComponent(withHyperHTML()) {
     );
 
     return this.html`
-      ${ this.addStyles([styles]) }
+      ${ this.addStyles([styles])}
       <div class="${classes}">
-        ${ this.useShadow ? (this.html`<slot />`) : this.slots.default }
+        ${this.slot('default')}
       </div>
     `
   }
