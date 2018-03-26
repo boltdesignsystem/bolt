@@ -1,0 +1,25 @@
+uuid: b9403759-6506-49ed-82d5-455876baa6c1
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - flash
+_core:
+  default_config_hash: fRKXNB91UxDvEMkzCR8ZBsawfC6Fqbme2gtobei3gu4
+id: flash_branding
+theme: flash
+region: header
+weight: 0
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  provider: system
+  label_display: '0'
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }
