@@ -257,14 +257,19 @@ $bolt-pw-stat-slideshow-shadow-level: 'level-50';
 $bolt-pw-stat-slideshow-shadow-color: bolt-color(indigo, xdark);
 
 .c-pw-stat-slideshow {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
   @include bolt-shadow($key: $bolt-pw-stat-slideshow-shadow-level, $base-color: $bolt-pw-stat-slideshow-shadow-color);
   display: block;
   position: relative;
-  margin: 0;
-  padding: 0;
   overflow: hidden;
   border-radius: 3px;
   background-color: rgba(bolt-color(white), 0.05);
+
+  @include respond-to(medium) {
+    display: flex;
+    flex-wrap: nowrap;
+  }
 }
 
 .c-pw-stat-slideshow-media {
@@ -279,15 +284,14 @@ $bolt-pw-stat-slideshow-shadow-color: bolt-color(indigo, xdark);
   border-radius: 0 0 50% 50%;
 
   @include respond-to(medium) {
-    position: absolute;
-    top: bolt-v-spacing(large) * -2;
-    right: auto;
-    bottom: bolt-v-spacing(large) * -2;
-    left: 0;
+    flex-shrink: 0;
     width: 45%;
+    min-width: 280px;
+    margin-top: bolt-v-spacing(large) * -2;
     margin-right: 0;
+    margin-bottom: bolt-v-spacing(large) * -2;
     margin-left: 0;
-    padding-bottom: 0;
+    padding-bottom: calc(85% - #{bolt-v-spacing(large) * 4} - 4rem);
     border-width: 2rem 2rem 2rem 0;
     border-radius: 0 50% 50% 0;
   }
@@ -324,9 +328,6 @@ $bolt-pw-stat-slideshow-shadow-color: bolt-color(indigo, xdark);
   }
 
   @include respond-to(medium) {
-    position: relative;
-    top: auto;
-    left: auto;
     height: calc(100% - #{bolt-v-spacing(large)*2} - 2rem);
     margin-top: calc(#{bolt-v-spacing(large)*2} - 2rem);
     margin-bottom: calc(#{bolt-v-spacing(large)*2} - 2rem);
@@ -343,7 +344,20 @@ $bolt-pw-stat-slideshow-shadow-color: bolt-color(indigo, xdark);
   display: block;
 
   @include respond-to(medium) {
-    padding: bolt-v-spacing(xlarge) bolt-spacing(medium) bolt-v-spacing(xlarge) calc(45% + #{bolt-spacing(large)});
+    @include bolt-padding(medium);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: calc(100% - 280px - 9rem);
+  }
+
+  @include respond-to(large) {
+    @include bolt-padding(large medium large large);
+  }
+
+  @include respond-to(xlarge) {
+    @include bolt-padding(xlarge medium xlarge large);
   }
 }
 
@@ -352,6 +366,9 @@ $bolt-pw-stat-slideshow-shadow-color: bolt-color(indigo, xdark);
   width: 100%;
   overflow-x: hidden;
 }
+
+
+
 
 .c-pw-stat-list {
   display: flex;
