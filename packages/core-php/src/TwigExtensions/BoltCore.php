@@ -15,10 +15,13 @@ class BoltCore extends \Twig_Extension implements \Twig_Extension_InitRuntimeInt
   public $data = [];
 
   function initRuntime(\Twig_Environment $env) {
-    // @todo `catch` the Exception from this and display a helpful error message - uncaught crashes whole Drupal site with white screen of death!
-    $fullManifestPath = TwigTools\Utils::resolveTwigPath($env, '@bolt-data/full-manifest.bolt.json');
-    $dataDir = dirname($fullManifestPath);
-    $this->data = self::buildBoltData($dataDir);
+    try {
+      $fullManifestPath = TwigTools\Utils::resolveTwigPath($env, '@bolt-data/full-manifest.bolt.json');
+      $dataDir = dirname($fullManifestPath);
+      $this->data = self::buildBoltData($dataDir);
+    } catch (\Exception $e) {
+
+    }
   }
 
   /**
