@@ -1,4 +1,4 @@
-{% set componentName = "copy-to-clipboard" %}
+{% set componentName = "copy-to-clipboard" %} {# @todo: refactor to custom web component ASAP #}
 
 {% set attributes = create_attribute(attributes|default({})) %}
 
@@ -14,7 +14,7 @@
   {% set attributes = attributes.setAttribute("url", url) %}
 {% endif %}
 
-<bolt-{{ componentName }} bolt-component class="c-bolt-copy-to-clipboard js-bolt-copy-to-clipboard" {{ attributes }}>
+<div class="c-bolt-copy-to-clipboard js-bolt-copy-to-clipboard" {{ attributes }}>
   <span class="c-bolt-copy-to-clipboard__default js-bolt-copy-to-clipboard__default">
     {% include "@bolt-components-link/link.twig" with {
       text: text,
@@ -38,7 +38,7 @@
       attributes: attributes
     } only %}
   </span>
-</bolt-{{ componentName }}>
+</div>
 
 {% if enable_json_schema_validation %}
   {{ validate_data_schema('@bolt-components-copy-to-clipboard/copy-to-clipboard.schema.yml', _self) }}
