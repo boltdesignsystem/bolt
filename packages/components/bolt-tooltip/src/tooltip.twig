@@ -28,14 +28,6 @@
   {% endif %}
 {% endif %}
 
-{% if id %}
-  {% set attributes = attributes.setAttribute("trigger-id", id) %}
-{% endif %}
-
-{% if type %}
-  {% set attributes = attributes.setAttribute("type", type) %}
-{% endif %}
-
 {% if noWrap %}
   {% set attributes = attributes.setAttribute("no-wrap", noWrap) %}
 {% endif %}
@@ -44,8 +36,8 @@
   {% set attributes = attributes.setAttribute("spacing", spacing) %}
 {% endif %}
 
-{% if position %}
-  {% set attributes = attributes.setAttribute("position-vert", position) %}
+{% if direction %}
+  {% set attributes = attributes.setAttribute("position-vert", direction) %}
 {% endif %}
 
 {% if content %}

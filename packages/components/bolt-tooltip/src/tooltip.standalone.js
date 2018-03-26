@@ -24,12 +24,10 @@ export class BoltTooltip extends withPreact(withComponent()) {
     triggerIconSize: props.string,
     triggerToggleText: props.string,
     triggerToggleIcon: props.string,
-    triggerId: props.string,
     content: props.any,
-    type: props.string,
     noWrap: props.boolean,
     spacing: props.string,
-    positionVert: props.string
+    positionVert: props.string,
   };
 
   constructor() {
@@ -40,21 +38,28 @@ export class BoltTooltip extends withPreact(withComponent()) {
   render() {
     const data = this.props;
     const baseClass = 'c-bolt-tooltip';
-    const type = data.type === 'help' ? 'help' : 'action';
-    const vert = data.positionVert ? data.positionVert : 'down';
+    const vert = data.positionVert ? data.positionVert : 'up';
+    const triggerID = `bolt-tooltip-id-${Math.floor(Math.random() * 20)}`;
 
     const classes = [
       baseClass,
-      baseClass + '--' + type,
-      'is-push-' + vert,
-      'is-align-center'
+      `is-push-${vert}`,
+      'is-align-center',
     ];
 
+    if (data.triggerType === 'button') {
+      classes.push(`${baseClass}--action`);
+    } else {
+      classes.push(`${baseClass}--help`);
+    }
+
     if (data.noWrap) {
-      classes.push(baseClass + '--nowrap');
+      classes.push(`${baseClass}--nowrap`);
     }
     if (data.spacing) {
-      classes.push(baseClass + '--spacing-' + data.spacing);
+      classes.push(`${baseClass}--spacing-${data.spacing}`);
+    } else {
+      classes.push(`${baseClass}--spacing-small`);
     }
 
     return (
@@ -69,10 +74,10 @@ export class BoltTooltip extends withPreact(withComponent()) {
             size={data.triggerIconSize}
             toggle-text={data.triggerToggleText}
             toggle-icon={data.triggerToggleIcon}
-            trigger-id={data.triggerId}
+            trigger-id={triggerID}
           />
-          <TooltipContent type={data.triggerType} trigger-id={data.triggerId}>
-            <span dangerouslySetInnerHTML={{__html: data.content}} />
+          <TooltipContent type={data.triggerType} trigger-id={triggerID}>
+            <span dangerouslySetInnerHTML={{ __html: data.content }} />
           </TooltipContent>
         </span>
       </span>
@@ -92,7 +97,7 @@ class TooltipTrigger extends withPreact(withComponent()) {
     size: props.string,
     toggleText: props.string,
     toggleIcon: props.string,
-    triggerId: props.string
+    triggerId: props.string,
   };
 
   constructor() {
@@ -107,15 +112,15 @@ class TooltipTrigger extends withPreact(withComponent()) {
 
     const classes = [
       baseClass,
-      baseClass + '--rounded',
-      baseClass + '--medium',
-      baseClass + '--secondary',
-      baseClass + '--center',
+      `${baseClass}--rounded`,
+      `${baseClass}--medium`,
+      `${baseClass}--secondary`,
+      `${baseClass}--center`,
       'u-bolt-color-orange',
     ];
 
     if (data.transform) {
-      classes.push(baseClass + '--' + data.transform);
+      classes.push(`${baseClass}--${data.transform}`);
     }
 
     return (
@@ -130,7 +135,7 @@ class TooltipTrigger extends withPreact(withComponent()) {
           className="c-bolt-tooltip__trigger"
           aria-describedby={data.triggerId}
           onClick={() => {
-            if (data.type === 'button'){
+            if (data.type === 'button') {
               // Fixes issue with css transitions within re-rendered components
               this.classList.toggle('is-active');
             }
@@ -175,7 +180,7 @@ class TooltipTrigger extends withPreact(withComponent()) {
 const TooltipContent = (props) => {
   const classes = [
     'c-bolt-tooltip__content',
-    'c-bolt-tooltip__content--' + props.type,
+    `c-bolt-tooltip__content--${props.type}`,
   ];
   return (
     <span id={props['trigger-id']} className={classes.join(' ')} role="tooltip" aria-hidden="true">

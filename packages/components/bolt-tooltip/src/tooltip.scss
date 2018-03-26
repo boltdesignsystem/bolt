@@ -7,17 +7,6 @@ $bolt-tooltip-bubble-triangle-width: 8px;
 $bolt-tooltip-bubble-border-color: bolt-color(gray, light);
 $bolt-tooltip-transition: $bolt-transition;
 
-// Aria tags for accessibility.
-[aria-hidden="true"] {
-  opacity: 0;
-  pointer-events: none;
-}
-
-[aria-hidden="false"] {
-  opacity: 1;
-  pointer-events: auto;
-}
-
 @keyframes bounceDown {
    0% { transform: translate(-50%, -50%) scale(0); }
    30% { transform: translate(-50%, 25%) scale(1.1); }
@@ -34,6 +23,17 @@ $bolt-tooltip-transition: $bolt-transition;
 .c-bolt-tooltip {
   display: inline-block;
   position: relative;
+
+  // Aria tags for accessibility.
+  [aria-hidden="true"] {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  [aria-hidden="false"] {
+    opacity: 1;
+    pointer-events: auto;
+  }
 
   &.is-push-up {
     .c-bolt-tooltip__content {
@@ -276,7 +276,7 @@ $bolt-tooltip-transition: $bolt-transition;
 .c-bolt-tooltip--help {
   cursor: help;
 
-  .c-bolt-tooltip__trigger button {
+  .c-bolt-tooltip__trigger .c-bolt-button {
     cursor: help;
   }
 }
@@ -328,7 +328,7 @@ $bolt-tooltip-transition: $bolt-transition;
 .c-bolt-tooltip__trigger {
   display: block;
 
-  button {
+  .c-bolt-button {
     font-weight: 900;
     overflow: hidden;
 
@@ -343,8 +343,8 @@ $bolt-tooltip-transition: $bolt-transition;
     height: auto; // IE & Firefox fix
   }
 
-  button .toggle--closed,
-  button .toggle--open {
+  .c-bolt-button .toggle--closed,
+  .c-bolt-button .toggle--open {
     transition: opacity $bolt-transition;
     align-items: center;
     display: inline-flex;
@@ -398,7 +398,7 @@ $bolt-tooltip-transition: $bolt-transition;
   position: relative;
   width: 300px;
   border: 1px solid $bolt-tooltip-bubble-border-color;
-  border-radius: 3px;
+  border-radius: $bolt-border-radius;
   background-color: bolt-color(white);
 
   &:after,
@@ -416,12 +416,14 @@ $bolt-tooltip-transition: $bolt-transition;
 // Show and hide effects
 .c-bolt-tooltip:not(:hover) > .c-bolt-tooltip__content,
 .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
-  @extend [aria-hidden="true"];
+  opacity: 0;
+  pointer-events: none;
 }
 
 .c-bolt-tooltip:hover > .c-bolt-tooltip__content,
 .c-bolt-tooltip__trigger.is-active + .c-bolt-tooltip__content {
-  @extend [aria-hidden="false"];
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .c-bolt-tooltip.is-push-up {

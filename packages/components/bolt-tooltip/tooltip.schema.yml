@@ -50,20 +50,10 @@ properties:
   content:
     type: any
     description: This can be text OR an included bolt component (like Block List)
-  id:
-    type: string
-    description: A unique identifier for our tooltip (must be different for each on the page)
-  type:
-    type: string
-    description: What kind of tooltip is this?
-    default: action
-    enum:
-      - action
-      - help
-  position:
+  direction:
     type: string
     description: Should tooltip push up or down?
-    default: down
+    default: up
     enum:
       - up
       - down
@@ -77,7 +67,7 @@ properties:
   spacing:
     type: string
     description: Spacing within our tooltip content bubble
-    default: none
+    default: small
     enum:
       - none
       - xsmall
@@ -86,4 +76,3 @@ properties:
 required:
   - trigger
   - content
-  - id
