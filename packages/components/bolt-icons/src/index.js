@@ -69,6 +69,7 @@ export * from './icons/mobility';
 export * from './icons/more';
 export * from './icons/partners';
 export * from './icons/pencil';
+export * from './icons/platform';
 export * from './icons/podcast';
 export * from './icons/print';
 export * from './icons/product';
