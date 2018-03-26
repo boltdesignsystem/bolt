@@ -132,6 +132,13 @@ function createConfig(config) {
   }
 
 
+  // Output CSS module data as JSON.
+  // @todo: enable when ready for CSS Modules
+  // function getJSONFromCssModules(cssFileName, json) {
+  //   const cssName = path.basename(cssFileName, '.css');
+  //   const jsonFileName = path.resolve(process.cwd(), config.buildDir, `${cssName}.json`);
+  //   fs.writeFileSync(jsonFileName, JSON.stringify(json));
+  // }
 
   /** This workaround has been disabled for now as setting
     * `modules: false` on `css-loader` fixes it; see https://github.com/bolt-design-system/bolt/pull/410
@@ -158,9 +165,8 @@ function createConfig(config) {
       loader: 'css-loader',
       options: {
         sourceMap: true,
-        modules: true, // needed for JS referencing classNames directly, such as critical fonts
+        modules: false, // needed for JS referencing classNames directly, such as critical fonts
         importLoaders: 5,
-        localIdentName: '[local]',
       },
     },
     {
@@ -234,14 +240,18 @@ function createConfig(config) {
           oneOf: [
             {
               issuer: /\.js$/,
-              use: scssLoaders,
+              use: [
+                scssLoaders,
+              ].reduce((acc, val) => acc.concat(val), []),
             },
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
-              use: ExtractTextPlugin.extract({
-                fallback: "style-loader",
-                use: scssLoaders,
-              })
+              use: [
+                {
+                  loader: MiniCssExtractPlugin.loader,
+                },
+                scssLoaders,
+              ].reduce((acc, val) => acc.concat(val), []),
             },
           ],
         },
@@ -273,6 +283,28 @@ function createConfig(config) {
         },
       ],
     },
+    mode: 'development',
+    // optimization: {
+    //   splitChunks: {
+    //     // chunks: 'all',
+    //     cacheGroups: {
+    //       js: {
+    //         test: /\.js$/,
+    //         // name: 'commons',
+    //         chunks: 'all',
+    //         minChunks: 2,
+    //         // test: /node_modules/,
+    //         // enforce: true,
+    //       },
+    //       css: {
+    //         test: /\.s?css$/,
+    //         chunks: 'all',
+    //         minChunks: 2,
+    //         // enforce: true,
+    //       },
+    //     },
+    //   },
+    // },
     plugins: [
       // Ignore generated output if generated output is on a dependency chain (causes endless loop)
       new webpack.WatchIgnorePlugin([
@@ -281,17 +313,12 @@ function createConfig(config) {
         /styleguide/,
         path.join(__dirname, 'node_modules'),
       ]),
-      new webpack.optimize.CommonsChunkPlugin({
-        deepChildren: true,
-        children: true,
-        minChunks: Infinity,
-        async: true
-      }),
       new webpack.IgnorePlugin(/vertx/), // needed to ignore vertx dependency in webcomponentsjs-lite
-      new ExtractTextPlugin({
-        filename: "[name].css",
-        // disable: false,
-        allChunks: true
+      new MiniCssExtractPlugin({
+        // Options similar to the same options in webpackOptions.output
+        // both options are optional
+        filename: '[name].css',
+        chunkFilename: '[id].css',
       }),
       // @todo This needs to be in `config.dataDir`
       new ManifestPlugin({
