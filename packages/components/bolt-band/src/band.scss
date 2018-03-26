@@ -3,16 +3,6 @@
   */
 @import '@bolt/core';
 
-@mixin bolt-full-bleed() {
-  position: relative;
-  right: 50%;
-  left: 50%;
-  width: 100%; //fallback if vw not supported.
-  width: 100vw;
-  margin-left: -50vw;
-  margin-right: -50vw;
-}
-
 .c-bolt-band {
   display: block;
   min-height: 0;

@@ -46,6 +46,7 @@ class BoltButton extends BoltComponent() {
     size: props.string,
     width: props.string,
     align: props.string,
+    transform: props.string,
 
     disabled: props.boolean,
 
@@ -88,6 +89,7 @@ class BoltButton extends BoltComponent() {
       this.props.iconOnly ? `c-bolt-button--icon-only` : '',
       this.props.width ? `c-bolt-button--${this.props.width}` : '',
       this.props.align ? `c-bolt-button--${this.props.align}` : 'c-bolt-button--center',
+      this.props.align ? `c-bolt-button--${this.props.transform}` : '',
       this.props.disabled ? 'c-bolt-button--disabled' : '',
 
       // Test out psuedo states via prop values
