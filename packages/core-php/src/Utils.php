@@ -20,13 +20,9 @@ class Utils {
 
   // Given a relative file path, return the resolved absolute path
   public static function get_absolute_path($relativeFilePath, $baseDir) {// @todo Refactor and tighten - this was put together quickly as it was a final 1.0 launch blocker
-
-    // If this, then we are in Pattern Lab. @todo Make conditional more robust
-    if (substr( $relativeFilePath, 0, 6 ) === '../../') {
-      $relativeFilePath = str_replace('../../', '', $relativeFilePath);
-      $baseDir = Path::join($baseDir, 'pattern-lab'); // @todo Remove hard-coded magic string of `pattern-lab` sub folder
+    if (self::isRemoteUrl($relativeFilePath)) {
+      return $relativeFilePath;
     }
-
     $absoluteBasePath = Path::makeAbsolute($baseDir, getcwd());
 
     // If it's a root relative path like `/images/hi.jpg`
@@ -79,4 +75,15 @@ class Utils {
     return $githubPath;
   }
 
+  public static function isRemoteUrl($url) {
+    if ($url === '' || !is_string($url)) {
+      return false;
+    }
+    if (substr($url, 0, 4) === 'http') {
+      return true;
+    } elseif (substr($url, 0, 2) === '//') {
+      return true;
+    }
+    return false;
+  }
 }

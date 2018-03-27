@@ -5,6 +5,7 @@ namespace Bolt;
 // Evan @todo: help Salem get this autoloaded properly
 use \Gregwar\Image\Image;
 use \Gregwar\Image\GarbageCollect;
+use \Webmozart\PathUtil\Path;
 use Tooleks\Php\AvgColorPicker\Gd\AvgColorPicker;
 use PHPExif\Exif;
 use PHPExif\Reader\Reader as ExifReader;
@@ -44,6 +45,14 @@ class Images {
 
   // A combination of base64, bgcolor, ratio, and imageSize
   public static function get_image_data($relativeImagePath, $wwwDir) {
+    if (Utils::isRemoteUrl($relativeImagePath)) {
+      return [
+        'height' => 0,
+        'width' => 0,
+        'isAbsolute' => true,
+      ];
+    }
+
     $absoluteImagePath = Utils::get_absolute_path($relativeImagePath, $wwwDir);
     if (!file_exists($absoluteImagePath)) {
       // @todo add Error
@@ -85,6 +94,7 @@ class Images {
       'width' => $width,
       'base64' => $base64ImagePlaceholder,
       'color' => $placeHolderColor,
+      'isAbsolute' => false,
     ];
   }
 
