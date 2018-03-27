@@ -1,13 +1,24 @@
 {#
 /**
  * @file
- * Theme override for a 'checkboxes' #type form element.
+ * A wrapper for multiple checkbox input elements.
  *
  * Available variables
  * - attributes: A list of HTML attributes for the wrapper element.
  * - children: The rendered checkboxes.
+ *
+ * @see Drupal's checkboxes.html.twig
  */
 #}
+
+{#
+ !!!! WARNING !!!!
+ This template is currently extended verbatim in form-radios.twig.  If you need
+ to add checkbox-specific styling here, please refactor radios first-- consider
+ using something like a shared "container.twig" file (see Drupal form templates).
+#}
+
+{% set attributes = create_attribute(attributes | default({})) %}
 
 {% set classes = [
   'c-bolt-input-list',
