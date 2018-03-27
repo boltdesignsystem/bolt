@@ -26,7 +26,8 @@
 
 .c-bolt-share--normal-layout {
   .c-bolt-block-list {
-    padding: 1rem 0;
+    @include bolt-padding-top(small);
+    @include bolt-padding-bottom(small);
   }
 
   .c-bolt-block-list__item {
@@ -35,9 +36,9 @@
 
   .c-bolt-link { // nested since this is a component within a component with different styles
     @include bolt-font-size(large);
+    @include bolt-padding(medium, squished);
     display: block;
     margin: 0;
-    padding: 0.75rem 2rem;
     background: linear-gradient(to left, transparent 50%, bolt-color(indigo, xlight) 50%);
     background-size: 200% 100%;
     background-position: right bottom;
