@@ -369,8 +369,10 @@ $bolt-input-transition: $bolt-transition;
 }
 
 .c-bolt-input-icons {
-  @include bolt-form-mobile-font-size;
-  @include bolt-padding(0.65em small 0.35em 0);
+  // Icon size and padding should NOT adjust alongside font size because the height of the input
+  // is set to match the height of default buttons, which should have a fixed height.
+  @include bolt-font-size(small);
+  @include bolt-padding(0.65rem small 0.35rem 0);
 
   position: absolute;
   top: 1px;
