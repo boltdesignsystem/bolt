@@ -5,18 +5,22 @@ $bolt-export-data: false !global;
 // Same as max-width of wrapper container
 $bolt-video-meta--max-width: bolt-breakpoint(xxlarge);
 
-.c-brightcove-meta {
-  max-width: $bolt-video-meta--max-width;
-}
-
-.c-brightcove-meta__wrapper {
-  @include bolt-padding(medium, squished);
-  @include bolt-font-size(xsmall);
+bolt-video-meta {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  display: block;
 
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+.c-bolt-video-meta__wrapper {
+  @include bolt-padding(medium, squished);
+  @include bolt-font-size(xsmall);
+
   background-color: rgba(bolt-color(indigo), 0.8);
   color: bolt-color(white);
 }
