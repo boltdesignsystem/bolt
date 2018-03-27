@@ -3,3 +3,49 @@
 /* ------------------------------------ *\
    Share
 \* ------------------------------------ */
+
+.c-bolt-share {
+  .c-bolt-link__icon [name='facebook-solid'] {
+    color: #3b579d; // move this to utils
+  }
+  .c-bolt-link__icon [name='twitter'] {
+    color: #00aced; // move this to utils
+  }
+  .c-bolt-link__icon [name='linkedin'] {
+    color: #0077b5; // move this to utils
+  }
+  .c-bolt-link__icon [name='email'],
+  .c-bolt-link__icon [name='asset-link'] {
+    color: bolt-color(indigo, light);
+  }
+  .c-bolt-link {
+    text-decoration: none;
+    color: bolt-color(gray, xdark);
+  }
+}
+
+.c-bolt-share--normal-layout {
+  .c-bolt-block-list {
+    padding: 1rem 0;
+  }
+
+  .c-bolt-block-list__item {
+    margin: 0;
+  }
+
+  .c-bolt-link { // nested since this is a component within a component with different styles
+    @include bolt-font-size(large);
+    display: block;
+    margin: 0;
+    padding: 0.75rem 2rem;
+    background: linear-gradient(to left, transparent 50%, bolt-color(indigo, xlight) 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all 0.2s ease;
+  }
+
+  .c-bolt-link:hover {
+    background-position: left bottom;
+    color: bolt-color(white);
+  }
+}
