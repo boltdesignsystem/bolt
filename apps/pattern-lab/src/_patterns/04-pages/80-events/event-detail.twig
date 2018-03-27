@@ -37,10 +37,55 @@
           text: "Pega’s AI powered CRM Suite is transforming the way enterprises drive greater engagement across the entire customer journey.",
           size: "xlarge",
           tag: "p"
-        }
+        },
+        {
+          type: "headline",
+          text: "Date",
+          size: "large",
+          tag: "span",
+          url: "/events",
+          icon: {
+            name: "calendar",
+            position: "before"
+          }
+        },
+        {
+          type: "headline",
+          text: "Time",
+          size: "large",
+          tag: "span",
+          url: "/events",
+          icon: {
+            name: "watch",
+            position: "before"
+          } 
+        },
+        {
+          type: "headline",
+          text: "Location",
+          size: "large",
+          tag: "span",
+          url: "/events",
+          icon: {
+            name: "map-pin",
+            position: "before"
+          } 
+        }        
       ],
     }
-  } only %}{% endembed %}
+  } only %}
+    {% block primary_teaser %}
+    {{ parent() }}
+       {% include "@bolt/headline.twig" with {
+          text: "CRM Applications for Real-Time Engagement",
+          size: "xxlarge",
+          tag: "h2",
+          attributes: {
+            class: "u-bolt-margin-top-large"
+          }
+        } only %}
+    {% endblock %}
+  {% endembed %}
 
 
  {% embed "@bolt/band.twig" with {
@@ -51,13 +96,9 @@
     {% block band_content  %}
       {% grid %}
         {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}
-          {% include "@bolt/text.twig" with {
-              text: "At Pega, we’re obsessed with being unified. Our mobility, real-time AI, robotic automation, BPM, and case management are best in breed – go ask the analysts. But we didn’t cobble this together from pieces of dead companies – we built it from the ground up on a unified, enterprise-ready architecture."
-          } only %}
+          <p>At Pega, we’re obsessed with being unified. Our mobility, real-time AI, robotic automation, BPM, and case management are best in breed – go ask the analysts. But we didn’t cobble this together from pieces of dead companies – we built it from the ground up on a unified, enterprise-ready architecture.</p>
           
-          {% include "@bolt/text.twig" with {
-              text: "When you don’t have to waste time feeding the Frankenstack, you can focus on stuff that matters: designing awesome customer experiences. Automating your most complicated processes. Innovating in ways that disrupt the market."
-          } only %}
+          <p>When you don’t have to waste time feeding the Frankenstack, you can focus on stuff that matters: designing awesome customer experiences. Automating your most complicated processes. Innovating in ways that disrupt the market."</p>
 
           {% include "@bolt/unordered-list.twig" with {
             contentItems : [
@@ -197,14 +238,8 @@
           <hr>
         {% endcell %}
 
-{% set form_fields %}
-{% include "@bolt/form-element-demo-input-element.twig" with {
-    "title": "First Name",
-    "inputAttributes": {
-      "placeholder": "Enter your first name",
-      "required": true
-    },
-    "labelDisplayType": "floating"
+{% set fields %}
+  {% include "@bolt-components-form/form-input.twig" with {
 } only %}
 {% endset %}
 
@@ -213,6 +248,8 @@
            theme: "light",
         } only %}
 
+      {% include "@bolt-components-form/form-input.twig" with {
+      } only %}
       {% endcell %}
 
       {% endgrid %}
@@ -303,14 +340,14 @@
 
       {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
 
-      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+          {% cell "u-bolt-width-1/2" %}
           {% include "@bolt/image.twig" with {
                 src: "/pattern-lab/images/placeholders/events--speakers--placeholder.jpg",
           } only %}
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+          {% cell "u-bolt-width-1/2" %}
             {% include "@bolt/headline.twig" with {
               text: "Stanley Wheeler",
               size: "large",
@@ -327,14 +364,14 @@
         {% endgrid %}
       {% endcell %}
 
-      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+          {% cell "u-bolt-width-1/2" %}
           {% include "@bolt/image.twig" with {
                 src: "/pattern-lab/images/placeholders/events--speakers--placeholder.jpg"
           } only %}
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+          {% cell "u-bolt-width-1/2" %}
             {% include "@bolt/headline.twig" with {
               text: "Stanley Wheeler",
               size: "large",
@@ -351,14 +388,14 @@
         {% endgrid %}
       {% endcell %}
       
-      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+          {% cell "u-bolt-width-1/2" %}
           {% include "@bolt/image.twig" with {
                 src: "/pattern-lab/images/placeholders/events--speakers--placeholder.jpg"
           } only %}
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+          {% cell "u-bolt-width-1/2" %}
             {% include "@bolt/headline.twig" with {
               text: "Stanley Wheeler",
               size: "large",
@@ -375,14 +412,14 @@
         {% endgrid %}
       {% endcell %}
 
-      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+          {% cell "u-bolt-width-1/2" %}
           {% include "@bolt/image.twig" with {
                 src: "/pattern-lab/images/placeholders/events--speakers--placeholder.jpg"
           } only %}
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+          {% cell "u-bolt-width-1/2" %}
             {% include "@bolt/headline.twig" with {
               text: "Stanley Wheeler",
               size: "large",
@@ -399,14 +436,14 @@
         {% endgrid %}
       {% endcell %}
 
-      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+          {% cell "u-bolt-width-1/2" %}
           {% include "@bolt/image.twig" with {
                 src: "/pattern-lab/images/placeholders/events--speakers--placeholder.jpg"
           } only %}
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+          {% cell "u-bolt-width-1/2" %}
             {% include "@bolt/headline.twig" with {
               text: "Stanley Wheeler",
               size: "large",
@@ -423,14 +460,14 @@
         {% endgrid %}
       {% endcell %}
       
-      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+          {% cell "u-bolt-width-1/2" %}
           {% include "@bolt/image.twig" with {
                 src: "/pattern-lab/images/placeholders/events--speakers--placeholder.jpg"
           } only %}
           {% endcell %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+          {% cell "u-bolt-width-1/2" %}
             {% include "@bolt/headline.twig" with {
               text: "Stanley Wheeler",
               size: "large",
@@ -601,7 +638,69 @@
 
     {% endblock band_content %}
   {% endembed %}
-{# End Event Sponsors section #}  
+{# End Event Sponsors section #}
+
+{% embed "@bolt/band.twig" with {
+  size: "large",
+  theme: "light",
+  fullBleed: true
+} only %}
+  {% block band_content %}
+    {% include "@bolt/action-blocks.twig" with {
+      attributes: {
+        class: [
+          "c-bolt-action-blocks--max-3"
+        ]
+      },
+  "contentItems": [
+    {
+      image: {
+        src: "/pattern-lab/images/content/logos/logo-infosys.png"
+      }
+    },
+    {
+      text: "Industry Solutions",
+      url: "http://google.com",
+      icon: {
+        name: "industries"
+      }
+    },
+    {
+      text: "Training and Certification",
+      url: "http://google.com",
+      icon: {
+        name: "training",
+        background: "circle"
+      }
+    },
+    {
+      text: "Vision and Technology",
+      url: "http://google.com",
+      icon: {
+        name: "vision",
+        background: "circle"
+      }
+    },
+    {
+      text: "Services and Partners",
+      url: "http://google.com",
+      icon: {
+        name: "partners",
+        background: "square"
+      }
+    },
+    {
+      text: "Career Opportunities",
+      url: "http://google.com",
+      icon: {
+        name: "careers",
+        background: "square"
+      }
+    }
+  ]
+} only %}
+  {% endblock %}
+{% endembed %}
 
 {# Start Related Resources section #}
   {% embed "@bolt/band--collection.twig" with {
@@ -704,5 +803,14 @@
   {% endblock band_content %}
   {% endembed %}
 {# End Related Resources section#}
+
+ {% include "@bolt/form-element-demo-input-element.twig" with {
+    "title": "First Name",
+    "inputAttributes": {
+      "placeholder": "Enter your first name",
+      "required": true
+    },
+    "labelDisplayType": "floating"
+  } only %}
 
 {% endblock %}
