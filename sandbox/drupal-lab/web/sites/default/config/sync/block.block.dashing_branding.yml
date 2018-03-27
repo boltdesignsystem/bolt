@@ -1,0 +1,25 @@
+uuid: ec79aef9-127d-49bb-a898-31f3bce5ad94
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - dashing
+_core:
+  default_config_hash: NDwadleLD3YVSbDUaakxyYZyINYtkFtOVGShfq4kWy8
+id: dashing_branding
+theme: dashing
+region: header
+weight: 0
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  provider: system
+  label_display: '0'
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

@@ -1,0 +1,19 @@
+commands:
+# Generate Article content
+  - command: create:nodes
+    options:
+      limit: 25
+      title-words: 5
+      time-range: N
+    arguments:
+      content-types:
+        - article
+# Generate Basic Page content
+  - command: create:nodes
+    options:
+      limit: 25
+      title-words: 5
+      time-range: N
+    arguments:
+      content-types:
+        - page

@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the Dashing theme.
+ */
+
+ /**
+  * Implements hook_preprocess_HOOK() for menu_local_task templates.
+  */
+function dashing_preprocess_menu_local_task(&$variables) {
+  $variables['link']['#options']['attributes']['class'][] = 'nav-link';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for links templates.
+ */
+function dashing_preprocess_links(&$variables) {
+  foreach ($variables['links'] as $key => $item) {
+    $variables['links'][$key]['link']['#options']['attributes']['class'][] = 'card-link';
+  }
+}
