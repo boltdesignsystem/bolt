@@ -18,33 +18,36 @@
   {% set attributes = attributes.setAttribute("url", url) %}
 {% endif %}
 
-<div class="c-bolt-copy-to-clipboard js-bolt-copy-to-clipboard" {{ attributes }}>
-  <span class="c-bolt-copy-to-clipboard__default js-bolt-copy-to-clipboard__default">
-    {% include "@bolt-components-link/link.twig" with {
-      text: text,
-      url: url,
-      icon: {
-        name: 'asset-link',
-        position: 'before',
-        size: iconSize
-      },
-      attributes: attributes.setAttribute('data-clipboard-text', url).setAttribute('target', '_blank')
-    } only %}
-  </span>
-  <bolt-icon class="c-bolt-copy-to-clipboard__icon" name="refresh" size={{ iconSize }}></bolt-icon>
-  <span class="c-bolt-copy-to-clipboard__copied js-bolt-copy-to-clipboard__copied">
-    {% include "@bolt-components-link/link.twig" with {
-      text: copiedText,
-      url: url,
-      icon: {
-        name: 'asset-link',
-        position: 'before',
-        size: iconSize
-      },
-      attributes: attributes
-    } only %}
-  </span>
-</div>
+<bolt-copy-to-clipboard>
+  <div class="c-bolt-copy-to-clipboard js-bolt-copy-to-clipboard" {{ attributes }}>
+    <span class="c-bolt-copy-to-clipboard__default">
+      {% include "@bolt-components-link/link.twig" with {
+        text: text,
+        url: url,
+        icon: {
+          name: 'asset-link',
+          position: 'before',
+          size: iconSize
+        },
+        attributes: attributes.setAttribute('data-clipboard-text', url).setAttribute('target', '_blank').addClass('js-bolt-copy-to-clipboard__default')
+      } only %}
+    </span>
+    <bolt-icon class="c-bolt-copy-to-clipboard__icon" name="refresh" size={{ iconSize }}></bolt-icon>
+
+    <span class="c-bolt-copy-to-clipboard__copied">
+      {% include "@bolt-components-link/link.twig" with {
+        text: copiedText,
+        url: url,
+        icon: {
+          name: 'asset-link',
+          position: 'before',
+          size: iconSize
+        },
+        attributes: attributes.removeClass('js-bolt-copy-to-clipboard__default')
+      } only %}
+    </span>
+  </div>
+</bolt-copy-to-clipboard>
 
 {% if enable_json_schema_validation %}
   {{ validate_data_schema('@bolt-components-copy-to-clipboard/copy-to-clipboard.schema.yml', _self) }}
