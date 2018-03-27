@@ -282,6 +282,7 @@ $bolt-pw-stat-slideshow-shadow-color: bolt-color(indigo, xdark);
   border-style: solid;
   border-color: bolt-color(teal);
   border-radius: 0 0 50% 50%;
+  -webkit-mask-image: -webkit-radial-gradient(white, black); // [Mai] Safari overflow bug fix.
 
   @include respond-to(medium) {
     flex-shrink: 0;
@@ -294,20 +295,6 @@ $bolt-pw-stat-slideshow-shadow-color: bolt-color(indigo, xdark);
     padding-bottom: calc(85% - #{bolt-v-spacing(large) * 4} - 4rem);
     border-width: 2rem 2rem 2rem 0;
     border-radius: 0 50% 50% 0;
-  }
-}
-
-.c-pw-stat-slideshow-media__video {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: auto;
-  height: 100%;
-  transform: translateX(-50%);
-
-  @include respond-to(medium) {
-    padding-top: calc(#{bolt-v-spacing(large)} + 1rem);
-    padding-bottom: calc(#{bolt-v-spacing(large)} + 1rem);
   }
 }
 
@@ -325,6 +312,7 @@ $bolt-pw-stat-slideshow-shadow-color: bolt-color(indigo, xdark);
     width: 100%;
     height: 100%;
     transform: translate(-50%, -50%) !important;
+    z-index: -1;
   }
 
   @include respond-to(medium) {
@@ -333,7 +321,7 @@ $bolt-pw-stat-slideshow-shadow-color: bolt-color(indigo, xdark);
     margin-bottom: calc(#{bolt-v-spacing(large)*2} - 2rem);
 
     > * {
-      width: 333% !important;
+      width: 180% !important;
       height: 100% !important;
     }
   }
