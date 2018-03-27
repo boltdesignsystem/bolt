@@ -2,11 +2,11 @@ import { h } from '@bolt/core';
 
 export const ChevronDown = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (
-    <svg width={size} height={size} {...otherProps} viewBox="0 0 32 32">
+    <svg width={size} height={size} {...otherProps} viewBox="0 0 24 24">
       <path
-        d="M22.71 13.704a1.005 1.005 0 0 0 0-1.413 1.004 1.004 0 0 0-1.413 0l-5.295 5.294-5.295-5.294a1.005 1.005 0 0 0-1.413 0 .998.998 0 0 0 0 1.412l6 6a.993.993 0 0 0 1.414 0l6.002-6z"
+        d="M20.946 8.938a1.34 1.34 0 0 0 0-1.884 1.339 1.339 0 0 0-1.884 0l-7.06 7.059-7.059-7.059a1.34 1.34 0 0 0-1.884 0 1.329 1.329 0 0 0 0 1.883l8 8a1.323 1.323 0 0 0 1.885 0l8.002-7.999z"
         fill={bgColor}
-        fill-rule="evenodd"
+        fill-rule="nonzero"
       />
     </svg>
   );

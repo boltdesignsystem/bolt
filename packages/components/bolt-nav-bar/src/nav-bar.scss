@@ -157,7 +157,8 @@ bolt-nav-list {
   height: $bolt-nav-list-link-border-size;
   background-color: currentColor;
   background-color: var(--bolt-theme-heading, currentColor);
-  opacity: 0;
+  opacity: 1;
+  opacity: var(--bolt-nav-list-indicator-opacity, 1);
   transition:
     transform
     $bolt-nav-list-link-border-transition-timing

@@ -140,9 +140,6 @@ function createConfig(config) {
 
   const scssLoaders = [
     {
-      loader: 'cache-loader'
-    },
-    {
       loader: 'string-replace-loader',
       query: {
         search: workaroundAtValue,

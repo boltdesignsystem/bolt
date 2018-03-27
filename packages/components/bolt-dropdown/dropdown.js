@@ -12,88 +12,270 @@ import handorgel from './handorgel/handorgel';
 import styles from './dropdown.scss';
 
 
+
+
+
+
 @define
 export class BoltDropdown extends BoltComponent() {
   static is = 'bolt-dropdown';
 
-  // static props = {
-  //   // color: props.string,
-  // }
+  // static get observedAttributes() { return ['toggle-text']; }
+
+  static props = {
+    autoOpen: props.boolean,
+    collapse: props.boolean,
+    ssrContent: props.string,
+    toggleText: props.string,
+    primaryUuid: props.string,
+    secondaryUuid: props.string,
+  }
 
   constructor() {
     super();
     this.useShadow = hasNativeShadowDomSupport;
 
-    console.log('constructor');
+    this.state = {
+      open: this.props.autoOpen ? this.props.autoOpen : false,
+      collapse: this.props.collapse ? this.props.collapse : false
+    };
+
+    this.uuid = "12345";
+
+    // this.html = this.hyper.wire(this);
+
+    // console.log(this.html);
   }
 
   connecting() {
-    this.instance = new handorgel(this.querySelector('.c-bolt-dropdown'), {
+    if (this.props.ssrContent) {
+      this.ssrContent = JSON.parse(this.props.ssrContent);
+    }
+    // this._checkSlots();
 
-      // whether multiple folds can be opened at once
-      multiSelectable: true,
-      // whether the folds are collapsible
-      collapsible: true,
 
-      // whether ARIA attributes are enabled
-      ariaEnabled: true,
-      // whether W3C keyboard shortcuts are enabled
-      keyboardInteraction: true,
-      // whether to loop header focus (sets focus back to first/last header when end/start reached)
-      carouselFocus: true,
+    console.log('connecting');
 
-      // attribute for the header or content to open folds at initialization
-      initialOpenAttribute: 'data-open',
-      // whether to use transition at initial open
-      initialOpenTransition: true,
-      // delay used to show initial transition
-      initialOpenTransitionDelay: 200,
 
-      // header/content class if fold is open
-      headerOpenClass: 'c-bolt-dropdown__header--open',
-      contentOpenClass: 'c-bolt-dropdown__content--open',
-
-      // header/content class if fold has been opened (transition finished)
-      headerOpenedClass: 'c-bolt-dropdown__header--opened',
-      contentOpenedClass: 'c-bolt-dropdown__content--opened',
-
-      // header/content class if fold has been focused
-      headerFocusClass: 'c-bolt-dropdown__header--focus',
-      contentFocusClass: 'c-bolt-dropdown__content--focus',
-
-      // header/content class if fold is disabled
-      headerDisabledClass: 'c-bolt-dropdown__header--disabled',
-      contentDisabledClass: 'c-bolt-dropdown__content--disabled',
-
-      // header/content class if no transition should be active (applied on resize)
-      headerNoTransitionClass: 'c-bolt-dropdown__header--notransition',
-      contentNoTransitionClass: 'c-bolt-dropdown__content--notransition'
-
-    });
   }
 
-  render(){
-    return this.html`
-      ${this.slot('default')}
-    `
+  // attributeChangedCallback() {
+  //   this.render();
+  // }
+
+  autoHeight() {
+    if (this.props.collapse && window.matchMedia("(min-width: 600px)").matches) {
+      this.contentElem.classList.add('u-bolt-height-auto');
+      // this.dropdown.open();
+    } else if (this.props.collapse) {
+      this.contentElem.classList.remove('u-bolt-height-auto');
+
+    }
   }
+
+  close() {
+    console.log('close dropdown');
+    // this.dropdown.folds[0].close();
+  }
+
+  get open() {
+    return this.state.open;
+    // this.dropdown.folds[0].close();
+  }
+
+  // Sets the `active` state for the current custom element
+  set open(value) {
+    /* Properties can be set to all kinds of string values. This
+     * makes sure it’s converted to a proper boolean value using
+     * JavaScript’s truthiness & falsiness principles.
+     */
+
+    if (value && value === true) {
+      this.state.open = true;
+      this.setAttribute('open', 'open');
+    } else {
+      this.removeAttribute('open');
+    }
+  }
+
+
+  // get expanded(){
+  //   console.log(this.dropdown);
+  //   return this.dropdown.expanded;
+  // }
+
+
+// as function, same props, same node
+  dropdownHeader() {
+    console.log('dropdownHeader');
+    const dropdownHeaderClasses = css(
+      'c-bolt-dropdown__header',
+      this.props.center ? 'c-bolt-dropdown__header--center' : ''
+    );
+
+    return this.wire(this.props) `
+      <h3 class="${dropdownHeaderClasses}">
+        <button class="c-bolt-dropdown__header-button">
+          ${this.props.toggleText}
+
+          <span class="c-bolt-dropdown__header-icons">
+            <div class="c-bolt-dropdown__header-icons-inner">
+              <span class="c-bolt-dropdown__header-icon c-bolt-dropdown__header-icon--open">
+                <bolt-icon name="chevron-down"></bolt-icon>
+              </span>
+
+              <span class="c-bolt-dropdown__header-icon c-bolt-dropdown__header-icon--close">
+                <bolt-icon name="chevron-up"></bolt-icon>
+              </span>
+            </div>
+          </span>
+        </button>
+      </h3>`;
+  }
+
+
+
+  // render() {
+  //   console.log('render');
+
+  //   const classes = css(
+  //     'c-bolt-dropdown',
+  //     this.props.collapse ? 'c-bolt-dropdown--collapse@small' : ''
+  //   );
+
+
+
+  //   this.template = this.wire(this.props) `
+  //     <div class="${classes}" id="${this.uuid}">
+  //       ${this.dropdownHeader()}
+
+  //       <div class="c-bolt-dropdown__content">
+  //         <div class="c-bolt-dropdown__content-inner">
+  //           ${this.slot('default')}
+  //         </div>
+  //       </div>
+  //     </div>
+  //   `;
+
+  //   // this.appendChild(this.template);
+  //   console.log(this.template);
+
+
+  //   // if (this.ssrContent) {
+  //   //   this.innerHTML = this.ssrContent;
+  //   // }
+
+
+
+  //   // console.log(this.renderRoot);
+
+
+  //   // this.dropdown = new handorgel(this.querySelector('.c-bolt-dropdown'), {
+
+  //   //   // whether multiple folds can be opened at once
+  //   //   multiSelectable: true,
+  //   //   // whether the folds are collapsible
+  //   //   collapsible: true,
+
+  //   //   // whether ARIA attributes are enabled
+  //   //   ariaEnabled: true,
+  //   //   // whether W3C keyboard shortcuts are enabled
+  //   //   keyboardInteraction: true,
+  //   //   // whether to loop header focus (sets focus back to first/last header when end/start reached)
+  //   //   carouselFocus: true,
+
+  //   //   // attribute for the header or content to open folds at initialization
+  //   //   initialOpenAttribute: 'data-open',
+  //   //   // whether to use transition at initial open
+  //   //   initialOpenTransition: true,
+  //   //   // delay used to show initial transition
+  //   //   initialOpenTransitionDelay: 200,
+
+  //   //   // header/content class if fold is open
+  //   //   headerOpenClass: 'c-bolt-dropdown__header--open',
+  //   //   contentOpenClass: 'c-bolt-dropdown__content--open',
+
+  //   //   // header/content class if fold has been opened (transition finished)
+  //   //   headerOpenedClass: 'c-bolt-dropdown__header--opened',
+  //   //   contentOpenedClass: 'c-bolt-dropdown__content--opened',
+
+  //   //   // header/content class if fold has been focused
+  //   //   headerFocusClass: 'c-bolt-dropdown__header--focus',
+  //   //   contentFocusClass: 'c-bolt-dropdown__content--focus',
+
+  //   //   // header/content class if fold is disabled
+  //   //   headerDisabledClass: 'c-bolt-dropdown__header--disabled',
+  //   //   contentDisabledClass: 'c-bolt-dropdown__content--disabled',
+
+  //   //   // header/content class if no transition should be active (applied on resize)
+  //   //   headerNoTransitionClass: 'c-bolt-dropdown__header--notransition',
+  //   //   contentNoTransitionClass: 'c-bolt-dropdown__content--notransition'
+
+  //   // });
+
+  //   // console.log(this.dropdown);
+
+
+  //   // return this.html`
+  //   //   ${ this.addStyles([styles])}
+
+  //   //   <div class="${classes}" id="${this.uuid}">
+  //   //     ${this.dropdownHeader()}
+
+  //   //     <div class="c-bolt-dropdown__content">
+  //   //       <div class="c-bolt-dropdown__content-inner">
+  //   //         ${this.slot('default')}
+  //   //       </div>
+  //   //     </div>
+  //   //   </div>
+  //   // `;
+  //   /**
+  //  * Closes the current select on any click outside of it.
+  //  *
+  //  */
+  //   // const elem = this;
+
+  //   // this.contentElem = this.querySelector('.c-bolt-dropdown__content');
+
+  //   // console.log(this.contentElem);
+
+
+
+  //   // this.autoHeight();
+
+
+  //   // this.dropdown.folds.forEach(fold => {
+  //   //   // console.log(child.text);
+  //   //   console.log(fold);
+  //   // });
+  //   // this.dropdown.on('fold:open', (fold) => {
+  //   //   console.log(fold);
+  //   //   // ...
+  //   // });
+  //   // document.addEventListener('click', function (e) {
+  //   //   if (!elem.contains(e.target) && elem.expanded === true) {
+  //   //     elem.close();
+  //   //   } else if (!elem.contains(e.target) && elem.expanded === true) {
+  //   //     console.log('click outside of dropdown, but not currently open');
+  //   //   } else {
+  //   //     console.log('click inside of dropdown');
+  //   //   }
+  //   // });
+
+  //   // window.addEventListener('resize', function () {
+  //   //   elem.autoHeight();
+  //   // });
+
+  //   // return this.html`
+  //   //   ${this.addStyles([styles])}
+  //   //   ${this.template}
+  //   // `
+  // }
 
   // disconnecting() {
 
   // }
 
-  // render({ props, state }) {
-  //   // Setup the combo of classes to apply based on state + extras added
-  //   const classes = css(
-  //     'c-bolt-dropdown',
-  //   );
-
-  //   return this.html`
-  //     ${ this.addStyles([styles]) }
-
-  //     ${ this.slots.default }
-  //   `
-  // }
 }
 
 

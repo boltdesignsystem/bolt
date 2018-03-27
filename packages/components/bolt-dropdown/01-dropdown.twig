@@ -4,53 +4,53 @@
 {% set primaryUUID = "c-bolt-dropdown-#{uuid}" %}
 {% set secondaryUUID = "c-bolt-dropdown-inner-#{uuid}" %}
 
+{% set autoOpen = autoOpen | default(false) %}
+{% set collapse = collapse | default(false) %}
 
 
 
-<bolt-dropdown {% if center and center == true %}center{% endif %}>
-  <input class="c-bolt-dropdown__state" type="checkbox" id="{{ primaryUUID }}">
 
-  <div class="c-bolt-dropdown" id="{{ secondaryUUID }}">
-    <h3 class="c-bolt-dropdown__header u-bolt-hidden@small {% if center and center == true %}c-bolt-dropdown__header--center{% endif %} ">
-      <button class="c-bolt-dropdown__header-button">
-        Toggle Dropdown
 
-        <span class="c-bolt-dropdown__header-icons">
-          <span class="c-bolt-dropdown__header-icon c-bolt-dropdown__header-icon--open">
-            <bolt-icon name="chevron-down"></bolt-icon>
-          </span>
 
-          <span class="c-bolt-dropdown__header-icon c-bolt-dropdown__header-icon--close">
-            <bolt-icon name="chevron-up"></bolt-icon>
-          </span>
-        </span>
-      </button>
 
-      <label class="c-bolt-dropdown__label" for="{{ primaryUUID }}">
-        <h3 class="c-bolt-dropdown__header-title">Toggle Dropdown</h3>
-        <bolt-icon name="chevron-right"></bolt-icon>
+<bolt-dropdown
+  auto-open="{{ autoOpen ? "true" : "false"}}"
+  {{ collapse ? "collapse" : "" }}
+  {{ center ? "center" : "" }}
+  primary-uuid="{{ primaryUUID }}"
+  secondary-uuid="{{ secondaryUUID }}"
+  toggle-text="{{ toggleText | default("Toggle Dropdown") }}"
+  ssr-content='{{ content|json_encode() }}'
+  >
+  <input class="c-bolt-dropdown__state" type="checkbox" id="{{ primaryUUID }}" {% if autoOpen %} checked{% endif %}>
+
+  <div class="c-bolt-dropdown {{ collapse ? "c-bolt-dropdown--collapse@small" : "" }}" id="{{ secondaryUUID }}">
+
+    <h3 class="c-bolt-dropdown__header {% if center and center == true %}c-bolt-dropdown__header--center{% endif %} ">
+      <label class="c-bolt-dropdown__header-label" for="{{ primaryUUID }}">
+        {{ toggleText | default("Toggle Dropdown")}}
       </label>
 
-      <a href="#{{ secondaryUUID }}" class="c-bolt-dropdown__toggle c-bolt-dropdown__toggle--open">
-        <span class="c-bolt-dropdown__toggle-text">Open Menu</span>
+      <a href="#{{ secondaryUUID }}" class="c-bolt-dropdown__header-link c-bolt-dropdown__header-link c-bolt-dropdown__header-link--open">
+        <span class="c-bolt-dropdown__toggle-text">{{ openText | default("Open Dropdown")}}</span>
       </a>
 
-      <a href="#{{ primaryUUID }}" class="c-bolt-dropdown__toggle c-bolt-dropdown__toggle--close">
-        <span class="c-bolt-dropdown__toggle-text">Close Menu</span>
+      <a href="#{{ primaryUUID }}" class="c-bolt-dropdown__header-link c-bolt-dropdown__header-link--close">
+        <span class="c-bolt-dropdown__toggle-text">{{ closeText | default("Close Dropdown")}}</span>
       </a>
     </h3>
 
-    <div class="c-bolt-dropdown__content u-bolt-block@small u-bolt-height-auto@small">
-      <div class="c-bolt-dropdown__content-inner u-bolt-opacity-100@small">
-        <span class="default">
-          {% block children %}
-            {{ children }}
-          {% endblock %}
-        </span>
+
+    <div class="c-bolt-dropdown__content">
+      <div class="c-bolt-dropdown__content-inner">
+        <div slot="default">
+          {{ content }}
+        </div>
       </div>
     </div>
   </div>
 </bolt-dropdown>
+
 
 
 
