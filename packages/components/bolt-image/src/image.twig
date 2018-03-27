@@ -5,9 +5,9 @@
 {% set height = height|default(imageDataTwig.height) %}
 {% set width = width|default(imageDataTwig.width) %}
 {% set lazyload = lazyload ?? true %}
-{% set placeholderColor = imageDataTwig.color %}
-{% set placeholderImage = imageDataTwig.base64 %}
 {% set placeholderDummySrc = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" %}
+{% set placeholderColor = imageDataTwig.color|default('hsl(233, 33%, 97%)') %}
+{% set placeholderImage = imageDataTwig.base64|default(placeholderDummySrc) %}
 {% set sizes = sizes | default("auto") %}
 {% set srcset = src %}
 {% if imageDataBolt.srcset %}

@@ -1,24 +1,30 @@
-{% set children %}
-  {% include "@bolt-components-form/form-element-demo-radio.twig" with {
+{% set radioChildren %}
+  {% include "@bolt/form-element-demo-radio.twig" with {
     "labelTitle": "Left-aligned",
     "elementId": "radio-left",
     "name": "radio-alignment"
   } %}
 
-  {% include "@bolt-components-form/form-element-demo-radio.twig" with {
+  {% include "@bolt/form-element-demo-radio.twig" with {
     "labelTitle": "Center-aligned",
     "elementId": "radio-center",
     "name": "radio-alignment"
   } %}
 
-  {% include "@bolt-components-form/form-element-demo-radio.twig" with {
+  {% include "@bolt/form-element-demo-radio.twig" with {
     "labelTitle": "Right-aligned",
     "elementId": "radio-right",
     "name": "radio-alignment"
   } %}
 {% endset %}
 
+{% set fieldsetChildren %}
+  {% include "@bolt-components-form/form-radios.twig" with {
+    children: radioChildren
+  } only %}
+{% endset %}
+
 {% include "@bolt-components-form/form-fieldset.twig" with {
   "legendTitle": "Select an alignment",
-  "children": children
+  "children": fieldsetChildren
 } only %}
