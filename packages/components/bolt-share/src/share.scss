@@ -6,13 +6,13 @@
 
 .c-bolt-share {
   .c-bolt-link__icon [name='facebook-solid'] {
-    color: #3b579d; // move this to utils
+    color: bolt-color(social, facebook);
   }
   .c-bolt-link__icon [name='twitter'] {
-    color: #00aced; // move this to utils
+    color: bolt-color(social, twitter);
   }
   .c-bolt-link__icon [name='linkedin'] {
-    color: #0077b5; // move this to utils
+    color: bolt-color(social, linkedin);
   }
   .c-bolt-link__icon [name='email'],
   .c-bolt-link__icon [name='asset-link'] {
@@ -42,6 +42,11 @@
     background-size: 200% 100%;
     background-position: right bottom;
     transition: all 0.2s ease;
+  }
+
+  .c-bolt-copy-to-clipboard__icon,
+  .is-copied .c-bolt-copy-to-clipboard__icon {
+    left: 2rem; // Aligns out absolutely positioned icon correctly with the others
   }
 
   .c-bolt-link:hover {
