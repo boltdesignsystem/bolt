@@ -40,7 +40,6 @@ module.exports = {
       '@bolt/components-background-shapes',
       '@bolt/components-band',
       '@bolt/components-block-list',
-      '@bolt/components-brightcove-player',
       '@bolt/components-blockquote',
       '@bolt/components-breadcrumb',
       '@bolt/components-button',
