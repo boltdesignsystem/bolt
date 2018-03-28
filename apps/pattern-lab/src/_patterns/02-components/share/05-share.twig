@@ -9,7 +9,7 @@
   const demo = document.querySelector('.demo--share');
   if (demo !== null) {
     if (window.self !== window.top) {
-      demo.setAttribute('style','text-align: center; padding: 10rem 0 0');
+      demo.setAttribute('style','margin: 0 auto; width: 150px; padding: 10rem 0 0');
     } else {
       demo.setAttribute('style','position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)');
     }
