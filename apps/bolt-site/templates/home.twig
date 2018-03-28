@@ -16,7 +16,7 @@
 
       {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small" %}
         {% include "@bolt/eyebrow.twig" with {
-          text: "v1.0.0-rc.9"
+          text: bolt.data.fullManifest.version,
         } only %}
 
         {% include "@bolt/headline.twig" with {
