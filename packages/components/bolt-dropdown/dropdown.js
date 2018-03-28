@@ -74,6 +74,18 @@ export class BoltDropdown extends BoltComponent() {
       this.ssrContent = JSON.parse(this.props.ssrContent);
     }
 
+    const contentInner = this.querySelector('.c-bolt-dropdown__content-inner');
+    const originalDropdown = this.querySelector('.c-bolt-dropdown');
+    const originalInput = this.querySelector('.c-bolt-dropdown__state');
+
+    if (contentInner && originalDropdown) {
+      if (originalInput) {
+        this.removeChild(originalInput);
+      }
+
+      originalDropdown.replaceWith(...contentInner.childNodes);
+    }
+
     // if (this.shadowRoot) {
     //   this.shadowRoot.appendChild(
     //     this.addStyles([styles]),
