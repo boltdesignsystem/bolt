@@ -16,7 +16,15 @@ bolt-copy-to-clipboard {
 }
 
 .c-bolt-copy-to-clipboard__icon {
+  color: bolt-color(indigo, light);
   transform: scale(0) rotate(0deg);
+}
+
+.c-bolt-copy-to-clipboard__default,
+.c-bolt-copy-to-clipboard__copied {
+  .c-bolt-link__icon {
+    color: bolt-color(indigo, light);
+  }
 }
 
 .c-bolt-copy-to-clipboard__copied {
