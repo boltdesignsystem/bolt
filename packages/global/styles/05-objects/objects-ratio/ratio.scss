@@ -5,6 +5,7 @@
 .o-bolt-ratio,
 bolt-ratio {
   display: inline-block;
+  vertical-align: middle; // Prevents the average background color from sometimes showing up unexpectedly due to the image being top aligned when it should have been vertically centered.
   position: relative;
   width: 100%;
   overflow: hidden; // Hide placeholder blurred images from leaking through
