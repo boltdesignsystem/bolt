@@ -42,8 +42,16 @@
   }
 }
 
+.c-pw-image-wrapper {
+  @include bolt-margin(0 auto medium auto);
 
-
+  .c-pw-leading-companies & {
+    border-radius: 100em;
+    max-width: 250px;
+    max-height: 250px;
+    overflow: hidden;
+  }
+}
 
 
 .c-pw-portrait {
@@ -83,12 +91,12 @@
 .c-pw-mobile-menu {
   transition: top 200ms cubic-bezier(0.45,1.8,0.5,0.75);
 
-  &:not(:target) {
+  &:not(.is-active) {
     @include bolt-visuallyhidden;
     top: -2rem;
   }
 
-  &:target {
+  &.is-active {
     display: flex;
     justify-content: center;
     align-items: center;
