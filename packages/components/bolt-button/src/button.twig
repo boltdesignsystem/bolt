@@ -113,7 +113,7 @@
   <{{ tag }} {{ attributes.addClass('c-bolt-button__root') | without('on-click') | without('on-click-target') }}>
 
     {# Add component-specific classes to a Bolt temp element that gets removed and replaced by it's children once the JS kicks in #}
-    <replace-with-children class="{{ classes|join(' ') }} Hello">
+    <replace-with-children class="{{ classes|join(' ') }}">
       <span class="{{ "#{baseClass}__item" }} {{ iconOnly ? 'u-bolt-visuallyhidden' : '' }}">{{ text }}</span>
 
       {% if icon %}
