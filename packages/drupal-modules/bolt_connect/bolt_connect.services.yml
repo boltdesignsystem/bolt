@@ -2,8 +2,8 @@ services:
   bolt_connect.bolt_core_extension:
     class: Bolt\TwigExtensions\BoltCore
     tags:
-      - { name: twig.extension }
+      - { name: twig.extension, priority: -200 }
   bolt_connect.twig_namespaces:
     class: Drupal\bolt_connect\BoltConnectTwigNamespaces
     tags:
-      - { name: twig.loader }
+      - { name: twig.loader, priority: -200 }
