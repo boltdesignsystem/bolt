@@ -9,8 +9,9 @@ import {
 } from '@bolt/core';
 
 import handorgel from './handorgel/handorgel';
-import styles from './dropdown.scss';
 
+import styles from './dropdown.scss';
+import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
 
 
 
@@ -25,6 +26,7 @@ export class BoltDropdown extends BoltComponent() {
   static props = {
     autoOpen: props.boolean,
     collapse: props.boolean,
+    center: props.boolean,
     ssrContent: props.string,
     toggleText: props.string,
     primaryUuid: props.string,
@@ -42,6 +44,26 @@ export class BoltDropdown extends BoltComponent() {
 
     this.uuid = "12345";
 
+
+    // this.dropdownTemplate = document.createElement('template');
+
+    // this.fragment = document.createDocumentFragment();
+
+    // this.fragment.appendChild(
+    //   this.template(),
+    // );
+
+    this.attachShadow({
+      mode: 'open',
+      // delegatesFocus: true,
+    });
+
+
+    // console.log(this.dropdownTemplate);
+
+    // this.appendChild(
+    //   this.dropdownTemplate.content.cloneNode(true),
+    // );
     // this.html = this.hyper.wire(this);
 
     // console.log(this.html);
@@ -51,12 +73,71 @@ export class BoltDropdown extends BoltComponent() {
     if (this.props.ssrContent) {
       this.ssrContent = JSON.parse(this.props.ssrContent);
     }
+
+    // if (this.shadowRoot) {
+    //   this.shadowRoot.appendChild(
+    //     this.addStyles([styles]),
+    //   );
+    //   this.shadowRoot.appendChild(
+    //     this.template(),
+    //   );
+    //   this._shadowDropdown = this.shadowRoot.querySelector('.c-bolt-dropdown');
+    // } else {
+    //   this.appendChild(this.template());
+    //   this._shadowDropdown = this.querySelector('.c-bolt-dropdown');
+    // }
     // this._checkSlots();
 
 
-    console.log('connecting');
 
 
+
+
+    const elem = this;
+
+    window.addEventListener('resize', function () {
+      elem.autoHeight();
+    });
+
+    // const originalChildren = this.childNodes;
+    // this.innerHTML = '';
+
+    // this.appendChild(this.template());
+
+
+
+    // console.log(this.dropdownTemplate);
+
+    // .innerHTML = `
+    //   <style>
+    //     :host {
+    //       contain: content;
+    //     }
+    //     button {
+    //       display: block;
+    //       background-color: initial;
+    //       border: initial;
+    //       width: 100%;
+    //     }
+    //   </style>
+    //   <button><slot></slot></button>
+    // `;
+
+
+
+
+
+
+    // this.dropdownTemplate.appendChild = this.fragment;
+
+    // console.log(this.dropdownTemplate);
+    // if (this.useShadow){
+    //   this.shadowRoot.append
+
+    //   Node.prototype.appendChildren = function (...children) {
+    // }
+
+    // console.log(test);
   }
 
   // attributeChangedCallback() {
@@ -107,13 +188,12 @@ export class BoltDropdown extends BoltComponent() {
 
 // as function, same props, same node
   dropdownHeader() {
-    console.log('dropdownHeader');
     const dropdownHeaderClasses = css(
       'c-bolt-dropdown__header',
       this.props.center ? 'c-bolt-dropdown__header--center' : ''
     );
 
-    return this.wire(this.props) `
+    return this.hyper.wire(this.props) `
       <h3 class="${dropdownHeaderClasses}">
         <button class="c-bolt-dropdown__header-button">
           ${this.props.toggleText}
@@ -135,8 +215,88 @@ export class BoltDropdown extends BoltComponent() {
 
 
 
-  // render() {
+  template() {
+    const classes = css(
+      'c-bolt-dropdown',
+      this.props.collapse ? 'c-bolt-dropdown--collapse@small' : ''
+    );
+
+    return this.hyper.wire(this.props) `
+      <div class="${classes}" id="${this.uuid}">
+        ${this.dropdownHeader()}
+
+        <div class="c-bolt-dropdown__content">
+          <div class="c-bolt-dropdown__content-inner">
+            ${this.slot('default')}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+
+
+  render() {
+
+
+    this.dropdownTemplate = document.createDocumentFragment();
+    this.dropdownTemplate.appendChild(this.template());
+
+    this.contentElem = this.dropdownTemplate.querySelector('.c-bolt-dropdown__content');
+
+    this.autoHeight();
+
+
+    this.dropdown = new handorgel(this.dropdownTemplate.querySelector('.c-bolt-dropdown'), {
+      // whether multiple folds can be opened at once
+      multiSelectable: true,
+      // whether the folds are collapsible
+      collapsible: true,
+
+      // whether ARIA attributes are enabled
+      ariaEnabled: true,
+      // whether W3C keyboard shortcuts are enabled
+      keyboardInteraction: true,
+      // whether to loop header focus (sets focus back to first/last header when end/start reached)
+      carouselFocus: true,
+
+      // attribute for the header or content to open folds at initialization
+      initialOpenAttribute: 'data-open',
+      // whether to use transition at initial open
+      initialOpenTransition: true,
+      // delay used to show initial transition
+      initialOpenTransitionDelay: 200,
+
+      // header/content class if fold is open
+      headerOpenClass: 'c-bolt-dropdown__header--open',
+      contentOpenClass: 'c-bolt-dropdown__content--open',
+
+      // header/content class if fold has been opened (transition finished)
+      headerOpenedClass: 'c-bolt-dropdown__header--opened',
+      contentOpenedClass: 'c-bolt-dropdown__content--opened',
+
+      // header/content class if fold has been focused
+      headerFocusClass: 'c-bolt-dropdown__header--focus',
+      contentFocusClass: 'c-bolt-dropdown__content--focus',
+
+      // header/content class if fold is disabled
+      headerDisabledClass: 'c-bolt-dropdown__header--disabled',
+      contentDisabledClass: 'c-bolt-dropdown__content--disabled',
+
+      // header/content class if no transition should be active (applied on resize)
+      headerNoTransitionClass: 'c-bolt-dropdown__header--notransition',
+      contentNoTransitionClass: 'c-bolt-dropdown__content--notransition'
+    });
+
+
+
+    return this.html`
+      ${ this.addStyles([styles, heightUtils]) }
+      ${ this.dropdownTemplate }
+    `;
+  }
   //   console.log('render');
+
 
   //   const classes = css(
   //     'c-bolt-dropdown',
@@ -170,48 +330,7 @@ export class BoltDropdown extends BoltComponent() {
   //   // console.log(this.renderRoot);
 
 
-  //   // this.dropdown = new handorgel(this.querySelector('.c-bolt-dropdown'), {
 
-  //   //   // whether multiple folds can be opened at once
-  //   //   multiSelectable: true,
-  //   //   // whether the folds are collapsible
-  //   //   collapsible: true,
-
-  //   //   // whether ARIA attributes are enabled
-  //   //   ariaEnabled: true,
-  //   //   // whether W3C keyboard shortcuts are enabled
-  //   //   keyboardInteraction: true,
-  //   //   // whether to loop header focus (sets focus back to first/last header when end/start reached)
-  //   //   carouselFocus: true,
-
-  //   //   // attribute for the header or content to open folds at initialization
-  //   //   initialOpenAttribute: 'data-open',
-  //   //   // whether to use transition at initial open
-  //   //   initialOpenTransition: true,
-  //   //   // delay used to show initial transition
-  //   //   initialOpenTransitionDelay: 200,
-
-  //   //   // header/content class if fold is open
-  //   //   headerOpenClass: 'c-bolt-dropdown__header--open',
-  //   //   contentOpenClass: 'c-bolt-dropdown__content--open',
-
-  //   //   // header/content class if fold has been opened (transition finished)
-  //   //   headerOpenedClass: 'c-bolt-dropdown__header--opened',
-  //   //   contentOpenedClass: 'c-bolt-dropdown__content--opened',
-
-  //   //   // header/content class if fold has been focused
-  //   //   headerFocusClass: 'c-bolt-dropdown__header--focus',
-  //   //   contentFocusClass: 'c-bolt-dropdown__content--focus',
-
-  //   //   // header/content class if fold is disabled
-  //   //   headerDisabledClass: 'c-bolt-dropdown__header--disabled',
-  //   //   contentDisabledClass: 'c-bolt-dropdown__content--disabled',
-
-  //   //   // header/content class if no transition should be active (applied on resize)
-  //   //   headerNoTransitionClass: 'c-bolt-dropdown__header--notransition',
-  //   //   contentNoTransitionClass: 'c-bolt-dropdown__content--notransition'
-
-  //   // });
 
   //   // console.log(this.dropdown);
 
@@ -235,13 +354,13 @@ export class BoltDropdown extends BoltComponent() {
   //  */
   //   // const elem = this;
 
-  //   // this.contentElem = this.querySelector('.c-bolt-dropdown__content');
+
 
   //   // console.log(this.contentElem);
 
 
 
-  //   // this.autoHeight();
+
 
 
   //   // this.dropdown.folds.forEach(fold => {

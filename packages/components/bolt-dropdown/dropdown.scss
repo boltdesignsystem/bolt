@@ -7,6 +7,14 @@ bolt-dropdown {
   --bolt-nav-list-item-opacity: 0;
   --bolt-nav-list-item-transform: translateY(bolt-spacing(large) * -1);
   --bolt-nav-list-indicator-opacity: 0;
+
+  &[collapse]{
+    @include respond-to(small) {
+      --bolt-nav-list-item-opacity: 1;
+      --bolt-nav-list-item-transform: none;
+      --bolt-nav-list-indicator-opacity: 1;
+    }
+  }
 }
 
 
@@ -279,6 +287,7 @@ bolt-dropdown {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden; // so transformed icons don't spill out
 
   &:before {
     position: absolute;
@@ -286,14 +295,17 @@ bolt-dropdown {
     bottom: 0;
     left: 0;
     width: 1px;
-    opacity: 0.1;
+    opacity: 1;
     background-color: currentColor;
-    background-color: var(--bolt-theme-primary, currentColor);
+    background-color: var(--bolt-theme-text, currentColor);
+    content: '';
+
+    .c-bolt-dropdown__header--center & {
+      display: none;
+    }
   }
 
-  .c-bolt-dropdown__header--center & {
-    border-left: none;
-  }
+
 }
 
 .c-bolt-dropdown__header-icons-inner {

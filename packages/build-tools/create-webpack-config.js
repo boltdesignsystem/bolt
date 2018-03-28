@@ -1,4 +1,5 @@
 const path = require('path');
+const log = require('./utils/log');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
