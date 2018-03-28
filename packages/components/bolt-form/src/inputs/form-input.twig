@@ -39,9 +39,6 @@ the icons wrapping markup, even if there are no icons to show, for the following
 {% endif %}
 
 {% if _supportsIcons %}
-  {% if attributes.disabled %}
-    {% set _icons = _icons|merge(['lock']) %}
-  {% endif %}
 
   {% if _type == "search" %}
     {% set _icons = _icons|merge(['search']) %}
