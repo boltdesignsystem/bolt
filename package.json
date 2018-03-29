@@ -40,7 +40,7 @@
     "clean:git": "git clean -xdf && rm -rf apps/**/vendor apps/**/node_modules && find . -empty -type d -delete",
     "clean:lerna": "lerna clean -Y",
     "clean": "npm-run-all --parallel clean:*",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm run build && node scripts/monorepo-tests.js",
     "snyk-protect": "snyk protect",
     "lint:editorconfig": "editorconfig-checker --exclude-pattern './www/**/*' --exclude-pattern './**/sandbox/**/*'",
     "lint:js": "eslint 'packages/**/*.js' 'apps/**/*.js'",
@@ -83,6 +83,13 @@
     "node-fetch": "^2.0.0",
     "npm-run-all": "^4.1.2",
     "web-component-tester": "^6.3.0"
+  },
+  "dependencies": {
+    "read-pkg": "^3.0.0",
+    "read-pkg-up": "^3.0.0",
+    "p-iteration": "^1.1.5",
+    "find-pkg": "^2.0.0",
+    "assert": "^1.4.1"
   },
   "workspaces": [
     "packages/components/bolt-action-blocks",
