@@ -65,13 +65,15 @@ export class BoltIcon extends withPreact(withComponent()) {
          * The container with the class change contains this particular icon element so
          * we should double-check the color contrast values.
          */
-        if (data.target.contains(elem)) {
-          const recalculatedSecondaryColor = colorContrast(
-            rgb2hex(window.getComputedStyle(elem).getPropertyValue('color')),
-          );
+        if (data.target.contains) {
+          if (data.target.contains(elem)) {
+            const recalculatedSecondaryColor = colorContrast(
+              rgb2hex(window.getComputedStyle(elem).getPropertyValue('color')),
+            );
 
-          elem.setAttribute('contrast-color', recalculatedSecondaryColor);
-          elem.state.secondaryColor = recalculatedSecondaryColor;
+            elem.setAttribute('contrast-color', recalculatedSecondaryColor);
+            elem.state.secondaryColor = recalculatedSecondaryColor;
+          }
         }
       };
 
