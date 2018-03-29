@@ -1,0 +1,29 @@
+/* ------------------------------------ *\
+   Block List
+\* ------------------------------------ */
+
+@import '@bolt/core';
+
+// Register Custom Block Element
+@include bolt-register-element('bolt-block-list', 'block');
+
+// Styles
+.c-bolt-block-list {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
+
+  list-style: none;
+}
+
+.c-bolt-block-list__item {
+  @include bolt-margin(medium);
+  @include bolt-padding(0);
+
+  &:first-child {
+    @include bolt-margin-top(0);
+  }
+
+  &:last-child {
+    @include bolt-margin-bottom(0);
+  }
+}

@@ -13,6 +13,16 @@ use \Shudrum\Component\ArrayFinder\ArrayFinder; // https://github.com/Shudrum/Ar
 class BoltCore extends \Twig_Extension implements \Twig_Extension_InitRuntimeInterface {
 
   public $data = [];
+  public $version;
+
+  function __construct() {
+    try {
+      $composer_json = json_decode(file_get_contents(Path::join(__DIR__, '../../composer.json')), true);
+      $this->version = $composer_json['version'];
+    } catch(\Exception $e) {
+      // do nothing if this fails
+    }
+  }
 
   function initRuntime(\Twig_Environment $env) {
     try {

@@ -8,7 +8,6 @@ namespace Drupal\bolt_connect;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Symfony\Component\Filesystem\Filesystem;
 use Webmozart\PathUtil\Path;
 
 class BoltConnectForm extends ConfigFormBase {
@@ -84,17 +83,15 @@ class BoltConnectForm extends ConfigFormBase {
       // $form_state->setError();
     }
 
-    $fs = new Filesystem();
-
     $filePath = $form_state->getValue('twig_namespaces_file_path');
     $fullFilePath = Path::join(DRUPAL_ROOT, $filePath);
-    if (!$fs->exists($fullFilePath)) {
+    if (!file_exists($fullFilePath)) {
       $form_state->setErrorByName('twig_namespaces_file_path', t('File does not exist when looking for it at: ' . $fullFilePath));
     }
 
     $filePath = $form_state->getValue('boltrc_file_path');
     $fullFilePath = Path::join(DRUPAL_ROOT, $filePath);
-    if (!$fs->exists($fullFilePath)) {
+    if (!file_exists($fullFilePath)) {
       $form_state->setErrorByName('boltrc_file_path', t('File does not exist when looking for it at: ' . $fullFilePath));
     }
 
