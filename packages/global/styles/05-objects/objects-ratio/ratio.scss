@@ -6,7 +6,10 @@
 bolt-ratio {
   display: inline-block;
   position: relative;
+  vertical-align: middle;
   width: 100%;
+  height: 0;
+  font-size: 0; // Workaround to IE 11 adding extra whitespace
   overflow: hidden; // Hide placeholder blurred images from leaking through
 
   --aspect-ratio-width: 1;

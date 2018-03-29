@@ -248,7 +248,7 @@ function createConfig(config) {
         },
         {
           test: /\.js$/,
-          exclude: /(node_modules|node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
+          exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
           use: {
             loader: 'babel-loader',
             options: {

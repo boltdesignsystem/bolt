@@ -1,0 +1,19 @@
+{% set autoOpen = autoOpen | default(false) %}
+{% set collapse = collapse | default(false) %}
+
+
+<bolt-dropdown
+  {{ collapse ? "collapse" : "" }}
+  {{ center ? "center" : "" }}
+  {% if title %}title='{{ title|json_encode() }}'{% endif %}
+  >
+  {% if items %}
+    {% for item in items %}
+      {% include "@bolt-components-dropdown/_dropdown-item.twig" with item only %}
+    {% endfor %}
+  {% endif %}
+
+  {% if content %}
+    {% include "@bolt-components-dropdown/_dropdown-item.twig" %}
+  {% endif %}
+</bolt-dropdown>

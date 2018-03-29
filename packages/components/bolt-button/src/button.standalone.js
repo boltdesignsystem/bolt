@@ -125,24 +125,31 @@ class BoltButton extends BoltComponent() {
     // Assign default target attribute value if one isn't specified
     const urlTarget = this.props.target && hasUrl ? this.props.target : '_self';
 
+
+    let buttonElement;
+
+    if (childElementIndex !== null){
+      buttonElement = this.hyper.wire(this.props) `
+        ${this.slot('default')}
+      `;
+    } else if (childElementIndex === null && hasUrl) {
+      buttonElement = this.hyper.wire(this.props) `
+        <a href="${this.props.url}" class="${classes}" target="${urlTarget}">
+          ${this.slot('default')}
+        </a>
+      `;
+    } else {
+      buttonElement = this.hyper.wire(this.props) `
+        <button class="${classes}">
+          ${this.slot('default')}
+        </button>
+      `;
+    }
+
     // Add inline <style> tag automatically if Shadow DOM is natively supported
     return this.html`
       ${ this.addStyles([styles, visuallyhiddenUtils]) }
-
-      ${
-        (childElementIndex !== null ) ? (this.html`${ this.slot('default') }`) :
-        (
-          (hasUrl) ?
-            (this.hyper.wire() `
-              <a href="${this.props.url}" class="${classes}" target="${urlTarget}">
-                ${this.slot('default')}
-              </a>`) :
-            (this.hyper.wire() `
-              <button class="${classes}">
-                ${this.slot('default')}
-              </button>`)
-        )
-       }
-      `
+      ${ buttonElement }
+    `;
   }
 }

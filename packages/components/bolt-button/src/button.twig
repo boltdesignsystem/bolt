@@ -114,9 +114,15 @@
 
     {# Add component-specific classes to a Bolt temp element that gets removed and replaced by it's children once the JS kicks in #}
     <replace-with-children class="{{ classes|join(' ') }}">
+      {% if icon and icon.position == "left" %}
+        <span class="{{ "#{baseClass}__icon" }}">
+          {% include "@bolt/icon.twig" with icon only %}
+        </span>
+      {% endif %}
+
       <span class="{{ "#{baseClass}__item" }} {{ iconOnly ? 'u-bolt-visuallyhidden' : '' }}">{{ text }}</span>
 
-      {% if icon %}
+      {% if icon and icon.position != "left" %}
         <span class="{{ "#{baseClass}__icon" }}">
           {% include "@bolt/icon.twig" with icon only %}
         </span>

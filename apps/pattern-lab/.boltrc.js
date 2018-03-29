@@ -58,6 +58,7 @@ module.exports = {
       '@bolt/components-image',
       '@bolt/components-link',
       '@bolt/components-nav-bar',
+      '@bolt/components-nav-list',
       '@bolt/components-logo',
       '@bolt/components-ordered-list',
       '@bolt/components-page-footer',

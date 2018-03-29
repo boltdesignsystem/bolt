@@ -149,8 +149,6 @@ export function BoltComponent(Base = HTMLElement) {
 
     renderer(root, render) {
       this.html = this.html || bind(root);
-      // this.html = this._html$;
-      // this.html = this.html || bind(root);
       render();
     }
   }
