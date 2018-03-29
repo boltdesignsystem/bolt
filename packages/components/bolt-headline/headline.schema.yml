@@ -8,8 +8,12 @@ properties:
     type: string
     description: Text content of the headline.
   tag:
-    type: string
+    type:
+      anyOf:
+        - string
+        - null
     description: Html tag.
+    default: p
     enum:
       - h1
       - h2
@@ -21,30 +25,49 @@ properties:
       - span
       - cite
       - div
+      - null
   align:
-    type: string
+    type:
+      anyOf:
+        - string
+        - null
     description: Text alignment.
+    default: null
     enum:
       - left
       - center
       - right
-      - '' # @todo Refactor template so default is `left`
+      - null
   weight:
-    type: string
+    type:
+      anyOf:
+        - string
+        - null
     description: Font weights.
+    default: regular
     enum:
       - bold
       - regular
       - semibold
+      - null
   style:
-    type: string
+    type:
+      anyOf:
+        - string
+        - null
     description: Font styles.
+    default: normal
     enum:
       - normal
       - italic
+      - null
   size:
-    type: string
+    type:
+      anyOf:
+        - string
+        - null
     description: Font size.
+    default: medium
     enum:
       - xsmall
       - small
@@ -53,20 +76,30 @@ properties:
       - xlarge
       - xxlarge
       - xxxlarge
+      - null
   transform:
-    type: string
+    type:
+      anyOf:
+        - string
+        - null
     description: Text transformation.
     enum:
-      - none
       - uppercase
       - lowercase
       - capitalize
-      - '' # @todo Refactor template so default is `none`
+      - null
+    default: null
   url:
-    type: string
+    type:
+      anyOf:
+        - string
+        - null
     description: If provided, turns headline into a link to given url.
   icon:
-    type: object
+    type:
+      anyOf:
+        - object
+        - boolean
     description: Bolt icon. Excepts the same options as Bolt Icon Component `@bolt-components-icon`
     ref: '@bolt-components-icon/icon.schema.yml'
   quoted:
