@@ -203,19 +203,47 @@
           <hr>
         {% endcell %}
 
-{% set fields %}
-  {% include "@bolt-components-form/form-input.twig" with {
-} only %}
-{% endset %}
+        {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@medium' %}
+          {% embed "@bolt/card.twig" with {
+            theme: "light",
+          } only %}
 
-      {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@medium' %}
-         {% include "@bolt/card.twig" with {
-           theme: "light",
-        } only %}
+            {% block card_media %}
+            {% endblock %}
 
-      {% include "@bolt-components-form/form-input.twig" with {
-      } only %}
-      {% endcell %}
+            {% block card_body %}
+
+              {% include "@bolt/headline.twig" with {
+                text: "Register now",
+                size: "xlarge"
+              } only %}
+
+              {% include "@bolt/text.twig" with {
+                text: "(all fields are required)",
+                size: "small",
+                attributes: {
+                  class: "u-bolt-color-gray-dark"
+                }
+              } only %}
+
+              <p class="u-bolt-margin-bottom-small">
+                {% include "@bolt/link.twig" with {
+                  "text": "Fill out this form with LinkedIn"|t,
+                  "icon": {
+                    "position": "before",
+                    "name": "linkedin-solid",
+                    "color": "blue",
+                    "size": "medium"
+                  }
+                } only %}
+              </p>
+
+              {% include "@bolt/_event-register-form.twig" %}
+
+            {% endblock %}
+
+          {% endembed %}
+        {% endcell %}
 
       {% endgrid %}
     {% endblock %}
@@ -755,15 +783,6 @@
     {{ parent() }}
   {% endblock band_content %}
   {% endembed %}
-{# End Related Resources section#}
-
- {% include "@bolt/form-element-demo-input-element.twig" with {
-    "title": "First Name",
-    "inputAttributes": {
-      "placeholder": "Enter your first name",
-      "required": true
-    },
-    "labelDisplayType": "floating"
-  } only %}
+  {# End Related Resources section#}
 
 {% endblock %}
