@@ -1,26 +1,28 @@
 {% set assets = get_data("@bolt-assets/bolt-webpack-manifest.json") %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
-    <title>Bolt Design System</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" />
+    <title>Bolt Design System</title>
 
-    <!--- Default OG Tag examples --->
+    <!-- Default OG Tag examples -->
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Bolt Design System: Page Title" />
     <meta property="og:description" content="Sample description" />
-    <meta property="og:image" content="https://bolt-design-system.com/images/500x500-480.jpg" />
-    <meta property="og:url" content="http://bolt-design-system.com/" />
+    <meta property="og:image" content="http://bolt-design-system.com/images/500x500-480.jpg" />
+    <meta property="og:image:secure_url" content="https://bolt-design-system.com/images/500x500-480.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="480" />
+    <meta property="og:image:height" content="480" />
+    <meta property="og:url" content="http://bolt-design-system.com/some-page-title-here" />
     <meta property="og:site_name" content="Bolt Design System" />
-
-    <!--- Twitter specific meta tags --->
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Bolt Design System: Page Title">
     <meta name="twitter:description" content="Sample description">
     <meta name="twitter:image" content="https://bolt-design-system.com/images/500x500-480.jpg">
     <meta name="twitter:site" content="@pega">
-    <meta name="twitter:creator" content="@pega">
 
     <link rel="stylesheet" href="{{ assets["bolt-global.css"] }}?cachebuster="{{ cacheBuster }}" media="all" />
 
