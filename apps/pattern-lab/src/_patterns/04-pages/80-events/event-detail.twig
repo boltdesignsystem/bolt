@@ -13,66 +13,70 @@
     {% block band_content  %}
     {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
       {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}    
-      {% include "@bolt/headline.twig" with {
-          text: "Pega Events",
-          size: "xsmall",
-          tag: "span",
-          url: "/events",
-          icon: {
-            name: "arrow-left",
-            position: "before"
-          }
-      } only %}
+        {% include "@bolt/headline.twig" with {
+            text: "Pega Events",
+            size: "xsmall",
+            tag: "span",
+            url: "/events",
+            icon: {
+              name: "arrow-left",
+              position: "before"
+            }
+        } only %}
 
-      {% include "@bolt/headline.twig" with {
-          text: "CRM Applications for Real-Time Engagement",
-          size: "xxxlarge",
-          tag: "h1",
-      } only %}
+        {% include "@bolt/headline.twig" with {
+            text: "CRM Applications for Real-Time Engagement",
+            size: "xxxlarge",
+            tag: "h1",
+        } only %}
 
-      {% include "@bolt/subheadline.twig" with {
-          text: "Pega’s AI powered CRM Suite is transforming the way enterprises drive greater engagement across the entire customer journey.",
-          size: "xlarge",
-          tag: "p",
-      } only %}
-        {% grid %}
-          {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@small u-bolt-margin-bottom-small' %}
-          {% include "@bolt/headline.twig" with {
+        {% include "@bolt/subheadline.twig" with {
+            text: "Pega’s AI powered CRM Suite is transforming the way enterprises drive greater engagement across the entire customer journey.",
+            size: "xlarge",
+            tag: "p",
+        } only %}
+
+        <ul class="o-bolt-inline-list o-bolt-inline-list--medium">
+          <li class="o-bolt-inline-list__item">
+            {% include "@bolt/headline.twig" with {
               text: "January 25, 2018",
               size: "large",
               tag: "span",
               url: "#",
               icon: {
                 name: "calendar",
-                position: "before"
+                position: "before",
+                size: "medium"
               },
             } only %}
-          {% endcell %}
-          {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@small u-bolt-margin-bottom-small' %}
-          {% include "@bolt/headline.twig" with {
+          </li>
+          <li class="o-bolt-inline-list__item">
+            {% include "@bolt/headline.twig" with {
               text: "10:00 AM EST",
               size: "large",
               tag: "span",
               url: "#",
               icon: {
                 name: "watch",
-                position: "before"
+                position: "before",
+                size: "medium"
               }
             } only %}
-          {% endcell %}
-          {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@small u-bolt-margin-bottom-small' %}
-          {% include "@bolt/headline.twig" with {
+          </li>
+          <li class="o-bolt-inline-list__item">
+            {% include "@bolt/headline.twig" with {
               text: "New York, NY",
               size: "large",
               tag: "span",
-              url: "#", 
+              url: "#",
               icon: {
                 name: "map-pin",
-                position: "before"
+                position: "before",
+                size: "medium"
               }
             } only %}
-          {% endcell %}
-        {% endgrid %}    
+          </li>
+        </ul>
       {% endcell %}
     {% endgrid %}
     {% endblock %}
