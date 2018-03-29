@@ -600,98 +600,23 @@
           }
       } only %}
       {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
-        {% cell "u-bolt-width-1/2 u-bolt-width-1/5@small" %}
-          {% include "@bolt/image.twig" with {
-            src: "/pattern-lab/images/content/logos/logo-incessant.png"
-          } only %}
-        {% endcell %}
-        {% cell "u-bolt-width-1/2 u-bolt-width-1/5@small" %}
-          {% include "@bolt/image.twig" with {
-            src: "/pattern-lab/images/content/logos/logo-capgemini.svg"
-          } only %}
-        {% endcell %}
-        {% cell "u-bolt-width-1/2 u-bolt-width-1/5@small" %}
-          {% include "@bolt/image.twig" with {
-            src: "/pattern-lab/images/content/logos/logo-cognizant.png"
-          } only %}
-        {% endcell %}
-        {% cell "u-bolt-width-1/2 u-bolt-width-1/5@small" %}
-          {% include "@bolt/image.twig" with {
-            src: "/pattern-lab/images/content/logos/logo-merkle.png"
-          } only %}
-        {% endcell %}
-        {% cell "u-bolt-width-1/2 u-bolt-width-1/5@small" %}
-          {% include "@bolt/image.twig" with {
-            src: "/pattern-lab/images/content/logos/logo-infosys.png"
-          } only %}
-        {% endcell %}
+
+        {% set logoImages = ["logo-incessant.png", "logo-capgemini.svg", "logo-cognizant.png", "logo-merkle.png", "logo-infosys.png"] %}
+
+        {% for logoImage in logoImages %}
+          {% cell "u-bolt-width-1/2 u-bolt-width-1/5@small" %}
+            {% include "@bolt/image.twig" with {
+              src: "/pattern-lab/images/content/logos/" ~ logoImage
+            } only %}
+          {% endcell %}
+        {% endfor %}
+
       {% endgrid %}
 
     {% endblock band_content %}
   {% endembed %}
 {# End Event Sponsors section #}
 
-{% embed "@bolt/band.twig" with {
-  size: "large",
-  theme: "light",
-  fullBleed: true
-} only %}
-  {% block band_content %}
-    {% include "@bolt/action-blocks.twig" with {
-      attributes: {
-        class: [
-          "c-bolt-action-blocks--max-3"
-        ]
-      },
-  "contentItems": [
-    {
-      image: {
-        src: "/pattern-lab/images/content/logos/logo-infosys.png"
-      }
-    },
-    {
-      text: "Industry Solutions",
-      url: "http://google.com",
-      icon: {
-        name: "industries"
-      }
-    },
-    {
-      text: "Training and Certification",
-      url: "http://google.com",
-      icon: {
-        name: "training",
-        background: "circle"
-      }
-    },
-    {
-      text: "Vision and Technology",
-      url: "http://google.com",
-      icon: {
-        name: "vision",
-        background: "circle"
-      }
-    },
-    {
-      text: "Services and Partners",
-      url: "http://google.com",
-      icon: {
-        name: "partners",
-        background: "square"
-      }
-    },
-    {
-      text: "Career Opportunities",
-      url: "http://google.com",
-      icon: {
-        name: "careers",
-        background: "square"
-      }
-    }
-  ]
-} only %}
-  {% endblock %}
-{% endembed %}
 
 {# Start Related Resources section #}
   {% embed "@bolt/band--collection.twig" with {
