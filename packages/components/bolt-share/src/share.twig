@@ -22,7 +22,8 @@
       name: "facebook-solid",
       position: "before",
       size: 'medium'
-    }
+    },
+    attributes: create_attribute(imageAttributes | default({})).addClass('js-bolt-share__facebook')
   })]) %}
 {% endif %}
 
@@ -34,7 +35,8 @@
       name: "twitter",
       position: "before",
       size: 'medium'
-    }
+    },
+    attributes: create_attribute(imageAttributes | default({})).addClass('js-bolt-share__twitter')
   })]) %}
 {% endif %}
 
@@ -46,7 +48,8 @@
       name: "linkedin",
       position: "before",
       size: 'medium'
-    }
+    },
+    attributes: create_attribute(imageAttributes | default({})).addClass('js-bolt-share__linkedin')
   })]) %}
 {% endif %}
 
@@ -75,7 +78,7 @@
   isFlat is sameas(false) ? 'c-bolt-share--normal-layout'
 ] %}
 
-<bolt-share bolt-component>
+<bolt-share>
   <div {{ attributes.addClass(classes) }}>
     {% include "@bolt-components-tooltip/tooltip.twig" with {
       trigger: {
