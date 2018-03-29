@@ -22,8 +22,12 @@ export class BoltShare extends withHyperHTML() {
   }
 
   connecting() {
-    this.twitterShare = this.querySelector('.js-bolt-share__twitter');
-    // this.twitterShare.addEventListener('click', this.clickHandler);
-    console.log(this.querySelector('.js-bolt-share__twitter'));
+    Promise.all([
+      customElements.whenDefined('bolt-block-list'),
+      customElements.whenDefined('bolt-tooltip'),
+    ]).then(_ => {
+      this.twitterShare = this.querySelector('.js-bolt-share__twitter');
+      console.log(this.twitterShare);
+    });
   }
 }
