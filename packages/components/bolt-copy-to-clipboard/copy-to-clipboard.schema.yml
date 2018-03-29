@@ -1,0 +1,17 @@
+$schema: 'http://json-schema.org/draft-04/schema#'
+title: Copy to Clipboard
+type: object
+properties:
+  text:
+    type: string
+    description: The text to use as the inital link text
+    default: Copy Link
+  copiedText:
+    type: string
+    description: The text to use as the succesful copy text
+    default: Copied!
+  url:
+    type: string
+    description: The URL to be copied
+required:
+  - url
