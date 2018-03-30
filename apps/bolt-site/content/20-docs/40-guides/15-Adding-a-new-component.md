@@ -1,6 +1,20 @@
 ---
 title: Adding a new component
 ---
+
+When building out a new component, make sure you take a look at some other existing components to get a sense of the coding standards and typical component structure in Bolt. The goal here is to have new and existing components feel just consistant and conherent - nothing should stick out like a sore thumb!
+
+Additionally, *all* new components must include the following config within their `package.json`:
+
+```
+"publishConfig": {
+  "access": "public"
+}
+```
+
+This is required so lerna can successfully publish Bolt's packages to NPM!
+
+
 Below you'll find a step-by-step guide to walk through the process of adding a new component to the Bolt ecosystem.
 
 **<u>Step 1</u>:**  Create a new dir under `/packages/components/[bolt-NEW-COMPONENT]`
