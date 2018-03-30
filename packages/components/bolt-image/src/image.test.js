@@ -3,7 +3,7 @@ const fs = require('fs');
 const readFile = promisify(fs.readFile);
 const path = require('path');
 
-describe('image file output', () => {
+describe.skip('image file output', () => {
 
   test('dummy test', () => {
     expect(true).toEqual(true);
