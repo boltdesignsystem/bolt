@@ -70,6 +70,9 @@ class TwigFunctions {
   // A combination of base64, bgcolor, ratio, and imageSize
   public static function getImageData() {
     return new Twig_SimpleFunction('getImageData', function(\Twig_Environment $env, $relativeImagePath) {
+      if (!$relativeImagePath) {
+        return [];
+      }
       $boltData = Utils::getData($env);
       $wwwDir = $boltData['config']['wwwDir'];
       return Images::get_image_data($relativeImagePath, $wwwDir);
