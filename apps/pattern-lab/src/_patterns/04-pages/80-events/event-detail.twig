@@ -622,19 +622,30 @@
             class: "u-bolt-margin-bottom-large"
           }
       } only %}
-      {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
 
-        {% set logoImages = ["logo-incessant.png", "logo-capgemini.svg", "logo-cognizant.png", "logo-merkle.png", "logo-infosys.png"] %}
+      <div class="u-bolt-text-align-center">
+        {% include "@bolt/_event-annotation.twig" with {
+          text: 'This section was originally designed as a simple 5-column Bolt grid .  However, because Drupal already
+          has a structure for putting partner logos within action blocks, it was redesigned to use that structure
+          instead.  It should be built using those existing structures, not rebuilt from the example below.  However,
+          the example below can still serve as the source-of-truth for the finished product.'
+        } only %}
+      </div>
 
-        {% for logoImage in logoImages %}
-          {% cell "u-bolt-width-1/2 u-bolt-width-1/5@small" %}
-            {% include "@bolt/image.twig" with {
-              src: "/pattern-lab/images/content/logos/" ~ logoImage
-            } only %}
-          {% endcell %}
-        {% endfor %}
+      {% include "@bolt/_event-sponsors-with-action-block.twig" %}
 
-      {% endgrid %}
+      {#
+        {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+          {% set logoImages = ["logo-incessant.png", "logo-capgemini.svg", "logo-cognizant.png", "logo-merkle.png", "logo-infosys.png"] %}
+          {% for logoImage in logoImages %}
+            {% cell "u-bolt-width-1/2 u-bolt-width-1/5@small" %}
+              {% include "@bolt/image.twig" with {
+                src: "/pattern-lab/images/content/logos/" ~ logoImage
+              } only %}
+            {% endcell %}
+          {% endfor %}
+        {% endgrid %}
+      #}
 
     {% endblock band_content %}
   {% endembed %}
