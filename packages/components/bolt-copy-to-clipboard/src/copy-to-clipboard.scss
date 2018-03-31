@@ -29,10 +29,11 @@ bolt-copy-to-clipboard {
 
 .c-bolt-copy-to-clipboard__copied {
   pointer-events: none;
-  display: inline-block;
+  display: block;
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
 
   .c-bolt-link__text {
     color: bolt-color(teal, dark);
@@ -40,8 +41,9 @@ bolt-copy-to-clipboard {
 }
 
 .c-bolt-copy-to-clipboard {
-  display: inline-block;
+  display: block;
   position: relative;
+  text-align: left;
 
   &.is-copied {
     .c-bolt-copy-to-clipboard__default {
