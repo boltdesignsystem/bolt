@@ -383,6 +383,11 @@ $bolt-tooltip-transition: $bolt-transition;
     font-weight: 900;
     overflow: hidden;
 
+    .is-push-up & {
+      position: relative;
+      z-index: bolt-z-index(tooltip) + 1; // We need a higher z-index to prevent hover animation when included items have elements to hover
+    }
+
     &:focus {
       outline: none;
     }
