@@ -22,8 +22,6 @@ export class BoltShare extends withHyperHTML() {
   }
 
   connecting() {
-    this.twitterShare = this.querySelector('.js-bolt-share__twitter');
-    // this.twitterShare.addEventListener('click', this.clickHandler);
-    console.log(this.querySelector('.js-bolt-share__twitter'));
+
   }
 }

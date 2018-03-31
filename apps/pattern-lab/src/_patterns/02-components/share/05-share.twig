@@ -1,17 +1,22 @@
-<div class="demo--share">
+<div style="margin: 0 auto; width: 150px; padding: 25rem 0 0;">
 {% include '@bolt-components-share/share.twig' with {
-  visibility: 'visible'
+  sources: [
+    {
+      name: "facebook",
+      url: "https://www.facebook.com/sharer/sharer.php?u=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/02-components-action-blocks-05-action-blocks/02-components-action-blocks-05-action-blocks.html&amp;src=sdkpreparse"
+    },
+    {
+      name: "twitter",
+      url: "https://twitter.com/intent/tweet?url=https://bolt-design-system.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
+    },
+    {
+      name: "linkedin",
+      url: "https://www.linkedin.com/shareArticle?url=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/02-components-action-blocks-05-action-blocks/02-components-action-blocks-05-action-blocks.html"
+    },
+    {
+      name: "email",
+      url: "mailto:?&body=Sample%20Text%20--%20https%3A//bolt-design-system.com"
+    }
+  ]
 } only %}
 </div>
-
-<script>
-  //We're inside an iframe if true and we need to adjust styles
-  const demo = document.querySelector('.demo--share');
-  if (demo !== null) {
-    if (window.self !== window.top) {
-      demo.setAttribute('style','margin: 0 auto; width: 150px; padding: 10rem 0 0');
-    } else {
-      demo.setAttribute('style','position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)');
-    }
-  }
-</script>
