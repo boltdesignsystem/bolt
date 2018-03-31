@@ -24,13 +24,9 @@ properties:
     description: '`True` to show copy link option'
     default: True
   visibility:
-    type: string
-    description: 'Controls how the share component is viewed'
-    default: 'visible'
-    enum:
-      - 'visible'
-      - 'scroll'
-      - 'timed'
+    type: boolean
+    description: 'Controls share component visibility'
+    default: True
   inline:
     type: boolean
     description: 'Display as a flat layout, rather than popping out'

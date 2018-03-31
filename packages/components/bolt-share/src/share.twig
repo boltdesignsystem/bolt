@@ -1,5 +1,5 @@
 {% set copyShare = copy is sameas(false) ? false : (copy is null ? true : copy) %}
-{% set visible = visibility is not empty ? visibility : 'visible' %}
+{% set visible = visibility is sameas(false) ? false : (visibility is null ? true : visibility) %}
 {% set isFlat = inline is sameas(false) ? false : (inline is null ? false : inline) %}
 
 {% set items = [] %}
@@ -55,7 +55,7 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set classes = [
   'c-bolt-share',
-  'c-bolt-share--' ~ visible,
+  visibility is sameas(false) ? 'c-bolt-share--hidden',
   isFlat is sameas(false) ? 'c-bolt-share--normal-layout'
 ] %}
 
