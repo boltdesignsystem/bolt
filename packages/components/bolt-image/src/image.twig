@@ -9,7 +9,7 @@
 {% set placeholderColor = imageDataTwig.color|default('hsl(233, 33%, 97%)') %}
 {% set placeholderImage = imageDataTwig.base64|default(placeholderDummySrc) %}
 {% set sizes = sizes | default("auto") %}
-{% set srcset = src %}
+{% set srcset = srcset|default(src) %}
 {% if imageDataBolt.srcset %}
   {% set srcset = imageDataBolt.srcset %}
 {% endif %}
