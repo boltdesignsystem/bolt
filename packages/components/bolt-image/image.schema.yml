@@ -19,8 +19,7 @@ properties:
       - false
   srcset:
     type: string
-    description: A comma seperated string of image urls and page widths, used for optimizing image loading performance.
-    default: Generated during build.
+    description: A comma seperated string of image urls and image widths, used for optimizing image loading performance.
   sizes:
     type: string
     description: A list of one or more strings separated by commas indicating a set of source sizes. Each source size consists of a media condition (omitted for the last item), and a source size value.
@@ -33,8 +32,12 @@ properties:
       - true
       - false
   width:
-    type: number
+    oneOf:
+      - type: number
+      - type: string
     description: Override the default width of the image. If no height is provided, aspect ratio will be maintained.
   height:
-    type: number
+    oneOf:
+      - type: number
+      - type: string
     description: Override the default height of the image. If no width is provided, aspect ratio will be maintained.
