@@ -80,7 +80,8 @@
       }),
       position: "up",
       noWrap: true,
-      spacing: "none"
+      spacing: "none",
+      attributes: create_attribute(attributes|default({})).setAttribute('count',items|length)
     } only %}
   </div>
 </bolt-share>

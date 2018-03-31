@@ -28,6 +28,7 @@ export class BoltTooltip extends withPreact(withComponent()) {
     noWrap: props.boolean,
     spacing: props.string,
     positionVert: props.string,
+    count: props.string, // For use ONLY with share
   };
 
   constructor() {
@@ -81,7 +82,7 @@ export class BoltTooltip extends withPreact(withComponent()) {
             toggle-icon={data.triggerToggleIcon}
             trigger-id={this.triggerID}
           />
-          <TooltipContent trigger={data.triggerType} trigger-id={this.triggerID}>
+          <TooltipContent trigger={data.triggerType} trigger-id={this.triggerID} count={data.count}>
             <span dangerouslySetInnerHTML={{ __html: data.content }} />
           </TooltipContent>
         </span>
@@ -187,6 +188,9 @@ const TooltipContent = (props) => {
     'c-bolt-tooltip__content',
     `c-bolt-tooltip__content--${props.trigger}`,
   ];
+  if (props.count) {
+    classes.push(`c-bolt-tooltip__content--count-${props.count}`);
+  }
   return (
     <span id={props['trigger-id']} className={classes.join(' ')} role="tooltip" aria-hidden="true">
       <span className="c-bolt-tooltip__content-bubble">
