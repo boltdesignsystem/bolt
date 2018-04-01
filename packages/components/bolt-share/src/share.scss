@@ -3,3 +3,55 @@
 /* ------------------------------------ *\
    Share
 \* ------------------------------------ */
+
+.c-bolt-share {
+  .c-bolt-link__icon [name='facebook-solid'] {
+    color: bolt-color(social, facebook);
+  }
+  .c-bolt-link__icon [name='twitter'] {
+    color: bolt-color(social, twitter);
+  }
+  .c-bolt-link__icon [name='linkedin'] {
+    color: bolt-color(social, linkedin);
+  }
+  .c-bolt-link__icon [name='email'],
+  .c-bolt-link__icon [name='asset-link'] {
+    color: bolt-color(indigo, light);
+  }
+  .c-bolt-link {
+    text-decoration: none;
+    color: bolt-color(gray, xdark);
+  }
+}
+
+.c-bolt-share--normal-layout {
+  .c-bolt-block-list {
+    @include bolt-padding-top(small);
+    @include bolt-padding-bottom(small);
+  }
+
+  .c-bolt-block-list__item {
+    margin: 0;
+  }
+
+  .c-bolt-link { // nested since this is a component within a component with different styles
+    @include bolt-font-size(large);
+    @include bolt-padding(medium, squished);
+    display: block;
+    margin: 0;
+    background: linear-gradient(to left, transparent 50%, bolt-color(indigo, xlight) 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all 0.2s ease;
+  }
+
+  .c-bolt-copy-to-clipboard__icon,
+  .is-copied .c-bolt-copy-to-clipboard__icon {
+    left: 2rem; // Aligns out absolutely positioned icon correctly with the others
+  }
+
+  .c-bolt-link:hover {
+    background-position: left bottom;
+    color: bolt-color(white);
+  }
+}

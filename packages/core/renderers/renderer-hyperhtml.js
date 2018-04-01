@@ -32,21 +32,12 @@ export function withHyperHTML(Base = HTMLElement) {
 
     connectedCallback() {
       this._checkSlots();
-
-      // Handles external click event hooks
-      this.addEventListener('click', this.clickHandler);
+      this.connecting && this.connecting();
     }
 
     disconnectedCallback() {
-      super.disconnectedCallback();
-      this.removeEventListener('click', this.clickHandler);
+      this.disconnecting && this.disconnecting();
     }
-
-    // Attach external events declaratively
-    clickHandler(event) {
-      declarativeClickHandler(this);
-    }
-
 
     addStyles(stylesheet) {
       let styles = Array.from(stylesheet);

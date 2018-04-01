@@ -1,4 +1,4 @@
-{% set shareSources = sources is not empty ? sources : ['facebook','twitter','linkedin'] %}
+{% set shareSources = sources is null ? ['facebook','twitter','linkedin'] : sources %}
 {% set emailShare = email is sameas(false) ? false : (email is null ? true : email) %}
 {% set copyShare = copy is sameas(false) ? false : (copy is null ? true : copy) %}
 {% set visible = visibility is not empty ? visibility : 'visible' %}
@@ -14,7 +14,59 @@
   })]) %}
 {% endif %}
 
-{{ console_log(items) }}
+{% if 'facebook' in shareSources %}
+  {% set items = items|merge([include("@bolt-components-link/link.twig", {
+    text: "Facebook",
+    url: "#fb",
+    icon: {
+      name: "facebook-solid",
+      position: "before",
+      size: 'medium'
+    }
+  })]) %}
+{% endif %}
+
+{% if 'twitter' in shareSources %}
+  {% set items = items|merge([include("@bolt-components-link/link.twig", {
+    text: "Twitter",
+    url: "#tw",
+    icon: {
+      name: "twitter",
+      position: "before",
+      size: 'medium'
+    }
+  })]) %}
+{% endif %}
+
+{% if 'linkedin' in shareSources %}
+  {% set items = items|merge([include("@bolt-components-link/link.twig", {
+    text: "LinkedIn",
+    url: "#li",
+    icon: {
+      name: "linkedin",
+      position: "before",
+      size: 'medium'
+    }
+  })]) %}
+{% endif %}
+
+{% if emailShare %}
+  {% set items = items|merge([include("@bolt-components-link/link.twig", {
+    text: "Email",
+    url: "#email",
+    icon: {
+      name: "email",
+      position: "before",
+      size: 'medium'
+    }
+  })]) %}
+{% endif %}
+
+{% if copyShare %}
+  {% set items = items|merge([include("@bolt-components-copy-to-clipboard/copy-to-clipboard.twig", {
+    url: "http://bolt-design-system.com"
+  })]) %}
+{% endif %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set classes = [
@@ -42,10 +94,8 @@
       content: include ("@bolt-components-block-list/block-list.twig", {
       "contentItems" : items
       }),
-      id: "tooltip-share",
-      type: "action",
       position: "up",
-      noWrap: false,
+      noWrap: true,
       spacing: "none"
     } only %}
   </div>

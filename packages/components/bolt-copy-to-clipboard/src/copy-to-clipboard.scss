@@ -4,6 +4,10 @@
 
 @import '@bolt/core';
 
+bolt-copy-to-clipboard {
+  display: inline-block;
+}
+
 .c-bolt-copy-to-clipboard__icon,
 .c-bolt-copy-to-clipboard__copied {
   opacity: 0;
@@ -12,7 +16,15 @@
 }
 
 .c-bolt-copy-to-clipboard__icon {
+  color: bolt-color(indigo, light);
   transform: scale(0) rotate(0deg);
+}
+
+.c-bolt-copy-to-clipboard__default,
+.c-bolt-copy-to-clipboard__copied {
+  .c-bolt-link__icon {
+    color: bolt-color(indigo, light);
+  }
 }
 
 .c-bolt-copy-to-clipboard__copied {
