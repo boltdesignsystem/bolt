@@ -65,3 +65,39 @@
     color: bolt-color(white);
   }
 }
+
+.c-bolt-share--inline-layout {
+  .c-bolt-share--inline-heading {
+    letter-spacing: 0;
+  }
+
+  .c-bolt-block-list {
+    display: flex;
+  }
+
+  .c-bolt-block-list__item {
+    @include bolt-margin(0);
+    display: inline-block;
+
+    +.c-bolt-block-list__item {
+      @include bolt-margin-left(small);
+    }
+  }
+
+  .c-bolt-link__icon:hover {
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+  }
+
+  .c-bolt-link__text {
+    display: none;
+  }
+
+  .c-bolt-copy-to-clipboard__copied .c-bolt-link__icon [name='asset-link'] {
+    color: bolt-color(teal, dark);
+  }
+
+  .c-bolt-copy-to-clipboard.is-copied .c-bolt-copy-to-clipboard__icon {
+    margin: 0;
+  }
+}
