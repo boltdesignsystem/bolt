@@ -9,6 +9,7 @@ npm install @bolt/components-share
 The share component provides the user a visual queue to share the content with relevant peers, as well as an easy mechanism to actively do the sharing.
 
 ## Share Link Notes:
+* **OG tags MUST be present for share functionality to work correctly (see example below)**
 * The only currently supported share methods are:
   * Facebook
   * Twitter
@@ -28,6 +29,25 @@ The share component provides the user a visual queue to share the content with r
 * **Email** Recommended query vars:
   * `subject`
   * `body`
+  
+## OG Tags Example
+```html
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Bolt Design System: Page Title" />
+<meta property="og:description" content="Sample description" />
+<meta property="og:image" content="https://bolt-design-system.com/images/500x500-480.jpg" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="480" />
+<meta property="og:image:height" content="480" />
+<meta property="og:url" content="https://bolt-design-system.com/some-page-title-here" />
+<meta property="og:site_name" content="Bolt Design System" />
+<!-- Twitter specific tags -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Bolt Design System: Page Title" />
+<meta name="twitter:description" content="Sample description" />
+<meta name="twitter:image" content="https://bolt-design-system.com/images/500x500-480.jpg" />
+<meta name="twitter:site" content="@pega" />
+```
 
 ## Best practices
 * Don't use the share tool with a page's related sections

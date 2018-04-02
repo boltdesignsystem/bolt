@@ -7,21 +7,8 @@
     <meta name="viewport" content="width=device-width" />
     <title>Bolt Design System</title>
 
-    <!-- Default OG Tag examples -->
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="Bolt Design System: Page Title" />
-    <meta property="og:description" content="Sample description" />
-    <meta property="og:image" content="https://bolt-design-system.com/images/500x500-480.jpg" />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width" content="480" />
-    <meta property="og:image:height" content="480" />
-    <meta property="og:url" content="https://bolt-design-system.com/some-page-title-here" />
-    <meta property="og:site_name" content="Bolt Design System" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Bolt Design System: Page Title" />
-    <meta name="twitter:description" content="Sample description" />
-    <meta name="twitter:image" content="https://bolt-design-system.com/images/500x500-480.jpg" />
-    <meta name="twitter:site" content="@pega" />
+    <!-- Default OG Tag examples (related to Bolt Share Component) -->
+    {% include "@bolt-components-share/src/_share-meta-example.twig" %}
 
     <link rel="stylesheet" href="{{ assets["bolt-global.css"] }}?cachebuster="{{ cacheBuster }}" media="all" />
 
