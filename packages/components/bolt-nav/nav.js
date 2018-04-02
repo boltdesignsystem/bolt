@@ -3,15 +3,13 @@ import {
   render,
   define,
   props,
-  withComponent,
-  withHyperHTML,
-  withPreact,
+  BoltComponent,
   css,
   spacingSizes,
   hasNativeShadowDomSupport
 } from '@bolt/core';
 
-import navListGumshoe from 'gumshoejs';
+import gumshoe from 'gumshoejs';
 
 const indicatorElement = '.js-bolt-nav-indicator';
 const navLinkElement = 'bolt-nav-link'; // Custom element
@@ -29,8 +27,8 @@ let gumshoeStateModule = (function () {
     if (offset !== newOffset) {
       offset = newOffset;
 
-      navListGumshoe.init({
-        selector: '.js-bolt-nav-list-gumshoe a',
+      gumshoe.init({
+        selector: '.js-bolt-nav-gumshoe a',
         // All the link activation logic is handled in the callback, but gumshoe won't work without
         // a value for activeClass, so we give it a placeholder.
         activeClass: 'gumshoe',
@@ -53,7 +51,7 @@ let gumshoeStateModule = (function () {
     }
   };
 
-  pub.getOffset = function() {
+  pub.getOffset = function () {
     return offset;
   };
 
@@ -61,11 +59,9 @@ let gumshoeStateModule = (function () {
 }());
 
 
-@define
-export class BoltNavList extends withHyperHTML(withComponent()) {
-  static is = 'bolt-nav-list';
+class BoltNav extends BoltComponent() {
 
-  // Behavior for `<bolt-nav-list>` parent container
+  // Behavior for `<bolt-nav>` parent container
   static get observedAttributes() { return ['offset']; }
 
   constructor(element) {
@@ -79,15 +75,9 @@ export class BoltNavList extends withHyperHTML(withComponent()) {
   }
 
   render() {
-    if (this.useShadow) {
-      return this.html`
-        <slot />
-      `
-    } else {
-      return this.html`
-         ${this.slots.default}
-      `
-    }
+    return this.html`
+      ${this.slot('default')}
+    `
   }
 
   get offset() {
@@ -156,8 +146,13 @@ export class BoltNavList extends withHyperHTML(withComponent()) {
 
     const linkPos = link.getBoundingClientRect(); // object w/ all positioning
     const linkWidth = linkPos.width;
+    const linkHeight = linkPos.height;
     const linkOffsetLeft = link.offsetLeft;
-    const linkOffsetCenter = linkOffsetLeft + linkWidth / 2;
+    const linkOffsetTop = link.offsetTop;
+    const linkOffsetVertical = linkPos.top + linkHeight / 2;
+    const linkOffsetHorizontal = linkOffsetLeft + linkWidth / 2;
+    const mq = window.matchMedia("(max-width: 600px)");
+
 
     if (!this.activeLink) {
       // No link is currently active; the first link to become active is a special snowflake when it
@@ -165,17 +160,45 @@ export class BoltNavList extends withHyperHTML(withComponent()) {
 
       // First, immediately center the indicator.
       this._indicator.style.transition = 'none';
-      this._indicator.style.transform = 'translateX(' + linkOffsetCenter + 'px)';
+
+
+      if (mq.matches){
+        this._indicator.style.transform = 'translateY(' + linkOffsetVertical + 'px)';
+      } else {
+        this._indicator.style.transform = 'translateX(' + linkOffsetHorizontal + 'px)';
+      }
 
       // Then, reset the transition and expand the indicator to the full width of the link.
       this.flushCss(this._indicator);
       this._indicator.style.transition = '';
+
+
+      if (mq.matches) {
+        this._indicator.style.height = linkHeight + 'px';
+        this._indicator.style.width = '2px';
+        this._indicator.style.transform = 'translateY(' + linkOffsetTop + 'px)';
+      } else {
       this._indicator.style.width = linkWidth + 'px';
+        this._indicator.style.height = '2px';
       this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px)';
+      }
+
+
+
+    } else {
+      if (mq.matches) {
+
+        // console.log(linkPos);
+
+        this._indicator.style.height = linkHeight + 'px';
+        this._indicator.style.width = '2px';
+        this._indicator.style.transform = 'translateY(' + linkOffsetTop + 'px)';
     } else {
       this._indicator.style.width = linkWidth + 'px';
+        this._indicator.style.height = '2px';
       this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px)';
     }
+  }
   }
 
   _initializeGumshoe() {
@@ -183,8 +206,7 @@ export class BoltNavList extends withHyperHTML(withComponent()) {
   }
 
   // `<bolt-nav-link>` emits a custom event when the link is active
-  connectedCallback() {
-    this._checkSlots();
+  connecting() {
     this._indicator = this.querySelector(indicatorElement);
     this.addEventListener('activateLink', this._onActivateLink);
     window.addEventListener('optimizedResize', this._onWindowResize);
@@ -211,121 +233,14 @@ export class BoltNavList extends withHyperHTML(withComponent()) {
   }
 }
 
-
-
-@define
-export class BoltNavLink extends withHyperHTML(withComponent()) { // Behavior for `<bolt-nav-link>` children
-
-  static is = 'bolt-nav-link';
-
-  // The element reacts to changes to the `active` attribute.
-  static get observedAttributes() {
-    return ['active'];
-  }
-
-  constructor(element) {
-    super(element);
-
-    this._shadowLink = this.querySelector('a');
-  }
-
-  // Returns whether or not the current `<bolt-nav-link>` element has been active.
-  get active() {
-    return this.hasAttribute('active');
-  }
-
-  // Sets the `active` state for the current custom element
-  set active(value) {
-    /* Properties can be set to all kinds of string values. This
-     * makes sure it’s converted to a proper boolean value using
-     * JavaScript’s truthiness & falsiness principles.
-     */
-
-    value = Boolean(value);
-    if (value) {
-      this.setAttribute('active', '');
-    } else {
-      this.removeAttribute('active');
-    }
-  }
-
-
-  // `attributeChangedCallback` processes changes to the `active` attr
-  attributeChangedCallback(name, oldVal, newVal) {
-    switch (name) {
-      case 'active':
-        if (this.active) {
-          this._shadowLink.classList.add(isActiveClass);
-
-          // Dispatch an event that signals to the parent what element is being active
-          this.dispatchEvent(
-            new CustomEvent('activateLink', {
-              detail: {
-                isActiveNow: true
-              },
-              bubbles: true,
-            })
-          );
-        }
-        else {
-          this._shadowLink.classList.remove(isActiveClass);
-        }
-    }
-  }
-
-  onClick() {
-    if (!this.active) {
-      this.active = true;
-    }
-  }
-
-  render() {
-    if (this.useShadow) {
-      return this.html`
-        <slot />
-      `
-    } else {
-      return this.html`
-         ${this.slots.default}
-      `
-    }
-  }
-
-  connectedCallback() {
-    this._checkSlots();
-    this.addEventListener('click', this.onClick);
-
-    // Set an initially active link if appropriate.
-    const isAlreadyActive = this._shadowLink.classList.contains(isActiveClass) || this._shadowLink.getAttribute('href') === window.location.hash;
-
-    if (isAlreadyActive) {
-      this.active = true;
-    }
-
-    this._upgradeProperty('active');
-  }
-
-  // See https://developers.google.com/web/fundamentals/web-components/best-practices#lazy-properties
-  // for an explanation of lazy properties.
-  _upgradeProperty(prop) {
-    if (this.hasOwnProperty(prop)) {
-      let value = this[prop];
-      delete this[prop];
-      this[prop] = value;
-    }
-  }
-
-  disconnectedCallback() {
-    this.removeEventListener('click', this.onClick);
-  }
-}
+export default BoltNav;
 
 
 
 // Create a custom 'optimizedResize' event that works just like window.resize but is more performant because it
 // won't fire before a previous event is complete.
 // This was adapted from https://developer.mozilla.org/en-US/docs/Web/Events/resize
-(function() {
+(function () {
   function throttle(type, name, obj) {
     obj = obj || window;
     let running = false;
@@ -333,7 +248,7 @@ export class BoltNavLink extends withHyperHTML(withComponent()) { // Behavior fo
     function func() {
       if (running) { return; }
       running = true;
-      requestAnimationFrame(function() {
+      requestAnimationFrame(function () {
         obj.dispatchEvent(new CustomEvent(name));
         running = false;
       });
@@ -343,5 +258,5 @@ export class BoltNavLink extends withHyperHTML(withComponent()) { // Behavior fo
 
   // Initialize on window.resize event.  Note that throttle can also be initialized on any type of event,
   // such as scroll.
-  throttle("resize", "optimizedResize");
+  throttle('resize', 'optimizedResize');
 })();
