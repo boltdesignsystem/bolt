@@ -1,0 +1,14 @@
+{# @TODO if this is re-used elsewhere, rename it and move it to be more generic.  It was initially intended as a quick proof-of-concept. #}
+
+<span class="u-bolt-color-error">
+  {% include "@bolt-components-tooltip/tooltip.twig" with {
+    trigger: {
+      type: "text",
+      icon: {
+        name: "info-open",
+        size: "medium"
+      }
+    },
+    content: text
+  } only %}
+</span>

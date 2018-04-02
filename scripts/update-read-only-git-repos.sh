@@ -21,8 +21,10 @@ fi
 ./scripts/git-subsplit.sh init https://${GH_TOKEN}@github.com/bolt-design-system/core-php.git
 ./scripts/git-subsplit.sh publish --work-dir=$PWD packages/core-php:https://${GH_TOKEN}@github.com/bolt-design-system/core-php.git \
   --heads=master --update
+rm -rf .subsplit
 
 ./scripts/git-subsplit.sh init https://${GH_TOKEN}@github.com/bolt-design-system/bolt_connect.git
 ./scripts/git-subsplit.sh publish --work-dir=$PWD packages/drupal-modules/bolt_connect:https://${GH_TOKEN}@github.com/bolt-design-system/bolt_connect.git \
   --heads=master --update
+rm -rf .subsplit
 

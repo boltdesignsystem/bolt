@@ -40,7 +40,7 @@
     "clean:git": "git clean -xdf && rm -rf apps/**/vendor apps/**/node_modules && find . -empty -type d -delete",
     "clean:lerna": "lerna clean -Y",
     "clean": "npm-run-all --parallel clean:*",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm run build && node scripts/monorepo-tests.js",
     "snyk-protect": "snyk protect",
     "lint:editorconfig": "editorconfig-checker --exclude-pattern './www/**/*' --exclude-pattern './**/sandbox/**/*'",
     "lint:js": "eslint 'packages/**/*.js' 'apps/**/*.js'",
@@ -131,6 +131,7 @@
     "packages/config-presets/config-eslint",
     "packages/config-presets/config-stylelint",
     "apps/drupal-lab/web/themes/flash",
-    "apps/*"
+    "apps/*",
+    "!apps/drupal-lab"
   ]
 }
