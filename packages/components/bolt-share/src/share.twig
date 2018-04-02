@@ -42,7 +42,7 @@
         position: "before",
         size: 'medium'
       },
-      attributes: create_attribute(imageAttributes | default({})).addClass('js-bolt-share__'~source.name).setAttribute('target',sourceTarget)
+      attributes: create_attribute(attributes|default({})).addClass('js-bolt-share__'~source.name).setAttribute('target',sourceTarget)
     })]) %}
   {% endif %}
 {% endfor %}
