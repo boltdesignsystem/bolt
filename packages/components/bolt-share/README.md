@@ -9,7 +9,7 @@ npm install @bolt/components-share
 The share component provides the user a visual queue to share the content with relevant peers, as well as an easy mechanism to actively do the sharing.
 
 ## Share Link Notes:
-* **OG tags MUST be present for share functionality to work correctly (see example below)**
+* **OG tags <u>MUST</u> be present for share functionality to work correctly (see example below)**
 * The only currently supported share methods are:
   * Facebook
   * Twitter
@@ -17,15 +17,20 @@ The share component provides the user a visual queue to share the content with r
   * Email
   * Copy to Clipboard (component)
 * **Facebook** only needs `u` (URL) to scrap the page's OG Tags
+  * <u>Facebook Sharing API resources</u>: <a href="https://developers.facebook.com/docs/sharing/reference/share-dialog#params_share" target="_blank">https://developers.facebook.com/docs/sharing/reference/share-dialog#params_share</a>
+  * <u>Facebook Open Graph Debuger</u>: <a href="https://developers.facebook.com/tools/debug/" target="_blank">https://developers.facebook.com/tools/debug/</a>
 * **Twitter** Needs at least one of the following query vars:
   * `url` (recommended -- URL included with the Twee)
   * `text` (recommended -- re-populated text highlighted in the Tweet composer)
   * `via` (Attribute the source of a Tweet to a Twitter username, no `@` needed)
   * `hashtags` (A comma-separated list of hashtags to be appended to default Tweet text)
+    * <u>Twitter Tweet API resources</u>: <a href="https://dev.twitter.com/web/tweet-button/parameters#tweet-content-parameters" target="_blank">https://dev.twitter.com/web/tweet-button/parameters#tweet-content-parameters</a>
+    * <u>Twitter card validator</u>: <a href="https://cards-dev.twitter.com/validator" target="_blank">https://cards-dev.twitter.com/validator</a>
 * **LinkedIn** only needs `url` to scrap the page's OG Tags, but also can include:
   * `title`
   * `summary`
   * `source`
+    * <u>LinkedIn Sharing API resources</u>: <a href="https://developer.linkedin.com/docs/share-on-linkedin" target="_blank">https://developer.linkedin.com/docs/share-on-linkedin</a> (click "Customized URL")
 * **Email** Recommended query vars:
   * `subject`
   * `body`
