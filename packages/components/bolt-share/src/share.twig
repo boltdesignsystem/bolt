@@ -78,7 +78,7 @@
           }
         },
         content: include ("@bolt-components-block-list/block-list.twig", {
-        "contentItems" : items
+          "items" : items
         }),
         position: "up",
         noWrap: true,
@@ -87,7 +87,7 @@
       } only %}
     {% else %}
       {% include "@bolt-components-block-list/block-list.twig" with {
-        contentItems : items
+        items : items
       } only %}
     {% endif %}
   </div>
