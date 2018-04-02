@@ -1,30 +1,20 @@
-{% set tags = "any" %} {# Allowed Tags #}
-{% set weights = ["bold", "regular", "semibold"] %} {# Allowed Font-weights #}
-{% set styles = ["italic", "normal"] %} {# Allowed Font-styles #}
+{% set schema = bolt.data.components['@bolt-components-headline'].schema %}
 {% set types = ["headline", "subheadline", "eyebrow", "text"] %} {# Pre-defined types #}
-{% set transformProps = ["none", "uppercase", "lowercase", "capitalize"] %} {# Pre-defined text transform options #}
-{% set sizes = [
-  "xsmall",
-  "small",
-  "medium",
-  "large",
-  "xlarge",
-  "xxlarge",
-  "xxxlarge"
-] %}
 
-{% set alignments = [
-  "left",
-  "center",
-  "right"
-] %}
+{% set tags = schema.properties.tag.enum|remove_null %}
+{% set weights = schema.properties.weight.enum|remove_null %}
+{% set styles = schema.properties.style.enum|remove_null %}
+{% set transformProps = schema.properties.transform.enum|remove_null %}
+{% set sizes = schema.properties.size.enum|remove_null %}
+{% set alignments = schema.properties.align.enum|remove_null %}
 
-{% set _defaultTag = "p" %}
-{% set _defaultWeight = "regular" %}
-{% set _defaultStyle = "normal" %}
+{% set _defaultTag = schema.properties.tag.default %}
+{% set _defaultWeight = schema.properties.weight.default %}
+{% set _defaultStyle = schema.properties.style.default %}
 {% set _defaultType = "text" %}
-{% set _defaultSize = "medium" %}
-{% set _defaultAlignment = "" %}
+{% set _defaultSize = schema.properties.size.default %}
+{% set _defaultAlignment = schema.properties.align.default %}
+{% set _defaultTransform = schema.properties.transform.default %}
 
 
 {% if tags != "any" %}
@@ -36,7 +26,7 @@
 {% set style = style | default(_defaultStyle) %}
 {% set type = type in types ? type : _defaultType %}
 {% set size = size | default(_defaultSize) %}
-{% set transform = transform | default("") %}
+{% set transform = transform | default(_defaultTransform) %}
 {% set align = align in alignments ? align : _defaultAlignment %}
 
 {% set prefix = "c-bolt-" %}
@@ -87,17 +77,5 @@
 </{{ tag }}>
 
 {% if enable_json_schema_validation %}
-  {# disabling schema validation for now as it has too many errors now #}
-  {#{{ validate_data_schema('@bolt-components-headline/headline.schema.yml', _self) }}#}
+  {{ validate_data_schema('@bolt-components-headline/headline.schema.yml', _self) | raw }}
 {% endif %}
-
-{# set iconpos = iconpos | default("right") #}
-
-{# <bolt-headline
-    size="{{ size }}"
-    weight="{{ weight }}"
-    style="{{ style }}"
-    type="{{ type }}"
-    level="{{ level }}"
-    bolt-component
-  > </bolt-headline> #}

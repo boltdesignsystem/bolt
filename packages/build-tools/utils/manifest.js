@@ -6,9 +6,11 @@ const writeFile = promisify(fs.writeFile);
 const {getDataFile} = require('./yaml');
 const path = require('path');
 const config = require('./config-store').getConfig();
+const pkg = require('../package.json');
 
 let boltManifest = {
   name: 'Bolt Manifest',
+  version: pkg.version,
   components: {
     global: [],
     individual: [],
