@@ -12,7 +12,7 @@
 {% set collapsed = collapsed | default(true) %}
 {% set ratio = ratio ?? true %}
 
-
+{#@todo @salem Is this used anywhere?#}
 {% set classes = [
   baseClass,
   collapsed is not null and collapsed == false ? "is-expanded" : "is-collapsed"
