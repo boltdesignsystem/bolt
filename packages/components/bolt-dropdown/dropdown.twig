@@ -1,11 +1,10 @@
-{% set autoOpen = autoOpen | default(false) %}
 {% set collapse = collapse | default(false) %}
 
 
 <bolt-dropdown
   {{ collapse ? "collapse" : "" }}
   {{ center ? "center" : "" }}
-  {% if title %}title='{{ title|json_encode() }}'{% endif %}
+  title="{{ title ? title | default("") }}"
   >
   {% if items %}
     {% for item in items %}

@@ -21,10 +21,3 @@
   @return $number;
 }
 
-/* stylelint-disable-next-line scss/at-function-pattern */
-@function strip-unit($number) {
-  @warn 'PegaKit\'s `strip-unit` function is deprecated and will be removed in v1.0.0 of Bolt. Use the new @bolt-strip-unit function instead.';
-
-  @include bolt-strip-unit($number);
-}
-/* stylelint-enable */

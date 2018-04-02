@@ -1,0 +1,37 @@
+<bolt-navbar inverse collapse-on-select>
+  <bolt-navbar-header>
+    <bolt-navbar-brand>
+      <a href="#brand">React-Bootstrap</a>
+    </bolt-navbar-brand>
+    <bolt-navbar-toggle></bolt-navbar-toggle>
+  </bolt-navbar-header>
+
+
+  <bolt-navbar-collapse>
+    <bolt-nav>
+      <bolt-nav-item eventKey={1} href="#">
+        Link
+      </bolt-nav-item>
+      <bolt-nav-item eventKey={2} href="#">
+        Link
+      </bolt-nav-item>
+
+      <bolt-nav-dropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
+        <bolt-menu-item eventKey={3.1}>Action</bolt-menu-item>
+        <bolt-menu-item eventKey={3.2}>Another action</bolt-menu-item>
+        <bolt-menu-item eventKey={3.3}>Something else here</bolt-menu-item>
+        <bolt-menu-item divider />
+        <bolt-menu-item eventKey={3.3}>Separated link</bolt-menu-item>
+      </bolt-nav-dropdown>
+
+    </bolt-nav>
+    <bolt-nav pull-right>
+      <bolt-nav-item eventKey={1} href="#">
+        Link Right
+      </bolt-nav-item>
+      <bolt-nav-item eventKey={2} href="#">
+        Link Right
+      </bolt-nav-item>
+    </bolt-nav>
+  </bolt-navbar-collapse>
+</bolt-navbar>

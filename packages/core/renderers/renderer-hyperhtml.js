@@ -14,10 +14,8 @@ import { hasNativeShadowDomSupport } from '../utils/environment';
 
 // const defineProperty = Object.defineProperty;
 
-import {
-  declarativeClickHandler,
-  findParentTag
-} from '../';
+import findParentTag from '../utils/find-parent-tag';
+
 
 
 export function BoltComponent(Base = HTMLElement) {

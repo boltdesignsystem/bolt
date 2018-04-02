@@ -186,7 +186,7 @@ function createConfig(config) {
       }
     },
     {
-      loader: 'resolve-url-loader'
+      loader: 'resolve-url-loader',
     },
     {
       loader: "sass-loader",
@@ -240,9 +240,9 @@ function createConfig(config) {
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
               use: ExtractTextPlugin.extract({
-                fallback: "style-loader",
+                fallback: 'style-loader',
                 use: scssLoaders,
-              })
+              }),
             },
           ],
         },
@@ -367,7 +367,7 @@ function createConfig(config) {
      overlay: {
        errors: true
      },
-     hot: config.prod ? true : false,
+     hot: config.prod ? false : true,
      inline: true,
      noInfo: true, // webpackTasks.watch handles output info related to success & failure
      publicPath: publicPath,
@@ -375,7 +375,7 @@ function createConfig(config) {
      historyApiFallback: true,
      watchOptions: {
        aggregateTimeout: 200,
-       // ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
+    //    ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
        // Poll using interval (in ms, accepts boolean too)
      }
    }
