@@ -3,23 +3,26 @@ import {
   render,
   props,
   BoltComponent,
+  define,
   css,
   spacingSizes,
-  hasNativeShadowDomSupport
+  hasNativeShadowDomSupport,
 } from '@bolt/core';
 
 const isActiveClass = 'is-active';
 
 
+@define
 class BoltNavLink extends BoltComponent() {
+  static is = 'bolt-navlink';
 
   // The element reacts to changes to the `active` attribute.
   static get observedAttributes() {
     return ['active'];
   }
 
-  constructor(element) {
-    super(element);
+  constructor() {
+    super();
 
     this._shadowLink = this.querySelector('a');
   }
@@ -107,5 +110,3 @@ class BoltNavLink extends BoltComponent() {
     this.removeEventListener('click', this.onClick);
   }
 }
-
-export default BoltNavLink;

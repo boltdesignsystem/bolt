@@ -1,1 +1,0 @@
-import './navbar.scss?external';

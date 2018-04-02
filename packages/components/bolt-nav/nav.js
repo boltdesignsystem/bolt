@@ -12,7 +12,7 @@ import {
 import gumshoe from 'gumshoejs';
 
 const indicatorElement = '.js-bolt-nav-indicator';
-const navLinkElement = 'bolt-nav-link'; // Custom element
+const navLinkElement = 'bolt-navlink'; // Custom element
 const isActiveClass = 'is-active';
 
 // gumshoeStateModule stores an offset value that persists even when it's called multiple times.  If the offset
@@ -59,13 +59,15 @@ let gumshoeStateModule = (function () {
 }());
 
 
-class BoltNav extends BoltComponent() {
+@define
+export class BoltNav extends BoltComponent() {
+  static is = 'bolt-nav';
 
   // Behavior for `<bolt-nav>` parent container
   static get observedAttributes() { return ['offset']; }
 
-  constructor(element) {
-    super(element);
+  constructor() {
+    super();
     this.activeLink = false;
     this.useShadow = hasNativeShadowDomSupport;
 
@@ -207,15 +209,19 @@ class BoltNav extends BoltComponent() {
 
   // `<bolt-nav-link>` emits a custom event when the link is active
   connecting() {
-    this._indicator = this.querySelector(indicatorElement);
-    this.addEventListener('activateLink', this._onActivateLink);
-    window.addEventListener('optimizedResize', this._onWindowResize);
+    Promise.all([
+      customElements.whenDefined('bolt-navlink'),
+    ]).then(_ => {
+      this._indicator = this.querySelector(indicatorElement);
+      this.addEventListener('activateLink', this._onActivateLink);
+      window.addEventListener('optimizedResize', this._onWindowResize);
 
-    // Initialize the Gumshoe library.
-    this.offset = this.hasAttribute('offset') ? this.getAttribute('offset') : 50;
-    this._initializeGumshoe();
+      // Initialize the Gumshoe library.
+      this.offset = this.hasAttribute('offset') ? this.getAttribute('offset') : 50;
+      this._initializeGumshoe();
 
-    this._upgradeProperty('offset');
+      this._upgradeProperty('offset');
+    });
   }
 
   _upgradeProperty(prop) {
@@ -227,14 +233,11 @@ class BoltNav extends BoltComponent() {
   }
 
   // Clean up event listeners when being removed from the page
-  disconnectedCallback() {
+  disconnecting() {
     this.removeEventListener('activateLink', this._onActivateLink);
     window.removeEventListener('optimizedResize', this._onWindowResize);
   }
 }
-
-export default BoltNav;
-
 
 
 // Create a custom 'optimizedResize' event that works just like window.resize but is more performant because it

@@ -1,5 +1,5 @@
-import BoltNavLink from './navlink';
-import './navlink.scss?external';
+import { polyfillLoader } from '@bolt/core';
 
-
-customElements.define('bolt-navlink', BoltNavLink);
+polyfillLoader.then(() => {
+  import('./navlink.js');
+});
