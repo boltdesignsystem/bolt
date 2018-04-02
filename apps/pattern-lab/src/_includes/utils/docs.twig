@@ -22,7 +22,8 @@
       } %}
 
     {% if readmeFile %}
-      {% include "@bolt/headline.twig" with {
+      <div class="c-bolt-docs__readme">
+        {% include "@bolt/headline.twig" with {
           size: "xlarge",
           tag: "h2",
           url: "#getting-started",
@@ -36,8 +37,9 @@
             id: "getting-started"
           }
         } %}
-      <div class="c-bolt-docs__lead">
-        {{ source(readmeFile) | markdown }}
+        <div class="c-bolt-docs__lead">
+          {{ source(readmeFile) | markdown }}
+        </div>
       </div>
     {% endif %}
 
