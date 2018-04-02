@@ -1,19 +1,25 @@
-/** @jsx h */
 // HyperHTML Renderer ported to SkateJS
-
-import { shadow, props } from 'skatejs';
+import {
+  withLifecycle,
+  withChildren,
+  withContext,
+  withRenderer,
+  withUpdate,
+  // withComponent,
+  shadow,
+  props,
+} from 'skatejs';
+import { hyper, bind } from 'hyperhtml/cjs';
 import { hasNativeShadowDomSupport } from '../utils/environment';
 
-import {
-  declarativeClickHandler,
-  findParentTag
-} from '../';
+// const defineProperty = Object.defineProperty;
 
-const { hyperHTML, hyper, wire, bind, Component } = require('hyperhtml/cjs');
+import findParentTag from '../utils/find-parent-tag';
 
 
-export function withHyperHTML(Base = HTMLElement) {
-  return class extends Base {
+
+export function BoltComponent(Base = HTMLElement) {
+  return class extends withLifecycle(withChildren(withContext(withUpdate(withRenderer(Base))))) {
 
     static props = {
       onClick: props.string,
@@ -23,6 +29,10 @@ export function withHyperHTML(Base = HTMLElement) {
     constructor(...args) {
       super(...args);
 
+
+      this.hyper = hyper;
+
+
       if (findParentTag(this, 'FORM') || this.getAttribute('no-shadow') !== null) {
         this.useShadow = false;
       } else {
@@ -31,22 +41,45 @@ export function withHyperHTML(Base = HTMLElement) {
     }
 
     connectedCallback() {
+      if (this.dataset.ssrContent) {
+        this.innerHTML = JSON.parse(this.dataset.ssrContent);
+      }
+
       this._checkSlots();
 
-      // Handles external click event hooks
-      this.addEventListener('click', this.clickHandler);
+      this.connecting && this.connecting();
+      // super.connectedCallback && super.connectedCallback();
+      // this.connected && this.connected();
     }
 
     disconnectedCallback() {
-      super.disconnectedCallback();
-      this.removeEventListener('click', this.clickHandler);
+      this.disconnecting && this.disconnecting();
     }
 
-    // Attach external events declaratively
-    clickHandler(event) {
-      declarativeClickHandler(this);
-    }
 
+    // lazily bind once hyperHTML logic
+    // to either the shadowRoot, if present and open,
+    // the _shadowRoot property, if set due closed shadow root,
+    // or the custom-element itself if no Shadow DOM is used.
+    // get html() {
+    //   return this._html$ || (this.html = bind(this.renderRoot));
+
+    //   //   // in case of Shadow DOM {mode: "open"}, use it
+    //   //   this.shadowRoot ||
+    //   //   // in case of Shadow DOM {mode: "close"}, use it
+    //   //   // this needs the following reference created upfront
+    //   //   // this._shadowRoot = this.attachShadow({mode: "close"});
+    //   //   this._shadowRoot ||
+    //   //   // if no Shadow DOM is used, simply use the component
+    //   //   // as container for its own content (it just works too)
+    //   //   this
+    //   // ));
+    // }
+
+    // // it can be set too if necessary, it won't invoke render()
+    // set html(value) {
+    //   defineProperty(this, '_html$', { configurable: true, value: value });
+    // }
 
     addStyles(stylesheet) {
       let styles = Array.from(stylesheet);
@@ -54,30 +87,54 @@ export function withHyperHTML(Base = HTMLElement) {
 
       if (this.useShadow) {
         return hyper.wire() `
-          <style>${ styles } </style>
+          <style>${ styles} </style>
         `;
+      }
+    }
+
+    slot(name) {
+      if (this.useShadow && hasNativeShadowDomSupport) {
+        if (name === 'default') {
+          return hyper.wire() `
+            <slot />
+          `;
+        } else {
+          return hyper.wire() `
+            <slot name="${name}" />
+          `;
+        }
+      } else {
+        if (this.slots[name]) {
+          return hyper.wire() `
+            ${this.slots.default}
+          `;
+        }
+        else {
+          console.log(`The ${name} slot doesn't appear to exist...`);
+        }
       }
     }
 
 
     // Inspired by https://codepen.io/jovdb/pen/ddRZKo
     _checkSlots() {
-      const children = this.childNodes;
       this.slots = {
         default: []
       };
-      if (children.length > 0) {
-        [...children].map(child => {
-          const slotName = child.getAttribute ? child.getAttribute("slot") : null;
-          if (!slotName) {
-            this.slots.default.push(child);
-          } else {
-            this.slots[slotName] = child;
-          }
-        });
-      }
-    }
 
+      const elem = this;
+
+      // Loop through nodelist
+      this.childNodes.forEach(function (child, index, nodelist) {
+        const slotName = child.getAttribute ? child.getAttribute("slot") : null;
+
+        if (!slotName) {
+          elem.slots.default.push(child);
+        } else {
+          elem.slots[slotName] = child;
+        }
+      });
+    }
 
     get renderRoot() {
       if (hasNativeShadowDomSupport && this.useShadow === true) {
@@ -88,19 +145,9 @@ export function withHyperHTML(Base = HTMLElement) {
     }
 
 
-    renderer(renderRoot, renderCallback) {
-      this._renderRoot = renderRoot;
-      this.html = this.html || bind(this._renderRoot);
-      renderCallback();
+    renderer(root, render) {
+      this.html = this.html || bind(root);
+      render();
     }
-
-
-    updated(...args) {
-      super.updated && super.updated(...args);
-      this.rendering && this.rendering();
-      this.renderer(this.renderRoot, () => this.render && this.render(this));
-      this.rendered && this.rendered();
-    }
-
   }
 };
