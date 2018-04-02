@@ -1,0 +1,28 @@
+{
+  "name": "@bolt/standalone-video",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "build": "bolt build",
+    "build:noisy": "bolt build --verbosity 5",
+    "build:prod": "bolt build --prod",
+    "serve": "bolt serve",
+    "watch": "bolt watch",
+    "start": "bolt start",
+    "test:links": "blc http://localhost:3000 --recursive --ordered --filter-level 2",
+    "test": "npm run test:links"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bolt-design-system/bolt"
+  },
+  "dependencies": {
+    "@bolt/build-tools": "^1.0.0",
+    "@bolt/components-button": "^1.0.0",
+    "@bolt/components-video": "^1.0.0",
+    "@bolt/core": "^1.0.0",
+    "@bolt/global": "^1.0.0",
+    "broken-link-checker": "^0.7.7"
+  }
+}

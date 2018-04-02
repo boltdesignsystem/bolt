@@ -1,0 +1,16 @@
+<h1>{{ page.meta.title }}</h1>
+<h2>{{ page.meta.subtitle }}</h2>
+{{ console_log(_context) }}
+
+{% include "@bolt/_video-inline-script.twig" with {
+  socialUrl: "https://demo1.d8.pega.com/insights/resources/crm-evolved-atlanta-customer-engagement-digital-world"
+} %}
+
+{% include "@bolt/button.twig" with {
+  text: "Watch Video",
+  tag: "button",
+  attributes: {
+    "on-click": "toggle",
+    "on-click-target": "pega-video-5205361615001"
+  }
+} only %}
