@@ -4,9 +4,7 @@ import {BoltVideo, BoltVideoMeta} from "./video.standalone";
 polyfillLoader.then((res) => {
   import(/* webpackChunkName: 'bolt-video' */ './video.standalone.js')
     .then((Component) => {
-      // console.log(Component.BoltVideo);
-
-      customElements.define('bolt-video', Component.BoltVideo());
+      customElements.define('bolt-pw-video', Component.BoltVideo());
       customElements.define('bolt-video-meta', Component.BoltVideoMeta());
     });
 });
