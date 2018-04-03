@@ -18,7 +18,7 @@ module.exports = {
     'global-require': 'off',
     'object-curly-spacing': 'off',
     'no-undef': 'off',
-    'no-console': 'off',
+    // temp disable to test Travis Buddy 'no-console': 'off',
     'quotes': 'off',
     'no-mixed-operators': 'off',
     'comma-dangle': 'off',
