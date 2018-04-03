@@ -48,7 +48,7 @@
     "Xlint:sh": "which shellcheck; if [ $? -eq 0 ]; then shellcheck scripts/*.sh ; else echo 'Shell script linting requires `shellcheck` to be installed, skipping for now; use `brew install shellcheck` to install ~ https://github.com/koalaman/shellcheck '; fi",
     "lint:style": "stylelint 'packages/**/*.scss' 'apps/**/*.scss'",
     "lint:style:fix": "npm run lint:style -- --fix",
-    "lint:twig": "./packages/core-php/vendor/bin/twig-lint lint packages --only-print-errors && ./packages/core-php/vendor/bin/twig-lint lint apps --only-print-errors",
+    "lint:twig": "./packages/core-php/vendor/bin/twig-lint lint packages --only-print-errors && ./packages/core-php/vendor/bin/twig-lint lint apps --only-print-errors --exclude=apps/drupal-lab",
     "lint": "npm-run-all --continue-on-error --serial lint:*",
     "test:js": "jest",
     "test:js:watch": "jest --watch",
