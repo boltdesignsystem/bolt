@@ -64,19 +64,11 @@
       type: object
       properties:
         global:
-          type: array
-          uniqueItems: true
-          # array of objects
-          items:
-            -
-              type: string
+          oneOf:
+            - $ref: '#/definitions/componentStrings'
         individual:
-          type: array
-          uniqueItems: true
-          # array of objects
-          items:
-            -
-              type: string
+          oneOf:
+            - $ref: '#/definitions/componentStrings'
     extraTwigNamespaces:
       type: object
       title: Extra Twig Namespaces
@@ -122,3 +114,10 @@
       type: boolean
       description: Production build, will compress assets.
       default: false
+
+  definitions:
+    componentStrings:
+      type: array
+      uniqueItems: true
+      items:
+        - type: string
