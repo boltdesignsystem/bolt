@@ -7,7 +7,7 @@ import {
   withPreact,
   BoltComponent,
   declarativeClickHandler,
-  sanitizeBoltClasses
+  sanitizeBoltClasses,
 } from '@bolt/core';
 
 import styles from './button.scss';

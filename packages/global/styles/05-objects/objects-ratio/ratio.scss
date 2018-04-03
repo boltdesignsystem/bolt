@@ -7,7 +7,10 @@ bolt-ratio {
   display: inline-block;
   vertical-align: middle; // Prevents the average background color from sometimes showing up unexpectedly due to the image being top aligned when it should have been vertically centered.
   position: relative;
+  vertical-align: middle;
   width: 100%;
+  height: 0;
+  font-size: 0; // Workaround to IE 11 adding extra whitespace
   overflow: hidden; // Hide placeholder blurred images from leaking through
 
   --aspect-ratio-width: 1;
@@ -23,7 +26,7 @@ bolt-ratio {
   * 1. Fallback selector if JS isn't disabled, but hasn't kicked in yet.
   * 2. Fallback selector for browsers not supporting ::slotted(*) selector
   */
-bolt-ratio > *,
+bolt-ratio *,
 .o-bolt-ratio__inner {
   position: absolute;
   top: 0;

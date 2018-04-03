@@ -36,20 +36,16 @@ export function BoltComponent(Base = HTMLElement) {
       if (this.dataset.ssrContent) {
         this.innerHTML = JSON.parse(this.dataset.ssrContent);
       }
-
       this._checkSlots();
-
       this.connecting && this.connecting();
       super.connectedCallback && super.connectedCallback();
       this.connected && this.connected();
     }
-
-
-
+ 
     disconnectedCallback() {
       this.disconnecting && this.disconnecting();
     }
-
+ 
     addStyles(stylesheet) {
       let styles = Array.from(stylesheet);
       styles = styles.join(' ');
