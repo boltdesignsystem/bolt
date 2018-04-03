@@ -335,6 +335,9 @@ function createConfig(config) {
     // Optimize CSS - https://github.com/NMFR/optimize-css-assets-webpack-plugin
     webpackConfig.plugins.push(new OptimizeCssAssetsPlugin({
       canPrint: config.verbosity > 2,
+      cssProcessorOptions: {// passes to `cssnano`
+        zindex: false, // don't alter `z-index` values
+      },
     }));
 
     // @todo Evaluate best source map approach for production
