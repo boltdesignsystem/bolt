@@ -92,5 +92,5 @@ module.exports = {
     'one-var': 'off',
     'one-var-declaration-per-line': 'off',
     'new-parens': 'off',
-  }
+  },
 };
