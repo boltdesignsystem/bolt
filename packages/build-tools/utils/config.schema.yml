@@ -64,11 +64,9 @@
       type: object
       properties:
         global:
-          oneOf:
-            - $ref: '#/definitions/componentStrings'
+          $ref: '#/definitions/components'
         individual:
-          oneOf:
-            - $ref: '#/definitions/componentStrings'
+          $ref: '#/definitions/components'
     extraTwigNamespaces:
       type: object
       title: Extra Twig Namespaces
@@ -116,8 +114,24 @@
       default: false
 
   definitions:
-    componentStrings:
+    components:
       type: array
-      uniqueItems: true
       items:
-        - type: string
+        oneOf:
+          -
+            type: string
+          -
+            type: object
+            additionalProperties: false
+            properties:
+              name:
+                type: string
+                description: 'Becomes filename: NAME.css and NAME.js'
+              scss:
+                type: string
+                title: Entry file for Sass. Import statements will be followed
+              js:
+                type: string
+                title: Entry file for JS. Import statements will be followed
+              required:
+                - name
