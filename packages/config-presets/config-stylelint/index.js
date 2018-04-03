@@ -4,7 +4,7 @@ module.exports = {
   // Process:
   // 1. Delete a line from `rules`
   // 2. Lint
-  // 3. Fix
+  // 3. Fix (first run auto-fix with `npm run lint:style:fix`, then manually fix rest)
   // 4. PR
   // When `rules` is empty, we rename `ideal.js` to `index.js` and delete this file.
   rules: {
