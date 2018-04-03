@@ -51,7 +51,8 @@ function plBuild(errorShouldExit) {
           console.log(output);
           console.log('===\n');
         }
-        // events.emit('reload'); // Temporarily disable - still testing out HMR reload approach
+
+        events.emit('reload');
 
         resolve(output);
       })
