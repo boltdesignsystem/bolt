@@ -37,7 +37,7 @@ const defaultConfig = {
     path: `${process.cwd()}/dist/scripts/`,
     filename: '[name].min.js',
     publicPath: `/scripts/`,
-    chunkFilename: `[name]-chunk.min.js`,
+    chunkFilename: `[name]-chunk-[chunkhash].min.js`,
     libraryTarget: 'umd'
   },
   devtool: 'cheap-module-eval-source-map',
