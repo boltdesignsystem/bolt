@@ -17,7 +17,7 @@ $staticSiteLoader = new Twig_Loader_Filesystem('templates');
 // Add as many Twig Namespaces as you'd like
 //$staticSiteLoader->addPath(getcwd() . '/..', 'upone');
 
-$twigNamespaceConfig = \BasaltInc\TwigTools\Utils::getData('../../www/build/data/twig-namespaces.bolt.json');
+$twigNamespaceConfig = \BasaltInc\TwigTools\Utils::getData('www/build/data/twig-namespaces.bolt.json');
 $twigLoaderConfig = \BasaltInc\TwigTools\Namespaces::buildLoaderConfig($twigNamespaceConfig, __DIR__);
 $boltTwigLoader = \BasaltInc\TwigTools\Namespaces::addPathsToLoader($twigLoaderConfig);
 

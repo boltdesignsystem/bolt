@@ -12,8 +12,6 @@ module.exports = {
       '@bolt/core',
       '@bolt/global',
       '@bolt/components-video',
-      '@bolt/components-pw-video',
-      '@bolt/components-button',
     ],
     individual: [],
   },
