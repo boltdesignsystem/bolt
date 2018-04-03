@@ -1,4 +1,6 @@
-# Bolt Quick Start Guide
+---
+title: Bolt Quick Start Guide
+---
 
 ## Install Suggested Apps
 

@@ -4,6 +4,10 @@
 
 @import '@bolt/core';
 
+bolt-copy-to-clipboard {
+  display: inline-block;
+}
+
 .c-bolt-copy-to-clipboard__icon,
 .c-bolt-copy-to-clipboard__copied {
   opacity: 0;
@@ -12,15 +16,24 @@
 }
 
 .c-bolt-copy-to-clipboard__icon {
+  color: bolt-color(indigo, light);
   transform: scale(0) rotate(0deg);
+}
+
+.c-bolt-copy-to-clipboard__default,
+.c-bolt-copy-to-clipboard__copied {
+  .c-bolt-link__icon {
+    color: bolt-color(indigo, light);
+  }
 }
 
 .c-bolt-copy-to-clipboard__copied {
   pointer-events: none;
-  display: inline-block;
+  display: block;
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
 
   .c-bolt-link__text {
     color: bolt-color(teal, dark);
@@ -28,8 +41,9 @@
 }
 
 .c-bolt-copy-to-clipboard {
-  display: inline-block;
+  display: block;
   position: relative;
+  text-align: left;
 
   &.is-copied {
     .c-bolt-copy-to-clipboard__default {

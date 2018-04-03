@@ -1,11 +1,14 @@
 {% set assets = get_data("@bolt-assets/bolt-webpack-manifest.json") %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
-    <title>Bolt Design System</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" />
+    <title>Bolt Design System</title>
+
+    <!-- Default OG Tag examples (related to Bolt Share Component) -->
+    {% include "@bolt-components-share/src/_share-meta-example.twig" %}
 
     <link rel="stylesheet" href="{{ assets["bolt-global.css"] }}?cachebuster="{{ cacheBuster }}" media="all" />
 
