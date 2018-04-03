@@ -34,8 +34,8 @@
   "scripts": {
     "prepublishOnly": "npm run build",
     "build": "npm-run-all --parallel build:*",
-    "build:wwwd8": "./node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js bolt=./bolt-wwwd8 --output-chunk-filename='[name]-wwwd8.min.js' --output-filename='bolt-wwwd8.min.js' --output-public-path /bolt-scripts/",
-    "build:bolt": "./node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js bolt=./bolt --output-chunk-filename='[name].min.js' --output-filename='bolt.min.js' --output-public-path /dist/"
+    "build:wwwd8": "./node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js bolt=./bolt-wwwd8 --output-chunk-filename='[name]-wwwd8-[chunkhash].min.js' --output-filename='bolt-wwwd8.min.js' --output-public-path /bolt-scripts/",
+    "build:bolt": "./node_modules/.bin/webpack --env.production --env.cli --config ./node_modules/@bolt/build-webpack/webpack.config.cli.js bolt=./bolt --output-chunk-filename='[name]-[chunkhash].min.js' --output-filename='bolt.min.js' --output-public-path /dist/"
   },
   "devDependencies": {
     "@bolt/build-webpack": "^0.10.5",
