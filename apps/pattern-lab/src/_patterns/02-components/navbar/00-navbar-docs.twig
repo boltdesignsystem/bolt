@@ -1,6 +1,6 @@
-{% set schema = bolt.data.components['@bolt-components-nav-bar'].schema %}
+{% set schema = bolt.data.components['@bolt-components-navbar'].schema %}
 {% set code %} {% verbatim %}
-{% include "@bolt-components-nav-bar/nav-bar.twig" with {
+{% include "@bolt-components-navbar/navbar.twig" with {
     "title": {
       "tag": "h2",
       "text": "Title Text",
@@ -29,5 +29,5 @@
 {% include '@utils/docs.twig' with {
   schema: schema,
   code: code,
-  readmeFile: '@bolt-components-nav-bar/README.md',
+  readmeFile: '@bolt-components-navbar/README.md',
 } only %}
