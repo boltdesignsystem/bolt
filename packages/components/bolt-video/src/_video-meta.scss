@@ -5,7 +5,7 @@ $bolt-export-data: false !global;
 // Same as max-width of wrapper container
 $bolt-video-meta--max-width: bolt-breakpoint(xxlarge);
 
-bolt-video-meta {
+bolt-pw-video-meta {
   transition: transform 0.2s ease, opacity 0.2s ease;
   transform: translate3d(0, 0, 0);
   opacity: 1;
@@ -17,7 +17,7 @@ bolt-video-meta {
   bottom: 0;
 }
 
-.c-bolt-video-meta__wrapper {
+.c-bolt-pw-video-meta__wrapper {
   @include bolt-padding(medium, squished);
   @include bolt-font-size(xsmall);
 

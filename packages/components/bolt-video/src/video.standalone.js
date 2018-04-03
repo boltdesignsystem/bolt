@@ -18,7 +18,7 @@ import metaStyles from './_video-meta.scss';
 // @define
 export function BoltVideoMeta() {
   return class BoltVideoMetaClass extends withPreact(withComponent()) {
-    // static is = 'bolt-video-meta';
+    // static is = 'bolt-pw-video-meta';
 
     static props = {
       duration: props.string,
@@ -37,10 +37,10 @@ export function BoltVideoMeta() {
       // externally (such as when the video has finished fully loading).
       const reveal = Boolean(this.title || this.duration);
       return (
-        <div class="c-bolt-video-meta">
+        <div class="c-bolt-pw-video-meta">
           <style>{metaStyles[0][1]}</style>
           {reveal ? (
-            <div class="c-bolt-video-meta__wrapper">{this.title}{separator}{this.duration}</div>
+            <div class="c-bolt-pw-video-meta__wrapper">{this.title}{separator}{this.duration}</div>
           ) : null}
         </div>
       );
@@ -172,14 +172,14 @@ export function BoltVideo() {
 
     _setMetaTitle(title) {
       if (this.props.showMeta && this.props.showMetaTitle) {
-        this.querySelector('bolt-video-meta').setAttribute('title', title);
+        this.querySelector('bolt-pw-video-meta').setAttribute('title', title);
       }
     }
 
     _setMetaDuration(seconds) {
       if (this.props.showMeta) {
         const durationFormatted = BoltVideoClass._formatDuration(seconds);
-        this.querySelector('bolt-video-meta').setAttribute('duration', durationFormatted);
+        this.querySelector('bolt-pw-video-meta').setAttribute('duration', durationFormatted);
       }
     }
 
@@ -686,9 +686,9 @@ export function BoltVideo() {
       }
 
       const classes = css(
-        'c-bolt-video',
-        this.props.controls === false ? 'c-bolt-video--hide-controls' : '',
-        this.props.isBackgroundVideo ? 'c-bolt-video--background' : '',
+        'c-bolt-pw-video',
+        this.props.controls === false ? 'c-bolt-pw-video--hide-controls' : '',
+        this.props.isBackgroundVideo ? 'c-bolt-pw-video--background' : '',
       );
 
       return (
@@ -712,20 +712,20 @@ export function BoltVideo() {
           controls={this.props.controls}
         />
           {this.props.showMeta &&
-          <bolt-video-meta/>
+          <bolt-pw-video-meta/>
           }
           {this.props.isBackgroundVideo &&
-          <a class="c-bolt-video__close-button c-bolt-video__close-button--icon-to-text" href="javascript:"
+          <a class="c-bolt-pw-video__close-button c-bolt-pw-video__close-button--icon-to-text" href="javascript:"
              onClick={this.handleClose}>
-            <span class="c-bolt-video__close-button-icon">
+            <span class="c-bolt-pw-video__close-button-icon">
               <div
-                class="c-bolt-button c-bolt-button--xsmall c-bolt-button--secondary c-bolt-button--rounded c-bolt-button--icon-only">
-                <span class="c-bolt-button__icon">
+                class="c-bolt-pw-button c-bolt-pw-button--xsmall c-bolt-pw-button--secondary c-bolt-pw-button--rounded c-bolt-pw-button--icon-only">
+                <span class="c-bolt-pw-button__icon">
                   <bolt-icon name="close" size="small"></bolt-icon>
                 </span>
               </div>
             </span>
-            <span class="c-bolt-video__close-button-text">
+            <span class="c-bolt-pw-video__close-button-text">
               {closeButtonText}
             </span>
           </a>
