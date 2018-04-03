@@ -50,6 +50,7 @@
     "lint:style:fix": "npm run lint:style -- --fix",
     "lint:twig": "./packages/core-php/vendor/bin/twig-lint lint packages --only-print-errors && ./packages/core-php/vendor/bin/twig-lint lint apps --only-print-errors --exclude=apps/drupal-lab",
     "lint": "npm-run-all --continue-on-error --serial lint:*",
+    "prepush": "npm run lint && npm run test",
     "test:js": "jest",
     "test:js:watch": "jest --watch",
     "test:php": "cd packages/core-php && composer run test",
