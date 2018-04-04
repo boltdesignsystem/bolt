@@ -8,6 +8,15 @@
     - components
   additionalProperties: false
   properties:
+    namespace:
+      type: string
+      title: Namespace prefix to use in classnames
+      default: 'bolt'
+    templatesDir:
+      type: array
+      title: Template paths being added
+      default:
+        - templates
     env:
       type: string
       title: Environment Type

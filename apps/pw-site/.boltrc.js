@@ -1,5 +1,5 @@
 module.exports = {
-  // Environmental variable / preset to use
+  namespace: 'pw',
   env: 'static',
   buildDir: './www/build/',
   srcDir: './content',
