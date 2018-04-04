@@ -18,7 +18,7 @@ import metaStyles from './_video-meta.scss';
 // @define
 export function BoltVideoMeta() {
   return class BoltVideoMetaClass extends withPreact(withComponent()) {
-    // static is = 'bolt-pw-video-meta';
+    // static is = 'bolt-video-meta';
 
     static props = {
       duration: props.string,
@@ -37,10 +37,10 @@ export function BoltVideoMeta() {
       // externally (such as when the video has finished fully loading).
       const reveal = Boolean(this.title || this.duration);
       return (
-        <div class="c-bolt-pw-video-meta">
+        <div class="c-bolt-video-meta">
           <style>{metaStyles[0][1]}</style>
           {reveal ? (
-            <div class="c-bolt-pw-video-meta__wrapper">{this.title}{separator}{this.duration}</div>
+            <div class="c-bolt-video-meta__wrapper">{this.title}{separator}{this.duration}</div>
           ) : null}
         </div>
       );
@@ -686,9 +686,9 @@ export function BoltVideo() {
       }
 
       const classes = css(
-        'c-bolt-pw-video',
-        this.props.controls === false ? 'c-bolt-pw-video--hide-controls' : '',
-        this.props.isBackgroundVideo ? 'c-bolt-pw-video--background' : '',
+        'c-bolt-video',
+        this.props.controls === false ? 'c-bolt-video--hide-controls' : '',
+        this.props.isBackgroundVideo ? 'c-bolt-video--background' : '',
       );
 
       return (
@@ -715,17 +715,17 @@ export function BoltVideo() {
           <bolt-pw-video-meta/>
           }
           {this.props.isBackgroundVideo &&
-          <a class="c-bolt-pw-video__close-button c-bolt-pw-video__close-button--icon-to-text" href="javascript:"
+          <a class="c-bolt-video__close-button c-bolt-video__close-button--icon-to-text" href="javascript:"
              onClick={this.handleClose}>
-            <span class="c-bolt-pw-video__close-button-icon">
+            <span class="c-bolt-video__close-button-icon">
               <div
-                class="c-bolt-pw-button c-bolt-pw-button--xsmall c-bolt-pw-button--secondary c-bolt-pw-button--rounded c-bolt-pw-button--icon-only">
-                <span class="c-bolt-pw-button__icon">
+                class="c-bolt-button c-bolt-button--xsmall c-bolt-button--secondary c-bolt-button--rounded c-bolt-button--icon-only">
+                <span class="c-bolt-button__icon">
                   <bolt-icon name="close" size="small"></bolt-icon>
                 </span>
               </div>
             </span>
-            <span class="c-bolt-pw-video__close-button-text">
+            <span class="c-bolt-video__close-button-text">
               {closeButtonText}
             </span>
           </a>

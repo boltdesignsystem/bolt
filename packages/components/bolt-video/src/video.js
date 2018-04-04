@@ -8,19 +8,3 @@ polyfillLoader.then((res) => {
       customElements.define('bolt-pw-video-meta', Component.BoltVideoMeta());
     });
 });
-
-
-// %bolt-video {
-//   display: inline-block;
-// }
-//
-// bolt-video {
-//   @extends %bolt-video;
-// }
-//
-//
-// @import '@bolt/components-video';
-//
-// pw-video {
-//   @extends %bolt-video;
-// }

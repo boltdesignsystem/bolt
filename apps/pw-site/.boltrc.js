@@ -12,6 +12,7 @@ module.exports = {
       '@bolt/core',
       '@bolt/global',
       '@bolt/components-video',
+      './pw-style.scss',
     ],
     individual: [],
   },
