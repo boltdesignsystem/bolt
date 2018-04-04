@@ -11,8 +11,10 @@ if ($argv[2]) {
   $data = json_decode($argv[2], true);
 }
 
+$boltConfig = \BasaltInc\TwigTools\Utils::getData('www/build/data/config.bolt.json');
+
 // Creates Twig Loader, uses `./templates` as default directory to look for Twig files
-$staticSiteLoader = new Twig_Loader_Filesystem('templates');
+$staticSiteLoader = new Twig_Loader_Filesystem($boltConfig['templatesDir'] ? $boltConfig['templatesDir'] : 'templates');
 
 // Add as many Twig Namespaces as you'd like
 //$staticSiteLoader->addPath(getcwd() . '/..', 'upone');
