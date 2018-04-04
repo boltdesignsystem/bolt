@@ -16,3 +16,7 @@
     {% include "@bolt-components-dropdown/_dropdown-item.twig" %}
   {% endif %}
 </bolt-dropdown>
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-dropdown/dropdown.schema.yml', _self) | raw }}
+{% endif %}
