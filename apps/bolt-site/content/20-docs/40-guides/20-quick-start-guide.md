@@ -40,7 +40,9 @@ echo 'export NVM_DIR="$HOME/.nvm"
   
   
 ###
-# Pro Tip: Need a little help adding these 2 lines to your `.zshrc` file?
+# Pro Tip: Need a little help adding those 2 lines to your `.zshrc` file? 
+
+Did that previous command not automatically update your config file for some reason?
 
 1. Make sure to highlight and copy the code snippet above ^ to your clipboard ( CMD + C )
 2. Edit your `.zshrc` file by typing in the following into iTERM and hitting enter: 
