@@ -3,7 +3,7 @@ const { ensureFileExists } = require('./general');
 const { promisify } = require('util');
 const fs = require('fs');
 const writeFile = promisify(fs.writeFile);
-const {getDataFile} = require('./yaml');
+const { getDataFile } = require('./yaml');
 const path = require('path');
 const config = require('./config-store').getConfig();
 const pkg = require('../package.json');
@@ -19,10 +19,31 @@ let boltManifest = {
 
 /**
  * Get information about a components assets
- * @param {string} pkgName - Machine name of a component i.e. `@bolt/button` OR path to an entry file i.e. `./src/style.scss`
+ * @param {string|object} pkgName - Name of a component i.e. `@bolt/button`
+ * OR object - see `config.schema.yml` under `definitions.components.items`
  * @returns {{name, basicName: string | * | void}} - Asset info
  */
 async function getPkgInfo(pkgName) {
+  if (typeof pkgName === 'object') {
+    const info = {
+      name: pkgName.name,
+      basicName: pkgName.name,
+      assets: {},
+    };
+    if (pkgName.scss) {
+      info.assets.style = pkgName.scss;
+      info.dir = path.dirname(pkgName.scss);
+      ensureFileExists(pkgName.scss);
+    }
+    if (pkgName.js) {
+      info.assets.main = pkgName.js;
+      // yeah I know we're overwriting `dir`... got to have something though... and it's only used by PL to watch Twig
+      info.dir = path.dirname(pkgName.js);
+      ensureFileExists(pkgName.js);
+    }
+    return info;
+  }
+
   if (pkgName.endsWith('.scss') || pkgName.endsWith('.js')) {
     const pathInfo = path.parse(pkgName);
     const name = pathInfo.name + pathInfo.ext.replace('.', '-');
@@ -96,7 +117,7 @@ function getBoltManifest() {
  */
 function getAllDirs(relativeFrom) {
   const dirs = [];
-  const {global, individual} = getBoltManifest().components;
+  const { global, individual } = getBoltManifest().components;
   [global, individual].forEach((componentList) => {
     componentList.forEach((component) => {
       dirs.push(relativeFrom
@@ -125,7 +146,7 @@ async function writeBoltManifest() {
     await writeFile(path.resolve(config.dataDir, './full-manifest.bolt.json'), JSON.stringify(getBoltManifest()));
     await writeFile(path.resolve(config.dataDir, './components.bolt.json'), JSON.stringify(createComponentsManifest()));
     await writeFile(path.resolve(config.dataDir, './config.bolt.json'), JSON.stringify(config));
-  } catch(error) {
+  } catch (error) {
     log.errorAndExit('Could not write bolt manifest files', error);
   }
 }
@@ -141,7 +162,7 @@ async function writeBoltManifest() {
 async function writeTwigNamespaceFile(relativeFrom, extraNamespaces = {}) {
   const namespaces = {};
   const allDirs = [];
-  const {global, individual} = getBoltManifest().components;
+  const { global, individual } = getBoltManifest().components;
 
   [global, individual].forEach((componentList) => {
     componentList.forEach((component) => {

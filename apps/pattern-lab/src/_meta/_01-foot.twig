@@ -6,6 +6,7 @@
     {% set assets = get_data("@bolt-assets/bolt-webpack-manifest.json") %}
 
     <script src="{{ assets["bolt-global.js"] }}?cachebuster="{{ cacheBuster }}"" async></script>
+    <script src="{{ assets["pl.js"] }}?cachebuster="{{ cacheBuster }}"" async></script>
 
     {# Code syntax highlighting - https://github.com/imsky/holder #}
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
