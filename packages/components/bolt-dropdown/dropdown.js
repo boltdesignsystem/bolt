@@ -107,7 +107,7 @@ export class BoltDropdown extends BoltComponent() {
       this.props.center ? 'c-bolt-dropdown__header--center' : ''
     );
 
-    const dropdownTitle = this.slots.title ? this.slot('title') : (this.props.title && this.props.title !== null ? JSON.parse(this.props.title) : null);
+    const dropdownTitle = this.slots.title ? this.slot('title') : (this.props.title && this.props.title !== null ? this.props.title : null);
 
 
     return this.hyper.wire(this.props) `

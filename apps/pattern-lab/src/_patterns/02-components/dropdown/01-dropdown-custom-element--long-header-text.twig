@@ -1,57 +1,40 @@
 <bolt-dropdown
   center
-  title='{{ include("@bolt-components-headline/text.twig", {
-    text: "Really Extremely Long Example Header Text Example",
-    tag: "h2",
-    size: "medium",
-    weight: "semibold",
-    icon: {
-      name: "hospitality",
-      size: "medium",
-      position: "left"
-    },
-    attributes: {
-      "slot": "title",
-      "class": [
-        "u-bolt-margin-bottom-none"
-      ]
-    }
-  }, with_context = false)|json_encode()  }}'>
-
-  <bolt-nav-list offset="50">
-    <ul class="c-bolt-nav-list c-bolt-nav-list--xsmall js-bolt-nav-list-gumshoe">
-      <li class="c-bolt-nav-list__item">
-        <bolt-nav-link>
-          <a class="c-bolt-nav-link" href="#p-f3ff267c-5fb8-4e2f-8682-52663b5437df">Features</a>
-        </bolt-nav-link>
-      </li>
-      <li class="c-bolt-nav-list__item">
-        <bolt-nav-link>
-          <a class="c-bolt-nav-link" href="#p-12de80d7-1c57-4bef-a173-07d898f8e356">Resources
-          </a>
-        </bolt-nav-link>
-      </li>
-      <li class="c-bolt-nav-list__item">
-        <bolt-nav-link>
-          <a class="c-bolt-nav-link" href="#p-468a47c1-fe65-46d4-b8c7-9dbfe8404ee9">Industry Apps
-          </a>
-        </bolt-nav-link>
-      </li>
-      <li class="c-bolt-nav-list__item">
-        <bolt-nav-link>
-          <a class="c-bolt-nav-link" href="#p-6618d817-126e-46d1-955a">Customer Success
-          </a>
-        </bolt-nav-link>
-      </li>
-      <li class="c-bolt-nav-list__item">
-        <bolt-nav-link>
-          <a class="c-bolt-nav-link" href="#long-link">Menu item that is really long and breaks after 32ish characters
-          </a>
-        </bolt-nav-link>
-      </li>
-
-      <li class="c-bolt-nav-list__indicator js-bolt-nav-indicator" style="transform: translateX(0px); width: 0px;"></li>
-    </ul>
-  </bolt-nav-list>
-
+  title="Really Extremely Long Example Header Text Example">
+  {% include "@bolt-components-nav/nav.twig" with {
+    "links": [
+      {
+        "text": "Link 1 Text",
+        "url": "#link-1-url"
+      },
+      {
+        "text": "Link 2 Text",
+        "url": "#link-2-url"
+      },
+      {
+        "text": "Link 3 Text",
+        "url": "#link-3-url"
+      },
+      {
+        "text": "Link 4 Text",
+        "url": "#link-4-url"
+      },
+      {
+        "text": "Link 5 Text",
+        "url": "#link-5-url"
+      },
+      {
+        "text": "Link 6 Text",
+        "url": "#link-6-url"
+      },
+      {
+        "text": "Link 7 Text",
+        "url": "#link-7-url"
+      },
+      {
+        "text": "Link 8 Text",
+        "url": "#link-8-url"
+      }
+    ]
+  } %}
 </bolt-dropdown>

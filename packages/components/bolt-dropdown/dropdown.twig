@@ -1,5 +1,5 @@
 {% set collapse = collapse | default(false) %}
-
+{% set _content = block('content') | default(content) %}
 
 <bolt-dropdown
   {{ collapse ? "collapse" : "" }}
@@ -12,7 +12,7 @@
     {% endfor %}
   {% endif %}
 
-  {% if content %}
+  {% if _content is not empty %}
     {% include "@bolt-components-dropdown/_dropdown-item.twig" %}
   {% endif %}
 </bolt-dropdown>
