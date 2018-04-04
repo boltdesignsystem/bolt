@@ -59,6 +59,9 @@ brew install graphicsmagick
 brew install yarn
 ```
 
+Pro TIP: Already have Yarn installed? Awesome! Just make sure you're running the latest version by running `brew upgrade yarn`
+
+
 ## Pulling Down, Installing and Running Bolt Locally
 
 1. In iTerm, create a `sites` folder on your machine if you don't already have one created.
