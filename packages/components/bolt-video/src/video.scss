@@ -8,67 +8,64 @@
 $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
 
 
-@mixin bolt-video($elementName: 'bolt-video') {
-  #{$elementName} {
-    display: block;
-    width: 100%;
+#{$bolt-namespace}-video {
+  display: block;
+  width: 100%;
 
-  // Hide the metadata (which covers the controls) if the user is either
-  //   a) watching the video
-  //   b) potentially interacting with the video
-    &:hover,
-    &.is-playing,
-    &:hover.is-paused {
-      #{$elementName}-meta {
-        transform: translate3d(0, 100%, 0);
-        opacity: 0;
-      }
+// Hide the metadata (which covers the controls) if the user is either
+//   a) watching the video
+//   b) potentially interacting with the video
+  &:hover,
+  &.is-playing,
+  &:hover.is-paused {
+    #{$bolt-namespace}-video-meta {
+      transform: translate3d(0, 100%, 0);
+      opacity: 0;
+    }
+  }
+
+  &[is-background-video]{
+    flex-grow: 1;
+    z-index: 20;
+    transition: opacity .3s ease, min-height .3s ease;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    min-width: 100%;
+    max-width: none;
+    background-color: rgba(22, 26, 60, .8);
+    pointer-events: none;
+    opacity: 0;
+
+    .is-expanded & {
+      opacity: 1;
+      pointer-events: auto;
     }
 
-    &[is-background-video]{
-      flex-grow: 1;
-      z-index: 20;
-      transition: opacity .3s ease, min-height .3s ease;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      margin-left: auto;
-      margin-right: auto;
-      position: absolute;
-      min-width: 100%;
-      max-width: none;
-      background-color: rgba(22, 26, 60, .8);
-      pointer-events: none;
-      opacity: 0;
-
-      .is-expanded & {
-        opacity: 1;
-        pointer-events: auto;
-      }
-
-      .video-js {
-        max-width: 1400px;
-        margin: 0 auto;
-        min-width: 0;
-        width: 100%;
-        background-color: transparent;
-        transition: all .4s ease;
-        width: 100%;
-        height: 100%;
-      }
+    .video-js {
+      max-width: 1400px;
+      margin: 0 auto;
+      min-width: 0;
+      width: 100%;
+      background-color: transparent;
+      transition: all .4s ease;
+      width: 100%;
+      height: 100%;
     }
   }
 }
 
-@include bolt-video();
 
 /**
   * 1. 90vw instead of 100vw so the video close button
   * doesn't spill outside of the video container in IE 11 /
   * on Windows
   */
-.c-bolt-video {
+.c-#{$bolt-namespace}-video {
 
   width: 100%;
   max-width: none;
@@ -80,7 +77,12 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
     height: 100%;
   }
 
-  &.c-bolt-video--background {
+  // Higher specificity required to prevent override from Hapyak's CSS loaded
+  .video-js.video-js.video-js {
+    position: absolute;
+  }
+
+  &.c-#{$bolt-namespace}-video--background {
     display: block;
     position: relative;
     max-width: calc(100% - #{bolt-spacing(large)});
@@ -104,9 +106,9 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
 
 
 
-.c-bolt-video__close-button {
+.c-#{$bolt-namespace}-video__close-button {
   color: bolt-color(orange);
-  --bolt-theme-icon: bolt-color(orange);
+  --#{$bolt-namespace}-theme-icon: bolt-color(orange);
   position: absolute;
   z-index: bolt-z-index('tooltip');
   top: bolt-spacing(xsmall);
@@ -137,42 +139,42 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
   }
 }
 
-.c-bolt-video__close-button--icon-to-text {
+.c-#{$bolt-namespace}-video__close-button--icon-to-text {
   @media (max-width: (bolt-breakpoint(small) - 1px)) {
     display: block;
     position: relative;
     right: 0;
     text-align: right;
-    .c-bolt-video__close-button-icon {
+    .c-#{$bolt-namespace}-video__close-button-icon {
       display: none;
     }
   }
   @media (min-width: bolt-breakpoint(small)) {
     position: absolute;
-    .c-bolt-video__close-button-text {
+    .c-#{$bolt-namespace}-video__close-button-text {
       @include bolt-visuallyhidden;
     }
   }
 }
 
-.c-bolt-video__close-button:not(.c-bolt-video__close-button--icon-to-text) {
-  .c-bolt-video__close-button-text {
+.c-#{$bolt-namespace}-video__close-button:not(.c-#{$bolt-namespace}-video__close-button--icon-to-text) {
+  .c-#{$bolt-namespace}-video__close-button-text {
     @include bolt-visuallyhidden;
   }
 }
 
-.c-bolt-video__close-button-icon,
-.c-bolt-video__close-button-text {
+.c-#{$bolt-namespace}-video__close-button-icon,
+.c-#{$bolt-namespace}-video__close-button-text {
   cursor: pointer;
 }
 
-.c-bolt-video__close-button-text {
+.c-#{$bolt-namespace}-video__close-button-text {
   color: bolt-color(white);
   text-decoration: underline;
 }
 
 
-.c-bolt-video--hide-controls {
+.c-#{$bolt-namespace}-video--hide-controls {
   .video-js .vjs-control-bar {
     display: none;
   }

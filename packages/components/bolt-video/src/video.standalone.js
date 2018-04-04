@@ -37,10 +37,10 @@ export function BoltVideoMeta() {
       // externally (such as when the video has finished fully loading).
       const reveal = Boolean(this.title || this.duration);
       return (
-        <div class="c-bolt-video-meta">
+        <div className={`c-${bolt.namespace}-video-meta`}>
           <style>{metaStyles[0][1]}</style>
           {reveal ? (
-            <div class="c-bolt-video-meta__wrapper">{this.title}{separator}{this.duration}</div>
+            <div className={`c-${bolt.namespace}-video-meta__wrapper`}>{this.title}{separator}{this.duration}</div>
           ) : null}
         </div>
       );
@@ -78,8 +78,9 @@ export function BoltVideo() {
       hideFullScreenButton: props.boolean
     }
 
-    constructor(element) {
-      super(element);
+    constructor() {
+      super();
+
       index += 1;
 
       this.onPlay = this.onPlay.bind(this);
@@ -172,14 +173,14 @@ export function BoltVideo() {
 
     _setMetaTitle(title) {
       if (this.props.showMeta && this.props.showMetaTitle) {
-        this.querySelector('bolt-pw-video-meta').setAttribute('title', title);
+        this.querySelector(`${bolt.namespace}-video-meta`).setAttribute('title', title);
       }
     }
 
     _setMetaDuration(seconds) {
       if (this.props.showMeta) {
         const durationFormatted = BoltVideoClass._formatDuration(seconds);
-        this.querySelector('bolt-pw-video-meta').setAttribute('duration', durationFormatted);
+        this.querySelector(`${bolt.namespace}-video-meta`).setAttribute('duration', durationFormatted);
       }
     }
 
@@ -315,7 +316,7 @@ export function BoltVideo() {
       }
 
       // only ever append script once
-      if (!BoltVideoClass.players) {
+      if (!BoltVideoClass.players || bolt.namespace !== BoltVideoClass.namespace) {
         BoltVideoClass.players = [];
 
         const s = this.createScript();
@@ -686,10 +687,12 @@ export function BoltVideo() {
       }
 
       const classes = css(
-        'c-bolt-video',
-        this.props.controls === false ? 'c-bolt-video--hide-controls' : '',
-        this.props.isBackgroundVideo ? 'c-bolt-video--background' : '',
+        `c-${bolt.namespace}-video`,
+        this.props.controls === false ? `c-${bolt.namespace}-video--hide-controls` : '',
+        this.props.isBackgroundVideo ? `c-${bolt.namespace}-video--background` : '',
       );
+
+      const videoMetaTag = `${bolt.namespace}-video-meta`;
 
       return (
         <span className={classes}>
@@ -712,12 +715,15 @@ export function BoltVideo() {
           controls={this.props.controls}
         />
           {this.props.showMeta &&
-          <bolt-pw-video-meta/>
+            h(videoMetaTag)
           }
           {this.props.isBackgroundVideo &&
-          <a class="c-bolt-video__close-button c-bolt-video__close-button--icon-to-text" href="javascript:"
+          <a className={ css(
+            `c-${bolt.namespace}-video__close-button`,
+            `c-${bolt.namespace}-video__close-button--icon-to-text`,
+          ) } href="javascript:"
              onClick={this.handleClose}>
-            <span class="c-bolt-video__close-button-icon">
+            <span className={`c-${bolt.namespace}-video__close-button-icon`}>
               <div
                 class="c-bolt-button c-bolt-button--xsmall c-bolt-button--secondary c-bolt-button--rounded c-bolt-button--icon-only">
                 <span class="c-bolt-button__icon">
@@ -725,7 +731,7 @@ export function BoltVideo() {
                 </span>
               </div>
             </span>
-            <span class="c-bolt-video__close-button-text">
+            <span className={`c-${bolt.namespace}-video__close-button-text`}>
               {closeButtonText}
             </span>
           </a>
