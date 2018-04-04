@@ -5,14 +5,14 @@ import {
   css,
   hasNativeShadowDomSupport,
   withPreact,
-  withHyperHTML,
+  BoltComponent,
   sanitizeBoltClasses
 } from '@bolt/core';
 
 import ClipboardJS from 'clipboard';
 
 @define
-export class BoltCopyToClipboard extends withHyperHTML() {
+export class BoltCopyToClipboard extends BoltComponent() {
   static is = 'bolt-copy-to-clipboard';
 
   constructor() {
