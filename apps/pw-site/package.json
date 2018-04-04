@@ -1,6 +1,6 @@
 {
   "name": "@bolt/pw-site",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "license": "MIT",
   "scripts": {
     "build": "bolt build",
@@ -8,9 +8,7 @@
     "build:prod": "bolt build --prod",
     "serve": "bolt serve",
     "watch": "bolt watch",
-    "start": "bolt start",
-    "test:links": "blc http://localhost:3000 --recursive --ordered --filter-level 2",
-    "test": "npm run test:links"
+    "start": "bolt start"
   },
   "repository": {
     "type": "git",
@@ -20,10 +18,11 @@
     "@bolt/build-tools": "^1.0.0",
     "@bolt/components-video": "^1.0.0",
     "@bolt/core": "^1.0.0",
-    "@bolt/global": "^1.0.0",
-    "broken-link-checker": "^0.7.7"
+    "@bolt/global": "^1.0.0"
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "main": "www/build/pw.js",
+  "style": "www/build/pw.scss"
 }
