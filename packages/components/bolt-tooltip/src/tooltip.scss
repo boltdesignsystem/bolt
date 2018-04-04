@@ -19,6 +19,31 @@ $bolt-tooltip-transition: $bolt-transition;
   100% { transform: translate(-50%, -115%) scale(1); }
 }
 
+// Specific to items with count prop (e.g. Share component)
+@keyframes bounceUp-5 {
+  0% { transform: translate(-50%, 50%) scale(0); }
+  30% { transform: translate(-50%, -115%) scale(1.1); }
+  100% { transform: translate(-50%, -105%) scale(1); }
+}
+
+@keyframes bounceUp-4 {
+  0% { transform: translate(-50%, 50%) scale(0); }
+  30% { transform: translate(-50%, -116%) scale(1.1); }
+  100% { transform: translate(-50%, -106%) scale(1); }
+}
+
+@keyframes bounceUp-3 {
+  0% { transform: translate(-50%, 50%) scale(0); }
+  30% { transform: translate(-50%, -117%) scale(1.1); }
+  100% { transform: translate(-50%, -107%) scale(1); }
+}
+
+@keyframes bounceUp-2 {
+  0% { transform: translate(-50%, 50%) scale(0); }
+  30% { transform: translate(-50%, -120%) scale(1.1); }
+  100% { transform: translate(-50%, -110%) scale(1); }
+}
+
 // Tooltip positioning
 .c-bolt-tooltip {
   display: inline-block;
@@ -140,11 +165,37 @@ $bolt-tooltip-transition: $bolt-transition;
 
         &--button {
           transform: translate(-50%, -115%) scale(1);
+
+          &.c-bolt-tooltip__content--count-5 {
+            transform: translate(-50%, -105%) scale(1);
+          }
+          &.c-bolt-tooltip__content--count-4 {
+            transform: translate(-50%, -106%) scale(1);
+          }
+          &.c-bolt-tooltip__content--count-3 {
+            transform: translate(-50%, -107%) scale(1);
+          }
+          &.c-bolt-tooltip__content--count-2 {
+            transform: translate(-50%, -110%) scale(1);
+          }
         }
       }
 
       .is-active+.c-bolt-tooltip__content--button {
         animation: bounceUp 500ms ease forwards;
+
+        &.c-bolt-tooltip__content--count-5 {
+          animation: bounceUp-5 500ms ease forwards;
+        }
+        &.c-bolt-tooltip__content--count-4 {
+          animation: bounceUp-4 500ms ease forwards;
+        }
+        &.c-bolt-tooltip__content--count-3 {
+          animation: bounceUp-3 500ms ease forwards;
+        }
+        &.c-bolt-tooltip__content--count-2 {
+          animation: bounceUp-2 500ms ease forwards;
+        }
       }
 
       .c-bolt-tooltip__content-bubble {
@@ -331,6 +382,11 @@ $bolt-tooltip-transition: $bolt-transition;
   .c-bolt-button {
     font-weight: 900;
     overflow: hidden;
+
+    .is-push-up & {
+      position: relative;
+      z-index: bolt-z-index(tooltip) + 1; // We need a higher z-index to prevent hover animation when included items have elements to hover
+    }
 
     &:focus {
       outline: none;

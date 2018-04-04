@@ -9,9 +9,9 @@
   baseClass
 ] %}
 
-<bolt-block-list items='{{ contentItems|join(',') }}' bolt-component>
+<bolt-block-list items='{{ items|join(',') }}' bolt-component>
   <ul {{ attributes.addClass(classes) }}>
-    {% for listItem in contentItems %}
+    {% for listItem in items %}
       <li class="{{ "#{baseClass}__item" }}">
         {% if listItem %}
           {{ listItem }}
@@ -22,5 +22,5 @@
 </bolt-block-list>
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-block-list/block-list.schema.yml', _self) }}
+  {{ validate_data_schema('@bolt-components-block-list/block-list.schema.yml', _self) | raw }}
 {% endif %}

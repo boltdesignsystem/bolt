@@ -56,6 +56,12 @@
 {% endif %}
 
 <{{ tag }} {{ attributes.addClass(classes) }}>
+  {% if icon and not url and icon.position == "left" %}
+    <span class="{{ "#{baseClass}__icon" }}">
+      {% include "@bolt/icon.twig" with icon only %}
+    </span>
+  {% endif %}
+
   <span class="{{ "#{baseClass}__text" }}">
     {% if url %}
       {% include "@bolt/link.twig" with {
@@ -69,7 +75,7 @@
     {% endif %}
   </span>
 
-  {% if icon and not url %}
+  {% if icon and not url and icon.position != "left" %}
     <span class="{{ "#{baseClass}__icon" }}">
       {% include "@bolt/icon.twig" with icon only %}
     </span>
@@ -77,5 +83,5 @@
 </{{ tag }}>
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-headline/headline.schema.yml', _self) }}
+  {{ validate_data_schema('@bolt-components-headline/headline.schema.yml', _self) | raw }}
 {% endif %}

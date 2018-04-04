@@ -1,7 +1,7 @@
 {% set schema = get_data('@bolt-components-block-list/block-list.schema.yml') %}
 {% set code %}{% verbatim %}
 {% include "@bolt-components-block-list/block-list.twig" with {
-  "contentItems" : [
+  "items" : [
     include("@bolt-components-link/link.twig", {
       text: "Link 1",
       url: "#",

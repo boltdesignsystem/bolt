@@ -60,7 +60,7 @@ Note: Within the Bolt system, validation is managed by the global `enable_json_s
 #### Example
 ```twig
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-chip/chip.schema.yml', _self) }}
+  {{ validate_data_schema('@bolt-components-chip/chip.schema.yml', _self) | raw }}
 {% endif %}
 ```
 
