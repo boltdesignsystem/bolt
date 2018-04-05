@@ -41,14 +41,7 @@ if (!('attachShadow' in Element.prototype && 'getRootNode' in Element.prototype)
 }
 
 
-/**
- * Workaround to force the customElements polyfill to
- * get loaded (workaround if the @webcomponents/webcomponentsjs/custom-elements-es5-adapter.js
- * shim might get loaded more than once per page.
- */
-if (bolt.customElements.forcePolyfill) {
-  polyfills.push('ce');
-} else if (!window.customElements || window.customElements.forcePolyfill) {
+if (!window.customElements || window.customElements.forcePolyfill) {
   polyfills.push('ce');
 }
 
