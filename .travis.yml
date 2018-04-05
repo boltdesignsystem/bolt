@@ -26,7 +26,7 @@ before_script:
 install:
 - yarn install
 - npm run setup
-git status && npm run lint && git status
+- git status && npm run lint && git status
 - npm test
 
 script:
