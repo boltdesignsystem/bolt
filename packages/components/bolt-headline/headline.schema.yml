@@ -25,12 +25,11 @@ properties:
   align:
     type: string
     description: Text alignment.
-    default: null
+    default: left
     enum:
       - left
       - center
       - right
-      - null
   weight:
     type: string
     description: Font weights.
@@ -39,7 +38,6 @@ properties:
       - bold
       - regular
       - semibold
-      - null
   style:
     type: string
     description: Font styles.
@@ -47,7 +45,6 @@ properties:
     enum:
       - normal
       - italic
-      - null
   size:
     type: string
     description: Font size.
@@ -60,7 +57,6 @@ properties:
       - xlarge
       - xxlarge
       - xxxlarge
-      - null
   transform:
     type: string
     description: Text transformation.
@@ -68,8 +64,6 @@ properties:
       - uppercase
       - lowercase
       - capitalize
-      - null
-    default: null
   url:
     type: string
     description: If provided, turns headline into a link to given url.
@@ -81,12 +75,6 @@ properties:
         ref: '@bolt-components-icon/icon.schema.yml'
       -
         type: boolean
-        enum:
-          - false
   quoted:
     type: boolean
     description: Adds quoted styling to text.
-    default: false
-    enum:
-      - false
-      - true
