@@ -320,6 +320,9 @@ function createConfig(config) {
       'process.env.NODE_ENV': JSON.stringify('production'),
       bolt: {
         namespace: JSON.stringify(config.namespace),
+        customElements: {
+          forcePolyfill: true,
+        },
       },
     }));
 
@@ -357,6 +360,9 @@ function createConfig(config) {
     webpackConfig.plugins.push(new webpack.DefinePlugin({
       bolt: {
         namespace: JSON.stringify(config.namespace),
+        customElements: {
+          forcePolyfill: true,
+        },
       },
     }));
   }
