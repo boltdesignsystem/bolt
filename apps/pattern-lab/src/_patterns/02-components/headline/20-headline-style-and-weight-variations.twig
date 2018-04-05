@@ -1,8 +1,8 @@
 {% set schema = bolt.data.components['@bolt-components-headline'].schema %}
 
-{% for size in schema.properties.size.enum|remove_null %}
-  {% for weight in schema.properties.weight.enum|remove_null %}
-    {% for style in schema.properties.style.enum|remove_null %}
+{% for size in schema.properties.size.enum %}
+  {% for weight in schema.properties.weight.enum %}
+    {% for style in schema.properties.style.enum %}
       {% include "@bolt-components-headline/text.twig" with {
         text: "This is " ~ weight ~ " weight and " ~ style ~ " text",
         weight: weight,
