@@ -59,7 +59,7 @@ export function withHyperHTML(Base = HTMLElement) {
       };
       if (children.length > 0) {
         [...children].map(child => {
-          const slotName = child.getAttribute ? child.getAttribute("slot") : null;
+          const slotName = child.getAttribute ? child.getAttribute('slot') : null;
           if (!slotName) {
             this.slots.default.push(child);
           } else {

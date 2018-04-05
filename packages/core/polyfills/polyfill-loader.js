@@ -23,7 +23,7 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 
 // CustomElement shim for IE 11
 (function () {
-  if (typeof window.CustomEvent === "function") return false;
+  if (typeof window.CustomEvent === 'function') return false;
   function CustomEvent(event, params) {
     params = params || { bubbles: false, cancelable: false, detail: undefined };
     var evt = document.createEvent('CustomEvent');

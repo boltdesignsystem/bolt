@@ -202,7 +202,7 @@ class BoltVideo extends withPreact(withComponent()) {
       elem.player.muted(true);
     }
 
-    player.on("loadedmetadata", function () {
+    player.on('loadedmetadata', function () {
       const duration = player.mediainfo.duration;
       const title = player.mediainfo.name;
       const width = player.mediainfo.sources[1].width;
@@ -225,27 +225,27 @@ class BoltVideo extends withPreact(withComponent()) {
       }
     });
 
-    player.on("play", function () {
+    player.on('play', function () {
       elem.onPlay(player);
     });
 
-    player.on("pause", function () {
+    player.on('pause', function () {
       elem.onPause(player);
     });
 
-    player.on("seeked", function () {
+    player.on('seeked', function () {
       elem.onSeeked(player);
     });
 
-    player.on("timeupdate", function () {
+    player.on('timeupdate', function () {
       // elem.onPlay(player);
     });
 
-    player.on("durationchange", function () {
+    player.on('durationchange', function () {
       elem.onDurationChange(player);
     });
 
-    player.on("ended", function () {
+    player.on('ended', function () {
       elem.onEnded(player);
     });
 
@@ -282,7 +282,7 @@ class BoltVideo extends withPreact(withComponent()) {
     this.state = {
       id: `${this.props.videoId}-${this.props.accountId}-${index}`,
       // errors: BoltVideo.globalErrors !== undefined  ? [].concat(BoltVideo.globalErrors) : [],
-      isPlaying: "paused",
+      isPlaying: 'paused',
       isFinished: false,
       progress: 0
     };
@@ -325,7 +325,7 @@ class BoltVideo extends withPreact(withComponent()) {
       // handle script not loading
       s.onerror = err => {
         const uriErr = {
-          code: "",
+          code: '',
           message: `The script ${err.target.src} is not accessible.`
         };
 
@@ -543,7 +543,7 @@ class BoltVideo extends withPreact(withComponent()) {
   }
 
   createScript() {
-    const s = document.createElement("script");
+    const s = document.createElement('script');
     // console.log(this.props);
 
     s.src = BoltVideo.getScriptUrl(
@@ -756,5 +756,5 @@ export default BoltVideo;
 
   // Initialize on window.resize event.  Note that throttle can also be initialized on any type of event,
   // such as scroll.
-  throttle("resize", "optimizedResize");
+  throttle('resize', 'optimizedResize');
 })();

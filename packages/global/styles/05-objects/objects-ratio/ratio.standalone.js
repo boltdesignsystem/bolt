@@ -38,11 +38,11 @@ export class BoltRatio extends withComponent(withHyperHTML()) {
     const w = this.props.aspectRatioWidth && this.props.aspectRatioWidth > 0 ? this.props.aspectRatioWidth : 1;
 
     if (this.supportsCSSVars) {
-      this.style.setProperty(`--aspect-ratio-height`, h);
-      this.style.setProperty(`--aspect-ratio-width`, w);
+      this.style.setProperty('--aspect-ratio-height', h);
+      this.style.setProperty('--aspect-ratio-width', w);
       this.style.paddingTop = '';
     } else {
-      this.style.paddingTop = (100 * h / w) + "%";
+      this.style.paddingTop = (100 * h / w) + '%';
       this.style.removeProperty('--aspect-ratio-height');
       this.style.removeProperty('--aspect-ratio-width');
     }

@@ -343,5 +343,5 @@ export class BoltNavLink extends withHyperHTML(withComponent()) { // Behavior fo
 
   // Initialize on window.resize event.  Note that throttle can also be initialized on any type of event,
   // such as scroll.
-  throttle("resize", "optimizedResize");
+  throttle('resize', 'optimizedResize');
 })();
