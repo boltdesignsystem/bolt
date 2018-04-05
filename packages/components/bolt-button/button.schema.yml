@@ -12,12 +12,12 @@ properties:
   transform:
       type: string
       description: Text transformation.
-      default: null
+      default: none
       enum:
         - uppercase
         - lowercase
         - capitalize
-        - null
+        - none
   theme:
     description: 'Themes, which are globally defined.'  # @todo Pulling this information in is a work in progress. Should be dynamically generated
 #    $ref: '@bolt/theme.schema.json#/properties/themes'
@@ -31,7 +31,6 @@ properties:
       - button
       - submit
       - reset
-      - null
     default: button
   size:
     type: string
@@ -44,7 +43,6 @@ properties:
       - medium
       - large
       - xlarge
-      - null
   align:
     title: 'Button Alignment'
     type: string
@@ -52,7 +50,6 @@ properties:
       - left
       - center
       - right
-      - null
     default: center
   style:
     type: string
@@ -63,31 +60,22 @@ properties:
       - primary
       - secondary
       - text
-      - null
   width:
     type: string
     title: 'Button Width'
-    default: null
     description: 'Should a button be full width, it''s default size, or full width, but only on smaller screens?'
     enum:
       - full
       - full@small
-      - null
   rounded:
     type: string
     title: 'Rounded Corners?'
     description: 'What kind of rounded corners should the button have?'
-    default: null
     enum:
       - rounded
-      - null
   iconOnly:
     type: boolean
     title: 'Icon Only?'
     description: 'Is this an icon-only button (with visually hidden text)?'
-    default: false
     required:
       - icon
-    enum:
-      - true
-      - false
