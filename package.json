@@ -31,6 +31,7 @@
     "composer:pl": "cd apps/pattern-lab && rm -rf vendor composer.lock && composer install --no-interaction",
     "composer:core-php": "cd packages/core-php && rm -rf vendor composer.lock && composer install --no-interaction",
     "composer:bolt-site": "cd apps/bolt-site && rm -rf vendor composer.lock && composer install --no-interaction",
+    "composer:pw-site": "cd apps/pw-site && rm -rf vendor composer.lock && composer install --no-interaction",
     "composer:drupal-lab": "cd apps/drupal-lab && rm -rf vendor web/modules/contrib composer.lock && composer install --no-interaction",
     "composer": "npm-run-all --serial composer:*",
     "bootstrap": "lerna bootstrap --reject-cycles",
@@ -128,6 +129,7 @@
     "packages/config-presets/config-eslint",
     "packages/config-presets/config-stylelint",
     "apps/drupal-lab/web/themes/flash",
-    "apps/*"
+    "apps/*",
+    "!apps/drupal-lab"
   ]
 }
