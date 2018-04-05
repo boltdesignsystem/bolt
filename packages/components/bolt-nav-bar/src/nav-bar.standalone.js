@@ -82,11 +82,11 @@ export class BoltNavList extends withHyperHTML(withComponent()) {
     if (this.useShadow) {
       return this.html`
         <slot />
-      `
+      `;
     } else {
       return this.html`
          ${this.slots.default}
-      `
+      `;
     }
   }
 
@@ -118,7 +118,7 @@ export class BoltNavList extends withHyperHTML(withComponent()) {
     const links = this._allLinks();
     links.forEach(link => {
       if (link !== activeLink) {
-        link.active = false
+        link.active = false;
       }
     });
   }
@@ -283,11 +283,11 @@ export class BoltNavLink extends withHyperHTML(withComponent()) { // Behavior fo
     if (this.useShadow) {
       return this.html`
         <slot />
-      `
+      `;
     } else {
       return this.html`
          ${this.slots.default}
-      `
+      `;
     }
   }
 

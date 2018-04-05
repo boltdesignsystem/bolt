@@ -126,7 +126,7 @@ function createConfig(config) {
       default:
         return {
           colors: true
-        }
+        };
     }
   }
 
@@ -372,7 +372,7 @@ function createConfig(config) {
        // ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
        // Poll using interval (in ms, accepts boolean too)
      }
-   }
+   };
  }
 
   return webpackConfig;

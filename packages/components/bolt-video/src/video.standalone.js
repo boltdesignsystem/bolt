@@ -106,7 +106,7 @@ class BoltVideo extends withPreact(withComponent()) {
       hideFullScreenButton: false,
       directToFullscreen: false,
       resetOnFinish: false
-    }
+    };
 
 
     // Ensure that 'this' inside the _onWindowResize event handler refers to <bolt-nav-link>
@@ -318,7 +318,7 @@ class BoltVideo extends withPreact(withComponent()) {
 
       s.onload = () => {
         BoltVideo.players.forEach(function (player) {
-          player.initVideoJS(player.state.id)
+          player.initVideoJS(player.state.id);
         });
       };
 

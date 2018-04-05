@@ -35,7 +35,7 @@ export class BoltBand extends withComponent(withPreact()) {
 
     this.state = {
       ready: false
-    }
+    };
 
     // Clone the shadow DOM template.
 
@@ -148,7 +148,7 @@ export class BoltBand extends withComponent(withPreact()) {
         // and outgoing ends).  In order to modify it, we turn it into a number, then
         // back to a string.  Not
         videoHeight = Number(videoHeight);
-        videoHeight = String(videoHeight)
+        videoHeight = String(videoHeight);
       }
       this.expandedHeight = videoHeight;
 
@@ -216,7 +216,7 @@ export class BoltBand extends withComponent(withPreact()) {
     if (this.useShadow){
       return (
         <slot />
-      )
+      );
     }
   }
 }

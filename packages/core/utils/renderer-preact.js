@@ -40,5 +40,5 @@ export function withPreact(Base = HTMLElement) {
     //   this.rendered && this.rendered();
     // }
 
-  }
+  };
 };

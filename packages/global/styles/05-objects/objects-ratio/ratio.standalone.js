@@ -63,6 +63,6 @@ export class BoltRatio extends withComponent(withHyperHTML()) {
       <div class="${classes}">
         ${ this.useShadow ? (this.html`<slot />`) : this.slots.default }
       </div>
-    `
+    `;
   }
 }

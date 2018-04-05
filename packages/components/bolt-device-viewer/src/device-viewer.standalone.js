@@ -23,7 +23,7 @@ function whichAnimationEvent() {
     'OAnimation': 'oAnimationEnd',
     'MozAnimation': 'animationend',
     'WebkitAnimation': 'webkitAnimationEnd'
-  }
+  };
 
   for (t in animations) {
     if (el.style[t] !== undefined) {
@@ -57,7 +57,7 @@ class BoltDeviceViewer extends withPreact(withComponent()) {
         <div className={classes}>
           <slot />
         </div>
-      )
+      );
     }
   }
 

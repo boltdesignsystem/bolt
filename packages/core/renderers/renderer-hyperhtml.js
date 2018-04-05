@@ -93,5 +93,5 @@ export function withHyperHTML(Base = HTMLElement) {
       this.rendered && this.rendered();
     }
 
-  }
+  };
 };

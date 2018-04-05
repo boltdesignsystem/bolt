@@ -139,6 +139,6 @@ export class BoltButton extends withHyperHTML(withComponent()) {
         )
         : this.slots.default
       }
-    `
+    `;
   }
 }
