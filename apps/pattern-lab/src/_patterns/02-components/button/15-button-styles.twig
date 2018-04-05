@@ -1,6 +1,6 @@
 {% set schema = bolt.data.components['@bolt-components-button'].schema %}
 
-{% for style in schema.properties.style.enum|remove_null %}
+{% for style in schema.properties.style.enum %}
   <p>{{ style|capitalize }} Button States</p>
 
   {% include "@bolt-components-button/button.twig" with {
