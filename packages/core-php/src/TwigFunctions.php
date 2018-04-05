@@ -70,9 +70,19 @@ class TwigFunctions {
   // A combination of base64, bgcolor, ratio, and imageSize
   public static function getImageData() {
     return new Twig_SimpleFunction('getImageData', function(\Twig_Environment $env, $relativeImagePath) {
-      $boltData = Utils::getData($env);
-      $wwwDir = $boltData['config']['wwwDir'];
-      return Images::get_image_data($relativeImagePath, $wwwDir);
+      if (!$relativeImagePath) {
+        return [];
+      }
+      try {
+        $boltData = Utils::getData($env);
+        $wwwDir = $boltData['config']['wwwDir'];
+        return Images::get_image_data($relativeImagePath, $wwwDir);
+      } catch (\Exception $exception) {
+        // There's a ton of permutations to be accounted for, we've got most covered, but not all.
+        // We can't have something going wrong throwing an Exception: causes white screen of death in Drupal.
+        // For now, if we can't figure out image data, we just return `[]`.
+        return [];
+      }
     }, [
       'needs_environment' => true,
     ]);

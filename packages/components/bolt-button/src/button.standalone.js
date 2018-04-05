@@ -6,7 +6,8 @@ import {
   hasNativeShadowDomSupport,
   withPreact,
   withHyperHTML,
-  sanitizeBoltClasses
+  sanitizeBoltClasses,
+  declarativeClickHandler,
 } from '@bolt/core';
 
 import styles from './button.scss';
@@ -66,10 +67,16 @@ export class BoltButton extends withHyperHTML(withComponent()) {
   }
 
   connecting() {
+    this.addEventListener('click', this.clickHandler);
   }
 
   disconnecting() {
+    this.removeEventListener('click', this.clickHandler);
+  }
 
+  // Attach external events declaratively
+  clickHandler(event) {
+    declarativeClickHandler(this);
   }
 
   render({ props, state }) {

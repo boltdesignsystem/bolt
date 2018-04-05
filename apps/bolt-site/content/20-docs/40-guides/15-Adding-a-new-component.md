@@ -139,7 +139,7 @@ properties:
 
 ```
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-COMPONENT/COMPONENT.schema.yml', _self) }}
+  {{ validate_data_schema('@bolt-components-COMPONENT/COMPONENT.schema.yml', _self) | raw }}
 {% endif %}
 ```
 
