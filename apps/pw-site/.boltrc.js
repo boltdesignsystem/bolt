@@ -1,7 +1,7 @@
 module.exports = {
   namespace: 'pw',
   env: 'static',
-  buildDir: './www/build/',
+  buildDir: './www/bolt-scripts/pw-site/',
   srcDir: './src/content',
   templatesDir: [
     './src/templates'

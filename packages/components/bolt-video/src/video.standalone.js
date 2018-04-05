@@ -20,6 +20,10 @@ export function BoltVideoMeta() {
   return class BoltVideoMetaClass extends withPreact(withComponent()) {
     // static is = 'bolt-video-meta';
 
+    constructor(element) {
+      super(element);
+    }
+
     static props = {
       duration: props.string,
       title: props.string
@@ -49,10 +53,8 @@ export function BoltVideoMeta() {
 }
 
 
-// @define
 export function BoltVideo() {
   return class BoltVideoClass extends withPreact(withComponent()) {
-    // static is = 'bolt-video';
 
     static props = {
       videoId: props.string,
@@ -75,11 +77,11 @@ export function BoltVideo() {
       autoplay: props.boolean,
       resetOnFinish: props.boolean,
       directToFullscreen: props.boolean,
-      hideFullScreenButton: props.boolean
+      hideFullScreenButton: props.boolean,
     }
 
-    constructor() {
-      super();
+    constructor(element) {
+      super(element);
 
       index += 1;
 
@@ -109,7 +111,7 @@ export function BoltVideo() {
         autoplay: false,
         hideFullScreenButton: false,
         directToFullscreen: false,
-        resetOnFinish: false
+        resetOnFinish: false,
       }
 
 

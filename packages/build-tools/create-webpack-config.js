@@ -208,9 +208,9 @@ function createConfig(config) {
   // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
   // Must start and end with `/`
   // conditional is temp workaround for when servers are disabled via absence of `config.wwwDir`
-  const publicPath = config.wwwDir
+  const publicPath = config.publicPath ? config.publicPath : (config.wwwDir
     ? `/${path.relative(config.wwwDir, config.buildDir)}/`
-    : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
+    : config.buildDir); // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
 
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
   const webpackConfig = {
@@ -344,6 +344,7 @@ function createConfig(config) {
       canPrint: config.verbosity > 2,
       cssProcessorOptions: {// passes to `cssnano`
         zindex: false, // don't alter `z-index` values
+        mergeRules: false, // this MUST be disabled - otherwise certain selectors (ex. ::slotted(*), which IE 11 can't parse) break
       },
     }));
 

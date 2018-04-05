@@ -3,16 +3,16 @@
 {% block content %}
 
   <h2>PW Video Player (Powered By Bolt): Vanilla Web Component</h2>
-  <bolt-ratio  class="o-bolt-ratio" aspect-ratio-height="9" aspect-ratio-width="16" style="--aspect-ratio-height: 9; --aspect-ratio-width: 16;">
-    <pw-video data-setup="{&quot;techOrder&quot;: [&quot;Html5&quot;]}" video-id="5609376179001" account-id="1900410236" show-meta player-id="r1CAdLzTW" controls></pw-video>
-  </bolt-ratio>
+  <pw-ratio aspect-ratio-height="9" aspect-ratio-width="16" style="--aspect-ratio-height: 9; --aspect-ratio-width: 16;">
+    <pw-video data-setup="{"techOrder": ["Html5"]}" video-id="5609376179001" account-id="1900410236" show-meta player-id="r1CAdLzTW" controls></pw-video>
+  </pw-ratio>
 
   <pre>
     <code>{% spaceless %}
       {% verbatim %}
-        &lt;bolt-ratio  class="o-bolt-ratio" aspect-ratio-height="9" aspect-ratio-width="16"&gt;
-          &lt;pw-video data-setup="{&quot;techOrder&quot;: [&quot;Html5&quot;]}" video-id="5609376179001" account-id="1900410236" show-meta player-id="r1CAdLzTW" controls&gt;&lt;/pw-video&gt;
-        &lt;/bolt-ratio&gt;
+        &lt;pw-ratio  aspect-ratio-height="9" aspect-ratio-width="16"&gt;
+          &lt;pw-video data-setup="{"techOrder": ["Html5"]}" video-id="5609376179001" account-id="1900410236" show-meta player-id="r1CAdLzTW" controls&gt;&lt;/pw-video&gt;
+        &lt;/pw-ratio&gt;
       {% endverbatim %}
     {% endspaceless %}</code>
   </pre>
