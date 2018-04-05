@@ -12,7 +12,7 @@ import styles from './ratio.scss';
 
 
 export function BoltRatio() {
-  return class BoltRatioClass extends withComponent(withHyperHTML()) {
+  return class BoltRatioClass extends BoltComponent() {
 
     static props = {
       aspectRatioHeight: props.number,
