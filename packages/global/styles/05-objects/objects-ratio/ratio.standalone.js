@@ -2,11 +2,11 @@ import {
   h,
   render,
   props,
-  withComponent,
-  withHyperHTML,
+  BoltComponent,
   css,
   hasNativeShadowDomSupport,
 } from '@bolt/core';
+
 
 import styles from './ratio.scss';
 
@@ -59,9 +59,9 @@ export function BoltRatio() {
       );
 
       return this.html`
-        ${this.addStyles([styles])}
+      ${ this.addStyles([styles])}
         <div class="${classes}">
-          ${this.useShadow ? (this.html`<slot />`) : this.slots.default}
+        ${this.slot('default')}
         </div>
       `;
     }
