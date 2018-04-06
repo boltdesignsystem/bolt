@@ -62,6 +62,16 @@ export class BoltDropdown extends BoltComponent() {
     window.addEventListener('resize', function () {
       elem.autoHeight();
     });
+
+    this.addEventListener('activateLink', this.close); // Close dropdown automatically when an inner  <bolt-navlink> component is clicked on
+
+    document.addEventListener('click', function (e) {
+      if (elem.contains(e.target)) {
+        console.log('click inside of this');
+      } else {
+        console.log(this.state);
+      }
+    });
   }
 
   autoHeight() {
@@ -75,8 +85,9 @@ export class BoltDropdown extends BoltComponent() {
   }
 
   close() {
-    // console.log('close dropdown');
-    // this.dropdown.folds[0].close();
+    if (this.dropdown && this.dropdown.folds[0]) {
+      this.dropdown.folds[0].close();
+    }
   }
 
   get open() {
