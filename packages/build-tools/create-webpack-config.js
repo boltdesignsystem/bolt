@@ -9,6 +9,7 @@ const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const sassImportGlobbing = require('@theme-tools/sass-import-globbing');
 const { getBoltManifest } = require('./utils/manifest');
+const log = require('./utils/log');
 
 function createConfig(config) {
   // @TODO: move this setting to .boltrc config
