@@ -41,9 +41,9 @@ export class BoltDropdown extends BoltComponent() {
   }
 
   connecting() {
-    if (this.props.ssrContent) {
-      this.ssrContent = JSON.parse(this.props.ssrContent);
-    }
+    // if (this.props.ssrContent) {
+    //   this.innerHTML = JSON.parse(this.props.ssrContent);
+    // }
 
     const contentInner = this.querySelector('.c-bolt-dropdown__content-inner');
     const originalDropdown = this.querySelector('.c-bolt-dropdown');
