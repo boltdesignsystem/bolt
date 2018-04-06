@@ -8,7 +8,7 @@ import {
   withPreact,
   css,
   spacingSizes,
-  hasNativeShadowDomSupport
+  hasNativeShadowDomSupport,
 } from '@bolt/core';
 
 import navListGumshoe from 'gumshoejs';
@@ -48,7 +48,7 @@ let gumshoeStateModule = (function () {
               nav.nav.parentElement.setAttribute('active', '');
             }
           }
-        }
+        },
       });
     }
   };
@@ -261,10 +261,10 @@ export class BoltNavLink extends withHyperHTML(withComponent()) { // Behavior fo
           this.dispatchEvent(
             new CustomEvent('activateLink', {
               detail: {
-                isActiveNow: true
+                isActiveNow: true,
               },
               bubbles: true,
-            })
+            }),
           );
         }
         else {

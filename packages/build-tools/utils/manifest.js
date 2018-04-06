@@ -126,7 +126,7 @@ function getAllDirs(relativeFrom) {
     componentList.forEach((component) => {
       dirs.push(relativeFrom
         ? path.relative(relativeFrom, component.dir)
-        : component.dir
+        : component.dir,
       );
     });
   });
@@ -227,7 +227,7 @@ async function writeTwigNamespaceFile(relativeFrom, extraNamespaces = {}) {
 
   await writeFile(
     path.join(config.dataDir, 'twig-namespaces.bolt.json'),
-    JSON.stringify(namespaceConfigFile, null, '  ')
+    JSON.stringify(namespaceConfigFile, null, '  '),
   );
 }
 

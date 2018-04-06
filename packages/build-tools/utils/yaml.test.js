@@ -10,56 +10,56 @@ const bigJson = {
   "american": [
     "Boston Red Sox",
     "Detroit Tigers",
-    "New York Yankees"
+    "New York Yankees",
   ],
   "players": [
     {
       "name": "Mark McGwire",
       "hr": 65,
-      "avg": 0.278
+      "avg": 0.278,
     },
     {
       "name": "Sammy Sosa",
       "hr": 63,
-      "avg": 0.288
-    }
+      "avg": 0.288,
+    },
   ],
   "sequenceOfSequence": [
     [
       "name",
       "hr",
-      "avg"
+      "avg",
     ],
     [
       "Mark McGwire",
       65,
-      0.278
+      0.278,
     ],
     [
       "Sammy Sosa",
       63,
-      0.288
-    ]
+      0.288,
+    ],
   ],
   "Mark McGwire": {
     "hr": 65,
-    "avg": 0.278
+    "avg": 0.278,
   },
   "Sammy Sosa": {
     "hr": 63,
-    "avg": 0.288
+    "avg": 0.288,
   },
   "bestPlayer": {
     "name": "Mark McGwire",
     "accomplishment": "Mark set a major league home run record in 1998.\n",
-    "stats": "65 Home Runs\n0.278 Batting Average\n"
+    "stats": "65 Home Runs\n0.278 Batting Average\n",
   },
   "exponential": 1230.15,
   "fixed": 1230.15,
   "booleans": [
     true,
-    false
-  ]
+    false,
+  ],
 };
 
 const bigYaml = `
