@@ -6,7 +6,7 @@ import { hasNativeShadowDomSupport } from '../utils/environment';
 
 import {
   declarativeClickHandler,
-  findParentTag
+  findParentTag,
 } from '../';
 
 const { hyperHTML, hyper, wire, bind, Component } = require('hyperhtml/cjs');
@@ -17,7 +17,7 @@ export function withHyperHTML(Base = HTMLElement) {
 
     static props = {
       onClick: props.string,
-      onClickTarget: props.string
+      onClickTarget: props.string,
     }
 
     constructor(...args) {
@@ -55,7 +55,7 @@ export function withHyperHTML(Base = HTMLElement) {
     _checkSlots() {
       const children = this.childNodes;
       this.slots = {
-        default: []
+        default: [],
       };
       if (children.length > 0) {
         [...children].map(child => {

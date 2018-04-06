@@ -22,7 +22,7 @@ function whichAnimationEvent() {
     'animation': 'animationend',
     'OAnimation': 'oAnimationEnd',
     'MozAnimation': 'animationend',
-    'WebkitAnimation': 'webkitAnimationEnd'
+    'WebkitAnimation': 'webkitAnimationEnd',
   }
 
   for (t in animations) {
@@ -50,7 +50,7 @@ class BoltDeviceViewer extends withPreact(withComponent()) {
   render({ props }) {
     if (this.useShadow){
       const classes = css(
-        'c-bolt-image-magnifier'
+        'c-bolt-image-magnifier',
       );
 
       return (
@@ -88,7 +88,7 @@ class BoltImageZoom extends withPreact(withComponent()) {
   static is = 'bolt-image-zoom';
 
   static props = {
-    mangify: props.boolean
+    mangify: props.boolean,
   }
 
   constructor(element) {

@@ -5,7 +5,7 @@ import {
   props,
   withComponent,
   withPreact,
-  hasNativeShadowDomSupport
+  hasNativeShadowDomSupport,
 } from '@bolt/core';
 
 
@@ -34,7 +34,7 @@ export class BoltBand extends withComponent(withPreact()) {
     this.useShadow = hasNativeShadowDomSupport;
 
     this.state = {
-      ready: false
+      ready: false,
     }
 
     // Clone the shadow DOM template.
@@ -98,7 +98,7 @@ export class BoltBand extends withComponent(withPreact()) {
         new CustomEvent('change', {
           detail: { isExpandedNow: this.expanded },
           bubbles: true,
-        })
+        }),
       );
     }
   }
