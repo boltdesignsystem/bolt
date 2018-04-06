@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   document.querySelectorAll('a').forEach((item) => {
     const href = item.getAttribute('href');
-    if (href){
+    if (href) {
       if (href.startsWith('http')) {
         item.setAttribute('target', '_blank');
       }

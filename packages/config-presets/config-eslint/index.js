@@ -13,7 +13,7 @@ module.exports = {
     'no-unused-vars': 'off',
     'no-param-reassign': 'off',
     'no-shadow': 'off',
-    'space-before-blocks': 'off',
+    // 'space-before-blocks': 'off',
     'max-len': 'off',
     'global-require': 'off',
     'object-curly-spacing': 'off',

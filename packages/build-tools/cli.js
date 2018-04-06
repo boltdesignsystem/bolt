@@ -54,7 +54,7 @@ async function updateConfig(options, programInstance) {
   const config = configStore.getConfig();
   log.dim(`Verbosity: ${config.verbosity}`);
   log.dim(`Prod: ${config.prod}`);
-  if (config.verbosity > 2){
+  if (config.verbosity > 2) {
     log.dim(`Opening browser: ${config.openServerAtStart}`);
     log.dim(`Quick mode: ${config.quick}`);
     log.dim(`buildDir: ${config.buildDir}`);
@@ -147,7 +147,7 @@ program
     }
   });
 
-if (config.env === 'pl'){
+if (config.env === 'pl') {
   program
     .command('pattern-lab')
     .alias('pl')

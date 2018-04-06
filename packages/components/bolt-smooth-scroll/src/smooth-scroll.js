@@ -37,7 +37,7 @@ customScrollElems.forEach(elem => {
     const scrollTarget = document.getElementById(scrollElemHref);
 
     if (scrollTarget) {
-        scrollElem.addEventListener('click', function(){
+        scrollElem.addEventListener('click', function() {
             scroll.animateScroll(scrollTarget, scrollElem, scrollOptions);
         });
     }

@@ -48,7 +48,7 @@ class BoltDeviceViewer extends withPreact(withComponent()) {
   }
 
   render({ props }) {
-    if (this.useShadow){
+    if (this.useShadow) {
       const classes = css(
         'c-bolt-image-magnifier'
       );
@@ -68,7 +68,7 @@ class BoltDeviceViewer extends withPreact(withComponent()) {
   }
 
   connectedCallback() {
-    if (this.querySelector('bolt-image-zoom')){
+    if (this.querySelector('bolt-image-zoom')) {
       const drift = new Drift(this.querySelector('bolt-image-zoom'), {
         containInline: false,
         inlinePane: true,
@@ -107,7 +107,7 @@ class BoltImageZoom extends withPreact(withComponent()) {
      * `iconElem` returns the bolt icon element inside the device viewer
      */
   iconElem() {
-    if (this.querySelector('bolt-icon')){
+    if (this.querySelector('bolt-icon')) {
       return this.querySelector('bolt-icon');
     } else {
       return false;

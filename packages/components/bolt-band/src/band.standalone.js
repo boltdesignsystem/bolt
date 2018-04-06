@@ -44,7 +44,7 @@ export class BoltBand extends withComponent(withPreact()) {
       this.classList.add('is-ready');
     }
 
-    if (this.expandedHeight === null){
+    if (this.expandedHeight === null) {
       this.expandedHeight = '56.25vh';
     }
 
@@ -152,7 +152,7 @@ export class BoltBand extends withComponent(withPreact()) {
       }
       this.expandedHeight = videoHeight;
 
-      if (this.expanded){
+      if (this.expanded) {
         requestAnimationFrame(() => {
           this.style.minHeight = parseInt(this.expandedHeight) > parseInt(this.startingHeight) ? this.expandedHeight : `${this.startingHeight}px`;
         });
@@ -213,7 +213,7 @@ export class BoltBand extends withComponent(withPreact()) {
   }
 
   render() {
-    if (this.useShadow){
+    if (this.useShadow) {
       return (
         <slot />
       )

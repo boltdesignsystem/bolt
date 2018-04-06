@@ -24,8 +24,8 @@ export class ReplaceWithChildren extends withPreact(withComponent()) {
     this.useShadow = hasNativeShadowDomSupport;
   }
 
-  connectedCallback(){
-    if (hasNativeShadowDomSupport){
+  connectedCallback() {
+    if (hasNativeShadowDomSupport) {
       this.replaceWith(...this.childNodes);
     } else {
       this.className = '';
@@ -115,7 +115,7 @@ export class BoltButton extends withHyperHTML(withComponent()) {
       }
     });
 
-    if (childElementIndex !== null){
+    if (childElementIndex !== null) {
       let sanitizedClasses = sanitizeBoltClasses(this.slots.default[childElementIndex]);
       this.slots.default[childElementIndex].className = `${sanitizedClasses} ${classes}`;
     }
