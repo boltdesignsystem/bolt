@@ -8,18 +8,16 @@ bolt-dropdown {
   --bolt-nav-item-transform: translateY(bolt-spacing(large) * -1);
   --bolt-nav-indicator-opacity: 0;
 
+  bolt-navlink {
+    overflow: hidden; // Firefox: Fixes an overflow issue ONLY in context of  bolt-navlink within bolt-dropdown
+  }
+
   &[collapse]{
     @include respond-to(small) {
       --bolt-nav-item-opacity: 1;
       --bolt-nav-item-transform: none;
       --bolt-nav-indicator-opacity: 1;
     }
-  }
-}
-
-bolt-dropdown-item {
-  bolt-navlink {
-    overflow: hidden; // Firefox: Fixes an overflow issue ONLY in context of  bolt-navlink within bolt-dropdown-item
   }
 }
 
@@ -273,6 +271,7 @@ bolt-dropdown-item {
   justify-content: center;
   align-items: center;
   overflow: hidden; // so transformed icons don't spill out
+  flex-shrink: 0; // for when there is a very long title - adds left/right spacing
 
   &:before {
     position: absolute;
