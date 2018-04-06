@@ -2,39 +2,70 @@
 const url = require('url');
 const querystring = require('querystring');
 const fetch = require("node-fetch");
-const netlifyBase = 'https://api.netlify.com/api/v1';
-const netlifySiteId = 'bolt-design-system.netlify.com';
-const netlifyDeploysEndpoint = `${netlifyBase}/sites/${netlifySiteId}/deploys`;
+const nowBase = 'https://api.zeit.co';
+// const nowSiteId = 'bolt-design-system.now.com';
+// const nowDeploysEndpoint = `${nowBase}/sites/${nowSiteId}/deploys`;
 
-const { NETLIFY_TOKEN, GITHUB_TOKEN, TRAVIS_PULL_REQUEST, TRAVIS_REPO_SLUG} = process.env;
+const { NOW_TOKEN, GITHUB_TOKEN, TRAVIS_PULL_REQUEST, TRAVIS_REPO_SLUG } = process.env;
 
-if (!NETLIFY_TOKEN || !GITHUB_TOKEN || !TRAVIS_PULL_REQUEST || !TRAVIS_REPO_SLUG) {
-  console.error('Need to have env var of NETLIFY_TOKEN, GITHUB_TOKEN, TRAVIS_PULL_REQUEST, TRAVIS_REPO_SLUG set');
-  console.log(`TRAVIS_PULL_REQUEST: ${TRAVIS_PULL_REQUEST}`);
-  console.log(`TRAVIS_REPO_SLUG: ${TRAVIS_REPO_SLUG}`);
-  process.exit(1);
-}
-
-if (TRAVIS_PULL_REQUEST == 'false') {
-  console.log('Not a PR build, so this is not needed.');
-  process.exit(0);
-}
+// if (!NOW_TOKEN || !GITHUB_TOKEN || !TRAVIS_PULL_REQUEST || !TRAVIS_REPO_SLUG) {
+//   console.error('Need to have env var of NOW_TOKEN, GITHUB_TOKEN, TRAVIS_PULL_REQUEST, TRAVIS_REPO_SLUG set');
+//   console.log(`TRAVIS_PULL_REQUEST: ${TRAVIS_PULL_REQUEST}`);
+//   console.log(`TRAVIS_REPO_SLUG: ${TRAVIS_REPO_SLUG}`);
+//   process.exit(1);
+// }
+//
+// if (TRAVIS_PULL_REQUEST == 'false') {
+//   console.log('Not a PR build, so this is not needed.');
+//   process.exit(0);
+// }
 
 async function init() {
   try {
-    const netlifyEndpoint = url.resolve(netlifyDeploysEndpoint, `?${querystring.stringify({ access_token: NETLIFY_TOKEN, })}`);
-    const netlifyDeploys = await fetch(netlifyEndpoint).then(res => res.json());
-    if (!netlifyDeploys) {
-      console.error('Did not get any info on latest Netlify deploys...');
+    const nowEndpoint = url.resolve(`${nowBase}/v2/now/deployments`, `?${querystring.stringify({ 
+      teamId: 'boltdesignsystem',
+    })}`);
+
+    const nowDeploys = await fetch(nowEndpoint, {
+      headers: {
+        'Authorization': `Bearer ${NOW_TOKEN}`,
+        'Content-Type': 'application/json',
+      },
+    }).then(res => res.json());
+
+    if (!nowDeploys) {
+      console.error('Did not get any info on latest now deploys...');
       process.exit(1);
     }
-    console.log('Latest Netlify Deploy: ', netlifyDeploys[0]);
+
+    nowDeploys.deployments.sort((a, b) => {
+      return a.created - b.created;
+    }).reverse();
+
+    const latestDeploy = nowDeploys.deployments[0];
+    // console.log(nowDeploys);
+    console.log('Latest now Deploy: ', latestDeploy);
+    //
+    // const aliasResponse = await fetch(`${nowBase}/v2/now/deployments/${latestDeploy.url}/aliases`, {
+    //   method: 'POST',
+    //   body: JSON.stringify({
+    //     alias: `${latestDeploy.name}`,
+    //   }),
+    //   headers: {
+    //     'Authorization': `Bearer ${NOW_TOKEN}`,
+    //     'Content-Type': 'application/json',
+    //   },
+    // }).then(res => res.json());
+    //
+    // console.log('aliasResponse: ', aliasResponse);
+    //
+    // process.exit(0);
 
     // The GitHub comment template - Can handle HTML
     const githubCommentText = `
-:zap: PR built on Travis and deployed a Netlify preview here: 
+:zap: PR built on Travis and deployed a now preview here: 
 
-${netlifyDeploys[0].deploy_ssl_url}
+${latestDeploy.url}
 
 <details>
 

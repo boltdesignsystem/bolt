@@ -28,7 +28,7 @@ name="bolt-design-system"
 if [[ $branch_name != 'release/1.x' ]]; then
   echo 'Draft deploy'
 #  cmd="$cmd --draft"
-  name="${name}-${branch_name//\//-}" # Replace all `/` with `-` in branch name
+  name="${name}--${branch_name//\//-}" # Replace all `/` with `-` in branch name
 else
   echo 'Main deploy, not a draft'
 fi
