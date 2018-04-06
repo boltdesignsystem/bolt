@@ -37,7 +37,6 @@ export function BoltComponent(Base = HTMLElement) {
         this.innerHTML = JSON.parse(this.dataset.ssrContent);
       }
       this._checkSlots();
-      this.connecting && this.connecting();
       super.connectedCallback && super.connectedCallback();
       this.connected && this.connected();
     }
