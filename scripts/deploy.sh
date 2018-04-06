@@ -33,7 +33,7 @@ else
   echo 'Main deploy, not a draft'
 fi
 
-cmd="now deploy ./www --name $name --team boltdesignsystem"
+cmd="now deploy ./www --name $name --team boltdesignsystem --static"
 
 echo 'Running this command (not showing NOW_TOKEN though):'
 echo $cmd

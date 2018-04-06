@@ -45,32 +45,35 @@ async function init() {
     const latestDeploy = nowDeploys.deployments[0];
     // console.log(nowDeploys);
     console.log('Latest now Deploy: ', latestDeploy);
-    //
-    // const aliasResponse = await fetch(`${nowBase}/v2/now/deployments/${latestDeploy.url}/aliases`, {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     alias: `${latestDeploy.name}`,
-    //   }),
-    //   headers: {
-    //     'Authorization': `Bearer ${NOW_TOKEN}`,
-    //     'Content-Type': 'application/json',
-    //   },
-    // }).then(res => res.json());
-    //
-    // console.log('aliasResponse: ', aliasResponse);
-    //
-    // process.exit(0);
+
+    const aliasEndpoint = `${nowBase}/v2/now/deployments/${latestDeploy.uid}/aliases?${querystring.stringify({
+      teamId: 'boltdesignsystem',
+    })}`;
+
+    const aliasResponse = await fetch(aliasEndpoint, {
+      method: 'POST',
+      body: JSON.stringify({
+        alias: `${latestDeploy.name}.now.sh`,
+      }),
+      headers: {
+        'Authorization': `Bearer ${NOW_TOKEN}`,
+        'Content-Type': 'application/json',
+      },
+    }).then(res => res.json());
+
+    console.log('aliasResponse: ', aliasResponse);
 
     // The GitHub comment template - Can handle HTML
     const githubCommentText = `
 :zap: PR built on Travis and deployed a now preview here: 
 
-${latestDeploy.url}
+https://${latestDeploy.url}
 
 <details>
 
 - Commit built: ${process.env.TRAVIS_COMMIT}
 - [Travis build](https://travis-ci.org/${process.env.TRAVIS_REPO_SLUG}/builds/${process.env.TRAVIS_BUILD_ID})
+- Branch link (WIP): https://${aliasResponse.alias}
 
 </details>
 `.trim();
