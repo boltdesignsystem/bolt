@@ -17,6 +17,12 @@ bolt-dropdown {
   }
 }
 
+bolt-dropdown-item {
+  bolt-navlink {
+    overflow: hidden; // Firefox: Fixes an overflow issue ONLY in context of  bolt-navlink within bolt-dropdown-item
+  }
+}
+
 
 // bolt-dropdown-content {
 //   display: block;
@@ -146,9 +152,14 @@ bolt-dropdown {
   color: currentColor;
   color: var(--bolt-theme-heading-link-default, inherit);
 
-  outline-offset: -3px;
-  outline-width: 2px;
-  outline-color: bolt-color(white);
+  //outline-offset: -3px;
+  //outline-width: 2px;
+  //outline-color: bolt-color(white);
+  outline: none;
+
+  &:-moz-focusring { // Firefox specific fix for removing the dotted outline
+    outline: none;
+  }
 
   align-items: center; // vertical align
   justify-content: space-between;
