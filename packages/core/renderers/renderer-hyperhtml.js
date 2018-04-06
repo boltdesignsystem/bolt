@@ -33,9 +33,10 @@ export function BoltComponent(Base = HTMLElement) {
     }
 
     connectedCallback() {
-      if (this.dataset.ssrContent) {
-        this.innerHTML = JSON.parse(this.dataset.ssrContent);
-      }
+      // if (this.dataset.ssrContent) {
+      //   this.innerHTML = JSON.parse(this.dataset.ssrContent);
+      // }
+
       this._checkSlots();
       super.connectedCallback && super.connectedCallback();
       this.connected && this.connected();
