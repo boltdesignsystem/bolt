@@ -12,11 +12,11 @@
         {{ title | default("Toggle Dropdown")}}
       </label>
 
-      <a href="#{{ secondaryUUID }}" class="c-bolt-dropdown__header-link c-bolt-dropdown__header-link c-bolt-dropdown__header-link--open">
+      <a href="#{{ primaryUUID }}" class="c-bolt-dropdown__header-link c-bolt-dropdown__header-link c-bolt-dropdown__header-link--open">
         <span class="c-bolt-dropdown__toggle-text">{{ openLabel | default("Open Dropdown")}}</span>
       </a>
 
-      <a href="#{{ primaryUUID }}" class="c-bolt-dropdown__header-link c-bolt-dropdown__header-link--close">
+      <a href="#{{ secondaryUUID }}" class="c-bolt-dropdown__header-link c-bolt-dropdown__header-link--close">
         <span class="c-bolt-dropdown__toggle-text">{{ closeLabel | default("Close Dropdown")}}</span>
       </a>
     </h3>

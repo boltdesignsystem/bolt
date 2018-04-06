@@ -41,11 +41,11 @@ export function BoltComponent(Base = HTMLElement) {
       super.connectedCallback && super.connectedCallback();
       this.connected && this.connected();
     }
- 
+
     disconnectedCallback() {
       this.disconnecting && this.disconnecting();
     }
- 
+
     addStyles(stylesheet) {
       let styles = Array.from(stylesheet);
       styles = styles.join(' ');
