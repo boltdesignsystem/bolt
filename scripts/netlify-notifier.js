@@ -9,7 +9,9 @@ const netlifyDeploysEndpoint = `${netlifyBase}/sites/${netlifySiteId}/deploys`;
 const { NETLIFY_TOKEN, GITHUB_TOKEN, TRAVIS_PULL_REQUEST, TRAVIS_REPO_SLUG} = process.env;
 
 if (!NETLIFY_TOKEN || !GITHUB_TOKEN || !TRAVIS_PULL_REQUEST || !TRAVIS_REPO_SLUG) {
-  console.log('Need to have env var of NETLIFY_TOKEN, GITHUB_TOKEN, TRAVIS_PULL_REQUEST, TRAVIS_REPO_SLUG set');
+  console.error('Need to have env var of NETLIFY_TOKEN, GITHUB_TOKEN, TRAVIS_PULL_REQUEST, TRAVIS_REPO_SLUG set');
+  console.log(`TRAVIS_PULL_REQUEST: ${TRAVIS_PULL_REQUEST}`);
+  console.log(`TRAVIS_REPO_SLUG: ${TRAVIS_REPO_SLUG}`);
   process.exit(1);
 }
 
@@ -42,7 +44,7 @@ ${netlifyDeploys[0].deploy_ssl_url}
 </details>
 `.trim();
     // end GitHub comment template
-    
+
     const githubCommentEndpoint = `https://api.github.com/repos/${TRAVIS_REPO_SLUG}/issues/${TRAVIS_PULL_REQUEST}/comments`;
 
     const response = await fetch(githubCommentEndpoint, {

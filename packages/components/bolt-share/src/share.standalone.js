@@ -6,7 +6,7 @@ import {
   hasNativeShadowDomSupport,
   withPreact,
   withHyperHTML,
-  sanitizeBoltClasses
+  sanitizeBoltClasses,
 } from '@bolt/core';
 
 @define

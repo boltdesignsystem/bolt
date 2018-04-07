@@ -42,14 +42,16 @@
     "clean": "npm-run-all --parallel clean:*",
     "prepublishOnly": "npm run build && node scripts/monorepo-tests.js",
     "snyk-protect": "snyk protect",
-    "Xlint:editorconfig": "editorconfig-checker --exclude-pattern './www/**/*' --exclude-pattern './**/sandbox/**/*'",
+    "Xlint:editorconfig": "editorconfig-checker --exclude-pattern './www/**/*' --exclude-pattern './**/sandbox/**/*' --exclude-pattern './**/vendor/*' --exclude-pattern './apps/drupal-lab/**' ",
     "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'apps/**/*.js'",
     "lint:js:fix": "npm run lint:js -- --fix",
     "Xlint:sh": "which shellcheck; if [ $? -eq 0 ]; then shellcheck scripts/*.sh ; else echo 'Shell script linting requires `shellcheck` to be installed, skipping for now; use `brew install shellcheck` to install ~ https://github.com/koalaman/shellcheck '; fi",
     "lint:style": "stylelint 'packages/**/*.scss' 'apps/**/*.scss'",
     "lint:style:fix": "npm run lint:style -- --fix",
     "lint:twig": "./packages/core-php/vendor/bin/twig-lint lint packages --only-print-errors && ./packages/core-php/vendor/bin/twig-lint lint apps --only-print-errors --exclude=apps/drupal-lab",
+    "lint:yaml": "yamllint 'packages/**/*.yml' --ignore='**/vendor/**'",
     "lint": "npm-run-all --continue-on-error --serial lint:*",
+    "precommit": "node scripts/update-php-package-versions.js",
     "prepush": "npm run lint && npm run test",
     "test:js": "jest",
     "test:js:watch": "jest --watch",
@@ -83,7 +85,8 @@
     "lerna": "^2.5.1",
     "node-fetch": "^2.0.0",
     "npm-run-all": "^4.1.2",
-    "web-component-tester": "^6.3.0"
+    "web-component-tester": "^6.3.0",
+    "yaml-lint": "^1.2.2"
   },
   "workspaces": [
     "packages/components/bolt-action-blocks",

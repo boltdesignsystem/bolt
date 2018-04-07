@@ -95,7 +95,7 @@ export class BoltButton extends withHyperHTML(withComponent()) {
       // Test out psuedo states via prop values
       this.props.isHover ? `c-bolt-button--hover` : '',
       this.props.isActive ? `c-bolt-button--active` : '',
-      this.props.isFocus ? `c-bolt-button--focus` : ''
+      this.props.isFocus ? `c-bolt-button--focus` : '',
     );
 
 

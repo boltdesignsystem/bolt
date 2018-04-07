@@ -21,7 +21,7 @@ const defaultConfig = {
   quick: configSchema.properties.quick.default,
   webpackDevServer: configSchema.properties.webpackDevServer.default,
   prod: process.env.NODE_ENV === 'production',
-  startPath: configSchema.properties.startPath.default
+  startPath: configSchema.properties.startPath.default,
 };
 
 function getEnvVarsConfig() {
@@ -64,7 +64,7 @@ function init(userConfig) {
   // End setting programatic defaults
 
   config = Object.assign({}, defaultConfig, userConfig, getEnvVarsConfig());
-  validateSchema(configSchema, config);
+  validateSchema(configSchema, config, 'Please fix the config being used in Bolt CLI.');
   isInitialized = true;
   return config;
 }
@@ -85,7 +85,7 @@ function getConfig() {
 function updateConfig(updater) {
   isReady();
   const newConfig = updater(config);
-  validateSchema(configSchema, newConfig);
+  validateSchema(configSchema, newConfig, 'Please fix the config being used in Bolt CLI.');
   // console.log('new config:');
   // console.log(newConfig);
   config = newConfig;
