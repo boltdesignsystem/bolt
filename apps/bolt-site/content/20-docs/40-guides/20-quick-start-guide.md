@@ -87,6 +87,8 @@ brew install graphicsmagick
 brew install yarn
 ```
 
+> Pro Tip: Already have Yarn installed? 
+Awesome! Make sure you're running the latest version by running `brew update yarn`
 
 ## Pulling Down, Installing and Running Bolt Locally
 
