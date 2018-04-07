@@ -6,10 +6,7 @@ import {
 } from 'skatejs';
 import { hyper, bind } from 'hyperhtml/cjs';
 import { hasNativeShadowDomSupport } from '../utils/environment';
-
-
 import findParentTag from '../utils/find-parent-tag';
-
 
 
 export function BoltComponent(Base = HTMLElement) {
@@ -17,7 +14,7 @@ export function BoltComponent(Base = HTMLElement) {
 
     static props = {
       onClick: props.string,
-      onClickTarget: props.string
+      onClickTarget: props.string,
     }
 
     constructor(...args) {
@@ -37,13 +34,11 @@ export function BoltComponent(Base = HTMLElement) {
         this.innerHTML = JSON.parse(this.dataset.ssrContent);
       }
       this._checkSlots();
-      this.connecting && this.connecting();
       super.connectedCallback && super.connectedCallback();
-      this.connected && this.connected();
     }
  
     disconnectedCallback() {
-      this.disconnecting && this.disconnecting();
+      super.disconnectedCallback && super.disconnectedCallback();
     }
  
     addStyles(stylesheet) {
@@ -84,7 +79,7 @@ export function BoltComponent(Base = HTMLElement) {
     // Inspired by https://codepen.io/jovdb/pen/ddRZKo
     _checkSlots() {
       this.slots = {
-        default: []
+        default: [],
       };
 
       const elem = this;

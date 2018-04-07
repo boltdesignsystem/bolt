@@ -4,6 +4,7 @@ const { promisify } = require('util');
 const fs = require('fs');
 const writeFile = promisify(fs.writeFile);
 const { getDataFile } = require('./yaml');
+const { validateSchemaSchema } = require('./schemas');
 const path = require('path');
 const config = require('./config-store').getConfig();
 const pkg = require('../package.json');
@@ -81,7 +82,10 @@ async function getPkgInfo(pkgName) {
       ensureFileExists(info.assets.main);
     }
     if (pkg.schema) {
-      info.schema = await getDataFile(path.join(dir, pkg.schema));
+      const schemaFilePath = path.join(dir, pkg.schema);
+      const schema = await getDataFile(schemaFilePath);
+      validateSchemaSchema(schema, `Schema not valid for: ${schemaFilePath}`);
+      info.schema = schema;
     }
     // @todo Allow verbosity settings
     // console.log(assets);
@@ -122,7 +126,7 @@ function getAllDirs(relativeFrom) {
     componentList.forEach((component) => {
       dirs.push(relativeFrom
         ? path.relative(relativeFrom, component.dir)
-        : component.dir
+        : component.dir,
       );
     });
   });
@@ -223,7 +227,7 @@ async function writeTwigNamespaceFile(relativeFrom, extraNamespaces = {}) {
 
   await writeFile(
     path.join(config.dataDir, 'twig-namespaces.bolt.json'),
-    JSON.stringify(namespaceConfigFile, null, '  ')
+    JSON.stringify(namespaceConfigFile, null, '  '),
   );
 }
 

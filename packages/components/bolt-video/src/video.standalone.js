@@ -6,7 +6,7 @@ import {
   withComponent,
   withPreact,
   css,
-  spacingSizes
+  spacingSizes,
 } from '@bolt/core';
 
 import dasherize from 'dasherize';
@@ -114,12 +114,10 @@ export function BoltVideo() {
         resetOnFinish: false,
       }
 
-
       // Ensure that 'this' inside the _onWindowResize event handler refers to <bolt-nav-link>
       // even if the handler is attached to another element (window in this case)
       this._onWindowResize = this._onWindowResize.bind(this);
 
-      // this.attachShadow({ mode: 'open' });
     }
 
     get renderRoot() {
@@ -353,7 +351,6 @@ export function BoltVideo() {
         }
       }
 
-
       window.addEventListener('optimizedResize', this._onWindowResize);
     }
 
@@ -379,38 +376,7 @@ export function BoltVideo() {
     //   // const value = this.hasAttribute('expanded');
     //   // this._shadowButton.setAttribute('aria-expanded', value);
     // }
-    updating({props, state}) {
-
-      // console.log(props);
-      // console.log(state);
-      // const playerStatusChanged = this.state.isPlaying !== nextState.isPlaying;
-
-      // if (this.state.duration !== nextState.duration) {
-      //   this.props.onDuration(nextState.duration);
-      // }
-
-      // if (playerStatusChanged && nextState.isPlaying) {
-      //   this.props.onPlay();
-      // }
-
-      // if (this.state.progress !== nextState.progress) {
-      //   this.props.onProgress(nextState.progress);
-      // }
-
-      // if (playerStatusChanged && !nextState.isPlaying) {
-      //   this.props.onPause();
-      // }
-
-      // if (
-      //   this.state.isFinished !== nextState.isFinished &&
-      //   nextState.isFinished
-      // ) {
-      //   this.props.onFinish();
-      // }
-
-      // return true;
-      // return this.props !== nextProps;
-    }
+    
 
     disconnectedCallback() {
       window.removeEventListener('optimizedResize', this._calculateIdealVideoSize);
@@ -423,6 +389,7 @@ export function BoltVideo() {
     onError(player) {
       this.props.onError(player.error());
     }
+
 
     onPlay(player) {
 
@@ -471,10 +438,10 @@ export function BoltVideo() {
       this.dispatchEvent(
         new CustomEvent('pause', {
           detail: {
-            isBackgroundVideo: this.props.isBackgroundVideo
+            isBackgroundVideo: this.props.isBackgroundVideo,
           },
           bubbles: true,
-        })
+        }),
       );
     }
 
@@ -519,7 +486,6 @@ export function BoltVideo() {
         // this.setState({ isFinished: true });
       }, 0);
     }
-
 
     _calculateIdealVideoSize() {
       const srcWidth = this.srcWidth;
@@ -615,10 +581,10 @@ export function BoltVideo() {
       this.dispatchEvent(
         new CustomEvent('close', {
           detail: {
-            isBackgroundVideo: this.props.isBackgroundVideo
+            isBackgroundVideo: this.props.isBackgroundVideo,
           },
           bubbles: true,
-        })
+        }),
       );
     }
 

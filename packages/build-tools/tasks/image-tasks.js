@@ -51,7 +51,7 @@ function  makeWebPath(imagePath) {
 async function writeImageManifest(imgManifest) {
   await writeFile(
     path.join(config.dataDir, 'images.bolt.json'),
-    JSON.stringify(imgManifest, null, '  ')
+    JSON.stringify(imgManifest, null, '  '),
   );
 }
 
@@ -105,11 +105,11 @@ async function processImage(file, set) {
               quality: 50,
               progressive: true,
               optimiseScans: true,
-              force: false
+              force: false,
             })
             .png({
               progressive: true,
-              force: false
+              force: false,
             })
             .toFile(newSizedPath);
           } else if (pathInfo.ext === '.svg') {
@@ -123,11 +123,11 @@ async function processImage(file, set) {
                 quality: 50,
                 progressive: true,
                 optimiseScans: true,
-                force: false
+                force: false,
               })
               .png({
                 progressive: true,
-                force: false
+                force: false,
               })
               .toFile(newSizedPath);
           }
@@ -140,11 +140,11 @@ async function processImage(file, set) {
               quality: 50,
               progressive: true,
               optimiseScans: true,
-              force: false
+              force: false,
             })
             .png({
               progressive: true,
-              force: false
+              force: false,
             })
             .toFile(newSizedPath);
           } else {

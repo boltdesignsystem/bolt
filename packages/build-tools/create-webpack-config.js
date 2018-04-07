@@ -1,4 +1,5 @@
 const path = require('path');
+const log = require('./utils/log');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -227,6 +228,13 @@ function createConfig(config) {
     module: {
       rules: [
         {
+          test: /\.twig$/,
+          use: [
+            { loader: 'raw-loader' },
+            { loader: 'inline-source-loader' }
+          ]
+        },
+        {
           test: /\.scss$/,
           oneOf: [
             {
@@ -328,6 +336,7 @@ function createConfig(config) {
     webpackConfig.plugins.push(new UglifyJsPlugin({
       sourceMap: true,
       parallel: true,
+      cache: true,
       uglifyOptions: {
         cache: true,
         compress: true,
@@ -383,7 +392,7 @@ function createConfig(config) {
      historyApiFallback: true,
      watchOptions: {
        aggregateTimeout: 200,
-       // ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
+    //    ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
        // Poll using interval (in ms, accepts boolean too)
      },
    };

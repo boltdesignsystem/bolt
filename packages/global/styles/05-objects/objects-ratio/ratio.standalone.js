@@ -10,7 +10,6 @@ import {
 
 import styles from './ratio.scss';
 
-
 export function BoltRatio() {
   return class BoltRatioClass extends BoltComponent() {
 
