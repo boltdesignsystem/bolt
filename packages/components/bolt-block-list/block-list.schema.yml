@@ -19,9 +19,9 @@ properties:
     description: All of the items in the block list - can have simple text **or** `items`
     items:
       anyOf:
-        type: object
-        properties:
-          text:
-            type: string
-        type: string
-        description: Outputs any content added
+        - type: object
+          properties:
+            text:
+              type: string
+        - type: string
+          description: Outputs any content added

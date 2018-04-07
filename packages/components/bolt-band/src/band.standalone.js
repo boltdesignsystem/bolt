@@ -33,7 +33,7 @@ export class BoltBand extends BoltComponent() {
     this.useShadow = hasNativeShadowDomSupport;
 
     this.state = {
-      ready: false
+      ready: false,
     }
   }
 
@@ -96,7 +96,7 @@ export class BoltBand extends BoltComponent() {
         new CustomEvent('change', {
           detail: { isExpandedNow: this.expanded },
           bubbles: true,
-        })
+        }),
       );
     }
   }

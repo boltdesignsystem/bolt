@@ -21,7 +21,7 @@ function whichAnimationEvent() {
     'animation': 'animationend',
     'OAnimation': 'oAnimationEnd',
     'MozAnimation': 'animationend',
-    'WebkitAnimation': 'webkitAnimationEnd'
+    'WebkitAnimation': 'webkitAnimationEnd',
   }
 
   for (t in animations) {
@@ -79,7 +79,7 @@ class BoltImageZoom extends BoltComponent() {
   static is = 'bolt-image-zoom';
 
   static props = {
-    mangify: props.boolean
+    mangify: props.boolean,
   }
 
   constructor() {
