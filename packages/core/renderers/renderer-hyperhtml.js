@@ -35,13 +35,11 @@ export function BoltComponent(Base = HTMLElement) {
         this.innerHTML = JSON.parse(this.dataset.ssrContent);
       }
       this._checkSlots();
-      this.connecting && this.connecting();
       super.connectedCallback && super.connectedCallback();
-      this.connected && this.connected();
     }
  
     disconnectedCallback() {
-      this.disconnecting && this.disconnecting();
+      super.disconnectedCallback && super.disconnectedCallback();
     }
  
     addStyles(stylesheet) {
