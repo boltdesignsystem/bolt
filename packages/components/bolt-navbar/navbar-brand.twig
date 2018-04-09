@@ -1,0 +1,17 @@
+<div class="c-bolt-navbar__brand">
+  <div class="c-bolt-navbar__brand-item">
+    {% include "@bolt/icon.twig" with {
+      "name": icon.name,
+      "size": "large"
+    } only %}
+  </div>
+
+  <div class="c-bolt-navbar__brand-item">
+    {% include "@bolt/text.twig" with {
+      "size": "large",
+      "weight": "semibold",
+      "tag": tag,
+      "text": text
+    } only %}
+  </div>
+</div>

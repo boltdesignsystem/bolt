@@ -1,8 +1,8 @@
-{% set schema = bolt.data.components['@bolt-components-nav-bar'].schema %}
+{% set schema = bolt.data.components['@bolt-components-navbar'].schema %}
 
 {% for vspacing in schema.properties.vspacing.enum %}
   <p>Vspacing: {{ vspacing }}</p>
-  {% include "@bolt-components-nav-bar/nav-bar.twig" with {
+  {% include "@bolt-components-navbar/navbar.twig" with {
     "vspacing": vspacing,
     "title": {
       "tag": "h2",

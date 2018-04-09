@@ -1,5 +1,5 @@
 $schema: http://json-schema.org/draft-04/schema#
-title: Nav bar
+title: Navbar
 type: object
 properties:
   theme:
@@ -22,14 +22,14 @@ properties:
       - 'false'
   vspacing:
     type: string
-    description: This controls the top and bottom spacing of the nav-bar.
+    description: This controls the top and bottom spacing of the navbar.
     default: xsmall
     enum:
       - xsmall
       - small
   title:
     type: object
-    description: Nav-bar title. Icon is optional. Tag can be set to h1 to h6 depending on the page.
+    description: Navbar title. Icon is optional. Tag can be set to h1 to h6 depending on the page.
     properties:
       tag:
         type: string
@@ -52,7 +52,7 @@ properties:
     type: array
     items:
       type: object
-      description: Nav-bar links. It's recommended to have no more than 4 links.
+      description: Navbar links. It's recommended to have no more than 4 links.
       properties:
         text:
           type: string
