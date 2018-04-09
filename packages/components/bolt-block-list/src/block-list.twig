@@ -9,9 +9,9 @@
   baseClass
 ] %}
 
-<bolt-block-list items='{{ contentItems|join(',') }}' bolt-component>
+<bolt-block-list items='{{ items|join(',') }}' bolt-component>
   <ul {{ attributes.addClass(classes) }}>
-    {% for listItem in contentItems %}
+    {% for listItem in items %}
       <li class="{{ "#{baseClass}__item" }}">
         {% if listItem %}
           {{ listItem }}

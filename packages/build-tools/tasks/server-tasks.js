@@ -17,9 +17,9 @@ const serverConfig = {
       match: /<\/body>/i,
       fn: function (snippet, match) {
         return snippet + match;
-      }
-    }
-  }
+      },
+    },
+  },
 };
 
 if (config.webpackDevServer) {

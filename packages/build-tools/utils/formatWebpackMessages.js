@@ -75,7 +75,7 @@ function formatMessage(message, isError) {
   if (lines[1].indexOf('Module build failed: ') === 0) {
     lines[1] = lines[1].replace(
       'Module build failed: SyntaxError:',
-      friendlySyntaxErrorLabel
+      friendlySyntaxErrorLabel,
     );
   }
 
@@ -85,7 +85,7 @@ function formatMessage(message, isError) {
   if (lines[1].match(exportError)) {
     lines[1] = lines[1].replace(
       exportError,
-      "$1 '$4' does not contain an export named '$3'."
+      "$1 '$4' does not contain an export named '$3'.",
     );
   }
 
@@ -99,7 +99,7 @@ function formatMessage(message, isError) {
   // https://github.com/facebookincubator/create-react-app/pull/1050
   message = message.replace(
     /^\s*at\s((?!webpack:).)*:\d+:\d+[\s)]*(\n|$)/gm,
-    ''
+    '',
   ); // at ... ...:x:y
 
   return message.trim();

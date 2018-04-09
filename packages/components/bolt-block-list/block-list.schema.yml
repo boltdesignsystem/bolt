@@ -13,15 +13,15 @@ properties:
       - xdark
       - medium
       - 'false'
-  contentItems:
+  items:
     type: array
     title: The content items
-    description: These are all of the items in the block list - can have simple text **or** `contentItems`
+    description: All of the items in the block list - can have simple text **or** `items`
     items:
       anyOf:
-        type: object
-        properties:
-          text:
-            type: string
-        type: string
-        description: Outputs any content added
+        - type: object
+          properties:
+            text:
+              type: string
+        - type: string
+          description: Outputs any content added

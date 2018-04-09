@@ -10,5 +10,5 @@ export const spacingSizes = {
   "medium": "2rem",
   "large": "4rem",
   "xlarge": "8rem",
-  "xxlarge": "16rem"
+  "xxlarge": "16rem",
 };
