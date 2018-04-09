@@ -1,0 +1,18 @@
+{% set collapse = collapse | default(false) %}
+
+
+<bolt-dropdown
+  {{ collapse ? "collapse" : "" }}
+  {{ center ? "center" : "" }}
+  title="{{ title ? title | default("") }}"
+  >
+  {% if items %}
+    {% for item in items %}
+      {% include "@bolt-components-dropdown/_dropdown-item.twig" with item only %}
+    {% endfor %}
+  {% endif %}
+
+  {% if content %}
+    {% include "@bolt-components-dropdown/_dropdown-item.twig" %}
+  {% endif %}
+</bolt-dropdown>

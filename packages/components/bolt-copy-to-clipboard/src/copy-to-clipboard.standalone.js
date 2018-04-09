@@ -4,9 +4,8 @@ import {
   withComponent,
   css,
   hasNativeShadowDomSupport,
-  withPreact,
   BoltComponent,
-  sanitizeBoltClasses
+  sanitizeBoltClasses,
 } from '@bolt/core';
 
 import ClipboardJS from 'clipboard';

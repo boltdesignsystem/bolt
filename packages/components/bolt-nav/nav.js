@@ -6,7 +6,7 @@ import {
   BoltComponent,
   css,
   spacingSizes,
-  hasNativeShadowDomSupport
+  hasNativeShadowDomSupport,
 } from '@bolt/core';
 
 import gumshoe from 'gumshoejs';
@@ -46,7 +46,7 @@ let gumshoeStateModule = (function () {
               nav.nav.parentElement.setAttribute('active', '');
             }
           }
-        }
+        },
       });
     }
   };
@@ -186,12 +186,8 @@ export class BoltNav extends BoltComponent() {
       }
 
 
-
     } else {
       if (mq.matches) {
-
-        // console.log(linkPos);
-
         this._indicator.style.height = linkHeight + 'px';
         this._indicator.style.width = '2px';
         this._indicator.style.transform = 'translateY(' + linkOffsetTop + 'px)';

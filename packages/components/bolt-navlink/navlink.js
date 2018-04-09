@@ -59,10 +59,10 @@ class BoltNavLink extends BoltComponent() {
           this.dispatchEvent(
             new CustomEvent('activateLink', {
               detail: {
-                isActiveNow: true
+                isActiveNow: true,
               },
               bubbles: true,
-            })
+            }),
           );
         }
         else {

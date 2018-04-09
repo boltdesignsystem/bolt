@@ -6,7 +6,7 @@ import {
   BoltComponent,
 } from '@bolt/core';
 
-import handorgel from 'handorgel';
+import Handorgel from 'handorgel';
 
 import styles from './dropdown.scss';
 import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
@@ -34,16 +34,16 @@ export class BoltDropdown extends BoltComponent() {
 
     this.state = {
       open: this.props.autoOpen ? this.props.autoOpen : false,
-      collapse: this.props.collapse ? this.props.collapse : false
+      collapse: this.props.collapse ? this.props.collapse : false,
     };
 
     this.uuid = "12345";
   }
 
   connecting() {
-    // if (this.props.ssrContent) {
-    //   this.innerHTML = JSON.parse(this.props.ssrContent);
-    // }
+    if (this.props.ssrContent) {
+      this.ssrContent = JSON.parse(this.props.ssrContent);
+    }
 
     const contentInner = this.querySelector('.c-bolt-dropdown__content-inner');
     const originalDropdown = this.querySelector('.c-bolt-dropdown');
@@ -62,16 +62,6 @@ export class BoltDropdown extends BoltComponent() {
     window.addEventListener('resize', function () {
       elem.autoHeight();
     });
-
-    this.addEventListener('activateLink', this.close); // Close dropdown automatically when an inner  <bolt-navlink> component is clicked on
-
-    document.addEventListener('click', function (e) {
-      if (elem.contains(e.target)) {
-        console.log('click inside of this');
-      } else {
-        console.log(this.state);
-      }
-    });
   }
 
   autoHeight() {
@@ -85,9 +75,8 @@ export class BoltDropdown extends BoltComponent() {
   }
 
   close() {
-    if (this.dropdown && this.dropdown.folds[0]) {
-      this.dropdown.folds[0].close();
-    }
+    // console.log('close dropdown');
+    // this.dropdown.folds[0].close();
   }
 
   get open() {
@@ -115,7 +104,7 @@ export class BoltDropdown extends BoltComponent() {
   dropdownHeader() {
     const dropdownHeaderClasses = css(
       'c-bolt-dropdown__header',
-      this.props.center ? 'c-bolt-dropdown__header--center' : ''
+      this.props.center ? 'c-bolt-dropdown__header--center' : '',
     );
 
     const dropdownTitle = this.slots.title ? this.slot('title') : (this.props.title && this.props.title !== null ? this.props.title : null);
@@ -144,7 +133,7 @@ export class BoltDropdown extends BoltComponent() {
   template() {
     const classes = css(
       'c-bolt-dropdown',
-      this.props.collapse ? 'c-bolt-dropdown--collapse@small' : ''
+      this.props.collapse ? 'c-bolt-dropdown--collapse@small' : '',
     );
 
     return this.hyper.wire(this.props) `
@@ -168,7 +157,7 @@ export class BoltDropdown extends BoltComponent() {
 
     this.autoHeight();
 
-    this.dropdown = new handorgel(this.dropdownTemplate.querySelector('.c-bolt-dropdown'), {
+    this.dropdown = new Handorgel(this.dropdownTemplate.querySelector('.c-bolt-dropdown'), {
       // whether multiple folds can be opened at once
       multiSelectable: true,
       // whether the folds are collapsible
@@ -206,7 +195,7 @@ export class BoltDropdown extends BoltComponent() {
 
       // header/content class if no transition should be active (applied on resize)
       headerNoTransitionClass: 'c-bolt-dropdown__header--notransition',
-      contentNoTransitionClass: 'c-bolt-dropdown__content--notransition'
+      contentNoTransitionClass: 'c-bolt-dropdown__content--notransition',
     });
 
     return this.html`
