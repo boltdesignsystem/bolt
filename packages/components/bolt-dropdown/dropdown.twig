@@ -4,17 +4,20 @@
 <bolt-dropdown
   {{ collapse ? "collapse" : "" }}
   {{ center ? "center" : "" }}
-  title="{{ title ? title | default("") }}"
+  {% if title %}title='{{ title }}' {% endif %}
+  {% if children %}children='{{ children|json_encode() }}' {% endif %}
   >
-  {% if items %}
-    {% for item in items %}
-      {% include "@bolt-components-dropdown/_dropdown-item.twig" with item only %}
-    {% endfor %}
-  {% endif %}
+  {% block content %}
+    {% if items %}
+      {% for item in items %}
+        {% include "@bolt-components-dropdown/_dropdown-item.twig" with item only %}
+      {% endfor %}
+    {% endif %}
 
-  {% if _content is not empty %}
-    {% include "@bolt-components-dropdown/_dropdown-item.twig" %}
-  {% endif %}
+    {% if _content is not empty %}
+      {% include "@bolt-components-dropdown/_dropdown-item.twig" %}
+    {% endif %}
+  {% endblock %}
 </bolt-dropdown>
 
 {% if enable_json_schema_validation %}
