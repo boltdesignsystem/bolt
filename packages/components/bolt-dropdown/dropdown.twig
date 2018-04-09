@@ -1,5 +1,5 @@
 {% set collapse = collapse | default(false) %}
-
+{% set _content = block('content') | default(content) %}
 
 <bolt-dropdown
   {{ collapse ? "collapse" : "" }}
@@ -12,7 +12,11 @@
     {% endfor %}
   {% endif %}
 
-  {% if content %}
+  {% if _content is not empty %}
     {% include "@bolt-components-dropdown/_dropdown-item.twig" %}
   {% endif %}
 </bolt-dropdown>
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-dropdown/dropdown.schema.yml', _self) | raw }}
+{% endif %}
