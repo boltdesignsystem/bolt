@@ -4,8 +4,7 @@ import {
   define,
   props,
   withComponent,
-  withHyperHTML,
-  withPreact,
+  BoltComponent,
   css,
   spacingSizes,
   hasNativeShadowDomSupport,
@@ -62,7 +61,7 @@ let gumshoeStateModule = (function () {
 
 
 @define
-export class BoltNavList extends withHyperHTML(withComponent()) {
+export class BoltNavList extends BoltComponent() {
   static is = 'bolt-nav-list';
 
   // Behavior for `<bolt-nav-list>` parent container
@@ -214,7 +213,7 @@ export class BoltNavList extends withHyperHTML(withComponent()) {
 
 
 @define
-export class BoltNavLink extends withHyperHTML(withComponent()) { // Behavior for `<bolt-nav-link>` children
+export class BoltNavLink extends BoltComponent() { // Behavior for `<bolt-nav-link>` children
 
   static is = 'bolt-nav-link';
 
