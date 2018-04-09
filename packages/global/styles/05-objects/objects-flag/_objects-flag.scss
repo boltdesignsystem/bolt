@@ -8,9 +8,9 @@ $bolt-flag-sizes: (
 );
 
 $bolt-flag-alignments: (
-  'top': 'flex-start',
-  'middle': 'center',
-  'bottom': 'flex-end'
+  'top': flex-start,
+  'middle': center,
+  'bottom': flex-end
 );
 
 
@@ -64,8 +64,8 @@ $bolt-flag-alignments: (
 // // Flag alignment
 @each $alignment, $value in $bolt-flag-alignments {
   .o-bolt-flag--#{$alignment} {
-    align-items: unquote($value);
-    vertical-align: unquote($alignment);
+    align-items: $value;
+    vertical-align: $alignment;
   }
 }
 
