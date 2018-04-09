@@ -327,7 +327,7 @@ function createConfig(config) {
     webpackConfig.plugins.push(new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
       bolt: {
-        namespace: JSON.stringify(config.namespace)
+        namespace: JSON.stringify(config.namespace),
       },
     }));
 
@@ -365,7 +365,7 @@ function createConfig(config) {
 
     webpackConfig.plugins.push(new webpack.DefinePlugin({
       bolt: {
-        namespace: JSON.stringify(config.namespace)
+        namespace: JSON.stringify(config.namespace),
       },
     }));
   }
