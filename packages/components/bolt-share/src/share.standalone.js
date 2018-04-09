@@ -4,13 +4,12 @@ import {
   withComponent,
   css,
   hasNativeShadowDomSupport,
-  withPreact,
-  withHyperHTML,
+  BoltComponent,
   sanitizeBoltClasses,
 } from '@bolt/core';
 
 @define
-export class BoltShare extends withHyperHTML() {
+export class BoltShare extends BoltComponent {
   static is = 'bolt-share';
 
   constructor() {
