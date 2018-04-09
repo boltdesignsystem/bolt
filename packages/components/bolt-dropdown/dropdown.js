@@ -6,7 +6,7 @@ import {
   BoltComponent,
 } from '@bolt/core';
 
-import handorgel from 'handorgel';
+import Handorgel from 'handorgel';
 
 import styles from './dropdown.scss';
 import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
@@ -160,7 +160,7 @@ export class BoltDropdown extends BoltComponent() {
 
     this.autoHeight();
 
-    this.dropdown = new handorgel(this.dropdownTemplate.querySelector('.c-bolt-dropdown'), {
+    this.dropdown = new Handorgel(this.dropdownTemplate.querySelector('.c-bolt-dropdown'), {
       // whether multiple folds can be opened at once
       multiSelectable: true,
       // whether the folds are collapsible
