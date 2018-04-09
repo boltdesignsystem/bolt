@@ -6,5 +6,5 @@
  */
 
 import '@webcomponents/shadydom/src/shadydom.js';
-import '@webcomponents/custom-elements/src/custom-elements.js';
+import 'document-register-element';
 import '@webcomponents/shadycss/entrypoints/scoping-shim.js';

@@ -21,7 +21,6 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 }
 
 
-
 // CustomElement shim for IE 11
 (function () {
   if (typeof window.CustomEvent === "function") return false;
@@ -41,7 +40,7 @@ if (!('attachShadow' in Element.prototype && 'getRootNode' in Element.prototype)
   polyfills.push('sd');
 }
 
-// Detect Custom Element Support
+
 if (!window.customElements || window.customElements.forcePolyfill) {
   polyfills.push('ce');
 }
@@ -60,26 +59,22 @@ const webComponentPolyfillPath = `bolt-webcomponents-${polyfills.join('-')}.js`;
 
 export const polyfillLoader = new Promise((resolve) => {
   if (polyfills.length > 0) {
-    Promise.all([
-      import(/* webpackChunkName: `${webComponentPolyfillPath}` */ `./${webComponentPolyfillPath}`),
-    ])
-    .then(() => {
-      resolve();
-    })
-    .catch((error) => {
-      throw new Error(`Could not load ${webComponentPolyfillPath}. Error: ${error}`);
-    });
+    import(/* webpackChunkName: `${webComponentPolyfillPath}` */ `./${webComponentPolyfillPath}`)
+      .then(() => {
+        resolve();
+      })
+      .catch((error) => {
+        throw new Error(`Could not load ${webComponentPolyfillPath}. Error: ${error}`);
+      });
   } else {
-    Promise.all([
-      import(/* webpackChunkName: "custom-elements-es5-adapter" */
-      '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js'),
-    ])
-    .then(() => {
-      resolve();
-    })
-    .catch((error) => {
-      throw new Error(`Could not load @webcomponents/webcomponentsjs/custom-elements-es5-adapter.js. Error: ${error}`);
-    });
+    import(/* webpackChunkName: "custom-elements-es5-adapter" */
+      '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js').then(() => {
+        resolve();
+      })
+      .catch((error) => {
+        throw new Error(`Could not load @webcomponents/webcomponentsjs/custom-elements-es5-adapter.js.
+        Error: ${error}`);
+      });
   }
 }).catch((error) => {
   throw new Error(`Error: unexpected polyfill-loader.js error. ${error}`);

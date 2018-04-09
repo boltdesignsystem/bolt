@@ -36,11 +36,11 @@ export function BoltComponent(Base = HTMLElement) {
       this._checkSlots();
       super.connectedCallback && super.connectedCallback();
     }
-
+ 
     disconnectedCallback() {
       super.disconnectedCallback && super.disconnectedCallback();
     }
-
+ 
     addStyles(stylesheet) {
       let styles = Array.from(stylesheet);
       styles = styles.join(' ');
