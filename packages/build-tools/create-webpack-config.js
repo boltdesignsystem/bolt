@@ -227,8 +227,8 @@ function createConfig(config) {
           test: /\.twig$/,
           use: [
             { loader: 'raw-loader' },
-            { loader: 'inline-source-loader' }
-          ]
+            { loader: 'inline-source-loader' },
+          ],
         },
         {
           test: /\.scss$/,
