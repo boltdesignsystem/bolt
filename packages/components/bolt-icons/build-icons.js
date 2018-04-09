@@ -138,7 +138,7 @@ async function build() {
     await fs.outputFile(
       path.join(rootDir, 'src', 'index.js'),
       allExports.join('\n'),
-      'utf-8'
+      'utf-8',
     );
     console.log(`Built ${iconPaths.length} icons.`);
   } catch (error) {

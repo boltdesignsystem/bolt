@@ -4,7 +4,7 @@ import {
   define,
   props,
   BoltComponent,
-  hasNativeShadowDomSupport
+  hasNativeShadowDomSupport,
 } from '@bolt/core';
 
 
@@ -25,7 +25,11 @@ export class BoltBand extends BoltComponent() {
   static is = 'bolt-band';
 
   static get observedAttributes() {
-    return ['expanded', 'expandedHeight', 'initialHeight'];
+    return [
+      'expanded',
+      'expandedHeight',
+      'initialHeight',
+    ];
   }
 
   constructor(element) {
@@ -33,7 +37,7 @@ export class BoltBand extends BoltComponent() {
     this.useShadow = hasNativeShadowDomSupport;
 
     this.state = {
-      ready: false
+      ready: false,
     }
   }
 
@@ -96,7 +100,7 @@ export class BoltBand extends BoltComponent() {
         new CustomEvent('change', {
           detail: { isExpandedNow: this.expanded },
           bubbles: true,
-        })
+        }),
       );
     }
   }

@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+// This is ran as a git precommit hook as it is the only way to hook into when `lerna publish` has updated versions and is about to commit and tag the results.
+// We want to update php dependencies versions as well.
 const path = require('path');
 const fs = require('fs');
 const yaml = require('js-yaml');
@@ -19,6 +21,3 @@ const boltConnectInfoPath = path.join(__dirname, '../packages/drupal-modules/bol
 const boltConnectInfo = yaml.safeLoad(fs.readFileSync(boltConnectInfoPath));
 boltConnectInfo.version = lernaVersion;
 fs.writeFileSync(boltConnectInfoPath, yaml.safeDump(boltConnectInfo), 'utf8');
-
-
-console.log('Updated Composer packages to latest Lerna version');

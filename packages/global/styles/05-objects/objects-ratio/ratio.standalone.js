@@ -18,7 +18,7 @@ export class BoltRatio extends BoltComponent() {
 
   static props = {
     aspectRatioHeight: props.number,
-    aspectRatioWidth: props.number
+    aspectRatioWidth: props.number,
   }
 
   constructor(element) {
@@ -54,7 +54,7 @@ export class BoltRatio extends BoltComponent() {
   // Render out component via HyperHTML
   render({ props, state }) {
     const classes = css(
-      'o-bolt-ratio__inner'
+      'o-bolt-ratio__inner',
     );
 
     return this.html`

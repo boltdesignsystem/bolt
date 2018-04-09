@@ -12,7 +12,7 @@ export function withPreact(Base = HTMLElement) {
       // cases for children by using a slot.
       return {
         ...super.props,
-        ...{ children: <slot /> }
+        ...{ children: <slot /> },
       };
     }
 
@@ -29,7 +29,7 @@ export function withPreact(Base = HTMLElement) {
       this._preactDom = render(
         renderCallback(),
         this._renderRoot,
-        this._preactDom || this._renderRoot.children[0]
+        this._preactDom || this._renderRoot.children[0],
       );
     }
 
