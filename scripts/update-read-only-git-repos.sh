@@ -8,18 +8,23 @@ if [[ $TRAVIS == 'true' ]]; then
   fi
 
   # @todo Update to only trigger on tags
-  if [[ $branch_name != 'master' ]]; then
-    echo "We are in Travis and this IS NOT the master branch, so we WON'T attempt to update read-only git repos."
+  if [[ $branch_name != 'release/1.x' ]]; then
+    echo "We are in Travis and this IS NOT the release/1.x branch, so we WON'T attempt to update read-only git repos."
     exit 0
   else
-    echo "We are in Travis and this IS the master branch, so we WILL attempt to update read-only git repos..."
+    echo "We are in Travis and this IS the release/1.x branch, so we WILL attempt to update read-only git repos..."
   fi
 fi
 
 # Run helper subsplit script ported over from from https://raw.githubusercontent.com/dflydev/git-subsplit/master/git-subsplit.sh
 
 ./scripts/git-subsplit.sh init https://${GH_TOKEN}@github.com/bolt-design-system/core-php.git
-
 ./scripts/git-subsplit.sh publish --work-dir=$PWD packages/core-php:https://${GH_TOKEN}@github.com/bolt-design-system/core-php.git \
-  --heads=master --update
+  --heads=release/1.x --update
+rm -rf .subsplit
+
+./scripts/git-subsplit.sh init https://${GH_TOKEN}@github.com/bolt-design-system/bolt_connect.git
+./scripts/git-subsplit.sh publish --work-dir=$PWD packages/drupal-modules/bolt_connect:https://${GH_TOKEN}@github.com/bolt-design-system/bolt_connect.git \
+  --heads=release/1.x --update
+rm -rf .subsplit
 

@@ -28,7 +28,7 @@ customScrollElems.forEach(elem => {
 
         // Callback API
         before: function () {}, // Callback to run before scroll
-        after: function () {} // Callback to run after scroll
+        after: function () {}, // Callback to run after scroll
     };
 
     let scrollElemHref = scrollElem.getAttribute('href');

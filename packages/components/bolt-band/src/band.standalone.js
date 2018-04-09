@@ -3,9 +3,8 @@ import {
   render,
   define,
   props,
-  withComponent,
-  withPreact,
-  hasNativeShadowDomSupport
+  BoltComponent,
+  hasNativeShadowDomSupport,
 } from '@bolt/core';
 
 
@@ -22,11 +21,15 @@ import {
 
 
 @define
-export class BoltBand extends withComponent(withPreact()) {
+export class BoltBand extends BoltComponent() {
   static is = 'bolt-band';
 
   static get observedAttributes() {
-    return ['expanded', 'expandedHeight', 'initialHeight'];
+    return [
+      'expanded',
+      'expandedHeight',
+      'initialHeight',
+    ];
   }
 
   constructor(element) {
@@ -34,17 +37,21 @@ export class BoltBand extends withComponent(withPreact()) {
     this.useShadow = hasNativeShadowDomSupport;
 
     this.state = {
-      ready: false
+      ready: false,
     }
+  }
 
+  /**
+    * `connectedCallback()` sets up the role, event handler and initial state.
+    */
+  connecting() {
     // Clone the shadow DOM template.
-
     if (this.state.ready === false) {
       this.state.ready = true;
       this.classList.add('is-ready');
     }
 
-    if (this.expandedHeight === null){
+    if (this.expandedHeight === null) {
       this.expandedHeight = '56.25vh';
     }
 
@@ -53,12 +60,7 @@ export class BoltBand extends withComponent(withPreact()) {
     } else {
       this.collapse();
     }
-  }
 
-  /**
-    * `connectedCallback()` sets up the role, event handler and initial state.
-    */
-  connectedCallback() {
     // Shim Shadow DOM styles. This needs to be run in `connectedCallback()`
     // because if you shim Custom Properties (CSS variables) the element
     // will need access to its parent node.
@@ -98,7 +100,7 @@ export class BoltBand extends withComponent(withPreact()) {
         new CustomEvent('change', {
           detail: { isExpandedNow: this.expanded },
           bubbles: true,
-        })
+        }),
       );
     }
   }
@@ -106,45 +108,29 @@ export class BoltBand extends withComponent(withPreact()) {
 
   collapse() {
     const startingHeight = this.getBoundingClientRect().height;
-    const endingHeight = '0px';
+    const endingHeight = this.startingHeight ? this.startingHeight : 0;
+
+    this.style.transition = 'min-height 0s';
+    this.style.minHeight = `${startingHeight}px`;
 
     requestAnimationFrame(() => {
-      this.style.minHeight = `${startingHeight}px`;
-      this.style.transition = 'all 0s';
-
-      requestAnimationFrame(() => {
-        // In order to get the animation to play, we'll need to wait for
-        // the 'invert' animation frame to finish, so that its inverted
-        // position has propagated to the DOM.
-        //
-        // Then, we just remove the transform, reverting it to its natural
-        // state, and apply a transition so it does so smoothly.
-        this.style.transition = 'all 0.4s ease';
-        this.style.minHeight = endingHeight;
-      });
+      this.style.transition = 'min-height 0.3s ease';
+      this.style.minHeight = `${endingHeight}px`;;
     });
 
     this.expanded = false;
   }
 
   expand() {
-    const startingHeight = this.getBoundingClientRect().height;
-    const endingHeight = this.expandedHeight;
+    this.startingHeight = this.getBoundingClientRect().height;
+    const endingHeight = parseInt(this.expandedHeight) > parseInt(this.startingHeight) ? this.expandedHeight : `${this.startingHeight}px`;
+
+    this.style.transition = 'min-height 0s';
+    this.style.minHeight = `${this.startingHeight}px`;
 
     requestAnimationFrame(() => {
-      this.style.minHeight = `${startingHeight}px`;
-      this.style.transition = 'all 0s';
-
-      requestAnimationFrame(() => {
-        // In order to get the animation to play, we'll need to wait for
-        // the 'invert' animation frame to finish, so that its inverted
-        // position has propagated to the DOM.
-        //
-        // Then, we just remove the transform, reverting it to its natural
-        // state, and apply a transition so it does so smoothly.
-        this.style.transition = 'all 0.4s ease';
-        this.style.minHeight = this.expandedHeight;
-      });
+      this.style.transition = 'min-height 0.3s ease';
+      this.style.minHeight = this.expandedHeight;
     });
 
     this.expanded = true;
@@ -163,10 +149,16 @@ export class BoltBand extends withComponent(withPreact()) {
         // expandedHeight apparently needs to be a string (on both the incoming
         // and outgoing ends).  In order to modify it, we turn it into a number, then
         // back to a string.  Not
-        videoHeight = Number(videoHeight) + 40;
+        videoHeight = Number(videoHeight);
         videoHeight = String(videoHeight)
       }
       this.expandedHeight = videoHeight;
+
+      if (this.expanded){
+        requestAnimationFrame(() => {
+          this.style.minHeight = parseInt(this.expandedHeight) > parseInt(this.startingHeight) ? this.expandedHeight : `${this.startingHeight}px`;
+        });
+      }
     }
   }
 
@@ -214,19 +206,9 @@ export class BoltBand extends withComponent(withPreact()) {
     }
   }
 
-  renderer(root, html) {
-    if (this.useShadow) {
-      super.renderer(root, html);
-    } else {
-      root.innerHTML = this.innerHTML;
-    }
-  }
-
   render() {
-    if (this.useShadow){
-      return (
-        <slot />
-      )
-    }
+    return this.html`
+      ${ this.slot('default')}
+    `
   }
 }

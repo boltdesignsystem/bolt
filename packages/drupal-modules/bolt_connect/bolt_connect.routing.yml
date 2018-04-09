@@ -1,0 +1,16 @@
+bolt_connect.info_page:
+  path: '/admin/config/bolt_connect/info'
+  defaults:
+    _controller: '\Drupal\bolt_connect\Controller\BoltConnectController::customPage'
+    _title: 'Bolt Connect Info'
+  requirements:
+    _permission: 'access administration pages'
+bolt_connect.config_form:
+  path: '/admin/config/bolt_connect/config'
+  defaults:
+    _form: '\Drupal\bolt_connect\BoltConnectForm'
+    _title: 'Bolt Connect Config'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE

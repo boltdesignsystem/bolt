@@ -136,9 +136,18 @@ $bolt-status-colors: (
   )
 );
 
-$bolt-colors: map-merge($bolt-brand-colors, $bolt-status-colors);
+$bolt-social-colors: (
+  'social': (
+    'facebook': hsl(222, 46%, 42%),
+    'twitter': hsl(196, 100%, 46%),
+    'linkedin': hsl(201, 96%, 36%)
+  )
+);
+
+$bolt-colors: map-merge(map-merge($bolt-brand-colors, $bolt-status-colors), $bolt-social-colors);
 
 @include export-data('colors/all.bolt.json', $bolt-colors);
 @include export-data('colors/status.bolt.json', $bolt-status-colors);
 @include export-data('colors/brand.bolt.json', $bolt-brand-colors);
+@include export-data('colors/social.bolt.json', $bolt-social-colors);
 
