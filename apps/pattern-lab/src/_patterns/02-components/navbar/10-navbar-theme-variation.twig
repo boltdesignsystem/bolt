@@ -1,9 +1,9 @@
-{% set schema = bolt.data.components['@bolt-components-nav-bar'].schema %}
+{% set schema = bolt.data.components['@bolt-components-navbar'].schema %}
 
-{% for gradient in schema.properties.gradient.enum %}
-  <p>Gradient: {{ gradient }}</p>
-  {% include "@bolt-components-nav-bar/nav-bar.twig" with {
-    "gradient": gradient == 'true',
+{% for theme in schema.properties.theme.enum %}
+  <p>Theme: {{ theme }}</p>
+  {% include "@bolt-components-navbar/navbar.twig" with {
+    "theme": theme,
     "title": {
       "tag": "h2",
       "text": "Title Text",

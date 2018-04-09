@@ -1,0 +1,8 @@
+{% set attributes = create_attribute(attributes | default({})) %}
+{% set attributes = attributes.addClass("c-bolt-navlink").setAttribute("href", url) %}
+
+<bolt-navlink>
+  <a {{ attributes }}>
+    {{ text }}
+  </a>
+</bolt-navlink>
