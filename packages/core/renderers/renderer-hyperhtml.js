@@ -6,8 +6,7 @@ import {
 } from 'skatejs';
 import { hyper, bind } from 'hyperhtml/cjs';
 import { hasNativeShadowDomSupport } from '../utils/environment';
-import findParentTag from '../utils/find-parent-tag';
-
+import { findParentTag } from '../utils/find-parent-tag';
 
 
 export function BoltComponent(Base = HTMLElement) {
