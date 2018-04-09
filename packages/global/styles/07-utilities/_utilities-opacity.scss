@@ -1,0 +1,24 @@
+/* ------------------------------------ *\
+  #VISUALLY HIDDEN UTILITIES
+\* ------------------------------------ */
+
+$bolt-opacity-props: (0, .25, .50, .75, 1);
+
+@mixin bolt-opacity-utils($breakpoint: null) {
+  @each $value in $bolt-opacity-props {
+    $name: $value * 100;
+    .u-bolt-opacity-#{$name}#{$breakpoint} {
+      opacity: $value !important;
+    }
+  }
+}
+
+@include bolt-opacity-utils;
+
+// Loop over our breakpoints
+@each $breakpoint in $breakpoints {
+  $breakpointName: nth($breakpoint, 1);
+  @include respond-to($breakpointName) {
+    @include bolt-opacity-utils(\@#{$breakpointName});
+  }
+}
