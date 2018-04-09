@@ -4,7 +4,7 @@ import {
   define,
   props,
   BoltComponent,
-  hasNativeShadowDomSupport
+  hasNativeShadowDomSupport,
 } from '@bolt/core';
 
 
