@@ -1,0 +1,51 @@
+{% extends "./site.twig" %}
+
+{% block content %}
+
+  <h2>PW Video Player (Powered By Bolt): Vanilla Web Component</h2>
+  <pw-ratio aspect-ratio-height="9" aspect-ratio-width="16" style="--aspect-ratio-height: 9; --aspect-ratio-width: 16;">
+    <pw-video data-setup='{"techOrder": ["Html5"]}'
+    video-id="5609376179001" account-id="1900410236" show-meta player-id="r1j4D1Eoz" controls></pw-video>
+  </pw-ratio>
+
+  <pre>
+    <code>{% spaceless %}
+      {% verbatim %}
+        &lt;pw-ratio  aspect-ratio-height="9" aspect-ratio-width="16"&gt;
+          &lt;pw-video data-setup="{"techOrder": ["Html5"]}" video-id="5609376179001" account-id="1900410236" show-meta player-id="r1j4D1Eoz" controls&gt;&lt;/pw-video&gt;
+        &lt;/pw-ratio&gt;
+      {% endverbatim %}
+    {% endspaceless %}</code>
+  </pre>
+
+  <hr>
+
+  <h2>PW Video Player (Powered By Bolt): Twig Include</h2>
+  {% include "@bolt-components-video/video.twig" with {
+    videoId: "5750064959001",
+    accountId: "1900410236",
+    playerId: "r1j4D1Eoz",
+    controls: false,
+    autoplay: true,
+    loop: true
+  } %}
+
+  <pre>
+    <code>{% spaceless %}
+      {% verbatim %}
+        {% include "@bolt-components-video/video.twig" with {
+          videoId: "5750064959001",
+          accountId: "1900410236",
+          playerId: "r1j4D1Eoz",
+          controls: false,
+          autoplay: true,
+          loop: true
+        } %}
+      {% endverbatim %}
+    {% endspaceless %}</code>
+  </pre>
+
+
+{% endblock content %}
+
+
