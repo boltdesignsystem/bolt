@@ -13,12 +13,25 @@ use \Shudrum\Component\ArrayFinder\ArrayFinder; // https://github.com/Shudrum/Ar
 class BoltCore extends \Twig_Extension implements \Twig_Extension_InitRuntimeInterface {
 
   public $data = [];
+  public $version;
+
+  function __construct() {
+    try {
+      $composer_json = json_decode(file_get_contents(Path::join(__DIR__, '../../composer.json')), true);
+      $this->version = $composer_json['version'];
+    } catch(\Exception $e) {
+      // do nothing if this fails
+    }
+  }
 
   function initRuntime(\Twig_Environment $env) {
-    // @todo `catch` the Exception from this and display a helpful error message - uncaught crashes whole Drupal site with white screen of death!
-    $fullManifestPath = TwigTools\Utils::resolveTwigPath($env, '@bolt-data/full-manifest.bolt.json');
-    $dataDir = dirname($fullManifestPath);
-    $this->data = self::buildBoltData($dataDir);
+    try {
+      $fullManifestPath = TwigTools\Utils::resolveTwigPath($env, '@bolt-data/full-manifest.bolt.json');
+      $dataDir = dirname($fullManifestPath);
+      $this->data = self::buildBoltData($dataDir);
+    } catch (\Exception $e) {
+
+    }
   }
 
   /**
@@ -85,7 +98,6 @@ class BoltCore extends \Twig_Extension implements \Twig_Extension_InitRuntimeInt
 
   public function getFilters() {
     return [
-      TwigTools\TwigFilters::remove_null(),
       Bolt\TwigFilters::json_decode(),
     ];
   }

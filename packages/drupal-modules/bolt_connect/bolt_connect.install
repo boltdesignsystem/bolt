@@ -1,0 +1,30 @@
+<?php
+
+function bolt_connect_requirements($phase) {
+  $requirements = [];
+  if ($phase === 'runtime') {
+    $config = \Drupal::config('bolt_connect.settings');
+    if ($config->get('twig_namespaces_file_path')) {
+      if (!file_exists(DRUPAL_ROOT . '/' . $config->get('twig_namespaces_file_path'))) {
+        $requirements['bolt_connect'] = [
+          'title' => t('Bolt Connect Module'),
+          'description' => t('Could not find Bolt Twig Namespace file; please compile Bolt assets.'),
+          'severity' => REQUIREMENT_ERROR,
+        ];
+      } else {
+        $requirements['bolt_connect'] = [
+          'title' => t('Bolt Connect Module'),
+          'description' => t('Bolt Twig Namespace file found.'),
+          'severity' => REQUIREMENT_OK,
+        ];
+      }
+    } else {
+      $requirements['bolt_connect'] = [
+        'title' => t('Bolt Connect Module'),
+        'description' => t('Bolt Connect Module not configured.'),
+        'severity' => REQUIREMENT_WARNING,
+      ];
+    }
+  }
+  return $requirements;
+}

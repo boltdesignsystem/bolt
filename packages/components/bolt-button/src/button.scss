@@ -1,7 +1,6 @@
 /* ------------------------------------ *\
    Buttons
 \* ------------------------------------ */
-$bolt-export-data: false !global;
 
 @import '@bolt/core';
 
@@ -206,6 +205,7 @@ bolt-button[width='full@small'],
   vertical-align: middle;
   align-self: center;
   transition: transform $bolt-transition-ease 150ms;
+  text-align: center; // Horizontally center icons
   line-height: 1; // workaround so icons can be vertically aligned properly
 }
 

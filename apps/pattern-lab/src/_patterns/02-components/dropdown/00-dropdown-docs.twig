@@ -1,0 +1,37 @@
+{% set schema = get_data('@bolt-components-dropdown/dropdown.schema.yml') %}
+{% set code %}{% verbatim %}
+{% include "@bolt-components-dropdown/dropdown.twig" with {
+  title: "Example Title",
+  content: include("@bolt-components-nav/nav.twig", {
+    "links": [
+      {
+        "text": "Link 1 Text",
+        "url": "#link-1-url"
+      },
+      {
+        "text": "Link 2 Text",
+        "url": "#link-2-url"
+      },
+      {
+        "text": "Link 3 Text",
+        "url": "#link-3-url"
+      },
+       {
+        "text": "Link 4 Text",
+        "url": "#link-4-url"
+      },
+      {
+        "text": "Link 5 Text",
+        "url": "#link-5-url"
+      }
+    ]
+  })
+} %}
+{% endverbatim %}
+{% endset %}
+
+{% include '@utils/docs.twig' with {
+  schema: schema,
+  code: code,
+  readmeFile: '@bolt-components-dropdown/README.md',
+} only %}
