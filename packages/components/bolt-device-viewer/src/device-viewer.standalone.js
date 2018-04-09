@@ -48,7 +48,7 @@ class BoltDeviceViewer extends BoltComponent() {
 
   render({ props }) {
     const classes = css(
-      'c-bolt-image-magnifier'
+      'c-bolt-image-magnifier',
     );
 
     return (
