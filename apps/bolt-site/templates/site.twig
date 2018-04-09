@@ -61,6 +61,7 @@
     </a>
   </h1>
   <nav class="storefront-docs-header__nav">
+
     {% for page in site.pages if page.meta.nav == 'main' %}
       {% set isActive = currentUrl == page.url %}
       {% set isActivePath = page.url starts with currentSection %}
@@ -69,6 +70,14 @@
         <a href="/pattern-lab" target="_blank">Pattern Lab</a>
       {% endif %}
     {% endfor %}
+
+    <a href="#menu" class="storefront-docs__hamburger u-bolt-hide@medium">
+      <span class="u-bolt-margin-right-xsmall">Menu</span>
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "menu",
+        size: "medium",
+      } %}
+    </a>
   </nav>
   {% if currentUrl != 'index.html' %}
     {% include "@bolt-components-headline/headline.twig" with {
