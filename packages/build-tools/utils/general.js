@@ -1,4 +1,5 @@
 const fs = require('fs');
+const log = require('./log');
 
 /**
  * Flatten Array
