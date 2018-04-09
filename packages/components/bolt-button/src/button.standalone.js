@@ -7,7 +7,7 @@ import {
   withPreact,
   BoltComponent,
   declarativeClickHandler,
-  sanitizeBoltClasses
+  sanitizeBoltClasses,
 } from '@bolt/core';
 
 import styles from './button.scss';
@@ -95,7 +95,7 @@ class BoltButton extends BoltComponent() {
       // Test out psuedo states via prop values
       this.props.isHover ? `c-bolt-button--hover` : '',
       this.props.isActive ? `c-bolt-button--active` : '',
-      this.props.isFocus ? `c-bolt-button--focus` : ''
+      this.props.isFocus ? `c-bolt-button--focus` : '',
     );
 
     /**

@@ -6,7 +6,7 @@ import {
   withComponent,
   withPreact,
   css,
-  spacingSizes
+  spacingSizes,
 } from '@bolt/core';
 
 import dasherize from 'dasherize';
@@ -21,7 +21,7 @@ class BoltVideoMeta extends withPreact(withComponent()) {
 
   static props = {
     duration: props.string,
-    title: props.string
+    title: props.string,
   };
 
   get renderRoot() {
@@ -72,7 +72,7 @@ class BoltVideo extends withPreact(withComponent()) {
     autoplay: props.boolean,
     resetOnFinish: props.boolean,
     directToFullscreen: props.boolean,
-    hideFullScreenButton: props.boolean
+    hideFullScreenButton: props.boolean,
   }
 
   constructor(element) {
@@ -105,7 +105,7 @@ class BoltVideo extends withPreact(withComponent()) {
       autoplay: false,
       hideFullScreenButton: false,
       directToFullscreen: false,
-      resetOnFinish: false
+      resetOnFinish: false,
     }
 
 
@@ -155,7 +155,7 @@ class BoltVideo extends withPreact(withComponent()) {
       new CustomEvent('videoExpandedHeightSet', {
         detail: { expandedHeight: this.expandedHeight },
         bubbles: true,
-      })
+      }),
     );
   }
 
@@ -284,7 +284,7 @@ class BoltVideo extends withPreact(withComponent()) {
       // errors: BoltVideo.globalErrors !== undefined  ? [].concat(BoltVideo.globalErrors) : [],
       isPlaying: "paused",
       isFinished: false,
-      progress: 0
+      progress: 0,
     };
 
     if (this.defaultProps) {
@@ -326,7 +326,7 @@ class BoltVideo extends withPreact(withComponent()) {
       s.onerror = err => {
         const uriErr = {
           code: "",
-          message: `The script ${err.target.src} is not accessible.`
+          message: `The script ${err.target.src} is not accessible.`,
         };
 
         BoltVideo.globalErrors.push(uriErr);
@@ -439,10 +439,10 @@ class BoltVideo extends withPreact(withComponent()) {
     this.dispatchEvent(
       new CustomEvent('playing', {
         detail: {
-          isBackgroundVideo: this.props.isBackgroundVideo
+          isBackgroundVideo: this.props.isBackgroundVideo,
         },
         bubbles: true,
-      })
+      }),
     );
   }
 
@@ -464,10 +464,10 @@ class BoltVideo extends withPreact(withComponent()) {
     this.dispatchEvent(
       new CustomEvent('pause', {
         detail: {
-          isBackgroundVideo: this.props.isBackgroundVideo
+          isBackgroundVideo: this.props.isBackgroundVideo,
         },
         bubbles: true,
-      })
+      }),
     );
   }
 
@@ -504,10 +504,10 @@ class BoltVideo extends withPreact(withComponent()) {
       this.dispatchEvent(
         new CustomEvent('ended', {
           detail: {
-            isBackgroundVideo: this.props.isBackgroundVideo
+            isBackgroundVideo: this.props.isBackgroundVideo,
           },
           bubbles: true,
-        })
+        }),
       );
       // this.setState({ isFinished: true });
     }, 0);
@@ -548,7 +548,7 @@ class BoltVideo extends withPreact(withComponent()) {
 
     s.src = BoltVideo.getScriptUrl(
       this.props.accountId,
-      this.props.playerId
+      this.props.playerId,
     );
     s.async = true;
 
@@ -568,8 +568,8 @@ class BoltVideo extends withPreact(withComponent()) {
   initVideo(id) {
     bc(this.querySelector(`#${id}`), {
       controlBar: {
-        fullscreenToggle: !this.props.hideFullScreenButton
-      }
+        fullscreenToggle: !this.props.hideFullScreenButton,
+      },
     });
 
     this.initVideoJS(id);
@@ -594,10 +594,10 @@ class BoltVideo extends withPreact(withComponent()) {
       this.dispatchEvent(
         new CustomEvent('playing', {
           detail: {
-            isBackgroundVideo: this.props.isBackgroundVideo
+            isBackgroundVideo: this.props.isBackgroundVideo,
           },
           bubbles: true,
-        })
+        }),
       );
     }
   }
@@ -608,10 +608,10 @@ class BoltVideo extends withPreact(withComponent()) {
     this.dispatchEvent(
       new CustomEvent('close', {
         detail: {
-          isBackgroundVideo: this.props.isBackgroundVideo
+          isBackgroundVideo: this.props.isBackgroundVideo,
         },
         bubbles: true,
-      })
+      }),
     );
   }
 
@@ -630,10 +630,10 @@ class BoltVideo extends withPreact(withComponent()) {
       this.dispatchEvent(
         new CustomEvent('playing', {
           detail: {
-            isBackgroundVideo: this.props.isBackgroundVideo
+            isBackgroundVideo: this.props.isBackgroundVideo,
           },
           bubbles: true,
-        })
+        }),
       );
     }
   }

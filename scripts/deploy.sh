@@ -24,7 +24,7 @@ echo "On this git branch: $branch_name"
 deploy_message=${deploy_message// /_} # Replaces all spaces with `_` - b/c dealing with quoting it properly sucks
 cmd="$netlifycli deploy --site-id bolt-design-system.netlify.com --base-directory www --yes --message $deploy_message"
 
-if [[ $branch_name != 'master' ]]; then
+if [[ $branch_name != 'release/1.x' ]]; then
   echo 'Draft deploy'
   cmd="$cmd --draft"
 else

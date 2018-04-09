@@ -219,7 +219,7 @@ $bolt-input-transition: $bolt-transition;
 
 .c-bolt-floating-label {
   position: absolute;
-  top: 0.3rem;
+  top: 1rem;
   left: $bolt-floating-label-text-indent;
   color: $bolt-floating-label-text-color;
   line-height: $bolt-floating-label-text-scale;
@@ -227,7 +227,7 @@ $bolt-input-transition: $bolt-transition;
   user-select: none;
   pointer-events: none;
   opacity: 0;
-  transform: translate3d(0, -15%, 0) scale(0.2);
+  transform: translate3d(0, -50%, 0) translateY(.4rem);
   transform-origin: 0 100%;
   transition: all $bolt-floating-label-transition;
 }
@@ -238,7 +238,7 @@ $bolt-input-transition: $bolt-transition;
   // [Mai] A custom input is considered active if the regular input inside is filled or in focus.
   & ~ .c-bolt-floating-label {
     opacity: 1;
-    transform: translate3d(0, 0, 0) scale($bolt-floating-label-text-scale);
+    transform: translate3d(0, -100%, 0) translateY(.1rem) scale($bolt-floating-label-text-scale);
   }
 }
 

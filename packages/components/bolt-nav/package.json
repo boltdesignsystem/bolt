@@ -1,6 +1,6 @@
 {
-  "name": "@bolt/components-nav",
-  "description": "Nav Component in Bolt",
+  "name": "@bolt/components-nav-bar",
+  "description": "Nav-bar Component in Bolt",
   "keywords": [
     "bolt design system",
     "bolt",
@@ -8,7 +8,8 @@
     "design system",
     "components"
   ],
-  "version": "0.0.0",
+  "version": "1.0.3",
+  "sourceFilesFrom": "0.10.2",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -23,15 +24,16 @@
   ],
   "homepage": "https://bolt-design-system.com",
   "license": "MIT",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav-bar",
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "main": "index.js",
-  "style": "nav.scss",
+  "main": "src/nav-bar.js",
+  "style": "src/nav-bar.scss",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@bolt/core": "^1.0.2",
+    "@bolt/core": "^1.0.3",
     "gumshoejs": "^3.5.0"
-  }
+  },
+  "schema": "nav-bar.schema.yml"
 }

@@ -6,6 +6,7 @@ module.exports = {
   startPath: 'pattern-lab/index.html',
   plConfigFile: './config/config.yml',
   verbosity: 1,
+  webpackDevServer: true,
   extraTwigNamespaces: {
     'bolt': {
       recursive: true,
@@ -31,8 +32,6 @@ module.exports = {
   },
   components: {
     global: [
-      './src/styles/pl.scss',
-      './src/scripts/pl.js',
       '@bolt/core',
       '@bolt/global',
       '@bolt/components-action-blocks',
@@ -73,7 +72,12 @@ module.exports = {
       '@bolt/components-video',
     ],
     individual: [
-      '@bolt/components-critical-fonts'
+      {
+        name: 'pl',
+        scss: './src/styles/pl.scss',
+        js: './src/scripts/pl.js',
+      },
+      '@bolt/components-critical-fonts',
     ],
   },
 };
