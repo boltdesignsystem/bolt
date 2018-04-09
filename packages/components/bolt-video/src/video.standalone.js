@@ -26,7 +26,7 @@ export function BoltVideoMeta() {
 
     static props = {
       duration: props.string,
-      title: props.string
+      title: props.string,
     };
 
     get renderRoot() {
@@ -160,7 +160,7 @@ export function BoltVideo() {
         new CustomEvent('videoExpandedHeightSet', {
           detail: {expandedHeight: this.expandedHeight},
           bubbles: true,
-        })
+        }),
       );
     }
 
@@ -216,7 +216,7 @@ export function BoltVideo() {
         elem._setMetaTitle(title);
         elem._setMetaDuration(duration);
         elem._setVideoDimensions(width, height);
-        elem._calculateIdealVideoSize();
+          elem._calculateIdealVideoSize();
 
         if (this.earlyToggle) {
           this.earlyToggle = false;
@@ -230,23 +230,23 @@ export function BoltVideo() {
         }
       });
 
-      player.on("play", function () {
+      player.on('play', function () {
         elem.onPlay(player);
       });
 
-      player.on("pause", function () {
+      player.on('pause', function () {
         elem.onPause(player);
       });
 
-      player.on("seeked", function () {
+      player.on('seeked', function () {
         elem.onSeeked(player);
       });
 
-      player.on("timeupdate", function () {
+      player.on('timeupdate', function () {
         // elem.onPlay(player);
       });
 
-      player.on("durationchange", function () {
+      player.on('durationchange', function () {
         elem.onDurationChange(player);
       });
 
@@ -287,9 +287,9 @@ export function BoltVideo() {
       this.state = {
         id: `${this.props.videoId}-${this.props.accountId}-${index}`,
         // errors: BoltVideoClass.globalErrors !== undefined  ? [].concat(BoltVideoClass.globalErrors) : [],
-        isPlaying: "paused",
+        isPlaying: 'paused',
         isFinished: false,
-        progress: 0
+        progress: 0,
       };
 
       if (this.defaultProps) {
@@ -331,7 +331,7 @@ export function BoltVideo() {
         s.onerror = err => {
           const uriErr = {
             code: "",
-            message: `The script ${err.target.src} is not accessible.`
+            message: `The script ${err.target.src} is not accessible.`,
           };
 
           BoltVideoClass.globalErrors.push(uriErr);
@@ -351,8 +351,8 @@ export function BoltVideo() {
         }
       }
 
-      window.addEventListener('optimizedResize', this._onWindowResize);
-    }
+        window.addEventListener('optimizedResize', this._onWindowResize);
+      }
 
 
     _onWindowResize(event) {
@@ -376,10 +376,10 @@ export function BoltVideo() {
     //   // const value = this.hasAttribute('expanded');
     //   // this._shadowButton.setAttribute('aria-expanded', value);
     // }
-    
+
 
     disconnectedCallback() {
-      window.removeEventListener('optimizedResize', this._calculateIdealVideoSize);
+        window.removeEventListener('optimizedResize', this._calculateIdealVideoSize);
 
       if (this.player) {
         this.player.dispose();
@@ -413,10 +413,10 @@ export function BoltVideo() {
       this.dispatchEvent(
         new CustomEvent('playing', {
           detail: {
-            isBackgroundVideo: this.props.isBackgroundVideo
+            isBackgroundVideo: this.props.isBackgroundVideo,
           },
           bubbles: true,
-        })
+        }),
       );
     }
 
@@ -478,10 +478,10 @@ export function BoltVideo() {
         this.dispatchEvent(
           new CustomEvent('ended', {
             detail: {
-              isBackgroundVideo: this.props.isBackgroundVideo
+              isBackgroundVideo: this.props.isBackgroundVideo,
             },
             bubbles: true,
-          })
+          }),
         );
         // this.setState({ isFinished: true });
       }, 0);
@@ -521,7 +521,7 @@ export function BoltVideo() {
 
       s.src = BoltVideoClass.getScriptUrl(
         this.props.accountId,
-        this.props.playerId
+        this.props.playerId,
       );
       s.async = true;
 
@@ -541,8 +541,8 @@ export function BoltVideo() {
     initVideo(id) {
       bc(this.querySelector(`#${id}`), {
         controlBar: {
-          fullscreenToggle: !this.props.hideFullScreenButton
-        }
+          fullscreenToggle: !this.props.hideFullScreenButton,
+        },
       });
 
       this.initVideoJS(id);
@@ -557,8 +557,6 @@ export function BoltVideo() {
     }
 
     play() {
-      // console.log('PLAY VIDEO');
-      // console.log(this.player);
       if (this.player) {
         this.player.play();
       } else {
@@ -567,10 +565,10 @@ export function BoltVideo() {
         this.dispatchEvent(
           new CustomEvent('playing', {
             detail: {
-              isBackgroundVideo: this.props.isBackgroundVideo
+              isBackgroundVideo: this.props.isBackgroundVideo,
             },
             bubbles: true,
-          })
+          }),
         );
       }
     }
@@ -589,8 +587,6 @@ export function BoltVideo() {
     }
 
     toggle() {
-      // console.log('TOGGLE VIDEO');
-      // console.log(this.state);
       if (this.player) {
         if (this.state.isPlaying === false || this.state.isPlaying === 'paused') {
           this.play();
@@ -603,10 +599,10 @@ export function BoltVideo() {
         this.dispatchEvent(
           new CustomEvent('playing', {
             detail: {
-              isBackgroundVideo: this.props.isBackgroundVideo
+              isBackgroundVideo: this.props.isBackgroundVideo,
             },
             bubbles: true,
-          })
+          }),
         );
       }
     }
@@ -736,5 +732,5 @@ export function BoltVideo() {
 
   // Initialize on window.resize event.  Note that throttle can also be initialized on any type of event,
   // such as scroll.
-  throttle("resize", "optimizedResize");
+  throttle('resize', 'optimizedResize');
 })();
