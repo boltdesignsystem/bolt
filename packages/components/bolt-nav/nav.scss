@@ -100,13 +100,8 @@ bolt-nav {
 
   @include respond-to(small) {
     opacity: 1;
-    .c-bolt-nav--xsmall & {
-      bottom: (bolt-v-spacing(xsmall) * -1);
-    }
+    bottom: 0;
 
-    .c-bolt-nav--small & {
-      bottom: (bolt-v-spacing(medium) * -1); // TODO: [Mai] When the band spacing options are fixed, small should map to small, not medium here.
-    }
   }
 
   // TODO: [Mai] Vertical spacing options for future use.

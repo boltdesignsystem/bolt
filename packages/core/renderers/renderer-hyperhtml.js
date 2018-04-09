@@ -30,17 +30,17 @@ export function BoltComponent(Base = HTMLElement) {
     }
 
     connectedCallback() {
-      if (this.dataset.ssrContent) {
-        this.innerHTML = JSON.parse(this.dataset.ssrContent);
-      }
+      // if (this.dataset.ssrContent) {
+      //   this.innerHTML = JSON.parse(this.dataset.ssrContent);
+      // }
       this._checkSlots();
       super.connectedCallback && super.connectedCallback();
     }
- 
+
     disconnectedCallback() {
       super.disconnectedCallback && super.disconnectedCallback();
     }
- 
+
     addStyles(stylesheet) {
       let styles = Array.from(stylesheet);
       styles = styles.join(' ');

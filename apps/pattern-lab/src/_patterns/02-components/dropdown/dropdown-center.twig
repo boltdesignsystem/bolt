@@ -3,34 +3,26 @@
   center: true
 } %}
   {% block content %}
-    <bolt-nav-list offset="50">
-      <ul class="c-bolt-nav-list c-bolt-nav-list--xsmall js-bolt-nav-list-gumshoe">
-        <li class="c-bolt-nav-list__item">
-          <bolt-nav-link>
-            <a class="c-bolt-nav-link" href="#p-f3ff267c-5fb8-4e2f-8682-52663b5437df">Features</a>
-          </bolt-nav-link>
-        </li>
-        <li class="c-bolt-nav-list__item">
-          <bolt-nav-link>
-            <a class="c-bolt-nav-link" href="#p-12de80d7-1c57-4bef-a173-07d898f8e356">Resources
-            </a>
-          </bolt-nav-link>
-        </li>
-        <li class="c-bolt-nav-list__item">
-          <bolt-nav-link>
-            <a class="c-bolt-nav-link" href="#p-468a47c1-fe65-46d4-b8c7-9dbfe8404ee9">Industry Apps
-            </a>
-          </bolt-nav-link>
-        </li>
-        <li class="c-bolt-nav-list__item">
-          <bolt-nav-link>
-            <a class="c-bolt-nav-link" href="#p-6618d817-126e-46d1-955a-f7ee78e79475">Customer Success
-            </a>
-          </bolt-nav-link>
-        </li>
-        <li class="c-bolt-nav-list__indicator js-bolt-nav-indicator" style="transform: translateX(0px); width: 0px;"></li>
-      </ul>
-    </bolt-nav-list>
+    {% include "@bolt-components-nav/nav.twig" with {
+    "links": [
+      {
+        "text": "Link 1 Text",
+        "url": "#link-1-url"
+      },
+      {
+        "text": "Link 2 Text",
+        "url": "#link-2-url"
+      },
+      {
+        "text": "Link 3 Text",
+        "url": "#link-3-url"
+      },
+      {
+        "text": "Link 4 Text",
+        "url": "#link-4-url"
+      }
+    ]
+  } only %}
   {% endblock %}
 {% endembed %}
 
