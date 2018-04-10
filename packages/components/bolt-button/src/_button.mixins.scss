@@ -218,39 +218,25 @@
   & {
     opacity: 1;
     color: currentColor;
-
-    @supports(--css: variables) {
-      color: var(--bolt-theme-heading-link-default, inherit);
-    }
+    color: var(--bolt-theme-heading-link-default, inherit);
   }
 
   &:visited {
     opacity: 1;
-    color: currentColor;
 
-    @supports(--css: variables) {
-      color: var(--bolt-theme-heading-link-visited, inherit);
-    }
   }
 
 
-  &:focus,
   &:hover {
     opacity: $bolt-global-link-hover-opacity;
 
-    @supports(--css: variables) {
-      opacity: 1;
-      color: var(--bolt-theme-heading-link-hover, inherit);
-    }
   }
 
+
+  &:focus:active,
   &:active {
     opacity: $bolt-global-link-active-opacity;
 
-    @supports(--css: variables) {
-      opacity: 1;
-      color: var(--bolt-theme-heading-link-active, inherit);
-    }
   }
 }
 

@@ -1,5 +1,8 @@
 import { polyfillLoader } from '@bolt/core';
 
-polyfillLoader.then((res) => {
-  import(/* webpackMode: 'eager', webpackChunkName: 'bolt-ratio' */ './ratio.standalone.js');
+polyfillLoader.then(() => {
+  import(/* webpackMode: 'eager', webpackChunkName: 'bolt-ratio' */ './ratio.standalone.js')
+    .then((Component) => {
+      customElements.define(`${bolt.namespace}-ratio`, Component.BoltRatio());
+    });
 });

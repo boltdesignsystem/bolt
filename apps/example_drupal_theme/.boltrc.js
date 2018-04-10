@@ -12,7 +12,7 @@ module.exports = {
     ],
     individual: [
       '@bolt/components-device-viewer',
-      '@bolt/components-nav-bar',
+      '@bolt/components-navbar',
       '@bolt/components-smooth-scroll',
     ],
   },

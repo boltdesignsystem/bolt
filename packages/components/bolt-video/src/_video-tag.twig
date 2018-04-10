@@ -64,6 +64,6 @@
   {% set attributes = attributes.setAttribute("is-background-video", false) %}
 {% endif %}
 
-{% set customElementName = customElementName | default("bolt-video") %}
+{% set customElementName = "#{bolt.data.config.namespace}-video" %}
 
 <{{ customElementName }} {{ attributes }}></{{ customElementName }}>

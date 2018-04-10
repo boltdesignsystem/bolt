@@ -1,18 +1,15 @@
-{% set prefix = "c-bolt-" %}
 
 {% set videoUuid = videoUuid | default("js-bolt-video-uuid--" ~ random()) %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set attributes = attributes.addClass(videoUuid) %}
 
-
-{% set componentName = "video" %}
-{% set baseClass = prefix ~ componentName %}
+{% set baseClass = "c-#{bolt.data.config.namespace}-video" %}
 
 {% set collapsed = collapsed | default(true) %}
 {% set ratio = ratio ?? true %}
 
-
+{#@todo @salem Is this used anywhere?#}
 {% set classes = [
   baseClass,
   collapsed is not null and collapsed == false ? "is-expanded" : "is-collapsed"
