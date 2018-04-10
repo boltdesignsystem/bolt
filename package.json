@@ -37,7 +37,7 @@
     "bootstrap": "lerna bootstrap --reject-cycles",
     "postbootstrap": "npm run build:icons && node scripts/monorepo-tests.js",
     "Xpredeploy": "npm run build",
-    "deploy": "./scripts/deploy.sh",
+    "deploy": "./scripts/deploy.js",
     "clean:git": "git clean -xdf && rm -rf apps/**/vendor apps/**/node_modules && find . -empty -type d -delete",
     "clean:lerna": "lerna clean -Y",
     "clean": "npm-run-all --parallel clean:*",
