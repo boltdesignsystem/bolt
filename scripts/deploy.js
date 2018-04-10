@@ -117,7 +117,6 @@ https://${deployedUrl}
 
 - Commit built: ${process.env.TRAVIS_COMMIT}
 - [Travis build](https://travis-ci.org/${process.env.TRAVIS_REPO_SLUG}/builds/${process.env.TRAVIS_BUILD_ID})
-- Branch link (WIP): https://${aliasResponse.alias}
 
 </details>
 `.trim();
