@@ -102,7 +102,7 @@ async function init() {
     // console.log('aliasResponse: ');
     // console.log(aliasResponse);
 
-    if (TRAVIS_PULL_REQUEST != 'true') {
+    if (TRAVIS_PULL_REQUEST && TRAVIS_PULL_REQUEST == 'false') {
       console.log('Not a Pull Request, so will not try to comment on PR.');
       process.exit(0);
     }
