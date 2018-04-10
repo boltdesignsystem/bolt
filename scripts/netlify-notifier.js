@@ -1,73 +1,117 @@
 #!/usr/bin/env node
 const url = require('url');
 const querystring = require('querystring');
-const fetch = require("node-fetch");
-const nowBase = 'https://api.zeit.co';
-// const nowSiteId = 'bolt-design-system.now.com';
-// const nowDeploysEndpoint = `${nowBase}/sites/${nowSiteId}/deploys`;
-
-const { NOW_TOKEN, GITHUB_TOKEN, TRAVIS_PULL_REQUEST, TRAVIS_REPO_SLUG } = process.env;
-
-// if (!NOW_TOKEN || !GITHUB_TOKEN || !TRAVIS_PULL_REQUEST || !TRAVIS_REPO_SLUG) {
-//   console.error('Need to have env var of NOW_TOKEN, GITHUB_TOKEN, TRAVIS_PULL_REQUEST, TRAVIS_REPO_SLUG set');
-//   console.log(`TRAVIS_PULL_REQUEST: ${TRAVIS_PULL_REQUEST}`);
-//   console.log(`TRAVIS_REPO_SLUG: ${TRAVIS_REPO_SLUG}`);
-//   process.exit(1);
-// }
-//
-// if (TRAVIS_PULL_REQUEST == 'false') {
-//   console.log('Not a PR build, so this is not needed.');
-//   process.exit(0);
-// }
+const fetch = require('node-fetch');
+const {spawnSync} = require('child_process');
 
 async function init() {
   try {
-    const nowEndpoint = url.resolve(`${nowBase}/v2/now/deployments`, `?${querystring.stringify({ 
-      teamId: 'boltdesignsystem',
-    })}`);
+    const {
+      NOW_TOKEN,
+      GITHUB_TOKEN,
+      TRAVIS,
+      TRAVIS_BRANCH,
+      TRAVIS_PULL_REQUEST_BRANCH,
+      TRAVIS_PULL_REQUEST,
+      TRAVIS_REPO_SLUG,
+    } = process.env;
 
-    const nowDeploys = await fetch(nowEndpoint, {
-      headers: {
-        'Authorization': `Bearer ${NOW_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
-    }).then(res => res.json());
-
-    if (!nowDeploys) {
-      console.error('Did not get any info on latest now deploys...');
-      process.exit(1);
+    let branchName = 'detached-HEAD';
+    try {
+      branchName = spawnSync('git', ['symbolic-ref', 'HEAD'], {
+        encoding: 'utf8',
+      }).stdout.replace('refs/heads/', '').replace(/\//g, '-').trim();
+    } catch (error) {
     }
 
-    nowDeploys.deployments.sort((a, b) => {
-      return a.created - b.created;
-    }).reverse();
+    if (TRAVIS == 'true') {
+      if (TRAVIS_PULL_REQUEST == 'false') {
+        branchName = TRAVIS_BRANCH;
+      } else {
+        branchName = TRAVIS_PULL_REQUEST_BRANCH;
+      }
+    }
 
-    const latestDeploy = nowDeploys.deployments[0];
-    // console.log(nowDeploys);
-    console.log('Latest now Deploy: ', latestDeploy);
+    console.log(`Branch Name: ${branchName}`);
 
-    const aliasEndpoint = `${nowBase}/v2/now/deployments/${latestDeploy.uid}/aliases?${querystring.stringify({
-      teamId: 'boltdesignsystem',
-    })}`;
+    const args = [
+      'deploy',
+      './www',
+      '--name=bolt-design-system',
+      '--team=boltdesignsystem',
+      '--static',
+    ];
 
-    const aliasResponse = await fetch(aliasEndpoint, {
-      method: 'POST',
-      body: JSON.stringify({
-        alias: `${latestDeploy.name}.now.sh`,
-      }),
-      headers: {
-        'Authorization': `Bearer ${NOW_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
-    }).then(res => res.json());
+    if (NOW_TOKEN) {
+      args.push(`--token=${NOW_TOKEN}`);
+    }
 
-    console.log('aliasResponse: ', aliasResponse);
+    console.log('Starting deploy...');
+    const deployOutput = spawnSync('now', args, {encoding: 'utf8'});
+    if (deployOutput.status !== 0) {
+      console.error('Error deploying:');
+    }
+    console.log(deployOutput.stdout, deployOutput.stderr);
+    const deployedUrl = deployOutput.stdout.trim();
+    const deployedDomain = deployedUrl.replace('https://');
+
+    if (!deployedUrl) {
+      // @todo determine if this is even needed since we have `deployedUrl` from deploy command
+      const nowEndpoint = url.resolve('https://api.zeit.co/v2/now/deployments', `?${querystring.stringify({
+        teamId: 'boltdesignsystem',
+      })}`);
+
+      const nowDeploys = await fetch(nowEndpoint, {
+        headers: {
+          'Authorization': `Bearer ${NOW_TOKEN}`,
+          'Content-Type': 'application/json',
+        },
+      }).then(res => res.json());
+
+      if (!nowDeploys) {
+        console.error('Did not get any info on latest now deploys...');
+        process.exit(1);
+      }
+
+      nowDeploys.deployments.sort((a, b) => {
+        return a.created - b.created;
+      }).reverse();
+
+      const latestDeploy = nowDeploys.deployments[0];
+      // console.log(nowDeploys);
+      console.log('Latest now Deploy:');
+      console.log(latestDeploy);
+    }
+
+    // @todo get alias working
+    // const aliasEndpoint = `https://api.zeit.co/v2/now/deployments/${deployedDomain}/aliases?${querystring.stringify({
+    //   teamId: 'boltdesignsystem',
+    // })}`;
+    //
+    // const aliasResponse = await fetch(aliasEndpoint, {
+    //   method: 'POST',
+    //   body: JSON.stringify({
+    //     alias: `bolt-design-system--${branchName}.now.sh`,
+    //   }),
+    //   headers: {
+    //     'Authorization': `Bearer ${NOW_TOKEN}`,
+    //     'Content-Type': 'application/json',
+    //   },
+    // }).then(res => res.json());
+    //
+    // console.log('aliasResponse: ');
+    // console.log(aliasResponse);
+
+    if (TRAVIS_PULL_REQUEST != 'true') {
+      console.log('Not a Pull Request, so will not try to comment on PR.');
+      process.exit(0);
+    }
 
     // The GitHub comment template - Can handle HTML
     const githubCommentText = `
 :zap: PR built on Travis and deployed a now preview here: 
 
-https://${latestDeploy.url}
+https://${deployedUrl}
 
 <details>
 
