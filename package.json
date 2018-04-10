@@ -24,7 +24,6 @@
     "setup": "npm run bootstrap && npm run composer",
     "build:pl": "cd apps/pattern-lab && npm run build:prod",
     "build:bolt-site": "cd apps/bolt-site && npm run build:prod",
-    "build:example-drupal-theme": "cd apps/example_drupal_theme && npm run build:prod",
     "build:drupal-lab": "cd apps/drupal-lab && cd web/themes/flash && npm run build && cd - && composer run build",
     "build:icons": "lerna exec --scope @bolt/components-icons -- npm run build",
     "build": "npm-run-all --serial build:*",
