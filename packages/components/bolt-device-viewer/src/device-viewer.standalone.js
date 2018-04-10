@@ -51,11 +51,11 @@ class BoltDeviceViewer extends BoltComponent() {
       'c-bolt-image-magnifier',
     );
 
-    return (
+    return this.html`
       <div className={classes}>
         ${this.slot('default')}
       </div>
-    )
+    `;
   }
 
   connecting() {
@@ -84,7 +84,6 @@ class BoltImageZoom extends BoltComponent() {
 
   constructor() {
     super();
-    this.useShadow = hasNativeShadowDomSupport;
   }
 
   /**
@@ -147,5 +146,11 @@ class BoltImageZoom extends BoltComponent() {
   disconnectedCallback() {
     this.removeEventListener('mouseenter', this._mouseEnter);
     this.removeEventListener('mouseleave', this._mouseLeave);
+  }
+
+  render() {
+    return this.html`
+      ${ this.slot('default') }
+    `;
   }
 }

@@ -20,8 +20,8 @@ export class BoltDropdown extends BoltComponent() {
   static props = {
     autoOpen: props.boolean,
     collapse: props.boolean,
+    children: props.any,
     center: props.boolean,
-    ssrContent: props.string,
     toggleText: props.string,
     primaryUuid: props.string,
     secondaryUuid: props.string,
@@ -41,10 +41,6 @@ export class BoltDropdown extends BoltComponent() {
   }
 
   connecting() {
-    // if (this.props.ssrContent) {
-    //   this.ssrContent = JSON.parse(this.props.ssrContent);
-    // }
-
     const contentInner = this.querySelector('.c-bolt-dropdown__content-inner');
     const originalDropdown = this.querySelector('.c-bolt-dropdown');
     const originalInput = this.querySelector('.c-bolt-dropdown__state');
@@ -111,7 +107,7 @@ export class BoltDropdown extends BoltComponent() {
       this.props.center ? 'c-bolt-dropdown__header--center' : '',
     );
 
-    const dropdownTitle = this.slots.title ? this.slot('title') : (this.props.title && this.props.title !== null ? this.props.title : null);
+    const dropdownTitle = this.slots.title ? this.slot('title') : ( this.props.title ? this.props.title : '');
 
     return this.hyper.wire(this.props) `
       <h3 class="${dropdownHeaderClasses}">
@@ -139,13 +135,15 @@ export class BoltDropdown extends BoltComponent() {
       this.props.collapse ? 'c-bolt-dropdown--collapse@small' : '',
     );
 
+    const dropdownChildren = this.slots.default ? this.slot('default') : (this.props.children ? this.props.children : '');
+
     return this.hyper.wire(this.props) `
       <div class="${classes}" id="${this.uuid}">
         ${this.dropdownHeader()}
 
         <div class="c-bolt-dropdown__content">
           <div class="c-bolt-dropdown__content-inner">
-            ${this.slot('default')}
+            ${dropdownChildren}
           </div>
         </div>
       </div>

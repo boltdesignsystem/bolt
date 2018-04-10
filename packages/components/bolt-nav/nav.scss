@@ -22,6 +22,7 @@ bolt-nav {
   flex-direction: column;
   position: relative;
   list-style: none;
+  overflow: hidden;
 
   @include respond-to(small) {
     flex-direction: row;
@@ -80,7 +81,7 @@ bolt-nav {
 
 .c-bolt-nav__indicator {
   position: absolute;
-  left: 0;
+  left: bolt-spacing(small);
   width: 0;
   height: $bolt-nav-link-border-size;
   background-color: currentColor;
@@ -95,13 +96,16 @@ bolt-nav {
     // $bolt-nav-link-border-transition-timing
     // $bolt-nav-link-border-transition-ease;
   will-change: width, transform;
-  // top: 0;
+
+  transform: translateY(
+    var(--bolt-nav-indicator-transform)
+  );
 
 
   @include respond-to(small) {
     opacity: 1;
     bottom: 0;
-
+    left: auto;
   }
 
   // TODO: [Mai] Vertical spacing options for future use.
