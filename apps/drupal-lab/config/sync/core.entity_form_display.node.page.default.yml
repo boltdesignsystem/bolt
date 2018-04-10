@@ -4,8 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
+    - field.field.node.page.field_paragraphs
     - node.type.page
   module:
+    - paragraphs
     - text
 id: node.page.default
 targetEntityType: node
@@ -27,6 +29,18 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_paragraphs:
+    type: entity_reference_paragraphs
+    weight: 122
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
   promote:
     type: boolean_checkbox
     settings:
