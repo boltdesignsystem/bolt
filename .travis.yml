@@ -38,6 +38,14 @@ script:
 cache:
   apt: true
   yarn: true
+  directories:
+    - $HOME/.composer
+    - apps/drupal-lab/vendor
+    - apps/drupal-lab/web/core
+    - apps/pattern-lab/vendor
+    - apps/bolt-site/vendor
+    - apps/pw-site/vendor
+    - packages/core-php/vendor
 
 notifications:
   email:
