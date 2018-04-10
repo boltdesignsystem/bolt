@@ -1,0 +1,29 @@
+{% embed "@bolt-components-dropdown/dropdown.twig" with {
+  title: "Toggle Menu",
+  center: true
+} %}
+  {% block content %}
+    {% include "@bolt-components-nav/nav.twig" with {
+    "links": [
+      {
+        "text": "Link 1 Text",
+        "url": "#link-1-url"
+      },
+      {
+        "text": "Link 2 Text",
+        "url": "#link-2-url"
+      },
+      {
+        "text": "Link 3 Text",
+        "url": "#link-3-url"
+      },
+      {
+        "text": "Link 4 Text",
+        "url": "#link-4-url"
+      }
+    ]
+  } only %}
+  {% endblock %}
+{% endembed %}
+
+

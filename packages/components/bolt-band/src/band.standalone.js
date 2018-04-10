@@ -3,8 +3,7 @@ import {
   render,
   define,
   props,
-  withComponent,
-  withPreact,
+  BoltComponent,
   hasNativeShadowDomSupport,
 } from '@bolt/core';
 
@@ -22,11 +21,15 @@ import {
 
 
 @define
-export class BoltBand extends withComponent(withPreact()) {
+export class BoltBand extends BoltComponent() {
   static is = 'bolt-band';
 
   static get observedAttributes() {
-    return ['expanded', 'expandedHeight', 'initialHeight'];
+    return [
+      'expanded',
+      'expandedHeight',
+      'initialHeight',
+    ];
   }
 
   constructor(element) {
@@ -36,15 +39,19 @@ export class BoltBand extends withComponent(withPreact()) {
     this.state = {
       ready: false,
     }
+  }
 
+  /**
+    * `connectedCallback()` sets up the role, event handler and initial state.
+    */
+  connecting() {
     // Clone the shadow DOM template.
-
     if (this.state.ready === false) {
       this.state.ready = true;
       this.classList.add('is-ready');
     }
 
-    if (this.expandedHeight === null){
+    if (this.expandedHeight === null) {
       this.expandedHeight = '56.25vh';
     }
 
@@ -53,12 +60,7 @@ export class BoltBand extends withComponent(withPreact()) {
     } else {
       this.collapse();
     }
-  }
 
-  /**
-    * `connectedCallback()` sets up the role, event handler and initial state.
-    */
-  connectedCallback() {
     // Shim Shadow DOM styles. This needs to be run in `connectedCallback()`
     // because if you shim Custom Properties (CSS variables) the element
     // will need access to its parent node.
@@ -204,19 +206,9 @@ export class BoltBand extends withComponent(withPreact()) {
     }
   }
 
-  renderer(root, html) {
-    if (this.useShadow) {
-      super.renderer(root, html);
-    } else {
-      root.innerHTML = this.innerHTML;
-    }
-  }
-
   render() {
-    if (this.useShadow){
-      return (
-        <slot />
-      )
-    }
+    return this.html`
+      ${ this.slot('default')}
+    `
   }
 }

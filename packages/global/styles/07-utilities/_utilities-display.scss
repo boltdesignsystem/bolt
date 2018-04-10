@@ -1,0 +1,37 @@
+/* ------------------------------------ *\
+  #FLEX UTILITIES
+\* ------------------------------------ */
+
+@import '@bolt/core';
+
+// Add additional spacing size rules for handling auto and zero'd rules
+$bolt-display-props: (
+  'block': 'block',
+  'inline-block': 'inline-block',
+  'inline': 'inline',
+  'table': 'table',
+  'table-row': 'table-row',
+  'table-cell': 'table-cell',
+  'hidden': 'none',
+  'flex': 'flex',
+  'inline-flex': 'inline-flex',
+);
+
+@mixin bolt-display-utils($breakpoint: null) {
+  @each $name, $value in $bolt-display-props {
+    .u-bolt-#{$name}#{$breakpoint} {
+      display: unquote($value) !important;
+    }
+  }
+}
+
+@include bolt-display-utils;
+
+
+// Loop over our breakpoints
+@each $breakpoint in $breakpoints {
+  $breakpointName: nth($breakpoint, 1);
+  @include respond-to($breakpointName) {
+    @include bolt-display-utils(\@#{$breakpointName});
+  }
+}

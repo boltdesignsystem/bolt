@@ -16,6 +16,8 @@ let config = {};
 // For both 3 & 4, it doesn't support deep merges, so only top level properties.
 
 const defaultConfig = {
+  namespace: configSchema.properties.namespace.default,
+  templatesDir: configSchema.properties.templatesDir.default,
   verbosity: configSchema.properties.verbosity.default,
   openServerAtStart: configSchema.properties.openServerAtStart.default,
   quick: configSchema.properties.quick.default,

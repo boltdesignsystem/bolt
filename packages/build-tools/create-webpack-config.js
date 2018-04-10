@@ -1,4 +1,5 @@
 const path = require('path');
+const log = require('./utils/log');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -22,7 +23,7 @@ function createConfig(config) {
    * @returns {object} entry - WebPack config `entry`
    */
   function buildWebpackEntry() {
-    const {components} = getBoltManifest();
+    const { components } = getBoltManifest();
     const entry = {};
     if (components.global) {
       entry['bolt-global'] = [];
@@ -65,7 +66,7 @@ function createConfig(config) {
      * verbose. Any other falsy value will behave as 'none', truthy
      * values as 'normal'
      */
-    const pn = (typeof name === "string") && name.toLowerCase() || name || "none";
+    const pn = (typeof name === 'string') && name.toLowerCase() || name || 'none';
 
     switch (pn) {
       case 'none':
@@ -126,7 +127,7 @@ function createConfig(config) {
       default:
         return {
           colors: true,
-        }
+        };
     }
   }
 
@@ -165,7 +166,7 @@ function createConfig(config) {
       },
     },
     {
-      loader: "postcss-loader",
+      loader: 'postcss-loader',
       options: {
         sourceMap: true,
         plugins: [
@@ -175,12 +176,12 @@ function createConfig(config) {
       },
     },
     {
-      loader: "clean-css-loader",
+      loader: 'clean-css-loader',
       options: {
         skipWarn: true,
-        compatibility: "ie9",
+        compatibility: 'ie9',
         level: config.prod ? 1 : 0,
-        inline: ["remote"],
+        inline: ['remote'],
         format: 'beautify',
       },
     },
@@ -188,7 +189,7 @@ function createConfig(config) {
       loader: 'resolve-url-loader',
     },
     {
-      loader: "sass-loader",
+      loader: 'sass-loader',
       options: {
         sourceMap: true,
         importer: [
@@ -196,8 +197,11 @@ function createConfig(config) {
           npmSass.importer,
         ],
         functions: sassExportData,
-        outputStyle: "expanded",
+        outputStyle: 'expanded',
         precision: 2,
+        data: [
+          `$bolt-namespace: ${config.namespace};`,
+        ].join('\n'),
       },
     },
   ];
@@ -205,23 +209,31 @@ function createConfig(config) {
   // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
   // Must start and end with `/`
   // conditional is temp workaround for when servers are disabled via absence of `config.wwwDir`
-  const publicPath = config.wwwDir
+  const publicPath = config.publicPath ? config.publicPath : (config.wwwDir
     ? `/${path.relative(config.wwwDir, config.buildDir)}/`
-    : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
+    : config.buildDir); // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
 
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
   const webpackConfig = {
     entry: buildWebpackEntry(),
     output: {
       path: path.resolve(process.cwd(), config.buildDir),
-      filename: "[name].js",
-      publicPath: publicPath,
+      filename: '[name].js',
+      chunkFilename: '[name]-bundle.[chunkhash].js',
+      publicPath,
     },
     resolve: {
-      extensions: [".js", ".jsx", ".json", ".svg", ".scss"],
+      extensions: ['.js', '.jsx', '.json', '.svg', '.scss'],
     },
     module: {
       rules: [
+        {
+          test: /\.twig$/,
+          use: [
+            { loader: 'raw-loader' },
+            { loader: 'inline-source-loader' },
+          ],
+        },
         {
           test: /\.scss$/,
           oneOf: [
@@ -232,7 +244,7 @@ function createConfig(config) {
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
               use: ExtractTextPlugin.extract({
-                fallback: "style-loader",
+                fallback: 'style-loader',
                 use: scssLoaders,
               }),
             },
@@ -252,7 +264,7 @@ function createConfig(config) {
         },
         {
           test: /\.(woff|woff2)$/,
-          loader: "file-loader",
+          loader: 'file-loader',
           options: {
             name: 'fonts/[name].[ext]',
           },
@@ -282,14 +294,14 @@ function createConfig(config) {
       }),
       new webpack.IgnorePlugin(/vertx/), // needed to ignore vertx dependency in webcomponentsjs-lite
       new ExtractTextPlugin({
-        filename: "[name].css",
+        filename: '[name].css',
         // disable: false,
         allChunks: true,
       }),
       // @todo This needs to be in `config.dataDir`
       new ManifestPlugin({
         fileName: 'bolt-webpack-manifest.json',
-        publicPath: publicPath,
+        publicPath,
         writeToFileEmit: true,
         seed: {
           name: 'Bolt Manifest',
@@ -314,6 +326,9 @@ function createConfig(config) {
   if (config.prod) {
     webpackConfig.plugins.push(new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
+      bolt: {
+        namespace: JSON.stringify(config.namespace),
+      },
     }));
 
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
@@ -321,6 +336,7 @@ function createConfig(config) {
     webpackConfig.plugins.push(new UglifyJsPlugin({
       sourceMap: true,
       parallel: true,
+      cache: true,
       uglifyOptions: {
         cache: true,
         compress: true,
@@ -337,18 +353,25 @@ function createConfig(config) {
       canPrint: config.verbosity > 2,
       cssProcessorOptions: {// passes to `cssnano`
         zindex: false, // don't alter `z-index` values
+        mergeRules: false, // this MUST be disabled - otherwise certain selectors (ex. ::slotted(*), which IE 11 can't parse) break
       },
     }));
 
     // @todo Evaluate best source map approach for production
     webpackConfig.devtool = 'hidden-source-map';
-  } else {// not prod
+  } else { // not prod
     // @todo fix source maps
     webpackConfig.devtool = 'cheap-module-eval-source-map';
+
+    webpackConfig.plugins.push(new webpack.DefinePlugin({
+      bolt: {
+        namespace: JSON.stringify(config.namespace),
+      },
+    }));
   }
 
 
- if (config.wwwDir) {
+  if (config.wwwDir) {
    webpackConfig.devServer = {
      contentBase: [
        path.resolve(process.cwd(), config.wwwDir),
@@ -361,18 +384,18 @@ function createConfig(config) {
      overlay: {
        errors: true,
      },
-     hot: config.prod ? true : false,
+     hot: !!config.prod,
      inline: true,
      noInfo: true, // webpackTasks.watch handles output info related to success & failure
-     publicPath: publicPath,
+     publicPath,
      watchContentBase: true,
      historyApiFallback: true,
      watchOptions: {
        aggregateTimeout: 200,
-       // ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
+    //    ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
        // Poll using interval (in ms, accepts boolean too)
      },
-   }
+   };
  }
 
   return webpackConfig;
