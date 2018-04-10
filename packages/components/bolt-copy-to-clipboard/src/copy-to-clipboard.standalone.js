@@ -16,6 +16,7 @@ export class BoltCopyToClipboard extends BoltComponent() {
 
   constructor() {
     super();
+    this.useShadow = false;
   }
 
   clickHandler(event) {
