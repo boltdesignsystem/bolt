@@ -229,12 +229,7 @@
 {# Why #}
 {% embed "@bolt/band.twig" with {
   theme: "dark",
-  size: "large",
-  "attributes": {
-    "class": [
-      "c-pw-5up-highlight"
-    ]
-  }
+  size: "large"
 } only %}
   {% block band_content %}
     {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
@@ -243,6 +238,7 @@
           <div class="c-pw-stat-slideshow-media">
             <div class="c-pw-stat-slideshow-media__embed">
               <bolt-video
+                class="c-pw-stat-slideshow-video"
                 data-setup="{&quot;techOrder&quot;: [&quot;Html5&quot;]}"
                 video-id="5759311957001"
                 player-id="r1CAdLzTW"
@@ -250,10 +246,13 @@
                 autoplay
                 loop>
               </bolt-video>
+              <div class="c-pw-stat-slideshow-gif">
+                {% include "@bolt/image.twig" with {
+                  "src": "/pattern-lab/images/pw2018/pw-stat-video.gif",
+                  "alt": "PegaWorld"
+                } only %}
+              </div>
             </div>
-
-            {# <video class="c-pw-stat-slideshow-media__video" poster="http://sandbox.thewikies.com/vfe-generator/images/big-buck-bunny_poster.jpg" src="http://media.w3.org/2010/05/bunny/trailer.ogv" preload loop>
-            </video> #}
           </div>
           <figcaption class="c-pw-stat-slideshow-content">
             <div class="c-pw-stat-slideshow-content__scroll">

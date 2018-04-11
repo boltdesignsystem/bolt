@@ -261,18 +261,17 @@
 
 
 
-$bolt-pw-stat-slideshow-shadow-level: 'level-50';
 $bolt-pw-stat-slideshow-shadow-color: bolt-color(indigo, xdark);
 
 .c-pw-stat-slideshow {
   @include bolt-margin(0);
   @include bolt-padding(0);
-  @include bolt-shadow($key: $bolt-pw-stat-slideshow-shadow-level, $base-color: $bolt-pw-stat-slideshow-shadow-color);
   display: block;
   position: relative;
   overflow: hidden;
   border-radius: 3px;
   background-color: rgba(bolt-color(white), 0.05);
+  box-shadow: 0 10px 30px 1px rgba($bolt-pw-stat-slideshow-shadow-color, 0.1), 0 40px 48px 1px rgba($bolt-pw-stat-slideshow-shadow-color, 0.25);
 
   @include respond-to(medium) {
     display: flex;
@@ -335,6 +334,27 @@ $bolt-pw-stat-slideshow-shadow-color: bolt-color(indigo, xdark);
   }
 }
 
+.c-pw-stat-slideshow-video {
+  display: none;
+
+  @include respond-to(medium) {
+    display: block;
+  }
+}
+
+.c-pw-stat-slideshow-gif {
+  display: block;
+
+  @include respond-to(medium) {
+    display: none;
+  }
+
+  img {
+    @include bolt-margin(0 5.5rem);
+    width: calc(100% - 11rem);
+  }
+}
+
 .c-pw-stat-slideshow-content {
   @include bolt-padding(medium medium large medium);
   display: block;
@@ -367,39 +387,42 @@ $bolt-pw-stat-slideshow-shadow-color: bolt-color(indigo, xdark);
 
 
 .c-pw-stat-list {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
   display: flex;
   align-items: center;
-  margin: 0;
-  padding: 0;
   list-style: none;
   transform: translateX(100%);
   animation: pw-slide 25s infinite ease;
 }
 
 .c-pw-stat-list__item {
+  @include bolt-margin(0);
+  @include bolt-padding(0 1px);
   display: block;
   flex-shrink: 0;
   width: 100%;
   height: 100%;
-  margin: 0;
-  padding: 0;
   opacity: 0;
-  animation: pw-fade 5s infinite ease;
 
-  &:nth-child(2) {
-    animation-delay: 5s;
-  }
+  @include respond-to(medium) {
+    animation: pw-fade 5s infinite ease;
 
-  &:nth-child(3) {
-    animation-delay: 10s;
-  }
+    &:nth-child(2) {
+      animation-delay: 5s;
+    }
 
-  &:nth-child(4) {
-    animation-delay: 15s;
-  }
+    &:nth-child(3) {
+      animation-delay: 10s;
+    }
 
-  &:nth-child(5) {
-    animation-delay: 20s;
+    &:nth-child(4) {
+      animation-delay: 15s;
+    }
+
+    &:nth-child(5) {
+      animation-delay: 20s;
+    }
   }
 }
 
