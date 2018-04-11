@@ -33,7 +33,7 @@
   quoted ? baseClass ~ "--" ~ "quoted" : "",
   weight in weights ? baseClass ~ "--" ~ weight : "",
   align and align != null ? baseClass ~ "--" ~ align : "",
-  style in styles and type == "text" ? baseClass ~ "--" ~ style : "",
+  style in styles ? baseClass ~ "--" ~ style : "",
   size in sizes and type != "eyebrow" ? baseClass ~ "--" ~ size : "",
   transform in transformProps and transform != "" ? baseClass ~ "--" ~ transform : "",
   url ? baseClass ~ "--link" : ""
