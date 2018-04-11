@@ -1,4 +1,7 @@
-# Interface copy
+---
+title: Interface Copy
+---
+
 As makers of compelling digital experiences, we know that content—particularly written content—is a key factor in how we express our brand. Paying attention to the voice and tone of our writing helps us reflect the Pega brand while maintaining awareness of each situation’s unique needs. 
 
 # Voice and Tone
