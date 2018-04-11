@@ -1,9 +1,9 @@
-{% embed "@bolt-components-dropdown/dropdown.twig" with {
-  title: "Toggle Menu"
-} %}
-  {% block content %}
-
-    {% include "@bolt-components-nav/nav.twig" with {
+<bolt-dropdown
+  center
+  collapse
+  title="Custom Element w/ Collapse & Center"
+  >
+  {% include "@bolt-components-nav/nav.twig" with {
     "links": [
       {
         "text": "Link 1 Text",
@@ -17,7 +17,7 @@
         "text": "Link 3 Text",
         "url": "#link-3-url"
       },
-      {
+       {
         "text": "Link 4 Text",
         "url": "#link-4-url"
       },
@@ -29,33 +29,15 @@
         "text": "Link 6 Text",
         "url": "#link-6-url"
       },
-      {
+       {
         "text": "Link 7 Text",
         "url": "#link-7-url"
       },
       {
         "text": "Link 8 Text",
         "url": "#link-8-url"
-      },
-      {
-        "text": "Link 9 Text",
-        "url": "#link-9-url"
-      },
-      {
-        "text": "Link 10 Text",
-        "url": "#link-10-url"
-      },
-      {
-        "text": "Link 11 Text",
-        "url": "#link-11-url"
-      },
-      {
-        "text": "Link 12 Text",
-        "url": "#link-12-url"
       }
     ]
   } only %}
 
-  {% endblock %}
-{% endembed %}
-
+</bolt-dropdown>
