@@ -17,7 +17,7 @@
 {% set style = style | default(schema.properties.style.default) %}
 {% set type = type in types ? type : "text" %}
 {% set size = size | default(schema.properties.size.default) %}
-{% set align = align in alignments ? align : schema.properties.align.default %}
+{% set align = align in alignments ? align : undefined %}
 
 {% set prefix = "c-bolt-" %}
 {% set baseClass = prefix ~ type %}
