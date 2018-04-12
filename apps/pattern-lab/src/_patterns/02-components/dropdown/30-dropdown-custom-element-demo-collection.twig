@@ -8,7 +8,7 @@
 
 <h3>Default Dropdown</h3>
 <bolt-dropdown
-  title="Dropdown"
+  title="Toggle Menu"
 >
   {% include "@bolt-components-nav/nav.twig" with {
     "links": [
@@ -178,6 +178,7 @@
   } only %}
 </bolt-dropdown>
 
+<h3>Theme Variations</h3>
 {% for theme in exampleThemes %}
   <div class="t-bolt-{{ theme }} u-bolt-padding-small u-bolt-height-xxlarge">
     <bolt-dropdown
