@@ -4,9 +4,9 @@ title: typography
 
 Effective typography helps to create visual balance on a page—essential for long-format text and marketing copy. By staying consistent with fonts, sizing and spacing, we can create variety in our layouts while still maintaining a sense of context and consistency.
 
-Pega uses [Open Sans](https://fonts.google.com/specimen/Open+Sans?selection.family=Open+Sans) as the foundation type family for all Digital products. Its simple, legible structure helps optimize for readability across the web, and a variety of weights and characters helps provide visual interest while speaking to a global audience.
-
 ## Best Practices
+
+Pega uses [Open Sans](https://fonts.google.com/specimen/Open+Sans?selection.family=Open+Sans) as the foundation type family for all Digital products. Its simple, legible structure helps optimize for readability across the web, and a variety of weights and characters helps provide visual interest while speaking to a global audience. Here are some additional guidelines:
 
 ### Create a clear typographical hierarchy
 
