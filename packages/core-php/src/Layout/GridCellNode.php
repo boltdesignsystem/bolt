@@ -89,8 +89,12 @@ class GridCellNode extends \Twig_Node {
       $GLOBALS['cell_props'][ $GLOBALS['cell_counter'] ] = array();
     }
 
-    // Run the captured attributes through D8's createAttribute function, prior to rendering
-    $attributes = createAttribute($merged_attributes);
+    // Run the captured attributes through the functional equivalent of D8's
+    // createAttribute function, prior to rendering.
+    /**
+     * @see \Drupal\Core\Template\TwigExtension::createAttribute()
+     */
+    $attributes = new Attribute($merged_attributes);
 
     if (class_exists('\PatternLab\Template')) {
       $stringLoader = \PatternLab\Template::getStringLoader();
