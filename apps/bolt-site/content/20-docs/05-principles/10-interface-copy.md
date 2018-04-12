@@ -25,7 +25,7 @@ Our goal is to empower the people using our Digital experiences to make smart de
 While our voice stays consistent across channels, our tone changes depending on the user’s situational and emotional context. Some examples: 
 
 - **System Errors**: Focus on a helpful, informative tone that tells the user what just happened, and how to fix the issue, e.g. “We couldn’t find that email/password combination. Please try again.”
-- **Promotional copy**: ****Use a concise, confident tone that conveys expertise, e.g. "Want to put your competitors out of commission? Never give them a chance to steal your customers.“
+- **Promotional copy**: Use a concise, confident tone that conveys expertise, e.g. "Want to put your competitors out of commission? Never give them a chance to steal your customers.“
 - **Technical content:** Focus on clearly walking someone through the major concepts, with screenshots as applicable, e.g. “Using Pega Co-Browse, a remote viewer can connect to a presenter’s browser instantly and show them sections of the website by highlighting different elements on the page.” 
 # Style guidelines
 
@@ -54,7 +54,7 @@ Reserve these for the few key words that you really want to emphasize. If overus
 - Bold or italics are preferable, especially when writing for digital. All caps signifies “shouting” and underlines are easily mistaken for hyperlinks.
 - Don’t write full sentences in all caps, or use all caps near an abbreviation.
   - **Incorrect**: *REAL CRM solutions work FASTER.*
-  - **Correct**: *Real CRM solutions work faster. OR Real CRM solutions work faster.*
+  - **Correct**: *Real CRM solutions work faster.*
 ## Ampersands (“&”)
 
 Use an ampersand when it’s part of a brand name (*Procter & Gamble*) or occasionally to save space in a headline or email subject line: *Learn about AI & robotics*. Do not use ampersands in regular text. Avoid using both an ampersand and the word “and” in the same headline or group of headlines.
