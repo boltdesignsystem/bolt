@@ -21,12 +21,12 @@ Pega’s brand personality is built on three characteristics: Passion, Power and
 Our goal is to empower the people using our Digital experiences to make smart decisions and solve their problem—whether it’s understanding which Pega product meets their use case, or troubleshooting an implementation challenge.
 
 ## Tone
-
 While our voice stays consistent across channels, our tone changes depending on the user’s situational and emotional context. Some examples: 
 
 - **System Errors**: Focus on a helpful, informative tone that tells the user what just happened, and how to fix the issue, e.g. “We couldn’t find that email/password combination. Please try again.”
 - **Promotional copy**: Use a concise, confident tone that conveys expertise, e.g. "Want to put your competitors out of commission? Never give them a chance to steal your customers.“
 - **Technical content:** Focus on clearly walking someone through the major concepts, with screenshots as applicable, e.g. “Using Pega Co-Browse, a remote viewer can connect to a presenter’s browser instantly and show them sections of the website by highlighting different elements on the page.” 
+
 # Style guidelines
 
 Below are some highlights from our style guide to use when writing copy for Digital interfaces. For an exhaustive list of style guidelines, Pega employees can download the *Pega Writing Style Guide* on Pega Brand Hub.
@@ -38,6 +38,7 @@ For the clearest and most powerful writing, use abbreviations and acronyms as mi
 
 - No need to spell out common, non-technical terms like CEO, RSVP, etc.
 - If an abbreviation uses all capital letters, don’t use periods in between the letters.
+
 ## Active vs. passive voice
 
 Write in the active voice, not the passive voice – it’s more concise, more direct, and easier to understand (and translate).
@@ -55,6 +56,7 @@ Reserve these for the few key words that you really want to emphasize. If overus
 - Don’t write full sentences in all caps, or use all caps near an abbreviation.
   - **Incorrect**: *REAL CRM solutions work FASTER.*
   - **Correct**: *Real CRM solutions work faster.*
+
 ## Ampersands (“&”)
 
 Use an ampersand when it’s part of a brand name (*Procter & Gamble*) or occasionally to save space in a headline or email subject line: *Learn about AI & robotics*. Do not use ampersands in regular text. Avoid using both an ampersand and the word “and” in the same headline or group of headlines.
