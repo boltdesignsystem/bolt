@@ -1,5 +1,7 @@
 {% set schema = get_data('@bolt-components-dropdown/dropdown.schema.yml') %}
 {% set code %}{% verbatim %}
+Via Twig
+
 {% embed "@bolt-components-dropdown/dropdown.twig" with {
   title: "Toggle Menu",
   collapse: true
@@ -8,25 +10,46 @@
     {% include "@bolt-components-nav/nav.twig" with {
       "links": [
         {
-          "text": "Features",
-          "url": "#p-f3ff267c-5fb8-4e2f-8682-52663b5437df"
-        },
-        {
-          "text": "Resources",
-          "url": "#p-12de80d7-1c57-4bef-a173-07d898f8e356"
-        },
-        {
-          "text": "Industry Apps",
-          "url": "#p-468a47c1-fe65-46d4-b8c7-9dbfe8404ee9"
-        },
-        {
-          "text": "Customer Success",
-          "url": "#p-6618d817-126e-46d1-955a"
-        }
+        "text": "Link 1 Text",
+        "url": "#link-1-url"
+      },
+      {
+        "text": "Link 2 Text",
+        "url": "#link-2-url"
+      },
+      {
+        "text": "Link 3 Text",
+        "url": "#link-3-url"
+      }
       ]
     } %}
   {% endblock %}
 {% endembed %}
+
+
+Via Web Component and Twig
+
+<h3>Collapse and Center</h3>
+<bolt-dropdown
+  title="Custom Element w/ Collapse & Center"
+>
+  {% include "@bolt-components-nav/nav.twig" with {
+    "links": [
+      {
+        "text": "Link 1 Text",
+        "url": "#link-1-url"
+      },
+      {
+        "text": "Link 2 Text",
+        "url": "#link-2-url"
+      },
+      {
+        "text": "Link 3 Text",
+        "url": "#link-3-url"
+      }
+    ]
+  } only %}
+</bolt-dropdown>
 {% endverbatim %}
 {% endset %}
 
