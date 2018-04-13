@@ -17,7 +17,6 @@
 {% set style = style | default(schema.properties.style.default) %}
 {% set type = type in types ? type : "text" %}
 {% set size = size | default(schema.properties.size.default) %}
-{% set align = align in alignments ? align : schema.properties.align.default %}
 
 {% set prefix = "c-bolt-" %}
 {% set baseClass = prefix ~ type %}
@@ -32,7 +31,7 @@
   baseClass,
   quoted ? baseClass ~ "--" ~ "quoted" : "",
   weight in weights ? baseClass ~ "--" ~ weight : "",
-  align and align != null ? baseClass ~ "--" ~ align : "",
+  align in alignments and align != null ? baseClass ~ "--" ~ align : "",
   style in styles and type == "text" ? baseClass ~ "--" ~ style : "",
   size in sizes and type != "eyebrow" ? baseClass ~ "--" ~ size : "",
   transform in transformProps and transform != "" ? baseClass ~ "--" ~ transform : "",
