@@ -21,7 +21,7 @@ try {
     params = params || {
       bubbles: false,
       cancelable: false,
-      detail: undefined
+      detail: undefined,
     };
 
     evt = document.createEvent("CustomEvent");
@@ -33,7 +33,7 @@ try {
         Object.defineProperty(this, 'defaultPrevented', {
           get: function () {
             return true;
-          }
+          },
         });
       } catch(e) {
         this.defaultPrevented = true;
