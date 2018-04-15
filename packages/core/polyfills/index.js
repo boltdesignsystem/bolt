@@ -32,7 +32,7 @@ export const polyfillLoader = new Promise((resolve) => {
   // Used in: IE 11
   if (polyfills.includes('lite')) {
     import('es6-promise').polyfill();
-    
+
     Promise.all([
       import('core-js/modules/es6.array.iterator'),
       import('core-js/modules/es6.symbol'),
@@ -42,7 +42,7 @@ export const polyfillLoader = new Promise((resolve) => {
       import('core-js/modules/es6.array.for-each'),
       import('core-js/modules/es6.object.assign'),
       import('core-js/library/es6/reflect'),
-      import('document-register-element')
+      import('document-register-element'),
     ]).then(() => { resolve() });
   }
 
@@ -64,7 +64,7 @@ export const polyfillLoader = new Promise((resolve) => {
       import('@webcomponents/shadycss/entrypoints/scoping-shim.js'),
     ]).then(() => { resolve() });
   }
-  
+
   // Based on https://github.com/webcomponents/webcomponentsjs/blob/master/entrypoints/webcomponents-hi-ce-index.js
   // Used in: Safari 10, Firefox once SD is shipped
   else if (polyfills.includes('ce')){
@@ -75,7 +75,7 @@ export const polyfillLoader = new Promise((resolve) => {
 
     import('document-register-element').then(() => { resolve() });
   }
-  
+
   // Used in Modern browsers supporting ES6. Required since we're transpiling ES6 classes through Babel
   else {
     import('@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js').then(() => { resolve() });

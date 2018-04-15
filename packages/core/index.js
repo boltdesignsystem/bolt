@@ -27,4 +27,4 @@ export { spacingSizes } from './data/spacing-sizes';
 // Export Bolt data shared
 
 // Export polyfill loader
-export { polyfillLoader } from './polyfills/polyfill-loader';
+export { polyfillLoader } from './polyfills';
