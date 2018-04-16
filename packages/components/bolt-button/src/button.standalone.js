@@ -9,12 +9,12 @@ import {
   declarativeClickHandler,
   sanitizeBoltClasses,
 } from '@bolt/core';
-
 import styles from './button.scss';
 // @todo Salem, since this imports something that imports '@bolt/core', please make sure this doesn't add a huge amount in the wrong place - Evan
 import visuallyhiddenUtils from '@bolt/global/styles/07-utilities/_utilities-visuallyhidden.scss';
 
 
+console.log("hasNativeShadowDomSupport", hasNativeShadowDomSupport);
 @define
 export class ReplaceWithChildren extends withPreact(withComponent()) {
   static is = 'replace-with-children';
@@ -28,6 +28,7 @@ export class ReplaceWithChildren extends withPreact(withComponent()) {
     if (hasNativeShadowDomSupport){
       this.replaceWith(...this.childNodes);
     } else {
+      console.log("Does not have Shadow Dom Support");
       this.className = '';
     }
   }
