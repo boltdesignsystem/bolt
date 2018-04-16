@@ -53,7 +53,7 @@ async function init() {
     }
     console.log(deployOutput.stdout, deployOutput.stderr);
     const deployedUrl = deployOutput.stdout.trim();
-    const deployedDomain = deployedUrl.replace('https://');
+    const deployedDomain = deployedUrl.replace('https://', '');
 
     if (!deployedUrl) {
       // @todo determine if this is even needed since we have `deployedUrl` from deploy command
