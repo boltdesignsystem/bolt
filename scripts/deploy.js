@@ -102,13 +102,11 @@ async function init() {
     // console.log('aliasResponse: ');
     // console.log(aliasResponse);
 
-    if (TRAVIS_PULL_REQUEST && TRAVIS_PULL_REQUEST == 'false') {
-      console.log('Not a Pull Request, so will not try to comment on PR.');
-      process.exit(0);
-    }
+    if (TRAVIS_PULL_REQUEST && TRAVIS_PULL_REQUEST == 'true') {
+      console.log('This is a Pull Request build, so will not try to comment on PR.');
 
-    // The GitHub comment template - Can handle HTML
-    const githubCommentText = `
+      // The GitHub comment template - Can handle HTML
+      const githubCommentText = `
 :zap: PR built on Travis and deployed a now preview here: 
 
 ${deployedUrl}
@@ -120,21 +118,24 @@ ${deployedUrl}
 
 </details>
 `.trim();
-    // end GitHub comment template
+      // end GitHub comment template
 
-    const githubCommentEndpoint = `https://api.github.com/repos/${TRAVIS_REPO_SLUG}/issues/${TRAVIS_PULL_REQUEST}/comments`;
+      const githubCommentEndpoint = `https://api.github.com/repos/${TRAVIS_REPO_SLUG}/issues/${TRAVIS_PULL_REQUEST}/comments`;
 
-    const response = await fetch(githubCommentEndpoint, {
-      method: 'POST',
-      body: JSON.stringify({
-        body: githubCommentText,
-      }),
-      headers: {
-        Authorization: `Bearer ${GITHUB_TOKEN}`,
-      },
-    }).then(res => res.json());
-    console.log(response);
-    console.log('GitHub comment posted');
+      const response = await fetch(githubCommentEndpoint, {
+        method: 'POST',
+        body: JSON.stringify({
+          body: githubCommentText,
+        }),
+        headers: {
+          Authorization: `Bearer ${GITHUB_TOKEN}`,
+        },
+      }).then(res => res.json());
+      console.log(response);
+      console.log('GitHub comment posted');
+    } else {
+      console.log('This is not a Pull Request build, so will not try to comment on PR.');
+    }
     // @todo Errors should be passed to `catch`
   } catch (error) {
     console.log('Error');
