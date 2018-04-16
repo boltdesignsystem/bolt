@@ -36,7 +36,10 @@ script:
 #- bash ./travis.sh
 - npm run build:bolt-site
 - npm run build:pl
-- cd apps/pattern-lab && php core/console --generate
+- ls www/pattern-lab > before.txt
+- cd apps/pattern-lab && php core/console --generate && cd -
+- ls www/pattern-lab > after.txt
+- diff before.txt after.txt
 - npm run deploy
 
 after_success: # Warning: this fires after a build is already marked as successful so failing this will not fail the build.
