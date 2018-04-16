@@ -5,4 +5,4 @@ export const IS_PROD = process.env.NODE_ENV === 'production';
 
 const { attachShadow } = HTMLElement.prototype;
 
-export const hasNativeShadowDomSupport = (typeof window.ShadyDOM !== 'undefined') || (attachShadow && attachShadow.toString().indexOf('native code') > -1);
+export const hasNativeShadowDomSupport = Boolean((typeof window.ShadyDOM !== 'undefined') || (attachShadow && attachShadow.toString().indexOf('native code') > -1));
