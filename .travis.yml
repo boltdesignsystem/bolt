@@ -31,13 +31,25 @@ before_script:
 - npm run lint
 - npm test
 
+# Can't do deploy on `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
 script:
-- travis_wait npm run build && npm run deploy && ./scripts/update-read-only-git-repos.sh
-#- travis_wait npm run build && npm run deploy # only run deploy if build is successful. Can't do `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
+- travis_wait time npm run build && npm run deploy && ./scripts/update-read-only-git-repos.sh
+
+after_success: # Warning: this fires after a build is already marked as successful so failing this will not fail the build.
+  - git status # Just want to check
 
 cache:
   apt: true
   yarn: true
+  directories:
+    - node_modules
+    - $HOME/.composer
+    - apps/drupal-lab/vendor
+    - apps/drupal-lab/web/core
+    - apps/pattern-lab/vendor
+    - apps/bolt-site/vendor
+    - apps/pw-site/vendor
+    - packages/core-php/vendor
 
 notifications:
   email:
@@ -45,3 +57,4 @@ notifications:
     on_failure: always
   slack:
     secure: cNto+gWAoK1JM9jBNG4i4rMSybv3twMbqlFSCohQFBDMwKFMdlyWqFDX6iYKtHxWEDzrZyRz3qiJ8/S44mgjeKJ/xHbHDtPchp/KL2P1htipvwD2EZXobcBEGl83v2rmtFO1WNJUPB3RIJE2yt1wJsX7NIXpDw82hePmaIvNJmtbLpK/J5uaFqGNHIsctmULgVmGSNSTyK4nYxxjNNLd0EvO37Y6VN8FhsKNu2NHMKeeQxinEvETDUh8XuqXZYNWE3PBvVa4OiDhgnr5K27jsnWX+wEmqg0xY+CMf7mUSTqVN61fA7LnHyM0qcGGmB6YTv4QYLMwPydp+nsjDcm3St9D+KOTsQ4ExOaEAL/6EnAEpl8GtxST+ytdqswhCC4yMCO61Hy+M5AoXgDSGrrXHgZakDMAcEVcJdH38791hRxcuM3ldVmHAlAWFdgRLG5rRMVh3qoXz7jbraoTdjyKMegQIQdKR2SX7O9Dv0EEtLz4lTFN2RENvAjLggUPPU+ESoUHmSbwmPGnt7jy3ra2AI3nnYpfn/0e6Op/A3z7HLbdm3XyuNWoTPhy1mc4Adca+HosJ37UPv7nDRIGds1sKYAeWq94+rEk+/6IQ/oRIDRhSYsQbLLWnU6DH4o7iOj7D+X/ngjqmF75nW2s5+7rtdBHFvNzOJalCKHiDTMfdlQ=
+
