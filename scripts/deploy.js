@@ -111,7 +111,7 @@ async function init() {
     const githubCommentText = `
 :zap: PR built on Travis and deployed a now preview here: 
 
-https://${deployedUrl}
+${deployedUrl}
 
 <details>
 
