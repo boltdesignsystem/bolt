@@ -396,7 +396,9 @@ $bolt-input-transition: $bolt-transition;
 .c-bolt-custom-input.is-active {
   & ~ .c-bolt-input-icons {
     color: $bolt-input-icon-color--active;
-    --bolt-theme-icon: $bolt-input-icon-color--active;
+    @include bolt-css-vars((
+      --bolt-theme-icon: $bolt-input-icon-color--active,
+    ));
   }
 }
 
@@ -418,7 +420,9 @@ $bolt-input-transition: $bolt-transition;
 .c-bolt-input-icon--invalid {
   display: none; // The invalid icon will always be present and simply un-hidden when a field becomes invalid
   color: $bolt-input-icon-color--invalid;
-  --bolt-theme-icon: $bolt-input-icon-color--invalid;
+  @include bolt-css-vars((
+    --bolt-theme-icon: $bolt-input-icon-color--invalid,
+  ));
 }
 
 .c-bolt-input.is-invalid ~ .c-bolt-input-icons,

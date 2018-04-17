@@ -207,9 +207,10 @@ $bolt-magnifier-size: 350px;
 
 .c-bolt-image-zoom__overlay-icon {
   @include bolt-shadow('level-60');
-
-  --bolt-theme-icon-background-opacity: 0.5;
-  --bolt-theme-icon-background-color: bolt-color(black);
+  @include bolt-css-vars((
+    --bolt-theme-icon-background-opacity: 0.5,
+    --bolt-theme-icon-background-color: bolt-color(black),
+  ));
 
   position: absolute;
   top: 50%;
