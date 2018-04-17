@@ -36,6 +36,10 @@ async function updateConfig(options, programInstance) {
       ? config.openServerAtStart
       : options.open;
 
+    config.webpackStats = typeof options.webpackStats === 'undefined'
+      ? config.webpackStats
+      : options.webpackStats;
+
     config.webpackDevServer = typeof options.webpackDevServer === 'undefined'
       ? config.webpackDevServer
       : options.webpackDevServer;
@@ -74,8 +78,7 @@ log.intro();
 program
   .command('build')
   .description('Build it')
-  .option('-W, --watch', 'Watch and rebuild')
-  .option('-P, --parallel', 'Run build in parallel instead of a series. Faster, but some assets might not be ready in time.')
+  .option('--webpack-stats', configSchema.properties.webpackStats.description)
   .option('-Q, --quick', configSchema.properties.quick.description)
   .action(async (options) => {
     log.info(`Starting build (${options.parallel ? 'parallel' : 'serial'})`);
@@ -138,6 +141,7 @@ program
   .command('webpack')
   .alias('wp')
   .description('WebPack Compile')
+  .option('--webpack-stats', configSchema.properties.webpackStats.description)
   .action(async (options) => {
     await updateConfig(options, program);
     try {
