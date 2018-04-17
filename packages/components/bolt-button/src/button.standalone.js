@@ -146,17 +146,17 @@ class BoltButton extends BoltComponent() {
     let buttonElement;
 
     if (childElementIndex !== null){
-      buttonElement = this.hyper.wire(this.props) `
+      buttonElement = this.hyper.wire(this) `
         ${this.slot('default')}
       `;
     } else if (childElementIndex === null && hasUrl) {
-      buttonElement = this.hyper.wire(this.props) `
+      buttonElement = this.hyper.wire(this) `
         <a href="${this.props.url}" class="${classes}" target="${urlTarget}">
           ${this.slot('default')}
         </a>
       `;
     } else {
-      buttonElement = this.hyper.wire(this.props) `
+      buttonElement = this.hyper.wire(this) `
         <button class="${classes}">
           ${this.slot('default')}
         </button>
