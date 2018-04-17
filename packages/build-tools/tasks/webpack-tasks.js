@@ -153,7 +153,7 @@ function server() {
   return new Promise((resolve, reject) => {
 
     // Add HMR scripts required to entrypoint
-    if (webpackConfig.devServer.hot) {
+    if (webpackConfig.devServer.hot && !config.prod) {
       webpackConfig.entry['bolt-global'].unshift('webpack-dev-server/client?http://localhost:8080/', 'webpack/hot/dev-server');
     }
 
