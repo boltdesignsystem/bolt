@@ -74,7 +74,7 @@ export class BoltBand extends BoltComponent() {
     this.addEventListener('videoExpandedHeightSet', this._adjustExpandedHeightToMatchVideo);
   }
 
-  disconnectedCallback() {
+  disconnecting() {
     this.removeEventListener('videoExpandedHeightSet', this._adjustExpandedHeightToMatchVideo);
   }
 
