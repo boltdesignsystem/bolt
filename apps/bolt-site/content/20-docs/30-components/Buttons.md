@@ -42,10 +42,12 @@ When two buttons exist in the same band, the second button is styled as a second
 
 <figure>
 <img src="../../../images/band_light_dual-button.png" />
-<figcaption>When two buttons are together in the same band, the secondary button is set in a different color to focus attention on the primary action.</figcaption>
+<figcaption>In Light and X-Light bands, the buttons default to Indigo and White.</figcaption>
 </figure>
+
+When creating a layout that includes a number of calls to action, such as a trio of cards, use a text link instead to minimize cognitive overload.
 
 <figure>
 <img src="../../../images/band_xlight_three-cards.png" />
-<figcaption>When creating a layout that includes a number of calls to action, such as a trio of cards, use a text link instead to minimize cognitive overload.</figcaption>
+<figcaption>Multiple calls to action require a more subtle approach.</figcaption>
 </figure>
