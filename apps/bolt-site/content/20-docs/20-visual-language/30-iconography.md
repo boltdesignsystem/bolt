@@ -1,5 +1,5 @@
 ---
-title: iconography
+title: Iconography
 ---
 
 Iconography uses images and symbols to represent a concept visually. In a very small space, icons must convey meaning that helps people clearly understand functionality, status, or category. In Bolt, we use icons to provide clarity and reduce [cognitive load](https://en.wikipedia.org/wiki/Cognitive_load) on users.
