@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.headline.field_align
     - field.field.paragraph.headline.field_headline
+    - field.field.paragraph.headline.field_headline_size
     - field.field.paragraph.headline.field_icon_extend
     - field.field.paragraph.headline.field_quoted
     - field.field.paragraph.headline.field_style
@@ -21,7 +22,7 @@ bundle: headline
 mode: default
 content:
   field_align:
-    weight: 4
+    weight: 5
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -33,6 +34,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_headline_size:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   field_icon_extend:
     type: entity_reference_paragraphs
@@ -54,19 +61,19 @@ content:
     type: boolean_checkbox
     region: content
   field_style:
-    weight: 2
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
-  field_tags:
     weight: 3
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
+  field_tags:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   field_transform:
-    weight: 1
+    weight: 2
     settings: {  }
     third_party_settings: {  }
     type: options_select

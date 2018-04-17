@@ -42,6 +42,7 @@
 {% set headline = {text: paragraph.field_headline.value} %}
 
 {% set fields = [
+    {size: paragraph.field_headline_size.value},
     {transform: paragraph.field_transform.value},
     {style: paragraph.field_style.value},
     {tag: paragraph.field_tags.value},
