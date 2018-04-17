@@ -16,6 +16,14 @@ async function init() {
       TRAVIS_REPO_SLUG,
     } = process.env;
 
+    console.log({
+      TRAVIS,
+      TRAVIS_BRANCH,
+      TRAVIS_PULL_REQUEST_BRANCH,
+      TRAVIS_PULL_REQUEST,
+      TRAVIS_REPO_SLUG,
+    });
+
     let branchName = 'detached-HEAD';
     try {
       branchName = spawnSync('git', ['symbolic-ref', 'HEAD'], {
