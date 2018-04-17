@@ -26,8 +26,26 @@ For complete examples of our buttons in action along with schema and API informa
 
 ### Buttons in bands
 
-When placed in a band, buttons default to specific colors depending on the background of the band. 
+When placed in a band, buttons default to specific colors depending on the background of the band.
 
+<figure>
+![](../../../images/band_dark_single-button.png)
+<figcaption>In Dark and X-Dark bands, the primary button is in gold.</figcaption>
+</figure>
 
+<figure>
+![](../../../images/band_xlight_one-button.png)
+<figcaption>In Light and X-Light bands, the primary button is indigo.</figcaption>
+</figure>
 
 When two buttons exist in the same band, the second button is styled as a secondary action within a button group. 
+
+<figure>
+![](../../../images/band_light_dual-button.png)
+<figcaption>When two buttons are together in the same band, the secondary button is set in a different color to focus attention on the primary action.</figcaption>
+</figure>
+
+<figure>
+![](../../../images/band_xlight_three-cards.png)
+<figcaption>When creating a layout that includes a number of calls to action, such as a trio of cards, use a text link instead to minimize cognitive overload.</figcaption>
+</figure>
