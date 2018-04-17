@@ -1,0 +1,26 @@
+$schema: http://json-schema.org/draft-04/schema#
+title: 'Code Snippet'
+description: 'Code snippet shows code text in its own styles.'
+type: object
+required:
+  - display
+  - lang
+properties:
+  display:
+    type: string
+    title: 'Code display'
+    description: 'Is this snippet a line of code or a block of code?'
+    default: block
+    enum:
+      - block
+      - inline
+  lang:
+    type: string
+    title: 'Language'
+    description: 'Language of the code text.'
+    enum:
+      - css
+      - html
+      - js
+      - scss
+      - twig

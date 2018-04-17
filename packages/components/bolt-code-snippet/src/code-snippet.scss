@@ -1,0 +1,71 @@
+@import '@bolt/core';
+
+/* ------------------------------------ *\
+   Bolt Code Snippet
+\* ------------------------------------ */
+
+$bolt-code-snippet-border-radius: $bolt-border-radius;
+$bolt-code-snippet-text-color: var(--bolt-theme-text, inherit);
+$bolt-code-snippet-background-color: rgba(bolt-color(gray), 0.1);
+
+// Custom element default styles
+bolt-code-snippet {
+  .c-bolt-code-snippet {
+    @include bolt-margin-top(0);
+    @include bolt-margin-right(0);
+    @include bolt-margin-bottom(medium);
+    @include bolt-margin-left(0);
+
+    display: block;
+  }
+
+  &:last-child {
+    .c-bolt-code-snippet {
+      @include bolt-margin-bottom(0);
+    }
+  }
+}
+
+.c-bolt-code-snippet {
+  @include bolt-padding(small, stretched);
+  @include bolt-horizontal-scroll;
+
+  color: inherit;
+  color: $bolt-code-snippet-text-color;
+  text-align: left;
+  white-space: pre-wrap;
+  background-color: $bolt-code-snippet-background-color;
+
+  // Override highlightjs default styling
+  .hljs {
+    @include bolt-padding(0);
+    background-color: transparent;
+  }
+}
+
+.c-bolt-code-snippet__code {
+  @include bolt-margin(0);
+  @include bolt-font-family(code);
+  @include bolt-font-weight(regular);
+  @include bolt-font-size(small);
+
+  color: inherit;
+  letter-spacing: 0.05rem;
+  white-space: inherit;
+}
+
+.c-bolt-code-snippet__code--block {
+  @include bolt-padding(0);
+
+  display: block;
+  background-color: transparent;
+}
+
+.c-bolt-code-snippet__code--inline {
+  @include bolt-padding(xxsmall 0.25rem xxsmall 0.3rem); // [Mai] 0.25rem on the right offsets the 0.05rem letter-spacing.
+
+  display: inline;
+  color: var(--bolt-theme-text, inherit);
+  border-radius: $bolt-border-radius;
+  background-color: rgba(bolt-color(gray), 0.1);
+}

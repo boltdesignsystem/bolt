@@ -140,26 +140,6 @@
   }
 }
 
-* + pre {
-  @include bolt-margin-top(small);
-}
-
-pre {
-  @include bolt-font-family(code);
-  @include bolt-font-size(small);
-  @include bolt-padding(small);
-  white-space: pre-wrap;
-  background-color: rgba(bolt-color(black), 0.05);
-  border-radius: 4px;
-
-
-  // Override highlightjs default styling
-  .hljs {
-    @include bolt-padding(0);
-    background-color: transparent;
-  }
-}
-
 
 
 .c-bolt-docs__page-nav__link {
@@ -188,10 +168,6 @@ pre {
 
   &.edit-this-readme {
     border: 1px dotted var(--bolt-theme-primary);
-  }
-
-  pre:last-child {
-    margin-bottom: 0;
   }
 }
 

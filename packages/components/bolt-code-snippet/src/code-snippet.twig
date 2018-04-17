@@ -1,0 +1,38 @@
+{% set schema = bolt.data.components['@bolt-components-code-snippet'].schema %}
+
+{% set prefix = "c-bolt-" %}
+{% set componentName = "code-snippet" %}
+{% set baseClass = prefix ~ componentName %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set displayOptions = schema.properties.display.enum %}
+{% set display = display in displayOptions ? display : schema.properties.display.default %}
+
+{% set langOptions = schema.properties.lang.enum %}
+{% set lang = lang in langOptions ? lang : schema.properties.lang.default %}
+
+{% set classes = [
+  baseClass
+] %}
+
+
+
+
+<bolt-{{ componentName }}
+  {% if display %} display="{{ display }}" {% endif %}
+  {% if lang %} lang="{{ lang }}" {% endif %}
+  bolt-component
+>
+  {% if display == "block" %}
+    <pre {{ attributes.addClass(classes) }}><code class="{{ "#{baseClass}__code #{baseClass}__code--#{display}" }}">{{ content }}</code></pre>
+  {% elseif display == "inline" %}
+    <code class="{{ "#{baseClass}__code #{baseClass}__code--#{display}" }}">{{ content }}</code>
+  {% endif %}
+</bolt-{{ componentName }}>
+
+
+
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-code-snippet/code-snippet.schema.yml', _self) | raw }}
+{% endif %}

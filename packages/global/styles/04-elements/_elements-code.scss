@@ -2,27 +2,44 @@
   ELEMENTS - CODE
 \* ------------------------------------ */
 
+$bolt-code-border-radius: $bolt-border-radius;
+
+
 pre {
-  @include bolt-padding(small);
+  @include bolt-padding(small, stretched);
   @include bolt-horizontal-scroll;
+
+  color: inherit;
+  color: var(--bolt-theme-text, inherit);
   text-align: left;
   white-space: pre-wrap;
+  background-color: rgba(bolt-color(gray), 0.1);
+
+  // Override highlightjs default styling
+  .hljs {
+    @include bolt-padding(0);
+    background-color: transparent;
+  }
 }
 
 code {
+  @include bolt-margin(0);
+  @include bolt-padding(xxsmall 0.25rem xxsmall 0.3rem); // [Mai] 0.25rem on the right offsets the 0.05rem letter-spacing.
   @include bolt-font-family(code);
-  // @todo review the exclusion of the next 2 lines with Salem ~ Evan
-  //@include bolt-font-weight(semibold); // This is an edge case to use semibold.
-  //@include bolt-font-size(xsmall);
+  @include bolt-font-weight(regular);
+  @include bolt-font-size(small);
 
-  background-color: transparentize(bolt-color(gray, light), 0.2);
-  padding: 0 3px;
-  border-radius: 4px;
   display: inline-block;
+  color: inherit;
+  color: var(--bolt-theme-text, inherit);
   letter-spacing: 0.05rem;
   white-space: inherit;
+  border-radius: $bolt-border-radius;
+  background-color: rgba(bolt-color(gray), 0.1);
+
   pre & {
-    background-color: transparent;
     width: 100%;
+    color: inherit;
+    background-color: transparent;
   }
 }

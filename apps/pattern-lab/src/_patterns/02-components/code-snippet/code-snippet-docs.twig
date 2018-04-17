@@ -1,0 +1,12 @@
+{% set schema = get_data('@bolt-components-code-snippet/code-snippet.schema.yml') %}
+{% set code %}
+{% verbatim %}{% include "@bolt-components-code-snippet/code-snippet.twig" with {
+  "content": "display: block;"
+} only %}{% endverbatim %}
+{% endset %}
+
+{% include '@utils/docs.twig' with {
+  schema: schema,
+  code: code,
+  readmeFile: '@bolt-components-code-snippet/README.md'
+} only %}
