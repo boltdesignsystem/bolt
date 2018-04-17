@@ -28,6 +28,11 @@
     srcDir:
       type: string
       title: Source Directory
+    webpackStats:
+      type: boolean
+      title: Write WebPack stats file
+      description: Creates a [WebPack Stats Data file](https://webpack.js.org/api/stats/) called `webpack-stats.json` inside `buildDir`.
+      default: false
     publicPath:
       type: string
       title: publicPath Directory
