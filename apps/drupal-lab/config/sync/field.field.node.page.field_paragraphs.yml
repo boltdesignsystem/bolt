@@ -7,6 +7,7 @@ dependencies:
     - node.type.page
     - paragraphs.paragraphs_type.eyebrow
     - paragraphs.paragraphs_type.headline
+    - paragraphs.paragraphs_type.lead
     - paragraphs.paragraphs_type.subheadline
   module:
     - entity_reference_revisions
@@ -28,6 +29,7 @@ settings:
       headline: headline
       subheadline: subheadline
       eyebrow: eyebrow
+      lead: lead
     target_bundles_drag_drop:
       headline:
         enabled: true
@@ -41,4 +43,7 @@ settings:
       icon:
         weight: 6
         enabled: false
+      lead:
+        enabled: true
+        weight: 9
 field_type: entity_reference_revisions
