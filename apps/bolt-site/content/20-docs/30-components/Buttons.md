@@ -41,11 +41,11 @@ When placed in a band, buttons default to specific colors depending on the backg
 When two buttons exist in the same band, the second button is styled as a secondary action within a button group. 
 
 <figure>
-<img src="../../../images/band_light_dual-button.png)" />
+<img src="../../../images/band_light_dual-button.png" />
 <figcaption>When two buttons are together in the same band, the secondary button is set in a different color to focus attention on the primary action.</figcaption>
 </figure>
 
 <figure>
-<img src="../../../images/band_xlight_three-cards.png)" />
+<img src="../../../images/band_xlight_three-cards.png" />
 <figcaption>When creating a layout that includes a number of calls to action, such as a trio of cards, use a text link instead to minimize cognitive overload.</figcaption>
 </figure>
