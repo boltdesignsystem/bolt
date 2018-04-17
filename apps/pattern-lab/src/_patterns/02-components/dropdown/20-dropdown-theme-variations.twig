@@ -9,7 +9,7 @@
 {% for theme in exampleThemes %}
   <div class="t-bolt-{{ theme }} u-bolt-padding-small u-bolt-height-xxlarge">
     {% embed "@bolt-components-dropdown/dropdown.twig" with {
-      title: "Toggle Menu",
+      title: "Dropdown Menu, Theme: " ~ theme,
       center: true
     } %}
       {% block content %}
