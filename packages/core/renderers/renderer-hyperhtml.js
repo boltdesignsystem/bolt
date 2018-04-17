@@ -34,11 +34,13 @@ export function BoltComponent(Base = HTMLElement) {
       //   this.innerHTML = JSON.parse(this.dataset.ssrContent);
       // }
       this._checkSlots();
-      super.connectedCallback && super.connectedCallback();
+      this.connecting && this.connecting();
+      this.connected && this.connected();
     }
 
     disconnectedCallback() {
-      super.disconnectedCallback && super.disconnectedCallback();
+      this.disconnecting && this.disconnecting();
+      this.disconnected && this.disconnected();
     }
 
     addStyles(stylesheet) {
