@@ -1,5 +1,5 @@
 // nightwatch.js
-const TRAVIS_JOB_NUMBER = process.env.TRAVIS_JOB_NUMBER || 1;
+const TRAVIS_JOB_NUMBER = process.env.TRAVIS_JOB_NUMBER;
 
 const { SAUCE_ACCESS_KEY, SAUCE_USERNAME } = process.env;
 
@@ -20,8 +20,8 @@ module.exports = {
         waitForConditionTimeout: 10000,
       },
       desiredCapabilities: {
-        // build: `build-${TRAVIS_JOB_NUMBER}`,
-        // 'tunnel-identifier': TRAVIS_JOB_NUMBER,
+        build: `build-${TRAVIS_JOB_NUMBER}`,
+        'tunnel-identifier': TRAVIS_JOB_NUMBER,
         extendedDebugging: true
       },
     },
@@ -42,10 +42,3 @@ module.exports = {
   },
   src_folders: ['tests/e2e'],
 }
-
-
-
-
-
-// me@salemghoweri.com
-// 57887eca-16ea-4509-b5ec-c0fa9cf0ac01
