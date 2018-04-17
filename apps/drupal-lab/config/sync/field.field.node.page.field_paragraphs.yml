@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_paragraphs
     - node.type.page
+    - paragraphs.paragraphs_type.eyebrow
     - paragraphs.paragraphs_type.headline
     - paragraphs.paragraphs_type.subheadline
   module:
@@ -26,6 +27,7 @@ settings:
     target_bundles:
       headline: headline
       subheadline: subheadline
+      eyebrow: eyebrow
     target_bundles_drag_drop:
       headline:
         enabled: true
@@ -33,6 +35,9 @@ settings:
       subheadline:
         enabled: true
         weight: 4
+      eyebrow:
+        enabled: true
+        weight: 5
       icon:
         weight: 6
         enabled: false

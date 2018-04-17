@@ -1,0 +1,21 @@
+uuid: 2cfc1a99-0529-46e4-bcf7-791dfb3a250d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_style
+    - paragraphs.paragraphs_type.eyebrow
+  module:
+    - options
+id: paragraph.eyebrow.field_style
+field_name: field_style
+entity_type: paragraph
+bundle: eyebrow
+label: Style
+description: 'Font styles.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
