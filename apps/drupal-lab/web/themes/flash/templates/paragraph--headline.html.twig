@@ -39,6 +39,78 @@
  */
 #}
 
-{% include '@bolt-components-headline/headline.twig' with {
-  text: paragraph.field_headline.value,
-} only %}
+{% set headline = {text: paragraph.field_headline.value} %}
+
+{% set fields = [
+    {transform: paragraph.field_transform.value},
+    {style: paragraph.field_style.value},
+    {tag: paragraph.field_tags.value},
+    {align: paragraph.field_align.value},
+    {weight: paragraph.field_weight.value},
+    {url: paragraph.field_url.value},
+    {quoted: paragraph.field_quoted.value == '1'},
+  ]
+%}
+
+{% for field in fields %}
+  {% if field|first is not empty %}
+    {% set headline = headline|merge({
+      (field|keys[0]) : (field|first),
+    }) %}
+  {% endif %}
+{% endfor %}
+
+{% if paragraph.field_icon_extend.value is not empty %}
+  {% set iconItem = {} %}
+
+  {% if paragraph.field_icon_extend.entity.field_icon.value is not empty %}
+    {% set iconItem = iconItem|merge({
+      name: paragraph.field_icon_extend.entity.field_icon.value
+    }) %}
+  {% endif %}
+
+  {% if paragraph.field_icon_extend.entity.field_position.value is not empty %}
+    {% set iconItem = iconItem|merge({
+      position: paragraph.field_icon_extend.entity.field_position.value
+    }) %}
+  {% endif %}
+
+  {% if paragraph.field_icon_extend.entity.field_background.value is not empty %}
+    {% set iconItem = iconItem|merge({
+      background: paragraph.field_icon_extend.entity.field_background.value
+    }) %}
+  {% endif %}
+
+  {% if paragraph.field_icon_extend.entity.field_icon_color.value is not empty %}
+    {% set iconItem = iconItem|merge({
+      color: paragraph.field_icon_extend.entity.field_icon_color.value
+    }) %}
+  {% endif %}
+
+  {% if paragraph.field_icon_extend.entity.field_size.value is not empty %}
+    {% set iconItem = iconItem|merge({
+      size: paragraph.field_icon_extend.entity.field_size.value
+    }) %}
+  {% endif %}
+
+  {% if iconItem|length > 0 %}
+    {% set headline = headline|merge({
+      icon: iconItem
+    }) %}
+  {% endif %}
+{% endif %}
+
+<div style="border-bottom: 1px dotted;padding: 50px;">
+  {% include '@bolt-components-headline/headline.twig' with headline only %}
+  {% if headline|length > 1 %}
+    <h4>Attributes</h4>
+    <ul>
+      {% for key, param in headline %}
+        {% if key != 'text' %}
+          {% set val = key != 'icon' ? param : param.name %}
+          <li><strong>{{ key }}:</strong> {{ val }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
