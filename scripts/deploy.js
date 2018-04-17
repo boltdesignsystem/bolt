@@ -110,7 +110,8 @@ async function init() {
     // console.log('aliasResponse: ');
     // console.log(aliasResponse);
 
-    if (TRAVIS_PULL_REQUEST && TRAVIS_PULL_REQUEST == 'true') {
+    // `TRAVIS_PULL_REQUEST` is either `'false'` or a PR number like `'55'`. All strings.
+    if (TRAVIS && TRAVIS_PULL_REQUEST != 'false') {
       console.log('This is a Pull Request build, so will not try to comment on PR.');
 
       // The GitHub comment template - Can handle HTML
