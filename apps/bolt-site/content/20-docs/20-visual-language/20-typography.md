@@ -1,5 +1,5 @@
 ---
-title: typography
+title: Typography
 ---
 
 Effective typography helps to create visual balance on a page—essential for long-format text and marketing copy. By staying consistent with fonts, sizing and spacing, we can create variety in our layouts while still maintaining a sense of context and consistency.
