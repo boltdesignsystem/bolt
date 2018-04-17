@@ -1,19 +1,18 @@
-uuid: f4111cfb-75e1-4868-b493-e320b85ff66b
+uuid: 8634b02d-f354-434f-b15f-126776c6e35f
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_paragraphs
-    - node.type.page
-    - paragraphs.paragraphs_type.headline
+    - field.storage.paragraph.field_icon_subheadline
+    - paragraphs.paragraphs_type.icon
     - paragraphs.paragraphs_type.subheadline
   module:
     - entity_reference_revisions
-id: node.page.field_paragraphs
-field_name: field_paragraphs
-entity_type: node
-bundle: page
-label: Paragraphs
+id: paragraph.subheadline.field_icon_subheadline
+field_name: field_icon_subheadline
+entity_type: paragraph
+bundle: subheadline
+label: Icon
 description: ''
 required: false
 translatable: false
@@ -24,16 +23,15 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      headline: headline
-      subheadline: subheadline
+      icon: icon
     target_bundles_drag_drop:
       headline:
-        enabled: true
-        weight: 2
-      subheadline:
-        enabled: true
         weight: 4
+        enabled: false
       icon:
+        enabled: true
+        weight: 5
+      subheadline:
         weight: 6
         enabled: false
 field_type: entity_reference_revisions

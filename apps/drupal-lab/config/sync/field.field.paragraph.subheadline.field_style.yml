@@ -1,0 +1,21 @@
+uuid: dadfd88f-257c-404b-9340-fed6a5f34f80
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_style
+    - paragraphs.paragraphs_type.subheadline
+  module:
+    - options
+id: paragraph.subheadline.field_style
+field_name: field_style
+entity_type: paragraph
+bundle: subheadline
+label: Style
+description: 'Font styles.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
