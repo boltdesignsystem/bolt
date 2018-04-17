@@ -4,15 +4,19 @@
 bolt-dropdown {
   display: block;
 
-  --bolt-nav-item-opacity: 0;
-  --bolt-nav-item-transform: translateY(bolt-spacing(large) * -1);
-  --bolt-nav-indicator-opacity: 0;
+  @include bolt-css-vars((
+    --bolt-nav-item-opacity: 0,
+    --bolt-nav-item-transform: translateY(bolt-spacing(large) * -1),
+    --bolt-nav-indicator-opacity: 0,
+  ));
 
   &[collapse]{
     @include respond-to(small) {
-      --bolt-nav-item-opacity: 1;
-      --bolt-nav-item-transform: none;
-      --bolt-nav-indicator-opacity: 1;
+      @include bolt-css-vars((
+        --bolt-nav-item-opacity: 1,
+        --bolt-nav-item-transform: none,
+        --bolt-nav-indicator-opacity: 1
+      ));
     }
   }
 }
@@ -551,9 +555,10 @@ bolt-dropdown {
 .c-bolt-dropdown__content--opened .c-bolt-nav__item {
   // opacity: 1;
   // transform: none;
-
-  --bolt-nav-item-opacity: 1;
-  --bolt-nav-item-transform: none;
+  @include bolt-css-vars((
+    --bolt-nav-item-opacity: 1,
+    --bolt-nav-item-transform: none,
+  ));
 }
 
 .c-bolt-dropdown__state:target + .c-bolt-dropdown .c-bolt-nav__indicator,
@@ -564,14 +569,18 @@ bolt-dropdown {
 
 
 .c-bolt-dropdown__content--opened {
-  --bolt-nav-item-opacity: 1;
-  --bolt-nav-item-transform: none;
-  --bolt-nav-indicator-opacity: 1;
+  @include bolt-css-vars((
+    --bolt-nav-item-opacity: 1,
+    --bolt-nav-item-transform: none,
+    --bolt-nav-indicator-opacity: 1,
+  ));
 }
 
 
 .c-bolt-dropdown__content:not(.c-bolt-dropdown__content--open):not(.c-bolt-dropdown__content--opened) {
-  --bolt-nav-indicator-transform: -100px;
+  @include bolt-css-vars((
+    --bolt-nav-indicator-transform: -100px,
+  ));
 }
 
 // .c-bolt-dropdown__content--open:not(.c-bolt-dropdown__content--opened) {
