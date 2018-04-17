@@ -30,43 +30,68 @@ All form elements include a Dark Blue focus state, usually as a 1px outline, alo
 - if you do ask for optional information, mark the labels of optional fields with ‘(optional)’
 - don’t mark mandatory fields with asterisks
 
+For a complete accounting of form elements, see the [Bolt forms examples in Pattern Lab](https://bolt-design-system.com/pattern-lab/?p=viewall-components-form). Below are the most common elements and their considerations.
+
 ### Text inputs
 
 Use a text input for a single line of text that doesn’t require formatting. Input data displays as plain text. Example uses include asking for names or inputting the title of a post.
 
-![A static input contains helper text within the field.](../../../images/forms-text-input-static.png)
-![On focus, the field label moves to the top of the input.](../../../images/forms-text-input-focus.png)
+<figure>
+<img src="../../../images/forms-text-input-static.png" />
+<figcaption>A static input contains helper text within the field.</figcaption>
+</figure>
+
+<figure>
+<img src="../../../images/forms-text-input-focus.png" />
+<figcaption>On focus, the field label moves to the top of the input.</figcaption>
+</figure>
 
 ### Textareas
 
 Use a textarea for longer passages of text, such as blog posts, descriptions or comments. Textareas generally support WYSIWYG editors, in-line images and standard formatting such as bold or italic text.
 
-![Static input](../../../images/forms-textarea-static.png)
-![Focused input](../../../images/forms-textarea-focused.png)
+<figure>
+<img src="../../../images/forms-textarea-static.png" />
+<figcaption>Static input</figcaption>
+</figure>
+
+<figure>
+<img src="../../../images/forms-textarea-focused.png" />
+<figcaption>Focused input</figcaption>
+</figure>
 
 ### Checkboxes and Radio buttons
 
 Use checkboxes and radio buttons to allow people to select from a predetermined list. If more than 7 items exist in the list, use a Select element instead. 
 
-![Checkboxes allow people to select more than one item.](../../../images/forms-checkbox.png)![Use radio buttons when only one item should be selected.](../../../images/forms-radio.png)
+<figure><img src="../../../images/forms-checkbox.png" /><figcaption>Checkboxes allow people to select more than one item.</figcaption></figure><figure><img src="../../../images/forms-radio.png" /><figcaption>Use radio buttons when only one item should be selected.</figcaption></figure>
 
 ### Select Lists
 
 Use a select list whenever you have a list longer than 7 items to choose from. Bolt does not currently support multi-select lists.
 
-![Select lists allow users to pick from a predetermined list of options.](../../../images/forms-select.png)
+<figure>
+<img src="../../../images/forms-select.png" />
+<figcaption>Select lists allow users to pick from a predetermined list of options.</figcaption>
+</figure>
 
 ## Disabled states
 
 When disabled, form fields take on the `xlight` color as their background and lose the ability to interact with it.
 
-![Form fields that are disabled take on a light background.](../../../images/forms_text-disabled.png)
+<figure>
+<img src="../../../images/forms_text-disabled.png" />
+<figcaption>Form fields that are disabled take on a light background.</figcaption>
+</figure>
 
 ## Validation
 
 Effective form validation is critical to helping people identify and recover from errors. As a general best practice, we recommend validating text fields prior to form submission, after the user leaves the field. Error messages should appear inline with the field, to call attention to what needs to be fixed.
 
-![Form errors should be placed next to the field that needs correction. The field takes on a red border and background.](../../../images/forms-text-input-error.png)
+<figure>
+<img src="../../../images/forms-text-input-error.png" />
+<figcaption>Form errors should be placed next to the field that needs correction. The field takes on a red border and background.</figcaption>
+</figure>
 
 When writing error messages and other interface copy, focus on being concise, clear, and grammatically correct. Avoid jargon and abbreviations wherever possible, and never blame the user for the error. 
 
