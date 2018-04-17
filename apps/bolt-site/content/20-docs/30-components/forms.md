@@ -29,12 +29,12 @@ All form elements include a Dark Blue focus state, usually as a 1px outline, alo
 - labels should be associated with form fields using the `for` attribute
 - if you do ask for optional information, mark the labels of optional fields with ‘(optional)’
 - don’t mark mandatory fields with asterisks
+
 ### Text inputs
 
 Use a text input for a single line of text that doesn’t require formatting. Input data displays as plain text. Example uses include asking for names or inputting the title of a post.
 
 ![A static input contains helper text within the field.](../../../images/forms-text-input-static.png)
-
 ![On focus, the field label moves to the top of the input.](../../../images/forms-text-input-focus.png)
 
 ### Textareas
@@ -42,13 +42,11 @@ Use a text input for a single line of text that doesn’t require formatting. In
 Use a textarea for longer passages of text, such as blog posts, descriptions or comments. Textareas generally support WYSIWYG editors, in-line images and standard formatting such as bold or italic text.
 
 ![Static input](../../../images/forms-textarea-static.png)
-
 ![Focused input](../../../images/forms-textarea-focused.png)
 
 ### Checkboxes and Radio buttons
 
 Use checkboxes and radio buttons to allow people to select from a predetermined list. If more than 7 items exist in the list, use a Select element instead. 
-
 
 ![Checkboxes allow people to select more than one item.](../../../images/forms-checkbox.png)![Use radio buttons when only one item should be selected.](../../../images/forms-radio.png)
 
@@ -69,7 +67,6 @@ When disabled, form fields take on the `xlight` color as their background and lo
 Effective form validation is critical to helping people identify and recover from errors. As a general best practice, we recommend validating text fields prior to form submission, after the user leaves the field. Error messages should appear inline with the field, to call attention to what needs to be fixed.
 
 ![Form errors should be placed next to the field that needs correction. The field takes on a red border and background.](../../../images/forms-text-input-error.png)
-
 
 When writing error messages and other interface copy, focus on being concise, clear, and grammatically correct. Avoid jargon and abbreviations wherever possible, and never blame the user for the error. 
 
