@@ -18,10 +18,11 @@ export function BoltRatio() {
       aspectRatioWidth: props.number,
     }
 
-    constructor(element) {
-      super(element);
+    constructor(self) {
+      self = super(self);
       this.useShadow = hasNativeShadowDomSupport;
       this.supportsCSSVars = window.CSS && CSS.supports('color', 'var(--primary)');
+      return self;
     }
 
     /**

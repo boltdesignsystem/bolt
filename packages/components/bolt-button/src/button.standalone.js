@@ -19,19 +19,19 @@ import visuallyhiddenUtils from '@bolt/global/styles/07-utilities/_utilities-vis
 export class ReplaceWithChildren extends withPreact(withComponent()) {
   static is = 'replace-with-children';
 
-  constructor(elem) {
-    super(elem);
-    this.useShadow = hasNativeShadowDomSupport;
+  constructor(self) {
+    self = super(self);
+    return self;
   }
-
+  
   connectedCallback(){
     if (hasNativeShadowDomSupport){
       this.replaceWith(...this.childNodes);
     } else {
       this.className = '';
-    }
   }
-}
+    }
+    }
 
 @define
 class BoltButton extends BoltComponent() {
@@ -61,9 +61,11 @@ class BoltButton extends BoltComponent() {
     onClickTarget: props.string, // Managed by base class
   }
 
-  constructor() {
-    super();
+  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
+  constructor(self) {
+    self = super(self);
     this.useShadow = hasNativeShadowDomSupport;
+    return self;
   }
 
   connecting() {

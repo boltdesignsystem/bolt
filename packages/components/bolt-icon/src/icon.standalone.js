@@ -49,10 +49,11 @@ export class BoltIcon extends withPreact(withComponent()) {
     secondaryColor: null,
   }
 
-  constructor() {
-    super();
+  constructor(self) {
+    self = super(self);
     this.useShadow = hasNativeShadowDomSupport;
     this.useCssVars = supportsCSSVars;
+    return self;
   }
 
   connectedCallback() {

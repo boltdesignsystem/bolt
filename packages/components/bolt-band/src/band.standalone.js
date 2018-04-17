@@ -32,13 +32,14 @@ export class BoltBand extends BoltComponent() {
     ];
   }
 
-  constructor(element) {
-    super(element);
+  constructor(self) {
+    self = super(self);
     this.useShadow = hasNativeShadowDomSupport;
 
     this.state = {
       ready: false,
     }
+    return self;
   }
 
   /**
