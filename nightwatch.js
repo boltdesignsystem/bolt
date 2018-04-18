@@ -22,7 +22,7 @@ module.exports = {
       desiredCapabilities: {
         build: `build-${TRAVIS_JOB_NUMBER}`,
         'tunnel-identifier': TRAVIS_JOB_NUMBER,
-        extendedDebugging: true
+        // extendedDebugging: true
       },
     },
     chrome: {
