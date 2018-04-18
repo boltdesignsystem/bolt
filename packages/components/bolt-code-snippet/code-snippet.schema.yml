@@ -1,6 +1,6 @@
 $schema: http://json-schema.org/draft-04/schema#
 title: 'Code Snippet'
-description: 'Code snippet shows code text in its own styles.'
+description: 'Monospace Font Styles for Code Text'
 type: object
 required:
   - display
@@ -9,7 +9,7 @@ properties:
   display:
     type: string
     title: 'Code display'
-    description: 'Is this snippet a line of code or a block of code?'
+    description: 'Defines if the code text is inline or block.'
     default: block
     enum:
       - block

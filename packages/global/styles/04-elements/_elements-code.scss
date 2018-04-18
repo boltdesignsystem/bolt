@@ -1,19 +1,21 @@
 /* ------------------------------------ *\
-  ELEMENTS - CODE
+    ELEMENTS - CODE
 \* ------------------------------------ */
 
 $bolt-code-border-radius: $bolt-border-radius;
+$bolt-code-text-color: var(--bolt-theme-heading, inherit);
+$bolt-code-background-color: rgba(bolt-color(indigo, light), 0.08);
 
 
 pre {
-  @include bolt-padding(small, stretched);
+  @include bolt-padding(small, squished);
   @include bolt-horizontal-scroll;
 
   color: inherit;
-  color: var(--bolt-theme-text, inherit);
+  color: $bolt-code-text-color;
   text-align: left;
   white-space: pre-wrap;
-  background-color: rgba(bolt-color(gray), 0.1);
+  background-color: $bolt-code-background-color;
 
   // Override highlightjs default styling
   .hljs {
@@ -24,21 +26,21 @@ pre {
 
 code {
   @include bolt-margin(0);
-  @include bolt-padding(xxsmall 0.25rem xxsmall 0.3rem); // [Mai] 0.25rem on the right offsets the 0.05rem letter-spacing.
+  @include bolt-padding(2px 0.25rem 2px 0.3rem); // [Mai] 0.25rem on the right offsets the 0.05rem letter-spacing.
   @include bolt-font-family(code);
   @include bolt-font-weight(regular);
   @include bolt-font-size(small);
 
-  display: inline-block;
+  display: inline;
   color: inherit;
-  color: var(--bolt-theme-text, inherit);
+  color: $bolt-code-text-color;
   letter-spacing: 0.05rem;
   white-space: inherit;
   border-radius: $bolt-border-radius;
-  background-color: rgba(bolt-color(gray), 0.1);
+  background-color: $bolt-code-background-color;
 
   pre & {
-    width: 100%;
+    display: block;
     color: inherit;
     background-color: transparent;
   }

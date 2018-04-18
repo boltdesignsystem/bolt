@@ -15,6 +15,10 @@
   baseClass
 ] %}
 
+{% set codeContent %}{% spaceless %}
+  <code class="{{ "#{baseClass}__code #{baseClass}__code--#{display}" }}">{{ content }}</code>
+{% endspaceless %}{% endset %}
+
 
 
 
@@ -24,9 +28,9 @@
   bolt-component
 >
   {% if display == "block" %}
-    <pre {{ attributes.addClass(classes) }}><code class="{{ "#{baseClass}__code #{baseClass}__code--#{display}" }}">{{ content }}</code></pre>
+    <pre {{ attributes.addClass(classes) }}>{{ codeContent }}</pre>
   {% elseif display == "inline" %}
-    <code class="{{ "#{baseClass}__code #{baseClass}__code--#{display}" }}">{{ content }}</code>
+    {{ codeContent }}
   {% endif %}
 </bolt-{{ componentName }}>
 
