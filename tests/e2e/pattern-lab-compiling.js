@@ -17,15 +17,13 @@ if (!NETLIFY_TOKEN || !GITHUB_TOKEN || !TRAVIS_PULL_REQUEST || !TRAVIS_REPO_SLUG
   process.exit(1);
 }
 
-function init() {
-    const netlifyEndpoint = url.resolve(netlifyDeploysEndpoint, `?${querystring.stringify({ access_token: NETLIFY_TOKEN, })}`);
-    const netlifyDeploys = fetch(netlifyEndpoint).then(res => res.json());
-    if (!netlifyDeploys) {
-      console.error('Did not get any info on latest Netlify deploys...');
-      process.exit(1);
-    }
+const netlifyEndpoint = url.resolve(netlifyDeploysEndpoint, `?${querystring.stringify({ access_token: NETLIFY_TOKEN, })}`);
+const netlifyDeploys = fetch(netlifyEndpoint).then(res => res.json());
+
+if (!netlifyDeploys) {
+  console.error('Did not get any info on latest Netlify deploys...');
+  process.exit(1);
 }
-init();
     
 
 
