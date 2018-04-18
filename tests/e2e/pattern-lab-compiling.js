@@ -1,8 +1,6 @@
 // tests/e2e/pattern-lab-compiling.js
 
 const sauce = require('../../scripts/nightwatch-sauce');
-
-#!/usr/bin/env node
 const url = require('url');
 const querystring = require('querystring');
 const fetch = require("node-fetch");
@@ -20,14 +18,12 @@ if (!NETLIFY_TOKEN || !GITHUB_TOKEN || !TRAVIS_PULL_REQUEST || !TRAVIS_REPO_SLUG
 }
 
 function init() {
-  
     const netlifyEndpoint = url.resolve(netlifyDeploysEndpoint, `?${querystring.stringify({ access_token: NETLIFY_TOKEN, })}`);
     const netlifyDeploys = fetch(netlifyEndpoint).then(res => res.json());
     if (!netlifyDeploys) {
       console.error('Did not get any info on latest Netlify deploys...');
       process.exit(1);
     }
-    //console.log('Latest Netlify Deploy: ', netlifyDeploys[0]);
 }
 init();
     
