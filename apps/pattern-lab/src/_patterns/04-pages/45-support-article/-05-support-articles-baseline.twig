@@ -1,0 +1,234 @@
+
+
+
+  {# Breadcrumb Component in a Band #}
+  {% set band_content %}
+    {% include "@bolt/breadcrumb.twig" with {
+      "contentItems": [
+        include("@bolt/link.twig", {
+          "text": "Stuffit",
+          "url": "#"
+        }),
+        include("@bolt/link.twig", {
+          "text": "Page",
+          "url": "#"
+        }),
+        include("@bolt/link.twig", {
+          "text": "Sub Page",
+          "url": "#",
+          "attributes": {
+            "aria-current": "page"
+          },
+        })
+      ]
+    } only %}
+  {% endset %}
+  {% include "@bolt/band.twig" with {
+    "size": "xsmall",
+    "theme": "light",
+    "content": band_content
+  } only %}
+
+
+
+
+{% embed "@bolt/band.twig" with {
+  theme: "light",
+  size: "xsmall"
+} only %}
+
+  {% block band_content %}
+
+    {% grid "o-bolt-grid--center" %}
+    
+      {% cell "u-bolt-width-1/1 u-bolt-width-9/12@medium" %}
+      {% include "@bolt-components-card/card.twig" with {
+        theme: "dark",
+        
+        contentItems: [
+            
+          {
+            pattern: "headline",
+            tag: "h1",
+            size: "xxlarge",
+            text: "Error when clicking manage records and issue with indexes"
+          },
+
+          {
+            pattern: "headline",
+            tag: "h2",
+            size: "large",
+            text: "SA# SA-43719"
+          },
+
+          {
+            pattern: "text",
+            text: "Published January 5, 2018 — Updated January 5, 2018"
+          },
+          {
+            pattern: "text",
+            text: "<strong>SUMMARY</strong>content will go here"
+          }
+          ]
+        } only %}
+        {% endcell %}
+        {% endgrid %}        
+
+        {% include "@bolt-components-headline/eyebrow.twig" with {
+          text: "User Interface | Pega Platform | Version 7.2.1",
+      } only %}
+
+      {% include "@bolt/headline.twig" with {
+          tag: "h1",
+          size: "xxlarge",
+          text: "Error when clicking manage records and issue with indexes"
+        } only %}
+
+        {% include "@bolt/headline.twig" with {
+          tag: "h2",
+          size: "large",
+          text: "SA# SA-43719"
+        } only %}
+
+        {% include "@bolt/text.twig" with {
+          text: "Published January 5, 2018 — Updated January 5, 2018"
+        } only %}
+
+        {% include "@bolt/text.twig" with {
+          text: "<strong>SUMMARY</strong>"
+        } only %}
+        <p>Following is the configuration details:
+          Product Version: 12.0.5546.0
+          Product Name: SQL Server 2014
+          Product Level: SP2
+          Product Edition: Standard Edition (64-bit)
+          Product Update Level: CU5
+          User tried to re-create indexes on pr4_rule-vw table following the below steps:</p>
+        <ul>
+          <li>The growing importance and demands of a unified adtech and martech world</li>
+          <li>Four foundational use cases for unifying your DMP</li>
+          <li>The role of decisioning technology</li>
+          <li>The unified DMP solution offered by Merkle | Comet and Pega® Customer Decision Hub, Pega’s decisioning technology—providing a bi-directional integration of your third-party DMP and marketing technology</li>
+        </ul>
+
+       
+        {% embed "@bolt/band.twig" with {
+          theme: "dark"
+        } %}
+          {% block band_content %}
+            {# left aligning buttons isn't working like I thought; trying to get to align with text #}
+            {% include "@bolt-components-button-group/button-group.twig" with {
+              buttons: 
+              [
+                {
+                  text: "Subscribe",
+                  style: "primary",
+
+                },
+                {
+                  text: "Suggest Edit",
+                  style: "text"
+                }
+              ]
+            } %}
+          {% endblock %}
+          {% endembed %}
+
+          {% embed "@bolt/band.twig" with {
+            theme: "dark"
+          } %}
+          {% block band_content 
+            %}
+          {% include "@bolt-components-button/button.twig" with {
+            "text": "trying with buttons",
+            "style": "primary"
+          } %}
+          {% include "@bolt-components-button/button.twig" with {
+            "text": "instead of button group",
+            "style": "text"
+          } %}
+          {% endblock %}
+          {% endembed %}
+     
+
+        {% include "@bolt/headline.twig" with {
+          text: "Tags:",
+          size: "small",
+          transform: "uppercase"
+        } only %}
+
+        {% include "@bolt/chip-list.twig" with {
+          "contentItems": [
+            {
+              "text": "Product Name"
+            },
+            {
+              "text": "Topic"
+            },
+            {
+              "text": "Version"
+            }
+          ]
+        } %}
+
+        <hr>
+        
+        {% include "@bolt/headline.twig" with {
+          text: "Did you find this content helpful?",
+          size: "large",
+          align: "center"
+        } only %}
+        
+
+
+  {% endblock %}
+{% endembed %}
+
+
+
+{% embed "@bolt/band.twig" with {
+  size: "small",
+  theme: "dark"
+} only %}
+  {% block band_content %}
+
+    {% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
+      {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small' %}
+
+        {% include "@bolt/headline.twig" with {
+          text: "Have a question? Get answers now.",
+          size: "xlarge"
+        } only %},
+
+        {% include "@bolt/text.twig" with {
+          text: "Visit the Product Support community today to ask questions, engage in discussions, <link>and</link> meet other Pega professionals.
+      "
+        } only %}
+
+      {% endcell %}
+
+      {% cell 'u-bolt-width-1/1 u-bolt-width-1/4@small' %}
+
+      {% include "@bolt-components-button/button.twig" with {
+        "text": "Go"
+      } %}
+        {% endcell %}
+  
+    {% endgrid %}
+
+  {% endblock %}
+  {% endembed %}
+  
+  {% embed "@bolt/band.twig" with {
+    theme: "xlight"
+  } %}
+  {% block band_content %}
+
+    {% include "@bolt-components-page-footer/page-footer.twig" with {
+      "content": content,
+    } only %}
+
+  {% endblock %}
+  
+{% endembed %}
+
