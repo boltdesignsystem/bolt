@@ -5,6 +5,7 @@ import {
   BoltComponent,
   css,
   hasNativeShadowDomSupport,
+  supportsCSSVars,
 } from '@bolt/core';
 
 
@@ -18,10 +19,11 @@ export function BoltRatio() {
       aspectRatioWidth: props.number,
     }
 
-    constructor(element) {
-      super(element);
+    constructor(self) {
+      self = super(self);
       this.useShadow = hasNativeShadowDomSupport;
-      this.supportsCSSVars = window.CSS && CSS.supports('color', 'var(--primary)');
+      this.useCssVars = supportsCSSVars;
+      return self;
     }
 
     /**
@@ -36,7 +38,7 @@ export function BoltRatio() {
       const width = this.props.aspectRatioWidth && this.props.aspectRatioWidth > 0 ?
         this.props.aspectRatioWidth : 1;
 
-      if (this.supportsCSSVars) {
+      if (this.useCssVars) {
         this.style.setProperty('--aspect-ratio-height', height);
         this.style.setProperty('--aspect-ratio-width', width);
         this.style.paddingTop = '';
@@ -52,15 +54,15 @@ export function BoltRatio() {
     }
 
     // Render out component via HyperHTML
-    render({ props, state }) {
+    render() {
       const classes = css(
         `o-${bolt.namespace}-ratio__inner`,
       );
 
       return this.html`
-      ${ this.addStyles([styles])}
+        ${ this.addStyles([styles])}
         <div class="${classes}">
-        ${this.slot('default')}
+          ${this.slot('default')}
         </div>
       `;
     }
