@@ -1,5 +1,5 @@
 ---
-Title: Spacing
+title: Spacing
 ---
 
 We use spacing tokens to make margins and patterns consistently across components and layouts. Using a set spacing scale helps eliminate guesswork regarding the space between elements, and helps create a smooth, readable flow from page to page.
