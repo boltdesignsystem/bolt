@@ -4,6 +4,8 @@ title: Buttons
 
 Buttons are used to provide a clear call to action. Their role is to provide immediate affordance for the next steps a user should take on a screen—whether it's to download a file, sign up for a demo, or save progress on a screen.
 
+*For complete examples of our buttons in action along with schema and API information, see the [button component](https://bolt-design-system.com/pattern-lab/?p=viewall-components-button) and [button group component](https://bolt-design-system.com/pattern-lab/?p=viewall-components-buttons-group) documentation in Pattern Lab.*
+
 ## Best Practices
 
 A button's job is to give someone a clear next step to engage in. Here are some key things to keep in mind when using them in your work:
@@ -22,7 +24,7 @@ The best use for a button is at the end of a form, or in a prominent area of the
 
 ## Examples
 
-For complete examples of our buttons in action along with schema and API information, see the [button component](https://bolt-design-system.com/pattern-lab/?p=viewall-components-button) and [button group component](https://bolt-design-system.com/pattern-lab/?p=viewall-components-buttons-group) documentation in Pattern Lab. Below are some examples of common use cases for buttons.
+Below are some examples of common use cases for buttons.
 
 ### Buttons in bands
 
