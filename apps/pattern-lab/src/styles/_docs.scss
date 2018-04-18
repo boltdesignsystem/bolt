@@ -161,13 +161,17 @@
   // font-weight: 300;
   border: 1px dotted transparent;
   border-radius: 4px;
-  margin: -13px;
-  padding: 13px;
+  // margin: -13px;
+  // padding: 13px;
   color: bolt-color(black);
   transition: border 0.3s ease-in-out;
 
   &.edit-this-readme {
     border: 1px dotted var(--bolt-theme-primary);
+  }
+
+  > *:last-child {
+    @include bolt-margin-bottom(0);
   }
 }
 
