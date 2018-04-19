@@ -21,7 +21,7 @@
   ],
   "scripts": {
     "start": "echo 'To start up a server and watches, head into any of the folders in the apps/ directory, then run npm start there.' && echo 'If you want to start Pattern Lab, run this:' && echo '' && echo 'cd apps/pattern-lab' && echo 'npm start'",
-    "setup": "npm run bootstrap && npm run composer",
+    "setup": "yarn && npm run bootstrap && npm run composer",
     "build:pl": "cd apps/pattern-lab && npm run build:prod",
     "build:bolt-site": "cd apps/bolt-site && npm run build:prod",
     "build:drupal-lab": "cd apps/drupal-lab && cd web/themes/flash && npm run build && cd - && composer run build",
