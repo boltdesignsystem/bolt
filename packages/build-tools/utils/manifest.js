@@ -3,7 +3,7 @@ const { ensureFileExists } = require('./general');
 const { promisify } = require('util');
 const fs = require('fs');
 const writeFile = promisify(fs.writeFile);
-const {getDataFile} = require('./yaml');
+const { getDataFile } = require('./yaml');
 const { validateSchemaSchema } = require('./schemas');
 const path = require('path');
 const config = require('./config-store').getConfig();
@@ -121,12 +121,12 @@ function getBoltManifest() {
  */
 function getAllDirs(relativeFrom) {
   const dirs = [];
-  const {global, individual} = getBoltManifest().components;
+  const { global, individual } = getBoltManifest().components;
   [global, individual].forEach((componentList) => {
     componentList.forEach((component) => {
       dirs.push(relativeFrom
         ? path.relative(relativeFrom, component.dir)
-        : component.dir
+        : component.dir,
       );
     });
   });
@@ -150,7 +150,7 @@ async function writeBoltManifest() {
     await writeFile(path.resolve(config.dataDir, './full-manifest.bolt.json'), JSON.stringify(getBoltManifest()));
     await writeFile(path.resolve(config.dataDir, './components.bolt.json'), JSON.stringify(createComponentsManifest()));
     await writeFile(path.resolve(config.dataDir, './config.bolt.json'), JSON.stringify(config));
-  } catch(error) {
+  } catch (error) {
     log.errorAndExit('Could not write bolt manifest files', error);
   }
 }
@@ -166,7 +166,7 @@ async function writeBoltManifest() {
 async function writeTwigNamespaceFile(relativeFrom, extraNamespaces = {}) {
   const namespaces = {};
   const allDirs = [];
-  const {global, individual} = getBoltManifest().components;
+  const { global, individual } = getBoltManifest().components;
 
   [global, individual].forEach((componentList) => {
     componentList.forEach((component) => {
@@ -227,7 +227,7 @@ async function writeTwigNamespaceFile(relativeFrom, extraNamespaces = {}) {
 
   await writeFile(
     path.join(config.dataDir, 'twig-namespaces.bolt.json'),
-    JSON.stringify(namespaceConfigFile, null, '  ')
+    JSON.stringify(namespaceConfigFile, null, '  '),
   );
 }
 

@@ -13,7 +13,6 @@ async function sh(cmd, exitOnError, streamOutput, showCmdOnError = true) {
   return new Promise((resolve, reject) => {
     const child = exec(cmd, {
       encoding: 'utf8',
-      timeout: 1000 * 60 * 2, // 2 min; just want to make sure nothing gets detached forever.
     });
     let output = '';
     child.stdout.on('data', (data) => {

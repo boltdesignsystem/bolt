@@ -3,6 +3,14 @@
 export const IS_DEV = process.env.NODE_ENV === 'development';
 export const IS_PROD = process.env.NODE_ENV === 'production';
 
-const { attachShadow } = HTMLElement.prototype;
 
-export const hasNativeShadowDomSupport = (window.ShadyDOM) || (attachShadow && attachShadow.toString().indexOf('native code') > -1);
+
+function supportsShadowDom(){
+  if (('attachShadow' in Element.prototype && 'getRootNode' in Element.prototype) || (window.ShadyDOM)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+export const hasNativeShadowDomSupport = supportsShadowDom();

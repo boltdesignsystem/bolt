@@ -8,6 +8,15 @@
     - components
   additionalProperties: false
   properties:
+    namespace:
+      type: string
+      title: Namespace prefix to use in classnames
+      default: 'bolt'
+    templatesDir:
+      type: array
+      title: Template paths being added
+      default:
+        - templates
     env:
       type: string
       title: Environment Type
@@ -19,6 +28,14 @@
     srcDir:
       type: string
       title: Source Directory
+    webpackStats:
+      type: boolean
+      title: Write WebPack stats file
+      description: Creates a [WebPack Stats Data file](https://webpack.js.org/api/stats/) called `webpack-stats.json` inside `buildDir`. Great for [this](http://webpack.github.io/analyse). Should probably run with `--prod`.
+      default: false
+    publicPath:
+      type: string
+      title: publicPath Directory
     plConfigFile:
       type: string
       title: Pattern Lab Config File Path

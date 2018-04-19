@@ -4,8 +4,7 @@ import {
   render,
   define,
   props,
-  withComponent,
-  withPreact,
+  BoltComponent,
   css,
   spacingSizes,
   hasNativeShadowDomSupport,
@@ -22,7 +21,7 @@ function whichAnimationEvent() {
     'animation': 'animationend',
     'OAnimation': 'oAnimationEnd',
     'MozAnimation': 'animationend',
-    'WebkitAnimation': 'webkitAnimationEnd'
+    'WebkitAnimation': 'webkitAnimationEnd',
   }
 
   for (t in animations) {
@@ -35,39 +34,31 @@ const animationEvent = whichAnimationEvent();
 
 
 @define
-class BoltDeviceViewer extends withPreact(withComponent()) {
+class BoltDeviceViewer extends BoltComponent() {
   static is = 'bolt-device-viewer';
 
   static props = {
     // name: props.string,
   }
 
-  constructor(element) {
-    super(element);
+  constructor() {
+    super();
     this.useShadow = hasNativeShadowDomSupport;
   }
 
   render({ props }) {
-    if (this.useShadow){
-      const classes = css(
-        'c-bolt-image-magnifier'
-      );
+    const classes = css(
+      'c-bolt-image-magnifier',
+    );
 
-      return (
-        <div className={classes}>
-          <slot />
-        </div>
-      )
-    }
+    return this.html`
+      <div className={classes}>
+        ${this.slot('default')}
+      </div>
+    `;
   }
 
-  renderer(root, html) {
-    if (!this.useShadow) {
-      root.innerHTML = `<div class="c-bolt-image-magnifier">${this.innerHTML}</div>`;
-    }
-  }
-
-  connectedCallback() {
+  connecting() {
     if (this.querySelector('bolt-image-zoom')){
       const drift = new Drift(this.querySelector('bolt-image-zoom'), {
         containInline: false,
@@ -84,16 +75,15 @@ class BoltDeviceViewer extends withPreact(withComponent()) {
 
 
 @define
-class BoltImageZoom extends withPreact(withComponent()) {
+class BoltImageZoom extends BoltComponent() {
   static is = 'bolt-image-zoom';
 
   static props = {
-    mangify: props.boolean
+    mangify: props.boolean,
   }
 
-  constructor(element) {
-    super(element);
-    this.useShadow = hasNativeShadowDomSupport;
+  constructor() {
+    super();
   }
 
   /**
@@ -141,7 +131,7 @@ class BoltImageZoom extends withPreact(withComponent()) {
 
 
 
-  connectedCallback() {
+  connecting() {
     const driftZoomImageUrl = this.querySelector('img').getAttribute('data-zoom');
     this.setAttribute('data-zoom', driftZoomImageUrl);
     this.addEventListener('mouseenter', this._mouseEnter, passiveSupported ? { passive: false } : false);
@@ -156,5 +146,11 @@ class BoltImageZoom extends withPreact(withComponent()) {
   disconnectedCallback() {
     this.removeEventListener('mouseenter', this._mouseEnter);
     this.removeEventListener('mouseleave', this._mouseLeave);
+  }
+
+  render() {
+    return this.html`
+      ${ this.slot('default') }
+    `;
   }
 }

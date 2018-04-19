@@ -36,7 +36,7 @@
           get: function () {
             return true;
           },
-          configurable: true
+          configurable: true,
         });
       };
     }

@@ -12,22 +12,21 @@
 .c-bolt-link--headline {
   cursor: pointer;
   text-decoration: none;
-  color: inherit;
-  color: var(--bolt-theme-heading-link-default, --bolt-theme-text);
-}
 
-.c-bolt-link--headline:hover {
-  color: inherit;
-  text-decoration: underline;
-  color: var(--bolt-theme-heading-link-hover, --bolt-theme-text);
-}
+  &,
+  &:visited {
+    opacity: 1;
+    color: inherit;
+    color: var(--bolt-theme-heading-link-default, --bolt-theme-text);
+  }
 
-.c-bolt-link--headline:active {
-  color: inherit;
-  color: var(--bolt-theme-heading-link-active, --bolt-theme-text);
-}
+  &:hover {
+    opacity: $bolt-global-link-hover-opacity;
+    text-decoration: underline;
+  }
 
-.c-bolt-link--headline:visited {
-  color: inherit;
-  color: var(--bolt-theme-heading-link-visited, --bolt-theme-text);
+  &:focus:active,
+  &:active {
+    opacity: $bolt-global-link-active-opacity;
+  }
 }

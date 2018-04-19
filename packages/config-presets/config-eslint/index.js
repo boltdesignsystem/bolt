@@ -21,7 +21,6 @@ module.exports = {
     'no-console': 'off',
     'quotes': 'off',
     'no-mixed-operators': 'off',
-    'comma-dangle': 'off',
     'semi': 'off',
     'object-shorthand': 'off',
     'no-useless-escape': 'off',
