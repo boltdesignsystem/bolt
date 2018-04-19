@@ -15,13 +15,12 @@ let index = 0;
 
 import metaStyles from './_video-meta.scss';
 
-// @define
 export function BoltVideoMeta() {
   return class BoltVideoMetaClass extends withPreact(withComponent()) {
-    // static is = 'bolt-video-meta';
 
-    constructor(element) {
-      super(element);
+    constructor(self) {
+      self = super(self);
+      return self;
     }
 
     static props = {
@@ -80,8 +79,8 @@ export function BoltVideo() {
       hideFullScreenButton: props.boolean,
     }
 
-    constructor(element) {
-      super(element);
+    constructor(self) {
+      self = super(self);
 
       index += 1;
 
@@ -118,6 +117,7 @@ export function BoltVideo() {
       // even if the handler is attached to another element (window in this case)
       this._onWindowResize = this._onWindowResize.bind(this);
 
+      return self;
     }
 
     get renderRoot() {

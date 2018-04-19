@@ -32,19 +32,20 @@ export class BoltBand extends BoltComponent() {
     ];
   }
 
-  constructor(element) {
-    super(element);
+  constructor(self) {
+    self = super(self);
     this.useShadow = hasNativeShadowDomSupport;
-
-    this.state = {
-      ready: false,
-    }
+    return self;
   }
 
   /**
     * `connectedCallback()` sets up the role, event handler and initial state.
     */
   connecting() {
+    this.state = {
+      ready: false,
+    }
+
     // Clone the shadow DOM template.
     if (this.state.ready === false) {
       this.state.ready = true;
@@ -73,7 +74,7 @@ export class BoltBand extends BoltComponent() {
     this.addEventListener('videoExpandedHeightSet', this._adjustExpandedHeightToMatchVideo);
   }
 
-  disconnectedCallback() {
+  disconnecting() {
     this.removeEventListener('videoExpandedHeightSet', this._adjustExpandedHeightToMatchVideo);
   }
 
