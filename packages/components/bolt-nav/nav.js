@@ -153,7 +153,7 @@ export class BoltNav extends BoltComponent() {
     const linkOffsetTop = link.offsetTop;
     const linkOffsetVertical = linkPos.top + linkHeight / 2;
     const linkOffsetHorizontal = linkOffsetLeft + linkWidth / 2;
-    const mq = window.matchMedia("(max-width: 600px)");
+    const mq = window.matchMedia('(max-width: 600px)');
 
 
     if (!this.activeLink) {

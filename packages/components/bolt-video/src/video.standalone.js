@@ -207,7 +207,7 @@ export function BoltVideo() {
         elem.player.muted(true);
       }
 
-      player.on("loadedmetadata", function () {
+      player.on('loadedmetadata', function () {
         const duration = player.mediainfo.duration;
         const title = player.mediainfo.name;
         const width = player.mediainfo.sources[1].width;
@@ -250,7 +250,7 @@ export function BoltVideo() {
         elem.onDurationChange(player);
       });
 
-      player.on("ended", function () {
+      player.on('ended', function () {
         elem.onEnded(player);
       });
 
@@ -330,7 +330,7 @@ export function BoltVideo() {
         // handle script not loading
         s.onerror = err => {
           const uriErr = {
-            code: "",
+            code: '',
             message: `The script ${err.target.src} is not accessible.`,
           };
 
@@ -516,7 +516,7 @@ export function BoltVideo() {
     }
 
     createScript() {
-      const s = document.createElement("script");
+      const s = document.createElement('script');
       // console.log(this.props);
 
       s.src = BoltVideoClass.getScriptUrl(

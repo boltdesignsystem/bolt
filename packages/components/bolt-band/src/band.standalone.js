@@ -142,7 +142,7 @@ export class BoltBand extends BoltComponent() {
   _adjustExpandedHeightToMatchVideo(event) {
     if (event.detail.expandedHeight) {
       let videoHeight = event.detail.expandedHeight;
-      const mq = window.matchMedia( "(max-width: 600px)" );
+      const mq = window.matchMedia( '(max-width: 600px)' );
 
       // Add to the height to make space for the 'close' button at the bottom
       // if we are at the smallest breakpoint.
