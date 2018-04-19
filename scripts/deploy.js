@@ -61,7 +61,10 @@ async function init() {
     }
     console.log(deployOutput.stdout, deployOutput.stderr);
     const deployedUrl = deployOutput.stdout.trim();
-    const deployedDomain = deployedUrl.replace('https://', '');
+    const deployedId = deployedUrl
+      .replace('https://', '')
+      .replace('bolt-design-system-', '')
+      .replace('.now.sh', '');
 
     if (!deployedUrl) {
       // @todo determine if this is even needed since we have `deployedUrl` from deploy command
@@ -91,15 +94,26 @@ async function init() {
       console.log(latestDeploy);
     }
 
+    const aliasOutput = spawnSync('now', [
+      'alias',
+      deployedUrl,
+      `bolt-design-system-${branchName}`,
+    ], {encoding: 'utf8'});
+    if (aliasOutput.status !== 0) {
+      console.error('Error aliasing:');
+    }
+    console.log(aliasOutput.stdout, aliasOutput.stderr);
     // @todo get alias working
-    // const aliasEndpoint = `https://api.zeit.co/v2/now/deployments/${deployedDomain}/aliases?${querystring.stringify({
+    // const aliasEndpoint = `https://api.zeit.co/v2/now/deployments/${deployedId}/aliases?${querystring.stringify({
     //   teamId: 'boltdesignsystem',
     // })}`;
     //
+    // console.log('aliasEndpoint:');
+    // console.log(aliasEndpoint);
     // const aliasResponse = await fetch(aliasEndpoint, {
     //   method: 'POST',
     //   body: JSON.stringify({
-    //     alias: `bolt-design-system--${branchName}.now.sh`,
+    //     alias: `bolt-design-system-${branchName}.now.sh`,
     //   }),
     //   headers: {
     //     'Authorization': `Bearer ${NOW_TOKEN}`,
