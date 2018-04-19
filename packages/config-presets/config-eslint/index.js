@@ -19,7 +19,6 @@ module.exports = {
     'object-curly-spacing': 'off',
     'no-undef': 'off',
     'no-console': 'off',
-    'quotes': 'off',
     'no-mixed-operators': 'off',
     'semi': 'off',
     'object-shorthand': 'off',
