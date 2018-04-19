@@ -18,7 +18,6 @@ import upperCamelCase from 'uppercamelcase';
 import * as Icons from '@bolt/components-icons';
 import styles from './icon.scss';
 
-
 const backgroundStyles = [
   'circle',
   'square',
@@ -43,20 +42,21 @@ export class BoltIcon extends withPreact(withComponent()) {
     // programatically spell out the contrast color that needs to get used
     contrastColor: props.string,
   }
-
-  state = {
-    primaryColor: null,
-    secondaryColor: null,
-  }
-
-  constructor() {
-    super();
+  
+  constructor(self) {
+    self = super(self);
     this.useShadow = hasNativeShadowDomSupport;
     this.useCssVars = supportsCSSVars;
+    return self;
   }
 
   connectedCallback() {
     const elem = this;
+
+    this.state = {
+      primaryColor: 'var(--bolt-theme-icon, currentColor)',
+      secondaryColor: 'var(--bolt-theme-background, #fff)',
+    }
 
     // listen for page changes to decide when colors need to get recalculated
     if (!this.useCssVars) {
@@ -79,10 +79,24 @@ export class BoltIcon extends withPreact(withComponent()) {
 
       const colorObserver = PubSub.subscribe('component.icon', checkIfColorChanged);
     }
+
+    if (!this.useCssVars) {
+      this.state.primaryColor = 'currentColor';
+
+       if (this.contrastColor) {
+        this.state.secondaryColor = this.contrastColor;
+      } else {
+        this.state.secondaryColor = colorContrast(
+          rgb2hex(window.getComputedStyle(this).getPropertyValue('color')),
+        );
+      }
+    }
+    
   }
 
-  render({ props, state }) {
-    const { size, name, color, background, contrastColor } = this.props;
+  render() {
+    const { size, name, color, background } = this.props;
+    const { primaryColor, secondaryColor } = this.state;
 
     const classes = css(
       'c-bolt-icon',
@@ -91,37 +105,19 @@ export class BoltIcon extends withPreact(withComponent()) {
       color && colors.includes(color) ? `c-bolt-icon--${color}` : '',
     );
 
+    const iconClasses = css(
+      'c-bolt-icon__icon',
+    );
 
     const backgroundClasses = css(
       'c-bolt-icon__background-shape',
       background && backgroundStyles.includes(background) ? `c-bolt-icon__background-shape--${background}` : '',
     );
 
-    const iconClasses = css(
-      'c-bolt-icon__icon',
-    );
-
     const Icon = name ? upperCamelCase(name) : '';
-    const IconTag = Icons[Icon];
+    const IconTag = Icons[`${Icon}`];
+    const iconSize =  size && spacingSizes[size] ? ( spacingSizes[size].replace('rem', '') * (16 / 2)) : ( spacingSizes.medium.replace('rem', '') * (16 / 2) );
 
-    const iconSize = size && spacingSizes[size] ?
-      spacingSizes[size].replace('rem', '') * (16 / 2) :
-      spacingSizes.medium.replace('rem', '') * (16 / 2);
-
-
-    if (supportsCSSVars) {
-      this.state.primaryColor = 'var(--bolt-theme-icon, currentColor)';
-      this.state.secondaryColor = 'var(--bolt-theme-background, #fff)';
-    } else {
-      this.state.primaryColor = 'currentColor';
-      this.state.primaryColorComputed = rgb2hex(window.getComputedStyle(this).getPropertyValue('color'));
-
-      if (contrastColor) {
-        this.state.secondaryColor = contrastColor;
-      } else {
-        this.state.secondaryColor = colorContrast(this.state.primaryColorComputed);
-      }
-    }
 
     return (
       <div className={classes}>
@@ -129,16 +125,15 @@ export class BoltIcon extends withPreact(withComponent()) {
           <style>{styles[0][1]}</style>
         }
         <IconTag
-          className={iconClasses}
-          size={iconSize}
-          bgColor={this.state.primaryColor}
-          fgColor={this.state.secondaryColor}
+          className={ iconClasses }
+          size={ iconSize }
+          bgColor={ primaryColor }
+          fgColor={ secondaryColor }
         />
-
         {background && size === 'xlarge' &&
           <span className={backgroundClasses}></span>
         }
-    </div>
+      </div>
     );
   }
 }
