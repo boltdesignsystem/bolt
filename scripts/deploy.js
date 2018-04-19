@@ -94,10 +94,12 @@ async function init() {
       console.log(latestDeploy);
     }
 
+    const aliasedUrlSubdomain = `bolt-design-system-${branchName}`;
+    const aliasedUrl = `https://${aliasedUrlSubdomain}.now.sh`;
     const aliasOutput = spawnSync('now', [
       'alias',
       deployedUrl,
-      `bolt-design-system-${branchName}`,
+      aliasedUrlSubdomain,
     ], {encoding: 'utf8'});
     if (aliasOutput.status !== 0) {
       console.error('Error aliasing:');
@@ -132,7 +134,8 @@ async function init() {
       const githubCommentText = `
 :zap: PR built on Travis and deployed a now preview here: 
 
-${deployedUrl}
+- Branch link: ${aliasedUrl}
+- Permalink: ${deployedUrl}
 
 <details>
 
