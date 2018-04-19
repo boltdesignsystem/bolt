@@ -37,8 +37,8 @@ let gumshoeStateModule = (function () {
         // we could find a way to disable any activity in the callback while a non-gumshoe (i.e. click-initiated)
         // animation is in-progress.
         scrollDelay: true,
-        offset: offset,
-        callback: function (nav) {
+        offset,
+        callback (nav) {
           if (nav && nav.hasOwnProperty('nav')) {
             if (!nav.nav.classList.contains(isActiveClass)) {
               // If the parent already has the is-active class, it was activated by something other
