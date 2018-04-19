@@ -1,5 +1,5 @@
 {% set collapse = collapse | default(false) %}
-{% set _content = block('content') | default(content) %}
+{% set content = content | default(block('dropdown_content')) %}
 
 <bolt-dropdown
   {{ collapse ? "collapse" : "" }}
@@ -7,14 +7,8 @@
   {% if title %}title='{{ title }}' {% endif %}
   {% if children %}children='{{ children|json_encode() }}' {% endif %}
   >
-  {% block content %}
-    {% if items %}
-      {% for item in items %}
-        {% include "@bolt-components-dropdown/_dropdown-item.twig" with item only %}
-      {% endfor %}
-    {% endif %}
-
-    {% if _content is not empty %}
+  {% block dropdown_content %}
+    {% if content %}
       {% include "@bolt-components-dropdown/_dropdown-item.twig" %}
     {% endif %}
   {% endblock %}

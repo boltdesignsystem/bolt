@@ -43,11 +43,16 @@
           {% include "@bolt-components-navbar/navbar-brand.twig" with title only %}
         {% endif %}
 
-        {% if links %}
+        {% if dropdown %}
+          <div class="c-bolt-navbar__nav">
+            {% include "@bolt-components-dropdown/dropdown.twig" with dropdown only %}
+          </div>
+        {% elseif links %}
           <div class="c-bolt-navbar__nav">
             {% include "@bolt-components-nav/nav.twig" %}
           </div>
         {% endif %}
+
       </nav>
     {% endblock %}
 
