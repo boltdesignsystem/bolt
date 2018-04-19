@@ -5,58 +5,58 @@ const del = require('del');
 
 // @todo Use `bigJson` and `bigYaml` to do more tests similar to those smaller ones already done below
 const bigJson = {
-  'string': 'string',
-  'notInQuotes': 'string',
-  'american': [
-    'Boston Red Sox',
-    'Detroit Tigers',
-    'New York Yankees'
+  "string": "string",
+  "notInQuotes": "string",
+  "american": [
+    "Boston Red Sox",
+    "Detroit Tigers",
+    "New York Yankees"
   ],
-  'players': [
+  "players": [
     {
-      'name': 'Mark McGwire',
-      'hr': 65,
-      'avg': 0.278
+      "name": "Mark McGwire",
+      "hr": 65,
+      "avg": 0.278
     },
     {
-      'name': 'Sammy Sosa',
-      'hr': 63,
-      'avg': 0.288
+      "name": "Sammy Sosa",
+      "hr": 63,
+      "avg": 0.288
     }
   ],
-  'sequenceOfSequence': [
+  "sequenceOfSequence": [
     [
-      'name',
-      'hr',
-      'avg'
+      "name",
+      "hr",
+      "avg"
     ],
     [
-      'Mark McGwire',
+      "Mark McGwire",
       65,
       0.278
     ],
     [
-      'Sammy Sosa',
+      "Sammy Sosa",
       63,
       0.288
     ]
   ],
-  'Mark McGwire': {
-    'hr': 65,
-    'avg': 0.278
+  "Mark McGwire": {
+    "hr": 65,
+    "avg": 0.278
   },
-  'Sammy Sosa': {
-    'hr': 63,
-    'avg': 0.288
+  "Sammy Sosa": {
+    "hr": 63,
+    "avg": 0.288
   },
-  'bestPlayer': {
-    'name': 'Mark McGwire',
-    'accomplishment': 'Mark set a major league home run record in 1998.\n',
-    'stats': '65 Home Runs\n0.278 Batting Average\n'
+  "bestPlayer": {
+    "name": "Mark McGwire",
+    "accomplishment": "Mark set a major league home run record in 1998.\n",
+    "stats": "65 Home Runs\n0.278 Batting Average\n"
   },
-  'exponential': 1230.15,
-  'fixed': 1230.15,
-  'booleans': [
+  "exponential": 1230.15,
+  "fixed": 1230.15,
+  "booleans": [
     true,
     false
   ]

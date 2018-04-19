@@ -65,7 +65,7 @@ function createConfig(config) {
      * verbose. Any other falsy value will behave as 'none', truthy
      * values as 'normal'
      */
-    const pn = (typeof name === 'string') && name.toLowerCase() || name || 'none';
+    const pn = (typeof name === "string") && name.toLowerCase() || name || "none";
 
     switch (pn) {
       case 'none':
@@ -165,7 +165,7 @@ function createConfig(config) {
       },
     },
     {
-      loader: 'postcss-loader',
+      loader: "postcss-loader",
       options: {
         sourceMap: true,
         plugins: [
@@ -175,12 +175,12 @@ function createConfig(config) {
       }
     },
     {
-      loader: 'clean-css-loader',
+      loader: "clean-css-loader",
       options: {
         skipWarn: true,
-        compatibility: 'ie9',
+        compatibility: "ie9",
         level: config.prod ? 1 : 0,
-        inline: ['remote'],
+        inline: ["remote"],
         format: 'beautify',
       }
     },
@@ -188,7 +188,7 @@ function createConfig(config) {
       loader: 'resolve-url-loader'
     },
     {
-      loader: 'sass-loader',
+      loader: "sass-loader",
       options: {
         sourceMap: true,
         importer: [
@@ -196,7 +196,7 @@ function createConfig(config) {
           npmSass.importer,
         ],
         functions: sassExportData,
-        outputStyle: 'expanded',
+        outputStyle: "expanded",
         precision: 2
       }
     }
@@ -214,11 +214,11 @@ function createConfig(config) {
     entry: buildWebpackEntry(),
     output: {
       path: path.resolve(process.cwd(), config.buildDir),
-      filename: '[name].js',
+      filename: "[name].js",
       publicPath: publicPath,
     },
     resolve: {
-      extensions: ['.js', '.jsx', '.json', '.svg', '.scss']
+      extensions: [".js", ".jsx", ".json", ".svg", ".scss"]
     },
     module: {
       rules: [
@@ -232,7 +232,7 @@ function createConfig(config) {
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
               use: ExtractTextPlugin.extract({
-                fallback: 'style-loader',
+                fallback: "style-loader",
                 use: scssLoaders,
               })
             },
@@ -252,7 +252,7 @@ function createConfig(config) {
         },
         {
           test: /\.(woff|woff2)$/,
-          loader: 'file-loader',
+          loader: "file-loader",
           options: {
             name: 'fonts/[name].[ext]',
           },
@@ -282,7 +282,7 @@ function createConfig(config) {
       }),
       new webpack.IgnorePlugin(/vertx/), // needed to ignore vertx dependency in webcomponentsjs-lite
       new ExtractTextPlugin({
-        filename: '[name].css',
+        filename: "[name].css",
         // disable: false,
         allChunks: true
       }),
