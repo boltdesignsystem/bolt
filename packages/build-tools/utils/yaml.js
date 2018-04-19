@@ -84,16 +84,16 @@ async function getDataFile(filePath) {
   const fileInfo = path.parse(filePath);
   try {
 
-  switch (fileInfo.ext) {
-    case '.json':
-      const fileContents = await readFile(filePath, 'utf8');
-      return JSON.parse(fileContents);
-      break;
-    case '.yml':
-    case '.yaml':
-      return await readYamlFile(filePath);
-      break;
-  }
+    switch (fileInfo.ext) {
+      case '.json':
+        const fileContents = await readFile(filePath, 'utf8');
+        return JSON.parse(fileContents);
+        break;
+      case '.yml':
+      case '.yaml':
+        return await readYamlFile(filePath);
+        break;
+    }
   } catch (err) {
     log.errorAndExit('Could not getDataFile', err);
   }

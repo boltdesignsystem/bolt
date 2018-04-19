@@ -83,7 +83,7 @@ export class BoltIcon extends withPreact(withComponent()) {
     if (!this.useCssVars) {
       this.state.primaryColor = 'currentColor';
 
-       if (this.contrastColor) {
+      if (this.contrastColor) {
         this.state.secondaryColor = this.contrastColor;
       } else {
         this.state.secondaryColor = colorContrast(

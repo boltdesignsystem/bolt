@@ -112,13 +112,13 @@ async function processImage(file, set) {
               force: false,
             })
             .toFile(newSizedPath);
-          } else if (pathInfo.ext === '.svg') {
-            const result = await svgo.optimize(originalFileBuffer);
-            const optimizedSVG = result.data;
-            await writeFile(newSizedPath, optimizedSVG);
+        } else if (pathInfo.ext === '.svg') {
+          const result = await svgo.optimize(originalFileBuffer);
+          const optimizedSVG = result.data;
+          await writeFile(newSizedPath, optimizedSVG);
 
-          } else {
-            await sharp(originalFileBuffer)
+        } else {
+          await sharp(originalFileBuffer)
               .jpeg({
                 quality: 50,
                 progressive: true,
@@ -130,7 +130,7 @@ async function processImage(file, set) {
                 force: false,
               })
               .toFile(newSizedPath);
-          }
+        }
       } else {
         // http://sharp.pixelplumbing.com/en/stable/
         if (pathInfo.ext === '.jpeg' || pathInfo.ext === '.jpg' || pathInfo.ext === '.png') {
@@ -147,11 +147,11 @@ async function processImage(file, set) {
               force: false,
             })
             .toFile(newSizedPath);
-          } else {
-            await sharp(originalFileBuffer)
+        } else {
+          await sharp(originalFileBuffer)
               .resize(size)
               .toFile(newSizedPath);
-          }
+        }
       }
     } else {
       // Not prod, so let's be quick.

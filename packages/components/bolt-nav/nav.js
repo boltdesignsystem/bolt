@@ -196,12 +196,12 @@ export class BoltNav extends BoltComponent() {
         this._indicator.style.setProperty('--bolt-nav-indicator-transform', linkOffsetTop + 'px');
         // this._indicator.style.transform = 'translateY(' + linkOffsetTop + 'px)';
         // this._indicator.style['--bolt-nav-indicator-transform-fallback'] = 'translateY(' + linkOffsetTop + 'px)';
-    } else {
-      this._indicator.style.width = linkWidth + 'px';
+      } else {
+        this._indicator.style.width = linkWidth + 'px';
         this._indicator.style.height = '2px';
-      this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px)';
+        this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px)';
+      }
     }
-  }
   }
 
   _initializeGumshoe() {
