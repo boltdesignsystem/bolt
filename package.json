@@ -35,8 +35,8 @@
     "composer": "npm-run-all --parallel composer:* --aggregate-output --print-label --print-name",
     "bootstrap": "lerna bootstrap --reject-cycles",
     "postbootstrap": "npm run build:icons && node scripts/monorepo-tests.js",
-    "predeploy": "npm run build",
-    "deploy": "./scripts/deploy.sh",
+    "Xpredeploy": "npm run build",
+    "deploy": "./scripts/deploy.js",
     "clean:git": "git clean -xdf && rm -rf apps/**/vendor apps/**/node_modules && find . -empty -type d -delete",
     "clean:lerna": "lerna clean -Y",
     "clean": "npm-run-all --parallel clean:*",
@@ -84,6 +84,7 @@
     "jest": "^22.4.0",
     "lerna": "^2.5.1",
     "node-fetch": "^2.0.0",
+    "now": "^11.0.6",
     "npm-run-all": "^4.1.2",
     "web-component-tester": "^6.3.0",
     "yaml-lint": "^1.2.2"
