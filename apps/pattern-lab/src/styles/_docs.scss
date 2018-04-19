@@ -140,10 +140,6 @@
   }
 }
 
-* + pre {
-  @include bolt-margin-top(small);
-}
-
 pre {
   @include bolt-font-family(code);
   @include bolt-font-size(small);
@@ -169,20 +165,15 @@ pre {
 
 .c-bolt-docs__title {
   @include bolt-font-size(xxlarge);
-  @include bolt-font-weight(semibold); // font-size: 24px;
+  @include bolt-font-weight(semibold);
   @include bolt-margin-bottom(medium);
   color: bolt-color(black);
 }
 
 .c-bolt-docs__lead {
   @include bolt-font-weight(regular);
-  // font-size: 24px;
-  // line-height: 1.5;
-  // font-weight: 300;
   border: 1px dotted transparent;
   border-radius: 4px;
-  margin: -13px;
-  padding: 13px;
   color: bolt-color(black);
   transition: border 0.3s ease-in-out;
 
@@ -190,8 +181,15 @@ pre {
     border: 1px dotted var(--bolt-theme-primary);
   }
 
-  pre:last-child {
-    margin-bottom: 0;
+  > *:last-child {
+    @include bolt-margin-bottom(0);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @include bolt-margin-bottom(xsmall);
+    &:last-child {
+      @include bolt-margin-bottom(0);
+    }
   }
 }
 
