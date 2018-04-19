@@ -53,20 +53,20 @@ async function init() {
 
     console.log(`Branch Name: ${branchName}`);
 
-    const args = [
-      'deploy',
-      './www',
+    const baseNowArgs = [
       '--name=bolt-design-system',
       '--team=boltdesignsystem',
       '--static',
     ];
 
-    if (NOW_TOKEN) {
-      args.push(`--token=${NOW_TOKEN}`);
-    }
+    if (NOW_TOKEN) baseNowArgs.push(`--token=${NOW_TOKEN}`);
 
     console.log('Starting deploy...');
-    const deployOutput = spawnSync('now', args, {encoding: 'utf8'});
+    const deployOutput = spawnSync('now', [
+      'deploy',
+      './www',
+      ...baseNowArgs,
+    ], {encoding: 'utf8'});
     if (deployOutput.status !== 0) {
       console.error('Error deploying:');
     }
@@ -117,10 +117,11 @@ async function init() {
       'alias',
       deployedUrl,
       aliasedUrlSubdomain,
-      `--token=${NOW_TOKEN}`,
+      ...baseNowArgs,
     ], {encoding: 'utf8'});
     if (aliasOutput.status !== 0) {
       console.error('Error aliasing:');
+      process.exit(1);
     }
     console.log(aliasOutput.stdout, aliasOutput.stderr);
 
@@ -131,14 +132,15 @@ async function init() {
         'alias',
         deployedUrl,
         'bolt-design-system',
-        `--token=${NOW_TOKEN}`,
+        ...baseNowArgs,
       ], {encoding: 'utf8'});
       if (aliasOutput.status !== 0) {
         console.error('Error aliasing:');
+        process.exit(1);
       }
       console.log(aliasOutput.stdout, aliasOutput.stderr);
     }
-    // @todo get alias working
+
     // const aliasEndpoint = `https://api.zeit.co/v2/now/deployments/${deployedId}/aliases?${querystring.stringify({
     //   teamId: 'boltdesignsystem',
     // })}`;
