@@ -9,11 +9,21 @@ async function init() {
     const {
       NOW_TOKEN,
       GITHUB_TOKEN,
+      // if in Travis, then it's `"true"`
       TRAVIS,
+      // for push builds, or builds not triggered by a pull request, this is the name of the branch.
+      // for builds triggered by a pull request this is the name of the branch targeted by the pull request.
+      // for builds triggered by a tag, this is the same as the name of the tag(TRAVIS_TAG).
       TRAVIS_BRANCH,
+      // if the current job is a pull request, the name of the branch from which the PR originated
+      // if the current job is a push build, this variable is empty("").
       TRAVIS_PULL_REQUEST_BRANCH,
+      // The pull request number if the current job is a pull request, “false” if it’s not a pull request.
       TRAVIS_PULL_REQUEST,
+      // The slug (in form: owner_name/repo_name) of the repository currently being built.
       TRAVIS_REPO_SLUG,
+      // If the current build is for a git tag, this variable is set to the tag’s name
+      TRAVIS_TAG,
     } = process.env;
 
     console.log({
@@ -22,6 +32,7 @@ async function init() {
       TRAVIS_PULL_REQUEST_BRANCH,
       TRAVIS_PULL_REQUEST,
       TRAVIS_REPO_SLUG,
+      TRAVIS_TAG,
     });
 
     let branchName = 'detached-HEAD';
@@ -94,6 +105,7 @@ async function init() {
       console.log(latestDeploy);
     }
 
+    console.log('Aliasing to branch/tag name...');
     // Can't have `/` or `--` in domain names. Replacing those with `-` and then encoding anything we missed.
     const branchUrlPart = encodeURIComponent(branchName.replace(/\//g, '-').replace('--', '-'));
     const aliasedUrlSubdomain = `bolt-design-system-${branchUrlPart}`;
@@ -107,6 +119,20 @@ async function init() {
       console.error('Error aliasing:');
     }
     console.log(aliasOutput.stdout, aliasOutput.stderr);
+
+    // if this is a tagged release, then it should become the main site. we aliased above so we have a tagged version out as well i.e. `bolt-design-system-v1.2.3.now.sh`
+    if (TRAVIS_TAG) {
+      console.log('Is tag build, aliasing to main site.');
+      const aliasOutput2 = spawnSync('now', [
+        'alias',
+        deployedUrl,
+        'bolt-design-system',
+      ], {encoding: 'utf8'});
+      if (aliasOutput.status !== 0) {
+        console.error('Error aliasing:');
+      }
+      console.log(aliasOutput.stdout, aliasOutput.stderr);
+    }
     // @todo get alias working
     // const aliasEndpoint = `https://api.zeit.co/v2/now/deployments/${deployedId}/aliases?${querystring.stringify({
     //   teamId: 'boltdesignsystem',
@@ -134,7 +160,7 @@ async function init() {
 
       // The GitHub comment template - Can handle HTML
       const githubCommentText = `
-:zap: PR built on Travis and deployed a now preview here: 
+:zap: PR built on Travis and deployed a now preview here:
 
 - Branch link: ${aliasedUrl}
 - Permalink: ${deployedUrl}
