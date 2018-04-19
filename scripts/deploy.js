@@ -117,6 +117,7 @@ async function init() {
       'alias',
       deployedUrl,
       aliasedUrlSubdomain,
+      `--token=${NOW_TOKEN}`,
     ], {encoding: 'utf8'});
     if (aliasOutput.status !== 0) {
       console.error('Error aliasing:');
@@ -130,6 +131,7 @@ async function init() {
         'alias',
         deployedUrl,
         'bolt-design-system',
+        `--token=${NOW_TOKEN}`,
       ], {encoding: 'utf8'});
       if (aliasOutput.status !== 0) {
         console.error('Error aliasing:');
