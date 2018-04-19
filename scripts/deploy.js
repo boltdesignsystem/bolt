@@ -121,6 +121,7 @@ async function init() {
     ], {encoding: 'utf8'});
     if (aliasOutput.status !== 0) {
       console.error('Error aliasing:');
+      console.log(aliasOutput.stdout, aliasOutput.stderr);
       process.exit(1);
     }
     console.log(aliasOutput.stdout, aliasOutput.stderr);
@@ -136,6 +137,7 @@ async function init() {
       ], {encoding: 'utf8'});
       if (aliasOutput.status !== 0) {
         console.error('Error aliasing:');
+        console.log(aliasOutput.stdout, aliasOutput.stderr);
         process.exit(1);
       }
       console.log(aliasOutput.stdout, aliasOutput.stderr);
