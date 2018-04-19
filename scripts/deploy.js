@@ -106,9 +106,12 @@ async function init() {
     }
 
     console.log('Aliasing to branch/tag name...');
-    // Can't have `/` or `--` in domain names. Replacing those with `-` and then encoding anything we missed.
-    const branchUrlPart = encodeURIComponent(branchName.replace(/\//g, '-').replace('--', '-'));
-    const aliasedUrlSubdomain = `bolt-design-system-${branchUrlPart}`;
+    // Making sure branch name is ok to be in URL
+    const branchUrlPart = branchName
+      .replace(/\//g, '-') // `/` => `-`
+      .replace('--', '-') // `--` => `-` now.sh subdomains can't have `--` for some reason
+      .replace(/\./g, '-'); // `.` => `-`
+    const aliasedUrlSubdomain = `bolt-design-system-${encodeURIComponent(branchUrlPart)}`;
     const aliasedUrl = `https://${aliasedUrlSubdomain}.now.sh`;
     const aliasOutput = spawnSync('now', [
       'alias',
