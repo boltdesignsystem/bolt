@@ -1,6 +1,5 @@
 
 
-
   {# Breadcrumb Component in a Band #}
   {% set band_content %}
     {% include "@bolt/breadcrumb.twig" with {
@@ -41,53 +40,41 @@
 
     {% grid "o-bolt-grid--center" %}
     
-      {% cell "u-bolt-width-1/1 u-bolt-width-9/12@medium" %}
-      {% include "@bolt-components-card/card.twig" with {
-        theme: "dark",
-        
-        contentItems: [
-            
-          {
-            pattern: "headline",
-            tag: "h1",
-            size: "xxlarge",
-            text: "Error when clicking manage records and issue with indexes"
-          },
-
-          {
-            pattern: "headline",
-            tag: "h2",
-            size: "large",
-            text: "SA# SA-43719"
-          },
-
-          {
-            pattern: "text",
-            text: "Published January 5, 2018 — Updated January 5, 2018"
-          },
-          {
-            pattern: "text",
-            text: "<strong>SUMMARY</strong>content will go here"
-          }
+      {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-9/12@medium" %}
+      {% embed "@bolt-components-card/card.twig" with {
+        theme: "xlight",
+        attributes: {
+          class:[
+            "u-bolt-padding-small-squished@small",
+            "u-bolt-padding-medium-squished@medium",
+            "u-bolt-margin-top-medium",
+            "u-bolt-margin-bottom-xlarge"
           ]
+        }
         } only %}
-        {% endcell %}
-        {% endgrid %}        
 
-        {% include "@bolt-components-headline/eyebrow.twig" with {
+        {% block card_body %}
+        
+          {% include "@bolt-components-headline/eyebrow.twig" with {
           text: "User Interface | Pega Platform | Version 7.2.1",
-      } only %}
+          } only %}
 
-      {% include "@bolt/headline.twig" with {
+        {% include "@bolt/headline.twig" with {
           tag: "h1",
           size: "xxlarge",
-          text: "Error when clicking manage records and issue with indexes"
+          text: "Error when clicking manage records and issue with indexes",
+          attributes: {
+            class:[
+              "u-bolt-margin-bottom-medium@small",
+              "u-bolt-margin-bottom-large@medium"
+            ]
+          }
         } only %}
 
         {% include "@bolt/headline.twig" with {
           tag: "h2",
           size: "large",
-          text: "SA# SA-43719"
+          text: "SA-43719"
         } only %}
 
         {% include "@bolt/text.twig" with {
@@ -98,92 +85,146 @@
           text: "<strong>SUMMARY</strong>"
         } only %}
         <p>Following is the configuration details:
-          Product Version: 12.0.5546.0
-          Product Name: SQL Server 2014
-          Product Level: SP2
-          Product Edition: Standard Edition (64-bit)
-          Product Update Level: CU5
-          User tried to re-create indexes on pr4_rule-vw table following the below steps:</p>
-        <ul>
-          <li>The growing importance and demands of a unified adtech and martech world</li>
-          <li>Four foundational use cases for unifying your DMP</li>
-          <li>The role of decisioning technology</li>
-          <li>The unified DMP solution offered by Merkle | Comet and Pega® Customer Decision Hub, Pega’s decisioning technology—providing a bi-directional integration of your third-party DMP and marketing technology</li>
-        </ul>
-
-       
-        {% embed "@bolt/band.twig" with {
-          theme: "dark"
-        } %}
-          {% block band_content %}
-            {# left aligning buttons isn't working like I thought; trying to get to align with text #}
-            {% include "@bolt-components-button-group/button-group.twig" with {
-              buttons: 
-              [
-                {
-                  text: "Subscribe",
-                  style: "primary",
-
-                },
-                {
-                  text: "Suggest Edit",
-                  style: "text"
-                }
-              ]
-            } %}
-          {% endblock %}
-          {% endembed %}
-
-          {% embed "@bolt/band.twig" with {
-            theme: "dark"
-          } %}
-          {% block band_content 
-            %}
+        <br>Product Version: 12.0.5546.0
+        <br>Product Name: SQL Server 2014
+        <br>Product Level: SP2
+        <br>Product Edition: Standard Edition (64-bit)
+        <br>Product Update Level: CU5
+        <br>User tried to re-create indexes on pr4_rule-vw table following the below steps:</p>
+        <ol>
+          <li>Copy the SQL contents for all the indexes corresponds to above table.</li>
+          <li>Delete the indexes corresponds to above table.</li>
+          <li>Re-create the indexes by executing the SQL contents that is available from step 'a'.</li>
+        </ol>
+        <br>User also tried to run sp_updatestats as below to improve the performance:</p>
+        <P><strong>ERROR MESSAGES</strong></p>
+        <p><tt>Status fail
+          <br>Message There has been an issue; please consult your system administrator
+          <br>Operator ID name@domain.country
+          <br>Requestor ID H6B5936A93648A81F185A9DF08237B06E
+          <br>Timestamp Mon Sep 04 14:57:08 MSK 2017
+          <br>Engine Version PegaRULES 7.20 ML1 (coreAssemblyCached_721_916)
+        </tt></P>
+        <p><strong>STEPS TO REPRODUCE</strong>
+        
+          <ol>
+            <li>Open data explorer</li>
+            <li>Click on "Manage records" icon or on selected Data type. The error message appears.</li>
+          </ol>
+        </p>
+        <p><strong>ROOT CAUSE</strong></p>
+        <P>A defect or configuration issue in the operating environment . </P>
+        <p>Microsoft SQL Server 2014 SP2 has cardinality issues and has recommendations for an upgrade to later versions.</p>
+        <p>The local-change suggested for Pega is to use SQL Server in a lower compatibility version (110) in order to stay in a supported platform stack.</p>
+        <p><strong>RESOLUTION</strong></p>
+        <P>Here’s the explanation for the reported behavior:
+        <BR>Point the compatibility mode to SQL server 2012, that is,110.
+        </P>
+      
+      {#careful about the button on the small screen - 
+        sometimes rendered as expected, sometimes not so much, more knowledgable 
+        eyes than mine should test & change as necessary#}
+      {% grid %}
+        {% cell 'o-bolt-grid--full@small' 'o-bolt-grid--medium@medium' %}
           {% include "@bolt-components-button/button.twig" with {
-            "text": "trying with buttons",
-            "style": "primary"
-          } %}
+            "text": "Subscribe",
+            "style": "primary",
+            "width": "full@small"
+          } only %}
           {% include "@bolt-components-button/button.twig" with {
-            "text": "instead of button group",
-            "style": "text"
-          } %}
-          {% endblock %}
-          {% endembed %}
-     
+            "text": "Suggest Edit",
+            "style": "text",
+            "width": "full@small"
+          } only %}
+        {% endcell %}
+      {% endgrid %}
 
-        {% include "@bolt/headline.twig" with {
-          text: "Tags:",
-          size: "small",
-          transform: "uppercase"
-        } only %}
-
-        {% include "@bolt/chip-list.twig" with {
-          "contentItems": [
-            {
-              "text": "Product Name"
-            },
-            {
-              "text": "Topic"
-            },
-            {
-              "text": "Version"
-            }
+      {% grid %}
+          {% cell %}
+      {% include "@bolt/headline.twig" with {
+        text: "Tags:",
+        size: "small",
+        transform: "uppercase",
+        attributes: {
+          class:[
+            "u-bolt-margin-top-medium@small",
+            "u-bolt-margin-top-large@medium"
           ]
-        } %}
+        }
+      } only %}
+      
 
-        <hr>
-        
-        {% include "@bolt/headline.twig" with {
-          text: "Did you find this content helpful?",
-          size: "large",
-          align: "center"
-        } only %}
-        
+      {% include "@bolt/chip-list.twig" with {
+        "contentItems": [
+          {
+            "text": "Product Name"
+          },
+          {
+            "text": "Topic"
+          },
+          {
+            "text": "Version"
+          }
+        ]
+      } %}
 
+      {% endcell %}
+      {% endgrid %}
 
-  {% endblock %}
-{% endembed %}
+      <hr>     
 
+      {% grid "u-bolt-text-align-center" "o-bolt-grid--small" %}
+      {% cell "u-bolt-width-1/1" "u-bolt-margin-bottom-small" "o.bolt-grid__cell--center" %}
+          {% include "@bolt/headline.twig" with {
+            text: "Did you find this content helpful?",
+            size: "large",
+          } only %}
+      {% endcell %}
+
+      {#change icon to the thumbsup - work in progress#}
+      {% cell %}
+          {% include "@bolt-components-link/link.twig" with {
+            text: "Yes",
+            url: "#",
+            display: "inline",
+            icon: {
+              name: "add-open",
+              position: "before",
+              size: "large"
+            }
+          } only %}
+      {% endcell %}
+
+      {#change icon to the thumbsdown - work in progress#}
+      {% cell %}
+          {% include "@bolt-components-link/link.twig" with {
+            text: "No",
+            url: "#",
+            display: "inline",
+            icon: {
+              name: "minus-open",
+              position: "before",
+              size: "large"
+            }
+          } only %}
+          {% endcell %}
+         
+          {% cell "o-bolt-grid--full@small" "u-bolt-padding-left-medium@medium" %}        
+          {% include "@bolt/text.twig" with {
+            text: "x% found this helpful",
+            display: "inline"
+          } only %}   
+          {% endcell %}
+      {% endgrid %}    
+
+      {% endblock %}
+      {% endembed %}
+
+    {% endcell %}
+    {% endgrid %} 
+
+    {% endblock %}
+    {% endembed %}
 
 
 {% embed "@bolt/band.twig" with {
@@ -193,7 +234,7 @@
   {% block band_content %}
 
     {% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
-      {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small' %}
+      {% cell 'u-bolt-width-1/1@small' 'u-bolt-width-1/2@medium' %}
 
         {% include "@bolt/headline.twig" with {
           text: "Have a question? Get answers now.",
@@ -207,13 +248,14 @@
 
       {% endcell %}
 
-      {% cell 'u-bolt-width-1/1 u-bolt-width-1/4@small' %}
+      {% cell 'u-bolt-width-1/1@small' 'u-bolt-width-1/2@medium' 'o-bolt-grid__cell--middle' 'o-bolt-grid--right' %} 
 
-      {% include "@bolt-components-button/button.twig" with {
-        "text": "Go"
-      } %}
+          {% embed "@bolt-components-button/button.twig" with {
+            text: "Go"
+          } %}
+          {% endembed %}
         {% endcell %}
-  
+      
     {% endgrid %}
 
   {% endblock %}
