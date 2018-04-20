@@ -37,7 +37,7 @@ export class BoltDropdown extends BoltComponent() {
       collapse: this.props.collapse ? this.props.collapse : false,
     };
 
-    this.uuid = "12345";
+    this.uuid = '12345';
   }
 
   connecting() {
@@ -65,7 +65,7 @@ export class BoltDropdown extends BoltComponent() {
 
   autoHeight() {
     if (this.contentElem) {
-      if (this.props.collapse && window.matchMedia("(min-width: 600px)").matches) {
+      if (this.props.collapse && window.matchMedia('(min-width: 600px)').matches) {
         this.contentElem.classList.add('u-bolt-height-auto');
       } else if (this.props.collapse) {
         this.contentElem.classList.remove('u-bolt-height-auto');

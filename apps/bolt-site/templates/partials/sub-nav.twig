@@ -31,6 +31,12 @@
         name: 'chevron-right'
       }
     } %}
+    <a href="#" class="storefront-docs__close-menu u-bolt-hide@medium">
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "close",
+        size: "medium",
+      } %}
+    </a>
   {% endif %}
   {{ macros.menu(nestedPages, 1, currentUrl) }}
 </nav>
