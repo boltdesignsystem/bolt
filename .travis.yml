@@ -26,7 +26,7 @@ before_script:
 
 install:
 - yarn install
-- npm install -g nightwatch
+- yarn global add nightwatch
 - npm run setup
 
 before_script:
@@ -36,6 +36,7 @@ before_script:
 # Can't do deploy on `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
 script:
 - time bash ./travis.sh
+- nightwatch --config nightwatch.js --env chrome,ie11
 
 after_success: # Warning: this fires after a build is already marked as successful so failing this will not fail the build.
   - git status # Just want to check
