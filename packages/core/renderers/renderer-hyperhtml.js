@@ -88,7 +88,7 @@ export function BoltComponent(Base = HTMLElement) {
 
       // Loop through nodelist
       this.childNodes.forEach(function (child, index, nodelist) {
-        const slotName = child.getAttribute ? child.getAttribute("slot") : null;
+        const slotName = child.getAttribute ? child.getAttribute('slot') : null;
 
         if (!slotName) {
           elem.slots.default.push(child);
