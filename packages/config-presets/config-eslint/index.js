@@ -24,7 +24,6 @@ module.exports = {
     'object-shorthand': 'off',
     'no-useless-escape': 'off',
     'block-spacing': 'off',
-    'indent': 'off',
     'no-unneeded-ternary': 'off',
     'lines-around-directive': 'off',
     'strict': 'off',

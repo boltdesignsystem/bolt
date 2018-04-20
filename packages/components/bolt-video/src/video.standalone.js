@@ -216,7 +216,7 @@ export function BoltVideo() {
         elem._setMetaTitle(title);
         elem._setMetaDuration(duration);
         elem._setVideoDimensions(width, height);
-          elem._calculateIdealVideoSize();
+        elem._calculateIdealVideoSize();
 
         if (this.earlyToggle) {
           this.earlyToggle = false;
@@ -351,8 +351,8 @@ export function BoltVideo() {
         }
       }
 
-        window.addEventListener('optimizedResize', this._onWindowResize);
-      }
+      window.addEventListener('optimizedResize', this._onWindowResize);
+    }
 
 
     _onWindowResize(event) {
@@ -379,7 +379,7 @@ export function BoltVideo() {
 
 
     disconnectedCallback() {
-        window.removeEventListener('optimizedResize', this._calculateIdealVideoSize);
+      window.removeEventListener('optimizedResize', this._calculateIdealVideoSize);
 
       if (this.player) {
         this.player.dispose();
