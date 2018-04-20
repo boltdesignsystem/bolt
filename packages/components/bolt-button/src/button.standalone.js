@@ -102,17 +102,17 @@ class BoltButton extends BoltComponent() {
       'c-bolt-button',
       this.props.size ? `c-bolt-button--${this.props.size}` : '',
       this.props.color ? `c-bolt-button--${this.props.color}` : 'c-bolt-button--primary',
-      this.props.rounded ? `c-bolt-button--rounded` : '',
-      this.props.iconOnly ? `c-bolt-button--icon-only` : '',
+      this.props.rounded ? 'c-bolt-button--rounded' : '',
+      this.props.iconOnly ? 'c-bolt-button--icon-only' : '',
       this.props.width ? `c-bolt-button--${this.props.width}` : '',
       this.props.align ? `c-bolt-button--${this.props.align}` : 'c-bolt-button--center',
       this.props.align ? `c-bolt-button--${this.props.transform}` : '',
       this.props.disabled ? 'c-bolt-button--disabled' : '',
 
       // Test out psuedo states via prop values
-      this.props.isHover ? `c-bolt-button--hover` : '',
-      this.props.isActive ? `c-bolt-button--active` : '',
-      this.props.isFocus ? `c-bolt-button--focus` : '',
+      this.props.isHover ? 'c-bolt-button--hover' : '',
+      this.props.isActive ? 'c-bolt-button--active' : '',
+      this.props.isFocus ? 'c-bolt-button--focus' : '',
     );
 
     /**
