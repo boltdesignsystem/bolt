@@ -135,12 +135,12 @@ async function init() {
         'bolt-design-system',
         ...baseNowArgs,
       ], {encoding: 'utf8'});
-      if (aliasOutput.status !== 0) {
+      if (aliasOutput2.status !== 0) {
         console.error('Error aliasing:');
-        console.log(aliasOutput.stdout, aliasOutput.stderr);
+        console.log(aliasOutput2.stdout, aliasOutput2.stderr);
         process.exit(1);
       }
-      console.log(aliasOutput.stdout, aliasOutput.stderr);
+      console.log(aliasOutput2.stdout, aliasOutput2.stderr);
     }
 
     // const aliasEndpoint = `https://api.zeit.co/v2/now/deployments/${deployedId}/aliases?${querystring.stringify({
