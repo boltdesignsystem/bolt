@@ -37,7 +37,6 @@ bolt-navbar {
 }
 
 
-
 .c-bolt-navbar__nav {
   @include bolt-margin(0 0 0 small);
 
@@ -47,8 +46,11 @@ bolt-navbar {
   @include respond-to(medium) {
     display: block;
   }
-}
 
+  &:after {
+    content: "double quotes";
+  }
+}
 
 
 .c-bolt-navbar__nav {
