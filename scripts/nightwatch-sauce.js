@@ -10,7 +10,6 @@ const {
   spawnSync
 } = require('child_process');
 
-
 async function sendTravisTestInfo(capabilities, testId) {
   try {
     const {
@@ -41,15 +40,18 @@ async function sendTravisTestInfo(capabilities, testId) {
       TRAVIS_TAG,
     });
 
-    // The GitHub comment template - Can handle HTML
     const githubCommentText = `
-      :zap: Sauce Labs Test Passed!:
-      - Browser Name: ${capabilities.browserName}
-      - Browser Version: ${capabilities.version}
-      - Browser Platform: ${capabilities.platform}
-      -Test Url: https://saucelabs.com/beta/tests/${testId}/commands
+## :zap: Sauce Labs Test for ${capabilities.browserName} Passed!:
 
-      ![Image of ${capabilities.browserName}](https://assets.saucelabs.com/jobs/${testId}/0001screenshot.png)
+![Image of ${capabilities.browserName}](https://assets.saucelabs.com/jobs/${testId}/0001screenshot.png | width=100)
+
+<details>
+  <summary>Test Details</summary>
+  - Browser Name: ${capabilities.browserName}
+  - Browser Version: ${capabilities.version}
+  - Browser Platform: ${capabilities.platform}
+  - Test Url: https://saucelabs.com/beta/tests/${testId}/commands
+</details>
     `.trim();
 
     // `TRAVIS_PULL_REQUEST` is either `'false'` or a PR number like `'55'`. All strings.
