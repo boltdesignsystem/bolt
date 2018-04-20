@@ -7,6 +7,10 @@ const events = require('../utils/events');
 const log = require('../utils/log');
 const { getConfig } = require('../utils/config-store');
 const ora = require('ora');
+const { promisify } = require('util');
+const fs = require('fs');
+const writeFile = promisify(fs.writeFile);
+const path = require('path');
 const timer = require('../utils/timer');
 
 const config = getConfig();
@@ -17,7 +21,11 @@ function compile() {
     const webpackSpinner = ora(chalk.blue('Building WebPack bundle...')).start();
     const startTime = timer.start();
     const spinFailed = () => webpackSpinner.fail(chalk.red('Building WebPack Failed'));
-    webpack(webpackConfig).run((err, stats) => {
+    if (config.webpackStats) {
+      webpackConfig.profile = true;
+      webpackConfig.parallelism = 1;
+    }
+    webpack(webpackConfig).run(async (err, stats) => {
       if (err) {
         spinFailed();
         return reject(err);
@@ -63,6 +71,12 @@ function compile() {
         console.log('---');
         console.log(output);
         console.log('===\n');
+      }
+
+      if (config.webpackStats) {
+        const statsFilePath = path.join(config.buildDir, 'webpack-stats.json');
+        await writeFile(statsFilePath, JSON.stringify(stats.toJson(), null, '  '));
+        log.info(`Wrote WebPack stats json file to "${path.relative(process.cwd(), statsFilePath)}"`);
       }
 
       // log.taskDone('build: webpack');
@@ -139,7 +153,7 @@ function server() {
   return new Promise((resolve, reject) => {
 
     // Add HMR scripts required to entrypoint
-    if (webpackConfig.devServer.hot) {
+    if (webpackConfig.devServer.hot && !config.prod) {
       webpackConfig.entry['bolt-global'].unshift('webpack-dev-server/client?http://localhost:8080/', 'webpack/hot/dev-server');
     }
 

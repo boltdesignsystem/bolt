@@ -4,6 +4,7 @@ const webpackTasks = require('./webpack-tasks');
 const manifest = require('../utils/manifest');
 const internalTasks = require('./internal-tasks');
 const imageTasks = require('./image-tasks');
+const timer = require('../utils/timer');
 const config = require('../utils/config-store').getConfig();
 
 // These tasks are present based on optional conditions like `config.env` and should only be `require`-ed when it's the right env due to each file's setup where it tries to grab specific files - and of course the tasks should only run in the correct `env` as well.
@@ -79,6 +80,7 @@ async function images() {
 }
 
 async function build() {
+  const startTime = timer.start();
   try {
     if (!config.quick) {
       await clean();
@@ -98,6 +100,7 @@ async function build() {
         await extraTasks.static.compile();
         break;
     }
+    log.info(`Build complete after ${timer.end(startTime)}.`);
   } catch (error) {
     log.errorAndExit('Build failed', error);
   }

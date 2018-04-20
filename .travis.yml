@@ -33,9 +33,9 @@ before_script:
 - npm run lint
 - npm test
 
+# Can't do deploy on `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
 script:
-- travis_wait time npm run build && ./scripts/deploy.sh && node ./scripts/netlify-notifier.js && ./scripts/update-read-only-git-repos.sh
-- nightwatch --config nightwatch.js --env chrome,ie11
+- time bash ./travis.sh
 
 after_success: # Warning: this fires after a build is already marked as successful so failing this will not fail the build.
   - git status # Just want to check

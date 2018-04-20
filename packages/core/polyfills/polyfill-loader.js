@@ -6,7 +6,6 @@ require('core-js/modules/es6.string.starts-with');
 require('core-js/modules/es7.array.includes');
 require('core-js/modules/es6.array.for-each');
 require('core-js/modules/es6.object.assign');
-require('core-js/library/es6/reflect');
 
 let polyfills = [];
 
@@ -23,13 +22,13 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 
 // CustomElement shim for IE 11
 (function () {
-  if (typeof window.CustomEvent === "function") return false;
+  if (typeof window.CustomEvent === 'function') return false;
   function CustomEvent(event, params) {
     params = params || { bubbles: false, cancelable: false, detail: undefined };
     var evt = document.createEvent('CustomEvent');
-  evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
-  return evt;
-}
+    evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+    return evt;
+  }
   CustomEvent.prototype = window.Event.prototype;
   window.CustomEvent = CustomEvent;
 })();
