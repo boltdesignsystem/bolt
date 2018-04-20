@@ -1,0 +1,23 @@
+{% set schema = bolt.data.components['@bolt-components-button'].schema %}
+
+{# Defaults for a vanilla `Text` component #}
+{% set prefix = "c-bolt-" %}
+{% set componentName = "text" %}
+{% set baseClass = prefix ~ componentName %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+<bolt-text {{ attributes }}>
+  <span>
+    <h2>{{ children }}</h2>
+  </span>
+</bolt-text>
+
+
+
+
+
+
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-text/text.schema.yml', _self) | raw }}
+{% endif %}
