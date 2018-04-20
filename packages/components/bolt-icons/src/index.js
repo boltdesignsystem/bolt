@@ -82,8 +82,6 @@ export * from './icons/robo-auto';
 export * from './icons/sales-automation';
 export * from './icons/search';
 export * from './icons/share';
-export * from './icons/share1';
-export * from './icons/share2';
 export * from './icons/training';
 export * from './icons/transportation';
 export * from './icons/twitter';
