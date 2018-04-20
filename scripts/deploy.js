@@ -54,9 +54,7 @@ async function init() {
     console.log(`Branch Name: ${branchName}`);
 
     const baseNowArgs = [
-      '--name=bolt-design-system',
       '--team=boltdesignsystem',
-      '--static',
     ];
 
     if (NOW_TOKEN) baseNowArgs.push(`--token=${NOW_TOKEN}`);
@@ -65,6 +63,8 @@ async function init() {
     const deployOutput = spawnSync('now', [
       'deploy',
       './www',
+      '--name=bolt-design-system',
+      '--static',
       ...baseNowArgs,
     ], {encoding: 'utf8'});
     if (deployOutput.status !== 0) {
