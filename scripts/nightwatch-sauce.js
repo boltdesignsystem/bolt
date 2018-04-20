@@ -10,6 +10,12 @@ const {
   spawnSync
 } = require('child_process');
 
+
+// Util for capitalization
+function capitalize(string) {
+  return string && string[0].toUpperCase() + string.slice(1);
+}
+
 async function sendTravisTestInfo(capabilities, testId) {
   try {
     const {
@@ -41,16 +47,18 @@ async function sendTravisTestInfo(capabilities, testId) {
     });
 
     const githubCommentText = `
-## :zap: Sauce Labs Test for ${capabilities.browserName} Passed!:
+<h3>:zap: Sauce Labs Test for ${capabilities.browserName} Passed!</h3>
+<a href="https://assets.saucelabs.com/jobs/${testId}/0001screenshot.png" target="_blank">
+<img align="right" width="50%" src="https://assets.saucelabs.com/jobs/${testId}/0001screenshot.png" alt="Image of ${capabilities.browserName} test"></a>
 
-![Image of ${capabilities.browserName}](https://assets.saucelabs.com/jobs/${testId}/0001screenshot.png | width=100)
-
-<details>
+<details open>
   <summary>Test Details</summary>
-  - Browser Name: ${capabilities.browserName}
-  - Browser Version: ${capabilities.version}
-  - Browser Platform: ${capabilities.platform}
-  - Test Url: https://saucelabs.com/beta/tests/${testId}/commands
+  <ul>
+    <li>Browser Name: ${capitalize(capabilities.browserName)}</li>
+    <li>Browser Version: ${capabilities.version}</li>
+    <li>Browser Platform: ${capitalize(capabilities.platform)}</li>
+    <li><a href="https://saucelabs.com/beta/tests/${testId}/commands" target="_blank">View Test in Sauce Labs</a></li>
+  </ul>
 </details>
     `.trim();
 
