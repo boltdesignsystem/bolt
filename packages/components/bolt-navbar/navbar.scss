@@ -11,12 +11,30 @@ bolt-navbar {
 .c-bolt-navbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   position: relative;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  display: flex;
+  flex-direction: row;
+  display: grid;
+  grid-template-columns: auto 1fr fit-content(100px);
+  grid-template-rows: 1fr auto;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+
+
+  // @include respond-to(small){
+
+  // }
 }
 
 .c-bolt-navbar__brand {
   @include bolt-margin(0 small 0 0);
+  grid-column: 1/span 1;
+  grid-row: 1/span 1;
+  display: inline-flex;
 
   white-space: nowrap;
 
@@ -40,6 +58,9 @@ bolt-navbar {
 
 .c-bolt-navbar__nav {
   @include bolt-margin(0 0 0 small);
+  grid-column: 2/span 3;
+  grid-row: 1/span 1;
+  display: contents;
 }
 
 

@@ -23,9 +23,11 @@ bolt-nav {
   position: relative;
   list-style: none;
   overflow: hidden;
+  flex-flow: column nowrap;
 
-  @include respond-to(small) {
+  @include respond-to(medium) {
     flex-direction: row;
+    flex-flow: row nowrap;
   }
 
   // TODO: [Mai] This is the setup for enhanced mobile view instead of hiding the items.

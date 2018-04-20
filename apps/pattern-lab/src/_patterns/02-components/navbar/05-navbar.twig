@@ -1,23 +1,42 @@
 {% include "@bolt-components-navbar/navbar.twig" with {
   "title": {
     "tag": "h2",
-    "text": "Title Text",
+    "text": "Pega's Key Concepts",
     "icon": {
       "name": "marketing-gray"
     }
   },
-  "links": [
-    {
-      "text": "Link 1 Text",
-      "url": "link-1-url"
-    },
-    {
-      "text": "Link 2 Text",
-      "url": "link-2-url"
-    },
-    {
-      "text": "Link 3 Text",
-      "url": "link-3-url"
-    }
-  ]
+  dropdown: {
+    title: "Pega's Key Concepts",
+    collapse: true,
+    center: true,
+    content: include("@bolt-components-nav/nav.twig", {
+      "links": [
+        {
+          "text": "Real-Time AI",
+          "url": "link-1-url"
+        },
+        {
+          "text": "End-to-end Automation",
+          "url": "link-2-url"
+        },
+        {
+          "text": "Journey-centric Delivery",
+          "url": "link-3-url"
+        },
+        {
+          "text": "Low Code",
+          "url": "link-1-url"
+        },
+        {
+          "text": "Multi-dimensional Power",
+          "url": "link-2-url"
+        },
+        {
+          "text": "Cloud Choice",
+          "url": "link-3-url"
+        }
+      ]
+    })
+  }
 } %}

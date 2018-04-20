@@ -65,7 +65,7 @@ export class BoltDropdown extends BoltComponent() {
 
   autoHeight() {
     if (this.contentElem) {
-      if (this.props.collapse && window.matchMedia("(min-width: 600px)").matches) {
+      if (this.props.collapse && window.matchMedia("(min-width: 800px)").matches) {
         this.contentElem.classList.add('u-bolt-height-auto');
       } else if (this.props.collapse) {
         this.contentElem.classList.remove('u-bolt-height-auto');
@@ -132,7 +132,7 @@ export class BoltDropdown extends BoltComponent() {
   template() {
     const classes = css(
       'c-bolt-dropdown',
-      this.props.collapse ? 'c-bolt-dropdown--collapse@small' : '',
+      this.props.collapse ? 'c-bolt-dropdown--collapse@medium' : '',
     );
 
     const dropdownChildren = this.slots.default ? this.slot('default') : (this.props.children ? this.props.children : '');

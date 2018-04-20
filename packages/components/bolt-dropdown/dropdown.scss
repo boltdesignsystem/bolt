@@ -3,6 +3,7 @@
 
 bolt-dropdown {
   display: block;
+  display: contents;
 
   @include bolt-css-vars((
     --bolt-nav-item-opacity: 0,
@@ -11,7 +12,7 @@ bolt-dropdown {
   ));
 
   &[collapse]{
-    @include respond-to(small) {
+    @include respond-to(medium) {
       @include bolt-css-vars((
         --bolt-nav-item-opacity: 1,
         --bolt-nav-item-transform: none,
@@ -32,10 +33,12 @@ bolt-dropdown {
 .c-bolt-dropdown {
   overflow: hidden;
   position: relative;
+  display: contents;
 
   background-color: inherit;
   background-color: var(--bolt-theme-background, inherit);
-  box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
+  // box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
+  // @todo: move shadow to parent container?
 }
 
 .c-bolt-dropdown__header {
@@ -47,10 +50,16 @@ bolt-dropdown {
   display: flex;
   background-color: inherit;
   background-color: var(--bolt-theme-background, inherit);
-  box-shadow: 0 1px 2px 0 rgba(bolt-color(black), 0.1);
 
-  .c-bolt-dropdown--collapse\@small & {
-    @include respond-to(small) {
+
+  grid-row: 1/span 1;
+  grid-column: 4/span 1;
+
+  // box-shadow: 0 1px 2px 0 rgba(bolt-color(black), 0.1);
+  // @todo: move shadow to parent container?
+
+  .c-bolt-dropdown--collapse\@medium & {
+    @include respond-to(medium) {
       display: none;
     }
   }
@@ -235,6 +244,34 @@ bolt-dropdown {
   transform: translateY(-100px);
   display: none;
   height: 0;
+  position: absolute;
+  right: 0;
+  left: auto;
+  top: 100%;
+  grid-row: 2/span 1;
+  grid-column: 1/span 4;
+
+
+  min-width: 15rem;
+
+  // @supports (display: contents) {
+  //   position: relative;
+  // }
+
+  .c-bolt-dropdown--collapse\@medium & {
+    @include respond-to(small) {
+      position: absolute;
+      width: auto;
+    }
+
+    @include respond-to(large) {
+      position: relative;
+      top: auto;
+    }
+  }
+
+
+
 
   &[data-open]:not([style*="height"]) {
     transition: none;
@@ -249,8 +286,11 @@ bolt-dropdown {
     height: auto;
   }
 
-  .c-bolt-dropdown--collapse\@small & {
-    @include respond-to(small) {
+  .c-bolt-dropdown--collapse\@medium & {
+    @include respond-to(medium) {
+      position: relative;
+      grid-row: 1/span 1;
+      grid-column: 3/span 3;
       max-height: none;
       visibility: visible;
       display: block;
@@ -431,8 +471,8 @@ bolt-dropdown {
   opacity: 0;
   transition: opacity .1s ease;
 
-  .c-bolt-dropdown--collapse\@small & {
-    @include respond-to(small) {
+  .c-bolt-dropdown--collapse\@medium & {
+    @include respond-to(medium) {
       opacity: 1;
     }
   }
@@ -454,6 +494,12 @@ bolt-dropdown {
     opacity: 1;
 
     filter: contrast(80%) brightness(110%);
+
+    .c-bolt-dropdown--collapse\@medium & {
+      @include respond-to(medium) {
+        opacity: 0;
+      }
+    }
   }
 }
 
@@ -520,8 +566,8 @@ bolt-dropdown {
   opacity: var(--bolt-nav-item-opacity, 1);
   transition: opacity 0.35s ease-out, transform 0.35s ease-out; // transition:
 
-  .c-bolt-dropdown--collapse\@small & {
-    @include respond-to(small) {
+  .c-bolt-dropdown--collapse\@medium & {
+    @include respond-to(medium) {
       opacity: 1;
       transform: translateY(0);
     }

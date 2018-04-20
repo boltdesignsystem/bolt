@@ -23,6 +23,16 @@ bolt-navlink {
   @include bolt-font-weight(semibold);
   @include bolt-font-size(medium);
 
+  @include respond-to(xsmall) {
+    @include bolt-padding-left(small);
+    @include bolt-padding-right(0);
+  }
+
+  @include respond-to(small) {
+    @include bolt-padding-left(small);
+    @include bolt-padding-right(small);
+  }
+
   @include respond-to(medium) {
     @include bolt-padding(small, squished);
     @include bolt-font-size(small);
