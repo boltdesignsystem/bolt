@@ -66,8 +66,7 @@
     "serve": "drush serve",
     "export": "drush config:export",
     "generate": [
-      "# 'About to use devel to generate content, but it outputs a big confusing error that actually is not an error as it still generates all the content, so we will redirect it to /dev/null to hide output.'",
-      "drush devel-generate-content --kill > /dev/null 2>&1"
+      "drupal create:nodes --no-interaction --limit=25 --title-words=7 --time-range=3 --language=und"
     ],
     "start": [
       "@build",
