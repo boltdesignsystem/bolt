@@ -115,7 +115,7 @@ async function init(latestTag) {
       .replace('--', '-') // `--` => `-` now.sh subdomains can't have `--` for some reason
       .replace(/\./g, '-'); // `.` => `-`
     const aliasedUrlSubdomain = `bolt-design-system-${encodeURIComponent(branchUrlPart)}`;
-    const aliasedUrl = `https://${aliasedUrlSubdomain}.now.sh`;
+    const aliasedUrl = `https://${aliasedUrlSubdomain}.com`;
     const aliasOutput = spawnSync('now', [
       'alias',
       deployedUrl,
