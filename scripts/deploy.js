@@ -32,10 +32,6 @@ async function init() {
       TRAVIS_TAG,
     } = process.env;
 
-    console.log(TRAVIS === 'true');
-    console.log(TRAVIS == 'true');
-    console.log(TRAVIS === true);
-    console.log(TRAVIS == true);
 
     console.log({
       TRAVIS,

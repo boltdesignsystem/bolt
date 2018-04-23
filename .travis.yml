@@ -1,15 +1,18 @@
+sudo: false
+dist: trusty
+
 language: php
 php:
   - 7.1
 
 addons:
   sauce_connect: true
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-4.8
-    - graphicsmagick
+  # apt:
+  #   sources:
+  #   - ubuntu-toolchain-r-test
+  #   packages:
+  #   - g++-4.8
+  #   - graphicsmagick
 
 before_install:
 - nvm install # version lifted from `.nvmrc`
@@ -25,7 +28,6 @@ before_script:
 - phpenv config-rm xdebug.ini
 
 install:
-- yarn install
 - yarn global add nightwatch
 - npm run setup
 
@@ -46,6 +48,7 @@ cache:
   yarn: true
   directories:
     - node_modules
+    - $HOME/.cache/yarn
     - $HOME/.composer
     - apps/drupal-lab/vendor
     - apps/drupal-lab/web/core
