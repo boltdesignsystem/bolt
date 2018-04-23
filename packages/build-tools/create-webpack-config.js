@@ -38,9 +38,9 @@ function createConfig(config) {
 
 
   // Merge together global Sass data overrides specified in a .boltrc config
-  if (config.globalDataOverrides.scss){
+  if (config.globalData.scss && config.globalData.scss.length !== 0){
     const overrideItems = [];
-    config.globalDataOverrides.scss.forEach((item) => {
+    config.globalData.scss.forEach((item) => {
       try {
         const file = fs.readFileSync(item, 'utf8');
         file
@@ -57,9 +57,9 @@ function createConfig(config) {
 
   
   // Merge together any global JS data overrides
-  if (config.globalDataOverrides.js){
+  if (config.globalData.js && config.globalData.js.length !== 0){
     const overrideJsItems = [];
-    config.globalDataOverrides.js.forEach((item) => {
+    config.globalData.js.forEach((item) => {
       try {
         const overrideFile = require(path.resolve(process.cwd(), item));
         overrideJsItems.push(overrideFile);
@@ -70,6 +70,7 @@ function createConfig(config) {
 
     globalJsData = deepmerge(globalJsData, ...overrideJsItems);
   }
+
 
   /**
    * Build WebPack config's `entry` object
