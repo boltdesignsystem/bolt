@@ -20,7 +20,7 @@ before_install:
 - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.6.0
 - export PATH="$HOME/.yarn/bin:$PATH"
 - node --version && npm --version && yarn --version && composer --version
-# - composer global require hirak/prestissimo
+- composer global require hirak/prestissimo
 - if [[ -n "$GITHUB_TOKEN" ]]; then composer config -g github-oauth.github.com ${GITHUB_TOKEN};
   fi;
 
@@ -43,16 +43,17 @@ script:
 after_success: # Warning: this fires after a build is already marked as successful so failing this will not fail the build.
   - git status # Just want to check
 
-#cache:
+cache:
   #apt: true
   #yarn: true
-  #directories:
+  directories:
     #- node_modules
     #- $HOME/.cache/yarn
-    #- $HOME/.composer
+    - $HOME/.composer
+    - apps/pattern-lab/vendor
     #- apps/drupal-lab/vendor
     #- apps/drupal-lab/web/core
-    #- apps/pattern-lab/vendor
+    
     #- apps/bolt-site/vendor
     #- apps/pw-site/vendor
     #- packages/core-php/vendor
