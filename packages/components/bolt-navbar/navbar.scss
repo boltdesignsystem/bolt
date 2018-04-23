@@ -31,8 +31,9 @@ bolt-navbar {
   vertical-align: middle;
   align-items: center;
 
-  & + .c-bolt-navbar__brand-item {
-    @include bolt-margin-left(xsmall);
+  .c-bolt-link.c-bolt-link,
+  .c-bolt-link.c-bolt-link:hover {
+    text-decoration: none;
   }
 }
 
