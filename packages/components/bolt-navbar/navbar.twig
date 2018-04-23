@@ -17,7 +17,7 @@
 
 
 <bolt-navbar>
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: vspacing,
     theme: theme,
     fullBleed: true
@@ -25,7 +25,7 @@
 
     {% block band_background %}
       {% if gradient == "true" %}
-        {% include "@bolt/background.twig" with {
+        {% include "@bolt-components-background/background.twig" with {
           "opacity": "light",
           "fill": "gradient",
           "focalPoint":
