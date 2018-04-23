@@ -30,7 +30,7 @@ function createConfig(config) {
 
   // Default global JS data defined
   let globalJsData = {
-    'process.env.NODE_ENV': config.prod ? 'production' : 'development',
+    'process.env.NODE_ENV': config.prod ? JSON.stringify('production') : JSON.stringify('development'),
     bolt: {
       namespace: config.namespace,
     },
@@ -55,7 +55,7 @@ function createConfig(config) {
     globalSassData = [...globalSassData, ...overrideItems];
   }
 
-  
+
   // Merge together any global JS data overrides
   if (config.globalData.js && config.globalData.js.length !== 0){
     const overrideJsItems = [];
@@ -325,6 +325,8 @@ function createConfig(config) {
       ],
     },
     plugins: [
+      new webpack.DefinePlugin(globalJsData),
+
       // Ignore generated output if generated output is on a dependency chain (causes endless loop)
       new webpack.WatchIgnorePlugin([
         /dist\/styleguide/,
@@ -401,8 +403,6 @@ function createConfig(config) {
   } else { // not prod
     // @todo fix source maps
     webpackConfig.devtool = 'cheap-module-eval-source-map';
-
-    webpackConfig.plugins.push(new webpack.DefinePlugin(globalJsData));
   }
 
 

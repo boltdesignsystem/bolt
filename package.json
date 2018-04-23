@@ -52,7 +52,7 @@
     "lint:yaml": "yamllint 'packages/**/*.yml' --ignore='**/vendor/**'",
     "lint": "npm-run-all --continue-on-error --serial lint:*",
     "precommit": "lint-staged",
-    "prepush": "npm run test",
+    "prepush": "npm run lint:twig && npm run test",
     "test:js": "jest",
     "test:js:watch": "jest --watch",
     "test:php": "cd packages/core-php && composer run test",
