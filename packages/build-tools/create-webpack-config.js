@@ -30,9 +30,11 @@ function createConfig(config) {
 
   // Default global JS data defined
   let globalJsData = {
-    'process.env.NODE_ENV': config.prod ? 'production' : 'development',
+    'process.env.NODE_ENV': config.prod ?
+      JSON.stringify('production') :
+      JSON.stringify('development'),
     bolt: {
-      namespace: config.namespace,
+      namespace: JSON.stringify(config.namespace),
     },
   };
 
@@ -356,6 +358,7 @@ function createConfig(config) {
       new webpack.ProvidePlugin({
         Promise: 'es6-promise',
       }),
+      new webpack.DefinePlugin(globalJsData),
       // Show build progress
       // Disabling for now as it messes up spinners
       // @todo consider bringing it back
@@ -401,8 +404,6 @@ function createConfig(config) {
   } else { // not prod
     // @todo fix source maps
     webpackConfig.devtool = 'cheap-module-eval-source-map';
-
-    webpackConfig.plugins.push(new webpack.DefinePlugin(globalJsData));
   }
 
 
