@@ -7,7 +7,10 @@ const { promisify } = require('util');
 const gitSemverTags = require('git-semver-tags');
 const promisifyGitTags = promisify(gitSemverTags);
 
-async function init(latestTag) {
+async function init() {
+  const tags = await promisifyGitTags();
+  const latestTag = tags[0];
+
   try {
     const {
       NOW_TOKEN,
@@ -29,6 +32,11 @@ async function init(latestTag) {
       TRAVIS_TAG,
     } = process.env;
 
+    console.log(TRAVIS === 'true');
+    console.log(TRAVIS == 'true');
+    console.log(TRAVIS === true);
+    console.log(TRAVIS == true);
+
     console.log({
       TRAVIS,
       TRAVIS_BRANCH,
@@ -44,6 +52,7 @@ async function init(latestTag) {
         encoding: 'utf8',
       }).stdout.replace('refs/heads/', '').replace(/\//g, '-').trim();
     } catch (error) {
+      process.exit(1);
     }
 
     if (TRAVIS === 'true') {
@@ -93,7 +102,7 @@ async function init(latestTag) {
         },
       }).then(res => res.json());
 
-      if (!nowDeploys) {
+      if (!nowDeploys || !nowDeploys.deployments) {
         console.error('Did not get any info on latest now deploys...');
         process.exit(1);
       }
@@ -196,12 +205,5 @@ async function init(latestTag) {
   }
 }
 
-(async () => {
-  const tags = await promisifyGitTags();
-  const latestTag = tags[0];
-
-  init(latestTag);
-})().catch(err => {
-  console.error(err);
-});
+init();
 
