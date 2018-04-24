@@ -42,14 +42,13 @@ install:
 
 jobs:
   include:
-    - stage: lint
+    - stage: testing, build and deploy
       script: npm run lint
-    - stage: test
       script: npm run test
-    - stage: build
-      script: npm run build:pl && npm run build:bolt-site
-      after_success:
-        - npm run deploy
+      script: npm run build:pl && npm run build:bolt-site && npm run deploy
+    #   script: npm run 
+    # - stage: deploy
+    #   script: npm run deploy
     # - stage: prepare cache
     #   script: true
 
