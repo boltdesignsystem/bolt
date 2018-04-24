@@ -44,8 +44,7 @@ install:
 script:
   - yarn run lint
   - yarn run test
-  - yarn run build:pl
-  - yarn run build:bolt-site
+  - yarn run build
   - yarn run deploy
   - nightwatch --config nightwatch.js --env chrome,ie11
 
