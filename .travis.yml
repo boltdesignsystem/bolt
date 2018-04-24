@@ -42,10 +42,17 @@ install:
 
 jobs:
   include:
-    - stage: testing, build and deploy
+    - stage: build
       script: npm run lint
       script: npm run test
-      script: travis_wait npm run build:pl && npm run build:bolt-site && npm run deploy
+      script: npm run build:pl
+      script: npm run build:bolt-site
+    - stage: deploy
+      script: npm run deploy
+    - stage: test integration
+      script:  && nightwatch --config nightwatch.js --env chrome,ie11
+
+#       script: travis_wait npm run build:pl && npm run build:bolt-site && npm run deploy
     #   script: npm run 
     # - stage: deploy
     #   script: npm run deploy
@@ -54,8 +61,13 @@ jobs:
 
 # Can't do deploy on `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
 # script:
+# - npm run lint
+# - npm run test
+# - npm run build:pl
+# - npm run build:bolt-site 
+# - npm run deploy
+# - nightwatch --config nightwatch.js --env chrome,ie11
 # - time bash ./travis.sh
-#- nightwatch --config nightwatch.js --env chrome,ie11
 
 # after_success: # Warning: this fires after a build is already marked as successful so failing this will not fail the build.
 #   - git status # Just want to check
