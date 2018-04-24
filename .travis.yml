@@ -45,7 +45,7 @@ jobs:
     - stage: testing, build and deploy
       script: npm run lint
       script: npm run test
-      script: npm run build:pl && npm run build:bolt-site && npm run deploy
+      script: travis_wait npm run build:pl && npm run build:bolt-site && npm run deploy
     #   script: npm run 
     # - stage: deploy
     #   script: npm run deploy
