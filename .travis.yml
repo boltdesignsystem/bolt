@@ -31,8 +31,8 @@ install:
 # - npm run setup
 - yarn
 - yarn global add nightwatch
-- npm run bootstrap
-- npm run composer
+- yarn run bootstrap
+- yarn run composer
 # yarn && npm run bootstrap && npm run composer
 # - npm run composer:pl
 
@@ -40,34 +40,14 @@ install:
 # - npm run lint
 # - npm test
 
-jobs:
-  include:
-    - stage: build
-      script: npm run lint
-      script: npm run test
-      script: npm run build:pl
-      script: npm run build:bolt-site
-    - stage: deploy
-      script: npm run deploy
-    - stage: test integration
-      script: nightwatch --config nightwatch.js --env chrome,ie11
-
-#       script: travis_wait npm run build:pl && npm run build:bolt-site && npm run deploy
-    #   script: npm run 
-    # - stage: deploy
-    #   script: npm run deploy
-    # - stage: prepare cache
-    #   script: true
-
 # Can't do deploy on `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
-# script:
-# - npm run lint
-# - npm run test
-# - npm run build:pl
-# - npm run build:bolt-site 
-# - npm run deploy
-# - nightwatch --config nightwatch.js --env chrome,ie11
-# - time bash ./travis.sh
+script:
+  - yarn run lint
+  - yarn run test
+  - yarn run build:pl
+  - yarn run build:bolt-site
+  - yarn run deploy
+  - nightwatch --config nightwatch.js --env chrome,ie11
 
 # after_success: # Warning: this fires after a build is already marked as successful so failing this will not fail the build.
 #   - git status # Just want to check
@@ -77,8 +57,8 @@ cache:
   yarn: true
   directories:
     - $HOME/.composer/cache/files
-    #- node_modules
-    #- $HOME/.cache/yarn
+    - $HOME/.cache/yarn
+    - node_modules
     # - $HOME/.composer
     # - apps/pattern-lab/vendor
     #- apps/drupal-lab/vendor
