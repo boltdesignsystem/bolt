@@ -85,33 +85,6 @@ async function init() {
       .replace('bolt-design-system-', '')
       .replace('.now.sh', '');
 
-    if (!deployedUrl) {
-      // @todo determine if this is even needed since we have `deployedUrl` from deploy command
-      const nowEndpoint = url.resolve('https://api.zeit.co/v2/now/deployments', `?${querystring.stringify({
-        teamId: 'boltdesignsystem',
-      })}`);
-
-      const nowDeploys = await fetch(nowEndpoint, {
-        headers: {
-          'Authorization': `Bearer ${NOW_TOKEN}`,
-          'Content-Type': 'application/json',
-        },
-      }).then(res => res.json());
-
-      if (!nowDeploys || !nowDeploys.deployments) {
-        console.error('Did not get any info on latest now deploys...');
-        process.exit(1);
-      }
-
-      nowDeploys.deployments.sort((a, b) => {
-        return a.created - b.created;
-      }).reverse();
-
-      const latestDeploy = nowDeploys.deployments[0];
-      // console.log(nowDeploys);
-      console.log('Latest now Deploy:');
-      console.log(latestDeploy);
-    }
 
     console.log('Aliasing to branch/tag name...');
     // Making sure branch name is ok to be in URL
