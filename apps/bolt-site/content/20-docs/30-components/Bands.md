@@ -12,8 +12,6 @@ All band components can accept any of the color themes: `xdark,` `dark`, `light`
 
 ### Use bands to group related information together
 
-
-
 ### Avoid "striping" 
 
 ### Focus on legibility
@@ -88,12 +86,18 @@ The flag band contains for a brief, highly targeted message with a single call t
 
 ### Index Band
 
-Use an index band to group distinct sections of text-based content, such as teasers and headlines. Each index band can have a headline and teaser, along with 2 or more chunks of content. For optimal visual flow, ensure that the types of content you include are consistently constructed.q
+Use an index band to group distinct sections of text-based content, such as teasers and headlines. Each index band can have a headline and teaser, along with 2 or more chunks of content. For optimal visual flow, ensure that the types of content you include are consistently constructed.
+
+![band_index](/Users/nordd/Box Sync/Repos/bolt-design-system/apps/bolt-site/images/band_index.png)
 
 ### Lockup Band
 
 A lockup band focuses content on a single, high-value message, with a number of supporting messages to the right of the main focal point. On page load, the primary message in the band switches, allowing each of the distinct content bundles in the lockup band to take center stage.
 
+![band_lockup](/Users/nordd/Box Sync/Repos/bolt-design-system/apps/bolt-site/images/band_lockup.png)
+
 ### Body Content Band
 
-The body content band helps content authors create more robust content sections within a page. 
+The body content band helps content authors create more robust content sections within a page. Use this band to add article-length content to pages, or when you want to use centered content in a band.
+
+![band_content-body-article](/Users/nordd/Box Sync/Repos/bolt-design-system/apps/bolt-site/images/band_content-body-article.png)![band_content-body-hero](/Users/nordd/Box Sync/Repos/bolt-design-system/apps/bolt-site/images/band_content-body-hero.png)![band_content-body-quote](/Users/nordd/Box Sync/Repos/bolt-design-system/apps/bolt-site/images/band_content-body-quote.png)
