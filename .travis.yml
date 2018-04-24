@@ -50,7 +50,7 @@ jobs:
     - stage: deploy
       script: npm run deploy
     - stage: test integration
-      script:  && nightwatch --config nightwatch.js --env chrome,ie11
+      script: nightwatch --config nightwatch.js --env chrome,ie11
 
 #       script: travis_wait npm run build:pl && npm run build:bolt-site && npm run deploy
     #   script: npm run 
