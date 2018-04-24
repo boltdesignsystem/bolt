@@ -45,18 +45,17 @@ after_success: # Warning: this fires after a build is already marked as successf
 
 cache:
   #apt: true
-  #yarn: true
+  yarn: true
   directories:
     #- node_modules
     #- $HOME/.cache/yarn
     - $HOME/.composer
     - apps/pattern-lab/vendor
     #- apps/drupal-lab/vendor
-    #- apps/drupal-lab/web/core
-    
-    #- apps/bolt-site/vendor
+    - apps/drupal-lab/web/core
+    - apps/bolt-site/vendor
     #- apps/pw-site/vendor
-    #- packages/core-php/vendor
+    - packages/core-php/vendor
 
 notifications:
   email:
