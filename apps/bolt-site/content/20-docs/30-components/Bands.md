@@ -12,7 +12,11 @@ All band components can accept any of the color themes: `xdark,` `dark`, `light`
 
 ### Use bands to group related information together
 
+In Gestalt, the principle of common region states that [when objects are contained within the same closed region, they're perceived as belonging together](https://www.usertesting.com/blog/2016/02/24/gestalt-principles/). When putting information within a band, ensure that all the elements within the band relate to each other logically. 
+
 ### Avoid "striping" 
+
+
 
 ### Focus on legibility
 
@@ -86,18 +90,44 @@ The flag band contains for a brief, highly targeted message with a single call t
 
 ### Index Band
 
-Use an index band to group distinct sections of text-based content, such as teasers and headlines. Each index band can have a headline and teaser, along with 2 or more chunks of content. For optimal visual flow, ensure that the types of content you include are consistently constructed.
+Use an index band to group distinct sections of text-based content, such as teasers and headlines. Each index band can have a headline and teaser, along with 2 or more chunks of content. For optimal visual flow, ensure that the types of content you include are consistently constructed, e.g. word counts or content types.
 
-![band_index](/Users/nordd/Box Sync/Repos/bolt-design-system/apps/bolt-site/images/band_index.png)
+<figure>
+
+<img src="../../../images/band_index.png" />
+
+<figcaption>An index band can be a way to showcase multiple case studies, product featuresets or other textual information. </figcaption>
+
+</figure>
 
 ### Lockup Band
 
 A lockup band focuses content on a single, high-value message, with a number of supporting messages to the right of the main focal point. On page load, the primary message in the band switches, allowing each of the distinct content bundles in the lockup band to take center stage.
 
-![band_lockup](/Users/nordd/Box Sync/Repos/bolt-design-system/apps/bolt-site/images/band_lockup.png)
+<figure>
+
+<img src="../../../images/band_lockup.png" />
+
+<figcaption>Most often used on the home page, a lockup band allows you to showcase a number of messages within a constrained space.</figcaption>
+
+</figure>
 
 ### Body Content Band
 
 The body content band helps content authors create more robust content sections within a page. Use this band to add article-length content to pages, or when you want to use centered content in a band.
 
-![band_content-body-article](/Users/nordd/Box Sync/Repos/bolt-design-system/apps/bolt-site/images/band_content-body-article.png)![band_content-body-hero](/Users/nordd/Box Sync/Repos/bolt-design-system/apps/bolt-site/images/band_content-body-hero.png)![band_content-body-quote](/Users/nordd/Box Sync/Repos/bolt-design-system/apps/bolt-site/images/band_content-body-quote.png)
+<figure>
+
+<img src="../../../images/band_content-body-article.png" />
+
+<figcaption>On an `x-light` background, a content body band can serve as the main container of a page.</figcaption>
+
+</figure>
+
+<figure>
+
+<img src="../../../images/band_content-body-hero.png" />
+
+<figcaption>Within a page, use a content body band to create a strong header with a streamlined message.</figcaption>
+
+</figure>
