@@ -10,11 +10,13 @@ All band components can accept any of the color themes: `xdark,` `dark`, `light`
 
 ## Best Practices
 
-### Best Practice #1
+### Use bands to group related information together
 
-### Best Practice #2
 
-### Best Practice #3
+
+### Avoid "striping" 
+
+### Focus on legibility
 
 ## Examples
 
@@ -93,3 +95,5 @@ Use an index band to group distinct sections of text-based content, such as teas
 A lockup band focuses content on a single, high-value message, with a number of supporting messages to the right of the main focal point. On page load, the primary message in the band switches, allowing each of the distinct content bundles in the lockup band to take center stage.
 
 ### Body Content Band
+
+The body content band helps content authors create more robust content sections within a page. 
