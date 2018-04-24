@@ -4,7 +4,7 @@ title: Buttons
 
 Buttons are used to provide a clear call to action. Their role is to provide immediate affordance for the next steps a user should take on a screen—whether it's to download a file, sign up for a demo, or save progress on a screen.
 
-*For complete examples of our buttons in action along with schema and API information, see the [button component](https://bolt-design-system.com/pattern-lab/?p=viewall-components-button) and [button group component](https://bolt-design-system.com/pattern-lab/?p=viewall-components-buttons-group) documentation in Pattern Lab.*
+*For complete examples of our buttons in action along with schema and API information, see the [button component](/pattern-lab/?p=viewall-components-button) and [button group component](/pattern-lab/?p=viewall-components-buttons-group) documentation in Pattern Lab.*
 
 ## Best Practices
 
@@ -20,7 +20,7 @@ In Bolt, buttons change in appearance based on the theme they're contained withi
 
 ### Avoid overusing buttons
 
-The best use for a button is at the end of a form, or in a prominent area of the page such as a hero band. Avoid using too many buttons; if you need to include two calls to action in a single band, use a button group instead. If you have multiple calls to action on a page (e.g. a bunch of cards), default to a text-link style instead.
+The best use for a button is at the end of a form, or in a prominent area of the page such as a hero band. Avoid using too many buttons; if you need to include two calls to action in a single band, use a button group instead. If you have multiple calls to action on a page (e.g. a bunch of cards), default to a `text` style button instead.
 
 ## Examples
 
@@ -28,26 +28,26 @@ Below are some examples of common use cases for buttons.
 
 ### Buttons in bands
 
-When placed in a band, buttons default to specific colors depending on the background of the band.
+When placed in a themed container (such as a band or a card), buttons are styled based on the container's theme, along with the type of button getting used (primary, secondary, text, etc).
 
 <figure>
 <img src="../../../images/band_dark_single-button.png" />
-<figcaption>In Dark and X-Dark bands, the primary button is in gold.</figcaption>
+<figcaption>In `dark` and `x-dark` bands, the primary button is in `yellow`.</figcaption>
 </figure>
 
 <figure>
 <img src="../../../images/band_xlight_one-button.png" />
-<figcaption>In Light and X-Light bands, the primary button is indigo.</figcaption>
+<figcaption>In `light` and `x-light` bands, the primary button is `indigo`.</figcaption>
 </figure>
 
-When two buttons exist in the same band, the second button is styled as a secondary action within a button group. 
+When two buttons exist in the same band, the second button should be styled as a `secondary` button. In bands, you can use a button group to create the styling by default. 
 
 <figure>
 <img src="../../../images/band_light_dual-button.png" />
-<figcaption>In Light and X-Light bands, the buttons default to Indigo and White.</figcaption>
+<figcaption>In `light` and `x-light` bands, the primary button color is `indigo` and the secondary is `white`.</figcaption>
 </figure>
 
-When creating a layout that includes a number of calls to action, such as a trio of cards, use a text link instead to minimize cognitive overload.
+When creating a layout that includes a number of calls to action, such as a trio of cards, use the `text` style button instead of `primary` or `secondary` button styles to minimize cognitive overload.
 
 <figure>
 <img src="../../../images/band_xlight_three-cards.png" />
