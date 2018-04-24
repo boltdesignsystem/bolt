@@ -5,8 +5,8 @@ language: php
 php:
   - 7.1
 
-#addons:
-  #sauce_connect: true
+addons:
+  sauce_connect: true
   # apt:
   #   sources:
   #   - ubuntu-toolchain-r-test
@@ -14,27 +14,31 @@ php:
   #   - g++-4.8
   #   - graphicsmagick
 
-# before_install:
-# - nvm install # version lifted from `.nvmrc`
-# # yarn install
-# - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.6.0
-# - export PATH="$HOME/.yarn/bin:$PATH"
+before_install:
+- nvm install # version lifted from `.nvmrc`
+- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.6.0
+- export PATH="$HOME/.yarn/bin:$PATH"
+# yarn install
 # - node --version && npm --version && yarn --version && composer --version
 # - composer global require hirak/prestissimo
 # - if [[ -n "$GITHUB_TOKEN" ]]; then composer config -g github-oauth.github.com ${GITHUB_TOKEN};
-#   fi;
+  # fi;
 
 before_script:
 - phpenv config-rm xdebug.ini
 
 install:
-#- yarn global add nightwatch
 # - npm run setup
-- npm run composer:pl
+- yarn
+- yarn global add nightwatch
+- npm run bootstrap
+- npm run composer
+# yarn && npm run bootstrap && npm run composer
+# - npm run composer:pl
 
 before_script:
-#- npm run lint
-#- npm test
+- npm run lint
+- npm test
 
 # Can't do deploy on `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
 # script:
