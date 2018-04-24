@@ -1,4 +1,4 @@
-sudo: required
+sudo: false
 dist: trusty
 
 language: php
@@ -48,6 +48,7 @@ cache:
   apt: true
   yarn: true
   directories:
+    - $HOME/.composer/cache/files
     #- node_modules
     #- $HOME/.cache/yarn
     # - $HOME/.composer
