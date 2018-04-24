@@ -8,10 +8,10 @@ const gitSemverTags = require('git-semver-tags');
 const promisifyGitTags = promisify(gitSemverTags);
 
 async function init() {
+  try {
   const tags = await promisifyGitTags();
   const latestTag = tags[0];
 
-  try {
     const {
       NOW_TOKEN,
       GITHUB_TOKEN,
@@ -119,12 +119,12 @@ async function init() {
       .replace(/\//g, '-') // `/` => `-`
       .replace('--', '-') // `--` => `-` now.sh subdomains can't have `--` for some reason
       .replace(/\./g, '-'); // `.` => `-`
-    const aliasedUrlSubdomain = `bolt-design-system-${encodeURIComponent(branchUrlPart)}`;
+    const aliasedUrlSubdomain = `${encodeURIComponent(branchUrlPart)}.bolt-design-system`;
     const aliasedUrl = `https://${aliasedUrlSubdomain}.com`;
     const aliasOutput = spawnSync('now', [
       'alias',
       deployedUrl,
-      aliasedUrlSubdomain,
+      aliasedUrl,
       ...baseNowArgs,
     ], {encoding: 'utf8'});
     if (aliasOutput.status !== 0) {
