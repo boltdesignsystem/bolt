@@ -21,7 +21,6 @@ module.exports = {
     'no-console': 'off',
     'no-mixed-operators': 'off',
     'semi': 'off',
-    'object-shorthand': 'off',
     'no-useless-escape': 'off',
     'block-spacing': 'off',
     'no-unneeded-ternary': 'off',
