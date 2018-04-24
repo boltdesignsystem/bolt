@@ -6,7 +6,7 @@ title: Bands
 
 A band is a full width container that goes edge to edge on the display. Bands can contain multiple internal components, and help chunk related content together in a section of a page.
 
-All band components can accept any of the color themes: `xdark,` `dark`, `light` and `xlight`. You can also add options such as background images, a texture, or an expandable video.
+All band components can accept any of the color themes: `x-dark,` `dark`, `light` and `x-light`. You can also add options such as background images, a texture, or an expandable video.
 
 ## Best Practices
 
@@ -16,9 +16,11 @@ In Gestalt, the principle of common region states that [when objects are contain
 
 ### Avoid "striping" 
 
-
+The goal of a layout is to create a clear visual hierarchy, and to allow users to consume the information in an effective way. Including too many bands on a page interrupts the flow of information and creates a visual stopping point that may reduce further engagement. In fact, evidence from usability testing shows that [long horizontal bands across the page, particularly if they end or begin near the bottom of the "fold," discourage people from scrolling](https://www.cxpartners.co.uk/our-thinking/the_myth_of_the_page_fold_evidence_from_user_testing/).
 
 ### Focus on legibility
+
+When putting content in bands, make sure to pay attention to the legibility of the content against the background. Avoid choosing "busy" images that create too much noise in the background, or using an image that's too light for the text on top of it.
 
 ## Examples
 
@@ -44,7 +46,7 @@ The action band includes a series of links associated with icons. Use an action 
 
 <img src="../../../images/icons_action-band.png" />
 
-<figcaption>The Action band provides instant links to high-level information.</figcaption>
+<figcaption>The action band provides instant links to high-level information.</figcaption>
 
 </figure>
 
