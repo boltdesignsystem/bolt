@@ -36,9 +36,22 @@ install:
 # yarn && npm run bootstrap && npm run composer
 # - npm run composer:pl
 
-before_script:
-- npm run lint
-- npm test
+# before_script:
+# - npm run lint
+# - npm test
+
+jobs:
+  include:
+    - stage: lint
+      script: npm run lint
+    - stage: test
+      script: npm run test
+    - stage: build
+      script: npm run build:pl && npm run build:bolt-site
+      after_success:
+        - npm run deploy
+    # - stage: prepare cache
+    #   script: true
 
 # Can't do deploy on `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
 # script:
