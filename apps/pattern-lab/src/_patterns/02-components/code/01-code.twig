@@ -1,0 +1,37 @@
+{% embed "@bolt-components-code/code.twig" with {
+  lang: "twig"
+} %}
+  {% block children %}
+    {% verbatim %}
+      {% include "@bolt-components-button/button.twig" with {
+        "text": "Example Button yo!"
+      } %}
+    {% endverbatim %}
+  {% endblock %}
+{% endembed %}
+
+
+{% embed "@bolt-components-code/code.twig" with {
+  lang: "scss"
+} %}
+  {% block children %}
+    {% verbatim %}
+      .c-bolt-chip {
+        @include bolt-padding(small, squished);
+        @include bolt-font-size(xsmall);
+
+        display: inline-block;
+        display: inline-flex;
+        color: $bolt-chip-color;
+        border-radius: $bolt-chip-border-radius;
+        background-color: $bolt-chip-background-color;
+        transform: scale(1);
+        transition: all $bolt-chip-transition;
+
+        &:hover, &:focus {
+          background-color: $bolt-chip-background-color--hover;
+        }
+      }
+    {% endverbatim %}
+  {% endblock %}
+{% endembed %}

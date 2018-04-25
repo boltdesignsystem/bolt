@@ -34,6 +34,7 @@ module.exports = {
     global: [
       '@bolt/core',
       '@bolt/global',
+      '@bolt/components-code',
       '@bolt/components-action-blocks',
       '@bolt/components-dropdown',
       '@bolt/components-background',
