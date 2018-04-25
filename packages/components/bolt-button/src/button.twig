@@ -65,6 +65,11 @@
   {% set attributes = attributes.setAttribute("disabled", true) %}
 {% endif %}
 
+{% if icon %}
+  {# Covers backward compatibility with use of both left and before to describe icon position #}
+  {% set iconPosition = (icon.position == "left" or icon.position == "before") ? "before" : "after"  %}
+{% endif %}
+
 {# Set up the custom element's prop values based on the params passed into the Twig template - used to hydrate the component's initial state and appearance once the Button Component's JavaScript kicks in #}
  <bolt-button
     {% if align %} align="{{ align }}" {% endif %}
@@ -112,7 +117,7 @@
 
     {# Add component-specific classes to a Bolt temp element that gets removed and replaced by it's children once the JS kicks in #}
     <replace-with-children class="{{ classes|join(' ') }}">
-      {% if icon and icon.position == "left" %}
+      {% if icon and iconPosition == "before"  %}
         <span class="{{ "#{baseClass}__icon" }}">
           {% include "@bolt/icon.twig" with icon only %}
         </span>
@@ -120,7 +125,7 @@
 
       <span class="{{ "#{baseClass}__item" }} {{ iconOnly ? 'u-bolt-visuallyhidden' : '' }}">{{ text }}</span>
 
-      {% if icon and icon.position != "left" %}
+      {% if icon and iconPosition == "after" %}
         <span class="{{ "#{baseClass}__icon" }}">
           {% include "@bolt/icon.twig" with icon only %}
         </span>
