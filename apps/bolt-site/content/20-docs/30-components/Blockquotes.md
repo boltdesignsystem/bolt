@@ -33,5 +33,5 @@ Use the following examples as a guide for using quotes throughout your layouts.
 ### In page interiors
 <figure>
 <img src="../../../images/quote_band.png" />
-<figcaption>Add a quote in the middle of the page to support your main message.</figcaption>
+<figcaption>Add a quote in the middle of the page to support your main message. </figcaption>
 </figure>
