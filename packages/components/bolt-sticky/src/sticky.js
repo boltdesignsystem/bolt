@@ -1,3 +1,4 @@
-import stickybits from 'stickybits';
+import Stickyfill from 'stickyfilljs';
 
-stickybits('.js-bolt-sticky');
+var elements = document.querySelectorAll('.js-bolt-sticky');
+Stickyfill.add(elements);
