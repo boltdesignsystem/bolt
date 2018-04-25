@@ -1,0 +1,47 @@
+{% set schema = bolt.data.components['@bolt-components-code'].schema %}
+
+<p>
+  Code snippet can be a block of code, and
+  {% include "@bolt-components-code/code.twig" with {
+    "display": "inline",
+    "lang": "html",
+    "code": "display"
+  } only %}
+  is set to
+  {% include "@bolt-components-code/code.twig" with {
+    "display": "inline",
+    "lang": "html",
+    "code": "block"
+  } only %}
+  by default.
+</p>
+{% include "@bolt-components-code/code.twig" with {
+  "display": "block",
+  "lang": "css",
+  "code": "display: block;<br>margin: 0 0 1.65rem 0;"
+} only %}
+
+<p>
+  Well, code snippet can also be inline like this
+  {% embed "@bolt-components-code/code.twig" with {
+    "display": "inline",
+    "lang": "css"
+  } only %}
+    {% block children %}{% verbatim %}
+      display: inline;
+    {% endverbatim %}{% endblock %}
+  {% endembed %}
+  when you set
+  {% include "@bolt-components-code/code.twig" with {
+    "display": "inline",
+    "lang": "html",
+    "code": "display"
+  } only %}
+  to be
+  {% include "@bolt-components-code/code.twig" with {
+    "display": "inline",
+    "lang": "html",
+    "code": "inline"
+  } only %}
+  instead.
+</p>

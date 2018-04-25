@@ -37,8 +37,8 @@ let gumshoeStateModule = (function () {
         // we could find a way to disable any activity in the callback while a non-gumshoe (i.e. click-initiated)
         // animation is in-progress.
         scrollDelay: true,
-        offset: offset,
-        callback: function (nav) {
+        offset,
+        callback (nav) {
           if (nav && nav.hasOwnProperty('nav')) {
             if (!nav.nav.classList.contains(isActiveClass)) {
               // If the parent already has the is-active class, it was activated by something other
@@ -153,7 +153,7 @@ export class BoltNav extends BoltComponent() {
     const linkOffsetTop = link.offsetTop;
     const linkOffsetVertical = linkPos.top + linkHeight / 2;
     const linkOffsetHorizontal = linkOffsetLeft + linkWidth / 2;
-    const mq = window.matchMedia("(max-width: 600px)");
+    const mq = window.matchMedia('(max-width: 600px)');
 
 
     if (!this.activeLink) {
@@ -196,12 +196,12 @@ export class BoltNav extends BoltComponent() {
         this._indicator.style.setProperty('--bolt-nav-indicator-transform', linkOffsetTop + 'px');
         // this._indicator.style.transform = 'translateY(' + linkOffsetTop + 'px)';
         // this._indicator.style['--bolt-nav-indicator-transform-fallback'] = 'translateY(' + linkOffsetTop + 'px)';
-    } else {
-      this._indicator.style.width = linkWidth + 'px';
+      } else {
+        this._indicator.style.width = linkWidth + 'px';
         this._indicator.style.height = '2px';
-      this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px)';
+        this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px)';
+      }
     }
-  }
   }
 
   _initializeGumshoe() {

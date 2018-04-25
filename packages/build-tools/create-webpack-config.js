@@ -372,31 +372,31 @@ function createConfig(config) {
 
 
   if (config.wwwDir) {
-   webpackConfig.devServer = {
-     contentBase: [
-       path.resolve(process.cwd(), config.wwwDir),
+    webpackConfig.devServer = {
+      contentBase: [
+        path.resolve(process.cwd(), config.wwwDir),
        // @TODO: add Pattern Lab Styleguidekit Assets Default dist path here
-     ],
-     compress: true,
-     clientLogLevel: 'none',
-     port: 8080,
-     stats: statsPreset(webpackStats[config.verbosity]),
-     overlay: {
-       errors: true,
-     },
-     hot: !!config.prod,
-     inline: true,
-     noInfo: true, // webpackTasks.watch handles output info related to success & failure
-     publicPath,
-     watchContentBase: true,
-     historyApiFallback: true,
-     watchOptions: {
-       aggregateTimeout: 200,
+      ],
+      compress: true,
+      clientLogLevel: 'none',
+      port: 8080,
+      stats: statsPreset(webpackStats[config.verbosity]),
+      overlay: {
+        errors: true,
+      },
+      hot: !!config.prod,
+      inline: true,
+      noInfo: true, // webpackTasks.watch handles output info related to success & failure
+      publicPath,
+      watchContentBase: true,
+      historyApiFallback: true,
+      watchOptions: {
+        aggregateTimeout: 200,
     //    ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
        // Poll using interval (in ms, accepts boolean too)
-     },
-   };
- }
+      },
+    };
+  }
 
   return webpackConfig;
 }

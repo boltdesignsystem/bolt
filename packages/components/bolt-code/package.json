@@ -1,0 +1,47 @@
+{
+  "name": "@bolt/components-code",
+  "description": "Code Component in Bolt",
+  "keywords": [
+    "bolt design system",
+    "bolt",
+    "css framework",
+    "design system",
+    "components"
+  ],
+  "version": "1.1.4",
+  "homepage": "https://bolt-design-system.com",
+  "maintainers": [
+    {
+      "name": "Salem Ghoweri",
+      "email": "me@salemghoweri.com",
+      "web": "https://github.com/sghoweri"
+    }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bolt-design-system/bolt/"
+  },
+  "bugs": {
+    "url": "https://github.com/bolt-design-system/bolt/issues"
+  },
+  "main": "src/index.js",
+  "style": "src/code.scss",
+  "twig": "src/code.twig",
+  "schema": "code.schema.yml",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@bolt/core": "^1.1.2",
+    "prismjs": "^1.13.0",
+    "refractor": "^2.3.0",
+    "rehype": "^5.0.1",
+    "snabbdom-to-html": "^5.1.0",
+    "snabbdom": "^0.7.1",
+    "hast-util-to-snabbdom": "^0.1.4",
+    "hast-to-hyperscript": "^4.0.0",
+    "snabby": "^1.0.0",
+    "snabbdom-virtualize": "0.7.0"
+  }
+}
