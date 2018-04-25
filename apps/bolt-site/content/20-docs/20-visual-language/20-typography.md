@@ -20,42 +20,13 @@ For headlines, we use [Open Sans Extra-Bold](https://fonts.google.com/specimen/O
 
 Overuse of Bold fonts makes it difficult to scan text and find the most important information. Restrict the use of Bold to key information, such as an element name in documentation or a product name in marketing copy.
 
-## Examples
-
-### Teasers
-
-A teaser is most commonly used in cards and bands. It contains an eyebrow, heading, and a paragraph. In some cases, it will also include an optional subheading.
-
-![An example of a typical teaser](../../../images/type_teaser.png)
-
-- 
-  **1.0** Eyebrow
-
-- **1.1** XXL Heading
-- **1.2** XL Subheading
-- **1.3** Medium body
-
-### Articles/long form content
-
-For long form content, page titles always use the XXL Heading. From there, <h2> tags and below are sized appropriately to create a strong hierarchy.
-
-![An example of a typical article](../../../images/type_article.png)
-
-- 
-  **2.0** Eyebrow
-
-- **2.1** XXL Heading
-- **2.2** XS
-- **2.3** Medium body
-- **2.4** Unordered list w/links
-- **2.5** XL Heading
-
-
 ## Base Sizes
 
 Typography in Bolt is fluid, with a base 15px font for smallest screens (320px min) with a max of 18px on the largest screens, e.g. 36” displays. The space between paragraph breaks is equal to the line height. Type sizes consistently scale based on their `rem` value across all screen sizes except for XXXL, which starts at 2.28rem on the smallest screens, up to 3.08rem. XXXL also includes a fallback to 1.781rem after the headline reaches 180 characters.
 
-### Headings
+### Headlines
+
+*For all headline options and API docs, see the [headline reference in Pattern Lab](/pattern-lab/?p=viewall-components-headline).*
 
 Bolt uses a double-stranded heading hierarchy which abstracts the HTML document hierarchy (`h1`, `h2`, etc.) from the visual hierarchy of the layout. This layer of abstraction is important to maintaining the document outline of a page for tools like screen readers. Each type style has an assigned CSS classname. These classes are independent of location or type of element. 
 
@@ -79,4 +50,55 @@ Subheads and body copy are displayed at Regular weight. For body copy, we defaul
 | Medium (default) body                                        | 400        | 1              | 1.65           |
 | XS                                                           | 400        | .8             | 1.45           |
 
+## Examples
+
+### Teasers
+
+*For a full reference of teaser variations along with API docs, visit the [teaser reference in Pattern Lab](https://bolt-design-system.com/pattern-lab/?p=viewall-components-teaser).*
+
+A teaser is most commonly used in cards and bands. It contains an eyebrow, heading, and a paragraph. In some cases, it will also include an optional subheading.
+
+<figure>
+<img src="/Users/nordd/Box%20Sync/Repos/bolt-design-system/apps/bolt-site/images/type_teaser.png" />
+<figcaption>An example of a typical teaser.</figcaption>
+</figure>
+
+- **1.0** Eyebrow
+- **1.1** XXL Heading
+- **1.2** XL Subheading
+- **1.3** Medium body
+
+### Articles/long form content
+
+For long form content, page titles always use the XXL Heading. From there, <h2> tags and below are sized appropriately to create a strong hierarchy.
+
+<figure>
+<img src="/Users/nordd/Box%20Sync/Repos/bolt-design-system/apps/bolt-site/images/type_article.png" />
+<figcaption>An example of a typical article</figcaption>
+</figure>
+
+- **2.0** Eyebrow
+- **2.1** XXL Heading
+- **2.2** XS
+- **2.3** Medium body
+- **2.4** Unordered list w/links
+- **2.5** XL Heading
+
+### Unordered lists
+
+Unordered lists are styled with standard bullets, and are optimized for all color themes. For all options and API docs, see the [unordered list reference](https://bolt-design-system.com/pattern-lab/?p=viewall-components-unordered-list) in Pattern Lab.
+
+<figure>
+<img src="/Users/nordd/Box%20Sync/Repos/bolt-design-system/apps/bolt-site/images/type-ul-light.png" />
+<figcaption>An unordered list using the `light` theme. </figcaption>
+</figure>
+
+### Ordered Lists
+
+Ordered lists are also optimized for all color themes. For all options and API docs, see the [ordered list reference](https://bolt-design-system.com/pattern-lab/?p=viewall-components-ordered-list) in Pattern Lab.
+
+<figure>
+<img src="/Users/nordd/Box%20Sync/Repos/bolt-design-system/apps/bolt-site/images/type-ol-dark.png" />
+<figcaption>An ordered list in the `dark` theme. </figcaption>
+</figure>
 
