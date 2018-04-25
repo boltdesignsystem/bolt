@@ -33,7 +33,7 @@ async function sh(cmd, exitOnError, streamOutput, showCmdOnError = true) {
 Error with code ${code}${showCmdOnError ? ` after running: ${cmd}`: ''}:
 `);
         if (exitOnError) {
-            process.exitCode = 1;
+          process.exitCode = 1;
           reject(new Error(errorMsg + output));
         } else {
           notifier.notify({

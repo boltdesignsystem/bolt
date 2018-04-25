@@ -70,14 +70,16 @@
         <a href="/pattern-lab/index.html" target="_blank">Pattern Lab</a>
       {% endif %}
     {% endfor %}
-
-    <a href="#menu" class="storefront-docs__hamburger u-bolt-hide@medium">
-      <span class="u-bolt-margin-right-xsmall">Menu</span>
-      {% include "@bolt-components-icon/icon.twig" with {
-        name: "menu",
-        size: "medium",
-      } %}
-    </a>
+    
+    {% if 'docs/' in currentUrl %}
+      <a href="#menu" class="storefront-docs__hamburger u-bolt-hide@medium">
+        <span class="u-bolt-margin-right-xsmall">Menu</span>
+        {% include "@bolt-components-icon/icon.twig" with {
+          name: "menu",
+          size: "medium",
+        } %}
+      </a>
+    {% endif %}
   </nav>
   {% if currentUrl != 'index.html' %}
     {% include "@bolt-components-headline/headline.twig" with {
