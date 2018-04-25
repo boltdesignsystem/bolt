@@ -11,13 +11,6 @@ $GLOBALS['grid_attributes'] = array('class' => array('o-bolt-grid'));
 // Crude way to track which instance of the component is being referenced so each component's unique data is encapsulated and merged together properly without bleeding over.
 $GLOBALS['counter'] = 0;
 // Expose the D8 and Pattern Lab "create_attribute" function in case this custom Twig Tag gets loaded before the create_attribute Twig extension exists.
-if (!function_exists("createAttribute")) {
-  function createAttribute($attributes = []) {
-    return new Attribute($attributes);
-  }
-}
-
-
 
 class GridTagNode extends \Twig_Node {
 
@@ -84,7 +77,7 @@ class GridTagNode extends \Twig_Node {
       $GLOBALS['grid_props'][ $GLOBALS['counter'] ] = array();
     }
     // Run the captured attributes through D8's createAttribute function, prior to rendering
-    $attributes = createAttribute($merged_attributes);
+    $attributes = new Attribute($merged_attributes);
 
     if (class_exists('\PatternLab\Template')) {
       $stringLoader = \PatternLab\Template::getStringLoader();

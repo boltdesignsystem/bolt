@@ -109,7 +109,9 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
 
 .c-#{$bolt-namespace}-video__close-button {
   color: bolt-color(orange);
-  --#{$bolt-namespace}-theme-icon: bolt-color(orange);
+  @include bolt-css-vars((
+    --#{$bolt-namespace}-theme-icon: bolt-color(orange),
+  ));
   position: absolute;
   z-index: bolt-z-index('tooltip');
   top: bolt-spacing(xsmall);

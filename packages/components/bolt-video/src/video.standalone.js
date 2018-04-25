@@ -15,13 +15,12 @@ let index = 0;
 
 import metaStyles from './_video-meta.scss';
 
-// @define
 export function BoltVideoMeta() {
   return class BoltVideoMetaClass extends withPreact(withComponent()) {
-    // static is = 'bolt-video-meta';
 
-    constructor(element) {
-      super(element);
+    constructor(self) {
+      self = super(self);
+      return self;
     }
 
     static props = {
@@ -80,8 +79,8 @@ export function BoltVideo() {
       hideFullScreenButton: props.boolean,
     }
 
-    constructor(element) {
-      super(element);
+    constructor(self) {
+      self = super(self);
 
       index += 1;
 
@@ -118,6 +117,7 @@ export function BoltVideo() {
       // even if the handler is attached to another element (window in this case)
       this._onWindowResize = this._onWindowResize.bind(this);
 
+      return self;
     }
 
     get renderRoot() {
@@ -207,7 +207,7 @@ export function BoltVideo() {
         elem.player.muted(true);
       }
 
-      player.on("loadedmetadata", function () {
+      player.on('loadedmetadata', function () {
         const duration = player.mediainfo.duration;
         const title = player.mediainfo.name;
         const width = player.mediainfo.sources[1].width;
@@ -216,7 +216,7 @@ export function BoltVideo() {
         elem._setMetaTitle(title);
         elem._setMetaDuration(duration);
         elem._setVideoDimensions(width, height);
-          elem._calculateIdealVideoSize();
+        elem._calculateIdealVideoSize();
 
         if (this.earlyToggle) {
           this.earlyToggle = false;
@@ -250,7 +250,7 @@ export function BoltVideo() {
         elem.onDurationChange(player);
       });
 
-      player.on("ended", function () {
+      player.on('ended', function () {
         elem.onEnded(player);
       });
 
@@ -330,7 +330,7 @@ export function BoltVideo() {
         // handle script not loading
         s.onerror = err => {
           const uriErr = {
-            code: "",
+            code: '',
             message: `The script ${err.target.src} is not accessible.`,
           };
 
@@ -351,8 +351,8 @@ export function BoltVideo() {
         }
       }
 
-        window.addEventListener('optimizedResize', this._onWindowResize);
-      }
+      window.addEventListener('optimizedResize', this._onWindowResize);
+    }
 
 
     _onWindowResize(event) {
@@ -379,7 +379,7 @@ export function BoltVideo() {
 
 
     disconnectedCallback() {
-        window.removeEventListener('optimizedResize', this._calculateIdealVideoSize);
+      window.removeEventListener('optimizedResize', this._calculateIdealVideoSize);
 
       if (this.player) {
         this.player.dispose();
@@ -516,7 +516,7 @@ export function BoltVideo() {
     }
 
     createScript() {
-      const s = document.createElement("script");
+      const s = document.createElement('script');
       // console.log(this.props);
 
       s.src = BoltVideoClass.getScriptUrl(

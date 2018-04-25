@@ -33,7 +33,7 @@
         origPreventDefault.call(this);
 
         Object.defineProperty(this, 'defaultPrevented', {
-          get: function () {
+          get () {
             return true;
           },
           configurable: true,

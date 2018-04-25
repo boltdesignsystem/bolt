@@ -34,11 +34,13 @@ export function BoltComponent(Base = HTMLElement) {
       //   this.innerHTML = JSON.parse(this.dataset.ssrContent);
       // }
       this._checkSlots();
-      super.connectedCallback && super.connectedCallback();
+      this.connecting && this.connecting();
+      this.connected && this.connected();
     }
 
     disconnectedCallback() {
-      super.disconnectedCallback && super.disconnectedCallback();
+      this.disconnecting && this.disconnecting();
+      this.disconnected && this.disconnected();
     }
 
     addStyles(stylesheet) {
@@ -46,7 +48,7 @@ export function BoltComponent(Base = HTMLElement) {
       styles = styles.join(' ');
 
       if (this.useShadow) {
-        return hyper.wire() `
+        return hyper.wire(this) `
           <style>${ styles} </style>
         `;
       }
@@ -55,17 +57,17 @@ export function BoltComponent(Base = HTMLElement) {
     slot(name) {
       if (this.useShadow && hasNativeShadowDomSupport) {
         if (name === 'default') {
-          return hyper.wire() `
+          return hyper.wire(this) `
             <slot />
           `;
         } else {
-          return hyper.wire() `
+          return hyper.wire(this) `
             <slot name="${name}" />
           `;
         }
       } else {
         if (this.slots[name]) {
-          return hyper.wire() `
+          return hyper.wire(this) `
             ${this.slots.default}
           `;
         }
@@ -86,7 +88,7 @@ export function BoltComponent(Base = HTMLElement) {
 
       // Loop through nodelist
       this.childNodes.forEach(function (child, index, nodelist) {
-        const slotName = child.getAttribute ? child.getAttribute("slot") : null;
+        const slotName = child.getAttribute ? child.getAttribute('slot') : null;
 
         if (!slotName) {
           elem.slots.default.push(child);

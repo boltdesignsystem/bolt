@@ -85,7 +85,9 @@ $bolt-ui-list-border-color: var(--bolt-theme-border, currentColor);
 
 .o-bolt-ui-list--borderless > .o-bolt-ui-list__item:after {
   opacity: 0;
-  --bolt-ui-border-color: transparent;
+  @include bolt-css-vars((
+    --bolt-ui-border-color: transparent,
+  ));
 }
 
 .o-bolt-ui-list--small > .o-bolt-ui-list__item {
