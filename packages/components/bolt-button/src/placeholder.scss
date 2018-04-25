@@ -1,0 +1,181 @@
+// @import '@bolt/core';
+
+// .c-bolt-placeholder {
+//   @include bolt-margin-bottom(medium);
+//   display: block;
+//   background-color: bolt-color(gray, light);
+//   overflow: hidden;
+//   text-align: center;
+//   text-transform: uppercase;
+//   color: bolt-color(gray);
+//   text-shadow: 1px 1px 0.08px bolt-color(gray, light);
+// }
+
+// .c-bolt-placeholder__content--medium {
+//   @include bolt-padding(medium);
+// }
+
+// .c-bolt-placeholder__content--large {
+//   @include bolt-padding(large);
+// }
+
+// .c-bolt-placeholder__content--xlarge {
+//   @include bolt-padding(xlarge);
+// }
+
+// .c-bolt-placeholder__content--small {
+//   @include bolt-padding(small);
+// }
+
+// .c-bolt-placeholder__wrapper {
+//   overflow:hidden;
+//   position:relative;
+// }
+
+
+// .c-bolt-placeholder__content {
+//   // height:280px;
+//   // width:780px;
+
+
+//   // border: 1px solid dotted;
+//   // border: 4px dashed bolt-color(gray, light);
+//   // color: bolt-color(gray, light);
+//   // min-height: 4rem;
+//   // text-align: center;
+// }
+
+
+// @keyframes move-top {
+//   0% {
+//     background-position: 0 0;
+//   }
+//   100% {
+//     background-position: 10px 0px;
+//   }
+// }
+
+// @keyframes move-bottom {
+//   0% {
+//     background-position: 0 0;
+//   }
+//   100% {
+//     background-position: -10px 0px;
+//   }
+// }
+
+// @keyframes move-left {
+//   0% {
+//     background-position: 0 0;
+//   }
+//   100% {
+//     background-position: 0px -10px;
+//   }
+// }
+
+// @keyframes move-right {
+//   0% {
+//     background-position: 0 0;
+//   }
+//   100% {
+//     background-position: 0px 10px;
+//   }
+// }
+
+
+// .c-bolt-placeholder__wrapper--animated {
+//   .c-bolt-placeholder__wrapper-x {
+//     &:after {
+//       animation: move-left 1s linear infinite;
+//     }
+//     &:before {
+//       animation: move-right 1s linear infinite;
+//     }
+//     &:after,
+//     &:before {
+//       background-image: linear-gradient(to top, bolt-color(blue) 70%, rgba(bolt-color(black), 0) 0%);
+//     }
+//   }
+
+//   .c-bolt-placeholder__wrapper-y {
+//     &:after {
+//       animation: move-top 1s linear infinite;
+//     }
+//     &:before {
+//       animation: move-bottom 1s linear infinite;
+//     }
+//     &:after,
+//     &:before {
+//       background-image: linear-gradient(to right, bolt-color(blue) 70%, rgba(bolt-color(black), 0) 0%);
+//     }
+//   }
+// }
+
+// .c-bolt-placeholder__wrapper-x,
+// .c-bolt-placeholder__wrapper-y {
+//   position:absolute;
+//   width:100%;
+//   height:100%;
+//   pointer-events: none;
+// }
+
+// .c-bolt-placeholder__wrapper-x:after {
+//   content: '';
+//   position: absolute;
+//   bottom: 0;
+//   left: 0;
+//   top: 0;
+//   right: 2px;
+//   height: 100%;
+//   width: 2px;
+//   background-image: linear-gradient(to top, bolt-color(gray) 70%, rgba(bolt-color(black), 0) 0%);
+//   background-position: bottom;
+//   background-size: 2px 11px;
+//   background-repeat: repeat-y;
+//   /*background-color:red;*/
+// }
+
+// .c-bolt-placeholder__wrapper-x:before {
+//   content: '';
+//   position: absolute;
+//   bottom: 0;
+//   top: 0;
+//   right: 0px;
+//   height: 100%;
+//   width: 2px;
+//   background-image: linear-gradient(to top, bolt-color(gray) 70%, rgba(bolt-color(black), 0) 0%);
+//   background-position: bottom;
+//   background-size: 2px 11px;
+//   background-repeat: repeat-y;
+//   /*background-color:red;*/
+// }
+
+// .c-bolt-placeholder__wrapper-y:before {
+//   content: '';
+//   position: absolute;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   height: 2px;
+//   width: 100%;
+//   background-image: linear-gradient(to right, bolt-color(gray) 71%, rgba(bolt-color(black), 0) 0%);
+//   background-position: bottom;
+//   background-size: 11px 2px;
+//   background-repeat: repeat-x;
+//   /* background-color:red; */
+// }
+
+// .c-bolt-placeholder__wrapper-y:after {
+//   content: '';
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   height: 2px;
+//   width: 100%;
+//   background-image: linear-gradient(to right, bolt-color(gray) 71%, rgba(bolt-color(black), 0) 0%);
+//   background-position: top;
+//   background-size: 11px 2px;
+//   background-repeat: repeat-x;
+//   /* background-color:red; */
+// }
