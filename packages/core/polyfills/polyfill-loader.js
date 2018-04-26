@@ -66,12 +66,11 @@ export const polyfillLoader = new Promise((resolve) => {
         throw new Error(`Could not load ${webComponentPolyfillPath}. Error: ${error}`);
       });
   } else {
-    import(/* webpackChunkName: "custom-elements-es5-adapter" */
-      '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js').then(() => {
+    import('document-register-element').then(() => {
         resolve();
       })
       .catch((error) => {
-        throw new Error(`Could not load @webcomponents/webcomponentsjs/custom-elements-es5-adapter.js.
+        throw new Error(`Could not load document-register-element.
         Error: ${error}`);
       });
   }
