@@ -67,11 +67,11 @@ export const polyfillLoader = new Promise((resolve) => {
       });
   } else {
     import('document-register-element').then(() => {
-        resolve();
-      })
+      resolve();
+    })
       .catch((error) => {
         throw new Error(`Could not load document-register-element.
-        Error: ${error}`);
+      Error: ${error}`);
       });
   }
 }).catch((error) => {
