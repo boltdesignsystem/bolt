@@ -4,6 +4,7 @@
 
 @import '@bolt/core';
 
+$bolt-nav-link-border-color: var(--bolt-theme-text, currentColor);
 $bolt-nav-link-border-size: 2px;
 $bolt-nav-link-border-transition-ease: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 $bolt-nav-link-border-transition-timing: $bolt-transition-timing * 2;
@@ -29,14 +30,9 @@ bolt-nav {
   width: 0;
   height: $bolt-nav-link-border-size;
   background-color: currentColor;
-  opacity: 1;
-  opacity: var(--bolt-nav-indicator-opacity, 1);
+  background-color: $bolt-nav-link-border-color;
   transition: all $bolt-nav-link-border-transition-timing $bolt-nav-link-border-transition-ease;
   will-change: width, height, transform;
-
-  transform: translateY(
-    var(--bolt-nav-indicator-transform)
-  );
 
   .c-bolt-nav--xsmall & {
     bottom: (bolt-v-spacing(xsmall) * -1);
