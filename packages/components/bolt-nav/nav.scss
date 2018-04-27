@@ -20,38 +20,47 @@ bolt-nav {
   @include bolt-padding(0);
 
   display: flex;
+  flex-direction: column; // [Mai] This is interrelated with the dropdown component.
   position: relative;
   list-style: none;
+
+  @include respond-to(small) {
+    flex-direction: row; // [Mai] This is interrelated with the dropdown component.
+  }
 }
 
 .c-bolt-nav__indicator {
   position: absolute;
   bottom: 0;
+  left: bolt-spacing(small); // [Mai] This is interrelated with the dropdown component.
   width: 0;
-  height: $bolt-nav-link-border-size;
+  height: ($bolt-nav-link-border-size * 2);
   background-color: currentColor;
   background-color: $bolt-nav-link-border-color;
-  transition: all $bolt-nav-link-border-transition-timing $bolt-nav-link-border-transition-ease;
-  will-change: width, height, transform;
+  opacity: 1; // [Mai] This is interrelated with the dropdown component.
+  opacity: var(--bolt-nav-indicator-opacity, 1); // [Mai] This is interrelated with the dropdown component.
+  transform: translateY(var(--bolt-nav-indicator-transform)); // [Mai] This is interrelated with the dropdown component.
+  transition:
+    all $bolt-nav-link-border-transition-timing $bolt-nav-link-border-transition-ease,
+    opacity 0.35s ease-out; // [Mai] This is interrelated with the dropdown component.
+  will-change: width, height, opacity, transform;
+
+  @include respond-to(small) {
+    opacity: 1; // [Mai] This is interrelated with the dropdown component.
+    bottom: 0; // [Mai] This is interrelated with the dropdown component.
+    left: auto; // [Mai] This is interrelated with the dropdown component.
+  }
 
   .c-bolt-nav--xsmall & {
     bottom: (bolt-v-spacing(xsmall) * -1);
+    height: $bolt-nav-link-border-size;
   }
 
   .c-bolt-nav--small & {
     bottom: (bolt-v-spacing(medium) * -1); // [Mai] This is a hack because bands have the wrong sizes.
-    height: ($bolt-nav-link-border-size * 2);
   }
 
   .c-bolt-nav--medium & {
     bottom: (bolt-v-spacing(medium) * -1);
-  }
-
-  .c-bolt-nav--large & {
-    bottom: (bolt-v-spacing(large) * -1);
-  }
-
-  .c-bolt-nav--xlarge & {
-    bottom: (bolt-v-spacing(xlarge) * -1);
   }
 }
