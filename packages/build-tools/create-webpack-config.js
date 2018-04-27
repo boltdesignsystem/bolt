@@ -276,6 +276,13 @@ function createConfig(config) {
             name: '[name].[ext]',
           },
         },
+        {
+          test: [/\.yml$/, /\.yaml$/],
+          use: [
+            { loader: 'json-loader' },
+            { loader: 'yaml-loader' },
+          ],
+        },
       ],
     },
     plugins: [
