@@ -33,11 +33,11 @@ class BoltText extends BoltComponent() {
 
 
     // Font weight
-    const possibleWeights = ['regular','semibold','bold'];
+    const possibleWeights = ['regular', 'semibold', 'bold'];
     const weight = (possibleWeights.indexOf(this.props.weight) > -1) ? this.props.weight : 'regular';
 
     // Font style
-    const possibleStyles = ['normal','italic'];
+    const possibleStyles = ['normal', 'italic'];
     const style = (possibleStyles.indexOf(this.props.fontStyle) > -1) ? this.props.fontStyle : 'normal';
 
 
