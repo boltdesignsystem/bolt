@@ -10,6 +10,7 @@ import {
 } from '@bolt/core';
 
 import styles from './text.scss';
+import schema from '../text.schema.yml';
 
 @define
 class BoltText extends BoltComponent() {
@@ -27,18 +28,17 @@ class BoltText extends BoltComponent() {
     return self;
   }
 
+  allowedValues(schemaData, propVal) {
+    const allowed = schemaData.enum;
+    return (allowed.indexOf(propVal) > -1) ? propVal : schemaData.default;
+  }
+
   render({ props, state }) {
 
     const tag = this.props.tag ? this.props.tag : 'p';
 
-
-    // Font weight
-    const possibleWeights = ['regular', 'semibold', 'bold'];
-    const weight = (possibleWeights.indexOf(this.props.weight) > -1) ? this.props.weight : 'regular';
-
-    // Font style
-    const possibleStyles = ['normal', 'italic'];
-    const style = (possibleStyles.indexOf(this.props.fontStyle) > -1) ? this.props.fontStyle : 'normal';
+    const weight = this.allowedValues(schema.properties.weight, this.props.weight);
+    const style = this.allowedValues(schema.properties.style, this.props.fontStyle);
 
 
     // Important classes
