@@ -184,7 +184,6 @@ export class BoltNav extends BoltComponent() {
 
       } else {
         this._indicator.style.width = linkWidth + 'px';
-        this._indicator.style.height = '2px';
         this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px)';
       }
 
@@ -192,13 +191,11 @@ export class BoltNav extends BoltComponent() {
     } else {
       if (mq.matches) {
         this._indicator.style.height = linkHeight + 'px';
-        this._indicator.style.width = '2px';
         this._indicator.style.setProperty('--bolt-nav-indicator-transform', linkOffsetTop + 'px');
         // this._indicator.style.transform = 'translateY(' + linkOffsetTop + 'px)';
         // this._indicator.style['--bolt-nav-indicator-transform-fallback'] = 'translateY(' + linkOffsetTop + 'px)';
       } else {
         this._indicator.style.width = linkWidth + 'px';
-        this._indicator.style.height = '2px';
         this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px)';
       }
     }
