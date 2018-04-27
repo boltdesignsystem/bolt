@@ -1,23 +1,53 @@
-{% set schema = bolt.data.components['@bolt-components-button'].schema %}
+{% set schema = bolt.data.components['@bolt-components-text'].schema %}
 
-{# Defaults for a vanilla `Text` component #}
+{# Defaults for a vanilla `text` component #}
 {% set prefix = "c-bolt-" %}
 {% set componentName = "text" %}
 {% set baseClass = prefix ~ componentName %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
-<bolt-text {{ attributes }}>
-  <span>
-    <h2>{{ children }}</h2>
-  </span>
+
+{# set up psuedo self-validation by limiting param values to what's specifically allowed in the component schema #}
+{% set sizeOptions = schema.properties.size.enum %}
+
+{# check if the value set to a prop is allowed or defined. if not, default to the default value specified in the component's schema (if one exists) #}
+{% set size = size in sizeOptions ? size : schema.properties.size.default %}
+{% set animated = animated | default(schema.properties.animated.default) %}
+
+
+{% set classes = [
+  'c-bolt-text'
+] %}
+
+{% set wrapperClasses = [
+  'c-bolt-text__wrapper',
+  animated ? 'c-bolt-text__wrapper--animated' : ''
+] %}
+
+{% set contentClasses = [
+  'c-bolt-text__content',
+  size in sizeOptions ? 'c-bolt-text__content--' ~ size : 'c-bolt-text__content--medium'
+] %}
+
+
+<bolt-text
+    {% if size %} size="{{ size }}" {% endif %}
+    {% if animated == true %} animated {% endif %}
+
+    {# @todo: share `utils` prop across all Twig components #}
+    {# workaround to still allow external utility classes to get added (ex. for spacing or layout tweaks) while still encapsulating internal styling #}
+    {% if utils %} class="{{ utils|join(' ') }}"{% endif %}
+>
+  <replace-with-children class="{{ classes|join(' ') }}">
+    <replace-with-children class="{{ wrapperClasses|join(' ') }}">
+      <replace-with-children class="{{ contentClasses|join(' ') }}">
+        {{ text }}
+      </replace-with-children>
+    </replace-with-children>
+  </replace-with-children>
 </bolt-text>
 
 
-
-
-
-
-
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-text/text.schema.yml', _self) | raw }}
+  {#{{ validate_data_schema('@bolt-components-text/text.schema.yml', _self) | raw }}#}
 {% endif %}

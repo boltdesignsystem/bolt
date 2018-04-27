@@ -4,3 +4,26 @@
    Text
 \* ------------------------------------ */
 
+.c-bolt-text {
+
+  // Font Weight Options
+  &--semibold {
+    @include bolt-font-weight(semibold);
+  }
+  &--regular {
+    @include bolt-font-weight(regular);
+  }
+  &--bold {
+    @include bolt-font-weight(bold);
+  }
+
+  // Font style variations
+  &--normal {
+    font-style: normal;
+  }
+  &--italic {
+    font-style: italic;
+  }
+
+
+}
