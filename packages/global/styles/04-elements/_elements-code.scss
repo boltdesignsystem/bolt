@@ -15,13 +15,8 @@ pre {
   color: $bolt-code-text-color;
   text-align: left;
   white-space: pre-wrap;
+  border-radius: $bolt-border-radius;
   background-color: $bolt-code-background-color;
-
-  // Override highlightjs default styling
-  .hljs {
-    @include bolt-padding(0);
-    background-color: transparent;
-  }
 }
 
 code {

@@ -5,6 +5,7 @@ type: object
 required:
   - display
   - lang
+  - colorTheme
 properties:
   display:
     type: string
@@ -24,3 +25,11 @@ properties:
       - js
       - scss
       - twig
+  colorTheme:
+    type: string
+    title: 'Syntax Highlight Color Theme'
+    description: 'Toggle between a light and dark theme. Separate from Bolt theming.'
+    default: light
+    enum:
+      - light
+      - dark

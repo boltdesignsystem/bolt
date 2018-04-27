@@ -327,3 +327,11 @@
   position: sticky;
   top: bolt-spacing(large);
 }
+
+pre {
+  // Override highlightjs default styling
+  .hljs {
+    @include bolt-padding(0);
+    background-color: transparent;
+  }
+}

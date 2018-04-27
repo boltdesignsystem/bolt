@@ -16,7 +16,8 @@ import rehype from 'rehype';
 import virtualize from 'snabbdom-virtualize';
 import refractor from 'refractor/core.js';
 
-import styles from './atom-one-dark.scss';
+import styles from './code-snippet.scss';
+import syntaxStyles from './code-snippet-syntax.scss';
 
 // List of languages to support syntax highlighting
 refractor.register(require('refractor/lang/twig.js'));
@@ -28,12 +29,13 @@ refractor.register(require('refractor/lang/markdown.js'));
 refractor.register(require('refractor/lang/yaml.js'));
 
 
-export function BoltCode() {
-  return class BoltCodeClass extends BoltSnabbdom() {
+export function BoltCodeSnippet() {
+  return class BoltCodeSnippetClass extends BoltSnabbdom() {
 
     static props = {
       lang: props.string,
       display: props.string,
+      colorTheme: props.string,
     };
 
     constructor(self) {
@@ -51,7 +53,7 @@ export function BoltCode() {
     }
 
     render() {
-      const { lang, display } = this.props;
+      const { lang, display, colorTheme } = this.props;
       const nodes = refractor.highlight(this.innerHTML, lang);
 
       var html = rehype().stringify({
@@ -61,23 +63,16 @@ export function BoltCode() {
 
       let vnode = virtualize(html);
 
-      // if (display === 'inline'){
-      //   return this.html`
-      //     ${ this.addStyles([styles]) }
-      //     <code class=${`language-${lang}`}>${ vnode }</code>
-      //   `;
-      // } else {
-      console.log(vnode);
-// <pre class=${`language-${lang}`}>
-        // <code class=${`language-${lang}`}>
-        // </code></pre>
+      if (display === 'inline'){
         return this.html`
-          <div>
-            ${ this.addStyles([styles]) }
-            ${ vnode }
-          </div>
+          <code class=${`c-bolt-code-snippet__code c-bolt-code-snippet__code--${display} language-${lang} theme-${colorTheme}`}>${ this.addStyles([styles, syntaxStyles]) }${ vnode }</code>
         `;
-      // }
+      } else {
+      console.log(vnode);
+        return this.html`
+          <pre class=${`c-bolt-code-snippet language-${lang} theme-${colorTheme}`}><code class=${`c-bolt-code-snippet__code c-bolt-code-snippet__code--${display} language-${lang} theme-${colorTheme}`}>${ this.addStyles([styles, syntaxStyles]) }${ vnode }</code></pre>
+        `;
+      }
     }
   }
 }

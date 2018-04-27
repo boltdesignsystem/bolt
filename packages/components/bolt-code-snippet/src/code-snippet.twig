@@ -11,12 +11,15 @@
 {% set langOptions = schema.properties.lang.enum %}
 {% set lang = lang in langOptions ? lang : schema.properties.lang.default %}
 
+{% set colorThemeOptions = schema.properties.colorTheme.enum %}
+{% set colorTheme = colorTheme in colorThemeOptions ? colorTheme : schema.properties.colorTheme.default %}
+
 {% set classes = [
   baseClass
 ] %}
 
 {% set codeContent %}{% spaceless %}
-  <code class="{{ "#{baseClass}__code #{baseClass}__code--#{display}" }}">{{ content }}</code>
+  <code class="{{ "#{baseClass}__code #{baseClass}__code--#{display}" }} nohighlight" is="shadow-root">{% block children %}{{ code }}{% endblock %}</code>
 {% endspaceless %}{% endset %}
 
 
@@ -25,6 +28,7 @@
 <bolt-{{ componentName }}
   {% if display %} display="{{ display }}" {% endif %}
   {% if lang %} lang="{{ lang }}" {% endif %}
+  {% if colorTheme %} colorTheme="{{ colorTheme }}" {% endif %}
   bolt-component
 >
   {% if display == "block" %}

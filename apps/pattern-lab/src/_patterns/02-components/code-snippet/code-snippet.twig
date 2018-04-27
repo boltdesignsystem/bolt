@@ -4,41 +4,45 @@
   Code snippet can be a block of code, and
   {% include "@bolt-components-code-snippet/code-snippet.twig" with {
     "display": "inline",
-    "lang": "html",
-    "content": "display"
+    "lang": "css",
+    "code": "display"
   } only %}
   is set to
   {% include "@bolt-components-code-snippet/code-snippet.twig" with {
     "display": "inline",
-    "lang": "html",
-    "content": "block"
+    "lang": "css",
+    "code": "block"
   } only %}
   by default.
 </p>
-{% include "@bolt-components-code-snippet/code-snippet.twig" with {
+{% embed "@bolt-components-code-snippet/code-snippet.twig" with {
   "display": "block",
   "lang": "css",
-  "content": "display: block;<br>margin: 0 0 1.65rem 0;"
+  "colorTheme": "dark"
 } only %}
+  {% block children %}{% verbatim %}
+    display: block;
+    margin: 0 0 1.65rem 0;{% endverbatim %}{% endblock %}
+{% endembed %}
 
 <p>
   Well, code snippet can also be inline like this
   {% include "@bolt-components-code-snippet/code-snippet.twig" with {
     "display": "inline",
     "lang": "css",
-    "content": "display: inline;"
+    "code": "display:inline;"
   } only %}
   when you set
   {% include "@bolt-components-code-snippet/code-snippet.twig" with {
     "display": "inline",
-    "lang": "html",
-    "content": "display"
+    "lang": "css",
+    "code": "display"
   } only %}
   to be
   {% include "@bolt-components-code-snippet/code-snippet.twig" with {
     "display": "inline",
-    "lang": "html",
-    "content": "inline"
+    "lang": "css",
+    "code": "inline"
   } only %}
   instead.
 </p>
