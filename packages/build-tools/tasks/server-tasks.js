@@ -15,11 +15,11 @@ const serverConfig = {
     blacklist: ['/index.html', '/', '/?*'], // prevents double browsersync
     rule: {
       match: /<\/body>/i,
-      fn: function (snippet, match) {
+      fn (snippet, match) {
         return snippet + match;
-      }
-    }
-  }
+      },
+    },
+  },
 };
 
 if (config.webpackDevServer) {

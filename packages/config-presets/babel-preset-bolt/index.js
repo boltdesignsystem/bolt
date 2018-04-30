@@ -14,6 +14,13 @@ const preset = function (api, opts = {}) {
       }],
     ],
     plugins: [
+
+      '@babel/plugin-syntax-export-default-from',
+      '@babel/plugin-proposal-export-default-from',
+
+      '@babel/plugin-syntax-export-namespace-from',
+      '@babel/plugin-proposal-export-namespace-from',
+
       [
         '@babel/plugin-transform-runtime',
         {
@@ -23,8 +30,6 @@ const preset = function (api, opts = {}) {
         },
       ],
 
-      '@babel/plugin-syntax-export-default-from',
-      '@babel/plugin-proposal-export-default-from',
 
       '@babel/plugin-transform-async-to-generator',
       /**
@@ -41,16 +46,14 @@ const preset = function (api, opts = {}) {
         },
       ],
 
-      '@babel/plugin-syntax-decorators', // ex. @define
-      '@babel/plugin-proposal-decorators',
+      ['@babel/plugin-syntax-decorators', { legacy: true }],
+      ['@babel/plugin-proposal-decorators', { legacy: true }],
 
       // ex. class { handleThing = () => { } }
-      '@babel/plugin-proposal-class-properties',
-
+      ['@babel/plugin-proposal-class-properties', { loose: true }],
 
       // Allows us to dynamically import JS via Webpack. ex. import('button.standalone.js')
       '@babel/plugin-syntax-dynamic-import', /* [2] */
-
 
       '@babel/plugin-proposal-object-rest-spread',
     ],

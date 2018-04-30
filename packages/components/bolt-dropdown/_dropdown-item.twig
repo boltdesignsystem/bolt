@@ -1,0 +1,30 @@
+{% set uuid = random() %}
+{% set primaryUUID = "c-bolt-dropdown-item-#{uuid}" %}
+{% set secondaryUUID = "c-bolt-dropdown-item-inner-#{uuid}" %}
+
+<bolt-dropdown-item>
+  <input class="c-bolt-dropdown__state" type="checkbox" id="{{ primaryUUID }}" {% if autoOpen %} checked{% endif %}>
+
+  <div class="c-bolt-dropdown {{ collapse ? "c-bolt-dropdown--collapse@small" : "" }}" id="{{ secondaryUUID }}">
+
+    <h3 class="c-bolt-dropdown__header {% if center and center == true %}c-bolt-dropdown__header--center{% endif %}">
+      <label class="c-bolt-dropdown__header-label" for="{{ primaryUUID }}">
+        {{ title | default("Toggle Dropdown")}}
+      </label>
+
+      <a href="#{{ primaryUUID }}" class="c-bolt-dropdown__header-link c-bolt-dropdown__header-link c-bolt-dropdown__header-link--open">
+        <span class="c-bolt-dropdown__toggle-text">{{ openLabel | default("Open Dropdown")}}</span>
+      </a>
+
+      <a href="#{{ secondaryUUID }}" class="c-bolt-dropdown__header-link c-bolt-dropdown__header-link--close">
+        <span class="c-bolt-dropdown__toggle-text">{{ closeLabel | default("Close Dropdown")}}</span>
+      </a>
+    </h3>
+
+    <div class="c-bolt-dropdown__content">
+      <div class="c-bolt-dropdown__content-inner">
+        {{ ( _content ? _content : content) | raw }}
+      </div>
+    </div>
+  </div>
+</bolt-dropdown-item>

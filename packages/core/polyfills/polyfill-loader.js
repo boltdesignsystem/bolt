@@ -2,10 +2,10 @@ require('es6-promise').polyfill();
 require('core-js/modules/es6.array.iterator');
 require('core-js/modules/es6.symbol');
 require('core-js/modules/es6.array.from');
+require('core-js/modules/es6.string.starts-with');
 require('core-js/modules/es7.array.includes');
 require('core-js/modules/es6.array.for-each');
 require('core-js/modules/es6.object.assign');
-require('core-js/library/es6/reflect');
 
 let polyfills = [];
 
@@ -20,16 +20,15 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 }
 
 
-
 // CustomElement shim for IE 11
 (function () {
-  if (typeof window.CustomEvent === "function") return false;
+  if (typeof window.CustomEvent === 'function') return false;
   function CustomEvent(event, params) {
     params = params || { bubbles: false, cancelable: false, detail: undefined };
     var evt = document.createEvent('CustomEvent');
-  evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
-  return evt;
-}
+    evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+    return evt;
+  }
   CustomEvent.prototype = window.Event.prototype;
   window.CustomEvent = CustomEvent;
 })();
@@ -40,7 +39,7 @@ if (!('attachShadow' in Element.prototype && 'getRootNode' in Element.prototype)
   polyfills.push('sd');
 }
 
-// Detect Custom Element Support
+
 if (!window.customElements || window.customElements.forcePolyfill) {
   polyfills.push('ce');
 }
@@ -59,26 +58,21 @@ const webComponentPolyfillPath = `bolt-webcomponents-${polyfills.join('-')}.js`;
 
 export const polyfillLoader = new Promise((resolve) => {
   if (polyfills.length > 0) {
-    Promise.all([
-      import(/* webpackChunkName: `${webComponentPolyfillPath}` */ `./${webComponentPolyfillPath}`),
-    ])
-    .then(() => {
-      resolve();
-    })
-    .catch((error) => {
-      throw new Error(`Could not load ${webComponentPolyfillPath}. Error: ${error}`);
-    });
+    import(/* webpackChunkName: `${webComponentPolyfillPath}` */ `./${webComponentPolyfillPath}`)
+      .then(() => {
+        resolve();
+      })
+      .catch((error) => {
+        throw new Error(`Could not load ${webComponentPolyfillPath}. Error: ${error}`);
+      });
   } else {
-    Promise.all([
-      import(/* webpackChunkName: "custom-elements-es5-adapter" */
-      '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js'),
-    ])
-    .then(() => {
+    import('document-register-element').then(() => {
       resolve();
     })
-    .catch((error) => {
-      throw new Error(`Could not load @webcomponents/webcomponentsjs/custom-elements-es5-adapter.js. Error: ${error}`);
-    });
+      .catch((error) => {
+        throw new Error(`Could not load document-register-element.
+      Error: ${error}`);
+      });
   }
 }).catch((error) => {
   throw new Error(`Error: unexpected polyfill-loader.js error. ${error}`);

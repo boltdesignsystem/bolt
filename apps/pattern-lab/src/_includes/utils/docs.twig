@@ -9,17 +9,17 @@
       text: schema.title ? schema.title : "Component Title"
     } %}
 
-     {% include "@bolt/subheadline.twig" with {
-        weight: "regular",
-        size: "xxlarge",
-        tag: "p",
-        text: schema.description ? schema.description : "",
-        attributes: {
-          class: [
-            "u-bolt-margin-bottom-medium"
-          ]
-        }
-      } %}
+    {% include "@bolt/subheadline.twig" with {
+      weight: "regular",
+      size: "xxlarge",
+      tag: "p",
+      text: schema.description ? schema.description : "",
+      attributes: {
+        class: [
+          "u-bolt-margin-bottom-large"
+        ]
+      }
+    } %}
 
     {% if readmeFile %}
       <div class="c-bolt-docs__readme">
@@ -31,13 +31,13 @@
           icon: false,
           attributes: {
             class: [
-              "u-bolt-margin-top-large",
+              "u-bolt-margin-bottom-xsmall",
               "c-bolt-docs__heading-fragment"
             ],
             id: "getting-started"
           }
         } %}
-        <div class="c-bolt-docs__lead">
+        <div class="c-bolt-docs__lead u-bolt-margin-bottom-large">
           {{ source(readmeFile) | markdown }}
         </div>
       </div>
@@ -52,13 +52,13 @@
         icon: false,
         attributes: {
           class: [
-            "u-bolt-margin-top-large",
+            "u-bolt-margin-bottom-xsmall",
             "c-bolt-docs__heading-fragment"
           ],
           id: "usage"
         }
       } %}
-      <pre><code>{{ code }}</code></pre>
+      <pre class="u-bolt-margin-bottom-large"><code>{{ code }}</code></pre>
     {% endif %}
 
 
@@ -71,14 +71,14 @@
         icon: false,
         attributes: {
           class: [
-            "u-bolt-margin-top-large",
+            "u-bolt-margin-bottom-xsmall",
             "c-bolt-docs__heading-fragment"
           ],
           id: "schema"
         }
       } %}
 
-      <div class="bolt-docs__schema">
+      <div class="bolt-docs__schema u-bolt-margin-bottom-large">
         {% include '@utils/schema-docs.twig' with { schema: schema } only %}
       </div>
     {% endif %}
@@ -92,21 +92,21 @@
         icon: false,
         attributes: {
           class: [
-            "u-bolt-margin-top-large",
+            "u-bolt-margin-bottom-xsmall",
             "c-bolt-docs__heading-fragment"
           ],
           id: "schema"
         }
       } %}
 
-      <ul class="c-bolt-docs__page-nav-list">
+      <ul class="c-bolt-docs__page-nav-list u-bolt-margin-bottom-large">
         {% for link in links %}
           <li>
             {% include "@bolt/headline.twig" with {
               size: "small",
               weight: "regular",
               transform: "capitalize",
-              tag: "h3",
+              tag: "h4",
               text: link.text,
               url:  link.url,
               target: '_parent',

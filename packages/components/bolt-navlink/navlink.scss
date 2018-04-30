@@ -1,0 +1,103 @@
+@import '@bolt/core';
+
+/* ------------------------------------ *\
+   Navlink
+\* ------------------------------------ */
+
+$bolt-navlink-bg-color: rgba(bolt-color(gray), 0.2);
+$bolt-navlink-bg-border-radius: $bolt-border-radius;
+$bolt-navlink-bg-transition-timing: $bolt-transition-timing*4;
+$bolt-navlink-text-transition: $bolt-transition;
+
+
+// Navlink Component
+bolt-navlink {
+  display: block;
+}
+
+.c-bolt-navlink {
+  @include bolt-padding-top(xsmall);
+  @include bolt-padding-bottom(xsmall);
+  @include bolt-padding-left(medium);
+  @include bolt-padding-right(medium);
+  @include bolt-font-weight(semibold);
+  @include bolt-font-size(medium);
+
+  @include respond-to(medium) {
+    @include bolt-padding(small, squished);
+    @include bolt-font-size(small);
+  }
+
+  display: block;
+  position: relative;
+  opacity: 0.8;
+  transition: opacity $bolt-navlink-text-transition;
+
+  display: block;
+  position: relative;
+  transition: all .1s ease;
+  color: currentColor;
+  color: var(--bolt-theme-heading-link-default, inherit);
+
+  &:hover, &:active,
+  &.is-hover, &.is-active {
+    opacity: 1;
+  }
+
+  &:before {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    border-radius: $bolt-navlink-bg-border-radius;
+    background-color: $bolt-navlink-bg-color;
+    transform: scale3d(0, 0, 0);
+  }
+
+  &:hover,
+  &.is-hover {
+    &:before {
+      animation:
+        a-bolt-navlink-bg-hover
+        $bolt-navlink-bg-transition-timing
+        both;
+    }
+  }
+
+  &:active,
+  &.is-active {
+    &:before {
+      animation: none;
+    }
+  }
+}
+
+
+@keyframes a-bolt-navlink-bg-hover {
+  0% {
+    transform: scale3d(0, 0, 0);
+  }
+
+  20% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  40% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  60% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  80% {
+    transform: scale3d(0.99, 0.99, 0.99);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}

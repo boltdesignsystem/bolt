@@ -17,7 +17,10 @@
 {% set style = style | default(schema.properties.style.default) %}
 {% set type = type in types ? type : "text" %}
 {% set size = size | default(schema.properties.size.default) %}
-{% set align = align in alignments ? align : schema.properties.align.default %}
+{% if icon %}
+  {# Covers backward compatibility with use of both left and before to describe icon position #}
+  {% set iconPosition = icon.position == "left" ? "before" : icon.position  %}
+{% endif %}
 
 {% set prefix = "c-bolt-" %}
 {% set baseClass = prefix ~ type %}
@@ -32,7 +35,7 @@
   baseClass,
   quoted ? baseClass ~ "--" ~ "quoted" : "",
   weight in weights ? baseClass ~ "--" ~ weight : "",
-  align and align != "" ? baseClass ~ "--" ~ align : "",
+  align in alignments and align != null ? baseClass ~ "--" ~ align : "",
   style in styles and type == "text" ? baseClass ~ "--" ~ style : "",
   size in sizes and type != "eyebrow" ? baseClass ~ "--" ~ size : "",
   transform in transformProps and transform != "" ? baseClass ~ "--" ~ transform : "",
@@ -46,7 +49,7 @@
 {% endif %}
 
 <{{ tag }} {{ attributes.addClass(classes) }}>
-  {% if icon and not url and icon.position == "left" %}
+  {% if icon and not url and iconPosition == "before" %}
     <span class="{{ "#{baseClass}__icon" }}">
       {% include "@bolt/icon.twig" with icon only %}
     </span>
@@ -65,7 +68,7 @@
     {% endif %}
   </span>
 
-  {% if icon and not url and icon.position != "left" %}
+  {% if icon and not url and iconPosition != "before" %}
     <span class="{{ "#{baseClass}__icon" }}">
       {% include "@bolt/icon.twig" with icon only %}
     </span>

@@ -116,18 +116,22 @@ bolt-icon[size='xlarge'],
   $brand-color: bolt-color(teal);
   $contrast-color: bolt-text-contrast($brand-color);
 
-  --bolt-theme-icon: $contrast-color;
-  --bolt-theme-icon-background: $brand-color;
-  --bolt-theme-icon-background-opacity: 1;
+  @include bolt-css-vars((
+    --bolt-theme-icon: $contrast-color,
+    --bolt-theme-icon-background: $brand-color,
+    --bolt-theme-icon-background-opacity: 1,
+  ));
 }
 
 .c-bolt-icon--blue {
   $brand-color: bolt-color(blue);
   color: $brand-color;
-  --bolt-theme-icon: $brand-color;
-  --bolt-theme-icon-background: bolt-text-contrast($brand-color);
-  --bolt-theme-icon-background-opacity: 1;
 
+  @include bolt-css-vars((
+    --bolt-theme-icon: $brand-color,
+    --bolt-theme-icon-background: bolt-text-contrast($brand-color),
+    --bolt-theme-icon-background-opacity: 1,
+  ));
 }
 
 .c-bolt-icon__background {

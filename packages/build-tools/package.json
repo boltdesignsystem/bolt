@@ -1,6 +1,6 @@
 {
   "name": "@bolt/build-tools",
-  "version": "1.0.4",
+  "version": "1.2.4",
   "license": "MIT",
   "description": "Curated collection of front-end build tools in the Bolt Design System.",
   "main": "index.js",
@@ -22,7 +22,7 @@
     }
   ],
   "dependencies": {
-    "@bolt/babel-preset-bolt": "^1.0.3",
+    "@bolt/babel-preset-bolt": "^1.2.1",
     "@theme-tools/sass-export-data": "^1.0.3",
     "@theme-tools/sass-import-globbing": "^1.0.0",
     "autoprefixer": "^7.2.4",
@@ -39,6 +39,7 @@
     "file-loader": "^1.1.8",
     "front-matter": "^2.3.0",
     "globby": "^7.1.1",
+    "inline-source-loader": "^0.0.1",
     "js-yaml": "^3.10.0",
     "jsonschema": "^1.2.2",
     "lodash.debounce": "^4.0.8",
@@ -61,7 +62,9 @@
     "uglifyjs-webpack-plugin": "^1.2.0",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.0",
-    "webpack-manifest-plugin": "^2.0.0-rc.1"
+    "webpack-manifest-plugin": "^2.0.0-rc.1",
+    "deepmerge": "^2.1.0",
+    "yaml-loader": "^0.5.0"
   },
   "publishConfig": {
     "access": "public"
