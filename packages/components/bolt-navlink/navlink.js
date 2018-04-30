@@ -47,12 +47,19 @@ class BoltNavLink extends BoltComponent() {
     }
   }
 
+  // Fix needed for Firefox and IE in which children are not available when constructor is called
+  resetShadowLink() {
+    this._shadowLink = this.querySelector('a');
+  }
 
   // `attributeChangedCallback` processes changes to the `active` attr
   attributeChangedCallback(name, oldVal, newVal) {
     switch (name) {
       case 'active':
-        if (this.active) {
+        if (!this._shadowLink) {
+          this.resetShadowLink();
+        }
+        else if (this.active) {
           this._shadowLink.classList.add(isActiveClass);
 
           // Dispatch an event that signals to the parent what element is being active
@@ -87,10 +94,15 @@ class BoltNavLink extends BoltComponent() {
     this.addEventListener('click', this.onClick);
 
     // Set an initially active link if appropriate.
-    const isAlreadyActive = this._shadowLink.classList.contains(isActiveClass) || this._shadowLink.getAttribute('href') === window.location.hash;
+    if (!this._shadowLink) {
+      this.resetShadowLink();
+    }
+    else {
+      const isAlreadyActive = this._shadowLink.classList.contains(isActiveClass) || this._shadowLink.getAttribute('href') === window.location.hash;
 
-    if (isAlreadyActive) {
-      this.active = true;
+      if (isAlreadyActive) {
+        this.active = true;
+      }
     }
 
     this._upgradeProperty('active');

@@ -38,7 +38,6 @@ for (var i = 0, len = customScrollElems.length; i < len; i++) {
 
   if (scrollTarget) {
     scrollElem.addEventListener('click', function(event){
-      event.preventDefault();
       scroll.animateScroll(scrollTarget, scrollElem, scrollOptions);
     });
   }
