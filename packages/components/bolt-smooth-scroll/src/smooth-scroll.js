@@ -2,12 +2,12 @@ import SmoothScroll from 'smooth-scroll';
 
 const scroll = new SmoothScroll();
 
-const defaultScrollOffset = 0;
-const defaultScrollSpeed = 500;
+const defaultScrollOffset = 45;
+const defaultScrollSpeed = 750;
 
-const customScrollElems = document.querySelectorAll('a[href*="#"]');
-customScrollElems.forEach(elem => {
-  const scrollElem = elem;
+const customScrollElems = document.querySelectorAll('a[href^="#"]');
+for (var i = 0, len = customScrollElems.length; i < len; i++) {
+  const scrollElem = customScrollElems[i];
   const scrollSpeed = defaultScrollSpeed;
 
     // In the future, we could add support for links to modify options like scrollOffset, scrollOffset, etc.  However,
@@ -37,8 +37,8 @@ customScrollElems.forEach(elem => {
   const scrollTarget = document.getElementById(scrollElemHref);
 
   if (scrollTarget) {
-    scrollElem.addEventListener('click', function(){
+    scrollElem.addEventListener('click', function(event){
       scroll.animateScroll(scrollTarget, scrollElem, scrollOptions);
     });
   }
-});
+};

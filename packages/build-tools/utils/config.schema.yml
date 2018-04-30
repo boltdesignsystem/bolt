@@ -17,6 +17,13 @@
       title: Template paths being added
       default:
         - templates
+    globalData:
+      type: object
+      properties:
+        js:
+          $ref: '#/definitions/globalJsData'
+        scss:
+          $ref: '#/definitions/globalSassData'
     env:
       type: string
       title: Environment Type
@@ -152,3 +159,19 @@
                 title: Entry file for JS. Import statements will be followed
               required:
                 - name
+    globalJsData:
+        type: array
+        uniqueItems: true
+        required:
+          - items
+        items:
+          type: string
+          description: '`.js` filename to pull in'
+    globalSassData:
+        type: array
+        uniqueItems: true
+        required:
+          - items
+        items:
+          type: string
+          description: '`.scss` filename to pull in'
