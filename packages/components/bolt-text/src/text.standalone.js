@@ -20,6 +20,9 @@ class BoltText extends BoltComponent() {
     tag: props.string,
     weight: props.string,
     fontStyle: props.string,
+    size: props.string,
+    display: props.string,
+    align: props.string,
   }
 
   constructor(self) {
@@ -29,8 +32,7 @@ class BoltText extends BoltComponent() {
   }
 
   allowedValues(schemaData, propVal) {
-    const allowed = schemaData.enum;
-    return (allowed.indexOf(propVal) > -1) ? propVal : schemaData.default;
+    return (schemaData.enum.indexOf(propVal) > -1) ? propVal : schemaData.default;
   }
 
   render({ props, state }) {
@@ -39,6 +41,9 @@ class BoltText extends BoltComponent() {
 
     const weight = this.allowedValues(schema.properties.weight, this.props.weight);
     const style = this.allowedValues(schema.properties.style, this.props.fontStyle);
+    const size = this.allowedValues(schema.properties.size, this.props.size);
+    const display = this.allowedValues(schema.properties.display, this.props.display);
+    const align = this.allowedValues(schema.properties.align, this.props.align);
 
 
     // Important classes
@@ -46,6 +51,9 @@ class BoltText extends BoltComponent() {
       'c-bolt-text',
       `c-bolt-text--${weight}`,
       `c-bolt-text--${style}`,
+      `c-bolt-text--${size}`,
+      `c-bolt-text--${display}`,
+      `c-bolt-text--${align}`,
     );
 
     return this.html`

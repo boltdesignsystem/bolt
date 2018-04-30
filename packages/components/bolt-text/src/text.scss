@@ -4,6 +4,9 @@
    Text
 \* ------------------------------------ */
 
+$bolt-headline--minus-letter-spacing: -0.025rem;
+$bolt-headline--plus-letter-spacing: 0.05rem;
+
 .c-bolt-text {
 
   // Font Weight Options
@@ -25,5 +28,41 @@
     font-style: italic;
   }
 
+  // Font size
+  &--xxxlarge {
+    @include bolt-font-size(xxxlarge);
+    letter-spacing: $bolt-headline--minus-letter-spacing;
+  }
+  &--xxlarge {
+    @include bolt-font-size(xxlarge);
+    letter-spacing: $bolt-headline--minus-letter-spacing;
+  }
+  &--xlarge {
+    @include bolt-font-size(xlarge);
+  }
+  &--large {
+    @include bolt-font-size(large);
+  }
+  &--medium {
+    @include bolt-font-size(medium);
+  }
+  &--small {
+    @include bolt-font-size(small);
+    letter-spacing: $bolt-headline--plus-letter-spacing;
+  }
+  &--xsmall {
+    @include bolt-font-size(xsmall);
+    letter-spacing: $bolt-headline--plus-letter-spacing;
+  }
 
+  // Display type
+  &--inline {
+    display: inline;
+  }
+  &--inline-block {
+    display: inline-block;
+  }
+  &--block {
+    display: block;
+  }
 }

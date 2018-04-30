@@ -25,6 +25,7 @@ properties:
   align:
     description: Text alignment.
     type: string
+    default: left
     enum:
       - left
       - center
@@ -69,3 +70,11 @@ properties:
   quoted:
     type: boolean
     description: Adds quoted styling to text.
+  display:
+    type: string
+    description: The display type of the wrapper
+    default: inline
+    enum:
+      - inline
+      - inline-block
+      - block
