@@ -6,7 +6,7 @@ title: Bands
 
 A band is a full width container that goes edge to edge on the display. Bands can contain multiple internal components, and help chunk related content together in a section of a page.
 
-All band components can accept any of the color themes: `x-dark,` `dark`, `light` and `x-light`. You can also add options such as background images, a texture, or an expandable video.
+All band components can accept any of the color themes: `xdark,` `dark`, `light` and `xlight`. You can also add options such as background images, a texture, or an expandable video.
 
 ## Best Practices
 
