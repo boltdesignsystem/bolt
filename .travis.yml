@@ -1,58 +1,40 @@
+sudo: false
+dist: trusty
+
 language: php
 php:
   - 7.1
 
 addons:
   sauce_connect: true
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-4.8
-    - graphicsmagick
 
 before_install:
 - nvm install # version lifted from `.nvmrc`
-# yarn install
-- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.3.2
+- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.6.0
 - export PATH="$HOME/.yarn/bin:$PATH"
-- node --version && npm --version && yarn --version && composer --version
-- composer global require hirak/prestissimo
-- if [[ -n "$GITHUB_TOKEN" ]]; then composer config -g github-oauth.github.com ${GITHUB_TOKEN};
-  fi;
 
 before_script:
 - phpenv config-rm xdebug.ini
 
 install:
-- yarn install
-- yarn global add nightwatch
-- npm run setup
+- yarn run setup
 
 before_script:
-- npm run lint
-- npm test
+- yarn run lint
+- yarn run test
 
 # Can't do deploy on `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
 script:
-- time bash ./travis.sh
-- nightwatch --config nightwatch.js --env chrome,ie11
-
-after_success: # Warning: this fires after a build is already marked as successful so failing this will not fail the build.
-  - git status # Just want to check
+- bash ./travis.sh # time command already run inside the travis.sh script
+- npx nightwatch --config nightwatch.js --env chrome,ie11
 
 cache:
   apt: true
   yarn: true
   directories:
+    - $HOME/.composer/cache/files
+    - $HOME/.cache/yarn
     - node_modules
-    - $HOME/.composer
-    - apps/drupal-lab/vendor
-    - apps/drupal-lab/web/core
-    - apps/pattern-lab/vendor
-    - apps/bolt-site/vendor
-    - apps/pw-site/vendor
-    - packages/core-php/vendor
 
 notifications:
   email:
