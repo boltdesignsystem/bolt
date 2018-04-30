@@ -1,4 +1,7 @@
-# What’s New in Bolt 1.x?
+---
+title: What’s New in Bolt 1.x?
+---
+
 - Docs Improvements
 - Code Improvements
 - Testing Coverage
