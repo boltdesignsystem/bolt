@@ -33,7 +33,7 @@ if (customElements && customElements['polyfillWrapFlushCallback']) {
       cb();
       return true;
     }
-  }
+  };
   let origWhenReady = HTMLImports['whenReady'];
   customElements['polyfillWrapFlushCallback'](function(cb) {
     flushCallback = cb;
@@ -51,7 +51,7 @@ if (customElements && customElements['polyfillWrapFlushCallback']) {
         cb();
       }
     });
-  }
+  };
 
 }
 
