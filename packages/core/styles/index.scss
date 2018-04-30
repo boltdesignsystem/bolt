@@ -15,6 +15,5 @@
     left: 50%;
     width: 100%; //fallback if vw not supported.
     width: 100vw;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    margin: -0.25px -50vw; //-0.25px is needed to patch rendering issue with firefox
 }
