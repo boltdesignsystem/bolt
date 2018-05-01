@@ -116,7 +116,7 @@
       <tbody>
         {% for key, prop in schema.properties %}
           <tr class="c-bolt-docs-table__row">
-            <td class="c-bolt-docs-table__col c-bolt-docs-table__col--key">{{ key }}{% if key in requiredProps %} <span class="required-key" title="Required">*</span>{% endif %}</td>
+            <td class="c-bolt-docs-table__col c-bolt-docs-table__col--key">{{ key }}{% if key in requiredProps %}<span class="required-key" title="Required">*</span>{% endif %}</td>
 
             {% set multiples = prop.anyOf|default(prop.oneOf) %}
             {% if multiples is iterable %}

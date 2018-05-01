@@ -5,11 +5,11 @@ type: object
 required:
   - display
   - lang
-  - colorTheme
+  - syntax
 properties:
   display:
     type: string
-    title: 'Code display'
+    title: 'Display'
     description: 'Defines if the code text is inline or block.'
     default: block
     enum:
@@ -19,17 +19,19 @@ properties:
     type: string
     title: 'Language'
     description: 'Language of the code text.'
+    default: html
     enum:
       - css
       - html
       - js
       - scss
       - twig
-  colorTheme:
+  syntax:
     type: string
-    title: 'Syntax Highlight Color Theme'
-    description: 'Toggle between a light and dark theme. Separate from Bolt theming.'
+    title: 'Syntax Highlighting'
+    description: 'Toggle between a light and dark syntax highlighting, or turn it off. Separate from Bolt theming.'
     default: light
     enum:
       - light
       - dark
+      - none

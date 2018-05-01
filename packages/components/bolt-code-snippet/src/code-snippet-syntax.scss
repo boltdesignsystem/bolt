@@ -7,9 +7,6 @@
  */
 code[class*="language-"],
 pre[class*="language-"] {
-  color: black;
-  text-align: left;
-  white-space: pre;
   word-spacing: normal;
   word-break: normal;
   word-wrap: normal;
@@ -20,20 +17,16 @@ pre[class*="language-"] {
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
-  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-  background: none;
 }
 
 pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
   text-shadow: none;
-  background: #b3d4fc;
 }
 
 pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
 code[class*="language-"]::selection, code[class*="language-"] ::selection {
   text-shadow: none;
-  background: #b3d4fc;
 }
 
 @media print {
@@ -41,72 +34,6 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
   pre[class*="language-"] {
     text-shadow: none;
   }
-}
-
-/* Code blocks */
-pre[class*="language-"] {
-  overflow: auto;
-}
-
-code[class*="language-"],
-pre[class*="language-"] {
-  background: lighten(bolt-color(indigo, light), 47%);
-}
-
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
-  color: slategray;
-}
-
-.token.punctuation {
-  color: #999;
-}
-
-.token.property,
-.token.tag,
-.token.boolean,
-.token.number,
-.token.constant,
-.token.symbol,
-.token.deleted {
-  color: #905;
-}
-
-.token.selector,
-.token.attr-name,
-.token.string,
-.token.char,
-.token.builtin,
-.token.inserted {
-  color: #690;
-}
-
-.token.operator,
-.token.entity,
-.token.url,
-.language-css .token.string,
-.style .token.string {
-  color: #9a6e3a;
-  background: hsla(0, 0%, 100%, .5);
-}
-
-.token.atrule,
-.token.attr-value,
-.token.keyword {
-  color: #07a;
-}
-
-.token.function,
-.token.class-name {
-  color: #DD4A68;
-}
-
-.token.regex,
-.token.important,
-.token.variable {
-  color: #e90;
 }
 
 .token.important,
@@ -154,174 +81,12 @@ pre.line-numbers > code {
   display: block;
   padding-right: 0.8em;
   content: counter(linenumber);
-  color: #5C6370;
   text-align: right;
 }
 
 
-// Dark Theme
+// Color Modes
 
-code.theme-light,
-pre.theme-light {
-  color: black;
-}
+@import '_code-snippet-syntax-light';
 
-pre.theme-light::-moz-selection, pre.theme-light ::-moz-selection,
-code.theme-light::-moz-selection, code.theme-light ::-moz-selection {
-  background: #b3d4fc;
-}
-
-pre.theme-light::selection, pre.theme-light ::selection,
-code.theme-light::selection, code.theme-light ::selection {
-  background: #b3d4fc;
-}
-
-code.theme-light,
-pre.theme-light {
-  background: lighten(bolt-color(indigo, light), 47%);
-}
-
-.theme-light {
-  .token.comment,
-  .token.prolog,
-  .token.doctype,
-  .token.cdata {
-    color: slategray;
-  }
-
-  .token.punctuation {
-    color: #999;
-  }
-
-  .token.property,
-  .token.tag,
-  .token.boolean,
-  .token.number,
-  .token.constant,
-  .token.symbol,
-  .token.deleted {
-    color: #905;
-  }
-
-  .token.selector,
-  .token.attr-name,
-  .token.string,
-  .token.char,
-  .token.builtin,
-  .token.inserted {
-    color: #690;
-  }
-
-  .token.operator,
-  .token.entity,
-  .token.url,
-  .language-css .token.string,
-  .style .token.string {
-    color: #9a6e3a;
-    background: hsla(0, 0%, 100%, .5);
-  }
-
-  .token.atrule,
-  .token.attr-value,
-  .token.keyword {
-    color: #07a;
-  }
-
-  .token.function,
-  .token.class-name {
-    color: #DD4A68;
-  }
-
-  .token.regex,
-  .token.important,
-  .token.variable {
-    color: #e90;
-  }
-
-  .line-numbers-rows > span:before {
-    color: slategray;
-  }
-}
-
-code.theme-dark,
-pre.theme-dark {
-  color: #ABB2BF;
-}
-
-pre.theme-dark::-moz-selection, pre.theme-dark ::-moz-selection,
-code.theme-dark::-moz-selection, code.theme-dark ::-moz-selection {
-  background: #383e49;
-}
-
-pre.theme-dark::selection, pre.theme-dark ::selection,
-code.theme-dark::selection, code.theme-dark ::selection {
-  background: #9aa2b1;
-}
-
-code.theme-dark,
-pre.theme-dark {
-  background: bolt-color(indigo, xdark);
-}
-
-.theme-dark {
-  .token.comment,
-  .token.prolog,
-  .token.doctype,
-  .token.cdata {
-    color: #5C6370;
-  }
-
-  .token.punctuation {
-    color: #abb2bf;
-  }
-
-  .token.selector,
-  .token.tag {
-    color: #e06c75;
-  }
-
-  .token.property,
-  .token.boolean,
-  .token.number,
-  .token.constant,
-  .token.symbol,
-  .token.attr-name,
-  .token.deleted {
-    color: #d19a66;
-  }
-
-  .token.string,
-  .token.char,
-  .token.attr-value,
-  .token.builtin,
-  .token.inserted {
-    color: #98c379;
-  }
-
-  .token.operator,
-  .token.entity,
-  .token.url,
-  .language-css .token.string,
-  .style .token.string {
-    color: #56b6c2;
-  }
-
-  .token.atrule,
-  .token.keyword {
-    color: #c678dd;
-  }
-
-  .token.function {
-    color: #61afef;
-  }
-
-  .token.regex,
-  .token.important,
-  .token.variable {
-    color: #c678dd;
-  }
-
-  .line-numbers-rows > span:before {
-    color: #5C6370;
-  }
-}
+@import '_code-snippet-syntax-dark';
