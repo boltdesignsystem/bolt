@@ -4,7 +4,7 @@ module.exports = {
     'sandbox',
     'brightcove-player.test.js',
     'apps/drupal-lab',
-    'test/analytics.test.js', // Since this test takes 10+ minutes
+    'tests/e2e/analytics.test.js', // Since this test takes 10+ minutes
   ],
   preset: 'jest-puppeteer',
   globalSetup: 'jest-environment-puppeteer/setup',
