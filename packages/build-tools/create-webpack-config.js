@@ -1,7 +1,7 @@
 const path = require('path');
 const log = require('./utils/log');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const npmSass = require('npm-sass');
@@ -57,7 +57,7 @@ function createConfig(config) {
     globalSassData = [...globalSassData, ...overrideItems];
   }
 
-  
+
   // Merge together any global JS data overrides
   if (config.globalData.js && config.globalData.js.length !== 0){
     const overrideJsItems = [];
@@ -189,44 +189,56 @@ function createConfig(config) {
   }
 
 
-  // This workaround has been disabled for now as setting `modules: false` on `css-loader` fixes it; see https://github.com/bolt-design-system/bolt/pull/410
-  // Workaround for getting classes with `\@` to compile correctly
-  // CSS Classes like `.u-hide\@large` were getting compiled like `.u-hide-large`.
-  // Due to this bug: https://github.com/webpack-contrib/css-loader/issues/578
-  // Workaround: using the `string-replace-loader` to change `\@` to our `workaroundAtValue` before passing to `css-loader`, then turning it back afterwards.
+  // Output CSS module data as JSON.
+  // @todo: enable when ready for CSS Modules
+  // function getJSONFromCssModules(cssFileName, json) {
+  //   const cssName = path.basename(cssFileName, '.css');
+  //   const jsonFileName = path.resolve(process.cwd(), config.buildDir, `${cssName}.json`);
+  //   fs.writeFileSync(jsonFileName, JSON.stringify(json));
+  // }
+
+  /** This workaround has been disabled for now as setting
+    * `modules: false` on `css-loader` fixes it; see https://github.com/bolt-design-system/bolt/pull/410
+    * Workaround for getting classes with `\@` to compile correctly
+    * CSS Classes like `.u-hide\@large` were getting compiled like `.u-hide-large`.
+    * Due to this bug: https://github.com/webpack-contrib/css-loader/issues/578
+    * Workaround: using the `string-replace-loader` to
+    * change `\@` to our `workaroundAtValue` before
+    * passing to `css-loader`, then turning it back
+    * afterwards.
+    */
   const workaroundAtValue = '-theSlashSymbol-';
 
   const scssLoaders = [
-    {
-      loader: 'string-replace-loader',
-      query: {
-        search: workaroundAtValue,
-        replace: String.raw`\\`, // needed to ensure `\` comes through
-        flags: 'g',
-      },
-    },
+    // {
+    //   loader: 'string-replace-loader',
+    //   query: {
+    //     search: workaroundAtValue,
+    //     replace: String.raw`\\`, // needed to ensure `\` comes through
+    //     flags: 'g',
+    //   },
+    // },
     {
       loader: 'css-loader',
       options: {
         sourceMap: true,
-        modules: true, // needed for JS referencing classNames directly, such as critical fonts
-        importLoaders: 5,
-        localIdentName: '[local]',
+        modules: false, // needed for JS referencing classNames directly, such as critical fonts
+        importLoaders: 4,
       },
     },
-    {
-      loader: 'string-replace-loader',
-      query: {
-        search: /\\/,
-        replace: workaroundAtValue,
-        flags: 'g',
-      },
-    },
+    // {
+    //   loader: 'string-replace-loader',
+    //   query: {
+    //     search: /\\/,
+    //     replace: workaroundAtValue,
+    //     flags: 'g',
+    //   },
+    // },
     {
       loader: 'postcss-loader',
       options: {
         sourceMap: true,
-        plugins: [
+        plugins: () => [
           postcssDiscardDuplicates,
           autoprefixer,
         ],
@@ -277,8 +289,10 @@ function createConfig(config) {
       chunkFilename: '[name]-bundle.[chunkhash].js',
       publicPath,
     },
+    cache: true,
     resolve: {
       extensions: ['.js', '.jsx', '.json', '.svg', '.scss'],
+      unsafeCache: true,
     },
     module: {
       rules: [
@@ -287,14 +301,18 @@ function createConfig(config) {
           oneOf: [
             {
               issuer: /\.js$/,
-              use: scssLoaders,
+              use: [
+                scssLoaders,
+              ].reduce((acc, val) => acc.concat(val), []),
             },
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
-              use: ExtractTextPlugin.extract({
-                fallback: 'style-loader',
-                use: scssLoaders,
-              }),
+              use: [
+                {
+                  loader: MiniCssExtractPlugin.loader,
+                },
+                scssLoaders,
+              ].reduce((acc, val) => acc.concat(val), []),
             },
           ],
         },
@@ -325,13 +343,43 @@ function createConfig(config) {
           },
         },
         {
+          test: [/\.json$/],
+          use: [
+            {
+              loader: 'json-loader',
+            },
+          ],
+        },
+        {
           test: [/\.yml$/, /\.yaml$/],
           use: [
-            { loader: 'json-loader' },
             { loader: 'yaml-loader' },
           ],
         },
       ],
+    },
+    mode: config.prod ? 'production' : 'development',
+    optimization: {
+      mergeDuplicateChunks: true,
+      // splitChunks: {
+      //   chunks: 'all',
+      //   // cacheGroups: {
+      //   //   js: {
+      //   //     test: /\.js$/,
+      //   //     // name: 'commons',
+      //   //     chunks: 'all',
+      //   //     minChunks: 2,
+      //   //     // test: /node_modules/,
+      //   //     // enforce: true,
+      //   //   },
+      //   //   css: {
+      //   //     test: /\.s?css$/,
+      //   //     chunks: 'all',
+      //   //     minChunks: 2,
+      //   //     // enforce: true,
+      //   //   },
+      //   // },
+      // },
     },
     plugins: [
       // Ignore generated output if generated output is on a dependency chain (causes endless loop)
@@ -341,16 +389,12 @@ function createConfig(config) {
         /styleguide/,
         path.join(__dirname, 'node_modules'),
       ]),
-      new webpack.optimize.CommonsChunkPlugin({
-        deepChildren: true,
-        children: true,
-        minChunks: Infinity,
-        async: true,
-      }),
       new webpack.IgnorePlugin(/vertx/), // needed to ignore vertx dependency in webcomponentsjs-lite
-      new ExtractTextPlugin({
+      new MiniCssExtractPlugin({
+        // Options similar to the same options in webpackOptions.output
+        // both options are optional
         filename: '[name].css',
-        // disable: false,
+        chunkFilename: '[id].css',
         allChunks: true,
       }),
       // @todo This needs to be in `config.dataDir`
@@ -410,7 +454,8 @@ function createConfig(config) {
     webpackConfig.devtool = 'hidden-source-map';
   } else { // not prod
     // @todo fix source maps
-    webpackConfig.devtool = 'cheap-module-eval-source-map';
+    // webpackConfig.devtool = 'cheap-module-eval-source-map';
+    webpackConfig.devtool = 'eval';
   }
 
 
@@ -418,7 +463,7 @@ function createConfig(config) {
     webpackConfig.devServer = {
       contentBase: [
         path.resolve(process.cwd(), config.wwwDir),
-       // @TODO: add Pattern Lab Styleguidekit Assets Default dist path here
+      // @TODO: add Pattern Lab Styleguidekit Assets Default dist path here
       ],
       compress: true,
       clientLogLevel: 'none',

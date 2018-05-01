@@ -19,7 +19,7 @@ export { declarativeClickHandler } from './utils/declarative-click-handler';
 export { hasNativeShadowDomSupport } from './utils/environment';
 export { findParentTag } from './utils/find-parent-tag';
 
-export { withPreact, wrapPreact } from './renderers/renderer-preact';
+export { withPreact } from './renderers/renderer-preact';
 export { BoltComponent } from './renderers/renderer-hyperhtml';
 export { spacingSizes } from './data/spacing-sizes';
 
