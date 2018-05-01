@@ -125,7 +125,6 @@ const googleAnalyticsEt = [
     'value': 3,
     'noninteraction': false,
   },
-  'selector': '.c-page-header__inner .c-page-header__contact bolt-button',
   {
     'selector': '.c-page-header__inner .c-page-header__contact bolt-button',
     'event': 'click',
