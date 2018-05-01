@@ -52,7 +52,6 @@
     "lint:yaml": "yamllint 'packages/**/*.yml' --ignore='**/vendor/**'",
     "lint": "npm-run-all --continue-on-error --parallel lint:*",
     "prepush": "yarn run test && yarn run lint",
-    "prepush": "yarn run test",
     "test:js": "jest",
     "test:js:watch": "jest --watch",
     "test:php": "cd packages/core-php && composer run test",
