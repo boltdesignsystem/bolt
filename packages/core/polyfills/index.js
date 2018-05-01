@@ -1,4 +1,12 @@
+import 'es6-promise/auto';
+import 'core-js/modules/es6.array.iterator';
+import 'core-js/modules/es6.array.from';
+import 'core-js/modules/es6.string.starts-with';
+import 'core-js/modules/es7.array.includes';
+import 'core-js/modules/es6.array.for-each';
+import 'core-js/modules/es6.object.assign';
 import './custom-event-polyfill';
+
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach;
@@ -31,17 +39,7 @@ export const polyfillLoader = new Promise((resolve) => {
   // Based on https://github.com/webcomponents/webcomponentsjs/blob/master/entrypoints/webcomponents-hi-sd-ce-pf-index.js
   // Used in: IE 11
   if (polyfills.includes('lite')) {
-    import('es6-promise').polyfill();
-
     Promise.all([
-      import('core-js/modules/es6.array.iterator'),
-      import('core-js/modules/es6.symbol'),
-      import('core-js/modules/es6.array.from'),
-      import('core-js/modules/es6.string.starts-with'),
-      import('core-js/modules/es7.array.includes'),
-      import('core-js/modules/es6.array.for-each'),
-      import('core-js/modules/es6.object.assign'),
-      import('core-js/library/es6/reflect'),
       import('document-register-element'),
     ]).then(() => { resolve() });
   }
