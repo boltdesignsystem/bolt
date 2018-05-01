@@ -10,59 +10,121 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 .c-bolt-text {
 
   // Font Weight Options
-  &--semibold {
+  &--weight-semibold {
     @include bolt-font-weight(semibold);
   }
-  &--regular {
+  &--weight-regular {
     @include bolt-font-weight(regular);
   }
-  &--bold {
+  &--weight-bold {
     @include bolt-font-weight(bold);
   }
 
   // Font style variations
-  &--normal {
+  &--style-normal {
     font-style: normal;
   }
-  &--italic {
+  &--style-italic {
     font-style: italic;
   }
 
   // Font size
-  &--xxxlarge {
+  &--font-xxxlarge {
     @include bolt-font-size(xxxlarge);
     letter-spacing: $bolt-headline--minus-letter-spacing;
   }
-  &--xxlarge {
+  &--font-xxlarge {
     @include bolt-font-size(xxlarge);
     letter-spacing: $bolt-headline--minus-letter-spacing;
   }
-  &--xlarge {
+  &--font-xlarge {
     @include bolt-font-size(xlarge);
   }
-  &--large {
+  &--font-large {
     @include bolt-font-size(large);
   }
-  &--medium {
+  &--font-medium {
     @include bolt-font-size(medium);
   }
-  &--small {
+  &--font-small {
     @include bolt-font-size(small);
     letter-spacing: $bolt-headline--plus-letter-spacing;
   }
-  &--xsmall {
+  &--font-xsmall {
     @include bolt-font-size(xsmall);
     letter-spacing: $bolt-headline--plus-letter-spacing;
   }
 
   // Display type
-  &--inline {
+  &--display-inline {
     display: inline;
   }
-  &--inline-block {
+  &--display-inline-block {
     display: inline-block;
   }
-  &--block {
+  &--display-block {
     display: block;
+  }
+
+  // Align content
+  &--align-left {
+    text-align: left;
+  }
+  &--align-center {
+    text-align: center;
+  }
+  &--align-right {
+    text-align: right;
+  }
+
+  // Transform text
+  &--transform-uppercase {
+    text-transform: uppercase;
+  }
+  &--transform-lowercase {
+    text-transform: lowercase;
+  }
+  &--transform-capitalize {
+    text-transform: capitalize;
+  }
+
+  // Letter spacing ---- @todo: figure out if these are correct
+  &--spacing-narrow {
+    letter-spacing: -0.1rem;
+  }
+  &--spacing-regular {
+    letter-spacing: normal;
+  }
+  &--spacing-wide {
+    letter-spacing: 0.1rem;
+  }
+
+  // Line height ---- @todo: figure out if these are correct
+  &--line-height-short {
+    line-height: 1;
+  }
+  &--line-height-regular {
+    line-height: 1.65;
+  }
+  &--line-height-tall {
+    line-height: 2;
+  }
+
+  // Quoted style
+  &--quoted {
+    &:before,
+    &:after {
+      font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
+    }
+
+    &:before {
+      content: '\201C';
+      transform: translate3d(-110%, 0, 0);
+      position: absolute;
+    }
+
+    &:after {
+      content: '\201D';
+    }
   }
 }

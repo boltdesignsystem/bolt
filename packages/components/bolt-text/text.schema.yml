@@ -25,7 +25,6 @@ properties:
   align:
     description: Text alignment.
     type: string
-    default: left
     enum:
       - left
       - center
@@ -45,6 +44,20 @@ properties:
     enum:
       - normal
       - italic
+  letterSpacing:
+    type: string
+    description: Letter spacing.
+    enum:
+      - narrow
+      - normal
+      - wide
+  lineHeight:
+    type: string
+    description: Font line height.
+    enum:
+      - short
+      - regular
+      - tall
   size:
     type: string
     description: Font size.

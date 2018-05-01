@@ -23,6 +23,10 @@ class BoltText extends BoltComponent() {
     size: props.string,
     display: props.string,
     align: props.string,
+    transform: props.string,
+    letterSpacing: props.string,
+    lineHeight: props.string,
+    quoted: props.boolean,
   }
 
   constructor(self) {
@@ -32,7 +36,7 @@ class BoltText extends BoltComponent() {
   }
 
   allowedValues(schemaData, propVal) {
-    return (schemaData.enum.indexOf(propVal) > -1) ? propVal : schemaData.default;
+    return (schemaData.enum.indexOf(propVal) > -1) ? propVal : (typeof schemaData.default != 'undefined' ? schemaData.default : false);
   }
 
   render({ props, state }) {
@@ -44,16 +48,23 @@ class BoltText extends BoltComponent() {
     const size = this.allowedValues(schema.properties.size, this.props.size);
     const display = this.allowedValues(schema.properties.display, this.props.display);
     const align = this.allowedValues(schema.properties.align, this.props.align);
-
+    const transform = this.allowedValues(schema.properties.transform, this.props.transform);
+    const letterSpacing = this.allowedValues(schema.properties.letterSpacing, this.props.letterSpacing);
+    const lineHeight = this.allowedValues(schema.properties.lineHeight, this.props.lineHeight);
+    const quoted = this.props.quoted ? true : false;
 
     // Important classes
     const classes = css(
       'c-bolt-text',
-      `c-bolt-text--${weight}`,
-      `c-bolt-text--${style}`,
-      `c-bolt-text--${size}`,
-      `c-bolt-text--${display}`,
-      `c-bolt-text--${align}`,
+      `c-bolt-text--weight-${weight}`,
+      `c-bolt-text--style-${style}`,
+      `c-bolt-text--font-${size}`,
+      `c-bolt-text--display-${display}`,
+      letterSpacing && `c-bolt-text--spacing-${letterSpacing}`,
+      align && `c-bolt-text--align-${align}`,
+      transform && `c-bolt-text--transform-${transform}`,
+      lineHeight && `c-bolt-text--line-height-${lineHeight}`,
+      quoted && `c-bolt-text--quoted`,
     );
 
     return this.html`
