@@ -18,6 +18,20 @@ bolt-code-snippet {
   }
 }
 
+.c-bolt-code-snippet,
+.c-bolt-code-snippet__code {
+  color: inherit;
+  color: $bolt-code-snippet-text-color;
+  text-align: left;
+  white-space: -moz-pre-wrap;
+  white-space: -o-pre-wrap;
+  white-space: pre-wrap;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: break-word;
+  border-radius: $bolt-code-snippet-border-radius;
+}
+
 .c-bolt-code-snippet {
   @include bolt-margin-top(0);
   @include bolt-margin-right(0);
@@ -27,11 +41,6 @@ bolt-code-snippet {
   @include bolt-horizontal-scroll;
 
   display: block;
-  color: inherit;
-  color: $bolt-code-snippet-text-color;
-  text-align: left;
-  white-space: pre-wrap;
-  border-radius: $bolt-code-snippet-border-radius;
   background-color: $bolt-code-snippet-background-color;
 }
 
@@ -41,10 +50,7 @@ bolt-code-snippet {
   @include bolt-font-weight(regular);
   @include bolt-font-size(small);
 
-  color: inherit;
   letter-spacing: 0.05rem;
-  white-space: inherit;
-  border-radius: $bolt-code-snippet-border-radius;
 }
 
 .c-bolt-code-snippet__code--block {
@@ -58,6 +64,5 @@ bolt-code-snippet {
   @include bolt-padding(2px 0.25rem 2px 0.3rem); // [Mai] 0.25rem on the right offsets the 0.05rem letter-spacing.
 
   display: inline;
-  color: $bolt-code-snippet-text-color;
   background-color: $bolt-code-snippet-background-color;
 }
