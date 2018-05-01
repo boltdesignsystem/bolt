@@ -117,7 +117,13 @@ async function getNestedPages(folder) {
       const children = await getNestedPages(fullPath);
       // The children include the `indexFile` as well, so let's remove it.
       const filterChildren = children.filter(child => indexFile !== child.srcPath);
-      const item = await getPage(indexFile);
+      let item;
+      try {
+        item = await getPage(indexFile);
+      } catch (error) {
+        log.error(`Each folder in static site content must contain a file called "00-index.md", please make one here: ${indexFile}`);
+        process.exit(1); // exiting immediately so follow up error messages don't confuse user.
+      }
       item.children = filterChildren;
       return item;
     } else {
