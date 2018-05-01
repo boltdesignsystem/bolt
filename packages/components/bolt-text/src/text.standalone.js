@@ -27,6 +27,7 @@ class BoltText extends BoltComponent() {
     letterSpacing: props.string,
     lineHeight: props.string,
     quoted: props.boolean,
+    util: props.string,
   }
 
   constructor(self) {
@@ -52,6 +53,7 @@ class BoltText extends BoltComponent() {
     const letterSpacing = this.allowedValues(schema.properties.letterSpacing, this.props.letterSpacing);
     const lineHeight = this.allowedValues(schema.properties.lineHeight, this.props.lineHeight);
     const quoted = this.props.quoted ? true : false;
+    const util = this.props.util ? this.props.util : false
 
     // Important classes
     const classes = css(
@@ -60,12 +62,23 @@ class BoltText extends BoltComponent() {
       `c-bolt-text--style-${style}`,
       `c-bolt-text--font-${size}`,
       `c-bolt-text--display-${display}`,
-      letterSpacing && `c-bolt-text--spacing-${letterSpacing}`,
-      align && `c-bolt-text--align-${align}`,
-      transform && `c-bolt-text--transform-${transform}`,
-      lineHeight && `c-bolt-text--line-height-${lineHeight}`,
-      quoted && `c-bolt-text--quoted`,
+      letterSpacing ? `c-bolt-text--spacing-${letterSpacing}` : '',
+      align ? `c-bolt-text--align-${align}` : '',
+      transform ? `c-bolt-text--transform-${transform}` : '',
+      lineHeight ? `c-bolt-text--line-height-${lineHeight}` : '',
+      quoted ? `c-bolt-text--quoted` : '',
     );
+
+    // Adds out utilities to the outer parent <bolt-text />
+    if (util && util.indexOf(',') > -1) {
+      const utilClasses = [];
+      util.split(',').forEach(function(item){
+        utilClasses.push('u-bolt-'+item.trim());
+      });
+      this.setAttribute('class', utilClasses.join(' '));
+    } else if (util && util.length > 0) {
+      this.setAttribute('class','u-bolt-'+util.trim());
+    }
 
     return this.html`
       ${ this.addStyles([styles]) }
