@@ -7,15 +7,19 @@ $bolt-code-text-color: var(--bolt-theme-heading, inherit);
 $bolt-code-background-color: rgba(bolt-color(indigo, light), 0.08);
 
 
+pre,
+code {
+  color: inherit;
+  color: $bolt-code-text-color;
+  text-align: left;
+  border-radius: $bolt-code-border-radius;
+}
+
 pre {
   @include bolt-padding(small, squished);
   @include bolt-horizontal-scroll;
 
-  color: inherit;
-  color: $bolt-code-text-color;
-  text-align: left;
-  white-space: pre-wrap;
-  border-radius: $bolt-border-radius;
+  display: block;
   background-color: $bolt-code-background-color;
 }
 
@@ -27,16 +31,13 @@ code {
   @include bolt-font-size(small);
 
   display: inline;
-  color: inherit;
-  color: $bolt-code-text-color;
-  letter-spacing: 0.05rem;
-  white-space: inherit;
-  border-radius: $bolt-border-radius;
   background-color: $bolt-code-background-color;
+  letter-spacing: 0.05rem;
+}
 
-  pre & {
-    display: block;
-    color: inherit;
-    background-color: transparent;
-  }
+pre code {
+  @include bolt-padding(0);
+
+  display: block;
+  background-color: transparent;
 }
