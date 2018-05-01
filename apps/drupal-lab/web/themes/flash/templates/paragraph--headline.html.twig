@@ -103,15 +103,15 @@
 
 <div style="border-bottom: 1px dotted;padding: 50px;">
   {% include '@bolt-components-headline/headline.twig' with headline only %}
-  {% if headline|length > 1 %}
-    <h4>Attributes</h4>
-    <ul>
-      {% for key, param in headline %}
-        {% if key != 'text' %}
-          {% set val = key != 'icon' ? param : param.name %}
-          <li><strong>{{ key }}:</strong> {{ val }}</li>
-        {% endif %}
-      {% endfor %}
-    </ul>
-  {% endif %}
+  {#{% if headline|length > 1 %}#}
+    {#<h4>Attributes</h4>#}
+    {#<ul>#}
+      {#{% for key, param in headline %}#}
+        {#{% if key != 'text' %}#}
+          {#{% set val = key != 'icon' ? param : param.name %}#}
+          {#<li><strong>{{ key }}:</strong> {{ val }}</li>#}
+        {#{% endif %}#}
+      {#{% endfor %}#}
+    {#</ul>#}
+  {#{% endif %}#}
 </div>
