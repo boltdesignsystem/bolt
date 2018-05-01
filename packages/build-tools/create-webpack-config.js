@@ -52,7 +52,7 @@ function createConfig(config) {
       } catch(err) {
         log.errorAndExit(`Could not find ${item}`, err);
       }
-  });
+    });
 
     globalSassData = [...globalSassData, ...overrideItems];
   }
