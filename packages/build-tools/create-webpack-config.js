@@ -9,13 +9,70 @@ const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const sassImportGlobbing = require('@theme-tools/sass-import-globbing');
-const { getBoltManifest } = require('./utils/manifest');
+const { getBoltManifest, createComponentsManifest } = require('./utils/manifest');
+const { promisify } = require('util');
+const fs = require('fs');
+const readFile = promisify(fs.readFile);
+const deepmerge = require('deepmerge');
 
 function createConfig(config) {
   // @TODO: move this setting to .boltrc config
   const sassExportData = require('@theme-tools/sass-export-data')({
     path: path.resolve(process.cwd(), config.dataDir),
   });
+
+
+  // Default global Sass data defined
+  let globalSassData = [
+    `$bolt-namespace: ${config.namespace};`,
+  ]
+
+
+  // Default global JS data defined
+  let globalJsData = {
+    'process.env.NODE_ENV': config.prod ?
+      JSON.stringify('production') :
+      JSON.stringify('development'),
+    bolt: {
+      namespace: JSON.stringify(config.namespace),
+    },
+  };
+
+
+  // Merge together global Sass data overrides specified in a .boltrc config
+  if (config.globalData.scss && config.globalData.scss.length !== 0){
+    const overrideItems = [];
+    config.globalData.scss.forEach((item) => {
+      try {
+        const file = fs.readFileSync(item, 'utf8');
+        file
+          .split('\n')
+          .filter(x => x)
+          .forEach(x => overrideItems.push(x));
+      } catch(err) {
+        log.errorAndExit(`Could not find ${item}`, err);
+      }
+    });
+
+    globalSassData = [...globalSassData, ...overrideItems];
+  }
+
+  
+  // Merge together any global JS data overrides
+  if (config.globalData.js && config.globalData.js.length !== 0){
+    const overrideJsItems = [];
+    config.globalData.js.forEach((item) => {
+      try {
+        const overrideFile = require(path.resolve(process.cwd(), item));
+        overrideJsItems.push(overrideFile);
+      } catch(err) {
+        log.errorAndExit(`Could not find ${item} file`, err);
+      }
+    });
+
+    globalJsData = deepmerge(globalJsData, ...overrideJsItems);
+  }
+
 
   /**
    * Build WebPack config's `entry` object
@@ -199,9 +256,7 @@ function createConfig(config) {
         functions: sassExportData,
         outputStyle: 'expanded',
         precision: 2,
-        data: [
-          `$bolt-namespace: ${config.namespace};`,
-        ].join('\n'),
+        data: globalSassData.join('\n'),
       },
     },
   ];
@@ -227,13 +282,6 @@ function createConfig(config) {
     },
     module: {
       rules: [
-        {
-          test: /\.twig$/,
-          use: [
-            { loader: 'raw-loader' },
-            { loader: 'inline-source-loader' },
-          ],
-        },
         {
           test: /\.scss$/,
           oneOf: [
@@ -276,6 +324,13 @@ function createConfig(config) {
             name: '[name].[ext]',
           },
         },
+        {
+          test: [/\.yml$/, /\.yaml$/],
+          use: [
+            { loader: 'json-loader' },
+            { loader: 'yaml-loader' },
+          ],
+        },
       ],
     },
     plugins: [
@@ -310,6 +365,7 @@ function createConfig(config) {
       new webpack.ProvidePlugin({
         Promise: 'es6-promise',
       }),
+      new webpack.DefinePlugin(globalJsData),
       // Show build progress
       // Disabling for now as it messes up spinners
       // @todo consider bringing it back
@@ -324,13 +380,6 @@ function createConfig(config) {
   }
 
   if (config.prod) {
-    webpackConfig.plugins.push(new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
-      bolt: {
-        namespace: JSON.stringify(config.namespace),
-      },
-    }));
-
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
     // Config recommendation based off of https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1#f548
     webpackConfig.plugins.push(new UglifyJsPlugin({
@@ -362,41 +411,35 @@ function createConfig(config) {
   } else { // not prod
     // @todo fix source maps
     webpackConfig.devtool = 'cheap-module-eval-source-map';
-
-    webpackConfig.plugins.push(new webpack.DefinePlugin({
-      bolt: {
-        namespace: JSON.stringify(config.namespace),
-      },
-    }));
   }
 
 
   if (config.wwwDir) {
-   webpackConfig.devServer = {
-     contentBase: [
-       path.resolve(process.cwd(), config.wwwDir),
+    webpackConfig.devServer = {
+      contentBase: [
+        path.resolve(process.cwd(), config.wwwDir),
        // @TODO: add Pattern Lab Styleguidekit Assets Default dist path here
-     ],
-     compress: true,
-     clientLogLevel: 'none',
-     port: 8080,
-     stats: statsPreset(webpackStats[config.verbosity]),
-     overlay: {
-       errors: true,
-     },
-     hot: !!config.prod,
-     inline: true,
-     noInfo: true, // webpackTasks.watch handles output info related to success & failure
-     publicPath,
-     watchContentBase: true,
-     historyApiFallback: true,
-     watchOptions: {
-       aggregateTimeout: 200,
+      ],
+      compress: true,
+      clientLogLevel: 'none',
+      port: 8080,
+      stats: statsPreset(webpackStats[config.verbosity]),
+      overlay: {
+        errors: true,
+      },
+      hot: !!config.prod,
+      inline: true,
+      noInfo: true, // webpackTasks.watch handles output info related to success & failure
+      publicPath,
+      watchContentBase: true,
+      historyApiFallback: true,
+      watchOptions: {
+        aggregateTimeout: 200,
     //    ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
        // Poll using interval (in ms, accepts boolean too)
-     },
-   };
- }
+      },
+    };
+  }
 
   return webpackConfig;
 }

@@ -13,7 +13,6 @@ async function sh(cmd, exitOnError, streamOutput, showCmdOnError = true) {
   return new Promise((resolve, reject) => {
     const child = exec(cmd, {
       encoding: 'utf8',
-      timeout: 1000 * 60 * 2, // 2 min; just want to make sure nothing gets detached forever.
     });
     let output = '';
     child.stdout.on('data', (data) => {
@@ -34,7 +33,7 @@ async function sh(cmd, exitOnError, streamOutput, showCmdOnError = true) {
 Error with code ${code}${showCmdOnError ? ` after running: ${cmd}`: ''}:
 `);
         if (exitOnError) {
-            process.exitCode = 1;
+          process.exitCode = 1;
           reject(new Error(errorMsg + output));
         } else {
           notifier.notify({

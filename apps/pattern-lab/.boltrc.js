@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   // Environmental variable / preset to use
   env: 'pl',
@@ -10,8 +12,19 @@ module.exports = {
   extraTwigNamespaces: {
     'bolt': {
       recursive: true,
-      paths: ['./src'],
+      paths: [
+        './src',
+        /* Example of including additional component paths to include in the main @bolt namespace */
+        // path.relative(process.cwd(), path.dirname(require.resolve('@bolt/components-sticky/package.json'))),
+      ],
     },
+    /* Example of including a new component namesapce config / overriding an existing config */
+    // 'bolt-components-sticky': {
+    //   recursive: true,
+    //   paths: [
+    //     path.relative(process.cwd(), path.dirname(require.resolve('@bolt/components-sticky/package.json'))),
+    //   ],
+    // },
     'bolt-assets': {
       recursive: true,
       paths: ['../../www/pattern-lab/build'],
@@ -30,10 +43,22 @@ module.exports = {
       },
     ],
   },
+
+  // Currently only supports a 'scss' key with an array of Sass partials to pull in.
+  globalData: {
+    'scss': [
+      // './src/test-overrides.scss' // example of including an additional Sass partial to set / redefine additional default values, globally.
+    ],
+    'js': [
+      // './src/global-data.js', // example of including a JS files with a default export to globally include extra data to all Bolt JS components
+    ]
+  },
+
   components: {
     global: [
       '@bolt/core',
       '@bolt/global',
+      '@bolt/components-placeholder',
       '@bolt/components-action-blocks',
       '@bolt/components-dropdown',
       '@bolt/components-background',

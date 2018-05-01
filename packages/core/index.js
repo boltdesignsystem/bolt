@@ -1,4 +1,3 @@
-// Export non-Bolt dependencies shared across virtually all components
 export {
   define,
   props,
@@ -23,8 +22,6 @@ export { findParentTag } from './utils/find-parent-tag';
 export { withPreact, wrapPreact } from './renderers/renderer-preact';
 export { BoltComponent } from './renderers/renderer-hyperhtml';
 export { spacingSizes } from './data/spacing-sizes';
-
-// Export Bolt data shared
 
 // Export polyfill loader
 export { polyfillLoader } from './polyfills';
