@@ -24,4 +24,4 @@ export { BoltComponent } from './renderers/renderer-hyperhtml';
 export { spacingSizes } from './data/spacing-sizes';
 
 // Export polyfill loader
-export { polyfillLoader } from './polyfills/polyfill-loader';
+export { polyfillLoader } from './polyfills';

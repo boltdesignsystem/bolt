@@ -11,4 +11,3 @@ export const Filter = ({ bgColor, fgColor, size, ...otherProps }) => {
     </svg>
   );
 };
-
