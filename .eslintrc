@@ -1,4 +1,11 @@
 {
   "root": true,
-  "extends": "./packages/config-presets/config-eslint/index.js"
+  "extends": "./packages/config-presets/config-eslint/index.js",
+  "env": {
+    "jest": true
+  },
+  "globals": {
+    "page": true,
+    "browser": true
+  }
 }
