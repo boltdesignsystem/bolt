@@ -10,6 +10,7 @@ properties:
   tag:
     type: string
     description: Html tag.
+    default: p
     enum:
       - h1
       - h2
@@ -22,16 +23,16 @@ properties:
       - cite
       - div
   align:
-    type: string
     description: Text alignment.
+    type: string
     enum:
       - left
       - center
       - right
-      - '' # @todo Refactor template so default is `left`
   weight:
     type: string
     description: Font weights.
+    default: regular
     enum:
       - bold
       - regular
@@ -39,12 +40,14 @@ properties:
   style:
     type: string
     description: Font styles.
+    default: normal
     enum:
       - normal
       - italic
   size:
     type: string
     description: Font size.
+    default: medium
     enum:
       - xsmall
       - small
@@ -57,22 +60,20 @@ properties:
     type: string
     description: Text transformation.
     enum:
-      - none
       - uppercase
       - lowercase
       - capitalize
-      - '' # @todo Refactor template so default is `none`
   url:
     type: string
     description: If provided, turns headline into a link to given url.
   icon:
-    type: object
     description: Bolt icon. Excepts the same options as Bolt Icon Component `@bolt-components-icon`
-    ref: '@bolt-components-icon/icon.schema.yml'
+    anyOf:
+      -
+        type: object
+        ref: '@bolt-components-icon/icon.schema.yml'
+      -
+        type: boolean
   quoted:
     type: boolean
     description: Adds quoted styling to text.
-    default: false
-    enum:
-      - false
-      - true

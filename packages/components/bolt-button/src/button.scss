@@ -1,7 +1,6 @@
 /* ------------------------------------ *\
    Buttons
 \* ------------------------------------ */
-$bolt-export-data: false !global;
 
 @import '@bolt/core';
 
@@ -182,7 +181,7 @@ bolt-button[width='full@small'],
 
 /** Handle Button Icon Alignment + Before / After **/
 .c-bolt-link__text + .c-bolt-link__icon,
-.c-bolt-button__item-text + .c-bolt-button__icon {
+.c-bolt-button__item + .c-bolt-button__icon {
   @include bolt-margin-left(xxsmall);
 
   .c-bolt-button--icon-only & {
@@ -191,7 +190,7 @@ bolt-button[width='full@small'],
 }
 
 .c-bolt-link__icon + .c-bolt-link__text,
-.c-bolt-button__icon + .c-bolt-button__item-text {
+.c-bolt-button__icon + .c-bolt-button__item {
   @include bolt-margin-left(xsmall);
 
   .c-bolt-button--icon-only & {
@@ -205,5 +204,7 @@ bolt-button[width='full@small'],
   display: inline-flex;
   vertical-align: middle;
   align-self: center;
+  transition: transform $bolt-transition-ease 150ms;
+  text-align: center; // Horizontally center icons
   line-height: 1; // workaround so icons can be vertically aligned properly
 }

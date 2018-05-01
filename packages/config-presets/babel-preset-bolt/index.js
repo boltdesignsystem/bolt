@@ -14,9 +14,27 @@ const preset = function (api, opts = {}) {
       }],
     ],
     plugins: [
-    /**
-     * 1. Helps with our Web Component Preact renderer
-     */
+
+      '@babel/plugin-syntax-export-default-from',
+      '@babel/plugin-proposal-export-default-from',
+
+      '@babel/plugin-syntax-export-namespace-from',
+      '@babel/plugin-proposal-export-namespace-from',
+
+      [
+        '@babel/plugin-transform-runtime',
+        {
+          helpers: false,
+          polyfill: false,
+          regenerator: true,
+        },
+      ],
+
+
+      '@babel/plugin-transform-async-to-generator',
+      /**
+       * 1. Helps with our Web Component Preact renderer
+       */
       '@babel/plugin-syntax-jsx', /* [1] */
       [
         '@babel/plugin-transform-react-jsx', /* [1] */
@@ -28,18 +46,14 @@ const preset = function (api, opts = {}) {
         },
       ],
 
-      '@babel/plugin-syntax-decorators', // ex. @define
-      '@babel/plugin-proposal-decorators',
+      ['@babel/plugin-syntax-decorators', { legacy: true }],
+      ['@babel/plugin-proposal-decorators', { legacy: true }],
 
       // ex. class { handleThing = () => { } }
-      '@babel/plugin-proposal-class-properties',
-
+      ['@babel/plugin-proposal-class-properties', { loose: true }],
 
       // Allows us to dynamically import JS via Webpack. ex. import('button.standalone.js')
       '@babel/plugin-syntax-dynamic-import', /* [2] */
-
-
-
 
       '@babel/plugin-proposal-object-rest-spread',
     ],

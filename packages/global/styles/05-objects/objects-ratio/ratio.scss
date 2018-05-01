@@ -2,15 +2,23 @@
    #BOLT RATIO OBJECT
    ========================================================================== */
 
-.o-bolt-ratio,
-bolt-ratio {
+@import '@bolt/core';
+
+.o-#{$bolt-namespace}-ratio,
+#{$bolt-namespace}-ratio {
   display: inline-block;
+  vertical-align: middle; // Prevents the average background color from sometimes showing up unexpectedly due to the image being top aligned when it should have been vertically centered.
   position: relative;
+  vertical-align: middle;
   width: 100%;
+  height: 0;
+  font-size: 0; // Workaround to IE 11 adding extra whitespace
   overflow: hidden; // Hide placeholder blurred images from leaking through
 
-  --aspect-ratio-width: 1;
-  --aspect-ratio-height: 1;
+  @include bolt-css-vars((
+    --aspect-ratio-width: 1,
+    --aspect-ratio-height: 1,
+  ));
 
   @supports (--custom:property) {
     padding-top: calc( var(--aspect-ratio-height, 1) / var(--aspect-ratio-width, 1) * 100%);
@@ -22,8 +30,10 @@ bolt-ratio {
   * 1. Fallback selector if JS isn't disabled, but hasn't kicked in yet.
   * 2. Fallback selector for browsers not supporting ::slotted(*) selector
   */
-bolt-ratio > *,
-.o-bolt-ratio__inner {
+
+#{$bolt-namespace}-ratio > *,
+#{$bolt-namespace}-ratio img,
+.o-#{$bolt-namespace}-ratio__inner {
   position: absolute;
   top: 0;
   left: 0;
@@ -33,7 +43,7 @@ bolt-ratio > *,
   min-height: 100%; // workaround for content w/ hard-coded height & width
 }
 
-.o-bolt-ratio__inner ::slotted(*) {
+.o-#{$bolt-namespace}-ratio__inner ::slotted(*) {
   position: absolute;
   top: 0;
   left: 0;

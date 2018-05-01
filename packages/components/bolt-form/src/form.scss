@@ -4,6 +4,18 @@
 
 @import '@bolt/core';
 
+
+// Mobile Safari will zoom in when input is focused if the text is not at least 16px.
+// Use this mixin either to prevent that OR to match the text size of elements that
+// need it (for example, if you want a label to match an input).
+@mixin bolt-form-mobile-font-size() {
+  font-size: 16px;
+
+  @media (min-width: bolt-breakpoint(small)) {
+    @include bolt-font-size(small, null);
+  }
+}
+
 // General Form Elements
 select {
   cursor: pointer;
@@ -85,6 +97,7 @@ $bolt-input-text-color--invalid: bolt-color(error); // TODO: [Mai] This is the t
 $bolt-input-text-color--disabled: rgba(bolt-color(gray, xdark), 0.5); // TODO: [Mai] This is the theme text color at 66%
 $bolt-input-background-color: bolt-color(white); // TODO: [Mai] This is the theme input background color
 $bolt-input-background-color--disabled: bolt-color(gray, xlight);
+$bolt-input-background-color--invalid: rgba(bolt-color(error), 0.02);
 $bolt-input-placeholder-color: rgba(bolt-color(gray, xdark), 0.5); // TODO: [Mai] This is the theme text color at 66%
 $bolt-input-placeholder-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
 $bolt-input-placeholder-color--disabled: rgba(bolt-color(gray, xdark), 0.5); // TODO: [Mai] This is the theme text color at 66%
@@ -125,12 +138,15 @@ $bolt-input-transition: $bolt-transition;
 .c-bolt-input {
   @include bolt-padding(small);
   @include bolt-input-placeholder($bolt-input-placeholder-color);
+  @include bolt-form-mobile-font-size;
 
   display: block;
   width: 100%;
   color: $bolt-input-text-color;
-  line-height: 1.45; // [Mai] This makes the input same height as button.
-  font-size: 16px; // [Mai] This prevents mobile Safari from zooming when input is in focus state.
+
+  // [Mai/Denton] This makes the input same height as button.  Note that it must be a line height based on the font size
+  // of the button component (.8rem as of this writing, but obviously subject to change).
+  line-height: calc(1.45 * .8rem);
   border-color: $bolt-input-border-color;
   border-style: $bolt-input-border-style;
   border-width: $bolt-input-border-width;
@@ -164,6 +180,7 @@ $bolt-input-transition: $bolt-transition;
 
     color: $bolt-input-text-color--invalid;
     border-color: $bolt-input-border-color--invalid;
+    background-color: $bolt-input-background-color--invalid;
   }
 
   &.is-disabled,
@@ -183,7 +200,9 @@ $bolt-input-transition: $bolt-transition;
 
   &:focus,
   &:hover {
-    @include bolt-shadow($key: $bolt-input-shadow-level, $base-color: $bolt-input-box-shadow);
+    &:not(.is-disabled):not(:disabled) {
+      @include bolt-shadow($key: $bolt-input-shadow-level, $base-color: $bolt-input-box-shadow);
+    }
   }
 
   &:focus {
@@ -200,7 +219,7 @@ $bolt-input-transition: $bolt-transition;
 
 .c-bolt-floating-label {
   position: absolute;
-  top: 0.4rem;
+  top: 1rem;
   left: $bolt-floating-label-text-indent;
   color: $bolt-floating-label-text-color;
   line-height: $bolt-floating-label-text-scale;
@@ -208,7 +227,7 @@ $bolt-input-transition: $bolt-transition;
   user-select: none;
   pointer-events: none;
   opacity: 0;
-  transform: translate3d(0, -15%, 0) scale(0.2);
+  transform: translate3d(0, -50%, 0) translateY(.4rem);
   transform-origin: 0 100%;
   transition: all $bolt-floating-label-transition;
 }
@@ -219,7 +238,7 @@ $bolt-input-transition: $bolt-transition;
   // [Mai] A custom input is considered active if the regular input inside is filled or in focus.
   & ~ .c-bolt-floating-label {
     opacity: 1;
-    transform: translate3d(0, 0, 0) scale($bolt-floating-label-text-scale);
+    transform: translate3d(0, -100%, 0) translateY(.1rem) scale($bolt-floating-label-text-scale);
   }
 }
 
@@ -231,8 +250,9 @@ $bolt-input-transition: $bolt-transition;
 }
 
 .c-bolt-inline-label {
-  @include bolt-padding-left(medium);
+  @include bolt-form-mobile-font-size;
 
+  padding-left: 1.5em;
   display: inline-block;
   position: relative;
   cursor: pointer;
@@ -245,10 +265,10 @@ $bolt-input-transition: $bolt-transition;
   }
 
   &:before {
-    top: 0.3rem;
+    top: 0.3em;
     left: 0;
-    width: 1rem;
-    height: 1rem;
+    width: 1em;
+    height: 1em;
     content: '';
     border-color: $bolt-inline-label-input-border-color;
     border-style: $bolt-inline-label-input-border-style;
@@ -269,10 +289,10 @@ $bolt-input-transition: $bolt-transition;
   }
 
   &:after {
-    top: 0.4rem;
-    left: 0.375rem;
-    width: calc(1rem - 0.675rem);
-    height: calc(1rem - 0.325rem);
+    top: 0.4em;
+    left: 0.375em;
+    width: calc(1em - 0.675em);
+    height: calc(1em - 0.325em);
     border-color: $bolt-inline-label-input-color;
     border-style: solid;
     border-width: 0 2px 2px 0;
@@ -283,14 +303,14 @@ $bolt-input-transition: $bolt-transition;
 .c-bolt-inline-label--radio {
   &:before,
   &:after {
-    border-radius: 1rem;
+    border-radius: 1em;
   }
 
   &:after {
-    top: calc(0.3rem + 3px);
+    top: calc(0.3em + 3px);
     left: 3px;
-    width: calc(1rem - 6px);
-    height: calc(1rem - 6px);
+    width: calc(1em - 6px);
+    height: calc(1em - 6px);
     background-color: $bolt-inline-label-input-color;
     transform: scale(0.1);
   }
@@ -349,6 +369,9 @@ $bolt-input-transition: $bolt-transition;
 }
 
 .c-bolt-input-icons {
+  // Icon size and padding should NOT adjust alongside font size because the height of the input
+  // is set to match the height of default buttons, which should have a fixed height.
+  @include bolt-font-size(small);
   @include bolt-padding(0.65rem small 0.35rem 0);
 
   position: absolute;
@@ -373,7 +396,9 @@ $bolt-input-transition: $bolt-transition;
 .c-bolt-custom-input.is-active {
   & ~ .c-bolt-input-icons {
     color: $bolt-input-icon-color--active;
-    --bolt-theme-icon: $bolt-input-icon-color--active;
+    @include bolt-css-vars((
+      --bolt-theme-icon: $bolt-input-icon-color--active,
+    ));
   }
 }
 
@@ -395,7 +420,9 @@ $bolt-input-transition: $bolt-transition;
 .c-bolt-input-icon--invalid {
   display: none; // The invalid icon will always be present and simply un-hidden when a field becomes invalid
   color: $bolt-input-icon-color--invalid;
-  --bolt-theme-icon: $bolt-input-icon-color--invalid;
+  @include bolt-css-vars((
+    --bolt-theme-icon: $bolt-input-icon-color--invalid,
+  ));
 }
 
 .c-bolt-input.is-invalid ~ .c-bolt-input-icons,
@@ -426,11 +453,12 @@ $bolt-input-message-text-color--invalid: bolt-color(error); // TODO: [Mai] This 
 
 .c-bolt-input-message {
   @include bolt-padding(xxsmall small);
-  @include bolt-font-size(xsmall);
+  @include bolt-font-size(medium);
 }
 
 .c-bolt-input-message--invalid {
   @include bolt-font-weight(semibold);
+  @include bolt-font-size(xsmall);
   color: $bolt-input-message-text-color--invalid;
 }
 

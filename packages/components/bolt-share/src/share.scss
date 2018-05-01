@@ -1,0 +1,103 @@
+@import '@bolt/core';
+
+/* ------------------------------------ *\
+   Share
+\* ------------------------------------ */
+
+.c-bolt-share {
+  &--hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .c-bolt-link__icon [name='facebook-solid'] {
+    color: bolt-color(social, facebook);
+  }
+  .c-bolt-link__icon [name='twitter'] {
+    color: bolt-color(social, twitter);
+  }
+  .c-bolt-link__icon [name='linkedin'] {
+    color: bolt-color(social, linkedin);
+  }
+  .c-bolt-link__icon [name='email'],
+  .c-bolt-link__icon [name='asset-link'] {
+    color: bolt-color(indigo, light);
+  }
+  .c-bolt-link {
+    text-decoration: none;
+    color: bolt-color(gray, xdark);
+  }
+}
+
+.c-bolt-share--normal-layout {
+  .c-bolt-block-list {
+    @include bolt-padding-top(small);
+    @include bolt-padding-bottom(small);
+  }
+
+  .c-bolt-block-list__item {
+    display: table; // fixes the odd 1px line that appears only at some resolutions
+    width: 100%;
+    margin: 0;
+  }
+
+  bolt-copy-to-clipboard { // This is ONLY in context of this share component because we need this element to fill the full space allotted
+    display: block;
+  }
+
+  .c-bolt-link { // nested since this is a component within a component with different styles
+    @include bolt-font-size(large);
+    @include bolt-padding(medium, squished);
+    display: block;
+    margin: 0;
+    background: linear-gradient(to left, transparent 50%, bolt-color(indigo, xlight) 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all 0.2s ease;
+  }
+
+  .c-bolt-copy-to-clipboard__icon,
+  .is-copied .c-bolt-copy-to-clipboard__icon {
+    left: 2rem; // Aligns out absolutely positioned icon correctly with the others
+  }
+
+  .c-bolt-link:hover {
+    background-position: left bottom;
+    color: bolt-color(white);
+  }
+}
+
+.c-bolt-share--inline-layout {
+  .c-bolt-share--inline-heading {
+    letter-spacing: 0;
+  }
+
+  .c-bolt-block-list {
+    display: flex;
+  }
+
+  .c-bolt-block-list__item {
+    @include bolt-margin(0);
+    display: inline-block;
+
+    +.c-bolt-block-list__item {
+      @include bolt-margin-left(small);
+    }
+  }
+
+  .c-bolt-link__icon:hover {
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+  }
+
+  .c-bolt-link__text {
+    display: none;
+  }
+
+  .c-bolt-copy-to-clipboard__copied .c-bolt-link__icon [name='asset-link'] {
+    color: bolt-color(teal, dark);
+  }
+
+  .c-bolt-copy-to-clipboard.is-copied .c-bolt-copy-to-clipboard__icon {
+    margin: 0;
+  }
+}

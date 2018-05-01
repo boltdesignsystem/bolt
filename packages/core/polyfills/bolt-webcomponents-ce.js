@@ -5,4 +5,11 @@
  * Used in: Safari 10, Firefox once SD is shipped
  */
 
-import '@webcomponents/custom-elements/src/custom-elements.js';
+
+/**
+   * 1. Workaround to prevent double `@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js`
+   * polyfills from getting loaded in Chrome if a Bolt build and a namespaced PW build
+   * get loaded at the same time.
+   */
+
+import 'document-register-element'; /* [1] */

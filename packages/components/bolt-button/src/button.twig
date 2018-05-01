@@ -16,23 +16,21 @@
 {% endif %}
 
 {# set up psuedo self-validation by limiting param values to what's specifically allowed in the component schema #}
-{% set alignOptions = schema.properties.align.enum|remove_null %}
+{% set alignOptions = schema.properties.align.enum %}
 {% set roundedOptions = schema.properties.rounded.enum %}
-{% set sizeOptions = schema.properties.size.enum|remove_null %}
-{% set styleOptions = schema.properties.style.enum|remove_null %}
-{% set tagOptions = schema.properties.tag.enum|remove_null %}
-{% set transformOptions = schema.properties.transform.enum|remove_null %}
-{% set widthOptions = schema.properties.width.enum|remove_null %}
+{% set sizeOptions = schema.properties.size.enum %}
+{% set styleOptions = schema.properties.style.enum %}
+{% set tagOptions = schema.properties.tag.enum %}
+{% set transformOptions = schema.properties.transform.enum %}
+{% set widthOptions = schema.properties.width.enum %}
 
 {# check if the value set to a prop is allowed or defined. if not, default to the default value specified in the component's schema (if one exists) #}
 {% set align =  align in alignOptions ? align : schema.properties.align.default %}
 {% set iconOnly = iconOnly | default(false) %}
-{% set rounded = rounded in roundedOptions ? rounded : schema.properties.rounded.default %}
 {% set size = size in sizeOptions ? size : schema.properties.size.default %}
 {% set style = style in styleOptions ? style : schema.properties.style.default %}
 {% set tag = tag in tagOptions ? tag : schema.properties.tag.default %}
 {% set transform = transform in transformOptions ? transform : schema.properties.transform.default %}
-{% set width = width in widthOptions ? width : schema.properties.width.default %}
 
 {% if tag == "submit" %}
   {% set tag = "button" %}
@@ -56,8 +54,8 @@
   baseClass,
   disabled ? baseClass ~ "--disabled" : "",
   size in sizeOptions ? baseClass ~ "--" ~ size : "",
-  width in widthOptions and width != "" ? baseClass ~ "--" ~ width : "",
-  rounded in roundedOptions and rounded != schema.properties.rounded.default ? baseClass ~ "--" ~ rounded : "",
+  width in widthOptions ? baseClass ~ "--" ~ width : "",
+  rounded in roundedOptions ? baseClass ~ "--" ~ rounded : "",
   style in styleOptions ? baseClass ~ "--" ~ style : baseClass ~ "--primary",
   transform in transformOptions ? baseClass ~ "--" ~ transform : "",
   align in alignOptions ? baseClass ~ "--" ~ align : "",
@@ -65,6 +63,11 @@
 
 {% if disabled %}
   {% set attributes = attributes.setAttribute("disabled", true) %}
+{% endif %}
+
+{% if icon %}
+  {# Covers backward compatibility with use of both left and before to describe icon position #}
+  {% set iconPosition = (icon.position == "left" or icon.position == "before") ? "before" : "after"  %}
 {% endif %}
 
 {# Set up the custom element's prop values based on the params passed into the Twig template - used to hydrate the component's initial state and appearance once the Button Component's JavaScript kicks in #}
@@ -113,10 +116,16 @@
   <{{ tag }} {{ attributes.addClass('c-bolt-button__root') | without('on-click') | without('on-click-target') }}>
 
     {# Add component-specific classes to a Bolt temp element that gets removed and replaced by it's children once the JS kicks in #}
-    <replace-with-children class="{{ classes|join(' ') }} Hello">
+    <replace-with-children class="{{ classes|join(' ') }}">
+      {% if icon and iconPosition == "before"  %}
+        <span class="{{ "#{baseClass}__icon" }}">
+          {% include "@bolt/icon.twig" with icon only %}
+        </span>
+      {% endif %}
+
       <span class="{{ "#{baseClass}__item" }} {{ iconOnly ? 'u-bolt-visuallyhidden' : '' }}">{{ text }}</span>
 
-      {% if icon %}
+      {% if icon and iconPosition == "after" %}
         <span class="{{ "#{baseClass}__icon" }}">
           {% include "@bolt/icon.twig" with icon only %}
         </span>
@@ -127,5 +136,5 @@
 </bolt-button>
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-button/button.schema.yml', _self) }}
+  {{ validate_data_schema('@bolt-components-button/button.schema.yml', _self) | raw }}
 {% endif %}

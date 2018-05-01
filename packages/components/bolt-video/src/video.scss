@@ -1,0 +1,187 @@
+@import '@bolt/core';
+@import '@bolt/components-button/src/button.settings';
+@import '@bolt/components-button/src/button.mixins';
+
+@import 'videojs-enhancements';
+
+// Same as max-width of wrapper container
+$bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
+
+
+#{$bolt-namespace}-video {
+  display: block;
+  width: 100%;
+  background-color: bolt-color(black); // placeholder color before poster loads up.
+
+// Hide the metadata (which covers the controls) if the user is either
+//   a) watching the video
+//   b) potentially interacting with the video
+  &:hover,
+  &.is-playing,
+  &:hover.is-paused {
+    #{$bolt-namespace}-video-meta {
+      transform: translate3d(0, 100%, 0);
+      opacity: 0;
+    }
+  }
+
+  &[is-background-video]{
+    flex-grow: 1;
+    z-index: 20;
+    transition: opacity .3s ease, min-height .3s ease;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    min-width: 100%;
+    max-width: none;
+    background-color: rgba(22, 26, 60, .8);
+    pointer-events: none;
+    opacity: 0;
+
+    .is-expanded & {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .video-js {
+      max-width: 1400px;
+      margin: 0 auto;
+      min-width: 0;
+      width: 100%;
+      background-color: transparent;
+      transition: all .4s ease;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+
+/**
+  * 1. 90vw instead of 100vw so the video close button
+  * doesn't spill outside of the video container in IE 11 /
+  * on Windows
+  */
+.c-#{$bolt-namespace}-video {
+
+  width: 100%;
+  max-width: none;
+  z-index: bolt-z-index('tooltip');
+  transition: transform .4s cubic-bezier(.645, 0, .355, 1);
+
+  .video-js {
+    width: 100%;
+    height: 100%;
+  }
+
+  // Higher specificity required to prevent override from Hapyak's CSS loaded
+  .video-js.video-js.video-js {
+    position: absolute;
+  }
+
+  &.c-#{$bolt-namespace}-video--background {
+    display: block;
+    position: relative;
+    max-width: calc(100% - #{bolt-spacing(large)});
+    max-height: 100%;
+    margin: 0 auto;
+    height: 100%;
+
+    @media (max-width: (bolt-breakpoint(small) - 1px)) {
+      max-height: calc(100% - 40px);
+    }
+
+    @include respond-to(small){
+      max-width: calc(100vw - #{bolt-spacing(large) * 2});
+    }
+
+    @media screen and (min-width: 1400px){
+      max-width: calc(1400px - #{bolt-spacing(large) * 2});
+    }
+  }
+}
+
+
+
+.c-#{$bolt-namespace}-video__close-button {
+  color: bolt-color(orange);
+  @include bolt-css-vars((
+    --#{$bolt-namespace}-theme-icon: bolt-color(orange),
+  ));
+  position: absolute;
+  z-index: bolt-z-index('tooltip');
+  top: bolt-spacing(xsmall);
+  right: bolt-spacing(xsmall);
+  transition: all 0.3s ease;
+  opacity: 0; // Initial state before brightcove video player kicks in
+
+  @include respond-to(small) {
+    right: (bolt-spacing(large) / -2) - bolt-spacing(xsmall);
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+
+  .is-collapsed & {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .is-expanded & {
+    opacity: 0.8;
+    pointer-events: auto;
+  }
+}
+
+.c-#{$bolt-namespace}-video__close-button--icon-to-text {
+  @media (max-width: (bolt-breakpoint(small) - 1px)) {
+    display: block;
+    position: relative;
+    right: 0;
+    text-align: right;
+    .c-#{$bolt-namespace}-video__close-button-icon {
+      display: none;
+    }
+  }
+  @media (min-width: bolt-breakpoint(small)) {
+    position: absolute;
+    .c-#{$bolt-namespace}-video__close-button-text {
+      @include bolt-visuallyhidden;
+    }
+  }
+}
+
+.c-#{$bolt-namespace}-video__close-button:not(.c-#{$bolt-namespace}-video__close-button--icon-to-text) {
+  .c-#{$bolt-namespace}-video__close-button-text {
+    @include bolt-visuallyhidden;
+  }
+}
+
+.c-#{$bolt-namespace}-video__close-button-icon,
+.c-#{$bolt-namespace}-video__close-button-text {
+  cursor: pointer;
+}
+
+.c-#{$bolt-namespace}-video__close-button-text {
+  color: bolt-color(white);
+  text-decoration: underline;
+}
+
+
+.c-#{$bolt-namespace}-video--hide-controls {
+  .video-js .vjs-control-bar {
+    display: none;
+  }
+  .video-js {
+    pointer-events: none;
+  }
+}

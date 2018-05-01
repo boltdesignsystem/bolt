@@ -33,10 +33,10 @@
         origPreventDefault.call(this);
 
         Object.defineProperty(this, 'defaultPrevented', {
-          get: function () {
+          get () {
             return true;
           },
-          configurable: true
+          configurable: true,
         });
       };
     }
@@ -106,7 +106,7 @@
           p = n$[i];
           target[p] = source[p];
         }
-      }
+      };
 
       Object.assign = function (target, sources) {
         var args = [].slice.call(arguments, 1);
@@ -117,7 +117,7 @@
           }
         }
         return target;
-      }
+      };
     }
 
   })(window.WebComponents);

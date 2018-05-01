@@ -1,4 +1,5 @@
 const path = require('path');
+const log = require('./utils/log');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -8,14 +9,70 @@ const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const sassImportGlobbing = require('@theme-tools/sass-import-globbing');
-const { getBoltManifest } = require('./utils/manifest');
-const fs = require('fs-extra');
+const { getBoltManifest, createComponentsManifest } = require('./utils/manifest');
+const { promisify } = require('util');
+const fs = require('fs');
+const readFile = promisify(fs.readFile);
+const deepmerge = require('deepmerge');
 
 function createConfig(config) {
   // @TODO: move this setting to .boltrc config
   const sassExportData = require('@theme-tools/sass-export-data')({
     path: path.resolve(process.cwd(), config.dataDir),
   });
+
+
+  // Default global Sass data defined
+  let globalSassData = [
+    `$bolt-namespace: ${config.namespace};`,
+  ]
+
+
+  // Default global JS data defined
+  let globalJsData = {
+    'process.env.NODE_ENV': config.prod ?
+      JSON.stringify('production') :
+      JSON.stringify('development'),
+    bolt: {
+      namespace: JSON.stringify(config.namespace),
+    },
+  };
+
+
+  // Merge together global Sass data overrides specified in a .boltrc config
+  if (config.globalData.scss && config.globalData.scss.length !== 0){
+    const overrideItems = [];
+    config.globalData.scss.forEach((item) => {
+      try {
+        const file = fs.readFileSync(item, 'utf8');
+        file
+          .split('\n')
+          .filter(x => x)
+          .forEach(x => overrideItems.push(x));
+      } catch(err) {
+        log.errorAndExit(`Could not find ${item}`, err);
+      }
+  });
+
+    globalSassData = [...globalSassData, ...overrideItems];
+  }
+
+
+  // Merge together any global JS data overrides
+  if (config.globalData.js && config.globalData.js.length !== 0){
+    const overrideJsItems = [];
+    config.globalData.js.forEach((item) => {
+      try {
+        const overrideFile = require(path.resolve(process.cwd(), item));
+        overrideJsItems.push(overrideFile);
+      } catch(err) {
+        log.errorAndExit(`Could not find ${item} file`, err);
+      }
+    });
+
+    globalJsData = deepmerge(globalJsData, ...overrideJsItems);
+  }
+
 
   /**
    * Build WebPack config's `entry` object
@@ -153,30 +210,30 @@ function createConfig(config) {
   const workaroundAtValue = '-theSlashSymbol-';
 
   const scssLoaders = [
-    {
-      loader: 'string-replace-loader',
-      query: {
-        search: workaroundAtValue,
-        replace: String.raw`\\`, // needed to ensure `\` comes through
-        flags: 'g',
-      },
-    },
+    // {
+    //   loader: 'string-replace-loader',
+    //   query: {
+    //     search: workaroundAtValue,
+    //     replace: String.raw`\\`, // needed to ensure `\` comes through
+    //     flags: 'g',
+    //   },
+    // },
     {
       loader: 'css-loader',
       options: {
         sourceMap: true,
         modules: false, // needed for JS referencing classNames directly, such as critical fonts
-        importLoaders: 5,
+        importLoaders: 4,
       },
     },
-    {
-      loader: 'string-replace-loader',
-      query: {
-        search: /\\/,
-        replace: workaroundAtValue,
-        flags: 'g',
-      },
-    },
+    // {
+    //   loader: 'string-replace-loader',
+    //   query: {
+    //     search: /\\/,
+    //     replace: workaroundAtValue,
+    //     flags: 'g',
+    //   },
+    // },
     {
       loader: 'postcss-loader',
       options: {
@@ -211,6 +268,7 @@ function createConfig(config) {
         functions: sassExportData,
         outputStyle: 'expanded',
         precision: 2,
+        data: globalSassData.join('\n'),
       },
     },
   ];
@@ -218,9 +276,9 @@ function createConfig(config) {
   // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
   // Must start and end with `/`
   // conditional is temp workaround for when servers are disabled via absence of `config.wwwDir`
-  const publicPath = config.wwwDir
+  const publicPath = config.publicPath ? config.publicPath : (config.wwwDir
     ? `/${path.relative(config.wwwDir, config.buildDir)}/`
-    : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
+    : config.buildDir); // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
 
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
   const webpackConfig = {
@@ -228,10 +286,13 @@ function createConfig(config) {
     output: {
       path: path.resolve(process.cwd(), config.buildDir),
       filename: '[name].js',
+      chunkFilename: '[name]-bundle.[chunkhash].js',
       publicPath,
     },
+    cache: true,
     resolve: {
       extensions: ['.js', '.jsx', '.json', '.svg', '.scss'],
+      unsafeCache: true,
     },
     module: {
       rules: [
@@ -281,30 +342,45 @@ function createConfig(config) {
             name: '[name].[ext]',
           },
         },
+        {
+          test: [/\.json$/],
+          use: [
+            {
+              loader: 'json-loader',
+            },
+          ],
+        },
+        {
+          test: [/\.yml$/, /\.yaml$/],
+          use: [
+            { loader: 'yaml-loader' },
+          ],
+        },
       ],
     },
-    mode: 'development',
-    // optimization: {
-    //   splitChunks: {
-    //     // chunks: 'all',
-    //     cacheGroups: {
-    //       js: {
-    //         test: /\.js$/,
-    //         // name: 'commons',
-    //         chunks: 'all',
-    //         minChunks: 2,
-    //         // test: /node_modules/,
-    //         // enforce: true,
-    //       },
-    //       css: {
-    //         test: /\.s?css$/,
-    //         chunks: 'all',
-    //         minChunks: 2,
-    //         // enforce: true,
-    //       },
-    //     },
-    //   },
-    // },
+    mode: config.prod ? 'production' : 'development',
+    optimization: {
+      mergeDuplicateChunks: true,
+      // splitChunks: {
+      //   chunks: 'all',
+      //   // cacheGroups: {
+      //   //   js: {
+      //   //     test: /\.js$/,
+      //   //     // name: 'commons',
+      //   //     chunks: 'all',
+      //   //     minChunks: 2,
+      //   //     // test: /node_modules/,
+      //   //     // enforce: true,
+      //   //   },
+      //   //   css: {
+      //   //     test: /\.s?css$/,
+      //   //     chunks: 'all',
+      //   //     minChunks: 2,
+      //   //     // enforce: true,
+      //   //   },
+      //   // },
+      // },
+    },
     plugins: [
       // Ignore generated output if generated output is on a dependency chain (causes endless loop)
       new webpack.WatchIgnorePlugin([
@@ -319,6 +395,7 @@ function createConfig(config) {
         // both options are optional
         filename: '[name].css',
         chunkFilename: '[id].css',
+        allChunks: true,
       }),
       // @todo This needs to be in `config.dataDir`
       new ManifestPlugin({
@@ -332,6 +409,7 @@ function createConfig(config) {
       new webpack.ProvidePlugin({
         Promise: 'es6-promise',
       }),
+      new webpack.DefinePlugin(globalJsData),
       // Show build progress
       // Disabling for now as it messes up spinners
       // @todo consider bringing it back
@@ -346,15 +424,12 @@ function createConfig(config) {
   }
 
   if (config.prod) {
-    webpackConfig.plugins.push(new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
-    }));
-
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
     // Config recommendation based off of https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1#f548
     webpackConfig.plugins.push(new UglifyJsPlugin({
       sourceMap: true,
       parallel: true,
+      cache: true,
       uglifyOptions: {
         cache: true,
         compress: true,
@@ -369,13 +444,18 @@ function createConfig(config) {
     // Optimize CSS - https://github.com/NMFR/optimize-css-assets-webpack-plugin
     webpackConfig.plugins.push(new OptimizeCssAssetsPlugin({
       canPrint: config.verbosity > 2,
+      cssProcessorOptions: {// passes to `cssnano`
+        zindex: false, // don't alter `z-index` values
+        mergeRules: false, // this MUST be disabled - otherwise certain selectors (ex. ::slotted(*), which IE 11 can't parse) break
+      },
     }));
 
     // @todo Evaluate best source map approach for production
     webpackConfig.devtool = 'hidden-source-map';
   } else { // not prod
     // @todo fix source maps
-    webpackConfig.devtool = 'cheap-module-eval-source-map';
+    // webpackConfig.devtool = 'cheap-module-eval-source-map';
+    webpackConfig.devtool = 'eval';
   }
 
 
@@ -398,6 +478,11 @@ function createConfig(config) {
       publicPath,
       watchContentBase: true,
       historyApiFallback: true,
+      watchOptions: {
+        aggregateTimeout: 200,
+    //    ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
+       // Poll using interval (in ms, accepts boolean too)
+      },
     };
   }
 

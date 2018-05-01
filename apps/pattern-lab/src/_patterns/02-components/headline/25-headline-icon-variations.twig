@@ -4,3 +4,11 @@
     name: "search",
   }
 } only %}
+
+{% include "@bolt-components-headline/headline.twig" with {
+  text: "Headline Prefixed with Icon",
+  icon: {
+    name: "search",
+    position: "before"
+  }
+} only %}

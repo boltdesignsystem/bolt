@@ -16,7 +16,7 @@
 
       {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small" %}
         {% include "@bolt/eyebrow.twig" with {
-          text: "v1.0.0-rc.3"
+          text: bolt.data.fullManifest.version,
         } only %}
 
         {% include "@bolt/headline.twig" with {
@@ -36,7 +36,7 @@
           buttons: [
             {
               text: "Explore the System",
-              url: "pattern-lab",
+              url: "/pattern-lab/index.html",
               style: "primary",
               width: "full@small"
             },
@@ -136,7 +136,7 @@
             width: "full",
             text: "View the pattern library",
             style: "secondary",
-            url: "pattern-lab",
+            url: "/pattern-lab/index.html",
           }
         ]
         },
@@ -231,6 +231,7 @@
         { text: "@bolt/components-background" },
         { text: "@bolt/components-background-shapes" },
         { text: "@bolt/components-band" },
+        { text: "@bolt/components-block-list" },
         { text: "@bolt/components-blockquote" },
         { text: "@bolt/components-breadcrumb" },
         { text: "@bolt/components-button" },
@@ -238,22 +239,25 @@
         { text: "@bolt/components-card" },
         { text: "@bolt/components-chip" },
         { text: "@bolt/components-chip-list" },
+        { text: "@bolt/components-copy-to-clipboard" },
         { text: "@bolt/components-device-viewer" },
         { text: "@bolt/components-figure" },
-        { text: "@bolt/components-icon" },
+        { text: "@bolt/components-form" },
         { text: "@bolt/components-headline" },
+        { text: "@bolt/components-icon" },
         { text: "@bolt/components-image" },
         { text: "@bolt/components-link" },
         { text: "@bolt/components-logo" },
-        { text: "@bolt/components-nav-bar" },
+        { text: "@bolt/components-navbar" },
         { text: "@bolt/components-ordered-list" },
         { text: "@bolt/components-page-footer" },
         { text: "@bolt/components-page-header" },
-        { text: "@bolt/components-site" },
-        { text: "@bolt/components-smooth-scroll" },
+        { text: "@bolt/components-share" },
         { text: "@bolt/components-sticky" },
         { text: "@bolt/components-teaser" },
-        { text: "@bolt/components-unordered-list" }
+        { text: "@bolt/components-tooltip" },
+        { text: "@bolt/components-unordered-list" },
+        { text: "@bolt/components-video" }
       ] %}
       {% if listComponents|length > 0 %}
         {% include "@bolt-components-chip-list/chip-list.twig" with {

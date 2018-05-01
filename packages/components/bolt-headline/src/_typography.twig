@@ -1,43 +1,26 @@
-{% set tags = "any" %} {# Allowed Tags #}
-{% set weights = ["bold", "regular", "semibold"] %} {# Allowed Font-weights #}
-{% set styles = ["italic", "normal"] %} {# Allowed Font-styles #}
+{% set schema = bolt.data.components['@bolt-components-headline'].schema %}
 {% set types = ["headline", "subheadline", "eyebrow", "text"] %} {# Pre-defined types #}
-{% set transformProps = ["none", "uppercase", "lowercase", "capitalize"] %} {# Pre-defined text transform options #}
-{% set sizes = [
-  "xsmall",
-  "small",
-  "medium",
-  "large",
-  "xlarge",
-  "xxlarge",
-  "xxxlarge"
-] %}
 
-{% set alignments = [
-  "left",
-  "center",
-  "right"
-] %}
-
-{% set _defaultTag = "p" %}
-{% set _defaultWeight = "regular" %}
-{% set _defaultStyle = "normal" %}
-{% set _defaultType = "text" %}
-{% set _defaultSize = "medium" %}
-{% set _defaultAlignment = "" %}
-
+{% set tags = schema.properties.tag.enum %}
+{% set weights = schema.properties.weight.enum %}
+{% set styles = schema.properties.style.enum %}
+{% set transformProps = schema.properties.transform.enum %}
+{% set sizes = schema.properties.size.enum %}
+{% set alignments = schema.properties.align.enum %}
 
 {% if tags != "any" %}
-  {% set tag = tag in tags ? tag : _defaultTag %}
+  {% set tag = tag in tags ? tag : schema.properties.tag.default %}
 {% else %}
-  {% set tag = tag ?? _defaultTag %}
+  {% set tag = tag ?? schema.properties.tag.default %}
 {% endif %}
-{% set weight = weight | default(_defaultWeight) %}
-{% set style = style | default(_defaultStyle) %}
-{% set type = type in types ? type : _defaultType %}
-{% set size = size | default(_defaultSize) %}
-{% set transform = transform | default("") %}
-{% set align = align in alignments ? align : _defaultAlignment %}
+{% set weight = weight | default(schema.properties.weight.default) %}
+{% set style = style | default(schema.properties.style.default) %}
+{% set type = type in types ? type : "text" %}
+{% set size = size | default(schema.properties.size.default) %}
+{% if icon %}
+  {# Covers backward compatibility with use of both left and before to describe icon position #}
+  {% set iconPosition = icon.position == "left" ? "before" : icon.position  %}
+{% endif %}
 
 {% set prefix = "c-bolt-" %}
 {% set baseClass = prefix ~ type %}
@@ -52,7 +35,7 @@
   baseClass,
   quoted ? baseClass ~ "--" ~ "quoted" : "",
   weight in weights ? baseClass ~ "--" ~ weight : "",
-  align and align != "" ? baseClass ~ "--" ~ align : "",
+  align in alignments and align != null ? baseClass ~ "--" ~ align : "",
   style in styles and type == "text" ? baseClass ~ "--" ~ style : "",
   size in sizes and type != "eyebrow" ? baseClass ~ "--" ~ size : "",
   transform in transformProps and transform != "" ? baseClass ~ "--" ~ transform : "",
@@ -66,6 +49,12 @@
 {% endif %}
 
 <{{ tag }} {{ attributes.addClass(classes) }}>
+  {% if icon and not url and iconPosition == "before" %}
+    <span class="{{ "#{baseClass}__icon" }}">
+      {% include "@bolt/icon.twig" with icon only %}
+    </span>
+  {% endif %}
+
   <span class="{{ "#{baseClass}__text" }}">
     {% if url %}
       {% include "@bolt/link.twig" with {
@@ -79,7 +68,7 @@
     {% endif %}
   </span>
 
-  {% if icon and not url %}
+  {% if icon and not url and iconPosition != "before" %}
     <span class="{{ "#{baseClass}__icon" }}">
       {% include "@bolt/icon.twig" with icon only %}
     </span>
@@ -87,17 +76,5 @@
 </{{ tag }}>
 
 {% if enable_json_schema_validation %}
-  {# disabling schema validation for now as it has too many errors now #}
-  {#{{ validate_data_schema('@bolt-components-headline/headline.schema.yml', _self) }}#}
+  {{ validate_data_schema('@bolt-components-headline/headline.schema.yml', _self) | raw }}
 {% endif %}
-
-{# set iconpos = iconpos | default("right") #}
-
-{# <bolt-headline
-    size="{{ size }}"
-    weight="{{ weight }}"
-    style="{{ style }}"
-    type="{{ type }}"
-    level="{{ level }}"
-    bolt-component
-  > </bolt-headline> #}
