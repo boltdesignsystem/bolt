@@ -184,7 +184,6 @@ export class BoltNav extends BoltComponent() {
 
       } else {
         this._indicator.style.width = linkWidth + 'px';
-        this._indicator.style.height = '2px';
         this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px)';
       }
 
@@ -198,7 +197,6 @@ export class BoltNav extends BoltComponent() {
         // this._indicator.style['--bolt-nav-indicator-transform-fallback'] = 'translateY(' + linkOffsetTop + 'px)';
       } else {
         this._indicator.style.width = linkWidth + 'px';
-        this._indicator.style.height = '2px';
         this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px)';
       }
     }
