@@ -31,9 +31,9 @@ class GridCellNode extends \Twig_Node {
         $GLOBALS['cell_attributes_custom'][ $GLOBALS['cell_counter'] ] = array_merge_recursive($GLOBALS['cell_attributes_custom'][ $GLOBALS['cell_counter'] ], $value);
 
       } elseif (is_array($value)) {
-        self::displayCellRecursiveResults($value);
+        $GLOBALS['cell_props'][ $GLOBALS['cell_counter'] ][$key] = $value;
       } elseif(is_object($value)) {
-        self::displayCellRecursiveResults($value);
+        $GLOBALS['cell_props'][ $GLOBALS['cell_counter'] ][$key] = $value;
       } else {
         $GLOBALS['cell_props'][ $GLOBALS['cell_counter'] ] = array_merge_recursive($GLOBALS['cell_props'][ $GLOBALS['cell_counter'] ], array($key => $value));
       }
@@ -111,10 +111,19 @@ class GridCellNode extends \Twig_Node {
     //@TODO: pull in template logic used here from external Twig file.
     $string       = "
       {% set classes = [] %}
+      {% set cellTag = cell.tag ? cell.tag : 'div' %}
 
-      <div {{ attributes.addClass(classes) | raw }}>
-      $contents
-      </div>
+      {% if cell.widths %}
+        {% for width in cell.widths %}
+          {% set classes = classes | merge(
+            ['u-bolt-width-' ~ width]
+          ) %}
+        {% endfor %}
+      {% endif %}
+
+      <{{ cellTag }} {{ attributes.addClass(classes) | raw }}>
+        $contents
+      </{{ cellTag }}>
     ";
 
     // Pre-render the inline Twig template + the data we've merged and normalized

@@ -25,9 +25,9 @@ class GridTagNode extends \Twig_Node {
       if(is_array($value) && $key == 'attributes') {
         $GLOBALS['grid_attributes_custom'][ $GLOBALS['counter'] ] = array_merge_recursive($GLOBALS['grid_attributes_custom'][ $GLOBALS['counter'] ], $value);
       } elseif (is_array($value)) {
-        self::displayRecursiveResults($value);
+        $GLOBALS['grid_props'][ $GLOBALS['counter'] ][$key] = $value;
       } elseif(is_object($value)) {
-        self::displayRecursiveResults($value);
+        $GLOBALS['grid_props'][ $GLOBALS['counter'] ][$key] = $value;
       } else {
           $GLOBALS['grid_props'][ $GLOBALS['counter'] ] = array_merge_recursive($GLOBALS['grid_props'][ $GLOBALS['counter'] ], array($key => $value));
       }
@@ -96,9 +96,12 @@ class GridTagNode extends \Twig_Node {
         grid.center ? 'o-grid--center' : '',
         grid.reverse == 'true' ? 'o-grid--rev' : ''
       ] %}
-      <div {{ attributes.addClass(classes) | raw }}>
-      $contents
-      </div>
+
+      {% set gridTag = grid.tag ? grid.tag : 'div' %}
+
+      <{{ gridTag }} {{ attributes.addClass(classes) | raw }}>
+        $contents
+      </{{ gridTag }}>
     ";
     // Pre-render the inline Twig template + the data we've merged and normalized
     $rendered = $stringLoader->render(array("string" => $string, "data" => $data));
