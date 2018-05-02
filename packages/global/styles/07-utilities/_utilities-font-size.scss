@@ -1,0 +1,11 @@
+/* ------------------------------------ *\
+  #FLEX UTILITIES
+\* ------------------------------------ */
+
+@import '@bolt/core';
+
+@each $name, $value in $bolt-global-font-sizes {
+  .u-bolt-font-size-#{$name} {
+    @include bolt-font-size($name, $leading: null, $important: important);
+  }
+}

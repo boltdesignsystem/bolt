@@ -1,0 +1,39 @@
+/* ------------------------------------ *\
+  TOOLS - LINE HEIGHT
+\* ------------------------------------ */
+
+////
+/// @group Tools: Typography
+/// @author Salem Ghoweri
+////
+
+/// This returns the line-height for a specific element.
+///
+/// @param {string} $size
+///   Defines the size of the text: xsmall, small, base, medium, large, xlarge, or xxlarge.
+///
+/// @param {string} $leading
+///   Defines the line-height of the text: regular or tight.
+///
+@mixin bolt-line-height($size, $leading: regular, $important: null) {
+  @if $important == important {
+    $important: !important;
+  }
+  @if (type-of($leading) == number) {
+    $leading: $leading;
+  } @else if (type-of($leading) == string) {
+    $leading: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'line-height', $leading);
+  }
+
+  @if (type-of($leading) == 'map') {
+    $length: length(map-keys($leading));
+
+    @if ($length < 2) {
+      line-height: nth($leading, 2) $important;
+    } @else {
+      @include bolt-poly-fluid-sizing('line-height', $leading, $important);
+    }
+  } @else {
+    line-height: $leading $important;
+  }
+}

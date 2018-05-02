@@ -1,0 +1,18 @@
+/* ------------------------------------ *\
+  #FLEX UTILITIES
+\* ------------------------------------ */
+
+@import '@bolt/core';
+
+@each $fontSizeName, $value in $bolt-global-font-sizes {
+
+  .u-bolt-line-height-#{$fontSizeName} {
+    @include bolt-line-height($fontSizeName, $leading: 'regular', $important: important);
+  }
+
+  @each $lineHeightName in $bolt-global-line-heights {
+    .u-bolt-line-height-#{$fontSizeName}-#{$lineHeightName} {
+      @include bolt-line-height($fontSizeName, $leading: $lineHeightName, $important: important);
+    }
+  }
+}

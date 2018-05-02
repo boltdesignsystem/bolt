@@ -10,7 +10,7 @@
 /// @requires bolt-map-sort
 /// @example
 ///   @include bolt-poly-fluid-sizing('font-size', (576px: 22px, 768px: 24px, 992px: 34px));
-@mixin bolt-poly-fluid-sizing($property, $map) {
+@mixin bolt-poly-fluid-sizing($property, $map, $important: null) {
   // Get the number of provided breakpoints
   $length: length(map-keys($map));
 

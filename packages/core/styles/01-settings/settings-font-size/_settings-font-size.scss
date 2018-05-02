@@ -34,6 +34,10 @@ $bolt-line-height--xsmall: 1.45;
 $bolt-line-height--tight: 1.111;
 
 
+$bolt-global-line-heights: (
+  regular,
+  tight
+);
 
 
 /// Bolt's definition of all options of possible text sizes.
@@ -94,3 +98,5 @@ $bolt-font-sizes: (
     )
   )
 );
+
+$bolt-global-font-sizes: map-get($bolt-font-sizes, 'font-sizes');
