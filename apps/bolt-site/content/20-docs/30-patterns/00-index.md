@@ -17,9 +17,23 @@ These ingredients can be combined and shuffled in a variety of ways depending on
 
 ### Example: Share component
 
-The share component 
+The share component is constructed of three separate larger components: a button (to contain the action), a block list (which contains the links/icons), and a tooltip (which provides the container for the block list). Additionally, the share component uses the following items from Bolt: 
+
+- **Visual language**: colors, spacing, shadow;
+- **Layout components:** text styles, icons;
+- **Interaction**: links, animation, "copy to clipboard" functionality.
 
 <figure>
 <img src="../../../images/sharing.png" />
-<figcaption>The sharing element allows visitors to post a piece of content across various social media options.</figcaption>
+<figcaption>The share component allows visitors to post a piece of content across various social media options.</figcaption>
 </figure>
+
+| Label | Component(s)                                   |
+| ----- | ---------------------------------------------- |
+| 1.0   | button (rounded), shadow, spacing, button text |
+| 1.1   | icon, color: orange                            |
+| 1.2   | tooltip, spacing                               |
+| 1.3   | icon, link                                     |
+| 1.4   | block-list                                     |
+| 1.5   | "copy to clipboard" functionality              |
+
