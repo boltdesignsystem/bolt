@@ -1,3 +1,5 @@
+/*eslint no-loop-func: 'off' */
+
 const path = require('path');
 const log = require('./utils/log');
 const webpack = require('webpack');
@@ -14,6 +16,45 @@ const { promisify } = require('util');
 const fs = require('fs');
 const readFile = promisify(fs.readFile);
 const deepmerge = require('deepmerge');
+
+const sass = require('node-sass');
+const sassUtils = require('node-sass-utils')(sass);
+const sassVars = require('@bolt/core/styles/index.js');
+
+// Convert js strings to dimenssions
+const convertStringToSassDimension = function (result) {
+  // Only attempt to convert strings
+  if (typeof result !== 'string') {
+    return result;
+  }
+
+  const cssUnits = [
+    'rem',
+    'em',
+    'vh',
+    'vw',
+    'vmin',
+    'vmax',
+    'ex',
+    '%',
+    'px',
+    'cm',
+    'mm',
+    'in',
+    'pt',
+    'pc',
+    'ch',
+  ];
+  const parts = result.match(/[a-zA-Z]+|[0-9]+/g);
+  const value = parts[0];
+  const unit = parts[parts.length - 1];
+  if (cssUnits.indexOf(unit) !== -1) {
+    result = new sassUtils.SassDimension(parseInt(value, 10), unit);
+  }
+
+  return result;
+};
+
 
 function createConfig(config) {
   // @TODO: move this setting to .boltrc config
@@ -265,7 +306,28 @@ function createConfig(config) {
           sassImportGlobbing,
           npmSass.importer,
         ],
-        functions: sassExportData,
+        functions: {
+          sassExportData,
+          'bolt-data($keys)': function (keys) {
+            keys = keys.getValue().split('.');
+            var result = sassVars;
+            var i;
+            for (i = 0; i < keys.length; i++) {
+              result = result[keys[i]];
+              // Convert to SassDimension if dimenssion
+              if (typeof result === 'string') {
+                result = convertStringToSassDimension(result);
+              } else if (typeof result === 'object') {
+                Object.keys(result).forEach((key) => {
+                  var value = result[key];
+                  result[key] = convertStringToSassDimension(value);
+                });
+              }
+            }
+            result = sassUtils.castToSass(result);
+            return result;
+          },
+        },
         outputStyle: 'expanded',
         precision: 2,
         data: globalSassData.join('\n'),

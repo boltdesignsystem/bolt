@@ -2,55 +2,20 @@
   GENERIC - FONT STACKS
 \* ------------------------------------ */
 
-@font-face {
-  font-family: OpenSansSubset;
-  src: url('../../fonts/opensans-subset.woff2') format('woff2'),
-  url('../../fonts/opensans-subset.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  unicode-range: U+65-U+90, U+97-122;
+@each $fontName, $fontValue in bolt-data(fontFace) {
+  $fontSrc: null;
+  $fontSources: map-get($fontValue, 'src');
+
+  @each $ext, $path in $fontSources {
+    $fontSrc: append($fontSrc, url('#{$path}') format(quote($ext)), comma);
+  }
+
+  @font-face {
+    font-family: map-get($fontValue, 'fontFamily');
+    src: $fontSrc;
+    font-weight: map-get($fontValue, 'weight');
+    font-style: map-get($fontValue, 'style');
+  }
 }
 
-@font-face {
-  font-family: 'Open Sans';
-  src: url('../../fonts/opensans-regular.woff2') format('woff2'), url('../../fonts/opensans-regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  src: url('../../fonts/opensans-italic.woff2') format('woff2'), url('../../fonts/opensans-italic.woff') format('woff');
-  font-weight: 400;
-  font-style: italic;
-}
-
-
-@font-face {
-  font-family: 'Open Sans';
-  src: url('../../fonts/opensans-semibold.woff2') format('woff2'), url('../../fonts/opensans-semibold.woff') format('woff');
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  src: url('../../fonts/opensans-bolditalic.woff2') format('woff2'), url('../../fonts/opensans-bolditalic.woff') format('woff');
-  font-weight: 700;
-  font-style: italic;
-}
-
-
-@font-face {
-  font-family: 'Open Sans';
-  src: url('../../fonts/opensans-extrabold.woff2') format('woff2'), url('../../fonts/opensans-extrabold.woff') format('woff');
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  src: url('../../fonts/opensans-extrabolditalic.woff2') format('woff2'), url('../../fonts/opensans-extrabolditalic.woff') format('woff');
-  font-weight: 800;
-  font-style: italic;
-}
+@include export-data('typography/font-face.bolt.json', bolt-data(fontFace));
