@@ -36,7 +36,8 @@ $bolt-font-weights: (
   font-weights: (
     bold:     $bolt-font-weight--bold,
     semibold: $bolt-font-weight--semibold,
-    regular:  $bolt-font-weight--regular,
     normal:   $bolt-font-weight--regular
   )
 ) !default;
+
+@include export-data('typography/font-weights.bolt.json', $bolt-font-weights);
