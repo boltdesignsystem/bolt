@@ -3,7 +3,7 @@ import { h } from '@bolt/core';
 export const Download = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (
     <svg width={size} height={size} {...otherProps} viewBox="0 0 24 24">
-      <g fill={bgColor} fill-rule="evenodd">
+      <g fill="none" fill-rule="evenodd">
         <path />
         <path
           d="M15.023.049H.976A.978.978 0 0 0 0 1.025C0 1.56.44 2 .976 2h14.046a.978.978 0 0 0 .976-.975.979.979 0 0 0-.975-.976"
