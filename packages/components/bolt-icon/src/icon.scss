@@ -1,0 +1,141 @@
+@import '@bolt/core';
+
+
+bolt-icon {
+  display: inline-block;
+  vertical-align: middle;
+  // display: inline-flex;
+  color: inherit;
+  color: var(--bolt-theme-icon, inherit);
+  width: 1em; // Default icon size if size prop not specified
+  height: 1em; // Default icon size if size prop not specified
+
+  &:not(:resolved){
+    padding-bottom: 100%; // Default square icons
+    height: 0;
+  }
+}
+
+:host {
+  display: inline-block;
+  color: inherit;
+  color: var(--bolt-theme-icon, inherit);
+  vertical-align: middle;
+}
+
+
+// By default, icons should inherit the size of the container it's put inside
+
+//Wrapper
+.c-bolt-icon {
+  position: relative;
+}
+
+.c-bolt-icon__icon {
+  display: block; //required for vertically aligning icons
+  position: relative;
+  width: 1em;
+  height: 1em;
+  box-sizing: border-box;
+  z-index: bolt-z-index('content');
+  color: inherit;
+  color: var(--bolt-theme-icon, inherit);
+
+  // The primary goal of this is to set the transition for icon color.  Perhaps it's a
+  // bit heavy-handed, but it seems more robust than just applying this to, say, 'path' elements.
+  * {
+    transition: all $bolt-transition;
+  }
+}
+
+bolt-icon[size='small'],
+.c-bolt-icon--small > .c-bolt-icon__icon {
+  width: 12px;
+  height: 12px;
+}
+
+bolt-icon[size='medium'],
+.c-bolt-icon--medium > .c-bolt-icon__icon {
+  width: 24px;
+  height: 24px;
+}
+
+bolt-icon[size='large'],
+.c-bolt-icon--large > .c-bolt-icon__icon {
+  width: 32px;
+  height: 32px;
+}
+
+
+bolt-icon[size='xlarge'],
+.c-bolt-icon--xlarge > .c-bolt-icon__icon {
+  width: 64px;
+  height: 64px;
+}
+
+.c-bolt-icon--xlarge > .c-bolt-icon__icon {
+  padding: 16px;
+}
+
+.c-bolt-icon--small > .c-bolt-icon__icon {
+  stroke: currentColor;
+  stroke-width: 2px;
+}
+
+
+.c-bolt-icon__background-shape {
+  position: absolute;
+  z-index: bolt-z-index('contentBottom');
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  transform: translate3d(-50%, -50%, 0);
+
+  opacity: 0.1;
+  opacity: var(--bolt-theme-icon-background-opacity, 0.1);
+
+  background-color: currentColor; // Fallback if CSS vars not supported
+  background-color: var(--bolt-theme-icon-background, var(--bolt-theme-primary-text-default, currentColor));
+}
+
+.c-bolt-icon__background-shape--circle {
+  border-radius: 50%;
+}
+
+.c-bolt-icon__background-shape--square {
+  border-radius: $bolt-border-radius;
+}
+
+
+
+
+// Color options
+.c-bolt-icon--teal {
+  $brand-color: bolt-color(teal);
+  $contrast-color: bolt-text-contrast($brand-color);
+
+  @include bolt-css-vars((
+    --bolt-theme-icon: $contrast-color,
+    --bolt-theme-icon-background: $brand-color,
+    --bolt-theme-icon-background-opacity: 1,
+  ));
+}
+
+.c-bolt-icon--blue {
+  $brand-color: bolt-color(blue);
+  color: $brand-color;
+
+  @include bolt-css-vars((
+    --bolt-theme-icon: $brand-color,
+    --bolt-theme-icon-background: bolt-text-contrast($brand-color),
+    --bolt-theme-icon-background-opacity: 1,
+  ));
+}
+
+.c-bolt-icon__background {
+  fill: currentColor;
+  fill: var(--bolt-theme-text, currentColor)
+}
+

@@ -1,0 +1,80 @@
+{% set schema = bolt.data.components['@bolt-components-headline'].schema %}
+{% set types = ["headline", "subheadline", "eyebrow", "text"] %} {# Pre-defined types #}
+
+{% set tags = schema.properties.tag.enum %}
+{% set weights = schema.properties.weight.enum %}
+{% set styles = schema.properties.style.enum %}
+{% set transformProps = schema.properties.transform.enum %}
+{% set sizes = schema.properties.size.enum %}
+{% set alignments = schema.properties.align.enum %}
+
+{% if tags != "any" %}
+  {% set tag = tag in tags ? tag : schema.properties.tag.default %}
+{% else %}
+  {% set tag = tag ?? schema.properties.tag.default %}
+{% endif %}
+{% set weight = weight | default(schema.properties.weight.default) %}
+{% set style = style | default(schema.properties.style.default) %}
+{% set type = type in types ? type : "text" %}
+{% set size = size | default(schema.properties.size.default) %}
+{% if icon %}
+  {# Covers backward compatibility with use of both left and before to describe icon position #}
+  {% set iconPosition = icon.position == "left" ? "before" : icon.position  %}
+{% endif %}
+
+{% set prefix = "c-bolt-" %}
+{% set baseClass = prefix ~ type %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% if (size == "xxxlarge") and (text|length >= 60) %}
+  {% set size = "xxlarge" %}
+{% endif %}
+
+
+{% set classes = [
+  baseClass,
+  quoted ? baseClass ~ "--" ~ "quoted" : "",
+  weight in weights ? baseClass ~ "--" ~ weight : "",
+  align in alignments and align != null ? baseClass ~ "--" ~ align : "",
+  style in styles and type == "text" ? baseClass ~ "--" ~ style : "",
+  size in sizes and type != "eyebrow" ? baseClass ~ "--" ~ size : "",
+  transform in transformProps and transform != "" ? baseClass ~ "--" ~ transform : "",
+  url ? baseClass ~ "--link" : ""
+] %}
+
+{% if url and icon is not defined %}
+  {% set icon = icon | default({}) | merge({
+    name: "chevron-right"
+  }) %}
+{% endif %}
+
+<{{ tag }} {{ attributes.addClass(classes) }}>
+  {% if icon and not url and iconPosition == "before" %}
+    <span class="{{ "#{baseClass}__icon" }}">
+      {% include "@bolt/icon.twig" with icon only %}
+    </span>
+  {% endif %}
+
+  <span class="{{ "#{baseClass}__text" }}">
+    {% if url %}
+      {% include "@bolt/link.twig" with {
+        text: text,
+        icon: icon,
+        url: url,
+        isHeadline: true
+      } only %}
+    {% else %}
+      {{ text }}
+    {% endif %}
+  </span>
+
+  {% if icon and not url and iconPosition != "before" %}
+    <span class="{{ "#{baseClass}__icon" }}">
+      {% include "@bolt/icon.twig" with icon only %}
+    </span>
+  {% endif %}
+</{{ tag }}>
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-headline/headline.schema.yml', _self) | raw }}
+{% endif %}

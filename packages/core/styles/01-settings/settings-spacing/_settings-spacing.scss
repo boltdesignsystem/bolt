@@ -1,0 +1,47 @@
+////
+/// @group Settings: Layout
+/// @author Mike Mai
+////
+
+/* ------------------------------------ *\
+  Spacing Scale
+\* ------------------------------------ */
+
+// Unit on which all spacing is based
+$bolt-spacing-gutter: 2rem;
+$bolt-spacing-leading: 1.65;
+$bolt-spacing-squished: 0.5;
+$bolt-spacing-stretched: 1.5;
+
+/// Bolt's definition of spacing scale
+/// @type Map
+$bolt-spacing-values: (
+  '':        1, // @todo: add deprecation warning once Sass tools are in. Remove in Bolt v2.0
+  'xxsmall': 0.125,
+  'xsmall':  0.25,
+  'small':   0.5,
+  'medium':  1,
+  'large':   2,
+  'xlarge':  4,
+  'xxlarge': 8
+);
+@include export-data('spacing/scale.bolt.json', $bolt-spacing-values);
+
+$bolt-spacing-properties: (
+  'padding',
+  'margin'
+);
+
+$bolt-spacing-directions: (
+  '',
+  'top',
+  'right',
+  'bottom',
+  'left',
+);
+
+$bolt-spacing-types: (
+  '',
+  'squished',
+  'stretched'
+);

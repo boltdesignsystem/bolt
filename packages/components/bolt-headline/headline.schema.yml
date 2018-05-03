@@ -1,0 +1,79 @@
+$schema: http://json-schema.org/draft-04/schema#
+title: Headline
+type: object
+required:
+  - text
+properties:
+  text:
+    type: string
+    description: Text content of the headline.
+  tag:
+    type: string
+    description: Html tag.
+    default: p
+    enum:
+      - h1
+      - h2
+      - h3
+      - h4
+      - h5
+      - h6
+      - p
+      - span
+      - cite
+      - div
+  align:
+    description: Text alignment.
+    type: string
+    enum:
+      - left
+      - center
+      - right
+  weight:
+    type: string
+    description: Font weights.
+    default: regular
+    enum:
+      - bold
+      - regular
+      - semibold
+  style:
+    type: string
+    description: Font styles.
+    default: normal
+    enum:
+      - normal
+      - italic
+  size:
+    type: string
+    description: Font size.
+    default: medium
+    enum:
+      - xsmall
+      - small
+      - medium
+      - large
+      - xlarge
+      - xxlarge
+      - xxxlarge
+  transform:
+    type: string
+    description: Text transformation.
+    enum:
+      - uppercase
+      - lowercase
+      - capitalize
+  url:
+    type: string
+    description: If provided, turns headline into a link to given url.
+  icon:
+    description: Bolt icon. Excepts the same options as Bolt Icon Component `@bolt-components-icon`
+    anyOf:
+      -
+        type: object
+        ref: '@bolt-components-icon/icon.schema.yml'
+      -
+        type: boolean
+  quoted:
+    type: boolean
+    description: Adds quoted styling to text.

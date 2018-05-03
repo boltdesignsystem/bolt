@@ -1,0 +1,38 @@
+{
+  "name": "bolt-design-system/core-php",
+  "description": "Core PHP functionality for Bolt",
+  "version": "1.2.4",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Salem Ghoweri",
+      "role": "Maintainer"
+    },
+    {
+      "name": "Evan Lovely"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Bolt\\": "src/"
+    }
+  },
+  "require": {
+    "twig/twig": "^1.0",
+    "basaltinc/twig-tools": "^1.4.0",
+    "michelf/php-markdown": "^1.8.0",
+    "mexitek/phpcolors": "^0.4.0",
+    "webmozart/path-util": "^2.3",
+    "shudrum/array-finder": "^1.1",
+    "gregwar/image": "^2.0",
+    "tooleks/php-avg-color-picker": "^1.1.2",
+    "asm89/twig-lint": "^1.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7"
+  },
+  "scripts": {
+    "test": "phpunit --colors=always tests"
+  }
+}

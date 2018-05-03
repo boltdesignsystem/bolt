@@ -1,0 +1,100 @@
+/* ------------------------------------ *\
+   THEMES - XLIGHT
+\* ------------------------------------ */
+
+$bolt-theme-xlight-background:   bolt-color(white) !default;
+$bolt-theme-xlight-primary:      bolt-color(indigo, light) !default;
+$bolt-theme-xlight-secondary:    bolt-color(white) !default;
+$bolt-theme-xlight-text:         bolt-text-contrast($bolt-theme-xlight-background) !default;
+$bolt-theme-xlight-heading:      bolt-color(indigo) !default;
+$bolt-theme-xlight-link:         $bolt-theme-xlight-primary !default;
+$bolt-theme-xlight-heading-link: $bolt-theme-xlight-link !default;
+$bolt-theme-xlight-border:       rgba($bolt-theme-xlight-heading, $bolt-global-border-opacity);
+
+/**
+  * 1. This allows 'non-themed' sections to benefit from xlight
+  *    theming defaults which was already the case, but this makes
+  *    it official
+  */
+:root, /* [1] */
+.t-bolt-xlight {
+  $bolt-theme-background:             $bolt-theme-xlight-background;
+  $bolt-theme-primary:                $bolt-theme-xlight-primary;
+  $bolt-theme-secondary:              $bolt-theme-xlight-secondary;
+  $bolt-theme-heading:                $bolt-theme-xlight-heading; // Default to main text color
+  $bolt-theme-link:                   $bolt-theme-xlight-link;
+  $bolt-theme-text:                   $bolt-theme-xlight-text;
+  $bolt-theme-heading-link:           $bolt-theme-xlight-heading-link;
+  $bolt-theme-border:                 $bolt-theme-xlight-border;
+
+  $bolt-theme-link-default: $bolt-theme-primary;
+  $bolt-theme-link-hover:   rgba($bolt-theme-link-default, $bolt-global-link-hover-opacity);
+  $bolt-theme-link-active:  rgba($bolt-theme-link-default, $bolt-global-link-active-opacity);
+  $bolt-theme-link-visited: $bolt-theme-link-default;
+
+
+  $bolt-theme-heading-link-default: $bolt-theme-heading-link;
+  $bolt-theme-heading-link-hover:   rgba($bolt-theme-heading-link-default, $bolt-global-link-hover-opacity);
+  $bolt-theme-heading-link-active:  rgba($bolt-theme-heading-link-default, $bolt-global-link-active-opacity);
+  $bolt-theme-heading-link-visited: $bolt-theme-heading-link-default;
+
+
+  $bolt-theme-primary-background-default: $bolt-theme-primary;
+  $bolt-theme-primary-text-default:       bolt-text-contrast($bolt-theme-primary-background-default);
+  $bolt-theme-primary-border-default:     $bolt-theme-primary-background-default;
+
+
+  $bolt-theme-primary-background-hover: mix($bolt-global-button-hover-color, $bolt-theme-primary-background-default, $bolt-global-button-hover-mix);
+  $bolt-theme-primary-text-hover:       bolt-text-contrast($bolt-theme-primary-background-hover);
+  $bolt-theme-primary-border-hover:     $bolt-theme-primary-background-hover;
+
+  $bolt-theme-primary-background-active: mix($bolt-global-button-active-color, $bolt-theme-primary-background-default, $bolt-global-button-active-mix);
+  $bolt-theme-primary-text-active:       bolt-text-contrast($bolt-theme-primary-background-active);
+  $bolt-theme-primary-border-active:     $bolt-theme-primary-background-active;
+
+  $bolt-theme-primary-background-focus: mix($bolt-global-button-hover-color, $bolt-theme-primary-background-default, $bolt-global-button-hover-mix);
+  $bolt-theme-primary-text-focus:       bolt-text-contrast($bolt-theme-primary-background-focus);
+  $bolt-theme-primary-border-focus:     $bolt-theme-primary-background-focus;
+
+
+  @include bolt-css-vars((
+    --bolt-theme-background:   $bolt-theme-background,
+    --bolt-theme-primary:      $bolt-theme-primary,
+    --bolt-theme-secondary:    $bolt-theme-secondary,
+    --bolt-theme-heading:      $bolt-theme-heading,
+    --bolt-theme-link:         $bolt-theme-link,
+    --bolt-theme-text:         $bolt-theme-text,
+    --bolt-theme-heading-link: $bolt-theme-heading-link,
+    --bolt-theme-border:       $bolt-theme-border,
+
+    --bolt-theme-link-default: $bolt-theme-link-default,
+    --bolt-theme-link-hover: $bolt-theme-link-hover,
+    --bolt-theme-link-active: $bolt-theme-link-active,
+    --bolt-theme-link-visited: $bolt-theme-link-visited,
+
+    --bolt-theme-heading-link-default: $bolt-theme-heading-link-default,
+    --bolt-theme-heading-link-hover: $bolt-theme-heading-link-hover,
+    --bolt-theme-heading-link-active: $bolt-theme-heading-link-active,
+    --bolt-theme-heading-link-visited: $bolt-theme-heading-link-visited,
+    
+    --bolt-theme-primary-background-default: $bolt-theme-primary-background-default,
+    --bolt-theme-primary-text-default:       $bolt-theme-primary-text-default,
+    --bolt-theme-primary-border-default:     $bolt-theme-primary-border-default,
+
+    --bolt-theme-primary-background-hover: $bolt-theme-primary-background-hover,
+    --bolt-theme-primary-text-hover:       $bolt-theme-primary-text-hover,
+    --bolt-theme-primary-border-hover:     $bolt-theme-primary-border-hover,
+
+    --bolt-theme-primary-background-active: $bolt-theme-primary-background-active,
+    --bolt-theme-primary-text-active:       $bolt-theme-primary-text-active,
+    --bolt-theme-primary-border-active:     $bolt-theme-primary-border-active,
+
+    --bolt-theme-primary-background-focus: $bolt-theme-primary-background-focus,
+    --bolt-theme-primary-text-focus:       $bolt-theme-primary-text-focus,
+    --bolt-theme-primary-border-focus:     $bolt-theme-primary-border-focus,
+  ));
+
+ 
+  background-color: $bolt-theme-background;
+  color: $bolt-theme-text;
+}
