@@ -45,6 +45,49 @@ class BoltText extends BoltComponent() {
   render({ props, state }) {
 
     const tag = this.props.tag ? this.props.tag : 'p';
+    let textItem;
+
+    if (tag == 'p') {
+      textItem = this.hyper.wire(this) `
+        <p>${this.slot('default')}</p>
+      `;
+    } else if (tag == 'h1') {
+      textItem = this.hyper.wire(this) `
+        <h1>${this.slot('default')}</h1>
+      `;
+    } else if (tag == 'h2') {
+      textItem = this.hyper.wire(this) `
+        <h2>${this.slot('default')}</h2>
+      `;
+    } else if (tag == 'h3') {
+      textItem = this.hyper.wire(this) `
+        <h3>${this.slot('default')}</h3>
+      `;
+    } else if (tag == 'h4') {
+      textItem = this.hyper.wire(this) `
+        <h4>${this.slot('default')}</h4>
+      `;
+    } else if (tag == 'h5') {
+      textItem = this.hyper.wire(this) `
+        <h5>${this.slot('default')}</h5>
+      `;
+    } else if (tag == 'h6') {
+      textItem = this.hyper.wire(this) `
+        <h6>${this.slot('default')}</h6>
+      `;
+    } else if (tag == 'span') {
+      textItem = this.hyper.wire(this) `
+        <span>${this.slot('default')}</span>
+      `;
+    } else if (tag == 'cite') {
+      textItem = this.hyper.wire(this) `
+        <cite>${this.slot('default')}</cite>
+      `;
+    } else if (tag == 'div') {
+      textItem = this.hyper.wire(this) `
+        <div>${this.slot('default')}</div>
+      `;
+    }
 
     const weight = this.allowedValues(schema.properties.weight, this.props.weight);
     const style = this.allowedValues(schema.properties.style, this.props.fontStyle);
@@ -89,7 +132,7 @@ class BoltText extends BoltComponent() {
     return this.html`
       ${ this.addStyles([styles]) }
       <div class=${classes}>
-        ${this.slot('default')}
+        ${textItem}
       </div>
     `;
   }

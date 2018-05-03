@@ -50,6 +50,12 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 .c-bolt-text {
 
+  // Reset elements
+  h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+  }
+
   // Font Weight Options
   &--weight-semibold {
     @include bolt-font-weight(semibold);
@@ -194,18 +200,17 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
   // Quoted style
   &--quoted {
-    &:before,
-    &:after {
+    > *:before,
+    > *:after {
       font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
     }
 
-    &:before {
+   > *:before {
       content: '\201C';
       transform: translate3d(-110%, 0, 0);
-      position: absolute;
     }
 
-    &:after {
+    > *:after {
       content: '\201D';
     }
   }
