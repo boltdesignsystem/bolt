@@ -30,7 +30,7 @@ class BoltText extends BoltComponent() {
     quoted: props.boolean,
     util: props.string,
     vspacing: props.string,
-    opacity: props.boolean,
+    opacity: props.number,
   }
 
   constructor(self) {
@@ -45,52 +45,6 @@ class BoltText extends BoltComponent() {
 
   render({ props, state }) {
 
-    let textItem = this.props.url ? this.hyper.wire(this) `<a href="${this.props.url}">${this.slot('default')}</a>` : this.hyper.wire(this) `${this.slot('default')}`;
-
-    const tag = this.props.tag ? this.props.tag : 'p';
-
-    if (tag == 'p') {
-      textItem = this.hyper.wire(this) `
-        <p>${textItem}</p>
-      `;
-    } else if (tag == 'h1') {
-      textItem = this.hyper.wire(this) `
-        <h1>${textItem}</h1>
-      `;
-    } else if (tag == 'h2') {
-      textItem = this.hyper.wire(this) `
-        <h2>${textItem}</h2>
-      `;
-    } else if (tag == 'h3') {
-      textItem = this.hyper.wire(this) `
-        <h3>${textItem}</h3>
-      `;
-    } else if (tag == 'h4') {
-      textItem = this.hyper.wire(this) `
-        <h4>${textItem}</h4>
-      `;
-    } else if (tag == 'h5') {
-      textItem = this.hyper.wire(this) `
-        <h5>${textItem}</h5>
-      `;
-    } else if (tag == 'h6') {
-      textItem = this.hyper.wire(this) `
-        <h6>${textItem}</h6>
-      `;
-    } else if (tag == 'span') {
-      textItem = this.hyper.wire(this) `
-        <span>${textItem}</span>
-      `;
-    } else if (tag == 'cite') {
-      textItem = this.hyper.wire(this) `
-        <cite>${textItem}</cite>
-      `;
-    } else if (tag == 'div') {
-      textItem = this.hyper.wire(this) `
-        <div>${textItem}</div>
-      `;
-    }
-
     const weight = this.allowedValues(schema.properties.weight, this.props.weight);
     const style = this.allowedValues(schema.properties.style, this.props.fontStyle);
     const fontSize = this.allowedValues(schema.properties.fontSize, this.props.fontSize);
@@ -102,7 +56,7 @@ class BoltText extends BoltComponent() {
     const quoted = this.props.quoted ? true : false;
     const util = this.props.util ? this.props.util : false
     const vspacing = this.allowedValues(schema.properties.vspacing, this.props.vspacing);
-    const opacity = this.props.opacity ? true : false
+    const opacity = this.allowedValues(schema.properties.opacity, this.props.opacity);
 
     // Important classes
     const classes = css(
@@ -117,7 +71,7 @@ class BoltText extends BoltComponent() {
       lineHeight ? `c-bolt-text--line-height-${lineHeight}` : '',
       quoted ? `c-bolt-text--quoted` : '',
       `c-bolt-text--vspacing-${vspacing}`,
-      opacity ? `c-bolt-text--opacity` : '',
+      opacity ? `c-bolt-text--opacity-${opacity}` : '',
     );
 
     // Adds out utilities to the outer parent <bolt-text />
@@ -131,11 +85,55 @@ class BoltText extends BoltComponent() {
       this.setAttribute('class','u-bolt-'+util.trim());
     }
 
+    let textItem = this.props.url ? this.hyper.wire(this) `<a href="${this.props.url}">${this.slot('default')}</a>` : this.hyper.wire(this) `${this.slot('default')}`;
+
+    const tag = this.props.tag ? this.props.tag : 'p';
+
+    if (tag == 'p') {
+      textItem = this.hyper.wire(this) `
+        <p class=${classes}>${textItem}</p>
+      `;
+    } else if (tag == 'h1') {
+      textItem = this.hyper.wire(this) `
+        <h1 class=${classes}>${textItem}</h1>
+      `;
+    } else if (tag == 'h2') {
+      textItem = this.hyper.wire(this) `
+        <h2 class=${classes}>${textItem}</h2>
+      `;
+    } else if (tag == 'h3') {
+      textItem = this.hyper.wire(this) `
+        <h3 class=${classes}>${textItem}</h3>
+      `;
+    } else if (tag == 'h4') {
+      textItem = this.hyper.wire(this) `
+        <h4 class=${classes}>${textItem}</h4>
+      `;
+    } else if (tag == 'h5') {
+      textItem = this.hyper.wire(this) `
+        <h5 class=${classes}>${textItem}</h5>
+      `;
+    } else if (tag == 'h6') {
+      textItem = this.hyper.wire(this) `
+        <h6 class=${classes}>${textItem}</h6>
+      `;
+    } else if (tag == 'span') {
+      textItem = this.hyper.wire(this) `
+        <span class=${classes}>${textItem}</span>
+      `;
+    } else if (tag == 'cite') {
+      textItem = this.hyper.wire(this) `
+        <cite class=${classes}>${textItem}</cite>
+      `;
+    } else if (tag == 'div') {
+      textItem = this.hyper.wire(this) `
+        <div class=${classes}>${textItem}</div>
+      `;
+    }
+
     return this.html`
       ${ this.addStyles([styles]) }
-      <div class=${classes}>
-        ${textItem}
-      </div>
+      ${textItem}
     `;
   }
 }

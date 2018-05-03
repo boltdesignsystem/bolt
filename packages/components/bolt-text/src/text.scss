@@ -48,13 +48,15 @@ bolt-text {
 $bolt-headline--minus-letter-spacing: -0.025rem;
 $bolt-headline--plus-letter-spacing: 0.05rem;
 
-.c-bolt-text {
-
-  // Reset elements
-  h1, h2, h3, h4, h5, h6, p {
+// Reset elements
+h1, h2, h3, h4, h5, h6, p {
+  &.c-bolt-text {
     margin: 0;
     padding: 0;
   }
+}
+
+.c-bolt-text {
 
   a:link, a:visited {
     color: inherit;
@@ -221,8 +223,20 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   }
 
   // Opacity
-  &--opacity {
+  &--opacity-100 {
+    opacity: 1;
+  }
+  &--opacity-80 {
     opacity: 0.8;
+  }
+  &--opacity-60 {
+    opacity: 0.6;
+  }
+  &--opacity-40 {
+    opacity: 0.4;
+  }
+  &--opacity-20 {
+    opacity: 0.2;
   }
 
   // Spacing style -- added to parent so we can remove on last-child

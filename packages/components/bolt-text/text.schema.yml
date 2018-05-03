@@ -104,5 +104,11 @@ properties:
       - inline-block
       - block
   opacity:
-    type: boolean
-    description: Adds 0.8 opacity.
+    type: number
+    description: Adds opacity to text output.
+    enum:
+      - 100
+      - 80
+      - 60
+      - 40
+      - 20
