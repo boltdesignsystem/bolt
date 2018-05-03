@@ -51,18 +51,18 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 // Reset elements
 h1, h2, h3, h4, h5, h6, p {
   &.c-bolt-text {
+    color: inherit;
     margin: 0;
     padding: 0;
+
+    a:link, a:visited {
+      color: inherit;
+      text-decoration: none;
+    }
   }
 }
 
 .c-bolt-text {
-
-  a:link, a:visited {
-    color: inherit;
-    text-decoration: none;
-  }
-
   // Font Weight Options
   &--weight-semibold {
     @include bolt-font-weight(semibold);
