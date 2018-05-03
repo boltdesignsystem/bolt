@@ -8,10 +8,11 @@ const { validateSchemaSchema } = require('./schemas');
 const path = require('path');
 const config = require('./config-store').getConfig();
 const pkg = require('../package.json');
+const lernaPkg = require('../../../lerna.json'); // Use the pkg version in lerna.json vs the pkg version for `@bolt/build-tools`
 
 let boltManifest = {
   name: 'Bolt Manifest',
-  version: pkg.version,
+  version: lernaPkg.version,
   components: {
     global: [],
     individual: [],

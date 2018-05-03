@@ -16,7 +16,7 @@ $bolt-spacing-stretched: 1.5;
 /// Bolt's definition of spacing scale
 /// @type Map
 $bolt-spacing-values: (
-  //'':        1,
+  '':        1, // @todo: add deprecation warning once Sass tools are in. Remove in Bolt v2.0
   'xxsmall': 0.125,
   'xsmall':  0.25,
   'small':   0.5,
@@ -26,8 +26,6 @@ $bolt-spacing-values: (
   'xxlarge': 8
 ) !default;
 @include export-data('spacing/scale.bolt.json', $bolt-spacing-values);
-
-$bolt-spacing-sizes: ();
 
 $bolt-spacing-properties: (
   'padding',

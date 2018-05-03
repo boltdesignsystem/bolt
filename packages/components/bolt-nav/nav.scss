@@ -4,6 +4,7 @@
 
 @import '@bolt/core';
 
+$bolt-nav-link-border-color: var(--bolt-theme-text, currentColor);
 $bolt-nav-link-border-size: 2px;
 $bolt-nav-link-border-transition-ease: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 $bolt-nav-link-border-transition-timing: $bolt-transition-timing * 2;
@@ -19,120 +20,47 @@ bolt-nav {
   @include bolt-padding(0);
 
   display: flex;
-  flex-direction: column;
+  flex-direction: column; // [Mai] This is interrelated with the dropdown component.
   position: relative;
   list-style: none;
-  overflow: scroll;
 
   @include respond-to(small) {
-    flex-direction: row;
+    flex-direction: row; // [Mai] This is interrelated with the dropdown component.
   }
-
-  // TODO: [Mai] This is the setup for enhanced mobile view instead of hiding the items.
-  // &.is-active {
-  //   position: fixed;
-  //   top: 0;
-  //   left: 0;
-  //   width: 100%;
-  //   height: 100%;
-  //   background-color: var(--bolt-theme-background);
-  //
-  //   @include respond-to(medium) {
-  //     position: relative;
-  //     top: auto;
-  //     left: auto;
-  //     width: auto;
-  //     height: auto;
-  //     background-color: transparent;
-  //   }
-  // }
 }
-
-// TODO: [Mai] This is the setup for enhanced mobile view instead of hiding the items.
-// .c-bolt-nav__toggle {
-//   display: block;
-//   position: relative;
-//   width: 2rem;
-//   height: 2rem;
-//   content: '';
-//   cursor: pointer;
-//
-//   @include respond-to(medium) {
-//     display: none;
-//   }
-//
-//   &:before {
-//     display: block;
-//     position: absolute;
-//     top: 50%;
-//     left: 50%;
-//     width: 1rem;
-//     height: 1rem;
-//     margin: -0.67rem 0 0 -0.5rem;
-//     content: '';
-//     border-style: solid;
-//     border-color: currentColor;
-//     border-color: var(--bolt-theme-heading, currentColor);
-//     border-width: 2px 2px 0 0;
-//     transform: rotate(135deg);
-//     transform-origin: 50% 50%;
-//   }
-// }
 
 .c-bolt-nav__indicator {
   position: absolute;
-  left: bolt-spacing(small);
+  bottom: 0;
+  left: bolt-spacing(small); // [Mai] This is interrelated with the dropdown component.
   width: 0;
-  height: $bolt-nav-link-border-size;
+  height: ($bolt-nav-link-border-size * 2);
   background-color: currentColor;
-  opacity: 1;
-  opacity: var(--bolt-nav-indicator-opacity, 1);
+  background-color: $bolt-nav-link-border-color;
+  opacity: 1; // [Mai] This is interrelated with the dropdown component.
+  opacity: var(--bolt-nav-indicator-opacity, 1); // [Mai] This is interrelated with the dropdown component.
+  transform: translateY(var(--bolt-nav-indicator-transform)); // [Mai] This is interrelated with the dropdown component.
   transition:
-    transform
-    $bolt-nav-link-border-transition-timing
-    $bolt-nav-link-border-transition-ease,
-    opacity 0.35s ease-out;
-    // transform
-    // $bolt-nav-link-border-transition-timing
-    // $bolt-nav-link-border-transition-ease;
-  will-change: width, transform;
-
-  transform: translateY(
-    var(--bolt-nav-indicator-transform)
-  );
-
+    all $bolt-nav-link-border-transition-timing $bolt-nav-link-border-transition-ease,
+    opacity 0.35s ease-out; // [Mai] This is interrelated with the dropdown component.
+  will-change: width, height, opacity, transform;
 
   @include respond-to(small) {
-    opacity: 1;
-    bottom: 0;
-    left: auto;
+    opacity: 1; // [Mai] This is interrelated with the dropdown component.
+    bottom: 0; // [Mai] This is interrelated with the dropdown component.
+    left: auto; // [Mai] This is interrelated with the dropdown component.
   }
 
-  // TODO: [Mai] Vertical spacing options for future use.
-  // .c-bolt-nav--medium &
-  //   bottom: (bolt-v-spacing(medium) * -1);
-  // }
-  //
-  // .c-bolt-nav--large &
-  //   bottom: (bolt-v-spacing(large) * -1);
-  // }
-  //
-  // .c-bolt-nav--xlarge &
-  //   bottom: (bolt-v-spacing(xlarge) * -1);
-  // }
-}
+  .c-bolt-nav--xsmall & {
+    bottom: (bolt-v-spacing(xsmall) * -1);
+    height: $bolt-nav-link-border-size;
+  }
 
-// TODO: [Mai] This is the setup for enhanced mobile view instead of hiding the items.
-// .c-bolt-nav__item {
-//   display: none;
-//   width: 100%;
-//
-//   @include respond-to(medium) {
-//     display: block;
-//     width: auto;
-//   }
-//
-//   .c-bolt-nav.is-active & {
-//     display: block;
-//   }
-// }
+  .c-bolt-nav--small & {
+    bottom: (bolt-v-spacing(medium) * -1); // [Mai] This is a hack because bands have the wrong sizes.
+  }
+
+  .c-bolt-nav--medium & {
+    bottom: (bolt-v-spacing(medium) * -1);
+  }
+}

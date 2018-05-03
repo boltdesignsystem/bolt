@@ -47,7 +47,8 @@ module.exports = {
   // Currently only supports a 'scss' key with an array of Sass partials to pull in.
   globalData: {
     'scss': [
-      './src/styles/settings.lang-ja.scss', // example of including an additional Sass partial to set / redefine additional default values, globally.
+      './src/styles/settings.lang-ja.scss',
+      './src/test-overrides.scss' // example of including an additional Sass partial to set / redefine additional default values, globally.
     ],
     'js': [
       // './src/global-data.js', // example of including a JS files with a default export to globally include extra data to all Bolt JS components
@@ -58,6 +59,7 @@ module.exports = {
     global: [
       '@bolt/core',
       '@bolt/global',
+      '@bolt/components-placeholder',
       '@bolt/components-action-blocks',
       '@bolt/components-dropdown',
       '@bolt/components-background',

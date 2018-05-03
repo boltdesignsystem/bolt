@@ -1,10 +1,8 @@
 /* eslint-disable */
-import styles from './critical-fonts.scss';
 import FontFaceObserver from 'fontfaceobserver/fontfaceobserver.js';
 
 (function () {
-
-  var fontsLoadedClass = styles.locals['js-fonts-loaded'];
+  var fontsLoadedClass = 'js-fonts-loaded';
 
   // Optimization for Repeat Views
   if (sessionStorage.fontsLoadedCriticalFoftPreloadPolyfill) {

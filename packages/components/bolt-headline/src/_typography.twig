@@ -17,6 +17,10 @@
 {% set style = style | default(schema.properties.style.default) %}
 {% set type = type in types ? type : "text" %}
 {% set size = size | default(schema.properties.size.default) %}
+{% if icon %}
+  {# Covers backward compatibility with use of both left and before to describe icon position #}
+  {% set iconPosition = icon.position == "left" ? "before" : icon.position  %}
+{% endif %}
 
 {% set prefix = "c-bolt-" %}
 {% set baseClass = prefix ~ type %}
@@ -38,14 +42,14 @@
   url ? baseClass ~ "--link" : ""
 ] %}
 
-{% if url and icon != null and icon.name is not defined %}
+{% if url and icon is not defined %}
   {% set icon = icon | default({}) | merge({
     name: "chevron-right"
   }) %}
 {% endif %}
 
 <{{ tag }} {{ attributes.addClass(classes) }}>
-  {% if icon and not url and icon.position == "left" %}
+  {% if icon and not url and iconPosition == "before" %}
     <span class="{{ "#{baseClass}__icon" }}">
       {% include "@bolt/icon.twig" with icon only %}
     </span>
@@ -64,7 +68,7 @@
     {% endif %}
   </span>
 
-  {% if icon and not url and icon.position != "left" %}
+  {% if icon and not url and iconPosition != "before" %}
     <span class="{{ "#{baseClass}__icon" }}">
       {% include "@bolt/icon.twig" with icon only %}
     </span>
