@@ -4,6 +4,47 @@
    Text
 \* ------------------------------------ */
 
+// Attribute selectors for parent bolt-text
+bolt-text {
+  @include bolt-margin-bottom(medium); // Default vspacing
+
+  &[display="inline"] {
+    display: inline;
+  }
+  &[display="block"] {
+    display: block;
+  }
+  &[display="inline-block"] {
+    display: inline-block;
+  }
+
+  // Adding vspacing here so that we can remove vspacing on last-child
+  &[vspacing='xsmall'] {
+    @include bolt-margin-bottom(xxsmall);
+  }
+  &[vspacing='small'] {
+    @include bolt-margin-bottom(xsmall);
+  }
+  &[vspacing='medium'] {
+    @include bolt-margin-bottom(small);
+  }
+  &[vspacing='large'] {
+    @include bolt-margin-bottom(medium);
+  }
+  &[vspacing='xlarge'] {
+    @include bolt-margin-bottom(large);
+  }
+  &[vspacing='xxlarge'] {
+    @include bolt-margin-bottom(xlarge);
+  }
+  &[vspacing='xxxlarge'] {
+    @include bolt-margin-bottom(xxlarge);
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
 $bolt-headline--minus-letter-spacing: -0.025rem;
 $bolt-headline--plus-letter-spacing: 0.05rem;
 
@@ -88,26 +129,67 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
     text-transform: capitalize;
   }
 
-  // Letter spacing ---- @todo: figure out if these are correct
-  &--spacing-narrow {
-    letter-spacing: -0.1rem;
+  // Letter spacing
+  &--letter-spacing-narrow {
+    letter-spacing: -0.05rem;
   }
-  &--spacing-normal {
+  &--letter-spacing-normal {
     letter-spacing: normal;
   }
-  &--spacing-wide {
-    letter-spacing: 0.1rem;
+  &--letter-spacing-wide {
+    letter-spacing: 0.05rem;
   }
 
-  // Line height ---- @todo: figure out if these are correct
-  &--line-height-short {
-    line-height: 1;
+  // Line height
+  $bolt-line-height--add-loose: 0.2;
+  &--line-height-tight {
+    line-height: $bolt-line-height--tight;
   }
   &--line-height-regular {
-    line-height: 1.65;
+    &.c-bolt-text--font-xxxlarge {
+      line-height: $bolt-line-height--xxxlarge;
+    }
+    &.c-bolt-text--font-xxlarge {
+      line-height: $bolt-line-height--xxlarge;
+    }
+    &.c-bolt-text--font-xlarge {
+      line-height: $bolt-line-height--xlarge;
+    }
+    &.c-bolt-text--font-large {
+      line-height: $bolt-line-height--large;
+    }
+    &.c-bolt-text--font-medium {
+      line-height: $bolt-line-height--medium;
+    }
+    &.c-bolt-text--font-small {
+      line-height: $bolt-line-height--small;
+    }
+    &.c-bolt-text--font-xsmall {
+      line-height: $bolt-line-height--xsmall;
+    }
   }
-  &--line-height-tall {
-    line-height: 2;
+  &--line-height-loose {
+    &.c-bolt-text--font-xxxlarge {
+      line-height: ($bolt-line-height--xxxlarge + $bolt-line-height--add-loose);
+    }
+    &.c-bolt-text--font-xxlarge {
+      line-height: ($bolt-line-height--xxlarge + $bolt-line-height--add-loose);
+    }
+    &.c-bolt-text--font-xlarge {
+      line-height: ($bolt-line-height--xlarge + $bolt-line-height--add-loose);
+    }
+    &.c-bolt-text--font-large {
+      line-height: ($bolt-line-height--large + $bolt-line-height--add-loose);
+    }
+    &.c-bolt-text--font-medium {
+      line-height: ($bolt-line-height--medium + $bolt-line-height--add-loose);
+    }
+    &.c-bolt-text--font-small {
+      line-height: ($bolt-line-height--small + $bolt-line-height--add-loose);
+    }
+    &.c-bolt-text--font-xsmall {
+      line-height: ($bolt-line-height--xsmall + $bolt-line-height--add-loose);
+    }
   }
 
   // Quoted style
@@ -127,4 +209,32 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
       content: '\201D';
     }
   }
+
+  // Opacity
+  &--opacity {
+    opacity: 0.8;
+  }
+
+  // Spacing style -- added to parent so we can remove on last-child
+  //&--vspacing-xsmall {
+  //  margin-bottom: bolt-v-spacing(xxsmall);
+  //}
+  //&--vspacing-small {
+  //  margin-bottom: bolt-v-spacing(xsmall);
+  //}
+  //&--vspacing-medium {
+  //  margin-bottom: bolt-v-spacing(small);
+  //}
+  //&--vspacing-large {
+  //  margin-bottom: bolt-v-spacing(medium);
+  //}
+  //&--vspacing-xlarge {
+  //  margin-bottom: bolt-v-spacing(large);
+  //}
+  //&--vspacing-xxlarge {
+  //  margin-bottom: bolt-v-spacing(xlarge);
+  //}
+  //&--vspacing-xxxlarge {
+  //  margin-bottom: bolt-v-spacing(xxlarge);
+  //}
 }

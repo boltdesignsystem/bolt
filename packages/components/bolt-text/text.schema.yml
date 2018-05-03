@@ -55,12 +55,24 @@ properties:
     type: string
     description: Font line height.
     enum:
-      - short
+      - tight
       - regular
-      - tall
-  size:
+      - loose
+  fontSize:
     type: string
     description: Font size.
+    default: medium
+    enum:
+      - xsmall
+      - small
+      - medium
+      - large
+      - xlarge
+      - xxlarge
+      - xxxlarge
+  vspacing:
+    type: string
+    description: Vertical spacing between elements (margin-bottom).
     default: medium
     enum:
       - xsmall
@@ -91,3 +103,6 @@ properties:
       - inline
       - inline-block
       - block
+  opacity:
+    type: boolean
+    description: Adds 0.8 opacity.

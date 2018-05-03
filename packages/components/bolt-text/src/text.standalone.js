@@ -20,7 +20,7 @@ class BoltText extends BoltComponent() {
     tag: props.string,
     weight: props.string,
     fontStyle: props.string,
-    size: props.string,
+    fontSize: props.string,
     display: props.string,
     align: props.string,
     transform: props.string,
@@ -28,6 +28,8 @@ class BoltText extends BoltComponent() {
     lineHeight: props.string,
     quoted: props.boolean,
     util: props.string,
+    vspacing: props.string,
+    opacity: props.boolean,
   }
 
   constructor(self) {
@@ -46,7 +48,7 @@ class BoltText extends BoltComponent() {
 
     const weight = this.allowedValues(schema.properties.weight, this.props.weight);
     const style = this.allowedValues(schema.properties.style, this.props.fontStyle);
-    const size = this.allowedValues(schema.properties.size, this.props.size);
+    const fontSize = this.allowedValues(schema.properties.fontSize, this.props.fontSize);
     const display = this.allowedValues(schema.properties.display, this.props.display);
     const align = this.allowedValues(schema.properties.align, this.props.align);
     const transform = this.allowedValues(schema.properties.transform, this.props.transform);
@@ -54,19 +56,23 @@ class BoltText extends BoltComponent() {
     const lineHeight = this.allowedValues(schema.properties.lineHeight, this.props.lineHeight);
     const quoted = this.props.quoted ? true : false;
     const util = this.props.util ? this.props.util : false
+    const vspacing = this.allowedValues(schema.properties.vspacing, this.props.vspacing);
+    const opacity = this.props.opacity ? true : false
 
     // Important classes
     const classes = css(
       'c-bolt-text',
       `c-bolt-text--weight-${weight}`,
       `c-bolt-text--style-${style}`,
-      `c-bolt-text--font-${size}`,
+      `c-bolt-text--font-${fontSize}`,
       `c-bolt-text--display-${display}`,
-      letterSpacing ? `c-bolt-text--spacing-${letterSpacing}` : '',
+      letterSpacing ? `c-bolt-text--letter-spacing-${letterSpacing}` : '',
       align ? `c-bolt-text--align-${align}` : '',
       transform ? `c-bolt-text--transform-${transform}` : '',
       lineHeight ? `c-bolt-text--line-height-${lineHeight}` : '',
       quoted ? `c-bolt-text--quoted` : '',
+      `c-bolt-text--vspacing-${vspacing}`,
+      opacity ? `c-bolt-text--opacity` : '',
     );
 
     // Adds out utilities to the outer parent <bolt-text />
