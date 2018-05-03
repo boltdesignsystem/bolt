@@ -34,4 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+
+  document.querySelectorAll('.c-bolt-button').forEach((item) => {
+    console.log("Click event is attached to this => ", item);
+    item.addEventListener("click", () => {
+      console.log("Yolo!");
+      alert("Button Clicked");
+    });
+  });
 });
