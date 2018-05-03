@@ -467,7 +467,7 @@ function createConfig(config) {
       ],
       compress: true,
       clientLogLevel: 'none',
-      port: 8080,
+      port: config.port,
       stats: statsPreset(webpackStats[config.verbosity]),
       overlay: {
         errors: true,

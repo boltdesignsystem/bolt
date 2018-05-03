@@ -1,0 +1,59 @@
+<?php
+
+/*!
+ * Pattern Lab Builder CLI
+ *
+ * Copyright (c) 2013-2014 Dave Olsen, http://dmolsen.com
+ * Licensed under the MIT license
+ *
+ */
+
+use \PatternLab\Config;
+use \PatternLab\Console;
+use \PatternLab\Dispatcher;
+use \PatternLab\Timer;
+
+// This function will handle any PHP Errors, Warnings, or Notices and fail the compile
+// Without this, it's easy to accidentally let "PHP Notice: Array to String conversion" sneak in over time, which outputs onto the Pattern Lab page.
+set_error_handler('exceptions_error_handler');
+
+function exceptions_error_handler($severity, $message, $filename, $lineno) {
+  if (error_reporting() == 0) {
+    return;
+  }
+  if (error_reporting() & $severity) {
+    throw new ErrorException($message, 0, $severity, $filename, $lineno);
+  }
+}
+
+// check to see if json_decode exists. might be disabled in installs of PHP 5.5
+if (!function_exists("json_decode")) {
+	print "Please check that your version of PHP includes the JSON extension. It's required for Pattern Lab to run. Aborting.\n";
+	exit(1);
+}
+
+// set-up the project base directory
+$baseDir = __DIR__."/../";
+
+// auto-load classes
+if (file_exists($baseDir."vendor/autoload.php")) {
+	require($baseDir."vendor/autoload.php");
+} else {
+	print "it doesn't appear that pattern lab has been set-up yet...\n";
+	print "please install pattern lab's dependencies by typing: php core/bin/composer.phar install...\n";
+	exit(1);
+}
+
+// start the timer
+Timer::start();
+
+// load the options
+Console::init();
+Config::init($baseDir);
+
+// initialize the dispatcher & note that the config has been loaded
+Dispatcher::init();
+Dispatcher::getInstance()->dispatch("config.configLoadEnd");
+
+// run the console
+Console::run();

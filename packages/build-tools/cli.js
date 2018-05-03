@@ -10,7 +10,8 @@ program
   .version(packageJson.version)
   .option('-C, --config-file <path>', 'Pass in a specific config file instead of default of ".boltrc.js/json".')
   .option('--prod', configSchema.properties.prod.description)
-  .option('-v, --verbosity <amount>', configSchema.properties.verbosity.description, parseInt);
+  .option('-v, --verbosity <amount>', configSchema.properties.verbosity.description, parseInt)
+  .parse(process.argv);
 
 // We need to initialize config as early as possible
 const configFilePath = path.resolve(process.cwd(), program.configFile || '.boltrc');
@@ -47,6 +48,10 @@ async function updateConfig(options, programInstance) {
     config.quick = typeof options.quick === 'undefined'
       ? config.quick
       : options.quick;
+
+    config.configFile = typeof options.configFile === 'undefined' ?
+      config.configFile :
+      options.configFile;
 
     config.prod = typeof program.prod === 'undefined'
       ? config.prod

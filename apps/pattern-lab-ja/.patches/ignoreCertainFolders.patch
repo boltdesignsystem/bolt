@@ -1,0 +1,61 @@
+diff --git a/src/PatternLab/PatternData.php b/src/PatternLab/PatternData.php
+index 3e7ced4..4509a09 100644
+--- a/src/PatternLab/PatternData.php
++++ b/src/PatternLab/PatternData.php
+@@ -25,6 +25,7 @@ use \PatternLab\PatternData\Helpers\PatternCodeHelper;
+ use \PatternLab\PatternData\Helpers\PatternStateHelper;
+ use \PatternLab\PatternData\Helpers\RawPatternHelper;
+ use \PatternLab\Timer;
++use \Symfony\Component\Finder\Finder;
+ 
+ class PatternData {
+ 
+@@ -118,10 +119,46 @@ class PatternData {
+ 		}
+ 
+ 		$patternSourceDir = Config::getOption("patternSourceDir");
+-		$patternObjects = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($patternSourceDir, \RecursiveDirectoryIterator::FOLLOW_SYMLINKS | \FilesystemIterator::SKIP_DOTS), \RecursiveIteratorIterator::SELF_FIRST);
++
++	/**
++	 *  Ignore file types not currently supported by patternlab to help reduce compilation time. 
++	 *  Also, process README.md files separately to significantly improve compilation performance.
++	 *  @TODO: figure out how to store this PL's main config
++	 */
++
++		$finder = new Finder();
++		$patternObjects = $finder
++		                  ->in($patternSourceDir)
++											->followLinks()
++											->ignoreDotFiles(true)
++											->notName('package.json')
++											->notName('package-lock.json')
++											->notName('README.md')
++											->notName('*.js')
++											->notName('*.map')
++											->notName('*.lock')
++											->notName('*.scss')
++											->notName('*.css')
++											->notName('_*')
++											->exclude(array('node_modules', '.git', 'tests'));
++ 		$patternObjects = iterator_to_array($patternObjects);
++
++
++		// Only care about README.md files that contain front-matter
++		$finderReadmeDocs = new Finder();
++		$patternReadmeDocs = $finderReadmeDocs
++											->in($patternSourceDir)
++											->name('README.md')
++											->contains('/^(---)/')
++											->notName('_*')
++											->exclude(array('node_modules', '.git', 'tests'));
++		$patternReadmeDocs = iterator_to_array($patternReadmeDocs);
++
++		// Merge together the default set of patterns found + the README.md-filtered patterns.
++		//$patternObjects = array_merge_recursive($patternObjects, $patternReadmeDocs);
++
+ 
+ 		// sort the returned objects
+-		$patternObjects = iterator_to_array($patternObjects);
+ 		ksort($patternObjects);
+ 
+ 		/**

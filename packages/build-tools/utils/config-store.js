@@ -17,10 +17,13 @@ let config = {};
 
 const defaultConfig = {
   namespace: configSchema.properties.namespace.default,
+  lang: configSchema.properties.lang.default,
+  port: configSchema.properties.port.default,
   templatesDir: configSchema.properties.templatesDir.default,
   verbosity: configSchema.properties.verbosity.default,
   openServerAtStart: configSchema.properties.openServerAtStart.default,
   quick: configSchema.properties.quick.default,
+  configFile: configSchema.properties.configFile.default,
   webpackDevServer: configSchema.properties.webpackDevServer.default,
   prod: process.env.NODE_ENV === 'production',
   startPath: configSchema.properties.startPath.default,

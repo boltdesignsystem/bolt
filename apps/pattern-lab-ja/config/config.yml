@@ -22,8 +22,8 @@ patternStates:
     - complete
 styleGuideExcludes: ''
 cacheBusterOn: 'true'
-publicDir: ../../www/pattern-lab/en
-sourceDir: src
+publicDir: ../../www/pattern-lab/ja
+sourceDir: ../pattern-lab/src
 defaultPattern: viewall-components-all
 defaultShowPatternInfo: false
 ishMinimum: '240'
@@ -56,20 +56,14 @@ twigExtensions:
     - '\Bolt\TwigExtensions\BoltExtras'
 twigDebug: true
 twigAutoescape: false
-twigDefaultDateFormat: ''
-twigDefaultIntervalFormat: ''
-twigMacroExt: macro.twig
-twigFilterExt: filter.php
-twigFunctionExt: function.php
-twigTagExt: tag.php
-twigTestExt: test.php
-extensions:
-    data: .data.json
-    schemas: .json
-    templates: .twig
-    docs: .docs.md
-    sg: .md
+# twigDefaultDateFormat: ''
+# twigDefaultIntervalFormat: ''
+# twigMacroExt: macro.twig
+# twigFilterExt: filter.php
+# twigFunctionExt: function.php
+# twigTagExt: tag.php
+# twigTestExt: test.php
 plugins:
   twigNamespaces:
     enabled: true
-    readFromFile: ../../www/pattern-lab/en/build/data/twig-namespaces.bolt.json
+    readFromFile: ../../www/pattern-lab/ja/build/data/twig-namespaces.bolt.json

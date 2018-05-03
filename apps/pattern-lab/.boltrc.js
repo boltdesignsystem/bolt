@@ -2,9 +2,11 @@ const path = require('path');
 
 module.exports = {
   // Environmental variable / preset to use
+  lang: 'en-US',
+  port: 8080,
   env: 'pl',
-  buildDir: '../../www/pattern-lab/build',
-  wwwDir: '../../www/',
+  buildDir: '../../www/pattern-lab/en/build',
+  wwwDir: '../../www',
   startPath: 'pattern-lab/index.html',
   plConfigFile: './config/config.yml',
   verbosity: 1,
@@ -27,7 +29,7 @@ module.exports = {
     // },
     'bolt-assets': {
       recursive: true,
-      paths: ['../../www/pattern-lab/build'],
+      paths: ['../../www/pattern-lab/en'],
     },
     utils: {
       recursive: true,
@@ -39,7 +41,7 @@ module.exports = {
       {
         base: './src/assets/images',
         glob: '**',
-        dist: '../../www/pattern-lab/images/',
+        dist: '../../www/pattern-lab/en/images/',
       },
     ],
   },
@@ -47,8 +49,8 @@ module.exports = {
   // Currently only supports a 'scss' key with an array of Sass partials to pull in.
   globalData: {
     'scss': [
-      './src/styles/settings.lang-ja.scss',
-      './src/test-overrides.scss' // example of including an additional Sass partial to set / redefine additional default values, globally.
+      // './src/styles/settings.lang-ja.scss',
+      // './src/test-overrides.scss' // example of including an additional Sass partial to set / redefine additional default values, globally.
     ],
     'js': [
       // './src/global-data.js', // example of including a JS files with a default export to globally include extra data to all Bolt JS components

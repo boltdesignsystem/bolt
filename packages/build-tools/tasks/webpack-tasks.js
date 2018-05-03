@@ -154,10 +154,10 @@ function server() {
 
     // Add HMR scripts required to entrypoint
     if (webpackConfig.devServer.hot && !config.prod) {
-      webpackConfig.entry['bolt-global'].unshift('webpack-dev-server/client?http://localhost:8080/', 'webpack/hot/dev-server');
+      webpackConfig.entry['bolt-global'].unshift(`webpack-dev-server/client?http://localhost:${config.port}/`, 'webpack/hot/dev-server');
     }
 
-    new WebpackDevServer(webpack(webpackConfig), webpackConfig.devServer).listen(webpackConfig.devServer.port, 'localhost', function (err) {
+    new WebpackDevServer(webpack(webpackConfig), webpackConfig.devServer).listen(config.port, 'localhost', function (err) {
       if (err) {
         return reject(err);
       }

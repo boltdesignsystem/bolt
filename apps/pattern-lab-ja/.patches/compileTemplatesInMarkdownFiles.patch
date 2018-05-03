@@ -1,0 +1,120 @@
+diff --git a/src/PatternLab/PatternData/Rules/DocumentationRule.php b/src/PatternLab/PatternData/Rules/DocumentationRule.php
+index 528925f..8bf6fde 100644
+--- a/src/PatternLab/PatternData/Rules/DocumentationRule.php
++++ b/src/PatternLab/PatternData/Rules/DocumentationRule.php
+@@ -16,9 +16,19 @@ use \PatternLab\Config;
+ use \PatternLab\PatternData;
+ use \PatternLab\Parsers\Documentation;
+ use \PatternLab\Timer;
++use \PatternLab\Data;
++use \PatternLab\PatternData\Exporters\PatternPathSrcExporter;
++use \PatternLab\PatternEngine;
+ 
+ class DocumentationRule extends \PatternLab\PatternData\Rule {
+ 	
++	protected static $ppdExporter;
++	protected static $patternLoader;
++	protected static $patternPathSrc;
++	protected static $patternEngineBasePath;
++	protected static $patternLoaderClass;
++	protected static $options = array();
++
+ 	public function __construct($options) {
+ 		
+ 		parent::__construct($options);
+@@ -29,10 +39,33 @@ class DocumentationRule extends \PatternLab\PatternData\Rule {
+ 		$this->isFileProp = true;
+ 		$this->searchProp = "";
+ 		$this->ignoreProp = "";
+-		
++
++/**
++	* Setup the Pattern Loader so we can pre-render template markup used
++	* in our markdown files, prior to any markup getting parsed.
++	* Taken from Builder.php
++	* UPDATE: moved into constructor (vs run function) to significantly cut down on compile time
++	*/
++		self::$ppdExporter			 			 = new PatternPathSrcExporter();
++		self::$patternPathSrc    			 = self::$ppdExporter->run();
++		self::$options["patternPaths"] = self::$patternPathSrc;
++		self::$patternEngineBasePath 	 = PatternEngine::getInstance()->getBasePath();
++		self::$patternLoaderClass 		 = self::$patternEngineBasePath . "\Loaders\PatternLoader";
++		self::$patternLoader     			 = new self::$patternLoaderClass(self::$options);
+ 	}
+ 	
+ 	public function run($depth, $ext, $path, $pathName, $name) {
++		// default vars
++		$patternSourceDir = Config::getOption("patternSourceDir");
++
++		// parse data
++		$text = file_get_contents($patternSourceDir.DIRECTORY_SEPARATOR.$pathName);
++		list($yaml,$markdown) = Documentation::parse($text);
++
++		if (isset($yaml["patternType"])) {
++			$name = $yaml["patternType"];
++			unset($yaml["patternType"]);
++		}
+ 		
+ 		// load default vars
+ 		$patternType        = PatternData::getPatternType();
+@@ -44,12 +77,9 @@ class DocumentationRule extends \PatternLab\PatternData\Rule {
+ 		$docDash    = $this->getPatternName(str_replace("_","",$doc),false); // colors
+ 		$docPartial = $patternTypeDash."-".$docDash;
+ 		
+-		// default vars
+-		$patternSourceDir = Config::getOption("patternSourceDir");
+ 		
+ 		// parse data
+ 		$text = file_get_contents($patternSourceDir.DIRECTORY_SEPARATOR.$pathName);
+-		list($yaml,$markdown) = Documentation::parse($text);
+ 		
+ 		// grab the title and unset it from the yaml so it doesn't get duped in the meta
+ 		if (isset($yaml["title"])) {
+@@ -68,12 +98,38 @@ class DocumentationRule extends \PatternLab\PatternData\Rule {
+ 					break;
+ 				}
+ 			}
+-			
+ 		}
+-		
+ 		$category         = ($patternSubtypeDoc) ? "patternSubtype" : "pattern";
+ 		$patternStoreKey  = ($patternSubtypeDoc) ? $docPartial."-plsubtype" : $docPartial;
+ 		
++	
++		
++		
++		// Combine local + global pattern data.
++		$data = array();
++		$globalData = Data::getPatternSpecificData($docPartial);
++		$localData = array();
++		
++		if (PatternData::getOption($docPartial) && isset(PatternData::getOption($docPartial)["data"])){
++			$localData = PatternData::getOption($docPartial)["data"];
++		}
++		
++		if (!empty($localData)){
++			$data = array_replace_recursive($globalData, $localData);
++		} else {
++			$data = $globalData;
++		}
++
++		// Render the markdown content as a pattern, piping in the pattern-specific data from above.
++		$text = self::$patternLoader->render(array(
++			"pattern" => $text,
++			"data" => $data
++		));
++
++		// Finally parse the resulting content as normal markup; continue as usual.
++		list($yaml,$markdown) = Documentation::parse($text);
++
++
+ 		$patternStoreData = array("category"   => $category,
+ 								  "desc"       => trim($markdown),
+ 								  "descExists" => true,
+@@ -106,4 +162,4 @@ class DocumentationRule extends \PatternLab\PatternData\Rule {
+ 		
+ 	}
+ 	
+-}
++}
+\ No newline at end of file

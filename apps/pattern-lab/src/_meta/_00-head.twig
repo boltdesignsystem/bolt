@@ -1,7 +1,7 @@
 {% set assets = get_data("@bolt-assets/bolt-webpack-manifest.json") %}
 
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="{{ bolt.data.config.lang | default("en-US")}}">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" />

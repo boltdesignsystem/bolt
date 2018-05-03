@@ -1,0 +1,6 @@
+{% set demoAttributes = demoAttributes | default({}) | merge({
+  class: [
+    theme ? "t-bolt-" ~ theme : ""
+  ]
+}) %}
+{% extends "@utils/demo.twig" %}

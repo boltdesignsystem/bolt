@@ -1,0 +1,97 @@
+diff --git a/src/PatternLab/PatternData/Rules/DocumentationRule.php b/src/PatternLab/PatternData/Rules/DocumentationRule.php
+index 4e9ef3f..6ab7b15 100644
+--- a/src/PatternLab/PatternData/Rules/DocumentationRule.php
++++ b/src/PatternLab/PatternData/Rules/DocumentationRule.php
+@@ -16,6 +16,9 @@ use \PatternLab\Config;
+ use \PatternLab\PatternData;
+ use \PatternLab\Parsers\Documentation;
+ use \PatternLab\Timer;
++use \PatternLab\Data;
++use \PatternLab\PatternData\Exporters\PatternPathSrcExporter;
++use \PatternLab\PatternEngine;
+ 
+ class DocumentationRule extends \PatternLab\PatternData\Rule {
+ 	
+@@ -33,6 +36,17 @@ class DocumentationRule extends \PatternLab\PatternData\Rule {
+ 	}
+ 	
+ 	public function run($depth, $ext, $path, $pathName, $name) {
++		// default vars
++		$patternSourceDir = Config::getOption("patternSourceDir");
++
++		// parse data
++		$text = file_get_contents($patternSourceDir.DIRECTORY_SEPARATOR.$pathName);
++		list($yaml,$markdown) = Documentation::parse($text);
++
++		if (isset($yaml["patternType"])) {
++			$name = $yaml["patternType"];
++			unset($yaml["patternType"]);
++		}
+ 		
+ 		// load default vars
+ 		$patternType        = PatternData::getPatternType();
+@@ -44,12 +58,9 @@ class DocumentationRule extends \PatternLab\PatternData\Rule {
+ 		$docDash    = $this->getPatternName(str_replace("_","",$doc),false); // colors
+ 		$docPartial = $patternTypeDash."-".$docDash;
+ 		
+-		// default vars
+-		$patternSourceDir = Config::getOption("patternSourceDir");
+ 		
+ 		// parse data
+ 		$text = file_get_contents($patternSourceDir.DIRECTORY_SEPARATOR.$pathName);
+-		list($yaml,$markdown) = Documentation::parse($text);
+ 		
+ 		// grab the title and unset it from the yaml so it doesn't get duped in the meta
+ 		if (isset($yaml["title"])) {
+@@ -68,12 +79,49 @@ class DocumentationRule extends \PatternLab\PatternData\Rule {
+ 					break;
+ 				}
+ 			}
+-			
+ 		}
+-		
+ 		$category         = ($patternSubtypeDoc) ? "patternSubtype" : "pattern";
+ 		$patternStoreKey  = ($patternSubtypeDoc) ? $docPartial."-plsubtype" : $docPartial;
+ 		
++	/**
++		* Setup the Pattern Loader so we can pre-render template markup used
++		* in our markdown files, prior to any markup getting parsed.
++		* Taken from Builder.php
++		*/
++		$ppdExporter             = new PatternPathSrcExporter();
++		$patternPathSrc          = $ppdExporter->run();
++		$options                 = array();
++		$options["patternPaths"] = $patternPathSrc;
++		$patternEngineBasePath   = PatternEngine::getInstance()->getBasePath();
++		$patternLoaderClass      = $patternEngineBasePath . "\Loaders\PatternLoader";
++		$patternLoader           = new $patternLoaderClass($options);
++		
++		
++		// Combine local + global pattern data.
++		$data = array();
++		$globalData = Data::getPatternSpecificData($docPartial);
++		$localData = array();
++		
++		if (PatternData::getOption($docPartial) && isset(PatternData::getOption($docPartial)["data"])){
++			$localData = PatternData::getOption($docPartial)["data"];
++		}
++		
++		if (!empty($localData)){
++			$data = array_replace_recursive($globalData, $localData);
++		} else {
++			$data = $globalData;
++		}
++
++		// Render the markdown content as a pattern, piping in the pattern-specific data from above.
++		$text = $patternLoader->render(array(
++			"pattern" => $text,
++			"data" => $data
++		));
++
++		// Finally parse the resulting content as normal markup; continue as usual.
++		list($yaml,$markdown) = Documentation::parse($text);
++
++
+ 		$patternStoreData = array("category"   => $category,
+ 								  "desc"       => trim($markdown),
+ 								  "descExists" => true,

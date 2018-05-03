@@ -24,7 +24,7 @@ const serverConfig = {
 
 if (config.webpackDevServer) {
   // proxy the Webpack Dev Server endpoint
-  serverConfig.proxy = 'http://localhost:8080/';
+  serverConfig.proxy = `http://localhost:${config.port}/`;
   if (config.env === 'pl') {
     // https://www.browsersync.io/docs/options#option-server
     serverConfig.serveStatic = [];

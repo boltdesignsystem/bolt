@@ -12,6 +12,18 @@
       type: string
       title: Namespace prefix to use in classnames
       default: 'bolt'
+    lang:
+      type: string
+      title: Site language compiled to.
+      default: 'en'
+    port:
+      type: integer
+      title: Port to run the Webpack Dev Server on
+      default: 8080
+    configFile:
+      type: string
+      title: Boltrc config file path
+      default: '.boltrc.js'
     templatesDir:
       type: array
       title: Template paths being added

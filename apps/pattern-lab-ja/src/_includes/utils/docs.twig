@@ -1,0 +1,258 @@
+
+<div class="c-bolt-docs t-bolt-xlight">
+
+  <div class="c-bolt-docs__page-content">
+
+    {% include "@bolt/headline.twig" with {
+      size: "xxxlarge",
+      tag: "h1",
+      text: schema.title ? schema.title : "Component Title"
+    } %}
+
+    {% include "@bolt/subheadline.twig" with {
+      weight: "regular",
+      size: "xxlarge",
+      tag: "p",
+      text: schema.description ? schema.description : "",
+      attributes: {
+        class: [
+          "u-bolt-margin-bottom-large"
+        ]
+      }
+    } %}
+
+    {% if readmeFile %}
+      <div class="c-bolt-docs__readme">
+        {% include "@bolt/headline.twig" with {
+          size: "xlarge",
+          tag: "h2",
+          url: "#getting-started",
+          text: "Getting Started",
+          icon: false,
+          attributes: {
+            class: [
+              "u-bolt-margin-bottom-xsmall",
+              "c-bolt-docs__heading-fragment"
+            ],
+            id: "getting-started"
+          }
+        } %}
+        <div class="c-bolt-docs__lead u-bolt-margin-bottom-large">
+          {{ source(readmeFile) | markdown }}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if code %}
+      {% include "@bolt/headline.twig" with {
+        size: "xlarge",
+        tag: "h2",
+        url: "#usage",
+        text: "Usage",
+        icon: false,
+        attributes: {
+          class: [
+            "u-bolt-margin-bottom-xsmall",
+            "c-bolt-docs__heading-fragment"
+          ],
+          id: "usage"
+        }
+      } %}
+      <pre class="u-bolt-margin-bottom-large"><code>{{ code }}</code></pre>
+    {% endif %}
+
+
+    {% if schema and schema.properties %}
+      {% include "@bolt/headline.twig" with {
+        size: "xlarge",
+        tag: "h2",
+        url: "#schema",
+        text: "Schema",
+        icon: false,
+        attributes: {
+          class: [
+            "u-bolt-margin-bottom-xsmall",
+            "c-bolt-docs__heading-fragment"
+          ],
+          id: "schema"
+        }
+      } %}
+
+      <div class="bolt-docs__schema u-bolt-margin-bottom-large">
+        {% include '@utils/schema-docs.twig' with { schema: schema } only %}
+      </div>
+    {% endif %}
+
+    {% if links %}
+      {% include "@bolt/headline.twig" with {
+        size: "xlarge",
+        tag: "h2",
+        url: "#helpful-links",
+        text: "Helpful Links",
+        icon: false,
+        attributes: {
+          class: [
+            "u-bolt-margin-bottom-xsmall",
+            "c-bolt-docs__heading-fragment"
+          ],
+          id: "schema"
+        }
+      } %}
+
+      <ul class="c-bolt-docs__page-nav-list u-bolt-margin-bottom-large">
+        {% for link in links %}
+          <li>
+            {% include "@bolt/headline.twig" with {
+              size: "small",
+              weight: "regular",
+              transform: "capitalize",
+              tag: "h4",
+              text: link.text,
+              url:  link.url,
+              target: '_parent',
+              attributes: {
+                class: [
+                  "c-bolt-headline--link",
+                  "u-bolt-margin-bottom-none"
+                ],
+                'data-scroll-offset': 70
+              },
+              icon: false,
+            } only %}
+          </li>
+        {% endfor %}
+      </ul>
+
+    {% endif %}
+  </div>
+
+  <div class="c-bolt-docs__page-nav u-bolt-padding-right-medium@medium">
+    <ul class="o-bolt-ui-list o-bolt-ui-list--xsmall c-bolt-docs__page-nav-list">
+      <li class="o-bolt-ui-list__item">
+        <ul class="o-bolt-ui-list o-bolt-ui-list--xxsmall o-bolt-ui-list--borderless">
+          {% if readmeFile %}
+            <li class="o-bolt-ui-list__item">
+              {% include "@bolt/headline.twig" with {
+                size: "xsmall",
+                transform: "capitalize",
+                weight: "regular",
+                tag: "h3",
+                text: include("@bolt/link.twig", {
+                  text: "Getting Started",
+                  url:  "#getting-started",
+                  attributes: {
+                    class: [
+                      "c-bolt-link--headline"
+                    ],
+                    'data-scroll-offset': 70
+                  }
+                }),
+                attributes: {
+                  class: [
+                    "c-bolt-headline--link",
+                    "u-bolt-margin-bottom-none"
+                  ]
+                },
+                icon: false,
+              } only %}
+            </li>
+          {% endif %}
+
+          {% if code %}
+            <li class="o-bolt-ui-list__item">
+              {% include "@bolt/headline.twig" with {
+                size: "xsmall",
+                transform: "capitalize",
+                weight: "regular",
+                tag: "h3",
+                text: include("@bolt/link.twig", {
+                  text: "Usage",
+                  url:  "#usage",
+                  attributes: {
+                    class: [
+                      "c-bolt-link--headline"
+                    ],
+                    'data-scroll-offset': 70
+                  }
+                }),
+                attributes: {
+                  class: [
+                    "c-bolt-headline--link",
+                    "u-bolt-margin-bottom-none"
+                  ]
+                },
+                icon: false,
+              } only %}
+            </li>
+          {% endif %}
+
+
+          {% if schema and schema.properties %}
+            <li class="o-bolt-ui-list__item">
+              {% include "@bolt/headline.twig" with {
+                size: "xsmall",
+                transform: "capitalize",
+                weight: "regular",
+                tag: "h3",
+                text: include("@bolt/link.twig", {
+                  text: "Schema",
+                  url:  "#schema",
+                  attributes: {
+                    class: [
+                      "c-bolt-link--headline"
+                    ],
+                    'data-scroll-offset': 70
+                  }
+                }),
+                attributes: {
+                  class: [
+                    "c-bolt-headline--link",
+                    "u-bolt-margin-bottom-none"
+                  ]
+                },
+                icon: false,
+              } only %}
+            </li>
+          {% endif %}
+
+
+          {% if links %}
+            <li class="o-bolt-ui-list__item">
+              {% include "@bolt/headline.twig" with {
+                size: "xsmall",
+                transform: "capitalize",
+                weight: "regular",
+                tag: "h3",
+                text: include("@bolt/link.twig", {
+                  text: "Helpful Links",
+                  url:  "#helpful-links",
+                  attributes: {
+                    class: [
+                      "c-bolt-link--headline"
+                    ],
+                    'data-scroll-offset': 70
+                  }
+                }),
+                attributes: {
+                  class: [
+                    "c-bolt-headline--link",
+                    "u-bolt-margin-bottom-none"
+                  ]
+                },
+                icon: false,
+              } only %}
+            </li>
+          {% endif %}
+        </ul>
+      </li>
+
+      {% if readmeFile %}
+        <li class="o-bolt-ui-list__item">
+          <a href="{{ github_url(readmeFile) }}" class="c-bolt-docs__page-nav__link" target="_blank">
+            <bolt-icon name="pencil"></bolt-icon>
+            Edit this page
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
