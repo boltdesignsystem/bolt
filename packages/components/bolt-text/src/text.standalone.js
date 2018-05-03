@@ -18,6 +18,7 @@ class BoltText extends BoltComponent() {
 
   static props = {
     tag: props.string,
+    url: props.string,
     weight: props.string,
     fontStyle: props.string,
     fontSize: props.string,
@@ -44,48 +45,49 @@ class BoltText extends BoltComponent() {
 
   render({ props, state }) {
 
+    let textItem = this.props.url ? this.hyper.wire(this) `<a href="${this.props.url}">${this.slot('default')}</a>` : this.hyper.wire(this) `${this.slot('default')}`;
+
     const tag = this.props.tag ? this.props.tag : 'p';
-    let textItem;
 
     if (tag == 'p') {
       textItem = this.hyper.wire(this) `
-        <p>${this.slot('default')}</p>
+        <p>${textItem}</p>
       `;
     } else if (tag == 'h1') {
       textItem = this.hyper.wire(this) `
-        <h1>${this.slot('default')}</h1>
+        <h1>${textItem}</h1>
       `;
     } else if (tag == 'h2') {
       textItem = this.hyper.wire(this) `
-        <h2>${this.slot('default')}</h2>
+        <h2>${textItem}</h2>
       `;
     } else if (tag == 'h3') {
       textItem = this.hyper.wire(this) `
-        <h3>${this.slot('default')}</h3>
+        <h3>${textItem}</h3>
       `;
     } else if (tag == 'h4') {
       textItem = this.hyper.wire(this) `
-        <h4>${this.slot('default')}</h4>
+        <h4>${textItem}</h4>
       `;
     } else if (tag == 'h5') {
       textItem = this.hyper.wire(this) `
-        <h5>${this.slot('default')}</h5>
+        <h5>${textItem}</h5>
       `;
     } else if (tag == 'h6') {
       textItem = this.hyper.wire(this) `
-        <h6>${this.slot('default')}</h6>
+        <h6>${textItem}</h6>
       `;
     } else if (tag == 'span') {
       textItem = this.hyper.wire(this) `
-        <span>${this.slot('default')}</span>
+        <span>${textItem}</span>
       `;
     } else if (tag == 'cite') {
       textItem = this.hyper.wire(this) `
-        <cite>${this.slot('default')}</cite>
+        <cite>${textItem}</cite>
       `;
     } else if (tag == 'div') {
       textItem = this.hyper.wire(this) `
-        <div>${this.slot('default')}</div>
+        <div>${textItem}</div>
       `;
     }
 
