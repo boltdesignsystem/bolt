@@ -24,20 +24,20 @@ try {
     fs.readFileSync(
       path.join(
         __dirname,
-        '../../../lerna.json'
+        '../../../lerna.json',
       ),
-      'utf8'
-    )
+      'utf8',
+    ),
   ).version;
 } catch (error) {
   boltManifest.version = JSON.parse(
     fs.readFileSync(
       path.join(
         __dirname,
-        '../package.json'
+        '../package.json',
       ),
-      'utf8'
-    )
+      'utf8',
+    ),
   ).version;
 }
 
