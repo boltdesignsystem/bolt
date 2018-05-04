@@ -1,5 +1,3 @@
-{% set schema = bolt.data.components['@bolt-components-code-snippet'].schema %}
-
 <p>
   Code snippet can be a block of code, and
   {% include "@bolt-components-code-snippet/code-snippet.twig" with {
@@ -17,8 +15,10 @@
   "display": "block",
   "lang": "scss"
 } only %}
-{% block children %}display: block;
-margin: 0 0 1.65rem 0;{% endblock %}
+{% block children %}
+display: block;
+margin: 0 0 1.65rem 0;
+{% endblock %}
 {% endembed %}
 
 <p>
