@@ -53,8 +53,8 @@ class BoltText extends BoltComponent() {
     const transform = this.allowedValues(schema.properties.transform, this.props.transform);
     const letterSpacing = this.allowedValues(schema.properties.letterSpacing, this.props.letterSpacing);
     const lineHeight = this.allowedValues(schema.properties.lineHeight, this.props.lineHeight);
-    const quoted = this.props.quoted ? true : false;
-    const util = this.props.util ? this.props.util : false
+    const quoted = !!this.props.quoted;
+    const util = this.props.util ? this.props.util : false;
     const vspacing = this.allowedValues(schema.properties.vspacing, this.props.vspacing);
     const opacity = this.allowedValues(schema.properties.opacity, this.props.opacity);
 
@@ -69,7 +69,7 @@ class BoltText extends BoltComponent() {
       align ? `c-bolt-text--align-${align}` : '',
       transform ? `c-bolt-text--transform-${transform}` : '',
       lineHeight ? `c-bolt-text--line-height-${lineHeight}` : '',
-      quoted ? `c-bolt-text--quoted` : '',
+      quoted ? 'c-bolt-text--quoted' : '',
       `c-bolt-text--vspacing-${vspacing}`,
       opacity ? `c-bolt-text--opacity-${opacity}` : '',
     );

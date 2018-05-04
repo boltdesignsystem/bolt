@@ -207,17 +207,17 @@ h1, h2, h3, h4, h5, h6, p {
 
   // Quoted style
   &--quoted {
-    > *:before,
-    > *:after {
+    &:before,
+    &:after {
       font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
     }
 
-   > *:before {
+    &:before {
       content: '\201C';
       transform: translate3d(-110%, 0, 0);
     }
 
-    > *:after {
+    &:after {
       content: '\201D';
     }
   }
