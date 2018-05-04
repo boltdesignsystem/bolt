@@ -1,39 +1,13 @@
-require('es6-promise').polyfill();
-require('core-js/modules/es6.array.iterator');
-require('core-js/modules/es6.symbol');
-require('core-js/modules/es6.array.from');
-require('core-js/modules/es6.string.starts-with');
-require('core-js/modules/es7.array.includes');
-require('core-js/modules/es6.array.for-each');
-require('core-js/modules/es6.object.assign');
+import './custom-event-polyfill';
 
-let polyfills = [];
-
-// ex. NodeList.forEach --> IE 11
 if (window.NodeList && !NodeList.prototype.forEach) {
-  NodeList.prototype.forEach = function (callback, thisArg) {
-    thisArg = thisArg || window;
-    for (var i = 0; i < this.length; i++) {
-      callback.call(thisArg, this[i], i, this);
-    }
-  };
+  NodeList.prototype.forEach = Array.prototype.forEach;
 }
 
 
-// CustomElement shim for IE 11
-(function () {
-  if (typeof window.CustomEvent === 'function') return false;
-  function CustomEvent(event, params) {
-    params = params || { bubbles: false, cancelable: false, detail: undefined };
-    var evt = document.createEvent('CustomEvent');
-    evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
-    return evt;
-  }
-  CustomEvent.prototype = window.Event.prototype;
-  window.CustomEvent = CustomEvent;
-})();
+let polyfills = [];
 
-// Detect Shadow Dom Support
+// // Detect Shadow Dom Support
 if (!('attachShadow' in Element.prototype && 'getRootNode' in Element.prototype) ||
   (window.ShadyDOM && window.ShadyDOM.force)) {
   polyfills.push('sd');
@@ -53,28 +27,57 @@ if (!('content' in document.createElement('template')) || !window.Promise || !Ar
 }
 
 
-const webComponentPolyfillPath = `bolt-webcomponents-${polyfills.join('-')}.js`;
-
-
 export const polyfillLoader = new Promise((resolve) => {
-  if (polyfills.length > 0) {
-    import(/* webpackChunkName: `${webComponentPolyfillPath}` */ `./${webComponentPolyfillPath}`)
-      .then(() => {
-        resolve();
-      })
-      .catch((error) => {
-        throw new Error(`Could not load ${webComponentPolyfillPath}. Error: ${error}`);
-      });
-  } else {
-    import(/* webpackChunkName: "custom-elements-es5-adapter" */
-      '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js').then(() => {
-        resolve();
-      })
-      .catch((error) => {
-        throw new Error(`Could not load @webcomponents/webcomponentsjs/custom-elements-es5-adapter.js.
-        Error: ${error}`);
-      });
+  // Based on https://github.com/webcomponents/webcomponentsjs/blob/master/entrypoints/webcomponents-hi-sd-ce-pf-index.js
+  // Used in: IE 11
+  if (polyfills.includes('lite')) {
+    import('es6-promise').polyfill();
+
+    Promise.all([
+      import('core-js/modules/es6.array.iterator'),
+      import('core-js/modules/es6.symbol'),
+      import('core-js/modules/es6.array.from'),
+      import('core-js/modules/es6.string.starts-with'),
+      import('core-js/modules/es7.array.includes'),
+      import('core-js/modules/es6.array.for-each'),
+      import('core-js/modules/es6.object.assign'),
+      import('core-js/library/es6/reflect'),
+      import('document-register-element'),
+    ]).then(() => { resolve() });
   }
-}).catch((error) => {
-  throw new Error(`Error: unexpected polyfill-loader.js error. ${error}`);
+
+  // Based on https://github.com/webcomponents/webcomponentsjs/blob/master/entrypoints/webcomponents-sd-ce-index.js
+  // Used in: Safari 9, Firefox, Edge
+  else if (polyfills.includes('sd') && polyfills.includes('ce')) {
+    Promise.all([
+      import('@webcomponents/shadydom/src/shadydom.js'),
+      import('document-register-element'),
+      import('@webcomponents/shadycss/entrypoints/scoping-shim.js'),
+    ]).then(() => { resolve() });
+  }
+
+  // Based on https://github.com/webcomponents/webcomponentsjs/blob/master/entrypoints/webcomponents-hi-sd-index.js
+  // Used in: Firefox with CustomElements enabled
+  else if (polyfills.includes('sd')) {
+    Promise.all([
+      import('@webcomponents/shadydom/src/shadydom.js'),
+      import('@webcomponents/shadycss/entrypoints/scoping-shim.js'),
+    ]).then(() => { resolve() });
+  }
+
+  // Based on https://github.com/webcomponents/webcomponentsjs/blob/master/entrypoints/webcomponents-hi-ce-index.js
+  // Used in: Safari 10, Firefox once SD is shipped
+  else if (polyfills.includes('ce')) {
+    Promise.all([
+      import('@webcomponents/shadydom/src/shadydom.js'),
+      import('@webcomponents/shadycss/entrypoints/scoping-shim.js'),
+    ]).then(() => { resolve() });
+
+    import('document-register-element').then(() => { resolve() });
+  }
+
+  // Used in Modern browsers supporting ES6. Required since we're transpiling ES6 classes through Babel
+  else {
+    import('@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js').then(() => { resolve() });
+  }
 });

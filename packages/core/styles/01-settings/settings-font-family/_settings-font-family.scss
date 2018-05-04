@@ -15,20 +15,21 @@
  * 1. This maps to the system UI font.
  * 2. This is for known system UI fonts & requires updates
  */
-$bolt-font-family--sans-fallback: -apple-system, BlinkMacSystemFont, /* [1] */
-                                  'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', /* [2] */
-                                  'Helvetica Neue', sans-serif;
-$bolt-font-family--serif:         'Georgia', serif;
-$bolt-font-family--mono-fallback:  monospace, monospace;
+$bolt-font-family--sans-fallback:
+  -apple-system, BlinkMacSystemFont, /* [1] */
+  'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', /* [2] */
+  'Helvetica Neue', sans-serif !default;
+$bolt-font-family--serif: 'Georgia', serif;
+$bolt-font-family--mono-fallback: monospace;
 
 
 /*
  * Custom web font stacks
  */
-$bolt-font-family--sans:        'Open Sans', 'Helvetica Neue', sans-serif;
-$bolt-font-family--sans-subset: 'OpenSansSubset', 'Helvetica Neue', sans-serif;
-$bolt-font-family--serif:       'Georgia', serif;
-$bolt-font-family--mono:         monospace, monospace;
+$bolt-font-family--sans:  'Open Sans', 'Helvetica Neue', sans-serif !default;
+$bolt-font-family--sans-subset: 'OpenSansSubset', 'Helvetica Neue', sans-serif !default;
+$bolt-font-family--serif: 'Georgia', serif;
+$bolt-font-family--mono:  'Courier New', monospace;
 
 
 /*

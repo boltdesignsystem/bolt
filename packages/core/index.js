@@ -19,10 +19,10 @@ export { declarativeClickHandler } from './utils/declarative-click-handler';
 export { hasNativeShadowDomSupport } from './utils/environment';
 export { findParentTag } from './utils/find-parent-tag';
 
-export { withPreact, wrapPreact } from './renderers/renderer-preact';
+export { withPreact } from './renderers/renderer-preact';
 export { BoltComponent } from './renderers/renderer-hyperhtml';
 export { BoltSnabbdom } from './renderers/renderer-snabbdom';
 export { spacingSizes } from './data/spacing-sizes';
 
 // Export polyfill loader
-export { polyfillLoader } from './polyfills/polyfill-loader';
+export { polyfillLoader } from './polyfills';

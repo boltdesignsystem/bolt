@@ -1,7 +1,7 @@
 const path = require('path');
 const log = require('./utils/log');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const npmSass = require('npm-sass');
@@ -9,13 +9,70 @@ const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const sassImportGlobbing = require('@theme-tools/sass-import-globbing');
-const { getBoltManifest } = require('./utils/manifest');
+const { getBoltManifest, createComponentsManifest } = require('./utils/manifest');
+const { promisify } = require('util');
+const fs = require('fs');
+const readFile = promisify(fs.readFile);
+const deepmerge = require('deepmerge');
 
 function createConfig(config) {
   // @TODO: move this setting to .boltrc config
   const sassExportData = require('@theme-tools/sass-export-data')({
     path: path.resolve(process.cwd(), config.dataDir),
   });
+
+
+  // Default global Sass data defined
+  let globalSassData = [
+    `$bolt-namespace: ${config.namespace};`,
+  ]
+
+
+  // Default global JS data defined
+  let globalJsData = {
+    'process.env.NODE_ENV': config.prod ?
+      JSON.stringify('production') :
+      JSON.stringify('development'),
+    bolt: {
+      namespace: JSON.stringify(config.namespace),
+    },
+  };
+
+
+  // Merge together global Sass data overrides specified in a .boltrc config
+  if (config.globalData.scss && config.globalData.scss.length !== 0){
+    const overrideItems = [];
+    config.globalData.scss.forEach((item) => {
+      try {
+        const file = fs.readFileSync(item, 'utf8');
+        file
+          .split('\n')
+          .filter(x => x)
+          .forEach(x => overrideItems.push(x));
+      } catch(err) {
+        log.errorAndExit(`Could not find ${item}`, err);
+      }
+    });
+
+    globalSassData = [...globalSassData, ...overrideItems];
+  }
+
+
+  // Merge together any global JS data overrides
+  if (config.globalData.js && config.globalData.js.length !== 0){
+    const overrideJsItems = [];
+    config.globalData.js.forEach((item) => {
+      try {
+        const overrideFile = require(path.resolve(process.cwd(), item));
+        overrideJsItems.push(overrideFile);
+      } catch(err) {
+        log.errorAndExit(`Could not find ${item} file`, err);
+      }
+    });
+
+    globalJsData = deepmerge(globalJsData, ...overrideJsItems);
+  }
+
 
   /**
    * Build WebPack config's `entry` object
@@ -132,44 +189,56 @@ function createConfig(config) {
   }
 
 
-  // This workaround has been disabled for now as setting `modules: false` on `css-loader` fixes it; see https://github.com/bolt-design-system/bolt/pull/410
-  // Workaround for getting classes with `\@` to compile correctly
-  // CSS Classes like `.u-hide\@large` were getting compiled like `.u-hide-large`.
-  // Due to this bug: https://github.com/webpack-contrib/css-loader/issues/578
-  // Workaround: using the `string-replace-loader` to change `\@` to our `workaroundAtValue` before passing to `css-loader`, then turning it back afterwards.
+  // Output CSS module data as JSON.
+  // @todo: enable when ready for CSS Modules
+  // function getJSONFromCssModules(cssFileName, json) {
+  //   const cssName = path.basename(cssFileName, '.css');
+  //   const jsonFileName = path.resolve(process.cwd(), config.buildDir, `${cssName}.json`);
+  //   fs.writeFileSync(jsonFileName, JSON.stringify(json));
+  // }
+
+  /** This workaround has been disabled for now as setting
+    * `modules: false` on `css-loader` fixes it; see https://github.com/bolt-design-system/bolt/pull/410
+    * Workaround for getting classes with `\@` to compile correctly
+    * CSS Classes like `.u-hide\@large` were getting compiled like `.u-hide-large`.
+    * Due to this bug: https://github.com/webpack-contrib/css-loader/issues/578
+    * Workaround: using the `string-replace-loader` to
+    * change `\@` to our `workaroundAtValue` before
+    * passing to `css-loader`, then turning it back
+    * afterwards.
+    */
   const workaroundAtValue = '-theSlashSymbol-';
 
   const scssLoaders = [
-    {
-      loader: 'string-replace-loader',
-      query: {
-        search: workaroundAtValue,
-        replace: String.raw`\\`, // needed to ensure `\` comes through
-        flags: 'g',
-      },
-    },
+    // {
+    //   loader: 'string-replace-loader',
+    //   query: {
+    //     search: workaroundAtValue,
+    //     replace: String.raw`\\`, // needed to ensure `\` comes through
+    //     flags: 'g',
+    //   },
+    // },
     {
       loader: 'css-loader',
       options: {
         sourceMap: true,
-        modules: true, // needed for JS referencing classNames directly, such as critical fonts
-        importLoaders: 5,
-        localIdentName: '[local]',
+        modules: false, // needed for JS referencing classNames directly, such as critical fonts
+        importLoaders: 4,
       },
     },
-    {
-      loader: 'string-replace-loader',
-      query: {
-        search: /\\/,
-        replace: workaroundAtValue,
-        flags: 'g',
-      },
-    },
+    // {
+    //   loader: 'string-replace-loader',
+    //   query: {
+    //     search: /\\/,
+    //     replace: workaroundAtValue,
+    //     flags: 'g',
+    //   },
+    // },
     {
       loader: 'postcss-loader',
       options: {
         sourceMap: true,
-        plugins: [
+        plugins: () => [
           postcssDiscardDuplicates,
           autoprefixer,
         ],
@@ -199,9 +268,7 @@ function createConfig(config) {
         functions: sassExportData,
         outputStyle: 'expanded',
         precision: 2,
-        data: [
-          `$bolt-namespace: ${config.namespace};`,
-        ].join('\n'),
+        data: globalSassData.join('\n'),
       },
     },
   ];
@@ -222,31 +289,30 @@ function createConfig(config) {
       chunkFilename: '[name]-bundle.[chunkhash].js',
       publicPath,
     },
+    cache: true,
     resolve: {
       extensions: ['.js', '.jsx', '.json', '.svg', '.scss'],
+      unsafeCache: true,
     },
     module: {
       rules: [
-        {
-          test: /\.twig$/,
-          use: [
-            { loader: 'raw-loader' },
-            { loader: 'inline-source-loader' },
-          ],
-        },
         {
           test: /\.scss$/,
           oneOf: [
             {
               issuer: /\.js$/,
-              use: scssLoaders,
+              use: [
+                scssLoaders,
+              ].reduce((acc, val) => acc.concat(val), []),
             },
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
-              use: ExtractTextPlugin.extract({
-                fallback: 'style-loader',
-                use: scssLoaders,
-              }),
+              use: [
+                {
+                  loader: MiniCssExtractPlugin.loader,
+                },
+                scssLoaders,
+              ].reduce((acc, val) => acc.concat(val), []),
             },
           ],
         },
@@ -276,7 +342,44 @@ function createConfig(config) {
             name: '[name].[ext]',
           },
         },
+        {
+          test: [/\.json$/],
+          use: [
+            {
+              loader: 'json-loader',
+            },
+          ],
+        },
+        {
+          test: [/\.yml$/, /\.yaml$/],
+          use: [
+            { loader: 'yaml-loader' },
+          ],
+        },
       ],
+    },
+    mode: config.prod ? 'production' : 'development',
+    optimization: {
+      mergeDuplicateChunks: true,
+      // splitChunks: {
+      //   chunks: 'all',
+      //   // cacheGroups: {
+      //   //   js: {
+      //   //     test: /\.js$/,
+      //   //     // name: 'commons',
+      //   //     chunks: 'all',
+      //   //     minChunks: 2,
+      //   //     // test: /node_modules/,
+      //   //     // enforce: true,
+      //   //   },
+      //   //   css: {
+      //   //     test: /\.s?css$/,
+      //   //     chunks: 'all',
+      //   //     minChunks: 2,
+      //   //     // enforce: true,
+      //   //   },
+      //   // },
+      // },
     },
     plugins: [
       // Ignore generated output if generated output is on a dependency chain (causes endless loop)
@@ -286,16 +389,12 @@ function createConfig(config) {
         /styleguide/,
         path.join(__dirname, 'node_modules'),
       ]),
-      new webpack.optimize.CommonsChunkPlugin({
-        deepChildren: true,
-        children: true,
-        minChunks: Infinity,
-        async: true,
-      }),
       new webpack.IgnorePlugin(/vertx/), // needed to ignore vertx dependency in webcomponentsjs-lite
-      new ExtractTextPlugin({
+      new MiniCssExtractPlugin({
+        // Options similar to the same options in webpackOptions.output
+        // both options are optional
         filename: '[name].css',
-        // disable: false,
+        chunkFilename: '[id].css',
         allChunks: true,
       }),
       // @todo This needs to be in `config.dataDir`
@@ -310,6 +409,7 @@ function createConfig(config) {
       new webpack.ProvidePlugin({
         Promise: 'es6-promise',
       }),
+      new webpack.DefinePlugin(globalJsData),
       // Show build progress
       // Disabling for now as it messes up spinners
       // @todo consider bringing it back
@@ -324,13 +424,6 @@ function createConfig(config) {
   }
 
   if (config.prod) {
-    webpackConfig.plugins.push(new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
-      bolt: {
-        namespace: JSON.stringify(config.namespace),
-      },
-    }));
-
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
     // Config recommendation based off of https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1#f548
     webpackConfig.plugins.push(new UglifyJsPlugin({
@@ -361,13 +454,8 @@ function createConfig(config) {
     webpackConfig.devtool = 'hidden-source-map';
   } else { // not prod
     // @todo fix source maps
-    webpackConfig.devtool = 'cheap-module-eval-source-map';
-
-    webpackConfig.plugins.push(new webpack.DefinePlugin({
-      bolt: {
-        namespace: JSON.stringify(config.namespace),
-      },
-    }));
+    // webpackConfig.devtool = 'cheap-module-eval-source-map';
+    webpackConfig.devtool = 'eval';
   }
 
 
@@ -375,7 +463,7 @@ function createConfig(config) {
     webpackConfig.devServer = {
       contentBase: [
         path.resolve(process.cwd(), config.wwwDir),
-       // @TODO: add Pattern Lab Styleguidekit Assets Default dist path here
+      // @TODO: add Pattern Lab Styleguidekit Assets Default dist path here
       ],
       compress: true,
       clientLogLevel: 'none',
