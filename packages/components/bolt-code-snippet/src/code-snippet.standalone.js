@@ -38,6 +38,27 @@ export function BoltCodeSnippet() {
       syntax: props.string,
     };
 
+    highlightHTML(innerHTML, lang) {
+      let highlightedHTML = '';
+
+      rehype().stringify({
+        type: 'root',
+        children: refractor.highlight(innerHTML, lang),
+      }).toString()
+      .split('\n')
+      .forEach((line, i, lines) => {
+        if (line.length && lines.length > 1) {
+          // If a block snippet
+          highlightedHTML = highlightedHTML.concat(`<span class="c-bolt-code-snippet__code--block">${ line }</ span>`);
+        } else {
+          // Else an inline snippet
+          highlightedHTML = highlightedHTML.concat(line);
+        }
+      });
+
+      return virtualize(highlightedHTML);
+    }
+
     constructor(self) {
       self = super(self);
       this.useShadow = hasNativeShadowDomSupport;
@@ -47,14 +68,13 @@ export function BoltCodeSnippet() {
     connecting(){
       if (this.querySelector('[is*=shadow-root]')) {
         const parentElement = this.querySelector('[is*=shadow-root]');
-        console.log(parentElement);
         this.innerHTML = parentElement.innerHTML;
       }
     }
 
     render() {
       const { lang, display, syntax } = this.props;
-      const nodes = refractor.highlight(this.innerHTML, lang);
+      const highlightedCode = this.highlightHTML(this.innerHTML, lang);
 
       const codeClasses = css(
         'c-bolt-code-snippet__code',
@@ -69,22 +89,13 @@ export function BoltCodeSnippet() {
         lang ? `language-${lang}` : 'language-html',
       );
 
-
-      var html = rehype().stringify({
-        type: 'root',
-        children: nodes,
-      }).toString();
-
-      let vnode = virtualize(html);
-
       if (display === 'inline'){
         return this.html`
-          <code class=${codeClasses}>${ this.addStyles([styles, syntaxStyles]) }${ vnode }</code>
+          <code class=${codeClasses}>${ this.addStyles([styles, syntaxStyles]) }${ highlightedCode }</code>
         `;
       } else {
-      console.log(vnode);
         return this.html`
-          <pre class=${preClasses}><code class=${codeClasses}>${ this.addStyles([styles, syntaxStyles]) }${ vnode }</code></pre>
+          <pre class=${preClasses}><code class=${codeClasses}>${ this.addStyles([styles, syntaxStyles]) }${ highlightedCode }</code></pre>
         `;
       }
     }
