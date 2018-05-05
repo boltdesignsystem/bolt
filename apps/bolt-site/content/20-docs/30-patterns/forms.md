@@ -4,6 +4,8 @@ title: Forms
 
 Forms are used to submit data to the system. Common examples include event or site registration, contact forms, or search interfaces. 
 
+For a complete accounting of form elements, see the [Bolt forms examples in Pattern Lab](/pattern-lab/?p=viewall-components-form). 
+
 ## Best practices
 
 An effective form is easy to understand and fill out, doesn’t ask for more information than needed, and makes it clear what the next action is. In addition to these considerations, follow the guidelines below to successfully create forms:
@@ -30,7 +32,7 @@ All form elements include a Dark Blue focus state, usually as a 1px outline, alo
 - if you do ask for optional information, mark the labels of optional fields with ‘(optional)’
 - don’t mark mandatory fields with asterisks
 
-For a complete accounting of form elements, see the [Bolt forms examples in Pattern Lab](https://bolt-design-system.com/pattern-lab/?p=viewall-components-form). Below are the most common elements and their considerations.
+Below are the most common elements and their considerations.
 
 ### Text inputs
 
