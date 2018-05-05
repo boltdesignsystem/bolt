@@ -51,7 +51,6 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 // Reset elements
 h1, h2, h3, h4, h5, h6, p {
   &.c-bolt-text {
-    color: inherit;
     margin: 0;
     padding: 0;
 
@@ -63,6 +62,31 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 .c-bolt-text {
+  // Font-Family
+  &--headline {
+    @include bolt-font-family('heading');
+  }
+  &--body {
+    @include bolt-font-family('body');
+  }
+  &--code {
+    @include bolt-font-family('code');
+  }
+
+  // Color
+  &--theme-headline-text-color {
+    color: inherit;
+    color: var(--bolt-theme-heading, inherit);
+  }
+  &--theme-body-text-color {
+    color: inherit;
+    color: var(--bolt-theme-body, inherit);
+  }
+  &--theme-code-text-color {
+    color: inherit;
+    color: var(--bolt-theme-code, inherit);
+  }
+
   // Font Weight Options
   &--weight-semibold {
     @include bolt-font-weight(semibold);

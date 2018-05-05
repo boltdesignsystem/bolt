@@ -54,6 +54,7 @@ properties:
   lineHeight:
     type: string
     description: Font line height.
+    default: regular
     enum:
       - tight
       - regular
@@ -98,7 +99,7 @@ properties:
   display:
     type: string
     description: The display type of the wrapper
-    default: inline
+    default: block
     enum:
       - inline
       - inline-block
@@ -112,3 +113,20 @@ properties:
       - 60
       - 40
       - 20
+  headline:
+    type: boolean
+    description: Gives component headline default styling
+  subheadline:
+    type: boolean
+    description: Gives component subheadline default styling
+  eyebrow:
+    type: boolean
+    description: Gives component eyebrow default styling
+  fontFamily:
+    type: string
+    description: Adds correct font-family & text color theme styles
+    default: body
+    enum:
+      - headline
+      - body
+      - code

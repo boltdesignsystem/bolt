@@ -31,6 +31,10 @@ class BoltText extends BoltComponent() {
     util: props.string,
     vspacing: props.string,
     opacity: props.number,
+    headline: props.boolean,
+    subheadline: props.boolean,
+    eyebrow: props.boolean,
+    fontFamily: props.string,
   }
 
   constructor(self) {
@@ -43,24 +47,56 @@ class BoltText extends BoltComponent() {
     return (schemaData.enum.indexOf(propVal) > -1) ? propVal : (typeof schemaData.default != 'undefined' ? schemaData.default : false);
   }
 
+  subComponentValues(propVal, defaultVal) {
+    return propVal ? propVal : defaultVal;
+  }
+
   render({ props, state }) {
 
-    const weight = this.allowedValues(schema.properties.weight, this.props.weight);
-    const style = this.allowedValues(schema.properties.style, this.props.fontStyle);
-    const fontSize = this.allowedValues(schema.properties.fontSize, this.props.fontSize);
-    const display = this.allowedValues(schema.properties.display, this.props.display);
-    const align = this.allowedValues(schema.properties.align, this.props.align);
-    const transform = this.allowedValues(schema.properties.transform, this.props.transform);
-    const letterSpacing = this.allowedValues(schema.properties.letterSpacing, this.props.letterSpacing);
-    const lineHeight = this.allowedValues(schema.properties.lineHeight, this.props.lineHeight);
-    const quoted = !!this.props.quoted;
-    const util = this.props.util ? this.props.util : false;
-    const vspacing = this.allowedValues(schema.properties.vspacing, this.props.vspacing);
-    const opacity = this.allowedValues(schema.properties.opacity, this.props.opacity);
+    let weight = this.allowedValues(schema.properties.weight, this.props.weight);
+    let style = this.allowedValues(schema.properties.style, this.props.fontStyle);
+    let fontSize = this.allowedValues(schema.properties.fontSize, this.props.fontSize);
+    let display = this.allowedValues(schema.properties.display, this.props.display);
+    let align = this.allowedValues(schema.properties.align, this.props.align);
+    let transform = this.allowedValues(schema.properties.transform, this.props.transform);
+    let letterSpacing = this.allowedValues(schema.properties.letterSpacing, this.props.letterSpacing);
+    let lineHeight = this.allowedValues(schema.properties.lineHeight, this.props.lineHeight);
+    let quoted = !!this.props.quoted;
+    let util = this.props.util ? this.props.util : false;
+    let vspacing = this.allowedValues(schema.properties.vspacing, this.props.vspacing);
+    let opacity = this.allowedValues(schema.properties.opacity, this.props.opacity);
+    let fontFamily = this.allowedValues(schema.properties.fontFamily, this.props.fontFamily);
+
+    // Headline defaults
+    if (this.props.headline) {
+      fontSize = this.subComponentValues(this.props.fontSize, 'xlarge');
+      weight = this.subComponentValues(this.props.weight, 'bold');
+      letterSpacing = this.subComponentValues(this.props.letterSpacing, 'narrow');
+      vspacing = this.subComponentValues(this.props.vspacing, 'small');
+      fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
+    }
+
+    // Subheadline defaults
+    if (this.props.subheadline) {
+      fontSize = this.subComponentValues(this.props.fontSize, 'large');
+      vspacing = this.subComponentValues(this.props.vspacing, 'xsmall');
+      fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
+    }
+
+    // Eyebrow defaults
+    if (this.props.eyebrow) {
+      fontSize = this.subComponentValues(this.props.fontSize, 'small');
+      transform = this.subComponentValues(this.props.transform, 'uppercase');
+      vspacing = this.subComponentValues(this.props.vspacing, 'xsmall');
+      opacity = this.subComponentValues(this.props.opacity, 80);
+      fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
+    }
 
     // Important classes
     const classes = css(
       'c-bolt-text',
+      `c-bolt-text--${fontFamily}`,
+      `c-bolt-text--theme-${fontFamily}-text-color`,
       `c-bolt-text--weight-${weight}`,
       `c-bolt-text--style-${style}`,
       `c-bolt-text--font-${fontSize}`,
@@ -89,43 +125,43 @@ class BoltText extends BoltComponent() {
 
     const tag = this.props.tag ? this.props.tag : 'p';
 
-    if (tag == 'p') {
+    if (tag === 'p') {
       textItem = this.hyper.wire(this) `
         <p class=${classes}>${textItem}</p>
       `;
-    } else if (tag == 'h1') {
+    } else if (tag === 'h1') {
       textItem = this.hyper.wire(this) `
         <h1 class=${classes}>${textItem}</h1>
       `;
-    } else if (tag == 'h2') {
+    } else if (tag === 'h2') {
       textItem = this.hyper.wire(this) `
         <h2 class=${classes}>${textItem}</h2>
       `;
-    } else if (tag == 'h3') {
+    } else if (tag === 'h3') {
       textItem = this.hyper.wire(this) `
         <h3 class=${classes}>${textItem}</h3>
       `;
-    } else if (tag == 'h4') {
+    } else if (tag === 'h4') {
       textItem = this.hyper.wire(this) `
         <h4 class=${classes}>${textItem}</h4>
       `;
-    } else if (tag == 'h5') {
+    } else if (tag === 'h5') {
       textItem = this.hyper.wire(this) `
         <h5 class=${classes}>${textItem}</h5>
       `;
-    } else if (tag == 'h6') {
+    } else if (tag === 'h6') {
       textItem = this.hyper.wire(this) `
         <h6 class=${classes}>${textItem}</h6>
       `;
-    } else if (tag == 'span') {
+    } else if (tag === 'span') {
       textItem = this.hyper.wire(this) `
         <span class=${classes}>${textItem}</span>
       `;
-    } else if (tag == 'cite') {
+    } else if (tag === 'cite') {
       textItem = this.hyper.wire(this) `
         <cite class=${classes}>${textItem}</cite>
       `;
-    } else if (tag == 'div') {
+    } else if (tag === 'div') {
       textItem = this.hyper.wire(this) `
         <div class=${classes}>${textItem}</div>
       `;
