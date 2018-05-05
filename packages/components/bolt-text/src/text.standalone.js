@@ -35,7 +35,7 @@ class BoltText extends BoltComponent() {
     subheadline: props.boolean,
     eyebrow: props.boolean,
     fontFamily: props.string,
-  }
+  };
 
   constructor(self) {
     self = super(self);
@@ -44,7 +44,7 @@ class BoltText extends BoltComponent() {
   }
 
   allowedValues(schemaData, propVal) {
-    return (schemaData.enum.indexOf(propVal) > -1) ? propVal : (typeof schemaData.default != 'undefined' ? schemaData.default : false);
+    return (schemaData.enum.indexOf(propVal) > -1) ? propVal : (typeof schemaData.default !== 'undefined' ? schemaData.default : false);
   }
 
   subComponentValues(propVal, defaultVal) {
@@ -118,7 +118,7 @@ class BoltText extends BoltComponent() {
       });
       this.setAttribute('class', utilClasses.join(' '));
     } else if (util && util.length > 0) {
-      this.setAttribute('class','u-bolt-'+util.trim());
+      this.setAttribute('class', 'u-bolt-'+util.trim());
     }
 
     let textItem = this.props.url ? this.hyper.wire(this) `<a href="${this.props.url}">${this.slot('default')}</a>` : this.hyper.wire(this) `${this.slot('default')}`;
