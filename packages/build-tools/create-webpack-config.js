@@ -342,14 +342,14 @@ function createConfig(config) {
             name: '[name].[ext]',
           },
         },
-        {
-          test: [/\.json$/],
-          use: [
-            {
-              loader: 'json-loader',
-            },
-          ],
-        },
+        // {
+        //   test: [/\.json$/],
+        //   use: [
+        //     {
+        //       loader: 'json-loader',
+        //     },
+        //   ],
+        // },
         {
           test: [/\.yml$/, /\.yaml$/],
           use: [
