@@ -676,7 +676,7 @@ export function BoltVideo() {
           data-application-id
           loop={this.props.loop}
           className="video-js"
-          controls={this.props.controls}
+          controls={this.props.controls === false ? false : true}
         />
           {this.props.showMeta &&
             h(videoMetaTag)
