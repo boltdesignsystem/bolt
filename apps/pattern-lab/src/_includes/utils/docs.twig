@@ -9,17 +9,19 @@
       text: schema.title ? schema.title : "Component Title"
     } %}
 
-    {% include "@bolt/subheadline.twig" with {
-      weight: "regular",
-      size: "xxlarge",
-      tag: "p",
-      text: schema.description ? schema.description : "",
-      attributes: {
-        class: [
-          "u-bolt-margin-bottom-large"
-        ]
-      }
-    } %}
+    {% if schema.description %}
+      {% include "@bolt/subheadline.twig" with {
+        weight: "regular",
+        size: "xxlarge",
+        tag: "p",
+        text: schema.description,
+        attributes: {
+          class: [
+            "u-bolt-margin-bottom-large"
+          ]
+        }
+      } %}
+    {% endif %}
 
     {% if readmeFile %}
       <div class="c-bolt-docs__readme">
