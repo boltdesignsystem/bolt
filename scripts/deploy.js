@@ -123,6 +123,20 @@ async function init() {
       }
       console.log(aliasOutput2.stdout, aliasOutput2.stderr);
 
+      console.log('aliasing www.bolt-design-system.com to main site too.');
+      const aliasOutput3 = spawnSync('now', [
+        'alias',
+        deployedUrl,
+        'www.bolt-design-system.com',
+        ...baseNowArgs,
+      ], {encoding: 'utf8'});
+      if (aliasOutput3.status !== 0) {
+        console.error('Error aliasing:');
+        console.log(aliasOutput3.stdout, aliasOutput3.stderr);
+        process.exit(1);
+      }
+      console.log(aliasOutput3.stdout, aliasOutput3.stderr);
+
     } else if (TRAVIS_TAG && TRAVIS_TAG !== latestTag){
       console.error(`Error aliasing: Travis Tag of ${TRAVIS_TAG} doesn't match the latest tag of ${latestTag}`);
       process.exit(1);

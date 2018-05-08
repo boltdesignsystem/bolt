@@ -2,7 +2,7 @@
 title: Bands
 ---
 
-*For all band options and API docs, see the [Band reference in Pattern Lab](https://bolt-design-system.com/pattern-lab/?p=viewall-components-band).*
+*For all band options and API docs, see the [Band reference in Pattern Lab](/pattern-lab/?p=viewall-components-band).*
 
 A band is a full width container that goes edge to edge on the display. Bands can contain multiple internal components, and help chunk related content together in a section of a page.
 
@@ -122,7 +122,7 @@ The body content band helps content authors create more robust content sections 
 
 <img src="../../../images/band_content-body-article.png" />
 
-<figcaption>On an `x-light` background, a content body band can serve as the main container of a page.</figcaption>
+<figcaption>On an `xlight` background, a content body band can serve as the main container of a page.</figcaption>
 
 </figure>
 

@@ -32,19 +32,19 @@ When placed in a themed container (such as a band or a card), buttons are styled
 
 <figure>
 <img src="../../../images/band_dark_single-button.png" />
-<figcaption>In `dark` and `x-dark` bands, the primary button is in `yellow`.</figcaption>
+<figcaption>In `dark` and `xdark` bands, the primary button is in `yellow`.</figcaption>
 </figure>
 
 <figure>
 <img src="../../../images/band_xlight_one-button.png" />
-<figcaption>In `light` and `x-light` bands, the primary button is `indigo`.</figcaption>
+<figcaption>In `light` and `xlight` bands, the primary button is `indigo`.</figcaption>
 </figure>
 
 When two buttons exist in the same band, the second button should be styled as a `secondary` button. In bands, you can use a button group to create the styling by default. 
 
 <figure>
 <img src="../../../images/band_light_dual-button.png" />
-<figcaption>In `light` and `x-light` bands, the primary button color is `indigo` and the secondary is `white`.</figcaption>
+<figcaption>In `light` and `xlight` bands, the primary button color is `indigo` and the secondary is `white`.</figcaption>
 </figure>
 
 When creating a layout that includes a number of calls to action, such as a trio of cards, use the `text` style button instead of `primary` or `secondary` button styles to minimize cognitive overload.
