@@ -67,7 +67,7 @@ class BoltText extends BoltComponent() {
     let lineHeight = this.allowedValues(schema.properties.lineHeight, this.props.lineHeight);
     let quoted = !!this.props.quoted;
     let util = this.props.util ? this.props.util : false;
-    let vspacing = this.allowedValues(schema.properties.vspacing, this.props.vspacing);
+    // let vspacing = this.allowedValues(schema.properties.vspacing, this.props.vspacing);
     let opacity = this.allowedValues(schema.properties.opacity, this.props.opacity);
     let fontFamily = this.allowedValues(schema.properties.fontFamily, this.props.fontFamily);
     let url = this.props.url ? this.props.url : false;
@@ -118,7 +118,7 @@ class BoltText extends BoltComponent() {
       fontSize = this.subComponentValues(this.props.fontSize, 'xlarge');
       weight = this.subComponentValues(this.props.weight, 'bold');
       letterSpacing = this.subComponentValues(this.props.letterSpacing, 'narrow');
-      vspacing = this.subComponentValues(this.props.vspacing, 'small');
+      // vspacing = this.subComponentValues(this.props.vspacing, 'small');
       fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
       iconName = true;
     }
@@ -126,16 +126,16 @@ class BoltText extends BoltComponent() {
     // Subheadline defaults
     if (this.props.subheadline) {
       fontSize = this.subComponentValues(this.props.fontSize, 'large');
-      vspacing = this.subComponentValues(this.props.vspacing, 'xsmall');
+      // vspacing = this.subComponentValues(this.props.vspacing, 'xsmall');
       fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
       iconName = true;
     }
 
     // Eyebrow defaults
     if (this.props.eyebrow) {
-      fontSize = this.subComponentValues(this.props.fontSize, 'small');
+      fontSize = this.subComponentValues(this.props.fontSize, 'xsmall');
       transform = this.subComponentValues(this.props.transform, 'uppercase');
-      vspacing = this.subComponentValues(this.props.vspacing, 'xsmall');
+      // vspacing = this.subComponentValues(this.props.vspacing, 'xsmall');
       opacity = this.subComponentValues(this.props.opacity, 80);
       fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
       iconName = true;
@@ -157,7 +157,7 @@ class BoltText extends BoltComponent() {
       transform ? `c-bolt-text--transform-${transform}` : '',
       lineHeight ? `c-bolt-text--line-height-${lineHeight}` : '',
       quoted ? 'c-bolt-text--quoted' : '',
-      `c-bolt-text--vspacing-${vspacing}`,
+      // `c-bolt-text--vspacing-${vspacing}`,
       opacity ? `c-bolt-text--opacity-${opacity}` : '',
       iconValign ? `c-bolt-text--vertical-align-${iconValign}` : '',
       iconAlign ? `c-bolt-text--icon-align-${iconAlign}` : '',

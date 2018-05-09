@@ -7,6 +7,7 @@
 // Attribute selectors for parent bolt-text
 bolt-text {
   @include bolt-margin-bottom(medium); // Default vspacing
+  display: block;
 
   &[display="inline"] {
     display: inline;
@@ -19,6 +20,14 @@ bolt-text {
   }
 
   // Adding vspacing here so that we can remove vspacing on last-child
+  &[eyebrow] {
+    @include bolt-margin-bottom(xxsmall);
+  }
+  &[headline],
+  &[subheadline] {
+    @include bolt-margin-bottom(xsmall);
+  }
+
   &[vspacing='xsmall'] {
     @include bolt-margin-bottom(xxsmall);
   }
