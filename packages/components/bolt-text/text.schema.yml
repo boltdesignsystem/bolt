@@ -253,15 +253,17 @@ properties:
      - blue
   iconValign:
     type: string
-    description: Icon vertical position (doesn't work with display "inline")
+    description: Icon vertical position (works with icon-align set to "hang")
     default: center
     enum:
       - top
       - center
   iconAlign:
     type: string
-    description: Icon horizontal positioning
-    default: before
+    description: Icon horizontal positioning & "hang"
+    default: left
     enum:
-      - before
-      - after
+      - left
+      - left-hang
+      - right
+      - right-hang

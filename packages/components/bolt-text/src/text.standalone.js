@@ -106,7 +106,7 @@ class BoltText extends BoltComponent() {
         theIcon.setAttribute('color', iconColor);
       }
       // Alignment
-      if (iconAlign === 'before') {
+      if (iconAlign === 'left' || iconAlign === 'left-hang') {
         textItem = this.hyper.wire(this) `${theIcon} ${textItem}`;
       } else {
         textItem = this.hyper.wire(this) `${textItem} ${theIcon}`;
