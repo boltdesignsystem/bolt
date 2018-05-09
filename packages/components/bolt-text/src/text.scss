@@ -263,6 +263,34 @@ h1, h2, h3, h4, h5, h6, p {
     opacity: 0.2;
   }
 
+  // Icon Alignment
+  &.has-icon {
+    &.c-bolt-text--display-inline {
+      display: inline-flex;
+    }
+    &.c-bolt-text--display-inline-block,
+    &.c-bolt-text--display-block {
+      display: flex;
+      justify-content: space-between;
+    }
+    &.c-bolt-text--icon-align-before bolt-icon {
+      margin-right: 0.25rem;
+    }
+    &.c-bolt-text--icon-align-after bolt-icon {
+      margin-left: 0.25rem;
+    }
+  }
+  &--vertical-align-top.has-icon {
+    bolt-icon {
+      vertical-align: top;
+    }
+  }
+  &--vertical-align-center.has-icon {
+    bolt-icon {
+      align-self: center;
+    }
+  }
+
   // Spacing style -- added to parent so we can remove on last-child
   //&--vspacing-xsmall {
   //  margin-bottom: bolt-v-spacing(xxsmall);

@@ -5,8 +5,6 @@ import {
   css,
   hasNativeShadowDomSupport,
   BoltComponent,
-  declarativeClickHandler,
-  sanitizeBoltClasses,
 } from '@bolt/core';
 
 import styles from './text.scss';
@@ -35,6 +33,12 @@ class BoltText extends BoltComponent() {
     subheadline: props.boolean,
     eyebrow: props.boolean,
     fontFamily: props.string,
+    iconName: props.string,
+    iconBackground: props.string,
+    iconSize: props.string,
+    iconColor: props.string,
+    iconValign: props.string,
+    iconAlign: props.string,
   };
 
   constructor(self) {
@@ -66,6 +70,42 @@ class BoltText extends BoltComponent() {
     let vspacing = this.allowedValues(schema.properties.vspacing, this.props.vspacing);
     let opacity = this.allowedValues(schema.properties.opacity, this.props.opacity);
     let fontFamily = this.allowedValues(schema.properties.fontFamily, this.props.fontFamily);
+
+    // Icon vars
+    let iconName = this.allowedValues(schema.properties.iconName, this.props.iconName);
+    let iconValign = this.allowedValues(schema.properties.iconValign, this.props.iconValign);
+    let iconAlign = this.allowedValues(schema.properties.iconAlign, this.props.iconAlign);
+    let iconBackground = this.allowedValues(schema.properties.iconBackground, this.props.iconBackground);
+    let iconSize = this.allowedValues(schema.properties.iconSize, this.props.iconSize);
+    let iconColor = this.allowedValues(schema.properties.iconColor, this.props.iconColor);
+
+    // The text item
+    let textItem = this.hyper.wire(this) `${this.slot('default')}`;
+
+    // Build the icon
+    if (iconName && iconAlign) {
+      let theIcon = document.createElement('bolt-icon');
+      theIcon.setAttribute('name', iconName);
+
+      // Background
+      if (iconBackground) {
+        theIcon.setAttribute('background', iconBackground);
+      }
+      // Size
+      if (iconSize) {
+        theIcon.setAttribute('size', iconSize);
+      }
+      // Size
+      if (iconColor) {
+        theIcon.setAttribute('color', iconColor);
+      }
+      // Alignment
+      if (iconAlign === 'before') {
+        textItem = this.hyper.wire(this) `${theIcon} ${textItem}`;
+      } else {
+        textItem = this.hyper.wire(this) `${textItem} ${theIcon}`;
+      }
+    }
 
     // Headline defaults
     if (this.props.headline) {
@@ -108,6 +148,9 @@ class BoltText extends BoltComponent() {
       quoted ? 'c-bolt-text--quoted' : '',
       `c-bolt-text--vspacing-${vspacing}`,
       opacity ? `c-bolt-text--opacity-${opacity}` : '',
+      iconName ? 'has-icon' : '',
+      iconValign ? `c-bolt-text--vertical-align-${iconValign}` : '',
+      iconAlign ? `c-bolt-text--icon-align-${iconAlign}` : '',
     );
 
     // Adds out utilities to the outer parent <bolt-text />
@@ -121,7 +164,7 @@ class BoltText extends BoltComponent() {
       this.setAttribute('class', 'u-bolt-'+util.trim());
     }
 
-    let textItem = this.props.url ? this.hyper.wire(this) `<a href="${this.props.url}">${this.slot('default')}</a>` : this.hyper.wire(this) `${this.slot('default')}`;
+    textItem = this.props.url ? this.hyper.wire(this) `<a href="${this.props.url}">${textItem}</a>` : this.hyper.wire(this) `${textItem}`;
 
     const tag = this.props.tag ? this.props.tag : 'p';
 
