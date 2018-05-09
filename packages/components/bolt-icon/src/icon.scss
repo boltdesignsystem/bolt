@@ -41,13 +41,6 @@ bolt-icon {
   color: inherit;
   color: var(--bolt-theme-icon, inherit);
   pointer-events: none;
-
-  // The primary goal of this is to set the transition for icon color.  Perhaps it's a
-  // bit heavy-handed, but it seems more robust than just applying this to, say, 'path' elements.
-  // [Mai] This messing up transition effects for links, it should not be used.
-  // * {
-  //   transition: all $bolt-transition;
-  // }
 }
 
 bolt-icon[size='small'],
