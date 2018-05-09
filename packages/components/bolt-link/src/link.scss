@@ -79,7 +79,8 @@ $indexes: map-get($bolt-theme-link-colors, 'sets');
 
 @each $key, $value in $indexes {
   $prefix: map-get($bolt-theme-link-colors, 'theme-prefix');
-  .#{$prefix}#{$key} .c-bolt-link {
+  .#{$prefix}#{$key} .c-bolt-link:link,
+  .#{$prefix}#{$key} .c-bolt-link:visited {
     @include bolt-theme-link-color($key, $utility: false);
   }
 }
