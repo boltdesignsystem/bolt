@@ -264,7 +264,7 @@ h1, h2, h3, h4, h5, h6, p {
   }
 
   // Icon Alignment
-  &.has-icon {
+  &.has-icon:not(.has-url) {
     &.c-bolt-text--display-inline {
       display: inline-flex;
     }
@@ -277,6 +277,22 @@ h1, h2, h3, h4, h5, h6, p {
       margin-right: 0.25rem;
     }
     &.c-bolt-text--icon-align-after bolt-icon {
+      margin-left: 0.25rem;
+    }
+  }
+  &.has-icon.has-url { // If we have an <a> tag we need that to be the flex parent
+    &.c-bolt-text--display-inline > a {
+      display: inline-flex;
+    }
+    &.c-bolt-text--display-inline-block > a,
+    &.c-bolt-text--display-block > a {
+      display: flex;
+      justify-content: space-between;
+    }
+    &.c-bolt-text--icon-align-before > a bolt-icon {
+      margin-right: 0.25rem;
+    }
+    &.c-bolt-text--icon-align-after > a bolt-icon {
       margin-left: 0.25rem;
     }
   }

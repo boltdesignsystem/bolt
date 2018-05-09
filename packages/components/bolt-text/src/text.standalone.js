@@ -70,6 +70,7 @@ class BoltText extends BoltComponent() {
     let vspacing = this.allowedValues(schema.properties.vspacing, this.props.vspacing);
     let opacity = this.allowedValues(schema.properties.opacity, this.props.opacity);
     let fontFamily = this.allowedValues(schema.properties.fontFamily, this.props.fontFamily);
+    let url = this.props.url ? this.props.url : false;
 
     // Icon vars
     let iconName = this.allowedValues(schema.properties.iconName, this.props.iconName);
@@ -134,6 +135,8 @@ class BoltText extends BoltComponent() {
 
     // Important classes
     const classes = css(
+      iconName ? 'has-icon' : '',
+      url ? 'has-url' : '',
       'c-bolt-text',
       `c-bolt-text--${fontFamily}`,
       `c-bolt-text--theme-${fontFamily}-text-color`,
@@ -148,7 +151,6 @@ class BoltText extends BoltComponent() {
       quoted ? 'c-bolt-text--quoted' : '',
       `c-bolt-text--vspacing-${vspacing}`,
       opacity ? `c-bolt-text--opacity-${opacity}` : '',
-      iconName ? 'has-icon' : '',
       iconValign ? `c-bolt-text--vertical-align-${iconValign}` : '',
       iconAlign ? `c-bolt-text--icon-align-${iconAlign}` : '',
     );
@@ -164,7 +166,7 @@ class BoltText extends BoltComponent() {
       this.setAttribute('class', 'u-bolt-'+util.trim());
     }
 
-    textItem = this.props.url ? this.hyper.wire(this) `<a href="${this.props.url}">${textItem}</a>` : this.hyper.wire(this) `${textItem}`;
+    textItem = this.props.url ? this.hyper.wire(this) `<a href="${url}">${textItem}</a>` : this.hyper.wire(this) `${textItem}`;
 
     const tag = this.props.tag ? this.props.tag : 'p';
 
