@@ -84,7 +84,12 @@ class BoltText extends BoltComponent() {
     let textItem = this.hyper.wire(this) `${this.slot('default')}`;
 
     // Build the icon
-    if (iconName && iconAlign) {
+    if ( url && (this.props.headline || this.props.subheadline || this.props.eyebrow) ) {
+      // Headline, Subheadline, and Eyebrow always have chevron-right with url
+      textItem = this.hyper.wire(this) `
+        ${textItem} <bolt-icon name="chevron-right"></bolt-icon>
+      `;
+    } else if (iconName && iconAlign) {
       let theIcon = document.createElement('bolt-icon');
       theIcon.setAttribute('name', iconName);
 
@@ -115,6 +120,7 @@ class BoltText extends BoltComponent() {
       letterSpacing = this.subComponentValues(this.props.letterSpacing, 'narrow');
       vspacing = this.subComponentValues(this.props.vspacing, 'small');
       fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
+      iconName = true;
     }
 
     // Subheadline defaults
@@ -122,6 +128,7 @@ class BoltText extends BoltComponent() {
       fontSize = this.subComponentValues(this.props.fontSize, 'large');
       vspacing = this.subComponentValues(this.props.vspacing, 'xsmall');
       fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
+      iconName = true;
     }
 
     // Eyebrow defaults
@@ -131,6 +138,7 @@ class BoltText extends BoltComponent() {
       vspacing = this.subComponentValues(this.props.vspacing, 'xsmall');
       opacity = this.subComponentValues(this.props.opacity, 80);
       fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
+      iconName = true;
     }
 
     // Important classes
