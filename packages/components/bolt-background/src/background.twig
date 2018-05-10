@@ -37,7 +37,7 @@
   fill in fills|keys ? baseClass ~ "__overlay--" ~ fills[fill] ~ "-fill" : baseClass ~ "__overlay--color-fill"
 ] %}
 
-{% set shapeGroup =  shapeGroup in shapeGroups ? shapeGroup %}
+{% set shapeGroup =  shapeGroup in shapeGroups ? shapeGroup : 'none' %}
 {% set shapeClasses = [
   baseClass ~ "__shapes",
   shapeAlignment in shapeAlignments ? baseClass ~ "__shapes--" ~ shapeAlignment : baseClass ~ "__shapes--right"
@@ -66,7 +66,7 @@
         <div {{ overlayAttributes.addClass(overlayClasses) }} ></div>
       {% endif %}
 
-      {% if shapeGroup %}
+      {% if shapeGroup is not same as('none') %}
         <div {{ shapeAttributes.addClass(shapeClasses) }}>
           {% include "@bolt/background-shapes.twig" with { "shapeGroup": shapeGroup } only %}
         </div>
@@ -75,3 +75,7 @@
     </div>
   </div>
 </bolt-background>
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-background/background.schema.yml', _self) | raw }}
+{% endif %}
