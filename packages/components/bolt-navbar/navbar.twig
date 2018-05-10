@@ -1,22 +1,24 @@
-{% set themeOptions = [
-  "xlight",
-  "light",
-  "medium",
-  "dark",
-  "xdark"
-] %}
+{% set schema = bolt.data.components['@bolt-components-navbar'].schema %}
 
-{% set vspacingOptions = [
-  "xsmall",
-  "small"
-] %}
+{% set prefix = "c-bolt-" %}
+{% set componentName = "navbar" %}
 
-{% set theme = theme == false and theme is not null ? "false" : theme in themeOptions ? theme | default("medium") %}
-{% set gradient = gradient == false and gradient is not null ? "false" : "true" | default("true") %}
-{% set vspacing = vspacing == false and vspacing is not null ? "false" : vspacing in vspacingOptions ? vspacing | default("xsmall") %}
+{% set themeOptions = schema.properties.theme.enum %}
+{% set theme = theme in themeOptions ? theme : schema.properties.theme.default %}
+
+{% set vspacingOptions = schema.properties.vspacing.enum %}
+{% set vspacing = vspacing in vspacingOptions ? vspacing : schema.properties.vspacing.default %}
+
+{% set gradientOptions = schema.properties.gradient.enum %}
+{% set gradient = gradient in gradientOptions ? gradient : schema.properties.gradient.default %}
 
 
-<bolt-navbar>
+<bolt-{{ componentName }}
+  {% if theme %} theme="{{ theme }}" {% endif %}
+  {% if vspacing %} vspacing="{{ vspacing }}" {% endif %}
+  {% if gradient %} gradient="{{ gradient }}" {% endif %}
+  bolt-component
+>
   {% embed "@bolt-components-band/band.twig" with {
     size: vspacing,
     theme: theme,
@@ -40,7 +42,7 @@
     {% block band_content %}
       <nav class="c-bolt-navbar">
         {% if title %}
-          {% include "@bolt-components-navbar/navbar-brand.twig" with title only %}
+          {% include "@bolt-components-navbar/_navbar-title.twig" with title only %}
         {% endif %}
 
         {% if links %}
@@ -52,7 +54,7 @@
     {% endblock %}
 
   {% endembed %}
-</bolt-navbar>
+</bolt-{{ componentName }}>
 
 
 {% if enable_json_schema_validation %}
