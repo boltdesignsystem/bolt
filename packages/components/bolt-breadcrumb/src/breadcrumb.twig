@@ -1,42 +1,11 @@
-{# Sample Usage
-  {% include "@bolt/breadcrumb.twig" with {
-    "contentItems": [
-      include("@bolt/link.twig", {
-        "text": "Home",
-        "url": "#"
-      }),
-      include("@bolt/link.twig", {
-        "text": "Landing Page",
-        "url": "#"
-      }),
-      include("@bolt/link.twig", {
-        "text": "Sub Page",
-        "url": "#"
-      }),
-
-      // Note about accessibility: if the last link is the current page, then it should have the aria-current="page" attribute. Make sure to add that in the json data.
-      include("@bolt/link.twig", {
-        "text": "Current Page",
-        "url": "#",
-        "attributes": {
-          "aria-current": "page"
-        },
-      }),
-    ]
-  } only %}
-#}
-
-
 {% set prefix = "c-bolt-" %}
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set componentName = "breadcrumb" %}
 {% set baseClass = prefix ~ componentName %}
 
-
 {% set classes = [
   baseClass
 ] %}
-
 
 <bolt-{{ componentName }} bolt-component>
   <nav {{ attributes.addClass(classes) }} aria-label="Breadcrumb" role="navigation">
@@ -49,3 +18,7 @@
     </ol>
   </nav>
 </bolt-{{ componentName }}>
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-breadcrumb/breadcrumb.schema.yml', _self) | raw }}
+{% endif %}

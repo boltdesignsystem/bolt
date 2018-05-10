@@ -1,3 +1,9 @@
 $schema: http://json-schema.org/draft-04/schema#
 title: Breadcrumb
 type: object
+properties:
+  contentItems:
+    type: array
+    description: Breadcrumb pieces.
+    items:
+      type: string
