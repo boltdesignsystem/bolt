@@ -65,7 +65,22 @@ h1, h2, h3, h4, h5, h6, p {
 
     a:link, a:visited {
       color: inherit;
+      color: var(--bolt-theme-link-default,var(--bolt-theme-link,#545da6));
       text-decoration: none;
+    }
+    a:hover {
+      color: inherit;
+      color: var(--bolt-theme-link-hover,var(--bolt-theme-link,#545da6));
+      text-decoration: underline;
+    }
+
+    &.c-bolt-text--body {
+      a:link, a:visited {
+        text-decoration: underline;
+      }
+      a:hover {
+        text-decoration: none;
+      }
     }
   }
 }
