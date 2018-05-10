@@ -1,18 +1,9 @@
 $schema: http://json-schema.org/draft-04/schema#
 title: Block List
 type: object
+require:
+  - items
 properties:
-  theme:
-    type: string
-    description: Color theme. Can be set to false for a transparent background.
-    default: false
-    enum:
-      - xlight
-      - light
-      - dark
-      - xdark
-      - medium
-      - 'false'
   items:
     type: array
     title: The content items
