@@ -8,3 +8,9 @@ properties:
   url:
     type: string
     description: Optional. When url is present, tag changes to `a`, otherwise tag would be `span`.
+  tag:
+    type: string
+    description: Html tag to be used. If a URL is provided, this will default to `a`, otherwise will default to `span`.
+    enum:
+      - a
+      - span

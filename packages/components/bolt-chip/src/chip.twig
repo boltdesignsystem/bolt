@@ -1,10 +1,3 @@
-{# Sample Usage
-  {% include "@bolt/chip.twig" with {
-    text: "This is a chip",
-    url: "http://google.com"  // Optional; When url is present, tag changes to `a`, otherwise tag would be `span`.
-  } only %}
-#}
-
 {% set tags = ["span", "a"] %} {# Available Chip Tags #}
 {% set prefix = "c-bolt-" %}
 
