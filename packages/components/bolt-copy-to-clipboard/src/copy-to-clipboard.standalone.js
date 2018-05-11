@@ -24,7 +24,7 @@ export class BoltCopyToClipboard extends BoltComponent() {
   }
 
   connecting() {
-    this.copyLink = this.querySelector('.js-bolt-copy-to-clipboard__default');
+    this.copyLink = this.querySelector('.js-bolt-copy-to-clipboard--default');
     this.parentElem = this.querySelector('.js-bolt-copy-to-clipboard');
 
     this.copyLink.addEventListener('click', this.clickHandler);

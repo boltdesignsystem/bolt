@@ -8,36 +8,25 @@ bolt-copy-to-clipboard {
   display: inline-block;
 }
 
-.c-bolt-copy-to-clipboard__icon,
-.c-bolt-copy-to-clipboard__copied {
-  opacity: 0;
+.c-bolt-copy-to-clipboard__spinner,
+.c-bolt-copy-to-clipboard--copied {
   position: absolute;
   pointer-events: none;
+  opacity: 0;
 }
 
-.c-bolt-copy-to-clipboard__icon {
+.c-bolt-copy-to-clipboard__spinner {
   color: bolt-color(indigo, light);
   transform: scale(0) rotate(0deg);
 }
 
-.c-bolt-copy-to-clipboard__default,
-.c-bolt-copy-to-clipboard__copied {
-  .c-bolt-link__icon {
-    color: bolt-color(indigo, light);
-  }
-}
-
-.c-bolt-copy-to-clipboard__copied {
-  pointer-events: none;
+.c-bolt-copy-to-clipboard--copied {
   display: block;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-
-  .c-bolt-link__text {
-    color: bolt-color(teal, dark);
-  }
+  pointer-events: none;
 }
 
 .c-bolt-copy-to-clipboard {
@@ -46,34 +35,34 @@ bolt-copy-to-clipboard {
   text-align: left;
 
   &.is-copied {
-    .c-bolt-copy-to-clipboard__default {
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      pointer-events: none;
+    .c-bolt-copy-to-clipboard--default {
       display: inline-block;
       position: relative;
       top: 0;
       left: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
 
-    .c-bolt-copy-to-clipboard__icon {
+    .c-bolt-copy-to-clipboard__spinner {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
       opacity: 1;
       transform: scale(1) rotate(360deg);
       transition: all 0.5s ease 0.75s;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      margin: auto;
     }
   }
 
   &.is-copied.is-transitioning {
-    .c-bolt-copy-to-clipboard__icon {
+    .c-bolt-copy-to-clipboard__spinner {
       opacity: 0;
       transition: opacity 1s ease;
     }
 
-    .c-bolt-copy-to-clipboard__copied {
+    .c-bolt-copy-to-clipboard--copied {
       opacity: 1;
       transition: opacity 1s ease 0.75s;
     }
