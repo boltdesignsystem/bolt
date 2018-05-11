@@ -1,7 +1,4 @@
-{% set schema = bolt.data.components['@bolt-components-navbar'].schema %}
-
-{% set prefix = "c-bolt-" %}
-{% set componentName = "navbar" %}
+{% set schema = bolt.data.components["@bolt-components-navbar"].schema %}
 
 {% set themeOptions = schema.properties.theme.enum %}
 {% set theme = theme in themeOptions ? theme : schema.properties.theme.default %}
@@ -13,16 +10,16 @@
 {% set gradient = gradient in gradientOptions ? gradient : schema.properties.gradient.default %}
 
 
-<bolt-{{ componentName }}
+<bolt-navbar
   {% if theme %} theme="{{ theme }}" {% endif %}
   {% if vspacing %} vspacing="{{ vspacing }}" {% endif %}
   {% if gradient %} gradient="{{ gradient }}" {% endif %}
   bolt-component
 >
   {% embed "@bolt-components-band/band.twig" with {
-    size: vspacing,
-    theme: theme,
-    fullBleed: true
+    "size": vspacing,
+    "theme": theme,
+    "fullBleed": true
   } %}
 
     {% block band_background %}
@@ -54,9 +51,9 @@
     {% endblock %}
 
   {% endembed %}
-</bolt-{{ componentName }}>
+</bolt-navbar>
 
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-navbar/navbar.schema.yml', _self) }}
+  {{ validate_data_schema("@bolt-components-navbar/navbar.schema.yml", _self) }}
 {% endif %}
