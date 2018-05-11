@@ -1,4 +1,6 @@
-
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-teaser/teaser.schema.yml', _self) | raw }}
+{% endif %}
 
 <bolt-teaser>
 {% if eyebrow %}
@@ -36,7 +38,3 @@
   } only %}
 {% endif %}
 </bolt-teaser>
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-teaser/teaser.schema.yml', _self) | raw }}
-{% endif %}
