@@ -1,3 +1,6 @@
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-video/video.schema.yml', _self) | raw }}
+{% endif %}
 
 {% set videoUuid = videoUuid | default("js-bolt-video-uuid--" ~ random()) %}
 

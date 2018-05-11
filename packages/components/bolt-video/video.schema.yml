@@ -1,3 +1,43 @@
 $schema: http://json-schema.org/draft-04/schema#
 title: Video
 type: object
+properties:
+  videoUuid:
+    type: string
+    description: A unique identifying string, randomly generated if not provided.
+  ratio:
+    type: boolean
+    description: Maintain video ratio.
+  collapsed:
+    type: boolean
+    description: Should the video be collapsed on load.
+  showMeta:
+    type: boolean
+    description: Should the video show meta data.
+    default: true
+  showMetaTitle:
+    type: boolean
+    description: Should the video show meta title.
+    default: true
+  controls:
+    type: boolean
+    description: Should the video controls be available.
+    default: true
+  autoplay:
+    type: boolean
+    description: Should the video auto-play on load.
+    default: false
+  loop:
+    type: boolean
+    description: Should the video loop.
+    default: false
+  videoId:
+    type: string
+    description: Video Id.
+  playerId:
+    type: string
+    description: Player Id.
+  isBackgroundVideo:
+    type: boolean
+    description: Set to true if the video is a background.
+    default: false
