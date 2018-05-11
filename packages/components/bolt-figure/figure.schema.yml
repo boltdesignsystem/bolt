@@ -4,17 +4,15 @@ type: object
 properties:
   image:
     type: object
-    properties:
-      src:
-        type: string
-        description: Source url.
-      lazyLoad:
-        type: boolean
-        description: To speed performace, lazyload will load images as needed.
-        default: true
-        enum:
-          - true
-          - false
+    description: A bolt image object.
+    ref: '@bolt-components-image/image.schema.yml'
   caption:
     description: Figure caption.
     type: string
+  icon:
+    type: object
+    description: A bolt icon object.
+    ref: '@bolt-components-icon/icon.schema.yml'
+  content:
+    type: string
+    description: Content to place in the figure.
