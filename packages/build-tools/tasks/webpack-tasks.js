@@ -1,8 +1,14 @@
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const chalk = require('chalk');
+const chokidar = require('chokidar');
 const createWebpackConfig = require('../create-webpack-config');
 const formatWebpackMessages = require('../utils/formatWebpackMessages');
+const stringify = require('json-stringify-safe');
+const serve = require('webpack-serve');
+const WebSocket = require('ws');
+const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
+
 const events = require('../utils/events');
 const log = require('../utils/log');
 const { getConfig } = require('../utils/config-store');
@@ -163,6 +169,71 @@ function server() {
       }
       return resolve();
     });
+    // if (!config.prod) {
+    //   webpackConfig.entry['bolt-global'].unshift(hotMiddlewareScript);
+    // }
+
+    // serve({
+    //   config: webpackConfig,
+    //   content: [
+    //     path.resolve(process.cwd(), config.wwwDir),
+    //   ],
+    //   dev: {
+    //     stats: webpackConfig.devServer.stats,
+    //     watchContentBase: webpackConfig.devServer.watchContentBase,
+    //     contentBase: webpackConfig.devServer.contentBase,
+    //   },
+    //   // hot: {
+    //   //   host: 'localhost',
+    //   //   port: 8090,
+    //   // },
+    //   hot: true,
+    //   add: (app, middleware, options) => {
+    //     // since we're manipulating the order of middleware added, we need to handle
+    //     // adding these two internal middleware functions.
+    //     middleware.webpack();
+    //     middleware.content();
+
+    //     // router *must* be the last middleware added
+    //     // app.use(router.routes());
+    //   },
+    //   logTime: true,
+    //   // on: {
+    //   //   listening(server) {
+    //   //     const socket = new WebSocket('ws://localhost:8090');
+    //   //     const watchPath = webpackConfig.devServer.contentBase;
+    //   //     const options = {};
+    //   //     const watcher = chokidar.watch(watchPath, options);
+
+    //   //     watcher.on('change', (path) => {
+    //   //       // log.info(`Wrote WebPack stats json file to "${path.relative(process.cwd(), statsFilePath)}"`);
+    //   //       log.info(`File ${path} has changed. Reloading...`);
+    //   //       console.log(Date());
+
+    //   //       const data = {
+    //   //         type: 'broadcast',
+    //   //         data: {
+    //   //           type: 'window-reload',
+    //   //           data: {},
+    //   //         },
+    //   //       };
+
+    //   //       socket.send(stringify(data));
+    //   //     });
+
+    //   //     server.on('close', () => {
+    //   //       watcher.close();
+    //   //     });
+    //   //   },
+    //   // },
+    // });
+
+    // new WebpackDevServer(webpack(webpackConfig), webpackConfig.devServer).listen(webpackConfig.devServer.port, 'localhost', function (err) {
+    //   if (err) {
+    //     return reject(err);
+    //   }
+    //   return resolve();
+    // });
 
   });
 }

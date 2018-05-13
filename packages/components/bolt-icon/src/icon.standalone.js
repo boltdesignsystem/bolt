@@ -16,7 +16,9 @@ import {
 import PubSub from 'pubsub-js';
 import upperCamelCase from 'uppercamelcase';
 import * as Icons from '@bolt/components-icons';
-import styles from './icon.scss';
+import * as styles from './icon.scss';
+
+console.log(styles);
 
 const backgroundStyles = [
   'circle',
@@ -42,7 +44,7 @@ export class BoltIcon extends withPreact(withComponent()) {
     // programatically spell out the contrast color that needs to get used
     contrastColor: props.string,
   }
-  
+
   constructor(self) {
     self = super(self);
     this.useShadow = hasNativeShadowDomSupport;
@@ -91,7 +93,7 @@ export class BoltIcon extends withPreact(withComponent()) {
         );
       }
     }
-    
+
   }
 
   render() {

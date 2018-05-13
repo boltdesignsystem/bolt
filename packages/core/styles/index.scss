@@ -1,12 +1,56 @@
 /* ------------------------------------ *\
   BOLT CSS CORE
 \* ------------------------------------ */
-@import 'breakpoint-sass';
-@import 'breakpoint-slicer/stylesheets/breakpoint-slicer';
-@import 'sassy-maps/sass/sassy-maps';
-@import '@theme-tools/sass-export-data/export-data.scss';
-@import '01-settings/**/*.scss';
-@import '02-tools/**/*.scss';
+@import '~breakpoint-sass/stylesheets/_breakpoint.scss';
+@import '~breakpoint-slicer/stylesheets/breakpoint-slicer';
+@import '~sassy-maps/sass/sassy-maps';
+@import '~@theme-tools/sass-export-data/export-data.scss';
+// @import '01-settings/**/*.scss';
+
+@import './01-settings/_settings-z-index.scss';
+@import './01-settings/settings-breakpoints/_settings-breakpoints.scss';
+@import './01-settings/settings-colors/_settings-colors.scss';
+@import './01-settings/settings-font-family/_settings-font-family.scss';
+@import './01-settings/settings-font-size/_settings-font-size.scss';
+@import './01-settings/settings-font-weight/_settings-font-weight.scss';
+@import './01-settings/settings-global/_settings-global.scss';
+@import './01-settings/settings-shadow/_settings-shadow.scss';
+@import './01-settings/settings-spacing/_settings-spacing.scss';
+
+@import './02-tools/tools-breakpoint/_tools-breakpoint.scss';
+@import './02-tools/tools-button-color/_tools-button-color.scss';
+@import './02-tools/tools-clearfix/_tools-clearfix.scss';
+@import './02-tools/tools-color-palette/_tools-color-palette.scss';
+@import './02-tools/tools-css-vars/_tools-css-vars.scss';
+@import './02-tools/tools-font-face/_tools-font-face.scss';
+@import './02-tools/tools-font-family/_tools-font-family.scss';
+@import './02-tools/tools-font-kerning/_tools-font-kerning.scss';
+@import './02-tools/tools-font-size/_tools-font-size.scss';
+@import './02-tools/tools-font-weight/_tools-font-weight.scss';
+@import './02-tools/tools-linear-interpolation/_tools-linear-interpolation.scss';
+@import './02-tools/tools-list-remove/_tools-list-remove.scss';
+@import './02-tools/tools-list-sort/_tools-list-sort.scss';
+@import './02-tools/tools-map-sort/_tools-map-sort.scss';
+@import './02-tools/tools-no-select/_tools-no-select.scss';
+@import './02-tools/tools-poly-fluid-sizing/_tools-poly-fluid-sizing.scss';
+@import './02-tools/tools-px-to-rem/_tools-px-to-rem.scss';
+@import './02-tools/tools-scrolling/_tools-scrolling.scss';
+@import './02-tools/tools-shadow/_tools-shadow.scss';
+@import './02-tools/tools-spacing/_tools-spacing.scss';
+@import './02-tools/tools-spacing/libs/_tools-collapse-directionals.scss';
+@import './02-tools/tools-spacing/libs/_tools-contains-falsy.scss';
+@import './02-tools/tools-spacing/libs/_tools-directional-property.scss';
+@import './02-tools/tools-spacing/libs/_tools-normalize-spacing-sizes.scss';
+@import './02-tools/tools-spacing/libs/_tools-spacing-margin.scss';
+@import './02-tools/tools-spacing/libs/_tools-spacing-padding.scss';
+@import './02-tools/tools-strip-unit/_tools-strip-unit.scss';
+@import './02-tools/tools-text-contrast/_tools-text-contrast.scss';
+@import './02-tools/tools-uppercase/_tools-uppercase.scss';
+@import './02-tools/tools-visuallyhidden/_tools-visuallyhidden.scss';
+@import './02-tools/tools-z-index/_tools-z-index.scss';
+
+
+// @import '02-tools/**/*.scss';
 
 /// Places an element full browser width
 @mixin bolt-full-bleed {

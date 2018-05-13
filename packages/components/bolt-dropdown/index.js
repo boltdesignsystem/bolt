@@ -1,5 +1,9 @@
 import { polyfillLoader } from '@bolt/core';
 
 polyfillLoader.then((res) => {
-  import('./dropdown.js');
+  import(
+    /* webpackChunkName: "bolt-dropdown" */
+    /* webpackPrefetch: true */
+    './dropdown.js',
+  );
 });

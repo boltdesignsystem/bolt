@@ -1,7 +1,49 @@
-@import "@bolt/core";
-@import 'normalize-scss/sass/normalize';
-@import "03-generic/**/*.scss";
-@import "04-elements/**/*.scss";
-@import "05-objects/**/*.scss";
-@import "06-themes/themes-general/**/*.scss";
-@import "07-utilities/**/*.scss";
+@import "~@bolt/core/styles/index.scss";
+@import '~normalize-scss/sass/normalize';
+
+@import './03-generic/_generic-font-stacks.scss';
+@import './03-generic/_generic-global.scss';
+@import './03-generic/_generic-normalize.scss';
+@import './03-generic/_generic-reset.scss';
+@import './03-generic/_generic-shared.scss';
+
+@import './04-elements/_elements-code.scss';
+@import './04-elements/_elements-headings.scss';
+@import './04-elements/_elements-hr.scss';
+@import './04-elements/_elements-images.scss';
+@import './04-elements/_elements-links.scss';
+@import './04-elements/_elements-misc.scss';
+@import './04-elements/_elements-page.scss';
+@import './04-elements/_elements-paragraphs.scss';
+@import './04-elements/_elements-small.scss';
+@import './04-elements/_elements-tables.scss';
+
+@import './05-objects/objects-bare-list/_objects-bare-list.scss';
+@import './05-objects/objects-block/_objects-block.scss';
+@import './05-objects/objects-crop/_objects-crop.scss';
+@import './05-objects/objects-flag/_objects-flag.scss';
+@import './05-objects/objects-grid/_objects-grid.scss';
+@import './05-objects/objects-inline-list/_objects-inline-list.scss';
+@import './05-objects/objects-island/_objects-island.scss';
+@import './05-objects/objects-ratio/ratio.scss';
+@import './05-objects/objects-ui-list/_objects-ui-list.scss';
+@import './05-objects/objects-wrapper/_objects-wrapper.scss';
+
+@import './06-themes/themes-general/_themes-dark.scss';
+@import './06-themes/themes-general/_themes-light.scss';
+@import './06-themes/themes-general/_themes-medium.scss';
+@import './06-themes/themes-general/_themes-xdark.scss';
+@import './06-themes/themes-general/_themes-xlight.scss';
+
+@import './07-utilities/_utilities-clearfix.scss';
+@import './07-utilities/_utilities-colors.scss';
+@import './07-utilities/_utilities-display.scss';
+@import './07-utilities/_utilities-flex.scss';
+@import './07-utilities/_utilities-height.scss';
+@import './07-utilities/_utilities-opacity.scss';
+@import './07-utilities/_utilities-shadow.scss';
+@import './07-utilities/_utilities-spacing.scss';
+@import './07-utilities/_utilities-text-align.scss';
+@import './07-utilities/_utilities-visuallyhidden.scss';
+@import './07-utilities/_utilities-widths.scss';
+@import './07-utilities/_utilities-z-index.scss';

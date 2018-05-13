@@ -10,18 +10,18 @@
     <!-- Default OG Tag examples (related to Bolt Share Component) -->
     {% include "@bolt-components-share/src/_share-meta-example.twig" %}
 
-    <link rel="stylesheet" href="{{ assets["bolt-global.css"] }}?cachebuster="{{ cacheBuster }}" media="all" />
-    <link rel="stylesheet" href="{{ assets["pl.css"] }}?cachebuster="{{ cacheBuster }}" media="all" />
+    <link rel="stylesheet" href="{{ assets["bolt-global.css"] }}" media="all" />
+    <link rel="stylesheet" href="{{ assets["pl.css"] }}" media="all" />
 
 
     {# @TODO: wire this up to use Critical CSS #}
     <style>
-      {{ inline("bolt-components-critical-fonts.css") }}
+      {{ inline( assets["bolt-components-critical-fonts.css"], 'wwwDir') }}
     </style>
 
     {# @TODO: wire this up to use Critical JS #}
     <script>
-      {{ inline("bolt-components-critical-fonts.js") }}
+      {{ inline( assets["bolt-components-critical-fonts.js"], 'wwwDir') }}
     </script>
 
 
