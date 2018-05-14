@@ -1,6 +1,15 @@
 /* ==========================================================================
-   #GRID
+   #BOLT GRID
    ========================================================================== */
+
+$bolt-grid-sizes: (
+  'full': none,
+  'xsmall': 'xsmall',
+  'small': 'small',
+  'medium': 'medium',
+  'large': 'large',
+  'xlarge': 'xlarge',
+);
 
 /**
  * 1. Workaround to Safari layout getting thrown off when using a negative letter-spacing to remove inline-block whitespace
@@ -24,7 +33,6 @@
 }
 
 
-
 .o-bolt-grid--rev {
   direction: rtl;
 
@@ -34,17 +42,6 @@
 }
 
 
-/**
- * Gutterless grids have all the properties of regular grids, minus any spacing.
- * Extends `.o-bolt-grid`.
- */
-.o-bolt-grid--full {
-  margin-left: 0;
-
-  > .o-bolt-grid__cell {
-    padding-left: 0;
-  }
-}
 
 /**
  * Centered grids align grid cells centrally without needing to use push or pull
@@ -58,6 +55,7 @@
     text-align: left;
   }
 }
+
 
 
 /**
@@ -110,76 +108,49 @@
 
 
 
-
-// Grid gutter sizes
-// .o-bolt-grid--xsmall {
-//   margin-left: bolt-spacing(xsmall) * -1;
-//
-//   > .o-bolt-grid__cell {
-//     padding-left: bolt-spacing(xsmall);
-//   }
-// }
-
-.o-bolt-grid--small {
-  margin-left: bolt-spacing(small) * -1;
-
-  > .o-bolt-grid__cell {
-    padding-left: bolt-spacing(small);
-  }
-}
-
-/**
- * Large gutters
+/** Grid gutter size variations
+ * Note: Gutterless grids have all the properties of regular grids, minus any spacing.
  */
-.o-bolt-grid--large {
-  margin-left: bolt-spacing(large) * -1;
 
-  > .o-bolt-grid__cell {
-    padding-left: bolt-spacing(large);
+@mixin _bolt-grid-sizes($breakpoint: null) {
+  @each $name, $size in $bolt-grid-sizes {
+    .o-bolt-grid--#{$name}#{$breakpoint} {
+
+      $value: 0; // Handle the 'full bleed' grid variation
+      @if ($name != 'full') {
+        $value: bolt-spacing($size) * -1;
+      }
+
+      @include bolt-margin-left($value);
+
+      > .o-bolt-grid__cell {
+        @include bolt-padding-left($value);
+      }
+    }
   }
 }
 
-/**
- * Extra wide gutters
- */
-.o-bolt-grid--xlarge {
-  margin-left: bolt-spacing(large) * -1;
+@include _bolt-grid-sizes;
 
-  > .o-bolt-grid__cell {
-    padding-left: bolt-spacing(large);
+// Loop over our breakpoints
+@each $breakpoint in $breakpoints {
+  $breakpointName: nth($breakpoint, 1);
+  @include respond-to($breakpointName) {
+    @include _bolt-grid-sizes(\@#{$breakpointName});
   }
 }
 
 
-// /**
-//  * Extra extra wide gutters
-//  */
-// %o-grid--xxlarge,
-// .o-bolt-grid--xxlarge {
-//
-//   @include respond-to(small) {
-//     margin-left: -$spacing-unit-xlarge * 2;
-//   }
-//   margin-left: -$spacing-unit-large * 2;
-//
-//   > %o-grid__cell,
-//   > .o-bolt-grid__cell {
-//
-//     @include respond-to(small) {
-//       padding-left: $spacing-unit-xlarge * 2;
-//     }
-//     padding-left: $spacing-unit-large * 2;
-//   }
-// }
 
+// Flex grid variation
 .o-bolt-grid--flex {
   display: flex;
   flex-flow: row wrap;
-
 }
 
 
 
+// Matrix grid varition (adds space below each row of grid cells)
 .o-bolt-grid--matrix {
   margin-bottom: bolt-v-spacing(medium) * -1;
 }
