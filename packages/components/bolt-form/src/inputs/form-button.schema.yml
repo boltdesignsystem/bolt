@@ -1,0 +1,16 @@
+$schema: http://json-schema.org/draft-04/schema#
+title: Form Button
+type: object
+properties:
+  text:
+    type: string
+    description: Button Text
+  icon:
+    type: object
+    description: Bolt icon.
+  width:
+    type: string
+    description: Width options.
+    enum:
+      - full
+      - full@small
