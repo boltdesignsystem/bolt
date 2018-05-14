@@ -1,3 +1,8 @@
+{% set attributes = create_attribute(attributes|default({})) %}
+{% if url %}
+  {% set attributes = attributes.setAttribute("href", url) %}
+{% endif %}
+
 {% set navbar_title %}
   <div class="c-bolt-navbar__title-icon">
     {% include "@bolt/icon.twig" with {
@@ -11,7 +16,7 @@
 {% endset %}
 
 {% if url %}
-  <a class="c-bolt-navbar__title c-bolt-navbar__title--link" href="{{ url }}">
+  <a class="c-bolt-navbar__title c-bolt-navbar__title--link" {{ attributes }}>
     {{ navbar_title }}
   </a>
 {% else %}
