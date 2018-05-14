@@ -87,11 +87,9 @@ async function build() {
       await internalTasks.mkDirs();
     }
     await manifest.writeBoltManifest();
-    if (!config.quick) {
-      await webpackTasks.compile();
-    }
-    await manifest.writeTwigNamespaceFile(process.cwd(), config.extraTwigNamespaces);
     await images();
+    await webpackTasks.compile();
+    await manifest.writeTwigNamespaceFile(process.cwd(), config.extraTwigNamespaces);
     switch (config.env) {
       case 'pl':
         await extraTasks.patternLab.compile();
@@ -100,7 +98,7 @@ async function build() {
         await extraTasks.static.compile();
         break;
     }
-    log.info(`Build complete after ${timer.end(startTime)}.`);
+    log.info(`Build completed in ${timer.end(startTime)}.`);
   } catch (error) {
     log.errorAndExit('Build failed', error);
   }
@@ -109,7 +107,7 @@ async function build() {
 async function watch() {
   try {
     const watchTasks = [
-      webpackTasks.watch(),
+
     ];
 
     switch (config.env) {

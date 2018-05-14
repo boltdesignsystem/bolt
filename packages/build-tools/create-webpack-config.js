@@ -4,11 +4,9 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const npmSass = require('npm-sass');
 const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const sassImportGlobbing = require('@theme-tools/sass-import-globbing');
 const { getBoltManifest, createComponentsManifest } = require('./utils/manifest');
 const { promisify } = require('util');
 const fs = require('fs');
@@ -224,6 +222,7 @@ function createConfig(config) {
       options: {
         sourceMap: true,
         plugins: () => [
+          postcssDiscardDuplicates,
           autoprefixer,
         ],
       },
@@ -289,6 +288,7 @@ function createConfig(config) {
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
               use: [
+                'css-hot-loader',
                 {
                   loader: MiniCssExtractPlugin.loader,
                 },
@@ -313,7 +313,7 @@ function createConfig(config) {
           test: /\.(woff|woff2)$/,
           loader: 'url-loader',
           options: {
-            limit: 10000,
+            limit: 500,
             name: 'fonts/[name].[ext]',
           },
         },
@@ -383,31 +383,17 @@ function createConfig(config) {
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional
-        filename: config.prod ? '[name].[hash].css' : '[name].css',
-        chunkFilename: config.prod ? '[id].[chunkhash].css' : '[id].css',
+        filename: config.prod ? '[name].[contenthash].css' : '[name].css',
+        chunkFilename: config.prod ? '[id].[contenthash].css' : '[id].css',
       }),
       new webpack.ProvidePlugin({
         Promise: 'es6-promise',
       }),
       new webpack.DefinePlugin(globalJsData),
       new webpack.NamedModulesPlugin(),
-      new HtmlWebpackPlugin({
-        title: 'Custom template',
-        // Load a custom template (lodash by default see the FAQ for details)
-        template: 'html-plugin-test.html.twig',
-      }),
-      new PreloadWebpackPlugin({
-        rel: 'preload',
-        include: 'allChunks', // or 'initial'
-      }),
     ],
   };
 
-  if (!config.prod) {
-    webpackConfig.plugins.push(
-      new webpack.HotModuleReplacementPlugin(),
-    );
-  }
 
   if (config.prod) {
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
