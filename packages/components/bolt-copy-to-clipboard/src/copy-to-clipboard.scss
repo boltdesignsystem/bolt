@@ -15,21 +15,14 @@ bolt-copy-to-clipboard {
 
   &.is-copied {
     .c-bolt-copy-to-clipboard__trigger {
-      display: inline-block;
-      position: relative;
-      top: 0;
-      left: 0;
       pointer-events: none;
       opacity: 0;
-      transition: opacity 0.5s ease;
     }
 
     .c-bolt-copy-to-clipboard__spinner {
-      top: 0;
-      bottom: 0;
-      margin: auto;
+      left: 0;
       opacity: 1;
-      transform: scale(1) rotate(360deg);
+      transform: scale(1) rotate(360deg) translateY(-50%);
       transition: all 0.5s ease 0.75s;
     }
   }
@@ -47,23 +40,28 @@ bolt-copy-to-clipboard {
   }
 }
 
+.c-bolt-copy-to-clipboard__trigger {
+  display: block;
+  transition: opacity 0.5s ease;
+}
+
 .c-bolt-copy-to-clipboard__spinner,
 .c-bolt-copy-to-clipboard__confirmation {
+  display: block;
   position: absolute;
   pointer-events: none;
   opacity: 0;
 }
 
 .c-bolt-copy-to-clipboard__spinner {
-  color: bolt-color(indigo, light);
-  transform: scale(0) rotate(0deg);
+  top: 50%;
+  color: bolt-color(indigo, light); // [Mai] TODO: this is supposed to be the theme link color, must update once theming is refactored.
+  transform: scale(0) rotate(0deg) translateY(-50%);
+  transform-origin: top center;
 }
 
 .c-bolt-copy-to-clipboard__confirmation {
-  display: block;
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  pointer-events: none;
 }
