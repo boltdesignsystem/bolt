@@ -26,7 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
    * Make sure all external facing links open in a new tab in PL.
    * Important as external links can behave strangely within the iframe setup of PL.
    */
-  document.querySelectorAll('a').forEach((item) => {
+  const linksNodeList = document.querySelectorAll('a');
+  Array.prototype.forEach.call(linksNodeList, function (item) {
     const href = item.getAttribute('href');
     if (href){
       if (href.startsWith('http')) {
