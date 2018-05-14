@@ -104,6 +104,8 @@ async function getPkgInfo(pkgName) {
       info.assets.main = path.join(dir, pkg.main);
       ensureFileExists(info.assets.main);
     }
+    // @TODO Currently loads one schema per component. Needs to be refactored to handle
+    // multiple schema when sub-components are present. See the form component
     if (pkg.schema) {
       const schemaFilePath = path.join(dir, pkg.schema);
       const schema = await getDataFile(schemaFilePath);
