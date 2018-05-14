@@ -8,34 +8,13 @@ bolt-copy-to-clipboard {
   display: inline-block;
 }
 
-.c-bolt-copy-to-clipboard__spinner,
-.c-bolt-copy-to-clipboard--copied {
-  position: absolute;
-  pointer-events: none;
-  opacity: 0;
-}
-
-.c-bolt-copy-to-clipboard__spinner {
-  color: bolt-color(indigo, light);
-  transform: scale(0) rotate(0deg);
-}
-
-.c-bolt-copy-to-clipboard--copied {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  pointer-events: none;
-}
-
 .c-bolt-copy-to-clipboard {
   display: block;
   position: relative;
   text-align: left;
 
   &.is-copied {
-    .c-bolt-copy-to-clipboard--default {
+    .c-bolt-copy-to-clipboard__trigger {
       display: inline-block;
       position: relative;
       top: 0;
@@ -48,7 +27,6 @@ bolt-copy-to-clipboard {
     .c-bolt-copy-to-clipboard__spinner {
       top: 0;
       bottom: 0;
-      left: 0;
       margin: auto;
       opacity: 1;
       transform: scale(1) rotate(360deg);
@@ -62,9 +40,30 @@ bolt-copy-to-clipboard {
       transition: opacity 1s ease;
     }
 
-    .c-bolt-copy-to-clipboard--copied {
+    .c-bolt-copy-to-clipboard__confirmation {
       opacity: 1;
       transition: opacity 1s ease 0.75s;
     }
   }
+}
+
+.c-bolt-copy-to-clipboard__spinner,
+.c-bolt-copy-to-clipboard__confirmation {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.c-bolt-copy-to-clipboard__spinner {
+  color: bolt-color(indigo, light);
+  transform: scale(0) rotate(0deg);
+}
+
+.c-bolt-copy-to-clipboard__confirmation {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
 }
