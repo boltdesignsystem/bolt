@@ -18,3 +18,7 @@ Available variables:
 {% endif %}
 
 <textarea{{ attributes.addClass(_classes) }}>{{ value }}</textarea>
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-form'].schema.properties['form-textarea'], _self) | raw }}
+{% endif %}

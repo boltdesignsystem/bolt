@@ -26,3 +26,7 @@
 ] %}
 
 <div{{ attributes.addClass(classes) }}>{{ children }}</div>
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-form'].schema.properties['form-checkboxes'], _self) | raw }}
+{% endif %}

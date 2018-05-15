@@ -13,3 +13,8 @@
 #}
 
 {% extends "@bolt/form-checkboxes.twig" %}
+
+{# @todo Validation function cannot be called in an extend of another twig template. Suggested that `form-radios.schema.yml` is deleted and removed from form package.json#}
+{#{% if enable_json_schema_validation %}#}
+  {#{{ validate_data_schema(bolt.data.components['@bolt-components-form'].schema.properties['form-fieldset'], _self) | raw }}#}
+{#{% endif %}#}

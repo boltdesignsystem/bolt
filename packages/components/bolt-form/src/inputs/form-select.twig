@@ -28,3 +28,7 @@
 
   {% endif %}
 {% endspaceless %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-form'].schema.properties['form-select'], _self) | raw }}
+{% endif %}

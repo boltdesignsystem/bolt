@@ -26,3 +26,7 @@
 {% endif %}
 
 <label{{ attributes.addClass(_classes) }}>{{ title }}</label>
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-form'].schema.properties['form-label'], _self) | raw }}
+{% endif %}

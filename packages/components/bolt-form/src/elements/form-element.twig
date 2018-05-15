@@ -39,3 +39,7 @@ Available variables:
     </div>
   {% endif %}
 </div>
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-form'].schema.properties['form-element'], _self) | raw }}
+{% endif %}

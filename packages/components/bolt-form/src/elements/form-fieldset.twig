@@ -42,3 +42,7 @@ Available variables:
 
   </div>
 </fieldset>
+
+{% if enable_json_schema_validation %}
+{{ validate_data_schema(bolt.data.components['@bolt-components-form'].schema.properties['form-fieldset'], _self) | raw }}
+{% endif %}
