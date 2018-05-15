@@ -50,5 +50,5 @@
 </bolt-copy-to-clipboard>
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-copy-to-clipboard/copy-to-clipboard.schema.yml', _self) | raw }}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-copy-to-clipboard'].schema, _self) | raw }}
 {% endif %}

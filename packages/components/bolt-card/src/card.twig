@@ -179,5 +179,5 @@
 </bolt-card>
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(schema, _self) | raw }}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-card'].schema, _self) | raw }}
 {% endif %}

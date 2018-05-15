@@ -5,5 +5,5 @@
 </bolt-logo>
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-logo/logo.schema.yml', _self) | raw }}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-logo'].schema, _self) | raw }}
 {% endif %}

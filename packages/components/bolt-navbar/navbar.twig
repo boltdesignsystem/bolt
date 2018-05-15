@@ -56,5 +56,5 @@
 
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-navbar/navbar.schema.yml', _self) }}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-navbar'].schema, _self) | raw }}
 {% endif %}
