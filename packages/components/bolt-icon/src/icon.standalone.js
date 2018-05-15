@@ -18,8 +18,6 @@ import upperCamelCase from 'uppercamelcase';
 import * as Icons from '@bolt/components-icons';
 import * as styles from './icon.scss';
 
-console.log(styles);
-
 const backgroundStyles = [
   'circle',
   'square',
@@ -119,7 +117,6 @@ export class BoltIcon extends withPreact(withComponent()) {
     const Icon = name ? upperCamelCase(name) : '';
     const IconTag = Icons[`${Icon}`];
     const iconSize =  size && spacingSizes[size] ? ( spacingSizes[size].replace('rem', '') * (16 / 2)) : ( spacingSizes.medium.replace('rem', '') * (16 / 2) );
-
 
     return (
       <div className={classes}>
