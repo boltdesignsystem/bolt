@@ -42,9 +42,7 @@
     "test:ci": "node browserstack.js",
     "pretest": "node build-tools/scripts/check-imports.js",
     "precommit": "npm run lint:scss",
-    "prepush": "npm test && npm run build:full",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "prepush": "npm test && npm run build:full"
   },
   "config": {
     "commitizen": {
@@ -151,7 +149,6 @@
     "remark-preset-lint-markdown-style-guide": "^2.1.1",
     "remark-preset-lint-recommended": "^3.0.1",
     "sass-loader": "^6.0.6",
-    "snyk": "^1.69.7",
     "standard-version": "^4.2.0",
     "style-loader": "^0.18.2",
     "stylefmt": "^6.0.0",
@@ -174,7 +171,6 @@
     "husky": "^0.14.3",
     "node-fetch": "^2.0.0"
   },
-  "snyk": true,
   "lint-staged": {
     "*.md": [
       "remark --quiet --frail --no-stdout"
