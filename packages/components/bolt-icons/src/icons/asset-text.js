@@ -12,13 +12,13 @@ export const AssetText = ({ bgColor, fgColor, size, ...otherProps }) => {
       <defs>
         <path id="a" d="M0 1V0h20v2H0V1z" />
       </defs>
-      <g fill={bgColor} fill-rule="evenodd">
+      <g fill="none" fill-rule="evenodd">
         <path
           d="M3 11h14c.55 0 1-.45 1-1s-.45-1-1-1H3c-.55 0-1 .45-1 1s.45 1 1 1"
           fill={bgColor}
         />
         <g transform="translate(2 5)">
-          <mask id="b" fill={bgColor}>
+          <mask id="b" fill="#fff">
             <use xlink:href="#a" />
           </mask>
           <path
