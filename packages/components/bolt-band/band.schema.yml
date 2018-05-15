@@ -1,5 +1,14 @@
-$schema: 'http://json-schema.org/draft-04/schema#'
-title: Bolt Band
-category: layout
+$schema: http://json-schema.org/draft-04/schema#
+title: Band
 type: object
-format: grid
+properties:
+  spacing:
+    type: string
+    description: Top and bottom spacing inside the band component.
+    default: medium
+    enum:
+      - none
+      - xsmall
+      - small
+      - medium
+      - large
