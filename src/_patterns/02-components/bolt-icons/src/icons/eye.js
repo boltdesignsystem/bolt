@@ -15,7 +15,7 @@ const Eye = ({ color, size, ...otherProps }) => {
           fill="none"
         />
         <g transform="translate(0 2.994)">
-          <mask id="b" fill="currentColor">
+          <mask id="b" fill="#fff">
             <use xlinkHref="#a" />
           </mask>
           <path

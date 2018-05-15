@@ -15,7 +15,7 @@ const Download = ({ color, size, ...otherProps }) => {
           fill="none"
         />
         <g transform="translate(4 19.5)">
-          <mask id="b" fill="currentColor">
+          <mask id="b" fill="#fff">
             <use xlinkHref="#a" />
           </mask>
           <path

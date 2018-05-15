@@ -14,7 +14,7 @@ const AssetText = ({ color, size, ...otherProps }) => {
           fill="currentColor"
         />
         <g transform="translate(2 5)">
-          <mask id="b" fill="currentColor">
+          <mask id="b" fill="#fff">
             <use xlinkHref="#a" />
           </mask>
           <path

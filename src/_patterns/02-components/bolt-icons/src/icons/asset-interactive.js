@@ -14,7 +14,7 @@ const AssetInteractive = ({ color, size, ...otherProps }) => {
           fill="currentColor"
         />
         <g transform="translate(1 .044)">
-          <mask id="b" fill="currentColor">
+          <mask id="b" fill="#fff">
             <use xlinkHref="#a" />
           </mask>
           <path
