@@ -3,6 +3,7 @@ const path = require('path');
 module.exports = {
   // Environmental variable / preset to use
   env: 'pl',
+  openServerAtStart: true,
   buildDir: '../../www/pattern-lab/build',
   wwwDir: '../../www/',
   startPath: 'pattern-lab/index.html',
