@@ -1,14 +1,45 @@
-{% set schema = get_data('@bolt-components-text/text.schema.yml') %}
+{% set schema = get_data("@bolt-components-text/text.schema.yml") %}
 {% set code %}
   {% verbatim %}
     {% include "@bolt-components-text/text.twig" with {
-      text: 'Here is some dummy text'
-    } %}
+      text: "Eyebrow text",
+      eyebrow: true
+    } only %}
+
+    {% include "@bolt-components-text/text.twig" with {
+      text: "Headline example text",
+      headline: true
+    } only %}
+
+    {% include "@bolt-components-text/text.twig" with {
+      text: "Subheadline text goes here",
+      subheadline: true
+    } only %}
+
+    {% include "@bolt-components-text/text.twig" with {
+      text: "Here is some text with an icon",
+      tag: "div",
+      weight: "bold",
+      fontSize: "xlarge",
+      icon: {
+        name: "user",
+        background: "circle",
+        size: "xlarge",
+        color: "blue",
+        valign: "center",
+        align: "right"
+      },
+      util: [
+        'width-1/1',
+        'another-class',
+        'one-more-class'
+      ]
+    } only %}
   {% endverbatim %}
 {% endset %}
 
-{% include '@utils/docs.twig' with {
+{% include "@utils/docs.twig" with {
   schema: schema,
   code: code,
-  readmeFile: '@bolt-components-text/README.md',
+  readmeFile: "@bolt-components-text/README.md",
 } only %}

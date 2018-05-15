@@ -1,26 +1,12 @@
-<bolt-text
-    weight="bold"
-    font-size="xxlarge"
-    display="block"
-    align="center"
-    transform="uppercase"
-    letter-spacing="narrow"
-    line-height="regular"
-    vspacing="large"
-    util="display-block, display-none@lg, hover:height-full"
-    tag="h2"
-    font-family="headline"
-    icon-name="download"
-    icon-background="circle"
-    icon-size="medium"
-    icon-color="blue"
-    icon-valign="center"
-    icon-align="right"
-    url="http://google.com"
->
-  My awesome bolt - text component yo!
-</bolt-text>
-
-<bolt-text eyebrow>Here is an eyebrow</bolt-text>
-<bolt-text url="http://google.com" headline>Here is an awesome headline</bolt-text>
-<bolt-text url="http://google.com" vspacing="large" subheadline>This below is a subheadline</bolt-text>
+{% include "@bolt-components-text/text.twig" with {
+  text: "Here is eyebrow text",
+  eyebrow: true
+} only %}
+{% include "@bolt-components-text/text.twig" with {
+  text: "Headline: Here is some twig text",
+  headline: true
+} only %}
+{% include "@bolt-components-text/text.twig" with {
+  text: "Here is some subheadline text",
+  subheadline: true
+} only %}
