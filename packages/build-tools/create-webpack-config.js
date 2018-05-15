@@ -12,8 +12,6 @@ const { promisify } = require('util');
 const fs = require('fs');
 const readFile = promisify(fs.readFile);
 const deepmerge = require('deepmerge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const PreloadWebpackPlugin = require('preload-webpack-plugin');
 
 function createConfig(config) {
   // @TODO: move this setting to .boltrc config
@@ -214,7 +212,7 @@ function createConfig(config) {
       options: {
         sourceMap: true,
         modules: false,
-        importLoaders: 2,
+        importLoaders: 3,
       },
     },
     {
@@ -227,16 +225,15 @@ function createConfig(config) {
         ],
       },
     },
-    // {
-    //   loader: 'clean-css-loader',
-    //   options: {
-    //     skipWarn: true,
-    //     compatibility: 'ie9',
-    //     level: config.prod ? 1 : 0,
-    //     inline: ['remote'],
-    //     format: 'beautify',
-    //   },
-    // },
+    {
+      loader: 'clean-css-loader',
+      options: {
+        skipWarn: true,
+        compatibility: '*',
+        level: config.prod ? 2 : 0,
+        format: config.prod ? false : 'beautify',
+      },
+    },
     {
       loader: 'fast-sass-loader',
       options: {
@@ -261,8 +258,8 @@ function createConfig(config) {
     entry: buildWebpackEntry(),
     output: {
       path: path.resolve(process.cwd(), config.buildDir),
-      filename: '[name].[hash].js',
-      chunkFilename: '[name]-bundle.[chunkhash].js',
+      filename: config.prod ? '[name].[contenthash].js' : '[name].js',
+      chunkFilename: config.prod ? '[name]-bundle.[contenthash].js' : '[name]-bundle.js',
       publicPath,
     },
     cache: true,
@@ -394,7 +391,6 @@ function createConfig(config) {
     ],
   };
 
-
   if (config.prod) {
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
     // Config recommendation based off of https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1#f548
@@ -405,7 +401,6 @@ function createConfig(config) {
       uglifyOptions: {
         cache: true,
         compress: true,
-
         mangle: true,
       },
     }));
