@@ -68,6 +68,8 @@ $bolt-ordered-list-bullet-bg-color: rgba(bolt-color(gray), 0.2);
   }
 }
 
+
+// [Mai] This is an IE specific fix to center the number inside the circle. IE calculates line-height differently.
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   .c-bolt-ordered-list__item:before {
     line-height: $bolt-line-height--medium;
