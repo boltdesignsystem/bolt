@@ -16,6 +16,18 @@ bolt-navbar {
   align-items: center;
   justify-content: space-between;
   position: relative;
+
+
+
+  @supports (display: contents) {
+    flex-direction: row;
+    display: grid;
+    grid-template-columns: auto 1fr fit-content(100px);
+    grid-template-rows: 1fr auto;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 
@@ -59,12 +71,18 @@ bolt-navbar {
 .c-bolt-navbar__nav {
   @include bolt-margin(0 0 0 small);
 
-  // TODO: [Mai] The following is a hack to hide the nav on small screens, there should be a better option to hide and show in the future from the design team.
-  display: none;
-
-  @include respond-to(medium) {
-    display: block;
+  @supports (display: contents) {
+    display: contents;
+    grid-column: 2/span 3;
+    grid-row: 1/span 1;
   }
+
+  // TODO: [Mai] The following is a hack to hide the nav on small screens, there should be a better option to hide and show in the future from the design team.
+  // display: none;
+
+  // @include respond-to(medium) {
+  //   display: block;
+  // }
 }
 
 .c-bolt-navbar__nav {
