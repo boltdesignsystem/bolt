@@ -4,9 +4,7 @@
 bolt-icon {
   display: inline-block;
   vertical-align: middle;
-  // display: inline-flex;
-  color: inherit;
-  color: var(--bolt-theme-icon, inherit);
+  transition: inherit;
   width: 1em; // Default icon size if size prop not specified
   height: 1em; // Default icon size if size prop not specified
 
@@ -18,8 +16,6 @@ bolt-icon {
 
 :host {
   display: inline-block;
-  color: inherit;
-  color: var(--bolt-theme-icon, inherit);
   vertical-align: middle;
 }
 
@@ -41,12 +37,6 @@ bolt-icon {
   color: inherit;
   color: var(--bolt-theme-icon, inherit);
   pointer-events: none;
-
-  // The primary goal of this is to set the transition for icon color.  Perhaps it's a
-  // bit heavy-handed, but it seems more robust than just applying this to, say, 'path' elements.
-  * {
-    transition: all $bolt-transition;
-  }
 }
 
 bolt-icon[size='small'],
