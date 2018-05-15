@@ -56,13 +56,13 @@ async function clean() {
   }
 }
 
-async function serve() {
+async function serve(buildTime) {
   try {
     const serverTasks = [];
     if (config.wwwDir) {
       serverTasks.push(extraTasks.server.serve());
       if (config.webpackDevServer) {
-        serverTasks.push(webpackTasks.server());
+        serverTasks.push(webpackTasks.server(buildTime));
       }
     }
     return Promise.all(serverTasks);
@@ -79,7 +79,7 @@ async function images() {
   }
 }
 
-async function build() {
+async function build(returnTime = false) {
   const startTime = timer.start();
   try {
     if (!config.quick) {
@@ -98,7 +98,11 @@ async function build() {
         await extraTasks.static.compile();
         break;
     }
-    log.info(`Build completed in ${timer.end(startTime)}.`);
+    if (returnTime) {
+      return startTime;
+    } else {
+      log.info(`Build completed in ${timer.end(startTime)}.`);
+    }
   } catch (error) {
     log.errorAndExit('Build failed', error);
   }
@@ -126,12 +130,14 @@ async function watch() {
 }
 
 async function start() {
+  let buildTime;
+
   try {
     if (!config.quick) {
-      await build();
+      buildTime = await build(true);
     }
     return Promise.all([
-      serve(),
+      serve(buildTime),
       watch(),
     ]);
   } catch (error) {

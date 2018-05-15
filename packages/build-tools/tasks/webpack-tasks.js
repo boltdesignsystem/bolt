@@ -1,17 +1,14 @@
 const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
 const chalk = require('chalk');
 const chokidar = require('chokidar');
 const createWebpackConfig = require('../create-webpack-config');
 const formatWebpackMessages = require('../utils/formatWebpackMessages');
-const stringify = require('json-stringify-safe');
 const serve = require('webpack-serve');
-const WebSocket = require('ws');
 
 const events = require('../utils/events');
 const log = require('../utils/log');
 const { getConfig } = require('../utils/config-store');
-const ora = require('ora');
+const Ora = require('ora');
 const { promisify } = require('util');
 const fs = require('fs');
 const writeFile = promisify(fs.writeFile);
@@ -23,7 +20,7 @@ const webpackConfig = createWebpackConfig(config);
 
 function compile() {
   return new Promise((resolve, reject) => {
-    const webpackSpinner = ora(chalk.blue('Compiling Webpack for the first time...')).start();
+    const webpackSpinner = new Ora(chalk.blue('Compiling Webpack for the first time...')).start();
     const startTime = timer.start();
     if (config.webpackStats) {
       webpackConfig.profile = true;
@@ -95,13 +92,28 @@ compile.description = 'Compile Webpack';
 compile.displayName = 'webpack:compile';
 
 
-function server() {
+function server(buildTime) {
+  let initialBuild = true;
+
   return new Promise((resolve, reject) => {
+    let startTime;
     const compiler = webpack(webpackConfig);
 
-    const webpackSpinner = ora(chalk.blue('Recompiling Webpack...'));
-    let startTime;
-    const spinFailed = () => webpackSpinner.fail(chalk.red('Recompiling Webpack failed!'));
+
+    const initialBuildMsgStart = 'Starting Webpack server...';
+    // const initialBuildMsgEnd = `Webpack Dev Server started in ${timer.end(startTime)}`;
+    const initialBuildMsgFailed = 'Error! Could not start Webpack server!';
+
+    const buildMsgStart = 'Recompiling Webpack...';
+    // const buildMsgEnd = `Recompiled Webpack in ${timer.end(startTime)}`;
+    const buildMsgFailed = 'Recompiling Webpack failed!';
+
+    const initialWebpackSpinner = new Ora(chalk.blue(initialBuildMsgStart));
+    const webpackSpinner = new Ora(chalk.blue(buildMsgStart));
+
+    const initialWebpackSpinnerFailed = () => initialWebpackSpinner.fail(chalk.red(initialBuildMsgFailed));
+    const webpackSpinnerFailed = () => webpackSpinner.fail(chalk.red(buildMsgFailed));
+
 
     serve({
       config: webpackConfig,
@@ -127,7 +139,7 @@ function server() {
     }).then((server) => {
 
       server.on('build-started', () => {
-        webpackSpinner.start();
+        initialBuild ? initialWebpackSpinner.start() : webpackSpinner.start();
         startTime = timer.start();
       });
 
@@ -137,7 +149,7 @@ function server() {
         const messages = formatWebpackMessages(stats.toJson({}, true));
 
         if (messages.errors.length) {
-          spinFailed();
+          initialBuild ? initialWebpackSpinnerFailed() : webpackSpinnerFailed();
           // Only keep the first error. Others are often indicative
           // of the same problem, but confuse the reader with noise.
           if (messages.errors.length > 1) {
@@ -154,11 +166,23 @@ function server() {
             version: false,
           });
 
-          webpackSpinner.succeed(chalk.green(`Recompiled Webpack in ${timer.end(startTime)}`));
+          initialBuild ?
+            initialWebpackSpinner.succeed(
+              chalk.green(`Webpack server started in ${timer.end(startTime)}`),
+            ) :
+            webpackSpinner.succeed(
+              chalk.green(`Recompiled Webpack in ${timer.end(startTime)}`),
+            );
+
           if (config.verbosity > 3) {
             console.log('---');
             console.log(output);
             console.log('===\n');
+          }
+
+          if (buildTime && initialBuild === true) {
+            initialWebpackSpinner.succeed(chalk.green(`Initial build completed in ${timer.end(buildTime)}.`));
+            initialBuild = false;
           }
         }
       });
@@ -166,7 +190,7 @@ function server() {
 
   });
 }
-server.description = 'Webpack Dev Server';
+server.description = 'Webpack server';
 server.displayName = 'webpack:server';
 
 module.exports = {

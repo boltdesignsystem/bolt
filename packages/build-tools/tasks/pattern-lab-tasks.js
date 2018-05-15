@@ -35,16 +35,24 @@ const plPublic = path.join(plRoot, plConfig.publicDir);
 const consolePath = path.join(plRoot, 'core/console');
 const timer = require('../utils/timer');
 
+let initialBuild = true;
+
 function plBuild(errorShouldExit) {
   return new Promise((resolve, reject) => {
-    const plSpinner = ora(chalk.blue('Building Pattern Lab...')).start();
+
+    const plSpinner = initialBuild ?
+      ora(chalk.blue('Building Pattern Lab for the first time...')).start() :
+      ora(chalk.blue('Recompiling Pattern Lab...')).start();
+
     const startTime = timer.start();
     // log.taskStart('build: pattern lab');
     events.emit('pattern-lab:precompile');
     sh(`php -d memory_limit=4048M ${consolePath} --generate`, errorShouldExit, false)
       .then((output) => {
 
-        plSpinner.succeed(chalk.green(`Built Pattern Lab in ${timer.end(startTime)}`));
+        initialBuild ?
+          plSpinner.succeed(chalk.green(`Built Pattern Lab in ${timer.end(startTime)}`)) :
+          plSpinner.succeed(chalk.green(`Rebuilt Pattern Lab in ${timer.end(startTime)}`));
 
         if (config.verbosity > 2) {
           console.log('---');
@@ -54,10 +62,16 @@ function plBuild(errorShouldExit) {
 
         events.emit('reload');
 
+        if (initialBuild){
+          initialBuild = false;
+        }
+
         resolve(output);
       })
       .catch((error) => {
-        plSpinner.fail(chalk.red('Building Pattern Lab Failed'));
+        initialBuild ?
+          plSpinner.fail(chalk.red('Initial build of Pattern Lab failed.')) :
+          plSpinner.fail(chalk.red('Rebuild of Pattern Lab failed.'));
         console.log(error);
         // reject(error);
       });

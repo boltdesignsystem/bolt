@@ -11,11 +11,12 @@ const serverConfig = {
   baseDir: config.wwwDir,
   logFileChanges: false,
   logConnections: false,
+  notify: false,
   logLevel: 'silent',
+  reloadOnRestart: true,
   files: [
     config.wwwDir + '/**/*.css',
   ],
-
   snippetOptions: {
     async: true,
   },
