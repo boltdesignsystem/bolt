@@ -3,9 +3,15 @@ const url = require('url');
 const querystring = require('querystring');
 const fetch = require('node-fetch');
 const {spawnSync} = require('child_process');
+const { promisify } = require('util');
+const gitSemverTags = require('git-semver-tags');
+const promisifyGitTags = promisify(gitSemverTags);
 
 async function init() {
   try {
+  const tags = await promisifyGitTags();
+  const latestTag = tags[0];
+
     const {
       NOW_TOKEN,
       GITHUB_TOKEN,
@@ -26,6 +32,7 @@ async function init() {
       TRAVIS_TAG,
     } = process.env;
 
+
     console.log({
       TRAVIS,
       TRAVIS_BRANCH,
@@ -41,10 +48,11 @@ async function init() {
         encoding: 'utf8',
       }).stdout.replace('refs/heads/', '').replace(/\//g, '-').trim();
     } catch (error) {
+      process.exit(1);
     }
 
-    if (TRAVIS == 'true') {
-      if (TRAVIS_PULL_REQUEST == 'false') {
+    if (TRAVIS === 'true') {
+      if (TRAVIS_PULL_REQUEST === 'false') {
         branchName = TRAVIS_BRANCH;
       } else {
         branchName = TRAVIS_PULL_REQUEST_BRANCH;
@@ -77,33 +85,6 @@ async function init() {
       .replace('bolt-design-system-', '')
       .replace('.now.sh', '');
 
-    if (!deployedUrl) {
-      // @todo determine if this is even needed since we have `deployedUrl` from deploy command
-      const nowEndpoint = url.resolve('https://api.zeit.co/v2/now/deployments', `?${querystring.stringify({
-        teamId: 'boltdesignsystem',
-      })}`);
-
-      const nowDeploys = await fetch(nowEndpoint, {
-        headers: {
-          'Authorization': `Bearer ${NOW_TOKEN}`,
-          'Content-Type': 'application/json',
-        },
-      }).then(res => res.json());
-
-      if (!nowDeploys) {
-        console.error('Did not get any info on latest now deploys...');
-        process.exit(1);
-      }
-
-      nowDeploys.deployments.sort((a, b) => {
-        return a.created - b.created;
-      }).reverse();
-
-      const latestDeploy = nowDeploys.deployments[0];
-      // console.log(nowDeploys);
-      console.log('Latest now Deploy:');
-      console.log(latestDeploy);
-    }
 
     console.log('Aliasing to branch/tag name...');
     // Making sure branch name is ok to be in URL
@@ -111,12 +92,12 @@ async function init() {
       .replace(/\//g, '-') // `/` => `-`
       .replace('--', '-') // `--` => `-` now.sh subdomains can't have `--` for some reason
       .replace(/\./g, '-'); // `.` => `-`
-    const aliasedUrlSubdomain = `bolt-design-system-${encodeURIComponent(branchUrlPart)}`;
-    const aliasedUrl = `https://${aliasedUrlSubdomain}.now.sh`;
+    const aliasedUrlSubdomain = `${encodeURIComponent(branchUrlPart)}.bolt-design-system`;
+    const aliasedUrl = `https://${aliasedUrlSubdomain}.com`;
     const aliasOutput = spawnSync('now', [
       'alias',
       deployedUrl,
-      aliasedUrlSubdomain,
+      aliasedUrl,
       ...baseNowArgs,
     ], {encoding: 'utf8'});
     if (aliasOutput.status !== 0) {
@@ -127,12 +108,12 @@ async function init() {
     console.log(aliasOutput.stdout, aliasOutput.stderr);
 
     // if this is a tagged release, then it should become the main site. we aliased above so we have a tagged version out as well i.e. `bolt-design-system-v1.2.3.now.sh`
-    if (TRAVIS_TAG) {
+    if (TRAVIS_TAG && TRAVIS_TAG === latestTag) {
       console.log('Is tag build, aliasing to main site.');
       const aliasOutput2 = spawnSync('now', [
         'alias',
         deployedUrl,
-        'bolt-design-system',
+        'bolt-design-system.com',
         ...baseNowArgs,
       ], {encoding: 'utf8'});
       if (aliasOutput2.status !== 0) {
@@ -141,30 +122,31 @@ async function init() {
         process.exit(1);
       }
       console.log(aliasOutput2.stdout, aliasOutput2.stderr);
+
+      console.log('aliasing www.bolt-design-system.com to main site too.');
+      const aliasOutput3 = spawnSync('now', [
+        'alias',
+        deployedUrl,
+        'www.bolt-design-system.com',
+        ...baseNowArgs,
+      ], {encoding: 'utf8'});
+      if (aliasOutput3.status !== 0) {
+        console.error('Error aliasing:');
+        console.log(aliasOutput3.stdout, aliasOutput3.stderr);
+        process.exit(1);
+      }
+      console.log(aliasOutput3.stdout, aliasOutput3.stderr);
+
+    } else if (TRAVIS_TAG && TRAVIS_TAG !== latestTag){
+      console.error(`Error aliasing: Travis Tag of ${TRAVIS_TAG} doesn't match the latest tag of ${latestTag}`);
+      process.exit(1);
+    } else {
+      console.log('Skipping now.sh tag alias since this isn\'t a tagged version.');
     }
 
-    // const aliasEndpoint = `https://api.zeit.co/v2/now/deployments/${deployedId}/aliases?${querystring.stringify({
-    //   teamId: 'boltdesignsystem',
-    // })}`;
-    //
-    // console.log('aliasEndpoint:');
-    // console.log(aliasEndpoint);
-    // const aliasResponse = await fetch(aliasEndpoint, {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     alias: `bolt-design-system-${branchName}.now.sh`,
-    //   }),
-    //   headers: {
-    //     'Authorization': `Bearer ${NOW_TOKEN}`,
-    //     'Content-Type': 'application/json',
-    //   },
-    // }).then(res => res.json());
-    //
-    // console.log('aliasResponse: ');
-    // console.log(aliasResponse);
 
     // `TRAVIS_PULL_REQUEST` is either `'false'` or a PR number like `'55'`. All strings.
-    if (TRAVIS && TRAVIS_PULL_REQUEST != 'false') {
+    if (TRAVIS && TRAVIS_PULL_REQUEST !== 'false') {
       console.log('This is a Pull Request build, so will not try to comment on PR.');
 
       // The GitHub comment template - Can handle HTML
@@ -207,3 +189,4 @@ async function init() {
 }
 
 init();
+

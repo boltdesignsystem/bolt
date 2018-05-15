@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_paragraphs
     - node.type.page
     - paragraphs.paragraphs_type.eyebrow
+    - paragraphs.paragraphs_type.grid
     - paragraphs.paragraphs_type.headline
     - paragraphs.paragraphs_type.lead
     - paragraphs.paragraphs_type.subheadline
@@ -30,6 +31,7 @@ settings:
       headline: headline
       subheadline: subheadline
       eyebrow: eyebrow
+      grid: grid
       lead: lead
       text: text
     target_bundles_drag_drop:
@@ -45,6 +47,9 @@ settings:
       icon:
         weight: 6
         enabled: false
+      grid:
+        enabled: true
+        weight: 9
       lead:
         enabled: true
         weight: 9

@@ -7,16 +7,39 @@ const { getDataFile } = require('./yaml');
 const { validateSchemaSchema } = require('./schemas');
 const path = require('path');
 const config = require('./config-store').getConfig();
-const pkg = require('../package.json');
 
 let boltManifest = {
   name: 'Bolt Manifest',
-  version: pkg.version,
+  version: '', // retrieved below
   components: {
     global: [],
     individual: [],
   },
 };
+
+// getting `boltManifest.version`
+// ideally we want the version from `lerna.json` as that's always the highest, but sometimes that file is not located at `../../../lerna.json` - like when this is compiling in a Drupal Site (Drupal Lab doesn't count), in that case we'll just fall back on the version from this package.
+try {
+  boltManifest.version = JSON.parse(
+    fs.readFileSync(
+      path.join(
+        __dirname,
+        '../../../lerna.json',
+      ),
+      'utf8',
+    ),
+  ).version;
+} catch (error) {
+  boltManifest.version = JSON.parse(
+    fs.readFileSync(
+      path.join(
+        __dirname,
+        '../package.json',
+      ),
+      'utf8',
+    ),
+  ).version;
+}
 
 /**
  * Get information about a components assets
