@@ -105,16 +105,16 @@ async function getPkgInfo(pkgName) {
       ensureFileExists(info.assets.main);
     }
     if (pkg.schema) {
-      if (typeof pkg.schema === "object") {
-        pkg.schema.forEach((async function(schemaPath) {
+      if (typeof pkg.schema === 'object') {
+        pkg.schema.forEach(async function(schemaPath) {
           const schemaFilePath = path.join(dir, schemaPath);
           const schema = await getDataFile(schemaFilePath);
           validateSchemaSchema(schema, `Schema not valid for: ${schemaFilePath}`);
-          const schemaMachineName = schema.title.replace(/ /g, "-").toLowerCase();
+          const schemaMachineName = schema.title.replace(/ /g, '-').toLowerCase();
           info.schema ?
             info.schema.properties[schemaMachineName] = schema:
             info.schema = schema;
-        }).bind(info));
+        });
       }
       else {
         const schemaFilePath = path.join(dir, pkg.schema);
