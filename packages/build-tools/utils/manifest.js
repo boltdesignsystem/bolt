@@ -104,13 +104,24 @@ async function getPkgInfo(pkgName) {
       info.assets.main = path.join(dir, pkg.main);
       ensureFileExists(info.assets.main);
     }
-    // @TODO Currently loads one schema per component. Needs to be refactored to handle
-    // multiple schema when sub-components are present. See the form component
     if (pkg.schema) {
-      const schemaFilePath = path.join(dir, pkg.schema);
-      const schema = await getDataFile(schemaFilePath);
-      validateSchemaSchema(schema, `Schema not valid for: ${schemaFilePath}`);
-      info.schema = schema;
+      if (typeof pkg.schema === "object") {
+        pkg.schema.forEach((async function(schemaPath) {
+          const schemaFilePath = path.join(dir, schemaPath);
+          const schema = await getDataFile(schemaFilePath);
+          validateSchemaSchema(schema, `Schema not valid for: ${schemaFilePath}`);
+          const schemaMachineName = schema.title.replace(/ /g, "-").toLowerCase();
+          info.schema ?
+            info.schema.properties[schemaMachineName] = schema:
+            info.schema = schema;
+        }).bind(info));
+      }
+      else {
+        const schemaFilePath = path.join(dir, pkg.schema);
+        const schema = await getDataFile(schemaFilePath);
+        validateSchemaSchema(schema, `Schema not valid for: ${schemaFilePath}`);
+        info.schema = schema;
+      }
     }
     // @todo Allow verbosity settings
     // console.log(assets);
