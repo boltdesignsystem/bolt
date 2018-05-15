@@ -33,6 +33,7 @@ class BoltText extends BoltComponent() {
     subheadline: props.boolean,
     eyebrow: props.boolean,
     fontFamily: props.string,
+    icon: props.string,
     iconName: props.string,
     iconBackground: props.string,
     iconSize: props.string,
@@ -73,6 +74,7 @@ class BoltText extends BoltComponent() {
     let url = this.props.url ? this.props.url : false;
 
     // Icon vars
+    let icon = this.props.icon;
     let iconName = this.allowedValues(schema.properties.iconName, this.props.iconName);
     let iconValign = this.allowedValues(schema.properties.iconValign, this.props.iconValign);
     let iconAlign = this.allowedValues(schema.properties.iconAlign, this.props.iconAlign);
@@ -85,10 +87,12 @@ class BoltText extends BoltComponent() {
 
     // Build the icon
     if ( url && (this.props.headline || this.props.subheadline || this.props.eyebrow) ) {
-      // Headline, Subheadline, and Eyebrow always have chevron-right with url
-      textItem = this.hyper.wire(this) `
+      // Headline, Subheadline, and Eyebrow always have chevron-right with url (if icon not false)
+      if (typeof icon !== 'undefined' && icon !== 'false') {
+        textItem = this.hyper.wire(this) `
         ${textItem} <bolt-icon name="chevron-right"></bolt-icon>
       `;
+      }
     } else if (iconName && iconAlign) {
       let theIcon = document.createElement('bolt-icon');
       theIcon.setAttribute('name', iconName);
@@ -106,10 +110,10 @@ class BoltText extends BoltComponent() {
         theIcon.setAttribute('color', iconColor);
       }
       // Alignment
-      if (iconAlign === 'left' || iconAlign === 'left-hang') {
-        textItem = this.hyper.wire(this) `${theIcon} ${textItem}`;
-      } else {
+      if (iconAlign === 'right' || iconAlign === 'right-hang') {
         textItem = this.hyper.wire(this) `${textItem} ${theIcon}`;
+      } else {
+        textItem = this.hyper.wire(this) `${theIcon} ${textItem}`;
       }
     }
 
@@ -120,7 +124,9 @@ class BoltText extends BoltComponent() {
       letterSpacing = this.subComponentValues(this.props.letterSpacing, 'narrow');
       // vspacing = this.subComponentValues(this.props.vspacing, 'small');
       fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
-      iconName = true;
+      if (typeof icon !== 'undefined' && icon !== 'false') {
+        iconName = true;
+      }
     }
 
     // Subheadline defaults
@@ -128,7 +134,9 @@ class BoltText extends BoltComponent() {
       fontSize = this.subComponentValues(this.props.fontSize, 'large');
       // vspacing = this.subComponentValues(this.props.vspacing, 'xsmall');
       fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
-      iconName = true;
+      if (typeof icon !== 'undefined' && icon !== 'false') {
+        iconName = true;
+      }
     }
 
     // Eyebrow defaults
@@ -138,7 +146,9 @@ class BoltText extends BoltComponent() {
       // vspacing = this.subComponentValues(this.props.vspacing, 'xsmall');
       opacity = this.subComponentValues(this.props.opacity, 80);
       fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
-      iconName = true;
+      if (typeof icon !== 'undefined' && icon !== 'false') {
+        iconName = true;
+      }
     }
 
     // Important classes

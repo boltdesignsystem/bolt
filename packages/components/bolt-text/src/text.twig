@@ -62,7 +62,7 @@
   {% set attributes = attributes.setAttribute("font-family", fontFamily) %}
 {% endif %}
 
-{#  #}
+{# Shorthand booleans #}
 {% if headline %}
   {% set attributes = attributes.setAttribute("headline", "") %}
 {% endif %}
@@ -76,6 +76,11 @@
 {% endif %}
 
 {# Icon specific attributes #}
+{# this is for when someone is using an eyebrow, headline, or subheadline with url but doesn't want the chevron right #}
+{% if icon is defined and icon == false  %}
+  {% set attributes = attributes.setAttribute("icon", "false") %}
+{% endif %}
+
 {# Icon Name #}
 {% if iconName in schema.properties.iconName.enum %}
   {% set theIconName = iconName %}
@@ -140,6 +145,11 @@
 {% endif %}
 {% if theIconAlign %}
   {% set attributes = attributes.setAttribute("icon-align", theIconAlign) %}
+{% endif %}
+
+{# Utils #}
+{% if util %}
+  {% set attributes = attributes.setAttribute("util", util|join(',')) %}
 {% endif %}
 
 <bolt-text {{ attributes }}>{{ text }}</bolt-text>

@@ -34,9 +34,9 @@ properties:
     description: Font weights.
     default: regular
     enum:
-      - bold
       - regular
       - semibold
+      - bold
   style:
     type: string
     description: Font styles.
@@ -130,6 +130,12 @@ properties:
       - headline
       - body
       - code
+  icon:
+    oneOf:
+      - type: object
+      - type: boolean
+    description: Bolt icon **(twig only)**. Set `False` to hide when using URL with eyebrow, headline, or subheadline. Other params to include here are `align` and `valign`.
+    ref: '@bolt-components-icon/icon.schema.yml'
   iconName:
     type: string
     description: Icon name.
@@ -261,9 +267,12 @@ properties:
   iconAlign:
     type: string
     description: Icon horizontal positioning & "hang"
-    default: left
+    default: right
     enum:
       - left
       - left-hang
       - right
       - right-hang
+  util:
+    type: array
+    description: Each item in the array will build a utility class. No need to include `u-bolt-`. **For the web component** use comma separated string.
