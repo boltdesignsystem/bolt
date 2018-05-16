@@ -27,7 +27,7 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {% if (size == "xxxlarge") and (text|length >= 60) %}
-  {% set size = "xxlarge" %}
+  {% set longTitle = true %}
 {% endif %}
 
 
@@ -37,7 +37,7 @@
   weight in weights ? baseClass ~ "--" ~ weight : "",
   align in alignments and align != null ? baseClass ~ "--" ~ align : "",
   style in styles and type == "text" ? baseClass ~ "--" ~ style : "",
-  size in sizes and type != "eyebrow" ? baseClass ~ "--" ~ size : "",
+  size in sizes and type != "eyebrow" ? longTitle and type == "headline" ? baseClass ~ "--" ~ size ~ "-min" : baseClass ~ "--" ~ size : "",
   transform in transformProps and transform != "" ? baseClass ~ "--" ~ transform : "",
   url ? baseClass ~ "--link" : ""
 ] %}
