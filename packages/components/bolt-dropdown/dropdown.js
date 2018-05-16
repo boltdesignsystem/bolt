@@ -112,7 +112,9 @@ export class BoltDropdown extends BoltComponent() {
     return this.hyper.wire(this.props) `
       <h3 class="${dropdownHeaderClasses}">
         <button class="c-bolt-dropdown__header-button">
-          ${ dropdownTitle }
+          <span class="c-bolt-dropdown__header-text">
+            ${ dropdownTitle }
+          </span>
 
           <span class="c-bolt-dropdown__header-icons">
             <div class="c-bolt-dropdown__header-icons-inner">

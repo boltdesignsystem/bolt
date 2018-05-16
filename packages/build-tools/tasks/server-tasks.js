@@ -9,6 +9,7 @@ const serverConfig = {
   open: config.openServerAtStart,
   startPath: config.startPath, // Since `/` doesn't do anything and we want to avoid double browserSync notifications from the very beginning
   host: 'localhost',
+  notify: false,
 
   snippetOptions: {
     async: true,
