@@ -353,6 +353,7 @@ function createConfig(config) {
         {
           test: [/\.yml$/, /\.yaml$/],
           use: [
+            { loader: 'json-loader' },
             { loader: 'yaml-loader' },
           ],
         },
