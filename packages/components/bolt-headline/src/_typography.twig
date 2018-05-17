@@ -39,7 +39,8 @@
   style in styles and type == "text" ? baseClass ~ "--" ~ style : "",
   size in sizes and type != "eyebrow" ? longTitle and type == "headline" ? baseClass ~ "--" ~ size ~ "-min" : baseClass ~ "--" ~ size : "",
   transform in transformProps and transform != "" ? baseClass ~ "--" ~ transform : "",
-  url ? baseClass ~ "--link" : ""
+  url ? baseClass ~ "--link" : "",
+  iconPosition ? baseClass ~ "--icon-position-" ~ iconPosition : ""
 ] %}
 
 {% if url and icon is not defined %}
@@ -55,27 +56,25 @@
     </span>
   {% endif %}
 
-  <span class="{{ "#{baseClass}__text" }}">
-    {% if url %}
-      {% if type == "text" %}
-        {% include "@bolt/link.twig" with {
-          text: text,
-          icon: icon,
-          url: url,
-        } only %}
-      {% else %}
-        {# [Mai] This means only headlines/subheadlines/eyebrows would get the special link styles #}
-        {% include "@bolt/link.twig" with {
-          text: text,
-          icon: icon,
-          url: url,
-          isHeadline: true
-        } only %}
-      {% endif %}
+  {% if url %}
+    {% if type == "text" %}
+      {% include "@bolt/link.twig" with {
+        text: text,
+        icon: icon,
+        url: url,
+      } only %}
     {% else %}
-      {{ text }}
+      {# [Mai] This means only headlines/subheadlines/eyebrows would get the special link styles #}
+      {% include "@bolt/link.twig" with {
+        text: text,
+        icon: icon,
+        url: url,
+        isHeadline: true
+      } only %}
     {% endif %}
-  </span>
+  {% else %}
+    {{ text }}
+  {% endif %}
 
   {% if icon and not url and iconPosition != "before" %}
     <span class="{{ "#{baseClass}__icon" }}">
