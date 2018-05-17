@@ -63,7 +63,7 @@ bolt-priority-nav {
   }
 }
 
-.c-bolt-priority-nav__link,
+// .c-bolt-priority-nav__link,
 .c-bolt-priority-nav__show-button {
   width: 100%;
   height: 100%;
@@ -87,7 +87,8 @@ bolt-priority-nav {
 }
 
 .c-bolt-priority-nav__item {
-  background-color: themify(background);
+  display: flex;
+  //background-color: themify(background);
 
 }
 
@@ -98,13 +99,13 @@ bolt-priority-nav {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
       .is-ready & {
         grid-row: 1/span 1;
-        grid-column: 3/span 1;
+        grid-column: 4/span 1;
       }
     }
   }
 }
 
-.c-bolt-priority-nav__link,
+// .c-bolt-priority-nav__link,
 .c-bolt-priority-nav__button {
   white-space: nowrap;
   padding: 1em 0.6em;
@@ -157,30 +158,49 @@ bolt-priority-nav {
   width: calc(100vw - #{bolt-spacing(large)});
   max-width: 100vw;
   transform: translate3d(0, 0, 0);
+  background-color: themify(secondary);
+
+
+  @include respond-to(xsmall) {
+    width: auto;
+    max-width: 100%;
+  }
+
+
+  &:before {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    background-color: themify(primary, 0.9);
+  }
+
+
 
 
   @supports (display: contents) {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
       grid-row: 2/span 1;
-      grid-column: 1/span 4;
+      grid-column: 1/span 6;
       position: static;
+      width: auto;
     }
   }
 
-  @include respond-to(xsmall){
-    width: auto;
-    max-width: 100%;
-  }
+
 
   .c-bolt-priority-nav--show-secondary & {
     display: block;
   }
 
-  .c-bolt-priority-nav__item {
-    background-color: themify(background, 0.93);
-  }
+  // .c-bolt-priority-nav__item {
+  //   background-color: themify(background, 0.93);
+  // }
 
-  .c-bolt-priority-nav__link,
+  // .c-bolt-priority-nav__link,
   .c-bolt-priority-nav__show-button {
     padding: 0.6em;
     &:hover {

@@ -1,0 +1,138 @@
+$PRESERVE_THEMIFY: false !default;
+
+/**
+ * Credits to https://github.com/acss-io/atomizer/blob/master/src/lib/grammar.js
+ */
+$PSEUDO_CLASSES: (
+        ':a': ':active',
+        ':c': ':checked',
+        ':d': ':default',
+        ':di': ':disabled',
+        ':e': ':empty',
+        ':en': ':enabled',
+        ':fi': ':first',
+        ':fc': ':first-child',
+        ':fot': ':first-of-type',
+        ':fs': ':fullscreen',
+        ':f': ':focus',
+        ':h': ':hover',
+        ':ind': ':indeterminate',
+        ':ir': ':in-range',
+        ':inv': ':invalid',
+        ':lc': ':last-child',
+        ':lot': ':last-of-type',
+        ':l': ':left',
+        ':li': ':link',
+        ':oc': ':only-child',
+        ':oot': ':only-of-type',
+        ':o': ':optional',
+        ':oor': ':out-of-range',
+        ':ro': ':read-only',
+        ':rw' : ':read-write',
+        ':req': ':required',
+        ':r': ':right',
+        ':rt' : ':root',
+        ':s': ':scope',
+        ':t' : ':target',
+        ':va': ':valid',
+        ':vi': ':visited'
+);
+
+@function str-split($string, $separator) {
+  // empty array/list
+  $split-arr: ();
+  // first index of separator in string
+  $index: str-index($string, $separator);
+  // loop through string
+  @while $index != null {
+    // get the substring from the first character to the separator
+    $item: str-slice($string, 1, $index - 1);
+    // push item to array
+    $split-arr: append($split-arr, $item);
+    // remove item and separator from string
+    $string: str-slice($string, $index + 1);
+    // find new index of separator
+    $index: str-index($string, $separator);
+  }
+  // add the remaining string to list (the last item)
+  $split-arr: append($split-arr, $string);
+
+  @return $split-arr;
+}
+
+@function is-map($var: null, $getridoferror: none) {
+  @return type-of($var) == 'map';
+}
+
+@function themify($props...) {
+  @if ($PRESERVE_THEMIFY == true) {
+    @return unquote("themify(#{$props...})");
+  }
+
+  @if (is-map($props...)) {
+    $value: json-encode($props...);
+    @return "themify(#{$value})";
+  } @else {
+    $color: null;
+    $opacity: 1;
+    $theme: null;
+
+    @if (length($props) >= 1) {
+      $color: nth($props, 1);
+    }
+
+    @if (length($props) >= 2) {
+      $opacity: nth($props, 2);
+    }
+
+    $value: json-encode((light: (#{$color}, #{$opacity}), dark: (#{$color}, #{$opacity})));
+    @return "themify(#{$value})";
+  }
+}
+
+@mixin generateThemeHelpers($propsArr) {
+
+  @if (not $propsArr) {
+    $propsArr: ();
+  }
+
+  $pseudoClassSep: ':';
+  @each $prop in $propsArr {
+    @each $palette, $value in $palette {
+      @each $var in map-keys($value) {
+
+        // split the string, to retrieve all pseudo classes
+        $pseudoList: str-split($prop, $pseudoClassSep);
+        $firstPseudoClass: nth($pseudoList, 1);
+
+        @each $pseudoClass in $pseudoList {
+
+          $realPseudoClass: null;
+          // if the pseudo class exists, get the real pseudo representation
+          @if (str_length($pseudoClass) > 0
+                and $pseudoClass != $firstPseudoClass
+                and map_has_key($PSEUDO_CLASSES, $pseudoClassSep + $pseudoClass)) {
+            $realPseudoClass: map_get($PSEUDO_CLASSES, $pseudoClassSep + $pseudoClass);
+          }
+
+          @include setHelperRule($firstPseudoClass, $var, $pseudoClass, $realPseudoClass);
+
+        }
+
+      }
+    }
+  }
+}
+
+@mixin setHelperRule($prop, $var, $pseudoClass, $realPseudoClass) {
+
+  $selector: $prop;
+  @if ($realPseudoClass) {
+    $selector: $prop + '\\:' + $pseudoClass + $realPseudoClass;
+  }
+
+  $unquoteVar: unquote($var);
+  .#{$unquoteVar}-#{$selector} {
+    #{$prop}: themify($unquoteVar);
+  }
+}

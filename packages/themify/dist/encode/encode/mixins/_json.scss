@@ -1,0 +1,42 @@
+/// JSON.stringify a value and pass it as a font-family of head element
+/// @access public
+/// @param {*} $value - value to be stringified
+/// @param {String} $flag (all) - output driver
+/// @require {function} json-encode
+@mixin json-encode($value, $flag: 'all') {
+  $flag: if(index('all' 'regular' 'media' 'comment', $flag), $flag, 'all');
+  $json: json-encode($value);
+
+  // Persistent comment
+  @if $flag == 'comment' or $flag == 'all' {
+    /*! json-encode: #{$json} */
+  }
+  // Regular property value pair
+  @if $flag == 'regular' or $flag == 'all' {
+    // All browsers except IE8-
+    body {
+      &::before {
+        // This element must be in the render tree to get it via getComputedStyle(document.body, ':before');
+        content: json-encode($value);
+        display: block;
+        height: 0;
+        overflow: hidden;
+        width: 0;
+      }
+    }
+
+    // All browsers except Opera (Presto based)
+    head {
+      font-family: json-encode($value);
+    }
+  }
+
+  // Falsy media query
+  @if $flag == 'media' or $flag == 'all' {
+    @media -json-encode {
+      json {
+        json: $json;
+      }
+    }
+  }
+}

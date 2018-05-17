@@ -1,0 +1,19 @@
+.dark a:hover, a:hover {
+  color: rgba(var(--accent-200), 1)
+}
+
+.dark .selector::before, .selector::before {
+  content: ' ';
+  display: inline-block;
+  color: rgba(var(--accent-200), 1)
+}
+
+.selector::after {
+  content: ' ';
+  display: inline-block;
+  color: rgba(var(--accent-300), 1)
+}
+
+.dark .selector::after {
+  color: rgba(var(--primary-0), 1)
+}

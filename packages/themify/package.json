@@ -1,0 +1,121 @@
+{
+  "name": "@bolt/themify",
+  "version": "0.0.0-development",
+  "description": "CSS themes made easy. A robust, opinionated solution to manage themes in your web application",
+  "main": "index.js",
+  "gh-pages-deploy": {
+    "staticpath": "playground",
+    "commit": "pages"
+  },
+  "scripts": {
+    "setup": "semantic-release-cli setup",
+    "github-pages": "gh-pages-deploy",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate",
+    "play": "gulp --gulpfile ./playground/gulpfile.js",
+    "commit": "git-cz",
+    "build": "npm run clean:dist && tsc && npm run copy:dist",
+    "copy:dist": "cp -R src/sass/. package.json dist",
+    "clean:dist": "rimraf dist",
+    "format": "prettier --write --config .prettierrc src/*.ts src/**/*.ts playground/*.js",
+    "test": "jest",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "precommit": "lint-staged",
+    "travis-deploy-once": "travis-deploy-once",
+    "semantic-release": "semantic-release"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "\\.(ts)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "/__tests__/.*spec\\.(ts|js)$"
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "npm run format",
+      "git add"
+    ]
+  },
+  "keywords": [
+    "CSS",
+    "CSS themes",
+    "CSS variables",
+    "themes"
+  ],
+  "author": "Datorama",
+  "dependencies": {
+    "fs-extra": "^5.0.0",
+    "hex-to-rgba": "^1.0.1"
+  },
+  "config": {
+    "github_deploy_source": "playground",
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^6.1.3",
+    "@commitlint/config-angular": "^6.1.3",
+    "@datorama/postcss-node-sass": "^1.0.0",
+    "@semantic-release/changelog": "^2.0.1",
+    "@semantic-release/git": "^4.0.1",
+    "@semantic-release/npm": "^3.2.2",
+    "@types/jest": "^22.2.0",
+    "@types/node": "^9.4.6",
+    "all-contributors-cli": "^4.11.1",
+    "browser-sync": "^2.23.6",
+    "clean-css": "^4.1.11",
+    "commitizen": "^2.9.6",
+    "cross-env": "^5.1.4",
+    "cz-conventional-changelog": "^2.1.0",
+    "gh-pages": "^1.1.0",
+    "gh-pages-deploy": "0.4.2",
+    "glob": "^7.1.2",
+    "gulp": "^3.9.1",
+    "gulp-postcss": "^7.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^4.0.1",
+    "husky": "^0.14.3",
+    "jest": "^22.4.2",
+    "lint-staged": "^7.0.0",
+    "node-sass": "^4.8.3",
+    "postcss": "^6.0.19",
+    "prettier": "^1.11.1",
+    "rimraf": "^2.6.2",
+    "semantic-release": "^15.3.1",
+    "semantic-release-cli": "^4.0.1",
+    "tmp": "0.0.33",
+    "travis-deploy-once": "^5.0.0",
+    "ts-jest": "^22.4.1",
+    "typescript": "^2.7.2"
+  },
+  "release": {
+    "verifyConditions": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ],
+    "prepare": [
+      "@semantic-release/changelog",
+      {
+        "path": "@semantic-release/npm",
+        "pkgRoot": "dist"
+      },
+      "@semantic-release/git"
+    ],
+    "publish": [
+      {
+        "path": "@semantic-release/npm",
+        "pkgRoot": "dist"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/datorama/themify.git"
+  }
+}

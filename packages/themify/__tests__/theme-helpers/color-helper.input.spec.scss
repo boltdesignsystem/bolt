@@ -1,0 +1,16 @@
+@import "../../src/sass/themify";
+
+// generates the following predefined classes, for each color
+$themeRules: (
+        'color',
+        'border-top-color',
+        'border-bottom-color',
+        'border-right-color',
+        'border-left-color',
+        'background-color',
+        'fill',
+        'stroke',
+          // PSEUDO_CLASSES
+        'color:h:f:a:vi'
+);
+@include generateThemeHelpers($themeRules);

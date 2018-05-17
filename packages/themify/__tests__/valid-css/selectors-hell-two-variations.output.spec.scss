@@ -1,0 +1,34 @@
+@import "../common.index";
+
+/* Should be splitted to two different classes */
+
+
+.selector,
+.selector .a,
+.selector .a .b,
+.selector .a .b .c,
+.selector .a .b .c .d,
+.selector .a .b .c .d .e,
+.selector .a .b .c .d .e .f,
+.selector .a .b .c .d .e .f .g,
+.selector .a .b .c .d .e .f .g .h,
+.selector .a .b .c .d .e .f .g .h .i,
+.selector .a .b .c .d .e .f .g .h .i .j,
+.selector .a .b .c .d .e .f .g .h .i .j .k {
+  color: rgba(var(--accent-300), 1)
+}
+
+.dark .selector,
+.dark .selector .a,
+.dark .selector .a .b,
+.dark .selector .a .b .c,
+.dark .selector .a .b .c .d,
+.dark .selector .a .b .c .d .e,
+.dark .selector .a .b .c .d .e .f,
+.dark .selector .a .b .c .d .e .f .g,
+.dark .selector .a .b .c .d .e .f .g .h,
+.dark .selector .a .b .c .d .e .f .g .h .i,
+.dark .selector .a .b .c .d .e .f .g .h .i .j,
+.dark .selector .a .b .c .d .e .f .g .h .i .j .k {
+  color: rgba(var(--primary-100), 1)
+}

@@ -1,0 +1,16 @@
+@import "../common.index";
+
+.element {
+  animation: pulse 5s infinite
+}
+
+/* since @keyframes cannot be nested under a class, we get only the default variation */
+
+@keyframes pulse {
+  0% {
+    background-color: rgba(var(--accent-100), 1)
+  }
+  100% {
+    background-color: rgba(var(--accent-600), 1)
+  }
+}

@@ -1,0 +1,16 @@
+@import "../common.index";
+
+a:hover {
+  color: themify(accent-200);
+}
+
+.selector::before {
+  content: ' ';
+  display: inline-block;
+  color: themify(accent-200);
+}
+.selector::after {
+  content: ' ';
+  display: inline-block;
+  color: themify((dark: primary-0, light: accent-300));
+}

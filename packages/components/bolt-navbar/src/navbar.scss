@@ -28,9 +28,11 @@ bolt-navbar {
 
   @supports (display: contents) {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+      @include bolt-padding-left(0);
+      @include bolt-padding-right(0);
       flex-direction: row;
       display: grid;
-      grid-template-columns: auto 1fr fit-content(100px);
+      grid-template-columns: bolt-spacing(medium) auto 1fr fit-content(100px) bolt-spacing(medium);
       grid-template-rows: 1fr auto;
       align-content: center;
       justify-content: center;
@@ -55,6 +57,13 @@ bolt-navbar {
   &:only-child {
     @include bolt-margin-right(auto);
   }
+
+  @supports (display: contents) {
+    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+      grid-column: 2/span 1;
+    }
+  }
+
 }
 
 .c-bolt-navbar__title--link {

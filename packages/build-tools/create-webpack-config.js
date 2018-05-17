@@ -18,9 +18,11 @@ const fs = require('fs');
 const readFile = promisify(fs.readFile);
 const deepmerge = require('deepmerge');
 const jsonFunctions = require('node-sass-functions-json');
-const url = require('postcss-url')
+
+const themify = require('@bolt/themify/dist/index.js');
 
 const convertStringToSassUnit = require('./utils/string-to-sass-unit');
+
 
 const sass = require('node-sass');
 const sassUtils = require('node-sass-utils')(sass);
@@ -39,6 +41,7 @@ function createConfig(config) {
     createVars: true,
     classPrefix: 't-bolt-',
     screwIE11: false,
+    modifyCSSRules: false,
     fallback: {
       cssPath: path.resolve(process.cwd(), config.buildDir, 'theme_fallback.css'), // use checksum
       dynamicPath: path.resolve(process.cwd(), config.buildDir, 'theme_fallback.json'),
@@ -263,7 +266,7 @@ function createConfig(config) {
         sourceMap: true,
         ident: 'postcss2',
         plugins: () => [
-          require('@datorama/themify').themify(themifyOptions),
+          themify.themify(themifyOptions),
           postcssDiscardDuplicates,
           autoprefixer,
         ],
@@ -325,7 +328,7 @@ function createConfig(config) {
         sourceMap: true,
         syntax: 'postcss-scss',
         plugins: () => [
-          require('@datorama/themify').initThemify(themifyOptions),
+          themify.initThemify(themifyOptions),
         ],
       },
     },

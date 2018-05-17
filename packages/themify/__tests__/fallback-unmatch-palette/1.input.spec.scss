@@ -1,0 +1,11 @@
+@import "../common.index";
+
+// when the palette contains a variable only for the default variation,
+// we should generate the color only for it, and not for the dark
+.selector-mix {
+  color: themify(primary-700, 0.8);
+  background-color: themify(primary-600);
+}
+.selector-with-one-variation {
+  color: themify(primary-700, 0.8);
+}

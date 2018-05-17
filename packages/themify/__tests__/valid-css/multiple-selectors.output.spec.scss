@@ -1,0 +1,10 @@
+.dark dato-button, .dark dato-button:hover, dato-button, dato-button:hover {
+  color: rgba(var(--primary-100), 1);
+  background-color: rgba(var(--primary-200), .5);
+  border: 1px solid rgba(var(--accent-300), 1)
+}
+
+/* Only the border should be extracted, in the .dark selector */
+.dark dato-button, .dark dato-button:hover {
+  border: 1px solid rgba(var(--primary-100), 1)
+}

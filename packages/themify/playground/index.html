@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Themify playground</title>
+    <style>
+      * {
+        font-family: 'Open Sans', sans-serif;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #ececec;
+        height: 100vh;
+      }
+
+      .animate {
+        transition: all 0.1s;
+      }
+
+      .action-button {
+        position: relative;
+        padding: 10px 40px;
+        border-radius: 10px;
+        font-family: 'Pacifico', cursive;
+        font-size: 25px;
+        color: #FFF;
+        text-decoration: none;
+      }
+
+      .blue {
+        background-color: #3498DB;
+        border-bottom: 5px solid #2980B9;
+        text-shadow: 0px -2px #2980B9;
+      }
+
+      .action-button:active {
+        transform: translate(0px, 5px);
+        border-bottom: 1px solid;
+      }
+
+      .demo p {
+        padding: 0.5em;
+        font-size: 14px;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        margin-bottom: 1em;
+        width: 200px;
+        height: 80px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        margin-right: 1em;
+      }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="bundle.css">
+    <script src="helpers.js"></script>
+  </head>
+  <body>
+
+    <section id="app"></section>
+
+    <script>
+      loadCSSVariablesFallback('theme_fallback.css');
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el      : '#app',
+        data    : {
+          scheme: palette
+        },
+        methods : {
+          change: function() {
+            replaceColors('theme_fallback.json', this.scheme);
+          },
+          toggle() {
+            document.body.classList.toggle('dark');
+          }
+        },
+        filters : {
+          capitalize: function( value ) {
+            if( !value ) return ''
+            value = value.toString()
+            return value.charAt(0).toUpperCase() + value.slice(1)
+          }
+        },
+        template: `
+       <section style="display: flex; padding-top: 2em;">
+         <div style="padding-left: 1em; padding-right: 1em;">
+            <div v-for="(value, variation) in scheme" >
+               <h2 style="font-weight: bold; margin-bottom: 0.2em;">{{variation | capitalize}}</h2>
+               <section style="margin-bottom: 1em;">
+                  <div v-for="(value, variable) in scheme[variation]" >
+                     <span class="tag is-warning">{{variable}}</span>
+                     <input type="color" v-model="scheme[variation][variable]" @change="change">
+                  </div>
+               </section>
+            </div>
+            <div>
+               <button @click="toggle" class="action-button shadow animate blue">Toggle Light/Dark</button>
+            </div>
+          </div>
+          <div style="flex: 1; padding-right: 1em;" class="demo">
+
+            <h4 style=" margin-bottom: 0.5em; font-weight: bold; font-size: 18px;">Primary</h4>
+            <div style="display: flex; flex-wrap: wrap">
+                <p class="primary-700-background-color">BG - primary-700</p>
+                <p class="primary-600-background-color">BG - primary-600</p>
+                <p class="primary-500-background-color">BG - primary-500</p>
+                <p class="primary-400-background-color">BG - primary-400</p>
+                <p class="primary-300-background-color">BG - primary-300</p>
+                <p class="primary-200-background-color">BG - primary-200</p>
+                <p class="primary-100-background-color">BG - primary-100</p>
+                <p class="primary-50-background-color">BG - primary-50</p>
+                <p class="primary-0-background-color">BG - primary-0</p>
+                <p class="primary-0-background-color" style="flex-direction: column">
+                  <span style="margin-bottom: 6px;">Fill - primary-500</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 17" width="20px"><path class="primary-500-fill" fill-rule="evenodd" d="M9 2.125V0H4.5v2.125H0v1.063h1.125V17h11.25V3.187H13.5V2.125H9zM5.625 1.062h2.25v1.063h-2.25V1.062zm5.625 14.876h-9V3.188h9v12.75zM9 5.312H7.875v8.5H9v-8.5zm-3.375 0H4.5v8.5h1.125v-8.5z"/></svg>
+                </p>
+            </div>
+
+            <h4 style="margin-top: 1em; margin-bottom: 0.5em; font-weight: bold; font-size: 18px;">Accent</h4>
+             <div style="display: flex; flex-wrap: wrap">
+                  <p class="accent-700-background-color">BG - accent-700</p>
+                  <p class="accent-600-background-color">BG - accent-600</p>
+                  <p class="accent-500-background-color">BG - accent-500</p>
+                  <p class="accent-400-background-color">BG - accent-400</p>
+                  <p class="accent-300-background-color">BG - accent-300</p>
+                  <p class="accent-200-background-color">BG - accent-200</p>
+                  <p class="accent-100-background-color">BG - accent-100</p>
+                  <p class="primary-0-background-color" style="flex-direction: column">
+                    <span style="margin-bottom: 6px;">Fill - accent-300</span>
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 17" width="20px"><path class="accent-300-fill" fill-rule="evenodd" d="M9 2.125V0H4.5v2.125H0v1.063h1.125V17h11.25V3.187H13.5V2.125H9zM5.625 1.062h2.25v1.063h-2.25V1.062zm5.625 14.876h-9V3.188h9v12.75zM9 5.312H7.875v8.5H9v-8.5zm-3.375 0H4.5v8.5h1.125v-8.5z"/></svg>
+                  </p>
+            </div>
+            <div style="height: 2px; background-color: lightgray; margin: 1em 0;"></div>
+             <h4 style="margin-top: 1em; margin-bottom: 0.5em; font-weight: bold; font-size: 18px;">Primary</h4>
+              <div style="display: flex; flex-wrap: wrap">
+                <p class="primary-700-color">Color - primary-700</p>
+                <p class="primary-600-color">Color - primary-600</p>
+                <p class="primary-500-color">Color - primary-500</p>
+                <p class="primary-400-color">Color - primary-400</p>
+                <p class="primary-300-color">Color - primary-300</p>
+                <p class="primary-200-color">Color - primary-200</p>
+                <p class="primary-100-color">Color - primary-100</p>
+                <p class="primary-50-color">Color - primary-50</p>
+                <p class="primary-0-color">Color - primary-0</p>
+              </div>
+
+              <h4 style="margin-top: 1em; margin-bottom: 0.5em; font-weight: bold; font-size: 18px;">Accent</h4>
+              <div style="display: flex; flex-wrap: wrap">
+                <p class="accent-700-color">Color - accent-700</p>
+                <p class="accent-600-color">Color - accent-600</p>
+                <p class="accent-500-color">Color - accent-500</p>
+                <p class="accent-400-color">Color - accent-400</p>
+                <p class="accent-300-color">Color - accent-300</p>
+                <p class="accent-200-color">Color - accent-200</p>
+                <p class="accent-100-color">Color - accent-100</p>
+                <p class="accent-50-color">Color - accent-50</p>
+                <p class="accent-0-color">Color - accent-0</p>
+              </div>
+          </div>
+      </section>
+        `
+      })
+    </script>
+  </body>
+</html>

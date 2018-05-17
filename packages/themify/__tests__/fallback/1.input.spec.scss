@@ -1,0 +1,42 @@
+@import "../common.index";
+
+.selector a {
+  color: themify(primary-700, 0.8);
+}
+.selector a:hover {
+  color: themify(primary-700, 0.2);
+}
+.selector a:focus {
+  color: themify(primary-700, 1);
+}
+
+.element-should-not-be-included {
+  animation: pulse 5s infinite;
+}
+
+@keyframes shouldBeIncluded {
+  0% {
+    background-color: themify(primary-700);
+  }
+  100% {
+    background-color: themify(primary-700, 0.5);
+  }
+}
+
+@keyframes shouldBeIncludedAsWell {
+  0% {
+    background-color: themify(primary-700);
+  }
+  100% {
+    background-color: #00bee8;
+  }
+}
+
+@keyframes shouldNOTBeIncluded {
+  0% {
+    background-color: #fff;
+  }
+  100% {
+    background-color: #00bee8;
+  }
+}

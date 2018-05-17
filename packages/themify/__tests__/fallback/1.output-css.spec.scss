@@ -1,0 +1,41 @@
+@keyframes shouldBeIncluded {
+  0% {
+    background-color: #303030
+  }
+  100% {
+    background-color: rgba(48, 48, 48, .5)
+  }
+}
+
+@keyframes shouldBeIncludedAsWell {
+  0% {
+    background-color: #303030
+  }
+  100% {
+    background-color: #00bee8
+  }
+}
+
+.dark .selector a {
+  color: rgba(255, 255, 255, 0.8)
+}
+
+.selector a {
+  color: rgba(48, 48, 48, 0.8);
+}
+
+.dark .selector a:hover {
+  color: rgba(255, 255, 255, 0.2)
+}
+
+.selector a:hover {
+  color: rgba(48, 48, 48, 0.2);
+}
+
+.dark .selector a:focus {
+  color: #ffffff
+}
+
+.selector a:focus {
+  color: #303030;
+}
