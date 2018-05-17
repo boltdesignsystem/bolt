@@ -1,3 +1,5 @@
+/*eslint no-loop-func: 'off' */
+
 const path = require('path');
 const log = require('./utils/log');
 const webpack = require('webpack');
@@ -7,6 +9,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const npmSass = require('npm-sass');
 const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
+const postcssScss = require('postcss-scss');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const sassImportGlobbing = require('@theme-tools/sass-import-globbing');
 const { getBoltManifest, createComponentsManifest } = require('./utils/manifest');
@@ -14,6 +17,16 @@ const { promisify } = require('util');
 const fs = require('fs');
 const readFile = promisify(fs.readFile);
 const deepmerge = require('deepmerge');
+const jsonFunctions = require('node-sass-functions-json');
+const url = require('postcss-url')
+
+const convertStringToSassUnit = require('./utils/string-to-sass-unit');
+
+const sass = require('node-sass');
+const sassUtils = require('node-sass-utils')(sass);
+const sassVars = require('@bolt/core/styles/index.js');
+const theme = require('@bolt/core/styles/index.js').themes;
+
 
 function createConfig(config) {
   // @TODO: move this setting to .boltrc config
@@ -21,6 +34,16 @@ function createConfig(config) {
     path: path.resolve(process.cwd(), config.dataDir),
   });
 
+
+  const themifyOptions = Object.assign(theme, {
+    createVars: true,
+    classPrefix: 't-bolt-',
+    screwIE11: false,
+    fallback: {
+      cssPath: path.resolve(process.cwd(), config.buildDir, 'theme_fallback.css'), // use checksum
+      dynamicPath: path.resolve(process.cwd(), config.buildDir, 'theme_fallback.json'),
+    },
+  });
 
   // Default global Sass data defined
   let globalSassData = [
@@ -238,22 +261,24 @@ function createConfig(config) {
       loader: 'postcss-loader',
       options: {
         sourceMap: true,
+        ident: 'postcss2',
         plugins: () => [
+          require('@datorama/themify').themify(themifyOptions),
           postcssDiscardDuplicates,
           autoprefixer,
         ],
       },
     },
-    {
-      loader: 'clean-css-loader',
-      options: {
-        skipWarn: true,
-        compatibility: 'ie9',
-        level: config.prod ? 1 : 0,
-        inline: ['remote'],
-        format: 'beautify',
-      },
-    },
+    // {
+    //   loader: 'clean-css-loader',
+    //   options: {
+    //     skipWarn: true,
+    //     compatibility: 'ie9',
+    //     level: config.prod ? 1 : 0,
+    //     inline: ['remote'],
+    //     format: 'beautify',
+    //   },
+    // },
     {
       loader: 'resolve-url-loader',
     },
@@ -265,10 +290,43 @@ function createConfig(config) {
           sassImportGlobbing,
           npmSass.importer,
         ],
-        functions: sassExportData,
+        functions: {
+          sassExportData,
+          jsonFunctions,
+          'boltData($keys)': function (keys) {
+            keys = keys.getValue().split('.');
+            var result = sassVars;
+            var i;
+            for (i = 0; i < keys.length; i++) {
+              result = result[keys[i]];
+              // Convert to SassDimension if dimenssion
+              if (typeof result === 'string') {
+                result = convertStringToSassUnit(result);
+              } else if (typeof result === 'object') {
+                Object.keys(result).forEach((key) => {
+                  var value = result[key];
+                  result[key] = convertStringToSassUnit(value);
+                });
+              }
+            }
+            result = sassUtils.castToSass(result);
+            return result;
+          },
+        },
         outputStyle: 'expanded',
         precision: 2,
         data: globalSassData.join('\n'),
+      },
+    },
+    {
+      loader: 'postcss-loader',
+      options: {
+        ident: 'postcss1',
+        sourceMap: true,
+        syntax: 'postcss-scss',
+        plugins: () => [
+          require('@datorama/themify').initThemify(themifyOptions),
+        ],
       },
     },
   ];

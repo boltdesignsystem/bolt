@@ -7,18 +7,12 @@
 // Color utility classes
 @each $color in $bolt-colors {
   $colorName: nth($color, 1);
+  $colorValue: nth($color, 2);
 
-  @each $colorShade, $colorValue in nth($color, 2) {
+  .u-bolt-color-#{$colorName} {
 
-    @if ($colorShade == $bolt-color-default) {
-      .u-bolt-color-#{$colorName} {
-        @include bolt-color($colorName, $colorShade, important);
-      }
-    } @else {
-      .u-bolt-color-#{$colorName}-#{$colorShade} {
-        @include bolt-color($colorName, $colorShade, important);
-      }
-    }
-
+    // @include bolt-color($colorName, $colorShade, important);
+    // [Salem]: fix this
+    color: convert-color(boltData('colors.#{$colorName}')) !important;
   }
 }

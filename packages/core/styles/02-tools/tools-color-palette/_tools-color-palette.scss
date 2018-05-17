@@ -5,18 +5,23 @@
 /**
   * Helper functions for applying global color swatches stored in Sass Maps
   */
+@import '../tools-auto-convert-color/tools.convert-color.scss';
 
 @function bolt-color(
   $color,
-  $tone: $bolt-color-default
+  $tone: 'base'
 ) {
-  @return map-get-deep($bolt-colors, quote($color), $tone);
+  @if $tone == 'base' {
+    @return convert-color(boltData('colors.#{$color}'));
+  } @else {
+    @return convert-color(boltData('colors.#{$color}-#{$tone}'));
+  }
 }
 
 // Mixin to return color value + !important if needed.
 @mixin bolt-color(
   $color,
-  $tone: $bolt-color-default,
+  $tone: 'base',
   $important: null
 ) {
   @if $important == important {
@@ -24,7 +29,7 @@
   }
 
   /* stylelint-disable-next-line */
-  color: map-get-deep($bolt-colors, $color, $tone) $important;
+  color: bolt-color($color, $tone) $important;
 }
 
 /* stylelint-disable-next-line scss/at-function-pattern */
