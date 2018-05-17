@@ -74,7 +74,7 @@ class BoltText extends BoltComponent() {
     let url = this.props.url ? this.props.url : false;
 
     // Icon vars
-    let icon = this.props.icon;
+    let icon = this.props.icon ? this.props.icon : 'undefined';
     let iconName = this.allowedValues(schema.properties.iconName, this.props.iconName);
     let iconValign = this.allowedValues(schema.properties.iconValign, this.props.iconValign);
     let iconAlign = this.allowedValues(schema.properties.iconAlign, this.props.iconAlign);
@@ -88,7 +88,7 @@ class BoltText extends BoltComponent() {
     // Build the icon
     if ( url && (this.props.headline || this.props.subheadline || this.props.eyebrow) ) {
       // Headline, Subheadline, and Eyebrow always have chevron-right with url (if icon not false)
-      if (typeof icon !== 'undefined' && icon !== 'false') {
+      if (icon !== 'false') {
         textItem = this.hyper.wire(this) `
         ${textItem} <bolt-icon name="chevron-right"></bolt-icon>
       `;
@@ -124,7 +124,7 @@ class BoltText extends BoltComponent() {
       letterSpacing = this.subComponentValues(this.props.letterSpacing, 'narrow');
       // vspacing = this.subComponentValues(this.props.vspacing, 'small');
       fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
-      if (typeof icon !== 'undefined' && icon !== 'false') {
+      if (icon !== 'undefined' && icon !== 'false') {
         iconName = true;
       }
     }
@@ -134,7 +134,7 @@ class BoltText extends BoltComponent() {
       fontSize = this.subComponentValues(this.props.fontSize, 'large');
       // vspacing = this.subComponentValues(this.props.vspacing, 'xsmall');
       fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
-      if (typeof icon !== 'undefined' && icon !== 'false') {
+      if (icon !== 'undefined' && icon !== 'false') {
         iconName = true;
       }
     }
@@ -146,7 +146,7 @@ class BoltText extends BoltComponent() {
       // vspacing = this.subComponentValues(this.props.vspacing, 'xsmall');
       opacity = this.subComponentValues(this.props.opacity, 80);
       fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
-      if (typeof icon !== 'undefined' && icon !== 'false') {
+      if (icon !== 'undefined' && icon !== 'false') {
         iconName = true;
       }
     }
