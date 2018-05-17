@@ -4,16 +4,9 @@
 
 @import '@bolt/core';
 
-// defaults
-$color-bg: #D51E49;
-$color-bg--dark: darken($color-bg, 7%);
-$color-bg--darker: darken($color-bg, 14%);
-$color-text: #FAF3DD;
-
 
 bolt-priority-nav {
   display: block;
-  // overflow: hidden;
 
   @supports (display: contents) {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
@@ -44,8 +37,11 @@ bolt-priority-nav {
   position: relative;
 
   &:not(.is-ready) {
-    background-image: -webkit-linear-gradient(left, $color-bg, hsla(0, 0%, 100%, 0)), -webkit-linear-gradient(right, $color-bg, hsla(0, 0%, 100%, 0)), -webkit-linear-gradient(left, $color-bg--darker, rgba(234, 240, 246, 0)), -webkit-linear-gradient(right, $color-bg--darker, rgba(234, 240, 246, 0));
-    background-color: $color-bg;
+    background-image: -webkit-linear-gradient(left, themify(background), hsla(0, 0%, 100%, 0)),
+    -webkit-linear-gradient(right, themify(background), hsla(0, 0%, 100%, 0)),
+    -webkit-linear-gradient(left, themify(background-dark), rgba(234, 240, 246, 0)),
+    -webkit-linear-gradient(right, themify(background-dark), rgba(234, 240, 246, 0));
+    background-color: themify(background);
 
     // -ms-overflow-style: -ms-autohiding-scrollbar;
     -webkit-overflow-scrolling: touch;
@@ -72,14 +68,10 @@ bolt-priority-nav {
   width: 100%;
   height: 100%;
   display: block;
-  font-size: 1em;
-  line-height: 1.2;
-  text-align: center;
-  color: $color-text;
+  color: themify(text);
   background-color: transparent;
 }
 
-// primary
 .c-bolt-priority-nav__primary {
   @supports (display: contents) {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
@@ -95,12 +87,8 @@ bolt-priority-nav {
 }
 
 .c-bolt-priority-nav__item {
-  min-width: 100px;
-  background-color: $color-bg;
+  background-color: themify(background);
 
-  & + .c-bolt-priority-nav__item {
-    border-left: 1px solid $color-bg--dark;
-  }
 }
 
 .c-bolt-priority-nav__button {
@@ -120,20 +108,20 @@ bolt-priority-nav {
 .c-bolt-priority-nav__button {
   white-space: nowrap;
   padding: 1em 0.6em;
-  box-shadow: inset 0 -0.2em 0 $color-bg--dark;
+  // box-shadow: inset 0 -0.2em 0 themify(background)-dark;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: $color-bg--dark;
+    background-color: themify(secondary, 0.15);
   }
 
   &:active {
-    background-color: $color-bg--darker;
+    background-color: themify(secondary, 0.1);
   }
 }
 
 .c-bolt-priority-nav__show-button {
-  background-color: $color-bg--dark;
+  background-color: themify(secondary, 0.05);
   cursor: pointer;
 }
 
@@ -157,7 +145,6 @@ bolt-priority-nav {
  }
 
 
-// secondary
 .c-bolt-priority-nav__secondary {
   min-width: 10em;
   list-style: none;
@@ -166,10 +153,10 @@ bolt-priority-nav {
   position: absolute;
   top: 100%;
   right: 0;
-  box-shadow: 0 0.3em 0.5em rgba(#000, 0.3);
   animation: nav-secondary 0.2s;
   width: calc(100vw - #{bolt-spacing(large)});
   max-width: 100vw;
+  transform: translate3d(0, 0, 0);
 
 
   @supports (display: contents) {
@@ -179,16 +166,6 @@ bolt-priority-nav {
       position: static;
     }
   }
-
-  //  @supports (display: contents) {
-  //    flex-direction: row;
-  //    display: grid;
-  //    grid-template-columns: auto 1fr fit-content(100px);
-  //    grid-template-rows: 1fr auto;
-  //    align-content: center;
-  //    justify-content: center;
-  //    align-items: center;
-  //  }
 
   @include respond-to(xsmall){
     width: auto;
@@ -200,18 +177,17 @@ bolt-priority-nav {
   }
 
   .c-bolt-priority-nav__item {
-    border-top: 1px solid $color-bg;
-    background-color: $color-bg--dark;
+    background-color: themify(background, 0.93);
   }
 
   .c-bolt-priority-nav__link,
   .c-bolt-priority-nav__show-button {
     padding: 0.6em;
     &:hover {
-      background-color: $color-bg--darker;
+      background-color: themify(secondary, 0.15);
     }
     &:active {
-      background-color: $color-bg;
+      background-color: themify(secondary, 0.1);
     }
   }
 }
