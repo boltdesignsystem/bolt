@@ -43,7 +43,7 @@
     "prepublishOnly": "yarn run build && node scripts/monorepo-tests.js",
     "snyk-protect": "snyk protect",
     "Xlint:editorconfig": "editorconfig-checker --exclude-pattern './www/**/*' --exclude-pattern './**/sandbox/**/*' --exclude-pattern './**/vendor/*' --exclude-pattern './apps/drupal-lab/**' ",
-    "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'apps/**/*.js'",
+    "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'apps/**/*.js' '!packages/themify/**/*'",
     "lint:js:fix": "yarn run lint:js -- --fix",
     "Xlint:sh": "which shellcheck; if [ $? -eq 0 ]; then shellcheck scripts/*.sh ; else echo 'Shell script linting requires `shellcheck` to be installed, skipping for now; use `brew install shellcheck` to install ~ https://github.com/koalaman/shellcheck '; fi",
     "lint:style": "stylelint 'packages/**/*.scss' 'apps/**/*.scss' '!apps/drupal-lab/**' '!apps/pw-site/www/**' '!**/vendor/**' --config .stylelintrc",
