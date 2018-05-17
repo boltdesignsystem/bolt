@@ -16,7 +16,7 @@ const ExitFullScreen = ({ color, size, ...otherProps }) => {
           fill="none"
         />
         <g transform="translate(12 3)">
-          <mask id="b" fill="currentColor">
+          <mask id="b" fill="#fff">
             <use xlinkHref="#a" />
           </mask>
           <path
@@ -26,7 +26,7 @@ const ExitFullScreen = ({ color, size, ...otherProps }) => {
           />
         </g>
         <g transform="translate(2 14)">
-          <mask id="d" fill="currentColor">
+          <mask id="d" fill="#fff">
             <use xlinkHref="#c" />
           </mask>
           <path

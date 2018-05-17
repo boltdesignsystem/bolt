@@ -15,7 +15,7 @@ const Share2 = ({ color, size, ...otherProps }) => {
           fill="none"
         />
         <g transform="translate(1 3)">
-          <mask id="b" fill="currentColor">
+          <mask id="b" fill="#fff">
             <use xlinkHref="#a" />
           </mask>
           <path

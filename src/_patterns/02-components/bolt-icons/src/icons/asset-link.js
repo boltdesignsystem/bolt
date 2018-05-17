@@ -14,7 +14,7 @@ const AssetLink = ({ color, size, ...otherProps }) => {
         />
       </defs>
       <g fill="currentColor" fill-rule="evenodd">
-        <mask id="b" fill="currentColor">
+        <mask id="b" fill="#fff">
           <use xlinkHref="#a" />
         </mask>
         <path
