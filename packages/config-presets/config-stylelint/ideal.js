@@ -3,6 +3,7 @@ module.exports = {
     'nebula-css/tools/*',
     'nebula-css/resets/_normalize.scss',
     'demo/dist/main.css',
+    'packages/themify/**/*.scss',
   ],
   plugins: [
     'stylelint-order',
