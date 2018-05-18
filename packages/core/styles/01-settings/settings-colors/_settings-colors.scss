@@ -4,10 +4,10 @@
 
 $bolt-color-default: 'base';
 
-$bolt-colors: boltData('colors'); /* stylelint-disable-line */
-$bolt-status-colors: boltData('status-colors'); /* stylelint-disable-line */
-$bolt-brand-colors: boltData('brand-colors'); /* stylelint-disable-line */
-$bolt-social-colors: boltData('social-colors'); /* stylelint-disable-line */
+$bolt-colors: bolt-data('colors');
+$bolt-status-colors: bolt-data('status-colors');
+$bolt-brand-colors: bolt-data('brand-colors');
+$bolt-social-colors: bolt-data('social-colors');
 
 
 @include export-data('colors/all.bolt.json', $bolt-colors);
