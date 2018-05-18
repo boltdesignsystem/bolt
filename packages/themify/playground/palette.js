@@ -15,7 +15,7 @@ module.exports = {
     'accent-400': '#00bee8',
     'accent-300': '#4cd1ef',
     'accent-200': '#96e1ed',
-    'accent-100': '#e6f9fc'
+    'accent-100': '#e6f9fc',
   },
   dark: {
     'primary-700': '#ffffff',
@@ -33,6 +33,6 @@ module.exports = {
     'accent-400': '#00bee8',
     'accent-300': '#04a2d6',
     'accent-200': '#0a87c6',
-    'accent-100': '#096796'
+    'accent-100': '#096796',
   }
 };
