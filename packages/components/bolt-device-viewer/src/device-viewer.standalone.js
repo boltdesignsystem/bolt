@@ -41,9 +41,10 @@ class BoltDeviceViewer extends BoltComponent() {
     // name: props.string,
   }
 
-  constructor() {
-    super();
+  constructor(self) {
+    self = super(self);
     this.useShadow = hasNativeShadowDomSupport;
+    return self;
   }
 
   render({ props }) {
@@ -82,8 +83,9 @@ class BoltImageZoom extends BoltComponent() {
     mangify: props.boolean,
   }
 
-  constructor() {
-    super();
+  constructor(self) {
+    self = super(self);
+    return self;
   }
 
   /**

@@ -18,9 +18,10 @@ export class BoltBlockList extends withPreact(withComponent()) {
     items: props.any,
   };
 
-  constructor() {
-    super();
+  constructor(self) {
+    self = super(self);
     this.useShadow = false; // @todo: Get this working with shadowDOM + slots
+    return self;
   }
 
   render() {

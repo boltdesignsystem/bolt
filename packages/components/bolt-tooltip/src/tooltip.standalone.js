@@ -31,9 +31,10 @@ export class BoltTooltip extends withPreact(withComponent()) {
     count: props.string, // For use ONLY with share
   };
 
-  constructor() {
-    super();
+  constructor(self) {
+    self = super(self);
     this.useShadow = false; // @todo: Get this working with shadowDOM + slots
+    return self;
   }
 
   connectedCallback() {
@@ -106,8 +107,9 @@ class TooltipTrigger extends withPreact(withComponent()) {
     triggerId: props.string,
   };
 
-  constructor() {
-    super();
+  constructor(self) {
+    self = super(self);
+    return self;
   }
 
   render() {
