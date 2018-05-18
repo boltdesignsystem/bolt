@@ -85,7 +85,12 @@ $PSEUDO_CLASSES: (
       $opacity: nth($props, 2);
     }
 
-    $value: json-encode((light: (#{$color}, #{$opacity}), dark: (#{$color}, #{$opacity})));
+    $value: json-encode((
+      xlight: (#{$color}, #{$opacity}),
+      light: (#{$color}, #{$opacity}),
+      dark: (#{$color}, #{$opacity}),
+      xdark: (#{$color}, #{$opacity}),
+    ));
     @return "themify(#{$value})";
   }
 }

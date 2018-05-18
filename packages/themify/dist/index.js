@@ -28,8 +28,10 @@ var defaultOptions = {
 };
 /** supported color variations */
 var ColorVariation = {
+    XLIGHT: 'xlight',
+    LIGHT: 'light',
     DARK: 'dark',
-    LIGHT: 'light'
+    XDARK: 'xdark'
 };
 function buildOptions(options) {
     if (!options) {
@@ -60,7 +62,7 @@ function getRgbaNumbers(value) {
         .replace(', 1)', '');
 }
 /** Define the default variation */
-var defaultVariation = ColorVariation.LIGHT;
+var defaultVariation = ColorVariation.XLIGHT;
 /** An array of variation values  */
 var variationValues = Object.values(ColorVariation);
 /** An array of all non-default variations */
@@ -416,7 +418,7 @@ function init(options) {
         prefix = prefix || '';
         // iterate through the different variations
         Object.keys(palette).forEach(function (variationName) {
-            var selector = variationName === ColorVariation.LIGHT ? ':root' : "." + prefix + variationName;
+            var selector = variationName === ColorVariation.XLIGHT ? ':root' : "." + prefix + variationName;
             var variationColors = palette[variationName];
             // make sure we got colors for this variation
             if (!variationColors) {

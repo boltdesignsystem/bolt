@@ -65,9 +65,11 @@ const defaultOptions: ThemifyOptions = {
 };
 
 /** supported color variations */
-const ColorVariation = {
+const ColorVariation = { // @todo (Salem): revert to only light and dark
+  XLIGHT: 'xlight',
+  LIGHT: 'light',
   DARK: 'dark',
-  LIGHT: 'light'
+  XDARK: 'xdark'
 };
 
 function buildOptions(options: ThemifyOptions) {
@@ -104,7 +106,7 @@ function getRgbaNumbers(value: string) {
 }
 
 /** Define the default variation */
-const defaultVariation = ColorVariation.LIGHT;
+let defaultVariation = ColorVariation.XLIGHT;
 /** An array of variation values  */
 const variationValues: string[] = (Object as any).values(ColorVariation);
 /** An array of all non-default variations */
@@ -526,7 +528,7 @@ function init(options) {
 
     // iterate through the different variations
     Object.keys(palette).forEach(variationName => {
-      const selector = variationName === ColorVariation.LIGHT ? ':root' : `.${prefix}${variationName}`;
+      const selector = variationName === ColorVariation.XLIGHT ? ':root' : `.${prefix}${variationName}`;
       const variationColors = palette[variationName];
 
       // make sure we got colors for this variation
