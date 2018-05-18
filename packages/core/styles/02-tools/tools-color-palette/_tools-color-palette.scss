@@ -12,9 +12,9 @@
   $tone: 'base'
 ) {
   @if $tone == 'base' {
-    @return convert-color(boltData('colors.#{$color}'));
+    @return bolt-convert-color(bolt-data('colors.#{$color}'));
   } @else {
-    @return convert-color(boltData('colors.#{$color}-#{$tone}'));
+    @return bolt-convert-color(bolt-data('colors.#{$color}-#{$tone}'));
   }
 }
 
