@@ -112,8 +112,12 @@ bolt-priority-nav {
  }
 
 
-.c-bolt-priority-nav__dropdown {
-  // @include bolt-padding(small, squished);
+.c-bolt-priority-nav__dropdown-list {
+  background-color: themify(primary, 0.9);
+  list-style: none;
+  margin: 0;
+  width: 100%;
+
   @include bolt-padding-top(xsmall);
   @include bolt-padding-bottom(xsmall);
   @include bolt-padding-left(small);
@@ -123,10 +127,15 @@ bolt-priority-nav {
     @include bolt-padding-left(xsmall);
     @include bolt-padding-right(xsmall);
   }
+}
 
+.c-bolt-priority-nav__dropdown {
+  // @include bolt-padding(small, squished);
+
+
+  box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
   min-width: 10em;
-  list-style: none;
-  margin: 0;
+
   display: none;
   position: absolute;
   top: 100%;
@@ -136,6 +145,7 @@ bolt-priority-nav {
   max-width: 100vw;
   transform: translate3d(0, 0, 0);
   background-color: themify(secondary);
+
   // background-color: blue;
   border-bottom-left-radius: $bolt-border-radius;
   border-bottom-right-radius: $bolt-border-radius;
@@ -150,20 +160,6 @@ bolt-priority-nav {
   }
 
 
-  &:before {
-    position: absolute;
-    content: '';
-    height: 100%;
-    width: 100%;
-    left: 0;
-    top: 0;
-    pointer-events: none;
-    background-color: themify(primary, 0.9);
-    border-bottom-left-radius: $bolt-border-radius;
-    border-bottom-right-radius: $bolt-border-radius;
-    overflow: hidden;
-    transform: translate3d(0, 0, 0);
-  }
 
 
 
@@ -205,7 +201,6 @@ bolt-priority-nav {
 
 
 .c-bolt-priority-nav__show-button {
-  @include bolt-font-weight(semibold);
   @include bolt-padding(small, squished);
   border: 0;
   border-radius: $bolt-border-radius;
@@ -269,9 +264,10 @@ bolt-priority-nav {
 }
 
 .c-bolt-priority-nav__show-text {
+  @include bolt-font-size(small);
+  @include bolt-font-weight(semibold);
   position: relative;
   z-index: 10;
-  @include bolt-font-size(small);
 
   @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
     @include bolt-visuallyhidden;

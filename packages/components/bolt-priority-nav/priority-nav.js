@@ -37,9 +37,11 @@ primary.insertAdjacentHTML('beforeend', `
         <bolt-icon name="chevron-down"></bolt-icon>
       </span>
     </button>
-    <ul class="c-bolt-priority-nav__list c-bolt-priority-nav__dropdown">
-      ${primary.innerHTML}
-    </ul>
+    <div class="c-bolt-priority-nav__dropdown">
+      <ul class="c-bolt-priority-nav__list c-bolt-priority-nav__dropdown-list">
+        ${primary.innerHTML}
+      </ul>
+    </div>
   </li>
 `)
 const priorityDropdown = container.querySelector('.c-bolt-priority-nav__dropdown');
