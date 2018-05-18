@@ -7,7 +7,6 @@
 
 bolt-priority-nav {
   display: block;
-  flex-grow: 1;
 
   @supports (display: contents) {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
@@ -93,10 +92,6 @@ bolt-priority-nav {
   flex-shrink: 0;
   white-space: nowrap;
   //background-color: themify(background);
-
-  &:first-child {
-    margin-left: auto;
-  }
 }
 
 

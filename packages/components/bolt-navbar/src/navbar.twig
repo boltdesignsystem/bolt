@@ -12,6 +12,7 @@
 
 <bolt-navbar
   {% if theme %} class="t-bolt-{{ theme }}" {% endif %}
+  {% if center %} center {% endif %}
 >
   {# {% embed "@bolt-components-band/band.twig" with {
     size: vspacing,
@@ -34,7 +35,7 @@
     {% endblock band_background #}
 
     {# {% block band_content %} #}
-      <nav class="c-bolt-navbar">
+      <nav class="c-bolt-navbar {% if center %} c-bolt-navbar--center {% endif %}">
         {% if title %}
           {% include "@bolt-components-navbar/_navbar-title.twig" with title only %}
         {% endif %}
