@@ -21,10 +21,10 @@ class BoltNavLink extends BoltComponent() {
     return ['active'];
   }
 
-  constructor() {
-    super();
-
+  constructor(self) {
+    self = super(self);
     this._shadowLink = this.querySelector('a');
+    return self;
   }
 
   // Returns whether or not the current `<bolt-navlink>` element has been active.
