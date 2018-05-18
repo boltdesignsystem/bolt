@@ -296,7 +296,7 @@ function createConfig(config) {
         functions: {
           sassExportData,
           jsonFunctions,
-          'boltData($keys)': function (keys) {
+          'bolt-data($keys)': function (keys) {
             keys = keys.getValue().split('.');
             var result = sassVars;
             var i;
