@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const rename = require('gulp-rename');
 const sass = require('@datorama/postcss-node-sass');
 const postcss = require('gulp-postcss');
