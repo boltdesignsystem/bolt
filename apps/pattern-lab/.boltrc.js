@@ -105,6 +105,7 @@ module.exports = {
         js: './src/scripts/pl.js',
       },
       '@bolt/components-critical-fonts',
+      '@bolt/components-critical-css-vars',
     ],
   },
 };

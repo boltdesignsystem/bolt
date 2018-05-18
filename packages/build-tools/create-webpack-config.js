@@ -36,16 +36,29 @@ function createConfig(config) {
     path: path.resolve(process.cwd(), config.dataDir),
   });
 
+  // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
+  // Must start and end with `/`
+  // conditional is temp workaround for when servers are disabled via absence of `config.wwwDir`
+  const publicPath = config.publicPath ? config.publicPath : (config.wwwDir ?
+    `/${path.relative(config.wwwDir, config.buildDir)}/` :
+    config.buildDir); // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
 
-  const themifyOptions = Object.assign(theme, {
+
+  let themifyOptions = Object.assign(theme, {
     createVars: true,
     classPrefix: 't-bolt-',
     // defaultColorVariation: 'xlight', // WIP - hard coding xlight default for now
     screwIE11: false,
     modifyCSSRules: false,
     fallback: {
-      cssPath: path.resolve(process.cwd(), config.buildDir, 'theme_fallback.css'), // use checksum
-      dynamicPath: path.resolve(process.cwd(), config.buildDir, 'theme_fallback.json'),
+      filename: 'bolt-css-vars-fallback',
+    },
+  });
+
+  themifyOptions = deepmerge(themifyOptions, {
+    fallback: {
+      cssPath: path.resolve(process.cwd(), config.buildDir, `${themifyOptions.fallback.filename}.css`),
+      dynamicPath: path.resolve(process.cwd(), config.buildDir, `${themifyOptions.fallback.filename}.json`),
     },
   });
 
@@ -61,6 +74,8 @@ function createConfig(config) {
       JSON.stringify('production') :
       JSON.stringify('development'),
     bolt: {
+      themingFallbackCSS: JSON.stringify(publicPath + themifyOptions.fallback.filename + '.css'),
+      themingFallbackJSON: JSON.stringify(publicPath + themifyOptions.fallback.filename + '.json'),
       namespace: JSON.stringify(config.namespace),
     },
   };
@@ -335,12 +350,7 @@ function createConfig(config) {
     },
   ];
 
-  // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
-  // Must start and end with `/`
-  // conditional is temp workaround for when servers are disabled via absence of `config.wwwDir`
-  const publicPath = config.publicPath ? config.publicPath : (config.wwwDir
-    ? `/${path.relative(config.wwwDir, config.buildDir)}/`
-    : config.buildDir); // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
+
 
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
   const webpackConfig = {
