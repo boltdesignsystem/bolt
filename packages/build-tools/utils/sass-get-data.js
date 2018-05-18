@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // const boltData = require('./utils/sass-get-data')({
 //   path: path.resolve(process.cwd(), config.dataDir),
 // });
