@@ -13,10 +13,9 @@ bolt-navbar {
 }
 
 .c-bolt-navbar {
-  @include bolt-padding-top(xsmall);
-  @include bolt-padding-bottom(xsmall);
   @include bolt-padding-left(medium);
   @include bolt-padding-right(medium);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
 
   max-width: bolt-breakpoint(xxlarge);
   margin: 0 auto;
@@ -32,7 +31,7 @@ bolt-navbar {
       @include bolt-padding-right(0);
       flex-direction: row;
       display: grid;
-      grid-template-columns: bolt-spacing(medium) auto 1fr fit-content(100px) bolt-spacing(medium);
+      grid-template-columns: bolt-spacing(medium) auto 1fr fit-content(100px) (bolt-spacing(large) - bolt-spacing(xxsmall));
       grid-template-rows: 1fr auto;
       align-content: center;
       justify-content: center;
@@ -44,6 +43,9 @@ bolt-navbar {
 
 // Nav title
 .c-bolt-navbar__title {
+  @include bolt-padding-top(small);
+  @include bolt-padding-bottom(small);
+
   @include bolt-margin(0 medium 0 0);
   flex-shrink: 0;
 

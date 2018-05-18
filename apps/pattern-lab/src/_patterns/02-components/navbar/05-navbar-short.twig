@@ -1,26 +1,27 @@
 {% include "@bolt-components-navbar/navbar.twig" with {
-  dropdown: {
-    collapse: true,
-    center: true,
-    content: include("@bolt-components-nav/nav.twig", {
-      "links": [
-        {
-          "text": "Features",
-          "url": "link-1-url"
-        },
-        {
-          "text": "Resources",
-          "url": "link-2-url"
-        },
-        {
-          "text": "Industry Apps",
-          "url": "link-3-url"
-        },
-        {
-          "text": "Customer Success",
-          "url": "link-1-url"
-        }
-      ]
-    })
-  }
+  "title": {
+    "tag": "h2",
+    "text": "Title Text",
+    "icon": {
+      "name": "marketing-gray"
+    }
+  },
+  "links": [
+    {
+      "text": "Features",
+      "url": "link-1-url"
+    },
+    {
+      "text": "Resources",
+      "url": "link-2-url"
+    },
+    {
+      "text": "Industry Apps",
+      "url": "link-3-url"
+    },
+    {
+      "text": "Customer Success",
+      "url": "link-1-url"
+    }
+  ]
 } %}

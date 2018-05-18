@@ -40,6 +40,7 @@ function createConfig(config) {
   const themifyOptions = Object.assign(theme, {
     createVars: true,
     classPrefix: 't-bolt-',
+    // defaultColorVariation: 'xlight', // WIP - hard coding xlight default for now
     screwIE11: false,
     modifyCSSRules: false,
     fallback: {

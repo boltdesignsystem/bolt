@@ -7,6 +7,7 @@
 
 bolt-priority-nav {
   display: block;
+  flex-grow: 1;
 
   @supports (display: contents) {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
@@ -88,53 +89,18 @@ bolt-priority-nav {
 
 .c-bolt-priority-nav__item {
   display: flex;
+  // flex-grow: 1;
+  flex-shrink: 0;
+  white-space: nowrap;
   //background-color: themify(background);
 
-}
-
-.c-bolt-priority-nav__button {
-  border: 0;
-
-  @supports (display: contents) {
-    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
-      .is-ready & {
-        grid-row: 1/span 1;
-        grid-column: 4/span 1;
-      }
-    }
+  &:first-child {
+    margin-left: auto;
   }
 }
 
-// .c-bolt-priority-nav__link,
-.c-bolt-priority-nav__button {
-  white-space: nowrap;
-  padding: 1em 0.6em;
-  // box-shadow: inset 0 -0.2em 0 themify(background)-dark;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: themify(secondary, 0.15);
-  }
-
-  &:active {
-    background-color: themify(secondary, 0.1);
-  }
-}
-
-.c-bolt-priority-nav__show-button {
-  background-color: themify(secondary, 0.05);
-  cursor: pointer;
-}
 
 
-.c-bolt-priority-nav__show-icon {
-  display: inline-block;
-  transition: transform 0.2s;
-
-  .c-bolt-priority-nav--show-secondary & {
-    transform: rotate(180deg);
-  }
-}
 
 
  @supports (display: contents) {
@@ -146,7 +112,18 @@ bolt-priority-nav {
  }
 
 
-.c-bolt-priority-nav__secondary {
+.c-bolt-priority-nav__dropdown {
+  // @include bolt-padding(small, squished);
+  @include bolt-padding-top(xsmall);
+  @include bolt-padding-bottom(xsmall);
+  @include bolt-padding-left(small);
+  @include bolt-padding-right(small);
+
+  @include respond-to(small){
+    @include bolt-padding-left(xsmall);
+    @include bolt-padding-right(xsmall);
+  }
+
   min-width: 10em;
   list-style: none;
   margin: 0;
@@ -154,12 +131,18 @@ bolt-priority-nav {
   position: absolute;
   top: 100%;
   right: 0;
-  animation: nav-secondary 0.2s;
+  animation: nav-dropdown 0.2s;
   width: calc(100vw - #{bolt-spacing(large)});
   max-width: 100vw;
   transform: translate3d(0, 0, 0);
   background-color: themify(secondary);
+  // background-color: blue;
+  border-bottom-left-radius: $bolt-border-radius;
+  border-bottom-right-radius: $bolt-border-radius;
 
+  * {
+    white-space: normal;
+  }
 
   @include respond-to(xsmall) {
     width: auto;
@@ -176,6 +159,10 @@ bolt-priority-nav {
     top: 0;
     pointer-events: none;
     background-color: themify(primary, 0.9);
+    border-bottom-left-radius: $bolt-border-radius;
+    border-bottom-right-radius: $bolt-border-radius;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
   }
 
 
@@ -190,9 +177,7 @@ bolt-priority-nav {
     }
   }
 
-
-
-  .c-bolt-priority-nav--show-secondary & {
+  .c-bolt-priority-nav--show-dropdown & {
     display: block;
   }
 
@@ -201,20 +186,12 @@ bolt-priority-nav {
   // }
 
   // .c-bolt-priority-nav__link,
-  .c-bolt-priority-nav__show-button {
-    padding: 0.6em;
-    &:hover {
-      background-color: themify(secondary, 0.15);
-    }
-    &:active {
-      background-color: themify(secondary, 0.1);
-    }
-  }
+
 }
 
 
 // keyframes
-@keyframes nav-secondary {
+@keyframes nav-dropdown {
   0% {
     opacity: 0;
     transform: translateY(-1em);
@@ -222,5 +199,98 @@ bolt-priority-nav {
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+
+
+.c-bolt-priority-nav__show-button {
+  @include bolt-font-weight(semibold);
+  @include bolt-padding(small, squished);
+  border: 0;
+  border-radius: $bolt-border-radius;
+  // padding: 0.6em;
+  white-space: nowrap;
+  // padding: 1em 0.6em;
+  // box-shadow: inset 0 -0.2em 0 themify(background)-dark;
+  transition: background-color 0.3s ease;
+  background-color: themify(secondary, 0.05);
+  cursor: pointer;
+  position: relative;
+
+  @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+    border-radius: 0;
+    border-left: 1px solid themify(secondary, 0.1);
+  }
+
+  &:before {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    opacity: 0;
+    pointer-events: none;
+    background-color: themify(primary, 0.9);
+    // border-bottom-left-radius: $bolt-border-radius;
+    // border-bottom-right-radius: $bolt-border-radius;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+
+  &:hover {
+    background-color: themify(secondary, 0.15);
+
+    &:before {
+      opacity: 0.1;
+    }
+  }
+
+  &.is-active,
+  &:active {
+    background-color: themify(secondary, 0.1);
+
+    &:before {
+      opacity: 0.1;
+    }
+  }
+
+  @supports (display: contents) {
+    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+      .is-ready & {
+        grid-row: 1/span 1;
+        grid-column: 5/span 1;
+      }
+    }
+  }
+}
+
+.c-bolt-priority-nav__show-text {
+  position: relative;
+  z-index: 10;
+  @include bolt-font-size(small);
+
+  @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+    @include bolt-visuallyhidden();
+  }
+}
+
+.c-bolt-priority-nav__show-icon {
+  display: inline-block;
+  transition: transform 0.2s;
+  position: relative;
+  z-index: 10;
+  line-height: 0;
+  font-size: 1em;
+
+  @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+    font-size: 24px;
+  }
+
+  .c-bolt-priority-nav--show-dropdown & {
+    transform: rotate(180deg);
   }
 }
