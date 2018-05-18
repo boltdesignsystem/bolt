@@ -134,6 +134,10 @@ h1, h2, h3, h4, h5, h6, div, span, cite, p {
   &--font-xxxlarge {
     @include bolt-font-size(xxxlarge);
     letter-spacing: $bolt-headline--minus-letter-spacing;
+
+    &.long-title {
+      font-size: $bolt-font-size--xxxlarge--min;
+    }
   }
   &--font-xxlarge {
     @include bolt-font-size(xxlarge);

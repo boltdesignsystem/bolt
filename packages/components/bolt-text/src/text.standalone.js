@@ -117,6 +117,8 @@ class BoltText extends BoltComponent() {
       }
     }
 
+    let longTitle = false; // Right now we are only checking this for headline (below)
+
     // Headline defaults
     if (this.props.headline) {
       fontSize = this.subComponentValues(this.props.fontSize, 'xlarge');
@@ -126,6 +128,9 @@ class BoltText extends BoltComponent() {
       fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
       if (icon !== 'undefined' && icon !== 'false') {
         iconName = true;
+      }
+      if (this.innerHTML.length >= 60 && fontSize === 'xxxlarge') { // Is there a better way to get inner dynamic length?
+        longTitle = true;
       }
     }
 
@@ -155,6 +160,7 @@ class BoltText extends BoltComponent() {
     const classes = css(
       iconName ? 'has-icon' : '',
       url ? 'has-url' : '',
+      longTitle ? 'long-title' : '',
       'c-bolt-text',
       `c-bolt-text--${fontFamily}`,
       `c-bolt-text--theme-${fontFamily}-text-color`,
