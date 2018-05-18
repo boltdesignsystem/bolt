@@ -190,7 +190,7 @@ class BoltText extends BoltComponent() {
       this.setAttribute('class', 'u-bolt-'+util.trim());
     }
 
-    textItem = this.props.url ? this.hyper.wire(this) `<a href="${url}">${textItem}</a>` : this.hyper.wire(this) `${textItem}`;
+    textItem = url ? this.hyper.wire(this) `<a href="${url}">${textItem}</a>` : this.hyper.wire(this) `${textItem}`;
 
     const tag = this.props.tag ? this.props.tag : 'p';
 
