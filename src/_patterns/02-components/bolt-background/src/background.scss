@@ -101,11 +101,14 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
   }
 
   .video-js {
-    max-width: 1400px;
     margin: 0 auto;
     min-width: 0;
     width: 100%;
     transition: all 0.4s ease;
+
+    &:not(.vjs-fullscreen) {
+      max-width: 1400px;
+    }
 
     .is-ready & {
       background-color: transparent;
