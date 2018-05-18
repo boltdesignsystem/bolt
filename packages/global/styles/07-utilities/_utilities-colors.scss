@@ -13,6 +13,6 @@
 
     // @include bolt-color($colorName, $colorShade, important);
     // [Salem]: fix this
-    color: convert-color(boltData('colors.#{$colorName}')) !important; /* stylelint-disable-line */
+    color: bolt-convert-color(bolt-data('colors.#{$colorName}')) !important; /* stylelint-disable-line */
   }
 }
