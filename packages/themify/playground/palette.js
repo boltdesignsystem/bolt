@@ -34,5 +34,5 @@ module.exports = {
     'accent-300': '#04a2d6',
     'accent-200': '#0a87c6',
     'accent-100': '#096796',
-  }
+  },
 };
