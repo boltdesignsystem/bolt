@@ -57,12 +57,21 @@
 
   <span class="{{ "#{baseClass}__text" }}">
     {% if url %}
-      {% include "@bolt/link.twig" with {
-        text: text,
-        icon: icon,
-        url: url,
-        isHeadline: true
-      } only %}
+      {% if type == "text" %}
+        {% include "@bolt/link.twig" with {
+          text: text,
+          icon: icon,
+          url: url,
+        } only %}
+      {% else %}
+        {# [Mai] This means only headlines/subheadlines/eyebrows would get the special link styles #}
+        {% include "@bolt/link.twig" with {
+          text: text,
+          icon: icon,
+          url: url,
+          isHeadline: true
+        } only %}
+      {% endif %}
     {% else %}
       {{ text }}
     {% endif %}

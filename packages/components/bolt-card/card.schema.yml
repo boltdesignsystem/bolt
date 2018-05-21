@@ -4,9 +4,31 @@ category: components
 type: object
 format: grid
 properties:
-  pattern:
+  tag:
     type: string
+    description: Html tag immediately within the `bolt-card` element.
     enum:
-      - card
-    options:
-      hidden: true
+      - div
+      - article
+      - section
+      - figure
+  contentTag:
+    type: string
+    description: Html tag immediately within the `bolt-card` element.
+    enum:
+      - div
+      - article
+      - section
+      - figcaption
+  theme:
+    type: string
+    description: Bolt theme.
+    enum:
+      - xlight
+      - light
+      - medium
+      - dark
+      - xdark
+  url:
+    type: string
+    description: Providing a URL will make the card link to another resource.
