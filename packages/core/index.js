@@ -20,7 +20,11 @@ export { hasNativeShadowDomSupport } from './utils/environment';
 export { findParentTag } from './utils/find-parent-tag';
 
 export { withPreact } from './renderers/renderer-preact';
+export { withSlot } from './renderers/with-slot';
 export { BoltComponent } from './renderers/renderer-hyperhtml';
+export { BoltLitComponent } from './renderers/renderer-lit-element';
+
+
 export { spacingSizes } from './data/spacing-sizes';
 
 // Export polyfill loader

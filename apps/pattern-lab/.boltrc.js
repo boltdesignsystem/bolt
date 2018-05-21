@@ -58,6 +58,7 @@ module.exports = {
     global: [
       '@bolt/core',
       '@bolt/global',
+      '@bolt/bds-button',
       '@bolt/components-placeholder',
       '@bolt/components-action-blocks',
       '@bolt/components-dropdown',

@@ -709,9 +709,78 @@
     to-fast-properties "^2.0.0"
 
 "@bolt/components-page-footer@file:packages/components/bolt-page-footer":
-  version "1.1.2"
+  version "1.4.0"
   dependencies:
-    "@bolt/core" "^1.3.0"
+    "@bolt/core" "^1.4.0"
+
+"@material/animation@^0.34.0":
+  version "0.34.0"
+  resolved "https://registry.yarnpkg.com/@material/animation/-/animation-0.34.0.tgz#a99cc9dabf7d0179b4da9a0aaa1575c4d1513823"
+
+"@material/base@^0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@material/base/-/base-0.35.0.tgz#8640c2da385e8cc393ff56153c5a319f5a7704cb"
+
+"@material/button@^0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@material/button/-/button-0.35.0.tgz#2c1df47ac71a9dd16998925557ef91d80c01b42c"
+  dependencies:
+    "@material/elevation" "^0.35.0"
+    "@material/ripple" "^0.35.0"
+    "@material/rtl" "^0.35.0"
+    "@material/theme" "^0.35.0"
+    "@material/typography" "^0.35.0"
+
+"@material/elevation@^0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@material/elevation/-/elevation-0.35.0.tgz#a0b8bbe346ebb29a4decd35b961aaf2635ff89bd"
+  dependencies:
+    "@material/animation" "^0.34.0"
+    "@material/theme" "^0.4.0"
+
+"@material/mwc-base@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@material/mwc-base/-/mwc-base-0.1.0.tgz#507e8c8f31979fdb9d1d2c6f8ba3363e21982ef9"
+  dependencies:
+    "@polymer/lit-element" "^0.4.0"
+
+"@material/mwc-icon@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@material/mwc-icon/-/mwc-icon-0.1.1.tgz#9a97a3bdd7a1c42c4951b7ceb955259e9c457bf9"
+  dependencies:
+    "@material/mwc-base" "^0.1.0"
+    "@polymer/lit-element" "^0.4.0"
+
+"@material/mwc-ripple@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@material/mwc-ripple/-/mwc-ripple-0.1.1.tgz#33b9109afa45ac3f679e6ce07421449d5fdbb255"
+  dependencies:
+    "@material/mwc-base" "^0.1.0"
+    "@material/ripple" "^0.35.0"
+    "@polymer/lit-element" "^0.4.0"
+
+"@material/ripple@^0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@material/ripple/-/ripple-0.35.0.tgz#3670e04e02dd6efc1ff0546e5129b4e96ec55f70"
+  dependencies:
+    "@material/base" "^0.35.0"
+    "@material/theme" "^0.35.0"
+
+"@material/rtl@^0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@material/rtl/-/rtl-0.35.0.tgz#caae659e35a9bf1b9d91c734c8a3315a81bcde21"
+
+"@material/theme@^0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@material/theme/-/theme-0.35.0.tgz#a2c76f60b82a53d399b769ef91ec52e83ad3c3bd"
+
+"@material/theme@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@material/theme/-/theme-0.4.0.tgz#0aef1a0279b65c15990584fb8b8eca095c734641"
+
+"@material/typography@^0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@material/typography/-/typography-0.35.0.tgz#23ad7eb7c9789e69c7c3fa54df8fc311cd7fc4b1"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -723,6 +792,26 @@
 "@polymer/esm-amd-loader@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@polymer/esm-amd-loader/-/esm-amd-loader-1.0.0.tgz#7180ae2bce061511b48fb9b8fac1b8213ae6718b"
+
+"@polymer/lit-element@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@polymer/lit-element/-/lit-element-0.4.0.tgz#d10d99646270a45daf08ed0d936cdd25cdca4fa1"
+  dependencies:
+    "@polymer/polymer" "^3.0.0-pre.13"
+    lit-html "^0.9.0"
+
+"@polymer/lit-element@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@polymer/lit-element/-/lit-element-0.5.1.tgz#ab1b21391787082023852e95e65e60015dfdaa00"
+  dependencies:
+    "@polymer/polymer" "^3.0.0-pre.13"
+    lit-html "^0.10.0"
+
+"@polymer/polymer@^3.0.0-pre.13":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@polymer/polymer/-/polymer-3.0.2.tgz#626e6f9fae9716b0962ce0211e21df242153eab2"
+  dependencies:
+    "@webcomponents/shadycss" "^1.2.0"
 
 "@polymer/sinonjs@^1.14.1":
   version "1.17.1"
@@ -1173,6 +1262,10 @@
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@webcomponents/custom-elements/-/custom-elements-1.1.1.tgz#dd71c2faa82eb903f5e34271dc535cf80d1abcab"
 
+"@webcomponents/shadycss@^1.2.0":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@webcomponents/shadycss/-/shadycss-1.2.1.tgz#6e4a88534657807c8398b4bc196d0ca492182d54"
+
 "@webcomponents/shadydom@^1.0.14":
   version "1.0.14"
   resolved "https://registry.yarnpkg.com/@webcomponents/shadydom/-/shadydom-1.0.14.tgz#fcfeacf7470ec11483e1f08c590ce1491527db1a"
@@ -1181,9 +1274,13 @@
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/@webcomponents/template/-/template-1.2.4.tgz#5bd0d281f308bb98dad712fbbe67893851f0c8ad"
 
-"@webcomponents/webcomponentsjs@^1.0.7", "@webcomponents/webcomponentsjs@^1.1.0":
+"@webcomponents/webcomponentsjs@^1.0.7":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@webcomponents/webcomponentsjs/-/webcomponentsjs-1.2.0.tgz#c9e129340c3e4637f5fa6505e968e85face7bd5b"
+
+"@webcomponents/webcomponentsjs@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@webcomponents/webcomponentsjs/-/webcomponentsjs-2.0.0.tgz#166e7489b9ce66f5c082a3360120cb27505f762f"
 
 JSONStream@^0.8.4:
   version "0.8.4"
@@ -7463,6 +7560,14 @@ limiter@^1.0.5:
 link-types@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/link-types/-/link-types-1.1.0.tgz#af65e59db52e70c1ffb18ac4c3cb056bfe796830"
+
+lit-html@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/lit-html/-/lit-html-0.10.0.tgz#1c56efc7513faa8e12d0a5564dc3c67ee28fd617"
+
+lit-html@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/lit-html/-/lit-html-0.9.0.tgz#a445ecbb3da7d8b17690e6ade6c872c89385092a"
 
 load-json-file@^1.0.0:
   version "1.1.0"
