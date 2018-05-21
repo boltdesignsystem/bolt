@@ -1,9 +1,7 @@
 {% embed "@bolt-components-sticky/sticky.twig" %}
   {% block sticky_content %}
     {% include "@bolt-components-navbar/navbar.twig" with {
-      "theme": "medium",
-      "gradient": true,
-      "vspacing": "xsmall",
+      "theme": "dark",
       "title":
       {
         "tag": "h2",
@@ -214,10 +212,9 @@
 {% embed "@bolt-components-sticky/sticky.twig" %}
   {% block sticky_content %}
     {% include "@bolt-components-navbar/navbar.twig" with {
-      "theme": "light",
-      "gradient": false,
-      "vspacing": "xsmall",
-      "title":
+      theme: "light",
+      center: true,
+      title:
       {
         "tag": "h2",
         "text": "2nd Sticky Nav Bar",
@@ -226,8 +223,7 @@
           "name": "cloud"
         }
       },
-      "links":
-      [
+      links: [
         {
           "text": "Link",
           "url": "#section-5"
