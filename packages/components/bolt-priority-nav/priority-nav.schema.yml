@@ -1,0 +1,24 @@
+$schema: http://json-schema.org/draft-04/schema#
+title: Navbar
+type: object
+properties:
+  theme:
+    type: string
+    description: Color theme. Can be set to false for a transparent background.
+    default: dark
+    enum:
+      - xlight
+      - light
+      - dark
+      - xdark
+      - 'false'
+  links:
+    type: array
+    items:
+      type: object
+      description: Array of Priority Nav links.
+      properties:
+        text:
+          type: string
+        url:
+          type: string
