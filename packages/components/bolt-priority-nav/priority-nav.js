@@ -15,131 +15,182 @@ import {
     — https://www.npmjs.com/package/nodelist-foreach-polyfill
 */
 
-let isOpen = false;
 
-const offsettolerance = 5; // Extra wiggle room when calculating how many items can fit
-const container = document.querySelector('bolt-priority-nav');
-const containerTabs = container.querySelector('.c-bolt-priority-nav');
-const primary = container.querySelector('.c-bolt-priority-nav__primary');
-const primaryItems = container.querySelectorAll('.c-bolt-priority-nav__primary > .c-bolt-priority-nav__item:not(.c-bolt-priority-nav__item--show-more)');
-containerTabs.classList.add('is-ready');
-container.classList.add('is-ready');
+@define
+export class BoltPriorityNav extends BoltComponent() {
+  static is = 'bolt-priority-nav';
 
-// insert "more" button and duplicate the list
+  constructor(self) {
+    self = super(self);
+    this.activeLink = false;
+    this.useShadow = hasNativeShadowDomSupport;
 
-primary.insertAdjacentHTML('beforeend', `
-  <li class="c-bolt-priority-nav__item c-bolt-priority-nav__show-more">
-    <button type="button" aria-haspopup="true" aria-expanded="false" class="c-bolt-priority-nav__button c-bolt-priority-nav__show-button">
-      <span class="c-bolt-priority-nav__show-text">
-        More
-      </span>
-      <span class="c-bolt-priority-nav__show-icon">
-        <bolt-icon name="chevron-down"></bolt-icon>
-      </span>
-    </button>
-    <div class="c-bolt-priority-nav__dropdown">
-      <ul class="c-bolt-priority-nav__list c-bolt-priority-nav__dropdown-list">
-        ${primary.innerHTML}
-      </ul>
-    </div>
-  </li>
-`)
-const priorityDropdown = container.querySelector('.c-bolt-priority-nav__dropdown');
-const dropdownItems = priorityDropdown.querySelectorAll('li');
-const allItems = container.querySelectorAll('li');
-const moreLi = primary.querySelector('.c-bolt-priority-nav__show-more');
-const moreBtn = moreLi.querySelector('.c-bolt-priority-nav__show-button');
+    this._adaptPriorityNav = this._adaptPriorityNav.bind(this);
+    this._handleDropdownToggle = this._handleDropdownToggle.bind(this);
 
-moreBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  isOpen = !isOpen;
-
-  console.log(`is open: ${isOpen}`);
-
-  if (isOpen){
-    container.setAttribute('open', true);
-    containerTabs.classList.add('c-bolt-priority-nav--show-dropdown');
-    moreBtn.classList.add('is-active');
-    moreBtn.setAttribute('aria-expanded', true);
-  } else {
-    container.removeAttribute('open');
-    containerTabs.classList.remove('c-bolt-priority-nav--show-dropdown');
-    moreBtn.classList.remove('is-active');
-    moreBtn.setAttribute('aria-expanded', false);
+    return self;
   }
 
-});
+  connecting() {
+    Promise.all([
+      customElements.whenDefined('bolt-navlink'),
+    ]).then(_ => {
+      this.isOpen = false;
+      this.offsettolerance = 5; // Extra wiggle room when calculating how many items can fit
 
-// adapt tabs
+      this.containerTabs = this.querySelector('.c-bolt-priority-nav');
+      this.primaryNav = this.querySelector('.c-bolt-priority-nav__primary');
+      this.primaryItems = this.querySelectorAll('.c-bolt-priority-nav__primary > .c-bolt-priority-nav__item:not(.c-bolt-priority-nav__item--show-more)');
+      this.containerTabs.classList.add('is-ready');
+      this.classList.add('is-ready');
 
-const doAdapt = () => {
-  container.classList.add('is-resizing');
+      this.primaryNav.insertAdjacentHTML('beforeend', `
+        <li class="c-bolt-priority-nav__item c-bolt-priority-nav__show-more">
+          <button type="button" aria-haspopup="true" aria-expanded="false" class="c-bolt-priority-nav__button c-bolt-priority-nav__show-button">
+            <span class="c-bolt-priority-nav__show-text">
+              More
+            </span>
+            <span class="c-bolt-priority-nav__show-icon">
+              <bolt-icon name="chevron-down"></bolt-icon>
+            </span>
+          </button>
+          <div class="c-bolt-priority-nav__dropdown">
+            <ul class="c-bolt-priority-nav__list c-bolt-priority-nav__dropdown-list">
+              ${this.primaryNav.innerHTML}
+            </ul>
+          </div>
+        </li>
+      `);
 
-  // reveal all items for the calculation
-  allItems.forEach((item) => {
-    item.classList.remove('is-hidden');
-  });
+      this.priorityDropdown = this.querySelector('.c-bolt-priority-nav__dropdown');
+      this.dropdownItems = this.priorityDropdown.querySelectorAll('li');
+      this.allItems = this.querySelectorAll('li');
+      this.moreLi = this.primaryNav.querySelector('.c-bolt-priority-nav__show-more');
+      this.moreBtn = this.moreLi.querySelector('.c-bolt-priority-nav__show-button');
 
-  // hide items that won't fit in the Primary
-  let stopWidth = moreBtn.offsetWidth;
-  let hiddenItems = [];
+      this._adaptPriorityNav();
+      this._handleExternalClicks();
 
-  // console.log(primary.closest('.c-bolt-navbar__nav').offsetWidth);
-  const primaryWidth = primary.offsetWidth;
-
-
-
-  primaryItems.forEach((item, i) => {
-    if (primaryWidth + offsettolerance >= stopWidth + item.offsetWidth) {
-      stopWidth += item.offsetWidth;
-    } else {
-      item.classList.add('is-hidden');
-      hiddenItems.push(i);
-    }
-  });
-
-  // toggle the visibility of More button and items in Secondary
-  if(!hiddenItems.length) {
-    isOpen = false;
-    container.removeAttribute('open');
-    moreLi.classList.add('is-hidden');
-    containerTabs.classList.remove('c-bolt-priority-nav--show-dropdown');
-    moreBtn.classList.remove('is-active');
-    moreBtn.setAttribute('aria-expanded', false);
+      this.moreBtn.addEventListener('click', this._handleDropdownToggle);
+      this.addEventListener('activateLink', this._onActivateLink);
+      window.addEventListener('optimizedResize', this._adaptPriorityNav);
+    });
   }
-  else {
-    dropdownItems.forEach((item, i) => {
-      if(!hiddenItems.includes(i)) {
+
+  render() {
+    return this.html `
+      ${this.slot('default')}
+    `
+  }
+
+  _adaptPriorityNav() {
+    this.classList.add('is-resizing');
+
+    // reveal all items for the calculation
+    this.allItems.forEach((item) => {
+      item.classList.remove('is-hidden');
+    });
+
+    // hide items that won't fit in the Primary
+    let stopWidth = this.moreBtn.offsetWidth;
+    let hiddenItems = [];
+
+    const primaryWidth = this.primaryNav.offsetWidth;
+
+
+    this.primaryItems.forEach((item, i) => {
+      if (primaryWidth + this.offsettolerance >= stopWidth + item.offsetWidth) {
+        stopWidth += item.offsetWidth;
+      } else {
         item.classList.add('is-hidden');
+        hiddenItems.push(i);
       }
-    })
-  }
+    });
 
-  // if (isOpen) {
-  container.classList.remove('is-resizing');
-  // }
-}
-
-doAdapt() // adapt immediately on load
-
-
-// hide Secondary on the outside click
-
-document.addEventListener('click', (e) => {
-  let el = e.target
-  while(el) {
-    if(el === priorityDropdown || el === moreBtn) {
-      return;
+    // toggle the visibility of More button and items in Secondary
+    if (!hiddenItems.length) {
+      this.isOpen = false;
+      this.removeAttribute('open');
+      this.moreLi.classList.add('is-hidden');
+      this.containerTabs.classList.remove('c-bolt-priority-nav--show-dropdown');
+      this.moreBtn.classList.remove('is-active');
+      this.moreBtn.setAttribute('aria-expanded', false);
+    } else {
+      this.dropdownItems.forEach((item, i) => {
+        if (!hiddenItems.includes(i)) {
+          item.classList.add('is-hidden');
+        }
+      })
     }
-    el = el.parentNode;
+
+    this.classList.remove('is-resizing');
   }
 
-  isOpen = false;
-  containerTabs.classList.remove('c-bolt-priority-nav--show-dropdown');
-  container.removeAttribute('open');
-  moreBtn.classList.remove('is-active');
-  moreBtn.setAttribute('aria-expanded', false);
-});
+
+  _handleExternalClicks(){
+    document.addEventListener('click', (e) => {
+      let el = e.target
+      while(el) {
+        if(el === this.priorityDropdown || el === this.moreBtn) {
+          return;
+        }
+        el = el.parentNode;
+      }
+
+      this.close();
+    });
+  }
+
+  // `_onActiveLink` handles the `activateLink` event emitted by the children
+  _onActivateLink(event) {
+    this.close();
+  }
+
+  _upgradeProperty(prop) {
+    if (this.hasOwnProperty(prop)) {
+      let value = this[prop];
+      delete this[prop];
+      this[prop] = value;
+    }
+  }
+
+  _handleDropdownToggle(e){
+    e.preventDefault();
+    this.isOpen = !this.isOpen;
+
+    this._toggleDropdown();
+  }
+
+  _toggleDropdown(){
+    if (this.isOpen) {
+      this.open();
+    } else {
+      this.close();
+    }
+  }
+
+  open() {
+    this.isOpen = true;
+    this.setAttribute('open', true);
+    this.containerTabs.classList.add('c-bolt-priority-nav--show-dropdown');
+    this.moreBtn.classList.add('is-active');
+    this.moreBtn.setAttribute('aria-expanded', true);
+  }
+
+  close(){
+    this.isOpen = false;
+    this.removeAttribute('open');
+    this.containerTabs.classList.remove('c-bolt-priority-nav--show-dropdown');
+    this.moreBtn.classList.remove('is-active');
+    this.moreBtn.setAttribute('aria-expanded', false);
+  }
+
+  // Clean up event listeners when being removed from the page
+  disconnecting() {
+    this.removeEventListener('activateLink', this._onActivateLink);
+    window.removeEventListener('optimizedResize', this._adaptPriorityNav);
+  }
+}
 
 
 // Create a custom 'optimizedResize' event that works just like window.resize but is more performant because it
@@ -151,7 +202,9 @@ document.addEventListener('click', (e) => {
     let running = false;
 
     function func() {
-      if (running) { return; }
+      if (running) {
+        return;
+      }
       running = true;
       requestAnimationFrame(function () {
         obj.dispatchEvent(new CustomEvent(name));
@@ -165,6 +218,3 @@ document.addEventListener('click', (e) => {
   // such as scroll.
   throttle('resize', 'optimizedResize');
 })();
-
-
-window.addEventListener('optimizedResize', doAdapt); // adapt on window resize
