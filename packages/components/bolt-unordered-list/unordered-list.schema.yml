@@ -4,6 +4,9 @@ type: object
 require:
   - contentItems
 properties:
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
   theme:
     type: string
     description: Color theme. Can be set to false for a transparent background.
@@ -21,7 +24,7 @@ properties:
     description: These are all of the items in the ordered list
     items:
       type: object
-      description: Items as objects with either a `text` or `contentItems`
+      description: A single list item object with either a `text` or `contentItems` key
       properties:
         text:
           type: string
