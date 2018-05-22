@@ -58,30 +58,27 @@ bolt-text {
 $bolt-headline--minus-letter-spacing: -0.025rem;
 $bolt-headline--plus-letter-spacing: 0.05rem;
 
-// Reset elements
-h1, h2, h3, h4, h5, h6, div, span, cite, p {
-  &.c-bolt-text {
-    margin: 0;
-    padding: 0;
+.c-bolt-text {
+  margin: 0;
+  padding: 0;
 
+  a:link, a:visited {
+    color: inherit;
+    color: var(--bolt-theme-link-default,var(--bolt-theme-link,#545da6));
+    text-decoration: none;
+  }
+  a:hover {
+    color: inherit;
+    color: var(--bolt-theme-link-hover,var(--bolt-theme-link,#545da6));
+    text-decoration: underline;
+  }
+
+  &.c-bolt-text--body {
     a:link, a:visited {
-      color: inherit;
-      color: var(--bolt-theme-link-default,var(--bolt-theme-link,#545da6));
-      text-decoration: none;
-    }
-    a:hover {
-      color: inherit;
-      color: var(--bolt-theme-link-hover,var(--bolt-theme-link,#545da6));
       text-decoration: underline;
     }
-
-    &.c-bolt-text--body {
-      a:link, a:visited {
-        text-decoration: underline;
-      }
-      a:hover {
-        text-decoration: none;
-      }
+    a:hover {
+      text-decoration: none;
     }
   }
 }
