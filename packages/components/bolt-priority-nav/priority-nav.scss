@@ -1,0 +1,385 @@
+/* ------------------------------------ *\
+   Nav
+\* ------------------------------------ */
+
+@import '@bolt/core';
+
+
+bolt-priority-nav {
+  display: block;
+
+  @supports (display: contents) {
+    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+      &.is-ready {
+        display: contents;
+      }
+    }
+  }
+
+  &:not(.is-ready) {
+    overflow-x: auto;
+  }
+
+  &.is-resizing {
+    overflow: hidden;
+  }
+}
+
+.c-bolt-priority-nav {
+  @supports (display: contents) {
+    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+      &.is-ready {
+        display: contents;
+      }
+    }
+  }
+
+  position: relative;
+
+  &:not(.is-ready) {
+    // @TODO: uncomment once themify updates are merged in
+    // background-image: -webkit-linear-gradient(left, themify(background), hsla(0, 0%, 100%, 0)),
+    // -webkit-linear-gradient(right, themify(background), hsla(0, 0%, 100%, 0)),
+    // -webkit-linear-gradient(left, themify(background-dark), rgba(234, 240, 246, 0)),
+    // -webkit-linear-gradient(right, themify(background-dark), rgba(234, 240, 246, 0));
+    // background-color: themify(background);
+
+    // @TODO: remove once themify updates are merged in
+    // .t-bolt-xdark & {
+    //   background-image: -webkit-linear-gradient(left, bolt-color(indigo, dark), hsla(0, 0%, 100%, 0)),
+    //   -webkit-linear-gradient(right, bolt-color(indigo, dark), hsla(0, 0%, 100%, 0)),
+    //   -webkit-linear-gradient(left, bolt-color(indigo, xdark), rgba(234, 240, 246, 0)),
+    //   -webkit-linear-gradient(right, bolt-color(indigo, xdark), rgba(234, 240, 246, 0));
+    //   background-color: bolt-color(indigo, dark);
+    // }
+
+    // .t-bolt-dark & {
+    //   background-image: -webkit-linear-gradient(left, bolt-color(indigo), hsla(0, 0%, 100%, 0)),
+    //   -webkit-linear-gradient(right, bolt-color(indigo), hsla(0, 0%, 100%, 0)),
+    //   -webkit-linear-gradient(left, bolt-color(indigo, dark), rgba(234, 240, 246, 0)),
+    //   -webkit-linear-gradient(right, bolt-color(indigo, dark), rgba(234, 240, 246, 0));
+    //   background-color: bolt-color(indigo);
+    // }
+
+    // .t-bolt-light & {
+    //   background-image: -webkit-linear-gradient(left, bolt-color(gray, xlight), hsla(0, 0%, 100%, 0)),
+    //   -webkit-linear-gradient(right, bolt-color(gray, xlight), hsla(0, 0%, 100%, 0)),
+    //   -webkit-linear-gradient(left, bolt-color(gray, light), rgba(234, 240, 246, 0)),
+    //   -webkit-linear-gradient(right, bolt-color(gray, light), rgba(234, 240, 246, 0));
+    //   background-color: bolt-color(gray, light);
+    // }
+
+    // &,
+    // .t-bolt-xlight & {
+    //   background-image: -webkit-linear-gradient(left, bolt-color(white), hsla(0, 0%, 100%, 0)),
+    //   -webkit-linear-gradient(right, bolt-color(white), hsla(0, 0%, 100%, 0)),
+    //   -webkit-linear-gradient(left, bolt-color(gray, xlight), rgba(234, 240, 246, 0)),
+    //   -webkit-linear-gradient(right, bolt-color(gray, xlight), rgba(234, 240, 246, 0));
+    //   background-color: bolt-color(gray, xlight);
+    // }
+
+    -webkit-overflow-scrolling: touch;
+    background-attachment: local, local, scroll, scroll;
+    background-position: 0 0, 100% 0, 0 0, 100% 0;
+    background-repeat: no-repeat;
+    background-size: 4em 100%, 4em 100%, 1em 100%, 1em 100%;
+    overflow-x: auto;
+
+    // .c-bolt-priority-nav__item {
+    //   background-color: transparent;
+    // }
+  }
+
+  .is-hidden {
+    display: none;
+  }
+}
+
+// .c-bolt-priority-nav__link,
+.c-bolt-priority-nav__show-button {
+  width: 100%;
+  height: 100%;
+  display: block;
+  // color: themify(text); // @TODO: uncomment once themify updates are merged in
+
+  // @TODO: remove once themify updates are merged in
+  .t-bolt-dark &,
+  .t-bolt-xdark & {
+    color: bolt-color(white);
+  }
+
+  // @TODO: remove once themify updates are merged in
+  &,
+  .t-bolt-light &,
+  .t-bolt-xlight & {
+    color: bolt-color(black);
+  }
+
+  background-color: transparent;
+}
+
+.c-bolt-priority-nav__primary {
+  @supports (display: contents) {
+    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+      .is-ready & {
+        display: contents;
+      }
+    }
+  }
+
+  display: flex;
+  list-style: none;
+  margin: 0;
+}
+
+.c-bolt-priority-nav__item {
+  display: flex;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+
+
+
+
+ @supports (display: contents) {
+   .c-bolt-priority-nav__show-more {
+     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+       display: contents;
+     }
+   }
+ }
+
+
+.c-bolt-priority-nav__dropdown-list {
+  // background-color: themify(primary, 0.9); // @TODO: uncomment once themify updates are merged in
+
+  // @TODO: remove once themify updates are merged in
+  .t-bolt-dark &,
+  .t-bolt-xdark & {
+    background-color: rgba(bolt-color(indigo), 0.9);
+  } // @TODO: remove once themify updates are merged in
+  &,
+  .t-bolt-light &,
+  .t-bolt-xlight & {
+    background-color: rgba(bolt-color(white), 0.9);
+  }
+
+
+  list-style: none;
+  margin: 0;
+  width: 100%;
+
+  @include bolt-padding-top(xsmall);
+  @include bolt-padding-bottom(xsmall);
+  @include bolt-padding-left(small);
+  @include bolt-padding-right(small);
+
+  @include respond-to(small){
+    @include bolt-padding-left(xsmall);
+    @include bolt-padding-right(xsmall);
+  }
+}
+
+.c-bolt-priority-nav__dropdown {
+  @include bolt-z-index(tooltip);
+  box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
+  min-width: 10em;
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  animation: nav-dropdown 0.2s;
+  width: calc(100vw - #{bolt-spacing(large)});
+  max-width: 100vw;
+  transform: translate3d(0, 0, 0);
+
+  // background-color: themify(secondary); // @TODO: uncomment once themify updates are merged in
+  // @TODO: remove once themify updates are merged in
+  .t-bolt-dark &,
+  .t-bolt-xdark &,
+  .t-bolt-light &,
+  .t-bolt-light & {
+    background-color: bolt-color(white);
+  }
+
+  border-bottom-left-radius: $bolt-border-radius;
+  border-bottom-right-radius: $bolt-border-radius;
+
+  * {
+    white-space: normal;
+  }
+
+  @include respond-to(xsmall) {
+    width: auto;
+    max-width: 100%;
+  }
+
+
+
+
+
+
+  @supports (display: contents) {
+    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+      grid-row: 2/span 1;
+      grid-column: 1/span 6;
+      position: static;
+      width: auto;
+    }
+  }
+
+  .c-bolt-priority-nav--show-dropdown & {
+    display: block;
+  }
+}
+
+
+// keyframes
+@keyframes nav-dropdown {
+  0% {
+    opacity: 0;
+    transform: translateY(-1em);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+.c-bolt-priority-nav__show-button {
+  @include bolt-padding(small, squished);
+  border: 0;
+  border-radius: $bolt-border-radius;
+  white-space: nowrap;
+  transition: background-color 0.3s ease;
+
+  // background-color: themify(secondary, 0.05); // @TODO: uncomment once themify updates are merged in
+  // @TODO: remove once themify updates are merged in
+  &,
+  .t-bolt-dark &,
+  .t-bolt-xdark &,
+  .t-bolt-light &,
+  .t-bolt-light & {
+    background-color: rgba(bolt-color(white), 0.05);
+  }
+
+  cursor: pointer;
+  position: relative;
+
+  @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+    border-radius: 0;
+
+    // border-left: 1px solid themify(secondary, 0.1); // @TODO: uncomment once themify updates are merged in
+    // @TODO: remove once themify updates are merged in
+    &,
+    .t-bolt-dark &,
+    .t-bolt-xdark &,
+    .t-bolt-light &,
+    .t-bolt-light & {
+      border-left: rgba(bolt-color(white), 0.1);
+    }
+  }
+
+  &:before {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    opacity: 0;
+    pointer-events: none;
+
+    // background-color: themify(primary, 0.9); // @TODO: uncomment once themify updates are merged in
+    // @TODO: remove once themify updates are merged in
+    .t-bolt-dark &,
+    .t-bolt-xdark & {
+      background-color: rgba(bolt-color(indigo), 0.9);
+    }
+
+    &,
+    .t-bolt-light &,
+    .t-bolt-xlight & {
+      background-color: rgba(bolt-color(gray), 0.9);
+    }
+
+    overflow: hidden;
+    z-index: 1;
+  }
+
+
+  &:hover {
+    // background-color: themify(secondary, 0.15); // @TODO: uncomment once themify updates are merged in
+
+    // @TODO: remove once themify updates are merged in
+    &,
+    .t-bolt-dark &,
+    .t-bolt-xdark &,
+    .t-bolt-light &,
+    .t-bolt-light & {
+      background-color: rgba(bolt-color(white), 0.15);
+    }
+
+    &:before {
+      opacity: 0.1;
+    }
+  }
+
+  &.is-active,
+  &:active {
+    // background-color: themify(secondary, 0.1); // @TODO: uncomment once themify updates are merged in
+    // @TODO: remove once themify updates are merged in
+    &,
+    .t-bolt-dark &,
+    .t-bolt-xdark &,
+    .t-bolt-light &,
+    .t-bolt-light & {
+      background-color: rgba(bolt-color(white), 0.1);
+    }
+
+    &:before {
+      opacity: 0.1;
+    }
+  }
+
+  @supports (display: contents) {
+    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+      .is-ready & {
+        grid-row: 1/span 1;
+        grid-column: 5/span 1;
+      }
+    }
+  }
+}
+
+.c-bolt-priority-nav__show-text {
+  @include bolt-font-size(small);
+  @include bolt-font-weight(semibold);
+  position: relative;
+  z-index: 10;
+
+  @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+    @include bolt-visuallyhidden;
+  }
+}
+
+.c-bolt-priority-nav__show-icon {
+  display: inline-block;
+  transition: transform 0.2s;
+  position: relative;
+  z-index: 10;
+  line-height: 0;
+  font-size: 1em;
+
+  @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+    font-size: 24px;
+  }
+
+  .c-bolt-priority-nav--show-dropdown & {
+    transform: rotate(180deg);
+  }
+}

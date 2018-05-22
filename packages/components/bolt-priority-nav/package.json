@@ -1,6 +1,6 @@
 {
-  "name": "@bolt/components-navlink",
-  "description": "Navlink Component in Bolt",
+  "name": "@bolt/components-priority-nav",
+  "description": "Priority+ Nav Component in Bolt",
   "keywords": [
     "bolt design system",
     "bolt",
@@ -22,14 +22,16 @@
   ],
   "homepage": "https://bolt-design-system.com",
   "license": "MIT",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-priority-nav",
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "main": "index.js",
+  "style": "priority-nav.scss",
+  "schema": "priority-nav.schema.yml",
   "publishConfig": {
     "access": "public"
   },
-  "style": "navlink.scss",
-  "main": "index.js",
   "dependencies": {
-    "@bolt/core": "^1.4.0"
+    "@bolt/core": "^1.3.0",
+    "gumshoejs": "^3.5.0"
   }
 }

@@ -1,0 +1,18 @@
+<!--
+  Related blog post:
+  https://css-tricks.com/container-adapting-tabs-with-more-button/
+-->
+
+<bolt-priority-nav>
+  <nav class="c-bolt-priority-nav">
+    <ul class="c-bolt-priority-nav__list c-bolt-priority-nav__primary">
+      {% for item in links %}
+        <li class="c-bolt-priority-nav__item">
+          {% include "@bolt-components-navlink/navlink.twig" with item only %}
+        </li>
+      {% endfor %}
+      {# <li class="c-bolt-nav__indicator js-bolt-nav-indicator"></li> #}
+
+    </ul>
+  </nav>
+</bolt-priority-nav>

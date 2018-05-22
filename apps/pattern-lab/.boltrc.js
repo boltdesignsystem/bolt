@@ -61,6 +61,7 @@ module.exports = {
       '@bolt/components-placeholder',
       '@bolt/components-action-blocks',
       '@bolt/components-dropdown',
+      '@bolt/components-priority-nav',
       '@bolt/components-background',
       '@bolt/components-background-shapes',
       '@bolt/components-band',

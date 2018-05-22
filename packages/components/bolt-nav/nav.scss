@@ -23,9 +23,11 @@ bolt-nav {
   flex-direction: column; // [Mai] This is interrelated with the dropdown component.
   position: relative;
   list-style: none;
+  flex-flow: column nowrap;
 
-  @include respond-to(small) {
+  @include respond-to(medium) {
     flex-direction: row; // [Mai] This is interrelated with the dropdown component.
+    flex-flow: row nowrap;
   }
 }
 
