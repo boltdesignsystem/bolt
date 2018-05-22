@@ -1,3 +1,67 @@
+@import '@bolt/core';
+
+
+// Dev Notes
+// 1. [Mai] Because these styles are overrides, they need to be repeated.
+
+
+$bolt-video-js-button-text-color: bolt-color(white);
+$bolt-video-js-button-background-color: bolt-color(orange);
+$bolt-video-js-button-transition: $bolt-transition;
+$bolt-video-js-button-border-radius: $bolt-border-radius;
+
+
+@mixin bolt-video-js-button {
+  color: $bolt-video-js-button-text-color;
+  background-color: $bolt-video-js-button-background-color;
+  transition: opacity $bolt-video-js-button-transition;
+}
+
+.video-js {
+  .vjs-big-play-button {
+    @include bolt-margin(0);
+    @include bolt-padding(0);
+    @include bolt-video-js-button;
+
+    position: absolute;
+    top: auto;
+    right: auto;
+    bottom: bolt-v-spacing(xsmall);
+    left: bolt-spacing(xsmall);
+    width: 2em;
+    height: 1.5em;
+    line-height: 1.5em;
+    cursor: pointer;
+    font-size: 1.5em;
+    border: none;
+    border-radius: $bolt-video-js-button-border-radius;
+    opacity: 1;
+
+    &:hover {
+      @include bolt-video-js-button; // [1]
+      opacity: $bolt-global-link-hover-opacity;
+    }
+
+    &:active,
+    &:focus {
+      @include bolt-video-js-button; // [1]
+      opacity: $bolt-global-link-active-opacity;
+    }
+  }
+
+  &:hover .vjs-big-play-button {
+    @include bolt-video-js-button; // [1]
+    opacity: $bolt-global-link-hover-opacity;
+  }
+
+  &:active .vjs-big-play-button,
+  &:focus .vjs-big-play-button {
+    @include bolt-video-js-button; // [1]
+    opacity: $bolt-global-link-active-opacity;
+  }
+}
+
+
 // Vertically and horizontally center the default Brightcove share overlay content
 .vjs-modal-dialog .vjs-modal-dialog-content {
   position: relative; // override position: absolute
@@ -13,37 +77,8 @@
   background-color: transparent;
 }
 
-.video-js .vjs-big-play-button.vjs-big-play-button {
-  @include bolt-button-style(secondary);
-  margin-top: auto;
-  margin-left: auto;
-  width: 4.5rem;
-  height: 4.5rem;
-  transform: translate3d(-50%, -50%, 0);
-  box-shadow: 1px 2px 3px 0 rgba(47,49,50,0.15);
-  transition: all $bolt-transition;
 
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 4px 3px rgb(59, 153, 252);
-  }
 
-  .vjs-icon-placeholder {
-    display: block;
-    position: relative;
-    align-self: center;
-    line-height: 1; // Fixes vertical alignment issues w/ the icon in IE11 and Chrome
-  }
-
-  .vjs-icon-placeholder:before {
-    color: bolt-color(blue);
-    display: block;
-    position: relative;
-    height: auto;
-    width: auto;
-    pointer-events: none; // prevent clicks from sticking
-  }
-}
 
 .video-js .vjs-control.vjs-close-button {
   padding: 1.4rem;
