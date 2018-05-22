@@ -134,11 +134,12 @@ properties:
     oneOf:
       - type: object
       - type: boolean
-    description: Bolt icon **(twig only)**. Set `False` to hide when using URL with eyebrow, headline, or subheadline. Other params to include here are `align` and `valign`.
+    title: Twig only
+    description: Set `False` to hide when using URL with eyebrow, headline, or subheadline. Other params to include here are `align` and `valign`.
     ref: '@bolt-components-icon/icon.schema.yml'
   iconName:
     type: string
-    description: Icon name.
+    title: Custom element only
     enum:
       - add-open
       - add-solid
@@ -239,13 +240,14 @@ properties:
       - youtube-solid
   iconBackground:
     type: string
+    title: Custom element only
     description: Background shape. This applies *only* to 'xlarge' icons.
     enum:
       - circle
       - square
   iconSize:
     type: string
-    description: Icon size.
+    title: Custom element only
     enum:
       - small
       - medium
@@ -253,20 +255,23 @@ properties:
       - xlarge
   iconColor:
     type: string
-    description: Icon color. Currently only support default (black) and teal.
+    title: Custom element only
+    description: Currently only support default (blue) and teal.
     enum:
      - teal
      - blue
   iconValign:
     type: string
-    description: Icon vertical position (works with icon-align set to "hang")
+    title: Custom element only
+    description: Icon vertical position (works with icon-align set to "hang").
     default: center
     enum:
       - top
       - center
   iconAlign:
     type: string
-    description: Icon horizontal positioning & "hang"
+    title: Custom element only
+    description: Icon horizontal positioning & "hang".
     default: right
     enum:
       - left
