@@ -82,7 +82,7 @@ module.exports = {
       '@bolt/components-icons',
       '@bolt/components-image',
       '@bolt/components-link',
-      '@bolt/components-nav',
+      '@bolt/components-nav-indicator',
       '@bolt/components-navbar',
       '@bolt/components-navlink',
       '@bolt/components-logo',
