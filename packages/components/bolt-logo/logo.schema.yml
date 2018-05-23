@@ -1,10 +1,9 @@
 $schema: http://json-schema.org/draft-04/schema#
 title: Logo
 type: object
+description: Note that logo accepts all the same parameters as the bolt-image component in addition to the properties below.
 properties:
-  logo:
-    type: object
-    description: A bolt image object.
   invert:
     type: boolean
-    description: Inverts the logo.
+    description: Set to true to invert the logo colors.
+additionalProperties: true
