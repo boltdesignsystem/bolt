@@ -25,7 +25,7 @@ bolt-navlink {
   @include bolt-font-weight(semibold);
 
   position: relative;
-  opacity: 0.8;
+  opacity: 0.6;
   transition: opacity $bolt-navlink-text-transition;
   position: relative;
   transition: all .1s ease;
@@ -65,6 +65,16 @@ bolt-navlink {
     &:before {
       animation: none;
     }
+  }
+
+  &.is-dropdown-link.is-active:after {
+    width: 2px;
+    position: absolute;
+    top: 6px;
+    left: 0;
+    bottom: 6px;
+    background-color: currentColor;
+    content: '';
   }
 }
 

@@ -8,7 +8,7 @@ $bolt-nav-indicator-border-color: var(--bolt-theme-text, currentColor);
 $bolt-nav-indicator-border-size: 2px;
 // $bolt-nav-indicator-border-transition-ease: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 $bolt-nav-indicator-border-transition-ease: ease;
-$bolt-nav-indicator-border-transition-timing: $bolt-transition-timing * 2;
+$bolt-nav-indicator-border-transition-timing: $bolt-transition-timing / 2;
 
 
 
@@ -32,7 +32,6 @@ $bolt-nav-indicator-border-transition-timing: $bolt-transition-timing * 2;
   position: absolute;
   // bottom: 0;
   bottom: bolt-v-spacing(xsmall) * -1;
-  left: bolt-spacing(small); // [Mai] This is interrelated with the dropdown component.
   width: 0;
   height: ($bolt-nav-indicator-border-size * 2);
   background-color: currentColor;

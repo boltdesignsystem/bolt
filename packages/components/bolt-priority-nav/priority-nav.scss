@@ -383,3 +383,67 @@ bolt-priority-nav {
     transform: rotate(180deg);
   }
 }
+
+
+
+// bolt-priority-nav {
+//   @include bolt-css-vars((
+//     --bolt-priority-nav-item-opacity: 0,
+//     --bolt-priority-nav-item-transform: translateY(bolt-spacing(large) * -1),
+//   ));
+
+//   &[open*=true]{
+//       @include bolt-css-vars((
+//         --bolt-priority-nav-item-opacity: 1,
+//         --bolt-priority-nav-item-transform: none,
+//       ));
+//   }
+// }
+
+
+
+
+// .c-bolt-priority-nav__dropdown-list > .c-bolt-priority-nav__item {
+//   transform: var(--bolt-priority-nav-item-transform, none);
+//   opacity: var(--bolt-priority-nav-item-opacity, 1);
+//   transition: opacity 0.35s ease-out, transform 0.35s ease-out; // transition:
+
+//   // .c-bolt-dropdown--collapse\@small & {
+//   //   @include respond-to(small) {
+//   //     opacity: 1;
+//   //     transform: translateY(0);
+//   //   }
+//   // }
+// }
+
+
+
+// @for $quantity from 1 through 12 {
+//   $time: 0;
+
+//   @for $i from $quantity through 1 {
+//     $time: $time + 50;
+//     .c-bolt-priority-nav__dropdown-list > .c-bolt-priority-nav__item:nth-last-child(n+#{$quantity}),
+//     .c-bolt-priority-nav__dropdown-list > .c-bolt-priority-nav__item:nth-last-child(n+#{$quantity}) ~ .c-bolt-priority-nav__item:nth-child(#{$i}) {
+//       transition-delay: $time + ms;
+//     }
+//   }
+// }
+//   // $time: $time + 50;
+//   //   transition-delay: $time + ms;
+//   // }
+// // }
+
+
+
+
+// .c-bolt-priority-nav--show-dropdown .c-bolt-priority-nav__item {
+// // .c-bolt-priority-nav--show-dropdown+.c-bolt-dropdown .c-bolt-priority-nav__item,
+// // .c-bolt-dropdown__content--opened .c-bolt-priority-nav__item {
+//   // opacity: 1;
+//   // transform: none;
+//   @include bolt-css-vars((
+//     --bolt-priority-nav-item-opacity: 1,
+//     --bolt-priority-nav-item-transform: none,
+//   ));
+// }
