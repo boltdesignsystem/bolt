@@ -118,11 +118,12 @@
           <tr class="c-bolt-docs-table__row">
             <td class="c-bolt-docs-table__col c-bolt-docs-table__col--key">{{ key }}{% if key in requiredProps %} <span class="required-key" title="Required">*</span>{% endif %}</td>
 
-            {% set multiples = prop.anyOf|default(prop.oneOf) %}
+            {% set multiples = prop.type is iterable ? prop.type : prop.anyOf|default(prop.oneOf) %}
             {% if multiples is iterable %}
               <td class="c-bolt-docs-table__col">
                 {% for multiple in multiples %}
-                  <code>{{ multiple.type }}</code> {% if not loop.last %} OR {% endif %}
+                  {% set type = multiple is iterable ? multiple.type : multiple %}
+                  <code>{{ type }}</code> {% if not loop.last %} OR {% endif %}
                 {% endfor %}
               </td>
             {% else %}
