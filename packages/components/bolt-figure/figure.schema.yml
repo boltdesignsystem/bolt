@@ -2,17 +2,20 @@ $schema: http://json-schema.org/draft-04/schema#
 title: Figure
 type: object
 properties:
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
   image:
     type: object
     description: A bolt image object.
     ref: '@bolt-components-image/image.schema.yml'
   caption:
-    description: Figure caption.
-    type: string
+    description: A renderable figure caption.
+    type: [string, object, array]
   icon:
     type: object
     description: A bolt icon object.
     ref: '@bolt-components-icon/icon.schema.yml'
   content:
-    type: string
-    description: Content to place in the figure.
+    type: [string, object, array]
+    description: A catch-all for renderable content (e.g. a string, render array, or included pattern object) to place in the figure.
