@@ -83,18 +83,9 @@
 
 {% import _self as macros %}
 
-
-{% if title %}
-  {% include "@bolt/headline.twig" with {
-    text: title,
-    size: "xxlarge"
-  } only %}
-{% endif %}
-
-{% if description %}
-  {% include "@bolt/subheadline.twig" with {
-    text: description,
-    size: "xlarge"
+{% if schema.description %}
+  {% include "@bolt/text.twig" with {
+    text: schema.description
   } only %}
 {% endif %}
 
