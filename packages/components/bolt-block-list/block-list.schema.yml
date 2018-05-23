@@ -1,27 +1,16 @@
 $schema: http://json-schema.org/draft-04/schema#
 title: Block List
 type: object
+require:
+  - items
 properties:
-  theme:
-    type: string
-    description: Color theme. Can be set to false for a transparent background.
-    default: false
-    enum:
-      - xlight
-      - light
-      - dark
-      - xdark
-      - medium
-      - 'false'
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
   items:
     type: array
     title: The content items
     description: All of the items in the block list - can have simple text **or** `items`
     items:
-      anyOf:
-        - type: object
-          properties:
-            text:
-              type: string
-        - type: string
-          description: Outputs any content added
+      type: [string, object, array]
+      description: Renderable content (i.e. a string, render array, or included pattern) for a single list item
