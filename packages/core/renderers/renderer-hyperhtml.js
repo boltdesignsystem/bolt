@@ -1,6 +1,7 @@
 // HyperHTML Renderer ported to SkateJS
 import {
   withComponent,
+  withUpdate,
   shadow,
   props,
 } from 'skatejs';
@@ -10,7 +11,7 @@ import { findParentTag } from '../utils/find-parent-tag';
 
 
 export function BoltComponent(Base = HTMLElement) {
-  return class extends withComponent(Base) {
+  return class extends withUpdate(withComponent(Base)) {
 
     static props = {
       onClick: props.string,
