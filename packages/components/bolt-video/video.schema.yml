@@ -2,6 +2,18 @@ $schema: http://json-schema.org/draft-04/schema#
 title: Video
 type: object
 properties:
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
+  videoId:
+    type: number
+    description: Brightcove ID for this video.
+  playerId:
+    type: string
+    description: Brightcover Player ID.
+  accountID:
+    type: number
+    description: ID of the Brightcove account that owns the video.
   videoUuid:
     type: string
     description: A unique identifying string, randomly generated if not provided.
@@ -31,12 +43,6 @@ properties:
     type: boolean
     description: Should the video loop.
     default: false
-  videoId:
-    type: string
-    description: Video Id.
-  playerId:
-    type: string
-    description: Player Id.
   isBackgroundVideo:
     type: boolean
     description: Set to true if the video is a background.
