@@ -64,6 +64,12 @@ export class BoltPriorityNav extends BoltComponent() {
 
       this.priorityDropdown = this.querySelector('.c-bolt-priority-nav__dropdown');
       this.dropdownItems = this.priorityDropdown.querySelectorAll('li');
+      this.dropdownLinks = this.priorityDropdown.querySelectorAll('bolt-navlink');
+
+      this.dropdownLinks.forEach(navlink => {
+        navlink.setAttribute('is-dropdown-link', '');
+      });
+
       this.allItems = this.querySelectorAll('li');
       this.moreLi = this.primaryNav.querySelector('.c-bolt-priority-nav__show-more');
       this.moreBtn = this.moreLi.querySelector('.c-bolt-priority-nav__show-button');
@@ -146,13 +152,6 @@ export class BoltPriorityNav extends BoltComponent() {
     this.close();
   }
 
-  _upgradeProperty(prop) {
-    if (this.hasOwnProperty(prop)) {
-      let value = this[prop];
-      delete this[prop];
-      this[prop] = value;
-    }
-  }
 
   _handleDropdownToggle(e){
     e.preventDefault();
@@ -193,28 +192,3 @@ export class BoltPriorityNav extends BoltComponent() {
 }
 
 
-// Create a custom 'optimizedResize' event that works just like window.resize but is more performant because it
-// won't fire before a previous event is complete.
-// This was adapted from https://developer.mozilla.org/en-US/docs/Web/Events/resize
-(function () {
-  function throttle(type, name, obj) {
-    obj = obj || window;
-    let running = false;
-
-    function func() {
-      if (running) {
-        return;
-      }
-      running = true;
-      requestAnimationFrame(function () {
-        obj.dispatchEvent(new CustomEvent(name));
-        running = false;
-      });
-    }
-    obj.addEventListener(type, func);
-  }
-
-  // Initialize on window.resize event.  Note that throttle can also be initialized on any type of event,
-  // such as scroll.
-  throttle('resize', 'optimizedResize');
-})();
