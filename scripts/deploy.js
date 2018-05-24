@@ -79,6 +79,21 @@ async function init() {
       console.error('Error deploying:');
     }
     console.log(deployOutput.stdout, deployOutput.stderr);
+    console.log('Done deploying static site');
+
+    console.log('Starting Docker Drupal Lab deploy...');
+    const deployOutputDocker = spawnSync('now', [
+      'deploy',
+      '--docker',
+      '--name=bolt-drupal-lab',
+      ...baseNowArgs,
+    ], {encoding: 'utf8'});
+    if (deployOutputDocker.status !== 0) {
+      console.error('Error deploying:');
+    }
+    console.log(deployOutputDocker.stdout, deployOutputDocker.stderr);
+    console.log('Done deploying Docker Drupal Lab');
+
     const deployedUrl = deployOutput.stdout.trim();
     const deployedId = deployedUrl
       .replace('https://', '')
