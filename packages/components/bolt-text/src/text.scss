@@ -55,8 +55,8 @@ bolt-text {
   }
 }
 
-$bolt-headline--minus-letter-spacing: -0.025rem;
-$bolt-headline--plus-letter-spacing: 0.05rem;
+$bolt-text--minus-letter-spacing: -0.025rem;
+$bolt-text--plus-letter-spacing: 0.05rem;
 
 .c-bolt-text {
   margin: 0;
@@ -135,7 +135,7 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   // Font size
   &--font-xxxlarge {
     @include bolt-font-size(xxxlarge);
-    letter-spacing: $bolt-headline--minus-letter-spacing;
+    letter-spacing: $bolt-text--minus-letter-spacing;
 
     &.long-title {
       font-size: $bolt-font-size--xxxlarge--min;
@@ -143,7 +143,7 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   }
   &--font-xxlarge {
     @include bolt-font-size(xxlarge);
-    letter-spacing: $bolt-headline--minus-letter-spacing;
+    letter-spacing: $bolt-text--minus-letter-spacing;
   }
   &--font-xlarge {
     @include bolt-font-size(xlarge);
@@ -156,11 +156,11 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   }
   &--font-small {
     @include bolt-font-size(small);
-    letter-spacing: $bolt-headline--plus-letter-spacing;
+    letter-spacing: $bolt-text--plus-letter-spacing;
   }
   &--font-xsmall {
     @include bolt-font-size(xsmall);
-    letter-spacing: $bolt-headline--plus-letter-spacing;
+    letter-spacing: $bolt-text--plus-letter-spacing;
   }
 
   // Display type
@@ -198,13 +198,13 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
   // Letter spacing
   &--letter-spacing-narrow {
-    letter-spacing: -0.05rem;
+    letter-spacing:  $bolt-text--minus-letter-spacing;
   }
   &--letter-spacing-normal {
     letter-spacing: normal;
   }
   &--letter-spacing-wide {
-    letter-spacing: 0.05rem;
+    letter-spacing:  $bolt-text--plus-letter-spacing;
   }
 
   // Line height
