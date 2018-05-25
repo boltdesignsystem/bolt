@@ -25,6 +25,7 @@ export Cloud from './icons/cloud';
 export DataIntegrations from './icons/data-integrations';
 export IntelligentVirtualAssistant from './icons/intelligent-virtual-assistant';
 export Mobility from './icons/mobility';
+export Platform from './icons/platform';
 export RoboAuto from './icons/robo-auto';
 export WorkforceIntelligence from './icons/workforce-intelligence';
 export Academy from './icons/academy';
