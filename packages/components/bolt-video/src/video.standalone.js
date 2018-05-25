@@ -17,7 +17,7 @@ import metaStyles from './_video-meta.scss';
 
 @define
 class BoltVideoMeta extends withPreact(withComponent()) {
-  static is = 'bolt-video-meta';
+  static is = `${bolt.namespace}-video-meta`;
 
   constructor(self) {
     self = super(self);
@@ -55,7 +55,7 @@ class BoltVideoMeta extends withPreact(withComponent()) {
 
 @define
 class BoltVideo extends withPreact(withComponent()) {
-  static is = 'bolt-video';
+  static is = `${bolt.namespace}-video`;
 
   static props = {
     videoId: props.string,
