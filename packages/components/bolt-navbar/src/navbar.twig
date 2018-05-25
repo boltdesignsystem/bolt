@@ -12,11 +12,11 @@
       {% include "@bolt-components-navbar/_navbar-title.twig" with title only %}
     {% endif %}
 
-    {% include "@bolt-components-priority-nav/priority-nav.twig" %}
+    {% include "@bolt-components-nav-priority/nav-priority.twig" %}
   </nav>
 </bolt-navbar>
 
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema("@bolt-components-navbar/navbar.schema.yml", _self) }}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-navbar'].schema, _self) | raw }}
 {% endif %}
