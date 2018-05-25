@@ -7,6 +7,9 @@
 
 bolt-priority-nav {
   display: block;
+  position: relative;
+  align-self: center;
+  padding-bottom: var(--bolt-vspacing);
 
   @supports (display: contents) {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
@@ -34,7 +37,6 @@ bolt-priority-nav {
     }
   }
 
-  position: relative;
 
   &:not(.is-ready) {
     // @TODO: uncomment once themify updates are merged in
@@ -138,11 +140,15 @@ bolt-priority-nav {
   white-space: nowrap;
 }
 
+// required so the dropdown can be positioned consistently
+.c-bolt-priority-nav__show-more {
+  position: relative;
+}
 
 
 
 
- @supports (display: contents) {
+@supports (display: contents) {
    .c-bolt-priority-nav__show-more {
      @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
        display: contents;
