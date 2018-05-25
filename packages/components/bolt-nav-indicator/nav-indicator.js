@@ -261,8 +261,8 @@ export class BoltNavIndicator extends BoltComponent() {
 
   // hide the animated line when the active link can't be seen / is nested in a dropdown
   _animateOut(link) {
-    this._indicator.style.opacity = 0;
-  }
+      this._indicator.style.opacity = 0;
+    }
 
   _initializeGumshoe() {
     this.gumshoeStateModule = BoltNavIndicator.initGumshoeModule(this);
@@ -272,7 +272,7 @@ export class BoltNavIndicator extends BoltComponent() {
   // `<bolt-nav-link>` emits a custom event when the link is active
   connecting() {
     Promise.all([
-      customElements.whenDefined('bolt-priority-nav'),
+      customElements.whenDefined('bolt-nav-priority'),
       customElements.whenDefined('bolt-navlink'),
     ]).then(_ => {
       const indicatorElem = document.createElement('li');

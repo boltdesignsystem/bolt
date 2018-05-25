@@ -1,5 +1,5 @@
 import { polyfillLoader } from '@bolt/core';
 
 polyfillLoader.then(() => {
-  import('./priority-nav.js');
+  import('./nav-priority.js');
 });

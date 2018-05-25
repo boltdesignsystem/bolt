@@ -1,9 +1,4 @@
-<!--
-  Related blog post:
-  https://css-tricks.com/container-adapting-tabs-with-more-button/
--->
-
-<bolt-priority-nav>
+<bolt-nav-priority more-text="{{ moreText | default("More") }}">
   <nav class="c-bolt-priority-nav">
     <bolt-nav-indicator>
       <ul class="c-bolt-priority-nav__list c-bolt-priority-nav__primary">
@@ -15,4 +10,11 @@
       </ul>
     </bolt-nav-indicator>
   </nav>
-</bolt-priority-nav>
+</bolt-nav-priority>
+
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-nav-priority'].schema, _self) | raw }}
+{% endif %}
+
+
