@@ -131,7 +131,7 @@ export class BoltNavIndicator extends BoltComponent() {
 
                 // If a better match hasn't been found by this point, use the last element in the array.
                 } else if (i === len - 1){
-                  normalizedTarget = linkInstance;
+                  normalizedTarget = originalTarget;
                 }
               }
 
@@ -198,11 +198,6 @@ export class BoltNavIndicator extends BoltComponent() {
 
   // `_onActiveLink` handles the `activateLink` event emitted by the children
   _onActivateLink(event) {
-    // const element = this;
-
-    // if (!window.isScrolling){
-    // Animate out hidden links, animate in visible links
-    // if (event.detail.isVisible !== false && event.detail.isDropdownLink === false) {
     if (event.detail.isVisible) {
       this._animateIn(event.target);
     } else {
@@ -247,7 +242,8 @@ export class BoltNavIndicator extends BoltComponent() {
       // First, immediately center the indicator.
       this._indicator.style.transition = 'none';
       this._indicator.style.opacity = 1;
-      this._indicator.style.transform = 'translateX(' + linkOffsetHorizontal + 'px) scaleX(1)';
+      this._indicator.style.width = linkWidth + 'px';
+      this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px) scaleX(0)';
 
       // Then, reset the transition and expand the indicator to the full width of the link.
       this.flushCss(this._indicator);
@@ -297,11 +293,29 @@ export class BoltNavIndicator extends BoltComponent() {
       this._initializeGumshoe();
       this._upgradeProperty('offset');
 
-      this.addEventListener('activateLink', this._onActivateLink);
+      this.addEventListener('navlink:active', this._onActivateLink);
       window.addEventListener('optimizedResize', this._onWindowResize);
       this.addEventListener(whichTransitionEndEvent(), this._onTransitionEnd);
     });
   }
+
+  // connected() {
+  //   // Wait until navlinks are ready to go before double-check if any are already active
+  //   Promise.all([
+  //     customElements.whenDefined('bolt-navlink'),
+  //   ]).then(_ => {
+
+  //     // Check if a nested <bolt-navlink> element is already active / we might have missed the activateLink event. If an active link is found, let's proactively re-activate to trigger appropriate events.
+  //     if (!this.activeLink){
+  //       const nestedNavlinks = this.querySelectorAll('bolt-navlink');
+  //       nestedNavlinks.forEach(navlink => {
+  //         if (navlink.isActive()) {
+  //           navlink.activate();
+  //         }
+  //       });
+  //     }
+  //   });
+  // }
 
   _onTransitionEnd(){
     if (this.isAnimating) {
@@ -319,7 +333,7 @@ export class BoltNavIndicator extends BoltComponent() {
 
   // Clean up event listeners when being removed from the page
   disconnecting() {
-    this.removeEventListener('activateLink', this._onActivateLink);
+    this.removeEventListener('navlink:active', this._onActivateLink);
     window.removeEventListener('optimizedResize', this._onWindowResize);
   }
 }
