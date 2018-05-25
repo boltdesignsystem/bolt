@@ -6,34 +6,20 @@
 
 $bolt-nav-indicator-border-color: var(--bolt-theme-text, currentColor);
 $bolt-nav-indicator-border-size: 2px;
-// $bolt-nav-indicator-border-transition-ease: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 $bolt-nav-indicator-border-transition-ease: ease;
 $bolt-nav-indicator-border-transition-timing: $bolt-transition-timing / 2;
 
 
-
-// .c-bolt-nav {
-//   @include bolt-margin(0);
-//   @include bolt-padding(0);
-
-//   display: flex;
-//   flex-direction: column; // [Mai] This is interrelated with the dropdown component.
-//   position: relative;
-//   list-style: none;
-//   flex-flow: column nowrap;
-
-//   @include respond-to(medium) {
-//     flex-direction: row; // [Mai] This is interrelated with the dropdown component.
-//     flex-flow: row nowrap;
-//   }
-// }
+bolt-nav-indicator {
+  display: block;
+  display: contents; // If supported, just focus on the content inside.
+}
 
 .c-bolt-nav-indicator {
   position: absolute;
-  // bottom: 0;
-  bottom: bolt-v-spacing(xsmall) * -1;
+  bottom: 0; // Automatically align the indicator line to the bottom of the container itself (so size changes will just work -- no modifiers required)
   width: 0;
-  height: ($bolt-nav-indicator-border-size * 2);
+  height: ($bolt-nav-indicator-border-size);
   background-color: currentColor;
   background-color: $bolt-nav-indicator-border-color;
   opacity: 1; // [Mai] This is interrelated with the dropdown component.
@@ -44,23 +30,4 @@ $bolt-nav-indicator-border-transition-timing: $bolt-transition-timing / 2;
     opacity 0.35s ease-out; // [Mai] This is interrelated with the dropdown component.
   will-change: width, height, opacity, transform;
   transform: scaleX(0);
-
-  @include respond-to(small) {
-    opacity: 1; // [Mai] This is interrelated with the dropdown component.
-    // bottom: 0; // [Mai] This is interrelated with the dropdown component.
-    left: auto; // [Mai] This is interrelated with the dropdown component.
-  }
-
-  // .c-bolt-nav--xsmall & {
-  //   bottom: (bolt-v-spacing(xsmall) * -1);
-  //   height: $bolt-nav-indicator-border-size;
-  // }
-
-  // .c-bolt-nav--small & {
-  //   bottom: (bolt-v-spacing(medium) * -1); // [Mai] This is a hack because bands have the wrong sizes.
-  // }
-
-  // .c-bolt-nav--medium & {
-  //   bottom: (bolt-v-spacing(medium) * -1);
-  // }
 }
