@@ -1,0 +1,66 @@
+/* ------------------------------------ *\
+   Nav
+\* ------------------------------------ */
+
+@import '@bolt/core';
+
+$bolt-nav-link-border-color: var(--bolt-theme-text, currentColor);
+$bolt-nav-link-border-size: 2px;
+$bolt-nav-link-border-transition-ease: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+$bolt-nav-link-border-transition-timing: $bolt-transition-timing * 2;
+
+
+// Nav Component
+bolt-nav {
+  display: block;
+}
+
+.c-bolt-nav {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
+
+  display: flex;
+  flex-direction: column; // [Mai] This is interrelated with the dropdown component.
+  position: relative;
+  list-style: none;
+
+  @include respond-to(small) {
+    flex-direction: row; // [Mai] This is interrelated with the dropdown component.
+  }
+}
+
+.c-bolt-nav__indicator {
+  position: absolute;
+  bottom: 0;
+  left: bolt-spacing(small); // [Mai] This is interrelated with the dropdown component.
+  width: 0;
+  height: ($bolt-nav-link-border-size * 2);
+  background-color: currentColor;
+  background-color: $bolt-nav-link-border-color;
+  opacity: 1; // [Mai] This is interrelated with the dropdown component.
+  opacity: var(--bolt-nav-indicator-opacity, 1); // [Mai] This is interrelated with the dropdown component.
+  transform: translateY(var(--bolt-nav-indicator-transform)); // [Mai] This is interrelated with the dropdown component.
+  transition:
+    all $bolt-nav-link-border-transition-timing $bolt-nav-link-border-transition-ease,
+    opacity 0.35s ease-out; // [Mai] This is interrelated with the dropdown component.
+  will-change: width, height, opacity, transform;
+
+  @include respond-to(small) {
+    opacity: 1; // [Mai] This is interrelated with the dropdown component.
+    bottom: 0; // [Mai] This is interrelated with the dropdown component.
+    left: 0; // [Mai] This is interrelated with the dropdown component.
+  }
+
+  .c-bolt-nav--xsmall & {
+    bottom: (bolt-v-spacing(xsmall) * -1);
+    height: $bolt-nav-link-border-size;
+  }
+
+  .c-bolt-nav--small & {
+    bottom: (bolt-v-spacing(medium) * -1); // [Mai] This is a hack because bands have the wrong sizes.
+  }
+
+  .c-bolt-nav--medium & {
+    bottom: (bolt-v-spacing(medium) * -1);
+  }
+}

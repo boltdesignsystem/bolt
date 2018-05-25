@@ -9,15 +9,9 @@
     opacity: 0;
     pointer-events: none;
   }
-  .c-bolt-link__icon [name='facebook-solid'] {
-    color: bolt-color(social, facebook);
-  }
-  .c-bolt-link__icon [name='twitter'] {
-    color: bolt-color(social, twitter);
-  }
-  .c-bolt-link__icon [name='linkedin'] {
-    color: bolt-color(social, linkedin);
-  }
+  .c-bolt-link__icon [name='facebook-solid'],
+  .c-bolt-link__icon [name='twitter'],
+  .c-bolt-link__icon [name='linkedin'],
   .c-bolt-link__icon [name='email'],
   .c-bolt-link__icon [name='asset-link'] {
     color: bolt-color(indigo, light);
@@ -62,6 +56,10 @@
 
   .c-bolt-link:hover {
     background-position: left bottom;
+    color: bolt-color(white);
+  }
+
+  .c-bolt-link__icon:hover {
     color: bolt-color(white);
   }
 }
