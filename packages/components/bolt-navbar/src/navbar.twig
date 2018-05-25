@@ -7,7 +7,7 @@
   {% if theme %} class="t-bolt-{{ theme }}" {% endif %}
   {% if center %} center {% endif %}
 >
-  <nav class="c-bolt-navbar {% if center %} c-bolt-navbar--center {% endif %}">
+  <nav class="c-bolt-navbar {% if center %} c-bolt-navbar--center c-bolt-navbar--small{% endif %}">
     {% if title %}
       {% include "@bolt-components-navbar/_navbar-title.twig" with title only %}
     {% endif %}
