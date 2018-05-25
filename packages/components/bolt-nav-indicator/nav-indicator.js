@@ -31,12 +31,6 @@ document.addEventListener('scrollStop', logScrollEvent, false);
 document.addEventListener('scrollCancel', logScrollEvent, false);
 
 
-// gumshoeStateModule stores an offset value that persists even when it's called multiple times.  If the offset
-// is the same as the last time it was called, it avoids initializing gumshoe again (among other things, when
-// initializing multiple navbars on one page, this only initializes gumshoe once).  If the offset value HAS changed--
-// presumably because the header has adjusted its own height--gumshoe will be re-initialized with the new value.
-
-
 /* From Modernizr */
 function whichTransitionEndEvent() {
   var t;
@@ -54,6 +48,80 @@ function whichTransitionEndEvent() {
     }
   }
 }
+
+
+// gumshoeStateModule stores an offset value that persists even when it's called multiple times.  If the offset
+// is the same as the last time it was called, it avoids initializing gumshoe again (among other things, when
+// initializing multiple navbars on one page, this only initializes gumshoe once).  If the offset value HAS changed--
+// presumably because the header has adjusted its own height--gumshoe will be re-initialized with the new value.
+let gumshoeStateModule = (function () {
+  let offset; // Private variable
+  let pub = {}; // public object - returned at end of module to allow external interaction
+  let reference;
+
+  // navSelectorInstance is used to map up the element calling setOffset so <bolt-nav-indicator> methods can get used
+  pub.setOffset = function (newOffset, navSelectorInstance) {
+    if (offset !== newOffset) {
+      offset = newOffset;
+
+      gumshoe.init({
+        selector: 'bolt-nav-indicator a',
+        // All the link activation logic is handled in the callback, but gumshoe won't work
+        // without a value for activeClass, so we give it a placeholder.
+        activeClass: 'has-gumshoe-focus',
+        scrollDelay: false,
+        offset,
+        callback(nav) {
+          const originalTarget = nav.nav;
+          let originalTargetHref;
+          let normalizedTarget;
+
+          if (originalTarget) {
+            originalTargetHref = originalTarget.getAttribute('href');
+          } else {
+            originalTargetHref = nav.nav.getAttribute('href');
+          }
+
+          // Need to target via document vs this custom element reference since only one gumshoe instance is shared across every component instance to better optimize for performance
+          const matchedTargetLinks = document.querySelectorAll(`bolt-navlink > [href*="${originalTargetHref}"]`);
+
+          for (var i = 0, len = matchedTargetLinks.length; i < len; i++) {
+            const linkInstance = matchedTargetLinks[i];
+
+            // Stop if normalizedTarget already set.
+            if (normalizedTarget) {
+              break;
+            }
+
+            // Prefer visible links over hidden links
+            if (isVisible(linkInstance)) {
+              normalizedTarget = linkInstance;
+
+              // If a better match hasn't been found by this point, use the last element in the array.
+            } else if (i === len - 1) {
+              normalizedTarget = originalTarget;
+            }
+          }
+
+          const normalizedParent = normalizedTarget.parentNode;
+
+          // Reset all the links in this particular component instance
+          navSelectorInstance.resetLinks(normalizedParent);
+          normalizedParent.activate();
+        },
+      });
+    }
+  };
+
+  pub.getOffset = function () {
+    return offset;
+  };
+
+  return pub;
+}());
+
+
+
 
 
 @define
@@ -75,80 +143,12 @@ export class BoltNavIndicator extends BoltComponent() {
     return self;
   }
 
-  static initGumshoeModule(element) {
-    const navSelectorInstance = element;
-
-    if (this.gumshoeInstance) {
-      return this.gumshoeInstance;
-    } else {
-      this.offset; // Private variable
-      this.gumshoeInstance = {}; // public object - returned at end of module to allow external interaction
-      let oldElement;
-      let newElement;
-
-      this.gumshoeInstance.setOffset = function (newOffset) {
-        if (this.offset !== newOffset) {
-          this.offset = newOffset;
-
-          gumshoe.init({
-            selector: 'bolt-nav-indicator a',
-            // All the link activation logic is handled in the callback, but gumshoe won't work without a value for activeClass, so we give it a placeholder.
-            activeClass: 'has-gumshoe-focus',
-            scrollDelay: false,
-            offset: this.offset,
-            callback(nav) {
-              const originalTarget = document.querySelector('.has-gumshoe-focus');
-              let originalTargetHref;
-
-              let normalizedTarget;
-
-
-              // If nav or originalTarget don't exist, exit and skip doing any updates
-              if (!nav && !originalTarget) {
-                return;
-              }
-
-              if (originalTarget){
-                originalTargetHref = originalTarget.getAttribute('href');
-              } else {
-                originalTargetHref = nav.nav.getAttribute('href');
-              }
-
-              // Need to target via document vs this custom element reference since only one gumshoe instance is shared across every component instance to better optimize for performance
-              const matchedTargetLinks = document.querySelectorAll(`bolt-navlink > [href*="${originalTargetHref}"]`);
-
-              for (var i = 0, len = matchedTargetLinks.length; i < len; i++) {
-                const linkInstance = matchedTargetLinks[i];
-
-                // Stop if normalizedTarget already set.
-                if (normalizedTarget){
-                  break;
-                }
-
-                // Prefer visible links over hidden links
-                if (isVisible(linkInstance)){
-                  normalizedTarget = linkInstance;
-
-                // If a better match hasn't been found by this point, use the last element in the array.
-                } else if (i === len - 1){
-                  normalizedTarget = originalTarget;
-                }
-              }
-
-              const normalizedParent = normalizedTarget.parentNode;
-
-              navSelectorInstance.resetLinks(normalizedParent);
-              normalizedParent.activate();
-            },
-          });
-        }
-      };
-
-      this.gumshoeInstance.getOffset = function () {
-        return this.offset;
-      };
-
-      return this.gumshoeInstance;
+  attributeChangedCallback(name, oldValue, newValue) {
+    switch (name) {
+      case 'offset':
+        // Note the attributeChangedCallback is only handling the *side effects*
+        // of setting the attribute.
+        this._initializeGumshoe();
     }
   }
 
@@ -261,18 +261,16 @@ export class BoltNavIndicator extends BoltComponent() {
 
   // hide the animated line when the active link can't be seen / is nested in a dropdown
   _animateOut(link) {
-      this._indicator.style.opacity = 0;
-    }
+    this._indicator.style.opacity = 0;
+  }
 
   _initializeGumshoe() {
-    this.gumshoeStateModule = BoltNavIndicator.initGumshoeModule(this);
-    this.gumshoeStateModule.setOffset(this.offset);
+    gumshoeStateModule.setOffset(this.offset, this);
   }
 
   // `<bolt-nav-link>` emits a custom event when the link is active
   connecting() {
     Promise.all([
-      customElements.whenDefined('bolt-nav-priority'),
       customElements.whenDefined('bolt-navlink'),
     ]).then(_ => {
       const indicatorElem = document.createElement('li');
@@ -280,7 +278,6 @@ export class BoltNavIndicator extends BoltComponent() {
 
       const indicatorElement = this.querySelector('ul').appendChild(indicatorElem);
       this._indicator = indicatorElement;
-
 
       // Get the closest navbar component (if it exists) to use as a fallback offset
       const navbarParent = this.closest('bolt-navbar');
@@ -298,24 +295,6 @@ export class BoltNavIndicator extends BoltComponent() {
       this.addEventListener(whichTransitionEndEvent(), this._onTransitionEnd);
     });
   }
-
-  // connected() {
-  //   // Wait until navlinks are ready to go before double-check if any are already active
-  //   Promise.all([
-  //     customElements.whenDefined('bolt-navlink'),
-  //   ]).then(_ => {
-
-  //     // Check if a nested <bolt-navlink> element is already active / we might have missed the activateLink event. If an active link is found, let's proactively re-activate to trigger appropriate events.
-  //     if (!this.activeLink){
-  //       const nestedNavlinks = this.querySelectorAll('bolt-navlink');
-  //       nestedNavlinks.forEach(navlink => {
-  //         if (navlink.isActive()) {
-  //           navlink.activate();
-  //         }
-  //       });
-  //     }
-  //   });
-  // }
 
   _onTransitionEnd(){
     if (this.isAnimating) {
@@ -362,4 +341,3 @@ export class BoltNavIndicator extends BoltComponent() {
   // such as scroll.
   throttle('resize', 'optimizedResize');
 })();
-

@@ -68,21 +68,23 @@ class BoltNavLink extends BoltComponent() {
     return this.props.active;
   }
 
-  activate() {
+  activate(emitEvent = true) {
     this._shadowLink.classList.add(this.activeClass);
     this.setAttribute('active', '');
     this.props.active = true;
 
-    this.dispatchEvent(
-      new CustomEvent('navlink:active', {
-        detail: {
-          isActiveNow: this.isActive() ? true : false,
-          isVisible: isVisible(this) ? true : false,
-          isDropdownLink: this.props.isDropdownLink,
-        },
-        bubbles: true,
-      }),
-    );
+    if (emitEvent){
+      this.dispatchEvent(
+        new CustomEvent('navlink:active', {
+          detail: {
+            isActiveNow: this.isActive() ? true : false,
+            isVisible: isVisible(this) ? true : false,
+            isDropdownLink: this.props.isDropdownLink,
+          },
+          bubbles: true,
+        }),
+      );
+    }
   }
 
   deactivate() {
@@ -100,7 +102,7 @@ class BoltNavLink extends BoltComponent() {
 
     // Set an initially active link if appropriate.
     if (isAlreadyActive) {
-      this.activate();
+      this.activate(false);
     }
   }
 

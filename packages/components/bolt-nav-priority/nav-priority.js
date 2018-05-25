@@ -90,7 +90,6 @@ export class BoltPriorityNav extends BoltComponent() {
   }
 
   _adaptPriorityNav() {
-    console.log('_adaptPriorityNav');
     this.classList.add('is-resizing');
 
     // reveal all items for the calculation
@@ -101,9 +100,7 @@ export class BoltPriorityNav extends BoltComponent() {
     // hide items that won't fit in the Primary
     let stopWidth = this.moreBtn.offsetWidth;
     let hiddenItems = [];
-
     const primaryWidth = this.primaryNav.offsetWidth;
-
 
     this.primaryItems.forEach((item, i) => {
       if (primaryWidth + this.offsettolerance >= stopWidth + item.offsetWidth) {
