@@ -1,44 +1,21 @@
 import SmoothScroll from 'smooth-scroll';
 
-const scroll = new SmoothScroll();
-
+// In the future, we could add support for links to modify options like scrollOffset, scrollOffset, etc.  However,
+// we should provide options carefully-- only enable these after considering whether the use case that requires them
+// is justified. In particular, this assumes a static navbar height, which is the case is practice, but subject to change.
 const defaultScrollOffset = 45;
 const defaultScrollSpeed = 750;
 
-const customScrollElems = document.querySelectorAll('a[href^="#"]');
-for (var i = 0, len = customScrollElems.length; i < len; i++) {
-  const scrollElem = customScrollElems[i];
-  const scrollSpeed = defaultScrollSpeed;
+var scroll = new SmoothScroll('a[href^="#"]', {
+  ignore: '[data-scroll-ignore]', // Selector for links to ignore (must be a valid CSS selector)
+  header: '.js-bolt-smooth-scroll-offset', // Selector for fixed headers (must be a valid CSS selector)
 
-    // In the future, we could add support for links to modify options like scrollOffset, scrollOffset, etc.  However,
-    // we should provide options carefully-- only enable these after considering whether the use case that requires them
-    // is justified.
-    //
-  const scrollOffset = scrollElem.dataset.scrollOffset ? scrollElem.dataset.scrollOffset : defaultScrollOffset;
-    // const scrollSpeed = scrollElem.dataset.scrollSpeed ? scrollElem.dataset.scrollSpeed : defaultScrollSpeed;
+  // Speed & Easing
+  offset: defaultScrollOffset, // Integer or Function returning an integer. How far to offset the scrolling anchor location in pixels
+  speed: defaultScrollSpeed, // Integer. How fast to complete the scroll in milliseconds
+  easing: 'easeInOutCubic', // Easing pattern to use
 
-  const scrollOptions = {
-    ignore: '[data-scroll-ignore]', // Selector for links to ignore (must be a valid CSS selector)
-    header: '.js-bolt-smooth-scroll-offset', // Selector for fixed headers (must be a valid CSS selector)
-
-        // Speed & Easing
-    speed: scrollSpeed, // Integer. How fast to complete the scroll in milliseconds
-    offset: scrollOffset, // Integer or Function returning an integer. How far to offset the scrolling anchor location in pixels
-    easing: 'easeInOutCubic', // Easing pattern to use
-
-    // Callback API
-    before () {}, // Callback to run before scroll
-    after () {}, // Callback to run after scroll
-  };
-
-  let scrollElemHref = scrollElem.getAttribute('href');
-  scrollElemHref = scrollElemHref.replace('#', '');
-
-  const scrollTarget = document.getElementById(scrollElemHref);
-
-  if (scrollTarget) {
-    scrollElem.addEventListener('click', function(event){
-      scroll.animateScroll(scrollTarget, scrollElem, scrollOptions);
-    });
-  }
-};
+  // Callback API
+  before () {}, // Callback to run before scroll
+  after () {}, // Callback to run after scroll
+});
