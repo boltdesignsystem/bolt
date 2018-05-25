@@ -51,6 +51,17 @@ class BoltNavLink extends BoltComponent() {
         smoothScroll.animateScroll(scrollTarget, this._shadowLink, defaultScrollOptions);
       }
     }
+
+    this.dispatchEvent(
+      new CustomEvent('navlink:click', {
+        detail: {
+          isActiveNow: this.isActive() ? true : false,
+          isVisible: isVisible(this) ? true : false,
+          isDropdownLink: this.props.isDropdownLink,
+        },
+        bubbles: true,
+      }),
+    );
   }
 
   isActive(){
@@ -63,9 +74,9 @@ class BoltNavLink extends BoltComponent() {
     this.props.active = true;
 
     this.dispatchEvent(
-      new CustomEvent('activateLink', {
+      new CustomEvent('navlink:active', {
         detail: {
-          isActiveNow: true,
+          isActiveNow: this.isActive() ? true : false,
           isVisible: isVisible(this) ? true : false,
           isDropdownLink: this.props.isDropdownLink,
         },
@@ -85,7 +96,7 @@ class BoltNavLink extends BoltComponent() {
 
     this._shadowLink = this.querySelector('a');
 
-    const isAlreadyActive = this._shadowLink.classList.contains(this.activeClass) || this._shadowLink.getAttribute('href') === window.location.hash;
+    const isAlreadyActive = this._shadowLink.classList.contains(this.activeClass) || this._shadowLink.getAttribute('href') === window.location.hash || this.props.active;
 
     // Set an initially active link if appropriate.
     if (isAlreadyActive) {
