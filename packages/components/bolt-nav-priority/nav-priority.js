@@ -17,7 +17,7 @@ import {
 
 
 @define
-export class BoltPriorityNav extends BoltComponent() {
+export class BoltNavPriority extends BoltComponent() {
   static is = 'bolt-nav-priority';
 
   constructor(self) {
@@ -31,6 +31,10 @@ export class BoltPriorityNav extends BoltComponent() {
     return self;
   }
 
+  static props = {
+    moreText: props.string, // Text that displays when navlinks can't all display at once
+  }
+
   connecting() {
     Promise.all([
       customElements.whenDefined('bolt-navlink'),
@@ -38,31 +42,31 @@ export class BoltPriorityNav extends BoltComponent() {
       this.isOpen = false;
       this.offsettolerance = 5; // Extra wiggle room when calculating how many items can fit
 
-      this.containerTabs = this.querySelector('.c-bolt-priority-nav');
-      this.primaryNav = this.querySelector('.c-bolt-priority-nav__primary');
-      this.primaryItems = this.querySelectorAll('.c-bolt-priority-nav__primary > .c-bolt-priority-nav__item:not(.c-bolt-priority-nav__item--show-more)');
+      this.containerTabs = this.querySelector('.c-bolt-nav-priority');
+      this.primaryNav = this.querySelector('.c-bolt-nav-priority__primary');
+      this.primaryItems = this.querySelectorAll('.c-bolt-nav-priority__primary > .c-bolt-nav-priority__item:not(.c-bolt-nav-priority__item--show-more)');
       this.containerTabs.classList.add('is-ready');
       this.classList.add('is-ready');
 
       this.primaryNav.insertAdjacentHTML('beforeend', `
-        <li class="c-bolt-priority-nav__item c-bolt-priority-nav__show-more">
-          <button type="button" aria-haspopup="true" aria-expanded="false" class="c-bolt-priority-nav__button c-bolt-priority-nav__show-button">
-            <span class="c-bolt-priority-nav__show-text">
-              More
+        <li class="c-bolt-nav-priority__item c-bolt-nav-priority__show-more">
+          <button type="button" aria-haspopup="true" aria-expanded="false" class="c-bolt-nav-priority__button c-bolt-nav-priority__show-button">
+            <span class="c-bolt-nav-priority__show-text">
+              ${ this.props.moreText ? this.props.moreText : 'More' }
             </span>
-            <span class="c-bolt-priority-nav__show-icon">
+            <span class="c-bolt-nav-priority__show-icon">
               <bolt-icon name="chevron-down"></bolt-icon>
             </span>
           </button>
-          <div class="c-bolt-priority-nav__dropdown">
-            <ul class="c-bolt-priority-nav__list c-bolt-priority-nav__dropdown-list">
+          <div class="c-bolt-nav-priority__dropdown">
+            <ul class="c-bolt-nav-priority__list c-bolt-nav-priority__dropdown-list">
               ${this.primaryNav.innerHTML}
             </ul>
           </div>
         </li>
       `);
 
-      this.priorityDropdown = this.querySelector('.c-bolt-priority-nav__dropdown');
+      this.priorityDropdown = this.querySelector('.c-bolt-nav-priority__dropdown');
       this.dropdownItems = this.priorityDropdown.querySelectorAll('li');
       this.dropdownLinks = this.priorityDropdown.querySelectorAll('bolt-navlink');
 
@@ -70,14 +74,14 @@ export class BoltPriorityNav extends BoltComponent() {
         navlink.setAttribute('is-dropdown-link', '');
       });
 
-      this.allItems = this.querySelectorAll('li');
-      this.moreLi = this.primaryNav.querySelector('.c-bolt-priority-nav__show-more');
-      this.moreBtn = this.moreLi.querySelector('.c-bolt-priority-nav__show-button');
+      this.allListItems = this.querySelectorAll('li');
+      this.moreListItem = this.primaryNav.querySelector('.c-bolt-nav-priority__show-more');
+      this.dropdownButton = this.moreListItem.querySelector('.c-bolt-nav-priority__show-button');
 
       this._adaptPriorityNav();
       this._handleExternalClicks();
 
-      this.moreBtn.addEventListener('click', this._handleDropdownToggle);
+      this.dropdownButton.addEventListener('click', this._handleDropdownToggle);
       this.addEventListener('navlink:click', this._onActivateLink);
       window.addEventListener('optimizedResize', this._adaptPriorityNav);
     });
@@ -93,12 +97,12 @@ export class BoltPriorityNav extends BoltComponent() {
     this.classList.add('is-resizing');
 
     // reveal all items for the calculation
-    this.allItems.forEach((item) => {
+    this.allListItems.forEach((item) => {
       item.classList.remove('is-hidden');
     });
 
     // hide items that won't fit in the Primary
-    let stopWidth = this.moreBtn.offsetWidth;
+    let stopWidth = this.dropdownButton.offsetWidth;
     let hiddenItems = [];
     const primaryWidth = this.primaryNav.offsetWidth;
 
@@ -115,10 +119,10 @@ export class BoltPriorityNav extends BoltComponent() {
     if (!hiddenItems.length) {
       this.isOpen = false;
       this.removeAttribute('open');
-      this.moreLi.classList.add('is-hidden');
-      this.containerTabs.classList.remove('c-bolt-priority-nav--show-dropdown');
-      this.moreBtn.classList.remove('is-active');
-      this.moreBtn.setAttribute('aria-expanded', false);
+      this.moreListItem.classList.add('is-hidden');
+      this.containerTabs.classList.remove('c-bolt-nav-priority--show-dropdown');
+      this.dropdownButton.classList.remove('is-active');
+      this.dropdownButton.setAttribute('aria-expanded', false);
     } else {
       this.dropdownItems.forEach((item, i) => {
         if (!hiddenItems.includes(i)) {
@@ -135,7 +139,7 @@ export class BoltPriorityNav extends BoltComponent() {
     document.addEventListener('click', (e) => {
       let el = e.target
       while (el) {
-        if (el === this.priorityDropdown || el === this.moreBtn) {
+        if (el === this.priorityDropdown || el === this.dropdownButton) {
           return;
         }
         el = el.parentNode;
@@ -145,16 +149,14 @@ export class BoltPriorityNav extends BoltComponent() {
     });
   }
 
-  // `_onActiveLink` handles the `activateLink` event emitted by the children
+  // `_onActivateLink` handles the `navlink:active` event emitted by the children
   _onActivateLink(event) {
     this.close();
   }
 
-
   _handleDropdownToggle(e) {
     e.preventDefault();
     this.isOpen = !this.isOpen;
-
     this._toggleDropdown();
   }
 
@@ -169,17 +171,17 @@ export class BoltPriorityNav extends BoltComponent() {
   open() {
     this.isOpen = true;
     this.setAttribute('open', true);
-    this.containerTabs.classList.add('c-bolt-priority-nav--show-dropdown');
-    this.moreBtn.classList.add('is-active');
-    this.moreBtn.setAttribute('aria-expanded', true);
+    this.containerTabs.classList.add('c-bolt-nav-priority--show-dropdown');
+    this.dropdownButton.classList.add('is-active');
+    this.dropdownButton.setAttribute('aria-expanded', true);
   }
 
   close() {
     this.isOpen = false;
     this.removeAttribute('open');
-    this.containerTabs.classList.remove('c-bolt-priority-nav--show-dropdown');
-    this.moreBtn.classList.remove('is-active');
-    this.moreBtn.setAttribute('aria-expanded', false);
+    this.containerTabs.classList.remove('c-bolt-nav-priority--show-dropdown');
+    this.dropdownButton.classList.remove('is-active');
+    this.dropdownButton.setAttribute('aria-expanded', false);
   }
 
   // Clean up event listeners when being removed from the page
