@@ -227,10 +227,6 @@
       {
         "tag": "h2",
         "text": "2nd Sticky Nav Bar",
-        "icon":
-        {
-          "name": "cloud"
-        }
       },
       links: [
         {
@@ -274,6 +270,31 @@
 
   {% endblock band_content %}
 {% endembed %}
+
+
+{% embed "@bolt-components-sticky/sticky.twig" %}
+  {% block sticky_content %}
+    {% include "@bolt-components-navbar/navbar.twig" with {
+      theme: "light",
+      center: true,
+      links: [
+        {
+          "text": "Link X",
+          "url": "#section-x"
+        },
+        {
+          "text": "Link Y",
+          "url": "#section-y"
+        },
+         {
+          "text": "Link Z",
+          "url": "#section-z"
+        }
+      ]
+    } only %}
+  {% endblock %}
+{% endembed %}
+
 
 {% embed "@bolt-components-band/band.twig" with {
   size: "large",
