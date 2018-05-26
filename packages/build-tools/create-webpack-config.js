@@ -12,6 +12,7 @@ const { promisify } = require('util');
 const fs = require('fs');
 const readFile = promisify(fs.readFile);
 const deepmerge = require('deepmerge');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 function createConfig(config) {
   // @TODO: move this setting to .boltrc config
@@ -390,6 +391,22 @@ function createConfig(config) {
       new webpack.NamedModulesPlugin(),
     ],
   };
+
+
+  if (config.env === 'pl') {
+    webpackConfig.plugins.push(
+      new CopyWebpackPlugin([
+        {
+          from: path.resolve(path.dirname(require.resolve('@bolt/styleguidekit-assets-bolt')), 'dist/index.html'),
+          to: path.resolve(process.cwd(), config.wwwDir, 'pattern-lab/'),
+        },
+        {
+          from: path.resolve(path.dirname(require.resolve('@bolt/styleguidekit-assets-bolt')), 'dist/styleguide'),
+          to: path.resolve(process.cwd(), config.wwwDir, 'pattern-lab/styleguide/'),
+        },
+      ]),
+    );
+  }
 
   if (config.prod) {
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/

@@ -104,6 +104,11 @@ module.exports = {
         scss: './src/styles/pl.scss',
         js: './src/scripts/pl.js',
       },
+      {
+        name: 'pattern-lab',
+        scss: './src/styles/pl.scss',
+        js: './src/scripts/pl.js',
+      },
       '@bolt/components-critical-fonts',
     ],
   },

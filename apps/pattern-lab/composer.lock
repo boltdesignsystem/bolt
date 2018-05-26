@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d9b8f75929d2e05b60698c3afd4c9d3",
+    "content-hash": "8b0e2b11f583e41bd399001f3a3e321f",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -160,11 +160,11 @@
         },
         {
             "name": "bolt-design-system/core-php",
-            "version": "1.1.5",
+            "version": "1.4.0",
             "dist": {
                 "type": "path",
                 "url": "../../packages/core-php",
-                "reference": "200acaf08bdda46b1b3dee447f8ba6740d381a1f",
+                "reference": "4c19d8589f82e01a135115bb41d009b6c547066f",
                 "shasum": null
             },
             "require": {
@@ -239,6 +239,69 @@
                 }
             ],
             "description": "Stubbed in Drupal functionality"
+        },
+        {
+            "name": "bolt-design-system/styleguidekit-assets-bolt",
+            "version": "0.0.0",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/styleguidekit-assets-bolt",
+                "reference": "362552110669b46eca608ac27e68fde455c02fd1",
+                "shasum": null
+            },
+            "type": "patternlab-styleguidekit",
+            "extra": {
+                "patternlab": {
+                    "dist": {
+                        "publicDir": [
+                            {
+                                "*": "*"
+                            }
+                        ]
+                    },
+                    "config": {
+                        "ishMinimum": "240",
+                        "ishMaximum": "2600",
+                        "ishControlsHide": [
+                            "hay"
+                        ]
+                    }
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Front-end assets and templates for the Bolt Design System's Pattern Lab workshop setup.",
+            "homepage": "http://patternlab.io",
+            "keywords": [
+                "mustache",
+                "pattern lab",
+                "styleguide"
+            ]
+        },
+        {
+            "name": "bolt-design-system/styleguidekit-twig-default",
+            "version": "0.0.0",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/styleguidekit-twig-default",
+                "reference": "b57b01b2a82026f6b2c250d5148fc7aa03810658",
+                "shasum": null
+            },
+            "require": {
+                "bolt-design-system/styleguidekit-assets-bolt": "0.0.0"
+            },
+            "type": "patternlab-styleguidekit",
+            "license": [
+                "MIT"
+            ],
+            "description": "The default Twig-based StyleguideKit for Pattern Lab, adapted for the Bolt Design System. Contains styles and mark-up for Pattern Lab's front-end.",
+            "homepage": "http://patternlab.io",
+            "keywords": [
+                "pattern lab",
+                "styleguide",
+                "twig"
+            ]
         },
         {
             "name": "composer/installers",
@@ -473,7 +536,7 @@
         },
         {
             "name": "drupal/core-render",
-            "version": "8.5.2",
+            "version": "8.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-render.git",
@@ -508,7 +571,7 @@
         },
         {
             "name": "drupal/core-utility",
-            "version": "8.5.2",
+            "version": "8.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-utility.git",
@@ -1269,18 +1332,13 @@
             "time": "2018-02-08T00:11:23+00:00"
         },
         {
-            "name": "pattern-lab/styleguidekit-assets-default",
-            "version": "v3.5.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pattern-lab/styleguidekit-assets-default.git",
-                "reference": "7c1b51195c17a19cc3e87890b8fb3d8c27f33870"
-            },
+            "name": "pattern-lab/styleguidekit-assets-bolt",
+            "version": "0.0.0",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pattern-lab/styleguidekit-assets-default/zipball/7c1b51195c17a19cc3e87890b8fb3d8c27f33870",
-                "reference": "7c1b51195c17a19cc3e87890b8fb3d8c27f33870",
-                "shasum": ""
+                "type": "path",
+                "url": "../../packages/styleguidekit-assets-bolt",
+                "reference": "dfd3ace63da46fd9487e87e321ec1832d7b16ee2",
+                "shasum": null
             },
             "type": "patternlab-styleguidekit",
             "extra": {
@@ -1301,75 +1359,16 @@
                     }
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
-            "authors": [
-                {
-                    "name": "Dave Olsen",
-                    "email": "dmolsen@gmail.com",
-                    "homepage": "http://dmolsen.com",
-                    "role": "Lead Developer"
-                },
-                {
-                    "name": "Brad Frost",
-                    "homepage": "http://bradfrostweb.com",
-                    "role": "Creator"
-                }
-            ],
-            "description": "The assets for the default StyleguideKit for Pattern Lab. Contains styles and mark-up for Pattern Lab's front-end.",
+            "description": "Front-end assets and templates for the Bolt Design System's Pattern Lab workshop setup.",
             "homepage": "http://patternlab.io",
             "keywords": [
                 "mustache",
                 "pattern lab",
                 "styleguide"
-            ],
-            "time": "2017-10-31T12:19:46+00:00"
-        },
-        {
-            "name": "pattern-lab/styleguidekit-twig-default",
-            "version": "v3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pattern-lab/styleguidekit-twig-default.git",
-                "reference": "7b38bfe2fb60cde3850cfe8f4f948cdc206d7188"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pattern-lab/styleguidekit-twig-default/zipball/7b38bfe2fb60cde3850cfe8f4f948cdc206d7188",
-                "reference": "7b38bfe2fb60cde3850cfe8f4f948cdc206d7188",
-                "shasum": ""
-            },
-            "require": {
-                "pattern-lab/styleguidekit-assets-default": "^3.0.0"
-            },
-            "type": "patternlab-styleguidekit",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dave Olsen",
-                    "email": "dmolsen@gmail.com",
-                    "homepage": "http://dmolsen.com",
-                    "role": "Lead Developer"
-                },
-                {
-                    "name": "Brad Frost",
-                    "homepage": "http://bradfrostweb.com",
-                    "role": "Creator"
-                }
-            ],
-            "description": "The default Twig-based StyleguideKit for Pattern Lab. Contains styles and mark-up for Pattern Lab's front-end.",
-            "homepage": "http://patternlab.io",
-            "keywords": [
-                "pattern lab",
-                "styleguide",
-                "twig"
-            ],
-            "time": "2016-07-04T01:24:27+00:00"
+            ]
         },
         {
             "name": "psr/log",
@@ -1509,16 +1508,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v3.4.8",
+            "version": "v3.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "d4bb70fa24d540c309d88a9d6e43fb2d339b1fbf"
+                "reference": "36f83f642443c46f3cf751d4d2ee5d047d757a27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/d4bb70fa24d540c309d88a9d6e43fb2d339b1fbf",
-                "reference": "d4bb70fa24d540c309d88a9d6e43fb2d339b1fbf",
+                "url": "https://api.github.com/repos/symfony/console/zipball/36f83f642443c46f3cf751d4d2ee5d047d757a27",
+                "reference": "36f83f642443c46f3cf751d4d2ee5d047d757a27",
                 "shasum": ""
             },
             "require": {
@@ -1539,7 +1538,7 @@
                 "symfony/process": "~3.3|~4.0"
             },
             "suggest": {
-                "psr/log": "For using the console logger",
+                "psr/log-implementation": "For using the console logger",
                 "symfony/event-dispatcher": "",
                 "symfony/lock": "",
                 "symfony/process": ""
@@ -1574,20 +1573,20 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-04-03T05:22:50+00:00"
+            "time": "2018-05-16T08:49:21+00:00"
         },
         {
             "name": "symfony/debug",
-            "version": "v4.0.8",
+            "version": "v4.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "5961d02d48828671f5d8a7805e06579d692f6ede"
+                "reference": "4e7c98de67cc4171d4c986554e09a511da40f3d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/5961d02d48828671f5d8a7805e06579d692f6ede",
-                "reference": "5961d02d48828671f5d8a7805e06579d692f6ede",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/4e7c98de67cc4171d4c986554e09a511da40f3d8",
+                "reference": "4e7c98de67cc4171d4c986554e09a511da40f3d8",
                 "shasum": ""
             },
             "require": {
@@ -1630,11 +1629,11 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2018-04-03T05:24:00+00:00"
+            "time": "2018-05-16T09:05:32+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v3.4.8",
+            "version": "v3.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -1697,20 +1696,21 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v3.4.8",
+            "version": "v3.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "253a4490b528597aa14d2bf5aeded6f5e5e4a541"
+                "reference": "8e03ca3fa52a0f56b87506f38cf7bd3f9442b3a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/253a4490b528597aa14d2bf5aeded6f5e5e4a541",
-                "reference": "253a4490b528597aa14d2bf5aeded6f5e5e4a541",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/8e03ca3fa52a0f56b87506f38cf7bd3f9442b3a0",
+                "reference": "8e03ca3fa52a0f56b87506f38cf7bd3f9442b3a0",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.5.9|>=7.0.8"
+                "php": "^5.5.9|>=7.0.8",
+                "symfony/polyfill-ctype": "~1.8"
             },
             "type": "library",
             "extra": {
@@ -1742,20 +1742,20 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-22T10:48:49+00:00"
+            "time": "2018-05-16T08:49:21+00:00"
         },
         {
             "name": "symfony/finder",
-            "version": "v3.4.8",
+            "version": "v3.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "bd14efe8b1fabc4de82bf50dce62f05f9a102433"
+                "reference": "472a92f3df8b247b49ae364275fb32943b9656c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/bd14efe8b1fabc4de82bf50dce62f05f9a102433",
-                "reference": "bd14efe8b1fabc4de82bf50dce62f05f9a102433",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/472a92f3df8b247b49ae364275fb32943b9656c6",
+                "reference": "472a92f3df8b247b49ae364275fb32943b9656c6",
                 "shasum": ""
             },
             "require": {
@@ -1791,20 +1791,75 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2018-04-04T05:07:11+00:00"
+            "time": "2018-05-16T08:49:21+00:00"
         },
         {
-            "name": "symfony/polyfill-mbstring",
-            "version": "v1.7.0",
+            "name": "symfony/polyfill-ctype",
+            "version": "v1.8.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "78be803ce01e55d3491c1397cf1c64beb9c1b63b"
+                "url": "https://github.com/symfony/polyfill-ctype.git",
+                "reference": "7cc359f1b7b80fc25ed7796be7d96adc9b354bae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/78be803ce01e55d3491c1397cf1c64beb9c1b63b",
-                "reference": "78be803ce01e55d3491c1397cf1c64beb9c1b63b",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/7cc359f1b7b80fc25ed7796be7d96adc9b354bae",
+                "reference": "7cc359f1b7b80fc25ed7796be7d96adc9b354bae",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Ctype\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                },
+                {
+                    "name": "Gert de Pagter",
+                    "email": "BackEndTea@gmail.com"
+                }
+            ],
+            "description": "Symfony polyfill for ctype functions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "ctype",
+                "polyfill",
+                "portable"
+            ],
+            "time": "2018-04-30T19:57:29+00:00"
+        },
+        {
+            "name": "symfony/polyfill-mbstring",
+            "version": "v1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-mbstring.git",
+                "reference": "3296adf6a6454a050679cde90f95350ad604b171"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/3296adf6a6454a050679cde90f95350ad604b171",
+                "reference": "3296adf6a6454a050679cde90f95350ad604b171",
                 "shasum": ""
             },
             "require": {
@@ -1816,7 +1871,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.7-dev"
+                    "dev-master": "1.8-dev"
                 }
             },
             "autoload": {
@@ -1850,20 +1905,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2018-01-30T19:27:44+00:00"
+            "time": "2018-04-26T10:06:28+00:00"
         },
         {
             "name": "symfony/process",
-            "version": "v3.4.8",
+            "version": "v3.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "4b7d64e852886319e93ddfdecff0d744ab87658b"
+                "reference": "4cbf2db9abcb01486a21b7a059e03a62fae63187"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/4b7d64e852886319e93ddfdecff0d744ab87658b",
-                "reference": "4b7d64e852886319e93ddfdecff0d744ab87658b",
+                "url": "https://api.github.com/repos/symfony/process/zipball/4cbf2db9abcb01486a21b7a059e03a62fae63187",
+                "reference": "4cbf2db9abcb01486a21b7a059e03a62fae63187",
                 "shasum": ""
             },
             "require": {
@@ -1899,24 +1954,25 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-04-03T05:22:50+00:00"
+            "time": "2018-05-16T08:49:21+00:00"
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.8",
+            "version": "v3.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "a42f9da85c7c38d59f5e53f076fe81a091f894d0"
+                "reference": "c5010cc1692ce1fa328b1fb666961eb3d4a85bb0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/a42f9da85c7c38d59f5e53f076fe81a091f894d0",
-                "reference": "a42f9da85c7c38d59f5e53f076fe81a091f894d0",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/c5010cc1692ce1fa328b1fb666961eb3d4a85bb0",
+                "reference": "c5010cc1692ce1fa328b1fb666961eb3d4a85bb0",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.5.9|>=7.0.8"
+                "php": "^5.5.9|>=7.0.8",
+                "symfony/polyfill-ctype": "~1.8"
             },
             "conflict": {
                 "symfony/console": "<3.4"
@@ -1957,7 +2013,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2018-04-03T05:14:20+00:00"
+            "time": "2018-05-03T23:18:14+00:00"
         },
         {
             "name": "tooleks/php-avg-color-picker",
