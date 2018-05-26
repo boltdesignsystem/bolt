@@ -21,7 +21,7 @@
 
 // Local Variables
 $bolt-ordered-list-bullet-size: $bolt-line-height--xsmall + rem;
-$bolt-ordered-list-bullet-text-color: var(--bolt-theme-heading, currentColor); // TODO: refactor this after theming is done.
+$bolt-ordered-list-bullet-text-color: var(--bolt-theme-heading, inherit); // TODO: refactor this after theming is done.
 $bolt-ordered-list-bullet-bg-color: rgba(bolt-color(gray), 0.2);
 
 
@@ -34,7 +34,7 @@ $bolt-ordered-list-bullet-bg-color: rgba(bolt-color(gray), 0.2);
   @include bolt-padding(0);
 
   list-style: none;
-  counter-reset: list-item;
+  counter-reset: li;
 }
 
 .c-bolt-ordered-list__item {
@@ -42,7 +42,7 @@ $bolt-ordered-list-bullet-bg-color: rgba(bolt-color(gray), 0.2);
   @include bolt-padding(0);
 
   position: relative;
-  counter-increment: list-item;
+  counter-increment: li;
 
   &:before {
     @include bolt-font-size(xsmall);
@@ -54,8 +54,8 @@ $bolt-ordered-list-bullet-bg-color: rgba(bolt-color(gray), 0.2);
     left: bolt-spacing(medium) * -1;
     width: $bolt-ordered-list-bullet-size;
     height: $bolt-ordered-list-bullet-size;
-    content: counter(list-item);
-    color: currentColor;
+    content: counter(li);
+    color: inherit;
     color: $bolt-ordered-list-bullet-text-color;
     text-align: center;
     line-height: $bolt-ordered-list-bullet-size;
@@ -65,5 +65,13 @@ $bolt-ordered-list-bullet-bg-color: rgba(bolt-color(gray), 0.2);
 
   &:last-child {
     @include bolt-margin-bottom(0);
+  }
+}
+
+
+// [Mai] This is an IE specific fix to center the number inside the circle. IE calculates line-height differently.
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .c-bolt-ordered-list__item:before {
+    line-height: $bolt-line-height--medium;
   }
 }

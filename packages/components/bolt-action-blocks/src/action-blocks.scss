@@ -46,7 +46,7 @@ $bolt-action-block-background: bolt-color(indigo, light);
   height: 100%;
   color: $bolt-action-block-text-color;
   outline: none;
-  transition: color .35s cubic-bezier(0.25,0.8,0.25,1);
+  transition: color $bolt-action-block-transition-timing cubic-bezier(0.25, 0.8, 0.25, 1);
 
   &:hover,
   &:active,
@@ -65,7 +65,7 @@ $bolt-action-block-background: bolt-color(indigo, light);
     pointer-events: none;
     background-color: $bolt-action-block-background;
     opacity: 0;
-    transition: all .35s cubic-bezier(0.25,0.8,0.25,1);
+    transition: all $bolt-action-block-transition-timing cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
   &:hover, &:focus {
@@ -176,7 +176,7 @@ bolt-action-blocks {
 
 
 .c-bolt-action-block__text {
-  transition: color .25s cubic-bezier(0.25,0.8,0.25,1);
+  transition: color $bolt-action-block-transition-timing cubic-bezier(0.25, 0.8, 0.25, 1);
   color: currentColor;
   color: var(--bolt-theme-heading-link-default, --bolt-theme-text);
 

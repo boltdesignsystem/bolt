@@ -48,7 +48,6 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
     }
 
     .video-js {
-      max-width: 1400px;
       margin: 0 auto;
       min-width: 0;
       width: 100%;
@@ -56,6 +55,10 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
       transition: all .4s ease;
       width: 100%;
       height: 100%;
+
+      &:not(.vjs-fullscreen) {
+        max-width: 1400px;
+      }
     }
   }
 }

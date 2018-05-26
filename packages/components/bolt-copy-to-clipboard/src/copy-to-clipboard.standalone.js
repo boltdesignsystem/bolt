@@ -14,9 +14,10 @@ import ClipboardJS from 'clipboard';
 export class BoltCopyToClipboard extends BoltComponent() {
   static is = 'bolt-copy-to-clipboard';
 
-  constructor() {
-    super();
+  constructor(self) {
+    self = super(self);
     this.useShadow = false;
+    return self;
   }
 
   clickHandler(event) {
@@ -24,7 +25,7 @@ export class BoltCopyToClipboard extends BoltComponent() {
   }
 
   connecting() {
-    this.copyLink = this.querySelector('.js-bolt-copy-to-clipboard__default');
+    this.copyLink = this.querySelector('.js-bolt-copy-to-clipboard__trigger');
     this.parentElem = this.querySelector('.js-bolt-copy-to-clipboard');
 
     this.copyLink.addEventListener('click', this.clickHandler);

@@ -1,19 +1,6 @@
-{# Sample Usage
-  {% include "@bolt/unordered-list.twig" with {
-    contentItems : [
-      {
-        text: "Item 1"
-      },
-      {
-        text: "Item 2"
-      },
-      {
-        text: "Item 3"
-      }
-    ]
-  } only %}
-#}
-
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-unordered-list'].schema, _self) | raw }}
+{% endif %}
 
 {% set prefix = "c-bolt-" %}
 
@@ -43,3 +30,4 @@
     {% endfor %}
   </ul>
 </bolt-{{ componentName }}>
+

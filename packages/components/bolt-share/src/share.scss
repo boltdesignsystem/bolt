@@ -9,15 +9,9 @@
     opacity: 0;
     pointer-events: none;
   }
-  .c-bolt-link__icon [name='facebook-solid'] {
-    color: bolt-color(social, facebook);
-  }
-  .c-bolt-link__icon [name='twitter'] {
-    color: bolt-color(social, twitter);
-  }
-  .c-bolt-link__icon [name='linkedin'] {
-    color: bolt-color(social, linkedin);
-  }
+  .c-bolt-link__icon [name='facebook-solid'],
+  .c-bolt-link__icon [name='twitter'],
+  .c-bolt-link__icon [name='linkedin'],
   .c-bolt-link__icon [name='email'],
   .c-bolt-link__icon [name='asset-link'] {
     color: bolt-color(indigo, light);
@@ -55,13 +49,17 @@
     transition: all 0.2s ease;
   }
 
-  .c-bolt-copy-to-clipboard__icon,
-  .is-copied .c-bolt-copy-to-clipboard__icon {
+  .c-bolt-copy-to-clipboard__spinner,
+  .is-copied .c-bolt-copy-to-clipboard__spinner {
     left: 2rem; // Aligns out absolutely positioned icon correctly with the others
   }
 
   .c-bolt-link:hover {
     background-position: left bottom;
+    color: bolt-color(white);
+  }
+
+  .c-bolt-link__icon:hover {
     color: bolt-color(white);
   }
 }
@@ -97,7 +95,7 @@
     color: bolt-color(teal, dark);
   }
 
-  .c-bolt-copy-to-clipboard.is-copied .c-bolt-copy-to-clipboard__icon {
+  .c-bolt-copy-to-clipboard.is-copied .c-bolt-copy-to-clipboard__spinner {
     margin: 0;
   }
 }

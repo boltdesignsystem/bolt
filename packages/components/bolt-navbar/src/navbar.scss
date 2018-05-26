@@ -4,6 +4,9 @@
    Navbar
 \* ------------------------------------ */
 
+$bolt-navbar-title-transition: $bolt-transition;
+
+
 bolt-navbar {
   display: block;
 }
@@ -15,9 +18,16 @@ bolt-navbar {
   position: relative;
 }
 
-.c-bolt-navbar__brand {
+
+// Nav title
+.c-bolt-navbar__title {
   @include bolt-margin(0 small 0 0);
 
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  color: inherit;
+  color: var(--bolt-theme-heading, inherit);
   white-space: nowrap;
 
   &:only-child {
@@ -25,20 +35,27 @@ bolt-navbar {
   }
 }
 
-.c-bolt-navbar__brand-item {
-  display: inline-block;
-  display: inline-flex;
-  vertical-align: middle;
-  align-items: center;
+.c-bolt-navbar__title--link {
+  text-decoration: none;
+  opacity: 1;
+  transition: all $bolt-navbar-title-transition;
 
-  .c-bolt-link.c-bolt-link,
-  .c-bolt-link.c-bolt-link:hover {
-    text-decoration: none;
+  &:hover {
+    opacity: $bolt-global-link-hover-opacity;
   }
 }
 
+.c-bolt-navbar__title-icon {
+  @include bolt-margin(0 xsmall 0 0);
+}
+
+.c-bolt-navbar__title-text {
+  @include bolt-font-size(large);
+  @include bolt-font-weight(semibold);
+}
 
 
+// Nav items
 .c-bolt-navbar__nav {
   @include bolt-margin(0 0 0 small);
 
@@ -49,8 +66,6 @@ bolt-navbar {
     display: block;
   }
 }
-
-
 
 .c-bolt-navbar__nav {
   &:only-child {

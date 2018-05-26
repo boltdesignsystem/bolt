@@ -19,11 +19,18 @@
     @include bolt-margin-bottom(0);
   }
 
-
   // Headline + Icon and/or Icon + Headline Spacing
-  &__text ~ &__icon,
-  &__icon ~ &__text {
-    @include bolt-margin-left(xxsmall);
+  &--icon-position-before,
+  &--icon-position-left {
+    .c-bolt-headline__icon {
+      @include bolt-margin-right(xxsmall);
+    }
+  }
+  &--icon-position-after,
+  &--icon-position-right {
+    .c-bolt-headline__icon {
+      @include bolt-margin-left(xxsmall);
+    }
   }
 }
 

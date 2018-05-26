@@ -12,8 +12,9 @@ import {
 export class BoltShare extends BoltComponent {
   static is = 'bolt-share';
 
-  constructor() {
-    super();
+  constructor(self) {
+    self = super(self);
+    return self;
   }
 
   clickHandler(event) {
