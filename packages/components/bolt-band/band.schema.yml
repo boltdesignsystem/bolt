@@ -1,38 +1,14 @@
-$schema: 'http://json-schema.org/draft-04/schema#'
-title: Bolt Band
-category: layout
+$schema: http://json-schema.org/draft-04/schema#
+title: Band
 type: object
-format: grid
 properties:
-  fullBleed:
-    type: boolean
-    description: If set to true, the band will take the full width of the page.
-  size:
+  spacing:
     type: string
-    description: Height of the band.
+    description: Top and bottom spacing inside the band component.
+    default: medium
     enum:
+      - none
       - xsmall
       - small
       - medium
       - large
-  contentTag:
-    type: string
-    description: Html tag to use for the band's content.
-    enum:
-      - div
-      - article
-      - section
-      - header
-      - footer
-      - nav
-      - figcaption
-  theme:
-    type: string
-    description: Bolt theme.
-    enum:
-      - xlight
-      - light
-      - medium
-      - dark
-      - xdark
-

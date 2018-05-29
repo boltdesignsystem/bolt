@@ -1,6 +1,19 @@
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-ordered-list'].schema, _self) | raw }}
-{% endif %}
+{# Sample Usage
+  {% include "@bolt/ordered-list.twig" with {
+    contentItems : [
+      {
+        text: "Item 1"
+      },
+      {
+        text: "Item 2"
+      },
+      {
+        text: "Item 3"
+      }
+    ]
+  } only %}
+#}
+
 
 {% set prefix = "c-bolt-" %}
 
@@ -29,3 +42,7 @@
     {% endfor %}
   </ol>
 </bolt-{{ componentName }}>
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-ordered-list'].schema, _self) | raw }}
+{% endif %}

@@ -1,6 +1,12 @@
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-figure'].schema, _self) | raw }}
-{% endif %}
+{# Sample Usage
+  {% include "@bolt/figure.twig" with {
+    "image": {
+      "src": "/images/placeholders/500x500.jpg"
+    },
+    caption: "Example figcation text"
+  } only %}
+#}
+
 
 {% set prefix = "c-bolt-" %}
 
@@ -31,3 +37,7 @@
     {% endif %}
   </figure>
 </bolt-{{ componentName }}>
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-figure'].schema, _self) | raw }}
+{% endif %}
