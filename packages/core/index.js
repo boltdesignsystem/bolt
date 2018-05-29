@@ -19,12 +19,13 @@ export { declarativeClickHandler } from './utils/declarative-click-handler';
 export { hasNativeShadowDomSupport } from './utils/environment';
 export { findParentTag } from './utils/find-parent-tag';
 
-export { withPreact } from './renderers/renderer-preact';
-export { BoltComponent } from './renderers/renderer-hyperhtml';
+export { PreactComponent } from './renderers/renderer-preact';
+export { HyperComponent } from './renderers/renderer-hyperhtml';
 export { spacingSizes } from './data/spacing-sizes';
 
-// Export polyfill loader
-export { polyfillLoader } from './polyfills';
+WebComponents.waitFor(() => {
+  import('./helper-components/replace-with-children');
+});
 
 //// Add hook to auto re-render the root component.
 if (typeof module.hot === 'object') {

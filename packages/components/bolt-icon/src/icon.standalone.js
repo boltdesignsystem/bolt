@@ -3,8 +3,7 @@ import {
   render,
   define,
   props,
-  withComponent,
-  withPreact,
+  PreactComponent,
   css,
   spacingSizes,
   hasNativeShadowDomSupport,
@@ -30,7 +29,7 @@ const colors = [
 
 
 @define
-export class BoltIcon extends withPreact(withComponent()) {
+export class BoltIcon extends PreactComponent {
   static is = 'bolt-icon';
 
   static props = {
@@ -50,7 +49,7 @@ export class BoltIcon extends withPreact(withComponent()) {
     return self;
   }
 
-  connectedCallback() {
+  connecting() {
     const elem = this;
 
     this.state = {
@@ -120,9 +119,7 @@ export class BoltIcon extends withPreact(withComponent()) {
 
     return (
       <div className={classes}>
-        {this.useShadow &&
-          <style>{styles[0][1]}</style>
-        }
+        { this.renderStyles(styles) }
         <IconTag
           className={ iconClasses }
           size={ iconSize }

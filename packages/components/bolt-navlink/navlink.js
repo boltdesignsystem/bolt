@@ -2,7 +2,7 @@ import {
   h,
   render,
   props,
-  BoltComponent,
+  HyperComponent,
   define,
   css,
   spacingSizes,
@@ -13,7 +13,7 @@ const isActiveClass = 'is-active';
 
 
 @define
-class BoltNavLink extends BoltComponent() {
+class BoltNavLink extends HyperComponent {
   static is = 'bolt-navlink';
 
   // The element reacts to changes to the `active` attribute.

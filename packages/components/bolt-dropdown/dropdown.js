@@ -3,7 +3,7 @@ import {
   props,
   css,
   hasNativeShadowDomSupport,
-  BoltComponent,
+  HyperComponent,
 } from '@bolt/core';
 
 import Handorgel from 'handorgel';
@@ -13,7 +13,7 @@ import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss
 
 
 @define
-export class BoltDropdown extends BoltComponent() {
+export class BoltDropdown extends HyperComponent {
   static is = 'bolt-dropdown';
 
 

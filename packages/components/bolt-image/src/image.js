@@ -3,11 +3,13 @@ import 'lazysizes/plugins/unveilhooks/ls.unveilhooks';
 import 'lazysizes/plugins/progressive/ls.progressive';
 import 'lazysizes/plugins/respimg/ls.respimg'; // Lighter weight version of picturefill
 
-// https://github.com/aFarkas/lazysizes/issues/410
-// lazySizes.cfg == window.lazySizesConfig
-Object.assign(lazySizes.cfg, {
-  lazyClass: 'js-lazyload',
-  loadingClass: 'is-lazyloading',
-  loadedClass: 'is-lazyloaded',
-  preloadAfterLoad: true,
+WebComponents.waitFor(() => {
+  // https://github.com/aFarkas/lazysizes/issues/410
+  // lazySizes.cfg == window.lazySizesConfig
+  Object.assign(lazySizes.cfg, {
+    lazyClass: 'js-lazyload',
+    loadingClass: 'is-lazyloading',
+    loadedClass: 'is-lazyloaded',
+    preloadAfterLoad: true,
+  });
 });

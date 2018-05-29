@@ -1,17 +1,16 @@
 import {
   define,
   props,
-  withComponent,
   css,
   hasNativeShadowDomSupport,
-  BoltComponent,
+  HyperComponent,
   sanitizeBoltClasses,
 } from '@bolt/core';
 
 import ClipboardJS from 'clipboard';
 
 @define
-export class BoltCopyToClipboard extends BoltComponent() {
+export class BoltCopyToClipboard extends HyperComponent {
   static is = 'bolt-copy-to-clipboard';
 
   constructor(self) {

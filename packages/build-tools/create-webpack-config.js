@@ -383,9 +383,6 @@ function createConfig(config) {
         filename: config.prod ? '[name].[contenthash].css' : '[name].css',
         chunkFilename: config.prod ? '[id].[contenthash].css' : '[id].css',
       }),
-      new webpack.ProvidePlugin({
-        Promise: 'es6-promise',
-      }),
       new webpack.DefinePlugin(globalJsData),
       new webpack.NamedModulesPlugin(),
     ],
@@ -400,7 +397,9 @@ function createConfig(config) {
       cache: true,
       uglifyOptions: {
         cache: true,
-        compress: true,
+        compress: {
+          ecma: 6,
+        },
         mangle: true,
       },
     }));
@@ -418,7 +417,7 @@ function createConfig(config) {
     }));
 
     // @todo Evaluate best source map approach for production
-    webpackConfig.devtool = 'hidden-source-map';
+    webpackConfig.devtool = 'cheap-source-map';
   } else { // not prod
     // @todo fix source maps
     // webpackConfig.devtool = 'cheap-module-eval-source-map';

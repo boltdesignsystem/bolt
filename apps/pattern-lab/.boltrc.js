@@ -79,7 +79,6 @@ module.exports = {
       '@bolt/components-form',
       '@bolt/components-headline',
       '@bolt/components-icon',
-      '@bolt/components-icons',
       '@bolt/components-image',
       '@bolt/components-link',
       '@bolt/components-nav',
@@ -105,6 +104,7 @@ module.exports = {
         js: './src/scripts/pl.js',
       },
       '@bolt/components-critical-fonts',
+      '@bolt/components-critical-polyfills',
     ],
   },
 };

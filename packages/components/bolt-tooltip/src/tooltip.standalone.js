@@ -3,9 +3,8 @@ import {
   render,
   define,
   props,
-  withComponent,
+  PreactComponent,
   hasNativeShadowDomSupport,
-  withPreact,
 } from '@bolt/core';
 
 import styles from './tooltip.scss';
@@ -13,7 +12,7 @@ import button from '@bolt/components-button/src/button.scss';
 import colorUtils from '@bolt/global/styles/07-utilities/_utilities-colors.scss';
 
 @define
-export class BoltTooltip extends withPreact(withComponent()) {
+export class BoltTooltip extends PreactComponent {
   static is = 'bolt-tooltip';
 
   static props = {
@@ -37,7 +36,7 @@ export class BoltTooltip extends withPreact(withComponent()) {
     return self;
   }
 
-  connectedCallback() {
+  connecting() {
     this.triggerID = `bolt-tooltip-id-${Math.floor(Math.random() * 20)}`;
   }
 
@@ -69,9 +68,7 @@ export class BoltTooltip extends withPreact(withComponent()) {
     // @todo: Conditionally render slot similar to how HyperHtml is doing it
     return (
       <span>
-        {this.useShadow &&
-          <style>{styles[0][1]}</style>
-        }
+        { this.addStyles(styles) }
         <span className={classes.join(' ')}>
           <tooltip-trigger
             text={data.triggerText}
@@ -93,7 +90,7 @@ export class BoltTooltip extends withPreact(withComponent()) {
 }
 
 @define
-class TooltipTrigger extends withPreact(withComponent()) {
+class TooltipTrigger extends PreactComponent {
   static is = 'tooltip-trigger';
 
   static props = {
@@ -135,8 +132,7 @@ class TooltipTrigger extends withPreact(withComponent()) {
       <span>
         {data.trigger === 'button' &&
         <span>
-          <style>{button[0][1]}</style>
-          <style>{colorUtils[0][1]}</style>
+          {this.addStyles([button, colorUtils]) }
         </span>
         }
         <span

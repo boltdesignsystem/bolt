@@ -1,10 +1,8 @@
-import { polyfillLoader } from '@bolt/core';
 
-polyfillLoader.then((res) => {
-  import(
+WebComponents.waitFor(() => {
+  return import(
     /* webpackChunkName: "bolt-device-viewer" */
     /* webpackPrefetch: true */
     './device-viewer.standalone.js',
   );
 });
-

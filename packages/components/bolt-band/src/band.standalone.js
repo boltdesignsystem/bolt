@@ -3,25 +3,13 @@ import {
   render,
   define,
   props,
-  BoltComponent,
+  HyperComponent,
   hasNativeShadowDomSupport,
 } from '@bolt/core';
 
 
-
-
-// To avoid invoking the parser with `.innerHTML` for every new instance, a
-// template for the contents of the ShadowDOM is is shared by all
-// `<bolt-band>` instances.
-//
-
-// ShadyCSS will rename classes as needed to ensure style scoping.
-
-
-
-
 @define
-export class BoltBand extends BoltComponent() {
+export class BoltBand extends HyperComponent {
   static is = 'bolt-band';
 
   static get observedAttributes() {
@@ -38,9 +26,6 @@ export class BoltBand extends BoltComponent() {
     return self;
   }
 
-  /**
-    * `connectedCallback()` sets up the role, event handler and initial state.
-    */
   connecting() {
     this.state = {
       ready: false,
@@ -61,10 +46,6 @@ export class BoltBand extends BoltComponent() {
     } else {
       this.collapse();
     }
-
-    // Shim Shadow DOM styles. This needs to be run in `connectedCallback()`
-    // because if you shim Custom Properties (CSS variables) the element
-    // will need access to its parent node.
 
     this.addEventListener('playing', this.playHandler);
     this.addEventListener('pause', this.pauseHandler);

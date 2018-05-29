@@ -3,8 +3,7 @@ import {
   render,
   define,
   props,
-  withComponent,
-  withPreact,
+  PreactComponent,
   css,
   spacingSizes,
 } from '@bolt/core';
@@ -16,7 +15,7 @@ let index = 0;
 import metaStyles from './_video-meta.scss';
 
 @define
-class BoltVideoMeta extends withPreact(withComponent()) {
+export class BoltVideoMeta extends PreactComponent {
   static is = `${bolt.namespace}-video-meta`;
 
   constructor(self) {
@@ -54,7 +53,7 @@ class BoltVideoMeta extends withPreact(withComponent()) {
 
 
 @define
-class BoltVideo extends withPreact(withComponent()) {
+export class BoltVideo extends PreactComponent {
   static is = `${bolt.namespace}-video`;
 
   static props = {
@@ -285,7 +284,7 @@ class BoltVideo extends withPreact(withComponent()) {
     this.close();
   }
 
-  connectedCallback() {
+  connecting() {
     this.state = {
       id: `${this.props.videoId}-${this.props.accountId}-${index}`,
       // errors: BoltVideo.globalErrors !== undefined  ? [].concat(BoltVideo.globalErrors) : [],
@@ -380,7 +379,7 @@ class BoltVideo extends withPreact(withComponent()) {
   // }
 
 
-  disconnectedCallback() {
+  disconnecting() {
     window.removeEventListener('optimizedResize', this._calculateIdealVideoSize);
 
     if (this.player) {
@@ -709,8 +708,6 @@ class BoltVideo extends withPreact(withComponent()) {
 
 // BoltVideo.globalErrors = [];
 //BoltVideo.props = defaults;
-
-export default BoltVideo;
 
 
 // won't fire before a previous event is complete.

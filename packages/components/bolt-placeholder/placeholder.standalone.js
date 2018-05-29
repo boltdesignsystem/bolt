@@ -1,10 +1,9 @@
 import {
   define,
   props,
-  withComponent,
   css,
   hasNativeShadowDomSupport,
-  BoltComponent,
+  HyperComponent,
   declarativeClickHandler,
   sanitizeBoltClasses,
 } from '@bolt/core';
@@ -12,7 +11,7 @@ import {
 import placeholderStyles from './placeholder.scss';
 
 @define
-class BoltPlaceholder extends BoltComponent() {
+class BoltPlaceholder extends HyperComponent {
   static is = 'bolt-placeholder';
 
   static props = {

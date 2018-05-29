@@ -3,7 +3,7 @@ import {
   render,
   define,
   props,
-  BoltComponent,
+  HyperComponent,
   css,
   spacingSizes,
   hasNativeShadowDomSupport,
@@ -60,7 +60,7 @@ let gumshoeStateModule = (function () {
 
 
 @define
-export class BoltNav extends BoltComponent() {
+export class BoltNav extends HyperComponent {
   static is = 'bolt-nav';
 
   // Behavior for `<bolt-nav>` parent container

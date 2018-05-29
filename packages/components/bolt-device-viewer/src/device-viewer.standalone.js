@@ -4,7 +4,7 @@ import {
   render,
   define,
   props,
-  BoltComponent,
+  HyperComponent,
   css,
   spacingSizes,
   hasNativeShadowDomSupport,
@@ -34,7 +34,7 @@ const animationEvent = whichAnimationEvent();
 
 
 @define
-class BoltDeviceViewer extends BoltComponent() {
+class BoltDeviceViewer extends HyperComponent {
   static is = 'bolt-device-viewer';
 
   static props = {
@@ -76,7 +76,7 @@ class BoltDeviceViewer extends BoltComponent() {
 
 
 @define
-class BoltImageZoom extends BoltComponent() {
+class BoltImageZoom extends HyperComponent {
   static is = 'bolt-image-zoom';
 
   static props = {
@@ -141,11 +141,11 @@ class BoltImageZoom extends BoltComponent() {
   }
 
   /**
-     * `disconnectedCallback()` fires when the element is removed from the DOM.
+     * `disconnecting()` fires when the element is removed from the DOM.
      * It's a good place to do clean up work like releasing references and
      * removing event listeners.
      */
-  disconnectedCallback() {
+  disconnecting() {
     this.removeEventListener('mouseenter', this._mouseEnter);
     this.removeEventListener('mouseleave', this._mouseLeave);
   }
