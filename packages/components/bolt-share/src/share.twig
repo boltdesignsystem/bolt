@@ -6,10 +6,10 @@
 
 {% if isFlat is sameas(true) %}
   {% set items = items|merge([include("@bolt-components-headline/text.twig", {
-    text: "Share",
+    text: "Share this page",
     transform: 'uppercase',
     weight: 'bold',
-    attributes: create_attribute(attributes|default({})).addClass('u-bolt-color-orange c-bolt-share--inline-heading')
+    attributes: create_attribute(attributes|default({})).addClass('u-bolt-color-gray-dark c-bolt-share--inline-heading')
   })]) %}
 {% endif %}
 

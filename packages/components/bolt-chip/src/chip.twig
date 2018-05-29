@@ -1,9 +1,6 @@
-{# Sample Usage
-  {% include "@bolt/chip.twig" with {
-    text: "This is a chip",
-    url: "http://google.com"  // Optional; When url is present, tag changes to `a`, otherwise tag would be `span`.
-  } only %}
-#}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-chip'].schema, _self) | raw }}
+{% endif %}
 
 {% set tags = ["span", "a"] %} {# Available Chip Tags #}
 {% set prefix = "c-bolt-" %}
@@ -36,7 +33,3 @@
     <span class="{{ "#{baseClass}__item-text" }}">{{ text }}</span>
   </{{ tag }}>
 </bolt-chip>
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-chip'].schema, _self) | raw }}
-{% endif %}

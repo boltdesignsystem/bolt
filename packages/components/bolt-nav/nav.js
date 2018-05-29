@@ -66,14 +66,15 @@ export class BoltNav extends BoltComponent() {
   // Behavior for `<bolt-nav>` parent container
   static get observedAttributes() { return ['offset']; }
 
-  constructor() {
-    super();
+  constructor(self) {
+    self = super(self);
     this.activeLink = false;
     this.useShadow = hasNativeShadowDomSupport;
 
     // Ensure that 'this' inside the _onWindowResize event handler refers to <bolt-nav-link>
     // even if the handler is attached to another element (window in this case)
     this._onWindowResize = this._onWindowResize.bind(this);
+    return self;
   }
 
   render() {

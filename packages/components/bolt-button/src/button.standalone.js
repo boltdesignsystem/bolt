@@ -14,9 +14,9 @@ import styles from './button.scss';
 import visuallyhiddenUtils from '@bolt/global/styles/07-utilities/_utilities-visuallyhidden.scss';
 
 
-/** 
-  * The ReplaceWithChildren is a helper component used for prerendering components (ex. temp CSS 
-  * classes) that need to get removed when the component's JS kicks in. Once that happens, this 
+/**
+  * The ReplaceWithChildren is a helper component used for prerendering components (ex. temp CSS
+  * classes) that need to get removed when the component's JS kicks in. Once that happens, this
   * component automatically replaces itself with the component's child nodes.
   */
 @define
@@ -27,14 +27,14 @@ export class ReplaceWithChildren extends BoltComponent() {
     self = super(self);
     return self;
   }
-  
+
   connecting(){
     this.replaceElementWithChildren();
   }
-    
+
   replaceElementWithChildren(){
     const parentElement = this.parentElement;
-  
+
     if(!parentElement){
       Error('The <replace-with-children> element needs a parent element to append to!');
     }
@@ -43,7 +43,9 @@ export class ReplaceWithChildren extends BoltComponent() {
     while(this.firstChild){
       parentElement.appendChild(this.firstChild);
     }
-    this.parentElement.removeChild(this);
+    if (parentElement){
+      parentElement.removeChild(this);
+    }
   }
 }
 

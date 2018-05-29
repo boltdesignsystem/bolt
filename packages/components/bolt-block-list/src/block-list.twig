@@ -1,3 +1,7 @@
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-block-list'].schema, _self) | raw }}
+{% endif %}
+
 {% set prefix = "c-bolt-" %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
@@ -20,7 +24,3 @@
     {% endfor %}
   </ul>
 </bolt-block-list>
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-block-list'].schema, _self) | raw }}
-{% endif %}

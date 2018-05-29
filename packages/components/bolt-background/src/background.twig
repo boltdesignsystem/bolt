@@ -1,3 +1,7 @@
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-background'].schema, _self) | raw }}
+{% endif %}
+
 {% set prefix = "c-bolt-" %}
 {% set componentName = "background" %}
 {% set baseClass = prefix ~ componentName %}
@@ -37,7 +41,7 @@
   fill in fills|keys ? baseClass ~ "__overlay--" ~ fills[fill] ~ "-fill" : baseClass ~ "__overlay--color-fill"
 ] %}
 
-{% set shapeGroup =  shapeGroup in shapeGroups ? shapeGroup %}
+{% set shapeGroup =  shapeGroup in shapeGroups ? shapeGroup : 'none' %}
 {% set shapeClasses = [
   baseClass ~ "__shapes",
   shapeAlignment in shapeAlignments ? baseClass ~ "__shapes--" ~ shapeAlignment : baseClass ~ "__shapes--right"
@@ -66,7 +70,7 @@
         <div {{ overlayAttributes.addClass(overlayClasses) }} ></div>
       {% endif %}
 
-      {% if shapeGroup %}
+      {% if shapeGroup != 'none' %}
         <div {{ shapeAttributes.addClass(shapeClasses) }}>
           {% include "@bolt/background-shapes.twig" with { "shapeGroup": shapeGroup } only %}
         </div>

@@ -1,4 +1,6 @@
+{% set prefix = "c-bolt-" %}
 {% set componentName = "copy-to-clipboard" %} {# @todo: refactor to custom web component ASAP #}
+{% set baseClass = prefix ~ componentName %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
 
@@ -18,37 +20,57 @@
   {% set attributes = attributes.setAttribute("url", url) %}
 {% endif %}
 
-<bolt-copy-to-clipboard>
-  <div class="c-bolt-copy-to-clipboard js-bolt-copy-to-clipboard" {{ attributes }}>
-    <span class="c-bolt-copy-to-clipboard__default">
+
+
+
+<bolt-copy-to-clipboard bolt-component>
+  <div class="{{ "#{baseClass}" }} js-bolt-copy-to-clipboard" {{ attributes.addClass(classes) }}>
+    <span class="{{ "#{baseClass}__trigger" }}">
       {% include "@bolt-components-link/link.twig" with {
-        text: text,
-        url: url,
-        icon: {
-          name: 'asset-link',
-          position: 'before',
-          size: iconSize
+        "text": text,
+        "url": url,
+        "icon": {
+          "name": "asset-link",
+          "position": "before",
+          "size": iconSize
         },
-        attributes: attributes.setAttribute('data-clipboard-text', url).setAttribute('target', '_blank').addClass('js-bolt-copy-to-clipboard__default')
+        "attributes": attributes.setAttribute("data-clipboard-text", url).setAttribute("target", "_blank").addClass("js-bolt-copy-to-clipboard__trigger")
       } only %}
     </span>
-    <bolt-icon class="c-bolt-copy-to-clipboard__icon" name="refresh" size={{ iconSize }}></bolt-icon>
 
-    <span class="c-bolt-copy-to-clipboard__copied">
+    {% include "@bolt-components-icon/icon.twig" with {
+      "name": "refresh",
+      "size": iconSize,
+      "attributes": {
+        "class": [
+          "#{baseClass}__spinner"
+        ]
+      }
+    } only %}
+
+    <span class="{{ "#{baseClass}__confirmation" }}">
       {% include "@bolt-components-link/link.twig" with {
-        text: copiedText,
-        url: url,
-        icon: {
-          name: 'asset-link',
-          position: 'before',
-          size: iconSize
+        "text": copiedText,
+        "url": url,
+        "icon": {
+          "name": "asset-link",
+          "position": "before",
+          "size": iconSize
         },
-        attributes: attributes.removeClass('js-bolt-copy-to-clipboard__default')
+        "attributes": {
+          "class": [
+            "u-bolt-color-teal-dark",
+            "js-bolt-copy-to-clipboard__trigger"
+          ]
+        }
       } only %}
     </span>
   </div>
 </bolt-copy-to-clipboard>
 
+
+
+
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-copy-to-clipboard'].schema, _self) | raw }}
+  {{ validate_data_schema("@bolt-components-copy-to-clipboard/copy-to-clipboard.schema.yml", _self) | raw }}
 {% endif %}

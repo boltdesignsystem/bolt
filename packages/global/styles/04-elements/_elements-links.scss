@@ -1,37 +1,38 @@
 /* ------------------------------------ *\
-  ELEMENTS - LINKS
+   ELEMENTS - LINKS
 \* ------------------------------------ */
+
+$bolt-a-color-xlight:  bolt-color(indigo, light);
+$bolt-a-color-light:   bolt-color(indigo, light);
+$bolt-a-color-medium:  bolt-color(white);
+$bolt-a-color-dark:    bolt-color(white);
+$bolt-a-color-xdark:   bolt-color(white);
+
+// Dev Notes
+// 1. [Mai] All the theming stuff is an interim fix until the bolt-text is refactored, which will cover all the text link styles as well.
 
 a {
   color: inherit;
   text-decoration: none;
 }
 
-// @TODO: refactor into link component
-p a,
-p .c-bolt-link {
-  & {
-    color: inherit;
-    color: var(--bolt-theme-link-default, var(--bolt-theme-link, bolt-color(indigo, light)));
-  }
-
-  &:visited {
-    color: inherit;
-    color: var(--bolt-theme-link-visited, var(--bolt-theme-link, bolt-color(indigo, light)));
-  }
-
-  &:hover {
-    color: inherit;
-    color: var(--bolt-theme-link-hover, var(--bolt-theme-link, bolt-color(indigo, light)));
-  }
-
-  &:active {
-    color: inherit;
-    color: var(--bolt-theme-link-active, var(--bolt-theme-link, bolt-color(indigo, light)));
-  }
-}
-
-
-p:not[class] > a {
+a:not([class]) {
+  color: $bolt-a-color-xlight; // [1]
   text-decoration: underline;
+
+  .t-bolt-xlight & {
+    color: $bolt-a-color-xlight; // [1]
+  }
+  .t-bolt-light & {
+    color: $bolt-a-color-light; // [1]
+  }
+  .t-bolt-medium & {
+    color: $bolt-a-color-medium; // [1]
+  }
+  .t-bolt-dark & {
+    color: $bolt-a-color-dark; // [1]
+  }
+  .t-bolt-xdark & {
+    color: $bolt-a-color-xdark; // [1]
+  }
 }
