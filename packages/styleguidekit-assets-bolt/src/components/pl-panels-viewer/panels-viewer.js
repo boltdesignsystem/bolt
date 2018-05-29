@@ -8,6 +8,13 @@
  * @requires url-handler.js
  */
 
+import Panels from '@pattern-lab/ui-panels';
+import panelsUtil from '@pattern-lab/ui-panels-util';
+import urlHandler from '@pattern-lab/utils/url-handler';
+import $ from 'jquery';
+import Hogan from 'hogan.js';
+import prism from 'prismjs';
+
 var panelsViewer = {
   // set up some defaults
   targetOrigin:

@@ -10,6 +10,11 @@
  *
  */
 
+import urlHandler from '@pattern-lab/utils/url-handler';
+import DataSaver from '@pattern-lab/utils/data-saver';
+import panelsViewer from '@pattern-lab/ui-panels-viewer';
+import $ from 'jquery';
+
 var modalViewer = {
   // set up some defaults
   active: false,

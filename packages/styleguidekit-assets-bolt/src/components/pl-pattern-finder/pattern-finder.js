@@ -8,6 +8,11 @@
  *
  */
 
+import urlHandler from '@pattern-lab/utils/url-handler';
+import $ from 'jquery';
+import Bloodhound from 'typeahead.js/dist/bloodhound.js';
+import loadjs from 'loadjs';
+
 var patternFinder = {
   data: [],
   active: false,

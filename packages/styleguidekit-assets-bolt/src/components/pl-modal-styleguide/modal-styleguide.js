@@ -10,6 +10,10 @@
  *
  */
 
+import panelsUtil from '@pattern-lab/ui-panels-util';
+import '@pattern-lab/utils/url-handler';
+// const panelsUtil = require('modules/panels-util');
+
 var modalStyleguide = {
   // set up some defaults
   active: [],

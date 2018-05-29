@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   // Environmental variable / preset to use
-  env: 'static',
+  // env: 'static',
   // openServerAtStart: true,
   buildDir: '../../www/pattern-lab/styleguide',
   wwwDir: '../../www/pattern-lab',
@@ -57,7 +57,8 @@ module.exports = {
 
   components: {
     global: [
-      '@bolt/core',
+      '@pattern-lab/ui-null',
+      // '@bolt/core',
       // '@bolt/global',
       // '@bolt/components-placeholder',
       // '@bolt/components-action-blocks',
@@ -105,9 +106,19 @@ module.exports = {
       //   js: './src/scripts/pl.js',
       // },
       {
-        name: 'pattern-lab',
+        name: 'patternlab-pattern',
+        js: './src/patternlab-pattern.js',
+        // scss: './src/sass/pattern-lab.scss',
+      },
+      {
+        name: 'patternlab-viewer',
+        js: './src/patternlab-viewer.js',
+        // scss: './src/sass/pattern-lab.scss',
+      },
+      {
+        name: 'patternlab',
         scss: './src/sass/pattern-lab.scss',
-        // js: './src/scripts/pl.js',
+        // scss: './src/sass/pattern-lab.scss',
       },
       // '@bolt/components-critical-fonts',
     ],

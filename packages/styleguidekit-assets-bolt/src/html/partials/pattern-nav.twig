@@ -1,3 +1,4 @@
+{% verbatim %}
 {{# patternTypes }}
 <li class="pl-c-nav__item pl-c-nav__item--{{ patternTypeLC }}">
 
@@ -11,7 +12,7 @@
 			<a class="pl-c-nav__link pl-c-nav__link--dropdown pl-js-acc-handle">{{ patternSubtypeUC }}</a>
 
 			<ol class="pl-c-nav__subsublist pl-c-nav__subsublist--dropdown pl-js-acc-panel">
-				
+
 				{{# patternSubtypeItems }}
 				<li class="pl-c-nav__item">
 
@@ -21,7 +22,7 @@
 						{{# patternState }}
 						<span class="pl-c-pattern-state pl-c-pattern-state--{{ patternState }}" title="{{ patternState }}" />
 						{{/ patternState }}
-					
+
 					</a><!--end pl-c-nav__link-->
 
 				</li><!--end pl-c-nav__item-->
@@ -30,7 +31,7 @@
 			</ol><!--end pl-c-nav__subsublist-->
 
 		</li><!--end pl-c-nav__item-->
-		{{/ patternTypeItems }} 
+		{{/ patternTypeItems }}
 		{{# patternItems }}
 		<li class="pl-c-nav__item">
 
@@ -40,7 +41,7 @@
 				{{# patternState }}
 				<span class="pl-c-pattern-state pl-c-pattern-state--{{ patternState }}" title="{{ patternState }}" />
 				{{/ patternState }}
-			
+
 			</a><!--end pl-c-nav__link-->
 
 		</li><!--end pl-c-nav__item-->
@@ -56,4 +57,4 @@
 	<a href="styleguide/html/styleguide.html" class="pl-c-nav__link" data-patternpartial="all" tabindex="0">All</a>
 
 </li><!--end pl-c-nav__item-->
-
+{% endverbatim %}

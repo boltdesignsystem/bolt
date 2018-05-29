@@ -13,6 +13,7 @@ const fs = require('fs');
 const readFile = promisify(fs.readFile);
 const deepmerge = require('deepmerge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 function createConfig(config) {
   // @TODO: move this setting to .boltrc config
@@ -270,9 +271,22 @@ function createConfig(config) {
     },
     module: {
       rules: [
+        // {
+        //   test: /\.html$/,
+        //   loader: 'mustache-loader',
+        //   // loader: 'mustache-loader?minify'
+        //   // loader: 'mustache-loader?{ minify: { removeComments: false } }'
+        //   // loader: 'mustache-loader?noShortcut'
+        // },
         {
           test: /\.twig$/,
           loader: 'twig-loader',
+          options: {
+            base: path.resolve('/Users/sghoweri/sites/bolt-accordion/packages/styleguidekit-assets-bolt/src/html'),
+            twigOptions: {
+              base: path.resolve('/Users/sghoweri/sites/bolt-accordion/packages/styleguidekit-assets-bolt/src/html'),
+            },
+          },
         },
         {
           test: /\.scss$/,
@@ -389,6 +403,11 @@ function createConfig(config) {
       }),
       new webpack.DefinePlugin(globalJsData),
       new webpack.NamedModulesPlugin(),
+      new HtmlWebpackPlugin({
+        title: 'Custom template',
+        // Load a custom template (lodash by default see the FAQ for details)
+        template: path.resolve('/Users/sghoweri/sites/bolt-accordion/packages/styleguidekit-assets-bolt/src/html/index.twig'),
+      }),
     ],
   };
 

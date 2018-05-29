@@ -9,6 +9,8 @@
  *
  */
 
+import urlHandler from '@pattern-lab/utils/url-handler';
+
 var panelsUtil = {
   /**
    * Add click events to the template that was rendered

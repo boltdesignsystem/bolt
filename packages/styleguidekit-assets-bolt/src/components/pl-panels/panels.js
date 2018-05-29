@@ -9,6 +9,9 @@
  * @requires prism-languages.js
  */
 
+import '@pattern-lab/ui-prism';
+import loadjs from 'loadjs';
+
 var Panels = {
   panels: [],
 

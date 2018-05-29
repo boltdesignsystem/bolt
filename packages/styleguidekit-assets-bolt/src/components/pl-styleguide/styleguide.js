@@ -4,6 +4,17 @@
  * @requires postmessage.js
  */
 
+import {
+  DataSaver,
+  urlHandler,
+} from '@pattern-lab/utils/data-saver';
+
+import patternFinder from '@pattern-lab/ui-pattern-finder';
+import $ from 'jquery';
+import jwerty from 'jwerty-globals-fixed';
+import loadjs from 'loadjs';
+import '@pattern-lab/utils/postmessage';
+
 (function(w) {
   var sw = document.body.clientWidth, //Viewport Width
     sh = $(document).height(); //Viewport Height
