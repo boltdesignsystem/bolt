@@ -37,6 +37,9 @@ module.exports = {
       './style.scss',
       './storefront.js',
     ],
-    individual: [],
+    individual: [
+      '@bolt/components-critical-fonts',
+      '@bolt/components-critical-polyfills',
+    ],
   },
 };
