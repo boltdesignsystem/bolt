@@ -15,7 +15,7 @@ import {
 
 import PubSub from 'pubsub-js';
 import upperCamelCase from 'uppercamelcase';
-import * as Icons from '@bolt/components-icons';
+import * as Icons from '@bolt/components-icons/src'; // deliberately not setting `main` key to prevent automatically / accidently including the entire icon libray twice
 import * as styles from './icon.scss';
 
 const backgroundStyles = [
