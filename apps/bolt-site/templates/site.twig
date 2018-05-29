@@ -12,6 +12,16 @@
   <!-- Place favicon.ico in the root directory -->
 
   <link rel="stylesheet" href="/build/bolt-global.css">
+  
+  <style>
+    {{ inline( assets["bolt-components-critical-fonts.css"], 'wwwDir') }}
+  </style>
+
+  {# @TODO: wire this up to use Critical JS #}
+  <script>
+    {{ inline( assets["bolt-components-critical-fonts.js"], 'wwwDir') }}
+    {{ inline( assets["bolt-components-critical-polyfills.js"], 'wwwDir') }}
+  </script>
 
   <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
