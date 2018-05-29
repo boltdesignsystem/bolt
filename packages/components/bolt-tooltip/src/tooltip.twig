@@ -48,6 +48,7 @@
 
 <{{ customElementName }} {{ attributes }}></{{ customElementName }}>
 
+
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(bolt.data.components['@bolt-components-tooltip'].schema, _self) | raw }}
 {% endif %}

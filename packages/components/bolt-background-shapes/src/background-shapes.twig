@@ -97,6 +97,7 @@
   </div>
 </bolt-{{ componentName }}>
 
+
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-background-shapes/background-shapes.schema.yml', _self) | raw }}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-background'].schema, _self) | raw }}
 {% endif %}
