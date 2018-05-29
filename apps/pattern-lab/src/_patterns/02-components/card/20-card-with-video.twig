@@ -1,3 +1,5 @@
+{% set videoUuid3 = "js-bolt-video-uuid--3c" %}
+
 <div style="max-width: 500px; padding: 2rem;">
   {% include "@bolt-components-card/card.twig" with {
     "url": "javascript:",
@@ -7,7 +9,9 @@
         "videoId": "5609376179001",
         "accountId": "1900410236",
         "playerId": "r1CAdLzTW",
-        "showMeta": false
+        "showMeta": true,
+        "showMetaTitle": false,
+        "videoUuid": videoUuid3
       },
       {
         "pattern": "eyebrow",
@@ -17,7 +21,7 @@
         "pattern": "headline",
         "tag": "h3",
         "size": "large",
-        "text": "Anthem: Service Desktop"
+        "text": "Video Meta Title Goes Here."
       },
       {
         "pattern": "text",
@@ -28,7 +32,11 @@
         "style": "text",
         "width": "full",
         "itemAlignment": "start",
-        "text": "Get the report"
+        "text": "Play or Pause",
+        "attributes": {
+          "on-click": "toggle",
+          "on-click-target": videoUuid3
+        }
       }
     ]
   } only %}

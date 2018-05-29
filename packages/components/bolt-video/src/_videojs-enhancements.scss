@@ -18,6 +18,11 @@ $bolt-video-js-button-border-radius: $bolt-border-radius;
 }
 
 .video-js {
+  video,
+  .vjs-big-play-button {
+    cursor: pointer;
+  }
+
   .vjs-big-play-button {
     @include bolt-margin(0);
     @include bolt-padding(0);
@@ -31,7 +36,6 @@ $bolt-video-js-button-border-radius: $bolt-border-radius;
     width: 2em;
     height: 1.5em;
     line-height: 1.5em;
-    cursor: pointer;
     font-size: 1.5em;
     border: none;
     border-radius: $bolt-video-js-button-border-radius;

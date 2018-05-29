@@ -33,17 +33,24 @@ export function BoltVideoMeta() {
     }
 
     render() {
-      const separator = this.title && this.duration ? ' | ' : '';
-
-      // 'reveal' allows the metadata to be hidden.
       // All of its logic is contained here in render(), but it could be updated to be a property that is set
       // externally (such as when the video has finished fully loading).
+
+      // [Mai] This hides the title if there is no value for title.
+      const titleTrue = Boolean(this.title);
+
+      // [Mai] 'reveal' allows the meta data (title and duration) to be hidden.
       const reveal = Boolean(this.title || this.duration);
       return (
         <div className={`c-${bolt.namespace}-video-meta`}>
           <style>{metaStyles[0][1]}</style>
           {reveal ? (
-            <div className={`c-${bolt.namespace}-video-meta__wrapper`}>{this.title}{separator}{this.duration}</div>
+            <div className={`c-${bolt.namespace}-video-meta__wrapper`}>
+              {titleTrue ? (
+                <div className={`c-${bolt.namespace}-video-meta__item c-${bolt.namespace}-video-meta__item--title`}>{this.title}</div>
+              ) : null}
+              <div className={`c-${bolt.namespace}-video-meta__item c-${bolt.namespace}-video-meta__item--duration`}>{this.duration}</div>
+            </div>
           ) : null}
         </div>
       );
