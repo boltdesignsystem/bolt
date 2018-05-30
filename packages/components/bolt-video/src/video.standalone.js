@@ -96,6 +96,8 @@ class BoltVideo extends withPreact(withComponent()) {
     // This binding is necessary to make `this` work in the callback
     this.handleClose = this.handleClose.bind(this);
 
+    this.collapseOnClickAway = this.collapseOnClickAway.bind(this);
+
     // BoltVideo.globalErrors.forEach(this.props.onError);
 
     this.defaultProps = {
@@ -354,11 +356,23 @@ class BoltVideo extends withPreact(withComponent()) {
     }
 
     window.addEventListener('optimizedResize', this._onWindowResize);
-  }
 
+    // If our video can expand/collapse we add the collapse listener
+    if (this.props.isBackgroundVideo) {
+      document.addEventListener('click', this.collapseOnClickAway);
+    }
+  }
 
   _onWindowResize(event) {
     this._calculateIdealVideoSize();
+  }
+
+  // If we click outside bolt-video we collapse
+  collapseOnClickAway(event) {
+    const videoTag = document.querySelector('bolt-video');
+    if (!videoTag.contains(event.target)) {
+      this.close();
+    }
   }
 
   // shouldUpdate(props, state) {
