@@ -59,4 +59,4 @@ RUN { \
 
 WORKDIR /var/www/html
 
-COPY . .
+COPY --chown=www-data:www-data . .
