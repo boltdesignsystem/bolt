@@ -1,4 +1,4 @@
-# Bolt Frontend Guidelines and Coding Standards
+# Bolt Frontend Architecture Principles
 
 **Part 1. Component Reuse and Composition**
 1. Frequently used components should be the easiest ones to reuse and extend.
