@@ -49,3 +49,24 @@ $bolt-video-meta-transition: $bolt-transition;
   right: 0;
   bottom: 0;
 }
+
+// [Mai] Hide the duration (which covers the controls) video is started or when paused.
+#{$bolt-namespace}-video.is-paused {
+  .c-#{$bolt-namespace}-video-meta__item--duration {
+    opacity: 0;
+  }
+}
+
+// [Mai] Hide the title and duration (which covers the controls) when the video is playing.
+#{$bolt-namespace}-video.is-playing {
+  .c-#{$bolt-namespace}-video-meta__item {
+    opacity: 0;
+  }
+}
+
+// [Mai] Hide the title and duration when user opens the share dialog.
+.vjs-controls-disabled ~ #{$bolt-namespace}-video-meta {
+  .c-#{$bolt-namespace}-video-meta__item {
+    opacity: 0;
+  }
+}

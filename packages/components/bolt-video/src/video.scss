@@ -13,21 +13,6 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
   width: 100%;
   background-color: bolt-color(black); // placeholder color before poster loads up.
 
-  // [Mai] Hide the duration (which covers the controls) if the user is either
-  //   a) watching the video
-  //   b) potentially interacting with the video
-  &.is-paused {
-    .c-#{$bolt-namespace}-video-meta__item--duration {
-      opacity: 0;
-    }
-  }
-
-  &.is-playing {
-    .c-#{$bolt-namespace}-video-meta__item {
-      opacity: 0;
-    }
-  }
-
   &[is-background-video]{
     flex-grow: 1;
     z-index: 20;
