@@ -2,12 +2,44 @@
 title: Bolt Background
 type: object
 properties:
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
   opacity:
     type: string
+    description: Overlay opacity
+    default: medium
     enum:
-    - light
-    - medium
-    - heavy
+      - light
+      - medium
+      - heavy
+  overlay:
+    type: string
+    description: Should an overlay be used for this background.
+    default: enabled
+    enum:
+      - enabled
+      - disabled
+  shapeGroup:
+    type: string
+    description: Add a Bolt Background Shapes group.
+    enum:
+      - A
+      - B
+      - none
+  shapeAlignment:
+    type: string
+    description: Alignment of shape group.
+    default: right
+    enum:
+      - left
+      - right
+  fill:
+    type: string
+    description: Type of fill to use for the overlay.
+    enum:
+      - color
+      - gradient
   focalPoint:
     type: object
     description: Where the opacity background should originate.
@@ -26,3 +58,8 @@ properties:
         - center
         - top
         - bottom
+  contentItems:
+    type: array
+    description: An array of objects to place in the background.
+    items:
+      type: object
