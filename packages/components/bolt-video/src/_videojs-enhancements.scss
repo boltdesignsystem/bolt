@@ -6,6 +6,7 @@
 // 2. [Mai] Input font-size needs to be 16px to prevent zooming.
 // 3. [Mai] Hide close captions button.
 // 4. [Mai] Add white space for IE because padding got ignored.
+// 5. [Mai] Flexbox messes up IE layout, this prevents IE from loading display: flex.
 
 
 $bolt-video-js-button-text-color: bolt-color(white);
@@ -98,9 +99,13 @@ $bolt-video-js-button-shadow-level: 'level-30';
       @include bolt-padding(medium large medium medium);
       @include bolt-font-size(medium);
 
-      display: flex;
-      justify-content: center;
+      display: block;
       overflow: auto;
+
+      @supports(display: flex) { // [5]
+        display: flex;
+        justify-content: center;
+      }
 
       .vjs-social-title,
       .vjs-social-description {
@@ -124,6 +129,9 @@ $bolt-video-js-button-shadow-level: 'level-30';
 
       .vjs-social-share-link {
         @include bolt-margin(xsmall);
+
+        min-width: 2.5rem;
+        text-align: center;
       }
 
       .vjs-social-label-text {
