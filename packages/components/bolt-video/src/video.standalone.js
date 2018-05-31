@@ -10,6 +10,7 @@ import {
 } from '@bolt/core';
 
 import dasherize from 'dasherize';
+import Mousetrap from 'mousetrap';
 
 let index = 0;
 
@@ -351,6 +352,11 @@ class BoltVideo extends withPreact(withComponent()) {
       if (window[this.props.onInit]) {
         window[this.props.onInit](this);
       }
+    }
+
+    // If this is a background video we attach "close on esc" behavior
+    if (this.props.isBackgroundVideo) {
+      Mousetrap.bind('esc', this.handleClose, 'keyup');
     }
 
     window.addEventListener('optimizedResize', this._onWindowResize);
