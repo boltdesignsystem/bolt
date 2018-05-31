@@ -67,7 +67,7 @@ properties:
     type: string
     description: If provided, turns headline into a link to given url.
   icon:
-    description: Bolt icon. Excepts the same options as Bolt Icon Component `@bolt-components-icon`
+    description: Bolt icon. Accepts the same options as Bolt Icon Component `@bolt-components-icon`.  If url is set, this will default to a right chevron unless you pass "false" or an alternate icon.
     anyOf:
       -
         type: object
