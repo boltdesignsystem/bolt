@@ -5,7 +5,7 @@ export {
   withUpdate,
 } from 'skatejs';
 
-export { Component, h } from 'preact';
+export preact, { Component, h }  from 'preact';
 export { hyper } from 'hyperhtml/cjs';
 
 // Export Utilties + Helpers
@@ -21,7 +21,6 @@ export { findParentTag } from './utils/find-parent-tag';
 
 export { withPreact } from './renderers/renderer-preact';
 export { BoltComponent } from './renderers/renderer-hyperhtml';
-export { BoltSnabbdom } from './renderers/renderer-snabbdom';
 export { spacingSizes } from './data/spacing-sizes';
 
 // Export polyfill loader
