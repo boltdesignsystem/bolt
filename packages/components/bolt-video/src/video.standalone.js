@@ -369,7 +369,7 @@ class BoltVideo extends withPreact(withComponent()) {
 
   // If we click outside bolt-video we collapse
   collapseOnClickAway(event) {
-    const videoTag = document.querySelector('bolt-video');
+    const videoTag = this.querySelector('.c-bolt-video--background');
     if (!videoTag.contains(event.target)) {
       this.close();
     }
