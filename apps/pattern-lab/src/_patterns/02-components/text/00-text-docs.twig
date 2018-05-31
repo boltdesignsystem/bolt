@@ -17,6 +17,19 @@
     } only %}
 
     {% include "@bolt-components-text/text.twig" with {
+      text: "Here is some text with utility classes.",
+      tag: "div",
+      weight: "bold",
+      fontSize: "xlarge",
+      util: [
+        'width-1/1',
+        'another-class',
+        'one-more-class'
+      ]
+    } only %}
+  {% endverbatim %}
+
+  {# {% include "@bolt-components-text/text.twig" with {
       text: "Here is some text with an icon",
       tag: "div",
       weight: "bold",
@@ -34,8 +47,7 @@
         'another-class',
         'one-more-class'
       ]
-    } only %}
-  {% endverbatim %}
+    } only %} #}
 {% endset %}
 
 {% include "@utils/docs.twig" with {

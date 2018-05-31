@@ -33,13 +33,17 @@ class BoltText extends BoltComponent() {
     subheadline: props.boolean,
     eyebrow: props.boolean,
     fontFamily: props.string,
-    icon: props.string,
-    iconName: props.string,
-    iconBackground: props.string,
-    iconSize: props.string,
-    iconColor: props.string,
-    iconValign: props.string,
-    iconAlign: props.string,
+
+     /**
+     * @todo: remove icon props below once the icon and text components are split apart
+     */
+    // icon: props.string,
+    // iconName: props.string,
+    // iconBackground: props.string,
+    // iconSize: props.string,
+    // iconColor: props.string,
+    // iconValign: props.string,
+    // iconAlign: props.string,
   };
 
   constructor(self) {
@@ -73,48 +77,55 @@ class BoltText extends BoltComponent() {
     let url = this.props.url ? this.props.url : false;
 
     // Icon vars
-    let icon = this.props.icon ? this.props.icon : 'undefined';
-    let iconName = this.allowedValues(schema.properties.iconName, this.props.iconName);
-    let iconValign = this.allowedValues(schema.properties.iconValign, this.props.iconValign);
-    let iconAlign = this.allowedValues(schema.properties.iconAlign, this.props.iconAlign);
-    let iconBackground = this.allowedValues(schema.properties.iconBackground, this.props.iconBackground);
-    let iconSize = this.allowedValues(schema.properties.iconSize, this.props.iconSize);
-    let iconColor = this.allowedValues(schema.properties.iconColor, this.props.iconColor);
+
+    /**
+     * @todo: remove icon logic below once text component is decoupled from the icon component
+     */
+    // let icon = this.props.icon ? this.props.icon : 'undefined';
+    // let iconName = this.allowedValues(schema.properties.iconName, this.props.iconName);
+    // let iconValign = this.allowedValues(schema.properties.iconValign, this.props.iconValign);
+    // let iconAlign = this.allowedValues(schema.properties.iconAlign, this.props.iconAlign);
+    // let iconBackground = this.allowedValues(schema.properties.iconBackground, this.props.iconBackground);
+    // let iconSize = this.allowedValues(schema.properties.iconSize, this.props.iconSize);
+    // let iconColor = this.allowedValues(schema.properties.iconColor, this.props.iconColor);
 
     // The text item
     let textItem = this.hyper.wire(this) `${this.slot('default')}`;
 
     // Build the icon
-    if ( url && (this.props.headline || this.props.subheadline || this.props.eyebrow) ) {
-      // Headline, Subheadline, and Eyebrow always have chevron-right with url (if icon not false)
-      if (icon !== 'false') {
-        textItem = this.hyper.wire(this) `
-        ${textItem} <bolt-icon name="chevron-right"></bolt-icon>
-      `;
-      }
-    } else if (iconName && iconAlign) {
-      let theIcon = document.createElement('bolt-icon');
-      theIcon.setAttribute('name', iconName);
+    /**
+     * @todo: remove icon logic below once text component is decoupled from the icon component
+     */
+    // if ( url && (this.props.headline || this.props.subheadline || this.props.eyebrow) ) {
+    //   // Headline, Subheadline, and Eyebrow always have chevron-right with url (if icon not false)
+    //   if (icon !== 'false') {
+    //     textItem = this.hyper.wire(this) `
+    //     ${textItem} <bolt-icon name="chevron-right"></bolt-icon>
+    //   `;
+    //   }
+    // } else if (iconName && iconAlign) {
+    //   let theIcon = document.createElement('bolt-icon');
+    //   theIcon.setAttribute('name', iconName);
 
-      // Background
-      if (iconBackground) {
-        theIcon.setAttribute('background', iconBackground);
-      }
-      // Size
-      if (iconSize) {
-        theIcon.setAttribute('size', iconSize);
-      }
-      // Size
-      if (iconColor) {
-        theIcon.setAttribute('color', iconColor);
-      }
-      // Alignment
-      if (iconAlign === 'right' || iconAlign === 'right-hang') {
-        textItem = this.hyper.wire(this) `${textItem} ${theIcon}`;
-      } else {
-        textItem = this.hyper.wire(this) `${theIcon} ${textItem}`;
-      }
-    }
+    //   // Background
+    //   if (iconBackground) {
+    //     theIcon.setAttribute('background', iconBackground);
+    //   }
+    //   // Size
+    //   if (iconSize) {
+    //     theIcon.setAttribute('size', iconSize);
+    //   }
+    //   // Size
+    //   if (iconColor) {
+    //     theIcon.setAttribute('color', iconColor);
+    //   }
+    //   // Alignment
+    //   if (iconAlign === 'right' || iconAlign === 'right-hang') {
+    //     textItem = this.hyper.wire(this) `${textItem} ${theIcon}`;
+    //   } else {
+    //     textItem = this.hyper.wire(this) `${theIcon} ${textItem}`;
+    //   }
+    // }
 
     let longTitle = false; // Right now we are only checking this for headline (below)
 
@@ -124,9 +135,11 @@ class BoltText extends BoltComponent() {
       weight = this.subComponentValues(this.props.weight, 'bold');
       letterSpacing = this.subComponentValues(this.props.letterSpacing, 'narrow');
       fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
-      if (icon !== 'undefined' && icon !== 'false') {
-        iconName = true;
-      }
+
+      // @todo: remove below once icon + text component decoupled
+      // if (icon !== 'undefined' && icon !== 'false') {
+      //   iconName = true;
+      // }
       if (this.innerHTML.length >= 60 && fontSize === 'xxxlarge') { // Is there a better way to get inner dynamic length?
         longTitle = true;
       }
@@ -136,9 +149,11 @@ class BoltText extends BoltComponent() {
     if (this.props.subheadline) {
       fontSize = this.subComponentValues(this.props.fontSize, 'large');
       fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
-      if (icon !== 'undefined' && icon !== 'false') {
-        iconName = true;
-      }
+
+      // @todo: remove below once icon + text component decoupled
+      // if (icon !== 'undefined' && icon !== 'false') {
+      //   iconName = true;
+      // }
     }
 
     // Eyebrow defaults
@@ -147,14 +162,16 @@ class BoltText extends BoltComponent() {
       transform = this.subComponentValues(this.props.transform, 'uppercase');
       opacity = this.subComponentValues(this.props.opacity, 80);
       fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
-      if (icon !== 'undefined' && icon !== 'false') {
-        iconName = true;
-      }
+
+      // @todo: remove below once icon + text component decoupled
+      // if (icon !== 'undefined' && icon !== 'false') {
+      //   iconName = true;
+      // }
     }
 
     // Important classes
     const classes = css(
-      iconName ? 'has-icon' : '',
+      // iconName ? 'has-icon' : '', // @todo: remove when decoupled from icon component
       url ? 'has-url' : '',
       longTitle ? 'long-title' : '',
       'c-bolt-text',
@@ -170,8 +187,10 @@ class BoltText extends BoltComponent() {
       lineHeight ? `c-bolt-text--line-height-${lineHeight}` : '',
       quoted ? 'c-bolt-text--quoted' : '',
       opacity ? `c-bolt-text--opacity-${opacity}` : '',
-      iconValign ? `c-bolt-text--vertical-align-${iconValign}` : '',
-      iconAlign ? `c-bolt-text--icon-align-${iconAlign}` : '',
+
+      // @todo: remove once decoupled from icon component
+      // iconValign ? `c-bolt-text--vertical-align-${iconValign}` : '',
+      // iconAlign ? `c-bolt-text--icon-align-${iconAlign}` : '',
     );
 
     // Adds out utilities to the outer parent <bolt-text />

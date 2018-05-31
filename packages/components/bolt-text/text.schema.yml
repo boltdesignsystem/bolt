@@ -130,154 +130,155 @@ properties:
       - headline
       - body
       - code
-  icon:
-    oneOf:
-      - type: object
-      - type: boolean
-    title: Twig only
-    description: Set `False` to hide when using URL with eyebrow, headline, or subheadline. Other params to include here are `align` and `valign`.
-    ref: '@bolt-components-icon/icon.schema.yml'
-  iconName:
-    type: string
-    title: Custom element only
-    enum:
-      - add-open
-      - add-solid
-      - app-development
-      - arrow-left
-      - asset-data
-      - asset-infographic
-      - asset-interactive
-      - asset-link
-      - asset-media
-      - asset-podcast
-      - asset-presentation
-      - asset-text
-      - asset-video
-      - calendar
-      - careers
-      - case-management
-      - check-circle
-      - check-solid
-      - check
-      - chevron-down
-      - chevron-left
-      - chevron-right
-      - chevron-up
-      - close-open
-      - close-solid
-      - close
-      - cloud
-      - co-browse
-      - communications
-      - copy-to-clipboard
-      - customer-decision-hub
-      - customer-onboarding
-      - customer-service
-      - data-integrations
-      - download
-      - email
-      - energy
-      - entertainment
-      - exit-full screen
-      - external-link
-      - eye-off
-      - eye
-      - facebook-solid
-      - facebook
-      - field-service-gray
-      - field-service
-      - filter
-      - financial
-      - full-screen
-      - global
-      - government
-      - healthcare
-      - hospitality
-      - industries
-      - info-open
-      - info-solid
-      - insurance
-      - intelligent-virtual-assistant
-      - life-sciences
-      - linkedin-solid
-      - linkedin
-      - lock
-      - manufacturing
-      - map-pin-solid
-      - map-pin
-      - marketing-gray
-      - marketing
-      - menu
-      - minus-open
-      - minus-solid
-      - mobility
-      - more
-      - partners
-      - pencil
-      - platform
-      - podcast
-      - print
-      - product
-      - refresh
-      - retail
-      - robo-auto
-      - sales-automation
-      - search
-      - share
-      - training
-      - transportation
-      - twitter-solid
-      - twitter
-      - unlock
-      - upload
-      - user
-      - video
-      - vision
-      - warning
-      - watch
-      - workforce-intelligence
-      - youtube-solid
-  iconBackground:
-    type: string
-    title: Custom element only
-    description: Background shape. This applies *only* to 'xlarge' icons.
-    enum:
-      - circle
-      - square
-  iconSize:
-    type: string
-    title: Custom element only
-    enum:
-      - small
-      - medium
-      - large
-      - xlarge
-  iconColor:
-    type: string
-    title: Custom element only
-    description: Currently only support default (blue) and teal.
-    enum:
-     - teal
-     - blue
-  iconValign:
-    type: string
-    title: Custom element only
-    description: Icon vertical position (works with icon-align set to "hang").
-    default: center
-    enum:
-      - top
-      - center
-  iconAlign:
-    type: string
-    title: Custom element only
-    description: Icon horizontal positioning & "hang".
-    default: right
-    enum:
-      - left
-      - left-hang
-      - right
-      - right-hang
+  # @todo: uncomment / remove once icon decoupled
+  # icon:
+  #   oneOf:
+  #     - type: object
+  #     - type: boolean
+  #   title: Twig only
+  #   description: Set `False` to hide when using URL with eyebrow, headline, or subheadline. Other params to include here are `align` and `valign`.
+  #   ref: '@bolt-components-icon/icon.schema.yml'
+  # iconName:
+  #   type: string
+  #   title: Custom element only
+  #   enum:
+  #     - add-open
+  #     - add-solid
+  #     - app-development
+  #     - arrow-left
+  #     - asset-data
+  #     - asset-infographic
+  #     - asset-interactive
+  #     - asset-link
+  #     - asset-media
+  #     - asset-podcast
+  #     - asset-presentation
+  #     - asset-text
+  #     - asset-video
+  #     - calendar
+  #     - careers
+  #     - case-management
+  #     - check-circle
+  #     - check-solid
+  #     - check
+  #     - chevron-down
+  #     - chevron-left
+  #     - chevron-right
+  #     - chevron-up
+  #     - close-open
+  #     - close-solid
+  #     - close
+  #     - cloud
+  #     - co-browse
+  #     - communications
+  #     - copy-to-clipboard
+  #     - customer-decision-hub
+  #     - customer-onboarding
+  #     - customer-service
+  #     - data-integrations
+  #     - download
+  #     - email
+  #     - energy
+  #     - entertainment
+  #     - exit-full screen
+  #     - external-link
+  #     - eye-off
+  #     - eye
+  #     - facebook-solid
+  #     - facebook
+  #     - field-service-gray
+  #     - field-service
+  #     - filter
+  #     - financial
+  #     - full-screen
+  #     - global
+  #     - government
+  #     - healthcare
+  #     - hospitality
+  #     - industries
+  #     - info-open
+  #     - info-solid
+  #     - insurance
+  #     - intelligent-virtual-assistant
+  #     - life-sciences
+  #     - linkedin-solid
+  #     - linkedin
+  #     - lock
+  #     - manufacturing
+  #     - map-pin-solid
+  #     - map-pin
+  #     - marketing-gray
+  #     - marketing
+  #     - menu
+  #     - minus-open
+  #     - minus-solid
+  #     - mobility
+  #     - more
+  #     - partners
+  #     - pencil
+  #     - platform
+  #     - podcast
+  #     - print
+  #     - product
+  #     - refresh
+  #     - retail
+  #     - robo-auto
+  #     - sales-automation
+  #     - search
+  #     - share
+  #     - training
+  #     - transportation
+  #     - twitter-solid
+  #     - twitter
+  #     - unlock
+  #     - upload
+  #     - user
+  #     - video
+  #     - vision
+  #     - warning
+  #     - watch
+  #     - workforce-intelligence
+  #     - youtube-solid
+  # iconBackground:
+  #   type: string
+  #   title: Custom element only
+  #   description: Background shape. This applies *only* to 'xlarge' icons.
+  #   enum:
+  #     - circle
+  #     - square
+  # iconSize:
+  #   type: string
+  #   title: Custom element only
+  #   enum:
+  #     - small
+  #     - medium
+  #     - large
+  #     - xlarge
+  # iconColor:
+  #   type: string
+  #   title: Custom element only
+  #   description: Currently only support default (blue) and teal.
+  #   enum:
+  #    - teal
+  #    - blue
+  # iconValign:
+  #   type: string
+  #   title: Custom element only
+  #   description: Icon vertical position (works with icon-align set to "hang").
+  #   default: center
+  #   enum:
+  #     - top
+  #     - center
+  # iconAlign:
+  #   type: string
+  #   title: Custom element only
+  #   description: Icon horizontal positioning & "hang".
+  #   default: right
+  #   enum:
+  #     - left
+  #     - left-hang
+  #     - right
+  #     - right-hang
   util:
     type: array
     description: Each item in the array will build a utility class. No need to include `u-bolt-`. **For the web component** use comma separated string.

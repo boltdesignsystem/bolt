@@ -294,78 +294,80 @@ $bolt-text--plus-letter-spacing: 0.05rem;
   }
 
   // Icon Alignment
-  &.has-icon:not(.has-url) {
 
-    &.c-bolt-text--icon-align-left-hang,
-    &.c-bolt-text--icon-align-right-hang {
-      display: flex;
-      justify-content: space-between;
-    }
-    &.c-bolt-text--icon-align-left,
-    &.c-bolt-text--icon-align-left-hang {
-      bolt-icon {
-        margin-right: 0.25rem;
-      }
-    }
-    &.c-bolt-text--icon-align-right,
-    &.c-bolt-text--icon-align-right-hang  {
-      bolt-icon {
-        margin-left: 0.25rem;
-      }
-    }
-  }
-  &.has-icon.has-url { // If we have an <a> tag we need that to be the flex parent
+  // @todo: uncomment once icon component decoupled and we can target wrapper around the icon.
+  // &.has-icon:not(.has-url) {
 
-    &.c-bolt-text--icon-align-left-hang,
-    &.c-bolt-text--icon-align-right-hang {
-      > a {
-        display: flex;
-        justify-content: space-between;
-      }
-    }
-    &.c-bolt-text--icon-align-left,
-    &.c-bolt-text--icon-align-left-hang {
-      > a bolt-icon {
-        margin-right: 0.25rem;
-      }
-    }
-    &.c-bolt-text--icon-align-right,
-    &.c-bolt-text--icon-align-right-hang {
-      > a bolt-icon {
-        margin-left: 0.25rem;
-      }
-    }
-  }
+  //   &.c-bolt-text--icon-align-left-hang,
+  //   &.c-bolt-text--icon-align-right-hang {
+  //     display: flex;
+  //     justify-content: space-between;
+  //   }
+  //   &.c-bolt-text--icon-align-left,
+  //   &.c-bolt-text--icon-align-left-hang {
+  //     bolt-icon {
+  //       margin-right: 0.25rem;
+  //     }
+  //   }
+  //   &.c-bolt-text--icon-align-right,
+  //   &.c-bolt-text--icon-align-right-hang  {
+  //     bolt-icon {
+  //       margin-left: 0.25rem;
+  //     }
+  //   }
+  // }
+  // &.has-icon.has-url { // If we have an <a> tag we need that to be the flex parent
 
-  &--vertical-align-top.has-icon {
-    &.c-bolt-text--font-xxxlarge bolt-icon {
-      margin-top: 0.06em;
-    }
-    &.c-bolt-text--font-xxlarge bolt-icon {
-      margin-top: 0.13em;
-    }
-    &.c-bolt-text--font-xlarge bolt-icon {
-      margin-top: 0.15em;
-    }
-    &.c-bolt-text--font-large bolt-icon {
-      margin-top: 0.18em;
-    }
-    &.c-bolt-text--font-medium bolt-icon {
-      margin-top: 0.3em;
-    }
-    &.c-bolt-text--font-small bolt-icon {
-      margin-top: 0.25em;
-    }
-    &.c-bolt-text--font-xsmall bolt-icon {
-      margin-top: 0.15em;
-    }
-    bolt-icon {
-      vertical-align: top;
-    }
-  }
-  &--vertical-align-center.has-icon {
-    bolt-icon {
-      align-self: center;
-    }
-  }
+  //   &.c-bolt-text--icon-align-left-hang,
+  //   &.c-bolt-text--icon-align-right-hang {
+  //     > a {
+  //       display: flex;
+  //       justify-content: space-between;
+  //     }
+  //   }
+  //   &.c-bolt-text--icon-align-left,
+  //   &.c-bolt-text--icon-align-left-hang {
+  //     > a bolt-icon {
+  //       margin-right: 0.25rem;
+  //     }
+  //   }
+  //   &.c-bolt-text--icon-align-right,
+  //   &.c-bolt-text--icon-align-right-hang {
+  //     > a bolt-icon {
+  //       margin-left: 0.25rem;
+  //     }
+  //   }
+  // }
+
+  // &--vertical-align-top.has-icon {
+  //   &.c-bolt-text--font-xxxlarge bolt-icon {
+  //     margin-top: 0.06em;
+  //   }
+  //   &.c-bolt-text--font-xxlarge bolt-icon {
+  //     margin-top: 0.13em;
+  //   }
+  //   &.c-bolt-text--font-xlarge bolt-icon {
+  //     margin-top: 0.15em;
+  //   }
+  //   &.c-bolt-text--font-large bolt-icon {
+  //     margin-top: 0.18em;
+  //   }
+  //   &.c-bolt-text--font-medium bolt-icon {
+  //     margin-top: 0.3em;
+  //   }
+  //   &.c-bolt-text--font-small bolt-icon {
+  //     margin-top: 0.25em;
+  //   }
+  //   &.c-bolt-text--font-xsmall bolt-icon {
+  //     margin-top: 0.15em;
+  //   }
+  //   bolt-icon {
+  //     vertical-align: top;
+  //   }
+  // }
+  // &--vertical-align-center.has-icon {
+  //   bolt-icon {
+  //     align-self: center;
+  //   }
+  // }
 }
