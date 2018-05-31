@@ -367,10 +367,10 @@ class BoltVideo extends withPreact(withComponent()) {
     this._calculateIdealVideoSize();
   }
 
-  // If we click outside bolt-video we collapse
+  // If we click outside the video wrapper div collapse the video
   collapseOnClickAway(event) {
-    const videoTag = this.querySelector('.c-bolt-video--background');
-    if (!videoTag.contains(event.target)) {
+    const videoWrapper = this.querySelector('.c-bolt-video--background');
+    if (!videoWrapper.contains(event.target)) {
       this.close();
     }
   }
