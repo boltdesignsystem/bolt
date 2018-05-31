@@ -1,28 +1,43 @@
 /* ------------------------------------ *\
-  ELEMENTS - CODE
+    ELEMENTS - CODE
 \* ------------------------------------ */
 
-pre {
-  @include bolt-padding(small);
-  @include bolt-horizontal-scroll;
+$bolt-code-border-radius: $bolt-border-radius;
+$bolt-code-text-color: var(--bolt-theme-heading, inherit);
+$bolt-code-background-color: rgba(bolt-color(indigo, light), 0.08);
+
+
+pre,
+code {
+  color: inherit;
+  color: $bolt-code-text-color;
   text-align: left;
-  white-space: pre-wrap;
+  border-radius: $bolt-code-border-radius;
+}
+
+pre {
+  @include bolt-padding(small, squished);
+  @include bolt-horizontal-scroll;
+
+  display: block;
+  background-color: $bolt-code-background-color;
 }
 
 code {
+  @include bolt-margin(0);
+  @include bolt-padding(2px 0.25rem 2px 0.3rem); // [Mai] 0.25rem on the right offsets the 0.05rem letter-spacing.
   @include bolt-font-family(code);
-  // @todo review the exclusion of the next 2 lines with Salem ~ Evan
-  //@include bolt-font-weight(semibold); // This is an edge case to use semibold.
-  //@include bolt-font-size(xsmall);
+  @include bolt-font-weight(regular);
+  @include bolt-font-size(small);
 
-  background-color: transparentize(bolt-color(gray, light), 0.2);
-  padding: 0 3px;
-  border-radius: 4px;
-  display: inline-block;
+  display: inline;
+  background-color: $bolt-code-background-color;
   letter-spacing: 0.05rem;
-  white-space: inherit;
-  pre & {
-    background-color: transparent;
-    width: 100%;
-  }
+}
+
+pre code {
+  @include bolt-padding(0);
+
+  display: block;
+  background-color: transparent;
 }
