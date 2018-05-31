@@ -28,8 +28,9 @@ export class BoltDropdown extends BoltComponent() {
     title: props.string,
   }
 
-  constructor() {
-    super();
+  constructor(self) {
+    self = super(self);
+
     this.useShadow = hasNativeShadowDomSupport;
 
     this.state = {
@@ -38,6 +39,7 @@ export class BoltDropdown extends BoltComponent() {
     };
 
     this.uuid = '12345';
+    return self;
   }
 
   connecting() {

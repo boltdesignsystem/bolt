@@ -11,22 +11,15 @@ properties:
       - light
       - dark
       - xdark
-      - medium
       - 'false'
   gradient:
-    type: string
-    description: This sets a gradient on the background.
-    default: true
-    enum:
-      - 'true'
-      - 'false'
+    # type: string
+    description: DEPRECATED. In the latest iteration of the Navbar component, only solid color themes are supported ^
+
   vspacing:
-    type: string
-    description: This controls the top and bottom spacing of the navbar.
-    default: xsmall
-    enum:
-      - xsmall
-      - small
+    # type: string
+    description: DEPRECATED. In the latest iteration of the Navbar component, sizing (vertical spacing) is now handled automatically.
+
   title:
     type: object
     description: Navbar title. Icon is optional. Tag can be set to h1 to h6 depending on the page.
@@ -47,14 +40,20 @@ properties:
         properties:
           name:
             type: string
-            description: Must use icon name
+            description: Name of the (optional) icon to be used.
   links:
     type: array
     items:
       type: object
-      description: Navbar links. It's recommended to have no more than 4 links.
+      description: Navbar links (passed along to the nested Nav Priority that ships with Navbar by default.
       properties:
         text:
           type: string
         url:
           type: string
+  center:
+    type: boolean
+    description: Determines if you want the Navbar content to be center aligned or not
+    enum:
+      - true
+      - false

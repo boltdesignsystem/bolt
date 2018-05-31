@@ -1,44 +1,49 @@
-import SmoothScroll from 'smooth-scroll';
+import SmoothScroll from 'smooth-scroll/dist/smooth-scroll.js';
 
-const scroll = new SmoothScroll();
+export const smoothScroll = new SmoothScroll();
 
-const defaultScrollOffset = 45;
-const defaultScrollSpeed = 750;
+export const defaultScrollOptions = {
+  ignore: '[data-scroll-ignore]', // Selector for links to ignore (must be a valid CSS selector)
+  header: '.js-bolt-smooth-scroll-offset', // Selector for fixed headers (must be a valid CSS selector)
+
+  // Speed & Easing
+  speed: 750, // Integer. How fast to complete the scroll in milliseconds
+  offset: 45, // Integer or Function returning an integer. How far to offset the scrolling anchor location in pixels
+  easing: 'easeInOutCubic', // Easing pattern to use
+
+  // Callback API
+  updateURL: true, // Update the URL on scroll
+  popstate: true, // Animate scrolling with the forward/backward browser buttons (requires updateURL to be true)
+
+  // Custom Events
+  emitEvents: true, // Emit custom events
+};
+
+
+
+export function getScrollTarget(elem){
+  let scrollElemHref = elem.getAttribute('href');
+  scrollElemHref = scrollElemHref.replace('#', '');
+  return document.getElementById(scrollElemHref);
+}
+
 
 const customScrollElems = document.querySelectorAll('a[href^="#"]');
 for (var i = 0, len = customScrollElems.length; i < len; i++) {
   const scrollElem = customScrollElems[i];
-  const scrollSpeed = defaultScrollSpeed;
+  // In the future, we could add support for links to modify options like scrollOffset, scrollOffset, etc.  However,
+  // we should provide options carefully-- only enable these after considering whether the use case that requires them
+  // is justified.
+  //
+  const scrollOptions = Object.assign({}, defaultScrollOptions, {
+    offset: scrollElem.dataset.scrollOffset ? scrollElem.dataset.scrollOffset : defaultScrollOptions.offset,
+  });
 
-    // In the future, we could add support for links to modify options like scrollOffset, scrollOffset, etc.  However,
-    // we should provide options carefully-- only enable these after considering whether the use case that requires them
-    // is justified.
-    //
-  const scrollOffset = scrollElem.dataset.scrollOffset ? scrollElem.dataset.scrollOffset : defaultScrollOffset;
-    // const scrollSpeed = scrollElem.dataset.scrollSpeed ? scrollElem.dataset.scrollSpeed : defaultScrollSpeed;
-
-  const scrollOptions = {
-    ignore: '[data-scroll-ignore]', // Selector for links to ignore (must be a valid CSS selector)
-    header: '.js-bolt-smooth-scroll-offset', // Selector for fixed headers (must be a valid CSS selector)
-
-        // Speed & Easing
-    speed: scrollSpeed, // Integer. How fast to complete the scroll in milliseconds
-    offset: scrollOffset, // Integer or Function returning an integer. How far to offset the scrolling anchor location in pixels
-    easing: 'easeInOutCubic', // Easing pattern to use
-
-    // Callback API
-    before () {}, // Callback to run before scroll
-    after () {}, // Callback to run after scroll
-  };
-
-  let scrollElemHref = scrollElem.getAttribute('href');
-  scrollElemHref = scrollElemHref.replace('#', '');
-
-  const scrollTarget = document.getElementById(scrollElemHref);
+  const scrollTarget = getScrollTarget(scrollElem);
 
   if (scrollTarget) {
     scrollElem.addEventListener('click', function(event){
-      scroll.animateScroll(scrollTarget, scrollElem, scrollOptions);
+      smoothScroll.animateScroll(scrollTarget, scrollElem, scrollOptions);
     });
   }
 };

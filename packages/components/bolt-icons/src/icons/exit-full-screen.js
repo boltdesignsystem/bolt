@@ -3,7 +3,7 @@ import { h } from '@bolt/core';
 export const ExitFullScreen = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (
     <svg width={size} height={size} {...otherProps} viewBox="0 0 24 24">
-      <g fill={bgColor} fill-rule="evenodd">
+      <g fill="none" fill-rule="evenodd">
         <path />
         <path
           d="M9.7.291a1.003 1.003 0 0 0-1.414 0L2.992 5.585V1.997c0-.55-.45-1-1-1s-1 .45-1 1v6.066a.926.926 0 0 0 .07.3V8.376s0 .006.005.006c.037.094.094.175.156.256l.006.006.006.005.006.006v.006c.025.026.044.051.07.07h.005l.006.005s.006 0 .006.006h.006l.006.007a.875.875 0 0 0 .25.155H1.608c.1.044.213.07.325.075h6.042c.55 0 1-.45 1-1 0-.549-.45-1-1-1H4.387l5.294-5.293a.968.968 0 0 0 .012-1.4L9.7.29z"

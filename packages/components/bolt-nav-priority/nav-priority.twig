@@ -1,0 +1,20 @@
+<bolt-nav-priority more-text="{{ moreText | default("More") }}">
+  <nav class="c-bolt-priority-nav">
+    <bolt-nav-indicator>
+      <ul class="c-bolt-priority-nav__list c-bolt-priority-nav__primary">
+        {% for item in links %}
+          <li class="c-bolt-priority-nav__item">
+            {% include "@bolt-components-navlink/navlink.twig" with item only %}
+          </li>
+        {% endfor %}
+      </ul>
+    </bolt-nav-indicator>
+  </nav>
+</bolt-nav-priority>
+
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-nav-priority'].schema, _self) | raw }}
+{% endif %}
+
+

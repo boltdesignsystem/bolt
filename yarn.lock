@@ -708,10 +708,17 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@bolt/components-page-footer@file:packages/components/bolt-page-footer":
-  version "1.1.2"
+"@bolt/components-nav@^1.5.0-beta.0":
+  version "1.5.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@bolt/components-nav/-/components-nav-1.5.0-beta.0.tgz#ff283bf0fa7769378940162df4c7f9d9714d29cc"
   dependencies:
-    "@bolt/core" "^1.3.0"
+    "@bolt/core" "^1.4.0"
+    gumshoejs "^3.5.0"
+
+"@bolt/components-page-footer@file:packages/components/bolt-page-footer":
+  version "1.4.0"
+  dependencies:
+    "@bolt/core" "^1.4.0"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -1169,25 +1176,17 @@
     "@webassemblyjs/wast-parser" "1.4.3"
     long "^3.2.0"
 
-"@webcomponents/custom-elements@^1.0.8":
+"@webcomponents/custom-elements@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@webcomponents/custom-elements/-/custom-elements-1.1.1.tgz#dd71c2faa82eb903f5e34271dc535cf80d1abcab"
-
-"@webcomponents/shadycss@^1.1.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@webcomponents/shadycss/-/shadycss-1.2.1.tgz#6e4a88534657807c8398b4bc196d0ca492182d54"
 
 "@webcomponents/shadydom@^1.0.14":
   version "1.0.14"
   resolved "https://registry.yarnpkg.com/@webcomponents/shadydom/-/shadydom-1.0.14.tgz#fcfeacf7470ec11483e1f08c590ce1491527db1a"
 
-"@webcomponents/template@^1.2.2":
+"@webcomponents/template@^1.2.4":
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/@webcomponents/template/-/template-1.2.4.tgz#5bd0d281f308bb98dad712fbbe67893851f0c8ad"
-
-"@webcomponents/webcomponents-platform@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@webcomponents/webcomponents-platform/-/webcomponents-platform-1.0.0.tgz#8879146380ddbecb8617e322497d59e77c3ff468"
 
 "@webcomponents/webcomponentsjs@^1.0.7", "@webcomponents/webcomponentsjs@^1.1.0":
   version "1.2.0"
@@ -3438,7 +3437,7 @@ copy-descriptor@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
 
-core-js@^2.4.0, core-js@^2.4.1, core-js@^2.5.0, core-js@^2.5.1, core-js@^2.5.3:
+core-js@^2.4.0, core-js@^2.4.1, core-js@^2.5.0, core-js@^2.5.3, core-js@^2.5.6:
   version "2.5.6"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.6.tgz#0fe6d45bf3cac3ac364a9d72de7576f4eb221b9d"
 
@@ -4108,7 +4107,7 @@ doctrine@^2.0.0, doctrine@^2.0.2:
   dependencies:
     esutils "^2.0.2"
 
-document-register-element@^1.7.2:
+document-register-element@^1.8.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/document-register-element/-/document-register-element-1.8.1.tgz#db841ece6cba28e6e538ac8e815413b59e86047e"
   dependencies:
@@ -4468,7 +4467,7 @@ es6-map@^0.1.3:
     es6-symbol "~3.1.1"
     event-emitter "~0.3.5"
 
-es6-promise@^4.0.3, es6-promise@^4.0.5, es6-promise@^4.1.1:
+es6-promise@^4.0.3, es6-promise@^4.0.5, es6-promise@^4.2.4:
   version "4.2.4"
   resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-4.2.4.tgz#dc4221c2b16518760bd8c39a52d8f356fc00ed29"
 
@@ -6121,7 +6120,7 @@ husky@^0.14.3:
     normalize-path "^1.0.0"
     strip-indent "^2.0.0"
 
-hyperhtml@^2.5.10:
+hyperhtml@^2.10.1:
   version "2.10.1"
   resolved "https://registry.yarnpkg.com/hyperhtml/-/hyperhtml-2.10.1.tgz#a3ee2d0b73496042f17e87be086e5e9aa620ab97"
   dependencies:
@@ -6708,6 +6707,13 @@ is-valid-glob@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-valid-glob/-/is-valid-glob-1.0.0.tgz#29bf3eff701be2d4d315dbacc39bc39fe8f601aa"
 
+is-visible@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/is-visible/-/is-visible-2.2.0.tgz#722b3acff3694a30074927e1156f58ae87db0e9c"
+  dependencies:
+    iselement "^1.1.3"
+    style-properties "^1.3.1"
+
 is-whitespace-character@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/is-whitespace-character/-/is-whitespace-character-1.0.2.tgz#ede53b4c6f6fb3874533751ec9280d01928d03ed"
@@ -6747,6 +6753,10 @@ isarray@2.0.1:
 isbot@^2.0.0:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/isbot/-/isbot-2.1.2.tgz#b019aa71c339ab74c68696e27e2e94e3e71d1f61"
+
+iselement@^1.1.3:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/iselement/-/iselement-1.1.4.tgz#7e55b52a8ebca50a7e2e80e5b8d2840f32353146"
 
 isexe@^2.0.0:
   version "2.0.0"
@@ -9794,7 +9804,7 @@ postcss@^5.0.0, postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.
     source-map "^0.5.6"
     supports-color "^3.2.3"
 
-preact@^8.2.7:
+preact@^8.2.9:
   version "8.2.9"
   resolved "https://registry.yarnpkg.com/preact/-/preact-8.2.9.tgz#813ba9dd45e5d97c5ea0d6c86d375b3be711cc40"
 
@@ -11059,9 +11069,9 @@ sinon@^2.3.5:
     text-encoding "0.6.4"
     type-detect "^4.0.0"
 
-skatejs@5.1.1:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/skatejs/-/skatejs-5.1.1.tgz#e253b676a26f0aac9565df7043f9878f9fa0518d"
+skatejs@^5.1.3:
+  version "5.1.3"
+  resolved "https://registry.yarnpkg.com/skatejs/-/skatejs-5.1.3.tgz#cab95c0abd73cb1e5972e158d8ea4120321f1909"
 
 slash@^1.0.0:
   version "1.0.0"
@@ -11077,9 +11087,9 @@ slice-ansi@1.0.0:
   dependencies:
     is-fullwidth-code-point "^2.0.0"
 
-smooth-scroll@^12.1.5:
-  version "12.1.5"
-  resolved "https://registry.yarnpkg.com/smooth-scroll/-/smooth-scroll-12.1.5.tgz#b6d8deca371a9edd5ea3ad291ef0fb7e741ed41e"
+smooth-scroll@^14.2.0:
+  version "14.2.0"
+  resolved "https://registry.yarnpkg.com/smooth-scroll/-/smooth-scroll-14.2.0.tgz#87a224fc32c8956995e5bb014a5e1a07b8361e21"
 
 snapdragon-node@^2.0.1:
   version "2.1.1"
@@ -11656,6 +11666,10 @@ style-loader@^0.21.0:
   dependencies:
     loader-utils "^1.1.0"
     schema-utils "^0.4.5"
+
+style-properties@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/style-properties/-/style-properties-1.3.1.tgz#7f8617421f2959157f08d09eecba8688a15854c5"
 
 style-search@^0.1.0:
   version "0.1.0"
