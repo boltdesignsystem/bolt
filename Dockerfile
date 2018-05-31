@@ -12,6 +12,16 @@ RUN set -ex; \
 	if command -v a2enmod; then \
 		a2enmod rewrite; \
 	fi; \
+
+	if ! command -v gpg > /dev/null; then \
+		apt-get update; \
+		apt-get install -y --no-install-recommends \
+			gnupg2 \
+			dirmngr \
+		; \
+		rm -rf /var/lib/apt/lists/*; \
+  fi ; \
+
 	\
 	savedAptMark="$(apt-mark showmanual)"; \
 	\
@@ -20,12 +30,19 @@ RUN set -ex; \
 		libjpeg-dev \
 		libpng-dev \
 		libpq-dev \
+    libsqlite3-dev \
+    libsqlite3-0 \
+		git \
+		wget \
 	; \
+
+  curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer ; \
 	\
 	docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr; \
 	docker-php-ext-install -j "$(nproc)" \
 		gd \
 		opcache \
+    pdo_sqlite \
 #		pdo_mysql \
 #		pdo_pgsql \
 		zip \
@@ -56,7 +73,19 @@ RUN { \
 		echo 'opcache.enable_cli=1'; \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
+RUN apt-get update && apt-get install sqlite --yes
+RUN . ~/.profile
 
+# node & yarn
+RUN apt-get update
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN apt-get update && apt-get install -y nodejs build-essential
+RUN npm i -g yarn
+
+USER www-data
+RUN yarn --version
 WORKDIR /var/www/html
 
 COPY --chown=www-data:www-data . .
+
+RUN yarn install && yarn run composer:drupal-lab && yarn run build:drupal-lab
