@@ -43,7 +43,12 @@
   iconPosition ? baseClass ~ "--icon-position-" ~ iconPosition : ""
 ] %}
 
-{% if url and icon is not defined %}
+{#
+  If this is a link, add a right chevron icon by default.  There are only two ways to opt out:
+  - Set 'icon: false' to explicitly have no icon
+  - Set a different icon to use instead of the default
+#}
+{% if url and icon is not sameas(false) and icon.name is empty %}
   {% set icon = icon | default({}) | merge({
     name: "chevron-right"
   }) %}
