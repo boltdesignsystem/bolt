@@ -4,7 +4,8 @@
    Navlink
 \* ------------------------------------ */
 
-$bolt-navlink-bg-color: rgba(bolt-color(gray), 0.2);
+$bolt-navlink-bg-color: rgba(bolt-color(gray, xlight), 0.1);
+$bolt-navlink-bg-color-active: rgba(bolt-color(gray, xlight), 0.2);
 $bolt-navlink-bg-border-radius: $bolt-border-radius;
 $bolt-navlink-bg-transition-timing: $bolt-transition-timing*4;
 $bolt-navlink-text-transition: $bolt-transition;
@@ -13,27 +14,20 @@ $bolt-navlink-text-transition: $bolt-transition;
 // Navlink Component
 bolt-navlink {
   display: block;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
 }
 
 .c-bolt-navlink {
-  @include bolt-padding-top(xsmall);
-  @include bolt-padding-bottom(xsmall);
-  @include bolt-padding-left(medium);
-  @include bolt-padding-right(medium);
+  @include bolt-padding(small, squished);
+  @include bolt-font-size(small);
   @include bolt-font-weight(semibold);
-  @include bolt-font-size(medium);
 
-  @include respond-to(medium) {
-    @include bolt-padding(small, squished);
-    @include bolt-font-size(small);
-  }
-
-  display: block;
   position: relative;
-  opacity: 0.8;
+  opacity: 0.6;
   transition: opacity $bolt-navlink-text-transition;
-
-  display: block;
   position: relative;
   transition: all .1s ease;
   color: currentColor;
@@ -55,6 +49,12 @@ bolt-navlink {
     border-radius: $bolt-navlink-bg-border-radius;
     background-color: $bolt-navlink-bg-color;
     transform: scale3d(0, 0, 0);
+    transition: all 0.1s ease;
+  }
+
+  &:active:before {
+    background-color: $bolt-navlink-bg-color-active;
+    transform: scale3d(1, 1, 1);
   }
 
   &:hover,
@@ -72,6 +72,16 @@ bolt-navlink {
     &:before {
       animation: none;
     }
+  }
+
+  &.is-dropdown-link.is-active:after {
+    width: 2px;
+    position: absolute;
+    top: 6px;
+    left: 0;
+    bottom: 6px;
+    background-color: currentColor;
+    content: '';
   }
 }
 
