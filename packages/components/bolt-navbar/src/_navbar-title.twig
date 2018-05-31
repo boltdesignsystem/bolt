@@ -4,12 +4,14 @@
 {% endif %}
 
 {% set navbar_title %}
-  <div class="c-bolt-navbar__title-icon">
-    {% include "@bolt/icon.twig" with {
-      "name": icon.name,
-      "size": "medium"
-    } only %}
-  </div>
+  {% if icon %}
+    <div class="c-bolt-navbar__title-icon">
+      {% include "@bolt/icon.twig" with {
+        "name": icon.name,
+        "size": "large"
+      } only %}
+    </div>
+  {% endif %}
   <{{ tag }} class="c-bolt-navbar__title-text">
     {{ text }}
   </{{ tag }}>

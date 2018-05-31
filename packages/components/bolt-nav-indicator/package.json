@@ -1,17 +1,15 @@
 {
-  "name": "@bolt/components-smooth-scroll",
-  "description": "Smooth Scroll Component in Bolt",
+  "name": "@bolt/components-nav-indicator",
+  "description": "Nav Indicator Sub-Component in Bolt",
   "keywords": [
     "bolt design system",
     "bolt",
-    "ui toolkit",
+    "css framework",
     "design system",
-    "component"
+    "components"
   ],
-  "version": "1.4.1",
-  "sourceFilesFrom": "0.9.5",
-  "maintainers": [
-    {
+  "version": "1.5.0-beta.0",
+  "maintainers": [{
       "name": "Salem Ghoweri",
       "email": "me@salemghoweri.com",
       "web": "https://github.com/sghoweri"
@@ -20,22 +18,19 @@
       "name": "Mike Mai",
       "email": "boss@mikemai.net",
       "web": "http://mikemai.net/"
-    },
-    {
-      "name": "Remy Denton",
-      "email": "https://github.com/remydenton"
     }
   ],
   "homepage": "https://bolt-design-system.com",
   "license": "MIT",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-smooth-scroll",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar",
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "main": "src/smooth-scroll.js",
+  "style": "nav-indicator.scss",
+  "main": "index.js",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
     "@bolt/core": "^1.4.0",
-    "smooth-scroll": "^14.2.0"
+    "is-visible": "^2.2.0"
   }
 }
