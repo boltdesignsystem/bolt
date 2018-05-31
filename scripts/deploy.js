@@ -84,14 +84,14 @@ async function init() {
     console.log('Starting Docker Drupal Lab deploy...');
     const deployOutputDocker = spawnSync('now', [
       'deploy',
-      '--docker',
-      '--name=bolt-drupal-lab',
+      '--local-config=now.docker.json',
       ...baseNowArgs,
     ], {encoding: 'utf8'});
-    if (deployOutputDocker.status !== 0) {
-      console.error('Error deploying:');
-    }
     console.log(deployOutputDocker.stdout, deployOutputDocker.stderr);
+    if (deployOutputDocker.status !== 0) {
+      console.error('Error deploying Drupal Lab');
+      process.exit(1);
+    }
     console.log('Done deploying Docker Drupal Lab');
 
     const deployedUrl = deployOutput.stdout.trim();
