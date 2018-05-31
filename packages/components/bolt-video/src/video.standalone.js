@@ -356,15 +356,11 @@ class BoltVideo extends withPreact(withComponent()) {
       }
     }
 
-    // If this is a background video we attach "close on esc" behavior
-    if (this.props.isBackgroundVideo) {
-      Mousetrap.bind('esc', this.handleClose, 'keyup');
-    }
-
     window.addEventListener('optimizedResize', this._onWindowResize);
 
-    // If our video can expand/collapse we add the collapse listener
+    // If our video can expand/collapse we add the collapse listener and "close on escape" behavior
     if (this.props.isBackgroundVideo) {
+      Mousetrap.bind('esc', this.handleClose, 'keyup');
       document.addEventListener('click', this.collapseOnClickAway);
     }
   }
