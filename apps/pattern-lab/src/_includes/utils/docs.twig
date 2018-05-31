@@ -9,20 +9,6 @@
       text: schema.title ? schema.title : "Component Title"
     } %}
 
-    {% if schema.description %}
-      {% include "@bolt/subheadline.twig" with {
-        weight: "regular",
-        size: "xxlarge",
-        tag: "p",
-        text: schema.description,
-        attributes: {
-          class: [
-            "u-bolt-margin-bottom-large"
-          ]
-        }
-      } %}
-    {% endif %}
-
     {% if readmeFile %}
       <div class="c-bolt-docs__readme">
         {% include "@bolt/headline.twig" with {

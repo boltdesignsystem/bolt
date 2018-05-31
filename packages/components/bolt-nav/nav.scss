@@ -23,11 +23,9 @@ bolt-nav {
   flex-direction: column; // [Mai] This is interrelated with the dropdown component.
   position: relative;
   list-style: none;
-  flex-flow: column nowrap;
 
-  @include respond-to(medium) {
+  @include respond-to(small) {
     flex-direction: row; // [Mai] This is interrelated with the dropdown component.
-    flex-flow: row nowrap;
   }
 }
 
@@ -50,7 +48,7 @@ bolt-nav {
   @include respond-to(small) {
     opacity: 1; // [Mai] This is interrelated with the dropdown component.
     bottom: 0; // [Mai] This is interrelated with the dropdown component.
-    left: auto; // [Mai] This is interrelated with the dropdown component.
+    left: 0; // [Mai] This is interrelated with the dropdown component.
   }
 
   .c-bolt-nav--xsmall & {

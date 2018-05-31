@@ -14,7 +14,11 @@
       "links":
       [
         {
-          "text": "Section 1ne",
+          "text": "Visualization & Simulation",
+          "url": "#visualization-and-simulation"
+        },
+        {
+          "text": "Section 1",
           "url": "#section-1"
         },
         {
@@ -22,7 +26,7 @@
           "url": "#section-2"
         },
         {
-          "text": "Section Thr33",
+          "text": "Section 3",
           "url": "#section-3"
         },
         {
@@ -39,7 +43,12 @@
   theme: "dark",
   fullBleed: true,
   tag: "figure",
-  contentTag: "figcaption"
+  contentTag: "figcaption",
+  attributes: {
+    id: [
+      "visualization-and-simulation"
+    ]
+  }
 } %}
   {% block band_background %}
     {% include "@bolt-components-background/background.twig" with {
@@ -218,23 +227,11 @@
       {
         "tag": "h2",
         "text": "2nd Sticky Nav Bar",
-        "icon":
-        {
-          "name": "cloud"
-        }
       },
       links: [
         {
           "text": "Link",
           "url": "#section-5"
-        },
-        {
-          "text": "Link",
-          "url": "#section-5"
-        },
-        {
-          "text": "Link",
-          "url": "#section-6"
         },
         {
           "text": "Link",
@@ -273,6 +270,31 @@
 
   {% endblock band_content %}
 {% endembed %}
+
+
+{% embed "@bolt-components-sticky/sticky.twig" %}
+  {% block sticky_content %}
+    {% include "@bolt-components-navbar/navbar.twig" with {
+      theme: "light",
+      center: true,
+      links: [
+        {
+          "text": "Link X",
+          "url": "#section-x"
+        },
+        {
+          "text": "Link Y",
+          "url": "#section-y"
+        },
+         {
+          "text": "Link Z",
+          "url": "#section-z"
+        }
+      ]
+    } only %}
+  {% endblock %}
+{% endembed %}
+
 
 {% embed "@bolt-components-band/band.twig" with {
   size: "large",

@@ -1,24 +1,6 @@
-{# chip-list = inline-list w/ included chips #}
-
-{# Sample Usage
-  {% include "@bolt/chip-list.twig" with {
-    contentItems: [
-      {
-        text: "Chip 1",
-        url: "http://google.com"
-      },
-      {
-        text: "Chip 2",
-        url: "http://google.com"
-      },
-      {
-        text: "Chip 3",
-        url: "http://google.com"
-      }
-    ]
-  } only %}
-#}
-
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-chip-list'].schema, _self) | raw }}
+{% endif %}
 
 {% if contentItems %}
   {% set chipParams = {} %}
@@ -42,8 +24,4 @@
 
   {% include "@bolt/inline-list.twig" with chipParams only %}
 
-{% endif %}
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-chip-list/chip-list.schema.yml', _self) | raw }}
 {% endif %}

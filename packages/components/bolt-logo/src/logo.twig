@@ -1,9 +1,7 @@
-<bolt-logo {% if invert %} class="c-bolt-logo--invert" {% endif %}>
-  {{ include('@bolt-components-image/image.twig', {
-    logo: logo
-  }, with_context = true) }}
-</bolt-logo>
-
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-logo/logo.schema.yml', _self) | raw }}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-logo'].schema, _self) | raw }}
 {% endif %}
+
+<bolt-logo {% if invert %} class="c-bolt-logo--invert" {% endif %}>
+  {{ include('@bolt-components-image/image.twig', with_context = true) }}
+</bolt-logo>

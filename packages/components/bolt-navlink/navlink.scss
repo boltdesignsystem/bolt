@@ -4,7 +4,8 @@
    Navlink
 \* ------------------------------------ */
 
-$bolt-navlink-bg-color: rgba(bolt-color(gray), 0.2);
+$bolt-navlink-bg-color: rgba(bolt-color(gray, xlight), 0.1);
+$bolt-navlink-bg-color-active: rgba(bolt-color(gray, xlight), 0.2);
 $bolt-navlink-bg-border-radius: $bolt-border-radius;
 $bolt-navlink-bg-transition-timing: $bolt-transition-timing*4;
 $bolt-navlink-text-transition: $bolt-transition;
@@ -25,7 +26,7 @@ bolt-navlink {
   @include bolt-font-weight(semibold);
 
   position: relative;
-  opacity: 0.8;
+  opacity: 0.6;
   transition: opacity $bolt-navlink-text-transition;
   position: relative;
   transition: all .1s ease;
@@ -48,6 +49,12 @@ bolt-navlink {
     border-radius: $bolt-navlink-bg-border-radius;
     background-color: $bolt-navlink-bg-color;
     transform: scale3d(0, 0, 0);
+    transition: all 0.1s ease;
+  }
+
+  &:active:before {
+    background-color: $bolt-navlink-bg-color-active;
+    transform: scale3d(1, 1, 1);
   }
 
   &:hover,
@@ -65,6 +72,16 @@ bolt-navlink {
     &:before {
       animation: none;
     }
+  }
+
+  &.is-dropdown-link.is-active:after {
+    width: 2px;
+    position: absolute;
+    top: 6px;
+    left: 0;
+    bottom: 6px;
+    background-color: currentColor;
+    content: '';
   }
 }
 

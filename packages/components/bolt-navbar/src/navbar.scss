@@ -7,8 +7,15 @@
 $bolt-navbar-title-transition: $bolt-transition;
 
 
+$bolt-navbar-vspacing-small: bolt-v-spacing(small);
+$bolt-navbar-vspacing-xsmall: bolt-v-spacing(xsmall);
+
 bolt-navbar {
   @include bolt-full-bleed; // @todo: make full bleed optional?
+  @supports(--css: variables) {
+    --bolt-vspacing: #{$bolt-navbar-vspacing-small};
+  }
+
   display: block;
   overflow: visible;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
@@ -17,18 +24,35 @@ bolt-navbar {
 .c-bolt-navbar {
   @include bolt-padding-left(medium);
   @include bolt-padding-right(medium);
+  @include bolt-padding-top($bolt-navbar-vspacing-small);
+
+  @supports(--css: variables) {
+    padding-top: var(--bolt-vspacing, $bolt-navbar-vspacing-small);
+  }
+
+  // @include bolt-padding-top($bolt-navbar-vspacing-small);
   max-width: bolt-breakpoint(xxlarge);
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
 
   @include respond-to(medium) {
     @include bolt-padding-left(large);
     @include bolt-padding-right(large);
   }
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
+  /**
+    * 1. Global spacing fallbacks if CSS variables aren't supported
+    */
+  > * {
+    @include bolt-padding-bottom($bolt-navbar-vspacing-small); /* [1] */
+
+    @supports(--css: variables) {
+      padding-bottom: var(--bolt-vspacing, $bolt-navbar-vspacing-small);
+    }
+  }
 
   @supports (display: contents) {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
@@ -47,23 +71,57 @@ bolt-navbar {
   &--center {
     flex-wrap: wrap;
     justify-content: center;
+
+    > *:first-child {
+      @include bolt-padding-top($bolt-navbar-vspacing-xsmall); /* [1] */
+
+      @supports(--css: variables) {
+        padding-top: var(--bolt-vspacing, $bolt-navbar-vspacing-xsmall);
+      }
+    }
+
+    > *:only-child {
+      @include bolt-padding-top($bolt-navbar-vspacing-xsmall); /* [1] */
+      @include bolt-padding-bottom($bolt-navbar-vspacing-xsmall); /* [1] */
+
+      @supports(--css: variables) {
+        padding-top: var(--bolt-vspacing, $bolt-navbar-vspacing-xsmall);
+        padding-bottom: calc(var(--bolt-vspacing, $bolt-navbar-vspacing-xsmall) * 2);
+      }
+    }
+  }
+
+  &--small {
+    @include bolt-padding-top(xsmall);
+
+    > * {
+      @include bolt-padding-bottom($bolt-navbar-vspacing-xsmall); /* [1] */
+    }
+
+    @supports(--css: variables) {
+      --bolt-vspacing: #{bolt-v-spacing(xsmall)};
+      padding-top: var(--bolt-vspacing, $bolt-navbar-vspacing-xsmall);
+    }
   }
 }
 
 
 // Nav title
 .c-bolt-navbar__title {
-  @include bolt-padding-top(small);
-  @include bolt-padding-bottom(small);
-  @include bolt-margin(0 medium 0 0);
+  @include bolt-margin-right(medium); // Maintain space between items
+  padding-bottom: $bolt-navbar-vspacing-small;
+  align-self: center;
   flex-shrink: 0;
-
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
   color: inherit;
   color: var(--bolt-theme-heading, inherit);
   white-space: nowrap;
+
+  @supports(--css: variables) {
+    padding-bottom: var(--bolt-vspacing, $bolt-navbar-vspacing-small);
+  }
 
   &:only-child {
     @include bolt-margin-right(auto);
@@ -76,7 +134,8 @@ bolt-navbar {
   }
 
   .c-bolt-navbar--center & {
-    @include bolt-margin(0 auto);
+    @include bolt-margin-left(auto);
+    @include bolt-margin-right(auto);
     width: 100%;
     align-items: center;
     justify-content: center;
@@ -100,6 +159,12 @@ bolt-navbar {
 .c-bolt-navbar__title-text {
   @include bolt-font-size(large);
   @include bolt-font-weight(semibold);
+
+  // Adjust the Navbar Title size when being stacked vertically
+  .c-bolt-navbar--center & {
+    @include bolt-font-size(small);
+    @include bolt-font-weight(bold);
+  }
 }
 
 
