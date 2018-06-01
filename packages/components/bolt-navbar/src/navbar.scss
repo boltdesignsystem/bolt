@@ -11,6 +11,7 @@ $bolt-navbar-vspacing-small: bolt-v-spacing(small);
 $bolt-navbar-vspacing-xsmall: bolt-v-spacing(xsmall);
 
 bolt-navbar {
+  @include bolt-z-index(nav);
   @include bolt-full-bleed; // @todo: make full bleed optional?
   @supports(--css: variables) {
     --bolt-vspacing: #{$bolt-navbar-vspacing-small};
