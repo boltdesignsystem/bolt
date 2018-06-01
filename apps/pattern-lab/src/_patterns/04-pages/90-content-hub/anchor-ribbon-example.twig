@@ -1,0 +1,290 @@
+{% extends "@bolt/default-template.twig" %}
+
+{% block global_header %}
+  {% include "@bolt/_page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+
+  {# hero band #}
+  {% embed "@bolt/band.twig" with {
+    size: "large",
+    theme: "dark",
+    fullBleed: true,
+    background: {
+      "opacity": "medium",
+      "fill": "color",
+      "focalPoint": {
+        "vertical": "center",
+        "horizontal": "center"
+      },
+      "contentItems": [
+        {
+          "pattern": "image",
+          "src": "/pattern-lab/images/content/backgrounds/background-robotics-customer-service.jpg",
+          "lazyload": true
+        }
+      ]
+    }
+  } only %}
+
+    {% block band_content  %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+      {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}    
+        {% include "@bolt/headline.twig" with {
+            text: "ROBOTIC AUTOMATION",
+            size: "xsmall",
+            tag: "span",
+        } only %}
+
+        {% include "@bolt/headline.twig" with {
+            text: "Automation to Get Work Done",
+            size: "xxxlarge",
+            tag: "h1",
+        } only %}
+
+        {% include "@bolt/subheadline.twig" with {
+            text: "Robotic Process Automation (RPA) is not going to transform your business by itself. Up to half of initial RPA projects fail. Combine robotics with powerful end-to-end automation and you can jump on the RPA bandwagon without becoming a statistic.",
+            size: "xlarge",
+            tag: "p",
+        } only %}
+
+
+          </li>
+        </ul>
+      {% endcell %}
+    {% endgrid %}
+    {% endblock %}
+  {% endembed %}
+  {# End hero band #}
+
+
+  {# Anchor Band #}
+{% embed "@bolt-components-sticky/sticky.twig" %}
+  {% block sticky_content %}
+
+    {% include "@bolt-components-navbar/navbar.twig" with {
+        "theme": "xlight",
+        "center": true,
+        "title": {
+          "tag": "h2",
+          "text": "Discover Intelligent Process Automation",
+        },
+        "links": [
+          {
+            "text": "Take the Automation Journey",
+            "url": "link-1-url"
+          },
+          {
+            "text": "Attain Transformational Results",
+            "url": "link-2-url"
+          },
+          {
+            "text": "Increase Employee Productivity",
+            "url": "link-3-url",
+          },
+          {
+            "text": "Drive Workforce Intelligence",
+            "url": "link-3-url",
+          },
+          {
+            "text": "Create full system integration",
+            "url": "link-2-url"
+          },
+          {
+            "text": "Instill governance and oversite",
+            "url": "link-3-url",
+          }
+        ]
+      } only %}
+  {% endblock %}
+{% endembed %}
+
+  
+  {# End Anchor Band #}
+
+
+{# Automation #}
+ {% embed "@bolt/band.twig" with {
+    size: "large",
+    theme: "xlight"
+  } only %}
+  
+      {% block band_content  %}
+        {% grid %}
+          {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
+            {% include "@bolt/headline.twig" with {
+            text: "Automation is a Journey",
+            size: "xxlarge",
+            tag: "h2"
+            } only %}
+            <p>At Pega, we’re obsessed with being unified. Our mobility, real-time AI, robotic automation, BPM, and case management are best in breed – go ask the analysts. But we didn’t cobble this together from pieces of dead companies – we built it from the ground up on a unified, enterprise-ready architecture.</p>
+            
+            <p>When you don’t have to waste time feeding the Frankenstack, you can focus on stuff that matters: designing awesome customer experiences. Automating your most complicated processes. Innovating in ways that disrupt the market."</p>
+          {% endcell %}
+      
+          {% cell "u-bolt-width-1/1 u-bolt-width-1/3@medium" %}
+            {% include "@bolt-components-card/card.twig" with {
+              url: "javascript:",
+              contentItems: [
+                {
+                  pattern: "image",
+                  src: "/pattern-lab/images/content/backgrounds/background-short-1.jpg",
+                  imageAttributes: create_attribute(imageAttributes | default({})).addClass("u-bolt-width-1/1"),
+                  alt: "Anthem Video"
+                },
+                {
+                  pattern: "eyebrow",
+                  text: "Whitepaper"
+                },
+                {
+                  pattern: "headline",
+                  tag: "h3",
+                  size: "large",
+                  text: "Anthem: Service Desktop"
+                },
+                {
+                  pattern: "text",
+                  text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
+                },
+                {
+                  pattern: "button",
+                  style: "text",
+                  width: "full",
+                  itemAlignment: "start",
+                  text: "Get the report"
+                }
+              ]
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endblock %}
+    {% endembed %}
+{# End Automation #}
+
+{# Transformational Results #}
+ {% embed "@bolt/band.twig" with {
+    size: "large",
+    theme: "xlight"
+  } only %}
+  
+      {% block band_content  %}
+        {% grid %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+            {% include "@bolt-components-card/card.twig" with {
+              url: "javascript:",
+              contentItems: [
+                {
+                  pattern: "image",
+                  src: "/pattern-lab/images/content/backgrounds/background-tall-2.jpg",
+                  imageAttributes: create_attribute(imageAttributes | default({})).addClass("u-bolt-width-1/1"),
+                  alt: "Anthem Video"
+                },
+                {
+                  pattern: "eyebrow",
+                  text: "Whitepaper"
+                },
+                {
+                  pattern: "headline",
+                  tag: "h3",
+                  size: "large",
+                  text: "Anthem: Service Desktop"
+                },
+                {
+                  pattern: "text",
+                  text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
+                },
+                {
+                  pattern: "button",
+                  style: "text",
+                  width: "full",
+                  itemAlignment: "start",
+                  text: "Get the report"
+                }
+              ]
+            } only %}
+          {% endcell %}
+          {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
+            {% include "@bolt/headline.twig" with {
+            text: "Transformational Results",
+            size: "xxlarge",
+            tag: "h2"
+            } only %}
+            <p>321% ROI in less than 12 months. 75% cost savings. 75% productivity improvements. These are transformational outcomes. Getting there takes more than just a few robots. You need one unified automation engine.</p>
+
+            <p>Use business process management to orchestrate people and systems. Deploy RPA to take repetitive work out of your operation. Use case management to manage it all from end to end.</p>
+
+            <p>You define service level agreements, route work, and apply rules and advanced intelligence. You can jumpstart with RPA, sure – but you’ll be able to fly past the 20% improvement companies see from robotics alone.</p>
+
+            <p>Why? Because Pega’s capabilities are unified on one platform. No duct tape. No wiring a bunch of things together. You think about outcomes from end to end. Your technology should be able to get that end to end work done.</p>
+          {% endcell %}
+        {% endgrid %}
+      {% endblock %}
+    {% endembed %}
+{# End Transformational Results #}
+
+{# Employee Productivity #}
+ {% embed "@bolt/band.twig" with {
+    size: "large",
+    theme: "xlight"
+  } only %}
+  
+      {% block band_content  %}
+        {% grid %}
+          {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
+            {% include "@bolt/headline.twig" with {
+            text: "Give Your Employees a Robot",
+            size: "xxlarge",
+            tag: "h2"
+            } only %}
+            <p>Imagine if you could give back five minutes of every employee’s day. You can if you free them from wrangling across systems and process siloes for information. How? Software robots that automate the desktop tasks that frustrate your people and slow them down. We call these “productivity bots.”</p>
+
+            <p>Productivity bots collaborate with your employees to bridge systems and process siloes. They do work like tabbing, searching, and copying and pasting – so your people can focus on your customers.</p>
+
+            <p>Leveraging productivity bots that simplify the employee experience injects instant ROI into your business. In just two to three weeks you'll turn all your service agents, back-office workers, or front-line sellers into productivity ninjas. They’ll be happier. You’ll be happier. And your customers will be happier.</p>
+          {% endcell %}
+      
+          {% cell "u-bolt-width-1/1 u-bolt-width-1/3@medium" %}
+            {% include "@bolt-components-card/card.twig" with {
+              url: "javascript:",
+              contentItems: [
+                {
+                  pattern: "image",
+                  src: "/pattern-lab/images/content/backgrounds/background-tall-3.jpg",
+                  imageAttributes: create_attribute(imageAttributes | default({})).addClass("u-bolt-width-1/1"),
+                  alt: "Anthem Video"
+                },
+                {
+                  pattern: "eyebrow",
+                  text: "Whitepaper"
+                },
+                {
+                  pattern: "headline",
+                  tag: "h3",
+                  size: "large",
+                  text: "Anthem: Service Desktop"
+                },
+                {
+                  pattern: "text",
+                  text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
+                },
+                {
+                  pattern: "button",
+                  style: "text",
+                  width: "full",
+                  itemAlignment: "start",
+                  text: "Get the report"
+                }
+              ]
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endblock %}
+    {% endembed %}
+{# End Employee Productivity #}
+
+
+
+
+  
+{% endblock %}
