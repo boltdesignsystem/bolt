@@ -1,12 +1,45 @@
 /** @jsx h */
 // Temp working version of @skatejs/renderer-preact till SkateJS fixes this upstream in the SkateJS monorepo
 
-import { shadow } from 'skatejs';
-import { h, render } from 'preact';
+import { shadow, withComponent } from 'skatejs';
+import preact, { h, render, Component } from 'preact';
+import html from 'preact-html';
 import { hasNativeShadowDomSupport } from '../utils/environment';
+import { findParentTag } from '../utils/find-parent-tag';
+import { BoltBase } from './bolt-base'
+
+
+// TODO make this a Symbol() when it's supported.
+const preactNodeName = '__preactNodeName';
+
+let oldVnode;
+
+function newVnode(vnode) {
+  let fn = vnode.nodeName;
+  if (fn && fn.prototype instanceof HTMLElement) {
+    if (!fn[preactNodeName]) {
+      const prefix = fn.name;
+      fn = class extends fn {};
+      customElements.define((fn[preactNodeName] = name(prefix)), fn);
+    }
+    vnode.nodeName = fn[preactNodeName];
+  }
+  return vnode;
+}
+
+function setupPreact() {
+  oldVnode = preact.options.vnode;
+  preact.options.vnode = newVnode;
+}
+
+function teardownPreact() {
+  preact.options.vnode = oldVnode;
+}
+
 
 export function withPreact(Base = HTMLElement) {
-  return class extends Base {
+  return class extends BoltBase(Base) {
+
     get props() {
       // We override props so that we can satisfy most use
       // cases for children by using a slot.
@@ -16,21 +49,76 @@ export function withPreact(Base = HTMLElement) {
       };
     }
 
-    get renderRoot() {
-      if (hasNativeShadowDomSupport && this.useShadow === true) {
-        return super.renderRoot || shadow(this);
-      } else {
-        return this;
+    constructor(...args) {
+      super(...args);
+      super.setupShadow();
+
+      this.html = html;
+    }
+
+    renderStyles(styles){
+      if (styles){
+        return (
+          this.useShadow &&
+          <style>{styles}</style>
+        );
       }
     }
 
-    renderer(renderRoot, renderCallback) {
-      this._renderRoot = renderRoot;
+    // WIP slot function working in Preact
+    // slot(name) {
+    //   if (this.useShadow && hasNativeShadowDomSupport) {
+    //     if (name === 'default') {
+    //       return (
+    //         <slot />
+    //       )
+    //     } else {
+    //       // return this.html(`
+    //       //   <slot name="${name}" />
+    //       // `);
+    //       return (
+    //         <slot name={name} />
+    //       )
+    //     }
+    //   } else {
+    //     if (this.slots[name]) {
+    //       // return this.slots[name];
+    //       const slotItems = this.slots[name];
+
+    //       var frag = document.createDocumentFragment();
+    //       var rootNode = document.createElement('div');
+
+    //       for (var i = 0; i < slotItems.length; ++i) {
+    //         frag.appendChild(slotItems[i]);
+    //       }
+
+    //       rootNode.appendChild(frag);
+    //       rootNode.replaceWith(rootNode.firstChild);
+
+    //       return rootNode;
+    //     }
+    //     else {
+    //       console.log(`The ${name} slot doesn't appear to exist...`);
+    //     }
+    //   }
+    // }
+
+    renderer(root, call) {
+      setupPreact();
+      this._renderRoot = root;
       this._preactDom = render(
-        renderCallback(),
-        this._renderRoot,
-        this._preactDom || this._renderRoot.children[0],
+        call(),
+        root,
+        this._preactDom || root.childNodes[0],
       );
+      teardownPreact();
     }
-  };
-}
+
+    disconnectedCallback() {
+      super.disconnectedCallback && super.disconnectedCallback();
+      // Render null to unmount. See https://github.com/skatejs/skatejs/pull/1432#discussion_r183381359
+      this._preactDom = render(null, this._renderRoot, this._preactDom);
+      this._renderRoot = null;
+    }
+  }
+};

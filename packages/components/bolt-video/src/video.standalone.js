@@ -10,6 +10,7 @@ import {
 } from '@bolt/core';
 
 import dasherize from 'dasherize';
+import Mousetrap from 'mousetrap';
 
 let index = 0;
 
@@ -95,6 +96,8 @@ class BoltVideo extends withPreact(withComponent()) {
 
     // This binding is necessary to make `this` work in the callback
     this.handleClose = this.handleClose.bind(this);
+
+    this.collapseOnClickAway = this.collapseOnClickAway.bind(this);
 
     // BoltVideo.globalErrors.forEach(this.props.onError);
 
@@ -354,11 +357,24 @@ class BoltVideo extends withPreact(withComponent()) {
     }
 
     window.addEventListener('optimizedResize', this._onWindowResize);
-  }
 
+    // If our video can expand/collapse we add the collapse listener and "close on escape" behavior
+    if (this.props.isBackgroundVideo) {
+      Mousetrap.bind('esc', this.handleClose, 'keyup');
+      document.addEventListener('click', this.collapseOnClickAway);
+    }
+  }
 
   _onWindowResize(event) {
     this._calculateIdealVideoSize();
+  }
+
+  // If we click outside the video wrapper div collapse the video
+  collapseOnClickAway(event) {
+    const videoWrapper = this.querySelector('.c-bolt-video--background');
+    if (!videoWrapper.contains(event.target)) {
+      this.close();
+    }
   }
 
   // shouldUpdate(props, state) {
