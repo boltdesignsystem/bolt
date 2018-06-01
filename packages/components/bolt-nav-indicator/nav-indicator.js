@@ -72,6 +72,21 @@ let gumshoeStateModule = (function () {
         scrollDelay: false,
         offset,
         callback(nav) {
+          // Exit early if nav.nav (the target) is undefined. Workaround to occasional JS
+          // error throwing `Cannot read property 'nav' of undefined`
+          if (!nav.nav){
+            return;
+          }
+
+          // if this there's a <bolt-nav-priority> instance, make sure that component's ready to go before proceeding trying to animate anything.
+          if (nav.nav.closest('bolt-nav-priority')){
+            const priorityNav = nav.nav.closest('bolt-nav-priority');
+
+            if (!priorityNav.isReady){
+              return;
+            }
+          }
+
           const originalTarget = nav.nav;
           let originalTargetHref;
           let normalizedTarget;
@@ -97,7 +112,11 @@ let gumshoeStateModule = (function () {
             if (isVisible(linkInstance)) {
               normalizedTarget = linkInstance;
 
-              // If a better match hasn't been found by this point, use the last element in the array.
+            // Prefer dropdown links over non-dropdown links if the link is hidden
+            } else if (linkInstance.parentNode.isDropdownLink) {
+              normalizedTarget = linkInstance;
+
+            // otherwise default to what was originally selected.
             } else if (i === len - 1) {
               normalizedTarget = originalTarget;
             }
@@ -105,8 +124,6 @@ let gumshoeStateModule = (function () {
 
           const normalizedParent = normalizedTarget.parentNode;
 
-          // Reset all the links in this particular component instance
-          navSelectorInstance.resetLinks(normalizedParent);
           normalizedParent.activate();
         },
       });
@@ -136,6 +153,9 @@ export class BoltNavIndicator extends BoltComponent() {
     this.activeLink = false;
     this.isAnimating = false;
     this.useShadow = hasNativeShadowDomSupport;
+
+
+    this.indicatorClass = 'c-bolt-nav-indicator';
 
     // Ensure that 'this' inside the _onWindowResize event handler refers to <bolt-nav-link>
     // even if the handler is attached to another element (window in this case)
@@ -205,6 +225,8 @@ export class BoltNavIndicator extends BoltComponent() {
     }
 
     this.activeLink = event.target;
+
+    this.resetLinks(this.activeLink);
   }
 
   _onWindowResize() {
@@ -237,7 +259,7 @@ export class BoltNavIndicator extends BoltComponent() {
     }
 
     // No link is currently active; the first link to become active is a special snowflake when it comes to animation.
-    if (!this.activeLink) {
+    if (!this.activeLink && isVisible(link)) {
 
       // First, immediately center the indicator.
       this._indicator.style.transition = 'none';
@@ -272,9 +294,16 @@ export class BoltNavIndicator extends BoltComponent() {
   connecting() {
     Promise.all([
       customElements.whenDefined('bolt-navlink'),
+      customElements.whenDefined('bolt-nav-priority'),
     ]).then(_ => {
+
+      // If the nav indicator already exists, exit early.
+      if (this.querySelector(`.${this.indicatorClass}`)) {
+        return;
+      }
+
       const indicatorElem = document.createElement('li');
-      indicatorElem.classList.add('c-bolt-nav-indicator');
+      indicatorElem.classList.add(`${this.indicatorClass}`);
 
       const indicatorElement = this.querySelector('ul').appendChild(indicatorElem);
       this._indicator = indicatorElement;
