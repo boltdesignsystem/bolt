@@ -4,8 +4,9 @@
    Navlink
 \* ------------------------------------ */
 
-$bolt-navlink-bg-color: rgba(bolt-color(gray, xlight), 0.1);
-$bolt-navlink-bg-color-active: rgba(bolt-color(gray, xlight), 0.2);
+// $bolt-navlink-bg-color: rgba(bolt-color(gray, xlight), 0.1);
+$bolt-navlink-bg-color: currentColor;
+// $bolt-navlink-bg-color-active: rgba(bolt-color(gray, xlight), 0.2);
 $bolt-navlink-bg-border-radius: $bolt-border-radius;
 $bolt-navlink-bg-transition-timing: $bolt-transition-timing*4;
 $bolt-navlink-text-transition: $bolt-transition;
@@ -47,19 +48,23 @@ bolt-navlink {
     height: 100%;
     content: '';
     border-radius: $bolt-navlink-bg-border-radius;
-    background-color: $bolt-navlink-bg-color;
+    background-color: currentColor;
+    opacity: 0.1;
     transform: scale3d(0, 0, 0);
     transition: all 0.1s ease;
   }
 
   &:active:before {
-    background-color: $bolt-navlink-bg-color-active;
     transform: scale3d(1, 1, 1);
+    opacity: 0.2;
+    animation: none;
   }
 
   &:hover,
   &.is-hover {
     &:before {
+      // transform: scale3d(1, 1, 1);
+      // transition: all 0.1s cubic-bezier(0.680, -0.550, 0.265, 1.550);
       animation:
         a-bolt-navlink-bg-hover
         $bolt-navlink-bg-transition-timing
@@ -70,7 +75,15 @@ bolt-navlink {
   &:active,
   &.is-active {
     &:before {
+      // transform-origin: bottom;
       animation: none;
+      // transform: scale3d(1, 1, 1);
+      // transition: all 0.2s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+      // animation:
+      //   a-bolt-navlink-bg-active
+      //   0.2s
+      //   forwards;
+      // transition: $bolt-transition-timing;
     }
   }
 
@@ -111,3 +124,19 @@ bolt-navlink {
     transform: scale3d(1, 1, 1);
   }
 }
+
+
+@keyframes a-bolt-navlink-bg-active {
+  0% {
+    transform: scale3d(1, 1, 1) scaleY(1);
+    opacity: 0.2;
+  }
+  40% {
+    transform: scale3d(1, 1, 1) scaleY(0.97);
+  }
+  to {
+    transform: scale3d(1, 1, 1) scaleY(0);
+    opacity: 0;
+  }
+}
+
