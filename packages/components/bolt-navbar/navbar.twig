@@ -1,0 +1,60 @@
+{% set themeOptions = [
+  "xlight",
+  "light",
+  "medium",
+  "dark",
+  "xdark"
+] %}
+
+{% set vspacingOptions = [
+  "xsmall",
+  "small"
+] %}
+
+{% set theme = theme == false and theme is not null ? "false" : theme in themeOptions ? theme | default("medium") %}
+{% set gradient = gradient == false and gradient is not null ? "false" : "true" | default("true") %}
+{% set vspacing = vspacing == false and vspacing is not null ? "false" : vspacing in vspacingOptions ? vspacing | default("xsmall") %}
+
+
+<bolt-navbar>
+  {% embed "@bolt-components-band/band.twig" with {
+    size: vspacing,
+    theme: theme,
+    fullBleed: true
+  } %}
+
+    {% block band_background %}
+      {% if gradient == "true" %}
+        {% include "@bolt-components-background/background.twig" with {
+          "opacity": "light",
+          "fill": "gradient",
+          "focalPoint":
+          {
+            "vertical": "center",
+            "horizontal": "left"
+          }
+        } only %}
+      {% endif %}
+    {% endblock band_background %}
+
+    {% block band_content %}
+      <nav class="c-bolt-navbar">
+        {% if title %}
+          {% include "@bolt-components-navbar/navbar-brand.twig" with title only %}
+        {% endif %}
+
+        {% if links %}
+          <div class="c-bolt-navbar__nav">
+            {% include "@bolt-components-nav/nav.twig" %}
+          </div>
+        {% endif %}
+      </nav>
+    {% endblock %}
+
+  {% endembed %}
+</bolt-navbar>
+
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-navbar'].schema, _self) | raw }}
+{% endif %}

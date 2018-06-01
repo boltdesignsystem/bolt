@@ -12,6 +12,7 @@
 
 <bolt-icon {{ attributes }}></bolt-icon>
 
+
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-icon/icon.schema.yml', _self) | raw }}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-icon'].schema, _self) | raw }}
 {% endif %}
