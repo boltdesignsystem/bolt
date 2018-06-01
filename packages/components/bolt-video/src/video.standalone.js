@@ -10,6 +10,7 @@ import {
 } from '@bolt/core';
 
 import dasherize from 'dasherize';
+import Mousetrap from 'mousetrap';
 
 let index = 0;
 
@@ -357,8 +358,9 @@ class BoltVideo extends withPreact(withComponent()) {
 
     window.addEventListener('optimizedResize', this._onWindowResize);
 
-    // If our video can expand/collapse we add the collapse listener
+    // If our video can expand/collapse we add the collapse listener and "close on escape" behavior
     if (this.props.isBackgroundVideo) {
+      Mousetrap.bind('esc', this.handleClose, 'keyup');
       document.addEventListener('click', this.collapseOnClickAway);
     }
   }
