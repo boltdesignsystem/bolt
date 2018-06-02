@@ -6,12 +6,17 @@
 
 import {
   DataSaver,
-  urlHandler,
 } from '@pattern-lab/utils/data-saver';
 
-import patternFinder from '@pattern-lab/ui-pattern-finder';
+import {
+  urlHandler,
+} from '@pattern-lab/utils/url-handler';
+
+console.log(urlHandler);
+
+import { patternFinder } from '@pattern-lab/ui-pattern-finder';
 import $ from 'jquery';
-import jwerty from 'jwerty-globals-fixed';
+import { jwerty } from 'jwerty-globals-fixed';
 import loadjs from 'loadjs';
 import '@pattern-lab/utils/postmessage';
 
@@ -543,7 +548,7 @@ import '@pattern-lab/utils/postmessage';
   }
 
   if (patternName !== 'all') {
-    patternPath = urlHandler.getFileName(patternName);
+    const patternPath = urlHandler.getFileName(patternName);
     iFramePath =
       patternPath !== ''
         ? baseIframePath + patternPath + '?' + Date.now()

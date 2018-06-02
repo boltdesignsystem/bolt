@@ -1,7 +1,5 @@
 // require('data-saver');
 // require('wolfy87-eventemitter');
-import EventEmitter from 'wolfy87-eventemitter';
-window.Dispatcher = new EventEmitter();
 
 import '@pattern-lab/ui-typeahead';
 import '@pattern-lab/ui-layout';

@@ -9,7 +9,7 @@
  *
  */
 
-import urlHandler from '@pattern-lab/utils/url-handler';
+import { urlHandler } from '@pattern-lab/utils/url-handler';
 
 var panelsUtil = {
   /**

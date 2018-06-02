@@ -282,9 +282,9 @@ function createConfig(config) {
           test: /\.twig$/,
           loader: 'twig-loader',
           options: {
-            base: path.resolve('/Users/sghoweri/sites/bolt-accordion/packages/styleguidekit-assets-bolt/src/html'),
+            base: path.resolve(process.cwd(), '../../packages/styleguidekit-assets-bolt/src/html'),
             twigOptions: {
-              base: path.resolve('/Users/sghoweri/sites/bolt-accordion/packages/styleguidekit-assets-bolt/src/html'),
+              base: path.resolve(process.cwd(), '../../packages/styleguidekit-assets-bolt/src/html'),
             },
           },
         },
@@ -405,27 +405,28 @@ function createConfig(config) {
       new webpack.NamedModulesPlugin(),
       new HtmlWebpackPlugin({
         title: 'Custom template',
+        filename: '../index.html',
         // Load a custom template (lodash by default see the FAQ for details)
-        template: path.resolve('/Users/sghoweri/sites/bolt-accordion/packages/styleguidekit-assets-bolt/src/html/index.twig'),
+        template: path.resolve(process.cwd(), '../../packages/styleguidekit-assets-bolt/src/html/index.twig'),
       }),
     ],
   };
 
 
-  if (config.env === 'pl') {
-    webpackConfig.plugins.push(
-      new CopyWebpackPlugin([
-        {
-          from: path.resolve(path.dirname(require.resolve('@bolt/styleguidekit-assets-bolt')), 'dist/index.html'),
-          to: path.resolve(process.cwd(), config.wwwDir, 'pattern-lab/'),
-        },
-        {
-          from: path.resolve(path.dirname(require.resolve('@bolt/styleguidekit-assets-bolt')), 'dist/styleguide'),
-          to: path.resolve(process.cwd(), config.wwwDir, 'pattern-lab/styleguide/'),
-        },
-      ]),
-    );
-  }
+  // if (config.env === 'pl') {
+  //   webpackConfig.plugins.push(
+  //     new CopyWebpackPlugin([
+  //       {
+  //         from: path.resolve(path.dirname(require.resolve('@bolt/styleguidekit-assets-bolt')), 'dist/index.html'),
+  //         to: path.resolve(process.cwd(), config.wwwDir, 'pattern-lab/'),
+  //       },
+  //       {
+  //         from: path.resolve(path.dirname(require.resolve('@bolt/styleguidekit-assets-bolt')), 'dist/styleguide'),
+  //         to: path.resolve(process.cwd(), config.wwwDir, 'pattern-lab/styleguide/'),
+  //       },
+  //     ]),
+  //   );
+  // }
 
   if (config.prod) {
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/

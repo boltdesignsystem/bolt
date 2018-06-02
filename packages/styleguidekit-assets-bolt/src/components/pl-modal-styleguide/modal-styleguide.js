@@ -12,6 +12,7 @@
 
 import panelsUtil from '@pattern-lab/ui-panels-util';
 import '@pattern-lab/utils/url-handler';
+import Clipboard from 'clipboard';
 // const panelsUtil = require('modules/panels-util');
 
 var modalStyleguide = {
