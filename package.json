@@ -46,7 +46,7 @@
     "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'apps/**/*.js'",
     "lint:js:fix": "yarn run lint:js -- --fix",
     "Xlint:sh": "which shellcheck; if [ $? -eq 0 ]; then shellcheck scripts/*.sh ; else echo 'Shell script linting requires `shellcheck` to be installed, skipping for now; use `brew install shellcheck` to install ~ https://github.com/koalaman/shellcheck '; fi",
-    "lint:style": "stylelint 'packages/**/*.scss' 'apps/**/*.scss' '!apps/drupal-lab/**' '!apps/pw-site/www/**' '!**/vendor/**' --config .stylelintrc",
+    "lint:style": "stylelint 'packages/**/*.scss' 'apps/**/*.scss' '!apps/drupal-lab/**' '!packages/styleguidekit-assets-bolt/**' '!apps/pw-site/www/**' '!**/vendor/**' --config .stylelintrc",
     "lint:style:fix": "yarn run lint:style -- --fix",
     "lint:twig": "./packages/core-php/vendor/bin/twig-lint lint packages --only-print-errors && ./packages/core-php/vendor/bin/twig-lint lint apps --only-print-errors --exclude=apps/drupal-lab",
     "lint:yaml": "yamllint 'packages/**/*.yml' --ignore='**/vendor/**'",
