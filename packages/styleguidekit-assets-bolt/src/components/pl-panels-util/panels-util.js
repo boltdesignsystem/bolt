@@ -11,7 +11,7 @@
 
 import { urlHandler } from '@pattern-lab/utils/url-handler';
 
-var panelsUtil = {
+export const panelsUtil = {
   /**
    * Add click events to the template that was rendered
    * @param  {String}      the rendered template for the modal
@@ -19,7 +19,7 @@ var panelsUtil = {
    */
   addClickEvents: function(templateRendered, patternPartial) {
     var els = templateRendered.querySelectorAll('.pl-js-tab-link');
-    for (var i = 0; i < els.length; ++i) {
+    for (let i = 0; i < els.length; ++i) {
       els[i].onclick = function(e) {
         e.preventDefault();
 
@@ -44,7 +44,7 @@ var panelsUtil = {
     els = document.querySelectorAll(
       '#pl-' + patternPartial + '-tabs .pl-js-tab-link'
     );
-    for (i = 0; i < els.length; ++i) {
+    for (let i = 0; i < els.length; ++i) {
       els[i].classList.remove('pl-is-active-tab');
     }
 
@@ -52,7 +52,7 @@ var panelsUtil = {
     els = document.querySelectorAll(
       '#pl-' + patternPartial + '-panels .pl-js-tab-panel'
     );
-    for (i = 0; i < els.length; ++i) {
+    for (let i = 0; i < els.length; ++i) {
       els[i].classList.remove('pl-is-active-tab');
     }
 

@@ -12,11 +12,11 @@
 
 import { urlHandler } from '@pattern-lab/utils/url-handler';
 import { DataSaver } from '@pattern-lab/utils/data-saver';
-import panelsViewer from '@pattern-lab/ui-panels-viewer';
+import { panelsViewer } from '@pattern-lab/ui-panels-viewer';
 import $ from 'jquery';
 import { Dispatcher } from '@pattern-lab/utils/eventemitter';
 
-var modalViewer = {
+export const modalViewer = {
   // set up some defaults
   active: false,
   switchText: true,
@@ -42,7 +42,7 @@ var modalViewer = {
     // make sure the close button handles the click
     $('.pl-js-modal-close-btn').on('click', function(e) {
       // hide any open annotations
-      obj = JSON.stringify({
+      const obj = JSON.stringify({
         event: 'patternLab.annotationsHighlightHide',
       });
       document
@@ -89,7 +89,7 @@ var modalViewer = {
     if (modalViewer.active === false) {
       modalViewer.queryPattern();
     } else {
-      obj = JSON.stringify({
+      const obj = JSON.stringify({
         event: 'patternLab.annotationsHighlightHide',
       });
       document
@@ -118,7 +118,7 @@ var modalViewer = {
    * close the modal window
    */
   close: function() {
-    var obj;
+    let obj;
 
     // note that the modal viewer is no longer active
     DataSaver.updateValue('modalActive', 'false');
@@ -161,7 +161,7 @@ var modalViewer = {
   ) {
     if (iframePassback) {
       // send a message to the pattern
-      var obj = JSON.stringify({
+      let obj = JSON.stringify({
         event: 'patternLab.patternModalInsert',
         patternPartial: patternPartial,
         modalContent: templateRendered.outerHTML,
@@ -250,7 +250,7 @@ var modalViewer = {
     }
 
     // send a message to the pattern
-    var obj = JSON.stringify({
+    let obj = JSON.stringify({
       event: 'patternLab.patternQuery',
       switchText: switchText,
     });
