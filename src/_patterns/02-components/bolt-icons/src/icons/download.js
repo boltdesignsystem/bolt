@@ -6,7 +6,7 @@ const Download = ({ color, size, ...otherProps }) => {
     <svg width={size} height={size} viewBox="0 0 24 24" {...otherProps}>
       <title>Icon/utility/Indigo/24px/Download</title>
       <defs>
-        <path id="a" d="M15.998.049v1.95H.001V.05h15.997z" />
+        <path id="id-38a" d="M15.998.049v1.95H.001V.05h15.997z" />
       </defs>
       <g fill="currentColor" fill-rule="evenodd">
         <path
@@ -15,13 +15,13 @@ const Download = ({ color, size, ...otherProps }) => {
           fill="none"
         />
         <g transform="translate(4 19.5)">
-          <mask id="b" fill="#fff">
-            <use xlinkHref="#a" />
+          <mask id="id-39b" fill="#fff">
+            <use xlinkHref="#id-38a" />
           </mask>
           <path
             d="M15.023.049H.976A.978.978 0 0 0 0 1.025C0 1.56.44 2 .976 2h14.046a.978.978 0 0 0 .976-.975.979.979 0 0 0-.975-.976"
             fill="currentColor"
-            mask="url(#b)"
+            mask="url(#id-39b)"
           />
         </g>
         <path
