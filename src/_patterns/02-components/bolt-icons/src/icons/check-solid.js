@@ -3,26 +3,14 @@ const CheckSolid = ({ color, size, ...otherProps }) => {
   color = color || 'currentColor';
   size = size || '24';
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" {...otherProps}>
-      <title>Icon/utility/Indigo/24px/Check-solid</title>
+    <svg width="22" height="22" viewBox="0 0 22 22" {...otherProps}>
+      <title>check-solid</title>
       <g fill="currentColor" fill-rule="evenodd">
+        <path />
         <path
-          d="M0,64a64,64 0 1,0 128,0a64,64 0 1,0 -128,0"
-          class="c-bolt-icon--background c-bolt-icon--circle-background"
-          fill="none"
-        />
-        <circle
-          cx="11"
-          cy="11"
-          r="11"
-          transform="translate(1 1)"
+          d="M11 22C4.925 22 0 17.075 0 11S4.925 0 11 0s11 4.925 11 11-4.925 11-11 11zm4.05-14.839L9.332 12.77l-2.386-2.275a.558.558 0 0 0-.784 0 .557.557 0 0 0 0 .785l2.777 2.778a.553.553 0 0 0 .784 0l6.11-6.11a.55.55 0 0 0 0-.786.556.556 0 0 0-.783 0z"
           fill="currentColor"
-        />
-        <path d="M6 6h12v12H6z" />
-        <path
-          d="M16.05 8.161l-5.718 5.608-2.386-2.275a.558.558 0 0 0-.784 0 .557.557 0 0 0 0 .785l2.777 2.778a.553.553 0 0 0 .784 0l6.11-6.11a.55.55 0 0 0 0-.786.556.556 0 0 0-.783 0z"
-          stroke={color}
-          fill="currentColor"
+          fill-rule="nonzero"
         />
       </g>
     </svg>

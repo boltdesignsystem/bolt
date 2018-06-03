@@ -9,7 +9,7 @@
   "scripts": {
     "backstop-test": "backstop test",
     "backstop-reference": "backstop reference",
-    "bootstrap": "lerna bootstrap --hoist",
+    "bootstrap": "lerna bootstrap --hoist && npm run build:icons",
     "lint:js": "eslint ./build-tools",
     "lint:scss": "gulp styles:lint",
     "clean:lerna": "lerna clean -Y",
@@ -29,6 +29,7 @@
     "start": "gulp",
     "pre-build": "lerna exec -- npm run --if-present build",
     "build": "NODE_ENV=production npm run pre-build && NODE_ENV=production gulp build",
+    "build:icons": "lerna exec --scope @bolt/components-icons npm run build",
     "build:quick": "NODE_ENV=production gulp build",
     "build:full": "NODE_ENV=production npm run pre-build && NODE_ENV=production gulp build:full",
     "setup": "npm run bootstrap && npm run composer:setup",

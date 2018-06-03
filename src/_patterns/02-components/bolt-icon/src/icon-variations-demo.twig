@@ -1,0 +1,173 @@
+{# List of available icons in Bolt v0.x. Array manually created based off of the filenames located in the @bolt/components-icons/dist/icons folder #}
+{% set icons = [
+  'academy',
+  'add-open',
+  'add-solid',
+  'agile',
+  'app-development',
+  'app-exchange',
+  'arrow-left',
+  'asset-data',
+  'asset-infographic',
+  'asset-interactive',
+  'asset-link',
+  'asset-media',
+  'asset-podcast',
+  'asset-presentation',
+  'asset-text',
+  'asset-video',
+  'calendar',
+  'careers',
+  'case-management',
+  'check-circle',
+  'check-solid',
+  'check',
+  'chevron-right',
+  'close-open',
+  'close-solid',
+  'close',
+  'cloud',
+  'co-browse',
+  'communications',
+  'copy-to-clipboard',
+  'customer-decision hub',
+  'customer-onboarding',
+  'customer-service',
+  'data-integrations',
+  'documentation',
+  'download',
+  'email',
+  'energy',
+  'entertainment',
+  'exit-full screen',
+  'external-link',
+  'eye-off',
+  'eye',
+  'facebook-solid',
+  'facebook',
+  'field-service-gray',
+  'field-service',
+  'filter',
+  'financial',
+  'full-screen',
+  'global',
+  'government',
+  'healthcare',
+  'hospitality',
+  'industries',
+  'info-open',
+  'info-solid',
+  'insurance',
+  'integration',
+  'intelligent-virtual-assistant',
+  'java',
+  'knowledgebase',
+  'launchpad',
+  'life-sciences',
+  'linkedin-solid',
+  'linkedin',
+  'lock',
+  'manufacturing',
+  'map-pin-solid',
+  'map-pin',
+  'marketing-gray',
+  'marketing',
+  'menu',
+  'minus-open',
+  'minus-solid',
+  'mobility',
+  'more',
+  'omni-channel',
+  'partners',
+  'pencil',
+  'platform',
+  'podcast',
+  'print',
+  'product-delivery',
+  'product',
+  'refresh',
+  'reporting',
+  'retail',
+  'robo-auto',
+  'sales-automation',
+  'scalability',
+  'search',
+  'share1',
+  'share2',
+  'support',
+  'system-admin',
+  'training',
+  'transportation',
+  'twitter-solid',
+  'twitter',
+  'unlock',
+  'upload',
+  'user-interface',
+  'user',
+  'video',
+  'vision',
+  'warning',
+  'watch',
+  'workforce-intelligence',
+  'youtube-solid',
+] %}
+
+
+{# {% set colors = [
+  '#009999',
+  '#d08b0c',
+  '#219951',
+  '#e74b18',
+] %} #}
+{# {% set loopInt = 0 %} #}
+
+{# attributes: {
+              style: "background-color: " ~ colors[loopInt] ~ ";"
+            } #}
+
+{# loop through icons referenced in array above (references the icon schema itself in Bolt v1.x+) #}
+{% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
+  {% for name in icons %}
+    {% cell 'u-bolt-width-1/2 u-bolt-width-1/4@small u-bolt-width-1/8@medium' %}
+      <div class="o-bolt-block o-bolt-block--center">
+        <div class="o-bolt-block__image">
+          {% include "@bolt/icon.twig" with {
+            name: name,
+            background: "circle",
+            size: "xlarge",
+          } %}
+        </div>
+        <div class="o-bolt-block__body">
+          {% include "@bolt/text.twig" with {
+            size: "small",
+            text: name,
+            tag: "h2"
+          } %}
+        </div>
+      </div>
+    {% endcell %}
+  {% endfor %}
+{% endgrid %}
+
+{% grid 'o-bolt-grid--flex o-bolt-grid--matrix t-bolt-xdark' %}
+  {% for name in icons %}
+    {% cell 'u-bolt-width-1/2 u-bolt-width-1/4@small u-bolt-width-1/8@medium' %}
+      <div class="o-bolt-block o-bolt-block--center">
+        <div class="o-bolt-block__image">
+          {% include "@bolt/icon.twig" with {
+            name: name,
+            background: "circle",
+            size: "xlarge",
+          } %}
+        </div>
+        <div class="o-bolt-block__body">
+          {% include "@bolt/text.twig" with {
+            size: "small",
+            text: name,
+            tag: "h2"
+          } %}
+        </div>
+      </div>
+    {% endcell %}
+  {% endfor %}
+{% endgrid %}

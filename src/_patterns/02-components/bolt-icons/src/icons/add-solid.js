@@ -4,23 +4,13 @@ const AddSolid = ({ color, size, ...otherProps }) => {
   size = size || '24';
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" {...otherProps}>
-      <title>Icon/utility/Indigo/24px/Add-solid</title>
+      <title>Untitled 2</title>
       <g fill="currentColor" fill-rule="evenodd">
+        <path />
         <path
-          d="M0,64a64,64 0 1,0 128,0a64,64 0 1,0 -128,0"
-          class="c-bolt-icon--background c-bolt-icon--circle-background"
-          fill="none"
-        />
-        <circle
-          cx="11"
-          cy="11"
-          r="11"
-          transform="translate(1 1)"
+          d="M12 23C5.925 23 1 18.075 1 12S5.925 1 12 1s11 4.925 11 11-4.925 11-11 11zm1-12V8c0-.55-.45-1-1-1s-1 .45-1 1v3H8c-.55 0-1 .45-1 1s.45 1 1 1h3v3c0 .55.45 1 1 1s1-.45 1-1v-3h3c.55 0 1-.45 1-1s-.45-1-1-1h-3z"
           fill="currentColor"
-        />
-        <path
-          d="M16 11h-3V8c0-.55-.45-1-1-1s-1 .45-1 1v3H8c-.55 0-1 .45-1 1s.45 1 1 1h3v3c0 .55.45 1 1 1s1-.45 1-1v-3h3c.55 0 1-.45 1-1s-.45-1-1-1"
-          fill="currentColor"
+          fill-rule="nonzero"
         />
       </g>
     </svg>
