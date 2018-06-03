@@ -5,7 +5,7 @@ export {
   withUpdate,
 } from 'skatejs';
 
-export { Component, h } from 'preact';
+export preact, { Component, h }  from 'preact';
 export { hyper } from 'hyperhtml/cjs';
 
 // Export Utilties + Helpers

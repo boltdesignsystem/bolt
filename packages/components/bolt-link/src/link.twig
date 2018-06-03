@@ -44,7 +44,7 @@
   </a>
 {% endspaceless %}
 
+
 {% if enable_json_schema_validation %}
-  {# disabling schema validation for now as it has too many errors now #}
-  {#{{ validate_data_schema('@bolt-components-link/link.schema.yml', _self) | raw }}#}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-link'].schema, _self) | raw }}
 {% endif %}
