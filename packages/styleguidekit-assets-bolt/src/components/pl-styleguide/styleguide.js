@@ -12,11 +12,9 @@ import {
   urlHandler,
 } from '@pattern-lab/utils/url-handler';
 
-console.log(urlHandler);
-
 import { patternFinder } from '@pattern-lab/ui-pattern-finder';
 import $ from 'jquery';
-import { jwerty } from 'jwerty-globals-fixed';
+import Mousetrap from 'mousetrap';
 import loadjs from 'loadjs';
 import '@pattern-lab/utils/postmessage';
 
@@ -118,7 +116,7 @@ import '@pattern-lab/utils/postmessage';
     goSmall();
   });
 
-  jwerty.key('ctrl+shift+s', function(e) {
+  Mousetrap.bind('ctrl+shift+s', function (e) {
     goSmall();
     return false;
   });
@@ -143,7 +141,7 @@ import '@pattern-lab/utils/postmessage';
     goMedium();
   });
 
-  jwerty.key('ctrl+shift+m', function(e) {
+  Mousetrap.bind('ctrl+shift+m', function (e) {
     goLarge();
     return false;
   });
@@ -170,7 +168,7 @@ import '@pattern-lab/utils/postmessage';
     goLarge();
   });
 
-  jwerty.key('ctrl+shift+l', function(e) {
+  Mousetrap.bind('ctrl+shift+l', function(e) {
     goLarge();
     return false;
   });
@@ -223,7 +221,7 @@ import '@pattern-lab/utils/postmessage';
     discoID = setInterval(disco, 800);
   }
 
-  jwerty.key('ctrl+shift+d', function(e) {
+  Mousetrap.bind('ctrl+shift+d', function(e) {
     if (!discoMode) {
       startDisco();
     } else {
@@ -274,7 +272,7 @@ import '@pattern-lab/utils/postmessage';
   }
 
   // start hay from a keyboard shortcut
-  jwerty.key('ctrl+shift+h', function(e) {
+  Mousetrap.bind('ctrl+shift+h', function(e) {
     if (!hayMode) {
       startHay();
     } else {
@@ -332,7 +330,7 @@ import '@pattern-lab/utils/postmessage';
   });
 
   // set 0 to 320px as a default
-  jwerty.key('ctrl+shift+0', function(e) {
+  Mousetrap.bind('ctrl+shift+0', function(e) {
     e.preventDefault();
     sizeiframe(320, true);
     return false;

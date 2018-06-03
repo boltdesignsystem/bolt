@@ -21,7 +21,7 @@
 
         /**
          * Active navigaiton
-         * 1) Slide 
+         * 1) Slide
          * 2) Set the height to the vierport height minus the height
          *    of the header
          */
@@ -49,6 +49,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
+    flex-shrink: 0;
 
     @media all and (max-width: $pl-bp-med) {
         order: 2; /* 3 */
@@ -82,9 +83,10 @@
  * Nav link
  */
 .pl-c-nav__link {
-    display: flex;
-    align-items: center;
-    @include linkStyle();
+  display: flex;
+  align-items: center;
+  @include linkStyle();
+  white-space: normal;
 }
 
 /**

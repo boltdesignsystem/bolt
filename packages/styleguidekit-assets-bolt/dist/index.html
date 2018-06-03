@@ -29,26 +29,26 @@
 	</div><!--end pl-c-controls-->
 
 </header><!--end pl-c-header-->
- 
-	
+
+
 	<div class="pl-c-viewport pl-js-viewport">
-    
+
     <div class="pl-c-viewport__cover pl-js-viewport-cover"></div>
 
     <div class="pl-c-viewport__iframe-wrapper pl-js-vp-iframe-container">
-        
+
         <iframe class="pl-c-viewport__iframe pl-js-iframe" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals"></iframe>
-        
+
         <div class="pl-c-viewport__resizer pl-js-resize-container">
 
             <div class="pl-c-viewport__resizer-handle pl-js-resize-handle" />
-            
+
         </div><!--end pl-c-viewport__resizer-->
 
     </div><!--end pl-c-viewport__iframe-wrapper-->
 
-</div><!--end pl-c-viewport--> 
-	
+</div><!--end pl-c-viewport-->
+
 	<div class="pl-c-modal__cover pl-js-modal-cover"></div>
 <div class="pl-c-modal pl-js-modal">
     <div class="pl-c-modal__toolbar">
@@ -81,7 +81,7 @@
 			<a class="pl-c-nav__link pl-c-nav__link--dropdown pl-js-acc-handle">{{ patternSubtypeUC }}</a>
 
 			<ol class="pl-c-nav__subsublist pl-c-nav__subsublist--dropdown pl-js-acc-panel">
-				
+
 				{{# patternSubtypeItems }}
 				<li class="pl-c-nav__item">
 
@@ -91,7 +91,7 @@
 						{{# patternState }}
 						<span class="pl-c-pattern-state pl-c-pattern-state--{{ patternState }}" title="{{ patternState }}" />
 						{{/ patternState }}
-					
+
 					</a><!--end pl-c-nav__link-->
 
 				</li><!--end pl-c-nav__item-->
@@ -100,7 +100,7 @@
 			</ol><!--end pl-c-nav__subsublist-->
 
 		</li><!--end pl-c-nav__item-->
-		{{/ patternTypeItems }} 
+		{{/ patternTypeItems }}
 		{{# patternItems }}
 		<li class="pl-c-nav__item">
 
@@ -110,7 +110,7 @@
 				{{# patternState }}
 				<span class="pl-c-pattern-state pl-c-pattern-state--{{ patternState }}" title="{{ patternState }}" />
 				{{/ patternState }}
-			
+
 			</a><!--end pl-c-nav__link-->
 
 		</li><!--end pl-c-nav__item-->
@@ -131,7 +131,7 @@
 	</script>
 
 	<script type="text/mustache" class="pl-js-ish-controls-template">
-		
+
 <form class="pl-c-viewport-size" method="post" action="#">
 	<input type="text" class="pl-c-viewport-size__input" id="pl-size-px" value="---"><label for="pl-size-px" class="pl-c-viewport-size__label">px /</label>
 	<input type="text" class="pl-c-viewport-size__input" id="pl-size-em" value="---"><label for="pl-size-em" class="pl-c-viewport-size__label">em</label>
@@ -148,32 +148,32 @@
 	<li class="pl-c-size-list__item">
 		<button class="pl-c-size-list__action" id="pl-size-m">M</button>
 	</li>
-	{{/ ishControlsHide.m }} 
-	
+	{{/ ishControlsHide.m }}
+
 	{{^ ishControlsHide.l }}
 	<li class="pl-c-size-list__item">
 		<button class="pl-c-size-list__action" id="pl-size-l">L</button>
 	</li>
-	{{/ ishControlsHide.l }} 
-	
+	{{/ ishControlsHide.l }}
+
 	{{^ ishControlsHide.full }}
 	<li class="pl-c-size-list__item">
 		<button class="pl-c-size-list__action" id="pl-size-full">Full</button>
 	</li>
-	{{/ ishControlsHide.full }} 
-	
+	{{/ ishControlsHide.full }}
+
 	{{^ ishControlsHide.random }}
 	<li class="pl-c-size-list__item">
 		<button class="pl-c-size-list__action" id="pl-size-random">Rand</button>
 	</li>
-	{{/ ishControlsHide.random }} 
-	
+	{{/ ishControlsHide.random }}
+
 	{{^ ishControlsHide.disco }}
 	<li class="pl-c-size-list__item">
 		<button class="pl-c-size-list__action mode-link" id="pl-size-disco">Disco</button>
 	</li>
-	{{/ ishControlsHide.disco }} 
-	
+	{{/ ishControlsHide.disco }}
+
 	{{^ ishControlsHide.hay }}
 	<li class="pl-c-size-list__item">
 		<button class="pl-c-size-list__action mode-link" id="pl-size-hay">Hay!</button>
@@ -184,7 +184,7 @@
 {{^ ishControlsHide.tools-all }}
 <div class="pl-c-tools">
 	<button class="pl-c-tools__toggle pl-js-acc-handle" title="Tools">
-		
+
 		<svg class="pl-c-tools__toggle-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14" viewBox="0 0 14 14">
 			<title>Pattern Lab Tools</title>
 			<path fill="currentColor" d="M12.767 8.343c-0.735-1.272-0.293-2.903 0.986-3.643l-1.376-2.383c-0.393 0.23-0.85 0.363-1.338 0.363-1.47 0-2.662-1.2-2.662-2.68h-2.752c0.004 0.457-0.11 0.92-0.355 1.343-0.735 1.272-2.367 1.705-3.649 0.967l-1.376 2.383c0.396 0.225 0.739 0.555 0.983 0.977 0.733 1.27 0.294 2.897-0.98 3.64l1.376 2.383c0.392-0.228 0.847-0.359 1.332-0.359 1.466 0 2.654 1.192 2.662 2.665h2.752c-0.001-0.452 0.113-0.91 0.355-1.329 0.733-1.27 2.362-1.703 3.642-0.971l1.376-2.383c-0.393-0.225-0.734-0.554-0.977-0.974zM7 9.835c-1.566 0-2.835-1.269-2.835-2.835s1.269-2.835 2.835-2.835c1.566 0 2.835 1.269 2.835 2.835s-1.269 2.835-2.835 2.835z"></path>
@@ -200,13 +200,13 @@
 		<li class="pl-c-tools__item">
 			<a href="#" class="pl-c-tools__action pl-js-open-new-window" target="_blank">Open In New Window</a>
 		</li>
-		{{/ ishControlsHide.views-new }} 
+		{{/ ishControlsHide.views-new }}
 
 		{{^ ishControlsHide.tools-docs }}
 		<li class="pl-c-tools__item">
 			<a href="http://patternlab.io/docs/" class="pl-c-tools__action" target="_blank">Pattern Lab Docs</a>
 		</li>
-		{{/ ishControlsHide.tools-docs }} 
+		{{/ ishControlsHide.tools-docs }}
 
 	</ul>
 </div><!--end pl-c-tools-->
@@ -380,7 +380,6 @@
 	<script src="styleguide/bower_components/jquery.min.js"></script>
 	<script src="styleguide/bower_components/hogan-3.0.2.min.js"></script>
 	<script src="styleguide/bower_components/prism.min.js"></script>
-	<script src="styleguide/bower_components/jwerty.min.js"></script>
 	<script src="styleguide/bower_components/typeahead.bundle.min.js"></script>
 	<script src="styleguide/bower_components/EventEmitter.min.js"></script>
 	<script src="styleguide/bower_components/script.min.js"></script>

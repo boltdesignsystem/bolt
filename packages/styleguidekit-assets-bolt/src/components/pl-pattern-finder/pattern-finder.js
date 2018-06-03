@@ -18,12 +18,18 @@ export const patternFinder = {
   active: false,
 
   init: function() {
-    for (var patternType in patternPaths) {
-      if (patternPaths.hasOwnProperty(patternType)) {
-        for (var pattern in patternPaths[patternType]) {
+
+    // don't init more than once.
+    if (document.querySelectorAll('.pl-js-typeahead').length > 1){
+      return;
+    }
+
+    for (var patternType in window.patternPaths) {
+      if (window.patternPaths.hasOwnProperty(patternType)) {
+        for (var pattern in window.patternPaths[patternType]) {
           var obj = {};
           obj.patternPartial = patternType + '-' + pattern;
-          obj.patternPath = patternPaths[patternType][pattern];
+          obj.patternPath = window.patternPaths[patternType][pattern];
           this.data.push(obj);
         }
       }
@@ -41,6 +47,8 @@ export const patternFinder = {
 
     // initialize the bloodhound suggestion engine
     patterns.initialize();
+
+    console.log(document.querySelectorAll('.pl-js-typeahead'));
 
     $('.pl-js-typeahead')
       .typeahead(

@@ -10,8 +10,7 @@
  *
  */
 
-import { urlHandler } from '@pattern-lab/utils/url-handler';
-import { DataSaver } from '@pattern-lab/utils/data-saver';
+import { urlHandler, DataSaver } from '@pattern-lab/utils';
 import { panelsViewer } from '@pattern-lab/ui-panels-viewer';
 import $ from 'jquery';
 import { Dispatcher } from '@pattern-lab/utils/eventemitter';

@@ -10,9 +10,9 @@
    * Licensed under the MIT license
    *
    */
-  
+
   var scriptLoader = {
-    
+
     run: function(js,cb,target) {
       var s  = document.getElementById(target+'-'+cb);
       for (var i = 0; i < js.length; i++) {
@@ -31,7 +31,7 @@
         s.parentNode.insertBefore(c,s);
       }
     }
-    
+
   }
 </script>
 
@@ -49,7 +49,7 @@
   (function() {
     if (self != top) {
       var cb = '{{ cacheBuster}}';
-      var js = [ { 'src': 'styleguide/bower_components/jwerty.min.js', 'dep': [ 'styleguide/js/patternlab-pattern.min.js' ] } ];
+      var js = [ { 'src': 'styleguide/js/patternlab-pattern.min.js' } ];
       scriptLoader.run(js,cb,'pl-js-insert');
     }
   })();
