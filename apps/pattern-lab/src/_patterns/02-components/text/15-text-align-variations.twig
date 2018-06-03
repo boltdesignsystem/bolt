@@ -1,0 +1,12 @@
+{% set schema = bolt.data.components['@bolt-components-text'].schema %}
+
+{% for align in schema.properties.align.enum %}
+  <p>Align: {{ align|capitalize }}</p>
+  {% include "@bolt-components-text/text.twig" with {
+    text: "This is an example of align " ~ align,
+    headline: true,
+    tag: "h2",
+    fontSize: "xxlarge",
+    align: align
+  } only %}
+{% endfor %}

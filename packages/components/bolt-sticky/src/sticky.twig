@@ -19,3 +19,8 @@
     {{ content }}
   {% endblock sticky_content %}
 </bolt-{{ componentName }}>
+
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-ordered-list'].schema, _self) | raw }}
+{% endif %}

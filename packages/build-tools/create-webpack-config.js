@@ -12,6 +12,8 @@ const { promisify } = require('util');
 const fs = require('fs');
 const readFile = promisify(fs.readFile);
 const deepmerge = require('deepmerge');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 function createConfig(config) {
   // @TODO: move this setting to .boltrc config
@@ -269,9 +271,22 @@ function createConfig(config) {
     },
     module: {
       rules: [
+        // {
+        //   test: /\.html$/,
+        //   loader: 'mustache-loader',
+        //   // loader: 'mustache-loader?minify'
+        //   // loader: 'mustache-loader?{ minify: { removeComments: false } }'
+        //   // loader: 'mustache-loader?noShortcut'
+        // },
         {
           test: /\.twig$/,
           loader: 'twig-loader',
+          options: {
+            base: path.resolve(process.cwd(), '../../packages/styleguidekit-assets-bolt/src/html'),
+            twigOptions: {
+              base: path.resolve(process.cwd(), '../../packages/styleguidekit-assets-bolt/src/html'),
+            },
+          },
         },
         {
           test: /\.scss$/,
@@ -321,17 +336,18 @@ function createConfig(config) {
             name: '[name].[ext]',
           },
         },
-        {
-          test: [/\.json$/],
-          use: [
-            {
-              loader: 'json-loader',
-            },
-          ],
-        },
+        // {
+        //   test: [/\.json$/],
+        //   use: [
+        //     {
+        //       loader: 'json-loader',
+        //     },
+        //   ],
+        // },
         {
           test: [/\.yml$/, /\.yaml$/],
           use: [
+            { loader: 'json-loader' },
             { loader: 'yaml-loader' },
           ],
         },
@@ -388,8 +404,30 @@ function createConfig(config) {
       }),
       new webpack.DefinePlugin(globalJsData),
       new webpack.NamedModulesPlugin(),
+      new HtmlWebpackPlugin({
+        title: 'Custom template',
+        filename: '../index.html',
+        // Load a custom template (lodash by default see the FAQ for details)
+        template: path.resolve(process.cwd(), '../../packages/styleguidekit-assets-bolt/src/html/index.twig'),
+      }),
     ],
   };
+
+
+  // if (config.env === 'pl') {
+  //   webpackConfig.plugins.push(
+  //     new CopyWebpackPlugin([
+  //       {
+  //         from: path.resolve(path.dirname(require.resolve('@bolt/styleguidekit-assets-bolt')), 'dist/index.html'),
+  //         to: path.resolve(process.cwd(), config.wwwDir, 'pattern-lab/'),
+  //       },
+  //       {
+  //         from: path.resolve(path.dirname(require.resolve('@bolt/styleguidekit-assets-bolt')), 'dist/styleguide'),
+  //         to: path.resolve(process.cwd(), config.wwwDir, 'pattern-lab/styleguide/'),
+  //       },
+  //     ]),
+  //   );
+  // }
 
   if (config.prod) {
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/

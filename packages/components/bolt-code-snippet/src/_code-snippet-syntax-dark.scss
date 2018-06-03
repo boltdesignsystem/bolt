@@ -1,0 +1,82 @@
+// Dark Syntax
+
+$bolt-syntax-dark: 'c-bolt-code-snippet-syntax--dark';
+
+code.#{$bolt-syntax-dark},
+pre.#{$bolt-syntax-dark} {
+  color: bolt-color(gray, xlight);
+  background: bolt-color(indigo, xdark);
+}
+
+pre.#{$bolt-syntax-dark}::-moz-selection, pre.#{$bolt-syntax-dark} ::-moz-selection,
+code.#{$bolt-syntax-dark}::-moz-selection, code.#{$bolt-syntax-dark} ::-moz-selection {
+  background: bolt-color(indigo, xlight);
+}
+
+pre.#{$bolt-syntax-dark}::selection, pre.#{$bolt-syntax-dark} ::selection,
+code.#{$bolt-syntax-dark}::selection, code.#{$bolt-syntax-dark} ::selection {
+  background: bolt-color(indigo, xlight);
+}
+
+.#{$bolt-syntax-dark} {
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: #5C6370;
+  }
+
+  .token.punctuation {
+    color: #abb2bf;
+  }
+
+  .token.selector,
+  .token.tag {
+    color: lightsalmon;
+  }
+
+  .token.property,
+  .token.boolean,
+  .token.number,
+  .token.constant,
+  .token.symbol,
+  .token.attr-name,
+  .token.deleted {
+    color: #d19a66;
+  }
+
+  .token.string,
+  .token.char,
+  .token.attr-value,
+  .token.builtin,
+  .token.inserted {
+    color: #98c379;
+  }
+
+  .token.operator,
+  .token.entity,
+  .token.url,
+  .language-css .token.string,
+  .style .token.string {
+    color: #56b6c2;
+  }
+
+  .token.atrule,
+  .token.keyword {
+    color: #c678dd;
+  }
+
+  .token.function {
+    color: #61afef;
+  }
+
+  .token.regex,
+  .token.important,
+  .token.variable {
+    color: #c678dd;
+  }
+
+  .line-numbers-rows > span:before {
+    color: #5C6370;
+  }
+}

@@ -46,7 +46,6 @@ const preset = function (api, opts = {}) {
         },
       ],
 
-      ['@babel/plugin-syntax-decorators', { legacy: true }],
       ['@babel/plugin-proposal-decorators', { legacy: true }],
 
       // ex. class { handleThing = () => { } }

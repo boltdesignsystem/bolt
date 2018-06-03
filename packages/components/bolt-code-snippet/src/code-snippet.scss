@@ -1,0 +1,62 @@
+@import '~@bolt/core/index.scss';
+
+/* ------------------------------------ *\
+    Bolt Code Snippet
+\* ------------------------------------ */
+
+$bolt-code-snippet-border-radius: $bolt-border-radius;
+$bolt-code-snippet-text-color: var(--bolt-theme-heading, inherit);
+$bolt-code-snippet-background-color: rgba(bolt-color(indigo, light), 0.08);
+
+
+// Custom element default styles
+bolt-code-snippet {
+  &:last-child {
+    .c-bolt-code-snippet {
+      @include bolt-margin-bottom(0);
+    }
+  }
+}
+
+.c-bolt-code-snippet,
+.c-bolt-code-snippet__code {
+  color: inherit;
+  color: $bolt-code-snippet-text-color;
+  text-align: left;
+  border-radius: $bolt-code-snippet-border-radius;
+}
+
+.c-bolt-code-snippet {
+  @include bolt-margin-top(0);
+  @include bolt-margin-right(0);
+  @include bolt-margin-bottom(medium);
+  @include bolt-margin-left(0);
+  @include bolt-padding(small, squished);
+  @include bolt-horizontal-scroll;
+
+  display: block;
+  background-color: $bolt-code-snippet-background-color;
+}
+
+.c-bolt-code-snippet__code {
+  @include bolt-margin(0);
+  @include bolt-font-family(code);
+  @include bolt-font-weight(regular);
+  @include bolt-font-size(small);
+
+  letter-spacing: 0.05rem;
+}
+
+.c-bolt-code-snippet__code--block {
+  @include bolt-padding(0);
+
+  display: block;
+  background-color: transparent;
+}
+
+.c-bolt-code-snippet__code--inline {
+  @include bolt-padding(2px 0.25rem 2px 0.3rem); // [Mai] 0.25rem on the right offsets the 0.05rem letter-spacing.
+
+  display: inline;
+  background-color: $bolt-code-snippet-background-color;
+}

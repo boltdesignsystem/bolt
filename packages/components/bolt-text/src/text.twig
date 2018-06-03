@@ -1,0 +1,160 @@
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-text/text.schema.yml', _self) | raw }}
+{% endif %}
+
+{% set schema = bolt.data.components['@bolt-components-text'].schema %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# check if the value set to a prop is allowed or defined. if not, default to the default value specified in the component's schema (if one exists) #}
+
+{# @todo: programatically walk through setting attributes here #}
+{% if tag in schema.properties.tag.enum %}
+  {% set attributes = attributes.setAttribute("tag", tag) %}
+{% endif %}
+
+{% if fontSize in schema.properties.fontSize.enum %}
+  {% set attributes = attributes.setAttribute("font-size", fontSize) %}
+{% endif %}
+
+{% if weight in schema.properties.weight.enum %}
+  {% set attributes = attributes.setAttribute("weight", weight) %}
+{% endif %}
+
+{% if display in schema.properties.display.enum %}
+  {% set attributes = attributes.setAttribute("display", display) %}
+{% endif %}
+
+{% if align in schema.properties.align.enum %}
+  {% set attributes = attributes.setAttribute("align", align) %}
+{% endif %}
+
+{% if style in schema.properties.style.enum %}
+  {% set attributes = attributes.setAttribute("font-style", style) %}
+{% endif %}
+
+{% if letterSpacing in schema.properties.letterSpacing.enum %}
+  {% set attributes = attributes.setAttribute("letter-spacing", letterSpacing) %}
+{% endif %}
+
+{% if lineHeight in schema.properties.lineHeight.enum %}
+  {% set attributes = attributes.setAttribute("line-height", lineHeight) %}
+{% endif %}
+
+{% if vspacing in schema.properties.vspacing.enum %}
+  {% set attributes = attributes.setAttribute("vspacing", vspacing) %}
+{% endif %}
+
+{% if transform in schema.properties.transform.enum %}
+  {% set attributes = attributes.setAttribute("transform", transform) %}
+{% endif %}
+
+{% if url %}
+  {% set attributes = attributes.setAttribute("url", url) %}
+{% endif %}
+
+{% if quoted %}
+  {% set attributes = attributes.setAttribute("quoted", "") %}
+{% endif %}
+
+{% if opacity in schema.properties.opacity.enum %}
+  {% set attributes = attributes.setAttribute("opacity", opacity) %}
+{% endif %}
+
+{% if fontFamily in schema.properties.fontFamily.enum %}
+  {% set attributes = attributes.setAttribute("font-family", fontFamily) %}
+{% endif %}
+
+{# Shorthand booleans #}
+{% if headline %}
+  {% set attributes = attributes.setAttribute("headline", "") %}
+{% endif %}
+
+{% if subheadline %}
+  {% set attributes = attributes.setAttribute("subheadline", "") %}
+{% endif %}
+
+{% if eyebrow %}
+  {% set attributes = attributes.setAttribute("eyebrow", "") %}
+{% endif %}
+
+{# Icon specific attributes #}
+{# this is for when someone is using an eyebrow, headline, or subheadline with url but doesn't want the chevron right #}
+
+{# @todo: remove once we're done decoupling the text component from the icon component #}
+{#
+{% if icon is defined and icon == false  %}
+  {% set attributes = attributes.setAttribute("icon", "false") %}
+{% endif %} #}
+
+{# Icon Name #}
+{# {% if iconName in schema.properties.iconName.enum %}
+  {% set theIconName = iconName %}
+{% endif %}
+{% if icon.name in schema.properties.iconName.enum %}
+  {% set theIconName = icon.name %}
+{% endif %}
+{% if theIconName %}
+  {% set attributes = attributes.setAttribute("icon-name", theIconName) %}
+{% endif %} #}
+
+{# Icon Background #}
+{# {% if iconBackground in schema.properties.iconBackground.enum %}
+  {% set theIconBackground = iconBackground %}
+{% endif %}
+{% if icon.background in schema.properties.iconBackground.enum %}
+  {% set theIconBackground = icon.background %}
+{% endif %}
+{% if theIconBackground %}
+  {% set attributes = attributes.setAttribute("icon-background", theIconBackground) %}
+{% endif %} #}
+
+{# Icon Size #}
+{# {% if iconSize in schema.properties.iconSize.enum %}
+  {% set theIconSize = iconSize %}
+{% endif %}
+{% if icon.size in schema.properties.iconSize.enum %}
+  {% set theIconSize = icon.size %}
+{% endif %}
+{% if theIconSize %}
+  {% set attributes = attributes.setAttribute("icon-size", theIconSize) %}
+{% endif %} #}
+
+{# Icon color #}
+{# {% if iconColor in schema.properties.iconColor.enum %}
+  {% set theIconColor = iconColor %}
+{% endif %}
+{% if icon.color in schema.properties.iconColor.enum %}
+  {% set theIconColor = icon.color %}
+{% endif %}
+{% if theIconColor %}
+  {% set attributes = attributes.setAttribute("icon-color", theIconColor) %}
+{% endif %} #}
+
+{# Icon Valign #}
+{# {% if iconValign in schema.properties.iconValign.enum %}
+  {% set theIconValign = iconValign %}
+{% endif %}
+{% if icon.valign in schema.properties.iconValign.enum %}
+  {% set theIconValign = icon.valign %}
+{% endif %}
+{% if theIconValign %}
+  {% set attributes = attributes.setAttribute("icon-valign", theIconValign) %}
+{% endif %} #}
+
+{# Icon Align #}
+{# {% if iconAlign in schema.properties.iconAlign.enum %}
+  {% set theIconAlign = iconAlign %}
+{% endif %}
+{% if icon.align in schema.properties.iconAlign.enum %}
+  {% set theIconAlign = icon.align %}
+{% endif %}
+{% if theIconAlign %}
+  {% set attributes = attributes.setAttribute("icon-align", theIconAlign) %}
+{% endif %} #}
+
+{# Utils #}
+{% if util %}
+  {% set attributes = attributes.setAttribute("util", util|join(',')) %}
+{% endif %}
+
+<bolt-text {{ attributes }}>{{ text }}</bolt-text>

@@ -8,10 +8,12 @@ const server = browserSync.create();
 const serverConfig = {
   open: config.openServerAtStart,
   startPath: config.startPath, // Since `/` doesn't do anything and we want to avoid double browserSync notifications from the very beginning
+  host: 'localhost',
+  ghostMode: false,
   baseDir: config.wwwDir,
   logFileChanges: false,
   logConnections: false,
-  notify: false,
+  notify: false, // Hide notifications till we come up with a less disruptive refresh UI
   logLevel: 'silent',
   reloadOnRestart: true,
   files: [

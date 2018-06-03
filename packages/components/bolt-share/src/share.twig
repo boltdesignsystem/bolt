@@ -93,6 +93,7 @@
   </div>
 </bolt-share>
 
+
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-share/share.schema.yml', _self) | raw }}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-share'].schema, _self) | raw }}
 {% endif %}
