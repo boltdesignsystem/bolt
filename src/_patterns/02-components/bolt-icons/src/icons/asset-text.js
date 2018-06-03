@@ -6,7 +6,7 @@ const AssetText = ({ color, size, ...otherProps }) => {
     <svg width={size} height={size} viewBox="0 0 24 24" {...otherProps}>
       <title>Icon/utility/Indigo/24px/Asset-Text</title>
       <defs>
-        <path id="a" d="M0 1V0h20v2H0V1z" />
+        <path id="id-32a" d="M0 1V0h20v2H0V1z" />
       </defs>
       <g fill="currentColor" fill-rule="evenodd">
         <path
@@ -14,13 +14,13 @@ const AssetText = ({ color, size, ...otherProps }) => {
           fill="currentColor"
         />
         <g transform="translate(2 5)">
-          <mask id="b" fill="#fff">
-            <use xlinkHref="#a" />
+          <mask id="id-33b" fill="#fff">
+            <use xlinkHref="#id-32a" />
           </mask>
           <path
             d="M1 2h18c.55 0 1-.45 1-1s-.45-1-1-1H1C.45 0 0 .45 0 1s.45 1 1 1"
             fill="currentColor"
-            mask="url(#b)"
+            mask="url(#id-33b)"
           />
         </g>
         <path
