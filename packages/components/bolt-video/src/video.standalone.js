@@ -13,8 +13,6 @@ import dasherize from 'dasherize';
 
 let index = 0;
 
-import metaStyles from './_video-meta.scss';
-
 @define
 class BoltVideoMeta extends withPreact(withComponent()) {
   static is = `${bolt.namespace}-video-meta`;
@@ -41,7 +39,6 @@ class BoltVideoMeta extends withPreact(withComponent()) {
     const reveal = Boolean(this.title || this.duration);
     return (
       <div className={`c-${bolt.namespace}-video-meta`}>
-        <style>{metaStyles[0][1]}</style>
         {reveal ? (
           <div className={`c-${bolt.namespace}-video-meta__wrapper`}>
             {this.title ? (
