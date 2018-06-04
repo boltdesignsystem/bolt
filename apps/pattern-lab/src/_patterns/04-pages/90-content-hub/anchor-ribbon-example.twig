@@ -1,7 +1,7 @@
-{% extends "@bolt/default-template.twig" %}
+{% extends "@pl/default-template.twig" %}
 
 {% block global_header %}
-  {% include "@bolt/_page-header.twig" %}
+  {% include "@pl/_page-header.twig" %}
 {% endblock %}
 
 {% block main_content %}
@@ -60,40 +60,43 @@
 
 
   {# Anchor Band #}
+
+
+
 {% embed "@bolt-components-sticky/sticky.twig" %}
   {% block sticky_content %}
 
     {% include "@bolt-components-navbar/navbar.twig" with {
-        "theme": "xlight",
-        "center": true,
-        "title": {
+        theme: "xlight",
+        center: true,
+        title: {
           "tag": "h2",
           "text": "Discover Intelligent Process Automation",
         },
-        "links": [
+        links: [
           {
             "text": "Take the Automation Journey",
-            "url": "link-1-url"
+            "url": "#automation"
           },
           {
             "text": "Attain Transformational Results",
-            "url": "link-2-url"
+            "url": "#transformation"
           },
           {
             "text": "Increase Employee Productivity",
-            "url": "link-3-url",
+            "url": "#productivity",
           },
           {
             "text": "Drive Workforce Intelligence",
-            "url": "link-3-url",
+            "url": "#intelligence",
           },
           {
             "text": "Create full system integration",
-            "url": "link-2-url"
+            "url": "#productivity"
           },
           {
             "text": "Instill governance and oversite",
-            "url": "link-3-url",
+            "url": "#productivity",
           }
         ]
       } only %}
@@ -105,10 +108,16 @@
 
 
 {# Automation #}
- {% embed "@bolt/band.twig" with {
-    size: "large",
-    theme: "xlight"
-  } only %}
+{% embed "@bolt-components-band/band.twig" with {
+  size: "large",
+  theme: "xlight",
+  fullBleed: true,
+  attributes: {
+    id: [
+      "automation"
+    ]
+  }
+} %}
   
       {% block band_content  %}
         {% grid %}
@@ -163,10 +172,16 @@
 {# End Automation #}
 
 {# Transformational Results #}
- {% embed "@bolt/band.twig" with {
-    size: "large",
-    theme: "xlight"
-  } only %}
+{% embed "@bolt-components-band/band.twig" with {
+  size: "large",
+  theme: "xlight",
+  fullBleed: true,
+  attributes: {
+    id: [
+      "transformation"
+    ]
+  }
+} %}
   
       {% block band_content  %}
         {% grid %}
@@ -224,10 +239,16 @@
 {# End Transformational Results #}
 
 {# Employee Productivity #}
- {% embed "@bolt/band.twig" with {
-    size: "large",
-    theme: "xlight"
-  } only %}
+{% embed "@bolt-components-band/band.twig" with {
+  size: "large",
+  theme: "xlight",
+  fullBleed: true,
+  attributes: {
+    id: [
+      "productivity"
+    ]
+  }
+} %}
   
       {% block band_content  %}
         {% grid %}
@@ -284,6 +305,138 @@
 {# End Employee Productivity #}
 
 
+{# Intelligence #}
+{% embed "@bolt-components-band/band.twig" with {
+  size: "large",
+  theme: "xlight",
+  fullBleed: true,
+  attributes: {
+    id: [
+      "intelligence"
+    ]
+  }
+} %}
+  
+      {% block band_content  %}
+        {% grid %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+            {% include "@bolt-components-card/card.twig" with {
+              url: "javascript:",
+              contentItems: [
+                {
+                  pattern: "image",
+                  src: "/pattern-lab/images/content/backgrounds/background-tall-2.jpg",
+                  imageAttributes: create_attribute(imageAttributes | default({})).addClass("u-bolt-width-1/1"),
+                  alt: "Anthem Video"
+                },
+                {
+                  pattern: "eyebrow",
+                  text: "Whitepaper"
+                },
+                {
+                  pattern: "headline",
+                  tag: "h3",
+                  size: "large",
+                  text: "Anthem: Service Desktop"
+                },
+                {
+                  pattern: "text",
+                  text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
+                },
+                {
+                  pattern: "button",
+                  style: "text",
+                  width: "full",
+                  itemAlignment: "start",
+                  text: "Get the report"
+                }
+              ]
+            } only %}
+          {% endcell %}
+          {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
+            {% include "@bolt/headline.twig" with {
+            text: "Find Improvement Opportunities",
+            size: "xxlarge",
+            tag: "h2"
+            } only %}
+            <p>It’s 3 p.m. Do you know how your employees are doing? What are they struggling with? What best practices have they discovered? How do you help them be more effective?</p>
+
+            <p>You might have KPIs, but do you know what contributes to those KPIs? What systems are effective? What workarounds your employees are taking? New apps get deployed, processes change, regulatory environments shift – it’s the never-ending cycle of change. You need continuous insights to measure the impact of these changes.</p>
+
+            <p>Pega Workforce Intelligence captures insights at the desktop. It gets you the details of how work gets done. It uses real-time AI to tell you what systems and processes are getting in the way of employee productivity.</p>
+
+            <p>Because once you know the details, you can act. And that makes all the difference.</p>            
+          {% endcell %}
+        {% endgrid %}
+      {% endblock %}
+    {% endembed %}
+{# End Intelligence #}
+
+{# Integration #}
+{% embed "@bolt-components-band/band.twig" with {
+  size: "large",
+  theme: "xlight",
+  fullBleed: true,
+  attributes: {
+    id: [
+      "integration"
+    ]
+  }
+} %}
+  
+      {% block band_content  %}
+        {% grid %}
+          {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
+            {% include "@bolt/headline.twig" with {
+            text: "The Last Mile of Integration",
+            size: "xxlarge",
+            tag: "h2"
+            } only %}
+            <p>Mainframes without APIs? CRM and other mission critical apps? You can’t automate if you can’t connect to the systems that matter. Pega gives you the tools you need to bridge the last mile of integration. It’s everything you need to wrap and renew your enterprise applications.</p>
+            
+            <p>Productivity bots collaborate with your employees to bridge systems and process siloes. They do work like tabbing, searching, and copying and pasting – so your people can focus on your customers.</p>
+
+            <p>Leveraging productivity bots that simplify the employee experience injects instant ROI into your business. In just two to three weeks you'll turn all your service agents, back-office workers, or front-line sellers into productivity ninjas. They’ll be happier. You’ll be happier. And your customers will be happier.</p>
+          {% endcell %}
+      
+          {% cell "u-bolt-width-1/1 u-bolt-width-1/3@medium" %}
+            {% include "@bolt-components-card/card.twig" with {
+              url: "javascript:",
+              contentItems: [
+                {
+                  pattern: "image",
+                  src: "/pattern-lab/images/content/backgrounds/background-tall-3.jpg",
+                  imageAttributes: create_attribute(imageAttributes | default({})).addClass("u-bolt-width-1/1"),
+                  alt: "Anthem Video"
+                },
+                {
+                  pattern: "eyebrow",
+                  text: "Whitepaper"
+                },
+                {
+                  pattern: "headline",
+                  tag: "h3",
+                  size: "large",
+                  text: "Anthem: Service Desktop"
+                },
+                {
+                  pattern: "text",
+                  text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
+                },
+                {
+                  pattern: "button",
+                  style: "text",
+                  width: "full",
+                  itemAlignment: "start",
+                  text: "Get the report"
+                }
+              ]
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endblock %}
+    {% endembed %}
+{# End Integration #}
 
 
   
