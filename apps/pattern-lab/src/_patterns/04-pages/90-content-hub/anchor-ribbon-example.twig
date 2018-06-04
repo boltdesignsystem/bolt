@@ -92,11 +92,11 @@
           },
           {
             "text": "Create full system integration",
-            "url": "#productivity"
+            "url": "#integration"
           },
           {
             "text": "Instill governance and oversite",
-            "url": "#productivity",
+            "url": "#governance",
           }
         ]
       } only %}
@@ -120,7 +120,7 @@
 } %}
   
       {% block band_content  %}
-        {% grid %}
+        {% grid "o-bolt-grid--matrix" %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
             {% include "@bolt/headline.twig" with {
             text: "Automation is a Journey",
@@ -184,7 +184,21 @@
 } %}
   
       {% block band_content  %}
-        {% grid %}
+        {% grid "o-bolt-grid--matrix o-bolt-grid--rev" %}
+            {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
+            {% include "@bolt/headline.twig" with {
+            text: "Transformational Results",
+            size: "xxlarge",
+            tag: "h2"
+            } only %}
+            <p>321% ROI in less than 12 months. 75% cost savings. 75% productivity improvements. These are transformational outcomes. Getting there takes more than just a few robots. You need one unified automation engine.</p>
+
+            <p>Use business process management to orchestrate people and systems. Deploy RPA to take repetitive work out of your operation. Use case management to manage it all from end to end.</p>
+
+            <p>You define service level agreements, route work, and apply rules and advanced intelligence. You can jumpstart with RPA, sure – but you’ll be able to fly past the 20% improvement companies see from robotics alone.</p>
+
+            <p>Why? Because Pega’s capabilities are unified on one platform. No duct tape. No wiring a bunch of things together. You think about outcomes from end to end. Your technology should be able to get that end to end work done.</p>
+          {% endcell %}
           {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
             {% include "@bolt-components-card/card.twig" with {
               url: "javascript:",
@@ -219,20 +233,6 @@
               ]
             } only %}
           {% endcell %}
-          {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
-            {% include "@bolt/headline.twig" with {
-            text: "Transformational Results",
-            size: "xxlarge",
-            tag: "h2"
-            } only %}
-            <p>321% ROI in less than 12 months. 75% cost savings. 75% productivity improvements. These are transformational outcomes. Getting there takes more than just a few robots. You need one unified automation engine.</p>
-
-            <p>Use business process management to orchestrate people and systems. Deploy RPA to take repetitive work out of your operation. Use case management to manage it all from end to end.</p>
-
-            <p>You define service level agreements, route work, and apply rules and advanced intelligence. You can jumpstart with RPA, sure – but you’ll be able to fly past the 20% improvement companies see from robotics alone.</p>
-
-            <p>Why? Because Pega’s capabilities are unified on one platform. No duct tape. No wiring a bunch of things together. You think about outcomes from end to end. Your technology should be able to get that end to end work done.</p>
-          {% endcell %}
         {% endgrid %}
       {% endblock %}
     {% endembed %}
@@ -251,7 +251,7 @@
 } %}
   
       {% block band_content  %}
-        {% grid %}
+        {% grid "o-bolt-grid--matrix" %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
             {% include "@bolt/headline.twig" with {
             text: "Give Your Employees a Robot",
@@ -264,7 +264,6 @@
 
             <p>Leveraging productivity bots that simplify the employee experience injects instant ROI into your business. In just two to three weeks you'll turn all your service agents, back-office workers, or front-line sellers into productivity ninjas. They’ll be happier. You’ll be happier. And your customers will be happier.</p>
           {% endcell %}
-      
           {% cell "u-bolt-width-1/1 u-bolt-width-1/3@medium" %}
             {% include "@bolt-components-card/card.twig" with {
               url: "javascript:",
@@ -318,7 +317,21 @@
 } %}
   
       {% block band_content  %}
-        {% grid %}
+        {% grid "o-bolt-grid--matrix o-bolt-grid--rev" %}
+          {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
+            {% include "@bolt/headline.twig" with {
+            text: "Find Improvement Opportunities",
+            size: "xxlarge",
+            tag: "h2"
+            } only %}
+            <p>It’s 3 p.m. Do you know how your employees are doing? What are they struggling with? What best practices have they discovered? How do you help them be more effective?</p>
+
+            <p>You might have KPIs, but do you know what contributes to those KPIs? What systems are effective? What workarounds your employees are taking? New apps get deployed, processes change, regulatory environments shift – it’s the never-ending cycle of change. You need continuous insights to measure the impact of these changes.</p>
+
+            <p>Pega Workforce Intelligence captures insights at the desktop. It gets you the details of how work gets done. It uses real-time AI to tell you what systems and processes are getting in the way of employee productivity.</p>
+
+            <p>Because once you know the details, you can act. And that makes all the difference.</p>            
+          {% endcell %}
           {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
             {% include "@bolt-components-card/card.twig" with {
               url: "javascript:",
@@ -353,20 +366,6 @@
               ]
             } only %}
           {% endcell %}
-          {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
-            {% include "@bolt/headline.twig" with {
-            text: "Find Improvement Opportunities",
-            size: "xxlarge",
-            tag: "h2"
-            } only %}
-            <p>It’s 3 p.m. Do you know how your employees are doing? What are they struggling with? What best practices have they discovered? How do you help them be more effective?</p>
-
-            <p>You might have KPIs, but do you know what contributes to those KPIs? What systems are effective? What workarounds your employees are taking? New apps get deployed, processes change, regulatory environments shift – it’s the never-ending cycle of change. You need continuous insights to measure the impact of these changes.</p>
-
-            <p>Pega Workforce Intelligence captures insights at the desktop. It gets you the details of how work gets done. It uses real-time AI to tell you what systems and processes are getting in the way of employee productivity.</p>
-
-            <p>Because once you know the details, you can act. And that makes all the difference.</p>            
-          {% endcell %}
         {% endgrid %}
       {% endblock %}
     {% endembed %}
@@ -385,7 +384,7 @@
 } %}
   
       {% block band_content  %}
-        {% grid %}
+        {% grid "o-bolt-grid--matrix" %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
             {% include "@bolt/headline.twig" with {
             text: "The Last Mile of Integration",
@@ -393,12 +392,11 @@
             tag: "h2"
             } only %}
             <p>Mainframes without APIs? CRM and other mission critical apps? You can’t automate if you can’t connect to the systems that matter. Pega gives you the tools you need to bridge the last mile of integration. It’s everything you need to wrap and renew your enterprise applications.</p>
-            
+
             <p>Productivity bots collaborate with your employees to bridge systems and process siloes. They do work like tabbing, searching, and copying and pasting – so your people can focus on your customers.</p>
 
             <p>Leveraging productivity bots that simplify the employee experience injects instant ROI into your business. In just two to three weeks you'll turn all your service agents, back-office workers, or front-line sellers into productivity ninjas. They’ll be happier. You’ll be happier. And your customers will be happier.</p>
           {% endcell %}
-      
           {% cell "u-bolt-width-1/1 u-bolt-width-1/3@medium" %}
             {% include "@bolt-components-card/card.twig" with {
               url: "javascript:",
@@ -438,6 +436,71 @@
     {% endembed %}
 {# End Integration #}
 
+
+{# governance #}
+{% embed "@bolt-components-band/band.twig" with {
+  size: "large",
+  theme: "xlight",
+  fullBleed: true,
+  attributes: {
+    id: [
+      "governance"
+    ]
+  }
+} %}
+  
+      {% block band_content  %}
+        {% grid "o-bolt-grid--matrix o-bolt-grid--rev" %}
+          {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
+            {% include "@bolt/headline.twig" with {
+            text: "Ensure Governance and Oversight",
+            size: "xxlarge",
+            tag: "h2"
+            } only %}
+            <p>As organizations continue to collect software robots, the speed of application updates accelerates, and the application of artificial intelligence broadens. Sooner or later, you’ll get caught up in a management nightmare if you have not considered how to provide consistent oversight and governance over bots, cognitive or not.</p>
+
+            <p>Pega’s enterprise process transformation platform helps orchestrate complex processes, and the Pega Customer Decision Hub supports deterministic rules in addition to advanced adaptive analytics. Rest assured regulatory compliance is maintained across the enterprise.</p>
+
+            <p>Capabilities such as auto self-documentation ensure an audit trail is maintained of all activities so compliance risk is minimized and required reporting is streamlined and automated.</p>      
+          {% endcell %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small u-bolt-margin---small" %}
+            {% include "@bolt-components-card/card.twig" with {
+              url: "javascript:",
+              contentItems: [
+                {
+                  pattern: "image",
+                  src: "/pattern-lab/images/content/backgrounds/background-tall-2.jpg",
+                  imageAttributes: create_attribute(imageAttributes | default({})).addClass("u-bolt-width-1/1"),
+                  alt: "Anthem Video"
+                },
+                {
+                  pattern: "eyebrow",
+                  text: "Whitepaper"
+                },
+                {
+                  pattern: "headline",
+                  tag: "h3",
+                  size: "large",
+                  text: "Anthem: Service Desktop"
+                },
+                {
+                  pattern: "text",
+                  text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
+                },
+                {
+                  pattern: "button",
+                  style: "text",
+                  width: "full",
+                  itemAlignment: "start",
+                  text: "Get the report"
+                }
+              ]
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endblock %}
+    {% endembed %}
+{# End governance #}
 
   
 {% endblock %}
