@@ -25,8 +25,8 @@
 /*------------------------------------*\
     #ABSTRACTS
 \*------------------------------------*/
-@import "scss/abstracts/variables";
-@import "scss/abstracts/mixins";
+@import "scss/01-abstracts/variables";
+@import "scss/01-abstracts/mixins";
 
 
 
@@ -35,8 +35,8 @@
 /*------------------------------------*\
     #BASE
 \*------------------------------------*/
-@import "scss/base/reset";
-@import "scss/base/body";
+@import "scss/02-base/reset";
+@import "scss/02-base/body";
 
 
 
@@ -49,41 +49,32 @@
 /**
  * Pattern Lab Header
  */
-@import "scss/components/header";
-@import "scss/components/logo";
-@import "scss/components/navigation";
-@import "scss/components/ish-sizing";
-@import "scss/components/controls";
-@import "scss/components/tools";
+@import "scss/03-components/header";
+@import "scss/03-components/logo";
+@import "scss/03-components/navigation";
+@import "scss/03-components/ish-sizing";
+@import "scss/03-components/controls";
+@import "scss/03-components/tools";
 
 /**
  * Viewport
  */
-@import "scss/components/viewport";
+@import "scss/03-components/viewport";
 
 /**
  * Pattern Styles
  */
-@import "scss/components/pattern";
-@import "scss/components/pattern-category";
-@import "scss/components/pattern-info";
-@import "scss/components/pattern-states";
-@import "scss/components/pattern-lineage";
-@import "scss/components/breadcrumbs";
-@import "scss/components/tabs";
-@import "scss/components/tools";
-@import "scss/components/annotations";
-@import "scss/components/modal";
-@import "scss/components/text-passage";
-
-
-
-
-
-/*------------------------------------*\
-    #UTILITIES
-\*------------------------------------*/
-@import "scss/utilities/visibility";
+@import "scss/03-components/pattern";
+@import "scss/03-components/pattern-category";
+@import "scss/03-components/pattern-info";
+@import "scss/03-components/pattern-states";
+@import "scss/03-components/pattern-lineage";
+@import "scss/03-components/breadcrumbs";
+@import "scss/03-components/tabs";
+@import "scss/03-components/tools";
+@import "scss/03-components/annotations";
+@import "scss/03-components/modal";
+@import "scss/03-components/text-passage";
 
 
 
@@ -92,8 +83,8 @@
 /*------------------------------------*\
     #VENDOR
 \*------------------------------------*/
-@import "scss/vendor/typeahead";
-@import "scss/vendor/prism";
+@import "scss/04-vendor/typeahead";
+@import "scss/04-vendor/prism";
 
 
 
@@ -102,6 +93,15 @@
 /*------------------------------------*\
     #THEMES
 \*------------------------------------*/
-@import "scss/themes/light-theme";
-@import "scss/themes/density-theme";
-@import "scss/themes/sidebar-theme";
+@import "scss/05-themes/light-theme";
+@import "scss/05-themes/density-theme";
+@import "scss/05-themes/sidebar-theme";
+
+
+
+
+
+/*------------------------------------*\
+    #UTILITIES
+\*------------------------------------*/
+@import "scss/06-utilities/visibility";
