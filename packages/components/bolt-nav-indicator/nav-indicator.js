@@ -72,9 +72,15 @@ let gumshoeStateModule = (function () {
         scrollDelay: false,
         offset,
         callback(nav) {
-          // Exit early if nav.nav (the target) is undefined. Workaround to occasional JS
-          // error throwing `Cannot read property 'nav' of undefined`
-          if (!nav.nav){
+          /**
+            * Exit early if nav OR nav.nav (the target) is undefined. Workaround to occasional JS error throwing:
+            * `Cannot read property 'nav' of undefined`
+            */
+          if (nav === undefined) {
+            return;
+          }
+
+          if (nav.nav === undefined){
             return;
           }
 
