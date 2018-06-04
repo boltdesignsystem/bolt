@@ -68,6 +68,22 @@ class BoltNavLink extends BoltComponent() {
     return this.props.active;
   }
 
+  get isDropdownLink() {
+    return this.props.isDropdownLink;
+  }
+
+  set isDropdownLink(value) {
+    // Properties can be set to all kinds of string values. This makes sure
+    // it’s converted to a proper boolean value using JavaScript’s truthiness
+    // & falsiness principles.
+    value = Boolean(value);
+    if (value) {
+      this.setAttribute('is-dropdown-link', '');
+    } else {
+      this.removeAttribute('is-dropdown-link');
+    }
+  }
+
   activate(emitEvent = true) {
     this._shadowLink.classList.add(this.activeClass);
     this.setAttribute('active', '');
