@@ -271,8 +271,8 @@
   {% endblock band_content %}
 {% endembed %}
 
-
-{% embed "@bolt-components-sticky/sticky.twig" %}
+{# @todo: re-enable when working on navbar edge cases (multiple heights + non-existent links #}
+{# {% embed "@bolt-components-sticky/sticky.twig" %}
   {% block sticky_content %}
     {% include "@bolt-components-navbar/navbar.twig" with {
       theme: "light",
@@ -293,7 +293,7 @@
       ]
     } only %}
   {% endblock %}
-{% endembed %}
+{% endembed %} #}
 
 
 {% embed "@bolt-components-band/band.twig" with {
