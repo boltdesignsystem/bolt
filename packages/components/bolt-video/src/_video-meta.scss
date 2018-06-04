@@ -58,7 +58,8 @@ $bolt-video-meta-transition: $bolt-transition;
 }
 
 // [Mai] Hide the title and duration (which covers the controls) when the video is playing.
-#{$bolt-namespace}-video.is-playing {
+#{$bolt-namespace}-video.is-playing,
+#{$bolt-namespace}-video.is-finished {
   .c-#{$bolt-namespace}-video-meta__item {
     opacity: 0;
   }

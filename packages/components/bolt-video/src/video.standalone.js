@@ -37,9 +37,6 @@ class BoltVideoMeta extends withPreact(withComponent()) {
     // All of its logic is contained here in render(), but it could be updated to be a property that is set
     // externally (such as when the video has finished fully loading).
 
-    // [Mai] This hides the title if there is no value for title.
-    const titleTrue = Boolean(this.title);
-
     // [Mai] 'reveal' allows the meta data (title and duration) to be hidden.
     const reveal = Boolean(this.title || this.duration);
     return (
@@ -47,7 +44,7 @@ class BoltVideoMeta extends withPreact(withComponent()) {
         <style>{metaStyles[0][1]}</style>
         {reveal ? (
           <div className={`c-${bolt.namespace}-video-meta__wrapper`}>
-            {titleTrue ? (
+            {this.title ? (
               <div className={`c-${bolt.namespace}-video-meta__item c-${bolt.namespace}-video-meta__item--title`}>{this.title}</div>
             ) : null}
             <div className={`c-${bolt.namespace}-video-meta__item c-${bolt.namespace}-video-meta__item--duration`}>{this.duration}</div>
