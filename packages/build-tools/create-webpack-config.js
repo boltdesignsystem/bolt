@@ -407,6 +407,7 @@ function createConfig(config) {
       new HtmlWebpackPlugin({
         title: 'Custom template',
         filename: '../index.html',
+        inject: false,
         // Load a custom template (lodash by default see the FAQ for details)
         template: path.resolve(process.cwd(), '../../packages/styleguidekit-assets-bolt/src/html/index.twig'),
       }),

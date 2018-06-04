@@ -5,12 +5,9 @@
  */
 
 import {
-  DataSaver,
-} from '@pattern-lab/utils/data-saver';
-
-import {
   urlHandler,
-} from '@pattern-lab/utils/url-handler';
+  DataSaver,
+} from '@pattern-lab/utils';
 
 import { patternFinder } from '@pattern-lab/ui-pattern-finder';
 import $ from 'jquery';
