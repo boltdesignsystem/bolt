@@ -4,21 +4,13 @@
 } only %}
 
 {% include "@bolt-components-headline/headline.twig" with {
-  text: "This headline is also a link, still with Default Icon",
-  url: "https://www.google.com",
-  icon: null
-} only %}
-
-{% include "@bolt-components-headline/headline.twig" with {
   text: "This headline is also a link, with Defined Icon",
   url: "https://www.google.com",
-  icon: {
-    name: "search"
-  }
+  icon: "search"
 } only %}
 
 {% include "@bolt-components-headline/headline.twig" with {
   text: "This headline is also a link, without an Icon",
   url: "https://www.google.com",
-  icon: false
+  icon: "none"
 } only %}
