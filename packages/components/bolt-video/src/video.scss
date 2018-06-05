@@ -14,6 +14,7 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
   &[is-background-video]{
     @include bolt-margin-right(auto);
     @include bolt-margin-left(auto);
+    z-index: 20;
     flex-grow: 1;
     position: absolute;
     top: 0;
