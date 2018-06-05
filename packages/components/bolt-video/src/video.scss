@@ -1,8 +1,6 @@
 @import '@bolt/core';
-@import '@bolt/components-button/src/button.settings';
-@import '@bolt/components-button/src/button.mixins';
-
 @import 'videojs-enhancements';
+@import 'video-meta';
 
 // Same as max-width of wrapper container
 $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
@@ -12,18 +10,6 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
   display: block;
   width: 100%;
   background-color: bolt-color(black); // placeholder color before poster loads up.
-
-// Hide the metadata (which covers the controls) if the user is either
-//   a) watching the video
-//   b) potentially interacting with the video
-  &:hover,
-  &.is-playing,
-  &:hover.is-paused {
-    #{$bolt-namespace}-video-meta {
-      transform: translate3d(0, 100%, 0);
-      opacity: 0;
-    }
-  }
 
   &[is-background-video]{
     @include bolt-margin-right(auto);
