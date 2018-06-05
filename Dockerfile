@@ -20,3 +20,4 @@ RUN ["/bin/bash", "-c", "yarn run composer:drupal-lab"]
 # Basically `yarn run build:drupal-lab`
 RUN ["/bin/bash", "-c", "yarn run Xbuild:drupal-lab"]
 #RUN yarn --cwd /var/www/html/apps/drupal-lab/web/themes/flash run build
+USER root
