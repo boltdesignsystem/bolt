@@ -114,7 +114,7 @@ bolt-nav-priority {
   &,
   .t-bolt-light &,
   .t-bolt-xlight & {
-    color: bolt-color(black);
+    color: bolt-color(indigo);
   }
 
   background-color: transparent;
@@ -158,17 +158,17 @@ bolt-nav-priority {
 
 
 .c-bolt-nav-priority__dropdown-list {
-  // background-color: themify(primary, 0.9); // @TODO: uncomment once themify updates are merged in
+  // background-color: themify(primary, 0.95); // @TODO: uncomment once themify updates are merged in
 
   // @TODO: remove once themify updates are merged in
   .t-bolt-dark &,
   .t-bolt-xdark & {
-    background-color: rgba(bolt-color(indigo), 0.9);
+    background-color: rgba(bolt-color(indigo), 0.95);
   } // @TODO: remove once themify updates are merged in
   &,
   .t-bolt-light &,
   .t-bolt-xlight & {
-    background-color: rgba(bolt-color(white), 0.9);
+    background-color: rgba(bolt-color(white), 0.95);
   }
 
 
@@ -190,7 +190,7 @@ bolt-nav-priority {
 .c-bolt-nav-priority__dropdown {
   @include bolt-z-index(tooltip);
   box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
-  min-width: 10em;
+  min-width: 12em;
   display: none;
   position: absolute;
   top: 100%;
@@ -300,17 +300,17 @@ bolt-nav-priority {
     opacity: 0;
     pointer-events: none;
 
-    // background-color: themify(primary, 0.9); // @TODO: uncomment once themify updates are merged in
+    // background-color: themify(primary, 0.95); // @TODO: uncomment once themify updates are merged in
     // @TODO: remove once themify updates are merged in
     .t-bolt-dark &,
     .t-bolt-xdark & {
-      background-color: rgba(bolt-color(indigo), 0.9);
+      background-color: rgba(bolt-color(indigo), 0.95);
     }
 
     &,
     .t-bolt-light &,
     .t-bolt-xlight & {
-      background-color: rgba(bolt-color(gray), 0.9);
+      background-color: rgba(bolt-color(gray), 0.95);
     }
 
     overflow: hidden;

@@ -27,16 +27,19 @@ bolt-navlink {
   @include bolt-font-weight(semibold);
 
   position: relative;
-  opacity: 0.6;
+  // opacity: 0.90;
   transition: opacity $bolt-navlink-text-transition;
   position: relative;
   transition: all .1s ease;
   color: currentColor;
   color: var(--bolt-theme-heading-link-default, inherit);
 
-  &:hover, &:active,
-  &.is-hover, &.is-active {
-    opacity: 1;
+  // &:hover, &:active,
+  // &.is-hover, &.is-active {
+  //   opacity: 1;
+  &:active,
+  &.is-active {
+    color: var(--bolt-theme-text, inherit);
   }
 
   &:before {
@@ -88,12 +91,12 @@ bolt-navlink {
   }
 
   &.is-dropdown-link.is-active:after {
-    width: 2px;
+    width: 4px;
     position: absolute;
     top: 6px;
     left: 0;
     bottom: 6px;
-    background-color: currentColor;
+    background-color: var(--bolt-theme-primary,inherit);
     content: '';
   }
 }
