@@ -1,3 +1,8 @@
+{# todo: uncomment when JSON schema added for navlink #}
+{# {% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-navlink'].schema, _self) | raw }}
+{% endif %} #}
+
 {% set attributes = create_attribute(attributes | default({})) %}
 {% set attributes = attributes.addClass("c-bolt-navlink").setAttribute("href", url) %}
 
@@ -7,10 +12,3 @@
     {{ text }}
   </a>
 </bolt-navlink>
-
-
-
-{# todo: uncomment when JSON schema added for navlink #}
-{# {% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-navlink'].schema, _self) | raw }}
-{% endif %} #}

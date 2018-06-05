@@ -1,3 +1,7 @@
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-button-group'].schema, _self) | raw }}
+{% endif %}
+
 {% set tags = ["ul", "ol"] %} {# Available Headline Types #}
 {% set prefix = "c-bolt-" %}
 
@@ -34,8 +38,3 @@
   {% endif %}
 {% endblock button_group_content %}
 </bolt-button-group>
-
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-button-group'].schema, _self) | raw }}
-{% endif %}

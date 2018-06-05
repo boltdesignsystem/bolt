@@ -35,6 +35,9 @@
   } only %}
 #}
 
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-action-blocks'].schema, _self) | raw }}
+{% endif %}
 
 {% set prefix = "c-bolt-" %}
 
@@ -83,6 +86,3 @@
 </bolt-{{ componentName }}>
 
 
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-action-blocks'].schema, _self) | raw }}
-{% endif %}

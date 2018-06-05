@@ -1,3 +1,7 @@
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-video'].schema, _self) | raw }}
+{% endif %}
+
 {% set videoUuid = videoUuid | default("js-bolt-video-uuid--" ~ random()) %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
@@ -27,9 +31,4 @@
   } only %}
 {% else %}
   {{ videoTag }}
-{% endif %}
-
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-video'].schema, _self) | raw }}
 {% endif %}

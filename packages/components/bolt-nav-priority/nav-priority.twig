@@ -1,3 +1,7 @@
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-nav-priority'].schema, _self) | raw }}
+{% endif %}
+
 <bolt-nav-priority more-text="{{ moreText | default("More") }}">
   <nav class="c-bolt-priority-nav">
     <bolt-nav-indicator>
@@ -11,10 +15,3 @@
     </bolt-nav-indicator>
   </nav>
 </bolt-nav-priority>
-
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-nav-priority'].schema, _self) | raw }}
-{% endif %}
-
-

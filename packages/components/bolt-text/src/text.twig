@@ -1,8 +1,9 @@
+{% set schema = bolt.data.components['@bolt-components-text'].schema %}
+
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-text/text.schema.yml', _self) | raw }}
+  {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
-{% set schema = bolt.data.components['@bolt-components-text'].schema %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {# check if the value set to a prop is allowed or defined. if not, default to the default value specified in the component's schema (if one exists) #}

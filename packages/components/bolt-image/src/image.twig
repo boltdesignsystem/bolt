@@ -1,3 +1,7 @@
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-image'].schema, _self) | raw }}
+{% endif %}
+
 {% set imageDataBolt = bolt.data.images[src] %} {# Data from Bolt Manifest #}
 {% set imageDataTwig = getImageData(src)  %} {# Data from processing image file #}
 
@@ -98,8 +102,3 @@
     {% endif %}
   {% endblock %}
 </bolt-image>
-
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-image'].schema, _self) | raw }}
-{% endif %}

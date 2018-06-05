@@ -1,3 +1,7 @@
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-dropdown'].schema, _self) | raw }}
+{% endif %}
+
 {% set collapse = collapse | default(false) %}
 {% set _content = block('content') | default(content) %}
 
@@ -19,8 +23,3 @@
     {% endif %}
   {% endblock %}
 </bolt-dropdown>
-
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-dropdown'].schema, _self) | raw }}
-{% endif %}

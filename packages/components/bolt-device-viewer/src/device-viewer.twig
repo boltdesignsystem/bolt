@@ -1,3 +1,7 @@
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-device-viewer'].schema, _self) | raw }}
+{% endif %}
+
 {% set colors = [
   "silver",
   "black",
@@ -78,8 +82,3 @@
     </div>
   </div>
 </bolt-device-viewer>
-
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-device-viewer'].schema, _self) | raw }}
-{% endif %}
