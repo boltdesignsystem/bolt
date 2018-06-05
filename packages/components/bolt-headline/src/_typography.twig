@@ -1,6 +1,10 @@
 {% set schema = bolt.data.components['@bolt-components-headline'].schema %}
-{% set types = ["headline", "subheadline", "eyebrow", "text"] %} {# Pre-defined types #}
 
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{% set types = ["headline", "subheadline", "eyebrow", "text"] %} {# Pre-defined types #}
 {% set tags = schema.properties.tag.enum %}
 {% set weights = schema.properties.weight.enum %}
 {% set styles = schema.properties.style.enum %}
@@ -82,8 +86,3 @@
     </span>
   {% endif %}
 </{{ tag }}>
-
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-headline'].schema, _self) | raw }}
-{% endif %}

@@ -1,5 +1,10 @@
 {% set schema = bolt.data.components['@bolt-components-code-snippet'].schema %}
 
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+
 {% set prefix = "c-bolt-" %}
 {% set componentName = "code-snippet" %}
 {% set baseClass = prefix ~ componentName %}
@@ -37,10 +42,3 @@
     <pre {{ attributes.addClass(classes) }}>{{ codeContent }}</pre>
   {% endif %}
 </bolt-{{ componentName }}>
-
-
-
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-code-snippet/code-snippet.schema.yml', _self) | raw }}
-{% endif %}

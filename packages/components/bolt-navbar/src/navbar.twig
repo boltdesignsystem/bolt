@@ -1,3 +1,7 @@
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-navbar'].schema, _self) | raw }}
+{% endif %}
+
 {% set schema = bolt.data.components["@bolt-components-navbar"].schema %}
 
 {% set themeOptions = schema.properties.theme.enum %}
@@ -15,8 +19,3 @@
     {% include "@bolt-components-nav-priority/nav-priority.twig" %}
   </nav>
 </bolt-navbar>
-
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-navbar'].schema, _self) | raw }}
-{% endif %}

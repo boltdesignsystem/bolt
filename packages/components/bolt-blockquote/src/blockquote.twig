@@ -31,6 +31,9 @@
   } only %}
 #}
 
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-blockquote'].schema, _self) | raw }}
+{% endif %}
 
 {% set prefix = "c-bolt-" %}
 
@@ -121,8 +124,3 @@
     {% endif %}
   </blockquote>
 </bolt-{{ componentName }}>
-
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-blockquote'].schema, _self) | raw }}
-{% endif %}
