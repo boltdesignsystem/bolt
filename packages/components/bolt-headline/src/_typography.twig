@@ -1,3 +1,7 @@
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-headline/headline.schema.yml', _self) | raw }}
+{% endif %}
+
 {% set schema = bolt.data.components['@bolt-components-headline'].schema %}
 {% set types = ["headline", "subheadline", "eyebrow", "text"] %} {# Pre-defined types #}
 
@@ -87,7 +91,3 @@
     </span>
   {% endif %}
 </{{ tag }}>
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-headline/headline.schema.yml', _self) | raw }}
-{% endif %}
