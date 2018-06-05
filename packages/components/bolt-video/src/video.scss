@@ -27,7 +27,7 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
 
   &[is-background-video]{
     flex-grow: 1;
-    // note: defining a z-index here causes strange behavior in Safari for iOS with buttons no longer accepting click events as expected.
+    z-index: 20;
     transition: opacity .3s ease, min-height .3s ease;
     top: 0;
     right: 0;

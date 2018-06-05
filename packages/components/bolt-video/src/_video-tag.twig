@@ -18,7 +18,7 @@
 {% endif #}
 
 {# force HTML5 Only Rendering #}
-{% set attributes = attributes.setAttribute("data-setup", '{"techOrder": ["Html5"]}') %}
+{% set attributes = attributes.setAttribute("data-setup", '{"techOrder": ["Html5"], "resizeManager": false}') %}
 {% set showMeta = showMeta is null ? true : showMeta %}
 {% set showMetaTitle = showMeta is null ? false : showMetaTitle %}
 
