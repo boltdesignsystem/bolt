@@ -1,3 +1,7 @@
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema('@bolt-components-headline/headline.schema.yml', _self) | raw }}
+{% endif %}
+
 {% set schema = bolt.data.components['@bolt-components-headline'].schema %}
 
 {% if enable_json_schema_validation %}
@@ -21,10 +25,36 @@
 {% set style = style | default(schema.properties.style.default) %}
 {% set type = type in types ? type : "text" %}
 {% set size = size | default(schema.properties.size.default) %}
-{% if icon %}
-  {# Covers backward compatibility with use of both left and before to describe icon position #}
-  {% set iconPosition = icon.position == "left" ? "before" : icon.position  %}
+
+
+{# For backwards compatibility only, setting icon to exactly 'false' is the same as specifying 'none'.  Deprecated. #}
+{% if icon is sameas(false) %}
+  {% set icon = "none" %}
 {% endif %}
+
+{# If this is a link, use a chevron-right icon unless explicitly requested otherwise. #}
+{% set fallbackIconName = url ? "chevron-right" : "none" %}
+
+{# iconName is a string representing the name of the icon or "none" if no icon should be shown. #}
+{% set iconName = icon is iterable ? icon.name : icon | default(fallbackIconName)%}
+
+{# Validate iconName.  If invalid, we'll use the default #}
+{#{% set iconSchema = bolt.data.components['@bolt-components-icon'].schema %}#}
+{#{% if iconName not in iconSchema.properties.name.enum and iconName != "none" %}#}
+  {#{% set iconName = fallbackIconName %}#}
+{#{% endif %}#}
+
+{# If icon was a string, initialize it as an empty object. #}
+{% set icon = icon is iterable ? icon : {} %}
+
+{% if iconName == "none" %}
+  {% set icon = false %}
+{% else %}
+  {% set icon = icon | merge({ name: iconName }) %}
+{% endif %}
+
+{# Covers backward compatibility with use of both left and before to describe icon position #}
+{% set iconPosition = icon.position == "left" ? "before" : icon.position  %}
 
 {% set prefix = "c-bolt-" %}
 {% set baseClass = prefix ~ type %}
@@ -46,12 +76,6 @@
   url ? baseClass ~ "--link" : "",
   iconPosition ? baseClass ~ "--icon-position-" ~ iconPosition : ""
 ] %}
-
-{% if url and icon is not defined %}
-  {% set icon = icon | default({}) | merge({
-    name: "chevron-right"
-  }) %}
-{% endif %}
 
 <{{ tag }} {{ attributes.addClass(classes) }}>
   {% if icon and not url and iconPosition == "before" %}

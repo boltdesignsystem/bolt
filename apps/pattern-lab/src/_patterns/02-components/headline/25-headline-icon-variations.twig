@@ -23,10 +23,20 @@
 <h3>Headline w/ Default Icon Position</h3>
 {% include "@bolt-components-headline/headline.twig" with {
   text: "What we do at Pega is brilliant!",
+  icon: "chevron-right",
+} only %}
+<br><br>
+
+
+<h3>Headline w/ Icon Options</h3>
+{% include "@bolt-components-headline/headline.twig" with {
+  text: "What we do at Pega is brilliant!",
   icon: {
-    name: "chevron-right"
+    name: "energy",
+    color: "blue"
   }
 } only %}
+
 <br><br><br><br>
 
 <hr>

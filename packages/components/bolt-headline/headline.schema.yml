@@ -67,13 +67,15 @@ properties:
     type: string
     description: If provided, turns headline into a link to given url.
   icon:
-    description: Bolt icon. Excepts the same options as Bolt Icon Component `@bolt-components-icon`
+    description: Bolt icon. Accepts either 1) an icon name as a string 2) an icon object as expected by `@bolt-components-icon` or 3) the string "none" to explicitly remove default icons
     anyOf:
-      -
-        type: object
+      - type: object
         ref: '@bolt-components-icon/icon.schema.yml'
-      -
-        type: boolean
+      - type: string
+        enum:
+          - none
+      - type: string
+        ref: '@bolt-components-icon/icon.schema.yml#/properties/name'
   quoted:
     type: boolean
     description: Adds quoted styling to text.
