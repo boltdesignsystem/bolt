@@ -112,9 +112,9 @@ class BoltButton extends BoltComponent() {
       this.props.disabled ? 'c-bolt-button--disabled' : '',
 
       // Test out psuedo states via prop values
-      this.props.isHover ? 'c-bolt-button--hover' : '',
-      this.props.isActive ? 'c-bolt-button--active' : '',
-      this.props.isFocus ? 'c-bolt-button--focus' : '',
+      // this.props.isHover ? 'is-hover' : '',
+      // this.props.isActive ? 'is-active' : '',
+      // this.props.isFocus ? 'is-focus' : '',
     );
 
     /**
