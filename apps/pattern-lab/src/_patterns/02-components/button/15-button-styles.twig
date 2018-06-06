@@ -1,5 +1,11 @@
 {% set schema = bolt.data.components['@bolt-components-button'].schema %}
 
+{#
+  This page exists ONLY for creating our demos.
+  DO NOT use "is-hover", "is-focus", or "is-active" classes for implementation.
+  Strictly for demo purposes.
+#}
+
 {% for style in schema.properties.style.enum %}
   <p>{{ style|capitalize }} Button States</p>
 
@@ -18,9 +24,8 @@
     "text": "Button (Hover)",
     attributes: {
       class: [
-        "c-bolt-button--hover"
-      ],
-      "is-hover": true
+        "is-hover"
+      ]
     },
     style: style
   } only %}
@@ -29,9 +34,8 @@
     "text": "Button (Focus)",
     attributes: {
       class: [
-        "c-bolt-button--focus"
-      ],
-      "is-focus": true
+        "is-focus"
+      ]
     },
     style: style
   } only %}
@@ -40,9 +44,8 @@
     "text": "Button (Active)",
     attributes: {
       class: [
-        "c-bolt-button--active"
-      ],
-      "is-active": true
+        "is-active"
+      ]
     },
     style: style
   } only %}

@@ -9,22 +9,22 @@
 @mixin bolt-button-raised() {
   &:not(.c-bolt-button--disabled):not(.c-bolt-button--text):not([disabled]) {
     &:hover,
-    &.c-bolt-button--hover {
+    &.is-hover {
       @include bolt-shadow('level-20', true);
     }
 
     &:hover:before,
-    &.c-bolt-button--hover:before {
+    &.is-hover:before {
       opacity: 1;
     }
 
     &:active,
-    &.c-bolt-button--active {
+    &.is-active {
       transform: $bolt-button-translate--active;
     }
 
     &:active:before,
-    &.c-bolt-button--active:before {
+    &.is-active:before {
       opacity: 0;
     }
   }
@@ -112,7 +112,7 @@
   }
 
   &:hover,
-  &.c-bolt-button--hover {
+  &.is-hover {
     border-color: $primary-background-hover;
     border-color: var(--bolt-theme-primary-border-hover, $primary-background-hover);
     color: bolt-text-contrast($primary-background-default);
@@ -122,7 +122,7 @@
   }
 
   &:focus,
-  &.c-bolt-button--focus {
+  &.is-focus {
     border-color: $primary-background-hover;
     border-color: var(--bolt-theme-primary-border-hover, $primary-background-hover);
     color: bolt-text-contrast($primary-background-default);
@@ -136,7 +136,7 @@
   }
 
   &:active,
-  &.c-bolt-button--active {
+  &.is-active {
     border-color: $primary-background-active;
     border-color: var(--bolt-theme-primary-border-active, $primary-background-active);
 
@@ -166,7 +166,7 @@
     background-color: var(--bolt-theme-secondary-background-default, $secondary-background-default);
   }
 
-  &.c-bolt-button--hover,
+  &.is-hover,
   &:hover {
     border-color: $secondary-background-hover;
     border-color: var(--bolt-theme-secondary-border-hover, $secondary-background-hover);
@@ -177,7 +177,7 @@
   }
 
   &:focus,
-  &.c-bolt-button--focus {
+  &.is-focus {
     border-color: $secondary-background-hover;
     border-color: var(--bolt-theme-secondary-border-hover, $secondary-background-hover);
     color: bolt-text-contrast($secondary-background-default);
@@ -189,7 +189,7 @@
     outline-color: rgb(59, 153, 252); // Default browser outline styles
   }
 
-  &.c-bolt-button--active,
+  &.is-active,
   &:active {
     border-color: $secondary-background-active;
     border-color: var(--bolt-theme-secondary-border-active, $secondary-background-active);
