@@ -2,17 +2,9 @@ $schema: http://json-schema.org/draft-04/schema#
 title: Action blocks
 type: object
 properties:
-  theme:
-    type: string
-    description: A color theme.
-    default: false
-    enum:
-      - xlight
-      - light
-      - dark
-      - xdark
-      - medium
-      - 'false'
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
   maxItemsPerRow:
     type: number
     description: Number of items to place in a row before beginning a new row.
