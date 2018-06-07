@@ -70,10 +70,6 @@ class BoltButton extends BoltComponent() {
     target: props.string,
     url: props.string,
 
-    isHover: props.boolean,  // test hover psuedo state
-    isActive: props.boolean, // test active psuedo state
-    isFocus: props.boolean,  // test focus psuedo state
-
     onClick: props.string, // Managed by base class
     onClickTarget: props.string, // Managed by base class
   }
