@@ -85,12 +85,17 @@
   {% endif %}
 
   {% if url %}
-    {% include "@bolt/link.twig" with {
+    {% set linkVars = {
       text: text,
-      icon: icon,
       url: url,
       isHeadline: (type == "text")
-    } only %}
+    } %}
+
+    {% if icon %}
+      {% set linkVars = linkVars | merge({ icon: icon }) %}
+    {% endif %}
+
+    {% include "@bolt/link.twig" with linkVars only %}
   {% else %}
     {{ text }}
   {% endif %}
