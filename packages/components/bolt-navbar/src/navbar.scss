@@ -13,6 +13,8 @@ $bolt-navbar-vspacing-xsmall: bolt-v-spacing(xsmall);
 bolt-navbar {
   @include bolt-z-index(nav);
   @include bolt-full-bleed; // @todo: make full bleed optional?
+  @include bolt-margin-top(0); // workaround to -.5px in bolt-full-bleed
+  @include bolt-margin-bottom(0); // workaround to -.5px in bolt-full-bleed
   @supports(--css: variables) {
     --bolt-vspacing: #{$bolt-navbar-vspacing-small};
   }
