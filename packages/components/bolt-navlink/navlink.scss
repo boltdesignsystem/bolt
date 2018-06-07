@@ -34,8 +34,9 @@ bolt-navlink {
   color: currentColor;
   color: var(--bolt-theme-heading-link-default, inherit);
   // Added so that &:focus:not(:active) doesn't change the size of the band
-  // We should consider making &:focus:not(:active) with thin dotted style a mixin to share with nav-priority
-  border-width: thin; 
+  // @todo: we should consider making &:focus:not(:active) with thin dotted style a mixin
+  // to share with nav-priority
+  border-width: thin;
   border-style: dotted;
   border-radius: 3px;
   border-color: transparent;
