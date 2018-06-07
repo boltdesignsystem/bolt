@@ -110,11 +110,6 @@ class BoltButton extends BoltComponent() {
       this.props.align ? `c-bolt-button--${this.props.align}` : 'c-bolt-button--center',
       this.props.align ? `c-bolt-button--${this.props.transform}` : '',
       this.props.disabled ? 'c-bolt-button--disabled' : '',
-
-      // Test out psuedo states via prop values
-      // this.props.isHover ? 'is-hover' : '',
-      // this.props.isActive ? 'is-active' : '',
-      // this.props.isFocus ? 'is-focus' : '',
     );
 
     /**
