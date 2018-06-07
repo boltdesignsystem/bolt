@@ -45,17 +45,11 @@ properties:
   indent:
     description: Indent text.
     default: false
-    type: string
-    enum:
-      - 'true'
-      - 'false'
+    type: boolean
   fullBleed:
-      description: Width of the brower window.
-      default: false
-      type: string
-      enum:
-        - 'true'
-        - 'false'
+    description: Width of the brower window.
+    default: false
+    type: boolean
   logo:
       description: Add a logo component.
       type: object
