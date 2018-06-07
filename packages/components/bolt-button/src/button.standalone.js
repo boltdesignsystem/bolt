@@ -78,12 +78,6 @@ class BoltButton extends BoltComponent() {
     onClickTarget: props.string, // Managed by base class
   }
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    this.useShadow = hasNativeShadowDomSupport;
-    return self;
-  }
 
   connecting() {
     this.addEventListener('click', this.clickHandler);
@@ -98,7 +92,7 @@ class BoltButton extends BoltComponent() {
     declarativeClickHandler(this);
   }
 
-  render({ props, state }) {
+  render() {
     // Setup the combo of classes to apply based on state + extras added
     const classes = css(
       'c-bolt-button',
@@ -148,9 +142,7 @@ class BoltButton extends BoltComponent() {
     let buttonElement;
 
     if (childElementIndex !== null){
-      buttonElement = this.hyper.wire(this) `
-        ${this.slot('default')}
-      `;
+      buttonElement = this.slot('default');
     } else if (childElementIndex === null && hasUrl) {
       buttonElement = this.hyper.wire(this) `
         <a href="${this.props.url}" class="${classes}" target="${urlTarget}">

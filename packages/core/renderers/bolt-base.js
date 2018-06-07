@@ -56,15 +56,15 @@ export function BoltBase(Base = HTMLElement) {
 
       // Loop through nodelist
       this.childNodes.forEach(function (child, index, nodelist) {
-        const slotName = child.getAttribute ? child.getAttribute('slot') : null;
+          const slotName = child.getAttribute ? child.getAttribute('slot') : null;
 
-        if (!slotName) {
+          if (!slotName) {
           elem.slots.default.push(child);
-        } else {
+          } else {
           elem.slots[slotName] = child;
-        }
-      });
-    }
+          }
+        });
+      }
 
     disconnectedCallback() {
       this.disconnecting && this.disconnecting();
