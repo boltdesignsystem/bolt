@@ -1,0 +1,38 @@
+/* ------------------------------------ *\
+  ANIMATED SHADOW MIXIN
+  see `_settings-shadow.scss`
+\* ------------------------------------ */
+
+@mixin bolt-animated-shadow($props...) {
+  $raised: null;
+  $important: null;
+
+  // Normalize the 'raised' value given an arglist of values passed in
+  @if map-get(keywords($props), 'raised'){
+    $raised: map-get(keywords($props), 'raised');
+  }  @else if (length($props) >= 2){
+    $raised: nth($props, 2);
+  }
+
+  // Normalize the 'important' value given an arglist of values passed in
+  @if map-get(keywords($props), 'important') {
+    $important: map-get(keywords($props), 'important');
+  } @else if (length($props) >= 4){
+    $important: nth($props, 4);
+  }
+
+  // set important to be '!important' if the prop was set when calling the mixin.
+  @if $important == true or $important == 'important' {
+    $important: !important;
+  } @else {
+    $important: null;
+  }
+
+  @if $raised {
+     transform: translateY(-2px) $important;
+   } @else {
+     transition: all 0.3s cubic-bezier(.25, .8, .25, 1) $important;
+   }
+
+   @include bolt-shadow($props...);
+}
