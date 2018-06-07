@@ -256,7 +256,7 @@
 
             {% set checkboxChildren %}
               {% for checkbox in facet.checkboxes %}
-                {% include ("@bolt/form-element-demo-checkbox.twig") with {
+                {% include ("@pl/form-element-demo-checkbox.twig") with {
                   "labelTitle": checkbox,
                   "elementId": "checkbox-" ~ facet.title ~ checkbox
                 } only %}
