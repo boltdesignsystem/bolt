@@ -16,12 +16,17 @@
       {% for background in exampleBackgrounds %}
         {% for color in exampleColors %}
           <li>
-            {% include "@bolt-components-icon/icon.twig" with {
+            {% set iconVars = {
               name: "add-open",
               background: background,
-              size: "xlarge",
-              color: color
-            } only %}
+              size: "xlarge"
+            } %}
+
+            {% if color %}
+              {% set iconVars = iconVars | merge({color: color}) %}
+            {% endif %}
+
+            {% include "@bolt-components-icon/icon.twig" with iconVars only %}
             <br />{{ background ? "Background: " ~ background : '' }}
             <br />{{ color ? "Color: " ~ color : '' }}
           </li>
@@ -51,12 +56,17 @@ size: 'xlarge'
       {% for background in exampleBackgrounds %}
         {% for color in exampleColors %}
           <li>
-            {% include "@bolt-components-icon/icon.twig" with {
-            name: "add-open",
-            background: background,
-            size: "xlarge",
-            color: color
-            } only %}
+            {% set iconVars = {
+              name: "add-open",
+              background: background,
+              size: "xlarge"
+            } %}
+
+            {% if color %}
+              {% set iconVars = iconVars | merge({color: color}) %}
+            {% endif %}
+
+            {% include "@bolt-components-icon/icon.twig" with iconVars only %}
             <br />{{ background ? "Background: " ~ background : '' }}
             <br />{{ color ? "Color: " ~ color : '' }}
           </li>
