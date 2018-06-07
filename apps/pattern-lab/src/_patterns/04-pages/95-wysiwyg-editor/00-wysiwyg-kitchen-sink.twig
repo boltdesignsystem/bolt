@@ -1,0 +1,100 @@
+{% extends "@pl/default-template.twig" %}
+
+{% block main_content %}
+  {% set header %}
+    {% include "@bolt/headline.twig" with {
+      "text": "Article Elements Kitchen Sink",
+      "size": "xxxlarge",
+      "tag": "h1"
+    } only %}
+  {% endset %}
+  {% set article %}
+    <h3>Headlines</h3>
+    <figure class="u-bolt-margin-bottom-medium">
+      {% include "@bolt/headline.twig" with {
+        "text": "Headline 1 is XXLarge Headline",
+        "size": "xxlarge",
+        "tag": "h2"
+      } only %}
+      {% include "@bolt/headline.twig" with {
+        "text": "Headline 2 is XLarge Headline",
+        "size": "xlarge",
+        "tag": "h3"
+      } only %}
+      {% include "@bolt/headline.twig" with {
+        "text": "Headline 3 is Large Headline",
+        "size": "large",
+        "tag": "h4"
+      } only %}
+    </figure>
+    <h3>Text</h3>
+    <figure class="u-bolt-margin-bottom-medium">
+      {% include "@bolt/text.twig" with {
+        "text": "Body text is medium sized text.",
+        "tag": "p"
+      } only %}
+      {% include "@bolt/text.twig" with {
+        "text": "Italic text is <em>emphasized</em>.",
+        "tag": "p"
+      } only %}
+      {% include "@bolt/text.twig" with {
+        "text": "Bold text is <strong>strong</strong>.",
+        "tag": "p"
+      } only %}
+    </figure>
+    <h3>Link</h3>
+    <figure class="u-bolt-margin-bottom-medium">
+      {% include "@bolt-components-link/link.twig" with {
+        text: "Link is link with default settings.",
+        url: "http://google.com",
+      } only %}
+    </figure>
+    <h3>Blockquote</h3>
+    <figure class="u-bolt-margin-bottom-medium">
+      {% include "@bolt-components-blockquote/blockquote.twig" with {
+        "content": "<p>Blockquote is blockquote with default settings.</p>",
+      } only %}
+    </figure>
+    <h3>Lists</h3>
+    <figure class="u-bolt-margin-bottom-medium">
+      {% include "@bolt-components-ordered-list/ordered-list.twig" with {
+        "contentItems" : [
+          {
+            "text": "Ordered list is"
+          },
+          {
+            "text": "Ordered list"
+          },
+          {
+            "text": "with default settings"
+          }
+        ]
+      } %}
+      {% include "@bolt-components-unordered-list/unordered-list.twig" with {
+        "contentItems" : [
+          {
+            "text": "Unordered list is"
+          },
+          {
+            "text": "Unordered list"
+          },
+          {
+            "text": "with default settings"
+          }
+        ]
+      } %}
+    </figure>
+  {% endset %}
+
+
+
+  {% include "@bolt/band.twig" with {
+    "theme": "dark",
+    "size": "large",
+    "content": header
+  } only %}
+  {% include "@bolt/band.twig" with {
+    "theme": "light",
+    "content": article
+  } only %}
+{% endblock %}
