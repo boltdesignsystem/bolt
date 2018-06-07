@@ -236,13 +236,17 @@ async function writeTwigNamespaceFile(relativeFrom, extraNamespaces = {}) {
   if (extraNamespaces) {
     Object.keys(extraNamespaces).forEach((namespace) => {
       const settings = extraNamespaces[namespace];
-      if (namespaceConfigFile[namespace]) {
+      if (namespaceConfigFile[namespace] &&
+        settings.paths !== undefined // make sure the paths config is defined before trying to merge
+      ) {
         // merging the two, making sure the paths from `extraNamespaces` go first
         namespaceConfigFile[namespace].paths = [
           ...settings.paths,
           ...namespaceConfigFile[namespace].paths,
         ];
-      } else {
+
+      // don't add a new namespace key if the paths config option wasn't defined. prevents PHP errors if a namespace key was defined but no paths specified.
+      } else if (settings.paths !== undefined) {
         namespaceConfigFile[namespace] = settings;
       }
     });
