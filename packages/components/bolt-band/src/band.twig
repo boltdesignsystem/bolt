@@ -1,7 +1,6 @@
-{# @todo: uncomment below when the strange validation issue relating to Bands (specifically, 'no schema found to verify against') is resolved. #}
-{# {% if enable_json_schema_validation %}
+{% if enable_json_schema_validation %}
   {{ validate_data_schema(bolt.data.components['@bolt-components-band'].schema, _self) | raw }}
-{% endif %} #}
+{% endif %}
 
 {% set prefix = "c-bolt-" %}
 {% set contentTags = ["div", "article", "section", "header", "footer", "nav", "figcaption"] %} {# Available content container tags #}
