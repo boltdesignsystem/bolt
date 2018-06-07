@@ -59,10 +59,10 @@ export function BoltBase(Base = HTMLElement) {
         const slotName = child.getAttribute ? child.getAttribute('slot') : null;
 
         if (!slotName) {
-            elem.slots.default.push(child);
-          } else {
-            elem.slots[slotName] = child;
-          }
+          elem.slots.default.push(child);
+        } else {
+          elem.slots[slotName] = child;
+        }
       });
     }
 
