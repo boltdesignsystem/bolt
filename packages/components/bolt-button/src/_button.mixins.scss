@@ -10,7 +10,7 @@
   &:not(.c-bolt-button--disabled):not(.c-bolt-button--text):not([disabled]) {
     &:hover,
     &.is-hover {
-      @include bolt-shadow('level-20', true);
+      @include bolt-animated-shadow('level-20', true);
     }
 
     &:hover:before,
@@ -36,7 +36,7 @@
   @include bolt-no-select;
   @include bolt-font-weight(semibold);
   @include bolt-button-raised;
-  @include bolt-shadow('level-20');
+  @include bolt-animated-shadow('level-20');
 
   display: inline-block;
   display: inline-flex;
