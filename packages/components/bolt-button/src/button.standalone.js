@@ -78,6 +78,12 @@ class BoltButton extends BoltComponent() {
     onClickTarget: props.string, // Managed by base class
   }
 
+  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
+  constructor(self) {
+    self = super(self);
+    this.useShadow = hasNativeShadowDomSupport;
+    return self;
+  }
 
   connecting() {
     this.addEventListener('click', this.clickHandler);
