@@ -20,10 +20,15 @@ import {
 export class BoltNavPriority extends BoltComponent() {
   static is = 'bolt-nav-priority';
 
+  static get observedAttributes() {
+    return ['is-ready'];
+  }
+
   constructor(self) {
     self = super(self);
     this.activeLink = false;
     this.useShadow = false;
+    this.isReady = false;
 
     this._adaptPriorityNav = this._adaptPriorityNav.bind(this);
     this._handleDropdownToggle = this._handleDropdownToggle.bind(this);
@@ -45,8 +50,6 @@ export class BoltNavPriority extends BoltComponent() {
       this.containerTabs = this.querySelector('.c-bolt-nav-priority');
       this.primaryNav = this.querySelector('.c-bolt-nav-priority__primary');
       this.primaryItems = this.querySelectorAll('.c-bolt-nav-priority__primary > .c-bolt-nav-priority__item:not(.c-bolt-nav-priority__item--show-more)');
-      this.containerTabs.classList.add('is-ready');
-      this.classList.add('is-ready');
 
       this.primaryNav.insertAdjacentHTML('beforeend', `
         <li class="c-bolt-nav-priority__item c-bolt-nav-priority__show-more">
@@ -65,6 +68,9 @@ export class BoltNavPriority extends BoltComponent() {
           </div>
         </li>
       `);
+
+      // trigger `isReady` setup work
+      this.isReady = true;
 
       this.priorityDropdown = this.querySelector('.c-bolt-nav-priority__dropdown');
       this.dropdownItems = this.priorityDropdown.querySelectorAll('li');
@@ -184,9 +190,37 @@ export class BoltNavPriority extends BoltComponent() {
     this.dropdownButton.setAttribute('aria-expanded', false);
   }
 
+  get isReady() {
+    return this.hasAttribute('is-ready');
+  }
+
+  set isReady(value) {
+    value = Boolean(value);
+    if (value) {
+      this.setAttribute('is-ready', '');
+      this.classList.add('is-ready');
+
+      // make sure containerTabs exists first
+      if (this.containerTabs) {
+        this.containerTabs.classList.add('is-ready');
+      }
+    } else {
+      this.removeAttribute('is-ready');
+      this.classList.remove('is-ready');
+
+      // make sure containerTabs exists first
+      if (this.containerTabs) {
+        this.containerTabs.classList.remove('is-ready');
+      }
+    }
+  }
+
   // Clean up event listeners when being removed from the page
   disconnecting() {
     this.removeEventListener('navlink:click', this._onActivateLink);
     window.removeEventListener('optimizedResize', this._adaptPriorityNav);
+
+    // remove dropdown markup when cleaning up.
+    this.removeChild(this.moreListItem);
   }
 }
