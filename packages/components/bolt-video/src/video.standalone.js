@@ -14,8 +14,6 @@ import Mousetrap from 'mousetrap';
 
 let index = 0;
 
-import metaStyles from './_video-meta.scss';
-
 @define
 class BoltVideoMeta extends withPreact(withComponent()) {
   static is = `${bolt.namespace}-video-meta`;
@@ -35,17 +33,20 @@ class BoltVideoMeta extends withPreact(withComponent()) {
   }
 
   render() {
-    const separator = this.title && this.duration ? ' | ' : '';
-
-    // 'reveal' allows the metadata to be hidden.
     // All of its logic is contained here in render(), but it could be updated to be a property that is set
     // externally (such as when the video has finished fully loading).
+
+    // [Mai] 'reveal' allows the meta data (title and duration) to be hidden.
     const reveal = Boolean(this.title || this.duration);
     return (
       <div className={`c-${bolt.namespace}-video-meta`}>
-        <style>{metaStyles[0][1]}</style>
         {reveal ? (
-          <div className={`c-${bolt.namespace}-video-meta__wrapper`}>{this.title}{separator}{this.duration}</div>
+          <div className={`c-${bolt.namespace}-video-meta__wrapper`}>
+            {this.title ? (
+              <div className={`c-${bolt.namespace}-video-meta__item c-${bolt.namespace}-video-meta__item--title`}>{this.title}</div>
+            ) : null}
+            <div className={`c-${bolt.namespace}-video-meta__item c-${bolt.namespace}-video-meta__item--duration`}>{this.duration}</div>
+          </div>
         ) : null}
       </div>
     );
@@ -678,47 +679,47 @@ class BoltVideo extends withPreact(withComponent()) {
 
     return (
       <span className={classes}>
-      <video
-        {...dataAttributes}
-        id={this.state.id}
-        {...(this.props.poster ? {poster: this.props.poster.uri} : {})}
-        data-embed="default"
-        data-video-id={this.props.videoId}
-        preload="none"
-        data-account={this.props.accountId}
-        data-player={this.props.playerId}
-        // playIcon={playIconEmoji()}
-        // following 'autoplay' can not expected to always work on web
-        // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
-        autoPlay={this.props.autoplay}
-        data-application-id
-        loop={this.props.loop}
-        className="video-js"
-        controls={this.props.controls === false ? false : true}
-      />
+        <video
+          {...dataAttributes}
+          id={this.state.id}
+          {...(this.props.poster ? {poster: this.props.poster.uri} : {})}
+          data-embed="default"
+          data-video-id={this.props.videoId}
+          preload="none"
+          data-account={this.props.accountId}
+          data-player={this.props.playerId}
+          // playIcon={playIconEmoji()}
+          // following 'autoplay' can not expected to always work on web
+          // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
+          autoPlay={this.props.autoplay}
+          data-application-id
+          loop={this.props.loop}
+          className="video-js"
+          controls={this.props.controls === false ? false : true}
+        />
         {this.props.showMeta &&
           h(videoMetaTag)
         }
         {this.props.isBackgroundVideo &&
-        <a className={ css(
-          `c-${bolt.namespace}-video__close-button`,
-          `c-${bolt.namespace}-video__close-button--icon-to-text`,
-        ) } href="javascript:"
-           onClick={this.handleClose}>
-          <span className={`c-${bolt.namespace}-video__close-button-icon`}>
-            <div
-              class="c-bolt-button c-bolt-button--xsmall c-bolt-button--secondary c-bolt-button--rounded c-bolt-button--icon-only">
-              <span class="c-bolt-button__icon">
-                <bolt-icon name="close" size="small"></bolt-icon>
-              </span>
-            </div>
-          </span>
-          <span className={`c-${bolt.namespace}-video__close-button-text`}>
-            {closeButtonText}
-          </span>
-        </a>
+          <a className={ css(
+            `c-${bolt.namespace}-video__close-button`,
+            `c-${bolt.namespace}-video__close-button--icon-to-text`,
+          ) } href="javascript:"
+             onClick={this.handleClose}>
+            <span className={`c-${bolt.namespace}-video__close-button-icon`}>
+              <div
+                class="c-bolt-button c-bolt-button--xsmall c-bolt-button--secondary c-bolt-button--rounded c-bolt-button--icon-only">
+                <span class="c-bolt-button__icon">
+                  <bolt-icon name="close" size="small"></bolt-icon>
+                </span>
+              </div>
+            </span>
+            <span className={`c-${bolt.namespace}-video__close-button-text`}>
+              {closeButtonText}
+            </span>
+          </a>
         }
-    </span>
+      </span>
     );
   }
 }

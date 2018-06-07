@@ -1,8 +1,6 @@
 @import '@bolt/core';
-@import '@bolt/components-button/src/button.settings';
-@import '@bolt/components-button/src/button.mixins';
-
 @import 'videojs-enhancements';
+@import 'video-meta';
 
 // Same as max-width of wrapper container
 $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
@@ -13,48 +11,35 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
   width: 100%;
   background-color: bolt-color(black); // placeholder color before poster loads up.
 
-// Hide the metadata (which covers the controls) if the user is either
-//   a) watching the video
-//   b) potentially interacting with the video
-  &:hover,
-  &.is-playing,
-  &:hover.is-paused {
-    #{$bolt-namespace}-video-meta {
-      transform: translate3d(0, 100%, 0);
-      opacity: 0;
-    }
-  }
-
   &[is-background-video]{
-    flex-grow: 1;
+    @include bolt-margin-right(auto);
+    @include bolt-margin-left(auto);
     z-index: 20;
-    transition: opacity .3s ease, min-height .3s ease;
+    flex-grow: 1;
+    position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    margin-left: auto;
-    margin-right: auto;
-    position: absolute;
     min-width: 100%;
     max-width: none;
-    background-color: rgba(22, 26, 60, .8);
     pointer-events: none;
+    background-color: rgba(22, 26, 60, .8);
     opacity: 0;
+    transition: opacity .3s ease, min-height .3s ease;
 
     .is-expanded & {
-      opacity: 1;
       pointer-events: auto;
+      opacity: 1;
     }
 
     .video-js {
-      margin: 0 auto;
-      min-width: 0;
+      @include bolt-margin(0 auto);
       width: 100%;
+      min-width: 0;
+      height: 100%;
       background-color: transparent;
       transition: all .4s ease;
-      width: 100%;
-      height: 100%;
 
       &:not(.vjs-fullscreen) {
         max-width: 1400px;
@@ -70,7 +55,6 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
   * on Windows
   */
 .c-#{$bolt-namespace}-video {
-
   width: 100%;
   max-width: none;
   z-index: bolt-z-index('tooltip');

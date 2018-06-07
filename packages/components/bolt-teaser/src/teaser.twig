@@ -1,3 +1,7 @@
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-teaser'].schema, _self) | raw }}
+{% endif %}
+
 <bolt-teaser>
   {% if eyebrow %}
     {% include "@bolt/eyebrow.twig" with eyebrow only %}
@@ -34,8 +38,3 @@
     } only %}
   {% endif %}
 </bolt-teaser>
-
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-teaser'].schema, _self) | raw }}
-{% endif %}
