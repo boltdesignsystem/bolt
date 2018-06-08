@@ -50,7 +50,14 @@ export class BoltCodeSnippetClass extends withPreact(withComponent()) {
       const parentElement = this.querySelector('[is*=shadow-root]');
       this.innerHTML = parentElement.innerHTML;
     }
-    this.code = this.innerHTML;
+
+    // If the code snippet has already been rendered, make sure the innerHTML matches the cleaned up markup, then re-render.
+    if (this.code){
+      this.innerHTML = this.code;
+      this.updated();
+    } else {
+      this.code = this.innerHTML;
+    }
   }
 
   render() {
