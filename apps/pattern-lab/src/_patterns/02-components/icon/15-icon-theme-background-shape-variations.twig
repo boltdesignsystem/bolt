@@ -5,8 +5,7 @@
   size: "small"
 } only %}
 {% embed '@bolt-components-band/band.twig' with {
-  theme: theme,
-  size: 'xlarge'
+  theme: theme
 } only %}
   {% block band_content %}
     {% set exampleBackgrounds = ["circle", "square"] %}
@@ -45,8 +44,7 @@ text: "Theme: " ~ theme,
 size: "small"
 } only %}
 {% embed '@bolt-components-band/band.twig' with {
-theme: theme,
-size: 'xlarge'
+theme: theme
 } only %}
   {% block band_content %}
     {% set exampleBackgrounds = ["circle", "square"] %}
