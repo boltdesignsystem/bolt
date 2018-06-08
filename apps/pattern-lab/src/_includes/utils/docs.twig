@@ -46,7 +46,13 @@
           id: "usage"
         }
       } %}
-      <pre class="u-bolt-margin-bottom-large"><code>{{ code }}</code></pre>
+      <bolt-code-snippet display="block" lang="twig">
+        <pre>
+          <code is="shadow-root">
+          {{ code }}
+          </code>
+        </pre>
+      </bolt-code-snippet>
     {% endif %}
 
 
