@@ -54,7 +54,7 @@
         {% endfor %}
 
         {% set item = item | merge({
-          "buttons": null
+          "buttons": []
         }) %}
       {% endif %}
 
@@ -72,7 +72,7 @@
         {% set button = button | merge({ "pattern": "button" }) %}
         {% set _items = _items | merge([button]) %}
       {% endfor %}
-      {% set item = item | merge({ "buttons": null }) %}
+      {% set item = item | merge({ "buttons": [] }) %}
     {% endif %}
   {% endif %}
 

@@ -85,21 +85,17 @@
   {% endif %}
 
   {% if url %}
-    {% if type == "text" %}
-      {% include "@bolt/link.twig" with {
-        text: text,
-        icon: icon,
-        url: url,
-      } only %}
-    {% else %}
-      {# [Mai] This means only headlines/subheadlines/eyebrows would get the special link styles #}
-      {% include "@bolt/link.twig" with {
-        text: text,
-        icon: icon,
-        url: url,
-        isHeadline: true
-      } only %}
+    {% set linkVars = {
+      text: text,
+      url: url,
+      isHeadline: (type == "text")
+    } %}
+
+    {% if icon %}
+      {% set linkVars = linkVars | merge({ icon: icon }) %}
     {% endif %}
+
+    {% include "@bolt/link.twig" with linkVars only %}
   {% else %}
     {{ text }}
   {% endif %}

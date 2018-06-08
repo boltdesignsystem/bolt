@@ -1,12 +1,10 @@
-{% set schema = bolt.data.components['@bolt-components-action-blocks'].schema %}
-
-{% for theme in schema.properties.theme.enum %}
+{% for theme in ["xlight", "light", "dark", "xdark"] %}
   <p>Theme: {{ theme }}</p>
   {% embed "@utils/theme-demo.twig" %}
     {% block demo_content %}
       {% include "@bolt-components-action-blocks/action-blocks.twig" with {
         theme: theme,
-        align: center,
+        align: "center",
         maxItemsPerRow: 4,
         contentItems: [
           {
