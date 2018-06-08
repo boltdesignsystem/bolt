@@ -44,7 +44,7 @@
       } only %}
 
       {% include "@bolt/headline.twig" with {
-        text: pageTitle,
+        text: pageTitle|default('Page Title here'),
         size: "xxxlarge",
         tag: "h1"
       } only %}
