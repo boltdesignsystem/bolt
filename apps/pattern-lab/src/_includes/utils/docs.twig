@@ -46,13 +46,11 @@
           id: "usage"
         }
       } %}
+      {% spaceless %}
       <bolt-code-snippet display="block" lang="twig">
-        <pre>
-          <code is="shadow-root">
-          {{ code }}
-          </code>
-        </pre>
+          <pre><code is="shadow-root">{{ code }}</code></pre>
       </bolt-code-snippet>
+      {% endspaceless %}
     {% endif %}
 
 
