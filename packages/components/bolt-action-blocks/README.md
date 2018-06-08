@@ -1,15 +1,31 @@
+<div>
+<bolt-text font-size="xxlarge" tag="h2" subheadline>
+  Stylistic block layout for displaying an actionable icon and text.
+</bolt-text>
 
-Stylistic block layout for displaying actionable icon and text. Part of the Bolt “Components” CSS framework that powers the [Bolt Design System](https://www.boltdesignsystem.com).
+<br>
 
-### Install via NPM
-```
-npm install @bolt/components-action-blocks
-```
+<bolt-text font-size="xlarge" tag="h2" headline>
+  Install via NPM
+</bolt-text>
 
-## Description:
-Action blocks work as a group to provide the user an easy to browse list of options of relativeto take action to discover more information. They commonly exist as links to more detailed content. 
+<bolt-code-snippet display="block" lang="bash">
+<code is="shadow-root" class="c-bolt-code-snippet">npm install @bolt/components-action-blocks</code>
+</bolt-code-snippet>
 
-## Best practices
+
+<bolt-text font-size="xlarge" tag="h2" headline>Description</bolt-text>
+
+<bolt-text font-size="medium" tag="p">
+  Action blocks work as a group to provide the user an easy to browse list of options of relativeto take action to discover more information. They commonly exist as links to more detailed content.
+</bolt-text>
+
+<bolt-text font-size="xlarge" tag="h2" headline>
+  Best practices
+</bolt-text>
+
+</div>
+
 * Can use xlight, light, dark, and xdark themes.
 * Can have an image, icon, and/or text
 * Should link to content 
