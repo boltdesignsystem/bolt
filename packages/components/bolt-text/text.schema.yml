@@ -9,7 +9,7 @@ properties:
     description: Text content of the headline.
   tag:
     type: string
-    description: Html tag.
+    description: HTML semantic tags.
     default: p
     enum:
       - h1
@@ -19,117 +19,127 @@ properties:
       - h5
       - h6
       - p
-      - span
-      - cite
       - div
-  align:
-    description: Text alignment.
-    type: string
-    enum:
-      - left
-      - center
-      - right
-  weight:
-    type: string
-    description: Font weights.
-    default: regular
-    enum:
-      - regular
-      - semibold
-      - bold
-  style:
-    type: string
-    description: Font styles.
-    default: normal
-    enum:
-      - normal
-      - italic
-  letterSpacing:
-    type: string
-    description: Letter spacing.
-    enum:
-      - narrow
-      - normal
-      - wide
-  lineHeight:
-    type: string
-    description: Font line height.
-    default: regular
-    enum:
-      - tight
-      - regular
-      - loose
-  fontSize:
-    type: string
-    description: Font size.
-    default: medium
-    enum:
-      - xsmall
-      - small
-      - medium
-      - large
-      - xlarge
-      - xxlarge
-      - xxxlarge
-  vspacing:
-    type: string
-    description: Vertical spacing between elements (margin-bottom).
-    default: medium
-    enum:
-      - xsmall
-      - small
-      - medium
-      - large
-      - xlarge
-      - xxlarge
-      - xxxlarge
-  transform:
-    type: string
-    description: Text transformation.
-    enum:
-      - uppercase
-      - lowercase
-      - capitalize
-  url:
-    type: string
-    description: If provided, turns headline into a link to given url.
-  quoted:
-    type: boolean
-    description: Adds quoted styling to text.
+      - span
   display:
     type: string
-    description: The display type of the wrapper
+    description: Inline text or a block of text.
     default: block
     enum:
       - inline
       - inline-block
       - block
+  vspacing:
+    type: string
+    description: Vertical spacing between elements (margin-bottom).
+    default: medium
+    enum:
+      - xxsmall
+      - xsmall
+      - small
+      - medium
+      - large
+      - xlarge
+      - xxlarge
+  color:
+    type: string
+    description: Text color in context of theme colors.
+    default: theme-body
+    enum:
+      - theme-headline
+      - theme-body
+  lineHeight:
+    type: string
+    description: Line height in context of the typographic design.
+    default: regular
+    enum:
+      - tight
+      - regular
+      - loose
+  align:
+    description: Text alignment.
+    type: string
+    default: left
+    enum:
+      - left
+      - center
+      - right
+  letterSpacing:
+    type: string
+    description: Letter spacing in context of the typographic design.
+    default: regular
+    enum:
+      - narrow
+      - regular
+      - wide
+  transform:
+    type: string
+    description: Transform controls the type case. Please note that capitalize would capitalize the first letter of each word, it is not the same as title case.
+    enum:
+      - uppercase
+      - lowercase
+      - capitalize
+  fontFamily:
+    type: string
+    description: Font family in context of the typographic design.
+    default: body
+    enum:
+      - headline
+      - body
+      - code
+  fontSize:
+    type: string
+    description: Font size in context of the typographic design.
+    default: medium
+    enum:
+      - xsmall
+      - small
+      - medium
+      - large
+      - xlarge
+      - xxlarge
+      - xxxlarge
+  fontWeight:
+    type: string
+    description: Font weight in context of the typographic design.
+    default: regular
+    enum:
+      - regular
+      - semibold
+      - bold
+  italic:
+    type: boolean
+    description: Emphasized text.
+    default: false
   opacity:
     type: number
-    description: Adds opacity to text output.
+    description: Opacity level.
+    default: 100
     enum:
       - 100
       - 80
       - 60
       - 40
       - 20
+  quoted:
+    type: boolean
+    description: Quoted text.
+    default: false
+  url:
+    type: string
+    description: If provided, turns headline into a link to given url.
   headline:
     type: boolean
-    description: Gives component headline default styling
+    description: A preset for headlines in context of the typographic design.
+    default: false
   subheadline:
     type: boolean
-    description: Gives component subheadline default styling
+    description: A preset for subheadlines in context of the typographic design.
+    default: false
   eyebrow:
     type: boolean
-    description: Gives component eyebrow default styling
-  fontFamily:
-    type: string
-    description: Adds correct font-family & text color theme styles
-    default: body
-    enum:
-      - headline
-      - body
-      - code
+    description: A preset for eyebrow in context of the typographic design.
+    default: false
   # @todo: uncomment / remove once icon decoupled
   # icon:
   #   oneOf:

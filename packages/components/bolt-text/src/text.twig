@@ -13,24 +13,28 @@
   {% set attributes = attributes.setAttribute("tag", tag) %}
 {% endif %}
 
-{% if fontSize in schema.properties.fontSize.enum %}
-  {% set attributes = attributes.setAttribute("font-size", fontSize) %}
-{% endif %}
-
-{% if weight in schema.properties.weight.enum %}
-  {% set attributes = attributes.setAttribute("weight", weight) %}
-{% endif %}
-
 {% if display in schema.properties.display.enum %}
   {% set attributes = attributes.setAttribute("display", display) %}
 {% endif %}
 
-{% if align in schema.properties.align.enum %}
-  {% set attributes = attributes.setAttribute("align", align) %}
+{% if fontFamily in schema.properties.fontFamily.enum %}
+  {% set attributes = attributes.setAttribute("font-family", fontFamily) %}
 {% endif %}
 
-{% if style in schema.properties.style.enum %}
-  {% set attributes = attributes.setAttribute("font-style", style) %}
+{% if fontSize in schema.properties.fontSize.enum %}
+  {% set attributes = attributes.setAttribute("font-size", fontSize) %}
+{% endif %}
+
+{% if fontWeight in schema.properties.fontWeight.enum %}
+  {% set attributes = attributes.setAttribute("font-weight", fontWeight) %}
+{% endif %}
+
+{% if color in schema.properties.color.enum %}
+  {% set attributes = attributes.setAttribute("color", color) %}
+{% endif %}
+
+{% if align in schema.properties.align.enum %}
+  {% set attributes = attributes.setAttribute("align", align) %}
 {% endif %}
 
 {% if letterSpacing in schema.properties.letterSpacing.enum %}
@@ -57,12 +61,12 @@
   {% set attributes = attributes.setAttribute("quoted", "") %}
 {% endif %}
 
-{% if opacity in schema.properties.opacity.enum %}
-  {% set attributes = attributes.setAttribute("opacity", opacity) %}
+{% if italic %}
+  {% set attributes = attributes.setAttribute("italic", "") %}
 {% endif %}
 
-{% if fontFamily in schema.properties.fontFamily.enum %}
-  {% set attributes = attributes.setAttribute("font-family", fontFamily) %}
+{% if opacity in schema.properties.opacity.enum %}
+  {% set attributes = attributes.setAttribute("opacity", opacity) %}
 {% endif %}
 
 {# Shorthand booleans #}

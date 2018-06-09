@@ -17,8 +17,7 @@ class BoltText extends BoltComponent() {
   static props = {
     tag: props.string,
     url: props.string,
-    weight: props.string,
-    fontStyle: props.string,
+    fontWeight: props.string,
     fontSize: props.string,
     display: props.string,
     align: props.string,
@@ -26,6 +25,7 @@ class BoltText extends BoltComponent() {
     letterSpacing: props.string,
     lineHeight: props.string,
     quoted: props.boolean,
+    italic: props.boolean,
     util: props.string,
     vspacing: props.string,
     opacity: props.number,
@@ -33,6 +33,7 @@ class BoltText extends BoltComponent() {
     subheadline: props.boolean,
     eyebrow: props.boolean,
     fontFamily: props.string,
+    color: props.string,
 
      /**
      * @todo: remove icon props below once the icon and text components are split apart
@@ -62,8 +63,7 @@ class BoltText extends BoltComponent() {
 
   render({ props, state }) {
 
-    let weight = this.allowedValues(schema.properties.weight, this.props.weight);
-    let style = this.allowedValues(schema.properties.style, this.props.fontStyle);
+    let fontWeight = this.allowedValues(schema.properties.fontWeight, this.props.fontWeight);
     let fontSize = this.allowedValues(schema.properties.fontSize, this.props.fontSize);
     let display = this.allowedValues(schema.properties.display, this.props.display);
     let align = this.allowedValues(schema.properties.align, this.props.align);
@@ -71,10 +71,14 @@ class BoltText extends BoltComponent() {
     let letterSpacing = this.allowedValues(schema.properties.letterSpacing, this.props.letterSpacing);
     let lineHeight = this.allowedValues(schema.properties.lineHeight, this.props.lineHeight);
     let quoted = !!this.props.quoted;
+    let italic = !!this.props.italic;
     let util = this.props.util ? this.props.util : false;
     let opacity = this.allowedValues(schema.properties.opacity, this.props.opacity);
     let fontFamily = this.allowedValues(schema.properties.fontFamily, this.props.fontFamily);
+    let color = this.allowedValues(schema.properties.color, this.props.color);
     let url = this.props.url ? this.props.url : false;
+
+    let tag = this.allowedValues(schema.properties.tag, this.props.tag);
 
     // Icon vars
 
@@ -127,28 +131,31 @@ class BoltText extends BoltComponent() {
     //   }
     // }
 
-    let longTitle = false; // Right now we are only checking this for headline (below)
+    let longText = false; // Right now we are only checking this for headline (below)
 
     // Headline defaults
     if (this.props.headline) {
-      fontSize = this.subComponentValues(this.props.fontSize, 'xlarge');
-      weight = this.subComponentValues(this.props.weight, 'bold');
+      tag = this.subComponentValues(this.props.tag, 'h2');
+      color = this.subComponentValues(this.props.color, 'theme-headline');
       letterSpacing = this.subComponentValues(this.props.letterSpacing, 'narrow');
       fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
+      fontSize = this.subComponentValues(this.props.fontSize, 'xlarge');
+      fontWeight = this.subComponentValues(this.props.fontWeight, 'bold');
 
       // @todo: remove below once icon + text component decoupled
       // if (icon !== 'undefined' && icon !== 'false') {
       //   iconName = true;
       // }
       if (this.innerHTML.length >= 60 && fontSize === 'xxxlarge') { // Is there a better way to get inner dynamic length?
-        longTitle = true;
+        longText = true;
       }
     }
 
     // Subheadline defaults
     if (this.props.subheadline) {
-      fontSize = this.subComponentValues(this.props.fontSize, 'large');
+      color = this.subComponentValues(this.props.color, 'theme-headline');
       fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
+      fontSize = this.subComponentValues(this.props.fontSize, 'large');
 
       // @todo: remove below once icon + text component decoupled
       // if (icon !== 'undefined' && icon !== 'false') {
@@ -158,10 +165,13 @@ class BoltText extends BoltComponent() {
 
     // Eyebrow defaults
     if (this.props.eyebrow) {
-      fontSize = this.subComponentValues(this.props.fontSize, 'xsmall');
+      color = this.subComponentValues(this.props.color, 'theme-headline');
       transform = this.subComponentValues(this.props.transform, 'uppercase');
-      opacity = this.subComponentValues(this.props.opacity, 80);
+      letterSpacing = this.subComponentValues(this.props.letterSpacing, 'wide');
+      lineHeight = this.subComponentValues(this.props.lineHeight, 'tight');
       fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
+      fontSize = this.subComponentValues(this.props.fontSize, 'xsmall');
+      opacity = this.subComponentValues(this.props.opacity, 80);
 
       // @todo: remove below once icon + text component decoupled
       // if (icon !== 'undefined' && icon !== 'false') {
@@ -173,27 +183,27 @@ class BoltText extends BoltComponent() {
     const classes = css(
       // iconName ? 'has-icon' : '', // @todo: remove when decoupled from icon component
       url ? 'has-url' : '',
-      longTitle ? 'long-title' : '',
-      'c-bolt-text',
-      `c-bolt-text--${fontFamily}`,
-      `c-bolt-text--theme-${fontFamily}-text-color`,
-      `c-bolt-text--weight-${weight}`,
-      `c-bolt-text--style-${style}`,
-      `c-bolt-text--font-${fontSize}`,
-      `c-bolt-text--display-${display}`,
-      letterSpacing ? `c-bolt-text--letter-spacing-${letterSpacing}` : '',
-      align ? `c-bolt-text--align-${align}` : '',
-      transform ? `c-bolt-text--transform-${transform}` : '',
-      lineHeight ? `c-bolt-text--line-height-${lineHeight}` : '',
-      quoted ? 'c-bolt-text--quoted' : '',
-      opacity ? `c-bolt-text--opacity-${opacity}` : '',
+      longText ? 'is-long' : '',
+      'c-bolt-text-v2',
+      `c-bolt-text-v2--${display}`,
+      `c-bolt-text-v2--${fontFamily}`,
+      `c-bolt-text-v2--font-size-${fontSize}`,
+      `c-bolt-text-v2--font-weight-${fontWeight}`,
+      `c-bolt-text-v2--color-${color}`,
+      letterSpacing ? `c-bolt-text-v2--letter-spacing-${letterSpacing}` : '',
+      align ? `c-bolt-text-v2--align-${align}` : '',
+      transform ? `c-bolt-text-v2--transform-${transform}` : '',
+      lineHeight ? `c-bolt-text-v2--line-height-${lineHeight}` : '',
+      opacity ? `c-bolt-text-v2--opacity-${opacity}` : '',
+      quoted ? 'c-bolt-text-v2--quoted' : '',
+      italic ? 'c-bolt-text-v2--italic' : '',
 
       // @todo: remove once decoupled from icon component
-      // iconValign ? `c-bolt-text--vertical-align-${iconValign}` : '',
-      // iconAlign ? `c-bolt-text--icon-align-${iconAlign}` : '',
+      // iconValign ? `c-bolt-text-v2--vertical-align-${iconValign}` : '',
+      // iconAlign ? `c-bolt-text-v2--icon-align-${iconAlign}` : '',
     );
 
-    // Adds out utilities to the outer parent <bolt-text />
+    // Adds our utilities to the outer parent <bolt-text />
     if (util && util.indexOf(',') > -1) {
       const utilClasses = [];
       util.split(',').forEach(function(item){
@@ -210,8 +220,7 @@ class BoltText extends BoltComponent() {
       `;
     }
 
-    const tag = this.allowedValues(schema.properties.tag, this.props.tag);
-
+    // Tag options
     if (tag === 'p') {
       textItem = this.hyper.wire(this) `
         <p class=${classes}>${textItem}</p>
@@ -240,17 +249,13 @@ class BoltText extends BoltComponent() {
       textItem = this.hyper.wire(this) `
         <h6 class=${classes}>${textItem}</h6>
       `;
-    } else if (tag === 'span') {
-      textItem = this.hyper.wire(this) `
-        <span class=${classes}>${textItem}</span>
-      `;
-    } else if (tag === 'cite') {
-      textItem = this.hyper.wire(this) `
-        <cite class=${classes}>${textItem}</cite>
-      `;
     } else if (tag === 'div') {
       textItem = this.hyper.wire(this) `
         <div class=${classes}>${textItem}</div>
+      `;
+    } else if (tag === 'span') {
+      textItem = this.hyper.wire(this) `
+        <span class=${classes}>${textItem}</span>
       `;
     }
 

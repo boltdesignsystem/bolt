@@ -1,0 +1,23 @@
+{% set schema = bolt.data.components['@bolt-components-text'].schema %}
+
+<div style="max-width: 66ch;">
+
+  {% set inlineDisplay %}
+    {% include "@bolt-components-text/text.twig" with {
+      text: "inline display",
+      display: "inline",
+      italic: true
+    } only %}
+  {% endset %}
+
+  {% include "@bolt-components-text/text.twig" with {
+    text: "This is block display (paragraph).",
+    display: "block"
+  } only %}
+
+  {% include "@bolt-components-text/text.twig" with {
+    text: "This is another block display (paragraph), but the text can also be " ~ inlineDisplay ~ " so this paragraph has inline text inside a block of text.",
+    display: "block"
+  } only %}
+
+</div>

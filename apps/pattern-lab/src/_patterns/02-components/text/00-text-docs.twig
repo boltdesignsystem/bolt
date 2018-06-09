@@ -1,54 +1,34 @@
 {% set schema = get_data("@bolt-components-text/text.schema.yml") %}
-{% set code %}
-  {% verbatim %}
-    {% include "@bolt-components-text/text.twig" with {
-      text: "Eyebrow text",
-      eyebrow: true
-    } only %}
 
-    {% include "@bolt-components-text/text.twig" with {
-      text: "Headline example text",
-      headline: true
-    } only %}
+{% set code %}{% verbatim %}{% include "@bolt-components-text/text.twig" with {
+  text: "This is an Eyebrow",
+  eyebrow: true
+} only %}
 
-    {% include "@bolt-components-text/text.twig" with {
-      text: "Subheadline text goes here",
-      subheadline: true
-    } only %}
+{% include "@bolt-components-text/text.twig" with {
+  text: "This is a Headline",
+  headline: true
+} only %}
 
-    {% include "@bolt-components-text/text.twig" with {
-      text: "Here is some text with utility classes.",
-      tag: "div",
-      weight: "bold",
-      fontSize: "xlarge",
-      util: [
-        'width-1/1',
-        'another-class',
-        'one-more-class'
-      ]
-    } only %}
-  {% endverbatim %}
+{% include "@bolt-components-text/text.twig" with {
+  text: "This is a Subheadline",
+  subheadline: true
+} only %}
 
-  {# {% include "@bolt-components-text/text.twig" with {
-      text: "Here is some text with an icon",
-      tag: "div",
-      weight: "bold",
-      fontSize: "xlarge",
-      icon: {
-        name: "user",
-        background: "circle",
-        size: "xlarge",
-        color: "blue",
-        valign: "center",
-        align: "right"
-      },
-      util: [
-        'width-1/1',
-        'another-class',
-        'one-more-class'
-      ]
-    } only %} #}
-{% endset %}
+{% include "@bolt-components-text/text.twig" with {
+  text: "This is regular text.",
+} only %}
+
+{% include "@bolt-components-text/text.twig" with {
+  text: "This is regular text with customized options and utility classes.",
+  tag: "div",
+  fontSize: "xlarge",
+  weight: "bold",
+  util: [
+    'margin-bottom-large',
+    'color-indigo'
+  ]
+} only %}{% endverbatim %}{% endset %}
 
 {% include "@utils/docs.twig" with {
   schema: schema,
