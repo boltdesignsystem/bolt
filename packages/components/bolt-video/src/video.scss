@@ -4,6 +4,8 @@
 
 // Same as max-width of wrapper container
 $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
+$bolt-video-background-color: rgba(22, 26, 60, .8);
+$bolt-video-background-max-height: 50.625vw;
 
 
 #{$bolt-namespace}-video {
@@ -16,17 +18,19 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
     @include bolt-margin-left(auto);
     z-index: 20;
     flex-grow: 1;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
     min-width: 100%;
     max-width: none;
+    transition: opacity 0.3s ease, min-height 0.3s ease;
+    background-color: $bolt-video-background-color;
     pointer-events: none;
-    background-color: rgba(22, 26, 60, .8);
     opacity: 0;
-    transition: opacity .3s ease, min-height .3s ease;
+    height: calc((90vw * (9 / 16)) - 4rem);
+    max-width: 100vh;
+    max-height: 56.25vh;
+
+    @media (max-width: (bolt-breakpoint(small) - 1px)) {
+      min-height: calc(#{$bolt-video-background-max-height} + 2.5rem);
+    }
 
     .is-expanded & {
       pointer-events: auto;
@@ -39,7 +43,13 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
       min-width: 0;
       height: 100%;
       background-color: transparent;
-      transition: all .4s ease;
+      transition: all 0.4s ease;
+      position: relative;
+      pointer-events: none;
+
+      .is-expanded & {
+        pointer-events: auto;
+      }
 
       &:not(.vjs-fullscreen) {
         max-width: 1400px;
@@ -60,34 +70,23 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
   z-index: bolt-z-index('tooltip');
   transition: transform .4s cubic-bezier(.645, 0, .355, 1);
 
-  .video-js {
-    width: 100%;
-    height: 100%;
-  }
-
-  // Higher specificity required to prevent override from Hapyak's CSS loaded
-  .video-js.video-js.video-js {
-    position: absolute;
-  }
-
   &.c-#{$bolt-namespace}-video--background {
     display: block;
     position: relative;
     max-width: calc(100% - #{bolt-spacing(large)});
     max-height: 100%;
     margin: 0 auto;
-    height: 100%;
+    height: $bolt-video-background-max-height;
 
     @media (max-width: (bolt-breakpoint(small) - 1px)) {
-      max-height: calc(100% - 40px);
+      max-width: calc(100vw - 40px);
     }
 
     @include respond-to(small){
-      max-width: calc(100vw - #{bolt-spacing(large) * 2});
-    }
-
-    @media screen and (min-width: 1400px){
-      max-width: calc(1400px - #{bolt-spacing(large) * 2});
+      max-width: 100vh;
+      max-height: 56.25vh;
+      width: calc(90vw - 7rem);
+      height: calc((90vw * (9 / 16)) - 4rem);
     }
   }
 }
@@ -131,10 +130,12 @@ $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
 
 .c-#{$bolt-namespace}-video__close-button--icon-to-text {
   @media (max-width: (bolt-breakpoint(small) - 1px)) {
+    @include bolt-padding(xsmall 0);
+    top: 0;
     display: block;
     position: relative;
     right: 0;
-    text-align: right;
+    float: right;
     .c-#{$bolt-namespace}-video__close-button-icon {
       display: none;
     }
