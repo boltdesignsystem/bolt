@@ -17,20 +17,28 @@
   $custom-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'custom-font');
   $fonts-loaded-class: map-get-deep($bolt-font-families, 'font-families', $type, 'loaded-class');
 
+  $fontFamilyNames: map-keys(map-get($bolt-font-families, 'font-families')); // get the names of all available font families (custom and fallback)
+
   font-family: $fallback-font-family;
-  font-family: var(--bolt-font-family);
+  font-family: var(--bolt-font-family-#{$type});
 
   @if $is_root == false {
     .#{$fonts-loaded-class} & {
       font-family: $custom-font-family;
-      font-family: var(--bolt-font-family);
+      font-family: var(--bolt-font-family-#{$type});
     }
   }
   @else {
-    --bolt-font-family: #{$fallback-font-family};
+
+    @each $fontFamilyName in $fontFamilyNames {
+      --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'fallback-font');};
+    }
 
     &.#{$fonts-loaded-class} {
-      --bolt-font-family: #{$custom-font-family};
+      @each $fontFamilyName in $fontFamilyNames {
+        --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'custom-font');};
+      }
+
       font-family: $custom-font-family;
     }
   }
