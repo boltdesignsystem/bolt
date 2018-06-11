@@ -373,7 +373,7 @@ class BoltVideo extends withPreact(withComponent()) {
     const videoWrapper = this.querySelector('.c-bolt-video--background');
     if (!videoWrapper.contains(event.target)) {
       // @todo: debug why videos don't autoplay when this is enabled
-      this.close();
+      // this.close();
     }
   }
 
