@@ -70,10 +70,6 @@ class BoltButton extends BoltComponent() {
     target: props.string,
     url: props.string,
 
-    isHover: props.boolean,  // test hover psuedo state
-    isActive: props.boolean, // test active psuedo state
-    isFocus: props.boolean,  // test focus psuedo state
-
     onClick: props.string, // Managed by base class
     onClickTarget: props.string, // Managed by base class
   }
@@ -98,7 +94,7 @@ class BoltButton extends BoltComponent() {
     declarativeClickHandler(this);
   }
 
-  render({ props, state }) {
+  render() {
     // Setup the combo of classes to apply based on state + extras added
     const classes = css(
       'c-bolt-button',
@@ -110,11 +106,6 @@ class BoltButton extends BoltComponent() {
       this.props.align ? `c-bolt-button--${this.props.align}` : 'c-bolt-button--center',
       this.props.align ? `c-bolt-button--${this.props.transform}` : '',
       this.props.disabled ? 'c-bolt-button--disabled' : '',
-
-      // Test out psuedo states via prop values
-      // this.props.isHover ? 'is-hover' : '',
-      // this.props.isActive ? 'is-active' : '',
-      // this.props.isFocus ? 'is-focus' : '',
     );
 
     /**
@@ -148,9 +139,7 @@ class BoltButton extends BoltComponent() {
     let buttonElement;
 
     if (childElementIndex !== null){
-      buttonElement = this.hyper.wire(this) `
-        ${this.slot('default')}
-      `;
+      buttonElement = this.slot('default');
     } else if (childElementIndex === null && hasUrl) {
       buttonElement = this.hyper.wire(this) `
         <a href="${this.props.url}" class="${classes}" target="${urlTarget}">

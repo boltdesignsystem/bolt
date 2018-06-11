@@ -1,7 +1,7 @@
 {% extends "@pl/default-template.twig" %}
 
 {% block global_header %}
-  {% include "@bolt/_page-header.twig" %}
+  {% include "@pl/_page-header.twig" %}
 {% endblock %}
 
 {% block main_content %}
@@ -137,7 +137,6 @@
       {% cell "u-bolt-width-1/1@only-small" %}
         {% include "@bolt/button.twig" with {
           text: "Learn More",
-          style: "flat",
           width: "full",
           size: "medium"
         } only %}
@@ -289,7 +288,7 @@
               {% include "@bolt/button.twig" with {
                 text: "Get Real",
                 style: "primary",
-                size: small
+                size: "small"
               } only %}
 
             {% endcell %}

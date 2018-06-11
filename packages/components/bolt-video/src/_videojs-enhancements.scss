@@ -16,17 +16,19 @@ $bolt-video-js-button-border-radius: $bolt-border-radius;
 $bolt-video-js-button-shadow-color: bolt-color(black);
 $bolt-video-js-button-shadow-level: 'level-30';
 
-@mixin bolt-video-js-button {
+@mixin bolt-video-js-button($opacity: 1) {
   color: $bolt-video-js-button-text-color;
   background-color: $bolt-video-js-button-background-color;
-  opacity: 1;
   transition: all $bolt-video-js-button-transition;
+  opacity: $opacity;
 }
 
 .video-js {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  // required so videos with intrinsic ratio (used in the <bolt-ratio> object) properly fill the space available in IE 11.
+  position: absolute;
 
   video,
   .vjs-big-play-button {
@@ -36,7 +38,7 @@ $bolt-video-js-button-shadow-level: 'level-30';
   .vjs-big-play-button {
     @include bolt-margin(0);
     @include bolt-padding(0);
-    @include bolt-video-js-button;
+    @include bolt-video-js-button($opacity: 1);
 
     position: absolute;
     top: auto;
@@ -52,23 +54,23 @@ $bolt-video-js-button-shadow-level: 'level-30';
 
     &:hover,
     &:focus {
-      @include bolt-video-js-button; // [1]
+      @include bolt-video-js-button($opacity: $bolt-global-link-hover-opacity); // [1]
       @include bolt-shadow($key: $bolt-video-js-button-shadow-level, $base-color: $bolt-video-js-button-shadow-color);
     }
 
     &:active {
-      @include bolt-video-js-button; // [1]
+      @include bolt-video-js-button($opacity: $bolt-global-link-active-opacity); // [1]
     }
   }
 
   &:hover .vjs-big-play-button,
   &:focus .vjs-big-play-button {
-    @include bolt-video-js-button; // [1]
+    @include bolt-video-js-button($opacity: $bolt-global-link-hover-opacity); // [1]
     @include bolt-shadow($key: $bolt-video-js-button-shadow-level, $base-color: $bolt-video-js-button-shadow-color);
   }
 
   &:active .vjs-big-play-button {
-    @include bolt-video-js-button; // [1]
+    @include bolt-video-js-button($opacity: $bolt-global-link-active-opacity); // [1]
   }
 
   .vjs-poster {
@@ -154,10 +156,10 @@ $bolt-video-js-button-shadow-level: 'level-30';
         }
 
         > * {
-          @include bolt-margin(0 0 small 0);
+          @include bolt-margin-bottom(small);
 
           &:last-child {
-            @include bolt-margin(0);
+            @include bolt-margin-bottom(0);
             @include bolt-padding-bottom(medium); // [4]
           }
         }

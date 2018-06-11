@@ -37,7 +37,7 @@ export class BoltTooltip extends withPreact(withComponent()) {
     return self;
   }
 
-  connectedCallback() {
+  connecting() {
     this.triggerID = `bolt-tooltip-id-${Math.floor(Math.random() * 20)}`;
   }
 

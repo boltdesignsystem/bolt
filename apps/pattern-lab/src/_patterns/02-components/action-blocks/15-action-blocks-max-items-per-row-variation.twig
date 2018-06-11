@@ -3,7 +3,7 @@
 {% for max in maxRows %}
   <p>Max items per row: {{ max }}</p>
     {% include "@bolt-components-action-blocks/action-blocks.twig" with {
-      align: center,
+      align: "center",
       maxItemsPerRow: max,
       contentItems: [
         {
