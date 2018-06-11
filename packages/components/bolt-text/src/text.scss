@@ -21,10 +21,10 @@ bolt-text {
   }
 
   // Adding vspacing here so that we can remove vspacing on last-child
+  &[headline],
   &[eyebrow] {
     @include bolt-margin-bottom(xxsmall);
   }
-  &[headline],
   &[subheadline] {
     @include bolt-margin-bottom(xsmall);
   }
@@ -210,32 +210,34 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
 
   // Line height
   $bolt-line-height--add-loose: 0.2;
+
   &--line-height-tight {
     line-height: $bolt-line-height--tight;
   }
-  &--line-height-regular {
-    &.c-bolt-text-v2--font-size-xxxlarge {
-      line-height: $bolt-line-height--xxxlarge;
-    }
-    &.c-bolt-text-v2--font-size-xxlarge {
-      line-height: $bolt-line-height--xxlarge;
-    }
-    &.c-bolt-text-v2--font-size-xlarge {
-      line-height: $bolt-line-height--xlarge;
-    }
-    &.c-bolt-text-v2--font-size-large {
-      line-height: $bolt-line-height--large;
-    }
-    &.c-bolt-text-v2--font-size-medium {
-      line-height: $bolt-line-height--medium;
-    }
-    &.c-bolt-text-v2--font-size-small {
-      line-height: $bolt-line-height--small;
-    }
-    &.c-bolt-text-v2--font-size-xsmall {
-      line-height: $bolt-line-height--xsmall;
-    }
-  }
+  // These are already defined with the font-size mixin. Only here for reference.
+  // &--line-height-regular {
+  //   &.c-bolt-text-v2--font-size-xxxlarge {
+  //     line-height: $bolt-line-height--xxxlarge;
+  //   }
+  //   &.c-bolt-text-v2--font-size-xxlarge {
+  //     line-height: $bolt-line-height--xxlarge;
+  //   }
+  //   &.c-bolt-text-v2--font-size-xlarge {
+  //     line-height: $bolt-line-height--xlarge;
+  //   }
+  //   &.c-bolt-text-v2--font-size-large {
+  //     line-height: $bolt-line-height--large;
+  //   }
+  //   &.c-bolt-text-v2--font-size-medium {
+  //     line-height: $bolt-line-height--medium;
+  //   }
+  //   &.c-bolt-text-v2--font-size-small {
+  //     line-height: $bolt-line-height--small;
+  //   }
+  //   &.c-bolt-text-v2--font-size-xsmall {
+  //     line-height: $bolt-line-height--xsmall;
+  //   }
+  // }
   &--line-height-loose {
     &.c-bolt-text-v2--font-size-xxxlarge {
       line-height: ($bolt-line-height--xxxlarge + $bolt-line-height--add-loose);
