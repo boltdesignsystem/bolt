@@ -35,7 +35,13 @@ Bolt Text is a web component, which means you can use the custom tag `bolt-text`
 
 ```
 Here, you can set some
-<bolt-text tag="span" display="inline" font-style="italic">inline text</bolt-text>
+<bolt-text
+  tag="span"
+  display="inline"
+  font-style="italic"
+>
+  inline text
+</bolt-text>
 that is italic.
 ```
 
@@ -53,7 +59,7 @@ You can set semantic tag to reflect the kind of text you are rendering.
 
 ### Shorthand Defaults
 
-Using the shorthand method allows for consistency while also leaving room for customizations.
+Using the shorthand method allows for consistency while also leaving room for customizations. The following are the official recipes for each piece of our typography. They will cover all common use cases. Only in edge cases, you'd want to break away and create your own recipes.
 
 #### Eyebrow
 
