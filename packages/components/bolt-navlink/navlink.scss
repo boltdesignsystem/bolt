@@ -25,17 +25,29 @@ bolt-navlink {
   @include bolt-font-weight(semibold);
 
   position: relative;
-  opacity: 0.6;
+  opacity: 0.90;
   transition: opacity $bolt-navlink-text-transition;
   position: relative;
   transition: all .1s ease;
   color: currentColor;
   color: var(--bolt-theme-heading-link-default, inherit);
+  // Added so that &:focus:not(:active) doesn't change the size of the band
+  // @todo: we should consider making &:focus:not(:active) with thin dotted style a mixin
+  // to share with nav-priority
+  border-width: thin;
+  border-style: dotted;
+  border-radius: 3px;
+  border-color: transparent;
 
-  &:hover, &:active,
-  &.is-hover, &.is-active {
+
+  &:active,
+  &.is-active {
+    color: inherit;
+    color: var(--bolt-theme-text, inherit);
+    border-color: transparent;
     opacity: 1;
   }
+
 
   &:before {
     display: block;
@@ -75,13 +87,21 @@ bolt-navlink {
     }
   }
 
+    // works in chrome only
+  &:focus:not(:active) {
+    outline: none;
+    border-color: inherit;
+    border-color: var(--bolt-theme-primary,inherit);
+  }
+
   &.is-dropdown-link.is-active:after {
-    width: 2px;
+    width: 4px;
     position: absolute;
     top: 6px;
     left: 0;
     bottom: 6px;
-    background-color: currentColor;
+    background-color: inherit;
+    background-color: var(--bolt-theme-primary,inherit);
     content: '';
   }
 }

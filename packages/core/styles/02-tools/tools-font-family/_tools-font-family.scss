@@ -18,14 +18,19 @@
   $fonts-loaded-class: map-get-deep($bolt-font-families, 'font-families', $type, 'loaded-class');
 
   font-family: $fallback-font-family;
+  font-family: var(--bolt-font-family);
 
   @if $is_root == false {
     .#{$fonts-loaded-class} & {
       font-family: $custom-font-family;
+      font-family: var(--bolt-font-family);
     }
   }
   @else {
+    --bolt-font-family: #{$fallback-font-family};
+
     &.#{$fonts-loaded-class} {
+      --bolt-font-family: #{$custom-font-family};
       font-family: $custom-font-family;
     }
   }
