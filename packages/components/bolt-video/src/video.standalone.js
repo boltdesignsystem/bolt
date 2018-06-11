@@ -357,7 +357,7 @@ class BoltVideo extends withPreact(withComponent()) {
     }
 
     // If our video can expand/collapse we add the collapse listener and "close on escape" behavior
-    if (this.props.isBackgroundVideo) {
+    if (this.props.isBackgroundVideo){
       window.addEventListener('resize', this._onWindowResize);
       Mousetrap.bind('esc', this.handleClose, 'keyup');
       document.addEventListener('click', this.collapseOnClickAway);
@@ -373,7 +373,7 @@ class BoltVideo extends withPreact(withComponent()) {
     const videoWrapper = this.querySelector('.c-bolt-video--background');
     if (!videoWrapper.contains(event.target)) {
       // @todo: debug why videos don't autoplay when this is enabled
-      // this.close();
+      this.close();
     }
   }
 
