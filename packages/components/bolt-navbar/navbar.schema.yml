@@ -4,14 +4,14 @@ type: object
 properties:
   theme:
     type: string
-    description: Color theme. Can be set to false for a transparent background.
+    description: Color theme. Can be set to 'none' for a transparent background.
     default: dark
     enum:
       - xlight
       - light
       - dark
       - xdark
-      - 'false'
+      - none
   gradient:
     # type: string
     description: DEPRECATED. In the latest iteration of the Navbar component, only solid color themes are supported ^

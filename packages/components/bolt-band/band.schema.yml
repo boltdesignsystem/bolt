@@ -4,17 +4,22 @@ category: layout
 type: object
 format: grid
 properties:
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
   fullBleed:
     type: boolean
     description: If set to true, the band will take the full width of the page.
   size:
     type: string
     description: Height of the band.
+    default: medium
     enum:
       - xsmall
       - small
       - medium
       - large
+      - none
   contentTag:
     type: string
     description: Html tag to use for the band's content.
@@ -29,10 +34,11 @@ properties:
   theme:
     type: string
     description: Bolt theme.
+    default: dark
     enum:
       - xlight
       - light
       - medium
       - dark
       - xdark
-
+      - none

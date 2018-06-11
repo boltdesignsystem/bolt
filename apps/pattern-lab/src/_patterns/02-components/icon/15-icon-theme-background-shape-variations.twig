@@ -5,8 +5,7 @@
   size: "small"
 } only %}
 {% embed '@bolt-components-band/band.twig' with {
-  theme: theme,
-  size: 'xlarge'
+  theme: theme
 } only %}
   {% block band_content %}
     {% set exampleBackgrounds = ["circle", "square"] %}
@@ -16,12 +15,17 @@
       {% for background in exampleBackgrounds %}
         {% for color in exampleColors %}
           <li>
-            {% include "@bolt-components-icon/icon.twig" with {
+            {% set iconVars = {
               name: "add-open",
               background: background,
-              size: "xlarge",
-              color: color
-            } only %}
+              size: "xlarge"
+            } %}
+
+            {% if color %}
+              {% set iconVars = iconVars | merge({color: color}) %}
+            {% endif %}
+
+            {% include "@bolt-components-icon/icon.twig" with iconVars only %}
             <br />{{ background ? "Background: " ~ background : '' }}
             <br />{{ color ? "Color: " ~ color : '' }}
           </li>
@@ -40,8 +44,7 @@ text: "Theme: " ~ theme,
 size: "small"
 } only %}
 {% embed '@bolt-components-band/band.twig' with {
-theme: theme,
-size: 'xlarge'
+theme: theme
 } only %}
   {% block band_content %}
     {% set exampleBackgrounds = ["circle", "square"] %}
@@ -51,12 +54,17 @@ size: 'xlarge'
       {% for background in exampleBackgrounds %}
         {% for color in exampleColors %}
           <li>
-            {% include "@bolt-components-icon/icon.twig" with {
-            name: "add-open",
-            background: background,
-            size: "xlarge",
-            color: color
-            } only %}
+            {% set iconVars = {
+              name: "add-open",
+              background: background,
+              size: "xlarge"
+            } %}
+
+            {% if color %}
+              {% set iconVars = iconVars | merge({color: color}) %}
+            {% endif %}
+
+            {% include "@bolt-components-icon/icon.twig" with iconVars only %}
             <br />{{ background ? "Background: " ~ background : '' }}
             <br />{{ color ? "Color: " ~ color : '' }}
           </li>
