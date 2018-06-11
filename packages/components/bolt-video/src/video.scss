@@ -27,6 +27,11 @@ $bolt-video-background-max-height: 50.625vw;
     }
   }
 
+  // required so videos with intrinsic ratio (used in the <bolt-ratio> object) properly fill the space available in IE 11.
+  .video-js {
+    position: absolute;
+  }
+
   &[is-background-video]{
     flex-grow: 1;
     z-index: 20;
