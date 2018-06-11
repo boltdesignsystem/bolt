@@ -16,9 +16,6 @@ bolt-text {
   &[display="block"] {
     display: block;
   }
-  &[display="inline-block"] {
-    display: inline-block;
-  }
 
   // Adding vspacing here so that we can remove vspacing on last-child
   &[headline],
@@ -129,7 +126,10 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
   }
 
   // Italic style
-  &--italic {
+  &--font-style-regular {
+    font-style: normal;
+  }
+  &--font-style-italic {
     font-style: italic;
   }
 
@@ -168,9 +168,6 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
   &--inline {
     display: inline;
   }
-  &--inline-block {
-    display: inline-block;
-  }
   &--block {
     display: block;
   }
@@ -187,13 +184,16 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
   }
 
   // Transform text
-  &--transform-uppercase {
+  &--text-transform-regular {
+    text-transform: none;
+  }
+  &--text-transform-uppercase {
     text-transform: uppercase;
   }
-  &--transform-lowercase {
+  &--text-transform-lowercase {
     text-transform: lowercase;
   }
-  &--transform-capitalize {
+  &--text-transform-capitalize {
     text-transform: capitalize;
   }
 

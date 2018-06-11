@@ -29,6 +29,10 @@
   {% set attributes = attributes.setAttribute("font-weight", fontWeight) %}
 {% endif %}
 
+{% if fontStyle in schema.properties.fontStyle.enum %}
+  {% set attributes = attributes.setAttribute("font-style", fontStyle) %}
+{% endif %}
+
 {% if color in schema.properties.color.enum %}
   {% set attributes = attributes.setAttribute("color", color) %}
 {% endif %}
@@ -49,8 +53,8 @@
   {% set attributes = attributes.setAttribute("vspacing", vspacing) %}
 {% endif %}
 
-{% if transform in schema.properties.transform.enum %}
-  {% set attributes = attributes.setAttribute("transform", transform) %}
+{% if textTransform in schema.properties.textTransform.enum %}
+  {% set attributes = attributes.setAttribute("text-transform", textTransform) %}
 {% endif %}
 
 {% if url %}
@@ -59,10 +63,6 @@
 
 {% if quoted %}
   {% set attributes = attributes.setAttribute("quoted", "") %}
-{% endif %}
-
-{% if italic %}
-  {% set attributes = attributes.setAttribute("italic", "") %}
 {% endif %}
 
 {% if opacity in schema.properties.opacity.enum %}

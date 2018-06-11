@@ -27,7 +27,6 @@ properties:
     default: block
     enum:
       - inline
-      - inline-block
       - block
   vspacing:
     type: string
@@ -72,10 +71,12 @@ properties:
       - narrow
       - regular
       - wide
-  transform:
+  textTransform:
     type: string
     description: Transform controls the type case. Please note that capitalize would capitalize the first letter of each word, it is not the same as title case.
+    default: regular
     enum:
+      - regular
       - uppercase
       - lowercase
       - capitalize
@@ -107,10 +108,13 @@ properties:
       - regular
       - semibold
       - bold
-  italic:
-    type: boolean
+  fontStyle:
+    type: string
     description: Emphasized text.
-    default: false
+    default: regular
+    enum:
+      - regular
+      - italic
   opacity:
     type: number
     description: Opacity level.

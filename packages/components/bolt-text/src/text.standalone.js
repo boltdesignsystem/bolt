@@ -16,24 +16,24 @@ class BoltText extends BoltComponent() {
 
   static props = {
     tag: props.string,
-    url: props.string,
+    display: props.string,
+    vspacing: props.string,
+    color: props.string,
+    align: props.string,
+    textTransform: props.string,
+    letterSpacing: props.string,
+    fontFamily: props.string,
+    lineHeight: props.string,
     fontWeight: props.string,
     fontSize: props.string,
-    display: props.string,
-    align: props.string,
-    transform: props.string,
-    letterSpacing: props.string,
-    lineHeight: props.string,
-    quoted: props.boolean,
-    italic: props.boolean,
-    util: props.string,
-    vspacing: props.string,
+    fontStyle: props.string,
     opacity: props.number,
+    quoted: props.boolean,
+    url: props.string,
+    util: props.string,
     headline: props.boolean,
     subheadline: props.boolean,
     eyebrow: props.boolean,
-    fontFamily: props.string,
-    color: props.string,
 
      /**
      * @todo: remove icon props below once the icon and text components are split apart
@@ -63,20 +63,20 @@ class BoltText extends BoltComponent() {
 
   render({ props, state }) {
 
+    let display = this.allowedValues(schema.properties.display, this.props.display);
+    let color = this.allowedValues(schema.properties.color, this.props.color);
+    let align = this.allowedValues(schema.properties.align, this.props.align);
+    let lineHeight = this.allowedValues(schema.properties.lineHeight, this.props.lineHeight);
+    let textTransform = this.allowedValues(schema.properties.textTransform, this.props.textTransform);
+    let letterSpacing = this.allowedValues(schema.properties.letterSpacing, this.props.letterSpacing);
+    let fontFamily = this.allowedValues(schema.properties.fontFamily, this.props.fontFamily);
     let fontWeight = this.allowedValues(schema.properties.fontWeight, this.props.fontWeight);
     let fontSize = this.allowedValues(schema.properties.fontSize, this.props.fontSize);
-    let display = this.allowedValues(schema.properties.display, this.props.display);
-    let align = this.allowedValues(schema.properties.align, this.props.align);
-    let transform = this.allowedValues(schema.properties.transform, this.props.transform);
-    let letterSpacing = this.allowedValues(schema.properties.letterSpacing, this.props.letterSpacing);
-    let lineHeight = this.allowedValues(schema.properties.lineHeight, this.props.lineHeight);
-    let quoted = !!this.props.quoted;
-    let italic = !!this.props.italic;
-    let util = this.props.util ? this.props.util : false;
+    let fontStyle = this.allowedValues(schema.properties.fontStyle, this.props.fontStyle);
     let opacity = this.allowedValues(schema.properties.opacity, this.props.opacity);
-    let fontFamily = this.allowedValues(schema.properties.fontFamily, this.props.fontFamily);
-    let color = this.allowedValues(schema.properties.color, this.props.color);
+    let quoted = !!this.props.quoted;
     let url = this.props.url ? this.props.url : false;
+    let util = this.props.util ? this.props.util : false;
 
     let tag = this.allowedValues(schema.properties.tag, this.props.tag);
 
@@ -166,7 +166,7 @@ class BoltText extends BoltComponent() {
     // Eyebrow defaults
     if (this.props.eyebrow) {
       color = this.subComponentValues(this.props.color, 'theme-headline');
-      transform = this.subComponentValues(this.props.transform, 'uppercase');
+      textTransform = this.subComponentValues(this.props.textTransform, 'uppercase');
       letterSpacing = this.subComponentValues(this.props.letterSpacing, 'wide');
       lineHeight = this.subComponentValues(this.props.lineHeight, 'tight');
       fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
@@ -189,14 +189,14 @@ class BoltText extends BoltComponent() {
       `c-bolt-text-v2--${fontFamily}`,
       `c-bolt-text-v2--font-size-${fontSize}`,
       `c-bolt-text-v2--font-weight-${fontWeight}`,
+      `c-bolt-text-v2--font-style-${fontStyle}`,
       `c-bolt-text-v2--color-${color}`,
       letterSpacing ? `c-bolt-text-v2--letter-spacing-${letterSpacing}` : '',
       align ? `c-bolt-text-v2--align-${align}` : '',
-      transform ? `c-bolt-text-v2--transform-${transform}` : '',
+      textTransform ? `c-bolt-text-v2--text-transform-${textTransform}` : '',
       lineHeight ? `c-bolt-text-v2--line-height-${lineHeight}` : '',
       opacity ? `c-bolt-text-v2--opacity-${opacity}` : '',
       quoted ? 'c-bolt-text-v2--quoted' : '',
-      italic ? 'c-bolt-text-v2--italic' : '',
 
       // @todo: remove once decoupled from icon component
       // iconValign ? `c-bolt-text-v2--vertical-align-${iconValign}` : '',

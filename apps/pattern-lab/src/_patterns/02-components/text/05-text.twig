@@ -34,7 +34,7 @@
       text: "This Is the XSmall Headline",
       headline: true,
       fontSize: "xsmall",
-      transform: "uppercase",
+      textTransform: "uppercase",
       letterSpacing: "wide"
     } only %}
   {% endset %}
@@ -106,7 +106,7 @@
     } only %}
     {% include "@bolt-components-text/text.twig" with {
       text: "The entire paragraph can be italic.",
-      italic: true
+      fontStyle: italic
     } only %}
     {% include "@bolt-components-text/text.twig" with {
       text: "The entire paragraph can be bold.",
