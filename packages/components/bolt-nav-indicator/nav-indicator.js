@@ -297,8 +297,8 @@ export class BoltNavIndicator extends BoltComponent() {
   // `<bolt-nav-link>` emits a custom event when the link is active
   connecting() {
     Promise.all([
-      customElements.whenDefined('bolt-navlink'),
       customElements.whenDefined('bolt-nav-priority'),
+      customElements.whenDefined('bolt-navlink'),
     ]).then(_ => {
 
       // If the nav indicator already exists, exit early.
