@@ -1,118 +1,196 @@
-// Vertically and horizontally center the default Brightcove share overlay content
-.vjs-modal-dialog .vjs-modal-dialog-content {
-  position: relative; // override position: absolute
-  overflow-x: auto; // clearfix floated children
-  height: auto; // override height: 100%
-  max-width: 1024px;
-  max-height: 56.25vw;
-  margin: 0 auto;
-  -webkit-overflow-scrolling: touch;
-}
+@import '@bolt/core';
 
-.video-js .vjs-poster {
-  background-color: transparent;
-}
 
-.video-js .vjs-big-play-button.vjs-big-play-button {
-  @include bolt-button-style(secondary);
-  margin-top: auto;
-  margin-left: auto;
-  width: 4.5rem;
-  height: 4.5rem;
-  transform: translate3d(-50%, -50%, 0);
-  box-shadow: 1px 2px 3px 0 rgba(47,49,50,0.15);
-  transition: all $bolt-transition;
+// Dev Notes
+// 1. [Mai] Because these styles are overrides, they need to be repeated.
+// 2. [Mai] Input font-size needs to be 16px to prevent zooming.
+// 3. [Mai] Hide close captions button.
+// 4. [Mai] Add white space for IE because padding got ignored.
+// 5. [Mai] Flexbox messes up IE layout, this prevents IE from loading display: flex.
 
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 4px 3px rgb(59, 153, 252);
-  }
 
-  .vjs-icon-placeholder {
-    display: block;
-    position: relative;
-    align-self: center;
-    line-height: 1; // Fixes vertical alignment issues w/ the icon in IE11 and Chrome
-  }
+$bolt-video-js-button-text-color: bolt-color(white);
+$bolt-video-js-button-background-color: bolt-color(orange);
+$bolt-video-js-button-transition: $bolt-transition;
+$bolt-video-js-button-border-radius: $bolt-border-radius;
+$bolt-video-js-button-shadow-color: bolt-color(black);
+$bolt-video-js-button-shadow-level: 'level-30';
 
-  .vjs-icon-placeholder:before {
-    color: bolt-color(blue);
-    display: block;
-    position: relative;
-    height: auto;
-    width: auto;
-    pointer-events: none; // prevent clicks from sticking
-  }
-}
-
-.video-js .vjs-control.vjs-close-button {
-  padding: 1.4rem;
-
-  > * {
-    display: flex;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    flex-direction: column;
-
-    &:before {
-      font-size: 1.4rem;
-      height: auto;
-      width: auto;
-      position: relative;
-    }
-  }
-}
-
-.vjs-social-overlay .vjs-social-direct-link input, .vjs-social-overlay .vjs-social-embed-code input, .vjs-social-overlay .vjs-social-start-from input {
-  font-size: 16px; // min 16px to prevent zooming
+@mixin bolt-video-js-button($opacity: 1) {
+  color: $bolt-video-js-button-text-color;
+  background-color: $bolt-video-js-button-background-color;
+  transition: all $bolt-video-js-button-transition;
+  opacity: $opacity;
 }
 
 .video-js {
   width: 100%;
   height: 100%;
-}
 
-.video-js .vjs-modal-dialog {
-  overflow: auto; // so psuedo layer below shows up
-  box-sizing: border-box;
-  z-index: bolt-z-index('nav');
-  max-width: 768px;
-  margin: 0 auto;
-  overflow: visible; // override default overflow: hidden
-  background: transparent; // override default gradient so the psuedo layer is the only backgrond showing up
-  position: absolute; // override position: absolute
-  height: auto; // override height: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
+  // required so videos with intrinsic ratio (used in the <bolt-ratio> object) properly fill the space available in IE 11.
+  position: absolute;
 
-  &:before {
-    content: '';
-    display: block;
-    background-color: rgba(bolt-color(black), 0.8);
-    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8), rgba(255, 255, 255, 0));
-    width: auto;
-    height: auto;
+  video,
+  .vjs-big-play-button {
+    cursor: pointer;
+  }
+
+  .vjs-big-play-button {
+    @include bolt-margin(0);
+    @include bolt-padding(0);
+    @include bolt-video-js-button($opacity: 1);
+
     position: absolute;
-    top: -9999px;
-    left: -9999px;
-    bottom: -9990px;
-    right: -9990px;
-    opacity: 1;
-    pointer-events: none;
+    top: auto;
+    right: auto;
+    bottom: bolt-v-spacing(xsmall);
+    left: bolt-spacing(xsmall);
+    width: 2em;
+    height: 1.5em;
+    line-height: 1.5em;
+    font-size: 1.5em;
+    border: none;
+    border-radius: $bolt-video-js-button-border-radius;
+
+    &:hover,
+    &:focus {
+      @include bolt-video-js-button($opacity: $bolt-global-link-hover-opacity); // [1]
+      @include bolt-shadow($key: $bolt-video-js-button-shadow-level, $base-color: $bolt-video-js-button-shadow-color);
+    }
+
+    &:active {
+      @include bolt-video-js-button($opacity: $bolt-global-link-active-opacity); // [1]
+    }
+  }
+
+  &:hover .vjs-big-play-button,
+  &:focus .vjs-big-play-button {
+    @include bolt-video-js-button($opacity: $bolt-global-link-hover-opacity); // [1]
+    @include bolt-shadow($key: $bolt-video-js-button-shadow-level, $base-color: $bolt-video-js-button-shadow-color);
+  }
+
+  &:active .vjs-big-play-button {
+    @include bolt-video-js-button($opacity: $bolt-global-link-active-opacity); // [1]
+  }
+
+  .vjs-poster {
+    background-color: transparent;
+  }
+
+  .vjs-slider {
+    background: rgba($bolt-video-js-button-background-color, 0.15);
+  }
+
+  .vjs-load-progress,
+  .vjs-load-progress div {
+    background: rgba($bolt-video-js-button-background-color, 0.25);
+  }
+
+  .vjs-playlist-sidebar .vjs-playlist-show-hide button:hover,
+  .vjs-menu-button-popup .vjs-menu .vjs-menu-item.vjs-selected,
+  .vjs-play-progress,
+  .vjs-volume-level {
+    background-color: $bolt-video-js-button-background-color;
+  }
+
+  .vjs-modal-dialog {
+    overflow: hidden;
+    background: rgba(bolt-color(black), 0.9);
+
+    .vjs-modal-dialog-content {
+      @include bolt-padding(medium large medium medium);
+      @include bolt-font-size(medium);
+
+      display: block;
+      overflow: auto;
+
+      @supports(display: flex) { // [5]
+        display: flex;
+        justify-content: center;
+      }
+
+      .vjs-social-title,
+      .vjs-social-description {
+        white-space: normal;
+      }
+
+      .vjs-social-title {
+        @include bolt-margin(0 0 xsmall 0);
+        @include bolt-font-size(medium);
+        @include bolt-font-weight(bold);
+      }
+
+      .vjs-social-description {
+        @include bolt-font-size(small);
+      }
+
+      .vjs-social-share-links {
+        margin-right: (bolt-spacing(xsmall) * -1);
+        margin-left: (bolt-spacing(xsmall) * -1);
+      }
+
+      .vjs-social-share-link {
+        @include bolt-margin(xsmall);
+
+        min-width: 2.5rem;
+        text-align: center;
+      }
+
+      .vjs-social-label-text {
+        @include bolt-font-size(xsmall);
+      }
+
+      form {
+        @include bolt-margin(auto);
+
+        max-width: 66ch;
+
+        input[type='text'] {
+          font-size: 16px; // [2]
+        }
+
+        label {
+          @include bolt-padding(0);
+
+          width: 100%;
+        }
+
+        > * {
+          @include bolt-margin-bottom(small);
+
+          &:last-child {
+            @include bolt-margin-bottom(0);
+            @include bolt-padding-bottom(medium); // [4]
+          }
+        }
+      }
+    }
+  }
+
+  .vjs-control.vjs-close-button {
+    width: bolt-spacing(large);
+    height: bolt-spacing(large);
+
+    > * {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      &:before {
+        position: relative;
+        width: auto;
+        height: auto;
+        font-size: 1.4rem;
+      }
+    }
   }
 }
 
-.vjs-social-overlay .vjs-social-description,
-.vjs-social-overlay .vjs-social-title {
-  white-space: normal;
-}
-
-// Hide close captions button
 .vjs-subs-caps-button {
-  display: none;
+  display: none; // [3]
 }

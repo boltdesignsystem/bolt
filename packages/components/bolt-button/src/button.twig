@@ -1,5 +1,9 @@
 {% set schema = bolt.data.components['@bolt-components-button'].schema %}
 
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
 {# Defaults for a vanilla `Button` component #}
 {% set prefix = "c-bolt-" %}
 {% set componentName = "button" %}
@@ -134,7 +138,3 @@
 
   </{{ tag }}>
 </bolt-button>
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-button/button.schema.yml', _self) | raw }}
-{% endif %}

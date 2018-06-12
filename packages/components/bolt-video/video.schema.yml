@@ -6,13 +6,13 @@ properties:
     type: object
     description: A Drupal-style attributes object with extra attributes to append to this component.
   videoId:
-    type: number
+    type: [string, number]
     description: Brightcove ID for this video.
   playerId:
     type: string
     description: Brightcover Player ID.
   accountID:
-    type: number
+    type: [string, number]
     description: ID of the Brightcove account that owns the video.
   videoUuid:
     type: string

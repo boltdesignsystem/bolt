@@ -73,7 +73,7 @@
       <li>
         <code>{{ key }}</code>
         {{ macros.titleAndDescription(prop.title, prop.description, prop.minimum, prop.maximum) }}
-        {% if isRef %}<br />Type: {{ prop.type }}{% endif %}
+        {% if isRef %}<br />Type: {{ prop.type is iterable ? prop.type|join(' OR ') : prop.type }} {% endif %}
         {{ macros.schemaProps(prop) }}
       </li>
     {% endfor %}
@@ -107,7 +107,7 @@
       <tbody>
         {% for key, prop in schema.properties %}
           <tr class="c-bolt-docs-table__row">
-            <td class="c-bolt-docs-table__col c-bolt-docs-table__col--key">{{ key }}{% if key in requiredProps %} <span class="required-key" title="Required">*</span>{% endif %}</td>
+            <td class="c-bolt-docs-table__col c-bolt-docs-table__col--key">{{ key }}{% if key in requiredProps %}<span class="required-key" title="Required">*</span>{% endif %}</td>
 
             {% set multiples = prop.type is iterable ? prop.type : prop.anyOf|default(prop.oneOf) %}
             {% if multiples is iterable %}
@@ -126,15 +126,16 @@
             <td class="c-bolt-docs-table__col">{{ macros.titleAndDescription(prop.title, prop.description, prop.minimum, prop.maximum) }}</td>
 
             <td class="c-bolt-docs-table__col">
-              <code>
-                {% if prop.default == false %}
-                  False
-                {% elseif prop.default == 'true' %}
-                  True
+
+                {% if prop.default is sameas(false) %}
+                  <code>False</code>
+                {% elseif prop.default is sameas(true) %}
+                  <code>True</code>
+                {% elseif prop.default is empty %}
+                  (None)
                 {% else %}
-                  {{ prop.default }}
+                  <code>{{ prop.default }}</code>
                 {% endif %}
-              </code>
             </td>
           </tr>
         {% endfor %}

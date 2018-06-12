@@ -12,6 +12,9 @@ module.exports = {
   extraTwigNamespaces: {
     'bolt': {
       recursive: true,
+    },
+    'pl': {
+      recursive: true,
       paths: [
         './src',
         /* Example of including additional component paths to include in the main @bolt namespace */
@@ -72,6 +75,7 @@ module.exports = {
       '@bolt/components-card',
       '@bolt/components-chip',
       '@bolt/components-chip-list',
+      '@bolt/components-code-snippet',
       '@bolt/components-copy-to-clipboard',
       '@bolt/components-device-viewer',
       '@bolt/components-figure',
@@ -81,7 +85,8 @@ module.exports = {
       '@bolt/components-icons',
       '@bolt/components-image',
       '@bolt/components-link',
-      '@bolt/components-nav',
+      '@bolt/components-nav-indicator',
+      '@bolt/components-nav-priority',
       '@bolt/components-navbar',
       '@bolt/components-navlink',
       '@bolt/components-logo',
@@ -93,6 +98,7 @@ module.exports = {
       '@bolt/components-smooth-scroll',
       '@bolt/components-sticky',
       '@bolt/components-teaser',
+      '@bolt/components-text',
       '@bolt/components-tooltip',
       '@bolt/components-unordered-list',
       '@bolt/components-video',

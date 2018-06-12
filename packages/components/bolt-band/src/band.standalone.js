@@ -36,7 +36,7 @@ export class BoltBand extends BoltComponent() {
   }
 
   /**
-    * `connectedCallback()` sets up the role, event handler and initial state.
+    * `connecting()` sets up the role, event handler and initial state.
     */
   connecting() {
     this.state = {
@@ -61,7 +61,7 @@ export class BoltBand extends BoltComponent() {
       }
     }
 
-    // Shim Shadow DOM styles. This needs to be run in `connectedCallback()`
+    // Shim Shadow DOM styles. This needs to be run in `connecting()`
     // because if you shim Custom Properties (CSS variables) the element
     // will need access to its parent node.
 

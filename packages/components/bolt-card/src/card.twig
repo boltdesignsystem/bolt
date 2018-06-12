@@ -4,7 +4,6 @@
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
-
 {% set tags = ["div", "article", "section", "figure"] %} {# Available overall container tags #}
 {% set contentTags = ["div", "article", "section", "figcaption"] %} {# Available content container tags #}
 {% set themes = ["xlight", "light", "dark", "xdark"] %}
@@ -55,7 +54,7 @@
         {% endfor %}
 
         {% set item = item | merge({
-          "buttons": null
+          "buttons": []
         }) %}
       {% endif %}
 
@@ -73,7 +72,7 @@
         {% set button = button | merge({ "pattern": "button" }) %}
         {% set _items = _items | merge([button]) %}
       {% endfor %}
-      {% set item = item | merge({ "buttons": null }) %}
+      {% set item = item | merge({ "buttons": [] }) %}
     {% endif %}
   {% endif %}
 

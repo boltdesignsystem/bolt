@@ -20,7 +20,7 @@ $bolt-font-family--sans-fallback:
   'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', /* [2] */
   'Helvetica Neue', sans-serif !default;
 $bolt-font-family--serif: 'Georgia', serif;
-$bolt-font-family--mono-fallback: monospace;
+$bolt-font-family--mono-fallback: monospace, monospace;
 
 
 /*
@@ -29,7 +29,7 @@ $bolt-font-family--mono-fallback: monospace;
 $bolt-font-family--sans:  'Open Sans', 'Helvetica Neue', sans-serif !default;
 $bolt-font-family--sans-subset: 'OpenSansSubset', 'Helvetica Neue', sans-serif !default;
 $bolt-font-family--serif: 'Georgia', serif;
-$bolt-font-family--mono:  'Courier New', monospace;
+$bolt-font-family--mono:  monospace, monospace;
 
 
 /*
@@ -47,8 +47,8 @@ $bolt-font-families: (
     ),
     bodySubset: (
       fallback-font: $bolt-font-family--sans-fallback,
-      custom-font: $bolt-font-family--sans-subset,
-      loaded-class: $bolt-fonts--subset-loaded-class
+      custom-font:   $bolt-font-family--sans-subset,
+      loaded-class:  $bolt-fonts--subset-loaded-class
     ),
     heading: (
       fallback-font: $bolt-font-family--sans-fallback,

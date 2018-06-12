@@ -1,7 +1,10 @@
 <!-- Icon JS + twig integration -->
 
-{% set attributes = create_attribute(attributes | default({})) %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-icon'].schema, _self) | raw }}
+{% endif %}
 
+{% set attributes = create_attribute(attributes | default({})) %}
 
 {% set attributes = attributes
   .setAttribute("name", name)
@@ -11,7 +14,3 @@
 %}
 
 <bolt-icon {{ attributes }}></bolt-icon>
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-icon/icon.schema.yml', _self) | raw }}
-{% endif %}

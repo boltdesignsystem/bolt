@@ -1,8 +1,6 @@
 @import '@bolt/core';
-@import '@bolt/components-button/src/button.settings';
-@import '@bolt/components-button/src/button.mixins';
-
 @import 'videojs-enhancements';
+@import 'video-meta';
 
 // Same as max-width of wrapper container
 $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
@@ -15,33 +13,17 @@ $bolt-video-background-max-height: 50.625vw;
   width: 100%;
   background-color: bolt-color(black); // placeholder color before poster loads up.
 
-// Hide the metadata (which covers the controls) if the user is either
-//   a) watching the video
-//   b) potentially interacting with the video
-  &:hover,
-  &.is-playing,
-  &:hover.is-paused {
-    #{$bolt-namespace}-video-meta {
-      transform: translate3d(0, 100%, 0);
-      opacity: 0;
-    }
-  }
-
-  // required so videos with intrinsic ratio (used in the <bolt-ratio> object) properly fill the space available in IE 11.
-  .video-js {
-    position: absolute;
-  }
-
   &[is-background-video]{
-    flex-grow: 1;
+    @include bolt-margin-right(auto);
+    @include bolt-margin-left(auto);
     z-index: 20;
-    transition: opacity .3s ease, min-height .3s ease;
+    flex-grow: 1;
     min-width: 100%;
     max-width: none;
+    transition: opacity 0.3s ease, min-height 0.3s ease;
     background-color: $bolt-video-background-color;
     pointer-events: none;
     opacity: 0;
-
     height: calc((90vw * (9 / 16)) - 4rem);
     max-width: 100vh;
     max-height: 56.25vh;
@@ -51,17 +33,17 @@ $bolt-video-background-max-height: 50.625vw;
     }
 
     .is-expanded & {
-      opacity: 1;
       pointer-events: auto;
+      opacity: 1;
     }
 
     .video-js {
-      margin: 0 auto;
+      @include bolt-margin(0 auto);
+      width: 100%;
       min-width: 0;
-      width: 100%;
-      background-color: transparent;
-      width: 100%;
       height: 100%;
+      background-color: transparent;
+      transition: all 0.4s ease;
       position: relative;
       pointer-events: none;
 
@@ -87,7 +69,6 @@ $bolt-video-background-max-height: 50.625vw;
   max-width: none;
   z-index: bolt-z-index('tooltip');
   transition: transform .4s cubic-bezier(.645, 0, .355, 1);
-
 
   &.c-#{$bolt-namespace}-video--background {
     display: block;

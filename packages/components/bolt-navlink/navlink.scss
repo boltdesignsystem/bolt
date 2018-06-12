@@ -4,7 +4,7 @@
    Navlink
 \* ------------------------------------ */
 
-$bolt-navlink-bg-color: rgba(bolt-color(gray), 0.2);
+$bolt-navlink-bg-color: currentColor;
 $bolt-navlink-bg-border-radius: $bolt-border-radius;
 $bolt-navlink-bg-transition-timing: $bolt-transition-timing*4;
 $bolt-navlink-text-transition: $bolt-transition;
@@ -13,36 +13,41 @@ $bolt-navlink-text-transition: $bolt-transition;
 // Navlink Component
 bolt-navlink {
   display: block;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
 }
 
 .c-bolt-navlink {
-  @include bolt-padding-top(xsmall);
-  @include bolt-padding-bottom(xsmall);
-  @include bolt-padding-left(medium);
-  @include bolt-padding-right(medium);
+  @include bolt-padding(small, squished);
+  @include bolt-font-size(small);
   @include bolt-font-weight(semibold);
-  @include bolt-font-size(medium);
 
-  @include respond-to(medium) {
-    @include bolt-padding(small, squished);
-    @include bolt-font-size(small);
-  }
-
-  display: block;
   position: relative;
-  opacity: 0.8;
+  opacity: 0.90;
   transition: opacity $bolt-navlink-text-transition;
-
-  display: block;
   position: relative;
   transition: all .1s ease;
   color: currentColor;
   color: var(--bolt-theme-heading-link-default, inherit);
+  // Added so that &:focus:not(:active) doesn't change the size of the band
+  // @todo: we should consider making &:focus:not(:active) with thin dotted style a mixin
+  // to share with nav-priority
+  border-width: thin;
+  border-style: dotted;
+  border-radius: 3px;
+  border-color: transparent;
 
-  &:hover, &:active,
-  &.is-hover, &.is-active {
+
+  &:active,
+  &.is-active {
+    color: inherit;
+    color: var(--bolt-theme-text, inherit);
+    border-color: transparent;
     opacity: 1;
   }
+
 
   &:before {
     display: block;
@@ -53,8 +58,16 @@ bolt-navlink {
     height: 100%;
     content: '';
     border-radius: $bolt-navlink-bg-border-radius;
-    background-color: $bolt-navlink-bg-color;
+    background-color: currentColor;
+    opacity: 0.1;
     transform: scale3d(0, 0, 0);
+    transition: all 0.1s ease;
+  }
+
+  &:active:before {
+    transform: scale3d(1, 1, 1);
+    opacity: 0.2;
+    animation: none;
   }
 
   &:hover,
@@ -72,6 +85,24 @@ bolt-navlink {
     &:before {
       animation: none;
     }
+  }
+
+    // works in chrome only
+  &:focus:not(:active) {
+    outline: none;
+    border-color: inherit;
+    border-color: var(--bolt-theme-primary,inherit);
+  }
+
+  &.is-dropdown-link.is-active:after {
+    width: 4px;
+    position: absolute;
+    top: 6px;
+    left: 0;
+    bottom: 6px;
+    background-color: currentColor;
+    background-color: var(--bolt-theme-primary, inherit);
+    content: '';
   }
 }
 

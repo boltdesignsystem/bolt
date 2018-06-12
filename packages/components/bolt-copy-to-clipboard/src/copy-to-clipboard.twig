@@ -1,3 +1,7 @@
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-copy-to-clipboard'].schema, _self) | raw }}
+{% endif %}
+
 {% set prefix = "c-bolt-" %}
 {% set componentName = "copy-to-clipboard" %} {# @todo: refactor to custom web component ASAP #}
 {% set baseClass = prefix ~ componentName %}
@@ -67,10 +71,3 @@
     </span>
   </div>
 </bolt-copy-to-clipboard>
-
-
-
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema("@bolt-components-copy-to-clipboard/copy-to-clipboard.schema.yml", _self) | raw }}
-{% endif %}

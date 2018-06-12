@@ -1,9 +1,9 @@
+{% set schema = bolt.data.components['@bolt-components-unordered-list'].schema %}
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-unordered-list'].schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
 {% set prefix = "c-bolt-" %}
-
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {% set componentName = "unordered-list" %}
@@ -30,4 +30,3 @@
     {% endfor %}
   </ul>
 </bolt-{{ componentName }}>
-

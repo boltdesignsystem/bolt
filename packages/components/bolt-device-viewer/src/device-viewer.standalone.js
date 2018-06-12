@@ -141,11 +141,11 @@ class BoltImageZoom extends BoltComponent() {
   }
 
   /**
-     * `disconnectedCallback()` fires when the element is removed from the DOM.
+     * `disconnecting()` fires when the element is removed from the DOM.
      * It's a good place to do clean up work like releasing references and
      * removing event listeners.
      */
-  disconnectedCallback() {
+  disconnecting() {
     this.removeEventListener('mouseenter', this._mouseEnter);
     this.removeEventListener('mouseleave', this._mouseLeave);
   }

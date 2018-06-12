@@ -1,23 +1,11 @@
+{% set schema = bolt.data.components['@bolt-components-band'].schema %}
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-band/band.schema.yml', _self) | raw }}
+  {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
 {% set prefix = "c-bolt-" %}
 {% set contentTags = ["div", "article", "section", "header", "footer", "nav", "figcaption"] %} {# Available content container tags #}
 {% set fullBleedOptions = [true, false] %}
-{% set sizes = [
-  "xsmall",
-  "small",
-  "medium",
-  "large"
-] %}
-{% set themes = [
-  "xlight",
-  "light",
-  "medium",
-  "dark",
-  "xdark"
-] %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
 
@@ -28,24 +16,22 @@
 {% set fullBleed = fullBleed == false and fullBleed is not null ? false : true %}
 
 {# set fullBleed = fullBleed in fullBleedOptions ? fullBleed | default(false) #}
-{% if size != "none" %}
-  {% set size = size | default("medium") %}
-{% endif %}
-{% if theme != "none" %}
-  {% set theme = theme | default("dark") %}
-{% endif %}
 
+{% set size = size in schema.properties.size.enum ? size : schema.properties.size.default %}
+{% set size = size == "none" ? false : size %}
+{% set theme = theme in schema.properties.theme.enum ? theme : schema.properties.theme.default %}
+{% set theme = theme == "none" ? false : theme %}
 
 {% set classes = [
   baseClass,
   fullBleed == true ? baseClass ~ "--" ~ "full" : "",
-  size in sizes ? baseClass ~ "--" ~ size : "",
-  theme in themes ? "t-bolt-" ~ theme : ""
+  size ? baseClass ~ "--" ~ size : "",
+  theme ? "t-bolt-" ~ theme : ""
 ] %}
 
 <bolt-{{ componentName }}
-  size="{{ size }}"
-  theme="{{ theme }}"
+  {% if size %} size="{{ size }}" {% endif %}
+  {% if theme %} theme="{{ theme }}" {% endif %}
   bolt-component {{ attributes.addClass(classes) }}>
   {% set renderedBandContent %}
     {% block band_background %}

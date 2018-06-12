@@ -1,9 +1,7 @@
 {% embed "@bolt-components-sticky/sticky.twig" %}
   {% block sticky_content %}
     {% include "@bolt-components-navbar/navbar.twig" with {
-      "theme": "medium",
-      "gradient": true,
-      "vspacing": "xsmall",
+      "theme": "dark",
       "title":
       {
         "tag": "h2",
@@ -16,7 +14,11 @@
       "links":
       [
         {
-          "text": "Section 1ne",
+          "text": "Visualization & Simulation",
+          "url": "#visualization-and-simulation"
+        },
+        {
+          "text": "Section 1",
           "url": "#section-1"
         },
         {
@@ -24,7 +26,7 @@
           "url": "#section-2"
         },
         {
-          "text": "Section Thr33",
+          "text": "Section 3",
           "url": "#section-3"
         },
         {
@@ -41,7 +43,12 @@
   theme: "dark",
   fullBleed: true,
   tag: "figure",
-  contentTag: "figcaption"
+  contentTag: "figcaption",
+  attributes: {
+    id: [
+      "visualization-and-simulation"
+    ]
+  }
 } %}
   {% block band_background %}
     {% include "@bolt-components-background/background.twig" with {
@@ -214,31 +221,17 @@
 {% embed "@bolt-components-sticky/sticky.twig" %}
   {% block sticky_content %}
     {% include "@bolt-components-navbar/navbar.twig" with {
-      "theme": "light",
-      "gradient": false,
-      "vspacing": "xsmall",
-      "title":
+      theme: "light",
+      center: true,
+      title:
       {
         "tag": "h2",
         "text": "2nd Sticky Nav Bar",
-        "icon":
-        {
-          "name": "cloud"
-        }
       },
-      "links":
-      [
+      links: [
         {
           "text": "Link",
           "url": "#section-5"
-        },
-        {
-          "text": "Link",
-          "url": "#section-5"
-        },
-        {
-          "text": "Link",
-          "url": "#section-6"
         },
         {
           "text": "Link",
@@ -277,6 +270,31 @@
 
   {% endblock band_content %}
 {% endembed %}
+
+{# @todo: re-enable when working on navbar edge cases (multiple heights + non-existent links #}
+{# {% embed "@bolt-components-sticky/sticky.twig" %}
+  {% block sticky_content %}
+    {% include "@bolt-components-navbar/navbar.twig" with {
+      theme: "light",
+      center: true,
+      links: [
+        {
+          "text": "Link X",
+          "url": "#section-x"
+        },
+        {
+          "text": "Link Y",
+          "url": "#section-y"
+        },
+         {
+          "text": "Link Z",
+          "url": "#section-z"
+        }
+      ]
+    } only %}
+  {% endblock %}
+{% endembed %} #}
+
 
 {% embed "@bolt-components-band/band.twig" with {
   size: "large",
