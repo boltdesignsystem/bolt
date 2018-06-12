@@ -86,14 +86,14 @@ let gumshoeStateModule = (function () {
 
           // if this there's a <bolt-nav-priority> instance, make sure that component's ready to go before proceeding trying to animate anything.
 
-          // Salem - @todo: confirm this is still necessary and if not, remove this.
-          // if (nav.nav.closest('bolt-nav-priority')){
-          //   const priorityNav = nav.nav.closest('bolt-nav-priority');
+          // @todo: iterate on a more refined solution so we animate in ASAP
+          if (nav.nav.closest('bolt-nav-priority')){
+            const priorityNav = nav.nav.closest('bolt-nav-priority');
 
-          //   if (!priorityNav.isReady){
-          //     return;
-          //   }
-          // }
+            if (!priorityNav.isReady){
+              return;
+            }
+          }
 
           const originalTarget = nav.nav;
           let originalTargetHref;
