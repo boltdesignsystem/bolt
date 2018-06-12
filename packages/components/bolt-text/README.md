@@ -57,6 +57,25 @@ You can set semantic tag to reflect the kind of text you are rendering.
 </bolt-text>
 ```
 
+### Text Color
+
+You can assign theme variables to the text color. Currently 2 variables are enabled, `theme-headline` and `theme-body`. `theme-headline` will produce the Headline Color, and `theme-body` will produce the Body Text Color. Both colors are defined in all of our themes. By assigning text colors this way, the design will always stay consistent and always work with a theme.
+
+```
+<bolt-text
+  color="theme-headline"
+>
+  This piece of text has the Headline Color from the theme.
+</bolt-text>
+```
+```
+<bolt-text
+  color="theme-body"
+>
+  This piece of text has the Body Text Color from the theme.
+</bolt-text>
+```
+
 ### Shorthand Defaults
 
 Using the shorthand method allows for consistency while also leaving room for customizations. The following are the official recipes for each piece of our typography. They will cover all common use cases. Only in edge cases, you'd want to break away and create your own recipes.

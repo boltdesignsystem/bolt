@@ -127,7 +127,7 @@
   </figure>
 
 
-  <h3>Example Lockup</h3>
+  <h3>Example Lockup in Different Themes</h3>
 
   {% set exampleLockup %}
     {% include "@bolt-components-text/text.twig" with {
@@ -149,9 +149,33 @@
     } only %}
   {% endset %}
 
-  <figure>
+  <figure class="u-bolt-margin-bottom-medium">
+    {% include "@bolt-components-band/band.twig" with {
+      theme: "xlight",
+      fullBleed: false,
+      content: exampleLockup
+    } only %}
+  </figure>
+
+  <figure class="u-bolt-margin-bottom-medium">
     {% include "@bolt-components-band/band.twig" with {
       theme: "light",
+      fullBleed: false,
+      content: exampleLockup
+    } only %}
+  </figure>
+
+  <figure class="u-bolt-margin-bottom-medium">
+    {% include "@bolt-components-band/band.twig" with {
+      theme: "dark",
+      fullBleed: false,
+      content: exampleLockup
+    } only %}
+  </figure>
+
+  <figure>
+    {% include "@bolt-components-band/band.twig" with {
+      theme: "xdark",
       fullBleed: false,
       content: exampleLockup
     } only %}
