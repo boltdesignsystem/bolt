@@ -58,316 +58,318 @@ bolt-text {
 $bolt-text--minus-letter-spacing: -0.025rem;
 $bolt-text--plus-letter-spacing: 0.05rem;
 
-.c-bolt-text {
-  margin: 0;
-  padding: 0;
+bolt-text {
+  .c-bolt-text {
+    margin: 0;
+    padding: 0;
 
-  a:link, a:visited {
-    color: inherit;
-    color: var(--bolt-theme-link-default,var(--bolt-theme-link,#545da6));
-    text-decoration: none;
-  }
-  a:active {
-    color: inherit;
-    color: var(--bolt-theme-link-active,var(--bolt-theme-link,#545da6));
-  }
-  a:hover, a:focus {
-    color: inherit;
-    color: var(--bolt-theme-link-hover,var(--bolt-theme-link,#545da6));
-    text-decoration: underline;
-  }
-
-  &.c-bolt-text--body {
     a:link, a:visited {
-      text-decoration: underline;
-    }
-    a:hover {
+      color: inherit;
+      color: var(--bolt-theme-link-default,var(--bolt-theme-link,#545da6));
       text-decoration: none;
     }
-  }
-}
+    a:active {
+      color: inherit;
+      color: var(--bolt-theme-link-active,var(--bolt-theme-link,#545da6));
+    }
+    a:hover, a:focus {
+      color: inherit;
+      color: var(--bolt-theme-link-hover,var(--bolt-theme-link,#545da6));
+      text-decoration: underline;
+    }
 
-.c-bolt-text {
-  // Font-Family
-  &--headline {
-    @include bolt-font-family('heading');
-  }
-  &--body {
-    @include bolt-font-family('body');
-  }
-  &--code {
-    @include bolt-font-family('code');
-  }
-
-  // Color
-  &--theme-headline-text-color {
-    color: inherit;
-    color: var(--bolt-theme-heading, inherit);
-  }
-  &--theme-body-text-color {
-    color: inherit;
-    color: var(--bolt-theme-body, inherit);
-  }
-  &--theme-code-text-color {
-    color: inherit;
-    color: var(--bolt-theme-code, inherit);
-  }
-
-  // Font Weight Options
-  &--weight-semibold {
-    @include bolt-font-weight(semibold);
-  }
-  &--weight-regular {
-    @include bolt-font-weight(regular);
-  }
-  &--weight-bold {
-    @include bolt-font-weight(bold);
-  }
-
-  // Font style variations
-  &--style-normal {
-    font-style: normal;
-  }
-  &--style-italic {
-    font-style: italic;
-  }
-
-  // Font size
-  &--font-xxxlarge {
-    @include bolt-font-size(xxxlarge);
-    letter-spacing: $bolt-text--minus-letter-spacing;
-
-    &.long-title {
-      font-size: $bolt-font-size--xxxlarge--min;
-    }
-  }
-  &--font-xxlarge {
-    @include bolt-font-size(xxlarge);
-    letter-spacing: $bolt-text--minus-letter-spacing;
-  }
-  &--font-xlarge {
-    @include bolt-font-size(xlarge);
-  }
-  &--font-large {
-    @include bolt-font-size(large);
-  }
-  &--font-medium {
-    @include bolt-font-size(medium);
-  }
-  &--font-small {
-    @include bolt-font-size(small);
-    letter-spacing: $bolt-text--plus-letter-spacing;
-  }
-  &--font-xsmall {
-    @include bolt-font-size(xsmall);
-    letter-spacing: $bolt-text--plus-letter-spacing;
-  }
-
-  // Display type
-  &--display-inline {
-    display: inline;
-  }
-  &--display-inline-block {
-    display: inline-block;
-  }
-  &--display-block {
-    display: block;
-  }
-
-  // Align content
-  &--align-left {
-    text-align: left;
-  }
-  &--align-center {
-    text-align: center;
-  }
-  &--align-right {
-    text-align: right;
-  }
-
-  // Transform text
-  &--transform-uppercase {
-    text-transform: uppercase;
-  }
-  &--transform-lowercase {
-    text-transform: lowercase;
-  }
-  &--transform-capitalize {
-    text-transform: capitalize;
-  }
-
-  // Letter spacing
-  &--letter-spacing-narrow {
-    letter-spacing:  $bolt-text--minus-letter-spacing;
-  }
-  &--letter-spacing-normal {
-    letter-spacing: normal;
-  }
-  &--letter-spacing-wide {
-    letter-spacing:  $bolt-text--plus-letter-spacing;
-  }
-
-  // Line height
-  $bolt-line-height--add-loose: 0.2;
-  &--line-height-tight {
-    line-height: $bolt-line-height--tight;
-  }
-  &--line-height-regular {
-    &.c-bolt-text--font-xxxlarge {
-      line-height: $bolt-line-height--xxxlarge;
-    }
-    &.c-bolt-text--font-xxlarge {
-      line-height: $bolt-line-height--xxlarge;
-    }
-    &.c-bolt-text--font-xlarge {
-      line-height: $bolt-line-height--xlarge;
-    }
-    &.c-bolt-text--font-large {
-      line-height: $bolt-line-height--large;
-    }
-    &.c-bolt-text--font-medium {
-      line-height: $bolt-line-height--medium;
-    }
-    &.c-bolt-text--font-small {
-      line-height: $bolt-line-height--small;
-    }
-    &.c-bolt-text--font-xsmall {
-      line-height: $bolt-line-height--xsmall;
-    }
-  }
-  &--line-height-loose {
-    &.c-bolt-text--font-xxxlarge {
-      line-height: ($bolt-line-height--xxxlarge + $bolt-line-height--add-loose);
-    }
-    &.c-bolt-text--font-xxlarge {
-      line-height: ($bolt-line-height--xxlarge + $bolt-line-height--add-loose);
-    }
-    &.c-bolt-text--font-xlarge {
-      line-height: ($bolt-line-height--xlarge + $bolt-line-height--add-loose);
-    }
-    &.c-bolt-text--font-large {
-      line-height: ($bolt-line-height--large + $bolt-line-height--add-loose);
-    }
-    &.c-bolt-text--font-medium {
-      line-height: ($bolt-line-height--medium + $bolt-line-height--add-loose);
-    }
-    &.c-bolt-text--font-small {
-      line-height: ($bolt-line-height--small + $bolt-line-height--add-loose);
-    }
-    &.c-bolt-text--font-xsmall {
-      line-height: ($bolt-line-height--xsmall + $bolt-line-height--add-loose);
+    &.c-bolt-text--body {
+      a:link, a:visited {
+        text-decoration: underline;
+      }
+      a:hover {
+        text-decoration: none;
+      }
     }
   }
 
-  // Quoted style
-  &--quoted {
-    &:before,
-    &:after {
-      font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
+  .c-bolt-text {
+    // Font-Family
+    &--headline {
+      @include bolt-font-family('heading');
+    }
+    &--body {
+      @include bolt-font-family('body');
+    }
+    &--code {
+      @include bolt-font-family('code');
     }
 
-    &:before {
-      content: '\201C';
-      transform: translate3d(-110%, 0, 0);
+    // Color
+    &--theme-headline-text-color {
+      color: inherit;
+      color: var(--bolt-theme-heading, inherit);
+    }
+    &--theme-body-text-color {
+      color: inherit;
+      color: var(--bolt-theme-body, inherit);
+    }
+    &--theme-code-text-color {
+      color: inherit;
+      color: var(--bolt-theme-code, inherit);
     }
 
-    &:after {
-      content: '\201D';
+    // Font Weight Options
+    &--weight-semibold {
+      @include bolt-font-weight(semibold);
     }
-  }
+    &--weight-regular {
+      @include bolt-font-weight(regular);
+    }
+    &--weight-bold {
+      @include bolt-font-weight(bold);
+    }
 
-  // Opacity
-  &--opacity-100 {
-    opacity: 1;
-  }
-  &--opacity-80 {
-    opacity: 0.8;
-  }
-  &--opacity-60 {
-    opacity: 0.6;
-  }
-  &--opacity-40 {
-    opacity: 0.4;
-  }
-  &--opacity-20 {
-    opacity: 0.2;
-  }
+    // Font style variations
+    &--style-normal {
+      font-style: normal;
+    }
+    &--style-italic {
+      font-style: italic;
+    }
 
-  // Icon Alignment
+    // Font size
+    &--font-xxxlarge {
+      @include bolt-font-size(xxxlarge);
+      letter-spacing: $bolt-text--minus-letter-spacing;
 
-  // @todo: uncomment once icon component decoupled and we can target wrapper around the icon.
-  // &.has-icon:not(.has-url) {
+      &.long-title {
+        font-size: $bolt-font-size--xxxlarge--min;
+      }
+    }
+    &--font-xxlarge {
+      @include bolt-font-size(xxlarge);
+      letter-spacing: $bolt-text--minus-letter-spacing;
+    }
+    &--font-xlarge {
+      @include bolt-font-size(xlarge);
+    }
+    &--font-large {
+      @include bolt-font-size(large);
+    }
+    &--font-medium {
+      @include bolt-font-size(medium);
+    }
+    &--font-small {
+      @include bolt-font-size(small);
+      letter-spacing: $bolt-text--plus-letter-spacing;
+    }
+    &--font-xsmall {
+      @include bolt-font-size(xsmall);
+      letter-spacing: $bolt-text--plus-letter-spacing;
+    }
 
-  //   &.c-bolt-text--icon-align-left-hang,
-  //   &.c-bolt-text--icon-align-right-hang {
-  //     display: flex;
-  //     justify-content: space-between;
-  //   }
-  //   &.c-bolt-text--icon-align-left,
-  //   &.c-bolt-text--icon-align-left-hang {
-  //     bolt-icon {
-  //       margin-right: 0.25rem;
-  //     }
-  //   }
-  //   &.c-bolt-text--icon-align-right,
-  //   &.c-bolt-text--icon-align-right-hang  {
-  //     bolt-icon {
-  //       margin-left: 0.25rem;
-  //     }
-  //   }
-  // }
-  // &.has-icon.has-url { // If we have an <a> tag we need that to be the flex parent
+    // Display type
+    &--display-inline {
+      display: inline;
+    }
+    &--display-inline-block {
+      display: inline-block;
+    }
+    &--display-block {
+      display: block;
+    }
 
-  //   &.c-bolt-text--icon-align-left-hang,
-  //   &.c-bolt-text--icon-align-right-hang {
-  //     > a {
-  //       display: flex;
-  //       justify-content: space-between;
-  //     }
-  //   }
-  //   &.c-bolt-text--icon-align-left,
-  //   &.c-bolt-text--icon-align-left-hang {
-  //     > a bolt-icon {
-  //       margin-right: 0.25rem;
-  //     }
-  //   }
-  //   &.c-bolt-text--icon-align-right,
-  //   &.c-bolt-text--icon-align-right-hang {
-  //     > a bolt-icon {
-  //       margin-left: 0.25rem;
-  //     }
-  //   }
-  // }
+    // Align content
+    &--align-left {
+      text-align: left;
+    }
+    &--align-center {
+      text-align: center;
+    }
+    &--align-right {
+      text-align: right;
+    }
 
-  // &--vertical-align-top.has-icon {
-  //   &.c-bolt-text--font-xxxlarge bolt-icon {
-  //     margin-top: 0.06em;
-  //   }
-  //   &.c-bolt-text--font-xxlarge bolt-icon {
-  //     margin-top: 0.13em;
-  //   }
-  //   &.c-bolt-text--font-xlarge bolt-icon {
-  //     margin-top: 0.15em;
-  //   }
-  //   &.c-bolt-text--font-large bolt-icon {
-  //     margin-top: 0.18em;
-  //   }
-  //   &.c-bolt-text--font-medium bolt-icon {
-  //     margin-top: 0.3em;
-  //   }
-  //   &.c-bolt-text--font-small bolt-icon {
-  //     margin-top: 0.25em;
-  //   }
-  //   &.c-bolt-text--font-xsmall bolt-icon {
-  //     margin-top: 0.15em;
-  //   }
-  //   bolt-icon {
-  //     vertical-align: top;
-  //   }
-  // }
-  // &--vertical-align-center.has-icon {
-  //   bolt-icon {
-  //     align-self: center;
-  //   }
-  // }
+    // Transform text
+    &--transform-uppercase {
+      text-transform: uppercase;
+    }
+    &--transform-lowercase {
+      text-transform: lowercase;
+    }
+    &--transform-capitalize {
+      text-transform: capitalize;
+    }
+
+    // Letter spacing
+    &--letter-spacing-narrow {
+      letter-spacing:  $bolt-text--minus-letter-spacing;
+    }
+    &--letter-spacing-normal {
+      letter-spacing: normal;
+    }
+    &--letter-spacing-wide {
+      letter-spacing:  $bolt-text--plus-letter-spacing;
+    }
+
+    // Line height
+    $bolt-line-height--add-loose: 0.2;
+    &--line-height-tight {
+      line-height: $bolt-line-height--tight;
+    }
+    &--line-height-regular {
+      &.c-bolt-text--font-xxxlarge {
+        line-height: $bolt-line-height--xxxlarge;
+      }
+      &.c-bolt-text--font-xxlarge {
+        line-height: $bolt-line-height--xxlarge;
+      }
+      &.c-bolt-text--font-xlarge {
+        line-height: $bolt-line-height--xlarge;
+      }
+      &.c-bolt-text--font-large {
+        line-height: $bolt-line-height--large;
+      }
+      &.c-bolt-text--font-medium {
+        line-height: $bolt-line-height--medium;
+      }
+      &.c-bolt-text--font-small {
+        line-height: $bolt-line-height--small;
+      }
+      &.c-bolt-text--font-xsmall {
+        line-height: $bolt-line-height--xsmall;
+      }
+    }
+    &--line-height-loose {
+      &.c-bolt-text--font-xxxlarge {
+        line-height: ($bolt-line-height--xxxlarge + $bolt-line-height--add-loose);
+      }
+      &.c-bolt-text--font-xxlarge {
+        line-height: ($bolt-line-height--xxlarge + $bolt-line-height--add-loose);
+      }
+      &.c-bolt-text--font-xlarge {
+        line-height: ($bolt-line-height--xlarge + $bolt-line-height--add-loose);
+      }
+      &.c-bolt-text--font-large {
+        line-height: ($bolt-line-height--large + $bolt-line-height--add-loose);
+      }
+      &.c-bolt-text--font-medium {
+        line-height: ($bolt-line-height--medium + $bolt-line-height--add-loose);
+      }
+      &.c-bolt-text--font-small {
+        line-height: ($bolt-line-height--small + $bolt-line-height--add-loose);
+      }
+      &.c-bolt-text--font-xsmall {
+        line-height: ($bolt-line-height--xsmall + $bolt-line-height--add-loose);
+      }
+    }
+
+    // Quoted style
+    &--quoted {
+      &:before,
+      &:after {
+        font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
+      }
+
+      &:before {
+        content: '\201C';
+        transform: translate3d(-110%, 0, 0);
+      }
+
+      &:after {
+        content: '\201D';
+      }
+    }
+
+    // Opacity
+    &--opacity-100 {
+      opacity: 1;
+    }
+    &--opacity-80 {
+      opacity: 0.8;
+    }
+    &--opacity-60 {
+      opacity: 0.6;
+    }
+    &--opacity-40 {
+      opacity: 0.4;
+    }
+    &--opacity-20 {
+      opacity: 0.2;
+    }
+
+    // Icon Alignment
+
+    // @todo: uncomment once icon component decoupled and we can target wrapper around the icon.
+    // &.has-icon:not(.has-url) {
+
+    //   &.c-bolt-text--icon-align-left-hang,
+    //   &.c-bolt-text--icon-align-right-hang {
+    //     display: flex;
+    //     justify-content: space-between;
+    //   }
+    //   &.c-bolt-text--icon-align-left,
+    //   &.c-bolt-text--icon-align-left-hang {
+    //     bolt-icon {
+    //       margin-right: 0.25rem;
+    //     }
+    //   }
+    //   &.c-bolt-text--icon-align-right,
+    //   &.c-bolt-text--icon-align-right-hang  {
+    //     bolt-icon {
+    //       margin-left: 0.25rem;
+    //     }
+    //   }
+    // }
+    // &.has-icon.has-url { // If we have an <a> tag we need that to be the flex parent
+
+    //   &.c-bolt-text--icon-align-left-hang,
+    //   &.c-bolt-text--icon-align-right-hang {
+    //     > a {
+    //       display: flex;
+    //       justify-content: space-between;
+    //     }
+    //   }
+    //   &.c-bolt-text--icon-align-left,
+    //   &.c-bolt-text--icon-align-left-hang {
+    //     > a bolt-icon {
+    //       margin-right: 0.25rem;
+    //     }
+    //   }
+    //   &.c-bolt-text--icon-align-right,
+    //   &.c-bolt-text--icon-align-right-hang {
+    //     > a bolt-icon {
+    //       margin-left: 0.25rem;
+    //     }
+    //   }
+    // }
+
+    // &--vertical-align-top.has-icon {
+    //   &.c-bolt-text--font-xxxlarge bolt-icon {
+    //     margin-top: 0.06em;
+    //   }
+    //   &.c-bolt-text--font-xxlarge bolt-icon {
+    //     margin-top: 0.13em;
+    //   }
+    //   &.c-bolt-text--font-xlarge bolt-icon {
+    //     margin-top: 0.15em;
+    //   }
+    //   &.c-bolt-text--font-large bolt-icon {
+    //     margin-top: 0.18em;
+    //   }
+    //   &.c-bolt-text--font-medium bolt-icon {
+    //     margin-top: 0.3em;
+    //   }
+    //   &.c-bolt-text--font-small bolt-icon {
+    //     margin-top: 0.25em;
+    //   }
+    //   &.c-bolt-text--font-xsmall bolt-icon {
+    //     margin-top: 0.15em;
+    //   }
+    //   bolt-icon {
+    //     vertical-align: top;
+    //   }
+    // }
+    // &--vertical-align-center.has-icon {
+    //   bolt-icon {
+    //     align-self: center;
+    //   }
+    // }
+  }
 }
