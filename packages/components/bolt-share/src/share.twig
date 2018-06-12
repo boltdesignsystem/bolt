@@ -9,10 +9,12 @@
 {% set items = [] %}
 
 {% if isFlat is sameas(true) %}
+  {% set shareText = shareText | default(schema.properties.shareText.default) %}
   {% set items = items|merge([include("@bolt-components-headline/text.twig", {
-    text: "Share this page",
-    transform: 'uppercase',
+    text: 'Share this page',
     weight: 'bold',
+    transform: 'uppercase',
+    size: 'small',
     attributes: create_attribute(attributes|default({})).addClass('u-bolt-color-gray-dark c-bolt-share--inline-heading')
   })]) %}
 {% endif %}
