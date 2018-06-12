@@ -1,3 +1,5 @@
+import 'core-js/modules/es6.array.for-each';
+
 // here if you need pl only JS
 document.addEventListener('DOMContentLoaded', () => {
   /**
