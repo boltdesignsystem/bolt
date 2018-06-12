@@ -45,6 +45,7 @@ ClassicEditor
       } only %}
     </figure>
     <h3>CKEditor Docs</h3>
+    <p>The docs show that mapping each style option to a specific tag and class is possible, but we need to figure out if it can do attributes as well. Otherwise, we'd have to make sure our web components can work without any attributes.</p>
     <p>
       <a href="https://github.com/ckeditor/ckeditor-dev/tree/major/plugins">https://github.com/ckeditor/ckeditor-dev/tree/major/plugins</a>
       <br>
@@ -150,10 +151,13 @@ ClassicEditor
       {% include "@bolt-components-ordered-list/ordered-list.twig" with {
         "contentItems" : [
           {
-            "text": "Figure (Image and Video): the figure component needs to be styled."
+            "text": "<mark>Figure (Image and Video): the figure component needs to be styled.</mark>"
           },
           {
-            "text": "Table: table component has not been created."
+            "text": "<mark>Table: table component has not been created.</mark>"
+          },
+          {
+            "text": "<mark>All existing components other than the code snippet are not yet web components</mark>"
           }
         ]
       } %}
