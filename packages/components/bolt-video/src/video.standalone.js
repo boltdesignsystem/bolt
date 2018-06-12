@@ -15,7 +15,7 @@ import Mousetrap from 'mousetrap';
 let index = 0;
 
 @define
-class BoltVideoMeta extends withPreact(withComponent()) {
+class BoltVideoMeta extends withPreact() {
   static is = `${bolt.namespace}-video-meta`;
 
   constructor(self) {
@@ -56,7 +56,7 @@ class BoltVideoMeta extends withPreact(withComponent()) {
 
 
 @define
-class BoltVideo extends withPreact(withComponent()) {
+class BoltVideo extends withPreact() {
   static is = `${bolt.namespace}-video`;
 
   static props = {

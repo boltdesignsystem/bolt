@@ -1,7 +1,11 @@
 /** @jsx h */
 // Temp working version of @skatejs/renderer-preact till SkateJS fixes this upstream in the SkateJS monorepo
 
-import { shadow, withComponent } from 'skatejs';
+import {
+  withComponent,
+  shadow,
+  props,
+} from 'skatejs';
 import preact, { h, render, Component } from 'preact';
 import html from 'preact-html';
 import { hasNativeShadowDomSupport } from '../utils/environment';
@@ -40,7 +44,7 @@ function teardownPreact() {
 
 
 export function withPreact(Base = HTMLElement) {
-  return class extends BoltBase(Base) {
+  return class extends withComponent(BoltBase(Base)) {
 
     get props() {
       // We override props so that we can satisfy most use
