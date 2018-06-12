@@ -203,7 +203,7 @@ export class BoltNavIndicator extends BoltComponent() {
   resetLinks(activeLink = null) {
     const links = this._allLinks();
     links.forEach(link => {
-      if (link !== activeLink) {
+      if (link !== activeLink && link.deactivate) {
         link.deactivate();
       }
     });
