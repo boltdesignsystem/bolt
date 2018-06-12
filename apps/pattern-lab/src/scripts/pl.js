@@ -1,4 +1,4 @@
-import 'core-js/modules/es6.array.for-each';
+import 'core-js/modules/es6.string.starts-with';
 
 // here if you need pl only JS
 document.addEventListener('DOMContentLoaded', () => {
@@ -28,12 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
    * Make sure all external facing links open in a new tab in PL.
    * Important as external links can behave strangely within the iframe setup of PL.
    */
-  document.querySelectorAll('a').forEach((item) => {
-    const href = item.getAttribute('href');
-    if (href){
+  const docsSiteLinks = document.querySelectorAll('a');
+  for (var i = 0, len = docsSiteLinks.length; i < len; i++) {
+    const linkElem = docsSiteLinks[i];
+    const href = linkElem.getAttribute('href');
+    if (href) {
       if (href.startsWith('http')) {
-        item.setAttribute('target', '_blank');
+        linkElem.setAttribute('target', '_blank');
       }
     }
-  });
+  }
 });
