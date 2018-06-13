@@ -1,8 +1,7 @@
 {% set schema = bolt.data.components['@bolt-components-text'].schema %}
 
 {% for align in schema.properties.align.enum %}
-  {% include "@bolt-components-text/text.twig" with {
-    text: "This is regular text using " ~ align ~ " align",
-    align: align
-  } only %}
+  <bolt-text align="{{ align }}">
+    This is regular text using {{ align }} align
+  </bolt-text>
 {% endfor %}

@@ -3,11 +3,17 @@
 {% for fontSize in schema.properties.fontSize.enum %}
   {% for fontWeight in schema.properties.fontWeight.enum %}
 
-    {% include "@bolt-components-text/text.twig" with {
-      text: "This is " ~ fontWeight ~ " " ~ fontSize ~ " text",
-      fontWeight: fontWeight,
-      fontSize: fontSize
-    } only %}
+    <bolt-text font-weight="{{ fontWeight }}" font-size="{{ fontSize }}">
+      This is {{ fontWeight }} {{fontSize}} text
+    </bolt-text>
+
+    {#
+      {% include "@bolt-components-text/text.twig" with {
+        text: "This is " ~ fontWeight ~ " " ~ fontSize ~ " text",
+        fontWeight: fontWeight,
+        fontSize: fontSize
+      } only %}
+    #}
 
   {% endfor %}
 {% endfor %}

@@ -1,7 +1,17 @@
 {% set schema = bolt.data.components['@bolt-components-text'].schema %}
 
-{% include "@bolt-components-text/text.twig" with {
-  text: "What we do at Pega is brilliant!",
-  headline: true,
-  quoted: true
-} only %}
+<bolt-text quoted>
+  This piece of text is also a quote.
+</bolt-text>
+
+<bolt-text headline quoted>
+  This headline is also a quote.
+</bolt-text>
+
+{#
+  {% include "@bolt-components-text/text.twig" with {
+    text: "What we do at Pega is brilliant!",
+    headline: true,
+    quoted: true
+  } only %}
+#}

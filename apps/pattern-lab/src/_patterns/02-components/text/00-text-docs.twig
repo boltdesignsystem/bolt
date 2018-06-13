@@ -1,6 +1,6 @@
 {% set schema = get_data("@bolt-components-text/text.schema.yml") %}
 
-{% set code %}{% verbatim %}{% include "@bolt-components-text/text.twig" with {
+{# {% set code %}{% verbatim %}{% include "@bolt-components-text/text.twig" with {
   text: "This is an Eyebrow",
   eyebrow: true
 } only %}
@@ -28,7 +28,7 @@
     'margin-bottom-large',
     'color-indigo'
   ]
-} only %}{% endverbatim %}{% endset %}
+} only %}{% endverbatim %}{% endset %} #}
 
 {% include "@utils/docs.twig" with {
   schema: schema,

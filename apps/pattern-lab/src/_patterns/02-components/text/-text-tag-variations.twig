@@ -3,9 +3,15 @@
 {% for tag in schema.properties.tag.enum %}
   <p class="u-bolt-margin-bottom-xsmall"><code>{{ tag }}</code></p>
   <figure class="u-bolt-margin-bottom-medium">
-    {% include "@bolt-components-text/text.twig" with {
-      text: "This is regular text using " ~ tag ~ " tag",
-      tag: tag
-    } only %}
+    <bolt-text tag="{{ tag }}">
+      This is regular text using {{ tag }} tag
+    </bolt-text>
+
+    {#
+      {% include "@bolt-components-text/text.twig" with {
+        text: "This is regular text using " ~ tag ~ " tag",
+        tag: tag
+      } only %}
+    #}
   </figure>
 {% endfor %}
