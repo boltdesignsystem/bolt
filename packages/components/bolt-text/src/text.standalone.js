@@ -17,7 +17,6 @@ class BoltText extends BoltComponent() {
   static props = {
     tag: props.string,
     display: props.string,
-    vspacing: props.string,
     color: props.string,
     align: props.string,
     textTransform: props.string,

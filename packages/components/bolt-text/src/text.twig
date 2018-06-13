@@ -49,10 +49,6 @@
   {% set attributes = attributes.setAttribute("line-height", lineHeight) %}
 {% endif %}
 
-{% if vspacing in schema.properties.vspacing.enum %}
-  {% set attributes = attributes.setAttribute("vspacing", vspacing) %}
-{% endif %}
-
 {% if textTransform in schema.properties.textTransform.enum %}
   {% set attributes = attributes.setAttribute("text-transform", textTransform) %}
 {% endif %}

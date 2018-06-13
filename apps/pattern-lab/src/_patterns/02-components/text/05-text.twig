@@ -1,184 +1,182 @@
 {% set schema = bolt.data.components['@bolt-components-text'].schema %}
 
-<div style="max-width: 75ch;">
 
-  <h3>Typographic Design</h3>
-  <p>The following are the official recipes for each piece of our typography. They will cover all common use cases. Only in edge cases, you'd want to break away and create your own recipes.</p>
+<h3>Typographic Design</h3>
+<p>The following are the official recipes for each piece of our typography. They will cover all common use cases. Only in edge cases, you'd want to break away and create your own recipes.</p>
 
-  <h3>Headlines</h3>
+<h3>Headlines</h3>
 
-  {% set headlines %}
-    {% include "@bolt-components-text/text.twig" with {
-      text: "This Is the XXXLarge Headline",
-      headline: true,
-      fontSize: "xxxlarge"
-    } only %}
-    {% include "@bolt-components-text/text.twig" with {
-      text: "This Is the XXLarge Headline",
-      headline: true,
-      fontSize: "xxlarge"
-    } only %}
-    {% include "@bolt-components-text/text.twig" with {
-      text: "This Is the XLarge Headline",
-      headline: true,
-      fontSize: "xlarge"
-    } only %}
-    {% include "@bolt-components-text/text.twig" with {
-      text: "This Is the Large Headline",
-      headline: true,
-      fontSize: "large"
-    } only %}
-    {% include "@bolt-components-text/text.twig" with {
-      text: "This Is the Small Headline",
-      headline: true,
-      fontSize: "small"
-    } only %}
-    {% include "@bolt-components-text/text.twig" with {
-      text: "This Is the XSmall Headline",
-      headline: true,
-      fontSize: "xsmall",
-      textTransform: "uppercase",
-      letterSpacing: "wide"
-    } only %}
-  {% endset %}
+{% set headlines %}
+  {% include "@bolt-components-text/text.twig" with {
+    text: "This Is the XXXLarge Headline",
+    headline: true,
+    fontSize: "xxxlarge"
+  } only %}
+  {% include "@bolt-components-text/text.twig" with {
+    text: "This Is the XXLarge Headline",
+    headline: true,
+    fontSize: "xxlarge"
+  } only %}
+  {% include "@bolt-components-text/text.twig" with {
+    text: "This Is the XLarge Headline",
+    headline: true,
+    fontSize: "xlarge"
+  } only %}
+  {% include "@bolt-components-text/text.twig" with {
+    text: "This Is the Large Headline",
+    headline: true,
+    fontSize: "large"
+  } only %}
+  {% include "@bolt-components-text/text.twig" with {
+    text: "This Is the Small Headline",
+    headline: true,
+    fontSize: "small"
+  } only %}
+  {% include "@bolt-components-text/text.twig" with {
+    text: "This Is the XSmall Headline",
+    headline: true,
+    fontSize: "xsmall",
+    textTransform: "uppercase",
+    letterSpacing: "wide"
+  } only %}
+{% endset %}
 
-  <figure class="u-bolt-margin-bottom-medium">
-    {% include "@bolt-components-band/band.twig" with {
-      theme: "xlight",
-      size: "small",
-      fullBleed: false,
-      content: headlines
-    } only %}
-  </figure>
-
-
-  <h3>Subheadlines</h3>
-
-  {% set subheadlines %}
-    {% include "@bolt-components-text/text.twig" with {
-      text: "This Is the XXLarge Subheadline",
-      subheadline: true,
-      fontSize: "xxlarge"
-    } only %}
-    {% include "@bolt-components-text/text.twig" with {
-      text: "This Is the XLarge Subheadline",
-      subheadline: true,
-      fontSize: "xlarge"
-    } only %}
-    {% include "@bolt-components-text/text.twig" with {
-      text: "This Is the Large Subheadline",
-      subheadline: true,
-      fontSize: "large"
-    } only %}
-  {% endset %}
-
-  <figure class="u-bolt-margin-bottom-medium">
-    {% include "@bolt-components-band/band.twig" with {
-      theme: "xlight",
-      size: "small",
-      fullBleed: false,
-      content: subheadlines
-    } only %}
-  </figure>
+<figure class="u-bolt-margin-bottom-medium">
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "xlight",
+    size: "small",
+    fullBleed: false,
+    content: headlines
+  } only %}
+</figure>
 
 
-  <h3>Eyebrow</h3>
+<h3>Subheadlines</h3>
 
-  {% set eyebrow %}
-    {% include "@bolt-components-text/text.twig" with {
-      text: "This Is the Eyebrow",
-      eyebrow: true
-    } only %}
-  {% endset %}
+{% set subheadlines %}
+  {% include "@bolt-components-text/text.twig" with {
+    text: "This Is the XXLarge Subheadline",
+    subheadline: true,
+    fontSize: "xxlarge"
+  } only %}
+  {% include "@bolt-components-text/text.twig" with {
+    text: "This Is the XLarge Subheadline",
+    subheadline: true,
+    fontSize: "xlarge"
+  } only %}
+  {% include "@bolt-components-text/text.twig" with {
+    text: "This Is the Large Subheadline",
+    subheadline: true,
+    fontSize: "large"
+  } only %}
+{% endset %}
 
-  <figure class="u-bolt-margin-bottom-medium">
-    {% include "@bolt-components-band/band.twig" with {
-      theme: "xlight",
-      size: "small",
-      fullBleed: false,
-      content: eyebrow
-    } only %}
-  </figure>
-
-
-  <h3>Paragraph</h3>
-
-  {% set paragraph %}
-    {% include "@bolt-components-text/text.twig" with {
-      text: "This is regular text in a paragraph. You can make a word <em>italic</em> or <strong>bold</strong>, because text can be displayed inline or block."
-    } only %}
-    {% include "@bolt-components-text/text.twig" with {
-      text: "The entire paragraph can be italic.",
-      fontStyle: italic
-    } only %}
-    {% include "@bolt-components-text/text.twig" with {
-      text: "The entire paragraph can be bold.",
-      fontWeight: "bold"
-    } only %}
-  {% endset %}
-
-  <figure class="u-bolt-margin-bottom-medium">
-    {% include "@bolt-components-band/band.twig" with {
-      theme: "xlight",
-      size: "small",
-      fullBleed: false,
-      content: paragraph
-    } only %}
-  </figure>
+<figure class="u-bolt-margin-bottom-medium">
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "xlight",
+    size: "small",
+    fullBleed: false,
+    content: subheadlines
+  } only %}
+</figure>
 
 
-  <h3>Example Lockup in Different Themes</h3>
+<h3>Eyebrow</h3>
 
-  {% set exampleLockup %}
-    {% include "@bolt-components-text/text.twig" with {
-      text: "This is an eyebrow",
-      eyebrow: true
-    } only %}
-    {% include "@bolt-components-text/text.twig" with {
-      text: "This is a headline",
-      headline: true,
-      fontSize: "xxxlarge"
-    } only %}
-    {% include "@bolt-components-text/text.twig" with {
-      text: "This is a subheadline",
-      subheadline: true,
-      fontSize: "xxlarge"
-    } only %}
-    {% include "@bolt-components-text/text.twig" with {
-      text: "This is regular text, and some lorem ipsum. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante."
-    } only %}
-  {% endset %}
+{% set eyebrow %}
+  {% include "@bolt-components-text/text.twig" with {
+    text: "This Is the Eyebrow",
+    eyebrow: true
+  } only %}
+{% endset %}
 
-  <figure class="u-bolt-margin-bottom-medium">
-    {% include "@bolt-components-band/band.twig" with {
-      theme: "xlight",
-      fullBleed: false,
-      content: exampleLockup
-    } only %}
-  </figure>
+<figure class="u-bolt-margin-bottom-medium">
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "xlight",
+    size: "small",
+    fullBleed: false,
+    content: eyebrow
+  } only %}
+</figure>
 
-  <figure class="u-bolt-margin-bottom-medium">
-    {% include "@bolt-components-band/band.twig" with {
-      theme: "light",
-      fullBleed: false,
-      content: exampleLockup
-    } only %}
-  </figure>
 
-  <figure class="u-bolt-margin-bottom-medium">
-    {% include "@bolt-components-band/band.twig" with {
-      theme: "dark",
-      fullBleed: false,
-      content: exampleLockup
-    } only %}
-  </figure>
+<h3>Paragraph</h3>
 
-  <figure>
-    {% include "@bolt-components-band/band.twig" with {
-      theme: "xdark",
-      fullBleed: false,
-      content: exampleLockup
-    } only %}
-  </figure>
+{% set paragraph %}
+  {% include "@bolt-components-text/text.twig" with {
+    text: "This is regular text in a paragraph. You can make a word <em>italic</em> or <strong>bold</strong>, because text can be displayed inline or block."
+  } only %}
+  {% include "@bolt-components-text/text.twig" with {
+    text: "The entire paragraph can be italic.",
+    fontStyle: "italic"
+  } only %}
+  {% include "@bolt-components-text/text.twig" with {
+    text: "The entire paragraph can be bold.",
+    fontWeight: "bold"
+  } only %}
+{% endset %}
 
-</div>
+<figure class="u-bolt-margin-bottom-medium">
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "xlight",
+    size: "small",
+    fullBleed: false,
+    content: paragraph
+  } only %}
+</figure>
+
+
+<h3>Example Lockup in Different Themes</h3>
+
+{% set exampleLockup %}
+  {% include "@bolt-components-text/text.twig" with {
+    text: "This is an eyebrow",
+    eyebrow: true
+  } only %}
+  {% include "@bolt-components-text/text.twig" with {
+    text: "This is a headline",
+    headline: true,
+    fontSize: "xxxlarge"
+  } only %}
+  {% include "@bolt-components-text/text.twig" with {
+    text: "This is a subheadline",
+    subheadline: true,
+    fontSize: "xxlarge"
+  } only %}
+  {% include "@bolt-components-text/text.twig" with {
+    text: "This is regular text, and some lorem ipsum. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante."
+  } only %}
+{% endset %}
+
+<figure class="u-bolt-margin-bottom-medium">
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "xlight",
+    fullBleed: false,
+    content: exampleLockup
+  } only %}
+</figure>
+
+<figure class="u-bolt-margin-bottom-medium">
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "light",
+    fullBleed: false,
+    content: exampleLockup
+  } only %}
+</figure>
+
+<figure class="u-bolt-margin-bottom-medium">
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "dark",
+    fullBleed: false,
+    content: exampleLockup
+  } only %}
+</figure>
+
+<figure>
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "xdark",
+    fullBleed: false,
+    content: exampleLockup
+  } only %}
+</figure>
+

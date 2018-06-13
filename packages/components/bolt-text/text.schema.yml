@@ -4,6 +4,9 @@ type: object
 required:
   - text
 properties:
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
   text:
     type: string
     description: Text content of the headline.
@@ -28,18 +31,6 @@ properties:
     enum:
       - inline
       - block
-  vspacing:
-    type: string
-    description: Vertical spacing between elements (margin-bottom).
-    default: medium
-    enum:
-      - xxsmall
-      - xsmall
-      - small
-      - medium
-      - large
-      - xlarge
-      - xxlarge
   color:
     type: string
     description: Text color in context of theme colors.
