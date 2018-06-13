@@ -1,14 +1,10 @@
 Text component. Part of the Bolt “Components” CSS framework that powers the [Bolt Design System](https://www.boltdesignsystem.com).
 
-## Install via NPM
+###### Install via NPM
 
 ```
 npm install @bolt/components-text
 ```
-
-### Description:
-
-The text component provides an encapsulated pattern for including bolt specific typograpy elements. *Note: Future replacement of Headline component.*
 
 ## Web Component
 
@@ -20,7 +16,15 @@ Bolt Text is a web component, which means you can use the custom tag `bolt-text`
 </bolt-text>
 ```
 
-### Block Text
+## Common Settings
+
+Common props that `bolt-text` accepts.
+
+### display=""
+
+Inline text or a block of text.
+
+#### block
 
 ```
 <bolt-text
@@ -31,7 +35,7 @@ Bolt Text is a web component, which means you can use the custom tag `bolt-text`
 </bolt-text>
 ```
 
-### Inline Text
+#### inline
 
 ```
 Here, you can set some
@@ -45,7 +49,7 @@ Here, you can set some
 that is italic.
 ```
 
-### Semantic Text
+### tag=""
 
 You can set semantic tag to reflect the kind of text you are rendering.
 
@@ -57,7 +61,7 @@ You can set semantic tag to reflect the kind of text you are rendering.
 </bolt-text>
 ```
 
-### Text Color
+### color=""
 
 You can assign theme variables to the text color. Currently 2 variables are enabled, `theme-headline` and `theme-body`. `theme-headline` will produce the Headline Color, and `theme-body` will produce the Body Text Color. Both colors are defined in all of our themes. By assigning text colors this way, the design will always stay consistent and always work with a theme.
 
@@ -76,11 +80,47 @@ You can assign theme variables to the text color. Currently 2 variables are enab
 </bolt-text>
 ```
 
-### Shorthand Defaults
+## Additional Settings
+
+|Prop         |Values                                   |Default
+|---        |---                                  |---
+|line-height      |`tight`, `regular`, `loose`                        |`regular`
+|align          |`left`, `center`, `right`                        |`left`
+|letter-spacing   |`narrow`, `regular`, `wide`                        |`regular`
+|text-transform   |`regular`, `uppercase`, `lowercase`, `capitalize`            |`regular`
+|font-family    |`headline`, `body`, `code`                       |`body`
+|font-size      |`xsmall`, `small`, `medium`, `large`, `xlarge`, `xxlarge`, `xxxlarge`  |`medium`
+|font-weight    |`regular`, `semibold`, `bold`                      |`regular`
+|font-style     |`regular`, `italic`                          |`regular`
+|opacity      |`100`, `80`, `60`, `40`, `20`                      |`100`
+|quoted       |(This is a boolean prop)                       |
+|url        |(This is a string, for example: http://pega.com)           |
+
+## Utilities (overrides)
+
+Use any Bolt utility to override the design.
+
+### util=""
+
+```
+<bolt-text
+  util="margin-bottom-large, padding-top-small, color-indigo"
+>
+  This piece of text has utility overrides.
+</bolt-text>
+```
+
+## Typographic Recipes
 
 Using the shorthand method allows for consistency while also leaving room for customizations. The following are the official recipes for each piece of our typography. They will cover all common use cases. Only in edge cases, you'd want to break away and create your own recipes.
 
-#### Eyebrow
+|Prop         |Values                                   |Default
+|---        |---                                  |---
+|eyebrow      |(This is a boolean prop)                       |
+|headline     |(This is a boolean prop)                       |
+|subheadline    |(This is a boolean prop)                       |
+
+### Eyebrow
 
 ```
 <bolt-text eyebrow>
@@ -92,13 +132,13 @@ By using the `eyebrow` boolean attribute, the following attribute defaults are b
 
 - `font-size`: xsmall
 - `font-family`: headline
-- `text-color`: theme-headline
+- `color`: theme-headline
 - `line-height`: tight
 - `letter-spacing`: wide
 - `transform`: uppercase
 - `opacity`: 80
 
-#### Headline
+### Headline
 
 ```
 <bolt-text headline>
@@ -111,7 +151,7 @@ By using the `headline` boolean attribute, the following attribute defaults are 
 - `tag`: h2
 - `font-size`: xlarge
 - `font-family`: headline
-- `text-color`: theme-headline
+- `color`: theme-headline
 - `letter-spacing`: narrow
 - `weight`: bold
 
@@ -181,7 +221,7 @@ To render all sizes of headlines, all you have to do is change `font-size` to yo
 
 XS headline is a special case and should be used sparingly. In addition to `font-size`, `text-transform` and `letter-spacing` also need to be defined.
 
-#### Subheadline
+### Subheadline
 
 ```
 <bolt-text subheadline>
@@ -193,7 +233,7 @@ By using the `subheadline` boolean attribute, the following attribute defaults a
 
 - `font-size`: large
 - `font-family`: headline
-- `text-color`: theme-headline
+- `color`: theme-headline
 
 #### XXL Subheadline
 
