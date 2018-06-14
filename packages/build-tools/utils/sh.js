@@ -1,11 +1,6 @@
 const chalk = require('chalk');
+const { exec } = require('child_process');
 const notifier = require('node-notifier');
-const execa = require('execa');
-var PrettyError = require('pretty-error');
-var pe = new PrettyError();
-pe.skipPackage('next_tick.js', 'sh.js');
-pe.skipNodeFiles();
-
 
 /**
  * Run shell command
@@ -16,36 +11,40 @@ pe.skipNodeFiles();
  */
 async function sh(cmd, exitOnError, streamOutput, showCmdOnError = true) {
   return new Promise((resolve, reject) => {
-
-    execa.shell(cmd, {
+    const child = exec(cmd, {
       encoding: 'utf8',
-    }).then(result => {
-      resolve(result.stdout);
-    }).catch(error => {
-      if (error.code > 0) {
-//         const errorCommand = chalk.red(`
-// Error with code ${error.code}${showCmdOnError ? ` after running: ${error.cmd}`: ''}:
-// `);
-
-        var renderedError = pe.render(new Error(`${error.stdout}`));
-        reject(renderedError);
-
-        // const errorMessage = chalk.white(`${error.message}`);
-
-        // console.log(errorMessage);
-
-        // if (exitOnError) {
-        //   process.exitCode = 1;
-        //   reject(new Error(errorMsg + errorMessage));
-        // } else {
-        //   notifier.notify({
-        //     title: cmd,
-        //     message: error.message,
-        //     sound: true,
-        //   });
-        //   reject(error.message);
-        // }
+    });
+    let output = '';
+    child.stdout.on('data', (data) => {
+      output += data;
+      if (streamOutput) {
+        process.stdout.write(data);
       }
+    });
+    child.stderr.on('data', (data) => {
+      output += data;
+      if (streamOutput) {
+        process.stdout.write(data);
+      }
+    });
+    child.on('close', (code) => {
+      if (code > 0) {
+        const errorMsg = chalk.red(`
+Error with code ${code}${showCmdOnError ? ` after running: ${cmd}`: ''}:
+`);
+        if (exitOnError) {
+          process.exitCode = 1;
+          reject(new Error(errorMsg + output));
+        } else {
+          notifier.notify({
+            title: cmd,
+            message: output,
+            sound: true,
+          });
+          reject(errorMsg + output);
+        }
+      }
+      resolve(output);
     });
   });
 
