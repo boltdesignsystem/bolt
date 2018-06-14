@@ -97,7 +97,7 @@ $bolt-input-text-color--invalid: bolt-color(error); // TODO: [Mai] This is the t
 $bolt-input-text-color--disabled: rgba(bolt-color(gray, xdark), 0.5); // TODO: [Mai] This is the theme text color at 66%
 $bolt-input-background-color: bolt-color(white); // TODO: [Mai] This is the theme input background color
 $bolt-input-background-color--disabled: bolt-color(gray, xlight);
-$bolt-input-background-color--invalid: rgba(bolt-color(error), 0.02);
+$bolt-input-background-color--invalid: lighten(bolt-color(error), 58%);
 $bolt-input-placeholder-color: rgba(bolt-color(gray, xdark), 0.5); // TODO: [Mai] This is the theme text color at 66%
 $bolt-input-placeholder-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
 $bolt-input-placeholder-color--disabled: rgba(bolt-color(gray, xdark), 0.5); // TODO: [Mai] This is the theme text color at 66%
@@ -219,7 +219,7 @@ $bolt-input-transition: $bolt-transition;
 
 .c-bolt-floating-label {
   position: absolute;
-  top: 1rem;
+  top: 0.9rem;
   left: $bolt-floating-label-text-indent;
   color: $bolt-floating-label-text-color;
   line-height: $bolt-floating-label-text-scale;
@@ -372,11 +372,14 @@ $bolt-input-transition: $bolt-transition;
   // Icon size and padding should NOT adjust alongside font size because the height of the input
   // is set to match the height of default buttons, which should have a fixed height.
   @include bolt-font-size(small);
-  @include bolt-padding(0.65rem small 0.35rem 0);
 
   position: absolute;
   top: 1px;
   right: 1px;
+  padding-top: 0.35 * bolt-v-spacing(medium);
+  padding-right: bolt-spacing(small);
+  padding-bottom: 0.35 * bolt-v-spacing(medium) / 2;
+  padding-left: 0;
   pointer-events: none;
   border-radius: $bolt-input-border-radius;
   background-color: $bolt-input-background-color;
@@ -389,6 +392,28 @@ $bolt-input-transition: $bolt-transition;
     height: 100%;
     content: '';
     background: linear-gradient(to left, $bolt-input-background-color, rgba(255, 255, 255, 0));
+  }
+}
+
+.c-bolt-input.is-invalid,
+.c-bolt-input.is-touched:invalid {
+  & ~ .c-bolt-input-icons {
+    background-color: $bolt-input-background-color--invalid;
+
+    &:before {
+      background: linear-gradient(to left, $bolt-input-background-color--invalid, rgba(255, 255, 255, 0));
+    }
+  }
+}
+
+.c-bolt-input.is-disabled,
+.c-bolt-input:disabled {
+  & ~ .c-bolt-input-icons {
+    background-color: $bolt-input-background-color--disabled;
+
+    &:before {
+      background: linear-gradient(to left, $bolt-input-background-color--disabled, rgba(255, 255, 255, 0));
+    }
   }
 }
 
