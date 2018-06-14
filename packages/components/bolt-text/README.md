@@ -82,19 +82,19 @@ You can assign theme variables to the text color. Currently 2 variables are enab
 
 ## Additional Settings
 
-|Prop         |Values                                   |Default
-|---        |---                                  |---
-|line-height      |`tight`, `regular`, `loose`                        |`regular`
-|align          |`left`, `center`, `right`                        |`left`
-|letter-spacing   |`narrow`, `regular`, `wide`                        |`regular`
-|text-transform   |`regular`, `uppercase`, `lowercase`, `capitalize`            |`regular`
-|font-family    |`headline`, `body`, `code`                       |`body`
+|Prop           |Values                                                                 |Default
+|---            |---                                                                    |---
+|line-height    |`tight`, `regular`, `loose`                                            |`regular`
+|align          |`inherit`,`left`, `center`, `right`                                    |`inherit`
+|letter-spacing |`narrow`, `regular`, `wide`                                            |`regular`
+|text-transform |`regular`, `uppercase`, `lowercase`, `capitalize`                      |`regular`
+|font-family    |`headline`, `body`, `code`                                             |`body`
 |font-size      |`xsmall`, `small`, `medium`, `large`, `xlarge`, `xxlarge`, `xxxlarge`  |`medium`
-|font-weight    |`regular`, `semibold`, `bold`                      |`regular`
-|font-style     |`regular`, `italic`                          |`regular`
-|opacity      |`100`, `80`, `60`, `40`, `20`                      |`100`
-|quoted       |(This is a boolean prop)                       |
-|url        |(This is a string, for example: http://pega.com)           |
+|font-weight    |`regular`, `semibold`, `bold`                                          |`regular`
+|font-style     |`regular`, `italic`                                                    |`regular`
+|opacity        |`100`, `80`, `60`, `40`, `20`                                          |`100`
+|quoted         |(This is a boolean prop)                                               |
+|url            |(This is a string, for example: http://pega.com)                       |
 
 ## Utilities (overrides)
 
@@ -114,11 +114,11 @@ Use any Bolt utility to override the design.
 
 Using the shorthand method allows for consistency while also leaving room for customizations. The following are the official recipes for each piece of our typography. They will cover all common use cases. Only in edge cases, you'd want to break away and create your own recipes.
 
-|Prop         |Values                                   |Default
-|---        |---                                  |---
-|eyebrow      |(This is a boolean prop)                       |
-|headline     |(This is a boolean prop)                       |
-|subheadline    |(This is a boolean prop)                       |
+|Prop         |Values                          |Default
+|---          |---                             |---
+|eyebrow      |(This is a boolean prop)        |
+|headline     |(This is a boolean prop)        |
+|subheadline  |(This is a boolean prop)        |
 
 ### Eyebrow
 
