@@ -1,6 +1,11 @@
 const chalk = require('chalk');
 const notifier = require('node-notifier');
 const execa = require('execa');
+var PrettyError = require('pretty-error');
+var pe = new PrettyError();
+pe.skipPackage('next_tick.js', 'sh.js');
+pe.skipNodeFiles();
+
 
 /**
  * Run shell command
@@ -17,22 +22,29 @@ async function sh(cmd, exitOnError, streamOutput, showCmdOnError = true) {
     }).then(result => {
       resolve(result.stdout);
     }).catch(error => {
-      // console.log(error);
       if (error.code > 0) {
-        const errorMsg = chalk.red(`
-Error with code ${code}${showCmdOnError ? ` after running: ${cmd}`: ''}:
-`);
-        if (exitOnError) {
-          process.exitCode = 1;
-          reject(new Error(error.message));
-        } else {
-          notifier.notify({
-            title: cmd,
-            message: error.message,
-            sound: true,
-          });
-          reject(error.message);
-        }
+//         const errorCommand = chalk.red(`
+// Error with code ${error.code}${showCmdOnError ? ` after running: ${error.cmd}`: ''}:
+// `);
+
+        var renderedError = pe.render(new Error(`${error.stdout}`));
+        reject(renderedError);
+
+        // const errorMessage = chalk.white(`${error.message}`);
+
+        // console.log(errorMessage);
+
+        // if (exitOnError) {
+        //   process.exitCode = 1;
+        //   reject(new Error(errorMsg + errorMessage));
+        // } else {
+        //   notifier.notify({
+        //     title: cmd,
+        //     message: error.message,
+        //     sound: true,
+        //   });
+        //   reject(error.message);
+        // }
       }
     });
   });
