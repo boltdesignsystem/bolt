@@ -91,7 +91,7 @@ async function build() {
       await webpackTasks.compile();
     }
     await manifest.writeTwigNamespaceFile(process.cwd(), config.extraTwigNamespaces);
-    await images();
+    // await images();
     switch (config.env) {
       case 'pl':
         await extraTasks.patternLab.compile();

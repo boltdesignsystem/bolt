@@ -13,6 +13,7 @@ async function sh(cmd, exitOnError, streamOutput, showCmdOnError = true) {
   return new Promise((resolve, reject) => {
     const child = exec(cmd, {
       encoding: 'utf8',
+      maxBuffer: 1024 * 500 * 6,
     });
     let output = '';
     child.stdout.on('data', (data) => {
