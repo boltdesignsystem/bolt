@@ -21,6 +21,7 @@ const ora = require('ora');
 const marked = require('marked');
 const timer = require('../utils/timer');
 const manifest = require('../utils/manifest');
+const express = require('express');
 
 /**
  * Prep a JSON string for use in bash
@@ -168,14 +169,29 @@ async function compile(exitOnError = true) {
   const pages = await getPages(config.srcDir);
   const site = await getSiteData(pages);
 
+  var app = express();
+  var server = app.listen(3001);
+
+  // Walk through all available pages to set up data to respond with (@todo: iterate on this -- temp solution to get Travis builds back up and running!)
+  pages.map((page) => {
+    const url = page.url;
+    app.get(`/${url}`, function (req, res) {
+      const data = {
+        page,
+        site,
+      }
+      res.send(data);
+    });
+  });
+
   return Promise.all(pages.map(async (page) => {
-    const data = {
-      page,
-      site,
-    };
-    const dataArg = escapeNestedSingleQuotes(JSON.stringify(data));
+    const url = page.url;
+
+    // the page we are requesting data for
+    const pageArg = escapeNestedSingleQuotes(JSON.stringify(url));
+
     const layout = page.meta.layout ? page.meta.layout : 'default';
-    const cmd = `php -d memory_limit=4048M renderTwig.php ${layout}.twig '${dataArg}'`;
+    const cmd = `php -d memory_limit=4048M renderTwig.php ${layout}.twig ${pageArg}`;
     const output = await sh(cmd, exitOnError, false, false);
 
     const htmlFilePath = path.join(config.wwwDir, page.url);
@@ -190,11 +206,13 @@ async function compile(exitOnError = true) {
       console.log(endMessage);
     } else {
       spinner.succeed(endMessage);
+      server.close();
     }
   }).catch((error) => {
     console.log(error);
     const endMessage = chalk.red(`Compiling Static Site failed in ${timer.end(startTime)}`);
     spinner.fail(endMessage);
+    server.close();
   });
 }
 
