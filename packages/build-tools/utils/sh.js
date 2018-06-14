@@ -1,6 +1,6 @@
 const chalk = require('chalk');
-const { exec } = require('child_process');
 const notifier = require('node-notifier');
+const execa = require('execa');
 
 /**
  * Run shell command
@@ -11,9 +11,8 @@ const notifier = require('node-notifier');
  */
 async function sh(cmd, exitOnError, streamOutput, showCmdOnError = true) {
   return new Promise((resolve, reject) => {
-    const child = exec(cmd, {
+    const child = execa.shell(cmd, {
       encoding: 'utf8',
-      maxBuffer: 1024 * 500 * 6,
     });
     let output = '';
     child.stdout.on('data', (data) => {
