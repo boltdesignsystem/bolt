@@ -169,8 +169,8 @@ async function compile(exitOnError = true) {
   const pages = await getPages(config.srcDir);
   const site = await getSiteData(pages);
 
-  var app = express();
-  var server = app.listen(3001);
+  const app = express();
+  const server = app.listen(3001);
 
   // Walk through all available pages to set up data to respond with (@todo: iterate on this -- temp solution to get Travis builds back up and running!)
   pages.map((page) => {
@@ -201,18 +201,18 @@ async function compile(exitOnError = true) {
       log.dim(`Wrote: ${htmlFilePath}`);
     }
   })).then(() => {
+    server.close();
     const endMessage = chalk.green(`Compiled Static Site in ${timer.end(startTime)}`);
     if (config.verbosity > 2) {
       console.log(endMessage);
     } else {
       spinner.succeed(endMessage);
-      server.close();
     }
   }).catch((error) => {
+    server.close();
     console.log(error);
     const endMessage = chalk.red(`Compiling Static Site failed in ${timer.end(startTime)}`);
     spinner.fail(endMessage);
-    server.close();
   });
 }
 
