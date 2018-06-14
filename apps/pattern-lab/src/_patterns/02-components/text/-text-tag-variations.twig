@@ -6,12 +6,5 @@
     <bolt-text tag="{{ tag }}">
       This is regular text using {{ tag }} tag
     </bolt-text>
-
-    {#
-      {% include "@bolt-components-text/text.twig" with {
-        text: "This is regular text using " ~ tag ~ " tag",
-        tag: tag
-      } only %}
-    #}
   </figure>
 {% endfor %}

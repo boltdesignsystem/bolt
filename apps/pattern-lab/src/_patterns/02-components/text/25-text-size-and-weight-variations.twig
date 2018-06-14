@@ -7,13 +7,5 @@
       This is {{ fontWeight }} {{fontSize}} text
     </bolt-text>
 
-    {#
-      {% include "@bolt-components-text/text.twig" with {
-        text: "This is " ~ fontWeight ~ " " ~ fontSize ~ " text",
-        fontWeight: fontWeight,
-        fontSize: fontSize
-      } only %}
-    #}
-
   {% endfor %}
 {% endfor %}

@@ -62,22 +62,21 @@ class BoltText extends BoltComponent() {
 
   render({ props, state }) {
 
-    let display = this.allowedValues(schema.properties.display, this.props.display);
-    let color = this.allowedValues(schema.properties.color, this.props.color);
-    let align = this.allowedValues(schema.properties.align, this.props.align);
-    let lineHeight = this.allowedValues(schema.properties.lineHeight, this.props.lineHeight);
-    let textTransform = this.allowedValues(schema.properties.textTransform, this.props.textTransform);
-    let letterSpacing = this.allowedValues(schema.properties.letterSpacing, this.props.letterSpacing);
-    let fontFamily = this.allowedValues(schema.properties.fontFamily, this.props.fontFamily);
-    let fontWeight = this.allowedValues(schema.properties.fontWeight, this.props.fontWeight);
-    let fontSize = this.allowedValues(schema.properties.fontSize, this.props.fontSize);
-    let fontStyle = this.allowedValues(schema.properties.fontStyle, this.props.fontStyle);
-    let opacity = this.allowedValues(schema.properties.opacity, this.props.opacity);
+    let tag = this.allowedValues(schema.properties['tag'], this.props.tag);
+    let display = this.allowedValues(schema.properties['display'], this.props.display);
+    let color = this.allowedValues(schema.properties['color'], this.props.color);
+    let align = this.allowedValues(schema.properties['align'], this.props.align);
+    let lineHeight = this.allowedValues(schema.properties['line-height'], this.props.lineHeight);
+    let textTransform = this.allowedValues(schema.properties['text-transform'], this.props.textTransform);
+    let letterSpacing = this.allowedValues(schema.properties['letter-spacing'], this.props.letterSpacing);
+    let fontFamily = this.allowedValues(schema.properties['font-family'], this.props.fontFamily);
+    let fontWeight = this.allowedValues(schema.properties['font-weight'], this.props.fontWeight);
+    let fontSize = this.allowedValues(schema.properties['font-size'], this.props.fontSize);
+    let fontStyle = this.allowedValues(schema.properties['font-style'], this.props.fontStyle);
+    let opacity = this.allowedValues(schema.properties['opacity'], this.props.opacity);
     let quoted = !!this.props.quoted;
     let url = this.props.url ? this.props.url : false;
     let util = this.props.util ? this.props.util : false;
-
-    let tag = this.allowedValues(schema.properties.tag, this.props.tag);
 
     // Icon vars
 

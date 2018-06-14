@@ -11,23 +11,3 @@
   </bolt-text>
   so this paragraph has inline text inside a block of text.
 </bolt-text>
-
-{#
-  {% set inlineDisplay %}
-    {% include "@bolt-components-text/text.twig" with {
-      text: "inline display",
-      display: "inline",
-      fontStyle: "italic"
-    } only %}
-  {% endset %}
-
-  {% include "@bolt-components-text/text.twig" with {
-    text: "This is block display (paragraph).",
-    display: "block"
-  } only %}
-
-  {% include "@bolt-components-text/text.twig" with {
-    text: "This is another block display (paragraph), but the text can also be " ~ inlineDisplay ~ " so this paragraph has inline text inside a block of text.",
-    display: "block"
-  } only %}
-#}
