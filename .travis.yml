@@ -28,13 +28,13 @@ script:
 - bash ./travis.sh # time command already run inside the travis.sh script
 - npx nightwatch --config nightwatch.js --env chrome,ie11
 
-cache:
-  apt: true
-  yarn: true
-  directories:
-    - $HOME/.composer/cache/files
-    - $HOME/.cache/yarn
-    - node_modules
+# cache:
+#   apt: true
+#   yarn: true
+#   directories:
+#     - $HOME/.composer/cache/files
+#     - $HOME/.cache/yarn
+#     - node_modules
 
 notifications:
   email:
