@@ -23,7 +23,7 @@
     "start": "echo 'To start up a server and watches, head into any of the folders in the apps/ directory, then run npm start there.' && echo 'If you want to start Pattern Lab, run this:' && echo '' && echo 'cd apps/pattern-lab' && echo 'npm start'",
     "setup": "yarn && yarn run bootstrap && yarn run composer",
     "build:pl": "cd apps/pattern-lab && yarn run build:prod",
-    "build:bolt-site": "cd apps/bolt-site && yarn run build",
+    "build:bolt-site": "cd apps/bolt-site && yarn run build:prod",
     "Xbuild:drupal-lab": "cd apps/drupal-lab && cd web/themes/flash && yarn run build && cd - && composer run build",
     "xbuild:icons": "lerna exec --scope @bolt/components-icons -- yarn run build",
     "build": "npm-run-all build:* --aggregate-output --print-label --print-name --parallel",
