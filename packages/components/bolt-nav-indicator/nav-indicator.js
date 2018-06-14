@@ -85,6 +85,8 @@ let gumshoeStateModule = (function () {
           }
 
           // if this there's a <bolt-nav-priority> instance, make sure that component's ready to go before proceeding trying to animate anything.
+
+          // @todo: iterate on a more refined solution so we animate in ASAP
           if (nav.nav.closest('bolt-nav-priority')){
             const priorityNav = nav.nav.closest('bolt-nav-priority');
 
@@ -201,7 +203,7 @@ export class BoltNavIndicator extends BoltComponent() {
   resetLinks(activeLink = null) {
     const links = this._allLinks();
     links.forEach(link => {
-      if (link !== activeLink) {
+      if (link !== activeLink && link.deactivate) {
         link.deactivate();
       }
     });
@@ -297,8 +299,8 @@ export class BoltNavIndicator extends BoltComponent() {
   // `<bolt-nav-link>` emits a custom event when the link is active
   connecting() {
     Promise.all([
-      customElements.whenDefined('bolt-navlink'),
       customElements.whenDefined('bolt-nav-priority'),
+      customElements.whenDefined('bolt-navlink'),
     ]).then(_ => {
 
       // If the nav indicator already exists, exit early.

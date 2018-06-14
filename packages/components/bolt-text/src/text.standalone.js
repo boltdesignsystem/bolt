@@ -174,23 +174,23 @@ class BoltText extends BoltComponent() {
       // iconName ? 'has-icon' : '', // @todo: remove when decoupled from icon component
       url ? 'has-url' : '',
       longTitle ? 'long-title' : '',
-      'c-bolt-text',
-      `c-bolt-text--${fontFamily}`,
-      `c-bolt-text--theme-${fontFamily}-text-color`,
-      `c-bolt-text--weight-${weight}`,
-      `c-bolt-text--style-${style}`,
-      `c-bolt-text--font-${fontSize}`,
-      `c-bolt-text--display-${display}`,
-      letterSpacing ? `c-bolt-text--letter-spacing-${letterSpacing}` : '',
-      align ? `c-bolt-text--align-${align}` : '',
-      transform ? `c-bolt-text--transform-${transform}` : '',
-      lineHeight ? `c-bolt-text--line-height-${lineHeight}` : '',
-      quoted ? 'c-bolt-text--quoted' : '',
-      opacity ? `c-bolt-text--opacity-${opacity}` : '',
+      'c-bolt-text-v2',
+      `c-bolt-text-v2--${fontFamily}`,
+      `c-bolt-text-v2--theme-${fontFamily}-text-color`,
+      `c-bolt-text-v2--weight-${weight}`,
+      `c-bolt-text-v2--style-${style}`,
+      `c-bolt-text-v2--font-${fontSize}`,
+      `c-bolt-text-v2--display-${display}`,
+      letterSpacing ? `c-bolt-text-v2--letter-spacing-${letterSpacing}` : '',
+      align ? `c-bolt-text-v2--align-${align}` : '',
+      transform ? `c-bolt-text-v2--transform-${transform}` : '',
+      lineHeight ? `c-bolt-text-v2--line-height-${lineHeight}` : '',
+      quoted ? 'c-bolt-text-v2--quoted' : '',
+      opacity ? `c-bolt-text-v2--opacity-${opacity}` : '',
 
       // @todo: remove once decoupled from icon component
-      // iconValign ? `c-bolt-text--vertical-align-${iconValign}` : '',
-      // iconAlign ? `c-bolt-text--icon-align-${iconAlign}` : '',
+      // iconValign ? `c-bolt-text-v2--vertical-align-${iconValign}` : '',
+      // iconAlign ? `c-bolt-text-v2--icon-align-${iconAlign}` : '',
     );
 
     // Adds out utilities to the outer parent <bolt-text />

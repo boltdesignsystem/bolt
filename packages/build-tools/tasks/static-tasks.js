@@ -175,7 +175,7 @@ async function compile(exitOnError = true) {
     };
     const dataArg = escapeNestedSingleQuotes(JSON.stringify(data));
     const layout = page.meta.layout ? page.meta.layout : 'default';
-    const cmd = `php renderTwig.php ${layout}.twig '${dataArg}'`;
+    const cmd = `php -d memory_limit=4048M renderTwig.php ${layout}.twig '${dataArg}'`;
     const output = await sh(cmd, exitOnError, false, false);
 
     const htmlFilePath = path.join(config.wwwDir, page.url);

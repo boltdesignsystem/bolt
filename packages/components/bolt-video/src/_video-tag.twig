@@ -1,3 +1,4 @@
+{% set version = get_data("@bolt-components-video/package.json").version %}
 
 {% set attributes = create_attribute(attributes | default({})) %}
 
@@ -17,7 +18,7 @@
   {% endfor %}
 {% endif #}
 
-{# force HTML5 Only Rendering + disable resizeManager in Brightcove to fix ability to click overlapping elements on iOS: 
+{# force HTML5 Only Rendering + disable resizeManager in Brightcove to fix ability to click overlapping elements on iOS:
 https://github.com/videojs/video.js/blob/22fd327076cb044c135c747086b58b7be64a747a/src/js/resize-manager.js#L19 #}
 {% set attributes = attributes.setAttribute("data-setup", '{"techOrder": ["Html5"], "resizeManager": false}') %}
 {% set showMeta = showMeta is null ? true : showMeta %}
@@ -67,4 +68,4 @@ https://github.com/videojs/video.js/blob/22fd327076cb044c135c747086b58b7be64a747
 
 {% set customElementName = "#{bolt.data.config.namespace}-video" %}
 
-<{{ customElementName }} {{ attributes }}></{{ customElementName }}>
+<{{ customElementName }} {{ attributes }} v="{{ version }}"></{{ customElementName }}>

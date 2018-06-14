@@ -194,7 +194,7 @@
 
 {# Shows Twig Vars in Browser Console #}
 {% if not bolt.data.config.prod %}
-  <script type="application/json">{{ _context|json_encode()|raw }}</script>
+ {# <script type="application/json">{{ _context|json_encode()|raw }}</script>
   <script>
     (function () {
       var me = document.currentScript;
@@ -202,7 +202,7 @@
       var data = JSON.parse(jsonScriptTag);
       console.log('Twig vars for this page: ', data);
     })();
-  </script>
+  </script>#}
 {% endif %}
 </body>
 </html>

@@ -30,4 +30,5 @@ bolt-nav-indicator {
     opacity 0.35s ease-out; // [Mai] This is interrelated with the dropdown component.
   will-change: width, height, opacity, transform;
   transform: scaleX(0);
+  left: 0; // required so animated position is correct in IE11
 }
