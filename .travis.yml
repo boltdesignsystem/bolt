@@ -17,11 +17,11 @@ before_script:
 - phpenv config-rm xdebug.ini
 
 install:
-- npm run setup
+- yarn run setup
 
 before_script:
-- npm run lint
-- npm run test
+- yarn run lint
+- yarn run test
 
 # Can't do deploy on `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
 script:
