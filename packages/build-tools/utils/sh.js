@@ -11,40 +11,29 @@ const execa = require('execa');
  */
 async function sh(cmd, exitOnError, streamOutput, showCmdOnError = true) {
   return new Promise((resolve, reject) => {
-    const child = execa.shell(cmd, {
+
+    execa.shell(cmd, {
       encoding: 'utf8',
-    });
-    let output = '';
-    child.stdout.on('data', (data) => {
-      output += data;
-      if (streamOutput) {
-        process.stdout.write(data);
-      }
-    });
-    child.stderr.on('data', (data) => {
-      output += data;
-      if (streamOutput) {
-        process.stdout.write(data);
-      }
-    });
-    child.on('close', (code) => {
-      if (code > 0) {
+    }).then(result => {
+      resolve(result.stdout);
+    }).catch(error => {
+      // console.log(error);
+      if (error.code > 0) {
         const errorMsg = chalk.red(`
 Error with code ${code}${showCmdOnError ? ` after running: ${cmd}`: ''}:
 `);
         if (exitOnError) {
           process.exitCode = 1;
-          reject(new Error(errorMsg + output));
+          reject(new Error(error.message));
         } else {
           notifier.notify({
             title: cmd,
-            message: output,
+            message: error.message,
             sound: true,
           });
-          reject(errorMsg + output);
+          reject(error.message);
         }
       }
-      resolve(output);
     });
   });
 
