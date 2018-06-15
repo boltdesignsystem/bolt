@@ -1,4 +1,4 @@
-import SmoothScroll from 'smooth-scroll/dist/smooth-scroll.js';
+import SmoothScroll from 'smooth-scroll/src/js/smooth-scroll.js';
 
 export const smoothScroll = new SmoothScroll();
 
