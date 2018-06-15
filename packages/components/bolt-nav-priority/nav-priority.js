@@ -205,6 +205,15 @@ export class BoltNavPriority extends BoltComponent() {
       this.setAttribute('is-ready', '');
       this.classList.add('is-ready');
 
+      this.dispatchEvent(
+        new CustomEvent('nav-priority:ready', {
+          detail: {
+            isReady: true,
+          },
+          bubbles: true,
+        }),
+      );
+
       // make sure containerTabs exists first
       if (this.containerTabs) {
         this.containerTabs.classList.add('is-ready');
