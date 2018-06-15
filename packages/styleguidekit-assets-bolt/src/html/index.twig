@@ -15,7 +15,7 @@
 
 </head>
 
-<body class="pl-c-body">
+<body class="pl-c-body pl-c-body--theme-sidebar pl-c-body--theme-light">
   {% include "./partials/header.twig" %}
   {% include "./partials/iframe.twig" %}
   {% include "./partials/modal.twig" %}
@@ -41,7 +41,7 @@
 
 
 	<!-- load Pattern Lab data -->
-	<script src="styleguide/data/patternlab-data.js" async></script>
+	<script src="styleguide/data/patternlab-data.js" defer></script>
 
   <!-- applying theme config to get classes on before PL renders so there's no flash of unstyled content -->
   <!-- @todo Consider moving this to own file -->

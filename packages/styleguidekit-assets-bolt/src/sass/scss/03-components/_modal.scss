@@ -7,26 +7,27 @@
  *    "show pattern info" is selected on the pattern detail screen.
  */
 .pl-c-modal {
-	display: none;
-	font-family: $pl-font;
-	background: $pl-color-black;
-	color: $pl-color-gray-20;
-	position: relative;
-	top: auto;
-	bottom: 0;
-	left: 0;
-	z-index: 5;
-	width: 100%;
-  height: 50%;
+  font-family: $pl-font;
+  background: $pl-color-black;
+  color: $pl-color-gray-20;
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  height: 0;
   transform: translate3d(0, 100%, 0);
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
+  flex-grow: 0;
+  flex-shrink: 0;
+  overflow: hidden;
 
   /**
      * Active modal
      */
   &.pl-is-active {
-    display: flex;
-    flex-direction: column;
+    height: 40vh;
     transform: translate3d(0, 0, 0);
   }
 }
