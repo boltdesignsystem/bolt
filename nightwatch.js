@@ -17,6 +17,7 @@ module.exports = {
         path: '',
       },
       globals: {
+        waitForConditionTimeout: 10000,
       },
       desiredCapabilities: {
         build: `build-${TRAVIS_JOB_NUMBER}`,
