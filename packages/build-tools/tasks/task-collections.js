@@ -83,7 +83,7 @@ async function build(returnTime = false) {
   const startTime = timer.start();
   try {
     if (!config.quick) {
-      await clean();
+      config.prod ? await clean() : '';
       await internalTasks.mkDirs();
     }
     await manifest.writeBoltManifest();
