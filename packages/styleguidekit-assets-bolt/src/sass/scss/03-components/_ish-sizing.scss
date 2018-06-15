@@ -20,33 +20,34 @@
  * Size input fields
  */
 .pl-c-viewport-size__input {
-    padding: 0.1rem;
+    outline: none;
+    background-color: #1a202b;
     margin: 0;
     border: 0;
     border-radius: $pl-border-radius;
-    background: transparent;
     font-size: inherit;
     color: $pl-color-gray-50;
-    width: 35px;
+    width: 50px;
     text-align: right;
     transition: all $pl-animate-quick ease-out;
+    padding: 5px;
 
     &::-moz-focus-inner {
         padding: 0;
         border: 0;
     }
 
-    &:hover {
-        color: $pl-color-white;
-        background: $pl-color-gray-87;
-    }
+    // &:hover {
+    //     color: $pl-color-white;
+    //     background: $pl-color-gray-87;
+    // }
 
-    &:active, &:focus {
-        color: $pl-color-white;
-        background: $pl-color-gray-87;
-        outline: 1px dotted $pl-color-gray-50;
-        outline-offset: -1px;
-    }
+    // &:active, &:focus {
+    //     color: $pl-color-white;
+    //     background: $pl-color-gray-87;
+    //     outline: 1px dotted $pl-color-gray-50;
+    //     outline-offset: -1px;
+    // }
 }
 
 /**
@@ -73,6 +74,8 @@
     @media all and (min-width: $pl-bp-large) {
         display: block;
         display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 
@@ -82,4 +85,6 @@
  */
 .pl-c-size-list__action {
     @include linkStyle();
+    background-color: transparent;
+    cursor: pointer;
 }

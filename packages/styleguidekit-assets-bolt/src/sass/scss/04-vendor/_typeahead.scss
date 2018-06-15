@@ -15,17 +15,34 @@
      * 1) the primary DOM element that initiates the JS library
      */
     .pl-c-typeahead {
-        border: 0;
-        background: $pl-color-gray-87 !important;
-        color: $pl-color-gray-50;
-        width: 100%;
-        right: 0;
-        padding: 0.61rem 0.5rem;
-        font-size: inherit;
+        // border: 0;
+        // background: $pl-color-gray-87 !important;
+        // color: $pl-color-gray-50;
+        // width: 100%;
+        // right: 0;
+        // padding: 0.61rem 0.5rem;
+        // font-size: inherit;
+      // background: 17px -338px #1a202b;
+      border: 1px solid #151721;
+      background-color: #1a202b !important;
+      font-size: 13px;
+      font-weight: 600;
+      color: #c6ceda;
+      border: 0;
+      border-radius: 100px;
+      padding: 10px 20px 10px 20px;
+      // margin: 10px 15px 0 0;
+      width: 100%;
+      max-width: 150px;
+      transition: width 0.2s;
+      outline: none;
+      // -webkit-transition: width .2s;
+
 
         &:focus {
-            background: $pl-color-gray-50;
-            color: $pl-color-white;
+          // background: $pl-color-gray-50;
+          background-color: #1A1E2D;
+          color: $pl-color-white;
         }
     }
 
@@ -41,29 +58,28 @@
     }
 
     .tt-input {
-        background: $pl-color-gray-50;
-        color: $pl-color-white;
+        // background: $pl-color-gray-50;
+        // color: $pl-color-white;
 
-        &:hover {
-            color: $pl-color-white;
-            background: $pl-color-gray-87 !important;
+        // &:hover {
+        //     color: $pl-color-white;
+        //     background: $pl-color-gray-87 !important;
 
-            &::-webkit-input-placeholder {
-                color: $pl-color-white;
-            }
+        //     &::-webkit-input-placeholder {
+        //         color: $pl-color-white;
+        //     }
 
-            &::-moz-input-placeholder {
-                color: $pl-color-white;
-            }
-        }
+        //     &::-moz-input-placeholder {
+        //         color: $pl-color-white;
+        //     }
+        // }
 
         &:focus {
-            border-radius: 0;
-            text-transform: lowercase;
-            color: $pl-color-white;
-            background: $pl-color-gray-87;
-            outline: 1px dotted $pl-color-gray-50;
-            outline-offset: -1px;
+            // border-radius: 0;
+            // color: $pl-color-white;
+            // background: $pl-color-gray-87;
+            // outline: 1px dotted $pl-color-gray-50;
+            // outline-offset: -1px;
         }
     }
 

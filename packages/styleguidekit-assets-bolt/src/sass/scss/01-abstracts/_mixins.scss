@@ -17,9 +17,9 @@
  */
  @mixin hideScrollBar() {
     -ms-overflow-style: -ms-autohiding-scrollbar;
-    
-    &::-webkit-scrollbar { 
-        width: 0 !important 
+
+    &::-webkit-scrollbar {
+        width: 0 !important
     }
 }
 
@@ -27,7 +27,8 @@
  * Header Link Style
  */
 @mixin linkStyle() {
-    background: $pl-color-black;
+    // background: $pl-color-black; @todo: refactor or remove
+    background-color: transparent;
     color: $pl-color-gray-50;
     text-decoration: none;
     line-height: 1;
@@ -37,8 +38,8 @@
     transition: background $pl-animate-quick ease-out, color $pl-animate-quick ease-out;
 
     &:hover {
-        color: $pl-color-white;
-        background: $pl-color-gray-87;
+      color: $pl-color-white;
+      background: $pl-color-gray-87;
     }
 
     &:focus, &.active {

@@ -318,7 +318,10 @@ $('.pl-js-modal-resizer').mousedown(function(event) {
   $('.pl-js-modal-cover').mousemove(function(event) {
     /* 3 */
     var panelHeight = window.innerHeight - event.clientY + 32; /* 4 */
+    $('.pl-js-modal').css('transition', 'none');
+    $('.pl-js-vp-iframe-container').css('transition', 'none');
     $('.pl-js-modal').css('height', panelHeight + 'px'); /* 4 */
+    $('html').css('--pl-viewport-height', window.innerHeight - panelHeight - 32 + 'px'); /* 4 */
   });
 });
 
@@ -326,6 +329,8 @@ $('body').mouseup(function() {
   /* 5 */
   $('.pl-js-modal').unbind('mousemove'); /* 5 */
   $('.pl-js-modal-cover').css('display', 'none'); /* 5 */
+  $('.pl-js-modal').css('transition', '');
+  $('.pl-js-vp-iframe-container').css('transition', '');
 });
 
 // Copy to clipboard functionality
