@@ -33,7 +33,7 @@ bolt-navbar {
     padding-top: var(--bolt-vspacing, $bolt-navbar-vspacing-small);
   }
 
-  @supports (display: contents) {
+  @include bolt-if-browser-supports-display-contents {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
       @include bolt-padding-top(0);
     }
@@ -63,7 +63,7 @@ bolt-navbar {
     }
   }
 
-  @supports (display: contents) {
+  @include bolt-if-browser-supports-display-contents {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
       @include bolt-padding-left(0);
       @include bolt-padding-right(0);
@@ -135,7 +135,7 @@ bolt-navbar {
     @include bolt-margin-right(auto);
   }
 
-  @supports (display: contents) {
+  @include bolt-if-browser-supports-display-contents {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
       @include bolt-padding-top($bolt-navbar-vspacing-small);
       grid-column: 2/span 1;
