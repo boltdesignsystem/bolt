@@ -120,6 +120,7 @@ bolt-navbar {
   align-self: center;
   flex-shrink: 0;
   display: flex;
+  flex-shrink: 1; // make sure the title can wrap to multiple lines and shrink if needed.
   flex-wrap: nowrap;
   align-items: center;
   color: inherit;
@@ -169,6 +170,8 @@ bolt-navbar {
 }
 
 .c-bolt-navbar__title-text {
+  white-space: normal; // wrap to multiple lines if needed
+  flex-flow: wrap;
   @include bolt-font-size(large);
   @include bolt-font-weight(semibold);
 
