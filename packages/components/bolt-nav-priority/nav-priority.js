@@ -112,10 +112,15 @@ export class BoltNavPriority extends BoltComponent() {
     let hiddenItems = [];
     const primaryWidth = this.primaryNav.offsetWidth;
 
+    let hideTheRest = false; // keep track when the items in the nav stop fitting
     this.primaryItems.forEach((item, i) => {
-      if (primaryWidth + this.offsettolerance >= stopWidth + item.offsetWidth) {
+
+      // make sure the items fit + we haven't already started to encounter items that don't
+      if (primaryWidth + this.offsettolerance >= stopWidth + item.offsetWidth &&
+          hideTheRest !== true) {
         stopWidth += item.offsetWidth;
       } else {
+        hideTheRest = true;
         item.classList.add('is-hidden');
         hiddenItems.push(i);
       }
