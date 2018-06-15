@@ -11,7 +11,10 @@ $bolt-navbar-vspacing-small: bolt-v-spacing(small);
 $bolt-navbar-vspacing-xsmall: bolt-v-spacing(xsmall);
 
 bolt-navbar {
+  @include bolt-z-index(nav);
   @include bolt-full-bleed; // @todo: make full bleed optional?
+  @include bolt-margin-top(0); // workaround to -.5px in bolt-full-bleed
+  @include bolt-margin-bottom(0); // workaround to -.5px in bolt-full-bleed
   @supports(--css: variables) {
     --bolt-vspacing: #{$bolt-navbar-vspacing-small};
   }
@@ -28,6 +31,12 @@ bolt-navbar {
 
   @supports(--css: variables) {
     padding-top: var(--bolt-vspacing, $bolt-navbar-vspacing-small);
+  }
+
+  @supports (display: contents) {
+    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+      @include bolt-padding-top(0);
+    }
   }
 
   // @include bolt-padding-top($bolt-navbar-vspacing-small);
@@ -74,6 +83,7 @@ bolt-navbar {
 
     > *:first-child {
       @include bolt-padding-top($bolt-navbar-vspacing-xsmall); /* [1] */
+      align-self: center;
 
       @supports(--css: variables) {
         padding-top: var(--bolt-vspacing, $bolt-navbar-vspacing-xsmall);
@@ -92,15 +102,12 @@ bolt-navbar {
   }
 
   &--small {
-    @include bolt-padding-top(xsmall);
-
     > * {
       @include bolt-padding-bottom($bolt-navbar-vspacing-xsmall); /* [1] */
     }
 
     @supports(--css: variables) {
       --bolt-vspacing: #{bolt-v-spacing(xsmall)};
-      padding-top: var(--bolt-vspacing, $bolt-navbar-vspacing-xsmall);
     }
   }
 }
@@ -129,7 +136,12 @@ bolt-navbar {
 
   @supports (display: contents) {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+      @include bolt-padding-top($bolt-navbar-vspacing-small);
       grid-column: 2/span 1;
+
+      @supports(--css: variables) {
+        padding-top: var(--bolt-vspacing, $bolt-navbar-vspacing-small);
+      }
     }
   }
 

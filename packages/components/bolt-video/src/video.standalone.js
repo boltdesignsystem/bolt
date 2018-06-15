@@ -14,10 +14,8 @@ import Mousetrap from 'mousetrap';
 
 let index = 0;
 
-import metaStyles from './_video-meta.scss';
-
 @define
-class BoltVideoMeta extends withPreact(withComponent()) {
+class BoltVideoMeta extends withPreact() {
   static is = `${bolt.namespace}-video-meta`;
 
   constructor(self) {
@@ -35,17 +33,20 @@ class BoltVideoMeta extends withPreact(withComponent()) {
   }
 
   render() {
-    const separator = this.title && this.duration ? ' | ' : '';
-
-    // 'reveal' allows the metadata to be hidden.
     // All of its logic is contained here in render(), but it could be updated to be a property that is set
     // externally (such as when the video has finished fully loading).
+
+    // [Mai] 'reveal' allows the meta data (title and duration) to be hidden.
     const reveal = Boolean(this.title || this.duration);
     return (
       <div className={`c-${bolt.namespace}-video-meta`}>
-        <style>{metaStyles[0][1]}</style>
         {reveal ? (
-          <div className={`c-${bolt.namespace}-video-meta__wrapper`}>{this.title}{separator}{this.duration}</div>
+          <div className={`c-${bolt.namespace}-video-meta__wrapper`}>
+            {this.title ? (
+              <div className={`c-${bolt.namespace}-video-meta__item c-${bolt.namespace}-video-meta__item--title`}>{this.title}</div>
+            ) : null}
+            <div className={`c-${bolt.namespace}-video-meta__item c-${bolt.namespace}-video-meta__item--duration`}>{this.duration}</div>
+          </div>
         ) : null}
       </div>
     );
@@ -55,7 +56,7 @@ class BoltVideoMeta extends withPreact(withComponent()) {
 
 
 @define
-class BoltVideo extends withPreact(withComponent()) {
+class BoltVideo extends withPreact() {
   static is = `${bolt.namespace}-video`;
 
   static props = {
@@ -157,10 +158,6 @@ class BoltVideo extends withPreact(withComponent()) {
       this.removeAttribute('expandedHeight');
     }
 
-    requestAnimationFrame(() => {
-      this.style.maxHeight = this.expandedHeight + 'px';
-    });
-
     this.dispatchEvent(
       new CustomEvent('videoExpandedHeightSet', {
         detail: {expandedHeight: this.expandedHeight},
@@ -221,7 +218,6 @@ class BoltVideo extends withPreact(withComponent()) {
       elem._setMetaTitle(title);
       elem._setMetaDuration(duration);
       elem._setVideoDimensions(width, height);
-      elem._calculateIdealVideoSize();
 
       if (this.earlyToggle) {
         this.earlyToggle = false;
@@ -288,7 +284,7 @@ class BoltVideo extends withPreact(withComponent()) {
     this.close();
   }
 
-  connectedCallback() {
+  connecting() {
     this.state = {
       id: `${this.props.videoId}-${this.props.accountId}-${index}`,
       // errors: BoltVideo.globalErrors !== undefined  ? [].concat(BoltVideo.globalErrors) : [],
@@ -296,6 +292,10 @@ class BoltVideo extends withPreact(withComponent()) {
       isFinished: false,
       progress: 0,
     };
+
+    if (this.props.isBackgroundVideo) {
+      this._calculateIdealVideoSize();
+    }
 
     if (this.defaultProps) {
       const defaultProps = this.defaultProps;
@@ -356,10 +356,9 @@ class BoltVideo extends withPreact(withComponent()) {
       }
     }
 
-    window.addEventListener('optimizedResize', this._onWindowResize);
-
     // If our video can expand/collapse we add the collapse listener and "close on escape" behavior
-    if (this.props.isBackgroundVideo) {
+    if (this.props.isBackgroundVideo){
+      window.addEventListener('resize', this._onWindowResize);
       Mousetrap.bind('esc', this.handleClose, 'keyup');
       document.addEventListener('click', this.collapseOnClickAway);
     }
@@ -373,7 +372,8 @@ class BoltVideo extends withPreact(withComponent()) {
   collapseOnClickAway(event) {
     const videoWrapper = this.querySelector('.c-bolt-video--background');
     if (!videoWrapper.contains(event.target)) {
-      this.close();
+      // @todo: debug why videos don't autoplay when this is enabled
+      // this.close();
     }
   }
 
@@ -396,8 +396,10 @@ class BoltVideo extends withPreact(withComponent()) {
   // }
 
 
-  disconnectedCallback() {
-    window.removeEventListener('optimizedResize', this._calculateIdealVideoSize);
+  disconnecting() {
+    if (this.props.isBackgroundVideo) {
+      window.removeEventListener('optimizedResize', this._onWindowResize);
+    }
 
     if (this.player) {
       this.player.dispose();
@@ -506,27 +508,7 @@ class BoltVideo extends withPreact(withComponent()) {
   }
 
   _calculateIdealVideoSize() {
-    const srcWidth = this.srcWidth;
-    const srcHeight = this.srcHeight;
-
-    if (this.srcWidth && this.srcHeight) {
-      const maxRatio = .5625; //56.25%
-      const maxWidth = this.querySelector('video').getBoundingClientRect().width;
-      const maxHeightOption1 = maxWidth * maxRatio;
-      const maxHeightOption2 = window.innerHeight * maxRatio;
-
-      const maxHeight = Math.min(maxHeightOption1, maxHeightOption2);
-
-      let ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
-
-      const idealMaxWidth = Math.round(srcWidth * ratio * 100) / 100;
-      const idealMaxHeight = Math.round(srcHeight * ratio * 100) / 100;
-
-      // If maxHeight has already been pre-defined BUT that value is larger than the calculated `ideal` maxHeight, use the ideal maxHeight value instead and ignore the taller user-defined value.
-      // if (this.maxHeight && this.maxHeight > idealMaxHeight) {
-      this.expandedHeight = idealMaxHeight;
-      // }
-    }
+    this.expandedHeight = this.getBoundingClientRect().height;
   }
 
   setPlayer(player) {
@@ -535,7 +517,6 @@ class BoltVideo extends withPreact(withComponent()) {
 
   createScript() {
     const s = document.createElement('script');
-    // console.log(this.props);
 
     s.src = BoltVideo.getScriptUrl(
       this.props.accountId,
@@ -678,47 +659,47 @@ class BoltVideo extends withPreact(withComponent()) {
 
     return (
       <span className={classes}>
-      <video
-        {...dataAttributes}
-        id={this.state.id}
-        {...(this.props.poster ? {poster: this.props.poster.uri} : {})}
-        data-embed="default"
-        data-video-id={this.props.videoId}
-        preload="none"
-        data-account={this.props.accountId}
-        data-player={this.props.playerId}
-        // playIcon={playIconEmoji()}
-        // following 'autoplay' can not expected to always work on web
-        // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
-        autoPlay={this.props.autoplay}
-        data-application-id
-        loop={this.props.loop}
-        className="video-js"
-        controls={this.props.controls === false ? false : true}
-      />
+        <video
+          {...dataAttributes}
+          id={this.state.id}
+          {...(this.props.poster ? {poster: this.props.poster.uri} : {})}
+          data-embed="default"
+          data-video-id={this.props.videoId}
+          preload="none"
+          data-account={this.props.accountId}
+          data-player={this.props.playerId}
+          // playIcon={playIconEmoji()}
+          // following 'autoplay' can not expected to always work on web
+          // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
+          autoPlay={this.props.autoplay}
+          data-application-id
+          loop={this.props.loop}
+          className="video-js"
+          controls={this.props.controls === false ? false : true}
+        />
         {this.props.showMeta &&
           h(videoMetaTag)
         }
         {this.props.isBackgroundVideo &&
-        <a className={ css(
-          `c-${bolt.namespace}-video__close-button`,
-          `c-${bolt.namespace}-video__close-button--icon-to-text`,
-        ) } href="javascript:"
-           onClick={this.handleClose}>
-          <span className={`c-${bolt.namespace}-video__close-button-icon`}>
-            <div
-              class="c-bolt-button c-bolt-button--xsmall c-bolt-button--secondary c-bolt-button--rounded c-bolt-button--icon-only">
-              <span class="c-bolt-button__icon">
-                <bolt-icon name="close" size="small"></bolt-icon>
-              </span>
-            </div>
-          </span>
-          <span className={`c-${bolt.namespace}-video__close-button-text`}>
-            {closeButtonText}
-          </span>
-        </a>
+          <a className={ css(
+            `c-${bolt.namespace}-video__close-button`,
+            `c-${bolt.namespace}-video__close-button--icon-to-text`,
+          ) } href="javascript:"
+             onClick={this.handleClose}>
+            <span className={`c-${bolt.namespace}-video__close-button-icon`}>
+              <div
+                class="c-bolt-button c-bolt-button--xsmall c-bolt-button--secondary c-bolt-button--rounded c-bolt-button--icon-only">
+                <span class="c-bolt-button__icon">
+                  <bolt-icon name="close" size="small"></bolt-icon>
+                </span>
+              </div>
+            </span>
+            <span className={`c-${bolt.namespace}-video__close-button-text`}>
+              {closeButtonText}
+            </span>
+          </a>
         }
-    </span>
+      </span>
     );
   }
 }
@@ -727,27 +708,3 @@ class BoltVideo extends withPreact(withComponent()) {
 //BoltVideo.props = defaults;
 
 export default BoltVideo;
-
-
-// won't fire before a previous event is complete.
-// This was adapted from https://developer.mozilla.org/en-US/docs/Web/Events/resize
-(function () {
-  function throttle(type, name, obj) {
-    obj = obj || window;
-    let running = false;
-
-    function func() {
-      if (running) { return; }
-      running = true;
-      requestAnimationFrame(function () {
-        obj.dispatchEvent(new CustomEvent(name));
-        running = false;
-      });
-    }
-    obj.addEventListener(type, func);
-  }
-
-  // Initialize on window.resize event.  Note that throttle can also be initialized on any type of event,
-  // such as scroll.
-  throttle('resize', 'optimizedResize');
-})();

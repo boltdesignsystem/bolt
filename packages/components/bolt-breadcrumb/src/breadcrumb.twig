@@ -1,3 +1,7 @@
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-breadcrumb'].schema, _self) | raw }}
+{% endif %}
+
 {% set prefix = "c-bolt-" %}
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set componentName = "breadcrumb" %}
@@ -18,8 +22,3 @@
     </ol>
   </nav>
 </bolt-{{ componentName }}>
-
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-breadcrumb'].schema, _self) | raw }}
-{% endif %}

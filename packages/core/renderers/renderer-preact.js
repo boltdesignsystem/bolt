@@ -1,7 +1,11 @@
 /** @jsx h */
 // Temp working version of @skatejs/renderer-preact till SkateJS fixes this upstream in the SkateJS monorepo
 
-import { shadow, withComponent } from 'skatejs';
+import {
+  withComponent,
+  shadow,
+  props,
+} from 'skatejs';
 import preact, { h, render, Component } from 'preact';
 import html from 'preact-html';
 import { hasNativeShadowDomSupport } from '../utils/environment';
@@ -19,8 +23,10 @@ function newVnode(vnode) {
   if (fn && fn.prototype instanceof HTMLElement) {
     if (!fn[preactNodeName]) {
       const prefix = fn.name;
-      fn = class extends fn {};
-      customElements.define((fn[preactNodeName] = name(prefix)), fn);
+      customElements.define(
+        (fn[preactNodeName] = name(prefix)),
+        class extends fn {},
+      );
     }
     vnode.nodeName = fn[preactNodeName];
   }
@@ -38,7 +44,7 @@ function teardownPreact() {
 
 
 export function withPreact(Base = HTMLElement) {
-  return class extends BoltBase(Base) {
+  return class extends withComponent(BoltBase(Base)) {
 
     get props() {
       // We override props so that we can satisfy most use
@@ -109,7 +115,7 @@ export function withPreact(Base = HTMLElement) {
       this._preactDom = render(
         call(),
         root,
-        this._preactDom || root.childNodes[0],
+        this._preactDom || root.children[0],
       );
       teardownPreact();
     }

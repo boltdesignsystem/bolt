@@ -1,9 +1,13 @@
-<bolt-nav-priority more-text="{{ moreText | default("More") }}">
-  <nav class="c-bolt-priority-nav">
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-nav-priority'].schema, _self) | raw }}
+{% endif %}
+
+<bolt-nav-priority more-text="{{ moreText | default("More") }}" {{ attributes }}>
+  <nav class="c-bolt-nav-priority">
     <bolt-nav-indicator>
-      <ul class="c-bolt-priority-nav__list c-bolt-priority-nav__primary">
+      <ul class="c-bolt-nav-priority__list c-bolt-nav-priority__primary">
         {% for item in links %}
-          <li class="c-bolt-priority-nav__item">
+          <li class="c-bolt-nav-priority__item">
             {% include "@bolt-components-navlink/navlink.twig" with item only %}
           </li>
         {% endfor %}
@@ -11,10 +15,3 @@
     </bolt-nav-indicator>
   </nav>
 </bolt-nav-priority>
-
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-nav-priority'].schema, _self) | raw }}
-{% endif %}
-
-

@@ -9,10 +9,10 @@ import {
 import { hyper, bind } from 'hyperhtml/cjs';
 import { hasNativeShadowDomSupport } from '../utils/environment';
 import { findParentTag } from '../utils/find-parent-tag';
-
+import { BoltBase } from './bolt-base'
 
 export function BoltComponent(Base = HTMLElement) {
-  return class extends withComponent(withRenderer(Base)) {
+  return class extends withComponent(BoltBase(Base)) {
 
     static props = {
       onClick: props.string,
@@ -21,37 +21,15 @@ export function BoltComponent(Base = HTMLElement) {
 
     constructor(...args) {
       super(...args);
+      super.setupShadow();
 
       this.hyper = hyper;
-
-      if (findParentTag(this, 'FORM') || this.getAttribute('no-shadow') !== null) {
-        this.useShadow = false;
-      } else {
-        this.useShadow = hasNativeShadowDomSupport;
-      }
     }
 
-    connectedCallback() {
-      // if (this.dataset.ssrContent) {
-      //   this.innerHTML = JSON.parse(this.dataset.ssrContent);
-      // }
-      this._checkSlots();
-      this.connecting && this.connecting();
-      this.connected && this.connected();
-    }
-
-    disconnectedCallback() {
-      this.disconnecting && this.disconnecting();
-      this.disconnected && this.disconnected();
-    }
-
-    addStyles(stylesheet) {
-      let styles = Array.from(stylesheet);
-      styles = styles.join(' ');
-
-      if (this.useShadow) {
-        return hyper.wire(this) `
-          <style>${ styles} </style>
+    renderStyles(styles){
+      if (styles){
+        return hyper.wire()`
+          <style>${ styles }</style>
         `;
       }
     }
@@ -59,55 +37,28 @@ export function BoltComponent(Base = HTMLElement) {
     slot(name) {
       if (this.useShadow && hasNativeShadowDomSupport) {
         if (name === 'default') {
-          return hyper.wire(this) `
+          return hyper.wire(this)`
             <slot />
           `;
         } else {
-          return hyper.wire(this) `
+          return hyper.wire(this)`
             <slot name="${name}" />
           `;
         }
       } else {
-        if (this.slots[name]) {
-          return hyper.wire(this) `
-            ${this.slots.default}
+        if (name === 'default') {
+          return hyper.wire(this)`
+             ${this.slots.default}
           `;
-        }
-        else {
+        } else if (this.slots[name]){
+          return hyper.wire(this)`
+             ${this.slots[name]}
+          `;
+        } else {
           console.log(`The ${name} slot doesn't appear to exist...`);
         }
       }
     }
-
-
-    // Inspired by https://codepen.io/jovdb/pen/ddRZKo
-    _checkSlots() {
-      this.slots = {
-        default: [],
-      };
-
-      const elem = this;
-
-      // Loop through nodelist
-      this.childNodes.forEach(function (child, index, nodelist) {
-        const slotName = child.getAttribute ? child.getAttribute('slot') : null;
-
-        if (!slotName) {
-          elem.slots.default.push(child);
-        } else {
-          elem.slots[slotName] = child;
-        }
-      });
-    }
-
-    get renderRoot() {
-      if (hasNativeShadowDomSupport && this.useShadow === true) {
-        return super.renderRoot || shadow(this);
-      } else {
-        return this;
-      }
-    }
-
 
     renderer(root, render) {
       this.html = this.html || bind(root);

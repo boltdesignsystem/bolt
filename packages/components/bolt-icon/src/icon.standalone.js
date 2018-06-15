@@ -30,7 +30,7 @@ const colors = [
 
 
 @define
-export class BoltIcon extends withPreact(withComponent()) {
+export class BoltIcon extends withPreact() {
   static is = 'bolt-icon';
 
   static props = {
@@ -50,7 +50,7 @@ export class BoltIcon extends withPreact(withComponent()) {
     return self;
   }
 
-  connectedCallback() {
+  connecting() {
     const elem = this;
 
     this.state = {

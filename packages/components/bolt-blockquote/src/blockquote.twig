@@ -31,6 +31,9 @@
   } only %}
 #}
 
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-blockquote'].schema, _self) | raw }}
+{% endif %}
 
 {% set prefix = "c-bolt-" %}
 
@@ -60,7 +63,6 @@
 {% set size = size == false and size is null ? "xlarge" : size | default("xlarge") %}
 {% set alignItems = alignItems == false and alignItems is null ? "left" : alignItems | default("left") %}
 {% set border = border == false and border is null ? "vertical" : border | default("vertical") %}
-{% set indent = indent == false and indent is null ? "false" : "true" %}
 {% set fullBleed = fullBleed == false and fullBleed is null ? "false" : "true" %}
 
 
@@ -69,7 +71,7 @@
   size in sizeOptions ? baseClass ~ "--" ~ size : "",
   alignItems in alignItemsOptions|keys ? baseClass ~ "--align-items-" ~ alignItemsOptions[alignItems],
   border in borderOptions|keys ? baseClass ~ "--" ~ borderOptions[border],
-  indent == "true" ? baseClass ~ "--indented" : "",
+  indent ? baseClass ~ "--indented" : "",
   fullBleed == "true" ? baseClass ~ "--full" : ""
 ] %}
 
@@ -121,8 +123,3 @@
     {% endif %}
   </blockquote>
 </bolt-{{ componentName }}>
-
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-blockquote'].schema, _self) | raw }}
-{% endif %}

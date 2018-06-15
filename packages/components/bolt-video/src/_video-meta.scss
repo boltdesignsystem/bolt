@@ -1,25 +1,73 @@
 @import '~@bolt/core/index.scss';
 
-// Same as max-width of wrapper container
-$bolt-video-meta--max-width: bolt-breakpoint(xxlarge);
+
+$bolt-video-meta-border-radius: $bolt-border-radius;
+$bolt-video-meta-transition: $bolt-transition;
 
 
 #{$bolt-namespace}-video-meta {
-  transition: transform 0.2s ease, opacity 0.2s ease;
-  transform: translate3d(0, 0, 0);
-  opacity: 1;
-  display: block;
+  @include bolt-padding(xsmall);
 
+  display: block;
   position: absolute;
+  top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.c-#{$bolt-namespace}-video-meta,
+.c-#{$bolt-namespace}-video-meta__wrapper {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.c-#{$bolt-namespace}-video-meta__item {
+  @include bolt-padding(xsmall, squished);
+
+  display: inline-block;
+  position: absolute;
+  max-width: 100%;
+  color: bolt-color(white);
+  border-radius: $bolt-video-meta-border-radius;
+  background-color: rgba(bolt-color(black), 0.8);
+  opacity: 1;
+  transition: opacity $bolt-video-meta-transition;
+}
+
+.c-#{$bolt-namespace}-video-meta__item--title {
+  @include bolt-font-size(small);
+  top: 0;
+  left: 0;
+}
+
+.c-#{$bolt-namespace}-video-meta__item--duration {
+  @include bolt-font-size(xsmall);
   right: 0;
   bottom: 0;
 }
 
-.c-#{$bolt-namespace}-video-meta__wrapper {
-  @include bolt-padding(medium, squished);
-  @include bolt-font-size(xsmall);
+// [Mai] Hide the duration (which covers the controls) video is started or when paused.
+#{$bolt-namespace}-video.is-paused {
+  .c-#{$bolt-namespace}-video-meta__item--duration {
+    opacity: 0;
+  }
+}
 
-  background-color: rgba(bolt-color(indigo), 0.8);
-  color: bolt-color(white);
+// [Mai] Hide the title and duration (which covers the controls) when the video is playing.
+#{$bolt-namespace}-video.is-playing,
+#{$bolt-namespace}-video.is-finished {
+  .c-#{$bolt-namespace}-video-meta__item {
+    opacity: 0;
+  }
+}
+
+// [Mai] Hide the title and duration when user opens the share dialog.
+.vjs-controls-disabled ~ #{$bolt-namespace}-video-meta {
+  .c-#{$bolt-namespace}-video-meta__item {
+    opacity: 0;
+  }
 }

@@ -5,8 +5,7 @@
 @import '~@bolt/core/index.scss';
 
 
-bolt-nav-priority,
-bolt-priority-nav {
+bolt-nav-priority {
   display: block;
   position: relative;
   align-self: center;
@@ -29,7 +28,7 @@ bolt-priority-nav {
   }
 }
 
-.c-bolt-priority-nav {
+.c-bolt-nav-priority {
   @supports (display: contents) {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
       &.is-ready {
@@ -88,7 +87,7 @@ bolt-priority-nav {
     background-size: 4em 100%, 4em 100%, 1em 100%, 1em 100%;
     overflow-x: auto;
 
-    // .c-bolt-priority-nav__item {
+    // .c-bolt-nav-priority__item {
     //   background-color: transparent;
     // }
   }
@@ -98,8 +97,7 @@ bolt-priority-nav {
   }
 }
 
-// .c-bolt-priority-nav__link,
-.c-bolt-priority-nav__show-button {
+.c-bolt-nav-priority__show-button {
   width: 100%;
   height: 100%;
   display: block;
@@ -115,13 +113,13 @@ bolt-priority-nav {
   &,
   .t-bolt-light &,
   .t-bolt-xlight & {
-    color: bolt-color(black);
+    color: bolt-color(indigo);
   }
 
   background-color: transparent;
 }
 
-.c-bolt-priority-nav__primary {
+.c-bolt-nav-priority__primary {
   @supports (display: contents) {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
       .is-ready & {
@@ -135,14 +133,14 @@ bolt-priority-nav {
   margin: 0;
 }
 
-.c-bolt-priority-nav__item {
+.c-bolt-nav-priority__item {
   display: flex;
   flex-shrink: 0;
   white-space: nowrap;
 }
 
 // required so the dropdown can be positioned consistently
-.c-bolt-priority-nav__show-more {
+.c-bolt-nav-priority__show-more {
   position: relative;
 }
 
@@ -150,7 +148,7 @@ bolt-priority-nav {
 
 
 @supports (display: contents) {
-   .c-bolt-priority-nav__show-more {
+   .c-bolt-nav-priority__show-more {
      @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
        display: contents;
      }
@@ -158,18 +156,18 @@ bolt-priority-nav {
  }
 
 
-.c-bolt-priority-nav__dropdown-list {
-  // background-color: themify(primary, 0.9); // @TODO: uncomment once themify updates are merged in
+.c-bolt-nav-priority__dropdown-list {
+  // background-color: themify(primary, 0.95); // @TODO: uncomment once themify updates are merged in
 
   // @TODO: remove once themify updates are merged in
   .t-bolt-dark &,
   .t-bolt-xdark & {
-    background-color: rgba(bolt-color(indigo), 0.9);
+    background-color: rgba(bolt-color(indigo), 0.95);
   } // @TODO: remove once themify updates are merged in
   &,
   .t-bolt-light &,
   .t-bolt-xlight & {
-    background-color: rgba(bolt-color(white), 0.9);
+    background-color: rgba(bolt-color(white), 0.95);
   }
 
 
@@ -188,10 +186,10 @@ bolt-priority-nav {
   }
 }
 
-.c-bolt-priority-nav__dropdown {
+.c-bolt-nav-priority__dropdown {
   @include bolt-z-index(tooltip);
   box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
-  min-width: 10em;
+  min-width: 12rem;
   display: none;
   position: absolute;
   top: 100%;
@@ -236,7 +234,7 @@ bolt-priority-nav {
     }
   }
 
-  .c-bolt-priority-nav--show-dropdown & {
+  .c-bolt-nav-priority--show-dropdown & {
     display: block;
   }
 }
@@ -256,9 +254,14 @@ bolt-priority-nav {
 
 
 
-.c-bolt-priority-nav__show-button {
+.c-bolt-nav-priority__show-button {
   @include bolt-padding(small, squished);
-  border: 0;
+  // Added border so that &:after,&:focus doesn't change the size of the band
+  // We should consider making this thin dotted style a mixin to share with nav-priority
+  border-width: thin;
+  border-style: dotted;
+  border-radius: 3px;
+  border-color: transparent;
   border-radius: $bolt-border-radius;
   white-space: nowrap;
   transition: background-color 0.3s ease;
@@ -301,17 +304,17 @@ bolt-priority-nav {
     opacity: 0;
     pointer-events: none;
 
-    // background-color: themify(primary, 0.9); // @TODO: uncomment once themify updates are merged in
+    // background-color: themify(primary, 0.95); // @TODO: uncomment once themify updates are merged in
     // @TODO: remove once themify updates are merged in
     .t-bolt-dark &,
     .t-bolt-xdark & {
-      background-color: rgba(bolt-color(indigo), 0.9);
+      background-color: rgba(bolt-color(indigo), 0.95);
     }
 
     &,
     .t-bolt-light &,
     .t-bolt-xlight & {
-      background-color: rgba(bolt-color(gray), 0.9);
+      background-color: rgba(bolt-color(gray), 0.95);
     }
 
     overflow: hidden;
@@ -335,6 +338,12 @@ bolt-priority-nav {
       opacity: 0.1;
     }
   }
+
+  &:focus,
+  &.is-active {
+    outline: none;
+    border-color: var(--bolt-theme-primary,inherit);
+    }
 
   &.is-active,
   &:active {
@@ -363,7 +372,7 @@ bolt-priority-nav {
   }
 }
 
-.c-bolt-priority-nav__show-text {
+.c-bolt-nav-priority__show-text {
   @include bolt-font-size(small);
   @include bolt-font-weight(semibold);
   position: relative;
@@ -374,7 +383,7 @@ bolt-priority-nav {
   }
 }
 
-.c-bolt-priority-nav__show-icon {
+.c-bolt-nav-priority__show-icon {
   display: inline-block;
   transition: transform 0.2s;
   position: relative;
@@ -386,23 +395,23 @@ bolt-priority-nav {
     font-size: 24px;
   }
 
-  .c-bolt-priority-nav--show-dropdown & {
+  .c-bolt-nav-priority--show-dropdown & {
     transform: rotate(180deg);
   }
 }
 
 
 
-// bolt-priority-nav {
+// bolt-nav-priority {
 //   @include bolt-css-vars((
-//     --bolt-priority-nav-item-opacity: 0,
-//     --bolt-priority-nav-item-transform: translateY(bolt-spacing(large) * -1),
+//     --bolt-nav-priority-item-opacity: 0,
+//     --bolt-nav-priority-item-transform: translateY(bolt-spacing(large) * -1),
 //   ));
 
 //   &[open*=true]{
 //       @include bolt-css-vars((
-//         --bolt-priority-nav-item-opacity: 1,
-//         --bolt-priority-nav-item-transform: none,
+//         --bolt-nav-priority-item-opacity: 1,
+//         --bolt-nav-priority-item-transform: none,
 //       ));
 //   }
 // }
@@ -410,9 +419,9 @@ bolt-priority-nav {
 
 
 
-// .c-bolt-priority-nav__dropdown-list > .c-bolt-priority-nav__item {
-//   transform: var(--bolt-priority-nav-item-transform, none);
-//   opacity: var(--bolt-priority-nav-item-opacity, 1);
+// .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item {
+//   transform: var(--bolt-nav-priority-item-transform, none);
+//   opacity: var(--bolt-nav-priority-item-opacity, 1);
 //   transition: opacity 0.35s ease-out, transform 0.35s ease-out; // transition:
 
 //   // .c-bolt-dropdown--collapse\@small & {
@@ -430,8 +439,8 @@ bolt-priority-nav {
 
 //   @for $i from $quantity through 1 {
 //     $time: $time + 50;
-//     .c-bolt-priority-nav__dropdown-list > .c-bolt-priority-nav__item:nth-last-child(n+#{$quantity}),
-//     .c-bolt-priority-nav__dropdown-list > .c-bolt-priority-nav__item:nth-last-child(n+#{$quantity}) ~ .c-bolt-priority-nav__item:nth-child(#{$i}) {
+//     .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item:nth-last-child(n+#{$quantity}),
+//     .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item:nth-last-child(n+#{$quantity}) ~ .c-bolt-nav-priority__item:nth-child(#{$i}) {
 //       transition-delay: $time + ms;
 //     }
 //   }
@@ -444,13 +453,13 @@ bolt-priority-nav {
 
 
 
-// .c-bolt-priority-nav--show-dropdown .c-bolt-priority-nav__item {
-// // .c-bolt-priority-nav--show-dropdown+.c-bolt-dropdown .c-bolt-priority-nav__item,
-// // .c-bolt-dropdown__content--opened .c-bolt-priority-nav__item {
+// .c-bolt-nav-priority--show-dropdown .c-bolt-nav-priority__item {
+// // .c-bolt-nav-priority--show-dropdown+.c-bolt-dropdown .c-bolt-nav-priority__item,
+// // .c-bolt-dropdown__content--opened .c-bolt-nav-priority__item {
 //   // opacity: 1;
 //   // transform: none;
 //   @include bolt-css-vars((
-//     --bolt-priority-nav-item-opacity: 1,
-//     --bolt-priority-nav-item-transform: none,
+//     --bolt-nav-priority-item-opacity: 1,
+//     --bolt-nav-priority-item-transform: none,
 //   ));
 // }

@@ -13,6 +13,9 @@ module.exports = {
   extraTwigNamespaces: {
     'bolt': {
       recursive: true,
+    },
+    'pl': {
+      recursive: true,
       paths: [
         './src',
         /* Example of including additional component paths to include in the main @bolt namespace */

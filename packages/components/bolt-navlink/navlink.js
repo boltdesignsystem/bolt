@@ -44,8 +44,14 @@ class BoltNavLink extends BoltComponent() {
     }
   }
 
-  onClick() {
-    if (!this.props.active) {
+  onClick(event) {
+    // prevent browser default if we're smooth scrolling to a navlink. this ensures a smoother, less jumpy animation in browsers (like Safari)
+    if (this._shadowLink.getAttribute('href').indexOf('#') !== -1){
+      event.preventDefault();
+    }
+
+    // manually add smooth scroll to dropdown links since these are added to the page AFTER smooth scroll event bindings would hae been added.
+    if (!this.props.active && this.props.isDropdownLink) {
       const scrollTarget = getScrollTarget(this._shadowLink);
       if (scrollTarget) {
         smoothScroll.animateScroll(scrollTarget, this._shadowLink, defaultScrollOptions);
@@ -66,6 +72,22 @@ class BoltNavLink extends BoltComponent() {
 
   isActive(){
     return this.props.active;
+  }
+
+  get isDropdownLink() {
+    return this.props.isDropdownLink;
+  }
+
+  set isDropdownLink(value) {
+    // Properties can be set to all kinds of string values. This makes sure
+    // it’s converted to a proper boolean value using JavaScript’s truthiness
+    // & falsiness principles.
+    value = Boolean(value);
+    if (value) {
+      this.setAttribute('is-dropdown-link', '');
+    } else {
+      this.removeAttribute('is-dropdown-link');
+    }
   }
 
   activate(emitEvent = true) {

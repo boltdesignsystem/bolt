@@ -1,3 +1,7 @@
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-chip-list'].schema, _self) | raw }}
+{% endif %}
+
 {% if contentItems %}
   {% set chipParams = {} %}
   {% set inlineListItems = [] %}
@@ -20,9 +24,4 @@
 
   {% include "@bolt/inline-list.twig" with chipParams only %}
 
-{% endif %}
-
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-chip-list'].schema, _self) | raw }}
 {% endif %}
