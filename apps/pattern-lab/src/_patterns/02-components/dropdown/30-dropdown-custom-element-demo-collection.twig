@@ -10,42 +10,26 @@
 <bolt-dropdown
   title="Toggle Menu"
 >
-  {% include "@bolt-components-nav/nav.twig" with {
-    "links": [
-      {
+  {% include "@bolt-components-block-list/block-list.twig" with {
+    "items": [
+      include("@bolt-components-link/link.twig", {
         "text": "Link 1 Text",
         "url": "#link-1-url"
-      },
-      {
+      }),
+      include("@bolt-components-link/link.twig", {
         "text": "Link 2 Text",
         "url": "#link-2-url"
-      },
-      {
+      }),
+      include("@bolt-components-link/link.twig", {
         "text": "Link 3 Text",
         "url": "#link-3-url"
-      },
-      {
+      }),
+      include("@bolt-components-link/link.twig", {
         "text": "Link 4 Text",
         "url": "#link-4-url"
-      },
-      {
-        "text": "Link 5 Text",
-        "url": "#link-5-url"
-      },
-      {
-        "text": "Link 6 Text",
-        "url": "#link-6-url"
-      },
-      {
-        "text": "Link 7 Text",
-        "url": "#link-7-url"
-      },
-      {
-        "text": "Link 8 Text",
-        "url": "#link-8-url"
-      }
+      }),
     ]
-  } only %}
+  } %}
 </bolt-dropdown>
 
 <h3>Center</h3>
@@ -53,42 +37,26 @@
   center
   title="Custom Element w/ Center"
 >
-  {% include "@bolt-components-nav/nav.twig" with {
-    "links": [
-      {
+  {% include "@bolt-components-block-list/block-list.twig" with {
+    "items": [
+      include("@bolt-components-link/link.twig", {
         "text": "Link 1 Text",
         "url": "#link-1-url"
-      },
-      {
+      }),
+      include("@bolt-components-link/link.twig", {
         "text": "Link 2 Text",
         "url": "#link-2-url"
-      },
-      {
+      }),
+      include("@bolt-components-link/link.twig", {
         "text": "Link 3 Text",
         "url": "#link-3-url"
-      },
-      {
+      }),
+      include("@bolt-components-link/link.twig", {
         "text": "Link 4 Text",
         "url": "#link-4-url"
-      },
-      {
-        "text": "Link 5 Text",
-        "url": "#link-5-url"
-      },
-      {
-        "text": "Link 6 Text",
-        "url": "#link-6-url"
-      },
-      {
-        "text": "Link 7 Text",
-        "url": "#link-7-url"
-      },
-      {
-        "text": "Link 8 Text",
-        "url": "#link-8-url"
-      }
+      }),
     ]
-  } only %}
+  } %}
 </bolt-dropdown>
 
 <h3>Collapse</h3>
@@ -96,42 +64,26 @@
   collapse
   title="Custom Element w/ Collapse"
 >
-  {% include "@bolt-components-nav/nav.twig" with {
-    "links": [
-      {
+  {% include "@bolt-components-block-list/block-list.twig" with {
+    "items": [
+      include("@bolt-components-link/link.twig", {
         "text": "Link 1 Text",
         "url": "#link-1-url"
-      },
-      {
+      }),
+      include("@bolt-components-link/link.twig", {
         "text": "Link 2 Text",
         "url": "#link-2-url"
-      },
-      {
+      }),
+      include("@bolt-components-link/link.twig", {
         "text": "Link 3 Text",
         "url": "#link-3-url"
-      },
-      {
+      }),
+      include("@bolt-components-link/link.twig", {
         "text": "Link 4 Text",
         "url": "#link-4-url"
-      },
-      {
-        "text": "Link 5 Text",
-        "url": "#link-5-url"
-      },
-      {
-        "text": "Link 6 Text",
-        "url": "#link-6-url"
-      },
-      {
-        "text": "Link 7 Text",
-        "url": "#link-7-url"
-      },
-      {
-        "text": "Link 8 Text",
-        "url": "#link-8-url"
-      }
+      }),
     ]
-  } only %}
+  } %}
 </bolt-dropdown>
 
 <h3>Collapse and Center</h3>
@@ -140,42 +92,26 @@
   collapse
   title="Custom Element w/ Collapse & Center"
 >
-  {% include "@bolt-components-nav/nav.twig" with {
-    "links": [
-      {
+  {% include "@bolt-components-block-list/block-list.twig" with {
+    "items": [
+      include("@bolt-components-link/link.twig", {
         "text": "Link 1 Text",
         "url": "#link-1-url"
-      },
-      {
+      }),
+      include("@bolt-components-link/link.twig", {
         "text": "Link 2 Text",
         "url": "#link-2-url"
-      },
-      {
+      }),
+      include("@bolt-components-link/link.twig", {
         "text": "Link 3 Text",
         "url": "#link-3-url"
-      },
-      {
+      }),
+      include("@bolt-components-link/link.twig", {
         "text": "Link 4 Text",
         "url": "#link-4-url"
-      },
-      {
-        "text": "Link 5 Text",
-        "url": "#link-5-url"
-      },
-      {
-        "text": "Link 6 Text",
-        "url": "#link-6-url"
-      },
-      {
-        "text": "Link 7 Text",
-        "url": "#link-7-url"
-      },
-      {
-        "text": "Link 8 Text",
-        "url": "#link-8-url"
-      }
+      }),
     ]
-  } only %}
+  } %}
 </bolt-dropdown>
 
 <h3>Theme Variations</h3>
@@ -185,26 +121,26 @@
       title="Toggle Menu"
       center
     >
-      {% include "@bolt-components-nav/nav.twig" with {
-        "links": [
-          {
-            "text": "Features",
-            "url": "#p-f3ff267c-5fb8-4e2f-8682-52663b5437df"
-          },
-          {
-            "text": "Resources",
-            "url": "#p-12de80d7-1c57-4bef-a173-07d898f8e356"
-          },
-          {
-            "text": "Industry Apps",
-            "url": "#p-468a47c1-fe65-46d4-b8c7-9dbfe8404ee9"
-          },
-          {
-            "text": "Customer Success",
-            "url": "#p-6618d817-126e-46d1-955a"
-          }
-        ]
-      } %}
+    {% include "@bolt-components-block-list/block-list.twig" with {
+      "items": [
+        include("@bolt-components-link/link.twig", {
+          "text": "Link 1 Text",
+          "url": "#link-1-url"
+        }),
+        include("@bolt-components-link/link.twig", {
+          "text": "Link 2 Text",
+          "url": "#link-2-url"
+        }),
+        include("@bolt-components-link/link.twig", {
+          "text": "Link 3 Text",
+          "url": "#link-3-url"
+        }),
+        include("@bolt-components-link/link.twig", {
+          "text": "Link 4 Text",
+          "url": "#link-4-url"
+        }),
+      ]
+    } %}
     </bolt-dropdown>
   </div>
 {% endfor %}
@@ -213,40 +149,24 @@
 <bolt-dropdown
   center
   title="Really Extremely Long Example Header Text Example">
-  {% include "@bolt-components-nav/nav.twig" with {
-    "links": [
-      {
+  {% include "@bolt-components-block-list/block-list.twig" with {
+    "items": [
+      include("@bolt-components-link/link.twig", {
         "text": "Link 1 Text",
         "url": "#link-1-url"
-      },
-      {
+      }),
+      include("@bolt-components-link/link.twig", {
         "text": "Link 2 Text",
         "url": "#link-2-url"
-      },
-      {
+      }),
+      include("@bolt-components-link/link.twig", {
         "text": "Link 3 Text",
         "url": "#link-3-url"
-      },
-      {
+      }),
+      include("@bolt-components-link/link.twig", {
         "text": "Link 4 Text",
         "url": "#link-4-url"
-      },
-      {
-        "text": "Link 5 Text",
-        "url": "#link-5-url"
-      },
-      {
-        "text": "Link 6 Text",
-        "url": "#link-6-url"
-      },
-      {
-        "text": "Link 7 Text",
-        "url": "#link-7-url"
-      },
-      {
-        "text": "Link 8 Text",
-        "url": "#link-8-url"
-      }
+      }),
     ]
   } %}
 </bolt-dropdown>

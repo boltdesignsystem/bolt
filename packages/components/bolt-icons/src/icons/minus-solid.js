@@ -3,7 +3,7 @@ import { h } from '@bolt/core';
 export const MinusSolid = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (
     <svg width={size} height={size} {...otherProps} viewBox="0 0 24 24">
-      <g fill={bgColor} fill-rule="evenodd">
+      <g fill="none" fill-rule="evenodd">
         <path />
         <circle
           cx="11"

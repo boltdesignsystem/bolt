@@ -3,7 +3,7 @@ import { h } from '@bolt/core';
 export const AssetInteractive = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (
     <svg width={size} height={size} {...otherProps} viewBox="0 0 24 24">
-      <g fill={bgColor} fill-rule="evenodd">
+      <g fill="none" fill-rule="evenodd">
         <path
           d="M5.428 5.54a.74.74 0 0 0-.737-.738H1.737a.74.74 0 0 0 0 1.48h2.954c.406 0 .737-.331.737-.741"
           fill={bgColor}

@@ -1,4 +1,4 @@
-{% extends "@bolt/default-template.twig" %}
+{% extends "@pl/default-template.twig" %}
 
 {% block global_header %}
   {% include "@bolt/page-header.twig" %}
@@ -171,7 +171,8 @@
         "videoId": "5609376179001",
         "accountId": "1900410236",
         "playerId": "r1CAdLzTW",
-        "videoUuid": videoUuid1
+        "videoUuid": videoUuid1,
+        "showMeta": false,
       }
     ]
   },
@@ -357,10 +358,15 @@
       tag: "h3"
     } only %}
 
+    {{ parent() }}
+
     {% include "@bolt/button.twig" with {
       text: "Toggle video",
       tag: "button",
       attributes: {
+        class: [
+          "u-bolt-margin-top-large",
+        ],
         "on-click": "toggle",
         "on-click-target": videoUuid1
       }
@@ -368,7 +374,7 @@
 
     <br><br><br>
 
-    {{ parent() }}
+
   {% endblock band_content %}
 {% endembed %}
 
@@ -444,7 +450,8 @@
         "videoId": "5453299964001",
         "accountId": "1900410236",
         "playerId": "r1CAdLzTW",
-        "videoUuid": videoUuid2
+        "videoUuid": videoUuid2,
+        "showMeta": false,
       }
     ]
   }

@@ -1,0 +1,44 @@
+{% set schema = bolt.data.components['@bolt-components-code-snippet'].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+
+{% set prefix = "c-bolt-" %}
+{% set componentName = "code-snippet" %}
+{% set baseClass = prefix ~ componentName %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set displayOptions = schema.properties.display.enum %}
+{% set display = display in displayOptions ? display : schema.properties.display.default %}
+
+{% set langOptions = schema.properties.lang.enum %}
+{% set lang = lang in langOptions ? lang : schema.properties.lang.default %}
+
+{% set syntaxOptions = schema.properties.syntax.enum %}
+{% set syntax = syntax in syntaxOptions ? syntax : schema.properties.syntax.default %}
+
+{% set classes = [
+  baseClass
+] %}
+
+{% set codeContent %}{% spaceless %}
+  <code class="{{ "#{baseClass}__code #{baseClass}__code--#{display}" }} nohighlight" is="shadow-root">{% block children %}{{ content }}{% endblock %}</code>
+{% endspaceless %}{% endset %}
+
+
+
+
+<bolt-{{ componentName }}
+  {% if display %} display="{{ display }}" {% endif %}
+  {% if lang %} lang="{{ lang }}" {% endif %}
+  {% if syntax %} syntax="{{ syntax }}" {% endif %}
+  bolt-component
+>
+  {% if display == "inline" %}
+    {{ codeContent }}
+  {% else %}
+    <pre {{ attributes.addClass(classes) }}>{{ codeContent }}</pre>
+  {% endif %}
+</bolt-{{ componentName }}>

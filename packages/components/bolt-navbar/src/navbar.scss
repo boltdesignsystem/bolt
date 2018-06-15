@@ -1,0 +1,207 @@
+@import '@bolt/core';
+
+/* ------------------------------------ *\
+   Navbar
+\* ------------------------------------ */
+
+$bolt-navbar-title-transition: $bolt-transition;
+
+
+$bolt-navbar-vspacing-small: bolt-v-spacing(small);
+$bolt-navbar-vspacing-xsmall: bolt-v-spacing(xsmall);
+
+bolt-navbar {
+  @include bolt-z-index(nav);
+  @include bolt-full-bleed; // @todo: make full bleed optional?
+  @include bolt-margin-top(0); // workaround to -.5px in bolt-full-bleed
+  @include bolt-margin-bottom(0); // workaround to -.5px in bolt-full-bleed
+  @supports(--css: variables) {
+    --bolt-vspacing: #{$bolt-navbar-vspacing-small};
+  }
+
+  display: block;
+  overflow: visible;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.c-bolt-navbar {
+  @include bolt-padding-left(medium);
+  @include bolt-padding-right(medium);
+  @include bolt-padding-top($bolt-navbar-vspacing-small);
+
+  @supports(--css: variables) {
+    padding-top: var(--bolt-vspacing, $bolt-navbar-vspacing-small);
+  }
+
+  @supports (display: contents) {
+    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+      @include bolt-padding-top(0);
+    }
+  }
+
+  // @include bolt-padding-top($bolt-navbar-vspacing-small);
+  max-width: bolt-breakpoint(xxlarge);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+
+  @include respond-to(medium) {
+    @include bolt-padding-left(large);
+    @include bolt-padding-right(large);
+  }
+
+  /**
+    * 1. Global spacing fallbacks if CSS variables aren't supported
+    */
+  > * {
+    @include bolt-padding-bottom($bolt-navbar-vspacing-small); /* [1] */
+
+    @supports(--css: variables) {
+      padding-bottom: var(--bolt-vspacing, $bolt-navbar-vspacing-small);
+    }
+  }
+
+  @supports (display: contents) {
+    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+      @include bolt-padding-left(0);
+      @include bolt-padding-right(0);
+      flex-direction: row;
+      display: grid;
+      grid-template-columns: bolt-spacing(medium) auto 1fr fit-content(100px) (bolt-spacing(large) - bolt-spacing(xxsmall));
+      grid-template-rows: 1fr auto;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &--center {
+    flex-wrap: wrap;
+    justify-content: center;
+
+    > *:first-child {
+      @include bolt-padding-top($bolt-navbar-vspacing-xsmall); /* [1] */
+      align-self: center;
+
+      @supports(--css: variables) {
+        padding-top: var(--bolt-vspacing, $bolt-navbar-vspacing-xsmall);
+      }
+    }
+
+    > *:only-child {
+      @include bolt-padding-top($bolt-navbar-vspacing-xsmall); /* [1] */
+      @include bolt-padding-bottom($bolt-navbar-vspacing-xsmall); /* [1] */
+
+      @supports(--css: variables) {
+        padding-top: var(--bolt-vspacing, $bolt-navbar-vspacing-xsmall);
+        padding-bottom: calc(var(--bolt-vspacing, $bolt-navbar-vspacing-xsmall) * 2);
+      }
+    }
+  }
+
+  &--small {
+    > * {
+      @include bolt-padding-bottom($bolt-navbar-vspacing-xsmall); /* [1] */
+    }
+
+    @supports(--css: variables) {
+      --bolt-vspacing: #{bolt-v-spacing(xsmall)};
+    }
+  }
+}
+
+
+// Nav title
+.c-bolt-navbar__title {
+  @include bolt-margin-right(medium); // Maintain space between items
+  padding-bottom: $bolt-navbar-vspacing-small;
+  align-self: center;
+  flex-shrink: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  color: inherit;
+  color: var(--bolt-theme-heading, inherit);
+  white-space: nowrap;
+
+  @supports(--css: variables) {
+    padding-bottom: var(--bolt-vspacing, $bolt-navbar-vspacing-small);
+  }
+
+  &:only-child {
+    @include bolt-margin-right(auto);
+  }
+
+  @supports (display: contents) {
+    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+      @include bolt-padding-top($bolt-navbar-vspacing-small);
+      grid-column: 2/span 1;
+
+      @supports(--css: variables) {
+        padding-top: var(--bolt-vspacing, $bolt-navbar-vspacing-small);
+      }
+    }
+  }
+
+  .c-bolt-navbar--center & {
+    @include bolt-margin-left(auto);
+    @include bolt-margin-right(auto);
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.c-bolt-navbar__title--link {
+  text-decoration: none;
+  opacity: 1;
+  transition: all $bolt-navbar-title-transition;
+
+  &:hover {
+    opacity: $bolt-global-link-hover-opacity;
+  }
+}
+
+.c-bolt-navbar__title-icon {
+  @include bolt-margin(0 xsmall 0 0);
+}
+
+.c-bolt-navbar__title-text {
+  @include bolt-font-size(large);
+  @include bolt-font-weight(semibold);
+
+  // Adjust the Navbar Title size when being stacked vertically
+  .c-bolt-navbar--center & {
+    @include bolt-font-size(small);
+    @include bolt-font-weight(bold);
+  }
+}
+
+
+// Nav items
+.c-bolt-navbar__nav {
+  @include bolt-margin(0 0 0 small);
+  width: 100%;
+  flex-shrink: 1;
+  -webkit-overflow-scrolling: touch;
+}
+
+.c-bolt-navbar__nav {
+  &:only-child {
+    @include bolt-margin(0 auto);
+  }
+}
+
+.c-bolt-navbar--align-items-start {
+  justify-content: flex-start;
+}
+
+.c-bolt-navbar--align-items-center {
+  justify-content: center;
+}
+
+.c-bolt-navbar--align-items-end {
+  justify-content: flex-end;
+}

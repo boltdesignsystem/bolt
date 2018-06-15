@@ -1,23 +1,22 @@
-<ul>
-  <li>
-    {% include "@bolt-components-link/link.twig" with {
-      text: "Default icon postion is after the link",
-      url: "http://google.com",
-      icon: {
-        name: "add-open",
-      },
-    } only %}
-  </li>
-
-  <li>
-    {% include "@bolt-components-link/link.twig" with {
-      text: "But the icon can go before the link",
-      url: "http://google.com",
-      icon: {
-        name: "add-open",
-        position: "before"
-      },
-    } only %}
-  </li>
-</ul>
+<p>Default icon postion is after the link:</p>
+<p>
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Like This",
+    url: "http://google.com",
+    icon: {
+      name: "info-open",
+    },
+  } only %}
+</p>
+<p>But the icon can go before the link:</p>
+<p>
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Like This",
+    url: "http://google.com",
+    icon: {
+      name: "info-open",
+      position: "before"
+    },
+  } only %}
+</p>
 

@@ -1,4 +1,5 @@
 import 'es6-promise/auto';
+import 'element-closest';
 import 'core-js/modules/es6.array.iterator';
 import 'core-js/modules/es6.array.from';
 import 'core-js/modules/es6.string.starts-with';
@@ -50,7 +51,6 @@ export const polyfillLoader = new Promise((resolve) => {
     Promise.all([
       import('@webcomponents/shadydom/src/shadydom.js'),
       import('document-register-element'),
-      import('@webcomponents/shadycss/entrypoints/scoping-shim.js'),
     ]).then(() => { resolve() });
   }
 
@@ -59,7 +59,6 @@ export const polyfillLoader = new Promise((resolve) => {
   else if (polyfills.includes('sd')) {
     Promise.all([
       import('@webcomponents/shadydom/src/shadydom.js'),
-      import('@webcomponents/shadycss/entrypoints/scoping-shim.js'),
     ]).then(() => { resolve() });
   }
 
@@ -68,7 +67,6 @@ export const polyfillLoader = new Promise((resolve) => {
   else if (polyfills.includes('ce')){
     Promise.all([
       import('@webcomponents/shadydom/src/shadydom.js'),
-      import('@webcomponents/shadycss/entrypoints/scoping-shim.js'),
     ]).then(() => { resolve() });
 
     import('document-register-element').then(() => { resolve() });

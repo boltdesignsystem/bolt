@@ -7,17 +7,39 @@ const { getDataFile } = require('./yaml');
 const { validateSchemaSchema } = require('./schemas');
 const path = require('path');
 const config = require('./config-store').getConfig();
-const pkg = require('../package.json');
-const lernaPkg = require('../../../lerna.json'); // Use the pkg version in lerna.json vs the pkg version for `@bolt/build-tools`
 
 let boltManifest = {
   name: 'Bolt Manifest',
-  version: lernaPkg.version,
+  version: '', // retrieved below
   components: {
     global: [],
     individual: [],
   },
 };
+
+// getting `boltManifest.version`
+// ideally we want the version from `lerna.json` as that's always the highest, but sometimes that file is not located at `../../../lerna.json` - like when this is compiling in a Drupal Site (Drupal Lab doesn't count), in that case we'll just fall back on the version from this package.
+try {
+  boltManifest.version = JSON.parse(
+    fs.readFileSync(
+      path.join(
+        __dirname,
+        '../../../lerna.json',
+      ),
+      'utf8',
+    ),
+  ).version;
+} catch (error) {
+  boltManifest.version = JSON.parse(
+    fs.readFileSync(
+      path.join(
+        __dirname,
+        '../package.json',
+      ),
+      'utf8',
+    ),
+  ).version;
+}
 
 /**
  * Get information about a components assets
@@ -214,13 +236,17 @@ async function writeTwigNamespaceFile(relativeFrom, extraNamespaces = {}) {
   if (extraNamespaces) {
     Object.keys(extraNamespaces).forEach((namespace) => {
       const settings = extraNamespaces[namespace];
-      if (namespaceConfigFile[namespace]) {
+      if (namespaceConfigFile[namespace] &&
+        settings.paths !== undefined // make sure the paths config is defined before trying to merge
+      ) {
         // merging the two, making sure the paths from `extraNamespaces` go first
         namespaceConfigFile[namespace].paths = [
           ...settings.paths,
           ...namespaceConfigFile[namespace].paths,
         ];
-      } else {
+
+      // don't add a new namespace key if the paths config option wasn't defined. prevents PHP errors if a namespace key was defined but no paths specified.
+      } else if (settings.paths !== undefined) {
         namespaceConfigFile[namespace] = settings;
       }
     });

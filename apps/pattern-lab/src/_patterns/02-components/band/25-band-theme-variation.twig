@@ -1,12 +1,6 @@
-{% set exampleThemes = [
-  "xlight",
-  "light",
-  "medium",
-  "dark",
-  "xdark"
-] %}
+{% set schema = bolt.data.components['@bolt-components-band'].schema %}
 
-{% for theme in exampleThemes %}
+{% for theme in schema.properties.theme.enum %}
   <p>Theme: {{ theme }}</p>
   {% include '@bolt-components-band/band--flag.twig' with {
     theme: theme,

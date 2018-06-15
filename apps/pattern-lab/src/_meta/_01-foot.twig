@@ -8,13 +8,6 @@
     <script src="{{ assets["bolt-global.js"] }}?cachebuster="{{ cacheBuster }}"" async></script>
     <script src="{{ assets["pl.js"] }}?cachebuster="{{ cacheBuster }}"" async></script>
 
-    {# Code syntax highlighting - https://github.com/imsky/holder #}
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scss.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/twig.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-
     {# Showing off global vars in Browsers Console #}
     <script>console.log('Bolt Global Twig variable. In Twig, you can tap into the `bolt` global var to access all sorts of helpful information about the Bolt Design System, such as colors, spacing, and more. Most is exported from Sass; to add more, add this to any Sass file: `@include export-data("myVariables.bolt.json", $my-variables-in-a-sass-map);`, and then you can access it in Twig via `bolt.data.myVariables`. Here is all the data available to the current templates, including the `bolt` var:');</script>
     {{ console_log(_context) }}

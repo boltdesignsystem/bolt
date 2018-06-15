@@ -9,112 +9,122 @@ import {
   hasNativeShadowDomSupport,
 } from '@bolt/core';
 
-const isActiveClass = 'is-active';
+import isVisible from 'is-visible';
+
+// Used for attaching smooth scroll behavior to dynamically created <bolt-navlink> instances
+import {
+  smoothScroll,
+  defaultScrollOptions,
+  getScrollTarget,
+} from '@bolt/components-smooth-scroll';
 
 
 @define
 class BoltNavLink extends BoltComponent() {
   static is = 'bolt-navlink';
 
-  // The element reacts to changes to the `active` attribute.
-  static get observedAttributes() {
-    return ['active'];
+  static props = {
+    active: props.boolean,
+    isDropdownLink: props.boolean,
   }
 
-  constructor() {
-    super();
-
-    this._shadowLink = this.querySelector('a');
-  }
-
-  // Returns whether or not the current `<bolt-navlink>` element has been active.
-  get active() {
-    return this.hasAttribute('active');
-  }
-
-  // Sets the `active` state for the current custom element
-  set active(value) {
-    /* Properties can be set to all kinds of string values. This
-     * makes sure it’s converted to a proper boolean value using
-     * JavaScript’s truthiness & falsiness principles.
-     */
-
-    value = Boolean(value);
-    if (value) {
-      this.setAttribute('active', '');
-    } else {
-      this.removeAttribute('active');
-    }
-  }
-
-  // Fix needed for Firefox and IE in which children are not available when constructor is called
-  resetShadowLink() {
-    this._shadowLink = this.querySelector('a');
+  constructor(self) {
+    self = super(self);
+    this.activeClass = 'is-active';
+    this.dropdownLinkClass = 'is-dropdown-link';
+    return self;
   }
 
   // `attributeChangedCallback` processes changes to the `active` attr
-  attributeChangedCallback(name, oldVal, newVal) {
-    switch (name) {
-      case 'active':
-        if (!this._shadowLink) {
-          this.resetShadowLink();
-        }
-        else if (this.active) {
-          this._shadowLink.classList.add(isActiveClass);
-
-          // Dispatch an event that signals to the parent what element is being active
-          this.dispatchEvent(
-            new CustomEvent('activateLink', {
-              detail: {
-                isActiveNow: true,
-              },
-              bubbles: true,
-            }),
-          );
-        }
-        else {
-          this._shadowLink.classList.remove(isActiveClass);
-        }
+  updated(prevProps, prevState) {
+    if (this.props.isDropdownLink) {
+      this._shadowLink.classList.add('is-dropdown-link');
+    } else {
+      this._shadowLink.classList.remove('is-dropdown-link');
     }
   }
 
-  onClick() {
-    if (!this.active) {
-      this.active = true;
+  onClick(event) {
+    // prevent browser default if we're smooth scrolling to a navlink. this ensures a smoother, less jumpy animation in browsers (like Safari)
+    if (this._shadowLink.getAttribute('href').indexOf('#') !== -1){
+      event.preventDefault();
+    }
+
+    // manually add smooth scroll to dropdown links since these are added to the page AFTER smooth scroll event bindings would hae been added.
+    if (!this.props.active && this.props.isDropdownLink) {
+      const scrollTarget = getScrollTarget(this._shadowLink);
+      if (scrollTarget) {
+        smoothScroll.animateScroll(scrollTarget, this._shadowLink, defaultScrollOptions);
+      }
+    }
+
+    this.dispatchEvent(
+      new CustomEvent('navlink:click', {
+        detail: {
+          isActiveNow: this.isActive() ? true : false,
+          isVisible: isVisible(this) ? true : false,
+          isDropdownLink: this.props.isDropdownLink,
+        },
+        bubbles: true,
+      }),
+    );
+  }
+
+  isActive(){
+    return this.props.active;
+  }
+
+  get isDropdownLink() {
+    return this.props.isDropdownLink;
+  }
+
+  set isDropdownLink(value) {
+    // Properties can be set to all kinds of string values. This makes sure
+    // it’s converted to a proper boolean value using JavaScript’s truthiness
+    // & falsiness principles.
+    value = Boolean(value);
+    if (value) {
+      this.setAttribute('is-dropdown-link', '');
+    } else {
+      this.removeAttribute('is-dropdown-link');
     }
   }
 
-  render() {
-    return this.html`
-      ${this.slot('default')}
-    `
+  activate(emitEvent = true) {
+    this._shadowLink.classList.add(this.activeClass);
+    this.setAttribute('active', '');
+    this.props.active = true;
+
+    if (emitEvent){
+      this.dispatchEvent(
+        new CustomEvent('navlink:active', {
+          detail: {
+            isActiveNow: this.isActive() ? true : false,
+            isVisible: isVisible(this) ? true : false,
+            isDropdownLink: this.props.isDropdownLink,
+          },
+          bubbles: true,
+        }),
+      );
+    }
+  }
+
+  deactivate() {
+    this.removeAttribute('active');
+    this.props.active = false;
+    this._shadowLink.classList.remove(this.activeClass);
   }
 
   connecting() {
     this.addEventListener('click', this.onClick);
 
+    this._shadowLink = this.querySelector('a');
+
+    const isAlreadyActive = this._shadowLink.classList.contains(this.activeClass) || this._shadowLink.getAttribute('href') === window.location.hash || this.props.active;
+
     // Set an initially active link if appropriate.
-    if (!this._shadowLink) {
-      this.resetShadowLink();
-    }
-    else {
-      const isAlreadyActive = this._shadowLink.classList.contains(isActiveClass) || this._shadowLink.getAttribute('href') === window.location.hash;
-
-      if (isAlreadyActive) {
-        this.active = true;
-      }
-    }
-
-    this._upgradeProperty('active');
-  }
-
-  // See https://developers.google.com/web/fundamentals/web-components/best-practices#lazy-properties
-  // for an explanation of lazy properties.
-  _upgradeProperty(prop) {
-    if (this.hasOwnProperty(prop)) {
-      let value = this[prop];
-      delete this[prop];
-      this[prop] = value;
+    if (isAlreadyActive) {
+      this.activate(false);
     }
   }
 

@@ -13,7 +13,7 @@ import button from '@bolt/components-button/src/button.scss';
 import colorUtils from '@bolt/global/styles/07-utilities/_utilities-colors.scss';
 
 @define
-export class BoltTooltip extends withPreact(withComponent()) {
+export class BoltTooltip extends withPreact() {
   static is = 'bolt-tooltip';
 
   static props = {
@@ -31,12 +31,13 @@ export class BoltTooltip extends withPreact(withComponent()) {
     count: props.string, // For use ONLY with share
   };
 
-  constructor() {
-    super();
+  constructor(self) {
+    self = super(self);
     this.useShadow = false; // @todo: Get this working with shadowDOM + slots
+    return self;
   }
 
-  connectedCallback() {
+  connecting() {
     this.triggerID = `bolt-tooltip-id-${Math.floor(Math.random() * 20)}`;
   }
 
@@ -92,7 +93,7 @@ export class BoltTooltip extends withPreact(withComponent()) {
 }
 
 @define
-class TooltipTrigger extends withPreact(withComponent()) {
+class TooltipTrigger extends withPreact() {
   static is = 'tooltip-trigger';
 
   static props = {
@@ -106,8 +107,10 @@ class TooltipTrigger extends withPreact(withComponent()) {
     triggerId: props.string,
   };
 
-  constructor() {
-    super();
+  constructor(self) {
+    self = super(self);
+    this.useShadow = false; // @todo: Get this working with shadowDOM + slots
+    return self;
   }
 
   render() {

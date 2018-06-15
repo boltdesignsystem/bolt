@@ -1,7 +1,7 @@
-{% extends "@bolt/default-template.twig" %}
+{% extends "@pl/default-template.twig" %}
 
 {% block global_header %}
-  {% include "@bolt/_page-header.twig" %}
+  {% include "@pl/_page-header.twig" %}
 {% endblock %}
 
 {% block main_content %}
@@ -12,7 +12,7 @@
   } only %}
     {% block band_content  %}
     {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
-      {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}    
+      {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}
         {% include "@bolt/headline.twig" with {
             text: "Pega Events",
             size: "xsmall",
@@ -91,7 +91,7 @@
       {% grid %}
         {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}
           <p>At Pega, we’re obsessed with being unified. Our mobility, real-time AI, robotic automation, BPM, and case management are best in breed – go ask the analysts. But we didn’t cobble this together from pieces of dead companies – we built it from the ground up on a unified, enterprise-ready architecture.</p>
-          
+
           <p>When you don’t have to waste time feeding the Frankenstack, you can focus on stuff that matters: designing awesome customer experiences. Automating your most complicated processes. Innovating in ways that disrupt the market."</p>
 
           {% include "@bolt/unordered-list.twig" with {
@@ -119,8 +119,8 @@
             class: "u-bolt-margin-top-large"
           }
         } only %}
-          <hr>        
-          {% grid "u-bolt-margin-bottom-medium" %}   
+          <hr>
+          {% grid "u-bolt-margin-bottom-medium" %}
             {% cell 'u-bolt-width-2/8@medium' %}
               <p>11:00 - 12:00 pm</p>
             {% endcell %}
@@ -219,13 +219,13 @@
 
         {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@medium' %}
 
-          {% include "@bolt/_event-annotation.twig" with {
+          {% include "@pl/_event-annotation.twig" with {
             text: 'The finished page should be different from what is shown here in the following ways (consider the <a class="c-bolt-link" href="https://pega.invisionapp.com/d/main#/projects/prototypes/13581279">Invision comps</a> canonical in these respects): <br/>
             * It should have an optional negative top margin to overlay the band above it<br/>
             * At mobile breakpoints, the form should overlay the whole screen'
           } only %}
 
-          {% include "@bolt/_event-annotation.twig" with {
+          {% include "@pl/_event-annotation.twig" with {
             text: 'Styling details of the form fields such as font size may appear slightly different.  That should
             not be reason to fail this during QA - the correct sizes will be pulled in when the site is updated to use the latest 1.x version of Bolt.'
           } only %}
@@ -264,7 +264,7 @@
                 } only %}
               </p>
 
-              {% include "@bolt/_event-register-form.twig" %}
+              {% include "@pl/_event-register-form.twig" %}
 
             {% endblock %}
 
@@ -378,13 +378,13 @@
               url: "#",
             } only %}
 
-            {% include "@bolt/_event-annotation.twig" with {
+            {% include "@pl/_event-annotation.twig" with {
               text: 'The "show more" link should open details in a modal.  Use
                 <a class="c-bolt-link" href="https://pega.invisionapp.com/d/main#/console/13581279/283315541/preview">this Invision comp</a>
                 as the source of truth for that modal.'
             } only %}
 
-          {% endcell %}      
+          {% endcell %}
         {% endgrid %}
       {% endcell %}
 
@@ -406,29 +406,7 @@
               text: "Show more",
               url: "#",
             } only %}
-          {% endcell %}      
-        {% endgrid %}
-      {% endcell %}
-      
-      {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
-        {% grid %}
-          {% cell "u-bolt-width-1/2" %}
-          {% include "@bolt/image.twig" with {
-                src: "/pattern-lab/images/placeholders/events--speakers--placeholder.jpg"
-          } only %}
           {% endcell %}
-          {% cell "u-bolt-width-1/2" %}
-            {% include "@bolt/headline.twig" with {
-              text: "Stanley Wheeler",
-              size: "large",
-              tag: "h3"
-            } only %}
-            <p>Executive Director, My Company</p>
-            {% include "@bolt-components-link/link.twig" with {
-              text: "Show more",
-              url: "#",
-            } only %}
-          {% endcell %}      
         {% endgrid %}
       {% endcell %}
 
@@ -450,7 +428,7 @@
               text: "Show more",
               url: "#",
             } only %}
-          {% endcell %}      
+          {% endcell %}
         {% endgrid %}
       {% endcell %}
 
@@ -472,10 +450,10 @@
               text: "Show more",
               url: "#",
             } only %}
-          {% endcell %}      
+          {% endcell %}
         {% endgrid %}
       {% endcell %}
-      
+
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
           {% cell "u-bolt-width-1/2" %}
@@ -494,7 +472,29 @@
               text: "Show more",
               url: "#",
             } only %}
-          {% endcell %}      
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
+        {% grid %}
+          {% cell "u-bolt-width-1/2" %}
+          {% include "@bolt/image.twig" with {
+                src: "/pattern-lab/images/placeholders/events--speakers--placeholder.jpg"
+          } only %}
+          {% endcell %}
+          {% cell "u-bolt-width-1/2" %}
+            {% include "@bolt/headline.twig" with {
+              text: "Stanley Wheeler",
+              size: "large",
+              tag: "h3"
+            } only %}
+            <p>Executive Director, My Company</p>
+            {% include "@bolt-components-link/link.twig" with {
+              text: "Show more",
+              url: "#",
+            } only %}
+          {% endcell %}
         {% endgrid %}
       {% endcell %}
 
@@ -502,7 +502,7 @@
 
     {% endblock %}
   {% endembed %}
-{# End Speakers section #} 
+{# End Speakers section #}
 
 {# Start 2017 Highlights section #}
   {% embed "@bolt/band--collection.twig" with {
@@ -624,7 +624,7 @@
       } only %}
 
       <div class="u-bolt-text-align-center">
-        {% include "@bolt/_event-annotation.twig" with {
+        {% include "@pl/_event-annotation.twig" with {
           text: 'This section was originally designed as a simple 5-column Bolt grid .  However, because Drupal already
           has a structure for putting partner logos within action blocks, it was redesigned to use that structure
           instead.  It should be built using those existing structures, not rebuilt from the example below.  However,
@@ -632,7 +632,7 @@
         } only %}
       </div>
 
-      {% include "@bolt/_event-sponsors-with-action-block.twig" %}
+      {% include "@pl/_event-sponsors-with-action-block.twig" %}
 
       {#
         {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}

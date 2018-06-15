@@ -1,4 +1,4 @@
-{% extends "@bolt/default-template.twig" %}
+{% extends "@pl/default-template.twig" %}
 
 {% macro link(text, href, attributes) %}
   {% include "@bolt/link.twig" with {
@@ -141,7 +141,6 @@
       {% cell "u-bolt-width-1/1@only-small" %}
         {% include "@bolt/button.twig" with {
           text: "Learn More",
-          style: "flat",
           width: "full",
           size: "medium"
         } only %}
@@ -265,7 +264,7 @@
       ]
     }
   ]
-} %}
+} only %}
   {% block band_content %}
     {% include "@bolt/headline.twig" with {
       text: "What's Trending",

@@ -1,0 +1,284 @@
+$schema: http://json-schema.org/draft-04/schema#
+title: Text
+type: object
+required:
+  - text
+properties:
+  text:
+    type: string
+    description: Text content of the headline.
+  tag:
+    type: string
+    description: Html tag.
+    default: p
+    enum:
+      - h1
+      - h2
+      - h3
+      - h4
+      - h5
+      - h6
+      - p
+      - span
+      - cite
+      - div
+  align:
+    description: Text alignment.
+    type: string
+    enum:
+      - left
+      - center
+      - right
+  weight:
+    type: string
+    description: Font weights.
+    default: regular
+    enum:
+      - regular
+      - semibold
+      - bold
+  style:
+    type: string
+    description: Font styles.
+    default: normal
+    enum:
+      - normal
+      - italic
+  letterSpacing:
+    type: string
+    description: Letter spacing.
+    enum:
+      - narrow
+      - normal
+      - wide
+  lineHeight:
+    type: string
+    description: Font line height.
+    default: regular
+    enum:
+      - tight
+      - regular
+      - loose
+  fontSize:
+    type: string
+    description: Font size.
+    default: medium
+    enum:
+      - xsmall
+      - small
+      - medium
+      - large
+      - xlarge
+      - xxlarge
+      - xxxlarge
+  vspacing:
+    type: string
+    description: Vertical spacing between elements (margin-bottom).
+    default: medium
+    enum:
+      - xsmall
+      - small
+      - medium
+      - large
+      - xlarge
+      - xxlarge
+      - xxxlarge
+  transform:
+    type: string
+    description: Text transformation.
+    enum:
+      - uppercase
+      - lowercase
+      - capitalize
+  url:
+    type: string
+    description: If provided, turns headline into a link to given url.
+  quoted:
+    type: boolean
+    description: Adds quoted styling to text.
+  display:
+    type: string
+    description: The display type of the wrapper
+    default: block
+    enum:
+      - inline
+      - inline-block
+      - block
+  opacity:
+    type: number
+    description: Adds opacity to text output.
+    enum:
+      - 100
+      - 80
+      - 60
+      - 40
+      - 20
+  headline:
+    type: boolean
+    description: Gives component headline default styling
+  subheadline:
+    type: boolean
+    description: Gives component subheadline default styling
+  eyebrow:
+    type: boolean
+    description: Gives component eyebrow default styling
+  fontFamily:
+    type: string
+    description: Adds correct font-family & text color theme styles
+    default: body
+    enum:
+      - headline
+      - body
+      - code
+  # @todo: uncomment / remove once icon decoupled
+  # icon:
+  #   oneOf:
+  #     - type: object
+  #     - type: boolean
+  #   title: Twig only
+  #   description: Set `False` to hide when using URL with eyebrow, headline, or subheadline. Other params to include here are `align` and `valign`.
+  #   ref: '@bolt-components-icon/icon.schema.yml'
+  # iconName:
+  #   type: string
+  #   title: Custom element only
+  #   enum:
+  #     - add-open
+  #     - add-solid
+  #     - app-development
+  #     - arrow-left
+  #     - asset-data
+  #     - asset-infographic
+  #     - asset-interactive
+  #     - asset-link
+  #     - asset-media
+  #     - asset-podcast
+  #     - asset-presentation
+  #     - asset-text
+  #     - asset-video
+  #     - calendar
+  #     - careers
+  #     - case-management
+  #     - check-circle
+  #     - check-solid
+  #     - check
+  #     - chevron-down
+  #     - chevron-left
+  #     - chevron-right
+  #     - chevron-up
+  #     - close-open
+  #     - close-solid
+  #     - close
+  #     - cloud
+  #     - co-browse
+  #     - communications
+  #     - copy-to-clipboard
+  #     - customer-decision-hub
+  #     - customer-onboarding
+  #     - customer-service
+  #     - data-integrations
+  #     - download
+  #     - email
+  #     - energy
+  #     - entertainment
+  #     - exit-full screen
+  #     - external-link
+  #     - eye-off
+  #     - eye
+  #     - facebook-solid
+  #     - facebook
+  #     - field-service-gray
+  #     - field-service
+  #     - filter
+  #     - financial
+  #     - full-screen
+  #     - global
+  #     - government
+  #     - healthcare
+  #     - hospitality
+  #     - industries
+  #     - info-open
+  #     - info-solid
+  #     - insurance
+  #     - intelligent-virtual-assistant
+  #     - life-sciences
+  #     - linkedin-solid
+  #     - linkedin
+  #     - lock
+  #     - manufacturing
+  #     - map-pin-solid
+  #     - map-pin
+  #     - marketing-gray
+  #     - marketing
+  #     - menu
+  #     - minus-open
+  #     - minus-solid
+  #     - mobility
+  #     - more
+  #     - partners
+  #     - pencil
+  #     - platform
+  #     - podcast
+  #     - print
+  #     - product
+  #     - refresh
+  #     - retail
+  #     - robo-auto
+  #     - sales-automation
+  #     - search
+  #     - share
+  #     - training
+  #     - transportation
+  #     - twitter-solid
+  #     - twitter
+  #     - unlock
+  #     - upload
+  #     - user
+  #     - video
+  #     - vision
+  #     - warning
+  #     - watch
+  #     - workforce-intelligence
+  #     - youtube-solid
+  # iconBackground:
+  #   type: string
+  #   title: Custom element only
+  #   description: Background shape. This applies *only* to 'xlarge' icons.
+  #   enum:
+  #     - circle
+  #     - square
+  # iconSize:
+  #   type: string
+  #   title: Custom element only
+  #   enum:
+  #     - small
+  #     - medium
+  #     - large
+  #     - xlarge
+  # iconColor:
+  #   type: string
+  #   title: Custom element only
+  #   description: Currently only support default (blue) and teal.
+  #   enum:
+  #    - teal
+  #    - blue
+  # iconValign:
+  #   type: string
+  #   title: Custom element only
+  #   description: Icon vertical position (works with icon-align set to "hang").
+  #   default: center
+  #   enum:
+  #     - top
+  #     - center
+  # iconAlign:
+  #   type: string
+  #   title: Custom element only
+  #   description: Icon horizontal positioning & "hang".
+  #   default: right
+  #   enum:
+  #     - left
+  #     - left-hang
+  #     - right
+  #     - right-hang
+  util:
+    type: array
+    description: Each item in the array will build a utility class. No need to include `u-bolt-`. **For the web component** use comma separated string.

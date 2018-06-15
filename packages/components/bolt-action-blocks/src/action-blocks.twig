@@ -35,6 +35,9 @@
   } only %}
 #}
 
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-action-blocks'].schema, _self) | raw }}
+{% endif %}
 
 {% set prefix = "c-bolt-" %}
 
@@ -57,14 +60,14 @@
 {% set itemClass = prefix ~ componentItemName %}
 {% set maxItemsPerRow = maxItemsPerRow >= minItems and maxItemsPerRow <= maxItems ? maxItemsPerRow : defaultItems %}
 {% set align = align | default("top") %}
-{% set border = border == false and border is not null ? "false" : "true" %}
+{% set border = border is sameas(false) ? false : true %}
 
 
 {% set classes = [
   baseClass,
   maxItemsPerRow ? baseClass ~ "--item-max-" ~ maxItemsPerRow : "",
   align in alignments|keys ? baseClass ~ "--vertical-align-" ~ alignments[align],
-  border == "true" ? baseClass ~ "--bordered" : baseClass ~ "--borderless"
+  border ? baseClass ~ "--bordered" : baseClass ~ "--borderless"
 ] %}
 
 
@@ -82,6 +85,4 @@
   </ul>
 </bolt-{{ componentName }}>
 
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-action-blocks'].schema, _self) | raw }}
-{% endif %}
+

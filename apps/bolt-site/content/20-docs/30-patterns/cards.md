@@ -2,7 +2,7 @@
 title: Cards
 ---
 
-*For full examples with variations and API docs, see the [cards reference in Pattern Lab](https://bolt-design-system.com/pattern-lab/?p=viewall-components-card).*
+*For full examples with variations and API docs, see the [cards reference in Pattern Lab](/pattern-lab/?p=viewall-components-card).*
 
 A card allows content authors to highlight a specific type of related content. It can include a video, a link to an webpage or download, or some other call to action. Cards are available in all color themes.
 

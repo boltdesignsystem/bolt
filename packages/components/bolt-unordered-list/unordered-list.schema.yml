@@ -1,28 +1,23 @@
 $schema: http://json-schema.org/draft-04/schema#
 title: Unordered List
 type: object
+require:
+  - contentItems
 properties:
-  theme:
-    type: string
-    description: Color theme. Can be set to false for a transparent background.
-    default: false
-    enum:
-      - xlight
-      - light
-      - dark
-      - xdark
-      - medium
-      - 'false'
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
   contentItems:
     type: array
     title: The content items
     description: These are all of the items in the ordered list
     items:
       type: object
-      description: This can have `text` **or** `contentItems`
+      description: A single list item object with either a `text` or `contentItems` key
       properties:
         text:
           type: string
+          description: Item text
         contentItems:
-          type: object
-          description: Passes to `@bolt/text.twig`
+          type: array
+          description: Items pass to `@bolt/text.twig`

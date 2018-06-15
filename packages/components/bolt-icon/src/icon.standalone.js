@@ -30,7 +30,7 @@ const colors = [
 
 
 @define
-export class BoltIcon extends withPreact(withComponent()) {
+export class BoltIcon extends withPreact() {
   static is = 'bolt-icon';
 
   static props = {
@@ -42,7 +42,7 @@ export class BoltIcon extends withPreact(withComponent()) {
     // programatically spell out the contrast color that needs to get used
     contrastColor: props.string,
   }
-  
+
   constructor(self) {
     self = super(self);
     this.useShadow = hasNativeShadowDomSupport;
@@ -50,7 +50,7 @@ export class BoltIcon extends withPreact(withComponent()) {
     return self;
   }
 
-  connectedCallback() {
+  connecting() {
     const elem = this;
 
     this.state = {
@@ -91,7 +91,7 @@ export class BoltIcon extends withPreact(withComponent()) {
         );
       }
     }
-    
+
   }
 
   render() {

@@ -11,16 +11,17 @@ import {
 import styles from './block-list.scss';
 
 @define
-export class BoltBlockList extends withPreact(withComponent()) {
+export class BoltBlockList extends withPreact() {
   static is = 'bolt-block-list';
 
   static props = {
     items: props.any,
   };
 
-  constructor() {
-    super();
+  constructor(self) {
+    self = super(self);
     this.useShadow = false; // @todo: Get this working with shadowDOM + slots
+    return self;
   }
 
   render() {

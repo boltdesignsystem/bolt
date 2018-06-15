@@ -1,0 +1,18 @@
+$schema: http://json-schema.org/draft-04/schema#
+title: Nav Priority (Priority+ Navigation)
+type: object
+properties:
+  links:
+    type: array
+    items:
+      type: object
+      description: Array of Priority Nav links.
+      properties:
+        text:
+          type: string
+        url:
+          type: string
+  moreText:
+    type: string
+    description: Button text that displays when the Priority+ Nav Dropdown is displayed
+    default: 'More'

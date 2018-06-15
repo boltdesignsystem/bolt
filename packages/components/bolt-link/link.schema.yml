@@ -2,10 +2,22 @@ $schema: http://json-schema.org/draft-04/schema#
 title: Link
 type: object
 properties:
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
   text:
+    type: [string, object, array]
+    description: Renderable text content for the link.
+  url:
     type: string
-    description: Link href attribute. Either url or href may be passed in.
+    description: A url to link to.  This may also be passed as part of `attributes`
+  href:
+    type: string
+    description: Deprecated. Use url instead.
   icon:
     type: object
-    description: Bolt icon. Excepts the same options as Bolt Icon Component `@bolt-components-icon`
+    description: Bolt icon. Accepts the same options as Bolt Icon Component `@bolt-components-icon`
     ref: '@bolt-components-icon/icon.schema.yml'
+  isHeadline:
+    type: boolean
+    description: Whether this link should get special headline styling treatment

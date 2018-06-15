@@ -1,3 +1,7 @@
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-button-group'].schema, _self) | raw }}
+{% endif %}
+
 {% set tags = ["ul", "ol"] %} {# Available Headline Types #}
 {% set prefix = "c-bolt-" %}
 
@@ -25,7 +29,7 @@
     {% for item in contentItems if item.pattern %}
       {% include pattern_template(item.pattern) with item only %}
     {% endfor %}
-  
+
   {% if content %}
     {% include "@bolt/text.twig" with {
       text: content | striptags,

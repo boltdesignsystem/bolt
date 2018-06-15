@@ -11,6 +11,7 @@ $bolt-base-font-sizes: (
 
 html {
   @include bolt-poly-fluid-sizing('font-size', $bolt-base-font-sizes);
+  @include bolt-font-family(body, true);
 }
 
 body {

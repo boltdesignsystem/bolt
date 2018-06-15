@@ -1,18 +1,9 @@
-{# Sample Usage
-  {% include "@bolt/figure.twig" with {
-    "image": {
-      "src": "/images/placeholders/500x500.jpg"
-    },
-    caption: "Example figcation text"
-  } only %}
-#}
-
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-figure'].schema, _self) | raw }}
+{% endif %}
 
 {% set prefix = "c-bolt-" %}
-
 {% set attributes = create_attribute(attributes|default({})) %}
-
-
 {% set componentName = "figure" %}
 {% set baseClass = prefix ~ componentName %}
 
@@ -37,7 +28,3 @@
     {% endif %}
   </figure>
 </bolt-{{ componentName }}>
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-figure/figure.schema.yml', _self) | raw }}
-{% endif %}

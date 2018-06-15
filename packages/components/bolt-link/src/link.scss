@@ -1,5 +1,114 @@
-// Bolt Link
+@import '@bolt/core';
 
-// .c-bolt-link {
+/* ------------------------------------ *\
+   Link
+\* ------------------------------------ */
 
-// }
+// Dev Notes
+// 1. [Mai] Reset button and input tag browser defaults.
+// 2. [Mai] All the theming stuff is an interim fix until the bolt-text is refactored, which will cover all the text link styles as well.
+
+
+// Component variables
+$bolt-link-transition: $bolt-transition;
+$bolt-theme-link-color-notheme: bolt-color(indigo, light);
+$bolt-theme-link-color-xlight:  bolt-color(indigo, light);
+$bolt-theme-link-color-light:   bolt-color(indigo, light);
+$bolt-theme-link-color-medium:  bolt-color(white);
+$bolt-theme-link-color-dark:    bolt-color(white);
+$bolt-theme-link-color-xdark:   bolt-color(white);
+
+
+// Component styles
+.c-bolt-link {
+  @include bolt-padding(0);  // [1]
+  @include bolt-font-family(body);  // [1]
+
+  display: inline-block;
+  display: inline-flex;
+  align-items: center; // So icons are vertically centered
+  cursor: pointer;
+  text-decoration: underline;
+  border: none;  // [1]
+  background: none;  // [1]
+  opacity: 1;
+  transition: all $bolt-link-transition;
+
+  &:link,
+  &:visited {
+    color: $bolt-theme-link-color-notheme; // [2]
+  }
+
+  &:hover {
+    opacity: $bolt-global-link-hover-opacity;
+  }
+
+  &:active,
+  &:focus:active {
+    opacity: $bolt-global-link-active-opacity;
+  }
+}
+
+// Theming interim fix. [2]
+$bolt-theme-link-colors: (
+  'theme-prefix': 't-bolt-',
+  sets: (
+    xlight: $bolt-theme-link-color-xlight,
+    light:  $bolt-theme-link-color-light,
+    medium: $bolt-theme-link-color-medium,
+    dark:   $bolt-theme-link-color-dark,
+    xdark:  $bolt-theme-link-color-xdark
+  )
+);
+
+@mixin bolt-theme-link-color($key: "content", $utility: false) {
+  $indexes: map-get($bolt-theme-link-colors, 'sets');
+  $important: '';
+
+  @if $utility {
+    $important: '!important';
+  }
+  @if map-has-key($indexes, $key) {
+    color: map-get($indexes, $key) #{$important};
+  } @else {
+    @error 'A value, #{$key}, was passed into @include bolt-theme-link-color() that is not defined in $bolt-theme-link-colors';
+  }
+}
+
+$indexes: map-get($bolt-theme-link-colors, 'sets');
+
+@each $key, $value in $indexes {
+  $prefix: map-get($bolt-theme-link-colors, 'theme-prefix');
+  .#{$prefix}#{$key} .c-bolt-link:link,
+  .#{$prefix}#{$key} .c-bolt-link:visited {
+    @include bolt-theme-link-color($key, $utility: false);
+  }
+}
+
+
+// Changes the underline styles when a link is also a headline, chevrons are added to headline links by default.
+.c-bolt-link--headline {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+
+// Text and icon spacing
+.c-bolt-link__text + .c-bolt-link__icon {
+  @include bolt-margin-left(xxsmall);
+}
+
+.c-bolt-link__icon + .c-bolt-link__text {
+  @include bolt-margin-left(xxsmall);
+}
+
+
+// Icon styles
+.c-bolt-link__icon {
+  display: inline-block;
+  line-height: 1; // workaround so icons can be vertically aligned properly
+  vertical-align: baseline;
+}

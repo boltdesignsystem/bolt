@@ -1,3 +1,7 @@
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-share'].schema, _self) | raw }}
+{% endif %}
+
 {% set copyShare = copy is sameas(false) ? false : (copy is null ? true : copy) %}
 {% set visible = visibility is sameas(false) ? false : (visibility is null ? true : visibility) %}
 {% set isFlat = inline is sameas(false) ? false : (inline is null ? false : inline) %}
@@ -6,10 +10,10 @@
 
 {% if isFlat is sameas(true) %}
   {% set items = items|merge([include("@bolt-components-headline/text.twig", {
-    text: "Share",
+    text: "Share this page",
     transform: 'uppercase',
     weight: 'bold',
-    attributes: create_attribute(attributes|default({})).addClass('u-bolt-color-orange c-bolt-share--inline-heading')
+    attributes: create_attribute(attributes|default({})).addClass('u-bolt-color-gray-dark c-bolt-share--inline-heading')
   })]) %}
 {% endif %}
 
@@ -92,7 +96,3 @@
     {% endif %}
   </div>
 </bolt-share>
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-share/share.schema.yml', _self) | raw }}
-{% endif %}
