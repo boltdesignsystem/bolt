@@ -1,0 +1,28 @@
+{% embed "@bolt/wrapper.twig" %}
+  {% block wrapper_content %}
+
+    {% grid %}
+      {% cell with {
+        attributes: {
+          class: [
+            "u-bolt-width-1/1",
+            "u-bolt-width-2/3@medium"
+          ]
+        }
+      } %}
+
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Components",
+          size: "xxlarge"
+        } only %}
+
+        {% include "@bolt-components-headline/text.twig" with {
+          text: 'A component is a reusable UI element that has been broken down to its most basic, most flexible form. It can have different variations or options (ex. a card can have an image, or not).
+
+          It doesn’t usually have an opinion on content or task. For more opinionated and pre-configured uses of a component, see <a href="#">patterns</a>.'
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endblock %}
+{% endembed %}
+

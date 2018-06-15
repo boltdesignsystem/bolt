@@ -1,0 +1,46 @@
+{
+  "name": "@bolt/styleguidekit-assets-bolt",
+  "version": "1.0.0-alpha.5",
+  "description": "Front-end assets and templates for the default Pattern Lab workshop view",
+  "main": "gulpfile.js",
+  "scripts": {
+    "build": "bolt build",
+    "build:noisy": "bolt build --verbosity 5",
+    "build:prod": "bolt build --prod",
+    "serve": "bolt serve",
+    "watch": "bolt build && bolt watch",
+    "start": "bolt start",
+    "test:links": "blc http://localhost:3000 --recursive --ordered --filter-level 2",
+    "test": "npm run test:links"
+  },
+  "authors": [
+    {
+      "name": "Brad Frost",
+      "homepage": "http://bradfrostweb.com",
+      "role": "Creator"
+    },
+    {
+      "name": "Brian Muenzenmeyer",
+      "homepage": "http://brianmuenzenmeyer.com",
+      "role": "Developer"
+    }
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop",
+  "bugs": "https://github.com/pattern-lab/patternlab-node/issues",
+  "devDependencies": {
+    "@bolt/build-tools": "^1.3.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "clipboard": "^2.0.1",
+    "jquery": "^3.3.1",
+    "prism": "^4.1.2",
+    "typeahead.js": "^0.11.1",
+    "hogan.js": "^3.0.2",
+    "scriptjs": "^2.5.8",
+    "wolfy87-eventemitter": "^5.2.4"
+  }
+}

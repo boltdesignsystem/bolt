@@ -1,5 +1,9 @@
 import { polyfillLoader } from '@bolt/core';
 
 polyfillLoader.then((res) => {
-  import(/* webpackMode: 'eager', webpackChunkName: 'bolt-button' */ './button.standalone.js');
+  import(
+    /* webpackChunkName: "bolt-button" */
+    /* webpackPreload: true */
+    './button.standalone.js',
+  );
 });

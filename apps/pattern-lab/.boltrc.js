@@ -3,6 +3,7 @@ const path = require('path');
 module.exports = {
   // Environmental variable / preset to use
   env: 'pl',
+  openServerAtStart: true,
   buildDir: '../../www/pattern-lab/build',
   wwwDir: '../../www/',
   startPath: 'pattern-lab/index.html',
@@ -110,6 +111,20 @@ module.exports = {
         js: './src/scripts/pl.js',
       },
       '@bolt/components-critical-fonts',
+      {
+        name: 'patternlab-pattern',
+        js: '../../packages/styleguidekit-assets-bolt/src/patternlab-pattern.js',
+        // scss: './src/sass/pattern-lab.scss',
+      },
+      {
+        name: 'patternlab-viewer',
+        js: '../../packages/styleguidekit-assets-bolt/src/patternlab-viewer.js',
+        // scss: './src/sass/pattern-lab.scss',
+      },
+      {
+        name: 'pattern-lab',
+        scss: '../../packages/styleguidekit-assets-bolt/src/sass/pattern-lab.scss',
+      },
     ],
   },
 };

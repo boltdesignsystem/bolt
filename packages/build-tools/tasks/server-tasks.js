@@ -10,26 +10,27 @@ const serverConfig = {
   startPath: config.startPath, // Since `/` doesn't do anything and we want to avoid double browserSync notifications from the very beginning
   host: 'localhost',
   ghostMode: false,
+  baseDir: config.wwwDir,
+  logFileChanges: false,
+  logConnections: false,
   notify: false, // Hide notifications till we come up with a less disruptive refresh UI
+  logLevel: 'silent',
+  reloadOnRestart: true,
+  files: [
+    config.wwwDir + '/**/*.css',
+  ],
   snippetOptions: {
     async: true,
-    blacklist: ['/index.html', '/', '/?*'], // prevents double browsersync
-    rule: {
-      match: /<\/body>/i,
-      fn (snippet, match) {
-        return snippet + match;
-      },
-    },
   },
 };
 
 if (config.webpackDevServer) {
   // proxy the Webpack Dev Server endpoint
-  serverConfig.proxy = 'http://localhost:8080/';
+  serverConfig.proxy = {};
+  serverConfig.proxy.target = 'http://localhost:8080/';
   if (config.env === 'pl') {
+    serverConfig.startPath = '/pattern-lab/index.html';
     // https://www.browsersync.io/docs/options#option-server
-    serverConfig.serveStatic = [];
-    serverConfig.serveStatic.push(config.wwwDir);
   }
 } else {
   serverConfig.server = [

@@ -27,16 +27,23 @@ class TwigFunctions {
 
 
   public static function inlineFile() {
-    return new Twig_SimpleFunction('inline', function($context, $filename) {
+    return new Twig_SimpleFunction('inline', function($context, $filename, $includePath = 'buildDir') {
       if (!$filename){
         return '';
       }
 
       $context = new ArrayFinder($context);
       $buildDir = $context->get('bolt.data.config.buildDir');
+      $wwwDir = $context->get('bolt.data.config.wwwDir');
 
       if ($buildDir) {
-        $fullPath = Path::join($buildDir, $filename);
+        if ($includePath == 'buildDir' && $buildDir){
+          $fullPath = Path::join($buildDir, $filename);
+        } elseif ($includePath == 'wwwDir'){
+          $fullPath = Path::join($wwwDir, $filename);
+        } else { // No includePath
+          $fullPath = $filename;
+        }
 
         if (file_exists($fullPath)){
           return file_get_contents($fullPath);

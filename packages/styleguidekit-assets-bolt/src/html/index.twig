@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title id="title">Pattern Lab</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width" />
+
+  <link rel="preload" href="{{ htmlWebpackPlugin.files.chunks['pattern-lab'].css[0] }}" as="style" onload="this.rel='stylesheet'">
+
+  <!-- manually inlining loadCSS's rel-preload polyfill from NPM till we're done figuring out how best to inline assets in Webpack-compiled Twig -->
+  <script>
+    !function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){function e(){t.media=a}var a=t.media||"all";t.addEventListener?t.addEventListener("load",e):t.attachEvent&&t.attachEvent("onload",e),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(e,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
+  </script>
+
+</head>
+
+<body class="pl-c-body pl-c-body--theme-sidebar pl-c-body--theme-light">
+  {% include "./partials/header.twig" %}
+  {% include "./partials/iframe.twig" %}
+  {% include "./partials/modal.twig" %}
+
+	<!-- mustache templates -->
+	<script type="text/mustache" class="pl-js-pattern-nav-template">
+    {% include "./partials/pattern-nav.twig" %}
+	</script>
+
+	<script type="text/mustache" class="pl-js-ish-controls-template">
+    {% include "./partials/controls.twig" %}
+	</script>
+
+	<!-- the template for the modal slider -->
+	<script type="text/mustache" class="pl-js-panel-template-base">
+    {% include "./partials/base-template.twig" %}
+	</script>
+
+	<!-- the template for code-related tabs in the code view slider -->
+	<script type="text/mustache" id="pl-panel-template-code">
+    {% include "./partials/panel-code-template.twig" %}
+	</script>
+
+
+	<!-- load Pattern Lab data -->
+	<script src="styleguide/data/patternlab-data.js" defer></script>
+
+  <!-- applying theme config to get classes on before PL renders so there's no flash of unstyled content -->
+  <!-- @todo Consider moving this to own file -->
+  <script>
+    if (window.config !== undefined){
+      if (config && config.theme) {
+        if (config.theme.color === 'light') {
+          document.body.classList.add('pl-c-body--theme-light');
+        }
+        if (config.theme.layout === 'vertical') {
+          document.body.classList.add('pl-c-body--theme-sidebar');
+        }
+        switch (config.theme.density) {
+          case 'cozy':
+            document.body.classList.add('pl-c-body--theme-density-cozy');
+            break;
+          case 'comfortable':
+            document.body.classList.add('pl-c-body--theme-density-comfortable');
+            break;
+          default:
+            // not sure if you even need/want this
+            document.body.classList.add('pl-c-body--theme-density-compact');
+        }
+      }
+    }
+  </script>
+
+  <!-- todo: remove entirely OR pull in as a component dependency? -->
+	<script src="annotations/annotations.js" async></script>
+
+	<!-- load the Pattern Lab viewer js -->
+  <script src="{{ htmlWebpackPlugin.files.chunks['patternlab-viewer'].entry }}" defer></script>
+
+</body>
+
+</html>
+

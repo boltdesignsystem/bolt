@@ -4,16 +4,16 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const npmSass = require('npm-sass');
 const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const sassImportGlobbing = require('@theme-tools/sass-import-globbing');
 const { getBoltManifest, createComponentsManifest } = require('./utils/manifest');
 const { promisify } = require('util');
 const fs = require('fs');
 const readFile = promisify(fs.readFile);
 const deepmerge = require('deepmerge');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 function createConfig(config) {
   // @TODO: move this setting to .boltrc config
@@ -207,33 +207,16 @@ function createConfig(config) {
     * passing to `css-loader`, then turning it back
     * afterwards.
     */
-  const workaroundAtValue = '-theSlashSymbol-';
 
   const scssLoaders = [
-    // {
-    //   loader: 'string-replace-loader',
-    //   query: {
-    //     search: workaroundAtValue,
-    //     replace: String.raw`\\`, // needed to ensure `\` comes through
-    //     flags: 'g',
-    //   },
-    // },
     {
       loader: 'css-loader',
       options: {
         sourceMap: true,
-        modules: false, // needed for JS referencing classNames directly, such as critical fonts
-        importLoaders: 4,
+        modules: false,
+        importLoaders: 3,
       },
     },
-    // {
-    //   loader: 'string-replace-loader',
-    //   query: {
-    //     search: /\\/,
-    //     replace: workaroundAtValue,
-    //     flags: 'g',
-    //   },
-    // },
     {
       loader: 'postcss-loader',
       options: {
@@ -248,23 +231,15 @@ function createConfig(config) {
       loader: 'clean-css-loader',
       options: {
         skipWarn: true,
-        compatibility: 'ie9',
-        level: config.prod ? 1 : 0,
-        inline: ['remote'],
-        format: 'beautify',
+        compatibility: '*',
+        level: config.prod ? 2 : 0,
+        format: config.prod ? false : 'beautify',
       },
     },
     {
-      loader: 'resolve-url-loader',
-    },
-    {
-      loader: 'sass-loader',
+      loader: 'fast-sass-loader',
       options: {
         sourceMap: true,
-        importer: [
-          sassImportGlobbing,
-          npmSass.importer,
-        ],
         functions: sassExportData,
         outputStyle: 'expanded',
         precision: 2,
@@ -285,8 +260,8 @@ function createConfig(config) {
     entry: buildWebpackEntry(),
     output: {
       path: path.resolve(process.cwd(), config.buildDir),
-      filename: '[name].js',
-      chunkFilename: '[name]-bundle.[chunkhash].js',
+      filename: config.prod ? '[name].[contenthash].js' : '[name].js',
+      chunkFilename: config.prod ? '[name]-bundle.[contenthash].js' : '[name]-bundle.js',
       publicPath,
     },
     cache: true,
@@ -296,6 +271,23 @@ function createConfig(config) {
     },
     module: {
       rules: [
+        // {
+        //   test: /\.html$/,
+        //   loader: 'mustache-loader',
+        //   // loader: 'mustache-loader?minify'
+        //   // loader: 'mustache-loader?{ minify: { removeComments: false } }'
+        //   // loader: 'mustache-loader?noShortcut'
+        // },
+        {
+          test: /\.twig$/,
+          loader: 'twig-loader',
+          options: {
+            base: path.resolve(process.cwd(), '../../packages/styleguidekit-assets-bolt/src/html'),
+            twigOptions: {
+              base: path.resolve(process.cwd(), '../../packages/styleguidekit-assets-bolt/src/html'),
+            },
+          },
+        },
         {
           test: /\.scss$/,
           oneOf: [
@@ -308,6 +300,7 @@ function createConfig(config) {
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
               use: [
+                'css-hot-loader',
                 {
                   loader: MiniCssExtractPlugin.loader,
                 },
@@ -330,8 +323,9 @@ function createConfig(config) {
         },
         {
           test: /\.(woff|woff2)$/,
-          loader: 'file-loader',
+          loader: 'url-loader',
           options: {
+            limit: 500,
             name: 'fonts/[name].[ext]',
           },
         },
@@ -384,21 +378,13 @@ function createConfig(config) {
     },
     plugins: [
       // Ignore generated output if generated output is on a dependency chain (causes endless loop)
-      new webpack.WatchIgnorePlugin([
-        /dist\/styleguide/,
-        /dist\/annotations/,
-        /styleguide/,
-        path.join(__dirname, 'node_modules'),
-      ]),
-      new webpack.IgnorePlugin(/vertx/), // needed to ignore vertx dependency in webcomponentsjs-lite
-      new MiniCssExtractPlugin({
-        // Options similar to the same options in webpackOptions.output
-        // both options are optional
-        filename: '[name].css',
-        chunkFilename: '[id].css',
-        allChunks: true,
-      }),
-      // @todo This needs to be in `config.dataDir`
+      // new webpack.WatchIgnorePlugin([
+      //   /dist\/styleguide/,
+      //   /dist\/annotations/,
+      //   /styleguide/,
+      //   path.join(__dirname, 'node_modules'),
+      // ]),
+      // new webpack.IgnorePlugin(/vertx/), // needed to ignore vertx dependency in webcomponentsjs-lite
       new ManifestPlugin({
         fileName: 'bolt-webpack-manifest.json',
         publicPath,
@@ -407,22 +393,42 @@ function createConfig(config) {
           name: 'Bolt Manifest',
         },
       }),
+      new MiniCssExtractPlugin({
+        // Options similar to the same options in webpackOptions.output
+        // both options are optional
+        filename: config.prod ? '[name].[contenthash].css' : '[name].css',
+        chunkFilename: config.prod ? '[id].[contenthash].css' : '[id].css',
+      }),
       new webpack.ProvidePlugin({
         Promise: 'es6-promise',
       }),
       new webpack.DefinePlugin(globalJsData),
-      // Show build progress
-      // Disabling for now as it messes up spinners
-      // @todo consider bringing it back
-      // new webpack.ProgressPlugin({ profile: false }),
+      new webpack.NamedModulesPlugin(),
+      new HtmlWebpackPlugin({
+        title: 'Custom template',
+        filename: '../index.html',
+        inject: false,
+        // Load a custom template (lodash by default see the FAQ for details)
+        template: path.resolve(process.cwd(), '../../packages/styleguidekit-assets-bolt/src/html/index.twig'),
+      }),
     ],
   };
 
-  if (!config.prod) {
-    webpackConfig.plugins.push(
-      new webpack.HotModuleReplacementPlugin(),
-    );
-  }
+
+  // if (config.env === 'pl') {
+  //   webpackConfig.plugins.push(
+  //     new CopyWebpackPlugin([
+  //       {
+  //         from: path.resolve(path.dirname(require.resolve('@bolt/styleguidekit-assets-bolt')), 'dist/index.html'),
+  //         to: path.resolve(process.cwd(), config.wwwDir, 'pattern-lab/'),
+  //       },
+  //       {
+  //         from: path.resolve(path.dirname(require.resolve('@bolt/styleguidekit-assets-bolt')), 'dist/styleguide'),
+  //         to: path.resolve(process.cwd(), config.wwwDir, 'pattern-lab/styleguide/'),
+  //       },
+  //     ]),
+  //   );
+  // }
 
   if (config.prod) {
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
@@ -434,7 +440,6 @@ function createConfig(config) {
       uglifyOptions: {
         cache: true,
         compress: true,
-
         mangle: true,
       },
     }));

@@ -74,6 +74,12 @@ export const polyfillLoader = new Promise((resolve) => {
 
   // Used in Modern browsers supporting ES6. Required since we're transpiling ES6 classes through Babel
   else {
-    import('@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js').then(() => { resolve() });
+    import(
+      /* webpackChunkName: "custom-elements-es5-adapter" */
+      /* webpackPrefetch: true */
+      '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
+    ).then(() => {
+      resolve()
+    });
   }
 });

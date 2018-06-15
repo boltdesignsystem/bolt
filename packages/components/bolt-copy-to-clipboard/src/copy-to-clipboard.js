@@ -1,5 +1,9 @@
 import { polyfillLoader } from '@bolt/core';
 
 polyfillLoader.then((res) => {
-  import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-copy-to-clipboard' */ './copy-to-clipboard.standalone.js');
+  import(
+    /* webpackChunkName: "bolt-copy-to-clipboard" */
+    /* webpackPrefetch: true */
+    './copy-to-clipboard.standalone.js',
+  );
 });

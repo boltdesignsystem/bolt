@@ -16,7 +16,7 @@ import {
 import PubSub from 'pubsub-js';
 import upperCamelCase from 'uppercamelcase';
 import * as Icons from '@bolt/components-icons';
-import styles from './icon.scss';
+import * as styles from './icon.scss';
 
 const backgroundStyles = [
   'circle',
@@ -117,7 +117,6 @@ export class BoltIcon extends withPreact() {
     const Icon = name ? upperCamelCase(name) : '';
     const IconTag = Icons[`${Icon}`];
     const iconSize =  size && spacingSizes[size] ? ( spacingSizes[size].replace('rem', '') * (16 / 2)) : ( spacingSizes.medium.replace('rem', '') * (16 / 2) );
-
 
     return (
       <div className={classes}>

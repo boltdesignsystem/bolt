@@ -38,19 +38,27 @@
     {
       "type": "path",
       "url": "../../packages/drupal-stubs"
+    },
+    {
+      "type": "path",
+      "url": "../../packages/styleguidekit-twig-default"
+    },
+    {
+      "type": "path",
+      "url": "../../packages/styleguidekit-assets-bolt"
     }
   ],
   "require": {
     "bolt-design-system/core-php": "*",
     "bolt-design-system/drupal-stubs": "^1.0.0-rc.6",
+    "bolt-design-system/styleguidekit-twig-default": "*",
+    "bolt-design-system/styleguidekit-assets-bolt": "*",
     "php": ">=7.0",
     "twig/twig": "^1.35.0",
     "cweagans/composer-patches": "^1.6.4",
     "pattern-lab/core": "^2.8.10",
     "pattern-lab/drupal-twig-extensions": "^0.2.0",
     "pattern-lab/patternengine-twig": "^2.2.2",
-    "pattern-lab/styleguidekit-twig-default": "^3.0.0",
-    "pattern-lab/styleguidekit-assets-default": "^3.5.2",
     "evanlovely/plugin-twig-namespaces": "^1.1.1",
     "oomphinc/composer-installers-extender": "^1.1.2",
     "gajus/dindent": "^2.0.2",
@@ -61,12 +69,6 @@
     "build": "php -d memory_limit=4048M core/console --generate",
     "watch": "php core/console --watch",
     "start": "php core/console --server --quiet & php core/console --watch",
-    "post-install-cmd": [
-      "PatternLab\\Installer::postInstallCmd"
-    ],
-    "post-update-cmd": [
-      "PatternLab\\Installer::postUpdateCmd"
-    ],
     "post-root-package-install": [
       "PatternLab\\Installer::setProjectInstall",
       "PatternLab\\Installer::getSuggestedStarterKits",
