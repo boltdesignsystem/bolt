@@ -33,7 +33,7 @@
     "composer": "npm-run-all --parallel composer:* --aggregate-output --print-label --print-name",
     "xcomposer:drupal-lab": "cd apps/drupal-lab && composer install --no-interaction --prefer-dist",
     "bootstrap": "lerna bootstrap --reject-cycles",
-    "postbootstrap": "yarn run build:icons && node scripts/monorepo-tests.js",
+    "xpostbootstrap": "yarn run build:icons && node scripts/monorepo-tests.js",
     "Xpredeploy": "yarn run build",
     "deploy": "./scripts/deploy.js",
     "clean:git": "git clean -xdf && rm -rf apps/**/vendor apps/**/node_modules && find . -empty -type d -delete",
