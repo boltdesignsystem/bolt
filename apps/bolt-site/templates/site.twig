@@ -70,7 +70,7 @@
         <a href="/pattern-lab/index.html" target="_blank">Pattern Lab</a>
       {% endif %}
     {% endfor %}
-    
+
     {% if 'docs/' in currentUrl %}
       <a href="#menu" class="storefront-docs__hamburger u-bolt-hide@medium">
         <span class="u-bolt-margin-right-xsmall">Menu</span>
@@ -127,9 +127,9 @@
 
     <main class="storefront-docs-content {{ currentUrl != 'index.html' ? 't-bolt-xlight' }}">
       {% include "@bolt-components-band/band.twig" with {
-        "content": content,
-        "fullBleed": false,
-        theme: currentUrl == 'index.html' ? 'none' : 't-bolt-xlight'
+        content: content,
+        fullBleed: false,
+        theme: currentUrl == 'index.html' ? 'none' : 'xlight'
       } only %}
     </main>
   </div>
