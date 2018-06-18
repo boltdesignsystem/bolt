@@ -28,7 +28,7 @@ export function getScrollTarget(elem){
 }
 
 
-const customScrollElems = document.querySelectorAll('a[href^="#"]');
+const customScrollElems = document.querySelectorAll('a[href^="#"]:not([href="#!"])');
 for (var i = 0, len = customScrollElems.length; i < len; i++) {
   const scrollElem = customScrollElems[i];
 
