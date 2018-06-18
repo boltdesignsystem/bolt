@@ -6,18 +6,34 @@
 /// @todo Replace the Breakpoint Sass and Breakpoint Slicer libraries with a more flexible alternative such as [Mappy Breakpoints](https://github.com/zellwk/mappy-breakpoints). This isn't expected to any breaking changes to the existing API.
 ////
 
+
+$bolt-breakpoint-xxsmall:  320px;
+$bolt-breakpoint-xsmall:   400px;
+$bolt-breakpoint-small:    600px;
+$bolt-breakpoint-medium:   800px;
+$bolt-breakpoint-large:    1000px;
+$bolt-breakpoint-xlarge:   1200px;
+$bolt-breakpoint-xxlarge:  1400px;
+$bolt-breakpoint-xxxlarge: 1920px;
+
+
+
+
 /// Major breakpoints used globally in Bolt. Uses breakpoint-sass and breakpoint-slicer to handle some of the heavier lifting.
 /// @type Map
 $bolt-breakpoints: (
-  xxsmall: 320px,
-  xsmall:  400px,
-  small:   600px,
-  medium:  800px,
-  large:   1000px,
-  xlarge:  1200px,
-  xxlarge: 1400px,
-  xxxlarge: 1920px
+  xxsmall:  $bolt-breakpoint-xxsmall,
+  xsmall:   $bolt-breakpoint-xsmall,
+  small:    $bolt-breakpoint-small,
+  medium:   $bolt-breakpoint-medium,
+  large:    $bolt-breakpoint-large,
+  xlarge:   $bolt-breakpoint-xlarge,
+  xxlarge:  $bolt-breakpoint-xxlarge,
+  xxxlarge: $bolt-breakpoint-xxxlarge
 );
+
+
+
 
 @include export-data("breakpoints.bolt.json", $bolt-breakpoints);
 // Re-map Bolt's namespaced Sassmap to the Breakpoint Sass's `$breakpoints` default

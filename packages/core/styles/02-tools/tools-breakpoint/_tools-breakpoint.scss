@@ -5,3 +5,41 @@
 @function bolt-breakpoint($name) {
   @return map-get($bolt-breakpoints, $name);
 }
+
+
+@mixin bolt-media-query($min: 0, $max: 0) {
+  $query: "all" !default;
+
+  @if type-of($min) == string {
+    $min: bolt-breakpoint(#{$min});
+  }
+
+  @else {
+    $min: $min;
+  }
+
+  @if type-of($max) == string {
+    $max: bolt-breakpoint(#{$max}) - 0.1px;
+  }
+
+  @else {
+    $max: $max;
+  }
+
+  // set both min and max
+  @if $min != 0 and $max != 0 {
+    $query: "(min-width: #{$min}) and (max-width: #{$max})";
+  }
+
+  // set just min
+  @else if $min != 0 and $max == 0 {
+    $query: "(min-width: #{$min})";
+  }
+
+  // set just max
+  @else if $min == 0 and $max != 0 {
+    $query: "(max-width: #{$max})";
+  }
+
+  @media #{$query} { @content; }
+}
