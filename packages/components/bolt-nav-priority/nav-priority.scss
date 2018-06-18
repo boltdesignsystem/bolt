@@ -10,8 +10,10 @@ bolt-nav-priority {
   position: relative;
   align-self: center;
   padding-bottom: var(--bolt-vspacing);
+  flex-shrink: 2; // shrink faster than other components in tight spots
+  flex-grow: 0.5; // grow if space is available, but at 1/2 as much as normal
 
-  @supports (display: contents) {
+  @include bolt-if-browser-supports-display-contents {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
       &.is-ready {
         display: contents;
@@ -29,7 +31,7 @@ bolt-nav-priority {
 }
 
 .c-bolt-nav-priority {
-  @supports (display: contents) {
+  @include bolt-if-browser-supports-display-contents {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
       &.is-ready {
         display: contents;
@@ -120,7 +122,7 @@ bolt-nav-priority {
 }
 
 .c-bolt-nav-priority__primary {
-  @supports (display: contents) {
+  @include bolt-if-browser-supports-display-contents {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
       .is-ready & {
         display: contents;
@@ -147,7 +149,7 @@ bolt-nav-priority {
 
 
 
-@supports (display: contents) {
+@include bolt-if-browser-supports-display-contents {
    .c-bolt-nav-priority__show-more {
      @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
        display: contents;
@@ -225,7 +227,7 @@ bolt-nav-priority {
 
 
 
-  @supports (display: contents) {
+  @include bolt-if-browser-supports-display-contents {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
       grid-row: 2/span 1;
       grid-column: 1/span 6;
@@ -362,7 +364,7 @@ bolt-nav-priority {
     }
   }
 
-  @supports (display: contents) {
+  @include bolt-if-browser-supports-display-contents {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
       .is-ready & {
         grid-row: 1/span 1;
