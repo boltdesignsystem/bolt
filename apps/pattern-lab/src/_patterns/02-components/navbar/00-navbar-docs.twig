@@ -1,24 +1,24 @@
 {% set schema = bolt.data.components['@bolt-components-navbar'].schema %}
 {% set code %}{% verbatim %}{% include "@bolt-components-navbar/navbar.twig" with {
-  "title": {
-    "tag": "h2",
-    "text": "Title Text",
-    "icon": {
-      "name": "icon-name"
+  title: {
+    tag: "h2",
+    text: "Title Text",
+    icon: {
+      name: "icon-name"
     }
   },
-  "links": [
+  links: [
     {
-      "text": "Link 1 Text",
-      "url": "link-1-url"
+      text: "Link 1 Text",
+      url: "link-1-url"
     },
     {
-      "text": "Link 2 Text",
-      "url": "link-2-url"
+      text: "Link 2 Text",
+      url: "link-2-url"
     },
     {
-      "text": "Link 3 Text",
-      "url": "link-3-url"
+      text: "Link 3 Text",
+      url: "link-3-url"
     }
   ]
 } only %}{% endverbatim %}{% endset %}

@@ -1,24 +1,21 @@
 {% set schema = bolt.data.components['@bolt-components-breadcrumb'].schema %}
-{% set code %} {% verbatim %}
-{% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
-  "contentItems": [
+{% set code %}{% verbatim %}{% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
+  contentItems: [
     include("@bolt-components-link/link.twig", {
-      "text": "Home",
-      "url": "#"
+      text: "Home",
+      url: "#!"
     }),
     include("@bolt-components-link/link.twig", {
-      "text": "Landing Page",
-      "url": "#"
+      text: "Landing Page",
+      url: "#!"
     }),
     include("@bolt-components-link/link.twig", {
-      "text": "Sub Page",
-      "url": "#"
+      text: "Sub Page",
+      url: "#!"
     }),
     "Current Page"
   ]
-} only %}
-{% endverbatim %}
-{% endset %}
+} only %}{% endverbatim %}{% endset %}
 
 {% include '@utils/docs.twig' with {
   schema: schema,

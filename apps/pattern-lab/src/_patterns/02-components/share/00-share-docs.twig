@@ -1,28 +1,24 @@
 {% set schema = get_data('@bolt-components-share/share.schema.yml') %}
-{% set code %}
-  {% verbatim %}
-    {% include '@bolt-components-share/share.twig' with {
-      sources: [
-        {
-          name: "facebook",
-          url: "https://www.facebook.com/sharer/sharer.php?u={url}&src=sdkpreparse"
-        },
-        {
-          name: "twitter",
-          url: "https://twitter.com/intent/tweet?url={url}&text={title}&via={via}&hashtags={hashtags}"
-        },
-        {
-          name: "linkedin",
-          url: "https://www.linkedin.com/shareArticle?url={url}&title={title}"
-        },
-        {
-          name: "email",
-          url: "mailto:?&body=Sample%20Text%20--%20https%3A//bolt-design-system.com"
-        }
-      ]
-    } only %}
-  {% endverbatim %}
-{% endset %}
+{% set code %}{% verbatim %}{% include '@bolt-components-share/share.twig' with {
+  sources: [
+    {
+      name: "facebook",
+      url: "https://www.facebook.com/sharer/sharer.php?u={url}&src=sdkpreparse"
+    },
+    {
+      name: "twitter",
+      url: "https://twitter.com/intent/tweet?url={url}&text={title}&via={via}&hashtags={hashtags}"
+    },
+    {
+      name: "linkedin",
+      url: "https://www.linkedin.com/shareArticle?url={url}&title={title}"
+    },
+    {
+      name: "email",
+      url: "mailto:?&body=Sample%20Text%20--%20https%3A//bolt-design-system.com"
+    }
+  ]
+} only %}{% endverbatim %}{% endset %}
 
 {% include '@utils/docs.twig' with {
   schema: schema,

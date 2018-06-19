@@ -1,14 +1,11 @@
 {% set schema = bolt.data.components['@bolt-components-sticky'].schema %}
-{% set code %} {% verbatim %}
-{% embed "@bolt-components-sticky/sticky.twig" %}
+{% set code %}{% verbatim %}{% embed "@bolt-components-sticky/sticky.twig" %}
   {% block sticky_content %}
 
     // Sticky content
 
   {% endblock %}
-{% endembed %}
-{% endverbatim %}
-{% endset %}
+{% endembed %}{% endverbatim %}{% endset %}
 
 {% include '@utils/docs.twig' with {
   schema: schema,

@@ -1,6 +1,5 @@
 {% set schema = bolt.data.components['@bolt-components-button-group'].schema %}
-{% set code %} {% verbatim %}
-{% include "@bolt-components-button-group/button-group.twig" with {
+{% set code %}{% verbatim %}{% include "@bolt-components-button-group/button-group.twig" with {
   buttons: [
     {
       text: "Learn More",
@@ -11,9 +10,7 @@
       style: "secondary"
     }
   ]
-} %}
-{% endverbatim %}
-{% endset %}
+} only %}{% endverbatim %}{% endset %}
 
 {% include '@utils/docs.twig' with {
   schema: schema,

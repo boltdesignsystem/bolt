@@ -1,14 +1,15 @@
-
-### Install via NPM
+###### Install via NPM
 
 ```
 npm install @bolt/components-card
 ```
 
-#### Description
-The preview card presents users as a way of taking action to discover more information. They commonly exist as links to more detailed long-form content, links off-site, and occasionally inline videos. 
+## Description
+
+The preview card presents users as a way of taking action to discover more information. They commonly exist as links to more detailed long-form content, links off-site, and occasionally inline videos.
 
 ## Best practices
+
 * Placement should be in a manner where it is easily scannable
 * The headline should call out what the benefit is of clicking through
 * Avoid cluttering a card with too many calls to action

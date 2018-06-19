@@ -1,6 +1,5 @@
 {% set schema = bolt.data.components['@bolt-components-background'].schema %}
-{% set code %} {% verbatim %}
-{% include "@bolt-components-background/background.twig" with {
+{% set code %}{% verbatim %}{% include "@bolt-components-background/background.twig" with {
     opacity: "heavy",
     fill: "gradient",
     focalPoint: {
@@ -13,9 +12,7 @@
         src: "/pattern-lab/images/content/backgrounds/background-tall-4.jpg"
       }
     ]
-} only %}
-{% endverbatim %}
-{% endset %}
+} only %}{% endverbatim %}{% endset %}
 
 {% include '@utils/docs.twig' with {
   schema: schema,

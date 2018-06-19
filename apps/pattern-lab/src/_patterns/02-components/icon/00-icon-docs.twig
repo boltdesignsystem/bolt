@@ -1,12 +1,9 @@
 {% set schema = bolt.data.components['@bolt-components-icon'].schema %}
-{% set code %} {% verbatim %}
-{% include "@bolt-components-icon/icon.twig" with {
+{% set code %}{% verbatim %}{% include "@bolt-components-icon/icon.twig" with {
   name: "add-open",
   background: "circle",
   size: "medium",
-}%}
-{% endverbatim %}
-{% endset %}
+} only %}{% endverbatim %}{% endset %}
 
 {% include '@utils/docs.twig' with {
   schema: schema,

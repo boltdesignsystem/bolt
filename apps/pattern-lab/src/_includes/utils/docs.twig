@@ -7,12 +7,12 @@
       size: "xxxlarge",
       tag: "h1",
       text: schema.title ? schema.title : "Component Title"
-    } %}
+    } only %}
 
     {% if readmeFile %}
       <div class="c-bolt-docs__readme">
         {% include "@bolt/headline.twig" with {
-          size: "xlarge",
+          size: "xxlarge",
           tag: "h2",
           url: "#getting-started",
           text: "Getting Started",
@@ -24,7 +24,7 @@
             ],
             id: "getting-started"
           }
-        } %}
+        } only %}
         <div class="c-bolt-docs__lead u-bolt-margin-bottom-large">
           {{ source(readmeFile) | markdown }}
         </div>
@@ -33,7 +33,7 @@
 
     {% if code %}
       {% include "@bolt/headline.twig" with {
-        size: "xlarge",
+        size: "xxlarge",
         tag: "h2",
         url: "#usage",
         text: "Usage",
@@ -45,14 +45,20 @@
           ],
           id: "usage"
         }
-      } %}
-      <pre class="u-bolt-margin-bottom-large"><code>{{ code }}</code></pre>
+      } only %}
+      <div class="u-bolt-margin-bottom-large">
+        {% include "@bolt-components-code-snippet/code-snippet.twig" with {
+          display: "block",
+          lang: "twig",
+          content: code
+        } only %}
+      </div>
     {% endif %}
 
 
     {% if schema and schema.properties %}
       {% include "@bolt/headline.twig" with {
-        size: "xlarge",
+        size: "xxlarge",
         tag: "h2",
         url: "#schema",
         text: "Schema",
@@ -64,7 +70,7 @@
           ],
           id: "schema"
         }
-      } %}
+      } only %}
 
       <div class="bolt-docs__schema u-bolt-margin-bottom-large">
         {% include '@utils/schema-docs.twig' with { schema: schema } only %}
@@ -73,7 +79,7 @@
 
     {% if links %}
       {% include "@bolt/headline.twig" with {
-        size: "xlarge",
+        size: "xxlarge",
         tag: "h2",
         url: "#helpful-links",
         text: "Helpful Links",
@@ -85,7 +91,7 @@
           ],
           id: "schema"
         }
-      } %}
+      } only %}
 
       <ul class="c-bolt-docs__page-nav-list u-bolt-margin-bottom-large">
         {% for link in links %}
