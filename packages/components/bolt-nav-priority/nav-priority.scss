@@ -11,7 +11,6 @@ bolt-nav-priority {
   align-self: center;
   padding-bottom: var(--bolt-vspacing);
   flex-shrink: 2; // shrink faster than other components in tight spots
-  flex-grow: 0.5; // grow if space is available, but at 1/2 as much as normal
 
   @include bolt-if-browser-supports-display-contents {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
