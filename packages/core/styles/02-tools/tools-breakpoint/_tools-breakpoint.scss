@@ -1,19 +1,15 @@
 /* ------------------------------------ *\
-  TOOLS - BREAKPOINT
+   TOOLS - BREAKPOINT
 \* ------------------------------------ */
 
 @function bolt-breakpoint($name) {
   @return map-get($bolt-breakpoints, $name);
 }
 
-
-@mixin bolt-media-query($min: 0, $max: 0) {
-  $query: "all" !default;
-
+@mixin bolt-mq($min: 0, $max: 0, $orientation: 0) {
   @if type-of($min) == string {
     $min: bolt-breakpoint(#{$min});
   }
-
   @else {
     $min: $min;
   }
@@ -21,25 +17,35 @@
   @if type-of($max) == string {
     $max: bolt-breakpoint(#{$max}) - 0.1px;
   }
-
   @else {
     $max: $max;
   }
 
-  // set both min and max
+  // [Mai] Defaults to all media
+  $query-widths: "all" !default;
+
+  // [Mai] Set both min and max
   @if $min != 0 and $max != 0 {
-    $query: "(min-width: #{$min}) and (max-width: #{$max})";
+    $query-widths: "(min-width: #{$min}) and (max-width: #{$max})";
   }
-
-  // set just min
+  // [Mai] Set just min
   @else if $min != 0 and $max == 0 {
-    $query: "(min-width: #{$min})";
+    $query-widths: "(min-width: #{$min})";
   }
-
-  // set just max
+  // [Mai] Set just max
   @else if $min == 0 and $max != 0 {
-    $query: "(max-width: #{$max})";
+    $query-widths: "(max-width: #{$max})";
   }
 
-  @media #{$query} { @content; }
+  // [Mai] Set the orientation
+  @if $orientation != 0 {
+    $query-orientation: "and (orientation: #{$orientation})";
+
+    @media #{$query-widths} #{$query-orientation} { @content; }
+  }
+
+  @else {
+    @media #{$query-widths} { @content; }
+  }
+
 }
