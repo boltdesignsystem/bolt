@@ -94,6 +94,7 @@ module.exports = {
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
       '@bolt/components-share',
+      '@bolt/components-search-filter',
       '@bolt/components-site',
       '@bolt/components-smooth-scroll',
       '@bolt/components-sticky',
