@@ -1,0 +1,42 @@
+/* ------------------------------------ *\
+  Custom Element
+\* ------------------------------------ */
+
+$bolt-blocky-elements: (block, flex, grid);
+
+// @todo: move to separate function
+@function bolt-list-contains($list, $value) {
+  @return not not index($list, $value);
+}
+
+
+// helper / setup mixin when defining new custom elements.
+// optionally, can auto-include default spacing + normalize in the new custom element.
+@mixin bolt-custom-element(
+  $elementName,
+  $defaultDisplay: inline,
+  $includeDefaultSpacing: null,
+  $includeNormalize: false
+){
+  #{$elementName}{
+    display: $defaultDisplay;
+
+
+    @if $includeDefaultSpacing == true or
+      (
+        bolt-list-contains($bolt-blocky-elements, $defaultDisplay) and $includeDefaultSpacing == null
+      ) {
+      &:not(:last-child) {
+        // @todo: move to default global spacing
+        @include bolt-margin-bottom(medium);
+      }
+    }
+
+    // @todo: include normalize deps
+    @if $includeNormalize {
+      @include normalize;
+    }
+
+    @content;
+  }
+}
