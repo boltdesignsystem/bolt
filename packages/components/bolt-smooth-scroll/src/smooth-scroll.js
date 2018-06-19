@@ -1,4 +1,5 @@
 import SmoothScroll from 'smooth-scroll/src/js/smooth-scroll.js';
+import { isValidSelector } from '@bolt/core';
 
 export const smoothScroll = new SmoothScroll();
 
@@ -20,7 +21,6 @@ export const defaultScrollOptions = {
 };
 
 
-
 export function getScrollTarget(elem){
   let scrollElemHref = elem.getAttribute('href');
   scrollElemHref = scrollElemHref.replace('#', '');
@@ -28,9 +28,18 @@ export function getScrollTarget(elem){
 }
 
 
+// Find all possible hash links on the page that COULD be smooth scrollable
+// note: because you can't use regex in querySelectors, we instead find all hash-links
 const customScrollElems = document.querySelectorAll('a[href^="#"]');
-for (var i = 0, len = customScrollElems.length; i < len; i++) {
-  const scrollElem = customScrollElems[i];
+
+//convert our NodeList to an array (can't filter otherwise)
+const customScrollElemsArray = Array.from(customScrollElems);
+
+// go through our array of results and filter out only the ones that are valid selectors. // in this case, valid selectors = valid HTML5 id names which omits hash bang links, etc.
+let filteredCustomScrollElems = customScrollElemsArray.filter(element => isValidSelector(element.getAttribute('href')));
+
+for (var i = 0, len = filteredCustomScrollElems.length; i < len; i++) {
+  const scrollElem = filteredCustomScrollElems[i];
 
   const customScrollElemTarget = scrollElem.getAttribute('href');
   const matchedScrollTarget = document.querySelectorAll(customScrollElemTarget);
