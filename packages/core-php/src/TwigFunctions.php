@@ -34,12 +34,22 @@ class TwigFunctions {
 
       $context = new ArrayFinder($context);
       $buildDir = $context->get('bolt.data.config.buildDir');
+      $wwwDir = $context->get('bolt.data.config.wwwDir');
 
       if ($buildDir) {
-        $fullPath = Path::join($buildDir, $filename);
+        $fullBuildDir = Path::join($buildDir, $filename);
+        $fullWwwDir = Path::join($wwwDir, $filename);
 
-        if (file_exists($fullPath)){
-          return file_get_contents($fullPath);
+        // Look in a few places before giving up
+        if (file_exists($fullBuildDir)){ // Check the build directory
+          return file_get_contents($fullBuildDir);
+
+        } elseif (file_exists($fullWwwDir)) { // Check the wwwDir
+          return file_get_contents($fullWwwDir);
+
+        } elseif (file_exists($filename)) { // As a last resort, check to make sure the filename path can't be resolved as-is
+          return file_get_contents($filename);
+
         } else {
           throw new \Exception('Warning: the file ' . $fullPath . ' trying to be inlined doesn\'t seem to exist...');
         }
