@@ -21,12 +21,20 @@ function createConfig(config) {
     path: path.resolve(process.cwd(), config.dataDir),
   });
 
+  // filename suffix to tack on based on lang being compiled for
+  const langSuffix = `${config.lang ? '-' + config.lang : ''}`;
+
 
   // Default global Sass data defined
   let globalSassData = [
     `$bolt-namespace: ${config.namespace};`,
-  ]
 
+    // output $bolt-lang variable in Sass even if not specified so things fall back accordingly.
+    `${config.lang ?
+      `$bolt-lang: ${config.lang};` :
+      '$bolt-lang: null;'
+    }`,
+  ];
 
   // Default global JS data defined
   let globalJsData = {
@@ -82,11 +90,19 @@ function createConfig(config) {
   function buildWebpackEntry() {
     const { components } = getBoltManifest();
     const entry = {};
+    const globalEntryName = 'bolt-global';
+
     if (components.global) {
-      entry['bolt-global'] = [];
+      entry[globalEntryName] = [];
+
       components.global.forEach((component) => {
-        if (component.assets.style) entry['bolt-global'].push(component.assets.style);
-        if (component.assets.main) entry['bolt-global'].push(component.assets.main);
+        if (component.assets.style) {
+          entry[globalEntryName].push(component.assets.style);
+        }
+
+        if (component.assets.main) {
+          entry[globalEntryName].push(component.assets.main);
+        }
       });
     }
     if (components.individual) {
@@ -285,8 +301,8 @@ function createConfig(config) {
     entry: buildWebpackEntry(),
     output: {
       path: path.resolve(process.cwd(), config.buildDir),
-      filename: '[name].js',
-      chunkFilename: '[name]-bundle.[chunkhash].js',
+      filename: `[name]${langSuffix}.js`,
+      chunkFilename: `[name]-bundle${langSuffix}-[chunkhash].js`,
       publicPath,
     },
     cache: true,
@@ -394,13 +410,13 @@ function createConfig(config) {
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional
-        filename: '[name].css',
-        chunkFilename: '[id].css',
+        filename: `[name]${langSuffix}.css`,
+        chunkFilename: `[id]${langSuffix}.css`,
         allChunks: true,
       }),
       // @todo This needs to be in `config.dataDir`
       new ManifestPlugin({
-        fileName: 'bolt-webpack-manifest.json',
+        fileName: `bolt-webpack-manifest${langSuffix}.json`,
         publicPath,
         writeToFileEmit: true,
         seed: {
@@ -468,7 +484,7 @@ function createConfig(config) {
       ],
       compress: true,
       clientLogLevel: 'none',
-      port: 8080,
+      port: config.proxyPort,
       stats: statsPreset(webpackStats[config.verbosity]),
       overlay: {
         errors: true,

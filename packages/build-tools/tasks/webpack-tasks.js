@@ -14,18 +14,28 @@ const path = require('path');
 const timer = require('../utils/timer');
 
 const config = getConfig();
-const webpackConfig = createWebpackConfig(config);
+const webpackConfigs = [];
+config.lang.reverse(); // Make sure the 1st language in the array is LAST since that's the one used for the local dev environment.
+
+config.lang.forEach(function (lang) {
+  config.lang = lang; // Make sure only ONE language config is set per Webpack build instance.
+
+  const webpackConfig = createWebpackConfig(config);
+
+  if (config.webpackStats) {
+    webpackConfig.profile = true;
+    webpackConfig.parallelism = 1;
+  }
+  webpackConfigs.push(webpackConfig);
+});
 
 function compile() {
   return new Promise((resolve, reject) => {
     const webpackSpinner = ora(chalk.blue('Building WebPack bundle...')).start();
     const startTime = timer.start();
     const spinFailed = () => webpackSpinner.fail(chalk.red('Building WebPack Failed'));
-    if (config.webpackStats) {
-      webpackConfig.profile = true;
-      webpackConfig.parallelism = 1;
-    }
-    webpack(webpackConfig).run(async (err, stats) => {
+
+    webpack(webpackConfigs).run(async (err, stats) => {
       if (err) {
         spinFailed();
         return reject(err);
@@ -95,12 +105,14 @@ function watch() {
     let startTime;
     const spinFailed = () => webpackSpinner.fail(chalk.red('Watch triggered WebPack Failed'));
 
-    const compiler = webpack(webpackConfig);
+    const compiler = webpack(webpackConfigs);
 
     // Fired when a watch triggers a compile
-    compiler.plugin('compile', () => {
-      webpackSpinner.start();
-      startTime = timer.start();
+    compiler.compilers.forEach((comp) => {
+      comp.plugin('compile', () => {
+        webpackSpinner.start();
+        startTime = timer.start();
+      });
     });
 
     compiler.watch({
@@ -125,8 +137,8 @@ function watch() {
       } else {
         // Stats config options: https://webpack.js.org/configuration/stats/
         const output = stats.toString({
-          chunks: false,  // Makes the build much quieter
-          colors: true,   // Shows colors in the console
+          chunks: false, // Makes the build much quieter
+          colors: true, // Shows colors in the console
           modules: false, // Hides built modules making output less verbose
           version: false,
         });
@@ -153,11 +165,11 @@ function server() {
   return new Promise((resolve, reject) => {
 
     // Add HMR scripts required to entrypoint
-    if (webpackConfig.devServer.hot && !config.prod) {
-      webpackConfig.entry['bolt-global'].unshift('webpack-dev-server/client?http://localhost:8080/', 'webpack/hot/dev-server');
+    if (webpackConfigs[0].devServer.hot && !config.prod) {
+      webpackConfigs[0].entry['bolt-global'].unshift('webpack-dev-server/client?http://localhost:8080/', 'webpack/hot/dev-server');
     }
 
-    new WebpackDevServer(webpack(webpackConfig), webpackConfig.devServer).listen(webpackConfig.devServer.port, 'localhost', function (err) {
+    new WebpackDevServer(webpack(webpackConfigs[0]), webpackConfigs[0].devServer).listen(webpackConfigs[0].devServer.port, 'localhost', function (err) {
       if (err) {
         return reject(err);
       }
