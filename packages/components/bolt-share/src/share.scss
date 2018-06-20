@@ -22,10 +22,12 @@
   }
 }
 
-.c-bolt-share--normal-layout {
+.c-bolt-share--normal-layout { 
+  white-space: nowrap; // Added so text doesn't wrap, but the width is not dynamic for some reason
   .c-bolt-block-list {
     @include bolt-padding-top(small);
     @include bolt-padding-bottom(small);
+  
   }
 
   .c-bolt-block-list__item {
