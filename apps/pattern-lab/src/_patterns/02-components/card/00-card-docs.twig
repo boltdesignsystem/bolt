@@ -1,5 +1,5 @@
-{% set schema = bolt.data.components['@bolt-components-card'].schema %}
-{% set code %}{% verbatim %}{% include "@bolt-components-card/card.twig" with {
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-card/card.twig" with {
   url: "javascript:",
   contentItems: [
     {
@@ -30,10 +30,10 @@
       text: "Get the report"
     }
   ]
-} only %}{% endverbatim %}{% endset %}
+} only %}
+{% endverbatim %}{% endset %}
 
-{% include '@utils/docs.twig' with {
-  schema: schema,
-  code: code,
-  readmeFile: '@bolt-components-card/README.md',
+{% include "@utils/docs.twig" with {
+  componentName: "card",
+  usage: usage
 } only %}

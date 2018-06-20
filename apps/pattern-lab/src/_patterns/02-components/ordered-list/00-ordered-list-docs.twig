@@ -1,5 +1,5 @@
-{% set schema = bolt.data.components['@bolt-components-ordered-list'].schema %}
-{% set code %}{% verbatim %}{% include "@bolt-components-ordered-list/ordered-list.twig" with {
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-ordered-list/ordered-list.twig" with {
   contentItems: [
     {
       text: "Do not include any data or information in your posts that are confidential!"
@@ -14,10 +14,10 @@
       text: "Answer questions authoritatively and concisely. Avoid cluttering discussions with noise."
     }
   ]
-} only %}{% endverbatim %}{% endset %}
+} only %}
+{% endverbatim %}{% endset %}
 
-{% include '@utils/docs.twig' with {
-  schema: schema,
-  code: code,
-  readmeFile: '@bolt-components-ordered-list/README.md',
+{% include "@utils/docs.twig" with {
+  componentName: "ordered-list",
+  usage: usage
 } only %}

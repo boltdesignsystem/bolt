@@ -1,14 +1,14 @@
-{% set schema = bolt.data.components['@bolt-components-video'].schema %}
-{% set code %}{% verbatim %}{% include "@bolt/video.twig" with {
+{% set usage %}{% verbatim %}
+{% include "@bolt/video.twig" with {
   videoId: "5609376179001",
   accountId: "1900410236",
   playerId: "r1CAdLzTW",
   showMeta: true,
   showMetaTitle: false
-} only %}{% endverbatim %}{% endset %}
+} only %}
+{% endverbatim %}{% endset %}
 
-{% include '@utils/docs.twig' with {
-  schema: schema,
-  code: code,
-  readmeFile: '@bolt-components-video/README.md',
+{% include "@utils/docs.twig" with {
+  componentName: "video",
+  usage: usage
 } only %}

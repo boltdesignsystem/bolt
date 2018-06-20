@@ -1,13 +1,12 @@
-{% set schema = bolt.data.components['@bolt-components-code-snippet'].schema %}
-
-{% set code %}{% verbatim %}{% include "@bolt-components-code-snippet/code-snippet.twig" with {
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-code-snippet/code-snippet.twig" with {
   display: "block",
   lang: "html",
   content: "Some code snippet"
-} only %}{% endverbatim %}{% endset %}
+} only %}
+{% endverbatim %}{% endset %}
 
-{% include '@utils/docs.twig' with {
-  schema: schema,
-  code: code,
-  readmeFile: '@bolt-components-code-snippet/README.md',
+{% include "@utils/docs.twig" with {
+  componentName: "code-snippet",
+  usage: usage
 } only %}

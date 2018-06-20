@@ -1,10 +1,10 @@
-{% set schema = bolt.data.components['@bolt-components-background-shapes'].schema %}
-{% set code %}{% verbatim %}{% include "@bolt-components-background-shapes/background-shapes.twig" with {
-    "shapeGroup": "B"
-} only %}{% endverbatim %}{% endset %}
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-background-shapes/background-shapes.twig" with {
+  shapeGroup: "B"
+} only %}
+{% endverbatim %}{% endset %}
 
-{% include '@utils/docs.twig' with {
-  schema: schema,
-  code: code,
-  readmeFile: '@bolt-components-background-shapes/README.md',
+{% include "@utils/docs.twig" with {
+  componentName: "background-shapes",
+  usage: usage
 } only %}

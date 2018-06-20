@@ -10,7 +10,7 @@ npm install @bolt/components-background-shapes
 
 Background shapes bring the brand further into Bolt. These shapes create a background texture for bands. The shapes are offset at an angle offset inside a band component.
 
-## Best practices
+## Best Practices
 
 * Set to the right side of the band if there is copy on the left.
 * Set to the left side of the band if there is copy on the right.

@@ -14,7 +14,7 @@ Bands also define what theme the contents follow. For example, a dark theme with
 
 Bands are defined content areas where content hangs together.
 
-## Best practices
+## Best Practices
 
 * Bands are full width divs and leverage the page wrapper to constrain content inside of it
 * Don't have partial width bands

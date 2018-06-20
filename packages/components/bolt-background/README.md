@@ -5,7 +5,7 @@ Background can be added to any container. Part of the Bolt “Components” CSS 
 npm install @bolt/components-background
 ```
 
-## Description:
+## Description
 
 Background allows Bolt to set an images inside of bands.
 

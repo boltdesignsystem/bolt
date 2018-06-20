@@ -1,5 +1,5 @@
-{% set schema = bolt.data.components['@bolt-components-breadcrumb'].schema %}
-{% set code %}{% verbatim %}{% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
   contentItems: [
     include("@bolt-components-link/link.twig", {
       text: "Home",
@@ -15,10 +15,10 @@
     }),
     "Current Page"
   ]
-} only %}{% endverbatim %}{% endset %}
+} only %}
+{% endverbatim %}{% endset %}
 
-{% include '@utils/docs.twig' with {
-  schema: schema,
-  code: code,
-  readmeFile: '@bolt-components-breadcrumb/README.md',
+{% include "@utils/docs.twig" with {
+  componentName: "breadcrumb",
+  usage: usage
 } only %}

@@ -1,8 +1,15 @@
+{% set schema = bolt.data.components["@bolt-components-#{componentName}"].schema %}
+{% if componentName %}
+  {% set readmeFile = "@bolt-components-#{componentName}/README.md" %}
+{% endif %}
+
+{% set code %}{% spaceless %}
+{{ usage }}
+{% endspaceless %}{% endset %}
+
 
 <div class="c-bolt-docs t-bolt-xlight">
-
   <div class="c-bolt-docs__page-content">
-
     {% include "@bolt/headline.twig" with {
       size: "xxxlarge",
       tag: "h1",
@@ -250,3 +257,4 @@
       {% endif %}
     </ul>
   </div>
+</div>

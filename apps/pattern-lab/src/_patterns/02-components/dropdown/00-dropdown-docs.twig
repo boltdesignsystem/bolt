@@ -1,5 +1,5 @@
-{% set schema = get_data('@bolt-components-dropdown/dropdown.schema.yml') %}
-{% set code %}{% verbatim %}// Via Twig
+{% set usage %}{% verbatim %}
+// Via Twig
 {% embed "@bolt-components-dropdown/dropdown.twig" with {
   title: "Toggle Menu",
   collapse: true
@@ -44,10 +44,10 @@
       }
     ]
   } only %}
-</bolt-dropdown>{% endverbatim %}{% endset %}
+</bolt-dropdown>
+{% endverbatim %}{% endset %}
 
-{% include '@utils/docs.twig' with {
-  schema: schema,
-  code: code,
-  readmeFile: '@bolt-components-dropdown/README.md',
+{% include "@utils/docs.twig" with {
+  componentName: "dropdown",
+  usage: usage
 } only %}

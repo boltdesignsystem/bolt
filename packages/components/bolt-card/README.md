@@ -8,7 +8,7 @@ npm install @bolt/components-card
 
 The preview card presents users as a way of taking action to discover more information. They commonly exist as links to more detailed long-form content, links off-site, and occasionally inline videos.
 
-## Best practices
+## Best Practices
 
 * Placement should be in a manner where it is easily scannable
 * The headline should call out what the benefit is of clicking through

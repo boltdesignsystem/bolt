@@ -1,14 +1,14 @@
-{% set schema = get_data('@bolt-components-tooltip/tooltip.schema.yml') %}
-{% set code %}{% verbatim %}{% include "@bolt-components-tooltip/tooltip.twig" with {
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-tooltip/tooltip.twig" with {
   trigger: {
     type: "text",
     text: "Trigger Text"
   },
   content: "Here is a tooltip! And it even comes with a button toggle!"
-} only %}{% endverbatim %}{% endset %}
+} only %}
+{% endverbatim %}{% endset %}
 
-{% include '@utils/docs.twig' with {
-  schema: schema,
-  code: code,
-  readmeFile: '@bolt-components-tooltip/README.md',
+{% include "@utils/docs.twig" with {
+  componentName: "tooltip",
+  usage: usage
 } only %}

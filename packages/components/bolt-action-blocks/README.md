@@ -6,10 +6,12 @@ Stylistic block layout for displaying actionable icon and text. Part of the Bolt
 npm install @bolt/components-action-blocks
 ```
 
-## Description:
+## Description
+
 Action blocks work as a group to provide the user an easy to browse list of options of relativeto take action to discover more information. They commonly exist as links to more detailed content.
 
-## Best practices
+## Best Practices
+
 * Can use xlight, light, dark, and xdark themes.
 * Can have an image, icon, and/or text
 * Should link to content

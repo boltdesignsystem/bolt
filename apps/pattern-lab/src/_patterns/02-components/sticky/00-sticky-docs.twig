@@ -1,24 +1,14 @@
-{% set schema = bolt.data.components['@bolt-components-sticky'].schema %}
-{% set code %}{% verbatim %}{% embed "@bolt-components-sticky/sticky.twig" %}
+{% set usage %}{% verbatim %}
+{% embed "@bolt-components-sticky/sticky.twig" %}
   {% block sticky_content %}
 
     // Sticky content
 
   {% endblock %}
-{% endembed %}{% endverbatim %}{% endset %}
+{% endembed %}
+{% endverbatim %}{% endset %}
 
-{% include '@utils/docs.twig' with {
-  schema: schema,
-  code: code,
-  readmeFile: '@bolt-components-sticky/README.md',
-  links: [
-    {
-      url: link['components-sticky-simple-example'],
-      text: 'Sticky Simple Example'
-    },
-    {
-      url: link['components-sticky-with-content-example'],
-      text: 'Sticky w/ Content Example'
-    }
-  ]
+{% include "@utils/docs.twig" with {
+  componentName: "sticky",
+  usage: usage
 } only %}

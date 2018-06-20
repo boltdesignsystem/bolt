@@ -1,14 +1,14 @@
-{% set schema = bolt.data.components['@bolt-components-figure'].schema %}
-{% set code %}{% verbatim %}{% include "@bolt-components-figure/figure.twig" with {
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-figure/figure.twig" with {
   image: {
     src: "/pattern-lab/images/placeholders/500x500.jpg",
     lazyload: false
   },
   caption: "The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark."
-} only %}{% endverbatim %}{% endset %}
+} only %}
+{% endverbatim %}{% endset %}
 
-{% include '@utils/docs.twig' with {
-  schema: schema,
-  code: code,
-  readmeFile: '@bolt-components-figure/README.md',
+{% include "@utils/docs.twig" with {
+  componentName: "figure",
+  usage: usage
 } only %}
