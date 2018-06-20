@@ -46,12 +46,22 @@ class BoltNavLink extends BoltComponent() {
 
   onClick(event) {
     // prevent browser default if we're smooth scrolling to a navlink. this ensures a smoother, less jumpy animation in browsers (like Safari)
-    if (this._shadowLink.getAttribute('href').indexOf('#') !== -1){
+    const customScrollElemTarget = this._shadowLink.getAttribute('href');
+    const matchedScrollTarget = document.querySelectorAll(customScrollElemTarget);
+    let shouldSmoothScroll = true;
+
+    // if no ids match up with the smooth scrollable element, don't try to smooth scroll.
+    // workaround to smooth scroll js error `Cannot read property 'smoothScroll' of null`
+    if (customScrollElemTarget.indexOf('#') !== -1 && matchedScrollTarget.length === 0) {
+      shouldSmoothScroll = false;
+    }
+
+    if (shouldSmoothScroll !== false){
       event.preventDefault();
     }
 
     // manually add smooth scroll to dropdown links since these are added to the page AFTER smooth scroll event bindings would hae been added.
-    if (!this.props.active && this.props.isDropdownLink) {
+    if (!this.props.active && this.props.isDropdownLink && shouldSmoothScroll !== false) {
       const scrollTarget = getScrollTarget(this._shadowLink);
       if (scrollTarget) {
         smoothScroll.animateScroll(scrollTarget, this._shadowLink, defaultScrollOptions);

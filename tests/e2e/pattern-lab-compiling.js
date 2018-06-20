@@ -38,34 +38,54 @@ const getDeployUrl = async () => {
   }).reverse();
 
   const latestDeploy = nowDeploys.deployments[0];
-  // console.log(nowDeploys);
   console.log('Latest now.sh Deploy:');
   console.log(latestDeploy);
-
   return 'https://' + latestDeploy.url;
 }
 
 
+let testingUrl = ''; // cached deploy url we grab from the now.sh API
+
 module.exports = {
-  beforeEach: async function(browser, done) {
-    async function getUrl(){
-      const deployUrl = await getDeployUrl();
-      return deployUrl + '/pattern-lab/patterns/02-components/index.html';
+  async beforeEach(browser, done) {
+    async function getUrl() {
+      return await getDeployUrl();
     }
 
-    getUrl().then(testingUrl => {
-      browser.url(`${testingUrl}`)
-        .waitForElementVisible('body')
-        .waitForElementVisible('.sg-main');
+    // log the url being tested against to make it easier to debug failed deploys
+    function logTestingUrl(){
+      console.log(`Running tests against the ${testingUrl} deploy url.`);
+    }
+
+    // grab the latest testing URL from now.sh if we haven't grabbed it yet.
+    if (testingUrl === '') {
+      getUrl().then(deployUrl => {
+        testingUrl = deployUrl; //
+        logTestingUrl();
+        done();
+      });
+
+    // otherwise let's be efficient and use the deploy url we already got
+    } else {
+      logTestingUrl();
       done();
-    });
+    }
   },
 
-  'Pattern Lab: Check For Successful Now.sh Deploy': browser => {
+  'Bolt Docs: Verify Docs Site Compiled + Deployed': function (browser) {
     browser
-      .assert.visible('body .sg-main', 'Check if Pattern Lab has compiled successfully via Twig')
-      .assert.title('Bolt Design System');
+      .url(`${testingUrl}`)
+      .waitForElementVisible('body.c-bolt-site', 1000)
+      .assert.containsText('h1.c-bolt-headline', 'Bolt Design System')
+      .end()
   },
-  after: browser => browser.end(),
+
+  'Pattern Lab: Confirm Successful Now.sh Deploy + Pattern Lab Compiled': function (browser) {
+    browser
+      .url(`${testingUrl}/pattern-lab/patterns/02-components/index.html`)
+      .waitForElementVisible('body .sg-main', 1000)
+      .verify.title('Bolt Design System')
+      .end()
+  },
   tearDown: sauce,
 };
