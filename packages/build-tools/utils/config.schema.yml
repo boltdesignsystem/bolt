@@ -12,6 +12,19 @@
       type: string
       title: Namespace prefix to use in classnames
       default: 'bolt'
+    lang:
+      type: array
+      title: Array of language-specific builds to generate. The 1st langugage specified is the default used for local development.
+      default:
+        - en
+    port:
+      type: number
+      title: Desired port for Browsersync server
+      default: 3000
+    proxyPort:
+      type: number
+      title: Desired port for Webpack Proxy
+      default: 8080
     templatesDir:
       type: array
       title: Template paths being added

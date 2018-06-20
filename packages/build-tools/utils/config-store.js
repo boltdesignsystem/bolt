@@ -3,6 +3,8 @@ const path = require('path');
 const { readYamlFileSync } = require('./yaml');
 const { validateSchema } = require('./schemas');
 const configSchema = readYamlFileSync(path.join(__dirname, './config.schema.yml'));
+const { getPort } = require('./get-port');
+
 let isInitialized = false;
 let config = {};
 // Welcome to the home of the config!
@@ -15,18 +17,28 @@ let config = {};
 // 4. Certain command line options like `bolt build --verbosity 5` - not every config option is overridable this way.
 // For both 3 & 4, it doesn't support deep merges, so only top level properties.
 
-const defaultConfig = {
-  namespace: configSchema.properties.namespace.default,
-  templatesDir: configSchema.properties.templatesDir.default,
-  verbosity: configSchema.properties.verbosity.default,
-  openServerAtStart: configSchema.properties.openServerAtStart.default,
-  quick: configSchema.properties.quick.default,
-  webpackDevServer: configSchema.properties.webpackDevServer.default,
-  prod: process.env.NODE_ENV === 'production',
-  startPath: configSchema.properties.startPath.default,
-  webpackStats: configSchema.properties.webpackStats.default,
-  globalData: {},
-};
+async function getDefaultConfig() {
+  return Promise.all([
+    await getPort(configSchema.properties.port.default),
+    await getPort(configSchema.properties.proxyPort.default),
+  ]).then(function (ports) {
+    return {
+      port: ports[0],
+      proxyPort: ports[1],
+      namespace: configSchema.properties.namespace.default,
+      templatesDir: configSchema.properties.templatesDir.default,
+      verbosity: configSchema.properties.verbosity.default,
+      openServerAtStart: configSchema.properties.openServerAtStart.default,
+      quick: configSchema.properties.quick.default,
+      webpackDevServer: configSchema.properties.webpackDevServer.default,
+      prod: process.env.NODE_ENV === 'production',
+      startPath: configSchema.properties.startPath.default,
+      webpackStats: configSchema.properties.webpackStats.default,
+      globalData: {},
+    };
+  });
+}
+
 
 function getEnvVarsConfig() {
   const envVars = {};
@@ -62,7 +74,9 @@ function isReady() {
   }
 }
 
-function init(userConfig) {
+async function init(userConfig) {
+  const defaultConfig = await getDefaultConfig();
+
   // Setting default config that requires userConfig
   defaultConfig.dataDir = path.join(userConfig.buildDir, 'data');
   // End setting programatic defaults
