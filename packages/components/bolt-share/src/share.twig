@@ -1,3 +1,5 @@
+{% set schema = bolt.data.components['@bolt-components-share'].schema %}
+
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(bolt.data.components['@bolt-components-share'].schema, _self) | raw }}
 {% endif %}
@@ -5,13 +7,16 @@
 {% set copyShare = copy is sameas(false) ? false : (copy is null ? true : copy) %}
 {% set visible = visibility is sameas(false) ? false : (visibility is null ? true : visibility) %}
 {% set isFlat = inline is sameas(false) ? false : (inline is null ? false : inline) %}
+{% set text = text | default(schema.properties.text.default) %}
+
+
 
 {% set items = [] %}
 
+{# Share inline #}
 {% if isFlat is sameas(true) %}
-  {% set shareText = shareText | default(schema.properties.shareText.default) %}
   {% set items = items|merge([include("@bolt-components-headline/text.twig", {
-    text: 'Share this page',
+    text: text,
     weight: 'bold',
     transform: 'uppercase',
     size: 'small',
@@ -66,13 +71,14 @@
   isFlat is sameas(false) ? 'c-bolt-share--normal-layout' : 'c-bolt-share--inline-layout'
 ] %}
 
+{# Share via button #}
 <bolt-share>
   <div {{ attributes.addClass(classes) }}>
     {% if isFlat is sameas(false)  %}
       {% include "@bolt-components-tooltip/tooltip.twig" with {
         trigger: {
           type: "button",
-          text: "Share",
+          text: text,
           transform: "uppercase",
           icon: {
             name: "share",

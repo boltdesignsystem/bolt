@@ -2,10 +2,10 @@ $schema: http://json-schema.org/draft-04/schema#
 title: Share
 type: object
 properties:
-  shareText:
-    type: [string]
+  text:
+    type: string
     default: "Share this page"
-    description: 'Call to action text'
+    description: 'Call to action text, like "Share" or "Share this page"'
   sources:
     type: array
     description: 'Social media sources to share to -- supports facebook, twitter, linkedin, and email'
