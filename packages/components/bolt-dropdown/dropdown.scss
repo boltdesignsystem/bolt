@@ -11,7 +11,7 @@ bolt-dropdown {
   ));
 
   &[collapse]{
-    @include respond-to(small) {
+    @include bolt-mq(small) {
       @include bolt-css-vars((
         --bolt-nav-item-opacity: 1,
         --bolt-nav-item-transform: none,
@@ -50,7 +50,7 @@ bolt-dropdown {
   box-shadow: 0 1px 2px 0 rgba(bolt-color(black), 0.1);
 
   .c-bolt-dropdown--collapse\@small & {
-    @include respond-to(small) {
+    @include bolt-mq(small) {
       display: none;
     }
   }
@@ -250,7 +250,7 @@ bolt-dropdown {
   }
 
   .c-bolt-dropdown--collapse\@small & {
-    @include respond-to(small) {
+    @include bolt-mq(small) {
       max-height: none;
       visibility: visible;
       display: block;
@@ -432,7 +432,7 @@ bolt-dropdown {
   transition: opacity .1s ease;
 
   .c-bolt-dropdown--collapse\@small & {
-    @include respond-to(small) {
+    @include bolt-mq(small) {
       opacity: 1;
     }
   }
@@ -521,7 +521,7 @@ bolt-dropdown {
   transition: opacity 0.35s ease-out, transform 0.35s ease-out; // transition:
 
   .c-bolt-dropdown--collapse\@small & {
-    @include respond-to(small) {
+    @include bolt-mq(small) {
       opacity: 1;
       transform: translateY(0);
     }

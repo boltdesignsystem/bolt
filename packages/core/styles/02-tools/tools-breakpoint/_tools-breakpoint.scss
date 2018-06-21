@@ -6,46 +6,23 @@
   @return map-get($bolt-breakpoints, $name);
 }
 
-@mixin bolt-mq($min: 0, $max: 0, $orientation: 0) {
-  @if type-of($min) == string {
-    $min: bolt-breakpoint(#{$min});
-  }
-  @else {
-    $min: $min;
+@mixin bolt-mq($min: null, $max: null, $orientation: null) {
+  $and: null;
+
+  @if $orientation != null {
+    $and: '(orientation: #{$orientation})';
   }
 
-  @if type-of($max) == string {
-    $max: bolt-breakpoint(#{$max}) - 0.1px;
+  @include mq($min, $max, $and){
+    @content;
   }
-  @else {
-    $max: $max;
-  }
+}
 
-  // [Mai] Defaults to all media
-  $query-widths: "all" !default;
 
-  // [Mai] Set both min and max
-  @if $min != 0 and $max != 0 {
-    $query-widths: "(min-width: #{$min}) and (max-width: #{$max})";
-  }
-  // [Mai] Set just min
-  @else if $min != 0 and $max == 0 {
-    $query-widths: "(min-width: #{$min})";
-  }
-  // [Mai] Set just max
-  @else if $min == 0 and $max != 0 {
-    $query-widths: "(max-width: #{$max})";
-  }
+@mixin respond-to($from) {
+  @warn 'Bolt\'s `respond-to` mixin is deprecated and will be removed in v2.0.0 of Bolt. Use the new @bolt-mq() mixin instead.';
 
-  // [Mai] Set the orientation
-  @if $orientation != 0 {
-    $query-orientation: "and (orientation: #{$orientation})";
-
-    @media #{$query-widths} #{$query-orientation} { @content; }
+  @include bolt-mq($from){
+    @content;
   }
-
-  @else {
-    @media #{$query-widths} { @content; }
-  }
-
 }

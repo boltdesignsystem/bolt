@@ -88,14 +88,3 @@ $bolt-crops: (
 }
 
 @include bolt-generate-crops;
-
-
-// @if (variable-exists(bolt-breakpoints)) {
-//   @each $breakpoint-name in $breakpoints {
-//     $bp: nth($breakpoint-name, 1);
-
-//     @include respond-to($bp) {
-//       @include generate-crops(#{$global-breakpoint-separator}#{$bp});
-//     }
-//   }
-// }

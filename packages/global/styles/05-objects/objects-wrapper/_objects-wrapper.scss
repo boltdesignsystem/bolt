@@ -11,7 +11,7 @@ $bolt-wrapper--max-width: bolt-breakpoint(xxlarge) !default;
   @include bolt-margin-right(auto);
   display: block;
 
-  @include respond-to(medium) {
+  @include bolt-mq(medium) {
     @include bolt-padding-left(large);
     @include bolt-padding-right(large);
   }

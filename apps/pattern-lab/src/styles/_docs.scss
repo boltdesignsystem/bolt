@@ -52,12 +52,12 @@
   max-width: 1440px;
   margin: 0 auto;
 
-  @include respond-to(small) {
+  @include bolt-mq(small) {
     -ms-grid-rows: bolt-spacing(medium) auto auto 1fr bolt-spacing(medium); /* [1] */
     grid-template-rows: bolt-spacing(medium) auto auto 1fr bolt-spacing(medium);
   }
 
-  @include respond-to(medium) {
+  @include bolt-mq(medium) {
     -ms-grid-columns: 1fr 17.5% 65% 17.5% 1fr; /* [1] */
     grid-template-columns: 1fr 17.5% 65% 17.5% 1fr;
   }
@@ -75,7 +75,7 @@
   min-width: 0;
   max-width: 960px;
 
-  @include respond-to(medium) {
+  @include bolt-mq(medium) {
     @include bolt-padding-left(medium);
     @include bolt-padding-right(medium);
 
@@ -90,7 +90,7 @@
     margin-left: auto;
   }
 
-  @include respond-to(large) {
+  @include bolt-mq(large) {
     @include bolt-padding-left(medium);
     @include bolt-padding-right(medium);
 
@@ -127,7 +127,7 @@
 
   text-align: right;
 
-  @include respond-to(medium) {
+  @include bolt-mq(medium) {
     -ms-grid-row: 3; /* [1] */
     -ms-grid-row-span: 1; /* [1] */
     grid-row: 3/span 1;
