@@ -5,14 +5,18 @@
 @import '@bolt/core';
 
 
-// Mobile Safari will zoom in when input is focused if the text is not at least 16px.
-// Use this mixin either to prevent that OR to match the text size of elements that
-// need it (for example, if you want a label to match an input).
-@mixin bolt-form-mobile-font-size() {
-  font-size: 16px;
+// This should ONLY apply to <input> elements, NOT anything else like <label>, <div>, <span>, etc.
+@mixin bolt-input-font-size-and-height {
+  @include bolt-padding(medium, squished); // [Mai] This matches button vertical spacing.
+  @include bolt-padding-right(small); // [Mai] This does not match the button horizontal spacing, which is what we want. We only want inputs to be as tall as buttons.
+  @include bolt-padding-left(small); // [Mai] This does not match the button horizontal spacing, which is what we want. We only want inputs to be as tall as buttons.
 
-  @media (min-width: bolt-breakpoint(small)) {
-    @include bolt-font-size(small, null);
+  line-height: calc(#{$bolt-line-height--xsmall + em} - 2px); // [Mai] The line-height matches button's line-height, the 2px offsets the 1px border from the input.
+  font-size: $bolt-font-size--small;
+
+  @media (max-width: bolt-breakpoint(small)) {
+    line-height: calc(#{$bolt-line-height--xsmall + em} - 6px); // [Mai] This is just magic number, if the font-size ever changes, this also needs to change by inspecting in the browser and push the px.
+    font-size: 16px; // [Mai] Mobile Safari will zoom in when input is focused if the text is not at least 16px.
   }
 }
 
@@ -136,17 +140,12 @@ $bolt-input-transition: $bolt-transition;
 }
 
 .c-bolt-input {
-  @include bolt-padding(small);
   @include bolt-input-placeholder($bolt-input-placeholder-color);
-  @include bolt-form-mobile-font-size;
+  @include bolt-input-font-size-and-height;
 
   display: block;
   width: 100%;
   color: $bolt-input-text-color;
-
-  // [Mai/Denton] This makes the input same height as button.  Note that it must be a line height based on the font size
-  // of the button component (.8rem as of this writing, but obviously subject to change).
-  line-height: calc(1.45 * .8rem);
   border-color: $bolt-input-border-color;
   border-style: $bolt-input-border-style;
   border-width: $bolt-input-border-width;
@@ -250,9 +249,9 @@ $bolt-input-transition: $bolt-transition;
 }
 
 .c-bolt-inline-label {
-  @include bolt-form-mobile-font-size;
+  @include bolt-padding-left(1.5em);
+  @include bolt-font-size(small);
 
-  padding-left: 1.5em;
   display: inline-block;
   position: relative;
   cursor: pointer;
@@ -265,7 +264,7 @@ $bolt-input-transition: $bolt-transition;
   }
 
   &:before {
-    top: 0.3em;
+    top: 0.2em;
     left: 0;
     width: 1em;
     height: 1em;
@@ -289,7 +288,7 @@ $bolt-input-transition: $bolt-transition;
   }
 
   &:after {
-    top: 0.4em;
+    top: 0.3em;
     left: 0.375em;
     width: calc(1em - 0.675em);
     height: calc(1em - 0.325em);
@@ -307,7 +306,7 @@ $bolt-input-transition: $bolt-transition;
   }
 
   &:after {
-    top: calc(0.3em + 3px);
+    top: calc(0.2em + 3px);
     left: 3px;
     width: calc(1em - 6px);
     height: calc(1em - 6px);
