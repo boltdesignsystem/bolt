@@ -1,13 +1,20 @@
+{% if componentName %}
+  {% set schema = bolt.data.components["@bolt-components-#{componentName}"].schema %}
+  {% set readmeFile = "@bolt-components-#{componentName}/README.md" %}
+{% endif %}
+
+{% set code %}{% spaceless %}
+{{ usage }}
+{% endspaceless %}{% endset %}
+
 
 <div class="c-bolt-docs t-bolt-xlight">
-
   <div class="c-bolt-docs__page-content">
-
     {% include "@bolt/headline.twig" with {
       size: "xxxlarge",
       tag: "h1",
       text: schema.title ? schema.title : "Component Title"
-    } %}
+    } only %}
 
     {% if readmeFile %}
       <div class="c-bolt-docs__readme">
@@ -24,7 +31,7 @@
             ],
             id: "getting-started"
           }
-        } %}
+        } only %}
         <div class="c-bolt-docs__lead u-bolt-margin-bottom-large">
           {{ source(readmeFile) | markdown }}
         </div>
@@ -45,8 +52,14 @@
           ],
           id: "usage"
         }
-      } %}
-      <pre class="u-bolt-margin-bottom-large"><code>{{ code }}</code></pre>
+      } only %}
+      <div class="u-bolt-margin-bottom-large">
+        {% include "@bolt-components-code-snippet/code-snippet.twig" with {
+          display: "block",
+          lang: "twig",
+          content: code
+        } only %}
+      </div>
     {% endif %}
 
 
@@ -64,7 +77,7 @@
           ],
           id: "schema"
         }
-      } %}
+      } only %}
 
       <div class="bolt-docs__schema u-bolt-margin-bottom-large">
         {% include '@utils/schema-docs.twig' with { schema: schema } only %}
@@ -85,7 +98,7 @@
           ],
           id: "schema"
         }
-      } %}
+      } only %}
 
       <ul class="c-bolt-docs__page-nav-list u-bolt-margin-bottom-large">
         {% for link in links %}
@@ -244,3 +257,4 @@
       {% endif %}
     </ul>
   </div>
+</div>

@@ -18,6 +18,7 @@ export { passiveSupported } from './utils/supports-passive-event-listener';
 export { declarativeClickHandler } from './utils/declarative-click-handler';
 export { hasNativeShadowDomSupport } from './utils/environment';
 export { findParentTag } from './utils/find-parent-tag';
+export { isValidSelector } from './utils/is-valid-selector';
 
 export { withPreact } from './renderers/renderer-preact';
 export { BoltComponent } from './renderers/renderer-hyperhtml';

@@ -1,5 +1,4 @@
-{% set schema = bolt.data.components['@bolt-components-teaser'].schema %}
-{% set code %} {% verbatim %}
+{% set usage %}{% verbatim %}
 {% include "@bolt-components-teaser/teaser.twig" with {
   content: "Body text. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   buttons: [
@@ -14,12 +13,10 @@
       text: "CTA 2"
     }
   ]
-} %}
-{% endverbatim %}
-{% endset %}
+} only %}
+{% endverbatim %}{% endset %}
 
-{% include '@utils/docs.twig' with {
-  schema: schema,
-  code: code,
-  readmeFile: '@bolt-components-teaser/README.md',
+{% include "@utils/docs.twig" with {
+  componentName: "teaser",
+  usage: usage
 } only %}
