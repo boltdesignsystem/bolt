@@ -406,25 +406,26 @@ $bolt-tooltip-transition: $bolt-transition;
     display: inline-flex;
   }
 
-  .toggle--closed {
+  .toggle--open {
     position: absolute;
     top: 0; // For IE 11
     bottom: 0; // For IE 11
+    opacity: 0;
+    transform: translate3d(0, -200%, 0);
+
+    .is-active & {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .toggle--closed {
+    transform: translate3d(0, 0, 0);
     opacity: 1;
 
     .is-active & {
       opacity: 0;
-    }
-  }
-
-  .toggle--open {
-    transform: translate3d(0, -200%, 0);
-    opacity: 0;
-
-    .is-active & {
-      position: relative;
-      opacity: 1;
-      transform: translate3d(0, 0%, 0);
+      transform: translate3d(0, 200%, 0);
     }
   }
 }
