@@ -1,12 +1,15 @@
 Component in progress
 
-### Install via NPM
+###### Install via NPM
+
 ```
 npm install @bolt/components-page-footer
 ```
 
-### Use
+## Content
+
 Set `content` as arbitrary HTML:
+
 ```
 {% set content %}
   <p>Whatever HTML content you want</p>

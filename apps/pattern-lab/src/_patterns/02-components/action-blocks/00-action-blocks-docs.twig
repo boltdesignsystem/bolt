@@ -1,6 +1,4 @@
-{% set schema = bolt.data.components['@bolt-components-action-blocks'].schema %}
-
-{% set code %} {% verbatim %}
+{% set usage %}{% verbatim %}
 {% include "@bolt-components-action-blocks/action-blocks.twig" with {
   contentItems: [
     {
@@ -32,11 +30,9 @@
     }
   ]
 } only %}
-{% endverbatim %}
-{% endset %}
+{% endverbatim %}{% endset %}
 
-{% include '@utils/docs.twig' with {
-  schema: schema,
-  code: code,
-  readmeFile: '@bolt-components-action-blocks/README.md',
+{% include "@utils/docs.twig" with {
+  componentName: "action-blocks",
+  usage: usage
 } only %}

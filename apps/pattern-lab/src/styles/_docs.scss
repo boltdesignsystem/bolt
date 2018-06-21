@@ -170,10 +170,75 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @include bolt-margin-bottom(xsmall);
+    @include bolt-margin-bottom(xxsmall);
     &:last-child {
       @include bolt-margin-bottom(0);
     }
+  }
+
+  h1, h2 {
+    @include bolt-font-size(xxlarge);
+  }
+
+  h3 {
+    @include bolt-font-size(xlarge);
+  }
+
+  h4 {
+    @include bolt-font-size(large);
+  }
+
+  h5 {
+    @include bolt-font-size(small);
+  }
+
+  h6 {
+    @include bolt-font-size(xsmall);
+
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+  }
+
+  table {
+    @include bolt-font-size(small);
+    @include bolt-font-family(code);
+    table-layout: auto;
+    border: 1px solid bolt-color(gray, light);
+    width: 100%;
+    transform: translate3d(0, 0, 0);
+  }
+
+  thead {
+    border-bottom: 1px solid bolt-color(gray, light);
+  }
+
+  tr {
+    transition: background-color 0.1s ease;
+  }
+
+  tr + tr {
+    border-top: 1px solid bolt-color(gray, light);
+  }
+
+  tr:hover {
+    background-color: rgba(bolt-color(gray, xlight), 0.5);
+  }
+
+
+  th {
+    @include bolt-padding(small);
+    @include bolt-font-size(xsmall);
+    @include bolt-font-weight(semibold);
+    text-align: left;
+    color: bolt-color(gray, dark);
+    background-color: bolt-color(gray, xlight);
+    text-transform: uppercase;
+    vertical-align: bottom;
+  }
+
+  td {
+    @include bolt-padding(small);
+    vertical-align: top;
   }
 }
 

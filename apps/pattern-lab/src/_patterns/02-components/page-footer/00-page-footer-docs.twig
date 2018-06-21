@@ -1,14 +1,10 @@
-{% set schema = bolt.data.components['@bolt-components-page-footer'].schema %}
-{% set code %} {% verbatim %}
+{% set usage %}{% verbatim %}
 {% include "@bolt-components-page-footer/page-footer.twig" with {
-  "content": content,
+  content: content
 } only %}
-{% endverbatim %}
-{% endset %}
+{% endverbatim %}{% endset %}
 
-{% include '@utils/docs.twig' with {
-  schema: schema,
-  code: code,
-  readmeFile: '@bolt-components-page-footer/README.md',
+{% include "@utils/docs.twig" with {
+  componentName: "page-footer",
+  usage: usage
 } only %}
-
