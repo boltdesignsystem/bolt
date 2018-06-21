@@ -11,15 +11,13 @@
   {% if title %}title='{{ title }}' {% endif %}
   {% if children %}children='{{ children|json_encode() }}' {% endif %}
   >
-  {% block content %}
-    {% if items %}
-      {% for item in items %}
-        {% include "@bolt-components-dropdown/_dropdown-item.twig" with item only %}
-      {% endfor %}
-    {% endif %}
+  {% if items %}
+    {% for item in items %}
+      {% include "@bolt-components-dropdown/_dropdown-item.twig" with item only %}
+    {% endfor %}
+  {% endif %}
 
-    {% if _content is not empty %}
-      {% include "@bolt-components-dropdown/_dropdown-item.twig" %}
-    {% endif %}
-  {% endblock %}
+  {% if _content is not empty %}
+    {% include "@bolt-components-dropdown/_dropdown-item.twig" %}
+  {% endif %}
 </bolt-dropdown>

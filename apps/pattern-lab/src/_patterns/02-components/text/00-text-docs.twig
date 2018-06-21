@@ -1,57 +1,16 @@
-{% set schema = get_data("@bolt-components-text/text.schema.yml") %}
-{% set code %}
-  {% verbatim %}
-    {% include "@bolt-components-text/text.twig" with {
-      text: "Eyebrow text",
-      eyebrow: true
-    } only %}
+{% set usage %}{% verbatim %}
+// Web Component
+<bolt-text>
+  This is text.
+</bolt-text>
 
-    {% include "@bolt-components-text/text.twig" with {
-      text: "Headline example text",
-      headline: true
-    } only %}
-
-    {% include "@bolt-components-text/text.twig" with {
-      text: "Subheadline text goes here",
-      subheadline: true
-    } only %}
-
-    {% include "@bolt-components-text/text.twig" with {
-      text: "Here is some text with utility classes.",
-      tag: "div",
-      weight: "bold",
-      fontSize: "xlarge",
-      util: [
-        'width-1/1',
-        'another-class',
-        'one-more-class'
-      ]
-    } only %}
-  {% endverbatim %}
-
-  {# {% include "@bolt-components-text/text.twig" with {
-      text: "Here is some text with an icon",
-      tag: "div",
-      weight: "bold",
-      fontSize: "xlarge",
-      icon: {
-        name: "user",
-        background: "circle",
-        size: "xlarge",
-        color: "blue",
-        valign: "center",
-        align: "right"
-      },
-      util: [
-        'width-1/1',
-        'another-class',
-        'one-more-class'
-      ]
-    } only %} #}
-{% endset %}
+// Twig
+{% include "@bolt-components-text/text.twig" with {
+  text: "This is text."
+} only %}
+{% endverbatim %}{% endset %}
 
 {% include "@utils/docs.twig" with {
-  schema: schema,
-  code: code,
-  readmeFile: "@bolt-components-text/README.md",
+  componentName: "text",
+  usage: usage
 } only %}

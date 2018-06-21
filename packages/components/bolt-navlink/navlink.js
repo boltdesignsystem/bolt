@@ -58,6 +58,10 @@ class BoltNavLink extends BoltComponent() {
 
     if (shouldSmoothScroll !== false){
       event.preventDefault();
+
+      // Don't add the :focus state to the link in this scenario.  The focus state is about to get removed anyway as
+      // we move down the page, and a flash of the focused state just adds confusion.
+      document.activeElement.blur();
     }
 
     // manually add smooth scroll to dropdown links since these are added to the page AFTER smooth scroll event bindings would hae been added.
