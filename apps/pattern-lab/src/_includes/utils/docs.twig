@@ -1,5 +1,5 @@
-{% set schema = bolt.data.components["@bolt-components-#{componentName}"].schema %}
 {% if componentName %}
+  {% set schema = bolt.data.components["@bolt-components-#{componentName}"].schema %}
   {% set readmeFile = "@bolt-components-#{componentName}/README.md" %}
 {% endif %}
 
