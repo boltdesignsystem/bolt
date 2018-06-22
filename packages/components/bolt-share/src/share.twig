@@ -7,7 +7,8 @@
 {% set copyShare = copy is sameas(false) ? false : (copy is null ? true : copy) %}
 {% set visible = visibility is sameas(false) ? false : (visibility is null ? true : visibility) %}
 {% set isFlat = inline is sameas(false) ? false : (inline is null ? false : inline) %}
-{% set text = text | default(schema.properties.text.default) %}
+{# Default text can't be pulled from the schema because it must be translatable. #}
+{% set text = text | default("Share this page"|t) %}
 
 
 
@@ -28,16 +29,16 @@
   {% set sourceTarget = '_blank' %}
 
   {% if 'facebook' == source.name %}
-    {% set sourceName = 'Facebook' %}
+    {% set sourceName = 'Facebook'|t %}
     {% set sourceIcon = 'facebook-solid' %}
   {% elseif 'twitter' == source.name  %}
-    {% set sourceName = 'Twitter' %}
+    {% set sourceName = 'Twitter'|t %}
     {% set sourceIcon = 'twitter' %}
   {% elseif 'linkedin' == source.name  %}
-    {% set sourceName = 'LinkedIn' %}
+    {% set sourceName = 'LinkedIn'|t %}
     {% set sourceIcon = 'linkedin' %}
   {% elseif 'email' == source.name  %}
-    {% set sourceName = 'Email' %}
+    {% set sourceName = 'Email'|t %}
     {% set sourceIcon = 'email' %}
     {% set sourceTarget = '_self' %}
   {% else %}
@@ -85,7 +86,7 @@
             size: "medium"
           },
           toggle: {
-            text: "Close",
+            text: "Close"|t,
             name: "close-solid"
           }
         },
