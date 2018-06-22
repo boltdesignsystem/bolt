@@ -5,14 +5,49 @@
 {% endblock %}
 
 {% block main_content %}
+  {% include "@bolt-components-navbar/navbar.twig" with {
+    theme: "xdark",
+    "title": {
+      "tag": "h2",
+      "text": "Newsroom",
+      "icon": {
+        "name": "info-solid"
+      }
+    },
+    "links": [
+      {
+        "text": "News",
+        "url": "#"
+      },
+      {
+        "text": "Press Kit & Resources",
+        "url": "#"
+      },
+      {
+        "text": "Media Contacts",
+        "url": "#"
+      },
+      {
+        "text": "Another Link",
+        "url": "#"
+      }
+    ]
+  } only %}
+
+
 
   <div class="c-bolt-band c-bolt-band--full c-bolt-band--medium t-bolt-dark">
     <div class="o-bolt-wrapper">
-      <h1 class="c-bolt-headline c-bolt-headline--xxxlarge">
-        <span class="c-bolt-headline__text">
-          Press Releases
-        </span>
-      </h1>
+      {% include "@bolt/headline.twig" with {
+        text: "Press Releases",
+        size: "xxxlarge",
+        tag: "h1",
+      } only %}
+      {% include "@bolt/subheadline.twig" with {
+        text: "Newsworthy is an understatement. Our industry-leading solutions help the world's largest companies build applications engineered for the future.",
+        size: "xxlarge",
+        tag: "h2",
+      } only %}
       {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
         {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
           {% include "@bolt-components-card/card.twig" with {
@@ -30,7 +65,7 @@
               "buttons": [
                 {
                   "text": "Read more",
-                  "url": "http://www.google.com",
+                  "url": "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-details/04-pages-100-d8-Press-and-Media-d8-press-details.html",
                   "width": "full"
                 }
               ]
@@ -53,7 +88,7 @@
               "buttons": [
                 {
                   "text": "Read more",
-                  "url": "http://www.google.com",
+                  "url": "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-details/04-pages-100-d8-Press-and-Media-d8-press-details.html",
                   "width": "full"
                 }
               ]
@@ -76,7 +111,7 @@
               "buttons": [
                 {
                   "text": "Read more",
-                  "url": "http://www.google.com",
+                  "url": "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-details/04-pages-100-d8-Press-and-Media-d8-press-details.html",
                   "width": "full"
                 }
               ]
@@ -378,14 +413,14 @@
                 contentItems: [
                   {
                     pattern: "eyebrow",
-                    text: "Date"
+                    text: " June 5, 2018"
                   },
                   {
                     pattern: "headline",
                     tag: "h3",
                     size: "large",
-                    text: "Article Headline",
-                    url: "http://pega.com"
+                    text: "Pegasystems Launches Pega Community to Empower Anyone to Create Better Software",
+                    url: "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-details/04-pages-100-d8-Press-and-Media-d8-press-details.html"
                   },
                   {
                     pattern: "text",

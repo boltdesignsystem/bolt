@@ -13,7 +13,7 @@
     {% block band_content %}
       {% include "@bolt-components-headline/eyebrow.twig" with {
         "text": "Press Releases",
-        "url": "http://pega.com",
+        "url": "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-browse--list-view/04-pages-100-d8-Press-and-Media-d8-press-browse--list-view.html",
         "icon": {
           "name": "arrow-left",
           "position": "before"
@@ -36,9 +36,6 @@
           <p>
           <strong>LAS VEGAS – June 5, 2018</strong> – <a href="#">Pegasystems Inc.</a> (NASDAQ: PEGA), the software company empowering customer engagement at the world’s leading enterprises, today announced <a href="#">Pega Community</a>, an open online community empowering Pega users of all experience levels to build better software without coding. This new community allows anyone – from novice to expert – to access the latest resources and tutorials to unlock the power of <a href="#">Pega Infinity</a>™, Pega’s next generation digital transformation suite.
           </p>
-          {# {% include "@bolt-components-headline/text.twig" with {
-            "text": "LAS VEGAS – June 5, 2018 – Pegasystems Inc. (NASDAQ: PEGA), the software company empowering customer engagement at the world’s leading enterprises, today announced Pega Community, an open online community empowering Pega users of all experience levels to build better software without coding. This new community allows anyone – from novice to expert – to access the latest resources and tutorials to unlock the power of Pega Infinity™, Pega’s next generation digital transformation suite."
-          } only %} #}
           
         <div class="u-bolt-margin-bottom-medium">
           {% include '@bolt-components-image/image.twig' with {
@@ -77,12 +74,13 @@
             } only %}
           </div>
 
-          {# {% include "@bolt-components-headline/text.twig" with {
-            "text": "Pega Community will be debuted during today’s keynote presentation at PegaWorld — Pega’s annual conference being held through June 6 in Las Vegas. To join Pega Community, please visit <a href="https://community.pega.com/">https://community.pega.com/</a>."
-          } only %} #}
-
-          <p>Pega Community will be debuted during today’s keynote presentation at PegaWorld — Pega’s annual conference being held through June 6 in Las Vegas. To join Pega Community, please visit <a href="https://community.pega.com/">https://community.pega.com/</a>.
-          </p>
+          {% set complexText %}
+              Pega Community will be debuted during today’s keynote presentation at PegaWorld — Pega’s annual conference being held through June 6 in Las Vegas. To join Pega Community, please visit <a href="https://community.pega.com/">https://community.pega.com/</a>.          
+          {% endset %}
+          {% include "@bolt-components-headline/text.twig" with {
+            "text": complexText,
+          } only %}
+          
 
           {% include "@bolt-components-headline/headline.twig" with {
             "text": "Quotes & Commentary",
