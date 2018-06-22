@@ -10,11 +10,13 @@
 
 <div class="c-bolt-docs t-bolt-xlight">
   <div class="c-bolt-docs__page-content">
-    {% include "@bolt/headline.twig" with {
-      size: "xxxlarge",
-      tag: "h1",
-      text: schema.title ? schema.title : "Component Title"
-    } only %}
+    <div class="u-bolt-margin-bottom-large">
+      {% include "@bolt/headline.twig" with {
+        size: "xxxlarge",
+        tag: "h1",
+        text: schema.title ? schema.title : "Component Title"
+      } only %}
+    </div>
 
     {% if readmeFile %}
       <div class="c-bolt-docs__readme">
@@ -26,7 +28,6 @@
           icon: "none",
           attributes: {
             class: [
-              "u-bolt-margin-bottom-xsmall",
               "c-bolt-docs__heading-fragment"
             ],
             id: "getting-started"
@@ -47,7 +48,6 @@
         icon: "none",
         attributes: {
           class: [
-            "u-bolt-margin-bottom-xsmall",
             "c-bolt-docs__heading-fragment"
           ],
           id: "usage"
@@ -72,7 +72,6 @@
         icon: "none",
         attributes: {
           class: [
-            "u-bolt-margin-bottom-xsmall",
             "c-bolt-docs__heading-fragment"
           ],
           id: "schema"
@@ -93,7 +92,6 @@
         icon: "none",
         attributes: {
           class: [
-            "u-bolt-margin-bottom-xsmall",
             "c-bolt-docs__heading-fragment"
           ],
           id: "schema"

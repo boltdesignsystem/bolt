@@ -20,12 +20,24 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   @include bolt-headline;
 }
 
+
+// Text stack spacing
+.c-bolt-headline,
+.c-bolt-eyebrow {
+  @include bolt-margin-bottom(xxsmall);
+}
+
+.c-bolt-subheadline {
+  @include bolt-margin-bottom(xsmall);
+}
+
+.c-bolt-text {
+  @include bolt-margin-bottom(medium);
+}
+
+
+// Default headline size
 .c-bolt-headline {
-
-  &:not(:last-child) {
-    @include bolt-margin-bottom(medium);
-  }
-
   &:not([class*='c-bolt-headline--']) {
     @include bolt-font-size(large);
   }
@@ -55,7 +67,6 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 
 .c-bolt-eyebrow {
-  @include bolt-margin-bottom(0.1rem);
   @include bolt-font-size(xsmall);
   text-transform: uppercase;
   letter-spacing: $bolt-headline--plus-letter-spacing;
@@ -87,36 +98,12 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
 // Subheadline styles.
 .c-bolt-subheadline {
-  @include bolt-margin-bottom(medium);
   @include bolt-font-family(heading);
   @include bolt-font-weight(regular);
 
   &:not([class*='c-bolt-subheadline--']) {
     @include bolt-font-size(large);
   }
-}
-
-
-// Headline spacing with other elements.
-.c-bolt-headline:not(.c-bolt-headline--xxxlarge) + .c-bolt-headline,
-.c-bolt-headline:not(.c-bolt-headline--xxxlarge) + .c-bolt-subheadline,
-.c-bolt-headline:not(.c-bolt-headline--xxxlarge) + .c-bolt-text,
-.c-bolt-headline:not(.c-bolt-headline--xxxlarge) + bolt-inline-list,
-.c-bolt-headline:not(.c-bolt-headline--xxxlarge) + p:not([class]) {
-  margin-top: (-1 * bolt-v-spacing(medium)) + bolt-v-spacing(xsmall);
-}
-
-.c-bolt-headline--xxxlarge + .c-bolt-headline,
-.c-bolt-headline--xxxlarge + .c-bolt-subheadline,
-.c-bolt-headline--xxxlarge + .c-bolt-text,
-.c-bolt-headline--xxxlarge + bolt-inline-list,
-.c-bolt-headline--xxxlarge + p:not([class]) {
-  margin-top: (-1 * bolt-v-spacing(medium)) + bolt-v-spacing(small);
-}
-
-.c-bolt-subheadline + .c-bolt-text,
-.c-bolt-subheadline + p:not([class]) {
-  margin-top: (-1 * bolt-v-spacing(medium)) + bolt-v-spacing(xsmall);
 }
 
 
