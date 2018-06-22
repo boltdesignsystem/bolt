@@ -1,4 +1,4 @@
-# Bolt Docs: Developer Filing a Bug
+# Bolt Docs: Developer Filing an Issue
 
 1. Please briefly describe the issue being encountered.
 2. Which components / demos / component examples / variations is this issue affecting? 
