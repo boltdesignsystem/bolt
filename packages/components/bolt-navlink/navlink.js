@@ -14,7 +14,7 @@ import isVisible from 'is-visible';
 // Used for attaching smooth scroll behavior to dynamically created <bolt-navlink> instances
 import {
   smoothScroll,
-  defaultScrollOptions,
+  scrollOptions,
   getScrollTarget,
 } from '@bolt/components-smooth-scroll';
 
@@ -68,7 +68,7 @@ class BoltNavLink extends BoltComponent() {
     if (!this.props.active && this.props.isDropdownLink && shouldSmoothScroll !== false) {
       const scrollTarget = getScrollTarget(this._shadowLink);
       if (scrollTarget) {
-        smoothScroll.animateScroll(scrollTarget, this._shadowLink, defaultScrollOptions);
+        smoothScroll.animateScroll(scrollTarget, this._shadowLink, scrollOptions);
       }
     }
 
