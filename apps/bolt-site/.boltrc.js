@@ -59,7 +59,6 @@ module.exports = {
       '@bolt/components-unordered-list',
       '@bolt/components-video',
       './style.scss',
-      './storefront.js',
     ],
     individual: [],
   },
