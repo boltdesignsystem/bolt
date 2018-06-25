@@ -4,6 +4,7 @@
   {% include "@bolt/page-header.twig" %}
 {% endblock %}
 
+
 {% block main_content %}
   {% include "@bolt-components-navbar/navbar.twig" with {
     theme: "xdark",
@@ -34,93 +35,124 @@
     ]
   } only %}
 
+{# hero band #}
+{% embed "@bolt/band.twig" with {
+  size: "large",
+  theme: "dark",
+  fullBleed: true,
+  background: {
+    "opacity": "medium",
+    "fill": "color",
+    "focalPoint": {
+      "vertical": "center",
+      "horizontal": "center"
+    },
+    "contentItems": [
+      {
+        "pattern": "image",
+        "src": "/pattern-lab/images/content/backgrounds/background-city-skyline-with-boken.jpg",
+        "lazyload": true
+      }
+    ]
+  }
+  } only %}
+
+    {% block band_content  %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+      {% cell 'u-bolt-width-1/1 u-bolt-width-1/1@medium' %}    
+        {% include "@bolt/headline.twig" with {
+            text: "Press Releases",
+            size: "xxxlarge",
+            tag: "h1",
+        } only %}
+      <div class="u-bolt-margin-bottom-medium">
+        {% include "@bolt/subheadline.twig" with {
+            text: "Newsworthy is an understatement. Our industry-leading solutions help the world's largest companies build applications engineered for the future.e",
+            size: "xxlarge",
+            tag: "h2",
+        } only %}
+        </div>
+
+          </li>
+        </ul>
+      {% endcell %}
+    {% endgrid %}
 
 
-  <div class="c-bolt-band c-bolt-band--full c-bolt-band--medium t-bolt-dark">
-    <div class="o-bolt-wrapper">
-      {% include "@bolt/headline.twig" with {
-        text: "Press Releases",
-        size: "xxxlarge",
-        tag: "h1",
-      } only %}
-      {% include "@bolt/subheadline.twig" with {
-        text: "Newsworthy is an understatement. Our industry-leading solutions help the world's largest companies build applications engineered for the future.",
-        size: "xxlarge",
-        tag: "h2",
-      } only %}
-      {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
-        {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
-          {% include "@bolt-components-card/card.twig" with {
-            "teaser": {
-              "eyebrow": {
-                text: "Jan 18 2018"
-              },
-              "headlines": [
-                {
-                  "type": "headline",
-                  "text": "A New CRM Bill of Rights for the Future Empowered Enterprise",
-                  "size": "large"
-                }
-              ],
-              "buttons": [
-                {
-                  "text": "Read more",
-                  "url": "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-details/04-pages-100-d8-Press-and-Media-d8-press-details.html",
-                  "width": "full"
-                }
-              ]
-            }
-          } only %}
-        {% endcell %}
-        {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
-          {% include "@bolt-components-card/card.twig" with {
-            "teaser": {
-              "eyebrow": {
-                text: "Jan 18 2018"
-              },
-              "headlines": [
-                {
-                  "type": "headline",
-                  "text": "6 Customer Experience Trends to Watch in 2018",
-                  "size": "large"
-                }
-              ],
-              "buttons": [
-                {
-                  "text": "Read more",
-                  "url": "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-details/04-pages-100-d8-Press-and-Media-d8-press-details.html",
-                  "width": "full"
-                }
-              ]
-            }
-          } only %}
-        {% endcell %}
-        {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
-          {% include "@bolt-components-card/card.twig" with {
-            "teaser": {
-              "eyebrow": {
-                text: "Jan 18 2018"
-              },
-              "headlines": [
-                {
-                  "type": "headline",
-                  "text": "3 Reasons Your AI-Driven Customer Experiences are Falling Short",
-                  "size": "large"
-                }
-              ],
-              "buttons": [
-                {
-                  "text": "Read more",
-                  "url": "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-details/04-pages-100-d8-Press-and-Media-d8-press-details.html",
-                  "width": "full"
-                }
-              ]
-            }
-          } only %}
-        {% endcell %}
-      {% endgrid %}
-    </div>
-  </div>
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
+        {% include "@bolt-components-card/card.twig" with {
+          "teaser": {
+            "eyebrow": {
+              text: "Jan 18 2018"
+            },
+            "headlines": [
+              {
+                "type": "headline",
+                "text": "A New CRM Bill of Rights for the Future Empowered Enterprise",
+                "size": "large"
+              }
+            ],
+            "buttons": [
+              {
+                "text": "Read more",
+                "url": "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-details/04-pages-100-d8-Press-and-Media-d8-press-details.html",
+                "width": "full"
+              }
+            ]
+          }
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
+        {% include "@bolt-components-card/card.twig" with {
+          "teaser": {
+            "eyebrow": {
+              text: "Jan 18 2018"
+            },
+            "headlines": [
+              {
+                "type": "headline",
+                "text": "6 Customer Experience Trends to Watch in 2018",
+                "size": "large"
+              }
+            ],
+            "buttons": [
+              {
+                "text": "Read more",
+                "url": "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-details/04-pages-100-d8-Press-and-Media-d8-press-details.html",
+                "width": "full"
+              }
+            ]
+          }
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
+        {% include "@bolt-components-card/card.twig" with {
+          "teaser": {
+            "eyebrow": {
+              text: "Jan 18 2018"
+            },
+            "headlines": [
+              {
+                "type": "headline",
+                "text": "3 Reasons Your AI-Driven Customer Experiences are Falling Short",
+                "size": "large"
+              }
+            ],
+            "buttons": [
+              {
+                "text": "Read more",
+                "url": "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-details/04-pages-100-d8-Press-and-Media-d8-press-details.html",
+                "width": "full"
+              }
+            ]
+          }
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endblock %}
+{% endembed %}
+{# End hero band #}
 
   <div class="c-bolt-band c-bolt-band--full c-bolt-band--medium t-bolt-light">
     <div class="o-bolt-wrapper">
