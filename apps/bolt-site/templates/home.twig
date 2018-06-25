@@ -27,7 +27,7 @@
 
         {% include "@bolt/subheadline.twig" with {
           tag: "h2",
-          text: "Bolt provides tools, patterns, services, and guidelines that systematically improve quality, timeliness, and consistency to the Pega ecosystem so that you can focus on what really matters.",
+          text: "Bolt provides a system of UI components, styles, tools, docs, and services that power Pega’s digital ecosystem; saving time while keeping projects on-brand, and in scope.",
           size: "xxlarge"
         } only %}
 
@@ -107,19 +107,15 @@
 
 
     {% include "@bolt-components-band/band--card-collection.twig" with {
-      theme: "xdark",
+      theme: "light",
       size: "medium",
       contentItems: [
         {
           pattern: "card",
+          theme: "xlight",
           contentItems: [
           {
             pattern: "image",
-            lazyload: false,
-            ratio: false,
-            placeholderImage: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
-            placeholderColor: "#8d8e99",
-            srcset: "/images/single-source2.jpg",
             src: "/images/single-source2.jpg"
           },
           {
@@ -142,15 +138,11 @@
         },
         {
           pattern: "card",
+          theme: "xlight",
           contentItems: [
           {
             pattern: "image",
-            lazyload: false,
             src: "/images/code2.jpg",
-            ratio: false,
-            placeholderImage: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
-            placeholderColor: "#8d8e99",
-            srcset: "/images/code2.jpg"
           },
           {
             pattern: "eyebrow",
@@ -177,15 +169,11 @@
         },
         {
           pattern: "card",
+          theme: "xlight",
           contentItems: [
           {
             pattern: "image",
-            lazyload: false,
             src: "/images/tested.jpg",
-            ratio: false,
-            placeholderImage: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
-            placeholderColor: "#8d8e99",
-            srcset: "/images/tested.jpg"
           },
           {
             pattern: "eyebrow",
@@ -267,7 +255,7 @@
     {% endset %}
     {% include "@bolt-components-band/band.twig" with {
       content: availableComponents,
-      theme: "xlight",
+      theme: "dark",
     } only %}
 
     {% set actionBlocks %}
@@ -335,7 +323,7 @@
     {% endset %}
     {% include "@bolt-components-band/band.twig" with {
       content: actionBlocks,
-      theme: "xdark",
+      theme: "light",
     } only %}
 
     {% set blockquoteContent %}
@@ -346,10 +334,6 @@
         author: {
           image: {
             src: "/images/500x500.jpg",
-            placeholderImage: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
-            placeholderColor: "#8d8e99",
-            srcset: "/images/500x500.jpg",
-            lazyload: false
           },
           name: "Salem Ghoweri",
           title: "Senior Front-End Architect, Design Systems at Pega"
@@ -358,7 +342,7 @@
     {% endset %}
     {% include "@bolt-components-band/band.twig" with {
       content: blockquoteContent,
-      theme: "dark",
+      theme: "xdark",
     } only %}
 
   </article>
