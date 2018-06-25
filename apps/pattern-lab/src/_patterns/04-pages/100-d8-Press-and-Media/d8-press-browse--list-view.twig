@@ -1,39 +1,43 @@
 {% extends "@pl/default-template.twig" %}
 
-{% block global_header %}
-  {% include "@bolt/page-header.twig" %}
-{% endblock %}
+{# {% block global_header %}
+  {% include "@pl/_page-header.twig" %}
+{% endblock %} #}
 
 
 {% block main_content %}
-  {% include "@bolt-components-navbar/navbar.twig" with {
-    theme: "xdark",
-    "title": {
-      "tag": "h2",
-      "text": "Newsroom",
-      "icon": {
-        "name": "info-solid"
-      }
-    },
-    "links": [
-      {
-        "text": "News",
-        "url": "#"
-      },
-      {
-        "text": "Press Kit & Resources",
-        "url": "#"
-      },
-      {
-        "text": "Media Contacts",
-        "url": "#"
-      },
-      {
-        "text": "Another Link",
-        "url": "#"
-      }
-    ]
-  } only %}
+  {% embed "@bolt-components-sticky/sticky.twig" %}
+    {% block sticky_content %}
+      {% include "@bolt-components-navbar/navbar.twig" with {
+        theme: "xdark",
+        "title": {
+          "tag": "h2",
+          "text": "Newsroom",
+          "icon": {
+            "name": "info-solid"
+          }
+        },
+        "links": [
+          {
+            "text": "News",
+            "url": "#"
+          },
+          {
+            "text": "Press Kit & Resources",
+            "url": "#"
+          },
+          {
+            "text": "Media Contacts",
+            "url": "#"
+          },
+          {
+            "text": "Another Link",
+            "url": "#"
+          }
+        ]
+      } only %}
+    {% endblock %}
+  {% endembed %}
 
 {# hero band #}
 {% embed "@bolt/band.twig" with {
@@ -71,7 +75,7 @@
             size: "xxlarge",
             tag: "h2",
         } only %}
-        </div>
+      </div>
 
           </li>
         </ul>
