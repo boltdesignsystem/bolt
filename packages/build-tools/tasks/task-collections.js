@@ -59,6 +59,9 @@ async function clean() {
 async function serve() {
   try {
     const serverTasks = [];
+    if (config.hasTotallyAwesomeApi) {
+      serverTasks.push(extraTasks.server.phpServer());
+    }
     if (config.wwwDir) {
       serverTasks.push(extraTasks.server.serve());
       if (config.webpackDevServer) {

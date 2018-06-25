@@ -27,11 +27,10 @@ $responseData = [
 
 if ($templatePath && $data) {
   $html = $twigRenderer->render($templatePath, $data);
-
   $responseData['ok'] = true;
   $responseData['html'] = $html;
-
-  echo $html;
 } else {
-  echo json_encode($responseData);
+  $responseData['message'] = 'Template Path and Data not given.';
 }
+
+echo json_encode($responseData);

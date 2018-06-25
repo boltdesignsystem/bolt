@@ -1,6 +1,7 @@
 module.exports = {
   // Environmental variable / preset to use
   env: 'static',
+  hasTotallyAwesomeApi: true,
   buildDir: '../../www/build/',
   srcDir: './content',
   wwwDir: '../../www',
