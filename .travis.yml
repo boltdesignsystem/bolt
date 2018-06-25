@@ -30,11 +30,8 @@ script:
 
 cache:
   apt: true
-  yarn: true
   directories:
     - $HOME/.composer/cache/files
-    - $HOME/.cache/yarn
-    - node_modules
 
 notifications:
   email:
