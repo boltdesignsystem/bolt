@@ -14,6 +14,7 @@ export * from './icons/asset-podcast';
 export * from './icons/asset-presentation';
 export * from './icons/asset-text';
 export * from './icons/asset-video';
+export * from './icons/bolt-logo';
 export * from './icons/calendar';
 export * from './icons/careers';
 export * from './icons/case-management';

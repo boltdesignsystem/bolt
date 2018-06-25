@@ -41,16 +41,18 @@ async function transpileIcons(icons) {
     const location = path.join(buildDir, fileName);
 
     $('*').each((index, el) => {
-      Object.keys(el.attribs).forEach((x) => {
-        if (x === 'stroke') {
-          $(el).attr(x, 'currentColor');
-        }
 
-        if (x === 'fill') {
-          $(el).attr(x, 'currentColor');
-        }
-      });
+      if (!fileName.includes('bolt-')){
+        Object.keys(el.attribs).forEach((x) => {
+          if (x === 'stroke') {
+            $(el).attr(x, 'currentColor');
+          }
 
+          if (x === 'fill') {
+            $(el).attr(x, 'currentColor');
+          }
+        });
+      }
 
       if (el.name === 'svg') {
         $(el).attr('otherProps', '...');
@@ -86,17 +88,24 @@ async function transpileIcons(icons) {
   export const ${uppercamelcase(id)} = ({ bgColor, fgColor, size, ...otherProps }) => {
       return (
         ${
-          $(optimizedSVG).toString()
-            .replace('fill="#FFF"', 'fill={fgColor}')
-            .replace('stroke="#FFF"', 'stroke={fgColor}')
-            .replace(new RegExp(/ stroke=".*?"/, 'g'), ' stroke={bgColor}')
-            .replace(new RegExp(/ fill="(?!#fff|none).*?"/, 'g'), ' fill={bgColor}')
-            .replace('viewBox', '{...otherProps} viewBox') // tack on extra props next to viewBox attribute
-            .replace('d="M0 0h24v24H0z"', '')
-            .replace(/width=".*?"/, 'width={size}')
-            .replace(/height=".*?"/, 'height={size}')
-            .replace('otherProps="..."', '{...otherProps}')
-          }
+          fileName.includes('bolt-') ?
+            $(optimizedSVG).toString()
+              .replace('viewBox', '{...otherProps} viewBox') // tack on extra props next to viewBox attribute
+              .replace('d="M0 0h24v24H0z"', '')
+              .replace(/width=".*?"/, 'width={size}')
+              .replace(/height=".*?"/, 'height={size}')
+              .replace('otherProps="..."', '{...otherProps}') :
+            $(optimizedSVG).toString()
+              .replace('fill="#FFF"', 'fill={fgColor}')
+              .replace('stroke="#FFF"', 'stroke={fgColor}')
+              .replace(new RegExp(/ stroke=".*?"/, 'g'), ' stroke={bgColor}')
+              .replace(new RegExp(/ fill="(?!#fff|none).*?"/, 'g'), ' fill={bgColor}')
+              .replace('viewBox', '{...otherProps} viewBox') // tack on extra props next to viewBox attribute
+              .replace('d="M0 0h24v24H0z"', '')
+              .replace(/width=".*?"/, 'width={size}')
+              .replace(/height=".*?"/, 'height={size}')
+              .replace('otherProps="..."', '{...otherProps}')
+        }
       )
 };
 `;
