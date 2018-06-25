@@ -1,7 +1,6 @@
-{% set schema = get_data('@bolt-components-block-list/block-list.schema.yml') %}
-{% set code %}{% verbatim %}
+{% set usage %}{% verbatim %}
 {% include "@bolt-components-block-list/block-list.twig" with {
-  "items" : [
+  items: [
     include("@bolt-components-link/link.twig", {
       text: "Link 1",
       url: "#",
@@ -28,12 +27,10 @@
     }),
     "Simple text example"
   ]
-} %}
-{% endverbatim %}
-{% endset %}
+} only %}
+{% endverbatim %}{% endset %}
 
-{% include '@utils/docs.twig' with {
-  schema: schema,
-  code: code,
-  readmeFile: '@bolt-components-block-list/README.md',
+{% include "@utils/docs.twig" with {
+  componentName: "block-list",
+  usage: usage
 } only %}
