@@ -22,6 +22,7 @@ const marked = require('marked');
 const timer = require('../utils/timer');
 const manifest = require('../utils/manifest');
 const express = require('express');
+const { getPort } = require('../utils/get-port');
 
 /**
  * Prep a JSON string for use in bash
@@ -168,9 +169,10 @@ async function compile(exitOnError = true) {
 
   const pages = await getPages(config.srcDir);
   const site = await getSiteData(pages);
+  const port = await getPort(8081);
 
   const app = express();
-  const server = app.listen(3001);
+  const server = app.listen(port);
 
   // Walk through all available pages to set up data to respond with (@todo: iterate on this -- temp solution to get Travis builds back up and running!)
   pages.map((page) => {
@@ -185,7 +187,7 @@ async function compile(exitOnError = true) {
   });
 
   return Promise.all(pages.map(async (page) => {
-    const url = page.url;
+    const url = `http://localhost:${port}/${page.url}`;
 
     // the page we are requesting data for
     const pageArg = escapeNestedSingleQuotes(JSON.stringify(url));
