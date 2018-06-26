@@ -45,8 +45,6 @@ if ($json) {
 
     if (key_exists('data', $postData)) {
       $data = $postData['data'];
-    } else {
-      $msgs[] = "POST body must have a key of 'data'.";
     }
 
     if (key_exists('templatePath', $postData)) {
