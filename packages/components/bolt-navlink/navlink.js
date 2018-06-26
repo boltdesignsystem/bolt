@@ -144,7 +144,7 @@ class BoltNavLink extends BoltComponent() {
 
     // Set an initially active link if appropriate.
     if (isAlreadyActive) {
-          this.activate(false);
+      this.activate(false);
     }
   }
 
