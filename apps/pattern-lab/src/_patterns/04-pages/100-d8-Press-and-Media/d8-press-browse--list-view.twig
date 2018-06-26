@@ -40,7 +40,7 @@
   {% endembed %}
 
 {# hero band #}
-{% embed "@bolt/band.twig" with {
+{# {% embed "@bolt/band.twig" with {
   size: "large",
   theme: "dark",
   fullBleed: true,
@@ -59,6 +59,14 @@
       }
     ]
   }
+  } only %} #}
+{% embed "@bolt/band.twig" with {
+  size: "large",
+  theme: "dark",
+  fullBleed: true,
+  background: {
+    shapeGroup: "A"
+  }
   } only %}
 
     {% block band_content  %}
@@ -71,7 +79,7 @@
         } only %}
       <div class="u-bolt-margin-bottom-medium">
         {% include "@bolt/subheadline.twig" with {
-            text: "Newsworthy is an understatement. Our industry-leading solutions help the world's largest companies build applications engineered for the future.e",
+            text: "NEW Newsworthy is an understatement. Our industry-leading solutions help the world's largest companies build applications engineered for the future.",
             size: "xxlarge",
             tag: "h2",
         } only %}
