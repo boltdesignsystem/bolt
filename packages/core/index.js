@@ -26,3 +26,5 @@ export { spacingSizes } from './data/spacing-sizes';
 
 // Export polyfill loader
 export { polyfillLoader } from './polyfills';
+
+import './data/bolt-settings';
