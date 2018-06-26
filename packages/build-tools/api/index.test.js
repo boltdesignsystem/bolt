@@ -10,7 +10,7 @@ async function renderResponse(body){
 }
 
 
-describe('Test the Bolt TwigRender API', () => {
+describe.skip('Test the Bolt TwigRender API', () => {
   test('renders a basic button', async () => {
     const result = await renderResponse(JSON.stringify({
       'templatePath': '@bolt-components-button/button.twig',
