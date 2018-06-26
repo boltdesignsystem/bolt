@@ -43,11 +43,13 @@ async function handleRequest(req, res, next) {
         const renderResponse = await fetch(`http://localhost:${phpServerPort}`, {
           method: 'POST',
           body: JSON.stringify(body),
-        }).then(res => res.json());
+        });
+        const data = await renderResponse.json();
         console.log('/render-twig response:');
-        console.log(renderResponse);
+        console.log(data);
         // @todo take headers from `renderResponse`, put in `res`
-        res.end(JSON.stringify(renderResponse));
+        res.setHeader('Content-Type', renderResponse.headers.get('Content-Type'));
+        res.end(JSON.stringify(data));
       } catch (error) {
         log.errorAndExit('Error connecting to phpServer api endpoint', error);
       }
