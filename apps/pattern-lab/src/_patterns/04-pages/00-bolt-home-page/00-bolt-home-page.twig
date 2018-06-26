@@ -1,0 +1,77 @@
+{% include "@bolt-components-navbar/navbar.twig" with {
+  theme: "none",
+  "title": {
+    "tag": "h2",
+    "text": "Bolt v1.5.3",
+    "icon": {
+      "name": "icon-name"
+    }
+  },
+  "links": [
+    {
+      "text": "Components",
+      "url": "#"
+    },
+    {
+      "text": "Getting Started",
+      "url": "#"
+    },
+    {
+      "text": "Github",
+      "url": "#"
+    }
+  ]
+} only %}
+
+{% block main_content %}
+
+  {# hero band #}
+  {% embed "@bolt/band.twig" with {
+    size: "xlarge",
+    theme: "xdark",
+    fullBleed: true,
+    background: {
+      "opacity": "medium",
+      "fill": "color",
+      "focalPoint": {
+        "vertical": "center",
+        "horizontal": "center"
+      },
+      "contentItems": [
+        {
+          "pattern": "image",
+          "src": "/pattern-lab/images/content/backgrounds/background-bolt.jpg",
+          "lazyload": true
+        }
+      ]
+    }
+  } only %}
+    {% block band_content  %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--center o-bolt-grid--matrix" %}
+      {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}  
+        {% set classes = create_attribute(imageAttributes | default({})).addClass([
+          "c-bolt-image__img",
+          "u-bolt-width-1/1",
+        ])
+      %}  
+      {% include '@bolt-components-image/image.twig' with {
+        src: "/pattern-lab/images/content/backgrounds/bolt-logo-lockup-dark.png",
+        alt: "Bolt Design System logo",
+      } only %}
+
+      {% include "@bolt/subheadline.twig" with {
+          text: "Bolt provides tools, patterns, services, and guidelines that systematically improve quality, timeliness, and consistency to the Pega ecosystem so that you can focus on what really matters.",
+          size: "xxlarge",
+          tag: "h2",
+          align: "center",
+      } only %}
+
+
+          </li>
+        </ul>
+      {% endcell %}
+    {% endgrid %}
+    {% endblock %}
+  {% endembed %}
+{% endblock %}
+  {# End hero band #}
