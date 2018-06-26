@@ -1,37 +1,29 @@
 const chalk = require('chalk');
-const { exec } = require('child_process');
+const execa = require('execa');
 const notifier = require('node-notifier');
 
 /**
  * Run shell command
  * @param cmd {string} - Command to run
+ * @param args {string[]} - args to pass to `cmd`
  * @param exitOnError {boolean} - If that should exit non-zero or carry one.
  * @param streamOutput {boolean} - Should output be sent to stdout as it happens? It always gets passed to resolve at end.
  * @param showCmdOnError {boolean} - If error, should `cmd` be shown?
  */
-async function sh(cmd, exitOnError, streamOutput, showCmdOnError = true) {
+async function sh(cmd, args, exitOnError, streamOutput, showCmdOnError = true) {
   return new Promise((resolve, reject) => {
-    const child = exec(cmd, {
-      encoding: 'utf8',
-    });
-    let output = '';
-    child.stdout.on('data', (data) => {
-      output += data;
-      if (streamOutput) {
-        process.stdout.write(data);
-      }
-    });
-    child.stderr.on('data', (data) => {
-      output += data;
-      if (streamOutput) {
-        process.stdout.write(data);
-      }
-    });
-    child.on('close', (code) => {
+    console.log(cmd, args);
+    const child = execa(cmd, args);
+
+    if (streamOutput) {
+      child.stdout.pipe(process.stdout);
+    }
+
+    child.then((results) => {
+      const { code, stdout, stderr, message } = results;
+      const output = stderr + '\n\n' + stdout;
       if (code > 0) {
-        const errorMsg = chalk.red(`
-Error with code ${code}${showCmdOnError ? ` after running: ${cmd}`: ''}:
-`);
+        const errorMsg = chalk.red(showCmdOnError ? message : `Error with code ${code}`);
         if (exitOnError) {
           process.exitCode = 1;
           reject(new Error(errorMsg + output));

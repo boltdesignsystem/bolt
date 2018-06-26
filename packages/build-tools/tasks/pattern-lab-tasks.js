@@ -41,7 +41,12 @@ function plBuild(errorShouldExit) {
     const startTime = timer.start();
     // log.taskStart('build: pattern lab');
     events.emit('pattern-lab:precompile');
-    sh(`php -d memory_limit=4048M ${consolePath} --generate`, errorShouldExit, false)
+    sh('php', [
+      '-d',
+      'memory_limit=4048M',
+      consolePath,
+      '--generate',
+    ], errorShouldExit, false)
       .then((output) => {
 
         plSpinner.succeed(chalk.green(`Built Pattern Lab in ${timer.end(startTime)}`));
