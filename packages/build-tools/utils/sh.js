@@ -12,7 +12,6 @@ const notifier = require('node-notifier');
  */
 async function sh(cmd, args, exitOnError, streamOutput, showCmdOnError = true) {
   return new Promise((resolve, reject) => {
-    console.log(cmd, args);
     const child = execa(cmd, args);
 
     if (streamOutput) {
