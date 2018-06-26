@@ -47,16 +47,22 @@ class BoltNavLink extends BoltComponent() {
   onClick(event) {
     // prevent browser default if we're smooth scrolling to a navlink. this ensures a smoother, less jumpy animation in browsers (like Safari)
     const customScrollElemTarget = this._shadowLink.getAttribute('href');
-    const matchedScrollTarget = document.querySelectorAll(customScrollElemTarget);
+    let matchedScrollTarget;
     let shouldSmoothScroll = true;
+
+    if (customScrollElemTarget.indexOf('#') !== -1){
+      matchedScrollTarget = document.querySelectorAll(customScrollElemTarget);
+    } else {
+      this.activate();
+    }
 
     // if no ids match up with the smooth scrollable element, don't try to smooth scroll.
     // workaround to smooth scroll js error `Cannot read property 'smoothScroll' of null`
-    if (customScrollElemTarget.indexOf('#') !== -1 && matchedScrollTarget.length === 0) {
+    if (customScrollElemTarget.indexOf('#') === -1 || matchedScrollTarget.length === 0) {
       shouldSmoothScroll = false;
     }
 
-    if (shouldSmoothScroll !== false){
+    if (shouldSmoothScroll){
       event.preventDefault();
 
       // Don't add the :focus state to the link in this scenario.  The focus state is about to get removed anyway as
@@ -138,7 +144,7 @@ class BoltNavLink extends BoltComponent() {
 
     // Set an initially active link if appropriate.
     if (isAlreadyActive) {
-      this.activate(false);
+          this.activate(false);
     }
   }
 

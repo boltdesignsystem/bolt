@@ -48,88 +48,90 @@
   {% set hasSidebar = nestedPages or sidebar %}
   {# End Global Twig vars #}
 </head>
-<body class="storefront-docs c-bolt-site {% if currentUrl == 'index.html' %} t-bolt-dark {% endif %} storefront-docs--{{ urlChunks | length >= 2 ? urlChunks|first : 'parent' }}">
+<body class="storefront-docs c-bolt-site {% if currentUrl == 'index.html' %} {% endif %} storefront-docs--{{ urlChunks | length >= 2 ? urlChunks|first : 'parent' }}">
 
-
-<header class="storefront-docs-header {{ currentUrl != 'index.html' ? 't-bolt-dark' : 't-bolt-xdark' }}">
-  <h1 class="storefront-docs-title storefront-docs-title--main u-bolt-margin-right-auto@small">
-    <a class="" href="/">
-    {% include "@bolt-components-icon/icon.twig" with {
-      name: "energy",
-      size: "medium",
-    }%} <span>BOLT DESIGN SYSTEM</span>
-    </a>
-  </h1>
-  <nav class="storefront-docs-header__nav">
-
-    {% for page in site.pages if page.meta.nav == 'main' %}
-      {% set isActive = currentUrl == page.url %}
-      {% set isActivePath = page.url starts with currentSection %}
-      <a href="/{{ page.url }}" class="{% if isActive %}active{% endif %} {% if isActivePath %}active-path{% endif %}">{{ page.meta.title }}</a>
-      {% if loop.first %}
-        <a href="/pattern-lab/index.html" target="_blank">Pattern Lab</a>
-      {% endif %}
-    {% endfor %}
-
-    {% if 'docs/' in currentUrl %}
-      <a href="#menu" class="storefront-docs__hamburger u-bolt-hide@medium">
-        <span class="u-bolt-margin-right-xsmall">Menu</span>
-        {% include "@bolt-components-icon/icon.twig" with {
-          name: "menu",
-          size: "medium",
-        } %}
-      </a>
+{% if hasSidebar %}
+  <aside class="storefront-docs-sidebar" id="menu">
+    {% if nestedPages %}
+      {% include 'partials/sub-nav.twig' with {
+        nestedPages: nestedPages,
+      } %}
     {% endif %}
-  </nav>
-  {% if currentUrl != 'index.html' %}
-    {% include "@bolt-components-headline/headline.twig" with {
-      tag: "h2",
-      text: page.meta.title,
-      size: "large",
-      icon: {
-        name: "chevron-right",
+  </aside>
+
+  <a href="#" class="storefront-docs-sidebar__overlay"></a>
+{% endif %}
+
+{% set links = [] %}
+
+{# ignore the homepage #}
+{% for page in site.pages if page.meta.nav == 'main' %}
+  {% set isActive = currentUrl == page.url %}
+  {% set isActivePath = page.url starts with currentSection %}
+
+  {% set links = links | merge([{
+    text: page.meta.title,
+    url: "/" ~ page.url,
+    active: isActive ? true : false,
+  }]) %}
+{% endfor %}
+
+{% set links = links | merge([{
+  "text": "Components",
+  "url": "/pattern-lab/index.html"
+}]) %}
+
+
+{% set navbarContent = '' %}
+{% if hasSidebar %}
+  {% set navbarContent %}
+    <a href="#menu" class="storefront-docs__hamburger u-bolt-hide@medium">
+      <span class="u-bolt-visuallyhidden">Menu</span>
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "menu",
         size: "medium",
-      }
+      } %}
+    </a>
+  {% endset %}
+{% endif %}
+
+{% embed "@bolt-components-sticky/sticky.twig" with {
+  attributes: {
+    class: [
+      "storefront-docs__header"
+    ]
+  }
+} %}
+  {% block sticky_content %}
+    {% include "@bolt-components-navbar/navbar.twig" with {
+      theme: "xdark",
+      title: {
+        tag: "h2",
+        text: "BOLT DESIGN SYSTEM",
+        url: "/",
+        icon: {
+          size: "medium",
+          name: "bolt-logo"
+        }
+      },
+      "links": links,
+      content: navbarContent
     } only %}
-  {% endif %}
-</header>
+  {% endblock %}
+{% endembed %}
+
+
 
 {# @todo Incorporate new class into styles for when there is a sidebar and when there is not. ie: when no sidebar: make it 100% wide Jake #}
 <div class="storefront-docs__content c-bolt-site__content {% if hasSidebar %} storefront-docs__content--has-sidebar{% endif %} {% if currentUrl == 'index.html' %}c-bolt-site__content--middle {% endif %}">
 
   <div class="storefront-docs-wrapper">
 
-
-
-    {% if hasSidebar %}
-      <aside class="storefront-docs-sidebar" id="menu">
-        <header class="storefront-docs-header t-bolt-xlight">
-          <h1 class="storefront-docs-title c-bolt-headline--large">
-            <a href="/">
-            {% include "@bolt-components-icon/icon.twig" with {
-              name: "energy",
-              size: "medium",
-            }%} <span>BOLT DESIGN SYSTEM</span>
-            </a>
-          </h1>
-        </header>
-
-        {% if nestedPages %}
-          {% include 'partials/sub-nav.twig' with {
-            nestedPages: nestedPages,
-          } %}
-        {% endif %}
-      </aside>
-
-      <a href="#" class="storefront-docs-sidebar__overlay"></a>
-    {% endif %}
-
-
     <main class="storefront-docs-content {{ currentUrl != 'index.html' ? 't-bolt-xlight' }}">
       {% include "@bolt-components-band/band.twig" with {
         content: content,
         fullBleed: false,
-        theme: currentUrl == 'index.html' ? 'none' : 'xlight'
+        theme: currentUrl == 'index.html' ? 'dark' : 'xlight'
       } only %}
     </main>
   </div>

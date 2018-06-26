@@ -23,14 +23,6 @@
 
 <nav class="sub-nav">
   {% if currentSection %}
-    {% include '@bolt-components-headline/headline.twig' with {
-      text: currentSection|title,
-      size: 'xlarge',
-      tag: 'h2',
-      icon: {
-        name: 'chevron-right'
-      }
-    } %}
     <a href="#" class="storefront-docs__close-menu u-bolt-hide@medium">
       {% include "@bolt-components-icon/icon.twig" with {
         name: "close",

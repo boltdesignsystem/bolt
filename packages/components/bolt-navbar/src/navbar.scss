@@ -69,7 +69,7 @@ bolt-navbar {
       @include bolt-padding-right(0);
       flex-direction: row;
       display: grid;
-      grid-template-columns: bolt-spacing(medium) auto 1fr fit-content(100px) (bolt-spacing(large) - bolt-spacing(xxsmall));
+      grid-template-columns: minmax((bolt-spacing(large) - bolt-spacing(xxsmall)), auto) auto (bolt-spacing(large) - bolt-spacing(xxsmall));
       grid-template-rows: 1fr auto;
       align-content: center;
       justify-content: center;

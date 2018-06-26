@@ -93,11 +93,6 @@ export class BoltNavPriority extends BoltComponent() {
     });
   }
 
-  render() {
-    return this.html `
-      ${this.slot('default')}
-    `
-  }
 
   _adaptPriorityNav() {
     this.classList.add('is-resizing');

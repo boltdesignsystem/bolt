@@ -22,5 +22,6 @@ use the string "none" rather than a boolean false #}
     {% endif %}
 
     {% include "@bolt-components-nav-priority/nav-priority.twig" %}
+    {% block content %}{{ content }}{% endblock %}
   </nav>
 </bolt-navbar>
