@@ -70,7 +70,7 @@ let gumshoeStateModule = (function () {
         // without a value for activeClass, so we give it a placeholder.
         activeClass: 'has-gumshoe-focus',
         scrollDelay: false,
-        offset,
+        offset: boltSettings.gumshoeOffset,
         callback(nav) {
           /**
             * Exit early if nav OR nav.nav (the target) is undefined. Workaround to occasional JS error throwing:

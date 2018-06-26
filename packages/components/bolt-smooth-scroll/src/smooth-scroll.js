@@ -21,7 +21,7 @@ export const scrollOptions = {
       return offsetElement.getAttribute('offset');
     }
     else {
-      return 0;
+      return boltSettings.smoothScrollOffset;
     }
   },
 
