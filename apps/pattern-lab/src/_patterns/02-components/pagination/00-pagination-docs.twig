@@ -1,0 +1,11 @@
+{% set schema = bolt.data.components['@bolt-components-pagination'].schema %}
+{% set code %}{% verbatim %}{% include "@bolt-components-pagination/pagination.twig" with {
+  total: 10,
+  current: 4
+} %}{% endverbatim %}{% endset %}
+
+{% include '@utils/docs.twig' with {
+  schema: schema,
+  code: code,
+  readmeFile: '@bolt-components-pagination/README.md',
+} only %}

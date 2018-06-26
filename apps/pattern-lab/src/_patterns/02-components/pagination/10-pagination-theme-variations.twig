@@ -1,0 +1,32 @@
+{% set pagination %}
+  {% include "@bolt-components-pagination/pagination.twig" with {
+    total: 10,
+    current: 5,
+    pager: '/page/'
+  } %}
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  theme: "xdark",
+  content: pagination
+} only %}
+
+{% include "@bolt-components-band/band.twig" with {
+  theme: "dark",
+  content: pagination
+} only %}
+
+{% include "@bolt-components-band/band.twig" with {
+  theme: "medium",
+  content: pagination
+} only %}
+
+{% include "@bolt-components-band/band.twig" with {
+  theme: "light",
+  content: pagination
+} only %}
+
+{% include "@bolt-components-band/band.twig" with {
+  theme: "xlight",
+  content: pagination
+} only %}

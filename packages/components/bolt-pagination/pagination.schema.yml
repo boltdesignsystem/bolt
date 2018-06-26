@@ -1,0 +1,30 @@
+$schema: 'http://json-schema.org/draft-04/schema#'
+title: 'Bolt Pagination'
+type: object
+properties:
+  total:
+    type: number
+    title: 'Total pages'
+    description: 'Total pages within the pagination'
+  current:
+    type: number
+    title: 'Current page'
+    description: 'Current page selected'
+  pager:
+    type: string
+    title: 'Link URI string'
+    description: 'The portion of the URI string for paging (e.g. "/page/" for a pattern like [domain.com]/page/3)'
+    default: '#'
+  previousText:
+    type: string
+    title: 'Previous text'
+    description: 'Text to be displayed for the previous anchor'
+    default: 'Previous'
+  nextText:
+    type: string
+    title: 'Next text'
+    description: 'Text to be displayed for the next anchor'
+    default: 'Next'
+required:
+  - total
+  - current

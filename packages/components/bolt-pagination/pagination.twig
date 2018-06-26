@@ -1,0 +1,50 @@
+{% set schema = bolt.data.components['@bolt-components-pagination'].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# Defaults for a vanilla `pagination` component #}
+{% set prefix = "c-bolt-" %}
+{% set componentName = "pagination" %}
+{% set baseClass = prefix ~ componentName %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# check if the value set to a prop is allowed or defined. if not, default to the default value specified in the component's schema (if one exists) #}
+{% set previousText = previousText | default(schema.properties.previousText.default) %}
+{% set nextText = nextText | default(schema.properties.nextText.default) %}
+{% set pager = pager | default(schema.properties.pager.default) %}
+
+{# calculate our start and end points for pagination markers #}
+{% set pageStart = current + 2 > total ? total - 4 : (current - 2 > 0 ? current - 2 : 1) %}
+{% if total > 5 %}
+  {% set pageEnd = current + 2 <= total ? (current + 2 <= 4 ? 5 : current + 2) : total %}
+{% else %}
+  {% set pageEnd = total %}
+{% endif %}
+
+ <bolt-pagination
+    {% if total %} total="{{ total }}" {% endif %}
+    {% if current %} current="{{ current }}" {% endif %}
+    {{ attributes }}
+  >
+  <ul class="{{ baseClass }}">
+    {% if previousText and current > 1 %}
+      <li class="{{ baseClass ~ '__control-prev' }}">
+        <a href="{{ pager ~ (current - 1) }}"><bolt-icon name="chevron-left" size="small"></bolt-icon> <span>{{ previousText }}</span></a>
+      </li>
+    {% endif %}
+
+    {% if total and current %}
+      {% for page in pageStart..pageEnd %}
+        <li{% if page == current %} class="is-active"{% endif %}><a href="{{ pager ~ page }}">{{ page }}</a></li>
+      {% endfor %}
+    {% endif %}
+
+    {% if nextText and total > 5 and current < total %}
+      <li class="{{ baseClass ~ '__control-next' }}">
+        <a href="{{ pager ~ (current + 1) }}"><span>{{ nextText }}</span> <bolt-icon name="chevron-right" size="small"></bolt-icon></a>
+      </li>
+    {% endif %}
+  </ul>
+</bolt-pagination>
