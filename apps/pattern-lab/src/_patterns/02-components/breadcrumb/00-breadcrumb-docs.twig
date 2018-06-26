@@ -1,0 +1,24 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
+  contentItems: [
+    include("@bolt-components-link/link.twig", {
+      text: "Home",
+      url: "#!"
+    }),
+    include("@bolt-components-link/link.twig", {
+      text: "Landing Page",
+      url: "#!"
+    }),
+    include("@bolt-components-link/link.twig", {
+      text: "Sub Page",
+      url: "#!"
+    }),
+    "Current Page"
+  ]
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "breadcrumb",
+  usage: usage
+} only %}

@@ -1,14 +1,11 @@
-{% set schema = bolt.data.components['@bolt-components-form'].schema %}
-{% set code %} {% verbatim %}
+{% set usage %}{% verbatim %}
 {% include "@bolt-components-form/form.twig" with {
-    text: "This is a form",
-    url: "http://google.com",
-  } only %}
-{% endverbatim %}
-{% endset %}
+  text: "This is a form",
+  url: "http://google.com",
+} only %}
+{% endverbatim %}{% endset %}
 
-{% include '@utils/docs.twig' with {
-  schema: schema,
-  code: code,
-  readmeFile: '@bolt-components-form/README.md',
+{% include "@utils/docs.twig" with {
+  componentName: "form",
+  usage: usage
 } only %}
