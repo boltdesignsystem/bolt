@@ -8,7 +8,8 @@ const server = browserSync.create();
 
 function phpServer() {
   return new Promise((resolve, reject) => {
-    sh(`php -S 127.0.0.1:${phpServerPort} renderTwigApi.php`, true, true, true)
+    console.log('Starting up local php render twig api server at port ', phpServerPort);
+    sh('php', ['-S', `127.0.0.1:${phpServerPort}`, 'renderTwigApi.php'], true, true, true, true)
         .then((output) => {
           console.log('---');
           console.log(output);
