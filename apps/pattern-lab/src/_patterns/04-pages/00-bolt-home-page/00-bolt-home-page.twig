@@ -1,5 +1,5 @@
 {% include "@bolt-components-navbar/navbar.twig" with {
-  theme: "none",
+  theme: "xdark",
   "title": {
     "tag": "h2",
     "text": "Bolt v1.5.3",
@@ -26,7 +26,7 @@
 {% block main_content %}
 
   {# hero band #}
-  {% embed "@bolt/band.twig" with {
+{% embed "@bolt/band.twig" with {
     size: "xlarge",
     theme: "xdark",
     fullBleed: true,
@@ -48,30 +48,48 @@
   } only %}
     {% block band_content  %}
     {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--center o-bolt-grid--matrix" %}
-      {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}  
-        {% set classes = create_attribute(imageAttributes | default({})).addClass([
-          "c-bolt-image__img",
-          "u-bolt-width-1/1",
-        ])
-      %}  
-      {% include '@bolt-components-image/image.twig' with {
-        src: "/pattern-lab/images/content/backgrounds/bolt-logo-lockup-dark.png",
-        alt: "Bolt Design System logo",
-      } only %}
+        {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}  
+          {% set classes = create_attribute(imageAttributes | default({})).addClass([
+            "c-bolt-image__img",
+            "u-bolt-width-1/1",
+          ])
+        %}  
+        <div class="u-bolt-margin-bottom-medium">
+          {% include '@bolt-components-image/image.twig' with {
+            src: "/pattern-lab/images/content/backgrounds/bolt-logo-lockup-dark.png",
+            alt: "Bolt Design System logo",
+          } only %}
+        </div>
 
       {% include "@bolt/subheadline.twig" with {
-          text: "Bolt provides tools, patterns, services, and guidelines that systematically improve quality, timeliness, and consistency to the Pega ecosystem so that you can focus on what really matters.",
-          size: "xxlarge",
+          text: "The Bolt provides a system of reusable and consistent UI components, visual styles, tools, guidelines, and services that power Pega’s digital ecosystem; saving time while keeping projects on-brand, and in scope.",
+          size: "xlarge",
           tag: "h2",
           align: "center",
       } only %}
+  
+      <div class="u-bolt-text-align-center">
+        {% include "@bolt-components-button-group/button-group.twig" with {
+              buttons: [
+                {
+                  text: "Get started",
+                  width: "full",
+                  style: "primary"
+                },
+                {
+                  text: "View on GitHub",
+                  width: "full",
+                  style: "secondary"
+                }
+              ],
+              full: true,
+              align: "center",
+            } only %} 
+        </div> 
 
-
-          </li>
-        </ul>
       {% endcell %}
     {% endgrid %}
     {% endblock %}
   {% endembed %}
 {% endblock %}
-  {# End hero band #}
+{# End hero band #}
