@@ -1,3 +1,4 @@
+const url = require('url');
 const log = require('../utils/log');
 const fetch = require('node-fetch');
 
@@ -29,18 +30,19 @@ function getBody(request) {
  */
 async function handleRequest(req, res, next) {
   console.log('Received /api request');
-  const { method, url } = req;
+  const { method } = req;
+  const { pathname, query, search } = url.parse(req.url, true);
   // let body;
   // if (method === 'POST') {
   const body = await getBody(req);
   // }
   // @todo test with `GET` requests
   // @todo test with empty body
-  console.log({ method, url, body });
-  switch(url) {
+  console.log({ method, pathname, query, body });
+  switch(pathname) {
     case '/render-twig':
       try {
-        const renderResponse = await fetch(`http://localhost:${phpServerPort}`, {
+        const renderResponse = await fetch(`http://localhost:${phpServerPort}${search}`, {
           method: 'POST',
           body: JSON.stringify(body),
         });

@@ -15,8 +15,19 @@ $twigRenderer = new TwigRenderer(
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
+$method = $_SERVER['REQUEST_METHOD'];
+$query = [];
+if (isset($_SERVER['QUERY_STRING'])) {
+  parse_str($_SERVER['QUERY_STRING'], $query);
+}
+
 $responseData = [
     'ok' => false,
+    'meta' => [
+      'query' => $query,
+      'method' => $method,
+//      'server' => $_SERVER,
+    ],
 ];
 
 $data = [];
@@ -69,4 +80,5 @@ if ($json) {
 if ($msgs) {
   $responseData['message'] = join('\n', $msgs);
 }
+
 echo json_encode($responseData);
