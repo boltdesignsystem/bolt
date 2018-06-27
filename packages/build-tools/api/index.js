@@ -42,15 +42,19 @@ async function handleRequest(req, res, next) {
   switch(pathname) {
     case '/render-twig':
       try {
+        /** @var renderResponse {Response} */
         const renderResponse = await fetch(`http://localhost:${phpServerPort}${search}`, {
-          method: 'POST',
+          method,
           body: JSON.stringify(body),
         });
         const data = await renderResponse.json();
+        const { status } = renderResponse;
         console.log('/render-twig response:');
+        console.log({ status });
         console.log(data);
-        // @todo take headers from `renderResponse`, put in `res`
         res.setHeader('Content-Type', renderResponse.headers.get('Content-Type'));
+        res.statusCode = status;
+        if (data.message) res.statusMessage = data.message;
         res.end(JSON.stringify(data));
       } catch (error) {
         log.errorAndExit('Error connecting to phpServer api endpoint', error);
