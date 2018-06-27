@@ -11,8 +11,8 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {# check if the value set to a prop is allowed or defined. if not, default to the default value specified in the component's schema (if one exists) #}
-{% set previousText = previousText | default(schema.properties.previousText.default) %}
-{% set nextText = nextText | default(schema.properties.nextText.default) %}
+{% set previousText = previousText | default('Previous'|t) %}
+{% set nextText = nextText | default('Next'|t) %}
 
 
 <bolt-pagination
