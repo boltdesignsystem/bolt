@@ -13,7 +13,7 @@ $twigRenderer = new TwigRenderer(
 );
 
 header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json');
+header('Content-Type: application/html');
 
 // HTTP Status Codes Used
 // 200 OK - The standard response for successful HTTP requests.
@@ -29,19 +29,11 @@ if (isset($_SERVER['QUERY_STRING'])) {
   parse_str($_SERVER['QUERY_STRING'], $query);
 }
 
-$responseData = [
-    'ok' => false,
-    'meta' => [
-      'query' => $query,
-      'method' => $method,
-//      'server' => $_SERVER,
-    ],
-];
-
 $data = [];
 $templatePath = '';
 $msgs = [];
 $json = '';
+$html = '';
 
 if (key_exists('templatePath', $query)) {
   $templatePath = $query['templatePath'];
@@ -50,7 +42,7 @@ if (key_exists('templatePath', $query)) {
   $responseCode = 400;
 }
 
-if ($method === 'POST') {
+if ($templatePath && $method === 'POST') {
   try {
     $json = file_get_contents('php://input');
   } catch(\Exception $e) {
@@ -79,15 +71,9 @@ if ($templatePath) {
 }
 
 if ($msgs) {
-  $responseData['message'] = join(' ', $msgs);
   header('Warning: ' . join(' ', $msgs));
 }
 
 http_response_code($responseCode);
 
-if ($html) {
-  header('Content-Type: application/html');
-  echo $html;
-} else {
-  echo json_encode($responseData);
-}
+echo $html;
