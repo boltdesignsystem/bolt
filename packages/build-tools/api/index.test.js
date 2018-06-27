@@ -3,14 +3,23 @@ const { phpServerPort } = require('./index');
 const fetch = require('node-fetch');
 
 async function renderResponse(body){
-  return await fetch(`http://localhost:${phpServerPort}`, {
+  const response = await fetch(`http://localhost:${phpServerPort}`, {
     method: 'POST',
     body,
-  }).then(res => res.json());
+  });
+  const data = await response.text();
+
+  const { status, statusText, ok } = response;
+  return {
+    status,
+    statusText,
+    ok,
+    data,
+  };
 }
 
 
-describe.skip('Test the Bolt TwigRender API', () => {
+describe('Test the Bolt TwigRender API', () => {
   test('renders a basic button', async () => {
     const result = await renderResponse(JSON.stringify({
       'templatePath': '@bolt-components-button/button.twig',
@@ -26,7 +35,7 @@ describe.skip('Test the Bolt TwigRender API', () => {
     const result = await renderResponse(JSON.stringify({
       'templatePath': '@bolt-components-button/button.twig',
     }));
-    expect(result.ok).toEqual(false);
+    expect(result.ok).toEqual(true);
   });
 
 
@@ -50,7 +59,7 @@ describe.skip('Test the Bolt TwigRender API', () => {
       },
     }));
 
-    expect(result.html).toMatchSnapshot();
+    expect(JSON.parse(result.data).html).toMatchSnapshot();
   });
 
 
@@ -66,7 +75,7 @@ describe.skip('Test the Bolt TwigRender API', () => {
         },
       },
     }));
-    expect(result.html).toMatchSnapshot();
+    expect(JSON.parse(result.data).html).toMatchSnapshot();
   });
 
 
@@ -79,7 +88,7 @@ describe.skip('Test the Bolt TwigRender API', () => {
       },
     }));
 
-    expect(result.html).toMatchSnapshot();
+    expect(JSON.parse(result.data).html).toMatchSnapshot();
   });
 
 
