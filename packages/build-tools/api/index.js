@@ -59,7 +59,7 @@ async function handleRequest(req, res, next) {
           res.statusMessage = warning;
           res.setHeader('Warning', warning);
         }
-        res.end(JSON.stringify(data));
+        res.end(data);
       } catch (error) {
         log.errorAndExit('Error connecting to phpServer api endpoint', error);
       }
