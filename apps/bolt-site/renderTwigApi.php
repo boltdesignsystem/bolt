@@ -43,56 +43,51 @@ $templatePath = '';
 $msgs = [];
 $json = '';
 
-try {
-  $json = file_get_contents('php://input');
-} catch(\Exception $e) {
-  $msgs[] = 'No POST body found. ' . $e->getMessage();
+if (key_exists('templatePath', $query)) {
+  $templatePath = $query['templatePath'];
+} else {
+  $msgs[] = "Url must have a query param of 'templatePath' for which twig template.";
   $responseCode = 400;
 }
 
-
-if ($json) {
-  $postData = [];
+if ($method === 'POST') {
   try {
-    $postData = json_decode($json, true);
-  } catch (\Exception $e) {
-    $msgs[] = 'Not able to parse JSON. ' . $e->getMessage();
+    $json = file_get_contents('php://input');
+  } catch(\Exception $e) {
+    $msgs[] = 'No POST body found. ' . $e->getMessage();
     $responseCode = 400;
   }
-
-  if ($postData) {
-    $data = [];
-    $templatePath = '';
-
-    if (key_exists('data', $postData)) {
-      $data = $postData['data'];
-    }
-
-    if (key_exists('templatePath', $postData)) {
-      $templatePath = $postData['templatePath'];
-    } else {
-      $msgs[] = "POST body must have a key of 'templatePath'.";
+  if ($json) {
+    try {
+      $data = json_decode($json, true);
+    } catch (\Exception $e) {
+      $msgs[] = 'Not able to parse JSON. ' . $e->getMessage();
       $responseCode = 400;
     }
+  }
+}
 
-    if ($data && $templatePath) {
-      try {
-        $html = trim($twigRenderer->render($templatePath, $data));
-        $responseData['ok'] = true;
-        $responseData['html'] = $html;
-        $responseCode = 200;
-      } catch (\Exception $e) {
-        $msgs[] = 'Error trying to render twig template.';
-        $msgs[] = $e->getMessage();
-        $responseCode = 400;
-      }
-    }
+if ($templatePath) {
+  try {
+    $html = trim($twigRenderer->render($templatePath, $data));
+    $responseCode = 200;
+  } catch (\Exception $e) {
+    $msgs[] = 'Error trying to render twig template.';
+    $msgs[] = $e->getMessage();
+    $responseCode = 400;
   }
 }
 
 if ($msgs) {
   $responseData['message'] = join(' ', $msgs);
+  header('Warning: ' . join(' ', $msgs));
 }
 
 http_response_code($responseCode);
-echo json_encode($responseData);
+
+if ($html) {
+  header('Content-Type: application/html');
+  echo $html;
+} else {
+  echo json_encode($responseData);
+}

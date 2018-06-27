@@ -45,16 +45,20 @@ async function handleRequest(req, res, next) {
         /** @var renderResponse {Response} */
         const renderResponse = await fetch(`http://localhost:${phpServerPort}${search}`, {
           method,
-          body: JSON.stringify(body),
+          body: method === 'POST' ? JSON.stringify(body) : null,
         });
-        const data = await renderResponse.json();
+        const data = await renderResponse.text();
         const { status } = renderResponse;
+        const warning = renderResponse.headers.get('Warning');
         console.log('/render-twig response:');
-        console.log({ status });
+        console.log({ status, warning });
         console.log(data);
         res.setHeader('Content-Type', renderResponse.headers.get('Content-Type'));
         res.statusCode = status;
-        if (data.message) res.statusMessage = data.message;
+        if (warning) {
+          res.statusMessage = warning;
+          res.setHeader('Warning', warning);
+        }
         res.end(JSON.stringify(data));
       } catch (error) {
         log.errorAndExit('Error connecting to phpServer api endpoint', error);
