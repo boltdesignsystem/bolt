@@ -22,5 +22,13 @@
 
 {% include "@utils/docs.twig" with {
   componentName: "headline",
-  usage: usage
+  usage: usage,
+  schemaForm: {
+    demoTemplate: '@bolt-components-headline/text.twig',
+    initialData: {
+      type: "text",
+      text: "Hello world!",
+      size: "large"
+    },
+  }
 } only %}
