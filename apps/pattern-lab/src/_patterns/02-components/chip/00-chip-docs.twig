@@ -7,5 +7,10 @@
 
 {% include "@utils/docs.twig" with {
   componentName: "chip",
-  usage: usage
+  usage: usage,
+  schemaFormDemoTemplate: '@bolt-components-chip/chip.twig',
+  initialData: {
+    text: "This is a chip",
+    url: "http://google.com",
+  },
 } only %}

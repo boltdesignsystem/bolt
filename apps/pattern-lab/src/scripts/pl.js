@@ -1,8 +1,27 @@
+// import {
+//   h,
+// } from '@bolt/core';
+// import React, { Component } from 'react';
+// import { render } from 'react-dom';
 import 'core-js/modules/es6.string.starts-with';
-import '../components/schema-form';
+// import SchemaForm from '../components/schema-form';
+
+document.querySelectorAll('.schema-form-root').forEach((root) => {
+  const dataString = root.previousElementSibling.innerHTML;
+  const { schema, initialData, schemaFormDemoTemplate } = JSON.parse(dataString);
+  if (schema) {
+    console.log({
+      schemaFormDemoTemplate,
+      schema,
+      initialData,
+    });
+    // render(<SchemaForm schema={schema} templatePath={templatePath} initialData={initialData} />, root);
+  }
+});
 
 // here if you need pl only JS
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOMContentLoaded fired'); // @todo why doesn't this fire?
   /**
    * Docs Edit README Link > Simple edit hover effect
    */
