@@ -69,16 +69,46 @@ export default class SchemaForm extends Component {
     console.log('schema form props', this.props);
 
     return (
-      <div>
-        <h3>Schema Form for {schema.title}</h3>
-        <Form
-          schema={schema}
-          formData={this.state.data}
-          onChange={(data) => this.requestRender(data.formData)}
-          onError={(data) => console.error('Error in Schema Form', data)}
+      <div style={{
+        display: 'flex',
+        flexFlow: 'row wrap',
+        alignItems: 'flex-start',
+      }}>
+        <h3 style={{
+          flexShrink: 0,
+          width: '100%',
+          textAlign: 'center',
+          padding: '1rem',
+        }}>Schema Form for {schema.title}</h3>
+        <div
+          style={{
+            flexShrink: 0,
+            flexBasis: '50%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          dangerouslySetInnerHTML={{ __html: this.state.renderedHtml }}
         />
+        <div
+          style={{
+            flexBasis: '50%',
+            borderColor: 'hsl(240, 3%, 85%)',
+            borderWidth: '1px',
+            maxHeight: '80vh',
+            overflow: 'auto',
+            borderStyle: 'solid',
+            '-webkit-overflow-scroll': 'touch',
+          }}
+        >
+          <Form
+            schema={schema}
+            formData={this.state.data}
+            onChange={(data) => this.requestRender(data.formData)}
+            onError={(data) => console.error('Error in Schema Form', data)}
+          />
+        </div>
         <hr/>
-        <div dangerouslySetInnerHTML={{ __html: this.state.renderedHtml }} />
       </div>
     );
   }

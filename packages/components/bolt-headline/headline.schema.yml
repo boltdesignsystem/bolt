@@ -22,6 +22,15 @@ properties:
       - span
       - cite
       - div
+  type:
+    description: Typography style.
+    type: string
+    default: text
+    enum:
+      - text
+      - headline
+      - subheadline
+      - eyebrow
   align:
     description: Text alignment.
     type: string
