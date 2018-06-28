@@ -23,5 +23,20 @@
 
 {% include "@utils/docs.twig" with {
   componentName: "share",
-  usage: usage
+  usage: usage,
+  schemaForm: {
+    demoTemplate: '@bolt-components-share/share.twig',
+    initialData: {
+      sources: [
+        {
+          name: "facebook",
+          url: "https://www.facebook.com/sharer/sharer.php?u={url}&src=sdkpreparse"
+        },
+        {
+          name: "twitter",
+          url: "https://twitter.com/intent/tweet?url={url}&text={title}&via={via}&hashtags={hashtags}"
+        },
+      ],
+    },
+  }
 } only %}

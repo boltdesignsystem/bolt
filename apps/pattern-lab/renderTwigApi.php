@@ -5,7 +5,7 @@ use \Bolt\TwigRenderer;
 
 
 $twigRenderer = new TwigRenderer(
-  '../../www/build/data/twig-namespaces.bolt.json',
+  '../../www/pattern-lab/build/data/twig-namespaces.bolt.json',
   __DIR__,
   [],
   [
