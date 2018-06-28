@@ -6,7 +6,7 @@ index 321c938..7ac9694 100644
     */
    public static function validateDataSchema(\Twig_Environment $env, $data, $schema, $twig_self) {
      $output = '';
-+    $error_reporting = $data['bolt']['data']['config']['schemaErrorReporting'];
++    $error_reporting = !empty($data['bolt']['data']['config']['schemaErrorReporting']) ? $data['bolt']['data']['config']['schemaErrorReporting'] : '';
 +
 +    // Error reporting is turned off, so don't bother continuing with validation.
 +    if ($error_reporting == 'none') {
