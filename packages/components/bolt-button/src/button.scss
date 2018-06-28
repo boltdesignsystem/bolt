@@ -156,31 +156,47 @@ bolt-button[width='full@small'],
 
 
 /** Button Alignments **/
-.c-bolt-button__inner-wrapper {
-  width: 100%;
-}
 
 .c-bolt-button--center {
-  .c-bolt-button__inner-wrapper {
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+  text-align: center;
+
+  > *:first-child {
+    @include bolt-margin-left(auto);
+  }
+
+  > *:last-child {
+    @include bolt-margin-right(auto);
+  }
+
+  > *:only-child {
+    @include bolt-margin-right(auto);
+    @include bolt-margin-left(auto);
   }
 }
 
 .c-bolt-button--left {
-  .c-bolt-button__inner-wrapper {
-    align-items: flex-start;
-    justify-content: flex-start;
-    text-align: left;
+  text-align: left;
+
+  > *:last-child {
+    @include bolt-margin-right(auto);
+  }
+
+  > *:only-child {
+    @include bolt-margin-right(auto);
+    @include bolt-margin-left(0);
   }
 }
 
 .c-bolt-button--right {
-  .c-bolt-button__inner-wrapper {
-    align-items: flex-end;
-    justify-content: flex-end;
-    text-align: right;
+  text-align: right;
+
+  > *:first-child {
+    @include bolt-margin-left(auto);
+  }
+
+  > *:only-child {
+    @include bolt-margin-right(0);
+    @include bolt-margin-left(auto);
   }
 }
 
