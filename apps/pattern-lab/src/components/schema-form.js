@@ -2,6 +2,7 @@ import {
   h,
 } from '@bolt/core';
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Form from 'react-jsonschema-form';
 import qs from 'querystring';
 import debouce from 'lodash.debounce';
@@ -84,3 +85,12 @@ export default class SchemaForm extends Component {
   }
 }
 
+SchemaForm.defaultProps = {
+  initialData: {},
+};
+
+SchemaForm.propTypes = {
+  schema: PropTypes.object.isRequired,
+  initialData: PropTypes.object,
+  demoTemplate: PropTypes.string.isRequired,
+};
