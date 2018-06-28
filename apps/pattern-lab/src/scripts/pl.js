@@ -1,4 +1,5 @@
 import 'core-js/modules/es6.string.starts-with';
+import '../components/schema-form';
 
 // here if you need pl only JS
 document.addEventListener('DOMContentLoaded', () => {

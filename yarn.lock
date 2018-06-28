@@ -723,9 +723,9 @@
     gumshoejs "^3.5.0"
 
 "@bolt/components-page-footer@file:packages/components/bolt-page-footer":
-  version "1.5.1"
+  version "1.5.2"
   dependencies:
-    "@bolt/core" "^1.5.1"
+    "@bolt/core" "^1.5.2"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -1338,7 +1338,7 @@ ajv@^4.7.0, ajv@^4.9.1:
     co "^4.6.0"
     json-stable-stringify "^1.0.1"
 
-ajv@^5.1.0:
+ajv@^5.1.0, ajv@^5.2.3:
   version "5.5.2"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.5.2.tgz#73b5eeca3fab653e3d3f9422b341ad42205dc965"
   dependencies:
@@ -4820,6 +4820,18 @@ exec-sh@^0.2.0:
   dependencies:
     merge "^1.1.3"
 
+execa@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/execa/-/execa-0.10.0.tgz#ff456a8f53f90f8eccc71a96d11bdfc7f082cb50"
+  dependencies:
+    cross-spawn "^6.0.0"
+    get-stream "^3.0.0"
+    is-stream "^1.1.0"
+    npm-run-path "^2.0.0"
+    p-finally "^1.0.0"
+    signal-exit "^3.0.0"
+    strip-eof "^1.0.0"
+
 execa@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/execa/-/execa-0.7.0.tgz#944becd34cc41ee32a63a9faf27ad5a65fc59777"
@@ -6270,6 +6282,12 @@ ignore-walk@^3.0.1:
 ignore@^3.2.0, ignore@^3.3.3, ignore@^3.3.5:
   version "3.3.8"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.8.tgz#3f8e9c35d38708a3a7e0e9abb6c73e7ee7707b2b"
+
+immutability-helper@^2.1.2:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/immutability-helper/-/immutability-helper-2.7.1.tgz#5636dbb593e3deb5e572766d42249ea06bae7640"
+  dependencies:
+    invariant "^2.2.0"
 
 immutable@3.8.2, immutable@^3.7.6:
   version "3.8.2"
@@ -7812,6 +7830,10 @@ lodash.templatesettings@^4.0.0:
   dependencies:
     lodash._reinterpolate "~3.0.0"
 
+lodash.topath@^4.5.2:
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/lodash.topath/-/lodash.topath-4.5.2.tgz#3616351f3bba61994a0931989660bd03254fd009"
+
 lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
@@ -7867,7 +7889,7 @@ longest@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/longest/-/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
 
-loose-envify@^1.0.0:
+loose-envify@^1.0.0, loose-envify@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.3.1.tgz#d1a8ad33fa9ce0e713d65fdd0ac8b748d478c848"
   dependencies:
@@ -8478,7 +8500,7 @@ node-abi@^2.2.0:
   dependencies:
     semver "^5.4.1"
 
-node-fetch@^2.0.0:
+node-fetch@^2.0.0, node-fetch@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.1.2.tgz#ab884e8e7e57e38a944753cec706f788d1768bb5"
 
@@ -9947,12 +9969,32 @@ postcss@^5.0.0, postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.
     source-map "^0.5.6"
     supports-color "^3.2.3"
 
+preact-compat@^3.18.0:
+  version "3.18.0"
+  resolved "https://registry.yarnpkg.com/preact-compat/-/preact-compat-3.18.0.tgz#ca430cc1f67193fb9feaf7c510832957b2ebe701"
+  dependencies:
+    immutability-helper "^2.1.2"
+    preact-render-to-string "^3.6.0"
+    preact-transition-group "^1.1.0"
+    prop-types "^15.5.8"
+    standalone-react-addons-pure-render-mixin "^0.1.1"
+
 preact-html@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/preact-html/-/preact-html-2.0.3.tgz#f54874b888084ed2086bbeec89c31f7c3473216d"
   dependencies:
     preact "^8.2.7"
     xmldom "0.1.22"
+
+preact-render-to-string@^3.6.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/preact-render-to-string/-/preact-render-to-string-3.7.0.tgz#7db4177454bc01395e0d01d6ac07bc5e838e31ee"
+  dependencies:
+    pretty-format "^3.5.1"
+
+preact-transition-group@^1.1.0:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/preact-transition-group/-/preact-transition-group-1.1.1.tgz#f0a49327ea515ece34ea2be864c4a7d29e5d6e10"
 
 preact@^8.2.7, preact@^8.2.9:
   version "8.2.9"
@@ -10005,6 +10047,10 @@ pretty-format@^22.4.0, pretty-format@^22.4.3:
     ansi-regex "^3.0.0"
     ansi-styles "^3.2.0"
 
+pretty-format@^3.5.1:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-3.8.0.tgz#bfbed56d5e9a776645f4b1ff7aa1a3ac4fa3c385"
+
 pretty-ms@^3.1.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/pretty-ms/-/pretty-ms-3.2.0.tgz#87a8feaf27fc18414d75441467d411d6e6098a25"
@@ -10047,6 +10093,13 @@ promisify-node@^0.4.0:
   dependencies:
     nodegit-promise "~4.0.0"
     object-assign "^4.0.1"
+
+prop-types@^15.5.8:
+  version "15.6.2"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
+  dependencies:
+    loose-envify "^1.3.1"
+    object-assign "^4.1.1"
 
 proxy-addr@~2.0.3:
   version "2.0.3"
@@ -10233,6 +10286,15 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     ini "~1.3.0"
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
+
+react-jsonschema-form@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-jsonschema-form/-/react-jsonschema-form-1.0.3.tgz#83bf8c5330651a949d8b0ac644fb92c6665348b5"
+  dependencies:
+    ajv "^5.2.3"
+    lodash.topath "^4.5.2"
+    prop-types "^15.5.8"
+    setimmediate "^1.0.5"
 
 read-cmd-shim@^1.0.1:
   version "1.0.1"
@@ -11152,7 +11214,7 @@ set-value@^2.0.0:
     is-plain-object "^2.0.3"
     split-string "^3.0.1"
 
-setimmediate@^1.0.4:
+setimmediate@^1.0.4, setimmediate@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/setimmediate/-/setimmediate-1.0.5.tgz#290cbb232e306942d7d7ea9b83732ab7856f8285"
 
@@ -11623,6 +11685,10 @@ stacky@^1.3.1:
   dependencies:
     chalk "^1.1.1"
     lodash "^3.0.0"
+
+standalone-react-addons-pure-render-mixin@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/standalone-react-addons-pure-render-mixin/-/standalone-react-addons-pure-render-mixin-0.1.1.tgz#3c7409f4c79c40de9ac72c616cf679a994f37551"
 
 starts-with@^1.0.0, starts-with@^1.0.2:
   version "1.0.2"
