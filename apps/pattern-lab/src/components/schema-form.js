@@ -29,7 +29,7 @@ export default class SchemaForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      renderedHtml: '<p>A <strong>component</strong> goes here.</p>',
+      renderedHtml: '',
       data: null,
     };
     this.requestRender = debouce(this.requestRender.bind(this), 300);
@@ -66,13 +66,17 @@ export default class SchemaForm extends Component {
   }
 
   render() {
+    const { layout } = this.props;
     const schema = SchemaForm.prepareSchema(this.props.schema);
     console.log('schema form props', this.props);
+
+    const isHorizontal = layout === 'horizontal';
 
     return (
       <div style={{
         display: 'flex',
-        flexFlow: 'row wrap',
+        flexDirection: isHorizontal ? 'row' : 'column',
+        flexWrap: 'wrap',
         alignItems: 'flex-start',
       }}>
         <h3 style={{
@@ -84,16 +88,16 @@ export default class SchemaForm extends Component {
         <div
           style={{
             flexShrink: 0,
-            flexBasis: '50%',
+            width: isHorizontal ? '50%' : '100%',
             display: 'flex',
-            justifyContent: 'center',
+            justifyContent: isHorizontal ? 'center' : 'flex-start',
             alignItems: 'center',
           }}
           dangerouslySetInnerHTML={{ __html: this.state.renderedHtml }}
         />
         <div
           style={{
-            flexBasis: '50%',
+            width: isHorizontal ? '50%' : '100%',
             borderColor: 'hsl(240, 3%, 85%)',
             borderWidth: '1px',
             maxHeight: '80vh',
@@ -117,10 +121,15 @@ export default class SchemaForm extends Component {
 
 SchemaForm.defaultProps = {
   initialData: {},
+  layout: 'horizontal',
 };
 
 SchemaForm.propTypes = {
   schema: PropTypes.object.isRequired,
   initialData: PropTypes.object,
   demoTemplate: PropTypes.string.isRequired,
+  layout: PropTypes.oneOf([
+    'vertical',
+    'horizontal',
+  ]),
 };
