@@ -1,10 +1,10 @@
-// import {
-//   h,
-// } from '@bolt/core';
-// import React, { Component } from 'react';
-// import { render } from 'react-dom';
+import {
+  h,
+} from '@bolt/core';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
 import 'core-js/modules/es6.string.starts-with';
-// import SchemaForm from '../components/schema-form';
+import SchemaForm from '../components/schema-form';
 
 document.querySelectorAll('.schema-form-root').forEach((root) => {
   const dataString = root.previousElementSibling.innerHTML;
@@ -15,7 +15,7 @@ document.querySelectorAll('.schema-form-root').forEach((root) => {
       schema,
       initialData,
     });
-    // render(<SchemaForm schema={schema} templatePath={templatePath} initialData={initialData} />, root);
+    render(<SchemaForm schema={schema} templatePath={schemaFormDemoTemplate} initialData={initialData} />, root);
   }
 });
 

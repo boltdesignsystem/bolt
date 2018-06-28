@@ -1,0 +1,129 @@
+.rjsf i.glyphicon {
+  display: none;
+}
+
+.rjsf .btn-add::after {
+  content: 'Add';
+}
+
+.rjsf .array-item-move-up::after {
+  content: 'Move Up';
+}
+
+.rjsf .array-item-move-down::after {
+  content: 'Move Down';
+}
+
+.rjsf .array-item-remove::after {
+  content: 'Remove';
+}
+
+form.rjsf {
+  padding: 0 1.25rem 1.25rem;
+}
+
+.rjsf fieldset {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.rjsf fieldset .form-group:nth-child(2n - 1) {
+  background-color: #efefef;
+}
+
+.rjsf textarea {
+  width: 100%;
+}
+
+.rjsf legend {
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.rjsf article > h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.rjsf article:not(:last-child) {
+  border-bottom: solid 1px lightgrey;
+  margin-bottom: 2rem;
+}
+
+.rjsf .form-group {
+  padding: 0.75rem;
+}
+
+.rjsf .form-group .field-array {
+  /*padding: 0.75rem;*/
+}
+
+.rjsf .form-control {
+  display: block;
+  min-width: 200px;
+  max-width: 650px;
+  padding: 4px;
+  background-clip: padding-box;
+  box-sizing: border-box;
+}
+
+.rjsf .control-label {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.rjsf .field-description {
+  margin: 0.5rem 0;
+  max-width: 650px;
+}
+
+.rjsf .demo-stage {
+  background-color: #9a9b9f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  margin: 1rem 0;
+}
+
+.rjsf .col-xs-3 {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 25%;
+}
+
+.rjsf .col-xs-9 {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 75%;
+}
+
+.rjsf .array-item {
+  display: flex;
+  align-items: center;
+}
+
+.rjsf .array-item:nth-child(2n) .form-group  {
+  background-color: white;
+}
+
+.rjsf .btn-group {
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.rjsf .btn + .btn {
+  margin-top: 5px;
+}
+
+.rjsf > p {
+  padding: 0 0.75rem;
+  margin: 0;
+}
+
+.rjsf .unsupported-field {
+  display: none;
+}
