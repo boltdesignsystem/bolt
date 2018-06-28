@@ -8,14 +8,10 @@ import SchemaForm from '../components/schema-form';
 
 document.querySelectorAll('.schema-form-root').forEach((root) => {
   const dataString = root.previousElementSibling.innerHTML;
-  const { schema, initialData, schemaFormDemoTemplate } = JSON.parse(dataString);
-  if (schema) {
-    console.log({
-      schemaFormDemoTemplate,
-      schema,
-      initialData,
-    });
-    render(<SchemaForm schema={schema} templatePath={schemaFormDemoTemplate} initialData={initialData} />, root);
+  const data = JSON.parse(dataString);
+  if (data.schema) {
+    console.log(data);
+    render(<SchemaForm {...data} />, root);
   }
 });
 

@@ -3,14 +3,10 @@
   {% set readmeFile = "@bolt-components-#{componentName}/README.md" %}
 {% endif %}
 
-{% if schemaFormDemoTemplate and schema %}
-  {% set data = {
-    schema: schema,
-    initialData: initialData|default({}),
-    schemaFormDemoTemplate: schemaFormDemoTemplate,
-  } %}
-  <script type="application/json">{{ data | json_encode }}</script>
-  <div class="schema-form-root" data-template-path="{{ schemaFormDemoTemplate }}"></div>
+{% if schemaForm and schema %}
+  {% set schemaForm = schemaForm|merge({ schema: schema }) %}
+  <script type="application/json">{{ schemaForm | json_encode }}</script>
+  <div class="schema-form-root"></div>
 {% endif %}
 
 {% set code %}{% spaceless %}

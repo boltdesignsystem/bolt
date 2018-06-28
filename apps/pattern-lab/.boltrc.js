@@ -103,13 +103,13 @@ module.exports = {
       '@bolt/components-tooltip',
       '@bolt/components-unordered-list',
       '@bolt/components-video',
-    ],
-    individual: [
       {
         name: 'pl',
         scss: './src/styles/pl.scss',
         js: './src/scripts/pl.js',
       },
+    ],
+    individual: [
       '@bolt/components-critical-fonts',
     ],
   },

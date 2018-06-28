@@ -38,7 +38,7 @@ export default class SchemaForm extends Component {
     this.setState({ data });
     // console.log('requestingRender', data);
     const res = await fetch(`/api/render-twig?${qs.stringify({
-      templatePath: this.props.templatePath,
+      templatePath: this.props.demoTemplate,
     })}`, {
       method: 'POST',
       body: JSON.stringify(data),
@@ -49,7 +49,7 @@ export default class SchemaForm extends Component {
 
     const body = await res.text();
     if (!res.ok) {
-      console.error(`Error: rendering ${this.props.templatePath}`, body);
+      console.error(`Error: rendering ${this.props.demoTemplate}`, body);
       return;
     }
     // console.log('got html back!', html);
@@ -66,6 +66,7 @@ export default class SchemaForm extends Component {
 
   render() {
     const schema = SchemaForm.prepareSchema(this.props.schema);
+    console.log('schema form props', this.props);
 
     return (
       <div>

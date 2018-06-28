@@ -8,9 +8,11 @@
 {% include "@utils/docs.twig" with {
   componentName: "chip",
   usage: usage,
-  schemaFormDemoTemplate: '@bolt-components-chip/chip.twig',
-  initialData: {
-    text: "This is a chip",
-    url: "http://google.com",
-  },
+  schemaForm: {
+    demoTemplate: '@bolt-components-chip/chip.twig',
+    initialData: {
+      text: "This is a chip",
+      url: "http://google.com",
+    },
+  }
 } only %}
