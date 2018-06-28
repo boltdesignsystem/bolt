@@ -161,7 +161,6 @@ $pl-sidebar-width: 14rem; //Define sidebar width for calculating dimensions
         *    they appear at the bottom
         */
         .pl-c-controls {
-            margin-top: auto; /* 1 */
             margin-left: 0;
             flex-direction: row;
             flex-flow: row wrap;
@@ -199,22 +198,18 @@ $pl-sidebar-width: 14rem; //Define sidebar width for calculating dimensions
          * Tools list
          */
         .pl-c-tools__list {
-            max-height: none;
-            overflow: visible;
-            position: relative;
-            border-radius: 0;
-            display: flex;
-            flex-direction: column;
-            width: 100%;
+          max-height: none;
+          overflow: visible;
+          position: relative;
+          border-radius: 0;
+          display: flex;
+          flex-direction: column;
+          width: 100%;
         }
 
         /**
          * Tools action
          */
-        .pl-c-tools__action {
-            padding-left: 0;
-            padding-right: 0;
-        }
 
         /**
          * Viewport

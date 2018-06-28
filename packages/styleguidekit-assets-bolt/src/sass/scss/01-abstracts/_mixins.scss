@@ -74,6 +74,63 @@
     }
 }
 
+
+/**
+ * App Bar Button Style
+ */
+@mixin buttonStyle() {
+  // background: $pl-color-black; @todo: refactor or remove
+  background-color: transparent;
+  // color: $pl-color-gray-50;
+  color: #1F2656;
+  opacity: 0.5;
+  text-decoration: none;
+  line-height: 1;
+  padding: 0.7rem 0.5rem;
+  border: 0;
+  text-align: left;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  outline: none;
+
+  &:hover {
+    opacity: 1;
+    // color: $pl-color-white;
+    // background: $pl-color-gray-87;
+  }
+
+  // &:focus, &.active {
+  //   color: $pl-color-white;
+  //   background: $pl-color-gray-87;
+  //   outline: 1px dotted $pl-color-gray-50;
+  //   outline-offset: -1px;
+  // }
+
+  /**
+    * Header link styles inside light theme
+    */
+  // .pl-c-body--theme-light & {
+  //   background: $pl-color-white;
+  //   color: $pl-color-gray-70;
+  // }
+
+/**
+  * Header link styles inside cozy theme
+  */
+  // .pl-c-body--theme-density-cozy & {
+  //   font-size: $pl-font-size-sm-2;
+  //   padding: 1.2rem 0.8rem;
+  // }
+
+/**
+  * Header link styles inside comfortable theme
+  */
+  // .pl-c-body--theme-density-comfortable & {
+  //   font-size: $pl-font-size-sm-2;
+  //   padding: 1.5rem 1rem;
+  // }
+}
+
 /**
  * Accordion panel
  */
@@ -94,4 +151,22 @@
             max-height: 120rem;
         }
     }
+}
+
+
+@mixin pl-visuallyhidden($important: null) {
+  @if $important == important {
+    $important: !important;
+  }
+
+  border: 0 $important;
+  clip: rect(0 0 0 0) $important;
+  clip-path: inset(50%) $important;
+  position: absolute $important;
+  width: 1px $important;
+  height: 1px $important;
+  margin: -1px $important;
+  padding: 0 $important;
+  overflow: hidden $important;
+  white-space: nowrap $important;
 }

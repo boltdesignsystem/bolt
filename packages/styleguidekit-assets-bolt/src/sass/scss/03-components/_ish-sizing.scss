@@ -10,7 +10,7 @@
 .pl-c-viewport-size {
     margin: 0;
     border: 0;
-    padding: 0.3rem 0.5rem 0.4rem;
+    // padding: 0.3rem 0.5rem 0.4rem;
     line-height: 1;
     display: flex;
     align-items: center;
@@ -21,13 +21,17 @@
  */
 .pl-c-viewport-size__input {
     outline: none;
-    background-color: #1a202b;
+    margin-right: 4px;
+    display: inline-block;
+    background-color: #F4F4F6;
     margin: 0;
     border: 0;
     border-radius: $pl-border-radius;
-    font-size: inherit;
-    color: $pl-color-gray-50;
-    width: 50px;
+    color: #1F2555;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 19px;
+    width: 48px;
     text-align: right;
     transition: all $pl-animate-quick ease-out;
     padding: 5px;
@@ -54,9 +58,14 @@
  * Size input labels
  */
 .pl-c-viewport-size__label {
-    display: block;
-    margin: 0;
-    padding: 0;
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 19px;
+  color: #1F2555;
+  opacity: 0.4;
 }
 
 /**
@@ -84,7 +93,7 @@
  * 1) These are the buttons that control the viewport resizing
  */
 .pl-c-size-list__action {
-    @include linkStyle();
+    @include buttonStyle();
     background-color: transparent;
     cursor: pointer;
 }

@@ -5,3 +5,5 @@
 import '@pattern-lab/utils/postmessage';
 import '@pattern-lab/ui-panels-util';
 import '@pattern-lab/ui-modal-styleguide';
+
+import '@pattern-lab/ui-toggle-theme/toggle-theme-sg';

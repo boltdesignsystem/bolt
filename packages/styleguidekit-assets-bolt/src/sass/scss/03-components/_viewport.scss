@@ -64,6 +64,11 @@
   will-change: height, width;
   max-width: 100%;
 
+  .pl-c-body--theme-sidebar & {
+    height: auto;
+    height: var(--pl-viewport-height, calc(100vh));
+  }
+
   &.hay-mode {
     transition: all 40s linear;
   }

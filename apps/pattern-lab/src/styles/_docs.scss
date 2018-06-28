@@ -74,6 +74,8 @@
 
   min-width: 0;
   max-width: 960px;
+  @include bolt-padding-left(small);
+  @include bolt-padding-right(small);
 
   @include respond-to(medium) {
     @include bolt-padding-left(medium);
@@ -117,6 +119,9 @@
 }
 
 .c-bolt-docs__page-nav {
+  @include bolt-padding-left(small);
+  @include bolt-padding-right(small);
+
   -ms-grid-row: 2; /* [1] */
   -ms-grid-row-span: 1; /* [1] */
   grid-row: 2/span 1;

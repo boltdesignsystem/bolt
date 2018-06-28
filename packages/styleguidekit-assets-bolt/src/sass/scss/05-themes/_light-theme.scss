@@ -7,7 +7,6 @@
  * PL header and modal are light instead of dark
  */
 .pl-c-body--theme-light {
-
     /**
      * Header
      */
@@ -98,11 +97,11 @@
         &:hover {
             color: $pl-color-gray-87;
             background: $pl-color-gray-13 !important;
-    
+
             &::-webkit-input-placeholder {
                 color: $pl-color-gray-87;
             }
-    
+
             &::-moz-input-placeholder {
                 color: $pl-color-gray-87;
             }
@@ -133,4 +132,13 @@
             color: $pl-color-gray-70;
         }
     }
+}
+
+
+.pl-c-body--theme-light {
+  --pl-theme-background: #F5F5FA;
+}
+
+.pl-c-body--theme-dark {
+  --pl-theme-background: #161B3D;
 }

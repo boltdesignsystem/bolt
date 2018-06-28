@@ -9,21 +9,22 @@
 * 2) Display nav and controls horizontally
 */
 .pl-c-header {
-    position: relative; // sticky position fallback
-    position: sticky;
-    position: -webkit-sticky;
-    top: 0;
-    left: 0;
-    z-index: 4;
-    display: flex; /* 2 */
-    width: 100%;
-    min-height: 50px;
-    border-bottom: 1px solid #151721;
-    background-color: #242A3B;
-    color: $pl-color-gray-50;
-    font-family: $pl-font;
-    font-size: $pl-font-size-sm;
-    box-shadow: 0 2px 9px rgba(31, 37, 50, .15)
+  position: relative; // sticky position fallback
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  display: flex; /* 2 */
+  width: 100%;
+  min-height: 50px;
+  border-bottom: 1px solid #151721;
+  background-color: #242A3B;
+  color: $pl-color-gray-50;
+  font-family: $pl-font;
+  font-size: $pl-font-size-sm;
+  box-shadow: 0 2px 9px rgba(31, 37, 50, .15);
+  justify-content: space-between;
 }
 
 /**

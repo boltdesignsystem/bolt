@@ -1,0 +1,31 @@
+@import "../../sass/scss/01-abstracts/variables";
+@import "../../sass/scss/01-abstracts/mixins";
+
+
+.pl-c-header__layout-toggle {
+  @include buttonStyle();
+  cursor: pointer;
+  display: inline-block;
+}
+
+.pl-c-header__layout-toggle-text {
+  @include pl-visuallyhidden;
+}
+
+
+
+.pl-c-header__header-icon {
+  display: none;
+
+  .pl-c-body--theme-sidebar & {
+    display: inline;
+  }
+}
+
+.pl-c-header__sidebar-icon {
+  display: inline;
+
+  .pl-c-body--theme-sidebar & {
+    display: none;
+  }
+}
