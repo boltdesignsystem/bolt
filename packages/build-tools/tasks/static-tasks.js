@@ -191,8 +191,12 @@ async function compile(exitOnError = true) {
     const pageArg = escapeNestedSingleQuotes(JSON.stringify(url));
 
     const layout = page.meta.layout ? page.meta.layout : 'default';
-    const cmd = `php -d memory_limit=4048M renderTwig.php ${layout}.twig ${pageArg}`;
-    const output = await sh(cmd, exitOnError, false, false);
+    const output = await sh('php', [
+      '-d memory_limit=4048M',
+      'renderTwig.php',
+      `${layout}.twig`,
+      url,
+    ], exitOnError, false, false);
 
     const htmlFilePath = path.join(config.wwwDir, page.url);
     await mkdirp(path.dirname(htmlFilePath));
