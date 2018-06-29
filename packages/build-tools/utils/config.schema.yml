@@ -136,6 +136,14 @@
       type: boolean
       description: Production build, will compress assets.
       default: false
+    schemaErrorReporting:
+      description: Setting for where schema errors should be reported.  Note that reporting to cli will cause builds to fail if there are errors.
+      type: string
+      default: console
+      enum:
+        - none
+        - console
+        - cli
 
   definitions:
     components:
