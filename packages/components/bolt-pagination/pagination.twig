@@ -14,6 +14,15 @@
 {% set previousText = previousText | default('Previous'|t) %}
 {% set nextText = nextText | default('Next'|t) %}
 
+{% set prevClasses = [
+  baseClass ~ "__item",
+  baseClass ~ "__item--prev"
+] %}
+
+{% set nextClasses = [
+  baseClass ~ "__item",
+  baseClass ~ "__item--next"
+] %}
 
 <bolt-pagination
   {% if total %} total="{{ total }}" {% endif %}
@@ -22,20 +31,26 @@
 >
   <ul class="{{ baseClass }}">
     {% if previous %}
-      <li class="{{ baseClass ~ '__control-prev' }}">
-        <a href="{{ previous.href }}"><bolt-icon name="chevron-left" size="small"></bolt-icon> <span>{{ previousText }}</span></a>
+      <li class="{{ prevClasses|join(' ') }}">
+        <a class="{{ "#{baseClass}__link" }}" href="{{ previous.href }}"><bolt-icon name="chevron-left" size="small"></bolt-icon> <span>{{ previousText }}</span></a>
       </li>
     {% endif %}
 
     {% if pages %}
       {% for key, link in pages %}
-        <li{% if key == current %} class="is-active"{% endif %}><a href="{{ link.href }}">{{- key -}}</a></li>
+        {% set itemClasses = [
+          baseClass ~ "__item",
+          key == current ? "is-active"
+        ] %}
+        <li class="{{ itemClasses|join(' ') }}">
+          <a class="{{ "#{baseClass}__link" }}" href="{{ link.href }}">{{- key -}}</a>
+        </li>
       {% endfor %}
     {% endif %}
 
     {% if next %}
-      <li class="{{ baseClass ~ '__control-next' }}">
-        <a href="{{ next.href }}"><span>{{ nextText }}</span> <bolt-icon name="chevron-right" size="small"></bolt-icon></a>
+      <li class="{{ nextClasses|join(' ') }}">
+        <a class="{{ "#{baseClass}__link" }}" href="{{ next.href }}"><span>{{ nextText }}</span> <bolt-icon name="chevron-right" size="small"></bolt-icon></a>
       </li>
     {% endif %}
   </ul>

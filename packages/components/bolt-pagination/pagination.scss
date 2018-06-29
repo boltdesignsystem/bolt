@@ -49,65 +49,72 @@ bolt-pagination {
   text-align: center;
   line-height: 32px;
   position: relative;
+}
 
-  li {
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-    transition: opacity $bolt-pagination-transition;
-    -webkit-backface-visibility: hidden; // Removes the 1px jump with opacity transition
+.c-bolt-pagination__item {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  transition: opacity $bolt-pagination-transition;
+  -webkit-backface-visibility: hidden; // Removes the 1px jump with opacity transition
 
-    &:hover {
-      opacity: $bolt-global-link-hover-opacity;
-    }
-    &:active,
-    &:focus:active {
-      opacity: $bolt-global-link-active-opacity;
-    }
+  &:hover {
+    opacity: $bolt-global-link-hover-opacity;
+  }
+  &:active,
+  &:focus:active {
+    opacity: $bolt-global-link-active-opacity;
+  }
 
-    a:link, a:visited {
-      text-decoration: none;
-      display: block;
-      color: $bolt-theme-pagination-color-notheme;
-    }
+  &.is-active {
+    background: $bolt-theme-pagination-current-notheme;
+    border-radius: 50%;
 
-    &.is-active {
-      background: $bolt-theme-pagination-current-notheme;
-      border-radius: 50%;
-
-      a:link, a:visited, a:hover {
-        color: $bolt-theme-pagination-active-notheme;
-      }
-    }
-    &.c-bolt-pagination__control-prev,
-    &.c-bolt-pagination__control-next {
-      width: inherit;
-      position: absolute;
-
-      @media (max-width: bolt-breakpoint(small)) {
-        span {
-          @include bolt-visuallyhidden;
-        }
-      }
-    }
-    &.c-bolt-pagination__control-prev {
-      transform: translateX(-100%);
-      left: -20px;
-
-      span {
-        margin-left: 7px;
-      }
-    }
-    &.c-bolt-pagination__control-next {
-      transform: translateX(100%);
-      top: 0;
-      right: -20px;
-
-      span {
-        margin-right: 7px;
-      }
+    .c-bolt-pagination__link:link,
+    .c-bolt-pagination__link:visited,
+    .c-bolt-pagination__link:hover {
+      color: $bolt-theme-pagination-active-notheme;
     }
   }
+}
+
+.c-bolt-pagination__item--prev,
+.c-bolt-pagination__item--next {
+  width: inherit;
+  position: absolute;
+
+  @media (max-width: bolt-breakpoint(small)) {
+    span {
+      @include bolt-visuallyhidden;
+    }
+  }
+}
+
+.c-bolt-pagination__item--prev {
+  transform: translateX(-100%);
+  left: -20px;
+
+  span {
+    margin-left: 7px;
+  }
+}
+
+.c-bolt-pagination__item--next {
+  transform: translateX(100%);
+  top: 0;
+  right: -20px;
+
+  span {
+    margin-right: 7px;
+  }
+}
+
+.c-bolt-pagination__link:link,
+.c-bolt-pagination__link:visited {
+  text-decoration: none;
+  display: block;
+  color: $bolt-theme-pagination-color-notheme;
+
 }
 
 $bolt-theme-pagination-colors: (
@@ -141,14 +148,16 @@ $active: map-get($bolt-theme-pagination-colors, 'active');
 $current: map-get($bolt-theme-pagination-colors, 'current');
 
 @each $key, $value in $indexes {
-  .#{$prefix}#{$key} .c-bolt-pagination li a:link,
-  .#{$prefix}#{$key} .c-bolt-pagination li a:visited {
+  .#{$prefix}#{$key} .c-bolt-pagination__link:link,
+  .#{$prefix}#{$key} .c-bolt-pagination__link:visited {
     color: map-get($indexes, $key);
   }
-  .#{$prefix}#{$key} .c-bolt-pagination li.is-active {
+  .#{$prefix}#{$key} .c-bolt-pagination__item.is-active {
     background: map-get($current, $key);
 
-    a:link, a:visited, a:hover {
+    .c-bolt-pagination__link:link,
+    .c-bolt-pagination__link:visited,
+    .c-bolt-pagination__link:hover {
       color: map-get($active, $key);
     }
   }
