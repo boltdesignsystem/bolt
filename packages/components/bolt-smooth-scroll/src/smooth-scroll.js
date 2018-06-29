@@ -3,14 +3,27 @@ import { isValidSelector } from '@bolt/core';
 
 export const smoothScroll = new SmoothScroll();
 
-export const defaultScrollOptions = {
+export const scrollOptions = {
   ignore: '[data-scroll-ignore]', // Selector for links to ignore (must be a valid CSS selector)
   header: '.js-bolt-smooth-scroll-offset', // Selector for fixed headers (must be a valid CSS selector)
 
   // Speed & Easing
   speed: 750, // Integer. How fast to complete the scroll in milliseconds
-  offset: 45, // Integer or Function returning an integer. How far to offset the scrolling anchor location in pixels
   easing: 'easeInOutCubic', // Easing pattern to use
+
+  // Here we have support for modifying scroll offset. It looks for the link's
+  // first ancestor that has an 'offset' attribute, returning that value. You'll
+  // find offset on the nav-indicator, where gumshoejs also gets its offset.
+  // @see nav-indicator.js
+  offset(anchor, toggle) {
+    var offsetElement = toggle.closest('[offset]');
+    if (offsetElement) {
+      return offsetElement.getAttribute('offset');
+    }
+    else {
+      return 0;
+    }
+  },
 
   // Callback API
   updateURL: true, // Update the URL on scroll
@@ -46,14 +59,6 @@ for (var i = 0, len = filteredCustomScrollElems.length; i < len; i++) {
 
   // only smooth scroll if hashed href matches with id on the page.
   if (matchedScrollTarget.length !== 0){
-    // In the future, we could add support for links to modify options like scrollOffset, scrollOffset, etc.  However,
-    // we should provide options carefully-- only enable these after considering whether the use case that requires them
-    // is justified.
-    //
-    const scrollOptions = Object.assign({}, defaultScrollOptions, {
-      offset: scrollElem.dataset.scrollOffset ? scrollElem.dataset.scrollOffset : defaultScrollOptions.offset,
-    });
-
     const scrollTarget = getScrollTarget(scrollElem);
 
     if (scrollTarget) {
