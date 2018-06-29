@@ -31,7 +31,7 @@
     last: {
       href: '#!'
     }
-  } %}
+  } only %}
 {% endset %}
 
 {% include "@bolt-components-band/band.twig" with {
@@ -41,11 +41,6 @@
 
 {% include "@bolt-components-band/band.twig" with {
   theme: "dark",
-  content: pagination
-} only %}
-
-{% include "@bolt-components-band/band.twig" with {
-  theme: "medium",
   content: pagination
 } only %}
 
