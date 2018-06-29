@@ -1,27 +1,23 @@
-{% set schema = bolt.data.components['@bolt-components-chip-list'].schema %}
-{% set code %} {% verbatim %}
+{% set usage %}{% verbatim %}
 {% include "@bolt-components-chip-list/chip-list.twig" with {
   contentItems: [
     {
       text: "Chip 1",
-      url: "http://google.com"
+      url: "#!"
     },
     {
       text: "Chip 2",
-      url: "http://google.com"
+      url: "#!"
     },
     {
       text: "Chip 3",
-      url: "http://google.com"
+      url: "#!"
     }
   ]
 } only %}
+{% endverbatim %}{% endset %}
 
-{% endverbatim %}
-{% endset %}
-
-{% include '@utils/docs.twig' with {
-  schema: schema,
-  code: code,
-  readmeFile: '@bolt-components-chip-list/README.md',
+{% include "@utils/docs.twig" with {
+  componentName: "chip-list",
+  usage: usage
 } only %}

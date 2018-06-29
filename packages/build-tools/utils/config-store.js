@@ -35,10 +35,10 @@ async function getDefaultConfig() {
       startPath: configSchema.properties.startPath.default,
       webpackStats: configSchema.properties.webpackStats.default,
       globalData: {},
+      schemaErrorReporting: configSchema.properties.schemaErrorReporting.default,
     };
   });
 }
-
 
 function getEnvVarsConfig() {
   const envVars = {};

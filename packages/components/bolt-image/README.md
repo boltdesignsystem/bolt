@@ -1,12 +1,15 @@
 An image. Part of the Bolt “Components” CSS framework that powers the [Bolt Design System](https://www.boltdesignsystem.com).
 
-### Install via NPM
+###### Install via NPM
+
 ```
 npm install @bolt/components-image
 ```
 
-### Image sizes
+## Image sizes
+
 To specify image size (e.g `u-bolt-width-1/1`) pass the correct class like so:
+
 ```
 {% set classes = create_attribute(imageAttributes | default({})).addClass([
     "c-bolt-image__img",
@@ -14,7 +17,9 @@ To specify image size (e.g `u-bolt-width-1/1`) pass the correct class like so:
   ])
 %}
 ```
+
 Then pass it into the component:
+
 ```
 {% include '@bolt-components-image/image.twig' with {
   src: "/images/placeholders/tout-4x3-climber.jpg",
