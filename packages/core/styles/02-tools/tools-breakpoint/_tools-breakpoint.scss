@@ -6,24 +6,8 @@
   @return map-get($bolt-breakpoints, $name);
 }
 
-@mixin bolt-mq(
-  $from: false,
-  $until: false,
-  $and: false,
-  $media-type: $mq-media-type,
-  $breakpoints: $mq-breakpoints,
-  $responsive: $mq-responsive,
-  $static-breakpoint: $mq-static-breakpoint
-) {
-  @include mq(
-    $from,
-    $until,
-    $and,
-    $media-type,
-    $breakpoints,
-    $responsive,
-    $static-breakpoint
-  ) {
+@mixin bolt-mq($args...) {
+  @include mq($args...) {
     @content;
   }
 }
