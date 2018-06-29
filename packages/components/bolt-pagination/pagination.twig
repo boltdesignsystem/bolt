@@ -20,7 +20,7 @@
   {% if current %} current="{{ current }}" {% endif %}
   {{ attributes }}
 >
-  <nav class="{{ baseClass }}">
+  <nav class="{{ baseClass }}" role="navigation" aria-label="Pagination Navigation">
     {% if previous %}
       <a class="{{ "#{baseClass}__item" }} {{ "#{baseClass}__item--prev" }}" href="{{ previous.href }}">
         <span class="{{ "#{baseClass}__icon" }}">
@@ -34,11 +34,25 @@
 
     {% if pages %}
       {% for key, link in pages %}
-        <a class="{{ "#{baseClass}__item" }} {{ key == current ? 'is-current' : '' }}" href="{{ link.href }}">
-          <span class="{{ "#{baseClass}__text" }}">
-            {{- key -}}
-          </span>
-        </a>
+        {% if key == current %}
+          <a class="{{ "#{baseClass}__item" }} is-current" href="{{ link.href }}" aria-current="true">
+            <span class="{{ "#{baseClass}__text" }}">
+              <span class="u-bolt-visuallyhidden">
+                You are currently on page
+              </span>
+              {{- key -}}
+            </span>
+          </a>
+        {% else %}
+          <a class="{{ "#{baseClass}__item" }}" href="{{ link.href }}">
+            <span class="{{ "#{baseClass}__text" }}">
+              <span class="u-bolt-visuallyhidden">
+                Navigate to page
+              </span>
+              {{- key -}}
+            </span>
+          </a>
+        {% endif %}
       {% endfor %}
     {% endif %}
 
