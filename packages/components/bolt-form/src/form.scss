@@ -5,20 +5,7 @@
 @import '@bolt/core';
 
 
-// This should ONLY apply to <input> elements, NOT anything else like <label>, <div>, <span>, etc.
-@mixin bolt-input-font-size-and-height {
-  @include bolt-padding(medium, squished); // [Mai] This matches button vertical spacing.
-  @include bolt-padding-right(small); // [Mai] This does not match the button horizontal spacing, which is what we want. We only want inputs to be as tall as buttons.
-  @include bolt-padding-left(small); // [Mai] This does not match the button horizontal spacing, which is what we want. We only want inputs to be as tall as buttons.
 
-  line-height: calc(#{$bolt-line-height--xsmall + em} - 2px); // [Mai] The line-height matches button's line-height, the 2px offsets the 1px border from the input.
-  font-size: $bolt-font-size--small;
-
-  @media (max-width: bolt-breakpoint(small)) {
-    line-height: calc(#{$bolt-line-height--xsmall + em} - 6px); // [Mai] This is just magic number, if the font-size ever changes, this also needs to change by inspecting in the browser and push the px.
-    font-size: 16px; // [Mai] Mobile Safari will zoom in when input is focused if the text is not at least 16px.
-  }
-}
 
 // General Form Elements
 select {
@@ -140,12 +127,17 @@ $bolt-input-transition: $bolt-transition;
 }
 
 .c-bolt-input {
+  // This should ONLY apply to <input> elements, NOT anything else like <label>, <div>, <span>, etc.
+  @include bolt-padding(medium, squished); // [Mai] This matches button vertical spacing.
+  @include bolt-padding-right(small); // [Mai] This does not match the button horizontal spacing, which is what we want. We only want inputs to be as tall as buttons.
+  @include bolt-padding-left(small); // [Mai] This does not match the button horizontal spacing, which is what we want. We only want inputs to be as tall as buttons.
   @include bolt-input-placeholder($bolt-input-placeholder-color);
-  @include bolt-input-font-size-and-height;
 
   display: block;
   width: 100%;
   color: $bolt-input-text-color;
+  line-height: calc(#{$bolt-line-height--xsmall + em} - 2px); // [Mai] The line-height matches button's line-height, the 2px offsets the 1px border from the input.
+  font-size: $bolt-font-size--small;
   border-color: $bolt-input-border-color;
   border-style: $bolt-input-border-style;
   border-width: $bolt-input-border-width;
@@ -166,6 +158,11 @@ $bolt-input-transition: $bolt-transition;
   appearance: none !important;
   text-indent: 0.01px;
   text-overflow: '';
+
+  @media (max-width: bolt-breakpoint(small)) {
+    line-height: calc(#{$bolt-line-height--xsmall + em} - 6px); // [Mai] This is just magic number, if the font-size ever changes, this also needs to change by inspecting in the browser and push the px.
+    font-size: 16px; // [Mai] Mobile Safari will zoom in when input is focused if the text is not at least 16px.
+  }
 
   &::-ms-expand
   {
