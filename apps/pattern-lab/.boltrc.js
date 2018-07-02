@@ -98,6 +98,7 @@ module.exports = {
       '@bolt/components-ordered-list',
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
+      '@bolt/components-pagination',
       '@bolt/components-share',
       '@bolt/components-site',
       '@bolt/components-smooth-scroll',
