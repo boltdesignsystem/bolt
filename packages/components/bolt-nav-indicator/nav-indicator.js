@@ -84,53 +84,60 @@ let gumshoeStateModule = (function () {
             return;
           }
 
+          // logic once we know we should try to animate in a gumshoe-activated link
+          function activateGumshoeLink(waitedToAnimate = false) {
+
+            const originalTarget = nav.nav;
+            let originalTargetHref;
+            let normalizedTarget;
+
+            if (originalTarget) {
+              originalTargetHref = originalTarget.getAttribute('href');
+            } else {
+              originalTargetHref = nav.nav.getAttribute('href');
+            }
+
+            // Need to target via document vs this custom element reference since only one gumshoe instance is shared across every component instance to better optimize for performance
+            const matchedTargetLinks = document.querySelectorAll(`bolt-navlink > [href*="${originalTargetHref}"]`);
+
+            for (var i = 0, len = matchedTargetLinks.length; i < len; i++) {
+              const linkInstance = matchedTargetLinks[i];
+
+              // Stop if normalizedTarget already set.
+              if (normalizedTarget) {
+                break;
+              }
+
+              // Prefer visible links over hidden links
+              if (isVisible(linkInstance)) {
+                normalizedTarget = linkInstance;
+
+                // Prefer dropdown links over non-dropdown links if the link is hidden
+              } else if (linkInstance.parentNode.isDropdownLink) {
+                normalizedTarget = linkInstance;
+
+                // otherwise default to what was originally selected.
+              } else if (i === len - 1) {
+                normalizedTarget = originalTarget;
+              }
+            }
+
+            const normalizedParent = normalizedTarget.parentNode;
+
+            normalizedParent.activate();
+          }
+
           // if this there's a <bolt-nav-priority> instance, make sure that component's ready to go before proceeding trying to animate anything.
           if (nav.nav.closest('bolt-nav-priority')){
             const priorityNav = nav.nav.closest('bolt-nav-priority');
-
             if (!priorityNav.isReady){
-              return;
+              document.addEventListener('nav-priority:ready', activateGumshoeLink(true));
+            } else {
+              activateGumshoeLink();
             }
-          }
-
-          const originalTarget = nav.nav;
-          let originalTargetHref;
-          let normalizedTarget;
-
-          if (originalTarget) {
-            originalTargetHref = originalTarget.getAttribute('href');
           } else {
-            originalTargetHref = nav.nav.getAttribute('href');
+            activateGumshoeLink();
           }
-
-          // Need to target via document vs this custom element reference since only one gumshoe instance is shared across every component instance to better optimize for performance
-          const matchedTargetLinks = document.querySelectorAll(`bolt-navlink > [href*="${originalTargetHref}"]`);
-
-          for (var i = 0, len = matchedTargetLinks.length; i < len; i++) {
-            const linkInstance = matchedTargetLinks[i];
-
-            // Stop if normalizedTarget already set.
-            if (normalizedTarget) {
-              break;
-            }
-
-            // Prefer visible links over hidden links
-            if (isVisible(linkInstance)) {
-              normalizedTarget = linkInstance;
-
-            // Prefer dropdown links over non-dropdown links if the link is hidden
-            } else if (linkInstance.parentNode.isDropdownLink) {
-              normalizedTarget = linkInstance;
-
-            // otherwise default to what was originally selected.
-            } else if (i === len - 1) {
-              normalizedTarget = originalTarget;
-            }
-          }
-
-          const normalizedParent = normalizedTarget.parentNode;
-
-          normalizedParent.activate();
         },
       });
     }
@@ -201,7 +208,7 @@ export class BoltNavIndicator extends BoltComponent() {
   resetLinks(activeLink = null) {
     const links = this._allLinks();
     links.forEach(link => {
-      if (link !== activeLink) {
+      if (link !== activeLink && link.deactivate) {
         link.deactivate();
       }
     });
@@ -297,8 +304,8 @@ export class BoltNavIndicator extends BoltComponent() {
   // `<bolt-nav-link>` emits a custom event when the link is active
   connecting() {
     Promise.all([
-      customElements.whenDefined('bolt-navlink'),
       customElements.whenDefined('bolt-nav-priority'),
+      customElements.whenDefined('bolt-navlink'),
     ]).then(_ => {
 
       // If the nav indicator already exists, exit early.

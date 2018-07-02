@@ -33,9 +33,9 @@ $bolt-width-sizes: 1 2 3 4 5 6 7 8 9 10 11 12 !default;
 @include bolt-widths($bolt-width-sizes);
 
 // Loop over our breakpoints
-@each $breakpoint in $breakpoints {
+@each $breakpoint in $bolt-breakpoints {
   $breakpointName: nth($breakpoint, 1);
-  @include respond-to($breakpointName) {
+  @include bolt-mq($breakpointName) {
     @include bolt-widths($bolt-width-sizes, \@#{$breakpointName});
   }
 }

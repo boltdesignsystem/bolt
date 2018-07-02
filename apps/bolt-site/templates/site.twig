@@ -127,9 +127,9 @@
 
     <main class="storefront-docs-content {{ currentUrl != 'index.html' ? 't-bolt-xlight' }}">
       {% include "@bolt-components-band/band.twig" with {
-        "content": content,
-        "fullBleed": false,
-        theme: currentUrl == 'index.html' ? 'none' : 't-bolt-xlight'
+        content: content,
+        fullBleed: false,
+        theme: currentUrl == 'index.html' ? 'none' : 'xlight'
       } only %}
     </main>
   </div>
@@ -185,7 +185,7 @@
 
 {# Shows Twig Vars in Browser Console #}
 {% if not bolt.data.config.prod %}
-  <script type="application/json">{{ _context|json_encode()|raw }}</script>
+ {# <script type="application/json">{{ _context|json_encode()|raw }}</script>
   <script>
     (function () {
       var me = document.currentScript;
@@ -193,7 +193,7 @@
       var data = JSON.parse(jsonScriptTag);
       console.log('Twig vars for this page: ', data);
     })();
-  </script>
+  </script>#}
 {% endif %}
 </body>
 </html>

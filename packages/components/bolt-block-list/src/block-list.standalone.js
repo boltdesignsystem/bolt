@@ -11,7 +11,7 @@ import {
 import styles from './block-list.scss';
 
 @define
-export class BoltBlockList extends withPreact(withComponent()) {
+export class BoltBlockList extends withPreact() {
   static is = 'bolt-block-list';
 
   static props = {

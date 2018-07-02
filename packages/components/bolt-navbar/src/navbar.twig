@@ -4,8 +4,13 @@
 
 {% set schema = bolt.data.components["@bolt-components-navbar"].schema %}
 
+{# Support backwards compatibiliy.  Future implementations that wish to disable the theme should
+use the string "none" rather than a boolean false #}
+{% set theme = theme is sameas(false) ? "none" : theme %}
+
 {% set themeOptions = schema.properties.theme.enum %}
 {% set theme = theme in themeOptions ? theme : schema.properties.theme.default %}
+{% set theme = theme == "none" ? false : theme %}
 
 <bolt-navbar
   {% if theme %} class="t-bolt-{{ theme }}" {% endif %}

@@ -3,13 +3,17 @@ require_once 'vendor/autoload.php';
 // Twig docs for this: https://twig.symfony.com/doc/1.x/api.html
 
 $data = [];
+$page = '';
 
 // First arg to CLI - template path
 $templatePath = $argv[1];
 // Second arg to CLI - JSON string
 if ($argv[2]) {
-  $data = json_decode($argv[2], true);
+  $page = $argv[2]; // page we need specific data for
 }
+
+$json = file_get_contents('http://localhost:3001/' . $page);
+$data = json_decode($json, true);
 
 // Creates Twig Loader, uses `./templates` as default directory to look for Twig files
 $staticSiteLoader = new Twig_Loader_Filesystem('templates');

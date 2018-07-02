@@ -1,6 +1,4 @@
-{% set schema = bolt.data.components['@bolt-components-blockquote'].schema %}
-
-{% for theme in schema.properties.theme.enum %}
+{% for theme in ["xlight", "light", "dark", "xdark"] %}
   <p>theme: {{ theme }}</p>
   {% embed "@utils/theme-demo.twig" %}
     {% block demo_content %}
@@ -11,7 +9,7 @@
         "border": "horizontal",
         "fullBleed": true,
         "logo": {
-          "invert": "true",
+          "invert": true,
           "src": "/pattern-lab/images/content/logos/logo-paypal.svg"
         },
         "content": "<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>",

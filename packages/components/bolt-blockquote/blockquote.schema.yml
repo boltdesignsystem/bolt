@@ -4,17 +4,9 @@ type: object
 required:
   - content
 properties:
-  theme:
-      type: string
-      description: Color theme. Can be set to false for a transparent background.
-      default: false
-      enum:
-        - xlight
-        - light
-        - dark
-        - xdark
-        - medium
-        - 'false'
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
   content:
     description: Text to appear in blockquote.
     type: string
@@ -45,17 +37,11 @@ properties:
   indent:
     description: Indent text.
     default: false
-    type: string
-    enum:
-      - 'true'
-      - 'false'
+    type: boolean
   fullBleed:
-      description: Width of the brower window.
-      default: false
-      type: string
-      enum:
-        - 'true'
-        - 'false'
+    description: Width of the brower window.
+    default: false
+    type: boolean
   logo:
       description: Add a logo component.
       type: object

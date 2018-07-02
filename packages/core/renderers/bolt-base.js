@@ -11,9 +11,7 @@ export function BoltBase(Base = HTMLElement) {
   return class extends Base {
 
     connectedCallback() {
-      this.connecting && this.connecting();
       this._checkSlots();
-      this.connected && this.connected();
 
       // Automatically force a component to render if no props exist BUT props are defined.
       if (Object.keys(this.props).length !== 0 && Object.keys(this._props).length === 0) {
@@ -21,7 +19,7 @@ export function BoltBase(Base = HTMLElement) {
       }
     }
 
-    setupShadow(){
+    setupShadow() {
       if (findParentTag(this, 'FORM') || this.getAttribute('no-shadow') !== null) {
         this.useShadow = false;
       } else {

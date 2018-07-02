@@ -1,7 +1,7 @@
 {% extends "@bolt/form.twig" %}
 
 {% set children %}
-  {% include "@bolt/form-element-demo-input-element.twig" with {
+  {% include "@pl/form-element-demo-input-element.twig" with {
     "title": "First Name",
     "inputAttributes": {
       "placeholder": "Enter your first name",
@@ -10,7 +10,7 @@
     "labelDisplayType": "floating"
   } only %}
 
-  {% include "@bolt/form-element-demo-input-element.twig" with {
+  {% include "@pl/form-element-demo-input-element.twig" with {
     "title": "Last Name",
     "inputAttributes": {
       "placeholder": "Enter your last name",
@@ -19,7 +19,7 @@
     "labelDisplayType": "floating"
   } only %}
 
-  {% include "@bolt/form-element-demo-input-element.twig" with {
+  {% include "@pl/form-element-demo-input-element.twig" with {
     "title": "Email Address",
     "inputAttributes": {
       "placeholder": "Enter your email address",
@@ -29,7 +29,7 @@
     "labelDisplayType": "floating"
   } only %}
 
-  {% include "@bolt/form-element-demo-input-element.twig" with {
+  {% include "@pl/form-element-demo-input-element.twig" with {
     "title": "Title",
     "inputAttributes": {
       "placeholder": "Enter your current job title",
@@ -38,7 +38,7 @@
     "labelDisplayType": "floating"
   } only %}
 
-  {% include "@bolt/form-element-demo-input-element.twig" with {
+  {% include "@pl/form-element-demo-input-element.twig" with {
     "title": "Company Name",
     "inputAttributes": {
       "placeholder": "Enter the name of your company",
@@ -47,7 +47,7 @@
     "labelDisplayType": "floating"
   } only %}
 
-  {% include "@bolt/form-element-demo-select.twig" with {
+  {% include "@pl/form-element-demo-select.twig" with {
     "title": "Country",
     "selectAttributes": {
       "required": true
@@ -76,7 +76,7 @@
     ]
   } only %}
 
-  {% include "@bolt/form-element-demo-checkbox.twig" with {
+  {% include "@pl/form-element-demo-checkbox.twig" with {
     "labelTitle": "Receive periodic emails on key analyst reports, Pega events, and important news.  You can unsubscribe at any time",
     "elementId": "receive-emails",
     "labelDisplayType": "inline"

@@ -1,8 +1,11 @@
 $schema: http://json-schema.org/draft-04/schema#
 title: Image
 type: object
-required:
-  - src
+anyOf:
+  - required:
+    - src
+  - required:
+    - srcset
 properties:
   src:
     type: string

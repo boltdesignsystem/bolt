@@ -5,8 +5,8 @@ required:
   - text
 properties:
   text:
-    type: string
-    description: Text content of the headline.
+    type: [string, object, array]
+    description: Renderable text content of the headline.
   tag:
     type: string
     description: Html tag.

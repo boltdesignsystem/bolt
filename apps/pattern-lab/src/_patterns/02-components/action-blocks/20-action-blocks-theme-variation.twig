@@ -1,17 +1,15 @@
-{% set schema = bolt.data.components['@bolt-components-action-blocks'].schema %}
-
-{% for theme in schema.properties.theme.enum %}
+{% for theme in ["xlight", "light", "dark", "xdark"] %}
   <p>Theme: {{ theme }}</p>
   {% embed "@utils/theme-demo.twig" %}
     {% block demo_content %}
       {% include "@bolt-components-action-blocks/action-blocks.twig" with {
         theme: theme,
-        align: center,
+        align: "center",
         maxItemsPerRow: 4,
         contentItems: [
           {
             text: "Item 1, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dignissim non dui vel elementum. Cras id lorem tincidunt turpis mollis pretium. ",
-            url: "http://google.com",
+            url: "#!",
             icon: {
               name: "download",
               size: "large",
@@ -20,7 +18,7 @@
           },
           {
             text: "Item 2",
-            url: "http://google.com",
+            url: "#!",
             icon: {
               name: "copy-to-clipboard",
               size: "large",
@@ -29,7 +27,7 @@
           },
           {
             text: "Item 3",
-            url: "http://google.com",
+            url: "#!",
             icon: {
               name: "calendar",
               size: "large",
@@ -38,7 +36,7 @@
           },
           {
             text: "Item 4",
-            url: "http://google.com",
+            url: "#!",
             icon: {
             name: "copy-to-clipboard",
             size: "large",

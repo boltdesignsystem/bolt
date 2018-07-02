@@ -12,7 +12,7 @@ import { findParentTag } from '../utils/find-parent-tag';
 import { BoltBase } from './bolt-base'
 
 export function BoltComponent(Base = HTMLElement) {
-  return class extends withComponent(withRenderer(BoltBase(Base))) {
+  return class extends withComponent(BoltBase(Base)) {
 
     static props = {
       onClick: props.string,

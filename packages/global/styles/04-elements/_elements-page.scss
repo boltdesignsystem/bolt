@@ -11,10 +11,10 @@ $bolt-base-font-sizes: (
 
 html {
   @include bolt-poly-fluid-sizing('font-size', $bolt-base-font-sizes);
+  @include bolt-font-family(body, true);
 }
 
 body {
-  @include bolt-font-family(bodySubset);
   @include bolt-font-family(body);
   @include bolt-font-size(medium);
   width: 100%;

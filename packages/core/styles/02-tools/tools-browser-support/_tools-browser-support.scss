@@ -1,0 +1,17 @@
+/* ------------------------------------ *\
+Browser Support
+\* ------------------------------------ */
+
+// This file contains mixins needed for checking browser support.
+
+
+// Just checking "@supports (display: contents)" isn't enough to know that a browser supports it FULLY.  So, we check
+// support for both "display: contents" and "caret-color" (which has similar browser support) -- if a browser fails
+// either check, it gets the cross-browser fallback instead.
+//
+// See https://www.meltajon.com/dev/how-to-use-supports-display-contents-feature-query-in-safari
+@mixin bolt-if-browser-supports-display-contents {
+  @supports (display: contents) and (caret-color: red) {
+    @content;
+  }
+}

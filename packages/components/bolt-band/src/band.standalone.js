@@ -17,9 +17,6 @@ import {
 
 // ShadyCSS will rename classes as needed to ensure style scoping.
 
-
-
-
 @define
 export class BoltBand extends BoltComponent() {
   static is = 'bolt-band';
@@ -39,7 +36,7 @@ export class BoltBand extends BoltComponent() {
   }
 
   /**
-    * `connectedCallback()` sets up the role, event handler and initial state.
+    * `connecting()` sets up the role, event handler and initial state.
     */
   connecting() {
     this.state = {
@@ -52,17 +49,19 @@ export class BoltBand extends BoltComponent() {
       this.classList.add('is-ready');
     }
 
-    if (this.expandedHeight === null) {
-      this.expandedHeight = '56.25vh';
+    if (this.querySelector('bolt-video[is-background-video]')){
+      if (this.expandedHeight === null) {
+        this.expandedHeight = '56.25vh';
+      }
+
+      if (this.expanded) {
+        this.expand();
+      } else {
+        this.collapse();
+      }
     }
 
-    if (this.expanded) {
-      this.expand();
-    } else {
-      this.collapse();
-    }
-
-    // Shim Shadow DOM styles. This needs to be run in `connectedCallback()`
+    // Shim Shadow DOM styles. This needs to be run in `connecting()`
     // because if you shim Custom Properties (CSS variables) the element
     // will need access to its parent node.
 
@@ -108,30 +107,33 @@ export class BoltBand extends BoltComponent() {
 
 
   collapse() {
-    const startingHeight = this.getBoundingClientRect().height;
-    const endingHeight = this.startingHeight ? this.startingHeight : 0;
+    const endingHeight = this.startingHeight ? this.startingHeight : '0px';
+    const elem = this;
 
-    this.style.transition = 'min-height 0s';
-    this.style.minHeight = `${startingHeight}px`;
+    this.lastRAF && cancelAnimationFrame(this.lastRAF);
+    this.lastRAF = requestAnimationFrame(() => {
+      this.lastRAF = requestAnimationFrame(() => {
+        this.style.minHeight = `${endingHeight}px`;
+        this.lastRAF = null;
+      });
 
-    requestAnimationFrame(() => {
-      this.style.transition = 'min-height 0.3s ease';
-      this.style.minHeight = `${endingHeight}px`;;
     });
 
     this.expanded = false;
+
+    // clean up inline CSS after waiting just a bit
+    setTimeout(function () {
+      elem.removeAttribute('style', 'minHeight');
+    }, 100);
   }
 
   expand() {
-    this.startingHeight = this.getBoundingClientRect().height;
-    const endingHeight = parseInt(this.expandedHeight) > parseInt(this.startingHeight) ? this.expandedHeight : `${this.startingHeight}px`;
-
-    this.style.transition = 'min-height 0s';
-    this.style.minHeight = `${this.startingHeight}px`;
-
-    requestAnimationFrame(() => {
-      this.style.transition = 'min-height 0.3s ease';
-      this.style.minHeight = this.expandedHeight;
+    this.lastRAF && cancelAnimationFrame(this.lastRAF);
+    this.lastRAF = requestAnimationFrame(() => {
+      this.lastRAF = requestAnimationFrame(() => {
+        this.style.minHeight = this.expandedHeight;
+        this.lastRAF = null;
+      });
     });
 
     this.expanded = true;
@@ -156,8 +158,12 @@ export class BoltBand extends BoltComponent() {
       this.expandedHeight = videoHeight;
 
       if (this.expanded){
-        requestAnimationFrame(() => {
-          this.style.minHeight = parseInt(this.expandedHeight) > parseInt(this.startingHeight) ? this.expandedHeight : `${this.startingHeight}px`;
+        this.lastRAF && cancelAnimationFrame(this.lastRAF);
+        this.lastRAF = requestAnimationFrame(() => {
+          this.lastRAF = requestAnimationFrame(() => {
+            this.style.minHeight = this.expandedHeight;
+            this.lastRAF = null;
+          });
         });
       }
     }

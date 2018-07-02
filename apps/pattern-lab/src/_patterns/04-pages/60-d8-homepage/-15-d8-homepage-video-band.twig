@@ -97,7 +97,7 @@
         {
           text: "Get Real",
           style: "primary",
-          url: "https://www.google.com",
+          url: "#!",
           icon: {
             name: "chevron-right"
           }
@@ -136,7 +136,6 @@
       {% cell "u-bolt-width-1/1@only-small" %}
         {% include "@bolt/button.twig" with {
           text: "Learn More",
-          style: "flat",
           width: "full",
           size: "medium"
         } only %}
@@ -171,7 +170,8 @@
         "videoId": "5609376179001",
         "accountId": "1900410236",
         "playerId": "r1CAdLzTW",
-        "videoUuid": videoUuid1
+        "videoUuid": videoUuid1,
+        "showMeta": false,
       }
     ]
   },
@@ -357,10 +357,15 @@
       tag: "h3"
     } only %}
 
+    {{ parent() }}
+
     {% include "@bolt/button.twig" with {
       text: "Toggle video",
       tag: "button",
       attributes: {
+        class: [
+          "u-bolt-margin-top-large",
+        ],
         "on-click": "toggle",
         "on-click-target": videoUuid1
       }
@@ -368,7 +373,7 @@
 
     <br><br><br>
 
-    {{ parent() }}
+
   {% endblock band_content %}
 {% endembed %}
 
@@ -410,7 +415,7 @@
               {% include "@bolt/button.twig" with {
                 text: "Get Real",
                 style: "primary",
-                size: small
+                size: "small"
               } only %}
 
             {% endcell %}
@@ -444,7 +449,8 @@
         "videoId": "5453299964001",
         "accountId": "1900410236",
         "playerId": "r1CAdLzTW",
-        "videoUuid": videoUuid2
+        "videoUuid": videoUuid2,
+        "showMeta": false,
       }
     ]
   }
@@ -483,21 +489,21 @@
   "contentItems": [
     {
       text: "Product Information",
-      url: "http://google.com",
+      url: "#!",
       icon: {
         name: "product"
       }
     },
     {
       text: "Industry Solutions",
-      url: "http://google.com",
+      url: "#!",
       icon: {
         name: "industries"
       }
     },
     {
       text: "Training and Certification",
-      url: "http://google.com",
+      url: "#!",
       icon: {
         name: "training",
         background: "circle"
@@ -505,7 +511,7 @@
     },
     {
       text: "Vision and Technology",
-      url: "http://google.com",
+      url: "#!",
       icon: {
         name: "vision",
         background: "circle"
@@ -513,7 +519,7 @@
     },
     {
       text: "Services and Partners",
-      url: "http://google.com",
+      url: "#!",
       icon: {
         name: "partners",
         background: "square"
@@ -521,7 +527,7 @@
     },
     {
       text: "Career Opportunities",
-      url: "http://google.com",
+      url: "#!",
       icon: {
         name: "careers",
         background: "square"

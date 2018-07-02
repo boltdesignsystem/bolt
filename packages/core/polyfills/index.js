@@ -1,4 +1,5 @@
 import 'es6-promise/auto';
+import 'element-closest';
 import 'core-js/modules/es6.array.iterator';
 import 'core-js/modules/es6.array.from';
 import 'core-js/modules/es6.string.starts-with';

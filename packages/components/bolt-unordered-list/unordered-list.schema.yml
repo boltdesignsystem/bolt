@@ -7,17 +7,6 @@ properties:
   attributes:
     type: object
     description: A Drupal-style attributes object with extra attributes to append to this component.
-  theme:
-    type: string
-    description: Color theme. Can be set to false for a transparent background.
-    default: false
-    enum:
-      - xlight
-      - light
-      - dark
-      - xdark
-      - medium
-      - 'false'
   contentItems:
     type: array
     title: The content items

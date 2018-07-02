@@ -134,7 +134,7 @@
       
           {% cell "u-bolt-width-1/1 u-bolt-width-2/5@medium" %}
             {% include "@bolt-components-card/card.twig" with {
-              url: "javascript:",
+              url: "#!",
               contentItems: [
                 {
                   pattern: "image",
@@ -201,7 +201,7 @@
           {% endcell %}
           {% cell "u-bolt-width-1/1 u-bolt-width-2/5@small" %}
             {% include "@bolt-components-card/card.twig" with {
-              url: "javascript:",
+              url: "#!",
               contentItems: [
                 {
                   pattern: "image",
@@ -266,7 +266,7 @@
           {% endcell %}
           {% cell "u-bolt-width-1/1 u-bolt-width-2/5@medium" %}
             {% include "@bolt-components-card/card.twig" with {
-              url: "javascript:",
+              url: "#!",
               contentItems: [
                 {
                   pattern: "image",
@@ -334,7 +334,7 @@
           {% endcell %}
           {% cell "u-bolt-width-1/1 u-bolt-width-2/5@small" %}
             {% include "@bolt-components-card/card.twig" with {
-              url: "javascript:",
+              url: "#!",
               contentItems: [
                 {
                   pattern: "image",
@@ -399,7 +399,7 @@
           {% endcell %}
           {% cell "u-bolt-width-1/1 u-bolt-width-2/5@medium" %}
             {% include "@bolt-components-card/card.twig" with {
-              url: "javascript:",
+              url: "#!",
               contentItems: [
                 {
                   pattern: "image",
@@ -465,7 +465,7 @@
           {% endcell %}
           {% cell "u-bolt-width-1/1 u-bolt-width-2/5@small u-bolt-margin---small" %}
             {% include "@bolt-components-card/card.twig" with {
-              url: "javascript:",
+              url: "#!",
               contentItems: [
                 {
                   pattern: "image",
@@ -502,5 +502,51 @@
     {% endembed %}
 {# End governance #}
 
+  
+    {% include '@bolt-components-share/share.twig' with {
+      inline: true,
+      text: 'Custom label',
+      sources: [
+        {
+          name: "facebook",
+          url: "https://www.facebook.com/sharer/sharer.php?u={url}&src=sdkpreparse"
+        },
+        {
+          name: "twitter",
+          url: "https://twitter.com/intent/tweet?url={url}&text={title}&via={via}&hashtags={hashtags}"
+        },
+        {
+          name: "linkedin",
+          url: "https://www.linkedin.com/shareArticle?url={url}&title={title}"
+        },
+        {
+          name: "email",
+          url: "mailto:?&body=Sample%20Text%20--%20https%3A//bolt-design-system.com"
+        }
+      ]
+    } only %}
+
+  
+    {% include '@bolt-components-share/share.twig' with {
+      sources: [
+        {
+          name: "facebook",
+          url: "https://www.facebook.com/sharer/sharer.php?u={url}&src=sdkpreparse"
+        },
+        {
+          name: "twitter",
+          url: "https://twitter.com/intent/tweet?url={url}&text={title}&via={via}&hashtags={hashtags}"
+        },
+        {
+          name: "linkedin",
+          url: "https://www.linkedin.com/shareArticle?url={url}&title={title}"
+        },
+        {
+          name: "email",
+          url: "mailto:?&body=Sample%20Text%20--%20https%3A//bolt-design-system.com"
+        }
+      ]
+    } only %}
+    
   
 {% endblock %}
