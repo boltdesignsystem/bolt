@@ -46,11 +46,11 @@
           id: "usage"
         }
       } %}
-      {% spaceless %}
-      <bolt-code-snippet display="block" lang="twig">
-          <pre><code is="shadow-root">{{ code }}</code></pre>
-      </bolt-code-snippet>
-      {% endspaceless %}
+      {% include "@bolt-components-code-snippet/code-snippet.twig" with {
+        lang: "twig",
+        content: code,
+        display: "block"
+      } only %}
     {% endif %}
 
 
