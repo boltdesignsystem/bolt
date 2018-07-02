@@ -1,4 +1,4 @@
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   theme: "dark",
   size: "medium",
   background: {
@@ -30,12 +30,12 @@
   }
 } %}
   {% block band_content %}
-    {% include "@bolt/headline.twig" with {
+    {% include "@bolt-components-headline/headline.twig" with {
       text: "What's Trending",
       size: "xlarge",
       tag: "h3"
     } only %}
-    {% include "@bolt/button.twig" with {
+    {% include "@bolt-components-button/button.twig" with {
       text: "Toggle video",
       attributes: {
         "on-click": "toggle",

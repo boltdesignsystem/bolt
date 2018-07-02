@@ -31,12 +31,12 @@
   {% if figure %}
     <div class="o-bolt-flag__figure">
       {% block flag_figure %}
-        {% set figureContent %}  
-          {% include "@bolt/figure.twig" with figure only %}
+        {% set figureContent %}
+          {% include "@bolt-components-figure/figure.twig" with figure only %}
         {% endset %}
 
         {% if url %}
-          {% include "@bolt/link.twig" with {
+          {% include "@bolt-components-link/link.twig" with {
             url: url,
             text: figureContent
           } only %}
@@ -56,7 +56,7 @@
           {{ item.text }}
         {% endif %}
       {% endfor %}
-      
+
       {{ content }}
 
     {% endblock %}

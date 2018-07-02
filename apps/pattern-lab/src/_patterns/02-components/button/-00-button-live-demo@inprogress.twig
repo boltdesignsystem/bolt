@@ -8,7 +8,7 @@
   {% set code %}
     {% for style in schema.properties.style.enum %}
       {% if loop.first %}
-        {% include "@bolt/button.twig" with {
+        {% include "@bolt-components-button/button.twig" with {
           "style": style,
           "text": defaultButtonText,
           "attributes": {

@@ -4,17 +4,17 @@
 
 <bolt-teaser>
   {% if eyebrow %}
-    {% include "@bolt/eyebrow.twig" with eyebrow only %}
+    {% include "@bolt-components-headline/eyebrow.twig" with eyebrow only %}
   {% endif %}
 
   {% if headlines %}
     {% for headline in headlines %}
-      {% include "@bolt/" ~ headline.type | default("headline") ~ ".twig" with headline only %}
+      {% include "@bolt-components-headline/" ~ headline.type | default("headline") ~ ".twig" with headline only %}
     {% endfor %}
   {% endif %}
 
   {% if logo %}
-    {% include "@bolt/logo.twig" with logo only %}
+    {% include "@bolt-components-logo/logo.twig" with logo only %}
   {% endif %}
 
   {% block teaser_content %}
@@ -23,7 +23,7 @@
     {% endfor %}
 
     {% if content %}
-      {% include "@bolt/text.twig" with {
+      {% include "@bolt-components-headline/text.twig" with {
         text: content | striptags('<a>'),
         tag: "p"
       } only %}

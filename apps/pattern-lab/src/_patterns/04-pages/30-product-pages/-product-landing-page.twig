@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block main_content %}
-  {% embed "@bolt/band--feature.twig" with {
+  {% embed "@bolt-components-band/band--feature.twig" with {
     teaserPosition: "left",
     teaserWidth: "2/3",
     size: "large",
@@ -63,7 +63,7 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "small",
   theme: "dark",
   fullBleed: true
@@ -73,11 +73,11 @@
     {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
 
       {% cell "o-u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-        {% include "@bolt/headline.twig" with {
+        {% include "@bolt-components-headline/headline.twig" with {
           text: "Explore the Pega CRM Suite",
           size: "xxlarge"
         } only %}
-        {% include "@bolt/text.twig" with {
+        {% include "@bolt-components-headline/text.twig" with {
           text: "Move past traditional CRM systems to a true journey-enabled, customer engagement suite. Learn how Pega is helping enterprises revolutionize their customer engagement with end-to-end automation and real-time AI on the only unified CRM platform.",
           size: "medium"
         } only %}
@@ -200,7 +200,7 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "medium",
   theme: "xlight",
   fullBleed: true
@@ -210,7 +210,7 @@
     {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
 
       {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
-        {% include "@bolt/image.twig" with {
+        {% include "@bolt-components-image/image.twig" with {
           src: "/pattern-lab/images/content/charts/decision-hub-chart.png",
           lazyload: true
         } only %}
@@ -218,21 +218,21 @@
 
 
       {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
-        {% include "@bolt/headline.twig" with {
+        {% include "@bolt-components-headline/headline.twig" with {
           text: "Customer Decision Hub",
           size: "xxxlarge",
           tag: "h2"
         } only %}
-        {% include "@bolt/subheadline.twig" with {
+        {% include "@bolt-components-headline/subheadline.twig" with {
           text: "Infuse real-time AI into every customer engagement",
           size: "xlarge",
           tag: "p"
         } only %}
-        {% include "@bolt/text.twig" with {
+        {% include "@bolt-components-headline/text.twig" with {
           text: "There’s nothing artificial about Pega’s proven AI. This always-on brain gets results. Using pragmatic artificial intelligence and decision management, you can improve response rates by up to 6X, NPS by 30 points, and get ROI as high as 500%.",
           size: "medium"
         } only %}
-        {% include "@bolt/button.twig" with {
+        {% include "@bolt-components-button/button.twig" with {
           text: "Call to Action",
           url: "www.google.com"
         } only %}
@@ -246,7 +246,7 @@
 
 
 
-{% embed "@bolt/band--collection.twig" with {
+{% embed "@bolt-components-band/band--collection.twig" with {
   "theme": "light",
   "size": "medium",
   "contentItems": [
@@ -350,7 +350,7 @@
 
         {% grid %}
           {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
-            {% include "@bolt/headline.twig" with {
+            {% include "@bolt-components-headline/headline.twig" with {
               text: "Analyst Reports",
               size: "xlarge",
               tag: "h3"
@@ -361,7 +361,7 @@
 
 
       {% cell %}
-        {% include "@bolt/text.twig" with {
+        {% include "@bolt-components-headline/text.twig" with {
           text: "See all analyst reports",
           size: "small",
           weight: "bold",
@@ -383,7 +383,7 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "medium",
   theme: "xdark",
   fullBleed: true,
@@ -410,7 +410,7 @@
 
 
 
-        {% include "@bolt/blockquote.twig" with {
+        {% include "@bolt-components-blockquote/blockquote.twig" with {
           size: "xlarge",
           border: "horizontal",
           alignItems: "center",
@@ -431,11 +431,11 @@
         } only %}
 
 
-        {% include "@bolt/text.twig" with {
+        {% include "@bolt-components-headline/text.twig" with {
           text: "Watch Birgit König, Ph.D., CEO, Allianz Health Germany, share how the Pega platform meets rapidly changing customer expectations."
         } only %}
 
-        {% include "@bolt/button.twig" with {
+        {% include "@bolt-components-button/button.twig" with {
           text: "Call to Action",
           url: "www.google.com",
           style: "secondary"
@@ -452,7 +452,7 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "small",
   theme: "xdark",
   fullBleed: true
@@ -465,11 +465,11 @@
 
         {% grid %}
           {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
-            {% include "@bolt/headline.twig" with {
+            {% include "@bolt-components-headline/headline.twig" with {
               text: "See How Pega Can Help Your Business",
               size: "xlarge"
             } only %}
-            {% include "@bolt/text.twig" with {
+            {% include "@bolt-components-headline/text.twig" with {
               text: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
             } only %}
           {% endcell %}
@@ -478,7 +478,7 @@
 
 
       {% cell "u-bolt-width-1/1@only-small" %}
-        {% include "@bolt/button.twig" with {
+        {% include "@bolt-components-button/button.twig" with {
           text: "Call to action",
           width: "full",
           size: "medium"

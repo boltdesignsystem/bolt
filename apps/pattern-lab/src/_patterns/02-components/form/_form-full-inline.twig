@@ -1,4 +1,4 @@
-{% extends "@bolt/form.twig" %}
+{% extends "@bolt-components-form/form.twig" %}
 
 {% set children %}
 
@@ -15,7 +15,7 @@
     } only %}
   </div>
 
-  {% include "@bolt/form-button.twig" with {
+  {% include "@bolt-components-form/form-button.twig" with {
     text: "Sign up now",
     tag: "submit"
   } only %}

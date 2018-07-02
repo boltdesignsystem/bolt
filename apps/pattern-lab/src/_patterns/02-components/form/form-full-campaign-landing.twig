@@ -1,4 +1,4 @@
-{% extends "@bolt/form.twig" %}
+{% extends "@bolt-components-form/form.twig" %}
 
 {% set children %}
   {% include "@pl/form-element-demo-input-element.twig" with {
@@ -82,7 +82,7 @@
     "labelDisplayType": "inline"
   } only %}
 
-  {% include "@bolt/button.twig" with {
+  {% include "@bolt-components-button/button.twig" with {
     "text": "Download Now",
     "width": "full",
     "tag": "submit",

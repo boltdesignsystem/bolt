@@ -1,4 +1,4 @@
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   theme: "dark",
   size: "medium",
   background: {
@@ -35,11 +35,11 @@
       This video is coming from the band's background.
     </p>
 
-    {% include "@bolt/_video-inline-script.twig" with {
+    {% include "@bolt-components-video/_video-inline-script.twig" with {
       socialUrl: "https://demo1.d8.pega.com/insights/resources/crm-evolved-atlanta-customer-engagement-digital-world"
     } %}
 
-    {% include "@bolt/button.twig" with {
+    {% include "@bolt-components-button/button.twig" with {
         text: "Watch Video",
         tag: "button",
         attributes: {

@@ -33,7 +33,7 @@
   <a {{ attributes }}>
     {% if icon and icon != false and icon.position == "before" %}
       <span class="c-bolt-link__icon">
-        {% include "@bolt/icon.twig" with icon only %}
+        {% include "@bolt-components-icon/icon.twig" with icon only %}
       </span>
     {% endif %}
 
@@ -43,7 +43,7 @@
 
     {% if icon and icon != false and icon.position != "before" %}
       <span class="c-bolt-link__icon">
-        {% include "@bolt/icon.twig" with icon only %}
+        {% include "@bolt-components-icon/icon.twig" with icon only %}
       </span>
     {% endif %}
   </a>

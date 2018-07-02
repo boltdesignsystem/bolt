@@ -1,7 +1,7 @@
 {% extends "@pl/default-template.twig" %}
 
 {% macro link(text, href, attributes) %}
-  {% include "@bolt/link.twig" with {
+  {% include "@bolt-components-link/link.twig" with {
     text: text,
     href: href,
     attributes: attributes | default({})
@@ -65,7 +65,7 @@
 
 
 
-  {% embed "@bolt/band--feature.twig" with {
+  {% embed "@bolt-components-band/band--feature.twig" with {
     teaserPosition: "left",
     teaserWidth: "2/3",
     size: "medium",
@@ -115,7 +115,7 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "small",
   theme: qaTheme,
   fullBleed: true
@@ -128,7 +128,7 @@
 
         {% grid %}
           {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
-            {% include "@bolt/text.twig" with {
+            {% include "@bolt-components-headline/text.twig" with {
               text: "Pega is #1 in software for customer engagement and operational excellence.",
               size: "large",
               weight: "regular"
@@ -139,7 +139,7 @@
 
 
       {% cell "u-bolt-width-1/1@only-small" %}
-        {% include "@bolt/button.twig" with {
+        {% include "@bolt-components-button/button.twig" with {
           text: "Learn More",
           width: "full",
           size: "medium"
@@ -154,7 +154,7 @@
 
 
 
-{% embed "@bolt/band--collection.twig" with {
+{% embed "@bolt-components-band/band--collection.twig" with {
   theme: qaTheme,
   size: "medium",
   background: {
@@ -266,7 +266,7 @@
   ]
 } only %}
   {% block band_content %}
-    {% include "@bolt/headline.twig" with {
+    {% include "@bolt-components-headline/headline.twig" with {
       text: "What's Trending",
       size: "xlarge",
       tag: "h3"
@@ -279,7 +279,7 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "medium",
   theme: qaTheme,
   fullBleed: true
@@ -289,7 +289,7 @@
       {% grid "o-bolt-grid--matrix o-bolt-grid--large" %}
 
         {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-          {% include "@bolt/image.twig" with {
+          {% include "@bolt-components-image/image.twig" with {
             src: "/pattern-lab/images/content/promos/promo-16x9-salesforce-vs-pega.png",
             lazyload: false
           } only %}
@@ -301,7 +301,7 @@
 
             {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
 
-              {% include "@bolt/headline.twig" with {
+              {% include "@bolt-components-headline/headline.twig" with {
                 text: "There’s a real alternative to the Salesforce.com hype: Pega CRM.",
                 size: "xlarge",
                 tag: "h3"
@@ -373,7 +373,7 @@
 
               <p>Considering Salesforce.com? Don’t fall for the hype. See why today’s leading enterprises choose Pega CRM.</p>
 
-              {% include "@bolt/button-group.twig" with {
+              {% include "@bolt-components-button-group/button-group.twig" with {
                 "buttons": [
                   {
                     "text": "Learn More",
@@ -386,7 +386,7 @@
                 ]
               } only %}
 
-              {% include "@bolt/button-group.twig" with {
+              {% include "@bolt-components-button-group/button-group.twig" with {
                 "buttons": [
                   {
                     "text": "Learn More",
@@ -406,13 +406,13 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "medium",
   theme: qaTheme,
   fullBleed: true
 } only %}
   {% block band_content %}
-    {% include "@bolt/action-blocks.twig" with {
+    {% include "@bolt-components-action-blocks/action-blocks.twig" with {
       attributes: {
         class: [
           "c-bolt-action-blocks--max-8"

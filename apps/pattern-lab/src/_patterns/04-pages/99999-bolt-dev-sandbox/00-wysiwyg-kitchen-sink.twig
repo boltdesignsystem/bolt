@@ -2,7 +2,7 @@
 
 {% block main_content %}
   {% set header %}
-    {% include "@bolt/headline.twig" with {
+    {% include "@bolt-components-headline/headline.twig" with {
       "text": "WYSIWYG Elements to Bolt Components",
       "size": "xxxlarge",
       "tag": "h1"
@@ -55,17 +55,17 @@ ClassicEditor
     </p>
     <h3>Headlines</h3>
     <figure class="u-bolt-margin-bottom-medium">
-      {% include "@bolt/headline.twig" with {
+      {% include "@bolt-components-headline/headline.twig" with {
         "text": "Headline 1 is XXLarge Headline",
         "size": "xxlarge",
         "tag": "h2"
       } only %}
-      {% include "@bolt/headline.twig" with {
+      {% include "@bolt-components-headline/headline.twig" with {
         "text": "Headline 2 is XLarge Headline",
         "size": "xlarge",
         "tag": "h3"
       } only %}
-      {% include "@bolt/headline.twig" with {
+      {% include "@bolt-components-headline/headline.twig" with {
         "text": "Headline 3 is Large Headline",
         "size": "large",
         "tag": "h4"
@@ -73,23 +73,23 @@ ClassicEditor
     </figure>
     <h3>Text</h3>
     <figure class="u-bolt-margin-bottom-medium">
-      {% include "@bolt/text.twig" with {
+      {% include "@bolt-components-headline/text.twig" with {
         "text": "Body text is medium sized text.",
         "tag": "p"
       } only %}
-      {% include "@bolt/text.twig" with {
+      {% include "@bolt-components-headline/text.twig" with {
         "text": "Italic text is <em>emphasized</em>.",
         "tag": "p"
       } only %}
-      {% include "@bolt/text.twig" with {
+      {% include "@bolt-components-headline/text.twig" with {
         "text": "Bold text is <strong>strong</strong>.",
         "tag": "p"
       } only %}
-      {% include "@bolt/text.twig" with {
+      {% include "@bolt-components-headline/text.twig" with {
         "text": "Superscript text is <sup>sup</sup>.",
         "tag": "p"
       } only %}
-      {% include "@bolt/text.twig" with {
+      {% include "@bolt-components-headline/text.twig" with {
         "text": "Subscript text is <sub>sub</sub>.",
         "tag": "p"
       } only %}
@@ -166,12 +166,12 @@ ClassicEditor
 
 
 
-  {% include "@bolt/band.twig" with {
+  {% include "@bolt-components-band/band.twig" with {
     "theme": "dark",
     "size": "large",
     "content": header
   } only %}
-  {% include "@bolt/band.twig" with {
+  {% include "@bolt-components-band/band.twig" with {
     "theme": "xlight",
     "content": article
   } only %}

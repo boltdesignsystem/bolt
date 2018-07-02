@@ -1,7 +1,7 @@
 {% extends "@pl/default-template.twig" %}
 
 {% block global_header %}
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "small",
     theme: "dark",
     attributes: {
@@ -16,13 +16,13 @@
 
 {% block main_content %}
 
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "small",
     theme: "xlight"
   } %}
     {% block band_content  %}
 
-      {% include "@bolt/headline.twig" with {
+      {% include "@bolt-components-headline/headline.twig" with {
         text: "2018 Agenda",
         size: "small",
         tag: "span",
@@ -39,11 +39,11 @@
         </div>
       {% endif %}
 
-      {% include "@bolt/eyebrow.twig" with {
+      {% include "@bolt-components-headline/eyebrow.twig" with {
         text: "Session: spark talk"
       } only %}
 
-      {% include "@bolt/headline.twig" with {
+      {% include "@bolt-components-headline/headline.twig" with {
         text: pageTitle|default('Page Title here'),
         size: "xxxlarge",
         tag: "h1"
@@ -52,7 +52,7 @@
       {% grid "o-bolt-grid--matrix o-bolt-grid--large" %}
 
         {% cell "u-bolt-width-1/1 u-bolt-width-1/3@medium" %}
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             size: "xsmall",
             transform: "uppercase",
             tag: "h3",
@@ -60,7 +60,7 @@
           } only %}
 
           <div class="u-bolt-margin-bottom-small">
-            {% include "@bolt/icon.twig" with {
+            {% include "@bolt-components-icon/icon.twig" with {
               name: "calendar",
               size: "medium"
             } only %}
@@ -69,7 +69,7 @@
           </div>
 
           <div>
-            {% include "@bolt/icon.twig" with {
+            {% include "@bolt-components-icon/icon.twig" with {
               name: "map-pin",
               size: "medium"
             } only %}
@@ -80,7 +80,7 @@
         {% endcell %}
 
         {% cell "u-bolt-width-1/1 u-bolt-width-2/3@medium" %}
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             size: "xsmall",
             transform: "uppercase",
             tag: "h3",
@@ -110,19 +110,19 @@
             {% for speaker in speakers %}
 
               {% cell "u-bolt-width-1/1 u-bolt-width-1/3@xsmall" %}
-                {% include "@bolt/headline.twig" with {
+                {% include "@bolt-components-headline/headline.twig" with {
                   size: "xsmall",
                   tag: "h3",
                   text: speaker.name,
                 } only %}
 
-                {% include "@bolt/text.twig" with {
+                {% include "@bolt-components-headline/text.twig" with {
                   text: speaker.title,
                   tag: "div",
                   size: "xsmall"
                 } only %}
 
-                {% include "@bolt/text.twig" with {
+                {% include "@bolt-components-headline/text.twig" with {
                   text: speaker.org,
                   size: "xsmall",
                   weight: "bold"
@@ -139,7 +139,7 @@
     {% endblock %}
   {% endembed %}
 
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "small",
     theme: "xlight"
   } only %}
@@ -147,16 +147,16 @@
 
       {% grid %}
         {% cell 'u-bolt-width-1/1 u-bolt-width-9/12@medium' %}
-          {% include "@bolt/text.twig" with {
+          {% include "@bolt-components-headline/text.twig" with {
             text: "They deliver consistently exceptional experiences, personalized to the individual, and seamlessly across the entire spectrum of relationship. Secondly, they are operational powerhouses, able to continuously optimize their business systems while empowering employees with tools that lead to increasingly higher levels of production and efficiency. Finally, they are fiercely agile. They respond quickly to changing market conditions. They are the agitators and disruptors that redefine the standards in their industries. And they are masters at leveraging technology to gain an advantage. In his opening keynote at PegaWorld, Alan Trefler, Pega’s Founder and CEO, will explore the ways in which truly great brands are achieving staggering results through the pragmatic application of innovative technologies and the revolutionary way they build and evolve software. Using these approaches, enterprises are able to meet the challenges of today and create the disruptive opportunities of tomorrow. They are future-empowered."
           } only %}
 
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             size: "small",
             text: "What you'll learn"
           } only %}
 
-          {% include "@bolt/unordered-list.twig" with {
+          {% include "@bolt-components-unordered-list/unordered-list.twig" with {
             contentItems : [
               {
                 text: "The growing importance and demands of a unified adtech and martech world"
@@ -176,7 +176,7 @@
   {% endembed %}
 
 
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "small",
     theme: "xlight"
   } only %}
@@ -187,12 +187,12 @@
       {% grid "o-bolt-grid--matrix o-bolt-grid--large" %}
 
         {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             text: "Topics",
             size: "small"
           } only %}
 
-          {% include "@bolt/chip-list.twig" with {
+          {% include "@bolt-components-chip-list/chip-list.twig" with {
             contentItems: [
               {
                 "text": "Analytics",
@@ -231,12 +231,12 @@
         {% endcell %}
 
         {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             text: "Industries",
             size: "small"
           } only %}
 
-          {% include "@bolt/chip-list.twig" with {
+          {% include "@bolt-components-chip-list/chip-list.twig" with {
             "contentItems": [
               {
                 "text": "Healthcare",
@@ -255,12 +255,12 @@
         {% endcell %}
 
         {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             text: "Products",
             size: "small"
           } only %}
 
-          {% include "@bolt/chip-list.twig" with {
+          {% include "@bolt-components-chip-list/chip-list.twig" with {
             "contentItems": [
               {
                 "text": "Marketing",
@@ -279,7 +279,7 @@
     {% endblock %}
   {% endembed %}
 
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "small",
     theme: "xlight",
     attributes: {
@@ -291,7 +291,7 @@
 
       <hr>
 
-      {% include "@bolt/headline.twig" with {
+      {% include "@bolt-components-headline/headline.twig" with {
         size: "xlarge",
         tag: "h2",
         text: "Related Sessions",
@@ -300,11 +300,11 @@
       {% grid "o-bolt-grid--matrix" %}
         {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
 
-          {% include "@bolt/eyebrow.twig" with {
+          {% include "@bolt-components-headline/eyebrow.twig" with {
             text: "Spark Talk"
           } only %}
 
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             text: "What Aflac is learning about consumer expectations through monitoring tech disruptions",
             size: "large",
             tag: "h3",
@@ -313,11 +313,11 @@
         {% endcell %}
 
         {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-          {% include "@bolt/eyebrow.twig" with {
+          {% include "@bolt-components-headline/eyebrow.twig" with {
             text: "Spark Talk"
           } only %}
 
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             text: "Leverage Mobile and Collaboration to Increase Revenue and Decrease Order-to-Cash Cycle Time",
             size: "large",
             tag: "h3",
@@ -326,11 +326,11 @@
         {% endcell %}
 
         {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-          {% include "@bolt/eyebrow.twig" with {
+          {% include "@bolt-components-headline/eyebrow.twig" with {
             text: "Spark Talk"
           } only %}
 
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             text: "PayPal Delivers World Class Customer Service, Worldwide",
             size: "large",
             tag: "h3",
@@ -342,7 +342,7 @@
     {% endblock %}
   {% endembed %}
 
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     theme: "xdark",
     size: "medium"
   } %}
@@ -350,7 +350,7 @@
     {% block band_content  %}
       {% grid "o-bolt-grid--matrix" %}
         {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-          {% include "@bolt/teaser.twig" with {
+          {% include "@bolt-components-teaser/teaser.twig" with {
             "headlines": [
               {
                 "type": "headline",
@@ -369,7 +369,7 @@
         {% endcell %}
 
         {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-          {% include "@bolt/teaser.twig" with {
+          {% include "@bolt-components-teaser/teaser.twig" with {
             "headlines": [
               {
                 "type": "headline",
@@ -389,12 +389,12 @@
         {% endcell %}
 
         {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             text: "Connect to start a conversation",
             size: "large"
           } only %}
 
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             text: "#PegaWorld18",
             size: "xxlarge",
             weight: "regular",
@@ -425,7 +425,7 @@
 
           {% for icon in socialIcons %}
             <a class="u-bolt-margin-right-small" href="{{ icon.url }}">
-              {% include "@bolt/icon.twig" with {
+              {% include "@bolt-components-icon/icon.twig" with {
                 name: icon.name,
                 size: "medium"
               } only %}

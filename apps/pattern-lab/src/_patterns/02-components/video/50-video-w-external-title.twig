@@ -5,7 +5,7 @@
 
 
 
-{% include "@bolt/headline.twig" with {
+{% include "@bolt-components-headline/headline.twig" with {
   "tag": "h3",
   "size": "large",
   "text": "Figure and Figcaption"
@@ -13,7 +13,7 @@
 
 {% set content %}
   <figure>
-    {% include "@bolt/video.twig" with {
+    {% include "@bolt-components-video/video.twig" with {
       "videoId": "3861325118001",
       "accountId": "1900410236",
       "playerId": "r1CAdLzTW",
@@ -21,7 +21,7 @@
       "showMetaTitle": false
     } only %}
     <figcaption>
-      {% include "@bolt/text.twig" with {
+      {% include "@bolt-components-headline/text.twig" with {
         "size": "xsmall",
         "text": "EE: Transforming the Customer Journey Through 1:1 Customer Engagement (Suzanne Woolley)"
       } only %}
@@ -29,7 +29,7 @@
   </figure>
 {% endset %}
 
-{% include "@bolt/band.twig" with {
+{% include "@bolt-components-band/band.twig" with {
   "size": "medium",
   "theme": "light",
   "content": content,
@@ -41,18 +41,18 @@
 
 
 
-{% include "@bolt/headline.twig" with {
+{% include "@bolt-components-headline/headline.twig" with {
   "tag": "h3",
   "size": "large",
   "text": "Headline with Video"
 } only %}
 
 {% set content %}
-  {% include "@bolt/headline.twig" with {
+  {% include "@bolt-components-headline/headline.twig" with {
     "size": "xxlarge",
     "text": "EE: Transforming the Customer Journey Through 1:1 Customer Engagement (Suzanne Woolley)"
   } only %}
-  {% include "@bolt/video.twig" with {
+  {% include "@bolt-components-video/video.twig" with {
     "videoId": "3861325118001",
     "accountId": "1900410236",
     "playerId": "r1CAdLzTW",
@@ -61,7 +61,7 @@
   } only %}
 {% endset %}
 
-{% include "@bolt/band.twig" with {
+{% include "@bolt-components-band/band.twig" with {
   "size": "medium",
   "theme": "dark",
   "content": content

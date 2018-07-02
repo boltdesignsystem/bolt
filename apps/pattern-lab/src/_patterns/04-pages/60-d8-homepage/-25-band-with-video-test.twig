@@ -2,7 +2,7 @@
 
 {% block main_content %}
 
-{% include "@bolt/video.twig" with {
+{% include "@bolt-components-video/video.twig" with {
   "videoId": "5609376179001",
   "accountId": "1900410236",
   "playerId": "r1CAdLzTW"
@@ -10,14 +10,14 @@
 
 
 <bolt-band>
- {% include "@bolt/video.twig" with {
+ {% include "@bolt-components-video/video.twig" with {
     "videoId": "5609376179001",
     "accountId": "1900410236",
     "playerId": "r1CAdLzTW"
   } only %}
 </bolt-band>
 
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "small",
     theme: "xdark",
     fullBleed: true
@@ -25,7 +25,7 @@
     {% block band_content %}
 
       {% set videoUuid3 = "js-bolt-video-uuid--3" %}
-        {% include "@bolt/button.twig" with {
+        {% include "@bolt-components-button/button.twig" with {
         text: "Toggle video",
         tag: "button",
         attributes: {
@@ -34,7 +34,7 @@
         }
       } only %}
 
-      {% include "@bolt/video.twig" with {
+      {% include "@bolt-components-video/video.twig" with {
         "videoId": "5609376179001",
         "accountId": "1900410236",
         "playerId": "r1CAdLzTW",

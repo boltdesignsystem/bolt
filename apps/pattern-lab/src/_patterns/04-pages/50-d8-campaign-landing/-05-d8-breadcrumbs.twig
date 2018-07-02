@@ -4,17 +4,17 @@
 
   {# Breadcrumb Component in a Band #}
   {% set band_content %}
-    {% include "@bolt/breadcrumb.twig" with {
+    {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
       "contentItems": [
-        include("@bolt/link.twig", {
+        include("@bolt-components-link/link.twig", {
           "text": "Home",
           "url": "#"
         }),
-        include("@bolt/link.twig", {
+        include("@bolt-components-link/link.twig", {
           "text": "Page",
           "url": "#"
         }),
-        include("@bolt/link.twig", {
+        include("@bolt-components-link/link.twig", {
           "text": "Sub Page",
           "url": "#",
           "attributes": {
@@ -24,7 +24,7 @@
       ]
     } only %}
   {% endset %}
-  {% include "@bolt/band.twig" with {
+  {% include "@bolt-components-band/band.twig" with {
     "size": "xsmall",
     "theme": "light",
     "content": band_content
@@ -32,15 +32,15 @@
 
   {# Demo notes #}
   {% set band_content %}
-    {% include "@bolt/headline.twig" with {
+    {% include "@bolt-components-headline/headline.twig" with {
       "size": "xlarge",
       "text": "Breadcrumb Component in a Band ^"
     } only %}
-    {% include "@bolt/text.twig" with {
+    {% include "@bolt-components-headline/text.twig" with {
       "text": "The above example shows a xsmall band containing the breadcrumbs."
     } only %}
   {% endset %}
-  {% include "@bolt/band.twig" with {
+  {% include "@bolt-components-band/band.twig" with {
     "theme": "none",
     "content": band_content
   } only %}
@@ -50,17 +50,17 @@
 
   {# Breadcrumb Band Stacking On Top of Featured Band #}
   {% set breadcrumb_band_content %}
-    {% include "@bolt/breadcrumb.twig" with {
+    {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
       "contentItems": [
-        include("@bolt/link.twig", {
+        include("@bolt-components-link/link.twig", {
           "text": "Home",
           "url": "#"
         }),
-        include("@bolt/link.twig", {
+        include("@bolt-components-link/link.twig", {
           "text": "Page",
           "url": "#"
         }),
-        include("@bolt/link.twig", {
+        include("@bolt-components-link/link.twig", {
           "text": "Sub Page",
           "url": "#",
           "attributes": {
@@ -72,12 +72,12 @@
   {% endset %}
 
   {% set stacked_bands %}
-    {% include "@bolt/band.twig" with {
+    {% include "@bolt-components-band/band.twig" with {
       "size": "small",
       "theme": "none",
       "content": breadcrumb_band_content
     } only %}
-    {% include "@bolt/band--feature.twig" with {
+    {% include "@bolt-components-band/band--feature.twig" with {
       "size": "large",
       "theme": "none",
       "primaryTeaser": {
@@ -116,7 +116,7 @@
     } only %}
   {% endset %}
 
-  {% include "@bolt/band.twig" with {
+  {% include "@bolt-components-band/band.twig" with {
     "size": "none",
     "theme": "dark",
     "content": stacked_bands
@@ -124,22 +124,22 @@
 
   {# Demo notes #}
   {% set band_content %}
-    {% include "@bolt/headline.twig" with {
+    {% include "@bolt-components-headline/headline.twig" with {
       "size": "xlarge",
       "text": "Breadcrumb Band Stacking On Top of Featured Band ^"
     } only %}
-    {% include "@bolt/text.twig" with {
+    {% include "@bolt-components-headline/text.twig" with {
       "text": "The above example shows a small band containing the breadcrumbs and large band containing the content. Both have theme set to none."
     } only %}
-    {% include "@bolt/headline.twig" with {
+    {% include "@bolt-components-headline/headline.twig" with {
       "size": "large",
       "text": "Background and Theming"
     } only %}
-    {% include "@bolt/text.twig" with {
+    {% include "@bolt-components-headline/text.twig" with {
       "text": "There is an outer band containing the breadcrumb band and the featured band, background and theme should be set on that outer band."
     } only %}
   {% endset %}
-  {% include "@bolt/band.twig" with {
+  {% include "@bolt-components-band/band.twig" with {
     "theme": "none",
     "content": band_content
   } only %}
@@ -149,17 +149,17 @@
 
   {# Breadcrumb Band Stacking On Top of Featured Band with Outer Background Band #}
   {% set breadcrumb_band_content %}
-    {% include "@bolt/breadcrumb.twig" with {
+    {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
       "contentItems": [
-        include("@bolt/link.twig", {
+        include("@bolt-components-link/link.twig", {
           "text": "Home",
           "url": "#"
         }),
-        include("@bolt/link.twig", {
+        include("@bolt-components-link/link.twig", {
           "text": "Why Pega?",
           "url": "#"
         }),
-        include("@bolt/link.twig", {
+        include("@bolt-components-link/link.twig", {
           "text": "Digital Transformation",
           "url": "#",
           "attributes": {
@@ -171,12 +171,12 @@
   {% endset %}
 
   {% set stacked_bands %}
-    {% include "@bolt/band.twig" with {
+    {% include "@bolt-components-band/band.twig" with {
       "size": "small",
       "theme": "none",
       "content": breadcrumb_band_content
     } only %}
-    {% include "@bolt/band--feature.twig" with {
+    {% include "@bolt-components-band/band--feature.twig" with {
       "size": "large",
       "theme": "none",
       "primaryTeaser": {
@@ -215,7 +215,7 @@
     } only %}
   {% endset %}
 
-  {% include "@bolt/band.twig" with {
+  {% include "@bolt-components-band/band.twig" with {
     "teaserPosition": "left",
     "teaserWidth": "2/3",
     "size": "none",
@@ -237,22 +237,22 @@
 
   {# Demo notes #}
   {% set band_content %}
-    {% include "@bolt/headline.twig" with {
+    {% include "@bolt-components-headline/headline.twig" with {
       "size": "xlarge",
       "text": "Breadcrumb Band Stacking On Top of Featured Band with Outer Background Band ^"
     } only %}
-    {% include "@bolt/text.twig" with {
+    {% include "@bolt-components-headline/text.twig" with {
       "text": "The above example shows a small band containing the breadcrumbs and large band containing the content. Both have theme set to none."
     } only %}
-    {% include "@bolt/headline.twig" with {
+    {% include "@bolt-components-headline/headline.twig" with {
       "size": "large",
       "text": "Background and Theming"
     } only %}
-    {% include "@bolt/text.twig" with {
+    {% include "@bolt-components-headline/text.twig" with {
       "text": "A background image is set on the outer band and the theme is set to dark."
     } only %}
   {% endset %}
-  {% include "@bolt/band.twig" with {
+  {% include "@bolt-components-band/band.twig" with {
     "theme": "none",
     "content": band_content
   } only %}
@@ -262,17 +262,17 @@
 
   {# Breadcrumb Band Stacking On Top of Featured Band #}
   {% set breadcrumb_band_content %}
-    {% include "@bolt/breadcrumb.twig" with {
+    {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
       "contentItems": [
-        include("@bolt/link.twig", {
+        include("@bolt-components-link/link.twig", {
           "text": "Home",
           "url": "#"
         }),
-        include("@bolt/link.twig", {
+        include("@bolt-components-link/link.twig", {
           "text": "Why Pega?",
           "url": "#"
         }),
-        include("@bolt/link.twig", {
+        include("@bolt-components-link/link.twig", {
           "text": "Digital Transformation",
           "url": "#",
           "attributes": {
@@ -284,12 +284,12 @@
   {% endset %}
 
   {% set stacked_bands %}
-    {% include "@bolt/band.twig" with {
+    {% include "@bolt-components-band/band.twig" with {
       "size": "xsmall",
       "theme": "medium",
       "content": breadcrumb_band_content
     } only %}
-    {% include "@bolt/band--feature.twig" with {
+    {% include "@bolt-components-band/band--feature.twig" with {
       "size": "large",
       "theme": "xdark",
       "primaryTeaser": {
@@ -328,7 +328,7 @@
     } only %}
   {% endset %}
 
-  {% include "@bolt/band.twig" with {
+  {% include "@bolt-components-band/band.twig" with {
     "size": "none",
     "theme": "none",
     "content": stacked_bands
@@ -336,22 +336,22 @@
 
   {# Demo notes #}
   {% set band_content %}
-    {% include "@bolt/headline.twig" with {
+    {% include "@bolt-components-headline/headline.twig" with {
       "size": "xlarge",
       "text": "Breadcrumb Band Stacking On Top of Featured Band (individually themed)^"
     } only %}
-    {% include "@bolt/text.twig" with {
+    {% include "@bolt-components-headline/text.twig" with {
       "text": "The above example shows a xsmall band containing the breadcrumbs and large band containing the content."
     } only %}
-    {% include "@bolt/headline.twig" with {
+    {% include "@bolt-components-headline/headline.twig" with {
       "size": "large",
       "text": "Background and Theming"
     } only %}
-    {% include "@bolt/text.twig" with {
+    {% include "@bolt-components-headline/text.twig" with {
       "text": "No background or theme is set on the outer band in this case because it's not neccessary."
     } only %}
   {% endset %}
-  {% include "@bolt/band.twig" with {
+  {% include "@bolt-components-band/band.twig" with {
     "theme": "none",
     "content": band_content
   } only %}

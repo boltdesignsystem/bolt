@@ -1,11 +1,11 @@
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   theme: "dark",
   size: "medium"
 } %}
   {% block band_content %}
 
 {% macro text(text, size, tag) %}
-  {% include "@bolt/text.twig" with {
+  {% include "@bolt-components-headline/text.twig" with {
     text: text,
     size: size  | default("medium"),
     tag: tag | default("p")
@@ -18,7 +18,7 @@
 
         {# TODO: check if image exists #}
         {% cell 'u-bolt-width-1/1 u-bolt-width-5/12@medium' %}
-          {% include "@bolt/image.twig" with {
+          {% include "@bolt-components-image/image.twig" with {
             src: "/pattern-lab/images/content/promos/promo-16x9-anthem.jpg",
             lazyload: false
           } only %}
@@ -27,10 +27,10 @@
 
         {% cell 'u-bolt-width-1/1 u-bolt-width-7/12@medium' %}
 
-          {% include "@bolt/eyebrow.twig" with {
+          {% include "@bolt-components-headline/eyebrow.twig" with {
             text: "White Paper"
           } only %}
-          {% include "@bolt/headline.twig" with {
+          {% include "@bolt-components-headline/headline.twig" with {
             text: feature_band.title | default("Unlock the Power of Your DMP"),
             size: "xxxlarge"
           } only %}
@@ -49,7 +49,7 @@
             ]
           } only %}
 
-          {% include "@bolt/button.twig" with {
+          {% include "@bolt-components-button/button.twig" with {
             text: "Download Now",
             url: "https://www.pega.com/download-now",
             style: "primary"
@@ -68,7 +68,7 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   theme: "xlight",
   size: "medium"
 } %}
@@ -77,16 +77,16 @@
     {% grid %}
       {% cell 'u-bolt-width-1/1 u-bolt-width-9/12@medium' %}
 
-        {% include "@bolt/subheadline.twig" with {
+        {% include "@bolt-components-headline/subheadline.twig" with {
           text: "The foundational use cases that are unifying the worlds of adtech and martech.",
           size: "xxlarge"
         } only %}
 
-        {% include "@bolt/text.twig" with {
+        {% include "@bolt-components-headline/text.twig" with {
           text: "Omni-channel customer journeys are increasingly recognized as the best practice standard by which organizations need to define, implement, and measure their marketing strategy and assign marketing spend. Maintaining advertising technology (adtech) and marketing technology (martech) silos creates technology, organizational, and capability gaps—preventing us from effectively driving toward coherent, profitable, and delightful customer experiences across both owned and paid media, throughout the entire customer life cycle. And yet, with the growing maturity of data management platform (DMP) implementations—combined with greater adoption and utilization of decision management platforms—these two unique worlds of adtech and martech can be bridged, with pre-built technology solutions that deliver new, previously unachievable use cases. By combining powerful DMP technology with advanced AI, marketing organizations can optimize ad spend, reduce attrition, improve acquisition rates, and increase revenues."
         } only %}
 
-        {% include "@bolt/text.twig" with {
+        {% include "@bolt-components-headline/text.twig" with {
           text: "Download this whitepaper to learn about:"
         } only %}
 
@@ -99,13 +99,13 @@
 
         <hr>
 
-        {% include "@bolt/headline.twig" with {
+        {% include "@bolt-components-headline/headline.twig" with {
           text: "Category:",
           size: "small",
           transform: "uppercase"
         } only %}
 
-        {% include "@bolt/chip-list.twig" with {
+        {% include "@bolt-components-chip-list/chip-list.twig" with {
           "contentItems": [
             {
               "text": "First tag",
@@ -135,12 +135,12 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   theme: "light"
 } %}
   {% block band_content %}
 
-    {% include "@bolt/headline.twig" with {
+    {% include "@bolt-components-headline/headline.twig" with {
       text: "Related resources",
       size: "xlarge",
       tag: "h3"
@@ -150,7 +150,7 @@
       {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@medium' %}
 
 
-        {% include "@bolt/card-w-teaser-list.twig" with {
+        {% include "@bolt-components-card/card-w-teaser-list.twig" with {
           teasers: [
             {
               eyebrow: {
@@ -195,7 +195,7 @@
       {% endcell %}
 
       {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@medium' %}
-         {% include "@bolt/card-w-teaser.twig" with {
+         {% include "@bolt-components-card/card-w-teaser.twig" with {
             "image": {
               "src": "/pattern-lab/images/placeholders/1200x660.jpg",
               "lazyload": false

@@ -1,11 +1,11 @@
 {% extends "@pl/default-template.twig" %}
 
 {% block global_header %}
-  {% include "@bolt/page-header.twig" %}
+  {% include "@bolt-components-page-header/page-header.twig" %}
 {% endblock %}
 
 {% block main_content %}
-  {% embed "@bolt/band--feature.twig" with {
+  {% embed "@bolt-components-band/band--feature.twig" with {
     teaserPosition: "left",
     teaserWidth: "2/3",
     size: "large",
@@ -57,7 +57,7 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "small",
   theme: "dark",
   fullBleed: true
@@ -67,15 +67,15 @@
     {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
 
       {% cell "o-u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-        {% include "@bolt/headline.twig" with {
+        {% include "@bolt-components-headline/headline.twig" with {
           text: "Explore the Pega CRM Suite",
           size: "xxlarge"
         } only %}
-        {% include "@bolt/text.twig" with {
+        {% include "@bolt-components-headline/text.twig" with {
           text: "Move past traditional CRM systems to a true journey-enabled, customer engagement suite. Learn how Pega is helping enterprises revolutionize their customer engagement with end-to-end automation and real-time AI on the only unified CRM platform.",
           size: "medium"
         } only %}
-        {% include "@bolt/video.twig" with {
+        {% include "@bolt-components-video/video.twig" with {
           "videoId": "5609376179001",
           "accountId": "1900410236",
           "playerId": "r1CAdLzTW"
@@ -84,7 +84,7 @@
 
 
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-        {% include "@bolt/headline.twig" with {
+        {% include "@bolt-components-headline/headline.twig" with {
           text: "Get to know Pega Marketing",
           size: "xlarge",
           tag: "h2"
@@ -192,7 +192,7 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "medium",
   theme: "xlight",
   fullBleed: true
@@ -202,19 +202,19 @@
     {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
 
       {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
-        {% include "@bolt/headline.twig" with {
+        {% include "@bolt-components-headline/headline.twig" with {
           text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
           weight: "regular",
           size: "xxlarge",
           tag: "h2"
         } only %}
 
-        {% include "@bolt/text.twig" with {
+        {% include "@bolt-components-headline/text.twig" with {
           text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
           size: "medium"
         } only %}
 
-        {% include "@bolt/button-group.twig" with {
+        {% include "@bolt-components-button-group/button-group.twig" with {
           "buttons": [
             {
               "text": "Call to action",
@@ -229,7 +229,7 @@
       {% endcell %}
 
       {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
-        {% include "@bolt/device-viewer.twig" with {
+        {% include "@bolt-components-device-viewer/device-viewer.twig" with {
           device: "ipad",
           orientation: "landscape",
           color: "black",
@@ -248,7 +248,7 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "medium",
   theme: "light",
   fullBleed: true
@@ -258,7 +258,7 @@
     {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
 
       {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
-        {% include "@bolt/device-viewer.twig" with {
+        {% include "@bolt-components-device-viewer/device-viewer.twig" with {
           device: "ipad",
           orientation: "portrait",
           color: "black",
@@ -270,18 +270,18 @@
 
 
       {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
-        {% include "@bolt/subheadline.twig" with {
+        {% include "@bolt-components-headline/subheadline.twig" with {
           text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
           size: "xxlarge",
           tag: "span"
         } only %}
 
-        {% include "@bolt/text.twig" with {
+        {% include "@bolt-components-headline/text.twig" with {
           text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
           size: "medium"
         } only %}
 
-        {% include "@bolt/button-group.twig" with {
+        {% include "@bolt-components-button-group/button-group.twig" with {
           "buttons": [
             {
               "text": "Call to action",
@@ -301,7 +301,7 @@
   {% endblock %}
 {% endembed %}
 
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "small",
     theme: "xdark",
     fullBleed: true
@@ -310,7 +310,7 @@
       {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
         {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
           {% set videoUuid3 = "js-bolt-video-uuid--3c" %}
-          {% include "@bolt/video.twig" with {
+          {% include "@bolt-components-video/video.twig" with {
             "videoId": "5609376179001",
             "accountId": "1900410236",
             "playerId": "r1CAdLzTW",
@@ -318,17 +318,17 @@
           } only %}
         {% endcell %}
         {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-          {% include "@bolt/subheadline.twig" with {
+          {% include "@bolt-components-headline/subheadline.twig" with {
             text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
             size: "xxlarge",
             tag: "span"
           } only %}
 
-          {% include "@bolt/text.twig" with {
+          {% include "@bolt-components-headline/text.twig" with {
             text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
             size: "medium"
           } only %}
-          {% include "@bolt/button.twig" with {
+          {% include "@bolt-components-button/button.twig" with {
             text: "Toggle video",
             tag: "button",
             attributes: {
@@ -341,7 +341,7 @@
     {% endblock %}
   {% endembed %}
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "medium",
   theme: "xlight",
   fullBleed: true
@@ -351,18 +351,18 @@
     {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
 
       {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
-        {% include "@bolt/subheadline.twig" with {
+        {% include "@bolt-components-headline/subheadline.twig" with {
           text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
           size: "xxlarge",
           tag: "span"
         } only %}
 
-        {% include "@bolt/text.twig" with {
+        {% include "@bolt-components-headline/text.twig" with {
           text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
           size: "medium"
         } only %}
 
-        {% include "@bolt/button-group.twig" with {
+        {% include "@bolt-components-button-group/button-group.twig" with {
           "buttons": [
             {
               "text": "Call to action",
@@ -377,7 +377,7 @@
       {% endcell %}
 
       {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
-        {% include "@bolt/device-viewer.twig" with {
+        {% include "@bolt-components-device-viewer/device-viewer.twig" with {
           device: "iphone8",
           orientation: "portrait",
           color: "black",
@@ -388,7 +388,7 @@
       {% endcell %}
 
        {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
-        {% include "@bolt/device-viewer.twig" with {
+        {% include "@bolt-components-device-viewer/device-viewer.twig" with {
           device: "iphone8",
           orientation: "portrait",
           color: "gold",
@@ -399,7 +399,7 @@
       {% endcell %}
 
       {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
-        {% include "@bolt/device-viewer.twig" with {
+        {% include "@bolt-components-device-viewer/device-viewer.twig" with {
           device: "iphone8",
           orientation: "landscape",
           color: "gold",
@@ -411,7 +411,7 @@
 
 
        {% cell "u-bolt-width-1/1" %}
-        {% include "@bolt/device-viewer.twig" with {
+        {% include "@bolt-components-device-viewer/device-viewer.twig" with {
           device: "iphone8",
           orientation: "landscape",
           color: "black",
@@ -427,7 +427,7 @@
   {% endblock %}
 {% endembed %}
 
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "small",
     theme: "xdark",
     fullBleed: true
@@ -435,18 +435,18 @@
     {% block band_content %}
       {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
         {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-          {% include "@bolt/subheadline.twig" with {
+          {% include "@bolt-components-headline/subheadline.twig" with {
             text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
             size: "xxlarge",
             tag: "span"
           } only %}
 
-          {% include "@bolt/text.twig" with {
+          {% include "@bolt-components-headline/text.twig" with {
             text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
             size: "medium"
           } only %}
           {% set videoUuid3 = "js-bolt-video-uuid--3" %}
-          {% include "@bolt/button.twig" with {
+          {% include "@bolt-components-button/button.twig" with {
             text: "Toggle video",
             tag: "button",
             attributes: {
@@ -456,7 +456,7 @@
           } only %}
         {% endcell %}
         {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-          {% include "@bolt/video.twig" with {
+          {% include "@bolt-components-video/video.twig" with {
             "videoId": "5609376179001",
             "accountId": "1900410236",
             "playerId": "r1CAdLzTW",
@@ -467,7 +467,7 @@
     {% endblock %}
   {% endembed %}
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "medium",
   theme: "light",
   fullBleed: true
@@ -477,18 +477,18 @@
     {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix o-bolt-grid--center" %}
 
       {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small" %}
-        {% include "@bolt/subheadline.twig" with {
+        {% include "@bolt-components-headline/subheadline.twig" with {
           text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
           size: "xxlarge",
           tag: "span"
         } only %}
 
-        {% include "@bolt/text.twig" with {
+        {% include "@bolt-components-headline/text.twig" with {
           text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
           size: "medium"
         } only %}
 
-        {% include "@bolt/button-group.twig" with {
+        {% include "@bolt-components-button-group/button-group.twig" with {
           "buttons": [
             {
               "text": "Call to action",
@@ -503,7 +503,7 @@
       {% endcell %}
 
       {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small" %}
-        {% include "@bolt/device-viewer.twig" with {
+        {% include "@bolt-components-device-viewer/device-viewer.twig" with {
           device: "macbook",
           orientation: "landscape",
           color: "black",
@@ -517,7 +517,7 @@
 {% endembed %}
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "small",
   theme: "xdark",
   fullBleed: true
@@ -526,7 +526,7 @@
     {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
         {% set videoUuid3 = "js-bolt-video-uuid--3b" %}
-        {% include "@bolt/video.twig" with {
+        {% include "@bolt-components-video/video.twig" with {
           "videoId": "5609376179001",
           "accountId": "1900410236",
           "playerId": "r1CAdLzTW",
@@ -534,17 +534,17 @@
         } only %}
         {% endcell %}
         {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-          {% include "@bolt/subheadline.twig" with {
+          {% include "@bolt-components-headline/subheadline.twig" with {
             text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
             size: "xxlarge",
             tag: "span"
           } only %}
 
-          {% include "@bolt/text.twig" with {
+          {% include "@bolt-components-headline/text.twig" with {
             text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
             size: "medium"
           } only %}
-          {% include "@bolt/button.twig" with {
+          {% include "@bolt-components-button/button.twig" with {
             text: "Toggle video",
             tag: "button",
             attributes: {
@@ -559,7 +559,7 @@
 
 
 
-{% embed "@bolt/band--collection.twig" with {
+{% embed "@bolt-components-band/band--collection.twig" with {
   "theme": "xlight",
   "size": "medium",
   "contentItems": [
@@ -659,7 +659,7 @@
 
         {% grid %}
           {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
-            {% include "@bolt/headline.twig" with {
+            {% include "@bolt-components-headline/headline.twig" with {
               text: "Analyst Reports",
               size: "xlarge",
               tag: "h3"
@@ -670,7 +670,7 @@
 
 
       {% cell %}
-        {% include "@bolt/text.twig" with {
+        {% include "@bolt-components-headline/text.twig" with {
           text: "See all analyst reports",
           size: "small",
           weight: "bold",
@@ -692,7 +692,7 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "medium",
   theme: "xdark",
   fullBleed: true,
@@ -718,7 +718,7 @@
 
 
 
-        {% include "@bolt/blockquote.twig" with {
+        {% include "@bolt-components-blockquote/blockquote.twig" with {
           size: "xlarge",
           border: "horizontal",
           alignItems: "center",
@@ -737,11 +737,11 @@
         } only %}
 
 
-        {% include "@bolt/text.twig" with {
+        {% include "@bolt-components-headline/text.twig" with {
           text: "Watch Birgit König, Ph.D., CEO, Allianz Health Germany, share how the Pega platform meets rapidly changing customer expectations."
         } only %}
 
-        {% include "@bolt/button.twig" with {
+        {% include "@bolt-components-button/button.twig" with {
           text: "Call to Action",
           url: "www.google.com",
           style: "secondary"
@@ -758,7 +758,7 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "small",
   theme: "xdark",
   fullBleed: true
@@ -771,11 +771,11 @@
 
         {% grid %}
           {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
-            {% include "@bolt/headline.twig" with {
+            {% include "@bolt-components-headline/headline.twig" with {
               text: "See How Pega Can Help Your Business",
               size: "xlarge"
             } only %}
-            {% include "@bolt/text.twig" with {
+            {% include "@bolt-components-headline/text.twig" with {
               text: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
             } only %}
           {% endcell %}
@@ -784,7 +784,7 @@
 
 
       {% cell "u-bolt-width-1/1@only-small" %}
-        {% include "@bolt/button.twig" with {
+        {% include "@bolt-components-button/button.twig" with {
           text: "Call to action",
           width: "full",
           size: "medium"
@@ -793,100 +793,100 @@
 
     {% endgrid %}
 
-{% include "@bolt/video.twig" with {
+{% include "@bolt-components-video/video.twig" with {
   "videoId": "3973999413001",
   "accountId": "1900410236",
   "playerId": "r1CAdLzTW"
 } only %}
 
 
-{% include "@bolt/video.twig" with {
+{% include "@bolt-components-video/video.twig" with {
   "videoId": "5138448829001",
   "accountId": "1900410236",
   "playerId": "r1CAdLzTW"
 } only %}
 
 
-{% include "@bolt/video.twig" with {
+{% include "@bolt-components-video/video.twig" with {
   "videoId": "3974028469001",
   "accountId": "1900410236",
   "playerId": "r1CAdLzTW"
 } only %}
 
-{% include "@bolt/video.twig" with {
+{% include "@bolt-components-video/video.twig" with {
   "videoId": "5400908626001",
   "accountId": "1900410236",
   "playerId": "r1CAdLzTW"
 } only %}
 
 
-{% include "@bolt/video.twig" with {
+{% include "@bolt-components-video/video.twig" with {
   "videoId": "4584402777001",
   "accountId": "1900410236",
   "playerId": "r1CAdLzTW"
 } only %}
 
-{% include "@bolt/video.twig" with {
+{% include "@bolt-components-video/video.twig" with {
   "videoId": "3979775517001",
   "accountId": "1900410236",
   "playerId": "r1CAdLzTW"
 } only %}
 
-{% include "@bolt/video.twig" with {
+{% include "@bolt-components-video/video.twig" with {
   "videoId": "4175249227001",
   "accountId": "1900410236",
   "playerId": "r1CAdLzTW"
 } only %}
 
-{% include "@bolt/video.twig" with {
+{% include "@bolt-components-video/video.twig" with {
   "videoId": "4236820085001",
   "accountId": "1900410236",
   "playerId": "r1CAdLzTW"
 } only %}
 
-{% include "@bolt/video.twig" with {
+{% include "@bolt-components-video/video.twig" with {
   "videoId": "4922500787001",
   "accountId": "1900410236",
   "playerId": "r1CAdLzTW"
 } only %}
 
-{% include "@bolt/video.twig" with {
+{% include "@bolt-components-video/video.twig" with {
   "videoId": "5103362380001",
   "accountId": "1900410236",
   "playerId": "r1CAdLzTW"
 } only %}
 
-{% include "@bolt/video.twig" with {
+{% include "@bolt-components-video/video.twig" with {
   "videoId": "3974028459001",
   "accountId": "1900410236",
   "playerId": "r1CAdLzTW"
 } only %}
 
-{% include "@bolt/video.twig" with {
+{% include "@bolt-components-video/video.twig" with {
   "videoId": "4763108346001",
   "accountId": "1900410236",
   "playerId": "r1CAdLzTW"
 } only %}
 
-{% include "@bolt/video.twig" with {
+{% include "@bolt-components-video/video.twig" with {
   "videoId": "3974012235001",
   "accountId": "1900410236",
   "playerId": "r1CAdLzTW"
 } only %}
 
-{% include "@bolt/video.twig" with {
+{% include "@bolt-components-video/video.twig" with {
   "videoId": "5214595752001",
   "accountId": "1900410236",
   "playerId": "r1CAdLzTW"
 } only %}
 
-{% include "@bolt/video.twig" with {
+{% include "@bolt-components-video/video.twig" with {
   "videoId": "5273142065001",
   "accountId": "1900410236",
   "playerId": "r1CAdLzTW"
 } only %}
 
-{% include "@bolt/video.twig" with {
+{% include "@bolt-components-video/video.twig" with {
   "videoId": "4944556027001",
   "accountId": "1900410236",
   "playerId": "r1CAdLzTW"

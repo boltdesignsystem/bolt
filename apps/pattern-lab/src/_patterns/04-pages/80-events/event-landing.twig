@@ -6,7 +6,7 @@
 
 {% block main_content %}
 
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "medium",
     theme: "xdark",
     fullBleed: true,
@@ -29,7 +29,7 @@
 
     {% block band_content %}
 
-      {% embed "@bolt/band.twig" with {
+      {% embed "@bolt-components-band/band.twig" with {
         size: "medium",
         theme: "none"
       } only %}
@@ -38,13 +38,13 @@
 
           {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center" %}
             {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small u-bolt-text-align-center" %}
-              {% include "@bolt/headline.twig" with {
+              {% include "@bolt-components-headline/headline.twig" with {
                 text: "Events at Pega: Meet the people behind the tech",
                 size: "xxxlarge",
                 tag: "h1"
               } only %}
 
-              {% include "@bolt/subheadline.twig" with {
+              {% include "@bolt-components-headline/subheadline.twig" with {
                 text: "Join Pega thought leaders, customers, and partners from around the world and explore the power of Pega firsthand."
               } only %}
             {% endcell %}
@@ -53,7 +53,7 @@
         {% endblock %}
       {% endembed %}
 
-      {% embed "@bolt/band.twig" with {
+      {% embed "@bolt-components-band/band.twig" with {
         size: "medium",
         theme: "none"
       } only %}
@@ -62,7 +62,7 @@
 
           {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
             {% cell "u-bolt-width-1/1 u-bolt-width-2/3@medium" %}
-              {% include "@bolt/headline.twig" with {
+              {% include "@bolt-components-headline/headline.twig" with {
                 text: "Featured Pega Events",
                 size: "xxlarge"
               } only %}
@@ -140,7 +140,7 @@
 
             {% endcell %}
             {% cell "u-bolt-width-1/1 u-bolt-width-1/3@medium" %}
-              {% include "@bolt/headline.twig" with {
+              {% include "@bolt-components-headline/headline.twig" with {
                 text: "Find Us Here Also",
                 size: "xxlarge"
               } only %}
@@ -216,7 +216,7 @@
   {% endembed %}
 
 
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     theme: "xlight",
     size: "medium"
   } %}
@@ -292,7 +292,7 @@
           {% grid "o-bolt-grid--matrix" %}
             {% for i in 1..6 %}
               {% cell "u-bolt-width-1/1" %}
-                {% embed "@bolt/card.twig" with {
+                {% embed "@bolt-components-card/card.twig" with {
                   theme: "xlight"
                 } only %}
 
@@ -303,18 +303,18 @@
 
                     {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
                       {% cell "u-bolt-width-1/1 u-bolt-width-1/4@small" %}
-                        {% include "@bolt/image.twig" with {
+                        {% include "@bolt-components-image/image.twig" with {
                           src: "/pattern-lab/images/placeholders/500x500.jpg",
                           lazyload: false
                         } only %}
                       {% endcell %}
 
                       {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
-                        {% include "@bolt/eyebrow.twig" with {
+                        {% include "@bolt-components-headline/eyebrow.twig" with {
                           text: "Conference | Rebruary 26 - March 1 2018 | Barcelona, Spain"
                         } only %}
 
-                        {% include "@bolt/headline.twig" with {
+                        {% include "@bolt-components-headline/headline.twig" with {
                           text: "Mobile World Congress",
                           size: "xlarge"
                         } only %}
@@ -324,7 +324,7 @@
                           facility in Barcelona, Spain.  View the event page to request a meeting in advance.</p>
 
                         <p>
-                          {% include "@bolt/link.twig" with {
+                          {% include "@bolt-components-link/link.twig" with {
                             text: "Request a Meeting",
                             icon: {
                               name: "chevron-right"
@@ -345,7 +345,7 @@
   {% endembed %}
 
 
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "large",
     theme: "xdark"
   } only %}
@@ -353,7 +353,7 @@
 
       {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center" %}
         {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small u-bolt-text-align-center" %}
-          {% include "@bolt/blockquote.twig" with {
+          {% include "@bolt-components-blockquote/blockquote.twig" with {
             size: "xlarge",
             border: "none",
             alignItems: "center",

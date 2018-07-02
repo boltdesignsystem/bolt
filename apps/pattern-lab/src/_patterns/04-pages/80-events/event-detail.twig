@@ -6,14 +6,14 @@
 
 {% block main_content %}
 
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "medium",
     theme: "dark"
   } only %}
     {% block band_content  %}
     {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
       {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}
-        {% include "@bolt/headline.twig" with {
+        {% include "@bolt-components-headline/headline.twig" with {
             text: "Pega Events",
             size: "xsmall",
             tag: "span",
@@ -24,13 +24,13 @@
             }
         } only %}
 
-        {% include "@bolt/headline.twig" with {
+        {% include "@bolt-components-headline/headline.twig" with {
             text: "CRM Applications for Real-Time Engagement",
             size: "xxxlarge",
             tag: "h1",
         } only %}
 
-        {% include "@bolt/subheadline.twig" with {
+        {% include "@bolt-components-headline/subheadline.twig" with {
             text: "Pega’s AI powered CRM Suite is transforming the way enterprises drive greater engagement across the entire customer journey.",
             size: "xlarge",
             tag: "p",
@@ -38,7 +38,7 @@
 
         <ul class="o-bolt-inline-list o-bolt-inline-list--medium">
           <li class="o-bolt-inline-list__item">
-            {% include "@bolt/headline.twig" with {
+            {% include "@bolt-components-headline/headline.twig" with {
               text: "January 25, 2018",
               size: "large",
               tag: "span",
@@ -51,7 +51,7 @@
             } only %}
           </li>
           <li class="o-bolt-inline-list__item">
-            {% include "@bolt/headline.twig" with {
+            {% include "@bolt-components-headline/headline.twig" with {
               text: "10:00 AM EST",
               size: "large",
               tag: "span",
@@ -64,7 +64,7 @@
             } only %}
           </li>
           <li class="o-bolt-inline-list__item">
-            {% include "@bolt/headline.twig" with {
+            {% include "@bolt-components-headline/headline.twig" with {
               text: "New York, NY",
               size: "large",
               tag: "span",
@@ -82,7 +82,7 @@
     {% endblock %}
   {% endembed %}
 
- {% embed "@bolt/band.twig" with {
+ {% embed "@bolt-components-band/band.twig" with {
     size: "small",
     theme: "xlight"
   } only %}
@@ -94,7 +94,7 @@
 
           <p>When you don’t have to waste time feeding the Frankenstack, you can focus on stuff that matters: designing awesome customer experiences. Automating your most complicated processes. Innovating in ways that disrupt the market."</p>
 
-          {% include "@bolt/unordered-list.twig" with {
+          {% include "@bolt-components-unordered-list/unordered-list.twig" with {
             contentItems : [
               {
                 text: "The growing importance and demands of a unified adtech and martech world"
@@ -111,7 +111,7 @@
             ]
           } only %}
 
-        {% include "@bolt/headline.twig" with {
+        {% include "@bolt-components-headline/headline.twig" with {
           text: "Event Agenda",
           size: "xxlarge",
           tag: "h2",
@@ -230,7 +230,7 @@
             not be reason to fail this during QA - the correct sizes will be pulled in when the site is updated to use the latest 1.x version of Bolt.'
           } only %}
 
-          {% embed "@bolt/card.twig" with {
+          {% embed "@bolt-components-card/card.twig" with {
             theme: "light",
           } only %}
 
@@ -239,12 +239,12 @@
 
             {% block card_body %}
 
-              {% include "@bolt/headline.twig" with {
+              {% include "@bolt-components-headline/headline.twig" with {
                 text: "Register now",
                 size: "xlarge"
               } only %}
 
-              {% include "@bolt/text.twig" with {
+              {% include "@bolt-components-headline/text.twig" with {
                 text: "(all fields are required)",
                 size: "small",
                 attributes: {
@@ -253,7 +253,7 @@
               } only %}
 
               <p class="u-bolt-margin-bottom-small">
-                {% include "@bolt/link.twig" with {
+                {% include "@bolt-components-link/link.twig" with {
                   "text": "Fill out this form with LinkedIn"|t,
                   "icon": {
                     "position": "before",
@@ -276,7 +276,7 @@
   {% endembed %}
 
 {# Start Location Details section #}
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
   size: "medium",
   theme: "xlight",
   fullBleed: true
@@ -286,7 +286,7 @@
     {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
 
       {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
-        {% include "@bolt/headline.twig" with {
+        {% include "@bolt-components-headline/headline.twig" with {
           text: "Location Details",
           size: "xxlarge",
           tag: "h2",
@@ -295,29 +295,29 @@
           }
         } only %}
 
-        {% include "@bolt/text.twig" with {
+        {% include "@bolt-components-headline/text.twig" with {
           text: "This Is The Place Where The Event Is Happening",
           size: "xlarge"
         } only %}
 
-       {% include "@bolt/text.twig" with {
+       {% include "@bolt-components-headline/text.twig" with {
           text: "123 Sesame St.",
           attributes: {
             class: "u-bolt-margin-bottom-xsmall"
           }
         } only %}
 
-       {% include "@bolt/text.twig" with {
+       {% include "@bolt-components-headline/text.twig" with {
           text: "New York, NY 10012",
           size: "medium"
         } only %}
 
-        {% include "@bolt/text.twig" with {
+        {% include "@bolt-components-headline/text.twig" with {
           text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus viverra accumsan in nisl nisi scelerisque eu ultrices vitae. Vel risus commodo viverra maecenas accumsan lacus vel facilisis volutpat.",
           size: "medium"
         } only %}
 
-        {% include "@bolt/button-group.twig" with {
+        {% include "@bolt-components-button-group/button-group.twig" with {
           "buttons": [
             {
               "text": "Get Directions",
@@ -342,13 +342,13 @@
 {# End Location Details section #}
 
 {# Start Speakers section #}
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
   size: "medium",
   theme: "xlight",
   fullBleed: true
   } only %}
     {% block band_content %}
-      {% include "@bolt/headline.twig" with {
+      {% include "@bolt-components-headline/headline.twig" with {
         text: "Hear From Our Industry Leaders",
         size: "xxlarge",
         tag: "h2",
@@ -362,12 +362,12 @@
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
           {% cell "u-bolt-width-1/2" %}
-          {% include "@bolt/image.twig" with {
+          {% include "@bolt-components-image/image.twig" with {
                 src: "/pattern-lab/images/placeholders/events--speakers--placeholder.jpg",
           } only %}
           {% endcell %}
           {% cell "u-bolt-width-1/2" %}
-            {% include "@bolt/headline.twig" with {
+            {% include "@bolt-components-headline/headline.twig" with {
               text: "Stanley Wheeler",
               size: "large",
               tag: "h3"
@@ -391,12 +391,12 @@
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
           {% cell "u-bolt-width-1/2" %}
-          {% include "@bolt/image.twig" with {
+          {% include "@bolt-components-image/image.twig" with {
                 src: "/pattern-lab/images/placeholders/events--speakers--placeholder.jpg"
           } only %}
           {% endcell %}
           {% cell "u-bolt-width-1/2" %}
-            {% include "@bolt/headline.twig" with {
+            {% include "@bolt-components-headline/headline.twig" with {
               text: "Stanley Wheeler",
               size: "large",
               tag: "h3"
@@ -413,12 +413,12 @@
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
           {% cell "u-bolt-width-1/2" %}
-          {% include "@bolt/image.twig" with {
+          {% include "@bolt-components-image/image.twig" with {
                 src: "/pattern-lab/images/placeholders/events--speakers--placeholder.jpg"
           } only %}
           {% endcell %}
           {% cell "u-bolt-width-1/2" %}
-            {% include "@bolt/headline.twig" with {
+            {% include "@bolt-components-headline/headline.twig" with {
               text: "Stanley Wheeler",
               size: "large",
               tag: "h3"
@@ -435,12 +435,12 @@
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
           {% cell "u-bolt-width-1/2" %}
-          {% include "@bolt/image.twig" with {
+          {% include "@bolt-components-image/image.twig" with {
                 src: "/pattern-lab/images/placeholders/events--speakers--placeholder.jpg"
           } only %}
           {% endcell %}
           {% cell "u-bolt-width-1/2" %}
-            {% include "@bolt/headline.twig" with {
+            {% include "@bolt-components-headline/headline.twig" with {
               text: "Stanley Wheeler",
               size: "large",
               tag: "h3"
@@ -457,12 +457,12 @@
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
           {% cell "u-bolt-width-1/2" %}
-          {% include "@bolt/image.twig" with {
+          {% include "@bolt-components-image/image.twig" with {
                 src: "/pattern-lab/images/placeholders/events--speakers--placeholder.jpg"
           } only %}
           {% endcell %}
           {% cell "u-bolt-width-1/2" %}
-            {% include "@bolt/headline.twig" with {
+            {% include "@bolt-components-headline/headline.twig" with {
               text: "Stanley Wheeler",
               size: "large",
               tag: "h3"
@@ -479,12 +479,12 @@
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
         {% grid %}
           {% cell "u-bolt-width-1/2" %}
-          {% include "@bolt/image.twig" with {
+          {% include "@bolt-components-image/image.twig" with {
                 src: "/pattern-lab/images/placeholders/events--speakers--placeholder.jpg"
           } only %}
           {% endcell %}
           {% cell "u-bolt-width-1/2" %}
-            {% include "@bolt/headline.twig" with {
+            {% include "@bolt-components-headline/headline.twig" with {
               text: "Stanley Wheeler",
               size: "large",
               tag: "h3"
@@ -505,7 +505,7 @@
 {# End Speakers section #}
 
 {# Start 2017 Highlights section #}
-  {% embed "@bolt/band--collection.twig" with {
+  {% embed "@bolt-components-band/band--collection.twig" with {
   "theme": "xlight",
   "size": "large",
   "contentItems": [
@@ -593,7 +593,7 @@
   ]
 } %}
   {% block band_content %}
-    {% include "@bolt/headline.twig" with {
+    {% include "@bolt-components-headline/headline.twig" with {
       text: "Highlights from 2017",
       size: "xxlarge",
       tag: "h2",
@@ -607,13 +607,13 @@
 {# End 2017 Highlights section#}
 
 {# Start Events Sponsors section#}
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
   size: "large",
   theme: "light",
   fullBleed: true
   } only %}
     {% block band_content  %}
-      {% include "@bolt/headline.twig" with {
+      {% include "@bolt-components-headline/headline.twig" with {
           text: "Event Sponsors",
           align: "center",
           size: "xxlarge",
@@ -639,7 +639,7 @@
           {% set logoImages = ["logo-incessant.png", "logo-capgemini.svg", "logo-cognizant.png", "logo-merkle.png", "logo-infosys.png"] %}
           {% for logoImage in logoImages %}
             {% cell "u-bolt-width-1/2 u-bolt-width-1/5@small" %}
-              {% include "@bolt/image.twig" with {
+              {% include "@bolt-components-image/image.twig" with {
                 src: "/pattern-lab/images/content/logos/" ~ logoImage
               } only %}
             {% endcell %}
@@ -653,7 +653,7 @@
 
 
 {# Start Related Resources section #}
-  {% embed "@bolt/band--collection.twig" with {
+  {% embed "@bolt-components-band/band--collection.twig" with {
   "theme": "dark",
   "size": "large",
   "contentItems": [
@@ -741,7 +741,7 @@
   ]
   } %}
   {% block band_content %}
-    {% include "@bolt/headline.twig" with {
+    {% include "@bolt-components-headline/headline.twig" with {
       text: "Related Resources",
       size: "xxlarge",
       tag: "h3",

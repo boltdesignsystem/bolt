@@ -7,7 +7,7 @@
 {% block main_content %}
 
   {# hero band #}
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "large",
     theme: "dark",
     fullBleed: true,
@@ -30,20 +30,20 @@
 
     {% block band_content  %}
     {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
-      {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}    
-        {% include "@bolt/headline.twig" with {
+      {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}
+        {% include "@bolt-components-headline/headline.twig" with {
             text: "ROBOTIC AUTOMATION",
             size: "xsmall",
             tag: "span",
         } only %}
 
-        {% include "@bolt/headline.twig" with {
+        {% include "@bolt-components-headline/headline.twig" with {
             text: "Automation to Get Work Done",
             size: "xxxlarge",
             tag: "h1",
         } only %}
 
-        {% include "@bolt/subheadline.twig" with {
+        {% include "@bolt-components-headline/subheadline.twig" with {
             text: "Robotic Process Automation (RPA) is not going to transform your business by itself. Up to half of initial RPA projects fail. Combine robotics with powerful end-to-end automation and you can jump on the RPA bandwagon without becoming a statistic.",
             size: "xlarge",
             tag: "p",
@@ -103,7 +103,7 @@
   {% endblock %}
 {% endembed %}
 
-  
+
   {# End Anchor Band #}
 
 
@@ -118,20 +118,20 @@
     ]
   }
 } %}
-  
+
       {% block band_content  %}
         {% grid "o-bolt-grid--large o-bolt-grid--matrix" %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
-            {% include "@bolt/headline.twig" with {
+            {% include "@bolt-components-headline/headline.twig" with {
             text: "Automation is a Journey",
             size: "xxlarge",
             tag: "h2"
             } only %}
             <p>At Pega, we’re obsessed with being unified. Our mobility, real-time AI, robotic automation, BPM, and case management are best in breed – go ask the analysts. But we didn’t cobble this together from pieces of dead companies – we built it from the ground up on a unified, enterprise-ready architecture.</p>
-            
+
             <p>When you don’t have to waste time feeding the Frankenstack, you can focus on stuff that matters: designing awesome customer experiences. Automating your most complicated processes. Innovating in ways that disrupt the market."</p>
           {% endcell %}
-      
+
           {% cell "u-bolt-width-1/1 u-bolt-width-2/5@medium" %}
             {% include "@bolt-components-card/card.twig" with {
               url: "#!",
@@ -182,11 +182,11 @@
     ]
   }
 } %}
-  
+
       {% block band_content  %}
         {% grid "o-bolt-grid--large o-bolt-grid--matrix o-bolt-grid--rev" %}
             {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
-            {% include "@bolt/headline.twig" with {
+            {% include "@bolt-components-headline/headline.twig" with {
             text: "Transformational Results",
             size: "xxlarge",
             tag: "h2"
@@ -249,11 +249,11 @@
     ]
   }
 } %}
-  
+
       {% block band_content  %}
         {% grid "o-bolt-grid--large o-bolt-grid--matrix" %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
-            {% include "@bolt/headline.twig" with {
+            {% include "@bolt-components-headline/headline.twig" with {
             text: "Give Your Employees a Robot",
             size: "xxlarge",
             tag: "h2"
@@ -315,11 +315,11 @@
     ]
   }
 } %}
-  
+
       {% block band_content  %}
         {% grid "o-bolt-grid--large o-bolt-grid--matrix o-bolt-grid--rev" %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
-            {% include "@bolt/headline.twig" with {
+            {% include "@bolt-components-headline/headline.twig" with {
             text: "Find Improvement Opportunities",
             size: "xxlarge",
             tag: "h2"
@@ -330,7 +330,7 @@
 
             <p>Pega Workforce Intelligence captures insights at the desktop. It gets you the details of how work gets done. It uses real-time AI to tell you what systems and processes are getting in the way of employee productivity.</p>
 
-            <p>Because once you know the details, you can act. And that makes all the difference.</p>            
+            <p>Because once you know the details, you can act. And that makes all the difference.</p>
           {% endcell %}
           {% cell "u-bolt-width-1/1 u-bolt-width-2/5@small" %}
             {% include "@bolt-components-card/card.twig" with {
@@ -382,11 +382,11 @@
     ]
   }
 } %}
-  
+
       {% block band_content  %}
         {% grid "o-bolt-grid--large o-bolt-grid--matrix" %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
-            {% include "@bolt/headline.twig" with {
+            {% include "@bolt-components-headline/headline.twig" with {
             text: "The Last Mile of Integration",
             size: "xxlarge",
             tag: "h2"
@@ -448,11 +448,11 @@
     ]
   }
 } %}
-  
+
       {% block band_content  %}
         {% grid "o-bolt-grid--large o-bolt-grid--matrix o-bolt-grid--rev" %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
-            {% include "@bolt/headline.twig" with {
+            {% include "@bolt-components-headline/headline.twig" with {
             text: "Ensure Governance and Oversight",
             size: "xxlarge",
             tag: "h2"
@@ -461,7 +461,7 @@
 
             <p>Pega’s enterprise process transformation platform helps orchestrate complex processes, and the Pega Customer Decision Hub supports deterministic rules in addition to advanced adaptive analytics. Rest assured regulatory compliance is maintained across the enterprise.</p>
 
-            <p>Capabilities such as auto self-documentation ensure an audit trail is maintained of all activities so compliance risk is minimized and required reporting is streamlined and automated.</p>      
+            <p>Capabilities such as auto self-documentation ensure an audit trail is maintained of all activities so compliance risk is minimized and required reporting is streamlined and automated.</p>
           {% endcell %}
           {% cell "u-bolt-width-1/1 u-bolt-width-2/5@small u-bolt-margin---small" %}
             {% include "@bolt-components-card/card.twig" with {
@@ -502,7 +502,7 @@
     {% endembed %}
 {# End governance #}
 
-  
+
     {% include '@bolt-components-share/share.twig' with {
       inline: true,
       text: 'Custom label',
@@ -526,7 +526,7 @@
       ]
     } only %}
 
-  
+
     {% include '@bolt-components-share/share.twig' with {
       sources: [
         {
@@ -547,6 +547,6 @@
         }
       ]
     } only %}
-    
-  
+
+
 {% endblock %}
