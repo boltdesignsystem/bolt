@@ -85,7 +85,7 @@ Breakpoints defined and used in Bolt start out with any rules for the smallest o
 To help with consistancy in the design system, *major breakpoints* in Bolt are assigned names to help coordinate different behaviors across large ranges of screen and device sizes.
 
 ```Sass
-@include respond-to(medium){
+@include bolt-mq(medium){
   max-width: none;
 }
 ```
