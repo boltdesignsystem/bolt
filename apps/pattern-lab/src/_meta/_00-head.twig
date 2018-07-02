@@ -1,4 +1,24 @@
-{% set assets = get_data("@bolt-assets/bolt-webpack-manifest.json") %}
+{% set assets = get_data("@bolt-assets/bolt-webpack-manifest#{bolt.data.config.lang ? "-" ~ bolt.data.config.lang : ""}.json") %}
+
+
+<!-- WIP. Temp solution to async load multiple lang-specific CSS builds based on query string in URL -->
+{% set allAssets = {} %}
+{% set langs = [
+  'en',
+  'ja'
+] %}
+
+{% for lang, key in langs %}
+  {% set langAssets = get_data("@bolt-assets/bolt-webpack-manifest#{key ? "-" ~ key : ""}.json") %}
+
+  {% set allAssets = allAssets|merge({
+    ('' ~ key): langAssets
+  }) %}
+{% endfor %}
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en-US">
@@ -10,18 +30,70 @@
     <!-- Default OG Tag examples (related to Bolt Share Component) -->
     {% include "@bolt-components-share/src/_share-meta-example.twig" %}
 
-    <link rel="stylesheet" href="{{ assets["bolt-global.css"] }}?cachebuster="{{ cacheBuster }}" media="all" />
-    <link rel="stylesheet" href="{{ assets["pl.css"] }}?cachebuster="{{ cacheBuster }}" media="all" />
+    <link rel="stylesheet" href="{{ assets["bolt-global.css"] }}?cachebuster={{ cacheBuster }}" media="all" />
+    <link rel="stylesheet" href="{{ assets["pl.css"] }}?cachebuster={{ cacheBuster }}" media="all" />
 
 
     {# @TODO: wire this up to use Critical CSS #}
     <style>
-      {{ inline("bolt-components-critical-fonts.css") }}
+      {{ inline( assets["bolt-components-critical-fonts.css"] ) }}
     </style>
 
     {# @TODO: wire this up to use Critical JS #}
     <script>
-      {{ inline("bolt-components-critical-fonts.js") }}
+      {{ inline( assets["bolt-components-critical-fonts.js"] ) }}
+    </script>
+
+
+    <!-- WIP. Temp solution to async load multiple lang-specific CSS builds based on query string in URL -->
+    <script>
+    !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+
+    /*! loadCSS rel=preload polyfill. [c]2017 Filament Group, Inc. MIT License */
+    !function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){function e(){t.media=a}var a=t.media||"all";t.addEventListener?t.addEventListener("load",e):t.attachEvent&&t.attachEvent("onload",e),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(e,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
+
+
+    /*! loadJS: load a JS file asynchronously. [c]2014 @scottjehl, Filament Group, Inc. (Based on http://goo.gl/REQGQ by Paul Irish). Licensed MIT */
+    (function( w ){
+      var loadJS = function( src, cb ){
+        "use strict";
+        var ref = w.document.getElementsByTagName( "script" )[ 0 ];
+        var script = w.document.createElement( "script" );
+        script.src = src;
+        script.async = true;
+        ref.parentNode.insertBefore( script, ref );
+        if (cb && typeof(cb) === "function") {
+          script.onload = cb;
+        }
+        return script;
+      };
+      // commonjs
+      if( typeof module !== "undefined" ){
+        module.exports = loadJS;
+      }
+      else {
+        w.loadJS = loadJS;
+      }
+    }( typeof global !== "undefined" ? global : this ));
+
+    </script>
+
+
+    <script>
+      var urlParams = new URLSearchParams(window.location.search);
+
+      var allAssets = {{ allAssets|json_encode() }};
+
+      if (urlParams.has('lang')){
+
+        var langSelected = urlParams.get('lang');
+
+        var globalJS = allAssets[langSelected]['bolt-global.js'];
+        var globalCSS = allAssets[langSelected]['bolt-global.css'];
+
+        loadCSS(globalCSS);
+      }
     </script>
 
 

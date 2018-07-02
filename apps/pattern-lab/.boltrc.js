@@ -1,6 +1,10 @@
 const path = require('path');
 
 module.exports = {
+  lang: [
+    'en', // default language used
+    'ja'
+  ],
   // Environmental variable / preset to use
   env: 'pl',
   buildDir: '../../www/pattern-lab/build',
