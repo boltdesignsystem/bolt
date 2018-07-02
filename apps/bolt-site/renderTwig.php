@@ -12,7 +12,7 @@ if ($argv[2]) {
   $page = $argv[2]; // page we need specific data for
 }
 
-$json = file_get_contents('http://localhost:3001/' . $page);
+$json = file_get_contents($page);
 $data = json_decode($json, true);
 
 // Creates Twig Loader, uses `./templates` as default directory to look for Twig files

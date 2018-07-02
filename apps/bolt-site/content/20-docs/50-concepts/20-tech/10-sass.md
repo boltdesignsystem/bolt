@@ -29,7 +29,7 @@ $weight: regular, semibold, bold
 
 ```scss
 $breakpoint: xxsmall, xsmall, small, medium, large, xlarge, xxlarge, xxxlarge
-@include respond-to($breakpoint);
+@include bolt-mq($breakpoint);
 ```
 
 ---
