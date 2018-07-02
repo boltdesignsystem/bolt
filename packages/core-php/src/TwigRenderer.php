@@ -59,7 +59,15 @@ class TwigRenderer {
    * @return string $html - Renedered HTML string
    */
   public function render($templatePath, $data = []) {
-    $template = $this->twig->load($templatePath);
+    $template = '';
+
+    // verify if the Twig file exists or if the template is being inlined as part of the request
+    if (!file_exists($templatePath)){
+      $template = $this->twig->createTemplate($templatePath);
+    } else {
+      $template = $this->twig->load($templatePath);
+    }
+
     $html = $template->render($data);
     return $html;
   }

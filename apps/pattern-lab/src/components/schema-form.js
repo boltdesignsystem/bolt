@@ -77,7 +77,7 @@ export default class SchemaForm extends Component {
         display: 'flex',
         flexDirection: isHorizontal ? 'row' : 'column',
         flexWrap: 'wrap',
-        alignItems: 'flex-start',
+        alignItems: 'center',
       }}>
         <h3 style={{
           flexShrink: 0,
