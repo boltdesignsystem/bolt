@@ -283,7 +283,7 @@ function createConfig(config) {
         ],
         functions: sassExportData,
         outputStyle: 'expanded',
-        precision: 2,
+        precision: 3,
         data: globalSassData.join('\n'),
       },
     },
