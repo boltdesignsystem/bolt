@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Hey Adam!",
+      size: "xxxlarge"
+    } %}
+
+    {% include "@bolt-components-headline/subheadline.twig" with {
+      text: "I'm compiled via a new Webpack Twig Loader that uses the PHP TwigRenderer service!",
+      size: "xxlarge"
+    } %}
+
+    {% include "@bolt-components-button/button.twig" with {
+      text: "Twig Namespaces Work...",
+    } %}
+
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "And so do the full ecosystem of Webpack HTML Plugins and features.. like asset injection! 😁"
+    } %}
+
+    	<!-- load the Pattern Lab viewer js -->
+  {# <script src="{{ htmlWebpackPlugin.files.chunks['patternlab-viewer'].entry }}" defer></script> #}
+  </body>
+</html>
