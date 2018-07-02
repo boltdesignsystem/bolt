@@ -1,0 +1,57 @@
+{% set schema = bolt.data.components['@bolt-components-pagination'].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# Defaults for a vanilla `pagination` component #}
+{% set prefix = "c-bolt-" %}
+{% set componentName = "pagination" %}
+{% set baseClass = prefix ~ componentName %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# check if the value set to a prop is allowed or defined. if not, default to the default value specified in the component's schema (if one exists) #}
+{% set previousText = previousText | default('Previous'|t) %}
+{% set nextText = nextText | default('Next'|t) %}
+
+{% set prevClasses = [
+  baseClass ~ "__item",
+  baseClass ~ "__item--prev"
+] %}
+
+{% set nextClasses = [
+  baseClass ~ "__item",
+  baseClass ~ "__item--next"
+] %}
+
+<bolt-pagination
+  {% if total %} total="{{ total }}" {% endif %}
+  {% if current %} current="{{ current }}" {% endif %}
+  {{ attributes }}
+>
+  <ul class="{{ baseClass }}">
+    {% if previous %}
+      <li class="{{ prevClasses|join(' ') }}">
+        <a class="{{ "#{baseClass}__link" }}" href="{{ previous.href }}"><bolt-icon name="chevron-left" size="small"></bolt-icon> <span>{{ previousText }}</span></a>
+      </li>
+    {% endif %}
+
+    {% if pages %}
+      {% for key, link in pages %}
+        {% set itemClasses = [
+          baseClass ~ "__item",
+          key == current ? "is-active"
+        ] %}
+        <li class="{{ itemClasses|join(' ') }}">
+          <a class="{{ "#{baseClass}__link" }}" href="{{ link.href }}">{{- key -}}</a>
+        </li>
+      {% endfor %}
+    {% endif %}
+
+    {% if next %}
+      <li class="{{ nextClasses|join(' ') }}">
+        <a class="{{ "#{baseClass}__link" }}" href="{{ next.href }}"><span>{{ nextText }}</span> <bolt-icon name="chevron-right" size="small"></bolt-icon></a>
+      </li>
+    {% endif %}
+  </ul>
+</bolt-pagination>

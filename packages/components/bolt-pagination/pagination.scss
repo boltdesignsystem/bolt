@@ -1,0 +1,164 @@
+@import '@bolt/core';
+
+/* ------------------------------------ *\
+   Pagination
+\* ------------------------------------ */
+
+$bolt-pagination-transition: $bolt-transition;
+
+$bolt-theme-pagination-color-notheme: bolt-color(indigo, light);
+$bolt-theme-pagination-current-notheme: bolt-color(indigo, light);
+$bolt-theme-pagination-active-notheme: bolt-color(white);
+
+$bolt-theme-pagination-color-xlight: bolt-color(indigo, light);
+$bolt-theme-pagination-current-xlight: bolt-color(indigo, light);
+$bolt-theme-pagination-active-xlight: bolt-color(white);
+
+$bolt-theme-pagination-color-light: bolt-color(indigo, light);
+$bolt-theme-pagination-current-light: bolt-color(indigo, light);
+$bolt-theme-pagination-active-light: bolt-color(white);
+
+$bolt-theme-pagination-color-medium: bolt-color(white);
+$bolt-theme-pagination-current-medium: bolt-color(white);
+$bolt-theme-pagination-active-medium: bolt-color(teal, dark);
+
+$bolt-theme-pagination-color-dark: bolt-color(white);
+$bolt-theme-pagination-current-dark: bolt-color(yellow);
+$bolt-theme-pagination-active-dark: bolt-color(indigo, dark);
+
+$bolt-theme-pagination-color-xdark: bolt-color(white);
+$bolt-theme-pagination-current-xdark: bolt-color(yellow);
+$bolt-theme-pagination-active-xdark: bolt-color(indigo, xdark);
+
+bolt-pagination {
+  @include bolt-margin-bottom(medium);
+  @include bolt-font-size(small);
+  display: block;
+  text-align: center;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.c-bolt-pagination {
+  @include bolt-margin(0);
+  @include bolt-font-weight(semibold);
+  @include bolt-font-family(body);
+  display: inline-block;
+  text-align: center;
+  line-height: 32px;
+  position: relative;
+}
+
+.c-bolt-pagination__item {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  transition: opacity $bolt-pagination-transition;
+  -webkit-backface-visibility: hidden; // Removes the 1px jump with opacity transition
+
+  &:hover {
+    opacity: $bolt-global-link-hover-opacity;
+  }
+  &:active,
+  &:focus:active {
+    opacity: $bolt-global-link-active-opacity;
+  }
+
+  &.is-active {
+    background: $bolt-theme-pagination-current-notheme;
+    border-radius: 50%;
+
+    .c-bolt-pagination__link:link,
+    .c-bolt-pagination__link:visited,
+    .c-bolt-pagination__link:hover {
+      color: $bolt-theme-pagination-active-notheme;
+    }
+  }
+}
+
+.c-bolt-pagination__item--prev,
+.c-bolt-pagination__item--next {
+  width: inherit;
+  position: absolute;
+
+  @media (max-width: bolt-breakpoint(small)) {
+    span {
+      @include bolt-visuallyhidden;
+    }
+  }
+}
+
+.c-bolt-pagination__item--prev {
+  transform: translateX(-100%);
+  left: -20px;
+
+  span {
+    margin-left: 7px;
+  }
+}
+
+.c-bolt-pagination__item--next {
+  transform: translateX(100%);
+  top: 0;
+  right: -20px;
+
+  span {
+    margin-right: 7px;
+  }
+}
+
+.c-bolt-pagination__link:link,
+.c-bolt-pagination__link:visited {
+  text-decoration: none;
+  display: block;
+  color: $bolt-theme-pagination-color-notheme;
+
+}
+
+$bolt-theme-pagination-colors: (
+  'theme-prefix': 't-bolt-',
+  sets: (
+    xlight: $bolt-theme-pagination-color-xlight,
+    light:  $bolt-theme-pagination-color-light,
+    medium: $bolt-theme-pagination-color-medium,
+    dark:   $bolt-theme-pagination-color-dark,
+    xdark:  $bolt-theme-pagination-color-xdark
+  ),
+  active: (
+    xlight: $bolt-theme-pagination-active-xlight,
+    light:  $bolt-theme-pagination-active-light,
+    medium: $bolt-theme-pagination-active-medium,
+    dark:   $bolt-theme-pagination-active-dark,
+    xdark:  $bolt-theme-pagination-active-xdark
+  ),
+  current: (
+    xlight: $bolt-theme-pagination-current-xlight,
+    light:  $bolt-theme-pagination-current-light,
+    medium: $bolt-theme-pagination-current-medium,
+    dark:   $bolt-theme-pagination-current-dark,
+    xdark:  $bolt-theme-pagination-current-xdark
+  )
+);
+
+$indexes: map-get($bolt-theme-pagination-colors, 'sets');
+$prefix: map-get($bolt-theme-pagination-colors, 'theme-prefix');
+$active: map-get($bolt-theme-pagination-colors, 'active');
+$current: map-get($bolt-theme-pagination-colors, 'current');
+
+@each $key, $value in $indexes {
+  .#{$prefix}#{$key} .c-bolt-pagination__link:link,
+  .#{$prefix}#{$key} .c-bolt-pagination__link:visited {
+    color: map-get($indexes, $key);
+  }
+  .#{$prefix}#{$key} .c-bolt-pagination__item.is-active {
+    background: map-get($current, $key);
+
+    .c-bolt-pagination__link:link,
+    .c-bolt-pagination__link:visited,
+    .c-bolt-pagination__link:hover {
+      color: map-get($active, $key);
+    }
+  }
+}
