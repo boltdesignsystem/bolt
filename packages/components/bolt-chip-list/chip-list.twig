@@ -8,7 +8,7 @@
 
   {% for chip in contentItems %}
     {% set chipItem %}
-      {% include "@bolt/chip.twig" with chip only %}
+      {% include "@bolt-components-chip/chip.twig" with chip only %}
     {% endset %}
 
     {% set inlineListItems = inlineListItems | merge([{

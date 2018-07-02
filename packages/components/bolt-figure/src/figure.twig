@@ -14,9 +14,9 @@
 <bolt-{{ componentName }} bolt-component>
   <figure {{ attributes.addClass(classes) }}>
     {% if image %}
-      {% include "@bolt/image.twig" with image only %}
+      {% include "@bolt-components-image/image.twig" with image only %}
     {% elseif icon %}
-      {% include "@bolt/icon.twig" with icon only %}
+      {% include "@bolt-components-icon/icon.twig" with icon only %}
     {% endif %}
 
     {% if content %}

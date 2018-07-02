@@ -1,4 +1,4 @@
-{% extends "@bolt/card.twig" %}
+{% extends "@bolt-components-card/card.twig" %}
 
 
 {% block card_body %}
@@ -6,17 +6,17 @@
     {% set teaserItems = {} %}
     {% set items = [] %}
 
-    
+
     {% for teaser in teasers %}
 
       {% set teaserItem %}
-        {% include "@bolt/teaser.twig" with teaser only %}
+        {% include "@bolt-components-teaser/teaser.twig" with teaser only %}
       {% endset %}
 
       {% set items = items | merge([{
         "text": teaserItem
       }]) %}
-      
+
     {% endfor %}
 
 

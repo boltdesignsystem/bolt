@@ -19,7 +19,7 @@
 {% if tags != "any" %}
   {% set tag = tag in tags ? tag : schema.properties.tag.default %}
 {% else %}
-  {% set tag = tag ?? schema.properties.tag.default %}
+  {% set tag = tag ? tag : schema.properties.tag.default %}
 {% endif %}
 {% set weight = weight | default(schema.properties.weight.default) %}
 {% set style = style | default(schema.properties.style.default) %}
@@ -80,7 +80,7 @@
 <{{ tag }} {{ attributes.addClass(classes) }}>
   {% if icon and not url and iconPosition == "before" %}
     <span class="{{ "#{baseClass}__icon" }}">
-      {% include "@bolt/icon.twig" with icon only %}
+      {% include "@bolt-components-icon/icon.twig" with icon only %}
     </span>
   {% endif %}
 
@@ -95,14 +95,14 @@
       {% set linkVars = linkVars | merge({ icon: icon }) %}
     {% endif %}
 
-    {% include "@bolt/link.twig" with linkVars only %}
+    {% include "@bolt-components-link/link.twig" with linkVars only %}
   {% else %}
     {{ text }}
   {% endif %}
 
   {% if icon and not url and iconPosition != "before" %}
     <span class="{{ "#{baseClass}__icon" }}">
-      {% include "@bolt/icon.twig" with icon only %}
+      {% include "@bolt-components-icon/icon.twig" with icon only %}
     </span>
   {% endif %}
 </{{ tag }}>

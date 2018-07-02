@@ -1,5 +1,5 @@
 {# Sample Usage
-  {% include "@bolt/action-blocks.twig" with {
+  {% include "@bolt-components-action-blocks/action-blocks.twig" with {
     maxItemsPerRow: 3,  // Optional [2 ~ 12]. Default is 3.
     align: "top",       // Optional [top, center, bottom]. Default is top.
     border: true,       // Optional [show, hide]. Default shows borders, but you can turn them off.
@@ -78,7 +78,7 @@
     {% else %}
       {% for item in contentItems %}
         <li class="{{ "#{baseClass}__item" }}">
-          {% include "@bolt/action-block.twig" with item only %}
+          {% include "@bolt-components-action-blocks/action-block.twig" with item only %}
         </li>
       {% endfor %}
     {% endif %}

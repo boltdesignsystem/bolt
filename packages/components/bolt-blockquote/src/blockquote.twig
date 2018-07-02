@@ -1,5 +1,5 @@
 {# Sample Usage
-  {% include "@bolt/twig" with {
+  {% include "@bolt-components-blockquote/blockquote.twig" with {
     // Default is large. [large, xlarge, xxlarge]
     "size": "large",
 
@@ -80,13 +80,13 @@
     {% if logo %}
       {% block blockquote_logo %}
         <div class="{{ "#{baseClass}__logo" }}">
-          {% include "@bolt/logo.twig" with logo only %}
+          {% include "@bolt-components-logo/logo.twig" with logo only %}
         </div>
       {% endblock %}
     {% endif %}
     {% block blockquote_quote %}
       <div class="{{ "#{baseClass}__quote" }}">
-        {% include "@bolt/text.twig" with {
+        {% include "@bolt-components-headline/text.twig" with {
           text: content,
           tag: "div",
           size: size,
@@ -100,19 +100,19 @@
           {% if author.image %}
             <div class="{{ "#{baseClass}__footer-item" }}">
               <div class="{{ "#{baseClass}__image" }}">
-                {% include "@bolt/image.twig" with author.image only %}
+                {% include "@bolt-components-image/image.twig" with author.image only %}
               </div>
             </div>
           {% endif %}
           <div class="{{ "#{baseClass}__footer-item" }}">
-            {% include "@bolt/text.twig" with {
+            {% include "@bolt-components-headline/text.twig" with {
               text: author.name,
               tag: "cite",
               size: "xsmall",
               weight: "bold"
             } only %}
             {% if author.title %}
-              {% include "@bolt/text.twig" with {
+              {% include "@bolt-components-headline/text.twig" with {
                 text: author.title,
                 size: "xsmall"
               } only %}

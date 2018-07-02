@@ -1,5 +1,5 @@
 {# Sample Usage
-  {% include "@bolt/action-block.twig" with {
+  {% include "@bolt-components-action-blocks/action-block.twig" with {
     text: "Title",
     url: "http://google.com",
     icon: {
@@ -32,7 +32,7 @@
         {% set icon = icon | merge({
           size: icon.size | default("xlarge")
         }) %}
-        {% include "@bolt/icon.twig" with icon only %}
+        {% include "@bolt-components-icon/icon.twig" with icon only %}
       </div>
     {% endif %}
 

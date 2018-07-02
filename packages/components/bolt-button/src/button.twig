@@ -101,7 +101,7 @@
     @todo: create Twig function to translate shorthand utility class references to actual classnames
     For example:
 
-    {% include "@bolt/button.twig' with {
+    {% include "@bolt-components-button/button.twig' with {
       text: "Example Button",
       color: "primary",
       utils: [
@@ -122,7 +122,7 @@
     <replace-with-children class="{{ classes|join(' ') }}">
       {% if icon and iconPosition == "before"  %}
         <span class="{{ "#{baseClass}__icon" }}">
-          {% include "@bolt/icon.twig" with icon only %}
+          {% include "@bolt-components-icon/icon.twig" with icon only %}
         </span>
       {% endif %}
 
@@ -130,7 +130,7 @@
 
       {% if icon and iconPosition == "after" %}
         <span class="{{ "#{baseClass}__icon" }}">
-          {% include "@bolt/icon.twig" with icon only %}
+          {% include "@bolt-components-icon/icon.twig" with icon only %}
         </span>
       {% endif %}
     </replace-with-children>

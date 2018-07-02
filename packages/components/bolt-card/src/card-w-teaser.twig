@@ -1,4 +1,4 @@
-{% extends "@bolt/card.twig" %}
+{% extends "@bolt-components-card/card.twig" %}
 
 {% if image %}
   {% set image = image | merge({
@@ -7,7 +7,7 @@
   {% set items = items | default([]) | merge([image]) %}
 {% endif %}
 
-  
+
 {% block card_body %}
   {% if teaser %}
     {% set cardBodyContent = teaser %}
@@ -34,6 +34,6 @@
       buttons: buttons
     } %}
 
-    {% include "@bolt/teaser.twig" with teaserParams only %}
+    {% include "@bolt-components-teaser/teaser.twig" with teaserParams only %}
   {% endif %}
 {% endblock %}

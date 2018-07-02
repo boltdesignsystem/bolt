@@ -55,18 +55,18 @@
     <div class="c-bolt-device-viewer__screen {{ baseClass ~ "__screen"}}">
       {% if magnify %}<bolt-image-zoom>{% endif %}
         {% if magnify %}
-          {% include "@bolt/_screen-tilt.twig" %}
+          {% include "@bolt-components-device-viewer/_screen-tilt.twig" %}
         {% endif %}
 
         {% block device_viewer_image %}
           {% if image %}
-            {% include "@bolt/image.twig" with image only %}
+            {% include "@bolt-components-image/image.twig" with image only %}
           {% endif %}
         {% endblock %}
 
         {% if magnify %}
           <div class="c-bolt-image-zoom__overlay">
-            {% include "@bolt/icon.twig" with {
+            {% include "@bolt-components-icon/icon.twig" with {
               name: "search",
               size: "xlarge",
               background: "circle",

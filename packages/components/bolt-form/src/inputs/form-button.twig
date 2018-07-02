@@ -23,7 +23,7 @@
 <button {{ attributes.addClass(classes) }}>
   {% if icon %}
     <span class="c-bolt-button__icon" {% if iconOnly %}u-bolt-margin-left-none {% endif %}">
-      {% include "@bolt/icon.twig" with icon only %}
+      {% include "@bolt-components-icon/icon.twig" with icon only %}
     </span>
   {% endif %}
 
