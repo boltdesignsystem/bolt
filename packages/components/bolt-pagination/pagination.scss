@@ -84,7 +84,7 @@ bolt-pagination {
 .c-bolt-pagination__item--next {
   min-width: auto;
 
-  @media (max-width: bolt-breakpoint(small) - 0.1px) { // [Mai] This is the opposite of @include respond-to(small), 0.1px is to take care of subpixel issue.
+  @include bolt-mq($until: small) { // [Mai] This is the opposite of @include bolt-mq(small).
     .c-bolt-pagination__text {
       @include bolt-visuallyhidden;
     }
@@ -94,7 +94,7 @@ bolt-pagination {
 .c-bolt-pagination__item--prev {
   @include bolt-margin-right(small);
 
-  @include respond-to(small) {
+  @include bolt-mq(small) {
     .c-bolt-pagination__icon {
       @include bolt-margin-right(xxsmall);
     }
@@ -104,7 +104,7 @@ bolt-pagination {
 .c-bolt-pagination__item--next {
   @include bolt-margin-left(small);
 
-  @include respond-to(small) {
+  @include bolt-mq(small) {
     .c-bolt-pagination__icon {
       @include bolt-margin-left(xxsmall);
     }
