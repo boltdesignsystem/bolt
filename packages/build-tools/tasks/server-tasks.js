@@ -8,6 +8,7 @@ const server = browserSync.create();
 const serverConfig = {
   open: config.openServerAtStart,
   startPath: config.startPath, // Since `/` doesn't do anything and we want to avoid double browserSync notifications from the very beginning
+  port: config.port,
   host: 'localhost',
   ghostMode: false,
   notify: false, // Hide notifications till we come up with a less disruptive refresh UI
@@ -25,7 +26,7 @@ const serverConfig = {
 
 if (config.webpackDevServer) {
   // proxy the Webpack Dev Server endpoint
-  serverConfig.proxy = 'http://localhost:8080/';
+  serverConfig.proxy = `http://localhost:${config.proxyPort}/`;
   if (config.env === 'pl') {
     // https://www.browsersync.io/docs/options#option-server
     serverConfig.serveStatic = [];

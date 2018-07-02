@@ -1,5 +1,8 @@
 module.exports = {
   // Environmental variable / preset to use
+  lang: [
+    'en',
+  ],
   env: 'static',
   buildDir: '../../www/build/',
   srcDir: './content',
