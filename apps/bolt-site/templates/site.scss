@@ -105,7 +105,7 @@ $storefront-sidebar-width: 320px;
       box-shadow: 0 1px 3px rgba(21, 22, 25, .12), 0 1px 2px rgba(21, 22, 25, .24);
       display: none; // we need more room at mobile and this is the item which makes most sense to exclude since we're already there!
 
-      @include respond-to(small) {
+      @include bolt-mq(small) {
         display: initial;
       }
 
@@ -120,7 +120,7 @@ $storefront-sidebar-width: 320px;
       > span {
         display: none;
 
-        @include respond-to(xsmall) {
+        @include bolt-mq(xsmall) {
           display: initial;
         }
       }
@@ -165,7 +165,7 @@ $storefront-sidebar-width: 320px;
     }
   }
 
-  @include respond-to(medium){
+  @include bolt-mq(medium){
     transform: translate3d(0, 0, 0);
   }
 
@@ -230,7 +230,7 @@ $storefront-sidebar-width: 320px;
   }
 
   .storefront-docs__content--has-sidebar & {
-    @include respond-to(medium) {
+    @include bolt-mq(medium) {
       margin-left: $storefront-sidebar-width;
     }
   }
@@ -253,7 +253,7 @@ $storefront-sidebar-width: 320px;
   }
 
   .storefront-docs__content--has-sidebar+& {
-    @include respond-to(medium) {
+    @include bolt-mq(medium) {
       padding-left: $storefront-sidebar-width;
     }
   }
@@ -280,7 +280,7 @@ pre > code {
 }
 
 .u-bolt-margin-right-auto\@small {
-  @include respond-to(small) {
+  @include bolt-mq(small) {
     margin-right: auto !important;
   }
 }
@@ -290,19 +290,19 @@ pre > code {
 }
 
 .u-bolt-hide\@small {
-  @include respond-to(small){
+  @include bolt-mq(small){
     display: none !important;
   }
 }
 
 .u-bolt-hide\@medium {
-  @include respond-to(medium) {
+  @include bolt-mq(medium) {
     display: none !important;
   }
 }
 
 .u-bolt-show\@small {
-  @include respond-to(small) {
+  @include bolt-mq(small) {
     display: block !important;
   }
 }
