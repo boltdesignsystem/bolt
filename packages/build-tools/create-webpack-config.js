@@ -310,60 +310,60 @@ function createConfig(config) {
     },
     module: {
       rules: [{
-          test: /\.twig$/,
-          loader: 'twig-loader-php',
-          options: {
-            twigOptions: {
-              namespaces: twigNamespaces,
-            }
+        test: /\.twig$/,
+        loader: 'twig-loader-php',
+        options: {
+          twigOptions: {
+            namespaces: twigNamespaces,
           },
         },
-        {
-          test: /\.scss$/,
-          oneOf: [
-            {
-              issuer: /\.js$/,
-              use: [
-                scssLoaders,
-              ].reduce((acc, val) => acc.concat(val), []),
-            },
-            {
+      },
+      {
+        test: /\.scss$/,
+        oneOf: [
+          {
+            issuer: /\.js$/,
+            use: [
+              scssLoaders,
+            ].reduce((acc, val) => acc.concat(val), []),
+          },
+          {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
-              use: [
-                {
-                  loader: MiniCssExtractPlugin.loader,
-                },
-                scssLoaders,
-              ].reduce((acc, val) => acc.concat(val), []),
-            },
-          ],
-        },
-        {
-          test: /\.js$/,
-          exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              cacheDirectory: true,
-              babelrc: false,
-              presets: ['@bolt/babel-preset-bolt'],
-            },
+            use: [
+              {
+                loader: MiniCssExtractPlugin.loader,
+              },
+              scssLoaders,
+            ].reduce((acc, val) => acc.concat(val), []),
           },
-        },
-        {
-          test: /\.(woff|woff2)$/,
-          loader: 'file-loader',
+        ],
+      },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
+        use: {
+          loader: 'babel-loader',
           options: {
-            name: 'fonts/[name].[ext]',
+            cacheDirectory: true,
+            babelrc: false,
+            presets: ['@bolt/babel-preset-bolt'],
           },
         },
-        {
-          test: /\.svg$/,
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-          },
+      },
+      {
+        test: /\.(woff|woff2)$/,
+        loader: 'file-loader',
+        options: {
+          name: 'fonts/[name].[ext]',
         },
+      },
+      {
+        test: /\.svg$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+        },
+      },
         // {
         //   test: [/\.json$/],
         //   use: [
@@ -372,13 +372,13 @@ function createConfig(config) {
         //     },
         //   ],
         // },
-        {
-          test: [/\.yml$/, /\.yaml$/],
-          use: [
+      {
+        test: [/\.yml$/, /\.yaml$/],
+        use: [
             { loader: 'json-loader' },
             { loader: 'yaml-loader' },
-          ],
-        },
+        ],
+      },
       ],
     },
     mode: config.prod ? 'production' : 'development',
