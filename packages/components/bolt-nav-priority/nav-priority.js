@@ -235,6 +235,5 @@ export class BoltNavPriority extends BoltComponent() {
     window.removeEventListener('optimizedResize', this._adaptPriorityNav);
 
     // remove dropdown markup when cleaning up.
-    this.removeChild(this.moreListItem);
   }
 }
