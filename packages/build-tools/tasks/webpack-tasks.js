@@ -15,11 +15,22 @@ const timer = require('../utils/timer');
 
 const config = getConfig();
 const webpackConfigs = [];
-config.lang.reverse(); // Make sure the 1st language in the array is LAST since that's the one used for the local dev environment.
 
-config.lang.forEach(function (lang) {
-  config.lang = lang; // Make sure only ONE language config is set per Webpack build instance.
+if (config.lang && config.lang.length > 1) {
+  config.lang.reverse(); // Make sure the 1st language in the array is LAST since that's the one used for the local dev environment.
 
+  config.lang.forEach(function(lang) {
+    config.lang = lang; // Make sure only ONE language config is set per Webpack build instance.
+
+    const webpackConfig = createWebpackConfig(config);
+
+    if (config.webpackStats) {
+      webpackConfig.profile = true;
+      webpackConfig.parallelism = 1;
+    }
+    webpackConfigs.push(webpackConfig);
+  });
+} else {
   const webpackConfig = createWebpackConfig(config);
 
   if (config.webpackStats) {
@@ -27,7 +38,7 @@ config.lang.forEach(function (lang) {
     webpackConfig.parallelism = 1;
   }
   webpackConfigs.push(webpackConfig);
-});
+}
 
 function compile() {
   return new Promise((resolve, reject) => {

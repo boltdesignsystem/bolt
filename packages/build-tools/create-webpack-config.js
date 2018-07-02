@@ -22,7 +22,7 @@ function createConfig(config) {
   });
 
   // filename suffix to tack on based on lang being compiled for
-  const langSuffix = `${config.lang ? '-' + config.lang : ''}`;
+  const langSuffix = `${config.lang && config.lang.length > 1 ? '-' + config.lang : ''}`;
 
 
   // Default global Sass data defined
@@ -30,7 +30,7 @@ function createConfig(config) {
     `$bolt-namespace: ${config.namespace};`,
 
     // output $bolt-lang variable in Sass even if not specified so things fall back accordingly.
-    `${config.lang ?
+    `${config.lang && config.lang.length > 1 ?
       `$bolt-lang: ${config.lang};` :
       '$bolt-lang: null;'
     }`,
