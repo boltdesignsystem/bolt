@@ -48,6 +48,7 @@ bolt-pagination {
 
 .c-bolt-pagination__item {
   @include bolt-margin(0);
+  @include bolt-padding(0 2px); // [Mai] This will give big numbers (over 3 digits) some padding left and right so it's not touching the edge.
   @include bolt-font-family(body);
   @include bolt-font-weight(semibold);
   @include bolt-font-size(small);
@@ -81,7 +82,6 @@ bolt-pagination {
 
 .c-bolt-pagination__item--prev,
 .c-bolt-pagination__item--next {
-  width: auto;
   min-width: auto;
 
   @media (max-width: bolt-breakpoint(small) - 0.1px) { // [Mai] This is the opposite of @include respond-to(small), 0.1px is to take care of subpixel issue.
