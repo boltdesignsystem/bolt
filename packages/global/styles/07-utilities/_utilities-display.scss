@@ -29,9 +29,9 @@ $bolt-display-props: (
 
 
 // Loop over our breakpoints
-@each $breakpoint in $breakpoints {
+@each $breakpoint in $bolt-breakpoints {
   $breakpointName: nth($breakpoint, 1);
-  @include respond-to($breakpointName) {
+  @include bolt-mq($breakpointName) {
     @include bolt-display-utils(\@#{$breakpointName});
   }
 }

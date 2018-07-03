@@ -1,4 +1,5 @@
-{% set device_widths = [
+{% set device_widths =
+  [
     {
       "name": "iPhone Portrait",
       "width": 320
@@ -71,7 +72,7 @@
   ]
 %}
 
-  <div class="sg-breakpoints">
+<div class="sg-breakpoints">
   <ul class="breakpoints">
     {% for key, item in bolt.data.breakpoints %}
       <li style="left: {{item}}">
@@ -89,12 +90,32 @@
 </div>
 
 <h4>How to use</h4>
-<pre>
-  <code class="code-how-to">
-.c-card {
-  @include respond-to(medium){
-    flex-direction: column;
+
+{% set code %}{% verbatim %}.c-component-name {
+  // Setting a min (mobile first)
+  @include bolt-mq(xsmall) {
+    background-color: red;
+  }
+
+  // Setting a max (desktop first)
+  @include bolt-mq($until: xsmall) {
+    background-color: blue;
+  }
+
+  // Setting a range (adaptive)
+  @include bolt-mq($from: medium, $until: xlarge) {
+    background-color: yellow;
+  }
+
+  // Setting orientation or other media queries
+  @include bolt-mq($from: xlarge, $until: xxxlarge, $and: '(orientation: portrait)') {
+    background-color: green;
   }
 }
-  </code>
-</pre>
+{% endverbatim %}{% endset %}
+
+{% include "@bolt-components-code-snippet/code-snippet.twig" with {
+  display: "block",
+  lang: "scss",
+  content: code
+} only %}

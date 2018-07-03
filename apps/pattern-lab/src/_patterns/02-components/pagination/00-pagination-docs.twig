@@ -1,0 +1,40 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-pagination/pagination.twig" with {
+  current: 5,
+  total: 10,
+  first: {
+    href: 'page-1-url'
+  },
+  previous: {
+    href: 'page-4-url'
+  },
+  pages: {
+    3: {
+      href: 'page-3-url'
+    },
+    4: {
+      href: 'page-4-url'
+    },
+    5: {
+      href: 'page-5-url'
+    },
+    6: {
+      href: 'page-6-url'
+    },
+    7: {
+      href: 'page-7-url'
+    }
+  },
+  next: {
+    href: 'page-6-url'
+  },
+  last: {
+    href: 'page-10-url'
+  }
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "pagination",
+  usage: usage
+} only %}
