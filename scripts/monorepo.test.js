@@ -12,7 +12,7 @@ describe('monorepo', async () => {
   let pkgs = [];
 
   beforeAll(async () => {
-    const pkgDirs = await globby(rootPkg.workspaces);
+    const pkgDirs = await globby(rootPkg.workspaces.packages);
     const pkgPaths = pkgDirs.map(pkgDir => path.join(pkgDir, 'package.json'));
     pkgs = await Promise.all(pkgPaths.map(async (pkgPath) => {
       const fileString = await fs.readFile(pkgPath);
