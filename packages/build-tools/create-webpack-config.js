@@ -240,7 +240,18 @@ function createConfig(config) {
         sourceMap: true,
         plugins: () => [
           postcssDiscardDuplicates,
-          autoprefixer({browsers: ['last 2 versions', 'IE 11']}),
+          autoprefixer({
+            browsers: [
+              '> 1% in US',
+              'last 3 Android major versions',
+              'last 3 iOS major versions',
+              'last 3 Chrome major versions',
+              'last 3 Edge major versions',
+              'last 3 Firefox major versions',
+              'last 3 Safari major versions',
+              'IE 11',
+            ],
+          }),
         ],
       },
     },
