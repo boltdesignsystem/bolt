@@ -107,11 +107,11 @@ By defining our font sizes in REMs and by using unit-less line-heights, Bolt’s
 html {
   font-size: $bolt-font-size--min-px; /* [1] */
 
-  @include respond-to(medium) {
+  @include bolt-mq(medium) {
     font-size: calc(#{$font-size--min-px} + (#{$font-size--max - $font-size--min} * (100vw - #{$breakpoint--min}) / #{strip-unit($breakpoint--max) - strip-unit($breakpoint--min)})); /* [2] */
   }
 
-  @include respond-to(xlarge) {
+  @include bolt-mq(xlarge) {
     font-size: $font-size--max-px; /* [3] */
   }
 }

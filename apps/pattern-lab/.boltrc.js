@@ -1,6 +1,10 @@
 const path = require('path');
 
 module.exports = {
+  lang: [
+    'en', // default language used
+    'ja'
+  ],
   // Environmental variable / preset to use
   env: 'pl',
   buildDir: '../../www/pattern-lab/build',
@@ -8,6 +12,7 @@ module.exports = {
   startPath: 'pattern-lab/index.html',
   plConfigFile: './config/config.yml',
   verbosity: 1,
+  schemaErrorReporting: 'console',
   webpackDevServer: true,
   extraTwigNamespaces: {
     'bolt': {
@@ -93,6 +98,7 @@ module.exports = {
       '@bolt/components-ordered-list',
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
+      '@bolt/components-pagination',
       '@bolt/components-share',
       '@bolt/components-search-filter',
       '@bolt/components-site',

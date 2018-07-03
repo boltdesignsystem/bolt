@@ -181,7 +181,7 @@ bolt-nav-priority {
   @include bolt-padding-left(small);
   @include bolt-padding-right(small);
 
-  @include respond-to(small){
+  @include  bolt-mq(small){
     @include bolt-padding-left(xsmall);
     @include bolt-padding-right(xsmall);
   }
@@ -216,7 +216,7 @@ bolt-nav-priority {
     white-space: normal;
   }
 
-  @include respond-to(xsmall) {
+  @include  bolt-mq(xsmall) {
     width: auto;
     max-width: 100%;
   }
@@ -426,7 +426,7 @@ bolt-nav-priority {
 //   transition: opacity 0.35s ease-out, transform 0.35s ease-out; // transition:
 
 //   // .c-bolt-dropdown--collapse\@small & {
-//   //   @include respond-to(small) {
+//   //   @include  bolt-mq(small) {
 //   //     opacity: 1;
 //   //     transform: translateY(0);
 //   //   }

@@ -22,6 +22,7 @@ const marked = require('marked');
 const timer = require('../utils/timer');
 const manifest = require('../utils/manifest');
 const express = require('express');
+const { getPort } = require('../utils/get-port');
 
 /**
  * Prep a JSON string for use in bash
@@ -166,11 +167,14 @@ async function compile(exitOnError = true) {
     spinner = ora(startMessage).start();
   }
 
+  const portNumber = await getPort();
   const pages = await getPages(config.srcDir);
   const site = await getSiteData(pages);
 
   const app = express();
-  const server = app.listen(3001);
+  const server = app.listen(portNumber);
+
+  // log.dim(`Express running on port: ${portNumber}`);
 
   // Walk through all available pages to set up data to respond with (@todo: iterate on this -- temp solution to get Travis builds back up and running!)
   pages.map((page) => {
@@ -191,8 +195,12 @@ async function compile(exitOnError = true) {
     const pageArg = escapeNestedSingleQuotes(JSON.stringify(url));
 
     const layout = page.meta.layout ? page.meta.layout : 'default';
-    const cmd = `php -d memory_limit=4048M renderTwig.php ${layout}.twig ${pageArg}`;
-    const output = await sh(cmd, exitOnError, false, false);
+    const output = await sh('php', [
+      '-d memory_limit=4048M',
+      'renderTwig.php',
+      `${layout}.twig`,
+      `http://localhost:${portNumber}/${url}`,
+    ], exitOnError, false, false);
 
     const htmlFilePath = path.join(config.wwwDir, page.url);
     await mkdirp(path.dirname(htmlFilePath));
