@@ -83,9 +83,9 @@ module.exports = {
   'Pattern Lab: Confirm Successful Now.sh Deploy + Pattern Lab Compiled': function (browser) {
     browser
       .url(`${testingUrl}/pattern-lab/patterns/02-components/index.html`)
-      .waitForElementVisible('body .sg-main', 1000)
+      .waitForElementVisible('body .pl-c-main', 1000)
       .verify.title('Bolt Design System')
-      .end()
+      .end();
   },
   tearDown: sauce,
 };
