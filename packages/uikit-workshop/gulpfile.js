@@ -32,9 +32,9 @@ gulp.task('clean:html', function(cb) {
   return plugins.del(['dist/*.html'], cb);
 });
 
-gulp.task('clean:images', function(cb) {
-  return plugins.del(['dist/styleguide/images/*'], cb);
-});
+// gulp.task('clean:images', function(cb) {
+//   return plugins.del(['dist/styleguide/images/*'], cb);
+// });
 
 gulp.task('clean:js', function(cb) {
   return plugins.del(['dist/styleguide/js/*'], cb);
@@ -83,19 +83,19 @@ gulp.task('build:html', ['clean:html'], function() {
     .pipe(copyPublic(''));
 });
 
-gulp.task('build:images', ['clean:images'], function() {
-  return gulp
-    .src('src/images/*')
-    .pipe(
-      plugins.imagemin({
-        progressive: true,
-        svgoPlugins: [{ removeViewBox: false }],
-        use: [plugins.pngcrush()],
-      })
-    )
-    .pipe(gulp.dest('dist/styleguide/images'))
-    .pipe(copyPublic('styleguide/images'));
-});
+// gulp.task('build:images', ['clean:images'], function() {
+//   return gulp
+//     .src('src/images/*')
+//     .pipe(
+//       plugins.imagemin({
+//         progressive: true,
+//         svgoPlugins: [{ removeViewBox: false }],
+//         use: [plugins.pngcrush()],
+//       })
+//     )
+//     .pipe(gulp.dest('dist/styleguide/images'))
+//     .pipe(copyPublic('styleguide/images'));
+// });
 
 gulp.task('build:js-viewer', ['clean:js'], function() {
   return gulp
