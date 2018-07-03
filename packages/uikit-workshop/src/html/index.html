@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title id="title">Pattern Lab</title>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width" />
+
+  <script>
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+
+  /*! loadCSS rel=preload polyfill. [c]2017 Filament Group, Inc. MIT License */
+  !function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){function e(){t.media=a}var a=t.media||"all";t.addEventListener?t.addEventListener("load",e):t.attachEvent&&t.attachEvent("onload",e),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(e,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);</script>
+
+  <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/pattern-lab/styleguide/css/pattern-lab.css"></noscript>
+
+	<!-- <link rel="stylesheet" href="/pattern-lab/styleguide/css/pattern-lab.css" media="all" /> -->
+
+</head>
+
+<body class="pl-c-body">
+
+	@@include('./partials/header.html')
+
+	@@include('./partials/iframe.html')
+
+	@@include('./partials/modal.html')
+
+	<!-- mustache templates -->
+	<script type="text/mustache" class="pl-js-pattern-nav-template">
+		@@include('./partials/pattern-nav.html')
+	</script>
+
+	<script type="text/mustache" class="pl-js-ish-controls-template">
+		@@include('./partials/controls.html')
+	</script>
+
+	<!-- the template for the modal slider -->
+	<script type="text/mustache" class="pl-js-panel-template-base">
+		@@include('./partials/base-template.html')
+	</script>
+
+	<!-- the template for code-related tabs in the code view slider -->
+	<script type="text/mustache" id="pl-panel-template-code">
+		@@include('./partials/panel-code-template.html')
+	</script>
+
+	<!-- load Pattern Lab data -->
+	<script src="/pattern-lab/styleguide/data/patternlab-data.js" defer></script>
+
+  <!-- applying theme config to get classes on before PL renders so there's no flash of unstyled content -->
+  <!-- @todo Consider moving this to own file -->
+  <script>
+    if (window.config != undefined) {
+      if (window.config.theme != undefined) {
+        if (config.theme.color === 'light') {
+          document.body.classList.add('pl-c-body--theme-light');
+        }
+        if (config.theme.layout === 'vertical') {
+          document.body.classList.add('pl-c-body--theme-sidebar');
+        }
+        switch (config.theme.density) {
+          case 'cozy':
+            document.body.classList.add('pl-c-body--theme-density-cozy');
+            break;
+          case 'comfortable':
+            document.body.classList.add('pl-c-body--theme-density-comfortable');
+            break;
+          default:
+            // not sure if you even need/want this
+            document.body.classList.add('pl-c-body--theme-density-compact');
+        }
+      }
+    }
+  </script>
+
+	<script src="/pattern-lab/annotations/annotations.js" async></script>
+
+	<!-- load Pattern Lab external library js -->
+	<script src="/pattern-lab/styleguide/bower_components/jquery.min.js" defer></script>
+	<script src="/pattern-lab/styleguide/bower_components/hogan-3.0.2.min.js" async></script>
+	<script src="/pattern-lab/styleguide/bower_components/prism.min.js" async></script>
+	<script src="/pattern-lab/styleguide/bower_components/jwerty.min.js" defer></script>
+	<script src="/pattern-lab/styleguide/bower_components/typeahead.bundle.min.js" defer></script>
+	<script src="/pattern-lab/styleguide/bower_components/EventEmitter.min.js" defer></script>
+	<script src="/pattern-lab/styleguide/bower_components/script.min.js" defer></script>
+
+
+  <!-- temp workaround to async load everything. remove when refactored components in place. -->
+  <script>!function(r){var e=function(e,t){"use strict";var n=r.document.getElementsByTagName("script")[0],o=r.document.createElement("script");return o.src=e,o.async=!0,n.parentNode.insertBefore(o,n),t&&"function"==typeof t&&(o.onload=t),o};"undefined"!=typeof module?module.exports=e:r.loadJS=e}("undefined"!=typeof global?global:this);</script>
+
+
+  <!-- set-up the dispatcher + load the Pattern Lab viewer js -->
+  <script>
+    window.Dispatcher;
+
+    // workaround to async loading everything + not yet having Webpack wired up
+    window.addEventListener('DOMContentLoaded', function () {
+      window.Dispatcher = new EventEmitter();
+      loadJS('/pattern-lab/styleguide/js/patternlab-viewer.min.js');
+    });
+	</script>
+
+</body>
+
+</html>
+

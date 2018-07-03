@@ -79,18 +79,31 @@ async function images() {
   }
 }
 
+// Prep work so builds go smoothly
+async function prep() {
+  const startTime = timer.start();
+  try {
+    if (config.prod) {
+      await clean();
+    }
+
+    await internalTasks.mkDirs();
+    await manifest.writeBoltManifest();
+    await manifest.writeTwigNamespaceFile(process.cwd(), config.extraTwigNamespaces);
+
+    log.info(`Prep complete after ${timer.end(startTime)}.`);
+  } catch (error) {
+    log.errorAndExit('Prep failed', error);
+  }
+}
+
 async function build() {
   const startTime = timer.start();
   try {
-    if (!config.quick) {
-      await clean();
-      await internalTasks.mkDirs();
-    }
-    await manifest.writeBoltManifest();
+    await prep();
     if (!config.quick) {
       await webpackTasks.compile();
     }
-    await manifest.writeTwigNamespaceFile(process.cwd(), config.extraTwigNamespaces);
     await images();
     switch (config.env) {
       case 'pl':
@@ -148,4 +161,5 @@ module.exports = {
   build,
   watch,
   clean,
+  prep,
 };

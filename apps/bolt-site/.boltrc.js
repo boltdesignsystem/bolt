@@ -38,7 +38,6 @@ module.exports = {
       '@bolt/components-teaser',
       '@bolt/components-image',
       './style.scss',
-      './storefront.js',
     ],
     individual: [],
   },
