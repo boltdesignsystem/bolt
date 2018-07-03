@@ -73,6 +73,14 @@ gulp.task('build:css', function() {
     .pipe(copyPublic('styleguide/css'));
 });
 
+// Might be overkill but this'll address the favicon 404 errors...
+gulp.task('copy:favicon', function () {
+  // Copy favicon over
+  return gulp.src(['src/*.ico'])
+    .pipe(gulp.dest('dist'))
+    .pipe(copyPublic(''));
+});
+
 gulp.task('build:html', ['clean:html'], function() {
   return gulp
     .src(['src/html/index.html', 'src/html/splash-screen.html'])
@@ -141,7 +149,7 @@ gulp.task('build:js-pattern', ['build:js-viewer'], function() {
 
 gulp.task(
   'default',
-  ['build:bower', 'build:css', 'build:html', 'build:js-pattern'],
+  ['build:bower', 'build:css', 'build:html', 'build:js-pattern', 'copy:favicon'],
   function() {
     if (args.watch !== undefined) {
       gulp.watch(['src/bower_components/**/*'], ['build:bower']);
