@@ -77,7 +77,7 @@ gulp.task('build:css', function() {
 
 gulp.task('build:html', ['clean:html'], function() {
   return gulp
-    .src('src/html/index.html')
+    .src(['src/html/index.html', 'src/html/splash-screen.html'])
     .pipe(plugins.fileInclude({ prefix: '@@', basepath: '@file' }))
     .pipe(gulp.dest('dist'))
     .pipe(copyPublic(''));

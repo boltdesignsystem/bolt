@@ -14,24 +14,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Initializing First Bolt Build...</title>
   <style>
+    @keyframes animateIn {
+      from {
+        transform: translate3d(-50%, -100%, 0px);
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+        transform: translate3d(-50%, calc(3rem - 50%), 0px)
+      }
+    }
+
     .c-bolt-toast {
       z-index: 1000;
       position: absolute;
-      /* top: 10px; */
       top: 0;
-      right: 10px;
-      left: 10px;
+      left: 50%;
       margin: auto;
-      max-width: 700px;
+      max-width: 400px;
+      width: 100%;
       border-radius: 3px;
       background: rgba(0, 0, 0, .9);
-      transform: translate3d(0px, -100%, 0px);
-      transition: all 0.2s ease;
+      transform: translate3d(-50%, -100%, 0px);
+      transition: all 0.3s ease;
       pointer-events: none;
+      opacity: 0;
+      animation: animateIn ease 0.3s forwards;
     }
 
     .c-bolt-toast.is-active {
-      transform: translate3d(0, 50%, 0);
+      opacity: 1;
+      transform: translate3d(-50%, calc(3rem - 50%), 0px);
     }
 
     .c-bolt-toast__content {
@@ -122,11 +135,11 @@
   <script type="text/javascript">
     setTimeout(function () {
       document.querySelector('.js-bolt-toast').classList.add('is-active');
-    }, 100);
+    }, 200);
   </script>
 
 
-  <script src="http://localhost:3000/browser-sync/browser-sync-client.js?v=2.23.5" async></script>
+  <!-- <script src="http://localhost:3000/browser-sync/browser-sync-client.js?v=2.23.5" async></script> -->
 
 </body>
 
