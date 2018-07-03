@@ -3,6 +3,7 @@ var args = require('yargs').argv;
 
 /* load gulp */
 var gulp = require('gulp');
+var sass = require('gulp-sass');
 
 /* load the plugins */
 var gulpLoadPlugins = require('gulp-load-plugins');
@@ -51,11 +52,8 @@ gulp.task('build:bower', ['clean:bower'], function() {
 });
 
 gulp.task('build:css', function() {
-  return plugins
-    .rubySass('src/sass/pattern-lab.scss', {
-      style: 'expanded',
-      'sourcemap=none': true,
-    })
+  return gulp.src('src/sass/pattern-lab.scss')
+    .pipe(sass().on('error', sass.logError))
     .pipe(
       plugins.autoprefixer(
         {

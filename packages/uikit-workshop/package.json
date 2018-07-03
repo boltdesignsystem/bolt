@@ -5,7 +5,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "gulp --copy-dist=../../www/pattern-lab"
+    "build": "npx bower install && gulp --copy-dist=../../www/pattern-lab"
   },
   "authors": [
     {
@@ -38,7 +38,7 @@
     "gulp-minify-css": "^1.2.4",
     "gulp-rename": "^1.3.0",
     "gulp-resolve-dependencies": "^2.2.0",
-    "gulp-ruby-sass": "^3.0.0",
+    "gulp-sass": "^4.0.1",
     "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",
     "main-bower-files": "^2.13.1",

@@ -2727,7 +2727,7 @@ convert-source-map@^0.3.3:
   version "0.3.5"
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-0.3.5.tgz#f1d802950af7dd2631a1febe0596550c86ab3190"
 
-convert-source-map@^1.0.0, convert-source-map@^1.1.0, convert-source-map@^1.1.1, convert-source-map@^1.4.0, convert-source-map@^1.5.1:
+convert-source-map@^1.1.0, convert-source-map@^1.1.1, convert-source-map@^1.4.0, convert-source-map@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-1.5.1.tgz#b8278097b9bc229365de5c62cf5fcaed8b5599e5"
 
@@ -2823,7 +2823,7 @@ cross-spawn@^3.0.0:
     lru-cache "^4.0.1"
     which "^1.2.9"
 
-cross-spawn@^5.0.0, cross-spawn@^5.0.1:
+cross-spawn@^5.0.1:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
   dependencies:
@@ -3060,10 +3060,6 @@ d@1:
 dag@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/dag/-/dag-0.0.1.tgz#4368eddd9f43b19a6f36ce3cd5aed3314b777432"
-
-dargs@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/dargs/-/dargs-3.0.1.tgz#5a1f3f4332341f3f1cd10829e0df23996dfd29be"
 
 dargs@^4.0.1:
   version "4.1.0"
@@ -3478,13 +3474,6 @@ duplexify@^3.2.0, duplexify@^3.4.2, duplexify@^3.6.0:
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
 
-each-async@^1.0.0:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/each-async/-/each-async-1.1.1.tgz#dee5229bdf0ab6ba2012a395e1b869abf8813473"
-  dependencies:
-    onetime "^1.0.0"
-    set-immediate-shim "^1.0.0"
-
 easy-extender@2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/easy-extender/-/easy-extender-2.3.2.tgz#3d3248febe2b159607316d8f9cf491c16648221d"
@@ -3731,7 +3720,7 @@ escape-html@~1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
 
-escape-string-regexp@^1.0.0, escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.3, escape-string-regexp@^1.0.5:
+escape-string-regexp@^1.0.0, escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
 
@@ -4801,7 +4790,7 @@ glob-watcher@^0.0.6:
   dependencies:
     gaze "^0.5.1"
 
-glob2base@0.0.12, glob2base@^0.0.12:
+glob2base@^0.0.12:
   version "0.0.12"
   resolved "https://registry.yarnpkg.com/glob2base/-/glob2base-0.0.12.tgz#9d419b3e28f12e83a362164a277055922c9c0d56"
   dependencies:
@@ -5098,25 +5087,18 @@ gulp-resolve-dependencies@^2.2.0:
     gulp-util "^3.0.3"
     lodash "^3.1.0"
 
-gulp-ruby-sass@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/gulp-ruby-sass/-/gulp-ruby-sass-3.0.0.tgz#0ae1b92e572325c8412c17a8870b6619412b6b8d"
+gulp-sass@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/gulp-sass/-/gulp-sass-4.0.1.tgz#7f43d117eb2d303524968a1b48494af1bc64d1d9"
   dependencies:
     chalk "^2.3.0"
-    convert-source-map "^1.0.0"
-    cross-spawn "^5.0.0"
-    dargs "^3.0.1"
-    each-async "^1.0.0"
-    escape-string-regexp "^1.0.3"
-    fancy-log "^1.3.2"
-    glob "^7.0.3"
-    glob2base "0.0.12"
-    md5-hex "^2.0.0"
-    path-exists "^3.0.0"
-    plugin-error "^0.1.2"
+    lodash.clonedeep "^4.3.2"
+    node-sass "^4.8.3"
+    plugin-error "^1.0.1"
     replace-ext "^1.0.0"
-    rimraf "^2.2.8"
-    vinyl "^2.1.0"
+    strip-ansi "^4.0.0"
+    through2 "^2.0.0"
+    vinyl-sourcemaps-apply "^0.2.0"
 
 gulp-sourcemaps@1.6.0:
   version "1.6.0"
@@ -7333,16 +7315,6 @@ maybe-callback@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/maybe-callback/-/maybe-callback-2.1.0.tgz#8afa0ba7b691a7ab123e7f12f65e32bb5d1f8243"
 
-md5-hex@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/md5-hex/-/md5-hex-2.0.0.tgz#d0588e9f1c74954492ecd24ac0ac6ce997d92e33"
-  dependencies:
-    md5-o-matic "^0.1.1"
-
-md5-o-matic@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/md5-o-matic/-/md5-o-matic-0.1.1.tgz#822bccd65e117c514fab176b25945d54100a03c3"
-
 md5.js@^1.3.4:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/md5.js/-/md5.js-1.3.4.tgz#e9bdbde94a20a5ac18b04340fc5764d5b09d901d"
@@ -7865,7 +7837,7 @@ node-pre-gyp@^0.10.0:
     semver "^5.3.0"
     tar "^4"
 
-node-sass@^4.9.0:
+node-sass@^4.8.3, node-sass@^4.9.0:
   version "4.9.0"
   resolved "https://registry.yarnpkg.com/node-sass/-/node-sass-4.9.0.tgz#d1b8aa855d98ed684d6848db929a20771cc2ae52"
   dependencies:
@@ -10145,7 +10117,7 @@ set-blocking@^2.0.0, set-blocking@~2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/set-blocking/-/set-blocking-2.0.0.tgz#045f9782d011ae9a6803ddd382b24392b3d890f7"
 
-set-immediate-shim@^1.0.0, set-immediate-shim@^1.0.1:
+set-immediate-shim@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/set-immediate-shim/-/set-immediate-shim-1.0.1.tgz#4b2b1b27eb808a9f8dcc481a58e5e56f599f3f61"
 
