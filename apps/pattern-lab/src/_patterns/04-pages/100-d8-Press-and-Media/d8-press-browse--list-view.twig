@@ -39,33 +39,13 @@
     {% endblock %}
   {% endembed %}
 
-{# hero band #}
-{# {% embed "@bolt/band.twig" with {
-  size: "large",
-  theme: "dark",
-  fullBleed: true,
-  background: {
-    "opacity": "medium",
-    "fill": "color",
-    "focalPoint": {
-      "vertical": "center",
-      "horizontal": "center"
-    },
-    "contentItems": [
-      {
-        "pattern": "image",
-        "src": "/pattern-lab/images/content/backgrounds/background-city-skyline-with-boken.jpg",
-        "lazyload": true
-      }
-    ]
-  }
-  } only %} #}
+
 {% embed "@bolt/band.twig" with {
   size: "large",
   theme: "dark",
   fullBleed: true,
   background: {
-    shapeGroup: "A"
+    shapeGroup: "B"
   }
   } only %}
 
@@ -79,7 +59,7 @@
         } only %}
       <div class="u-bolt-margin-bottom-medium">
         {% include "@bolt/subheadline.twig" with {
-            text: "NEW Newsworthy is an understatement. Our industry-leading solutions help the world's largest companies build applications engineered for the future.",
+            text: "Newsworthy is an understatement. Our industry-leading solutions help the world's largest companies build applications engineered for the future.",
             size: "xxlarge",
             tag: "h2",
         } only %}
@@ -166,10 +146,36 @@
 {% endembed %}
 {# End hero band #}
 
+<div style="float: right" class="u-bolt-margin-top-small">
+{% include '@bolt-components-share/share.twig' with {
+  sources: [
+    {
+      name: "facebook",
+      url: "https://www.facebook.com/sharer/sharer.php?u=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/02-components-action-blocks-05-action-blocks/02-components-action-blocks-05-action-blocks.html&amp;src=sdkpreparse"
+    },
+    {
+      name: "twitter",
+      url: "https://twitter.com/intent/tweet?url=https://bolt-design-system.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
+    },
+    {
+      name: "linkedin",
+      url: "https://www.linkedin.com/shareArticle?url=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/02-components-action-blocks-05-action-blocks/02-components-action-blocks-05-action-blocks.html"
+    },
+    {
+      name: "email",
+      url: "mailto:?&body=Sample%20Text%20--%20https%3A//bolt-design-system.com"
+    }
+  ],
+  inline: true
+} only %}
+</div>
+
+
+
   <div class="c-bolt-band c-bolt-band--full c-bolt-band--medium t-bolt-light">
     <div class="o-bolt-wrapper">
       <p class="c-bolt-text">
-        Showing 555 results in
+        Showing 210 results in
         <span class="c-bolt-search-inline-tags">
           <a href="javascript:" class="c-bolt-search-inline-tag">
             Case Management
@@ -280,69 +286,99 @@
                     </legend>
                     <div class="c-bolt-input-list c-bolt-input-list--stack-spacing-none">
                       <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-1" value="Analytics" />
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-1" value="Agile" />
                         <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-1">
-                          Analytics (3)
+                          Agile (3)
                         </label>
                       </div>
                       <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-2" value="BPM" />
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-2" value="Analytics" />
                         <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-2">
-                          BPM (4)
+                          Analytics (4)
                         </label>
                       </div>
                       <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-3" value="Case Management" checked />
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-3" value="Application Development" checked />
                         <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-3">
-                          Case Management (6)
+                          Application Development (6)
                         </label>
                       </div>
                       <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-4" value="Cloud" checked />
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-4" value="Artificial Intelligence" checked />
                         <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-4">
-                          Cloud (7)
+                          Artificial Intelligence (7)
                         </label>
                       </div>
                       <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-5" value="CRM" checked />
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-5" value="BPM" checked />
                         <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-5">
-                          CRM (14)
+                          BPM (14)
                         </label>
                       </div>
                       <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-6" value="Customer Service" />
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-6" value="Case Management" />
                         <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-6">
-                          Customer Service (10)
+                          Case Management (10)
                         </label>
                       </div>
                       <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-7" value="Decision Management" />
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-7" value="Cloud" />
                         <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-7">
-                          Decision Management (34)
+                          Cloud (34)
                         </label>
                       </div>
                       <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-8" value="Internet of Things" />
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-8" value="CRM" />
                         <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-8">
-                          Internet of Things (1)
+                          CRM (1)
                         </label>
                       </div>
                       <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-9" value="Marketing Automation" checked />
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-9" value=" Customer Experience" checked />
                         <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-9">
-                          Marketing Automation (23)
+                           Customer Experience (23)
                         </label>
                       </div>
                       <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-10" value="Mobile" />
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-10" value="Customer Service" />
                         <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-10">
-                          Mobile (5)
+                          Customer Service (5)
                         </label>
                       </div>
                       <div class="c-bolt-input-list__item">
-                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-11" value="Operations" checked />
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-11" value="Decision Management" checked />
                         <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-11">
-                          Operations (5)
+                          Decision Management (5)
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Digital Transformation" />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+                          Digital Transformation (9)
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Internet of Things" />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+                          Internet of Things (9)
+                        </label>
+                      </div>
+                        <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Marketing Automation" />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+                          Marketing Automation (9)
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Mobile" />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+                          Mobile (9)
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Operations" />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+                          Operations (9)
                         </label>
                       </div>
                       <div class="c-bolt-input-list__item">
@@ -351,6 +387,32 @@
                           Pega Platform (9)
                         </label>
                       </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="PegaWorld" />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+                          PegaWorld (9)
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Robotic Automation" />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+                          Robotic Automation (9)
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="Sales Automation" />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+                          Sales Automation (9)
+                        </label>
+                      </div>
+                      <div class="c-bolt-input-list__item">
+                        <input class="c-bolt-input c-bolt-input--checkbox" type="checkbox" name="topic" id="topic-choice-12" value="UX & Design" />
+                        <label class="c-bolt-inline-label c-bolt-inline-label--small c-bolt-inline-label--checkbox" for="topic-choice-12">
+                          UX & Design (9)
+                        </label>
+                      </div>
+
+                      
                     </div>
                   </fieldset>
                   <fieldset class="c-bolt-fieldset">
@@ -672,36 +734,379 @@
               } only %}
             {% endcell %}
             {% cell "u-bolt-width-1/1" %}
-              <ul class="o-bolt-inline-list o-bolt-inline-list--small">
-                <li class="o-bolt-inline-list__item">
-                  <strong>1</strong>
-                </li>
-                <li class="o-bolt-inline-list__item">
-                  <a href="javascript:" class="c-bolt-link">2</a>
-                </li>
-                <li class="o-bolt-inline-list__item">
-                  <a href="javascript:" class="c-bolt-link">3</a>
-                </li>
-                <li class="o-bolt-inline-list__item">
-                  <a href="javascript:" class="c-bolt-link">4</a>
-                </li>
-                <li class="o-bolt-inline-list__item">
-                  <a href="javascript:" class="c-bolt-link">5</a>
-                </li>
-                <li class="o-bolt-inline-list__item">
-                  &hellip;
-                </li>
-                <li class="o-bolt-inline-list__item">
-                  <a href="javascript:" class="c-bolt-link">20</a>
-                </li>
-                <li class="o-bolt-inline-list__item">
-                  <a href="javascript:" class="c-bolt-link">&raquo;</a>
-                </li>
-              </ul>
+              {% include "@bolt-components-card/card.twig" with {
+                theme: "xlight",
+                contentItems: [
+                  {
+                    pattern: "eyebrow",
+                    text: " June 5, 2018"
+                  },
+                  {
+                    pattern: "headline",
+                    tag: "h3",
+                    size: "large",
+                    text: "Pegasystems Launches Pega Community to Empower Anyone to Create Better Software",
+                    url: "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-details/04-pages-100-d8-Press-and-Media-d8-press-details.html"
+                  },
+                  {
+                    pattern: "text",
+                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
+                  }
+                ]
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1" %}
+              {% include "@bolt-components-card/card.twig" with {
+                theme: "xlight",
+                contentItems: [
+                  {
+                    pattern: "eyebrow",
+                    text: "Jan 18 2018"
+                  },
+                  {
+                    pattern: "headline",
+                    tag: "h3",
+                    size: "large",
+                    text: "A New CRM Bill of Rights for the Future Empowered Enterprise",
+                    url: "http://pega.com"
+                  },
+                  {
+                    pattern: "text",
+                    text: "Jeff Nicholson of Pega provides insight into what companies should expect from CRM vendors."
+                  }
+                ]
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1" %}
+              {% include "@bolt-components-card/card.twig" with {
+                theme: "xlight",
+                contentItems: [
+                  {
+                    pattern: "eyebrow",
+                    text: "Jan 18 2018"
+                  },
+                  {
+                    pattern: "headline",
+                    tag: "h3",
+                    size: "large",
+                    text: "6 Customer Experience Trends to Watch in 2018",
+                    url: "http://pega.com"
+                  },
+                  {
+                    pattern: "text",
+                    text: "Pega's Don Schuerman previews customer experience questions and trends for the New Year."
+                  }
+                ]
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1" %}
+              {% include "@bolt-components-card/card.twig" with {
+                theme: "xlight",
+                contentItems: [
+                  {
+                    pattern: "eyebrow",
+                    text: "Jan 18 2018"
+                  },
+                  {
+                    pattern: "headline",
+                    tag: "h3",
+                    size: "large",
+                    text: "3 Reasons Your AI-Driven Customer Experiences are Falling Short",
+                    url: "http://pega.com"
+                  },
+                  {
+                    pattern: "text",
+                    text: "Pega's Jeff Nicholson examines the state of AI in today's customer experiences."
+                  }
+                ]
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1" %}
+              {% include "@bolt-components-card/card.twig" with {
+                theme: "xlight",
+                contentItems: [
+                  {
+                    pattern: "eyebrow",
+                    text: "Date"
+                  },
+                  {
+                    pattern: "headline",
+                    tag: "h3",
+                    size: "large",
+                    text: "Article Headline",
+                    url: "http://pega.com"
+                  },
+                  {
+                    pattern: "text",
+                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
+                  }
+                ]
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1" %}
+              {% include "@bolt-components-card/card.twig" with {
+                theme: "xlight",
+                contentItems: [
+                  {
+                    pattern: "eyebrow",
+                    text: "Date"
+                  },
+                  {
+                    pattern: "headline",
+                    tag: "h3",
+                    size: "large",
+                    text: "Article Headline",
+                    url: "http://pega.com"
+                  },
+                  {
+                    pattern: "text",
+                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
+                  }
+                ]
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1" %}
+              {% include "@bolt-components-card/card.twig" with {
+                theme: "xlight",
+                contentItems: [
+                  {
+                    pattern: "eyebrow",
+                    text: "Date"
+                  },
+                  {
+                    pattern: "headline",
+                    tag: "h3",
+                    size: "large",
+                    text: "Article Headline",
+                    url: "http://pega.com"
+                  },
+                  {
+                    pattern: "text",
+                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
+                  }
+                ]
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1" %}
+              {% include "@bolt-components-card/card.twig" with {
+                theme: "xlight",
+                contentItems: [
+                  {
+                    pattern: "eyebrow",
+                    text: "Date"
+                  },
+                  {
+                    pattern: "headline",
+                    tag: "h3",
+                    size: "large",
+                    text: "Article Headline",
+                    url: "http://pega.com"
+                  },
+                  {
+                    pattern: "text",
+                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
+                  }
+                ]
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1" %}
+              {% include "@bolt-components-card/card.twig" with {
+                theme: "xlight",
+                contentItems: [
+                  {
+                    pattern: "eyebrow",
+                    text: "Date"
+                  },
+                  {
+                    pattern: "headline",
+                    tag: "h3",
+                    size: "large",
+                    text: "Article Headline",
+                    url: "http://pega.com"
+                  },
+                  {
+                    pattern: "text",
+                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
+                  }
+                ]
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1" %}
+              {% include "@bolt-components-card/card.twig" with {
+                theme: "xlight",
+                contentItems: [
+                  {
+                    pattern: "eyebrow",
+                    text: "Date"
+                  },
+                  {
+                    pattern: "headline",
+                    tag: "h3",
+                    size: "large",
+                    text: "Article Headline",
+                    url: "http://pega.com"
+                  },
+                  {
+                    pattern: "text",
+                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
+                  }
+                ]
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1" %}
+              {% include "@bolt-components-card/card.twig" with {
+                theme: "xlight",
+                contentItems: [
+                  {
+                    pattern: "eyebrow",
+                    text: " June 5, 2018"
+                  },
+                  {
+                    pattern: "headline",
+                    tag: "h3",
+                    size: "large",
+                    text: "Pegasystems Launches Pega Community to Empower Anyone to Create Better Software",
+                    url: "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-details/04-pages-100-d8-Press-and-Media-d8-press-details.html"
+                  },
+                  {
+                    pattern: "text",
+                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
+                  }
+                ]
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1" %}
+              {% include "@bolt-components-card/card.twig" with {
+                theme: "xlight",
+                contentItems: [
+                  {
+                    pattern: "eyebrow",
+                    text: "Jan 18 2018"
+                  },
+                  {
+                    pattern: "headline",
+                    tag: "h3",
+                    size: "large",
+                    text: "A New CRM Bill of Rights for the Future Empowered Enterprise",
+                    url: "http://pega.com"
+                  },
+                  {
+                    pattern: "text",
+                    text: "Jeff Nicholson of Pega provides insight into what companies should expect from CRM vendors."
+                  }
+                ]
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1" %}
+              {% include "@bolt-components-card/card.twig" with {
+                theme: "xlight",
+                contentItems: [
+                  {
+                    pattern: "eyebrow",
+                    text: "Jan 18 2018"
+                  },
+                  {
+                    pattern: "headline",
+                    tag: "h3",
+                    size: "large",
+                    text: "6 Customer Experience Trends to Watch in 2018",
+                    url: "http://pega.com"
+                  },
+                  {
+                    pattern: "text",
+                    text: "Pega's Don Schuerman previews customer experience questions and trends for the New Year."
+                  }
+                ]
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1" %}
+              {% include "@bolt-components-card/card.twig" with {
+                theme: "xlight",
+                contentItems: [
+                  {
+                    pattern: "eyebrow",
+                    text: "Jan 18 2018"
+                  },
+                  {
+                    pattern: "headline",
+                    tag: "h3",
+                    size: "large",
+                    text: "3 Reasons Your AI-Driven Customer Experiences are Falling Short",
+                    url: "http://pega.com"
+                  },
+                  {
+                    pattern: "text",
+                    text: "Pega's Jeff Nicholson examines the state of AI in today's customer experiences."
+                  }
+                ]
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-1/1" %}
+              {% include "@bolt-components-card/card.twig" with {
+                theme: "xlight",
+                contentItems: [
+                  {
+                    pattern: "eyebrow",
+                    text: "Jan 18 2018"
+                  },
+                  {
+                    pattern: "headline",
+                    tag: "h3",
+                    size: "large",
+                    text: "3 Reasons Your AI-Driven Customer Experiences are Falling Short",
+                    url: "http://pega.com"
+                  },
+                  {
+                    pattern: "text",
+                    text: "Pega's Jeff Nicholson examines the state of AI in today's customer experiences."
+                  }
+                ]
+              } only %}
             {% endcell %}
           {% endgrid %}
         {% endcell %}
       {% endgrid %}
     </div>
+    <div class="u-bolt-margin-top-large u-bolt-margin-bottom-medium">
+      {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+      {% cell "o-bolt-grid__cell" %}  
+          {% include "@bolt-components-pagination/pagination.twig" with {
+            current: 5,
+            total: 10,
+            first: {
+              href: 'page-1-url'
+            },
+            previous: {
+              href: 'page-4-url'
+            },
+            pages: {
+              3: {
+                href: 'page-3-url'
+              },
+              4: {
+                href: 'page-4-url'
+              },
+              5: {
+                href: 'page-5-url'
+              },
+              6: {
+                href: 'page-6-url'
+              },
+              7: {
+                href: 'page-7-url'
+              }
+            },
+            next: {
+              href: 'page-6-url'
+            },
+            last: {
+              href: 'page-10-url'
+            }
+          } only %}
+      {% endcell %}
+    {% endgrid %} 
   </div>
+</div>
+
+
 {% endblock %}

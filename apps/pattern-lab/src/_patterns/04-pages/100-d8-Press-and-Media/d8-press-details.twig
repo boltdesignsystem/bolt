@@ -91,6 +91,17 @@
             "text": "“AI and automation technologies have generated tremendous hype, but the potential within the enterprise remains largely untapped,“ said Don Schuerman, chief technology officer and vice president, product marketing, Pegasystems. “Organizations must augment their human intelligence with AI across the entire organization in order to move beyond basic efficiency improvements. By deploying AI and automation with an end-to-end view in mind, businesses can move closer to fulfilling their customer centric vision.”"
           } only %}
 
+          {% include "@bolt-components-link/link.twig" with {
+            text: "Download related media assets for this story.",
+            url: "#!",
+            icon: {
+              name: "download",
+              position: "before"
+            },
+          } only %}
+          <hr>
+
+
           {% include "@bolt-components-headline/text.twig" with {
             "text": "All trademarks are the property of their respective owners.",
             "size": "xsmall"
@@ -105,6 +116,32 @@
         {% cell 'u-bolt-width-1/1 u-bolt-width-4/12@medium' %}
           {% grid "o-bolt-grid--matrix" %}
             {% cell "u-bolt-width-1/1" %}
+              {# share widget #}
+              <div class="u-bolt-margin-bottom-medium">
+                {% include '@bolt-components-share/share.twig' with {
+                  inline: true,
+                  text: 'Share this page',
+                  sources: [
+                    {
+                      name: "facebook",
+                      url: "https://www.facebook.com/sharer/sharer.php?u={url}&src=sdkpreparse"
+                    },
+                    {
+                      name: "twitter",
+                      url: "https://twitter.com/intent/tweet?url={url}&text={title}&via={via}&hashtags={hashtags}"
+                    },
+                    {
+                      name: "linkedin",
+                      url: "https://www.linkedin.com/shareArticle?url={url}&title={title}"
+                    },
+                    {
+                      name: "email",
+                      url: "mailto:?&body=Sample%20Text%20--%20https%3A//bolt-design-system.com"
+                    }
+                  ]
+                } only %}
+              </div>
+              
               <div class="c-bolt-card">
                 <div class="c-bolt-card__body">
                   <div class="u-bolt-margin-bottom-xsmall">
@@ -262,7 +299,7 @@
             {% endcell %}
           {% endgrid %}
         {% endcell %}
-        {% cell 'u-bolt-width-1/1' %}
+        {# {% cell 'u-bolt-width-1/1' %}
           <hr>
           {% include "@bolt-components-headline/headline.twig" with {
             "text": "Tags:",
@@ -294,7 +331,7 @@
               }
             ]
           } %}
-        {% endcell %}
+        {% endcell %} #}
       {% endgrid %}
     {% endblock %}
   {% endembed %}
