@@ -96,15 +96,13 @@
 
   // https://fokkezb.nl/2016/04/14/how-to-wait-for-a-javascript-variable-to-be-defined/
   // https://github.com/OwenMelbz/whendefined
-  (function () { window.whenDefined = function (a, b, c) { a[b] ? c() : Object.defineProperty(a, b, { configurable: !0, enumerable: !0, writeable: !0, get: function () { return this["_" + b] }, set: function (a) { this["_" + b] = a, c() } }) } }).call(this);
  </script>
 
 
   <!-- set-up the dispatcher + load the Pattern Lab viewer js -->
   <script>
     window.Dispatcher;
-
-    whenDefined(window, 'EventEmitter', function () {
+    window.addEventListener('DOMContentLoaded', function () {
       window.Dispatcher = new EventEmitter();
       loadJS('/pattern-lab/styleguide/js/patternlab-viewer.min.js');
     });
