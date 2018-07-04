@@ -1509,9 +1509,7 @@ function receiveIframeMessage(event) {
         '//' +
         window.location.host +
         window.location.pathname.replace(re, '') +
-        data.path +
-        '?' +
-        Date.now();
+        data.path;
       window.location.replace(path);
     } else {
       // handle the style guide
@@ -1523,9 +1521,7 @@ function receiveIframeMessage(event) {
           'styleguide/html/styleguide.html',
           ''
         ) +
-        data.path +
-        '?' +
-        Date.now();
+        data.path;
       window.location.replace(path);
     }
   } else if (data.event !== undefined && data.event == 'patternLab.reload') {
@@ -2063,7 +2059,7 @@ window.addEventListener('message', receiveIframeMessage, false);
       ? config.defaultPattern
       : 'all';
   var iFramePath =
-    baseIframePath + 'styleguide/html/styleguide.html?' + Date.now();
+    baseIframePath + 'styleguide/html/styleguide.html';
   if (oGetVars.p !== undefined || oGetVars.pattern !== undefined) {
     patternName = oGetVars.p !== undefined ? oGetVars.p : oGetVars.pattern;
   }
@@ -2072,7 +2068,7 @@ window.addEventListener('message', receiveIframeMessage, false);
     patternPath = urlHandler.getFileName(patternName);
     iFramePath =
       patternPath !== ''
-        ? baseIframePath + patternPath + '?' + Date.now()
+        ? baseIframePath + patternPath + '?'
         : iFramePath;
     document.getElementById('title').innerHTML = 'Pattern Lab - ' + patternName;
     history.replaceState(

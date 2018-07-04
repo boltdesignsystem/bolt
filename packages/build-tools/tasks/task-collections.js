@@ -1,6 +1,7 @@
 const log = require('../utils/log');
 const path = require('path');
 const webpackTasks = require('./webpack-tasks');
+const criticalcssTasks = require('./criticalcss-tasks');
 const manifest = require('../utils/manifest');
 const internalTasks = require('./internal-tasks');
 const imageTasks = require('./image-tasks');
@@ -68,6 +69,17 @@ async function serve() {
     return Promise.all(serverTasks);
   } catch (error) {
     log.errorAndExit('Serve failed', error);
+  }
+}
+
+
+async function criticalcss() {
+  try {
+    const criticalTasks = [];
+    criticalTasks.push(criticalcssTasks.build());
+    return Promise.all(criticalTasks);
+  } catch (error) {
+    log.errorAndExit('Critical CSS failed', error);
   }
 }
 
@@ -162,4 +174,5 @@ module.exports = {
   watch,
   clean,
   prep,
+  criticalcss,
 };

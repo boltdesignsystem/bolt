@@ -81,9 +81,7 @@ function receiveIframeMessage(event) {
         '//' +
         window.location.host +
         window.location.pathname.replace(re, '') +
-        data.path +
-        '?' +
-        Date.now();
+        data.path;
       window.location.replace(path);
     } else {
       // handle the style guide
@@ -95,9 +93,7 @@ function receiveIframeMessage(event) {
           'styleguide/html/styleguide.html',
           ''
         ) +
-        data.path +
-        '?' +
-        Date.now();
+        data.path;
       window.location.replace(path);
     }
   } else if (data.event !== undefined && data.event == 'patternLab.reload') {

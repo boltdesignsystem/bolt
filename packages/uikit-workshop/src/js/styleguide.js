@@ -526,7 +526,7 @@
       ? config.defaultPattern
       : 'all';
   var iFramePath =
-    baseIframePath + 'styleguide/html/styleguide.html?' + Date.now();
+    baseIframePath + 'styleguide/html/styleguide.html';
   if (oGetVars.p !== undefined || oGetVars.pattern !== undefined) {
     patternName = oGetVars.p !== undefined ? oGetVars.p : oGetVars.pattern;
   }
@@ -535,7 +535,7 @@
     patternPath = urlHandler.getFileName(patternName);
     iFramePath =
       patternPath !== ''
-        ? baseIframePath + patternPath + '?' + Date.now()
+        ? baseIframePath + patternPath + '?'
         : iFramePath;
     document.getElementById('title').innerHTML = 'Pattern Lab - ' + patternName;
     history.replaceState(
