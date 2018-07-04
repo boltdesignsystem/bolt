@@ -535,7 +535,7 @@
     patternPath = urlHandler.getFileName(patternName);
     iFramePath =
       patternPath !== ''
-        ? baseIframePath + patternPath + '?'
+        ? baseIframePath + patternPath
         : iFramePath;
     document.getElementById('title').innerHTML = 'Pattern Lab - ' + patternName;
     history.replaceState(

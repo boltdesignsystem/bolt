@@ -1073,7 +1073,7 @@ var panelsViewer = {
 
           e.open(
             'GET',
-            fileBase + panel.httpRequestReplace + '?' + new Date().getTime(),
+            fileBase + panel.httpRequestReplace,
             true
           );
           e.send();
@@ -2068,7 +2068,7 @@ window.addEventListener('message', receiveIframeMessage, false);
     patternPath = urlHandler.getFileName(patternName);
     iFramePath =
       patternPath !== ''
-        ? baseIframePath + patternPath + '?'
+        ? baseIframePath + patternPath
         : iFramePath;
     document.getElementById('title').innerHTML = 'Pattern Lab - ' + patternName;
     history.replaceState(

@@ -106,7 +106,7 @@ var panelsViewer = {
 
           e.open(
             'GET',
-            fileBase + panel.httpRequestReplace + '?' + new Date().getTime(),
+            fileBase + panel.httpRequestReplace,
             true
           );
           e.send();
