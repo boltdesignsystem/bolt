@@ -42,11 +42,11 @@
     <!-- Default OG Tag examples (related to Bolt Share Component) -->
     {% include "@bolt-components-share/src/_share-meta-example.twig" %}
 
+    <link rel="stylesheet" href="/pattern-lab/styleguide/css/pattern-lab.css">
+    <link rel="stylesheet" href="{{ assets["pl.css"] }}">
     <link rel="stylesheet" href="{{ assets["bolt-global.css"] }}" media="all" />
 
     <!-- lazyload extra PL css -->
-    <link rel="preload" href="{{ assets["pl.css"] }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
     <noscript>
       <link rel="stylesheet" href="{{ assets["pl.css"] }}">
