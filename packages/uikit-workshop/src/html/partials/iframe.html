@@ -142,6 +142,29 @@
         <iframe class="pl-c-viewport__iframe pl-js-iframe" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals"></iframe>
 
         <script>
+          // Source: https://github.com/jserz/js_piece/blob/master/DOM/NonDocumentTypeChildNode/previousElementSibling/previousElementSibling.md
+          (function (arr) {
+            arr.forEach(function (item) {
+              if (item.hasOwnProperty('previousElementSibling')) {
+                return;
+              }
+              Object.defineProperty(item, 'previousElementSibling', {
+                configurable: true,
+                enumerable: true,
+                get: function () {
+                  var el = this;
+                  while (el = el.previousSibling) {
+                    if (el.nodeType === 1) {
+                      return el;
+                    }
+                  }
+                  return null;
+                },
+                set: undefined
+              });
+            });
+          })([Element.prototype, CharacterData.prototype]);
+
           var iframe = document.currentScript.previousElementSibling;
           var template = document.querySelector('#iframe-loader');
 
