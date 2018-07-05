@@ -166,6 +166,10 @@ bolt-navbar {
 
 .c-bolt-navbar__title-icon {
   @include bolt-margin(0 xsmall 0 0);
+
+  // Fix cross-browser bug where icon shrinks below its minimum natural width - see https://github.com/philipwalton/flexbugs#flexbug-1
+  flex-shrink: 0;
+  flex-basis: auto;
 }
 
 .c-bolt-navbar__title-text {
