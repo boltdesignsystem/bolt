@@ -21,10 +21,13 @@ async function getDefaultConfig() {
   return Promise.all([
     await getPort(configSchema.properties.port.default),
     await getPort(configSchema.properties.proxyPort.default),
+    await getPort(configSchema.properties.renderingServicePort.default),
   ]).then(function (ports) {
     return {
       port: ports[0],
       proxyPort: ports[1],
+      renderingServicePort: ports[2],
+      renderingService: configSchema.properties.renderingService.default,
       namespace: configSchema.properties.namespace.default,
       templatesDir: configSchema.properties.templatesDir.default,
       verbosity: configSchema.properties.verbosity.default,

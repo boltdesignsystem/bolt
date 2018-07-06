@@ -37,6 +37,10 @@ configStore.init(require(configFilePath)).then((config) => {
         config.openServerAtStart :
         options.open;
 
+      config.renderingService = typeof options.renderingService === 'undefined' ?
+        config.renderingService :
+        options.renderingService;
+
       config.webpackStats = typeof options.webpackStats === 'undefined' ?
         config.webpackStats :
         options.webpackStats;

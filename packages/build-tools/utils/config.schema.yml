@@ -45,6 +45,15 @@
         - pl
         - static
         - drupal
+        - hybrid
+    renderingService:
+      type: boolean
+      description: Automatically start up the PHP / Twig Rendering Service?
+      default: false
+    renderingServicePort:
+      type: number
+      title: Desired port for PHP Rendering Service
+      default: 8087
     srcDir:
       type: string
       title: Source Directory

@@ -320,6 +320,10 @@ function createConfig(config) {
     resolve: {
       extensions: ['.js', '.jsx', '.json', '.svg', '.scss'],
       unsafeCache: true,
+      alias: {
+        'react': 'preact-compat',
+        'react-dom': 'preact-compat',
+      },
     },
     module: {
       rules: [
