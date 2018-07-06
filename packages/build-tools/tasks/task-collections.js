@@ -17,6 +17,10 @@ switch (config.env) {
   case 'static':
     extraTasks.static = require('./static-tasks');
     break;
+  case 'hybrid':
+    extraTasks.patternLab = require('./pattern-lab-tasks');
+    extraTasks.static = require('./static-tasks');
+    break;
 }
 
 if (config.wwwDir) {
@@ -47,6 +51,11 @@ async function clean() {
       case 'pl':
         dirs = [path.join(config.buildDir, '..')];
         break;
+      case 'hybrid':
+        dirs = [
+          path.join(path.resolve(config.wwwDir), '**'),
+        ];
+        break;
       default:
         dirs = [config.buildDir];
         break;
@@ -60,6 +69,9 @@ async function clean() {
 async function serve() {
   try {
     const serverTasks = [];
+    if (config.renderingService) {
+      serverTasks.push(extraTasks.server.phpServer());
+    }
     if (config.wwwDir) {
       serverTasks.push(extraTasks.server.serve());
       if (config.webpackDevServer) {
@@ -124,6 +136,12 @@ async function build() {
       case 'static':
         await extraTasks.static.compile();
         break;
+      case 'hybrid':
+        return Promise.all([
+          extraTasks.static.compile(),
+          extraTasks.patternLab.compile(),
+        ]);
+        break;
     }
     log.info(`Build complete after ${timer.end(startTime)}.`);
   } catch (error) {
@@ -142,6 +160,10 @@ async function watch() {
         watchTasks.push(extraTasks.patternLab.watch());
         break;
       case 'static':
+        watchTasks.push(extraTasks.static.watch());
+        break;
+      case 'hybrid':
+        watchTasks.push(extraTasks.patternLab.watch());
         watchTasks.push(extraTasks.static.watch());
         break;
     }
