@@ -3,7 +3,6 @@
 namespace Bolt\Layout;
 
 use \Drupal\Core\Template\Attribute;
-use \PatternLab\PatternEngine\Twig\TwigUtil;
 
 use Bolt\Layout\GridCellNode;
 
