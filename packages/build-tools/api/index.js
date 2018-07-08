@@ -28,7 +28,6 @@ function getBody(request) {
  * @param next
  */
 async function handleRequest(req, res, next) {
-  console.log('Received /api request');
   const { method } = req;
   const { pathname, query, search } = url.parse(req.url, true);
   // let body;
@@ -37,7 +36,6 @@ async function handleRequest(req, res, next) {
   // }
   // @todo test with `GET` requests
   // @todo test with empty body
-  console.log({ method, pathname, query, body });
   switch (pathname) {
     case '/render-twig':
       try {

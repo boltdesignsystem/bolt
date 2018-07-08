@@ -195,10 +195,7 @@ export default class SchemaForm extends Component {
         <div
           className="u-bolt-width-1/1 u-bolt-width-3/10@small"
           style={{
-            borderColor: 'hsl(240, 3%, 85%)',
-            borderWidth: '1px',
             overflow: 'visible',
-            borderStyle: 'solid',
             marginLeft: 'auto',
             position: 'relative',
           }}
@@ -206,7 +203,7 @@ export default class SchemaForm extends Component {
           <div
             style={{
               minHeight: '320px',
-              maxHeight: '50vh',
+              maxHeight: '600px',
               overflow: 'scroll',
               '-webkit-overflow-scroll': 'touch',
             }}>
