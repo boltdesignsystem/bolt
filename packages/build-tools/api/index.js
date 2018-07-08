@@ -51,9 +51,6 @@ async function handleRequest(req, res, next) {
 
         const { status } = renderResponse;
         const warning = renderResponse.headers.get('Warning');
-        console.log('/render-twig response:');
-        console.log({ status, warning });
-        console.log(data);
         res.setHeader('Content-Type', renderResponse.headers.get('Content-Type'));
         res.statusCode = status;
         if (warning) {

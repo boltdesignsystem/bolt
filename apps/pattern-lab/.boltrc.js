@@ -5,6 +5,7 @@ module.exports = {
     'en', // default language used
     'ja'
   ],
+  renderingService: true, // starts PHP service for rendering Twig templates
   // Environmental variable / preset to use
   env: 'pl',
   buildDir: '../../www/pattern-lab/build',
@@ -66,6 +67,7 @@ module.exports = {
     global: [
       '@bolt/core',
       '@bolt/global',
+      '@bolt/internal-schema-form',
       '@bolt/components-placeholder',
       '@bolt/components-action-blocks',
       '@bolt/components-dropdown',
@@ -117,5 +119,5 @@ module.exports = {
       },
       '@bolt/components-critical-fonts',
     ],
-  },
+      },
 };
