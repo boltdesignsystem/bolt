@@ -27,7 +27,7 @@ function saveToLS(uuid, key, value) {
       uuid,
       JSON.stringify({
         [key]: value,
-      })
+      }),
     );
   }
 }
