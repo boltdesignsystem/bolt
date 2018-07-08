@@ -38,7 +38,7 @@ configStore.init(require(configFilePath)).then((config) => {
         options.open;
 
       config.renderingService = typeof options.renderingService === 'undefined' ?
-        config.renderingService :
+        (process.env.TRAVIS ? false : config.renderingService) :
         options.renderingService;
 
       config.webpackStats = typeof options.webpackStats === 'undefined' ?
