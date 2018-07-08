@@ -313,4 +313,106 @@
     {% endblock band_content %}
   {% endembed %}
 
+  {# Featured Resources #}
+  {% embed "@bolt/band--collection.twig" with {
+  "theme": "dark",
+  "size": "medium",
+  "contentItems": [
+    {
+      "pattern": "card",
+      "contentItems": [
+        {
+          "pattern": "image",
+          "src": "/pattern-lab/images/placeholders/1200x660.jpg"
+        },
+        {
+          "pattern": "headline",
+          "text": "First resource",
+          "size": "large",
+          "tag": "h3"
+        },
+        {
+          "pattern": "text",
+          "text": "Pega cited as a Leader in The Forrester Wave™: Digital Process Automation Software, Q3 2017."
+        },
+        {
+          "pattern": "button",
+          "width": "full",
+          "text": "Get the resource",
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "pattern": "card",
+      "image": {
+        "src": "/pattern-lab/images/content/promos/promo-16x9-anthem.jpg"
+      },
+      "teaser": {
+        "eyebrow": {
+          text: "Optional resource type"
+        },
+        "headlines": [
+          {
+            "type": "headline",
+            "text": "Second resource",
+            "size": "large"
+          }
+        ],
+        "content": "Simplify and automate to reduce costs and improve agility.",
+        "buttons": [
+          {
+            "text": "First CTA",
+            "style": "secondary",
+            "url": "www.google.com/pega7",
+            "width": "full"
+          },
+          {
+            "text": "Optional CTA",
+            "style": "secondary",
+            "url": "www.google.com/pega7",
+            "width": "full"
+          }
+        ]
+      }
+    },
+    {
+      "pattern": "card",
+      "contentItems": [
+        {
+          "pattern": "image",
+          "src": "/pattern-lab/images/content/promos/promo-16x9-ai.jpg"
+        },
+        {
+          "pattern": "teaser",
+          "headlines": [
+            {
+              "type": "headline",
+              "text": "Third resource",
+              "size": "large"
+            }
+          ],
+          "content": "Simplify and automate to reduce costs and improve agility.",
+          "buttons": [
+            {
+              "text": "Learn more",
+              "style": "text",
+              "url": "www.google.com/pega7",
+              "width": "full"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+} %}
+  {% block band_content %}
+    {% include "@bolt/headline.twig" with {
+      text: "Related resources",
+      size: "large",
+      tag: "h3"
+    } only %}
+    {{ parent() }}
+  {% endblock band_content %}
+{% endembed %}
 {% endblock %}
