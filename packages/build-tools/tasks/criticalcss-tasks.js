@@ -58,12 +58,16 @@ async function build() {
     .then(criticalCss => {
       // use the critical css generated
 
-      fs.writeFileSync(path.resolve(process.cwd(), config.buildDir) + '/bolt-critical-docs.css', criticalCss);
+      fs.writeFileSync(
+        path.resolve(process.cwd(), config.buildDir) +
+          '/bolt-critical-docs.css',
+        criticalCss,
+      );
     })
     .catch(err => {
       console.log(err); // handle any errors thrown
     });
-};
+}
 
 module.exports = {
   build,
