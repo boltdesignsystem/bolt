@@ -17,7 +17,7 @@ $bolt-search-filter-transition: $bolt-transition;
   bottom: bolt-v-spacing(medium);
   z-index: 99998;
 
-  @include respond-to(medium) {
+  @include bolt-mq(medium) {
     display: none;
   }
 }
@@ -77,7 +77,7 @@ $bolt-search-filter-transition: $bolt-transition;
   display: block;
   box-shadow: 0px -2px 4px rgba(bolt-color(black), 0.1);
 
-  @include respond-to(medium) {
+  @include bolt-mq(medium) {
     display: none;
   }
 }
@@ -94,8 +94,6 @@ $bolt-search-filter-transition: $bolt-transition;
   width: 100%;
   background-color: bolt-color(white);
 }
-
-
 
 .c-bolt-search-inline-tags {
   @include bolt-margin(0);

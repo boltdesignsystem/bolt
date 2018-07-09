@@ -51,7 +51,7 @@
 
     {% block band_content  %}
     {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
-      {% cell 'u-bolt-width-1/1 u-bolt-width-1/1@medium' %}    
+      {% cell 'u-bolt-width-1/1 u-bolt-width-1/1@medium' %}
         {% include "@bolt/headline.twig" with {
             text: "Media Coverage",
             size: "xxxlarge",
@@ -229,7 +229,7 @@
                 "url": "#search-filters",
                 "size": "xsmall",
                 "style": "primary",
-                "rounded": true,
+                "rounded": "rounded",
                 "iconOnly": true,
                 "icon": {
                   "name": "more",
@@ -418,7 +418,7 @@
                         </label>
                       </div>
 
-                      
+
                     </div>
                   </fieldset>
                   <fieldset class="c-bolt-fieldset">
@@ -505,7 +505,7 @@
                   "url": "#!",
                   "size": "xsmall",
                   "style": "text",
-                  "rounded": true,
+                  "rounded": "rounded",
                   "iconOnly": true,
                   "icon": {
                     "name": "close",
@@ -1090,7 +1090,7 @@
     </div>
     <div class="u-bolt-margin-top-large u-bolt-margin-bottom-medium">
       {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-      {% cell "o-bolt-grid__cell" %}  
+      {% cell "o-bolt-grid__cell" %}
           {% include "@bolt-components-pagination/pagination.twig" with {
             current: 5,
             total: 10,
@@ -1125,7 +1125,7 @@
             }
           } only %}
       {% endcell %}
-    {% endgrid %} 
+    {% endgrid %}
   </div>
 </div>
 
