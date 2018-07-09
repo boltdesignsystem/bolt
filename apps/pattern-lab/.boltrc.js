@@ -7,7 +7,7 @@ module.exports = {
   wwwDir: '../../www/',
   startPath: 'pattern-lab/index.html',
   plConfigFile: './config/config.yml',
-  verbosity: 1,
+  verbosity: 2,
   schemaErrorReporting: 'cli',
   webpackDevServer: true,
   extraTwigNamespaces: {

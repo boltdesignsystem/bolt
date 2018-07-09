@@ -318,12 +318,6 @@ function createConfig(config) {
         },
         {
           test: /\.js$/,
-          enforce: 'pre',
-          exclude: /node_modules/,
-          loader: 'eslint-loader',
-        },
-        {
-          test: /\.js$/,
           exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
           use: {
               loader: 'babel-loader',
@@ -333,6 +327,11 @@ function createConfig(config) {
                 presets: ['@bolt/babel-preset-bolt'],
               },
             },
+        },
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          loader: 'eslint-loader',
         },
         {
           test: /\.(woff|woff2)$/,
