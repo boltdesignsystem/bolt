@@ -63,6 +63,7 @@ async function init() {
 
     const baseNowArgs = [
       '--team=boltdesignsystem',
+      '--local-config=../now.json',
     ];
 
     if (NOW_TOKEN) baseNowArgs.push(`--token=${NOW_TOKEN}`);
