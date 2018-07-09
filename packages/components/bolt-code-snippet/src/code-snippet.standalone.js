@@ -12,7 +12,7 @@ import {
 
 import styles from './code-snippet.scss';
 
-import Prism from 'prismjs/components/prism-core'
+import Prism from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-twig';
 import 'prismjs/components/prism-clike';
@@ -23,7 +23,6 @@ import 'prismjs/components/prism-scss';
 import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-markdown';
 import 'prismjs/components/prism-yaml';
-
 
 @define
 export class BoltCodeSnippetClass extends withPreact() {
@@ -46,7 +45,7 @@ export class BoltCodeSnippetClass extends withPreact() {
     return self;
   }
 
-  connecting(){
+  connecting() {
     if (this.querySelector('[is*=shadow-root]')) {
       const parentElement = this.querySelector('[is*=shadow-root]');
       this.innerHTML = parentElement.innerHTML;
@@ -64,25 +63,39 @@ export class BoltCodeSnippetClass extends withPreact() {
 
     const codeClasses = css(
       'c-bolt-code-snippet__code',
-      display ? `c-bolt-code-snippet__code--${display}` : 'c-bolt-code-snippet__code--block',
-      syntax ? `c-bolt-code-snippet-syntax--${syntax}` : 'c-bolt-code-snippet-syntax--light',
+      display
+        ? `c-bolt-code-snippet__code--${display}`
+        : 'c-bolt-code-snippet__code--block',
+      syntax
+        ? `c-bolt-code-snippet-syntax--${syntax}`
+        : 'c-bolt-code-snippet-syntax--light',
       lang ? `language-${lang}` : 'language-html',
     );
 
     const preClasses = css(
       'c-bolt-code-snippet',
-      syntax ? `c-bolt-code-snippet-syntax--${syntax}` : 'c-bolt-code-snippet-syntax--light',
+      syntax
+        ? `c-bolt-code-snippet-syntax--${syntax}`
+        : 'c-bolt-code-snippet-syntax--light',
       lang ? `language-${lang}` : 'language-html',
     );
 
-    if (display === 'inline'){
+    if (display === 'inline') {
       return (
-        <code className={codeClasses}>{this.addStyles([styles])}{this.html(highlightedCode)}</code>
-      )
+        <code className={codeClasses}>
+          {this.addStyles([styles])}
+          {this.html(highlightedCode)}
+        </code>
+      );
     } else {
       return (
-        <pre className={preClasses}><code className={codeClasses}>{this.addStyles([styles])}{this.html(highlightedCode)}</code></pre>
-      )
+        <pre className={preClasses}>
+          <code className={codeClasses}>
+            {this.addStyles([styles])}
+            {this.html(highlightedCode)}
+          </code>
+        </pre>
+      );
     }
   }
 }

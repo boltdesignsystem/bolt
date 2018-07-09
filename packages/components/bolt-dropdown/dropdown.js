@@ -11,11 +11,9 @@ import Handorgel from 'handorgel';
 import styles from './dropdown.scss';
 import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
 
-
 @define
 export class BoltDropdown extends BoltComponent() {
   static is = 'bolt-dropdown';
-
 
   static props = {
     autoOpen: props.boolean,
@@ -26,7 +24,7 @@ export class BoltDropdown extends BoltComponent() {
     primaryUuid: props.string,
     secondaryUuid: props.string,
     title: props.string,
-  }
+  };
 
   constructor(self) {
     self = super(self);
@@ -55,10 +53,9 @@ export class BoltDropdown extends BoltComponent() {
       originalDropdown.replaceWith(...contentInner.childNodes);
     }
 
-
     const elem = this;
 
-    window.addEventListener('resize', function () {
+    window.addEventListener('resize', function() {
       elem.autoHeight();
     });
 
@@ -67,7 +64,10 @@ export class BoltDropdown extends BoltComponent() {
 
   autoHeight() {
     if (this.contentElem) {
-      if (this.props.collapse && window.matchMedia('(min-width: 600px)').matches) {
+      if (
+        this.props.collapse &&
+        window.matchMedia('(min-width: 600px)').matches
+      ) {
         this.contentElem.classList.add('u-bolt-height-auto');
       } else if (this.props.collapse) {
         this.contentElem.classList.remove('u-bolt-height-auto');
@@ -77,7 +77,7 @@ export class BoltDropdown extends BoltComponent() {
 
   close() {
     const elem = this;
-    setTimeout(function () {
+    setTimeout(function() {
       elem.dropdown.folds[0].close();
     }, 300);
   }
@@ -102,19 +102,22 @@ export class BoltDropdown extends BoltComponent() {
     }
   }
 
-
   dropdownHeader() {
     const dropdownHeaderClasses = css(
       'c-bolt-dropdown__header',
       this.props.center ? 'c-bolt-dropdown__header--center' : '',
     );
 
-    const dropdownTitle = this.slots.title ? this.slot('title') : ( this.props.title ? this.props.title : '');
+    const dropdownTitle = this.slots.title
+      ? this.slot('title')
+      : this.props.title
+        ? this.props.title
+        : '';
 
-    return this.hyper.wire(this.props) `
+    return this.hyper.wire(this.props)`
       <h3 class="${dropdownHeaderClasses}">
         <button class="c-bolt-dropdown__header-button">
-          ${ dropdownTitle }
+          ${dropdownTitle}
 
           <span class="c-bolt-dropdown__header-icons">
             <div class="c-bolt-dropdown__header-icons-inner">
@@ -137,9 +140,13 @@ export class BoltDropdown extends BoltComponent() {
       this.props.collapse ? 'c-bolt-dropdown--collapse@small' : '',
     );
 
-    const dropdownChildren = this.slots.default ? this.slot('default') : (this.props.children ? this.props.children : '');
+    const dropdownChildren = this.slots.default
+      ? this.slot('default')
+      : this.props.children
+        ? this.props.children
+        : '';
 
-    return this.hyper.wire(this.props) `
+    return this.hyper.wire(this.props)`
       <div class="${classes}" id="${this.uuid}">
         ${this.dropdownHeader()}
 
@@ -156,54 +163,59 @@ export class BoltDropdown extends BoltComponent() {
     this.dropdownTemplate = document.createDocumentFragment();
     this.dropdownTemplate.appendChild(this.template());
 
-    this.contentElem = this.dropdownTemplate.querySelector('.c-bolt-dropdown__content');
+    this.contentElem = this.dropdownTemplate.querySelector(
+      '.c-bolt-dropdown__content',
+    );
 
     this.autoHeight();
 
-    this.dropdown = new Handorgel(this.dropdownTemplate.querySelector('.c-bolt-dropdown'), {
-      // whether multiple folds can be opened at once
-      multiSelectable: true,
-      // whether the folds are collapsible
-      collapsible: true,
+    this.dropdown = new Handorgel(
+      this.dropdownTemplate.querySelector('.c-bolt-dropdown'),
+      {
+        // whether multiple folds can be opened at once
+        multiSelectable: true,
+        // whether the folds are collapsible
+        collapsible: true,
 
-      // whether ARIA attributes are enabled
-      ariaEnabled: true,
-      // whether W3C keyboard shortcuts are enabled
-      keyboardInteraction: true,
-      // whether to loop header focus (sets focus back to first/last header when end/start reached)
-      carouselFocus: true,
+        // whether ARIA attributes are enabled
+        ariaEnabled: true,
+        // whether W3C keyboard shortcuts are enabled
+        keyboardInteraction: true,
+        // whether to loop header focus (sets focus back to first/last header when end/start reached)
+        carouselFocus: true,
 
-      // attribute for the header or content to open folds at initialization
-      initialOpenAttribute: 'data-open',
-      // whether to use transition at initial open
-      initialOpenTransition: true,
-      // delay used to show initial transition
-      initialOpenTransitionDelay: 200,
+        // attribute for the header or content to open folds at initialization
+        initialOpenAttribute: 'data-open',
+        // whether to use transition at initial open
+        initialOpenTransition: true,
+        // delay used to show initial transition
+        initialOpenTransitionDelay: 200,
 
-      // header/content class if fold is open
-      headerOpenClass: 'c-bolt-dropdown__header--open',
-      contentOpenClass: 'c-bolt-dropdown__content--open',
+        // header/content class if fold is open
+        headerOpenClass: 'c-bolt-dropdown__header--open',
+        contentOpenClass: 'c-bolt-dropdown__content--open',
 
-      // header/content class if fold has been opened (transition finished)
-      headerOpenedClass: 'c-bolt-dropdown__header--opened',
-      contentOpenedClass: 'c-bolt-dropdown__content--opened',
+        // header/content class if fold has been opened (transition finished)
+        headerOpenedClass: 'c-bolt-dropdown__header--opened',
+        contentOpenedClass: 'c-bolt-dropdown__content--opened',
 
-      // header/content class if fold has been focused
-      headerFocusClass: 'c-bolt-dropdown__header--focus',
-      contentFocusClass: 'c-bolt-dropdown__content--focus',
+        // header/content class if fold has been focused
+        headerFocusClass: 'c-bolt-dropdown__header--focus',
+        contentFocusClass: 'c-bolt-dropdown__content--focus',
 
-      // header/content class if fold is disabled
-      headerDisabledClass: 'c-bolt-dropdown__header--disabled',
-      contentDisabledClass: 'c-bolt-dropdown__content--disabled',
+        // header/content class if fold is disabled
+        headerDisabledClass: 'c-bolt-dropdown__header--disabled',
+        contentDisabledClass: 'c-bolt-dropdown__content--disabled',
 
-      // header/content class if no transition should be active (applied on resize)
-      headerNoTransitionClass: 'c-bolt-dropdown__header--notransition',
-      contentNoTransitionClass: 'c-bolt-dropdown__content--notransition',
-    });
+        // header/content class if no transition should be active (applied on resize)
+        headerNoTransitionClass: 'c-bolt-dropdown__header--notransition',
+        contentNoTransitionClass: 'c-bolt-dropdown__content--notransition',
+      },
+    );
 
     return this.html`
-      ${ this.addStyles([styles, heightUtils]) }
-      ${ this.dropdownTemplate }
+      ${this.addStyles([styles, heightUtils])}
+      ${this.dropdownTemplate}
     `;
   }
 }

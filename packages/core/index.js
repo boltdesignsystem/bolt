@@ -1,11 +1,6 @@
-export {
-  define,
-  props,
-  withComponent,
-  withUpdate,
-} from 'skatejs';
+export { define, props, withComponent, withUpdate } from 'skatejs';
 
-export preact, { Component, h }  from 'preact';
+export preact, { Component, h } from 'preact';
 export { hyper } from 'hyperhtml/cjs';
 
 // Export Utilties + Helpers
