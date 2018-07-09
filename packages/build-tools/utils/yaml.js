@@ -83,7 +83,6 @@ async function getDataFile(filePath) {
   ensureFileExists(filePath);
   const fileInfo = path.parse(filePath);
   try {
-
     switch (fileInfo.ext) {
       case '.json':
         const fileContents = await readFile(filePath, 'utf8');

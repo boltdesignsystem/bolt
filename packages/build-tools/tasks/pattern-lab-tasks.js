@@ -14,19 +14,14 @@ const { getConfig } = require('../utils/config-store');
 const ora = require('ora');
 const manifest = require('../utils/manifest');
 
-const config = Object.assign({
-  plConfigFile: 'config/config.yml',
-  watchedExtensions: [
-    'twig',
-    'json',
-    'yaml',
-    'yml',
-    'md',
-    'png',
-    'php',
-  ],
-  debounceRate: 1000,
-}, getConfig());
+const config = Object.assign(
+  {
+    plConfigFile: 'config/config.yml',
+    watchedExtensions: ['twig', 'json', 'yaml', 'yml', 'md', 'png', 'php'],
+    debounceRate: 1000,
+  },
+  getConfig(),
+);
 
 const plConfig = readYamlFileSync(config.plConfigFile);
 const plRoot = path.join(config.plConfigFile, '../..');
@@ -41,15 +36,16 @@ function plBuild(errorShouldExit) {
     const startTime = timer.start();
     // log.taskStart('build: pattern lab');
     events.emit('pattern-lab:precompile');
-    sh('php', [
-      '-d',
-      'memory_limit=4048M',
-      consolePath,
-      '--generate',
-    ], errorShouldExit, false)
-      .then((output) => {
-
-        plSpinner.succeed(chalk.green(`Built Pattern Lab in ${timer.end(startTime)}`));
+    sh(
+      'php',
+      ['-d', 'memory_limit=4048M', consolePath, '--generate'],
+      errorShouldExit,
+      false,
+    )
+      .then(output => {
+        plSpinner.succeed(
+          chalk.green(`Built Pattern Lab in ${timer.end(startTime)}`),
+        );
 
         if (config.verbosity > 2) {
           console.log('---');
@@ -61,7 +57,7 @@ function plBuild(errorShouldExit) {
 
         resolve(output);
       })
-      .catch((error) => {
+      .catch(error => {
         plSpinner.fail(chalk.red('Building Pattern Lab Failed'));
         console.log(error);
         // reject(error);
@@ -88,7 +84,9 @@ const debouncedCompile = debounce(compileWithNoExit, config.debounceRate);
 function watch() {
   const globPattern = `**/*.{${config.watchedExtensions.join(',')}}`;
   const watchedFiles = [
-    ...manifest.getAllDirs(process.cwd()).map(dir => path.join(dir, globPattern)),
+    ...manifest
+      .getAllDirs(process.cwd())
+      .map(dir => path.join(dir, globPattern)),
     path.join(plSource, globPattern),
     path.join(config.dataDir, '*.*'),
   ];
@@ -103,10 +101,7 @@ function watch() {
   const watcher = chokidar.watch(watchedFiles, {
     ignoreInitial: true,
     cwd: process.cwd(),
-    ignore: [
-      '**/node_modules/**',
-      '**/vendor/**',
-    ],
+    ignore: ['**/node_modules/**', '**/vendor/**'],
   });
 
   // list of all events: https://www.npmjs.com/package/chokidar#methods--events
@@ -116,7 +111,6 @@ function watch() {
     }
     debouncedCompile();
   });
-
 }
 
 watch.description = 'Watch and rebuild Pattern Lab';

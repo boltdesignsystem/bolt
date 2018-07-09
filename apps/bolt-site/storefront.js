@@ -1,7 +1,8 @@
 function debounce(func, wait, immediate) {
   var timeout;
   return function() {
-    var context = this, args = arguments;
+    var context = this,
+      args = arguments;
     var later = function() {
       timeout = null;
       if (!immediate) func.apply(context, args);
@@ -11,20 +12,19 @@ function debounce(func, wait, immediate) {
     timeout = setTimeout(later, wait);
     if (callNow) func.apply(context, args);
   };
-};
+}
 
 function throttle(func, wait, scope) {
   wait || (wait = 250);
-  var last,
-    deferTimer;
-  return function () {
+  var last, deferTimer;
+  return function() {
     var context = scope || this;
 
-    var now = +new Date,
+    var now = +new Date(),
       args = arguments;
     if (last && now < last + wait) {
       clearTimeout(deferTimer);
-      deferTimer = setTimeout(function () {
+      deferTimer = setTimeout(function() {
         last = now;
         func.apply(context, args);
       }, wait);

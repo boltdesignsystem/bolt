@@ -16,7 +16,7 @@ const serverConfig = {
     blacklist: ['/index.html', '/', '/?*'], // prevents double browsersync
     rule: {
       match: /<\/body>/i,
-      fn (snippet, match) {
+      fn(snippet, match) {
         return snippet + match;
       },
     },
@@ -32,9 +32,7 @@ if (config.webpackDevServer) {
     serverConfig.serveStatic.push(config.wwwDir);
   }
 } else {
-  serverConfig.server = [
-    config.wwwDir,
-  ];
+  serverConfig.server = [config.wwwDir];
 }
 
 function serve() {
@@ -55,13 +53,12 @@ function reload(files) {
   server.reload(files);
 }
 
-events.on('reload', (files) => {
+events.on('reload', files => {
   if (config.verbosity > 4) {
     log.info('Event triggered: "reload"', files);
   }
   reload(files);
 });
-
 
 module.exports = {
   serve,

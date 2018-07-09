@@ -90,7 +90,10 @@ async function build() {
     if (!config.quick) {
       await webpackTasks.compile();
     }
-    await manifest.writeTwigNamespaceFile(process.cwd(), config.extraTwigNamespaces);
+    await manifest.writeTwigNamespaceFile(
+      process.cwd(),
+      config.extraTwigNamespaces,
+    );
     await images();
     switch (config.env) {
       case 'pl':
@@ -108,9 +111,7 @@ async function build() {
 
 async function watch() {
   try {
-    const watchTasks = [
-      webpackTasks.watch(),
-    ];
+    const watchTasks = [webpackTasks.watch()];
 
     switch (config.env) {
       case 'pl':
@@ -132,10 +133,7 @@ async function start() {
     if (!config.quick) {
       await build();
     }
-    return Promise.all([
-      serve(),
-      watch(),
-    ]);
+    return Promise.all([serve(), watch()]);
   } catch (error) {
     log.errorAndExit('Start failed', error);
   }

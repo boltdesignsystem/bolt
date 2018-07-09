@@ -42,8 +42,9 @@ async function getPage(file) {
     log.dim(`Getting info for: ${file}`);
   }
 
-  const url = path.relative(config.srcDir, file)
-    .replace('\.md', '\.html')
+  const url = path
+    .relative(config.srcDir, file)
+    .replace('.md', '.html')
     .split('/')
     .map(x => x.replace(/^[0-9]*-/, '')) // Removing number prefix `05-item` => `item`
     .join('/');
@@ -54,10 +55,7 @@ async function getPage(file) {
 
   const dirTree = url.split('/');
 
-  let depth = url
-    .split('/')
-    .filter(x => x !== 'index.html')
-    .length;
+  let depth = url.split('/').filter(x => x !== 'index.html').length;
 
   let parent = dirTree[depth - 2];
 
@@ -86,7 +84,7 @@ async function getPages(srcDir) {
   /** @type Array<String> */
   const allPaths = await globby(path.join(srcDir, '**/*.{md,html}'));
 
-  return Promise.all(allPaths.map(getPage)).then((pages) => {
+  return Promise.all(allPaths.map(getPage)).then(pages => {
     if (config.verbosity > 4) {
       log.dim('All data for Static pages:');
       console.log(pages);
@@ -110,27 +108,33 @@ async function getPages(srcDir) {
  */
 async function getNestedPages(folder) {
   const items = await readdir(folder);
-  return Promise.all(items.map(async (item) => {
-    const fullPath = path.join(folder, item);
-    const stats = await lstat(fullPath);
-    if (stats.isDirectory()) {
-      const indexFile = path.join(fullPath, '00-index.md'); // @todo Make this work with `00-index.html`, `01-index.md`, `index.md`, or `index.html`
-      const children = await getNestedPages(fullPath);
-      // The children include the `indexFile` as well, so let's remove it.
-      const filterChildren = children.filter(child => indexFile !== child.srcPath);
-      let item;
-      try {
-        item = await getPage(indexFile);
-      } catch (error) {
-        log.error(`Each folder in static site content must contain a file called "00-index.md", please make one here: ${indexFile}`);
-        process.exit(1); // exiting immediately so follow up error messages don't confuse user.
+  return Promise.all(
+    items.map(async item => {
+      const fullPath = path.join(folder, item);
+      const stats = await lstat(fullPath);
+      if (stats.isDirectory()) {
+        const indexFile = path.join(fullPath, '00-index.md'); // @todo Make this work with `00-index.html`, `01-index.md`, `index.md`, or `index.html`
+        const children = await getNestedPages(fullPath);
+        // The children include the `indexFile` as well, so let's remove it.
+        const filterChildren = children.filter(
+          child => indexFile !== child.srcPath,
+        );
+        let item;
+        try {
+          item = await getPage(indexFile);
+        } catch (error) {
+          log.error(
+            `Each folder in static site content must contain a file called "00-index.md", please make one here: ${indexFile}`,
+          );
+          process.exit(1); // exiting immediately so follow up error messages don't confuse user.
+        }
+        item.children = filterChildren;
+        return item;
+      } else {
+        return await getPage(fullPath);
       }
-      item.children = filterChildren;
-      return item;
-    } else {
-      return await getPage(fullPath);
-    }
-  }));
+    }),
+  );
 }
 
 /**
@@ -142,7 +146,7 @@ async function getSiteData(pages) {
   const nestedPages = await getNestedPages(config.srcDir);
   const site = {
     nestedPages,
-    pages: pages.map((page) => ({
+    pages: pages.map(page => ({
       url: page.url,
       meta: page.meta,
       // choosing not to have `page.body` in here on purpose
@@ -173,51 +177,60 @@ async function compile(exitOnError = true) {
   const server = app.listen(3001);
 
   // Walk through all available pages to set up data to respond with (@todo: iterate on this -- temp solution to get Travis builds back up and running!)
-  pages.map((page) => {
+  pages.map(page => {
     const url = page.url;
-    app.get(`/${url}`, function (req, res) {
+    app.get(`/${url}`, function(req, res) {
       const data = {
         page,
         site,
-      }
+      };
       res.send(data);
     });
   });
 
-  return Promise.all(pages.map(async (page) => {
-    const url = page.url;
+  return Promise.all(
+    pages.map(async page => {
+      const url = page.url;
 
-    // the page we are requesting data for
-    const pageArg = escapeNestedSingleQuotes(JSON.stringify(url));
+      // the page we are requesting data for
+      const pageArg = escapeNestedSingleQuotes(JSON.stringify(url));
 
-    const layout = page.meta.layout ? page.meta.layout : 'default';
-    const output = await sh('php', [
-      '-d memory_limit=4048M',
-      'renderTwig.php',
-      `${layout}.twig`,
-      url,
-    ], exitOnError, false, false);
+      const layout = page.meta.layout ? page.meta.layout : 'default';
+      const output = await sh(
+        'php',
+        ['-d memory_limit=4048M', 'renderTwig.php', `${layout}.twig`, url],
+        exitOnError,
+        false,
+        false,
+      );
 
-    const htmlFilePath = path.join(config.wwwDir, page.url);
-    await mkdirp(path.dirname(htmlFilePath));
-    await writeFile(htmlFilePath, output);
-    if (config.verbosity > 3) {
-      log.dim(`Wrote: ${htmlFilePath}`);
-    }
-  })).then(() => {
-    server.close();
-    const endMessage = chalk.green(`Compiled Static Site in ${timer.end(startTime)}`);
-    if (config.verbosity > 2) {
-      console.log(endMessage);
-    } else {
-      spinner.succeed(endMessage);
-    }
-  }).catch((error) => {
-    server.close();
-    console.log(error);
-    const endMessage = chalk.red(`Compiling Static Site failed in ${timer.end(startTime)}`);
-    spinner.fail(endMessage);
-  });
+      const htmlFilePath = path.join(config.wwwDir, page.url);
+      await mkdirp(path.dirname(htmlFilePath));
+      await writeFile(htmlFilePath, output);
+      if (config.verbosity > 3) {
+        log.dim(`Wrote: ${htmlFilePath}`);
+      }
+    }),
+  )
+    .then(() => {
+      server.close();
+      const endMessage = chalk.green(
+        `Compiled Static Site in ${timer.end(startTime)}`,
+      );
+      if (config.verbosity > 2) {
+        console.log(endMessage);
+      } else {
+        spinner.succeed(endMessage);
+      }
+    })
+    .catch(error => {
+      server.close();
+      console.log(error);
+      const endMessage = chalk.red(
+        `Compiling Static Site failed in ${timer.end(startTime)}`,
+      );
+      spinner.fail(endMessage);
+    });
 }
 
 function compileWithNoExit() {
@@ -226,18 +239,12 @@ function compileWithNoExit() {
 const debouncedCompile = debounce(compileWithNoExit, 200);
 
 function watch() {
-  const watchedFiles = [
-    './templates/**/*.twig',
-    './content/**/*.{md,html}',
-  ];
+  const watchedFiles = ['./templates/**/*.twig', './content/**/*.{md,html}'];
 
   const watcher = chokidar.watch(watchedFiles, {
     ignoreInitial: true,
     cwd: process.cwd(),
-    ignore: [
-      '**/node_modules/**',
-      '**/vendor/**',
-    ],
+    ignore: ['**/node_modules/**', '**/vendor/**'],
   });
 
   // list of all events: https://www.npmjs.com/package/chokidar#methods--events
@@ -247,7 +254,6 @@ function watch() {
     }
     debouncedCompile();
   });
-
 }
 
 module.exports = {

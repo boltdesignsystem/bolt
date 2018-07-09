@@ -2,7 +2,9 @@ const chalk = require('chalk');
 const path = require('path');
 const { readYamlFileSync } = require('./yaml');
 const { validateSchema } = require('./schemas');
-const configSchema = readYamlFileSync(path.join(__dirname, './config.schema.yml'));
+const configSchema = readYamlFileSync(
+  path.join(__dirname, './config.schema.yml'),
+);
 let isInitialized = false;
 let config = {};
 // Welcome to the home of the config!
@@ -31,7 +33,7 @@ const defaultConfig = {
 
 function getEnvVarsConfig() {
   const envVars = {};
-  Object.keys(process.env).forEach((envVar) => {
+  Object.keys(process.env).forEach(envVar => {
     if (envVar.startsWith('bolt_')) {
       /** @type {string} - All env vars are strings */
       let value = process.env[envVar];
@@ -57,8 +59,12 @@ function getEnvVarsConfig() {
 
 function isReady() {
   if (!isInitialized) {
-    console.log(chalk.red('Must initialize config before trying to get or update it.'));
-    console.log('Check to make sure you are running `init()` from `config-store.js` before `getConfig()` or `updateConfig()` ');
+    console.log(
+      chalk.red('Must initialize config before trying to get or update it.'),
+    );
+    console.log(
+      'Check to make sure you are running `init()` from `config-store.js` before `getConfig()` or `updateConfig()` ',
+    );
     process.exit(1);
   }
 }
@@ -69,7 +75,11 @@ function init(userConfig) {
   // End setting programatic defaults
 
   config = Object.assign({}, defaultConfig, userConfig, getEnvVarsConfig());
-  validateSchema(configSchema, config, 'Please fix the config being used in Bolt CLI.');
+  validateSchema(
+    configSchema,
+    config,
+    'Please fix the config being used in Bolt CLI.',
+  );
   isInitialized = true;
   return config;
 }
@@ -90,7 +100,11 @@ function getConfig() {
 function updateConfig(updater) {
   isReady();
   const newConfig = updater(config);
-  validateSchema(configSchema, newConfig, 'Please fix the config being used in Bolt CLI.');
+  validateSchema(
+    configSchema,
+    newConfig,
+    'Please fix the config being used in Bolt CLI.',
+  );
   // console.log('new config:');
   // console.log(newConfig);
   config = newConfig;
