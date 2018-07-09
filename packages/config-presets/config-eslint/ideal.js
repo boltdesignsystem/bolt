@@ -13,7 +13,7 @@ module.exports = {
   },
   rules: {
     'linebreak-style': ['error', 'unix'],
-    quotes: ['warn', 'single'],
+    // quotes: ['warn', 'single'], // a few situations exist where eslint's mandatory single quote rule needs to be trumped by prettier's smarter "most of the time use single quotes" rules
     semi: ['error', 'always'],
     'no-unused-vars': [
       'warn',
