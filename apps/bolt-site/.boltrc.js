@@ -1,5 +1,8 @@
 module.exports = {
   // Environmental variable / preset to use
+  lang: [
+    'en',
+  ],
   env: 'static',
   buildDir: '../../www/build/',
   srcDir: './content',
@@ -35,7 +38,6 @@ module.exports = {
       '@bolt/components-teaser',
       '@bolt/components-image',
       './style.scss',
-      './storefront.js',
     ],
     individual: [],
   },

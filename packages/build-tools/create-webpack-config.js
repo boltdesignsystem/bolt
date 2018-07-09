@@ -9,10 +9,7 @@ const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const sassImportGlobbing = require('@theme-tools/sass-import-globbing');
-const {
-  getBoltManifest,
-  createComponentsManifest,
-} = require('./utils/manifest');
+const { getBoltManifest, createComponentsManifest } = require('./utils/manifest');
 const { promisify } = require('util');
 const fs = require('fs');
 const readFile = promisify(fs.readFile);
@@ -24,30 +21,43 @@ function createConfig(config) {
     path: path.resolve(process.cwd(), config.dataDir),
   });
 
+  // filename suffix to tack on based on lang being compiled for
+  const langSuffix = `${config.lang && config.lang.length > 1 ? '-' + config.lang : ''}`;
+
+
   // Default global Sass data defined
-  let globalSassData = [`$bolt-namespace: ${config.namespace};`];
+  let globalSassData = [
+    `$bolt-namespace: ${config.namespace};`,
+
+    // output $bolt-lang variable in Sass even if not specified so things fall back accordingly.
+    `${config.lang && config.lang.length > 1 ?
+      `$bolt-lang: ${config.lang};` :
+      '$bolt-lang: null;'
+    }`,
+  ];
 
   // Default global JS data defined
   let globalJsData = {
-    'process.env.NODE_ENV': config.prod
-      ? JSON.stringify('production')
-      : JSON.stringify('development'),
+    'process.env.NODE_ENV': config.prod ?
+      JSON.stringify('production') :
+      JSON.stringify('development'),
     bolt: {
       namespace: JSON.stringify(config.namespace),
     },
   };
 
+
   // Merge together global Sass data overrides specified in a .boltrc config
-  if (config.globalData.scss && config.globalData.scss.length !== 0) {
+  if (config.globalData.scss && config.globalData.scss.length !== 0){
     const overrideItems = [];
-    config.globalData.scss.forEach(item => {
+    config.globalData.scss.forEach((item) => {
       try {
         const file = fs.readFileSync(item, 'utf8');
         file
           .split('\n')
           .filter(x => x)
           .forEach(x => overrideItems.push(x));
-      } catch (err) {
+      } catch(err) {
         log.errorAndExit(`Could not find ${item}`, err);
       }
     });
@@ -55,20 +65,22 @@ function createConfig(config) {
     globalSassData = [...globalSassData, ...overrideItems];
   }
 
+
   // Merge together any global JS data overrides
-  if (config.globalData.js && config.globalData.js.length !== 0) {
+  if (config.globalData.js && config.globalData.js.length !== 0){
     const overrideJsItems = [];
-    config.globalData.js.forEach(item => {
+    config.globalData.js.forEach((item) => {
       try {
         const overrideFile = require(path.resolve(process.cwd(), item));
         overrideJsItems.push(overrideFile);
-      } catch (err) {
+      } catch(err) {
         log.errorAndExit(`Could not find ${item} file`, err);
       }
     });
 
     globalJsData = deepmerge(globalJsData, ...overrideJsItems);
   }
+
 
   /**
    * Build WebPack config's `entry` object
@@ -78,17 +90,23 @@ function createConfig(config) {
   function buildWebpackEntry() {
     const { components } = getBoltManifest();
     const entry = {};
+    const globalEntryName = 'bolt-global';
+
     if (components.global) {
-      entry['bolt-global'] = [];
-      components.global.forEach(component => {
-        if (component.assets.style)
-          entry['bolt-global'].push(component.assets.style);
-        if (component.assets.main)
-          entry['bolt-global'].push(component.assets.main);
+      entry[globalEntryName] = [];
+
+      components.global.forEach((component) => {
+        if (component.assets.style) {
+          entry[globalEntryName].push(component.assets.style);
+        }
+
+        if (component.assets.main) {
+          entry[globalEntryName].push(component.assets.main);
+        }
       });
     }
     if (components.individual) {
-      components.individual.forEach(component => {
+      components.individual.forEach((component) => {
         const files = [];
         if (component.assets.style) files.push(component.assets.style);
         if (component.assets.main) files.push(component.assets.main);
@@ -121,8 +139,7 @@ function createConfig(config) {
      * verbose. Any other falsy value will behave as 'none', truthy
      * values as 'normal'
      */
-    const pn =
-      (typeof name === 'string' && name.toLowerCase()) || name || 'none';
+    const pn = (typeof name === 'string') && name.toLowerCase() || name || 'none';
 
     switch (pn) {
       case 'none':
@@ -187,6 +204,7 @@ function createConfig(config) {
     }
   }
 
+
   // Output CSS module data as JSON.
   // @todo: enable when ready for CSS Modules
   // function getJSONFromCssModules(cssFileName, json) {
@@ -196,15 +214,15 @@ function createConfig(config) {
   // }
 
   /** This workaround has been disabled for now as setting
-   * `modules: false` on `css-loader` fixes it; see https://github.com/bolt-design-system/bolt/pull/410
-   * Workaround for getting classes with `\@` to compile correctly
-   * CSS Classes like `.u-hide\@large` were getting compiled like `.u-hide-large`.
-   * Due to this bug: https://github.com/webpack-contrib/css-loader/issues/578
-   * Workaround: using the `string-replace-loader` to
-   * change `\@` to our `workaroundAtValue` before
-   * passing to `css-loader`, then turning it back
-   * afterwards.
-   */
+    * `modules: false` on `css-loader` fixes it; see https://github.com/bolt-design-system/bolt/pull/410
+    * Workaround for getting classes with `\@` to compile correctly
+    * CSS Classes like `.u-hide\@large` were getting compiled like `.u-hide-large`.
+    * Due to this bug: https://github.com/webpack-contrib/css-loader/issues/578
+    * Workaround: using the `string-replace-loader` to
+    * change `\@` to our `workaroundAtValue` before
+    * passing to `css-loader`, then turning it back
+    * afterwards.
+    */
   const workaroundAtValue = '-theSlashSymbol-';
 
   const scssLoaders = [
@@ -236,7 +254,21 @@ function createConfig(config) {
       loader: 'postcss-loader',
       options: {
         sourceMap: true,
-        plugins: () => [postcssDiscardDuplicates, autoprefixer],
+        plugins: () => [
+          postcssDiscardDuplicates,
+          autoprefixer({
+            browsers: [
+              '> 1% in US',
+              'last 3 Android major versions',
+              'last 3 iOS major versions',
+              'last 3 Chrome major versions',
+              'last 3 Edge major versions',
+              'last 3 Firefox major versions',
+              'last 3 Safari major versions',
+              'IE 11',
+            ],
+          }),
+        ],
       },
     },
     {
@@ -256,10 +288,13 @@ function createConfig(config) {
       loader: 'sass-loader',
       options: {
         sourceMap: true,
-        importer: [sassImportGlobbing, npmSass.importer],
+        importer: [
+          sassImportGlobbing,
+          npmSass.importer,
+        ],
         functions: sassExportData,
         outputStyle: 'expanded',
-        precision: 2,
+        precision: 3,
         data: globalSassData.join('\n'),
       },
     },
@@ -268,19 +303,17 @@ function createConfig(config) {
   // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
   // Must start and end with `/`
   // conditional is temp workaround for when servers are disabled via absence of `config.wwwDir`
-  const publicPath = config.publicPath
-    ? config.publicPath
-    : config.wwwDir
-      ? `/${path.relative(config.wwwDir, config.buildDir)}/`
-      : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
+  const publicPath = config.publicPath ? config.publicPath : (config.wwwDir
+    ? `/${path.relative(config.wwwDir, config.buildDir)}/`
+    : config.buildDir); // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
 
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
   const webpackConfig = {
     entry: buildWebpackEntry(),
     output: {
       path: path.resolve(process.cwd(), config.buildDir),
-      filename: '[name].js',
-      chunkFilename: '[name]-bundle.[chunkhash].js',
+      filename: `[name]${langSuffix}.js`,
+      chunkFilename: `[name]-bundle${langSuffix}-[chunkhash].js`,
       publicPath,
     },
     cache: true,
@@ -295,7 +328,9 @@ function createConfig(config) {
           oneOf: [
             {
               issuer: /\.js$/,
-              use: [scssLoaders].reduce((acc, val) => acc.concat(val), []),
+              use: [
+                scssLoaders,
+              ].reduce((acc, val) => acc.concat(val), []),
             },
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
@@ -321,11 +356,6 @@ function createConfig(config) {
           },
         },
         {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          loader: 'eslint-loader',
-        },
-        {
           test: /\.(woff|woff2)$/,
           loader: 'file-loader',
           options: {
@@ -349,7 +379,10 @@ function createConfig(config) {
         // },
         {
           test: [/\.yml$/, /\.yaml$/],
-          use: [{ loader: 'json-loader' }, { loader: 'yaml-loader' }],
+          use: [
+            { loader: 'json-loader' },
+            { loader: 'yaml-loader' },
+          ],
         },
       ],
     },
@@ -388,13 +421,13 @@ function createConfig(config) {
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional
-        filename: '[name].css',
-        chunkFilename: '[id].css',
+        filename: `[name]${langSuffix}.css`,
+        chunkFilename: `[id]${langSuffix}.css`,
         allChunks: true,
       }),
       // @todo This needs to be in `config.dataDir`
       new ManifestPlugin({
-        fileName: 'bolt-webpack-manifest.json',
+        fileName: `bolt-webpack-manifest${langSuffix}.json`,
         publicPath,
         writeToFileEmit: true,
         seed: {
@@ -413,61 +446,56 @@ function createConfig(config) {
   };
 
   if (!config.prod) {
-    webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
+    webpackConfig.plugins.push(
+      new webpack.HotModuleReplacementPlugin(),
+    );
   }
 
   if (config.prod) {
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
     // Config recommendation based off of https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1#f548
-    webpackConfig.plugins.push(
-      new UglifyJsPlugin({
-        sourceMap: true,
-        parallel: true,
+    webpackConfig.plugins.push(new UglifyJsPlugin({
+      sourceMap: true,
+      parallel: true,
+      cache: true,
+      uglifyOptions: {
         cache: true,
-        uglifyOptions: {
-          cache: true,
-          compress: true,
+        compress: true,
 
-          mangle: true,
-        },
-      }),
-    );
+        mangle: true,
+      },
+    }));
 
     // https://webpack.js.org/plugins/module-concatenation-plugin/
-    webpackConfig.plugins.push(
-      new webpack.optimize.ModuleConcatenationPlugin(),
-    );
+    webpackConfig.plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
 
     // Optimize CSS - https://github.com/NMFR/optimize-css-assets-webpack-plugin
-    webpackConfig.plugins.push(
-      new OptimizeCssAssetsPlugin({
-        canPrint: config.verbosity > 2,
-        cssProcessorOptions: {
-          // passes to `cssnano`
-          zindex: false, // don't alter `z-index` values
-          mergeRules: false, // this MUST be disabled - otherwise certain selectors (ex. ::slotted(*), which IE 11 can't parse) break
-        },
-      }),
-    );
+    webpackConfig.plugins.push(new OptimizeCssAssetsPlugin({
+      canPrint: config.verbosity > 2,
+      cssProcessorOptions: {// passes to `cssnano`
+        zindex: false, // don't alter `z-index` values
+        mergeRules: false, // this MUST be disabled - otherwise certain selectors (ex. ::slotted(*), which IE 11 can't parse) break
+      },
+    }));
 
     // @todo Evaluate best source map approach for production
     webpackConfig.devtool = 'hidden-source-map';
-  } else {
-    // not prod
+  } else { // not prod
     // @todo fix source maps
     // webpackConfig.devtool = 'cheap-module-eval-source-map';
     webpackConfig.devtool = 'eval';
   }
 
+
   if (config.wwwDir) {
     webpackConfig.devServer = {
       contentBase: [
         path.resolve(process.cwd(), config.wwwDir),
-        // @TODO: add Pattern Lab Styleguidekit Assets Default dist path here
+      // @TODO: add Pattern Lab Styleguidekit Assets Default dist path here
       ],
       compress: true,
       clientLogLevel: 'none',
-      port: 8080,
+      port: config.proxyPort,
       stats: statsPreset(webpackStats[config.verbosity]),
       overlay: {
         errors: true,
@@ -480,8 +508,8 @@ function createConfig(config) {
       historyApiFallback: true,
       watchOptions: {
         aggregateTimeout: 200,
-        //    ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
-        // Poll using interval (in ms, accepts boolean too)
+    //    ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
+       // Poll using interval (in ms, accepts boolean too)
       },
     };
   }

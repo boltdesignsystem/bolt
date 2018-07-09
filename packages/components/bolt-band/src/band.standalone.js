@@ -206,8 +206,10 @@ export class BoltBand extends BoltComponent() {
   }
 
   render() {
-    return this.html`
-      ${this.slot('default')}
-    `;
+    if (this.useShadow) {
+      return this.html`
+        ${this.slot('default')}
+      `;
+    }
   }
 }

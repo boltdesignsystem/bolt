@@ -82,7 +82,7 @@ $bolt-video-background-max-height: 50.625vw;
       max-width: calc(100vw - 40px);
     }
 
-    @include respond-to(small){
+    @include bolt-mq(small){
       max-width: 100vh;
       max-height: 56.25vh;
       width: calc(90vw - 7rem);
@@ -105,7 +105,7 @@ $bolt-video-background-max-height: 50.625vw;
   transition: all 0.3s ease;
   opacity: 0; // Initial state before brightcove video player kicks in
 
-  @include respond-to(small) {
+  @include bolt-mq(small) {
     right: (bolt-spacing(large) / -2) - bolt-spacing(xsmall);
   }
 

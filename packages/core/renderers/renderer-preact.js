@@ -44,7 +44,6 @@ export function withPreact(Base = HTMLElement) {
       // cases for children by using a slot.
       return {
         ...super.props,
-        ...{ children: <slot /> },
       };
     }
 

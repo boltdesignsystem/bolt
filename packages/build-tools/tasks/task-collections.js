@@ -1,6 +1,7 @@
 const log = require('../utils/log');
 const path = require('path');
 const webpackTasks = require('./webpack-tasks');
+const criticalcssTasks = require('./criticalcss-tasks');
 const manifest = require('../utils/manifest');
 const internalTasks = require('./internal-tasks');
 const imageTasks = require('./image-tasks');
@@ -71,6 +72,17 @@ async function serve() {
   }
 }
 
+
+async function criticalcss() {
+  try {
+    const criticalTasks = [];
+    criticalTasks.push(criticalcssTasks.build());
+    return Promise.all(criticalTasks);
+  } catch (error) {
+    log.errorAndExit('Critical CSS failed', error);
+  }
+}
+
 async function images() {
   try {
     await imageTasks.processImages();
@@ -79,21 +91,31 @@ async function images() {
   }
 }
 
+// Prep work so builds go smoothly
+async function prep() {
+  const startTime = timer.start();
+  try {
+    if (config.prod) {
+      await clean();
+    }
+
+    await internalTasks.mkDirs();
+    await manifest.writeBoltManifest();
+    await manifest.writeTwigNamespaceFile(process.cwd(), config.extraTwigNamespaces);
+
+    log.info(`Prep complete after ${timer.end(startTime)}.`);
+  } catch (error) {
+    log.errorAndExit('Prep failed', error);
+  }
+}
+
 async function build() {
   const startTime = timer.start();
   try {
-    if (!config.quick) {
-      await clean();
-      await internalTasks.mkDirs();
-    }
-    await manifest.writeBoltManifest();
+    await prep();
     if (!config.quick) {
       await webpackTasks.compile();
     }
-    await manifest.writeTwigNamespaceFile(
-      process.cwd(),
-      config.extraTwigNamespaces,
-    );
     await images();
     switch (config.env) {
       case 'pl':
@@ -111,7 +133,9 @@ async function build() {
 
 async function watch() {
   try {
-    const watchTasks = [webpackTasks.watch()];
+    const watchTasks = [
+      webpackTasks.watch(),
+    ];
 
     switch (config.env) {
       case 'pl':
@@ -133,7 +157,10 @@ async function start() {
     if (!config.quick) {
       await build();
     }
-    return Promise.all([serve(), watch()]);
+    return Promise.all([
+      serve(),
+      watch(),
+    ]);
   } catch (error) {
     log.errorAndExit('Start failed', error);
   }
@@ -146,4 +173,6 @@ module.exports = {
   build,
   watch,
   clean,
+  prep,
+  criticalcss,
 };
