@@ -1,8 +1,7 @@
 module.exports = {
   parser: 'babel-eslint',
-  extends: [
-    'eslint-config-airbnb-base',
-  ].map(require.resolve),
+  plugins: ['prettier'],
+  extends: ['eslint-config-airbnb-base'].map(require.resolve),
   parserOptions: {
     ecmaVersion: 2017,
     ecmaFeatures: {
@@ -13,11 +12,19 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    quotes: [2, 'single', { avoidEscape: true }],
-    'max-len': [
-      2,
-      120,
+    'linebreak-style': ['error', 'unix'],
+    quotes: ['warn', 'single'],
+    semi: ['error', 'always'],
+    'no-unused-vars': [
+      'warn',
+      {
+        vars: 'all',
+        args: 'none',
+        ignoreRestSiblings: false,
+      },
     ],
+    'prettier/prettier': 'warn',
+    'eol-last': ['warn', 'always'],
   },
   env: {
     browser: true,

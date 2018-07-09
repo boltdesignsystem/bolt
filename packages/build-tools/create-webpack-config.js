@@ -40,7 +40,7 @@ function createConfig(config) {
 
 
   // Merge together global Sass data overrides specified in a .boltrc config
-  if (config.globalData.scss && config.globalData.scss.length !== 0){
+  if (config.globalData.scss && config.globalData.scss.length !== 0) {
     const overrideItems = [];
     config.globalData.scss.forEach((item) => {
       try {
@@ -49,7 +49,7 @@ function createConfig(config) {
           .split('\n')
           .filter(x => x)
           .forEach(x => overrideItems.push(x));
-      } catch(err) {
+      } catch (err) {
         log.errorAndExit(`Could not find ${item}`, err);
       }
     });
@@ -59,13 +59,13 @@ function createConfig(config) {
 
 
   // Merge together any global JS data overrides
-  if (config.globalData.js && config.globalData.js.length !== 0){
+  if (config.globalData.js && config.globalData.js.length !== 0) {
     const overrideJsItems = [];
     config.globalData.js.forEach((item) => {
       try {
         const overrideFile = require(path.resolve(process.cwd(), item));
         overrideJsItems.push(overrideFile);
-      } catch(err) {
+      } catch (err) {
         log.errorAndExit(`Could not find ${item} file`, err);
       }
     });
@@ -198,15 +198,15 @@ function createConfig(config) {
   // }
 
   /** This workaround has been disabled for now as setting
-    * `modules: false` on `css-loader` fixes it; see https://github.com/bolt-design-system/bolt/pull/410
-    * Workaround for getting classes with `\@` to compile correctly
-    * CSS Classes like `.u-hide\@large` were getting compiled like `.u-hide-large`.
-    * Due to this bug: https://github.com/webpack-contrib/css-loader/issues/578
-    * Workaround: using the `string-replace-loader` to
-    * change `\@` to our `workaroundAtValue` before
-    * passing to `css-loader`, then turning it back
-    * afterwards.
-    */
+   * `modules: false` on `css-loader` fixes it; see https://github.com/bolt-design-system/bolt/pull/410
+   * Workaround for getting classes with `\@` to compile correctly
+   * CSS Classes like `.u-hide\@large` were getting compiled like `.u-hide-large`.
+   * Due to this bug: https://github.com/webpack-contrib/css-loader/issues/578
+   * Workaround: using the `string-replace-loader` to
+   * change `\@` to our `workaroundAtValue` before
+   * passing to `css-loader`, then turning it back
+   * afterwards.
+   */
   const workaroundAtValue = '-theSlashSymbol-';
 
   const scssLoaders = [
@@ -277,7 +277,7 @@ function createConfig(config) {
   // Must start and end with `/`
   // conditional is temp workaround for when servers are disabled via absence of `config.wwwDir`
   const publicPath = config.publicPath ? config.publicPath : (config.wwwDir
-    ? `/${path.relative(config.wwwDir, config.buildDir)}/`
+      ? `/${path.relative(config.wwwDir, config.buildDir)}/`
     : config.buildDir); // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
 
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
@@ -318,15 +318,21 @@ function createConfig(config) {
         },
         {
           test: /\.js$/,
+          enforce: 'pre',
+          exclude: /node_modules/,
+          loader: 'eslint-loader',
+        },
+        {
+          test: /\.js$/,
           exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
           use: {
-            loader: 'babel-loader',
-            options: {
-              cacheDirectory: true,
-              babelrc: false,
-              presets: ['@bolt/babel-preset-bolt'],
+              loader: 'babel-loader',
+              options: {
+                cacheDirectory: true,
+                babelrc: false,
+                presets: ['@bolt/babel-preset-bolt'],
+              },
             },
-          },
         },
         {
           test: /\.(woff|woff2)$/,
@@ -428,15 +434,15 @@ function createConfig(config) {
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
     // Config recommendation based off of https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1#f548
     webpackConfig.plugins.push(new UglifyJsPlugin({
-      sourceMap: true,
-      parallel: true,
-      cache: true,
-      uglifyOptions: {
+        sourceMap: true,
+        parallel: true,
         cache: true,
-        compress: true,
+        uglifyOptions: {
+          cache: true,
+          compress: true,
 
-        mangle: true,
-      },
+          mangle: true,
+        },
     }));
 
     // https://webpack.js.org/plugins/module-concatenation-plugin/
@@ -444,11 +450,11 @@ function createConfig(config) {
 
     // Optimize CSS - https://github.com/NMFR/optimize-css-assets-webpack-plugin
     webpackConfig.plugins.push(new OptimizeCssAssetsPlugin({
-      canPrint: config.verbosity > 2,
+        canPrint: config.verbosity > 2,
       cssProcessorOptions: {// passes to `cssnano`
-        zindex: false, // don't alter `z-index` values
-        mergeRules: false, // this MUST be disabled - otherwise certain selectors (ex. ::slotted(*), which IE 11 can't parse) break
-      },
+          zindex: false, // don't alter `z-index` values
+          mergeRules: false, // this MUST be disabled - otherwise certain selectors (ex. ::slotted(*), which IE 11 can't parse) break
+        },
     }));
 
     // @todo Evaluate best source map approach for production
@@ -464,7 +470,7 @@ function createConfig(config) {
     webpackConfig.devServer = {
       contentBase: [
         path.resolve(process.cwd(), config.wwwDir),
-      // @TODO: add Pattern Lab Styleguidekit Assets Default dist path here
+        // @TODO: add Pattern Lab Styleguidekit Assets Default dist path here
       ],
       compress: true,
       clientLogLevel: 'none',
@@ -481,8 +487,8 @@ function createConfig(config) {
       historyApiFallback: true,
       watchOptions: {
         aggregateTimeout: 200,
-    //    ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
-       // Poll using interval (in ms, accepts boolean too)
+        //    ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
+        // Poll using interval (in ms, accepts boolean too)
       },
     };
   }
