@@ -5,22 +5,22 @@ type: object
 required:
   - text
 properties:
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
   text:
     title: 'Button Text'
     description: 'The text displayed inside a button'
     type: string
   transform:
-      type: string
-      description: Text transformation.
-      default: none
-      enum:
-        - uppercase
-        - lowercase
-        - capitalize
-        - none
-  theme:
-    description: 'Themes, which are globally defined.'  # @todo Pulling this information in is a work in progress. Should be dynamically generated
-#    $ref: '@bolt/theme.schema.json#/properties/themes'
+    type: string
+    description: Text transformation.
+    default: none
+    enum:
+      - uppercase
+      - lowercase
+      - capitalize
+      - none
   icon:
     type: object
     description: Icon data as expected by the icon component.  Accepts an additional 'position' parameter that determines placement within the button.
