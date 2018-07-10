@@ -23,6 +23,7 @@ const timer = require('../utils/timer');
 const manifest = require('../utils/manifest');
 const express = require('express');
 const { getPort } = require('../utils/get-port');
+let config;
 
 /**
  * Prep a JSON string for use in bash
