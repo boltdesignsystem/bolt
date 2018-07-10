@@ -20,7 +20,13 @@ export default class ResponsiveLocalStorageLayout extends React.PureComponent {
   static get defaultProps() {
     return {
       className: 'c-bolt-demo-grid',
-      cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
+      cols: {
+        lg: 12,
+        md: 10,
+        sm: 6,
+        xs: 4,
+        xxs: 2,
+      },
       rowHeight: 10,
     };
   }
@@ -35,7 +41,6 @@ export default class ResponsiveLocalStorageLayout extends React.PureComponent {
   }
 
   render() {
-
     return (
       <div style={this.props.style} className={this.props.className}>
         <button
@@ -46,12 +51,20 @@ export default class ResponsiveLocalStorageLayout extends React.PureComponent {
             transform: 'translate3d(0, 100%, 0)',
           }}
           onClick={() => this.resetLayout()}
-        >Reset Layout</button>
+        >
+          Reset Layout
+        </button>
         <ResponsiveReactGridLayout
           className="layout"
           margin={[0, 0]}
           // cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
-          cols={{ lg: 12, md: 8, sm: 6, xs: 4, xxs: 2 }}
+          cols={{
+            lg: 12,
+            md: 8,
+            sm: 6,
+            xs: 4,
+            xxs: 2,
+          }}
           style={{
             alignSelf: 'center',
             width: '100%',
@@ -61,9 +74,7 @@ export default class ResponsiveLocalStorageLayout extends React.PureComponent {
           isDraggable={false}
           // rowHeight={30}
           layouts={this.state.layouts}
-          onLayoutChange={(layout, layouts) =>
-            this.onLayoutChange(layout, layouts)
-          }
+          onLayoutChange={(layout, layouts) => this.onLayoutChange(layout, layouts)}
         >
           {this.props.children}
         </ResponsiveReactGridLayout>
@@ -94,7 +105,3 @@ function saveToLS(key, value) {
     );
   }
 }
-
-// if (require.main === module) {
-//   require('../test-hook.jsx')(module.exports);
-// }

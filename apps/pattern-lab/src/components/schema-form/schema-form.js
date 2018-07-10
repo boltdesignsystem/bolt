@@ -147,7 +147,9 @@ export default class SchemaForm extends Component {
             position: 'relative',
           }}
         >
-          <div key="1" data-grid={{ w: 1, h: 3, x: 0, y: 0, minW: 1, minH: 3, maxH: 3 }} >
+          <div key="1" data-grid={{
+            w: 1, h: 3, x: 0, y: 0, minW: 1, minH: 3, maxH: 3,
+          }}>
             <div class="browser-0-0-1"
               style="
               height: 100%; box-shadow: 0 0 30px rgba(0,0,0,.1);">
