@@ -14,7 +14,7 @@ module.exports = {
   startPath: 'pattern-lab/index.html',
   plConfigFile: './config/config.yml',
   verbosity: 1,
-  schemaErrorReporting: 'console',
+  schemaErrorReporting: 'cli',
   webpackDevServer: true,
   extraTwigNamespaces: {
     'bolt': {
