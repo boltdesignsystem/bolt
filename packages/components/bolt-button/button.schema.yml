@@ -21,6 +21,16 @@ properties:
   theme:
     description: 'Themes, which are globally defined.'  # @todo Pulling this information in is a work in progress. Should be dynamically generated
 #    $ref: '@bolt/theme.schema.json#/properties/themes'
+  icon:
+    type: object
+    description: Icon data as expected by the icon component.  Accepts an additional 'position' parameter that determines placement within the button.
+    properties:
+      position:
+        type: string
+        default: after
+        enum:
+          - before
+          - after
   tag:
     title: 'Semantic tag'
     description: 'What should this element semantically be?'
