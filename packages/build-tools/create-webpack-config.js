@@ -15,7 +15,7 @@ const fs = require('fs');
 const readFile = promisify(fs.readFile);
 const deepmerge = require('deepmerge');
 
-function createConfig(config) {
+async function createWebpackConfig(config) {
   // @TODO: move this setting to .boltrc config
   const sassExportData = require('@theme-tools/sass-export-data')({
     path: path.resolve(process.cwd(), config.dataDir),
@@ -48,7 +48,7 @@ function createConfig(config) {
 
 
   // Merge together global Sass data overrides specified in a .boltrc config
-  if (config.globalData.scss && config.globalData.scss.length !== 0){
+  if (config.globalData.scss && config.globalData.scss.length !== 0) {
     const overrideItems = [];
     config.globalData.scss.forEach((item) => {
       try {
@@ -57,7 +57,7 @@ function createConfig(config) {
           .split('\n')
           .filter(x => x)
           .forEach(x => overrideItems.push(x));
-      } catch(err) {
+      } catch (err) {
         log.errorAndExit(`Could not find ${item}`, err);
       }
     });
@@ -67,13 +67,13 @@ function createConfig(config) {
 
 
   // Merge together any global JS data overrides
-  if (config.globalData.js && config.globalData.js.length !== 0){
+  if (config.globalData.js && config.globalData.js.length !== 0) {
     const overrideJsItems = [];
     config.globalData.js.forEach((item) => {
       try {
         const overrideFile = require(path.resolve(process.cwd(), item));
         overrideJsItems.push(overrideFile);
-      } catch(err) {
+      } catch (err) {
         log.errorAndExit(`Could not find ${item} file`, err);
       }
     });
@@ -87,8 +87,8 @@ function createConfig(config) {
    * @link https://webpack.js.org/configuration/entry-context/#entry
    * @returns {object} entry - WebPack config `entry`
    */
-  function buildWebpackEntry() {
-    const { components } = getBoltManifest();
+  async function buildWebpackEntry() {
+    const { components } = await getBoltManifest();
     const entry = {};
     const globalEntryName = 'bolt-global';
 
@@ -214,15 +214,15 @@ function createConfig(config) {
   // }
 
   /** This workaround has been disabled for now as setting
-    * `modules: false` on `css-loader` fixes it; see https://github.com/bolt-design-system/bolt/pull/410
-    * Workaround for getting classes with `\@` to compile correctly
-    * CSS Classes like `.u-hide\@large` were getting compiled like `.u-hide-large`.
-    * Due to this bug: https://github.com/webpack-contrib/css-loader/issues/578
-    * Workaround: using the `string-replace-loader` to
-    * change `\@` to our `workaroundAtValue` before
-    * passing to `css-loader`, then turning it back
-    * afterwards.
-    */
+   * `modules: false` on `css-loader` fixes it; see https://github.com/bolt-design-system/bolt/pull/410
+   * Workaround for getting classes with `\@` to compile correctly
+   * CSS Classes like `.u-hide\@large` were getting compiled like `.u-hide-large`.
+   * Due to this bug: https://github.com/webpack-contrib/css-loader/issues/578
+   * Workaround: using the `string-replace-loader` to
+   * change `\@` to our `workaroundAtValue` before
+   * passing to `css-loader`, then turning it back
+   * afterwards.
+   */
   const workaroundAtValue = '-theSlashSymbol-';
 
   const scssLoaders = [
@@ -309,7 +309,7 @@ function createConfig(config) {
 
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
   const webpackConfig = {
-    entry: buildWebpackEntry(),
+    entry: await buildWebpackEntry(),
     output: {
       path: path.resolve(process.cwd(), config.buildDir),
       filename: `[name]${langSuffix}.js`,
@@ -449,12 +449,6 @@ function createConfig(config) {
     ],
   };
 
-  if (!config.prod) {
-    webpackConfig.plugins.push(
-      new webpack.HotModuleReplacementPlugin(),
-    );
-  }
-
   if (config.prod) {
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
     // Config recommendation based off of https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1#f548
@@ -495,7 +489,7 @@ function createConfig(config) {
     webpackConfig.devServer = {
       contentBase: [
         path.resolve(process.cwd(), config.wwwDir),
-      // @TODO: add Pattern Lab Styleguidekit Assets Default dist path here
+        // @TODO: add Pattern Lab Styleguidekit Assets Default dist path here
       ],
       compress: true,
       clientLogLevel: 'none',
@@ -512,8 +506,8 @@ function createConfig(config) {
       historyApiFallback: true,
       watchOptions: {
         aggregateTimeout: 200,
-    //    ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
-       // Poll using interval (in ms, accepts boolean too)
+        //    ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
+        // Poll using interval (in ms, accepts boolean too)
       },
     };
   }
@@ -521,4 +515,39 @@ function createConfig(config) {
   return webpackConfig;
 }
 
-module.exports = createConfig;
+
+module.exports = async function() {
+  return new Promise(async (resolve, reject) => {
+    const webpackConfigs = [];
+    const config = await require('./utils/config-store').getConfig();
+
+    // update the array of Webpack configs so each config is assigned to only one language (used in the filename's suffix when bundling language-tailed CSS and JS)
+    if (config.lang && config.lang.length > 1) {
+      config.lang.reverse(); // Make sure the 1st language in the array is LAST since that's the one used for the local dev environment.
+
+      await Promise.all(config.lang.map(async (lang) => {
+        config.lang = lang; // Make sure only ONE language config is set per Webpack build instance.
+
+        const webpackConfig = await createWebpackConfig(config);
+
+        if (config.webpackStats) {
+          webpackConfig.profile = true;
+          webpackConfig.parallelism = 1;
+        }
+
+        webpackConfigs.push(webpackConfig);
+      }));
+    } else {
+      const webpackConfig = await createWebpackConfig(config);
+
+      if (config.webpackStats) {
+        webpackConfig.profile = true;
+        webpackConfig.parallelism = 1;
+      }
+
+      webpackConfigs.push(webpackConfig);
+    }
+    return resolve(webpackConfigs);
+  });
+};
+

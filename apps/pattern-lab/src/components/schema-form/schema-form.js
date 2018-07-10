@@ -153,7 +153,7 @@ export default class SchemaForm extends Component {
             <div class="browser-0-0-1"
               style="
               height: 100%; box-shadow: 0 0 30px rgba(0,0,0,.1);">
-                {/* <div class="tabBar-0-0-3" style="display: flex;
+              {/* <div class="tabBar-0-0-3" style="display: flex;
     font-family: Segoe UI, Arial, Helvetica;
     background-color: #d2d2d2;">
                   <div class="tab-0-0-5" style="padding: 10px 20px; background-color: #f4f4f4;"></div>
@@ -164,7 +164,7 @@ export default class SchemaForm extends Component {
 
     </div>
                 </div> */}
-                {/* <div class="addressBar-0-0-6" style="display: flex;
+              {/* <div class="addressBar-0-0-6" style="display: flex;
     padding: 10px 0;
     font-family: Segoe UI, arial, helvetica;
     background-color: #f4f4f4;">
@@ -179,17 +179,17 @@ export default class SchemaForm extends Component {
     text-overflow: ellipsis;
     background-color: #ffffff;"></div>
             </div> */}
-            {/* <div> */}
+              {/* <div> */}
               <iframe
-              srcdoc={`<!DOCTYPE html><html><head>${iframeHead}</head><body style="display: flex; justify-content: center; align-items: center; min-height: 100vh;"><div id="mountHere">${this.state.renderedHtml}</div></body></html>`} sandbox="allow-same-origin allow-scripts"
-              style={{
-                width: '100%',
-                height: '100%',
-                border: 'none',
-                display: 'block',
-              }}
-            >Your browser does not support iframes.</iframe>
-            {/* </div> */}
+                srcdoc={`<!DOCTYPE html><html><head>${iframeHead}</head><body style="display: flex; justify-content: center; align-items: center; min-height: 100vh;"><div id="mountHere">${this.state.renderedHtml}</div></body></html>`} sandbox="allow-same-origin allow-scripts"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  border: 'none',
+                  display: 'block',
+                }}
+              >Your browser does not support iframes.</iframe>
+              {/* </div> */}
             </div>
           </div>
         </ResponsiveLocalStorageLayout>
@@ -209,21 +209,21 @@ export default class SchemaForm extends Component {
               overflow: 'scroll',
               '-webkit-overflow-scroll': 'touch',
             }}>
-              <Form
-                schema={schema}
-                formData={this.state.data}
-                onChange={(data) => this.requestRender(data.formData)}
-                onError={(data) => console.error('Error in Schema Form', data)}
-              />
-           </div>
-            <button
-              style={{
-                position: 'absolute',
-                bottom: 0,
-                right: 0,
-                transform: 'translate3d(0, 100%, 0)',
-              }}
-              onClick={() => this.resetForm()}>Reset Form</button>
+            <Form
+              schema={schema}
+              formData={this.state.data}
+              onChange={(data) => this.requestRender(data.formData)}
+              onError={(data) => console.error('Error in Schema Form', data)}
+            />
+          </div>
+          <button
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              right: 0,
+              transform: 'translate3d(0, 100%, 0)',
+            }}
+            onClick={() => this.resetForm()}>Reset Form</button>
         </div>
       </div>
     );

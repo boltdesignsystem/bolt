@@ -6,28 +6,37 @@ const manifest = require('../utils/manifest');
 const internalTasks = require('./internal-tasks');
 const imageTasks = require('./image-tasks');
 const timer = require('../utils/timer');
-const config = require('../utils/config-store').getConfig();
+const { getConfig } = require('../utils/config-store');
+const extraTasks = {};
+let config;
+
 
 // These tasks are present based on optional conditions like `config.env` and should only be `require`-ed when it's the right env due to each file's setup where it tries to grab specific files - and of course the tasks should only run in the correct `env` as well.
-const extraTasks = {};
-switch (config.env) {
-  case 'pl':
-    extraTasks.patternLab = require('./pattern-lab-tasks');
-    break;
-  case 'static':
-    extraTasks.static = require('./static-tasks');
-    break;
-  case 'hybrid':
-    extraTasks.patternLab = require('./pattern-lab-tasks');
-    extraTasks.static = require('./static-tasks');
-    break;
-}
+async function getExtraTasks() {
+  config = config || await getConfig();
 
-if (config.wwwDir) {
-  extraTasks.server = require('./server-tasks');
+  switch (config.env) {
+    case 'pl':
+      extraTasks.patternLab = require('./pattern-lab-tasks');
+      break;
+    case 'static':
+      extraTasks.static = require('./static-tasks');
+      break;
+    case 'pwa':
+      extraTasks.patternLab = require('./pattern-lab-tasks');
+      extraTasks.static = require('./static-tasks');
+      break;
+  }
+
+  if (config.wwwDir) {
+    extraTasks.server = require('./server-tasks');
+  }
+
+  return extraTasks;
 }
 
 async function clean() {
+  config = config || await getConfig();
   try {
     let dirs = [];
     switch (config.env) {
@@ -51,7 +60,7 @@ async function clean() {
       case 'pl':
         dirs = [path.join(config.buildDir, '..')];
         break;
-      case 'hybrid':
+      case 'pwa':
         dirs = [
           path.join(path.resolve(config.wwwDir), '**'),
         ];
@@ -66,7 +75,10 @@ async function clean() {
   }
 }
 
-async function serve() {
+async function serve(buildTime = timer.start()) {
+  config = config || await getConfig();
+  await getExtraTasks();
+
   try {
     const serverTasks = [];
     if (config.renderingService) {
@@ -75,9 +87,10 @@ async function serve() {
     if (config.wwwDir) {
       serverTasks.push(extraTasks.server.serve());
       if (config.webpackDevServer) {
-        serverTasks.push(webpackTasks.server());
+        serverTasks.push(webpackTasks.server(buildTime));
       }
     }
+
     return Promise.all(serverTasks);
   } catch (error) {
     log.errorAndExit('Serve failed', error);
@@ -103,32 +116,19 @@ async function images() {
   }
 }
 
-// Prep work so builds go smoothly
-async function prep() {
+async function build(shouldReturnTime = false) {
   const startTime = timer.start();
-  try {
-    if (config.prod) {
-      await clean();
-    }
+  config = config || await getConfig();
 
+  try {
+    await getExtraTasks();
+    config.prod ? await clean() : '';
     await internalTasks.mkDirs();
     await manifest.writeBoltManifest();
     await manifest.writeTwigNamespaceFile(process.cwd(), config.extraTwigNamespaces);
-
-    log.info(`Prep complete after ${timer.end(startTime)}.`);
-  } catch (error) {
-    log.errorAndExit('Prep failed', error);
-  }
-}
-
-async function build() {
-  const startTime = timer.start();
-  try {
-    await prep();
-    if (!config.quick) {
-      await webpackTasks.compile();
-    }
+    await webpackTasks.compile();
     await images();
+
     switch (config.env) {
       case 'pl':
         await extraTasks.patternLab.compile();
@@ -136,23 +136,29 @@ async function build() {
       case 'static':
         await extraTasks.static.compile();
         break;
-      case 'hybrid':
+      case 'pwa':
         return Promise.all([
           extraTasks.static.compile(),
           extraTasks.patternLab.compile(),
         ]);
         break;
     }
-    log.info(`Build complete after ${timer.end(startTime)}.`);
+
+    if (shouldReturnTime) {
+      return startTime;
+    } else {
+      log.info(`Build completed in ${timer.end(startTime)}.`);
+    }
   } catch (error) {
     log.errorAndExit('Build failed', error);
   }
 }
 
 async function watch() {
+  config = config || await getConfig();
+
   try {
     const watchTasks = [
-      webpackTasks.watch(),
     ];
 
     switch (config.env) {
@@ -162,7 +168,7 @@ async function watch() {
       case 'static':
         watchTasks.push(extraTasks.static.watch());
         break;
-      case 'hybrid':
+      case 'pwa':
         watchTasks.push(extraTasks.patternLab.watch());
         watchTasks.push(extraTasks.static.watch());
         break;
@@ -175,12 +181,16 @@ async function watch() {
 }
 
 async function start() {
+  let buildTime;
+  await getExtraTasks();
+  config = config || await getConfig();
+
   try {
     if (!config.quick) {
-      await build();
+      buildTime = await build(true);
     }
     return Promise.all([
-      serve(),
+      serve(buildTime),
       watch(),
     ]);
   } catch (error) {
@@ -195,6 +205,5 @@ module.exports = {
   build,
   watch,
   clean,
-  prep,
   criticalcss,
 };

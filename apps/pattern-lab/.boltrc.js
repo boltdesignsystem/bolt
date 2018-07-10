@@ -6,7 +6,7 @@ module.exports = {
     'ja'
   ],
   renderingService: true, // starts PHP service for rendering Twig templates
-
+  openServerAtStart: true,
   // Environmental variable / preset to use
   env: 'pl',
   buildDir: '../../www/pattern-lab/build',
