@@ -110,20 +110,20 @@ function intro() {
   const CLI_USAGE = 'Usage: \`bolt <command> [options ...]\`';
   const HELP_USAGE = 'Help: \`bolt --help\` or \`bolt <command> --help\`';
 
-// const HELP_HEADER_BACKUP = `
-//     /˜˜˜˜˜˜˜˜˜˜˜˜\
-//    / /˜˜˜˜/|˜˜˜˜\ \
-//   / /    / |     \ \
-//  / /    /  |____  \ \
-// / /    /       /   \ \
-// \ \   /____   /    / /
-//  \ \      |  /    / /
-//   \ \     | /    / /
-//    \ \____|/____/ /
-//     \____________/
-// `
+  // const HELP_HEADER_BACKUP = `
+  //     /˜˜˜˜˜˜˜˜˜˜˜˜\
+  //    / /˜˜˜˜/|˜˜˜˜\ \
+  //   / /    / |     \ \
+  //  / /    /  |____  \ \
+  // / /    /       /   \ \
+  // \ \   /____   /    / /
+  //  \ \      |  /    / /
+  //   \ \     | /    / /
+  //    \ \____|/____/ /
+  //     \____________/
+  // `
 
-// ^ Colorized + partially filled in version of logo above
+  // ^ Colorized + partially filled in version of logo above
   const HELP_HEADER = `
     ${b('///////|\\\\\\\\\\\\')}
    ${b('///˜˜˜˜')}${y('/|')}${b('˜˜˜˜\\\\\\')}
