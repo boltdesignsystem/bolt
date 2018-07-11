@@ -14,12 +14,24 @@ const { promisify } = require('util');
 const fs = require('fs');
 const readFile = promisify(fs.readFile);
 const deepmerge = require('deepmerge');
+const themify = require('@bolt/themify');
+const resolve = require('resolve');
 
 function createConfig(config) {
   // @TODO: move this setting to .boltrc config
   const sassExportData = require('@theme-tools/sass-export-data')({
     path: path.resolve(process.cwd(), config.dataDir),
   });
+
+
+  // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
+  // Must start and end with `/`
+  // conditional is temp workaround for when servers are disabled via absence of `config.wwwDir`
+  const publicPath = config.publicPath
+    ? config.publicPath
+    : config.wwwDir
+      ? `/${path.relative(config.wwwDir, config.buildDir)}/`
+      : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
 
   // filename suffix to tack on based on lang being compiled for
   const langSuffix = `${config.lang && config.lang.length > 1 ? '-' + config.lang : ''}`;
@@ -239,7 +251,6 @@ function createConfig(config) {
       options: {
         sourceMap: true,
         modules: false, // needed for JS referencing classNames directly, such as critical fonts
-        importLoaders: 4,
       },
     },
     // {
@@ -282,16 +293,9 @@ function createConfig(config) {
       },
     },
     {
-      loader: 'resolve-url-loader',
-    },
-    {
-      loader: 'sass-loader',
+      loader: 'fast-sass-loader',
       options: {
         sourceMap: true,
-        importer: [
-          sassImportGlobbing,
-          npmSass.importer,
-        ],
         functions: sassExportData,
         outputStyle: 'expanded',
         precision: 3,
@@ -300,12 +304,6 @@ function createConfig(config) {
     },
   ];
 
-  // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
-  // Must start and end with `/`
-  // conditional is temp workaround for when servers are disabled via absence of `config.wwwDir`
-  const publicPath = config.publicPath ? config.publicPath : (config.wwwDir
-    ? `/${path.relative(config.wwwDir, config.buildDir)}/`
-    : config.buildDir); // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
 
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
   const webpackConfig = {
