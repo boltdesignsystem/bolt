@@ -35,7 +35,24 @@ function createConfig(config) {
 
   // filename suffix to tack on based on lang being compiled for
   const langSuffix = `${config.lang && config.lang.length > 1 ? '-' + config.lang : ''}`;
+  // let themifyOptions = {
+  //   palette: {},
+  //   createVars: true,
+  //   classPrefix: 't-bolt-',
+  //   // defaultColorVariation: 'xlight', // WIP - hard coding xlight default for now
+  //   screwIE11: false,
+  //   modifyCSSRules: false,
+  //   fallback: {
+  //     filename: 'bolt-css-vars-fallback',
+  //   },
+  // };
 
+  // themifyOptions = deepmerge(themifyOptions, {
+  //   fallback: {
+  //     cssPath: path.resolve(process.cwd(), config.buildDir, `${themifyOptions.fallback.filename}.css`),
+  //     dynamicPath: path.resolve(process.cwd(), config.buildDir, `${themifyOptions.fallback.filename}.json`),
+  //   },
+  // });
 
   // Default global Sass data defined
   let globalSassData = [
@@ -300,6 +317,21 @@ function createConfig(config) {
         outputStyle: 'expanded',
         precision: 3,
         data: globalSassData.join('\n'),
+      },
+    },
+    // Reads Sass vars from files or inlined in the options property
+    {
+      loader: '@epegzz/sass-vars-loader',
+      options: {
+        syntax: 'scss',
+        files: [
+          // path.resolve(__dirname, '../core/styles/01-settings/settings-colors/_settings-colors.js'),
+          resolve.sync('@bolt/core/styles/01-settings/settings-colors/_settings-colors.js'),
+
+
+          // Option 3) Load vars from JavaScript file
+          // resolve.sync('@bolt/core/styles/index.js'),
+        ],
       },
     },
   ];
