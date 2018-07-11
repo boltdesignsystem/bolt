@@ -1,4 +1,5 @@
 const path = require('path');
+const resolve = require('resolve');
 
 module.exports = {
   lang: [
@@ -115,8 +116,17 @@ module.exports = {
     individual: [
       {
         name: 'pl',
-        scss: './src/styles/pl.scss',
-        js: './src/scripts/pl.js',
+        /**
+         * note: resolving these paths isn't typically required when
+         * the .boltrc config is run through the bolt CLI tool (ie.
+         * normal, default usage).
+         *
+         * Resolving these IS sometimes needed however when running
+         * a build task completely on it's own (ex. running
+         * webpack-cli directly using Bolt's webpack config)
+         */
+        scss: resolve.sync('./src/styles/pl.scss'),
+        js: resolve.sync('./src/scripts/pl.js'),
       },
       '@bolt/components-critical-fonts',
     ],
