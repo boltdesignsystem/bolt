@@ -5,12 +5,12 @@ async function getPort(basePort = 8000) {
     return portfinder.getPortPromise({
       port: basePort,
     })
-    .then((port) => {
-      return resolve(port);
-    })
-    .catch((err) => {
-      return reject(err);
-    });
+      .then((port) => {
+        return resolve(port);
+      })
+      .catch((err) => {
+        return reject(err);
+      });
   });
 }
 

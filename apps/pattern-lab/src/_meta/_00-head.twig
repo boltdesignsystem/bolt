@@ -1,4 +1,4 @@
-{% set assets = get_data("@bolt-assets/bolt-webpack-manifest#{bolt.data.config.lang ? "-" ~ bolt.data.config.lang : ""}.json") %}
+{% set assets = get_data("@bolt-assets/bolt-webpack-manifest#{bolt.data.config.lang ? "-" ~ bolt.data.config.lang[0] : ""}.json") %}
 
 
 <!-- WIP. Temp solution to async load multiple lang-specific CSS builds based on query string in URL -->

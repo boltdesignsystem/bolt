@@ -152,22 +152,22 @@ class TooltipTrigger extends withPreact() {
         >
           {data.trigger === 'button' &&
           <button className={classes.join(' ')}>
-              <div className="toggle--closed">
+            <div className="toggle--closed">
               {data.icon &&
                 <span className="c-bolt-button__icon">
                   <bolt-icon name={data.icon} size={size} />
                 </span>
               }
-                {data.text}
-              </div>
-              <div className="toggle--open">
-                {data.toggleIcon &&
+              {data.text}
+            </div>
+            <div className="toggle--open">
+              {data.toggleIcon &&
                   <span className="c-bolt-button__icon">
                     <bolt-icon name={data.toggleIcon} size={size} />
                   </span>
-                }
-                {data.toggleText}
-              </div>
+              }
+              {data.toggleText}
+            </div>
           </button>
           }
           {data.trigger === 'text' &&
