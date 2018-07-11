@@ -72,6 +72,8 @@ function createConfig(config) {
       JSON.stringify('development'),
     bolt: {
       namespace: JSON.stringify(config.namespace),
+      // themingFallbackCSS: JSON.stringify(publicPath + themifyOptions.fallback.filename + '.css'),
+      // themingFallbackJSON: JSON.stringify(publicPath + themifyOptions.fallback.filename + '.json'),
     },
   };
 

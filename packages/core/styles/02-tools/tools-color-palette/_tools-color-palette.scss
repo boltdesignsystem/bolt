@@ -10,7 +10,7 @@
   $color,
   $tone: $bolt-color-default
 ) {
-  @return map-get-deep($bolt-colors, quote($color), $tone);
+  @return map-get-deep($bolt-colors, $color, unquote($tone));
 }
 
 // Mixin to return color value + !important if needed.
