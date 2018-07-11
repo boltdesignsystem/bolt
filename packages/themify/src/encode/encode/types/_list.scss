@@ -1,0 +1,14 @@
+/// Encode a list to JSON
+/// @access private
+/// @param {List} $list - list to be encoded
+/// @return {String} - encoded list
+/// @require {function} json-encore
+@function _json-encode--list($list) {
+  $str: '';
+
+  @each $item in $list {
+    $str: $str + ', ' + json-encode($item);
+  }
+
+  @return '[' + str-slice($str, 3) + ']';
+}

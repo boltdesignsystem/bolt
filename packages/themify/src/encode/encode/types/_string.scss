@@ -1,0 +1,8 @@
+/// Encode a string to JSON
+/// @access private
+/// @param {String} $string - string to be encoded
+/// @return {String} - encoded string
+/// @require {function} _proof-quote
+@function _json-encode--string($string) {
+  @return _proof-quote($string);
+}
