@@ -6,6 +6,8 @@
   @return map-get($bolt-breakpoints, $name);
 }
 
+
+/// @param {mixin} bolt-mq - Bolt Media Query
 @mixin bolt-mq($args...) {
   @include mq($args...) {
     @content;
