@@ -10,14 +10,15 @@
   {% endif %}
 
   {% include "@bolt/headline.twig" with {
-    size: "xxlarge",
-    tag: "h2",
+    size: "xlarge",
+    tag: "h3",
     url: "##{item.context.name}",
     text: name,
     icon: "none",
     attributes: {
       class: [
         "u-bolt-margin-bottom-xsmall",
+        "c-bolt-docs__heading-fragment"
       ],
       id: "#{item.context.name}"
     }
@@ -30,7 +31,7 @@
     <div class="c-bolt-docs__meta-item">
       {% if title %}
         {% include "@bolt/headline.twig" with {
-          size: "large",
+          size: "small",
           tag: "h4",
           text: title,
           attributes: {
@@ -85,15 +86,14 @@
 
   {% if params %}
     {% include "@bolt/headline.twig" with {
-      size: "large",
-      tag: "h3",
+      size: "small",
+      tag: "h4",
       url: "##{item.context.name}--params",
       text: "Params",
       icon: "none",
       attributes: {
         class: [
-          "u-bolt-margin-bottom-xsmall",
-          "c-bolt-docs__heading-fragment"
+          "u-bolt-margin-bottom-xsmall"
         ],
         id: "#{item.context.name}--params"
       }
@@ -172,8 +172,7 @@
       {% endfor %}
 
       {% embed "@bolt-components-dropdown/dropdown.twig" with {
-        title: label|upper,
-        center: true
+        title: label|capitalize
       } %}
         {% block content %}
           {% include "@bolt-components-block-list/block-list.twig" with {
@@ -207,75 +206,40 @@
             {% if group != item.group[0] %}
               {% set group = item.group[0] %}
               {% set section = item.context.type %}
-              <hr />
-              {% include "@bolt/headline.twig" with {
-                size: "xxxlarge",
-                tag: "h2",
-                url: "#group--#{group|replace({' ':'',':':'-'})}",
-                text: group|upper,
-                attributes: {
-                  class: [
-                    "u-bolt-margin-bottom-xsmall",
-                  ],
-                  id: "group--#{group|replace({' ':'',':':'-'})}"
-                }
-              } only %}
-              {% include "@bolt/headline.twig" with {
-                size: "xxlarge",
-                tag: "h3",
-                url: "##{group|replace({' ':'',':':'-'})}-section-#{section}",
-                text: "#{section}s",
-                transform: "uppercase",
-                icon: {
-                  name: "energy",
-                  position: "before"
-                },
-                attributes: {
-                  id: "#{group|replace({' ':'',':':'-'})}-section-#{section}"
-                }
-              } only %}
-
-              <hr />
-            {% else %}
-              {% if section != item.context.type %}
-                <hr />
-                {% set section = item.context.type %}
+              <div class="u-bolt-margin-bottom-large">
                 {% include "@bolt/headline.twig" with {
                   size: "xxlarge",
-                  tag: "h3",
-                  url: "##{group|replace({' ':'',':':'-'})}-section-#{section}",
-                  text: "#{section}s",
-                  transform: "uppercase",
-                  icon: {
-                    name: "energy",
-                    position: "before"
-                  },
+                  tag: "h2",
+                  url: "#group--#{group|replace({' ':'',':':'-'})}",
+                  text: group|capitalize,
+                  icon: "none",
                   attributes: {
-                    id: "#{group|replace({' ':'',':':'-'})}-section-#{section}"
+                    id: "group--#{group|replace({' ':'',':':'-'})}",
+                    class: [
+                      "c-bolt-docs__heading-fragment",
+                      "u-bolt-margin-bottom-xsmall"
+                    ]
                   }
                 } only %}
-                <hr />
-              {% endif %}
+                <hr class="u-bolt-margin-top-small">
+              </div>
             {% endif %}
-
-
 
             {{ macros.elementTitle(item) }}
 
             <div class="c-bolt-docs__lead u-bolt-margin-bottom-medium">
-              <em>{{ item.description }}</em>
+              {{ item.description }}
             </div>
 
             {% include "@bolt/headline.twig" with {
-              size: "large",
-              tag: "h3",
+              size: "small",
+              tag: "h4",
               url: "##{item.context.name}--code",
               text: "Code",
               icon: "none",
               attributes: {
                 class: [
-                  "u-bolt-margin-bottom-xsmall",
-                  "c-bolt-docs__heading-fragment"
+                  "u-bolt-margin-bottom-xsmall"
                 ],
                 id: "#{item.context.name}--code"
               }
@@ -291,15 +255,14 @@
                 {% for example in item.example %}
                   <div class="c-bolt-docs__example-item">
                     {% include "@bolt/headline.twig" with {
-                      size: "large",
-                      tag: "h3",
+                      size: "small",
+                      tag: "h4",
                       url: "##{item.context.name}--example-#{example.type}",
                       text: "Example: #{example.type|upper}",
                       icon: "none",
                       attributes: {
                         class: [
-                          "u-bolt-margin-bottom-xsmall",
-                          "c-bolt-docs__heading-fragment"
+                          "u-bolt-margin-bottom-xsmall"
                         ],
                         id: "#{item.context.name}--example-#{example.type}"
                       }
@@ -317,7 +280,7 @@
             {% if item.return  %}
               <div class="c-bolt-docs__return">
                 {% include "@bolt/headline.twig" with {
-                  size: "large",
+                  size: "small",
                   tag: "h4",
                   text: "Returns",
                   attributes: {
@@ -334,7 +297,7 @@
               {{ macros.elementDescription('Throws', item.throw) }}
               <div class="c-bolt-docs__meta-item">
                 {% include "@bolt/headline.twig" with {
-                  size: "large",
+                  size: "small",
                   tag: "h4",
                   text: "Source",
                   attributes: {
