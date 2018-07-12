@@ -97,12 +97,14 @@ compileWithNoExit.displayName = 'pattern-lab:compile';
 
 async function watch() {
   config = config || await getConfig();
+  const dirs = await manifest.getAllDirs();
+
   // Used by watches
   const debouncedCompile = debounce(compileWithNoExit, config.debounceRate);
 
   const globPattern = `**/*.{${config.watchedExtensions.join(',')}}`;
   const watchedFiles = [
-    ...manifest.getAllDirs(process.cwd()).map(dir => path.join(dir, globPattern)),
+    dirs.map(dir => path.join(dir, globPattern)),
     path.join(plSource, globPattern),
     path.join(config.dataDir, '*.*'),
   ];
