@@ -414,13 +414,6 @@ async function createWebpackConfig(config) {
       // },
     },
     plugins: [
-      // Ignore generated output if generated output is on a dependency chain (causes endless loop)
-      new webpack.WatchIgnorePlugin([
-        /dist\/styleguide/,
-        /dist\/annotations/,
-        /styleguide/,
-        path.join(__dirname, 'node_modules'),
-      ]),
       new webpack.IgnorePlugin(/vertx/), // needed to ignore vertx dependency in webcomponentsjs-lite
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
