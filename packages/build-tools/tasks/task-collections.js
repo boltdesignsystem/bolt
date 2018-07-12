@@ -158,8 +158,12 @@ async function watch() {
   config = config || await getConfig();
 
   try {
-    const watchTasks = [
-    ];
+    const watchTasks = [];
+
+    // if webpackDevServer isn't defined or is disabled, use webpack watch mode instead
+    if (!config.webpackDevServer) {
+      watchTasks.push(webpackTasks.watch());
+    }
 
     switch (config.env) {
       case 'pl':
