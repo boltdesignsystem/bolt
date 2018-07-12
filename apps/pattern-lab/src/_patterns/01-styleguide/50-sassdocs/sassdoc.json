@@ -1,0 +1,1297 @@
+[
+  {
+    "description": "Major breakpoints used globally in Bolt.\n",
+    "commentRange": {
+      "start": 7,
+      "end": 8
+    },
+    "context": {
+      "type": "variable",
+      "name": "bolt-breakpoints",
+      "value": "(\n  xxsmall:  320px,\n  xsmall:   400px,\n  small:    600px,\n  medium:   800px,\n  large:    1000px,\n  xlarge:   1200px,\n  xxlarge:  1400px,\n  xxxlarge: 1920px\n)",
+      "scope": "private",
+      "line": {
+        "start": 9,
+        "end": 18
+      }
+    },
+    "type": "Map",
+    "group": [
+      "settings: breakpoints"
+    ],
+    "author": [
+      "Salem Ghoweri"
+    ],
+    "access": "public",
+    "file": {
+      "path": "01-settings/settings-breakpoints/_settings-breakpoints.scss",
+      "name": "_settings-breakpoints.scss"
+    }
+  },
+  {
+    "description": "Bolt's definition of block level elements.\n",
+    "commentRange": {
+      "start": 63,
+      "end": 63
+    },
+    "context": {
+      "type": "variable",
+      "name": "bolt-block-elements-list",
+      "value": "'p',\n  'pre',\n  'blockquote',\n  'table',\n  'ol',\n  'ul',\n  'dl',\n  'fieldset',\n  'legend',\n  'details',\n  'summary',\n  'hr',\n  'address'",
+      "scope": "private",
+      "line": {
+        "start": 64,
+        "end": 76
+      }
+    },
+    "group": [
+      "settings: global"
+    ],
+    "author": [
+      "Mike Mai"
+    ],
+    "access": "public",
+    "file": {
+      "path": "01-settings/settings-global/_settings-global.scss",
+      "name": "_settings-global.scss"
+    }
+  },
+  {
+    "description": "Bolt's definition of heading elements.\n",
+    "commentRange": {
+      "start": 93,
+      "end": 93
+    },
+    "context": {
+      "type": "variable",
+      "name": "bolt-heading-elements-list",
+      "value": "'h1',\n  'h2',\n  'h3',\n  'h4',\n  'h5',\n  'h6'",
+      "scope": "private",
+      "line": {
+        "start": 94,
+        "end": 99
+      }
+    },
+    "group": [
+      "settings: global"
+    ],
+    "author": [
+      "Mike Mai"
+    ],
+    "access": "public",
+    "file": {
+      "path": "01-settings/settings-global/_settings-global.scss",
+      "name": "_settings-global.scss"
+    }
+  },
+  {
+    "description": "Bolt's definition of spacing scale\n",
+    "commentRange": {
+      "start": 16,
+      "end": 17
+    },
+    "context": {
+      "type": "variable",
+      "name": "bolt-spacing-values",
+      "value": "(\n  '':        1, // @todo: add deprecation warning once Sass tools are in. Remove in Bolt v2.0\n  'xxsmall': 0.125,\n  'xsmall':  0.25,\n  'small':   0.5,\n  'medium':  1,\n  'large':   2,\n  'xlarge':  4,\n  'xxlarge': 8\n)",
+      "scope": "default",
+      "line": {
+        "start": 18,
+        "end": 27
+      }
+    },
+    "type": "Map",
+    "group": [
+      "settings: layout"
+    ],
+    "author": [
+      "Mike Mai"
+    ],
+    "access": "public",
+    "file": {
+      "path": "01-settings/settings-spacing/_settings-spacing.scss",
+      "name": "_settings-spacing.scss"
+    }
+  },
+  {
+    "description": "Bolt's definition of body, heading, and code text.\n",
+    "commentRange": {
+      "start": 39,
+      "end": 40
+    },
+    "context": {
+      "type": "variable",
+      "name": "bolt-font-families",
+      "value": "(\n  font-families: (\n    body: (\n      fallback-font: $bolt-font-family--sans-fallback,\n      custom-font:   $bolt-font-family--sans,\n      loaded-class:  $bolt-fonts--loaded-class\n    ),\n    bodySubset: (\n      fallback-font: $bolt-font-family--sans-fallback,\n      custom-font:   $bolt-font-family--sans-subset,\n      loaded-class:  $bolt-fonts--subset-loaded-class\n    ),\n    heading: (\n      fallback-font: $bolt-font-family--sans-fallback,\n      custom-font:   $bolt-font-family--sans,\n      loaded-class:  $bolt-fonts--loaded-class\n    ),\n    code: (\n      fallback-font: $bolt-font-family--mono-fallback,\n      custom-font:   $bolt-font-family--mono,\n      loaded-class:  $bolt-fonts--loaded-class\n    )\n  )\n)",
+      "scope": "private",
+      "line": {
+        "start": 41,
+        "end": 64
+      }
+    },
+    "type": "Map",
+    "group": [
+      "settings: typography"
+    ],
+    "author": [
+      "Mike Mai"
+    ],
+    "access": "public",
+    "file": {
+      "path": "01-settings/settings-font-family/_settings-font-family.scss",
+      "name": "_settings-font-family.scss"
+    },
+    "usedBy": [
+      {
+        "description": "This returns the font-family for a specific element. Brand fonts are the default, with system fonts as the fallback.\n\n",
+        "context": {
+          "type": "mixin",
+          "name": "bolt-font-family",
+          "code": "\n  $fallback-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'fallback-font');\n  $custom-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'custom-font');\n  $fonts-loaded-class: map-get-deep($bolt-font-families, 'font-families', $type, 'loaded-class');\n\n  $fontFamilyNames: map-keys(map-get($bolt-font-families, 'font-families')); // get the names of all available font families (custom and fallback)\n\n  font-family: $fallback-font-family;\n  font-family: var(--bolt-font-family-#{$type});\n\n  @if $is_root == false {\n    .#{$fonts-loaded-class} & {\n      font-family: $custom-font-family;\n      font-family: var(--bolt-font-family-#{$type});\n    }\n  }\n  @else {\n\n    @each $fontFamilyName in $fontFamilyNames {\n      --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'fallback-font') ;};\n    }\n\n    &.#{$fonts-loaded-class} {\n      @each $fontFamilyName in $fontFamilyNames {\n        --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'custom-font') ;};\n      }\n\n      font-family: $custom-font-family;\n    }\n  }\n",
+          "line": {
+            "start": 15,
+            "end": 45
+          }
+        }
+      },
+      {
+        "description": "This returns the font-family for a specific element. Brand fonts are the default, with system fonts as the fallback.\n\n",
+        "context": {
+          "type": "mixin",
+          "name": "bolt-font-family",
+          "code": "\n  $fallback-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'fallback-font');\n  $custom-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'custom-font');\n  $fonts-loaded-class: map-get-deep($bolt-font-families, 'font-families', $type, 'loaded-class');\n\n  $fontFamilyNames: map-keys(map-get($bolt-font-families, 'font-families')); // get the names of all available font families (custom and fallback)\n\n  font-family: $fallback-font-family;\n  font-family: var(--bolt-font-family-#{$type});\n\n  @if $is_root == false {\n    .#{$fonts-loaded-class} & {\n      font-family: $custom-font-family;\n      font-family: var(--bolt-font-family-#{$type});\n    }\n  }\n  @else {\n\n    @each $fontFamilyName in $fontFamilyNames {\n      --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'fallback-font') ;};\n    }\n\n    &.#{$fonts-loaded-class} {\n      @each $fontFamilyName in $fontFamilyNames {\n        --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'custom-font') ;};\n      }\n\n      font-family: $custom-font-family;\n    }\n  }\n",
+          "line": {
+            "start": 15,
+            "end": 45
+          }
+        }
+      },
+      {
+        "description": "This returns the font-family for a specific element. Brand fonts are the default, with system fonts as the fallback.\n\n",
+        "context": {
+          "type": "mixin",
+          "name": "bolt-font-family",
+          "code": "\n  $fallback-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'fallback-font');\n  $custom-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'custom-font');\n  $fonts-loaded-class: map-get-deep($bolt-font-families, 'font-families', $type, 'loaded-class');\n\n  $fontFamilyNames: map-keys(map-get($bolt-font-families, 'font-families')); // get the names of all available font families (custom and fallback)\n\n  font-family: $fallback-font-family;\n  font-family: var(--bolt-font-family-#{$type});\n\n  @if $is_root == false {\n    .#{$fonts-loaded-class} & {\n      font-family: $custom-font-family;\n      font-family: var(--bolt-font-family-#{$type});\n    }\n  }\n  @else {\n\n    @each $fontFamilyName in $fontFamilyNames {\n      --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'fallback-font') ;};\n    }\n\n    &.#{$fonts-loaded-class} {\n      @each $fontFamilyName in $fontFamilyNames {\n        --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'custom-font') ;};\n      }\n\n      font-family: $custom-font-family;\n    }\n  }\n",
+          "line": {
+            "start": 15,
+            "end": 45
+          }
+        }
+      },
+      {
+        "description": "This returns the font-family for a specific element. Brand fonts are the default, with system fonts as the fallback.\n\n",
+        "context": {
+          "type": "mixin",
+          "name": "bolt-font-family",
+          "code": "\n  $fallback-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'fallback-font');\n  $custom-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'custom-font');\n  $fonts-loaded-class: map-get-deep($bolt-font-families, 'font-families', $type, 'loaded-class');\n\n  $fontFamilyNames: map-keys(map-get($bolt-font-families, 'font-families')); // get the names of all available font families (custom and fallback)\n\n  font-family: $fallback-font-family;\n  font-family: var(--bolt-font-family-#{$type});\n\n  @if $is_root == false {\n    .#{$fonts-loaded-class} & {\n      font-family: $custom-font-family;\n      font-family: var(--bolt-font-family-#{$type});\n    }\n  }\n  @else {\n\n    @each $fontFamilyName in $fontFamilyNames {\n      --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'fallback-font') ;};\n    }\n\n    &.#{$fonts-loaded-class} {\n      @each $fontFamilyName in $fontFamilyNames {\n        --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'custom-font') ;};\n      }\n\n      font-family: $custom-font-family;\n    }\n  }\n",
+          "line": {
+            "start": 15,
+            "end": 45
+          }
+        }
+      },
+      {
+        "description": "This returns the font-family for a specific element. Brand fonts are the default, with system fonts as the fallback.\n\n",
+        "context": {
+          "type": "mixin",
+          "name": "bolt-font-family",
+          "code": "\n  $fallback-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'fallback-font');\n  $custom-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'custom-font');\n  $fonts-loaded-class: map-get-deep($bolt-font-families, 'font-families', $type, 'loaded-class');\n\n  $fontFamilyNames: map-keys(map-get($bolt-font-families, 'font-families')); // get the names of all available font families (custom and fallback)\n\n  font-family: $fallback-font-family;\n  font-family: var(--bolt-font-family-#{$type});\n\n  @if $is_root == false {\n    .#{$fonts-loaded-class} & {\n      font-family: $custom-font-family;\n      font-family: var(--bolt-font-family-#{$type});\n    }\n  }\n  @else {\n\n    @each $fontFamilyName in $fontFamilyNames {\n      --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'fallback-font') ;};\n    }\n\n    &.#{$fonts-loaded-class} {\n      @each $fontFamilyName in $fontFamilyNames {\n        --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'custom-font') ;};\n      }\n\n      font-family: $custom-font-family;\n    }\n  }\n",
+          "line": {
+            "start": 15,
+            "end": 45
+          }
+        }
+      },
+      {
+        "description": "This returns the font-family for a specific element. Brand fonts are the default, with system fonts as the fallback.\n\n",
+        "context": {
+          "type": "mixin",
+          "name": "bolt-font-family",
+          "code": "\n  $fallback-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'fallback-font');\n  $custom-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'custom-font');\n  $fonts-loaded-class: map-get-deep($bolt-font-families, 'font-families', $type, 'loaded-class');\n\n  $fontFamilyNames: map-keys(map-get($bolt-font-families, 'font-families')); // get the names of all available font families (custom and fallback)\n\n  font-family: $fallback-font-family;\n  font-family: var(--bolt-font-family-#{$type});\n\n  @if $is_root == false {\n    .#{$fonts-loaded-class} & {\n      font-family: $custom-font-family;\n      font-family: var(--bolt-font-family-#{$type});\n    }\n  }\n  @else {\n\n    @each $fontFamilyName in $fontFamilyNames {\n      --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'fallback-font') ;};\n    }\n\n    &.#{$fonts-loaded-class} {\n      @each $fontFamilyName in $fontFamilyNames {\n        --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'custom-font') ;};\n      }\n\n      font-family: $custom-font-family;\n    }\n  }\n",
+          "line": {
+            "start": 15,
+            "end": 45
+          }
+        }
+      }
+    ]
+  },
+  {
+    "description": "Bolt's definition of all options of possible text sizes.\n",
+    "commentRange": {
+      "start": 39,
+      "end": 40
+    },
+    "context": {
+      "type": "variable",
+      "name": "bolt-font-sizes",
+      "value": "(\n  font-sizes: (\n    xxxlarge: (\n      font-size: (\n        $bolt-font-size--small-bp: $bolt-font-size--xxxlarge--min,\n        $bolt-font-size--medium-bp: $bolt-font-size--xxxlarge--max\n      ),\n      line-height: (\n        regular: $bolt-line-height--xxxlarge,\n        tight: $bolt-line-height--tight\n      ),\n    ),\n    xxlarge: (\n      font-size: $bolt-font-size--xxlarge,\n      line-height: (\n        regular: $bolt-line-height--xxlarge,\n        tight: $bolt-line-height--tight\n      )\n    ),\n    xlarge: (\n      font-size: $bolt-font-size--xlarge,\n      line-height: (\n        regular: $bolt-line-height--xlarge,\n        tight: $bolt-line-height--tight\n      )\n    ),\n    large: (\n      font-size: $bolt-font-size--large,\n      line-height: (\n        regular: $bolt-line-height--large,\n        tight: $bolt-line-height--tight\n      )\n    ),\n    medium: (\n      font-size: $bolt-font-size--medium,\n      line-height: (\n        regular: $bolt-line-height--medium,\n        tight: $bolt-line-height--tight\n      )\n    ),\n    small: (\n      font-size: $bolt-font-size--small,\n      line-height: (\n        regular: $bolt-line-height--small,\n        tight: $bolt-line-height--tight\n      )\n    ),\n    xsmall: (\n      font-size: $bolt-font-size--xsmall,\n      line-height: (\n        regular: $bolt-line-height--xsmall,\n        tight: $bolt-line-height--tight\n      )\n    )\n  )\n)",
+      "scope": "private",
+      "line": {
+        "start": 41,
+        "end": 96
+      }
+    },
+    "type": "Map",
+    "group": [
+      "settings: typography"
+    ],
+    "author": [
+      "Mike Mai"
+    ],
+    "access": "public",
+    "file": {
+      "path": "01-settings/settings-font-size/_settings-font-size.scss",
+      "name": "_settings-font-size.scss"
+    },
+    "usedBy": [
+      {
+        "description": "This returns the font-size and relevant line-height for a specific element.\n\n",
+        "context": {
+          "type": "mixin",
+          "name": "bolt-font-size",
+          "code": "\n  $font-size: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'font-size');\n\n  @if (type-of($font-size) == 'map') {\n    $length: length(map-keys($font-size));\n\n    @if ($length < 2) {\n      font-size: nth($font-size, 2);\n    } @else {\n      @include bolt-poly-fluid-sizing('font-size', $font-size);\n    }\n  } @else {\n    font-size: $font-size;\n  }\n\n  @if ($leading != '' and  $leading != null) {\n    @if (type-of($leading) == number) {\n      $leading: $leading;\n    } @elseif (type-of($leading) == string) {\n      $leading: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'line-height', $leading);\n    }\n\n    @if (type-of($leading) == 'map') {\n      $length: length(map-keys($leading));\n\n      @if ($length < 2) {\n        line-height: nth($leading, 2);\n      } @else {\n        @debug $leading;\n        @include bolt-poly-fluid-sizing('line-height', $leading);\n      }\n    } @else {\n      line-height: $leading;\n    }\n  }\n",
+          "line": {
+            "start": 18,
+            "end": 53
+          }
+        }
+      },
+      {
+        "description": "This returns the font-size and relevant line-height for a specific element.\n\n",
+        "context": {
+          "type": "mixin",
+          "name": "bolt-font-size",
+          "code": "\n  $font-size: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'font-size');\n\n  @if (type-of($font-size) == 'map') {\n    $length: length(map-keys($font-size));\n\n    @if ($length < 2) {\n      font-size: nth($font-size, 2);\n    } @else {\n      @include bolt-poly-fluid-sizing('font-size', $font-size);\n    }\n  } @else {\n    font-size: $font-size;\n  }\n\n  @if ($leading != '' and  $leading != null) {\n    @if (type-of($leading) == number) {\n      $leading: $leading;\n    } @elseif (type-of($leading) == string) {\n      $leading: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'line-height', $leading);\n    }\n\n    @if (type-of($leading) == 'map') {\n      $length: length(map-keys($leading));\n\n      @if ($length < 2) {\n        line-height: nth($leading, 2);\n      } @else {\n        @debug $leading;\n        @include bolt-poly-fluid-sizing('line-height', $leading);\n      }\n    } @else {\n      line-height: $leading;\n    }\n  }\n",
+          "line": {
+            "start": 18,
+            "end": 53
+          }
+        }
+      }
+    ]
+  },
+  {
+    "description": "Bolt's definition of all options of possible text weights.\n",
+    "commentRange": {
+      "start": 33,
+      "end": 34
+    },
+    "context": {
+      "type": "variable",
+      "name": "bolt-font-weights",
+      "value": "(\n  font-weights: (\n    bold:     $bolt-font-weight--bold,\n    semibold: $bolt-font-weight--semibold,\n    regular:  $bolt-font-weight--regular,\n    normal:   $bolt-font-weight--regular\n  )\n)",
+      "scope": "default",
+      "line": {
+        "start": 35,
+        "end": 42
+      }
+    },
+    "type": "Map",
+    "group": [
+      "settings: typography"
+    ],
+    "author": [
+      "Mike Mai"
+    ],
+    "access": "public",
+    "file": {
+      "path": "01-settings/settings-font-weight/_settings-font-weight.scss",
+      "name": "_settings-font-weight.scss"
+    },
+    "usedBy": [
+      {
+        "description": "This returns the font-weight for a specific element.\n\n",
+        "context": {
+          "type": "mixin",
+          "name": "bolt-font-weight",
+          "code": "\n  $font-weight: map-get-deep($bolt-font-weights, 'font-weights', $weight);\n\n  font-weight: $font-weight;\n",
+          "line": {
+            "start": 15,
+            "end": 19
+          }
+        }
+      }
+    ]
+  },
+  {
+    "description": "Remove the unit of a length.\n",
+    "commentRange": {
+      "start": 12,
+      "end": 16
+    },
+    "context": {
+      "type": "function",
+      "name": "bolt-strip-unit",
+      "code": "\n  @if type-of($number) == 'number' and not unitless($number) {\n    @return $number / ($number * 0 + 1);\n  }\n  @return $number;\n",
+      "line": {
+        "start": 17,
+        "end": 22
+      }
+    },
+    "parameter": [
+      {
+        "type": "Number",
+        "name": "number",
+        "description": "Number to remove unit from"
+      }
+    ],
+    "return": {
+      "type": "Number",
+      "description": "Unitless number"
+    },
+    "example": [
+      {
+        "type": "scss",
+        "code": "$bolt-floating-label-text-scale: bolt-strip-unit($bolt-font-size--xsmall);"
+      }
+    ],
+    "group": [
+      "tools: strip-unit"
+    ],
+    "author": [
+      "Mike Mai"
+    ],
+    "access": "public",
+    "require": [],
+    "file": {
+      "path": "02-tools/tools-strip-unit/_tools-strip-unit.scss",
+      "name": "_tools-strip-unit.scss"
+    }
+  },
+  {
+    "description": "This returns the font-family for a specific element. Brand fonts are the default, with system fonts as the fallback.\n\n",
+    "commentRange": {
+      "start": 10,
+      "end": 14
+    },
+    "context": {
+      "type": "mixin",
+      "name": "bolt-font-family",
+      "code": "\n  $fallback-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'fallback-font');\n  $custom-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'custom-font');\n  $fonts-loaded-class: map-get-deep($bolt-font-families, 'font-families', $type, 'loaded-class');\n\n  $fontFamilyNames: map-keys(map-get($bolt-font-families, 'font-families')); // get the names of all available font families (custom and fallback)\n\n  font-family: $fallback-font-family;\n  font-family: var(--bolt-font-family-#{$type});\n\n  @if $is_root == false {\n    .#{$fonts-loaded-class} & {\n      font-family: $custom-font-family;\n      font-family: var(--bolt-font-family-#{$type});\n    }\n  }\n  @else {\n\n    @each $fontFamilyName in $fontFamilyNames {\n      --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'fallback-font') ;};\n    }\n\n    &.#{$fonts-loaded-class} {\n      @each $fontFamilyName in $fontFamilyNames {\n        --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'custom-font') ;};\n      }\n\n      font-family: $custom-font-family;\n    }\n  }\n",
+      "line": {
+        "start": 15,
+        "end": 45
+      }
+    },
+    "parameter": [
+      {
+        "type": "string",
+        "name": "type",
+        "description": "Defines the font-family being used for each type of text: heading, body, or code."
+      }
+    ],
+    "group": [
+      "tools: typography"
+    ],
+    "author": [
+      "Mike Mai"
+    ],
+    "access": "public",
+    "require": [
+      {
+        "type": "function",
+        "name": "var"
+      },
+      {
+        "type": "function",
+        "name": "var"
+      },
+      {
+        "type": "variable",
+        "name": "bolt-font-families"
+      },
+      {
+        "type": "variable",
+        "name": "bolt-font-families"
+      },
+      {
+        "type": "variable",
+        "name": "bolt-font-families"
+      },
+      {
+        "type": "variable",
+        "name": "bolt-font-families"
+      },
+      {
+        "type": "variable",
+        "name": "bolt-font-families"
+      },
+      {
+        "type": "variable",
+        "name": "bolt-font-families"
+      }
+    ],
+    "file": {
+      "path": "02-tools/tools-font-family/_tools-font-family.scss",
+      "name": "_tools-font-family.scss"
+    }
+  },
+  {
+    "description": "This applies default font kerning styles for supporting browsers.\n",
+    "commentRange": {
+      "start": 11,
+      "end": 11
+    },
+    "context": {
+      "type": "mixin",
+      "name": "bolt-font-kerning",
+      "code": "\n  font-feature-settings: 'kern';\n  font-kerning: normal; // Safari 7+, Firefox 24+, Chrome 33(?)\n",
+      "line": {
+        "start": 12,
+        "end": 15
+      }
+    },
+    "group": [
+      "tools: typography"
+    ],
+    "author": [
+      "Mike Mai"
+    ],
+    "access": "public",
+    "require": [],
+    "file": {
+      "path": "02-tools/tools-font-kerning/_tools-font-kerning.scss",
+      "name": "_tools-font-kerning.scss"
+    }
+  },
+  {
+    "description": "This returns the font-size and relevant line-height for a specific element.\n\n",
+    "commentRange": {
+      "start": 10,
+      "end": 17
+    },
+    "context": {
+      "type": "mixin",
+      "name": "bolt-font-size",
+      "code": "\n  $font-size: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'font-size');\n\n  @if (type-of($font-size) == 'map') {\n    $length: length(map-keys($font-size));\n\n    @if ($length < 2) {\n      font-size: nth($font-size, 2);\n    } @else {\n      @include bolt-poly-fluid-sizing('font-size', $font-size);\n    }\n  } @else {\n    font-size: $font-size;\n  }\n\n  @if ($leading != '' and  $leading != null) {\n    @if (type-of($leading) == number) {\n      $leading: $leading;\n    } @elseif (type-of($leading) == string) {\n      $leading: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'line-height', $leading);\n    }\n\n    @if (type-of($leading) == 'map') {\n      $length: length(map-keys($leading));\n\n      @if ($length < 2) {\n        line-height: nth($leading, 2);\n      } @else {\n        @debug $leading;\n        @include bolt-poly-fluid-sizing('line-height', $leading);\n      }\n    } @else {\n      line-height: $leading;\n    }\n  }\n",
+      "line": {
+        "start": 18,
+        "end": 53
+      }
+    },
+    "parameter": [
+      {
+        "type": "string",
+        "name": "size",
+        "description": "Defines the size of the text: xsmall, small, base, medium, large, xlarge, or xxlarge.\n"
+      },
+      {
+        "type": "string",
+        "name": "leading",
+        "description": "Defines the line-height of the text: regular or tight."
+      }
+    ],
+    "group": [
+      "tools: typography"
+    ],
+    "author": [
+      "Mike Mai"
+    ],
+    "access": "public",
+    "require": [
+      {
+        "type": "mixin",
+        "name": "bolt-poly-fluid-sizing"
+      },
+      {
+        "type": "mixin",
+        "name": "bolt-poly-fluid-sizing"
+      },
+      {
+        "type": "variable",
+        "name": "bolt-font-sizes"
+      },
+      {
+        "type": "variable",
+        "name": "bolt-font-sizes"
+      }
+    ],
+    "file": {
+      "path": "02-tools/tools-font-size/_tools-font-size.scss",
+      "name": "_tools-font-size.scss"
+    }
+  },
+  {
+    "description": "This returns the font-weight for a specific element.\n\n",
+    "commentRange": {
+      "start": 10,
+      "end": 14
+    },
+    "context": {
+      "type": "mixin",
+      "name": "bolt-font-weight",
+      "code": "\n  $font-weight: map-get-deep($bolt-font-weights, 'font-weights', $weight);\n\n  font-weight: $font-weight;\n",
+      "line": {
+        "start": 15,
+        "end": 19
+      }
+    },
+    "parameter": [
+      {
+        "type": "string",
+        "name": "weight",
+        "description": "Defines the weight of the text: bold or regular."
+      }
+    ],
+    "group": [
+      "tools: typography"
+    ],
+    "author": [
+      "Mike Mai"
+    ],
+    "access": "public",
+    "require": [
+      {
+        "type": "variable",
+        "name": "bolt-font-weights"
+      }
+    ],
+    "file": {
+      "path": "02-tools/tools-font-weight/_tools-font-weight.scss",
+      "name": "_tools-font-weight.scss"
+    }
+  },
+  {
+    "description": "Bolt Brand Colors @type map\n",
+    "commentRange": {
+      "start": 19,
+      "end": 19
+    },
+    "context": {
+      "type": "variable",
+      "name": "bolt-brand-colors",
+      "value": "(\n  'indigo': (\n    'xdark':  hsl(233, 71%, 8%),\n    // indigo, xdark #050922\n\n    'dark': hsl(233, 47%, 16%),\n    // indigo, dark #151a3b\n\n    'base': hsl(233, 47%, 23%),\n    'light': hsl(233, 33%, 49%),\n    'xlight': hsl(233, 73%, 81%)\n  ),\n\n\n// yellow\n  'yellow': (\n    'xdark':  hsl(43, 100%, 20%),\n    'dark':   hsl(43, 82%, 50%),\n    'base':   hsl(43, 100%, 65%),\n    'light':  hsl(43, 100%, 80%),\n    'xlight': hsl(43, 100%, 90%)\n    // yellow, 'xlight': #fef0cc\n  ),\n\n//   teal\n  'teal': (\n    'xdark':  hsl(180, 100%, 10%),\n    'dark':   hsl(180, 82%, 22%),\n    'base':   hsl(180, 100%, 30%),\n    'light':  hsl(180, 45%, 64%),\n    'xlight': hsl(180, 48%, 81%)\n  ),\n\n\n// Orange\n  'orange': (\n    'xdark':  hsl(15, 100%, 20%),\n    'dark':   hsl(15, 82%, 39%),\n    'base':   hsl(15, 82%, 50%),\n    'light':  hsl(15, 100%, 70%),\n    'xlight': hsl(15, 100%, 85%)\n  ),\n\n\n\n//   Neutrals\n\n// xlight 233 1 98 #F6F6F9\n// white 0 0 100 #FFFFFF\n  'gray': (\n    // 'xdark':   hsl(230, 6%, 19%),\n    'xdark':   hsl(233, 6%, 19%),\n    // 'dark':    hsl(235, 5%, 38%),\n    'dark':    hsl(233, 5.3%, 38%),\n    // 'base':    hsl(235, 6%, 58%),\n    'base':    hsl(233, 5.7%, 57.6%),\n    // 'light':   hsl(235, 20%, 90%),\n    'light':   hsl(233, 20%, 90%),\n    // 'xlight':  hsl(233, 23%, 97%)\n    'xlight':  hsl(233, 23%, 97%)\n  ),\n  'black': (\n    'base': hsl(225, 8%, 9%)\n  ),\n  'white': (\n    'base': hsl(0, 0%, 100%)\n  )\n)",
+      "scope": "private",
+      "line": {
+        "start": 20,
+        "end": 87
+      }
+    },
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "file": {
+      "path": "01-settings/settings-colors/_settings-colors.scss",
+      "name": "_settings-colors.scss"
+    }
+  },
+  {
+    "description": "",
+    "commentRange": {
+      "start": 10,
+      "end": 10
+    },
+    "context": {
+      "type": "mixin",
+      "name": "bolt-mq",
+      "code": "\n  @include mq($args...) {\n    @content;\n  }\n",
+      "line": {
+        "start": 11,
+        "end": 15
+      }
+    },
+    "parameter": [
+      {
+        "type": "mixin",
+        "name": "bolt-mq",
+        "description": "Bolt Media Query"
+      }
+    ],
+    "access": "public",
+    "content": "",
+    "group": [
+      "undefined"
+    ],
+    "require": [],
+    "file": {
+      "path": "02-tools/tools-breakpoint/_tools-breakpoint.scss",
+      "name": "_tools-breakpoint.scss"
+    }
+  },
+  {
+    "description": "Assigns a variable to the global map\n",
+    "commentRange": {
+      "start": 15,
+      "end": 15
+    },
+    "context": {
+      "type": "function",
+      "name": "bolt-css-vars-assign",
+      "code": "\n  // CHECK PARAMS\n  @if ($name==null) {\n    @error \"Variable name is expected, instead got: null\";\n  }\n  @if ($value == null) {\n    @error \"Variable value is expected, instead got: null\";\n  }\n  // assign to the global map\n  @if ($bolt-css-vars-debug-log and map-get($bolt-css-variables, $name)) {\n    @debug \"'#{$name}' variable is reassigned\";\n  }\n  @return map-merge($bolt-css-variables, ($name: $value));\n",
+      "line": {
+        "start": 16,
+        "end": 29
+      }
+    },
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [],
+    "throw": [
+      "Variable name is expected, instead got: null",
+      "Variable value is expected, instead got: null"
+    ],
+    "file": {
+      "path": "02-tools/tools-css-vars/_tools-css-vars.scss",
+      "name": "_tools-css-vars.scss"
+    },
+    "usedBy": [
+      {
+        "description": "CSS mixin to provide variables\n",
+        "context": {
+          "type": "mixin",
+          "name": "bolt-css-vars",
+          "code": "\n  // CHECK PARAMS\n  @if ($varMap==null) {\n    @error \"Map of variables is expected, instead got: null\";\n  }\n  @if (type_of($varMap)!=map) {\n    @error \"Map of variables is expected, instead got another type passed: #{type_of($varMap)}\";\n  }\n  // PROCESS\n  @if ($bolt-css-vars-debug-log or not $bolt-css-vars-use-native) { // Sass or debug\n    // merge variables and values to the global map (provides no output)\n    @each $name, $value in $varMap {\n      $bolt-css-vars: bolt-css-vars-assign($name, $value) !global; // store in global variable\n    }\n  }\n  @if ($bolt-css-vars-use-native) { // CSS variables\n    // Native CSS: assign CSS custom properties to the global scope\n    @if $root == true {\n      @at-root :root {\n        @each $name, $value in $varMap {\n          @if (type_of($value)==string) {\n            #{$name}: $value // to prevent quotes interpolation\n          } @else {\n            #{$name}: #{$value}\n          }\n        }\n      }\n    } @else {\n      @each $name, $value in $varMap {\n        @if (type_of($value)==string) {\n          #{$name}: $value // to prevent quotes interpolation\n        } @else {\n          #{$name}: #{$value}\n        }\n      }\n    }\n  }\n",
+          "line": {
+            "start": 82,
+            "end": 119
+          }
+        }
+      }
+    ]
+  },
+  {
+    "description": "Emulates var() CSS native function behavior\n",
+    "commentRange": {
+      "start": 31,
+      "end": 36
+    },
+    "context": {
+      "type": "function",
+      "name": "var",
+      "code": " /* stylelint-disable-line */\n  // CHECK PARAMS\n  @if (length($args)==0) {\n    @error \"Variable name is expected to be passed to the var() function\";\n  }\n  @if (str-length(nth($args, 1)) < 2 or str-slice(nth($args, 1), 0, 2) != '--') {\n    @error \"Variable name is expected to start from '--'\";\n  }\n  // PROCESS\n  $name: nth($args, 1);\n  $value: map-get($bolt-css-variables, $name);\n\n  @if ($bolt-css-vars-debug-log or not $bolt-css-vars-use-native) { // Sass or debug\n    @if ($value==null) { // variable is not provided so far\n      @if (length($args)==2) { // the default value is passed\n        @if ($bolt-css-vars-debug-log) {\n          @debug \"Provided default value is used for the variable: '#{$name}'\";\n        }\n        $value: nth($args, 2);\n      } @else if ($bolt-css-vars-debug-log) {\n        @debug \"Variable '#{$name}' is not assigned\";\n        @if (not $bolt-css-vars-use-native) {\n          @debug \"The 'var(#{$name}...)' usage will be skipped in the output CSS\";\n        }\n      }\n    }\n  }\n  @if ($bolt-css-vars-use-native) { // CSS variables\n    // Native CSS: don't process function in case of native\n    @return unquote('var(' + $args + ')');\n  } @else {\n    // Sass: return value from the map\n    @return $value;\n  }\n",
+      "line": {
+        "start": 37,
+        "end": 71
+      }
+    },
+    "parameter": [
+      {
+        "type": "String",
+        "name": "args",
+        "description": "Variable name"
+      },
+      {
+        "type": "string",
+        "name": "args2",
+        "description": "Optional default value if variable is not assigned yet"
+      }
+    ],
+    "example": [
+      {
+        "type": "scss",
+        "code": "color: var(--main-color);\nbackground: var(--main-bg, green);",
+        "description": "basic usage"
+      }
+    ],
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [],
+    "throw": [
+      "Variable name is expected to be passed to the var() function",
+      "Variable name is expected to start from "
+    ],
+    "file": {
+      "path": "02-tools/tools-css-vars/_tools-css-vars.scss",
+      "name": "_tools-css-vars.scss"
+    },
+    "usedBy": [
+      {
+        "description": "This returns the font-family for a specific element. Brand fonts are the default, with system fonts as the fallback.\n\n",
+        "context": {
+          "type": "mixin",
+          "name": "bolt-font-family",
+          "code": "\n  $fallback-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'fallback-font');\n  $custom-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'custom-font');\n  $fonts-loaded-class: map-get-deep($bolt-font-families, 'font-families', $type, 'loaded-class');\n\n  $fontFamilyNames: map-keys(map-get($bolt-font-families, 'font-families')); // get the names of all available font families (custom and fallback)\n\n  font-family: $fallback-font-family;\n  font-family: var(--bolt-font-family-#{$type});\n\n  @if $is_root == false {\n    .#{$fonts-loaded-class} & {\n      font-family: $custom-font-family;\n      font-family: var(--bolt-font-family-#{$type});\n    }\n  }\n  @else {\n\n    @each $fontFamilyName in $fontFamilyNames {\n      --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'fallback-font') ;};\n    }\n\n    &.#{$fonts-loaded-class} {\n      @each $fontFamilyName in $fontFamilyNames {\n        --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'custom-font') ;};\n      }\n\n      font-family: $custom-font-family;\n    }\n  }\n",
+          "line": {
+            "start": 15,
+            "end": 45
+          }
+        }
+      },
+      {
+        "description": "This returns the font-family for a specific element. Brand fonts are the default, with system fonts as the fallback.\n\n",
+        "context": {
+          "type": "mixin",
+          "name": "bolt-font-family",
+          "code": "\n  $fallback-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'fallback-font');\n  $custom-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'custom-font');\n  $fonts-loaded-class: map-get-deep($bolt-font-families, 'font-families', $type, 'loaded-class');\n\n  $fontFamilyNames: map-keys(map-get($bolt-font-families, 'font-families')); // get the names of all available font families (custom and fallback)\n\n  font-family: $fallback-font-family;\n  font-family: var(--bolt-font-family-#{$type});\n\n  @if $is_root == false {\n    .#{$fonts-loaded-class} & {\n      font-family: $custom-font-family;\n      font-family: var(--bolt-font-family-#{$type});\n    }\n  }\n  @else {\n\n    @each $fontFamilyName in $fontFamilyNames {\n      --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'fallback-font') ;};\n    }\n\n    &.#{$fonts-loaded-class} {\n      @each $fontFamilyName in $fontFamilyNames {\n        --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'custom-font') ;};\n      }\n\n      font-family: $custom-font-family;\n    }\n  }\n",
+          "line": {
+            "start": 15,
+            "end": 45
+          }
+        }
+      }
+    ]
+  },
+  {
+    "description": "CSS mixin to provide variables\n",
+    "commentRange": {
+      "start": 73,
+      "end": 81
+    },
+    "context": {
+      "type": "mixin",
+      "name": "bolt-css-vars",
+      "code": "\n  // CHECK PARAMS\n  @if ($varMap==null) {\n    @error \"Map of variables is expected, instead got: null\";\n  }\n  @if (type_of($varMap)!=map) {\n    @error \"Map of variables is expected, instead got another type passed: #{type_of($varMap)}\";\n  }\n  // PROCESS\n  @if ($bolt-css-vars-debug-log or not $bolt-css-vars-use-native) { // Sass or debug\n    // merge variables and values to the global map (provides no output)\n    @each $name, $value in $varMap {\n      $bolt-css-vars: bolt-css-vars-assign($name, $value) !global; // store in global variable\n    }\n  }\n  @if ($bolt-css-vars-use-native) { // CSS variables\n    // Native CSS: assign CSS custom properties to the global scope\n    @if $root == true {\n      @at-root :root {\n        @each $name, $value in $varMap {\n          @if (type_of($value)==string) {\n            #{$name}: $value // to prevent quotes interpolation\n          } @else {\n            #{$name}: #{$value}\n          }\n        }\n      }\n    } @else {\n      @each $name, $value in $varMap {\n        @if (type_of($value)==string) {\n          #{$name}: $value // to prevent quotes interpolation\n        } @else {\n          #{$name}: #{$value}\n        }\n      }\n    }\n  }\n",
+      "line": {
+        "start": 82,
+        "end": 119
+      }
+    },
+    "parameter": [
+      {
+        "type": "Map",
+        "name": "varMap",
+        "default": "null",
+        "description": "Check for our params"
+      },
+      {
+        "type": "Boolean",
+        "name": "root",
+        "default": "false",
+        "description": "Output as root?"
+      }
+    ],
+    "example": [
+      {
+        "type": "scss",
+        "code": " @include bolt-css-vars((\n     --color: rebeccapurple,\n     --height: 68px,\n     --margin-top: calc(2vh + 20px)\n));",
+        "description": "\"basic usage\""
+      }
+    ],
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [
+      {
+        "type": "function",
+        "name": "bolt-css-vars-assign"
+      }
+    ],
+    "throw": [
+      "Map of variables is expected, instead got: null",
+      "Map of variables is expected, instead got another type passed: #{type_of($varMap)}"
+    ],
+    "file": {
+      "path": "02-tools/tools-css-vars/_tools-css-vars.scss",
+      "name": "_tools-css-vars.scss"
+    }
+  },
+  {
+    "description": "bolt-linear-interpolation\nCalculate the definition of a line between two points\n",
+    "commentRange": {
+      "start": 6,
+      "end": 11
+    },
+    "context": {
+      "type": "function",
+      "name": "bolt-linear-interpolation",
+      "code": "\n  $keys: map-keys($map);\n  @if (length($keys) != 2) {\n    @error 'linear-interpolation() $map must be exactly 2 values';\n  }\n\n  // The slope\n  $m: (map-get($map, nth($keys, 2)) - map-get($map, nth($keys, 1))) / ( nth($keys, 2) - nth($keys, 1));\n\n  // The y-intercept\n  $b: map-get($map, nth($keys, 1)) - $m * nth($keys, 1);\n\n  // Determine if the sign should be positive or negative\n  $sign: '+';\n  @if ($b < 0) {\n    $sign: '-';\n    $b: abs($b);\n  }\n\n  @return calc(#{$m * 100}vw #{$sign} #{$b});\n",
+      "line": {
+        "start": 12,
+        "end": 32
+      }
+    },
+    "parameter": [
+      {
+        "name": "map",
+        "description": "A SASS map of viewport widths and size value pairs"
+      }
+    ],
+    "return": {
+      "type": "Number",
+      "description": "A linear equation as a calc() function"
+    },
+    "example": [
+      {
+        "type": "scss",
+        "code": "font-size: bolt-linear-interpolation((320px: 18px, 768px: 26px));"
+      }
+    ],
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [],
+    "throw": [
+      "linear-interpolation() $map must be exactly 2 values"
+    ],
+    "file": {
+      "path": "02-tools/tools-linear-interpolation/_tools-linear-interpolation.scss",
+      "name": "_tools-linear-interpolation.scss"
+    },
+    "usedBy": [
+      {
+        "description": "bolt-poly-fluid-sizing\nGenerate linear interpolated size values through multiple break points\n",
+        "context": {
+          "type": "mixin",
+          "name": "bolt-poly-fluid-sizing",
+          "code": "\n  // Get the number of provided breakpoints\n  $length: length(map-keys($map));\n\n  // Error if the number of breakpoints is < 2\n  @if ($length < 2) {\n    @error 'bolt-poly-fluid-sizing() $map requires at least values';\n  }\n\n  // Sort the map by viewport width (key)\n  $map: bolt-map-sort($map);\n  $keys: map-keys($map);\n\n\n  // $map: (576px: 22px, 320px: 18px, 992px: 34px, 768px: 24px);\n  // @include bolt-poly-fluid-sizing('font-size', $map);\n\n  // Minimum size\n  #{$property}: map-get($map, nth($keys, 1));\n\n  // Interpolated size through breakpoints\n  @for $i from 1 through ($length - 1) {\n    @media (min-width: nth($keys, $i)) {\n      $value1: map-get($map, nth($keys, $i));\n      $value2: map-get($map, nth($keys, ($i + 1)));\n      // If values are not equal, perform linear interpolation\n      @if ($value1 != $value2) {\n        #{$property}: bolt-linear-interpolation((nth($keys, $i): $value1, nth($keys, ($i + 1)): $value2));\n      } @else {\n        #{$property}: $value1;\n      }\n    }\n  }\n\n  // Maxmimum size\n  @media (min-width: nth($keys, $length)) {\n    #{$property}: map-get($map, nth($keys, $length));\n  }\n",
+          "line": {
+            "start": 13,
+            "end": 51
+          }
+        }
+      }
+    ]
+  },
+  {
+    "description": "bolt-list-remove\nRemove an item from a list\n",
+    "commentRange": {
+      "start": 6,
+      "end": 10
+    },
+    "context": {
+      "type": "function",
+      "name": "bolt-list-remove",
+      "code": "\n  $newList: ();\n  @for $i from 1 through length($list) {\n    @if $i != $index {\n      $newList: append($newList, nth($list, $i), 'space');\n    }\n  }\n  @return $newList;\n",
+      "line": {
+        "start": 11,
+        "end": 19
+      }
+    },
+    "parameter": [
+      {
+        "name": "list",
+        "description": "A SASS list"
+      },
+      {
+        "name": "index",
+        "description": "The list index to remove"
+      }
+    ],
+    "return": {
+      "type": "List",
+      "description": "A SASS list"
+    },
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [],
+    "file": {
+      "path": "02-tools/tools-list-remove/_tools-list-remove.scss",
+      "name": "_tools-list-remove.scss"
+    },
+    "usedBy": [
+      {
+        "description": "bolt-list-sort\nSort a SASS list\n",
+        "context": {
+          "type": "function",
+          "name": "bolt-list-sort",
+          "code": "\n    $sortedlist: ();\n    @while length($list) > 0 {\n        $value: nth($list, 1);\n        @each $item in $list {\n          @if type-of($item) == \"number\" and type-of($value) == \"number\" {\n            @if $item < $value {\n                $value: $item;\n            }\n          } @else {\n            @warn 'Problem encountered'; // `@warn` shows Backtrace, `@error` does not\n            @error 'These values are not sortable: ' + $item + ' and ' + $value;\n          }\n        }\n        $sortedlist: append($sortedlist, $value, \"space\");\n        $list: bolt-list-remove($list, index($list, $value));\n    }\n    @return $sortedlist;\n",
+          "line": {
+            "start": 11,
+            "end": 29
+          }
+        }
+      }
+    ]
+  },
+  {
+    "description": "bolt-list-sort\nSort a SASS list\n",
+    "commentRange": {
+      "start": 6,
+      "end": 10
+    },
+    "context": {
+      "type": "function",
+      "name": "bolt-list-sort",
+      "code": "\n    $sortedlist: ();\n    @while length($list) > 0 {\n        $value: nth($list, 1);\n        @each $item in $list {\n          @if type-of($item) == \"number\" and type-of($value) == \"number\" {\n            @if $item < $value {\n                $value: $item;\n            }\n          } @else {\n            @warn 'Problem encountered'; // `@warn` shows Backtrace, `@error` does not\n            @error 'These values are not sortable: ' + $item + ' and ' + $value;\n          }\n        }\n        $sortedlist: append($sortedlist, $value, \"space\");\n        $list: bolt-list-remove($list, index($list, $value));\n    }\n    @return $sortedlist;\n",
+      "line": {
+        "start": 11,
+        "end": 29
+      }
+    },
+    "parameter": [
+      {
+        "name": "list",
+        "description": "A SASS list"
+      }
+    ],
+    "return": {
+      "type": "List",
+      "description": "A sorted SASS list"
+    },
+    "require": [
+      {
+        "type": "function",
+        "name": "bolt-list-remove",
+        "external": false
+      }
+    ],
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "throw": [
+      "These values are not sortable: "
+    ],
+    "file": {
+      "path": "02-tools/tools-list-sort/_tools-list-sort.scss",
+      "name": "_tools-list-sort.scss"
+    },
+    "usedBy": [
+      {
+        "description": "bolt-map-sort\nSort map by keys\n",
+        "context": {
+          "type": "function",
+          "name": "bolt-map-sort",
+          "code": "\n  $keys: bolt-list-sort(map-keys($map));\n  $sortedMap: ();\n  @each $key in $keys {\n    $sortedMap: map-merge($sortedMap, ($key: map-get($map, $key)));\n  }\n  @return $sortedMap;\n",
+          "line": {
+            "start": 11,
+            "end": 18
+          }
+        }
+      }
+    ]
+  },
+  {
+    "description": "bolt-map-sort\nSort map by keys\n",
+    "commentRange": {
+      "start": 6,
+      "end": 10
+    },
+    "context": {
+      "type": "function",
+      "name": "bolt-map-sort",
+      "code": "\n  $keys: bolt-list-sort(map-keys($map));\n  $sortedMap: ();\n  @each $key in $keys {\n    $sortedMap: map-merge($sortedMap, ($key: map-get($map, $key)));\n  }\n  @return $sortedMap;\n",
+      "line": {
+        "start": 11,
+        "end": 18
+      }
+    },
+    "parameter": [
+      {
+        "name": "map",
+        "description": "A SASS map"
+      }
+    ],
+    "return": {
+      "type": "Map",
+      "description": "A SASS map sorted by keys"
+    },
+    "require": [
+      {
+        "type": "function",
+        "name": "bolt-list-sort",
+        "external": false
+      }
+    ],
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "file": {
+      "path": "02-tools/tools-map-sort/_tools-map-sort.scss",
+      "name": "_tools-map-sort.scss"
+    },
+    "usedBy": [
+      {
+        "description": "bolt-poly-fluid-sizing\nGenerate linear interpolated size values through multiple break points\n",
+        "context": {
+          "type": "mixin",
+          "name": "bolt-poly-fluid-sizing",
+          "code": "\n  // Get the number of provided breakpoints\n  $length: length(map-keys($map));\n\n  // Error if the number of breakpoints is < 2\n  @if ($length < 2) {\n    @error 'bolt-poly-fluid-sizing() $map requires at least values';\n  }\n\n  // Sort the map by viewport width (key)\n  $map: bolt-map-sort($map);\n  $keys: map-keys($map);\n\n\n  // $map: (576px: 22px, 320px: 18px, 992px: 34px, 768px: 24px);\n  // @include bolt-poly-fluid-sizing('font-size', $map);\n\n  // Minimum size\n  #{$property}: map-get($map, nth($keys, 1));\n\n  // Interpolated size through breakpoints\n  @for $i from 1 through ($length - 1) {\n    @media (min-width: nth($keys, $i)) {\n      $value1: map-get($map, nth($keys, $i));\n      $value2: map-get($map, nth($keys, ($i + 1)));\n      // If values are not equal, perform linear interpolation\n      @if ($value1 != $value2) {\n        #{$property}: bolt-linear-interpolation((nth($keys, $i): $value1, nth($keys, ($i + 1)): $value2));\n      } @else {\n        #{$property}: $value1;\n      }\n    }\n  }\n\n  // Maxmimum size\n  @media (min-width: nth($keys, $length)) {\n    #{$property}: map-get($map, nth($keys, $length));\n  }\n",
+          "line": {
+            "start": 13,
+            "end": 51
+          }
+        }
+      }
+    ]
+  },
+  {
+    "description": "bolt-poly-fluid-sizing\nGenerate linear interpolated size values through multiple break points\n",
+    "commentRange": {
+      "start": 5,
+      "end": 12
+    },
+    "context": {
+      "type": "mixin",
+      "name": "bolt-poly-fluid-sizing",
+      "code": "\n  // Get the number of provided breakpoints\n  $length: length(map-keys($map));\n\n  // Error if the number of breakpoints is < 2\n  @if ($length < 2) {\n    @error 'bolt-poly-fluid-sizing() $map requires at least values';\n  }\n\n  // Sort the map by viewport width (key)\n  $map: bolt-map-sort($map);\n  $keys: map-keys($map);\n\n\n  // $map: (576px: 22px, 320px: 18px, 992px: 34px, 768px: 24px);\n  // @include bolt-poly-fluid-sizing('font-size', $map);\n\n  // Minimum size\n  #{$property}: map-get($map, nth($keys, 1));\n\n  // Interpolated size through breakpoints\n  @for $i from 1 through ($length - 1) {\n    @media (min-width: nth($keys, $i)) {\n      $value1: map-get($map, nth($keys, $i));\n      $value2: map-get($map, nth($keys, ($i + 1)));\n      // If values are not equal, perform linear interpolation\n      @if ($value1 != $value2) {\n        #{$property}: bolt-linear-interpolation((nth($keys, $i): $value1, nth($keys, ($i + 1)): $value2));\n      } @else {\n        #{$property}: $value1;\n      }\n    }\n  }\n\n  // Maxmimum size\n  @media (min-width: nth($keys, $length)) {\n    #{$property}: map-get($map, nth($keys, $length));\n  }\n",
+      "line": {
+        "start": 13,
+        "end": 51
+      }
+    },
+    "parameter": [
+      {
+        "name": "property",
+        "description": "A string CSS property name"
+      },
+      {
+        "name": "map",
+        "description": "A Sass map of viewport unit and size value pairs"
+      }
+    ],
+    "require": [
+      {
+        "type": "function",
+        "name": "bolt-linear-interpolation",
+        "external": false
+      },
+      {
+        "type": "function",
+        "name": "bolt-map-sort",
+        "external": false
+      }
+    ],
+    "example": [
+      {
+        "type": "scss",
+        "code": "@include bolt-poly-fluid-sizing('font-size', (576px: 22px, 768px: 24px, 992px: 34px));"
+      }
+    ],
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "throw": [
+      "bolt-poly-fluid-sizing() $map requires at least values"
+    ],
+    "file": {
+      "path": "02-tools/tools-poly-fluid-sizing/_tools-poly-fluid-sizing.scss",
+      "name": "_tools-poly-fluid-sizing.scss"
+    },
+    "usedBy": [
+      {
+        "description": "This returns the font-size and relevant line-height for a specific element.\n\n",
+        "context": {
+          "type": "mixin",
+          "name": "bolt-font-size",
+          "code": "\n  $font-size: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'font-size');\n\n  @if (type-of($font-size) == 'map') {\n    $length: length(map-keys($font-size));\n\n    @if ($length < 2) {\n      font-size: nth($font-size, 2);\n    } @else {\n      @include bolt-poly-fluid-sizing('font-size', $font-size);\n    }\n  } @else {\n    font-size: $font-size;\n  }\n\n  @if ($leading != '' and  $leading != null) {\n    @if (type-of($leading) == number) {\n      $leading: $leading;\n    } @elseif (type-of($leading) == string) {\n      $leading: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'line-height', $leading);\n    }\n\n    @if (type-of($leading) == 'map') {\n      $length: length(map-keys($leading));\n\n      @if ($length < 2) {\n        line-height: nth($leading, 2);\n      } @else {\n        @debug $leading;\n        @include bolt-poly-fluid-sizing('line-height', $leading);\n      }\n    } @else {\n      line-height: $leading;\n    }\n  }\n",
+          "line": {
+            "start": 18,
+            "end": 53
+          }
+        }
+      },
+      {
+        "description": "This returns the font-size and relevant line-height for a specific element.\n\n",
+        "context": {
+          "type": "mixin",
+          "name": "bolt-font-size",
+          "code": "\n  $font-size: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'font-size');\n\n  @if (type-of($font-size) == 'map') {\n    $length: length(map-keys($font-size));\n\n    @if ($length < 2) {\n      font-size: nth($font-size, 2);\n    } @else {\n      @include bolt-poly-fluid-sizing('font-size', $font-size);\n    }\n  } @else {\n    font-size: $font-size;\n  }\n\n  @if ($leading != '' and  $leading != null) {\n    @if (type-of($leading) == number) {\n      $leading: $leading;\n    } @elseif (type-of($leading) == string) {\n      $leading: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'line-height', $leading);\n    }\n\n    @if (type-of($leading) == 'map') {\n      $length: length(map-keys($leading));\n\n      @if ($length < 2) {\n        line-height: nth($leading, 2);\n      } @else {\n        @debug $leading;\n        @include bolt-poly-fluid-sizing('line-height', $leading);\n      }\n    } @else {\n      line-height: $leading;\n    }\n  }\n",
+          "line": {
+            "start": 18,
+            "end": 53
+          }
+        }
+      }
+    ]
+  },
+  {
+    "description": "Directional-property mixins are shorthands for writing properties like the following\n\n",
+    "commentRange": {
+      "start": 1,
+      "end": 25
+    },
+    "context": {
+      "type": "function",
+      "name": "_bolt-collapse-directional-values",
+      "code": "\n  $output: null;\n\n  $a: nth($vals, 1);\n  $b: if(length($vals) < 2, $a, nth($vals, 2));\n  $c: if(length($vals) < 3, $a, nth($vals, 3));\n  $d: if(length($vals) < 2, $a, nth($vals, if(length($vals) < 4, 2, 4)));\n\n  @if $a == 0 { $a: 0; }\n  @if $b == 0 { $b: 0; }\n  @if $c == 0 { $c: 0; }\n  @if $d == 0 { $d: 0; }\n\n  @if $a == $b and $a == $c and $a == $d { $output: $a; }\n  @else if $a == $c and $b == $d { $output: $a $b; }\n  @else if $b == $d { $output: $a $b $c; }\n  @else { $output: $a $b $c $d; }\n\n  @return $output;\n",
+      "line": {
+        "start": 27,
+        "end": 46
+      }
+    },
+    "ignore": [],
+    "parameter": [
+      {
+        "type": "List",
+        "name": "vals",
+        "description": "List of directional values\n"
+      }
+    ],
+    "example": [
+      {
+        "type": "scss",
+        "code": ".element {\n  @include border-style(dotted null);\n  @include margin(null 0 10px);\n}",
+        "description": "Usage"
+      },
+      {
+        "type": "css",
+        "code": ".element {\n  border-bottom-style: dotted;\n  border-top-style: dotted;\n  margin-bottom: 10px;\n  margin-left: 0;\n  margin-right: 0;\n}",
+        "description": "CSS Output"
+      }
+    ],
+    "require": [
+      {
+        "type": "function",
+        "name": "_bolt-contains-falsy",
+        "external": false
+      }
+    ],
+    "return": {
+      "type": "List"
+    },
+    "access": "private",
+    "group": [
+      "undefined"
+    ],
+    "file": {
+      "path": "02-tools/tools-spacing/libs/_tools-collapse-directionals.scss",
+      "name": "_tools-collapse-directionals.scss"
+    },
+    "usedBy": [
+      {
+        "description": "Output directional properties, for instance `margin`.\n\n",
+        "context": {
+          "type": "mixin",
+          "name": "_bolt-directional-property",
+          "code": "\n  @if $important == important {\n    $important: !important;\n  }\n\n  // Property Names\n  $top:    $prefix + '-top'    + if($suffix, '-#{$suffix}', '');\n  $bottom: $prefix + '-bottom' + if($suffix, '-#{$suffix}', '');\n  $left:   $prefix + '-left'   + if($suffix, '-#{$suffix}', '');\n  $right:  $prefix + '-right'  + if($suffix, '-#{$suffix}', '');\n  $all:    $prefix +             if($suffix, '-#{$suffix}', '');\n\n  $values: _bolt-collapse-directional-values($values);\n\n  @if _bolt-contains-falsy($values) {\n    @if nth($values, 1) { #{$top}: nth($values, 1) $important; }\n\n    @if length($values) == 1 {\n      @if nth($values, 1) {\n        #{$right}: nth($values, 1) $important;\n        #{$bottom}: nth($values, 1) $important;\n        #{$left}: nth($values, 1) $important;\n      }\n    } @else {\n      @if nth($values, 2) { #{$right}: nth($values, 2) $important; }\n    }\n\n    @if length($values) == 2 {\n      @if nth($values, 1) { #{$bottom}: nth($values, 1) $important; }\n      @if nth($values, 2) { #{$left}: nth($values, 2) $important; }\n    } @else if length($values) == 3 {\n      @if nth($values, 3) { #{$bottom}: nth($values, 3) $important; }\n      @if nth($values, 2) { #{$left}: nth($values, 2) $important; }\n    } @else if length($values) == 4 {\n      @if nth($values, 3) { #{$bottom}: nth($values, 3) $important; }\n      @if nth($values, 4) { #{$left}: nth($values, 4) $important; }\n    }\n  } @else {\n    #{$all}: $values $important;\n  }\n",
+          "line": {
+            "start": 15,
+            "end": 55
+          }
+        }
+      }
+    ]
+  },
+  {
+    "description": "Checks if a list does not contain any values.\n\n",
+    "commentRange": {
+      "start": 1,
+      "end": 8
+    },
+    "context": {
+      "type": "function",
+      "name": "_bolt-contains-falsy",
+      "code": "\n  @each $item in $list {\n    @if not $item {\n      @return true;\n    }\n  }\n\n  @return false;\n",
+      "line": {
+        "start": 10,
+        "end": 18
+      }
+    },
+    "parameter": [
+      {
+        "type": "list",
+        "name": "list",
+        "description": "The list to check against.\n"
+      }
+    ],
+    "return": {
+      "type": "boolean"
+    },
+    "access": "private",
+    "group": [
+      "undefined"
+    ],
+    "require": [],
+    "file": {
+      "path": "02-tools/tools-spacing/libs/_tools-contains-falsy.scss",
+      "name": "_tools-contains-falsy.scss"
+    },
+    "usedBy": [
+      {
+        "description": "Directional-property mixins are shorthands for writing properties like the following\n\n",
+        "context": {
+          "type": "function",
+          "name": "_bolt-collapse-directional-values",
+          "code": "\n  $output: null;\n\n  $a: nth($vals, 1);\n  $b: if(length($vals) < 2, $a, nth($vals, 2));\n  $c: if(length($vals) < 3, $a, nth($vals, 3));\n  $d: if(length($vals) < 2, $a, nth($vals, if(length($vals) < 4, 2, 4)));\n\n  @if $a == 0 { $a: 0; }\n  @if $b == 0 { $b: 0; }\n  @if $c == 0 { $c: 0; }\n  @if $d == 0 { $d: 0; }\n\n  @if $a == $b and $a == $c and $a == $d { $output: $a; }\n  @else if $a == $c and $b == $d { $output: $a $b; }\n  @else if $b == $d { $output: $a $b $c; }\n  @else { $output: $a $b $c $d; }\n\n  @return $output;\n",
+          "line": {
+            "start": 27,
+            "end": 46
+          }
+        }
+      },
+      {
+        "description": "Output directional properties, for instance `margin`.\n\n",
+        "context": {
+          "type": "mixin",
+          "name": "_bolt-directional-property",
+          "code": "\n  @if $important == important {\n    $important: !important;\n  }\n\n  // Property Names\n  $top:    $prefix + '-top'    + if($suffix, '-#{$suffix}', '');\n  $bottom: $prefix + '-bottom' + if($suffix, '-#{$suffix}', '');\n  $left:   $prefix + '-left'   + if($suffix, '-#{$suffix}', '');\n  $right:  $prefix + '-right'  + if($suffix, '-#{$suffix}', '');\n  $all:    $prefix +             if($suffix, '-#{$suffix}', '');\n\n  $values: _bolt-collapse-directional-values($values);\n\n  @if _bolt-contains-falsy($values) {\n    @if nth($values, 1) { #{$top}: nth($values, 1) $important; }\n\n    @if length($values) == 1 {\n      @if nth($values, 1) {\n        #{$right}: nth($values, 1) $important;\n        #{$bottom}: nth($values, 1) $important;\n        #{$left}: nth($values, 1) $important;\n      }\n    } @else {\n      @if nth($values, 2) { #{$right}: nth($values, 2) $important; }\n    }\n\n    @if length($values) == 2 {\n      @if nth($values, 1) { #{$bottom}: nth($values, 1) $important; }\n      @if nth($values, 2) { #{$left}: nth($values, 2) $important; }\n    } @else if length($values) == 3 {\n      @if nth($values, 3) { #{$bottom}: nth($values, 3) $important; }\n      @if nth($values, 2) { #{$left}: nth($values, 2) $important; }\n    } @else if length($values) == 4 {\n      @if nth($values, 3) { #{$bottom}: nth($values, 3) $important; }\n      @if nth($values, 4) { #{$left}: nth($values, 4) $important; }\n    }\n  } @else {\n    #{$all}: $values $important;\n  }\n",
+          "line": {
+            "start": 15,
+            "end": 55
+          }
+        }
+      }
+    ]
+  },
+  {
+    "description": "Output directional properties, for instance `margin`.\n\n",
+    "commentRange": {
+      "start": 1,
+      "end": 13
+    },
+    "context": {
+      "type": "mixin",
+      "name": "_bolt-directional-property",
+      "code": "\n  @if $important == important {\n    $important: !important;\n  }\n\n  // Property Names\n  $top:    $prefix + '-top'    + if($suffix, '-#{$suffix}', '');\n  $bottom: $prefix + '-bottom' + if($suffix, '-#{$suffix}', '');\n  $left:   $prefix + '-left'   + if($suffix, '-#{$suffix}', '');\n  $right:  $prefix + '-right'  + if($suffix, '-#{$suffix}', '');\n  $all:    $prefix +             if($suffix, '-#{$suffix}', '');\n\n  $values: _bolt-collapse-directional-values($values);\n\n  @if _bolt-contains-falsy($values) {\n    @if nth($values, 1) { #{$top}: nth($values, 1) $important; }\n\n    @if length($values) == 1 {\n      @if nth($values, 1) {\n        #{$right}: nth($values, 1) $important;\n        #{$bottom}: nth($values, 1) $important;\n        #{$left}: nth($values, 1) $important;\n      }\n    } @else {\n      @if nth($values, 2) { #{$right}: nth($values, 2) $important; }\n    }\n\n    @if length($values) == 2 {\n      @if nth($values, 1) { #{$bottom}: nth($values, 1) $important; }\n      @if nth($values, 2) { #{$left}: nth($values, 2) $important; }\n    } @else if length($values) == 3 {\n      @if nth($values, 3) { #{$bottom}: nth($values, 3) $important; }\n      @if nth($values, 2) { #{$left}: nth($values, 2) $important; }\n    } @else if length($values) == 4 {\n      @if nth($values, 3) { #{$bottom}: nth($values, 3) $important; }\n      @if nth($values, 4) { #{$left}: nth($values, 4) $important; }\n    }\n  } @else {\n    #{$all}: $values $important;\n  }\n",
+      "line": {
+        "start": 15,
+        "end": 55
+      }
+    },
+    "access": "private",
+    "parameter": [
+      {
+        "type": "String",
+        "name": "prefix",
+        "description": "Prefix to use"
+      },
+      {
+        "type": "String",
+        "name": "suffix",
+        "description": "Suffix to use"
+      },
+      {
+        "type": "List",
+        "name": "values",
+        "description": "List of values\n"
+      }
+    ],
+    "require": [
+      {
+        "type": "function",
+        "name": "_bolt-collapse-directional-values",
+        "external": false
+      },
+      {
+        "type": "function",
+        "name": "_bolt-contains-falsy",
+        "external": false
+      }
+    ],
+    "group": [
+      "undefined"
+    ],
+    "file": {
+      "path": "02-tools/tools-spacing/libs/_tools-directional-property.scss",
+      "name": "_tools-directional-property.scss"
+    }
+  },
+  {
+    "description": "Places an element full browser width\n",
+    "commentRange": {
+      "start": 10,
+      "end": 10
+    },
+    "context": {
+      "type": "mixin",
+      "name": "bolt-full-bleed",
+      "code": "\n    position: relative;\n    right: 50%;\n    left: 50%;\n    width: 100%; //fallback if vw not supported.\n    width: 100vw;\n    margin-left: -50vw;\n    margin-right: -50vw;\n    margin-top: -0.5px; //-0.5px is currently needed to patch a rendering bug in Firefox (when combined with layers being hardware accelerated)\n    margin-bottom: -0.5px; //-0.5px is currently needed to patch a rendering bug in Firefox (when combined with layers being hardware accelerated)\n",
+      "line": {
+        "start": 11,
+        "end": 21
+      }
+    },
+    "access": "public",
+    "group": [
+      "undefined"
+    ],
+    "require": [],
+    "file": {
+      "path": "index.scss",
+      "name": "index.scss"
+    }
+  }
+]

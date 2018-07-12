@@ -1,0 +1,42 @@
+.c-bolt-docs--sassdoc__item {
+  @include bolt-margin-bottom(xlarge);
+
+  &:first-of-type hr:first-child {
+    display: none;
+  }
+}
+
+.c-bolt-docs__return,
+.c-bolt-docs__example,
+.c-bolt-docs-table--sassdoc {
+  @include bolt-margin-bottom(medium);
+}
+
+.c-bolt-docs__return-label {
+  @include bolt-font-weight(bold);
+  color: bolt-color(indigo, light);
+  font-family: monospace;
+}
+
+.c-bolt-docs__meta {
+  display: flex;
+  justify-content: space-between;
+}
+
+.c-bolt-docs__meta-item {
+  details {
+    @include bolt-margin(0);
+
+    &[open] summary {
+      @include bolt-font-weight(bold);
+    }
+  }
+  summary {
+    @include bolt-margin(0);
+    user-select: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

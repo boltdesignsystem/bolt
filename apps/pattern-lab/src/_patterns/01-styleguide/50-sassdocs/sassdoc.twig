@@ -1,0 +1,6 @@
+{% set sassdocs = get_data('sassdoc.json') %}
+
+{% include "@utils/sassdocs.twig" with {
+  title: "Bolt SassDoc",
+  contentItems: sassdocs
+} only %}
