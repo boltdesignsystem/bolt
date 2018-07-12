@@ -34,7 +34,7 @@ class BoltText extends BoltComponent() {
     subheadline: props.boolean,
     eyebrow: props.boolean,
 
-     /**
+    /**
      * @todo: remove icon props below once the icon and text components are split apart
      */
     // icon: props.string,

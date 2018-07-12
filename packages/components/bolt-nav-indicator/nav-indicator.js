@@ -59,6 +59,10 @@ let gumshoeStateModule = (function () {
   let pub = {}; // public object - returned at end of module to allow external interaction
   let reference;
 
+  // If gumshoe doesn't activate until an anchor link is all the way at the top, if feels late.
+  // This offset makes attempts to correct for that perceived bug by activating links a little bit earlier during scroll.
+  const gumshoeExtraOffset = 100;
+
   // navSelectorInstance is used to map up the element calling setOffset so <bolt-nav-indicator> methods can get used
   pub.setOffset = function (newOffset, navSelectorInstance) {
     if (offset !== newOffset) {
@@ -70,7 +74,7 @@ let gumshoeStateModule = (function () {
         // without a value for activeClass, so we give it a placeholder.
         activeClass: 'has-gumshoe-focus',
         scrollDelay: false,
-        offset,
+        offset: parseInt(offset) + gumshoeExtraOffset,
         callback(nav) {
           /**
             * Exit early if nav OR nav.nav (the target) is undefined. Workaround to occasional JS error throwing:

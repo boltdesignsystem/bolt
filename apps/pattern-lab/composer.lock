@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d9b8f75929d2e05b60698c3afd4c9d3",
+    "content-hash": "b9e4d63fc256432f49b0657520bc18fb",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -141,6 +141,11 @@
                 "webmozart/path-util": "^2.3"
             },
             "type": "library",
+            "extra": {
+                "patches_applied": {
+                    "Add schema error reporting configuration": ".patches/configurableSchemaErrorReporting.patch"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "BasaltInc\\TwigTools\\": "src/"
@@ -239,6 +244,69 @@
                 }
             ],
             "description": "Stubbed in Drupal functionality"
+        },
+        {
+            "name": "bolt-design-system/styleguidekit-twig-default",
+            "version": "0.0.0",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/styleguidekit-twig-default",
+                "reference": "6f79b8434d70b85a05b0fe80bdb14ea47689e9d4",
+                "shasum": null
+            },
+            "require": {
+                "bolt-design-system/uikit-workshop": "0.0.0"
+            },
+            "type": "patternlab-styleguidekit",
+            "license": [
+                "MIT"
+            ],
+            "description": "The default Twig-based StyleguideKit for Pattern Lab, adapted for the Bolt Design System. Contains styles and mark-up for Pattern Lab's front-end.",
+            "homepage": "http://patternlab.io",
+            "keywords": [
+                "pattern lab",
+                "styleguide",
+                "twig"
+            ]
+        },
+        {
+            "name": "bolt-design-system/uikit-workshop",
+            "version": "0.0.0",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/uikit-workshop",
+                "reference": "88ad3f4e4c1a013224ae857092856875dde525cc",
+                "shasum": null
+            },
+            "type": "patternlab-styleguidekit",
+            "extra": {
+                "patternlab": {
+                    "dist": {
+                        "publicDir": [
+                            {
+                                "*": "*"
+                            }
+                        ]
+                    },
+                    "config": {
+                        "ishMinimum": "240",
+                        "ishMaximum": "2600",
+                        "ishControlsHide": [
+                            "hay"
+                        ]
+                    }
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Front-end assets and templates for the Bolt Design System's Pattern Lab workshop setup.",
+            "homepage": "http://patternlab.io",
+            "keywords": [
+                "mustache",
+                "pattern lab",
+                "styleguide"
+            ]
         },
         {
             "name": "composer/installers",
@@ -1268,109 +1336,6 @@
                 "twig"
             ],
             "time": "2018-02-08T00:11:23+00:00"
-        },
-        {
-            "name": "pattern-lab/styleguidekit-assets-default",
-            "version": "v3.5.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pattern-lab/styleguidekit-assets-default.git",
-                "reference": "7c1b51195c17a19cc3e87890b8fb3d8c27f33870"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pattern-lab/styleguidekit-assets-default/zipball/7c1b51195c17a19cc3e87890b8fb3d8c27f33870",
-                "reference": "7c1b51195c17a19cc3e87890b8fb3d8c27f33870",
-                "shasum": ""
-            },
-            "type": "patternlab-styleguidekit",
-            "extra": {
-                "patternlab": {
-                    "dist": {
-                        "publicDir": [
-                            {
-                                "*": "*"
-                            }
-                        ]
-                    },
-                    "config": {
-                        "ishMinimum": "240",
-                        "ishMaximum": "2600",
-                        "ishControlsHide": [
-                            "hay"
-                        ]
-                    }
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dave Olsen",
-                    "email": "dmolsen@gmail.com",
-                    "homepage": "http://dmolsen.com",
-                    "role": "Lead Developer"
-                },
-                {
-                    "name": "Brad Frost",
-                    "homepage": "http://bradfrostweb.com",
-                    "role": "Creator"
-                }
-            ],
-            "description": "The assets for the default StyleguideKit for Pattern Lab. Contains styles and mark-up for Pattern Lab's front-end.",
-            "homepage": "http://patternlab.io",
-            "keywords": [
-                "mustache",
-                "pattern lab",
-                "styleguide"
-            ],
-            "time": "2017-10-31T12:19:46+00:00"
-        },
-        {
-            "name": "pattern-lab/styleguidekit-twig-default",
-            "version": "v3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pattern-lab/styleguidekit-twig-default.git",
-                "reference": "7b38bfe2fb60cde3850cfe8f4f948cdc206d7188"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pattern-lab/styleguidekit-twig-default/zipball/7b38bfe2fb60cde3850cfe8f4f948cdc206d7188",
-                "reference": "7b38bfe2fb60cde3850cfe8f4f948cdc206d7188",
-                "shasum": ""
-            },
-            "require": {
-                "pattern-lab/styleguidekit-assets-default": "^3.0.0"
-            },
-            "type": "patternlab-styleguidekit",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dave Olsen",
-                    "email": "dmolsen@gmail.com",
-                    "homepage": "http://dmolsen.com",
-                    "role": "Lead Developer"
-                },
-                {
-                    "name": "Brad Frost",
-                    "homepage": "http://bradfrostweb.com",
-                    "role": "Creator"
-                }
-            ],
-            "description": "The default Twig-based StyleguideKit for Pattern Lab. Contains styles and mark-up for Pattern Lab's front-end.",
-            "homepage": "http://patternlab.io",
-            "keywords": [
-                "pattern lab",
-                "styleguide",
-                "twig"
-            ],
-            "time": "2016-07-04T01:24:27+00:00"
         },
         {
             "name": "psr/log",

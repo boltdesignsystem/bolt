@@ -265,7 +265,7 @@ class BoltVideo extends withPreact() {
   static getScriptUrl(accountId, playerId) {
     return `//players.brightcove.net/${accountId}/${
       playerId
-      }_default/index.min.js`;
+    }_default/index.min.js`;
   }
 
   static getCurrentTimeMs(player) {
@@ -685,7 +685,7 @@ class BoltVideo extends withPreact() {
             `c-${bolt.namespace}-video__close-button`,
             `c-${bolt.namespace}-video__close-button--icon-to-text`,
           ) } href="javascript:"
-             onClick={this.handleClose}>
+          onClick={this.handleClose}>
             <span className={`c-${bolt.namespace}-video__close-button-icon`}>
               <div
                 class="c-bolt-button c-bolt-button--xsmall c-bolt-button--secondary c-bolt-button--rounded c-bolt-button--icon-only">

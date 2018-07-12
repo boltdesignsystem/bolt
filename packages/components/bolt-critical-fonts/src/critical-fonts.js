@@ -23,6 +23,11 @@ import FontFaceObserver from 'fontfaceobserver/fontfaceobserver.js';
     weight: 600
   });
 
+  var openSansSemiBoldItalic = new FontFaceObserver('Open Sans', {
+    weight: 600,
+    style: 'italic'
+  });
+
   var openSansExtraBold = new FontFaceObserver('Open Sans', {
     weight: 800
   });
@@ -36,6 +41,7 @@ import FontFaceObserver from 'fontfaceobserver/fontfaceobserver.js';
     openSansRegular.load(),
     openSansItalic.load(),
     openSansSemiBold.load(),
+    openSansSemiBoldItalic.load(),
     openSansExtraBold.load(),
     openSansExtraBoldItalic.load()
 
