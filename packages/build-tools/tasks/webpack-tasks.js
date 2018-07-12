@@ -192,7 +192,8 @@ async function server(buildTime) {
     serve({
       logTime: false,
       logLevel: 'silent',
-      open: config.openServerAtStart,
+      // duplicate open tasks from webpack-server + browsersync. -- bs can handle this for now
+      // open: config.openServerAtStart,
       hotClient: {
         logLevel: 'silent',
         hot: true,

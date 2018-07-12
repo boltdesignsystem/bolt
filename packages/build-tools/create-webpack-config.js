@@ -8,7 +8,7 @@ const npmSass = require('npm-sass');
 const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const sassImportGlobbing = require('@theme-tools/sass-import-globbing');
+const globImporter = require('node-sass-glob-importer');
 const { getBoltManifest, createComponentsManifest } = require('./utils/manifest');
 const { promisify } = require('util');
 const fs = require('fs');
@@ -239,7 +239,6 @@ async function createWebpackConfig(config) {
       options: {
         sourceMap: true,
         modules: false, // needed for JS referencing classNames directly, such as critical fonts
-        importLoaders: 4,
       },
     },
     // {
@@ -289,7 +288,7 @@ async function createWebpackConfig(config) {
       options: {
         sourceMap: true,
         importer: [
-          sassImportGlobbing,
+          globImporter(),
           npmSass.importer,
         ],
         functions: sassExportData,
@@ -414,13 +413,6 @@ async function createWebpackConfig(config) {
       // },
     },
     plugins: [
-      // Ignore generated output if generated output is on a dependency chain (causes endless loop)
-      new webpack.WatchIgnorePlugin([
-        /dist\/styleguide/,
-        /dist\/annotations/,
-        /styleguide/,
-        path.join(__dirname, 'node_modules'),
-      ]),
       new webpack.IgnorePlugin(/vertx/), // needed to ignore vertx dependency in webcomponentsjs-lite
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
