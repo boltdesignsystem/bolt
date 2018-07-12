@@ -6,7 +6,6 @@
     {% set assets = get_data("@bolt-assets/bolt-webpack-manifest#{bolt.data.config.lang ? "-" ~ bolt.data.config.lang[0] : ""}.json") %}
 
     <script src="{{ assets["bolt-global.js"] }}" async></script>
-    <script src="{{ assets["pl.js"] }}" async></script>
 
     {% if not bolt.data.config.prod %}
       {# Showing off global vars in Browsers Console #}
