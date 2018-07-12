@@ -15,7 +15,7 @@ const del = require('del');
 const log = require('../utils/log');
 const globby = require('globby');
 const debounce = require('lodash.debounce');
-const config = require('../utils/config-store').getConfig();
+const { getConfig } = require('../utils/config-store');
 const fm = require('front-matter');
 const ora = require('ora');
 const marked = require('marked');
@@ -23,6 +23,7 @@ const timer = require('../utils/timer');
 const manifest = require('../utils/manifest');
 const express = require('express');
 const { getPort } = require('../utils/get-port');
+let config;
 
 /**
  * Prep a JSON string for use in bash
@@ -39,6 +40,7 @@ function escapeNestedSingleQuotes(string) {
  * @returns {Promise<{srcPath: string, distPath: string, meta: object, body: string}>} page - Page Data
  */
 async function getPage(file) {
+  config = config || await getConfig();
   if (config.verbosity > 3) {
     log.dim(`Getting info for: ${file}`);
   }
@@ -84,6 +86,7 @@ async function getPage(file) {
  * @returns {Promise<object[]>} - An array of page data objects
  */
 async function getPages(srcDir) {
+  config = config || await getConfig();
   /** @type Array<String> */
   const allPaths = await globby(path.join(srcDir, '**/*.{md,html}'));
 
@@ -110,6 +113,7 @@ async function getPages(srcDir) {
  * @returns {Promise<object[]>}
  */
 async function getNestedPages(folder) {
+  config = config || await getConfig();
   const items = await readdir(folder);
   return Promise.all(items.map(async (item) => {
     const fullPath = path.join(folder, item);
@@ -140,6 +144,7 @@ async function getNestedPages(folder) {
  * @returns {{pages}}
  */
 async function getSiteData(pages) {
+  config = config || await getConfig();
   const nestedPages = await getNestedPages(config.srcDir);
   const site = {
     nestedPages,
@@ -158,6 +163,7 @@ async function getSiteData(pages) {
  * @returns {Promise<any[]>}
  */
 async function compile(exitOnError = true) {
+  config = config || await getConfig();
   const startMessage = chalk.blue('Compiling Static Site...');
   const startTime = timer.start();
   let spinner;
@@ -229,7 +235,8 @@ function compileWithNoExit() {
 }
 const debouncedCompile = debounce(compileWithNoExit, 200);
 
-function watch() {
+async function watch() {
+  config = config || await getConfig();
   const watchedFiles = [
     './templates/**/*.twig',
     './content/**/*.{md,html}',
@@ -251,7 +258,6 @@ function watch() {
     }
     debouncedCompile();
   });
-
 }
 
 module.exports = {

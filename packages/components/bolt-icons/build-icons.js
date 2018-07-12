@@ -86,17 +86,17 @@ async function transpileIcons(icons) {
   export const ${uppercamelcase(id)} = ({ bgColor, fgColor, size, ...otherProps }) => {
       return (
         ${
-          $(optimizedSVG).toString()
-            .replace('fill="#FFF"', 'fill={fgColor}')
-            .replace('stroke="#FFF"', 'stroke={fgColor}')
-            .replace(new RegExp(/ stroke=".*?"/, 'g'), ' stroke={bgColor}')
-            .replace(new RegExp(/ fill="(?!#fff|none).*?"/, 'g'), ' fill={bgColor}')
-            .replace('viewBox', '{...otherProps} viewBox') // tack on extra props next to viewBox attribute
-            .replace('d="M0 0h24v24H0z"', '')
-            .replace(/width=".*?"/, 'width={size}')
-            .replace(/height=".*?"/, 'height={size}')
-            .replace('otherProps="..."', '{...otherProps}')
-          }
+  $(optimizedSVG).toString()
+    .replace('fill="#FFF"', 'fill={fgColor}')
+    .replace('stroke="#FFF"', 'stroke={fgColor}')
+    .replace(new RegExp(/ stroke=".*?"/, 'g'), ' stroke={bgColor}')
+    .replace(new RegExp(/ fill="(?!#fff|none).*?"/, 'g'), ' fill={bgColor}')
+    .replace('viewBox', '{...otherProps} viewBox') // tack on extra props next to viewBox attribute
+    .replace('d="M0 0h24v24H0z"', '')
+    .replace(/width=".*?"/, 'width={size}')
+    .replace(/height=".*?"/, 'height={size}')
+    .replace('otherProps="..."', '{...otherProps}')
+}
       )
 };
 `;

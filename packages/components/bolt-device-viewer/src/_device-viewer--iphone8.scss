@@ -229,19 +229,19 @@ $bolt-iphone8-viewer-width: 375px + (24px * 2);
 
 .c-bolt-iphone8-viewer__sleep {
   position: absolute;
-  top: 190px;
-  right: -4px;
-  width: 4px;
-  height: 66px;
-  border-radius: 0px 2px 2px 0px;
+  top: 28%;
+  right: -1.25%;
+  width: 1.25%;
+  height: 10%;
+  border-radius: 0 2px 2px 0;
   background-color: #d9dbdc;
 
   .c-bolt-iphone8-viewer--landscape & {
     top: 100%;
-    border-radius: 0px 0px 2px 2px;
-    right: 190px;
-    height: 4px;
-    width: 66px;
+    border-radius: 0 0 2px 2px;
+    right: 28%;
+    height: 1.25%;
+    width: 10%;
   }
 
   .c-bolt-iphone8-viewer--gold & {
@@ -255,20 +255,20 @@ $bolt-iphone8-viewer-width: 375px + (24px * 2);
 
 .c-bolt-iphone8-viewer__volume {
   position: absolute;
-  left: -4px;
-  top: 188px;
+  left: -1.25%;
+  top: 28%;
   z-index: bolt-z-index('background');
-  height: 66px;
-  width: 4px;
-  border-radius: 2px 0px 0px 2px;
+  height: 10%;
+  width: 1.25%;
+  border-radius: 2px 0 0 2px;
   background-color: #d9dbdc;
 
   .c-bolt-iphone8-viewer--landscape & {
-    width: 66px;
-    height: 4px;
-    top: -4px;
-    left: calc(100% - 188px - 66px);
-    border-radius: 2px 2px 0px 0px;
+    width: 10%;
+    height: 1.25%;
+    top: -1.25%;
+    left: calc(100% - 28% - 10%);
+    border-radius: 2px 2px 0 0;
   }
 
   .c-bolt-iphone8-viewer--gold & {
@@ -281,42 +281,42 @@ $bolt-iphone8-viewer-width: 375px + (24px * 2);
 
   &:before {
     position: absolute;
-    left: 2px;
-    top: -78px;
-    height: 40px;
-    width: 2px;
-    border-radius: 2px 0px 0px 2px;
+    right: 0;
+    top: -120%;
+    height: 60%;
+    width: 50%;
+    border-radius: 2px 0 0 2px;
     background: inherit;
     content: '';
     display: block;
 
     .c-bolt-iphone8-viewer--landscape & {
-      width: 40px;
-      height: 2px;
-      top: 2px;
-      right: -78px;
+      width: 60%;
+      height: 50%;
+      top: 50%;
+      right: -120%;
       left: auto;
-      border-radius: 2px 2px 0px 0px;
+      border-radius: 2px 2px 0 0;
     }
   }
 
   &:after {
     position: absolute;
-    left: 0px;
-    top: 82px;
-    height: 66px;
-    width: 4px;
-    border-radius: 2px 0px 0px 2px;
+    left: 0;
+    top: 120%;
+    height: 100%;
+    width: 100%;
+    border-radius: 2px 0 0 2px;
     background: inherit;
     content: '';
     display: block;
 
     .c-bolt-iphone8-viewer--landscape & {
-      left: -82px;
-      width: 66px;
-      height: 4px;
+      left: -120%;
+      width: 100%;
+      height: 100%;
       top: 0;
-      border-radius: 2px 2px 0px 0px;
+      border-radius: 2px 2px 0 0;
     }
   }
 }

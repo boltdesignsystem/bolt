@@ -28,6 +28,8 @@ class BoltExtras extends Twig_Extension implements Twig_ExtensionInterface {
       Bolt\TwigFilters::markdown(),
       Bolt\TwigFilters::rgb2hex(),
       Bolt\TwigFilters::text_contrast(),
+      Bolt\TwigFilters::without(),
+      Bolt\TwigFilters::t(),
     ];
   }
 
