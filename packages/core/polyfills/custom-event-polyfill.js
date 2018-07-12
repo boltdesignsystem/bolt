@@ -11,8 +11,8 @@ try {
   var ce = new window.CustomEvent('test', {cancelable: true});
   ce.preventDefault();
   if (ce.defaultPrevented !== true) {
-        // IE has problems with .preventDefault() on custom events
-        // http://stackoverflow.com/questions/23349191
+    // IE has problems with .preventDefault() on custom events
+    // http://stackoverflow.com/questions/23349191
     throw new Error('Could not prevent default');
   }
 } catch(e) {
