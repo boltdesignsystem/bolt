@@ -135,7 +135,12 @@ let gumshoeStateModule = (function () {
           if (nav.nav.closest('bolt-nav-priority')){
             const priorityNav = nav.nav.closest('bolt-nav-priority');
             if (!priorityNav.isReady){
-              document.addEventListener('nav-priority:ready', activateGumshoeLink(true));
+              document.addEventListener('nav-priority:ready', function () {
+                // Functions have to be passed to event listeners by reference,
+                // or else they fire immediately.
+                // @see https://stackoverflow.com/a/35667286/1483861
+                activateGumshoeLink(true);
+              });
             } else {
               activateGumshoeLink();
             }
