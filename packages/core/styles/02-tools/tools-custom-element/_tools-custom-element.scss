@@ -14,29 +14,33 @@ $bolt-blocky-elements: (block, flex, grid);
 // optionally, can auto-include default spacing + normalize in the new custom element.
 @mixin bolt-custom-element(
   $elementName,
-  $defaultDisplay: inline,
-  $includeDefaultSpacing: null,
-  $includeNormalize: false
+  $display: inline,
+  $spacing: null,
 ){
   #{$elementName}{
-    display: $defaultDisplay;
-
-
-    @if $includeDefaultSpacing == true or
-      (
-        bolt-list-contains($bolt-blocky-elements, $defaultDisplay) and $includeDefaultSpacing == null
-      ) {
-      &:not(:last-child) {
-        // @todo: move to default global spacing
-        @include bolt-margin-bottom(medium);
+    display: $display;
+      
+    // inline-based elements by default try to get margin-right spacing, if a spacing size is specified
+    @if ($display == 'inline' or 
+      $display == 'inline-block' or 
+      $display == 'inline-flex') {
+        @if $spacing != null {
+         &:not(:last-child) {
+          @include bolt-margin-right($spacing);
+        }
       }
-    }
-
-    // @todo: include normalize deps
-    @if $includeNormalize {
-      @include normalize;
+    
+    // otherwise block-like elements expect margin-bottom spacing, again if a spacing size is specified
+    } @else {
+      @if $spacing != null {
+        &:not(:last-child) {
+          @include bolt-margin-bottom($spacing);
+        }
+      }
     }
 
     @content;
   }
 }
+
+// @include bolt-custom-element('bolt-button', 'inline-flex', $defaultSpacingSize: );
