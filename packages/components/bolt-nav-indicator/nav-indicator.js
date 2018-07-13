@@ -89,7 +89,7 @@ let gumshoeStateModule = (function () {
           }
 
           // logic once we know we should try to animate in a gumshoe-activated link
-          function activateGumshoeLink(waitedToAnimate = false) {
+          function activateGumshoeLink() {
 
             const originalTarget = nav.nav;
             let originalTargetHref;
@@ -135,7 +135,7 @@ let gumshoeStateModule = (function () {
           if (nav.nav.closest('bolt-nav-priority')){
             const priorityNav = nav.nav.closest('bolt-nav-priority');
             if (!priorityNav.isReady){
-              document.addEventListener('nav-priority:ready', activateGumshoeLink(true));
+              document.addEventListener('nav-priority:ready', activateGumshoeLink);
             } else {
               activateGumshoeLink();
             }
