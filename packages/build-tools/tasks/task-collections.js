@@ -58,7 +58,13 @@ async function clean() {
         ];
         break;
       case 'pl':
-        dirs = [path.join(config.buildDir, '..')];
+        dirs = [
+          path.join(config.wwwDir, 'pattern-lab/**'),
+          `!${path.join(config.wwwDir, 'pattern-lab')}`, // don't delete the pl folder itself
+          `!${path.join(config.wwwDir, 'pattern-lab/index.html')}`, // or pl's index.html file
+          `!${path.join(config.wwwDir, 'pattern-lab/styleguide')}`, // or the pl assets
+          `!${path.join(config.wwwDir, 'pattern-lab/styleguide/**')}`,
+        ];
         break;
       case 'pwa':
         dirs = [
