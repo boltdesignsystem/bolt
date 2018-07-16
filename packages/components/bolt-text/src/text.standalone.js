@@ -53,7 +53,11 @@ class BoltText extends BoltComponent() {
   }
 
   allowedValues(schemaData, propVal) {
-    return (schemaData.enum.indexOf(propVal) > -1) ? propVal : (typeof schemaData.default !== 'undefined' ? schemaData.default : false);
+    return schemaData.enum.indexOf(propVal) > -1
+      ? propVal
+      : typeof schemaData.default !== 'undefined'
+        ? schemaData.default
+        : false;
   }
 
   subComponentValues(propVal, defaultVal) {
@@ -61,19 +65,51 @@ class BoltText extends BoltComponent() {
   }
 
   render({ props, state }) {
-
     let tag = this.allowedValues(schema.properties['tag'], this.props.tag);
-    let display = this.allowedValues(schema.properties['display'], this.props.display);
-    let color = this.allowedValues(schema.properties['color'], this.props.color);
-    let align = this.allowedValues(schema.properties['align'], this.props.align);
-    let lineHeight = this.allowedValues(schema.properties['line-height'], this.props.lineHeight);
-    let textTransform = this.allowedValues(schema.properties['text-transform'], this.props.textTransform);
-    let letterSpacing = this.allowedValues(schema.properties['letter-spacing'], this.props.letterSpacing);
-    let fontFamily = this.allowedValues(schema.properties['font-family'], this.props.fontFamily);
-    let fontWeight = this.allowedValues(schema.properties['font-weight'], this.props.fontWeight);
-    let fontSize = this.allowedValues(schema.properties['font-size'], this.props.fontSize);
-    let fontStyle = this.allowedValues(schema.properties['font-style'], this.props.fontStyle);
-    let opacity = this.allowedValues(schema.properties['opacity'], this.props.opacity);
+    let display = this.allowedValues(
+      schema.properties['display'],
+      this.props.display,
+    );
+    let color = this.allowedValues(
+      schema.properties['color'],
+      this.props.color,
+    );
+    let align = this.allowedValues(
+      schema.properties['align'],
+      this.props.align,
+    );
+    let lineHeight = this.allowedValues(
+      schema.properties['line-height'],
+      this.props.lineHeight,
+    );
+    let textTransform = this.allowedValues(
+      schema.properties['text-transform'],
+      this.props.textTransform,
+    );
+    let letterSpacing = this.allowedValues(
+      schema.properties['letter-spacing'],
+      this.props.letterSpacing,
+    );
+    let fontFamily = this.allowedValues(
+      schema.properties['font-family'],
+      this.props.fontFamily,
+    );
+    let fontWeight = this.allowedValues(
+      schema.properties['font-weight'],
+      this.props.fontWeight,
+    );
+    let fontSize = this.allowedValues(
+      schema.properties['font-size'],
+      this.props.fontSize,
+    );
+    let fontStyle = this.allowedValues(
+      schema.properties['font-style'],
+      this.props.fontStyle,
+    );
+    let opacity = this.allowedValues(
+      schema.properties['opacity'],
+      this.props.opacity,
+    );
     let quoted = !!this.props.quoted;
     let url = this.props.url ? this.props.url : false;
     let util = this.props.util ? this.props.util : false;
@@ -92,7 +128,7 @@ class BoltText extends BoltComponent() {
     // let iconColor = this.allowedValues(schema.properties.iconColor, this.props.iconColor);
 
     // The text item
-    let textItem = this.hyper.wire(this) `${this.slot('default')}`;
+    let textItem = this.hyper.wire(this)`${this.slot('default')}`;
 
     // Build the icon
     /**
@@ -135,7 +171,10 @@ class BoltText extends BoltComponent() {
     if (this.props.headline) {
       tag = this.subComponentValues(this.props.tag, 'h2');
       color = this.subComponentValues(this.props.color, 'theme-headline');
-      letterSpacing = this.subComponentValues(this.props.letterSpacing, 'narrow');
+      letterSpacing = this.subComponentValues(
+        this.props.letterSpacing,
+        'narrow',
+      );
       fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
       fontSize = this.subComponentValues(this.props.fontSize, 'xlarge');
       fontWeight = this.subComponentValues(this.props.fontWeight, 'bold');
@@ -144,7 +183,8 @@ class BoltText extends BoltComponent() {
       // if (icon !== 'undefined' && icon !== 'false') {
       //   iconName = true;
       // }
-      if (this.innerHTML.length >= 60 && fontSize === 'xxxlarge') { // Is there a better way to get inner dynamic length?
+      if (this.innerHTML.length >= 60 && fontSize === 'xxxlarge') {
+        // Is there a better way to get inner dynamic length?
         longText = true;
       }
     }
@@ -164,7 +204,10 @@ class BoltText extends BoltComponent() {
     // Eyebrow defaults
     if (this.props.eyebrow) {
       color = this.subComponentValues(this.props.color, 'theme-headline');
-      textTransform = this.subComponentValues(this.props.textTransform, 'uppercase');
+      textTransform = this.subComponentValues(
+        this.props.textTransform,
+        'uppercase',
+      );
       letterSpacing = this.subComponentValues(this.props.letterSpacing, 'wide');
       lineHeight = this.subComponentValues(this.props.lineHeight, 'tight');
       fontFamily = this.subComponentValues(this.props.fontFamily, 'headline');
@@ -204,61 +247,61 @@ class BoltText extends BoltComponent() {
     // Adds our utilities to the outer parent <bolt-text />
     if (util && util.indexOf(',') > -1) {
       const utilClasses = [];
-      util.split(',').forEach(function(item){
-        utilClasses.push('u-bolt-'+item.trim());
+      util.split(',').forEach(function(item) {
+        utilClasses.push('u-bolt-' + item.trim());
       });
       this.setAttribute('class', utilClasses.join(' '));
     } else if (util && util.length > 0) {
-      this.setAttribute('class', 'u-bolt-'+util.trim());
+      this.setAttribute('class', 'u-bolt-' + util.trim());
     }
 
     if (url) {
-      textItem = this.hyper.wire(this) `
+      textItem = this.hyper.wire(this)`
         <a href="${url}">${textItem}</a>
       `;
     }
 
     // Tag options
     if (tag === 'p') {
-      textItem = this.hyper.wire(this) `
+      textItem = this.hyper.wire(this)`
         <p class=${classes}>${textItem}</p>
       `;
     } else if (tag === 'h1') {
-      textItem = this.hyper.wire(this) `
+      textItem = this.hyper.wire(this)`
         <h1 class=${classes}>${textItem}</h1>
       `;
     } else if (tag === 'h2') {
-      textItem = this.hyper.wire(this) `
+      textItem = this.hyper.wire(this)`
         <h2 class=${classes}>${textItem}</h2>
       `;
     } else if (tag === 'h3') {
-      textItem = this.hyper.wire(this) `
+      textItem = this.hyper.wire(this)`
         <h3 class=${classes}>${textItem}</h3>
       `;
     } else if (tag === 'h4') {
-      textItem = this.hyper.wire(this) `
+      textItem = this.hyper.wire(this)`
         <h4 class=${classes}>${textItem}</h4>
       `;
     } else if (tag === 'h5') {
-      textItem = this.hyper.wire(this) `
+      textItem = this.hyper.wire(this)`
         <h5 class=${classes}>${textItem}</h5>
       `;
     } else if (tag === 'h6') {
-      textItem = this.hyper.wire(this) `
+      textItem = this.hyper.wire(this)`
         <h6 class=${classes}>${textItem}</h6>
       `;
     } else if (tag === 'div') {
-      textItem = this.hyper.wire(this) `
+      textItem = this.hyper.wire(this)`
         <div class=${classes}>${textItem}</div>
       `;
     } else if (tag === 'span') {
-      textItem = this.hyper.wire(this) `
+      textItem = this.hyper.wire(this)`
         <span class=${classes}>${textItem}</span>
       `;
     }
 
     return this.html`
-      ${ this.addStyles([styles]) }
+      ${this.addStyles([styles])}
       ${textItem}
     `;
   }
