@@ -30,13 +30,8 @@ $bolt-pagination-item-bg-color-current-xdark:     bolt-color(white);
 
 
 
-bolt-pagination {
-  display: block;
-
-  &:not(:last-child) {
-    @include bolt-margin-bottom(medium);
-  }
-}
+// Register Custom Block Element
+@include bolt-custom-element('bolt-pagination', block, medium);
 
 .c-bolt-pagination {
   @include bolt-margin(0);
