@@ -9,7 +9,7 @@ const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const globImporter = require('node-sass-glob-importer');
-const { getBoltManifest, createComponentsManifest } = require('./utils/manifest');
+const { getBoltManifest, createComponentsManifest, mapComponentNameToTwigNamespace } = require('./utils/manifest');
 const { promisify } = require('util');
 const fs = require('fs');
 const readFile = promisify(fs.readFile);
@@ -20,6 +20,11 @@ async function createWebpackConfig(config) {
   const sassExportData = require('@theme-tools/sass-export-data')({
     path: path.resolve(process.cwd(), config.dataDir),
   });
+
+
+  // map out Twig namespaces with the NPM package name
+  const npmToTwigNamespaceMap = await mapComponentNameToTwigNamespace();
+
 
   // filename suffix to tack on based on lang being compiled for
   const langSuffix = `${config.lang && config.lang.length > 1 ? '-' + config.lang : ''}`;
