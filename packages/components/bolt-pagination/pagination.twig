@@ -1,0 +1,70 @@
+{% set schema = bolt.data.components['@bolt-components-pagination'].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# Defaults for a vanilla `pagination` component #}
+{% set prefix = "c-bolt-" %}
+{% set componentName = "pagination" %}
+{% set baseClass = prefix ~ componentName %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# check if the value set to a prop is allowed or defined. if not, default to the default value specified in the component's schema (if one exists) #}
+{% set previousText = previousText | default('Previous'|t) %}
+{% set nextText = nextText | default('Next'|t) %}
+
+
+<bolt-pagination
+  {% if total %} total="{{ total }}" {% endif %}
+  {% if current %} current="{{ current }}" {% endif %}
+  {{ attributes }}
+>
+  <nav class="{{ baseClass }}" role="navigation" aria-label="Pagination Navigation">
+    {% if previous %}
+      <a class="{{ "#{baseClass}__item" }} {{ "#{baseClass}__item--prev" }}" href="{{ previous.href }}">
+        <span class="{{ "#{baseClass}__icon" }}">
+          <bolt-icon name="chevron-left" size="small"></bolt-icon>
+        </span>
+        <span class="{{ "#{baseClass}__text" }}">
+          {{ previousText }}
+        </span>
+      </a>
+    {% endif %}
+
+    {% if pages %}
+      {% for key, link in pages %}
+        {% if key == current %}
+          <a class="{{ "#{baseClass}__item" }} is-current" href="{{ link.href }}" aria-current="true">
+            <span class="{{ "#{baseClass}__text" }}">
+              <span class="u-bolt-visuallyhidden">
+                You are currently on page
+              </span>
+              {{- key -}}
+            </span>
+          </a>
+        {% else %}
+          <a class="{{ "#{baseClass}__item" }}" href="{{ link.href }}">
+            <span class="{{ "#{baseClass}__text" }}">
+              <span class="u-bolt-visuallyhidden">
+                Navigate to page
+              </span>
+              {{- key -}}
+            </span>
+          </a>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+    {% if next %}
+      <a class="{{ "#{baseClass}__item" }} {{ "#{baseClass}__item--next" }}" href="{{ next.href }}">
+        <span class="{{ "#{baseClass}__text" }}">
+          {{ nextText }}
+        </span>
+        <span class="{{ "#{baseClass}__icon" }}">
+          <bolt-icon name="chevron-right" size="small"></bolt-icon>
+        </span>
+      </a>
+    {% endif %}
+  </nav>
+</bolt-pagination>

@@ -1,13 +1,10 @@
-{% set schema = bolt.data.components['@bolt-components-blockquote'].schema %}
-{% set code %} {% verbatim %}
+{% set usage %}{% verbatim %}
 {% include "@bolt-components-blockquote/blockquote.twig" with {
-    "content": "&lt;p&gt;The greater danger for most of us lies not in ... achieving our mark.&lt;/p&gt;",
-  } only %}
-{% endverbatim %}
-{% endset %}
+  content: "<p>The greater danger for most of us lies not in ... achieving our mark.</p>"
+} only %}
+{% endverbatim %}{% endset %}
 
-{% include '@utils/docs.twig' with {
-  schema: schema,
-  code: code,
-  readmeFile: '@bolt-components-blockquote/README.md',
+{% include "@utils/docs.twig" with {
+  componentName: "blockquote",
+  usage: usage
 } only %}

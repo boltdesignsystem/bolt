@@ -1,11 +1,9 @@
-{% set schema = bolt.data.components['@bolt-components-action-blocks'].schema %}
-
-{% set code %} {% verbatim %}
+{% set usage %}{% verbatim %}
 {% include "@bolt-components-action-blocks/action-blocks.twig" with {
   contentItems: [
     {
       text: "Item 1",
-      url: "http://google.com",
+      url: "#!",
       icon: {
         name: "icon-name",
         size: "large",
@@ -14,7 +12,7 @@
     },
     {
       text: "Item 2",
-      url: "http://google.com",
+      url: "#!",
       icon: {
         name: "icon-name",
         size: "large",
@@ -23,7 +21,7 @@
     },
     {
       text: "Item 3",
-      url: "http://google.com",
+      url: "#!",
       icon: {
         name: "icon-name",
         size: "large",
@@ -32,11 +30,9 @@
     }
   ]
 } only %}
-{% endverbatim %}
-{% endset %}
+{% endverbatim %}{% endset %}
 
-{% include '@utils/docs.twig' with {
-  schema: schema,
-  code: code,
-  readmeFile: '@bolt-components-action-blocks/README.md',
+{% include "@utils/docs.twig" with {
+  componentName: "action-blocks",
+  usage: usage
 } only %}

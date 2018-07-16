@@ -12,9 +12,10 @@ const globby = require('globby');
 const timer = require('../utils/timer');
 const ora = require('ora');
 const sharp = require('sharp');
-const config = require('../utils/config-store').getConfig();
+const { getConfig } = require('../utils/config-store');
 const { flattenArray } = require('../utils/general');
 const SVGO = require('svgo');
+let config;
 
 const svgo = new SVGO({
   plugins: [
@@ -44,11 +45,13 @@ const boltImageSizes = [
   2880,
 ];
 
-function  makeWebPath(imagePath) {
+function makeWebPath(imagePath) {
   return `/${path.relative(config.wwwDir, imagePath)}`;
 }
 
 async function writeImageManifest(imgManifest) {
+  config = config || await getConfig();
+
   await writeFile(
     path.join(config.dataDir, 'images.bolt.json'),
     JSON.stringify(imgManifest, null, '  '),
@@ -56,6 +59,8 @@ async function writeImageManifest(imgManifest) {
 }
 
 async function processImage(file, set) {
+  config = config || await getConfig();
+
   if (config.verbosity > 3) {
     log.dim(`Processing image: ${file}`);
   }
@@ -119,17 +124,17 @@ async function processImage(file, set) {
 
         } else {
           await sharp(originalFileBuffer)
-              .jpeg({
-                quality: 50,
-                progressive: true,
-                optimiseScans: true,
-                force: false,
-              })
-              .png({
-                progressive: true,
-                force: false,
-              })
-              .toFile(newSizedPath);
+            .jpeg({
+              quality: 50,
+              progressive: true,
+              optimiseScans: true,
+              force: false,
+            })
+            .png({
+              progressive: true,
+              force: false,
+            })
+            .toFile(newSizedPath);
         }
       } else {
         // http://sharp.pixelplumbing.com/en/stable/
@@ -149,8 +154,8 @@ async function processImage(file, set) {
             .toFile(newSizedPath);
         } else {
           await sharp(originalFileBuffer)
-              .resize(size)
-              .toFile(newSizedPath);
+            .resize(size)
+            .toFile(newSizedPath);
         }
       }
     } else {
@@ -191,6 +196,8 @@ async function processImage(file, set) {
 }
 
 async function processImages() {
+  config = config || await getConfig();
+
   if (!config.images) {
     return;
   }
@@ -225,4 +232,4 @@ async function processImages() {
 
 module.exports = {
   processImages,
-};
+}

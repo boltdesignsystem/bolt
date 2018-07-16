@@ -8,25 +8,33 @@ const npmSass = require('npm-sass');
 const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const sassImportGlobbing = require('@theme-tools/sass-import-globbing');
+const globImporter = require('node-sass-glob-importer');
 const { getBoltManifest, createComponentsManifest } = require('./utils/manifest');
 const { promisify } = require('util');
 const fs = require('fs');
 const readFile = promisify(fs.readFile);
 const deepmerge = require('deepmerge');
 
-function createConfig(config) {
+async function createWebpackConfig(config) {
   // @TODO: move this setting to .boltrc config
   const sassExportData = require('@theme-tools/sass-export-data')({
     path: path.resolve(process.cwd(), config.dataDir),
   });
 
+  // filename suffix to tack on based on lang being compiled for
+  const langSuffix = `${config.lang && config.lang.length > 1 ? '-' + config.lang : ''}`;
+
 
   // Default global Sass data defined
   let globalSassData = [
     `$bolt-namespace: ${config.namespace};`,
-  ]
 
+    // output $bolt-lang variable in Sass even if not specified so things fall back accordingly.
+    `${config.lang && config.lang.length > 1 ?
+      `$bolt-lang: ${config.lang};` :
+      '$bolt-lang: null;'
+    }`,
+  ];
 
   // Default global JS data defined
   let globalJsData = {
@@ -40,7 +48,7 @@ function createConfig(config) {
 
 
   // Merge together global Sass data overrides specified in a .boltrc config
-  if (config.globalData.scss && config.globalData.scss.length !== 0){
+  if (config.globalData.scss && config.globalData.scss.length !== 0) {
     const overrideItems = [];
     config.globalData.scss.forEach((item) => {
       try {
@@ -49,7 +57,7 @@ function createConfig(config) {
           .split('\n')
           .filter(x => x)
           .forEach(x => overrideItems.push(x));
-      } catch(err) {
+      } catch (err) {
         log.errorAndExit(`Could not find ${item}`, err);
       }
     });
@@ -59,13 +67,13 @@ function createConfig(config) {
 
 
   // Merge together any global JS data overrides
-  if (config.globalData.js && config.globalData.js.length !== 0){
+  if (config.globalData.js && config.globalData.js.length !== 0) {
     const overrideJsItems = [];
     config.globalData.js.forEach((item) => {
       try {
         const overrideFile = require(path.resolve(process.cwd(), item));
         overrideJsItems.push(overrideFile);
-      } catch(err) {
+      } catch (err) {
         log.errorAndExit(`Could not find ${item} file`, err);
       }
     });
@@ -79,14 +87,22 @@ function createConfig(config) {
    * @link https://webpack.js.org/configuration/entry-context/#entry
    * @returns {object} entry - WebPack config `entry`
    */
-  function buildWebpackEntry() {
-    const { components } = getBoltManifest();
+  async function buildWebpackEntry() {
+    const { components } = await getBoltManifest();
     const entry = {};
+    const globalEntryName = 'bolt-global';
+
     if (components.global) {
-      entry['bolt-global'] = [];
+      entry[globalEntryName] = [];
+
       components.global.forEach((component) => {
-        if (component.assets.style) entry['bolt-global'].push(component.assets.style);
-        if (component.assets.main) entry['bolt-global'].push(component.assets.main);
+        if (component.assets.style) {
+          entry[globalEntryName].push(component.assets.style);
+        }
+
+        if (component.assets.main) {
+          entry[globalEntryName].push(component.assets.main);
+        }
       });
     }
     if (components.individual) {
@@ -198,15 +214,15 @@ function createConfig(config) {
   // }
 
   /** This workaround has been disabled for now as setting
-    * `modules: false` on `css-loader` fixes it; see https://github.com/bolt-design-system/bolt/pull/410
-    * Workaround for getting classes with `\@` to compile correctly
-    * CSS Classes like `.u-hide\@large` were getting compiled like `.u-hide-large`.
-    * Due to this bug: https://github.com/webpack-contrib/css-loader/issues/578
-    * Workaround: using the `string-replace-loader` to
-    * change `\@` to our `workaroundAtValue` before
-    * passing to `css-loader`, then turning it back
-    * afterwards.
-    */
+   * `modules: false` on `css-loader` fixes it; see https://github.com/bolt-design-system/bolt/pull/410
+   * Workaround for getting classes with `\@` to compile correctly
+   * CSS Classes like `.u-hide\@large` were getting compiled like `.u-hide-large`.
+   * Due to this bug: https://github.com/webpack-contrib/css-loader/issues/578
+   * Workaround: using the `string-replace-loader` to
+   * change `\@` to our `workaroundAtValue` before
+   * passing to `css-loader`, then turning it back
+   * afterwards.
+   */
   const workaroundAtValue = '-theSlashSymbol-';
 
   const scssLoaders = [
@@ -223,7 +239,6 @@ function createConfig(config) {
       options: {
         sourceMap: true,
         modules: false, // needed for JS referencing classNames directly, such as critical fonts
-        importLoaders: 4,
       },
     },
     // {
@@ -240,7 +255,18 @@ function createConfig(config) {
         sourceMap: true,
         plugins: () => [
           postcssDiscardDuplicates,
-          autoprefixer,
+          autoprefixer({
+            browsers: [
+              '> 1% in US',
+              'last 3 Android major versions',
+              'last 3 iOS major versions',
+              'last 3 Chrome major versions',
+              'last 3 Edge major versions',
+              'last 3 Firefox major versions',
+              'last 3 Safari major versions',
+              'IE 11',
+            ],
+          }),
         ],
       },
     },
@@ -262,12 +288,12 @@ function createConfig(config) {
       options: {
         sourceMap: true,
         importer: [
-          sassImportGlobbing,
+          globImporter(),
           npmSass.importer,
         ],
         functions: sassExportData,
         outputStyle: 'expanded',
-        precision: 2,
+        precision: 3,
         data: globalSassData.join('\n'),
       },
     },
@@ -282,17 +308,21 @@ function createConfig(config) {
 
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
   const webpackConfig = {
-    entry: buildWebpackEntry(),
+    entry: await buildWebpackEntry(),
     output: {
       path: path.resolve(process.cwd(), config.buildDir),
-      filename: '[name].js',
-      chunkFilename: '[name]-bundle.[chunkhash].js',
+      filename: `[name]${langSuffix}.js`,
+      chunkFilename: `[name]-bundle${langSuffix}-[chunkhash].js`,
       publicPath,
     },
     cache: true,
     resolve: {
       extensions: ['.js', '.jsx', '.json', '.svg', '.scss'],
       unsafeCache: true,
+      alias: {
+        'react': 'preact-compat',
+        'react-dom': 'preact-compat',
+      },
     },
     module: {
       rules: [
@@ -383,24 +413,17 @@ function createConfig(config) {
       // },
     },
     plugins: [
-      // Ignore generated output if generated output is on a dependency chain (causes endless loop)
-      new webpack.WatchIgnorePlugin([
-        /dist\/styleguide/,
-        /dist\/annotations/,
-        /styleguide/,
-        path.join(__dirname, 'node_modules'),
-      ]),
       new webpack.IgnorePlugin(/vertx/), // needed to ignore vertx dependency in webcomponentsjs-lite
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional
-        filename: '[name].css',
-        chunkFilename: '[id].css',
+        filename: `[name]${langSuffix}.css`,
+        chunkFilename: `[id]${langSuffix}.css`,
         allChunks: true,
       }),
       // @todo This needs to be in `config.dataDir`
       new ManifestPlugin({
-        fileName: 'bolt-webpack-manifest.json',
+        fileName: `bolt-webpack-manifest${langSuffix}.json`,
         publicPath,
         writeToFileEmit: true,
         seed: {
@@ -417,12 +440,6 @@ function createConfig(config) {
       // new webpack.ProgressPlugin({ profile: false }),
     ],
   };
-
-  if (!config.prod) {
-    webpackConfig.plugins.push(
-      new webpack.HotModuleReplacementPlugin(),
-    );
-  }
 
   if (config.prod) {
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
@@ -464,11 +481,11 @@ function createConfig(config) {
     webpackConfig.devServer = {
       contentBase: [
         path.resolve(process.cwd(), config.wwwDir),
-      // @TODO: add Pattern Lab Styleguidekit Assets Default dist path here
+        // @TODO: add Pattern Lab Styleguidekit Assets Default dist path here
       ],
       compress: true,
       clientLogLevel: 'none',
-      port: 8080,
+      port: config.proxyPort,
       stats: statsPreset(webpackStats[config.verbosity]),
       overlay: {
         errors: true,
@@ -481,8 +498,8 @@ function createConfig(config) {
       historyApiFallback: true,
       watchOptions: {
         aggregateTimeout: 200,
-    //    ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
-       // Poll using interval (in ms, accepts boolean too)
+        //    ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
+        // Poll using interval (in ms, accepts boolean too)
       },
     };
   }
@@ -490,4 +507,39 @@ function createConfig(config) {
   return webpackConfig;
 }
 
-module.exports = createConfig;
+
+module.exports = async function() {
+  return new Promise(async (resolve, reject) => {
+    const webpackConfigs = [];
+    const config = await require('./utils/config-store').getConfig();
+
+    // update the array of Webpack configs so each config is assigned to only one language (used in the filename's suffix when bundling language-tailed CSS and JS)
+    if (config.lang && config.lang.length > 1) {
+      config.lang.reverse(); // Make sure the 1st language in the array is LAST since that's the one used for the local dev environment.
+
+      await Promise.all(config.lang.map(async (lang) => {
+        config.lang = lang; // Make sure only ONE language config is set per Webpack build instance.
+
+        const webpackConfig = await createWebpackConfig(config);
+
+        if (config.webpackStats) {
+          webpackConfig.profile = true;
+          webpackConfig.parallelism = 1;
+        }
+
+        webpackConfigs.push(webpackConfig);
+      }));
+    } else {
+      const webpackConfig = await createWebpackConfig(config);
+
+      if (config.webpackStats) {
+        webpackConfig.profile = true;
+        webpackConfig.parallelism = 1;
+      }
+
+      webpackConfigs.push(webpackConfig);
+    }
+    return resolve(webpackConfigs);
+  });
+};
+

@@ -13,35 +13,53 @@ const log = require('../utils/log');
 const { getConfig } = require('../utils/config-store');
 const ora = require('ora');
 const manifest = require('../utils/manifest');
-
-const config = Object.assign({
-  plConfigFile: 'config/config.yml',
-  watchedExtensions: [
-    'twig',
-    'json',
-    'yaml',
-    'yml',
-    'md',
-    'png',
-    'php',
-  ],
-  debounceRate: 1000,
-}, getConfig());
-
-const plConfig = readYamlFileSync(config.plConfigFile);
-const plRoot = path.join(config.plConfigFile, '../..');
-const plSource = path.join(plRoot, plConfig.sourceDir);
-const plPublic = path.join(plRoot, plConfig.publicDir);
-const consolePath = path.join(plRoot, 'core/console');
 const timer = require('../utils/timer');
 
-function plBuild(errorShouldExit) {
-  return new Promise((resolve, reject) => {
+let plSource, plPublic, consolePath;
+let config;
+
+async function asyncConfig(){
+  if (config){
+    return config;
+  } else {
+    config = Object.assign({
+      plConfigFile: 'config/config.yml',
+      watchedExtensions: [
+        'twig',
+        'json',
+        'yaml',
+        'yml',
+        'md',
+        'png',
+        'php',
+      ],
+      debounceRate: 1000,
+    }, await getConfig());
+
+    const plConfig = readYamlFileSync(config.plConfigFile);
+    const plRoot = path.join(config.plConfigFile, '../..');
+    plSource = path.join(plRoot, plConfig.sourceDir);
+    plPublic = path.join(plRoot, plConfig.publicDir);
+    consolePath = path.join(plRoot, 'core/console');
+
+    return config;
+  }
+}
+
+async function plBuild(errorShouldExit) {
+  config = config || await asyncConfig();
+
+  return new Promise(async (resolve, reject) => {
     const plSpinner = ora(chalk.blue('Building Pattern Lab...')).start();
     const startTime = timer.start();
     // log.taskStart('build: pattern lab');
     events.emit('pattern-lab:precompile');
-    sh(`php -d memory_limit=4048M ${consolePath} --generate`, errorShouldExit, false)
+    sh('php', [
+      '-d',
+      'memory_limit=4048M',
+      consolePath,
+      '--generate',
+    ], errorShouldExit, false)
       .then((output) => {
 
         plSpinner.succeed(chalk.green(`Built Pattern Lab in ${timer.end(startTime)}`));
@@ -64,26 +82,29 @@ function plBuild(errorShouldExit) {
   });
 }
 
-function compile() {
-  return plBuild(true);
+async function compile() {
+  return await plBuild(true);
 }
 
 compile.description = 'Compile Pattern Lab';
 compile.displayName = 'pattern-lab:compile';
 
-function compileWithNoExit() {
-  return plBuild(false);
+async function compileWithNoExit() {
+  return await plBuild(false);
 }
 
 compileWithNoExit.displayName = 'pattern-lab:compile';
 
-// Used by watches
-const debouncedCompile = debounce(compileWithNoExit, config.debounceRate);
+async function watch() {
+  config = config || await getConfig();
+  const dirs = await manifest.getAllDirs();
 
-function watch() {
+  // Used by watches
+  const debouncedCompile = debounce(compileWithNoExit, config.debounceRate);
+
   const globPattern = `**/*.{${config.watchedExtensions.join(',')}}`;
   const watchedFiles = [
-    ...manifest.getAllDirs(process.cwd()).map(dir => path.join(dir, globPattern)),
+    dirs.map(dir => path.join(dir, globPattern)),
     path.join(plSource, globPattern),
     path.join(config.dataDir, '*.*'),
   ];

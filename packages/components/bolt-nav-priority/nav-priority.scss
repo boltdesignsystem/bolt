@@ -11,7 +11,6 @@ bolt-nav-priority {
   align-self: center;
   padding-bottom: var(--bolt-vspacing);
   flex-shrink: 2; // shrink faster than other components in tight spots
-  flex-grow: 0.5; // grow if space is available, but at 1/2 as much as normal
 
   @include bolt-if-browser-supports-display-contents {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
@@ -182,7 +181,7 @@ bolt-nav-priority {
   @include bolt-padding-left(small);
   @include bolt-padding-right(small);
 
-  @include respond-to(small){
+  @include  bolt-mq(small){
     @include bolt-padding-left(xsmall);
     @include bolt-padding-right(xsmall);
   }
@@ -217,7 +216,7 @@ bolt-nav-priority {
     white-space: normal;
   }
 
-  @include respond-to(xsmall) {
+  @include  bolt-mq(xsmall) {
     width: auto;
     max-width: 100%;
   }
@@ -231,8 +230,8 @@ bolt-nav-priority {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
       grid-row: 2/span 1;
       grid-column: 1/span 6;
-      position: static;
       width: auto;
+      left: 0;
     }
   }
 
@@ -427,7 +426,7 @@ bolt-nav-priority {
 //   transition: opacity 0.35s ease-out, transform 0.35s ease-out; // transition:
 
 //   // .c-bolt-dropdown--collapse\@small & {
-//   //   @include respond-to(small) {
+//   //   @include  bolt-mq(small) {
 //   //     opacity: 1;
 //   //     transform: translateY(0);
 //   //   }

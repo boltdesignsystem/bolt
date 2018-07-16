@@ -47,7 +47,7 @@
         {
           text: "Call to Action",
           style: "primary",
-          url: "https://www.google.com"
+          url: "#!"
         }
       ]
     }
@@ -55,7 +55,6 @@
 
   {% endembed %}
 
-{% set videoUuid1 = "js-bolt-video-uuid--1" %}
 
 {% embed "@bolt/band.twig" with {
   size: "small",
@@ -63,6 +62,7 @@
   fullBleed: true
 } only %}
   {% block band_content %}
+    {% set videoUuid1 = "js-bolt-video-uuid--1" %}
 
     {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
 
@@ -99,7 +99,7 @@
                 {
                   pattern: "flag",
                   valign: "middle",
-                  url: "https://www.google.com",
+                  url: "#!",
                   figure: {
                     "icon": {
                       name: "app-development",
@@ -128,7 +128,7 @@
                 {
                   pattern: "flag",
                   valign: "middle",
-                  url: "https://www.google.com",
+                  url: "#!",
                   figure: {
                     "icon": {
                       name: "sales-automation",
@@ -156,7 +156,7 @@
                 {
                   pattern: "flag",
                   valign: "middle",
-                  url: "https://www.google.com",
+                  url: "#!",
                   figure: {
                     "icon": {
                       name: "customer-service",

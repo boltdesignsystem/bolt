@@ -1,6 +1,13 @@
 const path = require('path');
+const resolve = require('resolve');
 
 module.exports = {
+  lang: [
+    'en', // default language used
+    'ja'
+  ],
+  renderingService: true, // starts PHP service for rendering Twig templates
+  openServerAtStart: true,
   // Environmental variable / preset to use
   env: 'pl',
   buildDir: '../../www/pattern-lab/build',
@@ -8,6 +15,7 @@ module.exports = {
   startPath: 'pattern-lab/index.html',
   plConfigFile: './config/config.yml',
   verbosity: 1,
+  schemaErrorReporting: 'cli',
   webpackDevServer: true,
   extraTwigNamespaces: {
     'bolt': {
@@ -61,6 +69,7 @@ module.exports = {
     global: [
       '@bolt/core',
       '@bolt/global',
+      '@bolt/internal-schema-form',
       '@bolt/components-placeholder',
       '@bolt/components-action-blocks',
       '@bolt/components-dropdown',
@@ -93,6 +102,7 @@ module.exports = {
       '@bolt/components-ordered-list',
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
+      '@bolt/components-pagination',
       '@bolt/components-share',
       '@bolt/components-site',
       '@bolt/components-smooth-scroll',
@@ -102,14 +112,28 @@ module.exports = {
       '@bolt/components-tooltip',
       '@bolt/components-unordered-list',
       '@bolt/components-video',
+
+      /**
+       * note: resolving these paths isn't typically required when
+       * the .boltrc config is run through the bolt CLI tool (ie.
+       * normal, default usage).
+       *
+       * Resolving these IS sometimes needed however when running
+       * a build task completely on it's own (ex. running
+       * webpack-cli directly using Bolt's webpack config)
+       */
+      // Keeping PL specific assets here so we can remove an extra JS + CSS request from the site
+      resolve.sync('./src/index.scss'),
+      resolve.sync('./src/index.js'),
     ],
     individual: [
-      {
-        name: 'pl',
-        scss: './src/styles/pl.scss',
-        js: './src/scripts/pl.js',
-      },
+      // example specifying a standalone component's CSS and JS individually
+      // {
+      //   name: 'pl',
+      //   scss: ./src/index.scss',
+      //   js: './src/index.js',
+      // },
       '@bolt/components-critical-fonts',
     ],
-  },
+      },
 };

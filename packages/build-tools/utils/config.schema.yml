@@ -12,6 +12,19 @@
       type: string
       title: Namespace prefix to use in classnames
       default: 'bolt'
+    lang:
+      type: array
+      title: Array of language-specific builds to generate. The 1st langugage specified is the default used for local development.
+      default:
+        - en
+    port:
+      type: number
+      title: Desired port for Browsersync server
+      default: 3000
+    proxyPort:
+      type: number
+      title: Desired port for Webpack Proxy
+      default: 8080
     templatesDir:
       type: array
       title: Template paths being added
@@ -27,11 +40,20 @@
     env:
       type: string
       title: Environment Type
-      description: Where is this being compiled? Pattern Lab? Drupal?
+      description: What is being compiled? Pattern Lab? Drupal? A static site? Or is the new in-progress Progressive Web App (PWA) that combines Pattern Lab + the docs site into one single environment?
       enum:
         - pl
         - static
         - drupal
+        - pwa
+    renderingService:
+      type: boolean
+      description: Automatically start up the PHP / Twig Rendering Service?
+      default: false
+    renderingServicePort:
+      type: number
+      title: Desired port for PHP Rendering Service
+      default: 8087
     srcDir:
       type: string
       title: Source Directory
@@ -136,6 +158,14 @@
       type: boolean
       description: Production build, will compress assets.
       default: false
+    schemaErrorReporting:
+      description: Setting for where schema errors should be reported.  Note that reporting to cli will cause builds to fail if there are errors.
+      type: string
+      default: console
+      enum:
+        - none
+        - console
+        - cli
 
   definitions:
     components:

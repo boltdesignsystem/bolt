@@ -1,14 +1,16 @@
 Share block. Part of the Bolt “Components” CSS framework that powers the [Bolt Design System](https://www.boltdesignsystem.com).
 
-### Install via NPM
+###### Install via NPM
+
 ```
 npm install @bolt/components-share
 ```
 
-## Description:
+## Description
 The share component provides the user a visual queue to share the content with relevant peers, as well as an easy mechanism to actively do the sharing.
 
-## Share Link Notes:
+## OG Tags
+
 * **OG tags <u>MUST</u> be present for share functionality to work correctly (see example below)**
 * The only currently supported share methods are:
   * Facebook
@@ -34,8 +36,9 @@ The share component provides the user a visual queue to share the content with r
 * **Email** Recommended query vars:
   * `subject`
   * `body`
-  
-## OG Tags Example
+
+### Example
+
 ```html
 <meta property="og:type" content="article" />
 <meta property="og:title" content="Bolt Design System: Page Title" />
@@ -54,7 +57,8 @@ The share component provides the user a visual queue to share the content with r
 <meta name="twitter:site" content="@pega" />
 ```
 
-## Best practices
+## Best Practices
+
 * Don't use the share tool with a page's related sections
 * Implement any "stickiness" and placement functionality on the platform the component is being used in
 * For larger screens, ease-in opacity from 0% to 100% on scroll. The placement should be lower right-hand side and fixed until the main page content is scrolled pass

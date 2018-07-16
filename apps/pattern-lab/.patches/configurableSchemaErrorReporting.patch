@@ -1,0 +1,40 @@
+diff --git a/src/DataSchema.php b/src/DataSchema.php
+index 321c938..7ac9694 100644
+--- a/src/DataSchema.php
++++ b/src/DataSchema.php
+@@ -32,6 +32,12 @@ class DataSchema {
+    */
+   public static function validateDataSchema(\Twig_Environment $env, $data, $schema, $twig_self) {
+     $output = '';
++    $error_reporting = !empty($data['bolt']['data']['config']['schemaErrorReporting']) ? $data['bolt']['data']['config']['schemaErrorReporting'] : '';
++
++    // Error reporting is turned off, so don't bother continuing with validation.
++    if ($error_reporting == 'none') {
++      return $output;
++    }
+     // Validate Data Schema requires Twig Debug turned on
+     if (!$env->isDebug()) {
+       return $output;
+@@ -60,10 +66,19 @@ class DataSchema {
+         ],
+       ];
+ 
+-      // @todo Consider if/how best to have Pattern Lab compile fail if a validation error is found; which is done with:
+-      // \PatternLab\Console::writeError($message_to_log);
+ 
+-      $output = Utils::consoleLog($to_log, 'error', ['message', 'details'], true);
++      switch ($error_reporting) {
++        case 'cli':
++          // Write to command line and fail build.
++          \PatternLab\Console::writeError($message_to_log);
++          break;
++
++        case 'console':
++        default:
++          // Write to browser console
++          $output = Utils::consoleLog($to_log, 'error', ['message', 'details'], true);
++          break;
++      }
+     }
+ 
+     return $output;
