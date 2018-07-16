@@ -48,6 +48,10 @@ async function createWebpackConfig(config) {
       JSON.stringify('development'),
     bolt: {
       namespace: JSON.stringify(config.namespace),
+      config: {
+        prod: config.prod ? true : false,
+        lang: config.lang,
+      },
     },
   };
 
