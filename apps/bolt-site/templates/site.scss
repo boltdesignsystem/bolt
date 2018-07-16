@@ -128,6 +128,10 @@ $storefront-sidebar-width: 320px;
   }
 }
 
+.storefront-docs-header__link {
+  text-decoration: none;
+}
+
 .storefront-docs-sidebar__overlay {
   position: fixed;
   top: 0;
@@ -204,21 +208,11 @@ $storefront-sidebar-width: 320px;
     h2 {
       font-size: 1.33rem;
       margin-bottom: 0.9rem;
-      &::before {
-        content: '#';
-        left: -20px;
-        position: absolute;
-      }
     }
 
 
     h3 {
       margin-bottom: 0.65rem;
-      &::before {
-        content: '-';
-        left: -20px;
-        position: absolute;
-      }
     }
   }
 }

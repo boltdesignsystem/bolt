@@ -87,6 +87,26 @@ configStore.init(require(configFilePath)).then((config) => {
       require('./tasks/task-collections').build();
     });
 
+  // `bolt prep`
+  program
+    .command('prep')
+    .description('Prepwork before building')
+    .action(async (options) => {
+      log.info('Starting prep work.');
+      await updateConfig(options, program);
+      require('./tasks/task-collections').prep();
+    });
+
+  // `bolt prep`
+  program
+    .command('criticalcss')
+    .description('Generate Critical CSS')
+    .action(async (options) => {
+      log.info('Starting critical CSS');
+      await updateConfig(options, program);
+      require('./tasks/task-collections').criticalcss();
+    });
+
   program
     .command('serve')
     .description('Spin up local server')

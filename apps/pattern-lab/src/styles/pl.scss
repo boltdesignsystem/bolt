@@ -8,6 +8,15 @@ bolt-demo {
   padding: 1.65rem 2rem;
 }
 
+.pl-c-main {
+  @include bolt-padding-left(small);
+  @include bolt-padding-right(small);
+}
+
+.pl-js-pattern-example {
+  transform: translate3d(0, 0, 0); // force sticky and fixed elements to become static on main demo page.
+}
+
 .sg-main {
   @include bolt-padding(medium);
 }

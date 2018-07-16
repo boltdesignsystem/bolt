@@ -35,11 +35,12 @@
   }
 }
 
-
 /**
   * 1. Vendor prefixes added due to limitations of Autoprefixer transpiling (esp. the old CSS grid spec used in IE 11)
   */
 .c-bolt-docs {
+  @include bolt-padding-left(small);
+  @include bolt-padding-right(small);
   display: -ms-grid; /* [1] */
   display: grid;
 
@@ -58,8 +59,8 @@
   }
 
   @include bolt-mq(medium) {
-    -ms-grid-columns: 1fr 17.5% 65% 17.5% 1fr; /* [1] */
-    grid-template-columns: 1fr 17.5% 65% 17.5% 1fr;
+    -ms-grid-columns: 1fr 80% 20% 1fr; /* [1] */
+    grid-template-columns: 1fr 80% 20% 1fr;
   }
 }
 
@@ -74,6 +75,7 @@
 
   min-width: 0;
   max-width: 960px;
+  width: 100%;
 
   @include bolt-mq(medium) {
     @include bolt-padding-left(medium);
@@ -83,9 +85,9 @@
     -ms-grid-row-span: 1; /* [1] */
     grid-row: 3/span 1;
 
-    -ms-grid-column: 2; /* [1] */
+    -ms-grid-column: 1; /* [1] */
     -ms-grid-column-span: 2; /* [1] */
-    grid-column: 2/span 2;
+    grid-column: 1/span 2;
 
     margin-left: auto;
   }
@@ -98,9 +100,9 @@
     -ms-grid-row-span: 1; /* [1] */
     grid-row: 3/span 1;
 
-    -ms-grid-column: 3; /* [1] */
+    -ms-grid-column: 2; /* [1] */
     -ms-grid-column-span: 1; /* [1] */
-    grid-column: 3/span 1;
+    grid-column: 2/span 1;
 
     margin-left: auto;
   }
@@ -132,9 +134,9 @@
     -ms-grid-row-span: 1; /* [1] */
     grid-row: 3/span 1;
 
-    -ms-grid-column: 4; /* [1] */
+    -ms-grid-column: 3; /* [1] */
     -ms-grid-column-span: 1; /* [1] */
-    grid-column: 4/span 1;
+    grid-column: 3/span 1;
 
     text-align: left;
   }
