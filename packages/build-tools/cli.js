@@ -3,21 +3,33 @@ const program = require('commander');
 const packageJson = require('./package.json');
 const configStore = require('./utils/config-store');
 const { readYamlFileSync } = require('./utils/yaml');
-const configSchema = readYamlFileSync(path.join(__dirname, './utils/config.schema.yml'));
+const configSchema = readYamlFileSync(
+  path.join(__dirname, './utils/config.schema.yml'),
+);
 
 // global `bolt` cli options & meta
 program
   .version(packageJson.version)
-  .option('-C, --config-file <path>', 'Pass in a specific config file instead of default of ".boltrc.js/json".')
+  .option(
+    '-C, --config-file <path>',
+    'Pass in a specific config file instead of default of ".boltrc.js/json".',
+  )
   .option('--prod', configSchema.properties.prod.description)
-  .option('-v, --verbosity <amount>', configSchema.properties.verbosity.description, parseInt)
+  .option(
+    '-v, --verbosity <amount>',
+    configSchema.properties.verbosity.description,
+    parseInt,
+  )
   .parse(process.argv);
 
 // We need to initialize config as early as possible
-const configFilePath = path.resolve(process.cwd(), program.configFile || '.boltrc');
+const configFilePath = path.resolve(
+  process.cwd(),
+  program.configFile || '.boltrc',
+);
 
 (async () => {
-  await configStore.init(require(configFilePath)).then((config) => {
+  await configStore.init(require(configFilePath)).then(config => {
     // Now that config is initilized, we can start requiring other things
     const { buildBoltManifest } = require('./utils/manifest');
     const log = require('./utils/log');
@@ -29,34 +41,39 @@ const configFilePath = path.resolve(process.cwd(), program.configFile || '.boltr
      * @returns {Object} config - Final updated config
      */
     async function updateConfig(options, programInstance) {
-      configStore.updateConfig((config) => {
-        config.verbosity = typeof program.verbosity === 'undefined' ?
-          config.verbosity :
-          program.verbosity;
+      configStore.updateConfig(config => {
+        config.verbosity =
+          typeof program.verbosity === 'undefined'
+            ? config.verbosity
+            : program.verbosity;
 
-        config.openServerAtStart = typeof options.open === 'undefined' ?
-          config.openServerAtStart :
-          options.open;
+        config.openServerAtStart =
+          typeof options.open === 'undefined'
+            ? config.openServerAtStart
+            : options.open;
 
-        config.renderingService = typeof options.renderingService === 'undefined' ?
-          (process.env.TRAVIS ? false : config.renderingService) :
-          options.renderingService;
+        config.renderingService =
+          typeof options.renderingService === 'undefined'
+            ? process.env.TRAVIS
+              ? false
+              : config.renderingService
+            : options.renderingService;
 
-        config.webpackStats = typeof options.webpackStats === 'undefined' ?
-          config.webpackStats :
-          options.webpackStats;
+        config.webpackStats =
+          typeof options.webpackStats === 'undefined'
+            ? config.webpackStats
+            : options.webpackStats;
 
-        config.webpackDevServer = typeof options.webpackDevServer === 'undefined' ?
-          config.webpackDevServer :
-          options.webpackDevServer;
+        config.webpackDevServer =
+          typeof options.webpackDevServer === 'undefined'
+            ? config.webpackDevServer
+            : options.webpackDevServer;
 
-        config.quick = typeof options.quick === 'undefined' ?
-          config.quick :
-          options.quick;
+        config.quick =
+          typeof options.quick === 'undefined' ? config.quick : options.quick;
 
-        config.prod = typeof program.prod === 'undefined' ?
-          config.prod :
-          program.prod;
+        config.prod =
+          typeof program.prod === 'undefined' ? config.prod : program.prod;
 
         return config;
       });
@@ -84,10 +101,15 @@ const configFilePath = path.resolve(process.cwd(), program.configFile || '.boltr
     program
       .command('build')
       .description('Build it')
-      .option('--webpack-stats', configSchema.properties.webpackStats.description)
+      .option(
+        '--webpack-stats',
+        configSchema.properties.webpackStats.description,
+      )
       .option('-Q, --quick', configSchema.properties.quick.description)
-      .action(async (options) => {
-        log.info(`Starting build (${options.parallel ? 'parallel' : 'serial'})`);
+      .action(async options => {
+        log.info(
+          `Starting build (${options.parallel ? 'parallel' : 'serial'})`,
+        );
         await updateConfig(options, program);
         require('./tasks/task-collections').build();
       });
@@ -96,7 +118,7 @@ const configFilePath = path.resolve(process.cwd(), program.configFile || '.boltr
     program
       .command('prep')
       .description('Prepwork before building')
-      .action(async (options) => {
+      .action(async options => {
         log.info('Starting prep work.');
         await updateConfig(options, program);
         require('./tasks/task-collections').prep();
@@ -106,7 +128,7 @@ const configFilePath = path.resolve(process.cwd(), program.configFile || '.boltr
     program
       .command('criticalcss')
       .description('Generate Critical CSS')
-      .action(async (options) => {
+      .action(async options => {
         log.info('Starting critical CSS');
         await updateConfig(options, program);
         require('./tasks/task-collections').criticalcss();
@@ -115,33 +137,41 @@ const configFilePath = path.resolve(process.cwd(), program.configFile || '.boltr
     program
       .command('serve')
       .description('Spin up local server')
-      .option('-O, --open', configSchema.properties.openServerAtStart.description)
-      .option('--webpack-dev-server', configSchema.properties.webpackDevServer.description)
-      .action(async (options) => {
+      .option(
+        '-O, --open',
+        configSchema.properties.openServerAtStart.description,
+      )
+      .option(
+        '--webpack-dev-server',
+        configSchema.properties.webpackDevServer.description,
+      )
+      .action(async options => {
         await updateConfig(options, program);
         require('./tasks/task-collections').serve();
       });
 
-    program
-      .command('watch')
-      .action(async (options) => {
-        await updateConfig(options, program);
-        require('./tasks/task-collections').watch();
-      });
+    program.command('watch').action(async options => {
+      await updateConfig(options, program);
+      require('./tasks/task-collections').watch();
+    });
 
-    program
-      .command('clean')
-      .action(async (options) => {
-        await updateConfig(options, program);
-        require('./tasks/task-collections').clean();
-      });
+    program.command('clean').action(async options => {
+      await updateConfig(options, program);
+      require('./tasks/task-collections').clean();
+    });
 
     program
       .command('start')
-      .option('-O, --open', configSchema.properties.openServerAtStart.description)
+      .option(
+        '-O, --open',
+        configSchema.properties.openServerAtStart.description,
+      )
       .option('-Q, --quick', configSchema.properties.quick.description)
-      .option('--webpack-dev-server', configSchema.properties.webpackDevServer.description)
-      .action(async (options) => {
+      .option(
+        '--webpack-dev-server',
+        configSchema.properties.webpackDevServer.description,
+      )
+      .action(async options => {
         await updateConfig(options, program);
         require('./tasks/task-collections').start();
       });
@@ -149,26 +179,28 @@ const configFilePath = path.resolve(process.cwd(), program.configFile || '.boltr
     // `bolt lint`
     program
       .command('lint')
-      .description('A linter... that doesn\'t work!')
-      .action(async (options) => {
+      .description("A linter... that doesn't work!")
+      .action(async options => {
         await updateConfig(options, program);
       });
 
     program
       .command('img')
       .description('Image process')
-      .action(async (options) => {
+      .action(async options => {
         await updateConfig(options, program);
         require('./tasks/task-collections').images();
       });
-
 
     program
       .command('webpack')
       .alias('wp')
       .description('WebPack Compile')
-      .option('--webpack-stats', configSchema.properties.webpackStats.description)
-      .action(async (options) => {
+      .option(
+        '--webpack-stats',
+        configSchema.properties.webpackStats.description,
+      )
+      .action(async options => {
         await updateConfig(options, program);
         try {
           await require('./tasks/webpack-tasks').compile();
@@ -182,7 +214,7 @@ const configFilePath = path.resolve(process.cwd(), program.configFile || '.boltr
         .command('pattern-lab')
         .alias('pl')
         .description('Pattern Lab Compile')
-        .action(async (options) => {
+        .action(async options => {
           await updateConfig(options, program);
           try {
             await require('./tasks/pattern-lab-tasks').compile();

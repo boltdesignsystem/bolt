@@ -9,16 +9,16 @@ import {
   sanitizeBoltClasses,
 } from '@bolt/core';
 
-import styles from './button.scss';
 // @todo Salem, since this imports something that imports '@bolt/core', please make sure this doesn't add a huge amount in the wrong place - Evan
 import visuallyhiddenUtils from '@bolt/global/styles/07-utilities/_utilities-visuallyhidden.scss';
 
+import styles from './button.scss';
 
 /**
-  * The ReplaceWithChildren is a helper component used for prerendering components (ex. temp CSS
-  * classes) that need to get removed when the component's JS kicks in. Once that happens, this
-  * component automatically replaces itself with the component's child nodes.
-  */
+ * The ReplaceWithChildren is a helper component used for prerendering components (ex. temp CSS
+ * classes) that need to get removed when the component's JS kicks in. Once that happens, this
+ * component automatically replaces itself with the component's child nodes.
+ */
 @define
 export class ReplaceWithChildren extends BoltComponent() {
   static is = 'replace-with-children';
@@ -28,27 +28,28 @@ export class ReplaceWithChildren extends BoltComponent() {
     return self;
   }
 
-  connecting(){
+  connecting() {
     this.replaceElementWithChildren();
   }
 
-  replaceElementWithChildren(){
+  replaceElementWithChildren() {
     const parentElement = this.parentElement;
 
-    if(!parentElement){
-      Error('The <replace-with-children> element needs a parent element to append to!');
+    if (!parentElement) {
+      Error(
+        'The <replace-with-children> element needs a parent element to append to!',
+      );
     }
 
     // Originally was this.replaceWith(...this.childNodes) but IE11 doesn't like that
-    while(this.firstChild){
+    while (this.firstChild) {
       parentElement.appendChild(this.firstChild);
     }
-    if (parentElement){
+    if (parentElement) {
       parentElement.removeChild(this);
     }
   }
 }
-
 
 @define
 class BoltButton extends BoltComponent() {
@@ -72,7 +73,7 @@ class BoltButton extends BoltComponent() {
 
     onClick: props.string, // Managed by base class
     onClickTarget: props.string, // Managed by base class
-  }
+  };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
@@ -99,11 +100,15 @@ class BoltButton extends BoltComponent() {
     const classes = css(
       'c-bolt-button',
       this.props.size ? `c-bolt-button--${this.props.size}` : '',
-      this.props.color ? `c-bolt-button--${this.props.color}` : 'c-bolt-button--primary',
+      this.props.color
+        ? `c-bolt-button--${this.props.color}`
+        : 'c-bolt-button--primary',
       this.props.rounded ? 'c-bolt-button--rounded' : '',
       this.props.iconOnly ? 'c-bolt-button--icon-only' : '',
       this.props.width ? `c-bolt-button--${this.props.width}` : '',
-      this.props.align ? `c-bolt-button--${this.props.align}` : 'c-bolt-button--center',
+      this.props.align
+        ? `c-bolt-button--${this.props.align}`
+        : 'c-bolt-button--center',
       this.props.align ? `c-bolt-button--${this.props.transform}` : '',
       this.props.disabled ? 'c-bolt-button--disabled' : '',
     );
@@ -115,18 +120,22 @@ class BoltButton extends BoltComponent() {
      *
      * If for some reason a container can't be found (ex. if creating a `<bolt-button color="primary">Hello World</bolt-button>` element by hand),
      * We'll need to generate a wrapper container + figure out if this should be a <button> or <a> tag
-    */
+     */
 
     let childElementIndex = null;
-    this.slots.default.forEach(function (item, i) {
+    this.slots.default.forEach(function(item, i) {
       if (item.nodeType === 1) {
         childElementIndex = i;
       }
     });
 
-    if (childElementIndex !== null){
-      let sanitizedClasses = sanitizeBoltClasses(this.slots.default[childElementIndex]);
-      this.slots.default[childElementIndex].className = `${sanitizedClasses} ${classes}`;
+    if (childElementIndex !== null) {
+      let sanitizedClasses = sanitizeBoltClasses(
+        this.slots.default[childElementIndex],
+      );
+      this.slots.default[
+        childElementIndex
+      ].className = `${sanitizedClasses} ${classes}`;
     }
 
     // Decide on if the rendered button tag should be a <button> or <a> tag, based on if a URL exists OR if a link was passed in from the getgo
@@ -135,19 +144,18 @@ class BoltButton extends BoltComponent() {
     // Assign default target attribute value if one isn't specified
     const urlTarget = this.props.target && hasUrl ? this.props.target : '_self';
 
-
     let buttonElement;
 
-    if (childElementIndex !== null){
+    if (childElementIndex !== null) {
       buttonElement = this.slot('default');
     } else if (childElementIndex === null && hasUrl) {
-      buttonElement = this.hyper.wire(this) `
+      buttonElement = this.hyper.wire(this)`
         <a href="${this.props.url}" class="${classes}" target="${urlTarget}">
           ${this.slot('default')}
         </a>
       `;
     } else {
-      buttonElement = this.hyper.wire(this) `
+      buttonElement = this.hyper.wire(this)`
         <button class="${classes}">
           ${this.slot('default')}
         </button>
@@ -156,8 +164,8 @@ class BoltButton extends BoltComponent() {
 
     // Add inline <style> tag automatically if Shadow DOM is natively supported
     return this.html`
-      ${ this.addStyles([styles, visuallyhiddenUtils]) }
-      ${ buttonElement }
+      ${this.addStyles([styles, visuallyhiddenUtils])}
+      ${buttonElement}
     `;
   }
 }

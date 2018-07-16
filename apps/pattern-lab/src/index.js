@@ -5,7 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Docs Edit README Link > Simple edit hover effect
    */
-  const editLink = document.getElementsByClassName('c-bolt-docs__page-nav__link');
+  const editLink = document.getElementsByClassName(
+    'c-bolt-docs__page-nav__link',
+  );
   const editWrap = document.getElementsByClassName('c-bolt-docs__lead');
 
   function toggleEditOn() {
