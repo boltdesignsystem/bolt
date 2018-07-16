@@ -1,7 +1,7 @@
 /** @jsx h */
 // Temp working version of @skatejs/renderer-preact till SkateJS fixes this upstream in the SkateJS monorepo
 
-import { withComponent, shadow, props } from 'skatejs';
+import { name, withComponent, shadow, props } from 'skatejs';
 import preact, { h, render, Component } from 'preact';
 import html from 'preact-html';
 import { hasNativeShadowDomSupport } from '../utils/environment';

@@ -1,17 +1,17 @@
 const chalk = require('chalk');
-const { readYamlFileSync } = require('../utils/yaml');
-const sh = require('../utils/sh');
 const path = require('path');
 const { promisify } = require('util');
 const fs = require('fs');
 const writeFile = promisify(fs.writeFile);
-const events = require('../utils/events');
 const chokidar = require('chokidar');
 const del = require('del');
 const debounce = require('lodash.debounce');
+const ora = require('ora');
 const log = require('../utils/log');
 const { getConfig } = require('../utils/config-store');
-const ora = require('ora');
+const events = require('../utils/events');
+const sh = require('../utils/sh');
+const { readYamlFileSync } = require('../utils/yaml');
 const manifest = require('../utils/manifest');
 const timer = require('../utils/timer');
 

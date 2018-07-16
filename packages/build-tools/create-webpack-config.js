@@ -1,5 +1,4 @@
 const path = require('path');
-const log = require('./utils/log');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -9,14 +8,15 @@ const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const globImporter = require('node-sass-glob-importer');
-const {
-  getBoltManifest,
-  createComponentsManifest,
-} = require('./utils/manifest');
 const { promisify } = require('util');
 const fs = require('fs');
 const readFile = promisify(fs.readFile);
 const deepmerge = require('deepmerge');
+const {
+  getBoltManifest,
+  createComponentsManifest,
+} = require('./utils/manifest');
+const log = require('./utils/log');
 
 async function createWebpackConfig(config) {
   // @TODO: move this setting to .boltrc config

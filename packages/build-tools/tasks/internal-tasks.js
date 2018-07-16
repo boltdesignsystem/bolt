@@ -1,10 +1,10 @@
-const log = require('../utils/log');
 const { promisify } = require('util');
 const mkdirp = promisify(require('mkdirp'));
 const ora = require('ora');
 const chalk = require('chalk');
-const timer = require('../utils/timer');
 const del = require('del');
+const timer = require('../utils/timer');
+const log = require('../utils/log');
 const { getConfig } = require('../utils/config-store');
 let config;
 

@@ -8,9 +8,9 @@ import {
   withPreact,
 } from '@bolt/core';
 
-import styles from './tooltip.scss';
 import button from '@bolt/components-button/src/button.scss';
 import colorUtils from '@bolt/global/styles/07-utilities/_utilities-colors.scss';
+import styles from './tooltip.scss';
 
 @define
 export class BoltTooltip extends withPreact() {

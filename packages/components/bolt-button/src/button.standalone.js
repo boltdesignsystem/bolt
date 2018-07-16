@@ -9,9 +9,10 @@ import {
   sanitizeBoltClasses,
 } from '@bolt/core';
 
-import styles from './button.scss';
 // @todo Salem, since this imports something that imports '@bolt/core', please make sure this doesn't add a huge amount in the wrong place - Evan
 import visuallyhiddenUtils from '@bolt/global/styles/07-utilities/_utilities-visuallyhidden.scss';
+
+import styles from './button.scss';
 
 /**
  * The ReplaceWithChildren is a helper component used for prerendering components (ex. temp CSS

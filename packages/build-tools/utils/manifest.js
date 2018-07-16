@@ -1,11 +1,11 @@
-const log = require('./log');
-const { ensureFileExists } = require('./general');
 const { promisify } = require('util');
 const fs = require('fs');
+const path = require('path');
+const log = require('./log');
+const { ensureFileExists } = require('./general');
 const writeFile = promisify(fs.writeFile);
 const { getDataFile } = require('./yaml');
 const { validateSchemaSchema } = require('./schemas');
-const path = require('path');
 const { getConfig } = require('./config-store');
 
 let boltManifest = {
