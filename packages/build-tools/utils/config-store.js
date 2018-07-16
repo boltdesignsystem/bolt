@@ -30,6 +30,7 @@ async function getDefaultConfig() {
       port: ports[0],
       proxyPort: ports[1],
       renderingServicePort: ports[2],
+      i18n: configSchema.properties.i18n.default,
       renderingService: configSchema.properties.renderingService.default,
       namespace: configSchema.properties.namespace.default,
       templatesDir: configSchema.properties.templatesDir.default,

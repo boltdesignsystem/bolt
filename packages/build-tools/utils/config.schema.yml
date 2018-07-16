@@ -13,10 +13,13 @@
       title: Namespace prefix to use in classnames
       default: 'bolt'
     lang:
-      type: array
+      type: array, string
       title: Array of language-specific builds to generate. The 1st langugage specified is the default used for local development.
       default:
         - en
+    i18n:
+      type: boolean
+      description: Should the design system's assets be compiled for multiple languages? Automatically defaults to false for local dev, true for prod.
     port:
       type: number
       title: Desired port for Browsersync server

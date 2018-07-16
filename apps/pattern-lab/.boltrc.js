@@ -1,11 +1,15 @@
 const path = require('path');
 const resolve = require('resolve');
+const argv = require('yargs').argv;
 
-module.exports = {
+
+const config = {
+  // array of languages to compile the design system. note, these are ignored when the --i18n flag is set to false
   lang: [
-    'en', // default language used
-    'ja'
+    'en',
+    'ja',
   ],
+
   renderingService: true, // starts PHP service for rendering Twig templates
   openServerAtStart: true,
   // Environmental variable / preset to use

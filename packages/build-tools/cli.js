@@ -58,6 +58,19 @@ const configFilePath = path.resolve(process.cwd(), program.configFile || '.boltr
           config.prod :
           program.prod;
 
+        config.i18n = typeof options.i18n === 'undefined' ?
+          (config.prod ? true : false) :
+          options.i18n;
+
+        // If i18n is disabled, ignore and remove lang config settings
+        if (config.lang && config.i18n === false){
+          config.lang = [
+            config.lang[0],
+          ];
+        }
+        delete config['lang']
+
+
         return config;
       });
 
