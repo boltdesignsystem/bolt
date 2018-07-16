@@ -77,7 +77,6 @@ const config = {
 
   components: {
     global: [
-      '@bolt/core',
       '@bolt/global',
       '@bolt/internal-schema-form',
       '@bolt/components-placeholder',
@@ -101,7 +100,6 @@ const config = {
       '@bolt/components-form',
       '@bolt/components-headline',
       '@bolt/components-icon',
-      '@bolt/components-icons',
       '@bolt/components-image',
       '@bolt/components-link',
       '@bolt/components-nav-indicator',
@@ -122,7 +120,6 @@ const config = {
       '@bolt/components-tooltip',
       '@bolt/components-unordered-list',
       '@bolt/components-video',
-
       /**
        * note: resolving these paths isn't typically required when
        * the .boltrc config is run through the bolt CLI tool (ie.
@@ -143,7 +140,14 @@ const config = {
       //   scss: ./src/index.scss',
       //   js: './src/index.js',
       // },
-      '@bolt/components-critical-fonts',
     ],
-      },
+  },
 };
+
+if (argv.prod){
+  config.components.individual.push('@bolt/components-critical-fonts');
+} else {
+  config.components.global.push('@bolt/components-critical-fonts');
+}
+
+module.exports = config;
