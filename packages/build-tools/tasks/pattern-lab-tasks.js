@@ -18,23 +18,18 @@ const timer = require('../utils/timer');
 let plSource, plPublic, consolePath;
 let config;
 
-async function asyncConfig(){
-  if (config){
+async function asyncConfig() {
+  if (config) {
     return config;
   } else {
-    config = Object.assign({
-      plConfigFile: 'config/config.yml',
-      watchedExtensions: [
-        'twig',
-        'json',
-        'yaml',
-        'yml',
-        'md',
-        'png',
-        'php',
-      ],
-      debounceRate: 1000,
-    }, await getConfig());
+    config = Object.assign(
+      {
+        plConfigFile: 'config/config.yml',
+        watchedExtensions: ['twig', 'json', 'yaml', 'yml', 'md', 'png', 'php'],
+        debounceRate: 1000,
+      },
+      await getConfig(),
+    );
 
     const plConfig = readYamlFileSync(config.plConfigFile);
     const plRoot = path.join(config.plConfigFile, '../..');
@@ -47,22 +42,23 @@ async function asyncConfig(){
 }
 
 async function plBuild(errorShouldExit) {
-  config = config || await asyncConfig();
+  config = config || (await asyncConfig());
 
   return new Promise(async (resolve, reject) => {
     const plSpinner = ora(chalk.blue('Building Pattern Lab...')).start();
     const startTime = timer.start();
     // log.taskStart('build: pattern lab');
     events.emit('pattern-lab:precompile');
-    sh('php', [
-      '-d',
-      'memory_limit=4048M',
-      consolePath,
-      '--generate',
-    ], errorShouldExit, false)
-      .then((output) => {
-
-        plSpinner.succeed(chalk.green(`Built Pattern Lab in ${timer.end(startTime)}`));
+    sh(
+      'php',
+      ['-d', 'memory_limit=4048M', consolePath, '--generate'],
+      errorShouldExit,
+      false,
+    )
+      .then(output => {
+        plSpinner.succeed(
+          chalk.green(`Built Pattern Lab in ${timer.end(startTime)}`),
+        );
 
         if (config.verbosity > 2) {
           console.log('---');
@@ -74,7 +70,7 @@ async function plBuild(errorShouldExit) {
 
         resolve(output);
       })
-      .catch((error) => {
+      .catch(error => {
         plSpinner.fail(chalk.red('Building Pattern Lab Failed'));
         console.log(error);
         // reject(error);
@@ -96,7 +92,7 @@ async function compileWithNoExit() {
 compileWithNoExit.displayName = 'pattern-lab:compile';
 
 async function watch() {
-  config = config || await getConfig();
+  config = config || (await getConfig());
   const dirs = await manifest.getAllDirs();
 
   // Used by watches
@@ -119,10 +115,7 @@ async function watch() {
   const watcher = chokidar.watch(watchedFiles, {
     ignoreInitial: true,
     cwd: process.cwd(),
-    ignore: [
-      '**/node_modules/**',
-      '**/vendor/**',
-    ],
+    ignore: ['**/node_modules/**', '**/vendor/**'],
   });
 
   // list of all events: https://www.npmjs.com/package/chokidar#methods--events
@@ -132,7 +125,6 @@ async function watch() {
     }
     debouncedCompile();
   });
-
 }
 
 watch.description = 'Watch and rebuild Pattern Lab';

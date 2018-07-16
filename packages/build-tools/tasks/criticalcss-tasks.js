@@ -5,7 +5,7 @@ const path = require('path');
 let config;
 
 async function build() {
-  config = config || await getConfig();
+  config = config || (await getConfig());
 
   penthouse({
     url: 'http://localhost:3000/',

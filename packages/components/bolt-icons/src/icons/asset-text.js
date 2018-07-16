@@ -7,8 +7,7 @@ export const AssetText = ({ bgColor, fgColor, size, ...otherProps }) => {
       height={size}
       {...otherProps}
       viewBox="0 0 24 24"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-    >
+      xmlns:xlink="http://www.w3.org/1999/xlink">
       <defs>
         <path id="a" d="M0 1V0h20v2H0V1z" />
       </defs>

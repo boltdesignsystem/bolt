@@ -14,7 +14,7 @@ function getBody(request) {
       }
       resolve(body);
     });
-    request.on('error', (e) => {
+    request.on('error', e => {
       console.error(`problem with request: ${e.message}`);
       reject(e.message);
     });
@@ -40,16 +40,22 @@ async function handleRequest(req, res, next) {
     case '/render-twig':
       try {
         /** @var renderResponse {Response} */
-        const renderResponse = await fetch(`http://127.0.0.1:${config.renderingServicePort}${search}`, {
-          method,
-          body: method === 'POST' ? JSON.stringify(body) : null,
-        });
+        const renderResponse = await fetch(
+          `http://127.0.0.1:${config.renderingServicePort}${search}`,
+          {
+            method,
+            body: method === 'POST' ? JSON.stringify(body) : null,
+          },
+        );
         const data = await renderResponse.text();
         // console.log(renderResponse);
 
         const { status } = renderResponse;
         const warning = renderResponse.headers.get('Warning');
-        res.setHeader('Content-Type', renderResponse.headers.get('Content-Type'));
+        res.setHeader(
+          'Content-Type',
+          renderResponse.headers.get('Content-Type'),
+        );
         res.statusCode = status;
         if (warning) {
           res.statusMessage = warning;
@@ -62,10 +68,17 @@ async function handleRequest(req, res, next) {
       break;
     default:
       res.setHeader('Content-Type', 'application/json');
-      res.end(JSON.stringify({
-        ok: false,
-        message: `Not api route found at: ${url}`,
-      }), 'utf8', () => console.log(`Responded to an unknown API endpoint request for ${method} to ${url}.`));
+      res.end(
+        JSON.stringify({
+          ok: false,
+          message: `Not api route found at: ${url}`,
+        }),
+        'utf8',
+        () =>
+          console.log(
+            `Responded to an unknown API endpoint request for ${method} to ${url}.`,
+          ),
+      );
   }
 }
 module.exports = {

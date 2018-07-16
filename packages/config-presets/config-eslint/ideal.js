@@ -1,18 +1,19 @@
 module.exports = {
   parser: 'babel-eslint',
   plugins: ['prettier'],
-  extends: ['eslint-config-airbnb-base'].map(require.resolve),
+  extends: ['eslint-config-airbnb-base', 'eslint-config-prettier'].map(
+    require.resolve,
+  ),
   parserOptions: {
     ecmaVersion: 2017,
     ecmaFeatures: {
-      experimentalObjectRestSpread: true,
+      // experimentalObjectRestSpread: true,
       experimentalDecorators: true,
       jsx: true,
     },
     sourceType: 'module',
   },
   rules: {
-
     'no-unused-vars': [
       'warn',
       {
@@ -21,7 +22,7 @@ module.exports = {
         ignoreRestSiblings: false,
       },
     ],
-    'prettier/prettier': 'warn',
+    'prettier/prettier': ['warn'],
     'eol-last': ['warn', 'always'],
   },
   env: {
@@ -32,10 +33,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       alias: {
-        map: [
-          ['react', 'preact-compat'],
-          ['react-dom', 'preact-compat'],
-        ],
+        map: [['react', 'preact-compat'], ['react-dom', 'preact-compat']],
         extensions: ['.ts', '.js', '.jsx', '.json'],
       },
     },
