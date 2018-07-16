@@ -37,6 +37,7 @@ async function getExtraTasks() {
 
 async function clean() {
   config = config || await getConfig();
+
   try {
     let dirs = [];
     switch (config.env) {
@@ -122,8 +123,12 @@ async function images() {
   }
 }
 
-async function build(shouldReturnTime = false) {
+async function build(
+  localDev = false,
+  shouldReturnTime = false,
+) {
   const startTime = timer.start();
+  config = config || await getConfig();
   config = config || await getConfig();
 
   try {
@@ -132,22 +137,28 @@ async function build(shouldReturnTime = false) {
     await internalTasks.mkDirs();
     await manifest.writeBoltManifest();
     await manifest.writeTwigNamespaceFile(process.cwd(), config.extraTwigNamespaces);
-    await webpackTasks.compile();
+
+    localDev === false ?
+      await webpackTasks.compile():
+      '';
+
     await images();
 
-    switch (config.env) {
-      case 'pl':
-        await extraTasks.patternLab.compile();
-        break;
-      case 'static':
-        await extraTasks.static.compile();
-        break;
-      case 'pwa':
-        return Promise.all([
-          extraTasks.static.compile(),
-          extraTasks.patternLab.compile(),
-        ]);
-        break;
+    if (localDev === false) {
+      switch (config.env) {
+        case 'pl':
+          await extraTasks.patternLab.compile();
+          break;
+        case 'static':
+          await extraTasks.static.compile();
+          break;
+        case 'pwa':
+          return Promise.all([
+            extraTasks.static.compile(),
+            extraTasks.patternLab.compile(),
+          ]);
+          break;
+      }
     }
 
     if (shouldReturnTime) {
@@ -197,10 +208,14 @@ async function start() {
 
   try {
     if (!config.quick) {
-      buildTime = await build(true);
+      buildTime = await build({
+        localDev: true,
+        shouldReturnTime: true
+      );
     }
     return Promise.all([
       serve(buildTime),
+      await extraTasks.patternLab.compile(),
       watch(),
     ]);
   } catch (error) {
