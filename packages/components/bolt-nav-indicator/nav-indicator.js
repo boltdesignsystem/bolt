@@ -18,7 +18,7 @@ const isActiveClass = 'is-active';
 
 // Listen for smooth scroll events so we can determine whether or not a link was just clicked on vs if the user is scrolling (to change animation behavior)
 function logScrollEvent(event) {
-  if (event.type === 'scrollStart') {
+  if (event.type === 'scrollStart'){
     window.isScrolling = true;
   } else if (event.type === 'scrollStop' || event.type === 'scrollCancel') {
     window.isScrolling = false;
@@ -30,16 +30,17 @@ document.addEventListener('scrollStart', logScrollEvent, false);
 document.addEventListener('scrollStop', logScrollEvent, false);
 document.addEventListener('scrollCancel', logScrollEvent, false);
 
+
 /* From Modernizr */
 function whichTransitionEndEvent() {
   var t;
   var el = document.createElement('fakeelement');
   var transitions = {
-    transition: 'transitionend',
-    OTransition: 'oTransitionEnd',
-    MozTransition: 'transitionend',
-    WebkitTransition: 'webkitTransitionEnd',
-  };
+    'transition': 'transitionend',
+    'OTransition': 'oTransitionEnd',
+    'MozTransition': 'transitionend',
+    'WebkitTransition': 'webkitTransitionEnd',
+  }
 
   for (t in transitions) {
     if (el.style[t] !== undefined) {
@@ -48,11 +49,12 @@ function whichTransitionEndEvent() {
   }
 }
 
+
 // gumshoeStateModule stores an offset value that persists even when it's called multiple times.  If the offset
 // is the same as the last time it was called, it avoids initializing gumshoe again (among other things, when
 // initializing multiple navbars on one page, this only initializes gumshoe once).  If the offset value HAS changed--
 // presumably because the header has adjusted its own height--gumshoe will be re-initialized with the new value.
-let gumshoeStateModule = (function() {
+let gumshoeStateModule = (function () {
   let offset; // Private variable
   let pub = {}; // public object - returned at end of module to allow external interaction
   let reference;
@@ -62,7 +64,7 @@ let gumshoeStateModule = (function() {
   const gumshoeExtraOffset = 100;
 
   // navSelectorInstance is used to map up the element calling setOffset so <bolt-nav-indicator> methods can get used
-  pub.setOffset = function(newOffset, navSelectorInstance) {
+  pub.setOffset = function (newOffset, navSelectorInstance) {
     if (offset !== newOffset) {
       offset = newOffset;
 
@@ -75,19 +77,20 @@ let gumshoeStateModule = (function() {
         offset: parseInt(offset) + gumshoeExtraOffset,
         callback(nav) {
           /**
-           * Exit early if nav OR nav.nav (the target) is undefined. Workaround to occasional JS error throwing:
-           * `Cannot read property 'nav' of undefined`
-           */
+            * Exit early if nav OR nav.nav (the target) is undefined. Workaround to occasional JS error throwing:
+            * `Cannot read property 'nav' of undefined`
+            */
           if (nav === undefined) {
             return;
           }
 
-          if (nav.nav === undefined) {
+          if (nav.nav === undefined){
             return;
           }
 
           // logic once we know we should try to animate in a gumshoe-activated link
-          function activateGumshoeLink(waitedToAnimate = false) {
+          function activateGumshoeLink() {
+
             const originalTarget = nav.nav;
             let originalTargetHref;
             let normalizedTarget;
@@ -99,9 +102,7 @@ let gumshoeStateModule = (function() {
             }
 
             // Need to target via document vs this custom element reference since only one gumshoe instance is shared across every component instance to better optimize for performance
-            const matchedTargetLinks = document.querySelectorAll(
-              `bolt-navlink > [href*="${originalTargetHref}"]`,
-            );
+            const matchedTargetLinks = document.querySelectorAll(`bolt-navlink > [href*="${originalTargetHref}"]`);
 
             for (var i = 0, len = matchedTargetLinks.length; i < len; i++) {
               const linkInstance = matchedTargetLinks[i];
@@ -131,13 +132,10 @@ let gumshoeStateModule = (function() {
           }
 
           // if this there's a <bolt-nav-priority> instance, make sure that component's ready to go before proceeding trying to animate anything.
-          if (nav.nav.closest('bolt-nav-priority')) {
+          if (nav.nav.closest('bolt-nav-priority')){
             const priorityNav = nav.nav.closest('bolt-nav-priority');
-            if (!priorityNav.isReady) {
-              document.addEventListener(
-                'nav-priority:ready',
-                activateGumshoeLink(true),
-              );
+            if (!priorityNav.isReady){
+              document.addEventListener('nav-priority:ready', activateGumshoeLink);
             } else {
               activateGumshoeLink();
             }
@@ -149,21 +147,23 @@ let gumshoeStateModule = (function() {
     }
   };
 
-  pub.getOffset = function() {
+  pub.getOffset = function () {
     return offset;
   };
 
   return pub;
-})();
+}());
+
+
+
+
 
 @define
 export class BoltNavIndicator extends BoltComponent() {
   static is = 'bolt-nav-indicator';
 
   // Behavior for `<bolt-nav>` parent container
-  static get observedAttributes() {
-    return ['offset'];
-  }
+  static get observedAttributes() { return ['offset']; }
 
   constructor(self) {
     self = super(self);
@@ -191,7 +191,7 @@ export class BoltNavIndicator extends BoltComponent() {
   render() {
     return this.html`
       ${this.slot('default')}
-    `;
+    `
   }
 
   get offset() {
@@ -256,7 +256,7 @@ export class BoltNavIndicator extends BoltComponent() {
       return;
     }
 
-    if (!this.isAnimating) {
+    if (!this.isAnimating){
       this.isAnimating = true;
     }
 
@@ -275,25 +275,24 @@ export class BoltNavIndicator extends BoltComponent() {
 
     // No link is currently active; the first link to become active is a special snowflake when it comes to animation.
     if (!this.activeLink && isVisible(link)) {
+
       // First, immediately center the indicator.
       this._indicator.style.transition = 'none';
       this._indicator.style.opacity = 1;
       this._indicator.style.width = linkWidth + 'px';
-      this._indicator.style.transform =
-        'translateX(' + linkOffsetLeft + 'px) scaleX(0)';
+      this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px) scaleX(0)';
 
       // Then, reset the transition and expand the indicator to the full width of the link.
       this.flushCss(this._indicator);
       this._indicator.style.transition = '';
       this._indicator.style.opacity = 1;
       this._indicator.style.width = linkWidth + 'px';
-      this._indicator.style.transform =
-        'translateX(' + linkOffsetLeft + 'px) scaleX(1)';
+      this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px) scaleX(1)';
+
     } else {
       this._indicator.style.opacity = 1;
       this._indicator.style.width = linkWidth + 'px';
-      this._indicator.style.transform =
-        'translateX(' + linkOffsetLeft + 'px) scaleX(1)';
+      this._indicator.style.transform = 'translateX(' + linkOffsetLeft + 'px) scaleX(1)';
     }
   }
 
@@ -312,6 +311,7 @@ export class BoltNavIndicator extends BoltComponent() {
       customElements.whenDefined('bolt-nav-priority'),
       customElements.whenDefined('bolt-navlink'),
     ]).then(_ => {
+
       // If the nav indicator already exists, exit early.
       if (this.querySelector(`.${this.indicatorClass}`)) {
         return;
@@ -320,20 +320,16 @@ export class BoltNavIndicator extends BoltComponent() {
       const indicatorElem = document.createElement('li');
       indicatorElem.classList.add(`${this.indicatorClass}`);
 
-      const indicatorElement = this.querySelector('ul').appendChild(
-        indicatorElem,
-      );
+      const indicatorElement = this.querySelector('ul').appendChild(indicatorElem);
       this._indicator = indicatorElement;
 
       // Get the closest navbar component (if it exists) to use as a fallback offset
       const navbarParent = this.closest('bolt-navbar');
-      if (navbarParent) {
+      if (navbarParent){
         this.offsetDefault = navbarParent.offsetHeight;
       }
 
-      this.offset = this.hasAttribute('offset')
-        ? this.getAttribute('offset')
-        : this.offsetDefault;
+      this.offset = this.hasAttribute('offset') ? this.getAttribute('offset') : this.offsetDefault;
 
       this._initializeGumshoe();
       this._upgradeProperty('offset');
@@ -344,7 +340,7 @@ export class BoltNavIndicator extends BoltComponent() {
     });
   }
 
-  _onTransitionEnd() {
+  _onTransitionEnd(){
     if (this.isAnimating) {
       this.isAnimating = false;
     }
@@ -365,20 +361,19 @@ export class BoltNavIndicator extends BoltComponent() {
   }
 }
 
+
 // Create a custom 'optimizedResize' event that works just like window.resize but is more performant because it
 // won't fire before a previous event is complete.
 // This was adapted from https://developer.mozilla.org/en-US/docs/Web/Events/resize
-(function() {
+(function () {
   function throttle(type, name, obj) {
     obj = obj || window;
     let running = false;
 
     function func() {
-      if (running) {
-        return;
-      }
+      if (running) { return; }
       running = true;
-      requestAnimationFrame(function() {
+      requestAnimationFrame(function () {
         obj.dispatchEvent(new CustomEvent(name));
         running = false;
       });

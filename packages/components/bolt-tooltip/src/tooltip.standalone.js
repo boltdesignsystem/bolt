@@ -46,7 +46,11 @@ export class BoltTooltip extends withPreact() {
     const baseClass = 'c-bolt-tooltip';
     const vert = data.positionVert ? data.positionVert : 'up';
 
-    const classes = [baseClass, `is-push-${vert}`, 'is-align-center'];
+    const classes = [
+      baseClass,
+      `is-push-${vert}`,
+      'is-align-center',
+    ];
 
     if (data.triggerType === 'button') {
       classes.push(`${baseClass}--action`);
@@ -65,7 +69,9 @@ export class BoltTooltip extends withPreact() {
     // @todo: Conditionally render slot similar to how HyperHtml is doing it
     return (
       <span>
-        {this.useShadow && <style>{styles[0][1]}</style>}
+        {this.useShadow &&
+          <style>{styles[0][1]}</style>
+        }
         <span className={classes.join(' ')}>
           <tooltip-trigger
             text={data.triggerText}
@@ -77,11 +83,7 @@ export class BoltTooltip extends withPreact() {
             toggle-icon={data.triggerToggleIcon}
             trigger-id={this.triggerID}
           />
-          <TooltipContent
-            trigger={data.triggerType}
-            trigger-id={this.triggerID}
-            count={data.count}
-          >
+          <TooltipContent trigger={data.triggerType} trigger-id={this.triggerID} count={data.count}>
             <span dangerouslySetInnerHTML={{ __html: data.content }} />
           </TooltipContent>
         </span>
@@ -132,12 +134,12 @@ class TooltipTrigger extends withPreact() {
 
     return (
       <span>
-        {data.trigger === 'button' && (
-          <span>
-            <style>{button[0][1]}</style>
-            <style>{colorUtils[0][1]}</style>
-          </span>
-        )}
+        {data.trigger === 'button' &&
+        <span>
+          <style>{button[0][1]}</style>
+          <style>{colorUtils[0][1]}</style>
+        </span>
+        }
         <span
           className="c-bolt-tooltip__trigger"
           aria-describedby={data.triggerId}
@@ -148,43 +150,43 @@ class TooltipTrigger extends withPreact() {
             }
           }}
         >
-          {data.trigger === 'button' && (
-            <button className={classes.join(' ')}>
-              <div className="toggle--closed">
-                {data.icon && (
-                  <span className="c-bolt-button__icon">
-                    <bolt-icon name={data.icon} size={size} />
-                  </span>
-                )}
-                {data.text}
-              </div>
-              <div className="toggle--open">
-                {data.toggleIcon && (
-                  <span className="c-bolt-button__icon">
-                    <bolt-icon name={data.toggleIcon} size={size} />
-                  </span>
-                )}
-                {data.toggleText}
-              </div>
-            </button>
-          )}
-          {data.trigger === 'text' && (
-            <span>
-              {data.icon && (
+          {data.trigger === 'button' &&
+          <button className={classes.join(' ')}>
+            <div className="toggle--closed">
+              {data.icon &&
                 <span className="c-bolt-button__icon">
                   <bolt-icon name={data.icon} size={size} />
                 </span>
-              )}
+              }
               {data.text}
-            </span>
-          )}
+            </div>
+            <div className="toggle--open">
+              {data.toggleIcon &&
+                  <span className="c-bolt-button__icon">
+                    <bolt-icon name={data.toggleIcon} size={size} />
+                  </span>
+              }
+              {data.toggleText}
+            </div>
+          </button>
+          }
+          {data.trigger === 'text' &&
+          <span>
+            {data.icon &&
+              <span className="c-bolt-button__icon">
+                <bolt-icon name={data.icon} size={size} />
+              </span>
+            }
+            {data.text}
+          </span>
+          }
         </span>
       </span>
     );
   }
 }
 
-const TooltipContent = props => {
+const TooltipContent = (props) => {
   const classes = [
     'c-bolt-tooltip__content',
     `c-bolt-tooltip__content--${props.trigger}`,
@@ -193,13 +195,10 @@ const TooltipContent = props => {
     classes.push(`c-bolt-tooltip__content--count-${props.count}`);
   }
   return (
-    <span
-      id={props['trigger-id']}
-      className={classes.join(' ')}
-      role="tooltip"
-      aria-hidden="true"
-    >
-      <span className="c-bolt-tooltip__content-bubble">{props.children}</span>
+    <span id={props['trigger-id']} className={classes.join(' ')} role="tooltip" aria-hidden="true">
+      <span className="c-bolt-tooltip__content-bubble">
+        {props.children}
+      </span>
     </span>
   );
 };

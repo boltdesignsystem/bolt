@@ -1,46 +1,96 @@
 const browserSync = require('browser-sync');
 const events = require('../utils/events');
-const config = require('../utils/config-store').getConfig();
+const { getConfig } = require('../utils/config-store');
 const log = require('../utils/log');
+const sh = require('../utils/sh');
+const { handleRequest } = require('../api');
 const server = browserSync.create();
+const path = require('path');
+const resolve = require('resolve');
+const webpackServeWaitpage = require('./webpack-serve-waitpage');
+let config;
 
-// https://www.browsersync.io/docs/options
-const serverConfig = {
-  open: config.openServerAtStart,
-  startPath: config.startPath, // Since `/` doesn't do anything and we want to avoid double browserSync notifications from the very beginning
-  port: config.port,
-  host: 'localhost',
-  ghostMode: false,
-  notify: false, // Hide notifications till we come up with a less disruptive refresh UI
-  snippetOptions: {
-    async: true,
-    blacklist: ['/index.html', '/', '/?*'], // prevents double browsersync
-    rule: {
-      match: /<\/body>/i,
-      fn(snippet, match) {
-        return snippet + match;
-      },
-    },
-  },
-};
+async function phpServer() {
+  config = config || await getConfig();
 
-if (config.webpackDevServer) {
-  // proxy the Webpack Dev Server endpoint
-  serverConfig.proxy = `http://localhost:${config.proxyPort}/`;
-  if (config.env === 'pl') {
-    // https://www.browsersync.io/docs/options#option-server
-    serverConfig.serveStatic = [];
-    serverConfig.serveStatic.push(config.wwwDir);
-  }
-} else {
-  serverConfig.server = [config.wwwDir];
+  return new Promise((resolve, reject) => {
+    console.log('Starting up local php render twig api server at port ', config.renderingServicePort);
+    sh('php', ['-S', `127.0.0.1:${config.renderingServicePort}`,
+      'TwigRendererApi.php',
+    ], true, true, true, true)
+      .then(output => {
+        console.log('---');
+        console.log(output);
+        console.log('===');
+      })
+      .catch(error => {
+        console.log('---Error:');
+        console.log(error);
+        console.log('===End: Error');
+        reject(error);
+      });
+  });
 }
 
-function serve() {
+async function getServerConfig(){
+  config = config || await getConfig();
+
+  // https://www.browsersync.io/docs/options
+  const serverConfig = {
+    open: config.openServerAtStart,
+    startPath: config.startPath, // Since `/` doesn't do anything and we want to avoid double browserSync notifications from the very beginning
+    port: config.port,
+    host: '127.0.0.1',
+    ghostMode: false,
+    baseDir: config.wwwDir,
+    logFileChanges: false,
+    logConnections: false,
+    notify: false, // Hide notifications till we come up with a less disruptive refresh UI
+    logLevel: 'silent',
+    reloadOnRestart: true,
+    files: [
+      config.wwwDir + '**/*.css',
+    ],
+    snippetOptions: {
+      async: true,
+    },
+  };
+
+  if (config.renderingService) {
+    serverConfig.middleware = [
+      {
+        route: '/api',
+        handle: handleRequest,
+      },
+    ];
+  }
+
+  if (config.webpackDevServer) {
+    // proxy the Webpack Dev Server endpoint
+    serverConfig.proxy = `http://localhost:${config.proxyPort}/`;
+    if (config.env === 'pl' || config.env === 'hybrid') {
+      // https://www.browsersync.io/docs/options#option-server
+      serverConfig.serveStatic = [];
+      serverConfig.serveStatic.push(config.wwwDir);
+    }
+  } else {
+    serverConfig.server = [
+      config.wwwDir,
+    ];
+  }
+
+  return serverConfig;
+}
+
+
+async function serve() {
+  config = config || await getConfig();
+  const serverConfig = await getServerConfig();
+
   // https://www.browsersync.io/docs/api#api-init
   server.init(serverConfig, () => {
     if (config.verbosity > 3) {
-      // log.info('BrowserSync set up and ready to go... (this notice may be redundant)');
+      log.info('BrowserSync set up and ready to go... (this notice may be redundant)');
     }
   });
 }
@@ -54,14 +104,19 @@ function reload(files) {
   server.reload(files);
 }
 
-events.on('reload', files => {
+events.on('reload', async (files) => {
+  config = config || await getConfig();
+
   if (config.verbosity > 4) {
     log.info('Event triggered: "reload"', files);
   }
   reload(files);
 });
 
+
 module.exports = {
+  getServerConfig,
   serve,
   reload,
+  phpServer,
 };

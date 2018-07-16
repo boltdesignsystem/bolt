@@ -32,4 +32,15 @@ module.exports = {
     node: true,
     es6: true,
   },
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [
+          ['react', 'preact-compat'],
+          ['react-dom', 'preact-compat'],
+        ],
+        extensions: ['.ts', '.js', '.jsx', '.json'],
+      },
+    },
+  },
 };

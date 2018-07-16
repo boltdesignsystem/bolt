@@ -71,7 +71,7 @@
 
 {% if icon %}
   {# Covers backward compatibility with use of both left and before to describe icon position #}
-  {% set iconPosition = (icon.position == "left" or icon.position == "before") ? "before" : "after"  %}
+  {% set iconPosition = (icon.position == "left" or icon.position == "before") ? "before" : schema.properties.icon.properties.position.default  %}
 {% endif %}
 
 {# Set up the custom element's prop values based on the params passed into the Twig template - used to hydrate the component's initial state and appearance once the Button Component's JavaScript kicks in #}

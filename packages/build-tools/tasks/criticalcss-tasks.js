@@ -1,9 +1,12 @@
 const penthouse = require('penthouse');
-const config = require('../utils/config-store').getConfig();
+const { getConfig } = require('../utils/config-store');
 const fs = require('fs');
 const path = require('path');
+let config;
 
 async function build() {
+  config = config || await getConfig();
+
   penthouse({
     url: 'http://localhost:3000/',
 
