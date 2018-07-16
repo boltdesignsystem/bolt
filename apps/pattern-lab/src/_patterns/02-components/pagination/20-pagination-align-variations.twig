@@ -10,6 +10,9 @@
       {% include "@bolt-components-pagination/pagination.twig" with {
         current: 5,
         total: 10,
+        first: {
+          href: '#!'
+        },
         previous: {
           href: '#!'
         },
@@ -32,7 +35,10 @@
         },
         next: {
           href: '#!'
-        }
+        },
+        last: {
+          href: '#!'
+        },
       } only %}
     {% endcell %}
   {% endgrid %}
@@ -45,6 +51,9 @@
       {% include "@bolt-components-pagination/pagination.twig" with {
         current: 5,
         total: 10,
+        first: {
+          href: '#!'
+        },
         previous: {
           href: '#!'
         },
@@ -67,7 +76,10 @@
         },
         next: {
           href: '#!'
-        }
+        },
+        last: {
+          href: '#!'
+        },
       } only %}
     {% endcell %}
     {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
