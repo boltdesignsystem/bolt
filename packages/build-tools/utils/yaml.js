@@ -1,8 +1,8 @@
 const { promisify } = require('util');
-const log = require('./log');
 const yaml = require('js-yaml');
 const fs = require('fs');
 const path = require('path');
+const log = require('./log');
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 const { ensureFileExists } = require('./general');

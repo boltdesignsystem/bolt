@@ -63,7 +63,7 @@ async function getEnvVarsConfig() {
         value = false;
       } else {
         const numberAttempt = parseInt(value);
-        if (!isNaN(numberAttempt)) {
+        if (!Number.isNaN(numberAttempt)) {
           value = numberAttempt;
         }
       }

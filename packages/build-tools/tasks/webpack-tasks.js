@@ -1,16 +1,16 @@
 const webpack = require('webpack');
 const serve = require('webpack-serve');
 const chalk = require('chalk');
+const Ora = require('ora');
+const { promisify } = require('util');
+const fs = require('fs');
+const path = require('path');
 const createWebpackConfig = require('../create-webpack-config');
 const formatWebpackMessages = require('../utils/formatWebpackMessages');
 const events = require('../utils/events');
 const log = require('../utils/log');
 const { getConfig } = require('../utils/config-store');
-const Ora = require('ora');
-const { promisify } = require('util');
-const fs = require('fs');
 const writeFile = promisify(fs.writeFile);
-const path = require('path');
 const timer = require('../utils/timer');
 const webpackServeWaitpage = require('./webpack-serve-waitpage');
 

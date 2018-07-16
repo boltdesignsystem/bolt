@@ -8,8 +8,8 @@ import {
 
 import Handorgel from 'handorgel';
 
-import styles from './dropdown.scss';
 import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
+import styles from './dropdown.scss';
 
 @define
 export class BoltDropdown extends BoltComponent() {

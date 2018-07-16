@@ -1,7 +1,7 @@
-const yaml = require('./yaml');
 const fs = require('fs');
 const path = require('path');
 const del = require('del');
+const yaml = require('./yaml');
 
 // @todo Use `bigJson` and `bigYaml` to do more tests similar to those smaller ones already done below
 const bigJson = {

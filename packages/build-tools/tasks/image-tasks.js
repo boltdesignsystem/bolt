@@ -7,14 +7,14 @@ const writeFile = promisify(fs.writeFile);
 const mkdirp = promisify(require('mkdirp'));
 const chokidar = require('chokidar');
 const chalk = require('chalk');
-const log = require('../utils/log');
 const globby = require('globby');
-const timer = require('../utils/timer');
 const ora = require('ora');
 const sharp = require('sharp');
+const SVGO = require('svgo');
+const log = require('../utils/log');
+const timer = require('../utils/timer');
 const { getConfig } = require('../utils/config-store');
 const { flattenArray } = require('../utils/general');
-const SVGO = require('svgo');
 let config;
 
 const svgo = new SVGO({

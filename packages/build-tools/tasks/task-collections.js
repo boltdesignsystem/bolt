@@ -1,5 +1,5 @@
-const log = require('../utils/log');
 const path = require('path');
+const log = require('../utils/log');
 const webpackTasks = require('./webpack-tasks');
 const criticalcssTasks = require('./criticalcss-tasks');
 const manifest = require('../utils/manifest');

@@ -9,6 +9,7 @@ try {
     Object.defineProperty({}, 'passive', {
       get() {
         isPassiveSupported = true;
+        return true;
       },
     }),
   );

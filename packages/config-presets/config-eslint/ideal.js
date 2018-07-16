@@ -24,6 +24,16 @@ module.exports = {
     ],
     'prettier/prettier': ['warn'],
     'eol-last': ['warn', 'always'],
+    'prefer-destructuring': [
+      'error',
+      {
+        array: true,
+        object: false,
+      },
+      {
+        enforceForRenamedProperties: false,
+      },
+    ],
   },
   env: {
     browser: true,

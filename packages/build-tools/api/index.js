@@ -1,6 +1,6 @@
 const url = require('url');
-const log = require('../utils/log');
 const fetch = require('node-fetch');
+const log = require('../utils/log');
 const config = require('../utils/config-store').getConfig();
 
 function getBody(request) {

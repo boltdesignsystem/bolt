@@ -1,7 +1,7 @@
 const penthouse = require('penthouse');
-const { getConfig } = require('../utils/config-store');
 const fs = require('fs');
 const path = require('path');
+const { getConfig } = require('../utils/config-store');
 let config;
 
 async function build() {
