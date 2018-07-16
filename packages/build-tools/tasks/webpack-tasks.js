@@ -22,6 +22,7 @@ let config;
 let webpackConfigs;
 async function compile() {
   config = config || await getConfig();
+  config.devServer = false;
 
   if (!webpackConfigs){
     webpackConfigs = await createWebpackConfig(config);
@@ -167,6 +168,7 @@ watch.displayName = 'webpack:watch';
 async function server(buildTime) {
   let initialBuild = true;
   config = config || await getConfig();
+  config.devServer = true;
   // const serverConfig = await getServerConfig(); // WIP: working on browsersync integration w/ Webpack
 
   if (!webpackConfigs){
