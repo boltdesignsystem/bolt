@@ -14,6 +14,42 @@
 {% set previousText = previousText | default('Previous'|t) %}
 {% set nextText = nextText | default('Next'|t) %}
 
+{#
+  Display logic for ellipses and first/last links and ellipses.
+#}
+{% set _previousEllipses = true %}
+{% if pages.1 is defined %}
+  {# The first page is already in the pager.  Don't display either the previous ellipses or the separate first item link #}
+  {% set _previousEllipses = false %}
+  {% set first = false %}
+{% elseif pages.2 is defined %}
+  {# The second page is already in the pager, but the first page is not.  Proceed as follows:
+    - If there's a link to the first page, show it but hide the ellipses (because there are no pages
+      between 1 and 2, so an ellipses doesn't make sense).
+    - If there is no link to the first page, DON'T hide the ellipses.  It at least indicates that there are other pages
+      even if you can't like to them directly
+   #}
+  {% if first %}
+    {% set _previousEllipses = false %}
+  {% endif %}
+{% endif %}
+
+{% set _nextEllipses = true %}
+{% set _secondToLast = total - 1 %}
+{% if attribute(pages, total) is defined %}
+  {# Page N is already in the pager.  Don't display either the next ellipses or last item. #}
+  {% set _nextEllipses = false %}
+  {% set last = false %}
+{% elseif  attribute(pages, _secondToLast) is defined %}
+  {# Page N - 1 is already in the pager.  Proceed as follows:
+    - If there's a link to the last page, show it but hide the ellipses (because there are no pages
+      between N-1 and N, so an ellipses doesn't make sense)
+    - If there is no link to the last page, DON'T hide the ellipses.
+   #}
+  {% if last %}
+    {% set _nextEllipses = false %}
+  {% endif %}
+{% endif %}
 
 <bolt-pagination
   {% if total %} total="{{ total }}" {% endif %}
@@ -30,6 +66,21 @@
           {{ previousText }}
         </span>
       </a>
+    {% endif %}
+
+    {% if first %}
+      <a class="{{ "#{baseClass}__item" }}" href="{{ first.href }}">
+      <span class="{{ "#{baseClass}__text" }}">
+        <span class="u-bolt-visuallyhidden">
+          {{ 'Navigate to first page'|t }}
+        </span>
+        1
+      </span>
+      </a>
+    {% endif %}
+
+    {% if _previousEllipses %}
+      <span class="{{ "#{baseClass}__item" }} {{ "#{baseClass}__item--ellipsis" }}" role="presentation">&hellip;</span>
     {% endif %}
 
     {% if pages %}
@@ -54,6 +105,21 @@
           </a>
         {% endif %}
       {% endfor %}
+    {% endif %}
+
+    {% if _nextEllipses %}
+      <span class="{{ "#{baseClass}__item" }} {{ "#{baseClass}__item--ellipsis" }}" role="presentation">&hellip;</span>
+    {% endif %}
+
+    {% if last %}
+      <a class="{{ "#{baseClass}__item" }}" href="{{ last.href }}">
+        <span class="{{ "#{baseClass}__text" }}">
+          <span class="u-bolt-visuallyhidden">
+            {{ 'Navigate to last page'|t }}
+          </span>
+          {{ total }}
+        </span>
+      </a>
     {% endif %}
 
     {% if next %}
