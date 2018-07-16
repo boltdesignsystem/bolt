@@ -211,7 +211,7 @@ async function start() {
       buildTime = await build({
         localDev: true,
         shouldReturnTime: true
-      );
+      ),
     }
     return Promise.all([
       serve(buildTime),
