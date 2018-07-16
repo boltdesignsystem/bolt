@@ -46,10 +46,10 @@ async function getServerConfig(){
     logFileChanges: false,
     logConnections: false,
     notify: false, // Hide notifications till we come up with a less disruptive refresh UI
-    logLevel: 'silent',
     reloadOnRestart: true,
     files: [
       config.wwwDir + '**/*.css',
+      config.wwwDir + '**/*.html',
     ],
     snippetOptions: {
       async: true,
