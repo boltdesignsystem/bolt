@@ -210,8 +210,8 @@ async function start() {
     if (!config.quick) {
       buildTime = await build({
         localDev: true,
-        shouldReturnTime: true
-      ),
+        shouldReturnTime: true,
+      });
     }
     return Promise.all([
       serve(buildTime),
