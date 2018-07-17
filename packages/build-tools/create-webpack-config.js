@@ -14,6 +14,7 @@ const readFile = promisify(fs.readFile);
 const deepmerge = require('deepmerge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TwigPhpLoader = require('twig-php-loader');
+const { getConfig } = require('./utils/config-store');
 const {
   getBoltManifest,
   createComponentsManifest,
@@ -21,7 +22,12 @@ const {
 } = require('./utils/manifest');
 const log = require('./utils/log');
 
-async function createWebpackConfig(config) {
+// Store set of webpack configs used in multiple builds
+let webpackConfigs = [];
+
+async function createWebpackConfig(buildConfig) {
+  const config = buildConfig;
+
   // @TODO: move this setting to .boltrc config
   const sassExportData = require('@theme-tools/sass-export-data')({
     path: path.resolve(process.cwd(), config.dataDir),
@@ -30,10 +36,10 @@ async function createWebpackConfig(config) {
   // map out Twig namespaces with the NPM package name
   const npmToTwigNamespaceMap = await mapComponentNameToTwigNamespace();
 
+  console.log(buildConfig.lang);
   // filename suffix to tack on based on lang being compiled for
-  const langSuffix = `${
-    config.lang && config.lang.length > 1 ? '-' + config.lang : ''
-  }`;
+  let langSuffix = `${config.lang ? '-' + config.lang : ''}`;
+  console.log(langSuffix);
 
   // Default global Sass data defined
   let globalSassData = [
@@ -547,39 +553,44 @@ async function createWebpackConfig(config) {
   return webpackConfig;
 }
 
+// Helper function to associate each unique language in the build config with a separate Webpack build instance (making filenames, etc unique);
+async function assignLangToWebpackConfig(config, lang) {
+  let langSpecificConfig = config;
+
+  if (lang) {
+    langSpecificConfig.lang = lang; // Make sure only ONE language config is set per Webpack build instance.
+  }
+
+  let langSpecificWebpackConfig = await createWebpackConfig(langSpecificConfig);
+
+  if (langSpecificConfig.webpackStats) {
+    langSpecificWebpackConfig.profile = true;
+    langSpecificWebpackConfig.parallelism = 1;
+  }
+
+  // console.log(langSpecificWebpackConfig);
+  webpackConfigs.push(langSpecificWebpackConfig);
+}
+
 module.exports = async function() {
+  const config = await getConfig();
+
   return new Promise(async (resolve, reject) => {
-    const webpackConfigs = [];
-    const config = await require('./utils/config-store').getConfig();
+    const langs = config.lang;
+    const promises = [];
 
     // update the array of Webpack configs so each config is assigned to only one language (used in the filename's suffix when bundling language-tailed CSS and JS)
-    if (config.lang && config.lang.length > 1) {
-      config.lang.reverse(); // Make sure the 1st language in the array is LAST since that's the one used for the local dev environment.
-
-      await Promise.all(
-        config.lang.map(async lang => {
-          config.lang = lang; // Make sure only ONE language config is set per Webpack build instance.
-
-          const webpackConfig = await createWebpackConfig(config);
-
-          if (config.webpackStats) {
-            webpackConfig.profile = true;
-            webpackConfig.parallelism = 1;
-          }
-
-          webpackConfigs.push(webpackConfig);
-        }),
-      );
-    } else {
-      const webpackConfig = await createWebpackConfig(config);
-
-      if (config.webpackStats) {
-        webpackConfig.profile = true;
-        webpackConfig.parallelism = 1;
+    if (langs && langs.length > 1) {
+      for (const lang of langs) {
+        /* eslint-disable no-await-in-loop */
+        promises.push(await assignLangToWebpackConfig(config, lang));
       }
-
-      webpackConfigs.push(webpackConfig);
+    } else {
+      promises.push(await assignLangToWebpackConfig(config, null));
     }
-    return resolve(webpackConfigs);
+
+    await Promise.all(promises).then(() => {
+      return resolve(webpackConfigs);
+    });
   });
 };

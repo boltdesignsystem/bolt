@@ -2,13 +2,10 @@ const path = require('path');
 const resolve = require('resolve');
 const argv = require('yargs').argv;
 
-
 const config = {
   // array of languages to compile the design system. note, these are ignored when the --i18n flag is set to false
-  lang: [
-    'en',
-    'ja',
-  ],
+  // Note: if lang is defined, the first item is currently the one used by default in the Pattern Lab build, pending further iterations on this!
+  lang: ['en', 'ja'],
 
   renderingService: true, // starts PHP service for rendering Twig templates
   openServerAtStart: true,
@@ -22,10 +19,10 @@ const config = {
   schemaErrorReporting: 'cli',
   webpackDevServer: true,
   extraTwigNamespaces: {
-    'bolt': {
+    bolt: {
       recursive: true,
     },
-    'pl': {
+    pl: {
       recursive: true,
       paths: [
         './src',
@@ -35,9 +32,7 @@ const config = {
     },
     'pattern-lab': {
       recursive: true,
-      paths: [
-        '../../packages/uikit-workshop/src/html-twig',
-      ],
+      paths: ['../../packages/uikit-workshop/src/html-twig'],
     },
     /* Example of including a new component namesapce config / overriding an existing config */
     // 'bolt-components-sticky': {
@@ -67,12 +62,12 @@ const config = {
 
   // Currently only supports a 'scss' key with an array of Sass partials to pull in.
   globalData: {
-    'scss': [
+    scss: [
       // './src/test-overrides.scss' // example of including an additional Sass partial to set / redefine additional default values, globally.
     ],
-    'js': [
+    js: [
       // './src/global-data.js', // example of including a JS files with a default export to globally include extra data to all Bolt JS components
-    ]
+    ],
   },
 
   components: {
@@ -144,7 +139,7 @@ const config = {
   },
 };
 
-if (argv.prod){
+if (argv.prod) {
   config.components.individual.push('@bolt/components-critical-fonts');
 } else {
   config.components.global.push('@bolt/components-critical-fonts');
