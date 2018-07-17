@@ -4,8 +4,8 @@ const TRAVIS_JOB_NUMBER = process.env.TRAVIS_JOB_NUMBER;
 const { SAUCE_ACCESS_KEY, SAUCE_USERNAME } = process.env;
 
 module.exports = {
-  "test_settings" : {
-    default : {
+  test_settings: {
+    default: {
       launch_url: 'http://ondemand.saucelabs.com:80',
       selenium_port: 80,
       selenium_host: 'ondemand.saucelabs.com',
@@ -41,4 +41,4 @@ module.exports = {
     },
   },
   src_folders: ['tests/e2e'],
-}
+};

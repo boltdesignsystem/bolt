@@ -18,21 +18,34 @@ const defaultOptions = {
 
 const webpackServeWaitpage = (wsOptions, options) => {
   if (!wsOptions || !wsOptions.compiler)
-    throw new Error('webpack-serve options must be supplied as first parameter');
+    throw new Error(
+      'webpack-serve options must be supplied as first parameter',
+    );
 
   options = Object.assign({}, defaultOptions, options);
 
   const compilers = wsOptions.compiler.compilers || [wsOptions.compiler];
-  for (let i = 0 ; i < compilers.length ; i++) {
-    new webpack.ProgressPlugin(function() { data.progress[i] = arguments; }).apply(compilers[i]);
+  for (let i = 0; i < compilers.length; i++) {
+    new webpack.ProgressPlugin(function() {
+      data.progress[i] = arguments;
+    }).apply(compilers[i]);
   }
   let template = options.template;
   if (!template) {
-    if (fs.readdirSync(__dirname).filter(x => x.endsWith('.ejs')).map(x => x.slice(0, -4)).indexOf(options.theme) < 0)
+    if (
+      fs
+        .readdirSync(__dirname)
+        .filter(x => x.endsWith('.ejs'))
+        .map(x => x.slice(0, -4))
+        .indexOf(options.theme) < 0
+    )
       throw new Error(`Unknown theme provided: ${options.theme}`);
-    template = fs.readFileSync(path.resolve(__dirname, options.theme + '.ejs'), 'utf8');
+    template = fs.readFileSync(
+      path.resolve(__dirname, options.theme + '.ejs'),
+      'utf8',
+    );
   }
-  Object.keys(options).forEach((key) => {
+  Object.keys(options).forEach(key => {
     // expend data with options
     data[key] = options[key];
   });
@@ -45,7 +58,10 @@ const webpackServeWaitpage = (wsOptions, options) => {
       valid || // already valid
       (options.disableWhenValid && wasValid) || // if after valid state should be disabled
       ctx.method !== 'GET' || // request is not a browser GET
-      ctx.body != null || ctx.status !== 404) // response was already handled
+      ctx.body != null ||
+      ctx.status !== 404
+    )
+      // response was already handled
       return await next();
     ctx.type = 'html';
     ctx.body = ejs.render(template, data);

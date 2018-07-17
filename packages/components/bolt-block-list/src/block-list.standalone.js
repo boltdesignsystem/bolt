@@ -27,15 +27,16 @@ export class BoltBlockList extends withPreact() {
   render() {
     const theItems = this.props.items.split(',');
     let finalItems = '';
-    theItems.forEach((value) => {
+    theItems.forEach(value => {
       finalItems += `<li class="c-bolt-block-list__item">${value}</li>`;
     });
     return (
       <span>
-        {this.useShadow &&
-          <style>{styles[0][1]}</style>
-        }
-        <ul className="c-bolt-block-list" dangerouslySetInnerHTML={{ __html: finalItems }} />
+        {this.useShadow && <style>{styles[0][1]}</style>}
+        <ul
+          className="c-bolt-block-list"
+          dangerouslySetInnerHTML={{ __html: finalItems }}
+        />
       </span>
     );
   }

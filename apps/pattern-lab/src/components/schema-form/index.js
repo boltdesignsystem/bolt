@@ -1,10 +1,9 @@
 import { h } from '@bolt/core';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-// import 'core-js/modules/es6.string.starts-with';
 import SchemaForm from './schema-form';
 
-if (document.querySelector('.schema-form-root')){
+if (document.querySelector('.schema-form-root')) {
   document.querySelectorAll('.schema-form-root').forEach(root => {
     const dataString = root.previousElementSibling.innerHTML;
     const data = JSON.parse(dataString);

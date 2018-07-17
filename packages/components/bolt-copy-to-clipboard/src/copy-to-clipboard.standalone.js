@@ -38,7 +38,8 @@ export class BoltCopyToClipboard extends BoltComponent() {
      */
     this.clipboardInstance.on('success', () => {
       this.parentElem.classList.add('is-copied'); // [1]
-      setTimeout(() => { // [2]
+      setTimeout(() => {
+        // [2]
         this.parentElem.classList.add('is-transitioning');
       }, 2000);
     });

@@ -1,4 +1,4 @@
-const {promisify} = require('util');
+const { promisify } = require('util');
 const fs = require('fs');
 const path = require('path');
 const symlink = promisify(fs.symlink);
@@ -7,14 +7,14 @@ const writeFile = promisify(fs.writeFile);
 const mkdirp = promisify(require('mkdirp'));
 const chokidar = require('chokidar');
 const chalk = require('chalk');
-const log = require('../utils/log');
 const globby = require('globby');
-const timer = require('../utils/timer');
 const ora = require('ora');
 const sharp = require('sharp');
+const SVGO = require('svgo');
+const log = require('../utils/log');
+const timer = require('../utils/timer');
 const { getConfig } = require('../utils/config-store');
 const { flattenArray } = require('../utils/general');
-const SVGO = require('svgo');
 let config;
 
 const svgo = new SVGO({
@@ -50,7 +50,7 @@ function makeWebPath(imagePath) {
 }
 
 async function writeImageManifest(imgManifest) {
-  config = config || await getConfig();
+  config = config || (await getConfig());
 
   await writeFile(
     path.join(config.dataDir, 'images.bolt.json'),
@@ -59,7 +59,7 @@ async function writeImageManifest(imgManifest) {
 }
 
 async function processImage(file, set) {
-  config = config || await getConfig();
+  config = config || (await getConfig());
 
   if (config.verbosity > 3) {
     log.dim(`Processing image: ${file}`);
@@ -83,102 +83,114 @@ async function processImage(file, set) {
   const sizes = [null, ...boltImageSizes].filter(size => width > size);
 
   // looping through all sizes and resizing
-  return Promise.all(sizes.map(async (size) => {
-    const isOrig = size === null; // original file
-    if (!isOrig) {
-      // no need to resize these file extensions
-      if (pathInfo.ext === '.svg' || pathInfo.ext === '.gif') {
-        return;
+  return Promise.all(
+    sizes.map(async size => {
+      const isOrig = size === null; // original file
+      if (!isOrig) {
+        // no need to resize these file extensions
+        if (pathInfo.ext === '.svg' || pathInfo.ext === '.gif') {
+          return;
+        }
       }
-    }
 
-    // Goes on end of filename
-    const sizeSuffix = size ? `-${size}` : '';
-    const thisPathInfo = Object.assign({}, pathInfo, {
-      name: `${pathInfo.name}${sizeSuffix}`,
-    });
-    const newSizedPath = path.format(thisPathInfo);
-    const newSizeWebPath = makeWebPath(newSizedPath);
+      // Goes on end of filename
+      const sizeSuffix = size ? `-${size}` : '';
+      const thisPathInfo = Object.assign({}, pathInfo, {
+        name: `${pathInfo.name}${sizeSuffix}`,
+      });
+      const newSizedPath = path.format(thisPathInfo);
+      const newSizeWebPath = makeWebPath(newSizedPath);
 
-    if (config.prod) {
-      if (isOrig) {
-        await writeFile(newSizedPath, originalFileBuffer);
-        if (pathInfo.ext === '.jpeg' || pathInfo.ext === '.jpg' || pathInfo.ext === '.png') {
-          await sharp(originalFileBuffer)
-            .resize(size)
-            .jpeg({
-              quality: 50,
-              progressive: true,
-              optimiseScans: true,
-              force: false,
-            })
-            .png({
-              progressive: true,
-              force: false,
-            })
-            .toFile(newSizedPath);
-        } else if (pathInfo.ext === '.svg') {
-          const result = await svgo.optimize(originalFileBuffer);
-          const optimizedSVG = result.data;
-          await writeFile(newSizedPath, optimizedSVG);
-
+      if (config.prod) {
+        if (isOrig) {
+          await writeFile(newSizedPath, originalFileBuffer);
+          if (
+            pathInfo.ext === '.jpeg' ||
+            pathInfo.ext === '.jpg' ||
+            pathInfo.ext === '.png'
+          ) {
+            await sharp(originalFileBuffer)
+              .resize(size)
+              .jpeg({
+                quality: 50,
+                progressive: true,
+                optimiseScans: true,
+                force: false,
+              })
+              .png({
+                progressive: true,
+                force: false,
+              })
+              .toFile(newSizedPath);
+          } else if (pathInfo.ext === '.svg') {
+            const result = await svgo.optimize(originalFileBuffer);
+            const optimizedSVG = result.data;
+            await writeFile(newSizedPath, optimizedSVG);
+          } else {
+            await sharp(originalFileBuffer)
+              .jpeg({
+                quality: 50,
+                progressive: true,
+                optimiseScans: true,
+                force: false,
+              })
+              .png({
+                progressive: true,
+                force: false,
+              })
+              .toFile(newSizedPath);
+          }
         } else {
-          await sharp(originalFileBuffer)
-            .jpeg({
-              quality: 50,
-              progressive: true,
-              optimiseScans: true,
-              force: false,
-            })
-            .png({
-              progressive: true,
-              force: false,
-            })
-            .toFile(newSizedPath);
+          // http://sharp.pixelplumbing.com/en/stable/
+          if (
+            pathInfo.ext === '.jpeg' ||
+            pathInfo.ext === '.jpg' ||
+            pathInfo.ext === '.png'
+          ) {
+            await sharp(originalFileBuffer)
+              .resize(size)
+              .jpeg({
+                quality: 50,
+                progressive: true,
+                optimiseScans: true,
+                force: false,
+              })
+              .png({
+                progressive: true,
+                force: false,
+              })
+              .toFile(newSizedPath);
+          } else {
+            await sharp(originalFileBuffer)
+              .resize(size)
+              .toFile(newSizedPath);
+          }
         }
       } else {
-        // http://sharp.pixelplumbing.com/en/stable/
-        if (pathInfo.ext === '.jpeg' || pathInfo.ext === '.jpg' || pathInfo.ext === '.png') {
-          await sharp(originalFileBuffer)
-            .resize(size)
-            .jpeg({
-              quality: 50,
-              progressive: true,
-              optimiseScans: true,
-              force: false,
-            })
-            .png({
-              progressive: true,
-              force: false,
-            })
-            .toFile(newSizedPath);
-        } else {
-          await sharp(originalFileBuffer)
-            .resize(size)
-            .toFile(newSizedPath);
+        // Not prod, so let's be quick.
+        // Symlinking works even if the original file is not served
+        const symlinkPath = path.relative(thisPathInfo.dir, file);
+        try {
+          await symlink(symlinkPath, newSizedPath);
+        } catch (error) {
+          // If it's the error for symlink already exists, we don't care.
+          if (error.code !== 'EEXIST') {
+            log.errorAndExit(
+              `Problem when attempting to symlink ${file} to ${newSizedPath}.`,
+              error,
+            );
+          }
         }
       }
-    } else {
-      // Not prod, so let's be quick.
-      // Symlinking works even if the original file is not served
-      const symlinkPath = path.relative(thisPathInfo.dir, file);
-      try {
-        await symlink(symlinkPath, newSizedPath);
-      } catch (error) {
-        // If it's the error for symlink already exists, we don't care.
-        if (error.code !== 'EEXIST') {
-          log.errorAndExit(`Problem when attempting to symlink ${file} to ${newSizedPath}.`, error);
-        }
-      }
-    }
 
-    if (!isOrig) {
-      return {
-        path: newSizeWebPath,
-        size,
-      };
-    }
-  })).then((resizedImagePaths) => {
+      if (!isOrig) {
+        return {
+          path: newSizeWebPath,
+          size,
+        };
+      }
+    }),
+  ).then(resizedImagePaths => {
     // removes `undefined` & other non-truthy values (mainly original images & non processed file types like SVG or GIF)
     const sets = resizedImagePaths.filter(resizedImagePath => resizedImagePath);
     const imageMeta = {
@@ -196,7 +208,7 @@ async function processImage(file, set) {
 }
 
 async function processImages() {
-  config = config || await getConfig();
+  config = config || (await getConfig());
 
   if (!config.images) {
     return;
@@ -210,18 +222,25 @@ async function processImages() {
     spinner = ora(startMessage).start();
   }
 
-  return Promise.all(config.images.sets.map(async (set) => {
-    const imagePaths = await globby(path.join(set.base, set.glob));
-    return Promise.all(imagePaths.map(imagePath => processImage(imagePath, set)));
-  })).then(async (setsOfImageMetas) => {// When it's all done
+  return Promise.all(
+    config.images.sets.map(async set => {
+      const imagePaths = await globby(path.join(set.base, set.glob));
+      return Promise.all(
+        imagePaths.map(imagePath => processImage(imagePath, set)),
+      );
+    }),
+  ).then(async setsOfImageMetas => {
+    // When it's all done
     const imageMetas = flattenArray(setsOfImageMetas);
     const imageManifest = {};
-    imageMetas.forEach((imageMeta) => {
+    imageMetas.forEach(imageMeta => {
       imageManifest[imageMeta.src] = imageMeta;
     });
     await writeImageManifest(imageManifest);
 
-    const endMessage = chalk.green(`Processed images in ${timer.end(startTime)}`);
+    const endMessage = chalk.green(
+      `Processed images in ${timer.end(startTime)}`,
+    );
     if (config.verbosity > 2) {
       console.log(endMessage);
     } else {
@@ -232,4 +251,4 @@ async function processImages() {
 
 module.exports = {
   processImages,
-}
+};

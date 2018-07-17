@@ -11,7 +11,14 @@ const notifier = require('node-notifier');
  * @param showCmdOnError {boolean} - If error, should `cmd` be shown?
  * @param exitImmediately {boolean} - If an exit is about to happen, should it happen immediately or at the end of the call stack at next tick?
  */
-async function sh(cmd, args, exitOnError, streamOutput, showCmdOnError = true, exitImmediately = false) {
+async function sh(
+  cmd,
+  args,
+  exitOnError,
+  streamOutput,
+  showCmdOnError = true,
+  exitImmediately = false,
+) {
   return new Promise((resolve, reject) => {
     const child = execa(cmd, args);
     let output = '';
@@ -21,25 +28,28 @@ async function sh(cmd, args, exitOnError, streamOutput, showCmdOnError = true, e
       child.stderr.pipe(process.stderr);
     }
 
-    child.stdout.on('data', (data) => {
+    child.stdout.on('data', data => {
       output += data;
       if (streamOutput) {
         process.stdout.write(data);
       }
     });
 
-    child.stderr.on('data', (data) => {
+    child.stderr.on('data', data => {
       output += data;
       if (streamOutput) {
         process.stdout.write(data);
       }
     });
 
-    child.on('close', (code) => {
+    child.on('close', code => {
       if (code > 0) {
         const errorMsg = chalk.red(`
-Error with code ${code}${showCmdOnError ? ` after running: ${cmd}`: ''}:
-`);
+          Error with code ${code}${
+          showCmdOnError ? ` after running: ${cmd}` : ''
+        }:
+        `);
+
         if (exitOnError) {
           if (exitImmediately) {
             console.error(errorMsg + output);
@@ -54,6 +64,8 @@ Error with code ${code}${showCmdOnError ? ` after running: ${cmd}`: ''}:
             message: output,
             sound: true,
           });
+
+          // eslint-disable-next-line prefer-promise-reject-errors
           reject(errorMsg + output);
         }
       }
