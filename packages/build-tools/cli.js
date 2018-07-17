@@ -75,18 +75,18 @@ const configFilePath = path.resolve(
         config.prod =
           typeof program.prod === 'undefined' ? config.prod : program.prod;
 
-        config.i18n = typeof options.i18n === 'undefined' ?
-          (config.prod ? true : false) :
-          options.i18n;
+        config.i18n =
+          typeof options.i18n === 'undefined'
+            ? config.prod
+              ? true
+              : false
+            : options.i18n;
 
         // If i18n is disabled, ignore and remove lang config settings
-        if (config.lang && config.i18n === false){
-          config.lang = [
-            config.lang[0],
-          ];
+        if (config.lang && config.i18n === false) {
+          config.lang = [config.lang[0]];
         }
-        delete config['lang']
-
+        delete config['lang'];
 
         return config;
       });

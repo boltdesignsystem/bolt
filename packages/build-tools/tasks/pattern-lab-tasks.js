@@ -92,7 +92,7 @@ async function compileWithNoExit() {
 compileWithNoExit.displayName = 'pattern-lab:compile';
 
 async function watch() {
-  config = config || await asyncConfig();
+  config = config || (await asyncConfig());
   const dirs = await manifest.getAllDirs();
 
   // Used by watches

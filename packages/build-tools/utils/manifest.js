@@ -155,7 +155,6 @@ async function getAllDirs(relativeFrom) {
   return dirs;
 }
 
-
 /**
  * Similar to createComponentsManifest, this function provides an object of Twig namespaces that map 1:1 with the
  * cooresponding NPM package name.
@@ -163,15 +162,17 @@ async function getAllDirs(relativeFrom) {
 async function mapComponentNameToTwigNamespace() {
   const twigNamespaces = {};
   const manifest = await getBoltManifest();
-  const allComponents = [...manifest.components.global, ...manifest.components.individual];
-  allComponents.forEach((component) => {
+  const allComponents = [
+    ...manifest.components.global,
+    ...manifest.components.individual,
+  ];
+  allComponents.forEach(component => {
     if (component.twigNamespace) {
       twigNamespaces[component.twigNamespace] = component.name;
     }
   });
   return twigNamespaces;
 }
-
 
 async function createComponentsManifest() {
   const components = {};
