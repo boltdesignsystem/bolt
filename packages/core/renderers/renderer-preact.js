@@ -1,17 +1,12 @@
 /** @jsx h */
 // Temp working version of @skatejs/renderer-preact till SkateJS fixes this upstream in the SkateJS monorepo
 
-import {
-  withComponent,
-  shadow,
-  props,
-} from 'skatejs';
+import { name, withComponent, shadow, props } from 'skatejs';
 import preact, { h, render, Component } from 'preact';
 import html from 'preact-html';
 import { hasNativeShadowDomSupport } from '../utils/environment';
 import { findParentTag } from '../utils/find-parent-tag';
-import { BoltBase } from './bolt-base'
-
+import { BoltBase } from './bolt-base';
 
 // TODO make this a Symbol() when it's supported.
 const preactNodeName = '__preactNodeName';
@@ -42,16 +37,13 @@ function teardownPreact() {
   preact.options.vnode = oldVnode;
 }
 
-
 export function withPreact(Base = HTMLElement) {
   return class extends withComponent(BoltBase(Base)) {
-
     get props() {
       // We override props so that we can satisfy most use
       // cases for children by using a slot.
       return {
         ...super.props,
-        ...{ children: <slot /> },
       };
     }
 
@@ -62,12 +54,9 @@ export function withPreact(Base = HTMLElement) {
       this.html = html;
     }
 
-    renderStyles(styles){
-      if (styles){
-        return (
-          this.useShadow &&
-          <style>{styles}</style>
-        );
+    renderStyles(styles) {
+      if (styles) {
+        return this.useShadow && <style>{styles}</style>;
       }
     }
 
@@ -126,5 +115,5 @@ export function withPreact(Base = HTMLElement) {
       this._preactDom = render(null, this._renderRoot, this._preactDom);
       this._renderRoot = null;
     }
-  }
-};
+  };
+}

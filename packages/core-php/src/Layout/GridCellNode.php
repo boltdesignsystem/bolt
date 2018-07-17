@@ -3,7 +3,7 @@
 namespace Bolt\Layout;
 
 use \Drupal\Core\Template\Attribute;
-use \PatternLab\PatternEngine\Twig\TwigUtil;
+use Bolt\Layout\BoltStringLoader;
 
 
 // Default attributes and inheritted data all cell components inherit (ex. base CSS class)
@@ -96,11 +96,7 @@ class GridCellNode extends \Twig_Node {
      */
     $attributes = new Attribute($merged_attributes);
 
-    if (class_exists('\PatternLab\Template')) {
-      $stringLoader = \PatternLab\Template::getStringLoader();
-    } else {
-      $stringLoader = new BoltStringLoader();
-    }
+    $stringLoader = new BoltStringLoader();
 
     //Setup data into 2 groups: attributes + everything else that we're going to namespace under the component name.
     $data         = array(

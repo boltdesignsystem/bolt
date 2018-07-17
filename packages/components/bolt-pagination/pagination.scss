@@ -1,0 +1,144 @@
+@import '@bolt/core';
+
+/* ------------------------------------ *\
+   Pagination
+\* ------------------------------------ */
+
+$bolt-pagination-transition: $bolt-transition;
+$bolt-pagination-item-size: bolt-spacing(medium);
+
+$bolt-pagination-item-text-color-notheme:         bolt-color(indigo, light);
+$bolt-pagination-item-text-color-current-notheme: bolt-color(white);
+$bolt-pagination-item-bg-color-current-notheme:   bolt-color(indigo, light);
+
+$bolt-pagination-item-text-color-xlight:          bolt-color(indigo, light);
+$bolt-pagination-item-text-color-current-xlight:  bolt-color(white);
+$bolt-pagination-item-bg-color-current-xlight:    bolt-color(indigo, light);
+
+$bolt-pagination-item-text-color-light:           bolt-color(indigo, light);
+$bolt-pagination-item-text-color-current-light:   bolt-color(gray, xlight);
+$bolt-pagination-item-bg-color-current-light:     bolt-color(indigo, light);
+
+$bolt-pagination-item-text-color-dark:            bolt-color(white);
+$bolt-pagination-item-text-color-current-dark:    bolt-color(indigo, dark);
+$bolt-pagination-item-bg-color-current-dark:      bolt-color(white);
+
+$bolt-pagination-item-text-color-xdark:           bolt-color(white);
+$bolt-pagination-item-text-color-current-xdark:   bolt-color(indigo, xdark);
+$bolt-pagination-item-bg-color-current-xdark:     bolt-color(white);
+
+
+
+
+// Register Custom Block Element
+@include bolt-custom-element('bolt-pagination', block, medium);
+
+.c-bolt-pagination {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
+
+  display: flex;
+  list-style: none;
+}
+
+.c-bolt-pagination__item {
+  @include bolt-margin(0);
+  @include bolt-padding(0 2px); // [Mai] This will give big numbers (over 3 digits) some padding left and right so it's not touching the edge.
+  @include bolt-font-family(body);
+  @include bolt-font-weight(semibold);
+  @include bolt-font-size(small);
+
+  display: block;
+  min-width: $bolt-pagination-item-size;
+  height: $bolt-pagination-item-size;
+  color: $bolt-pagination-item-text-color-notheme;
+  line-height: $bolt-pagination-item-size;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: $bolt-pagination-item-size;
+  background-color: transparent;
+  transition: opacity $bolt-pagination-transition;
+  -webkit-backface-visibility: hidden; // Removes the 1px jump with opacity transition
+
+  &:hover {
+    opacity: $bolt-global-link-hover-opacity;
+  }
+  &:active,
+  &:focus:active {
+    opacity: $bolt-global-link-active-opacity;
+  }
+
+  &.is-current {
+    color: $bolt-pagination-item-text-color-current-notheme;
+    background-color: $bolt-pagination-item-bg-color-current-notheme;
+  }
+}
+
+.c-bolt-pagination__item--prev,
+.c-bolt-pagination__item--next {
+  min-width: auto;
+
+  @include bolt-mq($until: small) { // [Mai] This is the opposite of @include bolt-mq(small).
+    .c-bolt-pagination__text {
+      @include bolt-visuallyhidden;
+    }
+  }
+}
+
+.c-bolt-pagination__item--prev {
+  @include bolt-margin-right(small);
+
+  @include bolt-mq(small) {
+    .c-bolt-pagination__icon {
+      @include bolt-margin-right(xxsmall);
+    }
+  }
+}
+
+.c-bolt-pagination__item--next {
+  @include bolt-margin-left(small);
+
+  @include bolt-mq(small) {
+    .c-bolt-pagination__icon {
+      @include bolt-margin-left(xxsmall);
+    }
+  }
+}
+
+$bolt-theme-pagination-colors: (
+  'theme-prefix': 't-bolt-',
+  sets: (
+    xlight: $bolt-pagination-item-text-color-xlight,
+    light:  $bolt-pagination-item-text-color-light,
+    dark:   $bolt-pagination-item-text-color-dark,
+    xdark:  $bolt-pagination-item-text-color-xdark
+  ),
+  currentText: (
+    xlight: $bolt-pagination-item-text-color-current-xlight,
+    light:  $bolt-pagination-item-text-color-current-light,
+    dark:   $bolt-pagination-item-text-color-current-dark,
+    xdark:  $bolt-pagination-item-text-color-current-xdark
+  ),
+  currentBg: (
+    xlight: $bolt-pagination-item-bg-color-current-xlight,
+    light:  $bolt-pagination-item-bg-color-current-light,
+    dark:   $bolt-pagination-item-bg-color-current-dark,
+    xdark:  $bolt-pagination-item-bg-color-current-xdark
+  )
+);
+
+$indexes: map-get($bolt-theme-pagination-colors, 'sets');
+$prefix: map-get($bolt-theme-pagination-colors, 'theme-prefix');
+$currentText: map-get($bolt-theme-pagination-colors, 'currentText');
+$currentBg: map-get($bolt-theme-pagination-colors, 'currentBg');
+
+@each $key, $value in $indexes {
+  .#{$prefix}#{$key} .c-bolt-pagination__item {
+    color: map-get($indexes, $key);
+  }
+  .#{$prefix}#{$key} .c-bolt-pagination__item.is-current {
+    color: map-get($currentText, $key);
+    background-color: map-get($currentBg, $key);
+  }
+}

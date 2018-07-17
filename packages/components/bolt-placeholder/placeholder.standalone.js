@@ -18,7 +18,7 @@ class BoltPlaceholder extends BoltComponent() {
   static props = {
     animated: props.boolean,
     size: props.string,
-  }
+  };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
@@ -36,9 +36,7 @@ class BoltPlaceholder extends BoltComponent() {
   }
 
   render({ props, state }) {
-    const classes = css(
-      'c-bolt-placeholder',
-    );
+    const classes = css('c-bolt-placeholder');
 
     const wrapperClasses = css(
       'c-bolt-placeholder__wrapper ',
@@ -47,11 +45,13 @@ class BoltPlaceholder extends BoltComponent() {
 
     const contentClasses = css(
       'c-bolt-placeholder__content',
-      this.props.size ? `c-bolt-placeholder__content--${this.props.size}` : 'c-bolt-placeholder__content--medium',
+      this.props.size
+        ? `c-bolt-placeholder__content--${this.props.size}`
+        : 'c-bolt-placeholder__content--medium',
     );
 
     return this.html`
-      ${ this.addStyles([placeholderStyles]) }
+      ${this.addStyles([placeholderStyles])}
       <div class=${classes}>
         <div class=${wrapperClasses}>
           <div class="c-bolt-placeholder__wrapper-y"></div>

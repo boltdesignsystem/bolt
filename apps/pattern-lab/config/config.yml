@@ -1,19 +1,17 @@
 v: 2.6.0
-regenerateStyleguideKit: 'true'
 overrideConfig: false
 ie:
     - DS_Store
     - less
     - scss
-    - html
     - js
+    - json #so json files don't get copied over to the www folder
 id:
     - scss
     - .svn
     - .sass-cache
     - scripts
     - styles
-    - splash-screen.html
     - assets
 cleanPublic: false
 patternStates:
@@ -24,7 +22,7 @@ styleGuideExcludes: ''
 cacheBusterOn: 'true'
 publicDir: ../../www/pattern-lab/
 sourceDir: src
-defaultPattern: viewall-components-all
+defaultPattern: components-overview
 defaultShowPatternInfo: false
 ishMinimum: '240'
 ishMaximum: '2600'
@@ -42,8 +40,8 @@ ishControlsHide:
     - hay
     - disco
     - random
-styleguideKit: pattern-lab/styleguidekit-twig-default
-styleguideKitPath: vendor/pattern-lab/styleguidekit-twig-default
+styleguideKit: bolt-design-system/styleguidekit-twig-default
+styleguideKitPath: vendor/bolt-design-system/styleguidekit-twig-default
 lineageMatch: >-
   {%([ ]+)?(?:include|extends|embed)(
   |\()[&quot;\&#039;]([\/.@A-Za-z0-9-_]+)[&quot;\&#039;]([\s\S+]*?)%}

@@ -28,100 +28,107 @@ const buildDir = path.join(rootDir, 'src/icons');
 async function transpileIcons(icons) {
   await fs.mkdirp(buildDir);
 
-  return Promise.all(icons.map(async (icon) => {
-    // icons.forEach(async (i) => {
-    const svg = await fs.readFile(icon, 'utf-8');
-    const id = path.basename(icon, '.svg').replace(/ /g, '-');
+  return Promise.all(
+    icons.map(async icon => {
+      // icons.forEach(async (i) => {
+      const svg = await fs.readFile(icon, 'utf-8');
+      const id = path.basename(icon, '.svg').replace(/ /g, '-');
 
-    const $ = cheerio.load(svg, {
-      xmlMode: true,
-    });
+      const $ = cheerio.load(svg, {
+        xmlMode: true,
+      });
 
-    const fileName = path.basename(icon).replace(/ /g, '-').replace('.svg', '.js');
-    const location = path.join(buildDir, fileName);
+      const fileName = path
+        .basename(icon)
+        .replace(/ /g, '-')
+        .replace('.svg', '.js');
+      const location = path.join(buildDir, fileName);
 
-    $('*').each((index, el) => {
-      Object.keys(el.attribs).forEach((x) => {
-        if (x === 'stroke') {
-          $(el).attr(x, 'currentColor');
+      $('*').each((index, el) => {
+        Object.keys(el.attribs).forEach(x => {
+          if (x === 'stroke') {
+            $(el).attr(x, 'currentColor');
+          }
+
+          if (x === 'fill') {
+            $(el).attr(x, 'currentColor');
+          }
+        });
+
+        if (el.name === 'svg') {
+          $(el).attr('otherProps', '...');
         }
 
-        if (x === 'fill') {
-          $(el).attr(x, 'currentColor');
+        // Remove artboard rectangle that sometimes pops up in exported SVGs
+        if ($(el).attr('id') === 'Rectangle-6') {
+          $(el).remove();
+        }
+
+        $(el).removeAttr('xmlns:xlink');
+
+        if ($(el).attr('xlink:href')) {
+          const xlinkHrefVal = $(el).attr('xlink:href');
+          $(el).removeAttr('xlink:href');
+          $(el).attr('xlinkHref', xlinkHrefVal);
+        }
+
+        if ($(el).attr('xlink:href')) {
+          const xlinkHrefVal = $(el).attr('xlink:href');
+          $(el).removeAttr('xlink:href');
+          $(el).attr('xlinkHref', xlinkHrefVal);
         }
       });
 
+      const result = await svgo.optimize(svg);
+      const optimizedSVG = result.data;
 
-      if (el.name === 'svg') {
-        $(el).attr('otherProps', '...');
-      }
-
-      // Remove artboard rectangle that sometimes pops up in exported SVGs
-      if ($(el).attr('id') === 'Rectangle-6') {
-        $(el).remove();
-      }
-
-      $(el).removeAttr('xmlns:xlink');
-
-      if ($(el).attr('xlink:href')) {
-        const xlinkHrefVal = $(el).attr('xlink:href');
-        $(el).removeAttr('xlink:href');
-        $(el).attr('xlinkHref', xlinkHrefVal);
-      }
-
-      if ($(el).attr('xlink:href')) {
-        const xlinkHrefVal = $(el).attr('xlink:href');
-        $(el).removeAttr('xlink:href');
-        $(el).attr('xlinkHref', xlinkHrefVal);
-      }
-    });
-
-    const result = await svgo.optimize(svg);
-    const optimizedSVG = result.data;
-
-
-    const element = `
+      const element = `
   import { h } from '@bolt/core';
 
-  export const ${uppercamelcase(id)} = ({ bgColor, fgColor, size, ...otherProps }) => {
+  export const ${uppercamelcase(
+    id,
+  )} = ({ bgColor, fgColor, size, ...otherProps }) => {
       return (
-        ${
-          $(optimizedSVG).toString()
-            .replace('fill="#FFF"', 'fill={fgColor}')
-            .replace('stroke="#FFF"', 'stroke={fgColor}')
-            .replace(new RegExp(/ stroke=".*?"/, 'g'), ' stroke={bgColor}')
-            .replace(new RegExp(/ fill="(?!#fff|none).*?"/, 'g'), ' fill={bgColor}')
-            .replace('viewBox', '{...otherProps} viewBox') // tack on extra props next to viewBox attribute
-            .replace('d="M0 0h24v24H0z"', '')
-            .replace(/width=".*?"/, 'width={size}')
-            .replace(/height=".*?"/, 'height={size}')
-            .replace('otherProps="..."', '{...otherProps}')
-          }
+        ${$(optimizedSVG)
+          .toString()
+          .replace('fill="#FFF"', 'fill={fgColor}')
+          .replace('stroke="#FFF"', 'stroke={fgColor}')
+          .replace(new RegExp(/ stroke=".*?"/, 'g'), ' stroke={bgColor}')
+          .replace(
+            new RegExp(/ fill="(?!#fff|none).*?"/, 'g'),
+            ' fill={bgColor}',
+          )
+          .replace('viewBox', '{...otherProps} viewBox') // tack on extra props next to viewBox attribute
+          .replace('d="M0 0h24v24H0z"', '')
+          .replace(/width=".*?"/, 'width={size}')
+          .replace(/height=".*?"/, 'height={size}')
+          .replace('otherProps="..."', '{...otherProps}')}
       )
 };
 `;
 
-    const component = prettier.format(element, {
-      singleQuote: true,
-      trailingComma: 'es5',
-      bracketSpacing: true,
-      parser: 'flow',
-    });
+      const component = prettier.format(element, {
+        singleQuote: true,
+        trailingComma: 'es5',
+        bracketSpacing: true,
+        parser: 'flow',
+      });
 
-    await fs.outputFile(location, component, 'utf-8');
-    // Later when we call `const icons = await transpileIcons(iconPaths);` - `icons` will be an array of these objects:
-    return {
-      location,
-      id,
-      icon,
-      fileName,
-    };
-  }));
+      await fs.outputFile(location, component, 'utf-8');
+      // Later when we call `const icons = await transpileIcons(iconPaths);` - `icons` will be an array of these objects:
+      return {
+        location,
+        id,
+        icon,
+        fileName,
+      };
+    }),
+  );
 }
 
 function alphabetizeIconList(a, b) {
-  if(a.id < b.id) return -1;
-  if(a.id > b.id) return 1;
+  if (a.id < b.id) return -1;
+  if (a.id > b.id) return 1;
   return 0;
 }
 
@@ -143,7 +150,9 @@ async function build() {
     console.log(`Built ${iconPaths.length} icons.`);
   } catch (error) {
     console.error(error);
-    console.error('Error trying to run "npm run build" for "@bolt/components-icons".');
+    console.error(
+      'Error trying to run "npm run build" for "@bolt/components-icons".',
+    );
     process.exitCode = 1;
   }
 }

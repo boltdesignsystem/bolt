@@ -43,17 +43,25 @@ class BoltVideoMeta extends withPreact() {
         {reveal ? (
           <div className={`c-${bolt.namespace}-video-meta__wrapper`}>
             {this.title ? (
-              <div className={`c-${bolt.namespace}-video-meta__item c-${bolt.namespace}-video-meta__item--title`}>{this.title}</div>
+              <div
+                className={`c-${bolt.namespace}-video-meta__item c-${
+                  bolt.namespace
+                }-video-meta__item--title`}>
+                {this.title}
+              </div>
             ) : null}
-            <div className={`c-${bolt.namespace}-video-meta__item c-${bolt.namespace}-video-meta__item--duration`}>{this.duration}</div>
+            <div
+              className={`c-${bolt.namespace}-video-meta__item c-${
+                bolt.namespace
+              }-video-meta__item--duration`}>
+              {this.duration}
+            </div>
           </div>
         ) : null}
       </div>
     );
   }
 }
-
-
 
 @define
 class BoltVideo extends withPreact() {
@@ -81,7 +89,7 @@ class BoltVideo extends withPreact() {
     resetOnFinish: props.boolean,
     directToFullscreen: props.boolean,
     hideFullScreenButton: props.boolean,
-  }
+  };
 
   constructor(self) {
     self = super(self);
@@ -117,7 +125,7 @@ class BoltVideo extends withPreact() {
       hideFullScreenButton: false,
       directToFullscreen: false,
       resetOnFinish: false,
-    }
+    };
 
     // Ensure that 'this' inside the _onWindowResize event handler refers to <bolt-nav-link>
     // even if the handler is attached to another element (window in this case)
@@ -129,7 +137,6 @@ class BoltVideo extends withPreact() {
   get renderRoot() {
     return this;
   }
-
 
   get expandedHeight() {
     return this.getAttribute('expandedHeight');
@@ -160,7 +167,7 @@ class BoltVideo extends withPreact() {
 
     this.dispatchEvent(
       new CustomEvent('videoExpandedHeightSet', {
-        detail: {expandedHeight: this.expandedHeight},
+        detail: { expandedHeight: this.expandedHeight },
         bubbles: true,
       }),
     );
@@ -175,14 +182,20 @@ class BoltVideo extends withPreact() {
 
   _setMetaTitle(title) {
     if (this.props.showMeta && this.props.showMetaTitle) {
-      this.querySelector(`${bolt.namespace}-video-meta`).setAttribute('title', title);
+      this.querySelector(`${bolt.namespace}-video-meta`).setAttribute(
+        'title',
+        title,
+      );
     }
   }
 
   _setMetaDuration(seconds) {
     if (this.props.showMeta) {
       const durationFormatted = BoltVideo._formatDuration(seconds);
-      this.querySelector(`${bolt.namespace}-video-meta`).setAttribute('duration', durationFormatted);
+      this.querySelector(`${bolt.namespace}-video-meta`).setAttribute(
+        'duration',
+        durationFormatted,
+      );
     }
   }
 
@@ -209,7 +222,7 @@ class BoltVideo extends withPreact() {
       elem.player.muted(true);
     }
 
-    player.on('loadedmetadata', function () {
+    player.on('loadedmetadata', function() {
       const duration = player.mediainfo.duration;
       const title = player.mediainfo.name;
       const width = player.mediainfo.sources[1].width;
@@ -231,27 +244,27 @@ class BoltVideo extends withPreact() {
       }
     });
 
-    player.on('play', function () {
+    player.on('play', function() {
       elem.onPlay(player);
     });
 
-    player.on('pause', function () {
+    player.on('pause', function() {
       elem.onPause(player);
     });
 
-    player.on('seeked', function () {
+    player.on('seeked', function() {
       elem.onSeeked(player);
     });
 
-    player.on('timeupdate', function () {
+    player.on('timeupdate', function() {
       // elem.onPlay(player);
     });
 
-    player.on('durationchange', function () {
+    player.on('durationchange', function() {
       elem.onDurationChange(player);
     });
 
-    player.on('ended', function () {
+    player.on('ended', function() {
       elem.onEnded(player);
     });
 
@@ -263,9 +276,7 @@ class BoltVideo extends withPreact() {
   }
 
   static getScriptUrl(accountId, playerId) {
-    return `//players.brightcove.net/${accountId}/${
-      playerId
-      }_default/index.min.js`;
+    return `//players.brightcove.net/${accountId}/${playerId}_default/index.min.js`;
   }
 
   static getCurrentTimeMs(player) {
@@ -327,8 +338,8 @@ class BoltVideo extends withPreact() {
       const s = this.createScript();
 
       s.onload = () => {
-        BoltVideo.players.forEach(function (player) {
-          player.initVideoJS(player.state.id)
+        BoltVideo.players.forEach(function(player) {
+          player.initVideoJS(player.state.id);
         });
       };
 
@@ -357,7 +368,7 @@ class BoltVideo extends withPreact() {
     }
 
     // If our video can expand/collapse we add the collapse listener and "close on escape" behavior
-    if (this.props.isBackgroundVideo){
+    if (this.props.isBackgroundVideo) {
       window.addEventListener('resize', this._onWindowResize);
       Mousetrap.bind('esc', this.handleClose, 'keyup');
       document.addEventListener('click', this.collapseOnClickAway);
@@ -395,7 +406,6 @@ class BoltVideo extends withPreact() {
   //   // this._shadowButton.setAttribute('aria-expanded', value);
   // }
 
-
   disconnecting() {
     if (this.props.isBackgroundVideo) {
       window.removeEventListener('optimizedResize', this._onWindowResize);
@@ -410,9 +420,7 @@ class BoltVideo extends withPreact() {
     this.props.onError(player.error());
   }
 
-
   onPlay(player) {
-
     this.classList.add('is-playing');
     this.classList.remove('is-finished');
     this.classList.remove('is-paused');
@@ -518,10 +526,7 @@ class BoltVideo extends withPreact() {
   createScript() {
     const s = document.createElement('script');
 
-    s.src = BoltVideo.getScriptUrl(
-      this.props.accountId,
-      this.props.playerId,
-    );
+    s.src = BoltVideo.getScriptUrl(this.props.accountId, this.props.playerId);
     s.async = true;
 
     return s;
@@ -614,8 +619,7 @@ class BoltVideo extends withPreact() {
     }
   }
 
-
-  render({state, props}) {
+  render({ state, props }) {
     // console.log('render callback');
     // data-email-subject="Pega - Intelligent Virtual Assistant for Email"
     // data-email-body="Check out this video from Pega"
@@ -632,7 +636,7 @@ class BoltVideo extends withPreact() {
     // Loop through any extra (unknown) data attributes on the main element; copy over to the <video> tag being rendered
     function datasetToObject(elem) {
       var data = {};
-      [].forEach.call(elem.attributes, function (attr) {
+      [].forEach.call(elem.attributes, function(attr) {
         if (/^data-/.test(attr.name)) {
           data[dasherize(attr.name)] = attr.value;
         }
@@ -651,8 +655,12 @@ class BoltVideo extends withPreact() {
 
     const classes = css(
       `c-${bolt.namespace}-video`,
-      this.props.controls === false ? `c-${bolt.namespace}-video--hide-controls` : '',
-      this.props.isBackgroundVideo ? `c-${bolt.namespace}-video--background` : '',
+      this.props.controls === false
+        ? `c-${bolt.namespace}-video--hide-controls`
+        : '',
+      this.props.isBackgroundVideo
+        ? `c-${bolt.namespace}-video--background`
+        : '',
     );
 
     const videoMetaTag = `${bolt.namespace}-video-meta`;
@@ -662,7 +670,7 @@ class BoltVideo extends withPreact() {
         <video
           {...dataAttributes}
           id={this.state.id}
-          {...(this.props.poster ? {poster: this.props.poster.uri} : {})}
+          {...(this.props.poster ? { poster: this.props.poster.uri } : {})}
           data-embed="default"
           data-video-id={this.props.videoId}
           preload="none"
@@ -677,20 +685,19 @@ class BoltVideo extends withPreact() {
           className="video-js"
           controls={this.props.controls === false ? false : true}
         />
-        {this.props.showMeta &&
-          h(videoMetaTag)
-        }
-        {this.props.isBackgroundVideo &&
-          <a className={ css(
-            `c-${bolt.namespace}-video__close-button`,
-            `c-${bolt.namespace}-video__close-button--icon-to-text`,
-          ) } href="javascript:"
-             onClick={this.handleClose}>
+        {this.props.showMeta && h(videoMetaTag)}
+        {this.props.isBackgroundVideo && (
+          <a
+            className={css(
+              `c-${bolt.namespace}-video__close-button`,
+              `c-${bolt.namespace}-video__close-button--icon-to-text`,
+            )}
+            href="javascript:"
+            onClick={this.handleClose}>
             <span className={`c-${bolt.namespace}-video__close-button-icon`}>
-              <div
-                class="c-bolt-button c-bolt-button--xsmall c-bolt-button--secondary c-bolt-button--rounded c-bolt-button--icon-only">
+              <div class="c-bolt-button c-bolt-button--xsmall c-bolt-button--secondary c-bolt-button--rounded c-bolt-button--icon-only">
                 <span class="c-bolt-button__icon">
-                  <bolt-icon name="close" size="small"></bolt-icon>
+                  <bolt-icon name="close" size="small" />
                 </span>
               </div>
             </span>
@@ -698,7 +705,7 @@ class BoltVideo extends withPreact() {
               {closeButtonText}
             </span>
           </a>
-        }
+        )}
       </span>
     );
   }

@@ -47,7 +47,7 @@ bolt-navbar {
   justify-content: space-between;
   position: relative;
 
-  @include respond-to(medium) {
+  @include bolt-mq(medium) {
     @include bolt-padding-left(large);
     @include bolt-padding-right(large);
   }
@@ -118,7 +118,6 @@ bolt-navbar {
   @include bolt-margin-right(medium); // Maintain space between items
   padding-bottom: $bolt-navbar-vspacing-small;
   align-self: center;
-  flex-shrink: 0;
   display: flex;
   flex-shrink: 1; // make sure the title can wrap to multiple lines and shrink if needed.
   flex-wrap: nowrap;
@@ -167,6 +166,10 @@ bolt-navbar {
 
 .c-bolt-navbar__title-icon {
   @include bolt-margin(0 xsmall 0 0);
+
+  // Fix cross-browser bug where icon shrinks below its minimum natural width - see https://github.com/philipwalton/flexbugs#flexbug-1
+  flex-shrink: 0;
+  flex-basis: auto;
 }
 
 .c-bolt-navbar__title-text {

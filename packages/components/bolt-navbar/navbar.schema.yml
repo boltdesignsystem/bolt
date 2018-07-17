@@ -41,19 +41,26 @@ properties:
           name:
             type: string
             description: Name of the (optional) icon to be used.
-  links:
-    type: array
-    items:
-      type: object
-      description: Navbar links (passed along to the nested Nav Priority that ships with Navbar by default.
-      properties:
-        text:
-          type: string
-        url:
-          type: string
   center:
     type: boolean
     description: Determines if you want the Navbar content to be center aligned or not
     enum:
       - true
       - false
+  links:
+    type: array
+    description: (Inherited from nav-priority) Array of links
+    items:
+      type: object
+      properties:
+        text:
+          type: string
+        url:
+          type: string
+  moreText:
+    type: string
+    description: (Inherited from nav-priority) Button text that displays when the Priority+ Nav Dropdown is displayed.
+    default: 'More'
+  offset:
+    type: integer
+    description: (Inherited from nav-indicator) Number of pixels taken up by sticky items at the top of the page.  Used for smooth scroll and gumshoe.

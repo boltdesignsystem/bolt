@@ -15,7 +15,6 @@ import {
     — https://www.npmjs.com/package/nodelist-foreach-polyfill
 */
 
-
 @define
 export class BoltNavPriority extends BoltComponent() {
   static is = 'bolt-nav-priority';
@@ -38,24 +37,26 @@ export class BoltNavPriority extends BoltComponent() {
 
   static props = {
     moreText: props.string, // Text that displays when navlinks can't all display at once
-  }
+  };
 
   connecting() {
-    Promise.all([
-      customElements.whenDefined('bolt-navlink'),
-    ]).then(_ => {
+    Promise.all([customElements.whenDefined('bolt-navlink')]).then(_ => {
       this.isOpen = false;
       this.offsettolerance = 5; // Extra wiggle room when calculating how many items can fit
 
       this.containerTabs = this.querySelector('.c-bolt-nav-priority');
       this.primaryNav = this.querySelector('.c-bolt-nav-priority__primary');
-      this.primaryItems = this.querySelectorAll('.c-bolt-nav-priority__primary > .c-bolt-nav-priority__item:not(.c-bolt-nav-priority__item--show-more)');
+      this.primaryItems = this.querySelectorAll(
+        '.c-bolt-nav-priority__primary > .c-bolt-nav-priority__item:not(.c-bolt-nav-priority__item--show-more)',
+      );
 
-      this.primaryNav.insertAdjacentHTML('beforeend', `
+      this.primaryNav.insertAdjacentHTML(
+        'beforeend',
+        `
         <li class="c-bolt-nav-priority__item c-bolt-nav-priority__show-more">
           <button type="button" aria-haspopup="true" aria-expanded="false" class="c-bolt-nav-priority__button c-bolt-nav-priority__show-button">
             <span class="c-bolt-nav-priority__show-text">
-              ${ this.props.moreText ? this.props.moreText : 'More' }
+              ${this.props.moreText ? this.props.moreText : 'More'}
             </span>
             <span class="c-bolt-nav-priority__show-icon">
               <bolt-icon name="chevron-down"></bolt-icon>
@@ -67,22 +68,31 @@ export class BoltNavPriority extends BoltComponent() {
             </ul>
           </div>
         </li>
-      `);
+      `,
+      );
 
       // trigger `isReady` setup work
       this.isReady = true;
 
-      this.priorityDropdown = this.querySelector('.c-bolt-nav-priority__dropdown');
+      this.priorityDropdown = this.querySelector(
+        '.c-bolt-nav-priority__dropdown',
+      );
       this.dropdownItems = this.priorityDropdown.querySelectorAll('li');
-      this.dropdownLinks = this.priorityDropdown.querySelectorAll('bolt-navlink');
+      this.dropdownLinks = this.priorityDropdown.querySelectorAll(
+        'bolt-navlink',
+      );
 
       this.dropdownLinks.forEach(navlink => {
         navlink.setAttribute('is-dropdown-link', '');
       });
 
       this.allListItems = this.querySelectorAll('li');
-      this.moreListItem = this.primaryNav.querySelector('.c-bolt-nav-priority__show-more');
-      this.dropdownButton = this.moreListItem.querySelector('.c-bolt-nav-priority__show-button');
+      this.moreListItem = this.primaryNav.querySelector(
+        '.c-bolt-nav-priority__show-more',
+      );
+      this.dropdownButton = this.moreListItem.querySelector(
+        '.c-bolt-nav-priority__show-button',
+      );
 
       this._adaptPriorityNav();
       this._handleExternalClicks();
@@ -94,16 +104,16 @@ export class BoltNavPriority extends BoltComponent() {
   }
 
   render() {
-    return this.html `
+    return this.html`
       ${this.slot('default')}
-    `
+    `;
   }
 
   _adaptPriorityNav() {
     this.classList.add('is-resizing');
 
     // reveal all items for the calculation
-    this.allListItems.forEach((item) => {
+    this.allListItems.forEach(item => {
       item.classList.remove('is-hidden');
     });
 
@@ -114,10 +124,11 @@ export class BoltNavPriority extends BoltComponent() {
 
     let hideTheRest = false; // keep track when the items in the nav stop fitting
     this.primaryItems.forEach((item, i) => {
-
       // make sure the items fit + we haven't already started to encounter items that don't
-      if (primaryWidth + this.offsettolerance >= stopWidth + item.offsetWidth &&
-          hideTheRest !== true) {
+      if (
+        primaryWidth + this.offsettolerance >= stopWidth + item.offsetWidth &&
+        hideTheRest !== true
+      ) {
         stopWidth += item.offsetWidth;
       } else {
         hideTheRest = true;
@@ -139,16 +150,15 @@ export class BoltNavPriority extends BoltComponent() {
         if (!hiddenItems.includes(i)) {
           item.classList.add('is-hidden');
         }
-      })
+      });
     }
 
     this.classList.remove('is-resizing');
   }
 
-
   _handleExternalClicks() {
-    document.addEventListener('click', (e) => {
-      let el = e.target
+    document.addEventListener('click', e => {
+      let el = e.target;
       while (el) {
         if (el === this.priorityDropdown || el === this.dropdownButton) {
           return;
@@ -233,8 +243,5 @@ export class BoltNavPriority extends BoltComponent() {
   disconnecting() {
     this.removeEventListener('navlink:click', this._onActivateLink);
     window.removeEventListener('optimizedResize', this._adaptPriorityNav);
-
-    // remove dropdown markup when cleaning up.
-    this.removeChild(this.moreListItem);
   }
 }

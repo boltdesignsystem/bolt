@@ -5,7 +5,7 @@ index fb91068..bceb814 100644
 @@ -78,10 +78,51 @@ class Builder {
  	*/
  	protected function generateIndex() {
- 
+
 -		// bomb if missing index.html
 +		/**
 +			*  Handle missing index.html. Solves https://github.com/drupal-pattern-lab/patternlab-php-core/issues/14
@@ -25,7 +25,7 @@ index fb91068..bceb814 100644
 +			$finder = new Finder();
 +
 +			// Locate the current theme's styleguidekit assets via the patternlab-styleguidekit `type` in composer.json
-+			$finder->files()->name("composer.json")->in($baseDir)->contains('patternlab-styleguidekit')->sortByName();
++			$finder->followLinks()->files()->name("composer.json")->in($baseDir)->contains('patternlab-styleguidekit')->sortByName();
 +
 +			foreach ($finder as $file) {
 +				$src = dirname($file->getRealPath()) . DIRECTORY_SEPARATOR . 'dist'; /* [1] */
@@ -54,5 +54,5 @@ index fb91068..bceb814 100644
 +				}
 +			}
  		}
- 
+
  		// set-up the dispatcher

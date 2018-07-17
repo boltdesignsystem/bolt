@@ -3,6 +3,14 @@
   {% set readmeFile = "@bolt-components-#{componentName}/README.md" %}
 {% endif %}
 
+{% if schemaForm and schema and bolt.data.config.renderingService == true %}
+  <bolt-component-demo>
+    {% set schemaForm = schemaForm|merge({ schema: schema }) %}
+    <script type="application/json">{{ schemaForm | json_encode }}</script>
+    <div class="schema-form-root"></div>
+  </bolt-component-demo>
+{% endif %}
+
 {% set code %}{% spaceless %}
 {{ usage }}
 {% endspaceless %}{% endset %}

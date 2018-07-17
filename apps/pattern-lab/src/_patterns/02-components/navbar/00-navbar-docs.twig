@@ -10,15 +10,15 @@
   links: [
     {
       text: "Link 1 Text",
-      url: "link-1-url"
+      url: "#!"
     },
     {
       text: "Link 2 Text",
-      url: "link-2-url"
+      url: "#!"
     },
     {
       text: "Link 3 Text",
-      url: "link-3-url"
+      url: "#!"
     }
   ]
 } only %}
@@ -26,5 +26,32 @@
 
 {% include "@utils/docs.twig" with {
   componentName: "navbar",
-  usage: usage
+  usage: usage,
+  schemaForm: {
+    demoTemplate: '@bolt-components-navbar/navbar.twig',
+    layout: "horizontal",
+    initialData: {
+      title: {
+        tag: "h2",
+        text: "Title Text",
+        icon: {
+          name: "brand-operations"
+        }
+      },
+      links: [
+        {
+          text: "Link 1 Text",
+          url: "link-1-url"
+        },
+        {
+          text: "Link 2 Text",
+          url: "link-2-url"
+        },
+        {
+          text: "Link 3 Text",
+          url: "link-3-url"
+        }
+      ]
+    },
+  },
 } only %}
