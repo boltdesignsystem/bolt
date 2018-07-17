@@ -5,6 +5,14 @@ properties:
   attributes:
     type: object
     description: A Drupal-style attributes object with extra attributes to append to this component.
+  align:
+    type: string
+    description: Horizontally align the items.
+    default: center
+    enum:
+      - start
+      - end
+      - center
   total:
     type: number
     title: Total pages

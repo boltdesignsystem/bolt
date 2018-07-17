@@ -46,6 +46,19 @@ bolt-pagination {
   list-style: none;
 }
 
+// [Mai] Alignment options, use center as default.
+.c-bolt-pagination--align-center {
+  justify-content: center;
+}
+
+.c-bolt-pagination--align-start {
+  justify-content: flex-start;
+}
+
+.c-bolt-pagination--align-end {
+  justify-content: flex-end;
+}
+
 .c-bolt-pagination__item {
   @include bolt-margin(0);
   @include bolt-padding(0 2px); // [Mai] This will give big numbers (over 3 digits) some padding left and right so it's not touching the edge.
@@ -69,6 +82,7 @@ bolt-pagination {
   &:hover {
     opacity: $bolt-global-link-hover-opacity;
   }
+
   &:active,
   &:focus:active {
     opacity: $bolt-global-link-active-opacity;
@@ -92,12 +106,6 @@ bolt-pagination {
   }
 }
 
-.c-bolt-pagination__item--ellipsis {
-  &:hover {
-    opacity: 1;
-  }
-}
-
 .c-bolt-pagination__item--prev {
   @include bolt-margin-right(small);
 
@@ -115,6 +123,14 @@ bolt-pagination {
     .c-bolt-pagination__icon {
       @include bolt-margin-left(xxsmall);
     }
+  }
+}
+
+.c-bolt-pagination__item--ellipsis {
+  &:hover,
+  &:active,
+  &:focus:active {
+    opacity: 1;
   }
 }
 

@@ -51,12 +51,15 @@
   {% endif %}
 {% endif %}
 
+{% set alignOptions = schema.properties.align.enum %}
+{% set align = align in alignOptions ? align : schema.properties.align.default %}
+
 <bolt-pagination
   {% if total %} total="{{ total }}" {% endif %}
   {% if current %} current="{{ current }}" {% endif %}
   {{ attributes }}
 >
-  <nav class="{{ baseClass }}" role="navigation" aria-label="Pagination Navigation">
+  <nav class="{{ baseClass }} {{ "#{baseClass}--align-#{align}" }}" role="navigation" aria-label="Pagination Navigation">
     {% if previous %}
       {% set previousAttributes = create_attribute(previous.attributes|default({})) %}
       {% set previousAttributes = previousAttributes.setAttribute("href", previousAttributes.href|default(previous.href)) %}
