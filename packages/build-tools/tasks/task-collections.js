@@ -7,7 +7,7 @@ const internalTasks = require('./internal-tasks');
 const imageTasks = require('./image-tasks');
 const timer = require('../utils/timer');
 const { getConfig } = require('../utils/config-store');
-const extraTasks = {};
+const extraTasks = [];
 let config;
 
 // These tasks are present based on optional conditions like `config.env` and should only be `require`-ed when it's the right env due to each file's setup where it tries to grab specific files - and of course the tasks should only run in the correct `env` as well.
@@ -32,6 +32,24 @@ async function getExtraTasks() {
   }
 
   return extraTasks;
+}
+
+async function compileBasedOnEnvironment() {
+  await getExtraTasks();
+
+  switch (config.env) {
+    case 'pl':
+      await extraTasks.patternLab.compile();
+      break;
+    case 'static':
+      await extraTasks.static.compile();
+      break;
+    case 'pwa':
+      return Promise.all([
+        extraTasks.static.compile(),
+        extraTasks.patternLab.compile(),
+      ]);
+  }
 }
 
 async function clean() {
@@ -137,20 +155,7 @@ async function build(localDev = false, shouldReturnTime = false) {
     await images();
 
     if (localDev === false) {
-      switch (config.env) {
-        case 'pl':
-          await extraTasks.patternLab.compile();
-          break;
-        case 'static':
-          await extraTasks.static.compile();
-          break;
-        case 'pwa':
-          return Promise.all([
-            extraTasks.static.compile(),
-            extraTasks.patternLab.compile(),
-          ]);
-          break;
-      }
+      await compileBasedOnEnvironment();
     }
 
     if (shouldReturnTime) {
@@ -195,7 +200,7 @@ async function watch() {
 
 async function start() {
   let buildTime;
-  await getExtraTasks();
+  const extraTasks = await getExtraTasks();
   config = config || (await getConfig());
 
   try {
@@ -207,7 +212,7 @@ async function start() {
     }
     return Promise.all([
       serve(buildTime),
-      await extraTasks.patternLab.compile(),
+      await compileBasedOnEnvironment(),
       watch(),
     ]);
   } catch (error) {

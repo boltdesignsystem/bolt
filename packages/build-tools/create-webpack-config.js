@@ -19,10 +19,6 @@ const {
   createComponentsManifest,
   mapComponentNameToTwigNamespace,
 } = require('./utils/manifest');
-const {
-  getBoltManifest,
-  createComponentsManifest,
-} = require('./utils/manifest');
 const log = require('./utils/log');
 
 async function createWebpackConfig(config) {
