@@ -1,7 +1,7 @@
 const chalk = require('chalk');
+const { Validator } = require('jsonschema');
 const log = require('./log');
 const schemaSchema = require('./schemaSchema-v4');
-const { Validator } = require('jsonschema');
 
 function validateSchema(schema, data, errorMsg) {
   const v = new Validator();

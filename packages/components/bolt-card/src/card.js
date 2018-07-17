@@ -24,8 +24,6 @@
 // // require('object.assign').shim();
 // // window.Symbol = require('es6-symbol');
 
-
-
 // if (window.customElements !== undefined) {
 //   Promise.all([
 //     import(/* webpackMode: "lazy", webpackChunkName: "bolt-wc-polyfill--es5-adapter" */ '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js'),

@@ -8,9 +8,12 @@ async function twigRenderer(templatePath, body) {
     method: body ? 'POST' : 'GET',
   };
   if (body) options.body = JSON.stringify(body);
-  const response = await fetch(`http://127.0.0.1:${config.renderingServicePort}?${qs.stringify({
-    templatePath,
-  })}`, options);
+  const response = await fetch(
+    `http://127.0.0.1:${config.renderingServicePort}?${qs.stringify({
+      templatePath,
+    })}`,
+    options,
+  );
   const html = await response.text();
 
   const { status, statusText, ok } = response;

@@ -1,6 +1,4 @@
-import {
-  h,
-} from '@bolt/core';
+import { h } from '@bolt/core';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-jsonschema-form';
@@ -31,7 +29,6 @@ function saveToLS(uuid, key, value) {
     );
   }
 }
-
 
 export default class SchemaForm extends Component {
   static getDerivedStateFromProps(props, state) {
@@ -65,7 +62,7 @@ export default class SchemaForm extends Component {
     this.requestRender = debouce(this.requestRender.bind(this), 100);
   }
 
-  resetForm(){
+  resetForm() {
     localStorage.removeItem('schemaForm-data');
     this.setState({
       data: this.props.initialData,
@@ -73,8 +70,6 @@ export default class SchemaForm extends Component {
 
     this.requestRender(this.state.data);
   }
-
-
 
   async requestRender(data) {
     saveToLS('schemaForm-data', 'data', data);
@@ -85,15 +80,18 @@ export default class SchemaForm extends Component {
     // if (initialRequest && this.state.renderedHtml){
     //   this.requestRender(data);
     // } else {
-    const res = await fetch(`/api/render-twig?${qs.stringify({
-      templatePath: this.props.demoTemplate,
-    })}`, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
+    const res = await fetch(
+      `/api/render-twig?${qs.stringify({
+        templatePath: this.props.demoTemplate,
+      })}`,
+      {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json',
+        },
       },
-    });
+    );
 
     const body = await res.text();
     if (!res.ok) {
@@ -104,14 +102,14 @@ export default class SchemaForm extends Component {
     saveToLS('schemaForm-html', 'renderedHtml', body);
 
     this.setState({
-      'renderedHtml': body,
+      renderedHtml: body,
     });
   }
 
   componentDidMount() {
     const elem = this;
-    if (this.state.data && this.state.data !== ''){
-      setTimeout(function(){
+    if (this.state.data && this.state.data !== '') {
+      setTimeout(function() {
         elem.requestRender(elem.state.data);
       }, 5000);
     } else if (this.props.initialData) {
@@ -122,21 +120,23 @@ export default class SchemaForm extends Component {
   render() {
     const { layout } = this.props;
 
-    const iframeHead = `<link rel="stylesheet" href="/pattern-lab/build/bolt-global${bolt.config.lang ? '-' + bolt.data.config.lang[0] : ''}.css"> <script src="/pattern-lab/build/bolt-global.js" async></script>`;
+    const iframeHead = `<link rel="stylesheet" href="/pattern-lab/build/bolt-global${
+      bolt.config.lang ? '-' + bolt.data.config.lang[0] : ''
+    }.css"> <script src="/pattern-lab/build/bolt-global.js" async></script>`;
 
     const schema = SchemaForm.prepareSchema(this.props.schema);
     const isHorizontal = layout === 'horizontal';
 
     return (
-      <div style={{
-        display: 'flex',
-        flexDirection: isHorizontal ? 'row' : 'column',
-        flexWrap: 'wrap',
-        backgroundColor: '#F6F6F9',
-        margin: '0 auto',
-        maxWidth: '1024px',
-      }}>
-
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: isHorizontal ? 'row' : 'column',
+          flexWrap: 'wrap',
+          backgroundColor: '#F6F6F9',
+          margin: '0 auto',
+          maxWidth: '1024px',
+        }}>
         <ResponsiveLocalStorageLayout
           className="u-bolt-width-1/1 u-bolt-width-7/10@small"
           style={{
@@ -145,12 +145,20 @@ export default class SchemaForm extends Component {
             display: 'flex',
             padding: '0 1rem',
             position: 'relative',
-          }}
-        >
-          <div key="1" data-grid={{
-            w: 1, h: 3, x: 0, y: 0, minW: 1, minH: 3, maxH: 3,
           }}>
-            <div class="browser-0-0-1"
+          <div
+            key="1"
+            data-grid={{
+              w: 1,
+              h: 3,
+              x: 0,
+              y: 0,
+              minW: 1,
+              minH: 3,
+              maxH: 3,
+            }}>
+            <div
+              class="browser-0-0-1"
               style="
               height: 100%; box-shadow: 0 0 30px rgba(0,0,0,.1);">
               {/* <div class="tabBar-0-0-3" style="display: flex;
@@ -181,14 +189,18 @@ export default class SchemaForm extends Component {
             </div> */}
               {/* <div> */}
               <iframe
-                srcdoc={`<!DOCTYPE html><html><head>${iframeHead}</head><body style="display: flex; justify-content: center; align-items: center; min-height: 100vh;"><div id="mountHere">${this.state.renderedHtml}</div></body></html>`} sandbox="allow-same-origin allow-scripts"
+                srcdoc={`<!DOCTYPE html><html><head>${iframeHead}</head><body style="display: flex; justify-content: center; align-items: center; min-height: 100vh;"><div id="mountHere">${
+                  this.state.renderedHtml
+                }</div></body></html>`}
+                sandbox="allow-same-origin allow-scripts"
                 style={{
                   width: '100%',
                   height: '100%',
                   border: 'none',
                   display: 'block',
-                }}
-              >Your browser does not support iframes.</iframe>
+                }}>
+                Your browser does not support iframes.
+              </iframe>
               {/* </div> */}
             </div>
           </div>
@@ -200,8 +212,7 @@ export default class SchemaForm extends Component {
             overflow: 'visible',
             marginLeft: 'auto',
             position: 'relative',
-          }}
-        >
+          }}>
           <div
             style={{
               minHeight: '320px',
@@ -212,8 +223,8 @@ export default class SchemaForm extends Component {
             <Form
               schema={schema}
               formData={this.state.data}
-              onChange={(data) => this.requestRender(data.formData)}
-              onError={(data) => console.error('Error in Schema Form', data)}
+              onChange={data => this.requestRender(data.formData)}
+              onError={data => console.error('Error in Schema Form', data)}
             />
           </div>
           <button
@@ -223,7 +234,9 @@ export default class SchemaForm extends Component {
               right: 0,
               transform: 'translate3d(0, 100%, 0)',
             }}
-            onClick={() => this.resetForm()}>Reset Form</button>
+            onClick={() => this.resetForm()}>
+            Reset Form
+          </button>
         </div>
       </div>
     );
@@ -239,8 +252,5 @@ SchemaForm.propTypes = {
   schema: PropTypes.object.isRequired,
   initialData: PropTypes.object,
   demoTemplate: PropTypes.string.isRequired,
-  layout: PropTypes.oneOf([
-    'vertical',
-    'horizontal',
-  ]),
+  layout: PropTypes.oneOf(['vertical', 'horizontal']),
 };

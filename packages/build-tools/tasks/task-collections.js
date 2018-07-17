@@ -1,5 +1,5 @@
-const log = require('../utils/log');
 const path = require('path');
+const log = require('../utils/log');
 const webpackTasks = require('./webpack-tasks');
 const criticalcssTasks = require('./criticalcss-tasks');
 const manifest = require('../utils/manifest');
@@ -10,10 +10,9 @@ const { getConfig } = require('../utils/config-store');
 const extraTasks = {};
 let config;
 
-
 // These tasks are present based on optional conditions like `config.env` and should only be `require`-ed when it's the right env due to each file's setup where it tries to grab specific files - and of course the tasks should only run in the correct `env` as well.
 async function getExtraTasks() {
-  config = config || await getConfig();
+  config = config || (await getConfig());
 
   switch (config.env) {
     case 'pl':
@@ -36,8 +35,7 @@ async function getExtraTasks() {
 }
 
 async function clean() {
-  config = config || await getConfig();
-
+  config = config || (await getConfig());
   try {
     let dirs = [];
     switch (config.env) {
@@ -68,9 +66,7 @@ async function clean() {
         ];
         break;
       case 'pwa':
-        dirs = [
-          path.join(path.resolve(config.wwwDir), '**'),
-        ];
+        dirs = [path.join(path.resolve(config.wwwDir), '**')];
         break;
       default:
         dirs = [config.buildDir];
@@ -83,7 +79,7 @@ async function clean() {
 }
 
 async function serve(buildTime = timer.start()) {
-  config = config || await getConfig();
+  config = config || (await getConfig());
   await getExtraTasks();
 
   try {
@@ -104,7 +100,6 @@ async function serve(buildTime = timer.start()) {
   }
 }
 
-
 async function criticalcss() {
   try {
     const criticalTasks = [];
@@ -123,24 +118,21 @@ async function images() {
   }
 }
 
-async function build(
-  localDev = false,
-  shouldReturnTime = false,
-) {
+async function build(localDev = false, shouldReturnTime = false) {
   const startTime = timer.start();
-  config = config || await getConfig();
-  config = config || await getConfig();
+  config = config || (await getConfig());
 
   try {
     await getExtraTasks();
     config.prod ? await clean() : '';
     await internalTasks.mkDirs();
     await manifest.writeBoltManifest();
-    await manifest.writeTwigNamespaceFile(process.cwd(), config.extraTwigNamespaces);
+    await manifest.writeTwigNamespaceFile(
+      process.cwd(),
+      config.extraTwigNamespaces,
+    );
 
-    localDev === false ?
-      await webpackTasks.compile():
-      '';
+    localDev === false ? await webpackTasks.compile() : '';
 
     await images();
 
@@ -172,7 +164,7 @@ async function build(
 }
 
 async function watch() {
-  config = config || await getConfig();
+  config = config || (await getConfig());
 
   try {
     const watchTasks = [];
@@ -204,7 +196,7 @@ async function watch() {
 async function start() {
   let buildTime;
   await getExtraTasks();
-  config = config || await getConfig();
+  config = config || (await getConfig());
 
   try {
     if (!config.quick) {

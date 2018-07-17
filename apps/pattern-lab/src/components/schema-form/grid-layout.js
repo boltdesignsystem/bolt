@@ -50,8 +50,7 @@ export default class ResponsiveLocalStorageLayout extends React.PureComponent {
             left: 0,
             transform: 'translate3d(0, 100%, 0)',
           }}
-          onClick={() => this.resetLayout()}
-        >
+          onClick={() => this.resetLayout()}>
           Reset Layout
         </button>
         <ResponsiveReactGridLayout
@@ -74,8 +73,9 @@ export default class ResponsiveLocalStorageLayout extends React.PureComponent {
           isDraggable={false}
           // rowHeight={30}
           layouts={this.state.layouts}
-          onLayoutChange={(layout, layouts) => this.onLayoutChange(layout, layouts)}
-        >
+          onLayoutChange={(layout, layouts) =>
+            this.onLayoutChange(layout, layouts)
+          }>
           {this.props.children}
         </ResponsiveReactGridLayout>
       </div>

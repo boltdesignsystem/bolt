@@ -5,7 +5,9 @@ const explorer = cosmiconfig('bolt');
 
 const { readYamlFileSync } = require('./yaml');
 const { validateSchema } = require('./schemas');
-const configSchema = readYamlFileSync(path.join(__dirname, './config.schema.yml'));
+const configSchema = readYamlFileSync(
+  path.join(__dirname, './config.schema.yml'),
+);
 const { getPort } = require('./get-port');
 
 let isInitialized = false;
@@ -25,7 +27,7 @@ async function getDefaultConfig() {
     await getPort(configSchema.properties.port.default),
     await getPort(configSchema.properties.proxyPort.default),
     await getPort(configSchema.properties.renderingServicePort.default),
-  ]).then(function (ports) {
+  ]).then(function(ports) {
     return {
       port: ports[0],
       proxyPort: ports[1],
@@ -42,14 +44,15 @@ async function getDefaultConfig() {
       startPath: configSchema.properties.startPath.default,
       webpackStats: configSchema.properties.webpackStats.default,
       globalData: {},
-      schemaErrorReporting: configSchema.properties.schemaErrorReporting.default,
+      schemaErrorReporting:
+        configSchema.properties.schemaErrorReporting.default,
     };
   });
 }
 
 async function getEnvVarsConfig() {
   const envVars = {};
-  Object.keys(process.env).forEach((envVar) => {
+  Object.keys(process.env).forEach(envVar => {
     if (envVar.startsWith('bolt_')) {
       /** @type {string} - All env vars are strings */
       let value = process.env[envVar];
@@ -61,7 +64,7 @@ async function getEnvVarsConfig() {
         value = false;
       } else {
         const numberAttempt = parseInt(value);
-        if (!isNaN(numberAttempt)) {
+        if (!Number.isNaN(numberAttempt)) {
           value = numberAttempt;
         }
       }
@@ -75,14 +78,24 @@ async function getEnvVarsConfig() {
 
 async function isReady() {
   if (!isInitialized) {
-    console.log(chalk.yellow('Bolt config not yet setup -- trying to find a .boltconfig.rc file...'));
+    console.log(
+      chalk.yellow(
+        'Bolt config not yet setup -- trying to find a .boltconfig.rc file...',
+      ),
+    );
     const searchedFor = await explorer.searchSync();
-    if (searchedFor.config){
+    if (searchedFor.config) {
       await init(searchedFor.config);
       return true;
     } else {
-      console.log(chalk.red('.boltrc config not found -- you must initialize config before trying to get or update it.'));
-      console.log('Check to make sure you are running `init()` from `config-store.js` before `getConfig()` or `updateConfig()` ');
+      console.log(
+        chalk.red(
+          '.boltrc config not found -- you must initialize config before trying to get or update it.',
+        ),
+      );
+      console.log(
+        'Check to make sure you are running `init()` from `config-store.js` before `getConfig()` or `updateConfig()` ',
+      );
       process.exit(1);
     }
   } else {
@@ -98,7 +111,11 @@ async function init(userConfig) {
   // End setting programatic defaults
 
   config = Object.assign({}, defaultConfig, userConfig, getEnvVarsConfig());
-  validateSchema(configSchema, config, 'Please fix the config being used in Bolt CLI.');
+  validateSchema(
+    configSchema,
+    config,
+    'Please fix the config being used in Bolt CLI.',
+  );
   isInitialized = true;
   return config;
 }
@@ -108,13 +125,10 @@ async function init(userConfig) {
  * @returns {object} config
  */
 
-
 async function getConfig() {
   await isReady();
   return config;
 }
-
-
 
 /**
  * Update config
@@ -123,7 +137,11 @@ async function getConfig() {
 function updateConfig(updater) {
   isReady();
   const newConfig = updater(config);
-  validateSchema(configSchema, newConfig, 'Please fix the config being used in Bolt CLI.');
+  validateSchema(
+    configSchema,
+    newConfig,
+    'Please fix the config being used in Bolt CLI.',
+  );
   // console.log('new config:');
   // console.log(newConfig);
   config = newConfig;

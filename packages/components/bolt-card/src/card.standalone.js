@@ -1,4 +1,4 @@
-// // import { 
+// // import {
 // //   utils
 // // } from '@bolt/core';
 
@@ -8,7 +8,6 @@
 // import { define, props, withComponent, withUpdate } from 'skatejs';
 // import { h, Component } from 'preact';
 // import withPreact from '@skatejs/renderer-preact';
-
 
 // // // Preact component we want to wrap in the web component.
 // // class PreactCard extends Component {
@@ -20,19 +19,17 @@
 // //   }
 // // }
 
-
 // export default class BoltCard extends withComponent(withPreact()) {
 //   static get is() {
 //     return 'bolt-card';
 //   }
-
 
 //   static props = {
 //     name: props.string,
 //     url: props.string,
 //     theme: props.string
 //   }
-  
+
 //   handleClick(elem, e) {
 //     e.preventDefault();
 
@@ -40,7 +37,6 @@
 //       window.location.href = elem.url;
 //     }
 //   }
-
 
 //   renderCallback({ props }) {
 //     // const classes = css(
@@ -57,7 +53,7 @@
 //     //   <slot/>
 //     // )
 //     // return (
-//     //   <div 
+//     //   <div
 //     //     className={classes}
 //     //     onClick={this.handleClick.bind(this, props)}
 //     //   >
@@ -68,7 +64,7 @@
 //     return (
 //       <div
 //         className={classes}
-       
+
 //       >
 //         <slot />
 //       </div>

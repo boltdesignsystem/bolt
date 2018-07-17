@@ -1,5 +1,4 @@
 const path = require('path');
-const log = require('./utils/log');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -9,13 +8,22 @@ const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const globImporter = require('node-sass-glob-importer');
-const { getBoltManifest, createComponentsManifest, mapComponentNameToTwigNamespace } = require('./utils/manifest');
 const { promisify } = require('util');
 const fs = require('fs');
 const readFile = promisify(fs.readFile);
 const deepmerge = require('deepmerge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TwigPhpLoader = require('twig-php-loader');
+const {
+  getBoltManifest,
+  createComponentsManifest,
+  mapComponentNameToTwigNamespace,
+} = require('./utils/manifest');
+const {
+  getBoltManifest,
+  createComponentsManifest,
+} = require('./utils/manifest');
+const log = require('./utils/log');
 
 async function createWebpackConfig(config) {
   // @TODO: move this setting to .boltrc config
@@ -23,31 +31,31 @@ async function createWebpackConfig(config) {
     path: path.resolve(process.cwd(), config.dataDir),
   });
 
-
   // map out Twig namespaces with the NPM package name
   const npmToTwigNamespaceMap = await mapComponentNameToTwigNamespace();
 
-
   // filename suffix to tack on based on lang being compiled for
-  const langSuffix = `${config.lang && config.lang.length > 1 ? '-' + config.lang : ''}`;
-
+  const langSuffix = `${
+    config.lang && config.lang.length > 1 ? '-' + config.lang : ''
+  }`;
 
   // Default global Sass data defined
   let globalSassData = [
     `$bolt-namespace: ${config.namespace};`,
 
     // output $bolt-lang variable in Sass even if not specified so things fall back accordingly.
-    `${config.lang && config.lang.length > 1 ?
-      `$bolt-lang: ${config.lang};` :
-      '$bolt-lang: null;'
+    `${
+      config.lang && config.lang.length > 1
+        ? `$bolt-lang: ${config.lang};`
+        : '$bolt-lang: null;'
     }`,
   ];
 
   // Default global JS data defined
   let globalJsData = {
-    'process.env.NODE_ENV': config.prod ?
-      JSON.stringify('production') :
-      JSON.stringify('development'),
+    'process.env.NODE_ENV': config.prod
+      ? JSON.stringify('production')
+      : JSON.stringify('development'),
     bolt: {
       namespace: JSON.stringify(config.namespace),
       config: {
@@ -57,11 +65,10 @@ async function createWebpackConfig(config) {
     },
   };
 
-
   // Merge together global Sass data overrides specified in a .boltrc config
   if (config.globalData.scss && config.globalData.scss.length !== 0) {
     const overrideItems = [];
-    config.globalData.scss.forEach((item) => {
+    config.globalData.scss.forEach(item => {
       try {
         const file = fs.readFileSync(item, 'utf8');
         file
@@ -76,11 +83,10 @@ async function createWebpackConfig(config) {
     globalSassData = [...globalSassData, ...overrideItems];
   }
 
-
   // Merge together any global JS data overrides
   if (config.globalData.js && config.globalData.js.length !== 0) {
     const overrideJsItems = [];
-    config.globalData.js.forEach((item) => {
+    config.globalData.js.forEach(item => {
       try {
         const overrideFile = require(path.resolve(process.cwd(), item));
         overrideJsItems.push(overrideFile);
@@ -91,7 +97,6 @@ async function createWebpackConfig(config) {
 
     globalJsData = deepmerge(globalJsData, ...overrideJsItems);
   }
-
 
   /**
    * Build WebPack config's `entry` object
@@ -106,7 +111,7 @@ async function createWebpackConfig(config) {
     if (components.global) {
       entry[globalEntryName] = [];
 
-      components.global.forEach((component) => {
+      components.global.forEach(component => {
         if (component.assets.style) {
           entry[globalEntryName].push(component.assets.style);
         }
@@ -117,7 +122,7 @@ async function createWebpackConfig(config) {
       });
     }
     if (components.individual) {
-      components.individual.forEach((component) => {
+      components.individual.forEach(component => {
         const files = [];
         if (component.assets.style) files.push(component.assets.style);
         if (component.assets.main) files.push(component.assets.main);
@@ -150,7 +155,8 @@ async function createWebpackConfig(config) {
      * verbose. Any other falsy value will behave as 'none', truthy
      * values as 'normal'
      */
-    const pn = (typeof name === 'string') && name.toLowerCase() || name || 'none';
+    const pn =
+      (typeof name === 'string' && name.toLowerCase()) || name || 'none';
 
     switch (pn) {
       case 'none':
@@ -215,7 +221,6 @@ async function createWebpackConfig(config) {
     }
   }
 
-
   // Output CSS module data as JSON.
   // @todo: enable when ready for CSS Modules
   // function getJSONFromCssModules(cssFileName, json) {
@@ -267,7 +272,6 @@ async function createWebpackConfig(config) {
         plugins: () => [
           postcssDiscardDuplicates,
           autoprefixer({
-
             // @todo: replace with standalone Bolt config
             browsers: [
               '> 1% in US',
@@ -300,10 +304,7 @@ async function createWebpackConfig(config) {
       loader: 'sass-loader',
       options: {
         sourceMap: true,
-        importer: [
-          globImporter(),
-          npmSass.importer,
-        ],
+        importer: [globImporter(), npmSass.importer],
         functions: sassExportData,
         outputStyle: 'expanded',
         precision: 3,
@@ -315,9 +316,11 @@ async function createWebpackConfig(config) {
   // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
   // Must start and end with `/`
   // conditional is temp workaround for when servers are disabled via absence of `config.wwwDir`
-  const publicPath = config.publicPath ? config.publicPath : (config.wwwDir
-    ? `/${path.relative(config.wwwDir, config.buildDir)}/`
-    : config.buildDir); // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
+  const publicPath = config.publicPath
+    ? config.publicPath
+    : config.wwwDir
+      ? `/${path.relative(config.wwwDir, config.buildDir)}/`
+      : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
 
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
   const webpackConfig = {
@@ -333,7 +336,7 @@ async function createWebpackConfig(config) {
       extensions: ['.js', '.jsx', '.json', '.svg', '.scss'],
       unsafeCache: true,
       alias: {
-        'react': 'preact-compat',
+        react: 'preact-compat',
         'react-dom': 'preact-compat',
       },
     },
@@ -344,9 +347,7 @@ async function createWebpackConfig(config) {
           oneOf: [
             {
               issuer: /\.js$/,
-              use: [
-                scssLoaders,
-              ].reduce((acc, val) => acc.concat(val), []),
+              use: [scssLoaders].reduce((acc, val) => acc.concat(val), []),
             },
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
@@ -386,10 +387,7 @@ async function createWebpackConfig(config) {
         },
         {
           test: [/\.yml$/, /\.yaml$/],
-          use: [
-            { loader: 'json-loader' },
-            { loader: 'yaml-loader' },
-          ],
+          use: [{ loader: 'json-loader' }, { loader: 'yaml-loader' }],
         },
       ],
     },
@@ -402,7 +400,7 @@ async function createWebpackConfig(config) {
       //   //   js: {
       //   //     test: /\.js$/,
       //   //     // name: 'commons',
-    //   //   chunks: 'all',
+      //   //   chunks: 'all',
       //   //     minChunks: 2,
       //   //     // test: /node_modules/,
       //   //     // enforce: true,
@@ -413,7 +411,7 @@ async function createWebpackConfig(config) {
       //   //     minChunks: 2,
       //   //     // enforce: true,
       //   //   },
-    //   // },
+      //   // },
     },
     plugins: [
       new webpack.IgnorePlugin(/vertx/), // needed to ignore vertx dependency in webcomponentsjs-lite
@@ -445,15 +443,11 @@ async function createWebpackConfig(config) {
     ],
   };
 
-
   /**
    * In non-drupal environments. during local dev server (ie. not on Travis -- for now till Docker container is up and running),
    * compile the Pattern Lab UI HTML via the new Twig PHP rendering service.
    */
-  if (config.env !== 'drupal' &&
-    !config.prod &&
-    config.devServer === true
-  ) {
+  if (config.env !== 'drupal' && !config.prod && config.devServer === true) {
     webpackConfig.plugins.push(
       new HtmlWebpackPlugin({
         title: 'Custom template',
@@ -461,7 +455,10 @@ async function createWebpackConfig(config) {
         inject: false, // disabling for now -- not yet needed in PL build (but at least is working!)
         cache: false,
         // Load a custom template (lodash by default see the FAQ for details)
-        template: path.resolve(process.cwd(), '../../packages/uikit-workshop/src/html-twig/index.twig'),
+        template: path.resolve(
+          process.cwd(),
+          '../../packages/uikit-workshop/src/html-twig/index.twig',
+        ),
       }),
 
       new TwigPhpLoader(), // handles compiling Twig templates when Webpack-specific contextual data is needed (ex. automatically injecting assets in your entry config)
@@ -481,43 +478,48 @@ async function createWebpackConfig(config) {
     });
   }
 
-
-
   if (config.prod) {
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
     // Config recommendation based off of https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1#f548
-    webpackConfig.plugins.push(new UglifyJsPlugin({
-      sourceMap: true,
-      parallel: true,
-      cache: true,
-      uglifyOptions: {
+    webpackConfig.plugins.push(
+      new UglifyJsPlugin({
+        sourceMap: true,
+        parallel: true,
         cache: true,
-        compress: true,
+        uglifyOptions: {
+          cache: true,
+          compress: true,
 
-        mangle: true,
-      },
-    }));
+          mangle: true,
+        },
+      }),
+    );
 
     // https://webpack.js.org/plugins/module-concatenation-plugin/
-    webpackConfig.plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
+    webpackConfig.plugins.push(
+      new webpack.optimize.ModuleConcatenationPlugin(),
+    );
 
     // Optimize CSS - https://github.com/NMFR/optimize-css-assets-webpack-plugin
-    webpackConfig.plugins.push(new OptimizeCssAssetsPlugin({
-      canPrint: config.verbosity > 2,
-      cssProcessorOptions: {// passes to `cssnano`
-        zindex: false, // don't alter `z-index` values
-        mergeRules: false, // this MUST be disabled - otherwise certain selectors (ex. ::slotted(*), which IE 11 can't parse) break
-      },
-    }));
+    webpackConfig.plugins.push(
+      new OptimizeCssAssetsPlugin({
+        canPrint: config.verbosity > 2,
+        cssProcessorOptions: {
+          // passes to `cssnano`
+          zindex: false, // don't alter `z-index` values
+          mergeRules: false, // this MUST be disabled - otherwise certain selectors (ex. ::slotted(*), which IE 11 can't parse) break
+        },
+      }),
+    );
 
     // @todo Evaluate best source map approach for production
     webpackConfig.devtool = 'hidden-source-map';
-  } else { // not prod
+  } else {
+    // not prod
     // @todo fix source maps
     // webpackConfig.devtool = 'cheap-module-eval-source-map';
     webpackConfig.devtool = 'eval';
   }
-
 
   if (config.wwwDir) {
     webpackConfig.devServer = {
@@ -549,7 +551,6 @@ async function createWebpackConfig(config) {
   return webpackConfig;
 }
 
-
 module.exports = async function() {
   return new Promise(async (resolve, reject) => {
     const webpackConfigs = [];
@@ -559,18 +560,20 @@ module.exports = async function() {
     if (config.lang && config.lang.length > 1) {
       config.lang.reverse(); // Make sure the 1st language in the array is LAST since that's the one used for the local dev environment.
 
-      await Promise.all(config.lang.map(async (lang) => {
-        config.lang = lang; // Make sure only ONE language config is set per Webpack build instance.
+      await Promise.all(
+        config.lang.map(async lang => {
+          config.lang = lang; // Make sure only ONE language config is set per Webpack build instance.
 
-        const webpackConfig = await createWebpackConfig(config);
+          const webpackConfig = await createWebpackConfig(config);
 
-        if (config.webpackStats) {
-          webpackConfig.profile = true;
-          webpackConfig.parallelism = 1;
-        }
+          if (config.webpackStats) {
+            webpackConfig.profile = true;
+            webpackConfig.parallelism = 1;
+          }
 
-        webpackConfigs.push(webpackConfig);
-      }));
+          webpackConfigs.push(webpackConfig);
+        }),
+      );
     } else {
       const webpackConfig = await createWebpackConfig(config);
 
@@ -584,4 +587,3 @@ module.exports = async function() {
     return resolve(webpackConfigs);
   });
 };
-

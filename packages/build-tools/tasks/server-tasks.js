@@ -1,23 +1,31 @@
 const browserSync = require('browser-sync');
+const path = require('path');
+const resolve = require('resolve');
 const events = require('../utils/events');
 const { getConfig } = require('../utils/config-store');
 const log = require('../utils/log');
 const sh = require('../utils/sh');
 const { handleRequest } = require('../api');
 const server = browserSync.create();
-const path = require('path');
-const resolve = require('resolve');
 const webpackServeWaitpage = require('./webpack-serve-waitpage');
 let config;
 
 async function phpServer() {
-  config = config || await getConfig();
+  config = config || (await getConfig());
 
   return new Promise((resolve, reject) => {
-    console.log('Starting up local php render twig api server at port ', config.renderingServicePort);
-    sh('php', ['-S', `127.0.0.1:${config.renderingServicePort}`,
-      'TwigRendererApi.php',
-    ], true, true, true, true)
+    console.log(
+      'Starting up local php render twig api server at port ',
+      config.renderingServicePort,
+    );
+    sh(
+      'php',
+      ['-S', `127.0.0.1:${config.renderingServicePort}`, 'TwigRendererApi.php'],
+      true,
+      true,
+      true,
+      true,
+    )
       .then(output => {
         console.log('---');
         console.log(output);
@@ -32,8 +40,8 @@ async function phpServer() {
   });
 }
 
-async function getServerConfig(){
-  config = config || await getConfig();
+async function getServerConfig() {
+  config = config || (await getConfig());
 
   // https://www.browsersync.io/docs/options
   const serverConfig = {
@@ -47,10 +55,7 @@ async function getServerConfig(){
     logConnections: false,
     notify: false, // Hide notifications till we come up with a less disruptive refresh UI
     reloadOnRestart: true,
-    files: [
-      config.wwwDir + '**/*.css',
-      config.wwwDir + '**/*.html',
-    ],
+    files: [config.wwwDir + '**/*.css', config.wwwDir + '**/*.html'],
     snippetOptions: {
       async: true,
     },
@@ -74,23 +79,22 @@ async function getServerConfig(){
       serverConfig.serveStatic.push(config.wwwDir);
     }
   } else {
-    serverConfig.server = [
-      config.wwwDir,
-    ];
+    serverConfig.server = [config.wwwDir];
   }
 
   return serverConfig;
 }
 
-
 async function serve() {
-  config = config || await getConfig();
+  config = config || (await getConfig());
   const serverConfig = await getServerConfig();
 
   // https://www.browsersync.io/docs/api#api-init
   server.init(serverConfig, () => {
     if (config.verbosity > 3) {
-      log.info('BrowserSync set up and ready to go... (this notice may be redundant)');
+      log.info(
+        'BrowserSync set up and ready to go... (this notice may be redundant)',
+      );
     }
   });
 }
@@ -104,15 +108,14 @@ function reload(files) {
   server.reload(files);
 }
 
-events.on('reload', async (files) => {
-  config = config || await getConfig();
+events.on('reload', async files => {
+  config = config || (await getConfig());
 
   if (config.verbosity > 4) {
     log.info('Event triggered: "reload"', files);
   }
   reload(files);
 });
-
 
 module.exports = {
   getServerConfig,
