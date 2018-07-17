@@ -40,11 +40,20 @@
     env:
       type: string
       title: Environment Type
-      description: Where is this being compiled? Pattern Lab? Drupal?
+      description: What is being compiled? Pattern Lab? Drupal? A static site? Or is the new in-progress Progressive Web App (PWA) that combines Pattern Lab + the docs site into one single environment?
       enum:
         - pl
         - static
         - drupal
+        - pwa
+    renderingService:
+      type: boolean
+      description: Automatically start up the PHP / Twig Rendering Service?
+      default: false
+    renderingServicePort:
+      type: number
+      title: Desired port for PHP Rendering Service
+      default: 8087
     srcDir:
       type: string
       title: Source Directory

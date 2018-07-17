@@ -7,9 +7,6 @@ import {
   hasNativeShadowDomSupport,
 } from '@bolt/core';
 
-
-
-
 // To avoid invoking the parser with `.innerHTML` for every new instance, a
 // template for the contents of the ShadowDOM is is shared by all
 // `<bolt-band>` instances.
@@ -22,11 +19,7 @@ export class BoltBand extends BoltComponent() {
   static is = 'bolt-band';
 
   static get observedAttributes() {
-    return [
-      'expanded',
-      'expandedHeight',
-      'initialHeight',
-    ];
+    return ['expanded', 'expandedHeight', 'initialHeight'];
   }
 
   constructor(self) {
@@ -36,12 +29,12 @@ export class BoltBand extends BoltComponent() {
   }
 
   /**
-    * `connecting()` sets up the role, event handler and initial state.
-    */
+   * `connecting()` sets up the role, event handler and initial state.
+   */
   connecting() {
     this.state = {
       ready: false,
-    }
+    };
 
     // Clone the shadow DOM template.
     if (this.state.ready === false) {
@@ -49,7 +42,7 @@ export class BoltBand extends BoltComponent() {
       this.classList.add('is-ready');
     }
 
-    if (this.querySelector('bolt-video[is-background-video]')){
+    if (this.querySelector('bolt-video[is-background-video]')) {
       if (this.expandedHeight === null) {
         this.expandedHeight = '56.25vh';
       }
@@ -70,16 +63,22 @@ export class BoltBand extends BoltComponent() {
     this.addEventListener('ended', this.finishedHandler);
     this.addEventListener('close', this.collapse);
 
-    this.addEventListener('videoExpandedHeightSet', this._adjustExpandedHeightToMatchVideo);
+    this.addEventListener(
+      'videoExpandedHeightSet',
+      this._adjustExpandedHeightToMatchVideo,
+    );
   }
 
   disconnecting() {
-    this.removeEventListener('videoExpandedHeightSet', this._adjustExpandedHeightToMatchVideo);
+    this.removeEventListener(
+      'videoExpandedHeightSet',
+      this._adjustExpandedHeightToMatchVideo,
+    );
   }
 
   /**
-    * `attributeChangedCallback` processes changes to the `expanded` attribute.
-    */
+   * `attributeChangedCallback` processes changes to the `expanded` attribute.
+   */
   attributeChangedCallback(name) {
     if (this.state.ready === false) {
       this.state.ready = true;
@@ -105,7 +104,6 @@ export class BoltBand extends BoltComponent() {
     }
   }
 
-
   collapse() {
     const endingHeight = this.startingHeight ? this.startingHeight : '0px';
     const elem = this;
@@ -116,13 +114,12 @@ export class BoltBand extends BoltComponent() {
         this.style.minHeight = `${endingHeight}px`;
         this.lastRAF = null;
       });
-
     });
 
     this.expanded = false;
 
     // clean up inline CSS after waiting just a bit
-    setTimeout(function () {
+    setTimeout(function() {
       elem.removeAttribute('style', 'minHeight');
     }, 100);
   }
@@ -139,12 +136,11 @@ export class BoltBand extends BoltComponent() {
     this.expanded = true;
   }
 
-
   // Max Height of a video child element has been set so use that to determine how tall a band should get.
   _adjustExpandedHeightToMatchVideo(event) {
     if (event.detail.expandedHeight) {
       let videoHeight = event.detail.expandedHeight;
-      const mq = window.matchMedia( '(max-width: 600px)' );
+      const mq = window.matchMedia('(max-width: 600px)');
 
       // Add to the height to make space for the 'close' button at the bottom
       // if we are at the smallest breakpoint.
@@ -153,11 +149,11 @@ export class BoltBand extends BoltComponent() {
         // and outgoing ends).  In order to modify it, we turn it into a number, then
         // back to a string.  Not
         videoHeight = Number(videoHeight);
-        videoHeight = String(videoHeight)
+        videoHeight = String(videoHeight);
       }
       this.expandedHeight = videoHeight;
 
-      if (this.expanded){
+      if (this.expanded) {
         this.lastRAF && cancelAnimationFrame(this.lastRAF);
         this.lastRAF = requestAnimationFrame(() => {
           this.lastRAF = requestAnimationFrame(() => {
@@ -168,7 +164,6 @@ export class BoltBand extends BoltComponent() {
       }
     }
   }
-
 
   get expanded() {
     return this.hasAttribute('expanded');
@@ -186,14 +181,12 @@ export class BoltBand extends BoltComponent() {
     }
   }
 
-
   get expandedHeight() {
     return this.getAttribute('expandedHeight');
   }
 
   set expandedHeight(value) {
     if (value) {
-
       // @TODO: come up with a better way to validate CSS unit possibilities here
       // if (value.includes('px') ||
       //   value.includes('vh') ||
@@ -207,14 +200,13 @@ export class BoltBand extends BoltComponent() {
       } else {
         this.setAttribute('expandedHeight', value + 'px');
       }
-    }
-    else {
+    } else {
       this.removeAttribute('expandedHeight');
     }
   }
 
   render() {
-    if (this.useShadow){
+    if (this.useShadow) {
       return this.html`
         ${this.slot('default')}
       `;

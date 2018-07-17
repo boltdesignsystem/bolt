@@ -2,30 +2,6 @@ const chalk = require('chalk');
 const execa = require('execa');
 const notifier = require('node-notifier');
 
-function handleShResults(results, exitOnError, streamOutput, showCmdOnError, exitImmediately, resolve, reject) {
-  const { code, stdout, stderr, message } = results;
-  const output = stderr + '\n\n' + stdout;
-  if (code > 0) {
-    const errorMsg = chalk.red(showCmdOnError ? message : `Error with code ${code}`);
-    if (exitOnError) {
-      if (exitImmediately) {
-        console.error(errorMsg + output);
-        process.exit(1);
-      }
-      process.exitCode = 1;
-      reject(new Error(errorMsg + output));
-    } else {
-      notifier.notify({
-        title: cmd,
-        message: output,
-        sound: true,
-      });
-      reject(errorMsg + output);
-    }
-  }
-  resolve(output);
-}
-
 /**
  * Run shell command
  * @param cmd {string} - Command to run
@@ -35,19 +11,67 @@ function handleShResults(results, exitOnError, streamOutput, showCmdOnError, exi
  * @param showCmdOnError {boolean} - If error, should `cmd` be shown?
  * @param exitImmediately {boolean} - If an exit is about to happen, should it happen immediately or at the end of the call stack at next tick?
  */
-async function sh(cmd, args, exitOnError, streamOutput, showCmdOnError = true, exitImmediately = false) {
+async function sh(
+  cmd,
+  args,
+  exitOnError,
+  streamOutput,
+  showCmdOnError = true,
+  exitImmediately = false,
+) {
   return new Promise((resolve, reject) => {
     const child = execa(cmd, args);
+    let output = '';
 
     if (streamOutput) {
       child.stdout.pipe(process.stdout);
       child.stderr.pipe(process.stderr);
     }
 
-    child.then((results) => handleShResults(results, exitOnError, streamOutput, showCmdOnError, exitImmediately, resolve, reject));
-    child.catch((results) => handleShResults(results, exitOnError, streamOutput, showCmdOnError, exitImmediately, resolve, reject));
-  });
+    child.stdout.on('data', data => {
+      output += data;
+      if (streamOutput) {
+        process.stdout.write(data);
+      }
+    });
 
+    child.stderr.on('data', data => {
+      output += data;
+      if (streamOutput) {
+        process.stdout.write(data);
+      }
+    });
+
+    child.on('close', code => {
+      if (code > 0) {
+        const errorMsg = chalk.red(`
+          Error with code ${code}${
+          showCmdOnError ? ` after running: ${cmd}` : ''
+        }:
+        `);
+
+        if (exitOnError) {
+          if (exitImmediately) {
+            console.error(errorMsg + output);
+            process.exit(1);
+          }
+
+          process.exitCode = 1;
+          reject(new Error(errorMsg + output));
+        } else {
+          notifier.notify({
+            title: cmd,
+            message: output,
+            sound: true,
+          });
+
+          // eslint-disable-next-line prefer-promise-reject-errors
+          reject(errorMsg + output);
+        }
+      }
+      resolve(output);
+    });
+  });
 }
 
 module.exports = sh;

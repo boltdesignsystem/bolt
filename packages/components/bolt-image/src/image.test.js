@@ -4,7 +4,6 @@ const readFile = promisify(fs.readFile);
 const path = require('path');
 
 describe.skip('image file output', () => {
-
   test('dummy test', () => {
     expect(true).toEqual(true);
   });
@@ -22,6 +21,4 @@ describe.skip('image file output', () => {
   //   const plFile = await readFile(plFilePath, 'utf8');
   //   expect(plFile).toMatchSnapshot();
   // });
-
 });
-
