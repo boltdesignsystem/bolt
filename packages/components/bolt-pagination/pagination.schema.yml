@@ -23,6 +23,9 @@ properties:
         href:
           type: string
           description: The link for this pager item
+        attributes:
+          type: object
+          description: A Drupal-style attributes object for this link.
   first:
     type: object
     description: A link object for the first page
@@ -30,6 +33,9 @@ properties:
       href:
         type: string
         description: The link for this pager item
+      attributes:
+        type: object
+        description: A Drupal-style attributes object for this link.
   previous:
     type: object
     description: A link object for the previous page (e.g. if on page 3, this links to page 2)
@@ -37,20 +43,29 @@ properties:
       href:
         type: string
         description: The link for this pager item
+      attributes:
+        type: object
+        description: A Drupal-style attributes object for this link.
   next:
     type: object
     description: A link object for the next page (e.g. if on page 3, this links to page 4)
     properties:
       href:
         type: string
-        description: The link for this pager item
+        description: The link for this pager item.
+      attributes:
+        type: object
+        description: A Drupal-style attributes object for this link.
   last:
     type: object
     description: A link object for the last page
     properties:
       href:
         type: string
-        description: The link for this pager item
+        description: The link for this pager item.
+      attributes:
+        type: object
+        description: A Drupal-style attributes object for this link.
   previousText:
     type: string
     title: Previous text

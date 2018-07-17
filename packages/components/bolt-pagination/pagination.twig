@@ -58,7 +58,9 @@
 >
   <nav class="{{ baseClass }}" role="navigation" aria-label="Pagination Navigation">
     {% if previous %}
-      <a class="{{ "#{baseClass}__item" }} {{ "#{baseClass}__item--prev" }}" href="{{ previous.href }}">
+      {% set previousAttributes = create_attribute(previous.attributes|default({})) %}
+      {% set previousAttributes = previousAttributes.setAttribute("href", previous.href) %}
+      <a {{ previousAttributes.addClass("#{baseClass}__item", "#{baseClass}__item--prev") }}>
         <span class="{{ "#{baseClass}__icon" }}">
           <bolt-icon name="chevron-left" size="small"></bolt-icon>
         </span>
@@ -69,10 +71,12 @@
     {% endif %}
 
     {% if first %}
-      <a class="{{ "#{baseClass}__item" }}" href="{{ first.href }}">
+      {% set firstAttributes = create_attribute(first.attributes|default({})) %}
+      {% set firstAttributes = firstAttributes.setAttribute("href", first.href) %}
+      <a {{ firstAttributes.addClass("#{baseClass}__item") }}>
       <span class="{{ "#{baseClass}__text" }}">
         <span class="u-bolt-visuallyhidden">
-          {{ 'Navigate to first page'|t }}
+          {{ "Navigate to first page"|t }}
         </span>
         1
       </span>
@@ -85,8 +89,13 @@
 
     {% if pages %}
       {% for key, link in pages %}
+        {% set linkAttributes = create_attribute(link.attributes|default({})) %}
+        {% set linkAttributes = linkAttributes.setAttribute("href", link.href) %}
+        {% set linkAttributes = linkAttributes.addClass("#{baseClass}__item") %}
         {% if key == current %}
-          <a class="{{ "#{baseClass}__item" }} is-current" href="{{ link.href }}" aria-current="true">
+          {% set linkAttributes = linkAttributes.addClass("is-current") %}
+          {% set linkAttributes = linkAttributes.setAttribute("aria-current", "true") %}
+          <a {{ linkAttributes }}>
             <span class="{{ "#{baseClass}__text" }}">
               <span class="u-bolt-visuallyhidden">
                 You are currently on page
@@ -95,7 +104,7 @@
             </span>
           </a>
         {% else %}
-          <a class="{{ "#{baseClass}__item" }}" href="{{ link.href }}">
+          <a {{ linkAttributes }}>
             <span class="{{ "#{baseClass}__text" }}">
               <span class="u-bolt-visuallyhidden">
                 Navigate to page
@@ -112,10 +121,12 @@
     {% endif %}
 
     {% if last %}
-      <a class="{{ "#{baseClass}__item" }}" href="{{ last.href }}">
+      {% set lastAttributes = create_attribute(last.attributes|default({})) %}
+      {% set lastAttributes = lastAttributes.setAttribute("href", last.href) %}
+      <a {{ lastAttributes.addClass("#{baseClass}__item") }}>
         <span class="{{ "#{baseClass}__text" }}">
           <span class="u-bolt-visuallyhidden">
-            {{ 'Navigate to last page'|t }}
+            {{ "Navigate to last page"|t }}
           </span>
           {{ total }}
         </span>
@@ -123,7 +134,9 @@
     {% endif %}
 
     {% if next %}
-      <a class="{{ "#{baseClass}__item" }} {{ "#{baseClass}__item--next" }}" href="{{ next.href }}">
+      {% set nextAttributes = create_attribute(next.attributes|default({})) %}
+      {% set nextAttributes = nextAttributes.setAttribute("href", next.href) %}
+      <a {{ nextAttributes.addClass("#{baseClass}__item", "#{baseClass}__item--next") }}>
         <span class="{{ "#{baseClass}__text" }}">
           {{ nextText }}
         </span>
