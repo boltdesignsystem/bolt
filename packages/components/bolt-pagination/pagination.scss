@@ -77,6 +77,7 @@ bolt-pagination {
   &.is-current {
     color: $bolt-pagination-item-text-color-current-notheme;
     background-color: $bolt-pagination-item-bg-color-current-notheme;
+    opacity: 1;  // Current item is not a link so its styling shouldn't change based on state.
   }
 }
 

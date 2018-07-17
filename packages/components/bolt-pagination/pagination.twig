@@ -95,14 +95,14 @@
         {% if key == current %}
           {% set linkAttributes = linkAttributes.addClass("is-current") %}
           {% set linkAttributes = linkAttributes.setAttribute("aria-current", "true") %}
-          <a {{ linkAttributes }}>
+          <span {{ linkAttributes|without("href") }}>
             <span class="{{ "#{baseClass}__text" }}">
               <span class="u-bolt-visuallyhidden">
                 You are currently on page
               </span>
               {{- key -}}
             </span>
-          </a>
+          </span>
         {% else %}
           <a {{ linkAttributes }}>
             <span class="{{ "#{baseClass}__text" }}">
