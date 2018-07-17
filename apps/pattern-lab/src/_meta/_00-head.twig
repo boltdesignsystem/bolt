@@ -8,19 +8,21 @@
 {% endif %}
 
 <!-- WIP. Temp solution to async load multiple lang-specific CSS builds based on query string in URL -->
-{% set allAssets = {} %}
-{% set langs = [
-  'en',
-  'ja'
-] %}
+{% if bolt.data.config.i18n %}
+  {% set allAssets = {} %}
+  {% set langs = [
+    'en',
+    'ja'
+  ] %}
 
-{% for lang, key in langs %}
-  {% set langAssets = get_data("@bolt-assets/bolt-webpack-manifest#{key ? "-" ~ key : ""}.json") %}
+  {% for lang, key in langs %}
+    {% set langAssets = get_data("@bolt-assets/bolt-webpack-manifest#{key ? "-" ~ key : ""}.json") %}
 
-  {% set allAssets = allAssets|merge({
-    ('' ~ key): langAssets
-  }) %}
-{% endfor %}
+    {% set allAssets = allAssets|merge({
+      ('' ~ key): langAssets
+    }) %}
+  {% endfor %}
+{% endif %}
 
 
 

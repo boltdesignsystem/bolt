@@ -84,9 +84,9 @@ const configFilePath = path.resolve(
 
         // If i18n is disabled, ignore and remove lang config settings
         if (config.lang && config.i18n === false) {
-          config.lang = [config.lang[0]];
+          // Remove any lang-specific settings for local dev to speed things up.
+          delete config['lang'];
         }
-        delete config['lang'];
 
         return config;
       });
@@ -94,6 +94,7 @@ const configFilePath = path.resolve(
       const config = await configStore.getConfig();
       log.dim(`Verbosity: ${config.verbosity}`);
       log.dim(`Prod: ${config.prod}`);
+      log.dim(`i18n: ${config.i18n}`);
       if (config.verbosity > 2) {
         log.dim(`Opening browser: ${config.openServerAtStart}`);
         log.dim(`Quick mode: ${config.quick}`);
@@ -118,6 +119,7 @@ const configFilePath = path.resolve(
         '--webpack-stats',
         configSchema.properties.webpackStats.description,
       )
+      .option('-I, --i18n', configSchema.properties.i18n.description)
       .option('-Q, --quick', configSchema.properties.quick.description)
       .action(async options => {
         log.info(
@@ -179,6 +181,7 @@ const configFilePath = path.resolve(
         '-O, --open',
         configSchema.properties.openServerAtStart.description,
       )
+      .option('-I, --i18n', configSchema.properties.i18n.description)
       .option('-Q, --quick', configSchema.properties.quick.description)
       .option(
         '--webpack-dev-server',

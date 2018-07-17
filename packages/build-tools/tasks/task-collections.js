@@ -150,11 +150,11 @@ async function build(localDev = false, shouldReturnTime = false) {
       config.extraTwigNamespaces,
     );
 
-    localDev === false ? await webpackTasks.compile() : '';
+    config.prod || localDev === false ? await webpackTasks.compile() : '';
 
     await images();
 
-    if (localDev === false) {
+    if (config.prod || localDev === false) {
       await compileBasedOnEnvironment();
     }
 
