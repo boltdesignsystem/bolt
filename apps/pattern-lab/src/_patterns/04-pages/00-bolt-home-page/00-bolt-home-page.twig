@@ -2,10 +2,7 @@
   theme: "xdark",
   "title": {
     "tag": "h2",
-    "text": "Bolt v1.5.3",
-    "icon": {
-      "name": "icon-name"
-    }
+    "text": "Bolt Design System",
   },
   "links": [
     {
@@ -13,7 +10,7 @@
       "url": "#"
     },
     {
-      "text": "Getting Started",
+      "text": "Documentation",
       "url": "#"
     },
     {
@@ -27,9 +24,14 @@
 
   {# hero band #}
 {% embed "@bolt/band.twig" with {
-    size: "xlarge",
+    size: "large",
     theme: "xdark",
     fullBleed: true,
+    attributes: {
+      class: [
+        "u-bolt-height-screen"
+      ]
+    },
     background: {
       "opacity": "medium",
       "fill": "color",
@@ -79,7 +81,11 @@
                 {
                   text: "View on GitHub",
                   width: "full",
-                  style: "secondary"
+                  style: "secondary",
+                  icon: {
+                    name: "external-link",
+                    position: "after"
+                  }
                 }
               ],
               full: true,
