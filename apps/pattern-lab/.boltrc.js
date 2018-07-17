@@ -141,8 +141,6 @@ const config = {
 
 if (argv.prod) {
   config.components.individual.push('@bolt/components-critical-fonts');
-} else {
-  config.components.global.push('@bolt/components-critical-fonts');
 }
 
 module.exports = config;

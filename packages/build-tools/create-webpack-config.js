@@ -36,10 +36,8 @@ async function createWebpackConfig(buildConfig) {
   // map out Twig namespaces with the NPM package name
   const npmToTwigNamespaceMap = await mapComponentNameToTwigNamespace();
 
-  console.log(buildConfig.lang);
   // filename suffix to tack on based on lang being compiled for
   let langSuffix = `${config.lang ? '-' + config.lang : ''}`;
-  console.log(langSuffix);
 
   // Default global Sass data defined
   let globalSassData = [
@@ -568,7 +566,6 @@ async function assignLangToWebpackConfig(config, lang) {
     langSpecificWebpackConfig.parallelism = 1;
   }
 
-  // console.log(langSpecificWebpackConfig);
   webpackConfigs.push(langSpecificWebpackConfig);
 }
 
