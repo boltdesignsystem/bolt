@@ -211,9 +211,9 @@ async function start() {
       });
     }
     return Promise.all([
-      await serve(buildTime),
+      serve(buildTime),
       await compileBasedOnEnvironment(),
-      await watch(),
+      watch(),
     ]);
   } catch (error) {
     log.errorAndExit('Start failed', error);
