@@ -1,5 +1,8 @@
 export { define, props, withComponent, withUpdate } from 'skatejs';
 
+export preact, { Component, h } from 'preact';
+export { hyper } from 'hyperhtml/cjs';
+
 // Export Utilties + Helpers
 export { css } from './utils/css';
 export { sanitizeBoltClasses } from './utils/sanitize-classes';
