@@ -14,6 +14,9 @@ const readFile = promisify(fs.readFile);
 const deepmerge = require('deepmerge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TwigPhpLoader = require('twig-php-loader');
+const themify = require('@bolt/themify');
+const resolve = require('resolve');
+
 const { getConfig } = require('./utils/config-store');
 const {
   getBoltManifest,
@@ -28,6 +31,15 @@ let webpackConfigs = [];
 async function createWebpackConfig(buildConfig) {
   const config = buildConfig;
 
+  // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
+  // Must start and end with `/`
+  // conditional is temp workaround for when servers are disabled via absence of `config.wwwDir`
+  const publicPath = config.publicPath
+    ? config.publicPath
+    : config.wwwDir
+      ? `/${path.relative(config.wwwDir, config.buildDir)}/`
+      : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
+
   // @TODO: move this setting to .boltrc config
   const sassExportData = require('@theme-tools/sass-export-data')({
     path: path.resolve(process.cwd(), config.dataDir),
@@ -38,6 +50,33 @@ async function createWebpackConfig(buildConfig) {
 
   // filename suffix to tack on based on lang being compiled for
   let langSuffix = `${config.lang ? '-' + config.lang : ''}`;
+
+  let themifyOptions = {
+    palette: {},
+    createVars: true,
+    classPrefix: 't-bolt-',
+    // defaultColorVariation: 'xlight', // WIP - hard coding xlight default for now
+    screwIE11: false,
+    modifyCSSRules: false,
+    fallback: {
+      filename: 'bolt-css-vars-fallback',
+    },
+  };
+
+  themifyOptions = deepmerge(themifyOptions, {
+    fallback: {
+      cssPath: path.resolve(
+        process.cwd(),
+        config.buildDir,
+        `${themifyOptions.fallback.filename}.css`,
+      ),
+      dynamicPath: path.resolve(
+        process.cwd(),
+        config.buildDir,
+        `${themifyOptions.fallback.filename}.json`,
+      ),
+    },
+  });
 
   // Default global Sass data defined
   let globalSassData = [
@@ -58,6 +97,13 @@ async function createWebpackConfig(buildConfig) {
       : JSON.stringify('development'),
     bolt: {
       namespace: JSON.stringify(config.namespace),
+      themingFallbackCSS: JSON.stringify(
+        publicPath + themifyOptions.fallback.filename + '.css',
+      ),
+      themingFallbackJSON: JSON.stringify(
+        publicPath + themifyOptions.fallback.filename + '.json',
+      ),
+
       config: {
         prod: config.prod ? true : false,
         lang: config.lang,
@@ -311,16 +357,23 @@ async function createWebpackConfig(buildConfig) {
         data: globalSassData.join('\n'),
       },
     },
-  ];
+    // Reads Sass vars from files or inlined in the options property
+    {
+      loader: '@epegzz/sass-vars-loader',
+      options: {
+        syntax: 'scss',
+        files: [
+          // path.resolve(__dirname, '../core/styles/01-settings/settings-colors/_settings-colors.js'),
+          resolve.sync(
+            '@bolt/core/styles/01-settings/settings-colors/_settings-colors.js',
+          ),
 
-  // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
-  // Must start and end with `/`
-  // conditional is temp workaround for when servers are disabled via absence of `config.wwwDir`
-  const publicPath = config.publicPath
-    ? config.publicPath
-    : config.wwwDir
-      ? `/${path.relative(config.wwwDir, config.buildDir)}/`
-      : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
+          // Option 3) Load vars from JavaScript file
+          // resolve.sync('@bolt/core/styles/index.js'),
+        ],
+      },
+    },
+  ];
 
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
   const webpackConfig = {
