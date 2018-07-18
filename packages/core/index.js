@@ -1,6 +1,5 @@
 export { define, props, withComponent, withUpdate } from 'skatejs';
 
-
 // Export Utilties + Helpers
 export { css } from './utils/css';
 export { sanitizeBoltClasses } from './utils/sanitize-classes';
