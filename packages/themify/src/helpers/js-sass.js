@@ -8,7 +8,6 @@ var isArray = Array.isArray;
  */
 function JSToSASS(jsValue) {
   function _JSToSASS(value, initialIndentLevel = 0) {
-
     var indentLevel = initialIndentLevel;
     switch (typeof value) {
       case 'boolean':
@@ -22,7 +21,7 @@ function JSToSASS(jsValue) {
           var indent = indentsToSpaces(indentLevel);
           var jsObject = value;
           var sassKeyValPairs = [];
-          sassKeyValPairs = Object.keys(jsObject).reduce(function (result, key) {
+          sassKeyValPairs = Object.keys(jsObject).reduce(function(result, key) {
             var jsVal = jsObject[key];
             var sassVal = _JSToSASS(jsVal, indentLevel);
             if (isNotUndefined(sassVal)) {
@@ -30,7 +29,12 @@ function JSToSASS(jsValue) {
             }
             return result;
           }, []);
-          var result = '(\n' + (indent + sassKeyValPairs.join(',\n' + indent)) + '\n' + indentsToSpaces(indentLevel - 1) + ')';
+          var result =
+            '(\n' +
+            (indent + sassKeyValPairs.join(',\n' + indent)) +
+            '\n' +
+            indentsToSpaces(indentLevel - 1) +
+            ')';
           indentLevel -= 1;
           return result;
         } else if (isArray(value)) {

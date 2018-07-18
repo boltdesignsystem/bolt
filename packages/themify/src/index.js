@@ -11,11 +11,11 @@
 //   };
 // // Object.defineProperty(exports, "__esModule", { value: true });
 
-var jsonUtil = require('./helpers/json.util');
-var cssUtil = require('./helpers/css.util');
 var postcss = require('postcss');
 var fs = require('fs-extra');
 var hexToRgba = require('hex-to-rgba');
+var cssUtil = require('./helpers/css.util');
+var jsonUtil = require('./helpers/json.util');
 var JSToSass = require('./helpers/js-sass');
 
 var THEMIFY = 'themify';
@@ -73,16 +73,15 @@ var defaultVariation = ColorVariation.XLIGHT;
 /** An array of variation values  */
 var variationValues = Object.values(ColorVariation);
 /** An array of all non-default variations */
-var nonDefaultVariations = variationValues.filter(function (v) {
+var nonDefaultVariations = variationValues.filter(function(v) {
   return v !== defaultVariation;
 });
-
 
 function themify(options) {
   /** Regex to get the value inside the themify parenthesis */
   var themifyRegExp = /themify\(([^)]+)\)/gi;
   options = buildOptions(options);
-  return function (root) {
+  return function(root) {
     // process fallback CSS, without mutating the rules
     if (options.screwIE11 === false) {
       processFallbackRules(root);
@@ -106,7 +105,9 @@ function themify(options) {
       try {
         parsedValue = JSON.parse(value);
       } catch (ex) {
-        throw new Error('fail to parse the following expression: ' + value + '.');
+        throw new Error(
+          'fail to parse the following expression: ' + value + '.',
+        );
       }
       var currentValue = parsedValue[variationName];
       /** For example: background-color: themify((light: primary-100)); */
@@ -123,14 +124,17 @@ function themify(options) {
       if (options.palette) return parsedValue[variationName];
     }
     // iterate through all variations
-    variationValues.forEach(function (variationName) {
+    variationValues.forEach(function(variationName) {
       // replace all 'themify' tokens with the right string
-      colorVariations[variationName] = propertyValue.replace(themifyRegExp, function (occurrence, value) {
-        // parse and normalize the color
-        var parsedColor = normalize(value, variationName);
-        // convert it to the right format
-        return translateColor(parsedColor, variationName, execMode);
-      });
+      colorVariations[variationName] = propertyValue.replace(
+        themifyRegExp,
+        function(occurrence, value) {
+          // parse and normalize the color
+          var parsedColor = normalize(value, variationName);
+          // convert it to the right format
+          return translateColor(parsedColor, variationName, execMode);
+        },
+      );
     });
     return colorVariations;
   }
@@ -150,7 +154,9 @@ function themify(options) {
       if (variationName !== defaultVariation) {
         return null;
       }
-      throw new Error("The variable name '" + colorVar + "' doesn't exists in your palette.");
+      throw new Error(
+        "The variable name '" + colorVar + "' doesn't exists in your palette.",
+      );
     }
     switch (execMode) {
       case 'CSS_COLOR' /* CSS_COLOR */:
@@ -175,7 +181,7 @@ function themify(options) {
    * @param root
    */
   function processRules(root, options) {
-    root.walkRules(function (rule) {
+    root.walkRules(function(rule) {
       if (!hasThemify(rule.toString())) {
         return;
       }
@@ -183,21 +189,27 @@ function themify(options) {
       var aggragatedSelectors = [];
       var createdRules = [];
       var variationRules = ((_a = {}), (_a[defaultVariation] = rule), _a);
-      rule.walkDecls(function (decl) {
+      rule.walkDecls(function(decl) {
         var propertyValue = decl.value;
         if (!hasThemify(propertyValue)) return;
         var property = decl.prop;
-        var variationValueMap = getThemifyValue(propertyValue, 'CSS_VAR' /* CSS_VAR */);
+        var variationValueMap = getThemifyValue(
+          propertyValue,
+          'CSS_VAR' /* CSS_VAR */,
+        );
         var defaultVariationValue = variationValueMap[defaultVariation];
         decl.value = defaultVariationValue;
         // indicate if we have a global rule, that cannot be nested
         var createNonDefaultVariationRules = isAtRule(rule);
         // don't create extra CSS for global rules
-        if (createNonDefaultVariationRules || options.modifyCSSRules === false) {
+        if (
+          createNonDefaultVariationRules ||
+          options.modifyCSSRules === false
+        ) {
           return;
         }
         // create a new declaration and append it to each rule
-        nonDefaultVariations.forEach(function (variationName) {
+        nonDefaultVariations.forEach(function(variationName) {
           var currentValue = variationValueMap[variationName];
           // variable for non-default variation is optional
           if (!currentValue || currentValue === 'null') {
@@ -220,7 +232,10 @@ function themify(options) {
               // append the new rule to the array, so we can append it later
               createdRules.push(clonedRule);
             }
-            var variationDecl = createDecl(property, variationValueMap[variationName]);
+            var variationDecl = createDecl(
+              property,
+              variationValueMap[variationName],
+            );
             variationRules[variationName].append(variationDecl);
           }
         });
@@ -230,7 +245,7 @@ function themify(options) {
       }
       // append each created rule
       if (createdRules.length) {
-        createdRules.forEach(function (r) {
+        createdRules.forEach(function(r) {
           return root.append(r);
         });
       }
@@ -255,13 +270,22 @@ function themify(options) {
    */
   function processFallbackRules(root) {
     // an output for each execution mode
-    var output = ((_a = {}), (_a['CSS_COLOR' /* CSS_COLOR */] = []), (_a['DYNAMIC_EXPRESSION' /* DYNAMIC_EXPRESSION */] = {}), _a);
+    var output = ((_a = {}),
+    (_a['CSS_COLOR' /* CSS_COLOR */] = []),
+    (_a['DYNAMIC_EXPRESSION' /* DYNAMIC_EXPRESSION */] = {}),
+    _a);
     // initialize DYNAMIC_EXPRESSION with all existing variations
-    variationValues.forEach(function (variation) {
-      return (output['DYNAMIC_EXPRESSION' /* DYNAMIC_EXPRESSION */][variation] = []);
+    variationValues.forEach(function(variation) {
+      // eslint-disable-next-line
+      return (output['DYNAMIC_EXPRESSION' /* DYNAMIC_EXPRESSION */][
+        variation
+      ] = []);
     });
     // define which modes need to be processed
-    var execModes = ['CSS_COLOR' /* CSS_COLOR */, 'DYNAMIC_EXPRESSION' /* DYNAMIC_EXPRESSION */];
+    var execModes = [
+      'CSS_COLOR' /* CSS_COLOR */,
+      'DYNAMIC_EXPRESSION' /* DYNAMIC_EXPRESSION */,
+    ];
     walkFallbackAtRules(root, execModes, output);
     walkFallbackRules(root, execModes, output);
     writeFallbackCSS(output);
@@ -276,11 +300,18 @@ function themify(options) {
       writeToFile(options.fallback.cssPath, cssUtil.minifyCSS(fallbackCss));
       // creating a JSON for the dynamic expressions
       var jsonOutput = {};
-      variationValues.forEach(function (variationName) {
-        jsonOutput[variationName] = output['DYNAMIC_EXPRESSION' /* DYNAMIC_EXPRESSION */][variationName] || [];
-        jsonOutput[variationName] = jsonUtil.minifyJSON(jsonOutput[variationName].join(''));
+      variationValues.forEach(function(variationName) {
+        jsonOutput[variationName] =
+          output['DYNAMIC_EXPRESSION' /* DYNAMIC_EXPRESSION */][
+            variationName
+          ] || [];
+        jsonOutput[variationName] = jsonUtil.minifyJSON(
+          jsonOutput[variationName].join(''),
+        );
         // minify the CSS output
-        jsonOutput[variationName] = cssUtil.minifyCSS(jsonOutput[variationName]);
+        jsonOutput[variationName] = cssUtil.minifyCSS(
+          jsonOutput[variationName],
+        );
       });
       // stringify and save
       var dynamicCss = JSON.stringify(jsonOutput);
@@ -288,12 +319,12 @@ function themify(options) {
     }
   }
   function walkFallbackAtRules(root, execModes, output) {
-    root.walkAtRules(function (atRule) {
+    root.walkAtRules(function(atRule) {
       if (atRule.nodes && hasThemify(atRule.toString())) {
-        execModes.forEach(function (mode) {
+        execModes.forEach(function(mode) {
           var clonedAtRule = atRule.clone();
-          clonedAtRule.nodes.forEach(function (rule) {
-            rule.walkDecls(function (decl) {
+          clonedAtRule.nodes.forEach(function(rule) {
+            rule.walkDecls(function(decl) {
               var propertyValue = decl.value;
               // replace the themify token, if exists
               if (hasThemify(propertyValue)) {
@@ -302,30 +333,32 @@ function themify(options) {
               }
             });
           });
-          var rulesOutput = mode === 'DYNAMIC_EXPRESSION' /* DYNAMIC_EXPRESSION */ ? output[mode][defaultVariation] : output[mode];
+          var rulesOutput =
+            mode === 'DYNAMIC_EXPRESSION' /* DYNAMIC_EXPRESSION */
+              ? output[mode][defaultVariation]
+              : output[mode];
           rulesOutput.push(clonedAtRule);
         });
       }
     });
   }
 
-
   function walkFallbackRules(root, execModes, output) {
-    root.walkRules(function (rule) {
+    root.walkRules(function(rule) {
       if (isAtRule(rule) || !hasThemify(rule.toString())) {
         return;
       }
       var ruleModeMap = {};
-      rule.walkDecls(function (decl) {
+      rule.walkDecls(function(decl) {
         var propertyValue = decl.value;
         if (!hasThemify(propertyValue)) return;
         var property = decl.prop;
-        execModes.forEach(function (mode) {
+        execModes.forEach(function(mode) {
           var colorMap = getThemifyValue(propertyValue, mode);
           // lazily creating a new rule for each variation, for the specific mode
           if (!ruleModeMap.hasOwnProperty(mode)) {
             ruleModeMap[mode] = {};
-            variationValues.forEach(function (variationName) {
+            variationValues.forEach(function(variationName) {
               var newRule;
               if (variationName === defaultVariation) {
                 newRule = cloneEmptyRule(rule);
@@ -334,13 +367,16 @@ function themify(options) {
               }
               // push the new rule into the right place,
               // so we can write them later to external file
-              var rulesOutput = mode === 'DYNAMIC_EXPRESSION' /* DYNAMIC_EXPRESSION */ ? output[mode][variationName] : output[mode];
+              var rulesOutput =
+                mode === 'DYNAMIC_EXPRESSION' /* DYNAMIC_EXPRESSION */
+                  ? output[mode][variationName]
+                  : output[mode];
               rulesOutput.push(newRule);
               ruleModeMap[mode][variationName] = newRule;
             });
           }
           // create and append a new declaration
-          variationValues.forEach(function (variationName) {
+          variationValues.forEach(function(variationName) {
             var underlineColor = colorMap[variationName];
             if (underlineColor && underlineColor !== 'null') {
               var newDecl = createDecl(property, colorMap[variationName]);
@@ -352,11 +388,9 @@ function themify(options) {
     });
   }
 
-
   function createDecl(prop, value) {
-    return postcss.decl({ prop: prop, value: value });
+    return postcss.decl({ prop, value });
   }
-
 
   /**
    * check if there's a themify keyword in this declaration
@@ -366,7 +400,6 @@ function themify(options) {
     return propertyValue.indexOf(THEMIFY) > -1;
   }
 
-
   /**
    * Create a new rule for the given variation, out of the original rule
    * @param rule
@@ -374,9 +407,8 @@ function themify(options) {
    */
   function createRuleWithVariation(rule, variationName) {
     var selector = getSelectorName(rule, variationName);
-    return postcss.rule({ selector: selector });
+    return postcss.rule({ selector });
   }
-
 
   /**
    * Get a selector name for the given rule and variation
@@ -386,12 +418,11 @@ function themify(options) {
   function getSelectorName(rule, variationName) {
     var selectorPrefix = '.' + (options.classPrefix || '') + variationName;
     return rule.selectors
-      .map(function (selector) {
+      .map(function(selector) {
         return selectorPrefix + ' ' + selector;
       })
       .join(',');
   }
-
 
   function cloneEmptyRule(rule, overrideConfig) {
     var clonedRule = rule.clone(overrideConfig);
@@ -401,7 +432,6 @@ function themify(options) {
   }
 }
 
-
 /**
  * Generating a SASS definition file with the palette map and the CSS variables.
  * This file should be injected into your bundle.
@@ -409,7 +439,7 @@ function themify(options) {
 function init(options) {
   options = buildOptions(options);
 
-  return function (root) {
+  return function(root) {
     // console.log(root);
     var palette = options.palette;
     var css = generateVars(palette, options.classPrefix);
@@ -438,18 +468,29 @@ function init(options) {
     var cssOutput = '';
     prefix = prefix || '';
     // iterate through the different variations
-    Object.keys(palette).forEach(function (variationName) {
-      var selector = variationName === ColorVariation.XLIGHT ? ':root' : '.' + prefix + variationName;
+    Object.keys(palette).forEach(function(variationName) {
+      var selector =
+        variationName === ColorVariation.XLIGHT
+          ? ':root'
+          : '.' + prefix + variationName;
       var variationColors = palette[variationName];
       // make sure we got colors for this variation
       if (!variationColors) {
-        throw new Error('Expected map of colors for the variation name ' + variationName);
+        throw new Error(
+          'Expected map of colors for the variation name ' + variationName,
+        );
       }
       var variationKeys = Object.keys(variationColors);
       // generate CSS variables
       var vars = variationKeys
-        .map(function (varName) {
-          return '--' + varName + ': ' + getRgbaNumbers(variationColors[varName]) + ';';
+        .map(function(varName) {
+          return (
+            '--' +
+            varName +
+            ': ' +
+            getRgbaNumbers(variationColors[varName]) +
+            ';'
+          );
         })
         .join(' ');
       // concatenate the variables to the output
@@ -461,7 +502,6 @@ function init(options) {
     return cssOutput;
   }
 }
-
 
 module.exports = {
   initThemify: postcss.plugin('datoThemes', init),
