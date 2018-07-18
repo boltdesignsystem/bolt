@@ -28,6 +28,10 @@
       type: number
       title: Desired port for Webpack Proxy
       default: 8080
+    proxyHeader:
+      type: string
+      description: Special request header when proxying Webpack's dev server
+      default: 'browsersync-proxy'
     templatesDir:
       type: array
       title: Template paths being added
@@ -82,7 +86,7 @@
       type: string
       title: Local server start path
       description: This is the `path/to/file.html` in `http://localhost:3000/path/to/file.html`
-      default: ''
+      default: '/'
     webpackDevServer:
       type: boolean
       default: false

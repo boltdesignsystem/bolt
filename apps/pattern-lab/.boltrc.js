@@ -13,7 +13,7 @@ const config = {
   env: 'pl',
   buildDir: '../../www/pattern-lab/build',
   wwwDir: '../../www/',
-  startPath: 'pattern-lab/index.html',
+  startPath: 'pattern-lab/',
   plConfigFile: './config/config.yml',
   verbosity: 2,
   schemaErrorReporting: 'cli',

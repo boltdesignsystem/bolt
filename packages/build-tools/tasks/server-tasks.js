@@ -45,7 +45,7 @@ async function getServerConfig() {
 
   // https://www.browsersync.io/docs/options
   const serverConfig = {
-    open: config.openServerAtStart,
+    open: false, // now handled by Webpack Serve
     startPath: config.startPath, // Since `/` doesn't do anything and we want to avoid double browserSync notifications from the very beginning
     port: config.port,
     host: '127.0.0.1',
@@ -71,13 +71,15 @@ async function getServerConfig() {
   }
 
   if (config.webpackDevServer) {
-    // proxy the Webpack Dev Server endpoint
-    serverConfig.proxy = `http://localhost:${config.proxyPort}/`;
-    if (config.env === 'pl' || config.env === 'hybrid') {
-      // https://www.browsersync.io/docs/options#option-server
-      serverConfig.serveStatic = [];
-      serverConfig.serveStatic.push(config.wwwDir);
-    }
+    // proxy the Webpack Server endpoint + set header so Webpack knows if it should redirect or not.
+    serverConfig.proxy = {
+      target: `http://localhost:${config.proxyPort}/`,
+      proxyReq: [
+        function(proxyReq) {
+          proxyReq.setHeader(`${config.proxyHeader}`, 'true');
+        },
+      ],
+    };
   } else {
     serverConfig.server = [config.wwwDir];
   }
