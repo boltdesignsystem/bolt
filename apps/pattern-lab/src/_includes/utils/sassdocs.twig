@@ -123,7 +123,7 @@
   {% endif %}
 {% endmacro %}
 
-{# Renders the right side floating navigation #}
+{# Renders the categorized right side floating navigation #}
 {% macro sassdocNav(contentItems) %}
   {% if contentItems %}
     {% set navItems = {} %}
@@ -167,6 +167,63 @@
           include("@bolt-components-link/link.twig", {
             "text": link|capitalize,
             "url": url
+          })
+        ]) %}
+      {% endfor %}
+
+      {% embed "@bolt-components-dropdown/dropdown.twig" with {
+        title: label|capitalize
+      } %}
+        {% block content %}
+          {% include "@bolt-components-block-list/block-list.twig" with {
+            "items": children
+          } %}
+        {% endblock %}
+      {% endembed %}
+    {% endfor %}
+
+  {% endif %}
+{% endmacro %}
+
+{# Renders the flat right side floating navigation #}
+{% macro sassdocNavFlat(contentItems) %}
+  {% if contentItems %}
+
+    {% set navItems = {} %}
+
+    {% for item in contentItems %}
+      {% set groupName = "#{item.group[0]}" %}
+      {% if navItems[groupName] is defined %}
+          {% set navItems = navItems|merge({
+            (groupName): navItems[groupName]|merge([{
+              'name': item.context.name,
+              'type': item.context.type
+            }])
+          }) %}
+      {% else %}
+        {% set navItems = navItems|merge({
+          (groupName): [{
+            'name': item.context.name,
+            'type': item.context.type
+          }]
+        }) %}
+      {% endif %}
+    {% endfor %}
+
+    {% for label,nav in navItems %}
+
+      {% set children = [] %}
+
+      {% for link in nav %}
+        {% if link.type == "variable" %}
+          {% set text = "$#{link.name}" %}
+        {% elseif link.type == "function" or link.type == "mixin" %}
+          {% set text = "@#{link.type} #{link.name}" %}
+        {% endif %}
+        {% set children = children|merge([
+          include("@bolt-components-link/link.twig", {
+            "text": text,
+            "url": "##{link.name}"
           })
         ]) %}
       {% endfor %}
@@ -325,7 +382,7 @@
       <li class="o-bolt-ui-list__item">
         <ul class="o-bolt-ui-list o-bolt-ui-list--xxsmall o-bolt-ui-list--borderless">
           <li class="o-bolt-ui-list__item t-bolt-xlight">
-            {{ macros.sassdocNav(contentItems) }}
+            {{ macros.sassdocNavFlat(contentItems) }}
           </li>
         </ul>
       </li>
