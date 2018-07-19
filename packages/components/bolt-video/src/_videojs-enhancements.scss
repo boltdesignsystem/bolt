@@ -10,6 +10,7 @@
 // 6. Required so videos with intrinsic ratio (used in the <bolt-ratio> object) properly fill the space available in IE 11.
 // 7. [Mai] These gradients cover up part of the squre to form a triangle. A triangle had to be formed this way because % width has to be used to determine a flexible triangle based on the video size.
 // 8. [Mai] This optically centers the triangle.
+// 9. [Denton] Hide the title and description when sharing to minimize the chances that you'll see a scrollbar, which is undesirable.  Replace it will the CSS content "Share This Video"
 
 
 $bolt-video-js-button-text-color: bolt-color(indigo);
@@ -155,22 +156,22 @@ $bolt-video-js-button-shadow-level: 'level-40';
 
       .vjs-social-title,
       .vjs-social-description {
-        white-space: normal;
-      }
-
-      .vjs-social-title {
-        @include bolt-margin(0 0 xsmall 0);
-        @include bolt-font-size(medium);
-        @include bolt-font-weight(bold);
-      }
-
-      .vjs-social-description {
-        @include bolt-font-size(small);
+        display: none; // [9]
       }
 
       .vjs-social-share-links {
         margin-right: (bolt-spacing(xsmall) * -1);
         margin-left: (bolt-spacing(xsmall) * -1);
+
+        &:before {
+          @include bolt-font-size(medium);
+          @include bolt-font-weight(bold);
+
+          content: "Share This Video"; // [9]
+          white-space: normal;
+          display: block;
+          margin: 0 bolt-spacing(xsmall) bolt-spacing(xsmall);
+        }
       }
 
       .vjs-social-share-link {
@@ -190,8 +191,7 @@ $bolt-video-js-button-shadow-level: 'level-40';
 
       form {
         @include bolt-margin(auto);
-
-        max-width: 66ch;
+        width: 100%;
 
         input[type='text'] {
           font-size: 16px; // [2]
