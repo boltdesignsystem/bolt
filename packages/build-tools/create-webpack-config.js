@@ -12,22 +12,32 @@ const { promisify } = require('util');
 const fs = require('fs');
 const readFile = promisify(fs.readFile);
 const deepmerge = require('deepmerge');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TwigPhpLoader = require('twig-php-loader');
+const { getConfig } = require('./utils/config-store');
 const {
   getBoltManifest,
   createComponentsManifest,
+  mapComponentNameToTwigNamespace,
 } = require('./utils/manifest');
 const log = require('./utils/log');
 
-async function createWebpackConfig(config) {
+// Store set of webpack configs used in multiple builds
+let webpackConfigs = [];
+
+async function createWebpackConfig(buildConfig) {
+  const config = buildConfig;
+
   // @TODO: move this setting to .boltrc config
   const sassExportData = require('@theme-tools/sass-export-data')({
     path: path.resolve(process.cwd(), config.dataDir),
   });
 
+  // map out Twig namespaces with the NPM package name
+  const npmToTwigNamespaceMap = await mapComponentNameToTwigNamespace();
+
   // filename suffix to tack on based on lang being compiled for
-  const langSuffix = `${
-    config.lang && config.lang.length > 1 ? '-' + config.lang : ''
-  }`;
+  let langSuffix = `${config.lang ? '-' + config.lang : ''}`;
 
   // Default global Sass data defined
   let globalSassData = [
@@ -48,6 +58,10 @@ async function createWebpackConfig(config) {
       : JSON.stringify('development'),
     bolt: {
       namespace: JSON.stringify(config.namespace),
+      config: {
+        prod: config.prod ? true : false,
+        lang: config.lang,
+      },
     },
   };
 
@@ -258,6 +272,7 @@ async function createWebpackConfig(config) {
         plugins: () => [
           postcssDiscardDuplicates,
           autoprefixer({
+            // @todo: replace with standalone Bolt config
             browsers: [
               '> 1% in US',
               'last 3 Android major versions',
@@ -337,9 +352,8 @@ async function createWebpackConfig(config) {
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
               use: [
-                {
-                  loader: MiniCssExtractPlugin.loader,
-                },
+                'css-hot-loader',
+                MiniCssExtractPlugin.loader,
                 scssLoaders,
               ].reduce((acc, val) => acc.concat(val), []),
             },
@@ -371,14 +385,6 @@ async function createWebpackConfig(config) {
             name: '[name].[ext]',
           },
         },
-        // {
-        //   test: [/\.json$/],
-        //   use: [
-        //     {
-        //       loader: 'json-loader',
-        //     },
-        //   ],
-        // },
         {
           test: [/\.yml$/, /\.yaml$/],
           use: [{ loader: 'json-loader' }, { loader: 'yaml-loader' }],
@@ -394,7 +400,7 @@ async function createWebpackConfig(config) {
       //   //   js: {
       //   //     test: /\.js$/,
       //   //     // name: 'commons',
-      //   //     chunks: 'all',
+      //   //   chunks: 'all',
       //   //     minChunks: 2,
       //   //     // test: /node_modules/,
       //   //     // enforce: true,
@@ -406,7 +412,6 @@ async function createWebpackConfig(config) {
       //   //     // enforce: true,
       //   //   },
       //   // },
-      // },
     },
     plugins: [
       new webpack.IgnorePlugin(/vertx/), // needed to ignore vertx dependency in webcomponentsjs-lite
@@ -430,12 +435,48 @@ async function createWebpackConfig(config) {
         Promise: 'es6-promise',
       }),
       new webpack.DefinePlugin(globalJsData),
+
       // Show build progress
       // Disabling for now as it messes up spinners
       // @todo consider bringing it back
       // new webpack.ProgressPlugin({ profile: false }),
     ],
   };
+
+  /**
+   * In non-drupal environments. during local dev server (ie. not on Travis -- for now till Docker container is up and running),
+   * compile the Pattern Lab UI HTML via the new Twig PHP rendering service.
+   */
+  if (config.env !== 'drupal' && !config.prod && config.devServer === true) {
+    webpackConfig.plugins.push(
+      new HtmlWebpackPlugin({
+        title: 'Custom template',
+        filename: '../index.html',
+        inject: false, // disabling for now -- not yet needed in PL build (but at least is working!)
+        cache: false,
+        // Load a custom template (lodash by default see the FAQ for details)
+        template: path.resolve(
+          process.cwd(),
+          '../../packages/uikit-workshop/src/html-twig/index.twig',
+        ),
+      }),
+
+      new TwigPhpLoader(), // handles compiling Twig templates when Webpack-specific contextual data is needed (ex. automatically injecting assets in your entry config)
+    );
+
+    webpackConfig.module.rules.push({
+      test: /\.twig$/,
+      loader: TwigPhpLoader.loader,
+      options: {
+        port: config.port, // port the PHP rendering service is running on -- dynamically set when @bolt/build-tools boots up
+        namespaces: npmToTwigNamespaceMap, // @todo: further refactor so this loader doesn't need to map out the namespace to the NPM package location
+
+        // this determines whether Twig templates get rendered immediately vs wait for the HtmlWebpackPlugin to
+        // generate data on the assets available before rendering. Defaults to false.
+        includeContext: false,
+      },
+    });
+  }
 
   if (config.prod) {
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
@@ -510,39 +551,43 @@ async function createWebpackConfig(config) {
   return webpackConfig;
 }
 
+// Helper function to associate each unique language in the build config with a separate Webpack build instance (making filenames, etc unique);
+async function assignLangToWebpackConfig(config, lang) {
+  let langSpecificConfig = config;
+
+  if (lang) {
+    langSpecificConfig.lang = lang; // Make sure only ONE language config is set per Webpack build instance.
+  }
+
+  let langSpecificWebpackConfig = await createWebpackConfig(langSpecificConfig);
+
+  if (langSpecificConfig.webpackStats) {
+    langSpecificWebpackConfig.profile = true;
+    langSpecificWebpackConfig.parallelism = 1;
+  }
+
+  webpackConfigs.push(langSpecificWebpackConfig);
+}
+
 module.exports = async function() {
+  const config = await getConfig();
+
   return new Promise(async (resolve, reject) => {
-    const webpackConfigs = [];
-    const config = await require('./utils/config-store').getConfig();
+    const langs = config.lang;
+    const promises = [];
 
     // update the array of Webpack configs so each config is assigned to only one language (used in the filename's suffix when bundling language-tailed CSS and JS)
-    if (config.lang && config.lang.length > 1) {
-      config.lang.reverse(); // Make sure the 1st language in the array is LAST since that's the one used for the local dev environment.
-
-      await Promise.all(
-        config.lang.map(async lang => {
-          config.lang = lang; // Make sure only ONE language config is set per Webpack build instance.
-
-          const webpackConfig = await createWebpackConfig(config);
-
-          if (config.webpackStats) {
-            webpackConfig.profile = true;
-            webpackConfig.parallelism = 1;
-          }
-
-          webpackConfigs.push(webpackConfig);
-        }),
-      );
-    } else {
-      const webpackConfig = await createWebpackConfig(config);
-
-      if (config.webpackStats) {
-        webpackConfig.profile = true;
-        webpackConfig.parallelism = 1;
+    if (langs && langs.length > 1) {
+      for (const lang of langs) {
+        /* eslint-disable no-await-in-loop */
+        promises.push(await assignLangToWebpackConfig(config, lang));
       }
-
-      webpackConfigs.push(webpackConfig);
+    } else {
+      promises.push(await assignLangToWebpackConfig(config, null));
     }
-    return resolve(webpackConfigs);
+
+    await Promise.all(promises).then(() => {
+      return resolve(webpackConfigs);
+    });
   });
 };

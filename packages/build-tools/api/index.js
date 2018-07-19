@@ -1,9 +1,9 @@
 const url = require('url');
 const fetch = require('node-fetch');
+const { getConfig } = require('../utils/config-store');
 const log = require('../utils/log');
-const config = require('../utils/config-store').getConfig();
 
-function getBody(request) {
+async function getBody(request) {
   return new Promise((resolve, reject) => {
     let body = [];
     request.on('data', chunk => body.push(chunk));
@@ -28,6 +28,7 @@ function getBody(request) {
  * @param next
  */
 async function handleRequest(req, res, next) {
+  const config = await getConfig();
   const { method } = req;
   const { pathname, query, search } = url.parse(req.url, true);
   // let body;

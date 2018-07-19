@@ -120,8 +120,9 @@ export default class SchemaForm extends Component {
   render() {
     const { layout } = this.props;
 
-    const iframeHead =
-      '<link rel="stylesheet" href="/pattern-lab/build/bolt-global-en.css"> <script src="/pattern-lab/build/bolt-global-en.js" async></script>';
+    const iframeHead = `<link rel="stylesheet" href="/pattern-lab/build/bolt-global${
+      bolt.config.lang ? '-' + bolt.data.config.lang[0] : ''
+    }.css"> <script src="/pattern-lab/build/bolt-global.js" async></script>`;
 
     const schema = SchemaForm.prepareSchema(this.props.schema);
     const isHorizontal = layout === 'horizontal';

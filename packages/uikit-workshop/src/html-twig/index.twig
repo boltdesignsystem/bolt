@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title id="title">Pattern Lab</title>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width" />
+
+  <link rel=preload as="script" href="/pattern-lab/styleguide/js/patternlab-viewer.min.js">
+  <!-- static PL critical styles; replace once critical CSS added to build pipeline -->
+
+
+
+  <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/pattern-lab/styleguide/css/pattern-lab.css"></noscript>
+</head>
+
+<body class="pl-c-body">
+  {% include "@pattern-lab/header.twig" %}
+  {% include "@pattern-lab/iframe.twig" %}
+  {% include "@pattern-lab/modal.twig" %}
+
+	<!-- mustache templates -->
+	<script type="text/mustache" class="pl-js-pattern-nav-template">
+    {% include "./partials/pattern-nav.twig" %} {# testing out Twig includes that don't use namespaces #}
+	</script>
+
+	<script type="text/mustache" class="pl-js-ish-controls-template">
+    {% include "@pattern-lab/controls.twig" %}
+	</script>
+
+	<!-- the template for the modal slider -->
+	<script type="text/mustache" class="pl-js-panel-template-base">
+    {% include "@pattern-lab/base-template.twig" %}
+	</script>
+
+	<!-- the template for code-related tabs in the code view slider -->
+	<script type="text/mustache" id="pl-panel-template-code">
+    {% include "@pattern-lab/panel-code-template.twig" %}
+	</script>
+
+	<!-- load Pattern Lab data -->
+	<script src="/pattern-lab/styleguide/data/patternlab-data.js" defer></script>
+
+  <!-- applying theme config to get classes on before PL renders so there's no flash of unstyled content -->
+  <!-- @todo Consider moving this to own file -->
+  <script>
+    if (window.config != undefined) {
+      if (window.config.theme != undefined) {
+        if (config.theme.color === 'light') {
+          document.body.classList.add('pl-c-body--theme-light');
+        }
+        if (config.theme.layout === 'vertical') {
+          document.body.classList.add('pl-c-body--theme-sidebar');
+        }
+        switch (config.theme.density) {
+          case 'cozy':
+            document.body.classList.add('pl-c-body--theme-density-cozy');
+            break;
+          case 'comfortable':
+            document.body.classList.add('pl-c-body--theme-density-comfortable');
+            break;
+          default:
+            // not sure if you even need/want this
+            document.body.classList.add('pl-c-body--theme-density-compact');
+        }
+      }
+    }
+  </script>
+
+	<script src="/pattern-lab/annotations/annotations.js" async></script>
+
+	<!-- load Pattern Lab external library js -->
+	<script src="/pattern-lab/styleguide/bower_components/jquery.min.js" defer></script>
+	<script src="/pattern-lab/styleguide/bower_components/hogan-3.0.2.min.js" async></script>
+	<script src="/pattern-lab/styleguide/bower_components/prism.min.js" async></script>
+	<script src="/pattern-lab/styleguide/bower_components/jwerty.min.js" defer></script>
+	<script src="/pattern-lab/styleguide/bower_components/typeahead.bundle.min.js" defer></script>
+	<script src="/pattern-lab/styleguide/bower_components/EventEmitter.min.js" defer></script>
+	<script src="/pattern-lab/styleguide/bower_components/script.min.js" defer></script>
+
+
+  <!-- temp workaround to async load everything. remove when refactored components in place. -->
+  <script>!function(r){var e=function(e,t){"use strict";var n=r.document.getElementsByTagName("script")[0],o=r.document.createElement("script");return o.src=e,o.async=!0,n.parentNode.insertBefore(o,n),t&&"function"==typeof t&&(o.onload=t),o};"undefined"!=typeof module?module.exports=e:r.loadJS=e}("undefined"!=typeof global?global:this);
+
+  // https://fokkezb.nl/2016/04/14/how-to-wait-for-a-javascript-variable-to-be-defined/
+  // https://github.com/OwenMelbz/whendefined
+ </script>
+
+
+  <!-- set-up the dispatcher + load the Pattern Lab viewer js -->
+  <script>
+    window.Dispatcher;
+    window.addEventListener('DOMContentLoaded', function () {
+      window.Dispatcher = new EventEmitter();
+      loadJS('/pattern-lab/styleguide/js/patternlab-viewer.min.js');
+    });
+	</script>
+
+</body>
+
+</html>
+

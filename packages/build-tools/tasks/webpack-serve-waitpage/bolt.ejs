@@ -76,8 +76,7 @@
     <li><b>webpack</b> v<%= webpackVersion %></li>
     <li><b>webpack-serve</b> v<%= webpackServeVersion %></li>
   </ul>
-  <p>Redirecting to <a id="url" href="#"></a></p>
-  <script>var u = document.getElementById('url'); u.href = location.href; u.innerText = location.href;</script>
+  <p>Redirecting to <a id="url" href="<%= redirectPath %>"><%= redirectPath %></a></p>
   <div class="building"><b><i>Bolt is compiling for the first time...</i></b></div>
   <% for (var i = 0 ; i < progress.length ; i++) { %>
   <svg class="loader--<%= i %>" height="100" width="100">

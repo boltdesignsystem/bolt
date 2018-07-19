@@ -19,6 +19,7 @@ let config;
 let webpackConfigs;
 async function compile() {
   config = config || (await getConfig());
+  config.devServer = false;
 
   if (!webpackConfigs) {
     webpackConfigs = await createWebpackConfig(config);
@@ -186,6 +187,7 @@ watch.displayName = 'webpack:watch';
 async function server(buildTime) {
   let initialBuild = true;
   config = config || (await getConfig());
+  config.devServer = true;
   // const serverConfig = await getServerConfig(); // WIP: working on browsersync integration w/ Webpack
 
   if (!webpackConfigs) {
@@ -214,8 +216,7 @@ async function server(buildTime) {
       {
         logTime: false,
         logLevel: 'silent',
-        // duplicate open tasks from webpack-server + browsersync. -- bs can handle this for now
-        // open: config.openServerAtStart,
+        open: config.openServerAtStart,
         hotClient: {
           logLevel: 'silent',
           hot: true,
@@ -226,7 +227,6 @@ async function server(buildTime) {
           publicPath: webpackConfigs[0].devServer.publicPath,
           hot: true,
           stats: webpackConfigs[0].devServer.stats,
-          watchContentBase: webpackConfigs[0].devServer.watchContentBase,
           writeToDisk: true,
         },
       },
@@ -238,6 +238,10 @@ async function server(buildTime) {
             webpackServeWaitpage(options, {
               title: 'Bolt Development Server',
               theme: 'bolt',
+              proxyHeader: config.proxyHeader,
+              redirectPath: `http://localhost:${config.port}/${
+                config.startPath
+              }`,
             }),
           );
 

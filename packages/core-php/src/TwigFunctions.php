@@ -26,6 +26,23 @@ class TwigFunctions {
   }
 
 
+  public static function fileExists() {
+    return new Twig_SimpleFunction('fileExists', function(\Twig_Environment $env, $context, $path) {
+      $full_path = is_file($path) ? $path : Bolt\Utils::optionallyResolveTwigPath($env, $path);
+      // $file_data = $self::getData($full_path);
+
+      if (file_exists($full_path)) {
+        return true;
+      } else {
+        return false;
+      }
+    }, [
+      'needs_environment' => true,
+      'needs_context' => true,
+    ]);
+  }
+
+
   public static function inlineFile() {
     return new Twig_SimpleFunction('inline', function($context, $filename) {
       if (!$filename){

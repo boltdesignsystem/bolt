@@ -7,7 +7,7 @@ const internalTasks = require('./internal-tasks');
 const imageTasks = require('./image-tasks');
 const timer = require('../utils/timer');
 const { getConfig } = require('../utils/config-store');
-const extraTasks = {};
+const extraTasks = [];
 let config;
 
 // These tasks are present based on optional conditions like `config.env` and should only be `require`-ed when it's the right env due to each file's setup where it tries to grab specific files - and of course the tasks should only run in the correct `env` as well.
@@ -34,6 +34,24 @@ async function getExtraTasks() {
   return extraTasks;
 }
 
+async function compileBasedOnEnvironment() {
+  await getExtraTasks();
+
+  switch (config.env) {
+    case 'pl':
+      await extraTasks.patternLab.compile();
+      break;
+    case 'static':
+      await extraTasks.static.compile();
+      break;
+    case 'pwa':
+      return Promise.all([
+        extraTasks.static.compile(),
+        extraTasks.patternLab.compile(),
+      ]);
+  }
+}
+
 async function clean() {
   config = config || (await getConfig());
   try {
@@ -57,7 +75,13 @@ async function clean() {
         ];
         break;
       case 'pl':
-        dirs = [path.join(config.buildDir, '..')];
+        dirs = [
+          path.join(config.wwwDir, 'pattern-lab/**'),
+          `!${path.join(config.wwwDir, 'pattern-lab')}`, // don't delete the pl folder itself
+          `!${path.join(config.wwwDir, 'pattern-lab/index.html')}`, // or pl's index.html file
+          `!${path.join(config.wwwDir, 'pattern-lab/styleguide')}`, // or the pl assets
+          `!${path.join(config.wwwDir, 'pattern-lab/styleguide/**')}`,
+        ];
         break;
       case 'pwa':
         dirs = [path.join(path.resolve(config.wwwDir), '**')];
@@ -112,7 +136,7 @@ async function images() {
   }
 }
 
-async function build(shouldReturnTime = false) {
+async function build(localDev = false, shouldReturnTime = false) {
   const startTime = timer.start();
   config = config || (await getConfig());
 
@@ -125,22 +149,13 @@ async function build(shouldReturnTime = false) {
       process.cwd(),
       config.extraTwigNamespaces,
     );
-    await webpackTasks.compile();
+
+    config.prod || localDev === false ? await webpackTasks.compile() : '';
+
     await images();
 
-    switch (config.env) {
-      case 'pl':
-        await extraTasks.patternLab.compile();
-        break;
-      case 'static':
-        await extraTasks.static.compile();
-        break;
-      case 'pwa':
-        return Promise.all([
-          extraTasks.static.compile(),
-          extraTasks.patternLab.compile(),
-        ]);
-        break;
+    if (config.prod || localDev === false) {
+      await compileBasedOnEnvironment();
     }
 
     if (shouldReturnTime) {
@@ -185,14 +200,21 @@ async function watch() {
 
 async function start() {
   let buildTime;
-  await getExtraTasks();
+  const extraTasks = await getExtraTasks();
   config = config || (await getConfig());
 
   try {
     if (!config.quick) {
-      buildTime = await build(true);
+      buildTime = await build({
+        localDev: true,
+        shouldReturnTime: true,
+      });
     }
-    return Promise.all([serve(buildTime), watch()]);
+    return Promise.all([
+      serve(buildTime),
+      await compileBasedOnEnvironment(),
+      watch(),
+    ]);
   } catch (error) {
     log.errorAndExit('Start failed', error);
   }
