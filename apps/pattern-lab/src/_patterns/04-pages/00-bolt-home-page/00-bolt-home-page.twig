@@ -62,7 +62,10 @@
             alt: "Bolt Design System logo",
           } only %}
         </div>
-
+        {% include "@bolt/eyebrow.twig" with {
+          text: bolt.data.fullManifest.version,
+          align: "center",
+        } only %}
       {% include "@bolt/subheadline.twig" with {
           text: "The Bolt provides a system of reusable and consistent UI components, visual styles, tools, guidelines, and services that power Pega’s digital ecosystem; saving time while keeping projects on-brand, and in scope.",
           size: "xlarge",
@@ -70,7 +73,7 @@
           align: "center",
       } only %}
   
-      <div class="u-bolt-text-align-center">
+      <div class="u-bolt-text-align-center u-bolt-margin-bottom-large">
         {% include "@bolt-components-button-group/button-group.twig" with {
               buttons: [
                 {
@@ -92,6 +95,17 @@
               align: "center",
             } only %} 
         </div> 
+      <div class="u-bolt-text-align-center">
+          {% include "@bolt-components-link/link.twig" with {
+            text: "Download Sketch Assets",
+            url: "#!",
+            icon: {
+              name: "download",
+              position: "before"
+            },
+          } only %}
+      </div>
+
 
       {% endcell %}
     {% endgrid %}
