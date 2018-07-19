@@ -160,6 +160,7 @@ $bolt-video-js-button-shadow-level: 'level-40';
       }
 
       .vjs-social-share-links {
+        @include bolt-font-size(small);
         margin-right: (bolt-spacing(xsmall) * -1);
         margin-left: (bolt-spacing(xsmall) * -1);
 
@@ -176,9 +177,6 @@ $bolt-video-js-button-shadow-level: 'level-40';
 
       .vjs-social-share-link {
         @include bolt-margin(xsmall);
-
-        min-width: 2.5rem;
-        text-align: center;
       }
 
       .vjs-social-label-text {
