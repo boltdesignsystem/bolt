@@ -271,7 +271,7 @@ function mergeDeep(target, ...sources) {
  * @param item
  * @returns {*|boolean}
  */
-function isObject(value: any) {
+function isObject(value) {
   return Object.prototype.toString.call(value) === '[object Object]';
 }
 
