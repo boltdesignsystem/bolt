@@ -156,7 +156,7 @@ $bolt-video-js-button-shadow-level: 'level-40';
 
       .vjs-social-title,
       .vjs-social-description {
-        display: none; // [9]
+        @include bolt-visuallyhidden(); // [9]
       }
 
       .vjs-social-share-links {
