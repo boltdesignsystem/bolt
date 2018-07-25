@@ -135,6 +135,7 @@ const config = {
       //   scss: ./src/index.scss',
       //   js: './src/index.js',
       // },
+      '@bolt/components-critical-css-vars'
     ],
   },
 };
