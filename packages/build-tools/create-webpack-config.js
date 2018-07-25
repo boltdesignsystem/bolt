@@ -153,7 +153,7 @@ async function createWebpackConfig(buildConfig) {
     const entry = {};
     const globalEntryName = 'bolt-global';
 
-    if (components.global) {
+    if (components.global && components.global.length > 0) {
       entry[globalEntryName] = [];
 
       components.global.forEach(component => {
@@ -518,7 +518,8 @@ async function createWebpackConfig(buildConfig) {
    * In non-drupal environments. during local dev server (ie. not on Travis -- for now till Docker container is up and running),
    * compile the Pattern Lab UI HTML via the new Twig PHP rendering service.
    */
-  if (config.env !== 'drupal' && !config.prod && config.devServer === true) {
+  // if (config.env !== 'drupal' && !config.prod && config.devServer === true) {
+  if (config.env !== 'drupal') {
     webpackConfig.plugins.push(
       new HtmlWebpackPlugin({
         title: 'Custom template',
@@ -544,7 +545,7 @@ async function createWebpackConfig(buildConfig) {
 
         // this determines whether Twig templates get rendered immediately vs wait for the HtmlWebpackPlugin to
         // generate data on the assets available before rendering. Defaults to false.
-        includeContext: false,
+        includeContext: true,
       },
     });
   }
