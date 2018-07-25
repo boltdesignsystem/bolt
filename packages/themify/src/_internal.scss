@@ -1,3 +1,4 @@
+/* stylelint-disable scss/at-function-pattern, scss/at-mixin-pattern */
 
 $PRESERVE_THEMIFY: false !default;
 
@@ -86,12 +87,26 @@ $PSEUDO_CLASSES: (
       $opacity: nth($props, 2);
     }
 
-    $value: json-encode((
-      xlight: (#{$color}, #{$opacity}),
-      light: (#{$color}, #{$opacity}),
-      dark: (#{$color}, #{$opacity}),
-      xdark: (#{$color}, #{$opacity})
-    ));
+    $value: json-encode(
+      (
+        xlight: (
+          #{$color},
+          #{$opacity}
+        ),
+        light: (
+          #{$color},
+          #{$opacity}
+        ),
+        dark: (
+          #{$color},
+          #{$opacity}
+        ),
+        xdark: (
+          #{$color},
+          #{$opacity}
+        )
+      )
+    );
     @return "themify(#{$value})";
   }
 }
