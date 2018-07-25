@@ -1,4 +1,3 @@
-@import '/Users/sghoweri/sites/bolt-v2/packages/core/styles/02-tools/tools-color-palette/_tools-color-palette.scss'; // We need this for including within shadowDOM
 
 $PRESERVE_THEMIFY: false !default;
 
@@ -88,10 +87,10 @@ $PSEUDO_CLASSES: (
     }
 
     $value: json-encode((
-      xlight: (#{bolt-color($color)}, #{$opacity}),
-      light: (#{bolt-color($color)}, #{$opacity}),
-      dark: (#{bolt-color($color)}, #{$opacity}),
-      xdark: (#{bolt-color($color)}, #{$opacity}),
+      xlight: (#{$color}, #{$opacity}),
+      light: (#{$color}, #{$opacity}),
+      dark: (#{$color}, #{$opacity}),
+      xdark: (#{$color}, #{$opacity})
     ));
     @return "themify(#{$value})";
   }
