@@ -107,6 +107,7 @@ const config = {
       '@bolt/components-page-header',
       '@bolt/components-pagination',
       '@bolt/components-share',
+      '@bolt/components-search-filter',
       '@bolt/components-site',
       '@bolt/components-smooth-scroll',
       '@bolt/components-sticky',
