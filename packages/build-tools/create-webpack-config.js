@@ -382,6 +382,9 @@ async function createWebpackConfig(buildConfig) {
       loader: '@epegzz/sass-vars-loader',
       options: {
         syntax: 'scss',
+        extraWatch: [
+          `${path.dirname(resolve.sync('@bolt/core'))}/styles/**/*.js`,
+        ],
         files: [
           // Option 3) Load vars from JavaScript file
           resolve.sync('@bolt/core/styles'),
