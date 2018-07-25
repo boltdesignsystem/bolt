@@ -196,24 +196,14 @@
       {% grid %}
         {% cell "u-bolt-width-1/1 u-bolt-width-3/12@medium" %}
           <form action="#" method="post" class="c-bolt-form">
-            <fieldset class="c-bolt-fieldset">
-              <div class="c-bolt-input-list">
-                <div class="c-bolt-input-list__item">
-                  <input class="c-bolt-input" type="search" name="search-input" id="search-input" placeholder="Enter text to search" required />
-                  <label class="c-bolt-floating-label" for="search-input">
-                    Search
-                  </label>
-                  <div class="c-bolt-input-icons">
-                    <button class="c-bolt-input-icon c-bolt-input-icon--link">
-                      {% include "@bolt-components-icon/icon.twig" with {
-                        "name": "search",
-                        "size": "medium"
-                      } only %}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </fieldset>
+            {% include "@pl/form-element-demo-input-element.twig" with {
+              "title": "Search",
+              "inputAttributes": {
+                "placeholder": "Enter text to search",
+                "type": "search"
+              },
+              "labelDisplayType": "floating"
+            } only %}
           </form>
 
           <div class="c-bolt-search-filter">
