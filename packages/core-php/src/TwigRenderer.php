@@ -77,6 +77,8 @@ class TwigRenderer {
     foreach ($this->twigExtensions as $twigExtension) {
       $this->twig->addExtension(new $twigExtension());
     }
+    $this->twig->addExtension(new \Twig_Extension_Debug());
+
   }
 
   public static function buildLoaderPaths($config, $pathRoot) {
