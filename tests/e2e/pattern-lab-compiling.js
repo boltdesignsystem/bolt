@@ -80,11 +80,26 @@ module.exports = {
       .end()
   },
 
-  'Pattern Lab: Confirm Successful Now.sh Deploy + Pattern Lab Compiled': function (browser) {
+  'Pattern Lab: Confirm Successful Now.sh Deploy + Pattern Lab Compiled': function(
+    browser,
+  ) {
     browser
       .url(`${testingUrl}/pattern-lab/index.html`)
       .waitForElementVisible('.pl-c-body', 1000)
       .verify.title('Pattern Lab - components-overview')
+      .end();
+  },
+
+  'Pattern Lab: Confirm Video Playback Rate': function(browser) {
+    browser
+      .url(
+        `${testingUrl}/pattern-lab/patterns/02-components-video-40-video-w-inline-script-and-email-share/02-components-video-40-video-w-inline-script-and-email-share.html`,
+      )
+      .waitForElementVisible('.video-js', 1000)
+      .click('.vjs-big-play-button')
+      .assert.elementPresent('.vjs-playback-rate')
+      .click('.vjs-playback-rate')
+      .assert.containsText('.vjs-playback-rate-value', '1.3x')
       .end();
   },
   tearDown: sauce,
