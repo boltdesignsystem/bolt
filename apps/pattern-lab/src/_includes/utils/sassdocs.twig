@@ -310,12 +310,13 @@
             {% if item.example  %}
               <div class="c-bolt-docs__example">
                 {% for example in item.example %}
+                  {% set title = example.description ? "Example #{example.type|upper}: #{example.description}" : "Example: #{example.type|upper}" %}
                   <div class="c-bolt-docs__example-item">
                     {% include "@bolt/headline.twig" with {
                       size: "small",
                       tag: "h4",
                       url: "##{item.context.name}--example-#{example.type}",
-                      text: "Example: #{example.type|upper}",
+                      text: title,
                       icon: "none",
                       attributes: {
                         class: [
