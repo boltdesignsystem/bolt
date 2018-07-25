@@ -15,6 +15,7 @@ class Twig_Extension_bolt extends Twig_Extension implements Twig_Extension_Globa
             // 'globalBoltImageSizes' => self::getImageSizes(),
             'TWIG_ENV' => 'pl',
             'enable_json_schema_validation' => true,
+            'enable_component_ssr' => false,
         );
     }
 }
