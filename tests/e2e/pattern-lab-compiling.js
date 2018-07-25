@@ -95,7 +95,7 @@ module.exports = {
       .url(
         `${testingUrl}/pattern-lab/patterns/02-components-video-40-video-w-inline-script-and-email-share/02-components-video-40-video-w-inline-script-and-email-share.html`,
       )
-      .waitForElementVisible('.video-js', 1000)
+      .waitForElementVisible('.video-js', 3000)
       .click('.vjs-big-play-button')
       .assert.elementPresent('.vjs-playback-rate')
       .click('.vjs-playback-rate')
