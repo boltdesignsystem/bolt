@@ -9,12 +9,14 @@
   baseClass
 ] %}
 
+{% set panelId = "search-filter" %}
+
 <bolt-{{ componentName }} bolt-component>
   <div {{ attributes.addClass(classes) }}>
     <div class="{{ "#{baseClass}__trigger" }}">
       {% include "@bolt-components-button/button.twig" with {
-        "url": "#search-filter",
         "text": "Close search filter"|t,
+        "url": "#" ~ panelId,
         "size": "xsmall",
         "style": "primary",
         "rounded": "rounded",
@@ -26,7 +28,7 @@
       } only %}
     </div>
 
-    <div class="{{ "#{baseClass}__panel" }}" id="search-filter">
+    <div class="{{ "#{baseClass}__panel" }}" id="{{ panelId }}">
       <div class="c-bolt-search-filter__panel-content">
         {% block search_filter %}
           {{ content }}
