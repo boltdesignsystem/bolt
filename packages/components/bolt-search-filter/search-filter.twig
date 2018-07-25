@@ -13,8 +13,8 @@
   <div {{ attributes.addClass(classes) }}>
     <div class="{{ "#{baseClass}__trigger" }}">
       {% include "@bolt-components-button/button.twig" with {
-        "text": "Close search filter",
         "url": "#search-filter",
+        "text": "Close search filter"|t,
         "size": "xsmall",
         "style": "primary",
         "rounded": "rounded",
@@ -37,12 +37,12 @@
         {% include "@bolt-components-button-group/button-group.twig" with {
           "buttons": [
             {
-              "text": "Apply",
+              "text": "Apply"|t,
               "style": "primary",
               "url": "#!"
             },
             {
-              "text": "Cancel",
+              "text": "Cancel"|t,
               "style": "secondary",
               "url": "#!"
             }
@@ -52,7 +52,7 @@
 
       <div class="{{ "#{baseClass}__panel-controls #{baseClass}__panel-controls--close" }}">
         {% include "@bolt-components-button/button.twig" with {
-          "text": "Close search filter",
+          "text": "Close search filter"|t,
           "url": "#!",
           "size": "xsmall",
           "style": "text",
