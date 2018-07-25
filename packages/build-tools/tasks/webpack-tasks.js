@@ -220,6 +220,10 @@ async function server(buildTime) {
         hotClient: {
           logLevel: 'silent',
           hot: true,
+          host: {
+            client: '*',
+            server: '0.0.0.0',
+          },
         },
         content: path.resolve(process.cwd(), config.wwwDir),
         devWare: {
