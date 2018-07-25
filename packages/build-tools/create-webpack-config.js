@@ -52,7 +52,6 @@ async function createWebpackConfig(buildConfig) {
   let langSuffix = `${config.lang ? '-' + config.lang : ''}`;
 
   let themifyOptions = {
-    palette: {},
     createVars: true,
     classPrefix: 't-bolt-',
     // defaultColorVariation: 'xlight', // WIP - hard coding xlight default for now
@@ -315,7 +314,13 @@ async function createWebpackConfig(buildConfig) {
       loader: 'postcss-loader',
       options: {
         sourceMap: true,
+        ident: 'postcss2',
         plugins: () => [
+          themify.themify(
+            Object.assign(themifyOptions, {
+              palette: require('@bolt/core/styles').boltThemes,
+            }),
+          ),
           postcssDiscardDuplicates,
           autoprefixer({
             // @todo: replace with standalone Bolt config
@@ -357,19 +362,29 @@ async function createWebpackConfig(buildConfig) {
         data: globalSassData.join('\n'),
       },
     },
+    {
+      loader: 'postcss-loader',
+      options: {
+        ident: 'postcss1',
+        sourceMap: false,
+        syntax: 'postcss-scss',
+        plugins: () => [
+          themify.initThemify(
+            Object.assign(themifyOptions, {
+              palette: require('@bolt/core/styles').boltThemes,
+            }),
+          ),
+        ],
+      },
+    },
     // Reads Sass vars from files or inlined in the options property
     {
       loader: '@epegzz/sass-vars-loader',
       options: {
         syntax: 'scss',
         files: [
-          // path.resolve(__dirname, '../core/styles/01-settings/settings-colors/_settings-colors.js'),
-          resolve.sync(
-            '@bolt/core/styles/01-settings/settings-colors/_settings-colors.js',
-          ),
-
           // Option 3) Load vars from JavaScript file
-          // resolve.sync('@bolt/core/styles/index.js'),
+          resolve.sync('@bolt/core/styles'),
         ],
       },
     },
