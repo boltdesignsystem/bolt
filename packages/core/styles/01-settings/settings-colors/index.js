@@ -2,7 +2,9 @@
   SETTINGS - COLORS
 \* ------------------------------------ */
 
-var boltBrandColors = {
+const boltColorDefault = 'base';
+
+const boltBrandColors = {
   indigo: {
     xdark: 'hsl(233, 71%, 8%)',
     dark: 'hsl(233, 47%, 16%)',
@@ -51,7 +53,7 @@ var boltBrandColors = {
   },
 };
 
-var boltStatusColors = {
+const boltStatusColors = {
   blue: {
     dark: 'hsl(201, 100%, 25%)',
     base: 'hsl(201, 100%, 35%)',
@@ -85,7 +87,7 @@ var boltSocialColors = {
   },
 };
 
-var boltColors = Object.assign(
+const boltColors = Object.assign(
   {},
   boltBrandColors,
   boltStatusColors,
@@ -93,19 +95,9 @@ var boltColors = Object.assign(
 );
 
 module.exports = {
-  lightTheme: {
-    background: '#FAFAFA',
-    color: 'black',
-  },
-  darkTheme: {
-    background: 'black',
-    color: 'gray',
-  },
-  'bolt-brand-colors': boltBrandColors,
-  'bolt-status-colors': boltStatusColors,
-  'bolt-social-colors': boltSocialColors,
-  'bolt-colors': boltColors,
-
-  // base color value used by default globally
-  'bolt-color-default': 'base',
+  boltBrandColors,
+  boltStatusColors,
+  boltSocialColors,
+  boltColors,
+  boltColorDefault,
 };

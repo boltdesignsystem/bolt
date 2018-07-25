@@ -4,6 +4,90 @@
 @import 'sass-mq';
 @import 'sassy-maps/sass/sassy-maps';
 @import '@theme-tools/sass-export-data/export-data.scss';
+// $PRESERVE_THEMIFY: true;
+@import '@bolt/themify/src/themify.scss';
+
+
+@function bolt-theme($value) {
+  @return inspect($value);
+}
+
+@function bolt-to-string($value) {
+  @return inspect($value);
+}
+
+// recursively take a sass map passed in and convert any keys / values to strings to make it possible to export colors as JSON
+@function bolt-normalize-data($map-old, $map-new, $override: true) {
+  // $case: 'lower-case';
+  // Iterate through each value of the new map
+  @each $key, $new-value in $map-new {
+    // Check if that value already exists on the old map
+    @if type-of($new-value) == map and type-of($key) != color and map-has-key($map-old, $key) {
+      // There is an existing key
+      $old-value: map-get($map-old, $key);
+      @if type-of($new-value) == map and type-of($old-value) == map {
+        // If both are maps, recurse regardless of $override
+        $merged-value: bolt-normalize-data($old-value, $new-value);
+        $stringified-key: bolt-to-string($key);
+        $new-key: to-lower-case($stringified-key);
+        $map-old: map-merge(
+          map-remove($map-old, $key),
+          ( quote($new-key): $merged-value )
+        );
+
+      } @else {
+        // Otherwise check $override
+        @if $override {
+          $stringified-key: bolt-to-string($key);
+          $new-key: to-lower-case($stringified-key);
+          $map-old: map-merge(
+            map-remove($map-old, $key),
+            ( quote($new-key): $new-value )
+          );
+        }
+      }
+    }@else {
+      // There is no existing key so add
+      $stringified-key: bolt-to-string($key);
+      $new-key: to-lower-case($stringified-key);
+
+      $map-old: map-merge(
+        map-remove($map-old, $key),
+        ( quote($new-key): $new-value)
+      );
+    }
+  }
+  @return $map-old;
+}
+
+// Ensures all Sass map color keys are automatically quoted so the `export-data` mixin doesn't butt heads with the
+@mixin bolt-export-data($filename, $map) {
+  $sass-map: bolt-normalize-data($map, $map);
+  @include export-data($filename, $sass-map);
+}
+
+
+
+/**
+  * Helper functions for applying global color swatches stored in Sass Maps
+  */
+@function bolt-theme($props...) {
+  $color: null;
+
+  @if (length($props) >= 1) {
+    $color: nth($props, 1);
+  }
+  $value: map-get-deep($boltThemes, 'light', $color);
+
+  @if ($value){
+    @return themify($props...);
+  } @else {
+    @warn 'Warning! ' + $color + ' bolt-theme was not found...';
+    @return '';
+  }
+}
+
+
 @import '01-settings/**/*.scss';
 @import '02-tools/**/*.scss';
 
