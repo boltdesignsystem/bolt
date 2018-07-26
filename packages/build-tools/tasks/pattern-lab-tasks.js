@@ -1,40 +1,35 @@
 const chalk = require('chalk');
-const { readYamlFileSync } = require('../utils/yaml');
-const sh = require('../utils/sh');
 const path = require('path');
 const { promisify } = require('util');
 const fs = require('fs');
 const writeFile = promisify(fs.writeFile);
-const events = require('../utils/events');
 const chokidar = require('chokidar');
 const del = require('del');
 const debounce = require('lodash.debounce');
+const ora = require('ora');
 const log = require('../utils/log');
 const { getConfig } = require('../utils/config-store');
-const ora = require('ora');
+const events = require('../utils/events');
+const sh = require('../utils/sh');
+const { readYamlFileSync } = require('../utils/yaml');
 const manifest = require('../utils/manifest');
 const timer = require('../utils/timer');
 
 let plSource, plPublic, consolePath;
 let config;
 
-async function asyncConfig(){
-  if (config){
+async function asyncConfig() {
+  if (config) {
     return config;
   } else {
-    config = Object.assign({
-      plConfigFile: 'config/config.yml',
-      watchedExtensions: [
-        'twig',
-        'json',
-        'yaml',
-        'yml',
-        'md',
-        'png',
-        'php',
-      ],
-      debounceRate: 1000,
-    }, await getConfig());
+    config = Object.assign(
+      {
+        plConfigFile: 'config/config.yml',
+        watchedExtensions: ['twig', 'json', 'yaml', 'yml', 'md', 'png', 'php'],
+        debounceRate: 1000,
+      },
+      await getConfig(),
+    );
 
     const plConfig = readYamlFileSync(config.plConfigFile);
     const plRoot = path.join(config.plConfigFile, '../..');
@@ -47,22 +42,23 @@ async function asyncConfig(){
 }
 
 async function plBuild(errorShouldExit) {
-  config = config || await asyncConfig();
+  config = config || (await asyncConfig());
 
   return new Promise(async (resolve, reject) => {
     const plSpinner = ora(chalk.blue('Building Pattern Lab...')).start();
     const startTime = timer.start();
     // log.taskStart('build: pattern lab');
     events.emit('pattern-lab:precompile');
-    sh('php', [
-      '-d',
-      'memory_limit=4048M',
-      consolePath,
-      '--generate',
-    ], errorShouldExit, false)
-      .then((output) => {
-
-        plSpinner.succeed(chalk.green(`Built Pattern Lab in ${timer.end(startTime)}`));
+    sh(
+      'php',
+      ['-d', 'memory_limit=4048M', consolePath, '--generate'],
+      errorShouldExit,
+      false,
+    )
+      .then(output => {
+        plSpinner.succeed(
+          chalk.green(`Built Pattern Lab in ${timer.end(startTime)}`),
+        );
 
         if (config.verbosity > 2) {
           console.log('---');
@@ -74,7 +70,7 @@ async function plBuild(errorShouldExit) {
 
         resolve(output);
       })
-      .catch((error) => {
+      .catch(error => {
         plSpinner.fail(chalk.red('Building Pattern Lab Failed'));
         console.log(error);
         // reject(error);
@@ -96,13 +92,15 @@ async function compileWithNoExit() {
 compileWithNoExit.displayName = 'pattern-lab:compile';
 
 async function watch() {
-  config = config || await getConfig();
+  config = config || (await asyncConfig());
+  const dirs = await manifest.getAllDirs();
+
   // Used by watches
   const debouncedCompile = debounce(compileWithNoExit, config.debounceRate);
 
   const globPattern = `**/*.{${config.watchedExtensions.join(',')}}`;
   const watchedFiles = [
-    ...manifest.getAllDirs(process.cwd()).map(dir => path.join(dir, globPattern)),
+    dirs.map(dir => path.join(dir, globPattern)),
     path.join(plSource, globPattern),
     path.join(config.dataDir, '*.*'),
   ];
@@ -117,10 +115,7 @@ async function watch() {
   const watcher = chokidar.watch(watchedFiles, {
     ignoreInitial: true,
     cwd: process.cwd(),
-    ignore: [
-      '**/node_modules/**',
-      '**/vendor/**',
-    ],
+    ignore: ['**/node_modules/**', '**/vendor/**'],
   });
 
   // list of all events: https://www.npmjs.com/package/chokidar#methods--events
@@ -130,7 +125,6 @@ async function watch() {
     }
     debouncedCompile();
   });
-
 }
 
 watch.description = 'Watch and rebuild Pattern Lab';

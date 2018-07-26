@@ -18,7 +18,6 @@ import {
   getScrollTarget,
 } from '@bolt/components-smooth-scroll';
 
-
 @define
 class BoltNavLink extends BoltComponent() {
   static is = 'bolt-navlink';
@@ -26,7 +25,7 @@ class BoltNavLink extends BoltComponent() {
   static props = {
     active: props.boolean,
     isDropdownLink: props.boolean,
-  }
+  };
 
   constructor(self) {
     self = super(self);
@@ -47,16 +46,21 @@ class BoltNavLink extends BoltComponent() {
   onClick(event) {
     // prevent browser default if we're smooth scrolling to a navlink. this ensures a smoother, less jumpy animation in browsers (like Safari)
     const customScrollElemTarget = this._shadowLink.getAttribute('href');
-    const matchedScrollTarget = document.querySelectorAll(customScrollElemTarget);
+    const matchedScrollTarget = document.querySelectorAll(
+      customScrollElemTarget,
+    );
     let shouldSmoothScroll = true;
 
     // if no ids match up with the smooth scrollable element, don't try to smooth scroll.
     // workaround to smooth scroll js error `Cannot read property 'smoothScroll' of null`
-    if (customScrollElemTarget.indexOf('#') !== -1 && matchedScrollTarget.length === 0) {
+    if (
+      customScrollElemTarget.indexOf('#') !== -1 &&
+      matchedScrollTarget.length === 0
+    ) {
       shouldSmoothScroll = false;
     }
 
-    if (shouldSmoothScroll !== false){
+    if (shouldSmoothScroll !== false) {
       event.preventDefault();
 
       // Don't add the :focus state to the link in this scenario.  The focus state is about to get removed anyway as
@@ -65,10 +69,18 @@ class BoltNavLink extends BoltComponent() {
     }
 
     // manually add smooth scroll to dropdown links since these are added to the page AFTER smooth scroll event bindings would hae been added.
-    if (!this.props.active && this.props.isDropdownLink && shouldSmoothScroll !== false) {
+    if (
+      !this.props.active &&
+      this.props.isDropdownLink &&
+      shouldSmoothScroll !== false
+    ) {
       const scrollTarget = getScrollTarget(this._shadowLink);
       if (scrollTarget) {
-        smoothScroll.animateScroll(scrollTarget, this._shadowLink, scrollOptions);
+        smoothScroll.animateScroll(
+          scrollTarget,
+          this._shadowLink,
+          scrollOptions,
+        );
       }
     }
 
@@ -84,7 +96,7 @@ class BoltNavLink extends BoltComponent() {
     );
   }
 
-  isActive(){
+  isActive() {
     return this.props.active;
   }
 
@@ -109,7 +121,7 @@ class BoltNavLink extends BoltComponent() {
     this.setAttribute('active', '');
     this.props.active = true;
 
-    if (emitEvent){
+    if (emitEvent) {
       this.dispatchEvent(
         new CustomEvent('navlink:active', {
           detail: {
@@ -134,7 +146,10 @@ class BoltNavLink extends BoltComponent() {
 
     this._shadowLink = this.querySelector('a');
 
-    const isAlreadyActive = this._shadowLink.classList.contains(this.activeClass) || this._shadowLink.getAttribute('href') === window.location.hash || this.props.active;
+    const isAlreadyActive =
+      this._shadowLink.classList.contains(this.activeClass) ||
+      this._shadowLink.getAttribute('href') === window.location.hash ||
+      this.props.active;
 
     // Set an initially active link if appropriate.
     if (isAlreadyActive) {

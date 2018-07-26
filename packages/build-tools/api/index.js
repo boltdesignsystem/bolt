@@ -1,9 +1,9 @@
 const url = require('url');
-const log = require('../utils/log');
 const fetch = require('node-fetch');
-const config = require('../utils/config-store').getConfig();
+const { getConfig } = require('../utils/config-store');
+const log = require('../utils/log');
 
-function getBody(request) {
+async function getBody(request) {
   return new Promise((resolve, reject) => {
     let body = [];
     request.on('data', chunk => body.push(chunk));
@@ -14,7 +14,7 @@ function getBody(request) {
       }
       resolve(body);
     });
-    request.on('error', (e) => {
+    request.on('error', e => {
       console.error(`problem with request: ${e.message}`);
       reject(e.message);
     });
@@ -28,6 +28,7 @@ function getBody(request) {
  * @param next
  */
 async function handleRequest(req, res, next) {
+  const config = await getConfig();
   const { method } = req;
   const { pathname, query, search } = url.parse(req.url, true);
   // let body;
@@ -40,16 +41,22 @@ async function handleRequest(req, res, next) {
     case '/render-twig':
       try {
         /** @var renderResponse {Response} */
-        const renderResponse = await fetch(`http://127.0.0.1:${config.renderingServicePort}${search}`, {
-          method,
-          body: method === 'POST' ? JSON.stringify(body) : null,
-        });
+        const renderResponse = await fetch(
+          `http://127.0.0.1:${config.renderingServicePort}${search}`,
+          {
+            method,
+            body: method === 'POST' ? JSON.stringify(body) : null,
+          },
+        );
         const data = await renderResponse.text();
         // console.log(renderResponse);
 
         const { status } = renderResponse;
         const warning = renderResponse.headers.get('Warning');
-        res.setHeader('Content-Type', renderResponse.headers.get('Content-Type'));
+        res.setHeader(
+          'Content-Type',
+          renderResponse.headers.get('Content-Type'),
+        );
         res.statusCode = status;
         if (warning) {
           res.statusMessage = warning;
@@ -62,10 +69,17 @@ async function handleRequest(req, res, next) {
       break;
     default:
       res.setHeader('Content-Type', 'application/json');
-      res.end(JSON.stringify({
-        ok: false,
-        message: `Not api route found at: ${url}`,
-      }), 'utf8', () => console.log(`Responded to an unknown API endpoint request for ${method} to ${url}.`));
+      res.end(
+        JSON.stringify({
+          ok: false,
+          message: `Not api route found at: ${url}`,
+        }),
+        'utf8',
+        () =>
+          console.log(
+            `Responded to an unknown API endpoint request for ${method} to ${url}.`,
+          ),
+      );
   }
 }
 module.exports = {

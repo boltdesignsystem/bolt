@@ -4,14 +4,8 @@
 
 @import '@bolt/core';
 
-// Custom element default styles
-bolt-breadcrumb {
-  display: block;
-
-  &:not(:last-child) {
-    @include bolt-margin-bottom(medium);
-  }
-}
+// Register Custom Block Element
+@include bolt-custom-element('bolt-breadcrumb', block, medium);
 
 
 // Breadcrumb styles

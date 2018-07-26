@@ -1,5 +1,5 @@
-const log = require('../utils/log');
 const path = require('path');
+const log = require('../utils/log');
 const webpackTasks = require('./webpack-tasks');
 const criticalcssTasks = require('./criticalcss-tasks');
 const manifest = require('../utils/manifest');
@@ -7,13 +7,12 @@ const internalTasks = require('./internal-tasks');
 const imageTasks = require('./image-tasks');
 const timer = require('../utils/timer');
 const { getConfig } = require('../utils/config-store');
-const extraTasks = {};
+const extraTasks = [];
 let config;
-
 
 // These tasks are present based on optional conditions like `config.env` and should only be `require`-ed when it's the right env due to each file's setup where it tries to grab specific files - and of course the tasks should only run in the correct `env` as well.
 async function getExtraTasks() {
-  config = config || await getConfig();
+  config = config || (await getConfig());
 
   switch (config.env) {
     case 'pl':
@@ -35,8 +34,26 @@ async function getExtraTasks() {
   return extraTasks;
 }
 
+async function compileBasedOnEnvironment() {
+  await getExtraTasks();
+
+  switch (config.env) {
+    case 'pl':
+      await extraTasks.patternLab.compile();
+      break;
+    case 'static':
+      await extraTasks.static.compile();
+      break;
+    case 'pwa':
+      return Promise.all([
+        extraTasks.static.compile(),
+        extraTasks.patternLab.compile(),
+      ]);
+  }
+}
+
 async function clean() {
-  config = config || await getConfig();
+  config = config || (await getConfig());
   try {
     let dirs = [];
     switch (config.env) {
@@ -58,12 +75,16 @@ async function clean() {
         ];
         break;
       case 'pl':
-        dirs = [path.join(config.buildDir, '..')];
+        dirs = [
+          path.join(config.wwwDir, 'pattern-lab/**'),
+          `!${path.join(config.wwwDir, 'pattern-lab')}`, // don't delete the pl folder itself
+          `!${path.join(config.wwwDir, 'pattern-lab/index.html')}`, // or pl's index.html file
+          `!${path.join(config.wwwDir, 'pattern-lab/styleguide')}`, // or the pl assets
+          `!${path.join(config.wwwDir, 'pattern-lab/styleguide/**')}`,
+        ];
         break;
       case 'pwa':
-        dirs = [
-          path.join(path.resolve(config.wwwDir), '**'),
-        ];
+        dirs = [path.join(path.resolve(config.wwwDir), '**')];
         break;
       default:
         dirs = [config.buildDir];
@@ -76,7 +97,7 @@ async function clean() {
 }
 
 async function serve(buildTime = timer.start()) {
-  config = config || await getConfig();
+  config = config || (await getConfig());
   await getExtraTasks();
 
   try {
@@ -97,7 +118,6 @@ async function serve(buildTime = timer.start()) {
   }
 }
 
-
 async function criticalcss() {
   try {
     const criticalTasks = [];
@@ -116,32 +136,26 @@ async function images() {
   }
 }
 
-async function build(shouldReturnTime = false) {
+async function build(localDev = false, shouldReturnTime = false) {
   const startTime = timer.start();
-  config = config || await getConfig();
+  config = config || (await getConfig());
 
   try {
     await getExtraTasks();
     config.prod ? await clean() : '';
     await internalTasks.mkDirs();
     await manifest.writeBoltManifest();
-    await manifest.writeTwigNamespaceFile(process.cwd(), config.extraTwigNamespaces);
-    await webpackTasks.compile();
+    await manifest.writeTwigNamespaceFile(
+      process.cwd(),
+      config.extraTwigNamespaces,
+    );
+
+    config.prod || localDev === false ? await webpackTasks.compile() : '';
+
     await images();
 
-    switch (config.env) {
-      case 'pl':
-        await extraTasks.patternLab.compile();
-        break;
-      case 'static':
-        await extraTasks.static.compile();
-        break;
-      case 'pwa':
-        return Promise.all([
-          extraTasks.static.compile(),
-          extraTasks.patternLab.compile(),
-        ]);
-        break;
+    if (config.prod || localDev === false) {
+      await compileBasedOnEnvironment();
     }
 
     if (shouldReturnTime) {
@@ -155,11 +169,15 @@ async function build(shouldReturnTime = false) {
 }
 
 async function watch() {
-  config = config || await getConfig();
+  config = config || (await getConfig());
 
   try {
-    const watchTasks = [
-    ];
+    const watchTasks = [];
+
+    // if webpackDevServer isn't defined or is disabled, use webpack watch mode instead
+    if (!config.webpackDevServer) {
+      watchTasks.push(webpackTasks.watch());
+    }
 
     switch (config.env) {
       case 'pl':
@@ -182,15 +200,19 @@ async function watch() {
 
 async function start() {
   let buildTime;
-  await getExtraTasks();
-  config = config || await getConfig();
+  const extraTasks = await getExtraTasks();
+  config = config || (await getConfig());
 
   try {
     if (!config.quick) {
-      buildTime = await build(true);
+      buildTime = await build({
+        localDev: true,
+        shouldReturnTime: true,
+      });
     }
     return Promise.all([
       serve(buildTime),
+      await compileBasedOnEnvironment(),
       watch(),
     ]);
   } catch (error) {
