@@ -479,78 +479,7 @@ function themify(options) {
  * Generating a SASS definition file with the palette map and the CSS variables.
  * This file should be injected into your bundle.
  */
-function init(options) {
-  options = buildOptions(options);
-
-  return root => {
-    const palette = options.palette;
-    const css = generateVars(palette, options.classPrefix);
-
-    const parsedCss = postcss.parse(css);
-    root.prepend(parsedCss);
-  };
-
-  /**
-   * This function responsible for creating the CSS variable.
-   *
-   *  The output should look like the following:
-   *
-   *  .light {
-       --primary-700: 255, 255, 255;
-       --primary-600: 248, 248, 249;
-       --primary-500: 242, 242, 244;
- *   }
-   *
-   *  .dark {
-       --primary-700: 255, 255, 255;
-       --primary-600: 248, 248, 249;
-       --primary-500: 242, 242, 244;
- *   }
-   *
-   */
-  function generateVars(palette, prefix) {
-    let cssOutput = '';
-    prefix = prefix || '';
-
-    // iterate through the different variations
-    Object.keys(palette).forEach(variationName => {
-      const selector =
-        variationName === ColorVariation.XLIGHT
-          ? ':root'
-          : `.${prefix}${variationName}`;
-      const variationColors = palette[variationName];
-
-      // make sure we got colors for this variation
-      if (!variationColors) {
-        throw new Error(
-          `Expected map of colors for the variation name ${variationName}`,
-        );
-      }
-
-      const variationKeys = Object.keys(variationColors);
-
-      // generate CSS variables
-      const vars = variationKeys
-        .map(varName => {
-          return `--bolt-theme-${varName}: ${getRgbaNumbers(
-            variationColors[varName],
-          )};`;
-        })
-        .join(' ');
-
-      // concatenate the variables to the output
-      const output = `${selector} {${vars}}`;
-      cssOutput = `${cssOutput} ${output}`;
-    });
-
-    // generate the $palette variable
-    cssOutput += `$palette: ${JSToSass(palette)};`;
-
-    return cssOutput;
-  }
-}
 
 module.exports = {
-  initThemify: postcss.plugin('datoThemes', init),
   themify: postcss.plugin('datoThemes', themify),
 };
