@@ -33,6 +33,7 @@ $bolt-card-translate--active: $bolt-translate-raised--medium;
 bolt-card {
   display: flex;
   height: 100%; // Try to fill vertical space if available, even if parent's isn't display: flex;
+  border-radius: $bolt-card-border-radius; // in case the theme is applied to the custom element itself.
 }
 
 .c-bolt-card {
@@ -42,11 +43,27 @@ bolt-card {
   flex-grow: 1; //If used in a flex box container, grow to fill available space.
   position: relative;
   max-width: 100%; //IE11 flexbox fix
-  color: bolt-color(gray, xdark);
-  color: var(--bolt-theme-text, bolt-color(gray, xdark));
+  color: bolt-theme(text);
   border-radius: $bolt-card-border-radius;
   transform: translate3d(0, 0, 0) scale(1, 1);
   transition: $bolt-card-transition;
+
+  @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+    -webkit-backdrop-filter: blur(10px) saturate(30%) brightness(300%);
+    backdrop-filter: blur(10px) saturate(30%) brightness(300%);
+    background-color: rgba(bolt-color(white), 0.3);
+  }
+
+  bolt-card[class*=t-bolt] & {
+    color: bolt-theme(text);
+    background-color: bolt-theme(background-80);
+
+    @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+      -webkit-backdrop-filter: blur(10px) saturate(30%) brightness(300%);
+      backdrop-filter: blur(10px) saturate(30%) brightness(300%);
+      background-color: rgba(bolt-color(white), 0.3);
+    }
+  }
 
   &:not(.c-bolt-card--wrapper){
     box-shadow: $bolt-card-shadow;
@@ -69,16 +86,15 @@ bolt-card {
   }
 
   &:before {
-    background-color: bolt-color(white);
-
-    @supports(--css: variables) {
-      background-color: var(--bolt-theme-card-background, var(--bolt-theme-background, bolt-color(white)));
-      opacity: 0.8;
-    }
+    background-color: bolt-theme(background-80);
   }
 
   &:after {
     background-color: rgba(bolt-color(white), 0.1);
+    @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+      background-color: transparent;
+    }
+
     box-shadow: none;
     transition: $bolt-card-transition;
   }
@@ -129,7 +145,7 @@ bolt-card {
 
   &:before {
     content: '';
-    border-top-color: var(--bolt-theme-card-border, var(--bolt-theme-border, currentColor));
+    border-top-color: bolt-theme(border, 0.2);
     border-top-width: $bolt-card-border-width;
     border-top-style: solid;
     position: absolute;
@@ -139,10 +155,6 @@ bolt-card {
     display: block;
     height: 1px;
 
-    opacity: $bolt-global-border-opacity;
-    @supports(--css: variables) {
-      opacity: 1; // Remove fallback opacity and let theme decide.
-    }
   }
 }
 
@@ -164,7 +176,7 @@ bolt-card {
 .c-bolt-card__footer-item + .c-bolt-card__footer-item:before {
   display: block;
   content: '';
-  border-left-color: var(--bolt-theme-card-border, var(--bolt-theme-border, currentColor));
+  border-left-color: bolt-theme(border);
   border-left-width: $bolt-card-border-width;
   border-left-style: solid;
   position: absolute;
@@ -173,8 +185,4 @@ bolt-card {
   width: 1px;
   height: 100%;
 
-  opacity: $bolt-global-border-opacity;
-  @supports(--css: variables) {
-    opacity: 1; // Remove fallback opacity and let theme decide.
-  }
 }
