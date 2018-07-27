@@ -11,7 +11,7 @@
 //
 // NOTE: This function must be defined in _variables.scss instead of _functions.scss to avoid circular imports.
 @function bolt-theme-prop-value($style) {
-  @if bolt-theme-is-valid-theme-prop-value_($style) {
+  @if bolt-theme-is-valid-theme-prop-value($style) {
     @return $style;
   }
 
@@ -23,7 +23,7 @@
 
 
 // NOTE: This function is depended upon by bolt-theme-prop-value (above) and thus must be defined in this file.
-@function bolt-theme-is-valid-theme-prop-value_($style) {
+@function bolt-theme-is-valid-theme-prop-value($style) {
   @return type-of($style) == "color" or $style == "currentColor" or str_slice($style, 1, 4) == "var(";
 }
 

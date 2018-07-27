@@ -102,45 +102,51 @@ $bolt-themes: (
   $primary-dark: mix(bolt-color(black), $primary, 15%);
   $primary-xdark: mix(bolt-color(black), $primary, 25%);
 
-  $bolt-themes: bolt-recursive-map-merge($bolt-themes, (
-    #{$themeName}: $bolt-ui-colors
-  ));
+  $bolt-themes: bolt-recursive-map-merge(
+    $bolt-themes,
+      (
+        #{$themeName}: $bolt-ui-colors
+      )
+  );
 
-  $bolt-themes: bolt-recursive-map-merge($bolt-themes, (
-    #{$themeName}: (
-      background: $background,
-      background-30: rgba($background, 0.3),
-      background-80: rgba($background, 0.8),
+  $bolt-themes: bolt-recursive-map-merge(
+    $bolt-themes,
+    (
+      #{$themeName}: (
+        background: $background,
+        background-30: rgba($background, 0.3),
+        background-80: rgba($background, 0.8),
 
-      disabled: $bolt-theme-disabled,
+        disabled: $bolt-theme-disabled,
 
-      border: bolt-theme-ui-color(border, $background),
+        border: bolt-theme-ui-color(border, $background),
 
-      primary: $primary,
-      primary-light: $primary-light,
-      primary-xlight: $primary-xlight,
+        primary: $primary,
+        primary-light: $primary-light,
+        primary-xlight: $primary-xlight,
 
-      primary-dark: $primary-dark,
-      primary-xdark: $primary-xdark,
-
-
-      secondary: $bolt-theme-secondary,
-      secondary-dark: $bolt-theme-secondary-dark,
-      secondary-xdark: $bolt-theme-secondary-xdark,
-
-      text-on-primary: bolt-text-contrast($primary),
-      text-on-primary-light: bolt-text-contrast($primary-light),
-      text-on-primary-xlight: bolt-text-contrast($primary-xlight),
-
-      text-on-primary-dark: bolt-text-contrast($primary-dark),
-      text-on-primary-xdark: bolt-text-contrast($primary-xdark),
+        primary-dark: $primary-dark,
+        primary-xdark: $primary-xdark,
 
 
-      text-on-secondary: bolt-text-contrast($bolt-theme-secondary),
-      text-on-secondary-dark: bolt-text-contrast($bolt-theme-secondary-dark),
-      text-on-secondary-xdark: bolt-text-contrast($bolt-theme-secondary-xdark),
+        secondary: $bolt-theme-secondary,
+        secondary-dark: $bolt-theme-secondary-dark,
+        secondary-xdark: $bolt-theme-secondary-xdark,
+
+        text-on-primary: bolt-text-contrast($primary),
+        text-on-primary-light: bolt-text-contrast($primary-light),
+        text-on-primary-xlight: bolt-text-contrast($primary-xlight),
+
+        text-on-primary-dark: bolt-text-contrast($primary-dark),
+        text-on-primary-xdark: bolt-text-contrast($primary-xdark),
+
+
+        text-on-secondary: bolt-text-contrast($bolt-theme-secondary),
+        text-on-secondary-dark: bolt-text-contrast($bolt-theme-secondary-dark),
+        text-on-secondary-xdark: bolt-text-contrast($bolt-theme-secondary-xdark),
+      )
     )
-  ));
+  );
 }
 
 
