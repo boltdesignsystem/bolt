@@ -35,13 +35,13 @@ function getColorPalette(options) {
   let data;
 
   // @todo: revisit caching the JSON data if it hasn't changed
-  // if (!cachedColorPalette) {
-  //   data = fs.readFileSync(options.fallback.jsonPath, 'utf8');
-  //   cachedColorPalette = data;
-  // } else {
-  //   data = cachedColorPalette;
-  // }
-  data = fs.readFileSync(options.fallback.jsonPath, 'utf8');
+  if (!cachedColorPalette) {
+    data = fs.readFileSync(options.fallback.jsonPath, 'utf8');
+    cachedColorPalette = data;
+  } else {
+    data = cachedColorPalette;
+  }
+  // data = fs.readFileSync(options.fallback.jsonPath, 'utf8');
 
   if (!data) {
     throw new Error(
