@@ -18,7 +18,6 @@ module.exports = {
   },
   components: {
     global: [
-      '@bolt/core',
       '@bolt/global',
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
