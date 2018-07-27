@@ -373,6 +373,7 @@ async function createWebpackConfig(buildConfig) {
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
   const webpackConfig = {
     entry: await buildWebpackEntry(),
+    parallelism: 1, // @todo refactor once theming updates in place 
     output: {
       path: path.resolve(process.cwd(), config.buildDir),
       filename: `[name]${langSuffix}.js`,
