@@ -1,0 +1,41 @@
+/* ------------------------------------ *\
+   THEMES
+\* ------------------------------------ */
+
+
+$bolt-themes-export: ();
+
+
+// @todo - make sure the SVG filter vars get added before this goes live:
+// $bolt-theme-contrast-filter:    grayscale(100%) invert(100%) brightness(150%);
+
+
+// loop through all defined themes to auto-generate Theme-specific classes w/ vars.
+// also clean up the Sass map data we export for the Themify-based PostCSS build step and convert everything to rgb just for the data that's exported.
+@each $themeName, $themeOptions in $bolt-themes {
+  .t-bolt-#{$themeName} {
+    @each $themeOptionName, $themeOptionValue in $themeOptions {
+      --bolt-theme-#{$themeOptionName}: #{$themeOptionValue};
+
+      $bolt-themes-export: map-set-deep($bolt-themes-export, ($themeName, $themeOptionName), rgba($themeOptionValue, 1));
+    }
+
+    @at-root :root {
+      @if ($themeName == 'xlight') {
+        @each $themeOptionName, $themeOptionValue in $themeOptions {
+          --bolt-theme-#{$themeOptionName}: #{$themeOptionValue};
+
+          $bolt-themes-export: map-set-deep($bolt-themes-export, ($themeName, $themeOptionName), rgba($themeOptionValue, 1));
+        }
+      }
+    }
+
+    color: bolt-get-theme-prop($themeName, text);
+    color: var(--bolt-theme-text);
+
+    background-color: bolt-get-theme-prop($themeName, background);
+    background-color: var(--bolt-theme-background);
+  }
+}
+
+@include bolt-export-data($bolt-css-vars-json-data-export + '.json', $bolt-themes-export);
