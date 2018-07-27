@@ -7,6 +7,9 @@ const { minifyJSON } = require('./helpers/json.util');
 const THEMIFY = 'themify';
 const JSToSass = require('./helpers/js-sass');
 
+let cachedColorPalette;
+let output;
+
 const defaultOptions = {
   createVars: true,
   modifyCSSRules: true,
@@ -27,15 +30,34 @@ const ColorVariation = {
   XDARK: 'xdark',
 };
 
+function getColorPalette(options) {
+  // make sure we have a palette
+  let data;
+
+  // @todo: revisit caching the JSON data if it hasn't changed
+  // if (!cachedColorPalette) {
+  //   data = fs.readFileSync(options.fallback.jsonPath, 'utf8');
+  //   cachedColorPalette = data;
+  // } else {
+  //   data = cachedColorPalette;
+  // }
+  data = fs.readFileSync(options.fallback.jsonPath, 'utf8');
+
+  if (!data) {
+    throw new Error(
+      `Can't find a JSON file with the Theme's color palette JSON!`,
+    );
+  } else {
+    return JSON.parse(data);
+  }
+}
+
 function buildOptions(options) {
   if (!options) {
     throw new Error(`options is required.`);
   }
 
-  // make sure we have a palette
-  if (!options.palette) {
-    throw new Error(`The 'palette' option is required.`);
-  }
+  options.palette = getColorPalette(options);
 
   return { ...defaultOptions, ...options };
 }
@@ -47,7 +69,7 @@ function buildOptions(options) {
  * @returns {Promise<any>}
  */
 function writeToFile(filePath, output) {
-  return fs.outputFile(filePath, output);
+  return fs.outputFileSync(filePath, output);
 }
 
 /**
@@ -77,8 +99,8 @@ function themify(options) {
    * Define the method of color execution
    */
   const ExecutionMode = {
-    CSS_VAR: 'CSS_VAR',
     CSS_COLOR: 'CSS_COLOR',
+    CSS_VAR: 'CSS_VAR',
     DYNAMIC_EXPRESSION: 'DYNAMIC_EXPRESSION',
   };
 
@@ -158,10 +180,8 @@ function themify(options) {
   function translateColor(colorArr, variationName, execMode) {
     const [colorVar, alpha] = colorArr;
 
-    // console.log(colorArr);
     // console.log(variationName);
     // console.log(colorVar);
-    // console.log(alpha);
 
     // returns the real color representation
     const underlineColor = options.palette[variationName][colorVar];
@@ -179,18 +199,16 @@ function themify(options) {
     switch (execMode) {
       case ExecutionMode.CSS_COLOR:
         // with default alpha - just returns the color
-        if (alpha === '1') {
-          return underlineColor;
+        if (alpha === 1) {
+          return rgb2hex(underlineColor).hex;
+        } else {
+          return hexToRgba(rgb2hex(underlineColor).hex, alpha);
         }
-        // with custom alpha, convert it to rgba
-        const rgbaColorArr = getRgbaNumbers(underlineColor);
-        return `rgba(${rgbaColorArr}, ${alpha})`;
       case ExecutionMode.DYNAMIC_EXPRESSION:
         // returns it in a unique pattern, so it will be easy to replace it in runtime
         return `%[${variationName}, ${colorVar}, ${alpha}]%`;
       default:
-        // return an rgba with the CSS variable name
-        return `rgba(var(--bolt-theme-${colorVar}), ${alpha})`;
+        return `var(--bolt-theme-${colorVar})`;
     }
   }
 
@@ -270,7 +288,10 @@ function themify(options) {
       });
 
       if (aggragatedSelectors.length) {
-        rule.selectors = [...rule.selectors, ...aggragatedSelectors];
+        rule.selectors = [...rule.selectors];
+
+        // Don't add extra redundant CSS selectors to every component using CSS vars
+        // rule.selectors = [...rule.selectors, ...aggragatedSelectors];
       }
 
       // append each created rule
@@ -299,10 +320,15 @@ function themify(options) {
    */
   function processFallbackRules(root) {
     // an output for each execution mode
-    const output = {
-      [ExecutionMode.CSS_COLOR]: [],
-      [ExecutionMode.DYNAMIC_EXPRESSION]: {},
-    };
+
+    // Reuse existing output in memory -- fixes issues with build "forgetting" about CSS vars previously working in IE 11 when compiling more than one thing at a time.
+    if (!output) {
+      output = {
+        [ExecutionMode.CSS_COLOR]: [],
+        [ExecutionMode.DYNAMIC_EXPRESSION]: {},
+      };
+    }
+
     // initialize DYNAMIC_EXPRESSION with all existing variations
     variationValues.forEach(
       variation => (output[ExecutionMode.DYNAMIC_EXPRESSION][variation] = []), // eslint-disable-line
