@@ -59,11 +59,17 @@ async function createWebpackConfig(buildConfig) {
     modifyCSSRules: false,
     fallback: {
       filename: 'bolt-css-vars-fallback',
+      jsonDataExport: 'bolt-css-vars-data',
     },
   };
 
   themifyOptions = deepmerge(themifyOptions, {
     fallback: {
+      jsonPath: path.resolve(
+        process.cwd(),
+        config.buildDir,
+        `data/${themifyOptions.fallback.jsonDataExport}.json`,
+      ),
       cssPath: path.resolve(
         process.cwd(),
         config.buildDir,
@@ -80,6 +86,9 @@ async function createWebpackConfig(buildConfig) {
   // Default global Sass data defined
   let globalSassData = [
     `$bolt-namespace: ${config.namespace};`,
+    `$bolt-css-vars-json-data-export: ${
+      themifyOptions.fallback.jsonDataExport
+    };`,
 
     // output $bolt-lang variable in Sass even if not specified so things fall back accordingly.
     `${
@@ -316,11 +325,7 @@ async function createWebpackConfig(buildConfig) {
         sourceMap: true,
         ident: 'postcss2',
         plugins: () => [
-          themify.themify(
-            Object.assign(themifyOptions, {
-              palette: require('@bolt/core/styles').boltThemes,
-            }),
-          ),
+          themify.themify(themifyOptions),
           postcssDiscardDuplicates,
           autoprefixer({
             // @todo: replace with standalone Bolt config
@@ -362,35 +367,7 @@ async function createWebpackConfig(buildConfig) {
         data: globalSassData.join('\n'),
       },
     },
-    {
-      loader: 'postcss-loader',
-      options: {
-        ident: 'postcss1',
-        sourceMap: false,
-        syntax: 'postcss-scss',
-        plugins: () => [
-          themify.initThemify(
-            Object.assign(themifyOptions, {
-              palette: require('@bolt/core/styles').boltThemes,
-            }),
-          ),
-        ],
-      },
-    },
     // Reads Sass vars from files or inlined in the options property
-    {
-      loader: '@epegzz/sass-vars-loader',
-      options: {
-        syntax: 'scss',
-        extraWatch: [
-          `${path.dirname(resolve.sync('@bolt/core'))}/styles/**/*.js`,
-        ],
-        files: [
-          // Option 3) Load vars from JavaScript file
-          resolve.sync('@bolt/core/styles'),
-        ],
-      },
-    },
   ];
 
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
