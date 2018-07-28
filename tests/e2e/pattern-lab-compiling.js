@@ -3,9 +3,7 @@
 const url = require('url');
 const querystring = require('querystring');
 const fetch = require('node-fetch');
-const {
-  spawnSync
-} = require('child_process');
+const { spawnSync } = require('child_process');
 const sauce = require('../../scripts/nightwatch-sauce');
 
 const { NOW_TOKEN } = process.env;
@@ -100,9 +98,11 @@ module.exports = {
         `${testingUrl}/pattern-lab/patterns/02-components-video-40-video-w-inline-script-and-email-share/02-components-video-40-video-w-inline-script-and-email-share.html`,
       )
       .waitForElementVisible('.video-js', 3000)
-      .click('.vjs-big-play-button')
+      .click('.vjs-big-play-button') // play video
+      .click('button.vjs-play-control') // pause video
       .assert.elementPresent('.vjs-playback-rate')
-      .click('.vjs-playback-rate')
+      .assert.containsText('.vjs-playback-rate-value', '1x')
+      .click('button.vjs-playback-rate.vjs-menu-button')
       .assert.containsText('.vjs-playback-rate-value', '1.3x')
       .end();
   },
