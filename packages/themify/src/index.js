@@ -45,7 +45,7 @@ function getColorPalette(options) {
 
   if (!data) {
     throw new Error(
-      `Can't find a JSON file with the Theme's color palette JSON!`,
+      "The `@bolt/themify` PostCSS plugin for `@bolt/build-tools` can't find the auto-generated JSON file that contains the data for Bolt's global color palette. This is necessary in order to generate the CSS Custom Properties fallback for older browsers! \n; Is `@bolt/global` the first item in your `.boltrc` file's global components array?",
     );
   } else {
     return JSON.parse(data);
