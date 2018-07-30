@@ -9,7 +9,7 @@
 
   <link inline href="styleguide/css/pattern-lab.critical.css" />
 
-  <link rel="preload" as="script" href="styleguide/js/patternlab-viewer.js">
+  <link rel="preload" as="script" href="styleguide/js/patternlab-viewer.min.js">
   <link rel="preload" href="styleguide/css/pattern-lab.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
   <noscript>
@@ -103,7 +103,7 @@
       window.Dispatcher = new EventEmitter();
 
       // load the Pattern Lab viewer js -- preloaded earlier ^
-      loadJS('styleguide/js/patternlab-viewer.js');
+      loadJS('styleguide/js/patternlab-viewer.min.js');
     });
 
     whenDefined(window, 'config', function() {
