@@ -29,6 +29,7 @@ $bolt-theme-ui-colors: (
     link: bolt-color(yellow),
     text-disabled: bolt-color(gray),
     border: rgba(bolt-color(white), 0.2),
+    contrast-filter: grayscale(100%) invert(100%) brightness(150%),
   ),
   dark: (
     headline: bolt-color(indigo),
@@ -36,7 +37,8 @@ $bolt-theme-ui-colors: (
     text: bolt-color(black),
     text-disabled: bolt-color(gray),
     link: bolt-color(indigo, light),
-    border: rgba(bolt-color(indigo, dark), 0.2)
+    border: rgba(bolt-color(indigo, dark), 0.2),
+    contrast-filter: none,
   ),
 ) !default;
 

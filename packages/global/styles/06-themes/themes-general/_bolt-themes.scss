@@ -17,7 +17,9 @@ $bolt-themes-export: ();
     @each $themeOptionName, $themeOptionValue in $themeOptions {
       --bolt-theme-#{$themeOptionName}: #{$themeOptionValue};
 
-      $bolt-themes-export: map-set-deep($bolt-themes-export, ($themeName, $themeOptionName), rgba($themeOptionValue, 1));
+      @if type-of($themeOptionValue) == color {
+        $bolt-themes-export: map-set-deep($bolt-themes-export, ($themeName, $themeOptionName), rgba($themeOptionValue, 1));
+      }
     }
 
     @at-root :root {
@@ -25,7 +27,9 @@ $bolt-themes-export: ();
         @each $themeOptionName, $themeOptionValue in $themeOptions {
           --bolt-theme-#{$themeOptionName}: #{$themeOptionValue};
 
-          $bolt-themes-export: map-set-deep($bolt-themes-export, ($themeName, $themeOptionName), rgba($themeOptionValue, 1));
+          @if type-of($themeOptionValue) == color {
+            $bolt-themes-export: map-set-deep($bolt-themes-export, ($themeName, $themeOptionName), rgba($themeOptionValue, 1));
+          }
         }
       }
     }
