@@ -65,11 +65,8 @@ $bolt-ui-list-border-style: solid !default;
 }
 
 
-.o-bolt-ui-list--borderless > .o-bolt-ui-list__item:after {
-  opacity: 0;
-  @include bolt-css-vars((
-    --bolt-ui-border-color: transparent,
-  ));
+.o-bolt-ui-list--borderless > .o-bolt-ui-list__item {
+  border-bottom-width: 0;
 }
 
 .o-bolt-ui-list--small > .o-bolt-ui-list__item {
