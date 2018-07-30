@@ -35,12 +35,13 @@ function getColorPalette(options) {
   let data;
 
   // @todo: revisit caching the JSON data if it hasn't changed; disable caching when doing local development (ie. non-prod mode) so the generated CSS works as expected.
-  if (!cachedColorPalette && options.cache === false) {
-    data = fs.readFileSync(options.fallback.jsonPath, 'utf8');
-    cachedColorPalette = data;
-  } else {
-    data = cachedColorPalette;
-  }
+  // if (!cachedColorPalette && options.cache === false) {
+  //   data = fs.readFileSync(options.fallback.jsonPath, 'utf8');
+  //   cachedColorPalette = data;
+  // } else {
+  //   data = cachedColorPalette;
+  // }
+  data = fs.readFileSync(options.fallback.jsonPath, 'utf8');
 
   if (!data) {
     throw new Error(
