@@ -54,6 +54,7 @@ async function createWebpackConfig(buildConfig) {
   let themifyOptions = {
     createVars: true,
     classPrefix: 't-bolt-',
+    cache: config.prod ? true : false,
     // defaultColorVariation: 'xlight', // WIP - hard coding xlight default for now
     screwIE11: false,
     modifyCSSRules: false,

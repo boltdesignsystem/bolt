@@ -34,14 +34,13 @@ function getColorPalette(options) {
   // make sure we have a palette
   let data;
 
-  // @todo: revisit caching the JSON data if it hasn't changed
-  if (!cachedColorPalette) {
+  // @todo: revisit caching the JSON data if it hasn't changed; disable caching when doing local development (ie. non-prod mode) so the generated CSS works as expected.
+  if (!cachedColorPalette && options.cache === false) {
     data = fs.readFileSync(options.fallback.jsonPath, 'utf8');
     cachedColorPalette = data;
   } else {
     data = cachedColorPalette;
   }
-  // data = fs.readFileSync(options.fallback.jsonPath, 'utf8');
 
   if (!data) {
     throw new Error(
@@ -83,13 +82,13 @@ function getRgbaNumbers(value) {
 }
 
 /** Define the default variation */
-const defaultVariation = ColorVariation.XLIGHT;
+const defaultVariation = ColorVariation.LIGHT;
+
 /** An array of variation values  */
 const variationValues = Object.values(ColorVariation);
+
 /** An array of all non-default variations */
-const nonDefaultVariations = variationValues.filter(
-  v => v !== defaultVariation,
-);
+const nonDefaultVariations = variationValues;
 
 function themify(options) {
   /** Regex to get the value inside the themify parenthesis */
@@ -180,9 +179,6 @@ function themify(options) {
   function translateColor(colorArr, variationName, execMode) {
     const [colorVar, alpha] = colorArr;
 
-    // console.log(variationName);
-    // console.log(colorVar);
-
     // returns the real color representation
     const underlineColor = options.palette[variationName][colorVar];
 
@@ -246,6 +242,7 @@ function themify(options) {
 
         // indicate if we have a global rule, that cannot be nested
         const createNonDefaultVariationRules = isAtRule(rule);
+
         // don't create extra CSS for global rules
         if (createNonDefaultVariationRules) {
           return;
@@ -264,6 +261,7 @@ function themify(options) {
           // we just need to concatenate our selector to the default rule
           if (currentValue === defaultVariationValue) {
             const selector = getSelectorName(rule, variationName);
+
             // append the selector once
             if (!aggragatedSelectorsMap[variationName]) {
               aggragatedSelectorsMap[variationName] = true;
@@ -428,7 +426,7 @@ function themify(options) {
               if (variationName === defaultVariation) {
                 newRule = cloneEmptyRule(rule);
               } else {
-                newRule = createRuleWithVariation(rule, variationName);
+                newRule = createFallbackRuleWithVariation(rule, variationName);
               }
 
               // push the new rule into the right place,
@@ -479,18 +477,51 @@ function themify(options) {
   }
 
   /**
-   * Get a selector name for the given rule and variation
+   * Create a new fallback-specific rule for the given variation, out of the original
    * @param rule
    * @param variationName
    */
-  function getSelectorName(rule, variationName) {
+  function createFallbackRuleWithVariation(rule, variationName) {
+    const selector = getSelectorName(rule, variationName, true);
+    return postcss.rule({ selector });
+  }
+
+  /**
+   * Get a selector name for the given rule and variation, deliberately increasing
+   * the CSS class's specificity when generating CSS selectors for IE 11 so we can
+   * account for specificity conflicts when nesting themed components inside other
+   * themes.
+   * @param rule
+   * @param variationName
+   * @param isFallbackSelector
+   */
+  function getSelectorName(rule, variationName, isFallbackSelector = false) {
     const selectorPrefix = `.${options.classPrefix || ''}${variationName}`;
 
-    return rule.selectors
-      .map(selector => {
-        return `${selectorPrefix} ${selector}`;
-      })
-      .join(',');
+    if (isFallbackSelector) {
+      return rule.selectors
+        .map(selector => {
+          let selectors = [];
+          let initialSelector = `${selectorPrefix} ${selector}`;
+
+          selectors.push(initialSelector);
+
+          variationValues.forEach(name => {
+            selectors.push(
+              `.${options.classPrefix || ''}${name} ${initialSelector}`,
+            );
+          });
+
+          return selectors.join(',');
+        })
+        .join(',');
+    } else {
+      return rule.selectors
+        .map(selector => {
+          return `${selectorPrefix} ${selector}`;
+        })
+        .join(',');
+    }
   }
 
   function cloneEmptyRule(rule, overrideConfig) {

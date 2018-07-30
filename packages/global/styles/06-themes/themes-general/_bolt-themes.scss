@@ -5,11 +5,6 @@
 
 $bolt-themes-export: ();
 
-
-// @todo - make sure the SVG filter vars get added before this goes live:
-// $bolt-theme-contrast-filter:    grayscale(100%) invert(100%) brightness(150%);
-
-
 // loop through all defined themes to auto-generate Theme-specific classes w/ vars.
 // also clean up the Sass map data we export for the Themify-based PostCSS build step and convert everything to rgb just for the data that's exported.
 @each $themeName, $themeOptions in $bolt-themes {

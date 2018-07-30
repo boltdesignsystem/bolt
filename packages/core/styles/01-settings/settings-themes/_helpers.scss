@@ -18,6 +18,7 @@
   @if not map-has-key($bolt-theme-prop-values, $style) {
     @error "Invalid theme property: '#{$style}'. Choose one of: #{map-keys($bolt-theme-prop-values)}";
   }
+
   @return map-get($bolt-theme-prop-values, $style);
 }
 
@@ -48,6 +49,7 @@
   @return max($backLum, $foreLum) / min($backLum, $foreLum);
 }
 
+
 // Determine whether the color is "light" or "dark".
 @function bolt-theme-tone($color) {
   @if $color == "dark" or $color == "light" {
@@ -66,6 +68,7 @@
   }
 }
 
+
 // Determine whether to use dark or light text on top of given color to meet accessibility standards for contrast.
 // Returns "dark" if the given color is light and "light" if the given color is dark.
 @function bolt-theme-contrast-tone($color) {
@@ -73,7 +76,43 @@
 }
 
 
+// Return the color defined for a specific bit of UI, depending on the background color / contrast being used.
 @function bolt-theme-ui-color($text-style, $fill-color) {
   $contrast-tone: bolt-theme-contrast-tone($fill-color);
   @return map-get(map-get($bolt-theme-ui-colors, $contrast-tone), $text-style);
+}
+
+
+/**
+  * Helper functions for applying global color swatches stored in Sass Maps
+  */
+@function bolt-theme($prop, $opacity: null) {
+
+  $value: map-get-deep($bolt-themes, 'light', $prop);
+
+  @if $opacity == null {
+    $opacity: alpha($value);
+  }
+
+  @if alpha($value) != $opacity and $opacity != null {
+    @warn 'the original theme prop color opacity does not match up with the param. You need to create a new CSS variable with this opacity value pre-defined!';
+    @debug alpha($value);
+    @debug alpha($opacity);
+  }
+
+  @if ($value){
+    @if $opacity < 1 {
+      @return themify($prop, $opacity);
+    } @else {
+      @return themify($prop);
+    }
+  } @else {
+    @warn 'Warning! ' + $color + ' bolt-theme was not found...';
+    @return '';
+  }
+}
+
+
+@function bolt-theme-prop-value($themeName, $themeProp) {
+  @return map-get-deep($bolt-themes, $themeName, $themeProp);
 }

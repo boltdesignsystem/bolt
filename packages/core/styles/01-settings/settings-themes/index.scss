@@ -3,24 +3,16 @@
 @import '../../02-tools/tools-text-contrast/tools-text-contrast';
 
 
-$bolt-global-default-theme: 'xlight';
+// $bolt-global-default-theme: 'xlight';
 $bolt-theme-disabled: bolt-color(gray, light);
 $bolt-theme-primary-light: bolt-color(indigo, light);
 $bolt-theme-primary-dark: bolt-color(yellow);
 $bolt-theme-secondary: bolt-color(white);
 $bolt-theme-secondary-dark: mix(bolt-color(black), $bolt-theme-secondary, 5%);
 $bolt-theme-secondary-xdark: mix(bolt-color(black), $bolt-theme-secondary, 15%);
-$bolt-theme-background: bolt-color(white);
 
 
-$bolt-theme-background-colors: (
-  xlight: bolt-color(white),
-  light: bolt-color(gray, xlight),
-  dark: bolt-color(indigo),
-  xdark: bolt-color(indigo, dark)
-) !default;
-
-
+// pre-defined theming system values
 $bolt-theme-ui-colors: (
   light: (
     headline: bolt-color(white),
@@ -41,26 +33,6 @@ $bolt-theme-ui-colors: (
     contrast-filter: none,
   ),
 ) !default;
-
-
-$bolt-theme-prop-values: (
-  secondary: $bolt-theme-secondary,
-  background: $bolt-theme-background,
-  text-primary-on-background: bolt-theme-ui-color(primary, $bolt-theme-background),
-  text-secondary-on-background: bolt-theme-ui-color(secondary, $bolt-theme-background),
-  text-disabled-on-background: bolt-theme-ui-color(disabled, $bolt-theme-background),
-  text-primary-on-light: bolt-theme-ui-color(primary, light),
-  text-secondary-on-light: bolt-theme-ui-color(secondary, light),
-  text-disabled-on-light: bolt-theme-ui-color(disabled, light),
-  text-primary-on-dark: bolt-theme-ui-color(primary, dark),
-  text-secondary-on-dark: bolt-theme-ui-color(secondary, dark),
-  text-disabled-on-dark: bolt-theme-ui-color(disabled, dark),
-);
-
-
-
-
-
 
 
 $bolt-themes: (
@@ -90,6 +62,7 @@ $bolt-themes: (
 
 
 
+// combine the two sets of theming system data and calculate the dynamic values
 @each $themeName, $themeProps in $bolt-themes {
   $background: map-get($themeProps, background);
 
@@ -124,24 +97,24 @@ $bolt-themes: (
         border: bolt-theme-ui-color(border, $background),
 
         primary: $primary,
+        text-on-primary: bolt-text-contrast($primary),
+
         primary-light: $primary-light,
+        text-on-primary-light: bolt-text-contrast($primary-light),
+
         primary-xlight: $primary-xlight,
+        text-on-primary-xlight: bolt-text-contrast($primary-xlight),
 
         primary-dark: $primary-dark,
+        text-on-primary-dark: bolt-text-contrast($primary-dark),
+
         primary-xdark: $primary-xdark,
+        text-on-primary-xdark: bolt-text-contrast($primary-xdark),
 
 
         secondary: $bolt-theme-secondary,
         secondary-dark: $bolt-theme-secondary-dark,
         secondary-xdark: $bolt-theme-secondary-xdark,
-
-        text-on-primary: bolt-text-contrast($primary),
-        text-on-primary-light: bolt-text-contrast($primary-light),
-        text-on-primary-xlight: bolt-text-contrast($primary-xlight),
-
-        text-on-primary-dark: bolt-text-contrast($primary-dark),
-        text-on-primary-xdark: bolt-text-contrast($primary-xdark),
-
 
         text-on-secondary: bolt-text-contrast($bolt-theme-secondary),
         text-on-secondary-dark: bolt-text-contrast($bolt-theme-secondary-dark),
@@ -149,48 +122,6 @@ $bolt-themes: (
       )
     )
   );
-}
-
-
-
-/**
-  * Helper functions for applying global color swatches stored in Sass Maps
-  */
-@function bolt-theme($prop, $opacity: null) {
-
-  $value: map-get-deep($bolt-themes, 'light', $prop);
-
-  @if $opacity == null {
-    $opacity: alpha($value);
-  }
-
-  @if alpha($value) != $opacity and $opacity != null {
-    @warn 'the original theme prop color opacity does not match up with the param. You need to create a new CSS variable with this opacity value pre-defined!';
-    @debug alpha($value);
-    @debug alpha($opacity);
-  }
-
-  @if ($value){
-    @if $opacity < 1 {
-      @return themify($prop, $opacity);
-    } @else {
-      @return themify($prop);
-    }
-  } @else {
-    @warn 'Warning! ' + $color + ' bolt-theme was not found...';
-    @return '';
-  }
-}
-
-
-@function bolt-get-theme-prop($themeName, $themeProp) {
-  @return map-get-deep($bolt-themes, $themeName, $themeProp);
-}
-
-
-@function bolt-theme-fallback($themeName, $themeProp) {
-  $value: map-get-deep($bolt-themes, $themeName, $themeProp);
-  @return $value;
 }
 
 @include bolt-export-data('colors/themes.bolt.json', $bolt-themes);
