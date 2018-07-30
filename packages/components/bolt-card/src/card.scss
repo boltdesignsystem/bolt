@@ -57,6 +57,10 @@ bolt-card {
     color: bolt-theme(text);
     background-color: bolt-theme(background-80);
 
+    &:before {
+      opacity: 1;
+    }
+
     @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
       -webkit-backdrop-filter: blur(10px) saturate(30%) brightness(300%);
       backdrop-filter: blur(10px) saturate(30%) brightness(300%);
@@ -85,7 +89,8 @@ bolt-card {
   }
 
   &:before {
-    background-color: bolt-theme(background-80);
+    background-color: bolt-theme(background);
+    opacity: 0.8;
   }
 
   &:after {
