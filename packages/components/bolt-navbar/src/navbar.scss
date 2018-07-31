@@ -122,8 +122,7 @@ bolt-navbar {
   flex-shrink: 1; // make sure the title can wrap to multiple lines and shrink if needed.
   flex-wrap: nowrap;
   align-items: center;
-  color: inherit;
-  color: var(--bolt-theme-heading, inherit);
+  color: bolt-theme(headline);
   white-space: nowrap;
 
   @supports(--css: variables) {

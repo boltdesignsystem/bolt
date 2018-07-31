@@ -32,9 +32,7 @@ bolt-dropdown {
 .c-bolt-dropdown {
   overflow: hidden;
   position: relative;
-
-  background-color: inherit;
-  background-color: var(--bolt-theme-background, inherit);
+  background-color: bolt-theme(background);
   box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
 }
 
@@ -45,8 +43,7 @@ bolt-dropdown {
   z-index: 10;
   margin: 0;
   display: flex;
-  background-color: inherit;
-  background-color: var(--bolt-theme-background, inherit);
+  background-color: bolt-theme(background);
   box-shadow: 0 1px 2px 0 rgba(bolt-color(black), 0.1);
 
   .c-bolt-dropdown--collapse\@small & {
@@ -68,7 +65,7 @@ bolt-dropdown {
     background-color: transparent;
     transition: opacity .1s ease;
     opacity: 0;
-    background-color: var(--bolt-theme-heading-link);
+    background-color: bolt-theme(headline-link);
   }
 }
 
@@ -146,8 +143,7 @@ bolt-dropdown {
   -webkit-appearance: none;
   border: none;
   background-color: transparent;
-  color: currentColor;
-  color: var(--bolt-theme-heading-link-default, inherit);
+  color: bolt-theme(headline-link);
 
   outline-offset: -3px;
   outline-width: 2px;
@@ -160,8 +156,7 @@ bolt-dropdown {
   justify-content: space-between;
 
   display: flex;
-  background-color: inherit;
-  background-color: var(--bolt-theme-background, inherit);
+  background-color: bolt-theme(background);
 
   .c-bolt-dropdown__header--center & {
     justify-content: center;
@@ -279,8 +274,7 @@ bolt-dropdown {
     left: 0;
     width: 1px;
     opacity: .1;
-    background-color: currentColor;
-    background-color: var(--bolt-theme-heading-link-default, currentColor);
+    background-color: bolt-theme(headline-link);
     content: '';
 
     .c-bolt-dropdown__header--center & {
@@ -450,7 +444,7 @@ bolt-dropdown {
     display: block;
     background-color: transparent;
     transition: opacity 0.1s ease;
-    background-color: var(--bolt-theme-background);
+    background-color: bolt-theme(background);
     opacity: 1;
 
     filter: contrast(80%) brightness(110%);

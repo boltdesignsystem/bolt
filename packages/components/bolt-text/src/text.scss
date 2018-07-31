@@ -44,8 +44,7 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
 
     &:link,
     &:visited {
-      color: inherit;
-      color: var(--bolt-theme-link, inherit);
+      color: bolt-theme(link);
       text-decoration: underline;
     }
 
@@ -85,12 +84,10 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
 
   // Color
   &--color-theme-headline {
-    color: inherit;
-    color: var(--bolt-theme-heading, inherit);
+    color: bolt-theme(headline);
   }
   &--color-theme-body {
-    color: inherit;
-    color: var(--bolt-theme-body, inherit);
+    color: bolt-theme(text);
   }
 
   // Font Weight Options
