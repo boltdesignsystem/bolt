@@ -23,7 +23,6 @@ const ColorVariation = {
   XDARK: 'xdark',
 };
 
-
 /**
  * Get the rgba as 88, 88, 33 instead rgba(88, 88, 33, 1)
  * @param value

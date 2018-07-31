@@ -108,7 +108,8 @@ $bolt-themes: (
         $propValue: mix($mixColor, $property, $shade);
 
         $bolt-themes: bolt-recursive-map-merge(
-          $bolt-themes, (
+          $bolt-themes,
+          (
             #{$themeName}: (
               $propName: $propValue,
               text-on-#{$propName}: bolt-text-contrast($propValue),
