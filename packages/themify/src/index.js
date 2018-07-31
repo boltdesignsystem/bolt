@@ -56,7 +56,6 @@ function writeToFile(filePath, output) {
   return fs.outputFileSync(filePath, output);
 }
 
-
 /** Define the default variation */
 const defaultVariation = ColorVariation.LIGHT;
 
@@ -304,9 +303,7 @@ function themify(options) {
     }
 
     // define which modes need to be processed
-    const execModes = [
-      ExecutionMode.CSS_COLOR,
-    ];
+    const execModes = [ExecutionMode.CSS_COLOR];
 
     walkFallbackAtRules(root, execModes, output);
     walkFallbackRules(root, execModes, output);
