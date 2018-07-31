@@ -70,48 +70,55 @@ $PSEUDO_CLASSES: (
   @return type-of($var) == 'map';
 }
 
-@function bolt-themify($props...) {
-  // @if ($PRESERVE_THEMIFY == true) {
-  //   @return unquote("themify(#{$props...})");
-  // }
 
+
+/**
+  * Helper functions for applying global color swatches stored in Sass Maps
+  */
+@function bolt-theme($props...) {
   @if (is-map($props...)) {
     $value: bolt-json-encode($props...);
     @return "bolt-themify(#{$value})";
   } @else {
     $color: null;
     $opacity: 1;
-    $theme: null;
 
     @if (length($props) >= 1) {
       $color: nth($props, 1);
     }
 
-    @if (length($props) >= 2) {
-      $opacity: nth($props, 2);
-    }
+    // check at least one color swatch to make sure the theme exists
+    $value: map-get-deep($bolt-themes, 'light', $color);
 
-    $value: bolt-json-encode(
-      (
-        xlight: (
-          #{$color},
-          #{$opacity}
-        ),
-        light: (
-          #{$color},
-          #{$opacity}
-        ),
-        dark: (
-          #{$color},
-          #{$opacity}
-        ),
-        xdark: (
-          #{$color},
-          #{$opacity}
+    // Automatically assign opacity based on the color selected.
+    $opacity: alpha($value);
+
+    @if ($value){
+      $value: bolt-json-encode(
+        (
+          xlight: (
+            #{$color},
+            #{$opacity}
+          ),
+          light: (
+            #{$color},
+            #{$opacity}
+          ),
+          dark: (
+            #{$color},
+            #{$opacity}
+          ),
+          xdark: (
+            #{$color},
+            #{$opacity}
+          )
         )
-      )
-    );
-    @return "bolt-themify(#{$value})";
+      );
+      @return "bolt-themify(#{$value})";
+    } @else {
+      @warn 'Warning! ' + $color + ' bolt-theme was not found...';
+      @return '';
+    }
   }
 }
 

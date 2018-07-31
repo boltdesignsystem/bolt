@@ -83,34 +83,6 @@
 }
 
 
-/**
-  * Helper functions for applying global color swatches stored in Sass Maps
-  */
-@function bolt-theme($prop, $opacity: null) {
-
-  $value: map-get-deep($bolt-themes, 'light', $prop);
-
-  @if $opacity == null {
-    $opacity: alpha($value);
-  }
-
-  @if alpha($value) != $opacity and $opacity != null {
-    @warn 'the original theme prop color opacity does not match up with the param. You need to create a new CSS variable with this opacity value pre-defined!';
-    @debug alpha($value);
-    @debug alpha($opacity);
-  }
-
-  @if ($value){
-    @if $opacity < 1 {
-      @return bolt-themify($prop, $opacity);
-    } @else {
-      @return bolt-themify($prop);
-    }
-  } @else {
-    @warn 'Warning! ' + $color + ' bolt-theme was not found...';
-    @return '';
-  }
-}
 
 
 // Grab the calculated value for a specific theme-prop name. Sparingly used when you need to manually assign a CSS variable color to a bit of UI due to inheritance / specificity issues.
