@@ -52,12 +52,8 @@ async function createWebpackConfig(buildConfig) {
   let langSuffix = `${config.lang ? '-' + config.lang : ''}`;
 
   let themifyOptions = {
-    createVars: true,
     classPrefix: 't-bolt-',
-    cache: config.prod ? true : false,
-    // defaultColorVariation: 'xlight', // WIP - hard coding xlight default for now
     screwIE11: false,
-    modifyCSSRules: false,
     fallback: {
       filename: 'bolt-css-vars-fallback',
       jsonDataExport: 'theming-css-vars',
@@ -75,11 +71,6 @@ async function createWebpackConfig(buildConfig) {
         process.cwd(),
         config.buildDir,
         `${themifyOptions.fallback.filename}.css`,
-      ),
-      dynamicPath: path.resolve(
-        process.cwd(),
-        config.buildDir,
-        `${themifyOptions.fallback.filename}.json`,
       ),
     },
   });
@@ -108,9 +99,6 @@ async function createWebpackConfig(buildConfig) {
       namespace: JSON.stringify(config.namespace),
       themingFallbackCSS: JSON.stringify(
         publicPath + themifyOptions.fallback.filename + '.css',
-      ),
-      themingFallbackJSON: JSON.stringify(
-        publicPath + themifyOptions.fallback.filename + '.json',
       ),
 
       config: {

@@ -3,21 +3,15 @@ const fs = require('fs-extra');
 const hexToRgba = require('hex-to-rgba');
 const rgb2hex = require('rgb2hex');
 const { minifyCSS } = require('./helpers/css.util');
-const { minifyJSON } = require('./helpers/json.util');
 const THEMIFY = 'themify';
-const JSToSass = require('./helpers/js-sass');
 
-let cachedColorPalette;
 let output;
 
 const defaultOptions = {
-  createVars: true,
-  modifyCSSRules: true,
   classPrefix: '',
   screwIE11: true,
   fallback: {
     cssPath: null,
-    dynamicPath: null,
   },
 };
 
@@ -34,12 +28,6 @@ function getColorPalette(options) {
   let data;
 
   // @todo: revisit caching the JSON data if it hasn't changed; disable caching when doing local development (ie. non-prod mode) so the generated CSS works as expected.
-  // if (!cachedColorPalette && options.cache === false) {
-  //   data = fs.readFileSync(options.fallback.jsonPath, 'utf8');
-  //   cachedColorPalette = data;
-  // } else {
-  //   data = cachedColorPalette;
-  // }
   data = fs.readFileSync(options.fallback.jsonPath, 'utf8');
 
   if (!data) {
@@ -55,7 +43,6 @@ function buildOptions(options) {
   if (!options) {
     throw new Error(`options is required.`);
   }
-
   return { ...defaultOptions, ...options };
 }
 
@@ -69,15 +56,6 @@ function writeToFile(filePath, output) {
   return fs.outputFileSync(filePath, output);
 }
 
-/**
- * Get the rgba as 88, 88, 33 instead rgba(88, 88, 33, 1)
- * @param value
- */
-function getRgbaNumbers(value) {
-  return hexToRgba(value)
-    .replace('rgba(', '')
-    .replace(', 1)', '');
-}
 
 /** Define the default variation */
 const defaultVariation = ColorVariation.LIGHT;
@@ -98,7 +76,6 @@ function themify(options) {
   const ExecutionMode = {
     CSS_COLOR: 'CSS_COLOR',
     CSS_VAR: 'CSS_VAR',
-    DYNAMIC_EXPRESSION: 'DYNAMIC_EXPRESSION',
   };
 
   options = buildOptions(options);
@@ -205,9 +182,6 @@ function themify(options) {
         } else {
           return hexToRgba(rgb2hex(underlineColor).hex, alpha);
         }
-      case ExecutionMode.DYNAMIC_EXPRESSION:
-        // returns it in a unique pattern, so it will be easy to replace it in runtime
-        return `%[${variationName}, ${colorVar}, ${alpha}]%`;
       default:
         return `var(--bolt-theme-${colorVar})`;
     }
@@ -315,10 +289,8 @@ function themify(options) {
 
   /**
    * Walk through all rules, and generate a CSS fallback for legacy browsers.
-   * Two files shall be created for full compatibility:
+   * One file is created for full compatibility:
    *  1. A CSS file, contains all the rules with the original color representation.
-   *  2. A JSON with the themify rules, in the following form:
-   *      themify(primary-100, 0.5) => %[light,primary-100,0.5)%
    * @param root
    */
   function processFallbackRules(root) {
@@ -328,19 +300,12 @@ function themify(options) {
     if (!output) {
       output = {
         [ExecutionMode.CSS_COLOR]: [],
-        [ExecutionMode.DYNAMIC_EXPRESSION]: {},
       };
     }
-
-    // initialize DYNAMIC_EXPRESSION with all existing variations
-    variationValues.forEach(
-      variation => (output[ExecutionMode.DYNAMIC_EXPRESSION][variation] = []), // eslint-disable-line
-    );
 
     // define which modes need to be processed
     const execModes = [
       ExecutionMode.CSS_COLOR,
-      ExecutionMode.DYNAMIC_EXPRESSION,
     ];
 
     walkFallbackAtRules(root, execModes, output);
@@ -354,25 +319,7 @@ function themify(options) {
     if (output[ExecutionMode.CSS_COLOR].length) {
       // write CSS fallback;
       const fallbackCss = output[ExecutionMode.CSS_COLOR].join('');
-
       writeToFile(options.fallback.cssPath, minifyCSS(fallbackCss));
-
-      // creating a JSON for the dynamic expressions
-      const jsonOutput = {};
-      variationValues.forEach(variationName => {
-        jsonOutput[variationName] =
-          output[ExecutionMode.DYNAMIC_EXPRESSION][variationName] || [];
-        jsonOutput[variationName] = minifyJSON(
-          jsonOutput[variationName].join(''),
-        );
-        // minify the CSS output
-        jsonOutput[variationName] = minifyCSS(jsonOutput[variationName]);
-      });
-
-      // stringify and save
-      const dynamicCss = JSON.stringify(jsonOutput);
-
-      writeToFile(options.fallback.dynamicPath, dynamicCss);
     }
   }
 
@@ -394,10 +341,7 @@ function themify(options) {
             });
           });
 
-          let rulesOutput =
-            mode === ExecutionMode.DYNAMIC_EXPRESSION
-              ? output[mode][defaultVariation]
-              : output[mode];
+          let rulesOutput = output[mode];
           rulesOutput.push(clonedAtRule);
         });
       }
@@ -436,10 +380,7 @@ function themify(options) {
 
               // push the new rule into the right place,
               // so we can write them later to external file
-              let rulesOutput =
-                mode === ExecutionMode.DYNAMIC_EXPRESSION
-                  ? output[mode][variationName]
-                  : output[mode];
+              let rulesOutput = output[mode];
               rulesOutput.push(newRule);
 
               ruleModeMap[mode][variationName] = newRule;
