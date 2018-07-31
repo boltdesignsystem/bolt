@@ -102,9 +102,9 @@
 
   @if ($value){
     @if $opacity < 1 {
-      @return themify($prop, $opacity);
+      @return bolt-themify($prop, $opacity);
     } @else {
-      @return themify($prop);
+      @return bolt-themify($prop);
     }
   } @else {
     @warn 'Warning! ' + $color + ' bolt-theme was not found...';

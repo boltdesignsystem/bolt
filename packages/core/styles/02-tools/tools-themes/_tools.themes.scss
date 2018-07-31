@@ -1,6 +1,10 @@
+/* stylelint-disable */
+
+@import '@bolt/core/styles/02-tools/tools-sass-json-export/tools.sass-json-export';
+
 /* stylelint-disable scss/at-function-pattern, scss/at-mixin-pattern */
 
-$PRESERVE_THEMIFY: false !default;
+// $PRESERVE_THEMIFY: false !default;
 
 /**
  * Credits to https://github.com/acss-io/atomizer/blob/master/src/lib/grammar.js
@@ -66,14 +70,14 @@ $PSEUDO_CLASSES: (
   @return type-of($var) == 'map';
 }
 
-@function themify($props...) {
-  @if ($PRESERVE_THEMIFY == true) {
-    @return unquote("themify(#{$props...})");
-  }
+@function bolt-themify($props...) {
+  // @if ($PRESERVE_THEMIFY == true) {
+  //   @return unquote("themify(#{$props...})");
+  // }
 
   @if (is-map($props...)) {
-    $value: json-encode($props...);
-    @return "themify(#{$value})";
+    $value: bolt-json-encode($props...);
+    @return "bolt-themify(#{$value})";
   } @else {
     $color: null;
     $opacity: 1;
@@ -87,7 +91,7 @@ $PSEUDO_CLASSES: (
       $opacity: nth($props, 2);
     }
 
-    $value: json-encode(
+    $value: bolt-json-encode(
       (
         xlight: (
           #{$color},
@@ -107,11 +111,11 @@ $PSEUDO_CLASSES: (
         )
       )
     );
-    @return "themify(#{$value})";
+    @return "bolt-themify(#{$value})";
   }
 }
 
-@mixin generateThemeHelpers($propsArr) {
+@mixin boltGenerateThemeHelpers($propsArr) {
 
   @if (not $propsArr) {
     $propsArr: ();
@@ -136,7 +140,7 @@ $PSEUDO_CLASSES: (
             $realPseudoClass: map_get($PSEUDO_CLASSES, $pseudoClassSep + $pseudoClass);
           }
 
-          @include setHelperRule($firstPseudoClass, $var, $pseudoClass, $realPseudoClass);
+          @include boltSetHelperRule($firstPseudoClass, $var, $pseudoClass, $realPseudoClass);
 
         }
 
@@ -145,7 +149,7 @@ $PSEUDO_CLASSES: (
   }
 }
 
-@mixin setHelperRule($prop, $var, $pseudoClass, $realPseudoClass) {
+@mixin boltSetHelperRule($prop, $var, $pseudoClass, $realPseudoClass) {
 
   $selector: $prop;
   @if ($realPseudoClass) {
@@ -154,6 +158,7 @@ $PSEUDO_CLASSES: (
 
   $unquoteVar: unquote($var);
   .#{$unquoteVar}-#{$selector} {
-    #{$prop}: themify($unquoteVar);
+    #{$prop}: bolt-themify($unquoteVar);
   }
 }
+

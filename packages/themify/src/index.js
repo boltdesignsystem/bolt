@@ -3,7 +3,7 @@ const fs = require('fs-extra');
 const hexToRgba = require('hex-to-rgba');
 const rgb2hex = require('rgb2hex');
 const { minifyCSS } = require('./helpers/css.util');
-const THEMIFY = 'themify';
+const THEMIFY = 'bolt-themify';
 
 let output;
 
@@ -67,7 +67,7 @@ const nonDefaultVariations = variationValues;
 
 function themify(options) {
   /** Regex to get the value inside the themify parenthesis */
-  const themifyRegExp = /themify\(([^)]+)\)/gi;
+  const themifyRegExp = /bolt-themify\(([^)]+)\)/gi;
 
   /**
    * Define the method of color execution

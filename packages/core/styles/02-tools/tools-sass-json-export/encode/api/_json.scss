@@ -12,7 +12,7 @@
 /// @require {function} _json-encode--null
 /// @require {function} _json-encode--color
 /// @require {function} _json-encode--bool
-@function json-encode($value) {
+@function bolt-json-encode($value) {
   $type: type-of($value);
 
   @if function-exists('_json-encode--#{$type}') {

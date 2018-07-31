@@ -10,7 +10,7 @@
   $str: '';
 
   @each $key, $value in $map {
-    $str: $str + ', ' + _proof-quote($key) + ': ' + json-encode($value);
+    $str: $str + ', ' + _proof-quote($key) + ': ' + bolt-json-encode($value);
   }
 
   @return '{' + str-slice($str, 3) + '}';

@@ -4,10 +4,10 @@
 /// @access public
 /// @param {*} $value - value to be stringified
 /// @param {String} $flag (all) - output driver
-/// @require {function} json-encode
-@mixin json-encode($value, $flag: 'all') {
+/// @require {function} bolt-json-encode
+@mixin bolt-json-encode($value, $flag: 'all') {
   $flag: if(index('all' 'regular' 'media' 'comment', $flag), $flag, 'all');
-  $json: json-encode($value);
+  $json: bolt-json-encode($value);
 
   // Persistent comment
   @if $flag == 'comment' or $flag == 'all' {
@@ -19,7 +19,7 @@
     body {
       &::before {
         // This element must be in the render tree to get it via getComputedStyle(document.body, ':before');
-        content: json-encode($value);
+        content: bolt-json-encode($value);
         display: block;
         height: 0;
         overflow: hidden;
@@ -29,7 +29,7 @@
 
     // All browsers except Opera (Presto based)
     head {
-      font-family: json-encode($value);
+      font-family: bolt-json-encode($value);
     }
   }
 

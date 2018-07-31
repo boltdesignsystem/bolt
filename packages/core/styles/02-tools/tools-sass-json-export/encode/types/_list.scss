@@ -9,7 +9,7 @@
   $str: '';
 
   @each $item in $list {
-    $str: $str + ', ' + json-encode($item);
+    $str: $str + ', ' + bolt-json-encode($item);
   }
 
   @return '[' + str-slice($str, 3) + ']';
