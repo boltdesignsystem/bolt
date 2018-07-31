@@ -124,4 +124,17 @@ $bolt-themes: (
   );
 }
 
-@include bolt-export-data('colors/themes.bolt.json', $bolt-themes);
+
+$bolt-themes-export: ();
+
+@each $themeName, $themeOptions in $bolt-themes {
+  @each $themeOptionName, $themeOptionValue in $themeOptions {
+    @if type-of($themeOptionValue) == color {
+      $bolt-themes-export: map-set-deep($bolt-themes-export, ($themeName, $themeOptionName), rgba($themeOptionValue, 1));
+    }
+  }
+}
+
+@include bolt-export-data($bolt-css-vars-json-data-export + '.json', $bolt-themes-export);
+@include bolt-export-data('theming.bolt.json', $bolt-themes);
+

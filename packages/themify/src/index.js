@@ -13,7 +13,6 @@ let output;
 const defaultOptions = {
   createVars: true,
   modifyCSSRules: true,
-  palette: {},
   classPrefix: '',
   screwIE11: true,
   fallback: {
@@ -56,8 +55,6 @@ function buildOptions(options) {
   if (!options) {
     throw new Error(`options is required.`);
   }
-
-  options.palette = getColorPalette(options);
 
   return { ...defaultOptions, ...options };
 }
@@ -151,7 +148,10 @@ function themify(options) {
         throw new Error('Oops. Received an empty color!');
       }
 
-      if (options.palette) return parsedValue[variationName];
+      if (!options.palette) {
+        options.palette = getColorPalette(options);
+      }
+      return parsedValue[variationName];
     }
 
     // iterate through all variations
@@ -181,6 +181,10 @@ function themify(options) {
     const [colorVar, alpha] = colorArr;
 
     // returns the real color representation
+    if (!options.palette) {
+      options.palette = getColorPalette(options);
+    }
+
     const underlineColor = options.palette[variationName][colorVar];
 
     if (!underlineColor) {
@@ -539,5 +543,5 @@ function themify(options) {
  */
 
 module.exports = {
-  themify: postcss.plugin('datoThemes', themify),
+  themify: postcss.plugin('boltThemify', themify),
 };
