@@ -23,6 +23,17 @@ const ColorVariation = {
   XDARK: 'xdark',
 };
 
+
+/**
+ * Get the rgba as 88, 88, 33 instead rgba(88, 88, 33, 1)
+ * @param value
+ */
+function getRgbaNumbers(value) {
+  return hexToRgba(value)
+    .replace('rgba(', '')
+    .replace(', 1)', '');
+}
+
 function getColorPalette(options) {
   // make sure we have a palette
   let data;
@@ -176,13 +187,18 @@ function themify(options) {
     switch (execMode) {
       case ExecutionMode.CSS_COLOR:
         // with default alpha - just returns the color
-        if (alpha === 1) {
+        if (alpha === '1') {
           return rgb2hex(underlineColor).hex;
-        } else {
-          return hexToRgba(rgb2hex(underlineColor).hex, alpha);
         }
+        // with custom alpha, convert it to rgba
+        const rgbaColorArr = getRgbaNumbers(underlineColor);
+        return `rgba(${rgbaColorArr}, ${alpha})`;
       default:
-        return `var(--bolt-theme-${colorVar})`;
+        if (alpha === 1) {
+          return `var(--bolt-theme-${colorVar})`;
+        } else {
+          return `rgba(var(--bolt-theme-${colorVar}), ${alpha})`;
+        }
     }
   }
 

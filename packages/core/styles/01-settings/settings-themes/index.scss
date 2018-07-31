@@ -4,59 +4,61 @@
 
 
 // $bolt-global-default-theme: 'xlight';
-$bolt-theme-disabled: bolt-color(gray, light);
-$bolt-theme-primary-light: bolt-color(indigo, light);
-$bolt-theme-primary-dark: bolt-color(yellow);
-$bolt-theme-secondary: bolt-color(white);
-$bolt-theme-secondary-dark: mix(bolt-color(black), $bolt-theme-secondary, 5%);
-$bolt-theme-secondary-xdark: mix(bolt-color(black), $bolt-theme-secondary, 15%);
 
 
 // pre-defined theming system values
 $bolt-theme-ui-colors: (
   light: (
-    headline: bolt-color(white),
-    headline-link: bolt-color(white),
-    text: bolt-color(white),
-    link: bolt-color(yellow),
-    text-disabled: bolt-color(gray),
     border: rgba(bolt-color(white), 0.2),
     contrast-filter: grayscale(100%) invert(100%) brightness(150%),
+    disabled: bolt-color(gray, light),
+    headline-link: bolt-color(white),
+    headline: bolt-color(white),
+    link: bolt-color(yellow),
+    primary: bolt-color(yellow),
+    secondary: bolt-color(white),
+    text-disabled: bolt-color(gray),
+    text: bolt-color(white),
   ),
   dark: (
-    headline: bolt-color(indigo),
-    headline-link: bolt-color(indigo, light),
-    text: bolt-color(black),
-    text-disabled: bolt-color(gray),
-    link: bolt-color(indigo, light),
     border: rgba(bolt-color(indigo, dark), 0.2),
     contrast-filter: none,
+    disabled: bolt-color(gray, light),
+    headline-link: bolt-color(indigo, light),
+    headline: bolt-color(indigo),
+    link: bolt-color(indigo, light),
+    primary: bolt-color(indigo, light),
+    secondary: bolt-color(white),
+    text-disabled: bolt-color(gray),
+    text: bolt-color(black),
   ),
+) !default;
+
+
+$bolt-theme-interactive-ui: (
+  primary,
+  secondary
+) !default;
+
+$bolt-theme-interactive-shades: (
+  default: (0),
+  lighten: (5, 15, 25),
+  darken: (5, 15, 25)
 ) !default;
 
 
 $bolt-themes: (
   xlight: (
     background: bolt-color(white),
-    primary: $bolt-theme-primary-light,
   ),
   light: (
     background: bolt-color(gray, xlight),
-    primary: $bolt-theme-primary-light,
-  ),
-
-  // Deprecated -- will be removed in Bolt v2.0
-  medium: (
-    background: bolt-color(gray, xlight),
-    primary: $bolt-theme-primary-light,
   ),
   dark: (
     background: bolt-color(indigo),
-    primary: $bolt-theme-primary-dark,
   ),
   xdark: (
     background: bolt-color(indigo, dark),
-    primary: $bolt-theme-primary-dark,
   ),
 );
 
@@ -69,14 +71,6 @@ $bolt-themes: (
   $lightOrDark: bolt-theme-contrast-tone($background);
   $bolt-ui-colors: map-get($bolt-theme-ui-colors, $lightOrDark);
 
-  $primary: map-get($themeProps, primary);
-
-  $primary-light: mix(bolt-color(white), $primary, 15%);
-  $primary-xlight: mix(bolt-color(white), $primary, 25%);
-
-  $primary-dark: mix(bolt-color(black), $primary, 15%);
-  $primary-xdark: mix(bolt-color(black), $primary, 25%);
-
   $bolt-themes: bolt-recursive-map-merge(
     $bolt-themes,
       (
@@ -84,45 +78,56 @@ $bolt-themes: (
       )
   );
 
-  $bolt-themes: bolt-recursive-map-merge(
-    $bolt-themes,
-    (
-      #{$themeName}: (
-        background: $background,
-        background-30: rgba($background, 0.3),
-        background-80: rgba($background, 0.8),
 
-        disabled: $bolt-theme-disabled,
+  @each $element in $bolt-theme-interactive-ui {
+    @each $name, $shades in $bolt-theme-interactive-shades {
+      @each $shade in $shades {
+        $mixColor: bolt-color(black);
+        $displayName: '';
+        $displayShadeName: '';
+        $propValue: '';
 
-        border: bolt-theme-ui-color(border, $background),
+        @if $name == 'lighten' {
+          $mixColor: bolt-color(white);
+        }
 
-        primary: $primary,
-        text-on-primary: bolt-text-contrast($primary),
+        // add dash to name of property, unless it's the first "default" one
+        @if ($name != 'default'){
+          $displayName: '-#{$name}';
+        }
 
-        primary-light: $primary-light,
-        text-on-primary-light: bolt-text-contrast($primary-light),
-
-        primary-xlight: $primary-xlight,
-        text-on-primary-xlight: bolt-text-contrast($primary-xlight),
-
-        primary-dark: $primary-dark,
-        text-on-primary-dark: bolt-text-contrast($primary-dark),
-
-        primary-xdark: $primary-xdark,
-        text-on-primary-xdark: bolt-text-contrast($primary-xdark),
+        // add dash to name of property, unless it's the first "default" one
+        @if ($shade != 0){
+          $displayShadeName: '-#{$shade}';
+        }
 
 
-        secondary: $bolt-theme-secondary,
-        secondary-dark: $bolt-theme-secondary-dark,
-        secondary-xdark: $bolt-theme-secondary-xdark,
+        $propName: #{$element}#{$displayName}#{$displayShadeName};
+        $property: map-get-deep($bolt-themes, $themeName, $element);
 
-        text-on-secondary: bolt-text-contrast($bolt-theme-secondary),
-        text-on-secondary-dark: bolt-text-contrast($bolt-theme-secondary-dark),
-        text-on-secondary-xdark: bolt-text-contrast($bolt-theme-secondary-xdark),
-      )
-    )
-  );
+        $propValue: mix($mixColor, $property, $shade);
+
+        $bolt-themes: bolt-recursive-map-merge(
+          $bolt-themes, (
+            #{$themeName}: (
+              $propName: $propValue,
+              text-on-#{$propName}: bolt-text-contrast($propValue),
+            )
+          )
+        );
+      }
+    }
+  }
 }
+
+
+// Deprecated -- will be removed in Bolt v2.0
+$bolt-themes: bolt-recursive-map-merge(
+  $bolt-themes,
+    (
+      medium: map-get($bolt-themes, light)
+    )
+);
 
 
 $bolt-themes-export: ();

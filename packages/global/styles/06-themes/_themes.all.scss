@@ -13,7 +13,16 @@
 
   #{unquote($selector)} {
     @each $themeOptionName, $themeOptionValue in $themeOptions {
-      --bolt-theme-#{$themeOptionName}: #{$themeOptionValue};
+
+      @if type-of($themeOptionValue) == color and type-of($themeOptionValue) != string {
+        $red: red($themeOptionValue);
+        $green: green($themeOptionValue);
+        $blue: blue($themeOptionValue);
+
+        --bolt-theme-#{$themeOptionName}: #{$red, $green, $blue};
+      } @else {
+        --bolt-theme-#{$themeOptionName}: #{$themeOptionValue};
+      }
     }
 
     color: bolt-theme-prop-value($themeName, text);

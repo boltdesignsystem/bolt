@@ -93,6 +93,10 @@ $PSEUDO_CLASSES: (
     // Automatically assign opacity based on the color selected.
     $opacity: alpha($value);
 
+    @if (length($props) >= 2) {
+      $opacity: nth($props, 2);
+    }
+
     @if ($value){
       $value: bolt-json-encode(
         (

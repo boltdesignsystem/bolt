@@ -55,7 +55,7 @@ bolt-card {
 
   bolt-card[class*=t-bolt] & {
     color: bolt-theme(text);
-    background-color: bolt-theme(background-80);
+    background-color: bolt-theme(background, 0.8);
 
     &:before {
       opacity: 1;
@@ -89,8 +89,7 @@ bolt-card {
   }
 
   &:before {
-    background-color: bolt-theme(background);
-    opacity: 0.8;
+    background-color: bolt-theme(background, 0.8);
   }
 
   &:after {
