@@ -48,7 +48,7 @@ export class BoltIcon extends withPreact() {
 
     this.state = {
       primaryColor: 'var(--bolt-theme-icon, currentColor)',
-      secondaryColor: 'var(--bolt-theme-background)',
+      secondaryColor: 'rgba(var(--bolt-theme-background), 1)',
     };
 
     // listen for page changes to decide when colors need to get recalculated
