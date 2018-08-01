@@ -16,6 +16,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TwigPhpLoader = require('twig-php-loader');
 const themify = require('@bolt/themify');
 const resolve = require('resolve');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
 const { getConfig } = require('./utils/config-store');
 const {
@@ -361,6 +362,7 @@ async function createWebpackConfig(buildConfig) {
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
   const webpackConfig = {
     entry: await buildWebpackEntry(),
+    stats: statsPreset(webpackStats[config.verbosity]),
     watchOptions: {
       ignored: [
         path.resolve(process.cwd(), config.buildDir) + '**/*',
@@ -457,6 +459,7 @@ async function createWebpackConfig(buildConfig) {
       //   // },
     },
     plugins: [
+      new DashboardPlugin(),
       new webpack.IgnorePlugin(/vertx/), // needed to ignore vertx dependency in webcomponentsjs-lite
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
