@@ -7,6 +7,7 @@ const npmSass = require('npm-sass');
 const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const globImporter = require('node-sass-glob-importer');
 const { promisify } = require('util');
 const fs = require('fs');
 const readFile = promisify(fs.readFile);
