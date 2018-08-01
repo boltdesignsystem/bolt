@@ -7,7 +7,6 @@ const npmSass = require('npm-sass');
 const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const globImporter = require('node-sass-glob-importer');
 const { promisify } = require('util');
 const fs = require('fs');
 const readFile = promisify(fs.readFile);
@@ -351,7 +350,6 @@ async function createWebpackConfig(buildConfig) {
         sourceMap: true,
         importer: [globImporter(), npmSass.importer],
         functions: sassExportData,
-        outputStyle: 'expanded',
         precision: 3,
         data: globalSassData.join('\n'),
       },
@@ -362,7 +360,13 @@ async function createWebpackConfig(buildConfig) {
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
   const webpackConfig = {
     entry: await buildWebpackEntry(),
-    parallelism: 1, // @todo refactor once theming updates in place
+    watchOptions: {
+      ignored: [
+        path.resolve(process.cwd(), config.buildDir) + '**/*',
+        path.resolve(process.cwd(), config.wwwDir) + '**/*',
+        'node_modules',
+      ],
+    },
     output: {
       path: path.resolve(process.cwd(), config.buildDir),
       filename: `[name]${langSuffix}.js`,
@@ -525,7 +529,6 @@ async function createWebpackConfig(buildConfig) {
         uglifyOptions: {
           cache: true,
           compress: true,
-
           mangle: true,
         },
       }),
