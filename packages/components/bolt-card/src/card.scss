@@ -157,7 +157,6 @@ bolt-card {
     right: 0;
     display: block;
     height: 1px;
-
   }
 }
 
@@ -179,7 +178,7 @@ bolt-card {
 .c-bolt-card__footer-item + .c-bolt-card__footer-item:before {
   display: block;
   content: '';
-  border-left-color: bolt-theme(border);
+  border-left-color: bolt-theme(border, 0.2);
   border-left-width: $bolt-card-border-width;
   border-left-style: solid;
   position: absolute;

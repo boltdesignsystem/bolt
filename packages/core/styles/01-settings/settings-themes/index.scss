@@ -10,7 +10,7 @@
 // pre-defined theming system values
 $bolt-theme-ui-colors: (
   light: (
-    border: rgba(bolt-color(white), 0.2),
+    border: bolt-color(white),
     contrast-filter: grayscale(100%) invert(100%) brightness(150%),
     disabled: bolt-color(gray, light),
     headline-link: bolt-color(white),
@@ -22,7 +22,7 @@ $bolt-theme-ui-colors: (
     text: bolt-color(white),
   ),
   dark: (
-    border: rgba(bolt-color(indigo, dark), 0.2),
+    border: bolt-color(indigo, dark),
     contrast-filter: none,
     disabled: bolt-color(gray, light),
     headline-link: bolt-color(indigo, light),
@@ -136,8 +136,15 @@ $bolt-themes-export: ();
 
 @each $themeName, $themeOptions in $bolt-themes {
   @each $themeOptionName, $themeOptionValue in $themeOptions {
-    @if type-of($themeOptionValue) == color {
-      $bolt-themes-export: map-set-deep($bolt-themes-export, ($themeName, $themeOptionName), rgba($themeOptionValue, 1));
+    @if type-of($themeOptionValue) == color and type-of($themeOptionValue) != string {
+
+      $newColor: rgba($themeOptionValue, 1);
+
+      $red: round(red($newColor));
+      $green: round(green($newColor));
+      $blue: round(blue($newColor));
+
+      $bolt-themes-export: map-set-deep($bolt-themes-export, ($themeName, $themeOptionName), rgb($red, $green, $blue));
     }
   }
 }

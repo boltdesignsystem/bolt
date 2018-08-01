@@ -190,8 +190,8 @@ function themify(options) {
           return rgb2hex(underlineColor).hex;
         }
         // with custom alpha, convert it to rgba
-        const rgbaColorArr = getRgbaNumbers(underlineColor);
-        return `rgba(${rgbaColorArr}, ${alpha})`;
+        const rgbaColor = hexToRgba(rgb2hex(underlineColor).hex, alpha);
+        return rgbaColor;
       default:
         if (alpha === 1) {
           return `var(--bolt-theme-${colorVar})`;
