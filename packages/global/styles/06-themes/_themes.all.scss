@@ -15,9 +15,9 @@
     @each $themeOptionName, $themeOptionValue in $themeOptions {
 
       @if type-of($themeOptionValue) == color and type-of($themeOptionValue) != string {
-        $red: red($themeOptionValue);
-        $green: green($themeOptionValue);
-        $blue: blue($themeOptionValue);
+        $red: round(red($themeOptionValue));
+        $green: round(green($themeOptionValue));
+        $blue: round(blue($themeOptionValue));
 
         --bolt-theme-#{$themeOptionName}: #{$red, $green, $blue};
       } @else {
