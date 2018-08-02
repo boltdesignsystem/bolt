@@ -70,7 +70,7 @@
       {% endfor %}
     {% endif %}
 
-    {% set code = "@#{item.context.type} #{item.context.name} (#{params|join(', ')}) { #{item.context.code} }" %}
+    {% set code = "@#{item.context.type} #{item.context.name}(#{params|join(', ')}) { #{item.context.code} }" %}
   {% endif %}
 
   {% include "@bolt-components-code-snippet/code-snippet.twig" with {
