@@ -56,7 +56,8 @@
     "test:js:watch": "jest --watch",
     "test:php": "cd packages/core-php && composer run test",
     "test": "npm-run-all --parallel test:*",
-    "watch:icons": "lerna exec --scope @bolt/components-icons -- yarn run watch"
+    "watch:icons": "lerna exec --scope @bolt/components-icons -- yarn run watch",
+    "sassdoc:build": "sassdoc ./packages/core/styles/ -p > www/pattern-lab/build/data/sassdoc.bolt.json"
   },
   "config": {
     "validate-commit-msg": {
