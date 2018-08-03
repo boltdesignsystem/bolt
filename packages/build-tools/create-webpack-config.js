@@ -14,7 +14,7 @@ const readFile = promisify(fs.readFile);
 const deepmerge = require('deepmerge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TwigPhpLoader = require('twig-php-loader');
-const themify = require('@bolt/themify');
+const themify = require('@bolt/postcss-themify');
 const resolve = require('resolve');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 
@@ -313,9 +313,8 @@ async function createWebpackConfig(buildConfig) {
       loader: 'postcss-loader',
       options: {
         sourceMap: true,
-        ident: 'postcss2',
         plugins: () => [
-          themify.themify(themifyOptions),
+          themify(themifyOptions),
           postcssDiscardDuplicates,
           autoprefixer({
             // @todo: replace with standalone Bolt config
