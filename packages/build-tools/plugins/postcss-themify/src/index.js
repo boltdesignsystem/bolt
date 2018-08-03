@@ -114,9 +114,10 @@ function getColorPalette() {
     colorPaletteData = fs.readFileSync(options.fallback.jsonPath, 'utf8');
     return JSON.parse(colorPaletteData);
   } else {
-    throw new Error(
-      "The `@bolt/themify` PostCSS plugin for `@bolt/build-tools` can't find the auto-generated JSON file that contains the data for Bolt's global color palette. This is necessary in order to generate the CSS Custom Properties fallback for older browsers! \n; Is `@bolt/global` the first item in your `.boltrc` file's global components array?",
-    );
+    //throw new Error(
+    //  "The `@bolt/themify` PostCSS plugin for `@bolt/build-tools` can't find the auto-generated JSON file that contains the data for Bolt's global color palette. This is necessary in order to generate the CSS Custom Properties fallback for older browsers! \n; Is `@bolt/global` the first item in your `.boltrc` file's global components array?",
+    /:);
+    return false;
   }
 }
 
@@ -175,9 +176,9 @@ function getThemifyValue(propertyValue, execMode) {
       throw new Error('Oops. Received an empty color!');
     }
 
-    // if (!options.palette) {
-    //   options.palette = getColorPalette(options);
-    // }
+    if (!options.palette) {
+      options.palette = getColorPalette(options);
+    }
     return parsedValue[variationName];
   }
 
@@ -208,9 +209,9 @@ function translateColor(colorArr, variationName, execMode) {
   const [colorVar, alpha] = colorArr;
 
   // returns the real color representation
-  // if (!options.palette) {
-  //   options.palette = getColorPalette(options);
-  // }
+  if (!options.palette) {
+    options.palette = getColorPalette(options);
+  }
   // console.log(options.palette);
 
   const underlineColor = options.palette[variationName][colorVar];
