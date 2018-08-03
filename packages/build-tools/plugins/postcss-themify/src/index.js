@@ -558,24 +558,24 @@ const nonDefaultVariations = variationValues;
 
 module.exports = postcss.plugin('postcss-bolt-themify', opts => {
   options = buildOptions(opts);
+  options.palette = getColorPalette(options);
 
-  if (!colorPaletteCache) {
-    // console.log('Color palette data missing! Checking out the file system...');
-    if (getColorPalette(options)) {
-      colorPaletteCache = getColorPalette(options);
-      options.palette = colorPaletteCache;
-    }
-  } else {
-    watchColorPaletteFile(options.fallback.jsonPath, function() {
-      colorPaletteCache = getColorPalette(options);
-      options.palette = colorPaletteCache;
-    });
-  }
+  // if (!colorPaletteCache) {
+  // console.log('Color palette data missing! Checking out the file system...');
+  // if (getColorPalette(options)) {
+  //   colorPaletteCache = getColorPalette(options);
+  //   options.palette = colorPaletteCache;
+  // } else {
+  //   watchColorPaletteFile(options.fallback.jsonPath, function() {
+  //     colorPaletteCache = getColorPalette(options);
+  //      options.palette = colorPaletteCache;
+  //   });
+  // }
 
   return root => {
     return new Promise((resolve, reject) => {
-      if (colorPaletteCache) {
-        options.palette = colorPaletteCache;
+      //if (colorPaletteCache) {
+      //  options.palette = colorPaletteCache;
 
         // process fallback CSS, without mutating the rules
         if (options.screwIE11 === false) {
@@ -586,9 +586,9 @@ module.exports = postcss.plugin('postcss-bolt-themify', opts => {
         processRules(root);
 
         resolve();
-      } else {
-        resolve();
-      }
+      //} else {
+      //  resolve();
+      //}
     });
   };
 });
