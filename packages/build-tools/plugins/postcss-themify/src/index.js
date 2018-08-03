@@ -577,15 +577,15 @@ module.exports = postcss.plugin('postcss-bolt-themify', opts => {
       //if (colorPaletteCache) {
       //  options.palette = colorPaletteCache;
 
-        // process fallback CSS, without mutating the rules
-        if (options.screwIE11 === false) {
-          processFallbackRules(root);
-        }
+      // process fallback CSS, without mutating the rules
+      if (options.screwIE11 === false) {
+        processFallbackRules(root);
+      }
 
-        // /** mutate the existing rules **/
-        processRules(root);
+      // /** mutate the existing rules **/
+      processRules(root);
 
-        resolve();
+      resolve();
       //} else {
       //  resolve();
       //}
