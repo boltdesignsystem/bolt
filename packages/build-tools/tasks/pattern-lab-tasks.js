@@ -6,7 +6,7 @@ const writeFile = promisify(fs.writeFile);
 const chokidar = require('chokidar');
 const del = require('del');
 const debounce = require('lodash.debounce');
-const ora = require('ora');
+const Ora = require('ora');
 const log = require('../utils/log');
 const { getConfig } = require('../utils/config-store');
 const events = require('../utils/events');
@@ -17,6 +17,7 @@ const timer = require('../utils/timer');
 
 let plSource, plPublic, consolePath;
 let config;
+let initialBuild = true;
 
 async function asyncConfig() {
   if (config) {
@@ -45,10 +46,25 @@ async function plBuild(errorShouldExit) {
   config = config || (await asyncConfig());
 
   return new Promise(async (resolve, reject) => {
-    const plSpinner = ora(chalk.blue('Building Pattern Lab...')).start();
+    const startCompilingPlMsg = 'Building Pattern Lab for the first time...';
+    const startRecompilingPlMsg = 'Recompiling Pattern Lab...';
+
+    const failedCompilingPlMsg = 'The initial Pattern Lab compile failed!';
+    const failedRecompilingPlMsg = 'Failed to recompile Pattern Lab!';
+
+    const endCompilingPlMsg = function(startTime) {
+      return `Compiled Pattern Lab in ${chalk.bold(timer.end(startTime))}`;
+    };
+
+    const endRecompilingPlMsg = function(startTime) {
+      return `Pattern Lab recompiled in ${chalk.bold(timer.end(startTime))}`;
+    };
+
+    const plSpinner = new Ora(
+      chalk.blue(initialBuild ? startCompilingPlMsg : startRecompilingPlMsg),
+    ).start();
     const startTime = timer.start();
-    // log.taskStart('build: pattern lab');
-    events.emit('pattern-lab:precompile');
+
     sh(
       'php',
       ['-d', 'memory_limit=4048M', consolePath, '--generate'],
@@ -57,8 +73,14 @@ async function plBuild(errorShouldExit) {
     )
       .then(output => {
         plSpinner.succeed(
-          chalk.green(`Built Pattern Lab in ${timer.end(startTime)}`),
+          chalk.green(
+            initialBuild
+              ? endCompilingPlMsg(startTime)
+              : endRecompilingPlMsg(startTime),
+          ),
         );
+
+        initialBuild = false;
 
         if (config.verbosity > 2) {
           console.log('---');
@@ -66,12 +88,19 @@ async function plBuild(errorShouldExit) {
           console.log('===\n');
         }
 
-        events.emit('reload');
+        // events.emit('reload');
 
         resolve(output);
       })
       .catch(error => {
-        plSpinner.fail(chalk.red('Building Pattern Lab Failed'));
+        plSpinner.fail(
+          chalk.red(
+            initialBuild ? failedCompilingPlMsg : failedRecompilingPlMsg,
+          ),
+        );
+
+        initialBuild = false;
+
         console.log(error);
         // reject(error);
       });
@@ -102,7 +131,7 @@ async function watch() {
   const watchedFiles = [
     dirs.map(dir => path.join(dir, globPattern)),
     path.join(plSource, globPattern),
-    path.join(config.dataDir, '*.*'),
+    path.join(config.dataDir, '**/*'),
   ];
 
   // @todo show this when spinners are disabled at this high of verbosity
@@ -113,9 +142,9 @@ async function watch() {
 
   // The watch event ~ same engine gulp uses https://www.npmjs.com/package/chokidar
   const watcher = chokidar.watch(watchedFiles, {
-    ignoreInitial: true,
+    ignoreInitial: false,
     cwd: process.cwd(),
-    ignore: ['**/node_modules/**', '**/vendor/**'],
+    ignored: ['**/node_modules/**', '**/vendor/**'],
   });
 
   // list of all events: https://www.npmjs.com/package/chokidar#methods--events
