@@ -28,8 +28,9 @@ describe('monorepo', async () => {
     let pkgPaths = await Promise.all(
       pkgDirs.map(async pkgDir =>
         globby([
-          path.dirname(pkgDir) + '/**/package.json',
+          path.dirname(pkgDir) + '/package.json',
           '!**/node_modules/**',
+          '!**/bower_components/**',
         ]),
       ),
     );
