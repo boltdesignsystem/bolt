@@ -367,7 +367,7 @@ async function createWebpackConfig(buildConfig) {
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
   const webpackConfig = {
     entry: await buildWebpackEntry(),
-    parallelism: 1, // @todo: look into removing this once a solution to working around the color palette JSON file not yet being generated for @bolt/postcss-themify is figured out.
+    // parallelism: 1, // @todo: look into removing this once a solution to working around the color palette JSON file not yet being generated for @bolt/postcss-themify is figured out.
     stats: statsPreset(webpackStats[config.verbosity]),
     watchOptions: {
       ignored: [
