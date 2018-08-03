@@ -72,6 +72,17 @@ $PSEUDO_CLASSES: (
 
 
 
+@function bolt-is-theme-var($prop) {
+  // check at least one color swatch to make sure the theme exists
+  $lightThemeVals: map-get($bolt-themes, 'light');
+
+  @if map-get($lightThemeVals, $prop) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
 /**
   * Helper functions for applying global color swatches stored in Sass Maps
   */
