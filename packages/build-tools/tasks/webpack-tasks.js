@@ -198,6 +198,20 @@ async function server(buildTime) {
     let startTime;
     const compiler = webpack(webpackConfigs);
 
+    const initialBuildMsgStart = 'Starting Webpack server...';
+    const initialBuildMsgFailed = 'Error! Could not start Webpack server!';
+
+    const buildMsgStart = 'Recompiling Webpack...';
+    const buildMsgFailed = 'Recompiling Webpack failed!';
+
+    const initialWebpackSpinner = new Ora(chalk.blue(initialBuildMsgStart));
+    const webpackSpinner = new Ora(chalk.blue(buildMsgStart));
+
+    const initialWebpackSpinnerFailed = () =>
+      initialWebpackSpinner.fail(chalk.red(initialBuildMsgFailed));
+    const webpackSpinnerFailed = () =>
+      webpackSpinner.fail(chalk.red(buildMsgFailed));
+
     serve(
       {
         logTime: false,
@@ -222,7 +236,7 @@ async function server(buildTime) {
       },
       {
         compiler,
-        config: webpackConfigs[0],
+        config: webpackConfigs,
         add: (app, middleware, options) => {
           app.use(
             webpackServeWaitpage(options, {
@@ -234,6 +248,79 @@ async function server(buildTime) {
               }`,
             }),
           );
+
+          // WIP: working on tighter browsersync integration w/ Webpack
+          // app.use(async (ctx, next) => {
+          //   browsersyncServer.init(serverConfig, async function (err, bs) {
+          //     await next();
+          //   });
+          // });
+        },
+        on: {
+          'build-started': () => {
+            // Fired when a watch triggers a compile
+
+            compiler.compilers.forEach(comp => {
+              initialBuild
+                ? initialWebpackSpinner.start()
+                : webpackSpinner.start();
+              startTime = timer.start();
+            });
+          },
+
+          'build-finished': ({ stats }) => {
+            const messages = formatWebpackMessages(stats.toJson({}, true));
+
+            if (messages.errors.length) {
+              initialBuild
+                ? initialWebpackSpinnerFailed()
+                : webpackSpinnerFailed();
+              // Only keep the first error. Others are often indicative
+              // of the same problem, but confuse the reader with noise.
+              if (messages.errors.length > 1) {
+                messages.errors.length = 1;
+              }
+              const prettyError = messages.errors.join('\n\n');
+              console.log(
+                config.verbosity > 2 ? new Error(prettyError) : prettyError,
+              );
+            } else {
+              // Stats config options: https://webpack.js.org/configuration/stats/
+              const output = stats.toString({
+                chunks: false, // Makes the build much quieter
+                colors: true, // Shows colors in the console
+                modules: false, // Hides built modules making output less verbose
+                version: false,
+              });
+
+              initialBuild
+                ? initialWebpackSpinner.succeed(
+                    chalk.green(
+                      `Webpack server started in ${timer.end(startTime)}`,
+                    ),
+                  )
+                : webpackSpinner.succeed(
+                    chalk.green(
+                      `Recompiled Webpack in ${timer.end(startTime)}`,
+                    ),
+                  );
+
+              if (config.verbosity > 3) {
+                console.log('---');
+                console.log(output);
+                console.log('===\n');
+              }
+
+              if (buildTime && initialBuild === true) {
+                initialWebpackSpinner.succeed(
+                  chalk.green(
+                    `Initial build completed in ${timer.end(buildTime)}.`,
+                  ),
+                );
+                initialBuild = false;
+              }
+            }
+          },
         },
       },
     );

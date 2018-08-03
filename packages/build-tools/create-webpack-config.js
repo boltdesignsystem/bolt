@@ -336,20 +336,26 @@ async function createWebpackConfig(buildConfig) {
       loader: 'clean-css-loader',
       options: {
         skipWarn: true,
-        compatibility: 'ie9',
-        level: config.prod ? 1 : 0,
-        inline: ['remote'],
-        format: 'beautify',
+        level: config.prod ? 2 : 0,
+        format: config.prod ? false : 'beautify',
       },
     },
+
+    // @todo: conditionally toggle sass-loader vs fast-sass-loader based on --debug flag when sourcemaps are needed
+    // {
+    //   loader: 'sass-loader',
+    //   options: {
+    //     sourceMap: true,
+    //     importer: [globImporter(), npmSass.importer],
+    //     functions: sassExportData,
+    //     precision: 3,
+    //     data: globalSassData.join('\n'),
+    //   },
+    // },
     {
-      loader: 'resolve-url-loader',
-    },
-    {
-      loader: 'sass-loader',
+      loader: 'fast-sass-loader',
       options: {
         sourceMap: true,
-        importer: [globImporter(), npmSass.importer],
         functions: sassExportData,
         precision: 3,
         data: globalSassData.join('\n'),
@@ -417,8 +423,9 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: /\.(woff|woff2)$/,
-          loader: 'file-loader',
+          loader: 'url-loader',
           options: {
+            limit: 500,
             name: 'fonts/[name].[ext]',
           },
         },
@@ -431,7 +438,14 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: [/\.yml$/, /\.yaml$/],
-          use: [{ loader: 'json-loader' }, { loader: 'yaml-loader' }],
+          use: [
+            {
+              loader: 'json-loader',
+            },
+            {
+              loader: 'yaml-loader',
+            },
+          ],
         },
       ],
     },
@@ -458,15 +472,7 @@ async function createWebpackConfig(buildConfig) {
       //   // },
     },
     plugins: [
-      new DashboardPlugin(),
-      new webpack.IgnorePlugin(/vertx/), // needed to ignore vertx dependency in webcomponentsjs-lite
-      new MiniCssExtractPlugin({
-        // Options similar to the same options in webpackOptions.output
-        // both options are optional
-        filename: `[name]${langSuffix}.css`,
-        chunkFilename: `[id]${langSuffix}.css`,
-        allChunks: true,
-      }),
+      // new DashboardPlugin(),
       // @todo This needs to be in `config.dataDir`
       new ManifestPlugin({
         fileName: `bolt-webpack-manifest${langSuffix}.json`,
@@ -476,10 +482,21 @@ async function createWebpackConfig(buildConfig) {
           name: 'Bolt Manifest',
         },
       }),
+      new MiniCssExtractPlugin({
+        // Options similar to the same options in webpackOptions.output
+        // both options are optional
+        filename: config.prod
+          ? `[name].[contenthash]${langSuffix}.css`
+          : `[name]${langSuffix}.css`,
+        chunkFilename: config.prod
+          ? `[id].[contenthash]${langSuffix}.css`
+          : `[id]${langSuffix}.css`,
+      }),
       new webpack.ProvidePlugin({
         Promise: 'es6-promise',
       }),
       new webpack.DefinePlugin(globalJsData),
+      new webpack.NamedModulesPlugin(),
 
       // Show build progress
       // Disabling for now as it messes up spinners
