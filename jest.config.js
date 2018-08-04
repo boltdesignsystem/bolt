@@ -5,6 +5,7 @@ module.exports = {
     'brightcove-player.test.js',
     'apps/drupal-lab',
     'packages/uikit-workshop',
+    'packages/build-tools/plugins/sass-export-data/tests',
   ],
   testEnvironment: 'node',
   // Notify not working correctly; we want to only get a notification when tests fail, and then get ONE success notificaiton after it passes

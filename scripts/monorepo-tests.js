@@ -27,7 +27,7 @@ function checkMonorepoSymlinks() {
     })))
     .then((items) => {
       items.forEach((item) => {
-        if (!item.stats.isSymbolicLink()) {
+        if (!item.stats.isSymbolicLink() && !item.path.includes('fast-sass-loader') ) {
           console.log('🛑 Error: Everything in "node_modules/@bolt/" should be a symbolic link to ensure the monorepo is set up correctly. You most likely have a version mismatch between this and something that is using it.');
           console.log(item.path);
           process.exit(1);

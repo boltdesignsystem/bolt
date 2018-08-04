@@ -17,6 +17,7 @@ const TwigPhpLoader = require('twig-php-loader');
 const themify = require('@bolt/postcss-themify');
 const resolve = require('resolve');
 const DashboardPlugin = require('webpack-dashboard/plugin');
+const BoltCache = require('./utils/cache');
 
 const { getConfig } = require('./utils/config-store');
 const {
@@ -42,7 +43,7 @@ async function createWebpackConfig(buildConfig) {
       : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
 
   // @TODO: move this setting to .boltrc config
-  const sassExportData = require('@theme-tools/sass-export-data')({
+  const sassExportData = require('@bolt/sass-export-data')({
     path: path.resolve(process.cwd(), config.dataDir),
   });
 
@@ -53,6 +54,7 @@ async function createWebpackConfig(buildConfig) {
   let langSuffix = `${config.lang ? '-' + config.lang : ''}`;
 
   let themifyOptions = {
+    watchForChanges: config.prod ? false : true,
     classPrefix: 't-bolt-',
     screwIE11: false,
     fallback: {
@@ -148,7 +150,7 @@ async function createWebpackConfig(buildConfig) {
    * @returns {object} entry - WebPack config `entry`
    */
   async function buildWebpackEntry() {
-    const { components } = await getBoltManifest();
+    let { components } = await getBoltManifest();
     const entry = {};
     const globalEntryName = 'bolt-global';
 
@@ -314,7 +316,7 @@ async function createWebpackConfig(buildConfig) {
       options: {
         sourceMap: true,
         plugins: () => [
-          themify(themifyOptions),
+          require('@bolt/postcss-themify')(themifyOptions),
           postcssDiscardDuplicates,
           autoprefixer({
             // @todo: replace with standalone Bolt config
@@ -353,7 +355,7 @@ async function createWebpackConfig(buildConfig) {
     //   },
     // },
     {
-      loader: 'fast-sass-loader',
+      loader: '@bolt/fast-sass-loader',
       options: {
         sourceMap: true,
         functions: sassExportData,
@@ -367,7 +369,7 @@ async function createWebpackConfig(buildConfig) {
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
   const webpackConfig = {
     entry: await buildWebpackEntry(),
-    parallelism: 1, // @todo: look into removing this once a solution to working around the color palette JSON file not yet being generated for @bolt/postcss-themify is figured out.
+    // parallelism: 1, // @todo: look into removing this once a solution to working around the color palette JSON file not yet being generated for @bolt/postcss-themify is figured out.
     stats: statsPreset(webpackStats[config.verbosity]),
     watchOptions: {
       ignored: [
@@ -486,12 +488,14 @@ async function createWebpackConfig(buildConfig) {
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional
-        filename: config.prod
-          ? `[name].[contenthash]${langSuffix}.css`
-          : `[name]${langSuffix}.css`,
-        chunkFilename: config.prod
-          ? `[id].[contenthash]${langSuffix}.css`
-          : `[id]${langSuffix}.css`,
+        // filename: config.prod
+        //   ? `[name].[contenthash]${langSuffix}.css`
+        //   : `[name]${langSuffix}.css`,
+        // chunkFilename: config.prod
+        //   ? `[id].[contenthash]${langSuffix}.css`
+        //   : `[id]${langSuffix}.css`,
+        filename: `[name]${langSuffix}.css`,
+        chunkFilename: `[id]${langSuffix}.css`,
       }),
       new webpack.ProvidePlugin({
         Promise: 'es6-promise',

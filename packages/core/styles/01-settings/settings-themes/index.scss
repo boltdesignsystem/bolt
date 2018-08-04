@@ -162,6 +162,6 @@ $bolt-themes-export: ();
   }
 }
 
-@include bolt-export-data($bolt-css-vars-json-data-export + '.json', $bolt-themes-export);
-@include bolt-export-data('theming.bolt.json', $bolt-themes);
+@include bolt-export-data-sync($bolt-css-vars-json-data-export + '.json', $bolt-themes-export);
+@include bolt-export-data-sync('theming.bolt.json', $bolt-themes);
 
