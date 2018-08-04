@@ -488,12 +488,14 @@ async function createWebpackConfig(buildConfig) {
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional
-        filename: config.prod
-          ? `[name].[contenthash]${langSuffix}.css`
-          : `[name]${langSuffix}.css`,
-        chunkFilename: config.prod
-          ? `[id].[contenthash]${langSuffix}.css`
-          : `[id]${langSuffix}.css`,
+        // filename: config.prod
+        //   ? `[name].[contenthash]${langSuffix}.css`
+        //   : `[name]${langSuffix}.css`,
+        // chunkFilename: config.prod
+        //   ? `[id].[contenthash]${langSuffix}.css`
+        //   : `[id]${langSuffix}.css`,
+        filename: `[name]${langSuffix}.css`,
+        chunkFilename: `[id]${langSuffix}.css`,
       }),
       new webpack.ProvidePlugin({
         Promise: 'es6-promise',
