@@ -1,4 +1,4 @@
-@import '@bolt/core';
+@import '~@bolt/core/styles/index.scss';
 
 // Shared base text styles used across all headline, subheadline, eyebrow and vanilla DIY text components
 @mixin bolt-headline() {
@@ -11,8 +11,7 @@
   // display: flex; // @todo: uncomment when fixing headline flex behavior
   // flex-flow: row nowrap; // @todo: uncomment when fixing headline flex behavior
 
-  color: inherit;
-  color: var(--bolt-theme-heading, inherit);
+  color: bolt-theme(headline);
 
 
   &:last-child {

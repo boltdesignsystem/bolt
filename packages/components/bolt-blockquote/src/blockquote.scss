@@ -41,7 +41,7 @@
 //   </blockquote>
 // </bolt-blockquote>
 
-@import '@bolt/core';
+@import '~@bolt/core/styles/index.scss';
 
 // Local Variables
 $bolt-blockquote-border-width: 4px;
@@ -95,8 +95,7 @@ $bolt-blockquote-image-size: 4rem;
   display: block;
   position: relative;
   max-width: 44rem;
-  color: inherit;
-  color: var(--bolt-theme-heading, inherit);
+  color: bolt-theme(headline);
 
   p:first-child:before,
   p:last-child:after {
@@ -126,8 +125,7 @@ $bolt-blockquote-image-size: 4rem;
 }
 
 .c-bolt-blockquote__footer {
-  color: inherit;
-  color: var(--bolt-theme-text, inherit);
+  color: bolt-theme(text);
   line-height: $bolt-blockquote-footer-line-height;
 }
 

@@ -5,14 +5,15 @@
 	<title id="title">Pattern Lab</title>
 	<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width" />
+  <meta name="theme-color" content="#ababab"/>
 
   <link rel=preload as="script" href="/pattern-lab/styleguide/js/patternlab-viewer.min.js">
-  <!-- static PL critical styles; replace once critical CSS added to build pipeline -->
-
-
+  <link inline href="styleguide/css/pattern-lab.critical.css" />
 
   <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/pattern-lab/styleguide/css/pattern-lab.css"></noscript>
+
+  <script inline async src="/pattern-lab/styleguide/js/cssrelpreload.min.js"></script>
 </head>
 
 <body class="pl-c-body">
@@ -45,25 +46,32 @@
   <!-- applying theme config to get classes on before PL renders so there's no flash of unstyled content -->
   <!-- @todo Consider moving this to own file -->
   <script>
-    if (window.config != undefined) {
-      if (window.config.theme != undefined) {
-        if (config.theme.color === 'light') {
-          document.body.classList.add('pl-c-body--theme-light');
-        }
-        if (config.theme.layout === 'vertical') {
-          document.body.classList.add('pl-c-body--theme-sidebar');
-        }
-        switch (config.theme.density) {
-          case 'cozy':
-            document.body.classList.add('pl-c-body--theme-density-cozy');
-            break;
-          case 'comfortable':
-            document.body.classList.add('pl-c-body--theme-density-comfortable');
-            break;
-          default:
-            // not sure if you even need/want this
-            document.body.classList.add('pl-c-body--theme-density-compact');
-        }
+    // need to make sure that window.config is defined first on acccount of us async loading everything ;)
+    window.patternlab = window.patternlab || {};
+    window.patternlab.applyTheme = function(){
+      if (window.config.theme.color === 'light') {
+        document.body.classList.add('pl-c-body--theme-light');
+      }
+      if (window.config.theme.layout === 'vertical') {
+        document.body.classList.add('pl-c-body--theme-sidebar');
+      }
+      switch (window.config.theme.density) {
+        case 'cozy':
+          document.body.classList.add('pl-c-body--theme-density-cozy');
+          break;
+        case 'comfortable':
+          document.body.classList.add('pl-c-body--theme-density-comfortable');
+          break;
+        default:
+          // not sure if you even need/want this
+          document.body.classList.add('pl-c-body--theme-density-compact');
+      }
+    }
+
+    // check if config already exists, if so, try to apply theme config; otherwise wait till later just in case.
+    if (window.config !== undefined) {
+      if (window.config.theme !== undefined) {
+        window.patternlab.applyTheme();
       }
     }
   </script>
@@ -80,22 +88,36 @@
 	<script src="/pattern-lab/styleguide/bower_components/script.min.js" defer></script>
 
 
-  <!-- temp workaround to async load everything. remove when refactored components in place. -->
-  <script>!function(r){var e=function(e,t){"use strict";var n=r.document.getElementsByTagName("script")[0],o=r.document.createElement("script");return o.src=e,o.async=!0,n.parentNode.insertBefore(o,n),t&&"function"==typeof t&&(o.onload=t),o};"undefined"!=typeof module?module.exports=e:r.loadJS=e}("undefined"!=typeof global?global:this);
+  <script inline src="styleguide/js/whenDefined.min.js"></script>
+  <script inline src="styleguide/js/loadJS.js"></script>
 
-  // https://fokkezb.nl/2016/04/14/how-to-wait-for-a-javascript-variable-to-be-defined/
-  // https://github.com/OwenMelbz/whendefined
- </script>
+  {# <script src="{{ htmlWebpackPlugin.files.chunks['patternlab-viewer'].entry }}" defer></script> #}
 
-
-  <!-- set-up the dispatcher + load the Pattern Lab viewer js -->
+  <!-- temp workaround to allow everything to be asynced / deffered with current setup. @todo: remove once refactored components + improved build process is in place. -->
   <script>
     window.Dispatcher;
     window.addEventListener('DOMContentLoaded', function () {
       window.Dispatcher = new EventEmitter();
       loadJS('/pattern-lab/styleguide/js/patternlab-viewer.min.js');
+
+      // load the Pattern Lab viewer js -- preloaded earlier ^
     });
-	</script>
+
+    whenDefined(window, 'config', function() {
+      if (window.config.theme){
+        window.patternlab.applyTheme();
+      }
+    });
+
+    // Check that service workers are registered
+    // @todo: uncomment once cache-busting strategy is in place
+    // if ('serviceWorker' in navigator) {
+    //   // Use the window load event to keep the page load performant
+    //   window.addEventListener('load', () => {
+    //     navigator.serviceWorker.register('/sw.js');
+    //   });
+    // }
+  </script>
 
 </body>
 

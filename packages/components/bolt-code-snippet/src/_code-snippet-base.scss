@@ -1,11 +1,10 @@
-@import '@bolt/core';
+@import '~@bolt/core/styles/index.scss';
 
 /* ------------------------------------ *\
     Bolt Code Snippet
 \* ------------------------------------ */
 
 $bolt-code-snippet-border-radius: $bolt-border-radius;
-$bolt-code-snippet-text-color: var(--bolt-theme-heading, inherit);
 $bolt-code-snippet-background-color: rgba(bolt-color(indigo, light), 0.08);
 
 
@@ -26,8 +25,7 @@ bolt-code-snippet {
   word-spacing: normal;
   word-break: normal;
   word-wrap: break-word;
-  color: inherit;
-  color: $bolt-code-snippet-text-color;
+  color: bolt-theme(headline);
   text-align: left;
   border-radius: $bolt-code-snippet-border-radius;
 }

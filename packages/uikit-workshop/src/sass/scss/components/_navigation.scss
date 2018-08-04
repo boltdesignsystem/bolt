@@ -21,13 +21,12 @@
 
         /**
          * Active navigaiton
-         * 1) Slide
+         * 1) Slide 
          * 2) Set the height to the vierport height minus the height
          *    of the header
          */
         &.pl-is-active {
             max-height: calc(100vh - #{$offset-top - 1rem}); /* 2 */
-            // max-height: 50rem;  /* 1 */
             overflow: auto;
             @include hideScrollBar();
         }
@@ -175,7 +174,6 @@
  */
 .pl-c-nav__sublist--dropdown.pl-is-active {
     @media all and (min-width: $pl-bp-med) {
-        // height: calc(100vh - #{$offset-top}); /* 1 */
     }
 }
 

@@ -2,7 +2,7 @@
    Nav
 \* ------------------------------------ */
 
-@import '@bolt/core';
+@import '~@bolt/core/styles/index.scss';
 
 
 bolt-nav-priority {
@@ -343,8 +343,8 @@ bolt-nav-priority {
   &:focus,
   &.is-active {
     outline: none;
-    border-color: var(--bolt-theme-primary,inherit);
-    }
+    border-color: bolt-theme(primary);
+  }
 
   &.is-active,
   &:active {

@@ -220,14 +220,18 @@ async function server(buildTime) {
         hotClient: {
           logLevel: 'silent',
           hot: true,
+          host: {
+            client: '*',
+            server: '0.0.0.0',
+          },
         },
         content: path.resolve(process.cwd(), config.wwwDir),
         devWare: {
           logLevel: 'silent',
-          publicPath: webpackConfigs[0].devServer.publicPath,
+          publicPath: webpackConfigs[0].output.publicPath,
           hot: true,
-          stats: webpackConfigs[0].devServer.stats,
           writeToDisk: true,
+          stats: webpackConfigs[0].stats,
         },
       },
       {
