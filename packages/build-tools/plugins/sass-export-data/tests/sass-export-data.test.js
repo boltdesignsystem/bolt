@@ -8,7 +8,7 @@ const fs = require('fs');
 const assert = chai.assert;
 chai.use(require('chai-fs'));
 
-describe('Sass Export Data', function () {
+describe('Sass Export Data', function() {
   this.timeout(5000);
   let output = '';
   before(() => {
@@ -25,22 +25,19 @@ describe('Sass Export Data', function () {
 
   fs.readdirSync(join(__dirname, './basics/expected'))
     .filter(file => file.endsWith('json'))
-    .forEach((file) => {
+    .forEach(file => {
       it(`Creates JSON from Sass Vars in ${file}`, () => {
         assert.deepEqual(
           JSON.parse(
-            fs.readFileSync(
-              join(__dirname, './basics/dest/', file),
-              'utf8'
-            )
+            fs.readFileSync(join(__dirname, './basics/dest/', file), 'utf8'),
           ),
           JSON.parse(
             fs.readFileSync(
               join(__dirname, './basics/expected/', file),
-              'utf8'
-            )
+              'utf8',
+            ),
           ),
-          `JSON files do not match.\n\n${output}`
+          `JSON files do not match.\n\n${output}`,
         );
       });
     });
