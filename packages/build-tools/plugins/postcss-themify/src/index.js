@@ -2,17 +2,19 @@ const postcss = require('postcss');
 const fs = require('fs-extra');
 const hexToRgba = require('hex-to-rgba');
 const rgb2hex = require('rgb2hex');
+const crypto = require('crypto');
+const chokidar = require('chokidar');
+const { minifyCSS } = require('./helpers/css.util');
+
 const THEMIFY = 'bolt-themify';
 
-var crypto = require('crypto');
-var chokidar = require('chokidar');
-const { minifyCSS } = require('./helpers/css.util');
+const BoltCache = require('../../../utils/cache');
 
 let options;
 let output;
 
-let colorPaletteCache;
 let colorPaletteHash;
+let isWatchingForChanges = false;
 
 function getHash(filePath, callback) {
   var stream = fs.ReadStream(filePath);
@@ -60,6 +62,7 @@ const ExecutionMode = {
 };
 
 const defaultOptions = {
+  watchForChanges: false,
   classPrefix: '',
   screwIE11: true,
   fallback: {
@@ -105,19 +108,23 @@ const delay = ms => {
   });
 };
 
-function getColorPalette() {
-  let colorPaletteData;
-  let timeWaiting = 0;
-  let fileExists = false;
+function getColorPalette(invalidateCache = false) {
+  let colorPaletteData = BoltCache.get('palette');
+  if (colorPaletteData === undefined || invalidateCache === true) {
+    if (colorPaletteDataExists()) {
+      colorPaletteData = fs.readFileSync(options.fallback.jsonPath, 'utf8');
+      // console.log('updating cache...');
+      BoltCache.set('palette', colorPaletteData);
 
-  if (colorPaletteDataExists()) {
-    colorPaletteData = fs.readFileSync(options.fallback.jsonPath, 'utf8');
-    return JSON.parse(colorPaletteData);
+      return JSON.parse(colorPaletteData);
+    } else {
+      throw new Error(
+        "The `@bolt/themify` PostCSS plugin for `@bolt/build-tools` can't find the auto-generated JSON file that contains the data for Bolt's global color palette. This is necessary in order to generate the CSS Custom Properties fallback for older browsers! \n; Is `@bolt/global` the first item in your `.boltrc` file's global components array?",
+      );
+    }
   } else {
-    //throw new Error(
-    //  "The `@bolt/themify` PostCSS plugin for `@bolt/build-tools` can't find the auto-generated JSON file that contains the data for Bolt's global color palette. This is necessary in order to generate the CSS Custom Properties fallback for older browsers! \n; Is `@bolt/global` the first item in your `.boltrc` file's global components array?",
-    //);
-    return false;
+    // console.log('returning cached data!');
+    return JSON.parse(colorPaletteData);
   }
 }
 
@@ -177,7 +184,7 @@ function getThemifyValue(propertyValue, execMode) {
     }
 
     if (!options.palette) {
-      options.palette = getColorPalette(options);
+      options.palette = getColorPalette();
     }
     return parsedValue[variationName];
   }
@@ -210,9 +217,8 @@ function translateColor(colorArr, variationName, execMode) {
 
   // returns the real color representation
   if (!options.palette) {
-    options.palette = getColorPalette(options);
+    options.palette = getColorPalette();
   }
-  // console.log(options.palette);
 
   const underlineColor = options.palette[variationName][colorVar];
 
@@ -559,37 +565,22 @@ const nonDefaultVariations = variationValues;
 
 module.exports = postcss.plugin('postcss-bolt-themify', opts => {
   options = buildOptions(opts);
-  options.palette = getColorPalette(options);
 
-  // if (!colorPaletteCache) {
-  // console.log('Color palette data missing! Checking out the file system...');
-  // if (getColorPalette(options)) {
-  //   colorPaletteCache = getColorPalette(options);
-  //   options.palette = colorPaletteCache;
-  // } else {
-  //   watchColorPaletteFile(options.fallback.jsonPath, function() {
-  //     colorPaletteCache = getColorPalette(options);
-  //      options.palette = colorPaletteCache;
-  //   });
-  // }
+  if (options.watchForChanges && !isWatchingForChanges){
+    isWatchingForChanges = true;
+    // console.log('watching for color palette changes...');
+    watchColorPaletteFile(options.fallback.jsonPath, function() {
+      let colorPaletteCache = getColorPalette(true);
+      options.palette = colorPaletteCache;
+    });
+  }
 
   return root => {
-    return new Promise((resolve, reject) => {
-      //if (colorPaletteCache) {
-      //  options.palette = colorPaletteCache;
+    if (options.screwIE11 === false) {
+      processFallbackRules(root);
+    }
 
-      // process fallback CSS, without mutating the rules
-      if (options.screwIE11 === false) {
-        processFallbackRules(root);
-      }
-
-      // /** mutate the existing rules **/
-      processRules(root);
-
-      resolve();
-      //} else {
-      //  resolve();
-      //}
-    });
+    /** mutate the existing rules **/
+    processRules(root);
   };
 });
