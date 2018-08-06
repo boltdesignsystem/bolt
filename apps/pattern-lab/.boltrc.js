@@ -1,33 +1,38 @@
 const path = require('path');
 const resolve = require('resolve');
+const argv = require('yargs').argv;
 
-module.exports = {
-  lang: [
-    'en', // default language used
-    'ja'
-  ],
+const config = {
+  // array of languages to compile the design system. note, these are ignored when the --i18n flag is set to false
+  // Note: if lang is defined, the first item is currently the one used by default in the Pattern Lab build, pending further iterations on this!
+  lang: ['en', 'ja'],
+
   renderingService: true, // starts PHP service for rendering Twig templates
   openServerAtStart: true,
   // Environmental variable / preset to use
   env: 'pl',
   buildDir: '../../www/pattern-lab/build',
   wwwDir: '../../www/',
-  startPath: 'pattern-lab/index.html',
+  startPath: 'pattern-lab/',
   plConfigFile: './config/config.yml',
   verbosity: 2,
   schemaErrorReporting: 'cli',
   webpackDevServer: true,
   extraTwigNamespaces: {
-    'bolt': {
+    bolt: {
       recursive: true,
     },
-    'pl': {
+    pl: {
       recursive: true,
       paths: [
         './src',
         /* Example of including additional component paths to include in the main @bolt namespace */
         // path.relative(process.cwd(), path.dirname(require.resolve('@bolt/components-sticky/package.json'))),
       ],
+    },
+    'pattern-lab': {
+      recursive: true,
+      paths: ['../../packages/uikit-workshop/src/html-twig'],
     },
     /* Example of including a new component namesapce config / overriding an existing config */
     // 'bolt-components-sticky': {
@@ -57,17 +62,16 @@ module.exports = {
 
   // Currently only supports a 'scss' key with an array of Sass partials to pull in.
   globalData: {
-    'scss': [
+    scss: [
       // './src/test-overrides.scss' // example of including an additional Sass partial to set / redefine additional default values, globally.
     ],
-    'js': [
+    js: [
       // './src/global-data.js', // example of including a JS files with a default export to globally include extra data to all Bolt JS components
-    ]
+    ],
   },
 
   components: {
     global: [
-      '@bolt/core',
       '@bolt/global',
       '@bolt/internal-schema-form',
       '@bolt/components-placeholder',
@@ -91,7 +95,6 @@ module.exports = {
       '@bolt/components-form',
       '@bolt/components-headline',
       '@bolt/components-icon',
-      '@bolt/components-icons',
       '@bolt/components-image',
       '@bolt/components-link',
       '@bolt/components-nav-indicator',
@@ -104,6 +107,7 @@ module.exports = {
       '@bolt/components-page-header',
       '@bolt/components-pagination',
       '@bolt/components-share',
+      '@bolt/components-search-filter',
       '@bolt/components-site',
       '@bolt/components-smooth-scroll',
       '@bolt/components-sticky',
@@ -112,7 +116,6 @@ module.exports = {
       '@bolt/components-tooltip',
       '@bolt/components-unordered-list',
       '@bolt/components-video',
-
       /**
        * note: resolving these paths isn't typically required when
        * the .boltrc config is run through the bolt CLI tool (ie.
@@ -133,7 +136,14 @@ module.exports = {
       //   scss: ./src/index.scss',
       //   js: './src/index.js',
       // },
-      '@bolt/components-critical-fonts',
     ],
-      },
+  },
 };
+
+if (argv.prod) {
+  config.components.individual.push('@bolt/components-critical-fonts');
+} else {
+  config.components.global.push('@bolt/components-critical-fonts');
+}
+
+module.exports = config;

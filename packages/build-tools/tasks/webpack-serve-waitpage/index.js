@@ -3,6 +3,7 @@ const path = require('path');
 const ejs = require('ejs');
 const webpack = require('webpack');
 const webpackServe = require('webpack-serve/package.json');
+const { getConfig } = require('../../utils/config-store');
 
 const data = {
   webpackVersion: webpack.version,
@@ -54,18 +55,23 @@ const webpackServeWaitpage = (wsOptions, options) => {
   return async (ctx, next) => {
     const valid = data.progress.every(p => p[0] === 1);
     wasValid = wasValid || valid;
+
     if (
       valid || // already valid
       (options.disableWhenValid && wasValid) || // if after valid state should be disabled
       ctx.method !== 'GET' || // request is not a browser GET
       ctx.body != null ||
       ctx.status !== 404
-    )
-      // response was already handled
-      return await next();
+    ) {
+      // redirect if redirectPath is set + a special header isn't set so we can avoid infinite redirects
+      if (!ctx.request.header[options.proxyHeader] && options.redirectPath) {
+        ctx.redirect(options.redirectPath);
+      } else {
+        return await next();
+      }
+    }
     ctx.type = 'html';
     ctx.body = ejs.render(template, data);
-    // await next();
   };
 };
 

@@ -38,8 +38,8 @@
     "Xpredeploy": "yarn run build",
     "deploy": "./scripts/deploy.js",
     "clean:git": "git clean -xdf && rm -rf apps/**/vendor apps/**/node_modules && find . -empty -type d -delete",
-    "clean:lerna": "lerna clean -Y",
-    "clean": "npm-run-all --parallel clean:*",
+    "clean:lerna": "npx lerna clean --yes",
+    "clean": "npm run clean:lerna && npm run clean:git",
     "prepublishOnly": "yarn run build && node scripts/monorepo-tests.js",
     "snyk-protect": "snyk protect",
     "Xlint:editorconfig": "editorconfig-checker --exclude-pattern './www/**/*' --exclude-pattern './**/sandbox/**/*' --exclude-pattern './**/vendor/*' --exclude-pattern './apps/drupal-lab/**' ",
@@ -56,7 +56,8 @@
     "test:js:watch": "jest --watch",
     "test:php": "cd packages/core-php && composer run test",
     "test": "npm-run-all --parallel test:*",
-    "watch:icons": "lerna exec --scope @bolt/components-icons -- yarn run watch"
+    "watch:icons": "lerna exec --scope @bolt/components-icons -- yarn run watch",
+    "sassdoc:build": "sassdoc ./packages/core/styles/ -p > www/pattern-lab/build/data/sassdoc.bolt.json"
   },
   "config": {
     "validate-commit-msg": {
@@ -127,6 +128,7 @@
       "packages/components/bolt-page-header",
       "packages/components/bolt-pagination",
       "packages/components/bolt-placeholder",
+      "packages/components/bolt-search-filter",
       "packages/components/bolt-share",
       "packages/components/bolt-site",
       "packages/components/bolt-smooth-scroll",
