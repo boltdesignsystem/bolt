@@ -1,8 +1,37 @@
-{% set content %}
+{% include "@bolt-components-navbar/navbar.twig" with {
+  theme: "xdark",
+  title: {
+    tag: "h2",
+    text: "Bolt Design System",
+  },
+  links: [
+    {
+      text: "Components",
+      url: "#"
+    },
+    {
+      text: "Documentation",
+      url: "#"
+    },
+    {
+      text: "Github",
+      url: "#"
+    }
+  ]
+} only %}
+
+{% block main_content %}
+
+  {# hero band #}
   {% embed "@bolt/band.twig" with {
-    size: "none",
+    size: "large",
     theme: "xdark",
     fullBleed: true,
+    attributes: {
+      class: [
+        "u-bolt-height-screen"
+      ]
+    },
     background: {
       opacity: "medium",
       fill: "color",
@@ -20,25 +49,33 @@
     }
   } only %}
     {% block band_content  %}
-      {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--middle u-bolt-height-screen" %}
-        {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium u-bolt-text-align-center' %}
+      {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--center o-bolt-grid--matrix" %}
+        {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}
+          {% set classes = create_attribute(imageAttributes | default({})).addClass([
+            "c-bolt-image__img",
+            "u-bolt-width-1/1",
+          ]) %}
+
           <div class="u-bolt-margin-bottom-medium">
             {% include '@bolt-components-image/image.twig' with {
               src: "/pattern-lab/images/content/backgrounds/bolt-logo-lockup-dark.png",
               alt: "Bolt Design System logo",
             } only %}
           </div>
+
           {% include "@bolt/eyebrow.twig" with {
             text: bolt.data.fullManifest.version,
             align: "center",
           } only %}
+
           {% include "@bolt/subheadline.twig" with {
-            text: "Bolt provides a system of reusable and consistent UI components, visual styles, tools, guidelines, and services that power Pega’s digital ecosystem; saving time while keeping projects on-brand, and in scope.",
+            text: "The Bolt provides a system of reusable and consistent UI components, visual styles, tools, guidelines, and services that power Pega’s digital ecosystem; saving time while keeping projects on-brand, and in scope.",
             size: "xlarge",
             tag: "h2",
             align: "center",
           } only %}
-          <div class="u-bolt-margin-bottom-large">
+
+          <div class="u-bolt-text-align-center u-bolt-margin-bottom-large">
             {% include "@bolt-components-button-group/button-group.twig" with {
               buttons: [
                 {
@@ -60,21 +97,21 @@
               align: "center",
             } only %}
           </div>
-          {% include "@bolt-components-link/link.twig" with {
-            text: "Download Sketch Assets",
-            url: "#!",
-            icon: {
-              name: "download",
-              position: "before"
-            },
-          } only %}
+
+          <div class="u-bolt-text-align-center">
+            {% include "@bolt-components-link/link.twig" with {
+              text: "Download Sketch Assets",
+              url: "#!",
+              icon: {
+                name: "download",
+                position: "before"
+              },
+            } only %}
+          </div>
         {% endcell %}
       {% endgrid %}
     {% endblock %}
   {% endembed %}
-{% endset %}
 
-
-{% include "template-index.twig" with {
-  content: content
-} only %}
+{% endblock %}
+{# End hero band #}
