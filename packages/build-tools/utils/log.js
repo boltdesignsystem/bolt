@@ -77,12 +77,14 @@ function errorAndExit(msg, logMe) {
  * @param {string} task
  */
 function taskStart(task) {
-  console.log(chalk.blue(`
+  console.log(
+    chalk.blue(`
 ===
 Task Started: ${task}
 VVV
   
-  `));
+  `),
+  );
 }
 
 /**
@@ -90,11 +92,13 @@ VVV
  * @param {string} task
  */
 function taskDone(task) {
-  console.log(chalk.green(`
+  console.log(
+    chalk.green(`
 
 ^^^
 Task Done: ${task}
-===`));
+===`),
+  );
 }
 
 /**
@@ -107,8 +111,8 @@ function intro() {
 
   const CLI_TITLE = chalk.bold.underline('Bolt-CLI');
   const CLI_DESCRIPTION = 'Welcome to the Bolt CLI ⚡️  Have fun!';
-  const CLI_USAGE = 'Usage: \`bolt <command> [options ...]\`';
-  const HELP_USAGE = 'Help: \`bolt --help\` or \`bolt <command> --help\`';
+  const CLI_USAGE = 'Usage: `bolt <command> [options ...]`';
+  const HELP_USAGE = 'Help: `bolt --help` or `bolt <command> --help`';
 
   // const HELP_HEADER_BACKUP = `
   //     /˜˜˜˜˜˜˜˜˜˜˜˜\

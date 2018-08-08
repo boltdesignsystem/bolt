@@ -2,8 +2,7 @@
 export function findParentTag(el, tag) {
   while (el.parentNode) {
     el = el.parentNode;
-    if (el.tagName === tag)
-      return el;
+    if (el.tagName === tag) return el;
   }
   return null;
 }

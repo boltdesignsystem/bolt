@@ -19,8 +19,7 @@ export const scrollOptions = {
     var offsetElement = toggle.closest('[offset]');
     if (offsetElement) {
       return offsetElement.getAttribute('offset');
-    }
-    else {
+    } else {
       return 0;
     }
   },
@@ -33,13 +32,11 @@ export const scrollOptions = {
   emitEvents: true, // Emit custom events
 };
 
-
-export function getScrollTarget(elem){
+export function getScrollTarget(elem) {
   let scrollElemHref = elem.getAttribute('href');
   scrollElemHref = scrollElemHref.replace('#', '');
   return document.getElementById(scrollElemHref);
 }
-
 
 // Find all possible hash links on the page that COULD be smooth scrollable
 // note: because you can't use regex in querySelectors, we instead find all hash-links
@@ -49,7 +46,9 @@ const customScrollElems = document.querySelectorAll('a[href^="#"]');
 const customScrollElemsArray = Array.from(customScrollElems);
 
 // go through our array of results and filter out only the ones that are valid selectors. // in this case, valid selectors = valid HTML5 id names which omits hash bang links, etc.
-let filteredCustomScrollElems = customScrollElemsArray.filter(element => isValidSelector(element.getAttribute('href')));
+let filteredCustomScrollElems = customScrollElemsArray.filter(element =>
+  isValidSelector(element.getAttribute('href')),
+);
 
 for (var i = 0, len = filteredCustomScrollElems.length; i < len; i++) {
   const scrollElem = filteredCustomScrollElems[i];
@@ -58,13 +57,13 @@ for (var i = 0, len = filteredCustomScrollElems.length; i < len; i++) {
   const matchedScrollTarget = document.querySelectorAll(customScrollElemTarget);
 
   // only smooth scroll if hashed href matches with id on the page.
-  if (matchedScrollTarget.length !== 0){
+  if (matchedScrollTarget.length !== 0) {
     const scrollTarget = getScrollTarget(scrollElem);
 
     if (scrollTarget) {
-      scrollElem.addEventListener('click', function(event){
+      scrollElem.addEventListener('click', function(event) {
         smoothScroll.animateScroll(scrollTarget, scrollElem, scrollOptions);
       });
     }
   }
-};
+}

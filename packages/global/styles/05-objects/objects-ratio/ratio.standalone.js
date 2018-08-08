@@ -8,16 +8,14 @@ import {
   supportsCSSVars,
 } from '@bolt/core';
 
-
 import styles from './ratio.scss';
 
 export function BoltRatio() {
   return class BoltRatioClass extends BoltComponent() {
-
     static props = {
       aspectRatioHeight: props.number,
       aspectRatioWidth: props.number,
-    }
+    };
 
     constructor(self) {
       self = super(self);
@@ -32,11 +30,15 @@ export function BoltRatio() {
      * @param {Number} aspW - the width component of the ratio
      */
     _computeRatio() {
-      const height = this.props.aspectRatioHeight && this.props.aspectRatioHeight > 0 ?
-        this.props.aspectRatioHeight : 1;
+      const height =
+        this.props.aspectRatioHeight && this.props.aspectRatioHeight > 0
+          ? this.props.aspectRatioHeight
+          : 1;
 
-      const width = this.props.aspectRatioWidth && this.props.aspectRatioWidth > 0 ?
-        this.props.aspectRatioWidth : 1;
+      const width =
+        this.props.aspectRatioWidth && this.props.aspectRatioWidth > 0
+          ? this.props.aspectRatioWidth
+          : 1;
 
       if (this.useCssVars) {
         this.style.setProperty('--aspect-ratio-height', height);
@@ -55,12 +57,10 @@ export function BoltRatio() {
 
     // Render out component via HyperHTML
     render() {
-      const classes = css(
-        `o-${bolt.namespace}-ratio__inner`,
-      );
+      const classes = css(`o-${bolt.namespace}-ratio__inner`);
 
       return this.html`
-        ${ this.addStyles([styles])}
+        ${this.addStyles([styles])}
         <div class="${classes}">
           ${this.slot('default')}
         </div>

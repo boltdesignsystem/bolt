@@ -14,10 +14,8 @@ module.exports = {
   ],
   rules: {
     'scale-unlimited/declaration-strict-value': [
-      [
-        '/color/',
-        'font-size',
-      ], {
+      ['/color/', 'font-size'],
+      {
         ignoreKeywords: ['currentColor', 'transparent', 'inherit'],
       },
     ],
@@ -45,16 +43,22 @@ module.exports = {
     ],
 
     'color-hex-case': 'lower',
-    'color-named': ['never', {
-      ignore: ['inside-function'],
-    }],
+    'color-named': [
+      'never',
+      {
+        ignore: ['inside-function'],
+      },
+    ],
     'color-no-invalid-hex': true,
     'color-no-hex': true,
     'selector-max-id': 0,
     'selector-class-pattern': '',
-    'selector-no-qualifying-type': [true, {
-      ignore: ['attribute'],
-    }],
+    'selector-no-qualifying-type': [
+      true,
+      {
+        ignore: ['attribute'],
+      },
+    ],
     'scss/selector-no-redundant-nesting-selector': true,
     'scss/at-extend-no-missing-placeholder': true,
     'scss/dollar-variable-no-missing-interpolation': true,
@@ -62,9 +66,11 @@ module.exports = {
     'selector-max-class': 2,
     'plugin/selector-bem-pattern': {
       preset: 'bem',
-      componentName: '(((o-|c-|u-|t-|s-|is-|has-|no-|_|js-|qa-)(bolt-)[a-z0-9]+(?!-$)-?)+)',
+      componentName:
+        '(((o-|c-|u-|t-|s-|is-|has-|no-|_|js-|qa-)(bolt-)[a-z0-9]+(?!-$)-?)+)',
       componentSelectors: {
-        initial: "\\.{componentName}(((__|--)(([a-z0-9\\[\\]'=]+(?!-$)-?)+))+)?$",
+        initial:
+          "\\.{componentName}(((__|--)(([a-z0-9\\[\\]'=]+(?!-$)-?)+))+)?$",
       },
       // componentSelectors: '^\\.ns-{componentName}(?:-[a-zA-Z]+)?$'
       // ignoreSelectors: [
@@ -73,9 +79,12 @@ module.exports = {
       //   '.*\\.lt-ie.*'
       // ]
     },
-    'scss/dollar-variable-pattern': ['^(bolt-|_bolt-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$', {
-      ignore: ['local'],
-    }],
+    'scss/dollar-variable-pattern': [
+      '^(bolt-|_bolt-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$',
+      {
+        ignore: ['local'],
+      },
+    ],
     'scss/percent-placeholder-pattern': '^(bolt-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$',
     'scss/at-function-pattern': '^(bolt-|_bolt-)[a-z0-9\\-]+$',
     'scss/at-mixin-pattern': '^(bolt-|_bolt-)[a-z0-9\\-]+$',
@@ -85,17 +94,22 @@ module.exports = {
     //   "filter": "^\\."
     // }],
 
-
-    'at-rule-empty-line-before': ['always', {
-      ignore: ['after-comment', 'blockless-after-blockless', 'inside-block'],
-    }],
+    'at-rule-empty-line-before': [
+      'always',
+      {
+        ignore: ['after-comment', 'blockless-after-blockless', 'inside-block'],
+      },
+    ],
     'no-duplicate-selectors': true,
     'at-rule-name-case': 'lower',
     'at-rule-name-space-after': 'always-single-line',
     'at-rule-semicolon-newline-after': 'always',
-    'block-closing-brace-newline-after': ['always', {
-      ignoreAtRules: ['if', 'else', 'elseif'],
-    }],
+    'block-closing-brace-newline-after': [
+      'always',
+      {
+        ignoreAtRules: ['if', 'else', 'elseif'],
+      },
+    ],
     'block-closing-brace-newline-before': 'always-multi-line',
     'block-closing-brace-space-before': 'always-single-line',
     'block-no-empty': true,
@@ -105,10 +119,13 @@ module.exports = {
     'color-hex-case': 'lower',
     'color-hex-length': 'short',
     'color-no-invalid-hex': true,
-    'comment-empty-line-before': ['always', {
-      except: ['first-nested'],
-      ignore: ['stylelint-commands'],
-    }],
+    'comment-empty-line-before': [
+      'always',
+      {
+        except: ['first-nested'],
+        ignore: ['stylelint-commands'],
+      },
+    ],
     'comment-whitespace-inside': 'always',
     'declaration-bang-space-after': 'never',
     'declaration-bang-space-before': 'always',
@@ -142,7 +159,6 @@ module.exports = {
       'margin',
       'padding',
 
-
       'text-align',
       'color',
       'cursor',
@@ -172,21 +188,22 @@ module.exports = {
     'function-parentheses-space-inside': 'never-single-line',
     'function-url-quotes': 'always',
     'function-whitespace-after': 'always',
-    indentation: [2, {
-      ignore: ['inside-parens', 'param', 'value'],
-    }],
+    indentation: [
+      2,
+      {
+        ignore: ['inside-parens', 'param', 'value'],
+      },
+    ],
     'keyframe-declaration-no-important': true,
     'length-zero-no-unit': true,
     'max-empty-lines': 4,
-    'max-nesting-depth': [1, {
-      ignore: ['blockless-at-rules'],
-      ignoreAtRules: [
-        'media',
-        'function',
-        'if',
-        'for',
-      ],
-    }],
+    'max-nesting-depth': [
+      1,
+      {
+        ignore: ['blockless-at-rules'],
+        ignoreAtRules: ['media', 'function', 'if', 'for'],
+      },
+    ],
     'media-feature-colon-space-after': 'always',
     'media-feature-colon-space-before': 'never',
     'media-feature-parentheses-space-inside': 'never',
@@ -204,23 +221,32 @@ module.exports = {
     'number-leading-zero': 'always',
     'number-no-trailing-zeros': true,
     'property-case': 'lower',
-    'property-no-vendor-prefix': [true, {
-      ignoreProperties: [
-        'grid-rows',
-        'grid-columns',
-        'grid-column',
-        'grid-column-span',
-        'grid-row',
-        'grid-row-span',
-      ],
-    }],
-    'value-no-vendor-prefix': [true, {
-      ignoreValues: ['grid'],
-    }],
-    'rule-empty-line-before': ['always-multi-line', {
-      except: ['first-nested'],
-      ignore: ['after-comment'],
-    }],
+    'property-no-vendor-prefix': [
+      true,
+      {
+        ignoreProperties: [
+          'grid-rows',
+          'grid-columns',
+          'grid-column',
+          'grid-column-span',
+          'grid-row',
+          'grid-row-span',
+        ],
+      },
+    ],
+    'value-no-vendor-prefix': [
+      true,
+      {
+        ignoreValues: ['grid'],
+      },
+    ],
+    'rule-empty-line-before': [
+      'always-multi-line',
+      {
+        except: ['first-nested'],
+        ignore: ['after-comment'],
+      },
+    ],
     'selector-attribute-brackets-space-inside': 'never',
     'selector-attribute-operator-space-after': 'never',
     'selector-attribute-operator-space-before': 'never',
@@ -236,9 +262,11 @@ module.exports = {
     'selector-pseudo-element-colon-notation': 'single',
     'selector-pseudo-element-no-unknown': true,
     'selector-type-case': 'lower',
-    'selector-type-no-unknown': [true, {
-      ignore: ['custom-elements'],
-    },
+    'selector-type-no-unknown': [
+      true,
+      {
+        ignore: ['custom-elements'],
+      },
     ],
     'shorthand-property-no-redundant-values': true,
     'string-no-newline': null,

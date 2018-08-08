@@ -54,14 +54,8 @@ $bolt-blockquote-image-border-color: rgba(bolt-color(gray), 0.2);
 $bolt-blockquote-image-size: 4rem;
 
 
-// Custom element default styles
-bolt-blockquote {
-  display: block;
-
-  &:not(:last-child) {
-    @include bolt-margin-bottom(medium);
-  }
-}
+// Register Custom Block Element
+@include bolt-custom-element('bolt-blockquote', block, medium);
 
 
 // Blockquote container

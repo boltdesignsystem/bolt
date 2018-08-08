@@ -13,10 +13,13 @@
       title: Namespace prefix to use in classnames
       default: 'bolt'
     lang:
-      type: array
+      type: array, string
       title: Array of language-specific builds to generate. The 1st langugage specified is the default used for local development.
       default:
         - en
+    i18n:
+      type: boolean
+      description: Should the design system's assets be compiled for multiple languages? Automatically defaults to false for local dev, true for prod.
     port:
       type: number
       title: Desired port for Browsersync server
@@ -25,6 +28,10 @@
       type: number
       title: Desired port for Webpack Proxy
       default: 8080
+    proxyHeader:
+      type: string
+      description: Special request header when proxying Webpack's dev server
+      default: 'browsersync-proxy'
     templatesDir:
       type: array
       title: Template paths being added
@@ -79,7 +86,7 @@
       type: string
       title: Local server start path
       description: This is the `path/to/file.html` in `http://localhost:3000/path/to/file.html`
-      default: ''
+      default: '/'
     webpackDevServer:
       type: boolean
       default: false

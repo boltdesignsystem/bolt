@@ -9,15 +9,14 @@ import {
 import { hyper, bind } from 'hyperhtml/cjs';
 import { hasNativeShadowDomSupport } from '../utils/environment';
 import { findParentTag } from '../utils/find-parent-tag';
-import { BoltBase } from './bolt-base'
+import { BoltBase } from './bolt-base';
 
 export function BoltComponent(Base = HTMLElement) {
   return class extends withComponent(BoltBase(Base)) {
-
     static props = {
       onClick: props.string,
       onClickTarget: props.string,
-    }
+    };
 
     constructor(...args) {
       super(...args);
@@ -26,10 +25,10 @@ export function BoltComponent(Base = HTMLElement) {
       this.hyper = hyper;
     }
 
-    renderStyles(styles){
-      if (styles){
+    renderStyles(styles) {
+      if (styles) {
         return hyper.wire()`
-          <style>${ styles }</style>
+          <style>${styles}</style>
         `;
       }
     }
@@ -50,7 +49,7 @@ export function BoltComponent(Base = HTMLElement) {
           return hyper.wire(this)`
              ${this.slots.default}
           `;
-        } else if (this.slots[name]){
+        } else if (this.slots[name]) {
           return hyper.wire(this)`
              ${this.slots[name]}
           `;
@@ -64,5 +63,5 @@ export function BoltComponent(Base = HTMLElement) {
       this.html = this.html || bind(root);
       render();
     }
-  }
-};
+  };
+}

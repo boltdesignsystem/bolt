@@ -37,6 +37,35 @@ class Utils {
     return $absolutePath;
   }
 
+
+  // Try to resolve an optionally-needed Twig path -- good for lazy and async work (esp local dev work);
+   /**
+   * @param {Twig_Environment} $env
+   * @param {string} $templateName
+   * @return {string} $full_path - Full path to where the Twig file resides
+   */
+  public static function optionallyResolveTwigPath(\Twig_Environment $env, $templateName) {
+    /**
+     * @var \Twig_Template $template
+     * @url https://twig.symfony.com/api/1.x/Twig_Template.html
+     * */
+    $template = $env->resolveTemplate($templateName);
+
+    /**
+     * @var \Twig_Source $source
+     * @url https://twig.symfony.com/api/1.x/Twig_Source.html
+     */
+    $source = $template->getSourceContext();
+
+    /** @var string $full_path */
+    $full_path = $source->getPath();
+
+    if (!file_exists($full_path)) {
+      return false;
+    }
+    return $full_path;
+  }
+
   /**
    * @param \Twig_Environment $env
    * @return mixed

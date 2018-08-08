@@ -5,7 +5,9 @@ export function rgb2hex(rgb) {
     return rgb;
   }
 
-  const rgbValue = rgb.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+))?\)$/);
+  const rgbValue = rgb.match(
+    /^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+))?\)$/,
+  );
 
   function hex(x) {
     return (0 + parseInt(x, 10).toString(16)).slice(-2);

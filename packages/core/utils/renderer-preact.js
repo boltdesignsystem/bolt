@@ -39,6 +39,5 @@ export function withPreact(Base = HTMLElement) {
     //   this.renderer(this.renderRoot, () => this.render && this.render(this));
     //   this.rendered && this.rendered();
     // }
-
   };
-};
+}

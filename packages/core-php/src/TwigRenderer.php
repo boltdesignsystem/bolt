@@ -1,6 +1,11 @@
 <?php
 
 namespace Bolt;
+use Webmozart\PathUtil\Path;
+use RecursiveIteratorIterator;
+use RecursiveDirectoryIterator;
+use Symfony\Component\Finder\Finder;
+
 // Twig docs for this: https://twig.symfony.com/doc/1.x/api.html
 
 class TwigRenderer {
@@ -8,6 +13,11 @@ class TwigRenderer {
    * @var $twig \Twig_Environment
    */
   private $twig;
+  private $twigLoaders;
+  private $loaders;
+  private $twigExtensions;
+
+  private $relativePathRoot;
 
   /**
    * TwigRenderer constructor.
@@ -21,9 +31,25 @@ class TwigRenderer {
     $twigLoaderConfig = \BasaltInc\TwigTools\Namespaces::buildLoaderConfig($twigNamespaceConfig, $relativePathRoot);
     $boltTwigLoader = \BasaltInc\TwigTools\Namespaces::addPathsToLoader($twigLoaderConfig);
 
+
+    $this->relativePathRoot = $relativePathRoot;
+
+    $buildLoaderPaths = $this->buildLoaderPaths($twigNamespaceConfig, $relativePathRoot);
+
     $twigLoaders = [
-        $boltTwigLoader,
+      $boltTwigLoader,
     ];
+
+
+    $twigLoaders = [
+      $boltTwigLoader,
+    ];
+
+    // Recursively add known Twig directories so none-namespaced Twig references like `./my-template.twig` still work!
+    foreach ($buildLoaderPaths as $path) {
+      $loader = new \Twig_Loader_Filesystem(dirname(Path::makeAbsolute($path, $this->relativePathRoot)));
+      $twigLoaders[] = $loader;
+    }
 
     if ($extraTwigLoaders) {
       $twigLoaders = array_merge($twigLoaders, $extraTwigLoaders);
@@ -37,20 +63,42 @@ class TwigRenderer {
       'autoescape' => false,
     ]);
 
-    $twigExtensions = [
+    $this->twigExtensions = [
       // '\PatternLab\DrupalTwigExtensions\Basic',
       '\Bolt\TwigExtensions\BoltCore',
       '\Bolt\TwigExtensions\BoltExtras',
     ];
 
     if ($extraTwigExtensions) {
-      $twigExtensions = array_merge($twigExtensions, $extraTwigExtensions);
+      $twigExtensions = array_merge($this->twigExtensions, $extraTwigExtensions);
     }
 
     // Add all our Twig Extensions for our custom functions, filters, etc
-    foreach ($twigExtensions as $twigExtension) {
+    foreach ($this->twigExtensions as $twigExtension) {
       $this->twig->addExtension(new $twigExtension());
     }
+  }
+
+  public static function buildLoaderPaths($config, $pathRoot) {
+    $paths = [];
+    foreach ($config as $item => $settings) {
+      foreach ($settings['paths'] as $path) {
+        $fullPath = Path::join($pathRoot, $path);
+
+        if (isset($settings['recursive']) && $settings['recursive']) {
+          $finder = new Finder();
+          $finder->files()->in($fullPath)->name('*.twig');
+
+          foreach ($finder as $file) {
+
+            $paths[] = $file->getRealPath();
+          }
+        } else {
+          $paths[] = $fullPath;
+        }
+      }
+    }
+    return $paths;
   }
 
   /**
@@ -59,16 +107,26 @@ class TwigRenderer {
    * @param array $data - Optional data to get passed to template
    * @return string $html - Renedered HTML string
    */
-  public function render($templatePath, $data = []) {
-    // WIP: verify if the Twig file exists or if the template is being inlined as part of the request
-    // $template = '';
-    // if (!file_exists($templatePath)){
-    //   $template = $this->twig->createTemplate($templatePath);
-    // } else {
-    //   $template = $this->twig->load($templatePath);
-    // }
+  public function render($path, $data = []) {
+    $template = '';
 
-    $template = $this->twig->load($templatePath);
+    if (strpos($path, '@') !== false) {
+      // Namespace path
+      $template = $this->twig->load($path);
+
+    } else if (preg_match("/({{|{%)/i", $path)){
+      // Inlined template
+      $template = $this->twig->createTemplate($path);
+
+    } else {
+      // Everything else (ie local file path)
+      $templatePath = Path::makeAbsolute($path, $this->relativePathRoot);
+
+      $newTemplate = file_get_contents($templatePath);
+
+      $template = $this->twig->createTemplate($newTemplate);
+    }
+
     $html = $template->render($data);
     return $html;
   }

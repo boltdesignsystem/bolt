@@ -7,11 +7,13 @@
   "main": "bolt.js",
   "scripts": {
     "build": "bolt build",
+    "build:lang": "bolt build --i18n",
     "build:noisy": "bolt build --verbosity 5",
     "build:prod": "bolt build --prod",
     "serve": "bolt serve",
     "watch": "bolt watch",
     "start": "bolt start",
+    "start:lang": "bolt start --i18n",
     "start:prod": "bolt start --prod",
     "setup": "cd ../../ && npm run setup"
   },
@@ -49,6 +51,7 @@
     "@bolt/components-navlink": "^1.6.4",
     "@bolt/components-ordered-list": "^1.6.4",
     "@bolt/components-page-footer": "file:../../packages/components/bolt-page-footer",
+    "@bolt/components-search-filter": "^0.0.0",
     "@bolt/components-page-header": "^1.6.4",
     "@bolt/components-pagination": "^1.6.4",
     "@bolt/components-placeholder": "^1.6.4",
