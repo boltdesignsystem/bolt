@@ -4,12 +4,9 @@
   {{ validate_data_schema(bolt.data.components["@bolt-components-share"].schema, _self) | raw }}
 {% endif %}
 
-
-
-
 {% set visible = visibility is sameas(false) ? false : (visibility is null ? true : visibility) %}
 {% set isFlat = inline is sameas(false) ? false : (inline is null ? false : inline) %}
-{# Default text can"t be pulled from the schema because it must be translatable. #}
+{# Default text can't be pulled from the schema because it must be translatable. #}
 {% set text = text | default("Share this page"|t) %}
 
 {% set items = [] %}
@@ -104,4 +101,3 @@
     {% endif %}
   </div>
 </bolt-share>
-
