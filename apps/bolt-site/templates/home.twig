@@ -20,7 +20,7 @@
     }
   } only %}
     {% block band_content  %}
-      {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--middle u-bolt-height-screen" %}
+      {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--middle u-bolt-min-height-screen u-bolt-padding-medium" %}
         {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium u-bolt-text-align-center' %}
           <div class="u-bolt-margin-bottom-medium">
             {% include '@bolt-components-image/image.twig' with {
@@ -30,13 +30,11 @@
           </div>
           {% include "@bolt/eyebrow.twig" with {
             text: bolt.data.fullManifest.version,
-            align: "center",
           } only %}
           {% include "@bolt/subheadline.twig" with {
             text: "Bolt provides a system of reusable and consistent UI components, visual styles, tools, guidelines, and services that power Pega’s digital ecosystem; saving time while keeping projects on-brand, and in scope.",
             size: "xlarge",
             tag: "h2",
-            align: "center",
           } only %}
           <div class="u-bolt-margin-bottom-large">
             {% include "@bolt-components-button-group/button-group.twig" with {
@@ -57,20 +55,25 @@
                   icon: {
                     name: "external-link",
                     position: "after"
+                  },
+                  attributes: {
+                    target: "_blank"
                   }
                 }
               ],
               full: true,
-              align: "center",
             } only %}
           </div>
           {% include "@bolt-components-link/link.twig" with {
             text: "Download Sketch Assets",
-            url: "#!",
+            url: "/docs/assets/bolt-sketch.zip",
             icon: {
               name: "download",
               position: "before"
             },
+            attributes: {
+              download: true
+            }
           } only %}
         {% endcell %}
       {% endgrid %}
