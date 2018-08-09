@@ -43,10 +43,8 @@
     {% include "@bolt-components-share/src/_share-meta-example.twig" %}
 
     <!-- async load PL's CSS -->
-    <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.rel='stylesheet'">
     <link rel="preload" as="style" href="{{ assets["bolt-global.css"] | default("/build/bolt-global.css") }}" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript>
-      <link href="/pattern-lab/styleguide/css/pattern-lab.css" rel="stylesheet">
       <link rel="stylesheet" href="{{ assets["bolt-global.css"] | default("/build/bolt-global.css") }}" />
     </noscript>
 
