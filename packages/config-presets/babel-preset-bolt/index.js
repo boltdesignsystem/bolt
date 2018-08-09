@@ -8,7 +8,7 @@ const preset = function(api, opts = {}) {
             browsers: ['>0.25%', 'ie 11', 'not op_mini all'], // https://jamie.build/last-2-versions
           },
           modules: false,
-          debug: true,
+          debug: false,
         },
       ],
     ],
