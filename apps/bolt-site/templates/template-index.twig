@@ -1,23 +1,23 @@
 {# Global Twig vars #}
-  {% set urlChunks = page.url | split('/') %}
-  {% set currentSection = urlChunks | length >= 1 ? urlChunks|first : '' %}
-  {% set currentUrl = page.url %}
-
-  {% if page.url starts with currentSection %}
-    {% set nestedPages = [] %}
-    {% for page in site.nestedPages if page.url starts with currentSection %}
-      {% set nestedPages = page.children %}
-    {% endfor %}
-  {% endif %}
-  {% set hasSidebar = nestedPages or sidebar %}
-{# End Global Twig vars #}
-
 {% set manifestConfigFile = "@bolt-assets/bolt-webpack-manifest#{bolt.data.config.lang ? "-" ~ bolt.data.config.lang[0] : ""}.json" %}
 {% if fileExists(manifestConfigFile) %}
   {% set assets = get_data(manifestConfigFile) %}
 {% else %}
   {% set assets = [] %}
 {% endif %}
+
+{% set urlChunks = page.url | split('/') %}
+{% set currentSection = urlChunks | length >= 1 ? urlChunks|first : '' %}
+{% set currentUrl = page.url %}
+
+{% if page.url starts with currentSection %}
+  {% set nestedPages = [] %}
+  {% for page in site.nestedPages if page.url starts with currentSection %}
+    {% set nestedPages = page.children %}
+  {% endfor %}
+{% endif %}
+{% set hasSidebar = nestedPages or sidebar %}
+{# End Global Twig vars #}
 
 
 <!DOCTYPE html>
@@ -42,12 +42,8 @@
     <!-- Default OG Tag examples (related to Bolt Share Component) -->
     {% include "@bolt-components-share/src/_share-meta-example.twig" %}
 
-    <!-- async load PL's CSS -->
-    <link rel="preload" as="style" href="{{ assets["bolt-global.css"] | default("/build/bolt-global.css") }}" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript>
-      <link rel="stylesheet" href="{{ assets["bolt-global.css"] | default("/build/bolt-global.css") }}" />
-    </noscript>
-
+    <!-- temporarily disabling lazy loading the main Bolt Docs site CSS (at least on new redesigned homepage) -- need to get Critical CSS wired up so inline CSS for the new designs is always up to date -->
+    <link rel="stylesheet" href="{{ assets["bolt-global.css"] | default("/build/bolt-global.css") }}" />
 
     {# @TODO: wire this up to use Critical CSS #}
     {% if bolt.data.config.prod %}
@@ -146,8 +142,6 @@
     {% endembed %}
 
     {{ content }}
-
-    <script src="/build/bolt-global.js" async></script>
 
     {# Shows Twig Vars in Browser Console #}
     {% if not bolt.data.config.prod %}
