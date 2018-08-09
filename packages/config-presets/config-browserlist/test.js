@@ -1,13 +1,12 @@
-/* eslint-disable no-console */
-
-const assert = require('assert');
 const browserslist = require('browserslist');
 const config = require('./index');
 
-const browsers = browserslist(config);
-assert(browsers.length > 0, 'Successfully resolves a list of browsers');
+describe('Test the Bolt Browserslist Config', () => {
+  test('Config successfully resolves a list of browsers', async () => {
+    const browsers = browserslist(config);
+    expect(browsers.length).toBeGreaterThan(0);
 
-console.log('Bolt is currently supporting the following browsers:');
-console.log(browsers.join('\n'));
-
-/* eslint-enable no-console */
+    console.log('Bolt is currently supporting the following browsers:');
+    console.log(browsers.join('\n'));
+  });
+});
