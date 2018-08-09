@@ -29,7 +29,17 @@ for (let i = 0, len = inputs.length; i < len; i++) {
     }
   };
 
-  input.onblur = function() {
+  input.onblur = function(e) {
+    if (!e.isTrusted) {
+      // This blur event was triggered by a script, not a human, so don't mark
+      // the input as is-touched (because it actually wasn't) or show errors.
+
+      // Note that Mozilla claims that isTrusted shouldn't work in IE, but
+      // based on testing, it does.
+      // https://developer.mozilla.org/en-US/docs/Web/API/Event/isTrusted
+      return;
+    }
+
     input.classList.add('is-touched');
 
     if (input.validationMessage) {
