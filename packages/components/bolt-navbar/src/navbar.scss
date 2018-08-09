@@ -21,7 +21,16 @@ bolt-navbar {
 
   display: block;
   overflow: visible;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  @include bolt-shadow('level-10');
+
+  // If the navbar is in a darker theme or has a darker theme applied, bump the shadow level up a bit to ensure things are still visible.
+  // @todo: add this to the theme level when theming is refactored.
+  &.t-bolt-xdark,
+  &.t-bolt-dark,
+  .t-bolt-xdark &,
+  .t-bolt-dark & {
+    @include bolt-shadow('level-20');
+  }
 }
 
 .c-bolt-navbar {
