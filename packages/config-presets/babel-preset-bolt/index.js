@@ -5,7 +5,7 @@ const preset = function(api, opts = {}) {
         '@babel/preset-env',
         {
           targets: {
-            browsers: ['>0.25%', 'ie 11', 'not op_mini all'], // https://jamie.build/last-2-versions
+            browsers: require('@bolt/config-browserlist'),
           },
           modules: false,
           debug: false,
