@@ -12,7 +12,7 @@
   {% include "@bolt/headline.twig" with {
     size: "xlarge",
     tag: "h3",
-    url: "##{item.context.name}",
+    url: "##{item.context.type}-#{item.context.name}",
     text: name,
     icon: "none",
     attributes: {
@@ -20,7 +20,7 @@
         "u-bolt-margin-bottom-xsmall",
         "c-bolt-docs__heading-fragment"
       ],
-      id: "#{item.context.name}"
+      id: "#{item.context.type}-#{item.context.name}"
     }
   } only %}
 {% endmacro %}
@@ -151,7 +151,7 @@
       {% endif %}
     {% endfor %}
 
-    {# Everything is ready, render nav dropdown below  #}
+    {# Everything is ready, render nav dropdown below -- NOTE: currently not used #}
     {% for label,nav in navItems %}
 
       {% set children = [] %}
@@ -223,7 +223,7 @@
         {% set children = children|merge([
           include("@bolt-components-link/link.twig", {
             "text": text,
-            "url": "##{link.name}"
+            "url": "##{link.type}-#{link.name}"
           })
         ]) %}
       {% endfor %}
