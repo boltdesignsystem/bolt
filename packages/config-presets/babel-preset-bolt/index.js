@@ -5,11 +5,10 @@ const preset = function(api, opts = {}) {
         '@babel/preset-env',
         {
           targets: {
-            node: 'current',
-            browsers: ['last 3 versions', 'ie 11'],
+            browsers: ['>0.25%', 'ie 11', 'not op_mini all'], // https://jamie.build/last-2-versions
           },
           modules: false,
-          debug: false,
+          debug: true,
         },
       ],
     ],
@@ -24,7 +23,6 @@ const preset = function(api, opts = {}) {
         '@babel/plugin-transform-runtime',
         {
           helpers: false,
-          polyfill: false,
           regenerator: true,
         },
       ],
