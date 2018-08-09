@@ -12,6 +12,13 @@
   {% set hasSidebar = nestedPages or sidebar %}
 {# End Global Twig vars #}
 
+{% set manifestConfigFile = "@bolt-assets/bolt-webpack-manifest#{bolt.data.config.lang ? "-" ~ bolt.data.config.lang[0] : ""}.json" %}
+{% if fileExists(manifestConfigFile) %}
+  {% set assets = get_data(manifestConfigFile) %}
+{% else %}
+  {% set assets = [] %}
+{% endif %}
+
 
 <!DOCTYPE html>
 <html lang="en-US" class="{{ bolt.data.config.prod ? '' : 'js-fonts-loaded' }}">
@@ -37,10 +44,10 @@
 
     <!-- async load PL's CSS -->
     <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.rel='stylesheet'">
-    <link rel="stylesheet" href="{{ assets["bolt-global.css"] | default("/pattern-lab/build/bolt-global.css") }}" media="all" />
-
+    <link rel="preload" as="style" href="{{ assets["bolt-global.css"] | default("/build/bolt-global.css") }}" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript>
       <link href="/pattern-lab/styleguide/css/pattern-lab.css" rel="stylesheet">
+      <link rel="stylesheet" href="{{ assets["bolt-global.css"] | default("/build/bolt-global.css") }}" />
     </noscript>
 
 
@@ -156,5 +163,6 @@
         })();
       </script>#}
     {% endif %}
+    <script src="{{ assets["bolt-global.js"] | default("/build/bolt-global.js") }}" async></script>
   </body>
 </html>

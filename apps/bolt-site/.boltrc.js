@@ -66,4 +66,10 @@ module.exports = {
     ],
     individual: [],
   },
+  extraTwigNamespaces: {
+    'bolt-assets': {
+      recursive: true,
+      paths: ['../../www/build'],
+    },
+  },
 };
