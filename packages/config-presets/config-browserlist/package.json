@@ -2,12 +2,13 @@
   "name": "@bolt/config-browserlist",
   "description": "Browserlist config",
   "keywords": [
-    "browserlist",
-    "browserlistconfig",
+    "browserslist",
+    "browserslistconfig",
     "config",
     "bolt design system"
   ],
   "version": "1.1.2",
+  "main": "index.js",
   "author": "Salem Ghoweri",
   "homepage": "https://bolt-design-system.com",
   "license": "MIT",
@@ -15,5 +16,12 @@
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "browserslist": "^4.0.1",
+    "assert": "^1.4.1"
+  },
+  "scripts": {
+    "test": "node test"
   }
 }
