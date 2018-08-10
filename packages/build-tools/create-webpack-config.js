@@ -421,9 +421,6 @@ async function createWebpackConfig(buildConfig) {
           name: 'Bolt Manifest',
         },
       }),
-      new webpack.ProvidePlugin({
-        Promise: 'es6-promise',
-      }),
       new webpack.DefinePlugin(globalJsData),
 
       // Show build progress
