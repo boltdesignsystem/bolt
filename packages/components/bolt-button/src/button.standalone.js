@@ -22,7 +22,7 @@ import styles from './button.scss';
 let cx = classNames.bind(styles);
 
 @define
-class BoltButton extends BoltComponent() {
+export class BoltButton extends withHyperHtml() {
   static is = 'bolt-button';
 
   static props = {
@@ -46,11 +46,33 @@ class BoltButton extends BoltComponent() {
   constructor(self) {
     self = super(self);
     this.useShadow = hasNativeShadowDomSupport;
-    return self;
-  }
+    const root = this;
 
-  connecting() {
-    this.addEventListener('click', this.clickHandler);
+    // If the initial <bolt-button> element contains a button or link, break apart the original HTML so we can retain any button or a tags but swap out the inner content with slots.
+    this.childNodes.forEach((childElement, i) => {
+      if (childElement.tagName === 'BUTTON' || childElement.tagName === 'A') {
+        root.rootElement = document.createDocumentFragment();
+
+        // Take any existing buttons and links and move them to the root of the custom element
+        while (childElement.firstChild) {
+          root.appendChild(childElement.firstChild);
+        }
+
+        if (childElement.className) {
+          childElement.className = sanitizeBoltClasses(childElement);
+        }
+
+        root.rootElement.appendChild(childElement);
+      }
+    });
+
+    // When possible, use afterNextRender to defer non-critical
+    // work until after first paint.
+    afterNextRender(this, function() {
+      this.addEventListener('click', this.clickHandler);
+    });
+
+    return self;
   }
 
   disconnecting() {
