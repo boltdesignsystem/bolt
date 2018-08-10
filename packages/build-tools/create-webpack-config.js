@@ -272,17 +272,7 @@ async function createWebpackConfig(buildConfig) {
         plugins: () => [
           postcssDiscardDuplicates,
           autoprefixer({
-            // @todo: replace with standalone Bolt config
-            browsers: [
-              '> 1% in US',
-              'last 3 Android major versions',
-              'last 3 iOS major versions',
-              'last 3 Chrome major versions',
-              'last 3 Edge major versions',
-              'last 3 Firefox major versions',
-              'last 3 Safari major versions',
-              'IE 11',
-            ],
+            browsers: require('@bolt/config-browserlist'),
           }),
         ],
       },
@@ -431,9 +421,6 @@ async function createWebpackConfig(buildConfig) {
         seed: {
           name: 'Bolt Manifest',
         },
-      }),
-      new webpack.ProvidePlugin({
-        Promise: 'es6-promise',
       }),
       new webpack.DefinePlugin(globalJsData),
 
