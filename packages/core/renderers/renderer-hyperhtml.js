@@ -1,14 +1,7 @@
 // HyperHTML Renderer ported to SkateJS
-import {
-  withComponent,
-  withRenderer,
-  withUpdate,
-  shadow,
-  props,
-} from 'skatejs';
+import { name, withComponent, shadow, props } from 'skatejs';
 import { hyper, bind } from 'hyperhtml/cjs';
 import { hasNativeShadowDomSupport } from '../utils/environment';
-import { findParentTag } from '../utils/find-parent-tag';
 import { BoltBase } from './bolt-base';
 
 export function BoltComponent(Base = HTMLElement) {
