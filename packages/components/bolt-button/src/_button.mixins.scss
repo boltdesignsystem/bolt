@@ -2,8 +2,6 @@
 @mixin bolt-button-reset {
   @include bolt-padding(0);
   @include bolt-font-family(body);
-  border: none;
-  background: none;
 }
 
 @mixin bolt-button-raised() {
@@ -67,28 +65,6 @@
     opacity: 0.2;
   }
 }
-
-// Temporary styles applied to links and buttons nested inside of the <bolt-button> component, prior to JS kicking in
-@mixin bolt-button-root(){
-  height: 100%;
-  -webkit-appearance: none;
-  background-color: transparent;
-  border: 0;
-  padding: 0;
-  font-weight: inherit;
-  font-size: inherit;
-  font-family: inherit;
-  font: inherit;
-  line-height: inherit;
-  cursor: inherit;
-  color: inherit; // fix for black text browser default
-  display: inline-flex; // vertical alignment w/ icon only button
-  align-items: stretch; // valign inner content
-  flex-grow: 1;
-  justify-content: inherit;
-}
-
-
 
 /**
   * Button Colors / Types
@@ -235,6 +211,7 @@
 
 @mixin bolt-button-style--disabled() {
   cursor: not-allowed;
+  
   &,
   &:visited {
     color: bolt-color(gray);
@@ -246,12 +223,14 @@
     color: bolt-color(gray);
     border-color: bolt-color(gray, light);
     background-color: bolt-color(gray, light);
+    opacity: 1; // override default text-button styles
   }
 
   &:active {
     color: bolt-color(gray);
     border-color: bolt-color(gray, light);
     background-color: bolt-color(gray, light);
+    opacity: 1; // override default text-button styles
   }
 
   &:before,

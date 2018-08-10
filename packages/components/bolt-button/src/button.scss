@@ -14,15 +14,13 @@
 bolt-button {
   display: inline-block; // Fallback
   display: inline-flex; // So equal height works
+  -webkit-appearance: none; // override default [type=submit] button styles coming from Normalize
 }
 
 .c-bolt-button {
   @include bolt-button;
 
   // Inner <a> or <button> nested inside of the custom element tag
-  &__root {
-     @include bolt-button-root;
-  }
 }
 
 
@@ -46,12 +44,6 @@ bolt-button {
 }
 
 // Allow forcing light and xlight theme colors in IE11 until http://vjira2:8080/browse/BK-48 is resolved.
-.t-bolt-xlight,
-.t-bolt-light {
-  ._c-bolt-button--theme-override {
-    @include bolt-button-color--teal;
-  }
-}
 
 
 
@@ -72,7 +64,6 @@ bolt-button {
 
 
 /** Button Size Variations **/
-.c-bolt-button,
 .c-bolt-button--medium {
   @include bolt-padding(medium, squished);
   @include bolt-font-size(xsmall);
