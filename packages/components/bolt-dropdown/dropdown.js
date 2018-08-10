@@ -217,7 +217,7 @@ export class BoltDropdown extends withHyperHtml() {
       },
     );
 
-    return html`
+    return this.html`
       ${this.addStyles([styles, heightUtils])}
       ${this.dropdownTemplate}
     `;
