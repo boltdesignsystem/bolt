@@ -1,8 +1,10 @@
 import ClipboardJS from 'clipboard';
 
 import { props, define } from '@bolt/core/utils';
+import { withHyperHtml } from '@bolt/core/renderers/renderer-hyperhtml';
+
 @define
-export class BoltCopyToClipboard extends BoltComponent() {
+export class BoltCopyToClipboard extends withHyperHtml() {
   static is = 'bolt-copy-to-clipboard';
 
   constructor(self) {

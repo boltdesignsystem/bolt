@@ -7,6 +7,7 @@ import {
 
 import gumshoe from 'gumshoejs';
 import isVisible from 'is-visible';
+import { withHyperHtml } from '@bolt/core/renderers/renderer-hyperhtml';
 
 // const indicatorElement = '.js-bolt-nav-indicator';
 const navLinkElement = 'bolt-navlink'; // Custom element
@@ -153,7 +154,7 @@ let gumshoeStateModule = (function() {
 })();
 
 @define
-export class BoltNavIndicator extends BoltComponent() {
+export class BoltNavIndicator extends withHyperHtml() {
   static is = 'bolt-nav-indicator';
 
   // Behavior for `<bolt-nav>` parent container

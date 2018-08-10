@@ -1,4 +1,5 @@
 import { props, define } from '@bolt/core/utils';
+import { withHyperHtml } from '@bolt/core/renderers/renderer-hyperhtml';
 
 import isVisible from 'is-visible';
 
@@ -10,7 +11,7 @@ import {
 } from '@bolt/components-smooth-scroll';
 
 @define
-class BoltNavLink extends BoltComponent() {
+class BoltNavLink extends withHyperHtml() {
   static is = 'bolt-navlink';
 
   static props = {

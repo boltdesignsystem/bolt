@@ -1,4 +1,5 @@
 import { define, props } from '@bolt/core/utils';
+import { withHyperHtml } from '@bolt/core/renderers/renderer-hyperhtml';
 
 /*
   Consider using these polyfills to broaden browser support:
@@ -7,7 +8,7 @@ import { define, props } from '@bolt/core/utils';
 */
 
 @define
-export class BoltNavPriority extends BoltComponent() {
+export class BoltNavPriority extends withHyperHtml() {
   static is = 'bolt-nav-priority';
 
   static get observedAttributes() {

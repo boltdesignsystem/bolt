@@ -5,10 +5,11 @@ import {
   hasNativeShadowDomSupport,
 } from '@bolt/core/utils';
 
+import { withHyperHtml } from '@bolt/core/renderers/renderer-hyperhtml';
 import placeholderStyles from './placeholder.scss';
 
 @define
-class BoltPlaceholder extends BoltComponent() {
+export class BoltPlaceholder extends withHyperHtml() {
   static is = 'bolt-placeholder';
 
   static props = {

@@ -8,6 +8,8 @@ import {
   passiveSupported,
 } from '@bolt/core/utils';
 
+import { withHyperHtml } from '@bolt/core/renderers/renderer-hyperhtml';
+
 /* From Modernizr */
 function whichAnimationEvent() {
   let t;
@@ -29,7 +31,7 @@ function whichAnimationEvent() {
 const animationEvent = whichAnimationEvent();
 
 @define
-class BoltDeviceViewer extends BoltComponent() {
+class BoltDeviceViewer extends withHyperHtml() {
   static is = 'bolt-device-viewer';
 
   static props = {
@@ -46,7 +48,7 @@ class BoltDeviceViewer extends BoltComponent() {
     const classes = css('c-bolt-image-magnifier');
 
     return this.html`
-      <div className={classes}>
+      <div class=${classes}>
         ${this.slot('default')}
       </div>
     `;
@@ -66,7 +68,7 @@ class BoltDeviceViewer extends BoltComponent() {
 }
 
 @define
-class BoltImageZoom extends BoltComponent() {
+class BoltImageZoom extends withHyperHtml() {
   static is = 'bolt-image-zoom';
 
   static props = {

@@ -298,7 +298,7 @@ class BoltText extends BoltComponent() {
       `;
     }
 
-    return this.html`
+    return html`
       ${this.addStyles([styles])}
       ${textItem}
     `;

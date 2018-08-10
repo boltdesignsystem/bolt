@@ -1,7 +1,8 @@
 import { define, props } from '@bolt/core/utils';
+import { withHyperHtml } from '@bolt/core/renderers/renderer-hyperhtml';
 
 @define
-export class BoltShare extends BoltComponent {
+export class BoltShare extends withHyperHtml {
   static is = 'bolt-share';
 
   constructor(self) {
