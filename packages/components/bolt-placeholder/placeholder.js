@@ -1,4 +1,4 @@
-import { polyfillLoader } from '@bolt/core';
+import { polyfillLoader } from '@bolt/core/polyfills';
 
 // Eager so the <replace-with-children> component runs when this component is also booting up, resulting in no initial flash of unstyled content
 polyfillLoader.then(res => {
