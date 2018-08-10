@@ -14,22 +14,16 @@ const preset = function(api, opts = {}) {
       ],
     ],
     plugins: [
-      '@babel/plugin-syntax-export-default-from',
-      '@babel/plugin-proposal-export-default-from',
 
-      '@babel/plugin-syntax-export-namespace-from',
-      '@babel/plugin-proposal-export-namespace-from',
 
       [
         '@babel/plugin-transform-runtime',
         {
           helpers: false,
-          polyfill: false,
           regenerator: true,
         },
       ],
 
-      '@babel/plugin-transform-async-to-generator',
       /**
        * 1. Helps with our Web Component Preact renderer
        */
