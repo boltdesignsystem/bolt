@@ -1,15 +1,12 @@
 import Drift from 'drift-zoom';
+
 import {
-  h,
-  render,
   define,
   props,
-  BoltComponent,
   css,
-  spacingSizes,
   hasNativeShadowDomSupport,
   passiveSupported,
-} from '@bolt/core';
+} from '@bolt/core/utils';
 
 /* From Modernizr */
 function whichAnimationEvent() {

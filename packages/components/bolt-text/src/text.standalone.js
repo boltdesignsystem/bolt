@@ -1,11 +1,9 @@
 import {
   define,
   props,
-  withComponent,
   css,
   hasNativeShadowDomSupport,
-  BoltComponent,
-} from '@bolt/core';
+} from '@bolt/core/utils';
 
 import styles from './text.scss';
 import schema from '../text.schema.yml';

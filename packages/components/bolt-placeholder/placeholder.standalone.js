@@ -1,13 +1,9 @@
 import {
   define,
   props,
-  withComponent,
   css,
   hasNativeShadowDomSupport,
-  BoltComponent,
-  declarativeClickHandler,
-  sanitizeBoltClasses,
-} from '@bolt/core';
+} from '@bolt/core/utils';
 
 import placeholderStyles from './placeholder.scss';
 

@@ -1,12 +1,4 @@
-import {
-  define,
-  props,
-  withComponent,
-  css,
-  hasNativeShadowDomSupport,
-  BoltComponent,
-  sanitizeBoltClasses,
-} from '@bolt/core';
+import { define, props } from '@bolt/core/utils';
 
 @define
 export class BoltShare extends BoltComponent {

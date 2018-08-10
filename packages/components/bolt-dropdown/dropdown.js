@@ -3,8 +3,7 @@ import {
   props,
   css,
   hasNativeShadowDomSupport,
-  BoltComponent,
-} from '@bolt/core';
+} from '@bolt/core/utils';
 
 import Handorgel from 'handorgel';
 

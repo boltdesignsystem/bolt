@@ -1,13 +1,9 @@
 import {
-  h,
-  render,
   define,
   props,
-  BoltComponent,
   css,
-  spacingSizes,
   hasNativeShadowDomSupport,
-} from '@bolt/core';
+} from '@bolt/core/utils';
 
 import gumshoe from 'gumshoejs';
 import isVisible from 'is-visible';

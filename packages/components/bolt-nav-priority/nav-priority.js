@@ -1,13 +1,4 @@
-import {
-  h,
-  render,
-  define,
-  props,
-  BoltComponent,
-  css,
-  spacingSizes,
-  hasNativeShadowDomSupport,
-} from '@bolt/core';
+import { define, props } from '@bolt/core/utils';
 
 /*
   Consider using these polyfills to broaden browser support:

@@ -1,13 +1,4 @@
-import {
-  h,
-  render,
-  props,
-  BoltComponent,
-  define,
-  css,
-  spacingSizes,
-  hasNativeShadowDomSupport,
-} from '@bolt/core';
+import { props, define } from '@bolt/core/utils';
 
 import isVisible from 'is-visible';
 

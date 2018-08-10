@@ -1,12 +1,9 @@
 import {
-  h,
-  render,
   props,
-  BoltComponent,
   css,
   hasNativeShadowDomSupport,
   supportsCSSVars,
-} from '@bolt/core';
+} from '@bolt/core/utils';
 
 import styles from './ratio.scss';
 

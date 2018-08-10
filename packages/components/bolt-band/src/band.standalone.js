@@ -1,11 +1,4 @@
-import {
-  h,
-  render,
-  define,
-  props,
-  BoltComponent,
-  hasNativeShadowDomSupport,
-} from '@bolt/core';
+import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 
 // To avoid invoking the parser with `.innerHTML` for every new instance, a
 // template for the contents of the ShadowDOM is is shared by all
