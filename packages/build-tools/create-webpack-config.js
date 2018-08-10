@@ -333,7 +333,8 @@ async function createWebpackConfig(buildConfig) {
     },
     cache: true,
     resolve: {
-      extensions: ['.js', '.jsx', '.json', '.svg', '.scss'],
+      mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
+      extensions: ['.js', '.jsx', '.mjs', '.json', '.svg', '.scss'],
       unsafeCache: true,
       alias: {
         react: 'preact-compat',
@@ -360,7 +361,7 @@ async function createWebpackConfig(buildConfig) {
           ],
         },
         {
-          test: /\.js$/,
+          test: /\.(js|mjs)$/,
           exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
           use: {
             loader: 'babel-loader',
