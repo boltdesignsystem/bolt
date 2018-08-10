@@ -105,25 +105,55 @@ export class BoltButton extends withHyperHtml() {
     // Assign default target attribute value if one isn't specified
     const urlTarget = this.props.target && hasUrl ? this.props.target : '_self';
 
+    // The buttonElement to render, based on the initial HTML passed alone.
     let buttonElement;
+    const self = this;
 
-    if (childElementIndex !== null) {
-      buttonElement = this.slot('default');
-    } else if (childElementIndex === null && hasUrl) {
-      buttonElement = this.hyper.wire(this)`
-        <a href="${this.props.url}" class="${classes}" target="${urlTarget}">
-          ${this.slot('default')}
-        </a>
-      `;
-    } else {
-      buttonElement = this.hyper.wire(this)`
-        <button class="${classes}">
-          ${this.slot('default')}
-        </button>
-      `;
+    const slotMarkup = name => {
+      if (name in this.slots) {
+        switch (name) {
+          case 'before':
+          case 'after':
+            return wire(this)`
+              <span class="c-bolt-button__icon">${this.slot(name)}</span>`;
+          default:
+            return wire(this)`
+              <span class="c-bolt-button__item">${this.slot('default')}</span>`;
+        }
+      }
+    };
+
+    const innerSlots = [
+      slotMarkup('before'),
+      slotMarkup('default'),
+      slotMarkup('after'),
+    ];
+
+    function renderInnerSlots(elementToAppendTo) {
+      // hyperhtml workaround till lit-html in place
+      for (var i = 0; i < innerSlots.length; i++) {
+        const slotValue = innerSlots[i];
+        if (slotValue !== undefined) {
+          elementToAppendTo.appendChild(slotValue);
+        }
+      }
+      return elementToAppendTo;
     }
 
-    // Add inline <style> tag automatically if Shadow DOM is natively supported
+    if (this.rootElement) {
+      buttonElement = this.rootElement.firstChild.cloneNode(true);
+      // render(inner, buttonElement); // lit-html syntax
+      buttonElement.className += ' ' + classes;
+    } else if (hasUrl) {
+      buttonElement = wire()`<a href="${
+        this.props.url
+      }" class="${classes}" target="${urlTarget}"></a>`;
+    } else {
+      buttonElement = wire()`<button class="${classes}"></button>`;
+    }
+
+    buttonElement = renderInnerSlots(buttonElement);
+
     return this.html`
       ${this.addStyles([styles, visuallyhiddenUtils])}
       ${buttonElement}
