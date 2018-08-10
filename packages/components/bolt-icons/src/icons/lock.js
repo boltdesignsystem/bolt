@@ -1,4 +1,4 @@
-import { h } from '@bolt/core';
+import { h } from '@bolt/core/renderers';
 
 export const Lock = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (

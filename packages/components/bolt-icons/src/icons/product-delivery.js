@@ -1,4 +1,4 @@
-import { h } from '@bolt/core';
+import { h } from '@bolt/core/renderers';
 
 export const ProductDelivery = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (

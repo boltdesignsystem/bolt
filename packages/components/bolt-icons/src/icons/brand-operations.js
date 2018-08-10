@@ -1,4 +1,4 @@
-import { h } from '@bolt/core';
+import { h } from '@bolt/core/renderers';
 
 export const BrandOperations = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (

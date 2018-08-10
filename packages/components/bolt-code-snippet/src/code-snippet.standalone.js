@@ -1,14 +1,12 @@
 import {
-  h,
-  render,
   define,
   props,
-  withComponent,
   css,
-  spacingSizes,
-  withPreact,
   hasNativeShadowDomSupport,
-} from '@bolt/core';
+} from '@bolt/core/utils';
+
+import { h, withPreact } from '@bolt/core/renderers';
+import html from 'preact-html';
 
 import Prism from 'prismjs/components/prism-core';
 
@@ -85,7 +83,7 @@ export class BoltCodeSnippetClass extends withPreact() {
       return (
         <code className={codeClasses}>
           {this.addStyles([styles])}
-          {this.html(highlightedCode)}
+          {html(highlightedCode)}
         </code>
       );
     } else {
@@ -93,7 +91,7 @@ export class BoltCodeSnippetClass extends withPreact() {
         <pre className={preClasses}>
           <code className={codeClasses}>
             {this.addStyles([styles])}
-            {this.html(highlightedCode)}
+            {html(highlightedCode)}
           </code>
         </pre>
       );
