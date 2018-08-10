@@ -5,11 +5,13 @@ import {
   hasNativeShadowDomSupport,
 } from '@bolt/core/utils';
 
+import { wire, withHyperHtml } from '@bolt/core/renderers/renderer-hyperhtml';
+
 import styles from './text.scss';
 import schema from '../text.schema.yml';
 
 @define
-class BoltText extends BoltComponent() {
+class BoltText extends withHyperHtml() {
   static is = 'bolt-text';
 
   static props = {
@@ -124,9 +126,6 @@ class BoltText extends BoltComponent() {
     // let iconBackground = this.allowedValues(schema.properties.iconBackground, this.props.iconBackground);
     // let iconSize = this.allowedValues(schema.properties.iconSize, this.props.iconSize);
     // let iconColor = this.allowedValues(schema.properties.iconColor, this.props.iconColor);
-
-    // The text item
-    let textItem = this.hyper.wire(this)`${this.slot('default')}`;
 
     // Build the icon
     /**
@@ -253,54 +252,39 @@ class BoltText extends BoltComponent() {
       this.setAttribute('class', 'u-bolt-' + util.trim());
     }
 
-    if (url) {
-      textItem = this.hyper.wire(this)`
-        <a href="${url}">${textItem}</a>
-      `;
+    // A common use case is when rendering a list of menu options where some of the
+    // options are links while others are buttons. The base template might be the same,
+    // but they need to be wrapped in other semantic elements.
+    function wrapInnerHTML(innerHTML) {
+      switch (tag) {
+        case 'a':
+          return wire(
+            this,
+          )`<a href="${url}" class="${classes}">${innerHTML}</a>`;
+        case 'h1':
+          return wire(this)`<h1 class="${classes}">${innerHTML}</h1>`;
+        case 'h2':
+          return wire(this)`<h2 class="${classes}">${innerHTML}</h2>`;
+        case 'h3':
+          return wire(this)`<h3 class="${classes}">${innerHTML}</h3>`;
+        case 'h4':
+          return wire(this)`<h4 class="${classes}">${innerHTML}</h4>`;
+        case 'h5':
+          return wire(this)`<h5 class="${classes}">${innerHTML}</h5>`;
+        case 'h6':
+          return wire(this)`<h6 class="${classes}">${innerHTML}</h6>`;
+        case 'div':
+          return wire(this)`<div class="${classes}">${innerHTML}</div>`;
+        case 'span':
+          return wire(this)`<span class="${classes}">${innerHTML}</span>`;
+        default:
+          return wire(this)`<p class="${classes}">${innerHTML}</p>`;
+      }
     }
 
-    // Tag options
-    if (tag === 'p') {
-      textItem = this.hyper.wire(this)`
-        <p class=${classes}>${textItem}</p>
-      `;
-    } else if (tag === 'h1') {
-      textItem = this.hyper.wire(this)`
-        <h1 class=${classes}>${textItem}</h1>
-      `;
-    } else if (tag === 'h2') {
-      textItem = this.hyper.wire(this)`
-        <h2 class=${classes}>${textItem}</h2>
-      `;
-    } else if (tag === 'h3') {
-      textItem = this.hyper.wire(this)`
-        <h3 class=${classes}>${textItem}</h3>
-      `;
-    } else if (tag === 'h4') {
-      textItem = this.hyper.wire(this)`
-        <h4 class=${classes}>${textItem}</h4>
-      `;
-    } else if (tag === 'h5') {
-      textItem = this.hyper.wire(this)`
-        <h5 class=${classes}>${textItem}</h5>
-      `;
-    } else if (tag === 'h6') {
-      textItem = this.hyper.wire(this)`
-        <h6 class=${classes}>${textItem}</h6>
-      `;
-    } else if (tag === 'div') {
-      textItem = this.hyper.wire(this)`
-        <div class=${classes}>${textItem}</div>
-      `;
-    } else if (tag === 'span') {
-      textItem = this.hyper.wire(this)`
-        <span class=${classes}>${textItem}</span>
-      `;
-    }
-
-    return html`
+    return this.html`
       ${this.addStyles([styles])}
-      ${textItem}
+      ${wrapInnerHTML(this.slot('default'))}
     `;
   }
 }
