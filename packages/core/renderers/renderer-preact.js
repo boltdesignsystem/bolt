@@ -2,10 +2,7 @@
 // Temp working version of @skatejs/renderer-preact till SkateJS fixes this upstream in the SkateJS monorepo
 
 import { name, withComponent, shadow, props } from 'skatejs';
-import preact, { h, render, Component } from 'preact';
-import html from 'preact-html';
-import { hasNativeShadowDomSupport } from '../utils/environment';
-import { findParentTag } from '../utils/find-parent-tag';
+import preact, { h, render } from 'preact';
 import { BoltBase } from './bolt-base';
 
 // TODO make this a Symbol() when it's supported.
@@ -37,6 +34,8 @@ function teardownPreact() {
   preact.options.vnode = oldVnode;
 }
 
+export { h } from 'preact';
+
 export function withPreact(Base = HTMLElement) {
   return class extends withComponent(BoltBase(Base)) {
     get props() {
@@ -50,8 +49,6 @@ export function withPreact(Base = HTMLElement) {
     constructor(...args) {
       super(...args);
       super.setupShadow();
-
-      this.html = html;
     }
 
     renderStyles(styles) {
