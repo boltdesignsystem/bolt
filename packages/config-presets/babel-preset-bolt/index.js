@@ -14,8 +14,6 @@ const preset = function(api, opts = {}) {
       ],
     ],
     plugins: [
-
-
       [
         '@babel/plugin-transform-runtime',
         {
