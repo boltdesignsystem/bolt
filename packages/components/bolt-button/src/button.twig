@@ -4,20 +4,8 @@
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
-{# Defaults for a vanilla `Button` component #}
-{% set prefix = "c-bolt-" %}
-{% set componentName = "button" %}
-{% set baseClass = prefix ~ componentName %}
+{% set baseClass = "c-bolt-button" %}
 {% set attributes = create_attribute(attributes|default({})) %}
-
-{# re-assign old itemAlignment paramater to the new `align` name that's replacing it; avoids breaking change till post v1.0 #}
-{# @todo Salem, is it safe to remove the coverage for legacy itemAlignment parameter? #}
-{% if itemAlignment %}
-  {% if itemAlignment == "start" %}
-    {% set itemAlignment = "left" %}
-  {% endif %}
-  {% set align = itemAlignment %}
-{% endif %}
 
 {# set up psuedo self-validation by limiting param values to what's specifically allowed in the component schema #}
 {% set alignOptions = schema.properties.align.enum %}
@@ -27,9 +15,10 @@
 {% set tagOptions = schema.properties.tag.enum %}
 {% set transformOptions = schema.properties.transform.enum %}
 {% set widthOptions = schema.properties.width.enum %}
+{% set iconPositions = schema.properties.icon.properties.position.enum %}
 
 {# check if the value set to a prop is allowed or defined. if not, default to the default value specified in the component's schema (if one exists) #}
-{% set align =  align in alignOptions ? align : schema.properties.align.default %}
+{% set align = align in alignOptions ? align : schema.properties.align.default %}
 {% set iconOnly = iconOnly | default(false) %}
 {% set size = size in sizeOptions ? size : schema.properties.size.default %}
 {% set style = style in styleOptions ? style : schema.properties.style.default %}
@@ -56,12 +45,12 @@
 
 {% set classes = [
   baseClass,
-  disabled ? baseClass ~ "--disabled" : "",
-  size in sizeOptions ? baseClass ~ "--" ~ size : "",
-  width in widthOptions ? baseClass ~ "--" ~ width : "",
-  rounded in roundedOptions ? baseClass ~ "--" ~ rounded : "",
-  style in styleOptions ? baseClass ~ "--" ~ style : baseClass ~ "--primary",
-  transform in transformOptions ? baseClass ~ "--" ~ transform : "",
+  disabled ? "c-bolt-button--disabled" : "",
+  size in sizeOptions ? "c-bolt-button--#{size}" : "",
+  width in widthOptions ? "c-bolt-button--#{width}" : "",
+  rounded in roundedOptions ? "c-bolt-button--#{rounded}" : "",
+  style in styleOptions ? "c-bolt-button--#{style}" : "c-bolt-button--#{schema.properties.style.default}",
+  transform in transformOptions and transform != "none" ? "c-bolt-button--#{transform}": "",
   align in alignOptions ? baseClass ~ "--" ~ align : "",
 ] %}
 
@@ -70,9 +59,34 @@
 {% endif %}
 
 {% if icon %}
-  {# Covers backward compatibility with use of both left and before to describe icon position #}
-  {% set iconPosition = (icon.position == "left" or icon.position == "before") ? "before" : schema.properties.icon.properties.position.default  %}
+  {% set iconPosition = icon.position in iconPositions ? icon.position : schema.properties.icon.properties.position.default %}
 {% endif %}
+
+
+{# filter external classnames to allow a very small select number to trickle onto the inner button tag ("is-" and "has-" classes really) while still allowing utility classes and other misc non-component classes to get added to the outer custom element #}
+{% set outerClasses = utils | default([]) %}
+{% set innerClasses = classes %}
+
+{% for class in attributes["class"] %}
+  {% if class starts with "u-" or class starts with "js-" %}
+    {% set outerClasses = outerClasses|merge([class]) %}
+  {% elseif class starts with "is-" or class starts with "has-" %}
+    {% set innerClasses = innerClasses|merge([class]) %}
+  {% elseif not class starts with "c-bolt-" %}
+    {% set outerClasses = outerClasses|merge([class]) %}
+  {% endif %}
+{% endfor %}
+
+
+{% macro slottedIcon(icon, iconPosition, slotName) %}
+  {% if icon and iconPosition == slotName %}
+    <replace-with-children class="c-bolt-button__icon">
+      <span slot="{{ slotName }}">{% include "@bolt/icon.twig" with icon only %}</span>
+    </replace-with-children>
+  {% endif %}
+{% endmacro %}
+
+{% import _self as macros %}
 
 {# Set up the custom element's prop values based on the params passed into the Twig template - used to hydrate the component's initial state and appearance once the Button Component's JavaScript kicks in #}
 <bolt-button
@@ -85,55 +99,22 @@
   {% if iconOnly %} icon-only="true" {% endif %}
   {% if transform %} transform="{{ transform }}" {% endif %}
   {% if disabled == true %} disabled {% endif %}
-
-  {# Failsafe to manually switch off Shadow DOM encapsulation #}
   {% if noShadow %} no-shadow {% endif %}
 
   {% if target or attributes['target'] %} target="{{ target | default(attributes['target']) }}" {% endif %}
-
 
   {# todo: rename on-click + on-click-target to only allow onClick + onClickTarget to unify the prop syntax; deprecate adding these via attributes #}
   {% if onClick or attributes['on-click'] %} on-click="{{ onClick | default(attributes['on-click']) }}" {% endif %}
   {% if onClickTarget or attributes['on-click-target'] %} on-click-target="{{ onClickTarget | default(attributes['on-click-target']) }}" {% endif %}
 
-
-  {#
-    @todo: create Twig function to translate shorthand utility class references to actual classnames
-    For example:
-
-    {% include "@bolt/button.twig' with {
-      text: "Example Button",
-      color: "primary",
-      utils: [
-        "-mb-sm", --> small negative margin bottom spacing
-        "mt-md"   --> medium margin top spacing
-      ]
-    } %}
-  #}
-  {# @todo: share `utils` prop across all Twig components #}
-  {# workaround to still allow external utility classes to get added (ex. for spacing or layout tweaks) while still encapsulating internal styling #}
-  {% if utils %} class="{{ utils|join(' ') }}"{% endif %}
+  {{ attributes | without('class') | without('target') | without('id') | without('type') }}
+  {% if outerClasses %} class="{{ outerClasses|join(' ') }}" {% endif %}
 >
 
   {# choose a semantic <a> tag or <button> tag for better accessibility, depending on whether or not a url is getting passed along #}
-  <{{ tag }} {{ attributes.addClass('c-bolt-button__root') | without('on-click') | without('on-click-target') }}>
-
-    {# Add component-specific classes to a Bolt temp element that gets removed and replaced by it's children once the JS kicks in #}
-    <replace-with-children class="{{ classes|join(' ') }}">
-      {% if icon and iconPosition == "before"  %}
-        <span class="{{ "#{baseClass}__icon" }}">
-          {% include "@bolt/icon.twig" with icon only %}
-        </span>
-      {% endif %}
-
-      <span class="{{ "#{baseClass}__item" }} {{ iconOnly ? 'u-bolt-visuallyhidden' : '' }}">{{ text }}</span>
-
-      {% if icon and iconPosition == "after" %}
-        <span class="{{ "#{baseClass}__icon" }}">
-          {% include "@bolt/icon.twig" with icon only %}
-        </span>
-      {% endif %}
-    </replace-with-children>
-
+  <{{ tag }} {{ attributes | without('class') | without('on-click') | without('on-click-target') }} class="{{ innerClasses|join(' ') }}" is="shadow-root">
+    {{ macros.slottedIcon(icon, iconPosition, 'before') }}
+    <replace-with-children class="c-bolt-button__item {{ iconOnly ? 'u-bolt-visuallyhidden' : '' }}">{{ text }}</replace-with-children>
+    {{ macros.slottedIcon(icon, iconPosition, 'after') }}
   </{{ tag }}>
 </bolt-button>
