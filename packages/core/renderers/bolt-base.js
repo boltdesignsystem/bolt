@@ -5,6 +5,11 @@ import { findParentTag } from '../utils/find-parent-tag';
 
 export function BoltBase(Base = HTMLElement) {
   return class extends Base {
+    constructor(...args) {
+      super(...args);
+      this._wasInitiallyRendered = false;
+    }
+
     connectedCallback() {
       // Automatically adjust which inner element inside the custom element gets used as the base when evaluating slotted children. Necessary when including deeply nested slots in the initial HTML being rendered, which might include a few wrapping containers that get removed when the JavaScript kicks in. <-- this is how we get slotted buttons to work!
       const isShadowRootSelector = this.querySelector('[is="shadow-root"]');
@@ -75,6 +80,34 @@ export function BoltBase(Base = HTMLElement) {
     disconnectedCallback() {
       this.disconnecting && this.disconnecting();
       this.disconnected && this.disconnected();
+    }
+
+    rendered() {
+      if (!this._wasInitiallyRendered) {
+        this._wasInitiallyRendered = true;
+
+        // Fired only once, when the component has finished rendering for the first time.
+        this.dispatchEvent(
+          new CustomEvent('ready', {
+            detail: {
+              name: this.tagName.toLowerCase(),
+              shadowDom: this.useShadow ? true : false,
+            },
+            bubbles: true,
+          }),
+        );
+      }
+
+      // Fired every time an element has rendered
+      this.dispatchEvent(
+        new CustomEvent('rendered', {
+          detail: {
+            name: this.tagName.toLowerCase(),
+            shadowDom: this.useShadow ? true : false,
+          },
+          bubbles: true,
+        }),
+      );
     }
   };
 }
