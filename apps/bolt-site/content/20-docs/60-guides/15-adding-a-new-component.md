@@ -56,7 +56,7 @@ Below you'll find a step-by-step guide to walk through the process of adding a n
 - Within your main JS file be sure to include the pollyfillLoader:
 
 ```
-import { polyfillLoader } from '@bolt/core';
+import { polyfillLoader } from '@bolt/core/polyfills';
 
 polyfillLoader.then((res) => {
   import('./COMPONENT.standalone.js');
