@@ -31,13 +31,10 @@ class BoltButton extends BoltComponent() {
     size: props.string,
     rounded: props.boolean,
     iconOnly: props.boolean,
-    size: props.string,
     width: props.string,
     align: props.string,
     transform: props.string,
-
     disabled: props.boolean,
-
     target: props.string,
     url: props.string,
 
