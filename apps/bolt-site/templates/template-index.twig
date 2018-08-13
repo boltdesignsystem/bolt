@@ -42,8 +42,7 @@
     <!-- Default OG Tag examples (related to Bolt Share Component) -->
     {% include "@bolt-components-share/src/_share-meta-example.twig" %}
 
-    <!-- temporarily disabling lazy loading the main Bolt Docs site CSS (at least on new redesigned homepage) -- need to get Critical CSS wired up so inline CSS for the new designs is always up to date -->
-    <link rel="stylesheet" href="{{ assets["bolt-global.css"] | default("/build/bolt-global.css") }}" />
+    <link rel="stylesheet" href="{{ assets["bolt-global.css"] | default("/pattern-lab/build/bolt-global.css") }}" media="all" />
 
     {# @TODO: wire this up to use Critical CSS #}
     {% if bolt.data.config.prod %}
@@ -56,7 +55,6 @@
         {{ inline( assets["bolt-components-critical-fonts.js"] | default("") ) }}
       </script>
     {% endif %}
-
 
     <!-- WIP. Temp solution to async load multiple lang-specific CSS builds based on query string in URL -->
     <script>

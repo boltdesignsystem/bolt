@@ -1,10 +1,22 @@
-module.exports = {
-  // Environmental variable / preset to use
+const path = require('path');
+const resolve = require('resolve');
+const argv = require('yargs').argv;
+
+const config = {
   lang: ['en'],
+  renderingService: true, // starts PHP service for rendering Twig templates
+  openServerAtStart: true,
+  // Environmental variable / preset to use
   env: 'static',
   buildDir: '../../www/build/',
   srcDir: './content',
   wwwDir: '../../www',
+  extraTwigNamespaces: {
+    'bolt-assets': {
+      recursive: true,
+      paths: ['../../www/build'],
+    },
+  },
   images: {
     sets: [
       {
@@ -60,17 +72,10 @@ module.exports = {
       '@bolt/components-tooltip',
       '@bolt/components-unordered-list',
       '@bolt/components-video',
-      './style.scss',
+      resolve.sync('./style.scss'),
     ],
     individual: [],
   },
-  extraTwigNamespaces: {
-    'bolt-assets': {
-      recursive: true,
-      paths: ['../../www/build'],
-    },
-  },
-
   copy: [
     {
       from: `./assets/**/*`,
@@ -79,3 +84,11 @@ module.exports = {
     },
   ],
 };
+
+if (argv.prod) {
+  config.components.individual.push('@bolt/components-critical-fonts');
+} else {
+  config.components.global.push('@bolt/components-critical-fonts');
+}
+
+module.exports = config;
