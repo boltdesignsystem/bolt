@@ -70,4 +70,12 @@ module.exports = {
       paths: ['../../www/build'],
     },
   },
+
+  copy: [
+    {
+      from: `./assets/**/*`,
+      to: `../../www/build/assets`,
+      flatten: true,
+    },
+  ],
 };

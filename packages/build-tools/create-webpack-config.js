@@ -14,7 +14,9 @@ const readFile = promisify(fs.readFile);
 const deepmerge = require('deepmerge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TwigPhpLoader = require('twig-php-loader');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { getConfig } = require('./utils/config-store');
+
 const {
   getBoltManifest,
   createComponentsManifest,
@@ -435,7 +437,7 @@ async function createWebpackConfig(buildConfig) {
         Promise: 'es6-promise',
       }),
       new webpack.DefinePlugin(globalJsData),
-
+      new CopyWebpackPlugin(config.copy ? config.copy : []),
       // Show build progress
       // Disabling for now as it messes up spinners
       // @todo consider bringing it back
