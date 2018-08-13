@@ -66,6 +66,10 @@
   <link rel="preload" as="style" href="{{ assets["bolt-global.css"] | default("/build/bolt-global.css") }}" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="{{ assets["bolt-global.css"] | default("/build/bolt-global.css") }}" /></noscript>
 
+  <script>
+    {{ inline( assets["bolt-components-critical-css-vars.js"] | default("") ) }}
+  </script>
+
 
 
 
