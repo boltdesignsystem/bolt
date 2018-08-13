@@ -72,6 +72,7 @@ const defaultOptions = {
 
 /** supported color variations */
 const ColorVariation = {
+  ROOT: 'xlight',
   XLIGHT: 'xlight',
   LIGHT: 'light',
   DARK: 'dark',
@@ -555,7 +556,7 @@ function cloneEmptyRule(rule, overrideConfig) {
 }
 
 /** Define the default variation */
-const defaultVariation = ColorVariation.XLIGHT;
+const defaultVariation = ColorVariation.ROOT;
 
 /** An array of variation values  */
 const variationValues = Object.values(ColorVariation);
