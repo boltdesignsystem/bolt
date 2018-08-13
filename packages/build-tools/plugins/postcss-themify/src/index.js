@@ -72,7 +72,6 @@ const defaultOptions = {
 
 /** supported color variations */
 const ColorVariation = {
-  ROOT: 'xlight',
   XLIGHT: 'xlight',
   LIGHT: 'light',
   DARK: 'dark',
@@ -310,22 +309,21 @@ function processRules(root) {
             aggragatedSelectorsMap[variationName] = true;
             aggragatedSelectors.push(selector);
           }
-        }
-        // else {
-        // creating the rule for the first time
-        if (!variationRules[variationName]) {
-          const clonedRule = createRuleWithVariation(rule, variationName);
-          variationRules[variationName] = clonedRule;
-          // append the new rule to the array, so we can append it later
-          createdRules.push(clonedRule);
-        }
+        } else {
+          // creating the rule for the first time
+          if (!variationRules[variationName]) {
+            const clonedRule = createRuleWithVariation(rule, variationName);
+            variationRules[variationName] = clonedRule;
+            // append the new rule to the array, so we can append it later
+            createdRules.push(clonedRule);
+          }
 
-        const variationDecl = createDecl(
-          property,
-          variationValueMap[variationName],
-        );
-        variationRules[variationName].append(variationDecl);
-        // }
+          const variationDecl = createDecl(
+            property,
+            variationValueMap[variationName],
+          );
+          variationRules[variationName].append(variationDecl);
+        }
       });
     });
 
@@ -439,13 +437,13 @@ function walkFallbackRules(root, execModes, output) {
             // so we can write them later to external file
             let rulesOutput = output[mode];
 
-            // if (variationName === defaultVariation) {
-            //   newDefaultVariationRule = createFallbackRuleWithVariation(
-            //     rule,
-            //     variationName,
-            //   );
-            //   rulesOutput.push(newDefaultVariationRule);
-            // }
+            if (variationName === defaultVariation) {
+              newDefaultVariationRule = createFallbackRuleWithVariation(
+                rule,
+                variationName,
+              );
+              rulesOutput.push(newDefaultVariationRule);
+            }
 
             const newRule = createFallbackRuleWithVariation(
               rule,
@@ -521,20 +519,20 @@ function createFallbackRuleWithVariation(rule, variationName) {
 function getSelectorName(rule, variationName, isFallbackSelector = false) {
   const selectorPrefix = `.${options.classPrefix || ''}${variationName}`;
 
+  // console.log(variationName);
+
   if (isFallbackSelector) {
     return rule.selectors
       .map(selector => {
         let selectors = [];
         let initialSelector = `${selectorPrefix} ${selector}`;
 
-        selectors.push(`:root ${selector}`);
-        selectors.push(initialSelector);
+        if (variationName === 'xlight') {
+          selectors.push(selector);
+        }
 
-        variationValues.forEach(name => {
-          selectors.push(
-            `.${options.classPrefix || ''}${name} ${initialSelector}`,
-          );
-        });
+        selectors.push(initialSelector);
+        selectors.push(`[class*="t-bolt-"] ${initialSelector}`);
 
         return selectors.join(',');
       })
@@ -556,7 +554,7 @@ function cloneEmptyRule(rule, overrideConfig) {
 }
 
 /** Define the default variation */
-const defaultVariation = ColorVariation.ROOT;
+const defaultVariation = ColorVariation.XLIGHT;
 
 /** An array of variation values  */
 const variationValues = Object.values(ColorVariation);
