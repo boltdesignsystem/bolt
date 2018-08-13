@@ -74,7 +74,7 @@ module.exports = {
   copy: [
     {
       from: `./assets/**/*`,
-      to: `../../www/build/assets`,
+      to: `../../www/assets`,
       flatten: true,
     },
   ],
