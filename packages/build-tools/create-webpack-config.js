@@ -78,8 +78,6 @@ async function createWebpackConfig(buildConfig) {
     },
   });
 
-
-
   // Default global Sass data defined
   let globalSassData = [
     `$bolt-namespace: ${config.namespace};`,
