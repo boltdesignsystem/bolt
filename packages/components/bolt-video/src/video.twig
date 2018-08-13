@@ -17,21 +17,21 @@
   collapsed is not null and collapsed == false ? "is-expanded" : "is-collapsed"
 ] %}
 
-{% set utilClasses = utils | default([]) %}
-{% set otherClasses = others | default([]) %}
+{% set utilClasses = [] %}
+{% set videoClasses = [] %}
 
 {% for class in attributes["class"] %}
   {% if class starts with "u-" %}
     {% set utilClasses = utilClasses|merge([class]) %}
   {% else %}
-    {% set otherClasses = otherClasses|merge([class]) %}
+    {% set videoClasses = videoClasses|merge([class]) %}
   {% endif %}
 {% endfor %}
 
 {% set innerVideo %}
   {% include "@bolt/_video-tag.twig" with {
     attributes: {
-      class: otherClasses
+      class: videoClasses
     }
   } %}
 {% endset %}
