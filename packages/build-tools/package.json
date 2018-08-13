@@ -1,6 +1,6 @@
 {
   "name": "@bolt/build-tools",
-  "version": "1.6.4",
+  "version": "1.7.2",
   "license": "MIT",
   "description": "Curated collection of front-end build tools in the Bolt Design System.",
   "main": "index.js",
@@ -20,7 +20,8 @@
     "web": "https://github.com/sghoweri"
   }],
   "dependencies": {
-    "@bolt/babel-preset-bolt": "^1.5.0",
+    "@bolt/babel-preset-bolt": "^1.7.1",
+    "@bolt/config-browserlist": "^1.7.1",
     "@bolt/postcss-themify": "^0.0.0",
     "@bolt/sass-export-data": "^0.0.0",
     "autoprefixer": "^9.0.2",
@@ -65,11 +66,12 @@
     "postcss-loader": "^2.1.6",
     "postcss-scss": "^2.0.0",
     "pretty-ms": "^3.2.0",
-    "resolve-url-loader": "^2.3.0",
     "resolve": "^1.8.1",
+    "resolve-url-loader": "^2.3.0",
     "sass-loader": "^7.1.0",
     "semver": "^5.5.0",
     "sharp": "^0.20.5",
+    "snyk": "^1.90.0",
     "string-replace-loader": "^2.1.1",
     "style-loader": "^0.21.0",
     "svgo": "^1.0.5",
@@ -82,8 +84,7 @@
     "webpack-serve": "2.0.2",
     "webpack": "^4.16.3",
     "yaml-loader": "^0.5.0",
-    "yargs": "^12.0.1",
-    "snyk": "^1.90.0"
+    "yargs": "^12.0.1"
   },
   "publishConfig": {
     "access": "public"

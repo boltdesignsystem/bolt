@@ -1,5 +1,6 @@
 module.exports = {
   // Environmental variable / preset to use
+  lang: ['en'],
   env: 'static',
   buildDir: '../../www/build/',
   srcDir: './content',
@@ -15,6 +16,7 @@ module.exports = {
   },
   components: {
     global: [
+      '@bolt/core',
       '@bolt/global',
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
@@ -36,5 +38,11 @@ module.exports = {
       './style.scss',
     ],
     individual: [],
+  },
+  extraTwigNamespaces: {
+    'bolt-assets': {
+      recursive: true,
+      paths: ['../../www/build'],
+    },
   },
 };

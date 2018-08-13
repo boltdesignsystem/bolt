@@ -14,11 +14,6 @@ const readFile = promisify(fs.readFile);
 const deepmerge = require('deepmerge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TwigPhpLoader = require('twig-php-loader');
-const themify = require('@bolt/postcss-themify');
-const resolve = require('resolve');
-const DashboardPlugin = require('webpack-dashboard/plugin');
-const BoltCache = require('./utils/cache');
-
 const { getConfig } = require('./utils/config-store');
 const {
   getBoltManifest,
@@ -33,17 +28,8 @@ let webpackConfigs = [];
 async function createWebpackConfig(buildConfig) {
   const config = buildConfig;
 
-  // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
-  // Must start and end with `/`
-  // conditional is temp workaround for when servers are disabled via absence of `config.wwwDir`
-  const publicPath = config.publicPath
-    ? config.publicPath
-    : config.wwwDir
-      ? `/${path.relative(config.wwwDir, config.buildDir)}/`
-      : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
-
   // @TODO: move this setting to .boltrc config
-  const sassExportData = require('@bolt/sass-export-data')({
+  const sassExportData = require('@theme-tools/sass-export-data')({
     path: path.resolve(process.cwd(), config.dataDir),
   });
 
@@ -53,37 +39,9 @@ async function createWebpackConfig(buildConfig) {
   // filename suffix to tack on based on lang being compiled for
   let langSuffix = `${config.lang ? '-' + config.lang : ''}`;
 
-  let themifyOptions = {
-    watchForChanges: config.prod ? false : true,
-    classPrefix: 't-bolt-',
-    screwIE11: false,
-    fallback: {
-      filename: 'bolt-css-vars-fallback',
-      jsonDataExport: 'theming-css-vars',
-    },
-  };
-
-  themifyOptions = deepmerge(themifyOptions, {
-    fallback: {
-      jsonPath: path.resolve(
-        process.cwd(),
-        config.buildDir,
-        `data/${themifyOptions.fallback.jsonDataExport}.json`,
-      ),
-      cssPath: path.resolve(
-        process.cwd(),
-        config.buildDir,
-        `${themifyOptions.fallback.filename}.css`,
-      ),
-    },
-  });
-
   // Default global Sass data defined
   let globalSassData = [
     `$bolt-namespace: ${config.namespace};`,
-    `$bolt-css-vars-json-data-export: ${
-      themifyOptions.fallback.jsonDataExport
-    };`,
 
     // output $bolt-lang variable in Sass even if not specified so things fall back accordingly.
     `${
@@ -100,10 +58,6 @@ async function createWebpackConfig(buildConfig) {
       : JSON.stringify('development'),
     bolt: {
       namespace: JSON.stringify(config.namespace),
-      themingFallbackCSS: JSON.stringify(
-        publicPath + themifyOptions.fallback.filename + '.css',
-      ),
-
       config: {
         prod: config.prod ? true : false,
         lang: config.lang,
@@ -150,11 +104,11 @@ async function createWebpackConfig(buildConfig) {
    * @returns {object} entry - WebPack config `entry`
    */
   async function buildWebpackEntry() {
-    let { components } = await getBoltManifest();
+    const { components } = await getBoltManifest();
     const entry = {};
     const globalEntryName = 'bolt-global';
 
-    if (components.global && components.global.length > 0) {
+    if (components.global) {
       entry[globalEntryName] = [];
 
       components.global.forEach(component => {
@@ -316,20 +270,9 @@ async function createWebpackConfig(buildConfig) {
       options: {
         sourceMap: true,
         plugins: () => [
-          require('@bolt/postcss-themify')(themifyOptions),
           postcssDiscardDuplicates,
           autoprefixer({
-            // @todo: replace with standalone Bolt config
-            browsers: [
-              '> 1% in US',
-              'last 3 Android major versions',
-              'last 3 iOS major versions',
-              'last 3 Chrome major versions',
-              'last 3 Edge major versions',
-              'last 3 Firefox major versions',
-              'last 3 Safari major versions',
-              'IE 11',
-            ],
+            browsers: require('@bolt/config-browserlist'),
           }),
         ],
       },
@@ -338,46 +281,40 @@ async function createWebpackConfig(buildConfig) {
       loader: 'clean-css-loader',
       options: {
         skipWarn: true,
-        level: config.prod ? 2 : 0,
-        format: config.prod ? false : 'beautify',
+        compatibility: 'ie9',
+        level: config.prod ? 1 : 0,
+        inline: ['remote'],
+        format: 'beautify',
       },
     },
-
-    // @todo: conditionally toggle sass-loader vs fast-sass-loader based on --debug flag when sourcemaps are needed
-    // {
-    //   loader: 'sass-loader',
-    //   options: {
-    //     sourceMap: true,
-    //     importer: [globImporter(), npmSass.importer],
-    //     functions: sassExportData,
-    //     precision: 3,
-    //     data: globalSassData.join('\n'),
-    //   },
-    // },
     {
-      loader: '@bolt/fast-sass-loader',
+      loader: 'resolve-url-loader',
+    },
+    {
+      loader: 'sass-loader',
       options: {
         sourceMap: true,
+        importer: [globImporter(), npmSass.importer],
         functions: sassExportData,
+        outputStyle: 'expanded',
         precision: 3,
         data: globalSassData.join('\n'),
       },
     },
-    // Reads Sass vars from files or inlined in the options property
   ];
+
+  // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
+  // Must start and end with `/`
+  // conditional is temp workaround for when servers are disabled via absence of `config.wwwDir`
+  const publicPath = config.publicPath
+    ? config.publicPath
+    : config.wwwDir
+      ? `/${path.relative(config.wwwDir, config.buildDir)}/`
+      : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
 
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
   const webpackConfig = {
     entry: await buildWebpackEntry(),
-    // parallelism: 1, // @todo: look into removing this once a solution to working around the color palette JSON file not yet being generated for @bolt/postcss-themify is figured out.
-    stats: statsPreset(webpackStats[config.verbosity]),
-    watchOptions: {
-      ignored: [
-        path.resolve(process.cwd(), config.buildDir) + '**/*',
-        path.resolve(process.cwd(), config.wwwDir) + '**/*',
-        'node_modules',
-      ],
-    },
     output: {
       path: path.resolve(process.cwd(), config.buildDir),
       filename: `[name]${langSuffix}.js`,
@@ -426,9 +363,8 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: /\.(woff|woff2)$/,
-          loader: 'url-loader',
+          loader: 'file-loader',
           options: {
-            limit: 500,
             name: 'fonts/[name].[ext]',
           },
         },
@@ -441,14 +377,7 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: [/\.yml$/, /\.yaml$/],
-          use: [
-            {
-              loader: 'json-loader',
-            },
-            {
-              loader: 'yaml-loader',
-            },
-          ],
+          use: [{ loader: 'json-loader' }, { loader: 'yaml-loader' }],
         },
       ],
     },
@@ -475,7 +404,14 @@ async function createWebpackConfig(buildConfig) {
       //   // },
     },
     plugins: [
-      // new DashboardPlugin(),
+      new webpack.IgnorePlugin(/vertx/), // needed to ignore vertx dependency in webcomponentsjs-lite
+      new MiniCssExtractPlugin({
+        // Options similar to the same options in webpackOptions.output
+        // both options are optional
+        filename: `[name]${langSuffix}.css`,
+        chunkFilename: `[id]${langSuffix}.css`,
+        allChunks: true,
+      }),
       // @todo This needs to be in `config.dataDir`
       new ManifestPlugin({
         fileName: `bolt-webpack-manifest${langSuffix}.json`,
@@ -485,23 +421,7 @@ async function createWebpackConfig(buildConfig) {
           name: 'Bolt Manifest',
         },
       }),
-      new MiniCssExtractPlugin({
-        // Options similar to the same options in webpackOptions.output
-        // both options are optional
-        // filename: config.prod
-        //   ? `[name].[contenthash]${langSuffix}.css`
-        //   : `[name]${langSuffix}.css`,
-        // chunkFilename: config.prod
-        //   ? `[id].[contenthash]${langSuffix}.css`
-        //   : `[id]${langSuffix}.css`,
-        filename: `[name]${langSuffix}.css`,
-        chunkFilename: `[id]${langSuffix}.css`,
-      }),
-      new webpack.ProvidePlugin({
-        Promise: 'es6-promise',
-      }),
       new webpack.DefinePlugin(globalJsData),
-      new webpack.NamedModulesPlugin(),
 
       // Show build progress
       // Disabling for now as it messes up spinners
@@ -514,33 +434,35 @@ async function createWebpackConfig(buildConfig) {
    * In non-drupal environments. during local dev server (ie. not on Travis -- for now till Docker container is up and running),
    * compile the Pattern Lab UI HTML via the new Twig PHP rendering service.
    */
-  // if (config.env !== 'drupal' && !config.prod && config.devServer === true) {
-  if (config.env !== 'drupal') {
-    // webpackConfig.plugins.push(
-    //   new HtmlWebpackPlugin({
-    //     title: 'Custom template',
-    //     filename: '../index.html',
-    //     inject: false, // disabling for now -- not yet needed in PL build (but at least is working!)
-    //     cache: false,
-    //     // Load a custom template (lodash by default see the FAQ for details)
-    //     template: path.resolve(
-    //       process.cwd(),
-    //       '../../packages/uikit-workshop/src/html-twig/index.twig',
-    //     ),
-    //   }),
-    //   new TwigPhpLoader(), // handles compiling Twig templates when Webpack-specific contextual data is needed (ex. automatically injecting assets in your entry config)
-    // );
-    // webpackConfig.module.rules.push({
-    //   test: /\.twig$/,
-    //   loader: TwigPhpLoader.loader,
-    //   options: {
-    //     port: config.port, // port the PHP rendering service is running on -- dynamically set when @bolt/build-tools boots up
-    //     namespaces: npmToTwigNamespaceMap, // @todo: further refactor so this loader doesn't need to map out the namespace to the NPM package location
-    //     // this determines whether Twig templates get rendered immediately vs wait for the HtmlWebpackPlugin to
-    //     // generate data on the assets available before rendering. Defaults to false.
-    //     includeContext: true,
-    //   },
-    // });
+  if (config.env !== 'drupal' && !config.prod && config.devServer === true) {
+    webpackConfig.plugins.push(
+      new HtmlWebpackPlugin({
+        title: 'Custom template',
+        filename: '../index.html',
+        inject: false, // disabling for now -- not yet needed in PL build (but at least is working!)
+        cache: false,
+        // Load a custom template (lodash by default see the FAQ for details)
+        template: path.resolve(
+          process.cwd(),
+          '../../packages/uikit-workshop/src/html-twig/index.twig',
+        ),
+      }),
+
+      new TwigPhpLoader(), // handles compiling Twig templates when Webpack-specific contextual data is needed (ex. automatically injecting assets in your entry config)
+    );
+
+    webpackConfig.module.rules.push({
+      test: /\.twig$/,
+      loader: TwigPhpLoader.loader,
+      options: {
+        port: config.port, // port the PHP rendering service is running on -- dynamically set when @bolt/build-tools boots up
+        namespaces: npmToTwigNamespaceMap, // @todo: further refactor so this loader doesn't need to map out the namespace to the NPM package location
+
+        // this determines whether Twig templates get rendered immediately vs wait for the HtmlWebpackPlugin to
+        // generate data on the assets available before rendering. Defaults to false.
+        includeContext: false,
+      },
+    });
   }
 
   if (config.prod) {
@@ -554,6 +476,7 @@ async function createWebpackConfig(buildConfig) {
         uglifyOptions: {
           cache: true,
           compress: true,
+
           mangle: true,
         },
       }),

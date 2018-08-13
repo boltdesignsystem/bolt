@@ -220,6 +220,7 @@ async function server(buildTime) {
         hotClient: {
           logLevel: 'silent',
           hot: true,
+          // Workaround to IE 11-specific issue with webpack-hot-client -- otherwise testing IE 11 on the local dev server is broken
           host: {
             client: '*',
             server: '0.0.0.0',
@@ -228,10 +229,10 @@ async function server(buildTime) {
         content: path.resolve(process.cwd(), config.wwwDir),
         devWare: {
           logLevel: 'silent',
-          publicPath: webpackConfigs[0].output.publicPath,
+          publicPath: webpackConfigs[0].devServer.publicPath,
           hot: true,
+          stats: webpackConfigs[0].devServer.stats,
           writeToDisk: true,
-          stats: webpackConfigs[0].stats,
         },
       },
       {
