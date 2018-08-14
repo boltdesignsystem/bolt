@@ -12,7 +12,7 @@
   {% include "@bolt/headline.twig" with {
     size: "xlarge",
     tag: "h3",
-    url: "##{item.context.name}",
+    url: "##{item.context.type}-#{item.context.name}",
     text: name,
     icon: "none",
     attributes: {
@@ -20,7 +20,7 @@
         "u-bolt-margin-bottom-xsmall",
         "c-bolt-docs__heading-fragment"
       ],
-      id: "#{item.context.name}"
+      id: "#{item.context.type}-#{item.context.name}"
     }
   } only %}
 {% endmacro %}
@@ -70,7 +70,7 @@
       {% endfor %}
     {% endif %}
 
-    {% set code = "@#{item.context.type} #{item.context.name} (#{params|join(', ')}) { #{item.context.code} }" %}
+    {% set code = "@#{item.context.type} #{item.context.name}(#{params|join(', ')}) { #{item.context.code}}" %}
   {% endif %}
 
   {% include "@bolt-components-code-snippet/code-snippet.twig" with {
@@ -81,21 +81,21 @@
 {% endmacro %}
 
 {# Renders the params table #}
-{% macro elementParamTable(params) %}
+{% macro elementParamTable(item) %}
   {% import _self as macros %}
 
-  {% if params %}
+  {% if item.parameter %}
     {% include "@bolt/headline.twig" with {
       size: "small",
       tag: "h4",
-      url: "##{item.context.name}--params",
+      url: "##{item.context.type}-#{item.context.name}--params",
       text: "Params",
       icon: "none",
       attributes: {
         class: [
           "u-bolt-margin-bottom-xsmall"
         ],
-        id: "#{item.context.name}--params"
+        id: "#{item.context.type}-#{item.context.name}--params"
       }
     } only %}
     <div class="c-bolt-docs-table c-bolt-docs-table--sassdoc">
@@ -109,7 +109,7 @@
         </tr>
         </thead>
         <tbody>
-          {% for param in params %}
+          {% for param in item.parameter %}
             <tr class="c-bolt-docs-table__row">
               <td class="c-bolt-docs-table__col c-bolt-docs-table__col--key">{{ "$#{param.name}" }}</td>
               <td class="c-bolt-docs-table__col">{{ param.type|length ? "<code>#{param.type}</code>" }}</td>
@@ -151,7 +151,7 @@
       {% endif %}
     {% endfor %}
 
-    {# Everything is ready, render nav dropdown below  #}
+    {# Everything is ready, render nav dropdown below -- NOTE: currently not used #}
     {% for label,nav in navItems %}
 
       {% set children = [] %}
@@ -223,7 +223,7 @@
         {% set children = children|merge([
           include("@bolt-components-link/link.twig", {
             "text": text,
-            "url": "##{link.name}"
+            "url": "##{link.type}-#{link.name}"
           })
         ]) %}
       {% endfor %}
@@ -291,20 +291,20 @@
             {% include "@bolt/headline.twig" with {
               size: "small",
               tag: "h4",
-              url: "##{item.context.name}--code",
+              url: "##{item.context.type}-#{item.context.name}--code",
               text: "Code",
               icon: "none",
               attributes: {
                 class: [
                   "u-bolt-margin-bottom-xsmall"
                 ],
-                id: "#{item.context.name}--code"
+                id: "#{item.context.type}-#{item.context.name}--code"
               }
             } only %}
 
             <div class="c-bolt-docs__usage">
               {{ macros.elementCode(item) }}
-              {{ macros.elementParamTable(item.parameter) }}
+              {{ macros.elementParamTable(item) }}
             </div>
 
             {% if item.example  %}
@@ -315,14 +315,14 @@
                     {% include "@bolt/headline.twig" with {
                       size: "small",
                       tag: "h4",
-                      url: "##{item.context.name}--example-#{example.type}",
+                      url: "##{item.context.type}-#{item.context.name}--example-#{example.type}",
                       text: title,
                       icon: "none",
                       attributes: {
                         class: [
                           "u-bolt-margin-bottom-xsmall"
                         ],
-                        id: "#{item.context.name}--example-#{example.type}"
+                        id: "#{item.context.type}-#{item.context.name}--example-#{example.type}"
                       }
                     } only %}
                     {% include "@bolt-components-code-snippet/code-snippet.twig" with {

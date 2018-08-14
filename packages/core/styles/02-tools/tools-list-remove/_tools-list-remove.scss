@@ -1,13 +1,19 @@
 /* ------------------------------------ *\
   TOOLS - LIST REMOVE
-  via https://gist.github.com/Jakobud/ec056b52f3673cc369dc97f2c2428424
 \* ------------------------------------ */
 
-/// bolt-list-remove
-/// Remove an item from a list
-/// @param $list - A SASS list
-/// @param $index - The list index to remove
-/// @return {List} A SASS list
+////
+/// @group Tools: Utilities
+/// @author Mike Mai
+////
+
+/// Removed an item for a SASS list based on it's index (mimics behavior of the native map-remove function)
+/// @param {list} $list - A SASS list
+/// @param {string} $index - The list index to remove
+/// @return {list} $newList - A SASS list
+/// @link https://gist.github.com/Jakobud/ec056b52f3673cc369dc97f2c2428424
+/// @example scss
+///   $list: bolt-list-remove($list, index($list, $value));
 @function bolt-list-remove($list, $index) {
   $newList: ();
   @for $i from 1 through length($list) {
