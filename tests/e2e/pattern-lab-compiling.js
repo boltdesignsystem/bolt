@@ -76,7 +76,7 @@ module.exports = {
     browser
       .url(`${testingUrl}`)
       .waitForElementVisible('body.c-bolt-site', 1000)
-      .assert.containsText('h1#js-bolt-test-bds-home-title', 'Bolt Design System')
+      .assert.containsText('#js-bolt-test-bds-home-title', 'Bolt Design System')
       .end()
   },
 
