@@ -14,7 +14,10 @@ const readFile = promisify(fs.readFile);
 const deepmerge = require('deepmerge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TwigPhpLoader = require('twig-php-loader');
+const resolve = require('resolve');
 const { getConfig } = require('./utils/config-store');
+const SassDocPlugin = require('./plugins/sassdoc-webpack-plugin');
+
 const {
   getBoltManifest,
   createComponentsManifest,
@@ -425,6 +428,18 @@ async function createWebpackConfig(buildConfig) {
         Promise: 'es6-promise',
       }),
       new webpack.DefinePlugin(globalJsData),
+      new SassDocPlugin(
+        {
+          src: `${path.dirname(resolve.sync('@bolt/core'))}/styles/`,
+          dest: path.resolve(
+            process.cwd(),
+            `${config.buildDir}/data/sassdoc.bolt.json`,
+          ),
+        },
+        {
+          outputPath: config.buildDir,
+        },
+      ),
 
       // Show build progress
       // Disabling for now as it messes up spinners
