@@ -18,32 +18,24 @@
 ] %}
 
 {% if ratio == true %}
-  {% set utilClasses = [] %}
-  {% set videoClasses = [] %}
-
+  {# Move utility classes to a separate attributes object so they can be added to the wrapping ratio object instead #}
+  {% set ratioAttributes = create_attribute({}) %}
   {% for class in attributes["class"] %}
     {% if class starts with "u-" %}
-      {% set utilClasses = utilClasses|merge([class]) %}
-    {% else %}
-      {% set videoClasses = videoClasses|merge([class]) %}
+      {% set ratioAttributes = ratioAttributes.addClass(class) %}
+      {% set attributes = attributes.removeClass(class) %}
     {% endif %}
   {% endfor %}
 
   {% set innerVideo %}
-    {% include "@bolt/_video-tag.twig" with {
-      attributes: {
-        class: videoClasses
-      }
-    } %}
+    {% include "@bolt/_video-tag.twig" %}
   {% endset %}
 
   {% include "@bolt/ratio.twig" with {
     aspectRatioHeight: aspectRatioHeight ?? 9,
     aspectRatioWidth: aspectRatioWidth ?? 16,
     children: innerVideo,
-    attributes: {
-      class: utilClasses
-    }
+    attributes: ratioAttributes
   } only %}
 {% else %}
   {% include "@bolt/_video-tag.twig" %}
