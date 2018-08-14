@@ -89,34 +89,20 @@
 
     </script>
 
-
-    <script>
-      // commenting out till IE 11 is polyfilled w/ this
-      {# var urlParams = new URLSearchParams(window.location.search);
-
-      var allAssets = {{ allAssets|json_encode() }};
-
-      if (urlParams.has('lang')){
-
-        var langSelected = urlParams.get('lang');
-
-        var globalJS = allAssets[langSelected]['bolt-global.js'];
-        var globalCSS = allAssets[langSelected]['bolt-global.css'];
-
-        loadCSS(globalCSS);
-      } #}
-    </script>
-
   </head>
   <body class="storefront-docs c-bolt-site {% if currentUrl == 'index.html' %} t-bolt-dark {% endif %} storefront-docs--{{ urlChunks | length >= 2 ? urlChunks|first : 'parent' }}">
+
+    {% set homeTitle %}
+      <span id="js-bolt-test-bds-home-title">Bolt Design System</span>
+    {% endset %}
 
     {% embed "@bolt-components-sticky/sticky.twig" %}
       {% block sticky_content %}
         {% include "@bolt-components-navbar/navbar.twig" with {
           theme: "xdark",
           title: {
-            tag: "h2",
-            text: "Bolt Design System",
+            tag: "h1",
+            text: homeTitle
           },
           links: [
             {
@@ -141,18 +127,6 @@
 
     {{ content }}
 
-    {# Shows Twig Vars in Browser Console #}
-    {% if not bolt.data.config.prod %}
-     {# <script type="application/json">{{ _context|json_encode()|raw }}</script>
-      <script>
-        (function () {
-          var me = document.currentScript;
-          var jsonScriptTag = me.previousElementSibling.innerHTML;
-          var data = JSON.parse(jsonScriptTag);
-          console.log('Twig vars for this page: ', data);
-        })();
-      </script>#}
-    {% endif %}
     <script src="{{ assets["bolt-global.js"] | default("/build/bolt-global.js") }}" async></script>
   </body>
 </html>
