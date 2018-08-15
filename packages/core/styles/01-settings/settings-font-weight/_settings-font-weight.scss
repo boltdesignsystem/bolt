@@ -6,8 +6,15 @@
 /// @group Settings: Typography
 /// @author Mike Mai
 ////
+
+/// Default regular font weight
+/// @see $bolt-font-weights
 $bolt-font-weight--regular: 400 !default;
+/// Default semibold font weight
+/// @see $bolt-font-weights
 $bolt-font-weight--semibold: 600 !default;
+/// Default bold font weight
+/// @see $bolt-font-weights
 $bolt-font-weight--bold: 800 !default;
 
 @if ($bolt-font-weight--regular < 400) {
@@ -30,8 +37,9 @@ $bolt-font-weight--bold: 800 !default;
   @error "Sorry, but your bold and semi-bold font weights have values that are too close together. Please choose values that are at least 100 or more apart`!";
 }
 
-/// Bolt's definition of all options of possible text weights.
+/// Bolt's definition of all possible options of text weights.
 /// @type Map
+/// @see {mixin} bolt-font-weight
 $bolt-font-weights: (
   font-weights: (
     bold:     $bolt-font-weight--bold,
