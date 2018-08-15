@@ -402,3 +402,40 @@ pre {
     background-color: transparent;
   }
 }
+
+/**
+** Demo Styles
+ */
+
+.c-bolt-docs-sassdoc-reference {
+  @include bolt-margin(2rem 0);
+}
+
+.c-bolt-docs-clearfix-demo {
+  border: 2px dashed bolt-color(gray, light);
+  padding: 1rem;
+
+  h3 {
+    @include bolt-margin-bottom(1rem);
+  }
+
+  &__left,
+  &__right {
+    padding: 1rem;
+    background: bolt-color(indigo, xlight);
+    color: bolt-color(indigo);
+    border: 2px dashed bolt-color(indigo, light);
+  }
+  &__left {
+    float: left;
+    width: 30%;
+  }
+  &__right {
+    float: right;
+    width: calc(70% - 1rem);
+  }
+}
+.c-bolt-docs-clearfix-separator {
+  clear: both;
+  height: 2rem;
+}
