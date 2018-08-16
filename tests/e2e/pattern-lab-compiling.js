@@ -75,7 +75,7 @@ module.exports = {
   'Bolt Docs: Verify Docs Site Compiled + Deployed': function (browser) {
     browser
       .url(`${testingUrl}`)
-      .waitForElementVisible('.c-bolt-site', 1000)
+      .waitForElementVisible('body.c-bolt-site', 1000)
       .assert.containsText('h1.c-bolt-headline', 'Bolt Design System')
       .end()
   },
