@@ -1,0 +1,20 @@
+$schema: http://json-schema.org/draft-04/schema#
+title: List
+description: Minimal list component for laying out a group of items.
+type: object
+properties:
+  display:
+    type: string
+    description: Display either an inline list of items or a stacking (block) list of items.
+    default: inline
+    enum:
+      - block
+      - inline
+  spacing:
+    type: string
+    description: Control the spacing in between items.
+    default: xsmall
+    enum:
+      - none
+      - xsmall
+      - small

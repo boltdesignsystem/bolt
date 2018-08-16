@@ -1,0 +1,41 @@
+{% set schema = bolt.data.components["@bolt-components-list"].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# Variables #}
+{% set baseClass = "c-bolt-list" %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
+{% set displayOptions = schema.properties.display.enum %}
+{% set spacingOptions = schema.properties.spacing.enum %}
+
+{# Check that the component's current prop values are valid. If not, default to the schema default #}
+{% set display = display in displayOptions ? display : schema.properties.display.default %}
+{% set spacing = spacing in spacingOptions ? spacing : schema.properties.spacing.default %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  baseClass,
+  display in displayOptions ? "#{baseClass}--display-#{display}" : "",
+  spacing in spacingOptions ? "#{baseClass}--spacing-#{spacing}" : "",
+] %}
+
+
+{# List component's custom element wrapper #}
+<bolt-list
+  {% if display %} display="{{ display }}" {% endif %}
+  {% if spacing %} spacing="{{ spacing }}" {% endif %}
+>
+  <ul {{ attributes.addClass(classes) }}>
+    {% for item in items %}
+      <li class="{{ "#{baseClass}__item" }}">
+        {% if item %}
+          {{ item }}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</bolt-list>

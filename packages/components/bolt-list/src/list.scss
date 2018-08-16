@@ -1,0 +1,53 @@
+@import '@bolt/core';
+
+/* ------------------------------------ *\
+   List
+\* ------------------------------------ */
+
+@include bolt-custom-element('bolt-list', block, medium);
+
+.c-bolt-list {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
+  list-style: none;
+}
+
+.c-bolt-list__item {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
+}
+
+.c-bolt-list--display-inline {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.c-bolt-list--display-block {
+  display: block;
+}
+
+.c-bolt-list--spacing-xsmall {
+  &.c-bolt-list--display-inline {
+    .c-bolt-list__item:not(:last-child) {
+      @include bolt-margin-right(xsmall);
+    }
+  }
+  &.c-bolt-list--display-block {
+    .c-bolt-list__item:not(:last-child) {
+      @include bolt-margin-bottom(xsmall);
+    }
+  }
+}
+
+.c-bolt-list--spacing-small {
+  &.c-bolt-list--display-inline {
+    .c-bolt-list__item:not(:last-child) {
+      @include bolt-margin-right(small);
+    }
+  }
+  &.c-bolt-list--display-block {
+    .c-bolt-list__item:not(:last-child) {
+      @include bolt-margin-bottom(small);
+    }
+  }
+}
