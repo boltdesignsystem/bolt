@@ -8,30 +8,30 @@ properties:
     description: 'Call to action text, like "Share" or "Share this page"'
   sources:
     type: array
-    description: 'Social media sources to share to -- supports facebook, twitter, linkedin, and email'
+    description: Social media sources to share to.
     items:
       type: object
       properties:
         name:
           type: string
-          description: 'The individual source name'
+          description: The individual source name
           enum:
-            - 'facebook'
-            - 'twitter'
-            - 'linkedin'
-            - 'email'
+            - facebook
+            - twitter
+            - linkedin
+            - email
         url:
           type: string
-          description: 'The specifically formed share url with query string'
+          description: The specifically formed share URL with query string.
   copyToClipboard:
     type: object
-    description: The link to be copied when copy to clipboard is clicked
+    description: The URL to be copied when copy to clipboard is clicked.
     ref: '@bolt-components-copy-to-clipboard/copy-to-clipboard.schema.yml'
-  visibility:
+  visuallyhidden:
     type: boolean
-    description: 'Controls share component visibility'
-    default: True
+    description: Visually hide the component. Use this based on individual page needs.
+    default: false
   inline:
     type: boolean
-    description: 'Display as a flat layout, rather than popping out'
-    default: False
+    description: Display in an inline layout instead of a button activating a bubble.
+    default: false

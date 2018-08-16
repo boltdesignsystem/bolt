@@ -4,15 +4,13 @@
   {{ validate_data_schema(bolt.data.components["@bolt-components-share"].schema, _self) | raw }}
 {% endif %}
 
-{% set visible = visibility is sameas(false) ? false : (visibility is null ? true : visibility) %}
-{% set isFlat = inline is sameas(false) ? false : (inline is null ? false : inline) %}
 {# Default text can't be pulled from the schema because it must be translatable. #}
 {% set text = text | default("Share this page"|t) %}
 
 {% set items = [] %}
 
 {# Share inline #}
-{% if isFlat is sameas(true) %}
+{% if inline %}
   {% set items = items|merge([include("@bolt-components-headline/text.twig", {
     tag: "span",
     text: text,
@@ -64,14 +62,18 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set classes = [
   "c-bolt-share",
-  visibility is sameas(false) ? "c-bolt-share--hidden",
-  isFlat is sameas(false) ? "c-bolt-share--normal-layout" : "c-bolt-share--inline-layout"
+  visuallyhidden ? "u-bolt-visuallyhidden",
+  inline ? "c-bolt-share--inline" : "c-bolt-share--button"
 ] %}
 
 {# Share via button #}
 <bolt-share>
   <div {{ attributes.addClass(classes) }}>
-    {% if isFlat is sameas(false)  %}
+    {% if inline  %}
+      {% include "@bolt-components-block-list/block-list.twig" with {
+        items: items
+      } only %}
+    {% else %}
       {% include "@bolt-components-tooltip/tooltip.twig" with {
         trigger: {
           type: "button",
@@ -87,16 +89,12 @@
           }
         },
         content: include ("@bolt-components-block-list/block-list.twig", {
-          "items" : items
+          items: items
         }),
         position: "up",
         noWrap: true,
         spacing: "none",
         attributes: create_attribute(attributes|default({})).setAttribute("count",items|length)
-      } only %}
-    {% else %}
-      {% include "@bolt-components-block-list/block-list.twig" with {
-        items : items
       } only %}
     {% endif %}
   </div>
