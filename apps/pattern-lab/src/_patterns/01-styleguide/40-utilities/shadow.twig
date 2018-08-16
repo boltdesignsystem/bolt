@@ -1,6 +1,9 @@
-<h4>Bolt Shadows</h4>
-
 {% set classPrefix = bolt.data.shadows['utility-class-prefix'] %}
+
+<h4>Bolt Shadows</h4>
+<p>Add the utility class ".{{ classPrefix }}xx" where xx equals the level of shadow you wish to apply.</p>
+<p><strong>For example</strong>: <code>.{{ classPrefix ~ bolt.data.shadows.sets|keys|first }}</code></p>
+
 {% for key, value in bolt.data.shadows.sets %}
   <div class="bolt-shadow-demo__card {{ classPrefix }}{{ key }}">{{ key }}
     <br>Utility Class
@@ -11,6 +14,9 @@
 {% endfor %}
 
 <h5>Hoverable</h5>
+<p>To add an animated shadow that 'lifts' on hover, add the ".{{ classPrefix }}xx--hoverable" where xx equals the level of shadow you wish to use.</p>
+<p><strong>For example</strong>: <code>.{{ classPrefix ~ bolt.data.shadows.sets|keys|first ~ '--hoverable' }}</code></p>
+
 {% for key, value in bolt.data.shadows.sets %}
   <div class="bolt-shadow-demo__card {{ classPrefix }}{{ key }}--hoverable">{{ key }}
     <br>Utility Class
@@ -20,41 +26,9 @@
   </div>
 {% endfor %}
 
-<h5>Utility Classes</h5>
-
-<p>Add the utility class "{{ classPrefix }}xx" where xx equals the level of shadow you wish to apply.</p>
-
-{{ ('```html
-<div class="' ~ classPrefix ~ bolt.data.shadows.sets|keys|first ~ '"> ... </div>
-```') | markdown }}
-
-<p>To add an animated shadow that 'lifts' on hover, add the "{{ classPrefix }}xx--hoverable" where xx equals the level of shadow you wish to use.</p>
-
-{{ ('```html
-<div class="' ~ classPrefix ~ bolt.data.shadows.sets|keys|first ~ '--hoverable"> ... </div>
-```') | markdown }}
-
-<h5>Mixin</h5>
-
-<p>There is also a shadow mixin available for use in sass/scss. The mixin takes two arguments, a string corresponding to the level of shadow desired, and an option boolean to add the 'lift' effect on hover.</p>
-
-<p><bold>Note:</bold> Passing a value that is not a defined in <code>_settings-shadow.scss</code> will generate an error.</p>
-
-{{ ('```scss
-/* Without hover effect */
-.class {
-  @include bolt-shadow(\'' ~ bolt.data.shadows.sets|keys|first ~ '\');
-}
-```') | markdown }}
-
-<p>You can trigger the lift effect by calling the mixin with a 2nd param of <code>true</code> and apply it to another class, or any CSS selector; here's how it can be applied on <code>:hover</code>:</p>
-
-{{ ('```scss
-/* With lift effect on hover */
-.class {
-  @include bolt-shadow(\'' ~ bolt.data.shadows.sets|keys|first ~ '\');
-  &:hover {
-    @include bolt-shadow(\'' ~ bolt.data.shadows.sets|keys|first ~ '\', true);
-  }
-}
-```') | markdown }}
+<div class="c-bolt-docs-sassdoc-reference">
+  <h5>SassDoc references</h5>
+  <ul>
+    <li><a target="_blank" href="{{ link['styleguide-sassdoc'] }}#mixin-bolt-shadow">@mixin bolt-shadow</a></li>
+  </ul>
+</div>
