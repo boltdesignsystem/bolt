@@ -20,6 +20,7 @@ module.exports = {
       '@bolt/global',
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
+      '@bolt/components-form',
       '@bolt/components-site',
       '@bolt/components-action-blocks',
       '@bolt/components-band',

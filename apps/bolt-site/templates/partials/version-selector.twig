@@ -1,0 +1,27 @@
+{% include "_version-selector--input.twig" with {
+  "title": "Bolt Releases",
+  "selectAttributes": {
+    class: [
+      "js-bolt-version-selector"
+    ]
+  },
+  options: bolt.data.boltReleases.options
+} %}
+
+<script>
+  var versionSelector = document.querySelector('.js-bolt-version-selector');
+  var option = document.createElement("option");
+  option.text = "Latest";
+  option.value = window.location.href;
+  versionSelector.add(option, 0);
+
+  versionSelector.value = window.location.href;
+
+  versionSelector.addEventListener('change', function () {
+    var url = versionSelector.value;
+    if (url && window.location.href !== url) { // require a URL
+      window.location = url; // redirect
+    }
+    return false;
+  });
+</script>
