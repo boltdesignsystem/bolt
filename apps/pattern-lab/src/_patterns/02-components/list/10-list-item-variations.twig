@@ -1,3 +1,4 @@
+<h3>A group of different items</h3>
 {% include "@bolt-components-list/list.twig" with {
   display: "inline",
   items: [
@@ -22,5 +23,44 @@
     "Item 9",
     "Item 10",
     "Item 11",
+  ]
+} only %}
+<h3>A group of chips</h3>
+{% include "@bolt-components-list/list.twig" with {
+  display: "inline",
+  items: [
+    include("@bolt-components-chip/chip.twig", {
+      text: "Item 1",
+      url: "#!",
+    }),
+    include("@bolt-components-chip/chip.twig", {
+      text: "Item 2",
+      url: "#!",
+    }),
+    include("@bolt-components-chip/chip.twig", {
+      text: "Item 3",
+      url: "#!",
+    }),
+  ]
+} only %}
+<h3>A group of buttons</h3>
+{% include "@bolt-components-list/list.twig" with {
+  display: "inline",
+  items: [
+    include("@bolt-components-button/button.twig", {
+      text: "Item 1",
+      url: "#!",
+      style: "primary",
+    }),
+    include("@bolt-components-button/button.twig", {
+      text: "Item 2",
+      url: "#!",
+      style: "secondary",
+    }),
+    include("@bolt-components-button/button.twig", {
+      text: "Item 3",
+      url: "#!",
+      style: "text",
+    }),
   ]
 } only %}

@@ -13,12 +13,16 @@
 {% set spacingOptions = schema.properties.spacing.enum %}
 {% set alignOptions = schema.properties.align.enum %}
 {% set valignOptions = schema.properties.valign.enum %}
+{% set separatorOptions = schema.properties.separator.enum %}
+{% set insetOptions = schema.properties.inset.enum %}
 
 {# Check that the component's current prop values are valid. If not, default to the schema default #}
 {% set display = display in displayOptions ? display : schema.properties.display.default %}
 {% set spacing = spacing in spacingOptions ? spacing : schema.properties.spacing.default %}
 {% set align = align in alignOptions ? align : schema.properties.align.default %}
 {% set valign = valign in valignOptions ? valign : schema.properties.valign.default %}
+{% set separator = separator in separatorOptions ? separator : schema.properties.separator.default %}
+{% set inset = inset in spacingOptions ? inset : schema.properties.inset.default %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
@@ -27,6 +31,8 @@
   spacing in spacingOptions ? "#{baseClass}--spacing-#{spacing}" : "",
   align in alignOptions ? "#{baseClass}--align-#{align}" : "",
   valign in valignOptions ? "#{baseClass}--valign-#{valign}" : "",
+  separator in separatorOptions ? "#{baseClass}--separator-#{separator}" : "",
+  inset == true ? "#{baseClass}--inset",
 ] %}
 
 
@@ -36,6 +42,8 @@
   {% if spacing %} spacing="{{ spacing }}" {% endif %}
   {% if align %} align="{{ align }}" {% endif %}
   {% if valign %} valign="{{ valign }}" {% endif %}
+  {% if separator %} separator="{{ separator }}" {% endif %}
+  {% if inset %} inset {% endif %}
 >
   <ul {{ attributes.addClass(classes) }}>
     {% for item in items %}
@@ -44,6 +52,15 @@
           {{ item }}
         {% endif %}
       </li>
+      {% if loop.last %}
+        {% if separator != "none" %}
+          <hr class="{{ "#{baseClass}__separator" }}" hidden="true">
+        {% endif %}
+      {% else %}
+        {% if separator != "none" %}
+          <hr class="{{ "#{baseClass}__separator" }}" aria-hidden="true">
+        {% endif %}
+      {% endif %}
     {% endfor %}
   </ul>
 </bolt-list>
