@@ -1,9 +1,6 @@
 @import '@bolt/core';
 
-bolt-placeholder {
-  @include bolt-margin-bottom(medium);
-  display: block;
-}
+@include bolt-custom-element('bolt-placeholder', block, medium);
 
 .c-bolt-placeholder {
   display: block;

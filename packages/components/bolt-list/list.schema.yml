@@ -18,3 +18,20 @@ properties:
       - none
       - xsmall
       - small
+      - medium
+  align:
+    type: string
+    description: Control the horizontal alignment of items.
+    default: start
+    enum:
+      - start
+      - center
+      - end
+  valign:
+    type: string
+    description: Control the vertical alignment of items.
+    default: center
+    enum:
+      - start
+      - center
+      - end

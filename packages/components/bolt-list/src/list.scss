@@ -26,28 +26,62 @@
   display: block;
 }
 
-.c-bolt-list--spacing-xsmall {
-  &.c-bolt-list--display-inline {
-    .c-bolt-list__item:not(:last-child) {
-      @include bolt-margin-right(xsmall);
+$bolt-list-spacing-sizes: xsmall, small, medium, large, xlarge;
+
+@each $spacing-size in $bolt-list-spacing-sizes {
+  .c-bolt-list--spacing-#{$spacing-size} {
+    &.c-bolt-list--display-inline {
+      .c-bolt-list__item:not(:last-child) {
+        @include bolt-margin-right(#{$spacing-size});
+      }
     }
-  }
-  &.c-bolt-list--display-block {
-    .c-bolt-list__item:not(:last-child) {
-      @include bolt-margin-bottom(xsmall);
+    &.c-bolt-list--display-block {
+      .c-bolt-list__item:not(:last-child) {
+        @include bolt-margin-bottom(#{$spacing-size});
+      }
     }
   }
 }
 
-.c-bolt-list--spacing-small {
-  &.c-bolt-list--display-inline {
-    .c-bolt-list__item:not(:last-child) {
-      @include bolt-margin-right(small);
+$bolt-list-valignments: start, center, end;
+
+@each $valignment in $bolt-list-valignments {
+  .c-bolt-list--valign-#{$valignment} {
+    .c-bolt-list__item {
+      @if $valignment != 'center' {
+        align-self: flex-#{$valignment};
+      }
+      @else {
+        align-self: #{$valignment};
+      }
     }
   }
-  &.c-bolt-list--display-block {
-    .c-bolt-list__item:not(:last-child) {
-      @include bolt-margin-bottom(small);
+}
+
+$bolt-list-alignments: start, center, end;
+
+@each $alignment in $bolt-list-alignments {
+  .c-bolt-list--align-#{$alignment} {
+    &.c-bolt-list--display-inline {
+      @if $alignment != 'center' {
+        justify-content: flex-#{$alignment};
+      }
+      @else {
+        justify-content: #{$alignment};
+      }
+    }
+    &.c-bolt-list--display-block {
+      @if $alignment = 'center' {
+        text-align: #{$alignment};
+      }
+      @elseif $alignment = 'start' {
+        text-align: left;
+        text-align: #{$alignment};
+      }
+      @elseif $alignment = 'end' {
+        text-align: right;
+        text-align: #{$alignment};
+      }
     }
   }
 }
