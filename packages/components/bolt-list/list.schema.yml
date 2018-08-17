@@ -2,14 +2,33 @@ $schema: http://json-schema.org/draft-04/schema#
 title: List
 description: Minimal list component for laying out a group of items.
 type: object
+required:
+  - items
 properties:
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
+  items:
+    type: array
+    description: All items can be simple text or `items`.
+    items:
+      type: [string, object, array]
+      description: Renderable content (i.e. a string, render array, or included pattern) for a single list item.
   display:
     type: string
-    description: Display either an inline list of items or a stacking (block) list of items.
-    default: inline
+    description: Display either an inline list of items or a block (stacked) list of items. Responsive options are also available for transforming from block to inline at specific breakpoints.
+    default: block
     enum:
-      - block
       - inline
+      - block
+      - inline@xxsmall
+      - inline@xsmall
+      - inline@small
+      - inline@medium
+      - inline@large
+      - inline@xlarge
+      - inline@xxlarge
+      - inline@xxxlarge
   spacing:
     type: string
     description: Control the spacing in between items.
