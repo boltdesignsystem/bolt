@@ -45,4 +45,8 @@ module.exports = {
       paths: ['../../www/build'],
     },
   },
+  criticalCss: {
+    // target docs site-specific HTML, omit anything pattern lab related
+    urls: ['*.html', 'docs/**/*.html', '!**/*.markup-only.html'],
+  },
 };

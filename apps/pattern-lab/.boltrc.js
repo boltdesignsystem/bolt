@@ -18,6 +18,23 @@ const config = {
   verbosity: 2,
   schemaErrorReporting: 'cli',
   webpackDevServer: true,
+
+  criticalCss: {
+    urls: [
+      'pattern-lab/patterns/04-*/**/*.html',
+      // 'pattern-lab/**/*.html',
+      '!**/*.markup-only.html',
+    ],
+    // forceInclude: [],
+    propertiesToRemove: [
+      '(.*)transition(.*)',
+      'cursor',
+      'pointer-events',
+      '(-webkit-)?tap-highlight-color',
+      '(.*)user-select',
+    ],
+  },
+
   extraTwigNamespaces: {
     bolt: {
       recursive: true,

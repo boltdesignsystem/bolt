@@ -158,6 +158,10 @@ async function build(localDev = false, shouldReturnTime = false) {
       await compileBasedOnEnvironment();
     }
 
+    if (config.criticalCss && localDev === false) {
+      await criticalcssTasks.build();
+    }
+
     if (shouldReturnTime) {
       return startTime;
     } else {
