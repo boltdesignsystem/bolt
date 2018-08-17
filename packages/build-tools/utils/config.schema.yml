@@ -64,6 +64,18 @@
     srcDir:
       type: string
       title: Source Directory
+    criticalCss:
+      type: object
+      properties:
+        urls:
+          type: array
+          description: Array of URLs to generate critical CSS against
+        propertiesToRemove:
+          type: array
+          description: Array of CSS properties that Penthouse should omit
+        forceInclude:
+          type: array
+          description: Array of CSS selectors to force Penthouse to include
     webpackStats:
       type: boolean
       title: Write WebPack stats file
