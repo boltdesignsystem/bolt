@@ -1,7 +1,7 @@
-export { define, props, withComponent, withUpdate } from 'skatejs';
+export { define, props, withComponent, withUpdate } from 'skatejs/dist/esnext';
 
-export preact, { Component, h } from 'preact';
-export { hyper } from 'hyperhtml/cjs';
+export { Component, h } from 'preact';
+export { hyper } from 'hyperhtml';
 
 // Export Utilties + Helpers
 export { css } from './utils/css';

@@ -5,8 +5,8 @@ import {
   withUpdate,
   shadow,
   props,
-} from 'skatejs';
-import { hyper, bind } from 'hyperhtml/cjs';
+} from 'skatejs/dist/esnext';
+import { hyper, bind } from 'hyperhtml';
 import { hasNativeShadowDomSupport } from '../utils/environment';
 import { findParentTag } from '../utils/find-parent-tag';
 import { BoltBase } from './bolt-base';

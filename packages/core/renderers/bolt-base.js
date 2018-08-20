@@ -1,5 +1,5 @@
 // HyperHTML Renderer ported to SkateJS
-import { withComponent, shadow, props } from 'skatejs';
+import { withComponent, shadow, props } from 'skatejs/dist/esnext';
 import { hasNativeShadowDomSupport } from '../utils/environment';
 import { findParentTag } from '../utils/find-parent-tag';
 
