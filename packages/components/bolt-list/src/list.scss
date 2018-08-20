@@ -32,33 +32,32 @@
 }
 
 @each $breakpoint in $bolt-breakpoints {
-  $breakpointName: nth($breakpoint, 1);
-  .c-bolt-list--display-inline\@#{$breakpointName} {
+  $breakpoint-name: nth($breakpoint, 1);
+  .c-bolt-list--display-inline\@#{$breakpoint-name} {
     display: flex;
     flex-flow: column wrap;
 
-    @include bolt-mq($breakpointName) {
+    @include bolt-mq($breakpoint-name) {
       display: inline-flex;
       flex-flow: row wrap;
     }
   }
 }
 
-$bolt-list-spacing-sizes: xsmall, small, medium;
-
-@each $spacing-size in $bolt-list-spacing-sizes {
-  .c-bolt-list--spacing-#{$spacing-size} {
-    margin-right: bolt-spacing(#{$spacing-size}) * -1;
-    margin-bottom: bolt-v-spacing(#{$spacing-size}) * -1;
+@each $spacing-value in $bolt-spacing-values {
+  $spacing-value-name: nth($spacing-value, 1);
+  .c-bolt-list--spacing-#{$spacing-value-name} {
+    margin-right: bolt-spacing(#{$spacing-value-name}) * -1;
+    margin-bottom: bolt-v-spacing(#{$spacing-value-name}) * -1;
 
     .c-bolt-list__item,
     .c-bolt-list__separator {
-      @include bolt-margin-right(#{$spacing-size});
-      @include bolt-margin-bottom(#{$spacing-size});
+      @include bolt-margin-right(#{$spacing-value-name});
+      @include bolt-margin-bottom(#{$spacing-value-name});
     }
   }
 
-  .c-bolt-list--spacing-#{$spacing-size}.c-bolt-list--inset {
+  .c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--inset {
     @include bolt-margin-right(0);
     @include bolt-margin-bottom(0);
 
@@ -69,7 +68,7 @@ $bolt-list-spacing-sizes: xsmall, small, medium;
     }
 
     .c-bolt-list__item {
-      @include bolt-padding(#{$spacing-size});
+      @include bolt-padding(#{$spacing-value-name});
     }
   }
 }
@@ -123,12 +122,12 @@ $bolt-list-alignments: start, center, end;
   }
 }
 
-$bolt-list-separators: solid, dotted;
+$bolt-list-separator-styles: solid, dotted;
 
-@each $separator in $bolt-list-separators {
-  .c-bolt-list--separator-#{$separator} {
+@each $separator-style in $bolt-list-separator-styles {
+  .c-bolt-list--separator-#{$separator-style} {
     .c-bolt-list__separator {
-      border-style: #{$separator};
+      border-style: #{$separator-style};
     }
   }
 }
