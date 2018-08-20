@@ -1,7 +1,7 @@
 {% set schema = bolt.data.components["@bolt-components-list"].schema %}
 
 {% for spacing in schema.properties.spacing.enum %}
-  <h3>Inline with {{ spacing }} spacing</h3>
+  <h3>Inline list with spacing ({{ spacing }})</h3>
   {% include "@bolt-components-list/list.twig" with {
     display: "inline",
     spacing: spacing,
@@ -20,7 +20,7 @@
       }),
     ]
   } only %}
-  <h3>Block with {{ spacing }} spacing</h3>
+  <h3>Block list with spacing ({{ spacing }})</h3>
   {% include "@bolt-components-list/list.twig" with {
     display: "block",
     spacing: spacing,

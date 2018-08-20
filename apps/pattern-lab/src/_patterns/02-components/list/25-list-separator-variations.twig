@@ -2,7 +2,7 @@
 
 {% for separator in schema.properties.separator.enum %}
   {% if separator != "none" %}
-    <h3>Separator: {{ separator }}, with inline links</h3>
+    <h3>Inline list with separators ({{ separator }})</h3>
     {% include "@bolt-components-list/list.twig" with {
       display: "inline",
       separator: separator,
@@ -21,7 +21,7 @@
         }),
       ]
     } only %}
-    <h3>Separator: {{ separator }}, with block links</h3>
+    <h3>Block list with separators ({{ separator }})</h3>
     {% include "@bolt-components-list/list.twig" with {
       display: "block",
       separator: separator,

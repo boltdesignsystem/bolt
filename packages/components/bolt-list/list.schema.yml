@@ -38,6 +38,14 @@ properties:
       - xsmall
       - small
       - medium
+  separator:
+    type: string
+    description: Display a separator in between items.
+    default: none
+    enum:
+      - none
+      - solid
+      - dotted
   inset:
     type: boolean
     description: Turn spaciing to the inside of each item.
@@ -58,11 +66,3 @@ properties:
       - start
       - center
       - end
-  separator:
-    type: string
-    description: Display a separator in between items.
-    default: none
-    enum:
-      - none
-      - solid
-      - dotted
