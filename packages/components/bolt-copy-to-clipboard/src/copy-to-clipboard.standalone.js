@@ -10,7 +10,6 @@ import {
 
 import ClipboardJS from 'clipboard';
 
-@define
 export class BoltCopyToClipboard extends BoltComponent() {
   static is = 'bolt-copy-to-clipboard';
 
@@ -50,3 +49,5 @@ export class BoltCopyToClipboard extends BoltComponent() {
     this.copyLink.removeEventListener('click', this.clickHandler);
   }
 }
+
+customElements.define(BoltCopyToClipboard.is, BoltCopyToClipboard);

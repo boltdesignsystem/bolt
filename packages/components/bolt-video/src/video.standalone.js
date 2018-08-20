@@ -14,7 +14,6 @@ import Mousetrap from 'mousetrap';
 
 let index = 0;
 
-@define
 export class BoltVideoMeta extends withPreact() {
   static is = `${bolt.namespace}-video-meta`;
 
@@ -63,7 +62,8 @@ export class BoltVideoMeta extends withPreact() {
   }
 }
 
-@define
+customElements.define(BoltVideoMeta.is, BoltVideoMeta);
+
 class BoltVideo extends withPreact() {
   static is = `${bolt.namespace}-video`;
 
@@ -710,6 +710,8 @@ class BoltVideo extends withPreact() {
     );
   }
 }
+
+customElements.define(BoltVideo.is, BoltVideo);
 
 // BoltVideo.globalErrors = [];
 //BoltVideo.props = defaults;

@@ -31,7 +31,6 @@ function whichAnimationEvent() {
 }
 const animationEvent = whichAnimationEvent();
 
-@define
 export class BoltDeviceViewer extends BoltComponent() {
   static is = 'bolt-device-viewer';
 
@@ -68,7 +67,8 @@ export class BoltDeviceViewer extends BoltComponent() {
   }
 }
 
-@define
+customElements.define(BoltDeviceViewer.is, BoltDeviceViewer);
+
 export class BoltImageZoom extends BoltComponent() {
   static is = 'bolt-image-zoom';
 
@@ -161,3 +161,5 @@ export class BoltImageZoom extends BoltComponent() {
     `;
   }
 }
+
+customElements.define(BoltImageZoom.is, BoltImageZoom);

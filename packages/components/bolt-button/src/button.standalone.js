@@ -19,7 +19,6 @@ import styles from './button.scss';
  * classes) that need to get removed when the component's JS kicks in. Once that happens, this
  * component automatically replaces itself with the component's child nodes.
  */
-@define
 export class ReplaceWithChildren extends BoltComponent() {
   static is = 'replace-with-children';
 
@@ -50,9 +49,9 @@ export class ReplaceWithChildren extends BoltComponent() {
     }
   }
 }
+customElements.define(ReplaceWithChildren.is, ReplaceWithChildren);
 
-@define
-class BoltButton extends BoltComponent() {
+export class BoltButton extends BoltComponent() {
   static is = 'bolt-button';
 
   static props = {
@@ -169,3 +168,5 @@ class BoltButton extends BoltComponent() {
     `;
   }
 }
+
+customElements.define(BoltButton.is, BoltButton);

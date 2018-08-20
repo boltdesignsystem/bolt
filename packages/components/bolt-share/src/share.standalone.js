@@ -8,7 +8,6 @@ import {
   sanitizeBoltClasses,
 } from '@bolt/core';
 
-@define
 export class BoltShare extends BoltComponent {
   static is = 'bolt-share';
 
@@ -31,3 +30,5 @@ export class BoltShare extends BoltComponent {
     });
   }
 }
+
+customElements.define(BoltShare.is, BoltShare);

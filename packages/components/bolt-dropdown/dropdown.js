@@ -11,7 +11,6 @@ import Handorgel from 'handorgel';
 import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
 import styles from './dropdown.scss';
 
-@define
 export class BoltDropdown extends BoltComponent() {
   static is = 'bolt-dropdown';
 
@@ -219,3 +218,5 @@ export class BoltDropdown extends BoltComponent() {
     `;
   }
 }
+
+customElements.define(BoltDropdown.is, BoltDropdown);

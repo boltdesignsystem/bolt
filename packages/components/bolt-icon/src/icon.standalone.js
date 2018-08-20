@@ -1,7 +1,6 @@
 import {
   h,
   render,
-  define,
   props,
   withComponent,
   withPreact,
@@ -22,7 +21,6 @@ const backgroundStyles = ['circle', 'square'];
 
 const colors = ['teal', 'blue'];
 
-@define
 export class BoltIcon extends withPreact() {
   static is = 'bolt-icon';
 
@@ -133,6 +131,8 @@ export class BoltIcon extends withPreact() {
     );
   }
 }
+
+customElements.define(BoltIcon.is, BoltIcon);
 
 /**
  * If CSS Vars are unsupported, listen for class changes on the page to selectively

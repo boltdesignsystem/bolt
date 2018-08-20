@@ -15,7 +15,6 @@ import {
     — https://www.npmjs.com/package/nodelist-foreach-polyfill
 */
 
-@define
 export class BoltNavPriority extends BoltComponent() {
   static is = 'bolt-nav-priority';
 
@@ -245,3 +244,5 @@ export class BoltNavPriority extends BoltComponent() {
     window.removeEventListener('optimizedResize', this._adaptPriorityNav);
   }
 }
+
+customElements.define(BoltNavPriority.is, BoltNavPriority);

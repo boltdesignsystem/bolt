@@ -11,7 +11,6 @@ import {
 } from '@bolt/core';
 
 import Prism from 'prismjs/components/prism-core';
-
 import styles from './code-snippet.scss';
 
 import 'prismjs/components/prism-markup';
@@ -25,7 +24,6 @@ import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-markdown';
 import 'prismjs/components/prism-yaml';
 
-@define
 export class BoltCodeSnippetClass extends withPreact() {
   static is = 'bolt-code-snippet';
 
@@ -100,3 +98,5 @@ export class BoltCodeSnippetClass extends withPreact() {
     }
   }
 }
+
+customElements.define(BoltCodeSnippetClass.is, BoltCodeSnippetClass);

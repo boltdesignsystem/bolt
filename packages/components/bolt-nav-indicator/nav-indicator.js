@@ -156,7 +156,6 @@ let gumshoeStateModule = (function() {
   return pub;
 })();
 
-@define
 export class BoltNavIndicator extends BoltComponent() {
   static is = 'bolt-nav-indicator';
 
@@ -364,6 +363,8 @@ export class BoltNavIndicator extends BoltComponent() {
     window.removeEventListener('optimizedResize', this._onWindowResize);
   }
 }
+
+customElements.define(BoltNavIndicator.is, BoltNavIndicator);
 
 // Create a custom 'optimizedResize' event that works just like window.resize but is more performant because it
 // won't fire before a previous event is complete.

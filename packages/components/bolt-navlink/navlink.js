@@ -18,7 +18,6 @@ import {
   getScrollTarget,
 } from '@bolt/components-smooth-scroll';
 
-@define
 export class BoltNavLink extends BoltComponent() {
   static is = 'bolt-navlink';
 
@@ -161,3 +160,5 @@ export class BoltNavLink extends BoltComponent() {
     this.removeEventListener('click', this.onClick);
   }
 }
+
+customElements.define(BoltNavLink.is, BoltNavLink);

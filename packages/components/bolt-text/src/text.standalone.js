@@ -10,7 +10,6 @@ import {
 import styles from './text.scss';
 import schema from '../text.schema.yml';
 
-@define
 export class BoltText extends BoltComponent() {
   static is = 'bolt-text';
 
@@ -306,3 +305,5 @@ export class BoltText extends BoltComponent() {
     `;
   }
 }
+
+customElements.define(BoltText.is, BoltText);

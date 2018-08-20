@@ -14,7 +14,6 @@ import {
 
 // ShadyCSS will rename classes as needed to ensure style scoping.
 
-@define
 export class BoltBand extends BoltComponent() {
   static is = 'bolt-band';
 
@@ -213,3 +212,5 @@ export class BoltBand extends BoltComponent() {
     }
   }
 }
+
+customElements.define(BoltBand.is, BoltBand);

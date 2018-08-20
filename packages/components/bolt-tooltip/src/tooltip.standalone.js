@@ -12,7 +12,6 @@ import button from '@bolt/components-button/src/button.scss';
 import colorUtils from '@bolt/global/styles/07-utilities/_utilities-colors.scss';
 import styles from './tooltip.scss';
 
-@define
 export class BoltTooltip extends withPreact() {
   static is = 'bolt-tooltip';
 
@@ -89,7 +88,8 @@ export class BoltTooltip extends withPreact() {
   }
 }
 
-@define
+customElements.define(BoltTooltip.is, BoltTooltip);
+
 export class TooltipTrigger extends withPreact() {
   static is = 'tooltip-trigger';
 
@@ -181,6 +181,8 @@ export class TooltipTrigger extends withPreact() {
     );
   }
 }
+
+customElements.define(TooltipTrigger.is, TooltipTrigger);
 
 const TooltipContent = props => {
   const classes = [

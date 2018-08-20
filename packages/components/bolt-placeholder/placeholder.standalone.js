@@ -11,7 +11,6 @@ import {
 
 import placeholderStyles from './placeholder.scss';
 
-@define
 export class BoltPlaceholder extends BoltComponent() {
   static is = 'bolt-placeholder';
 
@@ -64,3 +63,5 @@ export class BoltPlaceholder extends BoltComponent() {
     `;
   }
 }
+
+customElements.define(BoltPlaceholder.is, BoltPlaceholder);

@@ -10,7 +10,6 @@ import {
 
 import styles from './block-list.scss';
 
-@define
 export class BoltBlockList extends withPreact() {
   static is = 'bolt-block-list';
 
@@ -41,3 +40,5 @@ export class BoltBlockList extends withPreact() {
     );
   }
 }
+
+customElements.define(BoltBlockList.is, BoltBlockList);
