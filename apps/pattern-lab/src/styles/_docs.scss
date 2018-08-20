@@ -439,3 +439,28 @@ pre {
   clear: both;
   height: 2rem;
 }
+
+.c-bolt-docs-color-demo {
+  &__type {
+    @include bolt-margin-bottom(1rem);
+    border-bottom: 1px dashed bolt-color(indigo, light);
+    padding: 0 1rem 1rem;
+
+    h5 {
+      @include bolt-margin-bottom(1.5rem);
+    }
+
+    &:last-of-type {
+      @include bolt-margin-bottom(0);
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+  &__color {
+    @include bolt-margin-bottom(2rem);
+
+    .u-bolt-color-white {
+      background: #000;
+    }
+  }
+}
