@@ -11,7 +11,7 @@ import styles from './text.scss';
 import schema from '../text.schema.yml';
 
 @define
-class BoltText extends BoltComponent() {
+export class BoltText extends BoltComponent() {
   static is = 'bolt-text';
 
   static props = {

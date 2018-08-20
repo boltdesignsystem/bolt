@@ -90,7 +90,7 @@ export class BoltTooltip extends withPreact() {
 }
 
 @define
-class TooltipTrigger extends withPreact() {
+export class TooltipTrigger extends withPreact() {
   static is = 'tooltip-trigger';
 
   static props = {

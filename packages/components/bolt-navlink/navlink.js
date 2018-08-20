@@ -19,7 +19,7 @@ import {
 } from '@bolt/components-smooth-scroll';
 
 @define
-class BoltNavLink extends BoltComponent() {
+export class BoltNavLink extends BoltComponent() {
   static is = 'bolt-navlink';
 
   static props = {

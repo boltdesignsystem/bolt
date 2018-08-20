@@ -12,7 +12,7 @@ import {
 import placeholderStyles from './placeholder.scss';
 
 @define
-class BoltPlaceholder extends BoltComponent() {
+export class BoltPlaceholder extends BoltComponent() {
   static is = 'bolt-placeholder';
 
   static props = {
