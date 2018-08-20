@@ -1,7 +1,7 @@
 /* eslint-disable */
 import FontFaceObserver from 'fontfaceobserver/fontfaceobserver.js';
 
-(function () {
+(function() {
   var fontsLoadedClass = 'js-fonts-loaded';
 
   // Optimization for Repeat Views
@@ -11,30 +11,30 @@ import FontFaceObserver from 'fontfaceobserver/fontfaceobserver.js';
   }
 
   var openSansRegular = new FontFaceObserver('Open Sans', {
-    weight: 400
+    weight: 400,
   });
 
   var openSansItalic = new FontFaceObserver('Open Sans', {
     weight: 400,
-    style: 'italic'
+    style: 'italic',
   });
 
   var openSansSemiBold = new FontFaceObserver('Open Sans', {
-    weight: 600
+    weight: 600,
   });
 
   var openSansSemiBoldItalic = new FontFaceObserver('Open Sans', {
     weight: 600,
-    style: 'italic'
+    style: 'italic',
   });
 
   var openSansExtraBold = new FontFaceObserver('Open Sans', {
-    weight: 800
+    weight: 800,
   });
 
   var openSansExtraBoldItalic = new FontFaceObserver('Open Sans', {
     weight: 800,
-    style: 'italic'
+    style: 'italic',
   });
 
   Promise.all([
@@ -43,9 +43,8 @@ import FontFaceObserver from 'fontfaceobserver/fontfaceobserver.js';
     openSansSemiBold.load(),
     openSansSemiBoldItalic.load(),
     openSansExtraBold.load(),
-    openSansExtraBoldItalic.load()
-
-  ]).then(function () {
+    openSansExtraBoldItalic.load(),
+  ]).then(function() {
     document.documentElement.className += ` ${fontsLoadedClass}`;
 
     // Optimization for Repeat Views
