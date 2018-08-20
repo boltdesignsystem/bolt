@@ -12,6 +12,7 @@ import {
 // @todo Salem, since this imports something that imports '@bolt/core', please make sure this doesn't add a huge amount in the wrong place - Evan
 import visuallyhiddenUtils from '@bolt/global/styles/07-utilities/_utilities-visuallyhidden.scss';
 
+import { beforeNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 import styles from './button.scss';
 
 /**
@@ -24,22 +25,24 @@ export class ReplaceWithChildren extends BoltComponent() {
 
   constructor(self) {
     self = super(self);
+    this.useShadow = false;
     return self;
   }
 
-  connecting() {
-    this.replaceElementWithChildren();
+  connectedCallback() {
+    const self = this;
+    beforeNextRender(this, function() {
+      self.replaceElementWithChildren();
+    });
   }
 
   replaceElementWithChildren() {
     const parentElement = this.parentElement;
-
     if (!parentElement) {
       Error(
         'The <replace-with-children> element needs a parent element to append to!',
       );
     }
-
     // Originally was this.replaceWith(...this.childNodes) but IE11 doesn't like that
     while (this.firstChild) {
       parentElement.appendChild(this.firstChild);
@@ -54,31 +57,32 @@ customElements.define(ReplaceWithChildren.is, ReplaceWithChildren);
 export class BoltButton extends BoltComponent() {
   static is = 'bolt-button';
 
-  static props = {
-    color: props.string,
-    text: props.string,
-    size: props.string,
-    rounded: props.boolean,
-    iconOnly: props.boolean,
-    size: props.string,
-    width: props.string,
-    align: props.string,
-    transform: props.string,
-
-    disabled: props.boolean,
-
-    target: props.string,
-    url: props.string,
-
-    onClick: props.string, // Managed by base class
-    onClickTarget: props.string, // Managed by base class
-  };
-
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
     this.useShadow = hasNativeShadowDomSupport;
     return self;
+  }
+
+  static get props() {
+    return {
+      color: props.string,
+      text: props.string,
+      size: props.string,
+      rounded: props.boolean,
+      iconOnly: props.boolean,
+      size: props.string,
+      width: props.string,
+      align: props.string,
+      transform: props.string,
+
+      disabled: props.boolean,
+
+      target: props.string,
+      url: props.string,
+
+      onClick: props.string, // Managed by base class
+      onClickTarget: props.string, // Managed by base class
+    };
   }
 
   connecting() {
