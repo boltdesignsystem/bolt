@@ -1,7 +1,6 @@
 import { h } from '@bolt/core';
-import React, { Component } from 'react';
 import { render } from 'react-dom';
-import SchemaForm from './schema-form';
+import { SchemaForm } from './schema-form';
 
 if (document.querySelector('.schema-form-root')) {
   document.querySelectorAll('.schema-form-root').forEach(root => {

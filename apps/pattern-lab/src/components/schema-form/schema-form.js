@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import Form from 'react-jsonschema-form';
 import qs from 'querystring';
 import debouce from 'lodash.debounce';
-import Parser from 'html-react-parser';
-import ResponsiveLocalStorageLayout from './grid-layout';
+import { ResponsiveLocalStorageLayout } from './grid-layout';
 
 function getFromLS(uuid, key) {
   let ls = {};
@@ -30,7 +29,7 @@ function saveToLS(uuid, key, value) {
   }
 }
 
-export default class SchemaForm extends Component {
+export class SchemaForm extends Component {
   static getDerivedStateFromProps(props, state) {
     return {
       // data: state.data ? state.data : props.initialData,
