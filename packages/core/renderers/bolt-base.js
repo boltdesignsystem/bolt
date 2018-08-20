@@ -47,9 +47,7 @@ export function BoltBase(Base = HTMLElement) {
 
     // Inspired by https://codepen.io/jovdb/pen/ddRZKo
     _checkSlots() {
-      this.slots = {
-        default: [],
-      };
+      this.slots = { default: [] };
 
       const elem = this;
 
