@@ -8,7 +8,7 @@
 {% set baseClass = "c-bolt-list" %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
-{# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
+{# Set up checks to validate that the component's prop values are allowed, based on the component's schema. #}
 {% set displayOptions = schema.properties.display.enum %}
 {% set spacingOptions = schema.properties.spacing.enum %}
 {% set separatorOptions = schema.properties.separator.enum %}
@@ -24,17 +24,6 @@
 {% set align = align in alignOptions ? align : schema.properties.align.default %}
 {% set valign = valign in valignOptions ? valign : schema.properties.valign.default %}
 
-{# Array of classes based on the defined + default props #}
-{% set classes = [
-  baseClass,
-  display in displayOptions ? "#{baseClass}--display-#{display}" : "",
-  spacing in spacingOptions ? "#{baseClass}--spacing-#{spacing}" : "",
-  separator in separatorOptions ? "#{baseClass}--separator-#{separator}" : "",
-  inset == true ? "#{baseClass}--inset",
-  align in alignOptions ? "#{baseClass}--align-#{align}" : "",
-  valign in valignOptions ? "#{baseClass}--valign-#{valign}" : "",
-] %}
-
 {# Move utility classes to a separate attributes object so they can be added to the parent element. This is necessary for most utils to work as expected. #}
 {% set parentAttributes = create_attribute({}) %}
 {% for class in attributes["class"] %}
@@ -44,7 +33,7 @@
   {% endif %}
 {% endfor %}
 
-{# List component's custom element wrapper #}
+{# List component's custom element wrapper. #}
 <bolt-list
   {% if display %} display="{{ display }}" {% endif %}
   {% if spacing %} spacing="{{ spacing }}" {% endif %}
@@ -54,6 +43,21 @@
   {% if valign %} valign="{{ valign }}" {% endif %}
   {{ parentAttributes }}
 >
+  {# This sets none values to not render anything. #}
+  {% set spacing = spacing == "none" ? false : spacing %}
+  {% set separator = separator == "none" ? false : separator %}
+
+  {# Array of classes based on the defined + default props. #}
+  {% set classes = [
+    baseClass,
+    display in displayOptions ? "#{baseClass}--display-#{display}" : "",
+    spacing in spacingOptions ? "#{baseClass}--spacing-#{spacing}" : "",
+    separator in separatorOptions ? "#{baseClass}--separator-#{separator}" : "",
+    inset == true ? "#{baseClass}--inset",
+    align in alignOptions ? "#{baseClass}--align-#{align}" : "",
+    valign in valignOptions ? "#{baseClass}--valign-#{valign}" : "",
+  ] %}
+
   <ul {{ attributes.addClass(classes) }}>
     {% for item in items %}
       <li class="{{ "#{baseClass}__item" }}">
@@ -61,12 +65,13 @@
           {{ item }}
         {% endif %}
       </li>
-      {% if loop.last %}
-        {% if separator != "none" %}
+      {# Separator is a decoration, it does not need to be read by screen readers. #}
+      {% if separator %}
+        {% if loop.last %}
+          {# This is hidden from keyboard and screen. #}
           <hr class="{{ "#{baseClass}__separator" }}" hidden="true">
-        {% endif %}
-      {% else %}
-        {% if separator != "none" %}
+        {% else %}
+          {# This is hidden from keyboard but shown on screen. #}
           <hr class="{{ "#{baseClass}__separator" }}" aria-hidden="true">
         {% endif %}
       {% endif %}
