@@ -1,33 +1,8 @@
 const preset = function(api, opts = {}) {
   return {
-    presets: [
-      [
-        '@babel/preset-env',
-        {
-          targets: {
-            browsers: require('@bolt/config-browserlist'),
-          },
-          modules: false,
-          debug: false,
-        },
-      ],
-    ],
     plugins: [
-      '@babel/plugin-syntax-export-default-from',
-      '@babel/plugin-proposal-export-default-from',
+      ['@babel/plugin-proposal-class-properties', { loose: false }],
 
-      '@babel/plugin-syntax-export-namespace-from',
-      '@babel/plugin-proposal-export-namespace-from',
-
-      [
-        '@babel/plugin-transform-runtime',
-        {
-          helpers: false,
-          regenerator: true,
-        },
-      ],
-
-      '@babel/plugin-transform-async-to-generator',
       /**
        * 1. Helps with our Web Component Preact renderer
        */
@@ -42,15 +17,8 @@ const preset = function(api, opts = {}) {
         },
       ],
 
-      ['@babel/plugin-proposal-decorators', { legacy: true }],
-
-      // ex. class { handleThing = () => { } }
-      ['@babel/plugin-proposal-class-properties', { loose: true }],
-
       // Allows us to dynamically import JS via Webpack. ex. import('button.standalone.js')
       '@babel/plugin-syntax-dynamic-import' /* [2] */,
-
-      '@babel/plugin-proposal-object-rest-spread',
     ],
   };
 };
