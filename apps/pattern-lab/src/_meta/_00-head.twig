@@ -1,5 +1,10 @@
+{% set langSuffix = bolt.data.config.lang ? 
+  "-" ~ bolt.data.config.lang[0] : 
+  "" 
+%}
 
-{% set manifestConfigFile = "@bolt-assets/bolt-webpack-manifest#{bolt.data.config.lang ? "-" ~ bolt.data.config.lang[0] : ""}.json" %}
+{% set manifestConfigFile = "@bolt-assets/bolt-webpack-manifest#{langSuffix}.json" %}
+
 
 {% if fileExists(manifestConfigFile) %}
   {% set assets = get_data(manifestConfigFile) %}
@@ -52,7 +57,7 @@
 
     <!-- async load PL's CSS -->
     <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="stylesheet" href="{{ assets["bolt-global.css"] | default("/pattern-lab/build/bolt-global.css") }}" media="all" />
+    <link rel="stylesheet" href="{{ assets["bolt-global#{langSuffix}.css"] | default("/pattern-lab/build/bolt-global#{langSuffix}.css") }}" media="all" />
 
     <noscript>
       <link href="/pattern-lab/styleguide/css/pattern-lab.css" rel="stylesheet">
@@ -62,12 +67,12 @@
     {# @TODO: wire this up to use Critical CSS #}
     {% if bolt.data.config.prod %}
       <style>
-        {{ inline( assets["bolt-components-critical-fonts.css"] | default("") ) }}
+        {{ inline( assets["bolt-components-critical-fonts#{langSuffix}.css"] | default("") ) }}
       </style>
 
       {# @TODO: wire this up to use Critical JS #}
       <script>
-        {{ inline( assets["bolt-components-critical-fonts.js"] | default("") ) }}
+        {{ inline( assets["bolt-components-critical-fonts#{langSuffix}.es5.js"] | default("") ) }}
       </script>
     {% endif %}
 
@@ -122,6 +127,8 @@
         loadCSS(globalCSS);
       } #}
     </script>
+
+    <script type="module" src="{{ assets["bolt-global#{langSuffix}.mjs"] | default("/pattern-lab/build/bolt-global#{langSuffix}.mjs") }}" async></script>
 
   </head>
   {# @todo Get `c-bolt-site` class back someplace, perhaps on a template/layout, perhaps on the `<body>` when needed. Was causing all Patterns to expand too wide, no matter browser width #}

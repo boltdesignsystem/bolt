@@ -23,6 +23,8 @@ export function BoltComponent(Base = HTMLElement) {
       super.setupShadow();
 
       this.hyper = hyper;
+
+      super._checkSlots();
     }
 
     renderStyles(styles) {

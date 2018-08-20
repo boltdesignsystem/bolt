@@ -1,9 +1,42 @@
 
+{% set langSuffix = bolt.data.config.lang ? 
+  "-" ~ bolt.data.config.lang[0] : 
+  "" 
+%}
+
 {# @TODO: how do we get this to use the exact same values from our global .js config without having the source of truth live as a .yml or .json file...? #}
-{% set manifestConfigFile = "@bolt-assets/bolt-webpack-manifest#{bolt.data.config.lang ? "-" ~ bolt.data.config.lang[0] : ""}.json" %}
+{% set manifestConfigFile = "@bolt-assets/bolt-webpack-manifest#{langSuffix}.json" %}
 
   <!--DO NOT REMOVE-->
   {{ patternLabFoot | raw }}
+
+  <!-- @todo: refactor to be baked into inlined critical JS -->
+  <script>
+  // https://gist.github.com/samthor/64b114e4a4f539915a95b91ffd340acc
+  (function() {
+    var check = document.createElement('script');
+    if (!('noModule' in check) && 'onbeforeload' in check) {
+      var support = false;
+      document.addEventListener('beforeload', function(e) {
+        if (e.target === check) {
+          support = true;
+        } else if (!e.target.hasAttribute('nomodule') || !support) {
+          return;
+        }
+        e.preventDefault();
+      }, true);
+      check.type = 'module';
+      check.src = '.';
+      document.head.appendChild(check);
+      check.remove();
+    }
+  }());
+  </script>
+
+
+  {# <script nomodule src="{{ 'runtime.es5.js' | revision }}"></script> #}
+  {# <script nomodule src="{{ 'main.es5.js' | revision }}"></script> #}
+
 
     {% if fileExists(manifestConfigFile) %}
       {% set assets = get_data(manifestConfigFile) %}
@@ -11,7 +44,8 @@
       {% set assets = [] %}
     {% endif %}
 
-    <script src="{{ assets["bolt-global.js"] | default("/pattern-lab/build/bolt-global.js") }}" async></script>
+    <script nomodule src="{{ assets["bolt-global-legacy#{langSuffix}.es5.js"] | default("/pattern-lab/build/bolt-global-legacy.es5.js") }}" async></script>
+    {# <script src="{{ assets["bolt-global#{langSuffix}.js"] | default("/pattern-lab/build/bolt-global.js") }}" async></script> #}
 
     {% if not bolt.data.config.prod %}
       {# Showing off global vars in Browsers Console #}

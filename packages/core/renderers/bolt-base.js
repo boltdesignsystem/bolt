@@ -6,15 +6,7 @@ import { findParentTag } from '../utils/find-parent-tag';
 export function BoltBase(Base = HTMLElement) {
   return class extends Base {
     connectedCallback() {
-      this._checkSlots();
-
       // Automatically force a component to render if no props exist BUT props are defined.
-      if (
-        Object.keys(this.props).length !== 0 &&
-        Object.keys(this._props).length === 0
-      ) {
-        this.updated();
-      }
     }
 
     setupShadow() {
