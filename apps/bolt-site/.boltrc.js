@@ -83,6 +83,12 @@ const config = {
       flatten: true,
     },
   ],
+  extraTwigNamespaces: {
+    'bolt-assets': {
+      recursive: true,
+      paths: ['../../www/build'],
+    },
+  },
 };
 
 if (argv.prod) {

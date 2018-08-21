@@ -5,8 +5,7 @@ const preset = function(api, opts = {}) {
         '@babel/preset-env',
         {
           targets: {
-            node: 'current',
-            browsers: ['last 3 versions', 'ie 11'],
+            browsers: require('@bolt/config-browserlist'),
           },
           modules: false,
           debug: false,
@@ -24,7 +23,6 @@ const preset = function(api, opts = {}) {
         '@babel/plugin-transform-runtime',
         {
           helpers: false,
-          polyfill: false,
           regenerator: true,
         },
       ],
