@@ -489,3 +489,18 @@ pre {
     }
   }
 }
+
+.c-bolt-docs__display-focus {
+  background: bolt-color(indigo, xlight);
+  color: bolt-color(indigo);
+  border: 2px dashed bolt-color(indigo, light);
+  height: 50px;
+}
+
+.c-bolt-docs__display-demo {
+  @include bolt-margin-bottom(2rem);
+
+  &:last-of-type {
+    @include bolt-margin-bottom(0);
+  }
+}
