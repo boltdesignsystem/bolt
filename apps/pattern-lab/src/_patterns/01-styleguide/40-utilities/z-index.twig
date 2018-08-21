@@ -1,24 +1,32 @@
-{% macro recursiveZindexDemo(list) %}
-  {% set utilityClass = bolt.data.zIndexes['utility-class-prefix'] ~ list|keys|last %}
-  <div class="bolt-z-index-demo {{ utilityClass }}">
-    {% if list|slice(0, -1)|length  %}
-      {{ _self.recursiveZindexDemo(list|slice(0, -1)) }}
-    {% endif %}
-    <p>Z-Index: <code>{{ list|keys|last }}</code>: {{ list|last }}<br>Utility Class: <code>{{ utilityClass }}</code></p>
-  </div>
-{% endmacro %}
+{% embed "@utils/utilities.twig" with {
+  utilityName: "Bolt Z-index",
+  sassdocItems: [
+    {
+      title: '@mixin bolt-z-index',
+      anchor: link['styleguide-sassdoc'] ~ '#mixin-bolt-z-index'
+    }
+  ]
+} only %}
 
-{% set classPrefix = bolt.data.zIndexes['utility-class-prefix'] %}
+  {% macro recursiveZindexDemo(list) %}
+    {% set utilityClass = bolt.data.zIndexes['utility-class-prefix'] ~ list|keys|last %}
+    <div class="bolt-z-index-demo {{ utilityClass }}">
+      {% if list|slice(0, -1)|length  %}
+        {{ _self.recursiveZindexDemo(list|slice(0, -1)) }}
+      {% endif %}
+      <p>Z-Index: <code>{{ list|keys|last }}</code>: {{ list|last }}<br>Utility Class: <code>{{ utilityClass }}</code></p>
+    </div>
+  {% endmacro %}
 
-<h4>Z-index Values</h4>
-<p>Add the utility class "{{ classPrefix }}xx" where xx equals the z index level you wish to apply.</p>
-<p><strong>For example:</strong> <code>.{{ classPrefix ~ bolt.data.zIndexes.sets|keys|first }}</code></p>
+  {% set classPrefix = bolt.data.zIndexes['utility-class-prefix'] %}
 
-{{ _self.recursiveZindexDemo(bolt.data.zIndexes.sets) }}
+  {% block utilityDescription %}
+    <p>Add the utility class <code>{{ classPrefix }}xx</code> where xx equals the z index level you wish to apply.</p>
+    <p><strong>For example:</strong> <code>.{{ classPrefix ~ bolt.data.zIndexes.sets|keys|first }}</code></p>
+  {% endblock %}
 
-<div class="c-bolt-docs-sassdoc-reference">
-  <h5>SassDoc references</h5>
-  <ul>
-    <li><a target="_blank" href="{{ link['styleguide-sassdoc'] }}#mixin-bolt-z-index">@mixin bolt-z-index</a></li>
-  </ul>
-</div>
+  {% block utilityDemo %}
+    {{ _self.recursiveZindexDemo(bolt.data.zIndexes.sets) }}
+  {% endblock %}
+
+{% endembed %}

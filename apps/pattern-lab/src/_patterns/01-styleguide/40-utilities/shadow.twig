@@ -11,7 +11,7 @@
 {% set classPrefix = bolt.data.shadows['utility-class-prefix'] %}
 
   {% block utilityDescription %}
-    <p>Add the utility class ".{{ classPrefix }}xx" where xx equals the level of shadow you wish to apply.</p>
+    <p>Add the utility class <code>{{ classPrefix }}xx</code> where xx equals the level of shadow you wish to apply.</p>
     <p><strong>For example</strong>: <code>.{{ classPrefix ~ bolt.data.shadows.sets|keys|first }}</code></p>
   {% endblock %}
 
@@ -26,7 +26,7 @@
     {% endfor %}
 
     <h5>Hoverable</h5>
-    <p>To add an animated shadow that 'lifts' on hover, add the ".{{ classPrefix }}xx--hoverable" where xx equals the level of shadow you wish to use.</p>
+    <p>To add an animated shadow that 'lifts' on hover, add the <code>{{ classPrefix }}xx--hoverable</code> where xx equals the level of shadow you wish to use.</p>
     <p><strong>For example</strong>: <code>.{{ classPrefix ~ bolt.data.shadows.sets|keys|first ~ '--hoverable' }}</code></p>
 
     {% for key, value in bolt.data.shadows.sets %}
