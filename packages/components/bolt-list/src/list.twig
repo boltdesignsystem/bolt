@@ -9,6 +9,7 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {# Set up checks to validate that the component's prop values are allowed, based on the component's schema. #}
+{% set tagOptions = schema.properties.tag.enum %}
 {% set displayOptions = schema.properties.display.enum %}
 {% set spacingOptions = schema.properties.spacing.enum %}
 {% set separatorOptions = schema.properties.separator.enum %}
@@ -17,6 +18,7 @@
 {% set valignOptions = schema.properties.valign.enum %}
 
 {# Check that the component's current prop values are valid. If not, default to the schema default #}
+{% set tag = tag in displayOptions ? tag : schema.properties.tag.default %}
 {% set display = display in displayOptions ? display : schema.properties.display.default %}
 {% set spacing = spacing in spacingOptions ? spacing : schema.properties.spacing.default %}
 {% set separator = separator in separatorOptions ? separator : schema.properties.separator.default %}
@@ -35,6 +37,7 @@
 
 {# List component's custom element wrapper. #}
 <bolt-list
+  {% if tag %} tag="{{ tag }}" {% endif %}
   {% if display %} display="{{ display }}" {% endif %}
   {% if spacing %} spacing="{{ spacing }}" {% endif %}
   {% if separator %} separator="{{ separator }}" {% endif %}
@@ -58,23 +61,13 @@
     valign in valignOptions ? "#{baseClass}--valign-#{valign}" : "",
   ] %}
 
-  <ul {{ attributes.addClass(classes) }}>
+  <{{ tag }} {{ attributes.addClass(classes) }}>
     {% for item in items %}
       <li class="{{ "#{baseClass}__item" }}">
         {% if item %}
           {{ item }}
         {% endif %}
       </li>
-      {# Separator is a decoration, it does not need to be read by screen readers. #}
-      {% if separator %}
-        {% if loop.last %}
-          {# This is hidden from keyboard and screen. #}
-          <hr class="{{ "#{baseClass}__separator" }}" hidden="true">
-        {% else %}
-          {# This is hidden from keyboard but shown on screen. #}
-          <hr class="{{ "#{baseClass}__separator" }}" aria-hidden="true">
-        {% endif %}
-      {% endif %}
     {% endfor %}
-  </ul>
+  </{{ tag }}>
 </bolt-list>

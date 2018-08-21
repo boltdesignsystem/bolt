@@ -14,6 +14,13 @@ properties:
     items:
       type: [string, object, array]
       description: Renderable content (i.e. a string, render array, or included pattern) for a single list item.
+  tag:
+    type: string
+    description: Apply the semantic tag for the list.
+    default: ul
+    enum:
+      - ul
+      - ol
   display:
     type: string
     description: Display either an inline list of items or a block (stacked) list of items. Responsive options are also available for transforming from block to inline at specific breakpoints.
