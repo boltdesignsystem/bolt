@@ -11,7 +11,9 @@
     "watch": "bolt watch",
     "start": "bolt start",
     "test:links": "blc http://localhost:3000 --recursive --ordered --filter-level 2",
-    "test": "npm run test:links"
+    "test": "npm run test:links",
+    "setup": "cd ../../ && npm run setup",
+    "clean": "cd ../../ && npm run clean"
   },
   "repository": {
     "type": "git",
