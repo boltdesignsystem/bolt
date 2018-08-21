@@ -13,8 +13,7 @@
   list-style: none;
 }
 
-.c-bolt-list__item,
-.c-bolt-list__separator {
+.c-bolt-list__item {
   @include bolt-margin(0);
   @include bolt-padding(0);
 
@@ -50,8 +49,7 @@
     margin-right: bolt-spacing(#{$spacing-value-name}) * -1;
     margin-bottom: bolt-v-spacing(#{$spacing-value-name}) * -1;
 
-    .c-bolt-list__item,
-    .c-bolt-list__separator {
+    .c-bolt-list__item {
       @include bolt-margin-right(#{$spacing-value-name});
       @include bolt-margin-bottom(#{$spacing-value-name});
     }
@@ -61,14 +59,24 @@
     @include bolt-margin-right(0);
     @include bolt-margin-bottom(0);
 
-    .c-bolt-list__item,
-    .c-bolt-list__separator {
+    .c-bolt-list__item {
       @include bolt-margin-right(0);
       @include bolt-margin-bottom(0);
-    }
-
-    .c-bolt-list__item {
       @include bolt-padding(#{$spacing-value-name});
+    }
+  }
+
+  .c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--display-block[class^='c-bolt-list--separator'],
+  .c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--display-block[class*=' c-bolt-list--separator'] {
+    .c-bolt-list__item:not(:last-child) {
+      @include bolt-padding-bottom(#{$spacing-value-name});
+    }
+  }
+
+  .c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--display-inline[class^='c-bolt-list--separator'],
+  .c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--display-inline[class*=' c-bolt-list--separator'] {
+    .c-bolt-list__item:not(:last-child) {
+      @include bolt-padding-right(#{$spacing-value-name});
     }
   }
 }
@@ -99,35 +107,29 @@ $bolt-list-alignments: start, center, end;
   }
 }
 
-.c-bolt-list__separator {
-  border: 0;
-  border-color: inherit;
-  border-color: var(--bolt-theme-text, inherit);
-  opacity: 0.15;
-
-  .c-bolt-list--display-block & {
-    width: auto;
-    height: 0;
-    border-top-width: 1px;
-  }
-
-  .c-bolt-list--display-inline & {
-    width: 0;
-    height: 1em;
-    border-right-width: 1px;
-  }
-
-  &[hidden] {
-    display: none;
-  }
-}
-
-$bolt-list-separator-styles: solid, dotted;
+$bolt-list-separator-styles: solid, dashed;
 
 @each $separator-style in $bolt-list-separator-styles {
   .c-bolt-list--separator-#{$separator-style} {
-    .c-bolt-list__separator {
+    .c-bolt-list__item:not(:last-child) {
+      border: 0;
+      border-color: rgba(bolt-color(gray), 0.25);
       border-style: #{$separator-style};
+    }
+  }
+}
+
+[class^='c-bolt-list--separator'],
+[class*=' c-bolt-list--separator'] {
+  &.c-bolt-list--display-block {
+    .c-bolt-list__item:not(:last-child) {
+      border-bottom-width: 1px;
+    }
+  }
+
+  &.c-bolt-list--display-inline {
+    .c-bolt-list__item:not(:last-child) {
+      border-right-width: 1px;
     }
   }
 }
