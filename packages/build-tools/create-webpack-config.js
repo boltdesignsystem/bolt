@@ -436,36 +436,36 @@ async function createWebpackConfig(buildConfig) {
    * In non-drupal environments. during local dev server (ie. not on Travis -- for now till Docker container is up and running),
    * compile the Pattern Lab UI HTML via the new Twig PHP rendering service.
    */
-  if (config.env !== 'drupal' && !config.prod && config.devServer === true) {
-    webpackConfig.plugins.push(
-      new HtmlWebpackPlugin({
-        title: 'Custom template',
-        filename: '../index.html',
-        inject: false, // disabling for now -- not yet needed in PL build (but at least is working!)
-        cache: false,
-        // Load a custom template (lodash by default see the FAQ for details)
-        template: path.resolve(
-          process.cwd(),
-          '../../packages/uikit-workshop/src/html-twig/index.twig',
-        ),
-      }),
+  // if (config.env !== 'drupal' && !config.prod && config.devServer === true) {
+  //   webpackConfig.plugins.push(
+  //     new HtmlWebpackPlugin({
+  //       title: 'Custom template',
+  //       filename: '../index.html',
+  //       inject: false, // disabling for now -- not yet needed in PL build (but at least is working!)
+  //       cache: false,
+  //       // Load a custom template (lodash by default see the FAQ for details)
+  //       template: path.resolve(
+  //         process.cwd(),
+  //         '../../packages/uikit-workshop/src/html-twig/index.twig',
+  //       ),
+  //     }),
 
-      new TwigPhpLoader(), // handles compiling Twig templates when Webpack-specific contextual data is needed (ex. automatically injecting assets in your entry config)
-    );
+  //     new TwigPhpLoader(), // handles compiling Twig templates when Webpack-specific contextual data is needed (ex. automatically injecting assets in your entry config)
+  //   );
 
-    webpackConfig.module.rules.push({
-      test: /\.twig$/,
-      loader: TwigPhpLoader.loader,
-      options: {
-        port: config.port, // port the PHP rendering service is running on -- dynamically set when @bolt/build-tools boots up
-        namespaces: npmToTwigNamespaceMap, // @todo: further refactor so this loader doesn't need to map out the namespace to the NPM package location
+  //   webpackConfig.module.rules.push({
+  //     test: /\.twig$/,
+  //     loader: TwigPhpLoader.loader,
+  //     options: {
+  //       port: config.port, // port the PHP rendering service is running on -- dynamically set when @bolt/build-tools boots up
+  //       namespaces: npmToTwigNamespaceMap, // @todo: further refactor so this loader doesn't need to map out the namespace to the NPM package location
 
-        // this determines whether Twig templates get rendered immediately vs wait for the HtmlWebpackPlugin to
-        // generate data on the assets available before rendering. Defaults to false.
-        includeContext: false,
-      },
-    });
-  }
+  //       // this determines whether Twig templates get rendered immediately vs wait for the HtmlWebpackPlugin to
+  //       // generate data on the assets available before rendering. Defaults to false.
+  //       includeContext: false,
+  //     },
+  //   });
+  // }
 
   if (config.prod) {
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
