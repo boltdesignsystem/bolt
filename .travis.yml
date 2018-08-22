@@ -26,7 +26,7 @@ before_script:
 # Can't do deploy on `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
 script:
 - bash ./travis.sh # time command already run inside the travis.sh script
-- nightwatch --config nightwatch.js --env chrome,ie11
+- npx nightwatch --config nightwatch.js --env chrome,ie11
 
 cache:
   apt: true
