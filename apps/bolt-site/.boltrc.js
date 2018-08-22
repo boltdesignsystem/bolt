@@ -6,8 +6,10 @@ const config = {
   lang: ['en'],
   renderingService: true, // starts PHP service for rendering Twig templates
   openServerAtStart: true,
+  webpackDevServer: true,
   // Environmental variable / preset to use
   env: 'static',
+  startPath: '/',
   buildDir: '../../www/build/',
   srcDir: './content',
   wwwDir: '../../www',
@@ -15,6 +17,10 @@ const config = {
     'bolt-assets': {
       recursive: true,
       paths: ['../../www/build'],
+    },
+    bolt: {
+      recursive: true,
+      paths: ['templates'],
     },
   },
   images: {
