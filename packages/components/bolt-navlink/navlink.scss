@@ -6,9 +6,8 @@
 
 $bolt-navlink-bg-color: currentColor;
 $bolt-navlink-bg-border-radius: $bolt-border-radius;
-$bolt-navlink-bg-transition-timing: $bolt-transition-timing*4;
+$bolt-navlink-bg-transition-timing: $bolt-transition-timing * 4;
 $bolt-navlink-text-transition: $bolt-transition;
-
 
 // Navlink Component
 bolt-navlink {
@@ -25,10 +24,10 @@ bolt-navlink {
   @include bolt-font-weight(semibold);
 
   position: relative;
-  opacity: 0.90;
+  opacity: 0.9;
   transition: opacity $bolt-navlink-text-transition;
   position: relative;
-  transition: all .1s ease;
+  transition: all 0.1s ease;
   color: currentColor;
   color: var(--bolt-theme-heading-link-default, inherit);
   // Added so that &:focus:not(:active) doesn't change the size of the band
@@ -38,7 +37,7 @@ bolt-navlink {
   border-style: dotted;
   border-radius: 3px;
   border-color: transparent;
-
+  text-decoration: none;
 
   &:active,
   &.is-active {
@@ -47,7 +46,6 @@ bolt-navlink {
     border-color: transparent;
     opacity: 1;
   }
-
 
   &:before {
     display: block;
@@ -73,10 +71,7 @@ bolt-navlink {
   &:hover,
   &.is-hover {
     &:before {
-      animation:
-        a-bolt-navlink-bg-hover
-        $bolt-navlink-bg-transition-timing
-        both;
+      animation: a-bolt-navlink-bg-hover $bolt-navlink-bg-transition-timing both;
     }
   }
 
@@ -87,11 +82,11 @@ bolt-navlink {
     }
   }
 
-    // works in chrome only
+  // works in chrome only
   &:focus:not(:active) {
     outline: none;
     border-color: inherit;
-    border-color: var(--bolt-theme-primary,inherit);
+    border-color: var(--bolt-theme-primary, inherit);
   }
 
   &.is-dropdown-link.is-active:after {
@@ -105,7 +100,6 @@ bolt-navlink {
     content: '';
   }
 }
-
 
 @keyframes a-bolt-navlink-bg-hover {
   0% {
