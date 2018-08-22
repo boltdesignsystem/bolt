@@ -8,7 +8,5 @@
 
 
 <bolt-navlink {% if active == true %}active{% endif %}>
-  <a {{ attributes }}>
-    {{ text }}
-  </a>
+  {% include "@bolt-components-link/link.twig" %}
 </bolt-navlink>
