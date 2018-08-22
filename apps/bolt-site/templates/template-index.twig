@@ -1,5 +1,5 @@
-{# Global Twig vars #}
 {% set manifestConfigFile = "@bolt-assets/bolt-webpack-manifest#{bolt.data.config.lang ? "-" ~ bolt.data.config.lang[0] : ""}.json" %}
+
 {% if fileExists(manifestConfigFile) %}
   {% set assets = get_data(manifestConfigFile) %}
 {% else %}
@@ -17,7 +17,6 @@
   {% endfor %}
 {% endif %}
 {% set hasSidebar = nestedPages or sidebar %}
-{# End Global Twig vars #}
 
 
 <!DOCTYPE html>
@@ -90,7 +89,7 @@
     </script>
 
   </head>
-  <body class="storefront-docs c-bolt-site {% if currentUrl == 'index.html' %} t-bolt-dark {% endif %} storefront-docs--{{ urlChunks | length >= 2 ? urlChunks|first : 'parent' }}">
+  <body class="storefront-docs c-bolt-site {% if currentUrl == 'index.html' %} t-bolt-xdark {% endif %} storefront-docs--{{ urlChunks | length >= 2 ? urlChunks|first : 'parent' }}">
 
     {% embed "@bolt-components-sticky/sticky.twig" %}
       {% block sticky_content %}
@@ -98,7 +97,11 @@
           theme: "xdark",
           title: {
             tag: "h1",
-            text: "Bolt Design System"
+            text: "Bolt Design System",
+            url: "/",
+            icon: {
+              name: "bolt-logo-colored"
+            }
           },
           links: [
             {
@@ -114,6 +117,10 @@
               url: "https://github.com/bolt-design-system/bolt",
               attributes: {
                 target: "_blank"
+              },
+              icon: {
+                name: "github",
+                position: "after"
               }
             }
           ]
@@ -121,7 +128,11 @@
       {% endblock %}
     {% endembed %}
 
-    {{ content }}
+    <div class="storefront-docs__content c-bolt-site__content  c-bolt-site__content--middle ">
+      <div class="storefront-docs-wrapper">
+        {{ content }}
+      </div>
+    </div>
 
     <script src="{{ assets["bolt-global.js"] | default("/build/bolt-global.js") }}" async></script>
   </body>
