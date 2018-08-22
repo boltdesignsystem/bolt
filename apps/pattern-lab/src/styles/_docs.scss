@@ -537,3 +537,15 @@ pre {
     @include bolt-font-weight(bold);
   }
 }
+
+.c-bolt-docs__height-demo {
+  @include bolt-margin-bottom(2rem);
+  border: 2px dashed bolt-color(gray, light);
+  padding: 1rem;
+}
+
+.c-bolt-docs__height-item {
+  @include bolt-margin-top(0.75rem);
+  border: 1px solid bolt-color(indigo, light);
+  overflow: hidden;
+}
