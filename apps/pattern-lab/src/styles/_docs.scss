@@ -504,3 +504,36 @@ pre {
     @include bolt-margin-bottom(0);
   }
 }
+
+.c-bolt-docs__flex-demo {
+  @include bolt-margin-bottom(2rem);
+  border: 2px dashed bolt-color(gray, light);
+  padding: 1rem;
+  resize: horizontal;
+  overflow-y: auto;
+  &+h4 {
+    @include bolt-margin-top(4rem);
+  }
+}
+
+.c-bolt-docs__flex-item {
+  background: bolt-color(indigo, xlight);
+  color: bolt-color(indigo);
+  border: 2px dashed bolt-color(indigo, light);
+  text-align: center;
+
+  &--shrink-0 {
+    font-weight: 400 !important;
+    flex-shrink: 0;
+  }
+
+  &--basis-100 {
+    flex-basis: 100px;
+  }
+
+  &.u-bolt-flex-grow,
+  &.u-bolt-flex-shrink,
+  &.u-bolt-flex-basis-auto {
+    @include bolt-font-weight(bold);
+  }
+}
