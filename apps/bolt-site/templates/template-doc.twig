@@ -1,13 +1,5 @@
-
 {% set manifestConfigFile = "@bolt-assets/bolt-webpack-manifest#{bolt.data.config.lang ? "-" ~ bolt.data.config.lang[0] : ""}.json" %}
-{% if fileExists(manifestConfigFile) %}
-  {% set assets = get_data(manifestConfigFile) %}
-{% else %}
-  {% set assets = [] %}
-{% endif %}
 
-{# Global Twig vars #}
-{% set manifestConfigFile = "@bolt-assets/bolt-webpack-manifest#{bolt.data.config.lang ? "-" ~ bolt.data.config.lang[0] : ""}.json" %}
 {% if fileExists(manifestConfigFile) %}
   {% set assets = get_data(manifestConfigFile) %}
 {% else %}
@@ -25,7 +17,6 @@
   {% endfor %}
 {% endif %}
 {% set hasSidebar = nestedPages or sidebar %}
-{# End Global Twig vars #}
 
 
 <!doctype html>
