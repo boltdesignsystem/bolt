@@ -90,41 +90,59 @@
 
   </head>
   <body class="storefront-docs c-bolt-site {% if currentUrl == 'index.html' %} t-bolt-xdark {% endif %} storefront-docs--{{ urlChunks | length >= 2 ? urlChunks|first : 'parent' }}">
+    {% set navbar %}
+      {% embed "@bolt-components-navbar/navbar.twig" with {
+        theme: "xdark",
+        title: {
+          tag: "h1",
+          text: "Bolt Design System", 
+          url: "/",
+          icon: {
+            name: "bolt-logo-colored"
+          }
+        },
+        links: [
+          {
+            text: "Components",
+            url: "/pattern-lab/index.html"
+          },
+          {
+            text: "Documentation",
+            url: "/docs/index.html"
+          },
+          {
+            text: "Github",
+            url: "https://github.com/bolt-design-system/bolt",
+            attributes: {
+              target: "_blank"
+            },
+            icon: {
+              name: "github",
+              position: "after"
+            }
+          }
+        ]
+      } only %}
+        {% block navbar_title %}
+          {{ parent() }}
+          {% include "@bolt-components-headline/text.twig" with {
+            text: 'v' ~ bolt.data.fullManifest.version,
+            size: 'xsmall',
+            capitalize: 'lowercase',
+            attributes: {
+              class: [
+                "u-bolt-margin-left-small",
+                "u-bolt-margin-top-xxsmall"
+              ]
+            }
+          } only %}
+        {% endblock %}
+      {% endembed %}
+    {% endset %}
 
     {% embed "@bolt-components-sticky/sticky.twig" %}
       {% block sticky_content %}
-        {% include "@bolt-components-navbar/navbar.twig" with {
-          theme: "xdark",
-          title: {
-            tag: "h1",
-            text: "Bolt Design System",
-            url: "/",
-            icon: {
-              name: "bolt-logo-colored"
-            }
-          },
-          links: [
-            {
-              text: "Components",
-              url: "/pattern-lab/index.html"
-            },
-            {
-              text: "Documentation",
-              url: "/docs/index.html"
-            },
-            {
-              text: "Github",
-              url: "https://github.com/bolt-design-system/bolt",
-              attributes: {
-                target: "_blank"
-              },
-              icon: {
-                name: "github",
-                position: "after"
-              }
-            }
-          ]
-        } only %}
+        {{ navbar }}
       {% endblock %}
     {% endembed %}
 
