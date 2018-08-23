@@ -23,7 +23,7 @@ export class BoltShare extends BoltComponent {
 
   connecting() {
     Promise.all([
-      customElements.whenDefined('bolt-block-list'),
+      customElements.whenDefined('bolt-list'),
       customElements.whenDefined('bolt-tooltip'),
     ]).then(_ => {
       this.twitterShare = this.querySelector('.js-bolt-share__link--twitter');
