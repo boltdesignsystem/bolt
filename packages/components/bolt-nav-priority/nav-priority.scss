@@ -4,6 +4,7 @@
 
 @import '~@bolt/core/styles/index.scss';
 
+$bolt-navbar-vspacing-small: bolt-v-spacing(small);
 
 bolt-nav-priority {
   display: block;
@@ -17,11 +18,16 @@ bolt-nav-priority {
       &.is-ready {
         display: contents;
       }
+
+      @supports (--css: variables) {
+        padding-top: var(--bolt-vspacing, $bolt-navbar-vspacing-small);
+      }
     }
   }
 
   &:not(.is-ready) {
     overflow-x: auto;
+    flex-basis: 30%;
   }
 
   &.is-resizing {
@@ -37,7 +43,6 @@ bolt-nav-priority {
       }
     }
   }
-
 
   &:not(.is-ready) {
     // @TODO: uncomment once themify updates are merged in
@@ -145,17 +150,13 @@ bolt-nav-priority {
   position: relative;
 }
 
-
-
-
 @include bolt-if-browser-supports-display-contents {
-   .c-bolt-nav-priority__show-more {
-     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
-       display: contents;
-     }
-   }
- }
-
+  .c-bolt-nav-priority__show-more {
+    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+      display: contents;
+    }
+  }
+}
 
 .c-bolt-nav-priority__dropdown-list {
   // background-color: themify(primary, 0.95); // @TODO: uncomment once themify updates are merged in
@@ -171,7 +172,6 @@ bolt-nav-priority {
     background-color: rgba(bolt-color(white), 0.95);
   }
 
-
   list-style: none;
   margin: 0;
   width: 100%;
@@ -181,7 +181,7 @@ bolt-nav-priority {
   @include bolt-padding-left(small);
   @include bolt-padding-right(small);
 
-  @include  bolt-mq(small){
+  @include bolt-mq(small) {
     @include bolt-padding-left(xsmall);
     @include bolt-padding-right(xsmall);
   }
@@ -216,20 +216,15 @@ bolt-nav-priority {
     white-space: normal;
   }
 
-  @include  bolt-mq(xsmall) {
+  @include bolt-mq(xsmall) {
     width: auto;
     max-width: 100%;
   }
 
-
-
-
-
-
   @include bolt-if-browser-supports-display-contents {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
-      grid-row: 2/span 1;
-      grid-column: 1/span 6;
+      grid-row: 2 / span 1;
+      grid-column: 1 / span 6;
       width: auto;
       left: 0;
     }
@@ -239,7 +234,6 @@ bolt-nav-priority {
     display: block;
   }
 }
-
 
 // keyframes
 @keyframes nav-dropdown {
@@ -252,8 +246,6 @@ bolt-nav-priority {
     transform: translateY(0);
   }
 }
-
-
 
 .c-bolt-nav-priority__show-button {
   @include bolt-padding(small, squished);
@@ -322,7 +314,6 @@ bolt-nav-priority {
     z-index: 1;
   }
 
-
   &:hover {
     // background-color: themify(secondary, 0.15); // @TODO: uncomment once themify updates are merged in
 
@@ -366,8 +357,8 @@ bolt-nav-priority {
   @include bolt-if-browser-supports-display-contents {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
       .is-ready & {
-        grid-row: 1/span 1;
-        grid-column: 5/span 1;
+        grid-row: 1 / span 1;
+        grid-column: 5 / span 1;
       }
     }
   }
@@ -401,8 +392,6 @@ bolt-nav-priority {
   }
 }
 
-
-
 // bolt-nav-priority {
 //   @include bolt-css-vars((
 //     --bolt-nav-priority-item-opacity: 0,
@@ -417,9 +406,6 @@ bolt-nav-priority {
 //   }
 // }
 
-
-
-
 // .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item {
 //   transform: var(--bolt-nav-priority-item-transform, none);
 //   opacity: var(--bolt-nav-priority-item-opacity, 1);
@@ -432,8 +418,6 @@ bolt-nav-priority {
 //   //   }
 //   // }
 // }
-
-
 
 // @for $quantity from 1 through 12 {
 //   $time: 0;
@@ -450,9 +434,6 @@ bolt-nav-priority {
 //   //   transition-delay: $time + ms;
 //   // }
 // // }
-
-
-
 
 // .c-bolt-nav-priority--show-dropdown .c-bolt-nav-priority__item {
 // // .c-bolt-nav-priority--show-dropdown+.c-bolt-dropdown .c-bolt-nav-priority__item,

@@ -1,10 +1,10 @@
 // tests/e2e/pattern-lab-compiling.js
 
+const sauce = require('../../scripts/nightwatch-sauce');
 const url = require('url');
 const querystring = require('querystring');
 const fetch = require('node-fetch');
 const { spawnSync } = require('child_process');
-const sauce = require('../../scripts/nightwatch-sauce');
 
 const { NOW_TOKEN } = process.env;
 
@@ -77,8 +77,8 @@ module.exports = {
   'Bolt Docs: Verify Docs Site Compiled + Deployed': function(browser) {
     browser
       .url(`${testingUrl}`)
-      .waitForElementVisible('body.c-bolt-site', 1000)
-      .assert.containsText('h1.c-bolt-headline', 'Bolt Design System')
+      .waitForElementVisible('.c-bolt-site', 1000)
+      .assert.containsText('.c-bolt-navbar__title-text', 'Bolt Design System')
       .end();
   },
 
@@ -89,21 +89,6 @@ module.exports = {
       .url(`${testingUrl}/pattern-lab/index.html`)
       .waitForElementVisible('.pl-c-body', 1000)
       .verify.title('Pattern Lab - components-overview')
-      .end();
-  },
-
-  'Pattern Lab: Confirm Video Playback Rate': function(browser) {
-    browser
-      .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-video-40-video-w-inline-script-and-email-share/02-components-video-40-video-w-inline-script-and-email-share.html`,
-      )
-      .waitForElementVisible('.video-js', 3000)
-      .click('.vjs-big-play-button') // play video
-      .click('button.vjs-play-control') // pause video
-      .assert.elementPresent('.vjs-playback-rate')
-      .assert.containsText('.vjs-playback-rate-value', '1x')
-      .click('button.vjs-playback-rate.vjs-menu-button')
-      .assert.containsText('.vjs-playback-rate-value', '1.3x')
       .end();
   },
   tearDown: sauce,

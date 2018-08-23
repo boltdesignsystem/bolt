@@ -245,7 +245,7 @@ async function server(buildTime) {
               theme: 'bolt',
               proxyHeader: config.proxyHeader,
               redirectPath: `http://localhost:${config.port}/${
-                config.startPath
+                config.startPath !== '/' ? config.startPath : ''
               }`,
             }),
           );

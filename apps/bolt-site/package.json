@@ -11,7 +11,9 @@
     "watch": "bolt watch",
     "start": "bolt start",
     "test:links": "blc http://localhost:3000 --recursive --ordered --filter-level 2",
-    "test": "npm run test:links"
+    "test": "npm run test:links",
+    "setup": "cd ../../ && npm run setup",
+    "clean": "cd ../../ && npm run clean"
   },
   "repository": {
     "type": "git",
@@ -20,17 +22,17 @@
   "dependencies": {
     "@bolt/build-tools": "^1.7.2",
     "@bolt/components-action-blocks": "^1.7.0",
-    "@bolt/components-background": "^1.7.0",
     "@bolt/components-background-shapes": "^1.7.0",
+    "@bolt/components-background": "^1.7.0",
     "@bolt/components-band": "^1.7.0",
     "@bolt/components-block-list": "^1.7.0",
     "@bolt/components-blockquote": "^1.7.0",
     "@bolt/components-breadcrumb": "^1.7.0",
-    "@bolt/components-button": "^1.7.0",
     "@bolt/components-button-group": "^1.7.0",
+    "@bolt/components-button": "^1.7.0",
     "@bolt/components-card": "^1.7.0",
-    "@bolt/components-chip": "^1.7.0",
     "@bolt/components-chip-list": "^1.7.0",
+    "@bolt/components-chip": "^1.7.0",
     "@bolt/components-copy-to-clipboard": "^1.7.0",
     "@bolt/components-critical-fonts": "^1.7.0",
     "@bolt/components-critical-css-vars": "^0.0.0",
@@ -51,6 +53,7 @@
     "@bolt/components-page-header": "^1.7.0",
     "@bolt/components-pagination": "^1.7.0",
     "@bolt/components-placeholder": "^1.7.0",
+    "@bolt/components-search-filter": "^1.7.0",
     "@bolt/components-share": "^1.7.0",
     "@bolt/components-site": "^1.7.0",
     "@bolt/components-smooth-scroll": "^1.7.0",
@@ -62,6 +65,7 @@
     "@bolt/components-video": "^1.7.0",
     "@bolt/core": "^1.7.0",
     "@bolt/global": "^1.7.0",
+    "@bolt/internal-schema-form": "^1.6.4",
     "broken-link-checker": "^0.7.7"
   }
 }
