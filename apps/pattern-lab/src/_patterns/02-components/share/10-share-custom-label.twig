@@ -1,8 +1,8 @@
 <div class="u-bolt-height-xxlarge"></div>
 {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
   {% cell "u-bolt-width-6/12" %}
-    <h3>Button display</h3>
     {% include "@bolt-components-share/share.twig" with {
+      text: "Custom label",
       sources: [
         {
           name: "facebook",
@@ -27,9 +27,9 @@
     } only %}
   {% endcell %}
   {% cell "u-bolt-width-6/12" %}
-    <h3>Inline display</h3>
     {% include "@bolt-components-share/share.twig" with {
       inline: true,
+      text: "Custom label",
       sources: [
         {
           name: "facebook",
