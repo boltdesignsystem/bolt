@@ -44,21 +44,18 @@
     <link rel="stylesheet" href="{{ assets["bolt-global.css"] | default("/pattern-lab/build/bolt-global.css") }}" media="all" />
 
     {# @TODO: wire this up to use Critical CSS #}
-    {% if bolt.data.config.prod %}
-      <style>
+    <style>
         {{ inline( assets["bolt-components-critical-fonts.css"] | default("") ) }}
       </style>
 
-      {# @TODO: wire this up to use Critical JS #}
-      <script>
-        {{ inline( assets["bolt-components-critical-fonts.js"] | default("") ) }}
+    <script>
+      {{ inline( assets["bolt-components-critical-fonts.js"] | default("") ) }}
 
-        {{ inline( assets["bolt-components-critical-css-vars.js"] | default("") ) }}
-      </script>
-    {% endif %}
+      {{ inline( assets["bolt-components-critical-css-vars.js"] | default("") ) }}
+    </script>
 
     <!-- WIP. Temp solution to async load multiple lang-specific CSS builds based on query string in URL -->
-    <script>
+    {# <script>
     !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
 
     /*! loadCSS rel=preload polyfill. [c]2017 Filament Group, Inc. MIT License */
@@ -88,7 +85,7 @@
       }
     }( typeof global !== "undefined" ? global : this ));
 
-    </script>
+    </script> #}
 
   </head>
   <body class="storefront-docs c-bolt-site {% if currentUrl == 'index.html' %} t-bolt-xdark {% endif %} storefront-docs--{{ urlChunks | length >= 2 ? urlChunks|first : 'parent' }}">

@@ -61,19 +61,16 @@
   /*! loadCSS rel=preload polyfill. [c]2017 Filament Group, Inc. MIT License */
   !function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){function e(){t.media=a}var a=t.media||"all";t.addEventListener?t.addEventListener("load",e):t.attachEvent&&t.attachEvent("onload",e),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(e,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);</script>
 
-  {# @TODO: wire this up to use Critical CSS #}
-  {% if bolt.data.config.prod %}
-    <style>
-      {{ inline( assets["bolt-components-critical-fonts.css"] | default("") ) }}
-    </style>
+  <style>
+    {{ inline( assets["bolt-components-critical-fonts.css"] | default("") ) }}
+  </style>
 
-    {# @TODO: wire this up to use Critical JS #}
-    <script>
-      {{ inline( assets["bolt-components-critical-fonts.js"] | default("") ) }}
+  {# @TODO: wire this up to use Critical JS #}
+  <script>
+    {{ inline( assets["bolt-components-critical-fonts.js"] | default("") ) }}
 
-      {{ inline( assets["bolt-components-critical-css-vars.js"] | default("") ) }}
-    </script>
-  {% endif %}
+    {{ inline( assets["bolt-components-critical-css-vars.js"] | default("") ) }}
+  </script>
 
   <link rel="preload" as="style" href="{{ assets["bolt-global.css"] | default("/build/bolt-global.css") }}" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="{{ assets["bolt-global.css"] | default("/build/bolt-global.css") }}" /></noscript>
