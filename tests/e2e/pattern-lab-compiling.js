@@ -4,9 +4,7 @@ const sauce = require('../../scripts/nightwatch-sauce');
 const url = require('url');
 const querystring = require('querystring');
 const fetch = require('node-fetch');
-const {
-  spawnSync
-} = require('child_process');
+const { spawnSync } = require('child_process');
 
 const { NOW_TOKEN } = process.env;
 
@@ -17,13 +15,16 @@ if (!NOW_TOKEN) {
 
 const getDeployUrl = async () => {
   // @todo determine if this is even needed since we have `deployedUrl` from deploy command
-  const nowEndpoint = url.resolve('https://api.zeit.co/v2/now/deployments', `?${querystring.stringify({
-    teamId: 'boltdesignsystem',
-  })}`);
+  const nowEndpoint = url.resolve(
+    'https://api.zeit.co/v2/now/deployments',
+    `?${querystring.stringify({
+      teamId: 'boltdesignsystem',
+    })}`,
+  );
 
   const nowDeploys = await fetch(nowEndpoint, {
     headers: {
-      'Authorization': `Bearer ${NOW_TOKEN}`,
+      Authorization: `Bearer ${NOW_TOKEN}`,
       'Content-Type': 'application/json',
     },
   }).then(res => res.json());
@@ -33,16 +34,17 @@ const getDeployUrl = async () => {
     process.exit(1);
   }
 
-  nowDeploys.deployments.sort((a, b) => {
-    return a.created - b.created;
-  }).reverse();
+  nowDeploys.deployments
+    .sort((a, b) => {
+      return a.created - b.created;
+    })
+    .reverse();
 
   const latestDeploy = nowDeploys.deployments[0];
   console.log('Latest now.sh Deploy:');
   console.log(latestDeploy);
   return 'https://' + latestDeploy.url;
-}
-
+};
 
 let testingUrl = ''; // cached deploy url we grab from the now.sh API
 
@@ -53,7 +55,7 @@ module.exports = {
     }
 
     // log the url being tested against to make it easier to debug failed deploys
-    function logTestingUrl(){
+    function logTestingUrl() {
       console.log(`Running tests against the ${testingUrl} deploy url.`);
     }
 
@@ -65,22 +67,24 @@ module.exports = {
         done();
       });
 
-    // otherwise let's be efficient and use the deploy url we already got
+      // otherwise let's be efficient and use the deploy url we already got
     } else {
       logTestingUrl();
       done();
     }
   },
 
-  'Bolt Docs: Verify Docs Site Compiled + Deployed': function (browser) {
+  'Bolt Docs: Verify Docs Site Compiled + Deployed': function(browser) {
     browser
       .url(`${testingUrl}`)
-      .waitForElementVisible('body.c-bolt-site', 1000)
-      .assert.containsText('h1', 'Bolt Design System')
-      .end()
+      .waitForElementVisible('.c-bolt-site', 1000)
+      .assert.containsText('.c-bolt-navbar__title-text', 'Bolt Design System')
+      .end();
   },
 
-  'Pattern Lab: Confirm Successful Now.sh Deploy + Pattern Lab Compiled': function (browser) {
+  'Pattern Lab: Confirm Successful Now.sh Deploy + Pattern Lab Compiled': function(
+    browser,
+  ) {
     browser
       .url(`${testingUrl}/pattern-lab/index.html`)
       .waitForElementVisible('.pl-c-body', 1000)
