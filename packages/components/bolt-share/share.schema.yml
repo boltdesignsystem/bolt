@@ -2,9 +2,16 @@ $schema: http://json-schema.org/draft-04/schema#
 title: Share
 type: object
 properties:
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
+  inline:
+    type: boolean
+    description: Display the share component as a button or an inline list of links.
+    default: false
   text:
     type: string
-    default: 'Share this page'
+    default: Share this page
     description: Call to action text, like "Share" or "Share this page".
   sources:
     type: array
@@ -14,7 +21,7 @@ properties:
       properties:
         name:
           type: string
-          description: The individual source name
+          description: Name of the social media source.
           enum:
             - facebook
             - twitter
@@ -23,15 +30,6 @@ properties:
         url:
           type: string
           description: The specifically formed share URL with query string.
-  copyToClipboard:
+  copy_to_clipboard:
     type: object
-    description: The URL to be copied when copy to clipboard is clicked.
     ref: '@bolt-components-copy-to-clipboard/copy-to-clipboard.schema.yml'
-  visuallyhidden:
-    type: boolean
-    description: Visually hide the component. Use this based on individual page needs.
-    default: false
-  inline:
-    type: boolean
-    description: Display in an inline layout instead of a button activating a bubble.
-    default: false

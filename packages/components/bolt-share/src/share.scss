@@ -4,3 +4,110 @@
    Share
 \* ------------------------------------ */
 
+$bolt-share-block-link-inset: 'small';
+$bolt-share-block-link-inline-spacing: 'xsmall';
+
+
+@include bolt-custom-element('bolt-share', block, medium);
+
+.c-bolt-share {
+  display: block;
+}
+
+.c-bolt-share--display-inline {
+  .c-bolt-share__link {
+    @include bolt-margin-right(-0.25rem);
+  }
+
+  .c-bolt-share__link-text {
+    @include bolt-visuallyhidden;
+  }
+}
+
+.c-bolt-share--display-button {
+  .c-bolt-share__link {
+    @include bolt-padding(#{$bolt-share-block-link-inset});
+
+    display: flex;
+    position: relative;
+    overflow: hidden;
+
+    &:before {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      content: '';
+      background-color: inherit;
+      background-color: var(--bolt-theme-link, inherit);
+      opacity: 0.1;
+      transform: translate3d(-100%, 0, 0);
+      transition: $bolt-transition;
+    }
+
+    &:hover:before,
+    &:active:before,
+    &:focus:before {
+      transform: translate3d(0, 0, 0);
+    }
+
+    > * {
+      @include bolt-margin(0);
+    }
+  }
+
+  .c-bolt-share__link-text {
+    @include bolt-padding-left(#{$bolt-share-block-link-inline-spacing});
+  }
+
+  // @todo [Mai] These dirty overrides are in place because the copy to clipboard component needs a refactor. Clean this up when the time comes.
+  .c-bolt-share__copy {
+    @include bolt-padding(#{$bolt-share-block-link-inset});
+
+    > * {
+      display: flex;
+    }
+
+    .c-bolt-share__link {
+      margin-top: bolt-v-spacing(#{$bolt-share-block-link-inset}) * -1;
+      margin-right: bolt-spacing(#{$bolt-share-block-link-inset}) * -1;
+      margin-bottom: bolt-v-spacing(#{$bolt-share-block-link-inset}) * -1;
+      margin-left: bolt-spacing(#{$bolt-share-block-link-inset}) * -1;
+    }
+
+    .c-bolt-copy-to-clipboard__confirmation {
+      .c-bolt-link {
+        display: flex;
+
+        > * {
+          @include bolt-margin(0);
+        }
+
+        .c-bolt-link__text {
+          @include bolt-padding-left(#{$bolt-share-block-link-inline-spacing});
+        }
+      }
+    }
+  }
+}
+
+.c-bolt-share__label {
+  @include bolt-font-size(small);
+  @include bolt-font-weight(bold);
+
+  color: inherit;
+  color: var(--bolt-theme-text, inherit);
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.c-bolt-share__link {
+  text-decoration: none;
+}
+
+.c-bolt-share__link-text {
+  color: inherit;
+  color: var(--bolt-theme-text, inherit);
+}
