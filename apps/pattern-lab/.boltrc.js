@@ -136,15 +136,10 @@ const config = {
       //   scss: ./src/index.scss',
       //   js: './src/index.js',
       // },
-      '@bolt/components-critical-css-vars'
+      '@bolt/components-critical-fonts',
+      '@bolt/components-critical-css-vars',
     ],
   },
 };
-
-if (argv.prod) {
-  config.components.individual.push('@bolt/components-critical-fonts');
-} else {
-  config.components.global.push('@bolt/components-critical-fonts');
-}
 
 module.exports = config;
