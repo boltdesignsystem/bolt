@@ -6,18 +6,10 @@
     background: {
       opacity: "medium",
       fill: "gradient",
-      zoom: true,
       focalPoint: {
         vertical: "center",
         horizontal: "center"
       },
-      contentItems: [
-        {
-          pattern: "image",
-          src: "/images/background-bolt.jpg",
-          lazyload: true,
-        }
-      ]
     },
     attributes: {
       style: [
@@ -41,12 +33,12 @@
       </svg>
 
       <div style="position: relative; z-index: 10;">
-        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--middle u-bolt-padding-medium" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--middle u-bolt-padding-top-medium u-bolt-padding-bottom-medium" %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-7/8@small u-bolt-width-5/7@medium u-bolt-width-4/7@large u-bolt-text-align-center' %}
             
-            <div class="u-bolt-margin-bottom-medium u-bolt-margin-left-auto u-bolt-margin-right-auto">
-              <div class="c-bds-shiny-logo">
-                <div class="c-bds-shiny-logo__inner">
+            <div class="u-bolt-margin-left-auto u-bolt-margin-right-auto">
+              <div class="c-bds-logo">
+                <div class="c-bds-logo__inner">
                   {% include '@bolt-components-image/image.twig' with {
                     src: "/images/bolt-logo.svg",
                     alt: "Bolt Design System logo",
@@ -55,20 +47,14 @@
                 </div>
               </div>
             </div>
-            
-
-            {% include "@bolt-components-headline/eyebrow.twig" with {
-              text: 'v' ~ bolt.data.fullManifest.version,
-              capitalize: 'lowercase',
-            } only %}
-
+  
             {% include "@bolt/subheadline.twig" with {
-              text: "Bolt provides a system of reusable and consistent UI components, visual styles, tools, guidelines, and services that power Pega’s digital ecosystem; saving time while keeping projects on-brand, and in scope.",
-              size: "xlarge",
+              text: "The Bolt Design System provides guidelines, reusable UI components, visual styles, tools and other resources that power Pega’s digital ecosystem; saving time while keeping projects on-brand, and in scope.",
+              size: "large",
               tag: "h2",
             } only %}
 
-            <div class="u-bolt-margin-bottom-large">
+            <div class="u-bolt-margin-bottom-medium">
               {% include "@bolt-components-button-group/button-group.twig" with {
                 buttons: [
                   {
