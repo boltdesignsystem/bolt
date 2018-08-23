@@ -17,8 +17,8 @@ const TwigPhpLoader = require('twig-php-loader');
 const themify = require('@bolt/postcss-themify');
 const resolve = require('resolve');
 const DashboardPlugin = require('webpack-dashboard/plugin');
-const BoltCache = require('./utils/cache');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const BoltCache = require('./utils/cache');
 const { getConfig } = require('./utils/config-store');
 
 const {
