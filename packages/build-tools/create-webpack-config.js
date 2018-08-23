@@ -20,6 +20,8 @@ const DashboardPlugin = require('webpack-dashboard/plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const BoltCache = require('./utils/cache');
 const { getConfig } = require('./utils/config-store');
+const resolve = require('resolve');
+const SassDocPlugin = require('./plugins/sassdoc-webpack-plugin');
 
 const {
   getBoltManifest,
@@ -484,6 +486,18 @@ async function createWebpackConfig(buildConfig) {
       new webpack.DefinePlugin(globalJsData),
       new webpack.NamedModulesPlugin(),
       new CopyWebpackPlugin(config.copy ? config.copy : []),
+      new SassDocPlugin(
+        {
+          src: `${path.dirname(resolve.sync('@bolt/core'))}/styles/`,
+          dest: path.resolve(
+            process.cwd(),
+            `${config.buildDir}/data/sassdoc.bolt.json`,
+          ),
+        },
+        {
+          outputPath: config.buildDir,
+        },
+      ),
       // Show build progress
       // Disabling for now as it messes up spinners
       // @todo consider bringing it back

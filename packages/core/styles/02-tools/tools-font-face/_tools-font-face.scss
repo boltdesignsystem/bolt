@@ -15,6 +15,14 @@
 // String Replace
 // =============================================================================
 
+/// A private utility function for carrying out string replacement
+/// @param {string} $string - The "needle"
+/// @param {string} $search - The "haystack"
+/// @param {string} $replace [''] - The string value to replace
+/// @access private
+/// @see {mixin} bolt-font-face
+/// @example scss - Basic replace ($name not shown)
+///   $example = _bolt-str-replace($name, ' ', '_')
 @function _bolt-str-replace($string, $search, $replace: '') {
   $index: str-index($string, $search);
 
@@ -29,7 +37,14 @@
 // Font Face
 // =============================================================================
 
-// @mixin font-face($name, $path, $weight: null, $style: null, $exts: woff2 woff) {
+/// Adds a correctly formatted @font-face declaration. Set at the top of the stylesheet.
+/// @param {string} $name - The 'font-family' name string
+/// @param {string} $path - Path to the font files
+/// @param {string} $weight [null] - Default font weight
+/// @param {string} $style [null] - Default style
+/// @param {string} $exts [woff2 woff] - Default extensions
+/// @example scss
+///   @include bolt-font-face('Awesome_font_name, '/path/to/font/');
 @mixin bolt-font-face($name, $path, $weight: null, $style: null, $exts: woff2 woff) {
   $src: null;
 
