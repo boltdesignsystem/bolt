@@ -18,7 +18,6 @@ const themify = require('@bolt/postcss-themify');
 const resolve = require('resolve');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const resolve = require('resolve');
 const BoltCache = require('./utils/cache');
 const { getConfig } = require('./utils/config-store');
 const SassDocPlugin = require('./plugins/sassdoc-webpack-plugin');
