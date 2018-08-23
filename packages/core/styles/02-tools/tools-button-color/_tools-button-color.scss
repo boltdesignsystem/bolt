@@ -2,8 +2,17 @@
   Button Colors
 \* ------------------------------------ */
 
-/** Generate different background and border color button interaction states based on the primary color passed in **/
+////
+/// @group Tools: Colors
+/// @author Salem Ghoweri
+////
 
+/// Generate different background and border color button interaction states based on the primary color passed in
+/// @param {color} $color - Used to generate button text, background, and border color
+/// @example scss
+/// .element {
+///   @include bolt-button-color(bolt-color(success, dark));
+/// }
 @mixin bolt-button-color($color) {
   color: bolt-text-contrast($color);
   background-color: $color;

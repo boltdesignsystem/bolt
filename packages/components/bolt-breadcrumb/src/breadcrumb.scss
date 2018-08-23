@@ -2,7 +2,7 @@
    Breadcrumb
 \* ------------------------------------ */
 
-@import '@bolt/core';
+@import '~@bolt/core/styles/index.scss';
 
 // Register Custom Block Element
 @include bolt-custom-element('bolt-breadcrumb', block, medium);
@@ -35,8 +35,7 @@
     height: bolt-v-spacing(xsmall);
     content: '';
     vertical-align: baseline;
-    border-color: inherit;
-    border-color: var(--bolt-theme-text, inherit);
+    border-color: bolt-theme(text);
     border-style: solid;
     border-width: 1px 1px 0 0;
     transform: rotate(45deg);

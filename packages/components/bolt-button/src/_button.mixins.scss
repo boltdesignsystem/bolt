@@ -70,7 +70,8 @@
 
 // Temporary styles applied to links and buttons nested inside of the <bolt-button> component, prior to JS kicking in
 @mixin bolt-button-root(){
-  height: 100%;
+  // height: 100%;
+  flex-grow: 1;
   -webkit-appearance: none;
   background-color: transparent;
   border: 0;
@@ -89,108 +90,67 @@
 }
 
 
-
 /**
   * Button Colors / Types
   */
 @mixin bolt-button-style--primary() {
-  $primary-background-default: $bolt-color-primary;
-  $primary-background-hover: mix($bolt-global-button-hover-color, $primary-background-default, $bolt-global-button-hover-mix);
-  $primary-background-active: mix($bolt-global-button-active-color, $primary-background-default, $bolt-global-button-active-mix);
-
   &,
   &:visited {
-    border-color: $primary-background-default;
-    border-color: var(--bolt-theme-primary-border-default, $primary-background-default);
-
-    color: bolt-text-contrast($primary-background-default);
-    color: var(--bolt-theme-primary-text-default, bolt-text-contrast($primary-background-default));
-
-    background-color: $primary-background-default;
-    background-color: var(--bolt-theme-primary-background-default, $primary-background-default);
+    border-color: bolt-theme(primary);
+    color: bolt-theme(text-on-primary);
+    background-color: bolt-theme(primary);
   }
 
   &:hover,
   &.is-hover {
-    border-color: $primary-background-hover;
-    border-color: var(--bolt-theme-primary-border-hover, $primary-background-hover);
-    color: bolt-text-contrast($primary-background-default);
-    color: var(--bolt-theme-primary-text-default, bolt-text-contrast($primary-background-default));
-    background-color: $primary-background-hover;
-    background-color: var(--bolt-theme-primary-background-hover, $primary-background-hover);
+    border-color: bolt-theme(primary-lighten-15);
+    color: bolt-theme(text-on-primary-lighten-15);
+    background-color: bolt-theme(primary-lighten-15);
   }
 
   &:focus,
   &.is-focus {
-    border-color: $primary-background-hover;
-    border-color: var(--bolt-theme-primary-border-hover, $primary-background-hover);
-    color: bolt-text-contrast($primary-background-default);
-    color: var(--bolt-theme-primary-text-default, bolt-text-contrast($primary-background-default));
-    background-color: $primary-background-hover;
-    background-color: var(--bolt-theme-primary-background-hover, $primary-background-hover);
+    border-color: bolt-theme(primary-darken-15);
+    background-color: bolt-theme(primary-darken-15);
+    color: bolt-theme(text-on-primary-darken-15);
   }
 
   &:active,
   &.is-active {
-    border-color: $primary-background-active;
-    border-color: var(--bolt-theme-primary-border-active, $primary-background-active);
-
-    color: bolt-text-contrast($primary-background-default);
-    color: var(--bolt-theme-primary-text-default, bolt-text-contrast($primary-background-default));
-
-    background-color: $primary-background-active;
-    background-color: var(--bolt-theme-primary-background-active, $primary-background-active);
+    border-color: bolt-theme(primary-darken-25);
+    color: bolt-theme(text-on-primary-darken-25);
+    background-color: bolt-theme(primary-darken-25);
   }
 }
 
 
 @mixin bolt-button-style--secondary() {
-  $secondary-background-default: bolt-color(white);
-  $secondary-background-hover: mix(bolt-color(black), $secondary-background-default, 2%);
-  $secondary-background-active: mix(bolt-color(black), $secondary-background-default, 15%);
-
   &,
   &:visited {
-    border-color: $secondary-background-default;
-    border-color: var(--bolt-theme-secondary-border-default, $secondary-background-default);
-
-    color: bolt-text-contrast($secondary-background-default);
-    color: var(--bolt-theme-secondary-text-default, bolt-text-contrast($secondary-background-default));
-
-    background-color: $secondary-background-default;
-    background-color: var(--bolt-theme-secondary-background-default, $secondary-background-default);
+    border-color: bolt-theme(secondary);
+    color: bolt-theme(text-on-secondary);
+    background-color: bolt-theme(secondary);
   }
 
   &.is-hover,
   &:hover {
-    border-color: $secondary-background-hover;
-    border-color: var(--bolt-theme-secondary-border-hover, $secondary-background-hover);
-    color: bolt-text-contrast($secondary-background-default);
-    color: var(--bolt-theme-secondary-text-default, bolt-text-contrast($secondary-background-default));
-    background-color: $secondary-background-hover;
-    background-color: var(--bolt-theme-secondary-background-hover, $secondary-background-hover);
+    border-color: bolt-theme(secondary-lighten-5);
+    color: bolt-theme(text-on-secondary-lighten-5);
+    background-color: bolt-theme(secondary-lighten-5);
   }
 
   &:focus,
   &.is-focus {
-    border-color: $secondary-background-hover;
-    border-color: var(--bolt-theme-secondary-border-hover, $secondary-background-hover);
-    color: bolt-text-contrast($secondary-background-default);
-    color: var(--bolt-theme-secondary-text-default, bolt-text-contrast($secondary-background-default));
-    background-color: $secondary-background-hover;
-    background-color: var(--bolt-theme-secondary-background-hover, $secondary-background-hover);
+    border-color: bolt-theme(secondary-darken-3);
+    color: bolt-theme(text-on-secondary-darken-3);
+    background-color: bolt-theme(secondary-darken-3);
   }
 
-  &.is-active,
-  &:active {
-    border-color: $secondary-background-active;
-    border-color: var(--bolt-theme-secondary-border-active, $secondary-background-active);
-
-    color: bolt-text-contrast($secondary-background-default);
-    color: var(--bolt-theme-secondary-text-default, bolt-text-contrast($secondary-background-default));
-
-    background-color: $secondary-background-active;
-    background-color: var(--bolt-theme-secondary-background-active, $secondary-background-active);
+  &:active,
+  &.is-active {
+    border-color: bolt-theme(secondary-darken-10);
+    color: bolt-theme(text-on-secondary-darken-10);
+    background-color: bolt-theme(secondary-darken-10);
   }
 }
 
@@ -209,26 +169,20 @@
 
   & {
     opacity: 1;
-    color: currentColor;
-    color: var(--bolt-theme-heading-link-default, inherit);
+    color: bolt-theme(headline-link);
   }
 
   &:visited {
     opacity: 1;
-
   }
 
-
-  &:hover {
+  &:hover:not([disabled]) {
     opacity: $bolt-global-link-hover-opacity;
-
   }
-
 
   &:focus:active,
   &:active {
     opacity: $bolt-global-link-active-opacity;
-
   }
 }
 
@@ -236,22 +190,12 @@
 @mixin bolt-button-style--disabled() {
   cursor: not-allowed;
   &,
-  &:visited {
-    color: bolt-color(gray);
-    border-color: bolt-color(gray, light);
-    background-color: bolt-color(gray, light);
-  }
-
-  &:hover {
-    color: bolt-color(gray);
-    border-color: bolt-color(gray, light);
-    background-color: bolt-color(gray, light);
-  }
-
+  &:visited,
+  &:hover,
   &:active {
-    color: bolt-color(gray);
-    border-color: bolt-color(gray, light);
-    background-color: bolt-color(gray, light);
+    color: bolt-theme(text-disabled);
+    border-color: bolt-theme(disabled);
+    background-color: bolt-theme(disabled);
   }
 
   &:before,

@@ -60,16 +60,17 @@
 
 
     {# @TODO: wire this up to use Critical CSS #}
-    {% if bolt.data.config.prod %}
-      <style>
-        {{ inline( assets["bolt-components-critical-fonts.css"] | default("") ) }}
-      </style>
+    <style>
+      {{ inline( assets["bolt-components-critical-fonts.css"] | default("") ) }}
+    </style>
 
-      {# @TODO: wire this up to use Critical JS #}
-      <script>
-        {{ inline( assets["bolt-components-critical-fonts.js"] | default("") ) }}
-      </script>
-    {% endif %}
+    {# @TODO: wire this up to use Critical JS #}
+    <script>
+      {{ inline( assets["bolt-components-critical-fonts.js"] | default("") ) }}
+
+      {{ inline( assets["bolt-components-critical-css-vars.js"] | default("") ) }}
+    </script>
+
 
 
     <!-- WIP. Temp solution to async load multiple lang-specific CSS builds based on query string in URL -->

@@ -14,8 +14,13 @@ const readFile = promisify(fs.readFile);
 const deepmerge = require('deepmerge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TwigPhpLoader = require('twig-php-loader');
+const themify = require('@bolt/postcss-themify');
+const resolve = require('resolve');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const BoltCache = require('./utils/cache');
 const { getConfig } = require('./utils/config-store');
+const SassDocPlugin = require('./plugins/sassdoc-webpack-plugin');
 
 const {
   getBoltManifest,
@@ -30,8 +35,17 @@ let webpackConfigs = [];
 async function createWebpackConfig(buildConfig) {
   const config = buildConfig;
 
+  // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
+  // Must start and end with `/`
+  // conditional is temp workaround for when servers are disabled via absence of `config.wwwDir`
+  const publicPath = config.publicPath
+    ? config.publicPath
+    : config.wwwDir
+      ? `/${path.relative(config.wwwDir, config.buildDir)}/`
+      : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
+
   // @TODO: move this setting to .boltrc config
-  const sassExportData = require('@theme-tools/sass-export-data')({
+  const sassExportData = require('@bolt/sass-export-data')({
     path: path.resolve(process.cwd(), config.dataDir),
   });
 
@@ -41,10 +55,37 @@ async function createWebpackConfig(buildConfig) {
   // filename suffix to tack on based on lang being compiled for
   let langSuffix = `${config.lang ? '-' + config.lang : ''}`;
 
+  let themifyOptions = {
+    watchForChanges: config.prod ? false : true,
+    classPrefix: 't-bolt-',
+    screwIE11: false,
+    fallback: {
+      filename: 'bolt-css-vars-fallback',
+      jsonDataExport: 'theming-css-vars',
+    },
+  };
+
+  themifyOptions = deepmerge(themifyOptions, {
+    fallback: {
+      jsonPath: path.resolve(
+        process.cwd(),
+        config.buildDir,
+        `data/${themifyOptions.fallback.jsonDataExport}.json`,
+      ),
+      cssPath: path.resolve(
+        process.cwd(),
+        config.buildDir,
+        `${themifyOptions.fallback.filename}.css`,
+      ),
+    },
+  });
+
   // Default global Sass data defined
   let globalSassData = [
     `$bolt-namespace: ${config.namespace};`,
-
+    `$bolt-css-vars-json-data-export: ${
+      themifyOptions.fallback.jsonDataExport
+    };`,
     // output $bolt-lang variable in Sass even if not specified so things fall back accordingly.
     `${
       config.lang && config.lang.length > 1
@@ -60,6 +101,9 @@ async function createWebpackConfig(buildConfig) {
       : JSON.stringify('development'),
     bolt: {
       namespace: JSON.stringify(config.namespace),
+      themingFallbackCSS: JSON.stringify(
+        publicPath + themifyOptions.fallback.filename + '.css',
+      ),
       config: {
         prod: config.prod ? true : false,
         lang: config.lang,
@@ -272,9 +316,11 @@ async function createWebpackConfig(buildConfig) {
       options: {
         sourceMap: true,
         plugins: () => [
+          require('@bolt/postcss-themify')(themifyOptions),
           postcssDiscardDuplicates,
           autoprefixer({
             browsers: require('@bolt/config-browserlist'),
+            grid: true,
           }),
         ],
       },
@@ -282,9 +328,8 @@ async function createWebpackConfig(buildConfig) {
     {
       loader: 'clean-css-loader',
       options: {
-        skipWarn: true,
-        compatibility: 'ie9',
-        level: config.prod ? 1 : 0,
+        level: config.prod ? 2 : 0,
+        format: config.prod ? false : 'beautify',
         inline: ['remote'],
         format: 'beautify',
       },
@@ -292,11 +337,22 @@ async function createWebpackConfig(buildConfig) {
     {
       loader: 'resolve-url-loader',
     },
+
+    // @todo: conditionally toggle sass-loader vs fast-sass-loader based on --debug flag when sourcemaps are needed
+    // {
+    //   loader: 'sass-loader',
+    //   options: {
+    //     sourceMap: true,
+    //     importer: [globImporter(), npmSass.importer],
+    //     functions: sassExportData,
+    //     precision: 3,
+    //     data: globalSassData.join('\n'),
+    //   },
+    // },
     {
-      loader: 'sass-loader',
+      loader: '@bolt/fast-sass-loader',
       options: {
         sourceMap: true,
-        importer: [globImporter(), npmSass.importer],
         functions: sassExportData,
         outputStyle: 'expanded',
         precision: 3,
@@ -305,18 +361,16 @@ async function createWebpackConfig(buildConfig) {
     },
   ];
 
-  // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
-  // Must start and end with `/`
-  // conditional is temp workaround for when servers are disabled via absence of `config.wwwDir`
-  const publicPath = config.publicPath
-    ? config.publicPath
-    : config.wwwDir
-      ? `/${path.relative(config.wwwDir, config.buildDir)}/`
-      : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
-
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
   const webpackConfig = {
     entry: await buildWebpackEntry(),
+    // watchOptions: {
+    //   ignored: [
+    //     path.resolve(process.cwd(), config.buildDir) + '**/*',
+    //     path.resolve(process.cwd(), config.wwwDir) + '**/*',
+    //     'node_modules',
+    //   ],
+    // },
     output: {
       path: path.resolve(process.cwd(), config.buildDir),
       filename: `[name]${langSuffix}.js`,
@@ -365,8 +419,9 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: /\.(woff|woff2)$/,
-          loader: 'file-loader',
+          loader: 'url-loader',
           options: {
+            limit: 500,
             name: 'fonts/[name].[ext]',
           },
         },
@@ -406,13 +461,17 @@ async function createWebpackConfig(buildConfig) {
       //   // },
     },
     plugins: [
-      new webpack.IgnorePlugin(/vertx/), // needed to ignore vertx dependency in webcomponentsjs-lite
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional
+        // filename: config.prod
+        //   ? `[name].[contenthash]${langSuffix}.css`
+        //   : `[name]${langSuffix}.css`,
+        // chunkFilename: config.prod
+        //   ? `[id].[contenthash]${langSuffix}.css`
+        //   : `[id]${langSuffix}.css`,
         filename: `[name]${langSuffix}.css`,
         chunkFilename: `[id]${langSuffix}.css`,
-        allChunks: true,
       }),
       // @todo This needs to be in `config.dataDir`
       new ManifestPlugin({
@@ -424,7 +483,20 @@ async function createWebpackConfig(buildConfig) {
         },
       }),
       new webpack.DefinePlugin(globalJsData),
+      new webpack.NamedModulesPlugin(),
       new CopyWebpackPlugin(config.copy ? config.copy : []),
+      new SassDocPlugin(
+        {
+          src: `${path.dirname(resolve.sync('@bolt/core'))}/styles/`,
+          dest: path.resolve(
+            process.cwd(),
+            `${config.buildDir}/data/sassdoc.bolt.json`,
+          ),
+        },
+        {
+          outputPath: config.buildDir,
+        },
+      ),
       // Show build progress
       // Disabling for now as it messes up spinners
       // @todo consider bringing it back

@@ -5,7 +5,7 @@ const argv = require('yargs').argv;
 const config = {
   lang: ['en'],
   renderingService: true, // starts PHP service for rendering Twig templates
-  openServerAtStart: true,
+  openServerAtStart: false,
   webpackDevServer: true,
   // Environmental variable / preset to use
   env: 'static',
@@ -80,7 +80,10 @@ const config = {
       '@bolt/components-video',
       resolve.sync('./style.scss'),
     ],
-    individual: [],
+    individual: [
+      '@bolt/components-critical-fonts',
+      '@bolt/components-critical-css-vars',
+    ],
   },
   copy: [
     {
@@ -90,11 +93,5 @@ const config = {
     },
   ],
 };
-
-if (argv.prod) {
-  config.components.individual.push('@bolt/components-critical-fonts');
-} else {
-  config.components.global.push('@bolt/components-critical-fonts');
-}
 
 module.exports = config;

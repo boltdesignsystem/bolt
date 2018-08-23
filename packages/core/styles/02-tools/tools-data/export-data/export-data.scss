@@ -1,0 +1,12 @@
+// Ensures all Sass map color keys are automatically quoted so the `export-data` mixin doesn't butt heads with the
+@import '../normalize-data/normalize-data.scss';
+
+@mixin bolt-export-data($filename, $map) {
+  $sass-map: bolt-normalize-data($map, $map);
+  @include export-data($filename, $sass-map);
+}
+
+@mixin bolt-export-data-sync($filename, $map) {
+  $sass-map: bolt-normalize-data($map, $map);
+  @include export-data-sync($filename, $sass-map);
+}

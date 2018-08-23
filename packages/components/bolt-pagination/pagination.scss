@@ -1,4 +1,4 @@
-@import '@bolt/core';
+@import '~@bolt/core/styles/index.scss';
 
 /* ------------------------------------ *\
    Pagination
@@ -6,27 +6,6 @@
 
 $bolt-pagination-transition: $bolt-transition;
 $bolt-pagination-item-size: bolt-spacing(medium);
-
-$bolt-pagination-item-text-color-notheme:         bolt-color(indigo, light);
-$bolt-pagination-item-text-color-current-notheme: bolt-color(white);
-$bolt-pagination-item-bg-color-current-notheme:   bolt-color(indigo, light);
-
-$bolt-pagination-item-text-color-xlight:          bolt-color(indigo, light);
-$bolt-pagination-item-text-color-current-xlight:  bolt-color(white);
-$bolt-pagination-item-bg-color-current-xlight:    bolt-color(indigo, light);
-
-$bolt-pagination-item-text-color-light:           bolt-color(indigo, light);
-$bolt-pagination-item-text-color-current-light:   bolt-color(gray, xlight);
-$bolt-pagination-item-bg-color-current-light:     bolt-color(indigo, light);
-
-$bolt-pagination-item-text-color-dark:            bolt-color(white);
-$bolt-pagination-item-text-color-current-dark:    bolt-color(indigo, dark);
-$bolt-pagination-item-bg-color-current-dark:      bolt-color(white);
-
-$bolt-pagination-item-text-color-xdark:           bolt-color(white);
-$bolt-pagination-item-text-color-current-xdark:   bolt-color(indigo, xdark);
-$bolt-pagination-item-bg-color-current-xdark:     bolt-color(white);
-
 
 
 
@@ -64,7 +43,7 @@ $bolt-pagination-item-bg-color-current-xdark:     bolt-color(white);
   display: block;
   min-width: $bolt-pagination-item-size;
   height: $bolt-pagination-item-size;
-  color: $bolt-pagination-item-text-color-notheme;
+  color: bolt-theme(headline-link);
   line-height: $bolt-pagination-item-size;
   text-align: center;
   text-decoration: none;
@@ -84,8 +63,8 @@ $bolt-pagination-item-bg-color-current-xdark:     bolt-color(white);
   }
 
   &.is-current {
-    color: $bolt-pagination-item-text-color-current-notheme;
-    background-color: $bolt-pagination-item-bg-color-current-notheme;
+    color: bolt-theme(background);
+    background-color: bolt-theme(headline-link);
     opacity: 1;  // Current item is not a link so its styling shouldn't change based on state.
   }
 }
@@ -126,42 +105,5 @@ $bolt-pagination-item-bg-color-current-xdark:     bolt-color(white);
   &:active,
   &:focus:active {
     opacity: 1;
-  }
-}
-
-$bolt-theme-pagination-colors: (
-  'theme-prefix': 't-bolt-',
-  sets: (
-    xlight: $bolt-pagination-item-text-color-xlight,
-    light:  $bolt-pagination-item-text-color-light,
-    dark:   $bolt-pagination-item-text-color-dark,
-    xdark:  $bolt-pagination-item-text-color-xdark
-  ),
-  currentText: (
-    xlight: $bolt-pagination-item-text-color-current-xlight,
-    light:  $bolt-pagination-item-text-color-current-light,
-    dark:   $bolt-pagination-item-text-color-current-dark,
-    xdark:  $bolt-pagination-item-text-color-current-xdark
-  ),
-  currentBg: (
-    xlight: $bolt-pagination-item-bg-color-current-xlight,
-    light:  $bolt-pagination-item-bg-color-current-light,
-    dark:   $bolt-pagination-item-bg-color-current-dark,
-    xdark:  $bolt-pagination-item-bg-color-current-xdark
-  )
-);
-
-$indexes: map-get($bolt-theme-pagination-colors, 'sets');
-$prefix: map-get($bolt-theme-pagination-colors, 'theme-prefix');
-$currentText: map-get($bolt-theme-pagination-colors, 'currentText');
-$currentBg: map-get($bolt-theme-pagination-colors, 'currentBg');
-
-@each $key, $value in $indexes {
-  .#{$prefix}#{$key} .c-bolt-pagination__item {
-    color: map-get($indexes, $key);
-  }
-  .#{$prefix}#{$key} .c-bolt-pagination__item.is-current {
-    color: map-get($currentText, $key);
-    background-color: map-get($currentBg, $key);
   }
 }
