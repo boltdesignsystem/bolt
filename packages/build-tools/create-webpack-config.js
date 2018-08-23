@@ -319,6 +319,7 @@ async function createWebpackConfig(buildConfig) {
           postcssDiscardDuplicates,
           autoprefixer({
             browsers: require('@bolt/config-browserlist'),
+            grid: true,
           }),
         ],
       },
