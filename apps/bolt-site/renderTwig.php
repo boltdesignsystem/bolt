@@ -41,6 +41,8 @@ $twig = new Twig_Environment($loaders, [
 $twig->addExtension(new \PatternLab\DrupalTwigExtensions\Basic());
 $twig->addExtension(new \Bolt\TwigExtensions\BoltCore());
 $twig->addExtension(new \Bolt\TwigExtensions\BoltExtras());
+$twig->addExtension(new \Twig_Extension_Debug());
+
 
 // Load the template that was first arg to this script
 $template = $twig->load($templatePath);
