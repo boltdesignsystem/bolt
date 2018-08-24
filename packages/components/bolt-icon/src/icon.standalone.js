@@ -47,7 +47,7 @@ export class BoltIcon extends withPreact() {
 
     this.state = {
       primaryColor: 'var(--bolt-theme-icon, currentColor)',
-      secondaryColor: 'var(--bolt-theme-background, #fff)',
+      secondaryColor: 'rgba(var(--bolt-theme-background), 1)',
     };
 
     // listen for page changes to decide when colors need to get recalculated
@@ -60,7 +60,7 @@ export class BoltIcon extends withPreact() {
         if (data.target.contains) {
           if (data.target.contains(elem)) {
             const recalculatedSecondaryColor = colorContrast(
-              rgb2hex(window.getComputedStyle(elem).getPropertyValue('color')),
+              window.getComputedStyle(elem).getPropertyValue('color'),
             );
 
             elem.setAttribute('contrast-color', recalculatedSecondaryColor);

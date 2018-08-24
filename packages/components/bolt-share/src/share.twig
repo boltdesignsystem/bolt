@@ -13,14 +13,17 @@
 
 {# Share inline #}
 {% if isFlat is sameas(true) %}
-  {% set items = items|merge([include("@bolt-components-headline/text.twig", {
-    tag: "span",
-    text: text,
-    weight: "bold",
-    transform: "uppercase",
-    size: "small",
-    attributes: create_attribute(attributes|default({})).addClass("u-bolt-color-gray-dark c-bolt-share--inline-heading")
-  })]) %}
+  {% set item %}
+    {% include "@bolt-components-headline/text.twig" with {
+      tag: "span",
+      text: text,
+      weight: "bold",
+      transform: "uppercase",
+      size: "small",
+      attributes: create_attribute(attributes|default({})).addClass("u-bolt-color-gray-dark c-bolt-share--inline-heading")
+    } only %}
+  {% endset %}
+  {% set items = items|merge([item]) %}
 {% endif %}
 
 {% for source in sources %}
@@ -44,21 +47,28 @@
   {% endif %}
 
   {% if sourceName %}
-    {% set items = items|merge([include("@bolt-components-link/link.twig", {
-      text: sourceName,
-      url: source.url,
-      icon: {
-        name: sourceIcon,
-        position: "before",
-        size: "medium"
-      },
-      attributes: create_attribute(attributes|default({})).addClass("js-bolt-share__"~source.name).setAttribute("target",sourceTarget)
-    })]) %}
+    {% set item %}
+      {% include "@bolt-components-link/link.twig" with {
+        text: sourceName,
+        url: source.url,
+        icon: {
+          name: sourceIcon,
+          position: "before",
+          size: "medium"
+        },
+        attributes: create_attribute(attributes|default({})).addClass("js-bolt-share__"~source.name).setAttribute("target",sourceTarget)
+      } only %}
+    {% endset %}
+
+    {% set items = items|merge([item]) %}
   {% endif %}
 {% endfor %}
 
 {% if copyToClipboard %}
-  {% set items = items|merge([include("@bolt-components-copy-to-clipboard/copy-to-clipboard.twig", copyToClipboard)]) %}
+  {% set item %}
+    {% include "@bolt-components-copy-to-clipboard/copy-to-clipboard.twig" with copyToClipboard only %}
+  {% endset %}
+  {% set items = items|merge([item]) %}
 {% endif %}
 
 {% set attributes = create_attribute(attributes|default({})) %}

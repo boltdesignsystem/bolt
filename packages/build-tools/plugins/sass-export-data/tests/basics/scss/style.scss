@@ -1,0 +1,24 @@
+@import "../../../export-data";
+
+$size--medium: 10px;
+
+$sizes: (
+  's': 5px,
+  'm': $size--medium,
+  'l': 15px,
+);
+
+@include export-data('sizes.json', $sizes);
+
+$classNames: (
+  'small',
+  'medium',
+  'large',
+);
+
+@include export-data('class-names.json', $classNames);
+
+@include export-data('nested-data.json', (
+  'sizes': $sizes,
+  'classNames': $classNames,
+));

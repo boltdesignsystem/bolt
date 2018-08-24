@@ -1,0 +1,22 @@
+@function bolt-recursive-map-merge($map1, $map2, $config:()) {
+  @if (type-of($map1)==map or (type-of($map1)==list and length($map1)==0)) and (type-of($map2)==map or (type-of($map2)==list and length($map2)==0)) {
+    $result: $map1;
+    @each $key,
+    $value in $map2 {
+      @if (type-of(map-get($result, $key))==map and type-of($value)==map) {
+        $result: map-merge($result, ($key: bolt-recursive-map-merge(map-get($result, $key), $value)));
+      }
+      @else if (map-get($config, "merge-lists") and type-of(map-get($result, $key))==list and type-of($value)==list) {
+        $result: map-merge($result, ($key: join(map-get($result, $key), $value)));
+      }
+      @else {
+        $result: map-merge($result, ($key: $value));
+      }
+    }
+    @return $result;
+  }
+  @else {
+    @warn "bolt-recursive-map-merge() expects it\'s parameters to be map types!";
+    @return null;
+  }
+}

@@ -14,6 +14,105 @@ const svgo = new SVGO({
     {
       removeXMLNS: true,
     },
+    {
+      cleanupAttrs: true,
+    },
+    {
+      removeDoctype: true,
+    },
+    {
+      removeXMLProcInst: true,
+    },
+    {
+      removeComments: true,
+    },
+    {
+      removeMetadata: true,
+    },
+    {
+      removeTitle: true,
+    },
+    {
+      removeDesc: true,
+    },
+    {
+      removeUselessDefs: true,
+    },
+    {
+      removeEditorsNSData: true,
+    },
+    {
+      removeEmptyAttrs: true,
+    },
+    {
+      removeHiddenElems: true,
+    },
+    {
+      removeEmptyText: true,
+    },
+    {
+      removeEmptyContainers: true,
+    },
+    {
+      removeViewBox: false,
+    },
+    {
+      cleanupEnableBackground: true,
+    },
+    {
+      convertStyleToAttrs: true,
+    },
+    {
+      convertColors: true,
+    },
+    {
+      convertPathData: true,
+    },
+    {
+      convertTransform: true,
+    },
+    {
+      removeUnknownsAndDefaults: true,
+    },
+    {
+      removeNonInheritableGroupAttrs: true,
+    },
+    {
+      removeUselessStrokeAndFill: true,
+    },
+    {
+      removeUnusedNS: true,
+    },
+    {
+      cleanupIDs: true,
+    },
+    {
+      cleanupNumericValues: true,
+    },
+    {
+      moveElemsAttrsToGroup: true,
+    },
+    {
+      moveGroupAttrsToElems: true,
+    },
+    {
+      collapseGroups: true,
+    },
+    {
+      removeRasterImages: false,
+    },
+    {
+      mergePaths: true,
+    },
+    {
+      convertShapeToPath: true,
+    },
+    {
+      sortAttrs: true,
+    },
+    {
+      removeDimensions: true,
+    },
   ],
 });
 
@@ -32,7 +131,10 @@ async function transpileIcons(icons) {
     icons.map(async icon => {
       // icons.forEach(async (i) => {
       const svg = await fs.readFile(icon, 'utf-8');
-      const id = path.basename(icon, '.svg').replace(/ /g, '-');
+      const id = path
+        .basename(icon, '.svg')
+        .replace(/ /g, '-')
+        .replace('.colored', '-colored');
 
       const $ = cheerio.load(svg, {
         xmlMode: true,
@@ -41,6 +143,7 @@ async function transpileIcons(icons) {
       const fileName = path
         .basename(icon)
         .replace(/ /g, '-')
+        .replace('.colored', '-colored')
         .replace('.svg', '.js');
       const location = path.join(buildDir, fileName);
 
@@ -89,20 +192,30 @@ async function transpileIcons(icons) {
     id,
   )} = ({ bgColor, fgColor, size, ...otherProps }) => {
       return (
-        ${$(optimizedSVG)
-          .toString()
-          .replace('fill="#FFF"', 'fill={fgColor}')
-          .replace('stroke="#FFF"', 'stroke={fgColor}')
-          .replace(new RegExp(/ stroke=".*?"/, 'g'), ' stroke={bgColor}')
-          .replace(
-            new RegExp(/ fill="(?!#fff|none).*?"/, 'g'),
-            ' fill={bgColor}',
-          )
-          .replace('viewBox', '{...otherProps} viewBox') // tack on extra props next to viewBox attribute
-          .replace('d="M0 0h24v24H0z"', '')
-          .replace(/width=".*?"/, 'width={size}')
-          .replace(/height=".*?"/, 'height={size}')
-          .replace('otherProps="..."', '{...otherProps}')}
+        ${
+          fileName.includes('-color')
+            ? $(optimizedSVG)
+                .toString()
+                .replace('viewBox', '{...otherProps} viewBox') // tack on extra props next to viewBox attribute
+                .replace('d="M0 0h24v24H0z"', '')
+                .replace(/width=".*?"/, 'width={size}')
+                .replace(/height=".*?"/, 'height={size}')
+                .replace('otherProps="..."', '{...otherProps}')
+            : $(optimizedSVG)
+                .toString()
+                .replace('fill="#FFF"', 'fill={fgColor}')
+                .replace('stroke="#FFF"', 'stroke={fgColor}')
+                .replace(new RegExp(/ stroke=".*?"/, 'g'), ' stroke={bgColor}')
+                .replace(
+                  new RegExp(/ fill="(?!#fff|none).*?"/, 'g'),
+                  ' fill={bgColor}',
+                )
+                .replace('viewBox', '{...otherProps} viewBox') // tack on extra props next to viewBox attribute
+                .replace('d="M0 0h24v24H0z"', '')
+                .replace(/width=".*?"/, 'width={size}')
+                .replace(/height=".*?"/, 'height={size}')
+                .replace('otherProps="..."', '{...otherProps}')
+        }
       )
 };
 `;
@@ -114,7 +227,7 @@ async function transpileIcons(icons) {
         parser: 'flow',
       });
 
-      await fs.outputFile(location, component, 'utf-8');
+      await fs.outputFile(location, element, 'utf-8');
       // Later when we call `const icons = await transpileIcons(iconPaths);` - `icons` will be an array of these objects:
       return {
         location,
