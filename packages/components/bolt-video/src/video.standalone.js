@@ -1,4 +1,4 @@
-import { css, h, withPreact, define, props } from '@bolt/core';
+import { define, h, props, withPreact, css } from '@bolt/core';
 import dasherize from 'dasherize';
 import Mousetrap from 'mousetrap';
 
