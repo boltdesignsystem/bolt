@@ -19,7 +19,7 @@ bolt-copy-to-clipboard {
   position: relative;
   text-align: left;
 
-  &.is-copied {
+  &.is-copying {
     .c-bolt-copy-to-clipboard__trigger {
       pointer-events: none;
       opacity: 0;
@@ -34,7 +34,7 @@ bolt-copy-to-clipboard {
     }
   }
 
-  &.is-copied.is-transitioning {
+  &.is-copying.has-copied {
     .c-bolt-copy-to-clipboard__spinner {
       opacity: 0;
       transition-delay: 0s; // [2]

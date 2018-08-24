@@ -36,15 +36,15 @@ export class BoltCopyToClipboard extends BoltComponent() {
       // Copying is already successful at this point.  Everything from here on is UX flair.
 
       // Show the "in progress" status.
-      this.parentElem.classList.add('is-copied');
+      this.parentElem.classList.add('is-copying');
 
       // Show the "success" status.
       setTimeout(() => {
-        this.parentElem.classList.add('is-transitioning');
+        this.parentElem.classList.add('has-copied');
 
         // Reset so the link can be used again without refreshing the page.
         setTimeout(() => {
-          this.parentElem.classList.remove('is-transitioning', 'is-copied');
+          this.parentElem.classList.remove('has-copied', 'is-copying');
         }, 3000);
       }, 1000);
     });
