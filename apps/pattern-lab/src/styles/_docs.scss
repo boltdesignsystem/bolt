@@ -585,3 +585,16 @@ pre {
     @include bolt-margin-top(0.75rem);
   }
 }
+
+.c-bolt-docs__text-align-demo {
+  @extend %demo-wrapper;
+  @include bolt-margin-bottom(2rem);
+}
+
+.c-bolt-docs__text-align-item {
+  @extend %demo-item-border;
+  @extend %demo-item-background;
+  h4+& {
+    @include bolt-margin-top(0.75rem);
+  }
+}
