@@ -127,14 +127,6 @@ $bolt-themes: (
   }
 }
 
-// Deprecated -- will be removed in Bolt v2.0
-$bolt-themes: bolt-recursive-map-merge(
-  $bolt-themes,
-  (
-    medium: map-get($bolt-themes, light),
-  )
-);
-
 $bolt-themes-export: ();
 
 @each $themeName, $themeOptions in $bolt-themes {
