@@ -78,7 +78,7 @@
 
 {# Share component's custom element wrapper. #}
 <bolt-share
-  {% if display %} display="{{ display }}" {% endif %}
+  {% if inline %} inline {% endif %}
   {{ parentAttributes }}
 >
   {# Array of classes based on the defined + default props. #}
