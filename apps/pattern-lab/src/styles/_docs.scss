@@ -407,13 +407,31 @@ pre {
 ** Demo Styles
  */
 
+%demo-wrapper {
+  border: 2px dashed bolt-color(gray, light);
+  padding: 1rem;
+}
+
+%demo-item-border {
+  border: 2px dashed #545da6;
+}
+
+%demo-item-background {
+  background: bolt-color(indigo, xlight);
+  color: bolt-color(indigo);
+}
+
+%demo-item {
+  @extend %demo-item-border;
+  padding: 1rem;
+}
+
 .c-bolt-docs__sassdoc-reference {
   @include bolt-margin(2rem 0);
 }
 
 .c-bolt-docs__clearfix-demo {
-  border: 2px dashed bolt-color(gray, light);
-  padding: 1rem;
+  @extend %demo-wrapper;
 
   h3 {
     @include bolt-margin-bottom(1rem);
@@ -421,10 +439,9 @@ pre {
 
   &__left,
   &__right {
+    @extend %demo-item-border;
+    @extend %demo-item-background;
     padding: 1rem;
-    background: bolt-color(indigo, xlight);
-    color: bolt-color(indigo);
-    border: 2px dashed bolt-color(indigo, light);
   }
   &__left {
     float: left;
@@ -491,9 +508,8 @@ pre {
 }
 
 .c-bolt-docs__display-focus {
-  background: bolt-color(indigo, xlight);
-  color: bolt-color(indigo);
-  border: 2px dashed bolt-color(indigo, light);
+  @extend %demo-item-border;
+  @extend %demo-item-background;
   height: 50px;
 }
 
@@ -506,9 +522,8 @@ pre {
 }
 
 .c-bolt-docs__flex-demo {
+  @extend %demo-wrapper;
   @include bolt-margin-bottom(2rem);
-  border: 2px dashed bolt-color(gray, light);
-  padding: 1rem;
   resize: horizontal;
   overflow-y: auto;
   &+h4 {
@@ -517,9 +532,8 @@ pre {
 }
 
 .c-bolt-docs__flex-item {
-  background: bolt-color(indigo, xlight);
-  color: bolt-color(indigo);
-  border: 2px dashed bolt-color(indigo, light);
+  @extend %demo-item-border;
+  @extend %demo-item-background;
   text-align: center;
 
   &--shrink-0 {
@@ -539,9 +553,8 @@ pre {
 }
 
 .c-bolt-docs__height-demo {
+  @extend %demo-wrapper;
   @include bolt-margin-bottom(2rem);
-  border: 2px dashed bolt-color(gray, light);
-  padding: 1rem;
 }
 
 .c-bolt-docs__height-item {
@@ -551,13 +564,24 @@ pre {
 }
 
 .c-bolt-docs__opacity-demo {
+  @extend %demo-wrapper;
   @include bolt-margin-bottom(2rem);
-  border: 2px dashed bolt-color(gray, light);
-  padding: 1rem;
 }
 
 .c-bolt-docs__opacity-item {
+  @extend %demo-item;
   @include bolt-margin-top(1rem);
-  border: 2px dashed bolt-color(indigo, light);
-  padding: 1rem;
+}
+
+.c-bolt-docs__spacing-demo {
+  @extend %demo-wrapper;
+  @include bolt-margin-bottom(2rem);
+}
+
+.c-bolt-docs__spacing-item {
+  @extend %demo-item-border;
+  @extend %demo-item-background;
+  h4+& {
+    @include bolt-margin-top(0.75rem);
+  }
 }

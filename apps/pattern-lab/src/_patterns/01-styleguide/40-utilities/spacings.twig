@@ -1,0 +1,92 @@
+{% embed "@utils/utilities.twig" with {
+  utilityName: "Bolt Spacing",
+  sassdocItems: [
+    {
+      title: '$bolt-spacing-properties',
+      anchor: link['styleguide-sassdoc'] ~ '#variable-bolt-spacing-properties'
+    },
+    {
+      title: '$bolt-spacing-directions',
+      anchor: link['styleguide-sassdoc'] ~ '#variable-bolt-spacing-directions'
+    },
+    {
+      title: '$bolt-spacing-sizes',
+      anchor: link['styleguide-sassdoc'] ~ '#variable-bolt-spacing-sizes'
+    }
+  ]
+} only %}
+
+  {% set spacingSizes = bolt.data.spacingSizes %}
+  {% set spacingProperties = bolt.data.spacingProperties %}
+  {% set spacingDirections = bolt.data.spacingDirections %}
+
+  {% block utilityDescription %}
+    <p>Add the utility class <code>.u-bolt-xx-yy-zz</code> where <strong>xx</strong> equals the <strong><u>spacing</u></strong> property, <strong>yy</strong> equals the <strong><u>direction</u></strong>, and <strong>zz (optional)</strong> equals the t-shirt <strong><u>size</u></strong> you wish to apply. For example:</p>
+    <ul>
+      <li><code>.u-bolt-margin-left-large</code> = margin-left: {{ spacingSizes.large }}</li>
+      <li><code>.u-bolt-margin-right</code> = margin-right: {{ spacingSizes[""] }}</li>
+    </ul>
+    <p><strong>(xx) <u>Possible <u>property</u> values include:</u></strong></p>
+    <ul>
+      {% for property in spacingProperties %}
+        <li><code>{{ property }}</code></li>
+      {% endfor %}
+    </ul>
+    <p><strong>(yy) <u>Possible <u>direction</u> values include:</u></strong></p>
+    <ul>
+      {% for direction in spacingDirections if direction is not same as ('') %}
+        <li><code>{{ direction }}</code></li>
+      {% endfor %}
+    </ul>
+    <p><strong>(zz) <u>Possible <u>size</u> values include:</u></strong></p>
+    <ul>
+      {% for size, value in spacingSizes %}
+        <li><code>{{ size == "" ? "[base]" : size }}</code>: {{ value }}</li>
+      {% endfor %}
+    </ul>
+  {% endblock %}
+
+  {% block utilityDemo %}
+    <div class="c-bolt-docs__spacing-demo">
+      <h4><code>.u-bolt-margin-left</code></h4>
+      <div class="c-bolt-docs__spacing-item u-bolt-inline-block u-bolt-margin-left">
+        <strong>margin-left: {{ spacingSizes[''] }}</strong>
+      </div>
+    </div>
+    <div class="c-bolt-docs__spacing-demo">
+      <h4><code>.u-bolt-margin-left-large</code></h4>
+      <div class="c-bolt-docs__spacing-item u-bolt-inline-block u-bolt-margin-left-large">
+        <strong>margin-left: {{ spacingSizes.large }}</strong>
+      </div>
+    </div>
+    <div class="c-bolt-docs__spacing-demo">
+      <h4><code>.u-bolt-margin-left-xxlarge</code></h4>
+      <div class="c-bolt-docs__spacing-item u-bolt-inline-block u-bolt-margin-left-xxlarge">
+        <strong>margin-left: {{ spacingSizes.xxlarge }}</strong>
+      </div>
+    </div>
+
+    <div class="c-bolt-docs__spacing-demo">
+      <h4><code>.u-bolt-padding</code></h4>
+      <div class="c-bolt-docs__spacing-item u-bolt-inline-block u-bolt-padding">
+        <strong>padding: {{ spacingSizes[''] }}</strong>
+      </div>
+    </div>
+    <div class="c-bolt-docs__spacing-demo">
+      <h4><code>.u-bolt-padding-large</code></h4>
+      <div class="c-bolt-docs__spacing-item u-bolt-inline-block u-bolt-padding-large">
+        <strong>padding: {{ spacingSizes.large }}</strong>
+      </div>
+    </div>
+    <div class="c-bolt-docs__spacing-demo">
+      <h4><code>.u-bolt-padding-left-xlarge</code><br /><code>.u-bolt-padding-right-xlarge</code><br /><code>.u-bolt-padding-top</code><br /><code>.u-bolt-padding-bottom</code></h4>
+      <div class="c-bolt-docs__spacing-item u-bolt-inline-block u-bolt-padding-left-xlarge u-bolt-padding-right-xlarge u-bolt-padding-top u-bolt-padding-bottom">
+        <strong>padding-left: {{ spacingSizes.xlarge }}</strong><br />
+        <strong>padding-right: {{ spacingSizes.xlarge }}</strong><br />
+        <strong>padding-top: {{ spacingSizes.large }}</strong><br />
+        <strong>padding-bottom: {{ spacingSizes.large }}</strong>
+      </div>
+    </div>
+  {% endblock %}
+
+{% endembed %}
