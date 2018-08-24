@@ -4,6 +4,8 @@
 
 @import '@bolt/core';
 
+$bolt-copy-transition: all 0.5s ease;
+
 bolt-copy-to-clipboard {
   display: inline-block;
 }
@@ -23,26 +25,23 @@ bolt-copy-to-clipboard {
       left: 0;
       opacity: 1;
       transform: scale(1) rotate(360deg) translateY(-50%);
-      transition: all 0.5s ease 0.75s;
     }
   }
 
   &.is-copied.is-transitioning {
     .c-bolt-copy-to-clipboard__spinner {
       opacity: 0;
-      transition: opacity 1s ease;
     }
 
     .c-bolt-copy-to-clipboard__confirmation {
       opacity: 1;
-      transition: opacity 1s ease 0.75s;
     }
   }
 }
 
 .c-bolt-copy-to-clipboard__trigger {
   display: block;
-  transition: opacity 0.5s ease;
+  transition: $bolt-copy-transition;
 }
 
 .c-bolt-copy-to-clipboard__spinner,
@@ -51,6 +50,7 @@ bolt-copy-to-clipboard {
   position: absolute;
   pointer-events: none;
   opacity: 0;
+  transition: $bolt-copy-transition;
 }
 
 .c-bolt-copy-to-clipboard__spinner {
