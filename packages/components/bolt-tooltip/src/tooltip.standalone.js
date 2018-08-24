@@ -1,5 +1,4 @@
-import { define, props } from '@bolt/core/utils';
-import { h, withPreact } from '@bolt/core/renderers';
+import { h, withPreact, define, props } from '@bolt/core';
 
 import button from '@bolt/components-button/src/button.scss';
 import colorUtils from '@bolt/global/styles/07-utilities/_utilities-colors.scss';

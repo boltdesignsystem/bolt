@@ -1,5 +1,4 @@
-import { define, props, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { h, withPreact } from '@bolt/core/renderers';
+import { h, withPreact, define, props } from '@bolt/core';
 
 import styles from './block-list.scss';
 

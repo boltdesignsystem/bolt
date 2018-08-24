@@ -1,13 +1,13 @@
 import {
+  h,
+  withPreact,
   define,
   props,
   css,
   hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
+} from '@bolt/core';
 
-import { h, withPreact } from '@bolt/core/renderers';
 import html from 'preact-html';
-
 import Prism from 'prismjs/components/prism-core';
 
 import styles from './code-snippet.scss';

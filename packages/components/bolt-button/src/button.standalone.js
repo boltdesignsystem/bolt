@@ -1,19 +1,15 @@
 import {
+  wire,
+  withHyperHtml,
   props,
   define,
   declarativeClickHandler,
   sanitizeBoltClasses,
   hasNativeShadowDomSupport,
   afterNextRender,
-} from '@bolt/core/utils';
+} from '@bolt/core';
 
 import classNames from 'classnames/bind';
-
-import {
-  wire,
-  render,
-  withHyperHtml,
-} from '@bolt/core/renderers/renderer-hyperhtml';
 
 import visuallyhiddenUtils from '@bolt/global/styles/07-utilities/_utilities-visuallyhidden.scss';
 import styles from './button.scss';

@@ -1,5 +1,4 @@
-import { define, props } from '@bolt/core/utils';
-import { withHyperHtml } from '@bolt/core/renderers/renderer-hyperhtml';
+import { withHyperHtml, define, props } from '@bolt/core';
 
 /*
   Consider using these polyfills to broaden browser support:

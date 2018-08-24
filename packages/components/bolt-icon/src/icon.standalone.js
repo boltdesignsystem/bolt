@@ -1,4 +1,5 @@
 import {
+  spacingSizes,
   css,
   colorContrast,
   define,
@@ -6,11 +7,9 @@ import {
   props,
   rgb2hex,
   supportsCSSVars,
-} from '@bolt/core/utils';
-
-import { spacingSizes } from '@bolt/core/data';
-
-import { h, withPreact } from '@bolt/core/renderers';
+  h,
+  withPreact,
+} from '@bolt/core';
 
 import PubSub from 'pubsub-js';
 import upperCamelCase from 'uppercamelcase';

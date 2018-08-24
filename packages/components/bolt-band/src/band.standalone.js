@@ -1,5 +1,4 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withHyperHtml } from '@bolt/core/renderers/renderer-hyperhtml';
+import { withHyperHtml, define, hasNativeShadowDomSupport } from '@bolt/core';
 
 // To avoid invoking the parser with `.innerHTML` for every new instance, a
 // template for the contents of the ShadowDOM is is shared by all

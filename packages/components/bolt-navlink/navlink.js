@@ -1,6 +1,4 @@
-import { props, define } from '@bolt/core/utils';
-import { withHyperHtml } from '@bolt/core/renderers/renderer-hyperhtml';
-
+import { withHyperHtml, props, define } from '@bolt/core';
 import isVisible from 'is-visible';
 
 // Used for attaching smooth scroll behavior to dynamically created <bolt-navlink> instances

@@ -1,13 +1,7 @@
-import {
-  define,
-  props,
-  css,
-  hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
+import { withHyperHtml, define, hasNativeShadowDomSupport } from '@bolt/core';
 
 import gumshoe from 'gumshoejs';
 import isVisible from 'is-visible';
-import { withHyperHtml } from '@bolt/core/renderers/renderer-hyperhtml';
 
 // const indicatorElement = '.js-bolt-nav-indicator';
 const navLinkElement = 'bolt-navlink'; // Custom element

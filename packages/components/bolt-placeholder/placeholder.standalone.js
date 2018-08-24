@@ -1,11 +1,11 @@
 import {
+  withHyperHtml,
   define,
   props,
   css,
   hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
+} from '@bolt/core';
 
-import { withHyperHtml } from '@bolt/core/renderers/renderer-hyperhtml';
 import placeholderStyles from './placeholder.scss';
 
 @define
