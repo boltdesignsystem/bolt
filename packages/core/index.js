@@ -1,5 +1,6 @@
+import './elements';
+
 export * from './data';
-export * from './elements';
 export * from './polyfills';
 export * from './renderers';
 export * from './utils';
