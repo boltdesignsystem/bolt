@@ -19,7 +19,10 @@
 {% set items = [] %}
 
 {% if inline %}
-  {% set items = items|merge(["<span class='c-bolt-share__label'>#{text}</span>"]) %}
+  {% set inline_label %}
+    <span class="c-bolt-share__label">{{ text }}</span>
+  {% endset %}
+  {% set items = items|merge([inline_label]) %}
 {% endif %}
 
 {% for source in sources %}
@@ -42,22 +45,25 @@
   {% endif %}
 
   {% if source_name %}
-    {% set items = items|merge([include("@bolt-components-link/link.twig", {
-      text: "<span class='c-bolt-share__link-text'>#{source_name}</span>",
-      url: source.url,
-      icon: {
-        name: source_icon,
-        position: "before",
-        size: "medium"
-      },
-      attributes: {
-        class: [
-          "c-bolt-share__link",
-          "js-bolt-share__link--"~source.name,
-        ],
-        target: source_target
-      }
-    })]) %}
+    {% set source_items %}
+      {% include "@bolt-components-link/link.twig" with {
+        text: "<span class='c-bolt-share__link-text'>#{source_name}</span>",
+        url: source.url,
+        icon: {
+          name: source_icon,
+          position: "before",
+          size: "medium"
+        },
+        attributes: {
+          class: [
+            "c-bolt-share__link",
+            "js-bolt-share__link--"~source.name,
+          ],
+          target: source_target
+        }
+      } only %}
+    {% endset %}
+    {% set items = items|merge([source_items]) %}
   {% endif %}
 {% endfor %}
 
