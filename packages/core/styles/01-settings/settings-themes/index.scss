@@ -152,7 +152,8 @@ $bolt-themes-export: ();
 
       $bolt-themes-export: map-set-deep(
         $bolt-themes-export,
-        ($themeName, $themeOptionName),
+        ($themeName,
+        $themeOptionName),
         rgb($red, $green, $blue)
       );
     }
