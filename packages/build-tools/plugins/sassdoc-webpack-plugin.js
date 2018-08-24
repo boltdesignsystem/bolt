@@ -57,15 +57,15 @@ class SassDocPlugin {
           const oldData = getHash(BoltCache.get('sassdoc'));
 
           if (oldData !== newData) {
-            if (config.verbosity > 3) {
-              console.log(`Sassdoc data has changed -- writing new file.`);
-            }
+            //if (config.verbosity > 3) {
+            //  console.log(`Sassdoc data has changed -- writing new file.`);
+            //}
             BoltCache.set('sassdoc', data);
             writeSassdocFile(self.options.dest, data);
           } else {
-            if (config.verbosity > 3) {
-              console.log(`Sassdoc data hasn't changed...`);
-            }
+            //if (config.verbosity > 3) {
+            //  console.log(`Sassdoc data hasn't changed...`);
+            //}
           }
         } else {
           // Otherwise write to disk + cache results the first time Sassdoc generates data
