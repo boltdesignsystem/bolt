@@ -1,8 +1,12 @@
+@import '@bolt/core';
+
 /* ------------------------------------ *\
    Copy to Clipboard
 \* ------------------------------------ */
 
-@import '@bolt/core';
+// Dev Notes
+// 1. When tranistioning in (any time opacity is 1), add a delay to wait for the previously visible item to fade out.
+// 2. When transitioning out (any time opacity is 0), reset any existing delay so the transition runs immediately.
 
 $bolt-copy-transition: all 0.5s ease;
 
@@ -19,22 +23,26 @@ bolt-copy-to-clipboard {
     .c-bolt-copy-to-clipboard__trigger {
       pointer-events: none;
       opacity: 0;
+      transition-delay: 0s; // [2]
     }
 
     .c-bolt-copy-to-clipboard__spinner {
       left: 0;
       opacity: 1;
       transform: scale(1) rotate(360deg) translateY(-50%);
+      transition-delay: 0.5s; // [1]
     }
   }
 
   &.is-copied.is-transitioning {
     .c-bolt-copy-to-clipboard__spinner {
       opacity: 0;
+      transition-delay: 0s; // [2]
     }
 
     .c-bolt-copy-to-clipboard__confirmation {
       opacity: 1;
+      transition-delay: 0.5s; // [1]
     }
   }
 }
@@ -42,6 +50,7 @@ bolt-copy-to-clipboard {
 .c-bolt-copy-to-clipboard__trigger {
   display: block;
   transition: $bolt-copy-transition;
+  transition-delay: 0.5s; // [1]
 }
 
 .c-bolt-copy-to-clipboard__spinner,
