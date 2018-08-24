@@ -1,5 +1,5 @@
 
-  import { h } from '@bolt/core/renderers';
+  import { h } from '@bolt/core';
 
   export const Cloud = ({ bgColor, fgColor, size, ...otherProps }) => {
       return (

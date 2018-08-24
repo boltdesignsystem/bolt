@@ -186,7 +186,7 @@ async function transpileIcons(icons) {
       const optimizedSVG = result.data;
 
       const element = `
-  import { h } from '@bolt/core/renderers';
+  import { h } from '@bolt/core';
 
   export const ${uppercamelcase(
     id,
