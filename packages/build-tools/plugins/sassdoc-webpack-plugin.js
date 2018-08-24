@@ -8,6 +8,8 @@ const fs = require('fs');
 const path = require('path');
 const sassdoc = require('sassdoc');
 const yaml = require('js-yaml');
+const crypto = require('crypto');
+const BoltCache = require('../utils/cache');
 
 class SassDocPlugin {
   constructor(options, pluginOptions) {
@@ -36,9 +38,40 @@ class SassDocPlugin {
 
     compiler.hooks.afterEmit.tapPromise('SassDocPlugin', compilation => {
       return sassdoc.parse(self.options.src, self.options).then(function(data) {
-        fs.writeFile(self.options.dest, JSON.stringify(data), 'utf8', err => {
-          if (err) throw err;
-        });
+        function getHash(data) {
+          return crypto
+            .createHash('md5')
+            .update(JSON.stringify(data))
+            .digest('hex');
+        }
+
+        function writeSassdocFile(file, data) {
+          fs.writeFile(file, JSON.stringify(data), 'utf8', err => {
+            if (err) throw err;
+          });
+        }
+
+        // If cached Sassdoc data exists, compare hashes to only write to disk when absolutely necessary
+        if (BoltCache.get('sassdoc')) {
+          const newData = getHash(data);
+          const oldData = getHash(BoltCache.get('sassdoc'));
+
+          if (oldData !== newData) {
+            if (config.verbosity > 3) {
+              console.log(`Sassdoc data has changed -- writing new file.`);
+            }
+            BoltCache.set('sassdoc', data);
+            writeSassdocFile(self.options.dest, data);
+          } else {
+            if (config.verbosity > 3) {
+              console.log(`Sassdoc data hasn't changed...`);
+            }
+          }
+        } else {
+          // Otherwise write to disk + cache results the first time Sassdoc generates data
+          BoltCache.set('sassdoc', data);
+          writeSassdocFile(self.options.dest, data);
+        }
       });
     });
   }
