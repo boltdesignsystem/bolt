@@ -1,13 +1,13 @@
 import {
-  spacingSizes,
-  css,
   colorContrast,
+  css,
   define,
+  h,
   hasNativeShadowDomSupport,
   props,
   rgb2hex,
+  spacingSizes,
   supportsCSSVars,
-  h,
   withPreact,
 } from '@bolt/core';
 
