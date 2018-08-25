@@ -34,8 +34,10 @@
     </ul>
     <p><strong>(yy) <u>Possible <u>direction</u> values include:</u></strong></p>
     <ul>
-      {% for direction in spacingDirections if direction is not same as ('') %}
-        <li><code>{{ direction }}</code></li>
+      {% for direction in spacingDirections %}
+        {% if direction is not same as ('') %}
+          <li><code>{{ direction }}</code></li>
+        {% endif %}
       {% endfor %}
     </ul>
     <p><strong>(zz) <u>Possible <u>size</u> values include:</u></strong></p>
