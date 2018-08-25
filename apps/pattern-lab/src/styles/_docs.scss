@@ -407,8 +407,12 @@ pre {
 ** Demo Styles
  */
 
-%demo-wrapper {
+%demo-wrapper-border {
   border: 2px dashed bolt-color(gray, light);
+}
+
+%demo-wrapper {
+  @extend %demo-wrapper-border;
   padding: 1rem;
 }
 
@@ -423,6 +427,7 @@ pre {
 
 %demo-item {
   @extend %demo-item-border;
+  @extend %demo-item-background;
   padding: 1rem;
 }
 
@@ -439,9 +444,7 @@ pre {
 
   &__left,
   &__right {
-    @extend %demo-item-border;
-    @extend %demo-item-background;
-    padding: 1rem;
+    @extend %demo-item;
   }
   &__left {
     float: left;
@@ -569,8 +572,9 @@ pre {
 }
 
 .c-bolt-docs__opacity-item {
-  @extend %demo-item;
+  @extend %demo-item-border;
   @include bolt-margin-top(1rem);
+  padding: 1rem;
 }
 
 .c-bolt-docs__spacing-demo {
@@ -593,7 +597,6 @@ pre {
 
 .c-bolt-docs__text-align-item {
   @extend %demo-item-border;
-  @extend %demo-item-background;
   h4+& {
     @include bolt-margin-top(0.75rem);
   }
@@ -606,8 +609,68 @@ pre {
 
 .c-bolt-docs__text-decoration-item {
   @extend %demo-item-border;
-  @extend %demo-item-background;
   h4+& {
     @include bolt-margin-top(0.75rem);
   }
+}
+
+.c-bolt-docs__visually-hidden-demo {
+  @extend %demo-wrapper;
+
+  input[type=checkbox]{
+    height: 0;
+    width: 0;
+    visibility: hidden;
+    display: none;
+  }
+
+  label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 50px;
+    height: 25px;
+    background: bolt-color(gray);
+    display: block;
+    border-radius: 50px;
+    position: relative;
+  }
+
+  label:after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 22px;
+    height: 15px;
+    background: #fff;
+    border-radius: 22px;
+    transition: 0.3s;
+  }
+
+  input:checked + label {
+    background: bolt-color(indigo, light);
+    & + .c-bolt-docs__visually-hidden-inner > .c-bolt-docs__visually-hidden-content {
+      @include bolt-visuallyhidden(important);
+      opacity: 0;
+    }
+  }
+
+  input:checked + label:after {
+    left: calc(100% - 5px);
+    transform: translateX(-100%);
+  }
+
+  label:active:after {
+    width: 32px;
+  }
+}
+
+.c-bolt-docs__visually-hidden-inner {
+  @include bolt-margin-top(1rem);
+}
+
+.c-bolt-docs__visually-hidden-content {
+  @extend %demo-item;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
 }
