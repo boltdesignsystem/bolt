@@ -53,11 +53,10 @@
     } only %}
 
     <span class="{{ "#{baseClass}__confirmation" }}">
-      {% include "@bolt-components-link/link.twig" with {
+      {% include "@bolt-components-headline/text.twig" with {
         "text": copiedText,
-        "url": url,
         "icon": {
-          "name": "asset-link",
+          "name": "check",
           "position": "before",
           "size": iconSize
         },
