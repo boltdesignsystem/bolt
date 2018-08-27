@@ -22,7 +22,7 @@
   {% block utilityDemo %}
     <div class="c-bolt-docs-color-demo">
       {% for key, collection in utilityClasses %}
-        {% if key is not same as('all') %}
+        {% if key != "all" %}
           <div class="c-bolt-docs-color-demo__type">
             <h5>{{ key|capitalize }} Colors</h5>
             <div class="c-bolt-docs-color-demo__collection">
