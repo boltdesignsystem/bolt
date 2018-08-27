@@ -8,13 +8,13 @@
 ////
 
 /// This returns the font-size and relevant line-height for a specific element.
-///
-/// @param {string} $size
-///   Defines the size of the text: xsmall, small, base, medium, large, xlarge, or xxlarge.
-///
-/// @param {string} $leading
-///   Defines the line-height of the text: regular or tight.
-///
+/// @param {string} $size - Defines the size of the text: xsmall, small, base, medium, large, xlarge, or xxlarge.
+/// @param {string} $leading [regular] - Defines the line-height of the text: regular or tight.
+/// @requires {mixin} bolt-poly-fluid-sizing
+/// @example scss
+/// .element {
+///    @include bolt-font-size(large);
+/// }
 @mixin bolt-font-size($size, $leading: regular) {
   $font-size: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'font-size');
 
