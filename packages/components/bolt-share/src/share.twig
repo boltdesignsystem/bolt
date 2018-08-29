@@ -4,10 +4,12 @@
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
+{% set copyToClipboard = copy_to_clipboard %}
+
 {# Variables #}
-{% set baseClass = "c-bolt-share" %}
+{% set base_class = "c-bolt-share" %}
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set innerAttributes = create_attribute({}) %}
+{% set inner_attributes = create_attribute({}) %}
 
 {# Default text can't be pulled from the schema because it must be translatable. #}
 {% set text = text | default("Share this page"|t) %}
@@ -90,11 +92,11 @@
 >
   {# Array of classes based on the defined + default props. #}
   {% set classes = [
-    baseClass,
-    inline ? "#{baseClass}--display-inline" : "#{baseClass}--display-button"
+    base_class,
+    inline ? "#{base_class}--display-inline" : "#{base_class}--display-button"
   ] %}
 
-  <div {{ innerAttributes.addClass(classes) }}>
+  <div {{ inner_attributes.addClass(classes) }}>
     {% if inline %}
       {% include "@bolt-components-list/list.twig" with {
         display: "inline",
