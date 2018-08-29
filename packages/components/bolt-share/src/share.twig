@@ -10,6 +10,7 @@
 {% set base_class = "c-bolt-share" %}
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set inner_attributes = create_attribute({}) %}
+{% set inline = inline == false and inline is not null ? false : true %}
 
 {# Default text can't be pulled from the schema because it must be translatable. #}
 {% set text = text | default("Share this page"|t) %}
@@ -87,13 +88,13 @@
 
 {# Share component's custom element wrapper. #}
 <bolt-share
-  {% if inline %} inline {% endif %}
+  {% if inline == true %} inline {% endif %}
   {{ attributes }}
 >
   {# Array of classes based on the defined + default props. #}
   {% set classes = [
     base_class,
-    inline ? "#{base_class}--display-inline" : "#{base_class}--display-button"
+    inline == true ? "#{base_class}--display-inline" : "#{base_class}--display-button",
   ] %}
 
   <div {{ inner_attributes.addClass(classes) }}>
