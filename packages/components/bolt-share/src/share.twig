@@ -10,7 +10,7 @@
 {% set base_class = "c-bolt-share" %}
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set inner_attributes = create_attribute({}) %}
-{% set inline = inline is sameas(true) or inline is sameas(false) ? inline : schema.inline.default %}
+{% set inline = inline is sameas(true) or inline is sameas(false) ? inline : schema.properties.inline.default %}
 
 {# Default text can't be pulled from the schema because it must be translatable. #}
 {% set text = text | default("Share this page"|t) %}
