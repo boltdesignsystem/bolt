@@ -8,6 +8,12 @@
 @import '02-tools/**/*.scss';
 
 /// Places an element full browser width
+/// @group Tools: Layout
+/// @author Evan Lovely
+/// @example scss
+/// .element {
+///   @include bolt-full-bleed();
+/// }
 @mixin bolt-full-bleed {
     position: relative;
     right: 50%;

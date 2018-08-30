@@ -8,10 +8,12 @@
 ////
 
 /// This returns the font-family for a specific element. Brand fonts are the default, with system fonts as the fallback.
-///
-/// @param {string} $type
-///   Defines the font-family being used for each type of text: heading, body, or code.
-///
+/// @param {string} $type - Defines the font-family being used for each type of text: heading, body, or code.
+/// @param {boolean} $is_root [false]
+/// @example scss - bolt-font-family mixin
+/// .element {
+///    @include bolt-font-family(body);
+/// }
 @mixin bolt-font-family($type, $is_root: false) {
   $fallback-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'fallback-font');
   $custom-font-family: map-get-deep($bolt-font-families, 'font-families', $type, 'custom-font');

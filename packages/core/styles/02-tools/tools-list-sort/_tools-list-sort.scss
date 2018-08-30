@@ -1,13 +1,19 @@
 /* ------------------------------------ *\
   TOOLS - LIST SORT
-  via https://gist.github.com/Jakobud/744b98b629abe018766f6d506a2e92ae
 \* ------------------------------------ */
 
-/// bolt-list-sort
+////
+/// @group Tools: Utilities
+////
+
 /// Sort a SASS list
-/// @param $list - A SASS list
-/// @return {List} A sorted SASS list
+/// @param {list} $list - A SASS list
+/// @return {List} $sortedlist - A sorted SASS list
 /// @requires {function} bolt-list-remove
+/// @see bolt-map-sort
+/// @link https://gist.github.com/Jakobud/744b98b629abe018766f6d506a2e92ae
+/// @example scss - Sorting ($map not shown)
+///   $keys: bolt-list-sort(map-keys($map));
 @function bolt-list-sort($list) {
     $sortedlist: ();
     @while length($list) > 0 {
