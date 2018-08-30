@@ -1,14 +1,14 @@
 {% embed "@utils/utilities.twig" with {
-  utilityName: "Bolt Text Decoration"
+  utility_name: "Bolt Text Decoration"
 } only %}
 
   {% set decorations = [
-    'none',
-    'underline',
-    'line-through'
+    "none",
+    "underline",
+    "line-through"
   ] %}
 
-  {% block utilityDescription %}
+  {% block utility_description %}
     <p>Add the utility class <code>.u-bolt-text-decoration-xx</code> where xx equals the decoration style you wish to apply.</p>
     <p><strong><u>Possible values include:</u></strong></p>
     <ul>
@@ -18,7 +18,7 @@
     </ul>
   {% endblock %}
 
-  {% block utilityDemo %}
+  {% block utility_demo %}
     {% for style in decorations %}
       <div class="c-bolt-docs__text-decoration-demo">
         <h4><code>{{ ".u-bolt-text-decoration-#{style}" }}</code></h4>

@@ -1,21 +1,21 @@
 {% embed "@utils/utilities.twig" with {
-  utilityName: "Bolt Display"
+  utility_name: "Bolt Display"
 } only %}
 
-  {% set displayModes = bolt.data.display %}
+  {% set display_modes = bolt.data.display %}
 
-  {% block utilityDescription %}
+  {% block utility_description %}
     <p>Add the utility class <code>.u-bolt-xx</code> where xx equals the display mode you wish to apply.</p>
     <p><strong><u>Possible values include:</u></strong></p>
     <ul>
-      {% for mode in displayModes|keys %}
+      {% for mode in display_modes|keys %}
         <li><code>{{ mode }}</code></li>
       {% endfor %}
     </ul>
   {% endblock %}
 
-  {% block utilityDemo %}
-    {% for mode in displayModes|keys %}
+  {% block utility_demo %}
+    {% for mode in display_modes|keys %}
       <div class="c-bolt-docs__display-demo">
         <h4>Display: {{ mode }}</h4>
         <div><code>{{ ".u-bolt-#{mode}" }}</code></div>

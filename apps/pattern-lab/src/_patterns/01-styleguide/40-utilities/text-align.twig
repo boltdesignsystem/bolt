@@ -1,15 +1,15 @@
 {% embed "@utils/utilities.twig" with {
-  utilityName: "Bolt Text Align"
+  utility_name: "Bolt Text Align"
 } only %}
 
   {% set alignments = [
-    'right',
-    'left',
-    'center',
-    'justify'
+    "right",
+    "left",
+    "center",
+    "justify"
   ] %}
 
-  {% block utilityDescription %}
+  {% block utility_description %}
     <p>Add the utility class <code>.u-bolt-text-align-xx</code> where xx equals the alignment you wish to apply.</p>
     <p><strong><u>Possible values include:</u></strong></p>
     <ul>
@@ -19,7 +19,7 @@
     </ul>
   {% endblock %}
 
-  {% block utilityDemo %}
+  {% block utility_demo %}
     {% for align in alignments %}
       <div class="c-bolt-docs__text-align-demo">
         <h4><code>{{ ".u-bolt-text-align-#{align}" }}</code></h4>

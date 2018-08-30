@@ -1,10 +1,10 @@
 <div class="c-bolt-docs t-bolt-xlight">
   <div class="c-bolt-docs__page-content">
-    {% if utilityName %}
+    {% if utility_name %}
       {% include "@bolt/headline.twig" with {
         size: "xxxlarge",
         tag: "h1",
-        text: utilityName
+        text: utility_name
       } only %}
     {% endif %}
 
@@ -24,7 +24,7 @@
         }
       } only %}
       <div class="c-bolt-docs__lead u-bolt-margin-bottom-large">
-        {% block utilityDescription %}
+        {% block utility_description %}
           <p>Description block empty.</p>
         {% endblock %}
       </div>
@@ -45,16 +45,16 @@
           id: "demo"
         }
       } only %}
-      {% block utilityDemo %}
+      {% block utility_demo %}
         <p>Demo block empty.</p>
       {% endblock %}
     </div>
 
-    {% if sassdocItems %}
+    {% if sassdoc_items %}
       <div class="c-bolt-docs__sassdoc-reference">
         <h5>SassDoc references</h5>
         <ul>
-          {% for item in sassdocItems %}
+          {% for item in sassdoc_items %}
             <li><a target="_blank" href="{{ item.anchor }}">{{ item.title }}</a></li>
           {% endfor %}
         </ul>

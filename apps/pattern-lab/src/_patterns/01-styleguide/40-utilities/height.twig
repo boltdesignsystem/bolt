@@ -1,10 +1,10 @@
 {% embed "@utils/utilities.twig" with {
-  utilityName: "Bolt Height"
+  utility_name: "Bolt Height"
 } only %}
 
   {% set heights = bolt.data.height %}
 
-  {% block utilityDescription %}
+  {% block utility_description %}
     <p>Add the utility class <code>.u-bolt-height-xx</code> where xx equals the spacing size you wish to apply as height.</p>
     <p><strong><u>Possible values include:</u></strong></p>
     <ul>
@@ -14,7 +14,7 @@
     </ul>
   {% endblock %}
 
-  {% block utilityDemo %}
+  {% block utility_demo %}
     {% for height, val in heights %}
       <div class="c-bolt-docs__height-demo">
         <code>{{ ".u-bolt-height-#{height}" }}</code> ({{ val }})

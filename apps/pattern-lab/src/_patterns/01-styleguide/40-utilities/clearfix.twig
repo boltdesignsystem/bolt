@@ -1,19 +1,19 @@
 {% embed "@utils/utilities.twig" with {
-  utilityName: "Bolt Clearfix",
-  sassdocItems: [
+  utility_name: "Bolt Clearfix",
+  sassdoc_items: [
     {
-      title: '@mixin bolt-clearfix',
-      anchor: link['styleguide-sassdoc'] ~ '#mixin-bolt-clearfix'
+      title: "@mixin bolt-clearfix",
+      anchor: link["styleguide-sassdoc"] ~ "#mixin-bolt-clearfix"
     }
   ]
 } only %}
 
-  {% block utilityDescription %}
+  {% block utility_description %}
     <p>Add the utility class <code>.u-bolt-clearfix</code> to a parent wrapper containing floating elements.</p>
     <p><strong><u>NOTE</u>:</strong> This is ONLY intended to work in the case where all elements within the parent wrapper are floating and are blowing out the wrapper. Seen below:</p>
   {% endblock %}
 
-  {% block utilityDemo %}
+  {% block utility_demo %}
     <div class="c-bolt-docs__clearfix-demo">
       <h3><u>Without</u> Parent Clear Fix</h3>
       <div class="c-bolt-docs__clearfix-demo__left">
