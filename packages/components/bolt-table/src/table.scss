@@ -1,0 +1,72 @@
+@import '@bolt/core';
+
+/* ------------------------------------ *\
+   Table
+\* ------------------------------------ */
+
+.c-bolt-table {
+  background-image: -webkit-linear-gradient(left, #fff, hsla(0, 0%, 100%, 0)),
+  -webkit-linear-gradient(right, #fff, hsla(0, 0%, 100%, 0)),
+  -webkit-linear-gradient(left, #eaf0f6, rgba(234, 240, 246, 0)),
+  -webkit-linear-gradient(right, #eaf0f6, rgba(234, 240, 246, 0));
+
+  background-color: bolt-color(white);
+
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  -webkit-overflow-scrolling: touch;
+
+  background-attachment: local, local, scroll, scroll;
+  background-position: 0 0, 100% 0, 0 0, 100% 0;
+  background-repeat: no-repeat;
+  background-size: 4em 100%, 4em 100%, 1em 100%, 1em 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: $bolt-border-radius;
+
+  table {
+    @include bolt-font-size(small);
+    @include bolt-font-family(code);
+    @include bolt-margin-bottom(0);
+    table-layout: auto;
+    border: 1px solid bolt-color(gray, light);
+    width: 100%;
+    transform: translate3d(0, 0, 0);
+  }
+
+  thead {
+    border-bottom: 1px solid bolt-color(gray, light);
+  }
+
+  tr {
+    transition: background-color 0.1s ease;
+  }
+
+  tr:hover {
+    background-color: rgba(bolt-color(gray, xlight), 0.5);
+  }
+
+
+  th {
+    @include bolt-padding(small);
+    @include bolt-font-size(xsmall);
+    @include bolt-font-weight(semibold);
+    text-align: left;
+    color: bolt-color(gray, dark);
+    background-color: bolt-color(gray, xlight);
+    text-transform: uppercase;
+    vertical-align: bottom;
+  }
+
+  td {
+    @include bolt-padding(small);
+    vertical-align: top;
+  }
+}
+
+.c-bolt-table__row {
+  border-top: 1px solid bolt-color(gray, light);
+}
+
+.c-bolt-table .c-bolt-table {
+  overflow: hidden; // Prevent nested tables from scrolling to keep things from getting too crazy
+}
