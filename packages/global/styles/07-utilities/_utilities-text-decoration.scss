@@ -13,3 +13,6 @@
 .u-bolt-text-decoration-line-through {
   text-decoration: line-through !important;
 }
+
+$bolt-text-decoration-props: ("none", "underline", "line-through");
+@include export-data('text-decoration.bolt.json', $bolt-text-decoration-props);

@@ -2,11 +2,7 @@
   utility_name: "Bolt Text Decoration"
 } only %}
 
-  {% set decorations = [
-    "none",
-    "underline",
-    "line-through"
-  ] %}
+  {% set decorations = bolt.data.textDecoration %}
 
   {% block utility_description %}
     <p>Add the utility class <code>.u-bolt-text-decoration-xx</code> where xx equals the decoration style you wish to apply.</p>
