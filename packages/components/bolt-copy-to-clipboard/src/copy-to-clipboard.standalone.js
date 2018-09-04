@@ -24,16 +24,22 @@ export class BoltCopyToClipboard extends withHyperHtml() {
 
     this.clipboardInstance = new ClipboardJS(this.copyLink); // ClipboardJS adds it's own event listener
 
-    /*
-     * [1] Adds a class onClick after successful copy and enables the first set of animations
-     * [2] Waits until the first set of animations complete and adds the last class for last animations
-     */
     this.clipboardInstance.on('success', () => {
-      this.parentElem.classList.add('is-copied'); // [1]
+      // Copying is already successful at this point.  Everything from here on is UX flair.
+
+      // Show the "in progress" status.
+      this.parentElem.classList.add('is-animating');
+
+      // Show the "success" status.
       setTimeout(() => {
-        // [2]
-        this.parentElem.classList.add('is-transitioning');
-      }, 2000);
+        this.parentElem.classList.add('is-successful');
+
+        // Reset so the link can be used again without refreshing the page.
+        setTimeout(() => {
+          this.parentElem.classList.remove('is-successful');
+          this.parentElem.classList.remove('is-animating');
+        }, 3000);
+      }, 1000);
     });
   }
 
