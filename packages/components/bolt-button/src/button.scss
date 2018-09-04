@@ -19,8 +19,6 @@ bolt-button {
 
 .c-bolt-button {
   @include bolt-button;
-
-  // Inner <a> or <button> nested inside of the custom element tag
 }
 
 
@@ -42,9 +40,6 @@ bolt-button {
 .c-bolt-button--disabled {
   @include bolt-button-style(disabled);
 }
-
-// Allow forcing light and xlight theme colors in IE11 until http://vjira2:8080/browse/BK-48 is resolved.
-
 
 
 
