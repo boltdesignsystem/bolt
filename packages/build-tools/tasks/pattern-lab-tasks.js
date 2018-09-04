@@ -142,7 +142,7 @@ async function watch() {
 
   // The watch event ~ same engine gulp uses https://www.npmjs.com/package/chokidar
   const watcher = chokidar.watch(watchedFiles, {
-    ignoreInitial: false,
+    ignoreInitial: true,
     cwd: process.cwd(),
     ignored: ['**/node_modules/**', '**/vendor/**'],
   });

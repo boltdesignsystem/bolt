@@ -1,14 +1,5 @@
-import {
-  h,
-  render,
-  define,
-  props,
-  withComponent,
-  withPreact,
-  css,
-  spacingSizes,
-} from '@bolt/core';
-
+import { define, props, css } from '@bolt/core/utils';
+import { h, withPreact } from '@bolt/core/renderers';
 import dasherize from 'dasherize';
 import Mousetrap from 'mousetrap';
 

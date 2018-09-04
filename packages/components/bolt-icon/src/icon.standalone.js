@@ -1,17 +1,14 @@
 import {
-  h,
-  render,
-  define,
-  props,
-  withComponent,
-  withPreact,
-  css,
-  spacingSizes,
-  hasNativeShadowDomSupport,
-  supportsCSSVars,
   colorContrast,
+  css,
+  define,
+  hasNativeShadowDomSupport,
+  props,
   rgb2hex,
-} from '@bolt/core';
+  supportsCSSVars,
+} from '@bolt/core/utils';
+import { spacingSizes } from '@bolt/core/data';
+import { h, withPreact } from '@bolt/core/renderers';
 
 import PubSub from 'pubsub-js';
 import upperCamelCase from 'uppercamelcase';

@@ -8,7 +8,7 @@ const config = {
   lang: ['en', 'ja'],
 
   renderingService: true, // starts PHP service for rendering Twig templates
-  openServerAtStart: true,
+  openServerAtStart: false,
   // Environmental variable / preset to use
   env: 'pl',
   buildDir: '../../www/pattern-lab/build',
@@ -97,6 +97,7 @@ const config = {
       '@bolt/components-icon',
       '@bolt/components-image',
       '@bolt/components-link',
+      '@bolt/components-list',
       '@bolt/components-nav-indicator',
       '@bolt/components-nav-priority',
       '@bolt/components-navbar',

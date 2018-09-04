@@ -1,5 +1,5 @@
 
-  import { h } from '@bolt/core';
+  import { h } from '@bolt/core/renderers';
 
   export const ExitFullScreen = ({ bgColor, fgColor, size, ...otherProps }) => {
       return (

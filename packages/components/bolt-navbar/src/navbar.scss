@@ -10,7 +10,6 @@ $bolt-navbar-vspacing-small: bolt-v-spacing(small);
 $bolt-navbar-vspacing-xsmall: bolt-v-spacing(xsmall);
 
 bolt-navbar {
-  @include bolt-z-index(nav);
   @include bolt-full-bleed; // @todo: make full bleed optional?
   @include bolt-margin-top(0); // workaround to -.5px in bolt-full-bleed
   @include bolt-margin-bottom(0); // workaround to -.5px in bolt-full-bleed
@@ -20,7 +19,7 @@ bolt-navbar {
 
   display: block;
   overflow: visible;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
 .c-bolt-navbar {

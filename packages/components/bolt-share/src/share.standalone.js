@@ -1,15 +1,8 @@
-import {
-  define,
-  props,
-  withComponent,
-  css,
-  hasNativeShadowDomSupport,
-  BoltComponent,
-  sanitizeBoltClasses,
-} from '@bolt/core';
+import { define, props } from '@bolt/core/utils';
+import { withHyperHtml } from '@bolt/core/renderers';
 
 @define
-export class BoltShare extends BoltComponent {
+export class BoltShare extends withHyperHtml {
   static is = 'bolt-share';
 
   constructor(self) {
