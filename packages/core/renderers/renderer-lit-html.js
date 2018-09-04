@@ -21,15 +21,6 @@ export function withLitHtml(Base = HTMLElement) {
 
     constructor(...args) {
       super(...args);
-
-      if (
-        findParentTag(this, 'FORM') ||
-        this.getAttribute('no-shadow') !== null
-      ) {
-        this.useShadow = false;
-      } else {
-        this.useShadow = hasNativeShadowDomSupport;
-      }
     }
 
     renderStyles(styles) {

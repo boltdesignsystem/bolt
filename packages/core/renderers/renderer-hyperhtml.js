@@ -19,7 +19,6 @@ export function withHyperHtml(Base = HTMLElement) {
 
     constructor(...args) {
       super(...args);
-      super.setupShadow();
     }
 
     renderStyles(styles) {

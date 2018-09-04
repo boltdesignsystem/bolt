@@ -40,6 +40,10 @@ export function BoltBase(Base = HTMLElement) {
     }
 
     get renderRoot() {
+      // ensure every component instance renders to the light DOM when needed (ex. if nested inside of a form, render to the light DOM)
+      // this ensures that things work as expected, even when a component gets removed / re-added to the page
+      this.setupShadow();
+
       if (hasNativeShadowDomSupport && this.useShadow === true) {
         return super.renderRoot || shadow(this);
       } else {
