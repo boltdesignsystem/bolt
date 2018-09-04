@@ -3,9 +3,9 @@ import {
   props,
   css,
   wire,
-  withHyperHtml,
   hasNativeShadowDomSupport,
-} from '@bolt/core';
+} from '@bolt/core/utils';
+import { withHyperHtml } from '@bolt/core/renderers';
 
 import styles from './text.scss';
 import schema from '../text.schema.yml';

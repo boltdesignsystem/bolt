@@ -1,4 +1,5 @@
-import { withHyperHtml, define, hasNativeShadowDomSupport } from '@bolt/core';
+import { define, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import { withHyperHtml } from '@bolt/core/renderers';
 
 import gumshoe from 'gumshoejs';
 import isVisible from 'is-visible';

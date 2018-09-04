@@ -1,11 +1,10 @@
 import {
-  wire,
-  withHyperHtml,
   define,
   props,
   css,
   hasNativeShadowDomSupport,
-} from '@bolt/core';
+} from '@bolt/core/utils';
+import { wire, withHyperHtml } from '@bolt/core/renderers';
 
 import Handorgel from 'handorgel';
 

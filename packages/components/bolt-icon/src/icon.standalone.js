@@ -2,14 +2,13 @@ import {
   colorContrast,
   css,
   define,
-  h,
   hasNativeShadowDomSupport,
   props,
   rgb2hex,
-  spacingSizes,
   supportsCSSVars,
-  withPreact,
-} from '@bolt/core';
+} from '@bolt/core/utils';
+import { spacingSizes } from '@bolt/core/data';
+import { h, withPreact } from '@bolt/core/renderers';
 
 import PubSub from 'pubsub-js';
 import upperCamelCase from 'uppercamelcase';

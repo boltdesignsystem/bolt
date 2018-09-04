@@ -1,4 +1,4 @@
-import { polyfillLoader } from '@bolt/core';
+import { polyfillLoader } from '@bolt/core/polyfills';
 
 polyfillLoader.then(res => {
   if (!window.customElements.get('replace-with-children')) {

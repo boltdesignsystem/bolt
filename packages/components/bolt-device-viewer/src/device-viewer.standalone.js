@@ -1,13 +1,13 @@
 import Drift from 'drift-zoom';
 
 import {
-  withHyperHtml,
   define,
   props,
   css,
   hasNativeShadowDomSupport,
   passiveSupported,
-} from '@bolt/core';
+} from '@bolt/core/utils';
+import { withHyperHtml } from '@bolt/core/renderers';
 
 /* From Modernizr */
 function whichAnimationEvent() {

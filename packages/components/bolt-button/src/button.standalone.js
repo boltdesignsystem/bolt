@@ -1,13 +1,12 @@
 import {
-  wire,
-  withHyperHtml,
   props,
   define,
   declarativeClickHandler,
   sanitizeBoltClasses,
   hasNativeShadowDomSupport,
   afterNextRender,
-} from '@bolt/core';
+} from '@bolt/core/utils';
+import { wire, withHyperHtml } from '@bolt/core/renderers';
 
 import classNames from 'classnames/bind';
 
