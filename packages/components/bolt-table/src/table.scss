@@ -4,10 +4,11 @@
    Table
 \* ------------------------------------ */
 
+@include bolt-custom-element('bolt-table', block, medium);
+
 .c-bolt-table {
   overflow-x: auto;
   overflow-y: hidden;
-  border-radius: $bolt-border-radius;
   background-image:
     -webkit-linear-gradient(left, #fff, hsla(0, 0%, 100%, 0)),
     -webkit-linear-gradient(right, #fff, hsla(0, 0%, 100%, 0)),
@@ -21,54 +22,78 @@
   -ms-overflow-style: -ms-autohiding-scrollbar;
   -webkit-overflow-scrolling: touch;
 
-  table {
-    @include bolt-font-size(small);
-    @include bolt-font-family(code);
-    @include bolt-margin-bottom(0);
-
-    table-layout: auto;
-    width: 100%;
-    border: 1px solid bolt-color(gray, light);
-    transform: translate3d(0, 0, 0);
-  }
-
-  thead {
-    border-bottom: 1px solid bolt-color(gray, light);
-  }
-
-  tr {
-    transition: background-color 0.1s ease;
-  }
-
-  tr:hover {
-    background-color: rgba(bolt-color(gray, xlight), 0.5);
-  }
-
-
-  th {
-    @include bolt-padding(small, squished);
-    @include bolt-font-size(xsmall);
-    @include bolt-font-weight(semibold);
-
-    color: bolt-color(gray, dark);
-    text-align: left;
-    text-transform: uppercase;
-    vertical-align: bottom;
-    background-color: bolt-color(gray, xlight);
-  }
-
-  td {
-    @include bolt-padding(small);
-
-    vertical-align: top;
-  }
-
   .c-bolt-table {
     overflow: hidden; // Prevent nested tables from scrolling to keep things from getting too crazy
   }
 }
 
-.c-bolt-table__row {
+.c-bolt-table__main {
+  @include bolt-margin(0);
+
+  table-layout: auto;
+  width: 100%;
+  border: 1px solid bolt-color(gray, light);
+  transform: translate3d(0, 0, 0);
+}
+
+.c-bolt-table__head,
+.c-bolt-table__foot {
+  background-color: bolt-color(gray, xlight);
+
+  .c-bolt-table__cell {
+    @include bolt-padding(small, squished);
+  }
+}
+
+.c-bolt-table__head {
+  border-bottom: 1px solid bolt-color(gray, light);
+}
+
+.c-bolt-table__foot {
   border-top: 1px solid bolt-color(gray, light);
 }
 
+.c-bolt-table__body {
+  .c-bolt-table__cell {
+    @include bolt-padding(small);
+  }
+}
+
+.c-bolt-table__row {
+  border-top: 1px solid bolt-color(gray, light);
+  transition: background-color 0.1s ease;
+
+  &:hover {
+    background-color: rgba(bolt-color(gray, xlight), 0.5);
+  }
+}
+
+.c-bolt-table__cell {
+  text-align: left;
+  vertical-align: baseline;
+}
+
+.c-bolt-table__cell--header {
+  @include bolt-font-family(heading);
+  @include bolt-font-size(xsmall);
+  @include bolt-font-weight(semibold);
+
+  color: bolt-color(gray, dark);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.c-bolt-table__cell--data {
+  @include bolt-font-family(code);
+  @include bolt-font-size(small);
+  @include bolt-font-weight(regular);
+
+  color: bolt-color(black);
+}
+
+.c-bolt-table__caption {
+  @include bolt-padding(small, squished);
+  @include bolt-font-size(small);
+
+  caption-side: bottom;
+}
