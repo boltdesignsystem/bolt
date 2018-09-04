@@ -2,10 +2,9 @@ import {
   define,
   props,
   css,
-  wire,
   hasNativeShadowDomSupport,
 } from '@bolt/core/utils';
-import { withHyperHtml } from '@bolt/core/renderers';
+import { withHyperHtml, wire } from '@bolt/core/renderers';
 
 import styles from './text.scss';
 import schema from '../text.schema.yml';
