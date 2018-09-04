@@ -17,5 +17,5 @@
     // So the height-adjustable panel + viewport wrapper take up the space available automatically 
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100vh; // workaround to IE 11 flex-bug causing children's height to collapse in PL 
 }
