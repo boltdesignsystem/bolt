@@ -548,7 +548,7 @@
   }
 
   // Open in new window link
-  if (document.querySelector('.pl-js-open-new-window') !== undefined) {
+  if (document.querySelector('.pl-js-open-new-window')) {
     // Set value of href to the path to the pattern
     document
       .querySelector('.pl-js-open-new-window')

@@ -8,7 +8,7 @@ const config = {
   lang: ['en', 'ja'],
 
   renderingService: true, // starts PHP service for rendering Twig templates
-  openServerAtStart: true,
+  openServerAtStart: false,
   // Environmental variable / preset to use
   env: 'pl',
   buildDir: '../../www/pattern-lab/build',
@@ -97,6 +97,7 @@ const config = {
       '@bolt/components-icon',
       '@bolt/components-image',
       '@bolt/components-link',
+      '@bolt/components-list',
       '@bolt/components-nav-indicator',
       '@bolt/components-nav-priority',
       '@bolt/components-navbar',
@@ -136,14 +137,10 @@ const config = {
       //   scss: ./src/index.scss',
       //   js: './src/index.js',
       // },
+      '@bolt/components-critical-fonts',
+      '@bolt/components-critical-css-vars',
     ],
   },
 };
-
-if (argv.prod) {
-  config.components.individual.push('@bolt/components-critical-fonts');
-} else {
-  config.components.global.push('@bolt/components-critical-fonts');
-}
 
 module.exports = config;

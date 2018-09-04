@@ -41,4 +41,9 @@ module.exports = {
     },
   },
   src_folders: ['tests/e2e'],
+  unit_tests_mode: true,
+  test_workers: {
+    enabled: true,
+    workers: 'auto',
+  },
 };

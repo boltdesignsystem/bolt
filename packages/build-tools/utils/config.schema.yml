@@ -37,6 +37,21 @@
       title: Template paths being added
       default:
         - templates
+    copy:
+      type: array
+      description: The copy config is an array of objects specifying any files or folders that should get copied over to the build directory. Uses https://github.com/webpack-contrib/copy-webpack-plugin under the hood so any configuration options available there also apply here as well.
+      items:
+        type: object
+        properties:
+          from:
+            type: [string, object]
+            description: The files and/or directories to copy over
+          to:
+            type: [string, object]
+            description: The destination of the files being copied over
+          flatten:
+            type: boolean
+            description: Specify if any nested folders should get flattened down to a single level when copying over.
     globalData:
       type: object
       properties:

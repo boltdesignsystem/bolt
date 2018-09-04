@@ -2,7 +2,7 @@
    Search
 \* ------------------------------------ */
 
-@import '@bolt/core';
+@import '~@bolt/core/styles/index.scss';
 
 $bolt-search-filter-transition: $bolt-transition;
 
@@ -106,18 +106,19 @@ $bolt-search-filter-transition: $bolt-transition;
   @include bolt-font-weight(semibold);
   display: inline;
   display: inline-flex;
-  color: inherit;
-  color: var(--bolt-theme-link, inherit);
+  color: bolt-theme(link);
   text-decoration: none;
   transition: all $bolt-transition;
 
   &:after {
     display: inline-block;
+
+    // are these two lines still necessary? isn't this an old IE workaround?
     zoom: 1;
     *display: inline;
+
     content: ',';
-    color: inherit;
-    color: var(--bolt-theme-text, inherit);
+    color: bolt-theme(text);
     vertical-align: middle;
   }
 

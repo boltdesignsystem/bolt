@@ -1,17 +1,15 @@
 import {
-  h,
-  render,
   props,
-  BoltComponent,
   css,
   hasNativeShadowDomSupport,
   supportsCSSVars,
-} from '@bolt/core';
+} from '@bolt/core/utils';
+import { withHyperHtml } from '@bolt/core/renderers/renderer-hyperhtml';
 
 import styles from './ratio.scss';
 
 export function BoltRatio() {
-  return class BoltRatioClass extends BoltComponent() {
+  return class BoltRatioClass extends withHyperHtml() {
     static props = {
       aspectRatioHeight: props.number,
       aspectRatioWidth: props.number,

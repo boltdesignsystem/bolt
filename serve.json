@@ -20,5 +20,16 @@
       "destination": "/pattern-lab/favicons/favicon.ico"
     }
   ],
-  "public": "./www"
+  "public": "./www",
+  "headers": [
+    {
+      "source": "**/*.schema.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/schema+json"
+        }
+      ]
+    }
+  ]
 }

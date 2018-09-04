@@ -1,13 +1,5 @@
-import {
-  h,
-  render,
-  define,
-  props,
-  BoltComponent,
-  css,
-  spacingSizes,
-  hasNativeShadowDomSupport,
-} from '@bolt/core';
+import { define, props } from '@bolt/core/utils';
+import { withHyperHtml } from '@bolt/core/renderers';
 
 /*
   Consider using these polyfills to broaden browser support:
@@ -16,7 +8,7 @@ import {
 */
 
 @define
-export class BoltNavPriority extends BoltComponent() {
+export class BoltNavPriority extends withHyperHtml() {
   static is = 'bolt-nav-priority';
 
   static get observedAttributes() {

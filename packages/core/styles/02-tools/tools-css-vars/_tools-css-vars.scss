@@ -1,4 +1,6 @@
 //// VARIABLES ////
+@import '../tools-themes/_tools.themes.scss';
+
 
 // global map to be filled via variables
 $bolt-css-variables: ();
@@ -34,16 +36,58 @@ $bolt-css-vars-debug-log: false !default;
 /// @example scss - basic usage
 ///   color: var(--main-color);
 ///   background: var(--main-bg, green);
+
+@function bolt-var($args...) {
+  $var: '';
+  $opacity: 1;
+
+  @if (length($args) >= 1) {
+    $var: nth($args, 1);
+  }
+
+  @if type-of($var) == list {
+    $opacity: nth($var, 2);
+  }
+
+  $varName: str-slice(nth($var, 1), 8, str-length(nth($var, 1)));
+
+  @if str-slice($varName, 0, 5) == 'theme' {
+    $varNameSansTheme: str-slice($varName, 7, str-length($varName));
+
+    @if bolt-is-theme-var($varNameSansTheme) and bolt-is-shimmable-theme-prop($varNameSansTheme) {
+      @return bolt-theme($varNameSansTheme, $opacity);
+    } @else {
+      // @warn "The `#{$varNameSansTheme}` theme-specific CSS variable used isn't a registered theme variable in Bolt. Be carefull as these will not work as expected in IE 11...";
+    }
+  } @else {
+    // @warn $varName + ' CSS variable was used but not registered as a Globally variable in Bolt. Be carefull as these will not work as expected in IE 11...';
+  }
+  @return var($args);
+}
+
+
 @function var($args...) { /* stylelint-disable-line */
-  // CHECK PARAMS
+  $var: '';
+  $opacity: 1;
+
   @if (length($args)==0) {
     @error "Variable name is expected to be passed to the var() function";
   }
-  @if (str-length(nth($args, 1)) < 2 or str-slice(nth($args, 1), 0, 2) != '--') {
+
+  @if (length($args) >= 1) {
+    $var: nth($args, 1);
+  }
+
+  @if type-of($var) == list {
+    $opacity: nth($var, 2);
+  }
+
+  @if (str-length(nth($var, 1)) < 2 or str-slice(nth($var, 1), 0, 2) != '--') {
     @error "Variable name is expected to start from '--'";
   }
-  // PROCESS
+
   $name: nth($args, 1);
+
   $value: map-get($bolt-css-variables, $name);
 
   @if ($bolt-css-vars-debug-log or not $bolt-css-vars-use-native) { // Sass or debug
@@ -61,6 +105,7 @@ $bolt-css-vars-debug-log: false !default;
       }
     }
   }
+
   @if ($bolt-css-vars-use-native) { // CSS variables
     // Native CSS: don't process function in case of native
     @return unquote('var(' + $args + ')');
@@ -81,10 +126,10 @@ $bolt-css-vars-debug-log: false !default;
 /// ));
 @mixin bolt-css-vars($varMap: null, $root: false) {
   // CHECK PARAMS
-  @if ($varMap==null) {
+  @if ($varMap == null) {
     @error "Map of variables is expected, instead got: null";
   }
-  @if (type_of($varMap)!=map) {
+  @if (type_of($varMap) != map) {
     @error "Map of variables is expected, instead got another type passed: #{type_of($varMap)}";
   }
   // PROCESS
@@ -94,12 +139,13 @@ $bolt-css-vars-debug-log: false !default;
       $bolt-css-vars: bolt-css-vars-assign($name, $value) !global; // store in global variable
     }
   }
+
   @if ($bolt-css-vars-use-native) { // CSS variables
     // Native CSS: assign CSS custom properties to the global scope
     @if $root == true {
       @at-root :root {
         @each $name, $value in $varMap {
-          @if (type_of($value)==string) {
+          @if (type_of($value) == string) {
             #{$name}: $value // to prevent quotes interpolation
           } @else {
             #{$name}: #{$value}
@@ -108,7 +154,7 @@ $bolt-css-vars-debug-log: false !default;
       }
     } @else {
       @each $name, $value in $varMap {
-        @if (type_of($value)==string) {
+        @if (type_of($value) == string) {
           #{$name}: $value // to prevent quotes interpolation
         } @else {
           #{$name}: #{$value}

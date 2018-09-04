@@ -10,6 +10,12 @@
 .pl-c-body {
     margin: 0;
     padding: 0;
-    background: $pl-color-gray-13;
+    // background: $pl-color-gray-13;
+    background-color: #F6F6F9;
     -webkit-text-size-adjust: 100%;
+
+    // So the height-adjustable panel + viewport wrapper take up the space available automatically 
+    display: flex;
+    flex-direction: column;
+    height: 100vh; // workaround to IE 11 flex-bug causing children's height to collapse in PL 
 }

@@ -1,7 +1,18 @@
 /* ------------------------------------ *\
-  Text Contrast
+  Text Clearfix
 \* ------------------------------------ */
 
+////
+/// @group Tools: Utilities
+/// @author Salem Ghoweri
+////
+
+/// Provides the ability to add a proper clearfix
+/// @param {boolean} $important [null] - Set true to add "!important"
+/// @example scss
+/// .element {
+///   @include bolt-clearfix();
+/// }
 @mixin bolt-clearfix($important: null) {
   @if $important == important {
     $important: !important;
@@ -18,10 +29,3 @@
   }
 }
 
-/* stylelint-disable-next-line scss/at-mixin-pattern */
-@mixin clearfix {
-  @warn 'PegaKit\'s `clearfix` mixin is deprecated and will be removed in v1.0.0 of Bolt. Use the new @bolt-clearfix mixin instead.';
-
-  @include bolt-clearfix;
-}
-/* stylelint-enable */

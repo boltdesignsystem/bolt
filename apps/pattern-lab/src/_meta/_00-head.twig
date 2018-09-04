@@ -51,7 +51,7 @@
     {% include "@bolt-components-share/src/_share-meta-example.twig" %}
 
     <!-- async load PL's CSS -->
-    <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="{{ assets["bolt-global.css"] | default("/pattern-lab/build/bolt-global.css") }}" media="all" />
 
     <noscript>
@@ -60,16 +60,17 @@
 
 
     {# @TODO: wire this up to use Critical CSS #}
-    {% if bolt.data.config.prod %}
-      <style>
-        {{ inline( assets["bolt-components-critical-fonts.css"] | default("") ) }}
-      </style>
+    <style>
+      {{ inline( assets["bolt-components-critical-fonts.css"] | default("") ) }}
+    </style>
 
-      {# @TODO: wire this up to use Critical JS #}
-      <script>
-        {{ inline( assets["bolt-components-critical-fonts.js"] | default("") ) }}
-      </script>
-    {% endif %}
+    {# @TODO: wire this up to use Critical JS #}
+    <script>
+      {{ inline( assets["bolt-components-critical-fonts.js"] | default("") ) }}
+
+      {{ inline( assets["bolt-components-critical-css-vars.js"] | default("") ) }}
+    </script>
+
 
 
     <!-- WIP. Temp solution to async load multiple lang-specific CSS builds based on query string in URL -->

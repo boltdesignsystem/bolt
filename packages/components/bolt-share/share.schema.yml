@@ -23,10 +23,10 @@ properties:
         url:
           type: string
           description: 'The specifically formed share url with query string'
-  copy:
-    type: boolean
-    description: '`True` to show copy link option'
-    default: True
+  copyToClipboard:
+    type: object
+    description: The link to be copied when copy to clipboard is clicked
+    ref: '@bolt-components-copy-to-clipboard/copy-to-clipboard.schema.yml'
   visibility:
     type: boolean
     description: 'Controls share component visibility'

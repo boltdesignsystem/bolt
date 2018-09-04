@@ -1,0 +1,11 @@
+/* stylelint-disable scss/at-function-pattern */
+
+/// Proof quote a value
+/// @access private
+/// @param {*} $value - value to be quoted
+/// @return {String} - quoted value
+
+@function _proof-quote($value) {
+  // $value: to-string($value);
+  @return '"#{$value}"';
+}

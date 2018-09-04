@@ -19,8 +19,7 @@
 {% set contentTag = contentTag in contentTags ? contentTag: "div" %}
 
 {% set classes = [
-  baseClass,
-  theme in themes ? "t-bolt-" ~ theme : "",
+  baseClass
 ] %}
 
 {% if url %}
@@ -104,7 +103,7 @@
 {% endset %}
 
 <bolt-card
-  theme="{{ theme }}"
+  {% if theme %} class="t-bolt-{{ theme }}"{% endif %}
   {% if url %}url={{ url }}{% endif %}
   bolt-component>
   <{{ tag }} {{ attributes.addClass(classes) }}>
@@ -141,7 +140,7 @@
 
           {% for item in _items if item.pattern in _allowedCardFooterItems %}
             {% set paramOverrides = {
-              itemAlignment: "left",
+              align: "left",
               style: "text",
             } %}
 

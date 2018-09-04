@@ -1,10 +1,17 @@
+////
+/// @group Settings: Typography
+////
+
 /* ------------------------------------ *\
    Japanese Specific Typography Styles
 \* ------------------------------------ */
 
 @if ($bolt-lang == 'ja'){
   // UI System fonts will display all Japanese Characters.
+
+  /// Bolt's definition of a Japanese specific font-stack.
   $bolt-font-family--japanese:        -apple-system, BlinkMacSystemFont, 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', '游ゴシック', '游ゴシック体', YuGothic, 'Yu Gothic', 'メイリオ', Meiryo, 'ＭＳ ゴシック', 'MS Gothic', HiraKakuProN-W3, 'TakaoExゴシック', TakaoExGothic, 'MotoyaLCedar', 'Droid Sans Japanese', sans-serif !global;
+
   $bolt-font-family--sans-fallback:   $bolt-font-family--japanese !global;
   $bolt-font-family--sans:            $bolt-font-family--japanese !global;
   $bolt-font-family--sans-subset:     $bolt-font-family--japanese !global;

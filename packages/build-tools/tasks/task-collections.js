@@ -96,7 +96,7 @@ async function clean() {
   }
 }
 
-async function serve(buildTime = timer.start()) {
+async function serve(buildTime = timer.start(), localDev) {
   config = config || (await getConfig());
   await getExtraTasks();
 
@@ -107,7 +107,7 @@ async function serve(buildTime = timer.start()) {
     }
     if (config.wwwDir) {
       serverTasks.push(extraTasks.server.serve());
-      if (config.webpackDevServer) {
+      if (config.webpackDevServer && localDev !== false) {
         serverTasks.push(webpackTasks.server(buildTime));
       }
     }
@@ -211,7 +211,7 @@ async function start() {
       });
     }
     return Promise.all([
-      serve(buildTime),
+      serve(buildTime, true),
       await compileBasedOnEnvironment(),
       watch(),
     ]);

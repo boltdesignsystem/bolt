@@ -1,4 +1,4 @@
-@import '@bolt/core';
+@import '~@bolt/core/styles/index.scss';
 
 /* ------------------------------------ *\
    Navbar
@@ -6,22 +6,20 @@
 
 $bolt-navbar-title-transition: $bolt-transition;
 
-
 $bolt-navbar-vspacing-small: bolt-v-spacing(small);
 $bolt-navbar-vspacing-xsmall: bolt-v-spacing(xsmall);
 
 bolt-navbar {
-  @include bolt-z-index(nav);
   @include bolt-full-bleed; // @todo: make full bleed optional?
   @include bolt-margin-top(0); // workaround to -.5px in bolt-full-bleed
   @include bolt-margin-bottom(0); // workaround to -.5px in bolt-full-bleed
-  @supports(--css: variables) {
+  @supports (--css: variables) {
     --bolt-vspacing: #{$bolt-navbar-vspacing-small};
   }
 
   display: block;
   overflow: visible;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
 .c-bolt-navbar {
@@ -29,7 +27,7 @@ bolt-navbar {
   @include bolt-padding-right(medium);
   @include bolt-padding-top($bolt-navbar-vspacing-small);
 
-  @supports(--css: variables) {
+  @supports (--css: variables) {
     padding-top: var(--bolt-vspacing, $bolt-navbar-vspacing-small);
   }
 
@@ -58,7 +56,7 @@ bolt-navbar {
   > * {
     @include bolt-padding-bottom($bolt-navbar-vspacing-small); /* [1] */
 
-    @supports(--css: variables) {
+    @supports (--css: variables) {
       padding-bottom: var(--bolt-vspacing, $bolt-navbar-vspacing-small);
     }
   }
@@ -69,7 +67,7 @@ bolt-navbar {
       @include bolt-padding-right(0);
       flex-direction: row;
       display: grid;
-      grid-template-columns: bolt-spacing(medium) auto 1fr fit-content(100px) (bolt-spacing(large) - bolt-spacing(xxsmall));
+      grid-template-columns: bolt-spacing(medium) auto 1fr bolt-spacing(medium);
       grid-template-rows: 1fr auto;
       align-content: center;
       justify-content: center;
@@ -85,7 +83,7 @@ bolt-navbar {
       @include bolt-padding-top($bolt-navbar-vspacing-xsmall); /* [1] */
       align-self: center;
 
-      @supports(--css: variables) {
+      @supports (--css: variables) {
         padding-top: var(--bolt-vspacing, $bolt-navbar-vspacing-xsmall);
       }
     }
@@ -94,9 +92,11 @@ bolt-navbar {
       @include bolt-padding-top($bolt-navbar-vspacing-xsmall); /* [1] */
       @include bolt-padding-bottom($bolt-navbar-vspacing-xsmall); /* [1] */
 
-      @supports(--css: variables) {
+      @supports (--css: variables) {
         padding-top: var(--bolt-vspacing, $bolt-navbar-vspacing-xsmall);
-        padding-bottom: calc(var(--bolt-vspacing, $bolt-navbar-vspacing-xsmall) * 2);
+        padding-bottom: calc(
+          var(--bolt-vspacing, $bolt-navbar-vspacing-xsmall) * 2
+        );
       }
     }
   }
@@ -106,12 +106,11 @@ bolt-navbar {
       @include bolt-padding-bottom($bolt-navbar-vspacing-xsmall); /* [1] */
     }
 
-    @supports(--css: variables) {
+    @supports (--css: variables) {
       --bolt-vspacing: #{bolt-v-spacing(xsmall)};
     }
   }
 }
-
 
 // Nav title
 .c-bolt-navbar__title {
@@ -119,14 +118,13 @@ bolt-navbar {
   padding-bottom: $bolt-navbar-vspacing-small;
   align-self: center;
   display: flex;
-  flex-shrink: 1; // make sure the title can wrap to multiple lines and shrink if needed.
+  flex-shrink: 0.1; // make sure the title can wrap to multiple lines and shrink if needed, but only when absolutely necessary (prevents jumps when resizing)
   flex-wrap: nowrap;
   align-items: center;
-  color: inherit;
-  color: var(--bolt-theme-heading, inherit);
+  color: bolt-theme(headline);
   white-space: nowrap;
 
-  @supports(--css: variables) {
+  @supports (--css: variables) {
     padding-bottom: var(--bolt-vspacing, $bolt-navbar-vspacing-small);
   }
 
@@ -137,9 +135,9 @@ bolt-navbar {
   @include bolt-if-browser-supports-display-contents {
     @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
       @include bolt-padding-top($bolt-navbar-vspacing-small);
-      grid-column: 2/span 1;
+      grid-column: 2 / span 1;
 
-      @supports(--css: variables) {
+      @supports (--css: variables) {
         padding-top: var(--bolt-vspacing, $bolt-navbar-vspacing-small);
       }
     }
@@ -158,6 +156,12 @@ bolt-navbar {
   text-decoration: none;
   opacity: 1;
   transition: all $bolt-navbar-title-transition;
+  display: flex;
+  align-self: center;
+  flex-shrink: 1; // make sure the title can wrap to multiple lines and shrink if needed.
+  flex-wrap: nowrap;
+  align-items: center;
+  white-space: nowrap;
 
   &:hover {
     opacity: $bolt-global-link-hover-opacity;
@@ -184,7 +188,6 @@ bolt-navbar {
     @include bolt-font-weight(bold);
   }
 }
-
 
 // Nav items
 .c-bolt-navbar__nav {

@@ -1,0 +1,94 @@
+// If `$style` is a color (a literal color value, `currentColor`, or a CSS custom property), it is returned verbatim.
+// Otherwise, `$style` is treated as a theme property name, and the corresponding value from
+// `$bolt-theme-property-values` is returned. If this also fails, an error is thrown.
+//
+// This is mainly useful in situations where `bolt-theme-prop` cannot be used directly (e.g., `box-shadow`).
+//
+// Examples:
+//
+// 1. bolt-theme-prop-value(primary) => "#6200ee"
+// 2. bolt-theme-prop-value(blue)    => "blue"
+//
+// NOTE: This function must be defined in _variables.scss instead of _functions.scss to avoid circular imports.
+@function bolt-theme-prop-value($style) {
+  @if bolt-theme-is-valid-theme-prop-value($style) {
+    @return $style;
+  }
+
+  @if not map-has-key($bolt-theme-prop-values, $style) {
+    @error "Invalid theme property: '#{$style}'. Choose one of: #{map-keys($bolt-theme-prop-values)}";
+  }
+
+  @return map-get($bolt-theme-prop-values, $style);
+}
+
+
+// NOTE: This function is depended upon by bolt-theme-prop-value (above) and thus must be defined in this file.
+@function bolt-theme-is-valid-theme-prop-value($style) {
+  @return type-of($style) == "color" or $style == "currentColor" or str_slice($style, 1, 4) == "var(";
+}
+
+
+
+// Calculate the luminance for a color.
+// See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+@function bolt-theme-luminance($color) {
+  $red: nth($bolt-theme-linear-channel-values, red($color) + 1);
+  $green: nth($bolt-theme-linear-channel-values, green($color) + 1);
+  $blue: nth($bolt-theme-linear-channel-values, blue($color) + 1);
+
+  @return .2126 * $red + .7152 * $green + .0722 * $blue;
+}
+
+// Calculate the contrast ratio between two colors.
+// See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+@function bolt-theme-contrast($back, $front) {
+  $backLum: bolt-theme-luminance($back) + .05;
+  $foreLum: bolt-theme-luminance($front) + .05;
+
+  @return max($backLum, $foreLum) / min($backLum, $foreLum);
+}
+
+
+// Determine whether the color is "light" or "dark".
+@function bolt-theme-tone($color) {
+  @if $color == "dark" or $color == "light" {
+    @return $color;
+  }
+
+  $minimumContrast: 3.1;
+
+  $lightContrast: bolt-theme-contrast($color, bolt-color(white));
+  $darkContrast: bolt-theme-contrast($color, bolt-color(black));
+
+  @if ($lightContrast < $minimumContrast) and ($darkContrast > $lightContrast) {
+    @return "light";
+  } @else {
+    @return "dark";
+  }
+}
+
+
+// Determine whether to use dark or light text on top of given color to meet accessibility standards for contrast.
+// Returns "dark" if the given color is light and "light" if the given color is dark.
+@function bolt-theme-contrast-tone($color) {
+  @return if(bolt-theme-tone($color) == "dark", "light", "dark");
+}
+
+
+// Return the color defined for a specific bit of UI, depending on the background color / contrast being used.
+@function bolt-theme-ui-color($text-style, $fill-color) {
+  $contrast-tone: bolt-theme-contrast-tone($fill-color);
+  @return map-get(map-get($bolt-theme-ui-colors, $contrast-tone), $text-style);
+}
+
+
+
+
+// Grab the calculated value for a specific theme-prop name. Sparingly used when you need to manually assign a CSS variable color to a bit of UI due to inheritance / specificity issues.
+@function bolt-theme-prop-value($themeName, $themeProp) {
+  @return map-get-deep($bolt-themes, $themeName, $themeProp);
+}
+
+
+// Grab the calculated value for a specific theme-prop name. Sparingly used when you need to manually assign a CSS variable color to a bit of UI due to inheritance / specificity issues.
