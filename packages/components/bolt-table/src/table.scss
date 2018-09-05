@@ -4,27 +4,30 @@
    Table
 \* ------------------------------------ */
 
+$bolt-table-overflow-shadow-color: rgba(bolt-color(gray, light), 0.5);
+$bolt-table-border: 1px solid bolt-color(gray, light);
+$bolt-table-background-color: bolt-color(white);
+$bolt-table-head-background-color: rgba(bolt-color(gray, light), 0.25);
+$bolt-table-row-hover-background-color: rgba(bolt-color(gray, light), 0.125);
+$bolt-table-cell-text-color: bolt-color(black);
+$bolt-table-header-text-color: bolt-color(gray, dark);
+
 @include bolt-custom-element('bolt-table', block, medium);
 
 .c-bolt-table {
-  overflow-x: auto;
-  overflow-y: hidden;
+  @include bolt-horizontal-scroll;
+
   background-image:
-    -webkit-linear-gradient(left, #fff, hsla(0, 0%, 100%, 0)),
-    -webkit-linear-gradient(right, #fff, hsla(0, 0%, 100%, 0)),
-    -webkit-linear-gradient(left, #eaf0f6, rgba(234, 240, 246, 0)),
-    -webkit-linear-gradient(right, #eaf0f6, rgba(234, 240, 246, 0));
-  background-color: bolt-color(white);
+    -webkit-linear-gradient(left, $bolt-table-background-color, rgba($bolt-table-background-color, 0)),
+    -webkit-linear-gradient(right, $bolt-table-background-color, rgba($bolt-table-background-color, 0)),
+    -webkit-linear-gradient(left, $bolt-table-overflow-shadow-color, rgba($bolt-table-overflow-shadow-color, 0)),
+    -webkit-linear-gradient(right, $bolt-table-overflow-shadow-color, rgba($bolt-table-overflow-shadow-color, 0));
+  background-color: $bolt-table-background-color;
   background-attachment: local, local, scroll, scroll;
   background-position: 0 0, 100% 0, 0 0, 100% 0;
   background-repeat: no-repeat;
   background-size: 4em 100%, 4em 100%, 1em 100%, 1em 100%;
   -ms-overflow-style: -ms-autohiding-scrollbar;
-  -webkit-overflow-scrolling: touch;
-
-  .c-bolt-table {
-    overflow: hidden; // Prevent nested tables from scrolling to keep things from getting too crazy
-  }
 }
 
 .c-bolt-table__main {
@@ -32,25 +35,28 @@
 
   table-layout: auto;
   width: 100%;
-  border: 1px solid bolt-color(gray, light);
+  border: $bolt-table-border;
   transform: translate3d(0, 0, 0);
 }
 
 .c-bolt-table__head,
 .c-bolt-table__foot {
-  background-color: bolt-color(gray, xlight);
-
   .c-bolt-table__cell {
     @include bolt-padding(small, squished);
   }
 }
 
 .c-bolt-table__head {
-  border-bottom: 1px solid bolt-color(gray, light);
+  border-bottom: $bolt-table-border;
+  background-color: $bolt-table-head-background-color;
 }
 
 .c-bolt-table__foot {
-  border-top: 1px solid bolt-color(gray, light);
+  border-top: $bolt-table-border;
+
+  .c-bolt-table__cell {
+    @include bolt-font-weight(bold);
+  }
 }
 
 .c-bolt-table__body {
@@ -60,11 +66,11 @@
 }
 
 .c-bolt-table__row {
-  border-top: 1px solid bolt-color(gray, light);
-  transition: background-color 0.1s ease;
+  border-top: $bolt-table-border;
+  transition: background-color $bolt-transition;
 
   &:hover {
-    background-color: rgba(bolt-color(gray, xlight), 0.5);
+    background-color: $bolt-table-row-hover-background-color;
   }
 }
 
@@ -78,7 +84,7 @@
   @include bolt-font-size(xsmall);
   @include bolt-font-weight(semibold);
 
-  color: bolt-color(gray, dark);
+  color: $bolt-table-header-text-color;
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -88,7 +94,7 @@
   @include bolt-font-size(small);
   @include bolt-font-weight(regular);
 
-  color: bolt-color(black);
+  color: $bolt-table-cell-text-color;
 }
 
 .c-bolt-table__caption {
@@ -96,4 +102,26 @@
   @include bolt-font-size(small);
 
   caption-side: bottom;
+  color: $bolt-table-header-text-color;
+  text-align: left;
+  background-color: $bolt-table-background-color;
+}
+
+.c-bolt-table--numeric {
+  .c-bolt-table__body,
+  .c-bolt-table__foot {
+    .c-bolt-table__cell--header:first-child {
+      border-right: $bolt-table-border;
+    }
+  }
+
+  .c-bolt-table__cell {
+    text-align: center;
+    white-space: nowrap;
+
+    &:first-child {
+      width: 1%;
+      text-align: right;
+    }
+  }
 }

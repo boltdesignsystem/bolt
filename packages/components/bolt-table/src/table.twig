@@ -20,71 +20,72 @@
   base_class,
 ] %}
 
+<div style="padding: 4rem;">
+  {# table component's custom element wrapper #}
+  <bolt-table
+    {# {% if prop %} prop="{{ prop }}" {% endif %} #}
+    {{ attributes }}
+  >
+    <div {{ inner_attributes.addClass(classes) }}>
+      <table class="{{ "#{base_class}__main" }}">
+        <caption class="{{ "#{base_class}__caption" }}">
+          Table caption explaining what the table is.
+        </caption>
+        <thead class="{{ "#{base_class}__head" }}">
+          <tr class="{{ "#{base_class}__row" }}">
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}"></td>
+            <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Column 1</th>
+            <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Column 2</th>
+          </tr>
+        </thead>
+        <tbody class="{{ "#{base_class}__body" }}">
+          <tr class="{{ "#{base_class}__row" }}">
+            <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Row 1 Thing</th>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">500</td>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">600</td>
+          </tr>
+          <tr class="{{ "#{base_class}__row" }}">
+            <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Row 2 Another Thing</th>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">300</td>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">450</td>
+          </tr>
+        </tbody>
+        <tfoot class="{{ "#{base_class}__foot" }}">
+          <tr class="{{ "#{base_class}__row" }}">
+            <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Total</th>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">800</td>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">1050</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </bolt-table>
 
-{# table component's custom element wrapper #}
-<bolt-table
-  {# {% if prop %} prop="{{ prop }}" {% endif %} #}
-  {{ attributes }}
->
-  <div {{ inner_attributes.addClass(classes) }}>
-    <table class="{{ "#{base_class}__main" }}">
-      <caption class="{{ "#{base_class}__caption" }}">
-        Table caption explaining what the table is.
-      </caption>
-      <thead class="{{ "#{base_class}__head" }}">
-        <tr class="{{ "#{base_class}__row" }}">
-          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}"></td>
-          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Column 1</th>
-          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Column 2</th>
-        </tr>
-      </thead>
-      <tbody class="{{ "#{base_class}__body" }}">
-        <tr class="{{ "#{base_class}__row" }}">
-          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Row 1</th>
-          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">500</td>
-          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">600</td>
-        </tr>
-        <tr class="{{ "#{base_class}__row" }}">
-          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Row 2</th>
-          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">300</td>
-          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">450</td>
-        </tr>
-      </tbody>
-      <tfoot class="{{ "#{base_class}__foot" }}">
-        <tr class="{{ "#{base_class}__row" }}">
-          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Total</th>
-          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">800</td>
-          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">1050</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
-</bolt-table>
-
-<bolt-table
-  {{ attributes }}
->
-  <div {{ inner_attributes.addClass(classes) }}>
-    <table class="{{ "#{base_class}__main" }}">
-      <caption class="{{ "#{base_class}__caption" }}">
-        Table caption explaining what the table is.
-      </caption>
-      <thead class="{{ "#{base_class}__head" }}">
-        <tr class="{{ "#{base_class}__row" }}">
-          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Column 1</th>
-          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Column 2</th>
-        </tr>
-      </thead>
-      <tbody class="{{ "#{base_class}__body" }}">
-        <tr class="{{ "#{base_class}__row" }}">
-          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 1. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate.</td>
-          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 2. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate.</td>
-        </tr>
-        <tr class="{{ "#{base_class}__row" }}">
-          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 3.</td>
-          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 4.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</bolt-table>
+  <bolt-table
+    {{ attributes }}
+  >
+    <div {{ inner_attributes.addClass(classes) }}>
+      <table class="{{ "#{base_class}__main" }}">
+        <caption class="{{ "#{base_class}__caption" }}">
+          Table caption explaining what the table is.
+        </caption>
+        <thead class="{{ "#{base_class}__head" }}">
+          <tr class="{{ "#{base_class}__row" }}">
+            <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Column 1</th>
+            <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Column 2</th>
+          </tr>
+        </thead>
+        <tbody class="{{ "#{base_class}__body" }}">
+          <tr class="{{ "#{base_class}__row" }}">
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 1. NunceuullamcorperorciQuisqueegetodioaclectusvestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate.</td>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 2. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. InpellentesquefaucibusvestibulumNullaat nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate.</td>
+          </tr>
+          <tr class="{{ "#{base_class}__row" }}">
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 3.</td>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 4.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </bolt-table>
+</div>
