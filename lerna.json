@@ -1,9 +1,12 @@
 {
-  "lerna": "3.0.3",
+  "lerna": "3.2.1",
   "version": "1.8.1",
   "command": {
     "publish": {
-      "allowBranch": "release/1.x"
+      "allowBranch": [
+        "release/1.x",
+        "release/2.x"
+      ]
     }
   },
   "npmClient": "yarn",
