@@ -3,28 +3,18 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const npmSass = require('npm-sass');
 const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const globImporter = require('node-sass-glob-importer');
-const { promisify } = require('util');
 const fs = require('fs');
-const readFile = promisify(fs.readFile);
 const deepmerge = require('deepmerge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TwigPhpLoader = require('twig-php-loader');
-const themify = require('@bolt/postcss-themify');
 const resolve = require('resolve');
-const DashboardPlugin = require('webpack-dashboard/plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const BoltCache = require('./utils/cache');
 const { getConfig } = require('./utils/config-store');
 const SassDocPlugin = require('./plugins/sassdoc-webpack-plugin');
 
 const {
   getBoltManifest,
-  createComponentsManifest,
   mapComponentNameToTwigNamespace,
 } = require('./utils/manifest');
 const log = require('./utils/log');
@@ -267,35 +257,7 @@ async function createWebpackConfig(buildConfig) {
     }
   }
 
-  // Output CSS module data as JSON.
-  // @todo: enable when ready for CSS Modules
-  // function getJSONFromCssModules(cssFileName, json) {
-  //   const cssName = path.basename(cssFileName, '.css');
-  //   const jsonFileName = path.resolve(process.cwd(), config.buildDir, `${cssName}.json`);
-  //   fs.writeFileSync(jsonFileName, JSON.stringify(json));
-  // }
-
-  /** This workaround has been disabled for now as setting
-   * `modules: false` on `css-loader` fixes it; see https://github.com/bolt-design-system/bolt/pull/410
-   * Workaround for getting classes with `\@` to compile correctly
-   * CSS Classes like `.u-hide\@large` were getting compiled like `.u-hide-large`.
-   * Due to this bug: https://github.com/webpack-contrib/css-loader/issues/578
-   * Workaround: using the `string-replace-loader` to
-   * change `\@` to our `workaroundAtValue` before
-   * passing to `css-loader`, then turning it back
-   * afterwards.
-   */
-  const workaroundAtValue = '-theSlashSymbol-';
-
   const scssLoaders = [
-    // {
-    //   loader: 'string-replace-loader',
-    //   query: {
-    //     search: workaroundAtValue,
-    //     replace: String.raw`\\`, // needed to ensure `\` comes through
-    //     flags: 'g',
-    //   },
-    // },
     {
       loader: 'css-loader',
       options: {
@@ -303,14 +265,6 @@ async function createWebpackConfig(buildConfig) {
         modules: false, // needed for JS referencing classNames directly, such as critical fonts
       },
     },
-    // {
-    //   loader: 'string-replace-loader',
-    //   query: {
-    //     search: /\\/,
-    //     replace: workaroundAtValue,
-    //     flags: 'g',
-    //   },
-    // },
     {
       loader: 'postcss-loader',
       options: {
@@ -442,35 +396,9 @@ async function createWebpackConfig(buildConfig) {
     mode: config.prod ? 'production' : 'development',
     optimization: {
       mergeDuplicateChunks: true,
-      // splitChunks: {
-      //   chunks: 'all',
-      //   // cacheGroups: {
-      //   //   js: {
-      //   //     test: /\.js$/,
-      //   //     // name: 'commons',
-      //   //   chunks: 'all',
-      //   //     minChunks: 2,
-      //   //     // test: /node_modules/,
-      //   //     // enforce: true,
-      //   //   },
-      //   //   css: {
-      //   //     test: /\.s?css$/,
-      //   //     chunks: 'all',
-      //   //     minChunks: 2,
-      //   //     // enforce: true,
-      //   //   },
-      //   // },
     },
     plugins: [
       new MiniCssExtractPlugin({
-        // Options similar to the same options in webpackOptions.output
-        // both options are optional
-        // filename: config.prod
-        //   ? `[name].[contenthash]${langSuffix}.css`
-        //   : `[name]${langSuffix}.css`,
-        // chunkFilename: config.prod
-        //   ? `[id].[contenthash]${langSuffix}.css`
-        //   : `[id]${langSuffix}.css`,
         filename: `[name]${langSuffix}.css`,
         chunkFilename: `[id]${langSuffix}.css`,
       }),
@@ -498,47 +426,8 @@ async function createWebpackConfig(buildConfig) {
           outputPath: config.buildDir,
         },
       ),
-      // Show build progress
-      // Disabling for now as it messes up spinners
-      // @todo consider bringing it back
-      // new webpack.ProgressPlugin({ profile: false }),
     ],
   };
-
-  /**
-   * In non-drupal environments. during local dev server (ie. not on Travis -- for now till Docker container is up and running),
-   * compile the Pattern Lab UI HTML via the new Twig PHP rendering service.
-   */
-  // if (config.env !== 'drupal' && !config.prod && config.devServer === true) {
-  //   webpackConfig.plugins.push(
-  //     new HtmlWebpackPlugin({
-  //       title: 'Custom template',
-  //       filename: '../index.html',
-  //       inject: false, // disabling for now -- not yet needed in PL build (but at least is working!)
-  //       cache: false,
-  //       // Load a custom template (lodash by default see the FAQ for details)
-  //       template: path.resolve(
-  //         process.cwd(),
-  //         '../../packages/uikit-workshop/src/html-twig/index.twig',
-  //       ),
-  //     }),
-
-  //     new TwigPhpLoader(), // handles compiling Twig templates when Webpack-specific contextual data is needed (ex. automatically injecting assets in your entry config)
-  //   );
-
-  //   webpackConfig.module.rules.push({
-  //     test: /\.twig$/,
-  //     loader: TwigPhpLoader.loader,
-  //     options: {
-  //       port: config.port, // port the PHP rendering service is running on -- dynamically set when @bolt/build-tools boots up
-  //       namespaces: npmToTwigNamespaceMap, // @todo: further refactor so this loader doesn't need to map out the namespace to the NPM package location
-
-  //       // this determines whether Twig templates get rendered immediately vs wait for the HtmlWebpackPlugin to
-  //       // generate data on the assets available before rendering. Defaults to false.
-  //       includeContext: false,
-  //     },
-  //   });
-  // }
 
   if (config.prod) {
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
@@ -566,10 +455,14 @@ async function createWebpackConfig(buildConfig) {
     webpackConfig.plugins.push(
       new OptimizeCssAssetsPlugin({
         canPrint: config.verbosity > 2,
-        cssProcessorOptions: {
-          // passes to `cssnano`
-          zindex: false, // don't alter `z-index` values
-          mergeRules: false, // this MUST be disabled - otherwise certain selectors (ex. ::slotted(*), which IE 11 can't parse) break
+        cssProcessor: require('cssnano'),
+        cssProcessorPluginOptions: {
+          preset: ['default', { 
+            discardComments: { removeAll: true } ,
+            mergeLonghand: false, // don't merge longhand values -- required for CSS Vars theming, etc.
+            zindex: false, // don't alter `z-index` values
+            mergeRules: false, // this MUST be disabled - otherwise certain selectors (ex. ::slotted(*), which IE 11 can't parse) break
+          }],
         },
       }),
     );
