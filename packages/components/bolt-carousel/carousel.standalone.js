@@ -14,6 +14,7 @@ class BoltCarousel extends BoltComponent() {
   static is = 'bolt-carousel';
 
   static props = {
+    loop: props.boolean,
     autoplay: props.any,
     disable_auto_on_interaction: props.boolean,
     space_between: props.number,
@@ -101,7 +102,7 @@ class BoltCarousel extends BoltComponent() {
     this.boltCarousel = new Swiper(
       this.boltCarouselTemplate.querySelector('.swiper-container'),
       {
-        loop: true,
+        loop: props.loop,
         spaceBetween: props.space_between,
         slidesPerView: props.slides_per_view,
         centeredSlides: props.center,

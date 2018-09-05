@@ -10,6 +10,7 @@
 {% set base_class = prefix ~ component_name %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
+{% set loop = loop | default(schema.properties.loop.default) %}
 {% set space_between = space_between | default(schema.properties.space_between.default) %}
 {% set autoplay = autoplay | default(schema.properties.autoplay.default) %}
 {% set disable_auto_on_interaction = disable_auto_on_interaction | default(schema.properties.disable_auto_on_interaction.default) %}
@@ -54,6 +55,7 @@
 
 
  <bolt-carousel
+    {% if loop %} loop="{{ loop }}" {% endif %}
     {% if autoplay %} autoplay="{{ autoplay }}" {% endif %}
     {% if disable_auto_on_interaction %} disable-auto-on-interaction="{{ disable_auto_on_interaction }}" {% endif %}
     {% if space_between %} space-between="{{ space_between }}" {% endif %}

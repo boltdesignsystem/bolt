@@ -3,6 +3,11 @@ title: 'Bolt Carousel'
 description: 'Carousels provide a mechanism for swiping through a collection of content items or components.'
 type: object
 properties:
+  loop:
+    type: boolean
+    title: 'Loop carousel'
+    description: '`True` to enable infinite loop.'
+    default: false
   autoplay:
     type: number
     title: 'Auto transition time'

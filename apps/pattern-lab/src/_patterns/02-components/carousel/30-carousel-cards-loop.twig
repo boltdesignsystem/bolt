@@ -1,0 +1,107 @@
+{% include "@bolt-components-carousel/carousel.twig" with {
+  loop: true,
+  space_between: 20,
+  slides_per_view: 3,
+  slides_per_view_tablet: 1,
+  slides: [
+    include("@bolt-components-card/card.twig", {
+      url: "#!",
+      contentItems: [
+        {
+          pattern: "image",
+          src: "/pattern-lab/images/placeholders/tout-4x3-climber.jpg",
+          imageAttributes: create_attribute(imageAttributes | default({})).addClass("u-bolt-width-1/1"),
+          lazyload: false,
+          alt: "Anthem Demo"
+        },
+        {
+          pattern: "eyebrow",
+          text: "First Demo"
+        },
+        {
+          pattern: "headline",
+          tag: "h3",
+          size: "large",
+          text: "Demo: Showing Off"
+        },
+        {
+          pattern: "text",
+          text: "#1 This demo shows off what we can do, how we are better than the competition, and our service promise."
+        },
+        {
+          pattern: "button",
+          style: "text",
+          width: "full",
+          itemAlignment: "start",
+          text: "Watch the demo!"
+        }
+      ]
+    }),
+    include("@bolt-components-card/card.twig", {
+      url: "#!",
+      contentItems: [
+        {
+          pattern: "image",
+          src: "/pattern-lab/images/placeholders/tout-4x3-climber.jpg",
+          imageAttributes: create_attribute(imageAttributes | default({})).addClass("u-bolt-width-1/1"),
+          lazyload: false,
+          alt: "Anthem Demo"
+        },
+        {
+          pattern: "eyebrow",
+          text: "Second Demo"
+        },
+        {
+          pattern: "headline",
+          tag: "h3",
+          size: "large",
+          text: "Demo: Showing Off"
+        },
+        {
+          pattern: "text",
+          text: "#2 This demo shows off what we can do, how we are better than the competition, and our service promise."
+        },
+        {
+          pattern: "button",
+          style: "text",
+          width: "full",
+          itemAlignment: "start",
+          text: "Watch the demo!"
+        }
+      ]
+    }),
+    include("@bolt-components-card/card.twig", {
+      url: "#!",
+      contentItems: [
+        {
+          pattern: "image",
+          src: "/pattern-lab/images/placeholders/tout-4x3-climber.jpg",
+          imageAttributes: create_attribute(imageAttributes | default({})).addClass("u-bolt-width-1/1"),
+          lazyload: false,
+          alt: "Anthem Demo"
+        },
+        {
+          pattern: "eyebrow",
+          text: "Third Demo"
+        },
+        {
+          pattern: "headline",
+          tag: "h3",
+          size: "large",
+          text: "Demo: Showing Off"
+        },
+        {
+          pattern: "text",
+          text: "#3 This demo shows off what we can do, how we are better than the competition, and our service promise."
+        },
+        {
+          pattern: "button",
+          style: "text",
+          width: "full",
+          itemAlignment: "start",
+          text: "Watch the demo!"
+        }
+      ]
+    }),
+  ]
+} %}
