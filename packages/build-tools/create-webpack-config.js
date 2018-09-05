@@ -457,12 +457,15 @@ async function createWebpackConfig(buildConfig) {
         canPrint: config.verbosity > 2,
         cssProcessor: require('cssnano'),
         cssProcessorPluginOptions: {
-          preset: ['default', { 
-            discardComments: { removeAll: true } ,
-            mergeLonghand: false, // don't merge longhand values -- required for CSS Vars theming, etc.
-            zindex: false, // don't alter `z-index` values
-            mergeRules: false, // this MUST be disabled - otherwise certain selectors (ex. ::slotted(*), which IE 11 can't parse) break
-          }],
+          preset: [
+            'default',
+            {
+              discardComments: { removeAll: true },
+              mergeLonghand: false, // don't merge longhand values -- required for CSS Vars theming, etc.
+              zindex: false, // don't alter `z-index` values
+              mergeRules: false, // this MUST be disabled - otherwise certain selectors (ex. ::slotted(*), which IE 11 can't parse) break
+            },
+          ],
         },
       }),
     );
