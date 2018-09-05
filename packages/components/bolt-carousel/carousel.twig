@@ -60,8 +60,8 @@
     {% if slides_per_view %} slides-per-view="{{ slides_per_view }}" {% endif %}
     {% if slides_per_view_tablet %} slides-per-view-tablet="{{ slides_per_view_tablet }}" {% endif %}
     {% if slides_per_view_mobile %} slides-per-view-mobile="{{ slides_per_view_mobile }}" {% endif %}
-    {% if center is same as(true) %} center {% endif %}
-    {% if nosnap is same as(true) %} nosnap {% endif %}
+    {% if center == true %} center {% endif %}
+    {% if nosnap == true %} nosnap {% endif %}
     {% if utils %} class="{{ utils|join(" ") }}"{% endif %}
   >
   <replace-with-children class="{{ classes|join(" ") }}">
