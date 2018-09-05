@@ -1,0 +1,79 @@
+{% set schema = bolt.data.components["@bolt-components-carousel"].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# Defaults for a vanilla `carousel` component #}
+{% set prefix = "c-bolt-" %}
+{% set component_name = "carousel" %}
+{% set base_class = prefix ~ component_name %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set space_between = space_between | default(schema.properties.space_between.default) %}
+{% set autoplay = autoplay | default(schema.properties.autoplay.default) %}
+{% set disable_auto_on_interaction = disable_auto_on_interaction | default(schema.properties.disable_auto_on_interaction.default) %}
+{% set nosnap = nosnap | default(schema.properties.nosnap.default) %}
+{% set slides_per_view = slides_per_view | default(schema.properties.slides_per_view.default) %}
+{% set slides_per_view_tablet = slides_per_view_tablet | default(schema.properties.slides_per_view_tablet.default) %}
+{% set slides_per_view_mobile = slides_per_view_mobile | default(schema.properties.slides_per_view_mobile.default) %}
+{% set center = center | default(schema.properties.center.default) %}
+
+
+{% set classes = [
+  "c-bolt-carousel",
+  "swiper-container"
+] %}
+
+{% set slide_wrapper_classes = [
+  "c-bolt-carousel__wrapper",
+  "swiper-wrapper"
+] %}
+
+{% set slide_classes = [
+  "c-bolt-carousel__slide",
+  "swiper-slide"
+] %}
+
+{% set pagination_classes = [
+  "c-bolt-carousel__pagination",
+  "swiper-pagination"
+] %}
+
+{% set button_prev_classes = [
+  "c-bolt-carousel__navigation",
+  "c-bolt-carousel__navigation--prev",
+  "swiper-button-prev"
+] %}
+
+{% set button_next_classes = [
+  "c-bolt-carousel__navigation",
+  "c-bolt-carousel__navigation--next",
+  "swiper-button-next"
+] %}
+
+
+ <bolt-carousel
+    {% if autoplay %} autoplay="{{ autoplay }}" {% endif %}
+    {% if disable_auto_on_interaction %} disable-auto-on-interaction="{{ disable_auto_on_interaction }}" {% endif %}
+    {% if space_between %} space-between="{{ space_between }}" {% endif %}
+    {% if slides_per_view %} slides-per-view="{{ slides_per_view }}" {% endif %}
+    {% if slides_per_view_tablet %} slides-per-view-tablet="{{ slides_per_view_tablet }}" {% endif %}
+    {% if slides_per_view_mobile %} slides-per-view-mobile="{{ slides_per_view_mobile }}" {% endif %}
+    {% if center is same as(true) %} center {% endif %}
+    {% if nosnap is same as(true) %} nosnap {% endif %}
+    {% if utils %} class="{{ utils|join(" ") }}"{% endif %}
+  >
+  <replace-with-children class="{{ classes|join(" ") }}">
+    <replace-with-children class="{{ slide_wrapper_classes|join(" ") }}">
+      {% for slide in slides %}
+        <bolt-carousel-item class="{{ slide_classes|join(" ") }}">
+          {{ slide }}
+        </bolt-carousel-item>
+      {% endfor %}
+    </replace-with-children>
+  </replace-with-children>
+   <replace-with-children class="{{ pagination_classes|join(" ") }}"></replace-with-children>
+   <replace-with-children class="{{ button_prev_classes|join(" ") }}"></replace-with-children>
+   <replace-with-children class="{{ button_next_classes|join(" ") }}"></replace-with-children>
+</bolt-carousel>

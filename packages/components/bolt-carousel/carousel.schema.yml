@@ -1,0 +1,50 @@
+$schema: 'http://json-schema.org/draft-04/schema#'
+title: 'Bolt Carousel'
+description: 'Carousels provide a mechanism for swiping through a collection of content items or components.'
+type: object
+properties:
+  autoplay:
+    type: number
+    title: 'Auto transition time'
+    description: 'Delay between transitions (in ms). If this parameter is not specified, auto play will be disabled'
+    default: 0
+  disable_auto_on_interaction:
+    type: boolean
+    title: 'Disable auto transition on interaction'
+    description: 'Set to `false` and autoplay will not be disabled after user interactions (swipes), it will be restarted every time after interaction'
+    default: false
+  space_between:
+    type: number
+    title: 'Space between'
+    description: 'Distance between slides in px'
+    default: 0
+  nosnap:
+    type: boolean
+    title: '"Free Scroll" mode'
+    description: 'If `true` then slides will not have fixed positions'
+    default: false
+  slides_per_view:
+    type: number
+    title: 'Number of slides per view'
+    description: 'Slides visible at the same time in sliders container'
+    default: 1
+  slides_per_view_tablet:
+    type: number
+    title: 'Tablet: Number of slides per view (Medium breakpoint - 800px and below)'
+    description: 'Slides visible at the same time in Tablet sliders container. `0` is only used as default for not being set.'
+    default: 0
+  slides_per_view_mobile:
+    type: number
+    title: 'Mobile: Number of slides per view (Xsmall breakpoint - 400px and below)'
+    description: 'Slides visible at the same time in Mobile sliders container.  `0` is only used as default for not being set.'
+    default: 0
+  center:
+    type: boolean
+    title: 'Centered slides'
+    description: 'If `true`, then active slide will be centered, not always on the left side.'
+    default: false
+  slides:
+    type: array
+    title: 'Slides'
+    description: 'Array of slide objects following the `include("@bolt-components-[name]/name.twig", {...}),` pattern'
+    default: false
