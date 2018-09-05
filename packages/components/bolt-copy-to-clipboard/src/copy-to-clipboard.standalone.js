@@ -4,7 +4,7 @@ import { props, define } from '@bolt/core/utils';
 import { withHyperHtml } from '@bolt/core/renderers';
 
 @define
-export class BoltCopyToClipboard extends withHyperHtml() {
+class BoltCopyToClipboard extends withHyperHtml() {
   static is = 'bolt-copy-to-clipboard';
 
   constructor(self) {
@@ -49,3 +49,5 @@ export class BoltCopyToClipboard extends withHyperHtml() {
     this.copyLink.removeEventListener('click', this.clickHandler);
   }
 }
+
+export { BoltCopyToClipboard };

@@ -713,7 +713,6 @@ class BoltVideo extends withPreact() {
   }
 }
 
-// BoltVideo.globalErrors = [];
-//BoltVideo.props = defaults;
-
 export default BoltVideo;
+
+export { BoltVideo, BoltVideoMeta };

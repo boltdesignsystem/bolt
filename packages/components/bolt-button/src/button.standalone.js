@@ -16,7 +16,7 @@ import styles from './button.scss';
 let cx = classNames.bind(styles);
 
 @define
-export class BoltButton extends withHyperHtml() {
+class BoltButton extends withHyperHtml() {
   static is = 'bolt-button';
 
   static props = {
@@ -155,3 +155,5 @@ export class BoltButton extends withHyperHtml() {
     `;
   }
 }
+
+export { BoltButton };

@@ -9,7 +9,7 @@ import { withHyperHtml } from '@bolt/core/renderers';
 import placeholderStyles from './placeholder.scss';
 
 @define
-export class BoltPlaceholder extends withHyperHtml() {
+class BoltPlaceholder extends withHyperHtml() {
   static is = 'bolt-placeholder';
 
   static props = {
@@ -61,3 +61,5 @@ export class BoltPlaceholder extends withHyperHtml() {
     `;
   }
 }
+
+export { BoltPlaceholder };

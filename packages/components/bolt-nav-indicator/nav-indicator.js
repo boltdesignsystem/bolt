@@ -149,7 +149,7 @@ let gumshoeStateModule = (function() {
 })();
 
 @define
-export class BoltNavIndicator extends withHyperHtml() {
+class BoltNavIndicator extends withHyperHtml() {
   static is = 'bolt-nav-indicator';
 
   // Behavior for `<bolt-nav>` parent container
@@ -382,3 +382,5 @@ export class BoltNavIndicator extends withHyperHtml() {
   // such as scroll.
   throttle('resize', 'optimizedResize');
 })();
+
+export { BoltNavIndicator };

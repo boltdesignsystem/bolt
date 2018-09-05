@@ -23,7 +23,7 @@ import 'prismjs/components/prism-markdown';
 import 'prismjs/components/prism-yaml';
 
 @define
-export class BoltCodeSnippetClass extends withPreact() {
+class BoltCodeSnippetClass extends withPreact() {
   static is = 'bolt-code-snippet';
 
   static props = {
@@ -97,3 +97,5 @@ export class BoltCodeSnippetClass extends withPreact() {
     }
   }
 }
+
+export { BoltCodeSnippetClass };

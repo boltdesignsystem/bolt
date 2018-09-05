@@ -8,7 +8,7 @@ import { withHyperHtml } from '@bolt/core/renderers/renderer-hyperhtml';
 
 import styles from './ratio.scss';
 
-export function BoltRatio() {
+function BoltRatio() {
   return class BoltRatioClass extends withHyperHtml() {
     static props = {
       aspectRatioHeight: props.number,
@@ -66,3 +66,5 @@ export function BoltRatio() {
     }
   };
 }
+
+export { BoltRatio };

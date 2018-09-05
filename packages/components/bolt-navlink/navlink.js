@@ -152,3 +152,5 @@ class BoltNavLink extends withHyperHtml() {
     this.removeEventListener('click', this.onClick);
   }
 }
+
+export { BoltNavLink };

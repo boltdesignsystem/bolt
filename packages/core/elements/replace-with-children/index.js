@@ -2,7 +2,7 @@ import { define } from '@bolt/core/utils';
 import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 
 @define
-export class ReplaceWithChildren extends withLitHtml() {
+class ReplaceWithChildren extends withLitHtml() {
   static is = 'replace-with-children';
 
   connectedCallback() {
@@ -27,3 +27,5 @@ export class ReplaceWithChildren extends withLitHtml() {
     }
   }
 }
+
+export { ReplaceWithChildren };

@@ -4,7 +4,7 @@ import { h, withPreact } from '@bolt/core/renderers';
 import styles from './block-list.scss';
 
 @define
-export class BoltBlockList extends withPreact() {
+class BoltBlockList extends withPreact() {
   static is = 'bolt-block-list';
 
   static props = {
@@ -34,3 +34,5 @@ export class BoltBlockList extends withPreact() {
     );
   }
 }
+
+export { BoltBlockList };

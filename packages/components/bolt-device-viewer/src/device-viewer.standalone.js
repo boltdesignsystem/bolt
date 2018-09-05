@@ -159,3 +159,5 @@ class BoltImageZoom extends withHyperHtml() {
     `;
   }
 }
+
+export { BoltDeviceViewer, BoltImageZoom };

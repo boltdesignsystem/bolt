@@ -9,7 +9,7 @@ import { withHyperHtml } from '@bolt/core/renderers';
 // ShadyCSS will rename classes as needed to ensure style scoping.
 
 @define
-export class BoltBand extends withHyperHtml() {
+class BoltBand extends withHyperHtml() {
   static is = 'bolt-band';
 
   static get observedAttributes() {
@@ -207,3 +207,5 @@ export class BoltBand extends withHyperHtml() {
     }
   }
 }
+
+export { BoltBand };

@@ -287,3 +287,5 @@ class BoltText extends withHyperHtml() {
     `;
   }
 }
+
+export { BoltText };

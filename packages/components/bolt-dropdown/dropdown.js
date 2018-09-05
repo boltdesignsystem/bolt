@@ -12,7 +12,7 @@ import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss
 import styles from './dropdown.scss';
 
 @define
-export class BoltDropdown extends withHyperHtml() {
+class BoltDropdown extends withHyperHtml() {
   static is = 'bolt-dropdown';
 
   static props = {
@@ -219,3 +219,5 @@ export class BoltDropdown extends withHyperHtml() {
     `;
   }
 }
+
+export { BoltDropdown };

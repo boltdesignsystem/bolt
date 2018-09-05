@@ -20,7 +20,7 @@ const backgroundStyles = ['circle', 'square'];
 const colors = ['teal', 'blue'];
 
 @define
-export class BoltIcon extends withPreact() {
+class BoltIcon extends withPreact() {
   static is = 'bolt-icon';
 
   static props = {
@@ -162,3 +162,5 @@ if (!supportsCSSVars && !observedElements.includes(document.body)) {
     subtree: true,
   });
 }
+
+export { BoltIcon };

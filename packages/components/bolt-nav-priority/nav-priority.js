@@ -8,7 +8,7 @@ import { withHyperHtml } from '@bolt/core/renderers';
 */
 
 @define
-export class BoltNavPriority extends withHyperHtml() {
+class BoltNavPriority extends withHyperHtml() {
   static is = 'bolt-nav-priority';
 
   static get observedAttributes() {
@@ -237,3 +237,5 @@ export class BoltNavPriority extends withHyperHtml() {
     window.removeEventListener('optimizedResize', this._adaptPriorityNav);
   }
 }
+
+export { BoltNavPriority };
