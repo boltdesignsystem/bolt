@@ -10,7 +10,6 @@ import {
 import { BoltBase } from './bolt-base';
 
 export { html, render } from 'lit-html';
-export { unsafeHTML } from 'lit-html/lib/unsafe-html';
 
 export function withLitHtml(Base = HTMLElement) {
   return class extends withComponent(BoltBase(Base)) {
