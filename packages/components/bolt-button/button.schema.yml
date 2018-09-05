@@ -4,6 +4,9 @@ description: 'Buttons are the core of our action components.'
 type: object
 required:
   - text
+not:
+  required:
+    - itemAlignment
 properties:
   attributes:
     type: object
@@ -53,6 +56,9 @@ properties:
       - medium
       - large
       - xlarge
+  itemAlignment:
+    title: 'DEPRECATED'
+    description: 'Use the align parameter instead.'
   align:
     title: 'Button Alignment'
     type: string
