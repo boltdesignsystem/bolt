@@ -26,7 +26,7 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
   background-attachment: local, local, scroll, scroll;
   background-position: 0 0, 100% 0, 0 0, 100% 0;
   background-repeat: no-repeat;
-  background-size: 4em 100%, 4em 100%, 1em 100%, 1em 100%;
+  background-size: 3rem 100%, 3rem 100%, 1.5rem 100%, 1.5rem 100%;
   -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
@@ -35,15 +35,8 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
 
   table-layout: auto;
   width: 100%;
-  border: $bolt-table-border;
+  border-top: $bolt-table-border;
   transform: translate3d(0, 0, 0);
-}
-
-.c-bolt-table__head,
-.c-bolt-table__foot {
-  .c-bolt-table__cell {
-    @include bolt-padding(small, squished);
-  }
 }
 
 .c-bolt-table__head {
@@ -53,30 +46,43 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
 
 .c-bolt-table__foot {
   border-top: $bolt-table-border;
-
-  .c-bolt-table__cell {
-    @include bolt-font-weight(bold);
-  }
-}
-
-.c-bolt-table__body {
-  .c-bolt-table__cell {
-    @include bolt-padding(small);
-  }
 }
 
 .c-bolt-table__row {
-  border-top: $bolt-table-border;
   transition: background-color $bolt-transition;
 
-  &:hover {
-    background-color: $bolt-table-row-hover-background-color;
+  @at-root .c-bolt-table__main > *:not(.c-bolt-table__head) #{&} {
+    border-top: $bolt-table-border;
+
+    &:hover {
+      background-color: $bolt-table-row-hover-background-color;
+    }
   }
 }
 
 .c-bolt-table__cell {
   text-align: left;
   vertical-align: baseline;
+
+  &:first-child{
+    border-left: $bolt-table-border;
+  }
+
+  &:last-child{
+    border-right: $bolt-table-border;
+  }
+
+  @at-root .c-bolt-table__head #{&} {
+    @include bolt-padding(small, squished);
+  }
+
+  @at-root .c-bolt-table__main > *:not(.c-bolt-table__head) #{&} {
+    @include bolt-padding(small);
+  }
+
+  @at-root .c-bolt-table__foot #{&} {
+    @include bolt-font-weight(bold);
+  }
 }
 
 .c-bolt-table__cell--header {
@@ -104,6 +110,7 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
   caption-side: bottom;
   color: $bolt-table-header-text-color;
   text-align: left;
+  border-top: $bolt-table-border;
   background-color: $bolt-table-background-color;
 }
 
@@ -112,6 +119,10 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
   .c-bolt-table__foot {
     .c-bolt-table__cell--header:first-child {
       border-right: $bolt-table-border;
+      background-color: $bolt-table-head-background-color;
+    }
+
+    .c-bolt-table__cell {
     }
   }
 
@@ -120,7 +131,7 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
     white-space: nowrap;
 
     &:first-child {
-      width: 1%;
+      width: 5%;
       text-align: right;
     }
   }

@@ -26,35 +26,51 @@
     {# {% if prop %} prop="{{ prop }}" {% endif %} #}
     {{ attributes }}
   >
-    <div {{ inner_attributes.addClass(classes) }}>
+    <div class="{{ "#{base_class} #{base_class}--numeric" }}">
       <table class="{{ "#{base_class}__main" }}">
         <caption class="{{ "#{base_class}__caption" }}">
-          Table caption explaining what the table is.
+          Chicago Bulls Box Score
         </caption>
         <thead class="{{ "#{base_class}__head" }}">
           <tr class="{{ "#{base_class}__row" }}">
             <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}"></td>
-            <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Column 1</th>
-            <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Column 2</th>
+            <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Pts</th>
+            <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Reb</th>
+            <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Ast</th>
+            <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Stl</th>
+            <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Blk</th>
+            <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">TO</th>
           </tr>
         </thead>
         <tbody class="{{ "#{base_class}__body" }}">
           <tr class="{{ "#{base_class}__row" }}">
-            <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Row 1 Thing</th>
-            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">500</td>
-            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">600</td>
+            <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Michale Jordan</th>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">70</td>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">10</td>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">2</td>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">5</td>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">0</td>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">2</td>
           </tr>
           <tr class="{{ "#{base_class}__row" }}">
-            <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Row 2 Another Thing</th>
-            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">300</td>
-            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">450</td>
+            <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Toni Kukoc</th>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">21</td>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">15</td>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">10</td>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">3</td>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">4</td>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">1</td>
           </tr>
         </tbody>
         <tfoot class="{{ "#{base_class}__foot" }}">
           <tr class="{{ "#{base_class}__row" }}">
             <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Total</th>
-            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">800</td>
-            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">1050</td>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">91</td>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">25</td>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">12</td>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">8</td>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">4</td>
+            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">3</td>
           </tr>
         </tfoot>
       </table>
