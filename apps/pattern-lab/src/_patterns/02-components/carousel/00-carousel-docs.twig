@@ -1,0 +1,26 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-carousel/carousel.twig" with {
+  slides: [
+    include("@bolt-components-image/image.twig", {
+      src: "/pattern-lab/images/placeholders/500x500.jpg",
+      alt: "Bill Murray",
+      lazyload: false,
+    }),
+    include("@bolt-components-image/image.twig", {
+      src: "/pattern-lab/images/placeholders/tout-4x3-climber.jpg",
+      alt: "A Rock Climber",
+      lazyload: false,
+    }),
+    include("@bolt-components-image/image.twig", {
+      src: "/pattern-lab/images/content/charts/decision-hub-chart.png",
+      alt: "decision hub chart",
+      lazyload: false,
+    }),
+  ]
+} %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "carousel",
+  usage: usage
+} only %}
