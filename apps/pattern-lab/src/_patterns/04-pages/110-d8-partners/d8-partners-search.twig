@@ -46,8 +46,14 @@
     }
   } only %}{% endembed %}
 
-  <div class="c-bolt-band c-bolt-band--full c-bolt-band--small t-bolt-light">
-    <div class="o-bolt-wrapper">
+
+  {% embed "@bolt/band.twig" with {
+    size: "small",
+    theme: "light",
+    fullBleed: true,
+  } only %}
+
+    {% block band_content  %}
       <p class="c-bolt-text">
         Showing 555 results in
         <span class="c-bolt-search-inline-tags">
@@ -390,6 +396,6 @@
           </div>
         {% endcell %}
       {% endgrid %}
-    </div>
-  </div>
+    {% endblock %}
+  {% endembed %}
 {% endblock %}
