@@ -39,142 +39,139 @@
     {% endblock %}
   {% endembed %}
 
-
-{% embed "@bolt/band.twig" with {
-  size: "large",
-  theme: "dark",
-  fullBleed: true,
-  background: {
-    shapeGroup: "B"
-  }
+  {% embed "@bolt/band.twig" with {
+    size: "large",
+    theme: "dark",
+    fullBleed: true,
+    background: {
+      shapeGroup: "B"
+    }
   } only %}
 
     {% block band_content  %}
-    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
-      {% cell 'u-bolt-width-1/1 u-bolt-width-1/1@medium' %}    
-        {% include "@bolt/headline.twig" with {
+      {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+        {% cell 'u-bolt-width-1/1 u-bolt-width-1/1@medium' %}
+          {% include "@bolt/headline.twig" with {
             text: "Media Coverage",
             size: "xxxlarge",
             tag: "h1",
-        } only %}
-      <div class="u-bolt-margin-bottom-medium">
-        {% include "@bolt/subheadline.twig" with {
-            text: "Newsworthy is an understatement. Our industry-leading solutions help the world's largest companies build applications engineered for the future.",
-            size: "xxlarge",
-            tag: "h2",
-        } only %}
-      </div>
+          } only %}
 
-          </li>
-        </ul>
-      {% endcell %}
-    {% endgrid %}
+          <div class="u-bolt-margin-bottom-medium">
+            {% include "@bolt/subheadline.twig" with {
+              text: "Newsworthy is an understatement. Our industry-leading solutions help the world's largest companies build applications engineered for the future.",
+              size: "xxlarge",
+              tag: "h2",
+            } only %}
+          </div>
+        {% endcell %}
+      {% endgrid %}
 
 
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
-        {% include "@bolt-components-card/card.twig" with {
-          "teaser": {
-            "eyebrow": {
-              text: "Jan 18 2018"
-            },
-            "headlines": [
-              {
-                "type": "headline",
-                "text": "A New CRM Bill of Rights for the Future Empowered Enterprise",
-                "size": "large"
-              }
-            ],
-            "buttons": [
-              {
-                "text": "Read more",
-                "url": "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-details/04-pages-100-d8-Press-and-Media-d8-press-details.html",
-                "width": "full",
-                icon: {
-                  name: "external-link",
-                },
-              }
-            ]
-          }
-        } only %}
-      {% endcell %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
-        {% include "@bolt-components-card/card.twig" with {
-          "teaser": {
-            "eyebrow": {
-              text: "Jan 18 2018"
-            },
-            "headlines": [
-              {
-                "type": "headline",
-                "text": "6 Customer Experience Trends to Watch in 2018",
-                "size": "large",
-              }
-            ],
-            "buttons": [
-              {
-                "text": "Read more",
-                "url": "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-details/04-pages-100-d8-Press-and-Media-d8-press-details.html",
-                "width": "full",
-                icon: {
-                  name: "external-link",
-                },
-              }
-            ]
-          }
-        } only %}
-      {% endcell %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
-        {% include "@bolt-components-card/card.twig" with {
-          "teaser": {
-            "eyebrow": {
-              text: "Jan 18 2018"
-            },
-            "headlines": [
-              {
-                "type": "headline",
-                "text": "3 Reasons Your AI-Driven Customer Experiences are Falling Short",
-                "size": "large"
-              }
-            ],
-            "buttons": [
-              {
-                "text": "Read more",
-                "url": "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-details/04-pages-100-d8-Press-and-Media-d8-press-details.html",
-                "width": "full"
-              }
-            ]
-          }
-        } only %}
-      {% endcell %}
-    {% endgrid %}
-  {% endblock %}
-{% endembed %}
-{# End hero band #}
+      {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
+          {% include "@bolt-components-card/card.twig" with {
+            "teaser": {
+              "eyebrow": {
+                text: "Jan 18 2018"
+              },
+              "headlines": [
+                {
+                  "type": "headline",
+                  "text": "A New CRM Bill of Rights for the Future Empowered Enterprise",
+                  "size": "large"
+                }
+              ],
+              "buttons": [
+                {
+                  "text": "Read more",
+                  "url": "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-details/04-pages-100-d8-Press-and-Media-d8-press-details.html",
+                  "width": "full",
+                  icon: {
+                    name: "external-link",
+                  },
+                }
+              ]
+            }
+          } only %}
+        {% endcell %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
+          {% include "@bolt-components-card/card.twig" with {
+            "teaser": {
+              "eyebrow": {
+                text: "Jan 18 2018"
+              },
+              "headlines": [
+                {
+                  "type": "headline",
+                  "text": "6 Customer Experience Trends to Watch in 2018",
+                  "size": "large",
+                }
+              ],
+              "buttons": [
+                {
+                  "text": "Read more",
+                  "url": "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-details/04-pages-100-d8-Press-and-Media-d8-press-details.html",
+                  "width": "full",
+                  icon: {
+                    name: "external-link",
+                  },
+                }
+              ]
+            }
+          } only %}
+        {% endcell %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-4/12@medium" %}
+          {% include "@bolt-components-card/card.twig" with {
+            "teaser": {
+              "eyebrow": {
+                text: "Jan 18 2018"
+              },
+              "headlines": [
+                {
+                  "type": "headline",
+                  "text": "3 Reasons Your AI-Driven Customer Experiences are Falling Short",
+                  "size": "large"
+                }
+              ],
+              "buttons": [
+                {
+                  "text": "Read more",
+                  "url": "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-details/04-pages-100-d8-Press-and-Media-d8-press-details.html",
+                  "width": "full"
+                }
+              ]
+            }
+          } only %}
+        {% endcell %}
+      {% endgrid %}
+    {% endblock %}
+  {% endembed %}
+  {# End hero band #}
 
-<div style="float: right" class="u-bolt-margin-top-small">
-{% include '@bolt-components-share/share.twig' with {
-  sources: [
-    {
-      name: "facebook",
-      url: "https://www.facebook.com/sharer/sharer.php?u=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/02-components-action-blocks-05-action-blocks/02-components-action-blocks-05-action-blocks.html&amp;src=sdkpreparse"
-    },
-    {
-      name: "twitter",
-      url: "https://twitter.com/intent/tweet?url=https://bolt-design-system.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
-    },
-    {
-      name: "linkedin",
-      url: "https://www.linkedin.com/shareArticle?url=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/02-components-action-blocks-05-action-blocks/02-components-action-blocks-05-action-blocks.html"
-    },
-    {
-      name: "email",
-      url: "mailto:?&body=Sample%20Text%20--%20https%3A//bolt-design-system.com"
-    }
-  ],
-  inline: true
-} only %}
-</div>
+  <div style="float: right" class="u-bolt-margin-top-small">
+    {% include '@bolt-components-share/share.twig' with {
+      sources: [
+        {
+          name: "facebook",
+          url: "https://www.facebook.com/sharer/sharer.php?u=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/02-components-action-blocks-05-action-blocks/02-components-action-blocks-05-action-blocks.html&amp;src=sdkpreparse"
+        },
+        {
+          name: "twitter",
+          url: "https://twitter.com/intent/tweet?url=https://bolt-design-system.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
+        },
+        {
+          name: "linkedin",
+          url: "https://www.linkedin.com/shareArticle?url=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/02-components-action-blocks-05-action-blocks/02-components-action-blocks-05-action-blocks.html"
+        },
+        {
+          name: "email",
+          url: "mailto:?&body=Sample%20Text%20--%20https%3A//bolt-design-system.com"
+        }
+      ],
+      inline: true
+    } only %}
+  </div>
 
 
 
@@ -1081,7 +1078,7 @@
     </div>
     <div class="u-bolt-margin-top-large u-bolt-margin-bottom-medium">
       {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-      {% cell "o-bolt-grid__cell" %}  
+        {% cell "o-bolt-grid__cell" %}
           {% include "@bolt-components-pagination/pagination.twig" with {
             current: 5,
             total: 10,
@@ -1115,10 +1112,9 @@
               href: 'page-10-url'
             }
           } only %}
-      {% endcell %}
-    {% endgrid %} 
+        {% endcell %}
+      {% endgrid %}
+    </div>
   </div>
-</div>
-
 
 {% endblock %}
