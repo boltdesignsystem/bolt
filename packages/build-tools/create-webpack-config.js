@@ -10,6 +10,8 @@ const fs = require('fs');
 const deepmerge = require('deepmerge');
 const resolve = require('resolve');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const globImporter = require('node-sass-glob-importer');
+const npmSass = require('npm-sass');
 const { getConfig } = require('./utils/config-store');
 const SassDocPlugin = require('./plugins/sassdoc-webpack-plugin');
 
@@ -293,26 +295,27 @@ async function createWebpackConfig(buildConfig) {
     },
 
     // @todo: conditionally toggle sass-loader vs fast-sass-loader based on --debug flag when sourcemaps are needed
-    // {
-    //   loader: 'sass-loader',
-    //   options: {
-    //     sourceMap: true,
-    //     importer: [globImporter(), npmSass.importer],
-    //     functions: sassExportData,
-    //     precision: 3,
-    //     data: globalSassData.join('\n'),
-    //   },
-    // },
     {
-      loader: '@bolt/fast-sass-loader',
+      loader: 'sass-loader',
       options: {
         sourceMap: true,
+        importer: [globImporter(), npmSass.importer],
         functions: sassExportData,
-        outputStyle: 'expanded',
         precision: 3,
         data: globalSassData.join('\n'),
       },
     },
+    // @todo: re-evaluate options similar to fast-sass-loader, but w/ importer support
+    // {
+    //   loader: '@bolt/fast-sass-loader',
+    //   options: {
+    //     sourceMap: true,
+    //     functions: sassExportData,
+    //     outputStyle: 'expanded',
+    //     precision: 3,
+    //     data: globalSassData.join('\n'),
+    //   },
+    // },
   ];
 
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
