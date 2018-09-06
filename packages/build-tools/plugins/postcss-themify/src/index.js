@@ -4,11 +4,10 @@ const hexToRgba = require('hex-to-rgba');
 const rgb2hex = require('rgb2hex');
 const crypto = require('crypto');
 const chokidar = require('chokidar');
+const BoltCache = require('@bolt/build-tools/utils/cache');
 const { minifyCSS } = require('./helpers/css.util');
 
 const THEMIFY = 'bolt-themify';
-
-const BoltCache = require('@bolt/build-tools/utils/cache');
 
 let options;
 let output;
