@@ -104,7 +104,7 @@ class BoltCarousel extends BoltComponent() {
     `;
   }
 
-  rendered(){
+  rendered() {
     const autoplay = Number.isInteger(Number(props.autoplay))
       ? {
           delay: this.props.autoplay,
