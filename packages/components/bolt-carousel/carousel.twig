@@ -74,8 +74,9 @@
         </bolt-carousel-item>
       {% endfor %}
     </replace-with-children>
+
+    <replace-with-children class="{{ pagination_classes|join(" ") }}"></replace-with-children>
+    <replace-with-children class="{{ button_prev_classes|join(" ") }}"></replace-with-children>
+    <replace-with-children class="{{ button_next_classes|join(" ") }}"></replace-with-children>
   </replace-with-children>
-   <replace-with-children class="{{ pagination_classes|join(" ") }}"></replace-with-children>
-   <replace-with-children class="{{ button_prev_classes|join(" ") }}"></replace-with-children>
-   <replace-with-children class="{{ button_next_classes|join(" ") }}"></replace-with-children>
 </bolt-carousel>

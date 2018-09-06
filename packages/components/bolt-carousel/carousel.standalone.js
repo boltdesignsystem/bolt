@@ -34,37 +34,6 @@ class BoltCarousel extends BoltComponent() {
     return self;
   }
 
-  template() {
-    const classes = css('c-bolt-carousel swiper-container');
-    const slideWrapperClasses = css('c-bolt-carousel__wrapper swiper-wrapper');
-    const paginationClasses = css(
-      'c-bolt-carousel__pagination swiper-pagination',
-    );
-    const buttonPrevClasses = css(
-      'c-bolt-carousel__navigation c-bolt-carousel__navigation--prev swiper-button-prev',
-    );
-    const buttonNextClasses = css(
-      'c-bolt-carousel__navigation c-bolt-carousel__navigation--next swiper-button-next',
-    );
-
-    const carouselChildren = this.slots.default
-      ? this.slot('default')
-      : this.props.slides
-        ? this.props.slides
-        : '';
-
-    return this.hyper.wire(this.props)`
-      <div class=${classes}>
-        <div class=${slideWrapperClasses}>
-          ${carouselChildren}
-        </div>
-        <div class=${paginationClasses}></div>
-        <div class=${buttonPrevClasses}></div>
-        <div class=${buttonNextClasses}></div>
-      </div>
-    `;
-  }
-
   prepareBreakpoints(props) {
     if (
       props.slides_per_view_tablet === 0 &&
@@ -87,50 +56,90 @@ class BoltCarousel extends BoltComponent() {
   }
 
   render({ props, state }) {
-    this.boltCarouselTemplate = document.createDocumentFragment();
-    this.boltCarouselTemplate.appendChild(this.template());
+    const classes = css('c-bolt-carousel', 'swiper-container');
 
-    const autoplay = Number.isInteger(Number(props.autoplay))
+    const slideWrapperClasses = css(
+      'c-bolt-carousel__wrapper',
+      'swiper-wrapper',
+    );
+
+    const paginationClasses = css(
+      'c-bolt-carousel__pagination swiper-pagination',
+    );
+    const buttonPrevClasses = css(
+      'c-bolt-carousel__navigation',
+      'c-bolt-carousel__navigation--prev',
+      'swiper-button-prev',
+    );
+    const buttonNextClasses = css(
+      'c-bolt-carousel__navigation',
+      'c-bolt-carousel__navigation--next',
+      'swiper-button-next',
+    );
+
+    return this.html`
+      ${this.addStyles([carouselStyles])}
+      <div class=${classes}>
+
+        <div class=${slideWrapperClasses}>
+          ${this.slot('default')}
+        </div>
+
+        <div class=${paginationClasses}></div>
+
+        <div class=${buttonPrevClasses}>
+          <bolt-button icon-only color="text">
+            <div>
+              <bolt-icon name="chevron-left" size="large"></bolt-icon>
+            </div>
+          </bolt-button>
+        </div>
+        <div class=${buttonNextClasses}>
+          <bolt-button icon-only color="text">
+            <div>
+              <bolt-icon name="chevron-right" size="large"></bolt-icon>
+            </div>
+          </bolt-button>
+        </div>
+      </div>
+    `;
+  }
+
+  rendered() {
+    const autoplay = Number.isInteger(Number(this.props.autoplay))
       ? {
-          delay: props.autoplay,
-          disableOnInteraction: props.disable_auto_on_interaction,
+          delay: this.props.autoplay,
+          disableOnInteraction: this.props.disable_auto_on_interaction,
         }
       : false;
+
+    console.log(autoplay);
 
     const breakpoints = this.prepareBreakpoints(props);
 
     this.boltCarousel = new Swiper(
-      this.boltCarouselTemplate.querySelector('.swiper-container'),
+      this.renderRoot.querySelector('.swiper-container'),
       {
-        loop: props.loop,
-        spaceBetween: props.space_between,
-        slidesPerView: props.slides_per_view,
-        centeredSlides: props.center,
-        freeMode: props.nosnap,
+        loop: this.props.loop,
+        spaceBetween: this.props.space_between,
+        slidesPerView: this.props.slides_per_view,
+        centeredSlides: this.props.center,
+        freeMode: this.props.nosnap,
         autoplay,
         keyboard: {
           enabled: true,
         },
         pagination: {
-          el: this.boltCarouselTemplate.querySelector('.swiper-pagination'),
+          el: this.renderRoot.querySelector('.swiper-pagination'),
           clickable: true,
           dynamicBullets: true,
         },
         navigation: {
-          nextEl: this.boltCarouselTemplate.querySelector(
-            '.swiper-button-next',
-          ),
-          prevEl: this.boltCarouselTemplate.querySelector(
-            '.swiper-button-prev',
-          ),
+          nextEl: this.renderRoot.querySelector('.swiper-button-next'),
+          prevEl: this.renderRoot.querySelector('.swiper-button-prev'),
         },
         breakpoints,
       },
     );
-
-    return this.html`
-      ${this.addStyles([carouselStyles])}
-      ${this.boltCarouselTemplate}
-    `;
   }
 }
