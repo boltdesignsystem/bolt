@@ -1,6 +1,6 @@
 // BOLT HEADLINE COMPONENT
 
-@import '~@bolt/core/styles/index.scss';
+@import '@bolt/core';
 @import './tools.headlines';
 
 
@@ -21,7 +21,6 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 }
 
 .c-bolt-headline {
-
   &:not(:last-child) {
     @include bolt-margin-bottom(medium);
   }
