@@ -174,9 +174,13 @@
   </div>
 
 
+  {% embed "@bolt/band.twig" with {
+    size: "medium",
+    theme: "light",
+    fullBleed: true,
+  } only %}
 
-  <div class="c-bolt-band c-bolt-band--full c-bolt-band--medium t-bolt-light">
-    <div class="o-bolt-wrapper">
+    {% block band_content  %}
       <p class="c-bolt-text">
         Showing 210 results in
         <span class="c-bolt-search-inline-tags">
@@ -405,8 +409,6 @@
                           UX & Design (9)
                         </label>
                       </div>
-
-                      
                     </div>
                   </fieldset>
                   <fieldset class="c-bolt-fieldset">
@@ -507,614 +509,161 @@
 
         {% cell "u-bolt-width-1/1 u-bolt-width-9/12@medium" %}
           {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: " June 5, 2018"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "Pegasystems Launches Pega Community to Empower Anyone to Create Better Software",
-                    url: "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-details/04-pages-100-d8-Press-and-Media-d8-press-details.html"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Jan 18 2018"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "A New CRM Bill of Rights for the Future Empowered Enterprise",
-                    icon: {
-                      name: "external-link",
+            {% for i in 0..4 %}
+              {% cell "u-bolt-width-1/1" %}
+                {% include "@bolt-components-card/card.twig" with {
+                  theme: "xlight",
+                  contentItems: [
+                    {
+                      pattern: "eyebrow",
+                      text: " June 5, 2018"
                     },
-                    url: "http://pega.com"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Jeff Nicholson of Pega provides insight into what companies should expect from CRM vendors."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Jan 18 2018"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "6 Customer Experience Trends to Watch in 2018",
-                    icon: {
-                      name: "external-link",
+                    {
+                      pattern: "headline",
+                      tag: "h3",
+                      size: "large",
+                      text: "Pegasystems Launches Pega Community to Empower Anyone to Create Better Software",
+                      url: "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-details/04-pages-100-d8-Press-and-Media-d8-press-details.html"
                     },
-                    url: "http://pega.com"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Pega's Don Schuerman previews customer experience questions and trends for the New Year."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Jan 18 2018"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "3 Reasons Your AI-Driven Customer Experiences are Falling Short",
-                    icon: {
-                      name: "external-link",
+                    {
+                      pattern: "text",
+                      text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
+                    }
+                  ]
+                } only %}
+              {% endcell %}
+              {% cell "u-bolt-width-1/1" %}
+                {% include "@bolt-components-card/card.twig" with {
+                  theme: "xlight",
+                  contentItems: [
+                    {
+                      pattern: "eyebrow",
+                      text: "Jan 18 2018"
                     },
-                    url: "http://pega.com"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Pega's Jeff Nicholson examines the state of AI in today's customer experiences."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Date"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "Article Headline",
-                    url: "http://pega.com"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Date"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "Article Headline",
-                    url: "http://pega.com"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Date"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "Article Headline",
-                    icon: {
-                      name: "external-link",
+                    {
+                      pattern: "headline",
+                      tag: "h3",
+                      size: "large",
+                      text: "A New CRM Bill of Rights for the Future Empowered Enterprise",
+                      url: "http://pega.com"
                     },
-                    url: "http://pega.com"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Date"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "Article Headline",
-                    icon: {
-                      name: "external-link",
+                    {
+                      pattern: "text",
+                      text: "Jeff Nicholson of Pega provides insight into what companies should expect from CRM vendors."
+                    }
+                  ]
+                } only %}
+              {% endcell %}
+              {% cell "u-bolt-width-1/1" %}
+                {% include "@bolt-components-card/card.twig" with {
+                  theme: "xlight",
+                  contentItems: [
+                    {
+                      pattern: "eyebrow",
+                      text: "Jan 18 2018"
                     },
-                    url: "http://pega.com"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Date"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "Article Headline",
-                    url: "http://pega.com"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Date"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "Article Headline",
-                    url: "http://pega.com"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: " June 5, 2018"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "Pegasystems Launches Pega Community to Empower Anyone to Create Better Software",
-                    url: "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-details/04-pages-100-d8-Press-and-Media-d8-press-details.html"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Jan 18 2018"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "A New CRM Bill of Rights for the Future Empowered Enterprise",
-                    url: "http://pega.com"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Jeff Nicholson of Pega provides insight into what companies should expect from CRM vendors."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Jan 18 2018"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "6 Customer Experience Trends to Watch in 2018",
-                    url: "http://pega.com"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Pega's Don Schuerman previews customer experience questions and trends for the New Year."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Jan 18 2018"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "3 Reasons Your AI-Driven Customer Experiences are Falling Short",
-                    url: "http://pega.com"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Pega's Jeff Nicholson examines the state of AI in today's customer experiences."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Date"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "Article Headline",
-                    url: "http://pega.com"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Date"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "Article Headline",
-                    url: "http://pega.com"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Date"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "Article Headline",
-                    url: "http://pega.com"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Date"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "Article Headline",
-                    url: "http://pega.com"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Date"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "Article Headline",
-                    url: "http://pega.com"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Date"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "Article Headline",
-                    url: "http://pega.com"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: " June 5, 2018"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "Pegasystems Launches Pega Community to Empower Anyone to Create Better Software",
-                    url: "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-details/04-pages-100-d8-Press-and-Media-d8-press-details.html"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Jan 18 2018"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "A New CRM Bill of Rights for the Future Empowered Enterprise",
-                    url: "http://pega.com"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Jeff Nicholson of Pega provides insight into what companies should expect from CRM vendors."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Jan 18 2018"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "6 Customer Experience Trends to Watch in 2018",
-                    url: "http://pega.com"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Pega's Don Schuerman previews customer experience questions and trends for the New Year."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Jan 18 2018"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "3 Reasons Your AI-Driven Customer Experiences are Falling Short",
-                    url: "http://pega.com"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Pega's Jeff Nicholson examines the state of AI in today's customer experiences."
-                  }
-                ]
-              } only %}
-            {% endcell %}
-            {% cell "u-bolt-width-1/1" %}
-              {% include "@bolt-components-card/card.twig" with {
-                theme: "xlight",
-                contentItems: [
-                  {
-                    pattern: "eyebrow",
-                    text: "Jan 18 2018"
-                  },
-                  {
-                    pattern: "headline",
-                    tag: "h3",
-                    size: "large",
-                    text: "3 Reasons Your AI-Driven Customer Experiences are Falling Short",
-                    url: "http://pega.com"
-                  },
-                  {
-                    pattern: "text",
-                    text: "Pega's Jeff Nicholson examines the state of AI in today's customer experiences."
-                  }
-                ]
-              } only %}
-            {% endcell %}
+                    {
+                      pattern: "headline",
+                      tag: "h3",
+                      size: "large",
+                      text: "6 Customer Experience Trends to Watch in 2018",
+                      url: "http://pega.com"
+                    },
+                    {
+                      pattern: "text",
+                      text: "Pega's Don Schuerman previews customer experience questions and trends for the New Year."
+                    }
+                  ]
+                } only %}
+              {% endcell %}
+              {% cell "u-bolt-width-1/1" %}
+                {% include "@bolt-components-card/card.twig" with {
+                  theme: "xlight",
+                  contentItems: [
+                    {
+                      pattern: "eyebrow",
+                      text: "Jan 18 2018"
+                    },
+                    {
+                      pattern: "headline",
+                      tag: "h3",
+                      size: "large",
+                      text: "3 Reasons Your AI-Driven Customer Experiences are Falling Short",
+                      url: "http://pega.com"
+                    },
+                    {
+                      pattern: "text",
+                      text: "Pega's Jeff Nicholson examines the state of AI in today's customer experiences."
+                    }
+                  ]
+                } only %}
+              {% endcell %}
+              {% cell "u-bolt-width-1/1" %}
+                {% include "@bolt-components-card/card.twig" with {
+                  theme: "xlight",
+                  contentItems: [
+                    {
+                      pattern: "eyebrow",
+                      text: "Date"
+                    },
+                    {
+                      pattern: "headline",
+                      tag: "h3",
+                      size: "large",
+                      text: "Article Headline",
+                      url: "http://pega.com"
+                    },
+                    {
+                      pattern: "text",
+                      text: "Article summary. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent."
+                    }
+                  ]
+                } only %}
+              {% endcell %}
+            {% endfor %}
           {% endgrid %}
         {% endcell %}
       {% endgrid %}
-    </div>
-    <div class="u-bolt-margin-top-large u-bolt-margin-bottom-medium">
-      {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
-        {% cell "o-bolt-grid__cell" %}
-          {% include "@bolt-components-pagination/pagination.twig" with {
-            current: 5,
-            total: 10,
-            first: {
-              href: 'page-1-url'
-            },
-            previous: {
-              href: 'page-4-url'
-            },
-            pages: {
-              3: {
-                href: 'page-3-url'
+      <div class="u-bolt-margin-top-large u-bolt-margin-bottom-medium">
+        {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+          {% cell "o-bolt-grid__cell" %}
+            {% include "@bolt-components-pagination/pagination.twig" with {
+              current: 5,
+              total: 10,
+              first: {
+                href: 'page-1-url'
               },
-              4: {
+              previous: {
                 href: 'page-4-url'
               },
-              5: {
-                href: 'page-5-url'
+              pages: {
+                3: {
+                  href: 'page-3-url'
+                },
+                4: {
+                  href: 'page-4-url'
+                },
+                5: {
+                  href: 'page-5-url'
+                },
+                6: {
+                  href: 'page-6-url'
+                },
+                7: {
+                  href: 'page-7-url'
+                }
               },
-              6: {
+              next: {
                 href: 'page-6-url'
               },
-              7: {
-                href: 'page-7-url'
+              last: {
+                href: 'page-10-url'
               }
-            },
-            next: {
-              href: 'page-6-url'
-            },
-            last: {
-              href: 'page-10-url'
-            }
-          } only %}
-        {% endcell %}
-      {% endgrid %}
-    </div>
-  </div>
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      </div>
+    {% endblock %}
+  {% endembed %}
 
 {% endblock %}
