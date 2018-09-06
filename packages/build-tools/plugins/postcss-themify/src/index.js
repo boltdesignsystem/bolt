@@ -8,7 +8,7 @@ const { minifyCSS } = require('./helpers/css.util');
 
 const THEMIFY = 'bolt-themify';
 
-const BoltCache = require('../../../utils/cache');
+const BoltCache = require('@bolt/build-tools/utils/cache');
 
 let options;
 let output;
