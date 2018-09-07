@@ -12,51 +12,68 @@ $bolt-table-row-hover-background-color: rgba(bolt-color(gray, light), 0.125);
 $bolt-table-cell-text-color: bolt-color(black);
 $bolt-table-header-text-color: bolt-color(gray, dark);
 
-@include bolt-custom-element('bolt-table', block, medium);
+// Dev Notes
+// 1. These are needed to fix a subpixel issue where the shadow is bleeding out and causes a 1px scrolling overflow.
+// 2. This small width helps to keep the row header to be only as wide as the longest text within.
+
+
+bolt-table {
+  display: inline;
+
+  &:not(:last-child) {
+    .c-bolt-table {
+      @include bolt-margin-bottom(medium); // [1]
+    }
+  }
+}
 
 .c-bolt-table {
   @include bolt-horizontal-scroll;
 
-  background-image:
-    -webkit-linear-gradient(left, $bolt-table-background-color, rgba($bolt-table-background-color, 0)),
-    -webkit-linear-gradient(right, $bolt-table-background-color, rgba($bolt-table-background-color, 0)),
-    -webkit-linear-gradient(left, $bolt-table-overflow-shadow-color, rgba($bolt-table-overflow-shadow-color, 0)),
-    -webkit-linear-gradient(right, $bolt-table-overflow-shadow-color, rgba($bolt-table-overflow-shadow-color, 0));
-  background-color: $bolt-table-background-color;
-  background-attachment: local, local, scroll, scroll;
-  background-position: 0 0, 100% 0, 0 0, 100% 0;
+  display: inline-block;
+  vertical-align: top;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background:
+    -webkit-radial-gradient(
+      left,
+      ellipse,
+      rgba($bolt-table-cell-text-color, 0.25) 0%,
+      rgba($bolt-table-cell-text-color, 0) 75%
+    ) 0 center,
+    -webkit-radial-gradient(
+      right,
+      ellipse,
+      rgba($bolt-table-cell-text-color, 0.25) 0%,
+      rgba($bolt-table-cell-text-color, 0) 75%
+    ) 100% center;
+  background-size: .5em 100%, .5em 100%;
+  background-attachment: scroll, scroll;
   background-repeat: no-repeat;
-  background-size: 3rem 100%, 3rem 100%, 1.5rem 100%, 1.5rem 100%;
   -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
-.c-bolt-table__main {
-  @include bolt-margin(0);
-
-  table-layout: auto;
-  width: 100%;
-  border-top: $bolt-table-border;
-  transform: translate3d(0, 0, 0);
-}
-
-.c-bolt-table__head {
-  border-bottom: $bolt-table-border;
-  background-color: $bolt-table-head-background-color;
-}
-
+.c-bolt-table__head,
+.c-bolt-table__body,
 .c-bolt-table__foot {
-  border-top: $bolt-table-border;
+  background:
+    linear-gradient(
+      to right,
+      rgba($bolt-table-background-color, 1) 0.85em,
+      rgba($bolt-table-background-color, 0) 1em,
+      rgba($bolt-table-background-color, 0) calc(100% - 1em),
+      rgba($bolt-table-background-color, 1) calc(100% - 0.85em)
+    );
 }
 
 .c-bolt-table__row {
+  border: $bolt-table-border;
   transition: background-color $bolt-transition;
 
-  @at-root .c-bolt-table__main > *:not(.c-bolt-table__head) #{&} {
-    border-top: $bolt-table-border;
-
-    &:hover {
-      background-color: $bolt-table-row-hover-background-color;
-    }
+  @at-root .c-bolt-table > *:not(.c-bolt-table__head) #{&}:hover {
+    background-color: $bolt-table-row-hover-background-color;
   }
 }
 
@@ -64,19 +81,13 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
   text-align: left;
   vertical-align: baseline;
 
-  &:first-child{
-    border-left: $bolt-table-border;
-  }
-
-  &:last-child{
-    border-right: $bolt-table-border;
-  }
-
   @at-root .c-bolt-table__head #{&} {
     @include bolt-padding(small, squished);
+
+    background-color: $bolt-table-head-background-color;
   }
 
-  @at-root .c-bolt-table__main > *:not(.c-bolt-table__head) #{&} {
+  @at-root .c-bolt-table > *:not(.c-bolt-table__head) #{&} {
     @include bolt-padding(small);
   }
 
@@ -93,6 +104,11 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
   color: $bolt-table-header-text-color;
   text-transform: uppercase;
   white-space: nowrap;
+  background-color: $bolt-table-head-background-color;
+
+  @at-root .c-bolt-table > *:not(.c-bolt-table__head) #{&}:first-child {
+    border-right: $bolt-table-border;
+  }
 }
 
 .c-bolt-table__cell--data {
@@ -104,34 +120,23 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
 }
 
 .c-bolt-table__caption {
+  @include bolt-margin(0 -1px 0 0);  // [1]
   @include bolt-padding(small, squished);
   @include bolt-font-size(small);
 
   caption-side: bottom;
   color: $bolt-table-header-text-color;
   text-align: left;
-  border-top: $bolt-table-border;
   background-color: $bolt-table-background-color;
 }
 
 .c-bolt-table--numeric {
-  .c-bolt-table__body,
-  .c-bolt-table__foot {
-    .c-bolt-table__cell--header:first-child {
-      border-right: $bolt-table-border;
-      background-color: $bolt-table-head-background-color;
-    }
-
-    .c-bolt-table__cell {
-    }
-  }
-
   .c-bolt-table__cell {
     text-align: center;
     white-space: nowrap;
 
     &:first-child {
-      width: 5%;
+      width: 5%; // [2]
       text-align: right;
     }
   }
