@@ -113,11 +113,42 @@ class BoltCarousel extends BoltComponent() {
         }
       : false;
 
-    const breakpoints = this.prepareBreakpoints(props);
+    const breakpoints = this.prepareBreakpoints(this.props);
+
+    function needArrows(swiper, prevButton, nextButton, pagination) {
+      if (swiper.isBeginning && swiper.isEnd) {
+        prevButton.classList.add('u-bolt-visuallyhidden');
+        nextButton.classList.add('u-bolt-visuallyhidden');
+        pagination.classList.add('u-bolt-visuallyhidden');
+      } else {
+        prevButton.classList.remove('u-bolt-visuallyhidden');
+        nextButton.classList.remove('u-bolt-visuallyhidden');
+        pagination.classList.remove('u-bolt-visuallyhidden');
+      }
+    }
 
     this.boltCarousel = new Swiper(
       this.renderRoot.querySelector('.swiper-container'),
       {
+        init: false,
+        on: {
+          init: () => {
+            needArrows(
+              this.boltCarousel,
+              this.renderRoot.querySelector('.swiper-button-prev'),
+              this.renderRoot.querySelector('.swiper-button-next'),
+              this.renderRoot.querySelector('.swiper-pagination'),
+            );
+          },
+          resize: () => {
+            needArrows(
+              this.boltCarousel,
+              this.renderRoot.querySelector('.swiper-button-prev'),
+              this.renderRoot.querySelector('.swiper-button-next'),
+              this.renderRoot.querySelector('.swiper-pagination'),
+            );
+          },
+        },
         loop: this.props.loop,
         spaceBetween: this.props.space_between,
         slidesPerView: this.props.slides_per_view,
@@ -139,5 +170,7 @@ class BoltCarousel extends BoltComponent() {
         breakpoints,
       },
     );
+
+    this.boltCarousel.init();
   }
 }
