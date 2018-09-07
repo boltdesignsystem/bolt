@@ -12,28 +12,20 @@ $bolt-table-row-hover-background-color: rgba(bolt-color(gray, light), 0.125);
 $bolt-table-cell-text-color: bolt-color(black);
 $bolt-table-header-text-color: bolt-color(gray, dark);
 
-// Dev Notes
-// 1. These are needed to fix a subpixel issue where the shadow is bleeding out and causes a 1px scrolling overflow.
-// 2. This small width helps to keep the row header to be only as wide as the longest text within.
 
-
-bolt-table {
-  display: inline;
-
-  &:not(:last-child) {
-    .c-bolt-table {
-      @include bolt-margin-bottom(medium); // [1]
-    }
-  }
-}
+@include bolt-custom-element('bolt-table', block, medium);
 
 .c-bolt-table {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
   @include bolt-horizontal-scroll;
 
   display: inline-block;
   vertical-align: top;
   max-width: 100%;
   overflow-x: auto;
+  border-right: $bolt-table-border;
+  border-left: $bolt-table-border;
   border-collapse: collapse;
   border-spacing: 0;
   background:
@@ -61,15 +53,16 @@ bolt-table {
   background:
     linear-gradient(
       to right,
-      rgba($bolt-table-background-color, 1) 0.85em,
-      rgba($bolt-table-background-color, 0) 1em,
-      rgba($bolt-table-background-color, 0) calc(100% - 1em),
-      rgba($bolt-table-background-color, 1) calc(100% - 0.85em)
+      rgba($bolt-table-background-color, 1) 0.75em,
+      rgba($bolt-table-background-color, 0) 2em,
+      rgba($bolt-table-background-color, 0) calc(100% - 2em),
+      rgba($bolt-table-background-color, 1) calc(100% - 0.75em)
     );
 }
 
 .c-bolt-table__row {
-  border: $bolt-table-border;
+  border-top: $bolt-table-border;
+  border-bottom: $bolt-table-border;
   transition: background-color $bolt-transition;
 
   @at-root .c-bolt-table > *:not(.c-bolt-table__head) #{&}:hover {
@@ -78,6 +71,7 @@ bolt-table {
 }
 
 .c-bolt-table__cell {
+  width: 1%; // [Mai] This helps
   text-align: left;
   vertical-align: baseline;
 
@@ -119,25 +113,23 @@ bolt-table {
   color: $bolt-table-cell-text-color;
 }
 
-.c-bolt-table__caption {
-  @include bolt-margin(0 -1px 0 0);  // [1]
-  @include bolt-padding(small, squished);
-  @include bolt-font-size(small);
-
-  caption-side: bottom;
-  color: $bolt-table-header-text-color;
-  text-align: left;
-  background-color: $bolt-table-background-color;
-}
-
-.c-bolt-table--numeric {
+.c-bolt-table--format-numeric {
   .c-bolt-table__cell {
     text-align: center;
     white-space: nowrap;
+  }
 
-    &:first-child {
-      width: 5%; // [2]
-      text-align: right;
-    }
+  .c-bolt-table__cell--header:first-child {
+    text-align: right;
+  }
+}
+
+.c-bolt-table--side-headers-narrow {
+  .c-bolt-table__cell {
+    width: auto;
+  }
+
+  > *:not(.c-bolt-table__head) .c-bolt-table__cell--header:first-child {
+    width: 1%;
   }
 }

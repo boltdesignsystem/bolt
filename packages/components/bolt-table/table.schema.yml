@@ -12,3 +12,10 @@ properties:
     items:
       type: [string, object, array]
       description: Renderable content (i.e. a string, render array, or included pattern) for a single list item.
+  format:
+    type: string
+    description: Display either a regular table or a more complex numeric table.
+    default: regular
+    enum:
+      - regular
+      - numeric

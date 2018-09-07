@@ -10,27 +10,105 @@
 {% set inner_attributes = create_attribute({}) %}
 
 {# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
-{# {% set prop_options = schema.properties.prop.enum %} #}
+{% set format_options = schema.properties.format.enum %}
 
 {# Check that the component's current prop values are valid. if not, default to the schema default #}
-{# {% set prop = prop in prop_options ? prop : schema.properties.prop.default %} #}
+{% set format = format in format_options ? format : schema.properties.format.default %}
 
-{# Array of classes based on the defined + default props #}
-{% set classes = [
-  base_class,
-] %}
-
-{# table component's custom element wrapper #}
-{# {% if prop %} prop="{{ prop }}" {% endif %} #}
-
+{# Table component's custom element wrapper #}
 <div style="padding: 4rem;">
   <bolt-table
+    {% if format %} format="{{ format }}" {% endif %}
     {{ attributes }}
   >
-    <table class="{{ "#{base_class} #{base_class}--numeric" }}">
-      <caption class="{{ "#{base_class}__caption" }}">
-        Chicago Bulls Box Score.
-      </caption>
+    {# Array of classes based on the defined + default props #}
+    {% set classes = [
+      base_class,
+      format in format_options != "regular" ? "#{base_class}--format-#{format}",
+    ] %}
+
+    <table {{ inner_attributes.addClass(classes) }}>
+      <thead class="{{ "#{base_class}__head" }}">
+        <tr class="{{ "#{base_class}__row" }}">
+          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Column 1</th>
+          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Column 2</th>
+        </tr>
+      </thead>
+      <tbody class="{{ "#{base_class}__body" }}">
+        <tr class="{{ "#{base_class}__row" }}">
+          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 1. NunceuullamcorperorciQuisqueegetodioaclectusvestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate.</td>
+          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 2. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. InpellentesquefaucibusvestibulumNullaat nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate.</td>
+        </tr>
+        <tr class="{{ "#{base_class}__row" }}">
+          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 3.</td>
+          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 4.</td>
+        </tr>
+      </tbody>
+    </table>
+  </bolt-table>
+
+  <bolt-table>
+    <table class="{{ "#{base_class}" }}">
+      <thead class="{{ "#{base_class}__head" }}">
+        <tr class="{{ "#{base_class}__row" }}">
+          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Column 1</th>
+          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Column 2</th>
+        </tr>
+      </thead>
+      <tbody class="{{ "#{base_class}__body" }}">
+        <tr class="{{ "#{base_class}__row" }}">
+          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 1.</td>
+          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 2.</td>
+        </tr>
+        <tr class="{{ "#{base_class}__row" }}">
+          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 3.</td>
+          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 4.</td>
+        </tr>
+      </tbody>
+    </table>
+  </bolt-table>
+
+  <bolt-table>
+    <table class="{{ "#{base_class} #{base_class}--side-headers-narrow" }}">
+      <tbody class="{{ "#{base_class}__body" }}">
+        <tr class="{{ "#{base_class}__row" }}">
+          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Optimus Prime</th>
+          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">The awe-inspiring leader of the Autobot forces. Selfless and endlessly courageous, he is the complete opposite of his mortal enemy Megatron.</td>
+        </tr>
+        <tr class="{{ "#{base_class}__row" }}">
+          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Bumblebee</th>
+          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">One of Optimus Prime's most trusted lieutenants. Although he is not the strongest or most powerful of the Autobots, Bumblebee more than makes up for this with a bottomless well of luck, determination and bravery. He would gladly give his life to protect others and stop the Decepticons.</td>
+        </tr>
+      </tbody>
+    </table>
+  </bolt-table>
+
+  <bolt-table>
+    <table class="{{ "#{base_class}" }}">
+      <thead class="{{ "#{base_class}__head" }}">
+        <tr class="{{ "#{base_class}__row" }}">
+          <td class="{{ "#{base_class}__cell" }}"></td>
+          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Column 1</th>
+          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Column 2</th>
+        </tr>
+      </thead>
+      <tbody class="{{ "#{base_class}__body" }}">
+        <tr class="{{ "#{base_class}__row" }}">
+          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Row 1</th>
+          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 1. NunceuullamcorperorciQuisqueegetodioaclectusvestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate.</td>
+          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 2. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. InpellentesquefaucibusvestibulumNullaat nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate.</td>
+        </tr>
+        <tr class="{{ "#{base_class}__row" }}">
+          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Row 2</th>
+          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 3.</td>
+          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 4.</td>
+        </tr>
+      </tbody>
+    </table>
+  </bolt-table>
+
+  <bolt-table>
+    <table class="{{ "#{base_class} #{base_class}--format-numeric" }}">
       <thead class="{{ "#{base_class}__head" }}">
         <tr class="{{ "#{base_class}__row" }}">
           <td class="{{ "#{base_class}__cell" }}"></td>
@@ -73,81 +151,6 @@
           <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">3</td>
         </tr>
       </tfoot>
-    </table>
-  </bolt-table>
-
-  <bolt-table
-    {{ attributes }}
-  >
-    <table class="{{ "#{base_class}" }}">
-      <caption class="{{ "#{base_class}__caption" }}">
-        Table caption explaining what the table is.
-      </caption>
-      <thead class="{{ "#{base_class}__head" }}">
-        <tr class="{{ "#{base_class}__row" }}">
-          <td class="{{ "#{base_class}__cell" }}"></td>
-          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Column 1</th>
-          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Column 2</th>
-        </tr>
-      </thead>
-      <tbody class="{{ "#{base_class}__body" }}">
-        <tr class="{{ "#{base_class}__row" }}">
-          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Row 1</th>
-          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 1. NunceuullamcorperorciQuisqueegetodioaclectusvestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate.</td>
-          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 2. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. InpellentesquefaucibusvestibulumNullaat nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate.</td>
-        </tr>
-        <tr class="{{ "#{base_class}__row" }}">
-          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Row 2</th>
-          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 3.</td>
-          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 4.</td>
-        </tr>
-      </tbody>
-    </table>
-  </bolt-table>
-
-  <bolt-table
-    {{ attributes }}
-  >
-    <table class="{{ "#{base_class}" }}">
-      <caption class="{{ "#{base_class}__caption" }}">
-        Autobots Index.
-      </caption>
-      <tbody class="{{ "#{base_class}__body" }}">
-        <tr class="{{ "#{base_class}__row" }}">
-          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Optimus Prime</th>
-          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">The awe-inspiring leader of the Autobot forces. Selfless and endlessly courageous, he is the complete opposite of his mortal enemy Megatron.</td>
-        </tr>
-        <tr class="{{ "#{base_class}__row" }}">
-          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Bumblebee</th>
-          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">One of Optimus Prime's most trusted lieutenants. Although he is not the strongest or most powerful of the Autobots, Bumblebee more than makes up for this with a bottomless well of luck, determination and bravery. He would gladly give his life to protect others and stop the Decepticons.</td>
-        </tr>
-      </tbody>
-    </table>
-  </bolt-table>
-
-  <bolt-table
-    {{ attributes }}
-  >
-    <table {{ inner_attributes.addClass(classes) }}>
-      <caption class="{{ "#{base_class}__caption" }}">
-        Table caption explaining what the table is.
-      </caption>
-      <thead class="{{ "#{base_class}__head" }}">
-        <tr class="{{ "#{base_class}__row" }}">
-          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Column 1</th>
-          <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">Column 2</th>
-        </tr>
-      </thead>
-      <tbody class="{{ "#{base_class}__body" }}">
-        <tr class="{{ "#{base_class}__row" }}">
-          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 1. NunceuullamcorperorciQuisqueegetodioaclectusvestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate.</td>
-          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 2. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. InpellentesquefaucibusvestibulumNullaat nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate.</td>
-        </tr>
-        <tr class="{{ "#{base_class}__row" }}">
-          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 3.</td>
-          <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">Cell 4.</td>
-        </tr>
-      </tbody>
     </table>
   </bolt-table>
 </div>
