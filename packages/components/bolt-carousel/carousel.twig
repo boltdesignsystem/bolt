@@ -36,23 +36,6 @@
   "swiper-slide"
 ] %}
 
-{% set pagination_classes = [
-  "c-bolt-carousel__pagination",
-  "swiper-pagination"
-] %}
-
-{% set button_prev_classes = [
-  "c-bolt-carousel__navigation",
-  "c-bolt-carousel__navigation--prev",
-  "swiper-button-prev"
-] %}
-
-{% set button_next_classes = [
-  "c-bolt-carousel__navigation",
-  "c-bolt-carousel__navigation--next",
-  "swiper-button-next"
-] %}
-
 
  <bolt-carousel
     {% if loop %} loop="{{ loop }}" {% endif %}
@@ -74,9 +57,5 @@
         </bolt-carousel-item>
       {% endfor %}
     </replace-with-children>
-
-    <replace-with-children class="{{ pagination_classes|join(" ") }}"></replace-with-children>
-    <replace-with-children class="{{ button_prev_classes|join(" ") }}"></replace-with-children>
-    <replace-with-children class="{{ button_next_classes|join(" ") }}"></replace-with-children>
   </replace-with-children>
 </bolt-carousel>

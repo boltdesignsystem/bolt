@@ -113,8 +113,6 @@ class BoltCarousel extends BoltComponent() {
         }
       : false;
 
-    console.log(autoplay);
-
     const breakpoints = this.prepareBreakpoints(props);
 
     this.boltCarousel = new Swiper(
