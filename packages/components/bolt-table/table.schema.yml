@@ -6,12 +6,29 @@ properties:
   attributes:
     type: object
     description: A Drupal-style attributes object with extra attributes to append to this component.
-  items:
+  headers:
+    type: object
+    top:
+      cells:
+        type: [string, object, array]
+    side:
+      width:
+        type: string
+        description: Allows the row header column to be flexible in width or fixed to the widest text.
+        default: auto
+        enum:
+          - auto
+          - fixed
+      cells:
+        type: [string, object, array]
+  rows:
     type: array
-    description: All items can be simple text or `items`.
-    items:
+    cells:
       type: [string, object, array]
-      description: Renderable content (i.e. a string, render array, or included pattern) for a single list item.
+  footer:
+    type: object
+    cells:
+      type: [string, object, array]
   format:
     type: string
     description: Display either a regular table or a more complex numeric table.

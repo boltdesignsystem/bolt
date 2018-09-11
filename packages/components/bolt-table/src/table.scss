@@ -119,12 +119,12 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
     white-space: nowrap;
   }
 
-  .c-bolt-table__cell--header:first-child {
+  > *:not(.c-bolt-table__head) .c-bolt-table__cell--header:first-child {
     text-align: right;
   }
 }
 
-.c-bolt-table--side-headers-narrow {
+.c-bolt-table--side-headers-width-fixed {
   .c-bolt-table__cell {
     width: auto;
   }

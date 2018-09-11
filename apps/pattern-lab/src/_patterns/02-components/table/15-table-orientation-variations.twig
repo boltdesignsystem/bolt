@@ -1,0 +1,55 @@
+<h3>Horizontal</h3>
+{% include "@bolt-components-table/table.twig" with {
+  format: "regular",
+  headers: {
+    side: {
+      width: "fixed",
+      cells: [
+        "Optimus Prime",
+        "Bumblebee",
+      ]
+    }
+  },
+  rows: [
+    {
+      cells: [
+        "The awe-inspiring leader of the Autobot forces. Selfless and endlessly courageous, he is the complete opposite of his mortal enemy Megatron.",
+      ]
+    },
+    {
+      cells: [
+        "One of Optimus Prime's most trusted lieutenants. Although he is not the strongest or most powerful of the Autobots, Bumblebee more than makes up for this with a bottomless well of luck, determination and bravery. He would gladly give his life to protect others and stop the Decepticons.",
+      ]
+    },
+  ],
+} only %}
+
+<h3>Vertical</h3>
+{% include "@bolt-components-table/table.twig" with {
+  format: "regular",
+  headers: {
+    top: {
+      cells: [
+        "Name",
+        "Description",
+        "Team",
+      ]
+    }
+  },
+  rows: [
+    {
+      cells: [
+        "Optimus Prime",
+        "The awe-inspiring leader of the Autobot forces. Selfless and endlessly courageous, he is the complete opposite of his mortal enemy Megatron.",
+        "Autobots",
+      ]
+    },
+    {
+      cells: [
+        "Bumblebee",
+        "One of Optimus Prime's most trusted lieutenants. Although he is not the strongest or most powerful of the Autobots, Bumblebee more than makes up for this with a bottomless well of luck, determination and bravery. He would gladly give his life to protect others and stop the Decepticons.",
+        "Autobots",
+      ]
+    },
+  ],
+} only %}
