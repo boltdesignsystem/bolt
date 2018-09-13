@@ -39,7 +39,19 @@
             <td class="{{ "#{base_class}__cell" }}"></td>
           {% endif %}
           {% for cell in top_headers.cells %}
-            <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">{{ cell }}</th>
+            {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
+            {% set cell_classes = [
+                "#{base_class}__cell",
+                "#{base_class}__cell--header",
+              ]
+            %}
+            <th {{ cell_attributes.addClass(cell_classes) }}>
+              {% if cell is iterable %}
+                {{ cell.content|join("") }}
+              {% else %}
+                {{ cell }}
+              {% endif %}
+            </th>
           {% endfor %}
         </tr>
       </thead>
@@ -50,18 +62,25 @@
           <tr class="{{ "#{base_class}__row" }}">
             {% if side_headers.cells %}
               {% set index = loop.index0 %}
-              <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">{{ side_headers.cells[index] }}</th>
+              <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">
+                {% if side_headers.cells[index] is iterable %}
+                  {{ side_headers.cells[index].content|join("") }}
+                {% else %}
+                  {{ side_headers.cells[index] }}
+                {% endif %}
+              </th>
             {% endif %}
             {% for cell in row.cells %}
-              {% set cell_attributes = create_attribute(cell.attributes | default({}) | merge({
-                class: [
+              {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
+              {%
+                set cell_classes = [
                   "#{base_class}__cell",
                   "#{base_class}__cell--data",
                 ]
-              })) %}
-              <td {{ cell_attributes }}>
+              %}
+              <td {{ cell_attributes.addClass(cell_classes) }}>
                 {% if cell is iterable %}
-                  {{ cell.content|join('') }}
+                  {{ cell.content|join("") }}
                 {% else %}
                   {{ cell }}
                 {% endif %}
@@ -77,12 +96,31 @@
           {% if side_headers.cells %}
             {% for cell in side_headers.cells %}
               {% if loop.last %}
-                <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">{{ cell }}</th>
+                <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">
+                  {% if cell is iterable %}
+                    {{ cell.content|join("") }}
+                  {% else %}
+                    {{ cell }}
+                  {% endif %}
+                </th>
               {% endif %}
             {% endfor %}
           {% endif %}
           {% for cell in footer.cells %}
-            <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">{{ cell }}</td>
+            {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
+            {%
+              set cell_classes = [
+                "#{base_class}__cell",
+                "#{base_class}__cell--data",
+              ]
+            %}
+            <td {{ cell_attributes.addClass(cell_classes) }}>
+              {% if cell is iterable %}
+                {{ cell.content|join("") }}
+              {% else %}
+                {{ cell }}
+              {% endif %}
+            </td>
           {% endfor %}
         </tr>
       </tfoot>

@@ -1,5 +1,6 @@
 {% set schema = bolt.data.components["@bolt-components-table"].schema %}
 
+<p><mark>Numeric format is recommended for a table with numbers only, such as box scores.</mark></p>
 {% for format in schema.properties.format.enum %}
   <h3>{{ format|capitalize }}</h3>
   {% include "@bolt-components-table/table.twig" with {
@@ -36,18 +37,11 @@
       },
       {
         cells: [
-          {
-            content: "21",
-            attributes: {
-              colspan: 2,
-              class: [
-                "js-bolt-table-toggle"
-              ]
-            }
-          },
+          "21",
           "15",
           "10",
           "3",
+          "4",
         ]
       },
       {

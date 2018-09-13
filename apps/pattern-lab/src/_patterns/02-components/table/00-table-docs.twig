@@ -1,22 +1,54 @@
 {% set usage %}{% verbatim %}
 {% include "@bolt-components-table/table.twig" with {
-  items: [
-    "Item 1",
-    include("@bolt-components-link/link.twig", {
-      text: "Item 2",
-      url: "#!",
-    }),
-    include("@bolt-components-chip/chip.twig", {
-      text: "Item 3",
-      url: "#!",
-    }),
-    include("@bolt-components-button/button.twig", {
-      text: "Item 4",
-      url: "#!",
-      size: "small",
-    }),
-    "Item 5",
-  ]
+  format: "regular",
+  headers: {
+    top: {
+      cells: [
+        "Column 1",
+        "Column 2",
+        "Column 3",
+      ]
+    },
+    side: {
+      width: "fixed",
+      cells: [
+        "Row 1",
+        "Row 2",
+        "Row 3",
+        "Footer",
+      ]
+    }
+  },
+  rows: [
+    {
+      cells: [
+        "R1C1",
+        "R1C2",
+        "R1C3",
+      ]
+    },
+    {
+      cells: [
+        "R2C1",
+        "R2C2",
+        "R2C3",
+      ]
+    },
+    {
+      cells: [
+        "R3C1",
+        "R3C2",
+        "R3C3",
+      ]
+    }
+  ],
+  footer: {
+    cells: [
+      "FC1",
+      "FC2",
+      "FC3",
+    ]
+  }
 } only %}
 {% endverbatim %}{% endset %}
 

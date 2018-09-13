@@ -1,0 +1,47 @@
+{% set schema = bolt.data.components["@bolt-components-table"].schema %}
+
+{% for side_headers_width in schema.properties.headers.side.width.enum %}
+  <h3>{{ side_headers_width|capitalize }} side headers width</h3>
+  {% include "@bolt-components-table/table.twig" with {
+    format: "regular",
+    headers: {
+      side: {
+        width: side_headers_width,
+        cells: [
+          "Name",
+          "Type",
+          "Value(s)",
+          "Description",
+          "Default",
+        ]
+      }
+    },
+    rows: [
+      {
+        cells: [
+          "display",
+        ]
+      },
+      {
+        cells: [
+          "string",
+        ]
+      },
+      {
+        cells: [
+          "inline, block",
+        ]
+      },
+      {
+        cells: [
+          "Display either an inline list of items or a block (stacked) list of items. Responsive options are also available for transforming from block to inline at specific breakpoints.",
+        ]
+      },
+      {
+        cells: [
+          "block",
+        ]
+      },
+    ],
+  } only %}
+{% endfor %}
