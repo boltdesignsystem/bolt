@@ -53,7 +53,19 @@
               <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">{{ side_headers.cells[index] }}</th>
             {% endif %}
             {% for cell in row.cells %}
-              <td class="{{ "#{base_class}__cell #{base_class}__cell--data" }}">{{ cell }}</td>
+              {% set cell_attributes = create_attribute(cell.attributes | default({}) | merge({
+                class: [
+                  "#{base_class}__cell",
+                  "#{base_class}__cell--data",
+                ]
+              })) %}
+              <td {{ cell_attributes }}>
+                {% if cell is iterable %}
+                  {{ cell.content|join('') }}
+                {% else %}
+                  {{ cell }}
+                {% endif %}
+              </td>
             {% endfor %}
           </tr>
         {% endfor %}
