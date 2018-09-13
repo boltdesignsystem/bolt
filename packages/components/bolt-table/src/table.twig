@@ -14,24 +14,24 @@
 
 {# Check that the component's current prop values are valid. if not, default to the schema default #}
 {% set format = format in format_options ? format : schema.properties.format.default %}
-{% set side_headers_width = headers.side.width %}
+
+{% set top_headers = headers.top %}
+{% set side_headers = headers.side %}
 
 {# Table component's custom element wrapper #}
 <bolt-table
   {% if format %} format="{{ format }}" {% endif %}
+  {% if side_headers.width %} side-headers-width="{{ side_headers.width }}" {% endif %}
   {{ attributes }}
 >
   {# Array of classes based on the defined + default props #}
   {% set classes = [
     base_class,
     format != "regular" ? "#{base_class}--format-#{format}",
-    side_headers_width != "auto" ? "#{base_class}--side-headers-width-#{side_headers_width}",
+    side_headers.width != "auto" ? "#{base_class}--side-headers-width-#{side_headers.width}",
   ] %}
 
   <table {{ inner_attributes.addClass(classes) }}>
-    {% set top_headers = headers.top %}
-    {% set side_headers = headers.side %}
-
     {% if top_headers %}
       <thead class="{{ "#{base_class}__head" }}">
         <tr class="{{ "#{base_class}__row" }}">
@@ -45,7 +45,7 @@
                 "#{base_class}__cell--header",
               ]
             %}
-            <th {{ cell_attributes.addClass(cell_classes) }}>
+            <th {{ cell_attributes.addClass(cell_classes) }} scope="col">
               {% if cell is iterable %}
                 {{ cell.content|join("") }}
               {% else %}
@@ -62,7 +62,7 @@
           <tr class="{{ "#{base_class}__row" }}">
             {% if side_headers.cells %}
               {% set index = loop.index0 %}
-              <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">
+              <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}" scope="row">
                 {% if side_headers.cells[index] is iterable %}
                   {{ side_headers.cells[index].content|join("") }}
                 {% else %}
