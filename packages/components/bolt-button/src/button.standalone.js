@@ -104,16 +104,25 @@ class BoltButton extends withHyperHtml() {
     let buttonElement;
     const self = this;
 
+    const itemClasses = cx({
+      'c-bolt-button__item': true,
+      'u-bolt-visuallyhidden': this.props.iconOnly,
+    });
+
+    const iconClasses = cx({
+      'c-bolt-button__icon': true,
+    });
+
     const slotMarkup = name => {
       if (name in this.slots) {
         switch (name) {
           case 'before':
           case 'after':
             return wire(this)`
-              <span class="c-bolt-button__icon">${this.slot(name)}</span>`;
+              <span class="${iconClasses}">${this.slot(name)}</span>`;
           default:
             return wire(this)`
-              <span class="c-bolt-button__item">${this.slot('default')}</span>`;
+              <span class="${itemClasses}">${this.slot('default')}</span>`;
         }
       }
     };
