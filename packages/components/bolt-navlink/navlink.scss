@@ -20,8 +20,15 @@ bolt-navlink {
 
 .c-bolt-navlink {
   @include bolt-padding(small, squished);
+  @include bolt-padding-left(xsmall);
+  @include bolt-padding-right(xsmall);
+
   @include bolt-font-size(small);
   @include bolt-font-weight(semibold);
+
+  @include bolt-mq(small){
+    @include bolt-padding(small, squished);
+  }
 
   position: relative;
   opacity: 0.9;

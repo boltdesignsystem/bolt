@@ -185,16 +185,26 @@ class BoltNavPriority extends withHyperHtml() {
     this.isOpen = true;
     this.setAttribute('open', true);
     this.containerTabs.classList.add('c-bolt-nav-priority--show-dropdown');
+    this.classList.add('is-opening');
     this.dropdownButton.classList.add('is-active');
     this.dropdownButton.setAttribute('aria-expanded', true);
+
+    window.setTimeout(() => {
+      this.classList.remove('is-opening');
+    }, 500);
   }
 
   close() {
     this.isOpen = false;
     this.removeAttribute('open');
+    this.classList.add('is-closing');
     this.containerTabs.classList.remove('c-bolt-nav-priority--show-dropdown');
     this.dropdownButton.classList.remove('is-active');
     this.dropdownButton.setAttribute('aria-expanded', false);
+
+    window.setTimeout(() => {
+      this.classList.remove('is-closing');
+    }, 500);
   }
 
   get isReady() {

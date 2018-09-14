@@ -13,7 +13,13 @@ bolt-navbar {
   @include bolt-margin-top(0); // workaround to -.5px in bolt-full-bleed
   @include bolt-margin-bottom(0); // workaround to -.5px in bolt-full-bleed
   @supports (--css: variables) {
-    --bolt-vspacing: #{$bolt-navbar-vspacing-small};
+    --bolt-vspacing: #{$bolt-navbar-vspacing-xsmall};
+  }
+
+  @include bolt-mq(small){
+    @supports (--css: variables) {
+      --bolt-vspacing: #{$bolt-navbar-vspacing-small};
+    }
   }
 
   display: block;
@@ -68,7 +74,7 @@ bolt-navbar {
       @include bolt-padding-right(0);
       flex-direction: row;
       display: grid;
-      grid-template-columns: bolt-spacing(medium) auto 1fr bolt-spacing(medium);
+      grid-template-columns: bolt-spacing(small) auto 1fr bolt-spacing(medium);
       grid-template-rows: 1fr auto;
       align-content: center;
       justify-content: center;
@@ -102,6 +108,10 @@ bolt-navbar {
     }
   }
 
+  &--full {
+    @include bolt-full-bleed;
+  }
+
   &--small {
     > * {
       @include bolt-padding-bottom($bolt-navbar-vspacing-xsmall); /* [1] */
@@ -115,11 +125,11 @@ bolt-navbar {
 
 // Nav title
 .c-bolt-navbar__title {
-  @include bolt-margin-right(medium); // Maintain space between items
+  @include bolt-margin-right(small); // Maintain space between items
   padding-bottom: $bolt-navbar-vspacing-small;
   align-self: center;
   display: flex;
-  flex-shrink: 0.1; // make sure the title can wrap to multiple lines and shrink if needed, but only when absolutely necessary (prevents jumps when resizing)
+  flex-shrink: 1; // make sure the title can wrap to multiple lines and shrink if needed, but only when absolutely necessary (prevents jumps when resizing)
   flex-wrap: nowrap;
   align-items: center;
   color: bolt-theme(headline);
@@ -127,6 +137,10 @@ bolt-navbar {
 
   @supports (--css: variables) {
     padding-bottom: var(--bolt-vspacing, $bolt-navbar-vspacing-small);
+  }
+
+  @include bolt-mq(medium){
+    @include bolt-margin-right(medium); // Maintain space between items
   }
 
   &:only-child {
