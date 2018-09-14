@@ -292,42 +292,5 @@ bolt-nav-priority {
 //   }
 // }
 
-// .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item {
-//   transform: var(--bolt-nav-priority-item-transform, none);
-//   opacity: var(--bolt-nav-priority-item-opacity, 1);
-//   transition: opacity 0.35s ease-out, transform 0.35s ease-out; // transition:
 
-//   // .c-bolt-dropdown--collapse\@small & {
-//   //   @include  bolt-mq(small) {
-//   //     opacity: 1;
-//   //     transform: translateY(0);
-//   //   }
-//   // }
-// }
 
-// @for $quantity from 1 through 12 {
-//   $time: 0;
-
-//   @for $i from $quantity through 1 {
-//     $time: $time + 50;
-//     .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item:nth-last-child(n+#{$quantity}),
-//     .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item:nth-last-child(n+#{$quantity}) ~ .c-bolt-nav-priority__item:nth-child(#{$i}) {
-//       transition-delay: $time + ms;
-//     }
-//   }
-// }
-//   // $time: $time + 50;
-//   //   transition-delay: $time + ms;
-//   // }
-// // }
-
-// .c-bolt-nav-priority--show-dropdown .c-bolt-nav-priority__item {
-// // .c-bolt-nav-priority--show-dropdown+.c-bolt-dropdown .c-bolt-nav-priority__item,
-// // .c-bolt-dropdown__content--opened .c-bolt-nav-priority__item {
-//   // opacity: 1;
-//   // transform: none;
-//   @include bolt-css-vars((
-//     --bolt-nav-priority-item-opacity: 1,
-//     --bolt-nav-priority-item-transform: none,
-//   ));
-// }
