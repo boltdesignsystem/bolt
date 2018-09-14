@@ -11,7 +11,7 @@ const config = {
   env: 'static',
   startPath: '/',
   buildDir: '../../www/build/',
-  srcDir: './content',
+  srcDir: './pages',
   wwwDir: '../../www',
   extraTwigNamespaces: {
     'bolt-assets': {
