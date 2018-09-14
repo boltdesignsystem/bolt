@@ -17,7 +17,7 @@ bolt-navbar {
     --bolt-vspacing: #{$bolt-navbar-vspacing-xsmall};
   }
 
-  @include bolt-mq(small){
+  @include bolt-mq($bolt-navbar-xsmall-bp){
     @supports (--css: variables) {
       --bolt-vspacing: #{$bolt-navbar-vspacing-small};
     }
@@ -38,6 +38,12 @@ bolt-navbar {
   margin: 0 auto;
   @include bolt-padding-left(small);
   @include bolt-padding-right(small);
+
+  @include bolt-mq($bolt-navbar-xsmall-bp){
+    @include bolt-padding-left(medium);
+    @include bolt-padding-right(medium);
+  }
+
   @include bolt-padding-top($bolt-navbar-vspacing-small);
 
   @supports (--css: variables) {
@@ -45,7 +51,7 @@ bolt-navbar {
   }
 
   @include bolt-if-browser-supports-display-contents {
-    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+    @media screen and (max-width: $bolt-navbar-xsmall-bp) {
       @include bolt-padding-top(0);
     }
   }
@@ -75,7 +81,7 @@ bolt-navbar {
   }
 
   @include bolt-if-browser-supports-display-contents {
-    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+    @media screen and (max-width: $bolt-navbar-xsmall-bp) {
       @include bolt-padding-left(0);
       @include bolt-padding-right(0);
       flex-direction: row;
@@ -154,7 +160,7 @@ bolt-navbar {
   }
 
   @include bolt-if-browser-supports-display-contents {
-    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+    @media screen and (max-width: $bolt-navbar-xsmall-bp) {
       @include bolt-padding-top($bolt-navbar-vspacing-small);
       grid-column: 2 / span 1;
 
