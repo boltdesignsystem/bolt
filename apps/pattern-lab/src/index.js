@@ -1,6 +1,13 @@
 import 'core-js/modules/es6.string.starts-with';
 import 'iframe-resizer/js/iframeResizer.contentWindow.min.js';
 
+// automatically remove the min-height default set to the body element when viewing PL pages from inside an iframe on the docs site.
+window.iFrameResizer = {
+  readyCallback() {
+    document.body.setAttribute('style', 'min-height: 0;');
+  },
+};
+
 // here if you need pl only JS
 document.addEventListener('DOMContentLoaded', () => {
   /**
