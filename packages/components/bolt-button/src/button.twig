@@ -61,6 +61,7 @@
   style in styleOptions ? "c-bolt-button--#{style}" : "c-bolt-button--#{schema.properties.style.default}",
   transform in transformOptions and transform != "none" ? "c-bolt-button--#{transform}": "",
   align in alignOptions ? baseClass ~ "--" ~ align : "",
+  iconOnly ? "c-bolt-button--icon-only": "",
 ] %}
 
 {% if disabled %}
