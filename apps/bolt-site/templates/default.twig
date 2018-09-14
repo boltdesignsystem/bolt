@@ -1,17 +1,142 @@
-{% set content %}
+{% extends "base-template.twig" %}
 
-  {% include "@bolt-components-headline/headline.twig" with {
-    text: page.meta.title,
-    size: "xxxlarge",
-    tag: "h2"
-  } %}
+{% set urlChunks = page.url | split('/') %}
+{% set currentSection = urlChunks | length >= 1 ? urlChunks|first : '' %}
+{% set currentUrl = page.url %}
 
-  <article>
-    {{ page.body|raw }}
-  </article>
+{% if page.url starts with currentSection %}
+  {% set nestedPages = [] %}
+  {% for page in site.nestedPages if page.url starts with currentSection %}
+    {% set nestedPages = page.children %}
+  {% endfor %}
+{% endif %}
+{% set hasSidebar = nestedPages or sidebar %}
 
-{% endset %}
+{% block site_body %}
+  {# <header class="c-bds-layout__header {{ currentUrl != 'index.html' ? 't-bolt-dark' : 't-bolt-xdark' }}">
+    <h1 class="c-bds-layout__title c-bds-layout__title--main u-bolt-margin-right-auto@small">
+      <a class="" href="/">
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "energy",
+        size: "medium",
+      }%} <span>BOLT DESIGN SYSTEM</span>
+      </a>
+    </h1>
+    <nav class="c-bds-layout__header__nav">
 
-{% include "template-doc.twig" with {
-  content: content,
-} %}
+      {% for page in site.pages if page.meta.nav == 'main' %}
+        {% set isActive = currentUrl == page.url %}
+        {% set isActivePath = page.url starts with currentSection %}
+        <a href="/{{ page.url }}" class="{% if isActive %}active{% endif %} {% if isActivePath %}active-path{% endif %} c-bds-layout__header__link">{{ page.meta.title }}</a>
+        {% if loop.first %}
+          <a href="/pattern-lab/index.html" target="_blank" class="c-bds-layout__header__link">Pattern Lab</a>
+        {% endif %}
+      {% endfor %}
+    </nav>
+  </header> #}
+
+  {% include "_site-header.twig" %}
+
+   {% if hasSidebar %}
+    <aside class="c-bds-layout__sidebar" id="menu">
+      {% if nestedPages %}
+        {% include '@bolt/off-canvas-nav/off-canvas-nav.twig' with {
+          nestedPages: nestedPages,
+        } %}
+      {% endif %}
+    </aside>
+
+    {% if 'docs/' in currentUrl %}
+      {% include '@bolt/hamburger-button/hamburger-button.twig' %}
+    {% endif %}
+
+
+    <a href="#" class="c-bds-layout__sidebar__overlay"></a>
+  {% endif %}
+  
+  <div class="c-bds-layout__content c-bolt-site__content {% if hasSidebar %} c-bds-layout__content--has-sidebar{% endif %} {% if currentUrl == 'index.html' %}c-bolt-site__content--middle {% endif %}">
+
+    <div class="c-bds-layout__wrapper">
+      <main class="c-bds-layout__main {{ currentUrl != 'index.html' ? 't-bolt-xlight' }}">
+
+        {% set content %}
+          <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--small o-bolt-grid--matrix o-bolt-grid--rev o-bolt-grid--bottom u-bolt-margin-bottom-medium">
+            <div class="o-bolt-grid__cell u-bolt-text-align-right u-bolt-margin-left-auto">
+              {% include "@bolt-components-link/link.twig" with {
+                url: "https://github.com/bolt-design-system/bolt/blob/" ~ gitBranch ~ "/apps/bolt-site/" ~  page.srcPath,
+                text: "Edit",
+                icon: {
+                  name: "pencil"
+                },
+                attributes: {
+                  class: [
+                    "u-bolt-text-decoration-none",
+                  ]
+                }
+              } only %}
+            </div>
+
+            <div class="o-bolt-grid__cell u-bolt-flex-grow">
+              {% include "@bolt-components-headline/headline.twig" with {
+                text: page.meta.title,
+                size: "xxxlarge",
+                tag: "h2"
+              } %}
+            </div>
+          </div>
+
+          
+          
+          <article>
+            {{ page.body|raw }}
+          </article>
+        {% endset %}
+      
+        {% include "@bolt-components-band/band.twig" with {
+          content: content,
+          fullBleed: false,
+          theme: currentUrl == 'index.html' ? 'none' : 'xlight'
+        } only %}
+      </main>
+    </div>
+
+    <footer role="contentinfo" class="c-bds-layout__footer c-bolt-site__footer">
+      {% embed "@bolt-components-band/band.twig" with {
+        theme: "xlight",
+        size: "xsmall",
+        fullBleed: false,
+        page: page,
+      } only %}
+        {% block band_content %}
+          {% set gitBranch = 'master' %}
+
+          <nav>
+            <ul class="o-bolt-bare-list" style="flex-flow: row wrap; display: flex; justify-content: space-between; align-items: center;">
+              <li class="u-bolt-margin-right@small">
+                {% include "@bolt-components-headline/text.twig" with {
+                  size: "xsmall",
+                  weight: "bold",
+                  tag: "p",
+                  text: "Copyright &copy;" ~ "now"|date("Y") ~ " Pegasystems, Inc."
+                } only %}
+              </li>
+
+              {# <li>
+                {% include "@bolt-components-headline/text.twig" with {
+                  size: "xsmall",
+                  weight: "bold",
+                  tag: "p",
+                  text: include("@bolt-components-link/link.twig", {
+                  url: "https://github.com/bolt-design-system/bolt/blob/" ~ gitBranch ~ "/apps/bolt-site/" ~  page.srcPath,
+                  text: "Edit this page on GitHub"}, with_context = false)
+                } only %}
+              </li> #}
+            </ul>
+          </nav>
+
+        {% endblock %}
+      {% endembed %}
+    </footer>
+  </div>
+
+{% endblock %}

@@ -1,3 +1,5 @@
+{% extends "default-redesign.twig" %}
+
 {% set content %}
   {% embed "@bolt/band.twig" with {
     size: "none",
@@ -16,15 +18,17 @@
         "display: flex;",
         "align-items: center;",
         "justify-content: center;",
+        "flex-grow: 1;",
         "--criterion: 0;",
         "--multiplier: 4;",
+        "overflow: hidden;",
         "overflow: hidden;"
       ]
     }
   } only %}
     {% block band_content %}
 
-    	{% include "./partials/_homepage-shapes.twig" %}
+    	{% include "@bolt/components/animated-shapes/animated-shapes.twig" %}
 
       <svg style="display: none;" width="1" height="1" xmlns="http://www.w3.org/2000/svg">
         <symbol id="bolt-logo" viewBox="0 0 666 183">
@@ -37,15 +41,7 @@
           {% cell 'u-bolt-width-1/1 u-bolt-width-7/8@small u-bolt-width-5/7@medium u-bolt-width-4/7@large u-bolt-text-align-center' %}
             
             <div class="u-bolt-margin-left-auto u-bolt-margin-right-auto">
-              <div class="c-bds-logo">
-                <div class="c-bds-logo__inner">
-                  {% include '@bolt-components-image/image.twig' with {
-                    src: "/images/bolt-logo.svg",
-                    alt: "Bolt Design System logo",
-                    lazyload: false,
-                  } only %}
-                </div>
-              </div>
+              {% include "@bolt/components/animated-logo/animated-logo.twig" %}
             </div>
   
             {% include "@bolt/subheadline.twig" with {
@@ -58,25 +54,16 @@
               {% include "@bolt-components-button-group/button-group.twig" with {
                 buttons: [
                   {
-                    tag: "a",
-                    text: "Get Started",
+                    text: "View The Components",
                     url: "/pattern-lab/index.html",
                     width: "full",
                     style: "primary"
                   },
                   {
-                    tag: "a",
-                    text: "View on GitHub",
-                    url: "https://github.com/bolt-design-system/bolt",
+                    text: "Getting Started Guide",
+                    url: "/docs/",
                     width: "full",
-                    style: "secondary",
-                    icon: {
-                      name: "external-link",
-                      position: "after"
-                    },
-                    attributes: {
-                      target: "_blank"
-                    }
+                    style: "secondary"
                   }
                 ],
                 full: true,
@@ -100,8 +87,3 @@
     {% endblock %}
   {% endembed %}
 {% endset %}
-
-
-{% include "template-index.twig" with {
-  content: content
-} only %}

@@ -78,7 +78,8 @@ const config = {
       '@bolt/components-tooltip',
       '@bolt/components-unordered-list',
       '@bolt/components-video',
-      resolve.sync('./style.scss'),
+      resolve.sync('./index.scss'),
+      resolve.sync('./index.js'),
     ],
     individual: [
       '@bolt/components-critical-fonts',
