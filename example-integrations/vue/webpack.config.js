@@ -8,56 +8,11 @@ const PreloadPlugin = require('@vue/preload-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-const globImporter = require('node-sass-glob-importer');
 const npmSass = require('npm-sass');
 const path = require('path');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const deepmerge = require('deepmerge');
 const autoprefixer = require('autoprefixer');
-const selectorImporter = require('node-sass-selector-importer');
-const packageImporter = require('node-sass-package-importer');
-
-const packageImporterOptions = {
-  cwd: process.cwd(),
-  packageKeys: [
-    'sass',
-    'scss',
-    'style',
-    'css',
-    'main.sass',
-    'main.scss',
-    'main.style',
-    'main.css',
-    'main',
-  ],
-  packagePrefix: '~',
-};
-
-// const magicImporterOptions = {
-//   // Defines the path in which your node_modules directory is found.
-//   // cwd: process.cwd(),
-//   // Define the package.json keys and in which order to search for them.
-//   packageKeys: [
-//     'sass',
-//     'scss',
-//     'style',
-//     'css',
-//     'main.sass',
-//     'main.scss',
-//     'main.style',
-//     'main.css',
-//     'main'
-//   ],
-//   // You can set the special character for indicating a module resolution.
-//   packagePrefix: '@',
-//   // Disable console warnings.
-//   disableWarnings: false,
-//   // Disable importing files only once.
-//   disableImportOnce: true,
-//   // Add custom node filters.
-//   customFilters: undefined
-// };
 
 let globalSassData = [
   `$bolt-namespace: 'bolt';`,
@@ -83,9 +38,6 @@ const sassLoaderOptions = {
   sourceMap: false,
   importer: [
     npmSass.importer,
-    // packageImporter(packageImporterOptions),
-    // selectorImporter(),
-    // magicImporter(magicImporterOptions),/
   ],
   functions: sassExportData,
   precision: 3,
@@ -241,23 +193,6 @@ module.exports = {
           },
         ],
       },
-      // {
-      //   test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-      //   use: [
-      //     {
-      //       loader: 'url-loader',
-      //       options: {
-      //         limit: 4096,
-      //         fallback: {
-      //           loader: 'file-loader',
-      //           options: {
-      //             name: 'media/[name].[hash:8].[ext]',
-      //           },
-      //         },
-      //       },
-      //     },
-      //   ],
-      // },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
         use: [
@@ -275,158 +210,6 @@ module.exports = {
           },
         ],
       },
-      // {
-      //   test: /\.css$/,
-      //   oneOf: [
-      //     {
-      //       resourceQuery: /module/,
-      //       use: [
-      //         {
-      //           loader: 'css-loader',
-      //           options: {
-      //             sourceMap: false,
-      //             modules: true,
-      //             localIdentName: '[name]_[local]_[hash:base64:5]',
-      //           },
-      //         },
-      //         {
-      //           loader: 'postcss-loader',
-      //           options: {
-      //             sourceMap: false,
-      //           },
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       resourceQuery: /\?vue/,
-      //       use: [
-      //         {
-      //           loader: 'css-loader',
-      //           options: {
-      //             sourceMap: false,
-      //           },
-      //         },
-      //         {
-      //           loader: 'postcss-loader',
-      //           options: {
-      //             sourceMap: false,
-      //           },
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       test: /\.module\.\w+$/,
-      //       use: [
-      //         {
-      //           loader: 'css-loader',
-      //           options: {
-      //             sourceMap: false,
-      //             modules: true,
-      //             localIdentName: '[name]_[local]_[hash:base64:5]',
-      //           },
-      //         },
-      //         {
-      //           loader: 'postcss-loader',
-      //           options: {
-      //             sourceMap: false,
-      //           },
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       use: [
-      //         {
-      //           loader: 'css-loader',
-      //           options: {
-      //             sourceMap: false,
-      //           },
-      //         },
-      //         {
-      //           loader: 'postcss-loader',
-      //           options: {
-      //             sourceMap: false,
-      //           },
-      //         },
-      //       ],
-      //     },
-      //   ],
-      // },
-      // {
-      //   test: /\.p(ost)?css$/,
-      //   oneOf: [
-      //     {
-      //       resourceQuery: /module/,
-      //       use: [
-      //         {
-      //           loader: 'css-loader',
-      //           options: {
-      //             sourceMap: false,
-      //             modules: true,
-      //             localIdentName: '[name]_[local]_[hash:base64:5]',
-      //           },
-      //         },
-      //         {
-      //           loader: 'postcss-loader',
-      //           options: {
-      //             sourceMap: false,
-      //           },
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       resourceQuery: /\?vue/,
-      //       use: [
-      //         {
-      //           loader: 'css-loader',
-      //           options: {
-      //             sourceMap: false,
-      //           },
-      //         },
-      //         {
-      //           loader: 'postcss-loader',
-      //           options: {
-      //             sourceMap: false,
-      //           },
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       test: /\.module\.\w+$/,
-      //       use: [
-      //         {
-      //           loader: 'css-loader',
-      //           options: {
-      //             sourceMap: false,
-      //             modules: true,
-      //             localIdentName: '[name]_[local]_[hash:base64:5]',
-      //           },
-      //         },
-      //         {
-      //           loader: 'postcss-loader',
-      //           options: {
-      //             sourceMap: false,
-      //           },
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       use: [
-      //         {
-      //           loader: 'css-loader',
-      //           options: {
-      //             sourceMap: false,
-      //           },
-      //         },
-      //         {
-      //           loader: 'postcss-loader',
-      //           options: {
-      //             sourceMap: false,
-      //           },
-      //         },
-      //       ],
-      //     },
-      //   ],
-      // },
       {
         test: /\.scss$/,
         oneOf: [
