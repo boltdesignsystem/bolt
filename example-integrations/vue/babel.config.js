@@ -1,18 +1,6 @@
-const config = require('./bolt-babel-config')();
-
-module.exports = require('./bolt-babel-config');
-
+const config = require('@bolt/babel-preset-bolt')();
 
 module.exports = {
-  presets: [
-    [
-      require('./bolt-babel-config'),
-    ]
-    // ['@vue/app', {
-    //   polyfills: [
-    //     'es6.promise',
-    //     'es6.symbol'
-    //   ]
-    // }]
-  ]
-}
+  presets: config.presets,
+  plugins: ['babel-plugin-transform-vue-jsx', ...config.plugins],
+};

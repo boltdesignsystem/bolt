@@ -15,6 +15,49 @@ const path = require('path');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const deepmerge = require('deepmerge');
 const autoprefixer = require('autoprefixer');
+const selectorImporter = require('node-sass-selector-importer');
+const packageImporter = require('node-sass-package-importer');
+
+const packageImporterOptions = {
+  cwd: process.cwd(),
+  packageKeys: [
+    'sass',
+    'scss',
+    'style',
+    'css',
+    'main.sass',
+    'main.scss',
+    'main.style',
+    'main.css',
+    'main',
+  ],
+  packagePrefix: '~',
+};
+
+// const magicImporterOptions = {
+//   // Defines the path in which your node_modules directory is found.
+//   // cwd: process.cwd(),
+//   // Define the package.json keys and in which order to search for them.
+//   packageKeys: [
+//     'sass',
+//     'scss',
+//     'style',
+//     'css',
+//     'main.sass',
+//     'main.scss',
+//     'main.style',
+//     'main.css',
+//     'main'
+//   ],
+//   // You can set the special character for indicating a module resolution.
+//   packagePrefix: '@',
+//   // Disable console warnings.
+//   disableWarnings: false,
+//   // Disable importing files only once.
+//   disableImportOnce: true,
+//   // Add custom node filters.
+//   customFilters: undefined
+// };
 
 let globalSassData = [
   `$bolt-namespace: 'bolt';`,
@@ -38,7 +81,12 @@ const sassExportData = require('@bolt/sass-export-data')({
 
 const sassLoaderOptions = {
   sourceMap: false,
-  importer: [globImporter(), npmSass.importer],
+  importer: [
+    npmSass.importer,
+    // packageImporter(packageImporterOptions),
+    // selectorImporter(),
+    // magicImporter(magicImporterOptions),/
+  ],
   functions: sassExportData,
   precision: 3,
   data: globalSassData.join('\n'),
@@ -91,7 +139,6 @@ const scssLoaders = [
 ];
 
 let themifyOptions = {
-  // watchForChanges: config.prod ? false : true,
   classPrefix: 't-bolt-',
   screwIE11: false,
   fallback: {
@@ -117,7 +164,6 @@ themifyOptions = deepmerge(themifyOptions, {
 
 module.exports = {
   mode: 'development',
-  context: 'vue-example',
   devtool: 'cheap-module-eval-source-map',
   node: {
     setImmediate: false,
@@ -129,25 +175,17 @@ module.exports = {
     child_process: 'empty',
   },
   output: {
-    path: './dist',
+    path: path.resolve(process.cwd(), 'dist'),
     filename: '[name].js',
     publicPath: '/',
   },
   resolve: {
     symlinks: false,
     alias: {
-      '@': './src',
-      vue$: './dist/vue.runtime.esm.js',
+      '@': path.resolve(process.cwd(), 'src'),
+      // 'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
     },
     extensions: ['.js', '.jsx', '.vue', '.json'],
-    modules: ['node_modules', './node_modules/@vue/cli-service/node_modules'],
-  },
-  resolveLoader: {
-    modules: [
-      'node_modules',
-      './node_modules',
-      './node_modules/@vue/cli-service/node_modules',
-    ],
   },
   module: {
     noParse: /^(vue|vue-router|vuex|vuex-router-sync)$/,
@@ -155,21 +193,22 @@ module.exports = {
       {
         test: /\.vue$/,
         use: [
-          {
-            loader: 'cache-loader',
-            options: {
-              cacheDirectory: './node_modules/.cache/vue-loader',
-              cacheIdentifier: '67c7be48',
-            },
-          },
+          // {
+          //   loader: 'cache-loader',
+          // },
           {
             loader: 'vue-loader',
             options: {
+              transformAssetUrls: {
+                video: ['src', 'poster'],
+                source: 'src',
+                img: ['src', 'srcset', 'data-src', 'data-srcset'],
+                'bolt-image': ['src', 'srcset', 'data-src', 'data-srcset'],
+                image: 'xlink:href',
+              },
               compilerOptions: {
                 preserveWhitespace: false,
               },
-              cacheDirectory: './node_modules/.cache/vue-loader',
-              cacheIdentifier: '67c7be48',
             },
           },
         ],
@@ -202,23 +241,23 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 4096,
-              fallback: {
-                loader: 'file-loader',
-                options: {
-                  name: 'media/[name].[hash:8].[ext]',
-                },
-              },
-            },
-          },
-        ],
-      },
+      // {
+      //   test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+      //   use: [
+      //     {
+      //       loader: 'url-loader',
+      //       options: {
+      //         limit: 4096,
+      //         fallback: {
+      //           loader: 'file-loader',
+      //           options: {
+      //             name: 'media/[name].[hash:8].[ext]',
+      //           },
+      //         },
+      //       },
+      //     },
+      //   ],
+      // },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
         use: [
@@ -236,158 +275,158 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.css$/,
-        oneOf: [
-          {
-            resourceQuery: /module/,
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  sourceMap: false,
-                  modules: true,
-                  localIdentName: '[name]_[local]_[hash:base64:5]',
-                },
-              },
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                },
-              },
-            ],
-          },
-          {
-            resourceQuery: /\?vue/,
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  sourceMap: false,
-                },
-              },
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                },
-              },
-            ],
-          },
-          {
-            test: /\.module\.\w+$/,
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  sourceMap: false,
-                  modules: true,
-                  localIdentName: '[name]_[local]_[hash:base64:5]',
-                },
-              },
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                },
-              },
-            ],
-          },
-          {
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  sourceMap: false,
-                },
-              },
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                },
-              },
-            ],
-          },
-        ],
-      },
-      {
-        test: /\.p(ost)?css$/,
-        oneOf: [
-          {
-            resourceQuery: /module/,
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  sourceMap: false,
-                  modules: true,
-                  localIdentName: '[name]_[local]_[hash:base64:5]',
-                },
-              },
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                },
-              },
-            ],
-          },
-          {
-            resourceQuery: /\?vue/,
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  sourceMap: false,
-                },
-              },
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                },
-              },
-            ],
-          },
-          {
-            test: /\.module\.\w+$/,
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  sourceMap: false,
-                  modules: true,
-                  localIdentName: '[name]_[local]_[hash:base64:5]',
-                },
-              },
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                },
-              },
-            ],
-          },
-          {
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  sourceMap: false,
-                },
-              },
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: false,
-                },
-              },
-            ],
-          },
-        ],
-      },
+      // {
+      //   test: /\.css$/,
+      //   oneOf: [
+      //     {
+      //       resourceQuery: /module/,
+      //       use: [
+      //         {
+      //           loader: 'css-loader',
+      //           options: {
+      //             sourceMap: false,
+      //             modules: true,
+      //             localIdentName: '[name]_[local]_[hash:base64:5]',
+      //           },
+      //         },
+      //         {
+      //           loader: 'postcss-loader',
+      //           options: {
+      //             sourceMap: false,
+      //           },
+      //         },
+      //       ],
+      //     },
+      //     {
+      //       resourceQuery: /\?vue/,
+      //       use: [
+      //         {
+      //           loader: 'css-loader',
+      //           options: {
+      //             sourceMap: false,
+      //           },
+      //         },
+      //         {
+      //           loader: 'postcss-loader',
+      //           options: {
+      //             sourceMap: false,
+      //           },
+      //         },
+      //       ],
+      //     },
+      //     {
+      //       test: /\.module\.\w+$/,
+      //       use: [
+      //         {
+      //           loader: 'css-loader',
+      //           options: {
+      //             sourceMap: false,
+      //             modules: true,
+      //             localIdentName: '[name]_[local]_[hash:base64:5]',
+      //           },
+      //         },
+      //         {
+      //           loader: 'postcss-loader',
+      //           options: {
+      //             sourceMap: false,
+      //           },
+      //         },
+      //       ],
+      //     },
+      //     {
+      //       use: [
+      //         {
+      //           loader: 'css-loader',
+      //           options: {
+      //             sourceMap: false,
+      //           },
+      //         },
+      //         {
+      //           loader: 'postcss-loader',
+      //           options: {
+      //             sourceMap: false,
+      //           },
+      //         },
+      //       ],
+      //     },
+      //   ],
+      // },
+      // {
+      //   test: /\.p(ost)?css$/,
+      //   oneOf: [
+      //     {
+      //       resourceQuery: /module/,
+      //       use: [
+      //         {
+      //           loader: 'css-loader',
+      //           options: {
+      //             sourceMap: false,
+      //             modules: true,
+      //             localIdentName: '[name]_[local]_[hash:base64:5]',
+      //           },
+      //         },
+      //         {
+      //           loader: 'postcss-loader',
+      //           options: {
+      //             sourceMap: false,
+      //           },
+      //         },
+      //       ],
+      //     },
+      //     {
+      //       resourceQuery: /\?vue/,
+      //       use: [
+      //         {
+      //           loader: 'css-loader',
+      //           options: {
+      //             sourceMap: false,
+      //           },
+      //         },
+      //         {
+      //           loader: 'postcss-loader',
+      //           options: {
+      //             sourceMap: false,
+      //           },
+      //         },
+      //       ],
+      //     },
+      //     {
+      //       test: /\.module\.\w+$/,
+      //       use: [
+      //         {
+      //           loader: 'css-loader',
+      //           options: {
+      //             sourceMap: false,
+      //             modules: true,
+      //             localIdentName: '[name]_[local]_[hash:base64:5]',
+      //           },
+      //         },
+      //         {
+      //           loader: 'postcss-loader',
+      //           options: {
+      //             sourceMap: false,
+      //           },
+      //         },
+      //       ],
+      //     },
+      //     {
+      //       use: [
+      //         {
+      //           loader: 'css-loader',
+      //           options: {
+      //             sourceMap: false,
+      //           },
+      //         },
+      //         {
+      //           loader: 'postcss-loader',
+      //           options: {
+      //             sourceMap: false,
+      //           },
+      //         },
+      //       ],
+      //     },
+      //   ],
+      // },
       {
         test: /\.scss$/,
         oneOf: [
@@ -438,13 +477,9 @@ module.exports = {
       {
         test: /\.jsx?$/,
         use: [
-          {
-            loader: 'cache-loader',
-            options: {
-              cacheDirectory: './node_modules/.cache/babel-loader',
-              cacheIdentifier: '97f03d5e',
-            },
-          },
+          // {
+          //   loader: 'cache-loader',
+          // },
           {
             loader: 'babel-loader',
           },
@@ -459,8 +494,7 @@ module.exports = {
             loader: 'eslint-loader',
             options: {
               extensions: ['.js', '.jsx', '.vue'],
-              cache: true,
-              cacheIdentifier: '6b9eb7c0',
+              // cache: true,
               emitWarning: true,
               emitError: false,
             },
