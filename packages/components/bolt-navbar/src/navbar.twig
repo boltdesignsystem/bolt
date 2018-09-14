@@ -20,15 +20,19 @@ use the string "none" rather than a boolean false #}
   {% if center %} center {% endif %}
   {% if width %} width={{width}} {% endif %}
 >
-  <nav class="c-bolt-navbar {% if center %} c-bolt-navbar--center c-bolt-navbar--small{% endif %}">
-    {% if title %}
-      <div class="c-bolt-navbar__title">
-        {% block navbar_title %}
-          {% include "@bolt-components-navbar/_navbar-title.twig" with title only %}
-        {% endblock %}
-      </div>
-    {% endif %}
+  <nav class="c-bolt-navbar c-bolt-navbar--{{ width }} {% if center %} c-bolt-navbar--center c-bolt-navbar--small{% endif %}">
+    {% block navbar_inner %}
+      {% if title %}
+        <div class="c-bolt-navbar__title">
+          {% block navbar_title %}
+            {% include "@bolt-components-navbar/_navbar-title.twig" with title only %}
+          {% endblock %}
+        </div>
+      {% endif %}
 
-    {% include "@bolt-components-nav-priority/nav-priority.twig" %}
+      {% block navbar_nav %}
+        {% include "@bolt-components-nav-priority/nav-priority.twig" %}
+      {% endblock %}
+    {% endblock %}
   </nav>
 </bolt-navbar>
