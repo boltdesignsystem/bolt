@@ -17,8 +17,13 @@
     side: {
       width: "auto",
       cells: [
-        "Row 1",
-        "Row 2",
+        {
+          content: "Row 1 & 2",
+          attributes: {
+            rowspan: 2,
+            class: "u-bolt-color-orange-dark"
+          }
+        },
         "Row 3",
         "Footer",
       ]

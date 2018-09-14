@@ -55,27 +55,47 @@
         </tr>
       </thead>
     {% endif %}
+
     {% if rows %}
       <tbody class="{{ "#{base_class}__body" }}">
+        {% set rows_to_skip = 0 %}
+
         {% for row in rows %}
           <tr class="{{ "#{base_class}__row" }}">
             {% if side_headers.cells %}
-              {% set index = loop.index0 %}
-              {% set cell = side_headers.cells[index] %}
-              {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
-              {% set cell_classes = [
-                  "#{base_class}__cell",
-                  "#{base_class}__cell--header",
-                ]
-              %}
-              <th {{ cell_attributes.addClass(cell_classes) }} scope="row">
-                {% if cell is iterable %}
-                  {{ cell.content|join("") }}
-                {% else %}
-                  {{ cell }}
+
+              {% if rows_to_skip == 0 %}
+                {% set cell = side_headers.cells[loop.index0] %}
+                {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
+                {% set cell_classes = [
+                    "#{base_class}__cell",
+                    "#{base_class}__cell--header",
+                  ]
+                %}
+                {% if cell.attributes.rowspan %}
+                  {% set rows_to_skip = cell.attributes.rowspan %}
                 {% endif %}
-              </th>
+
+                <th {{ cell_attributes.addClass(cell_classes) }} scope="row">
+                  {% if cell is iterable %}
+                    {{ cell.content|join("") }}
+                  {% else %}
+                    {{ cell }}
+                  {% endif %}
+                </th>
+
+                {% if rows_to_skip > 0 %}
+                  {% set rows_to_skip = rows_to_skip - 1 %}
+                {% endif %}
+              {% else %}
+                {% if rows_to_skip > 0 %}
+                  {% set rows_to_skip = rows_to_skip - 1 %}
+                {% else %}
+                  {% set rows_to_skip = 0 %}
+                {% endif %}
+              {% endif %}
             {% endif %}
+              
             {% for cell in row.cells %}
               {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
               {% set cell_classes = [
@@ -91,6 +111,7 @@
                 {% endif %}
               </td>
             {% endfor %}
+
           </tr>
         {% endfor %}
       </tbody>

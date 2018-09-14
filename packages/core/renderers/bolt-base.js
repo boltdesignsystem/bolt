@@ -31,7 +31,7 @@ export function BoltBase(Base = HTMLElement) {
     setupShadow() {
       if (
         findParentTag(this, 'FORM') ||
-        this.getAttribute('no-shadow') !== null
+        this.getAttribute('no-shadow') !== null || this.useShadow === false
       ) {
         this.useShadow = false;
       } else {
