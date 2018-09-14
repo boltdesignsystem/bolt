@@ -1,5 +1,6 @@
 <?php
 require_once 'vendor/autoload.php';
+require_once 'beautify-html.php';
 
 use Webmozart\PathUtil\Path;
 use Symfony\Component\Finder\Finder;
@@ -48,5 +49,15 @@ if (strpos($templatePath, '@') !== false) {
   $html = trim($twigRenderer->render('@bolt/' . $paths[0], $data));
 }
 
-echo $html;
-    
+$beautify = new Beautify_Html(array(
+  'indent_inner_html' => false,
+  'indent_char' => " ",
+  'indent_size' => 2,
+  'wrap_line_length' => 32786,
+  'unformatted' => ['code', 'pre'],
+  'preserve_newlines' => false,
+  'max_preserve_newlines' => 32786,
+  'indent_scripts'	=> 'normal', // keep|separate|normal
+));
+
+echo $beautify->beautify($html);
