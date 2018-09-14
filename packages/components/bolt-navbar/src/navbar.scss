@@ -23,6 +23,11 @@ bolt-navbar {
     }
   }
 
+  // @todo: remove once Navbar refactored to have theming classes added to the `.c-bolt-navbar` inner.
+  &[width*=full] {
+    @include bolt-full-bleed;
+  }
+
   display: block;
   overflow: visible;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
