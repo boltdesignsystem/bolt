@@ -25,10 +25,11 @@
 {% set transformOptions = schema.properties.transform.enum %}
 {% set widthOptions = schema.properties.width.enum %}
 {% set iconPositions = schema.properties.icon.properties.position.enum %}
+{% set iconOnlyOptions = schema.properties.iconOnly.enum %}
 
 {# check if the value set to a prop is allowed or defined. if not, default to the default value specified in the component's schema (if one exists) #}
 {% set align = align in alignOptions ? align : schema.properties.align.default %}
-{% set iconOnly = iconOnly | default(false) %}
+{% set iconOnly = iconOnly is sameas(true) or iconOnly is sameas(false) ? iconOnly : scheuma.properties.iconOnly.default %}
 {% set size = size in sizeOptions ? size : schema.properties.size.default %}
 {% set style = style in styleOptions ? style : schema.properties.style.default %}
 {% set tag = tag in tagOptions ? tag : schema.properties.tag.default %}
