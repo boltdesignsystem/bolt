@@ -21,7 +21,6 @@
 {# Table component's custom element wrapper #}
 <bolt-table
   {% if format %} format="{{ format }}" {% endif %}
-  {% if side_headers.width %} side-headers-width="{{ side_headers.width }}" {% endif %}
   {{ attributes }}
 >
   {# Array of classes based on the defined + default props #}
@@ -62,18 +61,24 @@
           <tr class="{{ "#{base_class}__row" }}">
             {% if side_headers.cells %}
               {% set index = loop.index0 %}
-              <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}" scope="row">
-                {% if side_headers.cells[index] is iterable %}
-                  {{ side_headers.cells[index].content|join("") }}
+              {% set cell = side_headers.cells[index] %}
+              {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
+              {% set cell_classes = [
+                  "#{base_class}__cell",
+                  "#{base_class}__cell--header",
+                ]
+              %}
+              <th {{ cell_attributes.addClass(cell_classes) }} scope="row">
+                {% if cell is iterable %}
+                  {{ cell.content|join("") }}
                 {% else %}
-                  {{ side_headers.cells[index] }}
+                  {{ cell }}
                 {% endif %}
               </th>
             {% endif %}
             {% for cell in row.cells %}
               {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
-              {%
-                set cell_classes = [
+              {% set cell_classes = [
                   "#{base_class}__cell",
                   "#{base_class}__cell--data",
                 ]
@@ -108,8 +113,7 @@
           {% endif %}
           {% for cell in footer.cells %}
             {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
-            {%
-              set cell_classes = [
+            {% set cell_classes = [
                 "#{base_class}__cell",
                 "#{base_class}__cell--data",
               ]
