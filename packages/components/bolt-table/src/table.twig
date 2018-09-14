@@ -1,0 +1,133 @@
+{% set schema = bolt.data.components["@bolt-components-table"].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# Variables #}
+{% set base_class = "c-bolt-table" %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set inner_attributes = create_attribute({}) %}
+
+{# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
+{% set format_options = schema.properties.format.enum %}
+
+{# Check that the component's current prop values are valid. if not, default to the schema default #}
+{% set format = format in format_options ? format : schema.properties.format.default %}
+
+{% set top_headers = headers.top %}
+{% set side_headers = headers.side %}
+
+{# Table component's custom element wrapper #}
+<bolt-table
+  {% if format %} format="{{ format }}" {% endif %}
+  {{ attributes }}
+>
+  {# Array of classes based on the defined + default props #}
+  {% set classes = [
+    base_class,
+    format != "regular" ? "#{base_class}--format-#{format}",
+    side_headers.width != "auto" ? "#{base_class}--side-headers-width-#{side_headers.width}",
+  ] %}
+
+  <table {{ inner_attributes.addClass(classes) }}>
+    {% if top_headers %}
+      <thead class="{{ "#{base_class}__head" }}">
+        <tr class="{{ "#{base_class}__row" }}">
+          {% if side_headers %}
+            <td class="{{ "#{base_class}__cell" }}"></td>
+          {% endif %}
+          {% for cell in top_headers.cells %}
+            {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
+            {% set cell_classes = [
+                "#{base_class}__cell",
+                "#{base_class}__cell--header",
+              ]
+            %}
+            <th {{ cell_attributes.addClass(cell_classes) }} scope="col">
+              {% if cell is iterable %}
+                {{ cell.content|join("") }}
+              {% else %}
+                {{ cell }}
+              {% endif %}
+            </th>
+          {% endfor %}
+        </tr>
+      </thead>
+    {% endif %}
+    {% if rows %}
+      <tbody class="{{ "#{base_class}__body" }}">
+        {% for row in rows %}
+          <tr class="{{ "#{base_class}__row" }}">
+            {% if side_headers.cells %}
+              {% set index = loop.index0 %}
+              {% set cell = side_headers.cells[index] %}
+              {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
+              {% set cell_classes = [
+                  "#{base_class}__cell",
+                  "#{base_class}__cell--header",
+                ]
+              %}
+              <th {{ cell_attributes.addClass(cell_classes) }} scope="row">
+                {% if cell is iterable %}
+                  {{ cell.content|join("") }}
+                {% else %}
+                  {{ cell }}
+                {% endif %}
+              </th>
+            {% endif %}
+            {% for cell in row.cells %}
+              {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
+              {% set cell_classes = [
+                  "#{base_class}__cell",
+                  "#{base_class}__cell--data",
+                ]
+              %}
+              <td {{ cell_attributes.addClass(cell_classes) }}>
+                {% if cell is iterable %}
+                  {{ cell.content|join("") }}
+                {% else %}
+                  {{ cell }}
+                {% endif %}
+              </td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    {% endif %}
+    {% if footer %}
+      <tfoot class="{{ "#{base_class}__foot" }}">
+        <tr class="{{ "#{base_class}__row" }}">
+          {% if side_headers.cells %}
+            {% for cell in side_headers.cells %}
+              {% if loop.last %}
+                <th class="{{ "#{base_class}__cell #{base_class}__cell--header" }}">
+                  {% if cell is iterable %}
+                    {{ cell.content|join("") }}
+                  {% else %}
+                    {{ cell }}
+                  {% endif %}
+                </th>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+          {% for cell in footer.cells %}
+            {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
+            {% set cell_classes = [
+                "#{base_class}__cell",
+                "#{base_class}__cell--data",
+              ]
+            %}
+            <td {{ cell_attributes.addClass(cell_classes) }}>
+              {% if cell is iterable %}
+                {{ cell.content|join("") }}
+              {% else %}
+                {{ cell }}
+              {% endif %}
+            </td>
+          {% endfor %}
+        </tr>
+      </tfoot>
+    {% endif %}
+  </table>
+</bolt-table>

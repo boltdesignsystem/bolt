@@ -1,0 +1,67 @@
+<h3>Adding attributes to table cells</h3>
+{% include "@bolt-components-table/table.twig" with {
+  format: "numeric",
+  headers: {
+    top: {
+      cells: [
+        {
+          content: "This cell spans 2 columns and has an utility class.",
+          attributes: {
+            colspan: 2,
+            class: "u-bolt-color-indigo"
+          }
+        },
+        "Column 3",
+      ]
+    },
+    side: {
+      width: "auto",
+      cells: [
+        "Row 1",
+        "Row 2",
+        "Row 3",
+        "Footer",
+      ]
+    }
+  },
+  rows: [
+    {
+      cells: [
+        "R1C1",
+        {
+          content: "This cell spans 2 columns and has an utility class.",
+          attributes: {
+            colspan: 2,
+            class: "u-bolt-color-yellow-dark"
+          }
+        },
+      ]
+    },
+    {
+      cells: [
+        "R2C1",
+        "R2C2",
+        "R2C3",
+      ]
+    },
+    {
+      cells: [
+        "R3C1",
+        "R3C2",
+        "R3C3",
+      ]
+    }
+  ],
+  footer: {
+    cells: [
+      {
+        content: "This cell spans 2 columns and has an utility class.",
+        attributes: {
+          colspan: 2,
+          class: "u-bolt-color-teal"
+        }
+      },
+      "FC3",
+    ]
+  }
+} only %}
