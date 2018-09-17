@@ -18,8 +18,13 @@
       width: "auto",
       cells: [
         "Row 1",
-        "Row 2",
-        "Row 3",
+        {
+          content: "This cell spans 2 rows",
+          attributes: {
+            rowspan: 2
+          }
+        },
+        {},
         "Footer",
       ]
     }

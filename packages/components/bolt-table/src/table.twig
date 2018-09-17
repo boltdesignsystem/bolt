@@ -68,13 +68,15 @@
                   "#{base_class}__cell--header",
                 ]
               %}
-              <th {{ cell_attributes.addClass(cell_classes) }} scope="row">
-                {% if cell is iterable %}
-                  {{ cell.content|join("") }}
-                {% else %}
-                  {{ cell }}
-                {% endif %}
-              </th>
+              {% if cell is not empty %}
+                <th {{ cell_attributes.addClass(cell_classes) }} scope="row">
+                  {% if cell is iterable %}
+                    {{ cell.content|join("") }}
+                  {% else %}
+                    {{ cell }}
+                  {% endif %}
+                </th>
+              {% endif %}
             {% endif %}
             {% for cell in row.cells %}
               {% set cell_attributes = create_attribute(cell.attributes|default({})) %}
