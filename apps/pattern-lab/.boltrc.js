@@ -141,6 +141,15 @@ const config = {
       '@bolt/components-critical-css-vars',
     ],
   },
+  copy: [
+    {
+      from: `${path.dirname(
+        resolve.sync('@bolt/global/package.json'),
+      )}/favicons/bolt`,
+      to: '../www/pattern-lab/',
+      flatten: true,
+    },
+  ],
 };
 
 module.exports = config;
