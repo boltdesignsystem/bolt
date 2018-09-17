@@ -76,8 +76,10 @@ bolt-navbar {
   }
 
   &--center {
-    flex-wrap: wrap;
-    justify-content: center;
+    @include bolt-mq(xsmall){
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
     > *:first-child {
       @include bolt-padding-top($bolt-navbar-vspacing-xsmall); /* [1] */
@@ -144,11 +146,13 @@ bolt-navbar {
   }
 
   .c-bolt-navbar--center & {
-    @include bolt-margin-left(auto);
-    @include bolt-margin-right(auto);
-    width: 100%;
-    align-items: center;
-    justify-content: center;
+    @include bolt-mq(xsmall){
+      @include bolt-margin-left(auto);
+      @include bolt-margin-right(auto);
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }
 
@@ -186,6 +190,7 @@ bolt-navbar {
   .c-bolt-navbar--center & {
     @include bolt-font-size(small);
     @include bolt-font-weight(bold);
+    flex-wrap: nowrap; // fixes IE 11 flex-bug causing text to resist staying on one line and prematurely wraps to two-lines -- even if plenty of space is available
   }
 }
 

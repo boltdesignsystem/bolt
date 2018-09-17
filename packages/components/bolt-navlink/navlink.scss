@@ -40,7 +40,7 @@ bolt-navlink {
 
   &:active,
   &.is-active {
-    color: bolt-theme(text);
+    color: bolt-theme(headline-link);
     border-color: transparent;
     opacity: 1;
   }
@@ -95,6 +95,22 @@ bolt-navlink {
     background-color: bolt-theme(primary);
     content: '';
   }
+}
+
+// Text and icon spacing
+.c-bolt-navlink__text + .c-bolt-navlink__icon {
+  @include bolt-margin-left(xxsmall);
+}
+
+.c-bolt-navlink__icon + .c-bolt-navlink__text {
+  @include bolt-margin-left(xxsmall);
+}
+
+// Icon styles
+.c-bolt-navlink__icon {
+  display: inline-block;
+  line-height: 1; // workaround so icons can be vertically aligned properly
+  vertical-align: baseline;
 }
 
 @keyframes a-bolt-navlink-bg-hover {
