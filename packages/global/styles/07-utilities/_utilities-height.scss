@@ -1,5 +1,5 @@
 /* ------------------------------------ *\
-   Height Utils
+  #HEIGHT UTILITIES
 \* ------------------------------------ */
 
 @import '@bolt/core';
@@ -38,7 +38,6 @@ $bolt-height-props: (
   }
 }
 
-
 // Min height
 @mixin bolt-min-height-utils($breakpoint: null) {
   @each $name, $value in $bolt-height-props {
@@ -57,3 +56,5 @@ $bolt-height-props: (
     @include bolt-min-height-utils(\@#{$breakpointName});
   }
 }
+
+@include export-data('height.bolt.json', $bolt-height-props);

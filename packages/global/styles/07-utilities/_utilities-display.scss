@@ -35,3 +35,5 @@ $bolt-display-props: (
     @include bolt-display-utils(\@#{$breakpointName});
   }
 }
+
+@include export-data('display.bolt.json', $bolt-display-props);
