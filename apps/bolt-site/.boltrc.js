@@ -91,6 +91,13 @@ const config = {
       to: `../../www/assets`,
       flatten: true,
     },
+    {
+      from: `${path.dirname(
+        resolve.sync('@bolt/global/package.json'),
+      )}/favicons/bolt`,
+      to: `../../www`,
+      flatten: true,
+    },
   ],
 };
 
