@@ -15,7 +15,7 @@ bolt-nav-priority {
   flex-shrink: 4; // shrink faster than other components in tight spots
 
   @include bolt-if-browser-supports-display-contents {
-    @media screen and (max-width: $bolt-navbar-xsmall-bp) {
+    @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
       &.is-ready {
         display: contents;
       }
@@ -37,7 +37,7 @@ bolt-nav-priority {
 
 .c-bolt-nav-priority {
   @include bolt-if-browser-supports-display-contents {
-    @media screen and (max-width: $bolt-navbar-xsmall-bp) {
+    @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
       &.is-ready {
         display: contents;
       }
@@ -68,7 +68,7 @@ bolt-nav-priority {
 
 .c-bolt-nav-priority__primary {
   @include bolt-if-browser-supports-display-contents {
-    @media screen and (max-width: $bolt-navbar-xsmall-bp) {
+    @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
       .is-ready & {
         display: contents;
       }
@@ -93,7 +93,7 @@ bolt-nav-priority {
 
 @include bolt-if-browser-supports-display-contents {
   .c-bolt-nav-priority__show-more {
-    @media screen and (max-width: $bolt-navbar-xsmall-bp) {
+    @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
       display: contents;
     }
   }
@@ -161,7 +161,7 @@ bolt-nav-priority {
   }
 
   @include bolt-if-browser-supports-display-contents {
-    @media screen and (max-width: $bolt-navbar-xsmall-bp) {
+    @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
       grid-row: 2 / span 1;
       grid-column: 1 / span 6;
       width: auto;
@@ -216,8 +216,8 @@ bolt-nav-priority {
   background-color: bolt-theme(secondary, 0.05);
   cursor: pointer;
   position: relative;
-
-  @media screen and (max-width: $bolt-navbar-xsmall-bp) {
+  
+  @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
     border-radius: 0;
     border-left-width: 1px;
     border-left-color: bolt-theme(headline, 0.2);
@@ -272,7 +272,7 @@ bolt-nav-priority {
   }
 
   @include bolt-if-browser-supports-display-contents {
-    @media screen and (max-width: $bolt-navbar-xsmall-bp) {
+    @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
       .is-ready & {
         grid-row: 1 / span 1;
         grid-column: 5 / span 1;
@@ -287,7 +287,7 @@ bolt-nav-priority {
   position: relative;
   z-index: 10;
 
-  @media screen and (max-width: $bolt-navbar-xsmall-bp) {
+  @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
     @include bolt-visuallyhidden;
   }
 }
@@ -300,7 +300,7 @@ bolt-nav-priority {
   line-height: 0;
   font-size: 1em;
 
-  @media screen and (max-width: $bolt-navbar-xsmall-bp) {
+  @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
     font-size: 24px;
   }
 
