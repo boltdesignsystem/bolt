@@ -94,6 +94,9 @@ class BoltNavPriority extends withHyperHtml() {
       this._adaptPriorityNav();
       this._handleExternalClicks();
 
+      this._waitForDropdownToFinishAnimating = this._waitForDropdownToFinishAnimating.bind(
+        this,
+      );
       this.dropdownButton.addEventListener('click', this._handleDropdownToggle);
       this.addEventListener('navlink:click', this._onActivateLink);
       window.addEventListener('optimizedResize', this._adaptPriorityNav);
@@ -187,47 +190,53 @@ class BoltNavPriority extends withHyperHtml() {
   }
 
   open() {
-    this.priorityDropdown.addEventListener(
-      this.transitionEvent,
-      this.waitForDropdownToAnimate(this),
-    );
     this.isOpen = true;
     this.setAttribute('open', true);
     this.containerTabs.classList.add('c-bolt-nav-priority--show-dropdown');
     this.classList.add('is-opening');
     this.dropdownButton.classList.add('is-active');
     this.dropdownButton.setAttribute('aria-expanded', true);
-  }
 
-  afterDropdownAnimates(elem) {
-    elem.priorityDropdown.removeEventListener(
-      elem.transitionEvent,
-      elem.waitForDropdownToAnimate,
+    this.priorityDropdown.addEventListener(
+      this.transitionEvent,
+      this._waitForDropdownToFinishAnimating,
+      true,
     );
   }
 
-  waitForDropdownToAnimate(elem) {
+  // Wait for the longest transition to finish before cleaning up animation-specific classes
+  _waitForDropdownToFinishAnimating(event) {
     waitForTransitionEnd(
-      elem.priorityDropdown,
-      (() => {
-        elem.classList.remove('is-opening');
-        elem.classList.remove('is-closing');
-        elem.afterDropdownAnimates(elem);
-      })(elem),
+      this,
+      this.priorityDropdown,
+      this._afterDropdownHasFinishedAnimating,
+    )(event);
+  }
+
+  // Post-animation cleanup -- removes event listeners added, once they're no longer needed
+  _afterDropdownHasFinishedAnimating(self, element, event) {
+    self.classList.remove('is-opening');
+    self.classList.remove('is-closing');
+
+    self.priorityDropdown.removeEventListener(
+      self.transitionEvent,
+      self._waitForDropdownToFinishAnimating,
+      true,
     );
   }
 
   close() {
-    this.priorityDropdown.addEventListener(
-      this.transitionEvent,
-      this.waitForDropdownToAnimate(this),
-    );
     this.isOpen = false;
     this.removeAttribute('open');
     this.classList.add('is-closing');
     this.containerTabs.classList.remove('c-bolt-nav-priority--show-dropdown');
     this.dropdownButton.classList.remove('is-active');
     this.dropdownButton.setAttribute('aria-expanded', false);
+
+    this.priorityDropdown.addEventListener(
+      this.transitionEvent,
+      this._waitForDropdownToFinishAnimating,
+    );
   }
 
   get isReady() {
