@@ -34,11 +34,16 @@ export function getMaxTransitionProp(el) {
   return props[maxIndex];
 }
 
-export const waitForTransitionEnd = function(el, cb) {
-  var lastProp = getMaxTransitionProp(el);
-  return function(e) {
-    if (e.propertyName === lastProp) {
-      cb(e);
+/**
+ * @param  {object} component - reference to the base parent component; used for cleaning up event listener
+ * @param  {object} element - the element that's being transitioned
+ * @param  {function} callback - function to run after transition finished
+ */
+export const waitForTransitionEnd = function(component, element, callback) {
+  const lastProp = getMaxTransitionProp(element);
+  return function(event) {
+    if (event.propertyName === lastProp) {
+      callback(component, element, event);
     }
   };
 };
