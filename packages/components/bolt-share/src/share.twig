@@ -10,6 +10,14 @@
 {% set base_class = "c-bolt-share" %}
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set inner_attributes = create_attribute({}) %}
+
+{# Set up checks to validate that the component's prop values are allowed, based on the component's schema. #}
+{% set size_options = schema.properties.size.enum %}
+{% set opacity_options = schema.properties.opacity.enum %}
+
+{# Check that the component's current prop values are valid. If not, default to the schema default #}
+{% set size = size in size_options ? size : schema.properties.size.default %}
+{% set opacity = opacity in opacity_options ? opacity : schema.properties.opacity.default %}
 {% set inline = inline is sameas(true) or inline is sameas(false) ? inline : schema.properties.inline.default %}
 
 {# Default text can't be pulled from the schema because it must be translatable. #}
@@ -56,7 +64,7 @@
         icon: {
           name: source_icon,
           position: "before",
-          size: "small"
+          size: size
         },
         attributes: {
           class: [
@@ -77,7 +85,7 @@
       {% include "@bolt-components-copy-to-clipboard/copy-to-clipboard.twig" with {
         text: "<span class='c-bolt-share__link-text'>#{copy_to_clipboard_text}</span>",
         url: copy_to_clipboard_url,
-        iconSize: "small",
+        iconSize: size,
         attributes: {
           class: "c-bolt-share__link"
         }
@@ -90,19 +98,22 @@
 {# Share component's custom element wrapper. #}
 <bolt-share
   {% if inline %} inline {% endif %}
+  {% if size %} size="{{ size }}" {% endif %}
+  {% if opacity %} opacity="{{ opacity }}" {% endif %}
   {{ attributes }}
 >
   {# Array of classes based on the defined + default props. #}
   {% set classes = [
     base_class,
     inline ? "#{base_class}--display-inline" : "#{base_class}--display-button",
+    inline ? opacity in opacity_options ? "#{base_class}--opacity-#{opacity}" : "",
   ] %}
 
   <div {{ inner_attributes.addClass(classes) }}>
     {% if inline %}
       {% include "@bolt-components-list/list.twig" with {
         display: "inline",
-        spacing: "xsmall",
+        spacing: size == "small" ? "xsmall" : "small",
         items: items
       } only %}
     {% else %}

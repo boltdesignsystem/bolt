@@ -13,6 +13,23 @@ properties:
     type: string
     default: Share this page
     description: Call to action text, like "Share" or "Share this page".
+  size:
+    type: string
+    default: medium
+    description: Controls the size of icons and spacing.
+    enum:
+      - small
+      - medium
+  opacity:
+    type: integer
+    default: 100
+    description: Controls the overall transparency of the share tool.
+    enum:
+      - 100
+      - 80
+      - 60
+      - 40
+      - 20
   sources:
     type: array
     description: Social media sources to share to.
