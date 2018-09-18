@@ -1,6 +1,10 @@
-import { define, props } from '@bolt/core/utils';
+import {
+  define,
+  props,
+  whichTransitionEvent,
+  waitForTransitionEnd,
+} from '@bolt/core/utils';
 import { withHyperHtml } from '@bolt/core/renderers';
-
 /*
   Consider using these polyfills to broaden browser support:
     — https://www.npmjs.com/package/classlist-polyfill
@@ -20,6 +24,7 @@ class BoltNavPriority extends withHyperHtml() {
     this.activeLink = false;
     this.useShadow = false;
     this.isReady = false;
+    this.transitionEvent = whichTransitionEvent();
 
     this._adaptPriorityNav = this._adaptPriorityNav.bind(this);
     this._handleDropdownToggle = this._handleDropdownToggle.bind(this);
@@ -182,29 +187,47 @@ class BoltNavPriority extends withHyperHtml() {
   }
 
   open() {
+    this.priorityDropdown.addEventListener(
+      this.transitionEvent,
+      this.waitForDropdownToAnimate(this),
+    );
     this.isOpen = true;
     this.setAttribute('open', true);
     this.containerTabs.classList.add('c-bolt-nav-priority--show-dropdown');
     this.classList.add('is-opening');
     this.dropdownButton.classList.add('is-active');
     this.dropdownButton.setAttribute('aria-expanded', true);
+  }
 
-    window.setTimeout(() => {
-      this.classList.remove('is-opening');
-    }, 500);
+  afterDropdownAnimates(elem) {
+    elem.priorityDropdown.removeEventListener(
+      elem.transitionEvent,
+      elem.waitForDropdownToAnimate,
+    );
+  }
+
+  waitForDropdownToAnimate(elem) {
+    waitForTransitionEnd(
+      elem.priorityDropdown,
+      (() => {
+        elem.classList.remove('is-opening');
+        elem.classList.remove('is-closing');
+        elem.afterDropdownAnimates(elem);
+      })(elem),
+    );
   }
 
   close() {
+    this.priorityDropdown.addEventListener(
+      this.transitionEvent,
+      this.waitForDropdownToAnimate(this),
+    );
     this.isOpen = false;
     this.removeAttribute('open');
     this.classList.add('is-closing');
     this.containerTabs.classList.remove('c-bolt-nav-priority--show-dropdown');
     this.dropdownButton.classList.remove('is-active');
     this.dropdownButton.setAttribute('aria-expanded', false);
-
-    window.setTimeout(() => {
-      this.classList.remove('is-closing');
-    }, 500);
   }
 
   get isReady() {
