@@ -117,7 +117,7 @@ bolt-nav-priority {
 
   opacity: 0;
   transform: translate3d(0, bolt-spacing(medium) * -1, 0);
-  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0s, opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1) 0.1s;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1) 0s, opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1) 0.1s;
 
   .c-bolt-nav-priority--show-dropdown & {
     opacity: 1;
@@ -148,7 +148,7 @@ bolt-nav-priority {
   background-color: bolt-theme(secondary);
   border-bottom-left-radius: $bolt-border-radius;
   border-bottom-right-radius: $bolt-border-radius;
-  transition: max-height 0.4s cubic-bezier(0.28, 0.11, 0.32, 1) 0s, visibility 0s linear 0.4s;
+  transition: max-height 0.3s cubic-bezier(0.28, 0.11, 0.32, 1) 0s, visibility 0s linear 0.3s;
   visibility: hidden;
 
   * {
@@ -334,7 +334,7 @@ bolt-nav-priority {
   $time: 0;
 
   @for $i from $quantity through 1 {
-    $time: $time + 100;
+    $time: $time + 50;
     bolt-nav-priority:not(.is-closing) .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item:nth-last-child(n+#{$quantity}),
     bolt-nav-priority:not(.is-closing) .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item:nth-last-child(n+#{$quantity}) ~ .c-bolt-nav-priority__item:nth-child(#{$i}) {
       transition-delay: $time + ms;
@@ -345,7 +345,7 @@ bolt-nav-priority {
     }
   }
 
-  $time: $time + 100;
+  $time: $time + 50;
 }
 
 .c-bolt-nav-priority--show-dropdown .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item {
