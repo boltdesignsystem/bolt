@@ -1,3 +1,5 @@
+// Calculates which CSS transition property is the final one transitioning -- useful for animation complete callbacks. Inspired by https://stackoverflow.com/a/40534650
+
 export function getValues(str) {
   return str
     .replace(/[A-Z]/gi, '')
