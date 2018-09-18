@@ -120,9 +120,12 @@ bolt-navbar {
     }
   }
 
-  &--full {
-    @include bolt-full-bleed;
-  }
+  // Don't include these inner "full-bleed" styles till Navbar is updated to support theming classes internally, 
+  // otherwise full bleed + center styling combos are broken
+  // @todo: uncomment once the [width*="full"] updates from above ^ are addressed 
+  // &--full {
+  //   @include bolt-full-bleed;
+  // }
 
   &--small {
     > * {
