@@ -10,13 +10,16 @@
 {% set baseClass = prefix ~ componentName %}
 {% set attributes = create_attribute(attributes|default({})) %}
 
-{# re-assign old itemAlignment paramater to the new `align` name that's replacing it; avoids breaking change till post v1.0 #}
-{# @todo Salem, is it safe to remove the coverage for legacy itemAlignment parameter? #}
+{# DEPRECATED.  Use the prooperty 'align' instead of 'itemAlignment'. #}
 {% if itemAlignment %}
-  {% if itemAlignment == "start" %}
-    {% set itemAlignment = "left" %}
-  {% endif %}
   {% set align = itemAlignment %}
+{% endif %}
+
+{# DEPRECATED.  Use the values 'start' and 'end' insted of 'left' and 'right'. #}
+{% if align == "left" %}
+ {% set align = "start" %}
+{% elseif align == "right" %}
+  {% set align = "end" %}
 {% endif %}
 
 {# set up psuedo self-validation by limiting param values to what's specifically allowed in the component schema #}

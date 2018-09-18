@@ -44,7 +44,8 @@ export class BoltCopyToClipboard extends BoltComponent() {
 
         // Reset so the link can be used again without refreshing the page.
         setTimeout(() => {
-          this.parentElem.classList.remove('is-successful', 'is-animating');
+          this.parentElem.classList.remove('is-successful');
+          this.parentElem.classList.remove('is-animating');
         }, 3000);
       }, 1000);
     });

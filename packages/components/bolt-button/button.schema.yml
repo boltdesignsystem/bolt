@@ -4,6 +4,9 @@ description: 'Buttons are the core of our action components.'
 type: object
 required:
   - text
+not:
+  required:
+    - itemAlignment
 properties:
   attributes:
     type: object
@@ -53,13 +56,17 @@ properties:
       - medium
       - large
       - xlarge
+  itemAlignment:
+    title: 'DEPRECATED'
+    description: 'Use the align parameter instead.'
   align:
     title: 'Button Alignment'
+    description: 'How should content be horizontally aligned?  Note: the values <em>left</em> and <em>right</em> are <strong>DEPRECATED</strong>, use <em>start</em> and <em>end</em> instead.'
     type: string
     enum:
-      - left
+      - start
       - center
-      - right
+      - end
     default: center
   style:
     type: string
