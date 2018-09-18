@@ -37,7 +37,9 @@
 	position: absolute;
 	z-index: 20;
 	cursor: move;
-	display: block;
+	// this needs to be set to display: none by default since the PL JavaScript that sets this inline to
+	// display none / block only fires when resizing the viewport or code drawer
+	display: none;
 	top: 0;
 	left: 0;
 	bottom: 0;
