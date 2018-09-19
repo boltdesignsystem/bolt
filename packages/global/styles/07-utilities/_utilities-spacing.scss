@@ -69,3 +69,7 @@ $bolt-spacing-sizes: map-merge($bolt-spacing-sizes-extras, $bolt-spacing-sizes);
     @include bolt-spacing-sizes-utils(\@#{$breakpointName});
   }
 }
+
+@include export-data('spacing-sizes.bolt.json', $bolt-spacing-sizes);
+@include export-data('spacing-properties.bolt.json', $bolt-spacing-properties);
+@include export-data('spacing-directions.bolt.json', $bolt-spacing-directions);
