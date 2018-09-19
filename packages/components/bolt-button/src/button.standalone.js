@@ -79,8 +79,7 @@ class BoltButton extends withHyperHtml() {
   }
 
   render() {
-    const classes = cx({
-      'c-bolt-button': true,
+    const classes = cx('c-bolt-button', {
       'c-bolt-button--rounded': this.props.rounded,
       'c-bolt-button--disabled': this.props.disabled,
       'c-bolt-button--icon-only': this.props.iconOnly,
@@ -104,14 +103,11 @@ class BoltButton extends withHyperHtml() {
     let buttonElement;
     const self = this;
 
-    const itemClasses = cx({
-      'c-bolt-button__item': true,
+    const itemClasses = cx('c-bolt-button__item', {
       'u-bolt-visuallyhidden': this.props.iconOnly,
     });
 
-    const iconClasses = cx({
-      'c-bolt-button__icon': true,
-    });
+    const iconClasses = cx('c-bolt-button__icon');
 
     const slotMarkup = name => {
       if (name in this.slots) {
