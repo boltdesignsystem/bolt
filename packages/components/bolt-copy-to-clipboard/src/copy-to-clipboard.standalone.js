@@ -1,17 +1,10 @@
-import {
-  define,
-  props,
-  withComponent,
-  css,
-  hasNativeShadowDomSupport,
-  BoltComponent,
-  sanitizeBoltClasses,
-} from '@bolt/core';
-
 import ClipboardJS from 'clipboard';
 
+import { props, define } from '@bolt/core/utils';
+import { withHyperHtml } from '@bolt/core/renderers';
+
 @define
-export class BoltCopyToClipboard extends BoltComponent() {
+class BoltCopyToClipboard extends withHyperHtml() {
   static is = 'bolt-copy-to-clipboard';
 
   constructor(self) {
@@ -56,3 +49,5 @@ export class BoltCopyToClipboard extends BoltComponent() {
     this.copyLink.removeEventListener('click', this.clickHandler);
   }
 }
+
+export { BoltCopyToClipboard };

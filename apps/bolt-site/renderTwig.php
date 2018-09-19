@@ -1,6 +1,15 @@
 <?php
 require_once 'vendor/autoload.php';
-// Twig docs for this: https://twig.symfony.com/doc/1.x/api.html
+use Wa72\HtmlPrettymin\PrettyMin;
+
+$pm = new PrettyMin([
+  'minify_js' => false,
+  'minify_css' => false,
+]);
+
+use Webmozart\PathUtil\Path;
+use Symfony\Component\Finder\Finder;
+use \Bolt\TwigRenderer;
 
 $data = [];
 $page = '';
@@ -15,37 +24,47 @@ if ($argv[2]) {
 $json = file_get_contents($page);
 $data = json_decode($json, true);
 
-// Creates Twig Loader, uses `./templates` as default directory to look for Twig files
-$staticSiteLoader = new Twig_Loader_Filesystem('templates');
+$twigRenderer = new TwigRenderer(
+  '../../www/build/data/twig-namespaces.bolt.json',
+  __DIR__,
+  [],
+  [
+    '\Twig_Extension_Debug',
+    '\PatternLab\DrupalTwigExtensions\Basic',
+    '\BasaltInc\TwigTools\TwigExtensions\BasaltFakerExtension',
+  ]
+);
 
-// Add as many Twig Namespaces as you'd like
-//$staticSiteLoader->addPath(getcwd() . '/..', 'upone');
+$msgs = [];
+$html = '';
 
-$twigNamespaceConfig = \BasaltInc\TwigTools\Utils::getData('../../www/build/data/twig-namespaces.bolt.json');
-$twigLoaderConfig = \BasaltInc\TwigTools\Namespaces::buildLoaderConfig($twigNamespaceConfig, __DIR__);
-$boltTwigLoader = \BasaltInc\TwigTools\Namespaces::addPathsToLoader($twigLoaderConfig);
+// Namespace path
+if (strpos($templatePath, '@') !== false) {
+  $html = trim($twigRenderer->render($templatePath, $data));
 
-$loaders = new \Twig_Loader_Chain([
-  $staticSiteLoader,
-  $boltTwigLoader,
-]);
+// Non-namespaced path
+} else {
+  $finder = new Finder();
+  $finder->files()->in(__DIR__)->name($templatePath);
 
-// Create Twig Environment with the `$loaders` just made and some global settings
-$twig = new Twig_Environment($loaders, [
-  'debug' => true,
-  'autoescape' => false,
-]);
+  foreach ($finder as $file) {
+    $paths[] = $file->getRelativePathname();
+  }
 
-// Add all our Twig Extensions for our custom functions, filters, etc
-// Not a Drupal site, but Bolt components use some of the custom Twig functions, filters etc
-$twig->addExtension(new \PatternLab\DrupalTwigExtensions\Basic());
-$twig->addExtension(new \Bolt\TwigExtensions\BoltCore());
-$twig->addExtension(new \Bolt\TwigExtensions\BoltExtras());
+  $html = trim($twigRenderer->render('@bolt/' . $paths[0], $data));
+}
 
-// Load the template that was first arg to this script
-$template = $twig->load($templatePath);
 
-// Pass data to template and get back HTML
-$html = $template->render($data);
+$doc = new DOMDocument();
+libxml_use_internal_errors(true); // handle warnings thrown from custom elements  
+$doc->loadHTML($html, LIBXML_NOWARNING | LIBXML_NOERROR);
+libxml_clear_errors();
 
-echo $html;
+// Automatically beautify or minify HTML generated from static site generator based on environment
+if (getenv('NODE_ENV') === 'production') {
+  $output = $pm->load($doc)->minify()->saveHtml();
+  echo $output;
+} else {
+  $output = $pm->load($doc)->indent()->saveHtml();
+  echo $output;
+}

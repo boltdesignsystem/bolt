@@ -19,8 +19,7 @@
 {% set contentTag = contentTag in contentTags ? contentTag: "div" %}
 
 {% set classes = [
-  baseClass,
-  theme in themes ? "t-bolt-" ~ theme : "",
+  baseClass
 ] %}
 
 {% if url %}
@@ -104,7 +103,7 @@
 {% endset %}
 
 <bolt-card
-  theme="{{ theme }}"
+  {% if theme %} class="t-bolt-{{ theme }}"{% endif %}
   {% if url %}url={{ url }}{% endif %}
   bolt-component>
   <{{ tag }} {{ attributes.addClass(classes) }}>

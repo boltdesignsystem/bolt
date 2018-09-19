@@ -1,13 +1,5 @@
-import {
-  h,
-  render,
-  define,
-  props,
-  BoltComponent,
-  css,
-  spacingSizes,
-  hasNativeShadowDomSupport,
-} from '@bolt/core';
+import { define, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import { withHyperHtml } from '@bolt/core/renderers';
 
 import gumshoe from 'gumshoejs';
 import isVisible from 'is-visible';
@@ -157,7 +149,7 @@ let gumshoeStateModule = (function() {
 })();
 
 @define
-export class BoltNavIndicator extends BoltComponent() {
+class BoltNavIndicator extends withHyperHtml() {
   static is = 'bolt-nav-indicator';
 
   // Behavior for `<bolt-nav>` parent container
@@ -390,3 +382,5 @@ export class BoltNavIndicator extends BoltComponent() {
   // such as scroll.
   throttle('resize', 'optimizedResize');
 })();
+
+export { BoltNavIndicator };

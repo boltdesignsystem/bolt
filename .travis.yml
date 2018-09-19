@@ -10,7 +10,7 @@ addons:
 
 before_install:
 - nvm install # version lifted from `.nvmrc`
-- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.7.0
+- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
 - export PATH="$HOME/.yarn/bin:$PATH"
 
 before_script:
@@ -26,7 +26,7 @@ before_script:
 # Can't do deploy on `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
 script:
 - bash ./travis.sh # time command already run inside the travis.sh script
-- npx nightwatch --config nightwatch.js --env chrome,ie11
+- npx nightwatch@0.9.20 --config nightwatch.js --env chrome,ie11
 
 cache:
   apt: true

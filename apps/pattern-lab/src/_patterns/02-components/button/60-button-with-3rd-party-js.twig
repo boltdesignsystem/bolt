@@ -1,0 +1,54 @@
+{% set themes = get_data('@bolt/themes.schema.json') %}
+
+{% embed "@utils/theme-demo.twig" %}
+  {% block demo_content %}
+    {% include "@bolt-components-button/button.twig" with {
+      "theme:": "xdark",
+      "text": "XDark Button w/ External JS Example",
+      attributes: {
+        class: "js-button-theme-xdark",
+      }
+    } %}
+  {% endblock %}
+{% endembed %}
+
+<script>
+  // Fired every time the custom element has rendered.
+  var element = document.querySelector('.js-button-theme-xdark');
+  var setupHasAlreadyRun = false;
+  var elementBeingTargeted = 'button';
+  var selector;
+
+  if (element._wasInitiallyRendered){
+    setupEventListener(false);
+  } else {
+    element.addEventListener('rendered', setupEventListener);
+  }
+
+  function setupEventListener(removeEventListener = true){
+    if (element.useShadow){
+      selector = element.shadowRoot.querySelector(elementBeingTargeted);
+    } else {
+      selector = element.querySelector(elementBeingTargeted);
+    }
+    ready();
+
+    if (removeEventListener){
+      element.removeEventListener("rendered", setupEventListener, true);
+    }
+  }
+
+  function ready(){
+    if (setupHasAlreadyRun){
+      selector.removeEventListener('click', buttonClicked, true);
+    } else {
+      setupHasAlreadyRun = true;
+    }
+    selector.addEventListener('click', buttonClicked);
+  }
+
+  function buttonClicked(){
+    console.log('the button tag inside the rendered xdark bolt-button was clicked!');
+  }
+
+</script>

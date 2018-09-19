@@ -7,7 +7,6 @@
  *    "show pattern info" is selected on the pattern detail screen.
  */
 .pl-c-modal {
-	display: none;
 	font-family: $pl-font;
 	background: $pl-color-black;
 	color: $pl-color-gray-20;
@@ -18,15 +17,23 @@
 	z-index: 5;
 	width: 100%;
 	height: 50%;
-	transition: bottom 0.3s ease-out;
+	transition: transform 0.3s ease, max-height 0.3s ease;
+	transform: translate3d(0, 100%, 0);
+	height: 50vh; // overwritten by inline height from JS
+	overflow: hidden;
+	border-top-left-radius: 12px; // Double the inner border radius
+	border-top-right-radius: 12px; // Double the inner border radius
+	display: flex;
+	flex-direction: column;
+	bottom: 0;
+	max-height: 0;
 
 	/**
      * Active modal
      */
 	&.pl-is-active {
-		display: flex;
-		flex-direction: column;
-		bottom: 0;
+		transform: translate3d(0, 0%, 0);
+		max-height: 9999px;
 	}
 }
 
@@ -43,7 +50,7 @@
 	background: $pl-color-black;
 	color: $pl-color-gray-50;
 	border: 0;
-	border-radius: $pl-border-radius-med $pl-border-radius-med 0 0;
+	border-radius: $pl-border-radius-med;
 	display: inline-block;
 	padding: 0.5rem 0.5rem 0.3rem;
 	margin: 0;

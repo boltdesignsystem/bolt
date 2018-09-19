@@ -90,9 +90,10 @@
  * 1) Tab content contains the tab panels
  */
 .pl-c-tabs__content {
+    @include hideScrollBar;
     flex: 1 0 auto;
     overflow: scroll;
-    @include hideScrollBar();
+    -webkit-overflow-scrolling: touch;
     height: 100%;
     padding-top: 0.5rem;
 

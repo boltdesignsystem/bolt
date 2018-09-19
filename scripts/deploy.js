@@ -72,7 +72,7 @@ async function init() {
     const deployOutput = spawnSync('now', [
       'deploy',
       './www',
-      '--name=bolt-design-system',
+      '--name=boltdesignsystem',
       '--static',
       ...baseNowArgs,
     ], {encoding: 'utf8'});
@@ -83,7 +83,7 @@ async function init() {
     const deployedUrl = deployOutput.stdout.trim();
     const deployedId = deployedUrl
       .replace('https://', '')
-      .replace('bolt-design-system-', '')
+      .replace('boltdesignsystem-', '')
       .replace('.now.sh', '');
 
 
@@ -93,7 +93,7 @@ async function init() {
       .replace(/\//g, '-') // `/` => `-`
       .replace('--', '-') // `--` => `-` now.sh subdomains can't have `--` for some reason
       .replace(/\./g, '-'); // `.` => `-`
-    const aliasedUrlSubdomain = `${encodeURIComponent(branchUrlPart)}.bolt-design-system`;
+    const aliasedUrlSubdomain = `${encodeURIComponent(branchUrlPart)}.boltdesignsystem`;
     const aliasedUrl = `https://${aliasedUrlSubdomain}.com`;
     const aliasOutput = spawnSync('now', [
       'alias',
@@ -108,13 +108,13 @@ async function init() {
     }
     console.log(aliasOutput.stdout, aliasOutput.stderr);
 
-    // if this is a tagged release, then it should become the main site. we aliased above so we have a tagged version out as well i.e. `bolt-design-system-v1.2.3.now.sh`
+    // if this is a tagged release, then it should become the main site. we aliased above so we have a tagged version out as well i.e. `v1-2-3-boltdesignsystem.com`
     if (TRAVIS_TAG && TRAVIS_TAG === latestTag) {
       console.log('Is tag build, aliasing to main site.');
       const aliasOutput2 = spawnSync('now', [
         'alias',
         deployedUrl,
-        'bolt-design-system.com',
+        'boltdesignsystem.com',
         ...baseNowArgs,
       ], {encoding: 'utf8'});
       if (aliasOutput2.status !== 0) {
@@ -124,11 +124,11 @@ async function init() {
       }
       console.log(aliasOutput2.stdout, aliasOutput2.stderr);
 
-      console.log('aliasing www.bolt-design-system.com to main site too.');
+      console.log('aliasing www.boltdesignsystem.com to main site too.');
       const aliasOutput3 = spawnSync('now', [
         'alias',
         deployedUrl,
-        'www.bolt-design-system.com',
+        'www.boltdesignsystem.com',
         ...baseNowArgs,
       ], {encoding: 'utf8'});
       if (aliasOutput3.status !== 0) {

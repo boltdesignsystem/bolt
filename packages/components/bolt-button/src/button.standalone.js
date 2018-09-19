@@ -1,58 +1,22 @@
 import {
-  define,
   props,
-  withComponent,
-  css,
-  hasNativeShadowDomSupport,
-  BoltComponent,
+  define,
   declarativeClickHandler,
   sanitizeBoltClasses,
-} from '@bolt/core';
+  hasNativeShadowDomSupport,
+  afterNextRender,
+} from '@bolt/core/utils';
+import { wire, withHyperHtml } from '@bolt/core/renderers';
 
-// @todo Salem, since this imports something that imports '@bolt/core', please make sure this doesn't add a huge amount in the wrong place - Evan
+import classNames from 'classnames/bind';
+
 import visuallyhiddenUtils from '@bolt/global/styles/07-utilities/_utilities-visuallyhidden.scss';
-
 import styles from './button.scss';
 
-/**
- * The ReplaceWithChildren is a helper component used for prerendering components (ex. temp CSS
- * classes) that need to get removed when the component's JS kicks in. Once that happens, this
- * component automatically replaces itself with the component's child nodes.
- */
-@define
-export class ReplaceWithChildren extends BoltComponent() {
-  static is = 'replace-with-children';
-
-  constructor(self) {
-    self = super(self);
-    return self;
-  }
-
-  connecting() {
-    this.replaceElementWithChildren();
-  }
-
-  replaceElementWithChildren() {
-    const parentElement = this.parentElement;
-
-    if (!parentElement) {
-      Error(
-        'The <replace-with-children> element needs a parent element to append to!',
-      );
-    }
-
-    // Originally was this.replaceWith(...this.childNodes) but IE11 doesn't like that
-    while (this.firstChild) {
-      parentElement.appendChild(this.firstChild);
-    }
-    if (parentElement) {
-      parentElement.removeChild(this);
-    }
-  }
-}
+let cx = classNames.bind(styles);
 
 @define
-class BoltButton extends BoltComponent() {
+class BoltButton extends withHyperHtml() {
   static is = 'bolt-button';
 
   static props = {
@@ -61,13 +25,10 @@ class BoltButton extends BoltComponent() {
     size: props.string,
     rounded: props.boolean,
     iconOnly: props.boolean,
-    size: props.string,
     width: props.string,
     align: props.string,
     transform: props.string,
-
     disabled: props.boolean,
-
     target: props.string,
     url: props.string,
 
@@ -79,11 +40,33 @@ class BoltButton extends BoltComponent() {
   constructor(self) {
     self = super(self);
     this.useShadow = hasNativeShadowDomSupport;
-    return self;
-  }
+    const root = this;
 
-  connecting() {
-    this.addEventListener('click', this.clickHandler);
+    // If the initial <bolt-button> element contains a button or link, break apart the original HTML so we can retain any button or a tags but swap out the inner content with slots.
+    this.childNodes.forEach((childElement, i) => {
+      if (childElement.tagName === 'BUTTON' || childElement.tagName === 'A') {
+        root.rootElement = document.createDocumentFragment();
+
+        // Take any existing buttons and links and move them to the root of the custom element
+        while (childElement.firstChild) {
+          root.appendChild(childElement.firstChild);
+        }
+
+        if (childElement.className) {
+          childElement.className = sanitizeBoltClasses(childElement);
+        }
+
+        root.rootElement.appendChild(childElement);
+      }
+    });
+
+    // When possible, use afterNextRender to defer non-critical
+    // work until after first paint.
+    afterNextRender(this, function() {
+      this.addEventListener('click', this.clickHandler);
+    });
+
+    return self;
   }
 
   disconnecting() {
@@ -96,47 +79,19 @@ class BoltButton extends BoltComponent() {
   }
 
   render() {
-    // Setup the combo of classes to apply based on state + extras added
-    const classes = css(
-      'c-bolt-button',
-      this.props.size ? `c-bolt-button--${this.props.size}` : '',
-      this.props.color
-        ? `c-bolt-button--${this.props.color}`
-        : 'c-bolt-button--primary',
-      this.props.rounded ? 'c-bolt-button--rounded' : '',
-      this.props.iconOnly ? 'c-bolt-button--icon-only' : '',
-      this.props.width ? `c-bolt-button--${this.props.width}` : '',
-      this.props.align
-        ? `c-bolt-button--${this.props.align}`
-        : 'c-bolt-button--center',
-      this.props.align ? `c-bolt-button--${this.props.transform}` : '',
-      this.props.disabled ? 'c-bolt-button--disabled' : '',
-    );
-
-    /**
-     * Given that our base HyperHTML Class is configured to automatically organizing top level children into separate slot buckets (ie.
-     * `this.slots.default`) AND we need to apply padding styles to the <button> or <link> getting passed in, we need to identify which Dom Node in
-     * our default Slot is the one we should apply our component classes to.
-     *
-     * If for some reason a container can't be found (ex. if creating a `<bolt-button color="primary">Hello World</bolt-button>` element by hand),
-     * We'll need to generate a wrapper container + figure out if this should be a <button> or <a> tag
-     */
-
-    let childElementIndex = null;
-    this.slots.default.forEach(function(item, i) {
-      if (item.nodeType === 1) {
-        childElementIndex = i;
-      }
+    const classes = cx('c-bolt-button', {
+      'c-bolt-button--rounded': this.props.rounded,
+      'c-bolt-button--disabled': this.props.disabled,
+      'c-bolt-button--icon-only': this.props.iconOnly,
+      'c-bolt-button--center': !this.props.align, // defautl align prop
+      [`c-bolt-button--${this.props.align}`]: this.props.align,
+      'c-bolt-button--primary': !this.props.color, // default color prop
+      [`c-bolt-button--${this.props.color}`]: this.props.color,
+      'c-bolt-button--medium': !this.props.size,
+      [`c-bolt-button--${this.props.size}`]: this.props.size,
+      [`c-bolt-button--${this.props.width}`]: this.props.width,
+      [`c-bolt-button--${this.props.transform}`]: this.props.transform,
     });
-
-    if (childElementIndex !== null) {
-      let sanitizedClasses = sanitizeBoltClasses(
-        this.slots.default[childElementIndex],
-      );
-      this.slots.default[
-        childElementIndex
-      ].className = `${sanitizedClasses} ${classes}`;
-    }
 
     // Decide on if the rendered button tag should be a <button> or <a> tag, based on if a URL exists OR if a link was passed in from the getgo
     const hasUrl = this.props.url.length > 0 && this.props.url !== 'null';
@@ -144,28 +99,66 @@ class BoltButton extends BoltComponent() {
     // Assign default target attribute value if one isn't specified
     const urlTarget = this.props.target && hasUrl ? this.props.target : '_self';
 
+    // The buttonElement to render, based on the initial HTML passed alone.
     let buttonElement;
+    const self = this;
 
-    if (childElementIndex !== null) {
-      buttonElement = this.slot('default');
-    } else if (childElementIndex === null && hasUrl) {
-      buttonElement = this.hyper.wire(this)`
-        <a href="${this.props.url}" class="${classes}" target="${urlTarget}">
-          ${this.slot('default')}
-        </a>
-      `;
-    } else {
-      buttonElement = this.hyper.wire(this)`
-        <button class="${classes}">
-          ${this.slot('default')}
-        </button>
-      `;
+    const itemClasses = cx('c-bolt-button__item', {
+      'u-bolt-visuallyhidden': this.props.iconOnly,
+    });
+
+    const iconClasses = cx('c-bolt-button__icon');
+
+    const slotMarkup = name => {
+      if (name in this.slots) {
+        switch (name) {
+          case 'before':
+          case 'after':
+            return wire(this)`
+              <span class="${iconClasses}">${this.slot(name)}</span>`;
+          default:
+            return wire(this)`
+              <span class="${itemClasses}">${this.slot('default')}</span>`;
+        }
+      }
+    };
+
+    const innerSlots = [
+      slotMarkup('before'),
+      slotMarkup('default'),
+      slotMarkup('after'),
+    ];
+
+    function renderInnerSlots(elementToAppendTo) {
+      // hyperhtml workaround till lit-html in place
+      for (var i = 0; i < innerSlots.length; i++) {
+        const slotValue = innerSlots[i];
+        if (slotValue !== undefined) {
+          elementToAppendTo.appendChild(slotValue);
+        }
+      }
+      return elementToAppendTo;
     }
 
-    // Add inline <style> tag automatically if Shadow DOM is natively supported
+    if (this.rootElement) {
+      buttonElement = this.rootElement.firstChild.cloneNode(true);
+      // render(inner, buttonElement); // lit-html syntax
+      buttonElement.className += ' ' + classes;
+    } else if (hasUrl) {
+      buttonElement = wire()`<a href="${
+        this.props.url
+      }" class="${classes}" target="${urlTarget}"></a>`;
+    } else {
+      buttonElement = wire()`<button class="${classes}"></button>`;
+    }
+
+    buttonElement = renderInnerSlots(buttonElement);
+
     return this.html`
       ${this.addStyles([styles, visuallyhiddenUtils])}
       ${buttonElement}
     `;
   }
 }
+
+export { BoltButton };

@@ -1,0 +1,17 @@
+/* stylelint-disable scss/at-function-pattern */
+
+/// Encode a map to JSON
+/// @access private
+/// @param {Map} $map - map to be encoded
+/// @return {String} - encoded map
+/// @require {function} _proof-quote
+/// @require {function} bolt-json-encode
+@function _json-encode--map($map) {
+  $str: '';
+
+  @each $key, $value in $map {
+    $str: $str + ', ' + _proof-quote($key) + ': ' + bolt-json-encode($value);
+  }
+
+  @return '{' + str-slice($str, 3) + '}';
+}
