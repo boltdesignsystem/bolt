@@ -113,8 +113,7 @@ $bolt-share-opacity: 100, 80, 60, 40, 20;
 .c-bolt-share__label {
   @include bolt-font-size(xsmall);
 
-  color: inherit;
-  color: var(--bolt-theme-text, inherit);
+  color: bolt-theme(text);
   opacity: 0.6;
 }
 
