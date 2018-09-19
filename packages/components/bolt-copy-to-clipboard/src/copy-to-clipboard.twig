@@ -10,23 +10,16 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {% set text = text | default("Copy Link"|t) %}
-{% set attributes = attributes.setAttribute("text", text) %}
-
 {% set copiedText = copiedText | default("Copied!"|t) %}
-{% set attributes = attributes.setAttribute("copied-text", copiedText) %}
-
 {% set iconSize = iconSize | default(schema.properties.iconSize.default) %}
-{% set attributes = attributes.setAttribute("icon-size", iconSize) %}
 
-{% if url %}
-  {% set attributes = attributes.setAttribute("url", url) %}
-{% endif %}
+{% set _trigger_attributes = create_attribute({}) %}
 
 
 
 
-<bolt-copy-to-clipboard bolt-component>
-  <div class="{{ "#{baseClass}" }} js-bolt-copy-to-clipboard" {{ attributes.addClass(classes) }}>
+<bolt-copy-to-clipboard {{ attributes }}>
+  <div class="{{ "#{baseClass}" }} js-bolt-copy-to-clipboard">
     <span class="{{ "#{baseClass}__trigger" }}">
       {% include "@bolt-components-link/link.twig" with {
         "text": text,
@@ -36,7 +29,7 @@
           "position": "before",
           "size": iconSize
         },
-        "attributes": attributes.setAttribute("data-clipboard-text", url).setAttribute("target", "_blank").addClass("js-bolt-copy-to-clipboard__trigger")
+        "attributes": _trigger_attributes.setAttribute("data-clipboard-text", url).setAttribute("target", "_blank").addClass("js-bolt-copy-to-clipboard__trigger")
       } only %}
     </span>
 
