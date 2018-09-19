@@ -17,17 +17,17 @@ sh -c “$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/m
 
 ## Install Dependencies
 
-1. Install Homebrew: https://brew.sh/
+### 1. Install Homebrew: https://brew.sh/
 ```bash
 /usr/bin/ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)”
 ```
 
-2. Install Git
+### 2. Install Git
 ```bash
 brew install git
 ```
 
-3. Install NodeJS and NPM
+### 3. Install NodeJS and NPM (via NVM)
 ```bash
 brew install nvm
 ```
@@ -54,6 +54,7 @@ echo 'export NVM_DIR="$HOME/.nvm"
     <li>Finally, save and exit by pressing CONTROL + X, Hitting Y, then pressing enter to comform overwriting your .zshrc file</li>
 </ol>
 </details>
+<br>
 
 Next, with your `.zshrc` config updated, restart your iTerm instance:
 ```bash
@@ -66,7 +67,7 @@ nvm install lts/carbon # v8.9 +
 nvm alias default lts/carbon
 ```
 
-4. Install PHP and PHP Dependencies
+### 4. Install PHP and PHP Dependencies
 ```bash
 brew install php72
 brew tap homebrew/homebrew-php
@@ -76,19 +77,20 @@ composer global require hirak/prestissimo
 
 > Note: PHP 7.1 is technically fine if that's what you already have pre-installed.
 
-5. Install GD and Imagick (used for generating responsive images in the build process)
+### 5. Install GD and Imagick (used for generating responsive images in the build process)
 ```bash
 brew install imagemagick
 brew install graphicsmagick
 ```
 
-6. Finally, install Yarn
+### 6. Finally, install Yarn
 ```bash
 brew install yarn
 ```
 
 > Pro Tip: Already have Yarn installed? 
 Awesome! Make sure you're running the latest version by running `brew update yarn`
+
 
 ## Pulling Down, Installing and Running Bolt Locally
 
@@ -98,8 +100,7 @@ cd ~/
 mkdir sites
 cd sites
 ```
-
-2. Now, clone down the Bolt repo locally (which will be located in your `~/sites/bolt` folder):
+2. Now, clone down the Bolt repo locally (located in your `~/sites/bolt` folder):
 ```bash
 git clone https://github.com/bolt-design-system/bolt.git
 ```
