@@ -28,10 +28,11 @@
 {% set transformOptions = schema.properties.transform.enum %}
 {% set widthOptions = schema.properties.width.enum %}
 {% set iconPositions = schema.properties.icon.properties.position.enum %}
+{% set iconOnlyOptions = schema.properties.iconOnly.enum %}
 
 {# check if the value set to a prop is allowed or defined. if not, default to the default value specified in the component's schema (if one exists) #}
 {% set align = align in alignOptions ? align : schema.properties.align.default %}
-{% set iconOnly = iconOnly | default(false) %}
+{% set iconOnly = iconOnly is sameas(true) or iconOnly is sameas(false) ? iconOnly : scheuma.properties.iconOnly.default %}
 {% set size = size in sizeOptions ? size : schema.properties.size.default %}
 {% set style = style in styleOptions ? style : schema.properties.style.default %}
 {% set tag = tag in tagOptions ? tag : schema.properties.tag.default %}
@@ -64,6 +65,7 @@
   style in styleOptions ? "c-bolt-button--#{style}" : "c-bolt-button--#{schema.properties.style.default}",
   transform in transformOptions and transform != "none" ? "c-bolt-button--#{transform}": "",
   align in alignOptions ? baseClass ~ "--" ~ align : "",
+  iconOnly ? "c-bolt-button--icon-only": "",
 ] %}
 
 {% if disabled %}
@@ -112,7 +114,7 @@
   {% if size %} size="{{ size }}" {% endif %}
   {% if url %} url="{{ url }}" {% endif %}
   {% if width %} width="{{ width }}" {% endif %}
-  {% if rounded %} rounded=" {{ rounded }}" {% endif %}
+  {% if rounded %} rounded="{{ rounded }}" {% endif %}
   {% if iconOnly %} icon-only="true" {% endif %}
   {% if transform %} transform="{{ transform }}" {% endif %}
   {% if disabled == true %} disabled {% endif %}
