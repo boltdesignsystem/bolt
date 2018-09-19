@@ -111,7 +111,6 @@ cd bolt
 
 4. Now, run the setup command which will do all the necessary installs for running the docs site and Pattern Lab environments locally, set up the build tools, install PHP dependencies, etc. Note: this'll take a couple mins probably the first time you need to run it - it gets faster during subsequent runs!
 ```bash
-yarn # so Lerna bootstrap works
 npm run setup
 ```
 
