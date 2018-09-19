@@ -8,13 +8,24 @@ $bolt-navbar-title-transition: $bolt-transition;
 
 $bolt-navbar-vspacing-small: bolt-v-spacing(small);
 $bolt-navbar-vspacing-xsmall: bolt-v-spacing(xsmall);
+$bolt-navbar-xsmall-bp: 420px; // Slightly increase the default 400px xsmall breakpoint to be better optimized for larger plus-sized mobile devices -- value shared by the bolt-navbar, bolt-nav-priority, and bolt-navlink components
 
 bolt-navbar {
-  @include bolt-full-bleed; // @todo: make full bleed optional?
   @include bolt-margin-top(0); // workaround to -.5px in bolt-full-bleed
   @include bolt-margin-bottom(0); // workaround to -.5px in bolt-full-bleed
   @supports (--css: variables) {
-    --bolt-vspacing: #{$bolt-navbar-vspacing-small};
+    --bolt-vspacing: #{$bolt-navbar-vspacing-xsmall};
+  }
+
+  @include bolt-mq($bolt-navbar-xsmall-bp){
+    @supports (--css: variables) {
+      --bolt-vspacing: #{$bolt-navbar-vspacing-small};
+    }
+  }
+
+  // @todo: remove once Navbar refactored to have theming classes added to the `.c-bolt-navbar` inner.
+  &[width*=full] {
+    @include bolt-full-bleed;
   }
 
   display: block;
@@ -23,8 +34,16 @@ bolt-navbar {
 }
 
 .c-bolt-navbar {
-  @include bolt-padding-left(medium);
-  @include bolt-padding-right(medium);
+  width: 100%;
+  margin: 0 auto;
+  @include bolt-padding-left(small);
+  @include bolt-padding-right(small);
+
+  @include bolt-mq($bolt-navbar-xsmall-bp){
+    @include bolt-padding-left(medium);
+    @include bolt-padding-right(medium);
+  }
+
   @include bolt-padding-top($bolt-navbar-vspacing-small);
 
   @supports (--css: variables) {
@@ -32,7 +51,7 @@ bolt-navbar {
   }
 
   @include bolt-if-browser-supports-display-contents {
-    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+    @media screen and (max-width: $bolt-navbar-xsmall-bp) {
       @include bolt-padding-top(0);
     }
   }
@@ -62,12 +81,12 @@ bolt-navbar {
   }
 
   @include bolt-if-browser-supports-display-contents {
-    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+    @media screen and (max-width: $bolt-navbar-xsmall-bp) {
       @include bolt-padding-left(0);
       @include bolt-padding-right(0);
       flex-direction: row;
       display: grid;
-      grid-template-columns: bolt-spacing(medium) auto 1fr bolt-spacing(medium);
+      grid-template-columns: bolt-spacing(small) auto 1fr bolt-spacing(medium);
       grid-template-rows: 1fr auto;
       align-content: center;
       justify-content: center;
@@ -103,6 +122,13 @@ bolt-navbar {
     }
   }
 
+  // Don't include these inner "full-bleed" styles till Navbar is updated to support theming classes internally, 
+  // otherwise full bleed + center styling combos are broken
+  // @todo: uncomment once the [width*="full"] updates from above ^ are addressed 
+  // &--full {
+  //   @include bolt-full-bleed;
+  // }
+
   &--small {
     > * {
       @include bolt-padding-bottom($bolt-navbar-vspacing-xsmall); /* [1] */
@@ -116,11 +142,11 @@ bolt-navbar {
 
 // Nav title
 .c-bolt-navbar__title {
-  @include bolt-margin-right(medium); // Maintain space between items
+  @include bolt-margin-right(small); // Maintain space between items
   padding-bottom: $bolt-navbar-vspacing-small;
   align-self: center;
   display: flex;
-  flex-shrink: 0.1; // make sure the title can wrap to multiple lines and shrink if needed, but only when absolutely necessary (prevents jumps when resizing)
+  flex-shrink: 1; // make sure the title can wrap to multiple lines and shrink if needed, but only when absolutely necessary (prevents jumps when resizing)
   flex-wrap: nowrap;
   align-items: center;
   color: bolt-theme(headline);
@@ -130,12 +156,16 @@ bolt-navbar {
     padding-bottom: var(--bolt-vspacing, $bolt-navbar-vspacing-small);
   }
 
+  @include bolt-mq(medium){
+    @include bolt-margin-right(medium); // Maintain space between items
+  }
+
   &:only-child {
     @include bolt-margin-right(auto);
   }
 
   @include bolt-if-browser-supports-display-contents {
-    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+    @media screen and (max-width: $bolt-navbar-xsmall-bp) {
       @include bolt-padding-top($bolt-navbar-vspacing-small);
       grid-column: 2 / span 1;
 

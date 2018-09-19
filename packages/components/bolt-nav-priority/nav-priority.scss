@@ -5,16 +5,17 @@
 @import '@bolt/core';
 
 $bolt-navbar-vspacing-small: bolt-v-spacing(small);
+$bolt-navbar-xsmall-bp: 420px; // Slightly increase the default 400px xsmall breakpoint to be better optimized for larger plus-sized mobile devices -- value shared by the bolt-navbar, bolt-nav-priority, and bolt-navlink components
 
 bolt-nav-priority {
   display: block;
   position: relative;
   align-self: center;
   padding-bottom: var(--bolt-vspacing);
-  flex-shrink: 2; // shrink faster than other components in tight spots
+  flex-shrink: 4; // shrink faster than other components in tight spots
 
   @include bolt-if-browser-supports-display-contents {
-    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+    @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
       &.is-ready {
         display: contents;
       }
@@ -36,7 +37,7 @@ bolt-nav-priority {
 
 .c-bolt-nav-priority {
   @include bolt-if-browser-supports-display-contents {
-    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+    @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
       &.is-ready {
         display: contents;
       }
@@ -67,7 +68,7 @@ bolt-nav-priority {
 
 .c-bolt-nav-priority__primary {
   @include bolt-if-browser-supports-display-contents {
-    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+    @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
       .is-ready & {
         display: contents;
       }
@@ -92,7 +93,7 @@ bolt-nav-priority {
 
 @include bolt-if-browser-supports-display-contents {
   .c-bolt-nav-priority__show-more {
-    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+    @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
       display: contents;
     }
   }
@@ -104,12 +105,25 @@ bolt-nav-priority {
   width: 100%;
   @include bolt-padding-top(xsmall);
   @include bolt-padding-bottom(xsmall);
-  @include bolt-padding-left(small);
-  @include bolt-padding-right(small);
+  @include bolt-padding-left(xsmall);
+  @include bolt-padding-right(xsmall);
+  overflow: hidden;
+  pointer-events: none;
 
   @include bolt-mq(small) {
     @include bolt-padding-left(xsmall);
     @include bolt-padding-right(xsmall);
+  }
+
+  opacity: 0;
+  transform: translate3d(0, bolt-spacing(medium) * -1, 0);
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1) 0s, opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1) 0.1s;
+
+  .c-bolt-nav-priority--show-dropdown & {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition-delay: 0.2s, 0.1s;
+    pointer-events: auto;
   }
 }
 
@@ -117,10 +131,10 @@ bolt-nav-priority {
   @include bolt-z-index(tooltip);
   background-color: bolt-theme(
     (
-      xdark: brand-darken-5 0.95,
-      dark: brand-lighten-20 0.95,
-      light: secondary 0.95,
-      xlight: secondary 0.95,
+      xdark: brand-darken-5,
+      dark: brand-lighten-20,
+      light: secondary,
+      xlight: secondary,
     )
   );
   box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
@@ -128,24 +142,25 @@ bolt-nav-priority {
   position: absolute;
   top: 100%;
   right: 0;
-  display: none;
-
+  max-height: 0;
   width: calc(100vw - #{bolt-spacing(large)});
   max-width: 100vw;
   border-bottom-left-radius: $bolt-border-radius;
   border-bottom-right-radius: $bolt-border-radius;
+  transition: max-height 0.3s cubic-bezier(0.28, 0.11, 0.32, 1) 0s, visibility 0s linear 0.3s;
+  visibility: hidden;
 
   * {
     white-space: normal;
   }
 
-  @include bolt-mq(xsmall) {
+  @include bolt-mq($bolt-navbar-xsmall-bp) {
     width: auto;
     max-width: 100%;
   }
 
   @include bolt-if-browser-supports-display-contents {
-    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+    @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
       grid-row: 2 / span 1;
       grid-column: 1 / span 6;
       width: auto;
@@ -154,7 +169,19 @@ bolt-nav-priority {
   }
 
   .c-bolt-nav-priority--show-dropdown & {
-    display: block;
+    visibility: visible;
+    max-height: 400px;
+    max-height: calc(100vh - 48px - 48px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    pointer-events: auto;
+    visibility: visible;
+    transition-delay: 0.1s, 0s;
+  }
+
+  .is-closing &,
+  .is-opening & {
+    overflow: hidden;
   }
 }
 
@@ -171,7 +198,11 @@ bolt-nav-priority {
 }
 
 .c-bolt-nav-priority__show-button {
-  @include bolt-padding(small, squished);
+  @include bolt-padding(xsmall, squished);
+
+  @include bolt-mq($bolt-navbar-xsmall-bp){
+    @include bolt-padding(small, squished);
+  }
   // Added border so that &:after,&:focus doesn't change the size of the band
   // We should consider making this thin dotted style a mixin to share with nav-priority
   border-width: thin;
@@ -184,8 +215,8 @@ bolt-nav-priority {
   background-color: bolt-theme(secondary, 0.05);
   cursor: pointer;
   position: relative;
-
-  @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+  
+  @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
     border-radius: 0;
     border-left-width: 1px;
     border-left-color: bolt-theme(headline, 0.2);
@@ -240,7 +271,7 @@ bolt-nav-priority {
   }
 
   @include bolt-if-browser-supports-display-contents {
-    @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+    @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
       .is-ready & {
         grid-row: 1 / span 1;
         grid-column: 5 / span 1;
@@ -255,7 +286,7 @@ bolt-nav-priority {
   position: relative;
   z-index: 10;
 
-  @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+  @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
     @include bolt-visuallyhidden;
   }
 }
@@ -268,7 +299,7 @@ bolt-nav-priority {
   line-height: 0;
   font-size: 1em;
 
-  @media screen and (max-width: #{bolt-breakpoint(xsmall)}) {
+  @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
     font-size: 24px;
   }
 
@@ -291,42 +322,32 @@ bolt-nav-priority {
 //   }
 // }
 
-// .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item {
-//   transform: var(--bolt-nav-priority-item-transform, none);
-//   opacity: var(--bolt-nav-priority-item-opacity, 1);
-//   transition: opacity 0.35s ease-out, transform 0.35s ease-out; // transition:
+.c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item {
+  transition: opacity 0.3s cubic-bezier(0.28, 0.11, 0.32, 1), transform 0.3s cubic-bezier(0.28, 0.11, 0.32, 1); // transition:
+  transform: translate3d(0, bolt-spacing(large) * -1, 0);
+  opacity: 0;
+  transition-property: transform, opacity;
+}
 
-//   // .c-bolt-dropdown--collapse\@small & {
-//   //   @include  bolt-mq(small) {
-//   //     opacity: 1;
-//   //     transform: translateY(0);
-//   //   }
-//   // }
-// }
+@for $quantity from 1 through 12 {
+  $time: 0;
 
-// @for $quantity from 1 through 12 {
-//   $time: 0;
+  @for $i from $quantity through 1 {
+    $time: $time + 50;
+    bolt-nav-priority:not(.is-closing) .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item:nth-last-child(n+#{$quantity}),
+    bolt-nav-priority:not(.is-closing) .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item:nth-last-child(n+#{$quantity}) ~ .c-bolt-nav-priority__item:nth-child(#{$i}) {
+      transition-delay: $time + ms;
+    }
 
-//   @for $i from $quantity through 1 {
-//     $time: $time + 50;
-//     .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item:nth-last-child(n+#{$quantity}),
-//     .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item:nth-last-child(n+#{$quantity}) ~ .c-bolt-nav-priority__item:nth-child(#{$i}) {
-//       transition-delay: $time + ms;
-//     }
-//   }
-// }
-//   // $time: $time + 50;
-//   //   transition-delay: $time + ms;
-//   // }
-// // }
+    .is-closing .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item:nth-child(#{$i}) {
+      transition-delay: $i * 17 + ms;
+    }
+  }
 
-// .c-bolt-nav-priority--show-dropdown .c-bolt-nav-priority__item {
-// // .c-bolt-nav-priority--show-dropdown+.c-bolt-dropdown .c-bolt-nav-priority__item,
-// // .c-bolt-dropdown__content--opened .c-bolt-nav-priority__item {
-//   // opacity: 1;
-//   // transform: none;
-//   @include bolt-css-vars((
-//     --bolt-nav-priority-item-opacity: 1,
-//     --bolt-nav-priority-item-transform: none,
-//   ));
-// }
+  $time: $time + 50;
+}
+
+.c-bolt-nav-priority--show-dropdown .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
