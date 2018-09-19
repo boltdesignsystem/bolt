@@ -242,7 +242,8 @@ function translateColor(colorArr, variationName, execMode) {
       return rgbaColor;
     default:
       if (alpha === 1) {
-        return `var(--bolt-theme-${colorVar})`;
+        return `rgba(var(--bolt-theme-${colorVar}), ${alpha})`;
+        //return `var(--bolt-theme-${colorVar})`; // @todo: re-evaluate if hex values should ever get outputted here
       } else {
         return `rgba(var(--bolt-theme-${colorVar}), ${alpha})`;
       }

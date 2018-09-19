@@ -5,35 +5,27 @@
 {% endif %}
 
 {# Variables #}
-{% set baseClass = "c-bolt-list" %}
+{% set base_class = "c-bolt-list" %}
 {% set attributes = create_attribute(attributes|default({})) %}
+{% set inner_attributes = create_attribute({}) %}
 
 {# Set up checks to validate that the component's prop values are allowed, based on the component's schema. #}
-{% set tagOptions = schema.properties.tag.enum %}
-{% set displayOptions = schema.properties.display.enum %}
-{% set spacingOptions = schema.properties.spacing.enum %}
-{% set separatorOptions = schema.properties.separator.enum %}
-{% set insetOptions = schema.properties.inset.enum %}
-{% set alignOptions = schema.properties.align.enum %}
-{% set valignOptions = schema.properties.valign.enum %}
+{% set tag_options = schema.properties.tag.enum %}
+{% set display_options = schema.properties.display.enum %}
+{% set spacing_options = schema.properties.spacing.enum %}
+{% set separator_options = schema.properties.separator.enum %}
+{% set inset_options = schema.properties.inset.enum %}
+{% set align_options = schema.properties.align.enum %}
+{% set valign_options = schema.properties.valign.enum %}
 
 {# Check that the component's current prop values are valid. If not, default to the schema default #}
-{% set tag = tag in displayOptions ? tag : schema.properties.tag.default %}
-{% set display = display in displayOptions ? display : schema.properties.display.default %}
-{% set spacing = spacing in spacingOptions ? spacing : schema.properties.spacing.default %}
-{% set separator = separator in separatorOptions ? separator : schema.properties.separator.default %}
-{% set inset = inset in spacingOptions ? inset : schema.properties.inset.default %}
-{% set align = align in alignOptions ? align : schema.properties.align.default %}
-{% set valign = valign in valignOptions ? valign : schema.properties.valign.default %}
-
-{# Move utility classes to a separate attributes object so they can be added to the parent element. This is necessary for most utils to work as expected. #}
-{% set parentAttributes = create_attribute({}) %}
-{% for class in attributes["class"] %}
-  {% if class starts with "u-" %}
-    {% set parentAttributes = parentAttributes.addClass(class) %}
-    {% set attributes = attributes.removeClass(class) %}
-  {% endif %}
-{% endfor %}
+{% set tag = tag in display_options ? tag : schema.properties.tag.default %}
+{% set display = display in display_options ? display : schema.properties.display.default %}
+{% set spacing = spacing in spacing_options ? spacing : schema.properties.spacing.default %}
+{% set separator = separator in separator_options ? separator : schema.properties.separator.default %}
+{% set inset = inset in spacing_options ? inset : schema.properties.inset.default %}
+{% set align = align in align_options ? align : schema.properties.align.default %}
+{% set valign = valign in valign_options ? valign : schema.properties.valign.default %}
 
 {# List component's custom element wrapper. #}
 <bolt-list
@@ -44,7 +36,7 @@
   {% if inset %} inset {% endif %}
   {% if align %} align="{{ align }}" {% endif %}
   {% if valign %} valign="{{ valign }}" {% endif %}
-  {{ parentAttributes }}
+  {{ attributes }}
 >
   {# This sets none values to not render anything. #}
   {% set spacing = spacing == "none" ? false : spacing %}
@@ -52,18 +44,18 @@
 
   {# Array of classes based on the defined + default props. #}
   {% set classes = [
-    baseClass,
-    display in displayOptions ? "#{baseClass}--display-#{display}" : "",
-    spacing in spacingOptions ? "#{baseClass}--spacing-#{spacing}" : "",
-    separator in separatorOptions ? "#{baseClass}--separator-#{separator}" : "",
-    inset == true ? "#{baseClass}--inset",
-    align in alignOptions ? "#{baseClass}--align-#{align}" : "",
-    valign in valignOptions ? "#{baseClass}--valign-#{valign}" : "",
+    base_class,
+    display in display_options ? "#{base_class}--display-#{display}" : "",
+    spacing in spacing_options ? "#{base_class}--spacing-#{spacing}" : "",
+    separator in separator_options ? "#{base_class}--separator-#{separator}" : "",
+    inset == true ? "#{base_class}--inset",
+    align in align_options ? "#{base_class}--align-#{align}" : "",
+    valign in valign_options ? "#{base_class}--valign-#{valign}" : "",
   ] %}
 
-  <{{ tag }} {{ attributes.addClass(classes) }}>
+  <{{ tag }} {{ inner_attributes.addClass(classes) }}>
     {% for item in items %}
-      <li class="{{ "#{baseClass}__item" }}">
+      <li class="{{ "#{base_class}__item" }}">
         {{ item }}
       </li>
     {% endfor %}

@@ -3,7 +3,7 @@ module.exports = {
   testPathIgnorePatterns: [
     'sandbox',
     'brightcove-player.test.js',
-    'apps/drupal-lab',
+    'example-integrations/drupal-lab',
     'packages/uikit-workshop',
     'packages/build-tools/plugins/sass-export-data/tests',
   ],

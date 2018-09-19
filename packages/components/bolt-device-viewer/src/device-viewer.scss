@@ -13,6 +13,7 @@ bolt-device-viewer {
   height: auto; // Based on inner contents + padding;
   margin: 0 auto;
   box-sizing: content-box; //Required for now till device viewer updated to be fluid in size.
+  transform: translate3d(0, 0, 0); // Ensures correct z-index positioning
 }
 
 .c-bolt-device-viewer__inner {
