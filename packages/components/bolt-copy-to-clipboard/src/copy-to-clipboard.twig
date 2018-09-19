@@ -1,5 +1,6 @@
+{% set schema = bolt.data.components['@bolt-components-copy-to-clipboard'].schema %}
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-copy-to-clipboard'].schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
 {% set prefix = "c-bolt-" %}
@@ -8,16 +9,13 @@
 
 {% set attributes = create_attribute(attributes|default({})) %}
 
-{% set defaultText = "Copy Link" %}
-{% set text = text | default(defaultText) %}
+{% set text = text | default("Copy Link"|t) %}
 {% set attributes = attributes.setAttribute("text", text) %}
 
-{% set defaultCopiedText = "Copied!" %}
-{% set copiedText = copiedText | default(defaultCopiedText) %}
+{% set copiedText = copiedText | default("Copied!"|t) %}
 {% set attributes = attributes.setAttribute("copied-text", copiedText) %}
 
-{% set defaultIconSize = "medium" %}
-{% set iconSize = iconSize | default(defaultIconSize) %}
+{% set iconSize = iconSize | default(schema.properties.iconSize.default) %}
 {% set attributes = attributes.setAttribute("icon-size", iconSize) %}
 
 {% if url %}
