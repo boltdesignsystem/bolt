@@ -1,0 +1,11 @@
+{% set manifestConfigFile = "@bolt-assets/bolt-webpack-manifest#{bolt.data.config.lang ? "-" ~ bolt.data.config.lang[0] : ""}.json" %}
+
+{% if fileExists(manifestConfigFile) %}
+  {% set assets = get_data(manifestConfigFile) %}
+{% else %}
+  {% set assets = [] %}
+{% endif %}
+
+<script src="{{ assets["bolt-global.js"] | default("/build/bolt-global.js") }}" async></script>
+  </body>
+</html>
