@@ -7,6 +7,7 @@ class BoltShare extends withHyperHtml {
 
   constructor(self) {
     self = super(self);
+    this.useShadow = false;
     return self;
   }
 

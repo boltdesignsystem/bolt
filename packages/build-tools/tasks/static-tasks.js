@@ -86,7 +86,11 @@ async function getPage(file) {
 async function getPages(srcDir) {
   config = config || (await getConfig());
   /** @type Array<String> */
-  const allPaths = await globby(path.join(srcDir, '**/*.{md,html}'));
+  const allPaths = await globby([
+    path.join(srcDir, '**/*.{md,html}'),
+    '!**/_*/**/*.{md,html}',
+    '!**/_*.{md,html}',
+  ]);
 
   return Promise.all(allPaths.map(getPage)).then(pages => {
     if (config.verbosity > 4) {
@@ -112,7 +116,12 @@ async function getPages(srcDir) {
  */
 async function getNestedPages(folder) {
   config = config || (await getConfig());
-  const items = await readdir(folder);
+
+  const items = await globby(['*', '!_*'], {
+    cwd: folder,
+    onlyFiles: false,
+  });
+
   return Promise.all(
     items.map(async item => {
       const fullPath = path.join(folder, item);
@@ -255,7 +264,11 @@ const debouncedCompile = debounce(compileWithNoExit, 200);
 
 async function watch() {
   config = config || (await getConfig());
-  const watchedFiles = ['./templates/**/*.twig', './content/**/*.{md,html}'];
+  const watchedFiles = [
+    './templates/**/*.twig',
+    './pages/**/*.{md,html}',
+    './components/**/*.twig',
+  ];
 
   const watcher = chokidar.watch(watchedFiles, {
     ignoreInitial: true,

@@ -4,7 +4,7 @@ const hexToRgba = require('hex-to-rgba');
 const rgb2hex = require('rgb2hex');
 const crypto = require('crypto');
 const chokidar = require('chokidar');
-const BoltCache = require('../../../utils/cache');
+const BoltCache = require('@bolt/build-tools/utils/cache');
 const { minifyCSS } = require('./helpers/css.util');
 
 const THEMIFY = 'bolt-themify';
@@ -242,7 +242,8 @@ function translateColor(colorArr, variationName, execMode) {
       return rgbaColor;
     default:
       if (alpha === 1) {
-        return `var(--bolt-theme-${colorVar})`;
+        return `rgba(var(--bolt-theme-${colorVar}), ${alpha})`;
+        //return `var(--bolt-theme-${colorVar})`; // @todo: re-evaluate if hex values should ever get outputted here
       } else {
         return `rgba(var(--bolt-theme-${colorVar}), ${alpha})`;
       }

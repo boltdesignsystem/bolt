@@ -1,5 +1,11 @@
 <?php
 require_once 'vendor/autoload.php';
+use Wa72\HtmlPrettymin\PrettyMin;
+
+$pm = new PrettyMin([
+  'minify_js' => false,
+  'minify_css' => false,
+]);
 
 use Webmozart\PathUtil\Path;
 use Symfony\Component\Finder\Finder;
@@ -48,5 +54,17 @@ if (strpos($templatePath, '@') !== false) {
   $html = trim($twigRenderer->render('@bolt/' . $paths[0], $data));
 }
 
-echo $html;
-    
+
+$doc = new DOMDocument();
+libxml_use_internal_errors(true); // handle warnings thrown from custom elements  
+$doc->loadHTML($html, LIBXML_NOWARNING | LIBXML_NOERROR);
+libxml_clear_errors();
+
+// Automatically beautify or minify HTML generated from static site generator based on environment
+if (getenv('NODE_ENV') === 'production') {
+  $output = $pm->load($doc)->minify()->saveHtml();
+  echo $output;
+} else {
+  $output = $pm->load($doc)->indent()->saveHtml();
+  echo $output;
+}

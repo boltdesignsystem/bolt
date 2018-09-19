@@ -11,7 +11,7 @@ const config = {
   env: 'static',
   startPath: '/',
   buildDir: '../../www/build/',
-  srcDir: './content',
+  srcDir: './pages',
   wwwDir: '../../www',
   extraTwigNamespaces: {
     'bolt-assets': {
@@ -78,7 +78,8 @@ const config = {
       '@bolt/components-tooltip',
       '@bolt/components-unordered-list',
       '@bolt/components-video',
-      resolve.sync('./style.scss'),
+      resolve.sync('./index.scss'),
+      resolve.sync('./index.js'),
     ],
     individual: [
       '@bolt/components-critical-fonts',
@@ -89,6 +90,13 @@ const config = {
     {
       from: `./assets/**/*`,
       to: `../../www/assets`,
+      flatten: true,
+    },
+    {
+      from: `${path.dirname(
+        resolve.sync('@bolt/global/package.json'),
+      )}/favicons/bolt`,
+      to: `../../www`,
       flatten: true,
     },
   ],
