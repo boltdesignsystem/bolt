@@ -2,7 +2,10 @@
 require_once 'vendor/autoload.php';
 use Wa72\HtmlPrettymin\PrettyMin;
 
-$pm = new PrettyMin();
+$pm = new PrettyMin([
+  'minify_js' => false,
+  'minify_css' => false,
+]);
 
 use Webmozart\PathUtil\Path;
 use Symfony\Component\Finder\Finder;
