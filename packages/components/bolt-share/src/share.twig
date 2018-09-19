@@ -32,7 +32,7 @@
 
 {% if inline %}
   {% set inline_label %}
-    <span class="c-bolt-share__label">{{ text }}</span>
+    <span class="{{ "#{base_class}__label #{base_class}__label--#{size}" }}">{{ text }}</span>
   {% endset %}
   {% set items = items|merge([inline_label]) %}
 {% endif %}

@@ -112,12 +112,19 @@ $bolt-share-opacity: 100, 80, 60, 40, 20;
 
 .c-bolt-share__label {
   @include bolt-font-size(xsmall);
-  @include bolt-font-weight(bold);
 
   color: inherit;
   color: var(--bolt-theme-text, inherit);
-  text-transform: uppercase;
   opacity: 0.6;
+}
+
+.c-bolt-share__label--medium {
+  @include bolt-font-weight(bold);
+  text-transform: uppercase;
+}
+
+.c-bolt-share__label--small {
+  @include bolt-font-weight(semibold);
 }
 
 .c-bolt-share__link {
