@@ -25,12 +25,14 @@ export class BoltCopyToClipboard extends BoltComponent() {
   }
 
   connecting() {
-    this.copyLink = this.querySelector('[data-clipboard-text]');
+    this.link = this.querySelector('a[href]');
+    this.copyTrigger = this.querySelector('[data-clipboard-text]');
     this.parentElem = this.querySelector('.js-bolt-copy-to-clipboard');
 
-    this.copyLink.addEventListener('click', this.clickHandler);
+    // Disable a link that appears within the trigger.
+    this.link.addEventListener('click', this.clickHandler);
 
-    this.clipboardInstance = new ClipboardJS(this.copyLink); // ClipboardJS adds it's own event listener
+    this.clipboardInstance = new ClipboardJS(this.copyTrigger);
 
     this.clipboardInstance.on('success', () => {
       // Copying is already successful at this point.  Everything from here on is UX flair.

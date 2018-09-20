@@ -16,7 +16,6 @@
 
 
 {% if not trigger %}
-  {% set _trigger_attributes = create_attribute({}) %}
   {% set trigger %}
     {% include "@bolt-components-link/link.twig" with {
       "text": text,
@@ -25,8 +24,7 @@
         "name": "asset-link",
         "position": "before",
         "size": iconSize
-      },
-      "attributes": _trigger_attributes.setAttribute("data-clipboard-text", url)
+      }
     } only %}
   {% endset %}
 {% endif %}
@@ -63,7 +61,7 @@
 
 <bolt-copy-to-clipboard {{ attributes }}>
   <div class="{{ "#{baseClass}" }} js-bolt-copy-to-clipboard">
-    <span class="{{ "#{baseClass}__trigger" }}">
+    <span class="{{ "#{baseClass}__trigger" }}" data-clipboard-text="{{ url }}">
       {{ trigger }}
     </span>
 
