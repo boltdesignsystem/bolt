@@ -17,53 +17,49 @@
 
 {% if not trigger %}
   {% set trigger %}
-    {% include "@bolt-components-link/link.twig" with {
-      "text": text,
-      "url": "#!",
-      "icon": {
-        "name": "asset-link",
-        "position": "before",
-        "size": iconSize
-      }
-    } only %}
+    <div class="{{ "#{baseClass}__action" }}">
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "asset-link",
+        position: "before",
+        size: iconSize
+      } only %}
+      <span class="{{ "#{baseClass}__action-text" }}">
+        {{ text }}
+      </span>
+    </div>
   {% endset %}
 {% endif %}
 
 {% if not spinner %}
   {% set spinner %}
-    {% include "@bolt-components-icon/icon.twig" with {
-      "name": "refresh",
-      "size": iconSize,
-    } only %}
+    <span class="{{ "#{baseClass}__spinner-animation" }}">
+      {% include "@bolt-components-icon/icon.twig" with {
+        "name": "refresh",
+        "size": iconSize,
+      } only %}
+    </span>
   {% endset %}
 {% endif %}
 
 {% if not confirmation %}
   {% set confirmation %}
-    {% include "@bolt-components-link/link.twig" with {
-      "text": copiedText,
-      "url": "#!",
-      "icon": {
-        "name": "check",
-        "position": "before",
-        "size": iconSize
-      },
-      "attributes": {
-        "class": [
-          "u-bolt-color-teal-dark",
-          "js-bolt-copy-to-clipboard__trigger"
-        ]
-      }
-    } only %}
+    <div class="{{ "#{baseClass}__info js-bolt-copy-to-clipboard__trigger" }}">
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "check",
+        position: "before",
+        size: iconSize
+      } only %}
+      {{ copiedText }}
+    </div>
   {% endset %}
 {% endif %}
 
 
 <bolt-copy-to-clipboard {{ attributes }}>
   <div class="{{ "#{baseClass}" }} js-bolt-copy-to-clipboard">
-    <span class="{{ "#{baseClass}__trigger" }}" data-clipboard-text="{{ url }}">
+    <button class="{{ "#{baseClass}__trigger" }}" data-clipboard-text="{{ url }}">
       {{ trigger }}
-    </span>
+    </button>
 
     <span class="{{ "#{baseClass}__spinner" }}">
       {{ spinner }}

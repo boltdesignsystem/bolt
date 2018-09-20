@@ -1,0 +1,67 @@
+{% set attributes = create_attribute({}) %}
+{% set icon_size = "medium" %}
+
+{% set trigger %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "This has a custom trigger",
+    url: "#!",
+    icon: {
+      name: "warning",
+      position: "before",
+      size: icon_size
+    }
+  } only %}
+{% endset %}
+
+{% set spinner %}
+  Custom spinner
+{% endset %}
+
+{% set confirmation %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "Custom confirmation",
+    icon: {
+      name: "check",
+      position: "before",
+      size: icon_size
+    }
+  } only %}
+{% endset %}
+
+{% set custom_all %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "This has a custom trigger, spinner, and confirmation",
+    url: "#!",
+    icon: {
+      name: "warning",
+      position: "before",
+      size: icon_size
+    }
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-copy-to-clipboard/copy-to-clipboard.twig" with {
+  text: "This text gets ignored by custom trigger",
+  url: "http://boltdesignsystem.com/#custom-trigger",
+  trigger: trigger,
+} only %}
+
+{% include "@bolt-components-copy-to-clipboard/copy-to-clipboard.twig" with {
+  text: "This has custom spinner",
+  url: "http://boltdesignsystem.com/#custom-spinner",
+  spinner: spinner,
+} only %}
+
+{% include "@bolt-components-copy-to-clipboard/copy-to-clipboard.twig" with {
+  text: "This has custom confirmation",
+  url: "http://boltdesignsystem.com/#custom-confirmation",
+  confirmation: confirmation
+} only %}
+
+{% include "@bolt-components-copy-to-clipboard/copy-to-clipboard.twig" with {
+  text: "This text gets ignored by custom trigger",
+  url: "http://bolt-design-system.com/#custom-all",
+  trigger: custom_all,
+  spinner: spinner,
+  confirmation: confirmation
+} only %}
