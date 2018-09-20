@@ -8,7 +8,8 @@
 // 1. When tranistioning in (any time opacity is 1), add a delay to wait for the previously visible item to fade out.
 // 2. When transitioning out (any time opacity is 0), reset any existing delay so the transition runs immediately.
 // 3. The fading is specific to the component, while how the individual elements animate belongs with each element, this allows scalability for doing separate custom animation for each element.
-// 4. @todo: Once 2.x and the new theming system is stable, we need to convert all colors to the new system. At that point we can also reconsider how we do the link component. For the time being the link styles are repeated here for the trigger.
+// 4. @todo: [Mai] Once 2.x and the new theming system is stable, we need to convert all colors to the new system. At that point we can also reconsider how we do the link component. For the time being the link styles are repeated here for the trigger.
+// 5. @todo: [Mai] This needs rework when we have animation library. This animation does not apply when custom spinner is passed. Custom spinner should take on its own animation.
 
 $bolt-copy-to-clipboard-animation-duration: 500ms;
 $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-duration ease-in-out;
@@ -32,7 +33,7 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
       transition-delay: $bolt-copy-to-clipboard-animation-duration; // [1]
     }
 
-    // @todo: [Mai] This needs rework when we have animation library. This animation does not apply when custom spinner is passed. Custom spinner should take on its own animation.
+    // [5]
     .c-bolt-copy-to-clipboard__spinner-animation {
       animation-name: a-bolt-copy-to-clipboard-spin;
       animation-duration: $bolt-copy-to-clipboard-animation-duration * 2;
