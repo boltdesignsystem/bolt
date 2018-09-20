@@ -20,17 +20,9 @@ export class BoltCopyToClipboard extends BoltComponent() {
     return self;
   }
 
-  clickHandler(event) {
-    event.preventDefault(); // Prevent the default link behavior
-  }
-
   connecting() {
-    this.link = this.querySelector('a[href]');
     this.copyTrigger = this.querySelector('[data-clipboard-text]');
     this.parentElem = this.querySelector('.js-bolt-copy-to-clipboard');
-
-    // Disable a link that appears within the trigger.
-    this.link.addEventListener('click', this.clickHandler);
 
     this.clipboardInstance = new ClipboardJS(this.copyTrigger);
 
@@ -55,6 +47,5 @@ export class BoltCopyToClipboard extends BoltComponent() {
 
   disconnecting() {
     this.clipboardInstance.destroy();
-    this.copyLink.removeEventListener('click', this.clickHandler);
   }
 }
