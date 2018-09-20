@@ -13,52 +13,66 @@
 {% set copiedText = copiedText | default("Copied!"|t) %}
 {% set iconSize = iconSize | default(schema.properties.iconSize.default) %}
 
-{% set _trigger_attributes = create_attribute({}) %}
 
 
+{% if not trigger %}
+  {% set _trigger_attributes = create_attribute({}) %}
+  {% set trigger %}
+    {% include "@bolt-components-link/link.twig" with {
+      "text": text,
+      "url": "#!",
+      "icon": {
+        "name": "asset-link",
+        "position": "before",
+        "size": iconSize
+      },
+      "attributes": _trigger_attributes.setAttribute("data-clipboard-text", url)
+    } only %}
+  {% endset %}
+{% endif %}
+
+{% if not spinner %}
+  {% set spinner %}
+    {% include "@bolt-components-icon/icon.twig" with {
+      "name": "refresh",
+      "size": iconSize,
+    } only %}
+  {% endset %}
+{% endif %}
+
+{% if not confirmation %}
+  {% set confirmation %}
+    {% include "@bolt-components-link/link.twig" with {
+      "text": copiedText,
+      "url": "#!",
+      "icon": {
+        "name": "check",
+        "position": "before",
+        "size": iconSize
+      },
+      "attributes": {
+        "class": [
+          "u-bolt-color-teal-dark",
+          "js-bolt-copy-to-clipboard__trigger"
+        ]
+      }
+    } only %}
+  {% endset %}
+{% endif %}
 
 
 <bolt-copy-to-clipboard {{ attributes }}>
   <div class="{{ "#{baseClass}" }} js-bolt-copy-to-clipboard">
     <span class="{{ "#{baseClass}__trigger" }}">
-      {% include "@bolt-components-link/link.twig" with {
-        "text": text,
-        "url": "#!",
-        "icon": {
-          "name": "asset-link",
-          "position": "before",
-          "size": iconSize
-        },
-        "attributes": _trigger_attributes.setAttribute("data-clipboard-text", url)
-      } only %}
+      {{ trigger }}
     </span>
 
-    {% include "@bolt-components-icon/icon.twig" with {
-      "name": "refresh",
-      "size": iconSize,
-      "attributes": {
-        "class": [
-          "#{baseClass}__spinner"
-        ]
-      }
-    } only %}
+    <span class="{{ "#{baseClass}__spinner" }}">
+      {{ spinner }}
+    </span>
 
     <span class="{{ "#{baseClass}__confirmation" }}">
-      {% include "@bolt-components-link/link.twig" with {
-        "text": copiedText,
-        "url": "#!",
-        "icon": {
-          "name": "check",
-          "position": "before",
-          "size": iconSize
-        },
-        "attributes": {
-          "class": [
-            "u-bolt-color-teal-dark",
-            "js-bolt-copy-to-clipboard__trigger"
-          ]
-        }
-      } only %}
+      {{ confirmation }}
     </span>
   </div>
 </bolt-copy-to-clipboard>

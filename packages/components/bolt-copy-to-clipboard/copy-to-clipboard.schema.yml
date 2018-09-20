@@ -20,5 +20,17 @@ properties:
   url:
     type: string
     description: The URL to be copied
-required:
-  - url
+  trigger:
+    type: [string, object, array]
+    description: (optional) Custom content to show for the initial copy trigger.  It should include a link that contains the attribute "data-clipboard-text" populated with the text to copy.
+  spinner:
+    type: [string, object, array]
+    description: (optional) Custom content to show while copy is in progress.  This content will be rotated while the copying happens, so it's recommended to pass an icon.
+  confirmation:
+    type: [string, object, array]
+    description: (optional) Custom content to show after a successful copy.
+oneOf:
+  - required:
+    - url
+  - required:
+    - trigger
