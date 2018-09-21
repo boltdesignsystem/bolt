@@ -32,7 +32,7 @@
 <bolt-{{ componentName }}
   {% if size %} size="{{ size }}" {% endif %}
   {% if theme %} theme="{{ theme }}" {% endif %}
-  bolt-component {{ attributes.addClass(classes) }}>
+  {{ attributes.addClass(classes) }}>
   {% set renderedBandContent %}
     {% block band_background %}
       {% if background %}
@@ -40,9 +40,11 @@
       {% endif %}
     {% endblock band_background %}
     <{{ contentTag }} class="{{ "#{baseClass}__content" }}">
-      {% block band_content %}
-        {{ content }}
-      {% endblock band_content %}
+      {% block outer_band_content %}
+        {% block band_content %}
+          {{ content }}
+        {% endblock %}
+      {% endblock %}
     </{{ contentTag }}>
   {% endset %}
 
