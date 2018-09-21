@@ -1,5 +1,5 @@
 {% set schema = bolt.data.components["@bolt-components-share"].schema %}
-{% set themes = get_data('@bolt/themes.schema.json') %}
+{% set themes = get_data("@bolt/themes.schema.json") %}
 
 {% for theme in themes.properties.colors.enum %}
   <h3>{{ theme }}</h3>
