@@ -29,6 +29,7 @@ $bolt-share-block-link-inline-spacing: 'xsmall';
     @include bolt-padding(#{$bolt-share-block-link-inset});
 
     display: flex;
+    align-items: center;
     position: relative;
     overflow: hidden;
 
@@ -59,41 +60,6 @@ $bolt-share-block-link-inline-spacing: 'xsmall';
 
   .c-bolt-share__link-text {
     @include bolt-padding-left(#{$bolt-share-block-link-inline-spacing});
-  }
-
-  // @todo [Mai] This is neccessary because the tooltip component is not themable. Clean this up when the time comes.
-  .c-bolt-link__icon {
-    color: bolt-color(indigo, light);
-  }
-
-  // @todo [Mai] These dirty overrides are in place because the copy to clipboard component needs a refactor. Clean this up when the time comes.
-  .c-bolt-share__copy {
-    @include bolt-padding(#{$bolt-share-block-link-inset});
-
-    > * {
-      display: flex;
-    }
-
-    .c-bolt-share__link {
-      margin-top: bolt-v-spacing(#{$bolt-share-block-link-inset}) * -1;
-      margin-right: bolt-spacing(#{$bolt-share-block-link-inset}) * -1;
-      margin-bottom: bolt-v-spacing(#{$bolt-share-block-link-inset}) * -1;
-      margin-left: bolt-spacing(#{$bolt-share-block-link-inset}) * -1;
-    }
-
-    .c-bolt-copy-to-clipboard__confirmation {
-      .c-bolt-link {
-        display: flex;
-
-        > * {
-          @include bolt-margin(0);
-        }
-
-        .c-bolt-link__text {
-          @include bolt-padding-left(#{$bolt-share-block-link-inline-spacing});
-        }
-      }
-    }
   }
 }
 
@@ -127,9 +93,39 @@ $bolt-share-opacity: 100, 80, 60, 40, 20;
 }
 
 .c-bolt-share__link {
+  color: bolt-theme(link);
   text-decoration: none;
+  white-space: nowrap;
+
+  &:hover {
+    opacity: $bolt-global-link-hover-opacity;
+  }
+
+  &:active,
+  &:focus:active {
+    opacity: $bolt-global-link-active-opacity;
+  }
 }
 
 .c-bolt-share__link-text {
   color: bolt-theme(text);
+}
+
+
+// Custom animation is used here because the markup is different than the default copy to clipboard animation.
+.c-bolt-share__copy-animation {
+  display: inline-block;
+  animation-name: a-bolt-share-copy-animation-spin;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes a-bolt-share-copy-animation-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(1440deg);
+  }
 }

@@ -22,10 +22,6 @@
 
 {# Default text can't be pulled from the schema because it must be translatable. #}
 {% set text = text | default("Share this page"|t) %}
-{% if copy_to_clipboard %}
-  {% set copy_to_clipboard_text = copy_to_clipboard.text | default("Copy share link"|t) %}
-  {% set copy_to_clipboard_url = copy_to_clipboard.url %}
-{% endif %}
 
 {# Items #}
 {% set items = [] %}
@@ -38,8 +34,6 @@
 {% endif %}
 
 {% for source in sources %}
-  {% set source_target = "_blank" %}
-
   {% if "facebook" == source.name %}
     {% set source_name = "Facebook"|t %}
     {% set source_icon = "facebook-solid" %}
@@ -58,39 +52,68 @@
 
   {% if source_name %}
     {% set source_items %}
-      {% include "@bolt-components-link/link.twig" with {
-        text: "<span class='c-bolt-share__link-text'>#{source_name}</span>",
-        url: source.url,
-        icon: {
+      <a class="{{ "c-bolt-share__link js-bolt-share__link--#{source.name}" }}" href="{{ source.url }}" target="_blank">
+        {% include "@bolt-components-icon/icon.twig" with {
           name: source_icon,
-          position: "before",
           size: size
-        },
-        attributes: {
-          class: [
-            "c-bolt-share__link",
-            "js-bolt-share__link--"~source.name,
-          ],
-          target: source_target
-        }
-      } only %}
+        } only %}
+        <span class="c-bolt-share__link-text">
+          {{ source_name }}
+        </span>
+      </a>
     {% endset %}
     {% set items = items|merge([source_items]) %}
   {% endif %}
 {% endfor %}
 
 {% if copy_to_clipboard %}
-  {% set copy_to_clipboard_include %}
-    <div class="c-bolt-share__copy">
-      {% include "@bolt-components-copy-to-clipboard/copy-to-clipboard.twig" with {
-        text: "<span class='c-bolt-share__link-text'>#{copy_to_clipboard_text}</span>",
-        url: copy_to_clipboard_url,
-        iconSize: size,
+  {% set trigger_text = copy_to_clipboard.trigger_text | default("Copy share link"|t) %}
+  {% set confirmation_text = "Copied!" %}
+  {% set text_to_copy = copy_to_clipboard.text_to_copy %}
+
+  {% set custom_trigger %}
+    <span class="c-bolt-share__link">
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "asset-link",
+        size: size
+      } only %}
+      <span class="c-bolt-share__link-text">
+        {{ trigger_text }}
+      </span>
+    </span>
+  {% endset %}
+
+  {% set custom_transition %}
+    <span class="c-bolt-share__link">
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "refresh",
+        size: size,
         attributes: {
-          class: "c-bolt-share__link"
+          class: "c-bolt-share__copy-animation"
         }
       } only %}
+    </span>
+  {% endset %}
+
+  {% set custom_confirmation %}
+    <div class="c-bolt-share__link">
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "check",
+        size: size
+      } only %}
+      <span class="c-bolt-share__link-text">
+        {{ confirmation_text }}
+      </span>
     </div>
+  {% endset %}
+
+  {% set copy_to_clipboard_include %}
+    {% include "@bolt-components-copy-to-clipboard/copy-to-clipboard.twig" with {
+      text_to_copy: text_to_copy,
+      custom_trigger: custom_trigger,
+      custom_transition: custom_transition,
+      custom_confirmation: custom_confirmation,
+    } only %}
   {% endset %}
   {% set items = items|merge([copy_to_clipboard_include]) %}
 {% endif %}
