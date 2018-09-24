@@ -11,11 +11,13 @@ properties:
     default: Copy Link
   copiedText:
     type: string
-    description: The text to use as the succesful copy text
+    title: DEPRECATED
+    description: Use the custom_confirmation property instead if you need to change the confirmation text.
     default: Copied!
   iconSize:
     type: string
-    description: Size of the icons to be included
+    title: DEPRECATED
+    description: Use custom_trigger, custom_spinner, and custom_confirmation properties if you need to change icon size.
     default: medium
   url:
     type: string
@@ -31,3 +33,7 @@ properties:
     description: (optional) Custom content to show after a successful copy.
 required:
   - url
+not:
+  required:
+    - iconSize
+    - copiedText
