@@ -13,8 +13,8 @@
   } only %}
 {% endset %}
 
-{% set custom_spinner %}
-  Custom spinner
+{% set custom_transition %}
+  Custom transition
 {% endset %}
 
 {% set custom_confirmation %}
@@ -30,7 +30,7 @@
 
 {% set custom_all %}
   {% include "@bolt-components-headline/text.twig" with {
-    text: "This has a custom trigger, spinner, and confirmation",
+    text: "This has a custom trigger, transition, and confirmation",
     url: "#!",
     icon: {
       name: "warning",
@@ -47,9 +47,9 @@
 } only %}
 
 {% include "@bolt-components-copy-to-clipboard/copy-to-clipboard.twig" with {
-  trigger_text: "This has custom spinner",
-  text_to_copy: "http://boltdesignsystem.com/#custom-spinner",
-  custom_spinner: custom_spinner,
+  trigger_text: "This has custom transition",
+  text_to_copy: "http://boltdesignsystem.com/#custom-transition",
+  custom_transition: custom_transition,
 } only %}
 
 {% include "@bolt-components-copy-to-clipboard/copy-to-clipboard.twig" with {
@@ -62,6 +62,6 @@
   trigger_text: "This text gets ignored by custom trigger",
   text_to_copy: "http://bolt-design-system.com/#custom-all",
   custom_trigger: custom_all,
-  custom_spinner: custom_spinner,
+  custom_transition: custom_transition,
   custom_confirmation: custom_confirmation
 } only %}

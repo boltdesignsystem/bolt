@@ -36,8 +36,8 @@
   </div>
 {% endset %}
 
-{% set default_spinner %}
-  <span class="{{ "#{baseClass}__spinner-animation" }}">
+{% set default_transition %}
+  <span class="{{ "#{baseClass}__transition-animation" }}">
     {% include "@bolt-components-icon/icon.twig" with {
       "name": "refresh",
       "size": iconSize,
@@ -63,8 +63,8 @@
       {{ custom_trigger|default(default_trigger) }}
     </button>
 
-    <span class="{{ "#{baseClass}__spinner" }}">
-      {{ custom_spinner|default(default_spinner) }}
+    <span class="{{ "#{baseClass}__transition" }}">
+      {{ custom_transition|default(default_transition) }}
     </span>
 
     <span class="{{ "#{baseClass}__confirmation" }}">

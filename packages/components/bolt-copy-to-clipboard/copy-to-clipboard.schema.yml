@@ -18,7 +18,7 @@ properties:
   iconSize:
     type: string
     title: DEPRECATED
-    description: Use custom_trigger, custom_spinner, and custom_confirmation properties if you need to change icon size.
+    description: Use custom_trigger, custom_transition, and custom_confirmation properties if you need to change icon size.
     default: medium
   url:
     type: string
@@ -34,7 +34,7 @@ properties:
   custom_trigger:
     type: [string, object, array]
     description: (optional) Custom content to show for the initial copy trigger.  If you pass a link, set the URL to '#!' since it should not being followed.
-  custom_spinner:
+  custom_transition:
     type: [string, object, array]
     description: (optional) Custom content to show while copy is in progress.  This content will be rotated while the copying happens, so it's recommended to pass an icon.
   custom_confirmation:
