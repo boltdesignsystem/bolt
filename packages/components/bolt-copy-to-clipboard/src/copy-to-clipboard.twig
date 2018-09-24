@@ -15,58 +15,52 @@
 
 
 
-{% if not trigger %}
-  {% set trigger %}
-    <div class="{{ "#{baseClass}__action" }}">
-      {% include "@bolt-components-icon/icon.twig" with {
-        name: "asset-link",
-        position: "before",
-        size: iconSize
-      } only %}
-      <span class="{{ "#{baseClass}__action-text" }}">
-        {{ text }}
-      </span>
-    </div>
-  {% endset %}
-{% endif %}
-
-{% if not spinner %}
-  {% set spinner %}
-    <span class="{{ "#{baseClass}__spinner-animation" }}">
-      {% include "@bolt-components-icon/icon.twig" with {
-        "name": "refresh",
-        "size": iconSize,
-      } only %}
+{% set default_trigger %}
+  <div class="{{ "#{baseClass}__action" }}">
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "asset-link",
+      position: "before",
+      size: iconSize
+    } only %}
+    <span class="{{ "#{baseClass}__action-text" }}">
+      {{ text }}
     </span>
-  {% endset %}
-{% endif %}
+  </div>
+{% endset %}
 
-{% if not confirmation %}
-  {% set confirmation %}
-    <div class="{{ "#{baseClass}__info js-bolt-copy-to-clipboard__trigger" }}">
-      {% include "@bolt-components-icon/icon.twig" with {
-        name: "check",
-        position: "before",
-        size: iconSize
-      } only %}
-      {{ copiedText }}
-    </div>
-  {% endset %}
-{% endif %}
+{% set default_spinner %}
+  <span class="{{ "#{baseClass}__spinner-animation" }}">
+    {% include "@bolt-components-icon/icon.twig" with {
+      "name": "refresh",
+      "size": iconSize,
+    } only %}
+  </span>
+{% endset %}
+
+{% set default_confirmation %}
+  <div class="{{ "#{baseClass}__info js-bolt-copy-to-clipboard__trigger" }}">
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "check",
+      position: "before",
+      size: iconSize
+    } only %}
+    {{ copiedText }}
+  </div>
+{% endset %}
 
 
 <bolt-copy-to-clipboard {{ attributes }}>
   <div class="{{ "#{baseClass}" }} js-bolt-copy-to-clipboard">
     <button class="{{ "#{baseClass}__trigger" }}" data-clipboard-text="{{ url }}">
-      {{ trigger }}
+      {{ custom_trigger|default(default_trigger) }}
     </button>
 
     <span class="{{ "#{baseClass}__spinner" }}">
-      {{ spinner }}
+      {{ custom_spinner|default(default_spinner) }}
     </span>
 
     <span class="{{ "#{baseClass}__confirmation" }}">
-      {{ confirmation }}
+      {{ custom_confirmation|default(default_confirmation) }}
     </span>
   </div>
 </bolt-copy-to-clipboard>

@@ -20,13 +20,13 @@ properties:
   url:
     type: string
     description: The URL to be copied
-  trigger:
+  custom_trigger:
     type: [string, object, array]
     description: (optional) Custom content to show for the initial copy trigger.  If you pass a link, set the URL to '#!' since it should not being followed.
-  spinner:
+  custom_spinner:
     type: [string, object, array]
     description: (optional) Custom content to show while copy is in progress.  This content will be rotated while the copying happens, so it's recommended to pass an icon.
-  confirmation:
+  custom_confirmation:
     type: [string, object, array]
     description: (optional) Custom content to show after a successful copy.
 required:
