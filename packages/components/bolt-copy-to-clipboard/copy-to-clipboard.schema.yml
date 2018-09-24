@@ -7,7 +7,8 @@ properties:
     description: A Drupal-style attributes object with extra attributes to append to this component.
   text:
     type: string
-    description: The text to use as the inital link text
+    title: DEPRECATED
+    description: This property has been renamed <em>trigger_text</em>
     default: Copy Link
   copiedText:
     type: string
@@ -23,6 +24,10 @@ properties:
     type: string
     title: DEPRECATED
     description: This property has been renamed <em>text_to_copy</em>
+  trigger_text:
+    type: string
+    description: Text to use for the inital copy button.  Ignored if the custom_trigger property is used.
+    default: Copy Link
   text_to_copy:
     type: string
     description: The text to copy to the clipboard.
@@ -41,4 +46,5 @@ not:
   required:
     - iconSize
     - copiedText
+    - text
     - url

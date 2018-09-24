@@ -9,13 +9,18 @@
 
 {% set attributes = create_attribute(attributes|default({})) %}
 
-{% set text = text | default("Copy Link"|t) %}
+{% set trigger_text = trigger_text | default("Copy Link"|t) %}
 {% set copiedText = copiedText | default("Copied!"|t) %}
 {% set iconSize = iconSize | default(schema.properties.iconSize.default) %}
 
 {# DEPRECATED.  "url" has been renamed "text_to_copy" #}
 {% if url %}
   {% set text_to_copy = url %}
+{% endif %}
+
+{# DEPRECATED.  "text" has been renamed "trigger_text" #}
+{% if text %}
+  {% set trigger_text = text %}
 {% endif %}
 
 {% set default_trigger %}
@@ -26,7 +31,7 @@
       size: iconSize
     } only %}
     <span class="{{ "#{baseClass}__action-text" }}">
-      {{ text }}
+      {{ trigger_text }}
     </span>
   </div>
 {% endset %}
