@@ -21,7 +21,11 @@ properties:
     default: medium
   url:
     type: string
-    description: The URL to be copied
+    title: DEPRECATED
+    description: This property has been renamed <em>text_to_copy</em>
+  text_to_copy:
+    type: string
+    description: The text to copy to the clipboard.
   custom_trigger:
     type: [string, object, array]
     description: (optional) Custom content to show for the initial copy trigger.  If you pass a link, set the URL to '#!' since it should not being followed.
@@ -32,8 +36,9 @@ properties:
     type: [string, object, array]
     description: (optional) Custom content to show after a successful copy.
 required:
-  - url
+  - text_to_copy
 not:
   required:
     - iconSize
     - copiedText
+    - url

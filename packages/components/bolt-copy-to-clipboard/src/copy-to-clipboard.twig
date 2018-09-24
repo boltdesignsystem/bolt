@@ -13,7 +13,10 @@
 {% set copiedText = copiedText | default("Copied!"|t) %}
 {% set iconSize = iconSize | default(schema.properties.iconSize.default) %}
 
-
+{# DEPRECATED.  "url" has been renamed "text_to_copy" #}
+{% if url %}
+  {% set text_to_copy = url %}
+{% endif %}
 
 {% set default_trigger %}
   <div class="{{ "#{baseClass}__action" }}">
@@ -51,7 +54,7 @@
 
 <bolt-copy-to-clipboard {{ attributes }}>
   <div class="{{ "#{baseClass}" }} js-bolt-copy-to-clipboard">
-    <button class="{{ "#{baseClass}__trigger" }}" data-clipboard-text="{{ url }}">
+    <button class="{{ "#{baseClass}__trigger" }}" data-clipboard-text="{{ text_to_copy }}">
       {{ custom_trigger|default(default_trigger) }}
     </button>
 
