@@ -32,10 +32,3 @@
   // }
 }
 
-/* stylelint-disable-next-line scss/at-mixin-pattern */
-@mixin button-color($args...) {
-  @warn 'PegaKit\'s `button-color` mixin is deprecated and will be removed in v1.0.0 of Bolt. Use the new @bolt-button-color mixin instead.';
-
-  @include bolt-button-color($args);
-}
-/* stylelint-enable */

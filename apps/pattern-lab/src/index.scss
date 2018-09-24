@@ -1,7 +1,13 @@
 // PL only styles
-@import "@bolt/core";
-@import "./styles/**/*.scss";
-@import "./_patterns/**/*.scss";
+@import '@bolt/core';
+
+@import '_patterns/01-styleguide/05-color-palette/_color-swatch';
+@import '_patterns/01-styleguide/25-breakpoints/_breakpoints';
+@import '_patterns/01-styleguide/50-sassdocs/_sassdoc';
+@import '_patterns/04-pages/45-d8-events/_event-sponsors-with-action-block';
+@import 'components/schema-form/schema-form';
+
+@import 'styles/_docs';
 
 bolt-demo {
   display: block;
@@ -13,9 +19,6 @@ bolt-demo {
   @include bolt-padding-right(small);
 }
 
-.pl-js-pattern-example {
-  transform: translate3d(0, 0, 0); // force sticky and fixed elements to become static on main demo page.
-}
 
 .sg-main {
   @include bolt-padding(medium);
@@ -32,7 +35,7 @@ bolt-demo {
   background-color: bolt-color(white);
   position: sticky;
   top: 0;
-  z-index: bolt-z-index("nav");
+  z-index: bolt-z-index('nav');
   margin-bottom: 0;
   margin-left: -1 * bolt-spacing(medium);
   margin-right: -1 * bolt-spacing(medium);
@@ -78,4 +81,25 @@ ul.bolt-icon-list-demo {
   border: solid 1px black;
   margin-bottom: 15px;
   @include bolt-shadow('level-40');
+}
+
+.bolt-shadow-demo {
+  &__card {
+    background: #fff;
+    border-radius: 3px;
+    display: inline-block;
+    height: 225px;
+    margin: 0.5rem;
+    position: relative;
+    width: 325px;
+    vertical-align: top;
+    padding: 0.7rem;
+
+    code {
+      font-size: 0.7rem;
+    }
+    &[class*='hoverable']:hover {
+      @include bolt-z-index('contentTop');
+    }
+  }
 }

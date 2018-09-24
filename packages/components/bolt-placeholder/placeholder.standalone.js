@@ -1,18 +1,15 @@
 import {
   define,
   props,
-  withComponent,
   css,
   hasNativeShadowDomSupport,
-  BoltComponent,
-  declarativeClickHandler,
-  sanitizeBoltClasses,
-} from '@bolt/core';
+} from '@bolt/core/utils';
+import { withHyperHtml } from '@bolt/core/renderers';
 
 import placeholderStyles from './placeholder.scss';
 
 @define
-class BoltPlaceholder extends BoltComponent() {
+class BoltPlaceholder extends withHyperHtml() {
   static is = 'bolt-placeholder';
 
   static props = {
@@ -64,3 +61,5 @@ class BoltPlaceholder extends BoltComponent() {
     `;
   }
 }
+
+export { BoltPlaceholder };
