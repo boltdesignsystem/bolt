@@ -3,7 +3,6 @@
 {% for size in schema.properties.size.enum %}
   <h3>{{ size|capitalize }} Size</h3>
   {% include "@bolt-components-share/share.twig" with {
-    inline: true,
     size: size,
     sources: [
       {

@@ -5,14 +5,10 @@ properties:
   attributes:
     type: object
     description: A Drupal-style attributes object with extra attributes to append to this component.
-  inline:
-    type: boolean
-    description: Display the share component as a button or an inline list of links.
-    default: true
   text:
     type: string
     default: Share this page
-    description: Call to action text, like "Share" or "Share this page".
+    description: Defines the label text in front of the social icons.
   size:
     type: string
     default: medium
@@ -50,5 +46,7 @@ properties:
   copy_to_clipboard:
     type: object
     ref: '@bolt-components-copy-to-clipboard/copy-to-clipboard.schema.yml'
+  inline:
+    description: DEPRECATED. Button version has been removed so this prop is no longer needed.
   copyToClipboard:
     description: DEPRECATED. Please use copy_to_clipboard.

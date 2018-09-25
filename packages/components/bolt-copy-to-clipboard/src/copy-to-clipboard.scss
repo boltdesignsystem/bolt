@@ -47,7 +47,7 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
         transform: scale(0) rotate(0deg);
       }
       100% {
-        transform: scale(1) rotate(720deg);
+        transform: scale(1) rotate(900deg);
       }
     }
   }
@@ -87,6 +87,9 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
 
 .c-bolt-copy-to-clipboard__action,
 .c-bolt-copy-to-clipboard__info {
+  display: inline-flex;
+  align-items: center;
+
   > *:first-child {
     @include bolt-margin-right(xxsmall);
   }

@@ -4,7 +4,13 @@
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
+{# DEPRECATED. Prop has been renamed. #}
 {% set copyToClipboard = copy_to_clipboard %}
+
+{# DEPRECATED. Button version has been removed so this prop is not needed. #}
+{% if inline %}
+  {% set inline = true %}
+{% endif %}
 
 {# Variables #}
 {% set base_class = "c-bolt-share" %}
@@ -18,7 +24,6 @@
 {# Check that the component's current prop values are valid. If not, default to the schema default #}
 {% set size = size in size_options ? size : schema.properties.size.default %}
 {% set opacity = opacity in opacity_options ? opacity : schema.properties.opacity.default %}
-{% set inline = inline is sameas(true) or inline is sameas(false) ? inline : schema.properties.inline.default %}
 
 {# Default text can't be pulled from the schema because it must be translatable. #}
 {% set text = text | default("Share this page"|t) %}
@@ -26,12 +31,11 @@
 {# Items #}
 {% set items = [] %}
 
-{% if inline %}
-  {% set inline_label %}
-    <span class="{{ "#{base_class}__label #{base_class}__label--#{size}" }}">{{ text }}</span>
-  {% endset %}
-  {% set items = items|merge([inline_label]) %}
-{% endif %}
+{% set inline_label %}
+  <span class="{{ "#{base_class}__label #{base_class}__label--#{size}" }}">{{ text }}</span>
+{% endset %}
+
+{% set items = items|merge([inline_label]) %}
 
 {% for source in sources %}
   {% if "facebook" == source.name %}
@@ -68,14 +72,15 @@
 
 {% if copy_to_clipboard %}
   {% set trigger_text = copy_to_clipboard.trigger_text | default("Copy share link"|t) %}
-  {% set confirmation_text = "Copied!" %}
+  {% set confirmation_text = "Copied!"|t %}
   {% set text_to_copy = copy_to_clipboard.text_to_copy %}
 
+  {# Custom content is used here because the icon size and text styles are all different than the defaults from Copy to Clipboard. #}
   {% set custom_trigger %}
     <span class="c-bolt-share__link">
       {% include "@bolt-components-icon/icon.twig" with {
         name: "asset-link",
-        size: size
+        size: size,
       } only %}
       <span class="c-bolt-share__link-text">
         {{ trigger_text }}
@@ -99,7 +104,7 @@
     <div class="c-bolt-share__link">
       {% include "@bolt-components-icon/icon.twig" with {
         name: "check",
-        size: size
+        size: size,
       } only %}
       <span class="c-bolt-share__link-text">
         {{ confirmation_text }}
@@ -115,12 +120,12 @@
       custom_confirmation: custom_confirmation,
     } only %}
   {% endset %}
+
   {% set items = items|merge([copy_to_clipboard_include]) %}
 {% endif %}
 
 {# Share component's custom element wrapper. #}
 <bolt-share
-  {% if inline %} inline {% endif %}
   {% if size %} size="{{ size }}" {% endif %}
   {% if opacity %} opacity="{{ opacity }}" {% endif %}
   {{ attributes }}
@@ -128,42 +133,14 @@
   {# Array of classes based on the defined + default props. #}
   {% set classes = [
     base_class,
-    inline ? "#{base_class}--display-inline" : "#{base_class}--display-button",
-    inline ? opacity in opacity_options ? "#{base_class}--opacity-#{opacity}" : "",
+    opacity in opacity_options ? "#{base_class}--opacity-#{opacity}" : "",
   ] %}
 
   <div {{ inner_attributes.addClass(classes) }}>
-    {% if inline %}
-      {% include "@bolt-components-list/list.twig" with {
-        display: "inline",
-        spacing: size == "small" ? "xsmall" : "small",
-        items: items
-      } only %}
-    {% else %}
-      {% include "@bolt-components-tooltip/tooltip.twig" with {
-        trigger: {
-          type: "button",
-          text: text,
-          transform: "uppercase",
-          icon: {
-            name: "share",
-            size: "medium"
-          },
-          toggle: {
-            text: "Close"|t,
-            name: "close-solid"
-          }
-        },
-        content: include ("@bolt-components-list/list.twig", {
-          display: "block",
-          spacing: "none",
-          items: items
-        }),
-        position: "up",
-        noWrap: true,
-        spacing: "none",
-        attributes: create_attribute(attributes|default({})).setAttribute("count",items|length)
-      } only %}
-    {% endif %}
+    {% include "@bolt-components-list/list.twig" with {
+      display: "inline",
+      spacing: size == "small" ? "xsmall" : "small",
+      items: items
+    } only %}
   </div>
 </bolt-share>
