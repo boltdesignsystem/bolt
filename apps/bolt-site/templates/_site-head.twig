@@ -1,0 +1,57 @@
+{% set manifestConfigFile = "@bolt-assets/bolt-webpack-manifest#{bolt.data.config.lang ? "-" ~ bolt.data.config.lang[0] : ""}.json" %}
+
+{% if fileExists(manifestConfigFile) %}
+  {% set assets = get_data(manifestConfigFile) %}
+{% else %}
+  {% set assets = [] %}
+{% endif %}
+
+{% set urlChunks = page.url | split('/') %}
+{% set currentSection = urlChunks | length >= 1 ? urlChunks|first : '' %}
+{% set currentUrl = page.url %}
+
+{% if page.url starts with currentSection %}
+  {% set nestedPages = [] %}
+  {% for page in site.nestedPages if page.url starts with currentSection %}
+    {% set nestedPages = page.children %}
+  {% endfor %}
+{% endif %}
+{% set hasSidebar = nestedPages or sidebar %}
+
+
+<!DOCTYPE html>
+<html lang="en-US" class="{{ bolt.data.config.prod ? '' : 'js-fonts-loaded' }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>Bolt Design System</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=LbyzAXRqNz">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=LbyzAXRqNz">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=LbyzAXRqNz">
+    <link rel="manifest" href="/site.webmanifest?v=LbyzAXRqNz">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=LbyzAXRqNz" color="#1f2656">
+    <link rel="shortcut icon" href="/favicon.ico?v=LbyzAXRqNz">
+    <meta name="apple-mobile-web-app-title" content="Bolt DS">
+    <meta name="application-name" content="Bolt Design System">
+    <meta name="msapplication-TileColor" content="#1f2656">
+    <meta name="msapplication-config" content="/browserconfig.xml?v=LbyzAXRqNz">
+    <meta name="theme-color" content="#1f2656">
+
+    <!-- Default OG Tag examples (related to Bolt Share Component) -->
+    {% include "@bolt-components-share/src/_share-meta-example.twig" %}
+
+    <link rel="stylesheet" href="{{ assets["bolt-global.css"] | default("/build/bolt-global.css") }}" media="all" />
+
+    {# @TODO: wire this up to use Critical CSS #}
+    <style>
+      {{ inline( assets["bolt-components-critical-fonts.css"] | default("") ) }}
+    </style>
+
+    <script>
+      {{ inline( assets["bolt-components-critical-fonts.js"] | default("") ) }}
+      {{ inline( assets["bolt-components-critical-css-vars.js"] | default("") ) }}
+    </script>
+
+  </head>
+  <body class="c-bds-layout c-bolt-site {% if currentUrl == 'index.html' %} t-bolt-xdark {% endif %} c-bds-layout--{{ urlChunks | length >= 2 ? urlChunks|first : 'parent' }} {{ hasSidebar ? 'c-bds-layout--has-sidebar' : ''}}">

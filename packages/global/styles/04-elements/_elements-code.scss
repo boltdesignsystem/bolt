@@ -3,7 +3,6 @@
 \* ------------------------------------ */
 
 $bolt-code-border-radius: $bolt-border-radius;
-$bolt-code-text-color: var(--bolt-theme-heading, inherit);
 $bolt-code-background-color: rgba(bolt-color(indigo, light), 0.08);
 
 
@@ -15,8 +14,7 @@ code {
   word-spacing: normal;
   word-break: normal;
   word-wrap: break-word;
-  color: inherit;
-  color: $bolt-code-text-color;
+  color: bolt-theme(text);
   text-align: left;
   border-radius: $bolt-code-border-radius;
 }

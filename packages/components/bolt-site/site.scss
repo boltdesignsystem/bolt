@@ -24,28 +24,37 @@
   min-height: 100vh;
   grid-template-areas: 'header' 'content' 'footer';
   // grid-template-areas: "header header header" "navigation main ads" "footer footer footer";
-  // grid-template-columns: 10rem 1fr 10rem;
+  grid-template-columns: auto 1fr auto;
   grid-template-rows: auto 1fr auto;
 
+  > * {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
   @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-    height: 100%; /* 1, 3 -- Required for IE11 sticky footer */
+    height: 100vh;
     overflow-x: hidden; // Prevent content from spilling over
   }
 }
 
-
-
 .c-bolt-site__header {
   grid-area: header;
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
 
 .c-bolt-site__footer {
   grid-area: footer;
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
 
 .c-bolt-site__content {
   grid-area: content;
   width: 100%;
+  grid-column-start: 1;
+  grid-column-end: 3;
   // grid-column: 2 / -2;
 }
 

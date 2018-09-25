@@ -1,19 +1,12 @@
-import {
-  h,
-  render,
-  define,
-  props,
-  withComponent,
-  hasNativeShadowDomSupport,
-  withPreact,
-} from '@bolt/core';
+import { define, props } from '@bolt/core/utils';
+import { h, withPreact } from '@bolt/core/renderers';
 
 import button from '@bolt/components-button/src/button.scss';
 import colorUtils from '@bolt/global/styles/07-utilities/_utilities-colors.scss';
 import styles from './tooltip.scss';
 
 @define
-export class BoltTooltip extends withPreact() {
+class BoltTooltip extends withPreact() {
   static is = 'bolt-tooltip';
 
   static props = {
@@ -77,12 +70,12 @@ export class BoltTooltip extends withPreact() {
             toggle-icon={data.triggerToggleIcon}
             trigger-id={this.triggerID}
           />
-          <TooltipContent
+          <BoltTooltipContent
             trigger={data.triggerType}
             trigger-id={this.triggerID}
             count={data.count}>
             <span dangerouslySetInnerHTML={{ __html: data.content }} />
-          </TooltipContent>
+          </BoltTooltipContent>
         </span>
       </span>
     );
@@ -90,7 +83,7 @@ export class BoltTooltip extends withPreact() {
 }
 
 @define
-class TooltipTrigger extends withPreact() {
+class BoltTooltipTrigger extends withPreact() {
   static is = 'tooltip-trigger';
 
   static props = {
@@ -182,7 +175,7 @@ class TooltipTrigger extends withPreact() {
   }
 }
 
-const TooltipContent = props => {
+const BoltTooltipContent = props => {
   const classes = [
     'c-bolt-tooltip__content',
     `c-bolt-tooltip__content--${props.trigger}`,
@@ -200,3 +193,5 @@ const TooltipContent = props => {
     </span>
   );
 };
+
+export { BoltTooltip, BoltTooltipTrigger, BoltTooltipContent };

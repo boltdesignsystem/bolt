@@ -1,0 +1,33 @@
+{
+  "name": "@bolt/sass-export-data",
+  "version": "2.0.0-beta.3",
+  "description": "Export Sass as JSON data",
+  "main": "index.js",
+  "style": "export-data.scss",
+  "scripts": {
+    "test:compile": "rm -rf tests/basics/dest/ && mkdir tests/basics/dest/ && node-sass --functions tests/basics/function.js tests/basics/scss/style.scss tests/basics/dest/style.css",
+    "test": "mocha tests"
+  },
+  "keywords": [
+    "theme-tools-plugin",
+    "theme-tools"
+  ],
+  "author": "EvanLovely <evanlovely@gmail.com> (http://evanlovely.com)",
+  "license": "MIT",
+  "repository": "https://github.com/basaltinc/theme-tools/tree/master/packages/sass-export-data",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@theme-tools/core": "^1.0.0",
+    "fs-extra": "^5.0.0",
+    "jsondiffpatch": "^0.2.5"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-fs": "^1.0.0",
+    "mocha": "^4.0.1",
+    "node-sass": "^4.5.3"
+  },
+  "gitHead": "cf9fabf0b3fcdac226af9503c052913db15592d7"
+}

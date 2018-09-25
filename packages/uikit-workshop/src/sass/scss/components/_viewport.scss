@@ -15,15 +15,15 @@
 .pl-c-viewport {
 	display: flex;
 	flex-direction: column;
-	height: calc(100vh - #{$offset-top}); // fixes the extra bit of scroll if set to 100vh
 	width: 100%;
 	position: relative;
-	top: $offset-top;
+	margin-top: $offset-top;
 	bottom: 0;
 	left: 0;
 	right: 0;
 	z-index: 0;
 	overflow: hidden;
+	flex-grow: 1; // Share any available vertical space
 }
 
 /**
@@ -34,10 +34,16 @@
 .pl-c-viewport__cover {
 	width: 100%;
 	height: 100%;
-	display: none;
 	position: absolute;
 	z-index: 20;
 	cursor: move;
+	// this needs to be set to display: none by default since the PL JavaScript that sets this inline to
+	// display none / block only fires when resizing the viewport or code drawer
+	display: none;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
 }
 
 /**
@@ -76,6 +82,7 @@
 	left: 0;
 	right: 0;
 	background-color: $pl-color-white;
+	max-width: 100vw;
 
 	/**
     * Hay Mode transition

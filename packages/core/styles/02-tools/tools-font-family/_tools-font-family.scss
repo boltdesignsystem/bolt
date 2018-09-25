@@ -31,7 +31,6 @@
     }
   }
   @else {
-
     @each $fontFamilyName in $fontFamilyNames {
       --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'fallback-font') ;};
     }
@@ -45,11 +44,3 @@
     }
   }
 }
-
-/* stylelint-disable-next-line scss/at-mixin-pattern */
-@mixin font-family($args...) {
-  @warn 'PegaKit\'s `font-family` mixin is deprecated and will be removed in v1.0.0 of Bolt. Use the new @bolt-font-family mixin instead.';
-
-  @include bolt-font-family($args);
-}
-/* stylelint-enable */

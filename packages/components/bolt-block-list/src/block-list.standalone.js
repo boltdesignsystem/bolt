@@ -1,17 +1,10 @@
-import {
-  h,
-  render,
-  define,
-  props,
-  withComponent,
-  hasNativeShadowDomSupport,
-  withPreact,
-} from '@bolt/core';
+import { define, props } from '@bolt/core/utils';
+import { h, withPreact } from '@bolt/core/renderers';
 
 import styles from './block-list.scss';
 
 @define
-export class BoltBlockList extends withPreact() {
+class BoltBlockList extends withPreact() {
   static is = 'bolt-block-list';
 
   static props = {
@@ -41,3 +34,5 @@ export class BoltBlockList extends withPreact() {
     );
   }
 }
+
+export { BoltBlockList };

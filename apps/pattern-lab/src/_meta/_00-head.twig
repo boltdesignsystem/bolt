@@ -35,16 +35,16 @@
     <meta name="viewport" content="width=device-width" />
     <title>Bolt Design System</title>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/pattern-lab/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/pattern-lab/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/pattern-lab/favicons/favicon-16x16.png">
-    <link rel="manifest" href="/pattern-lab/favicons/site.webmanifest">
-    <link rel="mask-icon" href="/pattern-lab/favicons/safari-pinned-tab.svg" color="#009999">
-    <link rel="shortcut icon" href="/pattern-lab/favicons/favicon.ico">
-    <meta name="apple-mobile-web-app-title" content="Bolt Design System">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=LbyzAXRqNz">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=LbyzAXRqNz">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=LbyzAXRqNz">
+    <link rel="manifest" href="/site.webmanifest?v=LbyzAXRqNz">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=LbyzAXRqNz" color="#1f2656">
+    <link rel="shortcut icon" href="/favicon.ico?v=LbyzAXRqNz">
+    <meta name="apple-mobile-web-app-title" content="Bolt DS">
     <meta name="application-name" content="Bolt Design System">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-config" content="/pattern-lab/favicons/browserconfig.xml">
+    <meta name="msapplication-TileColor" content="#1f2656">
+    <meta name="msapplication-config" content="/browserconfig.xml?v=LbyzAXRqNz">
     <meta name="theme-color" content="#1f2656">
 
     <!-- Default OG Tag examples (related to Bolt Share Component) -->
@@ -60,16 +60,17 @@
 
 
     {# @TODO: wire this up to use Critical CSS #}
-    {% if bolt.data.config.prod %}
-      <style>
-        {{ inline( assets["bolt-components-critical-fonts.css"] | default("") ) }}
-      </style>
+    <style>
+      {{ inline( assets["bolt-components-critical-fonts.css"] | default("") ) }}
+    </style>
 
-      {# @TODO: wire this up to use Critical JS #}
-      <script>
-        {{ inline( assets["bolt-components-critical-fonts.js"] | default("") ) }}
-      </script>
-    {% endif %}
+    {# @TODO: wire this up to use Critical JS #}
+    <script>
+      {{ inline( assets["bolt-components-critical-fonts.js"] | default("") ) }}
+
+      {{ inline( assets["bolt-components-critical-css-vars.js"] | default("") ) }}
+    </script>
+
 
 
     <!-- WIP. Temp solution to async load multiple lang-specific CSS builds based on query string in URL -->

@@ -51,11 +51,3 @@
     }
   }
 }
-
-/* stylelint-disable-next-line scss/at-mixin-pattern */
-@mixin font-size($args...) {
-  @warn 'PegaKit\'s `font-size` mixin is deprecated and will be removed in v1.0.0 of Bolt. Use the new @bolt-font-size mixin instead.';
-
-  @include bolt-font-size($args);
-}
-/* stylelint-enable */

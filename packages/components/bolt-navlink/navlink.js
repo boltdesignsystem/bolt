@@ -1,14 +1,5 @@
-import {
-  h,
-  render,
-  props,
-  BoltComponent,
-  define,
-  css,
-  spacingSizes,
-  hasNativeShadowDomSupport,
-} from '@bolt/core';
-
+import { props, define } from '@bolt/core/utils';
+import { withHyperHtml } from '@bolt/core/renderers';
 import isVisible from 'is-visible';
 
 // Used for attaching smooth scroll behavior to dynamically created <bolt-navlink> instances
@@ -19,7 +10,7 @@ import {
 } from '@bolt/components-smooth-scroll';
 
 @define
-class BoltNavLink extends BoltComponent() {
+class BoltNavLink extends withHyperHtml() {
   static is = 'bolt-navlink';
 
   static props = {
@@ -161,3 +152,5 @@ class BoltNavLink extends BoltComponent() {
     this.removeEventListener('click', this.onClick);
   }
 }
+
+export { BoltNavLink };
