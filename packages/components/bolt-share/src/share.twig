@@ -5,7 +5,9 @@
 {% endif %}
 
 {# DEPRECATED. Prop has been renamed. #}
-{% set copyToClipboard = copy_to_clipboard %}
+{% if copyToClipboard %}
+  {% set copy_to_clipboard = copyToClipboard %}
+{% endif %}
 
 {# DEPRECATED. Button version has been removed so this prop is no longer needed. #}
 {% if inline %}
