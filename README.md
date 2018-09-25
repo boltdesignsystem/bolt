@@ -1,8 +1,6 @@
 <h1>
-    <a href="https://boltdesignsystem.com">
-      <img align="left" width="40" src="https://raw.githubusercontent.com/bolt-design-system/bolt/master/apps/bolt-site/images/bolt-logo.png">
-    Bolt Design System
-    </a>
+  <img align="left" width="40" src="https://raw.githubusercontent.com/bolt-design-system/bolt/master/apps/bolt-site/images/bolt-logo.png">
+  Bolt Design System
 </h1>
 
 **Check out our new [Bolt Docs site!](https://boltdesignsystem.com)**
