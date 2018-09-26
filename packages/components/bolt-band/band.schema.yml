@@ -41,3 +41,14 @@ properties:
       - dark
       - xdark
       - none
+  items:
+    type: array
+    description: "Array of content items to display inside the band component. Internally this uses the new <code>&lt;bolt-grid&gt;</code> component to handle layout."
+    properties:
+      content:
+        type: [string, object, array]
+        description: "Content to render inside each <code>&lt;bolt-grid-item&gt;</code>"
+      position:
+        type: object
+        ref: '@bolt-components-grid/grid-item.schema.yml'
+        description: "Layout-specific config options for each internal <code>&lt;bolt-grid-item&gt;</code>"

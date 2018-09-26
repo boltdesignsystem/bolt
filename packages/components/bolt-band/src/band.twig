@@ -32,7 +32,7 @@
 <bolt-{{ componentName }}
   {% if size %} size="{{ size }}" {% endif %}
   {% if theme %} theme="{{ theme }}" {% endif %}
-  bolt-component {{ attributes.addClass(classes) }}>
+  {{ attributes.addClass(classes) }}>
   {% set renderedBandContent %}
     {% block band_background %}
       {% if background %}
@@ -40,9 +40,28 @@
       {% endif %}
     {% endblock band_background %}
     <{{ contentTag }} class="{{ "#{baseClass}__content" }}">
-      {% block band_content %}
-        {{ content }}
-      {% endblock band_content %}
+      {% block band_outer_content %}
+        {%- set block_band_content -%}
+          {%- block band_content -%}
+            {{ content }}
+          {%- endblock -%}
+        {%- endset -%}
+
+        {# merge together array of items with the content / band_content block so each item can get wrapped properly #}
+        {% set items = items | default([]) %}
+        {% if  block('band_content') | length > 0 %}
+          {% set items = items | merge([block_band_content]) %}
+        {% endif %}
+
+        {% if items is not empty %}
+          {% include "@bolt-components-grid/grid.twig" with {
+            vinset: size | default( items|length > 1 ? "medium" : "none"),
+            row_gutter: row_gutter | default("small"),
+            items: items
+          } only %}
+        {% endif %}
+      
+      {% endblock %}
     </{{ contentTag }}>
   {% endset %}
 
