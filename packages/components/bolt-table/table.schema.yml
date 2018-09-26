@@ -11,25 +11,21 @@ properties:
     description: A Drupal-style attributes object with extra attributes to append to this component.
   headers:
     type: object
+    description: Generates top and side headers, each can contain an array of `cells`.
     top:
       cells:
         type: [string, object, array]
     side:
-      width:
-        type: string
-        description: Allows the row header column to be flexible in width or fixed to the widest text.
-        default: auto
-        enum:
-          - auto
-          - fixed
       cells:
         type: [string, object, array]
   rows:
     type: array
+    description: Generates an array of rows, each can contain an array of `cells`.
     cells:
       type: [string, object, array]
   footer:
     type: object
+    description: Generates a table footer, can contain an array of `cells`.
     cells:
       type: [string, object, array]
   format:
@@ -39,3 +35,11 @@ properties:
     enum:
       - regular
       - numeric
+  borderless:
+    type: boolean
+    description: Removes the vertical border in between cells.
+    default: false
+  first_col_fixed_width:
+    type: boolean
+    description: Sets the width of the first column to be as wide as the longest text.
+    default: false

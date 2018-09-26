@@ -71,9 +71,14 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
 }
 
 .c-bolt-table__cell {
-  width: 1%; // [Mai] This helps
+  width: 1%;
   text-align: left;
   vertical-align: baseline;
+  border-right: $bolt-table-border;
+
+  &:empty:first-child ~ .c-bolt-table__cell {
+    width: auto;
+  }
 
   @at-root .c-bolt-table__head #{&} {
     @include bolt-padding(small, squished);
@@ -99,8 +104,8 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
   white-space: nowrap;
   background-color: $bolt-table-head-background-color;
 
-  @at-root .c-bolt-table > *:not(.c-bolt-table__head) #{&}:first-child {
-    border-right: $bolt-table-border;
+  &:first-child ~ .c-bolt-table__cell--data {
+    width: auto;
   }
 }
 
@@ -110,6 +115,17 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
   @include bolt-font-weight(regular);
 
   color: $bolt-table-cell-text-color;
+}
+
+.c-bolt-table--borderless {
+  .c-bolt-table__cell {
+    border-right: 0;
+  }
+
+  .c-bolt-table__cell--data[rowspan]:not(:first-child) {
+    border-right: $bolt-table-border;
+    border-left: $bolt-table-border;
+  }
 }
 
 .c-bolt-table--format-numeric {
@@ -123,12 +139,14 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
   }
 }
 
-.c-bolt-table--side-headers-width-fixed {
+.c-bolt-table--first-col-fixed-width {
   .c-bolt-table__cell {
-    width: auto;
-  }
+    &:first-child {
+      white-space: nowrap;
 
-  > *:not(.c-bolt-table__head) .c-bolt-table__cell--header:first-child {
-    width: 1%;
+      & ~ .c-bolt-table__cell {
+        width: auto;
+      }
+    }
   }
 }

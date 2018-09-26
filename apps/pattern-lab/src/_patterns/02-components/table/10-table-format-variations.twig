@@ -2,7 +2,7 @@
 
 <p><mark>Numeric format is recommended for a table with numbers only, such as box scores.</mark></p>
 {% for format in schema.properties.format.enum %}
-  <h3>{{ format|capitalize }}</h3>
+  <h3>{{ format|capitalize }} Format</h3>
   {% include "@bolt-components-table/table.twig" with {
     format: format,
     headers: {
@@ -16,7 +16,6 @@
         ]
       },
       side: {
-        width: "auto",
         cells: [
           "Michael Jordan",
           "Toni Kukoc",
