@@ -1,103 +1,82 @@
-@import '@bolt/core';
-
 /* ------------------------------------ *\
    Share
 \* ------------------------------------ */
 
+$bolt-share-block-link-inset: 'small';
+$bolt-share-block-link-inline-spacing: 'xsmall';
+
+
+@include bolt-custom-element('bolt-share', block, medium);
+
 .c-bolt-share {
-  &--hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
-  .c-bolt-link__icon [name='facebook-solid'],
-  .c-bolt-link__icon [name='twitter'],
-  .c-bolt-link__icon [name='linkedin'],
-  .c-bolt-link__icon [name='email'],
-  .c-bolt-link__icon [name='asset-link'] {
-    color: bolt-color(indigo, light);
-  }
-  .c-bolt-link {
-    text-decoration: none;
-    color: bolt-color(gray, xdark);
-  }
+  display: block;
 }
 
-.c-bolt-share--normal-layout {
-  .c-bolt-block-list {
-    @include bolt-padding-top(small);
-    @include bolt-padding-bottom(small);
-  }
+$bolt-share-opacity: 100, 80, 60, 40, 20;
 
-  .c-bolt-block-list__item {
-    display: table; // fixes the odd 1px line that appears only at some resolutions
-    width: 100%;
-    margin: 0;
-  }
+@each $opacity in $bolt-share-opacity {
+  .c-bolt-share--opacity-#{$opacity} {
+    opacity: #{$opacity / 100};
+    transition: opacity $bolt-transition;
 
-  bolt-copy-to-clipboard { // This is ONLY in context of this share component because we need this element to fill the full space allotted
-    display: block;
-  }
-
-  .c-bolt-link { // nested since this is a component within a component with different styles
-    @include bolt-font-size(large);
-    @include bolt-padding(medium, squished);
-    display: block;
-    margin: 0;
-    background: linear-gradient(to left, transparent 50%, bolt-color(indigo, xlight) 50%);
-    background-size: 200% 100%;
-    background-position: right bottom;
-    transition: all 0.2s ease;
-  }
-
-  .c-bolt-copy-to-clipboard__spinner,
-  .is-copied .c-bolt-copy-to-clipboard__spinner {
-    left: 2rem; // Aligns out absolutely positioned icon correctly with the others
-  }
-
-  .c-bolt-link:hover {
-    background-position: left bottom;
-    color: bolt-color(white);
-  }
-
-  .c-bolt-link__icon:hover {
-    color: bolt-color(white);
-  }
-}
-
-.c-bolt-share--inline-layout {
-  .c-bolt-share--inline-heading {
-    display: inline-block;
-    vertical-align: middle;
-    letter-spacing: 0;
-  }
-
-  .c-bolt-block-list {
-    display: flex;
-  }
-
-  .c-bolt-block-list__item {
-    @include bolt-margin(0);
-    display: inline-block;
-
-    +.c-bolt-block-list__item {
-      @include bolt-margin-left(small);
+    &:hover {
+      opacity: 1;
     }
   }
+}
 
-  .c-bolt-link__icon:hover {
-    opacity: 0.8;
-    transition: opacity 0.2s ease;
+.c-bolt-share__label {
+  @include bolt-font-size(xsmall);
+
+  color: bolt-theme(text);
+  opacity: 0.6;
+}
+
+.c-bolt-share__label--medium {
+  @include bolt-font-weight(bold);
+  text-transform: uppercase;
+}
+
+.c-bolt-share__label--small {
+  @include bolt-font-weight(semibold);
+}
+
+.c-bolt-share__link {
+  @include bolt-margin-right(-0.25rem);
+
+  color: bolt-theme(link);
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover {
+    opacity: $bolt-global-link-hover-opacity;
   }
 
-  .c-bolt-link__text {
-    display: none;
+  &:active,
+  &:focus:active {
+    opacity: $bolt-global-link-active-opacity;
   }
+}
 
-  .c-bolt-copy-to-clipboard__copied .c-bolt-link__icon [name='asset-link'] {
-    color: bolt-color(teal, dark);
+.c-bolt-share__link-text {
+  @include bolt-visuallyhidden;
+}
+
+
+// Custom animation is used here because the markup is different than the default copy to clipboard animation.
+.c-bolt-share__copy-animation {
+  display: inline-block;
+  animation-name: a-bolt-share-copy-animation-spin;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes a-bolt-share-copy-animation-spin {
+  0% {
+    transform: rotate(0deg);
   }
-
-  .c-bolt-copy-to-clipboard.is-copied .c-bolt-copy-to-clipboard__spinner {
-    margin: 0;
+  100% {
+    transform: rotate(1620deg);
   }
 }
