@@ -34,15 +34,14 @@ bolt-icon {
   height: 1em;
   box-sizing: border-box;
   z-index: bolt-z-index('content');
-  color: currentColor;
-  color: var(--bolt-theme-icon, currentColor);
+  color: var(--bolt-theme-icon);
   pointer-events: none;
 }
 
 bolt-icon[size='small'],
 .c-bolt-icon--small > .c-bolt-icon__icon {
-  width: 12px;
-  height: 12px;
+  width: 16px;
+  height: 16px;
 }
 
 bolt-icon[size='medium'],
@@ -70,7 +69,7 @@ bolt-icon[size='xlarge'],
 
 .c-bolt-icon--small > .c-bolt-icon__icon {
   stroke: currentColor;
-  stroke-width: 2px;
+  stroke-width: 1px;
 }
 
 

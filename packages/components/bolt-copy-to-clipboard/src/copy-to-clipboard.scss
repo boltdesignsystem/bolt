@@ -47,7 +47,7 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
         transform: scale(0) rotate(0deg);
       }
       100% {
-        transform: scale(1) rotate(720deg);
+        transform: scale(1) rotate(900deg);
       }
     }
   }
@@ -87,14 +87,16 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
 
 .c-bolt-copy-to-clipboard__action,
 .c-bolt-copy-to-clipboard__info {
+  display: inline-flex;
+  align-items: center;
+
   > *:first-child {
     @include bolt-margin-right(xxsmall);
   }
 }
 
 .c-bolt-copy-to-clipboard__action {
-  color: inherit;
-  color: var(--bolt-theme-link, inherit);
+  color: bolt-theme(link);
 
   &:hover {
     opacity: $bolt-global-link-hover-opacity;
@@ -111,8 +113,7 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
 }
 
 .c-bolt-copy-to-clipboard__info {
-  color: inherit;
-  color: var(--bolt-theme-text, inherit);
+  color: bolt-theme(text);
   opacity: 0.4;
 }
 
@@ -130,6 +131,5 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
 
 .c-bolt-copy-to-clipboard__transition-animation {
   display: inline-block;
-  color: inherit;
-  color: var(--bolt-theme-link, inherit);
+  color: bolt-theme(link);
 }
