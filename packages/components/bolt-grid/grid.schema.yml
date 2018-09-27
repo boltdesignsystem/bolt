@@ -28,4 +28,12 @@ properties:
       - xlarge
   items:
     type: array
-    description: Collection of grid items to display insided the grid itself
+    description: Array of content items to display inside the grid itself.
+    properties:
+      content:
+        type: [string, object, array]
+        description: "Content to render inside each <code>&lt;bolt-grid-item&gt;</code>"
+      position:
+        type: object
+        ref: '@bolt-components-grid/grid-item.schema.yml'
+        description: "Layout-specific config options for each internal <code>&lt;bolt-grid-item&gt;</code>"

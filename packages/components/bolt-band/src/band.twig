@@ -55,8 +55,8 @@
 
         {% if items is not empty %}
           {% include "@bolt-components-grid/grid.twig" with {
-            vinset: size | default( items|length > 1 ? "medium" : "none"),
-            row_gutter: row_gutter | default("small"),
+            vinset: vinset ? vinset : size,
+            row_gutter: row_gutter | default( items|length > 1 ? "small" : "none"),
             items: items
           } only %}
         {% endif %}
