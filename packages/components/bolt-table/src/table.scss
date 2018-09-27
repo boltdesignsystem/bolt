@@ -2,13 +2,10 @@
    Table
 \* ------------------------------------ */
 
-$bolt-table-overflow-shadow-color: rgba(bolt-color(gray, light), 0.5);
-$bolt-table-border: 1px solid bolt-color(gray, light);
-$bolt-table-background-color: bolt-color(white);
-$bolt-table-head-background-color: rgba(bolt-color(gray, light), 0.25);
-$bolt-table-row-hover-background-color: rgba(bolt-color(gray, light), 0.125);
-$bolt-table-cell-text-color: bolt-color(black);
-$bolt-table-header-text-color: bolt-color(gray, dark);
+$bolt-table-overflow-shadow-color: bolt-theme(text, 0.25);
+$bolt-table-border: 1px solid bolt-theme(border);
+$bolt-table-header-background-color: bolt-theme(text, 0.04375);
+$bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
 
 
 @include bolt-custom-element('bolt-table', block, medium);
@@ -19,9 +16,9 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
   @include bolt-horizontal-scroll;
 
   display: inline-block;
-  vertical-align: top;
   max-width: 100%;
   overflow-x: auto;
+  vertical-align: top;
   border-right: $bolt-table-border;
   border-left: $bolt-table-border;
   border-collapse: collapse;
@@ -30,19 +27,30 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
     -webkit-radial-gradient(
       left,
       ellipse,
-      rgba($bolt-table-cell-text-color, 0.25) 0%,
-      rgba($bolt-table-cell-text-color, 0) 75%
+      bolt-theme(text, 0.25) 0%,
+      bolt-theme(text, 0) 75%
     ) 0 center,
     -webkit-radial-gradient(
       right,
       ellipse,
-      rgba($bolt-table-cell-text-color, 0.25) 0%,
-      rgba($bolt-table-cell-text-color, 0) 75%
+      bolt-theme(text, 0.25) 0%,
+      bolt-theme(text, 0) 75%
     ) 100% center;
   background-size: .5em 100%, .5em 100%;
   background-attachment: scroll, scroll;
   background-repeat: no-repeat;
+  background-color: bolt-theme(background);
   -ms-overflow-style: -ms-autohiding-scrollbar;
+
+  // Caption is not offered in the component. These generic styles are in place in case there are some legacy tables out there that used <caption>.
+  caption {
+    @include bolt-font-size(small);
+
+    caption-side: bottom;
+    color: bolt-theme(text, 0.65);
+    text-align: center;
+    background-color: bolt-theme(background);
+  }
 }
 
 .c-bolt-table__head,
@@ -51,10 +59,10 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
   background:
     linear-gradient(
       to right,
-      rgba($bolt-table-background-color, 1) 0.75em,
-      rgba($bolt-table-background-color, 0) 2em,
-      rgba($bolt-table-background-color, 0) calc(100% - 2em),
-      rgba($bolt-table-background-color, 1) calc(100% - 0.75em)
+      bolt-theme(background, 1) 0.75em,
+      bolt-theme(background, 0) 2em,
+      bolt-theme(background, 0) calc(100% - 2em),
+      bolt-theme(background, 1) calc(100% - 0.75em)
     );
 }
 
@@ -84,7 +92,7 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
     @include bolt-padding(small, squished);
 
     width: 1%;
-    background-color: $bolt-table-head-background-color;
+    background-color: $bolt-table-header-background-color;
   }
 
   @at-root .c-bolt-table > *:not(.c-bolt-table__head) #{&} {
@@ -101,9 +109,9 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
   @include bolt-font-size(xsmall);
   @include bolt-font-weight(semibold);
 
-  color: $bolt-table-header-text-color;
+  color: bolt-theme(text, 0.65);
   white-space: nowrap;
-  background-color: $bolt-table-head-background-color;
+  background-color: $bolt-table-header-background-color;
 
   &:first-child {
     width: 1%;
@@ -119,7 +127,7 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
   @include bolt-font-size(small);
   @include bolt-font-weight(regular);
 
-  color: $bolt-table-cell-text-color;
+  color: bolt-theme(text);
 }
 
 .c-bolt-table--borderless {
