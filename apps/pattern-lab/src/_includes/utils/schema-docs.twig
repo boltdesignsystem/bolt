@@ -23,7 +23,7 @@
 
       {% if prop.enum %}{{ enum }}{% endif -%}
 
-      {% if prop.type == 'object' and prop.properties or prop.ref %}
+      {% if (prop.type == 'object' or prop.type == 'array') and prop.properties or prop.ref %}
         {% if prop.ref %}
           {% set reference = get_data(prop.ref).properties %}
           <details>
@@ -68,7 +68,7 @@
 {% macro object(properties, isRef) %}
   {% import _self as macros %}
   {% set isRef = isRef|default(false) %}
-  <ul>
+  <ul class="c-bolt-docs-list__child">
     {% for key, prop in properties %}
       <li>
         <code>{{ key }}</code>

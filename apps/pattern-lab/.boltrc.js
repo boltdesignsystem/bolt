@@ -117,6 +117,7 @@ const config = {
       '@bolt/components-tooltip',
       '@bolt/components-unordered-list',
       '@bolt/components-video',
+      '@bolt/components-grid',
       /**
        * note: resolving these paths isn't typically required when
        * the .boltrc config is run through the bolt CLI tool (ie.
