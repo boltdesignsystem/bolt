@@ -1,6 +1,32 @@
+<h3>With Rows Only</h3>
+{% include "@bolt-components-table/table.twig" with {
+  rows: [
+    {
+      cells: [
+        "R1C1",
+        "R1C2",
+        "R1C3",
+      ]
+    },
+    {
+      cells: [
+        "R2C1",
+        "R2C2",
+        "R2C3",
+      ]
+    },
+    {
+      cells: [
+        "R3C1",
+        "R3C2",
+        "R3C3",
+      ]
+    }
+  ],
+} only %}
+
 <h3>With Top Headers</h3>
 {% include "@bolt-components-table/table.twig" with {
-  format: "regular",
   headers: {
     top: {
       cells: [
@@ -37,7 +63,6 @@
 
 <h3>With Side Headers</h3>
 {% include "@bolt-components-table/table.twig" with {
-  format: "regular",
   headers: {
     side: {
       cells: [
@@ -75,7 +100,6 @@
 
 <h3>With Top and Side Headers</h3>
 {% include "@bolt-components-table/table.twig" with {
-  format: "regular",
   headers: {
     top: {
       cells: [
@@ -120,7 +144,6 @@
 
 <h3>With Headers and Footer</h3>
 {% include "@bolt-components-table/table.twig" with {
-  format: "regular",
   headers: {
     top: {
       cells: [
@@ -172,7 +195,6 @@
 
 <h3>Real Example</h3>
 {% include "@bolt-components-table/table.twig" with {
-  format: "regular",
   first_col_fixed_width: true,
   headers: {
     top: {
