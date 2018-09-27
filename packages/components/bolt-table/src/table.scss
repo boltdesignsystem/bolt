@@ -1,5 +1,3 @@
-@import '@bolt/core';
-
 /* ------------------------------------ *\
    Table
 \* ------------------------------------ */
@@ -71,10 +69,12 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
 }
 
 .c-bolt-table__cell {
-  width: 1%;
   text-align: left;
   vertical-align: baseline;
-  border-right: $bolt-table-border;
+
+  &:not(:last-child) {
+    border-right: $bolt-table-border;
+  }
 
   &:empty:first-child ~ .c-bolt-table__cell {
     width: auto;
@@ -83,6 +83,7 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
   @at-root .c-bolt-table__head #{&} {
     @include bolt-padding(small, squished);
 
+    width: 1%;
     background-color: $bolt-table-head-background-color;
   }
 
@@ -104,8 +105,12 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
   white-space: nowrap;
   background-color: $bolt-table-head-background-color;
 
-  &:first-child ~ .c-bolt-table__cell--data {
-    width: auto;
+  &:first-child {
+    width: 1%;
+
+    & ~ .c-bolt-table__cell--data {
+      width: auto;
+    }
   }
 }
 
@@ -118,13 +123,20 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
 }
 
 .c-bolt-table--borderless {
-  .c-bolt-table__cell {
+  .c-bolt-table__cell:not(:last-child) {
     border-right: 0;
   }
 
-  .c-bolt-table__cell--data[rowspan]:not(:first-child) {
+  .c-bolt-table__cell--data[rowspan]:not(:last-child) {
     border-right: $bolt-table-border;
+  }
+
+  td.c-bolt-table__cell--data[rowspan]:not(:first-of-type) {
     border-left: $bolt-table-border;
+  }
+
+  > *:not(.c-bolt-table__head) .c-bolt-table__cell--header:first-child {
+    border-right: $bolt-table-border;
   }
 }
 
@@ -140,13 +152,13 @@ $bolt-table-header-text-color: bolt-color(gray, dark);
 }
 
 .c-bolt-table--first-col-fixed-width {
-  .c-bolt-table__cell {
-    &:first-child {
-      white-space: nowrap;
+  .c-bolt-table__head .c-bolt-table__cell:first-child,
+  td.c-bolt-table__cell--data:first-of-type {
+    width: 1%;
+    white-space: nowrap;
 
-      & ~ .c-bolt-table__cell {
-        width: auto;
-      }
+    & ~ .c-bolt-table__cell {
+      width: auto;
     }
   }
 }
