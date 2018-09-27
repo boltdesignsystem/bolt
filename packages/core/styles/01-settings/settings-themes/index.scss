@@ -5,8 +5,8 @@
 
 // pre-defined theming system values
 $bolt-theme-ui-colors: (
-  light: (
-    border: bolt-color(white),
+  dark: (
+    border: bolt-color(gray, dark),
     contrast-filter: grayscale(100%) invert(100%) brightness(150%),
     disabled: bolt-color(gray, light),
     headline-link: bolt-color(white),
@@ -19,8 +19,8 @@ $bolt-theme-ui-colors: (
     neutral: bolt-color(gray),
     brand: bolt-color(indigo),
   ),
-  dark: (
-    border: bolt-color(indigo, dark),
+  light: (
+    border: bolt-color(gray, light),
     contrast-filter: none,
     disabled: bolt-color(gray, light),
     headline-link: bolt-color(indigo, light),
@@ -77,7 +77,7 @@ $bolt-themes: (
 @each $themeName, $themeProps in $bolt-themes {
   $background: map-get($themeProps, background);
 
-  $lightOrDark: bolt-theme-contrast-tone($background);
+  $lightOrDark: bolt-theme-tone($background);
   $bolt-ui-colors: map-get($bolt-theme-ui-colors, $lightOrDark);
 
   $bolt-themes: bolt-recursive-map-merge(

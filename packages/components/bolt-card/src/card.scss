@@ -17,7 +17,8 @@ $bolt-card-shadow: $bolt-global-shadow-depth-small;
 $bolt-card-shadow--hover: $bolt-global-shadow-depth-medium;
 $bolt-card-border-width: $bolt-border-width;
 $bolt-card-border-style: $bolt-border-style;
-$bolt-card-border-color: currentColor; // TODO: needs to map this to theme text color at 0.1 opacity.
+// @todo [Mai] Keeping this transparent because I don't want to break existing pages. There needs to be 2 versions of border color, transparent and solid. We have to figure out how to deal with that in the theming system. Maybe 2 separate variables?
+$bolt-card-border-color: bolt-theme(text, 0.2);
 $bolt-card-border-radius: $bolt-border-radius;
 $bolt-card-transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 $bolt-card-translate--hover: $bolt-translate-raised--large;
@@ -147,16 +148,16 @@ bolt-card {
   overflow: hidden; // Prevent the card footer's border from overflowing outside the card. Workaround if card footer container rendering despite not having any content to display.
 
   &:before {
-    content: '';
-    border-top-color: bolt-theme(border, 0.2);
-    border-top-width: $bolt-card-border-width;
-    border-top-style: solid;
+    display: block;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    display: block;
     height: 1px;
+    content: '';
+    border-top-color: $bolt-card-border-color;
+    border-top-width: $bolt-card-border-width;
+    border-top-style: $bolt-card-border-style;
   }
 }
 
@@ -178,9 +179,9 @@ bolt-card {
 .c-bolt-card__footer-item + .c-bolt-card__footer-item:before {
   display: block;
   content: '';
-  border-left-color: bolt-theme(border, 0.2);
+  border-left-color: $bolt-card-border-color;
   border-left-width: $bolt-card-border-width;
-  border-left-style: solid;
+  border-left-style: $bolt-card-border-style;
   position: absolute;
   top: 1px; // Prevent double border on top
   left: 0;

@@ -29,6 +29,8 @@ $bolt-action-block-item-max-width: 20ch;
 
 $bolt-action-blocks-border-width: $bolt-border-width;
 $bolt-action-blocks-border-style: $bolt-border-style;
+// @todo [Mai] Keeping this transparent because I don't want to break existing pages. There needs to be 2 versions of border color, transparent and solid. We have to figure out how to deal with that in the theming system. Maybe 2 separate variables?
+$bolt-action-blocks-border-color: bolt-theme(text, 0.2);
 $bolt-action-block-background: bolt-color(indigo, light);
 
 // Individual Action Block Styles
@@ -130,8 +132,8 @@ bolt-action-blocks {
   width: 100%;
   height: 100%;
   content: '';
-  border-bottom-color: bolt-theme(border, 0.2);
-  border-right-color: bolt-theme(border, 0.2);
+  border-bottom-color: $bolt-action-blocks-border-color;
+  border-right-color: $bolt-action-blocks-border-color;
 }
 
 .c-bolt-action-blocks--borderless > .c-bolt-action-blocks__item {

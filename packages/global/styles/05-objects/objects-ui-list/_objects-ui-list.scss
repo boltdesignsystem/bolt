@@ -17,6 +17,8 @@ $bolt-ui-list-padding--large: (large 0) !default;
 
 $bolt-ui-list-border-width: 1px !default;
 $bolt-ui-list-border-style: solid !default;
+// @todo [Mai] Keeping this transparent because I don't want to break existing pages. There needs to be 2 versions of border color, transparent and solid. We have to figure out how to deal with that in the theming system. Maybe 2 separate variables?
+$bolt-ui-list-border-color: bolt-theme(text, 0.2) !default;
 
 .o-bolt-ui-list {
   margin: 0;
@@ -30,7 +32,7 @@ $bolt-ui-list-border-style: solid !default;
   &:not(:last-child) {
     border-bottom-width: $bolt-ui-list-border-width;
     border-bottom-style: $bolt-ui-list-border-style;
-    border-bottom-color: bolt-theme(border, 0.2);
+    border-bottom-color: $bolt-ui-list-border-color;
   }
 
   > *:last-child {
