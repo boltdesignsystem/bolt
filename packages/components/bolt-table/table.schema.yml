@@ -11,22 +11,61 @@ properties:
   headers:
     type: object
     description: Generates top and side headers, each can contain an array of `cells`.
-    top:
-      cells:
-        type: [string, object, array]
-    side:
-      cells:
-        type: [string, object, array]
+    properties:
+      top:
+        type: object
+        properties:
+          cells:
+            description: Each item represents a cell in the top header.
+            type: array
+            items:
+              type: any
+              properties:
+                content:
+                  type: string
+                attributes:
+                  type: object
+      side:
+        type: object
+        properties:
+          cells:
+            description: Each item represents a cell in the side header.
+            type: array
+            items:
+              type: any
+              properties:
+                content:
+                  type: string
+                attributes:
+                  type: object
   rows:
     type: array
     description: Generates an array of rows, each can contain an array of `cells`.
-    cells:
-      type: [string, object, array]
+    properties:
+      cells:
+        description: Each item represents a cell in a row.
+        type: array
+        items:
+          type: any
+          properties:
+            content:
+              type: string
+            attributes:
+              type: object
   footer:
     type: object
     description: Generates a table footer, can contain an array of `cells`.
-    cells:
-      type: [string, object, array]
+    properties:
+      cells:
+        description: Each item represents a cell in the footer.
+        type: array
+        items:
+          type: any
+          properties:
+            content:
+              type: string
+            attributes:
+              type: object
   format:
     type: string
     description: Display either a regular table or a more complex numeric table.
