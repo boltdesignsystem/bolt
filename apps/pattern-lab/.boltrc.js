@@ -112,6 +112,7 @@ const config = {
       '@bolt/components-site',
       '@bolt/components-smooth-scroll',
       '@bolt/components-sticky',
+      '@bolt/components-table',
       '@bolt/components-teaser',
       '@bolt/components-text',
       '@bolt/components-tooltip',
