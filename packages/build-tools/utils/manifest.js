@@ -94,10 +94,33 @@ async function getPkgInfo(pkgName) {
       ensureFileExists(info.assets.main);
     }
     if (pkg.schema) {
-      const schemaFilePath = path.join(dir, pkg.schema);
-      const schema = await getDataFile(schemaFilePath);
-      validateSchemaSchema(schema, `Schema not valid for: ${schemaFilePath}`);
-      info.schema = schema;
+      if (typeof pkg.schema === 'object') {
+        if (info.schema === undefined) {
+          info.schema = [];
+        }
+
+        const schemas = pkg.schema;
+
+        for (const schemaPath of schemas) {
+          const schemaFilePath = path.join(dir, schemaPath);
+          // eslint-disable-next-line
+          const schema = await getDataFile(schemaFilePath);
+          validateSchemaSchema(
+            schema,
+            `Schema not valid for: ${schemaFilePath}`,
+          );
+          const schemaMachineName = schema.title
+            .replace(/ /g, '-')
+            .toLowerCase();
+
+          info.schema[schemaMachineName] = schema;
+        }
+      } else {
+        const schemaFilePath = path.join(dir, pkg.schema);
+        const schema = await getDataFile(schemaFilePath);
+        validateSchemaSchema(schema, `Schema not valid for: ${schemaFilePath}`);
+        info.schema = schema;
+      }
     }
     // @todo Allow verbosity settings
     // console.log(assets);

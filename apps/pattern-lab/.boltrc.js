@@ -108,11 +108,13 @@ const config = {
       '@bolt/components-site',
       '@bolt/components-smooth-scroll',
       '@bolt/components-sticky',
+      '@bolt/components-table',
       '@bolt/components-teaser',
       '@bolt/components-text',
       '@bolt/components-tooltip',
       '@bolt/components-unordered-list',
       '@bolt/components-video',
+      '@bolt/components-grid',
       /**
        * note: resolving these paths isn't typically required when
        * the .boltrc config is run through the bolt CLI tool (ie.
