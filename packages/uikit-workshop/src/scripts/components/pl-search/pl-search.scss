@@ -162,7 +162,7 @@ pl-search {
     background-color: $pl-color-gray-02;
   }
 
-  &.pl-is-open:not(.pl-is-empty) {
+  &.pl-is-open {
     max-height: 120rem;
     max-height: calc(var(--viewport-height) - 4rem);
     opacity: 1;
@@ -181,6 +181,9 @@ pl-search {
 }
 
 .pl-c-typeahead__results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   background-color: inherit;
   border-color: transparent;
   border-width: 1px;
