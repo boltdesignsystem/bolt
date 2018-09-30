@@ -35,6 +35,7 @@ class Search extends BaseComponent {
     this.toggleSearch = this.toggleSearch.bind(this);
     // this.clearSearch = this.clearSearch.bind(this);
     this.closeSearch = this.closeSearch.bind(this);
+    this.renderInputComponent = this.renderInputComponent.bind(this);
     this.openSearch = this.openSearch.bind(this);
 
     this.items = [];
@@ -70,7 +71,7 @@ class Search extends BaseComponent {
   static props = {
     maxResults: props.string,
     placeholder: props.string,
-    showClearButton: props.boolean,
+    hideClearButton: props.boolean,
     clearButtonText: props.string,
   };
 
@@ -172,7 +173,7 @@ class Search extends BaseComponent {
         resultItem.item.highlightedLabel = result.join('');
 
         resultItem.item.highlightedLabel = ReactHtmlParser(
-          resultItem.item.highlightedLabel,
+          resultItem.item.highlightedLabel
         );
 
         if (resultItem.children && resultItem.children.length > 0) {
@@ -228,6 +229,50 @@ class Search extends BaseComponent {
     });
   };
 
+  renderInputComponent(inputProps) {
+    const { value } = this.state;
+
+    const shouldShowClearButton =
+      this.props.hideClearButton !== undefined &&
+      this.props.hideClearButton !== true &&
+      value !== '';
+
+    const clearButtonText = this.props.clearButtonText
+      ? this.props.clearButtonText
+      : 'Clear Search Results';
+
+    return (
+      <div
+        className={classNames('pl-c-typeahead__input-wrapper', {
+          [`pl-c-typeahead__input-wrapper--with-clear-button`]: shouldShowClearButton,
+        })}
+      >
+        <input {...inputProps} />
+        {shouldShowClearButton && (
+          <button
+            className={classNames('pl-c-typeahead__clear-button', {
+              [`pl-is-visible`]: value !== '',
+            })}
+            onClick={() => {
+              this.clearSearch();
+            }}
+          >
+            <VisuallyHidden>{clearButtonText}</VisuallyHidden>
+            <svg
+              viewBox="0 0 16 16"
+              height="16"
+              width="16"
+              className={'pl-c-typeahead__clear-button-icon'}
+            >
+              <title>{clearButtonText}</title>
+              <path d="M12.207 10.793l-1.414 1.414-2.793-2.793-2.793 2.793-1.414-1.414 2.793-2.793-2.793-2.793 1.414-1.414 2.793 2.793 2.793-2.793 1.414 1.414-2.793 2.793 2.793 2.793z" />
+            </svg>
+          </button>
+        )}
+      </div>
+    );
+  }
+
   // Autosuggest calls this every time you need to clear suggestions.
   onSuggestionsClearRequested = () => {
     this.setState({
@@ -243,14 +288,11 @@ class Search extends BaseComponent {
 
   render() {
     const { value, suggestions } = this.state;
-    
-    const shouldShowClearButton = this.props.showClearButton
-      ? this.props.showClearButton
-      : true;
 
-    const clearButtonText = this.props.clearButtonText
-      ? this.props.clearButtonText
-      : 'Clear Search Results';
+    const shouldShowClearButton =
+      this.props.hideClearButton !== undefined &&
+      this.props.hideClearButton !== true &&
+      value !== '';
 
     // no CSS for these Autosuggest selectors yet -- not yet needed
     const theme = {
@@ -267,9 +309,13 @@ class Search extends BaseComponent {
       suggestion: classNames('pl-c-typeahead__result'),
       suggestionFirst: classNames('pl-c-typeahead__result--first'),
       suggestionHighlighted: classNames('pl-has-cursor'),
-      sectionContainer: classNames('pl-c-typeahead__section-container'), /* [1] */
-      sectionContainerFirst: classNames('pl-c-typeahead__section-container--first'), /* [1] */
-      sectionTitle: classNames('pl-c-typeahead__section-title'), /* [1] */
+      sectionContainer: classNames(
+        'pl-c-typeahead__section-container'
+      ) /* [1] */,
+      sectionContainerFirst: classNames(
+        'pl-c-typeahead__section-container--first'
+      ) /* [1] */,
+      sectionTitle: classNames('pl-c-typeahead__section-title') /* [1] */,
     };
 
     // Autosuggest will pass through all these props to the input.
@@ -282,36 +328,16 @@ class Search extends BaseComponent {
     };
 
     return (
-      <div className={classNames('pl-c-typeahead-wrapper')}>
-        <Autosuggest
-          theme={theme}
-          suggestions={suggestions}
-          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-          getSuggestionValue={this.getSuggestionValue}
-          renderSuggestion={this.renderSuggestion}
-          inputProps={inputProps}
-        />
-        {shouldShowClearButton && (
-          <button
-            className={classNames('pl-c-typeahead__clear-button', {
-              [`pl-is-visible`]: value !== '',
-            })}
-            onClick={() => {
-              this.clearSearch();
-            }}>
-            <VisuallyHidden>{clearButtonText}</VisuallyHidden>
-            <svg
-              viewBox="0 0 16 16"
-              height="16"
-              width="16"
-              className={'pl-c-typeahead__clear-button-icon'}>
-              <title>{clearButtonText}</title>
-              <path d="M12.207 10.793l-1.414 1.414-2.793-2.793-2.793 2.793-1.414-1.414 2.793-2.793-2.793-2.793 1.414-1.414 2.793 2.793 2.793-2.793 1.414 1.414-2.793 2.793 2.793 2.793z" />
-            </svg>
-          </button>
-        )}
-      </div>
+      <Autosuggest
+        theme={theme}
+        suggestions={suggestions}
+        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+        getSuggestionValue={this.getSuggestionValue}
+        renderSuggestion={this.renderSuggestion}
+        inputProps={inputProps}
+        renderInputComponent={this.renderInputComponent}
+      />
     );
   }
 }
