@@ -1,3 +1,5 @@
+@import '@bolt/core';
+
 /* ------------------------------------ *\
    List
 \* ------------------------------------ */
@@ -44,21 +46,21 @@
 @each $spacing-value in $bolt-spacing-values {
   $spacing-value-name: nth($spacing-value, 1);
   .c-bolt-list--spacing-#{$spacing-value-name} {
-    margin-left: bolt-spacing(#{$spacing-value-name}) * -1;
+    margin-right: bolt-spacing(#{$spacing-value-name}) * -1;
     margin-bottom: bolt-v-spacing(#{$spacing-value-name}) * -1;
 
     .c-bolt-list__item {
-      @include bolt-margin-left(#{$spacing-value-name});
+      @include bolt-margin-right(#{$spacing-value-name});
       @include bolt-margin-bottom(#{$spacing-value-name});
     }
   }
 
   .c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--inset {
-    @include bolt-margin-left(0);
+    @include bolt-margin-right(0);
     @include bolt-margin-bottom(0);
 
     .c-bolt-list__item {
-      @include bolt-margin-left(0);
+      @include bolt-margin-right(0);
       @include bolt-margin-bottom(0);
       @include bolt-padding(#{$spacing-value-name});
     }

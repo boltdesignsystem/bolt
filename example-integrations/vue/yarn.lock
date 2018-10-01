@@ -1237,9 +1237,9 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@bolt/babel-preset-bolt@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@bolt/babel-preset-bolt/-/babel-preset-bolt-2.0.0.tgz#fd4166ff04aac2edf5c4ddef95fa18171071f1ea"
+"@bolt/babel-preset-bolt@^2.0.0-beta.1":
+  version "2.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@bolt/babel-preset-bolt/-/babel-preset-bolt-2.0.0-beta.1.tgz#77f0ddb07a02f7824bdf832b0a752d631b4314a2"
   dependencies:
     "@babel/core" "^7.0.0"
     "@babel/plugin-proposal-class-properties" "^7.0.0"
@@ -1251,17 +1251,17 @@
     "@babel/plugin-transform-runtime" "^7.0.0"
     "@babel/preset-env" "^7.0.0"
     "@babel/runtime" "^7.0.0"
-    "@bolt/config-browserlist" "^2.0.0"
+    "@bolt/config-browserlist" "^2.0.0-beta.1"
 
-"@bolt/build-tools@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@bolt/build-tools/-/build-tools-2.0.0.tgz#d3790f8de733ef4c5617d0894290fe8db7358260"
+"@bolt/build-tools@^2.0.0-beta.1":
+  version "2.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@bolt/build-tools/-/build-tools-2.0.0-beta.1.tgz#89ca3a28b7e333985ccfdfb3490c058a4cd39ef3"
   dependencies:
-    "@bolt/babel-preset-bolt" "^2.0.0"
-    "@bolt/config-browserlist" "^2.0.0"
+    "@bolt/babel-preset-bolt" "^2.0.0-beta.1"
+    "@bolt/config-browserlist" "^2.0.0-beta.1"
     "@bolt/fast-sass-loader" "github:bolt-design-system/fast-sass-loader#master"
-    "@bolt/postcss-themify" "^2.0.0"
-    "@bolt/sass-export-data" "^2.0.0"
+    "@bolt/postcss-themify" "^2.0.0-beta.1"
+    "@bolt/sass-export-data" "^2.0.0-beta.1"
     autoprefixer "^9.1.5"
     babel-loader "^8.0.2"
     browser-sync "^2.24.7"
@@ -1323,13 +1323,13 @@
     yaml-loader "^0.5.0"
     yargs "^12.0.1"
 
-"@bolt/config-browserlist@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@bolt/config-browserlist/-/config-browserlist-2.0.0.tgz#5ccd66e2ff3cd87da54227eab467fd4c24327310"
+"@bolt/config-browserlist@^2.0.0-beta.1":
+  version "2.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@bolt/config-browserlist/-/config-browserlist-2.0.0-beta.1.tgz#c67323f647b3a9db4b31e00e77a70a001f394b11"
 
-"@bolt/config-eslint@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@bolt/config-eslint/-/config-eslint-2.0.0.tgz#53d7d078c5209ba0bb5668710416f1bbe0702dcf"
+"@bolt/config-eslint@^2.0.0-beta.1":
+  version "2.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@bolt/config-eslint/-/config-eslint-2.0.0-beta.1.tgz#d1d415544b2b47e173bca0e83c9bf145b1f6b585"
   dependencies:
     babel-eslint "^9.0.0"
     eslint "^5.5.0"
@@ -1341,9 +1341,9 @@
     prettier "^1.14.2"
     resolve "^1.8.1"
 
-"@bolt/core@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@bolt/core/-/core-2.0.0.tgz#c52b744508c6596bd0d63bf810b554fd86b48ff7"
+"@bolt/core@^2.0.0-beta.1":
+  version "2.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@bolt/core/-/core-2.0.0-beta.1.tgz#5b962a1d819776a97f675798f4e9fdeedd5d7dfb"
   dependencies:
     "@polymer/polymer" "^3.0.5"
     "@webcomponents/custom-elements" "^1.2.0"
@@ -1375,27 +1375,26 @@
     fs-extra "3.x"
     loader-utils "^1.1.0"
 
-"@bolt/global@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@bolt/global/-/global-2.0.0.tgz#fabb24866a16f05fd9068dbce303a03bb48ac304"
+"@bolt/global@^2.0.0-beta.1":
+  version "2.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@bolt/global/-/global-2.0.0-beta.1.tgz#3b97ce52aea2de3cd1db986b21ac7a0d1064b15d"
   dependencies:
-    "@bolt/core" "^2.0.0"
+    "@bolt/core" "^2.0.0-beta.1"
     normalize-scss "^7.0.1"
 
-"@bolt/postcss-themify@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@bolt/postcss-themify/-/postcss-themify-2.0.0.tgz#0050774216eb7cacfd2d07ea1401b169015b621f"
+"@bolt/postcss-themify@^2.0.0-beta.1":
+  version "2.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@bolt/postcss-themify/-/postcss-themify-2.0.0-beta.1.tgz#6cafdec96746fda16cd3a696e9b28f2ca693fe97"
   dependencies:
-    "@bolt/core" "^2.0.0"
-    clean-css "^4.2.1"
+    "@bolt/core" "^2.0.0-beta.1"
     fs-extra "^5.0.0"
     hex-to-rgba "^1.0.1"
     postcss "^7.0.0"
     rgb2hex "^0.1.9"
 
-"@bolt/sass-export-data@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@bolt/sass-export-data/-/sass-export-data-2.0.0.tgz#eb44d1685ba93043385a89214a53b7ebd3af7fcf"
+"@bolt/sass-export-data@^2.0.0-beta.1":
+  version "2.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@bolt/sass-export-data/-/sass-export-data-2.0.0-beta.1.tgz#c8bfeae28b30d1a7e2d563c2a6c7341d44171e40"
   dependencies:
     "@theme-tools/core" "^1.0.0"
     fs-extra "^5.0.0"
@@ -2904,7 +2903,7 @@ clean-css-loader@^1.0.1:
     clean-css "^4.1.9"
     loader-utils "^1.1.0"
 
-clean-css@4.2.x, clean-css@^4.1.9, clean-css@^4.2.1:
+clean-css@4.2.x, clean-css@^4.1.9:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.2.1.tgz#2d411ef76b8569b6d0c84068dabe85b0aa5e5c17"
   dependencies:

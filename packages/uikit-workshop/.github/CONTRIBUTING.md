@@ -19,11 +19,11 @@ The best way to make changes to this repo and test them is through your existing
 
 To make changes **always edit files in `src/`**. To make sure that these changes are reflected in the front-end and `dist/` folder run the following:
 
-    npm run build
+    gulp --copy-dist=../../../public
 
 To watch for changes you can use:
 
-    npm run watch
+    gulp --watch --copy-dist=../../../public
 
 At this point changes to the static assets should compile to the correct locations in the project as well as `dist/`.
 

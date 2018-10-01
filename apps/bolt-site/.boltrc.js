@@ -39,7 +39,6 @@ const config = {
       '@bolt/components-placeholder',
       '@bolt/components-action-blocks',
       '@bolt/components-dropdown',
-      '@bolt/components-grid',
       '@bolt/components-background',
       '@bolt/components-background-shapes',
       '@bolt/components-band',

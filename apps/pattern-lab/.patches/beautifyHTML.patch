@@ -23,10 +23,10 @@ index 4c9bc6173..a5df38c00 100644
 +						));
 +						$markup = $indenter->indent($markup);
 +						$markupEngine = $indenter->indent($markupEngine);
-+					}
 +
-+					file_put_contents($patternPublicDir."/".$path."/".$path.$suffixMarkupOnly.".html",$markup);
-+					file_put_contents($patternPublicDir."/".$path."/".$path.$suffixRaw.".".$patternExtension,$markupEngine);
++						file_put_contents($patternPublicDir."/".$path."/".$path.$suffixMarkupOnly.".html",$markup);
++						file_put_contents($patternPublicDir."/".$path."/".$path.$suffixRaw.".".$patternExtension,$markupEngine);
++					}
  				}
  
  			}

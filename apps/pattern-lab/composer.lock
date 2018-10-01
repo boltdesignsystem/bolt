@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3cece0cb17a9ae3616b548817f5ba226",
+    "content-hash": "76d2e5d52eb1cf6f4eadce227c307cf0",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -166,16 +166,11 @@
         {
             "name": "bolt-design-system/core-php",
             "version": "1.8.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bolt-design-system/core-php.git",
-                "reference": "aba494cf08e239c59099fb78e3ba77eaa8ff4d44"
-            },
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bolt-design-system/core-php/zipball/aba494cf08e239c59099fb78e3ba77eaa8ff4d44",
-                "reference": "aba494cf08e239c59099fb78e3ba77eaa8ff4d44",
-                "shasum": ""
+                "type": "path",
+                "url": "../../packages/core-php",
+                "reference": "b1ad3d20bafed6b9993bb4c67188ce80ab0f5f71",
+                "shasum": null
             },
             "require": {
                 "asm89/twig-lint": "^1.0",
@@ -197,7 +192,11 @@
                     "Bolt\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "scripts": {
+                "test": [
+                    "phpunit --colors=always tests"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -210,8 +209,7 @@
                     "name": "Evan Lovely"
                 }
             ],
-            "description": "Core PHP functionality for Bolt",
-            "time": "2018-09-13T13:33:00+00:00"
+            "description": "Core PHP functionality for Bolt"
         },
         {
             "name": "bolt-design-system/drupal-stubs",
@@ -253,8 +251,11 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/styleguidekit-twig-default",
-                "reference": "1322371ff3069ada07638ccb24cc8d0a8a3214ba",
+                "reference": "6f79b8434d70b85a05b0fe80bdb14ea47689e9d4",
                 "shasum": null
+            },
+            "require": {
+                "bolt-design-system/uikit-workshop": "0.0.0"
             },
             "type": "patternlab-styleguidekit",
             "license": [
@@ -266,6 +267,45 @@
                 "pattern lab",
                 "styleguide",
                 "twig"
+            ]
+        },
+        {
+            "name": "bolt-design-system/uikit-workshop",
+            "version": "0.0.0",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/uikit-workshop",
+                "reference": "88ad3f4e4c1a013224ae857092856875dde525cc",
+                "shasum": null
+            },
+            "type": "patternlab-styleguidekit",
+            "extra": {
+                "patternlab": {
+                    "dist": {
+                        "publicDir": [
+                            {
+                                "*": "*"
+                            }
+                        ]
+                    },
+                    "config": {
+                        "ishMinimum": "240",
+                        "ishMaximum": "2600",
+                        "ishControlsHide": [
+                            "hay"
+                        ]
+                    }
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Front-end assets and templates for the Bolt Design System's Pattern Lab workshop setup.",
+            "homepage": "http://patternlab.io",
+            "keywords": [
+                "mustache",
+                "pattern lab",
+                "styleguide"
             ]
         },
         {
@@ -1148,7 +1188,6 @@
             "extra": {
                 "patches_applied": {
                     "[FIX] Fix Psuedo Pattern Template Paths If Organized In Different Folder From Base Template. Addresses https://github.com/drupal-pattern-lab/patternlab-php-core/issues/22": ".patches/fixPsuedoPatternTemplatePaths.patch",
-                    "[FEATURE] Beautify raw HTML output": ".patches/beautifyHTML.patch",
                     "[FEATURE] Allow markdown files to specify associated pattern + also includes compiling embedded templates in .md files": ".patches/allowMarkdownFilesToSpecifyAssociatedPattern.patch",
                     "[FIX] Allow PL to Ignore Certain Folders like Node Modules.": ".patches/ignoreCertainFolders.patch",
                     "[FEATURE] Allow default Pattern Data configuration rules to be disabled. Also adds ability to add on extra Pattern Data rules to customize and extend default Pattern Lab behavior.": ".patches/configurablePatternDataRules.patch",

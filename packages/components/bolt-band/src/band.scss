@@ -16,18 +16,18 @@
 
 
 .c-bolt-band--large {
+  @include bolt-padding-top(xlarge);
+  @include bolt-padding-bottom(xlarge);
+}
+
+.c-bolt-band--medium {
   @include bolt-padding-top(large);
   @include bolt-padding-bottom(large);
 }
 
-.c-bolt-band--medium {
+.c-bolt-band--small {
   @include bolt-padding-top(medium);
   @include bolt-padding-bottom(medium);
-}
-
-.c-bolt-band--small {
-  @include bolt-padding-top(small);
-  @include bolt-padding-bottom(small);
 }
 
 .c-bolt-band--xsmall {

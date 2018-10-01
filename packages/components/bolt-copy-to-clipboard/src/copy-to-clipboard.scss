@@ -7,20 +7,18 @@
 // Dev Notes
 // 1. When tranistioning in (any time opacity is 1), add a delay to wait for the previously visible item to fade out.
 // 2. When transitioning out (any time opacity is 0), reset any existing delay so the transition runs immediately.
-// 3. The fading is specific to the component, while how the individual elements animate belongs with each element, this allows scalability for doing separate custom animation for each element.
-// 4. @todo: [Mai] Once 2.x and the new theming system is stable, we need to convert all colors to the new system. At that point we can also reconsider how we do the link component. For the time being the link styles are repeated here for the trigger.
-// 5. @todo: [Mai] This needs rework when we have animation library. This animation does not apply when custom transition is passed. Custom transition should take on its own animation.
 
-$bolt-copy-to-clipboard-animation-duration: 500ms;
-$bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-duration ease-in-out;
+$bolt-copy-transition: all 0.5s ease;
 
-@include bolt-custom-element('bolt-copy-to-clipboard', block, medium);
+bolt-copy-to-clipboard {
+  display: inline-block;
+}
 
 .c-bolt-copy-to-clipboard {
   display: block;
   position: relative;
+  text-align: left;
 
-  // [3]
   &.is-animating {
     .c-bolt-copy-to-clipboard__trigger {
       pointer-events: none;
@@ -28,108 +26,51 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
       transition-delay: 0s; // [2]
     }
 
-    .c-bolt-copy-to-clipboard__transition {
+    .c-bolt-copy-to-clipboard__spinner {
+      left: 0;
       opacity: 1;
-      transition-delay: $bolt-copy-to-clipboard-animation-duration; // [1]
-    }
-
-    // [5]
-    .c-bolt-copy-to-clipboard__transition-animation {
-      animation-name: a-bolt-copy-to-clipboard-spin;
-      animation-duration: $bolt-copy-to-clipboard-animation-duration * 2;
-      animation-iteration-count: infinite;
-      animation-timing-function: ease;
-      animation-delay: $bolt-copy-to-clipboard-animation-duration;
-    }
-
-    @keyframes a-bolt-copy-to-clipboard-spin {
-      0% {
-        transform: scale(0) rotate(0deg);
-      }
-      100% {
-        transform: scale(1) rotate(900deg);
-      }
+      transform: scale(1) rotate(360deg) translateY(-50%);
+      transition-delay: 0.5s; // [1]
     }
   }
 
   &.is-animating.is-successful {
-    .c-bolt-copy-to-clipboard__transition {
+    .c-bolt-copy-to-clipboard__spinner {
       opacity: 0;
       transition-delay: 0s; // [2]
     }
 
     .c-bolt-copy-to-clipboard__confirmation {
       opacity: 1;
-      transition-delay: $bolt-copy-to-clipboard-animation-duration; // [1]
+      transition-delay: 0.5s; // [1]
     }
   }
 }
 
-// [4]
 .c-bolt-copy-to-clipboard__trigger {
-  @include bolt-padding(0);
-
-  display: inline-flex;
-  align-items: center;
-  flex-wrap: nowrap;
-  color: inherit;
-  line-height: inherit;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  border: none;
-  background: none;
-  opacity: 1;
-  transition: $bolt-copy-to-clipboard-transition;
-  transition-delay: $bolt-copy-to-clipboard-animation-duration; // [1]
+  display: block;
+  transition: $bolt-copy-transition;
+  transition-delay: 0.5s; // [1]
 }
 
-.c-bolt-copy-to-clipboard__action,
-.c-bolt-copy-to-clipboard__info {
-  display: inline-flex;
-  align-items: center;
-
-  > *:first-child {
-    @include bolt-margin-right(xxsmall);
-  }
-}
-
-.c-bolt-copy-to-clipboard__action {
-  color: bolt-theme(link);
-
-  &:hover {
-    opacity: $bolt-global-link-hover-opacity;
-  }
-
-  &:active,
-  &:focus:active {
-    opacity: $bolt-global-link-active-opacity;
-  }
-}
-
-.c-bolt-copy-to-clipboard__action-text {
-  text-decoration: underline;
-}
-
-.c-bolt-copy-to-clipboard__info {
-  color: bolt-theme(text);
-  opacity: 0.4;
-}
-
-.c-bolt-copy-to-clipboard__transition,
+.c-bolt-copy-to-clipboard__spinner,
 .c-bolt-copy-to-clipboard__confirmation {
   display: block;
   position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  transition: $bolt-copy-transition;
+}
+
+.c-bolt-copy-to-clipboard__spinner {
+  top: 50%;
+  color: bolt-color(indigo, light); // [Mai] TODO: this is supposed to be the theme link color, must update once theming is refactored.
+  transform: scale(0) rotate(0deg) translateY(-50%);
+  transform-origin: top center;
+}
+
+.c-bolt-copy-to-clipboard__confirmation {
   top: 0;
   left: 0;
   width: 100%;
-  pointer-events: none;
-  opacity: 0;
-  transition: $bolt-copy-to-clipboard-transition;
-}
-
-.c-bolt-copy-to-clipboard__transition-animation {
-  display: inline-block;
-  color: bolt-theme(link);
 }

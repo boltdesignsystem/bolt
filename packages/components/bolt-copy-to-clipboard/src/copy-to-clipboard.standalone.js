@@ -13,11 +13,17 @@ class BoltCopyToClipboard extends withHyperHtml() {
     return self;
   }
 
+  clickHandler(event) {
+    event.preventDefault(); // Prevent the default link behavior
+  }
+
   connecting() {
-    this.copyTrigger = this.querySelector('[data-clipboard-text]');
+    this.copyLink = this.querySelector('.js-bolt-copy-to-clipboard__trigger');
     this.parentElem = this.querySelector('.js-bolt-copy-to-clipboard');
 
-    this.clipboardInstance = new ClipboardJS(this.copyTrigger);
+    this.copyLink.addEventListener('click', this.clickHandler);
+
+    this.clipboardInstance = new ClipboardJS(this.copyLink); // ClipboardJS adds it's own event listener
 
     this.clipboardInstance.on('success', () => {
       // Copying is already successful at this point.  Everything from here on is UX flair.
@@ -40,6 +46,7 @@ class BoltCopyToClipboard extends withHyperHtml() {
 
   disconnecting() {
     this.clipboardInstance.destroy();
+    this.copyLink.removeEventListener('click', this.clickHandler);
   }
 }
 
