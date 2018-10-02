@@ -76,6 +76,9 @@
       type: number
       title: Desired port for PHP Rendering Service
       default: 8087
+    alterTwigEnv:
+      type: array
+      description: Passed directly to the @basalt/twig-renderer config option of same name
     srcDir:
       type: string
       title: Source Directory
@@ -188,6 +191,9 @@
         - none
         - console
         - cli
+    configFileUsed:
+      type: string
+      description: The filepath to the `.boltrc` file used to load config. Programatically added to config.
 
   definitions:
     components:

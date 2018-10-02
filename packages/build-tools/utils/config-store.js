@@ -84,9 +84,12 @@ async function isReady() {
         'Bolt config not yet setup -- trying to find a .boltconfig.rc file...',
       ),
     );
-    const searchedFor = await explorer.searchSync();
+    const searchedFor = explorer.searchSync();
     if (searchedFor.config) {
-      await init(searchedFor.config);
+      await init({
+        ...searchedFor.config,
+        configFileUsed: searchedFor.filepath,
+      });
       return true;
     } else {
       console.log(

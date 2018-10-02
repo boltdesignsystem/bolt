@@ -13,7 +13,28 @@
  *   npx webpack-cli --config="create-webpack-config.js" --progress
  * ```
  */
+const path = require('path');
+const globby = require('globby');
+const baseBoltDir = path.join(__dirname, './apps/bolt-site');
+const siteConfig = require(path.join(baseBoltDir, '.boltrc'));
 
-const config = require('./apps/pattern-lab/.boltrc');
+// Paths that are relative to `baseBoltDir` must now be relative to this directory (i.e. `__dirname`)
+const adjustRelativePath = thePath =>
+  path.relative(__dirname, path.resolve(baseBoltDir, thePath));
 
-module.exports = config;
+module.exports = {
+  wwwDir: adjustRelativePath(siteConfig.wwwDir),
+  buildDir: adjustRelativePath(siteConfig.buildDir),
+  components: {
+    global: globby
+      .sync(path.join(__dirname, './packages/components/*/package.json'))
+      .map(pkgPath => require(pkgPath))
+      .map(pkg => pkg.name),
+  },
+  alterTwigEnv: [
+    {
+      file: path.join(baseBoltDir, 'SetupTwigRenderer.php'),
+      functions: ['addBoltExtensions'],
+    },
+  ],
+};

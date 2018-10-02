@@ -1,0 +1,30 @@
+{
+  "name": "@bolt/twig-renderer",
+  "version": "2.0.0-beta.2",
+  "license": "MIT",
+  "description": "Renders Twig",
+  "main": "twig-renderer.js",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer",
+  "maintainers": [
+    {
+      "name": "Salem Ghoweri",
+      "email": "me@salemghoweri.com",
+      "web": "https://github.com/sghoweri"
+    }
+  ],
+  "dependencies": {
+    "@basalt/twig-renderer": "^0.10.2",
+    "@bolt/build-tools": "^2.0.0-beta.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "schema": "utils/config.schema.yml",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "homepage": "https://bolt-design-system.com",
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
+  },
+  "snyk": true
+}
