@@ -235,6 +235,54 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
       }
     }
   }
+
+  // Cue Points
+  .vjs-overlay {
+    @include bolt-margin(0);
+    @include bolt-padding(40px 9px);
+
+    color: inherit;
+    background-color: transparent;
+  }
+
+  .vjs-overlay-top,
+  .vjs-overlay-top-right,
+  .vjs-overlay-top-left {
+    top: 0;
+  }
+
+  .vjs-overlay-bottom,
+  .vjs-overlay-bottom-right,
+  .vjs-overlay-bottom-left {
+    bottom: 0;
+  }
+
+  .vjs-overlay-right,
+  .vjs-overlay-top-right,
+  .vjs-overlay-bottom-right {
+    right: 0;
+    text-align: right;
+    text-align: end;
+  }
+
+  .vjs-overlay-left,
+  .vjs-overlay-top-left,
+  .vjs-overlay-bottom-left {
+    left: 0;
+    text-align: left;
+    text-align: start;
+  }
+
+  .vjs-overlay-top,
+  .vjs-overlay-center,
+  .vjs-overlay-bottom {
+    left: 0;
+  }
+
+  .vjs-overlay-background {
+    width: 100%;
+    background-color: transparent;
+  }
 }
 
 .vjs-subs-caps-button {
