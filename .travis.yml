@@ -21,7 +21,6 @@ install:
 
 before_script:
 - yarn run lint
-- yarn run test
 
 # Can't do deploy on `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
 script:
