@@ -12,6 +12,12 @@ module.exports = {
       '@bolt/components-icon',
     ],
     individual: [
+      // example specifying a standalone component's CSS and JS individually
+      // {
+      //   name: 'bolt-theme',
+      //   scss: ./src/index.scss',
+      //   js: './src/index.js',
+      // },
     ],
   },
 };

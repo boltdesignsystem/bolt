@@ -51,6 +51,13 @@
     ]
   },
   "scripts": {
+    "setup": [
+      "composer install",
+      "@bolt:setup",
+      "@build"
+    ],
+    "bolt:setup": "cd web/themes/bolt-starter && yarn && npm run build",
+    "bolt:start": "cd web/themes/bolt-starter && npm run start",
     "build": [
       "drush sql-drop -y",
       "drush site-install --verbose config_installer config_installer_sync_configure_form.sync_directory=../config/sync --account-name=admin --account-pass=admin --yes",
