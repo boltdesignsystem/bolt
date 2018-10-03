@@ -78,7 +78,7 @@
       default: 8087
     alterTwigEnv:
       type: array
-      description: Passed directly to the @basalt/twig-renderer config option of same name
+      description: Extends and alters the PHP-based Twig environment used when compiling Twig templates. Used for adding custom Twig extensions + [configuring environment options](https://twig.symfony.com/doc/1.x/api.html#environment-options). Passed directly to the @basalt/twig-renderer config option of same name.
     srcDir:
       type: string
       title: Source Directory
