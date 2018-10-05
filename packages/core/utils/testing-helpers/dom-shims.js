@@ -1,4 +1,4 @@
-/* eslint-env node */
+/* eslint no-multi-assign no-new-cap */
 /**
  * Node.js polyfill for rendering Panel components without a browser.
  * Makes the following objects globally available:
@@ -25,7 +25,8 @@ import requestAnimationFrame from 'raf';
 
 // make raf globally available unless a requestAnimationFrame implementation
 // is already there
-global.requestAnimationFrame = global.requestAnimationFrame || requestAnimationFrame;
+global.requestAnimationFrame =
+  global.requestAnimationFrame || requestAnimationFrame;
 
 // patch DOM insertion functions to call connectedCallback on Custom Elements
 [`appendChild`, `insertBefore`, `replaceChild`].forEach(funcName => {
@@ -65,7 +66,6 @@ class HTMLElement extends Element {
 
 global.HTMLElement = HTMLElement;
 
-
 // Document patches for Custom Elements
 
 const registeredElements = {};
@@ -88,7 +88,9 @@ global.customElements = global.customElements || {
   define(tagName, proto) {
     tagName = tagName.toLowerCase();
     if (registeredElements[tagName]) {
-      throw DOMException(`Registration failed for type '${tagName}'. A type with that name is already registered.`);
+      throw DOMException(
+        `Registration failed for type '${tagName}'. A type with that name is already registered.`,
+      );
     } else {
       registeredElements[tagName] = proto;
     }

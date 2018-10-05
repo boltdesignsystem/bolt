@@ -82,7 +82,7 @@ class BoltButton extends withHyperHtml() {
     const root = this;
     const slots = this.slots;
 
-    // helper function to let you quickly check if an array of elements is inside a component's  
+    // helper function to let you quickly check if an array of elements is inside a component's
     function containsAny(source, target) {
       const result = source.filter(function(item) {
         return target.indexOf(item) > -1;
