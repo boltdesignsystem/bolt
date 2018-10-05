@@ -31,10 +31,5 @@ module.exports = {
       .map(pkgPath => require(pkgPath))
       .map(pkg => pkg.name),
   },
-  alterTwigEnv: [
-    {
-      file: path.join(baseBoltDir, 'SetupTwigRenderer.php'),
-      functions: ['addBoltExtensions'],
-    },
-  ],
+  alterTwigEnv: siteConfig.alterTwigEnv,
 };
