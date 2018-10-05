@@ -1,4 +1,5 @@
-/* eslint no-multi-assign no-new-cap */
+/* eslint "no-multi-assign": "off", "new-cap": "off" */
+
 /**
  * Node.js polyfill for rendering Panel components without a browser.
  * Makes the following objects globally available:
