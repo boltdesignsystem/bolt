@@ -22,6 +22,10 @@ const config = {
       recursive: true,
       paths: ['templates'],
     },
+    'bolt-site': {
+      recursive: true,
+      paths: ['templates', 'components'],
+    },
   },
   images: {
     sets: [
@@ -99,6 +103,12 @@ const config = {
       )}/favicons/bolt`,
       to: `../../www`,
       flatten: true,
+    },
+  ],
+  alterTwigEnv: [
+    {
+      file: path.join(__dirname, 'SetupTwigRenderer.php'),
+      functions: ['addBoltExtensions'],
     },
   ],
 };

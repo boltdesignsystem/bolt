@@ -1,5 +1,7 @@
 const path = require('path');
 const program = require('commander');
+const cosmiconfig = require('cosmiconfig');
+const explorer = cosmiconfig('bolt');
 const packageJson = require('./package.json');
 const configStore = require('./utils/config-store');
 const { readYamlFileSync } = require('./utils/yaml');
@@ -7,13 +9,19 @@ const configSchema = readYamlFileSync(
   path.join(__dirname, './utils/config.schema.yml'),
 );
 
+const searchedFor = explorer.searchSync();
+if (!searchedFor.config) {
+  log.errorAndExit('Could not find config in a .boltrc file');
+}
+
+const userConfig = {
+  ...searchedFor.config,
+  configFileUsed: searchedFor.filepath,
+};
+
 // global `bolt` cli options & meta
 program
   .version(packageJson.version)
-  .option(
-    '-C, --config-file <path>',
-    'Pass in a specific config file instead of default of ".boltrc.js/json".',
-  )
   .option('--prod', configSchema.properties.prod.description)
   .option(
     '-v, --verbosity <amount>',
@@ -22,14 +30,8 @@ program
   )
   .parse(process.argv);
 
-// We need to initialize config as early as possible
-const configFilePath = path.resolve(
-  process.cwd(),
-  program.configFile || '.boltrc',
-);
-
 (async () => {
-  await configStore.init(require(configFilePath)).then(config => {
+  await configStore.init(userConfig).then(config => {
     // Now that config is initilized, we can start requiring other things
     const { buildBoltManifest } = require('./utils/manifest');
     const log = require('./utils/log');
@@ -41,7 +43,7 @@ const configFilePath = path.resolve(
      * @returns {Object} config - Final updated config
      */
     async function updateConfig(options, programInstance) {
-      configStore.updateConfig(config => {
+      await configStore.updateConfig(config => {
         config.verbosity =
           typeof program.verbosity === 'undefined'
             ? config.verbosity
