@@ -192,6 +192,7 @@ class BoltButton extends withHyperHtml() {
         default:
           const itemClasses = cx('c-bolt-button__item', {
             'is-empty': name in this.slots === false,
+            'u-bolt-visuallyhidden': this.props.iconOnly,
           });
 
           return wire(this)`
