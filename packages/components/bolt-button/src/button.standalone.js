@@ -39,7 +39,9 @@ class BoltButton extends withHyperHtml() {
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
-    this.useShadow = hasNativeShadowDomSupport;
+    self.useShadow = hasNativeShadowDomSupport;
+    return self;
+  }
     const root = this;
 
     // If the initial <bolt-button> element contains a button or link, break apart the original HTML so we can retain any button or a tags but swap out the inner content with slots.
