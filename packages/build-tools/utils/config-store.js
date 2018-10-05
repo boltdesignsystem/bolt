@@ -138,8 +138,8 @@ async function getConfig() {
  * Update config
  * @param {function} updater - This function is passed in current config and it returns new config.
  */
-function updateConfig(updater) {
-  isReady();
+async function updateConfig(updater) {
+  await isReady();
   const newConfig = updater(config);
   validateSchema(
     configSchema,
