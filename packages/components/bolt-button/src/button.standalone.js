@@ -78,10 +78,71 @@ class BoltButton extends withHyperHtml() {
     });
   }
 
+  rendered() {
+    const root = this;
+    const slots = this.slots;
+
+    // helper function to let you quickly check if an array of elements is inside a component's  
+    function containsAny(source, target) {
+      const result = source.filter(function(item) {
+        return target.indexOf(item) > -1;
+      });
+      return result.length > 0;
+    }
+
+    // Automatically re-render if the component's children get externally modified (ex. a new icon gets injected)
+    this.observer = new MutationObserver(mutations => {
+      mutations.forEach(function(mutation) {
+        if (mutation.removedNodes.length > 0) {
+          const itemsRemoved = [].slice.call(mutation.removedNodes); // grab items removed + convert to array
+
+          for (let i = 0; i < slots.length; i++) {
+            if (containsAny(slots[slot[i]], itemsRemoved)) {
+              for (let j = 0; j < itemsRemoved.length; j++) {
+                const itemRemoved = itemsRemoved[j];
+                slots[slot] = slots[slot].filter(
+                  slottedItem => slottedItem !== itemRemoved,
+                );
+              }
+            }
+          }
+        } else {
+          const itemsAdded = [].slice.call(mutation.addedNodes); // grab items added + convert to array
+
+          for (let i = 0; i < itemsAdded.length; i++) {
+            const itemAdded = itemsAdded[i];
+            const slotName = itemAdded.getAttribute
+              ? itemAdded.getAttribute('slot')
+              : null;
+
+            if (!slotName) {
+              slots.default.push(itemAdded);
+            } else if (slots[slotName]) {
+              slots[slotName].push(itemAdded);
+            } else {
+              slots[slotName] = [];
+              slots[slotName].push(itemAdded);
+            }
+          }
+        }
+
+        // re-render if Shadow DOM is supported and enabled; temp workaround to dealing w/ components already rendered, but without slot support
+        if (hasNativeShadowDomSupport && root.useShadow) {
+          root.triggerUpdate();
+        }
+      });
+    });
+
+    this.observer.observe(this, {
+      attributes: false,
+      childList: true,
+      characterData: false,
+    });
   }
 
   disconnecting() {
     this.removeEventListener('click', this.clickHandler);
+    this.observer.disconnect();
   }
 
   // Attach external events declaratively
