@@ -145,52 +145,26 @@ bolt-button[width='full@small'],
 
 .c-bolt-button--center {
   text-align: center;
-
-  > *:first-child {
-    @include bolt-margin-left(auto);
-  }
-
-  > *:last-child {
-    @include bolt-margin-right(auto);
-  }
-
-  > *:only-child {
-    @include bolt-margin-right(auto);
-    @include bolt-margin-left(auto);
-  }
+  justify-content: center;
 }
 
 .c-bolt-button--start {
   text-align: left;
-
-  > *:last-child {
-    @include bolt-margin-right(auto);
-  }
-
-  > *:only-child {
-    @include bolt-margin-right(auto);
-    @include bolt-margin-left(0);
-  }
+  justify-content: start;
+  justify-content: flex-start;
 }
 
 .c-bolt-button--end {
   text-align: right;
-
-  > *:first-child {
-    @include bolt-margin-left(auto);
-  }
-
-  > *:only-child {
-    @include bolt-margin-right(0);
-    @include bolt-margin-left(auto);
-  }
+  justify-content: end;
+  justify-content: flex-end;
 }
 
 
 
 
 /** Handle Button Icon Alignment + Before / After **/
-.c-bolt-button__item + .c-bolt-button__icon {
+.c-bolt-button__item + .c-bolt-button__icon:not(.is-empty) {
   @include bolt-margin-left(xxsmall);
 
   .c-bolt-button--icon-only & {
@@ -198,7 +172,7 @@ bolt-button[width='full@small'],
   }
 }
 
-.c-bolt-button__icon + .c-bolt-button__item {
+.c-bolt-button__icon:not(.is-empty) + .c-bolt-button__item {
   @include bolt-margin-left(xsmall);
 
   .c-bolt-button--icon-only & {
