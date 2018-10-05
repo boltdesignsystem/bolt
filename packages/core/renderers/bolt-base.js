@@ -11,13 +11,9 @@ export function BoltBase(Base = HTMLElement) {
     }
 
     connectedCallback() {
-      // Automatically adjust which inner element inside the custom element gets used as the base when evaluating slotted children. Necessary when including deeply nested slots in the initial HTML being rendered, which might include a few wrapping containers that get removed when the JavaScript kicks in. <-- this is how we get slotted buttons to work!
-      const isShadowRootSelector = this.querySelector('[is="shadow-root"]');
-      if (isShadowRootSelector) {
-        this.slots = this._checkSlots(isShadowRootSelector.childNodes);
-      } else {
-        this.slots = this._checkSlots();
-      }
+      // NOTE: it's SUPER important that setupSlots is run during the component's connectedCallback lifecycle event
+      // Without this, browsers like IE 11 won't re-render as expected when props change!
+      this.setupSlots();
 
       // Automatically force a component to render if no props exist BUT props are defined.
       if (
@@ -25,6 +21,20 @@ export function BoltBase(Base = HTMLElement) {
         Object.keys(this._props).length === 0
       ) {
         this.updated();
+      }
+    }
+
+    setupSlots() {
+      // Automatically adjust which inner element inside the custom element gets used as the base when evaluating slotted children. Necessary when including deeply nested slots in the initial HTML being rendered, which might include a few wrapping containers that get removed when the JavaScript kicks in. <-- this is how we get slotted buttons to work!
+      const isShadowRootSelector = this.querySelector('[is="shadow-root"]');
+      if (isShadowRootSelector && isShadowRootSelector.childNodes) {
+        if (isShadowRootSelector.childNodes) {
+          this.slots = this._checkSlots(isShadowRootSelector.childNodes);
+        } else {
+          this.slots = this._checkSlots();
+        }
+      } else {
+        this.slots = this._checkSlots();
       }
     }
 
