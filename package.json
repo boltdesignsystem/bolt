@@ -57,25 +57,6 @@
     "test": "npm-run-all --parallel test:*",
     "watch:icons": "lerna exec --scope @bolt/components-icons -- yarn run watch"
   },
-  "config": {
-    "validate-commit-msg": {
-      "maxSubjectLength": 100,
-      "subjectPattern": ".+",
-      "subjectPatternErrorMsg": "Subject does not match subject pattern!",
-      "types": [
-        "chore",
-        "docs",
-        "feat",
-        "fix",
-        "perf",
-        "refactor",
-        "revert",
-        "style",
-        "test"
-      ],
-      "warnOnFail": false
-    }
-  },
   "dependencies": {
     "sassdoc": "^2.5.0"
   },
