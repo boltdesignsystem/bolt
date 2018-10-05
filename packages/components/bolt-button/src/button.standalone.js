@@ -42,6 +42,8 @@ class BoltButton extends withHyperHtml() {
     self.useShadow = hasNativeShadowDomSupport;
     return self;
   }
+
+  connecting() {
     const root = this;
 
     // If the initial <bolt-button> element contains a button or link, break apart the original HTML so we can retain any button or a tags but swap out the inner content with slots.
@@ -58,6 +60,13 @@ class BoltButton extends withHyperHtml() {
           childElement.className = sanitizeBoltClasses(childElement);
         }
 
+        if (
+          childElement.getAttribute('is') &&
+          childElement.getAttribute('is') === 'shadow-root'
+        ) {
+          childElement.removeAttribute('is');
+        }
+
         root.rootElement.appendChild(childElement);
       }
     });
@@ -67,8 +76,8 @@ class BoltButton extends withHyperHtml() {
     afterNextRender(this, function() {
       this.addEventListener('click', this.clickHandler);
     });
+  }
 
-    return self;
   }
 
   disconnecting() {
@@ -102,7 +111,7 @@ class BoltButton extends withHyperHtml() {
     const urlTarget = this.props.target && hasUrl ? this.props.target : '_self';
 
     // The buttonElement to render, based on the initial HTML passed alone.
-    let buttonElement;
+    let buttonElement = null;
     const self = this;
 
     const slotMarkup = name => {
@@ -117,7 +126,7 @@ class BoltButton extends withHyperHtml() {
             <span class="${iconClasses}">${
             name in this.slots
               ? this.slot(name)
-              : wire(this)`<slot name="${name}"></slot>`
+              : wire(this)`<slot name="${name}" />`
           }</span>`;
         default:
           const itemClasses = cx('c-bolt-button__item', {
@@ -126,7 +135,7 @@ class BoltButton extends withHyperHtml() {
 
           return wire(this)`
             <span class="${itemClasses}">${
-            name in this.slots ? this.slot('default') : wire(this)`<slot></slot>`
+            name in this.slots ? this.slot('default') : wire(this)`<slot/>`
           }</span>`;
       }
     };
