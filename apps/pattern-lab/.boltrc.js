@@ -30,10 +30,6 @@ const config = {
         // path.relative(process.cwd(), path.dirname(require.resolve('@bolt/components-sticky/package.json'))),
       ],
     },
-    'pattern-lab': {
-      recursive: true,
-      paths: ['../../packages/uikit-workshop/src/html-twig'],
-    },
     /* Example of including a new component namesapce config / overriding an existing config */
     // 'bolt-components-sticky': {
     //   recursive: true,
@@ -112,6 +108,7 @@ const config = {
       '@bolt/components-site',
       '@bolt/components-smooth-scroll',
       '@bolt/components-sticky',
+      '@bolt/components-table',
       '@bolt/components-teaser',
       '@bolt/components-text',
       '@bolt/components-tooltip',

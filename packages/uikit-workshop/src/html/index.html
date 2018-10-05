@@ -2,116 +2,52 @@
 <html>
 
 <head>
-	<title id="title">Pattern Lab</title>
-	<meta charset="UTF-8">
+  <title id="title">Pattern Lab</title>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width" />
-  <meta name="theme-color" content="#ababab"/>
+  <meta name="theme-color" content="#ababab" />
 
-  <link inline href="styleguide/css/pattern-lab.critical.css" />
-
-  <link rel="preload" as="script" href="styleguide/js/patternlab-viewer.min.js">
-  <link rel="preload" href="styleguide/css/pattern-lab.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-  <noscript>
-    <link rel="stylesheet" href="styleguide/css/pattern-lab.css" media="all" />
-  </noscript>
-
-  <script inline async src="../../../node_modules/fg-loadcss/dist/cssrelpreload.min.js"></script>
+  <link rel="stylesheet" href="styleguide/css/pattern-lab.css" media="all" />
 
 </head>
 
 <body class="pl-c-body">
 
-	@@include('./partials/header.html')
-	@@include('./partials/iframe.html')
-	@@include('./partials/modal.html')
+  <pl-layout>
+    ${require('./partials/header.html') }
 
-	<!-- mustache templates -->
-	<script type="text/mustache" class="pl-js-pattern-nav-template">
-		@@include('./partials/pattern-nav.html')
+    <!-- wrapper so the iframe + modal can switch flex directions in vertical vs horizontal layouts  -->
+    <div class="pl-c-viewport-modal-wrapper">
+      ${require('./partials/iframe.html') }
+      ${require('./partials/modal.html') }
+    </div>
+  </pl-layout>
+  
+
+  <script type="text/mustache" class="pl-js-pattern-nav-template">
+    ${require('./partials/pattern-nav.html') }
 	</script>
 
-	<script type="text/mustache" class="pl-js-ish-controls-template">
-		@@include('./partials/controls.html')
+  <script type="text/mustache" class="pl-js-ish-controls-template">
+    ${require('./partials/controls.html') }
 	</script>
 
-	<!-- the template for the modal slider -->
-	<script type="text/mustache" class="pl-js-panel-template-base">
-		@@include('./partials/base-template.html')
+  <!-- the template for the modal slider -->
+  <script type="text/mustache" class="pl-js-panel-template-base">
+    ${require('./partials/base-template.html') }
 	</script>
 
-	<!-- the template for code-related tabs in the code view slider -->
-	<script type="text/mustache" id="pl-panel-template-code">
-		@@include('./partials/panel-code-template.html')
+  <!-- the template for code-related tabs in the code view slider -->
+  <script type="text/mustache" id="pl-panel-template-code">
+    ${require('./partials/panel-code-template.html') }
 	</script>
 
-	<!-- load Pattern Lab data -->
-	<script src="styleguide/data/patternlab-data.js" defer></script>
+  <!-- load Pattern Lab data -->
+  <script src="styleguide/data/patternlab-data.js" defer></script>
+  <script src="annotations/annotations.js" defer></script>
+  <script src="styleguide/js/patternlab-viewer.js" defer></script>
 
-  <!-- applying theme config to get classes on before PL renders so there's no flash of unstyled content -->
-  <!-- @todo Consider moving this to own file -->
   <script>
-    // need to make sure that window.config is defined first on acccount of us async loading everything ;)
-    window.patternlab = window.patternlab || {};
-    window.patternlab.applyTheme = function(){
-      if (window.config.theme.color === 'light') {
-        document.body.classList.add('pl-c-body--theme-light');
-      }
-      if (window.config.theme.layout === 'vertical') {
-        document.body.classList.add('pl-c-body--theme-sidebar');
-      }
-      switch (window.config.theme.density) {
-        case 'cozy':
-          document.body.classList.add('pl-c-body--theme-density-cozy');
-          break;
-        case 'comfortable':
-          document.body.classList.add('pl-c-body--theme-density-comfortable');
-          break;
-        default:
-          // not sure if you even need/want this
-          document.body.classList.add('pl-c-body--theme-density-compact');
-      }
-    }
-
-    // check if config already exists, if so, try to apply theme config; otherwise wait till later just in case.
-    if (window.config !== undefined) {
-      if (window.config.theme !== undefined) {
-        window.patternlab.applyTheme();
-      }
-    }
-  </script>
-
-	<script src="annotations/annotations.js" async></script>
-
-	<!-- load Pattern Lab external library js -->
-	<script src="/pattern-lab/styleguide/bower_components/jquery.min.js" defer></script>
-	<script src="/pattern-lab/styleguide/bower_components/hogan-3.0.2.min.js" defer></script>
-  <script src="/pattern-lab/styleguide/bower_components/jwerty.min.js" defer></script>
-  <script src="/pattern-lab/styleguide/bower_components/prism.min.js" async></script>
-	<script src="/pattern-lab/styleguide/bower_components/typeahead.bundle.min.js" defer></script>
-	<script src="/pattern-lab/styleguide/bower_components/EventEmitter.min.js" defer></script>
-	<script src="/pattern-lab/styleguide/bower_components/script.min.js" defer></script>
-
-
-  <script inline src="../../../node_modules/whendefined/dist/whendefined.min.js"></script>
-  <script inline src="../../../node_modules/fg-loadjs/loadJS.js"></script>
-
-  <!-- temp workaround to allow everything to be asynced / deffered with current setup. @todo: remove once refactored components + improved build process is in place. -->
-  <script>
-    window.Dispatcher;
-    window.addEventListener('DOMContentLoaded', function () {
-      window.Dispatcher = new EventEmitter();
-
-      // load the Pattern Lab viewer js -- preloaded earlier ^
-      loadJS('styleguide/js/patternlab-viewer.min.js');
-    });
-
-    whenDefined(window, 'config', function() {
-      if (window.config.theme){
-        window.patternlab.applyTheme();
-      }
-    });
-
     // Check that service workers are registered
     // @todo: uncomment once cache-busting strategy is in place
     // if ('serviceWorker' in navigator) {
@@ -122,7 +58,7 @@
     // }
   </script>
 
+
 </body>
 
 </html>
-

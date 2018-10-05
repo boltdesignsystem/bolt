@@ -7,6 +7,7 @@ bolt-icon {
   transition: inherit;
   width: 1em; // Default icon size if size prop not specified
   height: 1em; // Default icon size if size prop not specified
+  transform: translate3d(0, 0, 0); // Create a stacking context to scope internal z-index values.
 
   &:not(:resolved){
     padding-bottom: 100%; // Default square icons

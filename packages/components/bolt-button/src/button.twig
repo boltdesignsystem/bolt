@@ -86,7 +86,7 @@
     {% set outerClasses = outerClasses|merge([class]) %}
   {% elseif class starts with "is-" or class starts with "has-" %}
     {% set innerClasses = innerClasses|merge([class]) %}
-  {% elseif not class starts with "c-bolt-" %}
+  {% elseif class starts with "c-bolt-" == false %}
     {% set outerClasses = outerClasses|merge([class]) %}
   {% endif %}
 {% endfor %}

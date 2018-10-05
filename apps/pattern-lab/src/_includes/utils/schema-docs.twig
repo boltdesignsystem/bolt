@@ -14,8 +14,8 @@
   {% import _self as macros %}
   {% set enum %}
     {% for x in prop.enum %}
-      <code>{% if prop.type == 'boolean' %}{{ x ? 'TRUE' : 'FALSE' }}{% elseif x == null %}NULL{% else %}{{ x }}{% endif %}</code>
-      {%- if not loop.last %}{{ prop.enum|length == 2 ? ' OR' : ',' }}{% endif -%}
+      <code>{% if prop.type == "boolean" %}{{ x ? "TRUE" : "FALSE" }}{% elseif x == null %}NULL{% else %}{{ x }}{% endif %}</code>
+      {%- if not loop.last %}{{ prop.enum|length == 2 ? " OR" : "," }}{% endif -%}
     {% endfor %}
   {% endset %}
   <ul class="c-bolt-docs-list">
@@ -23,7 +23,7 @@
 
       {% if prop.enum %}{{ enum }}{% endif -%}
 
-      {% if (prop.type == 'object' or prop.type == 'array') and prop.properties or prop.ref %}
+      {% if (prop.type == "object" or prop.type == "array") and prop.properties or prop.ref %}
         {% if prop.ref %}
           {% set reference = get_data(prop.ref).properties %}
           <details>
@@ -35,8 +35,8 @@
         {% endif %}
       {% endif %}
 
-      {% if prop.type == 'array' and prop.items %}
-        {% if prop.items.type == 'object' %}
+      {% if prop.type == "array" and prop.items %}
+        {% if prop.items.type == "object" or prop.items.type == "any" %}
           [<em>items</em>]:
           <ul class="c-bolt-docs-list__child">
             <li>Type: <code>{{ prop.items.type }}</code>{{ macros.titleAndDescription(prop.items.title, prop.items.description, prop.minimum, prop.maximum) }}</li>
@@ -48,7 +48,7 @@
                     {% if property.type %}
                       <ul class="c-bolt-docs-list__child c-bolt-docs-list__child--level-3">
                         <li>Type: <code>{{ property.type }}</code></li>
-                        {% if property.type == 'object' and property.properties %}
+                        {% if property.type == "object" and property.properties %}
                           <li>Properties:</li>
                           {{ macros.object(property.properties) }}
                         {% endif %}
@@ -73,7 +73,7 @@
       <li>
         <code>{{ key }}</code>
         {{ macros.titleAndDescription(prop.title, prop.description, prop.minimum, prop.maximum) }}
-        {% if isRef %}<br />Type: {{ prop.type is iterable ? prop.type|join(' OR ') : prop.type }} {% endif %}
+        {% if isRef %}<br />Type: {{ prop.type is iterable ? prop.type|join(" OR ") : prop.type }} {% endif %}
         {{ macros.schemaProps(prop) }}
       </li>
     {% endfor %}
@@ -128,11 +128,11 @@
             <td class="c-bolt-docs-table__col">
 
                 {% if prop.default is sameas(false) %}
-                  <code>False</code>
+                  <code>false</code>
                 {% elseif prop.default is sameas(true) %}
-                  <code>True</code>
+                  <code>true</code>
                 {% elseif prop.default is empty %}
-                  (None)
+                  N/A
                 {% else %}
                   <code>{{ prop.default }}</code>
                 {% endif %}
