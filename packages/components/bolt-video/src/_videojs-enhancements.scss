@@ -246,7 +246,6 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
     width: 100%;
     max-width: none;
     color: bolt-color(white);
-    text-shadow: 0 0 0.125rem bolt-color(black);
     border-radius: 0;
     background-color: transparent;
 
@@ -297,7 +296,7 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
     width: auto;
     max-width: none;
     color: bolt-color(indigo);
-    background-color: rgba(bolt-color(white), 0.5);
+    background-color: rgba(bolt-color(white), 0.1);
     box-shadow: inset 0 0 2rem bolt-color(white);
     opacity: 0;
     transition: all $bolt-transition;
@@ -308,9 +307,8 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
 
     > * {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate3d(-50%, -50%, 0);
+      top: bolt-v-spacing(small);
+      right: bolt-spacing(small);
     }
   }
 }
