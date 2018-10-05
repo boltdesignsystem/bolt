@@ -6,6 +6,7 @@ module.exports = {
     'example-integrations/drupal-lab',
     'packages/uikit-workshop',
     'packages/build-tools/plugins/sass-export-data/tests',
+    'packages/components/bolt-button/__tests__/button-wc.test.js',
   ],
   testEnvironment: 'node',
   // Notify not working correctly; we want to only get a notification when tests fail, and then get ONE success notificaiton after it passes
