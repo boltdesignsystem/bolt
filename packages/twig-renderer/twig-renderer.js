@@ -1,13 +1,21 @@
 const TwigRenderer = require('@basalt/twig-renderer');
+const sleep = require('sleep-promise');
 const { getTwigNamespaceConfig } = require('@bolt/build-tools/utils/manifest');
 const { getConfig } = require('@bolt/build-tools/utils/config-store');
 const path = require('path');
 
-let isReady = false;
 let twigNamespaces;
 let twigRenderer;
 
+const STATES = {
+  NOT_STARTED: 'NOT_STARTED',
+  STARTING: 'STARTING',
+  READY: 'READY',
+};
+let state = STATES.NOT_STARTED;
+
 async function init() {
+  state = STATES.STARTING;
   const config = await getConfig();
   const relativeFrom = path.dirname(config.configFileUsed);
   // console.log({ config });
@@ -24,8 +32,23 @@ async function init() {
     debug: true,
     alterTwigEnv: config.alterTwigEnv,
     hasExtraInfoInResponses: false, // Will add `info` onto results with a lot of info about Twig Env
+    maxConcurrency: 1,
+    keepAlive: true,
   });
-  isReady = true;
+  state = STATES.READY;
+}
+
+async function prep() {
+  switch (state) {
+    case STATES.READY:
+      return;
+    case STATES.NOT_STARTED:
+      return await init();
+    case STATES.STARTING:
+      while (state === STATES.STARTING) {
+        await sleep(100); // eslint-disable-line no-await-in-loop
+      }
+  }
 }
 
 /**
@@ -35,9 +58,7 @@ async function init() {
  * @return {Promise<{{ ok: boolean, html: string, message: string}}>} - Results of render
  */
 async function render(template, data = {}) {
-  if (!isReady) {
-    await init();
-  }
+  await prep();
   const results = await twigRenderer.render(template, data);
   // console.log({ results });
   return results;
@@ -50,9 +71,7 @@ async function render(template, data = {}) {
  * @return {Promise<{{ ok: boolean, html: string, message: string}}>} - Results of render
  */
 async function renderString(templateString, data = {}) {
-  if (!isReady) {
-    await init();
-  }
+  await prep();
   const results = await twigRenderer.renderString(templateString, data);
   // console.log({ results });
   return results;
