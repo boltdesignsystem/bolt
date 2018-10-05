@@ -41,7 +41,6 @@
     "clean:lerna": "npx lerna clean --yes",
     "clean": "npm run clean:lerna && npm run clean:git",
     "prepublishOnly": "yarn run build && node scripts/monorepo-tests.js",
-    "snyk-protect": "snyk protect",
     "Xlint:editorconfig": "editorconfig-checker --exclude-pattern './www/**/*' --exclude-pattern './**/sandbox/**/*' --exclude-pattern './**/vendor/*' --exclude-pattern './example-integrations/drupal-lab/**' ",
     "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'apps/**/*.js'",
     "lint:js:fix": "yarn run lint:js --fix",
