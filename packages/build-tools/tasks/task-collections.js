@@ -137,7 +137,7 @@ async function images() {
 }
 
 async function build({
-  localDev = false, 
+  localDev = false,
   shouldReturnTime = false,
   forceExitAfterCompletion = true,
 }) {
