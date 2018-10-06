@@ -136,7 +136,11 @@ async function images() {
   }
 }
 
-async function build(localDev = false, shouldReturnTime = false) {
+async function build({
+  localDev = false,
+  shouldReturnTime = false,
+  forceExitAfterCompletion = true,
+}) {
   const startTime = timer.start();
   config = config || (await getConfig());
 
@@ -162,8 +166,10 @@ async function build(localDev = false, shouldReturnTime = false) {
       return startTime;
     } else {
       log.info(`Build completed in ${timer.end(startTime)}.`);
-      // @todo find why this isn't exiting on own & remove this line. Most likely to an unresolved Promise.
-      process.exit(0);
+      if (forceExitAfterCompletion) {
+        // @todo find why this isn't exiting on own & remove this line. Most likely to an unresolved Promise.
+        process.exit(0);
+      }
     }
   } catch (error) {
     log.errorAndExit('Build failed', error);
@@ -210,6 +216,7 @@ async function start() {
       buildTime = await build({
         localDev: true,
         shouldReturnTime: true,
+        forceExitAfterCompletion: false,
       });
     }
     return Promise.all([
