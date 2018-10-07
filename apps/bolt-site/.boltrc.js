@@ -4,7 +4,7 @@ const argv = require('yargs').argv;
 
 const config = {
   lang: ['en'],
-  renderingService: true, // starts PHP service for rendering Twig templates
+  renderingService: false, // starts PHP service for rendering Twig templates
   openServerAtStart: false,
   webpackDevServer: true,
   // Environmental variable / preset to use

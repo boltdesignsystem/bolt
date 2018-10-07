@@ -15,13 +15,18 @@ const timer = require('../utils/timer');
 const webpackServeWaitpage = require('./webpack-serve-waitpage');
 
 let config;
+let cachedWebpackConfigs;
 
-let webpackConfigs;
-async function compile() {
+async function compile(customConfig) {
+  let webpackConfigs;
   config = config || (await getConfig());
   config.devServer = false;
 
-  if (!webpackConfigs) {
+  if (customConfig) {
+    webpackConfigs = customConfig;
+  } else if (cachedWebpackConfigs) {
+    webpackConfigs = cachedWebpackConfigs;
+  } else {
     webpackConfigs = await createWebpackConfig(config);
   }
 
@@ -107,10 +112,16 @@ async function compile() {
 compile.description = 'Compile Webpack';
 compile.displayName = 'webpack:compile';
 
-async function watch() {
-  const config = await getConfig();
+async function watch(customConfig) {
+  let webpackConfigs;
+  config = config || (await getConfig());
+  config.devServer = false;
 
-  if (!webpackConfigs) {
+  if (customConfig) {
+    webpackConfigs = customConfig;
+  } else if (cachedWebpackConfigs) {
+    webpackConfigs = cachedWebpackConfigs;
+  } else {
     webpackConfigs = await createWebpackConfig(config);
   }
 
@@ -184,13 +195,17 @@ async function watch() {
 watch.description = 'Watch & fast re-compile Webpack';
 watch.displayName = 'webpack:watch';
 
-async function server(buildTime) {
+async function server(buildTime, customConfig) {
+  let webpackConfigs;
   let initialBuild = true;
   config = config || (await getConfig());
   config.devServer = true;
-  // const serverConfig = await getServerConfig(); // WIP: working on browsersync integration w/ Webpack
 
-  if (!webpackConfigs) {
+  if (customConfig) {
+    webpackConfigs = customConfig;
+  } else if (cachedWebpackConfigs) {
+    webpackConfigs = cachedWebpackConfigs;
+  } else {
     webpackConfigs = await createWebpackConfig(config);
   }
 
@@ -276,7 +291,7 @@ async function server(buildTime) {
               initialBuild
                 ? initialWebpackSpinnerFailed()
                 : webpackSpinnerFailed();
-              // Only keep the first error. Others are often indicative
+              // Only keep the first error. Oforre often indicative
               // of the same problem, but confuse the reader with noise.
               if (messages.errors.length > 1) {
                 messages.errors.length = 1;

@@ -48,7 +48,7 @@ async function createWebpackConfig(buildConfig) {
   let langSuffix = `${config.lang ? '-' + config.lang : ''}`;
 
   let themifyOptions = {
-    watchForChanges: config.prod ? false : true,
+    watchForChanges: config.watch === true ? true : false,
     classPrefix: 't-bolt-',
     screwIE11: false,
     fallback: {
@@ -263,14 +263,14 @@ async function createWebpackConfig(buildConfig) {
     {
       loader: 'css-loader',
       options: {
-        sourceMap: true,
+        sourceMap: config.sourceMaps,
         modules: false, // needed for JS referencing classNames directly, such as critical fonts
       },
     },
     {
       loader: 'postcss-loader',
       options: {
-        sourceMap: true,
+        sourceMap: config.sourceMaps,
         plugins: () => [
           require('@bolt/postcss-themify')(themifyOptions),
           postcssDiscardDuplicates,
@@ -298,7 +298,7 @@ async function createWebpackConfig(buildConfig) {
     {
       loader: 'sass-loader',
       options: {
-        sourceMap: true,
+        sourceMap: config.sourceMaps,
         importer: [globImporter(), npmSass.importer],
         functions: sassExportData,
         precision: 3,
@@ -437,7 +437,7 @@ async function createWebpackConfig(buildConfig) {
     // Config recommendation based off of https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1#f548
     webpackConfig.plugins.push(
       new UglifyJsPlugin({
-        sourceMap: true,
+        sourceMap: config.sourceMaps,
         parallel: true,
         cache: true,
         uglifyOptions: {
@@ -474,12 +474,11 @@ async function createWebpackConfig(buildConfig) {
     );
 
     // @todo Evaluate best source map approach for production
-    webpackConfig.devtool = 'hidden-source-map';
+    webpackConfig.devtool = config.sourceMaps === false ? '' : 'hidden-source-map';
   } else {
     // not prod
     // @todo fix source maps
-    // webpackConfig.devtool = 'cheap-module-eval-source-map';
-    webpackConfig.devtool = 'eval';
+    webpackConfig.devtool = config.sourceMaps === false ? '' : 'cheap-module-eval-source-map';
   }
 
   if (config.wwwDir) {
