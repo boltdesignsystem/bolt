@@ -474,11 +474,13 @@ async function createWebpackConfig(buildConfig) {
     );
 
     // @todo Evaluate best source map approach for production
-    webpackConfig.devtool = config.sourceMaps === false ? '' : 'hidden-source-map';
+    webpackConfig.devtool =
+      config.sourceMaps === false ? '' : 'hidden-source-map';
   } else {
     // not prod
     // @todo fix source maps
-    webpackConfig.devtool = config.sourceMaps === false ? '' : 'cheap-module-eval-source-map';
+    webpackConfig.devtool =
+      config.sourceMaps === false ? '' : 'cheap-module-eval-source-map';
   }
 
   if (config.wwwDir) {
