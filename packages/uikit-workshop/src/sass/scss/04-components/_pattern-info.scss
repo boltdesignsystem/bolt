@@ -8,6 +8,8 @@
  *    code, annotations, and more.
  */
 .pl-c-pattern-info {
+  flex-grow: 1; // fills space available when placed in the parent flex container
+
   @media all and (min-width: $pl-bp-large) {
     display: flex;
   }
@@ -19,6 +21,7 @@
     max-height: 20rem;
     overflow: scroll;
     @include hideScrollBar();
+    -webkit-overflow-scrolling: touch;
 
     @media all and (min-width: $pl-bp-large) {
       max-height: none;
@@ -38,6 +41,8 @@
     left: 0;
     overflow: scroll;
     @include hideScrollBar();
+    -webkit-overflow-scrolling: touch;
+    flex-grow: 1;
 
     @media all and (min-width: $pl-bp-large) {
       position: static;
@@ -66,13 +71,16 @@
     left: 0;
     right: 1.3rem;
     padding-right: 0;
+
+    @supports (padding: env(safe-area-inset-right)){
+      right: calc(env(safe-area-inset-right) + 1.3rem);
+    }
   }
 
   .pl-c-modal & {
     @media all and (min-width: $pl-bp-xl) {
-      right: 0;
-      padding-left: 2rem;
-      padding-right: 2.5rem;
+      padding-left: 1rem;
+      padding-right: 0;
     }
   }
 }
@@ -87,8 +95,9 @@
   @media all and (min-width: $pl-bp-large) {
     left: 0;
     right: 50%;
-    overflow: scroll;
+    overflow: auto;
     @include hideScrollBar();
+    -webkit-overflow-scrolling: touch;
   }
 
   @media all and (min-width: $pl-bp-xl) {
