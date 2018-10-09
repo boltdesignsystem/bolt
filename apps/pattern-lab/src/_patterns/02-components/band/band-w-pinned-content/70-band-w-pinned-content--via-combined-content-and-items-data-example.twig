@@ -13,17 +13,22 @@
       },
       content: include("@pl/_share-component-for-event-example.twig"),
     },
-    [
-      include("@pl/_band-for-event-example.twig"),
-      include("@bolt-components-headline/text.twig", {
-        text: "^ via Twig Include, combined content into single items array, doesn't use <code>content</code> field",
-        tag: "p",
-        attributes: {
-          class: [
-            "u-bolt-margin-top-medium"
-          ]
-        }
-      }),
-    ] | join("")
+    {
+      position: {
+        row_start: 2,
+      },
+      content: [
+        include("@pl/_band-for-event-example.twig"),
+        include("@bolt-components-headline/text.twig", {
+          text: "^ via Twig Include, combined content into single items array, doesn't use <code>content</code> field",
+          tag: "p",
+          attributes: {
+            class: [
+              "u-bolt-margin-top-medium"
+            ]
+          }
+        }),
+      ] | join("")  
+    },
   ]
 } only %}
