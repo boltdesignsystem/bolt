@@ -9,7 +9,7 @@
  */
 .pl-c-nav {
   @include accordionPanel;
-  background-color: inherit;
+  background-color: inherit; // allows the nav's children inherit from the parent header
   position: absolute;
   top: 100%;
   width: 100%;
@@ -69,6 +69,7 @@
   list-style: none;
   flex-shrink: 0; // helps prevent top-level nav items from occasionally wrapping to multiple lines
   order: 2;
+  background-color: inherit; // allows the nav's children inherit from the parent header
 
   @media all and (min-width: $pl-bp-med) {
     display: flex; /* 2 */
@@ -85,6 +86,7 @@
  * Nav list item
  */
 .pl-c-nav__item {
+  background-color: inherit; // allows the nav's children inherit from the parent header
   cursor: pointer;
   position: relative;
   display: flex;
@@ -171,6 +173,7 @@
  *    hang over the header
  */
 .pl-c-nav__sublist {
+  background-color: inherit; // allows the nav's children inherit from the parent header
   @include listReset();
 
   @media all and (min-width: $pl-bp-med) {
