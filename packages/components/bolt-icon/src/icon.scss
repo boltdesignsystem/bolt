@@ -1,5 +1,9 @@
 @import '@bolt/core';
 
+// Dev Notes
+// 1. Fallback if CSS vars are not supported.
+// 2. Property is re-declared so that CSS variable values will take precedence over hard-coded values for fallback
+//    browsers.  Remove this line when support for browsers that don't support CSS vars is dropped.
 
 bolt-icon {
   display: inline-block;
@@ -84,10 +88,10 @@ bolt-icon[size='xlarge'],
   padding-bottom: 100%;
   transform: translate3d(-50%, -50%, 0);
 
-  opacity: 0.1;
+  opacity: 0.1; // [1]
   opacity: var(--bolt-theme-icon-background-opacity, 0.1);
 
-  background-color: currentColor; // Fallback if CSS vars not supported
+  background-color: currentColor; // [1]
   background-color: var(--bolt-theme-icon-background, var(--bolt-theme-primary-text-default, currentColor));
 }
 
@@ -107,38 +111,42 @@ bolt-icon[size='xlarge'],
   $brand-color: bolt-color(teal);
   $contrast-color: bolt-text-contrast($brand-color);
 
-  // Fallback styles for browsers that don't support CSS variables.
-  color: $contrast-color;
-  .c-bolt-icon__background-shape {
-    background-color: $brand-color;
-    opacity: 1;
-  }
-
-  // CSS variables for browsers that do support them.
   @include bolt-css-vars((
     --bolt-theme-icon: $contrast-color,
     --bolt-theme-icon-background: $brand-color,
     --bolt-theme-icon-background-opacity: 1,
   ));
+
+  color: $contrast-color; // [1]
+  color: var(--bolt-theme-icon); // [2]
+
+  .c-bolt-icon__background-shape {
+    background-color: $brand-color; // [1]
+    background-color: var(--bolt-theme-icon-background); // [2]
+    opacity: 1; // [1]
+    opacity: var(--bolt-theme-icon-background-opacity); // [2]
+  }
 }
 
 .c-bolt-icon--blue {
   $brand-color: bolt-color(blue);
   $contrast-color: bolt-text-contrast($brand-color);
 
-  // Fallback styles for browsers that don't support CSS variables.
-  color: $brand-color;
-  .c-bolt-icon__background-shape {
-    color: $contrast-color;
-    opacity: 1;
-  }
-
-  // CSS variables for browsers that do support them.
   @include bolt-css-vars((
     --bolt-theme-icon: $brand-color,
     --bolt-theme-icon-background: $contrast-color,
     --bolt-theme-icon-background-opacity: 1,
   ));
+
+  color: $brand-color; // [1]
+  color: var(--bolt-theme-icon); // [2]
+
+  .c-bolt-icon__background-shape {
+    background-color: $contrast-color; // [1]
+    background-color: var(--bolt-theme-icon-background); // [2]
+    opacity: 1; // [1]
+    opacity: var(--bolt-theme-icon-background-opacity); // [2]
+  }
 }
 
 .c-bolt-icon__background {
