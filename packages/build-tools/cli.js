@@ -74,6 +74,9 @@ program
         config.quick =
           typeof options.quick === 'undefined' ? config.quick : options.quick;
 
+        config.watch =
+          typeof options.watch === 'undefined' ? config.watch : options.watch;
+
         config.prod =
           typeof program.prod === 'undefined' ? config.prod : program.prod;
 
@@ -162,12 +165,17 @@ program
         '--webpack-dev-server',
         configSchema.properties.webpackDevServer.description,
       )
+      .option('--watch', configSchema.properties.watch.description)
       .action(async options => {
+        if (options.watch === undefined) {
+          options.watch = true;
+        }
         await updateConfig(options, program);
         require('./tasks/task-collections').serve();
       });
 
     program.command('watch').action(async options => {
+      options.watch = true;
       await updateConfig(options, program);
       require('./tasks/task-collections').watch();
     });
@@ -189,7 +197,11 @@ program
         '--webpack-dev-server',
         configSchema.properties.webpackDevServer.description,
       )
+      .option('--watch', configSchema.properties.watch.description)
       .action(async options => {
+        if (options.watch === undefined) {
+          options.watch = true;
+        }
         await updateConfig(options, program);
         require('./tasks/task-collections').start();
       });
@@ -238,6 +250,20 @@ program
             await require('./tasks/pattern-lab-tasks').compile();
           } catch (error) {
             log.errorAndExit('Pattern Lab failed', error);
+          }
+        });
+    }
+
+    if (config.env === 'static') {
+      program
+        .command('static')
+        .description('Static Site Compile')
+        .action(async options => {
+          await updateConfig(options, program);
+          try {
+            await require('./tasks/static-tasks').compile();
+          } catch (error) {
+            log.errorAndExit('Static Site Generation failed', error);
           }
         });
     }
