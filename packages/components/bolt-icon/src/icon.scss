@@ -107,24 +107,38 @@ bolt-icon[size='xlarge'],
   $brand-color: bolt-color(teal);
   $contrast-color: bolt-text-contrast($brand-color);
 
+  // Fallback styles for browsers that don't support CSS variables.
   color: $contrast-color;
-
   .c-bolt-icon__background-shape {
     background-color: $brand-color;
     opacity: 1;
   }
+
+  // CSS variables for browsers that do support them.
+  @include bolt-css-vars((
+    --bolt-theme-icon: $contrast-color,
+    --bolt-theme-icon-background: $brand-color,
+    --bolt-theme-icon-background-opacity: 1,
+  ));
 }
 
 .c-bolt-icon--blue {
   $brand-color: bolt-color(blue);
   $contrast-color: bolt-text-contrast($brand-color);
 
+  // Fallback styles for browsers that don't support CSS variables.
   color: $brand-color;
-
   .c-bolt-icon__background-shape {
     color: $contrast-color;
     opacity: 1;
   }
+
+  // CSS variables for browsers that do support them.
+  @include bolt-css-vars((
+    --bolt-theme-icon: $brand-color,
+    --bolt-theme-icon-background: $contrast-color,
+    --bolt-theme-icon-background-opacity: 1,
+  ));
 }
 
 .c-bolt-icon__background {
