@@ -23,6 +23,21 @@
      * Tabs inside a code panel
      */
 
+  .pl-c-pattern-info__panel--code & {
+    // @media all and (min-width: $pl-bp-large) {
+      position: absolute;
+      top: 1rem;
+      bottom: 1rem;
+      left: 1rem;
+      right: 1rem;
+    // }
+  }
+
+  .pl-c-modal & {
+    @media all and (min-width: $pl-bp-xl) {
+      left: 2rem;
+    }
+  }
 }
 
 /**
@@ -76,10 +91,9 @@
  */
 .pl-c-tabs__content {
   flex: 1 0 auto;
-  overflow: auto;
-  @include hideScrollBar();
+  overflow: scroll;
   -webkit-overflow-scrolling: touch;
-  height: 100%;
+  max-height: 90%;
   padding-top: 0.5rem;
 
   /**
