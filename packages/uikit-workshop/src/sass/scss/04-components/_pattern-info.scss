@@ -71,6 +71,10 @@
     left: 0;
     right: 1.3rem;
     padding-right: 0;
+
+    @supports (padding: env(safe-area-inset-right)){
+      right: calc(env(safe-area-inset-right) + 1.3rem);
+    }
   }
 
   .pl-c-modal & {

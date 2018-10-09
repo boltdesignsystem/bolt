@@ -81,7 +81,10 @@ pl-modal {
   display: flex;
   flex-direction: row-reverse;
   flex-grow: 1;
-  padding-right: calc(env(safe-area-inset-right) - 0.9rem);
+
+  @supports (padding: env(safe-area-inset-top)){
+    padding-right: calc(env(safe-area-inset-right) - 0.9rem);
+  }
 }
 
 .pl-c-modal__toolbar-controls {
