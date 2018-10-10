@@ -5,6 +5,7 @@ const { promisify } = require('util');
 const gitSemverTags = require('git-semver-tags');
 const promisifyGitTags = promisify(gitSemverTags);
 const fs = require('fs');
+const semver = require('semver');
 const urlExists = require('url-exists');
 const path = require('path');
 const { getConfig } = require('./config-store');
@@ -15,13 +16,11 @@ async function writeVersionDataToJson(versionData) {
   const config = await getConfig();
   let versionInfo = versionData;
 
-  // versionInfo.sort(function(a, b) {
-  //   if (a.label < b.label) return -1;
-  //   if (a.label > b.label) return 1;
-  //   return 0;
-  // });
+  versionInfo.sort(function(a, b) {
+    return semver.compare(a.label, b.label);
+  });
 
-  versionInfo = versionInfo.reverse();
+  //versionInfo = versionInfo.reverse();
 
   // tagUrls.unshift({
   //   label: 'Next Release',
