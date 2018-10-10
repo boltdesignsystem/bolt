@@ -144,7 +144,7 @@ async function buildPrep() {
     config.prod ? await clean() : '';
     await internalTasks.mkDirs();
     await manifest.writeBoltManifest();
-    if (config.env === 'pl' || config.env === 'static'){
+    if (config.env === 'pl' || config.env === 'static') {
       await writeBoltVersions();
     }
     await manifest.writeTwigNamespaceFile(
