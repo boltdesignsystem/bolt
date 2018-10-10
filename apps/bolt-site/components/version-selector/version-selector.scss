@@ -1,0 +1,9 @@
+.c-bds-version-selector {
+  @include bolt-font-size(small);
+
+  line-height: 1;
+
+  & ~ .c-bolt-input-icons {
+    padding: 0.05rem 0.1rem 0 0; // This is a one-off override for this site only. It would stop working if the bolt-form becomes a web component.
+  }
+}

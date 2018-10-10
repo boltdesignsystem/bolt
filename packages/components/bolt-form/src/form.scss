@@ -92,6 +92,7 @@ $bolt-input-background-color--invalid: lighten(bolt-color(error), 58%);
 $bolt-input-placeholder-color: rgba(bolt-color(gray, xdark), 0.5); // TODO: [Mai] This is the theme text color at 66%
 $bolt-input-placeholder-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
 $bolt-input-placeholder-color--disabled: rgba(bolt-color(gray, xdark), 0.5); // TODO: [Mai] This is the theme text color at 66%
+$bolt-input-icon-color: bolt-color(black);
 $bolt-input-icon-color--active: bolt-color(indigo, light);
 $bolt-input-icon-color--invalid: bolt-color(error);
 $bolt-input-border-color: rgba(bolt-color(indigo, light), 0.25); // TODO: [Mai] This is the theme link color at 25%
@@ -376,6 +377,7 @@ $bolt-input-transition: $bolt-transition;
   padding-right: bolt-spacing(small);
   padding-bottom: 0.35 * bolt-v-spacing(medium) / 2;
   padding-left: 0;
+  color: $bolt-input-icon-color;
   pointer-events: none;
   border-radius: $bolt-input-border-radius;
   background-color: $bolt-input-background-color;
