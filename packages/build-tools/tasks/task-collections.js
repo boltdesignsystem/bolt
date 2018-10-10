@@ -96,7 +96,7 @@ async function clean() {
   }
 }
 
-async function serve(buildTime = timer.start(), localDev) {
+async function serve(buildTime = timer.start()) {
   config = config || (await getConfig());
   await getExtraTasks();
 
@@ -107,7 +107,7 @@ async function serve(buildTime = timer.start(), localDev) {
     }
     if (config.wwwDir) {
       serverTasks.push(extraTasks.server.serve());
-      if (config.webpackDevServer && localDev !== false) {
+      if (config.webpackDevServer && config.watch !== false) {
         serverTasks.push(webpackTasks.server(buildTime));
       }
     }
@@ -136,10 +136,8 @@ async function images() {
   }
 }
 
-async function build(localDev = false, shouldReturnTime = false) {
-  const startTime = timer.start();
+async function buildPrep() {
   config = config || (await getConfig());
-
   try {
     await getExtraTasks();
     config.prod ? await clean() : '';
@@ -149,14 +147,21 @@ async function build(localDev = false, shouldReturnTime = false) {
       process.cwd(),
       config.extraTwigNamespaces,
     );
+  } catch (error) {
+    log.errorAndExit('Build failed', error);
+  }
+}
 
-    config.prod || localDev === false ? await webpackTasks.compile() : '';
-
+async function build(shouldReturnTime = false) {
+  const startTime = timer.start();
+  config = config || (await getConfig());
+  try {
+    await buildPrep(startTime);
+    config.prod || config.watch === false ? await webpackTasks.compile() : '';
     await images();
-
-    if (config.prod || localDev === false) {
-      await compileBasedOnEnvironment();
-    }
+    config.prod || config.watch === false
+      ? await compileBasedOnEnvironment()
+      : '';
 
     if (shouldReturnTime) {
       return startTime;
@@ -208,7 +213,6 @@ async function start() {
   try {
     if (!config.quick) {
       buildTime = await build({
-        localDev: true,
         shouldReturnTime: true,
       });
     }
@@ -227,6 +231,7 @@ module.exports = {
   start,
   images,
   build,
+  buildPrep,
   watch,
   clean,
   criticalcss,

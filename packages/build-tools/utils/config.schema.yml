@@ -17,6 +17,14 @@
       title: Array of language-specific builds to generate. The 1st langugage specified is the default used for local development.
       default:
         - en
+    watch:
+      type: boolean
+      description: Configures internal tasks to watch for changes vs exiting when finished.
+      default: false
+    sourceMaps:
+      type: boolean
+      description: When set to true, generates sourcemaps when CSS and JS files are compiled.
+      default: true
     i18n:
       type: boolean
       description: Should the design system's assets be compiled for multiple languages? Automatically defaults to false for local dev, true for prod.

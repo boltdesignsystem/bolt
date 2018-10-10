@@ -565,7 +565,7 @@ const nonDefaultVariations = variationValues;
 module.exports = postcss.plugin('postcss-bolt-themify', opts => {
   options = buildOptions(opts);
 
-  if (options.watchForChanges && !isWatchingForChanges) {
+  if (options.watchForChanges === true && !isWatchingForChanges) {
     isWatchingForChanges = true;
     // console.log('watching for color palette changes...');
     watchColorPaletteFile(options.fallback.jsonPath, function() {

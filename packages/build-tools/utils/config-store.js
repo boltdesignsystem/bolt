@@ -32,6 +32,8 @@ async function getDefaultConfig() {
       port: ports[0],
       proxyPort: ports[1],
       proxyHeader: configSchema.properties.proxyHeader.default,
+      watch: configSchema.properties.watch.default,
+      sourceMaps: configSchema.properties.sourceMaps.default,
       renderingServicePort: ports[2],
       i18n: configSchema.properties.i18n.default,
       renderingService: configSchema.properties.renderingService.default,
