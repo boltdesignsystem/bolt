@@ -17,7 +17,7 @@ async function writeVersionDataToJson(versionData) {
   let versionInfo = versionData;
 
   versionInfo.sort(function(a, b) {
-    return semver.compare(a.label, b.label);
+    return semver.rcompare(a.label, b.label);
   });
 
   //versionInfo = versionInfo.reverse();
