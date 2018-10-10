@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 const program = require('commander');
 const cosmiconfig = require('cosmiconfig');
@@ -14,7 +15,7 @@ if (!searchedFor.config) {
   log.errorAndExit('Could not find config in a .boltrc file');
 }
 
-const userConfig = {
+let userConfig = {
   ...searchedFor.config,
   configFileUsed: searchedFor.filepath,
 };
@@ -22,6 +23,10 @@ const userConfig = {
 // global `bolt` cli options & meta
 program
   .version(packageJson.version)
+  .option(
+    '-C, --config-file <path>',
+    'Pass in a specific config file instead of default of ".boltrc.js/json".',
+  )
   .option('--prod', configSchema.properties.prod.description)
   .option(
     '-v, --verbosity <amount>',
@@ -29,6 +34,19 @@ program
     parseInt,
   )
   .parse(process.argv);
+
+if (program.configFile) {
+  const configFilePath = path.join(process.cwd(), program.configFile);
+  if (!fs.existsSync(configFilePath)) {
+    console.error(`Error, config file does not exist: ${configFilePath}`);
+    process.exit(1);
+  }
+  const configFile = require(configFilePath);
+  userConfig = {
+    ...configFile,
+    configFileUsed: configFilePath,
+  };
+}
 
 (async () => {
   await configStore.init(userConfig).then(config => {
