@@ -28,7 +28,7 @@ async function writeVersionDataToJson(versionData) {
   //   type: 'option',
   // });
 
-  const latestReleaseLabel = versionInfo[0].label + ' (Latest)';
+  const latestReleaseLabel = versionInfo[0].label;
   const latestReleaseUrl = 'https://boltdesignsystem.com';
 
   versionInfo[0].selected = true;
