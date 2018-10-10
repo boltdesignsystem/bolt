@@ -240,12 +240,9 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
   .vjs-overlay-no-background {
     @include bolt-margin(0);
     @include bolt-padding(40px 9px);
-    @include bolt-font-family(body);
-    @include bolt-font-weight(semibold);
 
     width: 100%;
     max-width: none;
-    color: bolt-color(white);
     border-radius: 0;
     background-color: transparent;
 
@@ -285,30 +282,52 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
   }
 
   .vjs-overlay-background {
-    @include bolt-margin(40px);
+    @include bolt-margin(0);
     @include bolt-padding(xsmall);
+    @include bolt-font-family(body);
+    @include bolt-font-size(small);
 
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    transform: none;
     width: auto;
-    max-width: none;
-    color: bolt-color(indigo);
-    background-color: rgba(bolt-color(white), 0.1);
-    box-shadow: inset 0 0 2rem bolt-color(white);
-    opacity: 0;
-    transition: all $bolt-transition;
+    max-width: 100%;
+    color: bolt-color(black);
+    text-shadow: 0 0 0.25rem bolt-color(white);
+    background-color: rgba(bolt-color(white), 0.9);
+    box-shadow: inset 0 0 2rem bolt-color(white), 0 0 0.25rem bolt-color(gray, light);
 
-    &:hover {
-      opacity: 1;
+    &.vjs-overlay-top,
+    &.vjs-overlay-top-right,
+    &.vjs-overlay-top-left {
+      top: 40px;
     }
 
-    > * {
-      position: absolute;
-      top: bolt-v-spacing(small);
-      right: bolt-spacing(small);
+    &.vjs-overlay-bottom,
+    &.vjs-overlay-bottom-right,
+    &.vjs-overlay-bottom-left {
+      bottom: 40px;
+    }
+
+    &.vjs-overlay-right,
+    &.vjs-overlay-top-right,
+    &.vjs-overlay-bottom-right {
+      right: 9px;
+    }
+
+    &.vjs-overlay-left,
+    &.vjs-overlay-top-left,
+    &.vjs-overlay-bottom-left {
+      left: 9px;
+    }
+
+    &.vjs-overlay-top,
+    &.vjs-overlay-bottom {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &.vjs-overlay-center {
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%, -50%, 0);
     }
   }
 }
