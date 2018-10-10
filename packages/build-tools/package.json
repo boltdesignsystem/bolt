@@ -1,6 +1,6 @@
 {
   "name": "@bolt/build-tools",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "license": "MIT",
   "description": "Curated collection of front-end build tools in the Bolt Design System.",
   "main": "index.js",
@@ -22,11 +22,11 @@
     }
   ],
   "dependencies": {
-    "@bolt/babel-preset-bolt": "^2.0.0",
-    "@bolt/config-browserlist": "^2.0.0",
+    "@bolt/babel-preset-bolt": "^2.1.0",
+    "@bolt/config-browserlist": "^2.1.0",
     "@bolt/fast-sass-loader": "github:bolt-design-system/fast-sass-loader#master",
-    "@bolt/postcss-themify": "^2.0.0",
-    "@bolt/sass-export-data": "^2.0.0",
+    "@bolt/postcss-themify": "^2.1.0",
+    "@bolt/sass-export-data": "^2.1.0",
     "autoprefixer": "^9.1.5",
     "babel-loader": "^8.0.2",
     "browser-sync": "^2.24.7",
@@ -75,7 +75,6 @@
     "sassdoc": "^2.5.0",
     "semver": "^5.5.1",
     "sharp": "^0.20.8",
-    "snyk": "^1.94.0",
     "string-replace-loader": "^2.1.1",
     "style-loader": "^0.23.0",
     "svgo": "^1.0.5",
@@ -94,10 +93,5 @@
   "schema": "utils/config.schema.yml",
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "homepage": "https://bolt-design-system.com",
-  "scripts": {
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
-  },
-  "snyk": true,
-  "gitHead": "0d1173e537c4ebc29f0580f79087968c40714faa"
+  "gitHead": "6d63b755d1f04fc643b53b51d3293865bbb59e2f"
 }

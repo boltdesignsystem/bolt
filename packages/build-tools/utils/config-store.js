@@ -32,6 +32,8 @@ async function getDefaultConfig() {
       port: ports[0],
       proxyPort: ports[1],
       proxyHeader: configSchema.properties.proxyHeader.default,
+      watch: configSchema.properties.watch.default,
+      sourceMaps: configSchema.properties.sourceMaps.default,
       renderingServicePort: ports[2],
       i18n: configSchema.properties.i18n.default,
       renderingService: configSchema.properties.renderingService.default,
@@ -84,9 +86,12 @@ async function isReady() {
         'Bolt config not yet setup -- trying to find a .boltconfig.rc file...',
       ),
     );
-    const searchedFor = await explorer.searchSync();
+    const searchedFor = explorer.searchSync();
     if (searchedFor.config) {
-      await init(searchedFor.config);
+      await init({
+        ...searchedFor.config,
+        configFileUsed: searchedFor.filepath,
+      });
       return true;
     } else {
       console.log(
@@ -135,8 +140,8 @@ async function getConfig() {
  * Update config
  * @param {function} updater - This function is passed in current config and it returns new config.
  */
-function updateConfig(updater) {
-  isReady();
+async function updateConfig(updater) {
+  await isReady();
   const newConfig = updater(config);
   validateSchema(
     configSchema,

@@ -4,7 +4,7 @@ const argv = require('yargs').argv;
 
 const config = {
   lang: ['en'],
-  renderingService: true, // starts PHP service for rendering Twig templates
+  renderingService: false, // starts PHP service for rendering Twig templates
   openServerAtStart: false,
   webpackDevServer: true,
   // Environmental variable / preset to use
@@ -21,6 +21,10 @@ const config = {
     bolt: {
       recursive: true,
       paths: ['templates'],
+    },
+    'bolt-site': {
+      recursive: true,
+      paths: ['templates', 'components'],
     },
   },
   images: {
@@ -99,6 +103,12 @@ const config = {
       )}/favicons/bolt`,
       to: `../../www`,
       flatten: true,
+    },
+  ],
+  alterTwigEnv: [
+    {
+      file: path.join(__dirname, 'SetupTwigRenderer.php'),
+      functions: ['addBoltExtensions'],
     },
   ],
 };
