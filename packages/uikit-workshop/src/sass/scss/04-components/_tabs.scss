@@ -34,6 +34,24 @@
   }
 
   .pl-c-modal & {
+    // adjusts the absolutely positioned tabs container when nested inside the PL drawer
+    // @todo: refactor to eliminate the need for this  
+    @media all and (min-width: $pl-bp-med) {
+      right: 1.5rem;
+
+      @supports(padding: unquote('max(0px, env(safe-area-inset-right))')) {
+        right: unquote('max(1.5rem, env(safe-area-inset-right))');
+      }
+    }
+
+    @media all and (min-width: 848px) {
+      right: 2.3rem;
+
+      @supports(padding: unquote('max(0px, env(safe-area-inset-right))')) {
+        right: unquote('max(2.3rem, calc(env(safe-area-inset-right) + 1.4rem))');
+      }
+    }
+    
     @media all and (min-width: $pl-bp-xl) {
       left: 2rem;
     }
