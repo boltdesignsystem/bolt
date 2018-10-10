@@ -50,7 +50,12 @@
         {# merge together array of items with the content / band_content block so each item can get wrapped properly #}
         {% set items = items | default([]) %}
         {% if  block('band_content') | length > 0 %}
-          {% set items = items | merge([block_band_content]) %}
+          {% set items = items | merge([{
+            content: block_band_content,
+            position: {
+              row_start: content_row_start ? content_row_start : schema.properties.row_start.default
+            }
+          }]) %}
         {% endif %}
 
         {% if items is not empty %}
