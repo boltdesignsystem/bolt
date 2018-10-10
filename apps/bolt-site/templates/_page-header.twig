@@ -34,17 +34,7 @@
   } only %}
     {% block navbar_title %}
       {{ parent() }}
-      {% include "@bolt-components-headline/text.twig" with {
-        text: 'v' ~ bolt.data.fullManifest.version,
-        size: 'xsmall',
-        capitalize: 'lowercase',
-        attributes: {
-          class: [
-            "u-bolt-margin-left-small",
-            "u-bolt-margin-top-xxsmall"
-          ]
-        }
-      } only %}
+      {% include "@bolt-site/version-selector.twig" only %}
     {% endblock %}
   {% endembed %}
 {% endset %}

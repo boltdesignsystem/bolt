@@ -1,0 +1,24 @@
+{% extends "@bolt-components-form/form-element.twig" %}
+
+{% set selectAttributes = {
+  class: [
+    "js-bolt-version-selector"
+  ]
+} %}
+
+{% set options = bolt.data.boltReleases.options %}
+
+{% set label_display = 'after' %}
+
+{# {% set label %}
+  {% include("@bolt-components-form/form-label.twig") with {
+    "title": "Bolt Releases",
+  } %}
+{% endset %} #}
+
+{% set children %}
+  {% include("@bolt-components-form/form-select.twig") with {
+    "attributes": selectAttributes,
+    "options": options
+  } %}
+{% endset %}

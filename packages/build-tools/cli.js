@@ -261,6 +261,7 @@ program
         .action(async options => {
           await updateConfig(options, program);
           try {
+            await require('./tasks/task-collections').buildPrep();
             await require('./tasks/static-tasks').compile();
           } catch (error) {
             log.errorAndExit('Static Site Generation failed', error);
