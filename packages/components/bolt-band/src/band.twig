@@ -53,7 +53,7 @@
           {% set items = items | merge([{
             content: block_band_content,
             position: {
-              row_start: content_row_start ? content_row_start : schema.properties.row_start.default
+              row_start: content_row_start ? content_row_start : schema.properties.content_row_start.default
             }
           }]) %}
         {% endif %}
