@@ -94,10 +94,33 @@ async function getPkgInfo(pkgName) {
       ensureFileExists(info.assets.main);
     }
     if (pkg.schema) {
-      const schemaFilePath = path.join(dir, pkg.schema);
-      const schema = await getDataFile(schemaFilePath);
-      validateSchemaSchema(schema, `Schema not valid for: ${schemaFilePath}`);
-      info.schema = schema;
+      if (typeof pkg.schema === 'object') {
+        if (info.schema === undefined) {
+          info.schema = [];
+        }
+
+        const schemas = pkg.schema;
+
+        for (const schemaPath of schemas) {
+          const schemaFilePath = path.join(dir, schemaPath);
+          // eslint-disable-next-line
+          const schema = await getDataFile(schemaFilePath);
+          validateSchemaSchema(
+            schema,
+            `Schema not valid for: ${schemaFilePath}`,
+          );
+          const schemaMachineName = schema.title
+            .replace(/ /g, '-')
+            .toLowerCase();
+
+          info.schema[schemaMachineName] = schema;
+        }
+      } else {
+        const schemaFilePath = path.join(dir, pkg.schema);
+        const schema = await getDataFile(schemaFilePath);
+        validateSchemaSchema(schema, `Schema not valid for: ${schemaFilePath}`);
+        info.schema = schema;
+      }
     }
     // @todo Allow verbosity settings
     // console.log(assets);
@@ -210,14 +233,14 @@ async function writeBoltManifest() {
 }
 
 /**
- * Builds & writes info file for Twig Namespaces
- * Creates `bolt-twig-namespaces.json` in `config.dataDir` from the Bolt Manifest. That is pulled in by [Twig Namespace plugin](https://packagist.org/packages/evanlovely/plugin-twig-namespaces) in the PL config file.
+ * Builds config for Twig Namespaces
  * @param relativeFrom {string} - If present, the path will be relative from this, else it will be absolute.
  * @param extraNamespaces {object} - Extra namespaces to add to file in [this format](https://packagist.org/packages/evanlovely/plugin-twig-namespaces)
  * @async
- * @returns {Promise<void>}
+ * @see writeTwigNamespaceFile
+ * @returns {Promise<object>}
  */
-async function writeTwigNamespaceFile(relativeFrom, extraNamespaces = {}) {
+async function getTwigNamespaceConfig(relativeFrom, extraNamespaces = {}) {
   const config = await getConfig();
   const namespaces = {};
   const allDirs = [];
@@ -227,6 +250,10 @@ async function writeTwigNamespaceFile(relativeFrom, extraNamespaces = {}) {
 
   [global, individual].forEach(componentList => {
     componentList.forEach(component => {
+      if (!component.twigNamespace) {
+        return;
+      }
+
       const dir = relativeFrom
         ? path.relative(relativeFrom, component.dir)
         : component.dir;
@@ -286,6 +313,21 @@ async function writeTwigNamespaceFile(relativeFrom, extraNamespaces = {}) {
     });
   }
 
+  return namespaceConfigFile;
+}
+
+/**
+ * Write Twig Namespace File
+ * Creates `bolt-twig-namespaces.json` in `config.dataDir` from the Bolt Manifest. That is pulled in by [Twig Namespace plugin](https://packagist.org/packages/evanlovely/plugin-twig-namespaces) in the PL config file.
+ * @see getTwigNamespaceConfig;
+ * @return {Promise<void>}
+ */
+async function writeTwigNamespaceFile() {
+  const config = await getConfig();
+  const namespaceConfigFile = await getTwigNamespaceConfig(
+    process.cwd(),
+    config.extraTwigNamespaces,
+  );
   await writeFile(
     path.join(config.dataDir, 'twig-namespaces.bolt.json'),
     JSON.stringify(namespaceConfigFile, null, '  '),
@@ -297,6 +339,7 @@ module.exports = {
   getBoltManifest,
   writeBoltManifest,
   writeTwigNamespaceFile,
+  getTwigNamespaceConfig,
   mapComponentNameToTwigNamespace,
   getAllDirs,
 };

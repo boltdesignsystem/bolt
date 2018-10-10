@@ -1,0 +1,39 @@
+$schema: 'http://json-schema.org/draft-04/schema#'
+title: 'Bolt Grid'
+description: 'Flexible component to build out CSS Grid-based layouts'
+type: object
+properties:
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
+  row_gutter:
+    type: string
+    description: Specifies the row gutter size between the rows of the grid.
+    default: none
+    enum:
+      - none
+      - small
+      - medium
+      - large
+  vinset:
+    type: string
+    description: The size of the inner space (vertical inset) that sits above / below the grid itself
+    default: none
+    enum:
+      - none
+      - xsmall
+      - small
+      - medium
+      - large
+      - xlarge
+  items:
+    type: array
+    description: Array of content items to display inside the grid itself.
+    properties:
+      content:
+        type: [string, object, array]
+        description: "Content to render inside each <code>&lt;bolt-grid-item&gt;</code>"
+      position:
+        type: object
+        ref: '@bolt-components-grid/grid-item.schema.yml'
+        description: "Layout-specific config options for each internal <code>&lt;bolt-grid-item&gt;</code>"

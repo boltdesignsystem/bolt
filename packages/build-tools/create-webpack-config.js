@@ -3,24 +3,20 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const npmSass = require('npm-sass');
 const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const globImporter = require('node-sass-glob-importer');
-const { promisify } = require('util');
 const fs = require('fs');
-const readFile = promisify(fs.readFile);
 const deepmerge = require('deepmerge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TwigPhpLoader = require('twig-php-loader');
-const themify = require('@bolt/themify');
 const resolve = require('resolve');
-
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const globImporter = require('node-sass-glob-importer');
+const npmSass = require('npm-sass');
 const { getConfig } = require('./utils/config-store');
+const SassDocPlugin = require('./plugins/sassdoc-webpack-plugin');
+
 const {
   getBoltManifest,
-  createComponentsManifest,
   mapComponentNameToTwigNamespace,
 } = require('./utils/manifest');
 const log = require('./utils/log');
@@ -41,7 +37,7 @@ async function createWebpackConfig(buildConfig) {
       : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
 
   // @TODO: move this setting to .boltrc config
-  const sassExportData = require('@theme-tools/sass-export-data')({
+  const sassExportData = require('@bolt/sass-export-data')({
     path: path.resolve(process.cwd(), config.dataDir),
   });
 
@@ -52,12 +48,9 @@ async function createWebpackConfig(buildConfig) {
   let langSuffix = `${config.lang ? '-' + config.lang : ''}`;
 
   let themifyOptions = {
-    createVars: true,
+    watchForChanges: config.watch === true ? true : false,
     classPrefix: 't-bolt-',
-    cache: config.prod ? true : false,
-    // defaultColorVariation: 'xlight', // WIP - hard coding xlight default for now
     screwIE11: false,
-    modifyCSSRules: false,
     fallback: {
       filename: 'bolt-css-vars-fallback',
       jsonDataExport: 'theming-css-vars',
@@ -76,11 +69,6 @@ async function createWebpackConfig(buildConfig) {
         config.buildDir,
         `${themifyOptions.fallback.filename}.css`,
       ),
-      dynamicPath: path.resolve(
-        process.cwd(),
-        config.buildDir,
-        `${themifyOptions.fallback.filename}.json`,
-      ),
     },
   });
 
@@ -90,7 +78,6 @@ async function createWebpackConfig(buildConfig) {
     `$bolt-css-vars-json-data-export: ${
       themifyOptions.fallback.jsonDataExport
     };`,
-
     // output $bolt-lang variable in Sass even if not specified so things fall back accordingly.
     `${
       config.lang && config.lang.length > 1
@@ -109,10 +96,6 @@ async function createWebpackConfig(buildConfig) {
       themingFallbackCSS: JSON.stringify(
         publicPath + themifyOptions.fallback.filename + '.css',
       ),
-      themingFallbackJSON: JSON.stringify(
-        publicPath + themifyOptions.fallback.filename + '.json',
-      ),
-
       config: {
         prod: config.prod ? true : false,
         lang: config.lang,
@@ -163,7 +146,7 @@ async function createWebpackConfig(buildConfig) {
     const entry = {};
     const globalEntryName = 'bolt-global';
 
-    if (components.global && components.global.length > 0) {
+    if (components.global) {
       entry[globalEntryName] = [];
 
       components.global.forEach(component => {
@@ -276,70 +259,24 @@ async function createWebpackConfig(buildConfig) {
     }
   }
 
-  // Output CSS module data as JSON.
-  // @todo: enable when ready for CSS Modules
-  // function getJSONFromCssModules(cssFileName, json) {
-  //   const cssName = path.basename(cssFileName, '.css');
-  //   const jsonFileName = path.resolve(process.cwd(), config.buildDir, `${cssName}.json`);
-  //   fs.writeFileSync(jsonFileName, JSON.stringify(json));
-  // }
-
-  /** This workaround has been disabled for now as setting
-   * `modules: false` on `css-loader` fixes it; see https://github.com/bolt-design-system/bolt/pull/410
-   * Workaround for getting classes with `\@` to compile correctly
-   * CSS Classes like `.u-hide\@large` were getting compiled like `.u-hide-large`.
-   * Due to this bug: https://github.com/webpack-contrib/css-loader/issues/578
-   * Workaround: using the `string-replace-loader` to
-   * change `\@` to our `workaroundAtValue` before
-   * passing to `css-loader`, then turning it back
-   * afterwards.
-   */
-  const workaroundAtValue = '-theSlashSymbol-';
-
   const scssLoaders = [
-    // {
-    //   loader: 'string-replace-loader',
-    //   query: {
-    //     search: workaroundAtValue,
-    //     replace: String.raw`\\`, // needed to ensure `\` comes through
-    //     flags: 'g',
-    //   },
-    // },
     {
       loader: 'css-loader',
       options: {
-        sourceMap: true,
+        sourceMap: config.sourceMaps,
         modules: false, // needed for JS referencing classNames directly, such as critical fonts
       },
     },
-    // {
-    //   loader: 'string-replace-loader',
-    //   query: {
-    //     search: /\\/,
-    //     replace: workaroundAtValue,
-    //     flags: 'g',
-    //   },
-    // },
     {
       loader: 'postcss-loader',
       options: {
-        sourceMap: true,
-        ident: 'postcss2',
+        sourceMap: config.sourceMaps,
         plugins: () => [
-          themify.themify(themifyOptions),
+          require('@bolt/postcss-themify')(themifyOptions),
           postcssDiscardDuplicates,
           autoprefixer({
-            // @todo: replace with standalone Bolt config
-            browsers: [
-              '> 1% in US',
-              'last 3 Android major versions',
-              'last 3 iOS major versions',
-              'last 3 Chrome major versions',
-              'last 3 Edge major versions',
-              'last 3 Firefox major versions',
-              'last 3 Safari major versions',
-              'IE 11',
-            ],
+            browsers: require('@bolt/config-browserlist'),
+            grid: true,
           }),
         ],
       },
@@ -347,9 +284,8 @@ async function createWebpackConfig(buildConfig) {
     {
       loader: 'clean-css-loader',
       options: {
-        skipWarn: true,
-        compatibility: 'ie9',
-        level: config.prod ? 1 : 0,
+        level: config.prod ? 2 : 0,
+        format: config.prod ? false : 'beautify',
         inline: ['remote'],
         format: 'beautify',
       },
@@ -357,24 +293,41 @@ async function createWebpackConfig(buildConfig) {
     {
       loader: 'resolve-url-loader',
     },
+
+    // @todo: conditionally toggle sass-loader vs fast-sass-loader based on --debug flag when sourcemaps are needed
     {
       loader: 'sass-loader',
       options: {
-        sourceMap: true,
+        sourceMap: config.sourceMaps,
         importer: [globImporter(), npmSass.importer],
         functions: sassExportData,
-        outputStyle: 'expanded',
         precision: 3,
         data: globalSassData.join('\n'),
       },
     },
-    // Reads Sass vars from files or inlined in the options property
+    // @todo: re-evaluate options similar to fast-sass-loader, but w/ importer support
+    // {
+    //   loader: '@bolt/fast-sass-loader',
+    //   options: {
+    //     sourceMap: true,
+    //     functions: sassExportData,
+    //     outputStyle: 'expanded',
+    //     precision: 3,
+    //     data: globalSassData.join('\n'),
+    //   },
+    // },
   ];
 
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
   const webpackConfig = {
     entry: await buildWebpackEntry(),
-    parallelism: 1, // @todo refactor once theming updates in place
+    // watchOptions: {
+    //   ignored: [
+    //     path.resolve(process.cwd(), config.buildDir) + '**/*',
+    //     path.resolve(process.cwd(), config.wwwDir) + '**/*',
+    //     'node_modules',
+    //   ],
+    // },
     output: {
       path: path.resolve(process.cwd(), config.buildDir),
       filename: `[name]${langSuffix}.js`,
@@ -383,7 +336,8 @@ async function createWebpackConfig(buildConfig) {
     },
     cache: true,
     resolve: {
-      extensions: ['.js', '.jsx', '.json', '.svg', '.scss'],
+      mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
+      extensions: ['.js', '.jsx', '.mjs', '.json', '.svg', '.scss'],
       unsafeCache: true,
       alias: {
         react: 'preact-compat',
@@ -410,7 +364,7 @@ async function createWebpackConfig(buildConfig) {
           ],
         },
         {
-          test: /\.js$/,
+          test: /\.(js|mjs)$/,
           exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
           use: {
             loader: 'babel-loader',
@@ -423,8 +377,9 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: /\.(woff|woff2)$/,
-          loader: 'file-loader',
+          loader: 'url-loader',
           options: {
+            limit: 500,
             name: 'fonts/[name].[ext]',
           },
         },
@@ -444,33 +399,11 @@ async function createWebpackConfig(buildConfig) {
     mode: config.prod ? 'production' : 'development',
     optimization: {
       mergeDuplicateChunks: true,
-      // splitChunks: {
-      //   chunks: 'all',
-      //   // cacheGroups: {
-      //   //   js: {
-      //   //     test: /\.js$/,
-      //   //     // name: 'commons',
-      //   //   chunks: 'all',
-      //   //     minChunks: 2,
-      //   //     // test: /node_modules/,
-      //   //     // enforce: true,
-      //   //   },
-      //   //   css: {
-      //   //     test: /\.s?css$/,
-      //   //     chunks: 'all',
-      //   //     minChunks: 2,
-      //   //     // enforce: true,
-      //   //   },
-      //   // },
     },
     plugins: [
-      new webpack.IgnorePlugin(/vertx/), // needed to ignore vertx dependency in webcomponentsjs-lite
       new MiniCssExtractPlugin({
-        // Options similar to the same options in webpackOptions.output
-        // both options are optional
         filename: `[name]${langSuffix}.css`,
         chunkFilename: `[id]${langSuffix}.css`,
-        allChunks: true,
       }),
       // @todo This needs to be in `config.dataDir`
       new ManifestPlugin({
@@ -481,57 +414,30 @@ async function createWebpackConfig(buildConfig) {
           name: 'Bolt Manifest',
         },
       }),
-      new webpack.ProvidePlugin({
-        Promise: 'es6-promise',
-      }),
       new webpack.DefinePlugin(globalJsData),
-
-      // Show build progress
-      // Disabling for now as it messes up spinners
-      // @todo consider bringing it back
-      // new webpack.ProgressPlugin({ profile: false }),
+      new webpack.NamedModulesPlugin(),
+      new CopyWebpackPlugin(config.copy ? config.copy : []),
+      new SassDocPlugin(
+        {
+          src: `${path.dirname(resolve.sync('@bolt/core'))}/styles/`,
+          dest: path.resolve(
+            process.cwd(),
+            `${config.buildDir}/data/sassdoc.bolt.json`,
+          ),
+        },
+        {
+          outputPath: config.buildDir,
+        },
+      ),
     ],
   };
-
-  /**
-   * In non-drupal environments. during local dev server (ie. not on Travis -- for now till Docker container is up and running),
-   * compile the Pattern Lab UI HTML via the new Twig PHP rendering service.
-   */
-  // if (config.env !== 'drupal' && !config.prod && config.devServer === true) {
-  if (config.env !== 'drupal') {
-    // webpackConfig.plugins.push(
-    //   new HtmlWebpackPlugin({
-    //     title: 'Custom template',
-    //     filename: '../index.html',
-    //     inject: false, // disabling for now -- not yet needed in PL build (but at least is working!)
-    //     cache: false,
-    //     // Load a custom template (lodash by default see the FAQ for details)
-    //     template: path.resolve(
-    //       process.cwd(),
-    //       '../../packages/uikit-workshop/src/html-twig/index.twig',
-    //     ),
-    //   }),
-    //   new TwigPhpLoader(), // handles compiling Twig templates when Webpack-specific contextual data is needed (ex. automatically injecting assets in your entry config)
-    // );
-    // webpackConfig.module.rules.push({
-    //   test: /\.twig$/,
-    //   loader: TwigPhpLoader.loader,
-    //   options: {
-    //     port: config.port, // port the PHP rendering service is running on -- dynamically set when @bolt/build-tools boots up
-    //     namespaces: npmToTwigNamespaceMap, // @todo: further refactor so this loader doesn't need to map out the namespace to the NPM package location
-    //     // this determines whether Twig templates get rendered immediately vs wait for the HtmlWebpackPlugin to
-    //     // generate data on the assets available before rendering. Defaults to false.
-    //     includeContext: true,
-    //   },
-    // });
-  }
 
   if (config.prod) {
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
     // Config recommendation based off of https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1#f548
     webpackConfig.plugins.push(
       new UglifyJsPlugin({
-        sourceMap: true,
+        sourceMap: config.sourceMaps,
         parallel: true,
         cache: true,
         uglifyOptions: {
@@ -552,21 +458,29 @@ async function createWebpackConfig(buildConfig) {
     webpackConfig.plugins.push(
       new OptimizeCssAssetsPlugin({
         canPrint: config.verbosity > 2,
-        cssProcessorOptions: {
-          // passes to `cssnano`
-          zindex: false, // don't alter `z-index` values
-          mergeRules: false, // this MUST be disabled - otherwise certain selectors (ex. ::slotted(*), which IE 11 can't parse) break
+        cssProcessor: require('cssnano'),
+        cssProcessorPluginOptions: {
+          preset: [
+            'default',
+            {
+              discardComments: { removeAll: true },
+              mergeLonghand: false, // don't merge longhand values -- required for CSS Vars theming, etc.
+              zindex: false, // don't alter `z-index` values
+              mergeRules: false, // this MUST be disabled - otherwise certain selectors (ex. ::slotted(*), which IE 11 can't parse) break
+            },
+          ],
         },
       }),
     );
 
     // @todo Evaluate best source map approach for production
-    webpackConfig.devtool = 'hidden-source-map';
+    webpackConfig.devtool =
+      config.sourceMaps === false ? '' : 'hidden-source-map';
   } else {
     // not prod
     // @todo fix source maps
-    // webpackConfig.devtool = 'cheap-module-eval-source-map';
-    webpackConfig.devtool = 'eval';
+    webpackConfig.devtool =
+      config.sourceMaps === false ? '' : 'cheap-module-eval-source-map';
   }
 
   if (config.wwwDir) {

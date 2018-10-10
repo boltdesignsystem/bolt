@@ -55,7 +55,7 @@ bolt-card {
 
   bolt-card[class*=t-bolt] & {
     color: bolt-theme(text);
-    background-color: bolt-theme(background-80);
+    background-color: bolt-theme(background, 0.8);
 
     &:before {
       opacity: 1;
@@ -89,8 +89,7 @@ bolt-card {
   }
 
   &:before {
-    background-color: bolt-theme(background);
-    opacity: 0.8;
+    background-color: bolt-theme(background, 0.8);
   }
 
   &:after {
@@ -158,7 +157,6 @@ bolt-card {
     right: 0;
     display: block;
     height: 1px;
-
   }
 }
 
@@ -180,7 +178,7 @@ bolt-card {
 .c-bolt-card__footer-item + .c-bolt-card__footer-item:before {
   display: block;
   content: '';
-  border-left-color: bolt-theme(border);
+  border-left-color: bolt-theme(border, 0.2);
   border-left-width: $bolt-card-border-width;
   border-left-style: solid;
   position: absolute;
@@ -188,5 +186,4 @@ bolt-card {
   left: 0;
   width: 1px;
   height: 100%;
-
 }

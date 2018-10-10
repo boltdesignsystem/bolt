@@ -26,9 +26,6 @@ npm install @bolt/settings-breakpoints
 | large         | `1000px`   |
 | xlarge        | `1200px`   |
 
-
-> **[Deprecation Notice]:** Coming in from PegaKit? Please take note that while Bolt's Sass variables, mixins, CSS classes, etc are intended to be used in a variety of different environments and use-cases, the specific names of things in Bolt are typically a little different than PegaKit to avoid potential namespace conflicts!
-
 - - - -
 
 ## Getting Started

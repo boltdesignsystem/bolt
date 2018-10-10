@@ -38,7 +38,30 @@ properties:
     enum:
       - xlight
       - light
-      - medium
       - dark
       - xdark
       - none
+  row_gutter:
+    description: "Configures the amount of vertical whitespace in-between each <code>&lt;bolt-grid-item&gt;</code> in the nested <code>&lt;bolt-grid&gt;</code> component.</code>. Defaults to <code>small</code> when there's more than than 1 item in the items array, otherwise defaults to <code>none</code>. Shares the same <code>row_gutter</code> config options as the <a href='https://github.com/bolt-design-system/bolt/blob/master/packages/components/bolt-grid/grid.schema.yml#L9' target='_blank'>grid component</a>."
+    type: string
+    default: "small / none"
+    enum:
+      - none
+      - small
+      - medium
+      - large
+  content_row_start:
+    description: "Configures which row the Band Component's legacy <code>content</code> Twig block should be 'automatically' displayed on. Under the hood, this identical to the <a href='https://github.com/bolt-design-system/bolt/blob/master/packages/components/bolt-grid/grid-item.schema.yml#L34' target='_blank'>Grid Item's</a> <code>row_start</code> config."
+    type: string
+    default: 2
+  items:
+    type: array
+    description: "Array of content items to display inside the band component. Internally this uses the new <code>&lt;bolt-grid&gt;</code> component to handle layout."
+    properties:
+      content:
+        type: [string, object, array]
+        description: "Content to render inside each <code>&lt;bolt-grid-item&gt;</code>"
+      position:
+        type: object
+        ref: '@bolt-components-grid/grid-item.schema.yml'
+        description: "Layout-specific config options for each internal <code>&lt;bolt-grid-item&gt;</code>"

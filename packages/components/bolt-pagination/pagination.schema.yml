@@ -5,6 +5,14 @@ properties:
   attributes:
     type: object
     description: A Drupal-style attributes object with extra attributes to append to this component.
+  align:
+    type: string
+    description: Horizontally align the items.
+    default: center
+    enum:
+      - start
+      - end
+      - center
   total:
     type: number
     title: Total pages
@@ -22,35 +30,50 @@ properties:
       properties:
         href:
           type: string
-          description: The link for this pager item
+          description: The link for this pager item.  Href may also be passed as part of attributes (which will take precedence).
+        attributes:
+          type: object
+          description: A Drupal-style attributes object for this link.
   first:
     type: object
     description: A link object for the first page
     properties:
       href:
         type: string
-        description: The link for this pager item
+        description: The link for this pager item. Href may also be passed as part of attributes (which will take precedence).
+      attributes:
+        type: object
+        description: A Drupal-style attributes object for this link.
   previous:
     type: object
     description: A link object for the previous page (e.g. if on page 3, this links to page 2)
     properties:
       href:
         type: string
-        description: The link for this pager item
+        description: The link for this pager item. Href may also be passed as part of attributes (which will take precedence)
+      attributes:
+        type: object
+        description: A Drupal-style attributes object for this link.
   next:
     type: object
     description: A link object for the next page (e.g. if on page 3, this links to page 4)
     properties:
       href:
         type: string
-        description: The link for this pager item
+        description: The link for this pager item. Href may also be passed as part of attributes (which will take precedence)
+      attributes:
+        type: object
+        description: A Drupal-style attributes object for this link.
   last:
     type: object
     description: A link object for the last page
     properties:
       href:
         type: string
-        description: The link for this pager item
+        description: The link for this pager item. Href may also be passed as part of attributes (which will take precedence)
+      attributes:
+        type: object
+        description: A Drupal-style attributes object for this link.
   previousText:
     type: string
     title: Previous text

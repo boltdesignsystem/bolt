@@ -1,16 +1,10 @@
-import {
-  h,
-  render,
-  define,
-  props,
-  withComponent,
-  withPreact,
-  css,
-  spacingSizes,
-} from '@bolt/core';
-
+import { define, props, css } from '@bolt/core/utils';
+import { h, withPreact } from '@bolt/core/renderers';
 import dasherize from 'dasherize';
 import Mousetrap from 'mousetrap';
+
+// Bolt v2.0 will be shipping with this in Bolt core -- manually adding this in to the Bolt video player as a temp workaround till then.
+import { beforeNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 
 let index = 0;
 
@@ -297,7 +291,8 @@ class BoltVideo extends withPreact() {
 
   connecting() {
     this.state = {
-      id: `${this.props.videoId}-${this.props.accountId}-${index}`,
+      // IDs can't start with numbers so adding the "v" prefix to prevent JS errors
+      id: `v${this.props.videoId}-${this.props.accountId}-${index}`,
       // errors: BoltVideo.globalErrors !== undefined  ? [].concat(BoltVideo.globalErrors) : [],
       isPlaying: 'paused',
       isFinished: false,
@@ -533,31 +528,38 @@ class BoltVideo extends withPreact() {
   }
 
   initVideoJS(id) {
-    const player = videojs(id);
-    const handler = BoltVideo.handlePlayerReady.bind(player, this);
-    // player.on("ready", handler);
+    const self = this;
 
-    player.ready(handler);
-
-    // player.on("error", this.onError.bind(this, player));
+    beforeNextRender(this, function() {
+      const player = videojs(id);
+      const handler = BoltVideo.handlePlayerReady.bind(player, self);
+      player.ready(handler);
+    });
   }
 
   initVideo(id) {
-    bc(this.querySelector(`#${id}`), {
-      controlBar: {
-        fullscreenToggle: !this.props.hideFullScreenButton,
-      },
-    });
+    const self = this;
 
-    this.initVideoJS(id);
+    beforeNextRender(this, function() {
+      bc(self.querySelector(`#${id}`), {
+        controlBar: {
+          fullscreenToggle: !self.props.hideFullScreenButton,
+        },
+      });
+      self.initVideoJS(id);
+    });
   }
 
   init() {
-    if (window.bc && window.videojs) {
-      this.initVideo(this.state.id);
-    } else {
-      BoltVideo.players.push(this);
-    }
+    const self = this;
+
+    beforeNextRender(this, function() {
+      if (window.bc && window.videojs) {
+        self.initVideo(self.state.id);
+      } else {
+        BoltVideo.players.push(self);
+      }
+    });
   }
 
   play() {
@@ -711,7 +713,6 @@ class BoltVideo extends withPreact() {
   }
 }
 
-// BoltVideo.globalErrors = [];
-//BoltVideo.props = defaults;
-
 export default BoltVideo;
+
+export { BoltVideo, BoltVideoMeta };

@@ -1,108 +1,148 @@
-{% set schema = bolt.data.components['@bolt-components-share'].schema %}
+{% set schema = bolt.data.components["@bolt-components-share"].schema %}
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-share'].schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
-{% set copyShare = copy is sameas(false) ? false : (copy is null ? true : copy) %}
-{% set visible = visibility is sameas(false) ? false : (visibility is null ? true : visibility) %}
-{% set isFlat = inline is sameas(false) ? false : (inline is null ? false : inline) %}
+{# DEPRECATED. Prop has been renamed. #}
+{% if copyToClipboard %}
+  {% set copy_to_clipboard = copyToClipboard %}
+{% endif %}
+
+{# DEPRECATED. Button version has been removed so this prop is no longer needed. #}
+{% if inline %}
+  {% set inline = true %}
+{% endif %}
+
+{# Variables #}
+{% set base_class = "c-bolt-share" %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set inner_attributes = create_attribute({}) %}
+
+{# Set up checks to validate that the component's prop values are allowed, based on the component's schema. #}
+{% set size_options = schema.properties.size.enum %}
+{% set opacity_options = schema.properties.opacity.enum %}
+
+{# Check that the component's current prop values are valid. If not, default to the schema default #}
+{% set size = size in size_options ? size : schema.properties.size.default %}
+{% set opacity = opacity in opacity_options ? opacity : schema.properties.opacity.default %}
+
 {# Default text can't be pulled from the schema because it must be translatable. #}
 {% set text = text | default("Share this page"|t) %}
 
-
-
+{# Items #}
 {% set items = [] %}
 
-{# Share inline #}
-{% if isFlat is sameas(true) %}
-  {% set items = items|merge([include("@bolt-components-headline/text.twig", {
-    text: text,
-    weight: 'bold',
-    transform: 'uppercase',
-    size: 'small',
-    attributes: create_attribute(attributes|default({})).addClass('u-bolt-color-gray-dark c-bolt-share--inline-heading')
-  })]) %}
-{% endif %}
+{% set inline_label %}
+  <span class="{{ "#{base_class}__label #{base_class}__label--#{size}" }}">{{ text }}</span>
+{% endset %}
+
+{% set items = items|merge([inline_label]) %}
 
 {% for source in sources %}
-  {% set sourceTarget = '_blank' %}
-
-  {% if 'facebook' == source.name %}
-    {% set sourceName = 'Facebook'|t %}
-    {% set sourceIcon = 'facebook-solid' %}
-  {% elseif 'twitter' == source.name  %}
-    {% set sourceName = 'Twitter'|t %}
-    {% set sourceIcon = 'twitter' %}
-  {% elseif 'linkedin' == source.name  %}
-    {% set sourceName = 'LinkedIn'|t %}
-    {% set sourceIcon = 'linkedin' %}
-  {% elseif 'email' == source.name  %}
-    {% set sourceName = 'Email'|t %}
-    {% set sourceIcon = 'email' %}
-    {% set sourceTarget = '_self' %}
+  {% if "facebook" == source.name %}
+    {% set source_name = "Facebook"|t %}
+    {% set source_icon = "facebook-solid" %}
+  {% elseif "twitter" == source.name  %}
+    {% set source_name = "Twitter"|t %}
+    {% set source_icon = "twitter" %}
+  {% elseif "linkedin" == source.name  %}
+    {% set source_name = "LinkedIn"|t %}
+    {% set source_icon = "linkedin" %}
+  {% elseif "email" == source.name  %}
+    {% set source_name = "Email"|t %}
+    {% set source_icon = "email" %}
   {% else %}
-    {% set sourceName = false %}
+    {% set source_name = false %}
   {% endif %}
 
-  {% if sourceName %}
-    {% set items = items|merge([include("@bolt-components-link/link.twig", {
-      text: sourceName,
-      url: source.url,
-      icon: {
-        name: sourceIcon,
-        position: "before",
-        size: 'medium'
-      },
-      attributes: create_attribute(attributes|default({})).addClass('js-bolt-share__'~source.name).setAttribute('target',sourceTarget)
-    })]) %}
+  {% if source_name %}
+    {% set source_items %}
+      <a class="{{ "c-bolt-share__link js-bolt-share__link--#{source.name}" }}" href="{{ source.url }}" target="_blank">
+        {% include "@bolt-components-icon/icon.twig" with {
+          name: source_icon,
+          size: size
+        } only %}
+        <span class="c-bolt-share__link-text">
+          {{ source_name }}
+        </span>
+      </a>
+    {% endset %}
+    {% set items = items|merge([source_items]) %}
   {% endif %}
 {% endfor %}
 
-{% if copyShare %}
-  {% set items = items|merge([include("@bolt-components-copy-to-clipboard/copy-to-clipboard.twig", {
-    url: "http://bolt-design-system.com"
-  })]) %}
+{% if copy_to_clipboard %}
+  {% set trigger_text = copy_to_clipboard.trigger_text | default("Copy share link"|t) %}
+  {% set confirmation_text = "Copied!"|t %}
+  {% set text_to_copy = copy_to_clipboard.text_to_copy %}
+
+  {# Custom content is used here because the icon size and text styles are all different than the defaults from Copy to Clipboard. #}
+  {% set custom_trigger %}
+    <span class="c-bolt-share__link">
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "asset-link",
+        size: size,
+      } only %}
+      <span class="c-bolt-share__link-text">
+        {{ trigger_text }}
+      </span>
+    </span>
+  {% endset %}
+
+  {% set custom_transition %}
+    <span class="c-bolt-share__link">
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "refresh",
+        size: size,
+        attributes: {
+          class: "c-bolt-share__copy-animation"
+        }
+      } only %}
+    </span>
+  {% endset %}
+
+  {% set custom_confirmation %}
+    <div class="c-bolt-share__link">
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "check",
+        size: size,
+      } only %}
+      <span class="c-bolt-share__link-text">
+        {{ confirmation_text }}
+      </span>
+    </div>
+  {% endset %}
+
+  {% set copy_to_clipboard_include %}
+    {% include "@bolt-components-copy-to-clipboard/copy-to-clipboard.twig" with {
+      text_to_copy: text_to_copy,
+      custom_trigger: custom_trigger,
+      custom_transition: custom_transition,
+      custom_confirmation: custom_confirmation,
+    } only %}
+  {% endset %}
+
+  {% set items = items|merge([copy_to_clipboard_include]) %}
 {% endif %}
 
-{% set attributes = create_attribute(attributes|default({})) %}
-{% set classes = [
-  'c-bolt-share',
-  visibility is sameas(false) ? 'c-bolt-share--hidden',
-  isFlat is sameas(false) ? 'c-bolt-share--normal-layout' : 'c-bolt-share--inline-layout'
-] %}
+{# Share component's custom element wrapper. #}
+<bolt-share
+  {% if size %} size="{{ size }}" {% endif %}
+  {% if opacity %} opacity="{{ opacity }}" {% endif %}
+  {{ attributes }}
+>
+  {# Array of classes based on the defined + default props. #}
+  {% set classes = [
+    base_class,
+    opacity in opacity_options ? "#{base_class}--opacity-#{opacity}" : "",
+  ] %}
 
-{# Share via button #}
-<bolt-share>
-  <div {{ attributes.addClass(classes) }}>
-    {% if isFlat is sameas(false)  %}
-      {% include "@bolt-components-tooltip/tooltip.twig" with {
-        trigger: {
-          type: "button",
-          text: text,
-          transform: "uppercase",
-          icon: {
-            name: "share",
-            size: "medium"
-          },
-          toggle: {
-            text: "Close"|t,
-            name: "close-solid"
-          }
-        },
-        content: include ("@bolt-components-block-list/block-list.twig", {
-          "items" : items
-        }),
-        position: "up",
-        noWrap: true,
-        spacing: "none",
-        attributes: create_attribute(attributes|default({})).setAttribute('count',items|length)
-      } only %}
-    {% else %}
-      {% include "@bolt-components-block-list/block-list.twig" with {
-        items : items
-      } only %}
-    {% endif %}
+  <div {{ inner_attributes.addClass(classes) }}>
+    {% include "@bolt-components-list/list.twig" with {
+      display: "inline",
+      spacing: size == "small" ? "xsmall" : "small",
+      items: items
+    } only %}
   </div>
 </bolt-share>
-

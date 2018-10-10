@@ -28,14 +28,18 @@ class TwigFunctions {
 
   public static function fileExists() {
     return new Twig_SimpleFunction('fileExists', function(\Twig_Environment $env, $context, $path) {
-      $full_path = is_file($path) ? $path : Bolt\Utils::optionallyResolveTwigPath($env, $path);
-      // $file_data = $self::getData($full_path);
+      $result = '';
 
-      if (file_exists($full_path)) {
-        return true;
-      } else {
-        return false;
+      try {
+        $full_path = is_file($path) ? $path : Bolt\Utils::optionallyResolveTwigPath($env, $path);
+
+        if (file_exists($full_path)) {
+          $result = true;
+        }
+      } catch (\Exception $e) {
+        $result = false;
       }
+      return $result;
     }, [
       'needs_environment' => true,
       'needs_context' => true,

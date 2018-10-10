@@ -1,5 +1,5 @@
+const { render } = require('@bolt/twig-renderer');
 const chalk = require('chalk');
-const childProcess = require('child_process');
 const path = require('path');
 const { promisify } = require('util');
 const fs = require('fs');
@@ -15,14 +15,12 @@ const debounce = require('lodash.debounce');
 const fm = require('front-matter');
 const ora = require('ora');
 const marked = require('marked');
-const express = require('express');
 const timer = require('../utils/timer');
 const manifest = require('../utils/manifest');
 const { getConfig } = require('../utils/config-store');
 const log = require('../utils/log');
 const events = require('../utils/events');
 const sh = require('../utils/sh');
-const { getPort } = require('../utils/get-port');
 let config;
 
 /**
@@ -86,7 +84,11 @@ async function getPage(file) {
 async function getPages(srcDir) {
   config = config || (await getConfig());
   /** @type Array<String> */
-  const allPaths = await globby(path.join(srcDir, '**/*.{md,html}'));
+  const allPaths = await globby([
+    path.join(srcDir, '**/*.{md,html}'),
+    '!**/_*/**/*.{md,html}',
+    '!**/_*.{md,html}',
+  ]);
 
   return Promise.all(allPaths.map(getPage)).then(pages => {
     if (config.verbosity > 4) {
@@ -112,7 +114,12 @@ async function getPages(srcDir) {
  */
 async function getNestedPages(folder) {
   config = config || (await getConfig());
-  const items = await readdir(folder);
+
+  const items = await globby(['*', '!_*'], {
+    cwd: folder,
+    onlyFiles: false,
+  });
+
   return Promise.all(
     items.map(async item => {
       const fullPath = path.join(folder, item);
@@ -177,58 +184,34 @@ async function compile(exitOnError = true) {
     spinner = ora(startMessage).start();
   }
 
-  const portNumber = await getPort();
   const pages = await getPages(config.srcDir);
   const site = await getSiteData(pages);
 
-  const app = express();
-  const server = app.listen(portNumber);
-
-  // log.dim(`Express running on port: ${portNumber}`);
-
-  // Walk through all available pages to set up data to respond with (@todo: iterate on this -- temp solution to get Travis builds back up and running!)
-  pages.map(page => {
-    const url = page.url;
-    app.get(`/${url}`, function(req, res) {
-      const data = {
-        page,
-        site,
-      };
-      res.send(data);
-    });
-  });
-
   return Promise.all(
     pages.map(async page => {
-      const url = page.url;
-
-      // the page we are requesting data for
-      const pageArg = escapeNestedSingleQuotes(JSON.stringify(url));
-
       const layout = page.meta.layout ? page.meta.layout : 'default';
-      const output = await sh(
-        'php',
-        [
-          '-d memory_limit=4048M',
-          'renderTwig.php',
-          `${layout}.twig`,
-          `http://localhost:${portNumber}/${url}`,
-        ],
-        exitOnError,
-        false,
-        false,
-      );
+      const { ok, html, message } = await render(`@bolt/${layout}.twig`, {
+        page,
+        site,
+      });
+
+      if (!ok) {
+        if (exitOnError) {
+          log.errorAndExit(message);
+        } else {
+          log.error(message);
+        }
+      }
 
       const htmlFilePath = path.join(config.wwwDir, page.url);
       await mkdirp(path.dirname(htmlFilePath));
-      await writeFile(htmlFilePath, output);
+      await writeFile(htmlFilePath, html);
       if (config.verbosity > 3) {
         log.dim(`Wrote: ${htmlFilePath}`);
       }
     }),
   )
     .then(() => {
-      server.close();
       const endMessage = chalk.green(
         `Compiled Static Site in ${timer.end(startTime)}`,
       );
@@ -239,7 +222,6 @@ async function compile(exitOnError = true) {
       }
     })
     .catch(error => {
-      server.close();
       console.log(error);
       const endMessage = chalk.red(
         `Compiling Static Site failed in ${timer.end(startTime)}`,
@@ -255,7 +237,11 @@ const debouncedCompile = debounce(compileWithNoExit, 200);
 
 async function watch() {
   config = config || (await getConfig());
-  const watchedFiles = ['./templates/**/*.twig', './content/**/*.{md,html}'];
+  const watchedFiles = [
+    './templates/**/*.twig',
+    './pages/**/*.{md,html}',
+    './components/**/*.twig',
+  ];
 
   const watcher = chokidar.watch(watchedFiles, {
     ignoreInitial: true,

@@ -17,6 +17,14 @@
       title: Array of language-specific builds to generate. The 1st langugage specified is the default used for local development.
       default:
         - en
+    watch:
+      type: boolean
+      description: Configures internal tasks to watch for changes vs exiting when finished.
+      default: false
+    sourceMaps:
+      type: boolean
+      description: When set to true, generates sourcemaps when CSS and JS files are compiled.
+      default: true
     i18n:
       type: boolean
       description: Should the design system's assets be compiled for multiple languages? Automatically defaults to false for local dev, true for prod.
@@ -37,6 +45,21 @@
       title: Template paths being added
       default:
         - templates
+    copy:
+      type: array
+      description: The copy config is an array of objects specifying any files or folders that should get copied over to the build directory. Uses https://github.com/webpack-contrib/copy-webpack-plugin under the hood so any configuration options available there also apply here as well.
+      items:
+        type: object
+        properties:
+          from:
+            type: [string, object]
+            description: The files and/or directories to copy over
+          to:
+            type: [string, object]
+            description: The destination of the files being copied over
+          flatten:
+            type: boolean
+            description: Specify if any nested folders should get flattened down to a single level when copying over.
     globalData:
       type: object
       properties:
@@ -61,6 +84,9 @@
       type: number
       title: Desired port for PHP Rendering Service
       default: 8087
+    alterTwigEnv:
+      type: array
+      description: Extends and alters the PHP-based Twig environment used when compiling Twig templates. Used for adding custom Twig extensions + [configuring environment options](https://twig.symfony.com/doc/1.x/api.html#environment-options). Passed directly to the @basalt/twig-renderer config option of same name.
     srcDir:
       type: string
       title: Source Directory
@@ -173,6 +199,9 @@
         - none
         - console
         - cli
+    configFileUsed:
+      type: string
+      description: The filepath to the `.boltrc` file used to load config. Programatically added to config.
 
   definitions:
     components:

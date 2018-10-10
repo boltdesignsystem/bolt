@@ -6,9 +6,9 @@
 
 $bolt-navlink-bg-color: currentColor;
 $bolt-navlink-bg-border-radius: $bolt-border-radius;
-$bolt-navlink-bg-transition-timing: $bolt-transition-timing*4;
+$bolt-navlink-bg-transition-timing: $bolt-transition-timing * 4;
 $bolt-navlink-text-transition: $bolt-transition;
-
+$bolt-navbar-xsmall-bp: 420px; // Slightly increase the default 400px xsmall breakpoint to be better optimized for larger plus-sized mobile devices -- value shared by the bolt-navbar, bolt-nav-priority, and bolt-navlink components
 
 // Navlink Component
 bolt-navlink {
@@ -21,16 +21,22 @@ bolt-navlink {
 
 .c-bolt-navlink {
   @include bolt-padding(small, squished);
+  @include bolt-padding-left(xsmall);
+  @include bolt-padding-right(xsmall);
+
   @include bolt-font-size(small);
   @include bolt-font-weight(semibold);
 
+  @include bolt-mq($bolt-navbar-xsmall-bp){
+    @include bolt-padding(small, squished);
+  }
+
   position: relative;
-  opacity: 0.90;
+  opacity: 0.9;
   transition: opacity $bolt-navlink-text-transition;
   position: relative;
-  transition: all .1s ease;
-  color: currentColor;
-  color: var(--bolt-theme-heading-link-default, inherit);
+  transition: all 0.1s ease;
+  color: bolt-theme(headline-link);
   // Added so that &:focus:not(:active) doesn't change the size of the band
   // @todo: we should consider making &:focus:not(:active) with thin dotted style a mixin
   // to share with nav-priority
@@ -38,16 +44,14 @@ bolt-navlink {
   border-style: dotted;
   border-radius: 3px;
   border-color: transparent;
-
+  text-decoration: none;
 
   &:active,
   &.is-active {
-    color: inherit;
-    color: var(--bolt-theme-text, inherit);
+    color: bolt-theme(headline-link);
     border-color: transparent;
     opacity: 1;
   }
-
 
   &:before {
     display: block;
@@ -73,10 +77,7 @@ bolt-navlink {
   &:hover,
   &.is-hover {
     &:before {
-      animation:
-        a-bolt-navlink-bg-hover
-        $bolt-navlink-bg-transition-timing
-        both;
+      animation: a-bolt-navlink-bg-hover $bolt-navlink-bg-transition-timing both;
     }
   }
 
@@ -87,11 +88,10 @@ bolt-navlink {
     }
   }
 
-    // works in chrome only
+  // works in chrome only
   &:focus:not(:active) {
     outline: none;
-    border-color: inherit;
-    border-color: var(--bolt-theme-primary,inherit);
+    border-color: bolt-theme(primary);
   }
 
   &.is-dropdown-link.is-active:after {
@@ -100,12 +100,26 @@ bolt-navlink {
     top: 6px;
     left: 0;
     bottom: 6px;
-    background-color: currentColor;
-    background-color: var(--bolt-theme-primary, inherit);
+    background-color: bolt-theme(primary);
     content: '';
   }
 }
 
+// Text and icon spacing
+.c-bolt-navlink__text + .c-bolt-navlink__icon {
+  @include bolt-margin-left(xxsmall);
+}
+
+.c-bolt-navlink__icon + .c-bolt-navlink__text {
+  @include bolt-margin-left(xxsmall);
+}
+
+// Icon styles
+.c-bolt-navlink__icon {
+  display: inline-block;
+  line-height: 1; // workaround so icons can be vertically aligned properly
+  vertical-align: baseline;
+}
 
 @keyframes a-bolt-navlink-bg-hover {
   0% {

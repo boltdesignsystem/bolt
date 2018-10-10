@@ -83,34 +83,6 @@
 }
 
 
-/**
-  * Helper functions for applying global color swatches stored in Sass Maps
-  */
-@function bolt-theme($prop, $opacity: null) {
-
-  $value: map-get-deep($bolt-themes, 'light', $prop);
-
-  @if $opacity == null {
-    $opacity: alpha($value);
-  }
-
-  @if alpha($value) != $opacity and $opacity != null {
-    @warn 'the original theme prop color opacity does not match up with the param. You need to create a new CSS variable with this opacity value pre-defined!';
-    @debug alpha($value);
-    @debug alpha($opacity);
-  }
-
-  @if ($value){
-    @if $opacity < 1 {
-      @return themify($prop, $opacity);
-    } @else {
-      @return themify($prop);
-    }
-  } @else {
-    @warn 'Warning! ' + $color + ' bolt-theme was not found...';
-    @return '';
-  }
-}
 
 
 // Grab the calculated value for a specific theme-prop name. Sparingly used when you need to manually assign a CSS variable color to a bit of UI due to inheritance / specificity issues.
@@ -120,35 +92,3 @@
 
 
 // Grab the calculated value for a specific theme-prop name. Sparingly used when you need to manually assign a CSS variable color to a bit of UI due to inheritance / specificity issues.
-@mixin bolt-themed-prop($propertyName, $themeProp, $fallback: null) {
-  @each $themeName, $themeOptions in $bolt-themes {
-    .t-bolt-#{$themeName} & {
-        $propertyValue: bolt-theme-prop-value($themeName, $themeProp);
-
-        $fallbackValue: null;
-
-        $contrast-tone: bolt-theme-contrast-tone($propertyValue);
-
-        // support 3 different kinds of fallbacks: single value, light vs dark value, and theme-specific value
-        @if ($fallback != null){
-          @if type-of($fallback) == map {
-            @if map-has-key($fallback, $themeName) {
-              $fallbackValue: map-get($fallback, $themeName);
-            } @else {
-              $fallbackValue: map-get($fallback, $contrast-tone);
-            }
-          } @else {
-            $fallbackValue: $fallback;
-          }
-        }
-
-        @if $fallbackValue != null {
-          #{$propertyName}: $propertyValue;
-          #{$propertyName}: var(--bolt-theme-#{$themeProp}, $fallbackValue);
-        } @else {
-          #{$propertyName}: $propertyValue;
-          #{$propertyName}: var(--bolt-theme-#{$themeProp});
-        }
-      }
-  }
-}

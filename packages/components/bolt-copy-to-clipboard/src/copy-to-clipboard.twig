@@ -1,73 +1,81 @@
+{% set schema = bolt.data.components["@bolt-components-copy-to-clipboard"].schema %}
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-copy-to-clipboard'].schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
-{% set prefix = "c-bolt-" %}
-{% set componentName = "copy-to-clipboard" %} {# @todo: refactor to custom web component ASAP #}
-{% set baseClass = prefix ~ componentName %}
-
+{# Variables #}
+{% set base_class = "c-bolt-copy-to-clipboard" %}
 {% set attributes = create_attribute(attributes|default({})) %}
+{% set inner_attributes = create_attribute({}) %}
 
-{% set defaultText = "Copy Link" %}
-{% set text = text | default(defaultText) %}
-{% set attributes = attributes.setAttribute("text", text) %}
+{# DEPRECATED. Use the custom_confirmation property instead if you need to change the confirmation text. #}
+{% set copiedText = copiedText | default("Copied!"|t) %}
 
-{% set defaultCopiedText = "Copied!" %}
-{% set copiedText = copiedText | default(defaultCopiedText) %}
-{% set attributes = attributes.setAttribute("copied-text", copiedText) %}
+{# DEPRECATED. Use custom_trigger, custom_transition, and custom_confirmation properties if you need to change icon size. #}
+{% set iconSize = iconSize | default(schema.properties.iconSize.default) %}
 
-{% set defaultIconSize = "medium" %}
-{% set iconSize = iconSize | default(defaultIconSize) %}
-{% set attributes = attributes.setAttribute("icon-size", iconSize) %}
-
+{# DEPRECATED. "url" has been renamed "text_to_copy" #}
 {% if url %}
-  {% set attributes = attributes.setAttribute("url", url) %}
+  {% set text_to_copy = url %}
 {% endif %}
 
+{# DEPRECATED. "text" has been renamed "trigger_text" #}
+{% if text %}
+  {% set trigger_text = text %}
+{% endif %}
 
+{% set trigger_text = trigger_text | default("Copy Link"|t) %}
 
-
-<bolt-copy-to-clipboard bolt-component>
-  <div class="{{ "#{baseClass}" }} js-bolt-copy-to-clipboard" {{ attributes.addClass(classes) }}>
-    <span class="{{ "#{baseClass}__trigger" }}">
-      {% include "@bolt-components-link/link.twig" with {
-        "text": text,
-        "url": url,
-        "icon": {
-          "name": "asset-link",
-          "position": "before",
-          "size": iconSize
-        },
-        "attributes": attributes.setAttribute("data-clipboard-text", url).setAttribute("target", "_blank").addClass("js-bolt-copy-to-clipboard__trigger")
-      } only %}
+{% set default_trigger %}
+  <div class="{{ "#{base_class}__action" }}">
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "asset-link",
+      position: "before",
+      size: iconSize
+    } only %}
+    <span class="{{ "#{base_class}__action-text" }}">
+      {{ trigger_text }}
     </span>
+  </div>
+{% endset %}
 
+{% set default_transition %}
+  <span class="{{ "#{base_class}__transition-animation" }}">
     {% include "@bolt-components-icon/icon.twig" with {
       "name": "refresh",
       "size": iconSize,
-      "attributes": {
-        "class": [
-          "#{baseClass}__spinner"
-        ]
-      }
     } only %}
+  </span>
+{% endset %}
 
-    <span class="{{ "#{baseClass}__confirmation" }}">
-      {% include "@bolt-components-link/link.twig" with {
-        "text": copiedText,
-        "url": url,
-        "icon": {
-          "name": "asset-link",
-          "position": "before",
-          "size": iconSize
-        },
-        "attributes": {
-          "class": [
-            "u-bolt-color-teal-dark",
-            "js-bolt-copy-to-clipboard__trigger"
-          ]
-        }
-      } only %}
-    </span>
+{% set default_confirmation %}
+  <div class="{{ "#{base_class}__info js-bolt-copy-to-clipboard__trigger" }}">
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "check",
+      position: "before",
+      size: iconSize
+    } only %}
+    {{ copiedText }}
   </div>
+{% endset %}
+
+{# Copy to clipboard component's custom element wrapper. #}
+<bolt-copy-to-clipboard {{ attributes }}>
+  {% set classes = [
+    base_class,
+    "js-bolt-copy-to-clipboard",
+  ] %}
+  <span {{ inner_attributes.addClass(classes) }}>
+    <button class="{{ "#{base_class}__trigger" }}" data-clipboard-text="{{ text_to_copy }}">
+      {{ custom_trigger|default(default_trigger) }}
+    </button>
+
+    <span class="{{ "#{base_class}__transition" }}">
+      {{ custom_transition|default(default_transition) }}
+    </span>
+
+    <span class="{{ "#{base_class}__confirmation" }}">
+      {{ custom_confirmation|default(default_confirmation) }}
+    </span>
+  </span>
 </bolt-copy-to-clipboard>

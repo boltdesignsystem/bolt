@@ -7,7 +7,7 @@ const config = {
   // Note: if lang is defined, the first item is currently the one used by default in the Pattern Lab build, pending further iterations on this!
   lang: ['en', 'ja'],
 
-  renderingService: true, // starts PHP service for rendering Twig templates
+  renderingService: false, // starts PHP service for rendering Twig templates
   openServerAtStart: false,
   // Environmental variable / preset to use
   env: 'pl',
@@ -29,10 +29,6 @@ const config = {
         /* Example of including additional component paths to include in the main @bolt namespace */
         // path.relative(process.cwd(), path.dirname(require.resolve('@bolt/components-sticky/package.json'))),
       ],
-    },
-    'pattern-lab': {
-      recursive: true,
-      paths: ['../../packages/uikit-workshop/src/html-twig'],
     },
     /* Example of including a new component namesapce config / overriding an existing config */
     // 'bolt-components-sticky': {
@@ -97,6 +93,7 @@ const config = {
       '@bolt/components-icon',
       '@bolt/components-image',
       '@bolt/components-link',
+      '@bolt/components-list',
       '@bolt/components-nav-indicator',
       '@bolt/components-nav-priority',
       '@bolt/components-navbar',
@@ -107,14 +104,17 @@ const config = {
       '@bolt/components-page-header',
       '@bolt/components-pagination',
       '@bolt/components-share',
+      '@bolt/components-search-filter',
       '@bolt/components-site',
       '@bolt/components-smooth-scroll',
       '@bolt/components-sticky',
+      '@bolt/components-table',
       '@bolt/components-teaser',
       '@bolt/components-text',
       '@bolt/components-tooltip',
       '@bolt/components-unordered-list',
       '@bolt/components-video',
+      '@bolt/components-grid',
       /**
        * note: resolving these paths isn't typically required when
        * the .boltrc config is run through the bolt CLI tool (ie.
@@ -135,15 +135,19 @@ const config = {
       //   scss: ./src/index.scss',
       //   js: './src/index.js',
       // },
-      '@bolt/components-critical-css-vars'
+      '@bolt/components-critical-fonts',
+      '@bolt/components-critical-css-vars',
     ],
   },
+  copy: [
+    {
+      from: `${path.dirname(
+        resolve.sync('@bolt/global/package.json'),
+      )}/favicons/bolt`,
+      to: '../www/pattern-lab/',
+      flatten: true,
+    },
+  ],
 };
-
-if (argv.prod) {
-  config.components.individual.push('@bolt/components-critical-fonts');
-} else {
-  config.components.global.push('@bolt/components-critical-fonts');
-}
 
 module.exports = config;

@@ -1,0 +1,170 @@
+<div class="o-bolt-wrapper u-bolt-padding-top-large u-bolt-padding-bottom-large">
+  {% grid "o-bolt-grid--center o-bolt-grid--large o-bolt-grid--matrix o-bolt-grid--middle u-bolt-margin-bottom-medium" %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small" %}
+      <p>The Navbar component's <code>full</code> width option allows the component to span the entire page / screen's width in size -- ideal for sticky nav and overall site navigation.</p>
+    {% endcell %}
+
+    {% cell "u-bolt-width-1/1" %}
+      {% include "@bolt-components-navbar/navbar.twig" with {
+        width: "full",
+        "title": {
+          "tag": "h2",
+          "text": "Title Text",
+          "icon": {
+            "name": "marketing-gray"
+          }
+        },
+        "links": [
+          {
+            "text": "Real-Time AI",
+            "url": "#!"
+          },
+          {
+            "text": "End-to-end Automation",
+            "url": "#!"
+          },
+          {
+            "text": "Journey-centric Delivery",
+            "url": "#!"
+          },
+          {
+            "text": "Low Code",
+            "url": "#!"
+          },
+          {
+            "text": "Multi-dimensional Power Long Title",
+            "url": "#!"
+          },
+          {
+            "text": "Cloud Choice",
+            "url": "#!"
+          }
+        ]
+      } %}
+    {% endcell %}
+
+    {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small" %}
+      <p>This <code>full</code> config option for the Navbar component can be combined with the other config options available such as <code>center</code>.</p>
+    {% endcell %}
+
+    {% cell "u-bolt-width-1/1" %}
+      {% include "@bolt-components-navbar/navbar.twig" with {
+        width: "full",
+        center: true,
+        "title": {
+          "tag": "h2",
+          "text": "Title Text",
+          "icon": {
+            "name": "marketing-gray"
+          }
+        },
+        "links": [
+          {
+            "text": "Real-Time AI",
+            "url": "#!"
+          },
+          {
+            "text": "End-to-end Automation",
+            "url": "#!"
+          },
+          {
+            "text": "Journey-centric Delivery",
+            "url": "#!"
+          },
+          {
+            "text": "Low Code",
+            "url": "#!"
+          },
+          {
+            "text": "Multi-dimensional Power Long Title",
+            "url": "#!"
+          },
+          {
+            "text": "Cloud Choice",
+            "url": "#!"
+          }
+        ]
+      } %}
+    {% endcell %}
+  {% endgrid %}
+
+  {% grid "o-bolt-grid--center o-bolt-grid--rev o-bolt-grid--large o-bolt-grid--matrix o-bolt-grid--middle" %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium u-bolt-width-2/3@large" %}
+      <p>The Navbar component's <code>auto</code> width option allows the component to be used in situations where it doesn't / shouldn't span the browser's entire screen-width in size (ex. in a sidebar or off-canvas nav)</p>
+    {% endcell %}
+
+    {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium u-bolt-width-1/3@large" %}
+      {% include "@bolt-components-navbar/navbar.twig" with {
+        width: "auto",
+        "title": {
+          "tag": "h2",
+          "text": "Title Text",
+          "icon": {
+            "name": "marketing-gray"
+          }
+        },
+        "links": [
+          {
+            "text": "Real-Time AI",
+            "url": "#!"
+          },
+          {
+            "text": "End-to-end Automation",
+            "url": "#!"
+          },
+          {
+            "text": "Journey-centric Delivery",
+            "url": "#!"
+          },
+          {
+            "text": "Low Code",
+            "url": "#!"
+          },
+          {
+            "text": "Multi-dimensional Power Long Title",
+            "url": "#!"
+          },
+          {
+            "text": "Cloud Choice",
+            "url": "#!"
+          }
+        ]
+      } %}
+    {% endcell %}
+
+    {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium u-bolt-width-3/5@large" %}
+      {% include "@bolt-components-navbar/navbar.twig" with {
+        width: "auto",
+        center: true,
+        "title": {
+          "tag": "h2",
+          "text": "Title Text",
+          "icon": {
+            "name": "marketing-gray"
+          }
+        },
+        "links": [
+          {
+            "text": "Item 1",
+            "url": "#!"
+          },
+          {
+            "text": "Item 2",
+            "url": "#!"
+          },
+          {
+            "text": "Item 3",
+            "url": "#!"
+          }
+        ]
+      } %}
+    {% endcell %}
+
+    {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium u-bolt-width-2/5@large" %}
+      <p>This provides maximum flexibility when coming up with creative solutions.</p>
+    {% endcell %}
+  {% endgrid %}
+</div>
+
+
+

@@ -1,17 +1,16 @@
 // HyperHTML Renderer ported to SkateJS
+import { hyper, wire, bind } from 'hyperhtml/cjs';
 import {
   withComponent,
-  withRenderer,
-  withUpdate,
-  shadow,
+  // shadow,
   props,
-} from 'skatejs';
-import { hyper, bind } from 'hyperhtml/cjs';
-import { hasNativeShadowDomSupport } from '../utils/environment';
-import { findParentTag } from '../utils/find-parent-tag';
+  hasNativeShadowDomSupport,
+} from '../utils';
 import { BoltBase } from './bolt-base';
 
-export function BoltComponent(Base = HTMLElement) {
+export { hyper as html, wire, bind as render } from 'hyperhtml/cjs';
+
+export function withHyperHtml(Base = HTMLElement) {
   return class extends withComponent(BoltBase(Base)) {
     static props = {
       onClick: props.string,
@@ -20,14 +19,11 @@ export function BoltComponent(Base = HTMLElement) {
 
     constructor(...args) {
       super(...args);
-      super.setupShadow();
-
-      this.hyper = hyper;
     }
 
     renderStyles(styles) {
       if (styles) {
-        return hyper.wire()`
+        return wire(this)`
           <style>${styles}</style>
         `;
       }
@@ -36,21 +32,21 @@ export function BoltComponent(Base = HTMLElement) {
     slot(name) {
       if (this.useShadow && hasNativeShadowDomSupport) {
         if (name === 'default') {
-          return hyper.wire(this)`
+          return wire(this)`
             <slot />
           `;
         } else {
-          return hyper.wire(this)`
+          return wire(this)`
             <slot name="${name}" />
           `;
         }
       } else {
         if (name === 'default') {
-          return hyper.wire(this)`
+          return wire(this)`
              ${this.slots.default}
           `;
         } else if (this.slots[name]) {
-          return hyper.wire(this)`
+          return wire(this)`
              ${this.slots[name]}
           `;
         } else {

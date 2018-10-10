@@ -1,0 +1,63 @@
+{% set schema = bolt.data.components["@bolt-components-list"].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# Variables #}
+{% set base_class = "c-bolt-list" %}
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set inner_attributes = create_attribute({}) %}
+
+{# Set up checks to validate that the component's prop values are allowed, based on the component's schema. #}
+{% set tag_options = schema.properties.tag.enum %}
+{% set display_options = schema.properties.display.enum %}
+{% set spacing_options = schema.properties.spacing.enum %}
+{% set separator_options = schema.properties.separator.enum %}
+{% set inset_options = schema.properties.inset.enum %}
+{% set align_options = schema.properties.align.enum %}
+{% set valign_options = schema.properties.valign.enum %}
+
+{# Check that the component's current prop values are valid. If not, default to the schema default #}
+{% set tag = tag in display_options ? tag : schema.properties.tag.default %}
+{% set display = display in display_options ? display : schema.properties.display.default %}
+{% set spacing = spacing in spacing_options ? spacing : schema.properties.spacing.default %}
+{% set separator = separator in separator_options ? separator : schema.properties.separator.default %}
+{% set inset = inset in spacing_options ? inset : schema.properties.inset.default %}
+{% set align = align in align_options ? align : schema.properties.align.default %}
+{% set valign = valign in valign_options ? valign : schema.properties.valign.default %}
+
+{# List component's custom element wrapper. #}
+<bolt-list
+  {% if tag %} tag="{{ tag }}" {% endif %}
+  {% if display %} display="{{ display }}" {% endif %}
+  {% if spacing %} spacing="{{ spacing }}" {% endif %}
+  {% if separator %} separator="{{ separator }}" {% endif %}
+  {% if inset %} inset {% endif %}
+  {% if align %} align="{{ align }}" {% endif %}
+  {% if valign %} valign="{{ valign }}" {% endif %}
+  {{ attributes }}
+>
+  {# This sets none values to not render anything. #}
+  {% set spacing = spacing == "none" ? false : spacing %}
+  {% set separator = separator == "none" ? false : separator %}
+
+  {# Array of classes based on the defined + default props. #}
+  {% set classes = [
+    base_class,
+    display in display_options ? "#{base_class}--display-#{display}" : "",
+    spacing in spacing_options ? "#{base_class}--spacing-#{spacing}" : "",
+    separator in separator_options ? "#{base_class}--separator-#{separator}" : "",
+    inset == true ? "#{base_class}--inset",
+    align in align_options ? "#{base_class}--align-#{align}" : "",
+    valign in valign_options ? "#{base_class}--valign-#{valign}" : "",
+  ] %}
+
+  <{{ tag }} {{ inner_attributes.addClass(classes) }}>
+    {% for item in items %}
+      <li class="{{ "#{base_class}__item" }}">
+        {{ item }}
+      </li>
+    {% endfor %}
+  </{{ tag }}>
+</bolt-list>

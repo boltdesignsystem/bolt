@@ -1,0 +1,10 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-search-filter/search-filter.twig" with {
+  "content": "Insert search filters here."
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "search-filter",
+  usage: usage
+} only %}

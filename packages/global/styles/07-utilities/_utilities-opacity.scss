@@ -24,3 +24,5 @@ $bolt-opacity-props: (0, .25, .50, .75, 1);
     @include bolt-opacity-utils(\@#{$breakpointName});
   }
 }
+
+@include export-data('opacity.bolt.json', $bolt-opacity-props);

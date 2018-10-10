@@ -2,8 +2,6 @@
 @mixin bolt-button-reset {
   @include bolt-padding(0);
   @include bolt-font-family(body);
-  border: none;
-  background: none;
 }
 
 @mixin bolt-button-raised() {
@@ -29,7 +27,6 @@
     }
   }
 }
-
 
 @mixin bolt-button {
   @include bolt-button-reset;
@@ -68,29 +65,6 @@
   }
 }
 
-// Temporary styles applied to links and buttons nested inside of the <bolt-button> component, prior to JS kicking in
-@mixin bolt-button-root(){
-  // height: 100%;
-  flex-grow: 1;
-  -webkit-appearance: none;
-  background-color: transparent;
-  border: 0;
-  padding: 0;
-  font-weight: inherit;
-  font-size: inherit;
-  font-family: inherit;
-  font: inherit;
-  line-height: inherit;
-  cursor: inherit;
-  color: inherit; // fix for black text browser default
-  display: inline-flex; // vertical alignment w/ icon only button
-  align-items: stretch; // valign inner content
-  flex-grow: 1;
-  justify-content: inherit;
-}
-
-
-
 /**
   * Button Colors / Types
   */
@@ -104,26 +78,25 @@
 
   &:hover,
   &.is-hover {
-    border-color: bolt-theme(primary-light);
-    color: bolt-theme(text-on-primary-light);
-    background-color: bolt-theme(primary-light);
+    border-color: bolt-theme(primary-lighten-15);
+    color: bolt-theme(text-on-primary-lighten-15);
+    background-color: bolt-theme(primary-lighten-15);
   }
 
   &:focus,
   &.is-focus {
-    border-color: bolt-theme(primary-dark);
-    background-color: bolt-theme(primary-dark);
-    color: bolt-theme(text-on-primary-dark);
+    border-color: bolt-theme(primary-darken-15);
+    background-color: bolt-theme(primary-darken-15);
+    color: bolt-theme(text-on-primary-darken-15);
   }
 
   &:active,
   &.is-active {
-    border-color: bolt-theme(primary-xdark);
-    color: bolt-theme(text-on-primary-xdark);
-    background-color: bolt-theme(primary-xdark);
+    border-color: bolt-theme(primary-darken-25);
+    color: bolt-theme(text-on-primary-darken-25);
+    background-color: bolt-theme(primary-darken-25);
   }
 }
-
 
 @mixin bolt-button-style--secondary() {
   &,
@@ -135,28 +108,35 @@
 
   &.is-hover,
   &:hover {
-    border-color: bolt-theme(secondary-dark);
-    color: bolt-theme(text-on-secondary-dark);
-    background-color: bolt-theme(secondary-dark);
+    border-color: bolt-theme(secondary-lighten-5);
+    color: bolt-theme(text-on-secondary-lighten-5);
+    background-color: bolt-theme(secondary-lighten-5);
   }
 
   &:focus,
   &.is-focus {
-    border-color: bolt-theme(secondary-xdark);
-    color: bolt-theme(text-on-secondary-xdark);
-    background-color: bolt-theme(secondary-xdark);
+    border-color: bolt-theme(secondary-darken-3);
+    color: bolt-theme(text-on-secondary-darken-3);
+    background-color: bolt-theme(secondary-darken-3);
+  }
+
+  &:active,
+  &.is-active {
+    border-color: bolt-theme(secondary-darken-10);
+    color: bolt-theme(text-on-secondary-darken-10);
+    background-color: bolt-theme(secondary-darken-10);
   }
 }
 
-
-@mixin bolt-button-style--text(){
+@mixin bolt-button-style--text() {
   text-decoration: none;
   border-color: transparent;
   background-color: transparent;
   $bolt-theme-link-default: bolt-color(indigo, light);
 
   // Removing shadows for text buttons
-  &, &:before {
+  &,
+  &:before {
     border-radius: 0;
     box-shadow: none;
   }
@@ -180,9 +160,9 @@
   }
 }
 
-
 @mixin bolt-button-style--disabled() {
   cursor: not-allowed;
+
   &,
   &:visited,
   &:hover,
@@ -205,12 +185,19 @@
   }
 }
 
-
 // Teal-specific color. Needs refactoring to combine with primary button logic above ^
 @mixin bolt-button-color--teal {
   $button-background-color-default: bolt-color(indigo, light);
-  $button-background-color-hover: mix($bolt-global-button-hover-color, $button-background-color-default, $bolt-global-button-hover-mix);
-  $button-background-color-active: mix($bolt-global-button-active-color, $button-background-color-default, $bolt-global-button-active-mix);
+  $button-background-color-hover: mix(
+    $bolt-global-button-hover-color,
+    $button-background-color-default,
+    $bolt-global-button-hover-mix
+  );
+  $button-background-color-active: mix(
+    $bolt-global-button-active-color,
+    $button-background-color-default,
+    $bolt-global-button-active-mix
+  );
   &.c-bolt-button,
   &.c-bolt-button:visited {
     border-color: $button-background-color-default;
@@ -240,8 +227,6 @@
 // .c-bolt-button--error {
 //   @include bolt-button-color(error);
 // }
-
-
 
 @mixin bolt-button-style($style) {
   @if ($style == 'primary') {

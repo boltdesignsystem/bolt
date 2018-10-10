@@ -1,66 +1,77 @@
 @import './constants';
 @import './helpers';
 @import '../../02-tools/tools-text-contrast/tools-text-contrast';
-
-
-// $bolt-global-default-theme: 'xlight';
-$bolt-theme-disabled: bolt-color(gray, light);
-$bolt-theme-primary-light: bolt-color(indigo, light);
-$bolt-theme-primary-dark: bolt-color(yellow);
-$bolt-theme-secondary: bolt-color(white);
-$bolt-theme-secondary-dark: mix(bolt-color(black), $bolt-theme-secondary, 5%);
-$bolt-theme-secondary-xdark: mix(bolt-color(black), $bolt-theme-secondary, 15%);
-
+@import '../../02-tools/tools-map-recursive-merge/tools-map-recursive-merge';
 
 // pre-defined theming system values
 $bolt-theme-ui-colors: (
   light: (
-    headline: bolt-color(white),
-    headline-link: bolt-color(white),
-    text: bolt-color(white),
-    link: bolt-color(yellow),
-    text-disabled: bolt-color(gray),
-    border: rgba(bolt-color(white), 0.2),
+    border: bolt-color(white),
     contrast-filter: grayscale(100%) invert(100%) brightness(150%),
+    disabled: bolt-color(gray, light),
+    headline-link: bolt-color(white),
+    headline: bolt-color(white),
+    link: bolt-color(white),
+    primary: bolt-color(yellow),
+    secondary: bolt-color(white),
+    text-disabled: bolt-color(gray),
+    text: bolt-color(white),
+    neutral: bolt-color(gray),
+    brand: bolt-color(indigo),
   ),
   dark: (
-    headline: bolt-color(indigo),
-    headline-link: bolt-color(indigo, light),
-    text: bolt-color(black),
-    text-disabled: bolt-color(gray),
-    link: bolt-color(indigo, light),
-    border: rgba(bolt-color(indigo, dark), 0.2),
+    border: bolt-color(indigo, dark),
     contrast-filter: none,
+    disabled: bolt-color(gray, light),
+    headline-link: bolt-color(indigo, light),
+    headline: bolt-color(indigo),
+    link: bolt-color(indigo, light),
+    primary: bolt-color(indigo, light),
+    secondary: bolt-color(white),
+    text-disabled: bolt-color(gray),
+    text: bolt-color(black),
+    neutral: bolt-color(gray),
+    brand: bolt-color(indigo),
   ),
 ) !default;
 
+$bolt-theme-interactive-ui: (primary, secondary, brand) !default;
+
+$bolt-theme-interactive-shades: (
+  default: (
+    0,
+  ),
+  lighten: (
+    5,
+    10,
+    15,
+    20,
+    25,
+  ),
+  darken: (
+    3,
+    5,
+    10,
+    15,
+    20,
+    25,
+  ),
+) !default;
 
 $bolt-themes: (
   xlight: (
     background: bolt-color(white),
-    primary: $bolt-theme-primary-light,
   ),
   light: (
     background: bolt-color(gray, xlight),
-    primary: $bolt-theme-primary-light,
-  ),
-
-  // Deprecated -- will be removed in Bolt v2.0
-  medium: (
-    background: bolt-color(gray, xlight),
-    primary: $bolt-theme-primary-light,
   ),
   dark: (
     background: bolt-color(indigo),
-    primary: $bolt-theme-primary-dark,
   ),
   xdark: (
     background: bolt-color(indigo, dark),
-    primary: $bolt-theme-primary-dark,
   ),
 );
-
-
 
 // combine the two sets of theming system data and calculate the dynamic values
 @each $themeName, $themeProps in $bolt-themes {
@@ -69,72 +80,101 @@ $bolt-themes: (
   $lightOrDark: bolt-theme-contrast-tone($background);
   $bolt-ui-colors: map-get($bolt-theme-ui-colors, $lightOrDark);
 
-  $primary: map-get($themeProps, primary);
-
-  $primary-light: mix(bolt-color(white), $primary, 15%);
-  $primary-xlight: mix(bolt-color(white), $primary, 25%);
-
-  $primary-dark: mix(bolt-color(black), $primary, 15%);
-  $primary-xdark: mix(bolt-color(black), $primary, 25%);
-
   $bolt-themes: bolt-recursive-map-merge(
     $bolt-themes,
-      (
-        #{$themeName}: $bolt-ui-colors
-      )
+    (#{$themeName}: $bolt-ui-colors)
   );
 
-  $bolt-themes: bolt-recursive-map-merge(
-    $bolt-themes,
-    (
-      #{$themeName}: (
-        background: $background,
-        background-30: rgba($background, 0.3),
-        background-80: rgba($background, 0.8),
+  @each $element in $bolt-theme-interactive-ui {
+    @each $name, $shades in $bolt-theme-interactive-shades {
+      @each $shade in $shades {
+        $mixColor: bolt-color(black);
+        $displayName: '';
+        $displayShadeName: '';
+        $propValue: '';
 
-        disabled: $bolt-theme-disabled,
+        @if $name == 'lighten' {
+          $mixColor: bolt-color(white);
+        }
 
-        border: bolt-theme-ui-color(border, $background),
+        // add dash to name of property, unless it's the first "default" one
+        @if ($name != 'default') {
+          $displayName: '-#{$name}';
+        }
 
-        primary: $primary,
-        text-on-primary: bolt-text-contrast($primary),
+        // add dash to name of property, unless it's the first "default" one
+        @if ($shade != 0) {
+          $displayShadeName: '-#{$shade}';
+        }
 
-        primary-light: $primary-light,
-        text-on-primary-light: bolt-text-contrast($primary-light),
+        $propName: #{$element}#{$displayName}#{$displayShadeName};
+        $property: map-get-deep($bolt-themes, $themeName, $element);
 
-        primary-xlight: $primary-xlight,
-        text-on-primary-xlight: bolt-text-contrast($primary-xlight),
+        $propValue: mix($mixColor, $property, $shade);
 
-        primary-dark: $primary-dark,
-        text-on-primary-dark: bolt-text-contrast($primary-dark),
-
-        primary-xdark: $primary-xdark,
-        text-on-primary-xdark: bolt-text-contrast($primary-xdark),
-
-
-        secondary: $bolt-theme-secondary,
-        secondary-dark: $bolt-theme-secondary-dark,
-        secondary-xdark: $bolt-theme-secondary-xdark,
-
-        text-on-secondary: bolt-text-contrast($bolt-theme-secondary),
-        text-on-secondary-dark: bolt-text-contrast($bolt-theme-secondary-dark),
-        text-on-secondary-xdark: bolt-text-contrast($bolt-theme-secondary-xdark),
-      )
-    )
-  );
+        $bolt-themes: bolt-recursive-map-merge(
+          $bolt-themes,
+          (
+            #{$themeName}:
+              (
+                $propName: $propValue,
+                text-on-#{$propName}: bolt-text-contrast($propValue),
+              )
+          )
+        );
+      }
+    }
+  }
 }
-
 
 $bolt-themes-export: ();
 
 @each $themeName, $themeOptions in $bolt-themes {
   @each $themeOptionName, $themeOptionValue in $themeOptions {
-    @if type-of($themeOptionValue) == color {
-      $bolt-themes-export: map-set-deep($bolt-themes-export, ($themeName, $themeOptionName), rgba($themeOptionValue, 1));
+    @if type-of($themeOptionValue) ==
+      color and
+      type-of($themeOptionValue) !=
+      string
+    {
+      $newColor: rgba($themeOptionValue, 1);
+
+      $red: round(red($newColor));
+      $green: round(green($newColor));
+      $blue: round(blue($newColor));
+
+      $bolt-themes-export: map-set-deep(
+        $bolt-themes-export,
+        ($themeName,
+        $themeOptionName),
+        rgb($red, $green, $blue)
+      );
     }
   }
 }
 
-@include bolt-export-data($bolt-css-vars-json-data-export + '.json', $bolt-themes-export);
-@include bolt-export-data('theming.bolt.json', $bolt-themes);
+// NOTE: This function is depended upon by bolt-theme-prop-value (above) and thus must be defined in this file.
+@function bolt-theme-is-valid-theme-prop-value($style) {
+  @return type-of($style) == 'color' or $style == 'currentColor' or
+    str_slice($style, 1, 4) == 'var(';
+}
 
+@function bolt-is-shimmable-theme-prop($prop) {
+  $themePropVal: bolt-theme-prop-value('light', $prop);
+
+  @if $themePropVal and
+    type-of($themePropVal) ==
+    color and
+    type-of($themePropVal) !=
+    string
+  {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+@include bolt-export-data-sync(
+  $bolt-css-vars-json-data-export + '.json',
+  $bolt-themes-export
+);
+@include bolt-export-data-sync('theming.bolt.json', $bolt-themes);

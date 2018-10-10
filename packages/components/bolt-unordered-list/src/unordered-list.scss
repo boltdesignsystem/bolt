@@ -21,8 +21,6 @@
 
 // Local Variables
 $bolt-unordered-list-bullet-size: 8px; // Using px here because I need to make a perfect circle without subpixel issues.
-$bolt-unordered-list-bullet-bg-color: var(--bolt-theme-heading, currentColor); // TODO: refactor this after theming is done.
-
 
 // Register Custom Block Element
 @include bolt-custom-element('bolt-unordered-list', block, medium);
@@ -51,8 +49,7 @@ $bolt-unordered-list-bullet-bg-color: var(--bolt-theme-heading, currentColor); /
     height: $bolt-unordered-list-bullet-size;
     content: '';
     border-radius: $bolt-unordered-list-bullet-size;
-    background-color: currentColor;
-    background-color: $bolt-unordered-list-bullet-bg-color;
+    background-color: bolt-theme(headline);
     line-height: $bolt-unordered-list-bullet-size;
   }
 

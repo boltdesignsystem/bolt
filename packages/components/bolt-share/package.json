@@ -1,8 +1,27 @@
 {
   "name": "@bolt/components-share",
   "description": "Share Component in Bolt",
-  "version": "1.6.4",
+  "keywords": [
+    "bolt design system",
+    "bolt",
+    "css framework",
+    "design system",
+    "components"
+  ],
+  "version": "2.1.0",
   "homepage": "https://boltdesignsystem.com",
+  "maintainers": [
+    {
+      "name": "Salem Ghoweri",
+      "email": "me@salemghoweri.com",
+      "web": "https://github.com/sghoweri"
+    },
+    {
+      "name": "Mike Mai",
+      "email": "boss@mikemai.net",
+      "web": "http://mikemai.net/"
+    }
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -11,18 +30,16 @@
   "bugs": {
     "url": "https://github.com/bolt-design-system/bolt/issues"
   },
-  "schema": "share.schema.yml",
-  "style": "src/share.scss",
+  "style": "index.scss",
   "twig": "src/share.twig",
+  "schema": "share.schema.yml",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@bolt/components-block-list": "^1.6.4",
-    "@bolt/components-copy-to-clipboard": "^1.6.4",
-    "@bolt/components-icon": "^1.6.4",
-    "@bolt/components-link": "^1.6.4",
-    "@bolt/components-tooltip": "^1.6.4",
-    "@bolt/core": "^1.6.4"
-  }
+    "@bolt/components-copy-to-clipboard": "^2.1.0",
+    "@bolt/components-icon": "^2.1.0",
+    "@bolt/core": "^2.1.0"
+  },
+  "gitHead": "6d63b755d1f04fc643b53b51d3293865bbb59e2f"
 }
