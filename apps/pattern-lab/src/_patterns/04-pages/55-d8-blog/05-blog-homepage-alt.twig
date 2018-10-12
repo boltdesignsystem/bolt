@@ -98,68 +98,11 @@
       }
     } only %}
   {% endset %}
-  {% set featured_article_2 %}
-    {% include "@bolt/eyebrow.twig" with {
-      text: "Anthony Abdulla",
-      tag: "span",
-    } only %}
-    {% include "@bolt/headline.twig" with {
-      text: "7 reasons why you should embrace low-code development right now",
-      size: "xlarge",
-      tag: "h2",
-      attributes: {
-        class: "u-bolt-margin-bottom-xsmall",
-      }
-    } only %}
-    {% include "@bolt/link.twig" with {
-      text: "Continue Reading",
-      url: "http://pega.com",
-      tag: "a",
-      icon: {
-        name: "chevron-right",
-      }
-    } only %}
-  {% endset %}
-  {% set featured_article_3 %}
-    {% include "@bolt/eyebrow.twig" with {
-      text: "Kate Fowler",
-      tag: "span",
-    } only %}
-    {% include "@bolt/headline.twig" with {
-      text: "3 capabilities insurers need for outstanding customer engagement",
-      size: "xlarge",
-      tag: "h2",
-      attributes: {
-        class: "u-bolt-margin-bottom-xsmall",
-      }
-    } only %}
-    {% include "@bolt/link.twig" with {
-      text: "Continue Reading",
-      url: "http://pega.com",
-      tag: "a",
-      icon: {
-        name: "chevron-right",
-      }
-    } only %}
-  {% endset %}
 
   {% set hero_content %}
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large" %}
-      {% cell "u-bolt-width-12/12 u-bolt-width-10/12@large u-bolt-width-7/12@xlarge u-bolt-width-8/12@xxlarge" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-8/12@large" %}
         {{ featured_article_1 }}
-      {% endcell %}
-      {% cell "u-bolt-width-11/12 u-bolt-width-9/12@xsmall u-bolt-width-7/12@large u-bolt-width-4/12@xlarge u-bolt-width-4/12@xxlarge" %}
-        {% include "@bolt-components-list/list.twig" with {
-          spacing: "medium",
-          items: [
-            {
-              content: featured_article_2,
-            },
-            {
-              content: featured_article_3,
-            },
-          ]
-        } only %}
       {% endcell %}
     {% endgrid %}
   {% endset %}
@@ -170,13 +113,19 @@
     fullBleed: true,
     content: hero_content,
     background: {
-      shapeGroup: "B",
       fill: "gradient",
-      opacity: "light",
+      opacity: "heavy",
       focalPoint: {
         vertical: "center",
-        horizontal: "left"
+        horizontal: "right"
       },
+      contentItems: [
+        {
+          pattern: "image",
+          src: "/pattern-lab/images/content/backgrounds/background-smart-factories.jpg",
+          lazyload: false
+        }
+      ]
     }
   } only %}
   {# End Hero #}
@@ -483,24 +432,5 @@
     content: recent_articles,
   } only %}
   {# End Recent Articles #}
-
-  {# Subscribe #}
-  {% include "@bolt-components-band/band--flag.twig" with {
-    size: "small",
-    theme: "xdark",
-    eyebrow: {
-      text: "Pega Newsletter",
-    },
-    headline: {
-      text: "Stay Up to Date with Insights on Managing Change",
-      size: "large",
-    },
-    buttons: [
-      {
-        text: "Subscribe Now",
-        style: "primary"
-      }
-    ]
-  } %}
 
 {% endblock %}

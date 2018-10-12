@@ -56,7 +56,11 @@
   <{{ tag }} {{ inner_attributes.addClass(classes) }}>
     {% for item in items %}
       <li class="{{ "#{base_class}__item" }}">
-        {{ item }}
+        {% if item is iterable %}
+          {{ item.content | join }}
+        {% else %}
+          {{ item }}
+        {% endif %}
       </li>
     {% endfor %}
   </{{ tag }}>
