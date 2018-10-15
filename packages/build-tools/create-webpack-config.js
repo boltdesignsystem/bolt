@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const autoprefixer = require('autoprefixer');
@@ -405,6 +406,7 @@ async function createWebpackConfig(buildConfig) {
         filename: `[name]${langSuffix}.css`,
         chunkFilename: `[id]${langSuffix}.css`,
       }),
+      new HardSourceWebpackPlugin(),
       // @todo This needs to be in `config.dataDir`
       new ManifestPlugin({
         fileName: `bolt-webpack-manifest${langSuffix}.json`,
