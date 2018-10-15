@@ -45,7 +45,7 @@ export const polyfillLoader = new Promise(resolve => {
   // Based on https://github.com/webcomponents/webcomponentsjs/blob/master/entrypoints/webcomponents-hi-sd-ce-pf-index.js
   // Used in: IE 11
   if (polyfills.includes('lite')) {
-    Promise.all([import('document-register-element')]).then(() => {
+    Promise.all([import('@webcomponents/custom-elements')]).then(() => {
       resolve();
     });
   }
@@ -55,7 +55,7 @@ export const polyfillLoader = new Promise(resolve => {
   else if (polyfills.includes('sd') && polyfills.includes('ce')) {
     Promise.all([
       import('@webcomponents/shadydom/src/shadydom.js'),
-      import('document-register-element'),
+      import('@webcomponents/custom-elements'),
     ]).then(() => {
       resolve();
     });
@@ -80,7 +80,7 @@ export const polyfillLoader = new Promise(resolve => {
       },
     );
 
-    import('document-register-element').then(() => {
+    import('@webcomponents/custom-elements').then(() => {
       resolve();
     });
   }
