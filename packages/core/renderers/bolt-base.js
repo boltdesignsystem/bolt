@@ -56,9 +56,10 @@ export function BoltBase(Base = HTMLElement) {
       this.setupShadow();
 
       // @todo: rework to disable this extra check here (used for demoing before/after behavior), unless a specific feature flag is used (debug mode?)
-      if (!this.closest('.js-disable-extra-slot-check')) {
+      // @todo: Uncommment the following conditional when we have a debug flag or similar solution in place to re-enable test examples.
+      // if (!this.closest('.js-disable-extra-slot-check')) {
         this.setupSlots(); // hotfix to ensure heavily nested elements containing text-nodes like <replace-with-children> re-render consistently in browsers that don't natively support custom elements Fixes wwwd8-2678
-      }
+      // }
 
       if (hasNativeShadowDomSupport && this.useShadow === true) {
         return super.renderRoot || shadow(this);
