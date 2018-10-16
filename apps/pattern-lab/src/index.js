@@ -1,4 +1,4 @@
-import './_patterns/02-components/card/__tests__/';
+import './_patterns/02-components/card/__tests__';
 
 import 'core-js/modules/es6.string.starts-with';
 import 'iframe-resizer/js/iframeResizer.contentWindow.min.js';

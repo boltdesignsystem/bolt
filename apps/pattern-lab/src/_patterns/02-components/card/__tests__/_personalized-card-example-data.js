@@ -93,7 +93,6 @@ const clientRenderedExample = [
   },
 ];
 
-
 const serverRenderedExample = [
   {
     offer_id: 'NBA-74',
