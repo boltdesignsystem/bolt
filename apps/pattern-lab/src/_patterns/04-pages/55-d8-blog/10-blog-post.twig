@@ -1,0 +1,177 @@
+{# Article Data #}
+{% set article_title = "3 Capabilities Insurers Need for Outstanding Customer Engagement" %}
+{% set featured_quote = "The reality is, customer service is not about how many channels you have – it’s about how you service your customers across those channels." %}
+{% set featured_image = "/pattern-lab/images/content/promos/promo-blog-1.jpg" %}
+
+{# Placeholder Frame #}
+{% extends "@pl/_www-page-template.twig" %}
+{# End Placeholder Frame #}
+
+{% block main_content %}
+  {# Navigation #}
+  {% embed "@bolt-components-sticky/sticky.twig" %}
+    {% block sticky_content %}
+      {% include "@bolt-components-navbar/navbar.twig" with {
+        theme: "dark",
+        title: {
+          tag: "h1",
+          text: "Insights",
+          url: "http://pega.com/blog",
+          icon: {
+            name: "reporting",
+          }
+        },
+        links: [
+          {
+            text: "Analytics",
+            url: "#a",
+          },
+          {
+            text: "BPM",
+            url: "#a",
+          },
+          {
+            text: "Case Management",
+            url: "#a",
+          },
+          {
+            text: "Cloud",
+            url: "#a",
+          },
+          {
+            text: "CRM",
+            url: "#a",
+          },
+          {
+            text: "Customer Service",
+            url: "#a",
+          },
+          {
+            text: "Decision Management",
+            url: "#a",
+          },
+          {
+            text: "Internet of Things",
+            url: "#b",
+          },
+          {
+            text: "Marketing Automation",
+            url: "#b",
+          },
+          {
+            text: "Mobile",
+            url: "#c",
+          },
+          {
+            text: "Operations",
+            url: "#d",
+          },
+          {
+            text: "Sales Automation",
+            url: "#e",
+          },
+        ]
+      } only %}
+    {% endblock %}
+  {% endembed %}
+  {# End Navigation #}
+
+  {# Hero #}
+  {% set hero %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--middle" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
+        {% include "@bolt-components-image/image.twig" with {
+          src: featured_image,
+          alt: article_title,
+          lazyload: false,
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
+        {% include "@bolt-components-blockquote/blockquote.twig" with {
+          content: featured_quote,
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "xdark",
+    size: "medium",
+    content: hero,
+  } only %}
+  {# End Hero #}
+
+  {# Main Article #}
+  {% set main_article %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-10/12@small u-bolt-width-9/12@medium u-bolt-width-8/12@large" %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: article_title,
+          size: "xxxlarge",
+          tag: "h1",
+          align: "center",
+        } only %}
+
+        {% set share %}
+          {% include "@bolt-components-share/share.twig" with {
+            size: "small",
+            text: "Share",
+            sources: [
+              {
+                name: "facebook",
+                url: "https://www.facebook.com/sharer/sharer.php?u=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/02-components-action-blocks-05-action-blocks/02-components-action-blocks-05-action-blocks.html&amp;src=sdkpreparse"
+              },
+              {
+                name: "twitter",
+                url: "https://twitter.com/intent/tweet?url=https://bolt-design-system.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
+              },
+              {
+                name: "linkedin",
+                url: "https://www.linkedin.com/shareArticle?url=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/02-components-action-blocks-05-action-blocks/02-components-action-blocks-05-action-blocks.html"
+              },
+              {
+                name: "email",
+                url: "mailto:?&body=Sample%20Text%20--%20https%3A//bolt-design-system.com"
+              }
+            ],
+            copy_to_clipboard: {
+              text_to_copy: "http://pega.com"
+            }
+          } only %}
+        {% endset %}
+        {% include "@bolt-components-list/list.twig" with {
+          display: "inline",
+          align: "center",
+          separator: "solid",
+          items: [
+            "By Kate Fowler, Sep 25 2018",
+            share,
+          ]
+        } only %}
+        <h3>Digital technology is changing how clients engage with insurers.</h3>
+        <p>Remember the old days when customers could only conduct business either in person or over the phone? Now insurers need to be able to engage via the internet, mobile devices, email, call center, customer service agents, virtual voice assistants, chatbots, and whatever devices come next. Channels are evolving constantly and customers expect insurers to keep up. They expect you to meet them on their channel of choice and not the other way around.</p>
+        <p>Why are expectations so high? Insurance consumers, both retail and commercial, are already experiencing real-time service across multiple channels from their banks, retailers, suppliers, third-party information services, etc. They are looking at the insurance industry and asking, “Why can’t my insurer do this?” They are expecting an informed and personalized experience every time they engage with you.</p>
+        <h3>The reality is, customer service is not about how many channels you have – it’s about how you service your customers across those channels.</h3>
+        <p>Most insurers have implemented the ability to connect with clients and agents over many of the above-mentioned channels, but a customer’s experience often varies from channel to channel. If a customer switches channels, they likely have to start from scratch and must repeat their problem and information again. This can be frustrating for both the consumer and the insurance provider.</p>
+        <p>However, this problem can’t be fixed with the old method of just “throwing more people at it.” Instead, to provide real-time, contextual service that meets and exceeds customers' expectations, insurers should leverage strategic investments in digital technology that connect their channels and data, plus core functionality that's leveraged across all channels.</p>
+        <h3>There are three changes insurers need to make right now to create a proactive, digital, client-focused platform for customer engagement.</h3>
+        <p><strong>1. Empower 1-to-1 engagement with real-time AI:</strong> <a href="/topics/artificial-intelligence">Artificial Intelligence</a> can help provide the personalized engagement that insurance consumers value. By analyzing and applying machine learning to each customer’s historical, cross-channel data you will be able to anticipate client needs, provide proactive service, and grow the value of your relationship with each client. Two of the most effective applications of AI in the insurance industry are powering <a href="/products/pega-platform/intelligent-virtual-assistant">intelligent virtual assistants</a>, like chatbots, or providing guided <a href="/products/crm-applications/marketing/contextual-next-best-action">next best actions</a> to call center agents. AI helps insurers provide consistency with established internal policies and guidelines, and personalized service.</p>
+        <p><strong>2. Connect the front and back office with end-to-end robotic automation and case management: </strong>Bridge the gap between your back-end legacy systems and your digital front end by connecting data and workers using <a href="/topics/robotic-automation">robotic process automation (RPA) and case management</a>. RPA automates data integrations and eliminates the tedious search / copy / paste of a customer’s history across process silos that typically slow down productivity. Case management orchestrates this data with your processes, people, robots, and applications to adaptively manage customer journeys to completion.</p>
+        <p><strong>3. Unite experiences across channels:</strong> Engage with customers and maintain the context of a conversation across a variety of channels and devices by making omni-channel access a priority. This means integrating multi-channel systems with case management and re-using functionality across channels to create a single, <a href="/challenges/customer-service">connected conversation</a> with customers.</p>
+        <h3>Change doesn’t have to take multiple years or costs millions of dollars.</h3>
+        <p>These three changes can significantly increase the opportunity for consumer retention by providing a frictionless, digital consumer experience. To start, plan for and focus on <a href="/technology/maximize-outcomes">customer journeys and outcomes</a>. Then combine out-of-the-box product capabilities with an <a href="/topics/agile">agile methodology</a>.</p>
+        <p>Insurers are already realizing tremendous business value and <a href="/forrester-tei-customer-service">return on investment</a> from engaging with customers on their preferred channel, connecting conversations across digital ecosystems with case management, robotics, and end-to-end automation, and using AI as a guide for personalized, client-centric, outcome-driven experiences.</p>
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+
+  <article>
+    {% include "@bolt-components-band/band.twig" with {
+      theme: "xlight",
+      size: "medium",
+      content: main_article,
+    } only %}
+  </article>
+  {# End Main Article #}
+
+{% endblock %}
