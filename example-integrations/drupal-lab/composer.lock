@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "6891af25af4c879e3f3b9ea9ace3a4f9",
@@ -218,13 +218,13 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bolt-design-system/bolt_connect.git",
-                "reference": "0fddb28958a040b4d1cddf828cb8d8f2352fabd4"
+                "reference": "455a17c31a935db2eeecf5956159a4a1092d3a36"
             },
             "dist": {
-                "type": "path",
-                "url": "https://api.github.com/repos/bolt-design-system/bolt_connect/zipball/0fddb28958a040b4d1cddf828cb8d8f2352fabd4",
-                "reference": "0fddb28958a040b4d1cddf828cb8d8f2352fabd4",
-                "shasum": null
+                "type": "zip",
+                "url": "https://api.github.com/repos/bolt-design-system/bolt_connect/zipball/455a17c31a935db2eeecf5956159a4a1092d3a36",
+                "reference": "455a17c31a935db2eeecf5956159a4a1092d3a36",
+                "shasum": ""
             },
             "require": {
                 "basaltinc/twig-tools": "^1.4.0",
@@ -237,22 +237,24 @@
                     "Drupal\\bolt_connect\\": "src"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-2.0+"
             ],
             "authors": [
                 {
-                    "name": "Salem Ghoweri"
+                    "name": "Evan Lovely"
                 },
                 {
-                    "name": "Evan Lovely"
+                    "name": "Salem Ghoweri"
                 }
             ],
             "description": "Connect to Bolt Design System",
             "keywords": [
                 "drupal",
                 "twig"
-            ]
+            ],
+            "time": "2018-09-27T13:46:06+00:00"
         },
         {
             "name": "bolt-design-system/core-php",
@@ -260,13 +262,13 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bolt-design-system/core-php.git",
-                "reference": "dc8691ecb8003dbf31e08cf81f2c3036b4dd102f"
+                "reference": "32a48b6a0392d944b2189f291215b72ed0fcf1a9"
             },
             "dist": {
-                "type": "path",
-                "url": "https://api.github.com/repos/bolt-design-system/core-php/zipball/dc8691ecb8003dbf31e08cf81f2c3036b4dd102f",
-                "reference": "dc8691ecb8003dbf31e08cf81f2c3036b4dd102f",
-                "shasum": null
+                "type": "zip",
+                "url": "https://api.github.com/repos/bolt-design-system/core-php/zipball/32a48b6a0392d944b2189f291215b72ed0fcf1a9",
+                "reference": "32a48b6a0392d944b2189f291215b72ed0fcf1a9",
+                "shasum": ""
             },
             "require": {
                 "asm89/twig-lint": "^1.0",
@@ -288,11 +290,7 @@
                     "Bolt\\": "src/"
                 }
             },
-            "scripts": {
-                "test": [
-                    "phpunit --colors=always tests"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -305,7 +303,8 @@
                     "name": "Evan Lovely"
                 }
             ],
-            "description": "Core PHP functionality for Bolt"
+            "description": "Core PHP functionality for Bolt",
+            "time": "2018-09-27T13:46:06+00:00"
         },
         {
             "name": "chi-teck/drupal-code-generator",
@@ -2543,7 +2542,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.5",
-                    "datestamp": "1527243208",
+                    "datestamp": "1539588781",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6373,7 +6372,7 @@
                 "testing",
                 "web"
             ],
-            "time": "2018-06-24 20:08:51"
+            "time": "2018-06-24T20:08:51+00:00"
         },
         {
             "name": "behat/mink-browserkit-driver",
@@ -6492,12 +6491,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/minkphp/MinkSelenium2Driver.git",
-                "reference": "f4efaf52fed6a98bf6037a04f3fdef94dc0c8841"
+                "reference": "8684ee4e634db7abda9039ea53545f86fc1e105a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/minkphp/MinkSelenium2Driver/zipball/f4efaf52fed6a98bf6037a04f3fdef94dc0c8841",
-                "reference": "f4efaf52fed6a98bf6037a04f3fdef94dc0c8841",
+                "url": "https://api.github.com/repos/minkphp/MinkSelenium2Driver/zipball/8684ee4e634db7abda9039ea53545f86fc1e105a",
+                "reference": "8684ee4e634db7abda9039ea53545f86fc1e105a",
                 "shasum": ""
             },
             "require": {
@@ -6545,7 +6544,7 @@
                 "testing",
                 "webdriver"
             ],
-            "time": "2018-07-23 10:51:47"
+            "time": "2018-10-10T12:39:06+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -8446,17 +8445,6 @@
         {
             "name": "webflo/drupal-core-require-dev",
             "version": "8.6.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/webflo/drupal-core-require-dev.git",
-                "reference": "75f73363165a450e9a2f9f1ce3930f148184c964"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/webflo/drupal-core-require-dev/zipball/75f73363165a450e9a2f9f1ce3930f148184c964",
-                "reference": "75f73363165a450e9a2f9f1ce3930f148184c964",
-                "shasum": ""
-            },
             "require": {
                 "behat/mink": "1.7.x-dev",
                 "behat/mink-goutte-driver": "^1.2",
