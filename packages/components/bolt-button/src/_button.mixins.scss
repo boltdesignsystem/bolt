@@ -37,6 +37,9 @@
 
   display: inline-block;
   display: inline-flex;
+  align-items: center;
+  flex-grow: 1;
+  flex-direction: row;
   position: relative;
   cursor: pointer;
   text-decoration: none;
@@ -45,9 +48,6 @@
   border-width: $bolt-button-border-width;
   border-radius: $bolt-button-border-radius;
   transform: translate3d(0, 0, 0);
-
-  flex-grow: 1;
-  flex-direction: row; // Vertically center inner content
 
   &:before {
     display: block;
