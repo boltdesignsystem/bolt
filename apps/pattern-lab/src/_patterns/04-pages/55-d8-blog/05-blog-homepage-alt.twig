@@ -75,21 +75,21 @@
 
   {# Hero #}
   {% set featured_article_1 %}
-    {% include "@bolt/eyebrow.twig" with {
+    {% include "@bolt-components-headline/eyebrow.twig" with {
       text: "Gerry McCool",
       tag: "span",
     } only %}
-    {% include "@bolt/headline.twig" with {
+    {% include "@bolt-components-headline/headline.twig" with {
       text: "Why smart factories need digital prescriptive maintenance",
       size: "xxxlarge",
       tag: "h2",
     } only %}
-    {% include "@bolt/subheadline.twig" with {
+    {% include "@bolt-components-headline/subheadline.twig" with {
       text: "“Smart factories” or “factories of the future” are bringing fast-changing, disruptive technologies into manufacturing...",
       size: "xxlarge",
       tag: "h3",
     } only %}
-    {% include "@bolt/button.twig" with {
+    {% include "@bolt-components-button/button.twig" with {
       text: "Continue Reading",
       url: "http://pega.com",
       tag: "a",
@@ -107,7 +107,7 @@
     {% endgrid %}
   {% endset %}
 
-  {% include "@bolt/band.twig" with {
+  {% include "@bolt-components-band/band.twig" with {
     size: "medium",
     theme: "xdark",
     fullBleed: true,
@@ -132,7 +132,7 @@
 
   {# Recent Articles #}
   {% set recent_articles %}
-    {% include "@bolt/headline.twig" with {
+    {% include "@bolt-components-headline/headline.twig" with {
       text: "Recent Posts",
       size: "xlarge",
       tag: "h2",
@@ -140,7 +140,6 @@
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
       {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
         {% include "@bolt-components-card/card.twig" with {
-          url: "#!",
           contentItems: [
             {
               pattern: "image",
@@ -171,7 +170,6 @@
       {% endcell %}
       {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
         {% include "@bolt-components-card/card.twig" with {
-          url: "#!",
           contentItems: [
             {
               pattern: "image",
@@ -202,7 +200,6 @@
       {% endcell %}
       {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
         {% include "@bolt-components-card/card.twig" with {
-          url: "#!",
           contentItems: [
             {
               pattern: "image",
@@ -233,7 +230,6 @@
       {% endcell %}
       {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
         {% include "@bolt-components-card/card.twig" with {
-          url: "#!",
           contentItems: [
             {
               pattern: "image",
@@ -264,7 +260,6 @@
       {% endcell %}
       {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
         {% include "@bolt-components-card/card.twig" with {
-          url: "#!",
           contentItems: [
             {
               pattern: "image",
@@ -295,7 +290,6 @@
       {% endcell %}
       {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
         {% include "@bolt-components-card/card.twig" with {
-          url: "#!",
           contentItems: [
             {
               pattern: "image",
@@ -326,7 +320,6 @@
       {% endcell %}
       {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
         {% include "@bolt-components-card/card.twig" with {
-          url: "#!",
           contentItems: [
             {
               pattern: "image",
@@ -357,7 +350,6 @@
       {% endcell %}
       {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
         {% include "@bolt-components-card/card.twig" with {
-          url: "#!",
           contentItems: [
             {
               pattern: "image",
@@ -388,7 +380,6 @@
       {% endcell %}
       {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
         {% include "@bolt-components-card/card.twig" with {
-          url: "#!",
           contentItems: [
             {
               pattern: "image",
