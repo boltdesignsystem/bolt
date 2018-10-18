@@ -49,7 +49,20 @@ bolt-grid {
     }
 
     &[row-gutter='#{$name}'] {
-      grid-row-gap: bolt-v-spacing(#{$name});
+      // Use margin to replicate grid-row-gap when not natively supported by the browser.
+      &:before,
+      > bolt-grid-item {
+        @include bolt-margin-bottom(#{$name});
+
+        @supports (grid-row-gap: 1px) {
+          // When grid-row-gap is natively supported, reset this workaround.
+          @include bolt-margin-bottom(0);
+        }
+      }
+
+      @supports (grid-row-gap: 1px) {
+        grid-row-gap: bolt-v-spacing(#{$name});
+      }
     }
   }
 }
