@@ -1,9 +1,9 @@
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
+const chalk = require('chalk');
 const createWebpackConfig = require('../create-webpack-config');
 const { getConfig } = require('../utils/config-store');
 const { boltWebpackMessages } = require('../utils/webpack-helpers');
-const chalk = require('chalk');
 
 let boltBuildConfig;
 
@@ -73,7 +73,9 @@ async function server(customWebpackConfig) {
 
       const externalLabel = chalk.bold('External: ');
       const externalAddress = chalk.magenta(
-        `http://${boltBuildConfig.ip}:${boltBuildConfig.port}/${boltBuildConfig.startPath}`,
+        `http://${boltBuildConfig.ip}:${boltBuildConfig.port}/${
+          boltBuildConfig.startPath
+        }`,
       );
 
       const lineBreak = chalk.gray(
