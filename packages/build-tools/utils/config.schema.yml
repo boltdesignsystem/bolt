@@ -113,8 +113,20 @@
       title: Local server start path
       description: This is the `path/to/file.html` in `http://localhost:3000/path/to/file.html`
       default: '/'
+    ip:
+      type: string
+      title: IP address internally populated. Used for local dev testing w/ Webpack Dev Server.
     webpackDevServer:
-      type: boolean
+      type: boolean, object
+      default: false
+      description: WebPack Dev Server related config
+      items:
+        enabled:
+          type: boolean
+          description: Enables WebPack Dev Server.
+        watchedExtensions:
+          type: array
+          description: Array of file extensions in the wwwDir that Webpack Dev Server will watch and trigger an HMR update when changed or added.
     enableCache:
       default: false
       type: boolean

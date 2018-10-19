@@ -44,7 +44,7 @@ async function getServerConfig() {
 
   // https://www.browsersync.io/docs/options
   const serverConfig = {
-    open: false, // now handled by Webpack Serve
+    open: config.openServerAtStart ? config.openServerAtStart : false,
     startPath: config.startPath, // Since `/` doesn't do anything and we want to avoid double browserSync notifications from the very beginning
     port: config.port,
     host: '127.0.0.1',
@@ -55,10 +55,7 @@ async function getServerConfig() {
     notify: false, // Hide notifications till we come up with a less disruptive refresh UI
     reloadOnRestart: true,
     ui: false,
-    files: [config.wwwDir + '**/*.css', config.wwwDir + '**/*.html'],
-    snippetOptions: {
-      async: true,
-    },
+    files: [config.wwwDir + '**/*.html'],
   };
 
   if (config.renderingService) {

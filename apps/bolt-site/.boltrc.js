@@ -6,7 +6,10 @@ const config = {
   lang: ['en'],
   renderingService: false, // starts PHP service for rendering Twig templates
   openServerAtStart: false,
-  webpackDevServer: true,
+  webpackDevServer: {
+    enabled: true,
+    watchedExtensions: ['.html'],
+  },
   // Environmental variable / preset to use
   env: 'static',
   startPath: '/',
