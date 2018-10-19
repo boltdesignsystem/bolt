@@ -12,6 +12,7 @@ const resolve = require('resolve');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const globImporter = require('node-sass-glob-importer');
 const npmSass = require('npm-sass');
+const { BoltCache, getFileHash } = require('@bolt/build-tools/utils/cache');
 const { getConfig } = require('./utils/config-store');
 const SassDocPlugin = require('./plugins/sassdoc-webpack-plugin');
 
