@@ -27,6 +27,7 @@
 {% set align = align in align_options ? align : schema.properties.align.default %}
 {% set valign = valign in valign_options ? valign : schema.properties.valign.default %}
 
+{# Conditions for the semantic tag usage #}
 {% if tag == "div" or tag == "span" %}
   {% set item_tag = "span" %}
 {% else %}
