@@ -7,7 +7,6 @@ const log = require('../utils/log');
 const sh = require('../utils/sh');
 const { handleRequest } = require('../api');
 const server = browserSync.create();
-const webpackServeWaitpage = require('./webpack-serve-waitpage');
 let config;
 
 async function phpServer() {
