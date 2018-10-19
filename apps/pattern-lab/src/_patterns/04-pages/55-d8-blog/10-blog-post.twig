@@ -135,13 +135,18 @@
 
         {% include "@bolt-components-list/list.twig" with {
           display: "inline@small",
+          tag: "div",
           align: "center",
           separator: "solid",
           items: [
-            "By " ~ auhtor_name ~ ", " ~ article_date,
+            include("@bolt-components-headline/text.twig", {
+              text: "By " ~ auhtor_name ~ ", " ~ article_date,
+              align: "center",
+            }),
             include("@bolt-components-share/share.twig", {
               size: "small",
               text: "Share",
+              align: "center",
               sources: [
                 {
                   name: "facebook",

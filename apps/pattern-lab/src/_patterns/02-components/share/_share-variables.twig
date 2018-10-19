@@ -1,6 +1,5 @@
-{% set usage %}{% verbatim %}
-{% include "@bolt-components-share/share.twig" with {
-  sources: [
+{% set sources =
+  [
     {
       name: "facebook",
       url: "https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse"
@@ -17,14 +16,14 @@
       name: "email",
       url: "mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
     }
-  ],
-  copy_to_clipboard: {
-    text_to_copy: "https://boltdesignsystem.com"
-  },
-} only %}
-{% endverbatim %}{% endset %}
+  ]
+%}
 
-{% include "@utils/docs.twig" with {
-  componentName: "share",
-  usage: usage
-} only %}
+{% set copy_to_clipboard =
+  {
+    text_to_copy: "https://boltdesignsystem.com"
+  }
+%}
+
+{% block content %}
+{% endblock %}
