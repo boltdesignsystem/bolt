@@ -18,6 +18,7 @@ const config = {
   verbosity: 2,
   schemaErrorReporting: 'cli',
   webpackDevServer: true,
+  enableCache: true,
   extraTwigNamespaces: {
     bolt: {
       recursive: true,

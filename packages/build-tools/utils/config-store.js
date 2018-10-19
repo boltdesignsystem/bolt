@@ -31,6 +31,7 @@ async function getDefaultConfig() {
     return {
       port: ports[0],
       proxyPort: ports[1],
+      enableCache: configSchema.properties.enableCache.default,
       proxyHeader: configSchema.properties.proxyHeader.default,
       watch: configSchema.properties.watch.default,
       sourceMaps: configSchema.properties.sourceMaps.default,

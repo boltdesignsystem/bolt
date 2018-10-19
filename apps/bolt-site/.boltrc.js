@@ -13,6 +13,7 @@ const config = {
   buildDir: '../../www/build/',
   srcDir: './pages',
   wwwDir: '../../www',
+  enableCache: true,
   extraTwigNamespaces: {
     'bolt-assets': {
       recursive: true,

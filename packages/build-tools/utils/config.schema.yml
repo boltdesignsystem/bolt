@@ -115,8 +115,10 @@
       default: '/'
     webpackDevServer:
       type: boolean
+    enableCache:
       default: false
-      description: Enable the WebPack Dev Server.
+      type: boolean
+      description: Experimental new `@bolt/build-tools` option that caches the output from Webpack's build to significantly speed up the build tools after the first normal compile.
     dataDir:
       type: string
       description: This is the directory where generated json data files exist with information about the overall build. Defaults to `data` inside `buildDir`

@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const autoprefixer = require('autoprefixer');
@@ -335,11 +336,9 @@ async function createWebpackConfig(buildConfig) {
       chunkFilename: `[name]-bundle${langSuffix}-[chunkhash].js`,
       publicPath,
     },
-    cache: true,
     resolve: {
       mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
       extensions: ['.js', '.jsx', '.mjs', '.json', '.svg', '.scss'],
-      unsafeCache: true,
       alias: {
         react: 'preact-compat',
         'react-dom': 'preact-compat',
@@ -370,7 +369,6 @@ async function createWebpackConfig(buildConfig) {
           use: {
             loader: 'babel-loader',
             options: {
-              cacheDirectory: true,
               babelrc: false,
               presets: ['@bolt/babel-preset-bolt'],
             },
@@ -433,6 +431,26 @@ async function createWebpackConfig(buildConfig) {
     ],
   };
 
+  // Enable new experimental cache mode to significantly speed up the initial build times
+  if (config.enableCache && !config.prod) {
+    webpackConfig.plugins.push(
+      new HardSourceWebpackPlugin({
+        info: {
+          level: 'warn',
+        },
+        // Clean up large, old caches automatically.
+        cachePrune: {
+          // Caches younger than `maxAge` are not considered for deletion. They must
+          // be at least this (default: 2 days) old in milliseconds.
+          maxAge: 2 * 24 * 60 * 60 * 1000,
+          // All caches together must be larger than `sizeThreshold` before any
+          // caches will be deleted. Together they must be at least 300MB in size
+          sizeThreshold: 300 * 1024 * 1024,
+        },
+      }),
+    );
+  }
+
   if (config.prod) {
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
     // Config recommendation based off of https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1#f548
@@ -440,11 +458,8 @@ async function createWebpackConfig(buildConfig) {
       new UglifyJsPlugin({
         sourceMap: config.sourceMaps,
         parallel: true,
-        cache: true,
         uglifyOptions: {
-          cache: true,
           compress: true,
-
           mangle: true,
         },
       }),
