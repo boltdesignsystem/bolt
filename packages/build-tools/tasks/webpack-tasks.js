@@ -12,7 +12,6 @@ const log = require('../utils/log');
 const { getConfig } = require('../utils/config-store');
 const writeFile = promisify(fs.writeFile);
 const timer = require('../utils/timer');
-const webpackServeWaitpage = require('./webpack-serve-waitpage');
 
 let config;
 let cachedWebpackConfigs;
@@ -254,16 +253,6 @@ async function server(buildTime, customConfig) {
         compiler,
         config: webpackConfigs,
         add: (app, middleware, options) => {
-          app.use(
-            webpackServeWaitpage(options, {
-              title: 'Bolt Development Server',
-              theme: 'bolt',
-              proxyHeader: config.proxyHeader,
-              redirectPath: `http://localhost:${config.port}/${
-                config.startPath !== '/' ? config.startPath : ''
-              }`,
-            }),
-          );
 
           // WIP: working on tighter browsersync integration w/ Webpack
           // app.use(async (ctx, next) => {
