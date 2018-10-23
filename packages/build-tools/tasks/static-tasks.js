@@ -276,7 +276,6 @@ async function watch() {
 
   // list of all events: https://www.npmjs.com/package/chokidar#methods--events
   watcher.on('all', (event, path) => {
-    console.log(path);
     if (config.verbosity > 3) {
       console.log('Static Site watch event: ', event, path);
     }
