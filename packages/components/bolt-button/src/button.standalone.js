@@ -79,6 +79,7 @@ class BoltButton extends withHyperHtml() {
   }
 
   rendered() {
+    super.rendered();
     const root = this;
     const slots = this.slots;
 
