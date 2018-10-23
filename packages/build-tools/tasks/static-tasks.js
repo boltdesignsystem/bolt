@@ -23,6 +23,21 @@ const events = require('../utils/events');
 const sh = require('../utils/sh');
 let config;
 
+async function asyncConfig() {
+  if (config) {
+    return config;
+  } else {
+    config = Object.assign(
+      {
+        watchedExtensions: ['twig', 'md', 'html', 'yml', 'php'],
+      },
+      await getConfig(),
+    );
+
+    return config;
+  }
+}
+
 /**
  * Prep a JSON string for use in bash
  * @param {string} string
@@ -38,7 +53,7 @@ function escapeNestedSingleQuotes(string) {
  * @returns {Promise<{srcPath: string, distPath: string, meta: object, body: string}>} page - Page Data
  */
 async function getPage(file) {
-  config = config || (await getConfig());
+  config = config || (await asyncConfig());
   if (config.verbosity > 3) {
     log.dim(`Getting info for: ${file}`);
   }
@@ -82,7 +97,7 @@ async function getPage(file) {
  * @returns {Promise<object[]>} - An array of page data objects
  */
 async function getPages(srcDir) {
-  config = config || (await getConfig());
+  config = config || (await asyncConfig());
   /** @type Array<String> */
   const allPaths = await globby([
     path.join(srcDir, '**/*.{md,html}'),
@@ -113,7 +128,7 @@ async function getPages(srcDir) {
  * @returns {Promise<object[]>}
  */
 async function getNestedPages(folder) {
-  config = config || (await getConfig());
+  config = config || (await asyncConfig());
 
   const items = await globby(['*', '!_*'], {
     cwd: folder,
@@ -155,7 +170,7 @@ async function getNestedPages(folder) {
  * @returns {{pages}}
  */
 async function getSiteData(pages) {
-  config = config || (await getConfig());
+  config = config || (await asyncConfig());
   const nestedPages = await getNestedPages(config.srcDir);
   const site = {
     nestedPages,
@@ -174,7 +189,7 @@ async function getSiteData(pages) {
  * @returns {Promise<any[]>}
  */
 async function compile(exitOnError = true) {
-  config = config || (await getConfig());
+  config = config || (await asyncConfig());
   const startMessage = chalk.blue('Compiling Static Site...');
   const startTime = timer.start();
   let spinner;
@@ -185,32 +200,35 @@ async function compile(exitOnError = true) {
   }
 
   const pages = await getPages(config.srcDir);
-  const site = await getSiteData(pages);
 
-  return Promise.all(
-    pages.map(async page => {
-      const layout = page.meta.layout ? page.meta.layout : 'default';
-      const { ok, html, message } = await render(`@bolt/${layout}.twig`, {
-        page,
-        site,
-      });
+  const renderPages = pages.map(async page => {
+    const site = await getSiteData(pages);
 
-      if (!ok) {
-        if (exitOnError) {
-          log.errorAndExit(message);
-        } else {
-          log.error(message);
-        }
+    const layout = page.meta.layout ? page.meta.layout : 'default';
+    const { ok, html, message } = await render(`@bolt/${layout}.twig`, {
+      page,
+      site,
+    });
+
+    if (!ok) {
+      if (exitOnError) {
+        log.errorAndExit(message);
+      } else {
+        log.error(message);
       }
+    }
 
-      const htmlFilePath = path.join(config.wwwDir, page.url);
-      await mkdirp(path.dirname(htmlFilePath));
-      await writeFile(htmlFilePath, html);
-      if (config.verbosity > 3) {
-        log.dim(`Wrote: ${htmlFilePath}`);
-      }
-    }),
-  )
+    const htmlFilePath = path.join(config.wwwDir, page.url);
+    await mkdirp(path.dirname(htmlFilePath));
+    await writeFile(htmlFilePath, html);
+    if (config.verbosity > 3) {
+      log.dim(`Wrote: ${htmlFilePath}`);
+    }
+
+    return true;
+  });
+
+  Promise.all(renderPages)
     .then(() => {
       const endMessage = chalk.green(
         `Compiled Static Site in ${timer.end(startTime)}`,
@@ -233,28 +251,36 @@ async function compile(exitOnError = true) {
 function compileWithNoExit() {
   return compile(false);
 }
-const debouncedCompile = debounce(compileWithNoExit, 200);
 
 async function watch() {
-  config = config || (await getConfig());
-  const watchedFiles = [
-    './templates/**/*.twig',
-    './pages/**/*.{md,html}',
-    './components/**/*.twig',
-  ];
+  config = Object.assign(
+    {
+      watchedExtensions: ['.twig', '.md', '.html', '.yml', '.php'],
+    },
+    await getConfig(),
+  );
 
-  const watcher = chokidar.watch(watchedFiles, {
+  const watchedPaths = [];
+
+  // generate wwwDir globbed paths for each file extension being watched
+  config.watchedExtensions.forEach(ext => {
+    watchedPaths.push(path.join(process.cwd(), '**/*' + ext));
+  });
+
+  // The watch event ~ same engine gulp uses https://www.npmjs.com/package/chokidar
+  const watcher = chokidar.watch(watchedPaths, {
     ignoreInitial: true,
     cwd: process.cwd(),
-    ignore: ['**/node_modules/**', '**/vendor/**'],
+    ignored: ['**/node_modules/**', '**/vendor/**'],
   });
 
   // list of all events: https://www.npmjs.com/package/chokidar#methods--events
   watcher.on('all', (event, path) => {
+    console.log(path);
     if (config.verbosity > 3) {
       console.log('Static Site watch event: ', event, path);
     }
-    debouncedCompile();
+    compileWithNoExit();
   });
 }
 
