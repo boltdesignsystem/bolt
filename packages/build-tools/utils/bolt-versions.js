@@ -1,16 +1,13 @@
-#!/usr/bin/env node
-const url = require('url');
-const querystring = require('querystring');
-const { promisify } = require('util');
-const gitSemverTags = require('git-semver-tags');
-const promisifyGitTags = promisify(gitSemverTags);
 const fs = require('fs');
 const semver = require('semver');
-const urlExists = require('url-exists');
 const path = require('path');
+const ora = require('ora');
+const chalk = require('chalk');
+const checkLinks = require('check-links');
+const { gitSemverTags } = require('./git-semver-tags');
 const { getConfig } = require('./config-store');
 
-let tagUrls = [];
+const urlsToCheck = [];
 
 async function writeVersionDataToJson(versionData) {
   const config = await getConfig();
@@ -19,21 +16,6 @@ async function writeVersionDataToJson(versionData) {
   versionInfo.sort(function(a, b) {
     return semver.rcompare(a.label, b.label);
   });
-
-  //versionInfo = versionInfo.reverse();
-
-  // tagUrls.unshift({
-  //   label: 'Next Release',
-  //   value: 'https://master.boltdesignsystem.com',
-  //   type: 'option',
-  // });
-
-  const latestReleaseLabel = versionInfo[0].label;
-  const latestReleaseUrl = 'https://boltdesignsystem.com';
-
-  versionInfo[0].selected = true;
-  versionInfo[0].label = latestReleaseLabel;
-  versionInfo[0].url = latestReleaseUrl;
 
   fs.writeFile(
     path.join(process.cwd(), config.dataDir, '/bolt-releases.bolt.json'),
@@ -48,61 +30,64 @@ async function writeVersionDataToJson(versionData) {
 }
 
 async function gatherBoltVersions() {
-  try {
-    const tags = await promisifyGitTags();
+  const versionSpinner = ora(
+    chalk.blue('Gathering data on the latest Bolt Design System releases...'),
+  ).start();
+  const tags = await gitSemverTags();
 
-    return new Promise((resolve, reject) => {
-      function urlCallback(tagUrls) {
-        return resolve(tagUrls);
-      }
+  const tagUrls = [];
 
-      tags.forEach((tag, index, array) => {
-        let tagString = tag
-          .replace(/\//g, '-') // `/` => `-`
-          .replace('--', '-') // `--` => `-`
-          .replace(/\./g, '-'); // `.` => `-`
+  for (index = 0; index < tags.length; index++) {
+    let tag = tags[index];
+    let tagString = tag
+      .replace(/\//g, '-') // `/` => `-`
+      .replace('--', '-') // `--` => `-`
+      .replace(/\./g, '-'); // `.` => `-`
 
-        const newSiteUrl = `https://${tagString}.boltdesignsystem.com`;
-        const oldSiteUrl = `https://${tagString}.bolt-design-system.com`;
+    const newSiteUrl = `https://${tagString}.boltdesignsystem.com`;
+    const oldSiteUrl = `https://${tagString}.bolt-design-system.com`;
 
-        urlExists(newSiteUrl, function(err, exists) {
-          if (exists === true) {
-            tagUrls.push({
-              label: tag,
-              type: 'option',
-              value: newSiteUrl,
-            });
-
-            if (index === array.length - 1) {
-              urlCallback(tagUrls);
-            }
-          } else {
-            urlExists(oldSiteUrl, function(err, exists) {
-              if (exists) {
-                console.log('Old url:' + oldSiteUrl);
-                tagUrls.push({
-                  label: tag,
-                  type: 'option',
-                  value: oldSiteUrl,
-                });
-              }
-
-              if (index === array.length - 1) {
-                urlCallback(tagUrls);
-              }
-            });
-          }
-        });
-      });
-    });
-  } catch (error) {
-    console.log('Error');
-    console.error(error);
+    urlsToCheck.push(newSiteUrl);
+    urlsToCheck.push(oldSiteUrl);
   }
+
+  const results = await checkLinks(urlsToCheck);
+
+  for (index = 0; index < tags.length; index++) {
+    let tag = tags[index];
+    let tagString = tag
+      .replace(/\//g, '-') // `/` => `-`
+      .replace('--', '-') // `--` => `-`
+      .replace(/\./g, '-'); // `.` => `-`
+
+    const newSiteUrl = `https://${tagString}.boltdesignsystem.com`;
+    const oldSiteUrl = `https://${tagString}.bolt-design-system.com`;
+
+    if (results[newSiteUrl].status === 'alive') {
+      tagUrls.push({
+        label: tag,
+        type: 'option',
+        value: newSiteUrl,
+      });
+    } else if (results[oldSiteUrl].status === 'alive') {
+      tagUrls.push({
+        label: tag,
+        type: 'option',
+        value: oldSiteUrl,
+      });
+    }
+  }
+
+  versionSpinner.succeed(
+    chalk.green('Gathered data on the latest Bolt Design System releases!'),
+  );
+
+  return tagUrls;
 }
 
 async function getBoltVersions() {
-  return await gatherBoltVersions();
+  const versionsGathered = await gatherBoltVersions();
+  return versionsGathered;
 }
 
 async function writeBoltVersions() {
