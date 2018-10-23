@@ -1,18 +1,10 @@
-var versionSelector = document.querySelector('.js-bolt-version-selector');
+import '../bolt-select/bolt-select';
 
-if (window.location.hostname === 'localhost') {
-  var option = document.createElement('option');
-  option.text = 'Local';
-  option.value = window.location.href;
-  versionSelector.add(option, 0);
+const boltSelect = document.querySelector('bolt-select');
 
-  versionSelector.value = window.location.href;
-}
-
-versionSelector.addEventListener('change', function() {
-  var url = versionSelector.value;
+boltSelect.addEventListener('choice', function(e) {
+  var url = e.detail.choice.value;
   if (url && window.location.href !== url) {
     window.location = url; // redirect
   }
-  return false;
 });

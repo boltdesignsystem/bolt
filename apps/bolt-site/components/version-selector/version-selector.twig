@@ -1,16 +1,21 @@
 {% set options = bolt.data.boltReleases.options %}
 
 {% set children %}
-  {% include("@bolt-components-form/form-select.twig") with {
-    options: options,
-    attributes: {
-      class: [
-        "js-bolt-version-selector",
-        "c-bds-version-selector",
-        "u-bolt-padding-xsmall",
-      ]
-    },
-  } only %}
+  <bolt-select should-sort-items="true" item-select-text="" search-placeholder-value="ex. v2.0.0">
+    {% include("@bolt-components-form/form-select.twig") with {
+      options: options,
+      attributes: {
+        class: [
+          "js-bolt-version-selector",
+          "c-bds-version-selector",
+          "u-bolt-padding-top-xsmall",
+          "u-bolt-padding-left-small",
+          "u-bolt-padding-bottom-xsmall",
+          "u-bolt-padding-right-medium",
+        ]
+      },
+    } only %}
+  </bolt-select>
 {% endset %}
 
 {% include("@bolt-components-form/form-element.twig") with {
@@ -19,3 +24,4 @@
   },
   children: children,
 } only %}
+
