@@ -49,6 +49,8 @@
 
         {# merge together array of items with the content / band_content block so each item can get wrapped properly #}
         {% set items = items | default([]) %}
+
+        {# Note: using block('band_content') to check for emptiness can cause duplicate rendering issues and should be avoided.  #}
         {% if block_band_content is not empty %}
           {% set items = items | merge([{
             content: block_band_content,
