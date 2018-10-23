@@ -53,13 +53,13 @@ export function createSelectOptionData(options) {
   const selectOptions = Array.from(options);
   const newOptions = [];
 
-  selectOptions.forEach(function(option){
+  selectOptions.forEach(function(option) {
     const { value, selected, text } = option;
 
     newOptions.push({
       label: text || null,
       value: value || null,
-      selected: selected || false
+      selected: selected || false,
     });
   });
 
