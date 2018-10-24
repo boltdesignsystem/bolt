@@ -105,8 +105,9 @@ bolt-card {
 }
 
 .c-bolt-card__action {
-  position: relative;
   flex: 1;
+  position: relative;
+  white-space: nowrap;
   border-top-width: 1px;
 
   &:before {
@@ -117,5 +118,9 @@ bolt-card {
     height: 100%;
     content: '';
     background-color: $bolt-card-border-color;
+  }
+
+  > * {
+    height: 100%;
   }
 }
