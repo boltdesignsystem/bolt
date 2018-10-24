@@ -22,17 +22,23 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "homepage": "https://bolt-design-system.com",
+  "homepage": "https://boltdesignsystem.com",
   "license": "MIT",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-card",
-  "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "style": "src/card.scss",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bolt-design-system/bolt/"
+  },
+  "bugs": {
+    "url": "https://github.com/bolt-design-system/bolt/issues"
+  },
+  "style": "index.scss",
+  "twig": "src/card.twig",
+  "schema": "card.schema.yml",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
     "@bolt/core": "^2.1.4"
   },
-  "schema": "card.schema.yml",
   "gitHead": "8dd538d0bd2b00baeac2779570d00e27d23405db"
 }

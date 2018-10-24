@@ -25,32 +25,29 @@
         }
       } %}
         {% include "@bolt-components-card/card.twig" with {
-          contentItems: [
+          media: {
+            image: {
+              src: "/pattern-lab/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image alt.",
+            },
+          },
+          body: {
+            eyebrow: "This is an eyebrow",
+            headline: "This is a headline",
+            subheadline: "This is a subheadline",
+            paragraph: "This is a paragraph.",
+          },
+          actions: [
             {
-              pattern: "image",
-              src: "/pattern-lab/images/content/promos/promo-16x9-anthem.jpg",
-              alt: "Anthem Video",
-              lazyload: false,
+              text: "Internal",
+              url: "http://pega.com",
             },
             {
-              pattern: "eyebrow",
-              text: "Eyebrow"
+              text: "External",
+              url: "http://pega.com/pdn",
+              external: true,
             },
-            {
-              pattern: "headline",
-              tag: "h3",
-              size: "large",
-              text: "Headline"
-            },
-            {
-              pattern: "text",
-              text: "Body text. Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
-            },
-            {
-              pattern: "button",
-              text: "Button"
-            }
-          ]
+          ],
         } only %}
       {% endcell %}
       {% cell with {
@@ -62,24 +59,29 @@
         }
       } %}
         {% include "@bolt-components-card/card.twig" with {
-          contentItems: [
+          media: {
+            image: {
+              src: "/pattern-lab/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image alt.",
+            },
+          },
+          body: {
+            eyebrow: "This is an eyebrow",
+            headline: "This is a headline",
+            subheadline: "This is a subheadline",
+            paragraph: "This is a paragraph.",
+          },
+          actions: [
             {
-              pattern: "image",
-              src: "/pattern-lab/images/content/promos/promo-16x9-anthem.jpg",
-              alt: "Anthem Video",
-              lazyload: false,
+              text: "Internal",
+              url: "http://pega.com",
             },
             {
-              pattern: "headline",
-              tag: "h3",
-              size: "large",
-              text: "Remove Eyebrow and Button"
+              text: "External",
+              url: "http://pega.com/pdn",
+              external: true,
             },
-            {
-              pattern: "text",
-              text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
-            }
-          ]
+          ],
         } only %}
       {% endcell %}
       {% cell with {
@@ -91,18 +93,29 @@
         }
       } %}
         {% include "@bolt-components-card/card.twig" with {
-          contentItems: [
+          media: {
+            image: {
+              src: "/pattern-lab/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image alt.",
+            },
+          },
+          body: {
+            eyebrow: "This is an eyebrow",
+            headline: "This is a headline",
+            subheadline: "This is a subheadline",
+            paragraph: "This is a paragraph.",
+          },
+          actions: [
             {
-              pattern: "headline",
-              tag: "h3",
-              size: "large",
-              text: "Remove Image, Eyebrow, and Button"
+              text: "Internal",
+              url: "http://pega.com",
             },
             {
-              pattern: "text",
-              text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
-            }
-          ]
+              text: "External",
+              url: "http://pega.com/pdn",
+              external: true,
+            },
+          ],
         } only %}
       {% endcell %}
     {% endgrid %}
@@ -138,33 +151,29 @@
       } %}
         {% include "@bolt-components-card/card.twig" with {
           theme: "xlight",
-          contentItems: [
+          media: {
+            image: {
+              src: "/pattern-lab/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image alt.",
+            },
+          },
+          body: {
+            eyebrow: "This is an eyebrow",
+            headline: "This is a headline",
+            subheadline: "This is a subheadline",
+            paragraph: "This is a paragraph.",
+          },
+          actions: [
             {
-              pattern: "image",
-              src: "/pattern-lab/images/content/promos/promo-16x9-anthem.jpg",
-              alt: "Anthem Video",
-              lazyload: false,
+              text: "Internal",
+              url: "http://pega.com",
             },
             {
-              pattern: "eyebrow",
-              text: "Video"
+              text: "External",
+              url: "http://pega.com/pdn",
+              external: true,
             },
-            {
-              pattern: "headline",
-              tag: "h3",
-              size: "large",
-              text: "Anthem: Service Desktop"
-            },
-            {
-              pattern: "text",
-              text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
-            },
-            {
-              pattern: "button",
-              text: "Get the report",
-              url: "http://pega.com"
-            }
-          ]
+          ],
         } only %}
       {% endcell %}
       {% cell with {
@@ -177,38 +186,29 @@
       } %}
         {% include "@bolt-components-card/card.twig" with {
           theme: "dark",
-          contentItems: [
+          media: {
+            image: {
+              src: "/pattern-lab/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image alt.",
+            },
+          },
+          body: {
+            eyebrow: "This is an eyebrow",
+            headline: "This is a headline",
+            subheadline: "This is a subheadline",
+            paragraph: "This is a paragraph.",
+          },
+          actions: [
             {
-              pattern: "image",
-              src: "/pattern-lab/images/content/promos/promo-16x9-anthem.jpg",
-              alt: "Anthem Video",
-              lazyload: false,
+              text: "Internal",
+              url: "http://pega.com",
             },
             {
-              pattern: "eyebrow",
-              text: "Video"
+              text: "External",
+              url: "http://pega.com/pdn",
+              external: true,
             },
-            {
-              pattern: "headline",
-              tag: "h3",
-              size: "large",
-              text: "Anthem: Service Desktop"
-            },
-            {
-              pattern: "text",
-              text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
-            },
-            {
-              pattern: "button",
-              text: "Button 1",
-              url: "http://pega.com"
-            },
-            {
-              pattern: "button",
-              text: "Button 2",
-              url: "http://pega.com"
-            }
-          ]
+          ],
         } only %}
       {% endcell %}
       {% cell with {
@@ -221,33 +221,29 @@
       } %}
         {% include "@bolt-components-card/card.twig" with {
           theme: "xdark",
-          contentItems: [
+          media: {
+            image: {
+              src: "/pattern-lab/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image alt.",
+            },
+          },
+          body: {
+            eyebrow: "This is an eyebrow",
+            headline: "This is a headline",
+            subheadline: "This is a subheadline",
+            paragraph: "This is a paragraph.",
+          },
+          actions: [
             {
-              pattern: "image",
-              src: "/pattern-lab/images/content/promos/promo-16x9-anthem.jpg",
-              alt: "Anthem Video",
-              lazyload: false,
+              text: "Internal",
+              url: "http://pega.com",
             },
             {
-              pattern: "eyebrow",
-              text: "Video"
+              text: "External",
+              url: "http://pega.com/pdn",
+              external: true,
             },
-            {
-              pattern: "headline",
-              tag: "h3",
-              size: "large",
-              text: "Anthem: Service Desktop"
-            },
-            {
-              pattern: "text",
-              text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
-            },
-            {
-              pattern: "button",
-              text: "Get the report",
-              url: "http://pega.com"
-            }
-          ]
+          ],
         } only %}
       {% endcell %}
     {% endgrid %}
@@ -294,33 +290,29 @@
       } %}
         {% include "@bolt-components-card/card.twig" with {
           theme: "xlight",
-          contentItems: [
+          media: {
+            image: {
+              src: "/pattern-lab/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image alt.",
+            },
+          },
+          body: {
+            eyebrow: "This is an eyebrow",
+            headline: "This is a headline",
+            subheadline: "This is a subheadline",
+            paragraph: "This is a paragraph.",
+          },
+          actions: [
             {
-              pattern: "image",
-              src: "/pattern-lab/images/content/promos/promo-16x9-anthem.jpg",
-              alt: "Anthem Video",
-              lazyload: false,
+              text: "Internal",
+              url: "http://pega.com",
             },
             {
-              pattern: "eyebrow",
-              text: "Video"
+              text: "External",
+              url: "http://pega.com/pdn",
+              external: true,
             },
-            {
-              pattern: "headline",
-              tag: "h3",
-              size: "large",
-              text: "Anthem: Service Desktop"
-            },
-            {
-              pattern: "text",
-              text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
-            },
-            {
-              pattern: "button",
-              text: "Get the report",
-              url: "http://pega.com"
-            }
-          ]
+          ],
         } only %}
       {% endcell %}
       {% cell with {
@@ -333,38 +325,29 @@
       } %}
         {% include "@bolt-components-card/card.twig" with {
           theme: "dark",
-          contentItems: [
+          media: {
+            image: {
+              src: "/pattern-lab/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image alt.",
+            },
+          },
+          body: {
+            eyebrow: "This is an eyebrow",
+            headline: "This is a headline",
+            subheadline: "This is a subheadline",
+            paragraph: "This is a paragraph.",
+          },
+          actions: [
             {
-              pattern: "image",
-              src: "/pattern-lab/images/content/promos/promo-16x9-anthem.jpg",
-              alt: "Anthem Video",
-              lazyload: false,
+              text: "Internal",
+              url: "http://pega.com",
             },
             {
-              pattern: "eyebrow",
-              text: "Video"
+              text: "External",
+              url: "http://pega.com/pdn",
+              external: true,
             },
-            {
-              pattern: "headline",
-              tag: "h3",
-              size: "large",
-              text: "Anthem: Service Desktop"
-            },
-            {
-              pattern: "text",
-              text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
-            },
-            {
-              pattern: "button",
-              text: "Button 1",
-              url: "http://pega.com"
-            },
-            {
-              pattern: "button",
-              text: "Button 2",
-              url: "http://pega.com"
-            }
-          ]
+          ],
         } only %}
       {% endcell %}
       {% cell with {
@@ -377,33 +360,29 @@
       } %}
         {% include "@bolt-components-card/card.twig" with {
           theme: "xdark",
-          contentItems: [
+          media: {
+            image: {
+              src: "/pattern-lab/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image alt.",
+            },
+          },
+          body: {
+            eyebrow: "This is an eyebrow",
+            headline: "This is a headline",
+            subheadline: "This is a subheadline",
+            paragraph: "This is a paragraph.",
+          },
+          actions: [
             {
-              pattern: "image",
-              src: "/pattern-lab/images/content/promos/promo-16x9-anthem.jpg",
-              alt: "Anthem Video",
-              lazyload: false,
+              text: "Internal",
+              url: "http://pega.com",
             },
             {
-              pattern: "eyebrow",
-              text: "Video"
+              text: "External",
+              url: "http://pega.com/pdn",
+              external: true,
             },
-            {
-              pattern: "headline",
-              tag: "h3",
-              size: "large",
-              text: "Anthem: Service Desktop"
-            },
-            {
-              pattern: "text",
-              text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
-            },
-            {
-              pattern: "button",
-              text: "Get the report",
-              url: "http://pega.com"
-            }
-          ]
+          ],
         } only %}
       {% endcell %}
     {% endgrid %}
@@ -449,33 +428,29 @@
         }
       } %}
         {% include "@bolt-components-card/card.twig" with {
-          contentItems: [
+          media: {
+            image: {
+              src: "/pattern-lab/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image alt.",
+            },
+          },
+          body: {
+            eyebrow: "This is an eyebrow",
+            headline: "This is a headline",
+            subheadline: "This is a subheadline",
+            paragraph: "This is a paragraph.",
+          },
+          actions: [
             {
-              pattern: "image",
-              src: "/pattern-lab/images/content/promos/promo-16x9-anthem.jpg",
-              alt: "Anthem Video",
-              lazyload: false,
+              text: "Internal",
+              url: "http://pega.com",
             },
             {
-              pattern: "eyebrow",
-              text: "Video"
+              text: "External",
+              url: "http://pega.com/pdn",
+              external: true,
             },
-            {
-              pattern: "headline",
-              tag: "h3",
-              size: "large",
-              text: "Anthem: Service Desktop"
-            },
-            {
-              pattern: "text",
-              text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
-            },
-            {
-              pattern: "button",
-              text: "Get the report",
-              url: "http://pega.com"
-            }
-          ]
+          ],
         } only %}
       {% endcell %}
       {% cell with {
@@ -487,38 +462,29 @@
         }
       } %}
         {% include "@bolt-components-card/card.twig" with {
-          contentItems: [
+          media: {
+            image: {
+              src: "/pattern-lab/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image alt.",
+            },
+          },
+          body: {
+            eyebrow: "This is an eyebrow",
+            headline: "This is a headline",
+            subheadline: "This is a subheadline",
+            paragraph: "This is a paragraph.",
+          },
+          actions: [
             {
-              pattern: "image",
-              src: "/pattern-lab/images/content/promos/promo-16x9-anthem.jpg",
-              alt: "Anthem Video",
-              lazyload: false,
+              text: "Internal",
+              url: "http://pega.com",
             },
             {
-              pattern: "eyebrow",
-              text: "Video"
+              text: "External",
+              url: "http://pega.com/pdn",
+              external: true,
             },
-            {
-              pattern: "headline",
-              tag: "h3",
-              size: "large",
-              text: "Anthem: Service Desktop"
-            },
-            {
-              pattern: "text",
-              text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
-            },
-            {
-              pattern: "button",
-              text: "Button 1",
-              url: "http://pega.com"
-            },
-            {
-              pattern: "button",
-              text: "Button 2",
-              url: "http://pega.com"
-            }
-          ]
+          ],
         } only %}
       {% endcell %}
       {% cell with {
@@ -530,33 +496,30 @@
         }
       } %}
         {% include "@bolt-components-card/card.twig" with {
-          contentItems: [
+          url: "http://pega.com",
+          media: {
+            image: {
+              src: "/pattern-lab/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image alt.",
+            },
+          },
+          body: {
+            eyebrow: "This is an eyebrow",
+            headline: "This is a headline",
+            subheadline: "This is a subheadline",
+            paragraph: "This is a paragraph. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere.",
+          },
+          actions: [
             {
-              pattern: "image",
-              src: "/pattern-lab/images/content/promos/promo-16x9-anthem.jpg",
-              alt: "Anthem Video",
-              lazyload: false,
+              text: "Internal",
+              url: "http://pega.com",
             },
             {
-              pattern: "eyebrow",
-              text: "Video"
+              text: "External",
+              url: "http://pega.com/pdn",
+              external: true,
             },
-            {
-              pattern: "headline",
-              tag: "h3",
-              size: "large",
-              text: "Anthem: Service Desktop"
-            },
-            {
-              pattern: "text",
-              text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
-            },
-            {
-              pattern: "button",
-              text: "Get the report",
-              url: "http://pega.com"
-            }
-          ]
+          ],
         } only %}
       {% endcell %}
     {% endgrid %}

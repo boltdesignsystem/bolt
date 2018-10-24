@@ -1,41 +1,30 @@
 {% set videoUuid3 = "js-bolt-video-uuid--3c" %}
 
-<div style="max-width: 500px; padding: 2rem;">
-  {% include "@bolt-components-card/card.twig" with {
-    tag: "article",
-    contentTag: "div",
-    contentItems: [
-      {
-        pattern: "video",
-        videoId: "5609376179001",
-        accountId: "1900410236",
-        playerId: "r1CAdLzTW",
-        showMeta: true,
-        showMetaTitle: false,
-        videoUuid: videoUuid3
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+  {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+    {% include "@bolt-components-card/card.twig" with {
+      tag: "article",
+      media: {
+        video: {
+          id: "5609376179001",
+          account_id: "1900410236",
+          player_id: "r1CAdLzTW",
+        },
       },
-      {
-        pattern: "eyebrow",
-        text: "Video"
+      body: {
+        eyebrow: "Video",
+        headline: "Video Meta Title Goes Here.",
+        paragraph: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences.",
       },
-      {
-        pattern: "headline",
-        tag: "h3",
-        size: "large",
-        text: "Video Meta Title Goes Here."
-      },
-      {
-        pattern: "text",
-        text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
-      },
-      {
-        pattern: "button",
-        text: "Play or Pause",
-        attributes: {
-          "on-click": "toggle",
-          "on-click-target": videoUuid3
-        }
-      }
-    ]
-  } only %}
-</div>
+      actions: [
+        {
+          text: "Play or Pause",
+          attributes: {
+            "on-click": "toggle",
+            "on-click-target": videoUuid3
+          }
+        },
+      ],
+    } only %}
+  {% endcell %}
+{% endgrid %}

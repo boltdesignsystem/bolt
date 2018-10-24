@@ -1,183 +1,129 @@
-{% set schema = bolt.data.components['@bolt-components-card'].schema %}
+{% set schema = bolt.data.components["@bolt-components-card"].schema %}
 
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
-{% set tags = ["div", "article", "section", "figure"] %} {# Available overall container tags #}
-{% set contentTags = ["div", "article", "section", "figcaption"] %} {# Available content container tags #}
-{% set themes = ["xlight", "light", "dark", "xdark"] %}
-{% set prefix = "c-bolt-" %}
-
+{# Variables #}
+{% set base_class = "c-bolt-card" %}
 {% set attributes = create_attribute(attributes|default({})) %}
+{% set inner_attributes = create_attribute({}) %}
 
-{# Defaults for a vanilla `Card` component #}
-{% set componentName = "card" %}
-{% set baseClass = prefix ~ componentName %}
-{% set theme = theme %}
-{% set tag = tag in tags ? tag: "div" %}
-{% set contentTag = contentTag in contentTags ? contentTag: "div" %}
+{# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
+{% set tag_options = schema.properties.tag.enum %}
+{% set theme_options = schema.properties.theme.enum %}
 
-{% set classes = [
-  baseClass
-] %}
-
-{% if url %}
-  {% set attributes = attributes.setAttribute("data-href", url) %}
-{% endif %}
-
-{% set _card_footer_block = block('card_footer') %}
+{# Check that the component's current prop values are valid. if not, default to the schema default #}
+{% set tag = tag in tag_options ? tag : schema.properties.tag.default %}
+{% set theme = theme in theme_options ? theme : schema.properties.theme.default %}
 
 
-
-
-{% set _allowedCardHeaderItems = ["image", "video"] %}
-{% set _allowedCardBodyItems = ["eyebrow", "content", "text", "headline", "teaser"] %}
-{% set _allowedCardFooterItems = ["buttons", "link", "button"] %}
-{% set _allowedItems = _allowedCardHeaderItems | merge(_allowedCardBodyItems) | merge(_allowedCardFooterItems) %}
-
-{% set _allowedCollections = ["contentItems"] %} {# array of different arrays that could exist w/ nested content #}
-{% set _items = [] %}
-
-{% for collectionName in _allowedCollections %}
-  {% if _context[collectionName] %}
-    {% for key, item in _context[collectionName] if item.pattern in _allowedItems or key in _allowedItems %}
-
-      {% if item.buttons %}
-        {% set buttons = item.buttons %}
-        {% for button in buttons %}
-          {% set button = button | merge({
-            "pattern": "button"
-          }) %}
-          {% set _items = _items | merge([button]) %}
-        {% endfor %}
-
-        {% set item = item | merge({
-          "buttons": []
-        }) %}
-      {% endif %}
-
-      {% set _items = _items | merge([item]) %}
-    {% endfor %}
-  {% endif %}
-{% endfor %}
-
-
-
-{% for key, item in _context if item.pattern in _allowedItems or key in _allowedItems %}
-  {% if key == "teaser" %}
-    {% if item.buttons %}
-      {% for button in item.buttons %}
-        {% set button = button | merge({ "pattern": "button" }) %}
-        {% set _items = _items | merge([button]) %}
-      {% endfor %}
-      {% set item = item | merge({ "buttons": [] }) %}
-    {% endif %}
-  {% endif %}
-
-  {% if item.pattern == false %}
-    {% set item = item | merge({
-      "pattern": key
-    }) %}
-  {% endif %}
-  {% set _items = _items | merge([item]) %}
-{% endfor %}
-
-
-
-
-{% set cardMedia %}
-  {% for key, item in _items if item.pattern in _allowedCardHeaderItems %}
-    {% if item.pattern %}
-      {% if item.pattern == 'image' and url is not empty %}
-        <a href="{{url}}">
-      {% endif %}
-      {% include pattern_template(item.pattern) with item only %}
-      {% if item.pattern == 'image' and url is not empty %}
-        </a>
-      {% endif %}
-    {% else %}
-      {{ item }}
-    {% endif %}
-  {% endfor %}
-{% endset %}
-
+{# card component's custom element wrapper #}
 <bolt-card
-  {% if theme %} class="t-bolt-{{ theme }}"{% endif %}
-  {% if url %}url={{ url }}{% endif %}
-  bolt-component>
-  <{{ tag }} {{ attributes.addClass(classes) }}>
+  {% if tag %} tag="{{ tag }}" {% endif %}
+  {% if theme %} theme="{{ theme }}" {% endif %}
+  {% if url %} url="{{ url }}" {% endif %}
+  {{ attributes }}
+>
+  {# This sets none values to not render anything. #}
+  {% set theme = theme == "none" ? false : theme %}
 
-    {% if block('card_media') is not empty %}
-      <div class="{{ "#{baseClass}__media" }}">{% spaceless %}
-        {% block card_media %}
-          {{ cardMedia }}
-        {% endblock %}
-      {% endspaceless %}</div>
-    {% endif %}
+  {# Array of classes based on the defined + default props #}
+  {% set classes = [
+    base_class,
+    theme in theme_options ? "t-bolt-#{theme}" : "",
+    url ? "#{base_class}--actionable" : "",
+  ] %}
 
+  <{{ tag }} {{ inner_attributes.addClass(classes) }}>
+    {% if items %}
+      {% for item in items %}
+        {% if item is iterable %}
+          {{ item.content | join("") }}
+        {% else %}
+          {{ item }}
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      {% if media %}
+        <div class="{{ "#{base_class}__media" }}">
+          {% set card_image = media.image %}
+          {% set card_video = media.video %}
 
-    {% if block('card_body') is not empty %}
-    <{{ contentTag }} class="{{ "#{baseClass}__body" }}">{% spaceless %}
-      {% block card_body %}
-        {% for key,item in _items if item.pattern in _allowedCardBodyItems %}
-          {% if item.pattern %}
-            {% include pattern_template(item.pattern) with item only %}
-          {% elseif key != "content" %}
-            {% include pattern_template(key) with item only %}
-          {% else %}
-            {{ item }}
+          {% if card_image %}
+            {% include "@bolt-components-image/image.twig" with {
+              src: card_image.src,
+              alt: card_image.alt,
+              lazyload: true,
+            } only %}
           {% endif %}
 
-        {% endfor %}
-      {% endblock card_body %}
-    {% endspaceless %}</{{ contentTag }}>
-    {% endif %}
+          {% if card_video %}
+            {% include "@bolt-components-video/video.twig" with {
+              videoId: card_video.id,
+              accountId: card_video.account_id,
+              playerId: card_video.player_id,
+              showMeta: true,
+              showMetaTitle: false,
+            } only %}
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if body %}
+        {% if tag == "figure" %}
+          {% set content_tag = "figcaption" %}
+        {% else %}
+          {% set content_tag = "div" %}
+        {% endif %}
 
-    {% if block('card_footer') is not empty %}
-      <div class="{{ "#{baseClass}__footer" }}">{% spaceless %}
-        {% block card_footer %}
+        {% set card_eyebrow = body.eyebrow %}
+        {% set card_headline = body.headline %}
+        {% set card_subheadline = body.subheadline %}
+        {% set card_paragraph = body.paragraph %}
 
-          {% for item in _items if item.pattern in _allowedCardFooterItems %}
-            {% set paramOverrides = {
-              align: "start",
-              style: "text",
-              width: "full",
-            } %}
-
-            {% if item.icon == null %}
-              {% if item.external == true %}
-                {% set iconOverrides = {
-                  icon: {
-                    name: "external-link"
-                  }
-                } %}
-              {% else %}
-                {% set iconOverrides = {
-                  icon: {
-                    name: "chevron-right"
-                  }
-                } %}
-              {% endif %}
+        <{{ content_tag }} class="{{ "#{base_class}__body" }}">
+          {% if card_eyebrow %}
+            {% include "@bolt-components-headline/eyebrow.twig" with {
+              text: card_eyebrow,
+            } only %}
+          {% endif %}
+          {% if card_headline %}
+            {% include "@bolt-components-headline/headline.twig" with {
+              text: card_headline,
+              size: "large",
+            } only %}
+          {% endif %}
+          {% if card_paragraph %}
+            {% include "@bolt-components-headline/text.twig" with {
+              text: card_paragraph,
+            } only %}
+          {% endif %}
+        </{{ content_tag }}>
+      {% endif %}
+      {% if actions %}
+        <div class="{{ "#{base_class}__actions" }}">
+          {% for action in actions %}
+            {% if action.external == false or action.external == null %}
+              {% set card_action_icon = "chevron-right" %}
+            {% else %}
+              {% set card_action_icon = "external-link" %}
             {% endif %}
 
-             <div class="{{ "#{baseClass}__footer-item" }}">
-              {% if item.pattern %}
-                {% set item = item | merge(paramOverrides) %}
-
-                {# if icon default data set, merge that in as well #}
-                {% if iconOverrides %}
-                  {% set item = item | merge(iconOverrides) %}
-                {% endif %}
-                {% include pattern_template(item.pattern) with item only %}
-              {% else %}
-                {{ item }}
-              {% endif %}
+            <div class="{{ "#{base_class}__action" }}">
+              {% include "@bolt-components-button/button.twig" with {
+                text: action.text,
+                url: action.url,
+                style: "text",
+                width: "full",
+                align: "start",
+                icon: {
+                  name: card_action_icon,
+                },
+              } only %}
             </div>
           {% endfor %}
-
-        {% endblock card_footer %}
-      {% endspaceless %}</div>
+        </div>
+      {% endif %}
     {% endif %}
   </{{ tag }}>
 </bolt-card>

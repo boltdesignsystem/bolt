@@ -4,30 +4,85 @@ category: components
 type: object
 format: grid
 properties:
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
   tag:
     type: string
     description: Html tag immediately within the `bolt-card` element.
+    default: div
     enum:
       - div
       - article
-      - section
       - figure
-  contentTag:
-    type: string
-    description: Html tag immediately within the `bolt-card` element.
-    enum:
-      - div
-      - article
-      - section
-      - figcaption
   theme:
     type: string
     description: Bolt theme.
+    default: none
     enum:
+      - none
       - xlight
       - light
       - dark
       - xdark
   url:
     type: string
-    description: Providing a URL will make the entire card link to another resource. This is a future prop and does not do anything right now.
+    description: Providing a URL will make the whole card clickable.
+  media:
+    type: object
+    description: Media section of the card, accepts either image or video.
+    properties:
+      image:
+        type: object
+        properties:
+          src:
+            type: string
+      video:
+        type: object
+        properties:
+          id:
+            type: string
+          player_id:
+            type: string
+          account_id:
+            type: string
+  body:
+    type: object
+    description: Body section of the card, accepts text.
+    properties:
+      eyebrow:
+        type: string
+      headline:
+        type: string
+      subheadline:
+        type: string
+      paragraph:
+        type: string
+  actions:
+    type: array
+    description: Actions section of the card, accepts buttons.
+    properties:
+      text:
+        type: string
+      url:
+        type: string
+      external:
+        type: boolean
+  items:
+    type: any
+    description: Items will overwrite media, body, and actions props. Use this to build a completely cuztomized card.
+    properties:
+      media:
+        type: array
+        description: Media section of the card, accepts either image or video.
+      body:
+        type: array
+        description: Body section of the card, accepts anything.
+      actions:
+        type: array
+        description: Actions section of the card, accepts text buttons.
+    item:
+      type: any
+  contentTag:
+    title: DPRECATED.
+    description: Please use content_tag.
