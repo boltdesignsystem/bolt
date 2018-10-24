@@ -12,16 +12,19 @@
 {# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
 {% set tag_options = schema.properties.tag.enum %}
 {% set theme_options = schema.properties.theme.enum %}
+{% set height_options = schema.properties.height.enum %}
 
 {# Check that the component's current prop values are valid. if not, default to the schema default #}
 {% set tag = tag in tag_options ? tag : schema.properties.tag.default %}
 {% set theme = theme in theme_options ? theme : schema.properties.theme.default %}
+{% set height = height in height_options ? height : schema.properties.height.default %}
 
 
 {# card component's custom element wrapper #}
 <bolt-card
   {% if tag %} tag="{{ tag }}" {% endif %}
   {% if theme %} theme="{{ theme }}" {% endif %}
+  {% if height %} height="{{ height }}" {% endif %}
   {% if url %} url="{{ url }}" {% endif %}
   {{ attributes }}
 >

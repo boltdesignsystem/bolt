@@ -15,6 +15,13 @@ properties:
       - div
       - article
       - figure
+  height:
+    type: string
+    description: Controls the height of the card to auto fit to content or the full height of the column in a grid.
+    default: full
+    enum:
+      - auto
+      - full
   theme:
     type: string
     description: Bolt theme.
