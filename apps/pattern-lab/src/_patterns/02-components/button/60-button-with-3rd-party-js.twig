@@ -6,7 +6,9 @@
       "theme:": "xdark",
       "text": "XDark Button w/ External JS Example",
       attributes: {
-        class: "js-button-theme-xdark",
+        class: [
+          "js-button-theme-xdark"
+        ]
       }
     } %}
   {% endblock %}
@@ -19,7 +21,7 @@
   var elementBeingTargeted = 'button';
   var selector;
 
-  if (element._wasInitiallyRendered){
+  if (element._wasInitiallyRendered === true){
     setupEventListener(false);
   } else {
     element.addEventListener('rendered', setupEventListener);
@@ -31,10 +33,11 @@
     } else {
       selector = element.querySelector(elementBeingTargeted);
     }
+
     ready();
 
     if (removeEventListener){
-      element.removeEventListener("rendered", setupEventListener, true);
+      element.removeEventListener('rendered', setupEventListener, true);
     }
   }
 
@@ -49,6 +52,6 @@
 
   function buttonClicked(){
     console.log('the button tag inside the rendered xdark bolt-button was clicked!');
+    document.body.classList.toggle('t-bolt-xdark');
   }
-
 </script>
