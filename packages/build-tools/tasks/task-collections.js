@@ -106,9 +106,10 @@ async function serve(buildTime = timer.start()) {
       serverTasks.push(extraTasks.server.phpServer());
     }
     if (config.wwwDir) {
-      serverTasks.push(extraTasks.server.serve());
       if (config.webpackDevServer && config.watch !== false) {
-        serverTasks.push(webpackTasks.server(buildTime));
+        serverTasks.push(webpackTasks.server());
+      } else if (config.webpackDevServer === false && config.watch !== false) {
+        serverTasks.push(extraTasks.server.serve());
       }
     }
 
@@ -219,7 +220,7 @@ async function start() {
     return Promise.all([
       serve(buildTime, true),
       await compileBasedOnEnvironment(),
-      watch(),
+      await watch(),
     ]);
   } catch (error) {
     log.errorAndExit('Start failed', error);

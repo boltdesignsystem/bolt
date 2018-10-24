@@ -17,7 +17,11 @@ const config = {
   plConfigFile: './config/config.yml',
   verbosity: 2,
   schemaErrorReporting: 'cli',
-  webpackDevServer: true,
+  enableCache: true,
+  webpackDevServer: {
+    enabled: true,
+    watchedExtensions: ['.markup-only.html'],
+  },
   extraTwigNamespaces: {
     bolt: {
       recursive: true,
