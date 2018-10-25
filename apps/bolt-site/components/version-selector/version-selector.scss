@@ -7,6 +7,7 @@
 
 .#{$choices-selector}__input {
   @include bolt-margin-bottom(0);
+  font-size: 16px; // prevent input zoom on mobile
 }
 
 .#{$choices-selector}[data-type*="select-one"].is-open:after {
