@@ -88,7 +88,7 @@
  * );
  * @endcode
  */
-$databases = array();
+$databases = [];
 
 /**
  * Customizing database settings.
@@ -251,7 +251,7 @@ $databases = array();
  *   );
  * @endcode
  */
-$config_directories = array();
+$config_directories = [];
 
 /**
  * Settings:
@@ -262,23 +262,6 @@ $config_directories = array();
  *
  * @see \Drupal\Core\Site\Settings::get()
  */
-
-/**
- * The active installation profile.
- *
- * Changing this after installation is not recommended as it changes which
- * directories are scanned during extension discovery. If this is set prior to
- * installation this value will be rewritten according to the profile selected
- * by the user.
- *
- * @see install_select_profile()
- *
- * @deprecated in Drupal 8.3.0 and will be removed before Drupal 9.0.0. The
- *   install profile is written to the core.extension configuration. If a
- *   service requires the install profile use the 'install_profile' container
- *   parameter. Functional code can use \Drupal::installProfile().
- */
-# $settings['install_profile'] = '';
 
 /**
  * Salt for one-time login links, cancel links, form tokens, etc.
@@ -379,7 +362,7 @@ $settings['update_free_access'] = FALSE;
  * Specify every reverse proxy IP address in your environment.
  * This setting is required if $settings['reverse_proxy'] is TRUE.
  */
-# $settings['reverse_proxy_addresses'] = array('a.b.c.d', ...);
+# $settings['reverse_proxy_addresses'] = ['a.b.c.d', ...];
 
 /**
  * Set this value if your proxy server sends the client IP in a header
@@ -573,10 +556,10 @@ if ($settings['hash_salt']) {
  * The "en" part of the variable name, is dynamic and can be any langcode of
  * any added language. (eg locale_custom_strings_de for german).
  */
-# $settings['locale_custom_strings_en'][''] = array(
+# $settings['locale_custom_strings_en'][''] = [
 #   'forum'      => 'Discussion board',
 #   '@count min' => '@count minutes',
-# );
+# ];
 
 /**
  * A custom theme for the offline page:
@@ -630,7 +613,7 @@ if ($settings['hash_salt']) {
  *   override in a services.yml file in the same directory as settings.php
  *   (definitions in this file will override service definition defaults).
  */
-# $settings['bootstrap_config_storage'] = array('Drupal\Core\Config\BootstrapConfigStorageFactory', 'getFileStorage');
+# $settings['bootstrap_config_storage'] = ['Drupal\Core\Config\BootstrapConfigStorageFactory', 'getFileStorage'];
 
 /**
  * Configuration overrides.

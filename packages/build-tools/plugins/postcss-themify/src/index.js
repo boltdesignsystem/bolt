@@ -2,9 +2,8 @@ const postcss = require('postcss');
 const fs = require('fs-extra');
 const hexToRgba = require('hex-to-rgba');
 const rgb2hex = require('rgb2hex');
-const crypto = require('crypto');
 const chokidar = require('chokidar');
-const BoltCache = require('@bolt/build-tools/utils/cache');
+const { BoltCache, getFileHash } = require('@bolt/build-tools/utils/cache');
 const { minifyCSS } = require('./helpers/css.util');
 
 const THEMIFY = 'bolt-themify';
@@ -15,19 +14,6 @@ let output;
 let colorPaletteHash;
 let isWatchingForChanges = false;
 
-function getHash(filePath, callback) {
-  var stream = fs.ReadStream(filePath);
-  var md5sum = crypto.createHash('md5');
-
-  stream.on('data', function(data) {
-    md5sum.update(data);
-  });
-
-  stream.on('end', function() {
-    callback(md5sum.digest('hex'));
-  });
-}
-
 //----------------------------------------------------
 function watchColorPaletteFile(filePath, callback) {
   chokidar
@@ -36,7 +22,7 @@ function watchColorPaletteFile(filePath, callback) {
     })
     .on('all', function(event, path, stats) {
       if (event === 'add' || event === 'change') {
-        getHash(filePath, function(hash) {
+        getFileHash(filePath, function(hash) {
           if (hash !== colorPaletteHash) {
             colorPaletteHash = hash;
             console.log('Color palette changed! Invalidating cache...');

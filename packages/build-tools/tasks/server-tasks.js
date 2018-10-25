@@ -7,7 +7,6 @@ const log = require('../utils/log');
 const sh = require('../utils/sh');
 const { handleRequest } = require('../api');
 const server = browserSync.create();
-const webpackServeWaitpage = require('./webpack-serve-waitpage');
 let config;
 
 async function phpServer() {
@@ -45,7 +44,7 @@ async function getServerConfig() {
 
   // https://www.browsersync.io/docs/options
   const serverConfig = {
-    open: false, // now handled by Webpack Serve
+    open: config.openServerAtStart ? config.openServerAtStart : false,
     startPath: config.startPath, // Since `/` doesn't do anything and we want to avoid double browserSync notifications from the very beginning
     port: config.port,
     host: '127.0.0.1',
@@ -56,10 +55,7 @@ async function getServerConfig() {
     notify: false, // Hide notifications till we come up with a less disruptive refresh UI
     reloadOnRestart: true,
     ui: false,
-    files: [config.wwwDir + '**/*.css', config.wwwDir + '**/*.html'],
-    snippetOptions: {
-      async: true,
-    },
+    files: [config.wwwDir + '**/*.html'],
   };
 
   if (config.renderingService) {
