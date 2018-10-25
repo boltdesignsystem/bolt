@@ -22,10 +22,12 @@
 {# Set up checks to validate that the component's prop values are allowed, based on the component's schema. #}
 {% set size_options = schema.properties.size.enum %}
 {% set opacity_options = schema.properties.opacity.enum %}
+{% set align_options = schema.properties.align.enum %}
 
 {# Check that the component's current prop values are valid. If not, default to the schema default #}
 {% set size = size in size_options ? size : schema.properties.size.default %}
 {% set opacity = opacity in opacity_options ? opacity : schema.properties.opacity.default %}
+{% set align = align in align_options ? align : schema.properties.align.default %}
 
 {# Default text can't be pulled from the schema because it must be translatable. #}
 {% set text = text | default("Share this page"|t) %}
@@ -58,12 +60,12 @@
 
   {% if source_name %}
     {% set source_items %}
-      <a class="{{ "c-bolt-share__link js-bolt-share__link--#{source.name}" }}" href="{{ source.url }}" target="_blank">
+      <a class="{{ "#{base_class}__link js-bolt-share__link--#{source.name}" }}" href="{{ source.url }}" target="_blank">
         {% include "@bolt-components-icon/icon.twig" with {
           name: source_icon,
           size: size
         } only %}
-        <span class="c-bolt-share__link-text">
+        <span class="{{ "#{base_class}__link-text" }}">
           {{ source_name }}
         </span>
       </a>
@@ -79,36 +81,36 @@
 
   {# Custom content is used here because the icon size and text styles are all different than the defaults from Copy to Clipboard. #}
   {% set custom_trigger %}
-    <span class="c-bolt-share__link">
+    <span class="{{ "#{base_class}__link" }}">
       {% include "@bolt-components-icon/icon.twig" with {
         name: "asset-link",
         size: size,
       } only %}
-      <span class="c-bolt-share__link-text">
+      <span class="{{ "#{base_class}__link-text" }}">
         {{ trigger_text }}
       </span>
     </span>
   {% endset %}
 
   {% set custom_transition %}
-    <span class="c-bolt-share__link">
+    <span class="{{ "#{base_class}__link" }}">
       {% include "@bolt-components-icon/icon.twig" with {
         name: "refresh",
         size: size,
         attributes: {
-          class: "c-bolt-share__copy-animation"
+          class: "#{base_class}__copy-animation"
         }
       } only %}
     </span>
   {% endset %}
 
   {% set custom_confirmation %}
-    <div class="c-bolt-share__link">
+    <div class="{{ "#{base_class}__link" }}">
       {% include "@bolt-components-icon/icon.twig" with {
         name: "check",
         size: size,
       } only %}
-      <span class="c-bolt-share__link-text">
+      <span class="{{ "#{base_class}__link-text" }}">
         {{ confirmation_text }}
       </span>
     </div>
@@ -130,6 +132,7 @@
 <bolt-share
   {% if size %} size="{{ size }}" {% endif %}
   {% if opacity %} opacity="{{ opacity }}" {% endif %}
+  {% if align %} align="{{ align }}" {% endif %}
   {{ attributes }}
 >
   {# Array of classes based on the defined + default props. #}
@@ -142,7 +145,8 @@
     {% include "@bolt-components-list/list.twig" with {
       display: "inline",
       spacing: size == "small" ? "xsmall" : "small",
-      items: items
+      items: items,
+      align: align,
     } only %}
   </div>
 </bolt-share>

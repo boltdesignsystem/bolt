@@ -49,8 +49,15 @@
 
         {# merge together array of items with the content / band_content block so each item can get wrapped properly #}
         {% set items = items | default([]) %}
-        {% if  block('band_content') | length > 0 %}
-          {% set items = items | merge([block_band_content]) %}
+
+        {# Note: using block('band_content') to check for emptiness can cause duplicate rendering issues and should be avoided.  #}
+        {% if block_band_content is not empty %}
+          {% set items = items | merge([{
+            content: block_band_content,
+            position: {
+              row_start: content_row_start ? content_row_start : schema.properties.content_row_start.default
+            }
+          }]) %}
         {% endif %}
 
         {% if items is not empty %}

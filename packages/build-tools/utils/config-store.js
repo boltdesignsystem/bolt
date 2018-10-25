@@ -2,6 +2,7 @@ const chalk = require('chalk');
 const path = require('path');
 const cosmiconfig = require('cosmiconfig');
 const explorer = cosmiconfig('bolt');
+const address = require('address');
 
 const { readYamlFileSync } = require('./yaml');
 const { validateSchema } = require('./schemas');
@@ -21,6 +22,7 @@ let config = {};
 // 3. Env Vars with `bolt_` prefix; `bolt_verbosity=1` will override `config.verbosity` - case matters!
 // 4. Certain command line options like `bolt build --verbosity 5` - not every config option is overridable this way.
 // For both 3 & 4, it doesn't support deep merges, so only top level properties.
+const ip = address.ip();
 
 async function getDefaultConfig() {
   return Promise.all([
@@ -31,8 +33,12 @@ async function getDefaultConfig() {
     return {
       port: ports[0],
       proxyPort: ports[1],
-      proxyHeader: configSchema.properties.proxyHeader.default,
       renderingServicePort: ports[2],
+      ip,
+      enableCache: configSchema.properties.enableCache.default,
+      proxyHeader: configSchema.properties.proxyHeader.default,
+      watch: configSchema.properties.watch.default,
+      sourceMaps: configSchema.properties.sourceMaps.default,
       i18n: configSchema.properties.i18n.default,
       renderingService: configSchema.properties.renderingService.default,
       namespace: configSchema.properties.namespace.default,
@@ -84,9 +90,12 @@ async function isReady() {
         'Bolt config not yet setup -- trying to find a .boltconfig.rc file...',
       ),
     );
-    const searchedFor = await explorer.searchSync();
+    const searchedFor = explorer.searchSync();
     if (searchedFor.config) {
-      await init(searchedFor.config);
+      await init({
+        ...searchedFor.config,
+        configFileUsed: searchedFor.filepath,
+      });
       return true;
     } else {
       console.log(
@@ -135,8 +144,8 @@ async function getConfig() {
  * Update config
  * @param {function} updater - This function is passed in current config and it returns new config.
  */
-function updateConfig(updater) {
-  isReady();
+async function updateConfig(updater) {
+  await isReady();
   const newConfig = updater(config);
   validateSchema(
     configSchema,

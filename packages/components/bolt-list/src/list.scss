@@ -18,6 +18,8 @@
   display: block;
 }
 
+
+// Display Prop
 .c-bolt-list--display-block {
   display: flex;
   flex-flow: column wrap;
@@ -30,6 +32,7 @@
 
 @each $breakpoint in $bolt-breakpoints {
   $breakpoint-name: nth($breakpoint, 1);
+
   .c-bolt-list--display-inline\@#{$breakpoint-name} {
     display: flex;
     flex-flow: column wrap;
@@ -41,13 +44,16 @@
   }
 }
 
+
+// Spacing Prop
 @each $spacing-value in $bolt-spacing-values {
   $spacing-value-name: nth($spacing-value, 1);
+
   .c-bolt-list--spacing-#{$spacing-value-name} {
     margin-left: bolt-spacing(#{$spacing-value-name}) * -1;
     margin-bottom: bolt-v-spacing(#{$spacing-value-name}) * -1;
 
-    .c-bolt-list__item {
+    > .c-bolt-list__item {
       @include bolt-margin-left(#{$spacing-value-name});
       @include bolt-margin-bottom(#{$spacing-value-name});
     }
@@ -57,28 +63,19 @@
     @include bolt-margin-left(0);
     @include bolt-margin-bottom(0);
 
-    .c-bolt-list__item {
+    > .c-bolt-list__item {
       @include bolt-margin-left(0);
       @include bolt-margin-bottom(0);
-      @include bolt-padding(#{$spacing-value-name});
-    }
-  }
-
-  .c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--display-block[class^='c-bolt-list--separator'],
-  .c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--display-block[class*=' c-bolt-list--separator'] {
-    .c-bolt-list__item:not(:last-child) {
-      @include bolt-padding-bottom(#{$spacing-value-name});
-    }
-  }
-
-  .c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--display-inline[class^='c-bolt-list--separator'],
-  .c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--display-inline[class*=' c-bolt-list--separator'] {
-    .c-bolt-list__item:not(:last-child) {
+      @include bolt-padding-top(#{$spacing-value-name});
       @include bolt-padding-right(#{$spacing-value-name});
+      @include bolt-padding-bottom(#{$spacing-value-name});
+      @include bolt-padding-left(#{$spacing-value-name});
     }
   }
 }
 
+
+// Align and Valign Props
 $bolt-list-alignments: start, center, end;
 
 @each $alignment in $bolt-list-alignments {
@@ -89,6 +86,21 @@ $bolt-list-alignments: start, center, end;
       }
       @else {
         justify-content: #{$alignment};
+      }
+    }
+
+    @each $breakpoint in $bolt-breakpoints {
+      $breakpoint-name: nth($breakpoint, 1);
+
+      &.c-bolt-list--display-inline\@#{$breakpoint-name} {
+        @include bolt-mq($breakpoint-name) {
+          @if $alignment != 'center' {
+            justify-content: flex-#{$alignment};
+          }
+          @else {
+            justify-content: #{$alignment};
+          }
+        }
       }
     }
   }
@@ -102,14 +114,31 @@ $bolt-list-alignments: start, center, end;
         align-items: #{$alignment};
       }
     }
+
+    @each $breakpoint in $bolt-breakpoints {
+      $breakpoint-name: nth($breakpoint, 1);
+
+      &.c-bolt-list--display-inline\@#{$breakpoint-name} {
+        @include bolt-mq($breakpoint-name) {
+          @if $alignment != 'center' {
+            align-items: flex-#{$alignment};
+          }
+          @else {
+            align-items: #{$alignment};
+          }
+        }
+      }
+    }
   }
 }
 
+
+// Separator Prop
 $bolt-list-separator-styles: solid, dashed;
 
 @each $separator-style in $bolt-list-separator-styles {
   .c-bolt-list--separator-#{$separator-style} {
-    .c-bolt-list__item:not(:last-child) {
+    > .c-bolt-list__item:not(:last-child) {
       border: 0;
       border-color: rgba(bolt-color(gray), 0.25);
       border-style: #{$separator-style};
@@ -117,17 +146,67 @@ $bolt-list-separator-styles: solid, dashed;
   }
 }
 
-[class^='c-bolt-list--separator'],
-[class*=' c-bolt-list--separator'] {
+[class*='c-bolt-list--separator'] {
   &.c-bolt-list--display-block {
-    .c-bolt-list__item:not(:last-child) {
+    > .c-bolt-list__item:not(:last-child) {
       border-bottom-width: 1px;
     }
   }
 
   &.c-bolt-list--display-inline {
-    .c-bolt-list__item:not(:last-child) {
+    > .c-bolt-list__item:not(:last-child) {
       border-right-width: 1px;
+    }
+  }
+
+  @each $breakpoint in $bolt-breakpoints {
+    $breakpoint-name: nth($breakpoint, 1);
+
+    &.c-bolt-list--display-inline\@#{$breakpoint-name} {
+      > .c-bolt-list__item:not(:last-child) {
+        border-bottom-width: 1px;
+
+        @include bolt-mq($breakpoint-name) {
+          border-right-width: 1px;
+          border-bottom-width: 0;
+        }
+      }
+    }
+  }
+}
+
+// Specific settings for when the seperator prop interacts with other props. This is where things get really crazy.
+[class*='c-bolt-list--separator'] {
+  @each $spacing-value in $bolt-spacing-values {
+    $spacing-value-name: nth($spacing-value, 1);
+
+    &.c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--display-block {
+      > .c-bolt-list__item:not(:last-child) {
+        @include bolt-padding-bottom(#{$spacing-value-name});
+      }
+    }
+
+    &.c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--display-inline {
+      > .c-bolt-list__item:not(:last-child) {
+        @include bolt-padding-right(#{$spacing-value-name});
+      }
+    }
+
+    &:not(.c-bolt-list--inset) {
+      @each $breakpoint in $bolt-breakpoints {
+        $breakpoint-name: nth($breakpoint, 1);
+
+        &.c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--display-inline\@#{$breakpoint-name} {
+          > .c-bolt-list__item:not(:last-child) {
+            @include bolt-padding-bottom(#{$spacing-value-name});
+
+            @include bolt-mq($breakpoint-name) {
+              @include bolt-padding-right(#{$spacing-value-name});
+              @include bolt-padding-bottom(0);
+            }
+          }
+        }
+      }
     }
   }
 }

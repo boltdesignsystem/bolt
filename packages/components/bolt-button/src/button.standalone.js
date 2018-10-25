@@ -39,7 +39,11 @@ class BoltButton extends withHyperHtml() {
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
-    this.useShadow = hasNativeShadowDomSupport;
+    self.useShadow = hasNativeShadowDomSupport;
+    return self;
+  }
+
+  connecting() {
     const root = this;
 
     // If the initial <bolt-button> element contains a button or link, break apart the original HTML so we can retain any button or a tags but swap out the inner content with slots.
@@ -56,6 +60,13 @@ class BoltButton extends withHyperHtml() {
           childElement.className = sanitizeBoltClasses(childElement);
         }
 
+        if (
+          childElement.getAttribute('is') &&
+          childElement.getAttribute('is') === 'shadow-root'
+        ) {
+          childElement.removeAttribute('is');
+        }
+
         root.rootElement.appendChild(childElement);
       }
     });
@@ -65,12 +76,74 @@ class BoltButton extends withHyperHtml() {
     afterNextRender(this, function() {
       this.addEventListener('click', this.clickHandler);
     });
+  }
 
-    return self;
+  rendered() {
+    super.rendered();
+    const root = this;
+    const slots = this.slots;
+
+    // helper function to let you quickly check if an array of elements is inside a component's
+    function containsAny(source, target) {
+      const result = source.filter(function(item) {
+        return target.indexOf(item) > -1;
+      });
+      return result.length > 0;
+    }
+
+    // Automatically re-render if the component's children get externally modified (ex. a new icon gets injected)
+    this.observer = new MutationObserver(mutations => {
+      mutations.forEach(function(mutation) {
+        if (mutation.removedNodes.length > 0) {
+          const itemsRemoved = [].slice.call(mutation.removedNodes); // grab items removed + convert to array
+
+          for (let i = 0; i < slots.length; i++) {
+            if (containsAny(slots[slot[i]], itemsRemoved)) {
+              for (let j = 0; j < itemsRemoved.length; j++) {
+                const itemRemoved = itemsRemoved[j];
+                slots[slot] = slots[slot].filter(
+                  slottedItem => slottedItem !== itemRemoved,
+                );
+              }
+            }
+          }
+        } else {
+          const itemsAdded = [].slice.call(mutation.addedNodes); // grab items added + convert to array
+
+          for (let i = 0; i < itemsAdded.length; i++) {
+            const itemAdded = itemsAdded[i];
+            const slotName = itemAdded.getAttribute
+              ? itemAdded.getAttribute('slot')
+              : null;
+
+            if (!slotName) {
+              slots.default.push(itemAdded);
+            } else if (slots[slotName]) {
+              slots[slotName].push(itemAdded);
+            } else {
+              slots[slotName] = [];
+              slots[slotName].push(itemAdded);
+            }
+          }
+        }
+
+        // re-render if Shadow DOM is supported and enabled; temp workaround to dealing w/ components already rendered, but without slot support
+        if (hasNativeShadowDomSupport && root.useShadow) {
+          root.triggerUpdate();
+        }
+      });
+    });
+
+    this.observer.observe(this, {
+      attributes: false,
+      childList: true,
+      characterData: false,
+    });
   }
 
   disconnecting() {
     this.removeEventListener('click', this.clickHandler);
+    this.observer.disconnect();
   }
 
   // Attach external events declaratively
@@ -100,26 +173,33 @@ class BoltButton extends withHyperHtml() {
     const urlTarget = this.props.target && hasUrl ? this.props.target : '_self';
 
     // The buttonElement to render, based on the initial HTML passed alone.
-    let buttonElement;
+    let buttonElement = null;
     const self = this;
 
-    const itemClasses = cx('c-bolt-button__item', {
-      'u-bolt-visuallyhidden': this.props.iconOnly,
-    });
-
-    const iconClasses = cx('c-bolt-button__icon');
-
     const slotMarkup = name => {
-      if (name in this.slots) {
-        switch (name) {
-          case 'before':
-          case 'after':
-            return wire(this)`
-              <span class="${iconClasses}">${this.slot(name)}</span>`;
-          default:
-            return wire(this)`
-              <span class="${itemClasses}">${this.slot('default')}</span>`;
-        }
+      switch (name) {
+        case 'before':
+        case 'after':
+          const iconClasses = cx('c-bolt-button__icon', {
+            'is-empty': name in this.slots === false,
+          });
+
+          return wire(this)`
+            <span class="${iconClasses}">${
+            name in this.slots
+              ? this.slot(name)
+              : wire(this)`<slot name="${name}" />`
+          }</span>`;
+        default:
+          const itemClasses = cx('c-bolt-button__item', {
+            'is-empty': name in this.slots === false,
+            'u-bolt-visuallyhidden': this.props.iconOnly,
+          });
+
+          return wire(this)`
+            <span class="${itemClasses}">${
+            name in this.slots ? this.slot('default') : wire(this)`<slot/>`
+          }</span>`;
       }
     };
 

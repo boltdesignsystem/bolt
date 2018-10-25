@@ -8,6 +8,17 @@ import { BaseComponent } from '../base-component.js';
 
 import './pl-layout.scss?external';
 
+
+import iFrameResize from 'iframe-resizer/src/iframeResizer.js';
+iFrameResize({
+  checkOrigin: false,
+  scrolling: false,
+  heightCalculationMethod: 'documentElementOffset', // most accurate calculation in testing available options 
+  initCallback() {
+    document.querySelector('.pl-js-iframe').classList.add('is-ready'); // toggles class that removes initial min-height styling
+  },
+});
+
 @define
 class Layout extends BaseComponent {
   static is = 'pl-layout';

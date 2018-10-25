@@ -1,4 +1,4 @@
-{% extends "base-template.twig" %}
+{% extends "@bolt-site/base-template.twig" %}
 
 {% set urlChunks = page.url | split('/') %}
 {% set currentSection = urlChunks | length >= 1 ? urlChunks|first : '' %}
@@ -13,19 +13,19 @@
 {% set hasSidebar = nestedPages or sidebar %}
 
 {% block site_body %}
-  {% include "_page-header.twig" %}
+  {% include "@bolt-site/_page-header.twig" %}
 
    {% if hasSidebar %}
     <aside class="c-bds-layout__sidebar" id="menu">
       {% if nestedPages %}
-        {% include '@bolt/off-canvas-nav/off-canvas-nav.twig' with {
+        {% include '@bolt-site/off-canvas-nav.twig' with {
           nestedPages: nestedPages,
         } %}
       {% endif %}
     </aside>
 
     {% if 'docs/' in currentUrl %}
-      {% include '@bolt/hamburger-button/hamburger-button.twig' %}
+      {% include '@bolt-site/hamburger-button.twig' %}
     {% endif %}
 
 

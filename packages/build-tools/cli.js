@@ -1,11 +1,24 @@
+const fs = require('fs');
 const path = require('path');
 const program = require('commander');
+const cosmiconfig = require('cosmiconfig');
+const explorer = cosmiconfig('bolt');
 const packageJson = require('./package.json');
 const configStore = require('./utils/config-store');
 const { readYamlFileSync } = require('./utils/yaml');
 const configSchema = readYamlFileSync(
   path.join(__dirname, './utils/config.schema.yml'),
 );
+
+const searchedFor = explorer.searchSync();
+if (!searchedFor.config) {
+  log.errorAndExit('Could not find config in a .boltrc file');
+}
+
+let userConfig = {
+  ...searchedFor.config,
+  configFileUsed: searchedFor.filepath,
+};
 
 // global `bolt` cli options & meta
 program
@@ -22,14 +35,21 @@ program
   )
   .parse(process.argv);
 
-// We need to initialize config as early as possible
-const configFilePath = path.resolve(
-  process.cwd(),
-  program.configFile || '.boltrc',
-);
+if (program.configFile) {
+  const configFilePath = path.join(process.cwd(), program.configFile);
+  if (!fs.existsSync(configFilePath)) {
+    console.error(`Error, config file does not exist: ${configFilePath}`);
+    process.exit(1);
+  }
+  const configFile = require(configFilePath);
+  userConfig = {
+    ...configFile,
+    configFileUsed: configFilePath,
+  };
+}
 
 (async () => {
-  await configStore.init(require(configFilePath)).then(config => {
+  await configStore.init(userConfig).then(config => {
     // Now that config is initilized, we can start requiring other things
     const { buildBoltManifest } = require('./utils/manifest');
     const log = require('./utils/log');
@@ -41,7 +61,7 @@ const configFilePath = path.resolve(
      * @returns {Object} config - Final updated config
      */
     async function updateConfig(options, programInstance) {
-      configStore.updateConfig(config => {
+      await configStore.updateConfig(config => {
         config.verbosity =
           typeof program.verbosity === 'undefined'
             ? config.verbosity
@@ -71,6 +91,9 @@ const configFilePath = path.resolve(
 
         config.quick =
           typeof options.quick === 'undefined' ? config.quick : options.quick;
+
+        config.watch =
+          typeof options.watch === 'undefined' ? config.watch : options.watch;
 
         config.prod =
           typeof program.prod === 'undefined' ? config.prod : program.prod;
@@ -160,12 +183,17 @@ const configFilePath = path.resolve(
         '--webpack-dev-server',
         configSchema.properties.webpackDevServer.description,
       )
+      .option('--watch', configSchema.properties.watch.description)
       .action(async options => {
+        if (options.watch === undefined) {
+          options.watch = true;
+        }
         await updateConfig(options, program);
         require('./tasks/task-collections').serve();
       });
 
     program.command('watch').action(async options => {
+      options.watch = true;
       await updateConfig(options, program);
       require('./tasks/task-collections').watch();
     });
@@ -187,7 +215,11 @@ const configFilePath = path.resolve(
         '--webpack-dev-server',
         configSchema.properties.webpackDevServer.description,
       )
+      .option('--watch', configSchema.properties.watch.description)
       .action(async options => {
+        if (options.watch === undefined) {
+          options.watch = true;
+        }
         await updateConfig(options, program);
         require('./tasks/task-collections').start();
       });
@@ -236,6 +268,20 @@ const configFilePath = path.resolve(
             await require('./tasks/pattern-lab-tasks').compile();
           } catch (error) {
             log.errorAndExit('Pattern Lab failed', error);
+          }
+        });
+    }
+
+    if (config.env === 'static') {
+      program
+        .command('static')
+        .description('Static Site Compile')
+        .action(async options => {
+          await updateConfig(options, program);
+          try {
+            await require('./tasks/static-tasks').compile();
+          } catch (error) {
+            log.errorAndExit('Static Site Generation failed', error);
           }
         });
     }

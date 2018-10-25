@@ -7,7 +7,7 @@ const config = {
   // Note: if lang is defined, the first item is currently the one used by default in the Pattern Lab build, pending further iterations on this!
   lang: ['en', 'ja'],
 
-  renderingService: true, // starts PHP service for rendering Twig templates
+  renderingService: false, // starts PHP service for rendering Twig templates
   openServerAtStart: false,
   // Environmental variable / preset to use
   env: 'pl',
@@ -17,7 +17,11 @@ const config = {
   plConfigFile: './config/config.yml',
   verbosity: 2,
   schemaErrorReporting: 'cli',
-  webpackDevServer: true,
+  enableCache: true,
+  webpackDevServer: {
+    enabled: true,
+    watchedExtensions: ['.markup-only.html'],
+  },
   extraTwigNamespaces: {
     bolt: {
       recursive: true,
