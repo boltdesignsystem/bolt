@@ -7,6 +7,7 @@ const internalTasks = require('./internal-tasks');
 const imageTasks = require('./image-tasks');
 const timer = require('../utils/timer');
 const { getConfig } = require('../utils/config-store');
+const { writeBoltVersions } = require('../utils/bolt-versions');
 const extraTasks = [];
 let config;
 
@@ -144,6 +145,9 @@ async function buildPrep() {
     config.prod ? await clean() : '';
     await internalTasks.mkDirs();
     await manifest.writeBoltManifest();
+    if (config.env === 'pl' || config.env === 'static') {
+      await writeBoltVersions();
+    }
     await manifest.writeTwigNamespaceFile(
       process.cwd(),
       config.extraTwigNamespaces,
@@ -168,8 +172,6 @@ async function build(shouldReturnTime = false) {
       return startTime;
     } else {
       log.info(`Build completed in ${timer.end(startTime)}.`);
-      // @todo find why this isn't exiting on own & remove this line. Most likely to an unresolved Promise.
-      process.exit(0);
     }
   } catch (error) {
     log.errorAndExit('Build failed', error);
