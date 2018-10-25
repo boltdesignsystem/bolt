@@ -292,7 +292,7 @@
           ]
         }
       } %}
-        {% include "@bolt-components-card/card.twig" with {
+        {% embed "@bolt-components-card/card.twig" with {
           theme: "xlight",
           contentItems: [
             {
@@ -322,6 +322,11 @@
             }
           ]
         } only %}
+          {% block card_body %}
+            {{ parent() }}
+            Plain text
+          {% endblock %}
+        {% endembed %}
       {% endcell %}
       {% cell with {
         attributes: {
