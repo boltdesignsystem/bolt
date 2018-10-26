@@ -1,5 +1,5 @@
 // HyperHTML Renderer ported to SkateJS
-import { hyper, wire, bind } from 'hyperhtml/cjs';
+import { hyper, wire, bind } from 'hyperhtml';
 import {
   withComponent,
   // shadow,
@@ -8,7 +8,7 @@ import {
 } from '../utils';
 import { BoltBase } from './bolt-base';
 
-export { hyper as html, wire, bind as render } from 'hyperhtml/cjs';
+export { hyper as html, wire, bind as render } from 'hyperhtml';
 
 export function withHyperHtml(Base = HTMLElement) {
   return class extends withComponent(BoltBase(Base)) {
