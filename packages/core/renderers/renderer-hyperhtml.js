@@ -23,7 +23,7 @@ export function withHyperHtml(Base = HTMLElement) {
 
     renderStyles(styles) {
       if (styles) {
-        return wire(this)`
+        return wire()`
           <style>${styles}</style>
         `;
       }
@@ -32,25 +32,26 @@ export function withHyperHtml(Base = HTMLElement) {
     slot(name) {
       if (this.useShadow && hasNativeShadowDomSupport) {
         if (name === 'default') {
-          return wire(this)`
+          return wire()`
             <slot />
           `;
         } else {
-          return wire(this)`
+          return wire()`
             <slot name="${name}" />
           `;
         }
       } else {
         if (name === 'default') {
-          return wire(this)`
+          return wire()`
              ${this.slots.default}
           `;
         } else if (this.slots[name]) {
-          return wire(this)`
+          return wire()`
              ${this.slots[name]}
           `;
         } else {
-          console.log(`The ${name} slot doesn't appear to exist...`);
+          // @todo: update to perhaps still log this when a "debug" mode flag is set.
+          // console.log(`The ${name} slot doesn't appear to exist...`);
         }
       }
     }
