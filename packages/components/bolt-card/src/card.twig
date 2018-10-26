@@ -49,83 +49,13 @@
       {% endfor %}
     {% else %}
       {% if media %}
-        <div class="{{ "#{base_class}__media" }}">
-          {% set card_image = media.image %}
-          {% set card_video = media.video %}
-
-          {% if card_image %}
-            {% include "@bolt-components-image/image.twig" with {
-              src: card_image.src,
-              alt: card_image.alt,
-              lazyload: true,
-            } only %}
-          {% endif %}
-
-          {% if card_video %}
-            {% include "@bolt-components-video/video.twig" with {
-              videoId: card_video.id,
-              accountId: card_video.account_id,
-              playerId: card_video.player_id,
-              showMeta: true,
-              showMetaTitle: false,
-            } only %}
-          {% endif %}
-        </div>
+        {% include "@bolt-components-card/_card-media.twig" %}
       {% endif %}
       {% if body %}
-        {% if tag == "figure" %}
-          {% set content_tag = "figcaption" %}
-        {% else %}
-          {% set content_tag = "div" %}
-        {% endif %}
-
-        {% set card_eyebrow = body.eyebrow %}
-        {% set card_headline = body.headline %}
-        {% set card_subheadline = body.subheadline %}
-        {% set card_paragraph = body.paragraph %}
-
-        <{{ content_tag }} class="{{ "#{base_class}__body" }}">
-          {% if card_eyebrow %}
-            {% include "@bolt-components-headline/eyebrow.twig" with {
-              text: card_eyebrow,
-            } only %}
-          {% endif %}
-          {% if card_headline %}
-            {% include "@bolt-components-headline/headline.twig" with {
-              text: card_headline,
-              size: "large",
-            } only %}
-          {% endif %}
-          {% if card_paragraph %}
-            {% include "@bolt-components-headline/text.twig" with {
-              text: card_paragraph,
-            } only %}
-          {% endif %}
-        </{{ content_tag }}>
+        {% include "@bolt-components-card/_card-body.twig" %}
       {% endif %}
       {% if actions %}
-        <div class="{{ "#{base_class}__actions" }}">
-          {% for action in actions %}
-            {% if action.external == false or action.external == null %}
-              {% set card_action_icon = "chevron-right" %}
-            {% else %}
-              {% set card_action_icon = "external-link" %}
-            {% endif %}
-
-            <div class="{{ "#{base_class}__action" }}">
-              {% include "@bolt-components-button/button.twig" with {
-                text: action.text,
-                url: action.url,
-                style: "text",
-                width: "full",
-                align: "start",
-                icon: {
-                  name: card_action_icon,
-                },
-              } only %}
-            </div>
-          {% endfor %}
-        </div>
+        {% include "@bolt-components-card/_card-actions.twig" %}
       {% endif %}
     {% endif %}
   </{{ tag }}>
