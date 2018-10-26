@@ -177,8 +177,6 @@ class BoltButton extends withHyperHtml() {
     // Assign default target attribute value if one isn't specified
     const urlTarget = this.props.target && hasUrl ? this.props.target : '_self';
 
-    // The buttonElement to render, based on the initial HTML passed alone.
-    let buttonElement = null;
     const self = this;
 
     const slotMarkup = name => {
@@ -226,19 +224,19 @@ class BoltButton extends withHyperHtml() {
     }
     const urlTarget = target && hasUrlProp ? target : '_self';
 
-    if (this.rootElement) {
-      buttonElement = this.rootElement.firstChild.cloneNode(true);
-      // render(inner, buttonElement); // lit-html syntax
-      buttonElement.className += ' ' + classes;
-    } else if (hasUrl) {
-      buttonElement = wire()`<a href="${
-        this.props.url
-      }" class="${classes}" target="${urlTarget}"></a>`;
-    } else {
-      buttonElement = wire()`<button class="${classes}"></button>`;
-    }
+    // Placeholder for the  buttonElement to render, based on the initial HTML passed alone.
+    let existingButton = null;
 
-    buttonElement = renderInnerSlots(buttonElement);
+    if (this.rootElement) {
+      existingButton = this.rootElement.firstChild.cloneNode(true);
+      existingButton.className += ' ' + classes;
+
+      const slotsForExistingButton = document.createDocumentFragment();
+      for (let i = 0; i < slots.length; i++) {
+        slotsForExistingButton.appendChild(slots[i]);
+      }
+      existingButton.appendChild(slotsForExistingButton);
+    }
 
     return this.html`
       ${this.addStyles([styles, visuallyhiddenUtils])}
