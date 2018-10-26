@@ -155,6 +155,8 @@ class BoltButton extends withHyperHtml() {
   }
 
   render() {
+    const { iconOnly, target, url } = this.props;
+
     const classes = cx('c-bolt-button', {
       'c-bolt-button--rounded': this.props.rounded,
       'c-bolt-button--disabled': this.props.disabled,
@@ -170,7 +172,7 @@ class BoltButton extends withHyperHtml() {
     });
 
     // Decide on if the rendered button tag should be a <button> or <a> tag, based on if a URL exists OR if a link was passed in from the getgo
-    const hasUrl = this.props.url.length > 0 && this.props.url !== 'null';
+    const hasUrlProp = url.length > 0 && url !== 'null';
 
     // Assign default target attribute value if one isn't specified
     const urlTarget = this.props.target && hasUrl ? this.props.target : '_self';
@@ -222,6 +224,7 @@ class BoltButton extends withHyperHtml() {
       }
       return elementToAppendTo;
     }
+    const urlTarget = target && hasUrlProp ? target : '_self';
 
     if (this.rootElement) {
       buttonElement = this.rootElement.firstChild.cloneNode(true);
