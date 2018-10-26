@@ -27,7 +27,7 @@ export function BoltBase(Base = HTMLElement) {
     setupSlots() {
       // Automatically adjust which inner element inside the custom element gets used as the base when evaluating slotted children. Necessary when including deeply nested slots in the initial HTML being rendered, which might include a few wrapping containers that get removed when the JavaScript kicks in. <-- this is how we get slotted buttons to work!
       const isShadowRootSelector = this.querySelector('[is="shadow-root"]');
-      if (isShadowRootSelector && isShadowRootSelector.childNodes) {
+      if (isShadowRootSelector) {
         if (isShadowRootSelector.childNodes) {
           this.slots = this._checkSlots(isShadowRootSelector.childNodes);
         } else {
