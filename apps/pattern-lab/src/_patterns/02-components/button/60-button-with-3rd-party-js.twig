@@ -16,38 +16,41 @@
 
 <script>
   // Fired every time the custom element has rendered.
-  var element = document.querySelector('.js-button-theme-xdark');
-  var setupHasAlreadyRun = false;
-  var elementBeingTargeted = 'button';
-  var selector;
+  var buttonElement = document.querySelector('.js-button-theme-xdark');
+  var buttonEventAdded = false;
+  var alreadyExistingButtonEvent = false;
+  var clickEventAdded = false;
+  var innerButtonElement;
 
-  if (element._wasInitiallyRendered === true){
-    setupEventListener(false);
+  if (buttonElement._wasInitiallyRendered === true){
+    if (innerButtonElement && alreadyExistingButtonEvent){
+      console.log('was already rendered but an event already exists so using that.');
+    } else {
+      alreadyExistingButtonEvent = true;
+      console.log('The button has already been rendered BUT the initially targeted element does not currently exist (likely due to the component re-rendering). Removing old event listener + re-adding an event listener to account for that.');
+      buttonElement.removeEventListener('rendered', setupButtonClickEvent, false);
+      buttonElement.addEventListener('rendered', setupButtonClickEvent, true);
+    }
   } else {
-    element.addEventListener('rendered', setupEventListener);
+    console.log('waiting for button to be initially rendered');
+    alreadyExistingButtonEvent = true;
+    buttonElement.addEventListener('rendered', setupButtonClickEvent);
   }
 
-  function setupEventListener(removeEventListener = true){
-    if (element.useShadow){
-      selector = element.shadowRoot.querySelector(elementBeingTargeted);
+  function setupButtonClickEvent(){
+    console.log('handle button click event');
+    innerButtonElement = buttonElement.renderRoot.querySelector('button');
+
+    if (clickEventAdded === true){
+      clickEventAdded = false;
+      console.log('button click event already added -- removing old click event');
+      innerButtonElement.removeEventListener('click', buttonClicked, true);
     } else {
-      selector = element.querySelector(elementBeingTargeted);
+      console.log('button click event not yet added -- no need to remove old click event.');
     }
 
-    ready();
-
-    if (removeEventListener){
-      element.removeEventListener('rendered', setupEventListener, true);
-    }
-  }
-
-  function ready(){
-    if (setupHasAlreadyRun){
-      selector.removeEventListener('click', buttonClicked, true);
-    } else {
-      setupHasAlreadyRun = true;
-    }
-    selector.addEventListener('click', buttonClicked);
+    clickEventAdded = true;
+    innerButtonElement.addEventListener('click', buttonClicked, true);
   }
 
   function buttonClicked(){
