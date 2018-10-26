@@ -47,29 +47,33 @@ class BoltButton extends withHyperHtml() {
     const root = this;
 
     // If the initial <bolt-button> element contains a button or link, break apart the original HTML so we can retain any button or a tags but swap out the inner content with slots.
-    this.childNodes.forEach((childElement, i) => {
-      if (childElement.tagName === 'BUTTON' || childElement.tagName === 'A') {
-        root.rootElement = document.createDocumentFragment();
 
-        // Take any existing buttons and links and move them to the root of the custom element
-        while (childElement.firstChild) {
-          root.appendChild(childElement.firstChild);
+    // Make sure the button component ONLY ever reuses any existing HTML ONCE. This, in part, helps to prevent rendering diff errors in HyperHTML after booting up!
+    if (this._wasInitiallyRendered === false) {
+      this.childNodes.forEach((childElement, i) => {
+        if (childElement.tagName === 'BUTTON' || childElement.tagName === 'A') {
+          root.rootElement = document.createDocumentFragment();
+
+          // Take any existing buttons and links and move them to the root of the custom element
+          while (childElement.firstChild) {
+            root.appendChild(childElement.firstChild);
+          }
+
+          if (childElement.className) {
+            childElement.className = sanitizeBoltClasses(childElement);
+          }
+
+          if (
+            childElement.getAttribute('is') &&
+            childElement.getAttribute('is') === 'shadow-root'
+          ) {
+            childElement.removeAttribute('is');
+          }
+
+          root.rootElement.appendChild(childElement);
         }
-
-        if (childElement.className) {
-          childElement.className = sanitizeBoltClasses(childElement);
-        }
-
-        if (
-          childElement.getAttribute('is') &&
-          childElement.getAttribute('is') === 'shadow-root'
-        ) {
-          childElement.removeAttribute('is');
-        }
-
-        root.rootElement.appendChild(childElement);
-      }
-    });
+      });
+    }
 
     // When possible, use afterNextRender to defer non-critical work until after first paint.
     afterNextRender(this, function() {
