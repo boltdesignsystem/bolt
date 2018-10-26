@@ -154,6 +154,14 @@ class BoltButton extends withHyperHtml() {
     declarativeClickHandler(this);
   }
 
+  // internal helper method for generating the internal slot markup
+  _renderButtonSlot(slotName, slotClasses) {
+    return wire()`
+      <span class="${slotClasses}">
+        ${this.slot(`${slotName}`)}
+      </span>`;
+  }
+
   render() {
     const { iconOnly, target, url } = this.props;
 
@@ -171,62 +179,35 @@ class BoltButton extends withHyperHtml() {
       [`c-bolt-button--${this.props.transform}`]: this.props.transform,
     });
 
+    const beforeSlotClasses = cx('c-bolt-button__icon', {
+      'is-empty': 'before' in this.slots === false,
+    });
+
+    const defaultSlotClasses = cx('c-bolt-button__item', {
+      'is-empty': 'default' in this.slots === false,
+      'u-bolt-visuallyhidden': iconOnly,
+    });
+
+    const afterSlotClasses = cx('c-bolt-button__icon', {
+      'is-empty': 'after' in this.slots === false,
+    });
+
     // Decide on if the rendered button tag should be a <button> or <a> tag, based on if a URL exists OR if a link was passed in from the getgo
     const hasUrlProp = url.length > 0 && url !== 'null';
 
     // Assign default target attribute value if one isn't specified
-    const urlTarget = this.props.target && hasUrl ? this.props.target : '_self';
-
-    const self = this;
-
-    const slotMarkup = name => {
-      switch (name) {
-        case 'before':
-        case 'after':
-          const iconClasses = cx('c-bolt-button__icon', {
-            'is-empty': name in this.slots === false,
-          });
-
-          return wire(this)`
-            <span class="${iconClasses}">${
-            name in this.slots
-              ? this.slot(name)
-              : wire(this)`<slot name="${name}" />`
-          }</span>`;
-        default:
-          const itemClasses = cx('c-bolt-button__item', {
-            'is-empty': name in this.slots === false,
-            'u-bolt-visuallyhidden': this.props.iconOnly,
-          });
-
-          return wire(this)`
-            <span class="${itemClasses}">${
-            name in this.slots ? this.slot('default') : wire(this)`<slot/>`
-          }</span>`;
-      }
-    };
-
-    const innerSlots = [
-      slotMarkup('before'),
-      slotMarkup('default'),
-      slotMarkup('after'),
-    ];
-
-    function renderInnerSlots(elementToAppendTo) {
-      // hyperhtml workaround till lit-html in place
-      for (var i = 0; i < innerSlots.length; i++) {
-        const slotValue = innerSlots[i];
-        if (slotValue !== undefined) {
-          elementToAppendTo.appendChild(slotValue);
-        }
-      }
-      return elementToAppendTo;
-    }
     const urlTarget = target && hasUrlProp ? target : '_self';
 
     // Placeholder for the  buttonElement to render, based on the initial HTML passed alone.
     let existingButton = null;
 
+    // pre-render the button's slots to simplify adding to the HyperHTML template or existing DOM element if present.
+    const defaultSlot = this._renderButtonSlot('default', defaultSlotClasses);
+    const afterSlot = this._renderButtonSlot('after', afterSlotClasses);
+    const beforeSlot = this._renderButtonSlot('before', beforeSlotClasses);
+    const slots = [beforeSlot, defaultSlot, afterSlot];
+
+    // if the component initially rendered with a button or link inside, use that instead of generating one from scratch
     if (this.rootElement) {
       existingButton = this.rootElement.firstChild.cloneNode(true);
       existingButton.className += ' ' + classes;
@@ -240,7 +221,19 @@ class BoltButton extends withHyperHtml() {
 
     return this.html`
       ${this.addStyles([styles, visuallyhiddenUtils])}
-      ${buttonElement}
+      ${
+        this.rootElement
+          ? existingButton
+          : hasUrlProp
+            ? wire()`
+              <a href="${url}" class="${classes}" target="${urlTarget}">
+                ${slots}
+              </a>`
+            : wire()`
+              <button class="${classes}">
+                ${slots}
+              </button>`
+      }
     `;
   }
 }
