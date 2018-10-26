@@ -45,9 +45,7 @@ bolt-card[height='full'] {
   flex-basis: 100%;
   flex-grow: 1;
   position: relative;
-  color: bolt-theme(text);
   border-radius: $bolt-card-border-radius;
-  background-color: bolt-theme(background);
 
   &:before {
     display: block;
@@ -59,14 +57,21 @@ bolt-card[height='full'] {
     content: '';
     pointer-events: none;
     border-radius: $bolt-card-border-radius;
-    background-color: transparent;
     box-shadow: 0 0 1px rgba(bolt-color(gray), 0.5);
   }
 
-  // If the card is inside a theme and the card itself is not themed.
-  @at-root [class*='t-bolt'] #{&}:not([class*='t-bolt']) {
+  // Non-themed card color settings.
+  // Note: when a card is themed, the `t-bolt-` class will define the color and background-color, these settings won't be loaded.
+  &:not([class*='t-bolt']) {
     color: bolt-theme(text);
-    background-color: bolt-theme(background, 0.85);
+    background-color: bolt-theme(
+      (
+        xdark: background 0.85,
+        dark: background 0.85,
+        light: secondary 1,
+        xlight: background 0.85,
+      )
+    );
     background-image:
       linear-gradient(
         to bottom,
