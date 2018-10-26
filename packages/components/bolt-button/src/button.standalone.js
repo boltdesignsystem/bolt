@@ -71,8 +71,7 @@ class BoltButton extends withHyperHtml() {
       }
     });
 
-    // When possible, use afterNextRender to defer non-critical
-    // work until after first paint.
+    // When possible, use afterNextRender to defer non-critical work until after first paint.
     afterNextRender(this, function() {
       this.addEventListener('click', this.clickHandler);
     });
@@ -160,7 +159,7 @@ class BoltButton extends withHyperHtml() {
       [`c-bolt-button--${this.props.align}`]: this.props.align,
       'c-bolt-button--primary': !this.props.color, // default color prop
       [`c-bolt-button--${this.props.color}`]: this.props.color,
-      'c-bolt-button--medium': !this.props.size,
+      'c-bolt-button--medium': !this.props.size, // default size prop
       [`c-bolt-button--${this.props.size}`]: this.props.size,
       [`c-bolt-button--${this.props.width}`]: this.props.width,
       [`c-bolt-button--${this.props.transform}`]: this.props.transform,
