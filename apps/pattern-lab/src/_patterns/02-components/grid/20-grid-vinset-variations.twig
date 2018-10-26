@@ -5,6 +5,8 @@
 {% for vinset in vinsets %}
   Vinset: {{ vinset }}
 
+  {% set starting_row = vinset == 'none' ? 1 : 2 %}
+
   {% include "@bolt-components-grid/grid.twig" with {
     vinset: vinset,
     row_gutter: "small",
@@ -15,7 +17,7 @@
     },
     items: [
       {
-        row_start: "1",
+        row_start: starting_row,
         column_start: "1",
         column_span: "12",
         content: "Grid Item 1",
@@ -27,7 +29,7 @@
         }
       },
       {
-        row_start: "2",
+        row_start: starting_row + 1,
         column_start: "1",
         column_span: "12",
         content: "Grid Item 2",
@@ -39,7 +41,7 @@
         }
       },
       {
-        row_start: "3",
+        row_start: starting_row + 2,
         column_start: "1",
         column_span: "12",
         content: "Grid Item 3",
