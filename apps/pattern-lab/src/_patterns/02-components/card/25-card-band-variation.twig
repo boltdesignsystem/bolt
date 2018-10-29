@@ -325,6 +325,10 @@
           {% block card_body %}
             {{ parent() }}
             Plain text
+            {% include "@pl/form-element-demo-checkbox.twig" with {
+              "labelTitle": "Form Label",
+              "elementId": "test-label"
+            } only %}
           {% endblock %}
         {% endembed %}
       {% endcell %}
