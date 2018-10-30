@@ -1,0 +1,20 @@
+$schema: 'http://json-schema.org/draft-04/schema#'
+title: 'Bolt Ratio'
+description: "Component for carving out a component's aspect ratio"
+type: object
+properties:
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
+  aspectRatioWidth:
+    title: 'Aspect Ratio Width'
+    description: "The width-portion of the object's aspect ratio. Used to calculate the amount of space the object should take up."
+    type: number
+  aspectRatioHeight:
+    title: 'Aspect Ratio Height'
+    description: "The height-portion of the object's aspect ratio. Used to calculate the amount of space the object should take up."
+    type: number
+  children:
+    type: [string, object, array]
+    title: 'Children'
+    description: 'Nested content to pass inside the rendered <bolt-ratio> object'
