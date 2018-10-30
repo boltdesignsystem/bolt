@@ -31,11 +31,16 @@ script:
 - docker build --pull --cache-from boltdesignsystem/bolt --tag boltdesignsystem/bolt .
 - docker images
 - echo $DOCKER_HUB_PASS | docker login --username $DOCKER_HUB_USER --password-stdin
+- GIT_SHA="$(git rev-parse --short HEAD)"
 - docker tag boltdesignsystem/bolt boltdesignsystem/bolt:latest
-- docker tag boltdesignsystem/bolt boltdesignsystem/bolt:${TRAVIS_COMMIT}
-- docker push boltdesignsystem/bolt:latest && docker push boltdesignsystem/bolt:${TRAVIS_COMMIT}
+- docker tag boltdesignsystem/bolt boltdesignsystem/bolt:${GIT_SHA}
+- docker push boltdesignsystem/bolt:latest && docker push boltdesignsystem/bolt:${GIT_SHA}
 # - bash ./travis.sh # time command already run inside the travis.sh script
 # - npx nightwatch@0.9.20 --config nightwatch.js --env chrome,ie11
+
+after_script:
+  - echo '' && echo 'About to deploy...' && echo ''
+  - cd deploys && DOCKER_TAG=$GIT_SHA npx now@canary --team boltdesignsystem
 
 cache:
   apt: true
