@@ -186,8 +186,8 @@ async function aggregateBoltDependencies(data) {
 
   componentDependencies = flattenDeep(componentDependencies);
 
-  componentDependencies = componentDependencies.filter(function(x, i, a){
-    if (x !== '@bolt/build-tools' && a.indexOf(x) === i){
+  componentDependencies = componentDependencies.filter(function(x, i, a) {
+    if (x !== '@bolt/build-tools' && a.indexOf(x) === i) {
       return x;
     }
   });

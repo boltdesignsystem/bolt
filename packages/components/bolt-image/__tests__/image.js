@@ -8,7 +8,7 @@ describe('<bolt-image> Component', async () => {
   test('<bolt-image> with ratio object compiles', async () => {
     const results = await render('@bolt-components-image/image.twig', {
       src: '/pattern-lab/images/placeholders/tout-4x3-climber.jpg',
-      alt: 'A Rock Climber'
+      alt: 'A Rock Climber',
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
