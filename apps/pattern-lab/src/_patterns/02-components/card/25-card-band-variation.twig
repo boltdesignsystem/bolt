@@ -292,7 +292,7 @@
           ]
         }
       } %}
-        {% embed "@bolt-components-card/card.twig" with {
+        {% include "@bolt-components-card/card.twig" with {
           theme: "xlight",
           contentItems: [
             {
@@ -322,15 +322,6 @@
             }
           ]
         } only %}
-          {% block card_body %}
-            {{ parent() }}
-            Plain text
-            {% include "@pl/form-element-demo-checkbox.twig" with {
-              "labelTitle": "Form Label",
-              "elementId": "test-label"
-            } only %}
-          {% endblock %}
-        {% endembed %}
       {% endcell %}
       {% cell with {
         attributes: {
