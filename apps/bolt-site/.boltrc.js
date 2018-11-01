@@ -6,13 +6,17 @@ const config = {
   lang: ['en'],
   renderingService: false, // starts PHP service for rendering Twig templates
   openServerAtStart: false,
-  webpackDevServer: true,
+  webpackDevServer: {
+    enabled: true,
+    watchedExtensions: ['.html'],
+  },
   // Environmental variable / preset to use
   env: 'static',
   startPath: '/',
   buildDir: '../../www/build/',
   srcDir: './pages',
   wwwDir: '../../www',
+  enableCache: true,
   extraTwigNamespaces: {
     'bolt-assets': {
       recursive: true,

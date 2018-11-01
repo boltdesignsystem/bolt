@@ -180,14 +180,12 @@ $bolt-list-separator-styles: solid, dashed;
   @each $spacing-value in $bolt-spacing-values {
     $spacing-value-name: nth($spacing-value, 1);
 
-    &.c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--display-block,
     &.c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--display-block {
       > .c-bolt-list__item:not(:last-child) {
         @include bolt-padding-bottom(#{$spacing-value-name});
       }
     }
 
-    &.c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--display-inline,
     &.c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--display-inline {
       > .c-bolt-list__item:not(:last-child) {
         @include bolt-padding-right(#{$spacing-value-name});
@@ -198,7 +196,6 @@ $bolt-list-separator-styles: solid, dashed;
       @each $breakpoint in $bolt-breakpoints {
         $breakpoint-name: nth($breakpoint, 1);
 
-        &.c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--display-inline\@#{$breakpoint-name},
         &.c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--display-inline\@#{$breakpoint-name} {
           > .c-bolt-list__item:not(:last-child) {
             @include bolt-padding-bottom(#{$spacing-value-name});

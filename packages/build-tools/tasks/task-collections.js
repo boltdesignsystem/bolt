@@ -7,6 +7,7 @@ const internalTasks = require('./internal-tasks');
 const imageTasks = require('./image-tasks');
 const timer = require('../utils/timer');
 const { getConfig } = require('../utils/config-store');
+const { writeBoltVersions } = require('../utils/bolt-versions');
 const extraTasks = [];
 let config;
 
@@ -106,9 +107,10 @@ async function serve(buildTime = timer.start()) {
       serverTasks.push(extraTasks.server.phpServer());
     }
     if (config.wwwDir) {
-      serverTasks.push(extraTasks.server.serve());
       if (config.webpackDevServer && config.watch !== false) {
-        serverTasks.push(webpackTasks.server(buildTime));
+        serverTasks.push(webpackTasks.server());
+      } else if (config.webpackDevServer === false && config.watch !== false) {
+        serverTasks.push(extraTasks.server.serve());
       }
     }
 
@@ -143,6 +145,9 @@ async function buildPrep() {
     config.prod ? await clean() : '';
     await internalTasks.mkDirs();
     await manifest.writeBoltManifest();
+    if (config.env === 'pl' || config.env === 'static') {
+      await writeBoltVersions();
+    }
     await manifest.writeTwigNamespaceFile(
       process.cwd(),
       config.extraTwigNamespaces,
@@ -167,8 +172,6 @@ async function build(shouldReturnTime = false) {
       return startTime;
     } else {
       log.info(`Build completed in ${timer.end(startTime)}.`);
-      // @todo find why this isn't exiting on own & remove this line. Most likely to an unresolved Promise.
-      process.exit(0);
     }
   } catch (error) {
     log.errorAndExit('Build failed', error);
@@ -219,7 +222,7 @@ async function start() {
     return Promise.all([
       serve(buildTime, true),
       await compileBasedOnEnvironment(),
-      watch(),
+      await watch(),
     ]);
   } catch (error) {
     log.errorAndExit('Start failed', error);

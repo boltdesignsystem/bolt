@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_paragraphs
     - node.type.page
+    - paragraphs.paragraphs_type.button
     - paragraphs.paragraphs_type.eyebrow
     - paragraphs.paragraphs_type.grid
     - paragraphs.paragraphs_type.headline
@@ -31,6 +32,7 @@ settings:
       headline: headline
       subheadline: subheadline
       eyebrow: eyebrow
+      button: button
       grid: grid
       lead: lead
       text: text
@@ -47,6 +49,9 @@ settings:
       icon:
         weight: 6
         enabled: false
+      button:
+        enabled: true
+        weight: 9
       grid:
         enabled: true
         weight: 9
