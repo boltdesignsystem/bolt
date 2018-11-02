@@ -1,0 +1,17 @@
+/* ------------------------------------ *\
+   Cards
+\* ------------------------------------ */
+
+@import '@bolt/core';
+@import './_card.variables.scss';
+@import './_card.mixins.scss';
+
+// :host,
+bolt-card-actions,
+.c-bolt-card__actions {
+  @include bolt-card-border-reset;
+  @include bolt-card-border-radius;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
