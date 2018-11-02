@@ -38,25 +38,25 @@
     url ? "#{base_class}--actionable" : "",
   ] %}
 
-  <{{ tag }} {{ inner_attributes.addClass(classes) }}>
-    {% if items %}
-      {% for item in items %}
-        {% if item is iterable %}
-          {{ item.content | join("") }}
-        {% else %}
-          {{ item }}
+  <replace-with-children {{ inner_attributes.addClass(classes) }}>
+    {% block children %}
+      {% block card_media %}
+        {% if media %}
+          {% include "@bolt-components-card/card-media.twig" %}
         {% endif %}
-      {% endfor %}
-    {% else %}
-      {% if media %}
-        {% include "@bolt-components-card/_card-media.twig" %}
-      {% endif %}
-      {% if body %}
-        {% include "@bolt-components-card/_card-body.twig" %}
-      {% endif %}
-      {% if actions %}
-        {% include "@bolt-components-card/_card-actions.twig" %}
-      {% endif %}
-    {% endif %}
-  </{{ tag }}>
+      {% endblock %}
+
+      {% block card_body %}
+        {% if body %}
+          {% include "@bolt-components-card/card-body.twig" %}
+        {% endif %}
+      {% endblock %}
+
+      {% block card_actions %}
+        {% if actions %}
+          {% include "@bolt-components-card/card-actions.twig" %}
+        {% endif %}
+      {% endblock %}
+    {% endblock children %}
+  </replace-with-children>
 </bolt-card>

@@ -2,42 +2,21 @@
    Cards
 \* ------------------------------------ */
 
-$bolt-card-shadow-color: bolt-color(gray, dark);
-$bolt-card-border-color: bolt-theme(text, 0.15);
-$bolt-card-border-radius: $bolt-border-radius;
+@import '@bolt/core';
+
+@import './_card.variables.scss';
+@import './_card.mixins.scss';
 
 @include bolt-custom-element('bolt-card', block, medium);
 
-bolt-card[height='full'] {
+bolt-card[height='full'],
+.c-bolt-card--full {
   display: flex;
   height: 100%;
 }
 
-.c-bolt-card,
-.c-bolt-card__media,
-.c-bolt-card__action {
-  border: 0;
-  border-color: $bolt-card-border-color;
-  border-style: solid;
-}
-
-.c-bolt-card__media,
-.c-bolt-card__actions {
-  overflow: hidden;
-  border-radius: $bolt-card-border-radius;
-
-  &:first-child {
-    border-radius: $bolt-card-border-radius $bolt-card-border-radius 0 0;
-  }
-
-  &:last-child {
-    @include bolt-margin-top(auto);
-
-    border-radius: 0 0 $bolt-card-border-radius $bolt-card-border-radius;
-  }
-}
-
 .c-bolt-card {
+  @include bolt-card-border-reset;
   @include bolt-shadow('level-20', false, $bolt-card-shadow-color);
 
   display: flex;
@@ -87,40 +66,5 @@ bolt-card[height='full'] {
   &.is-hover,
   &.is-focus {
     @include bolt-shadow('level-20', true, $bolt-card-shadow-color);
-  }
-}
-
-.c-bolt-card__media {
-  background-color: bolt-theme(background);
-}
-
-.c-bolt-card__body {
-  @include bolt-padding(medium);
-}
-
-.c-bolt-card__actions {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-.c-bolt-card__action {
-  flex: 1;
-  position: relative;
-  white-space: nowrap;
-  border-top-width: 1px;
-
-  &:before {
-    position: absolute;
-    top: 0;
-    left: -1px;
-    width: 1px;
-    height: 100%;
-    content: '';
-    background-color: $bolt-card-border-color;
-  }
-
-  > * {
-    height: 100%;
   }
 }
