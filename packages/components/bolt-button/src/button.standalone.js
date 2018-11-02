@@ -102,7 +102,9 @@ class BoltButton extends withLitHtml() {
     this.removeEventListener('click', this.clickHandler);
 
     if (hasNativeShadowDomSupport && this.useShadow) {
-      this.observer.disconnect();
+      if (this.observer) {
+        this.observer.disconnect();
+      }
     }
   }
 
