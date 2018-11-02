@@ -3,16 +3,16 @@ import classNames from 'classnames/bind';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 import schema from '../card.schema.yml';
-import styles from './card-media.scss';
+import styles from './_card-actions.scss';
 
 let cx = classNames.bind(styles);
 
 @define
-class BoltCardMedia extends withLitHtml() {
-  static is = 'bolt-card-media';
+class BoltCardActions extends withLitHtml() {
+  static is = 'bolt-card-actions';
 
   render() {
-    const classes = cx('c-bolt-card__media');
+    const classes = cx('c-bolt-card__actions');
 
     return html`
       ${this.addStyles([styles])}
@@ -23,4 +23,4 @@ class BoltCardMedia extends withLitHtml() {
   }
 }
 
-export { BoltCardMedia };
+export { BoltCardActions };

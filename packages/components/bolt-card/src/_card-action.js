@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 import schema from '../card.schema.yml';
-import styles from './card-action.scss';
+import styles from './_card-action.scss';
 
 let cx = classNames.bind(styles);
 

@@ -3,14 +3,16 @@
 \* ------------------------------------ */
 
 @import '@bolt/core';
-@import './_card.variables.scss';
-@import './_card.mixins.scss';
+@import './_card-settings-and-tools.scss';
 
-// :host,
-bolt-card-action,
+bolt-card-action {
+  flex: 1;
+}
+
 .c-bolt-card__action {
   @include bolt-card-border-reset;
-  flex: 1;
+
+  display: block;
   position: relative;
   white-space: nowrap;
   border-top-width: 1px;
@@ -27,7 +29,6 @@ bolt-card-action,
 
   > * {
     height: 100%;
-    width: 100%;
   }
 
   ::slotted(*){

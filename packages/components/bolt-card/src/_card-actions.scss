@@ -3,14 +3,13 @@
 \* ------------------------------------ */
 
 @import '@bolt/core';
-@import './_card.variables.scss';
-@import './_card.mixins.scss';
+@import './_card-settings-and-tools.scss';
 
-// :host,
-bolt-card-actions,
-.c-bolt-card__actions {
-  @include bolt-card-border-reset;
+bolt-card-actions {
   @include bolt-card-border-radius;
+}
+
+.c-bolt-card__actions {
   display: flex;
   flex-wrap: wrap;
   width: 100%;

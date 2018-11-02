@@ -52,10 +52,9 @@ class BoltCard extends withLitHtml() {
 
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { theme, tag, height, url } = this.validateProps(this.props);
+    const { theme, tag, url } = this.validateProps(this.props);
 
     const classes = cx('c-bolt-card', {
-      [`c-bolt-card--${height}`]: height,
       [`c-bolt-card--actionable`]: url,
       [`t-bolt-${theme}`]: theme && theme !== 'none',
     });
@@ -84,7 +83,7 @@ class BoltCard extends withLitHtml() {
 
     return html`
       ${this.addStyles([styles, themes])}
-      ${renderedCard}  
+      ${renderedCard}
     `;
   }
 }

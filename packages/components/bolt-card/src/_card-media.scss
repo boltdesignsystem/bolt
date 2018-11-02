@@ -3,16 +3,13 @@
 \* ------------------------------------ */
 
 @import '@bolt/core';
-@import './_card.variables.scss';
-@import './_card.mixins.scss';
+@import './_card-settings-and-tools.scss';
 
 bolt-card-media {
-  display: block;
-  width: 100%;
+  @include bolt-card-border-radius;
 }
 
 .c-bolt-card__media {
-  @include bolt-card-border-reset;
-  @include bolt-card-border-radius;
+  display: block;
   background-color: bolt-theme(background);
 }

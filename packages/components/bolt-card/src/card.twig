@@ -42,19 +42,19 @@
     {% block children %}
       {% block card_media %}
         {% if media %}
-          {% include "@bolt-components-card/card-media.twig" %}
+          {% include "@bolt-components-card/_card-media.twig" %}
         {% endif %}
       {% endblock %}
 
       {% block card_body %}
         {% if body %}
-          {% include "@bolt-components-card/card-body.twig" %}
+          {% include "@bolt-components-card/_card-body.twig" %}
         {% endif %}
       {% endblock %}
 
       {% block card_actions %}
         {% if actions %}
-          {% include "@bolt-components-card/card-actions.twig" %}
+          {% include "@bolt-components-card/_card-actions.twig" %}
         {% endif %}
       {% endblock %}
     {% endblock children %}

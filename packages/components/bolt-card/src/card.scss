@@ -3,14 +3,16 @@
 \* ------------------------------------ */
 
 @import '@bolt/core';
-
-@import './_card.variables.scss';
-@import './_card.mixins.scss';
+@import './_card-settings-and-tools.scss';
+@import './_card-body.scss';
+@import './_card-media.scss';
+@import './_card-actions.scss';
+@import './_card-action.scss';
 
 @include bolt-custom-element('bolt-card', block, medium);
 
-bolt-card[height='full'],
-.c-bolt-card--full {
+/*.c-bolt-card--full*/
+bolt-card[height='full'] {
   display: flex;
   height: 100%;
 }
@@ -43,14 +45,7 @@ bolt-card[height='full'],
   // Note: when a card is themed, the `t-bolt-` class will define the color and background-color, these settings won't be loaded.
   &:not([class*='t-bolt']) {
     color: bolt-theme(text);
-    background-color: bolt-theme(
-      (
-        xdark: background 0.85,
-        dark: background 0.85,
-        light: secondary 1,
-        xlight: background 0.85,
-      )
-    );
+    background-color: bolt-theme(background, 0.85);
     background-image:
       linear-gradient(
         to bottom,

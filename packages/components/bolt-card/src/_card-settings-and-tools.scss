@@ -1,12 +1,21 @@
-@import './_card.variables.scss';
+@import '@bolt/core';
 
-@mixin bolt-card-border-reset(){
+// Settings
+
+$bolt-card-shadow-color: bolt-color(gray, dark);
+$bolt-card-border-color: bolt-theme(text, 0.15);
+$bolt-card-border-radius: $bolt-border-radius;
+
+
+// Tools
+
+@mixin bolt-card-border-reset {
   border: 0;
   border-color: $bolt-card-border-color;
   border-style: solid;
 }
 
-@mixin bolt-card-border-radius(){
+@mixin bolt-card-border-radius {
   overflow: hidden;
   border-radius: $bolt-card-border-radius;
 

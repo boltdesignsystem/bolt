@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 import schema from '../card.schema.yml';
-import styles from './card-body.scss';
+import styles from './_card-body.scss';
 
 let cx = classNames.bind(styles);
 
@@ -23,9 +23,9 @@ class BoltCardBody extends withLitHtml() {
       ${
         this.props.tag === 'figure'
           ? html`
-          <figure class=${classes}>
+          <figcaption class=${classes}>
             ${this.slot('default')}
-          </figure>`
+          </figcaption>`
           : html`
           <div class=${classes}>
             ${this.slot('default')}
