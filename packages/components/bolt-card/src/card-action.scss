@@ -1,0 +1,37 @@
+/* ------------------------------------ *\
+   Cards
+\* ------------------------------------ */
+
+@import '@bolt/core';
+@import './_card.variables.scss';
+@import './_card.mixins.scss';
+
+// :host,
+bolt-card-action,
+.c-bolt-card__action {
+  @include bolt-card-border-reset;
+  flex: 1;
+  position: relative;
+  white-space: nowrap;
+  border-top-width: 1px;
+
+  &:before {
+    position: absolute;
+    top: 0;
+    left: -1px;
+    width: 1px;
+    height: 100%;
+    content: '';
+    background-color: $bolt-card-border-color;
+  }
+
+  > * {
+    height: 100%;
+    width: 100%;
+  }
+
+  ::slotted(*){
+    width: 100%;
+  }
+}
+
