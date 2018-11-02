@@ -1,0 +1,8 @@
+<script>if (!window.customElements) { document.write("<!--") }</script><script>
+(function () {
+  'use strict';
+  (function(){if(void 0===window.Reflect||void 0===window.customElements||window.customElements.hasOwnProperty('polyfillWrapFlushCallback'))return;
+  window.customElements.nativeShimLoaded = true;
+  const a=HTMLElement;window.HTMLElement=function(){return Reflect.construct(a,[],this.constructor)},HTMLElement.prototype=a.prototype,HTMLElement.prototype.constructor=HTMLElement,Object.setPrototypeOf(HTMLElement,a);})();
+}());
+</script><!--! do not remove-->

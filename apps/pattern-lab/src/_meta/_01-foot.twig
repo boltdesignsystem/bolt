@@ -19,5 +19,12 @@
       {{ console_log(_context) }}
     {% endif %}
 
+    <!-- auto-remove is-unresolved class from body for nice fade-in transition -->
+    <script>
+      window.addEventListener('load', function(){
+        document.body.classList.remove('is-loading');
+      });
+    </script>
+
   </body>
 </html>
