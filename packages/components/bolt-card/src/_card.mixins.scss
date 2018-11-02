@@ -1,0 +1,22 @@
+@import './_card.variables.scss';
+
+@mixin bolt-card-border-reset(){
+  border: 0;
+  border-color: $bolt-card-border-color;
+  border-style: solid;
+}
+
+@mixin bolt-card-border-radius(){
+  overflow: hidden;
+  border-radius: $bolt-card-border-radius;
+
+  &:first-child {
+    border-radius: $bolt-card-border-radius $bolt-card-border-radius 0 0;
+  }
+
+  &:last-child {
+    @include bolt-margin-top(auto);
+
+    border-radius: 0 0 $bolt-card-border-radius $bolt-card-border-radius;
+  }
+}
