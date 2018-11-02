@@ -1,0 +1,24 @@
+<bolt-card-media>
+  <div class="{{ "#{base_class}__media" }}">
+    {% set card_image = media.image %}
+    {% set card_video = media.video %}
+
+    {% if card_image %}
+      {% include "@bolt-components-image/image.twig" with {
+        src: card_image.src,
+        alt: card_image.alt,
+        lazyload: true,
+      } only %}
+    {% endif %}
+
+    {% if card_video %}
+      {% include "@bolt-components-video/video.twig" with {
+        videoId: card_video.id,
+        accountId: card_video.account_id,
+        playerId: card_video.player_id,
+        showMeta: true,
+        showMetaTitle: false,
+      } only %}
+    {% endif %}
+  </div>
+</bolt-card-media>

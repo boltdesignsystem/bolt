@@ -1,0 +1,18 @@
+/* ------------------------------------ *\
+   Cards
+\* ------------------------------------ */
+
+@import '@bolt/core';
+@import './_card.variables.scss';
+@import './_card.mixins.scss';
+
+bolt-card-media {
+  display: block;
+  width: 100%;
+}
+
+.c-bolt-card__media {
+  @include bolt-card-border-reset;
+  @include bolt-card-border-radius;
+  background-color: bolt-theme(background);
+}
