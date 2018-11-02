@@ -1,0 +1,30 @@
+{% if tag == "figure" %}
+  {% set content_tag = "figcaption" %}
+{% else %}
+  {% set content_tag = "div" %}
+{% endif %}
+
+{% set card_eyebrow = body.eyebrow %}
+{% set card_headline = body.headline %}
+{% set card_paragraph = body.paragraph %}
+
+<bolt-card-body>
+  <replace-with-children class="{{ "#{base_class}__body" }}">
+    {% if card_eyebrow %}
+      {% include "@bolt-components-headline/eyebrow.twig" with {
+        text: card_eyebrow,
+      } only %}
+    {% endif %}
+    {% if card_headline %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        text: card_headline,
+        size: "large",
+      } only %}
+    {% endif %}
+    {% if card_paragraph %}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: card_paragraph,
+      } only %}
+    {% endif %}
+  </replace-with-children>
+</bolt-card-body>
