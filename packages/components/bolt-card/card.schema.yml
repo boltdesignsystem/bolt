@@ -73,7 +73,10 @@ properties:
       external:
         type: boolean
   items:
-    type: any
+    type: 
+      - string
+      - array
+      - object
     description: Items will overwrite media, body, and actions props. Use this to build a completely cuztomized card.
     properties:
       media:
