@@ -33,6 +33,21 @@ async function gatherBoltVersions() {
   const versionSpinner = ora(
     chalk.blue('Gathering data on the latest Bolt Design System releases...'),
   ).start();
+
+  const config = await getConfig();
+  if (!config.prod) {
+    versionSpinner.succeed(
+      chalk.green('Skipped gathering data on every Bolt release -- dev build!'),
+    );
+    return [
+      {
+        label: 'Local Dev',
+        type: 'option',
+        value: `http://localhost:${config.port}/${config.startPath}`,
+      },
+    ];
+  }
+
   const tags = await gitSemverTags();
 
   const tagUrls = [];
