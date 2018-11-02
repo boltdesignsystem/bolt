@@ -1,5 +1,5 @@
 import { polyfillLoader } from '@bolt/core/polyfills';
 
-polyfillLoader.then(() => {
-  import('./nav-indicator.js');
+polyfillLoader.then(res => {
+  import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-nav-indicator' */ './nav-indicator.js');
 });

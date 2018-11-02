@@ -1,5 +1,5 @@
 import { polyfillLoader } from '@bolt/core/polyfills';
 
 polyfillLoader.then(res => {
-  import('./text.standalone.js');
+  import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-text' */ './text.standalone.js');
 });

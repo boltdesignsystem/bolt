@@ -1,5 +1,5 @@
 import { polyfillLoader } from '@bolt/core/polyfills';
 
 polyfillLoader.then(res => {
-  import('./tooltip.standalone.js');
+  import(/* webpackMode: 'lazy', webpackChunkName: 'bolt-tooltip' */ './tooltip.standalone.js');
 });
