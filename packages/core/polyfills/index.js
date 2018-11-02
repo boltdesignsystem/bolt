@@ -8,6 +8,8 @@ import 'core-js/modules/es7.array.includes';
 import 'core-js/modules/es6.array.for-each';
 import 'core-js/modules/es6.object.assign';
 import './custom-event-polyfill';
+import './symbol-polyfill';
+import '@webcomponents/template/template.js';
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach;
@@ -87,8 +89,17 @@ export const polyfillLoader = new Promise(resolve => {
 
   // Used in Modern browsers supporting ES6. Required since we're transpiling ES6 classes through Babel
   else {
-    import('@webcomponents/custom-elements/src/native-shim.js').then(() => {
+    if (
+      void 0 === window.Reflect || // eslint-disable-line
+      void 0 === window.customElements || // eslint-disable-line
+      window.customElements.hasOwnProperty('polyfillWrapFlushCallback') ||
+      window.customElements.nativeShimLoaded === true
+    ) {
       resolve();
-    });
+    } else {
+      import('@webcomponents/custom-elements/src/native-shim.js').then(() => {
+        resolve();
+      });
+    }
   }
 });
