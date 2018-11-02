@@ -4,7 +4,7 @@ import {
   whichTransitionEvent,
   waitForTransitionEnd,
 } from '@bolt/core/utils';
-import { withHyperHtml } from '@bolt/core/renderers';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 /*
   Consider using these polyfills to broaden browser support:
     — https://www.npmjs.com/package/classlist-polyfill
@@ -12,7 +12,7 @@ import { withHyperHtml } from '@bolt/core/renderers';
 */
 
 @define
-class BoltNavPriority extends withHyperHtml() {
+class BoltNavPriority extends withLitHtml() {
   static is = 'bolt-nav-priority';
 
   static get observedAttributes() {
@@ -104,7 +104,7 @@ class BoltNavPriority extends withHyperHtml() {
   }
 
   render() {
-    return this.html`
+    return html`
       ${this.slot('default')}
     `;
   }

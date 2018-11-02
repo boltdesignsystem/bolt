@@ -4,7 +4,10 @@ import {
   css,
   hasNativeShadowDomSupport,
 } from '@bolt/core/utils';
-import { wire, withHyperHtml } from '@bolt/core/renderers';
+import {
+  withLitHtml,
+  html,
+} from '@bolt/core/renderers/renderer-lit-html';
 
 import Handorgel from 'handorgel';
 
@@ -12,7 +15,7 @@ import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss
 import styles from './dropdown.scss';
 
 @define
-class BoltDropdown extends withHyperHtml() {
+class BoltDropdown extends withLitHtml() {
   static is = 'bolt-dropdown';
 
   static props = {
@@ -114,7 +117,7 @@ class BoltDropdown extends withHyperHtml() {
         ? this.props.title
         : '';
 
-    return wire(this.props)`
+    return html`
       <h3 class="${dropdownHeaderClasses}">
         <button class="c-bolt-dropdown__header-button">
           ${dropdownTitle}
@@ -146,7 +149,7 @@ class BoltDropdown extends withHyperHtml() {
         ? this.props.children
         : '';
 
-    return wire(this.props)`
+    return html`
       <div class="${classes}" id="${this.uuid}">
         ${this.dropdownHeader()}
 
@@ -213,7 +216,7 @@ class BoltDropdown extends withHyperHtml() {
       },
     );
 
-    return this.html`
+    return html`
       ${this.addStyles([styles, heightUtils])}
       ${this.dropdownTemplate}
     `;

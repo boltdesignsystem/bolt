@@ -1,5 +1,8 @@
 import { define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withHyperHtml } from '@bolt/core/renderers';
+import {
+  withLitHtml,
+  html,
+} from '@bolt/core/renderers/renderer-lit-html';
 
 // To avoid invoking the parser with `.innerHTML` for every new instance, a
 // template for the contents of the ShadowDOM is is shared by all
@@ -9,7 +12,7 @@ import { withHyperHtml } from '@bolt/core/renderers';
 // ShadyCSS will rename classes as needed to ensure style scoping.
 
 @define
-class BoltBand extends withHyperHtml() {
+class BoltBand extends withLitHtml() {
   static is = 'bolt-band';
 
   static get observedAttributes() {
@@ -200,11 +203,9 @@ class BoltBand extends withHyperHtml() {
   }
 
   render() {
-    if (this.useShadow) {
-      return this.html`
-        ${this.slot('default')}
-      `;
-    }
+    return html`
+      ${this.slot('default')}
+    `;
   }
 }
 
