@@ -4,12 +4,12 @@ import {
   css,
   hasNativeShadowDomSupport,
 } from '@bolt/core/utils';
-import { withHyperHtml } from '@bolt/core/renderers';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 import placeholderStyles from './placeholder.scss';
 
 @define
-class BoltPlaceholder extends withHyperHtml() {
+class BoltPlaceholder extends withLitHtml() {
   static is = 'bolt-placeholder';
 
   static props = {
@@ -47,7 +47,7 @@ class BoltPlaceholder extends withHyperHtml() {
         : 'c-bolt-placeholder__content--medium',
     );
 
-    return this.html`
+    return html`
       ${this.addStyles([placeholderStyles])}
       <div class=${classes}>
         <div class=${wrapperClasses}>

@@ -7,7 +7,11 @@ import {
   afterNextRender,
   watchForComponentMutations,
 } from '@bolt/core/utils';
-import { wire, withHyperHtml } from '@bolt/core/renderers';
+import {
+  withLitHtml,
+  html,
+  render,
+} from '@bolt/core/renderers/renderer-lit-html';
 
 import classNames from 'classnames/bind';
 
@@ -17,7 +21,7 @@ import styles from './button.scss';
 let cx = classNames.bind(styles);
 
 @define
-class BoltButton extends withHyperHtml() {
+class BoltButton extends withLitHtml() {
   static is = 'bolt-button';
 
   static props = {
@@ -140,11 +144,9 @@ class BoltButton extends withHyperHtml() {
             'is-empty': name in this.slots === false,
           });
 
-          return wire(this)`
+          return html`
             <span class="${iconClasses}">${
-            name in this.slots
-              ? this.slot(name)
-              : wire(this)`<slot name="${name}" />`
+            name in this.slots ? this.slot(name) : html`<slot name="${name}" />`
           }</span>`;
         default:
           const itemClasses = cx('c-bolt-button__item', {
@@ -152,9 +154,9 @@ class BoltButton extends withHyperHtml() {
             'u-bolt-visuallyhidden': this.props.iconOnly,
           });
 
-          return wire(this)`
+          return html`
             <span class="${itemClasses}">${
-            name in this.slots ? this.slot('default') : wire(this)`<slot/>`
+            name in this.slots ? this.slot('default') : html`<slot/>`
           }</span>`;
       }
     };
@@ -165,32 +167,19 @@ class BoltButton extends withHyperHtml() {
       slotMarkup('after'),
     ];
 
-    function renderInnerSlots(elementToAppendTo) {
-      // hyperhtml workaround till lit-html in place
-      for (var i = 0; i < innerSlots.length; i++) {
-        const slotValue = innerSlots[i];
-        if (slotValue !== undefined) {
-          elementToAppendTo.appendChild(slotValue);
-        }
-      }
-      return elementToAppendTo;
-    }
-
     if (this.rootElement) {
       buttonElement = this.rootElement.firstChild.cloneNode(true);
-      // render(inner, buttonElement); // lit-html syntax
       buttonElement.className += ' ' + classes;
+      render(innerSlots, buttonElement);
     } else if (hasUrl) {
-      buttonElement = wire()`<a href="${
+      buttonElement = html`<a href="${
         this.props.url
-      }" class="${classes}" target="${urlTarget}"></a>`;
+      }" class="${classes}" target="${urlTarget}">${innerSlots}</a>`;
     } else {
-      buttonElement = wire()`<button class="${classes}"></button>`;
+      buttonElement = html`<button class="${classes}">${innerSlots}</button>`;
     }
 
-    buttonElement = renderInnerSlots(buttonElement);
-
-    return this.html`
+    return html`
       ${this.addStyles([styles, visuallyhiddenUtils])}
       ${buttonElement}
     `;

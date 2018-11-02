@@ -4,12 +4,12 @@ import {
   hasNativeShadowDomSupport,
   supportsCSSVars,
 } from '@bolt/core/utils';
-import { withHyperHtml } from '@bolt/core/renderers/renderer-hyperhtml';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 import styles from './ratio.scss';
 
 function BoltRatio() {
-  return class BoltRatioClass extends withHyperHtml() {
+  return class BoltRatioClass extends withLitHtml() {
     static props = {
       aspectRatioHeight: props.number,
       aspectRatioWidth: props.number,
@@ -57,7 +57,7 @@ function BoltRatio() {
     render() {
       const classes = css(`o-${bolt.namespace}-ratio__inner`);
 
-      return this.html`
+      return html`
         ${this.addStyles([styles])}
         <div class="${classes}">
           ${this.slot('default')}
