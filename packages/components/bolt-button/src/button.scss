@@ -11,10 +11,11 @@
 
 
 /** Base Button Styles **/
+:host,
 bolt-button {
   display: inline-block; // Fallback
-  display: inline-flex; // So equal height works
   -webkit-appearance: none; // override default [type=submit] button styles coming from Normalize
+  display: inline-flex; // So equal height works
 }
 
 .c-bolt-button {

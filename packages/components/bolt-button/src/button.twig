@@ -76,6 +76,7 @@
   {% set iconPosition = icon.position in iconPositions ? icon.position : schema.properties.icon.properties.position.default %}
 {% endif %}
 
+{% set targetProp = target | default(attributes['target'] ? attributes['target'] : "_self") %}
 
 {# filter external classnames to allow a very small select number to trickle onto the inner button tag ("is-" and "has-" classes really) while still allowing utility classes and other misc non-component classes to get added to the outer custom element #}
 {% set outerClasses = utils | default([]) %}
@@ -121,8 +122,7 @@
   {% if transform %} transform="{{ transform }}" {% endif %}
   {% if disabled == true %} disabled {% endif %}
   {% if noShadow %} no-shadow {% endif %}
-
-  {% if target or attributes['target'] %} target="{{ target | default(attributes['target']) }}" {% endif %}
+  {% if url %}target="{{ targetProp }}"{% endif %}
 
   {# todo: rename on-click + on-click-target to only allow onClick + onClickTarget to unify the prop syntax; deprecate adding these via attributes #}
   {% if onClick or attributes['on-click'] %} on-click="{{ onClick | default(attributes['on-click']) }}" {% endif %}
@@ -133,7 +133,7 @@
 >
 
   {# choose a semantic <a> tag or <button> tag for better accessibility, depending on whether or not a url is getting passed along #}
-  <{{ tag }} {{ attributes | without('class') | without('on-click') | without('on-click-target') }} class="{{ innerClasses|join(' ') }}" is="shadow-root">
+  <{{ tag }} {{ attributes | without('class') | without('on-click') | without('on-click-target') }} class="{{ innerClasses|join(' ') }}" {% if url %}target="{{ targetProp }}"{% endif %} is="shadow-root">
     {{ macros.slottedIcon(icon, iconPosition, 'before') }}
     <replace-with-children class="c-bolt-button__item {{ iconOnly ? 'u-bolt-visuallyhidden' : '' }}">{{ text }}</replace-with-children>
     {{ macros.slottedIcon(icon, iconPosition, 'after') }}
