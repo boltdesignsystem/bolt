@@ -1,8 +1,5 @@
 import { define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import {
-  withLitHtml,
-  html,
-} from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 import gumshoe from 'gumshoejs';
 import isVisible from 'is-visible';

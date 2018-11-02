@@ -1,10 +1,7 @@
 import ClipboardJS from 'clipboard';
 
 import { props, define } from '@bolt/core/utils';
-import {
-  withLitHtml,
-  html,
-} from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 @define
 class BoltCopyToClipboard extends withLitHtml() {

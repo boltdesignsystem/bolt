@@ -4,10 +4,7 @@ import {
   css,
   hasNativeShadowDomSupport,
 } from '@bolt/core/utils';
-import {
-  withLitHtml,
-  html,
-} from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 import Handorgel from 'handorgel';
 

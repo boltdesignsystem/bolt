@@ -14,6 +14,7 @@ const iterator = window.Symbol.iterator;
 
 if (!String.prototype[iterator] || !String.prototype.codePointAt) {
   /** @this {String} */
+  // eslint-disable-next-line
   String.prototype[iterator] = function*() {
     for (let i = 0; i < this.length; i++) {
       yield this[i];
@@ -23,6 +24,7 @@ if (!String.prototype[iterator] || !String.prototype.codePointAt) {
 
 if (!Set.prototype[iterator]) {
   /** @this {Set} */
+  // eslint-disable-next-line
   Set.prototype[iterator] = function*() {
     const temp = [];
     this.forEach(value => {
@@ -36,6 +38,7 @@ if (!Set.prototype[iterator]) {
 
 if (!Map.prototype[iterator]) {
   /** @this {Map} */
+  // eslint-disable-next-line
   Map.prototype[iterator] = function*() {
     const entries = [];
     this.forEach((value, key) => {
