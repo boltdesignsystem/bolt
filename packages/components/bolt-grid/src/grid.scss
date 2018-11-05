@@ -32,101 +32,38 @@ bolt-grid {
     }
   }
 
-  // @todo: refactor to auto-generate sizes here from spacing scale
-  &[vinset='xlarge'] {
-    grid-template-rows: minmax(#{bolt-v-spacing(xlarge)}, max-content);
-    grid-auto-rows: minmax(#{bolt-v-spacing(xlarge)}, max-content);
-    
-    // temporary workaround for forcing the auto-generated rows before/after the grid to be a minimum height in IE 11 
-    &:before, &:after {
-      min-height: bolt-v-spacing(xlarge);
-    }
-    
-    @supports (grid-auto-rows: auto){
-      grid-template-rows: auto;
-    }
-  }
 
-  &[vinset='large'] {
-    grid-template-rows: minmax(#{bolt-v-spacing(large)}, max-content);
-    grid-auto-rows: minmax(#{bolt-v-spacing(large)}, max-content);
+  @each $name, $value in $bolt-spacing-values {
+    &[vinset='#{$name}'] {
+      grid-template-rows: minmax(#{bolt-v-spacing(#{$name})}, max-content);
+      grid-auto-rows: minmax(#{bolt-v-spacing(#{$name})}, max-content);
 
-    // temporary workaround for forcing the auto-generated rows before/after the grid to be a minimum height in IE 11
-    &:before, &:after {
-      min-height: bolt-v-spacing(large);
+      // temporary workaround for forcing the auto-generated rows before/after the grid to be a minimum height in IE 11
+      &:before, &:after {
+        min-height: bolt-v-spacing(#{$name});
+      }
+
+      @supports (grid-auto-rows: auto) {
+        grid-template-rows: auto;
+      }
     }
 
-    @supports (grid-auto-rows: auto){
-      grid-template-rows: auto;
+    &[row-gutter='#{$name}'] {
+      // Use margin to replicate grid-row-gap when not natively supported by the browser.
+      &:before,
+      > bolt-grid-item {
+        @include bolt-margin-bottom(#{$name});
+
+        @supports (grid-row-gap: 1px) {
+          // When grid-row-gap is natively supported, reset this workaround.
+          @include bolt-margin-bottom(0);
+        }
+      }
+
+      @supports (grid-row-gap: 1px) {
+        grid-row-gap: bolt-v-spacing(#{$name});
+      }
     }
-  }
-  
-  &[vinset='medium'] {
-    grid-template-rows: minmax(#{bolt-v-spacing(medium)}, max-content);
-    grid-auto-rows: minmax(#{bolt-v-spacing(medium)}, max-content);
-
-    // temporary workaround for forcing the auto-generated rows before/after the grid to be a minimum height in IE 11
-    &:before, &:after {
-      min-height: bolt-v-spacing(medium);
-    }
-
-    @supports (grid-auto-rows: auto){
-      grid-template-rows: auto;
-    }
-  }
-  
-  &[vinset='small'] {
-    grid-template-rows: minmax(#{bolt-v-spacing(small)}, max-content);
-    grid-auto-rows: minmax(#{bolt-v-spacing(small)}, max-content);
-
-    // temporary workaround for forcing the auto-generated rows before/after the grid to be a minimum height in IE 11
-    &:before, &:after {
-      min-height: bolt-v-spacing(small);
-    }
-
-    @supports (grid-auto-rows: auto){
-      grid-template-rows: auto;
-    }
-  }
-
-  &[vinset='xsmall'] {
-    grid-template-rows: minmax(#{bolt-v-spacing(xsmall)}, max-content);
-    grid-auto-rows: minmax(#{bolt-v-spacing(xsmall)}, max-content);
-
-    // temporary workaround for forcing the auto-generated rows before/after the grid to be a minimum height in IE 11
-    &:before, &:after {
-      min-height: bolt-v-spacing(xsmall);
-    }
-
-    @supports (grid-auto-rows: auto){
-      grid-template-rows: auto;
-    }
-  }
-
-
-  // @todo: refactor to auto-generate sizes here from spacing scale -- same as above ^
-  &[row-gutter='xlarge']{
-    grid-row-gap: bolt-v-spacing(xlarge);
-  }
-
-  &[row-gutter='large']{
-    grid-row-gap: bolt-v-spacing(large);
-  }
-
-  &[row-gutter='medium']{
-    grid-row-gap: bolt-v-spacing(medium);
-  }
-
-  &[row-gutter='small']{
-    grid-row-gap: bolt-v-spacing(small);
-  }
-
-  &[row-gutter='xsmall']{
-    grid-row-gap: bolt-v-spacing(xsmall);
-  }
-
-  &[row-gutter='xxsmall']{
-    grid-row-gap: bolt-v-spacing(xxsmall);
   }
 }
 
