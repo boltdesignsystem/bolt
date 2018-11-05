@@ -18,6 +18,8 @@ bolt-card[height='full'] {
 
 .c-bolt-card {
   @include bolt-card-border-reset;
+  @include bolt-margin(0);
+  @include bolt-padding(0);
   @include bolt-shadow('level-20', false, $bolt-card-shadow-color);
 
   display: flex;

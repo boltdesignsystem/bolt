@@ -7,7 +7,7 @@ properties:
   tag:
     type: string
     description: Html tag immediately within the `bolt-card` element.
-    default: div
+    default: article
     enum:
       - div
       - article
@@ -73,7 +73,7 @@ properties:
       external:
         type: boolean
   items:
-    type: 
+    type:
       - string
       - array
       - object

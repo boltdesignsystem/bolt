@@ -1,5 +1,4 @@
 <bolt-card-action {% if external %}external{% endif %} {% if url %}url="{{url}}"{% endif %}>
-
   <replace-with-children class="{{ "#{base_class}__action" }}">
     {% include "@bolt-components-button/button.twig" with {
       text: text,
