@@ -21,3 +21,29 @@
     @include bolt-opacity-utils(\@#{$breakpointName});
   }
 }
+
+
+// DEPRECATED. These opacity values will be removed in Bolt 3.0.  See $bolt-opacities for valid opacity values.
+// To remove support, delete all the code below this line.
+$bolt-deprecated-opacities-map: (
+  25: 20,
+  50: 60,
+  75: 80,
+);
+
+@mixin bolt-opacity-utils-deprecated($breakpoint: null) {
+  @each $key, $value in $bolt-deprecated-opacities-map {
+    .u-bolt-opacity-#{$key}#{$breakpoint} {
+      @include bolt-opacity($value, $utility: true);
+    }
+  }
+}
+
+@include bolt-opacity-utils-deprecated;
+
+@each $breakpoint in $bolt-breakpoints {
+  $breakpointName: nth($breakpoint, 1);
+  @include bolt-mq($breakpointName) {
+    @include bolt-opacity-utils-deprecated(\@#{$breakpointName});
+  }
+}
