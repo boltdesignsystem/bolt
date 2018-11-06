@@ -34,7 +34,7 @@ $bolt-video-meta-transition: $bolt-transition;
   color: bolt-color(white);
   border-radius: $bolt-video-meta-border-radius;
   background-color: rgba(bolt-color(black), 0.8);
-  opacity: 1;
+  opacity: bolt-opacity(100);
   transition: opacity $bolt-video-meta-transition;
 }
 
@@ -53,7 +53,7 @@ $bolt-video-meta-transition: $bolt-transition;
 // [Mai] Hide the duration (which covers the controls) video is started or when paused.
 #{$bolt-namespace}-video.is-paused {
   .c-#{$bolt-namespace}-video-meta__item--duration {
-    opacity: 0;
+    opacity: bolt-opacity(0);
   }
 }
 
@@ -61,13 +61,13 @@ $bolt-video-meta-transition: $bolt-transition;
 #{$bolt-namespace}-video.is-playing,
 #{$bolt-namespace}-video.is-finished {
   .c-#{$bolt-namespace}-video-meta__item {
-    opacity: 0;
+    opacity: bolt-opacity(0);
   }
 }
 
 // [Mai] Hide the title and duration when user opens the share dialog.
 .vjs-controls-disabled ~ #{$bolt-namespace}-video-meta {
   .c-#{$bolt-namespace}-video-meta__item {
-    opacity: 0;
+    opacity: bolt-opacity(0);
   }
 }

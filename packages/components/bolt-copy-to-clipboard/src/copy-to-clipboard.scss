@@ -24,12 +24,12 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
   &.is-animating {
     .c-bolt-copy-to-clipboard__trigger {
       pointer-events: none;
-      opacity: 0;
+      opacity: bolt-opacity(0);
       transition-delay: 0s; // [2]
     }
 
     .c-bolt-copy-to-clipboard__transition {
-      opacity: 1;
+      opacity: bolt-opacity(100);
       transition-delay: $bolt-copy-to-clipboard-animation-duration; // [1]
     }
 
@@ -54,12 +54,12 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
 
   &.is-animating.is-successful {
     .c-bolt-copy-to-clipboard__transition {
-      opacity: 0;
+      opacity: bolt-opacity(0);
       transition-delay: 0s; // [2]
     }
 
     .c-bolt-copy-to-clipboard__confirmation {
-      opacity: 1;
+      opacity: bolt-opacity(100);
       transition-delay: $bolt-copy-to-clipboard-animation-duration; // [1]
     }
   }
@@ -80,7 +80,7 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
   font-weight: inherit;
   border: none;
   background: none;
-  opacity: 1;
+  opacity: bolt-opacity(100);
   transition: $bolt-copy-to-clipboard-transition;
   transition-delay: $bolt-copy-to-clipboard-animation-duration; // [1]
 }
@@ -114,7 +114,7 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
 
 .c-bolt-copy-to-clipboard__info {
   color: bolt-theme(text);
-  opacity: 0.4;
+  opacity: bolt-opacity(40);
 }
 
 .c-bolt-copy-to-clipboard__transition,
@@ -125,7 +125,7 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
   left: 0;
   width: 100%;
   pointer-events: none;
-  opacity: 0;
+  opacity: bolt-opacity(0);
   transition: $bolt-copy-to-clipboard-transition;
 }
 

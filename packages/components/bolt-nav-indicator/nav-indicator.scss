@@ -20,7 +20,7 @@ bolt-nav-indicator {
   width: 0;
   height: ($bolt-nav-indicator-border-size);
   background-color: bolt-theme(primary);
-  opacity: 1; // [Mai] This is interrelated with the dropdown component.
+  opacity: bolt-opacity(100); // [Mai] This is interrelated with the dropdown component.
   opacity: var(--bolt-nav-indicator-opacity, 1); // [Mai] This is interrelated with the dropdown component.
   transform: translateY(var(--bolt-nav-indicator-transform)); // [Mai] This is interrelated with the dropdown component.
   transition:

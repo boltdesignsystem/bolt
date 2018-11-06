@@ -41,7 +41,7 @@ $bolt-search-filter-transition: $bolt-transition;
 
     &:not(:target) {
       pointer-events: none;
-      opacity: 0;
+      opacity: bolt-opacity(0);
 
       .c-bolt-search-filter__panel-content,
       .c-bolt-search-filter__panel-controls--close,
@@ -51,7 +51,7 @@ $bolt-search-filter-transition: $bolt-transition;
     }
 
     &:target {
-      opacity: 1;
+      opacity: bolt-opacity(100);
 
       .c-bolt-search-filter__panel-content,
       .c-bolt-search-filter__panel-controls--close,
