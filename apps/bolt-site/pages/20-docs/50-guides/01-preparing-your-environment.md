@@ -70,7 +70,6 @@ nvm alias default lts/carbon
 ### 4. Install PHP and PHP Dependencies
 ```bash
 brew install php72
-brew tap homebrew/homebrew-php
 brew install composer
 composer global require hirak/prestissimo
 ```
