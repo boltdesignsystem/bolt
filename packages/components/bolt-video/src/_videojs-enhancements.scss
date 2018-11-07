@@ -20,7 +20,7 @@ $bolt-video-js-button-shadow-color: bolt-color(black);
 $bolt-video-js-button-shadow-level: 'level-20';
 $bolt-video-js-button-shadow-level-hover: 'level-40';
 
-@mixin bolt-video-js-button($opacity: 1) {
+@mixin bolt-video-js-button($opacity: bolt-opacity(100)) {
   color: $bolt-video-js-button-text-color;
   background-color: $bolt-video-js-button-background-color;
   transition: all $bolt-video-js-button-transition;
@@ -40,7 +40,7 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
   .vjs-big-play-button {
     @include bolt-margin(0);
     @include bolt-padding(0);
-    @include bolt-video-js-button($opacity: 1);
+    @include bolt-video-js-button($opacity: bolt-opacity(100));
     @include bolt-shadow($key: $bolt-video-js-button-shadow-level, $base-color: $bolt-video-js-button-shadow-color);
 
     position: absolute;

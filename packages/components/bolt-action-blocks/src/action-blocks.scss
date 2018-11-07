@@ -61,13 +61,13 @@ $bolt-action-block-background: bolt-color(indigo, light);
     content: '';
     pointer-events: none;
     background-color: $bolt-action-block-background;
-    opacity: 0;
+    opacity: bolt-opacity(0);
     transition: all $bolt-action-block-transition-timing cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
   &:hover, &:focus {
     &:before {
-      opacity: 1;
+      opacity: bolt-opacity(100);
     }
   }
 

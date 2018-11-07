@@ -13,7 +13,7 @@
 
     &:hover:before,
     &.is-hover:before {
-      opacity: 1;
+      opacity: bolt-opacity(100);
     }
 
     &:active,
@@ -23,7 +23,7 @@
 
     &:active:before,
     &.is-active:before {
-      opacity: 0;
+      opacity: bolt-opacity(0);
     }
   }
 }
@@ -142,12 +142,12 @@
   }
 
   & {
-    opacity: 1;
+    opacity: bolt-opacity(100);
     color: bolt-theme(headline-link);
   }
 
   &:visited {
-    opacity: 1;
+    opacity: bolt-opacity(100);
   }
 
   &:hover:not([disabled]) {
@@ -175,7 +175,7 @@
   &:before,
   &:hover:before,
   &:active:before {
-    opacity: 1;
+    opacity: bolt-opacity(100);
   }
 
   &,

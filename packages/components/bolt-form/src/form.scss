@@ -111,7 +111,7 @@ $bolt-input-transition: $bolt-transition;
 
     // Workaround for pega.com Drupal, which currently uses sanitize.css.  Once that's
     // removed, the following line will be unnecessary.
-    opacity: 1;
+    opacity: bolt-opacity(100);
   }
 
   &::-moz-placeholder { /* Firefox 19+ */
@@ -144,7 +144,7 @@ $bolt-input-transition: $bolt-transition;
   border-width: $bolt-input-border-width;
   border-radius: $bolt-input-border-radius;
   background-color: $bolt-input-background-color;
-  opacity: 1; // [Mai] Reset mobile Safari browser default.
+  opacity: bolt-opacity(100); // [Mai] Reset mobile Safari browser default.
   outline: none;
   transition: all $bolt-input-transition;
 
@@ -223,7 +223,7 @@ $bolt-input-transition: $bolt-transition;
   white-space: nowrap;
   user-select: none;
   pointer-events: none;
-  opacity: 0;
+  opacity: bolt-opacity(0);
   transform: translate3d(0, -50%, 0) translateY(.4rem);
   transform-origin: 0 100%;
   transition: all $bolt-floating-label-transition;
@@ -234,7 +234,7 @@ $bolt-input-transition: $bolt-transition;
 .c-bolt-custom-input.is-active {
   // [Mai] A custom input is considered active if the regular input inside is filled or in focus.
   & ~ .c-bolt-floating-label {
-    opacity: 1;
+    opacity: bolt-opacity(100);
     transform: translate3d(0, -100%, 0) translateY(.1rem) scale($bolt-floating-label-text-scale);
   }
 }
@@ -276,7 +276,7 @@ $bolt-input-transition: $bolt-transition;
 
   &:after {
     content: '';
-    opacity: 0;
+    opacity: bolt-opacity(0);
     transform-origin: center;
   }
 }
@@ -335,7 +335,7 @@ $bolt-input-transition: $bolt-transition;
     }
 
     &:after {
-      opacity: 1;
+      opacity: bolt-opacity(100);
     }
 
     .c-bolt-inline-label__emphasize {
