@@ -6,6 +6,9 @@
 @import '../settings-colors/settings-colors';
 @import '../../02-tools/tools-color-palette/tools-color-palette';
 
+@import '../settings-opacity/settings-opacity';
+@import '../../02-tools/tools-opacity/tools-opacity';
+
 /* ------------------------------------ *\
    Global Settings
 \* ------------------------------------ */
@@ -64,12 +67,12 @@ $bolt-translate-raised--large: translate3d(0, -0.25rem, 0);
 
 // Global theming defaults -- TODO: move to standalone setting
 /// Bolt default global link hover opacity
-$bolt-global-link-hover-opacity: 0.7 !default;
+$bolt-global-link-hover-opacity: bolt-opacity(80) !default;
 /// Bolt default global link active opacity
-$bolt-global-link-active-opacity: 0.5 !default;
+$bolt-global-link-active-opacity: bolt-opacity(60) !default;
 
 /// Bolt default global border opacity
-$bolt-global-border-opacity: 0.2 !default;
+$bolt-global-border-opacity: bolt-opacity(20) !default;
 /// Bolt default global border color
 $bolt-global-border-color: bolt-color(gray);
 
