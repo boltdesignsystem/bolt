@@ -8,7 +8,7 @@ title: Preparing your environment
 2. Next, install oh-my-zsh: https://github.com/robbyrussell/oh-my-zsh#basic-installation
 ```bash
 # Paste this into iTerm
-sh -c “$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)”
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 3. Install the SourceTree app: https://www.sourcetreeapp.com/
 4. Install the VS Code app: https://code.visualstudio.com/
@@ -19,7 +19,7 @@ sh -c “$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/m
 
 ### 1. Install Homebrew: https://brew.sh/
 ```bash
-/usr/bin/ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)”
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
 ### 2. Install Git
