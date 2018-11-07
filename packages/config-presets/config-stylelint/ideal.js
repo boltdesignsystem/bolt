@@ -211,7 +211,6 @@ module.exports = {
       'font-size',
       'font-size-adjust',
       'font-weight',
-      'line-height',
       'font-feature-settings',
       'font-kerning',
       'font-stretch',
