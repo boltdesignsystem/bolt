@@ -38,8 +38,8 @@ async function createWebpackConfig(buildConfig) {
   const publicPath = config.publicPath
     ? config.publicPath
     : config.wwwDir
-      ? `/${path.relative(config.wwwDir, config.buildDir)}/`
-      : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
+    ? `/${path.relative(config.wwwDir, config.buildDir)}/`
+    : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
 
   // @TODO: move this setting to .boltrc config
   const sassExportData = require('@bolt/sass-export-data')({
