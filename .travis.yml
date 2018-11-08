@@ -40,7 +40,7 @@ script:
 
 after_script:
   - echo '' && echo 'About to deploy...' && echo ''
-  - cd deploys && DOCKER_TAG=$GIT_SHA npx now@canary --team boltdesignsystem
+  - cd deploys && DOCKER_TAG=$GIT_SHA npx now@canary --team boltdesignsystem --token $NOW_TOKEN
 
 cache:
   apt: true
