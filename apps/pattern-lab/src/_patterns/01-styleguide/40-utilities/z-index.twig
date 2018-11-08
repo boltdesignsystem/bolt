@@ -9,7 +9,7 @@
 } only %}
 
   {% macro recursive_zindex_demo(list) %}
-    {% set utility_class = bolt.data.zIndexes["utility-class-prefix"] ~ list|keys|last %}
+    {% set utility_class = "u-bolt-z-index-" ~ list|keys|last %}
     <div class="bolt-z-index-demo {{ utility_class }}">
       {% if list|slice(0, -1)|length  %}
         {{ _self.recursive_zindex_demo(list|slice(0, -1)) }}
@@ -18,7 +18,7 @@
     </div>
   {% endmacro %}
 
-  {% set class_prefix = bolt.data.zIndexes["utility-class-prefix"] %}
+  {% set class_prefix = "u-bolt-z-index-" %}
 
   {% block utility_description %}
     <p>Add the utility class <code>{{ class_prefix }}xx</code> where xx equals the z index level you wish to apply.</p>
