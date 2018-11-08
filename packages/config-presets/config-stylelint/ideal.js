@@ -131,6 +131,8 @@ module.exports = {
     'declaration-bang-space-before': 'always',
     'declaration-block-no-shorthand-property-overrides': true,
     'order/properties-order': [
+      'content',
+
       // Display
       'display',
       'flex',
@@ -148,8 +150,6 @@ module.exports = {
       'order',
       'box-sizing',
       'appearance',
-      'backdrop-filter',
-      'backface-visibility',
       'visibility',
       'opacity',
 
@@ -161,6 +161,8 @@ module.exports = {
       'left',
       'float',
       'clear',
+      'transform',
+      'z-index',
 
       // Size
       'width',
@@ -190,7 +192,6 @@ module.exports = {
       'list-style-type',
       'counter-increment',
       'counter-reset',
-      'content',
       'color',
       'line-height',
       'text-align',
@@ -273,12 +274,14 @@ module.exports = {
       'background-position-y',
       'background-repeat',
       'background-size',
-      'z-index',
+      'backdrop-filter',
 
       // Advanced
-      'clip',
       'filter',
-      'transform',
+      'clip',
+      'backface-visibility',
+      'will-change',
+      'transition',
       'animation',
       'animation-delay',
       'animation-direction',
