@@ -64,10 +64,10 @@ $bolt-blockquote-image-size: 4rem;
 
   &:before,
   &:after {
-    width: 100%;
-    height: $bolt-blockquote-border-width;
-    max-width: 300px;
     content: '';
+    width: 100%;
+    max-width: 300px;
+    height: $bolt-blockquote-border-width;
     vertical-align: top;
     background-color: $bolt-blockquote-border-color;
   }
@@ -117,11 +117,11 @@ $bolt-blockquote-image-size: 4rem;
   display: inline-block;
   width: $bolt-blockquote-image-size;
   height: $bolt-blockquote-image-size;
+  overflow: hidden;
+  border-radius: 50%;
   border-width: $bolt-blockquote-image-border-width;
   border-style: $bolt-blockquote-image-border-style;
   border-color: $bolt-blockquote-image-border-color;
-  border-radius: 50%;
-  overflow: hidden;
 }
 
 .c-bolt-blockquote__footer {
