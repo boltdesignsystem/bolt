@@ -49,13 +49,11 @@ class BoltPlaceholder extends withLitHtml() {
 
     return html`
       ${this.addStyles([placeholderStyles])}
-      <div class=${classes}>
-        <div class=${wrapperClasses}>
+      <div class="${classes}">
+        <div class="${wrapperClasses}">
           <div class="c-bolt-placeholder__wrapper-y"></div>
           <div class="c-bolt-placeholder__wrapper-x"></div>
-          <div class=${contentClasses}>
-            ${this.slot('default')}
-          </div>
+          <div class="${contentClasses}">${this.slot('default')}</div>
         </div>
       </div>
     `;

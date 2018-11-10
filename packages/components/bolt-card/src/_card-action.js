@@ -22,20 +22,28 @@ class BoltCardAction extends withLitHtml() {
 
     return html`
       ${this.addStyles([styles])}
-      <div class=${classes}>
+      <div class="${classes}">
         ${
           this.slots.default.length === 1 &&
           this.slots.default[0].tagName === undefined
             ? html`
-              <bolt-button color="text" width="full" align="start" url="${url}" target="${
-                external ? '_blank' : '_self'
-              }">
+                <bolt-button
+                  color="text"
+                  width="full"
+                  align="start"
+                  url="${url}"
+                  target="${external ? '_blank' : '_self'}"
+                >
+                  ${this.slot('default')}
+                  <bolt-icon
+                    slot="after"
+                    name="${external ? 'external-link' : 'chevron-right'}"
+                  ></bolt-icon>
+                </bolt-button>
+              `
+            : html`
                 ${this.slot('default')}
-                <bolt-icon slot="after" name="${
-                  external ? 'external-link' : 'chevron-right'
-                }"></bolt-icon>
-              </bolt-button>`
-            : html`${this.slot('default')}`
+              `
         }
       </div>
     `;

@@ -16,9 +16,7 @@ class BoltCardActions extends withLitHtml() {
 
     return html`
       ${this.addStyles([styles])}
-      <div class=${classes}>
-        ${this.slot('default')}
-      </div>
+      <div class="${classes}">${this.slot('default')}</div>
     `;
   }
 }

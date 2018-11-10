@@ -48,9 +48,7 @@ class BoltDeviceViewer extends withLitHtml() {
     const classes = css('c-bolt-image-magnifier');
 
     return html`
-      <div class=${classes}>
-        ${this.slot('default')}
-      </div>
+      <div class="${classes}">${this.slot('default')}</div>
     `;
   }
 
