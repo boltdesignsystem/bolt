@@ -52,7 +52,7 @@ export function withContext(Base = HTMLElement) {
         self._providedContexts = new Map();
         for (const Context of self.constructor.provides) {
           if (!self._providedContexts.has(Context))
-          self._providedContexts.set(Context, new Context());
+            self._providedContexts.set(Context, new Context());
         }
       }
     }

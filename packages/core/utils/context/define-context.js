@@ -72,7 +72,7 @@ export function defineContext(initialProps) {
         this._propValues[prop] = value;
         this._updatedProps.add(prop);
         this._scheduleCallbacksForProp(prop);
-      }
+      },
     });
   }
 
