@@ -12,6 +12,8 @@ export * from './supports-passive-event-listener';
 export * from './which-transition-event';
 export * from './wait-for-transition-end';
 export * from './watch-for-component-mutations';
+export * from './context/define-context';
+export * from './context/with-context';
 
 // https://www.polymer-project.org/3.0/docs/devguide/custom-elements#defer-work
 export { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
