@@ -8,6 +8,7 @@ import 'core-js/modules/es7.array.includes';
 import 'core-js/modules/es6.array.for-each';
 import 'core-js/modules/es6.object.assign';
 import './custom-event-polyfill';
+import 'core-js/modules/es6.array.find';
 import './symbol-polyfill';
 import '@webcomponents/template/template.js';
 
