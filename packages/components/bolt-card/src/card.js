@@ -1,4 +1,10 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import {
+  defineContext,
+  withContext,
+  props,
+  define,
+  hasNativeShadowDomSupport,
+} from '@bolt/core/utils';
 import classNames from 'classnames/bind';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import Ajv from 'ajv';
@@ -11,9 +17,20 @@ const ajv = new Ajv({ useDefaults: 'shared' });
 
 let cx = classNames.bind(styles);
 
+// define which specific props to provide to children that subscribe
+export const CardContext = defineContext({
+  tag: 'div',
+});
+
 @define
-class BoltCard extends withLitHtml() {
+class BoltCard extends withContext(withLitHtml()) {
   static is = 'bolt-card';
+
+  // provide context info to children that subscribe
+  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
+  static get provides() {
+    return [CardContext];
+  }
 
   static props = {
     theme: props.string, // xdark | dark | light | xlight
@@ -53,6 +70,7 @@ class BoltCard extends withLitHtml() {
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     const { theme, tag, url } = this.validateProps(this.props);
+    this.contexts.get(CardContext).tag = tag;
 
     const classes = cx('c-bolt-card', {
       [`c-bolt-card--actionable`]: url,
@@ -64,26 +82,22 @@ class BoltCard extends withLitHtml() {
     switch (tag) {
       case 'article':
         renderedCard = html`
-          <article class=${classes}>
-            ${this.slot('default')}
-          </article>`;
+          <article class="${classes}">${this.slot('default')}</article>
+        `;
         break;
       case 'figure':
         renderedCard = html`
-          <figure class=${classes}>
-            ${this.slot('default')}
-          </figure>`;
+          <figure class="${classes}">${this.slot('default')}</figure>
+        `;
         break;
       default:
         renderedCard = html`
-          <div class=${classes}>
-            ${this.slot('default')}
-          </div>`;
+          <div class="${classes}">${this.slot('default')}</div>
+        `;
     }
 
     return html`
-      ${this.addStyles([styles, themes])}
-      ${renderedCard}
+      ${this.addStyles([styles, themes])} ${renderedCard}
     `;
   }
 }
