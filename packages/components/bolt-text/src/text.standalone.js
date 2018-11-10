@@ -55,8 +55,8 @@ class BoltText extends withLitHtml() {
     return schemaData.enum.indexOf(propVal) > -1
       ? propVal
       : typeof schemaData.default !== 'undefined'
-        ? schemaData.default
-        : false;
+      ? schemaData.default
+      : false;
   }
 
   subComponentValues(propVal, defaultVal) {

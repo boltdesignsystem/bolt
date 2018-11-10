@@ -64,7 +64,7 @@ bolt-dropdown {
     display: block;
     background-color: transparent;
     transition: opacity .1s ease;
-    opacity: 0;
+    opacity: bolt-opacity(0);
     background-color: bolt-theme(headline-link);
   }
 }
@@ -268,14 +268,14 @@ bolt-dropdown {
 }
 
 // .c-bolt-dropdown__header-icon--close {
-//   // opacity: 1;
+//   // opacity: bolt-opacity(100);
 //   transform: rotate(180deg);
 //   z-index: 900;
 // }
 
 
 // .c-bolt-dropdown__header-icon--open {
-//   // opacity: 0;
+//   // opacity: bolt-opacity(0);
 //   // float: none;
 //   // position: absolute;
 //   // top: 0;
@@ -295,10 +295,10 @@ bolt-dropdown {
     transform: rotate(0deg);
   }
   .c-bolt-dropdown__header-icon--open {
-    opacity: 1;
+    opacity: bolt-opacity(100);
   }
   .c-bolt-dropdown__header-icon--close {
-    opacity: 0;
+    opacity: bolt-opacity(0);
   }
 }
 
@@ -308,12 +308,12 @@ bolt-dropdown {
   }
 
   .c-bolt-dropdown__header-icon--open {
-    opacity: 0;
+    opacity: bolt-opacity(0);
     // transform: translate3d(-50%, -50%, 0px) rotate(179deg);
   }
 
   .c-bolt-dropdown__header-icon--close {
-    opacity: 1;
+    opacity: bolt-opacity(100);
     // transform: translate3d(-50%, -50%, 0px) rotate(360deg);
   }
 }
@@ -325,20 +325,20 @@ bolt-dropdown {
 // .c-bolt-dropdown[role="presentation"]{
 //   .c-bolt-dropdown__header--open {
 //     .c-bolt-dropdown__header-icon--close {
-//       opacity: 0;
+//       opacity: bolt-opacity(0);
 //     }
 
 //     .c-bolt-dropdown__header-icon--open {
-//       opacity: 1;
+//       opacity: bolt-opacity(100);
 //     }
 //   }
 
 //   .c-bolt-dropdown__header--open {
 //     .c-bolt-dropdown__header-icon--close {
-//       opacity: 0;
+//       opacity: bolt-opacity(0);
 //     }
 //     .c-bolt-dropdown__header-icon--open {
-//       opacity: 1;
+//       opacity: bolt-opacity(100);
 //     }
 //   }
 // }
@@ -379,12 +379,12 @@ bolt-dropdown {
   // padding-bottom: 13px;
   // padding-left: 16px;
   // padding-right: 16px;
-  opacity: 0;
+  opacity: bolt-opacity(0);
   transition: opacity .1s ease;
 
   .c-bolt-dropdown--collapse\@small & {
     @include bolt-mq(small) {
-      opacity: 1;
+      opacity: bolt-opacity(100);
     }
   }
   // transition: opacity 0.2s cubic-bezier(0, 0, 0.3, 1) 0.1s;
@@ -402,7 +402,7 @@ bolt-dropdown {
     background-color: transparent;
     transition: opacity 0.1s ease;
     background-color: bolt-theme(background);
-    opacity: 1;
+    opacity: bolt-opacity(100);
 
     filter: contrast(80%) brightness(110%);
   }
@@ -411,7 +411,7 @@ bolt-dropdown {
 .c-bolt-dropdown__state:target + .c-bolt-dropdown .c-bolt-dropdown__content-inner,
 .c-bolt-dropdown__state:checked + .c-bolt-dropdown .c-bolt-dropdown__content-inner,
 .c-bolt-dropdown__content--opened .c-bolt-dropdown__content-inner {
-  opacity: 1;
+  opacity: bolt-opacity(100);
   transition: opacity 0.3s ease;
 }
 
@@ -434,7 +434,7 @@ bolt-dropdown {
 // .c-bolt-dropdown_
 //   height: 44px;
 //   border-bottom: 1px solid #333;
-//   opacity: 0;
+//   opacity: bolt-opacity(0);
 //   pointer-events: none;
 // transform: scale(1.2, 1.2) translateY(-55px);
 // transition: opacity .35s ease-out,
@@ -473,7 +473,7 @@ bolt-dropdown {
 
   .c-bolt-dropdown--collapse\@small & {
     @include bolt-mq(small) {
-      opacity: 1;
+      opacity: bolt-opacity(100);
       transform: translateY(0);
     }
   }
@@ -504,7 +504,7 @@ bolt-dropdown {
 .c-bolt-dropdown__state:target + .c-bolt-dropdown .c-bolt-nav__item,
 .c-bolt-dropdown__state:checked + .c-bolt-dropdown .c-bolt-nav__item,
 .c-bolt-dropdown__content--opened .c-bolt-nav__item {
-  // opacity: 1;
+  // opacity: bolt-opacity(100);
   // transform: none;
   @include bolt-css-vars((
     --bolt-nav-item-opacity: 1,
@@ -515,7 +515,7 @@ bolt-dropdown {
 .c-bolt-dropdown__state:target + .c-bolt-dropdown .c-bolt-nav__indicator,
 .c-bolt-dropdown__state:checked + .c-bolt-dropdown .c-bolt-nav__indicator,
 .c-bolt-dropdown__content--opened .c-bolt-nav__indicator {
-  // opacity: 1;
+  // opacity: bolt-opacity(100);
 }
 
 
@@ -565,7 +565,7 @@ bolt-dropdown {
 // .c-bolt-block-list__item {
 //   // height: 43px;
 //   // border-bottom: 1px solid #333;
-//   // opacity: 0;
+//   // opacity: bolt-opacity(0);
 //   // pointer-events: none;
 
 // }

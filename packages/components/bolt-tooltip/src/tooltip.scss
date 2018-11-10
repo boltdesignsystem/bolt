@@ -51,12 +51,12 @@ $bolt-tooltip-transition: $bolt-transition;
 
   // Aria tags for accessibility.
   [aria-hidden="true"] {
-    opacity: 0;
+    opacity: bolt-opacity(0);
     pointer-events: none;
   }
 
   [aria-hidden="false"] {
-    opacity: 1;
+    opacity: bolt-opacity(100);
     pointer-events: auto;
   }
 
@@ -411,21 +411,21 @@ $bolt-tooltip-transition: $bolt-transition;
     top: 0; // For IE 11
     bottom: 0; // For IE 11
     left: 50%; // For IE 11 
-    opacity: 0;
+    opacity: bolt-opacity(0);
     transform: translate3d(-50%, -200%, 0);
 
     .is-active & {
-      opacity: 1;
+      opacity: bolt-opacity(100);
       transform: translate3d(-50%, 0, 0);
     }
   }
 
   .toggle--closed {
     transform: translate3d(0, 0, 0);
-    opacity: 1;
+    opacity: bolt-opacity(100);
 
     .is-active & {
-      opacity: 0;
+      opacity: bolt-opacity(0);
       transform: translate3d(0, 200%, 0);
     }
   }
@@ -442,7 +442,7 @@ $bolt-tooltip-transition: $bolt-transition;
     pointer-events: none;
 
     .is-active+& {
-      opacity: 1 !important; // Brings us back only when active
+      opacity: bolt-opacity(100) !important; // Brings us back only when active
       pointer-events: auto !important; // Brings back the ability to click links within the tooltip only when active
     }
   }
@@ -474,13 +474,13 @@ $bolt-tooltip-transition: $bolt-transition;
 // Show and hide effects
 .c-bolt-tooltip:not(:hover) > .c-bolt-tooltip__content,
 .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
-  opacity: 0;
+  opacity: bolt-opacity(0);
   pointer-events: none;
 }
 
 .c-bolt-tooltip:hover > .c-bolt-tooltip__content,
 .c-bolt-tooltip__trigger.is-active + .c-bolt-tooltip__content {
-  opacity: 1;
+  opacity: bolt-opacity(100);
   pointer-events: auto;
 }
 

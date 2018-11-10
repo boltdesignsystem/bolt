@@ -12,15 +12,13 @@ $bolt-share-block-link-inline-spacing: 'xsmall';
   display: block;
 }
 
-$bolt-share-opacity: 100, 80, 60, 40, 20;
-
-@each $opacity in $bolt-share-opacity {
-  .c-bolt-share--opacity-#{$opacity} {
-    opacity: #{$opacity / 100};
+@each $key, $value in $bolt-opacities {
+  .c-bolt-share--opacity-#{$key} {
+    @include bolt-opacity($key);
     transition: opacity $bolt-transition;
 
     &:hover {
-      opacity: 1;
+      opacity: bolt-opacity(100);
     }
   }
 }
@@ -29,7 +27,7 @@ $bolt-share-opacity: 100, 80, 60, 40, 20;
   @include bolt-font-size(xsmall);
 
   color: bolt-theme(text);
-  opacity: 0.6;
+  opacity: bolt-opacity(60);
 }
 
 .c-bolt-share__label--medium {
