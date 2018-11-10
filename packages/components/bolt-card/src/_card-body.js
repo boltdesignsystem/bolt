@@ -1,14 +1,7 @@
-import {
-  defineContext,
-  withContext,
-  props,
-  define,
-  hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
+import { withContext, define } from '@bolt/core/utils';
 import classNames from 'classnames/bind';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
-import schema from '../card.schema.yml';
 import styles from './_card-body.scss';
 import { CardContext } from './card';
 
@@ -28,10 +21,6 @@ class BoltCardBody extends withContext(withLitHtml()) {
     super.connectedCallback();
     this.context = this.contexts.get(CardContext);
   }
-
-  static props = {
-    tag: props.string, // figure || div
-  };
 
   render() {
     const classes = cx('c-bolt-card__body');
