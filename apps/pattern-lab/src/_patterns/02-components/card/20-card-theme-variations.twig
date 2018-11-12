@@ -1,68 +1,29 @@
-{% set themes = get_data("@bolt/themes.schema.json") %}
+{% set schema = bolt.data.components["@bolt-components-card"].schema %}
 
-{% block content %}
-  <h3>Setting a theme on the card itself</h3>
+{% for theme in schema.properties.theme.enum %}
+  <h3>{{ theme }}</h3>
   <div class="u-bolt-margin-bottom-medium">
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-      {% for theme in themes.properties.colors.enum %}
-        {% cell "u-bolt-width-12/12 u-bolt-width-3/12@large" %}
-          {% include "@bolt-components-card/card.twig" with {
-            theme: theme,
-            media: {
-              image: {
-                src: "/pattern-lab/images/placeholders/landscape-16x9-mountains.jpg",
-                alt: "Image alt.",
-              },
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {% include "@bolt-components-card/card.twig" with {
+          theme: theme,
+          media: {
+            image: {
+              src: "/pattern-lab/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image alt.",
             },
-            body: {
-              paragraph: "This card has the theme prop set to: " ~ theme,
-            },
-            actions: [
-              {
-                text: "This is a button",
-                url: "http://pega.com",
-              }
-            ],
-          } only %}
-        {% endcell %}
-      {% endfor %}
+          },
+          body: {
+            paragraph: "This card has the theme prop set to: " ~ theme,
+          },
+          actions: [
+            {
+              text: "This is a button",
+              url: "http://pega.com",
+            }
+          ],
+        } only %}
+      {% endcell %}
     {% endgrid %}
   </div>
-
-  {% for theme in themes.properties.colors.enum %}
-    <h3>Putting a card inside a {{ theme }} theme</h3>
-    <div class="u-bolt-margin-bottom-medium">
-      {% embed "@utils/theme-demo.twig" %}
-        {% block demo_content %}
-          {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-            {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
-              {% include "@bolt-components-card/card.twig" with {
-                media: {
-                  image: {
-                    src: "/pattern-lab/images/placeholders/landscape-16x9-mountains.jpg",
-                    alt: "Image alt.",
-                  },
-                },
-                body: {
-                  eyebrow: "This is an eyebrow",
-                  headline: "This is a headline",
-                  paragraph: "This is a paragraph.",
-                },
-                actions: [
-                  {
-                    text: "This is a button",
-                    url: "http://pega.com",
-                  },
-                  {
-                    text: "Verylongunbrokenword",
-                    url: "http://pega.com",
-                  }
-                ],
-              } only %}
-            {% endcell %}
-          {% endgrid %}
-        {% endblock %}
-      {% endembed %}
-    </div>
-  {% endfor %}
-{% endblock %}
+{% endfor %}
