@@ -1,8 +1,5 @@
 import { define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import {
-  withLitHtml,
-  html,
-} from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 // To avoid invoking the parser with `.innerHTML` for every new instance, a
 // template for the contents of the ShadowDOM is is shared by all

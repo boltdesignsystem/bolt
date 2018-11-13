@@ -125,17 +125,22 @@ class BoltDropdown extends withLitHtml() {
 
           <span class="c-bolt-dropdown__header-icons">
             <div class="c-bolt-dropdown__header-icons-inner">
-              <span class="c-bolt-dropdown__header-icon c-bolt-dropdown__header-icon--open">
+              <span
+                class="c-bolt-dropdown__header-icon c-bolt-dropdown__header-icon--open"
+              >
                 <bolt-icon name="chevron-down"></bolt-icon>
               </span>
 
-              <span class="c-bolt-dropdown__header-icon c-bolt-dropdown__header-icon--close">
+              <span
+                class="c-bolt-dropdown__header-icon c-bolt-dropdown__header-icon--close"
+              >
                 <bolt-icon name="chevron-up"></bolt-icon>
               </span>
             </div>
           </span>
         </button>
-      </h3>`;
+      </h3>
+    `;
   }
 
   template() {
@@ -153,11 +158,8 @@ class BoltDropdown extends withLitHtml() {
     return html`
       <div class="${classes}" id="${this.uuid}">
         ${this.dropdownHeader()}
-
         <div class="c-bolt-dropdown__content">
-          <div class="c-bolt-dropdown__content-inner">
-            ${dropdownChildren}
-          </div>
+          <div class="c-bolt-dropdown__content-inner">${dropdownChildren}</div>
         </div>
       </div>
     `;
@@ -218,8 +220,7 @@ class BoltDropdown extends withLitHtml() {
     );
 
     return html`
-      ${this.addStyles([styles, heightUtils])}
-      ${this.dropdownTemplate}
+      ${this.addStyles([styles, heightUtils])} ${this.dropdownTemplate}
     `;
   }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-extend-native */
 // import polyfill for Symbol and Object.getOwnPropertySymbols
 import 'get-own-property-symbols/build/get-own-property-symbols.max.js';
 

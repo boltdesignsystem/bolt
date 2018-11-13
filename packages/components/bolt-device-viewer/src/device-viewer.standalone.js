@@ -8,10 +8,7 @@ import {
   passiveSupported,
 } from '@bolt/core/utils';
 
-import {
-  withLitHtml,
-  html,
-} from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 /* From Modernizr */
 function whichAnimationEvent() {
@@ -51,9 +48,7 @@ class BoltDeviceViewer extends withLitHtml() {
     const classes = css('c-bolt-image-magnifier');
 
     return html`
-      <div class=${classes}>
-        ${this.slot('default')}
-      </div>
+      <div class="${classes}">${this.slot('default')}</div>
     `;
   }
 

@@ -257,31 +257,50 @@ class BoltText extends withLitHtml() {
     function wrapInnerHTML(innerHTML) {
       switch (tag) {
         case 'a':
-          return html`<a href="${url}" class="${classes}">${innerHTML}</a>`;
+          return html`
+            <a href="${url}" class="${classes}">${innerHTML}</a>
+          `;
         case 'h1':
-          return html`<h1 class="${classes}">${innerHTML}</h1>`;
+          return html`
+            <h1 class="${classes}">${innerHTML}</h1>
+          `;
         case 'h2':
-          return html`<h2 class="${classes}">${innerHTML}</h2>`;
+          return html`
+            <h2 class="${classes}">${innerHTML}</h2>
+          `;
         case 'h3':
-          return html`<h3 class="${classes}">${innerHTML}</h3>`;
+          return html`
+            <h3 class="${classes}">${innerHTML}</h3>
+          `;
         case 'h4':
-          return html`<h4 class="${classes}">${innerHTML}</h4>`;
+          return html`
+            <h4 class="${classes}">${innerHTML}</h4>
+          `;
         case 'h5':
-          return html`<h5 class="${classes}">${innerHTML}</h5>`;
+          return html`
+            <h5 class="${classes}">${innerHTML}</h5>
+          `;
         case 'h6':
-          return html`<h6 class="${classes}">${innerHTML}</h6>`;
+          return html`
+            <h6 class="${classes}">${innerHTML}</h6>
+          `;
         case 'div':
-          return html`<div class="${classes}">${innerHTML}</div>`;
+          return html`
+            <div class="${classes}">${innerHTML}</div>
+          `;
         case 'span':
-          return html`<span class="${classes}">${innerHTML}</span>`;
+          return html`
+            <span class="${classes}">${innerHTML}</span>
+          `;
         default:
-          return html`<p class="${classes}">${innerHTML}</p>`;
+          return html`
+            <p class="${classes}">${innerHTML}</p>
+          `;
       }
     }
 
     return html`
-      ${this.addStyles([styles])}
-      ${wrapInnerHTML(this.slot('default'))}
+      ${this.addStyles([styles])} ${wrapInnerHTML(this.slot('default'))}
     `;
   }
 }

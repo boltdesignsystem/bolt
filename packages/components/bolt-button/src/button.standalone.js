@@ -150,9 +150,14 @@ class BoltButton extends withLitHtml() {
           });
 
           return html`
-            <span class="${iconClasses}">${
-            name in this.slots ? this.slot(name) : html`<slot name="${name}" />`
-          }</span>`;
+            <span class="${iconClasses}"
+              >${
+                name in this.slots
+                  ? this.slot(name)
+                  : html`<slot name="${name}" />`
+              }</span
+            >
+          `;
         default:
           const itemClasses = cx('c-bolt-button__item', {
             'is-empty': name in this.slots === false,
@@ -160,9 +165,12 @@ class BoltButton extends withLitHtml() {
           });
 
           return html`
-            <span class="${itemClasses}">${
-            name in this.slots ? this.slot('default') : html`<slot/>`
-          }</span>`;
+            <span class="${itemClasses}"
+              >${
+                name in this.slots ? this.slot('default') : html`<slot/>`
+              }</span
+            >
+          `;
       }
     };
 
@@ -177,16 +185,19 @@ class BoltButton extends withLitHtml() {
       buttonElement.className += ' ' + classes;
       render(innerSlots, buttonElement);
     } else if (hasUrl) {
-      buttonElement = html`<a href="${
-        this.props.url
-      }" class="${classes}" target="${urlTarget}">${innerSlots}</a>`;
+      buttonElement = html`
+        <a href="${this.props.url}" class="${classes}" target="${urlTarget}"
+          >${innerSlots}</a
+        >
+      `;
     } else {
-      buttonElement = html`<button class="${classes}">${innerSlots}</button>`;
+      buttonElement = html`
+        <button class="${classes}">${innerSlots}</button>
+      `;
     }
 
     return html`
-      ${this.addStyles([styles, visuallyhiddenUtils])}
-      ${buttonElement}
+      ${this.addStyles([styles, visuallyhiddenUtils])} ${buttonElement}
     `;
   }
 }
