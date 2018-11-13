@@ -29,55 +29,43 @@ const {
   // The slug (in form: owner_name/repo_name) of the repository currently being built.
   TRAVIS_REPO_SLUG,
   // If the current build is for a git tag, this variable is set to the tag’s name
-  TRAVIS_TAG,
+  ,
 } = process.env;
 
 let branchName = 'detached-HEAD';
-    try {
-      branchName = spawnSync('git', ['symbolic-ref', 'HEAD'], {
-        encoding: 'utf8',
-      }).stdout.replace('refs/heads/', '').replace(/\//g, '-').trim();
-    } catch (error) {
-      process.exit(1);
-    }
 
-    if (TRAVIS === 'true') {
-      if (TRAVIS_PULL_REQUEST === 'false') {
-        branchName = TRAVIS_BRANCH;
-      } else {
-        branchName = TRAVIS_PULL_REQUEST_BRANCH;
-      }
-    }
+try {
+  branchName = spawnSync('git', ['symbolic-ref', 'HEAD'], {
+    encoding: 'utf8',
+  }).stdout.replace('refs/heads/', '').replace(/\//g, '-').trim();
+} catch (error) {
+  process.exit(1);
+}
 
-    console.log(`Branch Name: ${branchName}`);
+if (TRAVIS === 'true') {
+  if (TRAVIS_PULL_REQUEST === 'false') {
+    branchName = TRAVIS_BRANCH;
+  } else {
+    branchName = TRAVIS_PULL_REQUEST_BRANCH;
+  }
+}
 
-    
+console.log(`Branch Name: ${branchName}`);
 
-    console.log('Aliasing to branch/tag name...');
-    // Making sure branch name is ok to be in URL
-    const branchUrlPart = urlFriendlyBranchAndTagName(branchName);
-      .replace(/\//g, '-') // `/` => `-`
-      .replace('--', '-') // `--` => `-` now.sh subdomains can't have `--` for some reason
-      .replace(/\./g, '-'); // `.` => `-`
-    const aliasedUrlSubdomain = `${encodeURIComponent(branchUrlPart)}.boltdesignsystem`;
-    const aliasedUrl = `https://${aliasedUrlSubdomain}.com`;
-
-
+// Making sure branch name is ok to be in URL
+const branchUrlPart = urlFriendlyBranchAndTagName(branchName);
+const aliasedUrlSubdomain = `${encodeURIComponent(branchUrlPart)}.boltdesignsystem`;
+const aliasedUrl = `https://${aliasedUrlSubdomain}.com`;
 
 const urlsToCheck = [];
 
 async function writeVersionDataToJson(versionData) {
   const config = await getConfig();
-  let versionInfo = versionData;
-
-  versionInfo.sort(function(a, b) {
-    return semver.rcompare(a.label, b.label);
-  });
 
   fs.writeFile(
     path.join(process.cwd(), config.dataDir, '/bolt-releases.bolt.json'),
     JSON.stringify({
-      options: versionInfo,
+      options: versionData,
     }),
     'utf8',
     err => {
@@ -106,6 +94,7 @@ async function gatherBoltVersions() {
   }
 
   const results = await checkLinks(urlsToCheck);
+  let preSelected = false;
 
   for (index = 0; index < tags.length; index++) {
     let tag = tags[index];
@@ -130,6 +119,36 @@ async function gatherBoltVersions() {
         value: oldSiteUrl,
       });
     }
+    
+    if (preSelected === false && branchName === tag){
+      tagUrls[0].selected = true;
+      preSelected = true;
+    }
+  }
+  
+  tagUrls.sort(function(a, b) {
+    return semver.rcompare(a.label, b.label);
+  });
+  
+  // indicate which tagged release is the latest
+  tagUrls[0].label = tagUrls[0].label + ' (latest)';
+  
+  // manually add the master branch to the array of releases
+  tagUrls.push({
+    label: 'master (next)',
+    type: 'option',
+    value: 'https://master.boltdesignsystem.com',
+    selected: branchUrlPart === 'master' ? true : false,
+  });
+  
+  // optionally add your current branch name if not on master or a tagged release already pre-selected
+  if (branchUrlPart !== 'master' && preSelected === false) {
+    tagUrls.push({
+      label: branchUrlPart + ' (current)',
+      type: 'option',
+      value: `https://${aliasedUrlSubdomain}.boltdesignsystem.com`,
+      selected: true,
+    });
   }
 
   versionSpinner.succeed(
