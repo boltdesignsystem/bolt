@@ -5,6 +5,7 @@ import {
   hasNativeShadowDomSupport,
 } from '@bolt/core/utils';
 import {
+  render,
   withLitHtml,
   html,
 } from '@bolt/core/renderers/renderer-lit-html';
@@ -164,7 +165,7 @@ class BoltDropdown extends withLitHtml() {
 
   render() {
     this.dropdownTemplate = document.createDocumentFragment();
-    this.dropdownTemplate.appendChild(this.template());
+    render(this.template(), this.dropdownTemplate);
 
     this.contentElem = this.dropdownTemplate.querySelector(
       '.c-bolt-dropdown__content',
