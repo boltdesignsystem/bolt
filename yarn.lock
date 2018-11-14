@@ -705,9 +705,9 @@
     sleep-promise "^8.0.1"
 
 "@bolt/components-page-footer@file:packages/components/bolt-page-footer":
-  version "2.1.6"
+  version "2.2.0-rc.1"
   dependencies:
-    "@bolt/core" "^2.1.6"
+    "@bolt/core" "^2.2.0-rc.1"
 
 "@bolt/fast-sass-loader@github:bolt-design-system/fast-sass-loader#master":
   version "1.4.5"
@@ -7939,11 +7939,12 @@ html-webpack-plugin@^3.2.0:
   version "4.0.0-beta"
   resolved "https://codeload.github.com/jantimon/html-webpack-plugin/tar.gz/7fb656a2dfdf129162f993a260f3291336b17ff1"
   dependencies:
-    html-minifier "^3.5.20"
+    "@types/tapable" "1.0.2"
+    html-minifier "^3.2.3"
     loader-utils "^1.1.0"
-    lodash "^4.17.11"
-    pretty-error "^2.1.1"
-    tapable "^1.1.0"
+    lodash "^4.17.10"
+    pretty-error "^2.0.2"
+    tapable "^1.0.0"
     util.promisify "1.0.0"
 
 htmlparser2@3.8.x, htmlparser2@~3.8.1:
@@ -10824,7 +10825,7 @@ micromatch@^3.0.4, micromatch@^3.1.10, micromatch@^3.1.4, micromatch@^3.1.8, mic
     snapdragon "^0.8.1"
     to-regex "^3.0.2"
 
-"micromatch@github:jonschlinkert/micromatch#2.2.0":
+micromatch@jonschlinkert/micromatch#2.2.0:
   version "2.2.0"
   resolved "https://codeload.github.com/jonschlinkert/micromatch/tar.gz/5017fd78202e04c684cc31d3c2fb1f469ea222ff"
   dependencies:
