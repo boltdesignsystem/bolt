@@ -70,11 +70,16 @@ nvm alias default lts/carbon
 ### 4. Install PHP and PHP Dependencies
 ```bash
 brew install php72
+```
+
+After upgrading PHP, be sure to restart your iTerm instance. Otherwise, an old PHP version may still be linked, and composer will install mismatched packages.
+
+> Note: PHP 7.1 is technically fine if that's what you already have pre-installed.
+
+```
 brew install composer
 composer global require hirak/prestissimo
 ```
-
-> Note: PHP 7.1 is technically fine if that's what you already have pre-installed.
 
 ### 5. Install GD and Imagick (used for generating responsive images in the build process)
 ```bash
