@@ -1,50 +1,90 @@
-{#
-/**
- * @file
- * Theme suggestion for link component.
- *
- * Available link variables:
- * - link:
- *   - attributes: HTML attributes to add to the link component.
- *   - text: The text displayed inside the  D8 sets this to the `label` variable by default.
- *
- */
-#}
+{% set schema = bolt.data.components["@bolt-components-link"].schema %}
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-link'].schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
-{% spaceless %}
+{# Variables #}
+{% set base_class = "c-bolt-link" %}
+{% set attributes = create_attribute(attributes|default({})) %}
 
-  {% set link_classes = [
-    'c-bolt-link',
-    isHeadline ? 'c-bolt-link--headline' : ''
-  ] %}
-  {% set attributes = create_attribute(attributes | default(attributes) | default({})) %}
-  {% set attributes = attributes.addClass(link_classes) %}
+{% if url %}
+  {% set attributes = attributes.setAttribute('href', url) %}
+{% elseif href %}
+  {% set attributes = attributes.setAttribute('href', href) %}
+{% endif %}
 
-  {% if href %}
-    {% set attributes = attributes.setAttribute('href', href) %}
-  {% elseif url %}
-    {% set attributes = attributes.setAttribute('href', url) %}
+{% if icon %}
+  {# @todo: check icon position against allowed values? #}
+  {# {% set iconPosition = icon.position in iconPositions ? icon.position : schema.properties.icon.properties.position.default %} #}
+  {% set iconPosition = icon.position | default('after') %}
+{% endif %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  base_class,
+  isHeadline ? 'c-bolt-link--headline' : ''
+] %}
+
+{% set targetProp = target | default(attributes['target'] ? attributes['target'] : "_self") %}
+
+{# filter external classnames to allow a very small select number to trickle onto the inner button tag ("is-" and "has-" classes really) while still allowing utility classes and other misc non-component classes to get added to the outer custom element #}
+{% set outerClasses = utils | default([]) %}
+{% set innerClasses = classes %}
+
+{% for class in attributes["class"] %}
+  {% if class starts with "u-" or class starts with "js-" %}
+    {% set outerClasses = outerClasses|merge([class]) %}
+  {% elseif class starts with "is-" or class starts with "has-" %}
+    {% set innerClasses = innerClasses|merge([class]) %}
+  {% elseif class starts with "c-bolt-" == false %}
+    {% set outerClasses = outerClasses|merge([class]) %}
   {% endif %}
+{% endfor %}
 
-  <a {{ attributes }}>
-    {% if icon and icon != false and icon.position == "before" %}
-      <span class="c-bolt-link__icon">
-        {% include "@bolt/icon.twig" with icon only %}
-      </span>
-    {% endif %}
+{% macro slottedIcon(icon, iconPosition, slotName) %}
+  {% if icon and iconPosition == slotName %}
+    <replace-with-children class="c-bolt-link__icon">
+      {% set icon = icon | merge({
+        attributes: {
+          slot: slotName
+        }
+      }) %}
+      {% include "@bolt-components-icon/icon.twig" with icon only %}
+    </replace-with-children>
+  {% else %}
+    <replace-with-children class="c-bolt-link__icon is-empty"></replace-with-children>
+  {% endif %}
+{% endmacro %}
 
-    <span class="c-bolt-link__text">
+{% import _self as macros %}
+
+{# link component's custom element wrapper #}
+<bolt-link
+  {# check for deprecated 'href' #}
+  {% if url %} url="{{ url }}" {% elseif href %} url="{{ href }}" {% endif %}
+
+  {# todo: rename on-click + on-click-target to only allow onClick + onClickTarget to unify the prop syntax; deprecate adding these via attributes #}
+  {# {% if onClick or attributes['on-click'] %} on-click="{{ onClick | default(attributes['on-click']) }}" {% endif %}
+  {% if onClickTarget or attributes['on-click-target'] %} on-click-target="{{ onClickTarget | default(attributes['on-click-target']) }}" {% endif %} #}
+
+  {% if outerClasses %} class="{{ outerClasses|join(' ') }}" {% endif %}
+  {{ attributes | without('href') | without('class') | without('target') | without('id') | without('type') }}
+>
+
+  {# Add semantic <a> tag for better accessibility #}
+  <a
+    {# check for deprecated 'href' #}
+    {% if url %} href="{{ url }}" {% elseif href %} href="{{ href }}" {% endif %}
+    {% if url or href %} target="{{ targetProp }}" {% endif %}
+    {{ attributes | without('target') | without('class') | without('on-click') | without('on-click-target') }}
+    class="{{ innerClasses|join(' ') }}"
+    is="shadow-root"
+  >
+    {{ macros.slottedIcon(icon, iconPosition, 'before') }}
+    <replace-with-children class="{{ "#{base_class}__text" }}">
       {{ text | default(label) | default("Learn More") }}
-    </span>
-
-    {% if icon and icon != false and icon.position != "before" %}
-      <span class="c-bolt-link__icon">
-        {% include "@bolt/icon.twig" with icon only %}
-      </span>
-    {% endif %}
+    </replace-with-children>
+    {{ macros.slottedIcon(icon, iconPosition, 'after') }}
   </a>
-{% endspaceless %}
+</bolt-link>
