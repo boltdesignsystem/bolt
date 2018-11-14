@@ -38,18 +38,10 @@ properties:
     properties:
       image:
         type: object
-        properties:
-          src:
-            type: string
+        ref: '@bolt-components-image/image.schema.yml'
       video:
         type: object
-        properties:
-          id:
-            type: string
-          player_id:
-            type: string
-          account_id:
-            type: string
+        ref: '@bolt-components-video/video.schema.yml'
   body:
     type: object
     description: Body section of the card, accepts text.
@@ -72,6 +64,9 @@ properties:
         type: string
       external:
         type: boolean
+      attributes:
+        type: object
+        description: A Drupal-style attributes object with extra attributes to append to this component.
   items:
     type:
       - string
