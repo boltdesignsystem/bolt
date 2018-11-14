@@ -10,7 +10,11 @@ import {
   watchForComponentMutations,
 } from '@bolt/core/utils';
 import classNames from 'classnames/bind';
-import { withLitHtml, html, render } from '@bolt/core/renderers/renderer-lit-html';
+import {
+  withLitHtml,
+  html,
+  render,
+} from '@bolt/core/renderers/renderer-lit-html';
 import Ajv from 'ajv';
 
 import themes from '@bolt/global/styles/06-themes/_themes.all.scss';
@@ -166,9 +170,14 @@ class BoltLink extends withContext(withLitHtml()) {
           });
 
           return html`
-            <span class="${iconClasses}">${
-            name in this.slots ? this.slot(name) : html`<slot name="${name}" />`
-          }</span>`;
+            <span class="${iconClasses}"
+              >${
+                name in this.slots
+                  ? this.slot(name)
+                  : html`<slot name="${name}" />`
+              }</span
+            >
+          `;
         default:
           const itemClasses = cx('c-bolt-link__text', {
             'is-empty': name in this.slots === false,
@@ -176,9 +185,12 @@ class BoltLink extends withContext(withLitHtml()) {
           });
 
           return html`
-            <span class="${itemClasses}">${
-            name in this.slots ? this.slot('default') : html`<slot/>`
-          }</span>`;
+            <span class="${itemClasses}"
+              >${
+                name in this.slots ? this.slot('default') : html`<slot/>`
+              }</span
+            >
+          `;
       }
     };
 
@@ -194,14 +206,15 @@ class BoltLink extends withContext(withLitHtml()) {
       render(innerSlots, linkElement);
     } else if (hasUrl) {
       // @todo: do we need to check for url?
-      linkElement = html`<a href="${
-        this.props.url
-      }" class="${classes}" target="${urlTarget}">${innerSlots}</a>`;
+      linkElement = html`
+        <a href="${this.props.url}" class="${classes}" target="${urlTarget}"
+          >${innerSlots}</a
+        >
+      `;
     }
 
     return html`
-      ${this.addStyles([styles, visuallyhiddenUtils])}
-      ${linkElement}
+      ${this.addStyles([styles, visuallyhiddenUtils])} ${linkElement}
     `;
   }
 }
