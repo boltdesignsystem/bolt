@@ -124,8 +124,9 @@ class BoltIcon extends withPreact() {
           bgColor={primaryColor}
           fgColor={secondaryColor}
         />
-        {background &&
-          size === 'xlarge' && <span className={backgroundClasses} />}
+        {background && size === 'xlarge' && (
+          <span className={backgroundClasses} />
+        )}
       </div>
     );
   }

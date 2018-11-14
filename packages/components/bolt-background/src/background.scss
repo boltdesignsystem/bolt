@@ -93,13 +93,13 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
   }
 
   .is-collapsed & {
-    opacity: 0;
+    opacity: bolt-opacity(0);
     pointer-events: none;
     visibility: hidden;
   }
 
   .is-expanded & {
-    opacity: 1;
+    opacity: bolt-opacity(100);
     pointer-events: auto;
     visibility: visible;
   }
@@ -133,7 +133,7 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
   left: -9999px;
 
   .is-expanded & {
-    opacity: 1;
+    opacity: bolt-opacity(100);
     filter: blur(10px);
   }
 }

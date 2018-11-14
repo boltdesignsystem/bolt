@@ -114,13 +114,13 @@ bolt-icon[size='xlarge'],
 
   .c-bolt-icon__background-shape {
     background-color: $brand-color;
-    opacity: 1;
+    opacity: bolt-opacity(100);
   }
 
   @include bolt-css-vars((
     --bolt-theme-icon: $contrast-color,
     --bolt-theme-icon-background: $brand-color,
-    --bolt-theme-icon-background-opacity: 1,
+    --bolt-theme-icon-background-opacity: bolt-opacity(100),
   ));
 
   // Properties must be re-declared here so that CSS variable values will take precedence over hard-coded values for
@@ -144,13 +144,13 @@ bolt-icon[size='xlarge'],
 
   .c-bolt-icon__background-shape {
     background-color: $contrast-color;
-    opacity: 1;
+    opacity: bolt-opacity(100);
   }
 
   @include bolt-css-vars((
     --bolt-theme-icon: $brand-color,
     --bolt-theme-icon-background: $contrast-color,
-    --bolt-theme-icon-background-opacity: 1,
+    --bolt-theme-icon-background-opacity: bolt-opacity(100),
   ));
 
   // Properties must be re-declared here so that CSS variable values will take precedence over hard-coded values for

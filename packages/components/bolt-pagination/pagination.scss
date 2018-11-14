@@ -65,7 +65,7 @@ $bolt-pagination-item-size: bolt-spacing(medium);
   &.is-current {
     color: bolt-theme(background);
     background-color: bolt-theme(headline-link);
-    opacity: 1;  // Current item is not a link so its styling shouldn't change based on state.
+    opacity: bolt-opacity(100);  // Current item is not a link so its styling shouldn't change based on state.
   }
 }
 
@@ -104,6 +104,6 @@ $bolt-pagination-item-size: bolt-spacing(medium);
   &:hover,
   &:active,
   &:focus:active {
-    opacity: 1;
+    opacity: bolt-opacity(100);
   }
 }

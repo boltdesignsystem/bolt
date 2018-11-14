@@ -111,8 +111,8 @@ class BoltDropdown extends withHyperHtml() {
     const dropdownTitle = this.slots.title
       ? this.slot('title')
       : this.props.title
-        ? this.props.title
-        : '';
+      ? this.props.title
+      : '';
 
     return wire(this.props)`
       <h3 class="${dropdownHeaderClasses}">
@@ -143,8 +143,8 @@ class BoltDropdown extends withHyperHtml() {
     const dropdownChildren = this.slots.default
       ? this.slot('default')
       : this.props.children
-        ? this.props.children
-        : '';
+      ? this.props.children
+      : '';
 
     return wire(this.props)`
       <div class="${classes}" id="${this.uuid}">

@@ -23,7 +23,7 @@ $bolt-video-background-max-height: 50.625vw;
     transition: opacity 0.3s ease, min-height 0.3s ease;
     background-color: $bolt-video-background-color;
     pointer-events: none;
-    opacity: 0;
+    opacity: bolt-opacity(0);
     height: calc((90vw * (9 / 16)) - 4rem);
     max-width: 100vh;
     max-height: 56.25vh;
@@ -34,7 +34,7 @@ $bolt-video-background-max-height: 50.625vw;
 
     .is-expanded & {
       pointer-events: auto;
-      opacity: 1;
+      opacity: bolt-opacity(100);
     }
 
     .video-js {
@@ -103,27 +103,27 @@ $bolt-video-background-max-height: 50.625vw;
   top: bolt-spacing(xsmall);
   right: bolt-spacing(xsmall);
   transition: all 0.3s ease;
-  opacity: 0; // Initial state before brightcove video player kicks in
+  opacity: bolt-opacity(0); // Initial state before brightcove video player kicks in
 
   @include bolt-mq(small) {
     right: (bolt-spacing(large) / -2) - bolt-spacing(xsmall);
   }
 
   &:hover {
-    opacity: 1;
+    @include bolt-opacity(100);
   }
 
   &:active {
-    opacity: 0.6;
+    @include bolt-opacity(60);
   }
 
   .is-collapsed & {
-    opacity: 0;
+    @include bolt-opacity(0);
     pointer-events: none;
   }
 
   .is-expanded & {
-    opacity: 0.8;
+    @include bolt-opacity(80);
     pointer-events: auto;
   }
 }

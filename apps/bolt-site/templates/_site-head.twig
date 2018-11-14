@@ -18,6 +18,7 @@
 {% endif %}
 {% set hasSidebar = nestedPages or sidebar %}
 
+{% set cacheBuster = bolt.data.config.prod ? "?v=" ~ bolt.data.fullManifest.version : "" %}
 
 <!DOCTYPE html>
 <html lang="en-US" class="{{ bolt.data.config.prod ? '' : 'js-fonts-loaded' }}">
@@ -56,7 +57,7 @@
     <meta name="twitter:image" content="https://boltdesignsystem.com/images/bolt-logo-480.png" />
     <meta name="twitter:site" content="@pega" />
 
-    <link rel="stylesheet" href="{{ assets["bolt-global.css"] | default("/build/bolt-global.css") }}" media="all" />
+    <link rel="stylesheet" href="{{ assets["bolt-global.css"] | default("/build/bolt-global.css") }}{{ cacheBuster }}" media="all" />
 
     {# @TODO: wire this up to use Critical CSS #}
     <style>

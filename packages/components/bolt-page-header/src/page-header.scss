@@ -604,12 +604,12 @@
   }
 
   .c-mega-nav__level-1.c-mega-nav__list .c-mega-nav__level-2.c-mega-nav__list.is-hidden {
-    opacity: 0;
+    opacity: bolt-opacity(0);
     visibility: hidden;
   }
 
   .c-mega-nav__level-1.c-mega-nav__list .c-mega-nav__level-2.c-mega-nav__list.is-hidden:before {
-    opacity: 0;
+    opacity: bolt-opacity(0);
   }
 
   .c-mega-nav__level-1.c-mega-nav__list .c-mega-nav__level-2.c-mega-nav__list > .c-mega-nav__item {
@@ -688,7 +688,7 @@
     background-color: #333;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    opacity: 0;
+    opacity: bolt-opacity(0);
   }
 
   .c-mega-nav__level-1.c-mega-nav__list > .has-children > .c-mega-nav__link:before {
@@ -782,7 +782,7 @@
 }
 
 .c-header-dropdown__level-1 {
-  opacity: 0;
+  opacity: bolt-opacity(0);
   visibility: hidden;
   border-radius: 4px;
   background: #fff;
@@ -821,7 +821,7 @@
   right: 0;
   white-space: nowrap;
   visibility: visible;
-  opacity: 1;
+  opacity: bolt-opacity(100);
   position: absolute;
   right: 0;
   top: 50%;
@@ -900,7 +900,7 @@
 }
 
 .c-hamburger__button--open {
-  opacity: 1;
+  opacity: bolt-opacity(100);
   z-index: bolt-z-index('content') + 5;
 }
 
@@ -920,7 +920,7 @@
   right: 0;
   width: 100%;
   background-color: white;
-  opacity: 0;
+  opacity: bolt-opacity(0);
   visibility: hidden;
   z-index: bolt-z-index('content');
   padding: 0 1rem;
@@ -956,7 +956,7 @@
   padding: 0;
   border: 0;
   outline: 0;
-  opacity: 0;
+  opacity: bolt-opacity(0);
 }
 
 .c-global-search__submit {
@@ -968,7 +968,7 @@
   padding: 12px;
   font-size: 1em;
   left: 0;
-  opacity: 0;
+  opacity: bolt-opacity(0);
   visibility: hidden;
 }
 
@@ -1077,7 +1077,7 @@
   -webkit-transform: none;
   transform: none;
   position: relative;
-  opacity: 1;
+  opacity: bolt-opacity(100);
   visibility: visible;
 }
 
@@ -1090,7 +1090,7 @@
   left: 0;
   background-color: rgba(0,0,0,0.1);
   visibility: hidden;
-  opacity: 0;
+  opacity: bolt-opacity(0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   -webkit-transform: translateX(0);
