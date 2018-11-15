@@ -36,7 +36,7 @@ The share component provides the user a visual queue to share the content with r
 * **Email** Recommended query vars:
   * `subject`
   * `body`
-* When a page title or URL as a parameter of an overall URL (as with the social share and email URLs), remember to run it through urlencode(), or special character (particularly ampersands) may be interpreted as part of the overall URL instead.
+* When passing in a page title or URL as a parameter of an overall URL (as with the social share and email links), remember to run it through urlencode(), or special character (particularly ampersands) may be interpreted as part of the overall URL instead.
 
 ### Example
 
