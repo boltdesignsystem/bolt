@@ -67,7 +67,7 @@ async function plBuild(errorShouldExit) {
 
     sh(
       'php',
-      ['-d', 'memory_limit=4048M', consolePath, '--generate'],
+      ['-d', 'memory_limit=8096M', consolePath, '--generate'],
       errorShouldExit,
       false,
     )
