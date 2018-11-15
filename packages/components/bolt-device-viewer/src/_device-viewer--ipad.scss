@@ -7,11 +7,11 @@ $bolt-ipad-viewer-padding-lg: 90px;
 .c-bolt-ipad-viewer {
   width: 100%;
   max-width: $bolt-ipad-viewer-width * .6;
+  border-top-right-radius: (44px / $bolt-ipad-viewer-width * 100%) (44px / $bolt-ipad-viewer-height * 100%);
 
   border-top-left-radius: (44px / $bolt-ipad-viewer-width * 100%) (44px / $bolt-ipad-viewer-height * 100%);
-  border-top-right-radius: (44px / $bolt-ipad-viewer-width * 100%) (44px / $bolt-ipad-viewer-height * 100%);
-  border-bottom-left-radius: (44px / $bolt-ipad-viewer-width * 100%) (44px / $bolt-ipad-viewer-height * 100%);
   border-bottom-right-radius: (44px / $bolt-ipad-viewer-width * 100%) (44px / $bolt-ipad-viewer-height * 100%);
+  border-bottom-left-radius: (44px / $bolt-ipad-viewer-width * 100%) (44px / $bolt-ipad-viewer-height * 100%);
   background: #242324;
 
   @include bolt-shadow('level-40');
@@ -19,11 +19,11 @@ $bolt-ipad-viewer-padding-lg: 90px;
 
   &.c-bolt-ipad-viewer--landscape {
     max-width: $bolt-ipad-viewer-height * .8;
+    border-top-right-radius: (44px / $bolt-ipad-viewer-height * 100%) (44px / $bolt-ipad-viewer-width * 100%);
 
     border-top-left-radius: (44px / $bolt-ipad-viewer-height * 100%) (44px / $bolt-ipad-viewer-width * 100%);
-    border-top-right-radius: (44px / $bolt-ipad-viewer-height * 100%) (44px / $bolt-ipad-viewer-width * 100%);
-    border-bottom-left-radius: (44px / $bolt-ipad-viewer-height * 100%) (44px / $bolt-ipad-viewer-width * 100%);
     border-bottom-right-radius: (44px / $bolt-ipad-viewer-height * 100%) (44px / $bolt-ipad-viewer-width * 100%);
+    border-bottom-left-radius: (44px / $bolt-ipad-viewer-height * 100%) (44px / $bolt-ipad-viewer-width * 100%);
   }
 
   &.c-bolt-ipad-viewer--silver {
@@ -46,18 +46,18 @@ $bolt-ipad-viewer-padding-lg: 90px;
 
     width: auto;
     height: auto;
+    border-top-right-radius: (40px / $bolt-ipad-viewer-width * 100%) (40px / $bolt-ipad-viewer-height * 100%);
 
     border-top-left-radius: (40px / $bolt-ipad-viewer-width * 100%) (40px / $bolt-ipad-viewer-height * 100%);
-    border-top-right-radius: (40px / $bolt-ipad-viewer-width * 100%) (40px / $bolt-ipad-viewer-height * 100%);
-    border-bottom-left-radius: (40px / $bolt-ipad-viewer-width * 100%) (40px / $bolt-ipad-viewer-height * 100%);
     border-bottom-right-radius: (40px / $bolt-ipad-viewer-width * 100%) (40px / $bolt-ipad-viewer-height * 100%);
+    border-bottom-left-radius: (40px / $bolt-ipad-viewer-width * 100%) (40px / $bolt-ipad-viewer-height * 100%);
     background: #1e1e1e;
 
     .c-bolt-ipad-viewer--landscape & {
-      border-top-left-radius: (40px / $bolt-ipad-viewer-height * 100%) (40px / $bolt-ipad-viewer-width * 100%);
       border-top-right-radius: (40px / $bolt-ipad-viewer-height * 100%) (40px / $bolt-ipad-viewer-width * 100%);
-      border-bottom-left-radius: (40px / $bolt-ipad-viewer-height * 100%) (40px / $bolt-ipad-viewer-width * 100%);
+      border-top-left-radius: (40px / $bolt-ipad-viewer-height * 100%) (40px / $bolt-ipad-viewer-width * 100%);
       border-bottom-right-radius: (40px / $bolt-ipad-viewer-height * 100%) (40px / $bolt-ipad-viewer-width * 100%);
+      border-bottom-left-radius: (40px / $bolt-ipad-viewer-height * 100%) (40px / $bolt-ipad-viewer-width * 100%);
     }
 
     .c-bolt-ipad-viewer--silver & {
