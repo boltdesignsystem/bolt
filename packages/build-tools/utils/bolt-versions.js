@@ -4,7 +4,13 @@ const path = require('path');
 const ora = require('ora');
 const chalk = require('chalk');
 const checkLinks = require('check-links');
-const { gitSemverTags } = require('./git-semver-tags');
+const octokit = require('@octokit/rest')({
+  debug: false,
+  headers: {
+    Accept: 'application/vnd.github.v3.raw',
+  },
+});
+
 const { getConfig } = require('./config-store');
 
 const urlsToCheck = [];
@@ -33,12 +39,19 @@ async function gatherBoltVersions() {
   const versionSpinner = ora(
     chalk.blue('Gathering data on the latest Bolt Design System releases...'),
   ).start();
-  const tags = await gitSemverTags();
 
+  const tagData = await octokit.repos.getTags({
+    owner: 'bolt-design-system',
+    repo: 'bolt',
+    per_page: 9999,
+  });
+
+  const tags = tagData.data;
   const tagUrls = [];
 
   for (index = 0; index < tags.length; index++) {
-    let tag = tags[index];
+    let tag = tags[index].name;
+
     let tagString = tag
       .replace(/\//g, '-') // `/` => `-`
       .replace('--', '-') // `--` => `-`
@@ -54,7 +67,7 @@ async function gatherBoltVersions() {
   const results = await checkLinks(urlsToCheck);
 
   for (index = 0; index < tags.length; index++) {
-    let tag = tags[index];
+    let tag = tags[index].name;
     let tagString = tag
       .replace(/\//g, '-') // `/` => `-`
       .replace('--', '-') // `--` => `-`
