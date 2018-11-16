@@ -24,6 +24,7 @@
     "setup": "yarn && yarn run bootstrap && yarn run composer",
     "build:pl": "cd apps/pattern-lab && yarn run build:prod",
     "build:bolt-site": "cd apps/bolt-site && yarn run build:prod",
+    "Xbuild:format-html": "time yarn prettier --write 'www/**/*.markup-only.html'",
     "Xbuild:drupal-lab": "cd example-integrations/drupal-lab && cd web/themes/flash && yarn run build && cd - && composer run build",
     "build:icons": "lerna exec --scope @bolt/components-icons -- yarn run build",
     "build:uikit": "lerna exec --scope @bolt/uikit-workshop -- yarn run build",
