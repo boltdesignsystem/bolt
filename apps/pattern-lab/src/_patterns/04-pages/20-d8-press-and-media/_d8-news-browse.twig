@@ -53,7 +53,7 @@
       {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
         {% cell 'u-bolt-width-1/1 u-bolt-width-1/1@medium' %}
           {% include "@bolt/headline.twig" with {
-            text: page_title|default("Media Coverage"),
+            text: page_title,
             size: "xxxlarge",
             tag: "h1",
           } only %}
