@@ -7,7 +7,8 @@ import {
   hasNativeShadowDomSupport,
   passiveSupported,
 } from '@bolt/core/utils';
-import { withHyperHtml } from '@bolt/core/renderers';
+
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 /* From Modernizr */
 function whichAnimationEvent() {
@@ -30,7 +31,7 @@ function whichAnimationEvent() {
 const animationEvent = whichAnimationEvent();
 
 @define
-class BoltDeviceViewer extends withHyperHtml() {
+class BoltDeviceViewer extends withLitHtml() {
   static is = 'bolt-device-viewer';
 
   static props = {
@@ -46,10 +47,8 @@ class BoltDeviceViewer extends withHyperHtml() {
   render({ props }) {
     const classes = css('c-bolt-image-magnifier');
 
-    return this.html`
-      <div class=${classes}>
-        ${this.slot('default')}
-      </div>
+    return html`
+      <div class="${classes}">${this.slot('default')}</div>
     `;
   }
 
@@ -67,7 +66,7 @@ class BoltDeviceViewer extends withHyperHtml() {
 }
 
 @define
-class BoltImageZoom extends withHyperHtml() {
+class BoltImageZoom extends withLitHtml() {
   static is = 'bolt-image-zoom';
 
   static props = {
@@ -154,7 +153,7 @@ class BoltImageZoom extends withHyperHtml() {
   }
 
   render() {
-    return this.html`
+    return html`
       ${this.slot('default')}
     `;
   }

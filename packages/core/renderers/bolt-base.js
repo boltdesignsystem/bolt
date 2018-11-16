@@ -13,7 +13,9 @@ export function BoltBase(Base = HTMLElement) {
     connectedCallback() {
       // NOTE: it's SUPER important that setupSlots is run during the component's connectedCallback lifecycle event
       // Without this, browsers like IE 11 won't re-render as expected when props change!
-      this.setupSlots();
+      if (!this.slots) {
+        this.setupSlots();
+      }
 
       // Automatically force a component to render if no props exist BUT props are defined.
       if (
@@ -27,7 +29,7 @@ export function BoltBase(Base = HTMLElement) {
     setupSlots() {
       // Automatically adjust which inner element inside the custom element gets used as the base when evaluating slotted children. Necessary when including deeply nested slots in the initial HTML being rendered, which might include a few wrapping containers that get removed when the JavaScript kicks in. <-- this is how we get slotted buttons to work!
       const isShadowRootSelector = this.querySelector('[is="shadow-root"]');
-      if (isShadowRootSelector && isShadowRootSelector.childNodes) {
+      if (isShadowRootSelector) {
         if (isShadowRootSelector.childNodes) {
           this.slots = this._checkSlots(isShadowRootSelector.childNodes);
         } else {
@@ -55,11 +57,10 @@ export function BoltBase(Base = HTMLElement) {
       // this ensures that things work as expected, even when a component gets removed / re-added to the page
       this.setupShadow();
 
-      // @todo: rework to disable this extra check here (used for demoing before/after behavior), unless a specific feature flag is used (debug mode?)
-      // @todo: Uncommment the following conditional when we have a debug flag or similar solution in place to re-enable test examples.
-      // if (!this.closest('.js-disable-extra-slot-check')) {
-      this.setupSlots(); // hotfix to ensure heavily nested elements containing text-nodes like <replace-with-children> re-render consistently in browsers that don't natively support custom elements Fixes wwwd8-2678
-      // }
+      // @todo: add debug flag the build to allow conditionally enabling / disabling this extra slot setup check here.
+      if (!this.slots) {
+        this.setupSlots(); // hotfix to ensure heavily nested elements containing text-nodes like <replace-with-children> re-render consistently in browsers that don't natively support custom elements Fixes wwwd8-2678
+      }
 
       if (hasNativeShadowDomSupport && this.useShadow === true) {
         return super.renderRoot || shadow(this);
