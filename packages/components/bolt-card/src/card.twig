@@ -104,7 +104,7 @@
 
 <bolt-card
   {% if theme %} class="t-bolt-{{ theme }}"{% endif %}
-  {% if url %}url={{ url }}{% endif %}
+  {% if url %}url="{{ url }}"{% endif %}
   bolt-component>
   <{{ tag }} {{ attributes.addClass(classes) }}>
 
