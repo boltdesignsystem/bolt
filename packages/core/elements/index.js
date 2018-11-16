@@ -7,4 +7,11 @@ polyfillLoader.then(res => {
       webpackChunkName: 'replace-with-children' 
     */ '@bolt/core/elements/replace-with-children');
   }
+
+  if (!window.customElements.get('remove-html-tag')) {
+    import(/*
+      webpackMode: 'eager',
+      webpackChunkName: 'remove-html-tag'
+    */ '@bolt/core/elements/remove-html-tag');
+  }
 });
