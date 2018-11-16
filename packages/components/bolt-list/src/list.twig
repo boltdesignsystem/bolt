@@ -60,15 +60,17 @@
     valign in valign_options ? "#{base_class}--valign-#{valign}" : "",
   ] %}
 
-  <{{ tag }} {{ inner_attributes.addClass(classes) }}>
-    {% for item in items %}
-      <{{ item_tag }} class="{{ "#{base_class}__item" }}">
-        {% if item is iterable %}
-          {{ item.content | join }}
-        {% else %}
-          {{ item }}
-        {% endif %}
-      </{{ item_tag }}>
-    {% endfor %}
-  </{{ tag }}>
+  <remove-html-tag>
+    <{{ tag }} {{ inner_attributes.addClass(classes) }}>
+      {% for item in items %}
+        <bolt-list-item>
+          {% if item is iterable %}
+            {{ item.content | join }}
+          {% else %}
+            {{ item }}
+          {% endif %}
+        </bolt-list-item>
+      {% endfor %}
+    </{{ tag }}>
+  </remove-html-tag>
 </bolt-list>
