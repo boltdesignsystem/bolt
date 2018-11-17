@@ -1,8 +1,6 @@
-import { define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { define } from '@bolt/core/utils';
+import { html } from '@bolt/core/renderers/renderer-lit-html';
 import { ReplaceWithChildren } from '@bolt/core/elements/replace-with-children';
-import schema from '@bolt/components-list/list.schema.yml';
-import styles from '@bolt/components-list/src/_list-item.scss';
 
 @define
 class RemoveHtmlTag extends ReplaceWithChildren {
