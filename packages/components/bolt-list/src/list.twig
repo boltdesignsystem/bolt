@@ -27,20 +27,11 @@
 {% set align = align in align_options ? align : schema.properties.align.default %}
 {% set valign = valign in valign_options ? valign : schema.properties.valign.default %}
 
-{# Conditions for the semantic tag usage #}
-{% if tag == "div" or tag == "span" %}
-  {% set item_tag = "span" %}
-{% else %}
-  {% set item_tag = "li" %}
-{% endif %}
-
 {# List component's custom element wrapper. #}
 <bolt-list
   {% if tag %} tag="{{ tag }}" {% endif %}
   {% if display %} display="{{ display }}" {% endif %}
   {% if spacing %} spacing="{{ spacing }}" {% endif %}
-  {% if separator %} separator="{{ separator }}" {% endif %}
-  {% if inset %} inset {% endif %}
   {% if align %} align="{{ align }}" {% endif %}
   {% if valign %} valign="{{ valign }}" {% endif %}
   {{ attributes }}
@@ -54,8 +45,6 @@
     base_class,
     display in display_options ? "#{base_class}--display-#{display}" : "",
     spacing in spacing_options ? "#{base_class}--spacing-#{spacing}" : "",
-    separator in separator_options ? "#{base_class}--separator-#{separator}" : "",
-    inset == true ? "#{base_class}--inset",
     align in align_options ? "#{base_class}--align-#{align}" : "",
     valign in valign_options ? "#{base_class}--valign-#{valign}" : "",
   ] %}
