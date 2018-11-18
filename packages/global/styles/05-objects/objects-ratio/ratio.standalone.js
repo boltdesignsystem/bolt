@@ -53,7 +53,7 @@ function BoltRatio() {
       this._computeRatio();
     }
 
-    // Render out component via HyperHTML
+    // Render out component via Lit-HTML
     render() {
       const classes = css(`o-${bolt.namespace}-ratio__inner`);
 
