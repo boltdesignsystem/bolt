@@ -705,9 +705,9 @@
     sleep-promise "^8.0.1"
 
 "@bolt/components-page-footer@file:packages/components/bolt-page-footer":
-  version "2.1.6"
+  version "2.2.0-rc.1"
   dependencies:
-    "@bolt/core" "^2.1.6"
+    "@bolt/core" "^2.2.0-rc.1"
 
 "@bolt/fast-sass-loader@github:bolt-design-system/fast-sass-loader#master":
   version "1.4.5"
@@ -1352,6 +1352,11 @@
   version "10.12.3"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.3.tgz#3918b73ceed484e58367be5acb79d1775239e393"
   integrity sha512-sfGmOtSMSbQ/AKG8V9xD1gmjquC9awIIZ/Kj309pHb2n3bcRAcGMQv5nJ6gCXZVsneGE4+ve8DXKRCsrg3TFzg==
+
+"@types/tapable@1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@types/tapable/-/tapable-1.0.2.tgz#e13182e1b69871a422d7863e11a4a6f5b814a4bd"
+  integrity sha512-42zEJkBpNfMEAvWR5WlwtTH22oDzcMjFsL9gDGExwF8X8WvAiw7Vwop7hPw03QT8TKfec83LwbHj6SvpqM4ELQ==
 
 "@vue/babel-preset-app@^3.1.0":
   version "3.1.1"
@@ -7032,6 +7037,11 @@ get-own-enumerable-property-symbols@^3.0.0:
   resolved "https://registry.yarnpkg.com/get-own-enumerable-property-symbols/-/get-own-enumerable-property-symbols-3.0.0.tgz#b877b49a5c16aefac3655f2ed2ea5b684df8d203"
   integrity sha512-CIJYJC4GGF06TakLg8z4GQKvDsx9EMspVxOYih7LerEL/WosUnFIww45CGfxfeKHqlg3twgUrYRT1O3WQqjGCg==
 
+get-own-property-symbols@^0.9.2:
+  version "0.9.2"
+  resolved "https://registry.yarnpkg.com/get-own-property-symbols/-/get-own-property-symbols-0.9.2.tgz#64e3b56e7dc11ac3f8cb1eb6ba6fb39a53ad5954"
+  integrity sha1-ZOO1bn3BGsP4yx62um+zmlOtWVQ=
+
 get-pkg-repo@^1.0.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/get-pkg-repo/-/get-pkg-repo-1.4.0.tgz#c73b489c06d80cc5536c2c853f9e05232056972d"
@@ -7895,7 +7905,7 @@ html-loader@^0.5.5:
     loader-utils "^1.1.0"
     object-assign "^4.1.1"
 
-html-minifier@^3.2.3, html-minifier@^3.3.1, html-minifier@^3.5.20, html-minifier@^3.5.8:
+html-minifier@^3.2.3, html-minifier@^3.3.1, html-minifier@^3.5.8:
   version "3.5.21"
   resolved "https://registry.yarnpkg.com/html-minifier/-/html-minifier-3.5.21.tgz#d0040e054730e354db008463593194015212d20c"
   integrity sha512-LKUKwuJDhxNa3uf/LPR/KVjm/l3rBqtYeCOAekvG8F1vItxMUpueGd94i/asDDr8/1u7InxzFA5EeGjhhG5mMA==
@@ -8103,13 +8113,6 @@ husky@^0.14.3:
     is-ci "^1.0.10"
     normalize-path "^1.0.0"
     strip-indent "^2.0.0"
-
-hyperhtml@^2.14.0:
-  version "2.16.4"
-  resolved "https://registry.yarnpkg.com/hyperhtml/-/hyperhtml-2.16.4.tgz#60ab8e99a3d28dccdf6615bb39156b1941140762"
-  integrity sha512-1NGdTI9XQlO36eCfLslJEk3YI7YbbCSboKK1DNwN3xl+ffpT8kFLlF1kyruur15kNlkl5gsxqEzIvgPah7Q8Bw==
-  dependencies:
-    lightercollective "^0.1.0"
 
 iconv-lite@0.4.23:
   version "0.4.23"
@@ -9908,10 +9911,10 @@ link-types@^1.1.0:
   resolved "https://registry.yarnpkg.com/link-types/-/link-types-1.1.0.tgz#af65e59db52e70c1ffb18ac4c3cb056bfe796830"
   integrity sha1-r2XlnbUucMH/sYrEw8sFa/55aDA=
 
-lit-html@^0.11.1:
-  version "0.11.4"
-  resolved "https://registry.yarnpkg.com/lit-html/-/lit-html-0.11.4.tgz#fa397d2b2f2d0523ebc136e5a1699aa4e9346152"
-  integrity sha512-yfJUxQrRjhYo4cdz3Db9YlkHs9v+rTZA4fvE/dqCOrA1Q2Bmx52X2OtEgGQ+JhyCb6ddDTndLijZjsSoQ44G7Q==
+lit-html@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/lit-html/-/lit-html-0.12.0.tgz#d994420fda74744f9d4a79401b086de929643e6a"
+  integrity sha512-NyFgq8yTlGEjUFQOmNnK/kj+ZdDVJzTwsLunNSewGiOns7SjuJi6ymCCqzZZ81uW2VwEmliMbOlFZc9QmOJPLA==
 
 load-json-file@^1.0.0:
   version "1.1.0"
@@ -10824,7 +10827,7 @@ micromatch@^3.0.4, micromatch@^3.1.10, micromatch@^3.1.4, micromatch@^3.1.8, mic
     snapdragon "^0.8.1"
     to-regex "^3.0.2"
 
-"micromatch@github:jonschlinkert/micromatch#2.2.0":
+micromatch@jonschlinkert/micromatch#2.2.0:
   version "2.2.0"
   resolved "https://codeload.github.com/jonschlinkert/micromatch/tar.gz/5017fd78202e04c684cc31d3c2fb1f469ea222ff"
   dependencies:
@@ -13271,7 +13274,7 @@ pretty-bytes@^4.0.2:
   resolved "https://registry.yarnpkg.com/pretty-bytes/-/pretty-bytes-4.0.2.tgz#b2bf82e7350d65c6c33aa95aaa5a4f6327f61cd9"
   integrity sha1-sr+C5zUNZcbDOqlaqlpPYyf2HNk=
 
-pretty-error@^2.0.2, pretty-error@^2.1.1:
+pretty-error@^2.0.2:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/pretty-error/-/pretty-error-2.1.1.tgz#5f4f87c8f91e5ae3f3ba87ab4cf5e03b1a17f1a3"
   integrity sha1-X0+HyPkeWuPzuoerTPXgOxoX8aM=
