@@ -20,11 +20,11 @@ $bolt-video-js-button-shadow-color: bolt-color(black);
 $bolt-video-js-button-shadow-level: 'level-20';
 $bolt-video-js-button-shadow-level-hover: 'level-40';
 
-@mixin bolt-video-js-button($opacity: 1) {
+@mixin bolt-video-js-button($opacity: bolt-opacity(100)) {
+  opacity: $opacity;
   color: $bolt-video-js-button-text-color;
   background-color: $bolt-video-js-button-background-color;
   transition: all $bolt-video-js-button-transition;
-  opacity: $opacity;
 }
 
 .video-js {
@@ -40,7 +40,7 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
   .vjs-big-play-button {
     @include bolt-margin(0);
     @include bolt-padding(0);
-    @include bolt-video-js-button($opacity: 1);
+    @include bolt-video-js-button($opacity: bolt-opacity(100));
     @include bolt-shadow($key: $bolt-video-js-button-shadow-level, $base-color: $bolt-video-js-button-shadow-color);
 
     position: absolute;
@@ -70,12 +70,12 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
       &:before,
       &:after {
         @include bolt-font-family(body);
+        content: '';
 
         display: block;
         position: absolute;
         width: calc(100% + 4px);
         height: calc(100% + 4px);
-        content: '';
       }
 
       &:before {
@@ -171,9 +171,9 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
           @include bolt-margin(0.25rem);
           @include bolt-font-size(small, tight);
           @include bolt-font-weight(bold);
+          content: "Share This Video"; // [8]
 
           display: block;
-          content: "Share This Video"; // [8]
           white-space: nowrap;
         }
       }
@@ -219,8 +219,8 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
 
     > * {
       display: flex;
-      justify-content: center;
       flex-direction: column;
+      justify-content: center;
       position: absolute;
       top: 0;
       left: 0;
