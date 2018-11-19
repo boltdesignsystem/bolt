@@ -4,7 +4,11 @@ import {
   css,
   hasNativeShadowDomSupport,
 } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import {
+  render,
+  withLitHtml,
+  html,
+} from '@bolt/core/renderers/renderer-lit-html';
 
 import Handorgel from 'handorgel';
 
@@ -111,8 +115,8 @@ class BoltDropdown extends withLitHtml() {
     const dropdownTitle = this.slots.title
       ? this.slot('title')
       : this.props.title
-      ? this.props.title
-      : '';
+        ? this.props.title
+        : '';
 
     return html`
       <h3 class="${dropdownHeaderClasses}">
@@ -148,13 +152,12 @@ class BoltDropdown extends withLitHtml() {
     const dropdownChildren = this.slots.default
       ? this.slot('default')
       : this.props.children
-      ? this.props.children
-      : '';
+        ? this.props.children
+        : '';
 
     return html`
       <div class="${classes}" id="${this.uuid}">
         ${this.dropdownHeader()}
-
         <div class="c-bolt-dropdown__content">
           <div class="c-bolt-dropdown__content-inner">${dropdownChildren}</div>
         </div>
@@ -164,7 +167,7 @@ class BoltDropdown extends withLitHtml() {
 
   render() {
     this.dropdownTemplate = document.createDocumentFragment();
-    this.dropdownTemplate.appendChild(this.template());
+    render(this.template(), this.dropdownTemplate);
 
     this.contentElem = this.dropdownTemplate.querySelector(
       '.c-bolt-dropdown__content',

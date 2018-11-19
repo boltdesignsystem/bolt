@@ -14,10 +14,10 @@ $bds-sidebar-width: 320px;
 }
 
 .c-bds-layout__wrapper {
-  align-self: stretch;
-  justify-self: stretch;
   display: flex;
   flex-direction: column;
+  align-self: stretch;
+  justify-self: stretch;
   grid-column-start: 1;
   grid-column-end: 1;
 }
@@ -51,22 +51,22 @@ $bds-sidebar-width: 320px;
   text-align: right;
 
   @include bolt-mq($until: 599px) {
-    text-align: center;
     width: 100%;
+    text-align: center;
   }
 
   a {
-    color: #fff;
     padding: 6px 12px;
+    color: #fff;
 
     &.active,
     &.active-path {
-      background: rgba(0, 0, 0, 0.1);
+      display: none; // we need more room at mobile and this is the item which makes most sense to exclude since we're already there!
       border: 1px solid #fff;
       border-radius: 3px;
       box-shadow: 0 1px 3px rgba(21, 22, 25, 0.12),
         0 1px 2px rgba(21, 22, 25, 0.24);
-      display: none; // we need more room at mobile and this is the item which makes most sense to exclude since we're already there!
+      background: rgba(0, 0, 0, 0.1);
 
       @include bolt-mq(small) {
         display: initial;
@@ -96,33 +96,33 @@ $bds-sidebar-width: 320px;
 }
 
 .c-bds-layout__sidebar__overlay {
+  visibility: hidden;
+  opacity: 0;
   position: fixed;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
-  pointer-events: none;
+  left: 0;
   z-index: bolt-z-index('modalBG');
+  pointer-events: none;
   background-color: bolt-color(black);
-  opacity: 0;
-  visibility: hidden;
   transition: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1),
     visibility 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .c-bds-layout__sidebar {
-  width: $bds-sidebar-width;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  border-right: 1px solid #e0e2eb;
-  padding: 0;
   position: fixed;
   top: 0;
   bottom: 0;
   transform: translate3d(-$bds-sidebar-width, 0, 0);
-  background-color: bolt-color(gray, xlight);
   z-index: bolt-z-index('modal');
+  width: $bds-sidebar-width;
+  overflow: auto;
+  padding: 0;
+  border-right: 1px solid #e0e2eb;
+  background-color: bolt-color(gray, xlight);
   transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  -webkit-overflow-scrolling: touch;
 
   &:target {
     transform: translate3d(0, 0, 0);
@@ -141,8 +141,8 @@ $bds-sidebar-width: 320px;
   }
 
   @include bolt-mq(medium) {
-    transform: translate3d(0, 0, 0);
     position: relative;
+    transform: translate3d(0, 0, 0);
   
     @include bolt-mq(medium) {
       .c-bds-layout--has-sidebar & {
@@ -159,12 +159,12 @@ $bds-sidebar-width: 320px;
     position: relative;
 
     > h2 {
-      color: #fff;
-      background-color: bolt-color(indigo);
-      border-bottom: 1px solid #fff;
-      padding: 10px 20px;
       margin: 0;
+      padding: 10px 20px;
+      color: #fff;
       font-size: 1.11rem;
+      border-bottom: 1px solid #fff;
+      background-color: bolt-color(indigo);
     }
 
     .c-bds-layout__close-menu {
@@ -180,8 +180,8 @@ $bds-sidebar-width: 320px;
   // Styling for markdown content (classes not available)
   article {
     h2 {
-      font-size: 1.33rem;
       margin-bottom: 0.9rem;
+      font-size: 1.33rem;
     }
 
     h3 {
@@ -191,10 +191,10 @@ $bds-sidebar-width: 320px;
 }
 
 .c-bds-layout__content {
+  display: grid;
+  overflow: auto;
   grid-column-start: 1;
   grid-column-end: 3;
-  overflow: auto;
-  display: grid;
   grid-template-columns: auto;
   grid-template-rows: auto;
   // display: flex;
@@ -219,13 +219,13 @@ $bds-sidebar-width: 320px;
 }
 
 .c-bds-layout__footer {
-  position: relative; // Fallback positioning
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background-color: #fff;
   align-self: end;
+  position: relative; // Fallback positioning
+  right: 0;
+  bottom: 0;
+  left: 0;
   width: 100%;
+  background-color: #fff;
 
   grid-column-start: 1;
   grid-column-end: 1;

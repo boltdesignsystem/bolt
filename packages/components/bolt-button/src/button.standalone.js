@@ -53,7 +53,7 @@ class BoltButton extends withLitHtml() {
 
     // If the initial <bolt-button> element contains a button or link, break apart the original HTML so we can retain any button or a tags but swap out the inner content with slots.
 
-    // Make sure the button component ONLY ever reuses any existing HTML ONCE. This, in part, helps to prevent rendering diff errors in HyperHTML after booting up!
+    // Make sure the button component ONLY ever reuses any existing HTML ONCE. This, in part, helps to prevent rendering diff errors in Lit-HTML after booting up!
     if (this._wasInitiallyRendered === false) {
       this.childNodes.forEach((childElement, i) => {
         if (childElement.tagName === 'BUTTON' || childElement.tagName === 'A') {

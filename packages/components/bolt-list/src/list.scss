@@ -44,8 +44,13 @@
   $spacing-value-name: nth($spacing-value, 1);
 
   .c-bolt-list--spacing-#{$spacing-value-name} {
-    margin-left: bolt-spacing(#{$spacing-value-name}) * -1;
     margin-bottom: bolt-v-spacing(#{$spacing-value-name}) * -1;
+    margin-left: bolt-spacing(#{$spacing-value-name}) * -1;
+
+    > .c-bolt-list__item {
+      @include bolt-margin-left(#{$spacing-value-name});
+      @include bolt-margin-bottom(#{$spacing-value-name});
+    }
   }
 
   .c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--inset {

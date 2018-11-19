@@ -2,13 +2,17 @@
 
 import { props, define } from '@bolt/core/utils';
 import Choices from 'choices.js/assets/scripts/dist/choices.js';
-import { wire, withHyperHtml } from '@bolt/core/renderers';
+import {
+  withLitHtml,
+  html,
+  // render,
+} from '@bolt/core/renderers/renderer-lit-html';
 import { filterObject, isDefined, createSelectOptionData } from './utils';
 
 import styles from './bolt-select.scss';
 
 @define
-class BoltSelect extends withHyperHtml() {
+class BoltSelect extends withLitHtml() {
   static is = 'bolt-select';
 
   static props = {
@@ -201,31 +205,37 @@ class BoltSelect extends withHyperHtml() {
     switch (this.type) {
       case 'single':
       default:
-        this.element = wire()`
-          <select name=${this.props.name || null} class="js-bolt-select-root">
+        this.element = html`
+          <select name="${this.props.name || null}" class="js-bolt-select-root">
             ${this.value ? createSelectOptions(this.value) : null}
           </select>
         `;
         break;
       case 'multiple':
-        this.element = wire()`
-          <select multiple name=${this.props.name ||
-            null} class="js-bolt-select-root">
+        this.element = html`
+          <select
+            multiple
+            name="${this.props.name || null}"
+            class="js-bolt-select-root"
+          >
             ${this.value ? createSelectOptions(this.value) : null}
           </select>
         `;
         break;
       case 'text':
-        this.element = wire()`
-          <input type="text" value=${this.value} name=${this.props.name ||
-          null} class="js-bolt-select-root" />
+        this.element = html`
+          <input
+            type="text"
+            value="${this.value}"
+            name="${this.props.name || null}"
+            class="js-bolt-select-root"
+          />
         `;
         break;
     }
 
-    return this.html`
-      ${this.addStyles([styles])}
-      ${this.element}
+    return html`
+      ${this.addStyles([styles])} ${this.element}
     `;
   }
 

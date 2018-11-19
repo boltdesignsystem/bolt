@@ -30,11 +30,13 @@ async function writeVersionDataToJson(versionData) {
 }
 
 async function gatherBoltVersions() {
+  const config = await getConfig();
+
   const versionSpinner = ora(
     chalk.blue('Gathering data on the latest Bolt Design System releases...'),
   ).start();
 
-  const config = await getConfig();
+  // Skip over checking for Bolt releases when not in prod mode to speed up the initial build
   if (!config.prod) {
     versionSpinner.succeed(
       chalk.green('Skipped gathering data on every Bolt release -- dev build!'),

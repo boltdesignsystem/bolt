@@ -69,11 +69,11 @@ $bolt-tooltip-transition: $bolt-transition;
     .c-bolt-tooltip__content-bubble {
       &:after,
       &:before {
+        transform: translateY(100%);
         border-top: $bolt-tooltip-bubble-triangle-width solid;
         border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
         border-bottom: $bolt-tooltip-bubble-triangle-width solid transparent;
         border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
-        transform: translateY(100%);
       }
 
       &:before {
@@ -96,11 +96,11 @@ $bolt-tooltip-transition: $bolt-transition;
     .c-bolt-tooltip__content-bubble {
       &:after,
       &:before {
+        transform: translateY(-100%);
         border-top: $bolt-tooltip-bubble-triangle-width solid transparent;
         border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
-        border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
         border-bottom: $bolt-tooltip-bubble-triangle-width solid;
-        transform: translateY(-100%);
+        border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
       }
 
       &:before {
@@ -380,8 +380,8 @@ $bolt-tooltip-transition: $bolt-transition;
   display: block;
 
   .c-bolt-button {
-    font-weight: 900;
     overflow: hidden;
+    font-weight: 900;
 
     .is-push-up & {
       position: relative;
@@ -394,24 +394,24 @@ $bolt-tooltip-transition: $bolt-transition;
   }
 
   bolt-icon {
-    padding-right: 5px;
     width: auto; // IE & Firefox fix
     height: auto; // IE & Firefox fix
+    padding-right: 5px;
   }
 
   .c-bolt-button .toggle--closed,
   .c-bolt-button .toggle--open {
-    transition: opacity $bolt-transition;
-    align-items: center;
     display: inline-flex;
+    align-items: center;
+    transition: opacity $bolt-transition;
   }
 
   .toggle--open {
+    opacity: bolt-opacity(0);
     position: absolute;
     top: 0; // For IE 11
     bottom: 0; // For IE 11
     left: 50%; // For IE 11 
-    opacity: bolt-opacity(0);
     transform: translate3d(-50%, -200%, 0);
 
     .is-active & {
@@ -421,8 +421,8 @@ $bolt-tooltip-transition: $bolt-transition;
   }
 
   .toggle--closed {
-    transform: translate3d(0, 0, 0);
     opacity: bolt-opacity(100);
+    transform: translate3d(0, 0, 0);
 
     .is-active & {
       opacity: bolt-opacity(0);
@@ -461,11 +461,11 @@ $bolt-tooltip-transition: $bolt-transition;
 
   &:after,
   &:before {
+    content: '';
     display: block;
     position: absolute;
     width: 0;
     height: 0;
-    content: '';
     pointer-events: none;
   }
 }
