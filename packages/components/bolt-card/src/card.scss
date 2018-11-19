@@ -19,20 +19,20 @@ bolt-card[height='full'] {
   @include bolt-shadow('level-20', false, $bolt-card-shadow-color);
 
   display: flex;
-  flex-direction: column;
   flex-basis: 100%;
+  flex-direction: column;
   flex-grow: 1;
   position: relative;
   border-radius: $bolt-card-border-radius;
 
   &:before {
+    content: '';
     display: block;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    content: '';
     pointer-events: none;
     border-radius: $bolt-card-border-radius;
     box-shadow: 0 0 1px rgba(bolt-color(gray), 0.5);
