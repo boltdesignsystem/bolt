@@ -15,8 +15,6 @@ import {
 } from '@bolt/core/renderers/renderer-lit-html';
 import Ajv from 'ajv';
 
-import themes from '@bolt/global/styles/06-themes/_themes.all.scss';
-import visuallyhiddenUtils from '@bolt/global/styles/07-utilities/_utilities-visuallyhidden.scss';
 import styles from './link.scss';
 import schema from '../link.schema.yml';
 
@@ -144,7 +142,7 @@ class BoltLink extends withLitHtml() {
     const urlTarget = this.props.target && hasUrl ? this.props.target : '_self';
 
     // The linkElement to render, based on the initial HTML passed alone.
-    let linkElement = null;
+    let renderedLink;
 
     const slotMarkup = name => {
       switch (name) {
@@ -166,7 +164,6 @@ class BoltLink extends withLitHtml() {
         default:
           const itemClasses = cx('c-bolt-link__text', {
             'is-empty': name in this.slots === false,
-            // 'u-bolt-visuallyhidden': this.props.iconOnly,
           });
 
           return html`
@@ -186,12 +183,11 @@ class BoltLink extends withLitHtml() {
     ];
 
     if (this.rootElement) {
-      linkElement = this.rootElement.firstChild.cloneNode(true);
-      linkElement.className += ' ' + classes;
-      render(innerSlots, linkElement);
+      renderedLink = this.rootElement.firstChild.cloneNode(true);
+      renderedLink.className += ' ' + classes;
+      render(innerSlots, renderedLink);
     } else if (hasUrl) {
-      // @todo: do we need to check for url?
-      linkElement = html`
+      renderedLink = html`
         <a href="${this.props.url}" class="${classes}" target="${urlTarget}"
           >${innerSlots}</a
         >
@@ -199,7 +195,7 @@ class BoltLink extends withLitHtml() {
     }
 
     return html`
-      ${this.addStyles([styles, visuallyhiddenUtils])} ${linkElement}
+      ${this.addStyles([styles])} ${renderedLink}
     `;
   }
 }
