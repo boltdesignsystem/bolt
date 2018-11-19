@@ -14,6 +14,8 @@ export function declarativeClickHandler(element) {
           }
         });
       }
+    } else if (window[clickMethod]) {
+      window[clickMethod]();
     } else {
       if (element[clickMethod]) {
         element[clickMethod]();
