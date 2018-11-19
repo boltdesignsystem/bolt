@@ -346,7 +346,7 @@ async function createWebpackConfig(buildConfig) {
     },
     resolve: {
       mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
-      extensions: ['.js', '.jsx', '.mjs', '.json', '.svg', '.scss'],
+      extensions: ['.js', '.jsx', '.mjs', '.json', '.svg', '.scss', '.ts', '.tsx'],
       alias: {
         react: 'preact-compat',
         'react-dom': 'preact-compat',
@@ -354,6 +354,13 @@ async function createWebpackConfig(buildConfig) {
     },
     module: {
       rules: [
+        { 
+          test: /\.(ts|tsx)$/,
+          loader: 'ts-loader',
+          options: {
+            transpileOnly: true,
+          },
+        },
         {
           test: /\.scss$/,
           oneOf: [
@@ -372,7 +379,7 @@ async function createWebpackConfig(buildConfig) {
           ],
         },
         {
-          test: /\.(js|mjs)$/,
+          test: /\.(js|tsx|mjs)$/,
           exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
           use: {
             loader: 'babel-loader',
