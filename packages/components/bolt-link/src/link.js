@@ -1,6 +1,4 @@
 import {
-  defineContext,
-  withContext,
   props,
   define,
   declarativeClickHandler,
@@ -26,20 +24,9 @@ const ajv = new Ajv({ useDefaults: 'shared' });
 
 let cx = classNames.bind(styles);
 
-// // define which specific props to provide to children that subscribe
-// export const LinkContext = defineContext({
-//   tag: 'div',
-// });
-
 @define
-class BoltLink extends withContext(withLitHtml()) {
+class BoltLink extends withLitHtml() {
   static is = 'bolt-link';
-
-  // // provide context info to children that subscribe
-  // // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
-  // static get provides() {
-  //   return [LinkContext];
-  // }
 
   static props = {
     url: props.string,
@@ -146,8 +133,6 @@ class BoltLink extends withContext(withLitHtml()) {
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     const { url, href } = this.validateProps(this.props);
-
-    // this.contexts.get(LinkContext).tag = tag;
 
     const classes = cx('c-bolt-link');
 
