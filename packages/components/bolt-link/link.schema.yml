@@ -13,9 +13,19 @@ properties:
   href:
     type: string
     description: Deprecated. Use url instead.
+  target:
+    type: string
+    description: Specifies the context in which the linked resource will open.
   icon:
     type: object
-    description: Bolt icon. Accepts the same options as Bolt Icon Component `@bolt-components-icon`
+    description: Bolt icon. Accepts the same options as Bolt Icon Component `@bolt-components-icon` plus an additional 'position' parameter that determines placement within the button.
+    properties:
+      position:
+        type: string
+        default: after
+        enum:
+          - before
+          - after
     ref: '@bolt-components-icon/icon.schema.yml'
   isHeadline:
     type: boolean

@@ -28,7 +28,7 @@ class BoltLink extends withLitHtml() {
 
   static props = {
     url: props.string,
-    href: props.string,
+    target: props.string,
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -130,11 +130,10 @@ class BoltLink extends withLitHtml() {
 
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { url, href } = this.validateProps(this.props);
+    const { url, target } = this.validateProps(this.props);
 
     const classes = cx('c-bolt-link');
 
-    // @todo: do we need to check for deprecated 'href' too?
     // Decide on if the rendered button tag should be a <button> or <a> tag, based on if a URL exists OR if a link was passed in from the getgo
     const hasUrl = this.props.url.length > 0 && this.props.url !== 'null';
 

@@ -6,6 +6,9 @@
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
+{# set up psuedo self-validation by limiting param values to what's specifically allowed in the component schema #}
+{% set iconPositions = schema.properties.icon.properties.position.enum %}
+
 {# Variables #}
 {% set base_class = "c-bolt-link" %}
 {% set attributes = create_attribute(attributes|default({})) %}
@@ -17,9 +20,7 @@
 {% endif %}
 
 {% if icon %}
-  {# @todo: check icon position against allowed values? #}
-  {# {% set iconPosition = icon.position in iconPositions ? icon.position : schema.properties.icon.properties.position.default %} #}
-  {% set iconPosition = icon.position | default('after') %}
+  {% set iconPosition = icon.position in iconPositions ? icon.position : schema.properties.icon.properties.position.default %}
 {% endif %}
 
 {# Array of classes based on the defined + default props #}
