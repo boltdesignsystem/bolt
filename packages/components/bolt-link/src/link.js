@@ -29,6 +29,8 @@ class BoltLink extends withLitHtml() {
   static props = {
     url: props.string,
     target: props.string,
+    onClick: props.string, // Managed by base class
+    onClickTarget: props.string, // Managed by base class
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context

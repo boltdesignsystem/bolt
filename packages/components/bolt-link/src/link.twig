@@ -52,11 +52,10 @@
   {% if url %} url="{{ url }}" {% elseif href %} url="{{ href }}" {% endif %}
 
   {# todo: rename on-click + on-click-target to only allow onClick + onClickTarget to unify the prop syntax; deprecate adding these via attributes #}
-  {# {% if onClick or attributes['on-click'] %} on-click="{{ onClick | default(attributes['on-click']) }}" {% endif %}
-  {% if onClickTarget or attributes['on-click-target'] %} on-click-target="{{ onClickTarget | default(attributes['on-click-target']) }}" {% endif %} #}
-
   {% if outerClasses %} class="{{ outerClasses|join(' ') }}" {% endif %}
   {{ attributes | without('href') | without('class') | without('target') | without('id') | without('type') }}
+  {% if onClick %} on-click="{{ onClick }}" {% endif %}
+  {% if onClickTarget %} on-click-target="{{ onClickTarget }}" {% endif %}
 >
 
   {# Add semantic <a> tag for better accessibility #}
