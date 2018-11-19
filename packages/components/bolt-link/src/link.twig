@@ -7,7 +7,7 @@
 {% endif %}
 
 {# set up psuedo self-validation by limiting param values to what's specifically allowed in the component schema #}
-{% set iconPositions = schema.properties.icon.properties.position.enum %}
+{% set icon_positions = schema.properties.icon.properties.position.enum %}
 
 {# Variables #}
 {% set base_class = "c-bolt-link" %}
@@ -18,7 +18,7 @@
 ] %}
 
 {% if icon %}
-  {% set iconPosition = icon.position in iconPositions ? icon.position : schema.properties.icon.properties.position.default %}
+  {% set icon_position = icon.position in icon_positions ? icon.position : schema.properties.icon.properties.position.default %}
 {% endif %}
 
 {% set attributes = create_attribute(attributes | default(attributes) | default({})) %}
@@ -78,10 +78,10 @@
     class="{{ innerClasses|join(' ') }}"
     is="shadow-root"
   >
-    {{ macros.slottedIcon(icon, iconPosition, 'before') }}
+    {{ macros.slotted_icon(icon, icon_position, 'before') }}
     <replace-with-children class="{{ "#{base_class}__text" }}">
       {{ text | default(label) | default("Learn More") }}
     </replace-with-children>
-    {{ macros.slottedIcon(icon, iconPosition, 'after') }}
+    {{ macros.slotted_icon(icon, icon_position, 'after') }}
   </a>
 </bolt-link>

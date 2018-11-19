@@ -1,9 +1,9 @@
-{% macro slottedIcon(icon, iconPosition, slotName) %}
-  {% if icon and iconPosition == slotName %}
+{% macro slotted_icon(icon, icon_position, slot_name) %}
+  {% if icon and icon_position == slot_name %}
     <replace-with-children class="c-bolt-link__icon">
       {% set icon = icon | merge({
         attributes: {
-          slot: slotName
+          slot: slot_name
         }
       }) %}
       {% include "@bolt-components-icon/icon.twig" with icon only %}
