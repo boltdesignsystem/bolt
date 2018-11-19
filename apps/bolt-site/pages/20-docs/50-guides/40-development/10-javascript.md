@@ -15,8 +15,6 @@ title: JavaScript Architecture
 	* Links a component’s appearance with the data getting passed into it.
 	* As an added benefit, this allows us to tap into the plethora of off the shelf libraries, resources and tutorials that wouldn’t be possible via a custom in-house solution.
 
-📝 Architect's Note: as number of different Web Components solving a number of different use cases in Bolt continues to mature, we are evaluating possible alternative or swappable renderer options in SkateJS (such as [HyperHTML](https://github.com/WebReflection/hyperHTML), [Snabbdom](https://github.com/snabbdom/snabbdom), or even [React](https://github.com/skatejs/skatejs/blob/master/packages/renderer-react/README.md))
-
 These docs will continue to be updated accordingly however it's clear that JSX and Template literal rendering options are a vital part of the direction we're heading in (more of just a question on whether that's via one or a small handful of options). 😉
 	
 
