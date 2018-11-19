@@ -41,16 +41,16 @@ $bolt-unordered-list-bullet-size: 8px; // Using px here because I need to make a
   position: relative;
 
   &:before {
+    content: '';
     display: block;
     position: absolute;
     top: .55rem;
     left: bolt-spacing(medium) * -1;
     width: $bolt-unordered-list-bullet-size;
     height: $bolt-unordered-list-bullet-size;
-    content: '';
+    line-height: $bolt-unordered-list-bullet-size;
     border-radius: $bolt-unordered-list-bullet-size;
     background-color: bolt-theme(headline);
-    line-height: $bolt-unordered-list-bullet-size;
   }
 
   &:last-child {

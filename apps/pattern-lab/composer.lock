@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "3cece0cb17a9ae3616b548817f5ba226",
@@ -166,16 +166,11 @@
         {
             "name": "bolt-design-system/core-php",
             "version": "2.1.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bolt-design-system/core-php.git",
-                "reference": "2b608dcc751a64aef7fee97a6bc0ce174edf2470"
-            },
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bolt-design-system/core-php/zipball/2b608dcc751a64aef7fee97a6bc0ce174edf2470",
-                "reference": "2b608dcc751a64aef7fee97a6bc0ce174edf2470",
-                "shasum": ""
+                "type": "path",
+                "url": "../../packages/core-php",
+                "reference": "f0f1612e463a17fb75dd14baa973e0a196a661f9",
+                "shasum": null
             },
             "require": {
                 "asm89/twig-lint": "^1.0",
@@ -197,7 +192,11 @@
                     "Bolt\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "scripts": {
+                "test": [
+                    "phpunit --colors=always tests"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -210,8 +209,7 @@
                     "name": "Evan Lovely"
                 }
             ],
-            "description": "Core PHP functionality for Bolt",
-            "time": "2018-10-23T21:59:59+00:00"
+            "description": "Core PHP functionality for Bolt"
         },
         {
             "name": "bolt-design-system/drupal-stubs",
@@ -501,7 +499,7 @@
         },
         {
             "name": "drupal/core-render",
-            "version": "8.6.3",
+            "version": "8.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-render.git",
@@ -536,7 +534,7 @@
         },
         {
             "name": "drupal/core-utility",
-            "version": "8.6.3",
+            "version": "8.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-utility.git",
@@ -1148,6 +1146,7 @@
             "extra": {
                 "patches_applied": {
                     "[FIX] Fix Psuedo Pattern Template Paths If Organized In Different Folder From Base Template. Addresses https://github.com/drupal-pattern-lab/patternlab-php-core/issues/22": ".patches/fixPsuedoPatternTemplatePaths.patch",
+                    "[FEATURE] Beautify raw HTML output": ".patches/beautifyHTML.patch",
                     "[FEATURE] Allow markdown files to specify associated pattern + also includes compiling embedded templates in .md files": ".patches/allowMarkdownFilesToSpecifyAssociatedPattern.patch",
                     "[FIX] Allow PL to Ignore Certain Folders like Node Modules.": ".patches/ignoreCertainFolders.patch",
                     "[FEATURE] Allow default Pattern Data configuration rules to be disabled. Also adds ability to add on extra Pattern Data rules to customize and extend default Pattern Lab behavior.": ".patches/configurablePatternDataRules.patch",
