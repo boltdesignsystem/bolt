@@ -1,0 +1,14 @@
+{% macro slottedIcon(icon, iconPosition, slotName) %}
+  {% if icon and iconPosition == slotName %}
+    <replace-with-children class="c-bolt-link__icon">
+      {% set icon = icon | merge({
+        attributes: {
+          slot: slotName
+        }
+      }) %}
+      {% include "@bolt-components-icon/icon.twig" with icon only %}
+    </replace-with-children>
+  {% else %}
+    <replace-with-children class="c-bolt-link__icon is-empty"></replace-with-children>
+  {% endif %}
+{% endmacro %}
