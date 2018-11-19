@@ -346,7 +346,16 @@ async function createWebpackConfig(buildConfig) {
     },
     resolve: {
       mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
-      extensions: ['.js', '.jsx', '.mjs', '.json', '.svg', '.scss', '.ts', '.tsx'],
+      extensions: [
+        '.js',
+        '.jsx',
+        '.mjs',
+        '.json',
+        '.svg',
+        '.scss',
+        '.ts',
+        '.tsx',
+      ],
       alias: {
         react: 'preact-compat',
         'react-dom': 'preact-compat',
@@ -354,7 +363,7 @@ async function createWebpackConfig(buildConfig) {
     },
     module: {
       rules: [
-        { 
+        {
           test: /\.(ts|tsx)$/,
           loader: 'ts-loader',
           options: {
