@@ -62,6 +62,7 @@ async function init() {
     console.log(`Branch Name: ${branchName}`);
 
     const baseNowArgs = [
+      '--platform-version=1',
       '--team=boltdesignsystem',
       '--local-config=../now.json',
     ];

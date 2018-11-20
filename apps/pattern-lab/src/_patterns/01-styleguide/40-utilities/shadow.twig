@@ -8,7 +8,7 @@
   ]
 } only %}
 
-{% set class_prefix = bolt.data.shadows["utility-class-prefix"] %}
+  {% set class_prefix = "u-bolt-shadow-" %}
 
   {% block utility_description %}
     <p>Add the utility class <code>{{ class_prefix }}xx</code> where xx equals the level of shadow you wish to apply.</p>
@@ -26,13 +26,13 @@
     {% endfor %}
 
     <h5>Hoverable</h5>
-    <p>To add an animated shadow that "lifts" on hover, add the <code>{{ class_prefix }}xx--hoverable</code> where xx equals the level of shadow you wish to use.</p>
-    <p><strong>For example</strong>: <code>.{{ class_prefix ~ bolt.data.shadows.sets|keys|first ~ "--hoverable" }}</code></p>
+    <p>To add an animated shadow that "lifts" on hover, add the <code>{{ class_prefix }}xx-hoverable</code> where xx equals the level of shadow you wish to use.</p>
+    <p><strong>For example</strong>: <code>.{{ class_prefix ~ bolt.data.shadows.sets|keys|first ~ "-hoverable" }}</code></p>
 
     {% for key, value in bolt.data.shadows.sets %}
-      <div class="bolt-shadow-demo__card {{ class_prefix }}{{ key }}--hoverable">{{ key }}
+      <div class="bolt-shadow-demo__card {{ class_prefix }}{{ key }}-hoverable">{{ key }}
         <br>Utility Class
-        <br><code>.{{ class_prefix }}{{ key }}--hoverable</code>
+        <br><code>.{{ class_prefix }}{{ key }}-hoverable</code>
         <br>Scss Mixin
         <br><code>@include bolt-shadow("{{ key }}", true);</code>
       </div>

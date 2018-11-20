@@ -16,12 +16,8 @@ export function declarativeClickHandler(element) {
       }
     } else if (window[clickMethod]) {
       window[clickMethod]();
-    } else {
-      if (element[clickMethod]) {
-        element[clickMethod]();
-      } else {
-        // @TODO: handle call to undefined method
-      }
+    } else if (element[clickMethod]) {
+      element[clickMethod]();
     }
   }
 }
