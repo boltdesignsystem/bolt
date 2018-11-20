@@ -51,7 +51,7 @@
     "lint:yaml": "yamllint 'packages/**/*.yml' --ignore='**/vendor/**'",
     "lint": "npm-run-all --continue-on-error --parallel lint:*",
     "prepush": "yarn run test && yarn run lint",
-    "test:js": "jest",
+    "test:js": "NODE_ENV='test' jest",
     "test:js:watch": "jest --watch",
     "test:php": "cd packages/core-php && composer run test",
     "test": "npm-run-all --parallel test:*",
