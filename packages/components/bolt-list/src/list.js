@@ -90,11 +90,15 @@ class BoltList extends withContext(withLitHtml()) {
     this.contexts.get(ListContext).separator =
       separator || this.props.separator;
 
+    console.log(inset);
+    console.log(typeof inset);
+
     const classes = cx('c-bolt-list', {
       [`c-bolt-list--display-${display}`]: display,
       [`c-bolt-list--spacing-${spacing}`]: spacing,
       [`c-bolt-list--align-${align}`]: align,
       [`c-bolt-list--valign-${valign}`]: valign,
+      [`c-bolt-list--inset`]: inset,
     });
 
     if (this.slots.default) {

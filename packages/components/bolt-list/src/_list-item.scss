@@ -68,7 +68,7 @@ $bolt-list-separator-styles: solid, dashed;
   }
 }
 
-// Specific settings for when the seperator prop interacts with other props. This is where things get really crazy.
+// Specific settings for when the separator prop interacts with other props. This is where things get really crazy.
 [class*='c-bolt-list-item--separator'] {
   @each $spacing-value in $bolt-spacing-values {
     $spacing-value-name: nth($spacing-value, 1);
