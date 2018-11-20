@@ -6,7 +6,7 @@ index 4c9bc6173..a5df38c00 100644
  use \PatternLab\Template;
  use \PatternLab\Timer;
  use \Symfony\Component\Finder\Finder;
-+use \Gajus\Dindent\Indenter;
++use \Bolt\FormatHTML;
  
  class Builder {
  
@@ -16,14 +16,14 @@ index 4c9bc6173..a5df38c00 100644
  				if (!$exportFiles) {
 -					file_put_contents($patternPublicDir."/".$path."/".$path.$suffixMarkupOnly.".html",$markup);
 -					file_put_contents($patternPublicDir."/".$path."/".$path.$suffixRaw.".".$patternExtension,$markupEngine);
-+					if (getenv('NODE_ENV') === 'production') {
++					//if (getenv('NODE_ENV') === 'production') {
 +						// Beautify the raw HTML before outputting so the code viewer doesn't look like a mess.
-+						$indenter = new Indenter(array(
-+							'indentation_character' => '  '
-+						));
-+						$markup = $indenter->indent($markup);
++						//$indenter = new Indenter(array(
++						//	'indentation_character' => '  '
++						//));
++						$markup = \Bolt\FormatHTML::HTML($markup, true, 2);
 +						//$markupEngine = $indenter->indent($markupEngine);
-+					}
++					//}
 +
 +					file_put_contents($patternPublicDir."/".$path."/".$path.$suffixMarkupOnly.".html",$markup);
 +					file_put_contents($patternPublicDir."/".$path."/".$path.$suffixRaw.".".$patternExtension,$markupEngine);
