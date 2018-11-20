@@ -2,7 +2,7 @@
   {{ validate_data_schema(bolt.data.components["@bolt-components-video"].schema, _self) | raw }}
 {% endif %}
 
-{% set videoUuid = videoUuid | default("js-bolt-video-uuid--" ~ random()) %}
+{% set videoUuid = videoUuid | default("js-bolt-video-uuid--" ~ (bolt.data.config.env == "test" ? "12345" : random())) %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set attributes = attributes.addClass(videoUuid) %}
@@ -31,7 +31,7 @@
     {% include "@bolt/_video-tag.twig" %}
   {% endset %}
 
-  {% include "@bolt/ratio.twig" with {
+  {% include "@bolt-components-ratio/ratio.twig" with {
     aspectRatioHeight: aspectRatioHeight ?? 9,
     aspectRatioWidth: aspectRatioWidth ?? 16,
     children: innerVideo,

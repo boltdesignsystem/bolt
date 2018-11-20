@@ -16,6 +16,9 @@ export * from './context/define-context';
 export * from './context/with-context';
 
 // https://www.polymer-project.org/3.0/docs/devguide/custom-elements#defer-work
-export { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
+export {
+  beforeNextRender,
+  afterNextRender,
+} from '@polymer/polymer/lib/utils/render-status.js';
 
 export { shadow, withComponent, props, define } from 'skatejs/dist/esnext';
