@@ -1,0 +1,332 @@
+{# Article Data #}
+{% set article_title = "3 Capabilities Insurers Need for Outstanding Customer Engagement" %}
+{% set article_date = "Sep 25 2018" %}
+{% set article_body %}
+  <h2>Digital technology is changing how clients engage with insurers.</h2>
+  <p>Remember the old days when customers could only conduct business either in person or over the phone? Now insurers need to be able to engage via the internet, mobile devices, email, call center, customer service agents, virtual voice assistants, chatbots, and whatever devices come next. Channels are evolving constantly and customers expect insurers to keep up. They expect you to meet them on their channel of choice and not the other way around.</p>
+  <p>Why are expectations so high? Insurance consumers, both retail and commercial, are already experiencing real-time service across multiple channels from their banks, retailers, suppliers, third-party information services, etc. They are looking at the insurance industry and asking, “Why can’t my insurer do this?” They are expecting an informed and personalized experience every time they engage with you.</p>
+  <h2>The reality is, customer service is not about how many channels you have – it’s about how you service your customers across those channels.</h2>
+  <p>Most insurers have implemented the ability to connect with clients and agents over many of the above-mentioned channels, but a customer’s experience often varies from channel to channel. If a customer switches channels, they likely have to start from scratch and must repeat their problem and information again. This can be frustrating for both the consumer and the insurance provider.</p>
+  <p>However, this problem can’t be fixed with the old method of just “throwing more people at it.” Instead, to provide real-time, contextual service that meets and exceeds customers' expectations, insurers should leverage strategic investments in digital technology that connect their channels and data, plus core functionality that's leveraged across all channels.</p>
+  <h2>There are three changes insurers need to make right now to create a proactive, digital, client-focused platform for customer engagement.</h2>
+  <p><strong>1. Empower 1-to-1 engagement with real-time AI:</strong> <a href="/topics/artificial-intelligence">Artificial Intelligence</a> can help provide the personalized engagement that insurance consumers value. By analyzing and applying machine learning to each customer’s historical, cross-channel data you will be able to anticipate client needs, provide proactive service, and grow the value of your relationship with each client. Two of the most effective applications of AI in the insurance industry are powering <a href="/products/pega-platform/intelligent-virtual-assistant">intelligent virtual assistants</a>, like chatbots, or providing guided <a href="/products/crm-applications/marketing/contextual-next-best-action">next best actions</a> to call center agents. AI helps insurers provide consistency with established internal policies and guidelines, and personalized service.</p>
+  <p><strong>2. Connect the front and back office with end-to-end robotic automation and case management: </strong>Bridge the gap between your back-end legacy systems and your digital front end by connecting data and workers using <a href="/topics/robotic-automation">robotic process automation (RPA) and case management</a>. RPA automates data integrations and eliminates the tedious search / copy / paste of a customer’s history across process silos that typically slow down productivity. Case management orchestrates this data with your processes, people, robots, and applications to adaptively manage customer journeys to completion.</p>
+  <p><strong>3. Unite experiences across channels:</strong> Engage with customers and maintain the context of a conversation across a variety of channels and devices by making omni-channel access a priority. This means integrating multi-channel systems with case management and re-using functionality across channels to create a single, <a href="/challenges/customer-service">connected conversation</a> with customers.</p>
+  <h2>Change doesn’t have to take multiple years or costs millions of dollars.</h2>
+  <p>These three changes can significantly increase the opportunity for consumer retention by providing a frictionless, digital consumer experience. To start, plan for and focus on <a href="/technology/maximize-outcomes">customer journeys and outcomes</a>. Then combine out-of-the-box product capabilities with an <a href="/topics/agile">agile methodology</a>.</p>
+  <p>Insurers are already realizing tremendous business value and <a href="/forrester-tei-customer-service">return on investment</a> from engaging with customers on their preferred channel, connecting conversations across digital ecosystems with case management, robotics, and end-to-end automation, and using AI as a guide for personalized, client-centric, outcome-driven experiences.</p>
+  <h2>Learn More</h2>
+  <ul><li><em>Discover how manufacturing and high-tech enterprises are </em><a href="https://www.pega.com/industries/manufacturing"><em>optimizing operations and delivering spectacular service</em></a><em> with Pega. </em></li><li><em>Read how a leading global auto manufacturer </em><a href="https://www.pega.com/insights/resources/pega-drives-quality-automation"><em>automates quality inspection and monitoring</em></a><em>. </em></li><li><em>Download Forrester’s </em><a href="https://www.pega.com/embrace-dpa"><em>“The Growing Importance of Process to Digital Transformation”</em></a><em> to learn how process initiatives increasingly focus on digital transformation – and the approaches organizations are taking to accomplish their new goals.</em></li><li><em>See how to </em><a href="https://www.pega.com/industries/manufacturing/quality-management"><em>transform your quality management processes</em></a><em> to deliver value faster and digitize value streams from end to end.</em></li><li><em>Read </em><a href="https://www.pega.com/insights/articles/digital-transformation-iot-and-real-time-lean-six-sigma"><em>Setrag Khoshafian’s blog</em></a><em> on how IoT and real-time Lean Six Sigma are affecting process improvements and digital transformation. </em></li><li><em>Learn what it takes to make the necessary and dramatic changes in how a business thinks about its customers, its people, and its technology to survive and thrive in digital. Read Alan Trefler’s eBook, “</em><a href="https://www.pega.com/insights/resources/build-change-alan-trefler"><em>Build for Change: Revolutionizing Customer Engagement through Continuous Digital Innovation</em></a><em>.”</em></li></ul>
+{% endset %}
+
+{% set featured_quote = "<p>The reality is, customer service is not about how many channels you have – it’s about how you service your customers across those channels.</p>" %}
+{% set featured_image = "/pattern-lab/images/content/backgrounds/background-smart-factories.jpg" %}
+{% set auhtor_name = "Kate Fowler" %}
+{% set author_bio = "In her role as Director and Insurance Industry Principal, Kate Fowler, helps Pega’s clients optimize their operations, solve business challenges, and leverage digital technology to drive business strategy." %}
+
+{# Placeholder Frame #}
+{% extends "@pl/_www-page-template.twig" %}
+{# End Placeholder Frame #}
+
+{% block main_content %}
+  {# Navigation #}
+  {% include "@bolt-components-navbar/navbar.twig" with {
+    theme: "dark",
+    title: {
+      tag: "h1",
+      text: "Future Proof",
+      url: "http://pega.com/blog",
+    },
+    links: [
+      {
+        text: "Trending",
+        url: "#a",
+      },
+      {
+        text: "Digital Process Automation",
+        url: "#a",
+      },
+      {
+        text: "1-to-1 Customer Engagement",
+        url: "#a",
+      },
+      {
+        text: "Customer Service",
+        url: "#a",
+      },
+    ]
+  } only %}
+  {# End Navigation #}
+
+  {# Hero #}
+  {% include "@bolt-components-image/image.twig" with {
+    src: featured_image,
+    alt: article_title,
+    lazyload: false,
+  } only %}
+  {# End Hero #}
+
+  {# Main Article #}
+  {% set main_article %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-10/12@small" %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: article_title,
+          size: "xxxlarge",
+          tag: "h1",
+        } only %}
+
+        {% include "@bolt-components-list/list.twig" with {
+          display: "inline@small",
+          tag: "div",
+          separator: "solid",
+          items: [
+            include("@bolt-components-headline/text.twig", {
+              text: "By " ~ auhtor_name ~ ", " ~ article_date,
+            }),
+            include("@bolt-components-share/share.twig", {
+              size: "small",
+              text: "Share",
+              sources: [
+                {
+                  name: "facebook",
+                  url: "https://www.facebook.com/sharer/sharer.php?u=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/02-components-action-blocks-05-action-blocks/02-components-action-blocks-05-action-blocks.html&amp;src=sdkpreparse"
+                },
+                {
+                  name: "twitter",
+                  url: "https://twitter.com/intent/tweet?url=https://bolt-design-system.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
+                },
+                {
+                  name: "linkedin",
+                  url: "https://www.linkedin.com/shareArticle?url=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/02-components-action-blocks-05-action-blocks/02-components-action-blocks-05-action-blocks.html"
+                },
+                {
+                  name: "email",
+                  url: "mailto:?&body=Sample%20Text%20--%20https%3A//bolt-design-system.com"
+                }
+              ],
+              copy_to_clipboard: {
+                text_to_copy: "http://pega.com"
+              }
+            }),
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-10/12@small u-bolt-width-6/12@large" %}
+        {{ article_body }}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-10/12@small u-bolt-width-4/12@large" %}
+        {% include "@bolt-components-blockquote/blockquote.twig" with {
+          content: featured_quote,
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+
+  <article>
+    {% include "@bolt-components-band/band.twig" with {
+      theme: "xlight",
+      size: "medium",
+      content: main_article,
+    } only %}
+  </article>
+  {# End Main Article #}
+
+  {# Article Meta #}
+  {% set article_meta %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Category",
+      size: "xlarge",
+      tag: "h3",
+      attributes: {
+        class: "u-bolt-margin-bottom-small",
+      }
+    } only %}
+    {% include "@bolt-components-list/list.twig" with {
+      display: "inline",
+      items: [
+        include("@bolt-components-chip/chip.twig", {
+          text: "Tag",
+          url: "#!",
+        }),
+        include("@bolt-components-chip/chip.twig", {
+          text: "Tag",
+          url: "#!",
+        }),
+        include("@bolt-components-chip/chip.twig", {
+          text: "Tag",
+          url: "#!",
+        }),
+        include("@bolt-components-chip/chip.twig", {
+          text: "Tag",
+          url: "#!",
+        }),
+        include("@bolt-components-chip/chip.twig", {
+          text: "Tag",
+          url: "#!",
+        }),
+      ]
+    } only %}
+
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "About the Author",
+      size: "xlarge",
+      tag: "h3",
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: author_bio,
+      size: "large",
+      tag: "p",
+    } only %}
+
+    {% include "@bolt-components-share/share.twig" with {
+      size: "medium",
+      text: "Share this post",
+      sources: [
+        {
+          name: "facebook",
+          url: "https://www.facebook.com/sharer/sharer.php?u=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/02-components-action-blocks-05-action-blocks/02-components-action-blocks-05-action-blocks.html&amp;src=sdkpreparse"
+        },
+        {
+          name: "twitter",
+          url: "https://twitter.com/intent/tweet?url=https://bolt-design-system.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
+        },
+        {
+          name: "linkedin",
+          url: "https://www.linkedin.com/shareArticle?url=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/02-components-action-blocks-05-action-blocks/02-components-action-blocks-05-action-blocks.html"
+        },
+        {
+          name: "email",
+          url: "mailto:?&body=Sample%20Text%20--%20https%3A//bolt-design-system.com"
+        }
+      ],
+      copy_to_clipboard: {
+        text_to_copy: "http://pega.com"
+      }
+    } only %}
+  {% endset %}
+
+  <div class="o-bolt-wrapper u-bolt-margin-bottom-large">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-10/12@small" %}
+        {% include "@bolt-components-band/band.twig" with {
+          theme: "light",
+          size: "small",
+          fullBleed: false,
+          content: article_meta,
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  {# End Article Meta #}
+
+  {# Related Articles #}
+  {% set related_articles %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Related Posts",
+      size: "xlarge",
+      align: "center",
+      tag: "h2",
+    } only %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+        {% include "@bolt-components-card/card.twig" with {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/pattern-lab/images/content/promos/promo-16x9-ai.jpg",
+              lazyload: false,
+            },
+            {
+              pattern: "eyebrow",
+              text: "Category"
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: "Post Title"
+            },
+            {
+              pattern: "text",
+              text: "By Author Name, 10/1/2018"
+            },
+            {
+              pattern: "button",
+              width: "full",
+              text: "Continue Reading"
+            }
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+        {% include "@bolt-components-card/card.twig" with {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/pattern-lab/images/content/promos/promo-blog-2.jpg",
+              lazyload: false,
+            },
+            {
+              pattern: "eyebrow",
+              text: "Digital Transformation"
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: "Your organization needs a digital business model"
+            },
+            {
+              pattern: "text",
+              text: "By Gerry McCool, 10/9/2018"
+            },
+            {
+              pattern: "button",
+              width: "full",
+              text: "Continue Reading"
+            }
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+        {% include "@bolt-components-card/card.twig" with {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/pattern-lab/images/content/promos/promo-blog-3.jpg",
+              lazyload: false,
+            },
+            {
+              pattern: "eyebrow",
+              text: "Case Management"
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: "Pega ranked a category leader in KYC systems"
+            },
+            {
+              pattern: "text",
+              text: "By Reetu Khosla, 10/8/2018"
+            },
+            {
+              pattern: "button",
+              width: "full",
+              text: "Continue Reading"
+            }
+          ]
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "dark",
+    size: "medium",
+    content: related_articles,
+  } only %}
+  {# End Related Articles #}
+
+{% endblock %}
