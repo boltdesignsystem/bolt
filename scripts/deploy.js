@@ -10,6 +10,14 @@ const octokit = require('@octokit/rest')({
   },
 });
 
+// so we don't go over rate limits
+if (process.env.GITHUB_TOKEN) {
+  octokit.authenticate({
+    type: 'token',
+    token: process.env.GITHUB_TOKEN,
+  });
+}
+
 async function init() {
   try {
     const tagData = await octokit.repos.getTags({

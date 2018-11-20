@@ -11,6 +11,14 @@ const octokit = require('@octokit/rest')({
   },
 });
 
+// so we don't go over rate limits
+if (process.env.GITHUB_TOKEN) {
+  octokit.authenticate({
+    type: 'token',
+    token: process.env.GITHUB_TOKEN,
+  });
+}
+
 const { getConfig } = require('./config-store');
 
 const urlsToCheck = [];
