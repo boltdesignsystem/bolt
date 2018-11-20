@@ -35,9 +35,7 @@ function boltWebpackMessages(originalCompiler) {
         const messages = formatWebpackMessages(stats.toJson({}, true));
         webpackSpinner.fail(chalk.red(`${getWebpackText()} Webpack failed!`));
         const prettyError = chalk.red(messages.errors.join('\n\n'));
-        console.log(
-          config.verbosity > 2 ? new Error(prettyError) : prettyError,
-        );
+        console.log(prettyError);
       } else {
         const output = stats.toString({
           all: false, // Makes the build much quieter

@@ -38,8 +38,8 @@ async function createWebpackConfig(buildConfig) {
   const publicPath = config.publicPath
     ? config.publicPath
     : config.wwwDir
-      ? `/${path.relative(config.wwwDir, config.buildDir)}/`
-      : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
+    ? `/${path.relative(config.wwwDir, config.buildDir)}/`
+    : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
 
   // @TODO: move this setting to .boltrc config
   const sassExportData = require('@bolt/sass-export-data')({
@@ -506,14 +506,14 @@ async function createWebpackConfig(buildConfig) {
       }),
     );
 
-    // @todo Evaluate best source map approach for production
+    // @todo evaluate best source map approach for production builds -- particularly source-map vs hidden-source-map
     webpackConfig.devtool =
       config.sourceMaps === false ? '' : 'hidden-source-map';
   } else {
     // not prod
     // @todo fix source maps
     webpackConfig.devtool =
-      config.sourceMaps === false ? '' : 'cheap-module-eval-source-map';
+      config.sourceMaps === false ? '' : 'eval-source-map';
   }
 
   if (config.wwwDir) {

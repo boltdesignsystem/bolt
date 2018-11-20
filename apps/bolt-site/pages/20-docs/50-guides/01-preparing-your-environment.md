@@ -8,7 +8,7 @@ title: Preparing your environment
 2. Next, install oh-my-zsh: https://github.com/robbyrussell/oh-my-zsh#basic-installation
 ```bash
 # Paste this into iTerm
-sh -c “$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)”
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 3. Install the SourceTree app: https://www.sourcetreeapp.com/
 4. Install the VS Code app: https://code.visualstudio.com/
@@ -19,7 +19,7 @@ sh -c “$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/m
 
 ### 1. Install Homebrew: https://brew.sh/
 ```bash
-/usr/bin/ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)”
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
 ### 2. Install Git
@@ -70,12 +70,16 @@ nvm alias default lts/carbon
 ### 4. Install PHP and PHP Dependencies
 ```bash
 brew install php72
-brew tap homebrew/homebrew-php
+```
+
+After upgrading PHP, be sure to restart your iTerm instance. Otherwise, an old PHP version may still be linked, and composer will install mismatched packages.
+
+> Note: PHP 7.1 is technically fine if that's what you already have pre-installed.
+
+```
 brew install composer
 composer global require hirak/prestissimo
 ```
-
-> Note: PHP 7.1 is technically fine if that's what you already have pre-installed.
 
 ### 5. Install GD and Imagick (used for generating responsive images in the build process)
 ```bash

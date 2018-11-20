@@ -1,5 +1,5 @@
 import { props, define } from '@bolt/core/utils';
-import { withHyperHtml } from '@bolt/core/renderers';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import isVisible from 'is-visible';
 
 // Used for attaching smooth scroll behavior to dynamically created <bolt-navlink> instances
@@ -10,7 +10,7 @@ import {
 } from '@bolt/components-smooth-scroll';
 
 @define
-class BoltNavLink extends withHyperHtml() {
+class BoltNavLink extends withLitHtml() {
   static is = 'bolt-navlink';
 
   static props = {

@@ -17,15 +17,15 @@ bolt-image {
 }
 
 .c-bolt-image__lazyload--fade {
-  opacity: 0;
+  opacity: bolt-opacity(0);
 
   &.is-lazyloaded {
-    opacity: 1;
+    opacity: bolt-opacity(100);
   }
 }
 
 
 .c-bolt-image__image-placeholder {
-  transition: opacity .2s ease;
   pointer-events: none;
+  transition: opacity .2s ease;
 }

@@ -1,6 +1,6 @@
 .c-bolt-swatch {
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: center;
   height: 100%; // So vertical centering works -- same update we had to make for cards since teaking how flex grid behaves
@@ -80,24 +80,24 @@
 
 
 .c-bolt-accessibility-table__row {
-  align-items: center;
   display: flex;
   flex-direction: row;
-  width: 100%;
+  align-items: center;
   position: relative;
+  width: 100%;
 
   &:after {
     content: '';
+    display: block;
+    opacity: 0.3;
     position: absolute;
+    right: 0;
     bottom: 0;
     left: 0;
-    right: 0;
     height: 1px;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
     border-bottom-color: currentColor;
-    opacity: 0.3;
-    display: block;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
   }
 
   &:last-child:after {
@@ -109,8 +109,8 @@
   @include bolt-font-size(xsmall);
   @include bolt-padding-top(xsmall);
   @include bolt-padding-bottom(xsmall);
-  align-items: center;
   display: block;
+  align-items: center;
   margin: 0;
 }
 
@@ -136,13 +136,13 @@
 
 .c-bolt-accessibility-table__column:nth-child(2),
 .c-bolt-accessibility-table__column:nth-child(3) {
-  flex: 1;
   display: flex;
+  flex: 1;
+  justify-content: flex-end;
   align-items: flex-end;
+  align-self: flex-end;
   margin: 0 bolt-spacing(xsmall);
   text-align: right;
-  align-self: flex-end;
-  justify-content: flex-end;
 }
 
 .c-bolt-accessibility-table__results {
@@ -155,9 +155,9 @@
   color: bolt-color(gray, xdark);
   line-height: 1.65;
   line-height: 1.375;
-  background-color: bolt-color(gray, light);
   border: solid 1px bolt-color(gray, light);
   border-radius: 4px;
+  background-color: bolt-color(gray, light);
   white-space: nowrap;
   text-overflow: ellipsis;
 }
