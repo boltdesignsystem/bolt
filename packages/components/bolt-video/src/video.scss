@@ -16,36 +16,36 @@ $bolt-video-background-max-height: 50.625vw;
   &[is-background-video]{
     @include bolt-margin-right(auto);
     @include bolt-margin-left(auto);
-    z-index: 20;
     flex-grow: 1;
+    opacity: bolt-opacity(0);
+    z-index: 20;
     min-width: 100%;
     max-width: none;
-    transition: opacity 0.3s ease, min-height 0.3s ease;
-    background-color: $bolt-video-background-color;
-    pointer-events: none;
-    opacity: bolt-opacity(0);
-    height: calc((90vw * (9 / 16)) - 4rem);
     max-width: 100vh;
+    height: calc((90vw * (9 / 16)) - 4rem);
     max-height: 56.25vh;
+    pointer-events: none;
+    background-color: $bolt-video-background-color;
+    transition: opacity 0.3s ease, min-height 0.3s ease;
 
     @media (max-width: (bolt-breakpoint(small) - 1px)) {
       min-height: calc(#{$bolt-video-background-max-height} + 2.5rem);
     }
 
     .is-expanded & {
-      pointer-events: auto;
       opacity: bolt-opacity(100);
+      pointer-events: auto;
     }
 
     .video-js {
       @include bolt-margin(0 auto);
+      position: relative;
       width: 100%;
       min-width: 0;
       height: 100%;
+      pointer-events: none;
       background-color: transparent;
       transition: all 0.4s ease;
-      position: relative;
-      pointer-events: none;
 
       .is-expanded & {
         pointer-events: auto;
@@ -65,28 +65,28 @@ $bolt-video-background-max-height: 50.625vw;
   * on Windows
   */
 .c-#{$bolt-namespace}-video {
+  z-index: bolt-z-index('tooltip');
   width: 100%;
   max-width: none;
-  z-index: bolt-z-index('tooltip');
   transition: transform .4s cubic-bezier(.645, 0, .355, 1);
 
   &.c-#{$bolt-namespace}-video--background {
     display: block;
     position: relative;
     max-width: calc(100% - #{bolt-spacing(large)});
+    height: $bolt-video-background-max-height;
     max-height: 100%;
     margin: 0 auto;
-    height: $bolt-video-background-max-height;
 
     @media (max-width: (bolt-breakpoint(small) - 1px)) {
       max-width: calc(100vw - 40px);
     }
 
     @include bolt-mq(small){
-      max-width: 100vh;
-      max-height: 56.25vh;
       width: calc(90vw - 7rem);
+      max-width: 100vh;
       height: calc((90vw * (9 / 16)) - 4rem);
+      max-height: 56.25vh;
     }
   }
 }
@@ -94,16 +94,16 @@ $bolt-video-background-max-height: 50.625vw;
 
 
 .c-#{$bolt-namespace}-video__close-button {
+  opacity: bolt-opacity(0); // Initial state before brightcove video player kicks in
+  position: absolute;
+  top: bolt-spacing(xsmall);
+  right: bolt-spacing(xsmall);
+  z-index: bolt-z-index('tooltip');
   color: bolt-color(orange);
+  transition: all 0.3s ease;
   @include bolt-css-vars((
     --#{$bolt-namespace}-theme-icon: bolt-color(orange),
   ));
-  position: absolute;
-  z-index: bolt-z-index('tooltip');
-  top: bolt-spacing(xsmall);
-  right: bolt-spacing(xsmall);
-  transition: all 0.3s ease;
-  opacity: bolt-opacity(0); // Initial state before brightcove video player kicks in
 
   @include bolt-mq(small) {
     right: (bolt-spacing(large) / -2) - bolt-spacing(xsmall);
@@ -131,9 +131,9 @@ $bolt-video-background-max-height: 50.625vw;
 .c-#{$bolt-namespace}-video__close-button--icon-to-text {
   @media (max-width: (bolt-breakpoint(small) - 1px)) {
     @include bolt-padding(xsmall 0);
-    top: 0;
     display: block;
     position: relative;
+    top: 0;
     right: 0;
     float: right;
     .c-#{$bolt-namespace}-video__close-button-icon {
