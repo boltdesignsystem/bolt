@@ -9,11 +9,11 @@ bolt-device-viewer {
 }
 
 .c-bolt-device-viewer {
+  box-sizing: content-box; //Required for now till device viewer updated to be fluid in size.
   position: relative;
+  transform: translate3d(0, 0, 0); // Ensures correct z-index positioning
   height: auto; // Based on inner contents + padding;
   margin: 0 auto;
-  box-sizing: content-box; //Required for now till device viewer updated to be fluid in size.
-  transform: translate3d(0, 0, 0); // Ensures correct z-index positioning
 }
 
 .c-bolt-device-viewer__inner {
@@ -23,8 +23,8 @@ bolt-device-viewer {
 
   &:before,
   &:after {
-    pointer-events: none; // So scrolling works / mouse doesn't get blocked.
     position: absolute;
+    pointer-events: none; // So scrolling works / mouse doesn't get blocked.
   }
 
   &:before {
@@ -38,23 +38,23 @@ bolt-device-viewer {
   position: relative;
   z-index: bolt-z-index('contentTop'); // Must be higher than the z-index of the :before layer on the base component
   width: 100%;
-  perspective: 1000px;
+  height: 0;
   overflow: hidden; // Unfortunately zooming + scrolling is very, very tricky. Forcing this for now.
   border-radius: 1px;
-  height: 0;
   background-color: bolt-color(black);
+  perspective: 1000px;
 }
 
 .c-bolt-device-viewer__home {
-  border-radius: 50%;
   position: absolute;
   z-index: (bolt-z-index('contentTop') + 5);
+  border-radius: 50%;
 }
 
 .c-bolt-device-viewer__camera {
   position: absolute;
-  border-radius: 100%;
   z-index: (bolt-z-index('contentTop') + 10);
+  border-radius: 100%;
 }
 
 .c-bolt-device-viewer__top-bar,
@@ -90,30 +90,30 @@ $bolt-magnifier-size: 350px;
 
 @keyframes pulseFadeIn {
   0% {
-    transform: scale(1.5) translate3d(-50%, -50%, 0);
     opacity: bolt-opacity(0);
+    transform: scale(1.5) translate3d(-50%, -50%, 0);
   }
 
   100% {
-    transform: scale(1) translate3d(-50%, -50%, 0);
     opacity: bolt-opacity(100);
+    transform: scale(1) translate3d(-50%, -50%, 0);
   }
 }
 
 @keyframes pulseFadeOut {
   0% {
-    transform: scale(1) translate3d(-50%, -50%, 0);
     opacity: bolt-opacity(100);
+    transform: scale(1) translate3d(-50%, -50%, 0);
   }
 
   15% {
-    transform: scale(1.1) translate3d(-50%, -50%, 0);
     opacity: bolt-opacity(100);
+    transform: scale(1.1) translate3d(-50%, -50%, 0);
   }
 
   100% {
-    transform: scale(4) translate3d(-50%, -50%, 0);
     opacity: bolt-opacity(0);
+    transform: scale(4) translate3d(-50%, -50%, 0);
   }
 }
 
@@ -122,25 +122,25 @@ $bolt-magnifier-size: 350px;
 
 @keyframes drift-fadeZoomIn {
   0% {
-    transform: scale(0.5);
     opacity: bolt-opacity(0);
+    transform: scale(0.5);
   }
 
   100% {
-    transform: scale(1);
     opacity: bolt-opacity(100);
+    transform: scale(1);
   }
 }
 
 @keyframes drift-fadeZoomOut {
   0% {
-    transform: scale(1);
     opacity: bolt-opacity(100);
+    transform: scale(1);
   }
 
   100% {
-    transform: scale(0.5);
     opacity: bolt-opacity(0);
+    transform: scale(0.5);
   }
 }
 
@@ -177,31 +177,31 @@ $bolt-magnifier-size: 350px;
 }
 
 .c-bolt-image-zoom__overlay {
+  opacity: bolt-opacity(100);
   position: absolute;
-  z-index: bolt-z-index('navFixed');
   top: 0%;
   left: 0%;
+  z-index: bolt-z-index('navFixed');
   width: 100%;
   height: 100%;
-  opacity: bolt-opacity(100);
-  transition: all 0.2s linear;
-  pointer-events: none;
   color: bolt-color(white);
+  pointer-events: none;
+  transition: all 0.2s linear;
 
   &:before {
+    content: '';
     display: block;
+    opacity: bolt-opacity(100);
     position: absolute;
-    z-index: bolt-z-index('background') - 5;
-    background-color: rgba(bolt-color(black), 0.3);
     top: 50%;
     left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    z-index: bolt-z-index('background') - 5;
     width: 200%;
     height: 200%;
-    content: '';
-    opacity: bolt-opacity(100);
-    transition: all 0.2s linear;
     pointer-events: none;
-    transform: translate3d(-50%, -50%, 0);
+    background-color: rgba(bolt-color(black), 0.3);
+    transition: all 0.2s linear;
   }
 }
 
@@ -217,12 +217,12 @@ $bolt-magnifier-size: 350px;
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
-  transition: all 0.1s ease;
-  animation: pulse 3s infinite;
   line-height: 1;
   pointer-events: none;
 
   border-radius: 50%;
+  transition: all 0.1s ease;
+  animation: pulse 3s infinite;
 
   .is-mouse-leaving & {
     animation: pulseFadeIn 300ms linear;
@@ -382,23 +382,23 @@ bolt-image-zoom:hover > .c-bolt-image-zoom__overlay {
 .drift-zoom-pane {
   @include bolt-shadow('level-60');
 
-  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 50%;
+  left: 50%;
 
   /* This is required because of a bug that causes border-radius to not
   work with child elements in certain cases. */
   transform: translate3d(0, 0, 0);
-  will-change: top, left;
-
-  position: absolute;
   z-index: bolt-z-index('tooltip');
-  top: 50%;
-  left: 50%;
-
-  overflow: hidden;
   width: $bolt-magnifier-size;
   height: $bolt-magnifier-size;
-  border-radius: 50%;
+
+  overflow: hidden;
   border: 5px solid bolt-color(white);
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.5);
+  will-change: top, left;
 
   img {
     object-fit: cover;

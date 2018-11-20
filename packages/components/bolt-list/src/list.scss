@@ -50,8 +50,8 @@
   $spacing-value-name: nth($spacing-value, 1);
 
   .c-bolt-list--spacing-#{$spacing-value-name} {
-    margin-left: bolt-spacing(#{$spacing-value-name}) * -1;
     margin-bottom: bolt-v-spacing(#{$spacing-value-name}) * -1;
+    margin-left: bolt-spacing(#{$spacing-value-name}) * -1;
 
     > .c-bolt-list__item {
       @include bolt-margin-left(#{$spacing-value-name});
@@ -140,8 +140,8 @@ $bolt-list-separator-styles: solid, dashed;
   .c-bolt-list--separator-#{$separator-style} {
     > .c-bolt-list__item:not(:last-child) {
       border: 0;
-      border-color: rgba(bolt-color(gray), 0.25);
       border-style: #{$separator-style};
+      border-color: rgba(bolt-color(gray), 0.25);
     }
   }
 }

@@ -1,7 +1,7 @@
 .c-bds-hamburger {
   position: fixed;
-  bottom: bolt-spacing(xsmall);
   right: bolt-spacing(xsmall);
+  bottom: bolt-spacing(xsmall);
   z-index: bolt-z-index('fab');
 }
 
@@ -20,21 +20,21 @@
 }
 
 .c-bds-hamburger__button--close {
-  z-index: 10;
-  pointer-events: none;
+  opacity: 0;
   // visibility: hidden;
   position: absolute;
   top: 0;
   right: 0;
-  opacity: 0;
+  z-index: 10;
+  pointer-events: none;
 }
 
 
 .c-bds-layout__sidebar:target ~ .c-bds-hamburger > .c-bds-hamburger__inner .c-bds-hamburger__button--close {
   opacity: 1;
+  z-index: 11;
   // visibility: visible;
   pointer-events: auto;
-  z-index: 11;
 
   bolt-icon {
     transform: rotate(1turn) scale(1);
