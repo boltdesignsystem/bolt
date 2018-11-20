@@ -2,15 +2,23 @@
 const url = require('url');
 const querystring = require('querystring');
 const fetch = require('node-fetch');
-const {spawnSync} = require('child_process');
-const { promisify } = require('util');
-const gitSemverTags = require('git-semver-tags');
-const promisifyGitTags = promisify(gitSemverTags);
+const { spawnSync } = require('child_process');
+const octokit = require('@octokit/rest')({
+  debug: false,
+  headers: {
+    Accept: 'application/vnd.github.v3.raw',
+  },
+});
 
 async function init() {
   try {
-  const tags = await promisifyGitTags();
-  const latestTag = tags[0];
+    const tagData = await octokit.repos.getTags({
+      owner: 'bolt-design-system',
+      repo: 'bolt',
+      per_page: 9999,
+    });
+    const tags = tagData.data;
+    const latestTag = tags[0].name;
 
     const {
       NOW_TOKEN,
@@ -32,7 +40,6 @@ async function init() {
       TRAVIS_TAG,
     } = process.env;
 
-
     console.log({
       TRAVIS,
       TRAVIS_BRANCH,
@@ -46,7 +53,10 @@ async function init() {
     try {
       branchName = spawnSync('git', ['symbolic-ref', 'HEAD'], {
         encoding: 'utf8',
-      }).stdout.replace('refs/heads/', '').replace(/\//g, '-').trim();
+      })
+        .stdout.replace('refs/heads/', '')
+        .replace(/\//g, '-')
+        .trim();
     } catch (error) {
       process.exit(1);
     }
@@ -70,23 +80,22 @@ async function init() {
     if (NOW_TOKEN) baseNowArgs.push(`--token=${NOW_TOKEN}`);
 
     console.log('Starting deploy...');
-    const deployOutput = spawnSync('now', [
-      'deploy',
-      './www',
-      '--name=boltdesignsystem',
-      '--static',
-      ...baseNowArgs,
-    ], {encoding: 'utf8'});
+    const deployOutput = spawnSync(
+      'now',
+      [
+        'deploy',
+        './www',
+        '--name=boltdesignsystem',
+        '--static',
+        ...baseNowArgs,
+      ],
+      { encoding: 'utf8' },
+    );
     if (deployOutput.status !== 0) {
       console.error('Error deploying:');
     }
     console.log(deployOutput.stdout, deployOutput.stderr);
     const deployedUrl = deployOutput.stdout.trim();
-    const deployedId = deployedUrl
-      .replace('https://', '')
-      .replace('boltdesignsystem-', '')
-      .replace('.now.sh', '');
-
 
     console.log('Aliasing to branch/tag name...');
     // Making sure branch name is ok to be in URL
@@ -94,14 +103,15 @@ async function init() {
       .replace(/\//g, '-') // `/` => `-`
       .replace('--', '-') // `--` => `-` now.sh subdomains can't have `--` for some reason
       .replace(/\./g, '-'); // `.` => `-`
-    const aliasedUrlSubdomain = `${encodeURIComponent(branchUrlPart)}.boltdesignsystem`;
+    const aliasedUrlSubdomain = `${encodeURIComponent(
+      branchUrlPart,
+    )}.boltdesignsystem`;
     const aliasedUrl = `https://${aliasedUrlSubdomain}.com`;
-    const aliasOutput = spawnSync('now', [
-      'alias',
-      deployedUrl,
-      aliasedUrl,
-      ...baseNowArgs,
-    ], {encoding: 'utf8'});
+    const aliasOutput = spawnSync(
+      'now',
+      ['alias', deployedUrl, aliasedUrl, ...baseNowArgs],
+      { encoding: 'utf8' },
+    );
     if (aliasOutput.status !== 0) {
       console.error('Error aliasing:');
       console.log(aliasOutput.stdout, aliasOutput.stderr);
@@ -112,12 +122,11 @@ async function init() {
     // if this is a tagged release, then it should become the main site. we aliased above so we have a tagged version out as well i.e. `v1-2-3-boltdesignsystem.com`
     if (TRAVIS_TAG && TRAVIS_TAG === latestTag) {
       console.log('Is tag build, aliasing to main site.');
-      const aliasOutput2 = spawnSync('now', [
-        'alias',
-        deployedUrl,
-        'boltdesignsystem.com',
-        ...baseNowArgs,
-      ], {encoding: 'utf8'});
+      const aliasOutput2 = spawnSync(
+        'now',
+        ['alias', deployedUrl, 'boltdesignsystem.com', ...baseNowArgs],
+        { encoding: 'utf8' },
+      );
       if (aliasOutput2.status !== 0) {
         console.error('Error aliasing:');
         console.log(aliasOutput2.stdout, aliasOutput2.stderr);
@@ -126,30 +135,33 @@ async function init() {
       console.log(aliasOutput2.stdout, aliasOutput2.stderr);
 
       console.log('aliasing www.boltdesignsystem.com to main site too.');
-      const aliasOutput3 = spawnSync('now', [
-        'alias',
-        deployedUrl,
-        'www.boltdesignsystem.com',
-        ...baseNowArgs,
-      ], {encoding: 'utf8'});
+      const aliasOutput3 = spawnSync(
+        'now',
+        ['alias', deployedUrl, 'www.boltdesignsystem.com', ...baseNowArgs],
+        { encoding: 'utf8' },
+      );
       if (aliasOutput3.status !== 0) {
         console.error('Error aliasing:');
         console.log(aliasOutput3.stdout, aliasOutput3.stderr);
         process.exit(1);
       }
       console.log(aliasOutput3.stdout, aliasOutput3.stderr);
-
-    } else if (TRAVIS_TAG && TRAVIS_TAG !== latestTag){
-      console.error(`Error aliasing: Travis Tag of ${TRAVIS_TAG} doesn't match the latest tag of ${latestTag}`);
+    } else if (TRAVIS_TAG && TRAVIS_TAG !== latestTag) {
+      console.error(
+        `Error aliasing: Travis Tag of ${TRAVIS_TAG} doesn't match the latest tag of ${latestTag}`,
+      );
       process.exit(1);
     } else {
-      console.log('Skipping now.sh tag alias since this isn\'t a tagged version.');
+      console.log(
+        "Skipping now.sh tag alias since this isn't a tagged version.",
+      );
     }
-
 
     // `TRAVIS_PULL_REQUEST` is either `'false'` or a PR number like `'55'`. All strings.
     if (TRAVIS && TRAVIS_PULL_REQUEST !== 'false') {
-      console.log('This is a Pull Request build, so will not try to comment on PR.');
+      console.log(
+        'This is a Pull Request build, so will not try to comment on PR.',
+      );
 
       // The GitHub comment template - Can handle HTML
       const githubCommentText = `
@@ -161,7 +173,9 @@ async function init() {
 <details>
 
 - Commit built: ${process.env.TRAVIS_COMMIT}
-- [Travis build](https://travis-ci.org/${process.env.TRAVIS_REPO_SLUG}/builds/${process.env.TRAVIS_BUILD_ID})
+- [Travis build](https://travis-ci.org/${process.env.TRAVIS_REPO_SLUG}/builds/${
+        process.env.TRAVIS_BUILD_ID
+      })
 
 </details>
 `.trim();
@@ -181,7 +195,9 @@ async function init() {
       console.log(response);
       console.log('GitHub comment posted');
     } else {
-      console.log('This is not a Pull Request build, so will not try to comment on PR.');
+      console.log(
+        'This is not a Pull Request build, so will not try to comment on PR.',
+      );
     }
     // @todo Errors should be passed to `catch`
   } catch (error) {
@@ -191,4 +207,3 @@ async function init() {
 }
 
 init();
-
