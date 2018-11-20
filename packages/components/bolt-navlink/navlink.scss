@@ -14,8 +14,8 @@ $bolt-navbar-xsmall-bp: 420px; // Slightly increase the default 400px xsmall bre
 bolt-navlink {
   display: block;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
   width: 100%;
 }
 
@@ -30,47 +30,47 @@ bolt-navlink {
   @include bolt-mq($bolt-navbar-xsmall-bp){
     @include bolt-padding(small, squished);
   }
+  opacity: 0.9;
 
   position: relative;
-  opacity: 0.9;
-  transition: opacity $bolt-navlink-text-transition;
   position: relative;
-  transition: all 0.1s ease;
   color: bolt-theme(headline-link);
+  text-decoration: none;
+  border-radius: 3px;
   // Added so that &:focus:not(:active) doesn't change the size of the band
   // @todo: we should consider making &:focus:not(:active) with thin dotted style a mixin
   // to share with nav-priority
   border-width: thin;
   border-style: dotted;
-  border-radius: 3px;
   border-color: transparent;
-  text-decoration: none;
+  transition: opacity $bolt-navlink-text-transition;
+  transition: all 0.1s ease;
 
   &:active,
   &.is-active {
+    opacity: bolt-opacity(100);
     color: bolt-theme(headline-link);
     border-color: transparent;
-    opacity: bolt-opacity(100);
   }
 
   &:before {
+    content: '';
     display: block;
+    opacity: 0.1;
     position: absolute;
     top: 0;
     left: 0;
+    transform: scale3d(0, 0, 0);
     width: 100%;
     height: 100%;
-    content: '';
     border-radius: $bolt-navlink-bg-border-radius;
     background-color: currentColor;
-    opacity: 0.1;
-    transform: scale3d(0, 0, 0);
     transition: all 0.1s ease;
   }
 
   &:active:before {
-    transform: scale3d(1, 1, 1);
     opacity: 0.2;
+    transform: scale3d(1, 1, 1);
     animation: none;
   }
 
@@ -90,18 +90,18 @@ bolt-navlink {
 
   // works in chrome only
   &:focus:not(:active) {
-    outline: none;
     border-color: bolt-theme(primary);
+    outline: none;
   }
 
   &.is-dropdown-link.is-active:after {
-    width: 4px;
+    content: '';
     position: absolute;
     top: 6px;
-    left: 0;
     bottom: 6px;
+    left: 0;
+    width: 4px;
     background-color: bolt-theme(primary);
-    content: '';
   }
 }
 

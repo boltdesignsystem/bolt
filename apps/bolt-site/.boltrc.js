@@ -68,6 +68,7 @@ const config = {
       '@bolt/components-icon',
       '@bolt/components-image',
       '@bolt/components-link',
+      '@bolt/components-list',
       '@bolt/components-nav-indicator',
       '@bolt/components-nav-priority',
       '@bolt/components-navbar',

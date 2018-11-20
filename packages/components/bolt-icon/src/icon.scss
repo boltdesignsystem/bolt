@@ -2,15 +2,15 @@
 
 bolt-icon {
   display: inline-block;
-  vertical-align: middle;
-  transition: inherit;
+  transform: translate3d(0, 0, 0); // Create a stacking context to scope internal z-index values.
   width: 1em; // Default icon size if size prop not specified
   height: 1em; // Default icon size if size prop not specified
-  transform: translate3d(0, 0, 0); // Create a stacking context to scope internal z-index values.
+  vertical-align: middle;
+  transition: inherit;
 
   &:not(:resolved){
-    padding-bottom: 100%; // Default square icons
     height: 0;
+    padding-bottom: 100%; // Default square icons
   }
 }
 
@@ -29,11 +29,11 @@ bolt-icon {
 
 .c-bolt-icon__icon {
   display: block; // required for vertically aligning icons
+  box-sizing: border-box;
   position: relative;
+  z-index: bolt-z-index('content');
   width: 1em;
   height: 1em;
-  box-sizing: border-box;
-  z-index: bolt-z-index('content');
   color: var(--bolt-theme-icon);
   pointer-events: none;
 }
@@ -74,17 +74,17 @@ bolt-icon[size='xlarge'],
 
 
 .c-bolt-icon__background-shape {
-  position: absolute;
-  z-index: bolt-z-index('contentBottom');
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 0;
-  padding-bottom: 100%;
-  transform: translate3d(-50%, -50%, 0);
 
   // Fallback if CSS vars are not supported.
   opacity: 0.1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  z-index: bolt-z-index('contentBottom');
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
   background-color: currentColor;
 
   @supports(--css: variables) {
@@ -113,8 +113,8 @@ bolt-icon[size='xlarge'],
   color: $contrast-color;
 
   .c-bolt-icon__background-shape {
-    background-color: $brand-color;
     opacity: bolt-opacity(100);
+    background-color: $brand-color;
   }
 
   @include bolt-css-vars((
@@ -129,8 +129,8 @@ bolt-icon[size='xlarge'],
     color: var(--bolt-theme-icon);
 
     .c-bolt-icon__background-shape {
-      background-color: var(--bolt-theme-icon-background);
       opacity: var(--bolt-theme-icon-background-opacity);
+      background-color: var(--bolt-theme-icon-background);
     }
   }
 }
@@ -143,8 +143,8 @@ bolt-icon[size='xlarge'],
   color: $brand-color;
 
   .c-bolt-icon__background-shape {
-    background-color: $contrast-color;
     opacity: bolt-opacity(100);
+    background-color: $contrast-color;
   }
 
   @include bolt-css-vars((
@@ -159,8 +159,8 @@ bolt-icon[size='xlarge'],
     color: var(--bolt-theme-icon);
 
     .c-bolt-icon__background-shape {
-      background-color: var(--bolt-theme-icon-background);
       opacity: var(--bolt-theme-icon-background-opacity);
+      background-color: var(--bolt-theme-icon-background);
     }
   }
 }

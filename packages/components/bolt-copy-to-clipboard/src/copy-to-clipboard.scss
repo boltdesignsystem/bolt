@@ -23,8 +23,8 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
   // [3]
   &.is-animating {
     .c-bolt-copy-to-clipboard__trigger {
-      pointer-events: none;
       opacity: bolt-opacity(0);
+      pointer-events: none;
       transition-delay: 0s; // [2]
     }
 
@@ -35,11 +35,11 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
 
     // [5]
     .c-bolt-copy-to-clipboard__transition-animation {
-      animation-name: a-bolt-copy-to-clipboard-spin;
+      animation-delay: $bolt-copy-to-clipboard-animation-duration;
       animation-duration: $bolt-copy-to-clipboard-animation-duration * 2;
       animation-iteration-count: infinite;
+      animation-name: a-bolt-copy-to-clipboard-spin;
       animation-timing-function: ease;
-      animation-delay: $bolt-copy-to-clipboard-animation-duration;
     }
 
     @keyframes a-bolt-copy-to-clipboard-spin {
@@ -70,8 +70,9 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
   @include bolt-padding(0);
 
   display: inline-flex;
-  align-items: center;
   flex-wrap: nowrap;
+  align-items: center;
+  opacity: bolt-opacity(100);
   color: inherit;
   line-height: inherit;
   cursor: pointer;
@@ -80,7 +81,6 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
   font-weight: inherit;
   border: none;
   background: none;
-  opacity: bolt-opacity(100);
   transition: $bolt-copy-to-clipboard-transition;
   transition-delay: $bolt-copy-to-clipboard-animation-duration; // [1]
 }
@@ -113,19 +113,19 @@ $bolt-copy-to-clipboard-transition: all $bolt-copy-to-clipboard-animation-durati
 }
 
 .c-bolt-copy-to-clipboard__info {
-  color: bolt-theme(text);
   opacity: bolt-opacity(40);
+  color: bolt-theme(text);
 }
 
 .c-bolt-copy-to-clipboard__transition,
 .c-bolt-copy-to-clipboard__confirmation {
   display: block;
+  opacity: bolt-opacity(0);
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   pointer-events: none;
-  opacity: bolt-opacity(0);
   transition: $bolt-copy-to-clipboard-transition;
 }
 

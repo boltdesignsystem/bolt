@@ -4,13 +4,13 @@ import {
   css,
   hasNativeShadowDomSupport,
 } from '@bolt/core/utils';
-import { withHyperHtml, wire } from '@bolt/core/renderers';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 import styles from './text.scss';
 import schema from '../text.schema.yml';
 
 @define
-class BoltText extends withHyperHtml() {
+class BoltText extends withLitHtml() {
   static is = 'bolt-text';
 
   static props = {
@@ -133,7 +133,7 @@ class BoltText extends withHyperHtml() {
     // if ( url && (this.props.headline || this.props.subheadline || this.props.eyebrow) ) {
     //   // Headline, Subheadline, and Eyebrow always have chevron-right with url (if icon not false)
     //   if (icon !== 'false') {
-    //     textItem = this.hyper.wire(this) `
+    //     textItem = html`
     //     ${textItem} <bolt-icon name="chevron-right"></bolt-icon>
     //   `;
     //   }
@@ -155,9 +155,9 @@ class BoltText extends withHyperHtml() {
     //   }
     //   // Alignment
     //   if (iconAlign === 'right' || iconAlign === 'right-hang') {
-    //     textItem = this.hyper.wire(this) `${textItem} ${theIcon}`;
+    //     textItem = html`${textItem} ${theIcon}`;
     //   } else {
-    //     textItem = this.hyper.wire(this) `${theIcon} ${textItem}`;
+    //     textItem = html`${theIcon} ${textItem}`;
     //   }
     // }
 
@@ -257,33 +257,50 @@ class BoltText extends withHyperHtml() {
     function wrapInnerHTML(innerHTML) {
       switch (tag) {
         case 'a':
-          return wire(
-            this,
-          )`<a href="${url}" class="${classes}">${innerHTML}</a>`;
+          return html`
+            <a href="${url}" class="${classes}">${innerHTML}</a>
+          `;
         case 'h1':
-          return wire(this)`<h1 class="${classes}">${innerHTML}</h1>`;
+          return html`
+            <h1 class="${classes}">${innerHTML}</h1>
+          `;
         case 'h2':
-          return wire(this)`<h2 class="${classes}">${innerHTML}</h2>`;
+          return html`
+            <h2 class="${classes}">${innerHTML}</h2>
+          `;
         case 'h3':
-          return wire(this)`<h3 class="${classes}">${innerHTML}</h3>`;
+          return html`
+            <h3 class="${classes}">${innerHTML}</h3>
+          `;
         case 'h4':
-          return wire(this)`<h4 class="${classes}">${innerHTML}</h4>`;
+          return html`
+            <h4 class="${classes}">${innerHTML}</h4>
+          `;
         case 'h5':
-          return wire(this)`<h5 class="${classes}">${innerHTML}</h5>`;
+          return html`
+            <h5 class="${classes}">${innerHTML}</h5>
+          `;
         case 'h6':
-          return wire(this)`<h6 class="${classes}">${innerHTML}</h6>`;
+          return html`
+            <h6 class="${classes}">${innerHTML}</h6>
+          `;
         case 'div':
-          return wire(this)`<div class="${classes}">${innerHTML}</div>`;
+          return html`
+            <div class="${classes}">${innerHTML}</div>
+          `;
         case 'span':
-          return wire(this)`<span class="${classes}">${innerHTML}</span>`;
+          return html`
+            <span class="${classes}">${innerHTML}</span>
+          `;
         default:
-          return wire(this)`<p class="${classes}">${innerHTML}</p>`;
+          return html`
+            <p class="${classes}">${innerHTML}</p>
+          `;
       }
     }
 
-    return this.html`
-      ${this.addStyles([styles])}
-      ${wrapInnerHTML(this.slot('default'))}
+    return html`
+      ${this.addStyles([styles])} ${wrapInnerHTML(this.slot('default'))}
     `;
   }
 }
