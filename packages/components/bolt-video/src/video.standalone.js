@@ -19,12 +19,6 @@ class BoltVideo extends withPreact() {
     showMetaTitle: props.boolean,
     closeButtonText: props.string,
     loop: props.boolean,
-    // onError: null,
-    // onPlay: null,
-    // onPause: null,
-    // onFinish: null,
-    // onProgress: null,
-    // onDuration: null,
     controls: props.boolean,
     autoplay: props.boolean,
     resetOnFinish: props.boolean,
@@ -40,11 +34,8 @@ class BoltVideo extends withPreact() {
     this.onPlay = this.onPlay.bind(this);
     this.onPause = this.onPause.bind(this);
     this.onEnded = this.onEnded.bind(this);
-    // this.onProgress = this.onProgress.bind(this);
     this.onDurationChange = this.onDurationChange.bind(this);
     this.onSeeked = this.onSeeked.bind(this);
-
-    // This binding is necessary to make `this` work in the callback
     this.handleClose = this.handleClose.bind(this);
 
     this.collapseOnClickAway = this.collapseOnClickAway.bind(this);
@@ -330,24 +321,6 @@ class BoltVideo extends withPreact() {
     }
   }
 
-  // shouldUpdate(props, state) {
-  //   return true;
-  // }
-
-  // Called when props have been set regardless of if they've changed.
-  // updating(props) { }
-
-  /**
-   * `attributeChangedCallback` processes changes to the `expanded` attribute.
-   */
-  // attributeChangedCallback(attributeName, oldValue, newValue) {
-  //   console.log(attributeName);
-  //   // `expanded` is a boolean attribute it is either set or not set. The
-  //   // actual value is irrelevant.
-  //   // const value = this.hasAttribute('expanded');
-  //   // this._shadowButton.setAttribute('aria-expanded', value);
-  // }
-
   disconnecting() {
     if (this.props.isBackgroundVideo) {
       window.removeEventListener('optimizedResize', this._onWindowResize);
@@ -364,8 +337,7 @@ class BoltVideo extends withPreact() {
 
   onPlay(player) {
     this.classList.add('is-playing');
-    this.classList.remove('is-finished');
-    this.classList.remove('is-paused');
+    this.classList.remove('is-finished', 'is-paused');
 
     // @TODO: implement internal setState method
     // elem.setState({
