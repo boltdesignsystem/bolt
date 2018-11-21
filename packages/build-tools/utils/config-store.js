@@ -35,6 +35,7 @@ async function getDefaultConfig() {
       proxyPort: ports[1],
       renderingServicePort: ports[2],
       ip,
+      env: process.env.NODE_ENV,
       enableCache: configSchema.properties.enableCache.default,
       proxyHeader: configSchema.properties.proxyHeader.default,
       watch: configSchema.properties.watch.default,
