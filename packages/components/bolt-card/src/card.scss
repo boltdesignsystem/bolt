@@ -69,3 +69,13 @@ bolt-card[height='full'] {
     @include bolt-shadow('level-20', true, $bolt-card-shadow-color);
   }
 }
+
+.c-bolt-card__url {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: $bolt-card-url-z-index;
+}

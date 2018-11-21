@@ -1,5 +1,7 @@
+{% set videoUuid = "js-bolt-video-uuid-card-with-url" %}
+
 {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-  {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
+  {% cell "u-bolt-width-6/12 u-bolt-width-3/12@small" %}
     <h3>No URL</h3>
     {% include "@bolt-components-card/card.twig" with {
       media: {
@@ -19,7 +21,7 @@
       ],
     } only %}
   {% endcell %}
-  {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
+  {% cell "u-bolt-width-6/12 u-bolt-width-3/12@small" %}
     <h3>With URL</h3>
     {% include "@bolt-components-card/card.twig" with {
       url: "http://pega.com",
@@ -35,7 +37,40 @@
       actions: [
         {
           text: "This whole card is clickable",
-          url: "http://pega.com",
+          url: "http://google.com",
+        }
+      ],
+    } only %}
+  {% endcell %}
+  {% cell "u-bolt-width-6/12 u-bolt-width-3/12@small" %}
+    <h3>With URL and video</h3>
+    {% include "@bolt-components-card/card.twig" with {
+      url: "javascript:",
+      attributes: {
+        "on-click": "toggle",
+        "on-click-target": videoUuid
+      },
+      media: {
+        video: {
+          videoId: "5609376179001",
+          accountId: "1900410236",
+          playerId: "r1CAdLzTW",
+          videoUuid: videoUuid,
+          showMeta: true,
+          showMetaTitle: false,
+        },
+      },
+      body: {
+        paragraph: "This card has an URL.",
+      },
+      actions: [
+        {
+          text: "This whole card is clickable",
+          url: "javascript:",
+          attributes: {
+            "on-click": "toggle",
+            "on-click-target": videoUuid
+          },
         }
       ],
     } only %}

@@ -39,6 +39,10 @@
   ] %}
 
   <replace-with-children {{ inner_attributes.addClass(classes) }}>
+    {% if url %}
+      <a href="{{ url }}" class="{{ "#{base_class}__url" }}"></a>
+    {% endif %}
+
     {% block children %}
       {% block card_media %}
         {% if media %}

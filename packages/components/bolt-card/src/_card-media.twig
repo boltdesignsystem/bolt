@@ -1,14 +1,18 @@
-<bolt-card-media>
-  <div class="{{ "#{base_class}__media" }}">
-    {% set card_image = media.image %}
-    {% set card_video = media.video %}
+{% set card_image = media.image %}
+{% set card_video = media.video %}
 
-    {% if card_image %}
+{% if card_image %}
+  <bolt-card-media>
+    <div class="{{ "#{base_class}__media" }}">
       {% include "@bolt-components-image/image.twig" with card_image only %}
-    {% endif %}
+    </div>
+  </bolt-card-media>
+{% endif %}
 
-    {% if card_video %}
+{% if card_video %}
+  <bolt-card-media>
+    <div class="{{ "#{base_class}__media #{base_class}__media--video" }}">
       {% include "@bolt-components-video/video.twig" with card_video only %}
-    {% endif %}
-  </div>
-</bolt-card-media>
+    </div>
+  </bolt-card-media>
+{% endif %}
