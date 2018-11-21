@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const autoprefixer = require('autoprefixer');
@@ -12,8 +13,12 @@ const resolve = require('resolve');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const globImporter = require('node-sass-glob-importer');
 const npmSass = require('npm-sass');
+const WriteAssetsWebpackPlugin = require('write-assets-webpack-plugin');
+const { BoltCache, getFileHash } = require('@bolt/build-tools/utils/cache');
+const chokidar = require('chokidar');
 const { getConfig } = require('./utils/config-store');
 const SassDocPlugin = require('./plugins/sassdoc-webpack-plugin');
+const { boltWebpackProgress } = require('./utils/webpack-helpers');
 
 const {
   getBoltManifest,
@@ -33,8 +38,8 @@ async function createWebpackConfig(buildConfig) {
   const publicPath = config.publicPath
     ? config.publicPath
     : config.wwwDir
-      ? `/${path.relative(config.wwwDir, config.buildDir)}/`
-      : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
+    ? `/${path.relative(config.wwwDir, config.buildDir)}/`
+    : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
 
   // @TODO: move this setting to .boltrc config
   const sassExportData = require('@bolt/sass-export-data')({
@@ -148,6 +153,10 @@ async function createWebpackConfig(buildConfig) {
 
     if (components.global) {
       entry[globalEntryName] = [];
+
+      if (!config.prod && config.webpackDevServer) {
+        entry[globalEntryName].push('webpack/hot/dev-server');
+      }
 
       components.global.forEach(component => {
         if (component.assets.style) {
@@ -320,6 +329,7 @@ async function createWebpackConfig(buildConfig) {
 
   // THIS IS IT!! The object that gets passed in as WebPack's config object.
   const webpackConfig = {
+    target: 'web',
     entry: await buildWebpackEntry(),
     // watchOptions: {
     //   ignored: [
@@ -334,11 +344,9 @@ async function createWebpackConfig(buildConfig) {
       chunkFilename: `[name]-bundle${langSuffix}-[chunkhash].js`,
       publicPath,
     },
-    cache: true,
     resolve: {
       mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
       extensions: ['.js', '.jsx', '.mjs', '.json', '.svg', '.scss'],
-      unsafeCache: true,
       alias: {
         react: 'preact-compat',
         'react-dom': 'preact-compat',
@@ -369,7 +377,6 @@ async function createWebpackConfig(buildConfig) {
           use: {
             loader: 'babel-loader',
             options: {
-              cacheDirectory: true,
               babelrc: false,
               presets: ['@bolt/babel-preset-bolt'],
             },
@@ -401,6 +408,11 @@ async function createWebpackConfig(buildConfig) {
       mergeDuplicateChunks: true,
     },
     plugins: [
+      new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
+      new WriteAssetsWebpackPlugin({
+        force: true,
+        extension: ['js', 'json', 'css'],
+      }),
       new MiniCssExtractPlugin({
         filename: `[name]${langSuffix}.css`,
         chunkFilename: `[id]${langSuffix}.css`,
@@ -432,6 +444,30 @@ async function createWebpackConfig(buildConfig) {
     ],
   };
 
+  if (!config.prod && config.webpackDevServer) {
+    webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
+  }
+
+  // Enable new experimental cache mode to significantly speed up the initial build times
+  if (config.enableCache && !config.prod) {
+    webpackConfig.plugins.push(
+      new HardSourceWebpackPlugin({
+        info: {
+          level: 'warn',
+        },
+        // Clean up large, old caches automatically.
+        cachePrune: {
+          // Caches younger than `maxAge` are not considered for deletion. They must
+          // be at least this (default: 2 days) old in milliseconds.
+          maxAge: 2 * 24 * 60 * 60 * 1000,
+          // All caches together must be larger than `sizeThreshold` before any
+          // caches will be deleted. Together they must be at least 300MB in size
+          sizeThreshold: 300 * 1024 * 1024,
+        },
+      }),
+    );
+  }
+
   if (config.prod) {
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
     // Config recommendation based off of https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1#f548
@@ -439,11 +475,8 @@ async function createWebpackConfig(buildConfig) {
       new UglifyJsPlugin({
         sourceMap: config.sourceMaps,
         parallel: true,
-        cache: true,
         uglifyOptions: {
-          cache: true,
           compress: true,
-
           mangle: true,
         },
       }),
@@ -473,39 +506,65 @@ async function createWebpackConfig(buildConfig) {
       }),
     );
 
-    // @todo Evaluate best source map approach for production
+    // @todo evaluate best source map approach for production builds -- particularly source-map vs hidden-source-map
     webpackConfig.devtool =
       config.sourceMaps === false ? '' : 'hidden-source-map';
   } else {
     // not prod
     // @todo fix source maps
     webpackConfig.devtool =
-      config.sourceMaps === false ? '' : 'cheap-module-eval-source-map';
+      config.sourceMaps === false ? '' : 'eval-source-map';
   }
 
   if (config.wwwDir) {
     webpackConfig.devServer = {
-      contentBase: [
-        path.resolve(process.cwd(), config.wwwDir),
-        // @TODO: add Pattern Lab Styleguidekit Assets Default dist path here
-      ],
-      compress: true,
+      logLevel: 'silent',
+      contentBase: path.resolve(process.cwd(), config.wwwDir),
+      quiet: true,
       clientLogLevel: 'none',
-      port: config.proxyPort,
+      port: config.port,
       stats: statsPreset(webpackStats[config.verbosity]),
-      overlay: {
-        errors: true,
-      },
-      hot: !!config.prod,
+      hot: config.prod ? false : true,
       inline: true,
       noInfo: true, // webpackTasks.watch handles output info related to success & failure
       publicPath,
-      watchContentBase: true,
-      historyApiFallback: true,
-      watchOptions: {
-        aggregateTimeout: 200,
-        //    ignored: /(annotations|fonts|bower_components|dist\/styleguide|node_modules|styleguide|images|fonts|assets)/
-        // Poll using interval (in ms, accepts boolean too)
+      watchContentBase: false,
+      before(app, server) {
+        if (!config.prod && config.webpackDevServer) {
+          if (config.webpackDevServer.watchedExtensions) {
+            const watchedPaths = [];
+
+            // generate wwwDir globbed paths for each file extension being watched
+            config.webpackDevServer.watchedExtensions.forEach(ext => {
+              watchedPaths.push(path.join(config.wwwDir, '**/*' + ext));
+            });
+
+            // The watch event ~ same engine gulp uses https://www.npmjs.com/package/chokidar
+            const watcher = chokidar.watch(watchedPaths, {
+              ignoreInitial: true,
+              cwd: process.cwd(),
+              ignored: ['**/node_modules/**', '**/vendor/**'],
+            });
+
+            // only auto-refresh when a particular file's contents has changed to reduce browser thrashing
+            watcher.on('all', (event, filePath) => {
+              if (event === 'add' || event === 'change') {
+                getFileHash(filePath, function(hash) {
+                  let previousFileHash = BoltCache.get(filePath);
+                  let currentFileHash = hash;
+
+                  if (
+                    previousFileHash === undefined ||
+                    previousFileHash !== currentFileHash
+                  ) {
+                    BoltCache.set(filePath, currentFileHash);
+                    server.sockWrite(server.sockets, 'content-changed');
+                  }
+                });
+              }
+            });
+          }
+        }
       },
     };
   }

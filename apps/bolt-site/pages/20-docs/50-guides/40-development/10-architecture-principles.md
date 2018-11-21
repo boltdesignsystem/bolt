@@ -17,7 +17,7 @@ title: Architecture Principles
 5. Components should be encapsulated. If a totally separate component gets an API change, your component shouldn’t care.
 6. Component composition > component inheritance.
 7. Don’t repeat yourself.
-8. Use the web component rendering engine best suited for a component’s needs (Preact vs HyperHTML)
+8. Use the web component rendering engine best suited for a component’s needs (Preact vs Lit-HTML)
 
 **Part 3. People-friendly API + Reasonable Defaults**
 1. Components should work with the smallest number of config options — ideally none if possible!
@@ -147,8 +147,8 @@ Look at the component’s Twig, Sass and JavaScript files independently.
 
 
 
-### Use the web component rendering engine best suited for a component’s needs (Preact vs HyperHTML)
-Currently there are two different component rendering engines available in Bolt to handle different use cases (each with their pros and cons — see below), Preact (JSX) and HyperHTML (Template Literals).
+### Use the web component rendering engine best suited for a component’s needs (Preact vs Lit-HTML)
+Currently there are two different component rendering engines available in Bolt to handle different use cases (each with their pros and cons — see below), Preact (JSX) and Lit-HTML (Template Literals).
 
 While both are great choices and would both work great in many situations (and in those cases, which engine to use is really up to the author’s personal preference), there are 2 important use cases that must get considered when settling on one renderer over the other.
 
@@ -156,15 +156,15 @@ While both are great choices and would both work great in many situations (and i
 **1. Dynamic Template Tags**
 Do you need dynamic template tags in your HTML (ex. dynamically switch between an `<h1>` or a `<p>` depending on a prop passed along)? 
 
-If so, currently **only** Preact has this use case figured out (but this could change down the road). Currently, the only known way to have dynamic tags in HyperHTML involves lots of “if / else” statements and manually doing the work yourself.
+If so, currently **only** Preact has this use case figured out (but this could change down the road). Currently, the only known way to have dynamic tags in Lit-HTML involves lots of “if / else” statements and manually doing the work yourself.
 
 **Dynamic <slot> Support**
 On the flip side, does the component need to support conditionally rendered `<slot>` tags in the template based on native Shadow DOM support? If not, would a heavy handed `this.innerHTML` JavaScript call potentially break any event bindings?
 
-If so, currently **only** HyperHTML has this use case figured out (however as with Dynamic Tags, this could ultimately change down the road).
+If so, currently **only** Lit-HTML has this use case figured out (however as with Dynamic Tags, this could ultimately change down the road).
 
 
-### Preact vs HyperHTML Renderers
+### Preact vs Lit-HTML Renderers
 
 **Option A. [Preact](https://github.com/bolt-design-system/bolt/blob/master/packages/core/renderers/renderer-preact.js)**
 - **Pros**
@@ -177,13 +177,13 @@ If so, currently **only** HyperHTML has this use case figured out (however as wi
 	- …children = SUPER easy to pass props to children
 	- Debug mode available (once we wire it up)
 - **Cons**
-	- More complex / finicky than HyperHTML
+	- More complex / finicky than Lit-HTML
 	- Conditional syntax in templates can be clunky and isn’t always all that forgiving
 	- No system-wide solution in the Design System is currently in place for handling `<slot>` fallback (however solutions in another VDOM and JSX-friendly rendering engine, Snabbdom, DO exist)
 
 
 
-**Option B. [HyperHTML](https://github.com/bolt-design-system/bolt/blob/master/packages/core/renderers/renderer-hyperhtml.js)**
+**Option B. [Lit-HTML](https://github.com/bolt-design-system/bolt/blob/master/packages/core/renderers/renderer-Lit-HTML.js)**
 - **Pros**
 	- Uses JavaScript template literals = familiar syntax 
 	- Easy to write simple templates and basic logic

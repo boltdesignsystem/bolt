@@ -17,12 +17,9 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
 
   display: inline-block;
   max-width: 100%;
-  overflow-x: auto;
   vertical-align: top;
   border-right: $bolt-table-border;
   border-left: $bolt-table-border;
-  border-collapse: collapse;
-  border-spacing: 0;
   background:
     -webkit-radial-gradient(
       left,
@@ -36,20 +33,23 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
       bolt-theme(text, 0.25) 0%,
       bolt-theme(text, 0) 75%
     ) 100% center;
-  background-size: .5em 100%, .5em 100%;
   background-attachment: scroll, scroll;
-  background-repeat: no-repeat;
   background-color: bolt-theme(background);
+  background-repeat: no-repeat;
+  background-size: .5em 100%, .5em 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
   -ms-overflow-style: -ms-autohiding-scrollbar;
 
   // Caption is not offered in the component. These generic styles are in place in case there are some legacy tables out there that used <caption>.
   caption {
     @include bolt-font-size(small);
-
-    caption-side: bottom;
     color: bolt-theme(text, 0.65);
     text-align: center;
     background-color: bolt-theme(background);
+
+    caption-side: bottom;
   }
 }
 

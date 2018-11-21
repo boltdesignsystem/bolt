@@ -51,12 +51,12 @@ $bolt-tooltip-transition: $bolt-transition;
 
   // Aria tags for accessibility.
   [aria-hidden="true"] {
-    opacity: 0;
+    opacity: bolt-opacity(0);
     pointer-events: none;
   }
 
   [aria-hidden="false"] {
-    opacity: 1;
+    opacity: bolt-opacity(100);
     pointer-events: auto;
   }
 
@@ -69,11 +69,11 @@ $bolt-tooltip-transition: $bolt-transition;
     .c-bolt-tooltip__content-bubble {
       &:after,
       &:before {
+        transform: translateY(100%);
         border-top: $bolt-tooltip-bubble-triangle-width solid;
         border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
         border-bottom: $bolt-tooltip-bubble-triangle-width solid transparent;
         border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
-        transform: translateY(100%);
       }
 
       &:before {
@@ -96,11 +96,11 @@ $bolt-tooltip-transition: $bolt-transition;
     .c-bolt-tooltip__content-bubble {
       &:after,
       &:before {
+        transform: translateY(-100%);
         border-top: $bolt-tooltip-bubble-triangle-width solid transparent;
         border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
-        border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
         border-bottom: $bolt-tooltip-bubble-triangle-width solid;
-        transform: translateY(-100%);
+        border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
       }
 
       &:before {
@@ -380,8 +380,8 @@ $bolt-tooltip-transition: $bolt-transition;
   display: block;
 
   .c-bolt-button {
-    font-weight: 900;
     overflow: hidden;
+    font-weight: 900;
 
     .is-push-up & {
       position: relative;
@@ -394,38 +394,38 @@ $bolt-tooltip-transition: $bolt-transition;
   }
 
   bolt-icon {
-    padding-right: 5px;
     width: auto; // IE & Firefox fix
     height: auto; // IE & Firefox fix
+    padding-right: 5px;
   }
 
   .c-bolt-button .toggle--closed,
   .c-bolt-button .toggle--open {
-    transition: opacity $bolt-transition;
-    align-items: center;
     display: inline-flex;
+    align-items: center;
+    transition: opacity $bolt-transition;
   }
 
   .toggle--open {
+    opacity: bolt-opacity(0);
     position: absolute;
     top: 0; // For IE 11
     bottom: 0; // For IE 11
     left: 50%; // For IE 11 
-    opacity: 0;
     transform: translate3d(-50%, -200%, 0);
 
     .is-active & {
-      opacity: 1;
+      opacity: bolt-opacity(100);
       transform: translate3d(-50%, 0, 0);
     }
   }
 
   .toggle--closed {
+    opacity: bolt-opacity(100);
     transform: translate3d(0, 0, 0);
-    opacity: 1;
 
     .is-active & {
-      opacity: 0;
+      opacity: bolt-opacity(0);
       transform: translate3d(0, 200%, 0);
     }
   }
@@ -442,7 +442,7 @@ $bolt-tooltip-transition: $bolt-transition;
     pointer-events: none;
 
     .is-active+& {
-      opacity: 1 !important; // Brings us back only when active
+      opacity: bolt-opacity(100) !important; // Brings us back only when active
       pointer-events: auto !important; // Brings back the ability to click links within the tooltip only when active
     }
   }
@@ -461,11 +461,11 @@ $bolt-tooltip-transition: $bolt-transition;
 
   &:after,
   &:before {
+    content: '';
     display: block;
     position: absolute;
     width: 0;
     height: 0;
-    content: '';
     pointer-events: none;
   }
 }
@@ -474,13 +474,13 @@ $bolt-tooltip-transition: $bolt-transition;
 // Show and hide effects
 .c-bolt-tooltip:not(:hover) > .c-bolt-tooltip__content,
 .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
-  opacity: 0;
+  opacity: bolt-opacity(0);
   pointer-events: none;
 }
 
 .c-bolt-tooltip:hover > .c-bolt-tooltip__content,
 .c-bolt-tooltip__trigger.is-active + .c-bolt-tooltip__content {
-  opacity: 1;
+  opacity: bolt-opacity(100);
   pointer-events: auto;
 }
 

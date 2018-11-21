@@ -20,13 +20,13 @@ $bolt-link-transition: $bolt-transition;
   display: inline-block;
   display: inline-flex;
   align-items: center; // So icons are vertically centered
-  cursor: pointer;
+  opacity: bolt-opacity(100);
+  color: bolt-theme(link);
   text-decoration: underline;
+  cursor: pointer;
   border: none;  // [1]
   background: none;  // [1]
-  opacity: 1;
   transition: all $bolt-link-transition;
-  color: bolt-theme(link);
 
 
   &:hover {
@@ -43,8 +43,8 @@ $bolt-link-transition: $bolt-transition;
 
 // Changes the underline styles when a link is also a headline, chevrons are added to headline links by default.
 .c-bolt-link--headline {
-  text-decoration: none;
   color: bolt-theme(headline-link);
+  text-decoration: none;
 
   &:hover {
     text-decoration: underline;

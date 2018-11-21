@@ -1,0 +1,34 @@
+{% set checkboxChildren %}
+  {% include ("@pl/30-form-element-demo-checkbox.twig") with {
+    "labelTitle": "Pepperoni",
+    "elementId": "checkbox-pepperoni"
+  } %}
+
+  {% include ("@pl/30-form-element-demo-checkbox.twig") with {
+    "labelTitle": "Olives",
+    "elementId": "checkbox-olives"
+  } %}
+
+  {% include "@pl/30-form-element-demo-checkbox.twig" with {
+    "labelTitle": "Feta",
+    "elementId": "checkbox-feta"
+  } %}
+
+  {% include "@pl/30-form-element-demo-checkbox.twig" with {
+    "labelTitle": "Pineapple",
+    "elementId": "checkbox-pineapple"
+  } %}
+{% endset %}
+
+{% set fieldsetChildren %}
+  {% include "@bolt-components-form/form-checkboxes.twig" with {
+    children: checkboxChildren
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-form/form-fieldset.twig" with {
+  "legendTitle": "Select toppings",
+  "children": fieldsetChildren,
+  "descriptionText": "Pick at least two of the following",
+  "errors": "If there were any server-side errors, you'd see them here"
+} only %}

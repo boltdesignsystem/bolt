@@ -6,11 +6,19 @@
 $shadows: map-get($bolt-shadows, 'sets');
 
 @each $key, $value in $shadows {
-  $prefix: map-get($bolt-shadows, 'utility-class-prefix');
+  $prefix: 'u-bolt-shadow-';
+
+  // DEPRECATED.  These utility classes have been renamed to not include double dashes.  The old versions will be
+  // removed in the next major version of Bolt.
+  // To remove them, remove the lines in this file that include the variable "$prefix-deprecated"
+  $prefix-deprecated: 'u-bolt-shadow--';
+
+  .#{$prefix-deprecated}#{$key},
   .#{$prefix}#{$key} {
     @include bolt-shadow($key, $lifted: false, $utility: true);
   }
-  .#{$prefix}#{$key}--hoverable {
+  .#{$prefix-deprecated}#{$key}--hoverable,
+  .#{$prefix}#{$key}-hoverable {
     @include bolt-shadow($key, $lifted: false, $utility: true);
     &:hover {
       @include bolt-shadow($key, $lifted: true, $utility: true);
