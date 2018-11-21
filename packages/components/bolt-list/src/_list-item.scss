@@ -44,13 +44,17 @@ $bolt-list-separator-styles: solid, dashed;
 }
 
 [class*='c-bolt-list-item--separator'] {
-  &:not(c-bolt-list-item--separator-none) {
+  &:not(.c-bolt-list-item--separator-none) {
     &.c-bolt-list-item--display-block {
-      border-bottom-width: 1px;
+      &:not(.c-bolt-list-item--last-item) {
+        border-bottom-width: 1px;
+      }
     }
 
     &.c-bolt-list-item--display-inline {
-      border-right-width: 1px;
+      &:not(.c-bolt-list-item--last-item) {
+        border-right-width: 1px;
+      }
     }
 
     @each $breakpoint in $bolt-breakpoints {

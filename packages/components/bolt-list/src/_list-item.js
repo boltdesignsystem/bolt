@@ -32,9 +32,10 @@ class BoltListItem extends withContext(withLitHtml()) {
 
     const classes = cx('c-bolt-list-item', {
       [`c-bolt-list-item--display-${display}`]: display,
-      [`c-bolt-list-item--spacing-${spacing}`]: spacing,
+      [`c-bolt-list-item--spacing-${spacing}`]: spacing !== 'none',
+      [`c-bolt-list-item--separator-${separator}`]: separator !== 'none',
+      [`c-bolt-list-item--last-item`]: last,
       [`c-bolt-list-item--inset`]: inset,
-      [`c-bolt-list-item--separator-${separator}`]: separator && !last,
     });
 
     return html`
