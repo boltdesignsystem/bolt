@@ -77,14 +77,16 @@
 {% endif %}
 
 
-{# filter external classnames to allow a very small select number to trickle onto the inner button tag ("is-" and "has-" classes really) while still allowing utility classes and other misc non-component classes to get added to the outer custom element #}
-{% set outerClasses = utils | default([]) %}
+{#
+Sort classes passed in via attributes into two groups:
+1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
+2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via atttributes)
+#}
+{% set outerClasses = [] %}
 {% set innerClasses = classes %}
 
 {% for class in attributes["class"] %}
-  {% if class starts with "u-" or class starts with "js-" %}
-    {% set outerClasses = outerClasses|merge([class]) %}
-  {% elseif class starts with "is-" or class starts with "has-" %}
+  {% if class starts with "is-" or class starts with "has-" %}
     {% set innerClasses = innerClasses|merge([class]) %}
   {% elseif class starts with "c-bolt-" == false %}
     {% set outerClasses = outerClasses|merge([class]) %}
