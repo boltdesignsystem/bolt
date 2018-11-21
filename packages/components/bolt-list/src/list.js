@@ -98,21 +98,6 @@ class BoltList extends withContext(withLitHtml()) {
       [`c-bolt-list--inset`]: inset,
     });
 
-    if (this.slots.default) {
-      const updatedDefaultSlot = [];
-
-      this.slots.default.forEach(item => {
-        if (item.tagName) {
-          updatedDefaultSlot.push(item);
-        }
-      });
-
-      updatedDefaultSlot[updatedDefaultSlot.length - 1].setAttribute(
-        'last',
-        '',
-      );
-    }
-
     let renderedList;
 
     switch (tag) {

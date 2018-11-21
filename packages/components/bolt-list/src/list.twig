@@ -6,8 +6,10 @@
 
 {# Variables #}
 {% set base_class = "c-bolt-list" %}
+{% set base_item_class = "c-bolt-list-item" %}
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set inner_attributes = create_attribute({}) %}
+{% set item_attributes = create_attribute({}) %}
 
 {# Set up checks to validate that the component's prop values are allowed, based on the component's schema. #}
 {% set tag_options = schema.properties.tag.enum %}
@@ -25,6 +27,13 @@
 {% set align = align in align_options ? align : schema.properties.align.default %}
 {% set valign = valign in valign_options ? valign : schema.properties.valign.default %}
 {% set inset = inset is sameas(true) or inset is sameas(false) ? inset : schema.properties.inset.default %}
+
+{# Conditions for the semantic tag usage #}
+{% if tag == "div" or tag == "span" %}
+  {% set item_tag = "span" %}
+{% else %}
+  {% set item_tag = "li" %}
+{% endif %}
 
 {# List component's custom element wrapper. #}
 <bolt-list
@@ -54,12 +63,29 @@
   <remove-html-tag>
     <{{ tag }} {{ inner_attributes.addClass(classes) }}>
       {% for item in items %}
-        <bolt-list-item>
-          {% if item is iterable %}
-            {{ item.content | join }}
-          {% else %}
-            {{ item }}
-          {% endif %}
+
+        {% set last = loop.last %}
+        {% set item_classes = [
+          base_item_class,
+          display in display_options ? "#{base_item_class}--display-#{display}" : "",
+          spacing in spacing_options ? "#{base_item_class}--spacing-#{spacing}" : "",
+          separator in separator_options ? "#{base_item_class}--separator-#{separator}" : "",
+          last ? "#{base_item_class}--last-item",
+          inset ? "#{base_item_class}--inset",
+        ] %}
+
+        <bolt-list-item
+          {% if last %} last {% endif %}
+        >
+          <remove-html-tag>
+            <{{ item_tag }} {{ item_attributes.addClass(item_classes) }}>
+              {% if item is iterable %}
+                {{ item.content | join }}
+              {% else %}
+                {{ item }}
+              {% endif %}
+            </{{ item_tag }}>
+          </remove-html-tag>
         </bolt-list-item>
       {% endfor %}
     </{{ tag }}>
