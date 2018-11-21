@@ -24,6 +24,11 @@ class BoltVideo extends withPreact() {
     resetOnFinish: props.boolean,
     directToFullscreen: props.boolean,
     hideFullScreenButton: props.boolean,
+    overlayAlignment: {
+      ...props.string,
+      ...{ default: 'bottom' },
+    },
+    overlayBackground: props.boolean,
   };
 
   constructor(self) {
@@ -42,22 +47,6 @@ class BoltVideo extends withPreact() {
 
     // BoltVideo.globalErrors.forEach(this.props.onError);
 
-    this.defaultProps = {
-      // width: 320,
-      // height: 180,
-      // playerId: "default",
-      // onError: () => { },
-      // onPlay: () => { },
-      // onPause: () => { },
-      // onFinish: () => { },
-      // onProgress: () => { },
-      // onDuration: () => { },
-      loop: false,
-      autoplay: false,
-      hideFullScreenButton: false,
-      directToFullscreen: false,
-      resetOnFinish: false,
-    };
 
     // Ensure that 'this' inside the _onWindowResize event handler refers to <bolt-nav-link>
     // even if the handler is attached to another element (window in this case)
@@ -239,15 +228,6 @@ class BoltVideo extends withPreact() {
 
     if (this.props.isBackgroundVideo) {
       this._calculateIdealVideoSize();
-    }
-
-    if (this.defaultProps) {
-      const defaultProps = this.defaultProps;
-      for (const propName in defaultProps) {
-        if (this.props[propName] === undefined) {
-          this.props[propName] = defaultProps[propName];
-        }
-      }
     }
 
     if (BoltVideo.globalErrors !== undefined && BoltVideo.globalErrors.length) {
