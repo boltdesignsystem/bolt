@@ -4,7 +4,7 @@ import { ReplaceWithChildren } from '@bolt/core/elements/replace-with-children';
 
 @define
 class RemoveHtmlTag extends ReplaceWithChildren {
-  static is = 'remove-html-tag';
+  static is = 'replace-with-grandchildren';
 
   constructor(self) {
     self = super(self);

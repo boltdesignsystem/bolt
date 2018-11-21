@@ -6,10 +6,8 @@
 
 {# Variables #}
 {% set base_class = "c-bolt-list" %}
-{% set base_item_class = "c-bolt-list-item" %}
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set inner_attributes = create_attribute({}) %}
-{% set item_attributes = create_attribute({}) %}
 
 {# Set up checks to validate that the component's prop values are allowed, based on the component's schema. #}
 {% set tag_options = schema.properties.tag.enum %}
@@ -60,34 +58,13 @@
     inset ? "#{base_class}--inset",
   ] %}
 
-  <remove-html-tag>
+  <replace-with-grandchildren>
     <{{ tag }} {{ inner_attributes.addClass(classes) }}>
       {% for item in items %}
-
-        {% set last = loop.last %}
-        {% set item_classes = [
-          base_item_class,
-          display in display_options ? "#{base_item_class}--display-#{display}" : "",
-          spacing in spacing_options ? "#{base_item_class}--spacing-#{spacing}" : "",
-          separator in separator_options ? "#{base_item_class}--separator-#{separator}" : "",
-          last ? "#{base_item_class}--last-item",
-          inset ? "#{base_item_class}--inset",
-        ] %}
-
-        <bolt-list-item
-          {% if last %} last {% endif %}
-        >
-          <remove-html-tag>
-            <{{ item_tag }} {{ item_attributes.addClass(item_classes) }}>
-              {% if item is iterable %}
-                {{ item.content | join }}
-              {% else %}
-                {{ item }}
-              {% endif %}
-            </{{ item_tag }}>
-          </remove-html-tag>
-        </bolt-list-item>
+        {% if item %}
+          {% include "@bolt-components-list/_list-item.twig" %}
+        {% endif %}
       {% endfor %}
     </{{ tag }}>
-  </remove-html-tag>
+  </replace-with-grandchildren>
 </bolt-list>

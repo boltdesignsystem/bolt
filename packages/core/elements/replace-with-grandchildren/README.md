@@ -1,4 +1,4 @@
-## `<remove-html-tag>`
+## `<replace-with-grandchildren>`
 
 A "helper" `custom element` in the Bolt Design System to easily remove a Web Component's initial server-side / Twig-rendered HTML when booting up and replace itself with the custom element's children and remove duplicate html element; as the name implies, "Remove html tag".
 

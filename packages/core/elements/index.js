@@ -8,10 +8,10 @@ polyfillLoader.then(res => {
     */ '@bolt/core/elements/replace-with-children');
   }
 
-  if (!window.customElements.get('remove-html-tag')) {
+  if (!window.customElements.get('replace-with-grandchildren')) {
     import(/*
       webpackMode: 'eager',
-      webpackChunkName: 'remove-html-tag'
-    */ '@bolt/core/elements/remove-html-tag');
+      webpackChunkName: 'replace-with-grandchildren'
+    */ '@bolt/core/elements/replace-with-grandchildren');
   }
 });
