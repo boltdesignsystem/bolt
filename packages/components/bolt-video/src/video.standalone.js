@@ -1,6 +1,5 @@
 import { beforeNextRender, define, props, css } from '@bolt/core/utils';
 import { h, withPreact } from '@bolt/core/renderers';
-import dasherize from 'dasherize';
 import Mousetrap from 'mousetrap';
 
 let index = 0;
@@ -582,18 +581,6 @@ class BoltVideo extends withPreact() {
     // );
     /* eslint jsx-a11y/media-has-caption: "off" */
     // Added a wrapping div as brightcove adds siblings to the video tag
-
-    // Loop through any extra (unknown) data attributes on the main element; copy over to the <video> tag being rendered
-    function datasetToObject(elem) {
-      var data = {};
-      [].forEach.call(elem.attributes, function(attr) {
-        if (/^data-/.test(attr.name)) {
-          data[dasherize(attr.name)] = attr.value;
-        }
-      });
-      return data;
-    }
-
     const dataAttributes = datasetToObject(this);
 
     let closeButtonText = null;
