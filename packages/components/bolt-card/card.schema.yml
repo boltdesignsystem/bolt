@@ -48,12 +48,19 @@ properties:
     properties:
       eyebrow:
         type: string
+        description: Regular eyebrow.
       headline:
         type: string
-      subheadline:
-        type: string
+        description: Headline pre-defined to size large.
       paragraph:
         type: string
+        description: Regular paragraph of text.
+      content:
+        type:
+          - string
+          - array
+          - object
+        description: Passing free-form content into the card body will ignore eyebrow, headline, and paragraph data. Use this if the default eyebrow, headline, and paragraph don't satisfy your needs.
   actions:
     type: array
     description: Actions section of the card, accepts buttons.
@@ -67,27 +74,15 @@ properties:
       attributes:
         type: object
         description: A Drupal-style attributes object with extra attributes to append to this component.
-  items:
+  content:
     type:
       - string
       - array
       - object
     description: Items will overwrite media, body, and actions props. Use this to build a completely cuztomized card.
-    properties:
-      media:
-        type: array
-        description: Media section of the card, accepts either image or video.
-      body:
-        type: array
-        description: Body section of the card, accepts anything.
-      actions:
-        type: array
-        description: Actions section of the card, accepts text buttons.
-    item:
-      type: any
   contentItems:
     title: Deprecated
-    description: Please use items.
+    description: Please use content.
   contentTag:
     title: Deprecated
-    description: Please use content_tag.
+    description: Tag .

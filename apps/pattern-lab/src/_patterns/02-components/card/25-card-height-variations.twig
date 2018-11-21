@@ -7,7 +7,8 @@
     {% else %}
       {% set more_text = "" %}
     {% endif %}
-    {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+    {% cell "u-bolt-width-6/12 u-bolt-width-3/12@medium" %}
+      <h3>{{ height|capitalize }} height</h3>
       {% include "@bolt-components-card/card.twig" with {
         height: height,
         media: {
@@ -28,7 +29,8 @@
       } only %}
     {% endcell %}
   {% endfor %}
-  {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+  {% cell "u-bolt-width-6/12 u-bolt-width-3/12@medium" %}
+    <h3>Full height</h3>
     {% include "@bolt-components-card/card.twig" with {
       height: "full",
       media: {

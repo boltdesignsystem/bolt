@@ -1,0 +1,89 @@
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+  {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
+    <h3>Passing free-form content inside the card body only</h3>
+    {% set card_body_content %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        text: "Anything can be passed inside the body container. Woohoo!",
+        size: "xlarge",
+      } only %}
+    {% endset %}
+    {% include "@bolt-components-card/card.twig" with {
+      tag: "article",
+      height: "auto",
+      media: {
+        image: {
+          src: "/pattern-lab/images/placeholders/landscape-16x9-mountains.jpg",
+          alt: "Image alt.",
+        },
+      },
+      body: {
+        content: card_body_content,
+      },
+      actions: [
+        {
+          text: "This is a button",
+          url: "http://pega.com",
+        },
+      ],
+    } only %}
+  {% endcell %}
+  {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
+    <h3>Passing free-form content for the entire card</h3>
+    {% set card_content %}
+      {% include "@bolt-components-table/table.twig" with {
+        headers: {
+          top: {
+            cells: [
+              "This card has",
+              "free-form content",
+              "instead of media, body, and actions",
+            ]
+          },
+          side: {
+            cells: [
+              "Row 1",
+              "Row 2",
+              "Row 3",
+              "Footer",
+            ]
+          }
+        },
+        rows: [
+          {
+            cells: [
+              "R1C1",
+              "R1C2",
+              "R1C3",
+            ]
+          },
+          {
+            cells: [
+              "R2C1",
+              "R2C2",
+              "R2C3",
+            ]
+          },
+          {
+            cells: [
+              "R3C1",
+              "R3C2",
+              "R3C3",
+            ]
+          }
+        ],
+        footer: {
+          cells: [
+            "FC1",
+            "FC2",
+            "FC3",
+          ]
+        }
+      } only %}
+    {% endset %}
+    {% include "@bolt-components-card/card.twig" with {
+      tag: "article",
+      height: "auto",
+      content: card_content,
+    } only %}
+  {% endcell %}
+{% endgrid %}
