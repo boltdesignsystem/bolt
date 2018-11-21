@@ -44,7 +44,7 @@ properties:
         ref: '@bolt-components-video/video.schema.yml'
   body:
     type: object
-    description: Body section of the card, accepts text.
+    description: Body section of the card, accepts pre-configured eyebrow, headline, and paragraph or custom content.
     properties:
       eyebrow:
         type: string
@@ -60,7 +60,7 @@ properties:
           - string
           - array
           - object
-        description: Passing free-form content into the card body will ignore eyebrow, headline, and paragraph data. Use this if the default eyebrow, headline, and paragraph don't satisfy your needs.
+        description: Passing free-form content into the card body will ignore eyebrow, headline, and paragraph data. Use this if the pre-configured eyebrow, headline, and paragraph don't satisfy your needs.
   actions:
     type: array
     description: Actions section of the card, accepts buttons.
@@ -79,10 +79,10 @@ properties:
       - string
       - array
       - object
-    description: Items will overwrite media, body, and actions props. Use this to build a completely cuztomized card.
+    description: Content will override media, body, and actions props. Use this to build a completely cuztomized card.
   contentItems:
     title: Deprecated
     description: Please use content.
   contentTag:
     title: Deprecated
-    description: Tag .
+    description: The tag prop already takes care of any semantic tag usage.

@@ -45,7 +45,8 @@
 
     {% block children %}
       {% if content %}
-        {{ content | join }}
+        {# The replace function is a hack to get around the utf-8 bug. #}
+        {{ content | join | replace({"UTF-8": ""}) }}
       {% else %}
         {% if media %}
           {% include "@bolt-components-card/_card-media.twig" %}

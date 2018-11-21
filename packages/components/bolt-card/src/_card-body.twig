@@ -9,7 +9,8 @@
 <bolt-card-body>
   <replace-with-children class="{{ "#{base_class}__body" }}">
     {% if card_body_content %}
-      {{ body.content | join }}
+      {# The replace function is a hack to get around the utf-8 bug. #}
+      {{ body.content | join | replace({"UTF-8": ""}) }}
     {% else %}
       {% set card_eyebrow = body.eyebrow %}
       {% set card_headline = body.headline %}

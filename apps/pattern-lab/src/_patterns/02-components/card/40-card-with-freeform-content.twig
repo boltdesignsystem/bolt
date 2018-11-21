@@ -34,9 +34,9 @@
         headers: {
           top: {
             cells: [
-              "This card has",
-              "free-form content",
-              "instead of media, body, and actions",
+              "This card is",
+              "completely customized",
+              "using the content prop",
             ]
           },
           side: {
@@ -77,6 +77,14 @@
             "FC2",
             "FC3",
           ]
+        }
+      } only %}
+      {% include "@bolt-components-card/_card-media.twig" with {
+        media: {
+          image: {
+            src: "/pattern-lab/images/placeholders/landscape-16x9-mountains.jpg",
+            alt: "Image alt.",
+          },
         }
       } only %}
     {% endset %}
