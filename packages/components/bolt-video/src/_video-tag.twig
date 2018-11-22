@@ -60,6 +60,10 @@ https://github.com/videojs/video.js/blob/22fd327076cb044c135c747086b58b7be64a747
   {% set attributes = attributes.setAttribute("loop", true) %}
 {% endif %}
 
+{% if share_description %}
+  {% set attributes = attributes.setAttribute("share-description", share_description) %}
+{% endif %}
+
 {% if isBackgroundVideo %}
   {% set attributes = attributes.setAttribute("is-background-video", isBackgroundVideo) %}
 {% else %}
