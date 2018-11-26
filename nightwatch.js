@@ -3,6 +3,11 @@ const TRAVIS_JOB_NUMBER = process.env.TRAVIS_JOB_NUMBER;
 
 const { SAUCE_ACCESS_KEY, SAUCE_USERNAME } = process.env;
 
+console.log('Process Env:', process.env);
+console.log('TRAVIS_JOB_NUMBER:', TRAVIS_JOB_NUMBER);
+console.log('SAUCE_ACCESS_KEY:', SAUCE_ACCESS_KEY);
+console.log('SAUCE_USERNAME:', SAUCE_USERNAME);
+
 module.exports = {
   test_settings: {
     default: {

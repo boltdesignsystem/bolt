@@ -8,6 +8,8 @@ const { spawnSync } = require('child_process');
 
 const { NOW_TOKEN } = process.env;
 
+console.log('NOW_TOKEN:', NOW_TOKEN);
+
 if (!NOW_TOKEN) {
   console.error('Need to have env var of NOW_TOKEN set');
   process.exit(1);
@@ -28,6 +30,8 @@ const getDeployUrl = async () => {
       'Content-Type': 'application/json',
     },
   }).then(res => res.json());
+
+  console.log('Now Deploys:', nowDeploys);
 
   if (!nowDeploys) {
     console.error('Did not get any info on latest now deploys...');
