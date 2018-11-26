@@ -7,6 +7,11 @@
 
 bolt-card-action {
   flex: 1;
+
+  // [Mai] When there are 2 actions, the text is likely to be short, that's a situation where it would benefit from text not wrapping to another line. Instead, if it runs out of room, the actions stack on top of each other.
+  &:not(:only-child) {
+    white-space: nowrap;
+  }
 }
 
 .c-bolt-card__action {
@@ -14,7 +19,6 @@ bolt-card-action {
 
   display: block;
   position: relative;
-  white-space: nowrap;
   border-top-width: 1px;
 
   &:before {
