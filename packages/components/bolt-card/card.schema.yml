@@ -29,9 +29,15 @@ properties:
       - light
       - dark
       - xdark
-  url:
-    type: string
-    description: Providing a URL will make the whole card clickable.
+  link:
+    type: object
+    description: Providing a link will make the whole card clickable.
+    properties:
+      href:
+        type: string
+      attributes:
+        type: object
+        description: A Drupal-style attributes object with extra attributes to append to this component.
   media:
     type: object
     description: Media section of the card, accepts either image or video.

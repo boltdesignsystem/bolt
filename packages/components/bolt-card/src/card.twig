@@ -19,13 +19,18 @@
 {% set theme = theme in theme_options ? theme : schema.properties.theme.default %}
 {% set height = height in height_options ? height : schema.properties.height.default %}
 
+{% if link %}
+  {% set link_href = link.href %}
+  {% set link_attributes = create_attribute(link.attributes) %}
+{% endif %}
+
 
 {# card component's custom element wrapper #}
 <bolt-card
   {% if tag %} tag="{{ tag }}" {% endif %}
   {% if theme %} theme="{{ theme }}" {% endif %}
   {% if height %} height="{{ height }}" {% endif %}
-  {% if url %} url="{{ url }}" {% endif %}
+  {% if link %} href="{{ link_href }}" {% endif %}
   {{ attributes }}
 >
   {# This sets none values to not render anything. #}
@@ -35,12 +40,11 @@
   {% set classes = [
     base_class,
     theme in theme_options ? "t-bolt-#{theme}" : "",
-    url ? "#{base_class}--actionable" : "",
   ] %}
 
   <replace-with-children {{ inner_attributes.addClass(classes) }}>
-    {% if url %}
-      <a href="{{ url }}" class="{{ "#{base_class}__url" }}"></a>
+    {% if link %}
+      <a {% if link_href %}href="{{ link_href }}"{% endif %} class="{{ "#{base_class}__link" }}" {{ link_attributes }}></a>
     {% endif %}
 
     {% block children %}

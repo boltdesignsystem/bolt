@@ -24,7 +24,9 @@
   {% cell "u-bolt-width-6/12 u-bolt-width-3/12@small" %}
     <h3>With URL</h3>
     {% include "@bolt-components-card/card.twig" with {
-      url: "http://pega.com",
+      link: {
+        href: "http://pega.com",
+      },
       media: {
         image: {
           src: "/pattern-lab/images/placeholders/landscape-16x9-mountains.jpg",
@@ -45,10 +47,11 @@
   {% cell "u-bolt-width-6/12 u-bolt-width-3/12@small" %}
     <h3>With URL and video</h3>
     {% include "@bolt-components-card/card.twig" with {
-      url: "javascript:",
-      attributes: {
-        "on-click": "toggle",
-        "on-click-target": videoUuid
+      link: {
+        attributes: {
+          "on-click": "toggle",
+          "on-click-target": videoUuid,
+        },
       },
       media: {
         video: {
@@ -66,10 +69,9 @@
       actions: [
         {
           text: "This whole card is clickable",
-          url: "javascript:",
           attributes: {
             "on-click": "toggle",
-            "on-click-target": videoUuid
+            "on-click-target": videoUuid,
           },
         }
       ],
