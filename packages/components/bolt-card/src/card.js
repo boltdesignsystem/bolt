@@ -36,7 +36,6 @@ class BoltCard extends withContext(withLitHtml()) {
     theme: props.string, // xdark | dark | light | xlight
     tag: props.string, // div | figure | article
     height: props.string, // full | auto
-    url: props.string,
   };
 
   constructor(self) {
@@ -69,11 +68,10 @@ class BoltCard extends withContext(withLitHtml()) {
 
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { theme, tag, url } = this.validateProps(this.props);
+    const { theme, tag } = this.validateProps(this.props);
     this.contexts.get(CardContext).tag = tag;
 
     const classes = cx('c-bolt-card', {
-      [`c-bolt-card--actionable`]: url,
       [`t-bolt-${theme}`]: theme && theme !== 'none',
     });
 
