@@ -128,6 +128,7 @@ class BoltVideo extends withPreact() {
     const player = this;
     const elem = context;
 
+    elem._setupOverlay();
     elem.setPlayer(player);
 
     // If the option to show controls is set to false (meaning, no controls will be shown), make sure the video is also muted.
@@ -202,6 +203,22 @@ class BoltVideo extends withPreact() {
     return Math.round(player.duration() * 1000);
   }
 
+  _setupOverlay() {
+    this.overlayElement = this.querySelector('.vjs-overlay');
+
+    const overlayClasses = classNames({
+      [`vjs-overlay-${this.overlayAlignment}`]: this.props.overlayAlignment,
+      'vjs-overlay-no-background': this.props.overlayBackground !== true,
+      'vjs-overlay-background': this.props.overlayBackground === true,
+    });
+
+    if (this.overlayElement) {
+      // clear out any default overlay bg classes
+      this.overlayElement.classList.remove('vjs-overlay-no-background');
+      this.overlayElement.classList.remove('vjs-overlay-background');
+      this.overlayElement.className += ' ' + overlayClasses;
+    }
+  }
 
   handleClose() {
     this.close();
