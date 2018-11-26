@@ -293,6 +293,14 @@ class BoltVideo extends withPreact() {
     this.props.onError(player.error());
   }
 
+  hideOverlay() {
+    this.overlayElement.classList.add('vjs-hidden');
+  }
+
+  showOverlay() {
+    this.overlayElement.classList.remove('vjs-hidden');
+  }
+
   onPlay(player) {
     this.classList.add('is-playing');
     this.classList.remove('is-finished', 'is-paused');
