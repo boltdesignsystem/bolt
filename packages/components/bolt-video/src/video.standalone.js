@@ -33,30 +33,27 @@ class BoltVideo extends withPreact() {
 
   constructor(self) {
     self = super(self);
+    self.useShadow = false;
+
 
     index += 1;
 
+    // These bindings are necessary to make `this` work in the callback
     this.onPlay = this.onPlay.bind(this);
     this.onPause = this.onPause.bind(this);
     this.onEnded = this.onEnded.bind(this);
     this.onDurationChange = this.onDurationChange.bind(this);
     this.onSeeked = this.onSeeked.bind(this);
     this.handleClose = this.handleClose.bind(this);
-
     this.collapseOnClickAway = this.collapseOnClickAway.bind(this);
 
     // BoltVideo.globalErrors.forEach(this.props.onError);
-
 
     // Ensure that 'this' inside the _onWindowResize event handler refers to <bolt-nav-link>
     // even if the handler is attached to another element (window in this case)
     this._onWindowResize = this._onWindowResize.bind(this);
 
     return self;
-  }
-
-  get renderRoot() {
-    return this;
   }
 
   get expandedHeight() {
@@ -94,13 +91,6 @@ class BoltVideo extends withPreact() {
     );
   }
 
-  // Called to check whether or not the component should call
-  // updated(), much like React's shouldComponentUpdate().
-  // updating(props, state) {
-  //   console.log(props);
-  //   console.log(state);
-  // }
-
   _setMetaTitle(title) {
     if (this.props.showMeta && this.props.showMetaTitle) {
       this.querySelector(`${bolt.namespace}-video-meta`).setAttribute(
@@ -112,19 +102,12 @@ class BoltVideo extends withPreact() {
 
   _setMetaDuration(seconds) {
     if (this.props.showMeta) {
-      const durationFormatted = BoltVideo._formatDuration(seconds);
+      const durationFormatted = formatVideoDuration(seconds);
       this.querySelector(`${bolt.namespace}-video-meta`).setAttribute(
         'duration',
         durationFormatted,
       );
     }
-  }
-
-  static _formatDuration(seconds) {
-    const mm = Math.floor(seconds / 60) || 0;
-    const ss = ('0' + Math.floor(seconds % 60)).slice(-2);
-
-    return mm + ':' + ss;
   }
 
   _setVideoDimensions(width, height) {
@@ -188,8 +171,6 @@ class BoltVideo extends withPreact() {
     player.on('ended', function() {
       elem.onEnded(player);
     });
-
-    // this.contextmenu({ disabled: true });
   }
 
   static appendScript(s) {
@@ -208,9 +189,6 @@ class BoltVideo extends withPreact() {
     return Math.round(player.duration() * 1000);
   }
 
-  // static isBackgroundVideo() {
-  //   return this.props.isBackgroundVideo;
-  // }
 
   handleClose() {
     this.close();
@@ -521,7 +499,6 @@ class BoltVideo extends withPreact() {
   }
 
   render({ state, props }) {
-    // console.log('render callback');
     // data-email-subject="Pega - Intelligent Virtual Assistant for Email"
     // data-email-body="Check out this video from Pega"
     // data-email-videourl="https://local.d8.pega.com/insights/resources/intelligent-virtual-assistant-email"
