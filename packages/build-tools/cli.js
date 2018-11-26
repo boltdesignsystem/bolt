@@ -79,6 +79,12 @@ if (program.configFile) {
               : config.renderingService
             : options.renderingService;
 
+        config.env = process.env.NODE_ENV
+          ? process.env.NODE_ENV
+          : typeof options.env === 'undefined'
+          ? config.env
+          : options.env;
+
         config.webpackStats =
           typeof options.webpackStats === 'undefined'
             ? config.webpackStats

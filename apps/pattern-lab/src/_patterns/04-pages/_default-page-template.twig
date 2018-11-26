@@ -1,4 +1,3 @@
-
 {% block global_header %}{% endblock %}
 
 
@@ -6,11 +5,9 @@
   <div class="o-bolt-wrapper">
     <main>
       <article>
-        <bolt-band-collection>
-          {% block main_content %}
-            <!-- <p>Example main content block.</p> -->
-          {% endblock %}
-        </bolt-band-collection>
+        {% block main_content %}
+          <!-- <p>Example main content block.</p> -->
+        {% endblock %}
       </article>
     </main>
   </div>
