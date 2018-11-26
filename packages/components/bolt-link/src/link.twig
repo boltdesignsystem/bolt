@@ -12,7 +12,7 @@
 {# Variables #}
 {% set base_class = "c-bolt-link" %}
 
-{% set link_classes = [
+{% set classes = [
   base_class,
   isHeadline ? 'c-bolt-link--headline' : ''
 ] %}
@@ -22,7 +22,7 @@
 {% endif %}
 
 {% set attributes = create_attribute(attributes | default(attributes) | default({})) %}
-{% set attributes = attributes.addClass(link_classes) %}
+{% set attributes = attributes.addClass(classes) %}
 
 {% if target or attributes['target'] %}
   {% set target = target | default(attributes['target']) %}
@@ -42,14 +42,16 @@
   {% set url = href | default(attributes['href']) %}
 {% endif %}
 
-{# filter external classnames to allow a very small select number to trickle onto the inner button tag ("is-" and "has-" classes really) while still allowing utility classes and other misc non-component classes to get added to the outer custom element #}
+{#
+Sort classes passed in via attributes into two groups:
+1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
+2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via atttributes)
+#}
 {% set outerClasses = [] %}
-{% set innerClasses = link_classes %}
+{% set innerClasses = classes %}
 
 {% for class in attributes["class"] %}
-  {% if class starts with "u-" or class starts with "js-" %}
-    {% set outerClasses = outerClasses|merge([class]) %}
-  {% elseif class starts with "is-" or class starts with "has-" %}
+  {% if class starts with "is-" or class starts with "has-" %}
     {% set innerClasses = innerClasses|merge([class]) %}
   {% elseif class starts with "c-bolt-" == false %}
     {% set outerClasses = outerClasses|merge([class]) %}
