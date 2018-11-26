@@ -64,6 +64,7 @@
   {{ filteredAttributes }}
   {% if url %} url="{{ url }}" {% endif %}
   {% if target %} target="{{ target }}" {% endif %}
+  {% if isHeadline %} is-headline="true" {% endif %}
   {% if outerClasses %} class="{{ outerClasses|join(' ') }}" {% endif %}
 
   {# todo: rename on-click + on-click-target to only allow onClick + onClickTarget to unify the prop syntax; deprecate adding these via attributes #}

@@ -29,6 +29,7 @@ class BoltLink extends withLitHtml() {
   static props = {
     url: props.string,
     target: props.string,
+    isHeadline: props.boolean,
     onClick: props.string, // Managed by base class
     onClickTarget: props.string, // Managed by base class
   };
@@ -132,9 +133,11 @@ class BoltLink extends withLitHtml() {
 
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { url, target } = this.validateProps(this.props);
+    const { url, target, isHeadline } = this.validateProps(this.props);
 
-    const classes = cx('c-bolt-link');
+    const classes = cx('c-bolt-link', {
+      'c-bolt-link--headline': isHeadline,
+    });
 
     // Decide on if the rendered button tag should be a <button> or <a> tag, based on if a URL exists OR if a link was passed in from the getgo
     const hasUrl = this.props.url.length > 0 && this.props.url !== 'null';
