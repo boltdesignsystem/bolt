@@ -11,13 +11,19 @@
 // Component variables
 $bolt-link-transition: $bolt-transition;
 
+bolt-link {
+  display: inline-block;
+  display: inline-flex;
+  vertical-align: bottom; // Fixes alignment when link appears next to inline text, "top" also works
+}
+
 // Component styles
 .c-bolt-link {
   @include bolt-padding(0);  // [1]
   @include bolt-font-family(body);  // [1]
 
-  display: inline-block;
-  display: inline-flex;
+  display: block;
+  display: flex; // Container is set to "inline-flex" so this can just be "flex"
   align-items: center; // So icons are vertically centered
   opacity: bolt-opacity(100);
   color: bolt-theme(link);
