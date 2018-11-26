@@ -36,6 +36,11 @@ class BoltVideo extends withPreact() {
       ...props.string,
       ...{ default: 'bottom' },
     },
+    enabledPlugins: {
+      ...props.string,
+      ...{ default: 'cue' },
+    },
+    disabledPlugins: props.string,
     overlayBackground: props.boolean,
   };
 
@@ -43,6 +48,7 @@ class BoltVideo extends withPreact() {
     self = super(self);
     self.useShadow = false;
 
+    this.defaultPlugins = ['cue', 'playback'];
 
     index += 1;
 
@@ -68,6 +74,13 @@ class BoltVideo extends withPreact() {
   get expandedHeight() {
     return this.getAttribute('expandedHeight');
   }
+
+  static availablePlugins = {
+    playback: playbackPlugin,
+    cue: cuePointsPlugin,
+    social: socialPlugin,
+    email: emailPlugin,
+  };
 
   /**
    * Properties and their corresponding attributes should mirror one another.
@@ -124,11 +137,40 @@ class BoltVideo extends withPreact() {
     this.srcHeight = height;
   }
 
+  _setupPlugins(elem, player) {
+    // loop through any enabled plugins added, remove any flagged as being disabled, and apply what's left to the player instance.
+    const enabledPlugins = Array.from(elem.enabledPlugins.split(' '));
+    const disabledPlugins = elem.disabledPlugins
+      ? Array.from(elem.disabledPlugins.split(' '))
+      : [];
+    const allPlugins = [...elem.defaultPlugins, ...enabledPlugins];
+
+    // remove duplicates
+    const uniqueAndEnabledPlugins = allPlugins.filter(function(item, index) {
+      const itemName = allPlugins[index];
+      return (
+        allPlugins.indexOf(item) >= index &&
+        disabledPlugins.includes(item) !== true
+      );
+    });
+
+    // check to confirm plugins exist before initializing
+    uniqueAndEnabledPlugins.forEach(pluginName => {
+      if (BoltVideo.availablePlugins) {
+        if (BoltVideo.availablePlugins[pluginName]) {
+          BoltVideo.availablePlugins[pluginName](player, elem);
+        }
+      }
+    });
+  }
+
   static handlePlayerReady(context) {
     const player = this;
     const elem = context;
 
     elem._setupOverlay();
+    elem._setupPlugins(elem, player);
+
     elem.setPlayer(player);
 
     // If the option to show controls is set to false (meaning, no controls will be shown), make sure the video is also muted.
