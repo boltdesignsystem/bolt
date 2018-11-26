@@ -1,10 +1,7 @@
-import { define, props, css } from '@bolt/core/utils';
+import { beforeNextRender, define, props, css } from '@bolt/core/utils';
 import { h, withPreact } from '@bolt/core/renderers';
 import dasherize from 'dasherize';
 import Mousetrap from 'mousetrap';
-
-// Bolt v2.0 will be shipping with this in Bolt core -- manually adding this in to the Bolt video player as a temp workaround till then.
-import { beforeNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 
 let index = 0;
 

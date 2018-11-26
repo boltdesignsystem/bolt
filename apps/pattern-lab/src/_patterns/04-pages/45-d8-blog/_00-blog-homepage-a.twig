@@ -1,0 +1,462 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block global_header %}
+  {% include "@pl/_page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+  {# Navigation #}
+  {% embed "@bolt-components-sticky/sticky.twig" %}
+    {% block sticky_content %}
+      {% include "@bolt-components-navbar/navbar.twig" with {
+        theme: "dark",
+        title: {
+          tag: "h1",
+          text: "Future Proof",
+          url: "http://pega.com/blog",
+        },
+        links: [
+          {
+            text: "Trending",
+            url: "#a",
+          },
+          {
+            text: "Digital Process Automation",
+            url: "#a",
+          },
+          {
+            text: "1-to-1 Customer Engagement",
+            url: "#a",
+          },
+          {
+            text: "Customer Service",
+            url: "#a",
+          },
+        ]
+      } only %}
+    {% endblock %}
+  {% endembed %}
+  {# End Navigation #}
+
+  {# Hero #}
+  {% set featured_article_1 %}
+    {% include "@bolt-components-headline/eyebrow.twig" with {
+      text: "Gerry McCool",
+      tag: "span",
+    } only %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Why smart factories need digital prescriptive maintenance",
+      size: "xxxlarge",
+      tag: "h2",
+    } only %}
+    {% include "@bolt-components-headline/subheadline.twig" with {
+      text: "“Smart factories” or “factories of the future” are bringing fast-changing, disruptive technologies into manufacturing...",
+      size: "xxlarge",
+      tag: "h3",
+    } only %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: "Continue Reading",
+      url: "http://pega.com",
+      tag: "a",
+      icon: {
+        name: "chevron-right",
+      }
+    } only %}
+  {% endset %}
+  {% set featured_article_2 %}
+    {% include "@bolt-components-headline/eyebrow.twig" with {
+      text: "Anthony Abdulla",
+      tag: "span",
+    } only %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "7 reasons why you should embrace low-code development right now",
+      size: "xlarge",
+      tag: "h2",
+      attributes: {
+        class: "u-bolt-margin-bottom-xsmall",
+      }
+    } only %}
+    {% include "@bolt-components-link/link.twig" with {
+      text: "Continue Reading",
+      url: "http://pega.com",
+      tag: "a",
+      icon: {
+        name: "chevron-right",
+      }
+    } only %}
+  {% endset %}
+  {% set featured_article_3 %}
+    {% include "@bolt-components-headline/eyebrow.twig" with {
+      text: "Kate Fowler",
+      tag: "span",
+    } only %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "3 capabilities insurers need for outstanding customer engagement",
+      size: "xlarge",
+      tag: "h2",
+      attributes: {
+        class: "u-bolt-margin-bottom-xsmall",
+      }
+    } only %}
+    {% include "@bolt-components-link/link.twig" with {
+      text: "Continue Reading",
+      url: "http://pega.com",
+      tag: "a",
+      icon: {
+        name: "chevron-right",
+      }
+    } only %}
+  {% endset %}
+
+  {% set hero_content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--large" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-10/12@large u-bolt-width-7/12@xlarge u-bolt-width-8/12@xxlarge" %}
+        {{ featured_article_1 }}
+      {% endcell %}
+      {% cell "u-bolt-width-11/12 u-bolt-width-9/12@xsmall u-bolt-width-7/12@large u-bolt-width-4/12@xlarge u-bolt-width-4/12@xxlarge" %}
+        {% include "@bolt-components-list/list.twig" with {
+          spacing: "medium",
+          items: [
+            {
+              content: featured_article_2,
+            },
+            {
+              content: featured_article_3,
+            },
+          ]
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+
+  {% include "@bolt-components-band/band.twig" with {
+    size: "medium",
+    theme: "xdark",
+    fullBleed: true,
+    content: hero_content,
+    background: {
+      shapeGroup: "B",
+      fill: "gradient",
+      opacity: "light",
+      focalPoint: {
+        vertical: "center",
+        horizontal: "left"
+      },
+    }
+  } only %}
+  {# End Hero #}
+
+  {# Recent Articles #}
+  {% set recent_articles %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Recent Posts",
+      size: "xlarge",
+      tag: "h2",
+    } only %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+        {% include "@bolt-components-card/card.twig" with {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/pattern-lab/images/content/promos/promo-blog-1.jpg",
+              lazyload: false,
+            },
+            {
+              pattern: "eyebrow",
+              text: "Digital Transformation"
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: "Is Lean still relevant in the Digital Age?"
+            },
+            {
+              pattern: "text",
+              text: "By Gerry McCool, 10/11/2018"
+            },
+            {
+              pattern: "button",
+              width: "full",
+              text: "Continue Reading"
+            }
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+        {% include "@bolt-components-card/card.twig" with {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/pattern-lab/images/content/promos/promo-blog-2.jpg",
+              lazyload: false,
+            },
+            {
+              pattern: "eyebrow",
+              text: "Digital Transformation"
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: "Your organization needs a digital business model"
+            },
+            {
+              pattern: "text",
+              text: "By Gerry McCool, 10/9/2018"
+            },
+            {
+              pattern: "button",
+              width: "full",
+              text: "Continue Reading"
+            }
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+        {% include "@bolt-components-card/card.twig" with {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/pattern-lab/images/content/promos/promo-blog-3.jpg",
+              lazyload: false,
+            },
+            {
+              pattern: "eyebrow",
+              text: "Case Management"
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: "Pega ranked a category leader in KYC systems"
+            },
+            {
+              pattern: "text",
+              text: "By Reetu Khosla, 10/8/2018"
+            },
+            {
+              pattern: "button",
+              width: "full",
+              text: "Continue Reading"
+            }
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+        {% include "@bolt-components-card/card.twig" with {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/pattern-lab/images/content/promos/promo-blog-3.jpg",
+              lazyload: false,
+            },
+            {
+              pattern: "eyebrow",
+              text: "Agile"
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: "7 reasons why you should embrace low-code development right now"
+            },
+            {
+              pattern: "text",
+              text: "By Anthony Abdulla, 10/6/2018"
+            },
+            {
+              pattern: "button",
+              width: "full",
+              text: "Continue Reading"
+            }
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+        {% include "@bolt-components-card/card.twig" with {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/pattern-lab/images/content/promos/promo-blog-1.jpg",
+              lazyload: false,
+            },
+            {
+              pattern: "eyebrow",
+              text: "Customer Experience"
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: "Your organization needs a digital business model"
+            },
+            {
+              pattern: "text",
+              text: "By Kate Fowler, 10/5/2018"
+            },
+            {
+              pattern: "button",
+              width: "full",
+              text: "Continue Reading"
+            }
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+        {% include "@bolt-components-card/card.twig" with {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/pattern-lab/images/content/promos/promo-blog-2.jpg",
+              lazyload: false,
+            },
+            {
+              pattern: "eyebrow",
+              text: "UX & Design"
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: "Pega Catalyst™: Applying design thinking principles to speed digital transformation"
+            },
+            {
+              pattern: "text",
+              text: "By Baruch Sachs and Leanne Russell, 10/1/2018"
+            },
+            {
+              pattern: "button",
+              width: "full",
+              text: "Continue Reading"
+            }
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+        {% include "@bolt-components-card/card.twig" with {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/pattern-lab/images/content/promos/promo-16x9-ai.jpg",
+              lazyload: false,
+            },
+            {
+              pattern: "eyebrow",
+              text: "Category"
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: "Post Title"
+            },
+            {
+              pattern: "text",
+              text: "By Author Name, 10/1/2018"
+            },
+            {
+              pattern: "button",
+              width: "full",
+              text: "Continue Reading"
+            }
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+        {% include "@bolt-components-card/card.twig" with {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/pattern-lab/images/content/promos/promo-16x9-ai.jpg",
+              lazyload: false,
+            },
+            {
+              pattern: "eyebrow",
+              text: "Category"
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: "Post Title"
+            },
+            {
+              pattern: "text",
+              text: "By Author Name, 10/1/2018"
+            },
+            {
+              pattern: "button",
+              width: "full",
+              text: "Continue Reading"
+            }
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+        {% include "@bolt-components-card/card.twig" with {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/pattern-lab/images/content/promos/promo-16x9-ai.jpg",
+              lazyload: false,
+            },
+            {
+              pattern: "eyebrow",
+              text: "Category"
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: "Post Title"
+            },
+            {
+              pattern: "text",
+              text: "By Author Name, 10/1/2018"
+            },
+            {
+              pattern: "button",
+              width: "full",
+              text: "Continue Reading"
+            }
+          ]
+        } only %}
+      {% endcell %}
+      {% cell %}
+        {% include "@bolt-components-button/button.twig" with {
+          text: "Browse All Articles",
+          style: "primary"
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "light",
+    size: "medium",
+    content: recent_articles,
+  } only %}
+  {# End Recent Articles #}
+
+  {# Subscribe #}
+  {% include "@bolt-components-band/band--flag.twig" with {
+    size: "small",
+    theme: "xdark",
+    eyebrow: {
+      text: "Pega Newsletter",
+    },
+    headline: {
+      text: "Stay Up to Date with Insights on Managing Change",
+      size: "large",
+    },
+    buttons: [
+      {
+        text: "Subscribe Now",
+        style: "primary"
+      }
+    ]
+  } only %}
+
+{% endblock %}

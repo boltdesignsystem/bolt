@@ -1,25 +1,3 @@
-{% set attributes = create_attribute(attributes | default({})) %}
+{# Moved to standalone package -- see ui/objects/bolt-ratio for original source code! #}
 
-
-{% set aspectRatioHeight = aspectRatioHeight ? aspectRatioHeight : "1" %}
-{% set aspectRatioWidth = aspectRatioWidth ? aspectRatioWidth : "1" %}
-
-{% if aspectRatioHeight and aspectRatioWidth %}
-  {% set attributes = attributes.setAttribute("aspect-ratio-height", aspectRatioHeight) %}
-  {% set attributes = attributes.setAttribute("aspect-ratio-width", aspectRatioWidth) %}
-
-  {# pre-render custom property values before the JS kicks in #}
-  {% set attributes = attributes.setAttribute("style", [
-    "--aspect-ratio-height: " ~ aspectRatioHeight ~ ";",
-    "--aspect-ratio-width: " ~ aspectRatioWidth ~ ";"
-  ]) %}
-{% endif %}
-
-{# Set Ratio Object Custom Element Name w/ Bolt Namespace #}
-{% set customElementName = "#{bolt.data.config.namespace}-ratio" %}
-
-<{{ customElementName }} {{ attributes }}>
-  {% block ratio_content %}
-    {{ children }}
-  {% endblock %}
-</{{ customElementName }}>
+{% extends "@bolt-components-ratio/ratio.twig" %}

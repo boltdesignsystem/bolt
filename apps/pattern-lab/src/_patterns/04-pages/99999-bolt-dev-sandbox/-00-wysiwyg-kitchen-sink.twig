@@ -146,15 +146,64 @@ ClassicEditor
         "content": "Code text is the Code Snippet component with default settings."
       } only %}
     </figure>
+    <h3>Table</h3>
+    <figure class="u-bolt-margin-bottom-medium">
+      {% include "@bolt-components-table/table.twig" with {
+        headers: {
+          top: {
+            cells: [
+              "Column 1",
+              "Column 2",
+              "Column 3",
+            ]
+          },
+          side: {
+            cells: [
+              "Row 1",
+              "Row 2",
+              "Row 3",
+              "Footer",
+            ]
+          }
+        },
+        rows: [
+          {
+            cells: [
+              "Table is the Table component with default settings.",
+              "R1C2",
+              "R1C3",
+            ]
+          },
+          {
+            cells: [
+              "R2C1",
+              "R2C2",
+              "R2C3",
+            ]
+          },
+          {
+            cells: [
+              "R3C1",
+              "R3C2",
+              "R3C3",
+            ]
+          }
+        ],
+        footer: {
+          cells: [
+            "FC1",
+            "FC2",
+            "FC3",
+          ]
+        }
+      } only %}
+    </figure>
     <h3>Missing in Bolt</h3>
     <figure>
       {% include "@bolt-components-ordered-list/ordered-list.twig" with {
         "contentItems" : [
           {
             "text": "<mark>Figure (Image and Video): the figure component needs to be styled.</mark>"
-          },
-          {
-            "text": "<mark>Table: table component has not been created.</mark>"
           },
           {
             "text": "<mark>All existing components other than the code snippet are not yet web components</mark>"
