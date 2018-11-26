@@ -48,6 +48,7 @@ class BoltVideo extends withPreact() {
 
     // These bindings are necessary to make `this` work in the callback
     this.onPlay = this.onPlay.bind(this);
+    this.onLoadStart = this.onLoadStart.bind(this);
     this.onPause = this.onPause.bind(this);
     this.onEnded = this.onEnded.bind(this);
     this.onDurationChange = this.onDurationChange.bind(this);
@@ -154,6 +155,10 @@ class BoltVideo extends withPreact() {
         this.earlyPause = false;
         this.pause();
       }
+    });
+
+    player.on('loadstart', function() {
+      elem.onLoadStart(player);
     });
 
     player.on('play', function() {
