@@ -52,11 +52,11 @@ $bolt-link-transition: $bolt-transition;
 
 
 // Text and icon spacing
-.c-bolt-link__text + .c-bolt-link__icon {
+.c-bolt-link__text + .c-bolt-link__icon:not(.is-empty) {
   @include bolt-margin-left(xxsmall);
 }
 
-.c-bolt-link__icon + .c-bolt-link__text {
+.c-bolt-link__icon:not(.is-empty) + .c-bolt-link__text {
   @include bolt-margin-left(xxsmall);
 }
 
