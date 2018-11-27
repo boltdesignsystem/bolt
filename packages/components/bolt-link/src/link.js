@@ -143,7 +143,8 @@ class BoltLink extends withLitHtml() {
     const hasHref = this.props.href.length > 0 && this.props.href !== 'null';
 
     // Assign default target attribute value if one isn't specified
-    const anchorTarget = this.props.target && hasHref ? this.props.target : '_self';
+    const anchorTarget =
+      this.props.target && hasHref ? this.props.target : '_self';
 
     // The linkElement to render, based on the initial HTML passed alone.
     let renderedLink;
@@ -189,7 +190,7 @@ class BoltLink extends withLitHtml() {
     if (this.rootElement) {
       renderedLink = this.rootElement.firstChild.cloneNode(true);
       if (renderedLink.getAttribute('href') === null && hasHref) {
-        renderedLink.setAttribute('href', this.props.href)
+        renderedLink.setAttribute('href', this.props.href);
       }
       renderedLink.className += ' ' + classes;
       render(innerSlots, renderedLink);
