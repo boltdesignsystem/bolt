@@ -1,3 +1,5 @@
 export const emailPlugin = player => {
-  return player.emailSocialShare();
+  if (!player.activePlugins_.emailSocialShare) {
+    return player.emailSocialShare();
+  }
 };
