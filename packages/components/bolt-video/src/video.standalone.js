@@ -26,6 +26,7 @@ class BoltVideo extends withPreact() {
     showMeta: props.boolean,
     showMetaTitle: props.boolean,
     closeButtonText: props.string,
+    shareDescription: props.string,
     loop: props.boolean,
     controls: props.boolean,
     autoplay: props.boolean,
@@ -62,6 +63,8 @@ class BoltVideo extends withPreact() {
     this.collapseOnClickAway = this.collapseOnClickAway.bind(this);
 
     // BoltVideo.globalErrors.forEach(this.props.onError);
+
+    this.shareDescription = this.shareDescription || 'Share This Video';
 
     // Ensure that 'this' inside the _onWindowResize event handler refers to <bolt-nav-link>
     // even if the handler is attached to another element (window in this case)
@@ -176,6 +179,8 @@ class BoltVideo extends withPreact() {
     if (elem.controls === false) {
       elem.player.muted(true);
     }
+
+    player.socialOverlay.options_.description = elem.props.shareDescription;
 
     player.on('loadedmetadata', function() {
       const duration = player.mediainfo.duration;

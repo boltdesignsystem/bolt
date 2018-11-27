@@ -15,14 +15,6 @@ export function BoltBase(Base = HTMLElement) {
       if (!this.slots) {
         this.setupSlots();
       }
-
-      // Automatically force a component to render if no props exist BUT props are defined.
-      if (
-        Object.keys(this.props).length !== 0 &&
-        Object.keys(this._props).length === 0
-      ) {
-        this.updated();
-      }
     }
 
     setupSlots() {
