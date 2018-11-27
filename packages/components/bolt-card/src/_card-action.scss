@@ -19,24 +19,20 @@ bolt-card-action {
 
   display: block;
   position: relative;
-  border-top-width: 1px;
+  border-top-width: $bolt-card-border-width;
 
   &:before {
     content: '';
     position: absolute;
     top: 0;
-    left: -1px;
-    width: 1px;
+    left: $bolt-card-border-width * -1;
+    width: $bolt-card-border-width;
     height: 100%;
     background-color: $bolt-card-border-color;
   }
 
   > * {
     height: 100%;
-  }
-
-  ::slotted(*){
-    width: 100%;
   }
 }
 

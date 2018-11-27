@@ -11,6 +11,7 @@ let cx = classNames.bind(styles);
 class BoltCardMedia extends withLitHtml() {
   static is = 'bolt-card-media';
 
+  // @todo: [Mai] Need to determine if media is video or image.
   render() {
     const classes = cx('c-bolt-card__media');
 

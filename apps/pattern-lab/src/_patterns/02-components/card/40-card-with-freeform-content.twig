@@ -3,7 +3,7 @@
     <h3>Passing free-form content inside the card body only</h3>
     {% set card_body_content %}
       {% include "@bolt-components-headline/headline.twig" with {
-        text: "Anything can be passed inside the body container. Woohoo!",
+        text: "Anything can be passed inside the card body container. Woohoo!",
         size: "xlarge",
       } only %}
     {% endset %}
@@ -30,6 +30,19 @@
   {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
     <h3>Passing free-form content for the entire card</h3>
     {% set card_content %}
+      {% include "@bolt-components-band/band.twig" with {
+        size: "xsmall",
+        fullBleed: false,
+        content: "Anything can be passed inside the card container. Woohoo!",
+      } only %}
+      {% include "@bolt-components-card/_card-media.twig" with {
+        media: {
+          image: {
+            src: "/pattern-lab/images/placeholders/landscape-16x9-mountains.jpg",
+            alt: "Image alt.",
+          },
+        }
+      } %}
       {% include "@bolt-components-table/table.twig" with {
         headers: {
           top: {
@@ -77,14 +90,6 @@
             "FC2",
             "FC3",
           ]
-        }
-      } only %}
-      {% include "@bolt-components-card/_card-media.twig" with {
-        media: {
-          image: {
-            src: "/pattern-lab/images/placeholders/landscape-16x9-mountains.jpg",
-            alt: "Image alt.",
-          },
         }
       } only %}
     {% endset %}
