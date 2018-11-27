@@ -26,7 +26,10 @@ export function cuePointsPlugin(player, elem) {
           player.tt.activeCues[0].startTime,
         );
 
-        _render(player.allCuePointData[0]);
+        // only render cue points CTA if the overlay element exists to be rendered into
+        if (elem.overlayElement){
+          _render(player.allCuePointData[0]);
+        }
       }
     };
 
