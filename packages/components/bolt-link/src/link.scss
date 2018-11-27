@@ -1,24 +1,29 @@
-@import '@bolt/core';
-
 /* ------------------------------------ *\
-   Link
+   Links
 \* ------------------------------------ */
 
 // Dev Notes
 // 1. [Mai] Reset button and input tag browser defaults.
 // 2. [Mai] All the theming stuff is an interim fix until the bolt-text is refactored, which will cover all the text link styles as well.
 
+@import '@bolt/core';
 
 // Component variables
 $bolt-link-transition: $bolt-transition;
+
+bolt-link {
+  display: inline-block;
+  display: inline-flex;
+  vertical-align: bottom; // Fixes alignment when link appears next to inline text, "top" also works
+}
 
 // Component styles
 .c-bolt-link {
   @include bolt-padding(0);  // [1]
   @include bolt-font-family(body);  // [1]
 
-  display: inline-block;
-  display: inline-flex;
+  display: block;
+  display: flex; // Container is set to "inline-flex" so this can just be "flex"
   align-items: center; // So icons are vertically centered
   opacity: bolt-opacity(100);
   color: bolt-theme(link);
@@ -53,11 +58,11 @@ $bolt-link-transition: $bolt-transition;
 
 
 // Text and icon spacing
-.c-bolt-link__text + .c-bolt-link__icon {
+.c-bolt-link__text + .c-bolt-link__icon:not(.is-empty) {
   @include bolt-margin-left(xxsmall);
 }
 
-.c-bolt-link__icon + .c-bolt-link__text {
+.c-bolt-link__icon:not(.is-empty) + .c-bolt-link__text {
   @include bolt-margin-left(xxsmall);
 }
 
