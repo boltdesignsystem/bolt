@@ -188,6 +188,9 @@ class BoltLink extends withLitHtml() {
 
     if (this.rootElement) {
       renderedLink = this.rootElement.firstChild.cloneNode(true);
+      if (renderedLink.getAttribute('href') === null && hasHref) {
+        renderedLink.setAttribute('href', this.props.href)
+      }
       renderedLink.className += ' ' + classes;
       render(innerSlots, renderedLink);
     } else {
