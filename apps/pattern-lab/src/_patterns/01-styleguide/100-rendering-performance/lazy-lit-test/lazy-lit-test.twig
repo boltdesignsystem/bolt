@@ -1,0 +1,28 @@
+<h1>Lazy-lit Element Test</h1>
+
+<script>
+  function toggleThrottledLitElementRendering(){
+    console.log('toggleThrottledLitElementRendering');
+
+    var element = document.querySelector('.js-lazy-lit-test');
+    var buttonTriggle = document.querySelector('.js-lazy-lit-test-button');
+
+    if (element.hasAttribute('throttle')){
+      element.removeAttribute('throttle');
+      buttonTriggle.textContent = 'Enable Lit Element Throttling';
+    } else {
+      element.setAttribute('throttle', '');
+      buttonTriggle.textContent = 'Disable Lit Element Throttling';
+    }
+  };
+
+  window.toggleThrottledLitElementRendering = toggleThrottledLitElementRendering;
+</script>
+
+
+<bolt-button on-click="toggleThrottledLitElementRendering" class="js-lazy-lit-test-button">Enable Lit Element Throttling</bolt-button>
+
+<lazy-lit-test class="js-lazy-lit-test"></lazy-lit-test>
+
+
+
