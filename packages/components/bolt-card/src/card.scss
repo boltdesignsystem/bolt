@@ -7,9 +7,13 @@
 
 @include bolt-custom-element('bolt-card', block, medium);
 
-bolt-card[height='full'] {
-  display: flex;
-  height: 100%;
+bolt-card {
+  transition: transform $bolt-transition;
+
+  &[height='full'] {
+    display: flex;
+    height: 100%;
+  }
 }
 
 .c-bolt-card {
@@ -35,7 +39,7 @@ bolt-card[height='full'] {
     height: 100%;
     pointer-events: none;
     border-radius: $bolt-card-border-radius;
-    box-shadow: 0 0 1px rgba(bolt-color(gray), 0.5);
+    box-shadow: 0 0 1px rgba($bolt-card-shadow-color, 0.25);
   }
 
   // Non-themed card color settings.
@@ -75,9 +79,13 @@ bolt-card[height='full'] {
   transition: opacity $bolt-transition;
 }
 
-bolt-card:hover .c-bolt-card__link,
-bolt-card:focus .c-bolt-card__link,
-bolt-card.is-hover .c-bolt-card__link,
-bolt-card.is-focus .c-bolt-card__link {
-  opacity: 1;
+bolt-card:hover,
+bolt-card:focus,
+bolt-card.is-hover,
+bolt-card.is-focus {
+  transform: translate3d(0, -1px, 0);
+
+  .c-bolt-card__link {
+    opacity: 1;
+  }
 }

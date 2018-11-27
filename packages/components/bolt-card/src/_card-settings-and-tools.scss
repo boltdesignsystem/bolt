@@ -22,7 +22,8 @@ $bolt-card-video-z-index: $bolt-card-actions-z-index;
   overflow: hidden;
   border-radius: $bolt-card-border-radius;
 
-  &:first-child {
+  &:first-child,
+  .c-bolt-card__link + & {
     border-radius: $bolt-card-border-radius $bolt-card-border-radius 0 0;
   }
 
