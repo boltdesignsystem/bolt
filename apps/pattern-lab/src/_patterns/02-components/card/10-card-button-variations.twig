@@ -1,6 +1,5 @@
 {% grid "o-bolt-grid--flex o-bolt-grid--center" %}
   {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
-    <h3>Internal</h3>
     {% include "@bolt-components-card/card.twig" with {
       media: {
         image: {
@@ -10,7 +9,7 @@
       },
       body: {
         eyebrow: "This is an eyebrow",
-        headline: "This is a headline",
+        headline: "This card's action button is an internal link",
         paragraph: "This is a paragraph.",
       },
       actions: [
@@ -22,7 +21,6 @@
     } only %}
   {% endcell %}
   {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
-    <h3>External</h3>
     {% include "@bolt-components-card/card.twig" with {
       media: {
         image: {
@@ -32,7 +30,7 @@
       },
       body: {
         eyebrow: "This is an eyebrow",
-        headline: "This is a headline",
+        headline: "This card's action button is an external link",
         paragraph: "This is a paragraph.",
       },
       actions: [

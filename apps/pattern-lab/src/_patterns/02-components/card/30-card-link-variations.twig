@@ -2,7 +2,6 @@
 
 {% grid "o-bolt-grid--flex o-bolt-grid--center" %}
   {% cell "u-bolt-width-6/12 u-bolt-width-3/12@small" %}
-    <h3>No link</h3>
     {% include "@bolt-components-card/card.twig" with {
       media: {
         image: {
@@ -11,6 +10,7 @@
         },
       },
       body: {
+        headline: "No link",
         paragraph: "This card doesn't have an link.",
       },
       actions: [
@@ -22,7 +22,6 @@
     } only %}
   {% endcell %}
   {% cell "u-bolt-width-6/12 u-bolt-width-3/12@small" %}
-    <h3>With link</h3>
     {% include "@bolt-components-card/card.twig" with {
       link: {
         href: "http://pega.com",
@@ -34,6 +33,7 @@
         },
       },
       body: {
+        headline: "With link",
         paragraph: "This card has an link, which makes the whole card clickable, but you can still have the action button to link somewhere else if needed.",
       },
       actions: [
@@ -45,7 +45,6 @@
     } only %}
   {% endcell %}
   {% cell "u-bolt-width-6/12 u-bolt-width-3/12@small" %}
-    <h3>With link and video</h3>
     {% include "@bolt-components-card/card.twig" with {
       link: {
         href: "#!",
@@ -65,6 +64,7 @@
         },
       },
       body: {
+        headline: "With link and video",
         paragraph: "This card has an link, which makes the whole card clickable, and you can make it play/pause the video. Action button is optional in this case.",
       },
       actions: [
