@@ -367,11 +367,15 @@ class BoltVideo extends withPreact() {
   }
 
   hideOverlay() {
-    this.overlayElement.classList.add('vjs-hidden');
+    if (this.overlayElement) {
+      this.overlayElement.classList.add('vjs-hidden');
+    }
   }
 
   showOverlay() {
-    this.overlayElement.classList.remove('vjs-hidden');
+    if (this.overlayElement) {
+      this.overlayElement.classList.remove('vjs-hidden');
+    }
   }
 
   onPlay(player) {
