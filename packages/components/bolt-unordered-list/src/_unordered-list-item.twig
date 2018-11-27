@@ -1,0 +1,24 @@
+{% set item_attributes = create_attribute(item_attributes|default({})) %}
+{% set base_class = "c-bolt-unordered-list-item" %}
+
+{% set last = loop.last %}
+{% set classes = [
+  base_class,
+  last ? "#{base_class}--last-item",
+] %}
+
+<bolt-unordered-list-item
+  {% if last %} last {% endif %}
+>
+  <replace-with-grandchildren>
+    <li {{ attributes.addClass(classes) }}>
+      {% if item.text %}
+        {{ item.text }}
+      {% elseif item.items %}
+        {% for item in item.items %}
+          {% include "@bolt/text.twig" with item only %}
+        {% endfor %}
+      {% endif %}
+    </li>
+  </replace-with-grandchildren>
+</bolt-unordered-list-item>
