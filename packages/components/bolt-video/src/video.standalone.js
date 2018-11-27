@@ -289,9 +289,15 @@ class BoltVideo extends withPreact() {
       return;
     }
 
-    // only ever append script once
+    // only ever append script once per unique playerId
     if (!BoltVideo.players) {
       BoltVideo.players = [];
+    }
+
+    const playerId = this.props.playerId;
+
+    if (!BoltVideo.players[playerId]) {
+      BoltVideo.players[playerId] = playerId;
 
       const s = this.createScript();
 
