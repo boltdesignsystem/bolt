@@ -3,30 +3,23 @@
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
-{% set prefix = "c-bolt-" %}
 {% set attributes = create_attribute(attributes|default({})) %}
-
-{% set componentName = "unordered-list" %}
-{% set baseClass = prefix ~ componentName %}
-
+{% set base_class = "c-bolt-unordered-list" %}
 
 {% set classes = [
-  baseClass
+  base_class
 ] %}
 
+{% if contentItems %}
+  {% set items = contentItems %}
+{% endif %}
 
-<bolt-{{ componentName }} bolt-component>
-  <ul {{ attributes.addClass(classes) }}>
-    {% for listItem in contentItems %}
-      <li class="{{ "#{baseClass}__item" }}">
-        {% if listItem.text %}
-          {{ listItem.text }}
-        {% elseif listItem.contentItems %}
-          {% for item in listItem.contentItems %}
-            {% include "@bolt/text.twig" with item only %}
-          {% endfor %}
-        {% endif %}
-      </li>
-    {% endfor %}
-  </ul>
-</bolt-{{ componentName }}>
+<bolt-unordered-list>
+  <replace-with-grandchildren>
+    <ul {{ attributes.addClass(classes) }}>
+      {% for item in items %}
+        {% include "@bolt-components-unordered-list/_unordered-list-item.twig" %}
+      {% endfor %}
+    </ul>
+  </replace-with-grandchildren>
+</bolt-unordered-list>
