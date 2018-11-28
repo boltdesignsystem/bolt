@@ -2,16 +2,16 @@ import { define } from '@bolt/core/utils';
 import classNames from 'classnames/bind';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
-import styles from './unordered-list.scss';
+import styles from './ordered-list.scss';
 
 let cx = classNames.bind(styles);
 
 @define
-class BoltUnorderedList extends withLitHtml() {
-  static is = 'bolt-unordered-list';
+class BoltOrderedList extends withLitHtml() {
+  static is = 'bolt-ordered-list';
 
   render() {
-    const classes = cx('c-bolt-unordered-list');
+    const classes = cx('c-bolt-ordered-list');
 
     return html`
       ${this.addStyles([styles])}
@@ -22,4 +22,4 @@ class BoltUnorderedList extends withLitHtml() {
   }
 }
 
-export { BoltUnorderedList };
+export { BoltOrderedList };

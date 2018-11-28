@@ -1,0 +1,33 @@
+/* ------------------------------------ *\
+   Ordered List
+\* ------------------------------------ */
+
+// Sample Usage
+// <bolt-ordered-list bolt-component>
+//   <ol class="c-bolt-ordered-list">
+//     <li class="c-bolt-ordered-list__item">
+//       Item 1
+//     </li>
+//     <li class="c-bolt-ordered-list__item">
+//       Item 2
+//     </li>
+//     <li class="c-bolt-ordered-list__item">
+//       Item 3
+//     </li>
+//   </ol>
+// </bolt-ordered-list>
+
+@import '@bolt/core';
+
+// Register Custom Block Element
+@include bolt-custom-element('bolt-ordered-list', block, medium);
+
+
+// Styles
+.c-bolt-ordered-list {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
+
+  list-style: none;
+  counter-reset: li;
+}

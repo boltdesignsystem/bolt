@@ -2,13 +2,13 @@ import { define, props } from '@bolt/core/utils';
 import classNames from 'classnames/bind';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
-import styles from './_unordered-list-item.scss';
+import styles from './_ordered-list-item.scss';
 
 let cx = classNames.bind(styles);
 
 @define
-class BoltUnorderedListItem extends withLitHtml() {
-  static is = 'bolt-unordered-list-item';
+class BoltOrderedListItem extends withLitHtml() {
+  static is = 'bolt-ordered-list-item';
 
   static props = {
     last: props.boolean,
@@ -17,8 +17,8 @@ class BoltUnorderedListItem extends withLitHtml() {
   render() {
     const { last } = this.props;
 
-    const classes = cx('c-bolt-unordered-list-item', {
-      [`c-bolt-unordered-list-item--last-item`]: last,
+    const classes = cx('c-bolt-ordered-list-item', {
+      [`c-bolt-ordered-list-item--last-item`]: last,
     });
 
     return html`
@@ -28,4 +28,4 @@ class BoltUnorderedListItem extends withLitHtml() {
   }
 }
 
-export { BoltUnorderedListItem };
+export { BoltOrderedListItem };

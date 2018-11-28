@@ -1,0 +1,29 @@
+{% set item_attributes = create_attribute(item_attributes|default({})) %}
+
+{% set base_class = "c-bolt-ordered-list-item" %}
+
+{% set last = loop.last %}
+{% set index = loop.index %}
+{% set classes = [
+  base_class,
+  last ? "#{base_class}--last-item",
+] %}
+
+<bolt-ordered-list-item
+  {% if last %} last {% endif %}
+>
+  <replace-with-grandchildren>
+    <li {{ item_attributes.addClass(classes) }}>
+      {% if index %}
+        {% include "@bolt-components-ordered-list/_ordered-list-item-index.twig" %}
+      {% endif %}
+      {% if item.text %}
+        {{ item.text }}
+      {% elseif item.items %}
+        {% for item in item.items %}
+          {% include "@bolt/text.twig" with item only %}
+        {% endfor %}
+      {% endif %}
+    </li>
+  </replace-with-grandchildren>
+</bolt-ordered-list-item>

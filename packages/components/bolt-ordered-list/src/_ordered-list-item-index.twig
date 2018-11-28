@@ -1,0 +1,18 @@
+{% set index_attributes = create_attribute(index_attributes|default({})) %}
+
+{% set base_class = "c-bolt-ordered-list-item-index" %}
+
+{% set index = loop.index %}
+{% set classes = [
+  base_class
+] %}
+
+<bolt-ordered-list-item-index>
+  <replace-with-grandchildren>
+    <div {{ index_attributes.addClass(classes) }}>
+      {% if index%}
+        {{ index }}
+      {% endif %}
+    </div>
+  </replace-with-grandchildren>
+</bolt-ordered-list-item-index>

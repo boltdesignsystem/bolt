@@ -1,0 +1,13 @@
+@import '@bolt/core';
+
+.c-bolt-ordered-list-item {
+  @include bolt-margin(0 0 small medium);
+  @include bolt-padding(0);
+
+  position: relative;
+  counter-increment: li;
+
+  &.c-bolt-ordered-list-item--last-item {
+    @include bolt-margin-bottom(0);
+  }
+}

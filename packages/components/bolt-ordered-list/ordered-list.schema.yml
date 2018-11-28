@@ -1,4 +1,3 @@
-$schema: http://json-schema.org/draft-04/schema#
 title: Ordered List
 type: object
 properties:
@@ -6,6 +5,19 @@ properties:
     type: object
     description: A Drupal-style attributes object with extra attributes to append to this component.
   contentItems:
+    type: array
+    title: 'DEPRECATED'
+    description: 'Use the items parameter instead.'
+    items:
+      type: object
+      description: A single list item object with either a `text` or `contentItems` key
+      properties:
+        text:
+          type: string
+        contentItems:
+          type: object
+          description: Passes to `@bolt/text.twig`
+  items:
     type: array
     title: The content items
     description: These are all of the items in the ordered list
