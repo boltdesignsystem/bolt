@@ -24,10 +24,10 @@
 {% set attributes = create_attribute(attributes | default(attributes) | default({})) %}
 {% set attributes = attributes.addClass(classes) %}
 
-{% if href or attributes['href'] %}
-  {% set href = href | default(attributes['href']) %}
-{% elseif url or attributes['url'] %}
-  {% set href = url | default(attributes['url']) %}
+{% if url or attributes['url'] %}
+  {% set url = url | default(attributes['url']) %}
+{% elseif href or attributes['href'] %}
+  {% set url = href | default(attributes['href']) %}
 {% endif %}
 
 {% if target or attributes['target'] %}
@@ -64,7 +64,7 @@ Sort classes passed in via attributes into two groups:
 {# link component's custom element wrapper #}
 <bolt-link
   {{ filteredAttributes }}
-  {% if href %} href="{{ href }}" {% endif %}
+  {% if url %} url="{{ url }}" {% endif %}
   {% if target %} target="{{ target }}" {% endif %}
   {% if isHeadline %} is-headline="true" {% endif %}
   {% if outerClasses %} class="{{ outerClasses|join(' ') }}" {% endif %}
@@ -76,7 +76,7 @@ Sort classes passed in via attributes into two groups:
   {# Add semantic <a> tag for better accessibility #}
   <a
     {{ filteredAttributes }}
-    {% if href %} href="{{ href }}" {% endif %}
+    {% if url %} href="{{ url }}" {% endif %}
     {% if target %} target="{{ target }}" {% endif %}
     class="{{ innerClasses|join(' ') }}"
     is="shadow-root"
