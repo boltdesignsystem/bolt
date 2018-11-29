@@ -8,6 +8,7 @@ module.exports = {
     'packages/build-tools/plugins/sass-export-data/tests',
     'packages/components/bolt-button/__tests__/button-wc.test.js',
     'packages/patternlab-node',
+    'packages/components/bolt-video/__tests__/bolt-video.e2e.js',
   ],
   testEnvironment: 'node',
   globalSetup: './jest-global-setup.js',

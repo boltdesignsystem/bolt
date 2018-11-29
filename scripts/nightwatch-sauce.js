@@ -102,7 +102,6 @@ module.exports = function sauce(callback) {
   }
 
   if (!username || !accessKey || !sessionId) {
-    console.log(this.client);
     console.log('No username, accessKey or sessionId');
     return callback();
   }
