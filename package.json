@@ -59,7 +59,7 @@
     "test:e2e:full-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config nightwatch.js --env chrome,firefox,ie11",
     "test:e2e:full": "./node_modules/.bin/nightwatch --config nightwatch.js --env chrome,firefox,ie11 $NOW_URL",
     "test:php": "cd packages/core-php && composer run test",
-    "test": "npm-run-all --parallel test:js test:php test:e2e:quick-local",
+    "test": "npm-run-all --parallel test:js test:php",
     "watch:icons": "lerna exec --scope @bolt/components-icons -- yarn run watch"
   },
   "dependencies": {
