@@ -26,7 +26,6 @@ module.exports = {
         },
         [],
         function(result) {
-          return;
           // browser.assert.ok(
           //   result.value === 1.3,
           //   `verified that <bolt-video> play rate has sped up to ${
@@ -116,5 +115,4 @@ module.exports = {
       )
       .end();
   },
-
 };
